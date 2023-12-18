@@ -3,11 +3,11 @@ import { ColumnOne } from '@graphcommerce/next-ui'
 import { RowColumnOneProps } from '../type'
 
 export function Default(props: RowColumnOneProps) {
-  const { colOne } = props
+  const { copy } = props
 
   return (
     <ColumnOne>
-      <RichText {...colOne} />
+      <RichText {...copy} />
     </ColumnOne>
   )
 }

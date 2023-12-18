@@ -3,11 +3,11 @@ import { VariantMessage } from '@graphcommerce/next-ui'
 import { RowColumnOneProps } from '../type'
 
 export function Message(props: RowColumnOneProps) {
-  const { colOne, id } = props
+  const { copy, id } = props
 
   return (
     <VariantMessage id={id}>
-      <RichText {...colOne} />
+      <RichText {...copy} />
     </VariantMessage>
   )
 }
