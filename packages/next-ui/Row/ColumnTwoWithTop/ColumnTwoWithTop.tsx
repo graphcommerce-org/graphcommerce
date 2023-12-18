@@ -13,6 +13,10 @@ const compName = 'ColumnTwoWithTop' as const
 const parts = ['root', 'colOne', 'colTwo'] as const
 const { classes } = extendableComponent(compName, parts)
 
+/**
+ * @deprecated
+ */
+
 export function ColumnTwoWithTop(props: ColumnTwoWithTopProps) {
   const { left, right, top, sx = [], ...containerProps } = props
 

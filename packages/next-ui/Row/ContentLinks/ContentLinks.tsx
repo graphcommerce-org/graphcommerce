@@ -13,6 +13,9 @@ const compName = 'ContentLinks' as const
 const parts = ['root', 'scroller', 'title'] as const
 const { classes } = extendableComponent(compName, parts)
 
+/**
+ * @deprecated
+ */
 export function ContentLinks(props: ContentLinksProps) {
   const { title, children, sx = [] } = props
 
