@@ -4,7 +4,7 @@ import {
   SidebarGalleryProps,
   TypeRenderer,
 } from '@graphcommerce/next-ui'
-import { GridGallery } from './GridGallary'
+import { GridGallery } from './GridGallery'
 import { ProductPageGalleryFragment } from './ProductPageGallery.gql'
 
 export type ProductPageGalleryRenderers = TypeRenderer<

@@ -1,7 +1,7 @@
 import { MotionImageAspectProps } from '@graphcommerce/framer-scroller'
 import { Image } from '@graphcommerce/image'
 import { Row, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
-import { Box, Container, SxProps, Theme, useTheme } from '@mui/material'
+import { Box, SxProps, Theme, useTheme } from '@mui/material'
 
 export type SidebarGalleryProps = {
   sidebar: React.ReactNode
