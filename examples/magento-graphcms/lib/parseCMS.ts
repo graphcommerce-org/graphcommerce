@@ -38,7 +38,6 @@ export const parseHygraph = (input: Inputs) => {
     console.log('isRowLinks')
 
     const { pageLinks: links, rowLinksCopy: copy, ...rest } = input
-
     const output = {
       ...rest,
       links,
