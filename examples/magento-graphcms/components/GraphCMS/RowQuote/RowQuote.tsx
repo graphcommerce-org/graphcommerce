@@ -3,12 +3,12 @@ import { Quote } from '@graphcommerce/next-ui'
 import { RowQuoteProps } from './type'
 
 export function RowQuote(props: RowQuoteProps) {
-  const { quote } = props
+  const { copy } = props
 
   return (
     <Quote>
       <RichText
-        {...quote}
+        {...copy}
         sxRenderer={{
           paragraph: (theme) => ({
             typography: 'h4',

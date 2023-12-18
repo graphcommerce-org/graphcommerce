@@ -4,15 +4,15 @@ import { Box, ButtonBase, Typography } from '@mui/material'
 import { RowLinksProps } from '../type'
 
 export function ImageLabelSwiper(props: RowLinksProps) {
-  const { title, rowLinksCopy, pageLinks } = props
+  const { title, copy, links } = props
 
   return (
     <VariantImageLabelSwiper
       title={title}
-      copy={rowLinksCopy && <RichText {...rowLinksCopy} />}
+      copy={copy && <RichText {...copy} />}
       sx={{ '& .Scroller-root': { alignItems: 'start' } }}
     >
-      {pageLinks.map((pageLink) => (
+      {links.map((pageLink) => (
         <ButtonBase
           href={pageLink.url}
           key={pageLink.id}

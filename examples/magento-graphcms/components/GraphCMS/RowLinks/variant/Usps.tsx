@@ -4,7 +4,7 @@ import { Box } from '@mui/material'
 import { RowLinksProps } from '../type'
 
 export function Usps(props: RowLinksProps) {
-  const { title, pageLinks } = props
+  const { title, links } = props
 
   return (
     <VariantUsps
@@ -30,7 +30,7 @@ export function Usps(props: RowLinksProps) {
         },
       })}
     >
-      {pageLinks.map((pageLink) => (
+      {links.map((pageLink) => (
         <Box
           key={pageLink.id}
           sx={{

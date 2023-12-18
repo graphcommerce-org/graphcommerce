@@ -4,7 +4,7 @@ import { Link } from '@mui/material'
 import { RowLinksProps } from '../type'
 
 export function LogoSwiper(props: RowLinksProps) {
-  const { title, pageLinks } = props
+  const { title, links } = props
 
   return (
     <VariantLogoSwiper
@@ -12,7 +12,7 @@ export function LogoSwiper(props: RowLinksProps) {
       maxWidth={false}
       sx={(theme) => ({ my: `calc(${theme.spacings.xxl} +  ${theme.spacings.md})` })}
     >
-      {pageLinks.map((pageLink) => (
+      {links.map((pageLink) => (
         <Link
           href={pageLink.url}
           key={pageLink.id}

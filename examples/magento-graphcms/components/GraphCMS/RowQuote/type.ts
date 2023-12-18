@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowQuoteProps = {
   __typename: 'RowQuote'
-  id: string
-  quote: { raw: any }
+  id?: string
+  copy: { raw: any }
 }
 
-export const rowQuoteInput: RowQuoteProps = {
-  __typename: 'RowQuote',
+export const rowQuoteInput = {
+  __typename: 'RowQuote' as const,
   id: 'clpwlv5zhqhi809w2mh2mbmsl',
   quote: {
     raw: {

@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowLinksProps = {
   __typename: 'RowLinks'
-  id: string
+  id?: string
   title: string
   linksVariant?: 'Inline' | 'ImageLabelSwiper' | 'LogoSwiper' | 'Usps' | null
-  rowLinksCopy?: { raw: any } | null
-  pageLinks: Array<{
+  copy?: { raw: any } | null
+  links: Array<{
     id: string
     title: string
     url: string
@@ -21,12 +21,12 @@ export type RowLinksProps = {
   }>
 }
 
-export const rowLinksInput: RowLinksProps = {
-  __typename: 'RowLinks',
+export const rowLinksInput = {
+  __typename: 'RowLinks' as const,
   id: 'clf1648hhza3f0buqqg6grd6o',
   title: 'Customer service',
   rowLinksCopy: null,
-  linksVariant: 'Inline',
+  linksVariant: 'Inline' as const,
   pageLinks: [
     {
       id: 'ckv6jk7jszql80b49np6cptgy',

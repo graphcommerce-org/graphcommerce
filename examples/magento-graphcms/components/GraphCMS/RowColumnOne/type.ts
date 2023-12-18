@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowColumnOneProps = {
   __typename: 'RowColumnOne'
-  id: string
+  id?: string
   rowColumnOneVariant?: 'Default' | 'Message' | null | undefined
   copy: {
     raw: any
   }
 }
 
-export const rowColumnOneInput: RowColumnOneProps = {
-  __typename: 'RowColumnOne',
+export const rowColumnOneInput = {
+  __typename: 'RowColumnOne' as const,
   id: 'ckv6kbfhknt3h0c5946xpj83m',
   rowColumnOneVariant: null,
   colOne: {
