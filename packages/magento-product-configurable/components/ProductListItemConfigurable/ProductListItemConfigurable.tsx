@@ -1,4 +1,3 @@
-import { useQuery } from '@graphcommerce/graphql'
 import {
   ProductListItem,
   OverlayAreaKeys,
@@ -7,13 +6,9 @@ import {
   isFilterTypeEqual,
 } from '@graphcommerce/magento-product'
 import { SwatchList } from '../../SwatchList'
-import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
-import { GetConfigurableVariantsDocument } from '../../graphql/GetConfigurableVariants.gql'
 import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
 
-export type ProductListItemConfigurableActionProps = ProductListItemConfigurableFragment & {
-  variant?: NonNullable<ConfigurableOptionsFragment['variants']>[0]
-}
+export type ProductListItemConfigurableActionProps = ProductListItemConfigurableFragment
 
 export type ProdustListItemConfigurableProps = ProductListItemConfigurableFragment &
   ProductListItemProps & {
@@ -32,22 +27,6 @@ export function ProductListItemConfigurable(props: ProdustListItemConfigurablePr
     ...configurableProduct
   } = props
   const { params } = useProductListParamsContext()
-
-  const swatches = ['dominant_color', 'print_pattern_swatch']
-
-  const configurableItemVariants = useQuery(GetConfigurableVariantsDocument, {
-    variables: { sku: configurableProduct.sku ?? '' },
-    skip: !configurable_options?.some(
-      (option) => option?.attribute_code && swatches.includes(option.attribute_code),
-    ),
-  }).data?.products?.items?.[0]
-
-  if (!configurableProduct.sku) return false
-
-  const variants =
-    configurableItemVariants?.__typename === 'ConfigurableProduct'
-      ? configurableItemVariants.variants
-      : []
 
   const options: [string, string[]][] =
     configurable_options
@@ -68,19 +47,19 @@ export function ProductListItemConfigurable(props: ProdustListItemConfigurablePr
     if (!selected[attr]) selected[attr] = values
   })
 
-  const matchingVariants = variants?.filter(
-    (variant) =>
-      variant?.attributes?.filter(
-        (attribute) =>
-          selected[attribute?.code ?? ''] !== undefined &&
-          selected[attribute?.code ?? ''].includes(String(attribute?.value_index)),
-      ).length,
-  )
+  // const matchingVariants = variants?.filter(
+  //   (variant) =>
+  //     variant?.attributes?.filter(
+  //       (attribute) =>
+  //         selected[attribute?.code ?? ''] !== undefined &&
+  //         selected[attribute?.code ?? ''].includes(String(attribute?.value_index)),
+  //     ).length,
+  // )
 
   return (
     <ProductListItem
       {...configurableProduct}
-      small_image={matchingVariants?.[0]?.product?.small_image ?? configurableProduct.small_image}
+      small_image={configurableProduct.small_image}
       topLeft={
         <>
           {topLeft}
