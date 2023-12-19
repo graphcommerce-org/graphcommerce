@@ -1,7 +1,7 @@
 import { RowLinksProps } from './type'
 import { LogoSwiper, ImageLabelSwiper, Inline, Usps } from './variant'
 
-type VariantRenderer = Record<NonNullable<RowLinksProps['linksVariant']>, React.FC<RowLinksProps>>
+type VariantRenderer = Record<NonNullable<RowLinksProps['variant']>, React.FC<RowLinksProps>>
 
 const defaultRenderer: Partial<VariantRenderer> = {
   LogoSwiper,
@@ -15,15 +15,15 @@ export function RowLinks(
     renderer?: Partial<VariantRenderer>
   },
 ) {
-  const { renderer, linksVariant, ...rest } = props
+  const { renderer, variant, ...rest } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as VariantRenderer
 
-  if (!linksVariant) return null
+  if (!variant) return null
 
   const RenderType =
-    mergedRenderer?.[linksVariant] ??
+    mergedRenderer?.[variant] ??
     (() => {
-      if (process.env.NODE_ENV !== 'production') return <>renderer for {linksVariant} not found</>
+      if (process.env.NODE_ENV !== 'production') return <>renderer for {variant} not found</>
       return null
     })
 

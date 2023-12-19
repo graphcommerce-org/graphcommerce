@@ -22,7 +22,7 @@ function isQuote(input: Inputs): input is RowQuoteFragment & { __typename: 'RowQ
 }
 
 export const parseHygraph = (input: Inputs) => {
-  if (isColumnOne(input)) {
+  if (isColumnOne(input, input)) {
     console.log('isColumnOne')
 
     const { colOne: copy, rowColumnOneVariant: variant, ...rest } = input
@@ -36,20 +36,21 @@ export const parseHygraph = (input: Inputs) => {
   }
 
   if (isRowLinks(input)) {
-    console.log('isRowLinks')
+    console.log('isRowLinks', input)
 
     const { pageLinks: links, linksVariant: variant, rowLinksCopy: copy, ...rest } = input
     const output = {
       ...rest,
       links,
       copy,
+      variant,
     }
 
     return output
   }
 
   if (isQuote(input)) {
-    console.log('isQuote')
+    console.log('isQuote', input)
 
     const { quote: copy, ...rest } = input
     const output = {

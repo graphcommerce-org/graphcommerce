@@ -2,7 +2,7 @@ import { RowColumnOneProps } from './type'
 import { Default, Message } from './variant'
 
 type VariantRenderer = Record<
-  NonNullable<RowColumnOneProps['rowColumnOneVariant']>,
+  NonNullable<RowColumnOneProps['variant']>,
   React.FC<RowColumnOneProps>
 >
 
@@ -13,17 +13,16 @@ const defaultRenderer: Partial<VariantRenderer> = {
 
 export function RowColumnOne(props: RowColumnOneProps & { renderer?: VariantRenderer }) {
   const { renderer, ...rest } = props
-  let { rowColumnOneVariant } = props
+  let { variant } = props
 
   const mergedRenderer = { ...defaultRenderer, ...renderer } as VariantRenderer
 
-  if (!rowColumnOneVariant) rowColumnOneVariant = 'Default'
+  if (!variant) variant = 'Default'
 
   const RenderType =
-    mergedRenderer?.[rowColumnOneVariant] ??
+    mergedRenderer?.[variant] ??
     (() => {
-      if (process.env.NODE_ENV !== 'production')
-        return <>renderer for {rowColumnOneVariant} not found</>
+      if (process.env.NODE_ENV !== 'production') return <>renderer for {variant} not found</>
       return null
     })
 
