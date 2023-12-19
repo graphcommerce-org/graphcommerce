@@ -15,6 +15,7 @@ export * from './ImageTextBoxed/ImageTextBoxed'
 export * from './ParagraphWithSidebarSlide/ParagraphWithSidebarSlide'
 export * from './Quote/Quote'
 export * from './SpecialBanner/SpecialBanner'
-export * from './Links/Links'
-export * from './Links/variant'
+
+// Localized
 export * from './ColumnOne'
+export * from './Links'

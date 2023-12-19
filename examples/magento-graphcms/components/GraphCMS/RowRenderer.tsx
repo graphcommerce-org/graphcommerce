@@ -1,11 +1,18 @@
-import { RenderType, TypeRenderer, RowColumnOne, RowColumnOneProps } from '@graphcommerce/next-ui'
+import {
+  RenderType,
+  TypeRenderer,
+  RowColumnOne,
+  RowColumnOneProps,
+  RowLinks,
+  RowLinksProps,
+} from '@graphcommerce/next-ui'
 import { RowBlogContent, RowBlogContentProps } from './RowBlogContent'
 import { RowButtonLinkList, RowButtonLinkListProps } from './RowButtonLinkList'
 import { RowColumnThree, RowColumnThreeProps } from './RowColumnThree'
 import { RowColumnTwo, RowColumnTwoProps } from './RowColumnTwo'
 import { RowContentLinks, RowContentLinksProps } from './RowContentLinks'
 import { RowHeroBanner, RowHeroBannerProps } from './RowHeroBanner'
-import { RowLinks, RowLinksProps } from './RowLinks'
+
 import { RowProduct, RowProductProps } from './RowProduct'
 import { RowQuote, RowQuoteProps } from './RowQuote'
 import { RowServiceOptions, RowServiceOptionsProps } from './RowServiceOptions'
