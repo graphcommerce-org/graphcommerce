@@ -1,4 +1,4 @@
-// import { RichText } from '@graphcommerce/graphcms-ui'
+import { RichText } from '../../RichText'
 import {
   DismissibleSnackbar,
   DismissibleSnackbarProps,
@@ -17,14 +17,12 @@ export function VariantMessage(props: VariantMessageProps) {
 export function Message(props: RowColumnOneProps) {
   const { copy, id } = props
 
-  if (id) return <p>kalalal</p>
-
-  // if (id)
-  //   return (
-  //     <VariantMessage id={id}>
-  //       <RichText {...copy} />
-  //     </VariantMessage>
-  //   )
+  if (id)
+    return (
+      <VariantMessage id={id}>
+        <RichText {...copy} />
+      </VariantMessage>
+    )
 
   return Default(props)
 }
