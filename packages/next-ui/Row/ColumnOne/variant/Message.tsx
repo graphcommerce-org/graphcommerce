@@ -1,4 +1,4 @@
-import { RichText } from '../../RichText'
+import { RichText } from '../../Renderer/RichText'
 import {
   DismissibleSnackbar,
   DismissibleSnackbarProps,
