@@ -22,8 +22,8 @@ function isQuote(input: Inputs): input is RowQuoteFragment & { __typename: 'RowQ
 }
 
 export const parseHygraph = (input: Inputs) => {
-  if (isColumnOne(input, input)) {
-    console.log('isColumnOne')
+  if (isColumnOne(input)) {
+    console.log('isColumnOne', input)
 
     const { colOne: copy, rowColumnOneVariant: variant, ...rest } = input
     const output = {
