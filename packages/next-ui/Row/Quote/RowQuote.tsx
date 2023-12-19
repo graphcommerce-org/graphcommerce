@@ -31,7 +31,6 @@ export function RowQuote(props: RowQuoteProps & { sx?: SxProps<Theme> }) {
           }),
         }}
       />
-      asdsadasdsa
     </Row>
   )
 }
