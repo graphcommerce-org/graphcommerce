@@ -50,40 +50,38 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
     )
 
     return (
-      <ProductListParamsProvider value={params}>
-        <ProductFiltersPro
-          key={id}
-          params={params}
-          aggregations={filters?.aggregations}
-          appliedAggregations={products?.aggregations}
-          filterTypes={filterTypes}
-        >
-          {import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' ? (
-            <ProductFiltersProLayoutSidebar
-              clearAll={<ProductFiltersProClearAll />}
-              horizontalFilters={horizontalFilters}
-              sidebarFilters={
-                <ProductFiltersProAllFiltersSidebar
-                  total_count={total_count}
-                  sort_fields={sort_fields}
-                />
-              }
-              count={<ProductListCount total_count={total_count} />}
-              pagination={<ProductListPagination page_info={page_info} params={params} />}
-              items={items}
-            />
-          ) : (
-            <>
-              <StickyBelowHeader>{horizontalFilters}</StickyBelowHeader>
-              <Container maxWidth={false}>
-                <ProductListCount total_count={total_count} />
-                {items}
-                <ProductListPagination page_info={page_info} params={params} />
-              </Container>
-            </>
-          )}
-        </ProductFiltersPro>
-      </ProductListParamsProvider>
+      <ProductFiltersPro
+        key={id}
+        params={params}
+        aggregations={filters?.aggregations}
+        appliedAggregations={products?.aggregations}
+        filterTypes={filterTypes}
+      >
+        {import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' ? (
+          <ProductFiltersProLayoutSidebar
+            clearAll={<ProductFiltersProClearAll />}
+            horizontalFilters={horizontalFilters}
+            sidebarFilters={
+              <ProductFiltersProAllFiltersSidebar
+                total_count={total_count}
+                sort_fields={sort_fields}
+              />
+            }
+            count={<ProductListCount total_count={total_count} />}
+            pagination={<ProductListPagination page_info={page_info} params={params} />}
+            items={items}
+          />
+        ) : (
+          <>
+            <StickyBelowHeader>{horizontalFilters}</StickyBelowHeader>
+            <Container maxWidth={false}>
+              <ProductListCount total_count={total_count} />
+              {items}
+              <ProductListPagination page_info={page_info} params={params} />
+            </Container>
+          </>
+        )}
+      </ProductFiltersPro>
     )
   }
 
