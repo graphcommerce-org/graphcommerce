@@ -3,7 +3,7 @@ export type RowLinksProps = {
   __typename: 'RowLinks'
   id?: string
   title: string
-  linksVariant?: 'Inline' | 'ImageLabelSwiper' | 'LogoSwiper' | 'Usps' | null
+  variant?: 'Inline' | 'ImageLabelSwiper' | 'LogoSwiper' | 'Usps' | null
   copy?: { raw: any } | null
   links: Array<{
     id: string

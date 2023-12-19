@@ -1,5 +1,5 @@
-import { RowColumnOneFragment } from '../components/GraphCMS/RowColumnOne/RowColumnOne.gql'
-import { RowLinksFragment } from '../components/GraphCMS/RowLinks/RowLinks.gql'
+// import { RowColumnOneFragment } from '../components/GraphCMS/RowColumnOne/RowColumnOne.gql'
+import { RowColumnOneFragment, RowLinksFragment } from '@graphcommerce/next-ui'
 import { RowQuoteFragment } from '../components/GraphCMS/RowQuote/RowQuote.gql'
 
 type Inputs =
@@ -25,10 +25,11 @@ export const parseHygraph = (input: Inputs) => {
   if (isColumnOne(input)) {
     console.log('isColumnOne')
 
-    const { colOne: copy, ...rest } = input
+    const { colOne: copy, rowColumnOneVariant: variant, ...rest } = input
     const output = {
       ...rest,
       copy,
+      variant,
     }
 
     return output
@@ -37,7 +38,7 @@ export const parseHygraph = (input: Inputs) => {
   if (isRowLinks(input)) {
     console.log('isRowLinks')
 
-    const { pageLinks: links, rowLinksCopy: copy, ...rest } = input
+    const { pageLinks: links, linksVariant: variant, rowLinksCopy: copy, ...rest } = input
     const output = {
       ...rest,
       links,

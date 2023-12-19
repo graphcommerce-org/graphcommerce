@@ -2,7 +2,7 @@
 export type RowColumnOneProps = {
   __typename: 'RowColumnOne'
   id?: string
-  rowColumnOneVariant?: 'Default' | 'Message' | null | undefined
+  variant?: 'Default' | 'Message' | null | undefined
   copy: {
     raw: any
   }
