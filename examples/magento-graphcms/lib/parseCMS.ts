@@ -1,6 +1,5 @@
 // import { RowColumnOneFragment } from '../components/GraphCMS/RowColumnOne/RowColumnOne.gql'
-import { RowColumnOneFragment, RowLinksFragment } from '@graphcommerce/next-ui'
-import { RowQuoteFragment } from '../components/GraphCMS/RowQuote/RowQuote.gql'
+import { RowColumnOneFragment, RowLinksFragment, RowQuoteFragment } from '@graphcommerce/next-ui'
 
 type Inputs =
   | (RowColumnOneFragment & { __typename: 'RowColumnOne' })
