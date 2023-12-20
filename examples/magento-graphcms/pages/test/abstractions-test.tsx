@@ -33,7 +33,7 @@ function AbstractionsTest(props: Props) {
   const page = pages[0]
   const { content } = page
 
-  const newContent = [rowColumnOneInput, rowLinksInput, rowQuoteInput, ...content].map((item) =>
+  const newContent = [rowColumnOneInput, rowLinksInput, rowQuoteInput].map((item) =>
     parseHygraph(item),
   )
 
@@ -41,7 +41,7 @@ function AbstractionsTest(props: Props) {
   const favorite = favoritesList?.products?.items?.[0]
   const swipable = swipableList?.products?.items?.[0]
 
-  console.log(20, newContent)
+  console.log(20, content)
 
   return (
     <>
@@ -79,7 +79,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = graphqlSsrClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
-  const page = pageContent('page/home') // Actually a client should be also sent?
+  const page = pageContent('test/abstractions-test', staticClient) // Actually a client should be also sent?
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
