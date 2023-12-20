@@ -171,6 +171,8 @@ export type RichTextProps = { raw: ElementNode } & {
 }
 
 export function RichText({ raw, sxRenderer, renderers, withMargin = false }: RichTextProps) {
+  if (raw === undefined) return null
+
   return (
     <RenderChildren
       childNodes={raw.children}
