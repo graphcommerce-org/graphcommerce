@@ -1,9 +1,4 @@
-import { RowHeroBannerProps } from '../../components/GraphCMS/RowHeroBanner'
-import { RowProductProps } from '../../components/GraphCMS/RowProduct'
-import { RowQuoteProps, RowLinksProps } from '@graphcommerce/next-ui'
-import { RowSpecialBannerProps } from '../../components/GraphCMS/RowSpecialBanner'
-
-const heroBanner: RowHeroBannerProps = {
+const heroBanner = {
   id: 'cldx741qp7u0i0bun77oo5prx',
   __typename: 'RowHeroBanner',
   heroAsset: {
@@ -58,7 +53,7 @@ const heroBanner: RowHeroBannerProps = {
   ],
 }
 
-const rowLinks1: RowLinksProps = {
+const rowLinks1 = {
   id: 'cley772kumkgl0bt9ldgx3cv8',
   __typename: 'RowLinks',
   title: 'Hot & New',
@@ -263,7 +258,7 @@ const rowLinks1: RowLinksProps = {
   ],
 }
 
-const rowProduct1: RowProductProps = {
+const rowProduct1 = {
   id: 'ckusavki80za30d05deomd7qn',
   __typename: 'RowProduct',
   variant: 'Grid',
@@ -294,7 +289,7 @@ const rowProduct1: RowProductProps = {
   ],
 }
 
-const rowProduct2: RowProductProps = {
+const rowProduct2 = {
   id: 'ckusawshk0zwj0d0565yghw52',
   __typename: 'RowProduct',
   variant: 'Grid',
@@ -317,7 +312,7 @@ const rowProduct2: RowProductProps = {
   },
   pageLinks: [],
 }
-const rowProduct3: RowProductProps = {
+const rowProduct3 = {
   id: 'ckusb2pg81bqh0d09ezbhbf77',
   __typename: 'RowProduct',
   variant: 'Swipeable',
@@ -328,7 +323,7 @@ const rowProduct3: RowProductProps = {
   pageLinks: [],
 }
 
-const rowProduct4: RowProductProps = {
+const rowProduct4 = {
   id: 'ckusapwsw10ep0d05g14ggkv6',
   __typename: 'RowProduct',
   variant: 'Backstory',
@@ -358,7 +353,7 @@ const rowProduct4: RowProductProps = {
   pageLinks: [],
 }
 
-const rowLinks2: RowLinksProps = {
+const rowLinks2 = {
   id: 'cleyagh991cle0bujghsoszkl',
   __typename: 'RowLinks',
   title: 'Brands',
@@ -459,7 +454,7 @@ const rowLinks2: RowLinksProps = {
   ],
 }
 
-const rowLinks3: RowLinksProps = {
+const rowLinks3 = {
   id: 'clf1648hhza3f0buqqg6grd6o',
   __typename: 'RowLinks',
   title: 'Customer service',
@@ -511,7 +506,7 @@ const rowLinks3: RowLinksProps = {
   ],
 }
 
-export const rowLinks4: RowLinksProps = {
+export const rowLinks4 = {
   id: 'clf1690q0zjkw0bup6ozkp8q6',
   __typename: 'RowLinks',
   title: 'About Us',
@@ -556,7 +551,7 @@ export const rowLinks4: RowLinksProps = {
   ],
 }
 
-const rowSpecialBanner: RowSpecialBannerProps = {
+const rowSpecialBanner = {
   id: 'ckiek99iw429w0a55hmnggxym',
   __typename: 'RowSpecialBanner',
   asset: {
@@ -599,7 +594,7 @@ const rowSpecialBanner: RowSpecialBannerProps = {
   topic: 'A peek into history',
 }
 
-const rowQuote: RowQuoteProps = {
+const rowQuote = {
   id: 'ckifwcfa80xs30a55gmcqz5hu',
   __typename: 'RowQuote',
   quote: {
