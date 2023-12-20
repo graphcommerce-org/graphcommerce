@@ -34,7 +34,6 @@
     "@graphcommerce/graphql": "7.1.0-canary.64",
     "@graphcommerce/graphql-mesh": "7.1.0-canary.64",
     "@graphcommerce/hygraph-cli": "7.1.0-canary.64",
-    "@graphcommerce/hygraph-dynamic-rows": "7.1.0-canary.64",
     "@graphcommerce/image": "7.1.0-canary.64",
     "@graphcommerce/lingui-next": "7.1.0-canary.64",
     "@graphcommerce/magento-cart": "7.1.0-canary.64",

@@ -3079,7 +3079,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/hygraph-dynamic-rows@npm:7.1.0-canary.64, @graphcommerce/hygraph-dynamic-rows@workspace:packages/hygraph-dynamic-rows":
+"@graphcommerce/hygraph-dynamic-rows@workspace:packages/hygraph-dynamic-rows":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/hygraph-dynamic-rows@workspace:packages/hygraph-dynamic-rows"
   peerDependencies:
@@ -3598,7 +3598,6 @@ __metadata:
     "@graphcommerce/graphql": "npm:7.1.0-canary.64"
     "@graphcommerce/graphql-mesh": "npm:7.1.0-canary.64"
     "@graphcommerce/hygraph-cli": "npm:7.1.0-canary.64"
-    "@graphcommerce/hygraph-dynamic-rows": "npm:7.1.0-canary.64"
     "@graphcommerce/image": "npm:7.1.0-canary.64"
     "@graphcommerce/lingui-next": "npm:7.1.0-canary.64"
     "@graphcommerce/magento-cart": "npm:7.1.0-canary.64"
