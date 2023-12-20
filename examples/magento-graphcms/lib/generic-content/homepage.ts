@@ -1,7 +1,6 @@
 import { RowHeroBannerProps } from '../../components/GraphCMS/RowHeroBanner'
-import { RowLinksProps } from '../../components/GraphCMS/RowLinks'
 import { RowProductProps } from '../../components/GraphCMS/RowProduct'
-import { RowQuoteProps } from '../../components/GraphCMS/RowQuote'
+import { RowQuoteProps, RowLinksProps } from '@graphcommerce/next-ui'
 import { RowSpecialBannerProps } from '../../components/GraphCMS/RowSpecialBanner'
 
 const heroBanner: RowHeroBannerProps = {
