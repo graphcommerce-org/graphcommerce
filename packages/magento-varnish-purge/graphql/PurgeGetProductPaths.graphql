@@ -1,9 +1,14 @@
-query PurgeGetProductPath(
+query PurgeGetProductPaths(
   $internalUrl: String! # catalog/product/view/id/1234
 ) {
   route(url: $internalUrl) {
     redirect_code
     relative_url
     type
+    ... on ProductInterface {
+      categories {
+        url_path
+      }
+    }
   }
 }

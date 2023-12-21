@@ -1,7 +1,8 @@
 /* eslint-disable no-cond-assign */
 import { NormalizedCacheObject, ApolloClient } from '@graphcommerce/graphql'
+import { storefrontConfig } from '@graphcommerce/next-ui'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { PurgeGetProductPathDocument } from '../graphql/PurgeGetProductPath.gql'
+import { PurgeGetProductPathsDocument } from '../graphql/PurgeGetProductPaths.gql'
 
 function parseTagsFromHeader(tagsHeader: string | string[] | undefined): string[] {
   if (typeof tagsHeader === 'undefined') {
@@ -29,27 +30,37 @@ function parseTagsFromHeader(tagsHeader: string | string[] | undefined): string[
 
 async function invalidateProductById(
   client: ApolloClient<NormalizedCacheObject>,
+  locale: string,
   id: number,
   res: NextApiResponse,
 ) {
   const internalUrl = `catalog/product/view/id/${id}`
 
   const routeData = await client.query({
-    query: PurgeGetProductPathDocument,
+    query: PurgeGetProductPathsDocument,
     variables: {
       internalUrl,
     },
   })
 
+  if (!routeData.data.route) {
+    console.warn(`varnish-purge: no URL found for product ID ${id}`)
+    return
+  }
+
+  // Determine locale prefix, this is needed unless we're the default locale, or we have our own domain.
+  const prefix =
+    storefrontConfig(locale)?.defaultLocale || storefrontConfig(locale)?.domain ? '' : `/${locale}`
+
+  // Invalidate product URL
   let urlPath = routeData.data.route?.relative_url
   if (urlPath) {
     // Construct product URL based on Magento path. We can safely (and must)
     // strip off the .html suffix, as we already redirect to URLs without this
     // suffix
 
-    // FIXME: We must build the correct URL for current locale, based on possible locale prefix/locale domain
-    urlPath = `/p/${urlPath}`
     urlPath = urlPath.replace(/\.html$/, '')
+    urlPath = `${prefix}/p/${urlPath}`
 
     console.info(`varnish-purge: invalidating URL ${urlPath} for product ID ${id}`)
     try {
@@ -60,43 +71,19 @@ async function invalidateProductById(
   } else {
     console.warn(`varnish-purge: no URL found for product ID ${id}`)
   }
-}
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function invalidateCategoryById(
-  client: ApolloClient<NormalizedCacheObject>,
-  id: number,
-  res: NextApiResponse,
-) {
-  console.info(`varnish-purge: invalidating for category ${id}`)
-  // TODO
-}
+  // Invalidate category URLs for the categories the product is in
+  const categoryPromises: Promise<void>[] = []
 
-function invalidateByTags(
-  client: ApolloClient<NormalizedCacheObject>,
-  tags: string[],
-  res: NextApiResponse,
-) {
-  // Tags to support:
-  // cat_c_2 (category was changed)
-  // cat_c_p_2 (category/product relation was changed)
-  // cat_p_27130 (product was changed)
+  if ('categories' in routeData.data.route) {
+    routeData.data.route.categories?.forEach((category) => {
+      const categoryUrl = `${prefix}/${category?.url_path}`
+      console.info(`varnish-purge: invalidating URL ${categoryUrl} for product ID ${id}`)
+      categoryPromises.push(res.revalidate(categoryUrl))
+    })
+  }
 
-  const categoryTagPattern = /^cat_c_([0-9]+)$/
-  const categoryRelationTagPattern = /^cat_c_p_([0-9]+)$/
-  const productTagPattern = /^cat_p_([0-9]+)$/
-
-  tags.forEach((tag) => {
-    let match: RegExpMatchArray | null
-
-    if ((match = tag.match(categoryTagPattern))) {
-      invalidateCategoryById(client, +match[1], res)
-    } else if ((match = tag.match(categoryRelationTagPattern))) {
-      invalidateCategoryById(client, +match[1], res)
-    } else if ((match = tag.match(productTagPattern))) {
-      void invalidateProductById(client, +match[1], res)
-    }
-  })
+  await Promise.allSettled(categoryPromises)
 }
 
 function doFullPurge() {
@@ -105,6 +92,7 @@ function doFullPurge() {
 
 export function handlePurgeRequest(
   client: ApolloClient<NormalizedCacheObject>,
+  locale: string,
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
@@ -115,7 +103,17 @@ export function handlePurgeRequest(
   if (rawTags === '.*') {
     doFullPurge()
   } else {
-    invalidateByTags(client, parseTagsFromHeader(rawTags), res)
+    const productTagPattern = /^cat_p_([0-9]+)$/
+    const tags = parseTagsFromHeader(rawTags)
+
+    tags.forEach((tag) => {
+      const match = tag.match(productTagPattern)
+
+      if (match) {
+        // eslint-disable-next-line no-void
+        void invalidateProductById(client, locale, +match[1], res)
+      }
+    })
   }
 
   res.status(200)
