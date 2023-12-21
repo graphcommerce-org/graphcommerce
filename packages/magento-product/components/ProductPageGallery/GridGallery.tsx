@@ -72,7 +72,7 @@ export function GridGallery(props: SidebarGalleryProps) {
             src={image.src}
             width={image.width}
             height={image.height}
-            loading={idx === 0 ? 'eager' : 'lazy'}
+            loading={idx < 2 ? 'eager' : 'lazy'}
             alt={image.alt || `Product Image ${idx}` || ''}
             sx={[
               {
