@@ -115,7 +115,6 @@ export function GridGallery(props: SidebarGalleryProps) {
           }}
         >
           {sidebar}
-          {sidebar}
         </Box>
       </Box>
     </Row>
