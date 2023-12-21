@@ -1,0 +1,11 @@
+fragment Content on Page @inject(into: ["HygraphPage"]) {
+  content {
+    __typename
+    ... on Node {
+      id
+    }
+    ...RowColumnOne
+    ...RowLinks
+    ...RowQuote
+  }
+}
