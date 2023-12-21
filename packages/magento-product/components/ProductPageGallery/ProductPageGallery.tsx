@@ -4,6 +4,7 @@ import {
   SidebarGalleryProps,
   TypeRenderer,
 } from '@graphcommerce/next-ui'
+import { Theme, useMediaQuery } from '@mui/material'
 import { GridGallery } from './GridGallery'
 import { ProductPageGalleryFragment } from './ProductPageGallery.gql'
 
@@ -19,6 +20,7 @@ export type ProductPageGalleryProps = Omit<SidebarGalleryProps, 'sidebar' | 'ima
 export function ProductPageGallery(props: ProductPageGalleryProps) {
   const { product, children, aspectRatio: [width, height] = [1532, 1678], ...sidebarProps } = props
   const { media_gallery } = product
+  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('sm'))
 
   const images =
     media_gallery
@@ -33,10 +35,18 @@ export function ProductPageGallery(props: ProductPageGalleryProps) {
         }
       }) ?? []
 
-  const gridGalleryEnabled = true
+  const gridGalleryEnabled =
+    import.meta.graphCommerce.sidebarGallery?.paginationVariant === 'GRID' && !isMobile
 
   if (gridGalleryEnabled) {
-    return <GridGallery {...sidebarProps} sidebar={children} images={images} />
+    return (
+      <GridGallery
+        {...sidebarProps}
+        sidebar={children}
+        aspectRatio={[width, height]}
+        images={images}
+      />
+    )
   }
 
   return (

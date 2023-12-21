@@ -56,6 +56,7 @@ const ProductFiltersLayoutSchema = _zod.z.enum([
 ]);
 const SidebarGalleryPaginationVariantSchema = _zod.z.enum([
     "DOTS",
+    "GRID",
     "THUMBNAILS_BOTTOM"
 ]);
 function GraphCommerceConfigSchema() {

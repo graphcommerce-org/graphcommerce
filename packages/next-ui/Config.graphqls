@@ -11,6 +11,7 @@ Enumeration of all possible positions for the sidebar gallery thumbnails.
 enum SidebarGalleryPaginationVariant {
   DOTS
   THUMBNAILS_BOTTOM
+  GRID
 }
 
 """

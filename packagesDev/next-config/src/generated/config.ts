@@ -413,6 +413,7 @@ export type SidebarGalleryConfig = {
 /** Enumeration of all possible positions for the sidebar gallery thumbnails. */
 export type SidebarGalleryPaginationVariant =
   | 'DOTS'
+  | 'GRID'
   | 'THUMBNAILS_BOTTOM';
 
 
@@ -430,7 +431,7 @@ export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
-export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM']);
+export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'GRID', 'THUMBNAILS_BOTTOM']);
 
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({

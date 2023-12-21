@@ -1,13 +1,12 @@
-import { MotionImageAspectProps } from '@graphcommerce/framer-scroller'
 import { Image } from '@graphcommerce/image'
-import { Row, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme, useTheme } from '@mui/material'
-
-export type SidebarGalleryProps = {
-  sidebar: React.ReactNode
-  images: MotionImageAspectProps[]
-  sx?: SxProps<Theme>
-}
+import {
+  Row,
+  SidebarGalleryProps,
+  extendableComponent,
+  responsiveVal,
+} from '@graphcommerce/next-ui'
+import { Box, useTheme } from '@mui/material'
+import { useStickyEffect } from '../../hooks/useStickyEffect'
 
 const name = 'SidebarGallery' as const
 const parts = [
@@ -26,11 +25,21 @@ const parts = [
   'dots',
 ] as const
 
+type OwnerState = { zoomed: boolean; disableZoom: boolean }
+
+const { withState, selectors } = extendableComponent<OwnerState, typeof name, typeof parts>(
+  name,
+  parts,
+)
+
 export function GridGallery(props: SidebarGalleryProps) {
   const { sidebar, images, sx } = props
 
-  const { classes } = extendableComponent(name, parts)
   const theme = useTheme()
+
+  const classes = withState({ zoomed: false, disableZoom: false })
+
+  const [marginRef, sidebarRef, wrapperRef] = useStickyEffect()
 
   return (
     <Row
@@ -40,31 +49,21 @@ export function GridGallery(props: SidebarGalleryProps) {
       sx={[
         {
           display: 'grid',
-          gridTemplateColumns: '1fr auto',
+          gridTemplateColumns: 'auto 1fr',
           backgroundColor: theme.palette.background.paper,
-          pr: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          padding: `${theme.spacings.lg} ${theme.page.horizontal}`,
-
-          '& picture': {
-            width: '50%',
-            p: `calc(${theme.spacings.xxs} / 2)`,
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          height: 'min-content',
+          gap: `calc(${theme.spacings.xxs} / 2)`,
+          '& > *:last-of-type:nth-of-type(odd)': {
+            gridColumn: '1 / -1',
           },
-
-          ...(images.length % 2 !== 0 &&
-            images.length > 3 && {
-              '& picture:nth-last-child(-n+4)': {
-                width: 'calc(100% / 3)',
-              },
-            }),
         }}
       >
         {images.map((image, idx) => (
@@ -75,11 +74,20 @@ export function GridGallery(props: SidebarGalleryProps) {
             height={image.height}
             loading={idx === 0 ? 'eager' : 'lazy'}
             alt={image.alt || `Product Image ${idx}` || ''}
-            sx={{ width: '100%', height: 'auto', display: 'block' }}
+            sx={[
+              {
+                width: '100%',
+                display: 'block',
+                aspectRatio: 1,
+                filter: 'contrast(0.95)',
+                objectFit: 'cover',
+              },
+            ]}
           />
         ))}
       </Box>
       <Box
+        ref={wrapperRef}
         className={classes.sidebarWrapper}
         sx={[
           {
@@ -94,22 +102,24 @@ export function GridGallery(props: SidebarGalleryProps) {
           },
         ]}
       >
+        <Box ref={marginRef} />
         <Box
+          ref={sidebarRef}
           className={classes.sidebar}
           sx={{
             position: 'sticky',
-            top: 0,
             boxSizing: 'border-box',
             width: '100%',
-            padding: `${theme.spacings.lg} ${theme.page.horizontal}`,
-            [theme.breakpoints.up('md')]: {
-              paddingLeft: theme.spacings.lg,
-            },
+            padding: theme.spacings.md,
+            minWidth: `calc(${theme.breakpoints.values.sm}px / 1.5)`,
           }}
         >
+          {sidebar}
           {sidebar}
         </Box>
       </Box>
     </Row>
   )
 }
+
+GridGallery.selectors = selectors
