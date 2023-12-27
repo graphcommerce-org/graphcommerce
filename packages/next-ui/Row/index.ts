@@ -1,5 +1,4 @@
 export * from './Row'
-export * from './ButtonLinkList'
 export * from './ColumnOneBoxed/ColumnOneBoxed'
 export * from './ColumnOneCentered/ColumnOneCentered'
 export * from './ColumnThree/ColumnThree'
@@ -14,12 +13,13 @@ export * from './ImageTextBoxed/ImageTextBoxed'
 export * from './ParagraphWithSidebarSlide/ParagraphWithSidebarSlide'
 export * from './SpecialBanner/SpecialBanner'
 
-// Localized
+// Moved to package
 export * from './ColumnOne'
 export * from './ColumnTwo'
 export * from './ColumnThree'
 export * from './Links'
 export * from './Quote'
 export * from './BlogContent'
+export * from './ButtonLinkList'
 
 export * from './RowType'
