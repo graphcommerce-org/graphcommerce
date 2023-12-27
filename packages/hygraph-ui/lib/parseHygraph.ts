@@ -1,4 +1,4 @@
-import type { Row } from '@graphcommerce/next-ui/Row/RowType'
+import type { AllRows } from '@graphcommerce/next-ui/Row/RowType'
 import { RowColumnOneFragment, RowLinksFragment, RowQuoteFragment } from '../components'
 
 type Input =
@@ -12,7 +12,7 @@ type Input =
 type FunctionMapType = {
   [K in Input['__typename']]: (
     input: Extract<Input, { __typename: K }>,
-  ) => Extract<Row, { __typename: K }>
+  ) => Extract<AllRows, { __typename: K }>
 }
 
 const functionMap: FunctionMapType = {

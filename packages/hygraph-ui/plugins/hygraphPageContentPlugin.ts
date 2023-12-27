@@ -7,20 +7,6 @@ import { parseHygraphContentItem } from '../lib'
 export const func = 'pageContent'
 export const exported = '@graphcommerce/next-ui/Page/pageContent'
 
-/**
- * Todo:
- * - hook into generic pageContent function | DONE
- * - make hygraph ggl files for rowColOne, rowLinks, rowQuote under components in this folder. | DONE
- * - inject them into the RowRenderer query | DONE
- *
- * - if hygraph-ui is installed:
- *  - parse query outcomes with parser for Hygraph | DONE
- *
- * - else
- *  - use default JSON inputs
- *
- **/
-
 const hygraphPageContentPlugin: MethodPlugin<typeof pageContent> = async (
   prev,
   url,
