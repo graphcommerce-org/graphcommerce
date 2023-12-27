@@ -19,3 +19,5 @@ export * from './SpecialBanner/SpecialBanner'
 export * from './ColumnOne'
 export * from './Links'
 export * from './Quote'
+
+export * from './RowType'

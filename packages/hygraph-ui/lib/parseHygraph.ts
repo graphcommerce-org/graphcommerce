@@ -1,41 +1,22 @@
+import type { Row } from '@graphcommerce/next-ui/Row/RowType'
 import { RowColumnOneFragment, RowLinksFragment, RowQuoteFragment } from '../components'
 
-type Inputs =
+type Input =
   | (RowColumnOneFragment & { __typename: 'RowColumnOne' })
   | (RowLinksFragment & { __typename: 'RowLinks' })
   | (RowQuoteFragment & { __typename: 'RowQuote' })
 
-function isColumnOne(
-  input: Inputs,
-): input is RowColumnOneFragment & { __typename: 'RowColumnOne' } {
-  return input.__typename === 'RowColumnOne'
+/**
+ * Matches the input with the correct parse function and return types.
+ */
+type FunctionMapType = {
+  [K in Input['__typename']]: (
+    input: Extract<Input, { __typename: K }>,
+  ) => Extract<Row, { __typename: K }>
 }
 
-function isRowLinks(input: Inputs): input is RowLinksFragment & { __typename: 'RowLinks' } {
-  return input.__typename === 'RowLinks'
-}
-
-function isQuote(input: Inputs): input is RowQuoteFragment & { __typename: 'RowQuote' } {
-  return input.__typename === 'RowQuote'
-}
-
-export const parseHygraph = (input: Inputs) => {
-  if (isColumnOne(input)) {
-    console.log('isColumnOne', input)
-
-    const { colOne: copy, rowColumnOneVariant: variant, ...rest } = input
-    const output = {
-      ...rest,
-      copy,
-      variant,
-    }
-
-    return output
-  }
-
-  if (isRowLinks(input)) {
-    console.log('isRowLinks', input)
-
+const functionMap: FunctionMapType = {
+  RowLinks: (input) => {
     const { pageLinks: links, linksVariant: variant, rowLinksCopy: copy, ...rest } = input
     const output = {
       ...rest,
@@ -45,11 +26,18 @@ export const parseHygraph = (input: Inputs) => {
     }
 
     return output
-  }
+  },
+  RowColumnOne: (input) => {
+    const { colOne: copy, rowColumnOneVariant: variant, ...rest } = input
+    const output = {
+      ...rest,
+      copy,
+      variant,
+    }
 
-  if (isQuote(input)) {
-    console.log('isQuote', input)
-
+    return output
+  },
+  RowQuote: (input) => {
     const { quote: copy, ...rest } = input
     const output = {
       ...rest,
@@ -57,7 +45,18 @@ export const parseHygraph = (input: Inputs) => {
     }
 
     return output
-  }
+  },
+}
 
+export function parseHygraphContentItem<K extends Input['__typename']>(
+  input: Extract<Input, { __typename: K }>,
+) {
+  if (!input) return null
+  if (functionMap[input.__typename as K]) {
+    return functionMap[input.__typename as K](input)
+  }
   return input
 }
+
+// export const parseHygraphContent = (input: Input[]) =>
+//   input.map((item) => parseHygraphContentItem(item))
