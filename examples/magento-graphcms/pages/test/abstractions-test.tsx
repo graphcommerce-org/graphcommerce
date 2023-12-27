@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { HygraphPagesQuery, parseHygraph } from '@graphcommerce/graphcms-ui'
+import { HygraphPagesQuery, parseHygraphContentItem } from '@graphcommerce/graphcms-ui'
+import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   LayoutHeader,
@@ -17,7 +18,6 @@ import {
   RowRenderer,
 } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
-import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 
 type Props = HygraphPagesQuery & {
   latestList: ProductListQuery
@@ -27,14 +27,25 @@ type Props = HygraphPagesQuery & {
 type RouteProps = { url: string }
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
+/**
+ * Todo: replace all images in content folder that point to graphassets for images from the public folder
+ *? Todo: Hook JSON content into regular pages through plugins in the examples folder. | In Progress
+ * Todo: Hook deprecated rows into pageContent in plugins through the examples folder.
+ *? Todo: update parser with Mike's code | In Progress
+ * Todo: Make parser functions for all other rows
+ * Todo: How to extend parser locally?
+ * Todo: Extend parser in the package?
+ * Todo: JSONize all pages in Hygraph in the examples folder and inject with local plugins
+ */
+
 function AbstractionsTest(props: Props) {
   console.log(props)
   const { pages, latestList, favoritesList, swipableList } = props
   const page = pages[0]
   const { content } = page
 
-  const newContent = [rowColumnOneInput, rowLinksInput, rowQuoteInput].map((item) =>
-    parseHygraph(item),
+  const newContent = [rowColumnOneInput, rowLinksInput, rowQuoteInput, ...content].map((item) =>
+    parseHygraphContentItem(item),
   )
 
   const latest = latestList?.products?.items?.[0]
