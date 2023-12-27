@@ -17,6 +17,7 @@ export * from './SpecialBanner/SpecialBanner'
 // Localized
 export * from './ColumnOne'
 export * from './ColumnTwo'
+export * from './ColumnThree'
 export * from './Links'
 export * from './Quote'
 

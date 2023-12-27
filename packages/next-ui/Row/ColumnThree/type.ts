@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowColumnThreeProps = {
   __typename: 'RowColumnThree'
-  id: string
-  colOne: {
+  id?: string
+  copy: {
     raw: any
   }
-  colTwo: {
+  copyTwo: {
     raw: any
   }
-  colThree: {
+  copyThree: {
     raw: any
   }
 }

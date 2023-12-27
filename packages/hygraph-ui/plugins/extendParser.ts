@@ -1,13 +1,18 @@
 import type { MethodPlugin } from '@graphcommerce/next-config'
-import { RowColumnTwoProps } from '@graphcommerce/next-ui'
+import { RowColumnThreeProps, RowColumnTwoProps } from '@graphcommerce/next-ui'
 import { parseHygraphContentItem } from '../lib'
 import { RowColumnTwoFragment } from '../components/RowColumnTwo/RowColumnTwo.gql'
+import { RowColumnThreeFragment } from '../components/RowColumnThree/RowColumnThree.gql'
 
 export const func = 'parseHygraphContentItem'
 export const exported = '@graphcommerce/graphcms-ui/lib/parser'
 
-type ExtendedInput = RowColumnTwoFragment & { __typename: 'RowColumnTwo' }
-type ExtendedOutput = RowColumnTwoProps
+type ExtendedInput =
+  | (RowColumnTwoFragment & {
+      __typename: 'RowColumnTwo'
+    })
+  | (RowColumnThreeFragment & { __typename: 'RowColumnThree' })
+type ExtendedOutput = RowColumnTwoProps | RowColumnThreeProps
 
 type ExtendedParserMapType = {
   [K in ExtendedInput['__typename']]: (
@@ -23,6 +28,18 @@ const extendedParserMap: ExtendedParserMapType = {
       ...input,
       copy,
       copyTwo,
+    }
+
+    return output
+  },
+  RowColumnThree: (input) => {
+    const { colOne: copy, colTwo: copyTwo, colThree: copyThree } = input
+
+    const output = {
+      ...input,
+      copy,
+      copyTwo,
+      copyThree,
     }
 
     return output
