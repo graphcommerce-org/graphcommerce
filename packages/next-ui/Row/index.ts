@@ -20,5 +20,6 @@ export * from './ColumnTwo'
 export * from './ColumnThree'
 export * from './Links'
 export * from './Quote'
+export * from './BlogContent'
 
 export * from './RowType'
