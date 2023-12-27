@@ -15,8 +15,9 @@ import {
   RowBlogContentProps,
   RowButtonLinkList,
   RowButtonLinkListProps,
+  RowContentLinks,
+  RowContentLinksProps,
 } from '@graphcommerce/next-ui'
-import { RowContentLinks, RowContentLinksProps } from './RowContentLinks'
 import { RowHeroBanner, RowHeroBannerProps } from './RowHeroBanner'
 import { RowProduct, RowProductProps } from './RowProduct'
 import { RowServiceOptions, RowServiceOptionsProps } from './RowServiceOptions'

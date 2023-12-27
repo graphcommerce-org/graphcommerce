@@ -1,0 +1,7 @@
+fragment RowContentLinks on RowContentLinks {
+  title
+  contentLinks {
+    id
+    ...PageLink
+  }
+}

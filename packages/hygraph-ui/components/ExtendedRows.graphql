@@ -8,5 +8,6 @@ fragment ExtendedRows on Page @inject(into: ["HygraphPage"]) {
     ...RowColumnThree
     ...RowBlogContent
     ...RowButtonLinkList
+    ...RowContentLinks
   }
 }

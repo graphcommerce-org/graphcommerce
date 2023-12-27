@@ -4,12 +4,14 @@ import {
   RowButtonLinkListProps,
   RowColumnThreeProps,
   RowColumnTwoProps,
+  RowContentLinksProps,
 } from '@graphcommerce/next-ui'
 import { parseHygraphContentItem } from '../lib'
 import { RowColumnTwoFragment } from '../components/RowColumnTwo/RowColumnTwo.gql'
 import { RowColumnThreeFragment } from '../components/RowColumnThree/RowColumnThree.gql'
 import { RowBlogContentFragment } from '../components/RowBlogContent/RowBlogContent.gql'
 import { RowButtonLinkListFragment } from '../components/RowButtonLinkList/RowButtonLinkList.gql'
+import { RowContentLinksFragment } from '../components/RowContentLinks/RowContentLinks.gql'
 
 export const func = 'parseHygraphContentItem'
 export const exported = '@graphcommerce/graphcms-ui/lib/parser'
@@ -21,11 +23,13 @@ type ExtendedInput =
   | (RowColumnThreeFragment & { __typename: 'RowColumnThree' })
   | (RowBlogContentFragment & { __typename: 'RowBlogContent' })
   | (RowButtonLinkListFragment & { __typename: 'RowButtonLinkList' })
+  | (RowContentLinksFragment & { __typename: 'RowContentLinks' })
 type ExtendedOutput =
   | RowColumnTwoProps
   | RowColumnThreeProps
   | RowBlogContentProps
   | RowButtonLinkListProps
+  | RowContentLinksProps
 
 type ExtendedParserMapType = {
   [K in ExtendedInput['__typename']]: (
@@ -68,6 +72,16 @@ const extendedParserMap: ExtendedParserMapType = {
     return output
   },
   RowButtonLinkList: (input) => input,
+  RowContentLinks: (input) => {
+    const { contentLinks: links } = input
+
+    const output = {
+      ...input,
+      links,
+    }
+
+    return output
+  },
 }
 
 const extendParser: MethodPlugin<typeof parseHygraphContentItem> = <

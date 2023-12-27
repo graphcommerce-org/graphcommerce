@@ -21,5 +21,6 @@ export * from './Links'
 export * from './Quote'
 export * from './BlogContent'
 export * from './ButtonLinkList'
+export * from './ContentLinks'
 
 export * from './RowType'
