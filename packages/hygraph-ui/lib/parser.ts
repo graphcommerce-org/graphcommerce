@@ -17,5 +17,5 @@ export function parseHygraphContentItem<K extends Input['__typename']>(
   return input
 }
 
-// export const parseHygraphContent = (input: Input[]) =>
-//   input.map((item) => parseHygraphContentItem(item))
+export const parseHygraphContent = (input: Input[]) =>
+  input.map((item) => parseHygraphContentItem(item))

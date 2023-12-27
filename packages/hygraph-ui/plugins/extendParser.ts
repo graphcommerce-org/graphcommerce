@@ -1,23 +1,21 @@
 import type { MethodPlugin } from '@graphcommerce/next-config'
-import { AllRows, RowColumnTwoProps } from '@graphcommerce/next-ui'
-import { Input, parseHygraphContentItem } from '../lib'
+import { RowColumnTwoProps } from '@graphcommerce/next-ui'
+import { parseHygraphContentItem } from '../lib'
 import { RowColumnTwoFragment } from '../components/RowColumnTwo/RowColumnTwo.gql'
-import { parserMap } from '../lib/parserMap'
 
 export const func = 'parseHygraphContentItem'
 export const exported = '@graphcommerce/graphcms-ui/lib/parser'
 
-type ExtendedInput = Input | (RowColumnTwoFragment & { __typename: 'RowColumnTwo' })
+type ExtendedInput = RowColumnTwoFragment & { __typename: 'RowColumnTwo' }
 type ExtendedOutput = RowColumnTwoProps
 
-type FunctionMapType = {
+type ExtendedParserMapType = {
   [K in ExtendedInput['__typename']]: (
     input: Extract<ExtendedInput, { __typename: K }>,
-  ) => Extract<AllRows | ExtendedOutput, { __typename: K }>
+  ) => Extract<ExtendedOutput, { __typename: K }>
 }
 
-const extendedParserMap: FunctionMapType = {
-  ...parserMap,
+const extendedParserMap: ExtendedParserMapType = {
   RowColumnTwo: (input) => {
     const { colOne: copy, colTwo: copyTwo } = input
 
@@ -41,9 +39,11 @@ const extendParser: MethodPlugin<typeof parseHygraphContentItem> = <
   if (!input) return null
 
   if (extendedParserMap[input.__typename as K]) {
+    console.log('extendedParserMap', extendedParserMap, input.__typename)
     return extendedParserMap[input.__typename as K](input)
   }
-  return prev(input)
+
+  return { ...prev(input), ...input }
 }
 
 export const plugin = extendParser

@@ -32,6 +32,17 @@ export const parserMap: FunctionMapType = {
       variant,
     }
 
+    // Potential fix
+    // const { colOne, rowColumnOneVariant, ...rest } = input
+    // const output = {
+    //   ...rest,
+    //   copy: colOne ?? rest?.copy,
+    //   variant: rowColumnOneVariant ?? rest?.variant,
+    // }
+
+    console.log('input:', input)
+    console.log('output:', output)
+
     return output
   },
   RowQuote: (input) => {

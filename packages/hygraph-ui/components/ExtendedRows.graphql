@@ -1,0 +1,9 @@
+fragment ExtendedRows on Page @inject(into: ["HygraphPage"]) {
+  content {
+    __typename
+    ... on Node {
+      id
+    }
+    ...RowColumnTwo
+  }
+}

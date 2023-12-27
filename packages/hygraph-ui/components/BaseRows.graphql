@@ -1,4 +1,4 @@
-fragment Content on Page @inject(into: ["HygraphPage"]) {
+fragment BaseRows on Page @inject(into: ["HygraphPage"]) {
   content {
     __typename
     ... on Node {
