@@ -43,6 +43,10 @@ const extendParser: MethodPlugin<typeof parseHygraphContentItem> = <
     return extendedParserMap[input.__typename as K](input)
   }
 
+  /**
+   * We overwrite the result of prev(input) with input otherwise the parser
+   * runs again and causes undefined object keys for the base parser.
+   */
   return { ...prev(input), ...input }
 }
 
