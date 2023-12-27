@@ -22,9 +22,11 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 
 /**
  ** Todo: Update parser with Mike's code | Done
- *? Todo: Hook JSON content into regular pages through hookLocalContent plugin in the examples folder. | In Progress
+ *
+ *? Todo: Make parser functions for all other rows | In Progress
  *? Todo: Extend parser for unused rows in hygraph-ui package | In Progress
- *  Todo: Make parser functions for all other rows
+ *? Todo: Hook JSON content into regular pages through hookLocalContent plugin in the examples folder. | In Progress
+ *
  *  Todo: Create generic types for all rows.
  *  Todo: JSONize all pages in Hygraph in the examples folder and inject with local plugins.
  *  Todo: Replace all images in content folder that point to graphassets for images from the public folder
