@@ -1,4 +1,3 @@
-import type { AllRows } from '@graphcommerce/next-ui/Row/RowType'
 import { RowColumnOneFragment, RowLinksFragment, RowQuoteFragment } from '../components'
 import { parserMap } from './parserMap'
 

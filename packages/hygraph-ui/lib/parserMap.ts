@@ -1,6 +1,7 @@
-import { AllRows } from '@graphcommerce/next-ui'
+import { RowLinksProps, RowColumnOneProps, RowQuoteProps } from '@graphcommerce/next-ui'
 import { Input } from './parser'
 
+type BaseOutput = RowLinksProps | RowColumnOneProps | RowQuoteProps
 /**
  * Matches the input with the correct parse function and return types.
  *
@@ -9,7 +10,7 @@ import { Input } from './parser'
 export type FunctionMapType = {
   [K in Input['__typename']]: (
     input: Extract<Input, { __typename: K }>,
-  ) => Extract<AllRows, { __typename: K }>
+  ) => Extract<BaseOutput, { __typename: K }>
 }
 
 export const parserMap: FunctionMapType = {

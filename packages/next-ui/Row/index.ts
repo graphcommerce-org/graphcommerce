@@ -26,4 +26,4 @@ export * from './ServiceOptions'
 export * from './SpecialBanner'
 export * from './Product'
 
-export * from './RowType'
+export * from './RowRenderer'
