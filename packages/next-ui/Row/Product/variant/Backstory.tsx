@@ -8,7 +8,7 @@ import { RowProductProps } from '../type'
 type BackstoryProps = RowProductProps & ProductListItemsFragment
 
 export function Backstory(props: BackstoryProps) {
-  const { productCopy, asset, ...productListItems } = props
+  const { copy, asset, ...productListItems } = props
   const theme = useTheme()
   const singleItem = productListItems?.items?.[(productListItems.items?.length ?? 1) - 1]
 
@@ -30,9 +30,9 @@ export function Backstory(props: BackstoryProps) {
           />
         }
       >
-        {productCopy?.raw && (
+        {copy?.raw && (
           <RichText
-            {...productCopy}
+            {...copy}
             sxRenderer={{
               paragraph: {
                 typography: { xs: 'body2', md: 'h3' },

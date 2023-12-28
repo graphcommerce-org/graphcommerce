@@ -1,32 +1,33 @@
 import { RichText } from '@graphcommerce/graphcms-ui'
 import { Image } from '@graphcommerce/image'
-import { ImageTextBoxed, responsiveVal } from '@graphcommerce/next-ui'
+import { ImageText } from '@graphcommerce/next-ui'
 import { Typography, useTheme } from '@mui/material'
 import { RowProductProps } from '../type'
-import { ProductFeatureMediaBoxedFragment } from './ProductFeatureMediaBoxed.gql'
+import { ProductFeatureMediaFragment } from './ProductFeatureMedia.gql'
 
-type FeatureBoxedProps = RowProductProps & ProductFeatureMediaBoxedFragment
+type FeatureProps = RowProductProps & ProductFeatureMediaFragment
 
-export function FeatureBoxed(props: FeatureBoxedProps) {
-  const { productCopy, title, media_gallery } = props
-  const item = media_gallery?.[1] ?? media_gallery?.[0]
+export function Feature(props: FeatureProps) {
+  const { copy, title, media_gallery } = props
   const theme = useTheme()
+  const item = media_gallery?.[2] ?? media_gallery?.[0]
 
   if (!item) return null
 
   return (
-    <ImageTextBoxed
+    <ImageText
       item={
         item.__typename === 'ProductImage' &&
         item.url && (
           <Image
-            alt={item.label || item.label === ' ' ? item.label : 'Product Image 3'}
+            alt={item.label || item.label === ' ' ? item.label : 'Product Image 2'}
             width={1532}
             height={1678}
             src={item.url}
+            layout='fill'
             sizes={{
               0: '100vw',
-              [theme.breakpoints.values.md]: responsiveVal(100, 600),
+              [theme.breakpoints.values.md]: '50vw',
             }}
           />
         )
@@ -37,9 +38,9 @@ export function FeatureBoxed(props: FeatureBoxedProps) {
           {title}
         </Typography>
       )}
-      {productCopy?.raw && (
+      {copy?.raw && (
         <RichText
-          {...productCopy}
+          {...copy}
           sxRenderer={{
             'heading-two': { typography: 'h1' },
             paragraph: { typography: 'subtitle1' },
@@ -47,6 +48,6 @@ export function FeatureBoxed(props: FeatureBoxedProps) {
           withMargin
         />
       )}
-    </ImageTextBoxed>
+    </ImageText>
   )
 }

@@ -24,5 +24,6 @@ export * from './ContentLinks'
 export * from './HeroBanner'
 export * from './ServiceOptions'
 export * from './SpecialBanner'
+export * from './Product'
 
 export * from './RowType'

@@ -1,15 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowProductProps = {
-  __typename:
-    | 'RowProduct'
-    | 'SimpleProduct'
-    | 'ConfigurableProduct'
-    | 'GroupedProduct'
-    | 'BundleProduct'
-    | 'VirtualProduct'
-    | 'DownloadableProduct'
-    | 'CustomizableProduct'
-  id: string
+  __typename: 'RowProduct'
+  id?: string
   variant?:
     | 'Backstory'
     | 'Feature'
@@ -31,8 +23,8 @@ export type RowProductProps = {
     size?: number | null
     alt?: string | null
   } | null
-  productCopy?: { raw: any } | null
-  pageLinks: Array<{
+  copy?: { raw: any } | null
+  links: Array<{
     title: string
     url: string
     description?: { raw: any } | null

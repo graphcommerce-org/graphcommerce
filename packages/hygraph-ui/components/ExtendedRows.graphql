@@ -12,5 +12,6 @@ fragment ExtendedRows on Page @inject(into: ["HygraphPage"]) {
     ...RowHeroBanner
     ...RowServiceOptions
     ...RowSpecialBanner
+    ...RowProduct
   }
 }

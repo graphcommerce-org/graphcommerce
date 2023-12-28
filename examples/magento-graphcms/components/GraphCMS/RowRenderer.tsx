@@ -23,8 +23,9 @@ import {
   RowServiceOptionsProps,
   RowSpecialBanner,
   RowSpecialBannerProps,
+  RowProduct,
+  RowProductProps,
 } from '@graphcommerce/next-ui'
-import { RowProduct, RowProductProps } from './RowProduct'
 
 export type AllRows = Array<
   | RowColumnOneProps

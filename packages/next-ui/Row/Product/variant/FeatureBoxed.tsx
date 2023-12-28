@@ -1,33 +1,32 @@
 import { RichText } from '@graphcommerce/graphcms-ui'
 import { Image } from '@graphcommerce/image'
-import { ImageText } from '@graphcommerce/next-ui'
+import { ImageTextBoxed, responsiveVal } from '@graphcommerce/next-ui'
 import { Typography, useTheme } from '@mui/material'
 import { RowProductProps } from '../type'
-import { ProductFeatureMediaFragment } from './ProductFeatureMedia.gql'
+import { ProductFeatureMediaBoxedFragment } from './ProductFeatureMediaBoxed.gql'
 
-type FeatureProps = RowProductProps & ProductFeatureMediaFragment
+type FeatureBoxedProps = RowProductProps & ProductFeatureMediaBoxedFragment
 
-export function Feature(props: FeatureProps) {
-  const { productCopy, title, media_gallery } = props
+export function FeatureBoxed(props: FeatureBoxedProps) {
+  const { copy, title, media_gallery } = props
+  const item = media_gallery?.[1] ?? media_gallery?.[0]
   const theme = useTheme()
-  const item = media_gallery?.[2] ?? media_gallery?.[0]
 
   if (!item) return null
 
   return (
-    <ImageText
+    <ImageTextBoxed
       item={
         item.__typename === 'ProductImage' &&
         item.url && (
           <Image
-            alt={item.label || item.label === ' ' ? item.label : 'Product Image 2'}
+            alt={item.label || item.label === ' ' ? item.label : 'Product Image 3'}
             width={1532}
             height={1678}
             src={item.url}
-            layout='fill'
             sizes={{
               0: '100vw',
-              [theme.breakpoints.values.md]: '50vw',
+              [theme.breakpoints.values.md]: responsiveVal(100, 600),
             }}
           />
         )
@@ -38,9 +37,9 @@ export function Feature(props: FeatureProps) {
           {title}
         </Typography>
       )}
-      {productCopy?.raw && (
+      {copy?.raw && (
         <RichText
-          {...productCopy}
+          {...copy}
           sxRenderer={{
             'heading-two': { typography: 'h1' },
             paragraph: { typography: 'subtitle1' },
@@ -48,6 +47,6 @@ export function Feature(props: FeatureProps) {
           withMargin
         />
       )}
-    </ImageText>
+    </ImageTextBoxed>
   )
 }

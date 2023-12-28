@@ -6,6 +6,7 @@ import {
   RowColumnTwoProps,
   RowContentLinksProps,
   RowHeroBannerProps,
+  RowProductProps,
   RowServiceOptionsProps,
   RowSpecialBannerProps,
 } from '@graphcommerce/next-ui'
@@ -18,6 +19,7 @@ import { RowContentLinksFragment } from '../components/RowContentLinks/RowConten
 import { RowHeroBannerFragment } from '../components/RowHeroBanner/RowHeroBanner.gql'
 import { RowServiceOptionsFragment } from '../components/RowServiceOptions/RowServiceOptions.gql'
 import { RowSpecialBannerFragment } from '../components/RowSpecialBanner/RowSpecialBanner.gql'
+import { RowProductFragment } from '../components/RowProduct/RowProduct.gql'
 
 export const func = 'parseHygraphContentItem'
 export const exported = '@graphcommerce/graphcms-ui/lib/parser'
@@ -33,6 +35,7 @@ type ExtendedInput =
   | (RowHeroBannerFragment & { __typename: 'RowHeroBanner' })
   | (RowServiceOptionsFragment & { __typename: 'RowServiceOptions' })
   | (RowSpecialBannerFragment & { __typename: 'RowSpecialBanner' })
+  | (RowProductFragment & { __typename: 'RowProduct' })
 type ExtendedOutput =
   | RowColumnTwoProps
   | RowColumnThreeProps
@@ -42,6 +45,7 @@ type ExtendedOutput =
   | RowHeroBannerProps
   | RowServiceOptionsProps
   | RowSpecialBannerProps
+  | RowProductProps
 
 type ExtendedParserMapType = {
   [K in ExtendedInput['__typename']]: (
@@ -120,6 +124,17 @@ const extendedParserMap: ExtendedParserMapType = {
 
     const output = {
       ...input,
+      links,
+    }
+
+    return output
+  },
+  RowProduct: (input) => {
+    const { productCopy: copy, pageLinks: links } = input
+
+    const output = {
+      ...input,
+      copy,
       links,
     }
 

@@ -6,12 +6,12 @@ import { RowProductProps } from '../type'
 type GridProps = RowProductProps & ProductListItemsProps
 
 export function Grid(props: GridProps) {
-  const { title, pageLinks, productCopy, ...productListItems } = props
+  const { title, links, copy, ...productListItems } = props
 
   return (
     <ContainerWithHeader
       title={title}
-      rightArea={pageLinks.map((pageLink) => (
+      rightArea={links.map((pageLink) => (
         <Link color='inherit' href={pageLink.url} key={pageLink.url} underline='always'>
           {pageLink.title}
         </Link>
