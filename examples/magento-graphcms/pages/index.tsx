@@ -7,7 +7,7 @@ import {
   LayoutHeader,
   MetaRobots,
   PageMeta,
-  RowProduct
+  RowProduct,
 } from '@graphcommerce/next-ui'
 import { LayoutDocument, LayoutNavigation, LayoutNavigationProps, RowRenderer } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
