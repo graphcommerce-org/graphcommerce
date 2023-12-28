@@ -1,6 +1,6 @@
 import { ContainerWithHeader } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
-import { ProductListItems, ProductListItemsProps } from '../../../ProductListItems/ProductListItems'
+import { ProductListItems, ProductListItemsProps } from '../ProductListItems'
 import { RowProductProps } from '../type'
 
 type GridProps = RowProductProps & ProductListItemsProps
