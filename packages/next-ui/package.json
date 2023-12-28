@@ -31,6 +31,7 @@
     "@graphcommerce/framer-scroller": "^7.1.0-canary.64",
     "@graphcommerce/framer-utils": "^7.1.0-canary.64",
     "@graphcommerce/image": "^7.1.0-canary.64",
+    "@graphcommerce/magento-product": "^7.1.0-canary.64",
     "@graphcommerce/prettier-config-pwa": "^7.1.0-canary.64",
     "@graphcommerce/typescript-config-pwa": "^7.1.0-canary.64",
     "@lingui/core": "^4.2.1",
