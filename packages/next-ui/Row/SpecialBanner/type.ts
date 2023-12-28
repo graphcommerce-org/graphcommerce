@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowSpecialBannerProps = {
   __typename: 'RowSpecialBanner'
-  id: string
-  topic?: string | null
+  id?: string
+  title?: string | null
   asset?: {
     url: string
     width?: number | null
@@ -12,7 +12,7 @@ export type RowSpecialBannerProps = {
     alt?: string | null
   } | null
   copy: { raw: any }
-  pageLinks: Array<{
+  links: Array<{
     title: string
     url: string
     description?: { raw: any } | null

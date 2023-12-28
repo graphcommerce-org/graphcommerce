@@ -21,8 +21,9 @@ import {
   RowHeroBannerProps,
   RowServiceOptions,
   RowServiceOptionsProps,
+  RowSpecialBanner,
+  RowSpecialBannerProps,
 } from '@graphcommerce/next-ui'
-import { RowSpecialBanner, RowSpecialBannerProps } from './RowSpecialBanner'
 import { RowProduct, RowProductProps } from './RowProduct'
 
 export type AllRows = Array<

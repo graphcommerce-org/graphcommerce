@@ -4,13 +4,13 @@ import { Link } from '@mui/material'
 import { RowSpecialBannerProps } from './type'
 
 export function RowSpecialBanner(props: RowSpecialBannerProps) {
-  const { copy, asset, topic, pageLinks } = props
+  const { copy, asset, title, links } = props
 
   return (
     <SpecialBanner
-      topic={topic}
+      topic={title}
       asset={asset && <Asset asset={asset} sizes='50vw' />}
-      pageLinks={pageLinks.map(({ url, title }) => (
+      pageLinks={links.map(({ url, title }) => (
         <Link underline='always' href={url} key={url} title={title} color='inherit'>
           {title}
         </Link>
