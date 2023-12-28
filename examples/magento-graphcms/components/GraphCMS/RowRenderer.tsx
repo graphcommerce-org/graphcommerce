@@ -17,11 +17,12 @@ import {
   RowButtonLinkListProps,
   RowContentLinks,
   RowContentLinksProps,
+  RowHeroBanner,
+  RowHeroBannerProps,
 } from '@graphcommerce/next-ui'
-import { RowHeroBanner, RowHeroBannerProps } from './RowHeroBanner'
-import { RowProduct, RowProductProps } from './RowProduct'
 import { RowServiceOptions, RowServiceOptionsProps } from './RowServiceOptions'
 import { RowSpecialBanner, RowSpecialBannerProps } from './RowSpecialBanner'
+import { RowProduct, RowProductProps } from './RowProduct'
 
 export type AllRows = Array<
   | RowColumnOneProps
