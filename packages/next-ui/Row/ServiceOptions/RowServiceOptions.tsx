@@ -10,18 +10,18 @@ import {
 import { RowServiceOptionsProps } from './type'
 
 export function RowServiceOptions(props: RowServiceOptionsProps) {
-  const { title, serviceOptions } = props
+  const { title, options } = props
 
   return (
     <IconBlocks title={title}>
-      {serviceOptions.map((serviceOption) => {
-        const iconTitle = serviceOption.title.toLowerCase()
+      {options.map((option) => {
+        const iconTitle = option.title.toLowerCase()
 
         return (
           <IconBlock
-            key={serviceOption.title}
-            href={serviceOption.url}
-            title={serviceOption.title}
+            key={option.title}
+            href={option.url}
+            title={option.title}
             icon={
               <>
                 {iconTitle === 'e-mail' && <IconSvg src={iconEmail} size='large' />}
@@ -30,7 +30,7 @@ export function RowServiceOptions(props: RowServiceOptionsProps) {
               </>
             }
           >
-            {serviceOption.description ? <RichText {...serviceOption.description} /> : undefined}
+            {option.description ? <RichText {...option.description} /> : undefined}
           </IconBlock>
         )
       })}
