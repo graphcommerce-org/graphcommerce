@@ -10,19 +10,46 @@ import {
   RowServiceOptionsProps,
   RowSpecialBannerProps,
 } from '@graphcommerce/next-ui'
-import { parseHygraphContentItem } from '../lib'
-import { RowColumnTwoFragment } from '../components/RowColumnTwo/RowColumnTwo.gql'
-import { RowColumnThreeFragment } from '../components/RowColumnThree/RowColumnThree.gql'
 import { RowBlogContentFragment } from '../components/RowBlogContent/RowBlogContent.gql'
 import { RowButtonLinkListFragment } from '../components/RowButtonLinkList/RowButtonLinkList.gql'
+import { RowColumnThreeFragment } from '../components/RowColumnThree/RowColumnThree.gql'
+import { RowColumnTwoFragment } from '../components/RowColumnTwo/RowColumnTwo.gql'
 import { RowContentLinksFragment } from '../components/RowContentLinks/RowContentLinks.gql'
 import { RowHeroBannerFragment } from '../components/RowHeroBanner/RowHeroBanner.gql'
+import { RowProductFragment } from '../components/RowProduct/RowProduct.gql'
 import { RowServiceOptionsFragment } from '../components/RowServiceOptions/RowServiceOptions.gql'
 import { RowSpecialBannerFragment } from '../components/RowSpecialBanner/RowSpecialBanner.gql'
-import { RowProductFragment } from '../components/RowProduct/RowProduct.gql'
+import { parseHygraphContentItem } from '../lib'
 
 export const func = 'parseHygraphContentItem'
 export const exported = '@graphcommerce/graphcms-ui/lib/parser'
+
+type RowProductInput = RowProductFragment & {
+  __typename:
+    | 'RowProduct'
+    | 'SimpleProduct'
+    | 'ConfigurableProduct'
+    | 'GroupedProduct'
+    | 'BundleProduct'
+    | 'VirtualProduct'
+    | 'DownloadableProduct'
+    | 'CustomizableProduct'
+}
+
+const isProduct = (input: ExtendedInput | RowProductInput): input is RowProductInput => {
+  const possibleTypenames = new Set([
+    'RowProduct',
+    'SimpleProduct',
+    'ConfigurableProduct',
+    'GroupedProduct',
+    'BundleProduct',
+    'VirtualProduct',
+    'DownloadableProduct',
+    'CustomizableProduct',
+  ])
+
+  return possibleTypenames.has(input.__typename)
+}
 
 type ExtendedInput =
   | (RowColumnTwoFragment & {
@@ -35,7 +62,7 @@ type ExtendedInput =
   | (RowHeroBannerFragment & { __typename: 'RowHeroBanner' })
   | (RowServiceOptionsFragment & { __typename: 'RowServiceOptions' })
   | (RowSpecialBannerFragment & { __typename: 'RowSpecialBanner' })
-  | (RowProductFragment & { __typename: 'RowProduct' })
+
 type ExtendedOutput =
   | RowColumnTwoProps
   | RowColumnThreeProps
@@ -45,7 +72,6 @@ type ExtendedOutput =
   | RowHeroBannerProps
   | RowServiceOptionsProps
   | RowSpecialBannerProps
-  | RowProductProps
 
 type ExtendedParserMapType = {
   [K in ExtendedInput['__typename']]: (
@@ -125,17 +151,7 @@ const extendedParserMap: ExtendedParserMapType = {
     const output = {
       ...input,
       links,
-    }
-
-    return output
-  },
-  RowProduct: (input) => {
-    const { productCopy: copy, pageLinks: links } = input
-
-    const output = {
-      ...input,
-      copy,
-      links,
+      title,
     }
 
     return output
@@ -148,11 +164,21 @@ const extendParser: MethodPlugin<typeof parseHygraphContentItem> = <
   prev,
   input,
 ) => {
-  console.log('extendHygraphParser', input)
   if (!input) return null
 
+  if (isProduct(input)) {
+    const { productCopy: copy, pageLinks: links } = input
+
+    const output = {
+      ...input,
+      copy,
+      links,
+    }
+
+    return output
+  }
+
   if (extendedParserMap[input.__typename as K]) {
-    console.log('extendedParserMap', extendedParserMap, input.__typename)
     return extendedParserMap[input.__typename as K](input)
   }
 
