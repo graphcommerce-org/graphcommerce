@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type RowServiceOptionsProps = {
   __typename: 'RowServiceOptions'
-  id: string
+  id?: string
   title: string
-  serviceOptions: Array<{
+  options: Array<{
     title: string
     url: string
     description?: { raw: any } | null

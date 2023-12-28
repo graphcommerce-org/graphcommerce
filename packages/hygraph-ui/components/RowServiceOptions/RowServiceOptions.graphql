@@ -1,0 +1,6 @@
+fragment RowServiceOptions on RowServiceOptions {
+  title
+  serviceOptions {
+    ...PageLink
+  }
+}

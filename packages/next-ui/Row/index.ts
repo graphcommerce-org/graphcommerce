@@ -22,5 +22,6 @@ export * from './BlogContent'
 export * from './ButtonLinkList'
 export * from './ContentLinks'
 export * from './HeroBanner'
+export * from './ServiceOptions'
 
 export * from './RowType'
