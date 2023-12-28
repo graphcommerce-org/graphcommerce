@@ -1,7 +1,7 @@
 import { RowLinksProps, RowColumnOneProps, RowQuoteProps } from '@graphcommerce/next-ui'
 import { RowColumnOneFragment, RowLinksFragment, RowQuoteFragment } from '../components'
 
-export type Input =
+export type BaseInput =
   | (RowColumnOneFragment & { __typename: 'RowColumnOne' })
   | (RowLinksFragment & { __typename: 'RowLinks' })
   | (RowQuoteFragment & { __typename: 'RowQuote' })
@@ -9,8 +9,8 @@ export type Input =
 type BaseOutput = RowLinksProps | RowColumnOneProps | RowQuoteProps
 
 export type FunctionMapType = {
-  [K in Input['__typename']]: (
-    input: Extract<Input, { __typename: K }>,
+  [K in BaseInput['__typename']]: (
+    input: Extract<BaseInput, { __typename: K }>,
   ) => Extract<BaseOutput, { __typename: K }>
 }
 
@@ -47,8 +47,8 @@ export const parserMap: FunctionMapType = {
   },
 }
 
-export function parseHygraphContentItem<K extends Input['__typename']>(
-  input: Extract<Input, { __typename: K }>,
+export function parseHygraphContentItem<K extends BaseInput['__typename']>(
+  input: Extract<BaseInput, { __typename: K }>,
 ) {
   if (!input) return null
   if (parserMap[input.__typename as K]) {
@@ -57,5 +57,5 @@ export function parseHygraphContentItem<K extends Input['__typename']>(
   return input
 }
 
-export const parseHygraphContent = (input: Input[]) =>
+export const parseHygraphContent = (input: BaseInput[]) =>
   input.map((item) => parseHygraphContentItem(item))

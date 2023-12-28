@@ -6,7 +6,6 @@ import {
   RowColumnTwoProps,
   RowContentLinksProps,
   RowHeroBannerProps,
-  RowProductProps,
   RowServiceOptionsProps,
   RowSpecialBannerProps,
 } from '@graphcommerce/next-ui'
@@ -158,6 +157,7 @@ const extendedParserMap: ExtendedParserMapType = {
   },
 }
 
+// ExtendParser should extend the BaseParser input type with some typescript magic.
 const extendParser: MethodPlugin<typeof parseHygraphContentItem> = <
   K extends ExtendedInput['__typename'],
 >(
