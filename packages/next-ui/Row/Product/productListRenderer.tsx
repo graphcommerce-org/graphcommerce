@@ -12,9 +12,6 @@ import { ProductListItemVirtual } from '@graphcommerce/magento-product-virtual'
 import { ProductReviewSummary } from '@graphcommerce/magento-review'
 import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 
-/**
- * @deprecated Use productListRenderer from @graphcommerce/next-ui instead
- */
 export const productListRenderer: ProductListItemRenderer = {
   Skeleton: (props) => <ProductListItem {...props} aspectRatio={[1, 1]} />,
   SimpleProduct: (props) => {
@@ -79,9 +76,4 @@ export const productListRenderer: ProductListItemRenderer = {
       topRight={<ProductWishlistChip {...props} />}
     />
   ),
-  // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // // @ts-ignore GiftCardProduct is only available in Commerce
-  // GiftCardProduct: (props) => (
-  //   <ProductListItem {...props} aspectRatio={[1, 1]} />
-  // ),
 }

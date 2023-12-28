@@ -6,7 +6,7 @@ import {
   SidebarSliderProps,
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
-import { productListRenderer } from '../../../ProductListItems/productListRenderer'
+import { productListRenderer } from '../productListRenderer'
 import { RowProductProps } from '../type'
 
 type SwipeableProps = RowProductProps & ProductListItemsFragment & Pick<SidebarSliderProps, 'sx'>
