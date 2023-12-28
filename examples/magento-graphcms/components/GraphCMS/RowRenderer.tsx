@@ -63,6 +63,9 @@ export type PageProps = { content: AllRows } & {
   renderer?: Partial<ContentTypeRenderer>
 }
 
+/**
+ * @deprecated Use `RowRenderer` from @graphcommerce/next-ui instead.
+ */
 export function RowRenderer(props: PageProps) {
   const { content, renderer } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as ContentTypeRenderer
