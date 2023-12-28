@@ -1,12 +1,8 @@
 import { RichText } from '@graphcommerce/graphcms-ui'
-import {
-  IconBlock,
-  IconBlocks,
-  iconChat,
-  iconEmail,
-  iconPhone,
-  IconSvg,
-} from '@graphcommerce/next-ui'
+import { iconChat, iconEmail, iconPhone } from '../../icons'
+import { IconSvg } from '../../IconSvg'
+import { IconBlock } from '../IconBlocks/IconBlock'
+import { IconBlocks } from '../IconBlocks/IconBlocks'
 import { RowServiceOptionsProps } from './type'
 
 export function RowServiceOptions(props: RowServiceOptionsProps) {

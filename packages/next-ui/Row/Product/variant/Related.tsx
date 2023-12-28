@@ -1,10 +1,7 @@
 import { AddProductsToCartForm, RelatedProductsFragment } from '@graphcommerce/magento-product'
-import {
-  SidebarSlider,
-  RenderType,
-  responsiveVal,
-  SidebarSliderProps,
-} from '@graphcommerce/next-ui'
+import { responsiveVal } from '../../../Styles'
+import { SidebarSlider, SidebarSliderProps } from '../../../FramerScroller/SidebarSlider'
+import { RenderType } from '../../../RenderType/'
 import { Typography } from '@mui/material'
 import { productListRenderer } from '../productListRenderer'
 import { RowProductProps } from '../type'

@@ -1,4 +1,5 @@
-import { ButtonLinkListItem, ButtonLinkList } from '@graphcommerce/next-ui'
+import { ButtonLinkList } from './ButtonLinkList'
+import { ButtonLinkListItem } from './ButtonLinkListItem'
 import { RowButtonLinkListProps } from './type'
 
 /** @deprecated Replace with RowLinks */

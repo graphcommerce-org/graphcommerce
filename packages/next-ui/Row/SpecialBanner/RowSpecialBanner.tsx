@@ -1,5 +1,6 @@
 import { RichText, Asset } from '@graphcommerce/graphcms-ui'
-import { breakpointVal, SpecialBanner } from '@graphcommerce/next-ui'
+import { SpecialBanner } from './SpecialBanner'
+import { breakpointVal } from '../../Styles'
 import { Link } from '@mui/material'
 import { RowSpecialBannerProps } from './type'
 

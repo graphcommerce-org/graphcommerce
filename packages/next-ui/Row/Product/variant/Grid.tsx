@@ -1,4 +1,4 @@
-import { ContainerWithHeader } from '@graphcommerce/next-ui'
+import { ContainerWithHeader } from '../../../ContainerWithHeader/ContainerWithHeader'
 import { Link } from '@mui/material'
 import { ProductListItems, ProductListItemsProps } from '../ProductListItems'
 import { RowProductProps } from '../type'

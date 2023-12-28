@@ -1,5 +1,5 @@
 import { RichText } from '@graphcommerce/graphcms-ui'
-import { BlogContent } from '@graphcommerce/next-ui'
+import { BlogContent } from '../../Blog/BlogContent/BlogContent'
 import { RowBlogContentProps } from './type'
 
 /** @deprecated Replace with RowColumnOne */

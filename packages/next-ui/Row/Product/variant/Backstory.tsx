@@ -1,6 +1,7 @@
 import { Asset, RichText } from '@graphcommerce/graphcms-ui'
 import { AddProductsToCartForm, ProductListItemsFragment } from '@graphcommerce/magento-product'
-import { ParagraphWithSidebarSlide, RenderType } from '@graphcommerce/next-ui'
+import { RenderType } from '../../../RenderType/'
+import { ParagraphWithSidebarSlide } from '../../ParagraphWithSidebarSlide/ParagraphWithSidebarSlide'
 import { useTheme } from '@mui/material'
 import { productListRenderer } from '../productListRenderer'
 import { RowProductProps } from '../type'
