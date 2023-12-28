@@ -25,6 +25,7 @@ import {
   JsonLd,
   LayoutHeader,
   LayoutTitle,
+  RowProduct,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Link, Typography } from '@mui/material'
@@ -34,7 +35,6 @@ import {
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
-  RowProduct,
   RowRenderer,
   Usps,
 } from '../../../components'

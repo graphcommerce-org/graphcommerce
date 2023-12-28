@@ -20,6 +20,7 @@ import {
   JsonLd,
   LayoutTitle,
   LayoutHeader,
+  RowProduct,
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -27,7 +28,6 @@ import {
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
-  RowProduct,
   RowRenderer,
   Usps,
 } from '../../../components'

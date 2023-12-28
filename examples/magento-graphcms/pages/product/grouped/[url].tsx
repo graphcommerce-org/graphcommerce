@@ -24,15 +24,14 @@ import {
   LayoutTitle,
   LayoutHeader,
   findByTypename,
+  RowProduct,
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import React from 'react'
 import {
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
-  RowProduct,
   RowRenderer,
   Usps,
 } from '../../../components'

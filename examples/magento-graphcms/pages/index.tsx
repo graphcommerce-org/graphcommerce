@@ -2,14 +2,14 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutHeader, MetaRobots, PageMeta } from '@graphcommerce/next-ui'
 import {
-  LayoutDocument,
-  LayoutNavigation,
-  LayoutNavigationProps,
-  RowProduct,
-  RowRenderer,
-} from '../components'
+  GetStaticProps,
+  LayoutHeader,
+  MetaRobots,
+  PageMeta,
+  RowProduct
+} from '@graphcommerce/next-ui'
+import { LayoutDocument, LayoutNavigation, LayoutNavigationProps, RowRenderer } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery & {
