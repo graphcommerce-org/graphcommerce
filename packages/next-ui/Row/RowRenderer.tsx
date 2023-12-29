@@ -1,31 +1,15 @@
-import {
-  RenderType,
-  TypeRenderer,
-  RowColumnOne,
-  RowColumnOneProps,
-  RowLinks,
-  RowLinksProps,
-  RowQuote,
-  RowQuoteProps,
-  RowColumnTwo,
-  RowColumnTwoProps,
-  RowColumnThree,
-  RowColumnThreeProps,
-  RowBlogContent,
-  RowBlogContentProps,
-  RowButtonLinkList,
-  RowButtonLinkListProps,
-  RowContentLinks,
-  RowContentLinksProps,
-  RowHeroBanner,
-  RowHeroBannerProps,
-  RowServiceOptions,
-  RowServiceOptionsProps,
-  RowSpecialBanner,
-  RowSpecialBannerProps,
-  RowProduct,
-  RowProductProps,
-} from '@graphcommerce/next-ui'
+import { RenderType, TypeRenderer } from '../RenderType'
+import { RowBlogContent, RowBlogContentProps } from './BlogContent'
+import { RowButtonLinkList, RowButtonLinkListProps } from './ButtonLinkList'
+import { RowColumnOne, RowColumnOneProps } from './ColumnOne'
+import { RowColumnThree, RowColumnThreeProps } from './ColumnThree'
+import { RowColumnTwo, RowColumnTwoProps } from './ColumnTwo'
+import { RowContentLinks, RowContentLinksProps } from './ContentLinks'
+import { RowHeroBanner, RowHeroBannerProps } from './HeroBanner'
+import { RowLinks, RowLinksProps } from './Links'
+import { RowQuote, RowQuoteProps } from './Quote'
+import { RowServiceOptions, RowServiceOptionsProps } from './ServiceOptions'
+import { RowSpecialBanner, RowSpecialBannerProps } from './SpecialBanner'
 
 export type AllRows =
   | RowColumnOneProps
@@ -38,7 +22,6 @@ export type AllRows =
   | RowButtonLinkListProps
   | RowServiceOptionsProps
   | RowContentLinksProps
-  | RowProductProps
   | RowLinksProps
 
 type ContentTypeRenderer = TypeRenderer<Array<AllRows>[0]>
@@ -54,7 +37,6 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
   RowButtonLinkList,
   RowServiceOptions,
   RowContentLinks,
-  RowProduct,
   RowLinks,
 }
 

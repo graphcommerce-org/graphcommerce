@@ -15,40 +15,12 @@ import { RowColumnThreeFragment } from '../components/RowColumnThree/RowColumnTh
 import { RowColumnTwoFragment } from '../components/RowColumnTwo/RowColumnTwo.gql'
 import { RowContentLinksFragment } from '../components/RowContentLinks/RowContentLinks.gql'
 import { RowHeroBannerFragment } from '../components/RowHeroBanner/RowHeroBanner.gql'
-import { RowProductFragment } from '../components/RowProduct/RowProduct.gql'
 import { RowServiceOptionsFragment } from '../components/RowServiceOptions/RowServiceOptions.gql'
 import { RowSpecialBannerFragment } from '../components/RowSpecialBanner/RowSpecialBanner.gql'
 import { parseHygraphContentItem } from '../lib'
 
 export const func = 'parseHygraphContentItem'
 export const exported = '@graphcommerce/graphcms-ui/lib/parser'
-
-type RowProductInput = RowProductFragment & {
-  __typename:
-    | 'RowProduct'
-    | 'SimpleProduct'
-    | 'ConfigurableProduct'
-    | 'GroupedProduct'
-    | 'BundleProduct'
-    | 'VirtualProduct'
-    | 'DownloadableProduct'
-    | 'CustomizableProduct'
-}
-
-const isProduct = (input: ExtendedInput | RowProductInput): input is RowProductInput => {
-  const possibleTypenames = new Set([
-    'RowProduct',
-    'SimpleProduct',
-    'ConfigurableProduct',
-    'GroupedProduct',
-    'BundleProduct',
-    'VirtualProduct',
-    'DownloadableProduct',
-    'CustomizableProduct',
-  ])
-
-  return possibleTypenames.has(input.__typename)
-}
 
 type ExtendedInput =
   | (RowColumnTwoFragment & {
@@ -165,18 +137,6 @@ const extendParser: MethodPlugin<typeof parseHygraphContentItem> = <
   input,
 ) => {
   if (!input) return null
-
-  if (isProduct(input)) {
-    const { productCopy: copy, pageLinks: links } = input
-
-    const output = {
-      ...input,
-      copy,
-      links,
-    }
-
-    return output
-  }
 
   if (extendedParserMap[input.__typename as K]) {
     return extendedParserMap[input.__typename as K](input)
