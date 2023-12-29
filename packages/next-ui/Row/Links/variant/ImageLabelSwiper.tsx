@@ -1,7 +1,7 @@
 import { Box, ButtonBase, SxProps, Theme, Typography } from '@mui/material'
 import { responsiveVal } from '../../../Styles'
 import { Asset } from '../../Asset/Asset'
-import { RichText } from '../../Renderer/RichText'
+import { RichText } from '../../RichText'
 import { Links } from '../Links'
 import { RowLinksProps } from '../type'
 

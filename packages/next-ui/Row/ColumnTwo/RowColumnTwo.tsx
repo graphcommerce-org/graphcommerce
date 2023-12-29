@@ -1,4 +1,4 @@
-import { RichText } from '../Renderer/RichText'
+import { RichText } from '../RichText'
 import { ColumnTwo } from './ColumnTwo'
 import { RowColumnTwoProps } from './type'
 

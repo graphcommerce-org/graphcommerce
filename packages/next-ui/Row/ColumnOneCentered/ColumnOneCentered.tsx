@@ -1,5 +1,5 @@
 import { ContainerProps, styled } from '@mui/material'
-import { ColumnOne } from '../ColumnOne/variant'
+import { ColumnOne } from '../ColumnOne/ColumnOne'
 
 const Wrapper = styled('div')(({ theme }) => ({
   marginBottom: theme.spacings.lg,

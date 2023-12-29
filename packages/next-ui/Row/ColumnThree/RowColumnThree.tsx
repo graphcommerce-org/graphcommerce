@@ -1,5 +1,5 @@
-import { RichText } from '@graphcommerce/graphcms-ui'
-import { ColumnThree } from '@graphcommerce/next-ui'
+import { RichText } from '../RichText'
+import { ColumnThree } from './ColumnThree'
 import { RowColumnThreeProps } from './type'
 
 export function RowColumnThree(props: RowColumnThreeProps) {

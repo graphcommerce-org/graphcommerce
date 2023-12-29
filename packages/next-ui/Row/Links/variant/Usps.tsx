@@ -1,7 +1,7 @@
 import { Box, SxProps, Theme } from '@mui/material'
 import { IconSvg } from '../../../IconSvg'
 import { iconCheckmark } from '../../../icons'
-import { RichText } from '../../Renderer/RichText'
+import { RichText } from '../../RichText'
 import { Links } from '../Links'
 import { RowLinksProps } from '../type'
 

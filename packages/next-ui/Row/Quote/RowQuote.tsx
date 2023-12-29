@@ -1,5 +1,5 @@
 import { SxProps, Theme, ContainerProps } from '@mui/material'
-import { RichText } from '../Renderer/RichText'
+import { RichText } from '../RichText'
 import { Row } from '../Row'
 import { RowQuoteProps } from './type'
 

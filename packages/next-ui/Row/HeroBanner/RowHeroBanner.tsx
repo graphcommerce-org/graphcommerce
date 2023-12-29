@@ -1,4 +1,4 @@
-import { RichText } from '@graphcommerce/graphcms-ui'
+import { RichText } from '../RichText'
 import { breakpointVal } from '../../Styles'
 import { HeroBanner } from './HeroBanner'
 import { Button } from '@mui/material'

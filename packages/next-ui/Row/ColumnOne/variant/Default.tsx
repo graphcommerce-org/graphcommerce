@@ -1,5 +1,4 @@
-// import { RichText } from '@graphcommerce/graphcms-ui'
-import { RichText } from '../../Renderer/RichText'
+import { RichText } from '../../RichText'
 import { ColumnOne } from '../ColumnOne'
 import { RowColumnOneProps } from '../type'
 

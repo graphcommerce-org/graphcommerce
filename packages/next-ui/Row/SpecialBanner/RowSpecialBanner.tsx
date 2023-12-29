@@ -1,4 +1,5 @@
-import { RichText, Asset } from '@graphcommerce/graphcms-ui'
+import { RichText } from '../RichText'
+import { Asset } from '../Asset'
 import { SpecialBanner } from './SpecialBanner'
 import { breakpointVal } from '../../Styles'
 import { Link } from '@mui/material'

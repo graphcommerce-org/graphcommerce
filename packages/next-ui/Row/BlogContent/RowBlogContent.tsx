@@ -1,4 +1,4 @@
-import { RichText } from '@graphcommerce/graphcms-ui'
+import { RichText } from '../RichText'
 import { BlogContent } from '../../Blog/BlogContent/BlogContent'
 import { RowBlogContentProps } from './type'
 

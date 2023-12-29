@@ -1,4 +1,4 @@
-import { RichText } from '@graphcommerce/graphcms-ui'
+import { RichText } from '../RichText'
 import { iconChat, iconEmail, iconPhone } from '../../icons'
 import { IconSvg } from '../../IconSvg'
 import { IconBlock } from '../IconBlocks/IconBlock'
