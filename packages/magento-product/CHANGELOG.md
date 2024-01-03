@@ -1,5 +1,12 @@
 # Change Log
 
+## 7.1.0-canary.67
+
+### Patch Changes
+
+- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`6f214fb`](https://github.com/graphcommerce-org/graphcommerce/commit/6f214fbfd8ef24cc6dcba72f403bdcb1d8a5ed8a) - Remove marginBottom from ProductScroller by default and let implementor set the margin
+  ([@StefanAngenent](https://github.com/StefanAngenent))
+
 ## 7.1.0-canary.66
 
 ## 7.1.0-canary.65

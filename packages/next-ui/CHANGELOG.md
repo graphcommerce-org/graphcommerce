@@ -1,5 +1,12 @@
 # Change Log
 
+## 7.1.0-canary.67
+
+### Patch Changes
+
+- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`7fc4bb9`](https://github.com/graphcommerce-org/graphcommerce/commit/7fc4bb925c59da46961c9656a2a67b37a9c2d652) - Removed the 'NoSSR' functionality from `<WaitForQueries/>` component as it slows down rendering. The 'feature' was necessary for the following use case: When hydrating a component that was server rendered and was living inside a `<Suspense />` component. It would cause an hydration error and this was the workaround. With useSuspenseQuery and React 18, this problem will not occur.
+  ([@StefanAngenent](https://github.com/StefanAngenent))
+
 ## 7.1.0-canary.66
 
 ## 7.1.0-canary.65

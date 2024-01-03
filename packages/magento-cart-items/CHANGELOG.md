@@ -1,5 +1,12 @@
 # Change Log
 
+## 7.1.0-canary.67
+
+### Minor Changes
+
+- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`b9ab035`](https://github.com/graphcommerce-org/graphcommerce/commit/b9ab035893fd0fbbe747333973d0bb1948e5d846) - Add crosssells to cart
+  ([@StefanAngenent](https://github.com/StefanAngenent))
+
 ## 7.1.0-canary.66
 
 ## 7.1.0-canary.65
