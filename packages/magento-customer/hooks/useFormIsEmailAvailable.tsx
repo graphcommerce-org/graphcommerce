@@ -1,17 +1,15 @@
-import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
+import { useApolloClient, useMutation, useQuery } from '@graphcommerce/graphql'
 import { useFormAutoSubmit, useFormGqlQuery } from '@graphcommerce/react-hook-form'
-import { useEffect, useState } from 'react'
+import { SignOutFormDocument } from '../components/SignOutForm/SignOutForm.gql'
 import { CustomerDocument } from './Customer.gql'
 import {
   IsEmailAvailableDocument,
   IsEmailAvailableQuery,
   IsEmailAvailableQueryVariables,
 } from './IsEmailAvailable.gql'
-import { useCustomerQuery } from './useCustomerQuery'
 import { useCustomerSession } from './useCustomerSession'
 
 export type UseFormIsEmailAvailableProps = {
-  email?: string | null
   onSubmitted?: (data: { email: string }) => void
 }
 
@@ -19,22 +17,30 @@ export type AccountSignInUpState = 'email' | 'signin' | 'signup' | 'signedin' | 
 
 export const isToggleMethod = !import.meta.graphCommerce.enableGuestCheckoutLogin
 
-export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
-  const { email, onSubmitted } = props
-  const { loggedIn, requireAuth } = useCustomerSession()
-  const customerQuery = useCustomerQuery(CustomerDocument, { fetchPolicy: 'network-only' })
+export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps = {}) {
+  const { onSubmitted } = props
+  const { token, valid } = useCustomerSession()
+
+  const customerQuery = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
+  const cachedEmail = customerQuery?.data?.customer?.email
 
   const form = useFormGqlQuery<
     IsEmailAvailableQuery,
     IsEmailAvailableQueryVariables & { requestedMode?: 'signin' | 'signup' }
   >(
     IsEmailAvailableDocument,
-    { mode: 'onChange', defaultValues: { email: email ?? '', requestedMode: 'signin' } },
+    {
+      experimental_useV2: true,
+      mode: 'onChange',
+      values: { email: cachedEmail ?? '' },
+      defaultValues: { requestedMode: 'signin' },
+    },
     { fetchPolicy: 'cache-and-network' },
   )
   const { formState, data, handleSubmit } = form
 
   const submit = isToggleMethod ? () => Promise.resolve() : handleSubmit(onSubmitted || (() => {}))
+
   const autoSubmitting = useFormAutoSubmit({
     form,
     submit,
@@ -42,38 +48,21 @@ export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps) {
     disabled: isToggleMethod,
   })
 
+  const { isSubmitSuccessful, isValid } = formState
+
   const hasAccount = data?.isEmailAvailable?.is_email_available === false
-  const modeFromIsEmailAvailable = hasAccount ? 'signin' : 'signup'
-  const modeFromToggle = form.watch('requestedMode') ?? 'signin'
-  const requestedMode = isToggleMethod ? modeFromToggle : modeFromIsEmailAvailable
 
-  const { isDirty, isSubmitSuccessful, isSubmitted, isSubmitting, isValid } = formState
+  let mode: AccountSignInUpState
+  if (token && valid) mode = 'signedin'
+  else if (token && !valid) mode = 'session-expired'
+  else if (isToggleMethod) {
+    mode = form.watch('requestedMode') ?? 'signin'
+  } else {
+    // 1. Nothing is entered
+    mode = 'email'
 
-  const [mode, setMode] = useState<AccountSignInUpState>(loggedIn ? 'signedin' : 'email')
-
-  useEffect(() => {
-    if (loggedIn) {
-      setMode(requireAuth ? 'session-expired' : 'signedin')
-      return
-    }
-    if (isToggleMethod) setMode(requestedMode)
-    if (isSubmitting) return
-    if (!isValid) return
-    if (!isDirty && isSubmitted && isSubmitSuccessful && isValid) setMode(requestedMode)
-
-    if (customerQuery.data?.customer && requireAuth)
-      setMode(isSubmitSuccessful ? 'signin' : 'session-expired')
-  }, [
-    customerQuery.data?.customer,
-    requestedMode,
-    isDirty,
-    isSubmitSuccessful,
-    isSubmitted,
-    isSubmitting,
-    isValid,
-    loggedIn,
-    requireAuth,
-  ])
+    if (isValid && isSubmitSuccessful) mode = hasAccount ? 'signin' : 'signup'
+  }
 
   return { mode, form, submit, autoSubmitting, hasAccount }
 }

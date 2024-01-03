@@ -1,7 +1,7 @@
 import { TextFieldElement, emailPattern } from '@graphcommerce/ecommerce-ui'
+import { useApolloClient } from '@graphcommerce/graphql'
 import {
   ActionCard,
-  ActionCardLayout,
   ActionCardListForm,
   Button,
   FormActions,
@@ -36,7 +36,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
 
   const { email, firstname = '' } = customerQuery.data?.customer ?? {}
 
-  const { mode, form, autoSubmitting, submit } = useFormIsEmailAvailable({ email })
+  const { mode, form, autoSubmitting, submit } = useFormIsEmailAvailable()
   const { formState, watch, control, error } = form
   const disableFields = formState.isSubmitting && !autoSubmitting
 
@@ -50,6 +50,8 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
       trigger('email')
     }
   }, [email, router.query.email, setValue, trigger])
+
+  const client = useApolloClient()
 
   return (
     <FormDiv sx={sx} className={classes.root}>
@@ -160,9 +162,21 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
                 label={<Trans id='Email' />}
                 disabled={disableFields}
                 InputProps={{
-                  endAdornment: formState.isSubmitting && (
-                    <CircularProgress sx={{ display: 'inline-flex' }} />
-                  ),
+                  endAdornment:
+                    mode === 'session-expired' ? (
+                      <Button
+                        type='submit'
+                        variant='inline'
+                        color='primary'
+                        loading={formState.isSubmitting}
+                        sx={{ whiteSpace: 'nowrap' }}
+                        onClick={async () => client.clearStore()}
+                      >
+                        <Trans id='Sign out' />
+                      </Button>
+                    ) : (
+                      formState.isSubmitting && <CircularProgress sx={{ display: 'inline-flex' }} />
+                    ),
                   readOnly: !!email,
                 }}
               />

@@ -85,12 +85,21 @@ const customerErrorLink = (router: PushRouter) =>
 
     return fromPromise(signInAgainPromise).flatMap(() => {
       const tokenQuery = client.cache.readQuery({ query: CustomerTokenDocument })
-      operation.setContext({
-        headers: {
-          ...oldHeaders,
-          authorization: `Bearer ${tokenQuery?.customerToken?.token}`,
-        },
-      })
+
+      if (tokenQuery?.customerToken?.valid) {
+        operation.setContext({
+          headers: {
+            ...oldHeaders,
+            authorization: `Bearer ${tokenQuery?.customerToken?.token}`,
+          },
+        })
+      } else {
+        client.cache.evict({ fieldName: 'cart' })
+        client.cache.evict({ fieldName: 'customer' })
+        client.cache.evict({ fieldName: 'customerCart' })
+        client.cache.evict({ fieldName: 'currentCartId' })
+        client.cache.evict({ fieldName: 'customerToken', broadcast: true })
+      }
 
       // retry the request, returning the new observable
       return forward(operation)

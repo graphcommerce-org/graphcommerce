@@ -27,7 +27,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
 
   return (
     <Fab
-      href={session?.requireAuth ? guestHref : authHref}
+      href={session?.loggedIn ? authHref : guestHref}
       color='inherit'
       id='account'
       aria-label={i18n._(/* i18n */ 'Account')}
