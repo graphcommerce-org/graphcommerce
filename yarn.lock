@@ -1778,17 +1778,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/assemble-release-plan@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "@changesets/assemble-release-plan@npm:6.0.0"
+"@changesets/assemble-release-plan@npm:5.2.4":
+  version: 5.2.4
+  resolution: "@changesets/assemble-release-plan@npm:5.2.4"
   dependencies:
     "@babel/runtime": "npm:^7.20.1"
-    "@changesets/errors": "npm:^0.2.0"
-    "@changesets/get-dependents-graph": "npm:^2.0.0"
-    "@changesets/types": "npm:^6.0.0"
+    "@changesets/errors": "npm:^0.1.4"
+    "@changesets/get-dependents-graph": "npm:^1.3.6"
+    "@changesets/types": "npm:^5.2.1"
     "@manypkg/get-packages": "npm:^1.1.3"
     semver: "npm:^7.5.3"
-  checksum: 7ccff4dba07fd5c7d219b69d6f5e5ec4ea942b3f3482a76be6f9caa072ae5b2128b4d6c561030cb488ca1bc23416a2f8f638daa784f4ae9792c89c9b571231b3
+  checksum: 603299bd6476b05d19c66a0f3236ea87a7cd1082b651ed95e5e68fb8b81120d089c523252eda09a4f0faf51755789f96ac5086b96198548c5e84fd5ca8644bbb
   languageName: node
   linkType: hard
 
@@ -1854,18 +1854,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/config@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "@changesets/config@npm:3.0.0"
+"@changesets/config@npm:2.3.1":
+  version: 2.3.1
+  resolution: "@changesets/config@npm:2.3.1"
   dependencies:
-    "@changesets/errors": "npm:^0.2.0"
-    "@changesets/get-dependents-graph": "npm:^2.0.0"
-    "@changesets/logger": "npm:^0.1.0"
-    "@changesets/types": "npm:^6.0.0"
+    "@changesets/errors": "npm:^0.1.4"
+    "@changesets/get-dependents-graph": "npm:^1.3.6"
+    "@changesets/logger": "npm:^0.0.5"
+    "@changesets/types": "npm:^5.2.1"
     "@manypkg/get-packages": "npm:^1.1.3"
     fs-extra: "npm:^7.0.1"
     micromatch: "npm:^4.0.2"
-  checksum: c64463a92b99986e42657c3b8804851aab8b592bb64532177ce35769a7fedfad3ce1395ad0e2ab3e357e3029fd23333bff1ce51bc3634e6f43223724398639d3
+  checksum: 718944f63279222f41c81f544cce5628d689cb67e871297483d93a811625e66083400d3166e506cd24260e5b08275f054e4427ee05a2f2070895bcf27ab89ba2
+  languageName: node
+  linkType: hard
+
+"@changesets/errors@npm:^0.1.4":
+  version: 0.1.4
+  resolution: "@changesets/errors@npm:0.1.4"
+  dependencies:
+    extendable-error: "npm:^0.1.5"
+  checksum: 21bec4e599a6833e03e0037f1cb9605c36490615db0741bd6b81063e7f2d98f0e2bdf86109ff519934888581bc77ebf7b2a7554040b10f40b71f55b766048747
   languageName: node
   linkType: hard
 
@@ -1875,6 +1884,19 @@ __metadata:
   dependencies:
     extendable-error: "npm:^0.1.5"
   checksum: f2757c752ab04e9733b0dfd7903f1caf873f9e603794c4d9ea2294af4f937c73d07273c24be864ad0c30b6a98424360d5b96a6eab14f97f3cf2cbfd3763b95c1
+  languageName: node
+  linkType: hard
+
+"@changesets/get-dependents-graph@npm:^1.3.6":
+  version: 1.3.6
+  resolution: "@changesets/get-dependents-graph@npm:1.3.6"
+  dependencies:
+    "@changesets/types": "npm:^5.2.1"
+    "@manypkg/get-packages": "npm:^1.1.3"
+    chalk: "npm:^2.1.0"
+    fs-extra: "npm:^7.0.1"
+    semver: "npm:^7.5.3"
+  checksum: 0ce46b7a99aa689740e58bb9692f574d25077c012f38eb67002bc7da83c3ceb77906f51de659d868d07a9abf84fa405cef31a5177af57434fab7b000b1ed0118
   languageName: node
   linkType: hard
 
@@ -1938,6 +1960,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@changesets/logger@npm:^0.0.5":
+  version: 0.0.5
+  resolution: "@changesets/logger@npm:0.0.5"
+  dependencies:
+    chalk: "npm:^2.1.0"
+  checksum: a4659a86c97e4f0ba5844168d0c8a5fb3f8d8a6b81fcdc986919eef338ea8c847140b30649d860b35a2c06f6fe584c10cfb78e25153977485e9d18d2c6d4b06a
+  languageName: node
+  linkType: hard
+
 "@changesets/logger@npm:^0.1.0":
   version: 0.1.0
   resolution: "@changesets/logger@npm:0.1.0"
@@ -1990,6 +2021,13 @@ __metadata:
   version: 4.1.0
   resolution: "@changesets/types@npm:4.1.0"
   checksum: a372ad21f6a1e0d4ce6c19573c1ca269eef1ad53c26751ad9515a24f003e7c49dcd859dbb1fedb6badaf7be956c1559e8798304039e0ec0da2d9a68583f13464
+  languageName: node
+  linkType: hard
+
+"@changesets/types@npm:^5.2.1":
+  version: 5.2.1
+  resolution: "@changesets/types@npm:5.2.1"
+  checksum: 2500a5047e28daa4ffdef44ba4afb8f47a923b2466f976e3611a2afb29373152f64ca79c624a7b84d3b0c1d3e44d72f3a82871c21690b36e28073b8cd2825a28
   languageName: node
   linkType: hard
 

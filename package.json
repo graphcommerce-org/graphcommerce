@@ -62,6 +62,7 @@
     "typescript": "5.3.3"
   },
   "resolutions": {
-    "graphql-jit": "0.8.2"
+    "@changesets/assemble-release-plan": "5.2.4",
+    "@changesets/config": "2.3.1"
   }
 }
