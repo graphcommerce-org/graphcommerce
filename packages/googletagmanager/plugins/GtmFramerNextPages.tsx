@@ -6,7 +6,7 @@ export const component = 'FramerNextPages'
 export const exported = '@graphcommerce/framer-next-pages'
 export const ifConfig: IfConfig = 'googleTagmanagerId'
 
-function GtagFramerNextPages(props: PluginProps<PagesProps>) {
+function GtmFramerNextPages(props: PluginProps<PagesProps>) {
   const { Prev, ...rest } = props
   return (
     <>
@@ -16,4 +16,4 @@ function GtagFramerNextPages(props: PluginProps<PagesProps>) {
   )
 }
 
-export const Plugin = GtagFramerNextPages
+export const Plugin = GtmFramerNextPages

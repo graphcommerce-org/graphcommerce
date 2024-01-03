@@ -1,0 +1,36 @@
+fragment DataLayerAddPaymentInfo on Cart
+@inject(into: ["PaymentMethodContext", "PaymentMethodUpdated"]) {
+  items {
+    uid
+    prices {
+      price {
+        currency
+        value
+      }
+      discounts {
+        amount {
+          currency
+          value
+        }
+      }
+    }
+    quantity
+    product {
+      uid
+      name
+      sku
+    }
+  }
+  applied_coupons {
+    code
+  }
+  prices {
+    grand_total {
+      currency
+      value
+    }
+  }
+  selected_payment_method {
+    code
+  }
+}
