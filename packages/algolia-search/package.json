@@ -12,7 +12,7 @@
     }
   },
   "dependencies": {
-    "algoliasearch": "^4.20.0",
+    "algoliasearch": "^4.21.0",
     "react-instantsearch-hooks-web": "^6.47.3"
   },
   "peerDependencies": {
@@ -31,7 +31,7 @@
     "@lingui/macro": "^4.2.1",
     "@lingui/react": "^4.2.1",
     "@mui/material": "^5.10.16",
-    "next": "^14",
+    "next": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
