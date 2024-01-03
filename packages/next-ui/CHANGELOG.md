@@ -1,5 +1,23 @@
 # Change Log
 
+## 7.1.0-canary.65
+
+## 7.1.0-canary.64
+
+## 7.1.0-canary.63
+
+## 7.1.0-canary.62
+
+## 7.1.0-canary.61
+
+### Patch Changes
+
+- [#2125](https://github.com/graphcommerce-org/graphcommerce/pull/2125) [`5224ee500`](https://github.com/graphcommerce-org/graphcommerce/commit/5224ee5001c94a19f226fa36106e76739319297c) - If there is an open menu in an overlay, pressing the escape button now closes the menu instead of the overlay. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.60
+
+## 7.1.0-canary.59
+
 ## 7.1.0-canary.58
 
 ### Patch Changes

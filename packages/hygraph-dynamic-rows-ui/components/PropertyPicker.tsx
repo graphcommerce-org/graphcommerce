@@ -1,33 +1,35 @@
+import { ApolloClient, InMemoryCache } from '@apollo/client'
 import { useFieldExtension } from '@hygraph/app-sdk-react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { TextField } from '@mui/material'
 import { useEffect, useMemo, useState } from 'react'
-import { ApolloClient, InMemoryCache } from '@apollo/client'
-import { fetchGraphQLInterface } from '../lib/fetchGraphQLInterface'
 import { createOptionsFromInterfaceObject, objectifyGraphQLInterface } from '../lib'
+import { fetchGraphQLInterface } from '../lib/fetchGraphQLInterface'
+import { __Field } from '../types'
 
 export function PropertyPicker() {
   const { value, onChange, field, extension } = useFieldExtension()
   const [localValue, setLocalValue] = useState<string | undefined | null>(
     typeof value === 'string' ? value : undefined,
   )
-  const [fields, setFields] = useState<any>(null)
+  const [fields, setFields] = useState<__Field[] | null>(null)
 
   useEffect(() => {
-    onChange(localValue).catch((err) => console.log(err))
+    onChange(localValue).catch((err) => err)
   }, [localValue, onChange])
 
-  const client = new ApolloClient({
-    uri:
-      typeof extension.config.backend === 'string'
-        ? extension.config.backend
-        : 'https://graphcommerce.vercel.app/api/graphql', // fallback on the standard GraphCommerce Schema
-    cache: new InMemoryCache(),
-  })
+  const graphQLInterfaceQuery = useMemo(() => {
+    const client = new ApolloClient({
+      uri:
+        typeof extension.config.backend === 'string'
+          ? extension.config.backend
+          : 'https://graphcommerce.vercel.app/api/graphql', // fallback on the standard GraphCommerce Schema
+      cache: new InMemoryCache(),
+    })
+    return fetchGraphQLInterface(client)
+  }, [extension.config.backend])
 
-  const graphQLInterfaceQuery = useMemo(() => fetchGraphQLInterface(client), [client])
-
-  // Prepare options
+  // Prepare options 
   const numberOptions = useMemo(
     () =>
       createOptionsFromInterfaceObject(
@@ -64,11 +66,14 @@ export function PropertyPicker() {
   const options = fieldType === 'ConditionNumber' ? allOptions.number : allOptions.text
 
   if (!fields) {
-    Promise.resolve(graphQLInterfaceQuery).then((res) => {
-      const fields = res?.data.__type?.fields
+    Promise.resolve(graphQLInterfaceQuery)
+      .then((res) => {
+        const newFields: __Field[] = res?.data.__type?.fields
 
-      setFields(fields)
-    })
+        setFields(newFields)
+      })
+      .catch((err) => err)
+
     return <div>Loading fields...</div>
   }
   if (options.length < 1) return <div>No properties available</div>

@@ -1,5 +1,23 @@
 # Change Log
 
+## 7.1.0-canary.65
+
+## 7.1.0-canary.64
+
+## 7.1.0-canary.63
+
+## 7.1.0-canary.62
+
+## 7.1.0-canary.61
+
+## 7.1.0-canary.60
+
+### Patch Changes
+
+- [#2124](https://github.com/graphcommerce-org/graphcommerce/pull/2124) [`3bd80b883`](https://github.com/graphcommerce-org/graphcommerce/commit/3bd80b88351963ae95aaa97b2cfa25f8e526a128) - Fixed the issue where a guest returned to a empty cart after a canceled payment with Mollie ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 7.1.0-canary.59
+
 ## 7.1.0-canary.58
 
 ## 7.1.0-canary.57
