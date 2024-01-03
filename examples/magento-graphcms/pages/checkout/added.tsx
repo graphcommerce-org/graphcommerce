@@ -1,15 +1,13 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Image } from '@graphcommerce/image'
 import { useCrosssellItems } from '@graphcommerce/magento-cart'
-import { AddProductsToCartForm } from '@graphcommerce/magento-product'
+import { AddProductsToCartForm, ProductScroller } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   Button,
   GetStaticProps,
   iconChevronRight,
   IconSvg,
-  ItemScroller,
-  RenderType,
   responsiveVal,
 } from '@graphcommerce/next-ui'
 import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/LayoutHeaderClose'
@@ -128,21 +126,13 @@ function CheckoutAdded() {
             disableSuccessSnackbar
             redirect={import.meta.graphCommerce.crossSellsRedirectItems ? 'added' : false}
           >
-            <ItemScroller
+            <ProductScroller
+              productListRenderer={productListRenderer}
+              items={crossSellItems}
               sx={(theme) => ({
-                width: 'auto',
                 mb: theme.page.vertical,
               })}
-            >
-              {crossSellItems.map((item) => (
-                <RenderType
-                  key={item.uid ?? ''}
-                  renderer={productListRenderer}
-                  {...item}
-                  sizes={responsiveVal(200, 300)}
-                />
-              ))}
-            </ItemScroller>
+            />
           </AddProductsToCartForm>
         </>
       )}
