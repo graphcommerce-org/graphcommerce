@@ -8,13 +8,13 @@ export type BaseInput =
 
 type BaseOutput = RowLinksProps | RowColumnOneProps | RowQuoteProps
 
-export type FunctionMapType = {
+export type ParserMap = {
   [K in BaseInput['__typename']]: (
     input: Extract<BaseInput, { __typename: K }>,
   ) => Extract<BaseOutput, { __typename: K }>
 }
 
-export const parserMap: FunctionMapType = {
+export const parserMap: ParserMap = {
   RowLinks: (input) => {
     const { pageLinks: links, linksVariant: variant, rowLinksCopy: copy, ...rest } = input
     const output = {

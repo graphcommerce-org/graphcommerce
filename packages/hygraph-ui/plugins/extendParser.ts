@@ -1,4 +1,3 @@
-import type { MethodPlugin } from '@graphcommerce/next-config'
 import {
   RowBlogContentProps,
   RowButtonLinkListProps,
@@ -17,7 +16,6 @@ import { RowContentLinksFragment } from '../components/RowContentLinks/RowConten
 import { RowHeroBannerFragment } from '../components/RowHeroBanner/RowHeroBanner.gql'
 import { RowServiceOptionsFragment } from '../components/RowServiceOptions/RowServiceOptions.gql'
 import { RowSpecialBannerFragment } from '../components/RowSpecialBanner/RowSpecialBanner.gql'
-import { parseHygraphContentItem } from '../lib'
 
 export const func = 'parseHygraphContentItem'
 export const exported = '@graphcommerce/graphcms-ui/lib/parser'
@@ -129,12 +127,9 @@ const extendedParserMap: ExtendedParserMapType = {
   },
 }
 
-// ExtendParser should extend the BaseParser input type with some typescript magic.
-const extendParser: MethodPlugin<typeof parseHygraphContentItem> = <
-  K extends ExtendedInput['__typename'],
->(
+const extendParser = <K extends ExtendedInput['__typename']>(
   prev,
-  input,
+  input: Extract<ExtendedInput, { __typename: K }>,
 ) => {
   if (!input) return null
 
