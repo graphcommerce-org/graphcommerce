@@ -129,9 +129,7 @@ function CheckoutAdded() {
             <ProductScroller
               productListRenderer={productListRenderer}
               items={crossSellItems}
-              sx={(theme) => ({
-                mb: theme.page.vertical,
-              })}
+              sx={(theme) => ({ mb: theme.page.vertical })}
             />
           </AddProductsToCartForm>
         </>
