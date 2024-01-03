@@ -192,6 +192,7 @@ function ProductPage(props: Props) {
         title={<Trans id='Recently viewed products' />}
         exclude={[product.sku]}
         productListRenderer={productListRenderer}
+        sx={(theme) => ({ mb: theme.spacings.xxl })}
       />
     </>
   )
