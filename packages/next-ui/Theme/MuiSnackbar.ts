@@ -22,8 +22,10 @@ export const MuiSnackbar: SnackbarVariants = [
           },
         },
       '&.MuiSnackbar-anchorOriginBottomCenter': {
-        left: 0,
-        right: 0,
+        [theme.breakpoints.up('md')]: {
+          left: theme.page.horizontal,
+          right: theme.page.horizontal,
+        },
         transform: 'unset',
       },
     }),

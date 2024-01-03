@@ -114,6 +114,7 @@ export function ProductAddToCart(
           !data?.addProductsToCart?.user_errors?.length
         }
         variant='pill'
+        severity='success'
         autoHide
         action={
           <Button

@@ -97,7 +97,7 @@ export function ChangePasswordForm() {
       <ApolloErrorSnackbar error={remainingError} />
 
       {showSuccess && (
-        <MessageSnackbar open={showSuccess} sticky variant='pill'>
+        <MessageSnackbar open={showSuccess} sticky variant='pill' severity='success'>
           <Trans id='Successfully changed password' />
         </MessageSnackbar>
       )}

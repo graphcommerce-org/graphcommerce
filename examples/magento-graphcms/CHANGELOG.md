@@ -1,5 +1,37 @@
 # Change Log
 
+## 7.1.0-canary.65
+
+## 7.1.0-canary.64
+
+## 7.1.0-canary.63
+
+## 7.1.0-canary.62
+
+## 7.1.0-canary.61
+
+## 7.1.0-canary.60
+
+## 7.1.0-canary.59
+
+## 7.1.0-canary.58
+
+## 7.1.0-canary.57
+
+### Patch Changes
+
+- [#2122](https://github.com/graphcommerce-org/graphcommerce/pull/2122) [`7750f7253`](https://github.com/graphcommerce-org/graphcommerce/commit/7750f7253ded34acb4cd8b75598bf0ad1bca6d5c) - Added .graphqlrc.yml for graphql file autocompletion ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 7.1.0-canary.56
+
+## 7.1.0-canary.55
+
+### Patch Changes
+
+- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`53947d39f`](https://github.com/graphcommerce-org/graphcommerce/commit/53947d39f2f3ee578c14903c96a2b356d99d9475) - Implemented Message variant for RowColumnOne to show an important message which, after dismissing, will not show again ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 7.1.0-canary.54
+
 ## 7.1.0-canary.53
 
 ## 7.1.0-canary.52

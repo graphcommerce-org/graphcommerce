@@ -1,5 +1,33 @@
 # Change Log
 
+## 7.1.0-canary.65
+
+## 7.1.0-canary.64
+
+## 7.1.0-canary.63
+
+## 7.1.0-canary.62
+
+## 7.1.0-canary.61
+
+## 7.1.0-canary.60
+
+## 7.1.0-canary.59
+
+## 7.1.0-canary.58
+
+## 7.1.0-canary.57
+
+## 7.1.0-canary.56
+
+### Patch Changes
+
+- [#2123](https://github.com/graphcommerce-org/graphcommerce/pull/2123) [`8ad60f255`](https://github.com/graphcommerce-org/graphcommerce/commit/8ad60f255b747858c35dd6b6cf5c90147d960082) - Fixed schema-dts dependency issue ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 7.1.0-canary.55
+
+## 7.1.0-canary.54
+
 ## 7.1.0-canary.53
 
 ## 7.1.0-canary.52

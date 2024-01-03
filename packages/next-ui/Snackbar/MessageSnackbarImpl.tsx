@@ -14,6 +14,7 @@ import React, { useEffect, useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { extendableComponent, breakpointVal } from '../Styles'
 import { iconClose, iconCheckmark, iconSadFace } from '../icons'
+import iconInfo from '../icons/info.svg'
 
 type Size = 'normal' | 'wide'
 type Variant = 'contained' | 'pill'
@@ -34,6 +35,10 @@ type OwnerState = {
   size?: Size
   severity?: 'success' | 'info' | 'warning' | 'error'
   variant?: Variant
+  /**
+   * Setting this to true allows interaction with the rest of the page without closing the Snackbar
+   */
+  disableBackdropClick?: boolean
 }
 
 const name = 'MessageSnackbarImpl' as const
@@ -56,6 +61,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
     onClose,
     severity = 'info',
     sx,
+    disableBackdropClick,
     ...snackbarProps
   } = props
 
@@ -65,7 +71,11 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
     setShowSnackbar(!!open)
   }, [open])
 
-  const hideSnackbar = () => {
+  const hideSnackbar = (event: React.SyntheticEvent | Event, reason?: string) => {
+    if (disableBackdropClick && reason === 'clickaway') {
+      return
+    }
+
     setShowSnackbar(false)
     onClose?.()
   }
@@ -80,6 +90,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
   }
 
   let icon = iconCheckmark
+  if (severity === 'info') icon = iconInfo
   if (severity === 'error') icon = iconSadFace
 
   return (
@@ -91,7 +102,13 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
         open={showSnackbar}
         autoHideDuration={autoHide ? 5000 : null}
         className={classes.root}
-        sx={sx}
+        sx={[
+          {
+            pointerEvents: 'none',
+            '& > *': { pointerEvents: 'auto' },
+          },
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
         onClose={hideSnackbar}
       >
         <SnackbarContent

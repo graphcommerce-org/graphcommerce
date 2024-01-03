@@ -1,5 +1,51 @@
 # Change Log
 
+## 7.1.0-canary.65
+
+## 7.1.0-canary.64
+
+## 7.1.0-canary.63
+
+## 7.1.0-canary.62
+
+## 7.1.0-canary.61
+
+### Patch Changes
+
+- [#2125](https://github.com/graphcommerce-org/graphcommerce/pull/2125) [`5224ee500`](https://github.com/graphcommerce-org/graphcommerce/commit/5224ee5001c94a19f226fa36106e76739319297c) - If there is an open menu in an overlay, pressing the escape button now closes the menu instead of the overlay. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 7.1.0-canary.60
+
+## 7.1.0-canary.59
+
+## 7.1.0-canary.58
+
+### Patch Changes
+
+- [#2121](https://github.com/graphcommerce-org/graphcommerce/pull/2121) [`a5da6ffc8`](https://github.com/graphcommerce-org/graphcommerce/commit/a5da6ffc8be359e93c7bde986134f7162aae13b9) - Change the critical css injection location to be in the head instead of `<style>` tags in the body. It has a number of negative consequences, such as the famous "flash of unstyled content" (FOUC) and the re-paint and re-layout required. ([@paales](https://github.com/paales))
+
+## 7.1.0-canary.57
+
+## 7.1.0-canary.56
+
+### Patch Changes
+
+- [#2123](https://github.com/graphcommerce-org/graphcommerce/pull/2123) [`8ad60f255`](https://github.com/graphcommerce-org/graphcommerce/commit/8ad60f255b747858c35dd6b6cf5c90147d960082) - Fixed schema-dts dependency issue ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 7.1.0-canary.55
+
+### Patch Changes
+
+- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`da2135744`](https://github.com/graphcommerce-org/graphcommerce/commit/da2135744dddfa0d211c59589090ebb1977c38c9) - Added info icon for Snackbar when severity is set to info ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`d608830ce`](https://github.com/graphcommerce-org/graphcommerce/commit/d608830ce77f85ff725cc106b9fc55a22012c74c) - Added ‘disableBackdropClick’ prop to MessageSnackbar to allow page interaction without closing the snackbar ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`94e1ae811`](https://github.com/graphcommerce-org/graphcommerce/commit/94e1ae811fe9eb0051863e8be91c6399ddcdf22f) - Added DismissibleSnackbar component to allow messages to be shown only once ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`53947d39f`](https://github.com/graphcommerce-org/graphcommerce/commit/53947d39f2f3ee578c14903c96a2b356d99d9475) - Implemented Message variant for RowColumnOne to show an important message which, after dismissing, will not show again ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 7.1.0-canary.54
+
 ## 7.1.0-canary.53
 
 ## 7.1.0-canary.52

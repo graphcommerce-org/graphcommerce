@@ -46,7 +46,11 @@ export function ChangeNameForm(props: ChangeNameFormProps) {
         </FormActions>
         <ApolloCustomerErrorAlert error={error} />
       </Form>
-      <MessageSnackbar open={formState.isSubmitSuccessful && !error} variant='pill'>
+      <MessageSnackbar
+        open={formState.isSubmitSuccessful && !error}
+        variant='pill'
+        severity='success'
+      >
         <Trans id='Successfully saved changes' />
       </MessageSnackbar>
     </>
