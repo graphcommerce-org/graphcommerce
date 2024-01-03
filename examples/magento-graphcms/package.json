@@ -115,8 +115,5 @@
     "parserOptions": {
       "project": "./tsconfig.json"
     }
-  },
-  "resolutions": {
-    "node-libcurl": "3.0.0"
   }
 }
