@@ -1,5 +1,12 @@
 # Change Log
 
+## 7.1.0-canary.66
+
+### Patch Changes
+
+- [#2156](https://github.com/graphcommerce-org/graphcommerce/pull/2156) [`69b816c`](https://github.com/graphcommerce-org/graphcommerce/commit/69b816cd739af2999ec2a5053f09b9bb10379c52) - Updated dependencies. Fixed trace-to-tree.mjs to debug build perf and added trace-to-event-format.mjs for compatibility with about://tracing.
+  ([@paales](https://github.com/paales))
+
 ## 7.1.0-canary.65
 
 ## 7.1.0-canary.64
