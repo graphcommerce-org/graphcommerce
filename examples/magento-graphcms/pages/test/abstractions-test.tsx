@@ -2,13 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { HygraphPagesQuery, parseHygraphContentItem } from '@graphcommerce/graphcms-ui'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  LayoutHeader,
-  GetStaticProps,
-  pageContent,
-  RowProduct,
-  RowRenderer,
-} from '@graphcommerce/next-ui'
+import { LayoutHeader, GetStaticProps, pageContent, RowRenderer } from '@graphcommerce/next-ui'
 import { LayoutDocument, LayoutNavigation, LayoutNavigationProps } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -26,10 +20,10 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
  ** Todo: Extend parser for unused rows in hygraph-ui package | Done
  ** Todo: Create generic types for all rows. | Done
  *
+ *? Todo: Rebuild RowProduct locally and extent RowRenderer with local plugin. | In Progress
  *? Todo: Hook JSON content into regular pages through hookLocalContent plugin in the examples folder. | In Progress
  *
- *  Todo: JSONize all pages in Hygraph in the examples folder and inject with local plugins.
- *  Todo: Replace all images in content folder that point to graphassets for images from the public folder
+ *  Todo: Replace all images in content folder that point to graphassets for images from the public folder (or keep them in graphassets?)
  *
  *! Type errors on pages, parser and extendParser.
  */
@@ -51,7 +45,7 @@ function AbstractionsTest(props: Props) {
   return (
     <>
       <LayoutHeader floatingMd floatingSm />
-      <RowRenderer
+      {/* <RowRenderer
         content={newContent}
         // renderer={{
         //   RowProduct: (rowProps) => {
@@ -68,7 +62,7 @@ function AbstractionsTest(props: Props) {
         //     return <RowProduct {...rowProps} {...favorite} items={favoritesList.products?.items} />
         //   },
         // }}
-      />
+      /> */}
     </>
   )
 }

@@ -24,9 +24,9 @@ export type AllRows =
   | RowContentLinksProps
   | RowLinksProps
 
-type ContentTypeRenderer = TypeRenderer<Array<AllRows>[0]>
+export type ContentTypeRenderer = TypeRenderer<Array<AllRows>[0]>
 
-const defaultRenderer: Partial<ContentTypeRenderer> = {
+export const defaultRenderer: Partial<ContentTypeRenderer> = {
   RowColumnOne,
   RowColumnTwo,
   RowColumnThree,

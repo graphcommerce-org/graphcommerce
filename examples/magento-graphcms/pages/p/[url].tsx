@@ -39,8 +39,9 @@ import {
   LayoutHeader,
   LayoutTitle,
   isTypename,
-  RowProduct,
+  RowRenderer,
 } from '@graphcommerce/next-ui'
+import { RowProduct } from '../../components/GraphCMS'
 import { Trans } from '@lingui/react'
 import { Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -49,7 +50,6 @@ import {
   LayoutNavigation,
   LayoutNavigationProps,
   productListRenderer,
-  RowRenderer,
   Usps,
 } from '../../components'
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'

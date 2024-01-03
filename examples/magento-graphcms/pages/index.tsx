@@ -7,9 +7,10 @@ import {
   LayoutHeader,
   MetaRobots,
   PageMeta,
-  RowProduct,
+  RowRenderer,
 } from '@graphcommerce/next-ui'
-import { LayoutDocument, LayoutNavigation, LayoutNavigationProps, RowRenderer } from '../components'
+import { RowProduct } from '../components/GraphCMS'
+import { LayoutDocument, LayoutNavigation, LayoutNavigationProps } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery & {

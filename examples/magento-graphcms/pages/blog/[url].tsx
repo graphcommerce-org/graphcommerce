@@ -8,6 +8,7 @@ import {
   Row,
   LayoutTitle,
   LayoutHeader,
+  RowRenderer,
 } from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import {
@@ -21,7 +22,6 @@ import {
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
-  RowRenderer,
 } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
