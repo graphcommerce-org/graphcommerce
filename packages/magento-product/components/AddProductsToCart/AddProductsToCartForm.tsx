@@ -30,7 +30,7 @@ export type AddProductsToCartFormProps = {
   // eslint-disable-next-line react/no-unused-prop-types
   redirect?: RedirectType
 
-  // disableSuccessSnackbar?: boolean
+  disableSuccessSnackbar?: boolean
 } & UseFormGraphQlOptions<AddProductsToCartMutation, AddProductsToCartMutationVariables> &
   AddProductsToCartSnackbarProps
 
