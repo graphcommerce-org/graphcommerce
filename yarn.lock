@@ -4345,7 +4345,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/typescript-config-pwa@workspace:packagesDev/typescript-config"
   dependencies:
-    "@tsconfig/next": "npm:^2.0.1"
     "@tsconfig/node18": "npm:^18.2.2"
   languageName: unknown
   linkType: soft
@@ -7141,13 +7140,6 @@ __metadata:
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
   checksum: 073bfa548026b1ebaf1659eb8961e526be22fa77139b10d60e712f46d2f0f05f4e6c8bec62a087d41088ee9e29faa7f54838568e475ab2f776171003c3920858
-  languageName: node
-  linkType: hard
-
-"@tsconfig/next@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "@tsconfig/next@npm:2.0.1"
-  checksum: 5ed258775a0f08824efc4b797d99ecda8efbeda4aa6969ac8b37bbf9f4c789ea763d2444899a574b36ba6800517ea38b78cbe4324ae1d48c57a024fdb0eed72f
   languageName: node
   linkType: hard
 

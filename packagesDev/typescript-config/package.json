@@ -5,7 +5,6 @@
   "version": "7.1.0-canary.65",
   "sideEffects": false,
   "devDependencies": {
-    "@tsconfig/next": "^2.0.1",
     "@tsconfig/node18": "^18.2.2"
   }
 }
