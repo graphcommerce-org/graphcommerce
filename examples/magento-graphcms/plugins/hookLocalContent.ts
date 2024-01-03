@@ -9,8 +9,6 @@ const hookLocalContent: MethodPlugin<typeof pageContent> = async (prev, url) => 
   // const parsedContent = parseContent(homepageContent)
   const prevData = await prev(url)
 
-  console.log(54321, 'hookLocalContent')
-
   if (url === 'test/abstractions-testt' || url === 'page/home') {
     return {
       data: {
