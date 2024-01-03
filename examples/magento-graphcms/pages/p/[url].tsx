@@ -187,12 +187,13 @@ function ProductPage(props: Props) {
           }}
         />
       )}
-
-      <RecentlyViewedProducts
-        title={<Trans id='Recently viewed products' />}
-        exclude={[product.sku]}
-        productListRenderer={productListRenderer}
-      />
+      <AddProductsToCartForm>
+        <RecentlyViewedProducts
+          title={<Trans id='Recently viewed products' />}
+          exclude={[product.sku]}
+          productListRenderer={productListRenderer}
+        />
+      </AddProductsToCartForm>
     </>
   )
 }
