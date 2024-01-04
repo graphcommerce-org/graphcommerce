@@ -2,7 +2,7 @@
   "name": "@graphcommerce/cli",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "7.1.0-canary.64",
+  "version": "8.0.0-canary.70",
   "scripts": {
     "dev": "tsc --preserveWatchOutput --watch",
     "build": "tsc",
@@ -29,7 +29,7 @@
     "@graphql-mesh/store": "latest",
     "@graphql-mesh/types": "latest",
     "@graphql-mesh/utils": "latest",
-    "@graphql-tools/utils": "^10.0.8",
+    "@graphql-tools/utils": "^10.0.11",
     "cosmiconfig": "^8.3.6",
     "detect-package-manager": "^3.0.1",
     "graphql-codegen-typescript-validation-schema": "0.11.0",
@@ -38,14 +38,13 @@
     "tslib": "^2.6.2"
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^7.1.0-canary.64",
-    "@graphcommerce/hygraph-cli": "^7.1.0-canary.64",
-    "@graphcommerce/next-config": "^7.1.0-canary.64",
-    "@graphcommerce/prettier-config-pwa": "^7.1.0-canary.64",
-    "@graphcommerce/typescript-config-pwa": "^7.1.0-canary.64",
+    "@graphcommerce/eslint-config-pwa": "^8.0.0-canary.70",
+    "@graphcommerce/hygraph-cli": "^8.0.0-canary.70",
+    "@graphcommerce/next-config": "^8.0.0-canary.70",
+    "@graphcommerce/prettier-config-pwa": "^8.0.0-canary.70",
+    "@graphcommerce/typescript-config-pwa": "^8.0.0-canary.70",
     "graphql": "^16.7.1",
-    "react": "^18.2.0",
-    "typescript": "5.2.2"
+    "react": "^18.2.0"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
