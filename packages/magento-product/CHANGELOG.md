@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.69
+
+### Major Changes
+
+- [#2041](https://github.com/graphcommerce-org/graphcommerce/pull/2041) [`bc3a833`](https://github.com/graphcommerce-org/graphcommerce/commit/bc3a8339b0b0f15b4d5cb014d4f95e6ea28c2cfe) - Removed legacyProductRoute from GraphCommerce
+  ([@paales](https://github.com/paales))
+
 ## 7.1.0-canary.68
 
 ## 7.1.0-canary.67
