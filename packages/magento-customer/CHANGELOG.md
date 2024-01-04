@@ -1,5 +1,15 @@
 # Change Log
 
+## 7.1.0-canary.68
+
+### Patch Changes
+
+- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`ab834fb`](https://github.com/graphcommerce-org/graphcommerce/commit/ab834fbfe057fb507c371a6d22af282cc1b195d4) - Added user session reevaluation after unathenticated call. Queries will be paused untill user has signed in again
+  ([@paales](https://github.com/paales))
+
+- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`c11f3b8`](https://github.com/graphcommerce-org/graphcommerce/commit/c11f3b88f187bb8e0059a6940b9835a076e5faf8) - Created a debug.sessions config that allows debugging sessions. Enable with GC_DEBUG_SESSIONS=1 in your env or modify your graphcommerce.config.js
+  ([@paales](https://github.com/paales))
+
 ## 7.1.0-canary.67
 
 ## 7.1.0-canary.66
