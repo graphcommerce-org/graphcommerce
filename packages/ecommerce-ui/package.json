@@ -2,7 +2,7 @@
   "name": "@graphcommerce/ecommerce-ui",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "7.1.0-canary.65",
+  "version": "8.0.0-canary.69",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,18 +12,18 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^7.1.0-canary.65",
-    "@graphcommerce/graphql": "^7.1.0-canary.65",
-    "@graphcommerce/next-ui": "^7.1.0-canary.65",
-    "@graphcommerce/prettier-config-pwa": "^7.1.0-canary.65",
-    "@graphcommerce/react-hook-form": "^7.1.0-canary.65",
-    "@graphcommerce/typescript-config-pwa": "^7.1.0-canary.65",
+    "@graphcommerce/eslint-config-pwa": "^8.0.0-canary.69",
+    "@graphcommerce/graphql": "^8.0.0-canary.69",
+    "@graphcommerce/next-ui": "^8.0.0-canary.69",
+    "@graphcommerce/prettier-config-pwa": "^8.0.0-canary.69",
+    "@graphcommerce/react-hook-form": "^8.0.0-canary.69",
+    "@graphcommerce/typescript-config-pwa": "^8.0.0-canary.69",
     "@lingui/core": "^4.2.1",
     "@lingui/macro": "^4.2.1",
     "@lingui/react": "^4.2.1",
     "@mui/material": "^5.10.16",
     "framer-motion": "^10.0.0",
-    "next": "^14",
+    "next": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
