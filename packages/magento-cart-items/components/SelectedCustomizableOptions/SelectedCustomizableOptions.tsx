@@ -1,19 +1,21 @@
 import { Money } from '@graphcommerce/magento-store'
 import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
+import { CartItemFragment } from '../../Api/CartItem.gql'
 import { SelectedCustomizableOptionFragment } from './SelectedCustomizableOption.gql'
 
-type SelectedCustomizableOptionProps = {
+type SelectedCustomizableOptionProps = CartItemFragment & {
   customizable_options?: (SelectedCustomizableOptionFragment | null | undefined)[] | null
-  productPrice: number | null | undefined
 }
 
 export function SelectedCustomizableOptions(props: SelectedCustomizableOptionProps) {
-  const { customizable_options, productPrice } = props
+  const { customizable_options, product } = props
 
   const options = filterNonNullableKeys(customizable_options, [])
 
   if (!options.length) return null
+
+  const productPrice = product.price_range.minimum_price.final_price.value
 
   return (
     <>

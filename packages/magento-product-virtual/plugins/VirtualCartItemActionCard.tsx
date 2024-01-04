@@ -22,10 +22,7 @@ export function VirtualCartItemActionCard(
       details={
         <>
           {rest.details}
-          <SelectedCustomizableOptions
-            customizable_options={rest.cartItem.customizable_options}
-            productPrice={rest.cartItem.product.price_range.minimum_price.final_price.value}
-          />
+          <SelectedCustomizableOptions {...rest.cartItem} />
         </>
       }
     />

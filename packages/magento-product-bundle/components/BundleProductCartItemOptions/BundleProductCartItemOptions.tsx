@@ -1,12 +1,10 @@
-import { SelectedCustomizableOptions } from '@graphcommerce/magento-cart-items'
+import { CartItemFragment, SelectedCustomizableOptions } from '@graphcommerce/magento-cart-items'
 import { Money } from '@graphcommerce/magento-store'
 import { nonNullable } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import { BundleCartItemFragment } from '../BundleCartItem/BundleCartItem.gql'
 
-export type BundleProductCartItemOptionsProps = BundleCartItemFragment & {
-  productPrice: number | null | undefined
-}
+export type BundleProductCartItemOptionsProps = BundleCartItemFragment & CartItemFragment
 
 export function BundleProductCartItemOptions(props: BundleProductCartItemOptionsProps) {
   const { bundle_options, prices } = props

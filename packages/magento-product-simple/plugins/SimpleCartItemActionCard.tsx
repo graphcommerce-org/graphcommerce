@@ -12,20 +12,18 @@ export const exported =
 export function SimpleCartItemActionCard(
   props: PluginProps<React.ComponentProps<typeof CartItemActionCard>>,
 ) {
-  const { Prev, ...rest } = props
+  const { Prev, cartItem, ...rest } = props
 
-  if (!isTypename(rest.cartItem, ['SimpleCartItem'])) return <Prev {...rest} />
+  if (!isTypename(cartItem, ['SimpleCartItem'])) return <Prev cartItem={cartItem} {...rest} />
 
   return (
     <Prev
       {...rest}
+      cartItem={cartItem}
       details={
         <>
           {rest.details}
-          <SelectedCustomizableOptions
-            customizable_options={rest.cartItem.customizable_options}
-            productPrice={rest.cartItem.product.price_range.minimum_price.final_price.value}
-          />
+          <SelectedCustomizableOptions {...cartItem} />
         </>
       }
     />

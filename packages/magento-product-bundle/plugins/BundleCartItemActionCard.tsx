@@ -20,10 +20,7 @@ export function BundleCartItemActionCard(
       details={
         <>
           {rest.details}
-          <BundleProductCartItemOptions
-            {...rest.cartItem}
-            productPrice={rest.cartItem.product.price_range.minimum_price.final_price.value}
-          />
+          <BundleProductCartItemOptions {...rest.cartItem} />
         </>
       }
     />
