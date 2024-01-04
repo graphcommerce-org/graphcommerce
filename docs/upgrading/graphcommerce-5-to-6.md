@@ -22,7 +22,7 @@ The route for the product has changed from `/product/[url]`,
 singlular product page for all product types.
 
 ~~You can keep using the old behavior by setting `legacyProductRoute` to true.~~
-The legacy routing has been removed in GraphCommerce 7.
+The legacy routing has been removed in GraphCommerce 8.
 
 You can also change the product route from `/p/[url]` to something else by
 configuring [productRoute](../framework/config.md#productroute-string)
