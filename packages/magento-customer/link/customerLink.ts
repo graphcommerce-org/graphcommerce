@@ -5,6 +5,7 @@ import { ErrorCategory } from '@graphcommerce/magento-graphql'
 import { GraphQLError } from 'graphql'
 import { NextRouter } from 'next/router'
 import { CustomerTokenDocument } from '../hooks'
+import { signOut } from '../components/SignOutForm/signOut'
 
 export type PushRouter = Pick<NextRouter, 'push' | 'events'>
 
@@ -94,11 +95,8 @@ const customerErrorLink = (router: PushRouter) =>
           },
         })
       } else {
-        client.cache.evict({ fieldName: 'cart' })
-        client.cache.evict({ fieldName: 'customer' })
-        client.cache.evict({ fieldName: 'customerCart' })
-        client.cache.evict({ fieldName: 'currentCartId' })
-        client.cache.evict({ fieldName: 'customerToken', broadcast: true })
+        // console.log('Customer has not reauthenticated, clearing all customer data.', { res })
+        signOut(client)
       }
 
       // retry the request, returning the new observable

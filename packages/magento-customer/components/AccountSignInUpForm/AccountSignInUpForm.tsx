@@ -17,6 +17,7 @@ import { CustomerDocument, useAccountSignInUpForm } from '../../hooks'
 import { useCustomerQuery } from '../../hooks/useCustomerQuery'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError'
 import { SignInForm } from '../SignInForm/SignInForm'
+import { signOut } from '../SignOutForm/signOut'
 import { SignUpForm } from '../SignUpForm/SignUpForm'
 
 export type AccountSignInUpFormProps = { sx?: SxProps<Theme> }
@@ -158,7 +159,10 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
                         color='primary'
                         loading={formState.isSubmitting}
                         sx={{ whiteSpace: 'nowrap' }}
-                        onClick={async () => client.clearStore()}
+                        onClick={() => {
+                          signOut(client)
+                          form.resetField('email')
+                        }}
                       >
                         <Trans id='Sign out' />
                       </Button>

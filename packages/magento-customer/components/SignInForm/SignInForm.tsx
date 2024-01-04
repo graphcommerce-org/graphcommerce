@@ -8,6 +8,7 @@ import { Box, FormControl, Link, SxProps, Theme } from '@mui/material'
 import { CustomerDocument } from '../../hooks'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { SignInDocument } from './SignIn.gql'
+import { signOut } from '../SignOutForm/signOut'
 
 export type SignInFormProps = { email: string; sx?: SxProps<Theme> }
 
@@ -25,7 +26,7 @@ export function SignInForm(props: SignInFormProps) {
          * We are logging in because the session expired, but we're logging in with a different
          * email address, we need to reset the store.
          */
-        if (oldEmail && oldEmail !== email) await client.resetStore()
+        if (oldEmail && oldEmail !== email) signOut(client)
         return { ...values, email }
       },
     },
