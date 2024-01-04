@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.70
+
+### Patch Changes
+
+- [#2128](https://github.com/graphcommerce-org/graphcommerce/pull/2128) [`2320f8f`](https://github.com/graphcommerce-org/graphcommerce/commit/2320f8fa28713f45f0a9ecfc7d8623120add2a9a) - Fixed bug which caused region to not be set properly if user swapped countries in the checkout process.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.0.0-canary.69
 
 ## 7.1.0-canary.68
