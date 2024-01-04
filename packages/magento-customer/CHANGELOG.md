@@ -1,5 +1,30 @@
 # Change Log
 
+## 8.0.0-canary.70
+
+### Patch Changes
+
+- [#2128](https://github.com/graphcommerce-org/graphcommerce/pull/2128) [`2320f8f`](https://github.com/graphcommerce-org/graphcommerce/commit/2320f8fa28713f45f0a9ecfc7d8623120add2a9a) - Fixed bug which caused region to not be set properly if user swapped countries in the checkout process.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.0-canary.69
+
+## 7.1.0-canary.68
+
+### Patch Changes
+
+- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`ab834fb`](https://github.com/graphcommerce-org/graphcommerce/commit/ab834fbfe057fb507c371a6d22af282cc1b195d4) - Added user session reevaluation after unathenticated call. Queries will be paused untill user has signed in again
+  ([@paales](https://github.com/paales))
+
+- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`c11f3b8`](https://github.com/graphcommerce-org/graphcommerce/commit/c11f3b88f187bb8e0059a6940b9835a076e5faf8) - Created a debug.sessions config that allows debugging sessions. Enable with GC_DEBUG_SESSIONS=1 in your env or modify your graphcommerce.config.js
+  ([@paales](https://github.com/paales))
+
+## 7.1.0-canary.67
+
+## 7.1.0-canary.66
+
+## 7.1.0-canary.65
+
 ## 7.1.0-canary.64
 
 ## 7.1.0-canary.63
@@ -1427,31 +1452,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { Trans, t } from "@lingui/macro";
 
   function MyComponent() {
-    const foo = 'bar'
+    const foo = "bar";
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    )
+    );
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from '@lingui/react'
-  import { i18n } from '@lingui/core'
+  import { Trans } from "@lingui/react";
+  import { i18n } from "@lingui/core";
 
   function MyComponent() {
-    const foo = 'bar'
+    const foo = "bar";
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
+        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
       </div>
-    )
+    );
   }
   ```
 

@@ -30,7 +30,7 @@ function CustomerMenuFabItemContent(props: CustomerMenuFabItemProps) {
           {icon ?? <IconSvg src={iconPerson} size='medium' />}
         </Badge>
       }
-      href={session?.requireAuth ? guestHref : authHref}
+      href={session?.loggedIn ? authHref : guestHref}
     >
       {children}
     </MenuFabSecondaryItem>

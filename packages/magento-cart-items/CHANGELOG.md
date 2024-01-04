@@ -1,5 +1,22 @@
 # Change Log
 
+## 8.0.0-canary.70
+
+## 8.0.0-canary.69
+
+## 7.1.0-canary.68
+
+## 7.1.0-canary.67
+
+### Minor Changes
+
+- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`b9ab035`](https://github.com/graphcommerce-org/graphcommerce/commit/b9ab035893fd0fbbe747333973d0bb1948e5d846) - Add crosssells to cart
+  ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 7.1.0-canary.66
+
+## 7.1.0-canary.65
+
 ## 7.1.0-canary.64
 
 ## 7.1.0-canary.63
@@ -1273,31 +1290,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { Trans, t } from "@lingui/macro";
 
   function MyComponent() {
-    const foo = 'bar'
+    const foo = "bar";
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    )
+    );
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from '@lingui/react'
-  import { i18n } from '@lingui/core'
+  import { Trans } from "@lingui/react";
+  import { i18n } from "@lingui/core";
 
   function MyComponent() {
-    const foo = 'bar'
+    const foo = "bar";
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
+        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
       </div>
-    )
+    );
   }
   ```
 

@@ -21,9 +21,8 @@ The route for the product has changed from `/product/[url]`,
 `/product/configurable/[url]`, etc. to `/p/[url]` by default. This is a
 singlular product page for all product types.
 
-You can keep using the old behavior by setting
-[legacyProductRoute](../framework/config.md#legacyproductroute-boolean) to true.
-This legacy routing will be removed in a future version.
+~~You can keep using the old behavior by setting `legacyProductRoute` to true.~~
+The legacy routing has been removed in GraphCommerce 8.
 
 You can also change the product route from `/p/[url]` to something else by
 configuring [productRoute](../framework/config.md#productroute-string)

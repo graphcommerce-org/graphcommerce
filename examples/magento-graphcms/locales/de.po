@@ -304,6 +304,9 @@ msgstr "Inklusive {0}"
 msgid "Increase"
 msgstr "Erhöhen"
 
+msgid "Invalid date"
+msgstr "Ungültiges Datum"
+
 msgid "Invalid email address"
 msgstr "Ungültige E-Mail-Adresse"
 
@@ -705,6 +708,9 @@ msgstr "Die Zahlung wurde nicht abgeschlossen, bitte versuchen Sie es erneut ode
 
 msgid "The payment is refused, please try again or select a different payment method."
 msgstr "Die Zahlung wurde abgelehnt, bitte versuchen Sie es erneut oder wählen Sie eine andere Zahlungsmethode aus."
+
+msgid "There is a maximum of ‘{maxLength}’ characters"
+msgstr "Es gibt maximal '{maxLength}' Zeichen"
 
 msgid "This cart is assigned to {email}. Please sign in to continue shopping."
 msgstr "Dieser Warenkorb ist {email} zugewiesen. Bitte melden Sie sich an, um mit dem Einkauf fortzufahren."

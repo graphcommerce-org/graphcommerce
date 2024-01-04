@@ -12,7 +12,12 @@ export function useCrosssellItems() {
   const cartAdded = useCartQuery(CartAddedDocument)
   const items = filterNonNullableKeys(cartAdded.data?.cart?.items)
   const router = useRouter()
-  const addedItem = items.find((item) => item.product.sku === router.query.sku)
+
+  const sku =
+    router.query.sku ??
+    cartAdded?.data?.cart?.items?.[cartAdded.data.cart.items.length - 1]?.product?.sku
+
+  const addedItem = items.find((item) => item.product.sku === sku)
 
   const crosssels = useQuery(CrosssellsDocument, {
     variables: { pageSize: 1, filters: { sku: { eq: addedItem?.product.sku } } },

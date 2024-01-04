@@ -2,7 +2,7 @@
   "name": "@graphcommerce/hygraph-cli",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "7.1.0-canary.64",
+  "version": "8.0.0-canary.70",
   "scripts": {
     "dev": "tsc --preserveWatchOutput --watch",
     "build": "tsc",
@@ -12,23 +12,23 @@
   "main": "dist/index.js",
   "types": "src/index.ts",
   "dependencies": {
-    "@hygraph/management-sdk": "1.2.3",
+    "@hygraph/management-sdk": "1.2.4",
     "@whatwg-node/fetch": "^0.9.14",
     "graphql-tag": "^2.12.6",
     "prompts": "^2.4.2"
   },
   "peerDependencies": {
     "@apollo/client": "^3",
-    "@graphcommerce/eslint-config-pwa": "^7.1.0-canary.64",
-    "@graphcommerce/next-config": "^7.1.0-canary.64",
-    "@graphcommerce/prettier-config-pwa": "^7.1.0-canary.64",
-    "@graphcommerce/typescript-config-pwa": "^7.1.0-canary.64",
+    "@graphcommerce/eslint-config-pwa": "^8.0.0-canary.70",
+    "@graphcommerce/next-config": "^8.0.0-canary.70",
+    "@graphcommerce/prettier-config-pwa": "^8.0.0-canary.70",
+    "@graphcommerce/typescript-config-pwa": "^8.0.0-canary.70",
     "dotenv": "^16.1.4",
     "graphql": "^16.7.1"
   },
   "devDependencies": {
-    "@types/prompts": "^2.4.8",
-    "typescript": "5.2.2"
+    "@types/prompts": "^2.4.9",
+    "typescript": "5.3.3"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
