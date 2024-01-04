@@ -311,6 +311,10 @@ Debug configuration for GraphCommerce
 
 Reports which plugins are enabled or disabled.
 
+#### sessions: boolean
+
+Enable debugging interface to debug sessions
+
 #### webpackCircularDependencyPlugin: boolean
 
 Cyclic dependencies can cause memory issues and other strange bugs.
