@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.72
+
+### Patch Changes
+
+- [#2159](https://github.com/graphcommerce-org/graphcommerce/pull/2159) [`17a5304`](https://github.com/graphcommerce-org/graphcommerce/commit/17a5304cbe297d29ddddce0d88f2c1bff220b59d) - Spread product back into products instead of only adding items
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 8.0.0-canary.71
 
 ### Minor Changes

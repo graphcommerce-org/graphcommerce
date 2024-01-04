@@ -1,5 +1,7 @@
 # @graphcommerce/hygraph-dynamic-rows-ui
 
+## 8.0.0-canary.72
+
 ## 8.0.0-canary.71
 
 ## 8.0.0-canary.70
