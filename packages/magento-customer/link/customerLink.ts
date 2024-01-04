@@ -1,31 +1,37 @@
-import { UrlObject } from 'url'
 import { globalApolloClient } from '@graphcommerce/graphql'
 import { ApolloLink, fromPromise, onError, setContext } from '@graphcommerce/graphql/apollo'
 import { ErrorCategory } from '@graphcommerce/magento-graphql'
 import { GraphQLError } from 'graphql'
 import { NextRouter } from 'next/router'
-import { CustomerTokenDocument } from '../hooks'
 import { signOut } from '../components/SignOutForm/signOut'
+import { CustomerTokenDocument } from '../hooks'
 
 export type PushRouter = Pick<NextRouter, 'push' | 'events'>
 
-async function pushWithPromise(
-  router: Pick<NextRouter, 'push' | 'events'>,
-  url: UrlObject | string,
-) {
-  await router.push(url)
+async function pushWithPromise(router: Pick<NextRouter, 'push' | 'events'>, url: string) {
+  try {
+    await router.push(url)
+  } catch {
+    // Router push failed, resolving promise.
+    return false
+  }
+
   return new Promise<boolean>((resolve) => {
     function navigatedAwayFromTarget(incoming: string) {
-      if (incoming === url) return
+      if (incoming.includes(url)) return
+      // Navigated away from target, resolving promise.
       router.events.off('routeChangeComplete', navigatedAwayFromTarget)
       resolve(true)
     }
     function navigatedToTarget(incoming: string) {
-      if (incoming === url) {
+      if (incoming.includes(url)) {
         // We are at the destination
         router.events.off('routeChangeComplete', navigatedToTarget)
         router.events.on('routeChangeComplete', navigatedAwayFromTarget)
-      } else resolve(false)
+      } else {
+        // Navigated to target, but not the destination, resolving promise.
+        resolve(false)
+      }
     }
     router.events.on('routeChangeComplete', navigatedToTarget)
   })
@@ -64,10 +70,10 @@ const customerErrorLink = (router: PushRouter) =>
     if (!authError) return undefined
 
     if (!oldHeaders.authorization) {
-      console.error(
-        'No authorization header found in request, but an authorization error was returned, this is a bug. This is the operation:',
-        operation,
-      )
+      // console.error(
+      //   'No authorization header found in request, but an authorization error was returned, this is a bug. This is the operation:',
+      //   operation,
+      // )
       return undefined
     }
 
@@ -88,6 +94,7 @@ const customerErrorLink = (router: PushRouter) =>
       const tokenQuery = client.cache.readQuery({ query: CustomerTokenDocument })
 
       if (tokenQuery?.customerToken?.valid) {
+        // Customer is reauthenticated, retrying request.
         operation.setContext({
           headers: {
             ...oldHeaders,
@@ -95,7 +102,7 @@ const customerErrorLink = (router: PushRouter) =>
           },
         })
       } else {
-        // console.log('Customer has not reauthenticated, clearing all customer data.', { res })
+        // Customer has not reauthenticated, clearing all customer data.
         signOut(client)
       }
 
