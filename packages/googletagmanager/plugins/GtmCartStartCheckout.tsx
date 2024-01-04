@@ -1,6 +1,6 @@
 import { CartStartCheckoutProps } from '@graphcommerce/magento-cart'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
-import { gtagBeginCheckout } from '../events/gtagBeginCheckout/gtagBeginCheckout'
+import { dataLayerBeginCheckout } from '../events/dataLayerBeginCheckout/dataLayerBeginCheckout'
 
 export const component = 'CartStartCheckout'
 export const exported = '@graphcommerce/magento-cart'
@@ -12,7 +12,7 @@ export function GtmCartStartCheckout(props: PluginProps<CartStartCheckoutProps>)
     <Prev
       {...rest}
       onStart={(e, cart) => {
-        gtagBeginCheckout(cart)
+        dataLayerBeginCheckout(cart)
         return onStart?.(e, cart)
       }}
     />

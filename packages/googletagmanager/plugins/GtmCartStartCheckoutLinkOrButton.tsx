@@ -2,8 +2,8 @@ import { CartStartCheckoutLinkOrButtonProps } from '@graphcommerce/magento-cart'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { useMemoObject } from '@graphcommerce/next-ui'
 import { useEffect } from 'react'
-import { gtagBeginCheckout } from '../events/gtagBeginCheckout/gtagBeginCheckout'
-import { gtagViewCart } from '../events/gtagViewCart/gtagViewCart'
+import { dataLayerViewCart } from '../events/dataLayerViewCart/dataLayerViewCart'
+import { dataLayerBeginCheckout } from '../events/dataLayerBeginCheckout/dataLayerBeginCheckout'
 
 export const component = 'CartStartCheckoutLinkOrButton'
 export const exported = '@graphcommerce/magento-cart'
@@ -18,7 +18,7 @@ export function GtmCartStartCheckoutLinkOrButton(
 
   useEffect(() => {
     if (cartObject.items) {
-      gtagViewCart(cartObject)
+      dataLayerViewCart(cartObject)
     }
   }, [cartObject])
 
@@ -26,7 +26,7 @@ export function GtmCartStartCheckoutLinkOrButton(
     <Prev
       {...rest}
       onStart={(e, cart) => {
-        gtagBeginCheckout(cart)
+        dataLayerBeginCheckout(cart)
         return onStart?.(e, cart)
       }}
     />

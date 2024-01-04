@@ -1,10 +1,11 @@
 import type { RemoveItemFromCart } from '@graphcommerce/magento-cart-items'
 import { IfConfig, ReactPlugin } from '@graphcommerce/next-config'
-import { gtagRemoveFromCart } from '../events/gtagRemoveFromCart/gtagRemoveFromCart'
+import { dataLayerRemoveFromCart } from '../events/dataLayerRemoveFromCart/dataLayerRemoveFromCart'
 
 export const component = 'RemoveItemFromCart'
-export const exported = '@graphcommerce/magento-cart-items/components/RemoveItemFromCart/RemoveItemFromCart'
-export const ifConfig: IfConfig = 'googleAnalyticsId'
+export const exported =
+  '@graphcommerce/magento-cart-items/components/RemoveItemFromCart/RemoveItemFromCart'
+export const ifConfig: IfConfig = 'googleRecaptchaKey'
 
 export const GaRemoveItemFromCart: ReactPlugin<typeof RemoveItemFromCart> = (props) => {
   const { Prev, uid, quantity, prices, product, buttonProps } = props
@@ -15,7 +16,7 @@ export const GaRemoveItemFromCart: ReactPlugin<typeof RemoveItemFromCart> = (pro
       product={product}
       buttonProps={{
         onClick: (e) => {
-          gtagRemoveFromCart({
+          dataLayerRemoveFromCart({
             __typename: 'Cart',
             items: [{ uid, __typename: 'SimpleCartItem', product, quantity, prices }],
           })

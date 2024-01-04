@@ -1,18 +1,18 @@
 import type { ProductItemsGridProps } from '@graphcommerce/magento-product'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
-import { GoogleAnalyticsItemList } from '../components/GoogleAnalyticsItemList'
+import { GoogleTagManagerItemList } from '../components/GoogleAnalyticsItemList'
 
 export const component = 'ProductListItemsBase'
 export const exported = '@graphcommerce/magento-product'
-export const ifConfig: IfConfig = 'googleAnalyticsId'
+export const ifConfig: IfConfig = 'googleTagmanagerId'
 
-export function GaProductListItemsBase(props: PluginProps<ProductItemsGridProps>) {
+export function GtmProductListItemsBase(props: PluginProps<ProductItemsGridProps>) {
   const { Prev, ...rest } = props
   return (
-    <GoogleAnalyticsItemList {...rest}>
+    <GoogleTagManagerItemList {...rest}>
       <Prev {...rest} />
-    </GoogleAnalyticsItemList>
+    </GoogleTagManagerItemList>
   )
 }
 
-export const Plugin = GaProductListItemsBase
+export const Plugin = GtmProductListItemsBase

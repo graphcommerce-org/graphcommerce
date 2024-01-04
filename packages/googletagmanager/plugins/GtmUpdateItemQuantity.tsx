@@ -2,8 +2,9 @@ import type { UpdateItemQuantityProps } from '@graphcommerce/magento-cart-items'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
 
 export const component = 'UpdateItemQuantity'
-export const exported = '@graphcommerce/magento-cart-items/components/UpdateItemQuantity/UpdateItemQuantity'
-export const ifConfig: IfConfig = 'googleAnalyticsId'
+export const exported =
+  '@graphcommerce/magento-cart-items/components/UpdateItemQuantity/UpdateItemQuantity'
+export const ifConfig: IfConfig = 'googleTagmanagerId'
 
 /**
  * When a product is added to the Cart, by using the + button on cart page, send a Google Analytics
@@ -32,23 +33,26 @@ function GaUpdateItemQuantity(props: PluginProps<UpdateItemQuantityProps>) {
             addedItem.prices.row_total_including_tax.value / addedItem.quantity
           const addToCartValue = pricePerItemInclTax * diffQuantity
 
-          globalThis.gtag?.('event', 'add_to_cart', {
-            currency: addedItem?.prices?.price.currency,
-            value: addToCartValue,
-            items: [
-              {
-                item_id: addedItem?.product.sku,
-                item_name: addedItem?.product.name,
-                currency: addedItem?.prices?.price.currency,
-                price: pricePerItemInclTax,
-                quantity: variables.quantity,
-                discount: addedItem?.prices?.discounts?.reduce(
-                  // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-                  (sum, discount) => sum + (discount?.amount?.value ?? 0),
-                  0,
-                ),
-              },
-            ],
+          globalThis.dataLayer.push?.({
+            event: 'add_to_cart',
+            ecommerce: {
+              currency: addedItem?.prices?.price.currency,
+              value: addToCartValue,
+              items: [
+                {
+                  item_id: addedItem?.product.sku,
+                  item_name: addedItem?.product.name,
+                  currency: addedItem?.prices?.price.currency,
+                  price: pricePerItemInclTax,
+                  quantity: variables.quantity,
+                  discount: addedItem?.prices?.discounts?.reduce(
+                    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+                    (sum, discount) => sum + (discount?.amount?.value ?? 0),
+                    0,
+                  ),
+                },
+              ],
+            },
           })
         }
 
