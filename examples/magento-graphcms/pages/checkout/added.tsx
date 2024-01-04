@@ -27,7 +27,7 @@ function CheckoutAdded() {
 
   useEffect(() => {
     a11yFocusRef.current?.focus()
-  })
+  }, [])
 
   return (
     <>

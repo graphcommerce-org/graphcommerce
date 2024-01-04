@@ -1,7 +1,7 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
-import { Box, FabProps, styled, SxProps, Theme } from '@mui/material'
+import { Box, FabProps, SxProps, Theme } from '@mui/material'
 import { m } from 'framer-motion'
 import React from 'react'
 import { useScrollerContext } from '../hooks/useScrollerContext'
