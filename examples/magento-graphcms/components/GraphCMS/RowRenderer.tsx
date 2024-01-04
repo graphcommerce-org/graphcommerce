@@ -1,4 +1,4 @@
-import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
+import { LazyHydrate, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import { RowBlogContent } from '../Blog'
 import { PageContentQueryFragment } from './PageContentQueryFragment.gql'
 import { RowButtonLinkList } from './RowButtonLinkList/RowButtonLinkList'
@@ -40,10 +40,11 @@ export function RowRenderer(props: PageProps) {
   const mergedRenderer = { ...defaultRenderer, ...renderer } as ContentTypeRenderer
 
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      {content?.map((item) => (
-        <RenderType key={item.id} renderer={mergedRenderer} {...item} />
+      {content?.map((item, index) => (
+        <LazyHydrate eager={index <= 1}>
+          <RenderType key={item.id} renderer={mergedRenderer} {...item} />
+        </LazyHydrate>
       ))}
     </>
   )
