@@ -162,14 +162,6 @@ export type GraphCommerceConfig = {
   /** Debug configuration for GraphCommerce */
   debug?: InputMaybe<GraphCommerceDebugConfig>;
   /**
-   * Enables some demo specific code that is probably not useful for a project:
-   *
-   * - Adds the "BY GC" to the product list items.
-   * - Adds "dominant_color" attribute swatches to the product list items.
-   * - Creates a big list items in the product list.
-   */
-  demoMode?: InputMaybe<Scalars['Boolean']['input']>;
-  /**
    * Enable Guest Checkout Login:
    * During customer login, GraphCommerce queries Magento to determine whether
    * the customer account already exists or not. If not, the sign-up form is shown instead.
@@ -444,7 +436,6 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     crossSellsRedirectItems: z.boolean().nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
-    demoMode: z.boolean().nullish(),
     enableGuestCheckoutLogin: z.boolean().nullish(),
     googleAnalyticsId: z.string().nullish(),
     googleRecaptchaKey: z.string().nullish(),

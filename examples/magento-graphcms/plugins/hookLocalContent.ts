@@ -6,10 +6,9 @@ export const func = 'pageContent'
 export const exported = '@graphcommerce/next-ui/Page/pageContent'
 
 const hookLocalContent: MethodPlugin<typeof pageContent> = async (prev, url) => {
-  // const parsedContent = parseContent(homepageContent)
   const prevData = await prev(url)
 
-  if (url === 'test/abstractions-testt' || url === 'page/home') {
+  if (url === 'test/abstractions-test' || url === 'page/home') {
     return {
       data: {
         ...prevData.data,

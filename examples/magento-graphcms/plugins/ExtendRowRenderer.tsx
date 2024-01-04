@@ -1,29 +1,18 @@
 import { PluginProps } from '@graphcommerce/next-config'
-import { ContentTypeRenderer, TypeRenderer, defaultRenderer } from '@graphcommerce/next-ui'
-import { RowProduct, RowProductProps } from '../components/GraphCMS'
+import { PageProps, defaultRenderer } from '@graphcommerce/row-renderer'
+import { RowProduct } from '../components/GraphCMS/RowProduct/RowProduct'
 
 export const component = 'RowRenderer'
-export const exported = '@graphcommerce/next-ui'
+export const exported = '@graphcommerce/row-renderer/components/RowRenderer'
 
-type ExtendedRows = RowProductProps
-
-type ExtendedContentTypeRenderer = TypeRenderer<Array<ExtendedRows>[0]>
-
-type Props = { content: Array<ExtendedRows> } & {
-  renderer?: Partial<ContentTypeRenderer>
-}
-
-const extendedDefaultRenderer: Partial<ExtendedContentTypeRenderer> = {
-  ...defaultRenderer,
+const extendedDefaultRenderer = {
   RowProduct,
 }
 
-function ExtendRowRendererPlugin(
-  props: PluginProps<Props & { renderer?: Partial<ExtendedContentTypeRenderer> }>,
-) {
-  const { Prev, content } = props
+function ExtendRowRendererPlugin(props: PluginProps<PageProps>) {
+  const { Prev, content, ...rest } = props
 
-  return <Prev content={content} renderer={extendedDefaultRenderer} />
+  return <Prev content={content} renderer={{ ...defaultRenderer, ...extendedDefaultRenderer }} />
 }
 
 export const Plugin = ExtendRowRendererPlugin

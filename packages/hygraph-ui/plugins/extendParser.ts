@@ -7,7 +7,7 @@ import {
   RowHeroBannerProps,
   RowServiceOptionsProps,
   RowSpecialBannerProps,
-} from '@graphcommerce/next-ui'
+} from '@graphcommerce/row-renderer'
 import { RowBlogContentFragment } from '../components/RowBlogContent/RowBlogContent.gql'
 import { RowButtonLinkListFragment } from '../components/RowButtonLinkList/RowButtonLinkList.gql'
 import { RowColumnThreeFragment } from '../components/RowColumnThree/RowColumnThree.gql'
@@ -16,6 +16,8 @@ import { RowContentLinksFragment } from '../components/RowContentLinks/RowConten
 import { RowHeroBannerFragment } from '../components/RowHeroBanner/RowHeroBanner.gql'
 import { RowServiceOptionsFragment } from '../components/RowServiceOptions/RowServiceOptions.gql'
 import { RowSpecialBannerFragment } from '../components/RowSpecialBanner/RowSpecialBanner.gql'
+import { MethodPlugin } from '@graphcommerce/next-config'
+import { parseHygraphContentItem } from '../lib'
 
 export const func = 'parseHygraphContentItem'
 export const exported = '@graphcommerce/graphcms-ui/lib/parser'
@@ -127,14 +129,12 @@ const extendedParserMap: ExtendedParserMapType = {
   },
 }
 
-const extendParser = <K extends ExtendedInput['__typename']>(
-  prev,
-  input: Extract<ExtendedInput, { __typename: K }>,
-) => {
+// ExtendParser should extend the BaseParser input type with some typescript magic.
+const extendParser: MethodPlugin<typeof parseHygraphContentItem> = (prev, input) => {
   if (!input) return null
 
-  if (extendedParserMap[input.__typename as K]) {
-    return extendedParserMap[input.__typename as K](input)
+  if (extendedParserMap[input.__typename]) {
+    return extendedParserMap[input.__typename](input)
   }
 
   /**

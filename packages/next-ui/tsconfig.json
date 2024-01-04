@@ -1,5 +1,26 @@
 {
   "exclude": ["**/node_modules", "**/.*/"],
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "../row-renderer/components/RowColumnTwo/RowColumnTwo.tsx",
+    "../row-renderer/components/RowColumnTwo/type.ts",
+    "../row-renderer/components/RowColumnOne/type.ts",
+    "../row-renderer/components/RowContentLinks/RowContentLinks.tsx",
+    "../row-renderer/components/RowContentLinks/type.ts",
+    "../row-renderer/components/RowHeroBanner/RowHeroBanner.tsx",
+    "../row-renderer/components/RowHeroBanner/type.ts",
+    "../row-renderer/components/RowLinks/RowLinks.tsx",
+    "../row-renderer/components/RowLinks/type.ts",
+    "../row-renderer/components/RowQuote/type.ts",
+    "../row-renderer/components/RowQuote/RowQuote.tsx",
+    "../row-renderer/components/RowQuote/index.ts",
+    "../row-renderer/components/RowColumnThree/RowColumnThree.tsx",
+    "../row-renderer/components/RowColumnThree/type.ts",
+    "../row-renderer/components/RowServiceOptions/RowServiceOptions.tsx",
+    "../row-renderer/components/RowServiceOptions/type.ts",
+    "../row-renderer/components/RowSpecialBanner/RowSpecialBanner.tsx",
+    "../row-renderer/components/RowSpecialBanner/type.ts"
+  ],
   "extends": "@graphcommerce/typescript-config-pwa/nextjs.json"
 }

@@ -1,6 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { Asset } from '@graphcommerce/next-ui'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   CategoryChildren,
@@ -23,6 +22,7 @@ import {
 } from '@graphcommerce/magento-product'
 import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
+  Asset,
   GetStaticProps,
   LayoutHeader,
   LayoutTitle,

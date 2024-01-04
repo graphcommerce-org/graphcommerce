@@ -1,3 +1,3 @@
 export * from './ColumnThree'
-export * from './RowColumnThree'
-export * from './type'
+export * from '@graphcommerce/row-renderer/components/RowColumnThree/RowColumnThree'
+export * from '@graphcommerce/row-renderer/components/RowColumnThree/type'

@@ -1,3 +1,1 @@
-export * from './RowLinks'
-export * from './RowLinks.gql'
-export * from './type'
+export * from './Links'

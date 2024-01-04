@@ -1,17 +1,14 @@
-import { ProductSpecsFragment } from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.gql'
+import { ProductSpecsFragment } from '@graphcommerce/magento-product'
 import { RowProductFragment } from './RowProduct.gql'
-// import // Backstory,
-// // Feature,
-// // FeatureBoxed,
-// // Grid,
-// // Related,
-// // Reviews,
-// // Specs,
-// // Swipeable,
-// // Upsells,
-// './variant'
-
-import { Backstory } from './variant'
+import { Backstory } from './variant/Backstory'
+import { Feature } from './variant/Feature'
+import { FeatureBoxed } from './variant/FeatureBoxed'
+import { Grid } from './variant/Grid'
+import { Related } from './variant/Related'
+import { Reviews } from './variant/Reviews'
+import { Specs } from './variant/Specs'
+import { Swipeable } from './variant/Swipeable'
+import { Upsells } from './variant/Upsells'
 
 type VariantRenderer = Record<
   NonNullable<RowProductFragment['variant']>,
@@ -23,15 +20,15 @@ export type RowProductPropsWithItems = RowProductFragment & {
 } & ProductSpecsFragment & { items?: unknown } & { sku?: string | null | undefined }
 
 const defaultRenderer: Partial<VariantRenderer> = {
-  // Specs,
+  Specs,
   Backstory,
-  // Feature,
-  // FeatureBoxed,
-  // Grid,
-  // Related,
-  // Reviews,
-  // Upsells,
-  // Swipeable,
+  Feature,
+  FeatureBoxed,
+  Grid,
+  Related,
+  Reviews,
+  Upsells,
+  Swipeable,
 }
 
 export function RowProduct(props: RowProductPropsWithItems) {

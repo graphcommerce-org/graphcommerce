@@ -2,7 +2,7 @@ import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import type { MethodPlugin } from '@graphcommerce/next-config'
 import { Pages, pageContent } from '@graphcommerce/next-ui'
 import { HygraphAllPagesDocument, HygraphPagesDocument } from '../graphql'
-import { parseHygraphContent, parseHygraphContentItem } from '../lib'
+import { BaseInput, parseHygraphContent } from '../lib'
 
 export const func = 'pageContent'
 export const exported = '@graphcommerce/next-ui/Page/pageContent'
@@ -13,7 +13,6 @@ const hygraphPageContentPlugin: MethodPlugin<typeof pageContent> = async (
   client,
   cached,
 ) => {
-  console.log(12345, 'hygraphPageContentPlugin')
   const staticClient: ApolloClient<NormalizedCacheObject> =
     client as ApolloClient<NormalizedCacheObject>
 
@@ -39,8 +38,7 @@ const hygraphPageContentPlugin: MethodPlugin<typeof pageContent> = async (
     data: Pages
   }
 
-  // const parsedContent = parseContent(pagesData.data.pages[0].content)
-  const parsedHygraphContent = parseHygraphContent(pagesData.data.pages[0].content)
+  const parsedHygraphContent = parseHygraphContent(pagesData.data.pages[0].content as BaseInput[])
 
   const prevData = await prev(url)
 

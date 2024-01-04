@@ -1,4 +1,4 @@
-import { RowLinksProps, RowColumnOneProps, RowQuoteProps } from '@graphcommerce/next-ui'
+import { RowLinksProps, RowColumnOneProps, RowQuoteProps } from '@graphcommerce/row-renderer'
 import { RowColumnOneFragment, RowLinksFragment, RowQuoteFragment } from '../components'
 
 export type BaseInput =
@@ -50,7 +50,7 @@ export const parserMap: ParserMap = {
 export function parseHygraphContentItem<K extends BaseInput['__typename']>(
   input: Extract<BaseInput, { __typename: K }>,
 ) {
-  if (!input) return null
+  if (!input) return input
   if (parserMap[input.__typename as K]) {
     return parserMap[input.__typename as K](input)
   }

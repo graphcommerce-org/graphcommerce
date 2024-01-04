@@ -3,16 +3,11 @@ import { ParagraphWithSidebarSlide, RenderType, Asset, RichText } from '@graphco
 import { useTheme } from '@mui/material'
 import { productListRenderer } from '../../../ProductListItems'
 import { RowProductFragment } from '../RowProduct.gql'
-import { RowProductProps } from '../type'
-
-// type BackstoryProps = RowProductProps & { items?: unknown } & {
-//   sku?: string | null | undefined
-// }
 
 type BackstoryProps = RowProductFragment & ProductListItemsFragment
 
 export function Backstory(props: BackstoryProps) {
-  const { asset, copy, ...productListItems } = props
+  const { productCopy, asset, ...productListItems } = props
   const theme = useTheme()
   const singleItem = productListItems?.items?.[(productListItems.items?.length ?? 1) - 1]
 
@@ -34,9 +29,9 @@ export function Backstory(props: BackstoryProps) {
           />
         }
       >
-        {copy?.raw && (
+        {productCopy?.raw && (
           <RichText
-            {...copy}
+            {...productCopy}
             sxRenderer={{
               paragraph: {
                 typography: { xs: 'body2', md: 'h3' },
@@ -55,4 +50,6 @@ export function Backstory(props: BackstoryProps) {
       </ParagraphWithSidebarSlide>
     </AddProductsToCartForm>
   )
+
+  return <>lalal</>
 }

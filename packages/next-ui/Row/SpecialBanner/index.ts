@@ -1,3 +1,3 @@
-export * from './RowSpecialBanner'
+export * from '@graphcommerce/row-renderer/components/RowSpecialBanner/RowSpecialBanner'
 export * from './SpecialBanner'
-export * from './type'
+export * from '@graphcommerce/row-renderer/components/RowSpecialBanner/type'
