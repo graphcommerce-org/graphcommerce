@@ -1,6 +1,7 @@
-import { useApolloClient, useMutation, useQuery } from '@graphcommerce/graphql'
-import { useFormAutoSubmit, useFormGqlQuery } from '@graphcommerce/react-hook-form'
-import { SignOutFormDocument } from '../components/SignOutForm/SignOutForm.gql'
+import { useQuery } from '@graphcommerce/graphql'
+import { useFormGqlQuery } from '@graphcommerce/react-hook-form'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { CustomerDocument } from './Customer.gql'
 import {
   IsEmailAvailableDocument,
@@ -17,7 +18,7 @@ export type AccountSignInUpState = 'email' | 'signin' | 'signup' | 'signedin' | 
 
 export const isToggleMethod = !import.meta.graphCommerce.enableGuestCheckoutLogin
 
-export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps = {}) {
+export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {}) {
   const { onSubmitted } = props
   const { token, valid } = useCustomerSession()
 
@@ -31,24 +32,32 @@ export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps = {}
     IsEmailAvailableDocument,
     {
       experimental_useV2: true,
-      mode: 'onChange',
+      mode: 'onBlur',
       values: { email: cachedEmail ?? '' },
       defaultValues: { requestedMode: 'signin' },
     },
     { fetchPolicy: 'cache-and-network' },
   )
   const { formState, data, handleSubmit } = form
-
-  const submit = isToggleMethod ? () => Promise.resolve() : handleSubmit(onSubmitted || (() => {}))
-
-  const autoSubmitting = useFormAutoSubmit({
-    form,
-    submit,
-    forceInitialSubmit: true,
-    disabled: isToggleMethod,
-  })
-
   const { isSubmitSuccessful, isValid } = formState
+
+  const router = useRouter()
+  useEffect(() => {
+    const emailFromParams = router.query.email as string
+
+    if (!cachedEmail && emailFromParams) {
+      form.setValue('email', emailFromParams)
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      form.trigger('email')
+    }
+  }, [cachedEmail, router.query.email, form])
+
+  const submit = isToggleMethod
+    ? async (e?: React.BaseSyntheticEvent) => {
+        e?.preventDefault()
+        await form.trigger('email')
+      }
+    : handleSubmit(onSubmitted || (() => {}))
 
   const hasAccount = data?.isEmailAvailable?.is_email_available === false
 
@@ -64,5 +73,5 @@ export function useFormIsEmailAvailable(props: UseFormIsEmailAvailableProps = {}
     if (isValid && isSubmitSuccessful) mode = hasAccount ? 'signin' : 'signup'
   }
 
-  return { mode, form, submit, autoSubmitting, hasAccount }
+  return { mode, form, submit }
 }

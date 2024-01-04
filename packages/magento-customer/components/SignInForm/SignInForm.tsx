@@ -75,7 +75,7 @@ export function SignInForm(props: SignInFormProps) {
             variant='pill'
             size='large'
           >
-            <Trans id='Log in' />
+            <Trans id='Sign in' />
           </Button>
         </FormControl>
       </FormActions>
