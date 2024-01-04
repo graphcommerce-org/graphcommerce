@@ -29,7 +29,7 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
 ): Q & Pick<AddProductsToCartFormProps, 'defaultValues'> {
   if (!import.meta.graphCommerce.configurableVariantForSimple) {
     const product = query?.products?.items?.find((p) => p?.url_key === urlKey)
-    return { ...query, products: { items: [product] }, defaultValues: {} }
+    return { ...query, products: { ...query?.products, items: [product] }, defaultValues: {} }
   }
 
   const simple = query?.products?.items?.find((p) => p?.url_key === urlKey)
@@ -44,7 +44,8 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
     ?.attributes
 
   const selectedOptions = (attributes ?? []).filter(nonNullable).map((a) => a.uid)
-  if (!selectedOptions.length) return { ...query, products: { items: [simple] }, defaultValues: {} }
+  if (!selectedOptions.length)
+    return { ...query, products: { ...query?.products, items: [simple] }, defaultValues: {} }
 
   /**
    * We're using writeQuery to the Apollo Client cache, to to avoid a second request to the GraphQL
