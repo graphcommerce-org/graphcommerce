@@ -5,12 +5,23 @@ import {
   AddProductsToCartMutation,
   AddProductsToCartMutationVariables,
 } from './AddProductsToCart.gql'
+import { Simplify } from 'type-fest'
 
 export type RedirectType = LiteralUnion<'added' | undefined | false, `/${string}`>
 
+type Item = Simplify<
+  AddProductsToCartMutationVariables['cartItems'][number] & {
+    customizable_options?: Record<string, string | string[]>
+  }
+>
+
+export type AddProductsToCartFields = Omit<AddProductsToCartMutationVariables, 'cartItems'> & {
+  cartItems: Item[]
+}
+
 /** https://react-hook-form.com/api/useform/watch/ */
 export type AddProductsToCartContextType = { redirect: RedirectType } & Omit<
-  UseFormGqlMutationReturn<AddProductsToCartMutation, AddProductsToCartMutationVariables>,
+  UseFormGqlMutationReturn<AddProductsToCartMutation, AddProductsToCartFields>,
   'formState' | 'watch'
 >
 

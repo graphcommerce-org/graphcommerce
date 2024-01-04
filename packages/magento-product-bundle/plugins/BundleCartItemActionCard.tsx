@@ -18,11 +18,10 @@ export function BundleCartItemActionCard(
     <Prev
       {...rest}
       details={
-        <BundleProductCartItemOptions
-          prices={rest.cartItem.prices}
-          bundle_options={rest.cartItem.bundle_options}
-          customizable_options={rest.cartItem.customizable_options}
-        />
+        <>
+          {rest.details}
+          <BundleProductCartItemOptions {...rest.cartItem} />
+        </>
       }
     />
   )

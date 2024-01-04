@@ -22,7 +22,7 @@ export function SimpleCartItemActionCard(
       details={
         <>
           {rest.details}
-          <SelectedCustomizableOptions customizable_options={rest.cartItem.customizable_options} />
+          <SelectedCustomizableOptions {...rest.cartItem} />
         </>
       }
     />

@@ -1,83 +1,24 @@
-import { SelectElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
-import { filterNonNullableKeys, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
-import React from 'react'
-import { AddToCartItemSelector, useFormAddProductsToCart } from '../AddProductsToCart'
+import { filterNonNullableKeys, RenderType } from '@graphcommerce/next-ui'
+import { AddToCartItemSelector } from '../AddProductsToCart'
+import { ProductPagePriceFragment } from '../ProductPagePrice'
+import { CustomizableAreaOption, OptionTypeRenderer } from './CustomizableAreaOption'
+import { CustomizableCheckboxOption } from './CustomizableCheckboxOption'
+import { CustomizableDateOption } from './CustomizableDateOption'
+import { CustomizableDropDownOption } from './CustomizableDropDownOption'
+import { CustomizableFieldOption } from './CustomizableFieldOption'
+import { CustomizableMultipleOption } from './CustomizableMultipleOption'
+import { CustomizableRadioOption } from './CustomizableRadioOption'
 import { ProductCustomizableFragment } from './ProductCustomizable.gql'
-
-export type OptionTypeRenderer = TypeRenderer<
-  NonNullable<NonNullable<ProductCustomizableFragment['options']>[number]> & {
-    optionIndex: number
-    index: number
-  }
->
-
-const CustomizableAreaOption = React.memo<
-  React.ComponentProps<OptionTypeRenderer['CustomizableAreaOption']>
->((props) => {
-  const { uid, areaValue, required, optionIndex, index, title } = props
-  const maxLength = areaValue?.max_characters ?? undefined
-  const { control, register } = useFormAddProductsToCart()
-
-  return (
-    <>
-      <input
-        type='hidden'
-        {...register(`cartItems.${index}.entered_options.${optionIndex}.uid`)}
-        value={uid}
-      />
-      <TextFieldElement
-        color='primary'
-        multiline
-        minRows={3}
-        control={control}
-        name={`cartItems.${index}.entered_options.${optionIndex}.value`}
-        label={title}
-        required={Boolean(required)}
-        validation={{ maxLength }}
-        helperText={(maxLength ?? 0) > 0 && `A maximum of ${maxLength}`}
-      />
-    </>
-  )
-})
-
-const CustomizableDropDownOption = React.memo<
-  React.ComponentProps<OptionTypeRenderer['CustomizableDropDownOption']>
->((props) => {
-  const { uid, required, optionIndex, index, title, dropdownValue } = props
-  const { control, register } = useFormAddProductsToCart()
-
-  return (
-    <>
-      <input
-        type='hidden'
-        {...register(`cartItems.${index}.entered_options.${optionIndex}.uid`)}
-        value={uid}
-      />
-      <SelectElement
-        color='primary'
-        control={control}
-        name={`cartItems.${index}.entered_options.${optionIndex}.value`}
-        label={title}
-        required={Boolean(required)}
-        defaultValue=''
-        options={filterNonNullableKeys(dropdownValue, ['title']).map((option) => ({
-          id: option.uid,
-          label: option.title,
-        }))}
-      />
-    </>
-  )
-})
 
 const defaultRenderer = {
   CustomizableAreaOption,
-  CustomizableCheckboxOption: () => <div>checkbox not implemented</div>,
-  CustomizableDateOption: () => <div>date not implemented</div>,
+  CustomizableCheckboxOption,
+  CustomizableDateOption,
   CustomizableDropDownOption,
-  CustomizableFieldOption: () => <div>field not implemented</div>,
+  CustomizableFieldOption,
   CustomizableFileOption: () => <div>file not implemented</div>,
-  CustomizableMultipleOption: () => <div>multi not implemented</div>,
-  CustomizableRadioOption: () => <div>radios not implemented</div>,
+  CustomizableMultipleOption,
+  CustomizableRadioOption,
 }
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] }
@@ -92,7 +33,7 @@ type OptionTypeRendererProp = Simplify<
 >
 
 type ProductCustomizableProps = AddToCartItemSelector & {
-  product: ProductCustomizableFragment
+  product: ProductCustomizableFragment & ProductPagePriceFragment
 } & (keyof MissingOptionTypeRenderer extends never
     ? { renderer?: OptionTypeRendererProp }
     : { renderer: OptionTypeRendererProp })
@@ -109,6 +50,8 @@ export function ProductCustomizable(props: ProductCustomizableProps) {
           {...option}
           optionIndex={option.sort_order + 100}
           index={index}
+          currency={product.price_range.minimum_price.final_price.currency}
+          productPrice={product.price_range.minimum_price.final_price.value}
         />
       ))}
     </>
