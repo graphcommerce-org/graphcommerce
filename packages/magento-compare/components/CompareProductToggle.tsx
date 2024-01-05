@@ -20,7 +20,7 @@ type CompareProductToggleProps = {
 function CompareProductToggleBase(
   props: CompareProductToggleProps & { inCompareList: boolean; id: string },
 ) {
-  const { id, sx, inCompareList, product, color = 'inherit' } = props
+  const { id, sx, inCompareList, product } = props
   const create = useCompareListUidCreate()
   const compareList = useCompareSummary()
 
@@ -103,9 +103,11 @@ function CompareProductToggleBase(
           onMouseDown={preventAnimationBubble}
           onTouchStart={preventAnimationBubble}
           size='responsive'
-          color={color}
+          color='inherit'
           sx={[
             (theme) => ({
+              backgroundColor:
+                theme.palette.mode === 'light' ? theme.palette.background.paper : 'transparent',
               flex: `0 0 auto`,
               '& svg': {
                 stroke: strokeColorPlp,
