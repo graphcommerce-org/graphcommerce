@@ -11,6 +11,7 @@ import {
   NavigationNodeType,
   NavigationNodeComponent,
 } from '../hooks/useNavigation'
+import { useMotionValueValue } from '@graphcommerce/framer-utils'
 
 export type NavigationProviderBaseProps = {
   items: (NavigationNode | React.ReactElement)[]
@@ -77,12 +78,12 @@ const NavigationProviderBase = React.memo<NavigationProviderBaseProps>((props) =
 })
 
 export function NavigationProvider(props: NavigationProviderProps) {
-  // const { selection } = props
-  // const hydrateManually = useTransform(selection, (s) => s !== false)
+  const { selection } = props
+  const hydrateManually = useMotionValueValue(selection, (s) => s !== false)
 
   return (
-    // <LazyHydrate hydrateManually={hydrateManually}>
-    <NavigationProviderBase {...props} />
-    // </LazyHydrate>
+    <LazyHydrate hydrated={hydrateManually}>
+      <NavigationProviderBase {...props} />
+    </LazyHydrate>
   )
 }

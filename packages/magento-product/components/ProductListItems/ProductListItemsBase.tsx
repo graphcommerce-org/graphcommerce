@@ -65,7 +65,7 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
       >
         {items?.map((item, idx) =>
           item ? (
-            <LazyHydrate key={item.uid ?? ''} eager={loadingEager > idx}>
+            <LazyHydrate key={item.uid ?? ''} hydrated={loadingEager > idx ? true : undefined}>
               <RenderType
                 renderer={renderers}
                 sizes={
