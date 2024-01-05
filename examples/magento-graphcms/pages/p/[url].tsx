@@ -174,6 +174,7 @@ function ProductPage(props: Props) {
 
       {pages?.[0] && (
         <RowRenderer
+          loadingEager={0}
           content={pages?.[0].content}
           renderer={{
             RowProduct: (rowProps) => (
