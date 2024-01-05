@@ -1,22 +1,30 @@
-export type Input = {
+import { RowColumnOneProps, RowLinksProps, RowQuoteProps } from '@graphcommerce/row-renderer'
+import { RowColumnOneFragment, RowLinksFragment, RowQuoteFragment } from '../components'
+
+type ParserMap = {
+  [K in ContentItem['__typename']]: (
+    input: Extract<ContentItem, { __typename: K }>,
+  ) => Extract<ContentItem, { __typename: K }>
+}
+
+export type ContentItem = {
   __typename: string
   [key: string]: unknown
 }
 
-export type Output = {
-  __typename: string
-  [key: string]: unknown
-}
+export const parserMap = {
+  RowLinks: (input: ContentItem & RowLinksFragment): RowLinksProps => {
+    const {
+      __typename,
+      pageLinks: links,
+      linksVariant: variant,
+      rowLinksCopy: copy,
+      ...rest
+    } = input
 
-export type ParserMap = {
-  [K in Input['__typename']]: (input: Input) => Output
-}
-
-export const parserMap: ParserMap = {
-  RowLinks: (input) => {
-    const { pageLinks: links, linksVariant: variant, rowLinksCopy: copy, ...rest } = input
     const output = {
       ...rest,
+      __typename: __typename as RowLinksProps['__typename'],
       links,
       copy,
       variant,
@@ -24,20 +32,24 @@ export const parserMap: ParserMap = {
 
     return output
   },
-  RowColumnOne: (input) => {
-    const { colOne: copy, rowColumnOneVariant: variant, ...rest } = input
+  RowColumnOne: (input: ContentItem & RowColumnOneFragment): RowColumnOneProps => {
+    const { __typename, colOne: copy, rowColumnOneVariant: variant, ...rest } = input
+
     const output = {
       ...rest,
+      __typename: __typename as RowColumnOneProps['__typename'],
       copy,
       variant,
     }
 
     return output
   },
-  RowQuote: (input) => {
-    const { quote: copy, ...rest } = input
+  RowQuote: (input: ContentItem & RowQuoteFragment): RowQuoteProps => {
+    const { __typename, quote: copy, ...rest } = input
+
     const output = {
       ...rest,
+      __typename: __typename as RowQuoteProps['__typename'],
       copy,
     }
 
@@ -45,13 +57,16 @@ export const parserMap: ParserMap = {
   },
 }
 
-export function parseHygraphContentItem<K extends Input['__typename']>(input: Input) {
-  if (!input) return null
-  if (parserMap[input.__typename as K]) {
-    return parserMap[input.__typename as K](input)
+export function parseHygraphContentItem(input: ContentItem) {
+  if (parserMap[input.__typename]) {
+    console.log('PARSED CORRECTLY', input.__typename)
+    return parserMap[input.__typename](input)
   }
+
+  console.log('PARSED INCORRECTLY', input.__typename)
+
   return input
 }
 
-export const parseHygraphContent = (input: Input[]) =>
+export const parseHygraphContent = (input: ContentItem[]) =>
   input.map((item) => parseHygraphContentItem(item))

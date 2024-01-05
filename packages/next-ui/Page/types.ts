@@ -8,6 +8,7 @@ import {
   GetStaticProps as GetStaticPropsNext,
   GetServerSideProps as GetServerSidePropsNext,
 } from 'next'
+import { ContentItem } from '@graphcommerce/graphcms-ui/lib'
 
 type AnyObj = Record<string, unknown>
 
@@ -29,19 +30,6 @@ export type GetServerSideProps<
 
 type MetaRobots = 'INDEX_FOLLOW' | 'INDEX_NOFOLLOW' | 'NOINDEX_FOLLOW' | 'NOINDEX_NOFOLLOW'
 
-type RowColumnOneVariants = 'Default' | 'Message'
-type RowLinksVariants = 'Inline' | 'ImageLabelSwiper' | 'LogoSwiper' | 'Usps'
-type RowProductVariants =
-  | 'Backstory'
-  | 'Feature'
-  | 'FeatureBoxed'
-  | 'Grid'
-  | 'Related'
-  | 'Reviews'
-  | 'Specs'
-  | 'Upsells'
-  | 'Swipeable'
-
 export type Page = {
   __typename: 'Page'
   id: string
@@ -62,7 +50,7 @@ export type Page = {
     size?: number | null
     alt?: string | null
   } | null
-  content: Array<unknown>
+  content: Array<ContentItem>
 }
 
 export type Pages = {

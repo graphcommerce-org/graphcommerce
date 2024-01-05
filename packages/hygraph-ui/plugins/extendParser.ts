@@ -17,13 +17,13 @@ import { RowHeroBannerFragment } from '../components/RowHeroBanner/RowHeroBanner
 import { RowServiceOptionsFragment } from '../components/RowServiceOptions/RowServiceOptions.gql'
 import { RowSpecialBannerFragment } from '../components/RowSpecialBanner/RowSpecialBanner.gql'
 import { MethodPlugin } from '@graphcommerce/next-config'
-import { Input, parseHygraphContentItem } from '../lib'
+import { ContentItem, parseHygraphContentItem } from '../lib'
 
 export const func = 'parseHygraphContentItem'
 export const exported = '@graphcommerce/graphcms-ui/lib/parser'
 
 const extendedParserMap = {
-  RowColumnTwo: (input: Input & RowColumnTwoFragment): RowColumnTwoProps => {
+  RowColumnTwo: (input: ContentItem & RowColumnTwoFragment): RowColumnTwoProps => {
     const { __typename, colOne: copy, colTwo: copyTwo } = input
 
     const output = {
@@ -35,7 +35,7 @@ const extendedParserMap = {
 
     return output
   },
-  RowColumnThree: (input: Input & RowColumnThreeFragment): RowColumnThreeProps => {
+  RowColumnThree: (input: ContentItem & RowColumnThreeFragment): RowColumnThreeProps => {
     const { __typename, colOne: copy, colTwo: copyTwo, colThree: copyThree } = input
 
     const output = {
@@ -48,7 +48,7 @@ const extendedParserMap = {
 
     return output
   },
-  RowBlogContent: (input: Input & RowBlogContentFragment): RowBlogContentProps => {
+  RowBlogContent: (input: ContentItem & RowBlogContentFragment): RowBlogContentProps => {
     const { __typename, content: copy } = input
 
     const output = {
@@ -59,7 +59,7 @@ const extendedParserMap = {
 
     return output
   },
-  RowButtonLinkList: (input: Input & RowButtonLinkListFragment): RowButtonLinkListProps => {
+  RowButtonLinkList: (input: ContentItem & RowButtonLinkListFragment): RowButtonLinkListProps => {
     const { __typename } = input
 
     const output = {
@@ -69,7 +69,7 @@ const extendedParserMap = {
 
     return output
   },
-  RowContentLinks: (input: Input & RowContentLinksFragment): RowContentLinksProps => {
+  RowContentLinks: (input: ContentItem & RowContentLinksFragment): RowContentLinksProps => {
     const { __typename, contentLinks: links } = input
 
     const output = {
@@ -80,7 +80,7 @@ const extendedParserMap = {
 
     return output
   },
-  RowHeroBanner: (input: Input & RowHeroBannerFragment): RowHeroBannerProps => {
+  RowHeroBanner: (input: ContentItem & RowHeroBannerFragment): RowHeroBannerProps => {
     const { __typename, heroAsset: asset, pageLinks: links } = input
 
     const output = {
@@ -92,7 +92,7 @@ const extendedParserMap = {
 
     return output
   },
-  RowServiceOptions: (input: Input & RowServiceOptionsFragment): RowServiceOptionsProps => {
+  RowServiceOptions: (input: ContentItem & RowServiceOptionsFragment): RowServiceOptionsProps => {
     const { __typename, serviceOptions: options } = input
 
     const output = {
@@ -103,7 +103,7 @@ const extendedParserMap = {
 
     return output
   },
-  RowSpecialBanner: (input: Input & RowSpecialBannerFragment): RowSpecialBannerProps => {
+  RowSpecialBanner: (input: ContentItem & RowSpecialBannerFragment): RowSpecialBannerProps => {
     const { __typename, pageLinks: links, topic: title } = input
 
     const output = {
@@ -118,17 +118,14 @@ const extendedParserMap = {
 }
 
 const extendParser: MethodPlugin<typeof parseHygraphContentItem> = (prev, input) => {
-  if (!input) return null
-
   if (extendedParserMap[input.__typename]) {
+    console.log('PARSED CORRECTLY', input.__typename)
     return extendedParserMap[input.__typename](input)
   }
 
-  /**
-   * We overwrite the result of prev(input) with input otherwise the parser
-   * runs again and causes undefined object keys for the base parser.
-   */
-  return { ...prev(input), ...input }
+  console.log('PARSED INCORRECTLY', input.__typename, prev(input), prev)
+
+  return prev(input)
 }
 
 export const plugin = extendParser

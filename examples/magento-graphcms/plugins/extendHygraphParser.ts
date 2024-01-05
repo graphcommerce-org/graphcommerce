@@ -1,5 +1,5 @@
 import { RowProductFragment } from '../components/GraphCMS/RowProduct/RowProduct.gql'
-import { Input, parseHygraphContentItem } from '@graphcommerce/graphcms-ui'
+import { ContentItem, parseHygraphContentItem } from '@graphcommerce/graphcms-ui'
 import { MethodPlugin } from '@graphcommerce/next-config'
 import { RowProductProps } from '../components/GraphCMS'
 
@@ -18,7 +18,7 @@ type ExtendedInput = RowProductFragment & {
     | 'CustomizableProduct'
 }
 
-const isProduct = (item: Input | ExtendedInput): item is ExtendedInput =>
+const isProduct = (item: ContentItem | ExtendedInput): item is ExtendedInput =>
   item.__typename === 'RowProduct' ||
   item.__typename === 'SimpleProduct' ||
   item.__typename === 'ConfigurableProduct' ||
@@ -29,25 +29,21 @@ const isProduct = (item: Input | ExtendedInput): item is ExtendedInput =>
   item.__typename === 'CustomizableProduct'
 
 const extendHygraphParser: MethodPlugin<typeof parseHygraphContentItem> = (prev, input) => {
-  if (!input) return null
-
   if (isProduct(input)) {
-    const { __typename: __typename, productCopy: copy } = input
-
+    const { __typename } = input
+    console.log('PARSED CORRECTLY', input.__typename)
     const output = {
       ...input,
       __typename: __typename as RowProductProps['__typename'],
-      copy,
+      // copy,
     }
 
     return output
   }
 
-  /**
-   * We overwrite the result of prev(input) with input otherwise the parser
-   * runs again and causes undefined object keys for the base parser.
-   */
-  return { ...prev(input), ...input }
+  console.log('PARSED INCORRECTLY', input.__typename, prev(input), prev)
+
+  return prev(input)
 }
 
 export const plugin = extendHygraphParser

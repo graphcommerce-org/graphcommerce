@@ -614,15 +614,15 @@ const rowQuote = {
 }
 
 export const homepageContent = [
-  heroBanner,
-  rowLinks1,
-  rowProduct1,
-  rowSpecialBanner,
-  rowQuote,
-  rowProduct2,
-  rowLinks2,
-  rowProduct3,
-  rowProduct4,
-  rowLinks3,
-  rowLinks4,
+  // heroBanner,
+  // rowLinks1,
+  // rowProduct1,
+  // rowSpecialBanner,
+  // rowQuote,
+  // rowProduct2,
+  // rowLinks2,
+  // rowProduct3,
+  // rowProduct4,
+  // rowLinks3,
+  // rowLinks4,
 ]

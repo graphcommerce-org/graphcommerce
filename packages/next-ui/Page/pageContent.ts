@@ -14,7 +14,5 @@ export const pageContent = async (
 
   const found = allRoutes.data.pages.some((page) => page.url === url)
 
-  return found
-    ? Promise.resolve({ data: { pages: [hygraphHomePage] } })
-    : Promise.resolve({ data: { pages: [] } })
+  return found ? Promise.resolve({ data: { pages: [] } }) : Promise.resolve({ data: { pages: [] } })
 }

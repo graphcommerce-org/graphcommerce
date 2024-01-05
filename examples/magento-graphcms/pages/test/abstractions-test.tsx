@@ -45,34 +45,18 @@ function AbstractionsTest(props: Props) {
   const favorite = favoritesList?.products?.items?.[0]
   const swipable = swipableList?.products?.items?.[0]
 
-  const parsedContent = content.map((item) => parseHygraphContentItem(item)) // <-- expects BaseInput, but gets BaseInput + ExtendedInput
-
-  console.log(10, page)
   console.log(20, content)
-  console.log(30, parsedContent)
 
   console.log(favoritesList.products?.items)
   return (
     <>
       <LayoutHeader floatingMd floatingSm />
-      <RowRenderer
-        content={parsedContent}
+      {/* <RowRenderer
+        content={content}
         renderer={{
-          RowProduct: (rowProps) => {
-            const { identity } = rowProps
-
-            if (identity === 'home-favorites')
-              return (
-                <RowProduct {...rowProps} {...favorite} items={favoritesList.products?.items} />
-              )
-            if (identity === 'home-latest')
-              return <RowProduct {...rowProps} {...latest} items={latestList.products?.items} />
-            if (identity === 'home-swipable')
-              return <RowProduct {...rowProps} {...swipable} items={swipableList.products?.items} />
-            return <RowProduct {...rowProps} {...favorite} items={favoritesList.products?.items} />
-          },
+          RowProduct: () => <>lalala</>,
         }}
-      />
+      /> */}
     </>
   )
 }
