@@ -1,17 +1,15 @@
-import { RowLinksProps, RowColumnOneProps, RowQuoteProps } from '@graphcommerce/row-renderer'
-import { RowColumnOneFragment, RowLinksFragment, RowQuoteFragment } from '../components'
+export type Input = {
+  __typename: string
+  [key: string]: unknown
+}
 
-export type BaseInput =
-  | (RowColumnOneFragment & { __typename: 'RowColumnOne' })
-  | (RowLinksFragment & { __typename: 'RowLinks' })
-  | (RowQuoteFragment & { __typename: 'RowQuote' })
-
-type BaseOutput = RowLinksProps | RowColumnOneProps | RowQuoteProps
+export type Output = {
+  __typename: string
+  [key: string]: unknown
+}
 
 export type ParserMap = {
-  [K in BaseInput['__typename']]: (
-    input: Extract<BaseInput, { __typename: K }>,
-  ) => Extract<BaseOutput, { __typename: K }>
+  [K in Input['__typename']]: (input: Input) => Output
 }
 
 export const parserMap: ParserMap = {
@@ -47,9 +45,7 @@ export const parserMap: ParserMap = {
   },
 }
 
-export function parseHygraphContentItem<K extends BaseInput['__typename']>(
-  input: Extract<BaseInput, { __typename: K }>,
-) {
+export function parseHygraphContentItem<K extends Input['__typename']>(input: Input) {
   if (!input) return input
   if (parserMap[input.__typename as K]) {
     return parserMap[input.__typename as K](input)
@@ -57,5 +53,5 @@ export function parseHygraphContentItem<K extends BaseInput['__typename']>(
   return input
 }
 
-export const parseHygraphContent = (input: BaseInput[]) =>
+export const parseHygraphContent = (input: Input[]) =>
   input.map((item) => parseHygraphContentItem(item))

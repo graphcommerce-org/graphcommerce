@@ -17,56 +17,30 @@ import { RowHeroBannerFragment } from '../components/RowHeroBanner/RowHeroBanner
 import { RowServiceOptionsFragment } from '../components/RowServiceOptions/RowServiceOptions.gql'
 import { RowSpecialBannerFragment } from '../components/RowSpecialBanner/RowSpecialBanner.gql'
 import { MethodPlugin } from '@graphcommerce/next-config'
-import { parseHygraphContentItem } from '../lib'
+import { Input, parseHygraphContentItem } from '../lib'
 
 export const func = 'parseHygraphContentItem'
 export const exported = '@graphcommerce/graphcms-ui/lib/parser'
 
-type ExtendedInput =
-  | (RowColumnTwoFragment & {
-      __typename: 'RowColumnTwo'
-    })
-  | (RowColumnThreeFragment & { __typename: 'RowColumnThree' })
-  | (RowBlogContentFragment & { __typename: 'RowBlogContent' })
-  | (RowButtonLinkListFragment & { __typename: 'RowButtonLinkList' })
-  | (RowContentLinksFragment & { __typename: 'RowContentLinks' })
-  | (RowHeroBannerFragment & { __typename: 'RowHeroBanner' })
-  | (RowServiceOptionsFragment & { __typename: 'RowServiceOptions' })
-  | (RowSpecialBannerFragment & { __typename: 'RowSpecialBanner' })
-
-type ExtendedOutput =
-  | RowColumnTwoProps
-  | RowColumnThreeProps
-  | RowBlogContentProps
-  | RowButtonLinkListProps
-  | RowContentLinksProps
-  | RowHeroBannerProps
-  | RowServiceOptionsProps
-  | RowSpecialBannerProps
-
-type ExtendedParserMapType = {
-  [K in ExtendedInput['__typename']]: (
-    input: Extract<ExtendedInput, { __typename: K }>,
-  ) => Extract<ExtendedOutput, { __typename: K }>
-}
-
-const extendedParserMap: ExtendedParserMapType = {
-  RowColumnTwo: (input) => {
-    const { colOne: copy, colTwo: copyTwo } = input
+const extendedParserMap = {
+  RowColumnTwo: (input: Input & RowColumnTwoFragment): RowColumnTwoProps => {
+    const { __typename, colOne: copy, colTwo: copyTwo } = input
 
     const output = {
       ...input,
+      __typename: __typename as RowColumnTwoProps['__typename'],
       copy,
       copyTwo,
     }
 
     return output
   },
-  RowColumnThree: (input) => {
-    const { colOne: copy, colTwo: copyTwo, colThree: copyThree } = input
+  RowColumnThree: (input: Input & RowColumnThreeFragment): RowColumnThreeProps => {
+    const { __typename, colOne: copy, colTwo: copyTwo, colThree: copyThree } = input
 
     const output = {
       ...input,
+      __typename: __typename as RowColumnThreeProps['__typename'],
       copy,
       copyTwo,
       copyThree,
@@ -74,53 +48,67 @@ const extendedParserMap: ExtendedParserMapType = {
 
     return output
   },
-  RowBlogContent: (input) => {
-    const { content: copy } = input
+  RowBlogContent: (input: Input & RowBlogContentFragment): RowBlogContentProps => {
+    const { __typename, content: copy } = input
 
     const output = {
       ...input,
+      __typename: __typename as RowBlogContentProps['__typename'],
       copy,
     }
 
     return output
   },
-  RowButtonLinkList: (input) => input,
-  RowContentLinks: (input) => {
-    const { contentLinks: links } = input
+  RowButtonLinkList: (input: Input & RowButtonLinkListFragment): RowButtonLinkListProps => {
+    const { __typename } = input
 
     const output = {
       ...input,
+      __typename: __typename as RowButtonLinkListProps['__typename'],
+    }
+
+    return output
+  },
+  RowContentLinks: (input: Input & RowContentLinksFragment): RowContentLinksProps => {
+    const { __typename, contentLinks: links } = input
+
+    const output = {
+      ...input,
+      __typename: __typename as RowContentLinksProps['__typename'],
       links,
     }
 
     return output
   },
-  RowHeroBanner: (input) => {
-    const { heroAsset: asset, pageLinks: links } = input
+  RowHeroBanner: (input: Input & RowHeroBannerFragment): RowHeroBannerProps => {
+    const { __typename, heroAsset: asset, pageLinks: links } = input
 
     const output = {
       ...input,
+      __typename: __typename as RowHeroBannerProps['__typename'],
       asset,
       links,
     }
 
     return output
   },
-  RowServiceOptions: (input) => {
-    const { serviceOptions: options } = input
+  RowServiceOptions: (input: Input & RowServiceOptionsFragment): RowServiceOptionsProps => {
+    const { __typename, serviceOptions: options } = input
 
     const output = {
       ...input,
+      __typename: __typename as RowServiceOptionsProps['__typename'],
       options,
     }
 
     return output
   },
-  RowSpecialBanner: (input) => {
-    const { pageLinks: links, topic: title } = input
+  RowSpecialBanner: (input: Input & RowSpecialBannerFragment): RowSpecialBannerProps => {
+    const { __typename, pageLinks: links, topic: title } = input
 
     const output = {
       ...input,
+      __typename: __typename as RowSpecialBannerProps['__typename'],
       links,
       title,
     }
@@ -129,7 +117,6 @@ const extendedParserMap: ExtendedParserMapType = {
   },
 }
 
-// ExtendParser should extend the BaseParser input type with some typescript magic.
 const extendParser: MethodPlugin<typeof parseHygraphContentItem> = (prev, input) => {
   if (!input) return null
 
