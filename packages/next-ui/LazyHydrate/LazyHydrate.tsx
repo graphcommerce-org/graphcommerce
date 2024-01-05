@@ -57,16 +57,16 @@ export function LazyHydrate(props: LazyHydrateProps) {
     return () => observer.disconnect()
   }, [hydrated, isHydrated])
 
+  if (isHydrated) {
+    return <section>{children}</section>
+  }
+
   if (typeof window === 'undefined') {
     return <section data-lazy-hydrate>{children}</section>
   }
 
-  if (!isHydrated) {
-    return (
-      // eslint-disable-next-line react/no-danger
-      <section ref={rootRef} dangerouslySetInnerHTML={{ __html: '' }} suppressHydrationWarning />
-    )
-  }
-
-  return <section suppressHydrationWarning>{children}</section>
+  return (
+    // eslint-disable-next-line react/no-danger
+    <section ref={rootRef} dangerouslySetInnerHTML={{ __html: '' }} suppressHydrationWarning />
+  )
 }
