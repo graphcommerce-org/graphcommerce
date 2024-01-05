@@ -1,7 +1,7 @@
-import { AllRows } from '@graphcommerce/row-renderer'
 import { RowProductFragment } from '../components/GraphCMS/RowProduct/RowProduct.gql'
-import { parseHygraphContentItem } from '@graphcommerce/graphcms-ui'
+import { Input, parseHygraphContentItem } from '@graphcommerce/graphcms-ui'
 import { MethodPlugin } from '@graphcommerce/next-config'
+import { RowProductProps } from '../components/GraphCMS'
 
 export const func = 'parseHygraphContentItem'
 export const exported = '@graphcommerce/graphcms-ui/lib/parser'
@@ -18,7 +18,7 @@ type ExtendedInput = RowProductFragment & {
     | 'CustomizableProduct'
 }
 
-const isProduct = (item: ExtendedInput | AllRows): item is ExtendedInput =>
+const isProduct = (item: Input | ExtendedInput): item is ExtendedInput =>
   item.__typename === 'RowProduct' ||
   item.__typename === 'SimpleProduct' ||
   item.__typename === 'ConfigurableProduct' ||
@@ -32,14 +32,15 @@ const extendHygraphParser: MethodPlugin<typeof parseHygraphContentItem> = (prev,
   if (!input) return null
 
   if (isProduct(input)) {
-    const { productCopy: copy } = input
+    const { __typename: __typename, productCopy: copy } = input
 
     const output = {
       ...input,
+      __typename: __typename as RowProductProps['__typename'],
       copy,
     }
 
-    return { output }
+    return output
   }
 
   /**

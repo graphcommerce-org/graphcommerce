@@ -46,7 +46,7 @@ export const parserMap: ParserMap = {
 }
 
 export function parseHygraphContentItem<K extends Input['__typename']>(input: Input) {
-  if (!input) return input
+  if (!input) return null
   if (parserMap[input.__typename as K]) {
     return parserMap[input.__typename as K](input)
   }
