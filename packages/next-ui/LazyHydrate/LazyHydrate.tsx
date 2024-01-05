@@ -39,7 +39,7 @@ function LazyHydrateClient(props: LazyHydrateProps) {
       suppressHydrationWarning
     />
   ) : (
-    <section>{children}</section>
+    <section suppressHydrationWarning>{children}</section>
   )
 }
 
