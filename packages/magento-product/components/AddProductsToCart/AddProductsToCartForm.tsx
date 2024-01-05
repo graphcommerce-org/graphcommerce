@@ -9,17 +9,17 @@ import { ExtendableComponent, nonNullable } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme, useThemeProps } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useMemo, useRef } from 'react'
-import {
-  AddProductsToCartDocument,
-  AddProductsToCartMutation,
-  AddProductsToCartMutationVariables,
-} from './AddProductsToCart.gql'
+import { AddProductsToCartDocument, AddProductsToCartMutation } from './AddProductsToCart.gql'
 import {
   AddProductsToCartSnackbar,
   AddProductsToCartSnackbarProps,
 } from './AddProductsToCartSnackbar'
 import { toUserErrors } from './toUserErrors'
-import { AddProductsToCartContext, RedirectType } from './useFormAddProductsToCart'
+import {
+  AddProductsToCartContext,
+  AddProductsToCartFields,
+  RedirectType,
+} from './useFormAddProductsToCart'
 
 export type AddProductsToCartFormProps = {
   // The props are actually used, but are passed through useThemeProps and that breaks react/no-unused-prop-types
@@ -31,7 +31,7 @@ export type AddProductsToCartFormProps = {
   redirect?: RedirectType
 
   disableSuccessSnackbar?: boolean
-} & UseFormGraphQlOptions<AddProductsToCartMutation, AddProductsToCartMutationVariables> &
+} & UseFormGraphQlOptions<AddProductsToCartMutation, AddProductsToCartFields> &
   AddProductsToCartSnackbarProps
 
 const name = 'AddProductsToCartForm'
@@ -75,66 +75,75 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
   if (typeof redirect !== 'undefined' && redirect !== 'added' && router.pathname === redirect)
     redirect = undefined
 
-  const form = useFormGqlMutationCart<
-    AddProductsToCartMutation,
-    AddProductsToCartMutationVariables
-  >(AddProductsToCartDocument, {
-    ...formProps,
-    // We're stripping out incomplete entered options.
-    onBeforeSubmit: async (variables) => {
-      const variables2 = (await formProps.onBeforeSubmit?.(variables)) ?? variables
-      if (variables2 === false) return false
+  const form = useFormGqlMutationCart<AddProductsToCartMutation, AddProductsToCartFields>(
+    AddProductsToCartDocument,
+    {
+      ...formProps,
+      // We're stripping out incomplete entered options.
+      onBeforeSubmit: async (variables) => {
+        const variables2 = (await formProps.onBeforeSubmit?.(variables)) ?? variables
+        if (variables2 === false) return false
 
-      const { cartId, cartItems } = variables2
-      const requestData = {
-        cartId,
-        cartItems: cartItems
-          .filter((cartItem) => cartItem.sku)
-          .map((cartItem) => ({
-            ...cartItem,
-            quantity: cartItem.quantity || 1,
-            selected_options: cartItem.selected_options?.filter(Boolean),
-            entered_options: cartItem.entered_options
-              ?.filter((option) => option?.value)
-              .filter(nonNullable)
-              .map((option) => ({ ...option, value: option?.value.toString() })),
-          })),
-      }
+        const { cartId, cartItems } = variables2
 
-      const sku = requestData.cartItems[requestData.cartItems.length - 1]?.sku
+        const requestData = {
+          cartId,
+          cartItems: cartItems
+            .filter((cartItem) => cartItem.sku)
+            .map(({ customizable_options, ...cartItem }) => {
+              const options = Object.values(customizable_options ?? {})
+                .flat(1)
+                .filter(Boolean)
 
-      if (sku && redirect === 'added') {
-        // Preload crosssells
-        crosssellsQuery.current = client.query({
-          query: CrosssellsDocument,
-          variables: { pageSize: 1, filters: { sku: { eq: sku } } },
+              return {
+                ...cartItem,
+                quantity: cartItem.quantity || 1,
+                selected_options: [
+                  ...(cartItem.selected_options ?? []).filter(Boolean),
+                  ...options,
+                ],
+                entered_options: cartItem.entered_options?.filter((option) => option?.value),
+              }
+            }),
+        }
+
+        const sku = requestData.cartItems[requestData.cartItems.length - 1]?.sku
+
+        if (sku && redirect === 'added') {
+          // Preload crosssells
+          crosssellsQuery.current = client.query({
+            query: CrosssellsDocument,
+            variables: { pageSize: 1, filters: { sku: { eq: sku } } },
+          })
+        }
+
+        return requestData
+      },
+      onComplete: async (result, variables) => {
+        await onComplete?.(result, variables)
+
+        // After the form has been submitted, we're resetting the submitted SKU's
+        form.getValues('cartItems').forEach((item, index) => {
+          if (item.sku) form.setValue(`cartItems.${index}.sku`, '')
         })
-      }
 
-      return requestData
+        if (toUserErrors(result.data).length || result.errors?.length || !redirect) return
+
+        if (redirect === 'added') {
+          await crosssellsQuery.current
+          const method = router.pathname.startsWith('/checkout/added')
+            ? router.replace
+            : router.push
+          await method({
+            pathname: '/checkout/added',
+            query: { sku: variables.cartItems.map((i) => i.sku) },
+          })
+        } else {
+          await router.push({ pathname: redirect })
+        }
+      },
     },
-    onComplete: async (result, variables) => {
-      await onComplete?.(result, variables)
-
-      // After the form has been submitted, we're resetting the submitted SKU's
-      form.getValues('cartItems').forEach((item, index) => {
-        if (item.sku) form.setValue(`cartItems.${index}.sku`, '')
-      })
-
-      if (toUserErrors(result.data).length || result.errors?.length || !redirect) return
-
-      if (redirect === 'added') {
-        await crosssellsQuery.current
-        const method = router.pathname.startsWith('/checkout/added') ? router.replace : router.push
-        await method({
-          pathname: '/checkout/added',
-          query: { sku: variables.cartItems.map((i) => i.sku) },
-        })
-      } else {
-        await router.push({ pathname: redirect })
-      }
-    },
-  })
+  )
 
   const submit = form.handleSubmit(() => {})
 

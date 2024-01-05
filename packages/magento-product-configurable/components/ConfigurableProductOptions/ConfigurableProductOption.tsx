@@ -1,6 +1,6 @@
 import {
   useFormAddProductsToCart,
-  AddProductsToCartMutationVariables,
+  AddProductsToCartFields,
 } from '@graphcommerce/magento-product/components'
 import {
   nonNullable,
@@ -82,7 +82,7 @@ export function ConfigurableProductOption(props: Props) {
 
       <ActionCardListForm<
         ActionCardItemBase & ConfigurableOptionValueFragment,
-        AddProductsToCartMutationVariables
+        AddProductsToCartFields
       >
         layout='grid'
         {...other}

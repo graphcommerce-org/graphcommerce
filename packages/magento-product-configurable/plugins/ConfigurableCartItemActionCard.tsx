@@ -20,7 +20,10 @@ export function ConfigurableCartItemActionCard(
       details={
         <>
           {rest.details}
-          <ConfigurableCartItemOptions {...rest.cartItem} />
+          <ConfigurableCartItemOptions
+            {...rest.cartItem}
+            productPrice={rest.cartItem.product.price_range.minimum_price.final_price.value}
+          />
         </>
       }
     />

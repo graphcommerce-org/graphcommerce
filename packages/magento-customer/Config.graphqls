@@ -19,3 +19,10 @@ extend input GraphCommerceConfig {
   """
   enableGuestCheckoutLogin: Boolean
 }
+
+extend input GraphCommerceDebugConfig {
+  """
+  Enable debugging interface to debug sessions
+  """
+  sessions: Boolean
+}

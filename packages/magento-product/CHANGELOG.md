@@ -1,5 +1,45 @@
 # Change Log
 
+## 8.0.0-canary.74
+
+### Minor Changes
+
+- [#2133](https://github.com/graphcommerce-org/graphcommerce/pull/2133) [`133f908`](https://github.com/graphcommerce-org/graphcommerce/commit/133f908200a79589036420f2925835724522cab8) - Added lazy hydration to improve total blocking time. Added LazyHydrate component which can be wrapped around other components you want to lazy hydrate.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.0-canary.73
+
+## 8.0.0-canary.72
+
+## 8.0.0-canary.71
+
+### Minor Changes
+
+- [#2099](https://github.com/graphcommerce-org/graphcommerce/pull/2099) [`ff796b8`](https://github.com/graphcommerce-org/graphcommerce/commit/ff796b838fae6cb5e35b101500133b0235a8677d) - Created UI for all customizable options except for the file upload customizable option
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.0-canary.70
+
+## 8.0.0-canary.69
+
+### Major Changes
+
+- [#2041](https://github.com/graphcommerce-org/graphcommerce/pull/2041) [`bc3a833`](https://github.com/graphcommerce-org/graphcommerce/commit/bc3a8339b0b0f15b4d5cb014d4f95e6ea28c2cfe) - Removed legacyProductRoute from GraphCommerce
+  ([@paales](https://github.com/paales))
+
+## 7.1.0-canary.68
+
+## 7.1.0-canary.67
+
+### Patch Changes
+
+- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`6f214fb`](https://github.com/graphcommerce-org/graphcommerce/commit/6f214fbfd8ef24cc6dcba72f403bdcb1d8a5ed8a) - Remove marginBottom from ProductScroller by default and let implementor set the margin
+  ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 7.1.0-canary.66
+
+## 7.1.0-canary.65
+
 ## 7.1.0-canary.64
 
 ## 7.1.0-canary.63
@@ -1564,31 +1604,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { Trans, t } from "@lingui/macro";
 
   function MyComponent() {
-    const foo = 'bar'
+    const foo = "bar";
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    )
+    );
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from '@lingui/react'
-  import { i18n } from '@lingui/core'
+  import { Trans } from "@lingui/react";
+  import { i18n } from "@lingui/core";
 
   function MyComponent() {
-    const foo = 'bar'
+    const foo = "bar";
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
+        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
       </div>
-    )
+    );
   }
   ```
 

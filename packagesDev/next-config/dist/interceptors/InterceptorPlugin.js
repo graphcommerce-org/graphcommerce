@@ -10,6 +10,10 @@ const findPlugins_1 = require("./findPlugins");
 const generateInterceptors_1 = require("./generateInterceptors");
 const writeInterceptors_1 = require("./writeInterceptors");
 class InterceptorPlugin {
+    config;
+    interceptors;
+    interceptorByDepependency;
+    resolveDependency;
     constructor(config) {
         this.config = config;
         this.resolveDependency = (0, resolveDependency_1.resolveDependency)();

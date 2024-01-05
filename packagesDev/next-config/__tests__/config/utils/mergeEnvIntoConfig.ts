@@ -66,7 +66,6 @@ it('converts an env schema to a config schema', () => {
   const configFile: GraphCommerceConfig = {
     storefront: [{ locale: 'en', hygraphLocales: ['en'], magentoStoreCode: 'en_us' }],
     customerRequireEmailConfirmation: false,
-    legacyProductRoute: false,
     productFiltersPro: false,
     canonicalBaseUrl: 'https://example.com',
     hygraphEndpoint: 'https://example.com',
@@ -78,7 +77,6 @@ it('converts an env schema to a config schema', () => {
     GC_PRODUCT_FILTERS_PRO: '1',
     GC_STOREFRONT: `[{"defaultLocale": true }]`,
     GC_STOREFRONT_0_LOCALE: 'de',
-    GC_LEGACY_PRODUCT_ROUTE: '1',
   }
 
   const [mergedConfig, applied] = mergeEnvIntoConfig(
@@ -89,7 +87,6 @@ it('converts an env schema to a config schema', () => {
 
   expect(removeColor(formatAppliedEnv(applied))).toMatchInlineSnapshot(`
     "info   - Loaded GraphCommerce env variables
-     ~ GC_LEGACY_PRODUCT_ROUTE='1' => legacyProductRoute: false => true
      ~ GC_PRODUCT_FILTERS_PRO='1' => productFiltersPro: false => true
      + GC_STOREFRONT='[{"defaultLocale": true }]' => storefront: [{"defaultLocale":true}]
      ~ GC_STOREFRONT_0_LOCALE='de' => storefront.[0].locale: "en" => "de""
@@ -104,6 +101,5 @@ it('converts an env schema to a config schema', () => {
     expect(parsed.data.productFiltersPro).toBe(true)
     expect(parsed.data.storefront[0].defaultLocale).toBe(true)
     expect(parsed.data.storefront[0].locale).toBe('de')
-    expect(parsed.data.legacyProductRoute).toBe(true)
   }
 })

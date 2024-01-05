@@ -1,4 +1,4 @@
-import { RenderType, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
+import { LazyHydrate, RenderType, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
 import { Box, BoxProps } from '@mui/material'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { AddProductsToCartForm } from '../AddProductsToCart'
@@ -65,20 +65,21 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
       >
         {items?.map((item, idx) =>
           item ? (
-            <RenderType
-              key={item.uid ?? ''}
-              renderer={renderers}
-              sizes={
-                size === 'small'
-                  ? { 0: '100vw', 354: '50vw', 675: '30vw', 1255: '23vw', 1500: '337px' }
-                  : { 0: '100vw', 367: '48vw', 994: '30vw', 1590: '23vw', 1920: '443px' }
-              }
-              {...item}
-              loading={loadingEager > idx ? 'eager' : 'lazy'}
-              titleComponent={titleComponent}
-              onClick={onClick}
-              noReport
-            />
+            <LazyHydrate key={item.uid ?? ''} hydrated={loadingEager > idx ? true : undefined}>
+              <RenderType
+                renderer={renderers}
+                sizes={
+                  size === 'small'
+                    ? { 0: '100vw', 354: '50vw', 675: '30vw', 1255: '23vw', 1500: '337px' }
+                    : { 0: '100vw', 367: '48vw', 994: '30vw', 1590: '23vw', 1920: '443px' }
+                }
+                {...item}
+                loading={loadingEager > idx ? 'eager' : 'lazy'}
+                titleComponent={titleComponent}
+                onClick={onClick}
+                noReport
+              />
+            </LazyHydrate>
           ) : null,
         )}
       </Box>

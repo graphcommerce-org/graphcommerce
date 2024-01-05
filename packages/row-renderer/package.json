@@ -2,7 +2,7 @@
   "name": "@graphcommerce/row-renderer",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "7.1.0-canary.64",
+  "version": "8.0.0-canary.74",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"

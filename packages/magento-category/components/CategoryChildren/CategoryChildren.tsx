@@ -17,6 +17,8 @@ const { classes } = extendableComponent(name, parts)
 export function CategoryChildren(props: CategoryChildrenProps) {
   const { children, params, sx = [] } = props
 
+  const { currentPage, ...paramsWithoutCurrentPage } = params
+
   if (!children || children.length === 0) return null
 
   return (
@@ -46,7 +48,7 @@ export function CategoryChildren(props: CategoryChildrenProps) {
                 underline='none'
                 color='inherit'
                 href={productListLink({
-                  ...params,
+                  ...paramsWithoutCurrentPage,
                   url: cat.url_path,
                   filters: { category_uid: { eq: cat.uid } },
                 })}
