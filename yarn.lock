@@ -1670,7 +1670,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/template@npm:^7.18.10, @babel/template@npm:^7.20.7, @babel/template@npm:^7.22.15, @babel/template@npm:^7.3.3":
+"@babel/runtime@npm:^7.10.0, @babel/runtime@npm:^7.22.10":
+  version: 7.23.4
+  resolution: "@babel/runtime@npm:7.23.4"
+  dependencies:
+    regenerator-runtime: "npm:^0.14.0"
+  checksum: db2bf183cd0119599b903ca51ca0aeea8e0ab478a16be1aae10dd90473ed614159d3e5adfdd8f8f3d840402428ce0d90b5c01aae95da9e45a2dd83e02d85ca27
+  languageName: node
+  linkType: hard
+
+"@babel/runtime@npm:^7.23.6":
+  version: 7.23.7
+  resolution: "@babel/runtime@npm:7.23.7"
+  dependencies:
+    regenerator-runtime: "npm:^0.14.0"
+  checksum: 3e304133ee55b0750e03e53cb4efb47fb2bdcdb5795f85bbffa10595196c34b9be60eb65bd6d833c87f49fc827f0365f86f95f51d85b188004d3128bb5129c93
+  languageName: node
+  linkType: hard
+
+"@babel/template@npm:^7.18.10, @babel/template@npm:^7.22.15, @babel/template@npm:^7.3.3":
   version: 7.22.15
   resolution: "@babel/template@npm:7.22.15"
   dependencies:
@@ -2560,9 +2578,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@floating-ui/react-dom@npm:^2.0.5":
-  version: 2.0.6
-  resolution: "@floating-ui/react-dom@npm:2.0.6"
+"@floating-ui/react-dom@npm:^2.0.1, @floating-ui/react-dom@npm:^2.0.2, @floating-ui/react-dom@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "@floating-ui/react-dom@npm:2.0.4"
   dependencies:
     "@floating-ui/dom": "npm:^1.5.4"
   peerDependencies:
@@ -2620,24 +2638,66 @@ __metadata:
     algoliasearch: "npm:^4.22.1"
     react-instantsearch-hooks-web: "npm:^6.47.3"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.4-canary.0
-    "@graphcommerce/eslint-config-pwa": ^8.0.4-canary.0
-    "@graphcommerce/graphql": ^8.0.4-canary.0
-    "@graphcommerce/graphql-mesh": ^8.0.4-canary.0
-    "@graphcommerce/magento-product": ^8.0.4-canary.0
-    "@graphcommerce/magento-search": ^8.0.4-canary.0
-    "@graphcommerce/magento-store": ^8.0.4-canary.0
-    "@graphcommerce/next-config": ^8.0.4-canary.0
-    "@graphcommerce/next-ui": ^8.0.4-canary.0
-    "@graphcommerce/prettier-config-pwa": ^8.0.4-canary.0
-    "@graphcommerce/typescript-config-pwa": ^8.0.4-canary.0
+    "@graphcommerce/ecommerce-ui": ^7.1.0-canary.65
+    "@graphcommerce/eslint-config-pwa": ^7.1.0-canary.65
+    "@graphcommerce/graphql": ^7.1.0-canary.65
+    "@graphcommerce/graphql-mesh": ^7.1.0-canary.65
+    "@graphcommerce/magento-product": ^7.1.0-canary.65
+    "@graphcommerce/magento-search": ^7.1.0-canary.65
+    "@graphcommerce/magento-store": ^7.1.0-canary.65
+    "@graphcommerce/next-config": ^7.1.0-canary.65
+    "@graphcommerce/next-ui": ^7.1.0-canary.65
+    "@graphcommerce/prettier-config-pwa": ^7.1.0-canary.65
+    "@graphcommerce/typescript-config-pwa": ^7.1.0-canary.65
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    next: "*"
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
+  peerDependenciesMeta:
+    "@graphcommerce/magento-cart":
+      optional: true
+    "@graphcommerce/magento-cart-payment-method":
+      optional: true
+    "@graphcommerce/magento-cart-shipping-method":
+      optional: true
+    "@graphcommerce/magento-product":
+      optional: true
+  languageName: unknown
+  linkType: soft
+
+"@graphcommerce/analytics@npm:7.1.0-canary.65, @graphcommerce/analytics@npm:^7.1.0-canary.65, @graphcommerce/analytics@workspace:packages/analytics":
+  version: 0.0.0-use.local
+  resolution: "@graphcommerce/analytics@workspace:packages/analytics"
+  dependencies:
+    "@graphcommerce/magento-cart": "npm:^7.1.0-canary.65"
+    "@graphcommerce/magento-cart-payment-method": "npm:^7.1.0-canary.65"
+    "@graphcommerce/magento-product": "npm:^7.1.0-canary.65"
+    "@mui/material": "npm:^5.10.16"
+  peerDependencies:
+    "@graphcommerce/eslint-config-pwa": ^7.1.0-canary.65
+    "@graphcommerce/graphql-mesh": ^7.1.0-canary.65
+    "@graphcommerce/magento-cart": ^7.1.0-canary.65
+    "@graphcommerce/magento-cart-shipping-method": ^7.1.0-canary.65
+    "@graphcommerce/magento-product": ^7.1.0-canary.65
+    "@graphcommerce/next-config": ^7.1.0-canary.65
+    "@graphcommerce/next-ui": ^7.1.0-canary.65
+    "@graphcommerce/prettier-config-pwa": ^7.1.0-canary.65
+    "@graphcommerce/typescript-config-pwa": ^7.1.0-canary.65
+    next: ^14
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  peerDependenciesMeta:
+    "@graphcommerce/magento-cart":
+      optional: true
+    "@graphcommerce/magento-cart-payment-method":
+      optional: true
+    "@graphcommerce/magento-cart-shipping-method":
+      optional: true
+    "@graphcommerce/magento-product":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -2897,20 +2957,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/googleanalytics@workspace:packages/googleanalytics"
   dependencies:
+    "@graphcommerce/analytics": "npm:^7.1.0-canary.65"
     "@types/gtag.js": "npm:^0.0.18"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.4-canary.0
-    "@graphcommerce/graphql-mesh": ^8.0.4-canary.0
-    "@graphcommerce/magento-cart": ^8.0.4-canary.0
-    "@graphcommerce/magento-cart-payment-method": ^8.0.4-canary.0
-    "@graphcommerce/magento-cart-shipping-method": ^8.0.4-canary.0
-    "@graphcommerce/magento-product": ^8.0.4-canary.0
-    "@graphcommerce/next-config": ^8.0.4-canary.0
-    "@graphcommerce/next-ui": ^8.0.4-canary.0
-    "@graphcommerce/prettier-config-pwa": ^8.0.4-canary.0
-    "@graphcommerce/typescript-config-pwa": ^8.0.4-canary.0
-    "@mui/material": ^5.10.16
-    next: "*"
+    "@graphcommerce/eslint-config-pwa": ^7.1.0-canary.65
+    "@graphcommerce/next-config": ^7.1.0-canary.65
+    "@graphcommerce/prettier-config-pwa": ^7.1.0-canary.65
+    "@graphcommerce/typescript-config-pwa": ^7.1.0-canary.65
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   peerDependenciesMeta:
@@ -2947,13 +3001,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/googletagmanager@workspace:packages/googletagmanager"
   dependencies:
+    "@graphcommerce/analytics": "npm:^7.1.0-canary.65"
+    "@mui/material": "npm:^5.10.16"
     "@types/gapi.client.tagmanager": "npm:^2.0.4"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.4-canary.0
-    "@graphcommerce/next-ui": ^8.0.4-canary.0
-    "@graphcommerce/prettier-config-pwa": ^8.0.4-canary.0
-    "@graphcommerce/typescript-config-pwa": ^8.0.4-canary.0
-    next: "*"
+    "@graphcommerce/eslint-config-pwa": ^7.1.0-canary.65
+    "@graphcommerce/next-ui": ^7.1.0-canary.65
+    "@graphcommerce/prettier-config-pwa": ^7.1.0-canary.65
+    "@graphcommerce/typescript-config-pwa": ^7.1.0-canary.65
+    "@mui/material": ^5.15.3
+    next: ^14
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3373,7 +3430,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-cart-payment-method@npm:8.0.4-canary.0, @graphcommerce/magento-cart-payment-method@workspace:packages/magento-cart-payment-method":
+"@graphcommerce/magento-cart-payment-method@npm:7.1.0-canary.65, @graphcommerce/magento-cart-payment-method@npm:^7.1.0-canary.65, @graphcommerce/magento-cart-payment-method@workspace:packages/magento-cart-payment-method":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-payment-method@workspace:packages/magento-cart-payment-method"
   peerDependencies:
@@ -3477,7 +3534,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-cart@npm:8.0.4-canary.0, @graphcommerce/magento-cart@workspace:packages/magento-cart":
+"@graphcommerce/magento-cart@npm:7.1.0-canary.65, @graphcommerce/magento-cart@npm:^7.1.0-canary.65, @graphcommerce/magento-cart@workspace:packages/magento-cart":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart@workspace:packages/magento-cart"
   peerDependencies:
@@ -3645,68 +3702,70 @@ __metadata:
   dependencies:
     "@apollo/client": "npm:~3.8.10"
     "@ducanh2912/next-pwa": "npm:9.7.2"
-    "@graphcommerce/cli": "npm:8.0.4-canary.0"
-    "@graphcommerce/demo-magento-graphcommerce": "npm:8.0.4-canary.0"
-    "@graphcommerce/ecommerce-ui": "npm:8.0.4-canary.0"
-    "@graphcommerce/eslint-config-pwa": "npm:8.0.4-canary.0"
-    "@graphcommerce/framer-next-pages": "npm:8.0.4-canary.0"
-    "@graphcommerce/framer-scroller": "npm:8.0.4-canary.0"
-    "@graphcommerce/framer-utils": "npm:8.0.4-canary.0"
-    "@graphcommerce/googleanalytics": "npm:8.0.4-canary.0"
-    "@graphcommerce/googlerecaptcha": "npm:8.0.4-canary.0"
-    "@graphcommerce/googletagmanager": "npm:8.0.4-canary.0"
-    "@graphcommerce/graphcms-ui": "npm:8.0.4-canary.0"
-    "@graphcommerce/graphql": "npm:8.0.4-canary.0"
-    "@graphcommerce/graphql-mesh": "npm:8.0.4-canary.0"
-    "@graphcommerce/hygraph-cli": "npm:8.0.4-canary.0"
-    "@graphcommerce/hygraph-dynamic-rows": "npm:8.0.4-canary.0"
-    "@graphcommerce/image": "npm:8.0.4-canary.0"
-    "@graphcommerce/lingui-next": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-cart": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-cart-billing-address": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-cart-checkout": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-cart-coupon": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-cart-email": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-cart-items": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-cart-payment-method": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-cart-shipping-address": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-cart-shipping-method": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-category": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-cms": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-compare": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-customer": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-graphql": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-newsletter": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-payment-included": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-product": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-product-bundle": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-product-configurable": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-product-downloadable": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-product-grouped": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-product-simple": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-product-virtual": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-recently-viewed-products": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-review": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-search": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-store": "npm:8.0.4-canary.0"
-    "@graphcommerce/magento-wishlist": "npm:8.0.4-canary.0"
-    "@graphcommerce/next-config": "npm:8.0.4-canary.0"
-    "@graphcommerce/next-ui": "npm:8.0.4-canary.0"
-    "@graphcommerce/prettier-config-pwa": "npm:8.0.4-canary.0"
-    "@graphcommerce/react-hook-form": "npm:8.0.4-canary.0"
-    "@graphcommerce/typescript-config-pwa": "npm:8.0.4-canary.0"
-    "@lingui/cli": "npm:4.7.0"
-    "@lingui/core": "npm:4.7.0"
-    "@lingui/macro": "npm:4.7.0"
-    "@lingui/react": "npm:4.7.0"
-    "@mui/lab": "npm:5.0.0-alpha.161"
-    "@mui/material": "npm:5.15.5"
-    "@next/env": "npm:14.1.0"
-    "@parcel/watcher": "npm:^2.4.0"
-    "@playwright/test": "npm:1.41.0"
-    "@types/node": "npm:^18"
-    "@types/react": "npm:^18.2.48"
-    "@types/react-dom": "npm:^18.2.18"
+    "@graphcommerce/analytics": "npm:7.1.0-canary.65"
+    "@graphcommerce/cli": "npm:7.1.0-canary.65"
+    "@graphcommerce/demo-magento-graphcommerce": "npm:7.1.0-canary.65"
+    "@graphcommerce/ecommerce-ui": "npm:7.1.0-canary.65"
+    "@graphcommerce/eslint-config-pwa": "npm:7.1.0-canary.65"
+    "@graphcommerce/framer-next-pages": "npm:7.1.0-canary.65"
+    "@graphcommerce/framer-scroller": "npm:7.1.0-canary.65"
+    "@graphcommerce/framer-utils": "npm:7.1.0-canary.65"
+    "@graphcommerce/googleanalytics": "npm:7.1.0-canary.65"
+    "@graphcommerce/googlerecaptcha": "npm:7.1.0-canary.65"
+    "@graphcommerce/googletagmanager": "npm:7.1.0-canary.65"
+    "@graphcommerce/graphcms-ui": "npm:7.1.0-canary.65"
+    "@graphcommerce/graphql": "npm:7.1.0-canary.65"
+    "@graphcommerce/graphql-mesh": "npm:7.1.0-canary.65"
+    "@graphcommerce/hygraph-cli": "npm:7.1.0-canary.65"
+    "@graphcommerce/hygraph-dynamic-rows": "npm:7.1.0-canary.65"
+    "@graphcommerce/image": "npm:7.1.0-canary.65"
+    "@graphcommerce/lingui-next": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-cart": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-cart-billing-address": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-cart-checkout": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-cart-coupon": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-cart-email": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-cart-items": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-cart-payment-method": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-cart-shipping-address": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-cart-shipping-method": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-category": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-cms": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-compare": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-customer": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-graphql": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-newsletter": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-payment-included": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-product": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-product-bundle": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-product-configurable": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-product-downloadable": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-product-grouped": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-product-simple": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-product-virtual": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-recently-viewed-products": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-review": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-search": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-store": "npm:7.1.0-canary.65"
+    "@graphcommerce/magento-wishlist": "npm:7.1.0-canary.65"
+    "@graphcommerce/next-config": "npm:7.1.0-canary.65"
+    "@graphcommerce/next-ui": "npm:7.1.0-canary.65"
+    "@graphcommerce/prettier-config-pwa": "npm:7.1.0-canary.65"
+    "@graphcommerce/react-hook-form": "npm:7.1.0-canary.65"
+    "@graphcommerce/typescript-config-pwa": "npm:7.1.0-canary.65"
+    "@lingui/cli": "npm:4.5.0"
+    "@lingui/core": "npm:4.5.0"
+    "@lingui/macro": "npm:4.5.0"
+    "@lingui/react": "npm:4.5.0"
+    "@mui/lab": "npm:5.0.0-alpha.152"
+    "@mui/material": "npm:5.14.17"
+    "@next/env": "npm:14.0.2"
+    "@parcel/watcher": "npm:^2.3.0"
+    "@playwright/test": "npm:1.39.0"
+    "@types/babel-plugin-macros": "npm:^3"
+    "@types/node": "npm:^16.18.61"
+    "@types/react": "npm:^18.2.37"
+    "@types/react-dom": "npm:^18.2.15"
     "@types/react-is": "npm:^18.2.4"
     babel-plugin-macros: "npm:^3.1.0"
     concurrently: "npm:8.2.2"
@@ -4100,7 +4159,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-product@npm:8.0.4-canary.0, @graphcommerce/magento-product@workspace:packages/magento-product":
+"@graphcommerce/magento-product@npm:7.1.0-canary.65, @graphcommerce/magento-product@npm:^7.1.0-canary.65, @graphcommerce/magento-product@workspace:packages/magento-product":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product@workspace:packages/magento-product"
   dependencies:
@@ -6444,9 +6503,52 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/lab@npm:5.0.0-alpha.161":
-  version: 5.0.0-alpha.161
-  resolution: "@mui/lab@npm:5.0.0-alpha.161"
+"@mui/base@npm:5.0.0-beta.30":
+  version: 5.0.0-beta.30
+  resolution: "@mui/base@npm:5.0.0-beta.30"
+  dependencies:
+    "@babel/runtime": "npm:^7.23.6"
+    "@floating-ui/react-dom": "npm:^2.0.4"
+    "@mui/types": "npm:^7.2.12"
+    "@mui/utils": "npm:^5.15.3"
+    "@popperjs/core": "npm:^2.11.8"
+    clsx: "npm:^2.0.0"
+    prop-types: "npm:^15.8.1"
+  peerDependencies:
+    "@types/react": ^17.0.0 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+    react-dom: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: a6009f4f16e5e0c8a6d5c649b602ab60561c7abf16dac2d71f80a277fd1326e07403628567c7bcbf80b3092620d811ca26ff7efa95a29dd495dbe883d96a64ff
+  languageName: node
+  linkType: hard
+
+"@mui/core-downloads-tracker@npm:^5.14.17":
+  version: 5.14.17
+  resolution: "@mui/core-downloads-tracker@npm:5.14.17"
+  checksum: 44c348fe4b27889fcca2fc486300ec193fe4fe18943acdbbb69d2635ad0bab4cc3e6faed7787c1c3e0acc724733eeaae09cfd843019e7fa0d3c3e9f2849e6c4c
+  languageName: node
+  linkType: hard
+
+"@mui/core-downloads-tracker@npm:^5.14.7":
+  version: 5.14.18
+  resolution: "@mui/core-downloads-tracker@npm:5.14.18"
+  checksum: 28ef7a9d45a1612398b2c27750b8759b2f5dfd82e923c4a3002748c9cbd8e1095d3dd28bece426a2ec5543cbc2e02ea1c39f68e1f28d6b9a93d537aa9cbcc5cc
+  languageName: node
+  linkType: hard
+
+"@mui/core-downloads-tracker@npm:^5.15.3":
+  version: 5.15.3
+  resolution: "@mui/core-downloads-tracker@npm:5.15.3"
+  checksum: 44f179462d8560843f530b53d3e9058f6b794719619b9beedc98dba6b9756690e8234be3d84fb0e691fb46307bcd898c8add66c17dcf9cd421d67dbafcabe28a
+  languageName: node
+  linkType: hard
+
+"@mui/lab@npm:5.0.0-alpha.152":
+  version: 5.0.0-alpha.152
+  resolution: "@mui/lab@npm:5.0.0-alpha.152"
   dependencies:
     "@babel/runtime": "npm:^7.23.8"
     "@mui/base": "npm:5.0.0-beta.32"
@@ -6523,11 +6625,95 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/styled-engine@npm:^5.15.5":
-  version: 5.15.5
-  resolution: "@mui/styled-engine@npm:5.15.5"
+"@mui/material@npm:^5.10.16":
+  version: 5.15.3
+  resolution: "@mui/material@npm:5.15.3"
   dependencies:
-    "@babel/runtime": "npm:^7.23.8"
+    "@babel/runtime": "npm:^7.23.6"
+    "@mui/base": "npm:5.0.0-beta.30"
+    "@mui/core-downloads-tracker": "npm:^5.15.3"
+    "@mui/system": "npm:^5.15.3"
+    "@mui/types": "npm:^7.2.12"
+    "@mui/utils": "npm:^5.15.3"
+    "@types/react-transition-group": "npm:^4.4.10"
+    clsx: "npm:^2.0.0"
+    csstype: "npm:^3.1.2"
+    prop-types: "npm:^15.8.1"
+    react-is: "npm:^18.2.0"
+    react-transition-group: "npm:^4.4.5"
+  peerDependencies:
+    "@emotion/react": ^11.5.0
+    "@emotion/styled": ^11.3.0
+    "@types/react": ^17.0.0 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+    react-dom: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@emotion/react":
+      optional: true
+    "@emotion/styled":
+      optional: true
+    "@types/react":
+      optional: true
+  checksum: 1dcc01eb1f5de162c765578303c055033da7c803f57c69b4f5cc09841fbe238d6b90e1cbb1f0e08820aa078d41d23455120ea0656b048f6bd165d231054bdb25
+  languageName: node
+  linkType: hard
+
+"@mui/private-theming@npm:^5.14.17":
+  version: 5.14.17
+  resolution: "@mui/private-theming@npm:5.14.17"
+  dependencies:
+    "@babel/runtime": "npm:^7.23.2"
+    "@mui/utils": "npm:^5.14.17"
+    prop-types: "npm:^15.8.1"
+  peerDependencies:
+    "@types/react": ^17.0.0 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: ba1a99ff4cebee4824018369490c4c4be9d9c844c786592982f46640acea6434ceafd4d7b59d2e9cbd7a2ea9ef3544282b05482d5a53af4bb119eeee3284b1f6
+  languageName: node
+  linkType: hard
+
+"@mui/private-theming@npm:^5.14.18":
+  version: 5.14.18
+  resolution: "@mui/private-theming@npm:5.14.18"
+  dependencies:
+    "@babel/runtime": "npm:^7.23.2"
+    "@mui/utils": "npm:^5.14.18"
+    prop-types: "npm:^15.8.1"
+  peerDependencies:
+    "@types/react": ^17.0.0 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 36bb2ecb1e853addbe60a2b54265a74daba154d678dee89e09b2f2e17a5bd1305a0148ed290216d916e12644f24a1c96e4750ab6f3bb6f08acde71d3d8ee0a34
+  languageName: node
+  linkType: hard
+
+"@mui/private-theming@npm:^5.15.3":
+  version: 5.15.3
+  resolution: "@mui/private-theming@npm:5.15.3"
+  dependencies:
+    "@babel/runtime": "npm:^7.23.6"
+    "@mui/utils": "npm:^5.15.3"
+    prop-types: "npm:^15.8.1"
+  peerDependencies:
+    "@types/react": ^17.0.0 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 3eff09ad01652055fc9f27a638147a76231fd3dc158b43e2279e471c9ac12188c19500b185911f8911eb89b20241633e16541d1c1b5286280f88841a254a6b93
+  languageName: node
+  linkType: hard
+
+"@mui/styled-engine@npm:^5.14.17":
+  version: 5.14.17
+  resolution: "@mui/styled-engine@npm:5.14.17"
+  dependencies:
+    "@babel/runtime": "npm:^7.23.2"
     "@emotion/cache": "npm:^11.11.0"
     csstype: "npm:^3.1.2"
     prop-types: "npm:^15.8.1"
@@ -6548,12 +6734,54 @@ __metadata:
   version: 5.15.5
   resolution: "@mui/system@npm:5.15.5"
   dependencies:
-    "@babel/runtime": "npm:^7.23.8"
-    "@mui/private-theming": "npm:^5.15.5"
-    "@mui/styled-engine": "npm:^5.15.5"
-    "@mui/types": "npm:^7.2.13"
-    "@mui/utils": "npm:^5.15.5"
-    clsx: "npm:^2.1.0"
+    "@babel/runtime": "npm:^7.23.2"
+    "@emotion/cache": "npm:^11.11.0"
+    csstype: "npm:^3.1.2"
+    prop-types: "npm:^15.8.1"
+  peerDependencies:
+    "@emotion/react": ^11.4.1
+    "@emotion/styled": ^11.3.0
+    react: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@emotion/react":
+      optional: true
+    "@emotion/styled":
+      optional: true
+  checksum: fbe0dfc265be09672b8df315c96385024286d6f3ae2adb61af2f7c018553c7eb933addfc48f8dfae16dfb5eba88a41d9a21928e2b4dd073ab6dec634f190fd03
+  languageName: node
+  linkType: hard
+
+"@mui/styled-engine@npm:^5.15.3":
+  version: 5.15.3
+  resolution: "@mui/styled-engine@npm:5.15.3"
+  dependencies:
+    "@babel/runtime": "npm:^7.23.6"
+    "@emotion/cache": "npm:^11.11.0"
+    csstype: "npm:^3.1.2"
+    prop-types: "npm:^15.8.1"
+  peerDependencies:
+    "@emotion/react": ^11.4.1
+    "@emotion/styled": ^11.3.0
+    react: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@emotion/react":
+      optional: true
+    "@emotion/styled":
+      optional: true
+  checksum: d4a92e2595b2d79268966da4398dbc24863d297df5c3b0614a1c04c93b985dfed2f88ef75a0afeaeed4d3bfede5b2cb3ba5ed9d33302fa4c9cfbed3b841d234b
+  languageName: node
+  linkType: hard
+
+"@mui/system@npm:^5.14.17":
+  version: 5.14.17
+  resolution: "@mui/system@npm:5.14.17"
+  dependencies:
+    "@babel/runtime": "npm:^7.23.2"
+    "@mui/private-theming": "npm:^5.14.17"
+    "@mui/styled-engine": "npm:^5.14.17"
+    "@mui/types": "npm:^7.2.8"
+    "@mui/utils": "npm:^5.14.17"
+    clsx: "npm:^2.0.0"
     csstype: "npm:^3.1.2"
     prop-types: "npm:^15.8.1"
   peerDependencies:
@@ -6584,9 +6812,73 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/utils@npm:^5.15.5":
-  version: 5.15.5
-  resolution: "@mui/utils@npm:5.15.5"
+"@mui/system@npm:^5.15.3":
+  version: 5.15.3
+  resolution: "@mui/system@npm:5.15.3"
+  dependencies:
+    "@babel/runtime": "npm:^7.23.6"
+    "@mui/private-theming": "npm:^5.15.3"
+    "@mui/styled-engine": "npm:^5.15.3"
+    "@mui/types": "npm:^7.2.12"
+    "@mui/utils": "npm:^5.15.3"
+    clsx: "npm:^2.0.0"
+    csstype: "npm:^3.1.2"
+    prop-types: "npm:^15.8.1"
+  peerDependencies:
+    "@emotion/react": ^11.5.0
+    "@emotion/styled": ^11.3.0
+    "@types/react": ^17.0.0 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@emotion/react":
+      optional: true
+    "@emotion/styled":
+      optional: true
+    "@types/react":
+      optional: true
+  checksum: d95f75cd4038ed99fe8c7a1987772391da958743563a7e8a1a4792f7fe2bc47c2b06a889283c6e3a2243f47cf1e344e644558684e2c6cd092ad9a318db98c321
+  languageName: node
+  linkType: hard
+
+"@mui/types@npm:^7.2.12":
+  version: 7.2.12
+  resolution: "@mui/types@npm:7.2.12"
+  peerDependencies:
+    "@types/react": ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 7e1b1a7d60ef861e6e40b0f1275e348173e3b380c2cd5d4818f1c30b6d18d60e3bfef1b3371d0025be1c10a2fc210a193326c54c8aada2148ea61a1cc8e1bbe7
+  languageName: node
+  linkType: hard
+
+"@mui/types@npm:^7.2.4, @mui/types@npm:^7.2.9":
+  version: 7.2.9
+  resolution: "@mui/types@npm:7.2.9"
+  peerDependencies:
+    "@types/react": ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 8c3258762820a65c5bc66ab7a3f12d264ea20db63635a3343dad93cde5727a97aeb37c2d02fb16d67f7969a2029de7f82bb40ac72e8fceceae9b8914fb782077
+  languageName: node
+  linkType: hard
+
+"@mui/types@npm:^7.2.8":
+  version: 7.2.8
+  resolution: "@mui/types@npm:7.2.8"
+  peerDependencies:
+    "@types/react": ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: ea313c0292a9efdfe8c72d95e2ae88de45c3c999d361d0d2a4ca69a162e9f1dbf1d4a6bb30d6972e8574c8ece8586c35473aa5bf297963dd5dc19c68bc27c28e
+  languageName: node
+  linkType: hard
+
+"@mui/utils@npm:^5.14.17":
+  version: 5.14.17
+  resolution: "@mui/utils@npm:5.14.17"
   dependencies:
     "@babel/runtime": "npm:^7.23.8"
     "@types/prop-types": "npm:^15.7.11"
@@ -6609,7 +6901,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/env@npm:^13.4.3":
+"@mui/utils@npm:^5.15.3":
+  version: 5.15.3
+  resolution: "@mui/utils@npm:5.15.3"
+  dependencies:
+    "@babel/runtime": "npm:^7.23.6"
+    "@types/prop-types": "npm:^15.7.11"
+    prop-types: "npm:^15.8.1"
+    react-is: "npm:^18.2.0"
+  peerDependencies:
+    "@types/react": ^17.0.0 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: dd2711bfe7ef90af0dd300940dacc458dc6145baf62b9674f5ec4904261204e84feeb45678afa009965cc60ea429ebd57a390da5dec73a873dbcef00ee95a9f2
+  languageName: node
+  linkType: hard
+
+"@next/env@npm:13.5.6, @next/env@npm:^13.4.3":
   version: 13.5.6
   resolution: "@next/env@npm:13.5.6"
   checksum: 10c0/b1fefa21b698397a2f922ee53a5ecb91ff858f042b2a198652b9de49c031fc5e00d79da92ba7d84ef205e95368d5afbb0f104abaf00e9dde7985d9eae63bb4fb
@@ -7677,7 +7987,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prop-types@npm:*, @types/prop-types@npm:^15.7.11":
+"@types/prop-types@npm:*, @types/prop-types@npm:^15.7.9":
+  version: 15.7.10
+  resolution: "@types/prop-types@npm:15.7.10"
+  checksum: 964348d05cdf7399260b3179fbd1462b23d7452dc39fbccb319e54ed6ffafb0a01c0a62c3e6f7c944a635c7a4ad5c99d62c4787c9c4b74e2ec07aebaf6cfedc1
+  languageName: node
+  linkType: hard
+
+"@types/prop-types@npm:^15.7.10, @types/prop-types@npm:^15.7.11":
   version: 15.7.11
   resolution: "@types/prop-types@npm:15.7.11"
   checksum: 10c0/e53423cf9d510515ef8b47ff42f4f1b65a7b7b37c8704e2dbfcb9a60defe0c0e1f3cb1acfdeb466bad44ca938d7c79bffdd51b48ffb659df2432169d0b27a132
@@ -7712,6 +8029,15 @@ __metadata:
 "@types/react-transition-group@npm:^4.4.10":
   version: 4.4.10
   resolution: "@types/react-transition-group@npm:4.4.10"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: 3eb9bca143abc21eb781aa5cb1bded0c9335689d515bf0513fb8e63217b7a8122c6a323ecd5644a06938727e1f467ee061d8df1c93b68825a80ff1b47ab777a2
+  languageName: node
+  linkType: hard
+
+"@types/react-transition-group@npm:^4.4.6, @types/react-transition-group@npm:^4.4.8":
+  version: 4.4.9
+  resolution: "@types/react-transition-group@npm:4.4.9"
   dependencies:
     "@types/react": "npm:*"
   checksum: 10c0/3eb9bca143abc21eb781aa5cb1bded0c9335689d515bf0513fb8e63217b7a8122c6a323ecd5644a06938727e1f467ee061d8df1c93b68825a80ff1b47ab777a2
