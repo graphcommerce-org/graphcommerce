@@ -1,52 +1,38 @@
 import { ContentArea, PageContent, pageContent } from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  GetStaticProps,
-  MetaRobots,
-  LayoutOverlayHeader,
-  LayoutTitle,
-  PageMeta,
-} from '@graphcommerce/next-ui'
-import { Box, Typography } from '@mui/material'
+import { GetStaticProps, LayoutOverlayHeader, LayoutTitle, PageMeta } from '@graphcommerce/next-ui'
+import { Box } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import { LayoutDocument, LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
+import {
+  LayoutDocument,
+  LayoutOverlay,
+  LayoutOverlayProps,
+  productListRenderer,
+} from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = HygraphPagesQuery & { content: PageContent }
+type Props = { content: PageContent }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props, RouteProps>
 
 function ModalPage(props: Props) {
-  const { content, pages } = props
-  const page = pages?.[0]
-
-  if (!pages?.[0]) return <div />
-
-  const metaRobots = page?.metaRobots.toLowerCase().split('_').flat(1) as MetaRobots[]
+  const { content } = props
 
   return (
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span'>
-          {page.title}
+          {content.title}
         </LayoutTitle>
       </LayoutOverlayHeader>
-      <PageMeta
-        title={page.metaTitle ?? ''}
-        metaDescription={page.metaDescription}
-        metaRobots={metaRobots ?? ['noindex']}
-      />
+      <PageMeta metadata={content.metadata} />
       <Box pt={4}>
-        <LayoutTitle>{page.title}</LayoutTitle>
-        <Typography variant='body1' align='center'>
-          {page.metaDescription ?? ''}
-        </Typography>
+        <LayoutTitle>{content.title}</LayoutTitle>
       </Box>
 
-      <ContentArea content={content} />
+      <ContentArea content={content} productListRenderer={productListRenderer} />
     </>
   )
 }
@@ -75,11 +61,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const staticClient = graphqlSsrClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
-  const page = hygraphPageContent(staticClient, `modal/${urlKey}`)
   const content = pageContent(staticClient, `modal/${urlKey}`)
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+  if ((await content).notFound) return { notFound: true }
 
   return {
     props: {

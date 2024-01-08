@@ -8,6 +8,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import type {} from '@graphcommerce/next-config'
 import { storefrontConfig } from '../hooks'
+import { PageMetaNew, PageMetaPropsNew } from './PageMetaNew'
 
 // https://developers.google.com/search/docs/advanced/robots/robots_meta_tag#directives
 export type MetaRobots =
@@ -25,7 +26,7 @@ type MetaRobotsAll = ['all' | 'none']
 
 type Canonical = `http://${string}` | `https://${string}` | `/${string}` | string
 
-export type PageMetaProps = {
+type PageMetaPropsOld = {
   title: string
   canonical?: Canonical
   metaDescription?: string
@@ -35,6 +36,12 @@ export type PageMetaProps = {
   ogImageUseFallback?: boolean
   ogType?: string | null
 }
+
+export function isPageMetaPropsNew(props: PageMetaProps): props is PageMetaPropsNew {
+  return 'metadata' in props
+}
+
+export type PageMetaProps = PageMetaPropsNew | PageMetaPropsOld
 
 type PartialNextRouter = Pick<
   NextRouter,
@@ -91,7 +98,7 @@ export function useCanonical(incoming?: Canonical) {
   return canonicalize(router, incoming)
 }
 
-export function PageMeta(props: PageMetaProps) {
+export function PageMetaOld(props: PageMetaPropsOld) {
   const { active } = usePageContext()
   const {
     children,
@@ -109,7 +116,7 @@ export function PageMeta(props: PageMetaProps) {
   if (!active) return null
   return (
     <Head>
-      <title>{title.trim()}</title>
+      <title>{title}</title>
       {metaDescription && (
         <>
           <meta name='description' content={metaDescription.trim()} key='meta-description' />
@@ -128,4 +135,8 @@ export function PageMeta(props: PageMetaProps) {
       {children}
     </Head>
   )
+}
+
+export function PageMeta(props: PageMetaProps) {
+  return isPageMetaPropsNew(props) ? <PageMetaNew {...props} /> : <PageMetaOld {...props} />
 }

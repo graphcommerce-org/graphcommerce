@@ -1,10 +1,6 @@
 import { ContentArea, PageContent, pageContent } from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import {
-  PagesStaticPathsDocument,
-  hygraphPageContent,
-  HygraphPagesQuery,
-} from '@graphcommerce/graphcms-ui'
+import { PagesStaticPathsDocument } from '@graphcommerce/graphcms-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -15,36 +11,32 @@ import {
   LayoutOverlay,
   LayoutOverlayProps,
   LayoutNavigationProps,
+  productListRenderer,
 } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = HygraphPagesQuery & { content: PageContent }
+type Props = { content: PageContent }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ServicePage(props: Props) {
   const { content, pages } = props
-  const title = pages?.[0].title ?? ''
 
   return (
     <>
-      <PageMeta
-        title={title}
-        metaDescription={title}
-        canonical={pages?.[0]?.url ? `/${pages[0].url}` : undefined}
-      />
+      <PageMeta metadata={content.metadata} />
       <LayoutOverlayHeader>
         <LayoutTitle component='span' size='small'>
-          {title}
+          {content.title}
         </LayoutTitle>
       </LayoutOverlayHeader>
 
       <Container maxWidth='md'>
-        <LayoutTitle>{title}</LayoutTitle>
+        <LayoutTitle>{content.title}</LayoutTitle>
       </Container>
 
-      <ContentArea content={content} />
+      <ContentArea content={content} productListRenderer={productListRenderer} />
     </>
   )
 }
@@ -83,11 +75,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
-  const page = hygraphPageContent(staticClient, url)
   const content = pageContent(staticClient, url)
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+  if ((await content).notFound) return { notFound: true }
 
   const isRoot = url === 'service'
 

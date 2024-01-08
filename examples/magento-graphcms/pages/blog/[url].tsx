@@ -1,6 +1,5 @@
 import { ContentArea, PageContent, pageContent } from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   PageMeta,
@@ -22,11 +21,11 @@ import {
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
-  RowRenderer,
+  productListRenderer,
 } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = HygraphPagesQuery & BlogListQuery & { content: PageContent }
+type Props = BlogListQuery & { content: PageContent }
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
@@ -52,7 +51,7 @@ function BlogPage(props: Props) {
         {page.author ? <BlogAuthor author={page.author} date={page.date} /> : null}
         {page.asset ? <BlogHeader asset={page.asset} /> : null}
 
-        <ContentArea content={content} />
+        <ContentArea content={content} productListRenderer={productListRenderer} />
 
         <BlogTags relatedPages={page.relatedPages} />
       </Row>
@@ -90,7 +89,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const limit = 4
   const conf = client.query({ query: StoreConfigDocument })
 
-  const page = hygraphPageContent(staticClient, `blog/${urlKey}`)
   const content = pageContent(staticClient, `blog/${urlKey}`)
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
@@ -98,12 +96,11 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     query: BlogListDocument,
     variables: { currentUrl: [`blog/${urlKey}`], first: limit },
   })
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+  if ((await content).notFound) return { notFound: true }
 
   return {
     props: {
       content: await content,
-      ...(await page).data,
       ...(await blogPosts).data,
       ...(await layout).data,
       up: { href: '/', title: 'Home' },

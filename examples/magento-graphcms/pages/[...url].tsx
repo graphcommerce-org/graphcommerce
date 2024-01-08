@@ -5,7 +5,7 @@ import {
   PageContent,
 } from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { Asset } from '@graphcommerce/graphcms-ui'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   CategoryChildren,
@@ -35,6 +35,7 @@ import {
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
+  productListRenderer,
   RowProduct,
   RowRenderer,
 } from '../components'
@@ -42,7 +43,6 @@ import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 export type CategoryProps = CategoryPageQuery &
-  HygraphPagesQuery &
   ProductListQuery &
   ProductFiltersQuery & {
     filterTypes?: FilterTypes
@@ -55,29 +55,21 @@ type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
 function CategoryPage(props: CategoryProps) {
-  const { content, categories, products, filters, params, filterTypes, pages } = props
+  const { content, categories, products, filters, params, filterTypes } = props
 
   const category = categories?.items?.[0]
   const isLanding = category?.display_mode === 'PAGE'
-  const page = pages?.[0]
   const isCategory = params && category && products?.items && filterTypes
 
   return (
     <>
-      <CategoryMeta
-        params={params}
-        title={page?.metaTitle}
-        metaDescription={page?.metaDescription}
-        metaRobots={page?.metaRobots.toLowerCase().split('_') as MetaRobots[]}
-        canonical={page?.url ? `/${page.url}` : undefined}
-        {...category}
-      />
+      <CategoryMeta metadata={content.metadata} params={params} {...category} />
 
-      <ContentAreaCategoryPageBefore content={content} />
+      <ContentAreaCategoryPageBefore content={content} productListRenderer={productListRenderer} />
 
       <LayoutHeader floatingMd>
         <LayoutTitle size='small' component='span'>
-          {category?.name ?? page.title}
+          {category?.name ?? content.title}
         </LayoutTitle>
       </LayoutHeader>
       {!isLanding && (
@@ -99,7 +91,6 @@ function CategoryPage(props: CategoryProps) {
       {isCategory && isLanding && (
         <CategoryHeroNav
           {...category}
-          asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} loading='eager' />}
           title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
         />
       )}
@@ -119,7 +110,7 @@ function CategoryPage(props: CategoryProps) {
         </>
       )}
 
-      <ContentAreaCategoryPage content={content} />
+      <ContentAreaCategoryPage content={content} productListRenderer={productListRenderer} />
 
       {/* {page && (
         <RowRenderer
@@ -181,9 +172,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     if (productListParams) productListParams.filters.category_uid = { in: [categoryUid] }
   }
 
-  const pages = hygraphPageContent(staticClient, url, category)
   const content = pageContent(staticClient, url, category)
-  const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
+  const hasPage = filteredCategoryUid ? false : (await content).notFound !== true
   const hasCategory = Boolean(productListParams && categoryUid)
 
   if (!productListParams || !(hasPage || hasCategory))
@@ -194,7 +184,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       props: {
         content: await content,
         ...(await categoryPage).data,
-        ...(await pages).data,
         ...(await layout).data,
         apolloState: await conf.then(() => client.cache.extract()),
       },
@@ -230,7 +219,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       content: await content,
       ...(await categoryPage).data,
       ...(await products).data,
-      ...(await pages).data,
       ...(await filters).data,
       ...(await layout).data,
       filterTypes: await filterTypes,

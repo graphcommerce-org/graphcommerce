@@ -1,9 +1,9 @@
 import { AddProductsToCartForm, ProductListItemsFragment } from '@graphcommerce/magento-product'
 import { ParagraphWithSidebarSlide, RenderType } from '@graphcommerce/next-ui'
 import { useTheme } from '@mui/material'
-import { productListRenderer } from '../../../../../examples/magento-graphcms/components/ProductListItems'
-import { RowProductFragment } from '../RowProduct.gql'
 import { Asset } from '../../Asset/Asset'
+import { RowProductFragment } from '../RowProduct.gql'
+import { RichText } from '../../RichText'
 
 type BackstoryProps = RowProductFragment & ProductListItemsFragment
 

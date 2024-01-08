@@ -1,4 +1,4 @@
-import type { pageContent } from '@graphcommerce/content-areas'
+import { resolveMetadata, type pageContent } from '@graphcommerce/content-areas'
 import type { MethodPlugin } from '@graphcommerce/next-config'
 import { hygraphPageContent } from '..'
 
@@ -17,8 +17,23 @@ const hygraphPageContentPlugin: MethodPlugin<typeof pageContent> = async (
     hygraphPageContent(client, url, additionalProperties, cached),
   ])
 
+  const page = content.data.pages?.[0]
+
+  if (!page) return { ...prevResults, notFound: true }
+
   return {
     ...prevResults,
+    metadata: resolveMetadata({
+      metadataBase: new URL(import.meta.graphCommerce.canonicalBaseUrl),
+      title: page.title,
+      description: page.metaDescription,
+      robots: page.metaRobots
+        ? {
+            index: !page.metaRobots.includes('noindex'),
+            follow: !page.metaRobots.includes('nofollow'),
+          }
+        : { index: true, follow: true },
+    }),
     hygraphPage: content.data.pages?.[0],
   }
 }

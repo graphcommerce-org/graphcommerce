@@ -6,7 +6,6 @@ import {
   SidebarSliderProps,
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
-import { productListRenderer } from '../../../../../examples/magento-graphcms/components/ProductListItems/productListRenderer'
 import { RowProductFragment } from '../RowProduct.gql'
 
 type RelatedProps = RowProductFragment & RelatedProductsFragment & Pick<SidebarSliderProps, 'sx'>

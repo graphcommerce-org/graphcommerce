@@ -1,6 +1,5 @@
 import { ContentArea, PageContent, pageContent } from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   PageMeta,
@@ -22,10 +21,11 @@ import {
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
+  productListRenderer,
 } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
-type Props = HygraphPagesQuery & BlogListQuery & BlogPathsQuery & { content: PageContent }
+type Props = BlogListQuery & BlogPathsQuery & { content: PageContent }
 type RouteProps = { page: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
@@ -63,7 +63,7 @@ function BlogPage(props: Props) {
         )}
       />
 
-      <ContentArea content={content} />
+      <ContentArea content={content} productListRenderer={productListRenderer} />
     </>
   )
 }
@@ -98,7 +98,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
-  const defaultPage = hygraphPageContent(staticClient, 'blog')
   const content = pageContent(staticClient, 'blog')
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
@@ -108,14 +107,13 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   })
   const blogPaths = staticClient.query({ query: BlogPathsDocument })
 
-  if (!(await defaultPage).data.pages?.[0]) return { notFound: true }
+  if ((await content).notFound) return { notFound: true }
   if (!(await blogPosts).data.blogPosts.length) return { notFound: true }
   if (Number(params?.page) <= 0) return { notFound: true }
 
   return {
     props: {
       content: await content,
-      ...(await defaultPage).data,
       ...(await blogPosts).data,
       ...(await blogPaths).data,
       ...(await layout).data,

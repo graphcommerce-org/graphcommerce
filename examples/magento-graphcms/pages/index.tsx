@@ -1,11 +1,5 @@
-import {
-  ContentAreaHome,
-  ContentAreaProps,
-  PageContent,
-  pageContent,
-} from '@graphcommerce/content-areas'
+import { ContentAreaHome, PageContent, pageContent } from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutHeader, MetaRobots, PageMeta } from '@graphcommerce/next-ui'
@@ -13,12 +7,11 @@ import {
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
-  RowProduct,
-  RowRenderer,
+  productListRenderer,
 } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
-type Props = HygraphPagesQuery & {
+type Props = {
   latestList: ProductListQuery
   favoritesList: ProductListQuery
   swipableList: ProductListQuery
@@ -28,8 +21,7 @@ type RouteProps = { url: string }
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function CmsPage(props: Props) {
-  const { content, pages, latestList, favoritesList, swipableList } = props
-  const page = pages?.[0]
+  const { content, latestList, favoritesList, swipableList } = props
 
   const latest = latestList?.products?.items?.[0]
   const favorite = favoritesList?.products?.items?.[0]
@@ -37,16 +29,11 @@ function CmsPage(props: Props) {
 
   return (
     <>
-      <PageMeta
-        title={page?.metaTitle ?? page?.title ?? ''}
-        metaDescription={page?.metaDescription ?? ''}
-        metaRobots={page?.metaRobots.toLowerCase().split('_') as MetaRobots[] | undefined}
-        canonical='/'
-      />
+      <PageMeta metadata={content.metadata} canonical='/' />
 
       <LayoutHeader floatingMd floatingSm />
 
-      <ContentAreaHome content={content} />
+      <ContentAreaHome content={content} productListRenderer={productListRenderer} />
 
       {/* {page && (
         <RowRenderer
@@ -87,7 +74,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = graphqlSsrClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
-  const page = hygraphPageContent(staticClient, 'page/home')
   const content = pageContent(staticClient, 'page/home')
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
@@ -107,12 +93,11 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     variables: { pageSize: 8, filters: { category_uid: { eq: 'MTIy' } } },
   })
 
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+  if ((await content).notFound) return { notFound: true }
 
   return {
     props: {
       content: await content,
-      ...(await page).data,
       ...(await layout).data,
       latestList: (await latestList).data,
       favoritesList: (await favoritesList).data,
