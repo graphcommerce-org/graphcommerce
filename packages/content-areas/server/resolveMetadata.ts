@@ -1,9 +1,6 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
-import {
-  createDefaultMetadata,
-  createDefaultViewport,
-} from 'next/dist/lib/metadata/default-metadata'
+import { createDefaultMetadata } from 'next/dist/lib/metadata/default-metadata'
 import { resolveAsArrayOrUndefined } from 'next/dist/lib/metadata/generate/utils'
 import {
   resolveAlternates,
@@ -22,13 +19,12 @@ import { resolveTitle } from 'next/dist/lib/metadata/resolvers/resolve-title'
 import type {
   Metadata,
   ResolvedMetadata,
-  ResolvedViewport,
   ResolvingMetadata,
   ResolvingViewport,
   Viewport,
 } from 'next/dist/lib/metadata/types/metadata-interface'
-import type { AbsoluteTemplateString } from 'next/dist/lib/metadata/types/metadata-types'
 import type { MetadataContext } from 'next/dist/lib/metadata/types/resolvers'
+import { ReducedMetadata, ReducedResolvedMetadata } from '../types'
 
 type MetadataResolver = (parent: ResolvingMetadata) => Metadata | Promise<Metadata>
 type ViewportResolver = (parent: ResolvingViewport) => Viewport | Promise<Viewport>
@@ -48,15 +44,6 @@ export type BuildState = {
   warnings: Set<string>
 }
 
-type ReducedMetadata = Omit<
-  Metadata,
-  | 'viewport'
-  | 'themeColor'
-  | 'colorScheme'
-  | 'apple-touch-fullscreen'
-  | 'apple-touch-icon-precomposed'
->
-
 // Merge the source metadata into the resolved target metadata.
 export function resolveMetadata(
   source: ReducedMetadata | null,
@@ -70,7 +57,7 @@ export function resolveMetadata(
     metadataContext: { pathname: '/' },
     titleTemplates: { openGraph: null, title: null, twitter: null },
   },
-): ResolvedMetadata {
+): ReducedResolvedMetadata {
   const target: ResolvedMetadata = createDefaultMetadata()
   // If there's override metadata, prefer it otherwise fallback to the default metadata.
   const metadataBase =

@@ -22,6 +22,7 @@ const nextConfig = {
   },
   experimental: {
     scrollRestoration: true,
+    swcPlugins: [['next-superjson-plugin', { excluded: [] }]],
   },
   optimizeFonts: false,
   images: {
@@ -29,9 +30,6 @@ const nextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: true,
-  },
-  experimental: {
-    scrollRestoration: true,
   },
 }
 

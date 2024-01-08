@@ -2668,12 +2668,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/content-areas@workspace:packages/content-areas":
+"@graphcommerce/content-areas@npm:8.0.0-canary.74, @graphcommerce/content-areas@workspace:packages/content-areas":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/content-areas@workspace:packages/content-areas"
   peerDependencies:
     "@graphcommerce/eslint-config-pwa": ^8.0.0-canary.74
     "@graphcommerce/graphql": ^8.0.0-canary.74
+    "@graphcommerce/magento-product": ^8.0.0-canary.74
     "@graphcommerce/next-ui": ^8.0.0-canary.74
     "@graphcommerce/prettier-config-pwa": ^8.0.0-canary.74
     "@graphcommerce/react-hook-form": ^8.0.0-canary.74
@@ -3643,6 +3644,7 @@ __metadata:
     "@apollo/client": "npm:~3.8.8"
     "@ducanh2912/next-pwa": "npm:9.7.2"
     "@graphcommerce/cli": "npm:8.0.0-canary.74"
+    "@graphcommerce/content-areas": "npm:8.0.0-canary.74"
     "@graphcommerce/demo-magento-graphcommerce": "npm:8.0.0-canary.74"
     "@graphcommerce/ecommerce-ui": "npm:8.0.0-canary.74"
     "@graphcommerce/eslint-config-pwa": "npm:8.0.0-canary.74"
@@ -3714,12 +3716,14 @@ __metadata:
     graphql: "npm:^16.8.1"
     next: "npm:14.0.4"
     next-sitemap: "npm:4.2.3"
+    next-superjson-plugin: "npm:^0.5.10"
     patch-package: "npm:8.0.0"
     prettier: "npm:3.1.1"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     react-hook-form: "npm:^7.49.0"
     sharp: "npm:0.33.0"
+    superjson: "npm:^1"
     type-fest: "npm:^4.8.3"
     typescript: "npm:5.3.3"
     webpack: "npm:5.89.0"
@@ -9642,6 +9646,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"copy-anything@npm:^3.0.2":
+  version: 3.0.5
+  resolution: "copy-anything@npm:3.0.5"
+  dependencies:
+    is-what: "npm:^4.1.8"
+  checksum: 01eadd500c7e1db71d32d95a3bfaaedcb839ef891c741f6305ab0461398056133de08f2d1bf4c392b364e7bdb7ce498513896e137a7a183ac2516b065c28a4fe
+  languageName: node
+  linkType: hard
+
 "core-js-compat@npm:^3.31.0, core-js-compat@npm:^3.33.1":
   version: 3.35.0
   resolution: "core-js-compat@npm:3.35.0"
@@ -12875,6 +12888,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-what@npm:^4.1.8":
+  version: 4.1.16
+  resolution: "is-what@npm:4.1.16"
+  checksum: 611f1947776826dcf85b57cfb7bd3b3ea6f4b94a9c2f551d4a53f653cf0cb9d1e6518846648256d46ee6c91d114b6d09d2ac8a07306f7430c5900f87466aae5b
+  languageName: node
+  linkType: hard
+
 "is-windows@npm:^1.0.0, is-windows@npm:^1.0.1":
   version: 1.0.2
   resolution: "is-windows@npm:1.0.2"
@@ -14906,6 +14926,18 @@ __metadata:
     next-sitemap: bin/next-sitemap.mjs
     next-sitemap-cjs: bin/next-sitemap.cjs
   checksum: 8a367c9db84ca249797ec900d06c267434265bf635a82bc0896d35bc0ce85eee0cf115d4340baa93dd20fde081e513115d38776b5e8a5b3fb604c7b34a8542ea
+  languageName: node
+  linkType: hard
+
+"next-superjson-plugin@npm:^0.5.10":
+  version: 0.5.10
+  resolution: "next-superjson-plugin@npm:0.5.10"
+  dependencies:
+    hoist-non-react-statics: "npm:^3.3.2"
+  peerDependencies:
+    next: ^13.0 || ^14.0
+    superjson: ^1
+  checksum: 3a7528389fc0b5317f0151d815b51c870524407c80ec13e8d877ae400822e47e029d243edfc9151084fc98950d55c2139255346f126999fdcf3163d09d7259be
   languageName: node
   linkType: hard
 
@@ -17520,6 +17552,15 @@ __metadata:
   version: 4.2.0
   resolution: "stylis@npm:4.2.0"
   checksum: a7128ad5a8ed72652c6eba46bed4f416521bc9745a460ef5741edc725252cebf36ee45e33a8615a7057403c93df0866ab9ee955960792db210bb80abd5ac6543
+  languageName: node
+  linkType: hard
+
+"superjson@npm:^1":
+  version: 1.13.3
+  resolution: "superjson@npm:1.13.3"
+  dependencies:
+    copy-anything: "npm:^3.0.2"
+  checksum: 389a0a0c86884dd0558361af5d6d7f37102b71dda9595a665fe8b39d1ba0e57c859e39a9bd79b6f1fde6f4dcceac49a1c205f248d292744b2a340ee52846efdb
   languageName: node
   linkType: hard
 
