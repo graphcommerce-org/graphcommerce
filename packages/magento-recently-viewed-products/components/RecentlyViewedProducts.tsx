@@ -1,4 +1,4 @@
-import { ProductListItemRenderer, ProductScroller } from '@graphcommerce/magento-product'
+import { ProductScroller, ProductScrollerProps } from '@graphcommerce/magento-product'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import {
@@ -7,13 +7,11 @@ import {
   useRecentlyViewedSkus,
 } from '../hooks'
 
-export type RecentlyViewedProductsProps = UseRecentlyViewedProductsProps & {
-  title?: React.ReactNode
-  productListRenderer: ProductListItemRenderer
-  loading?: 'lazy' | 'eager'
-}
+export type RecentlyViewedProductsProps = Omit<UseRecentlyViewedProductsProps, 'skip'> &
+  Omit<ProductScrollerProps, 'items'> & { loading?: 'lazy' | 'eager' }
+
 export function RecentlyViewedProducts(props: RecentlyViewedProductsProps) {
-  const { exclude, title, productListRenderer, loading = 'lazy' } = props
+  const { exclude, title, productListRenderer, loading = 'lazy', ...scrollerProps } = props
 
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { margin: '300px', once: true })
@@ -22,7 +20,7 @@ export function RecentlyViewedProducts(props: RecentlyViewedProductsProps) {
 
   if (
     !import.meta.graphCommerce.recentlyViewedProducts?.enabled ||
-    (!productList.loading && !skus.length)
+    (!productList.loading && !productList.products.length)
   ) {
     return null
   }
@@ -38,6 +36,7 @@ export function RecentlyViewedProducts(props: RecentlyViewedProductsProps) {
       productListRenderer={productListRenderer}
       title={title}
       items={[...loadingProducts, ...productList.products]}
+      {...scrollerProps}
     />
   )
 }

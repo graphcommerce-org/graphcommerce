@@ -112,9 +112,6 @@ export async function redirectOrNotFound(
         'GroupedProduct',
       ])
     ) {
-      if (import.meta.graphCommerce.legacyProductRoute)
-        return notFound(from, 'Redirects are only supported for single product pages.')
-
       const productRoute = import.meta.graphCommerce.productRoute ?? '/p/'
 
       if (redirectUrl) return redirect(from, `${productRoute}${redirectUrl}`, permanent, locale)

@@ -21,11 +21,13 @@ import {
   NavigationOverlay,
   useNavigationSelection,
   useMemoDeep,
+  LazyHydrate,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'

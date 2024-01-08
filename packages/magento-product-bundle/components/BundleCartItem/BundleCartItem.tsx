@@ -1,10 +1,10 @@
 import { SelectedCustomizableOptions } from '@graphcommerce/magento-cart-items'
 import { Money } from '@graphcommerce/magento-store'
 import { Typography } from '@mui/material'
-import { BundleCartItemFragment } from './BundleCartItem.gql'
+import { BundleProductCartItemOptionsProps } from '../BundleProductCartItemOptions/BundleProductCartItemOptions'
 
-export function BundleCartItem(props: BundleCartItemFragment) {
-  const { bundle_options, customizable_options } = props
+export function BundleCartItem(props: BundleProductCartItemOptionsProps) {
+  const { bundle_options } = props
   return (
     <>
       {bundle_options.map((option) => {
@@ -26,7 +26,7 @@ export function BundleCartItem(props: BundleCartItemFragment) {
           </div>
         )
       })}
-      <SelectedCustomizableOptions customizable_options={customizable_options} />
+      <SelectedCustomizableOptions {...props} />
     </>
   )
 }

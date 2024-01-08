@@ -1,5 +1,30 @@
 # @graphcommerce/magento-compare
 
+## 8.0.0-canary.74
+
+## 8.0.0-canary.73
+
+### Patch Changes
+
+- [#2132](https://github.com/graphcommerce-org/graphcommerce/pull/2132) [`993f655`](https://github.com/graphcommerce-org/graphcommerce/commit/993f6559226f0ce2b63f372ccfc1409805b06a8d) - Fix compare button hover state on product page
+  ([@action-simon](https://github.com/action-simon))
+
+## 8.0.0-canary.72
+
+## 8.0.0-canary.71
+
+## 8.0.0-canary.70
+
+## 8.0.0-canary.69
+
+## 7.1.0-canary.68
+
+## 7.1.0-canary.67
+
+## 7.1.0-canary.66
+
+## 7.1.0-canary.65
+
 ## 7.1.0-canary.64
 
 ## 7.1.0-canary.63

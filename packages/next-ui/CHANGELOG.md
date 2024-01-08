@@ -1,5 +1,35 @@
 # Change Log
 
+## 8.0.0-canary.74
+
+### Minor Changes
+
+- [#2133](https://github.com/graphcommerce-org/graphcommerce/pull/2133) [`133f908`](https://github.com/graphcommerce-org/graphcommerce/commit/133f908200a79589036420f2925835724522cab8) - Added lazy hydration to improve total blocking time. Added LazyHydrate component which can be wrapped around other components you want to lazy hydrate.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.0-canary.73
+
+## 8.0.0-canary.72
+
+## 8.0.0-canary.71
+
+## 8.0.0-canary.70
+
+## 8.0.0-canary.69
+
+## 7.1.0-canary.68
+
+## 7.1.0-canary.67
+
+### Patch Changes
+
+- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`7fc4bb9`](https://github.com/graphcommerce-org/graphcommerce/commit/7fc4bb925c59da46961c9656a2a67b37a9c2d652) - Removed the 'NoSSR' functionality from `<WaitForQueries/>` component as it slows down rendering. The 'feature' was necessary for the following use case: When hydrating a component that was server rendered and was living inside a `<Suspense />` component. It would cause an hydration error and this was the workaround. With useSuspenseQuery and React 18, this problem will not occur.
+  ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 7.1.0-canary.66
+
+## 7.1.0-canary.65
+
 ## 7.1.0-canary.64
 
 ## 7.1.0-canary.63
@@ -1574,31 +1604,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { Trans, t } from "@lingui/macro";
 
   function MyComponent() {
-    const foo = 'bar'
+    const foo = "bar";
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    )
+    );
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from '@lingui/react'
-  import { i18n } from '@lingui/core'
+  import { Trans } from "@lingui/react";
+  import { i18n } from "@lingui/core";
 
   function MyComponent() {
-    const foo = 'bar'
+    const foo = "bar";
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
+        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
       </div>
-    )
+    );
   }
   ```
 

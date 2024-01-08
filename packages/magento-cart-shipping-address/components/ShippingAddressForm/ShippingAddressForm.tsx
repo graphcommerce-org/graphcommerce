@@ -112,6 +112,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
       return {
         ...variables,
         telephone: variables.telephone || '000 - 000 0000',
+        region: regionId ? variables.region : '',
         regionId,
         customerNote: '',
         addition: variables.addition ?? '',

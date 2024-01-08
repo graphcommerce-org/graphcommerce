@@ -33,7 +33,7 @@ config) => {
         Name: { leave: (node) => node.value },
         NamedType: {
             leave: (node) => possibleScalars[node.name] ?? `[${node.name}](#${node.name})`,
-        },
+        }, // String, Boolean, GraphCommerceDebugConfig, etc.
         StringValue: { leave: (node) => node.value },
         BooleanValue: {
             leave: (node) => (node.value ? 'true' : 'false'),

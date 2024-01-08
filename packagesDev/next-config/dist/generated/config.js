@@ -96,6 +96,7 @@ function GraphCommerceConfigSchema() {
 function GraphCommerceDebugConfigSchema() {
     return _zod.z.object({
         pluginStatus: _zod.z.boolean().nullish(),
+        sessions: _zod.z.boolean().nullish(),
         webpackCircularDependencyPlugin: _zod.z.boolean().nullish(),
         webpackDuplicatesPlugin: _zod.z.boolean().nullish()
     });
