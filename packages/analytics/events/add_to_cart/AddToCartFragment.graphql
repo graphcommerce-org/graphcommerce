@@ -1,0 +1,20 @@
+fragment AddToCartFragment on Cart @inject(into: ["CartItemCountChanged"]) {
+  items {
+    prices {
+      discounts {
+        amount {
+          currency
+          value
+        }
+      }
+      row_total_including_tax {
+        currency
+        value
+      }
+      price {
+        currency
+        value
+      }
+    }
+  }
+}

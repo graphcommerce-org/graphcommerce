@@ -1,0 +1,25 @@
+import { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
+import { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import { addToCart } from '../events/add_to_cart'
+
+export const component = 'AddProductsToCartForm'
+export const exported = '@graphcommerce/magento-product'
+export const ifConfig: IfConfig = 'googleTagmanagerId'
+
+/** When a product is added to the Cart, send a Google Analytics event */
+function AddProductsToCartForm(props: PluginProps<AddProductsToCartFormProps>) {
+  const { Prev, onComplete, ...rest } = props
+
+  return (
+    <Prev
+      {...rest}
+      onComplete={(data, variables) => {
+        if (data.data?.addProductsToCart?.cart)
+          addToCart(data.data.addProductsToCart.cart, variables)
+        return onComplete?.(data, variables)
+      }}
+    />
+  )
+}
+
+export const Plugin = AddProductsToCartForm

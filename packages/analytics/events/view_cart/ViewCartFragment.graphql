@@ -1,0 +1,35 @@
+fragment ViewCartFragment on Cart @inject(into: ["CartItemCountChanged"]) {
+  prices {
+    grand_total {
+      currency
+      value
+    }
+  }
+  items {
+    __typename
+    uid
+    product {
+      uid
+      sku
+      name
+    }
+    prices {
+      price {
+        value
+        currency
+      }
+      discounts {
+        amount {
+          value
+        }
+      }
+    }
+    quantity
+    ... on ConfigurableCartItem {
+      configured_variant {
+        uid
+        sku
+      }
+    }
+  }
+}
