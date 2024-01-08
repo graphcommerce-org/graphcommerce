@@ -1,3 +1,9 @@
+import {
+  ContentAreaCategoryPage,
+  ContentAreaCategoryPageBefore,
+  pageContent,
+  PageContent,
+} from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
@@ -38,14 +44,18 @@ import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsr
 export type CategoryProps = CategoryPageQuery &
   HygraphPagesQuery &
   ProductListQuery &
-  ProductFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
+  ProductFiltersQuery & {
+    filterTypes?: FilterTypes
+    params?: ProductListParams
+    content: PageContent
+  }
 export type CategoryRoute = { url: string[] }
 
 type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
 function CategoryPage(props: CategoryProps) {
-  const { categories, products, filters, params, filterTypes, pages } = props
+  const { content, categories, products, filters, params, filterTypes, pages } = props
 
   const category = categories?.items?.[0]
   const isLanding = category?.display_mode === 'PAGE'
@@ -62,6 +72,9 @@ function CategoryPage(props: CategoryProps) {
         canonical={page?.url ? `/${page.url}` : undefined}
         {...category}
       />
+
+      <ContentAreaCategoryPageBefore content={content} />
+
       <LayoutHeader floatingMd>
         <LayoutTitle size='small' component='span'>
           {category?.name ?? page.title}
@@ -105,7 +118,10 @@ function CategoryPage(props: CategoryProps) {
           />
         </>
       )}
-      {page && (
+
+      <ContentAreaCategoryPage content={content} />
+
+      {/* {page && (
         <RowRenderer
           content={page.content}
           renderer={{
@@ -118,7 +134,7 @@ function CategoryPage(props: CategoryProps) {
             ),
           }}
         />
-      )}
+      )} */}
     </>
   )
 }
@@ -166,6 +182,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   }
 
   const pages = hygraphPageContent(staticClient, url, category)
+  const content = pageContent(staticClient, url, category)
   const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
   const hasCategory = Boolean(productListParams && categoryUid)
 
@@ -175,6 +192,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   if (!hasCategory) {
     return {
       props: {
+        content: await content,
         ...(await categoryPage).data,
         ...(await pages).data,
         ...(await layout).data,
@@ -209,6 +227,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const result = {
     props: {
+      content: await content,
       ...(await categoryPage).data,
       ...(await products).data,
       ...(await pages).data,

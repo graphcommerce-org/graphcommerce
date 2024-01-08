@@ -1,0 +1,4 @@
+fragment BlogAuthor on Page {
+  date
+  author
+}

@@ -1,3 +1,4 @@
+import { ContentArea, PageContent, pageContent } from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -13,13 +14,13 @@ import { GetStaticPaths } from 'next'
 import { LayoutDocument, LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = HygraphPagesQuery
+type Props = HygraphPagesQuery & { content: PageContent }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props, RouteProps>
 
 function ModalPage(props: Props) {
-  const { pages } = props
+  const { content, pages } = props
   const page = pages?.[0]
 
   if (!pages?.[0]) return <div />
@@ -45,7 +46,7 @@ function ModalPage(props: Props) {
         </Typography>
       </Box>
 
-      <RowRenderer content={page.content} />
+      <ContentArea content={content} />
     </>
   )
 }
@@ -75,13 +76,14 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
 
   const conf = client.query({ query: StoreConfigDocument })
   const page = hygraphPageContent(staticClient, `modal/${urlKey}`)
-
+  const content = pageContent(staticClient, `modal/${urlKey}`)
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
 
   return {
     props: {
+      content: await content,
       ...(await page).data,
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),

@@ -1,3 +1,4 @@
+import { ContentArea, PageContent, pageContent } from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -21,11 +22,10 @@ import {
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
-  RowRenderer,
 } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
-type Props = HygraphPagesQuery & BlogListQuery & BlogPathsQuery
+type Props = HygraphPagesQuery & BlogListQuery & BlogPathsQuery & { content: PageContent }
 type RouteProps = { page: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
@@ -33,7 +33,7 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 const pageSize = 16
 
 function BlogPage(props: Props) {
-  const { pages, blogPosts, pagesConnection } = props
+  const { pages, content, blogPosts, pagesConnection } = props
   const router = useRouter()
   const page = pages[0]
   const title = page.title ?? ''
@@ -63,7 +63,7 @@ function BlogPage(props: Props) {
         )}
       />
 
-      <RowRenderer content={page.content} />
+      <ContentArea content={content} />
     </>
   )
 }
@@ -99,6 +99,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const conf = client.query({ query: StoreConfigDocument })
 
   const defaultPage = hygraphPageContent(staticClient, 'blog')
+  const content = pageContent(staticClient, 'blog')
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const blogPosts = staticClient.query({
@@ -113,6 +114,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
 
   return {
     props: {
+      content: await content,
       ...(await defaultPage).data,
       ...(await blogPosts).data,
       ...(await blogPaths).data,

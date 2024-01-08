@@ -1,3 +1,4 @@
+import { ContentArea, PageContent, pageContent } from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -16,17 +17,16 @@ import {
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
-  RowRenderer,
 } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
-type Props = HygraphPagesQuery & BlogListTaggedQuery
+type Props = HygraphPagesQuery & BlogListTaggedQuery & { content: PageContent }
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function BlogPage(props: Props) {
-  const { pages, blogPosts } = props
+  const { content, pages, blogPosts } = props
   const page = pages[0]
   const title = page.title ?? ''
 
@@ -44,7 +44,8 @@ function BlogPage(props: Props) {
 
         {page.author ? <BlogAuthor author={page.author} date={page.date} /> : null}
         {page.asset ? <BlogHeader asset={page.asset} /> : null}
-        <RowRenderer {...page} />
+
+        <ContentArea content={content} />
         <BlogTags relatedPages={page.relatedPages} />
       </Row>
       <BlogList blogPosts={blogPosts} />
@@ -83,6 +84,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const limit = 99
   const conf = client.query({ query: StoreConfigDocument })
   const page = hygraphPageContent(staticClient, `blog/tagged/${urlKey}`)
+  const content = pageContent(staticClient, `blog/tagged/${urlKey}`)
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const blogPosts = staticClient.query({
@@ -93,6 +95,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
 
   return {
     props: {
+      content: await content,
       ...(await page).data,
       ...(await blogPosts).data,
       ...(await layout).data,

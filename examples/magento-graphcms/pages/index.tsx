@@ -1,3 +1,9 @@
+import {
+  ContentAreaHome,
+  ContentAreaProps,
+  PageContent,
+  pageContent,
+} from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
@@ -16,12 +22,13 @@ type Props = HygraphPagesQuery & {
   latestList: ProductListQuery
   favoritesList: ProductListQuery
   swipableList: ProductListQuery
+  content: PageContent
 }
 type RouteProps = { url: string }
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function CmsPage(props: Props) {
-  const { pages, latestList, favoritesList, swipableList } = props
+  const { content, pages, latestList, favoritesList, swipableList } = props
   const page = pages?.[0]
 
   const latest = latestList?.products?.items?.[0]
@@ -39,7 +46,9 @@ function CmsPage(props: Props) {
 
       <LayoutHeader floatingMd floatingSm />
 
-      {page && (
+      <ContentAreaHome content={content} />
+
+      {/* {page && (
         <RowRenderer
           content={page.content}
           renderer={{
@@ -62,7 +71,7 @@ function CmsPage(props: Props) {
             },
           }}
         />
-      )}
+      )} */}
     </>
   )
 }
@@ -79,6 +88,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
 
   const conf = client.query({ query: StoreConfigDocument })
   const page = hygraphPageContent(staticClient, 'page/home')
+  const content = pageContent(staticClient, 'page/home')
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
@@ -101,6 +111,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
 
   return {
     props: {
+      content: await content,
       ...(await page).data,
       ...(await layout).data,
       latestList: (await latestList).data,

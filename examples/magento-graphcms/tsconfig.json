@@ -17,6 +17,14 @@
     "jsxImportSource": "@emotion/react",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "../../packages/hygraph-ui/components/index.ts",
+    "../../packages/hygraph-ui/components/PageContentQueryFragment.gql.ts",
+    "../../packages/hygraph-ui/components/RowRenderer.gql.ts",
+    "../../packages/hygraph-ui/components/RowRenderer.tsx"
+  ],
   "exclude": ["node_modules"]
 }

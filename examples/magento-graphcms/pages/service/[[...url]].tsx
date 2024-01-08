@@ -1,3 +1,4 @@
+import { ContentArea, PageContent, pageContent } from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   PagesStaticPathsDocument,
@@ -14,16 +15,16 @@ import {
   LayoutOverlay,
   LayoutOverlayProps,
   LayoutNavigationProps,
-  RowRenderer,
 } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = HygraphPagesQuery
+type Props = HygraphPagesQuery & { content: PageContent }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
-function ServicePage({ pages }: Props) {
+function ServicePage(props: Props) {
+  const { content, pages } = props
   const title = pages?.[0].title ?? ''
 
   return (
@@ -42,7 +43,8 @@ function ServicePage({ pages }: Props) {
       <Container maxWidth='md'>
         <LayoutTitle>{title}</LayoutTitle>
       </Container>
-      <RowRenderer {...pages[0]} />
+
+      <ContentArea content={content} />
     </>
   )
 }
@@ -82,6 +84,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
   const page = hygraphPageContent(staticClient, url)
+  const content = pageContent(staticClient, url)
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
@@ -90,6 +93,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
 
   return {
     props: {
+      content: await content,
       ...(await page).data,
       ...(await layout).data,
       up: isRoot ? null : { href: '/service', title: i18n._(/* i18n */ 'Customer Service') },

@@ -1,0 +1,31 @@
+{
+  "name": "@graphcommerce/content-areas",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "8.0.0-canary.74",
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "peerDependencies": {
+    "@graphcommerce/magento-product": "^8.0.0-canary.74",
+    "@graphcommerce/eslint-config-pwa": "^8.0.0-canary.74",
+    "@graphcommerce/graphql": "^8.0.0-canary.74",
+    "@graphcommerce/next-ui": "^8.0.0-canary.74",
+    "@graphcommerce/prettier-config-pwa": "^8.0.0-canary.74",
+    "@graphcommerce/react-hook-form": "^8.0.0-canary.74",
+    "@graphcommerce/typescript-config-pwa": "^8.0.0-canary.74",
+    "@lingui/core": "^4.2.1",
+    "@lingui/macro": "^4.2.1",
+    "@lingui/react": "^4.2.1",
+    "@mui/material": "^5.10.16",
+    "framer-motion": "^10.0.0",
+    "next": "*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

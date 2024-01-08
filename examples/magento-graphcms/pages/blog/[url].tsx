@@ -1,3 +1,4 @@
+import { ContentArea, PageContent, pageContent } from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -25,13 +26,13 @@ import {
 } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = HygraphPagesQuery & BlogListQuery
+type Props = HygraphPagesQuery & BlogListQuery & { content: PageContent }
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function BlogPage(props: Props) {
-  const { blogPosts, pages } = props
+  const { blogPosts, content, pages } = props
 
   const page = pages[0]
   const title = page?.title ?? ''
@@ -50,7 +51,9 @@ function BlogPage(props: Props) {
 
         {page.author ? <BlogAuthor author={page.author} date={page.date} /> : null}
         {page.asset ? <BlogHeader asset={page.asset} /> : null}
-        <RowRenderer {...page} />
+
+        <ContentArea content={content} />
+
         <BlogTags relatedPages={page.relatedPages} />
       </Row>
       <BlogList blogPosts={blogPosts} />
@@ -88,6 +91,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const conf = client.query({ query: StoreConfigDocument })
 
   const page = hygraphPageContent(staticClient, `blog/${urlKey}`)
+  const content = pageContent(staticClient, `blog/${urlKey}`)
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const blogPosts = staticClient.query({
@@ -98,6 +102,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
 
   return {
     props: {
+      content: await content,
       ...(await page).data,
       ...(await blogPosts).data,
       ...(await layout).data,

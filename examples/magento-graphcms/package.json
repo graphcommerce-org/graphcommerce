@@ -22,6 +22,7 @@
     "@apollo/client": "~3.8.8",
     "@ducanh2912/next-pwa": "9.7.2",
     "@graphcommerce/cli": "8.0.0-canary.74",
+    "@graphcommerce/content-areas": "8.0.0-canary.74",
     "@graphcommerce/demo-magento-graphcommerce": "8.0.0-canary.74",
     "@graphcommerce/ecommerce-ui": "8.0.0-canary.74",
     "@graphcommerce/framer-next-pages": "8.0.0-canary.74",

@@ -1,3 +1,10 @@
+import {
+  ContentAreaProductPage,
+  ContentAreaProductPageBefore,
+  ContentAreaProductPageSidebar,
+  PageContent,
+  pageContent,
+} from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { mergeDeep } from '@graphcommerce/graphql'
@@ -43,8 +50,6 @@ import {
   LayoutNavigation,
   LayoutNavigationProps,
   productListRenderer,
-  RowProduct,
-  RowRenderer,
   Usps,
 } from '../../components'
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
@@ -54,14 +59,16 @@ import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphql
 type Props = HygraphPagesQuery &
   UspsQuery &
   ProductPage2Query &
-  Pick<AddProductsToCartFormProps, 'defaultValues'>
+  Pick<AddProductsToCartFormProps, 'defaultValues'> & {
+    content: PageContent
+  }
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductPage(props: Props) {
-  const { products, relatedUpsells, usps, sidebarUsps, pages, defaultValues } = props
+  const { content, products, relatedUpsells, usps, sidebarUsps, pages, defaultValues } = props
 
   const product = mergeDeep(
     products?.items?.[0],
@@ -90,6 +97,8 @@ function ProductPage(props: Props) {
         />
 
         <ProductPageMeta product={product} />
+
+        <ContentAreaProductPageBefore content={content} />
 
         <ProductPageGallery
           product={product}
@@ -165,6 +174,8 @@ function ProductPage(props: Props) {
           <Usps usps={sidebarUsps} size='small' />
         </ProductPageGallery>
 
+        <ContentAreaProductPageSidebar content={content} />
+
         <ProductPageDescription
           product={product}
           right={<Usps usps={usps} />}
@@ -172,7 +183,9 @@ function ProductPage(props: Props) {
         />
       </AddProductsToCartForm>
 
-      {pages?.[0] && (
+      <ContentAreaProductPage content={content} />
+
+      {/* {pages?.[0] && (
         <RowRenderer
           loadingEager={0}
           content={pages?.[0].content}
@@ -187,7 +200,7 @@ function ProductPage(props: Props) {
             ),
           }}
         />
-      )}
+      )} */}
 
       <RecentlyViewedProducts
         title={<Trans id='Recently viewed products' />}
@@ -229,6 +242,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   )
 
   const pages = hygraphPageContent(staticClient, 'product/global', product, true)
+  const content = pageContent(staticClient, 'product/global', product, true)
   if (!(await product)) return redirectOrNotFound(staticClient, conf, params, locale)
 
   const category = productPageCategory(await product)
@@ -240,6 +254,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   return {
     props: {
+      content: await content,
       ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),
       ...(await layout).data,
       ...(await pages).data,

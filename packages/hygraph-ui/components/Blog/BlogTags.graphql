@@ -1,0 +1,6 @@
+fragment BlogTags on Page {
+  relatedPages {
+    title
+    url
+  }
+}

@@ -1,0 +1,8 @@
+fragment BlogItem on Page {
+  title
+  url
+  date
+  asset {
+    ...Asset
+  }
+}

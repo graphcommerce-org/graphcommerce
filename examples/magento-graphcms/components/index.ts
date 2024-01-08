@@ -1,5 +1,5 @@
-export * from './Blog'
+export * from '@graphcommerce/graphcms-ui/components/Blog'
 export * from './Layout'
 export * from './Usps/Usps'
-export * from './GraphCMS'
+export * from '@graphcommerce/graphcms-ui/components'
 export * from './ProductListItems'

@@ -1,4 +1,4 @@
-import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import type { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import { HygraphAllPagesDocument, HygraphPagesQuery, HygraphPagesDocument } from '../graphql'
 
 /**
