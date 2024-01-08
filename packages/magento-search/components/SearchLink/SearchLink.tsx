@@ -4,6 +4,7 @@ import {
   IconSvg,
   extendableComponent,
   useFabSize,
+  useIconSvgSize,
 } from '@graphcommerce/next-ui'
 import { Breakpoint, Fab, FabProps, Link, LinkProps } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -28,28 +29,21 @@ const { classes } = extendableComponent(name, parts)
  */
 export function SearchLink(props: SearchLinkProps) {
   const { href, sx = [], children, breakpoint, fab, onClick, ...linkProps } = props
-  const router = useRouter()
   const fabSize = useFabSize('responsive')
+  const iconSize = useIconSvgSize('large')
   const { sx: fabSx = [], size, color, ...fabProps } = fab ?? {}
-
-  const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
-    e.preventDefault()
-    onClick?.(e)
-    return router.push(href)
-  }
 
   return (
     <>
       <Link
-        component='a'
+        href={href}
+        rel='noindex'
         className={classes.root}
         underline='none'
-        onClick={handleClick}
         sx={[
           (theme) => ({
             justifySelf: 'center',
-            // @todo make abstract, this is the size of a responsive Fab minus the icon size, divided by 2.
-            marginRight: `calc(${fabSize} / 4)`,
+            marginRight: `calc((${fabSize} - ${iconSize}) / 2)`,
             width: responsiveVal(64, 172),
             borderRadius: 2,
             typography: 'body2',
@@ -79,8 +73,8 @@ export function SearchLink(props: SearchLinkProps) {
       </Link>
       {breakpoint && (
         <Fab
-          component='a'
           href={href}
+          rel='noindex'
           size={size ?? 'large'}
           color={color ?? 'inherit'}
           sx={[
