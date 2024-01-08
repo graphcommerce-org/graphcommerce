@@ -10,6 +10,10 @@ const Wrapper = styled('div')(({ theme }) => ({
   position: 'relative',
 }))
 
+/**
+ * @deprecated
+ */
+
 export function ColumnOneCentered(props: ContainerProps) {
   const { children } = props
 

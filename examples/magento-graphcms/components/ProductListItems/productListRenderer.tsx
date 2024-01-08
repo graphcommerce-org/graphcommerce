@@ -12,6 +12,9 @@ import { ProductListItemVirtual } from '@graphcommerce/magento-product-virtual'
 import { ProductReviewSummary } from '@graphcommerce/magento-review'
 import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 
+/**
+ * @deprecated Use productListRenderer from @graphcommerce/next-ui instead
+ */
 export const productListRenderer: ProductListItemRenderer = {
   Skeleton: (props) => <ProductListItem {...props} aspectRatio={[1, 1]} />,
   SimpleProduct: (props) => {

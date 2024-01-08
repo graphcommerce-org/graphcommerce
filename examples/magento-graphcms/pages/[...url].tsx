@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   CategoryChildren,
@@ -21,7 +21,14 @@ import {
   ProductListQuery,
 } from '@graphcommerce/magento-product'
 import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutHeader, LayoutTitle, MetaRobots } from '@graphcommerce/next-ui'
+import {
+  Asset,
+  GetStaticProps,
+  LayoutHeader,
+  LayoutTitle,
+  MetaRobots,
+  RowRenderer,
+} from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
@@ -29,9 +36,8 @@ import {
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
-  RowProduct,
-  RowRenderer,
 } from '../components'
+import { RowProduct } from '../components/GraphCMS'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 

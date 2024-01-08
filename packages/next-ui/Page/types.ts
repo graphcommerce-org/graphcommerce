@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ParsedUrlQuery } from 'querystring'
 import { UpPage } from '@graphcommerce/framer-next-pages/types'
 // todo: remove references to GraphQL
@@ -7,6 +8,7 @@ import {
   GetStaticProps as GetStaticPropsNext,
   GetServerSideProps as GetServerSidePropsNext,
 } from 'next'
+import { ContentItem } from '@graphcommerce/graphcms-ui/lib'
 
 type AnyObj = Record<string, unknown>
 
@@ -23,3 +25,36 @@ export type GetServerSideProps<
   P extends AnyObj = AnyObj,
   Q extends ParsedUrlQuery = ParsedUrlQuery,
 > = GetServerSidePropsNext<P & Omit<PL, 'children'> & ApolloStateProps, Q>
+
+// Joshua's area
+
+type MetaRobots = 'INDEX_FOLLOW' | 'INDEX_NOFOLLOW' | 'NOINDEX_FOLLOW' | 'NOINDEX_NOFOLLOW'
+
+export type Page = {
+  __typename: 'Page'
+  id: string
+  title?: string | null
+  metaTitle: string
+  metaDescription: string
+  metaRobots: MetaRobots
+  url: string
+  author?: string | null
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+  date?: any | null
+  relatedPages: Array<{ title?: string | null; url: string }>
+  asset?: {
+    url: string
+    width?: number | null
+    height?: number | null
+    mimeType?: string | null
+    size?: number | null
+    alt?: string | null
+  } | null
+  content: Array<ContentItem>
+}
+
+export type Pages = {
+  pages: Array<Page>
+}
+
+// Joshua's area end

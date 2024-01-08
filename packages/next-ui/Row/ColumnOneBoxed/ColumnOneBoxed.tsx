@@ -6,6 +6,10 @@ const compName = 'ColumnOneBoxed' as const
 const parts = ['root', 'boxed'] as const
 const { classes } = extendableComponent(compName, parts)
 
+/**
+ * @deprecated
+ */
+
 export function ColumnOneBoxed(props: ContainerProps) {
   const { children } = props
 

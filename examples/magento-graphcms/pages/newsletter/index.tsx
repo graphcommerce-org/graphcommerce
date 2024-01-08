@@ -2,14 +2,19 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { GuestNewsletter } from '@graphcommerce/magento-newsletter'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import {
+  PageMeta,
+  GetStaticProps,
+  LayoutOverlayHeader,
+  LayoutTitle,
+  RowRenderer,
+} from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import {
   LayoutDocument,
   LayoutOverlay,
   LayoutOverlayProps,
   LayoutNavigationProps,
-  RowRenderer,
 } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 

@@ -163,14 +163,6 @@ This value should match Magento 2's configuration value for
 
 Debug configuration for GraphCommerce
 
-#### demoMode: boolean = true
-
-Enables some demo specific code that is probably not useful for a project:
-
-- Adds the "BY GC" to the product list items.
-- Adds "dominant_color" attribute swatches to the product list items.
-- Creates a big list items in the product list.
-
 #### enableGuestCheckoutLogin: boolean
 
 Enable Guest Checkout Login:

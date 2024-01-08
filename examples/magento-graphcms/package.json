@@ -68,6 +68,7 @@
     "@graphcommerce/next-config": "8.0.0-canary.74",
     "@graphcommerce/next-ui": "8.0.0-canary.74",
     "@graphcommerce/react-hook-form": "8.0.0-canary.74",
+    "@graphcommerce/row-renderer": "8.0.0-canary.74",
     "@lingui/core": "4.6.0",
     "@lingui/macro": "4.6.0",
     "@lingui/react": "4.6.0",

@@ -1,7 +1,14 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { PageMeta, GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
+import {
+  PageMeta,
+  GetStaticProps,
+  Row,
+  LayoutTitle,
+  LayoutHeader,
+  RowRenderer,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { GetStaticPaths } from 'next'
 import {
@@ -16,7 +23,6 @@ import {
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
-  RowRenderer,
 } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 

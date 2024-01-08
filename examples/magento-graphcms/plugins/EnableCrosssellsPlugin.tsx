@@ -1,9 +1,10 @@
 import { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
-import { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import { PluginProps } from '@graphcommerce/next-config'
+import { BlogHeader } from '../components/Blog/BlogHeader'
+import { RowProduct } from '../components/GraphCMS'
 
 export const component = 'AddProductsToCartForm'
 export const exported = '@graphcommerce/magento-product'
-export const ifConfig: IfConfig = 'demoMode'
 
 /**
  * Example plugin to enable crosssells if the `demoMode` config is set to true
@@ -15,6 +16,8 @@ export const ifConfig: IfConfig = 'demoMode'
  */
 function EnableCrossselsPlugin(props: PluginProps<AddProductsToCartFormProps>) {
   const { Prev, redirect = 'added', ...rest } = props
+
+  console.log('4 januari')
   return <Prev {...rest} redirect={redirect} />
 }
 

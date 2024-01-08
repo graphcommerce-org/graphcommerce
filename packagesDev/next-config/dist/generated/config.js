@@ -70,7 +70,6 @@ function GraphCommerceConfigSchema() {
         crossSellsRedirectItems: _zod.z.boolean().nullish(),
         customerRequireEmailConfirmation: _zod.z.boolean().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
-        demoMode: _zod.z.boolean().nullish(),
         enableGuestCheckoutLogin: _zod.z.boolean().nullish(),
         googleAnalyticsId: _zod.z.string().nullish(),
         googleRecaptchaKey: _zod.z.string().nullish(),

@@ -7,10 +7,11 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
   PageMeta,
+  RowRenderer,
 } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import { LayoutDocument, LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
+import { LayoutDocument, LayoutOverlay, LayoutOverlayProps } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery

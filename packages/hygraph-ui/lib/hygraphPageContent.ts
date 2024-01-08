@@ -7,6 +7,11 @@ import { HygraphAllPagesDocument, HygraphPagesQuery, HygraphPagesDocument } from
  * - Uses an early bailout to check to reduce hygraph calls.
  * - Implements an alias sytem to merge the content of multiple pages.
  */
+
+/**
+ * @deprecated
+ * Replaced by @graphcommerce/hygraph-ui/plugins/hygraphPageContentPlugin.ts
+ */
 async function pageContent(
   client: ApolloClient<NormalizedCacheObject>,
   url: string,

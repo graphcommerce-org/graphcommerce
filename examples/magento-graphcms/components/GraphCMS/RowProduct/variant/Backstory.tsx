@@ -1,6 +1,5 @@
-import { Asset, RichText } from '@graphcommerce/graphcms-ui'
 import { AddProductsToCartForm, ProductListItemsFragment } from '@graphcommerce/magento-product'
-import { ParagraphWithSidebarSlide, RenderType } from '@graphcommerce/next-ui'
+import { ParagraphWithSidebarSlide, RenderType, Asset, RichText } from '@graphcommerce/next-ui'
 import { useTheme } from '@mui/material'
 import { productListRenderer } from '../../../ProductListItems'
 import { RowProductFragment } from '../RowProduct.gql'
@@ -51,4 +50,6 @@ export function Backstory(props: BackstoryProps) {
       </ParagraphWithSidebarSlide>
     </AddProductsToCartForm>
   )
+
+  return <>lalal</>
 }
