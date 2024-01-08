@@ -1,4 +1,4 @@
-import { Links, iconCheckmark, IconSvg } from '@graphcommerce/next-ui'
+import { Links, RichText, iconCheckmark, IconSvg } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { RowLinksProps } from '../type'
 
@@ -12,7 +12,7 @@ export function Usps(props: RowLinksProps & { sx?: SxProps<Theme> }) {
       maxWidth={false}
       showButtons='auto'
       inlineTitle
-      copy={copy}
+      copy={copy && <RichText {...copy} />}
       sx={[
         (theme) => ({
           '& .Scroller-root > *': {
@@ -57,7 +57,21 @@ export function Usps(props: RowLinksProps & { sx?: SxProps<Theme> }) {
         >
           <IconSvg src={iconCheckmark} sx={{ color: 'primary.main' }} />
           <Box>
-            {pageLink.title} {pageLink?.description}
+            {pageLink.title}{' '}
+            {pageLink?.description && (
+              <RichText
+                {...pageLink.description}
+                sxRenderer={{
+                  paragraph: {
+                    display: 'inline',
+                  },
+                  link: {
+                    color: 'text.primary',
+                    textDecoration: 'underline',
+                  },
+                }}
+              />
+            )}
           </Box>
         </Box>
       ))}

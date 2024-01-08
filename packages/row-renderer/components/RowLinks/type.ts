@@ -4,12 +4,12 @@ export type RowLinksProps = {
   id?: string
   title: string
   variant?: 'Inline' | 'ImageLabelSwiper' | 'LogoSwiper' | 'Usps' | null
-  copy?: { raw: any } | null
+  copy?: React.ReactNode | null
   links: Array<{
     id: string
     title: string
     url: string
-    description?: { raw: any } | null
+    description?: React.ReactNode | null
     asset?: {
       url: string
       width?: number | null

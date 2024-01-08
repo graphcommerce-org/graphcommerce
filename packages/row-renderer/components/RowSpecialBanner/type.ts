@@ -11,11 +11,11 @@ export type RowSpecialBannerProps = {
     size?: number | null
     alt?: string | null
   } | null
-  copy: { raw: any }
+  copy: React.ReactNode
   links: Array<{
     title: string
     url: string
-    description?: { raw: any } | null
+    description?: React.ReactNode
     asset?: {
       url: string
       width?: number | null

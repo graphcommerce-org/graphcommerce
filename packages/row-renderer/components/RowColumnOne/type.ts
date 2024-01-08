@@ -3,9 +3,7 @@ export type RowColumnOneProps = {
   __typename: 'RowColumnOne'
   id?: string
   variant?: 'Default' | 'Message' | null | undefined
-  copy: {
-    raw: any
-  }
+  copy: React.ReactNode
 }
 
 export const rowColumnOneInput = {

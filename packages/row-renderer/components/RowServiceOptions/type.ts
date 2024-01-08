@@ -6,7 +6,7 @@ export type RowServiceOptionsProps = {
   options: Array<{
     title: string
     url: string
-    description?: { raw: any } | null
+    description?: React.ReactNode
     asset?: {
       url: string
       width?: number | null

@@ -2,7 +2,7 @@
 export type RowBlogContentProps = {
   __typename: 'RowBlogContent'
   id?: string
-  copy?: { raw: any } | null
+  copy?: React.ReactNode
 }
 
 export const rowBlogContentInput: RowBlogContentProps = {

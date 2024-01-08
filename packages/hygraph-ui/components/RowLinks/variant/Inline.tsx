@@ -1,4 +1,4 @@
-import { Links } from '@graphcommerce/next-ui'
+import { Links, RichText } from '@graphcommerce/next-ui'
 import { Link, SxProps, Theme } from '@mui/material'
 import { RowLinksProps } from '../type'
 
@@ -17,7 +17,7 @@ export function Inline(props: RowLinksProps & { sx?: SxProps<Theme> }) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       inlineTitle
-      copy={copy}
+      copy={copy && <RichText {...copy} />}
       {...rowLinksProps}
     >
       {links.map((pageLink) => (

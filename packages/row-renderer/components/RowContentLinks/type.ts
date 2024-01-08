@@ -7,7 +7,7 @@ export type RowContentLinksProps = {
     id: string
     title: string
     url: string
-    description?: { raw: any } | null
+    description?: React.ReactNode
     asset?: {
       url: string
       width?: number | null

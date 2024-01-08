@@ -2,12 +2,8 @@
 export type RowColumnTwoProps = {
   __typename: 'RowColumnTwo'
   id?: string
-  copy: {
-    raw: any
-  }
-  copyTwo: {
-    raw: any
-  }
+  copy: React.ReactNode
+  copyTwo: React.ReactNode
 }
 
 export const rowColumnTwoInput: RowColumnTwoProps = {

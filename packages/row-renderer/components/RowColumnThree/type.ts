@@ -2,15 +2,9 @@
 export type RowColumnThreeProps = {
   __typename: 'RowColumnThree'
   id?: string
-  copy: {
-    raw: any
-  }
-  copyTwo: {
-    raw: any
-  }
-  copyThree: {
-    raw: any
-  }
+  copy: React.ReactNode
+  copyTwo: React.ReactNode
+  copyThree: React.ReactNode
 }
 
 export const rowColumnThreeInput: RowColumnThreeProps = {

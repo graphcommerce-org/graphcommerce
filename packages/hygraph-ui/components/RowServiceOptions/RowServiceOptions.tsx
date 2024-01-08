@@ -7,7 +7,7 @@ import {
   iconEmail,
   iconPhone,
 } from '@graphcommerce/next-ui'
-import { RowServiceOptionsProps } from './type'
+import { RowServiceOptionsProps } from '@graphcommerce/row-renderer'
 
 export function RowServiceOptions(props: RowServiceOptionsProps) {
   const { title, options } = props
@@ -30,7 +30,7 @@ export function RowServiceOptions(props: RowServiceOptionsProps) {
               </>
             }
           >
-            {option.description}
+            {option.description ? <RichText {...option.description} /> : undefined}
           </IconBlock>
         )
       })}

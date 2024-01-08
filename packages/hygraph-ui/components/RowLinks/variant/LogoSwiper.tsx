@@ -1,4 +1,4 @@
-import { Links, Asset } from '@graphcommerce/next-ui'
+import { Links, RichText, Asset } from '@graphcommerce/next-ui'
 import { Link, SxProps, Theme } from '@mui/material'
 import { RowLinksProps } from '../type'
 
@@ -11,7 +11,7 @@ export function LogoSwiper(props: RowLinksProps & { sx?: SxProps<Theme> }) {
       title={title}
       maxWidth={false}
       showButtons='auto'
-      copy={copy}
+      copy={copy && <RichText {...copy} />}
       sx={[
         (theme) => ({
           my: `calc(${theme.spacings.xxl} +  ${theme.spacings.md})`,

@@ -1,4 +1,4 @@
-import { responsiveVal, Links, Asset } from '@graphcommerce/next-ui'
+import { responsiveVal, Links, Asset, RichText } from '@graphcommerce/next-ui'
 import { Box, ButtonBase, SxProps, Theme, Typography } from '@mui/material'
 import { RowLinksProps } from '../type'
 
@@ -11,7 +11,7 @@ export function ImageLabelSwiper(props: RowLinksProps & { sx?: SxProps<Theme> })
       title={title}
       maxWidth={false}
       showButtons='auto'
-      copy={copy}
+      copy={copy && <RichText {...copy} />}
       sx={[
         {
           '& .Scroller-root': {
@@ -51,7 +51,7 @@ export function ImageLabelSwiper(props: RowLinksProps & { sx?: SxProps<Theme> })
             <Typography variant='h6' component='h3'>
               {pageLink.title}
             </Typography>
-            {pageLink?.description}
+            {pageLink?.description && <RichText {...pageLink.description} />}
           </Box>
         </ButtonBase>
       ))}

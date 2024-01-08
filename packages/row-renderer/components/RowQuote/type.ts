@@ -2,7 +2,7 @@
 export type RowQuoteProps = {
   __typename: 'RowQuote'
   id?: string
-  copy: { raw: any }
+  copy: React.ReactNode | null
 }
 
 export const rowQuoteInput = {
