@@ -11,9 +11,6 @@
       "project": "./tsconfig.json"
     }
   },
-  "dependencies": {
-    "@graphcommerce/analytics": "^7.1.0-canary.65"
-  },
   "devDependencies": {
     "@types/gtag.js": "^0.0.18"
   },
