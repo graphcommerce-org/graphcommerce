@@ -1,0 +1,21 @@
+extend input GraphCommerceConfig {
+  analytics: AnalyticsConfig
+}
+
+"""
+EventFormat is an enumatation of different event formats. This decides what the format of the event data will be.
+"""
+enum EventFormat {
+  LEGACY
+  GA4
+}
+
+"""
+AnalyticsConfig will contain all configuration values for the analytics in GraphCommerce.
+"""
+input AnalyticsConfig {
+  """
+  eventFormat contains the list of fired and formatted events
+  """
+  eventFormat: [EventFormat!]
+}
