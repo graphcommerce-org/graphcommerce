@@ -1,35 +1,28 @@
 import { ProductListParams } from '@graphcommerce/magento-product'
-import { PageMeta } from '@graphcommerce/magento-store'
-import { PageMetaProps } from '@graphcommerce/next-ui'
+import { PageMetaNew, PageMetaPropsNew } from '@graphcommerce/next-ui/PageMeta/PageMetaNew'
 import { i18n } from '@lingui/core'
 import { CategoryMetaFragment } from './CategoryMeta.gql'
 
-export type CategoryMetaProps = CategoryMetaFragment &
-  Omit<PageMetaProps, 'title' | 'metaDescription' | 'children'> & {
-    params?: ProductListParams
-    title?: string | null
-    metaDescription?: string | null
-  }
+export type CategoryMetaProps = PageMetaPropsNew & {
+  category?: CategoryMetaFragment | null
+  params?: ProductListParams
+}
 
 export function CategoryMeta(props: CategoryMetaProps) {
-  const { meta_title, meta_description, name, params, image, ogImageUseFallback } = props
-  let { title, metaDescription, metaRobots, canonical, ogImage } = props
-  if (!title) title = ''
-  if (!metaDescription) metaDescription = ''
+  const { params, metadata, category } = props
 
-  if (!title && meta_title) title = meta_title
-  if (!title && name) title = name
-  if (!ogImage && image) ogImage = image
-  if (!metaDescription && meta_description) metaDescription = meta_description
+  let title = metadata?.title?.absolute ?? ''
+  if (!title && category?.meta_title) title = category?.meta_title
+  if (!title && category?.name) title = category?.name
 
-  if (params?.url && !canonical) canonical = `/${params.url}`
+  let metaDescription = metadata?.description ?? ''
+  if (!metaDescription && category?.meta_description) metaDescription = category.meta_description
+
+  let canonical = metadata?.alternates?.canonical?.url ?? null
+  if (!canonical) canonical = `/${params?.url}`
 
   const anyFilterActive =
     Object.keys(params?.filters ?? {}).filter((k) => k !== 'category_uid').length > 0
-
-  const sortActive = params?.sort && Object.keys(params?.sort).length !== 0
-  const limitAcitve = !!params?.pageSize
-  const noIndex = anyFilterActive || sortActive || limitAcitve
 
   const currentPage = params?.currentPage ?? 1
   const isPaginated = currentPage > 1 && !anyFilterActive
@@ -39,22 +32,43 @@ export function CategoryMeta(props: CategoryMetaProps) {
       ? i18n._(/* i18n */ '{title} - Page {currentPage}', { title, currentPage })
       : title
 
-  const metaDescriptionTrans =
-    metaDescription && isPaginated
-      ? i18n._(/* i18n */ '{metaDescription} - Page {currentPage}', {
-          metaDescription,
-          currentPage,
-        })
-      : metaDescription
+  const sortActive = params?.sort && Object.keys(params?.sort).length !== 0
+  const limitAcitve = !!params?.pageSize
+  const noIndex = anyFilterActive || sortActive || limitAcitve
 
   return (
-    <PageMeta
-      title={titleTrans}
-      metaDescription={metaDescriptionTrans}
-      metaRobots={noIndex ? ['noindex'] : metaRobots}
-      canonical={isPaginated ? `${canonical}/page/${currentPage}` : canonical}
-      ogImage={ogImage}
-      ogImageUseFallback={ogImageUseFallback}
+    <PageMetaNew
+      metadata={{
+        ...metadata,
+        robots: {
+          basic: noIndex ? 'noindex' : metadata?.robots?.basic ?? null,
+          googleBot: metadata?.robots?.googleBot ?? null,
+        },
+        alternates: {
+          languages: {},
+          media: {},
+          types: {},
+          ...metadata?.alternates,
+          canonical: {
+            ...metadata?.alternates?.canonical,
+            url: canonical,
+          },
+        },
+        title: { template: null, absolute: titleTrans },
+        description:
+          metaDescription && isPaginated
+            ? i18n._(/* i18n */ '{metaDescription} - Page {currentPage}', {
+                metaDescription,
+                currentPage,
+              })
+            : metaDescription,
+        openGraph: {
+          type: 'website',
+          url: canonical,
+          title: { template: null, absolute: titleTrans },
+          images: category?.image ? [new URL(category?.image)] : [],
+        },
+      }}
     />
   )
 }

@@ -63,7 +63,7 @@ function CategoryPage(props: CategoryProps) {
 
   return (
     <>
-      <CategoryMeta metadata={content.metadata} params={params} {...category} />
+      <CategoryMeta metadata={content.metadata} params={params} category={category} />
 
       <ContentAreaCategoryPageBefore content={content} productListRenderer={productListRenderer} />
 
@@ -84,7 +84,7 @@ function CategoryPage(props: CategoryProps) {
               !isCategory || (!category?.description && category?.children?.length === 0)
             }
           >
-            {category?.name ?? page.title}
+            {category?.name ?? content.title}
           </LayoutTitle>
         </Container>
       )}
@@ -192,7 +192,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       })
     : undefined
 
-  const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
+  const hasPage = filteredCategoryUid ? false : (await content).notFound !== false
   if (!hasCategory && !hasPage) return redirectOrNotFound(staticClient, conf, params, locale)
 
   if ((await products)?.errors) return { notFound: true }

@@ -1,11 +1,7 @@
 import { ResolvedMetadata } from 'next'
-import {
-  createDefaultMetadata,
-  createDefaultViewport,
-} from 'next/dist/lib/metadata/default-metadata'
+import { createDefaultMetadata } from 'next/dist/lib/metadata/default-metadata'
 import { AlternatesMetadata } from 'next/dist/lib/metadata/generate/alternate'
 import {
-  ViewportMeta,
   AppleWebAppMeta,
   BasicMeta,
   FormatDetectionMeta,
@@ -23,12 +19,20 @@ import Head from 'next/head'
 import React from 'react'
 
 export type PageMetaPropsNew = {
-  metadata: ResolvedMetadata
+  metadata?: Partial<ResolvedMetadata> | null
   children?: React.ReactNode
 }
 
 export function PageMetaNew(props: PageMetaPropsNew) {
-  const { metadata, children } = props
+  const { metadata: metaIncoming, children } = props
+
+  if (!metaIncoming) return null
+
+  const metadata: ResolvedMetadata = {
+    ...createDefaultMetadata(),
+    ...metaIncoming,
+    metadataBase: new URL(import.meta.graphCommerce.canonicalBaseUrl),
+  }
 
   const elements = MetaFilter([
     BasicMeta({ metadata }),

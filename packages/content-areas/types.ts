@@ -21,5 +21,5 @@ export type ReducedResolvedMetadata = Omit<
 export interface PageContent {
   notFound?: boolean
   title?: string
-  metadata: ReducedResolvedMetadata
+  metadata: ResolvedMetadata | null
 }
