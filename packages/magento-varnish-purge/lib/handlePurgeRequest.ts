@@ -2,6 +2,7 @@
 import { NormalizedCacheObject, ApolloClient } from '@graphcommerce/graphql'
 import { storefrontConfig } from '@graphcommerce/next-ui'
 import { NextApiRequest, NextApiResponse } from 'next'
+import { rimraf } from 'rimraf'
 import { PurgeGetProductPathsDocument } from '../graphql/PurgeGetProductPaths.gql'
 
 function parseTagsFromHeader(tagsHeader: string | string[] | undefined): string[] {
@@ -86,11 +87,19 @@ async function invalidateProductById(
   await Promise.allSettled(categoryPromises)
 }
 
-function doFullPurge() {
-  // TODO
+async function doFullPurge(locale: string) {
+  console.info(`varnish-purge: doing full purge of static content for locale ${locale}`)
+
+  const workingDir = process.cwd()
+  const staticPath = `${workingDir}/.next/server/pages`
+
+  console.info(`varnish-purge: cleaning path ${staticPath}/${locale}(.json|.html)`)
+  await rimraf(`${staticPath}/${locale}`)
+  await rimraf(`${staticPath}/${locale}.html`)
+  await rimraf(`${staticPath}/${locale}.json`)
 }
 
-export function handlePurgeRequest(
+export async function handlePurgeRequest(
   client: ApolloClient<NormalizedCacheObject>,
   locale: string,
   req: NextApiRequest,
@@ -101,7 +110,7 @@ export function handlePurgeRequest(
   console.info(`varnish-purge: purge request from ${req.socket.remoteAddress} for ${rawTags}`)
 
   if (rawTags === '.*') {
-    doFullPurge()
+    await doFullPurge(locale)
   } else {
     const productTagPattern = /^cat_p_([0-9]+)$/
     const tags = parseTagsFromHeader(rawTags)
