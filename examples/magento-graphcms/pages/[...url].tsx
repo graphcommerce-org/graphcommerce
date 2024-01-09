@@ -173,38 +173,29 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   }
 
   const content = pageContent(staticClient, url, category)
-  const hasPage = filteredCategoryUid ? false : (await content).notFound !== true
   const hasCategory = Boolean(productListParams && categoryUid)
 
-  if (!productListParams || !(hasPage || hasCategory))
-    return redirectOrNotFound(staticClient, conf, params, locale)
+  const filters = hasCategory
+    ? staticClient.query({
+        query: ProductFiltersDocument,
+        variables: { filters: { category_uid: { eq: categoryUid } } },
+      })
+    : undefined
+  const products = hasCategory
+    ? staticClient.query({
+        query: ProductListDocument,
+        variables: {
+          pageSize: (await conf).data.storeConfig?.grid_per_page ?? 24,
+          ...productListParams,
+          filters: { ...productListParams?.filters, category_uid: { eq: categoryUid } },
+        },
+      })
+    : undefined
 
-  if (!hasCategory) {
-    return {
-      props: {
-        content: await content,
-        ...(await categoryPage).data,
-        ...(await layout).data,
-        apolloState: await conf.then(() => client.cache.extract()),
-      },
-      revalidate: 60 * 20,
-    }
-  }
+  const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
+  if (!hasCategory && !hasPage) return redirectOrNotFound(staticClient, conf, params, locale)
 
-  const filters = staticClient.query({
-    query: ProductFiltersDocument,
-    variables: { filters: { category_uid: { eq: categoryUid } } },
-  })
-  const products = staticClient.query({
-    query: ProductListDocument,
-    variables: {
-      pageSize: (await conf).data.storeConfig?.grid_per_page ?? 24,
-      ...productListParams,
-      filters: { ...productListParams.filters, category_uid: { eq: categoryUid } },
-    },
-  })
-
-  if ((await products).errors) return { notFound: true }
+  if ((await products)?.errors) return { notFound: true }
 
   const { category_name, category_url_path } =
     (await categoryPage).data.categories?.items?.[0]?.breadcrumbs?.[0] ?? {}
@@ -218,8 +209,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       content: await content,
       ...(await categoryPage).data,
-      ...(await products).data,
-      ...(await filters).data,
+      ...(await products)?.data,
+      ...(await filters)?.data,
       ...(await layout).data,
       filterTypes: await filterTypes,
       params: productListParams,

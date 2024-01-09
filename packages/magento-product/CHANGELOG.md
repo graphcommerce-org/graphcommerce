@@ -1,5 +1,15 @@
 # Change Log
 
+## 8.0.0-canary.75
+
+### Patch Changes
+
+- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`89b58be`](https://github.com/graphcommerce-org/graphcommerce/commit/89b58be9812e1e515b6996b2f5ce67ab8a596980) - The ProductFilters and ProductList queries would only run after the hygraphPageContent query would be resolved, although they don't depend on each other, now they run in parallel.
+  ([@paales](https://github.com/paales))
+
+- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`154cd12`](https://github.com/graphcommerce-org/graphcommerce/commit/154cd12438f6cb30638e37b9a76a0649992b90f4) - Do not break words when wrapping
+  ([@paales](https://github.com/paales))
+
 ## 8.0.0-canary.74
 
 ### Minor Changes
