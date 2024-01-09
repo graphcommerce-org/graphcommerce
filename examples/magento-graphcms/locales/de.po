@@ -337,9 +337,6 @@ msgstr "Ihr Kundenkonto wird geladen"
 msgid "Loading your data"
 msgstr "Ihre Daten werden geladen"
 
-msgid "Log in"
-msgstr "Anmelden"
-
 msgid "Log in to continue shopping"
 msgstr "Anmelden, um den Einkauf fortzusetzen"
 
@@ -566,10 +563,13 @@ msgid "Results for ‘{search}’"
 msgstr "Ergebnisse für ‘{search}’"
 
 msgid "Review"
-msgstr "Bewertung"
+msgstr "Rezension"
+
+msgid "Review score"
+msgstr "Rezensionsergebnis"
 
 msgid "Reviews"
-msgstr "Bewertungen"
+msgstr "Rezensions"
 
 msgid "Save changes"
 msgstr "Änderungen speichern"
@@ -765,9 +765,6 @@ msgstr "Wir konnten keine Ergebnisse für {term} finden"
 
 msgid "We couldn't find the page you were looking for"
 msgstr "Die von Ihnen gesuchte Seite konnte nicht gefunden werden"
-
-msgid "Welcome back!"
-msgstr "Willkommen zurück!"
 
 msgid "We’re processing your payment, this will take a few seconds."
 msgstr "Wir bearbeiten Ihre Zahlung, dies dauert ein paar Sekunden."

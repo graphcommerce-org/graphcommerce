@@ -337,9 +337,6 @@ msgstr "Loading your account"
 msgid "Loading your data"
 msgstr "Loading your data"
 
-msgid "Log in"
-msgstr "Log in"
-
 msgid "Log in to continue shopping"
 msgstr "Log in to continue shopping"
 
@@ -568,6 +565,9 @@ msgstr "Results for ‘{search}’"
 msgid "Review"
 msgstr "Review"
 
+msgid "Review score"
+msgstr "Review score"
+
 msgid "Reviews"
 msgstr "Reviews"
 
@@ -765,9 +765,6 @@ msgstr "We couldn't find any results for {term}"
 
 msgid "We couldn't find the page you were looking for"
 msgstr "We couldn't find the page you were looking for"
-
-msgid "Welcome back!"
-msgstr "Welcome back!"
 
 msgid "We’re processing your payment, this will take a few seconds."
 msgstr "We’re processing your payment, this will take a few seconds."
