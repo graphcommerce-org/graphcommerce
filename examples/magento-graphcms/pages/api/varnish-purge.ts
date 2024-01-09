@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  storefrontAll.forEach((store) => {
-    handlePurgeRequest(graphqlSsrClient(store.locale), store.locale, req, res)
+  storefrontAll.forEach(async (store) => {
+    await handlePurgeRequest(graphqlSsrClient(store.locale), store.locale, req, res)
   })
 }
