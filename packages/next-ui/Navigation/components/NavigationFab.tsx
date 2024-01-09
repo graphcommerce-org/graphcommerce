@@ -34,11 +34,8 @@ export function NavigationFab(props: NavigationFabProps) {
   const { opacity, shadowOpacity } = useFabAnimation()
   const scrollY = useScrollY()
   const scrolled = useMotionValueValue(scrollY, (y) => y > 10)
-  const fabIsVisible = useMotionValueValue(opacity, () => opacity.get() === 1)
+
   const theme = useTheme()
-  const isMobile = useMediaQuery<Theme>(() => theme.breakpoints.down('md'), {
-    defaultMatches: false,
-  })
 
   useEffect(() => {
     const clear = () => setOpenEl(null)
@@ -68,7 +65,6 @@ export function NavigationFab(props: NavigationFabProps) {
         style={{ opacity }}
       >
         <Fab
-          tabIndex={!isMobile && !fabIsVisible ? -1 : 0}
           color='inherit'
           aria-label='Open Menu'
           size='responsive'
