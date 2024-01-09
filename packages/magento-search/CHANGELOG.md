@@ -1,5 +1,23 @@
 # Change Log
 
+## 8.0.0-canary.75
+
+### Patch Changes
+
+- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`9091dbb`](https://github.com/graphcommerce-org/graphcommerce/commit/9091dbb01a47aa6ba40932a66ed055b7f07c1cec) - Make sure the search link in the header is a nextjs navigation
+  ([@paales](https://github.com/paales))
+
+- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`fe37229`](https://github.com/graphcommerce-org/graphcommerce/commit/fe372294d6a42b1108e0fcef306b297baed5eb71) - Take the per_page configuration in account for the search results
+  ([@paales](https://github.com/paales))
+
+## 8.0.0-canary.74
+
+## 8.0.0-canary.73
+
+## 8.0.0-canary.72
+
+## 8.0.0-canary.71
+
 ## 8.0.0-canary.70
 
 ## 8.0.0-canary.69

@@ -1,5 +1,20 @@
 # Change Log
 
+## 8.0.0-canary.75
+
+## 8.0.0-canary.74
+
+### Minor Changes
+
+- [#2133](https://github.com/graphcommerce-org/graphcommerce/pull/2133) [`133f908`](https://github.com/graphcommerce-org/graphcommerce/commit/133f908200a79589036420f2925835724522cab8) - Added lazy hydration to improve total blocking time. Added LazyHydrate component which can be wrapped around other components you want to lazy hydrate.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.0-canary.73
+
+## 8.0.0-canary.72
+
+## 8.0.0-canary.71
+
 ## 8.0.0-canary.70
 
 ## 8.0.0-canary.69

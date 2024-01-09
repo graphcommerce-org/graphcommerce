@@ -35,7 +35,6 @@ export function ProductListItemTitleAndPrice(props: ProductListItemTitleAndPrice
           display: 'inline',
           color: 'text.primary',
           overflowWrap: 'break-word',
-          wordBreak: 'break-all',
           maxWidth: '100%',
           gridArea: 'title',
           fontWeight: 'fontWeightBold',
