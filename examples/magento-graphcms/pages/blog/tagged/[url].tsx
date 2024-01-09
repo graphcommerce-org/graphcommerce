@@ -5,14 +5,6 @@ import { PageMeta, GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graph
 import { Trans } from '@lingui/react'
 import { GetStaticPaths } from 'next'
 import {
-  BlogAuthor,
-  BlogHeader,
-  BlogList,
-  BlogPostTaggedPathsDocument,
-  BlogListTaggedDocument,
-  BlogListTaggedQuery,
-  BlogTags,
-  BlogTitle,
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,

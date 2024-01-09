@@ -1,7 +1,0 @@
-query BlogPaths {
-  pagesConnection(where: { url_not_starts_with: "blog/tagged/", url_starts_with: "blog/" }) {
-    aggregate {
-      count
-    }
-  }
-}

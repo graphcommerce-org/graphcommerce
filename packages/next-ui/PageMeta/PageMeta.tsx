@@ -26,7 +26,7 @@ type MetaRobotsAll = ['all' | 'none']
 
 type Canonical = `http://${string}` | `https://${string}` | `/${string}` | string
 
-type PageMetaPropsOld = {
+export type PageMetaPropsOld = {
   title: string
   canonical?: Canonical
   metaDescription?: string

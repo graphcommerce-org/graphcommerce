@@ -21,7 +21,7 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ServicePage(props: Props) {
-  const { content, pages } = props
+  const { content } = props
 
   return (
     <>
@@ -85,7 +85,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   return {
     props: {
       content: await content,
-      ...(await page).data,
       ...(await layout).data,
       up: isRoot ? null : { href: '/service', title: i18n._(/* i18n */ 'Customer Service') },
       apolloState: await conf.then(() => client.cache.extract()),

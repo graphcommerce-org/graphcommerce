@@ -13,11 +13,6 @@ import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
 import {
-  BlogList,
-  BlogListDocument,
-  BlogListQuery,
-  BlogPathsDocument,
-  BlogPathsQuery,
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
@@ -33,23 +28,21 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 const pageSize = 16
 
 function BlogPage(props: Props) {
-  const { pages, content, blogPosts, pagesConnection } = props
+  const { content, blogPosts, pagesConnection } = props
   const router = useRouter()
-  const page = pages[0]
-  const title = page.title ?? ''
 
   return (
     <>
-      <PageMeta title={title} metaDescription={title} canonical={`/${page.url}`} />
+      <PageMeta {...content} />
 
       <LayoutHeader floatingMd>
         <LayoutTitle size='small' component='span'>
-          {title}
+          {content.title}
         </LayoutTitle>
       </LayoutHeader>
 
       <Container maxWidth='xl'>
-        <LayoutTitle variant='h1'>{title}</LayoutTitle>
+        <LayoutTitle variant='h1'>{content.title}</LayoutTitle>
       </Container>
 
       <BlogList blogPosts={blogPosts} />

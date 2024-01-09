@@ -1,12 +1,10 @@
+import { ProductItemsGridProps, ProductListItemsBase } from '@graphcommerce/magento-product'
 import { ContainerWithHeader } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
-import {
-  ProductListItems,
-  ProductListItemsProps,
-} from '../../../../../examples/magento-graphcms/components/ProductListItems/ProductListItems'
 import { RowProductFragment } from '../RowProduct.gql'
+import { productListRenderer } from '../../../../../examples/magento-graphcms/components/ProductListItems/productListRenderer'
 
-type GridProps = RowProductFragment & ProductListItemsProps
+type GridProps = RowProductFragment & Omit<ProductItemsGridProps, 'renderers'>
 
 export function Grid(props: GridProps) {
   const { title, pageLinks, productCopy, ...productListItems } = props
@@ -20,7 +18,13 @@ export function Grid(props: GridProps) {
         </Link>
       ))}
     >
-      <ProductListItems title={title} {...productListItems} size='small' titleComponent='h3' />
+      <ProductListItemsBase
+        renderers={productListRenderer}
+        title={title}
+        {...productListItems}
+        size='small'
+        titleComponent='h3'
+      />
     </ContainerWithHeader>
   )
 }

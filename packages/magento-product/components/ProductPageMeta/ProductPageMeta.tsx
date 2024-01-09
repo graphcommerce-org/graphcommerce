@@ -1,10 +1,10 @@
 import { PageMeta } from '@graphcommerce/magento-store'
-import { PageMetaProps } from '@graphcommerce/next-ui'
 import { productLink } from '../../hooks/useProductLink'
 import { ProductPageMetaFragment } from './ProductPageMeta.gql'
+import { PageMetaPropsOld } from '@graphcommerce/next-ui'
 
 export type ProductPageMetaProps = { product: ProductPageMetaFragment } & Pick<
-  PageMetaProps,
+  PageMetaPropsOld,
   'children' | 'ogImage' | 'ogImageUseFallback'
 >
 

@@ -69,7 +69,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   return {
     props: {
       content: await content,
-      ...(await page).data,
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',

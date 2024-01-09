@@ -7,5 +7,7 @@ export function pageContent(
   additionalProperties?: Promise<object> | object,
   cached = false,
 ): Promise<PageContent> {
-  return Promise.resolve({})
+  return Promise.resolve({
+    metadata: null,
+  })
 }

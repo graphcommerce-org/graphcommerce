@@ -49,9 +49,7 @@ import {
   LayoutNavigation,
   LayoutNavigationProps,
   productListRenderer,
-  Usps,
 } from '../../components'
-import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -66,7 +64,7 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductPage(props: Props) {
-  const { content, products, relatedUpsells, usps, sidebarUsps, pages, defaultValues } = props
+  const { content, products, relatedUpsells, usps, sidebarUsps, defaultValues } = props
 
   const product = mergeDeep(
     products?.items?.[0],

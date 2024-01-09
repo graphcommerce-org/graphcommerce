@@ -1,23 +1,10 @@
 import { ContentArea, PageContent, pageContent } from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  PageMeta,
-  BlogTitle,
-  GetStaticProps,
-  Row,
-  LayoutTitle,
-  LayoutHeader,
-} from '@graphcommerce/next-ui'
+import { PageMeta, GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
+import { Box } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
-  BlogAuthor,
-  BlogHeader,
-  BlogList,
-  BlogListDocument,
-  BlogListQuery,
-  BlogPostPathsDocument,
-  BlogTags,
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
@@ -31,29 +18,28 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function BlogPage(props: Props) {
-  const { blogPosts, content, pages } = props
-
-  const page = pages[0]
-  const title = page?.title ?? ''
+  const { blogPosts, content } = props
 
   return (
     <>
       <LayoutHeader floatingMd>
         <LayoutTitle size='small' component='span'>
-          {title}
+          {content.title}
         </LayoutTitle>
       </LayoutHeader>
       <Row>
-        <PageMeta title={title} metaDescription={title} canonical={`/${page.url}`} />
+        <PageMeta {...content} />
 
-        <BlogTitle>{title}</BlogTitle>
+        <Box sx={[(theme) => ({ maxWidth: theme.breakpoints.values.md, margin: '0 auto' })]}>
+          <LayoutTitle variant='h1'>{content.title}</LayoutTitle>
+        </Box>
 
-        {page.author ? <BlogAuthor author={page.author} date={page.date} /> : null}
-        {page.asset ? <BlogHeader asset={page.asset} /> : null}
+        {/* {page.author ? <BlogAuthor author={page.author} date={page.date} /> : null} */}
+        {/* {page.asset ? <BlogHeader asset={page.asset} /> : null} */}
 
         <ContentArea content={content} productListRenderer={productListRenderer} />
 
-        <BlogTags relatedPages={page.relatedPages} />
+        {/* <BlogTags relatedPages={page.relatedPages} /> */}
       </Row>
       <BlogList blogPosts={blogPosts} />
     </>

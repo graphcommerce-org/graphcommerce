@@ -5,7 +5,6 @@ import {
   PageContent,
 } from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { Asset } from '@graphcommerce/graphcms-ui'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   CategoryChildren,
@@ -36,8 +35,6 @@ import {
   LayoutNavigation,
   LayoutNavigationProps,
   productListRenderer,
-  RowProduct,
-  RowRenderer,
 } from '../components'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'

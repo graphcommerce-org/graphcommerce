@@ -2,10 +2,12 @@
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": { "source.fixAll.eslint": false },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "never"
+  },
   "editor.snippetSuggestions": "none",
   "emmet.showExpandedAbbreviation": "never",
-  "editor.wordBasedSuggestions": false,
+  "editor.wordBasedSuggestions": "off",
   "javascript.suggest.names": false,
   "typescript.tsdk": "node_modules/typescript/lib",
   "search.exclude": {
