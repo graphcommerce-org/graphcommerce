@@ -13,7 +13,7 @@ const readSchema = async (config) => {
     const projectId = config.hygraphProjectId;
     const hygraphClient = new client_1.ApolloClient({
         link: new client_1.HttpLink({
-            uri: 'https://management.hygraph.com/graphql',
+            uri: config.hygraphManagementApi ?? 'https://management.hygraph.com/graphql',
             fetch: fetch_1.fetch,
             headers: { Authorization: `Bearer ${config.hygraphWriteAccessToken}` },
         }),

@@ -15,7 +15,7 @@ export const readSchema = async (config: GraphCommerceConfig) => {
 
   const hygraphClient = new ApolloClient({
     link: new HttpLink({
-      uri: 'https://management.hygraph.com/graphql',
+      uri: config.hygraphManagementApi ?? 'https://management.hygraph.com/graphql',
       fetch,
       headers: { Authorization: `Bearer ${config.hygraphWriteAccessToken}` },
     }),

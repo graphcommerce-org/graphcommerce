@@ -211,6 +211,8 @@ export type GraphCommerceConfig = {
    * Project settings -> API Access -> High Performance Read-only Content API
    */
   hygraphEndpoint: Scalars['String']['input'];
+  /** Hygraph Management API. **Only used for migrations.** */
+  hygraphManagementApi?: InputMaybe<Scalars['String']['input']>;
   /** Hygraph Project ID. **Only used for migrations.** */
   hygraphProjectId?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -444,6 +446,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
     hygraphEndpoint: z.string().min(1),
+    hygraphManagementApi: z.string().nullish(),
     hygraphProjectId: z.string().nullish(),
     hygraphWriteAccessEndpoint: z.string().nullish(),
     hygraphWriteAccessToken: z.string().nullish(),
