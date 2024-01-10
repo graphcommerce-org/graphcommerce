@@ -34,7 +34,7 @@ const hygraphPageContentPlugin: MethodPlugin<typeof pageContent> = async (
           }
         : { index: true, follow: true },
     }),
-    hygraphPage: content.data.pages?.[0],
+    hygraphPage: page,
   }
 }
 
