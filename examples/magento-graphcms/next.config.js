@@ -30,9 +30,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  experimental: {
-    scrollRestoration: true,
-  },
 }
 
 module.exports = withGraphCommerce(withPWA(nextConfig), __dirname)

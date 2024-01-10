@@ -1,4 +1,3 @@
-/* eslint-disable no-cond-assign */
 import { NormalizedCacheObject, ApolloClient } from '@graphcommerce/graphql'
 import { storefrontConfig } from '@graphcommerce/next-ui'
 import { NextApiRequest, NextApiResponse } from 'next'
@@ -88,12 +87,10 @@ async function invalidateProductById(
 }
 
 async function doFullPurge(locale: string) {
-  console.info(`varnish-purge: doing full purge of static content for locale ${locale}`)
-
   const workingDir = process.cwd()
   const staticPath = `${workingDir}/.next/server/pages`
 
-  console.info(`varnish-purge: cleaning path ${staticPath}/${locale}(.json|.html)`)
+  console.info(`varnish-purge: full purge, cleaning ${staticPath}/${locale}(.json|.html)`)
   await rimraf(`${staticPath}/${locale}`)
   await rimraf(`${staticPath}/${locale}.html`)
   await rimraf(`${staticPath}/${locale}.json`)
@@ -115,12 +112,11 @@ export async function handlePurgeRequest(
     const productTagPattern = /^cat_p_([0-9]+)$/
     const tags = parseTagsFromHeader(rawTags)
 
-    tags.forEach((tag) => {
+    tags.forEach(async (tag) => {
       const match = tag.match(productTagPattern)
 
       if (match) {
-        // eslint-disable-next-line no-void
-        void invalidateProductById(client, locale, +match[1], res)
+        await invalidateProductById(client, locale, +match[1], res)
       }
     })
   }
