@@ -1,5 +1,12 @@
 # @graphcommerce/ecommerce-ui
 
+## 8.0.0-canary.77
+
+### Patch Changes
+
+- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - a11y improvements (see https://github.com/graphcommerce-org/graphcommerce/issues/1995 for more info)
+  ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 8.0.0-canary.76
 
 ## 8.0.0-canary.75
