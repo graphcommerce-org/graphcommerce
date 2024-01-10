@@ -1,5 +1,12 @@
 # @graphcommerce/cli
 
+## 8.0.0-canary.76
+
+### Patch Changes
+
+- [#2130](https://github.com/graphcommerce-org/graphcommerce/pull/2130) [`83f0c34`](https://github.com/graphcommerce-org/graphcommerce/commit/83f0c346792992143ef533a2043d91a0d090e7b1) - fix: add graphql-codegen-typescript-validation-schema to resolutions …
+  ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 8.0.0-canary.75
 
 ## 8.0.0-canary.74
