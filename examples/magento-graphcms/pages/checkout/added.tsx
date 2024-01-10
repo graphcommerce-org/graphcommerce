@@ -14,6 +14,7 @@ import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/Layo
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container, Divider, Typography } from '@mui/material'
+import { useEffect, useRef } from 'react'
 import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -22,6 +23,11 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function CheckoutAdded() {
   const [addedItem, crossSellItems] = useCrosssellItems()
+  const a11yFocusRef = useRef<HTMLHeadingElement | null>(null)
+
+  useEffect(() => {
+    a11yFocusRef.current?.focus()
+  }, [])
 
   return (
     <>
@@ -77,7 +83,7 @@ function CheckoutAdded() {
         )}
 
         <Box gridArea='children'>
-          <Box sx={{ typography: 'h6' }}>
+          <Box sx={{ typography: 'h6' }} tabIndex={-1} ref={a11yFocusRef}>
             <Trans
               id='<0>{name}</0> has been added to your shopping cart!'
               components={{ 0: <strong /> }}
@@ -85,7 +91,7 @@ function CheckoutAdded() {
             />
           </Box>
           {crossSellItems.length > 0 && (
-            <Box sx={{ typography: 'body1', display: { xs: 'none', md: 'block' } }}>
+            <Box sx={{ typography: 'body1', display: { xs: 'none', md: 'block' } }} tabIndex={0}>
               <Trans id='Complete your purchase' />
             </Box>
           )}

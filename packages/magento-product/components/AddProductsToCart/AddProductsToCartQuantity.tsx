@@ -1,12 +1,10 @@
 import { NumberFieldElement, NumberFieldElementProps } from '@graphcommerce/ecommerce-ui'
-import {
-  AddProductsToCartFields,
-  AddToCartItemSelector,
-  useFormAddProductsToCart,
-} from './useFormAddProductsToCart'
+import { i18n } from '@lingui/core'
+import { AddProductsToCartMutationVariables } from './AddProductsToCart.gql'
+import { AddToCartItemSelector, useFormAddProductsToCart } from './useFormAddProductsToCart'
 
 type AddToCartQuantityProps = Omit<
-  NumberFieldElementProps<AddProductsToCartFields>,
+  NumberFieldElementProps<AddProductsToCartMutationVariables>,
   'error' | 'required' | 'inputProps' | 'helperText' | 'name' | 'control'
 > &
   AddToCartItemSelector
@@ -22,9 +20,10 @@ export function AddProductsToCartQuantity(props: AddToCartQuantityProps) {
       color='primary'
       {...props}
       required
-      inputProps={{ min: 1 }}
+      inputProps={{ min: 1, 'aria-label': i18n._(/* i18n */ 'Add to cart quantity') }}
       defaultValue={1}
       control={control}
+      aria-label={i18n._(/* i18n */ 'Add to cart quantity')}
       name={`cartItems.${index}.quantity`}
     />
   )

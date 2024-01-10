@@ -2,7 +2,7 @@ import { useMotionValueValue, useMotionSelector, dvw } from '@graphcommerce/fram
 import { i18n } from '@lingui/core'
 import { useTheme, Box, Fab, SxProps, Theme, useEventCallback, styled } from '@mui/material'
 import { m } from 'framer-motion'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import type { LiteralUnion } from 'type-fest'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { LayoutHeaderContent } from '../../Layout/components/LayoutHeaderContent'
@@ -71,11 +71,21 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
     } else selection.set([])
   })
 
+  const a11yFocusRef = useRef<HTMLButtonElement | null>(null)
+
   const selectedLevel = useMotionValueValue(selection, (s) => (s === false ? -1 : s.length))
   const selectionValue = useMotionValueValue(selection, (s) => (s ? s.join('') : s))
   const activeAndNotClosing = useMotionSelector([selection, closing], ([s, c]) =>
     c ? false : s !== false,
   )
+
+  useEffect(() => {
+    animating.set(true)
+
+    if (activeAndNotClosing) {
+      a11yFocusRef.current?.focus()
+    }
+  }, [activeAndNotClosing, animating])
 
   const afterClose = useEventCallback(() => {
     if (!closing.get()) return
@@ -157,6 +167,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
                 sx={{ boxShadow: 'none', my: fabMarginY }}
                 size='responsive'
                 aria-label={i18n._(/* i18n */ 'Close')}
+                ref={a11yFocusRef}
               >
                 <IconSvg src={iconClose} size='large' aria-hidden />
               </Fab>
