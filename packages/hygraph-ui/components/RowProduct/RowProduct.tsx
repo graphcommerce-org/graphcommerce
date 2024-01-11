@@ -1,3 +1,4 @@
+import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { ProductSpecsFragment } from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.gql'
 import { RowProductFragment } from './RowProduct.gql'
 import {
@@ -14,11 +15,12 @@ import {
 
 type VariantRenderer = Record<
   NonNullable<RowProductFragment['variant']>,
-  React.VFC<RowProductFragment>
+  React.VFC<RowProductFragment & { productListItemRenderer: ProductListItemRenderer }>
 >
 
 type RowProductProps = RowProductFragment & {
   renderer?: Partial<VariantRenderer>
+  productListItemRenderer: ProductListItemRenderer
 } & ProductSpecsFragment & { items?: unknown } & { sku?: string | null | undefined }
 
 const defaultRenderer: Partial<VariantRenderer> = {
@@ -34,7 +36,7 @@ const defaultRenderer: Partial<VariantRenderer> = {
 }
 
 export function RowProduct(props: RowProductProps) {
-  const { renderer, ...RowProductProps } = props
+  const { renderer, productListItemRenderer, ...RowProductProps } = props
   let { variant } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as VariantRenderer
 
@@ -47,5 +49,5 @@ export function RowProduct(props: RowProductProps) {
       return null
     })
 
-  return <RenderType {...RowProductProps} />
+  return <RenderType {...RowProductProps} productListItemRenderer={productListItemRenderer} />
 }

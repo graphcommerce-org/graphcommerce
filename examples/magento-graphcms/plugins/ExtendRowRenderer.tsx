@@ -12,9 +12,8 @@ function ExtendRowRendererPlugin(props: PluginProps<PageProps>) {
   const { Prev, renderer, ...rest } = props
 
   const mergedRenderer = {
-    ...defaultRenderer,
-    ...extendedRenderer,
     ...renderer,
+    ...extendedRenderer,
   }
 
   return <Prev {...rest} renderer={mergedRenderer} />

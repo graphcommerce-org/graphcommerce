@@ -4,8 +4,10 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Row } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
 import { RowProductFragment } from '../RowProduct.gql'
+import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 
-type ReviewsProps = RowProductFragment & Partial<ProductReviewsProps>
+type ReviewsProps = RowProductFragment &
+  Partial<ProductReviewsProps> & { productListItemRenderer: ProductListItemRenderer }
 
 export function Reviews(props: ReviewsProps) {
   const { title, reviews, url_key, review_count, sku } = props

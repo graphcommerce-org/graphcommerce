@@ -1,4 +1,8 @@
-import { AddProductsToCartForm, ProductListItemsFragment } from '@graphcommerce/magento-product'
+import {
+  AddProductsToCartForm,
+  ProductListItemRenderer,
+  ProductListItemsFragment,
+} from '@graphcommerce/magento-product'
 import {
   RenderType,
   responsiveVal,
@@ -8,10 +12,12 @@ import {
 import { Typography } from '@mui/material'
 import { RowProductFragment } from '../RowProduct.gql'
 
-type SwipeableProps = RowProductFragment & ProductListItemsFragment & Pick<SidebarSliderProps, 'sx'>
+type SwipeableProps = RowProductFragment &
+  ProductListItemsFragment &
+  Pick<SidebarSliderProps, 'sx'> & { productListItemRenderer: ProductListItemRenderer }
 
 export function Swipeable(props: SwipeableProps) {
-  const { title, items, sx = [] } = props
+  const { title, items, productListItemRenderer, sx = [] } = props
 
   if (!items || items.length === 0) return null
 
@@ -36,7 +42,7 @@ export function Swipeable(props: SwipeableProps) {
           item ? (
             <RenderType
               key={item.uid ?? ''}
-              renderer={productListRenderer}
+              renderer={productListItemRenderer}
               {...item}
               imageOnly
               sizes={responsiveVal(180, 900)}

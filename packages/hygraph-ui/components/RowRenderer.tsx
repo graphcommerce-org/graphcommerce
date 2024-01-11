@@ -1,3 +1,4 @@
+import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { LazyHydrate, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 // import { RowBlogContent } from '../../../examples/magento-graphcms/components/Blog'
 import { PageContentQueryFragment } from './PageContentQueryFragment.gql'
@@ -34,17 +35,25 @@ export const defaultRenderer: { [key: string]: (props) => React.ReactElement } =
 export type PageProps = RowRendererFragment & {
   renderer?: Partial<ContentTypeRenderer>
   loadingEager?: number
+  productListItemRenderer?: ProductListItemRenderer
 }
 
 export function RowRenderer(props: PageProps) {
-  const { content, renderer, loadingEager = 2 } = props
+  const { content, renderer, productListItemRenderer, loadingEager = 2 } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as ContentTypeRenderer
 
   return (
     <>
       {content?.map((item, index) => (
         <LazyHydrate key={item.id} hydrated={index < loadingEager ? true : undefined}>
-          <RenderType renderer={mergedRenderer} {...item} />
+          {item.__typename === 'RowProduct' && (
+            <RenderType
+              renderer={mergedRenderer}
+              productListItemRenderer={productListItemRenderer}
+              {...item}
+            />
+          )}
+          {item.__typename !== 'RowProduct' && <RenderType renderer={mergedRenderer} {...item} />}
         </LazyHydrate>
       ))}
     </>

@@ -1,4 +1,8 @@
-import { AddProductsToCartForm, UpsellProductsFragment } from '@graphcommerce/magento-product'
+import {
+  AddProductsToCartForm,
+  ProductListItemRenderer,
+  UpsellProductsFragment,
+} from '@graphcommerce/magento-product'
 import {
   SidebarSlider,
   RenderType,
@@ -8,10 +12,12 @@ import {
 import { Typography } from '@mui/material'
 import { RowProductFragment } from '../RowProduct.gql'
 
-type UpsellsProps = RowProductFragment & UpsellProductsFragment & Pick<SidebarSliderProps, 'sx'>
+type UpsellsProps = RowProductFragment &
+  UpsellProductsFragment &
+  Pick<SidebarSliderProps, 'sx'> & { productListItemRenderer: ProductListItemRenderer }
 
 export function Upsells(props: UpsellsProps) {
-  const { title, upsell_products, sx } = props
+  const { title, upsell_products, productListItemRenderer, sx } = props
 
   if (!upsell_products || upsell_products.length === 0) return null
 
@@ -22,7 +28,7 @@ export function Upsells(props: UpsellsProps) {
           item ? (
             <RenderType
               key={item.uid ?? ''}
-              renderer={productListRenderer}
+              renderer={productListItemRenderer}
               sizes={responsiveVal(200, 400)}
               titleComponent='h3'
               {...item}

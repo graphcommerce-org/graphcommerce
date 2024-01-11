@@ -1,14 +1,19 @@
-import { AddProductsToCartForm, ProductListItemsFragment } from '@graphcommerce/magento-product'
+import {
+  AddProductsToCartForm,
+  ProductListItemRenderer,
+  ProductListItemsFragment,
+} from '@graphcommerce/magento-product'
 import { ParagraphWithSidebarSlide, RenderType } from '@graphcommerce/next-ui'
 import { useTheme } from '@mui/material'
 import { Asset } from '../../Asset/Asset'
 import { RowProductFragment } from '../RowProduct.gql'
 import { RichText } from '../../RichText'
 
-type BackstoryProps = RowProductFragment & ProductListItemsFragment
+type BackstoryProps = RowProductFragment &
+  ProductListItemsFragment & { productListItemRenderer: ProductListItemRenderer }
 
 export function Backstory(props: BackstoryProps) {
-  const { productCopy, asset, ...productListItems } = props
+  const { productCopy, asset, productListItemRenderer, ...productListItems } = props
   const theme = useTheme()
   const singleItem = productListItems?.items?.[(productListItems.items?.length ?? 1) - 1]
 
@@ -24,7 +29,7 @@ export function Backstory(props: BackstoryProps) {
         }
         slidingItems={
           <RenderType
-            renderer={productListRenderer}
+            renderer={productListItemRenderer}
             {...singleItem}
             sizes={{ 0: '50vw', [theme.breakpoints.values.md]: '27vw' }}
           />

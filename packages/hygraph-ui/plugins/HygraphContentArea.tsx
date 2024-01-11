@@ -7,12 +7,18 @@ export const exported = '@graphcommerce/content-areas/components/ContentArea/Con
 
 const HygraphContentArea: ReactPlugin<typeof ContentArea> = (props) => {
   const { Prev, ...rest } = props
-  const { content, renderer } = props
+  const { content, renderer, productListRenderer } = props
 
   return (
     <>
       <Prev {...rest} />
-      {content.hygraphPage && <RowRenderer {...content.hygraphPage} renderer={renderer} />}
+      {content.hygraphPage && (
+        <RowRenderer
+          {...content.hygraphPage}
+          productListItemRenderer={productListRenderer}
+          renderer={renderer}
+        />
+      )}
     </>
   )
 }

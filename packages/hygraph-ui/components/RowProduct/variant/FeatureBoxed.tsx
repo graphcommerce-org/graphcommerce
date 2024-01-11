@@ -4,8 +4,10 @@ import { Typography, useTheme } from '@mui/material'
 import { RowProductFragment } from '../RowProduct.gql'
 import { ProductFeatureMediaBoxedFragment } from './ProductFeatureMediaBoxed.gql'
 import { RichText } from '../../RichText'
+import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 
-type FeatureBoxedProps = RowProductFragment & ProductFeatureMediaBoxedFragment
+type FeatureBoxedProps = RowProductFragment &
+  ProductFeatureMediaBoxedFragment & { productListItemRenderer: ProductListItemRenderer }
 
 export function FeatureBoxed(props: FeatureBoxedProps) {
   const { productCopy, title, media_gallery } = props
