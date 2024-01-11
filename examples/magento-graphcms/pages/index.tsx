@@ -1,8 +1,9 @@
 import { ContentAreaHome, PageContent, pageContent } from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { RowProduct } from '@graphcommerce/graphcms-ui'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutHeader, MetaRobots, PageMeta } from '@graphcommerce/next-ui'
+import { GetStaticProps, LayoutHeader, PageMeta } from '@graphcommerce/next-ui'
 import {
   LayoutDocument,
   LayoutNavigation,
@@ -33,7 +34,25 @@ function CmsPage(props: Props) {
 
       <LayoutHeader floatingMd floatingSm />
 
-      <ContentAreaHome content={content} productListRenderer={productListRenderer} />
+      <ContentAreaHome
+        content={content}
+        productListRenderer={productListRenderer}
+        renderer={{
+          RowProduct: (rowProps) => {
+            const { identity } = rowProps
+
+            if (identity === 'home-favorites')
+              return (
+                <RowProduct {...rowProps} {...favorite} items={favoritesList.products?.items} />
+              )
+            if (identity === 'home-latest')
+              return <RowProduct {...rowProps} {...latest} items={latestList.products?.items} />
+            if (identity === 'home-swipable')
+              return <RowProduct {...rowProps} {...swipable} items={swipableList.products?.items} />
+            return <RowProduct {...rowProps} {...favorite} items={favoritesList.products?.items} />
+          },
+        }}
+      />
 
       {/* {page && (
         <RowRenderer

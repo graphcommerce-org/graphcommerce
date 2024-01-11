@@ -2960,6 +2960,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/graphcms-ui@workspace:packages/hygraph-ui"
   peerDependencies:
+    "@graphcommerce/content-areas": ^8.0.0-canary.75
     "@graphcommerce/ecommerce-ui": ^8.0.0-canary.75
     "@graphcommerce/eslint-config-pwa": ^8.0.0-canary.75
     "@graphcommerce/graphql": ^8.0.0-canary.75
