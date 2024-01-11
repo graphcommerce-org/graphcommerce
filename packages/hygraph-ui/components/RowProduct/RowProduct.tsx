@@ -34,10 +34,11 @@ const defaultRenderer: Partial<VariantRenderer> = {
 }
 
 export function RowProduct(props: RowProductProps) {
-  const { renderer, variant, ...RowProductProps } = props
+  const { renderer, ...RowProductProps } = props
+  let { variant } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as VariantRenderer
 
-  if (!variant) return null
+  if (!variant) variant = 'Related'
 
   const RenderType =
     mergedRenderer?.[variant] ??

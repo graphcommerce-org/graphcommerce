@@ -18,10 +18,12 @@ const defaultRenderer: Partial<VariantRenderer> = {
 }
 
 export function RowLinks(props: RowLinksProps) {
-  const { renderer, linksVariant, ...RowLinksProps } = props
+  const { renderer, ...RowLinksProps } = props
+
+  let { linksVariant } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as VariantRenderer
 
-  if (!linksVariant) return null
+  if (!linksVariant) linksVariant = 'Inline'
 
   const RenderType =
     mergedRenderer?.[linksVariant] ??

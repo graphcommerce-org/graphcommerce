@@ -16,7 +16,7 @@ import { RowSpecialBanner } from './RowSpecialBanner/RowSpecialBanner'
 
 export type ContentTypeRenderer = TypeRenderer<PageContentQueryFragment['pages'][0]['content'][0]>
 
-const defaultRenderer: Partial<ContentTypeRenderer> = {
+export const defaultRenderer: { [key: string]: (props) => React.ReactElement } = {
   RowColumnOne,
   RowColumnTwo,
   RowColumnThree,

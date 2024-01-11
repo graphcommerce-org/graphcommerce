@@ -1,0 +1,5 @@
+# fragment ExtendRowRenderer on Page @inject(into: ["HygraphPage"]) {
+#   content {
+#     ...CustomRow
+#   }
+# }
