@@ -1,3 +1,6 @@
-# extend input GraphCommerceConfig {
-#   # Add config for varnish IP whitelist
-# }
+extend input GraphCommerceConfig {
+  """
+  List of IP addresses that are allowed to send PURGE requests
+  """
+  purgeAllowList: [String!]
+}

@@ -274,6 +274,10 @@ By default we route products to /p/[url] but you can change this to /product/[ur
 Default: '/p/'
 Example: '/product/'
 
+#### purgeAllowList: string[]
+
+List of IP addresses that are allowed to send PURGE requests
+
 #### recentlyViewedProducts: [RecentlyViewedProductsConfig](#RecentlyViewedProductsConfig)
 
 Settings for recently viewed products

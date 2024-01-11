@@ -96,12 +96,28 @@ async function doFullPurge(locale: string) {
   await rimraf(`${staticPath}/${locale}.json`)
 }
 
+function checkAllowList(req: NextApiRequest): boolean {
+  if (import.meta.graphCommerce.purgeAllowList && req.socket.remoteAddress) {
+    if (import.meta.graphCommerce.purgeAllowList.includes(req.socket.remoteAddress)) {
+      return true
+    }
+  }
+  return false
+}
+
 export async function handlePurgeRequest(
   client: ApolloClient<NormalizedCacheObject>,
   locale: string,
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+  if (!checkAllowList(req)) {
+    console.warn(`varnish-purge: disallowed purge request from ${req.socket.remoteAddress}`)
+    res.status(403)
+    res.send('FORBIDDEN')
+    res.end()
+    return
+  }
   const rawTags = req.headers['x-magento-tags-pattern']
 
   console.info(`varnish-purge: purge request from ${req.socket.remoteAddress} for ${rawTags}`)

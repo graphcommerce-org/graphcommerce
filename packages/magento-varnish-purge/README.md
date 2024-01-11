@@ -19,9 +19,8 @@ api/varnish-purge route.
 
 ## Enabling handling of PURGE requests in your GraphCommerce project
 
-TODO, but in short:
+Add middleware for rewriting PURGE requests to api route:
 
-- Add middleware for rewriting PURGE requests to api route
 - Implement api route that invokes handlePurgeRequest for each store
 
 ## Configuring Magento to send PURGE request to your GraphCommerce application

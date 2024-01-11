@@ -279,6 +279,8 @@ export type GraphCommerceConfig = {
    * Example: '/product/'
    */
   productRoute?: InputMaybe<Scalars['String']['input']>;
+  /** List of IP addresses that are allowed to send PURGE requests */
+  purgeAllowList?: InputMaybe<Array<Scalars['String']['input']>>;
   /** Settings for recently viewed products */
   recentlyViewedProducts?: InputMaybe<RecentlyViewedProductsConfig>;
   /**
@@ -453,6 +455,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
     productFiltersPro: z.boolean().nullish(),
     productRoute: z.string().nullish(),
+    purgeAllowList: z.array(z.string().min(1)).nullish(),
     recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
     robotsAllow: z.boolean().nullish(),
     sidebarGallery: SidebarGalleryConfigSchema().nullish(),

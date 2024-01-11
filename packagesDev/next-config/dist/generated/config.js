@@ -85,6 +85,7 @@ function GraphCommerceConfigSchema() {
         productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),
         productRoute: _zod.z.string().nullish(),
+        purgeAllowList: _zod.z.array(_zod.z.string().min(1)).nullish(),
         recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
         sidebarGallery: SidebarGalleryConfigSchema().nullish(),
