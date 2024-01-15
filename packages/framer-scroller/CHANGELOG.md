@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.86
+
+### Patch Changes
+
+- [#2157](https://github.com/graphcommerce-org/graphcommerce/pull/2157) [`b1afcd0`](https://github.com/graphcommerce-org/graphcommerce/commit/b1afcd00b6680cd5167691e47a691461382226d3) - Fixed bug which caused the scrollerButton to become unclickable
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.0.0-canary.85
 
 ## 8.0.0-canary.84
