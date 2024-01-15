@@ -1,5 +1,7 @@
 # @graphcommerce/magento-payment-adyen
 
+## 8.0.0-canary.78
+
 ## 8.0.0-canary.77
 
 ## 8.0.0-canary.76
