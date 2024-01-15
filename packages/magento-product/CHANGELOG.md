@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.82
+
+### Patch Changes
+
+- [#2150](https://github.com/graphcommerce-org/graphcommerce/pull/2150) [`59844cd`](https://github.com/graphcommerce-org/graphcommerce/commit/59844cdd8adfaf03d22b04b9082552e22f386fb6) - Fixed a bug which caused the default values of the productAddToCartForm to be overwritten if the selected configurable option of a product contained a visible simple product. Before the fix you could not add the same product twice without reloading the page.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.0.0-canary.81
 
 ## 8.0.0-canary.80
