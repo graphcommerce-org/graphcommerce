@@ -421,6 +421,6 @@ Number of recently viewed products to be stored in localStorage
 
 SidebarGalleryConfig will contain all configuration values for the Sidebar Gallery component.
 
-#### paginationVariant: 'DOTS' | 'THUMBNAILS_BOTTOM'
+#### paginationVariant: 'DOTS' | 'GRID' | 'THUMBNAILS_BOTTOM'
 
 Variant used for the pagination

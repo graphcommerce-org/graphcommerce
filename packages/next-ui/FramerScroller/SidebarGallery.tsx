@@ -1,4 +1,3 @@
-import { usePrevPageRouter } from '@graphcommerce/framer-next-pages/hooks/usePrevPageRouter'
 import {
   MotionImageAspect,
   MotionImageAspectProps,
@@ -6,7 +5,6 @@ import {
   ScrollerDots,
   ScrollerButton,
   ScrollerProvider,
-  unstable_usePreventScroll as usePreventScroll,
   ScrollerButtonProps,
   ScrollerThumbnails,
 } from '@graphcommerce/framer-scroller'
@@ -20,13 +18,13 @@ import {
   Theme,
   Unstable_TrapFocus as TrapFocus,
 } from '@mui/material'
-import { m, useDomEvent, useMotionValue } from 'framer-motion'
-import { useRouter } from 'next/router'
-import React, { useEffect, useRef } from 'react'
+import { m } from 'framer-motion'
+import React from 'react'
 import { IconSvg } from '../IconSvg'
 import { Row } from '../Row/Row'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
+import { useGalleryZoom } from '../hooks/useGalleryZoom'
 import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../icons'
 
 const MotionBox = styled(m.div)({})
@@ -72,62 +70,16 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     showButtons,
     disableZoom = false,
   } = props
-
-  const router = useRouter()
-  const prevRoute = usePrevPageRouter()
-  // const classes = useMergedClasses(useStyles({ clientHeight, aspectRatio }).classes, props.classes)
-
-  const route = `#${routeHash}`
-  // We're using the URL to manage the state of the gallery.
-  const zoomed = router.asPath.endsWith(route)
-  usePreventScroll(zoomed)
-
-  // cleanup if someone enters the page with #gallery
-  useEffect(() => {
-    if (!prevRoute?.pathname && zoomed) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.replace(router.asPath.replace(route, ''))
-    }
-  }, [prevRoute?.pathname, route, router, zoomed])
-
-  const toggle = () => {
-    if (disableZoom) {
-      return
-    }
-    if (!zoomed) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.push(route, undefined, { shallow: true })
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    } else {
-      router.back()
-    }
-  }
+  const theme = useTheme()
+  const { maxHeight, onMouseDownScroller, onMouseUpScroller, ratio, zoomed, toggle } =
+    useGalleryZoom({
+      disableZoom,
+      height,
+      routeHash,
+      width,
+    })
 
   const classes = withState({ zoomed, disableZoom })
-  const theme = useTheme()
-  const windowRef = useRef(typeof window !== 'undefined' ? window : null)
-
-  const handleEscapeKey = (e: KeyboardEvent | Event) => {
-    if (zoomed && (e as KeyboardEvent)?.key === 'Escape') toggle()
-  }
-
-  const dragStart = useMotionValue<number>(0)
-  const onMouseDownScroller: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    if (dragStart.get() === e.clientX) return
-    dragStart.set(e.clientX)
-  }
-  const onMouseUpScroller: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    const currentDragLoc = e.clientX
-    if (Math.abs(currentDragLoc - dragStart.get()) < 8) toggle()
-  }
-
-  useDomEvent(windowRef, 'keyup', handleEscapeKey, { passive: true })
-
-  const headerHeight = `${theme.appShell.headerHeightSm} - ${theme.spacings.sm} * 2`
-  const galleryMargin = theme.spacings.lg
-
-  const maxHeight = `calc(100vh - ${headerHeight} - ${galleryMargin})`
-  const ratio = `calc(${height} / ${width} * 100%)`
 
   const hasImages = images.length > 0
 
@@ -258,7 +210,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                     size='small'
                     className={classes.toggleIcon}
                     disabled={!hasImages}
-                    onMouseUp={toggle}
+                    onMouseUp={() => toggle()}
                     aria-label='Toggle Fullscreen'
                     sx={{ boxShadow: 6 }}
                   >
