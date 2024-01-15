@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.84
+
+### Patch Changes
+
+- [#2161](https://github.com/graphcommerce-org/graphcommerce/pull/2161) [`cc5c636`](https://github.com/graphcommerce-org/graphcommerce/commit/cc5c636f9f2b3d9fa33384b9a02d6ad3631aa414) - Removed whitespace on top of the zoomed in image on the PDP.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.0.0-canary.83
 
 ## 8.0.0-canary.82
