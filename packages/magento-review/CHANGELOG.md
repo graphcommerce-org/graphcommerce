@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.87
+
+### Patch Changes
+
+- [#2168](https://github.com/graphcommerce-org/graphcommerce/pull/2168) [`986dc96`](https://github.com/graphcommerce-org/graphcommerce/commit/986dc96e6e88b58471dfcccf952d99bbb8a81884) - Added schema-dts as a dependency, so it isn't required in the example
+  ([@paales](https://github.com/paales))
+
 ## 8.0.0-canary.86
 
 ## 8.0.0-canary.85
