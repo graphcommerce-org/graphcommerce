@@ -1,5 +1,12 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 8.0.0-canary.85
+
+### Patch Changes
+
+- [#2155](https://github.com/graphcommerce-org/graphcommerce/pull/2155) [`6a34c4a`](https://github.com/graphcommerce-org/graphcommerce/commit/6a34c4a870948ffb31f90b678e7e108066cb09a9) - Added AddProductsToCartForm context provider to the recently viewed products demo to fix a bug surrounding a form that was null.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.0.0-canary.84
 
 ## 8.0.0-canary.83
