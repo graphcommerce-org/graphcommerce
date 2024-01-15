@@ -16,3 +16,4 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./graphcommerce5to6"), exports);
 __exportStar(require("./graphcommerce6to7"), exports);
+__exportStar(require("./graphcommerce7to8"), exports);
