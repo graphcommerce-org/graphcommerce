@@ -22,7 +22,6 @@
   "devDependencies": {
     "@types/cookie": "^0.6.0",
     "@types/react-is": "^18.2.4",
-    "schema-dts": "^1.1.2",
     "typescript": "5.3.3"
   },
   "peerDependencies": {

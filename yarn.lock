@@ -4293,7 +4293,6 @@ __metadata:
     "@types/react-is": "npm:^18.2.4"
     cookie: "npm:^0.6.0"
     react-is: "npm:^18.2.0"
-    schema-dts: "npm:^1.1.2"
     typescript: "npm:5.3.3"
   peerDependencies:
     "@graphcommerce/eslint-config-pwa": ^8.0.0-canary.86
