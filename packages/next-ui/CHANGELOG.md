@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.80
+
+### Patch Changes
+
+- [#2138](https://github.com/graphcommerce-org/graphcommerce/pull/2138) [`a057d62`](https://github.com/graphcommerce-org/graphcommerce/commit/a057d6274e1d427e631ab3fad7a16078315103b8) - Wrap the logo in a div on the homepage to prevent redirection.
+  ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 8.0.0-canary.79
 
 ### Patch Changes
