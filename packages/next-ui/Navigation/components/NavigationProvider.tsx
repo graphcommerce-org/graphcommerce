@@ -1,6 +1,8 @@
-import { MotionConfig, useMotionValue } from 'framer-motion'
+import { MotionConfig, useMotionValue, useTransform } from 'framer-motion'
 import React, { useMemo } from 'react'
 import { isElement } from 'react-is'
+import { LazyHydrate } from '../../LazyHydrate'
+import { nonNullable } from '../../RenderType/nonNullable'
 import {
   NavigationNode,
   NavigationContextType,
@@ -9,8 +11,9 @@ import {
   NavigationNodeType,
   NavigationNodeComponent,
 } from '../hooks/useNavigation'
+import { useMotionValueValue } from '@graphcommerce/framer-utils'
 
-export type NavigationProviderProps = {
+export type NavigationProviderBaseProps = {
   items: (NavigationNode | React.ReactElement)[]
   hideRootOnNavigate?: boolean
   closeAfterNavigate?: boolean
@@ -20,9 +23,9 @@ export type NavigationProviderProps = {
   serverRenderDepth?: number
 }
 
-const nonNullable = <T,>(value: T): value is NonNullable<T> => value !== null && value !== undefined
+export type NavigationProviderProps = NavigationProviderBaseProps & { hold?: boolean }
 
-export const NavigationProvider = React.memo<NavigationProviderProps>((props) => {
+const NavigationProviderBase = React.memo<NavigationProviderBaseProps>((props) => {
   const {
     items,
     hideRootOnNavigate = true,
@@ -73,3 +76,14 @@ export const NavigationProvider = React.memo<NavigationProviderProps>((props) =>
     </MotionConfig>
   )
 })
+
+export function NavigationProvider(props: NavigationProviderProps) {
+  const { selection } = props
+  const hydrateManually = useMotionValueValue(selection, (s) => s !== false)
+
+  return (
+    <LazyHydrate hydrated={hydrateManually}>
+      <NavigationProviderBase {...props} />
+    </LazyHydrate>
+  )
+}

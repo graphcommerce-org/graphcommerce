@@ -1,5 +1,55 @@
 # Change Log
 
+## 8.0.0-canary.82
+
+## 8.0.0-canary.81
+
+## 8.0.0-canary.80
+
+## 8.0.0-canary.79
+
+## 8.0.0-canary.78
+
+## 8.0.0-canary.77
+
+## 8.0.0-canary.76
+
+## 8.0.0-canary.75
+
+## 8.0.0-canary.74
+
+## 8.0.0-canary.73
+
+## 8.0.0-canary.72
+
+## 8.0.0-canary.71
+
+## 8.0.0-canary.70
+
+## 8.0.0-canary.69
+
+## 7.1.0-canary.68
+
+### Patch Changes
+
+- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`6d7ed0a`](https://github.com/graphcommerce-org/graphcommerce/commit/6d7ed0a2a3d9b3c6193f86bce6889ff24adf3e83) - When signing in the cartFab would not always properly reflect the current items in the cart
+  ([@paales](https://github.com/paales))
+
+- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`ab834fb`](https://github.com/graphcommerce-org/graphcommerce/commit/ab834fbfe057fb507c371a6d22af282cc1b195d4) - Added user session reevaluation after unathenticated call. Queries will be paused untill user has signed in again
+  ([@paales](https://github.com/paales))
+
+## 7.1.0-canary.67
+
+## 7.1.0-canary.66
+
+## 7.1.0-canary.65
+
+## 7.1.0-canary.64
+
+## 7.1.0-canary.63
+
+## 7.1.0-canary.62
+
 ## 7.1.0-canary.61
 
 ## 7.1.0-canary.60
@@ -1430,31 +1480,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { Trans, t } from "@lingui/macro";
 
   function MyComponent() {
-    const foo = 'bar'
+    const foo = "bar";
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    )
+    );
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from '@lingui/react'
-  import { i18n } from '@lingui/core'
+  import { Trans } from "@lingui/react";
+  import { i18n } from "@lingui/core";
 
   function MyComponent() {
-    const foo = 'bar'
+    const foo = "bar";
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
+        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
       </div>
-    )
+    );
   }
   ```
 

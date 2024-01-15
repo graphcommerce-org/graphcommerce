@@ -1,21 +1,20 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Image } from '@graphcommerce/image'
 import { useCrosssellItems } from '@graphcommerce/magento-cart'
-import { AddProductsToCartForm } from '@graphcommerce/magento-product'
+import { AddProductsToCartForm, ProductScroller } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   Button,
   GetStaticProps,
   iconChevronRight,
   IconSvg,
-  ItemScroller,
-  RenderType,
   responsiveVal,
 } from '@graphcommerce/next-ui'
 import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/LayoutHeaderClose'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container, Divider, Typography } from '@mui/material'
+import { useEffect, useRef } from 'react'
 import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -24,6 +23,11 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function CheckoutAdded() {
   const [addedItem, crossSellItems] = useCrosssellItems()
+  const a11yFocusRef = useRef<HTMLHeadingElement | null>(null)
+
+  useEffect(() => {
+    a11yFocusRef.current?.focus()
+  }, [])
 
   return (
     <>
@@ -79,7 +83,7 @@ function CheckoutAdded() {
         )}
 
         <Box gridArea='children'>
-          <Box sx={{ typography: 'h6' }}>
+          <Box sx={{ typography: 'h6' }} tabIndex={-1} ref={a11yFocusRef}>
             <Trans
               id='<0>{name}</0> has been added to your shopping cart!'
               components={{ 0: <strong /> }}
@@ -87,7 +91,7 @@ function CheckoutAdded() {
             />
           </Box>
           {crossSellItems.length > 0 && (
-            <Box sx={{ typography: 'body1', display: { xs: 'none', md: 'block' } }}>
+            <Box sx={{ typography: 'body1', display: { xs: 'none', md: 'block' } }} tabIndex={0}>
               <Trans id='Complete your purchase' />
             </Box>
           )}
@@ -128,21 +132,11 @@ function CheckoutAdded() {
             disableSuccessSnackbar
             redirect={import.meta.graphCommerce.crossSellsRedirectItems ? 'added' : false}
           >
-            <ItemScroller
-              sx={(theme) => ({
-                width: 'auto',
-                mb: theme.page.vertical,
-              })}
-            >
-              {crossSellItems.map((item) => (
-                <RenderType
-                  key={item.uid ?? ''}
-                  renderer={productListRenderer}
-                  {...item}
-                  sizes={responsiveVal(200, 300)}
-                />
-              ))}
-            </ItemScroller>
+            <ProductScroller
+              productListRenderer={productListRenderer}
+              items={crossSellItems}
+              sx={(theme) => ({ mb: theme.page.vertical })}
+            />
           </AddProductsToCartForm>
         </>
       )}

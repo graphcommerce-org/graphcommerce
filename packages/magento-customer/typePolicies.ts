@@ -45,29 +45,8 @@ const generateCustomerToken: FieldPolicy<Mutation['generateCustomerToken']> = {
   },
 }
 
-const createCustomer: FieldPolicy<Mutation['createCustomer']> = {
-  merge(_existing, incoming, options) {
-    if (incoming?.customer.email) {
-      options.cache.writeQuery({
-        query: IsEmailAvailableDocument,
-        variables: { email: incoming?.customer.email },
-        data: { isEmailAvailable: { is_email_available: false } },
-        broadcast: true,
-      })
-    }
-
-    return incoming
-  },
-}
-
-// const customer: FieldReadFunction<Query['customer']> = (incoming, options) => {
-//   if (!options.canRead(incoming)) return null
-//   return incoming
-// }
-
 export const customerTypePolicies: StrictTypedTypePolicies = {
-  // Query: { fields: { customer } },
-  Mutation: { fields: { generateCustomerToken, createCustomer, createCustomerV2: createCustomer } },
+  Mutation: { fields: { generateCustomerToken } },
   CustomerToken: { fields: { valid } },
 }
 

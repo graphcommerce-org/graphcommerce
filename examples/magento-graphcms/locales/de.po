@@ -40,6 +40,9 @@ msgstr "Neue Adresse hinzufügen"
 msgid "Add to Cart"
 msgstr "Zum Warenkorb hinzufügen"
 
+msgid "Add to cart quantity"
+msgstr "Zum Warenkorb hinzufügen Menge"
+
 msgid "Add to comparison"
 msgstr "Zum Vergleich hinzufügen"
 
@@ -301,6 +304,9 @@ msgstr "Inklusive {0}"
 msgid "Increase"
 msgstr "Erhöhen"
 
+msgid "Invalid date"
+msgstr "Ungültiges Datum"
+
 msgid "Invalid email address"
 msgstr "Ungültige E-Mail-Adresse"
 
@@ -330,9 +336,6 @@ msgstr "Ihr Kundenkonto wird geladen"
 
 msgid "Loading your data"
 msgstr "Ihre Daten werden geladen"
-
-msgid "Log in"
-msgstr "Anmelden"
 
 msgid "Log in to continue shopping"
 msgstr "Anmelden, um den Einkauf fortzusetzen"
@@ -560,10 +563,13 @@ msgid "Results for ‘{search}’"
 msgstr "Ergebnisse für ‘{search}’"
 
 msgid "Review"
-msgstr "Bewertung"
+msgstr "Rezension"
+
+msgid "Review score"
+msgstr "Rezensionsergebnis"
 
 msgid "Reviews"
-msgstr "Bewertungen"
+msgstr "Rezensions"
 
 msgid "Save changes"
 msgstr "Änderungen speichern"
@@ -618,6 +624,9 @@ msgstr "Abmelden"
 
 msgid "Sign up for our newsletter and stay updated"
 msgstr "Abonnieren Sie unseren Newsletter und bleiben Sie auf dem Laufenden"
+
+msgid "Skip to main content"
+msgstr "Zum Hauptinhalt springen"
 
 msgid "Some items in your cart contain errors, please update or remove them, then try again."
 msgstr "Einige Artikel im Warenkorb enthalten Fehler, bitte aktualisieren oder entfernen Sie diese, und versuchen Sie es erneut."
@@ -700,6 +709,9 @@ msgstr "Die Zahlung wurde nicht abgeschlossen, bitte versuchen Sie es erneut ode
 msgid "The payment is refused, please try again or select a different payment method."
 msgstr "Die Zahlung wurde abgelehnt, bitte versuchen Sie es erneut oder wählen Sie eine andere Zahlungsmethode aus."
 
+msgid "There is a maximum of ‘{maxLength}’ characters"
+msgstr "Es gibt maximal '{maxLength}' Zeichen"
+
 msgid "This cart is assigned to {email}. Please sign in to continue shopping."
 msgstr "Dieser Warenkorb ist {email} zugewiesen. Bitte melden Sie sich an, um mit dem Einkauf fortzufahren."
 
@@ -753,9 +765,6 @@ msgstr "Wir konnten keine Ergebnisse für {term} finden"
 
 msgid "We couldn't find the page you were looking for"
 msgstr "Die von Ihnen gesuchte Seite konnte nicht gefunden werden"
-
-msgid "Welcome back!"
-msgstr "Willkommen zurück!"
 
 msgid "We’re processing your payment, this will take a few seconds."
 msgstr "Wir bearbeiten Ihre Zahlung, dies dauert ein paar Sekunden."

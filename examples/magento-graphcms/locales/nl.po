@@ -40,6 +40,9 @@ msgstr "Voeg nieuw adres toe"
 msgid "Add to Cart"
 msgstr "In winkelwagen"
 
+msgid "Add to cart quantity"
+msgstr "Voeg toe aan winkelwagen aantal"
+
 msgid "Add to comparison"
 msgstr "Toevoegen aan vergelijking"
 
@@ -301,6 +304,9 @@ msgstr "Inclusief {0}"
 msgid "Increase"
 msgstr "Verhogen"
 
+msgid "Invalid date"
+msgstr "Ongeldige datum"
+
 msgid "Invalid email address"
 msgstr "Ongeldig e-mailadres"
 
@@ -330,9 +336,6 @@ msgstr "Uw account laden"
 
 msgid "Loading your data"
 msgstr "Uw gegevens laden"
-
-msgid "Log in"
-msgstr "Log in"
 
 msgid "Log in to continue shopping"
 msgstr "Log in om verder te winkelen"
@@ -562,6 +565,9 @@ msgstr "Resultaten voor ‘{search}’"
 msgid "Review"
 msgstr "Review"
 
+msgid "Review score"
+msgstr "Review score"
+
 msgid "Reviews"
 msgstr "Reviews"
 
@@ -618,6 +624,9 @@ msgstr "Uitloggen"
 
 msgid "Sign up for our newsletter and stay updated"
 msgstr "Abonneer u op onze nieuwsbrief en blijf op de hoogte"
+
+msgid "Skip to main content"
+msgstr "Ga naar hoofdinhoud"
 
 msgid "Some items in your cart contain errors, please update or remove them, then try again."
 msgstr "Sommige items in uw winkelwagen bevatten fouten, pas deze aan of verwijder ze en probeer het opnieuw."
@@ -700,6 +709,9 @@ msgstr "De betaling is niet voltooid, probeer het opnieuw of selecteer een ander
 msgid "The payment is refused, please try again or select a different payment method."
 msgstr "De betaling is geweigerd, probeer het opnieuw of selecteer een andere betaalmethode."
 
+msgid "There is a maximum of ‘{maxLength}’ characters"
+msgstr "Er is een maximum van ‘{maxLength}’ karakters"
+
 msgid "This cart is assigned to {email}. Please sign in to continue shopping."
 msgstr "Deze winkelwagen is toegewezen aan {email}. Log in om verder te winkelen."
 
@@ -753,9 +765,6 @@ msgstr "We konden geen resultaten vinden voor {term}"
 
 msgid "We couldn't find the page you were looking for"
 msgstr "We kunnen de pagina niet vinden waar u naar op zoek bent."
-
-msgid "Welcome back!"
-msgstr "Welkom terug!"
 
 msgid "We’re processing your payment, this will take a few seconds."
 msgstr "Uw betaling wordt verwerkt, dit duurt een paar seconden"

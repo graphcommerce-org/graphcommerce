@@ -1,5 +1,52 @@
 # Change Log
 
+## 8.0.0-canary.82
+
+## 8.0.0-canary.81
+
+### Patch Changes
+
+- [#2140](https://github.com/graphcommerce-org/graphcommerce/pull/2140) [`b34d85c`](https://github.com/graphcommerce-org/graphcommerce/commit/b34d85c8c5403c6f49b506b714ee314b8344fd99) - Fix incorrect redirect when locale has own domain
+  ([@hnsr](https://github.com/hnsr))
+
+## 8.0.0-canary.80
+
+## 8.0.0-canary.79
+
+## 8.0.0-canary.78
+
+## 8.0.0-canary.77
+
+## 8.0.0-canary.76
+
+## 8.0.0-canary.75
+
+## 8.0.0-canary.74
+
+## 8.0.0-canary.73
+
+## 8.0.0-canary.72
+
+## 8.0.0-canary.71
+
+## 8.0.0-canary.70
+
+## 8.0.0-canary.69
+
+## 7.1.0-canary.68
+
+## 7.1.0-canary.67
+
+## 7.1.0-canary.66
+
+## 7.1.0-canary.65
+
+## 7.1.0-canary.64
+
+## 7.1.0-canary.63
+
+## 7.1.0-canary.62
+
 ## 7.1.0-canary.61
 
 ## 7.1.0-canary.60
@@ -1105,31 +1152,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { Trans, t } from "@lingui/macro";
 
   function MyComponent() {
-    const foo = 'bar'
+    const foo = "bar";
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    )
+    );
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from '@lingui/react'
-  import { i18n } from '@lingui/core'
+  import { Trans } from "@lingui/react";
+  import { i18n } from "@lingui/core";
 
   function MyComponent() {
-    const foo = 'bar'
+    const foo = "bar";
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
+        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
       </div>
-    )
+    );
   }
   ```
 
@@ -1266,11 +1313,11 @@
       defaultProps: {
         round: true,
         formatOptions: {
-          style: 'decimal',
+          style: "decimal",
         },
       },
     },
-  })
+  });
   ```
 
 ### Patch Changes

@@ -79,7 +79,6 @@ function GraphCommerceConfigSchema() {
         hygraphProjectId: _zod.z.string().nullish(),
         hygraphWriteAccessEndpoint: _zod.z.string().nullish(),
         hygraphWriteAccessToken: _zod.z.string().nullish(),
-        legacyProductRoute: _zod.z.boolean().nullish(),
         limitSsg: _zod.z.boolean().nullish(),
         magentoEndpoint: _zod.z.string().min(1),
         previewSecret: _zod.z.string().nullish(),
@@ -97,6 +96,7 @@ function GraphCommerceConfigSchema() {
 function GraphCommerceDebugConfigSchema() {
     return _zod.z.object({
         pluginStatus: _zod.z.boolean().nullish(),
+        sessions: _zod.z.boolean().nullish(),
         webpackCircularDependencyPlugin: _zod.z.boolean().nullish(),
         webpackDuplicatesPlugin: _zod.z.boolean().nullish()
     });

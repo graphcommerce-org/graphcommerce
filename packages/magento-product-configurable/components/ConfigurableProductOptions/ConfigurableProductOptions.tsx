@@ -1,3 +1,4 @@
+import { normalizeLocale } from '@graphcommerce/lingui-next'
 import { AddToCartItemSelector, useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { filterNonNullableKeys, ActionCardListProps } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -41,10 +42,10 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
       .length === 0
 
   const allLabels = useMemo(() => {
-    // Remove optional dialect from locale, which Intl.NumberFormat does not support.
-    const strippedLocale = locale?.split('-', 2).join('-')
-
-    const formatter = new Intl.ListFormat(strippedLocale, { style: 'long', type: 'conjunction' })
+    const formatter = new Intl.ListFormat(normalizeLocale(locale), {
+      style: 'long',
+      type: 'conjunction',
+    })
     return formatter.format(options.map((o) => o.label))
   }, [locale, options])
 

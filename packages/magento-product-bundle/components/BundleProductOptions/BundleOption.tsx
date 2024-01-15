@@ -1,7 +1,4 @@
-import {
-  AddProductsToCartMutationVariables,
-  useFormAddProductsToCart,
-} from '@graphcommerce/magento-product'
+import { AddProductsToCartFields, useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import {
   SectionHeader,
   ActionCardListForm,
@@ -22,10 +19,7 @@ export const BundleOption = React.memo<BundleOptionProps>((props) => {
   return (
     <div>
       <SectionHeader labelLeft={title} sx={{ mt: 0 }} />
-      <ActionCardListForm<
-        BundleOptionValueProps & ActionCardItemBase,
-        AddProductsToCartMutationVariables
-      >
+      <ActionCardListForm<BundleOptionValueProps & ActionCardItemBase, AddProductsToCartFields>
         control={control}
         required={required}
         color={color}

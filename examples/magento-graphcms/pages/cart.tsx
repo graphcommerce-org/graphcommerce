@@ -10,7 +10,7 @@ import {
 } from '@graphcommerce/magento-cart'
 import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
-import { CartItemsActionCards } from '@graphcommerce/magento-cart-items'
+import { CartItemsActionCards, CartCrosssellsScroller } from '@graphcommerce/magento-cart-items'
 import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
@@ -19,12 +19,12 @@ import {
   LayoutTitle,
   LayoutOverlayHeader,
   FullPageMessage,
+  OverlayStickyBottom,
 } from '@graphcommerce/next-ui'
-import { OverlayStickyBottom } from '@graphcommerce/next-ui/Overlay/components/OverlayStickyBottom'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Container } from '@mui/material'
-import { LayoutOverlay, LayoutOverlayProps } from '../components'
+import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
@@ -75,26 +75,25 @@ function CartPage() {
           </FullPageMessage>
         }
       >
-        <Container maxWidth='md'>
+        {hasItems ? (
           <>
-            {hasItems ? (
-              <>
-                <CartItemsActionCards
-                  cart={data.cart}
-                  sx={(theme) => ({ mb: theme.spacings.md, position: 'relative', zIndex: 1 })}
-                />
-                <CouponAccordion key='couponform' />
-                <CartTotals containerMargin sx={{ typography: 'body1' }} />
-                <ApolloCartErrorAlert error={error} />
-                <OverlayStickyBottom sx={{ py: 0.1 }}>
-                  <CartStartCheckout {...data?.cart} disabled={hasError} />
-                </OverlayStickyBottom>
-              </>
-            ) : (
-              <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
-            )}
+            <Container maxWidth='md'>
+              <CartItemsActionCards cart={data.cart} sx={{ position: 'relative', zIndex: 1 }} />
+              <CouponAccordion key='couponform' sx={(theme) => ({ mt: theme.spacings.md })} />
+              <CartTotals containerMargin sx={{ typography: 'body1' }} />
+              <ApolloCartErrorAlert error={error} />
+            </Container>
+            <CartCrosssellsScroller
+              renderer={productListRenderer}
+              sx={(theme) => ({ mt: theme.spacings.md })}
+            />
+            <OverlayStickyBottom sx={{ py: 0.1 }}>
+              <CartStartCheckout {...data?.cart} disabled={hasError} />
+            </OverlayStickyBottom>
           </>
-        </Container>
+        ) : (
+          <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
+        )}
       </WaitForQueries>
     </>
   )

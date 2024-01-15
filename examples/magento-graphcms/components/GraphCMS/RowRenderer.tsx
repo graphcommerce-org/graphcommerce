@@ -1,4 +1,4 @@
-import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
+import { LazyHydrate, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import { RowBlogContent } from '../Blog'
 import { PageContentQueryFragment } from './PageContentQueryFragment.gql'
 import { RowButtonLinkList } from './RowButtonLinkList/RowButtonLinkList'
@@ -33,17 +33,19 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
 
 export type PageProps = RowRendererFragment & {
   renderer?: Partial<ContentTypeRenderer>
+  loadingEager?: number
 }
 
 export function RowRenderer(props: PageProps) {
-  const { content, renderer } = props
+  const { content, renderer, loadingEager = 2 } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as ContentTypeRenderer
 
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      {content?.map((item) => (
-        <RenderType key={item.id} renderer={mergedRenderer} {...item} />
+      {content?.map((item, index) => (
+        <LazyHydrate key={item.id} hydrated={index < loadingEager ? true : undefined}>
+          <RenderType renderer={mergedRenderer} {...item} />
+        </LazyHydrate>
       ))}
     </>
   )

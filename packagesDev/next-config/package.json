@@ -2,7 +2,7 @@
   "name": "@graphcommerce/next-config",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "7.1.0-canary.61",
+  "version": "8.0.0-canary.82",
   "type": "commonjs",
   "main": "dist/index.js",
   "types": "src/index.ts",
@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "@graphql-mesh/cli": "latest",
-    "@lingui/loader": "4.5.0",
+    "@lingui/loader": "4.6.0",
     "@lingui/swc-plugin": "4.0.4",
-    "@swc/core": "1.3.96",
+    "@swc/core": "1.3.100",
     "circular-dependency-plugin": "^5.2.2",
     "inspectpack": "^4.7.1",
     "js-yaml-loader": "^1.2.2",
@@ -25,13 +25,13 @@
   },
   "devDependencies": {
     "@types/circular-dependency-plugin": "^5.0.8",
-    "@types/lodash": "^4.14.201",
-    "typescript": "5.2.2"
+    "@types/lodash": "^4.14.202",
+    "typescript": "5.3.3"
   },
   "peerDependencies": {
     "@lingui/macro": "^4.2.1",
     "graphql": "^16",
-    "next": "^14",
+    "next": "*",
     "webpack": "^5.0.0"
   }
 }

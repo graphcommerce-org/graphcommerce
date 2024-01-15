@@ -1,5 +1,60 @@
 # Change Log
 
+## 8.0.0-canary.82
+
+## 8.0.0-canary.81
+
+## 8.0.0-canary.80
+
+## 8.0.0-canary.79
+
+## 8.0.0-canary.78
+
+## 8.0.0-canary.77
+
+### Patch Changes
+
+- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - a11y improvements (see https://github.com/graphcommerce-org/graphcommerce/issues/1995 for more info)
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.0-canary.76
+
+## 8.0.0-canary.75
+
+### Patch Changes
+
+- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`9091dbb`](https://github.com/graphcommerce-org/graphcommerce/commit/9091dbb01a47aa6ba40932a66ed055b7f07c1cec) - Make sure the search link in the header is a nextjs navigation
+  ([@paales](https://github.com/paales))
+
+- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`fe37229`](https://github.com/graphcommerce-org/graphcommerce/commit/fe372294d6a42b1108e0fcef306b297baed5eb71) - Take the per_page configuration in account for the search results
+  ([@paales](https://github.com/paales))
+
+## 8.0.0-canary.74
+
+## 8.0.0-canary.73
+
+## 8.0.0-canary.72
+
+## 8.0.0-canary.71
+
+## 8.0.0-canary.70
+
+## 8.0.0-canary.69
+
+## 7.1.0-canary.68
+
+## 7.1.0-canary.67
+
+## 7.1.0-canary.66
+
+## 7.1.0-canary.65
+
+## 7.1.0-canary.64
+
+## 7.1.0-canary.63
+
+## 7.1.0-canary.62
+
 ## 7.1.0-canary.61
 
 ## 7.1.0-canary.60
@@ -1025,31 +1080,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { Trans, t } from "@lingui/macro";
 
   function MyComponent() {
-    const foo = 'bar'
+    const foo = "bar";
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    )
+    );
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from '@lingui/react'
-  import { i18n } from '@lingui/core'
+  import { Trans } from "@lingui/react";
+  import { i18n } from "@lingui/core";
 
   function MyComponent() {
-    const foo = 'bar'
+    const foo = "bar";
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
+        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
       </div>
-    )
+    );
   }
   ```
 

@@ -1,5 +1,51 @@
 # @graphcommerce/hygraph-dynamic-rows
 
+## 8.0.0-canary.82
+
+## 8.0.0-canary.81
+
+## 8.0.0-canary.80
+
+## 8.0.0-canary.79
+
+## 8.0.0-canary.78
+
+## 8.0.0-canary.77
+
+## 8.0.0-canary.76
+
+## 8.0.0-canary.75
+
+## 8.0.0-canary.74
+
+## 8.0.0-canary.73
+
+## 8.0.0-canary.72
+
+## 8.0.0-canary.71
+
+## 8.0.0-canary.70
+
+## 8.0.0-canary.69
+
+## 7.1.0-canary.68
+
+## 7.1.0-canary.67
+
+## 7.1.0-canary.66
+
+## 7.1.0-canary.65
+
+## 7.1.0-canary.64
+
+## 7.1.0-canary.63
+
+### Patch Changes
+
+- [`df385d9a2`](https://github.com/graphcommerce-org/graphcommerce/commit/df385d9a2e724715e0f08cc13b1bef6748b38b82) - enabled multiple rows per Dynamic Row ([@JoshuaS98](https://github.com/JoshuaS98))
+
+## 7.1.0-canary.62
+
 ## 7.1.0-canary.61
 
 ## 7.1.0-canary.60
