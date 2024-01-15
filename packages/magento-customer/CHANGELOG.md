@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.88
+
+### Patch Changes
+
+- [#2166](https://github.com/graphcommerce-org/graphcommerce/pull/2166) [`304b816`](https://github.com/graphcommerce-org/graphcommerce/commit/304b81659caf82d9f500401d21da4110dd40db61) - Dismiss login page and go back to previous page asap when logging in
+  ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 8.0.0-canary.87
 
 ## 8.0.0-canary.86
