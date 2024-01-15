@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.81
+
+### Patch Changes
+
+- [#2140](https://github.com/graphcommerce-org/graphcommerce/pull/2140) [`b34d85c`](https://github.com/graphcommerce-org/graphcommerce/commit/b34d85c8c5403c6f49b506b714ee314b8344fd99) - Fix incorrect redirect when locale has own domain
+  ([@hnsr](https://github.com/hnsr))
+
 ## 8.0.0-canary.80
 
 ## 8.0.0-canary.79
