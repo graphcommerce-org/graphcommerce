@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.78
+
+### Patch Changes
+
+- [#2135](https://github.com/graphcommerce-org/graphcommerce/pull/2135) [`7b017f5`](https://github.com/graphcommerce-org/graphcommerce/commit/7b017f58ba3be587d20a7f52c84b2907d52fe201) - Fix incorrect canonical URLs when i18n domain routing is used
+  ([@hnsr](https://github.com/hnsr))
+
 ## 8.0.0-canary.77
 
 ### Patch Changes
