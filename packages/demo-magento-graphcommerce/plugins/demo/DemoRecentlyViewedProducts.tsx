@@ -20,7 +20,7 @@ export const exported = '@graphcommerce/magento-recently-viewed-products'
 export const ifConfig: IfConfig = 'demoMode'
 
 function DemoRecentlyViewedProducts(props: PluginProps<RecentlyViewedProductsProps>) {
-  const { exclude, title, productListRenderer, loading = 'lazy' } = props
+  const { Prev, exclude, title, productListRenderer, loading = 'lazy', ...scrollerProps } = props
 
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { margin: '300px', once: true })
@@ -29,7 +29,7 @@ function DemoRecentlyViewedProducts(props: PluginProps<RecentlyViewedProductsPro
 
   if (
     !import.meta.graphCommerce.recentlyViewedProducts?.enabled ||
-    (!productList.loading && !skus.length)
+    (!productList.loading && !productList.products.length)
   ) {
     return null
   }

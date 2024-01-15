@@ -26,10 +26,6 @@ export const cartErrorLink = onError(({ graphQLErrors, operation, forward }) => 
   const isErrorCategory = (err: GraphQLError, category: ErrorCategory) =>
     err.extensions?.category === category
 
-  const isAuthorizationError = (err: GraphQLError) =>
-    isErrorCategory(err, 'graphql-authorization') &&
-    errorIsIncluded(err.path, ['addProductsToCart'])
-
   const isNoSuchEntityError = (err: GraphQLError) =>
     isErrorCategory(err, 'graphql-no-such-entity') &&
     errorIsIncluded(err.path, [
@@ -49,7 +45,7 @@ export const cartErrorLink = onError(({ graphQLErrors, operation, forward }) => 
       // 'applyCouponToCart',
       // 'removeCouponFromCart'
     ])
-  const cartErr = graphQLErrors.find((err) => isNoSuchEntityError(err) || isAuthorizationError(err))
+  const cartErr = graphQLErrors.find((err) => isNoSuchEntityError(err))
 
   if (!cartErr) return undefined
 

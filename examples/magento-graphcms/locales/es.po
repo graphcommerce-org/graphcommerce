@@ -40,6 +40,9 @@ msgstr "Añadir nueva dirección"
 msgid "Add to Cart"
 msgstr "Añadir al carrito"
 
+msgid "Add to cart quantity"
+msgstr "Añadir al carrito cantidad"
+
 msgid "Add to comparison"
 msgstr "Añadir a la comparación"
 
@@ -301,6 +304,9 @@ msgstr "Incluyendo {0}"
 msgid "Increase"
 msgstr "Aumentar"
 
+msgid "Invalid date"
+msgstr "Fecha invalida"
+
 msgid "Invalid email address"
 msgstr "Dirección de correo electrónico no válida"
 
@@ -330,9 +336,6 @@ msgstr "Cargando tu cuenta"
 
 msgid "Loading your data"
 msgstr "Cargando sus datos"
-
-msgid "Log in"
-msgstr "Iniciar sesión"
 
 msgid "Log in to continue shopping"
 msgstr "Iniciar sesión para continuar comprando"
@@ -562,6 +565,9 @@ msgstr "Resultados para ‘{search}’"
 msgid "Review"
 msgstr "Review"
 
+msgid "Review score"
+msgstr "Puntuación de revisión"
+
 msgid "Reviews"
 msgstr "Comentarios"
 
@@ -618,6 +624,9 @@ msgstr "Cerrar sesión"
 
 msgid "Sign up for our newsletter and stay updated"
 msgstr "Regístrese para nuestro boletín y manténgase actualizado"
+
+msgid "Skip to main content"
+msgstr "Saltar al contenido principal"
 
 msgid "Some items in your cart contain errors, please update or remove them, then try again."
 msgstr "Algunos artículos de su carrito contienen errores, actualícelos o elimínelos y vuelva a intentarlo."
@@ -700,6 +709,9 @@ msgstr "El pago no se ha completado, inténtelo de nuevo o seleccione un método
 msgid "The payment is refused, please try again or select a different payment method."
 msgstr "El pago se ha rechazado, inténtelo de nuevo o seleccione un método de pago diferente."
 
+msgid "There is a maximum of ‘{maxLength}’ characters"
+msgstr "Hay un máximo de caracteres '{maxLength}'"
+
 msgid "This cart is assigned to {email}. Please sign in to continue shopping."
 msgstr "Este carrito está asignado a {email}. Inicie sesión para continuar comprando."
 
@@ -753,9 +765,6 @@ msgstr "No se encontraron resultados para {term}"
 
 msgid "We couldn't find the page you were looking for"
 msgstr "No se encontró la página que estaba buscando"
-
-msgid "Welcome back!"
-msgstr "¡Bienvenido de nuevo!"
 
 msgid "We’re processing your payment, this will take a few seconds."
 msgstr "Estamos procesando su pago, esto tardará unos segundos."

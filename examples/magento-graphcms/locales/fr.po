@@ -40,6 +40,9 @@ msgstr "Ajouter une nouvelle adresse"
 msgid "Add to Cart"
 msgstr "Ajouter au panier"
 
+msgid "Add to cart quantity"
+msgstr "Ajouter au panier quantité"
+
 msgid "Add to comparison"
 msgstr "Ajouter à la comparaison"
 
@@ -301,6 +304,9 @@ msgstr "Incluant {0}"
 msgid "Increase"
 msgstr "Augmenter"
 
+msgid "Invalid date"
+msgstr "Date invalide"
+
 msgid "Invalid email address"
 msgstr "Adresse email invalide"
 
@@ -330,9 +336,6 @@ msgstr "Chargement de votre compte"
 
 msgid "Loading your data"
 msgstr "Chargement de vos données"
-
-msgid "Log in"
-msgstr "Identifiant"
 
 msgid "Log in to continue shopping"
 msgstr "Identifiez-vous pour continuer les achats"
@@ -562,6 +565,9 @@ msgstr "Résultats pour ‘{search}’"
 msgid "Review"
 msgstr "Review"
 
+msgid "Review score"
+msgstr "Note d'évaluation"
+
 msgid "Reviews"
 msgstr "Évaluations"
 
@@ -618,6 +624,9 @@ msgstr "Déconnexion"
 
 msgid "Sign up for our newsletter and stay updated"
 msgstr "Inscrivez-vous à notre newsletter et restez à jour"
+
+msgid "Skip to main content"
+msgstr "Passer au contenu principal"
 
 msgid "Some items in your cart contain errors, please update or remove them, then try again."
 msgstr "Certains articles de votre panier contiennent des erreurs, veuillez les mettre à jour ou les supprimer, puis réessayer."
@@ -700,6 +709,9 @@ msgstr "Le paiement n'a pas été complété, veuillez réessayer ou sélectionn
 msgid "The payment is refused, please try again or select a different payment method."
 msgstr "Le paiement est refusé, veuillez réessayer ou sélectionner une autre méthode de paiement."
 
+msgid "There is a maximum of ‘{maxLength}’ characters"
+msgstr "Il y a un maximum de caractères '{maxLength}'"
+
 msgid "This cart is assigned to {email}. Please sign in to continue shopping."
 msgstr "Ce panier est assigné à {email}. Veuillez vous connecter pour continuer vos achats."
 
@@ -753,9 +765,6 @@ msgstr "Nous n'avons trouvé aucun résultat pour {term}"
 
 msgid "We couldn't find the page you were looking for"
 msgstr "Nous n'avons pas pu trouver la page que vous cherchiez"
-
-msgid "Welcome back!"
-msgstr "Bienvenue !"
 
 msgid "We’re processing your payment, this will take a few seconds."
 msgstr "Nous traitons votre paiement, cela prendra quelques secondes."

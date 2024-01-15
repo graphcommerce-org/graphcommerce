@@ -2,7 +2,7 @@
   "name": "@graphcommerce/hygraph-dynamic-rows-ui",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "7.1.0-canary.65",
+  "version": "8.0.0-canary.82",
   "sideEffects": false,
   "type": "commonjs",
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -16,24 +16,29 @@
     "dev": "next dev"
   },
   "dependencies": {
-    "@apollo/client": "~3.8.7",
-    "@graphcommerce/next-config": "7.1.0-canary.65",
-    "@hygraph/app-sdk-react": "^0.0.2",
-    "@mui/material": "5.14.7",
+    "@apollo/client": "~3.8.8",
+    "@graphcommerce/next-config": "8.0.0-canary.82",
+    "@hygraph/app-sdk-react": "^0.0.3",
+    "@lingui/core": "^4.2.1",
+    "@lingui/macro": "^4.2.1",
+    "@lingui/react": "^4.2.1",
+    "@mui/material": "5.14.20",
     "cross-env": "^7.0.3",
     "dotenv": "16.3.1",
     "graphql": "^16.8.1",
-    "next": "^13.2.0",
+    "next": "14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "webpack": "5.88.2"
+    "webpack": "5.89.0"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "7.1.0-canary.65",
-    "@graphcommerce/prettier-config-pwa": "7.1.0-canary.65",
-    "@graphcommerce/typescript-config-pwa": "7.1.0-canary.65",
-    "@types/react-is": "^18.2.0",
-    "eslint": "8.53.0",
-    "typescript": "5.1.3"
+    "@graphcommerce/eslint-config-pwa": "8.0.0-canary.82",
+    "@graphcommerce/prettier-config-pwa": "8.0.0-canary.82",
+    "@graphcommerce/typescript-config-pwa": "8.0.0-canary.82",
+    "@types/react-is": "^18.2.4",
+    "babel-plugin-macros": "^3.1.0",
+    "eslint": "8.55.0",
+    "prettier": "3.1.1",
+    "typescript": "5.3.3"
   }
 }
