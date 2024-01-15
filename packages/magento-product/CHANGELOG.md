@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.83
+
+### Patch Changes
+
+- [#2164](https://github.com/graphcommerce-org/graphcommerce/pull/2164) [`5224755`](https://github.com/graphcommerce-org/graphcommerce/commit/522475503fd40e4718fd4d7d33f8164c01588c0c) - Fixed filters dissapearing when no items are found with applied filters
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.0.0-canary.82
 
 ### Patch Changes
