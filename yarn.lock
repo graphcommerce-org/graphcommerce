@@ -3967,6 +3967,7 @@ __metadata:
     "@graphcommerce/graphql": ^8.0.0-canary.78
     "@graphcommerce/graphql-mesh": ^8.0.0-canary.78
     "@graphcommerce/image": ^8.0.0-canary.78
+    "@graphcommerce/lingui-next": 8.0.0-canary.78
     "@graphcommerce/magento-cart": ^8.0.0-canary.78
     "@graphcommerce/magento-cart-items": ^8.0.0-canary.78
     "@graphcommerce/magento-category": ^8.0.0-canary.78
@@ -4300,6 +4301,7 @@ __metadata:
     "@graphcommerce/framer-scroller": ^8.0.0-canary.78
     "@graphcommerce/framer-utils": ^8.0.0-canary.78
     "@graphcommerce/image": ^8.0.0-canary.78
+    "@graphcommerce/lingui-next": ^8.0.0-canary.78
     "@graphcommerce/prettier-config-pwa": ^8.0.0-canary.78
     "@graphcommerce/typescript-config-pwa": ^8.0.0-canary.78
     "@lingui/core": ^4.2.1

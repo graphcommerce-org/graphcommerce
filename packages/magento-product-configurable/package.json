@@ -17,6 +17,7 @@
     "@graphcommerce/graphql": "^8.0.0-canary.78",
     "@graphcommerce/graphql-mesh": "^8.0.0-canary.78",
     "@graphcommerce/image": "^8.0.0-canary.78",
+    "@graphcommerce/lingui-next": "8.0.0-canary.78",
     "@graphcommerce/magento-cart": "^8.0.0-canary.78",
     "@graphcommerce/magento-cart-items": "^8.0.0-canary.78",
     "@graphcommerce/magento-category": "^8.0.0-canary.78",
