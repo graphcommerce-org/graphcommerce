@@ -9,6 +9,8 @@ import {
   IsEmailAvailableQueryVariables,
 } from './IsEmailAvailable.gql'
 import { useCustomerSession } from './useCustomerSession'
+import { useGo, usePageContext } from '@graphcommerce/framer-next-pages'
+import { useShowBack } from '@graphcommerce/next-ui/Layout/components/LayoutHeaderBack'
 
 export type UseFormIsEmailAvailableProps = {
   onSubmitted?: (data: { email: string }) => void
@@ -72,6 +74,12 @@ export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {})
 
     if (isValid && isSubmitSuccessful) mode = hasAccount ? 'signin' : 'signup'
   }
+
+  const { closeSteps = 0 } = usePageContext() ?? {}
+  useEffect(() => {
+    // Automatically close the overlay if the user is signed in
+    if (mode === 'signedin' && closeSteps > 0) window.history.go(closeSteps * -1)
+  }, [mode, closeSteps])
 
   return { mode, form, submit }
 }
