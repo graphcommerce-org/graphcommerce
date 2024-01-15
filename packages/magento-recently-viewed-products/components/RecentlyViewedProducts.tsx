@@ -20,7 +20,7 @@ export function RecentlyViewedProducts(props: RecentlyViewedProductsProps) {
 
   if (
     !import.meta.graphCommerce.recentlyViewedProducts?.enabled ||
-    (!productList.loading && !productList.products.length)
+    (!productList.loading && !productList.products.length && isInView)
   ) {
     return null
   }

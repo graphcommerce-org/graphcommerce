@@ -37,7 +37,7 @@ const LogoContainer = styled(NextLink, {
   name,
   slot: 'parent',
   overridesResolver: (_props, styles) => styles.parent,
-})()
+})({})
 
 export type LogoProps = {
   href?: `/${string}`
