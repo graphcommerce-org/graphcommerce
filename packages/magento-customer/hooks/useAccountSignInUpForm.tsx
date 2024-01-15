@@ -1,3 +1,4 @@
+import { usePageContext } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { useFormGqlQuery } from '@graphcommerce/react-hook-form'
 import { useRouter } from 'next/router'
@@ -9,8 +10,6 @@ import {
   IsEmailAvailableQueryVariables,
 } from './IsEmailAvailable.gql'
 import { useCustomerSession } from './useCustomerSession'
-import { useGo, usePageContext } from '@graphcommerce/framer-next-pages'
-import { useShowBack } from '@graphcommerce/next-ui/Layout/components/LayoutHeaderBack'
 
 export type UseFormIsEmailAvailableProps = {
   onSubmitted?: (data: { email: string }) => void
