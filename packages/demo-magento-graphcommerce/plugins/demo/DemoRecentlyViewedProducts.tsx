@@ -11,7 +11,7 @@ import {
   RenderType,
   responsiveVal,
 } from '@graphcommerce/next-ui'
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 
@@ -23,13 +23,13 @@ function DemoRecentlyViewedProducts(props: PluginProps<RecentlyViewedProductsPro
   const { Prev, exclude, title, productListRenderer, loading = 'lazy', ...scrollerProps } = props
 
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { margin: '300px', once: true })
+  const isInView = useInView(ref, { margin: '300px' })
   const { skus } = useRecentlyViewedSkus({ exclude })
   const productList = useRecentlyViewedProducts({ exclude, skip: !isInView && loading === 'lazy' })
 
   if (
     !import.meta.graphCommerce.recentlyViewedProducts?.enabled ||
-    (!productList.loading && !productList.products.length)
+    (!productList.loading && !productList.products.length && isInView)
   ) {
     return null
   }
@@ -41,7 +41,7 @@ function DemoRecentlyViewedProducts(props: PluginProps<RecentlyViewedProductsPro
 
   return (
     <>
-      <div ref={ref} />
+      <Box ref={ref} className='recentlyViewedProducts' sx={{ height: '1px' }} />
       <AddProductsToCartForm>
         <SidebarSlider sidebar={<Typography variant='h2'>{title}</Typography>}>
           {filterNonNullableKeys([...loadingProducts, ...productList.products]).map((item) => (
