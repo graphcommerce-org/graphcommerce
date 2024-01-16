@@ -87,3 +87,24 @@ in your `app/etc/env.php`:
     ]
 ],
 ```
+
+## Adding originating IP to allow list
+
+Requests that originate from IP addresses not listed in the `purgeAllowList`
+configuration setting are blocked and result in a log such as:
+
+```
+[next] varnish-purge: disallowed purge request from ::ffff:127.0.0.1
+```
+
+You can add the IP address exactly as it is logged, as that is what is matched
+against:
+
+```json
+const config = {
+  // ...
+  purgeAllowList: [
+    '::ffff:127.0.0.1'
+  ],
+}
+```
