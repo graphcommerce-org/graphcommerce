@@ -19,9 +19,48 @@ api/varnish-purge route.
 
 ## Enabling handling of PURGE requests in your GraphCommerce project
 
-Add middleware for rewriting PURGE requests to api route:
+Implement api route that invokes handlePurgeRequest:
 
-- Implement api route that invokes handlePurgeRequest for each store
+`pages/api/varnish-purge.ts`:
+
+```typescript
+import { handlePurgeRequest } from '@graphcommerce/magento-varnish-purge'
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  await handlePurgeRequest(req, res, graphqlSsrClient)
+}
+```
+
+Add (or integrate into existing) middleware for rewriting PURGE requests to api
+route:
+
+`middleware.ts`:
+
+```typescript
+import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
+
+export function middleware(request: NextRequest) {
+  if (
+    request.method !== 'PURGE' ||
+    !request.headers.get('X-Magento-Tags-Pattern')
+  ) {
+    return undefined
+  }
+
+  return NextResponse.rewrite(new URL('/api/varnish-purge', request.url))
+}
+
+export const config = { matcher: '/' }
+```
+
+The middleware is needed as nextjs does not allow rewriting the PURGE request
+from the root `/` through `next.config.js`
 
 ## Configuring Magento to send PURGE request to your GraphCommerce application
 
