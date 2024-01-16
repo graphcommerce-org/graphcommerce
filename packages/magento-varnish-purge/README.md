@@ -17,6 +17,14 @@ targets for sending PURGE requests. As Magento allows only a host + port number,
 we employ a middleware file to rewrite the PURGE request to the
 api/varnish-purge route.
 
+Currently two situations are handled:
+
+- Full cache purge (where Magento sends the `.*` tag pattern): results in the
+  deletion of all statically generated content for every storefront.
+- Specific product cache purge (where Magento sends the `cat_p_12345` tag
+  pattern): here we invalidate the product page, and any category pages the
+  product is in.
+
 ## Enabling handling of PURGE requests in your GraphCommerce project
 
 Implement api route that invokes handlePurgeRequest:
