@@ -3664,6 +3664,7 @@ __metadata:
     "@graphcommerce/magento-review": "npm:8.0.0-canary.88"
     "@graphcommerce/magento-search": "npm:8.0.0-canary.88"
     "@graphcommerce/magento-store": "npm:8.0.0-canary.88"
+    "@graphcommerce/magento-varnish-purge": "npm:8.0.0-canary.88"
     "@graphcommerce/magento-wishlist": "npm:8.0.0-canary.88"
     "@graphcommerce/next-config": "npm:8.0.0-canary.88"
     "@graphcommerce/next-ui": "npm:8.0.0-canary.88"
@@ -4196,6 +4197,22 @@ __metadata:
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
+  languageName: unknown
+  linkType: soft
+
+"@graphcommerce/magento-varnish-purge@npm:8.0.0-canary.88, @graphcommerce/magento-varnish-purge@workspace:packages/magento-varnish-purge":
+  version: 0.0.0-use.local
+  resolution: "@graphcommerce/magento-varnish-purge@workspace:packages/magento-varnish-purge"
+  peerDependencies:
+    "@graphcommerce/eslint-config-pwa": ^8.0.0-canary.88
+    "@graphcommerce/graphql": 8.0.0-canary.88
+    "@graphcommerce/next-ui": 8.0.0-canary.88
+    "@graphcommerce/prettier-config-pwa": 8.0.0-canary.88
+    "@graphcommerce/typescript-config-pwa": 8.0.0-canary.88
+    next: "*"
+    react: ^18.2.0
+    react-dom: ^18.2.0
+    rimraf: ^5.0.5
   languageName: unknown
   linkType: soft
 
