@@ -4,18 +4,22 @@ import { fetch } from '@whatwg-node/fetch'
 
 export const readSchema = async (config: GraphCommerceConfig) => {
   if (!config.hygraphProjectId) {
-    throw new Error('Please provide GC_HYGRAPH_PROJECT_ID in your env file')
+    throw new Error('Please provide GC_HYGRAPH_PROJECT_ID in your env file.')
   }
 
   if (!config.hygraphWriteAccessToken) {
-    throw new Error('Please provide GC_HYGRAPH_WRITE_ACCESS_TOKEN in your env file')
+    throw new Error('Please provide GC_HYGRAPH_WRITE_ACCESS_TOKEN in your env file.')
   }
 
   const projectId = config.hygraphProjectId
 
+  if (!config.hygraphManagementApi) {
+    throw new Error('Please provide GC_HYGRAPH_MANAGEMENT_API in your env file.')
+  }
+
   const hygraphClient = new ApolloClient({
     link: new HttpLink({
-      uri: config.hygraphManagementApi ?? 'https://management.hygraph.com/graphql',
+      uri: config.hygraphManagementApi,
       fetch,
       headers: { Authorization: `Bearer ${config.hygraphWriteAccessToken}` },
     }),
