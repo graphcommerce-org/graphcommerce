@@ -1,5 +1,5 @@
 import { NormalizedCacheObject, ApolloClient } from '@graphcommerce/graphql'
-import { storefrontConfig } from '@graphcommerce/next-ui'
+import { storefrontConfig, storefrontAll } from '@graphcommerce/next-ui'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { rimraf } from 'rimraf'
 import { PurgeGetProductPathsDocument } from '../graphql/PurgeGetProductPaths.gql'
@@ -105,22 +105,13 @@ function checkAllowList(req: NextApiRequest): boolean {
   return false
 }
 
-export async function handlePurgeRequest(
+async function handleForLocale(
   client: ApolloClient<NormalizedCacheObject>,
   locale: string,
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  if (!checkAllowList(req)) {
-    console.warn(`varnish-purge: disallowed purge request from ${req.socket.remoteAddress}`)
-    res.status(403)
-    res.send('FORBIDDEN')
-    res.end()
-    return
-  }
   const rawTags = req.headers['x-magento-tags-pattern']
-
-  console.info(`varnish-purge: purge request from ${req.socket.remoteAddress} for ${rawTags}`)
 
   if (rawTags === '.*') {
     await doFullPurge(locale)
@@ -136,8 +127,42 @@ export async function handlePurgeRequest(
       }
     })
   }
+}
 
-  res.status(200)
-  res.send('OK')
-  res.end()
+export async function handlePurgeRequest(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  client: (locale: string) => ApolloClient<NormalizedCacheObject>,
+) {
+  if (!checkAllowList(req)) {
+    console.warn(`varnish-purge: disallowed purge request from ${req.socket.remoteAddress}`)
+    res.status(403)
+    res.send('FORBIDDEN')
+    res.end()
+    return
+  }
+
+  console.info(
+    `varnish-purge: purge request from ${req.socket.remoteAddress} for tag pattern ${req.headers['x-magento-tags-pattern']}`,
+  )
+
+  const promises: Promise<void>[] = []
+
+  storefrontAll.forEach((store) => {
+    promises.push(handleForLocale(client(store.locale), store.locale, req, res))
+  })
+
+  await Promise.all(promises)
+    .then(() => {
+      console.info(`varnish-purge: OK`)
+      res.status(200)
+      res.send('OK')
+      res.end()
+    })
+    .catch((error) => {
+      console.info(`varnish-purge: error: ${error.message}`)
+      res.status(500)
+      res.send(`Internal Server Error: ${error.message}`)
+      res.end()
+    })
 }
