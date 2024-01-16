@@ -17,6 +17,19 @@ export function ConfigurableCartItemActionCard(
   return (
     <Prev
       {...rest}
+      cartItem={{
+        ...rest.cartItem,
+        product: {
+          ...rest.cartItem.product,
+          name: import.meta.graphCommerce.configurableVariantValues?.content
+            ? rest.cartItem.configured_variant.name
+            : rest.cartItem.product.name,
+          thumbnail: rest.cartItem.configured_variant.thumbnail,
+          // url_key: import.meta.graphCommerce.configurableVariantValues?.url
+          //   ? rest.cartItem.configured_variant.url_key
+          //   : rest.cartItem.product.url_key,
+        },
+      }}
       details={
         <>
           {rest.details}
