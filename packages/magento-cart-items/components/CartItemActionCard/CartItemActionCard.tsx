@@ -30,7 +30,7 @@ const typographySizes = {
 }
 
 export function CartItemActionCard(props: CartItemActionCardProps) {
-  const { cartItem, sx = [], size = 'large', readOnly = false, ...rest } = props
+  const { cartItem, sx = [], size = 'responsive', readOnly = false, ...rest } = props
   const { uid, quantity, prices, errors, product } = cartItem
   const { name, thumbnail, url_key } = product
 
@@ -84,7 +84,14 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             justifyContent: 'start',
           },
           '& .ActionCard-price': {
-            typography: typographySizes[size],
+            typography:
+              size === 'responsive'
+                ? {
+                    xs: typographySizes.small,
+                    md: typographySizes.medium,
+                    lg: typographySizes.large,
+                  }
+                : typographySizes[size],
             pr: readOnly ? 0 : theme.spacings.xs,
             mb: { xs: 0.5, sm: 0 },
           },
@@ -97,13 +104,35 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             layout='fill'
             src={thumbnail?.url}
             sx={{
-              width: productImageSizes[size],
-              height: productImageSizes[size],
+              width:
+                size === 'responsive'
+                  ? {
+                      xs: productImageSizes.small,
+                      md: productImageSizes.medium,
+                      lg: productImageSizes.large,
+                    }
+                  : productImageSizes[size],
+              height:
+                size === 'responsive'
+                  ? {
+                      xs: productImageSizes.small,
+                      md: productImageSizes.medium,
+                      lg: productImageSizes.large,
+                    }
+                  : productImageSizes[size],
               display: 'block',
               borderRadius: 1,
               objectFit: 'contain',
             }}
-            sizes={productImageSizes[size]}
+            sizes={
+              size === 'responsive'
+                ? {
+                    xs: productImageSizes.small,
+                    md: productImageSizes.medium,
+                    lg: productImageSizes.large,
+                  }
+                : productImageSizes[size]
+            }
           />
         )
       }

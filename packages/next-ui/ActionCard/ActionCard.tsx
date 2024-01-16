@@ -13,7 +13,7 @@ import { extendableComponent, responsiveVal } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
 
 type Variants = 'outlined' | 'default'
-type Size = 'large' | 'medium' | 'small'
+type Size = 'large' | 'medium' | 'small' | 'responsive'
 type Color = 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning'
 type Layout = 'inline' | 'grid' | 'list' | 'stack'
 
@@ -140,6 +140,12 @@ export function ActionCard(props: ActionCardProps) {
             py: responsiveVal(12, 14),
             display: 'block',
           },
+          '&.sizeResponsive': {
+            px: { xs: responsiveVal(8, 12), md: responsiveVal(10, 14), lg: responsiveVal(12, 16) },
+            py: { xs: responsiveVal(4, 6), md: responsiveVal(10, 12), lg: responsiveVal(12, 14) },
+            display: { xs: 'flex', md: 'block', lg: 'block' },
+            typography: { xs: 'body2', md: 'body2', lg: '' },
+          },
 
           '&.variantDefault': {
             position: 'relative',
@@ -184,6 +190,14 @@ export function ActionCard(props: ActionCardProps) {
               mb: { xs: '6px', sm: '8px', md: '9px' },
               '&::after': {
                 mb: { xs: '-5px', sm: '-7px', md: '-8px' },
+              },
+            },
+            // PR QUESTION WHAT TO DO HERE
+            '&.sizeResponsive': {
+              mt: { xs: '3px', sm: '5px', md: '7px', lg: '8px' },
+              mb: { xs: '4px', sm: '6px', md: '8px', lg: '9px' },
+              '&::after': {
+                mb: { xs: '-3px', sm: '-5px', md: '-7px', lg: '-8px' },
               },
             },
           },
