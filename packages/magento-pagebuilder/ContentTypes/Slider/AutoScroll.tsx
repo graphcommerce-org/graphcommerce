@@ -7,7 +7,7 @@ type AutoScrollProps = {
 }
 
 export function AutoScroll(props: AutoScrollProps) {
-  const { getScrollSnapPositions, getSnapPosition, scrollerRef, scroll } = useScrollerContext()
+  const { getScrollSnapPositions, getSnapPosition, scroll } = useScrollerContext()
   const scrollTo = useScrollTo()
   const { pause = false, timePerSlide = 7500 } = props
   const { xProgress } = scroll

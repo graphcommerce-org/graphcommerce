@@ -4266,6 +4266,7 @@ __metadata:
     "@graphcommerce/framer-scroller": ^7.1.0-canary.65
     "@graphcommerce/framer-utils": ^7.1.0-canary.65
     "@graphcommerce/image": ^7.1.0-canary.65
+    "@graphcommerce/next-config": ^7.1.0-canary.65
     "@graphcommerce/prettier-config-pwa": ^7.1.0-canary.65
     "@graphcommerce/typescript-config-pwa": ^7.1.0-canary.65
     "@lingui/core": ^4.2.1

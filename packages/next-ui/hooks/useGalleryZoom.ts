@@ -1,11 +1,14 @@
 import { usePrevPageRouter } from '@graphcommerce/framer-next-pages'
-import { unstable_usePreventScroll as usePreventScroll } from '@graphcommerce/framer-scroller'
+import {
+  unstable_usePreventScroll as usePreventScroll,
+  useScrollerContext,
+} from '@graphcommerce/framer-scroller'
 import { useTheme } from '@mui/material'
-import { useDomEvent, useMotionValue } from 'framer-motion'
+import { useDomEvent, useMotionValue, useMotionValueEvent } from 'framer-motion'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 
-type UseGalleryZoomProps = {
+export type UseGalleryZoomProps = {
   disableZoom?: boolean
   routeHash: string
   width: number
@@ -16,12 +19,15 @@ export function useGalleryZoom(props: UseGalleryZoomProps) {
   const { disableZoom, routeHash, width, height } = props
   const router = useRouter()
   const prevRoute = usePrevPageRouter()
-  // const classes = useMergedClasses(useStyles({ clientHeight, aspectRatio }).classes, props.classes)
+  const { getScrollSnapPositions, scrollerRef, scroll, disableSnap, enableSnap } =
+    useScrollerContext()
 
   const route = `#${routeHash}`
   // We're using the URL to manage the state of the gallery.
-  const zoomed = router.asPath.endsWith(route)
-  usePreventScroll(zoomed)
+  const zoomed = router.asPath.split('@')[0].endsWith(route)
+  // usePreventScroll(zoomed)
+
+  useMotionValueEvent(scroll.x, 'change', (v) => console.log(v))
 
   // cleanup if someone enters the page with #gallery
   useEffect(() => {
@@ -31,14 +37,20 @@ export function useGalleryZoom(props: UseGalleryZoomProps) {
     }
   }, [prevRoute?.pathname, route, router, zoomed])
 
-  const toggle = () => {
+  const toggle = (index?: number) => {
     if (disableZoom) {
       return
     }
     if (!zoomed) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.push(route, undefined, { shallow: true })
+      const scroller = scrollerRef.current
+      if (index && scroller) {
+        disableSnap()
+        scroller.scrollLeft = 1000
+        scroll.x.set(1000)
+      }
       window.scrollTo({ top: 0, behavior: 'smooth' })
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.push(`${route}${index ? `@${index}` : ''}`, undefined, { shallow: true })
     } else {
       router.back()
     }
@@ -74,7 +86,6 @@ export function useGalleryZoom(props: UseGalleryZoomProps) {
     ratio,
     onMouseDownScroller,
     onMouseUpScroller,
-    zoomed,
     toggle,
   }
 }

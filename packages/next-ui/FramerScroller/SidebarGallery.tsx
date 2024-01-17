@@ -19,13 +19,15 @@ import {
   Unstable_TrapFocus as TrapFocus,
 } from '@mui/material'
 import { m } from 'framer-motion'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { IconSvg } from '../IconSvg'
 import { Row } from '../Row/Row'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { useGalleryZoom } from '../hooks/useGalleryZoom'
 import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../icons'
+import { GalleryZoom } from './GalleryZoom'
+import { useStickyEffect } from './hooks/useStickyEffect'
 
 const MotionBox = styled(m.div)({})
 
@@ -71,13 +73,10 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     disableZoom = false,
   } = props
   const theme = useTheme()
-  const { maxHeight, onMouseDownScroller, onMouseUpScroller, ratio, zoomed, toggle } =
-    useGalleryZoom({
-      disableZoom,
-      height,
-      routeHash,
-      width,
-    })
+  const router = useRouter()
+  const route = `#${routeHash}`
+  const zoomed = router.asPath.split('@')[0].endsWith(route)
+  const [marginRef, sidebarRef, wrapperRef] = useStickyEffect()
 
   const classes = withState({ zoomed, disableZoom })
 
@@ -85,257 +84,257 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   return (
     <ScrollerProvider scrollSnapAlign='center'>
-      <Row maxWidth={false} disableGutters className={classes.row} sx={sx}>
-        <MotionBox
-          layout
-          layoutDependency={zoomed}
-          className={classes.root}
-          sx={[
-            {
-              willChange: 'transform',
-              display: 'grid',
-              gridTemplate: '"left" "right"',
-              [theme.breakpoints.up('md')]: {
-                // gridTemplateColumns: '1fr auto',
-                gridTemplate: '"left right" / 1fr auto',
-              },
-              background:
-                theme.palette.mode === 'light'
-                  ? theme.palette.background.image
-                  : theme.palette.background.paper,
-              paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
-            },
-            zoomed && {
-              position: 'relative',
-              zIndex: theme.zIndex.modal,
-              marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
-              [theme.breakpoints.up('md')]: {
-                marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
-              },
-              paddingRight: 0,
-            },
-          ]}
-        >
-          <TrapFocus open={zoomed}>
+      <GalleryZoom height={height} disableZoom={disableZoom} routeHash={routeHash} width={width}>
+        {({ maxHeight, onMouseDownScroller, onMouseUpScroller, ratio, toggle }) => (
+          <Row maxWidth={false} disableGutters className={classes.row} sx={sx}>
             <MotionBox
               layout
               layoutDependency={zoomed}
-              className={classes.scrollerContainer}
+              className={classes.root}
               sx={[
                 {
-                  gridArea: 'left',
                   willChange: 'transform',
-                  height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
-                  backgroundColor: theme.palette.background.image,
-                  position: 'relative',
-                  paddingTop: `min(${ratio}, ${maxHeight})`,
-                  [theme.breakpoints.down('md')]: {
-                    width: '100vw',
-                  },
+                  display: 'grid',
+                  gridTemplate: '"left" "right"',
                   [theme.breakpoints.up('md')]: {
-                    height: `calc(${dvh(100)} - ${theme.appShell.headerHeightMd} - ${
-                      theme.spacings.lg
-                    })`,
-                    position: 'sticky',
-                    top: theme.appShell.headerHeightMd,
+                    // gridTemplateColumns: '1fr auto',
+                    gridTemplate: '"left right" / 1fr auto',
                   },
+                  background:
+                    theme.palette.mode === 'light'
+                      ? theme.palette.background.image
+                      : theme.palette.background.paper,
                 },
                 zoomed && {
                   position: 'relative',
-                  top: 0,
-                  marginTop: 0,
-                  paddingTop: dvh(100),
+                  zIndex: theme.zIndex.modal,
+                  marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
+                  [theme.breakpoints.up('md')]: {
+                    marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
+                  },
+                  paddingRight: 0,
                 },
               ]}
-              onLayoutAnimationComplete={() => {
-                if (!zoomed) document.body.style.overflow = ''
-              }}
             >
-              <Scroller
-                className={classes.scroller}
-                hideScrollbar
-                onMouseDown={onMouseDownScroller}
-                onMouseUp={onMouseUpScroller}
+              <TrapFocus open={zoomed}>
+                <MotionBox
+                  layout
+                  layoutDependency={zoomed}
+                  className={classes.scrollerContainer}
+                  sx={[
+                    {
+                      gridArea: 'left',
+                      willChange: 'transform',
+                      height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
+                      backgroundColor: theme.palette.background.image,
+                      position: 'relative',
+                      paddingTop: `min(${ratio}, ${maxHeight})`,
+                      [theme.breakpoints.down('md')]: {
+                        width: '100vw',
+                      },
+                      [theme.breakpoints.up('md')]: {
+                        height: `calc(${dvh(100)} - ${theme.appShell.headerHeightMd} - ${
+                          theme.spacings.lg
+                        })`,
+                        position: 'sticky',
+                        top: theme.appShell.headerHeightMd,
+                      },
+                    },
+                    zoomed && {
+                      position: 'relative',
+                      top: 0,
+                      marginTop: 0,
+                      paddingTop: dvh(100),
+                    },
+                  ]}
+                  onLayoutAnimationComplete={() => {
+                    if (!zoomed) document.body.style.overflow = ''
+                  }}
+                >
+                  <Scroller
+                    className={classes.scroller}
+                    hideScrollbar
+                    onMouseDown={onMouseDownScroller}
+                    onMouseUp={onMouseUpScroller}
+                    sx={[
+                      {
+                        willChange: 'transform',
+                        position: 'absolute',
+                        top: 0,
+                        width: '100%',
+                        height: '100%',
+                        gridAutoColumns: `100%`,
+                        gridTemplateRows: `100%`,
+                        cursor: disableZoom ? 'auto' : 'zoom-in',
+                      },
+                      zoomed && {
+                        height: `var(--client-size-y)`,
+                        cursor: 'inherit',
+                      },
+                    ]}
+                  >
+                    {images.map((image, idx) => (
+                      <MotionImageAspect
+                        key={typeof image.src === 'string' ? image.src : idx}
+                        layout
+                        layoutDependency={zoomed}
+                        onClick={() => toggle(idx)}
+                        src={image.src}
+                        width={image.width}
+                        height={image.height}
+                        loading={idx === 0 ? 'eager' : 'lazy'}
+                        sx={{ display: 'block', objectFit: 'contain' }}
+                        sizes={{
+                          0: '100vw',
+                          [theme.breakpoints.values.md]: zoomed ? '100vw' : '60vw',
+                        }}
+                        alt={image.alt || `Product Image ${idx}` || undefined}
+                        dontReportWronglySizedImages
+                      />
+                    ))}
+                  </Scroller>
+                  <MotionBox
+                    layout='position'
+                    layoutDependency={zoomed}
+                    className={classes.topRight}
+                    sx={{
+                      display: 'grid',
+                      gridAutoFlow: 'column',
+                      top: theme.spacings.sm,
+                      gap: theme.spacings.xxs,
+                      position: 'absolute',
+                      right: theme.spacings.sm,
+                    }}
+                  >
+                    {!disableZoom && (
+                      <Fab
+                        size='small'
+                        className={classes.toggleIcon}
+                        disabled={!hasImages}
+                        onMouseUp={() => toggle()}
+                        aria-label='Toggle Fullscreen'
+                        sx={{ boxShadow: 6 }}
+                      >
+                        {!zoomed ? (
+                          <IconSvg src={iconFullscreen} />
+                        ) : (
+                          <IconSvg src={iconFullscreenExit} />
+                        )}
+                      </Fab>
+                    )}
+                  </MotionBox>
+                  <Box
+                    className={classes.centerLeft}
+                    sx={{
+                      display: 'grid',
+                      gridAutoFlow: 'row',
+                      gap: theme.spacings.xxs,
+                      position: 'absolute',
+                      left: theme.spacings.sm,
+                      top: `calc(50% - 28px)`,
+                    }}
+                  >
+                    <ScrollerButton
+                      layout
+                      layoutDependency={zoomed}
+                      direction='left'
+                      showButtons={showButtons}
+                      size='small'
+                      className={classes.sliderButtons}
+                    >
+                      <IconSvg src={iconChevronLeft} />
+                    </ScrollerButton>
+                  </Box>
+                  <Box
+                    className={classes.centerRight}
+                    sx={{
+                      display: 'grid',
+                      gap: theme.spacings.xxs,
+                      position: 'absolute',
+                      right: theme.spacings.sm,
+                      top: `calc(50% - 28px)`,
+                    }}
+                  >
+                    <ScrollerButton
+                      layout
+                      layoutDependency={zoomed}
+                      direction='right'
+                      showButtons={showButtons}
+                      size='small'
+                      className={classes.sliderButtons}
+                    >
+                      <IconSvg src={iconChevronRight} />
+                    </ScrollerButton>
+                  </Box>
+
+                  <Box
+                    className={classes.bottomCenter}
+                    sx={{
+                      display: 'flex',
+                      gap: theme.spacings.xxs,
+                      position: 'absolute',
+                      bottom: theme.spacings.xxs,
+                      justifyContent: 'center',
+                      width: '100%',
+                      pointerEvents: 'none',
+                      '& > *': {
+                        pointerEvents: 'all',
+                      },
+                    }}
+                  >
+                    {import.meta.graphCommerce.sidebarGallery?.paginationVariant ===
+                    'THUMBNAILS_BOTTOM' ? (
+                      <ScrollerThumbnails images={images} />
+                    ) : (
+                      <ScrollerDots />
+                    )}
+                  </Box>
+                </MotionBox>
+              </TrapFocus>
+              <Box
+                ref={wrapperRef}
+                className={classes.sidebarWrapper}
                 sx={[
                   {
-                    willChange: 'transform',
-                    position: 'absolute',
-                    top: 0,
-                    width: '100%',
-                    height: '100%',
-                    gridAutoColumns: `100%`,
-                    gridTemplateRows: `100%`,
-                    cursor: disableZoom ? 'auto' : 'zoom-in',
+                    gridArea: 'right',
+                    boxSizing: 'content-box',
+                    justifyItems: 'start',
+                    position: 'relative',
                   },
                   zoomed && {
-                    height: `var(--client-size-y)`,
-                    cursor: 'inherit',
+                    [theme.breakpoints.up('md')]: {
+                      marginLeft: `calc((${responsiveVal(
+                        300,
+                        500,
+                        theme.breakpoints.values.lg,
+                      )} + ${theme.page.horizontal} * 2) * -1)`,
+                      left: `calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
+                        theme.page.horizontal
+                      } * 2)`,
+                    },
                   },
                 ]}
               >
-                {images.map((image, idx) => (
-                  <MotionImageAspect
-                    key={typeof image.src === 'string' ? image.src : idx}
-                    layout
-                    layoutDependency={zoomed}
-                    src={image.src}
-                    width={image.width}
-                    height={image.height}
-                    loading={idx === 0 ? 'eager' : 'lazy'}
-                    sx={{ display: 'block', objectFit: 'contain' }}
-                    sizes={{
-                      0: '100vw',
-                      [theme.breakpoints.values.md]: zoomed ? '100vw' : '60vw',
-                    }}
-                    alt={image.alt || `Product Image ${idx}` || undefined}
-                    dontReportWronglySizedImages
-                  />
-                ))}
-              </Scroller>
-              <MotionBox
-                layout='position'
-                layoutDependency={zoomed}
-                className={classes.topRight}
-                sx={{
-                  display: 'grid',
-                  gridAutoFlow: 'column',
-                  top: theme.spacings.sm,
-                  gap: theme.spacings.xxs,
-                  position: 'absolute',
-                  right: theme.spacings.sm,
-                }}
-              >
-                {!disableZoom && (
-                  <Fab
-                    size='small'
-                    className={classes.toggleIcon}
-                    disabled={!hasImages}
-                    onMouseUp={() => toggle()}
-                    aria-label='Toggle Fullscreen'
-                    sx={{ boxShadow: 6 }}
-                  >
-                    {!zoomed ? (
-                      <IconSvg src={iconFullscreen} />
-                    ) : (
-                      <IconSvg src={iconFullscreenExit} />
-                    )}
-                  </Fab>
-                )}
-              </MotionBox>
-              <Box
-                className={classes.centerLeft}
-                sx={{
-                  display: 'grid',
-                  gridAutoFlow: 'row',
-                  gap: theme.spacings.xxs,
-                  position: 'absolute',
-                  left: theme.spacings.sm,
-                  top: `calc(50% - 28px)`,
-                }}
-              >
-                <ScrollerButton
-                  layout
+                <Box ref={marginRef} />
+                <MotionBox
+                  layout='position'
                   layoutDependency={zoomed}
-                  direction='left'
-                  showButtons={showButtons}
-                  size='small'
-                  className={classes.sliderButtons}
+                  className={classes.sidebar}
+                  ref={sidebarRef}
+                  sx={{
+                    position: 'sticky',
+                    boxSizing: 'border-box',
+                    width: '100%',
+                    padding: theme.spacings.md,
+                  }}
                 >
-                  <IconSvg src={iconChevronLeft} />
-                </ScrollerButton>
-              </Box>
-              <Box
-                className={classes.centerRight}
-                sx={{
-                  display: 'grid',
-                  gap: theme.spacings.xxs,
-                  position: 'absolute',
-                  right: theme.spacings.sm,
-                  top: `calc(50% - 28px)`,
-                }}
-              >
-                <ScrollerButton
-                  layout
-                  layoutDependency={zoomed}
-                  direction='right'
-                  showButtons={showButtons}
-                  size='small'
-                  className={classes.sliderButtons}
-                >
-                  <IconSvg src={iconChevronRight} />
-                </ScrollerButton>
-              </Box>
-
-              <Box
-                className={classes.bottomCenter}
-                sx={{
-                  display: 'flex',
-                  gap: theme.spacings.xxs,
-                  position: 'absolute',
-                  bottom: theme.spacings.xxs,
-                  justifyContent: 'center',
-                  width: '100%',
-                  pointerEvents: 'none',
-                  '& > *': {
-                    pointerEvents: 'all',
-                  },
-                }}
-              >
-                {import.meta.graphCommerce.sidebarGallery?.paginationVariant ===
-                'THUMBNAILS_BOTTOM' ? (
-                  <ScrollerThumbnails images={images} />
-                ) : (
-                  <ScrollerDots />
-                )}
+                  {sidebar}
+                </MotionBox>
               </Box>
             </MotionBox>
-          </TrapFocus>
-          <Box
-            className={classes.sidebarWrapper}
-            sx={[
-              {
-                gridArea: 'right',
-                boxSizing: 'content-box',
-                display: 'grid',
-                justifyItems: 'start',
-                alignContent: 'center',
-                position: 'relative',
-                [theme.breakpoints.up('md')]: {
-                  width: `calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
-                    theme.page.horizontal
-                  } * 2)`,
-                },
-              },
-              zoomed && {
-                [theme.breakpoints.up('md')]: {
-                  marginLeft: `calc((${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
-                    theme.page.horizontal
-                  } * 2) * -1)`,
-                  left: `calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
-                    theme.page.horizontal
-                  } * 2)`,
-                },
-              },
-            ]}
-          >
-            <MotionBox
-              layout='position'
-              layoutDependency={zoomed}
-              className={classes.sidebar}
-              sx={{
-                boxSizing: 'border-box',
-                width: '100%',
-                padding: `${theme.spacings.lg} ${theme.page.horizontal}`,
-                [theme.breakpoints.up('md')]: {
-                  paddingLeft: theme.spacings.lg,
-                },
-              }}
-            >
-              {sidebar}
-            </MotionBox>
-          </Box>
-        </MotionBox>
-      </Row>
+          </Row>
+        )}
+      </GalleryZoom>
     </ScrollerProvider>
   )
 }

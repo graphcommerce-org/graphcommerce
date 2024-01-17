@@ -166,6 +166,8 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
       const itemsArr: unknown[] = items.get().slice()
       itemsArr.length = count
 
+      console.log('Registering children', itemsArr)
+
       items.set(
         itemsArr.fill(undefined).map<ItemState>((_, i) => ({
           visibility: motionValue(i === 0 ? 1 : 0),
