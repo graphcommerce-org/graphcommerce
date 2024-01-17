@@ -68,7 +68,8 @@ export const config = { matcher: '/' }
 ```
 
 The middleware is needed as nextjs does not allow rewriting the PURGE request
-from the root `/` through `next.config.js`
+from the root `/` through `next.config.js`, and Magento can't be configured to
+send requests to a specific URL path.
 
 ## Configuring Magento to send PURGE request to your GraphCommerce application
 
@@ -100,11 +101,9 @@ configuration setting are blocked and result in a log such as:
 You can add the IP address exactly as it is logged, as that is what is matched
 against:
 
-```json
+```js
 const config = {
   // ...
-  purgeAllowList: [
-    '::ffff:127.0.0.1'
-  ],
+  purgeAllowList: ['::ffff:127.0.0.1'],
 }
 ```
