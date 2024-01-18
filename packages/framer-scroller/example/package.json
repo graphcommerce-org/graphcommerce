@@ -3,7 +3,7 @@
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
   "private": true,
-  "version": "8.0.0-canary.89",
+  "version": "8.0.0-canary.90",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -31,9 +31,9 @@
     "webpack": "5.89.0"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "8.0.0-canary.89",
-    "@graphcommerce/prettier-config-pwa": "8.0.0-canary.89",
-    "@graphcommerce/typescript-config-pwa": "8.0.0-canary.89",
+    "@graphcommerce/eslint-config-pwa": "8.0.0-canary.90",
+    "@graphcommerce/prettier-config-pwa": "8.0.0-canary.90",
+    "@graphcommerce/typescript-config-pwa": "8.0.0-canary.90",
     "@lingui/cli": "4.6.0",
     "@playwright/test": "1.40.1",
     "@types/node": "^18",
