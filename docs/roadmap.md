@@ -2,32 +2,67 @@
 menu: Roadmap
 ---
 
-<div data-nosnippet>
-
-> Last update: October 10, 2022
-
-</div>
-
 # Roadmap
 
-The following overview contains the status of items on the GraphCommerce roadmap
-(items are subject to change):
+The following overview contains the status of items on the GraphCommerce
+roadmap.
 
 ## In progress / planned
 
-- [ ] Global store messages
-- [ ] Wishlist redesign
-- [ ] Success page redesign
-- [ ] Product thumbnails on product page
-- [ ] Dutch Postcode API upgrades
-- [ ] Invalid session handling improvements
-- [ ] Performance improvements
-- [ ] Migration to next/image in favor of @graphcommerce/image
+[Upcoming in the next release](https://github.com/graphcommerce-org/graphcommerce/releases?q=prerelease%3Atrue&expanded=true)
+
+- [ ] Google Datalayer improvements to better handling gtag.js or GTM
+- [ ] Product page gallery improvements: Grid of images, animated thumbnails,
+      Video support + disable zoom feature.
+- [ ] Web Vitals: Reduce Total Blocking Time, to improve INP metic.
+- [ ] Web Vitals: Defer rendering of elements further on the page, to improve
+      INP metic.
+- [ ] Magento Open Source GraphQL API Coverage with detailed GraphQL analysis
+      per version.
+- [ ] Create a generic CMS integration framework, removing the hard Hygraph
+      requirement
+- [ ] Web Migration to next/image in favor of @graphcommerce/image
+- [ ] Improved category navigation: Navigate to sibling categories + Category
+      tree navigation in sidebar.
+- [ ] i18n configuration separation from URL structure.
+- [ ] Improved cache invalidation logic for category and product pages by using
+      the Varnish PURGE functionality of Magento.
+- [ ] Customer specific pricing support for category and product pages.
+- [ ] Support for very large carts with 100+ items.
+- [ ] Plugin system redesign so typescript correctly identifies plugins and can
+      type check all the integrations.
+
+## Considering / researching
+
+- [ ] Gallery support on category/search pages.
+- [ ] Authorize.net payment service integration
+- [ ] Web Vitals: Use CSS theme variables or wait for MUI v6 release with static
+      extraction.
+- [ ] React Server Components integration with streaming for faster loads.
+- [ ] Windows support
+- [ ] Store locator
+- [ ] PageBuilder support
+      [depends on ↗](https://github.com/magento/magento2/issues/37768)
+- [ ] Abstractions for integration with multiple catalog/search API's like
+      Algolia, Magento Live Search and various layered navigation modules.
 
 ## Released
 
 [See all releases](https://github.com/graphcommerce-org/graphcommerce/releases?q=prerelease%3Afalse+&expanded=true)
 
+- [x] Product page gallery improvements: Thumbnails
+- [x] Major improvements to Accessibility
+      [issue ↗](https://github.com/graphcommerce-org/graphcommerce/issues/1995)
+- [x] Show Crosssells in the cart
+- [x] Support for Github Codespaces
+- [x] Faster loading performance for the category page
+- [x] Recently viewed products
+- [x] Global store messages
+- [x] Invalid session handling improvements
+- [x] Product thumbnails on product page
+- [x] Wishlist redesign
+- [x] Success page redesign
+- [x] Dutch Postcode API upgrades
 - [x] Configurable variants for simple products
       [ocs ↗](https://graphcommerce.org/docs/magento/configurable-products)
 - [x] Cart redesign
@@ -59,17 +94,6 @@ The following overview contains the status of items on the GraphCommerce roadmap
 - [x] Checkout shipping method selection rebuild
 - [x] Checkout payment selection rebuild
 - [x] Core stability (hydratation, caching, query optimization)
-
-## Future
-
-- [ ] React Server Components integration
-- [ ] Edge runtime for GraphQL Mesh
-- [ ] Windows support
-- [ ] Store locator
-- [ ] Buckaroo payment service
-- [ ] `magento` example without Hygraph
-- [ ] PageBuilder support
-      [depends on ↗](https://github.com/magento/magento2/issues/37768)
 
 ## Next steps
 
