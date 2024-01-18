@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.89
+
+### Patch Changes
+
+- [`b850ab0`](https://github.com/graphcommerce-org/graphcommerce/commit/b850ab06e3fff1cd274651d8082557ed2c308f55) - Updated roadmap and feature-list
+  ([@paales](https://github.com/paales))
+
 ## 8.0.0-canary.88
 
 ## 8.0.0-canary.87
