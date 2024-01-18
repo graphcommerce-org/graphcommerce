@@ -34,6 +34,7 @@ roadmap.
 
 ## Considering / researching
 
+- [ ] Adobe Sensei integration
 - [ ] Gallery support on category/search pages.
 - [ ] Authorize.net payment service integration
 - [ ] Web Vitals: Use CSS theme variables or wait for MUI v6 release with static
