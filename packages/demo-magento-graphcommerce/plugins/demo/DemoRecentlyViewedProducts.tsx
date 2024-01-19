@@ -1,4 +1,4 @@
-import { AddProductsToCartForm } from '@graphcommerce/magento-product'
+import { AddProductsToCartForm, ProductListItemType } from '@graphcommerce/magento-product'
 import {
   useRecentlyViewedProducts,
   useRecentlyViewedSkus,
@@ -39,14 +39,16 @@ function DemoRecentlyViewedProducts(props: PluginProps<RecentlyViewedProductsPro
     uid: i.toString(),
   }))
 
+  const items: ProductListItemType[] = productList.loading ? loadingProducts : productList.products
+
   return (
     <>
       <Box ref={ref} className='recentlyViewedProducts' sx={{ height: '1px' }} />
       <AddProductsToCartForm>
         <SidebarSlider sidebar={<Typography variant='h2'>{title}</Typography>}>
-          {filterNonNullableKeys([...loadingProducts, ...productList.products]).map((item) => (
+          {filterNonNullableKeys(items).map((item) => (
             <RenderType
-              key={item.uid ?? ''}
+              key={item.uid}
               renderer={productListRenderer}
               sizes={responsiveVal(200, 400)}
               titleComponent='h3'

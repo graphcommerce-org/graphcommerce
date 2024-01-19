@@ -35,7 +35,7 @@ export function RecentlyViewedProducts(props: RecentlyViewedProductsProps) {
       ref={ref}
       productListRenderer={productListRenderer}
       title={title}
-      items={[...loadingProducts, ...productList.products]}
+      items={productList.loading ? loadingProducts : productList.products}
       {...scrollerProps}
     />
   )
