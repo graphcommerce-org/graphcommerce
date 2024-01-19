@@ -25,7 +25,7 @@ exports.demoConfig = {
     demoMode: true,
     limitSsg: true,
     compare: true,
-    sidebarGallery: { paginationVariant: 'DOTS' },
+    sidebarGallery: { paginationVariant: 'THUMBNAILS_BOTTOM' },
     configurableVariantForSimple: true,
     configurableVariantValues: { url: true, content: true, gallery: true },
     recentlyViewedProducts: { enabled: true, maxCount: 20 },
