@@ -251,7 +251,10 @@ yarn graphcommerce hygraph-migrate
 
 #### limitSsg: boolean
 
-Limit the static generation of SSG when building
+Limit the static generation of SSG when building.
+
+By default GraphCommerce will statically generate all product and category pages during build.
+This can take quite a long time, to skip this step set this value to true.
 
 #### previewSecret: string
 

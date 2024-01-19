@@ -3,7 +3,7 @@ menu: 4. Build pages
 metaTitle: Build pages
 ---
 
-# Build pages in GraphCommerce
+# Build custom pages in GraphCommerce
 
 Previously, you created a custom storefront and started customizing your
 storefront in GraphCommerce. You're now ready to build pages in your
@@ -12,6 +12,11 @@ GraphCommerce app.
 In this tutorial, you'll accomplish a series of tasks to add some specific
 functionality to your custom storefront. The result will be simple, but you'll
 learn where to find resources to build more complex features on your own.
+
+> When you only want to create a new content page for a specific URL based on
+> Hygraph rows, you don't need to create a custom template: After creating a
+> page in Hygraph it will automatically be handled by the `/pages/[...url].tsx`
+> route.
 
 ## What you'll learn
 
@@ -49,54 +54,61 @@ export default function AboutUs() {
 ```tsx
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps } from '@graphcommerce/next-ui'
-import { Container } from '@mui/material'
-import { GetStaticPaths } from 'next'
-import { LayoutFull, LayoutFullProps } from '../../components'
 import {
-  DefaultPageDocument,
-  DefaultPageQuery,
-} from '../../graphql/DefaultPage.gql'
-import { PagesStaticPathsDocument } from '../../graphql/PagesStaticPaths.gql'
+  GetStaticProps,
+  LayoutOverlayHeader,
+  LayoutTitle,
+  PageMeta,
+} from '@graphcommerce/next-ui'
+import {
+  LayoutDocument,
+  LayoutNavigation,
+  LayoutNavigationProps,
+} from '../../components'
 import {
   graphqlSsrClient,
   graphqlSharedClient,
 } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = DefaultPageQuery
-type RouteProps = { url: string }
-type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<LayoutFullProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<LayoutNavigationProps>
 
 function AboutUs() {
-  return <Container>About Us</Container>
+  return (
+    <>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span'>
+          About us
+        </LayoutTitle>
+      </LayoutOverlayHeader>
+      <PageMeta title='About us' />
+      <LayoutTitle>About us</LayoutTitle>
+    </>
+  )
 }
 
-AboutUs.pageOptions = {
-  Layout: LayoutFull,
-} as PageOptions
+const pageOptions: PageOptions<LayoutNavigationProps> = {
+  Layout: LayoutNavigation,
+}
+AboutUs.pageOptions = pageOptions
 
 export default AboutUs
 
-export const getStaticProps: GetPageStaticProps = async (context) => {
-  const { locale } = context
+export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
-  const page = staticClient.query({
-    query: DefaultPageDocument,
-    variables: {
-      url: '',
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
-    },
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: 'cache-first',
   })
-  // if (!(await page).data.pages?.[0]) return { notFound: true }
+
   return {
     props: {
-      ...(await page).data,
+      ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
+    revalidate: 60 * 20,
   }
 }
 ```
@@ -105,29 +117,25 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
 
 <figure>
 
-![Page with page layout (header, footer)](https://user-images.githubusercontent.com/1251986/157832869-44b7fc7a-d5f7-4779-a017-869718e679aa.png)
+![Page with page layout (header, footer)](https://github.com/graphcommerce-org/graphcommerce/assets/1244416/9a7476d2-4763-4d8e-86a9-046fd27cb846)
 
   <figcaption>Page with page layout (header, footer)</figcaption>
 </figure>
 
-```tsx
-// Example from /graphql/DefaultPage.graphql (DefaultPageDocument)
-
-query DefaultPage($url: String!, $rootCategory: String!) {
+```graphql
+# Example from /components/Layout/Layout.graphql (LayoutDocument)
+query Layout {
+  menu: categories {
+    __typename
+  }
   ...MenuQueryFragment
   ...FooterQueryFragment
-  ...PageContentQueryFragment
 }
 ```
 
 In the `getStaticProps` function, the query `StoreConfigDocument` is used to
-fetch information about the Magento storeview. Then, the query
-`DefaultPageDocument` is used to fetch the data required to render the menu,
-footer and page content.
-
-In this example, the URL variable is empty. As a result, the
-`...PageContentQueryFragment` will have no result when trying to fetch a Hygraph
-page with URL `''`.
+fetch information about the Magento storeview. Then, the query `LayoutDocument`
+is used to fetch the data required to render the menu, footer and page content.
 
 The function `getStaticProps` is used to fetch data, meaning content is rendered
 on the server. Review the page's source code and search for `About Us` to
@@ -137,25 +145,92 @@ validate that this string (currently hard-coded) is part of the source code.
 
 - Login to Hygraph, navigate to Content and add a new Page entry with URL:
   about/about-us
-- In /about/about-us.tsx, make the following change to `getStaticProps`:
+- Replace the content of the about-us.tsx file with:
 
 ```tsx
-const page = staticClient.query({
-  query: DefaultPageDocument,
-  variables: {
-    url: 'about/about-us',
-    rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
-  },
-})
-```
+import { PageOptions } from '@graphcommerce/framer-next-pages'
+import {
+  hygraphPageContent,
+  HygraphPagesQuery,
+} from '@graphcommerce/graphcms-ui'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import {
+  GetStaticProps,
+  LayoutOverlayHeader,
+  LayoutTitle,
+  PageMeta,
+} from '@graphcommerce/next-ui'
+import { GetStaticPaths } from 'next'
+import {
+  LayoutDocument,
+  LayoutNavigation,
+  LayoutNavigationProps,
+  RowRenderer,
+} from '../../components'
+import {
+  graphqlSsrClient,
+  graphqlSharedClient,
+} from '../../lib/graphql/graphqlSsrClient'
 
-And replace the previous AboutUs function with the following:
+type Props = HygraphPagesQuery
+type RouteProps = { url: string }
+type GetPageStaticPaths = GetStaticPaths<RouteProps>
+type GetPageStaticProps = GetStaticProps<
+  LayoutNavigationProps,
+  Props,
+  RouteProps
+>
 
-```tsx
-function AboutUs({ pages }: Props) {
-  const title = pages?.[0].title ?? ''
+function AboutUs(props: Props) {
+  const { pages } = props
+  const page = pages[0]
 
-  return <Container>{title}</Container>
+  return (
+    <>
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span'>
+          {page.title}
+        </LayoutTitle>
+      </LayoutOverlayHeader>
+      <PageMeta
+        title={page.metaTitle ?? ''}
+        metaDescription={page.metaDescription}
+      />
+      <LayoutTitle>{page.title}</LayoutTitle>
+
+      <RowRenderer content={page.content} />
+    </>
+  )
+}
+
+const pageOptions: PageOptions<LayoutNavigationProps> = {
+  Layout: LayoutNavigation,
+}
+AboutUs.pageOptions = pageOptions
+
+export default AboutUs
+
+export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
+  const client = graphqlSharedClient(locale)
+  const staticClient = graphqlSsrClient(locale)
+
+  const conf = client.query({ query: StoreConfigDocument })
+  const page = hygraphPageContent(staticClient, 'about/about-us')
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: 'cache-first',
+  })
+
+  if (!(await page).data.pages?.[0]) return { notFound: true }
+
+  return {
+    props: {
+      ...(await page).data,
+      ...(await layout).data,
+      apolloState: await conf.then(() => client.cache.extract()),
+    },
+    revalidate: 60 * 20,
+  }
 }
 ```
 
@@ -184,25 +259,29 @@ export const getStaticPaths: GetPageStaticPaths = (context) => ({
   fallback: 'blocking',
 })
 
-export const getStaticProps: GetPageStaticProps = async (context) => {
-  const { locale, params } = context
+export const getStaticProps: GetPageStaticProps = async ({
+  locale,
+  params,
+}) => {
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
-  const page = staticClient.query({
-    query: DefaultPageDocument,
-    variables: {
-      url: `about/${params?.url}`,
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
-    },
+  const page = hygraphPageContent(staticClient, `about/${params?.url}`)
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: 'cache-first',
   })
-  // if (!(await page).data.pages?.[0]) return { notFound: true }
+
+  if (!(await page).data.pages?.[0]) return { notFound: true }
+
   return {
     props: {
       ...(await page).data,
+      ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
+    revalidate: 60 * 20,
   }
 }
 ```
@@ -230,26 +309,26 @@ built-time will not result in a 404:
 - In /about/[url].tsx, replace the getStaticPaths function with the following:
 
 ```tsx
-export const getStaticPaths: GetPageStaticPaths = async (context) => {
-  const { locales = [] } = context
-  // if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
+export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+  if (process.env.NODE_ENV === 'development')
+    return { paths: [], fallback: 'blocking' }
 
   const path = async (locale: string) => {
-    const client = graphqlSharedClient(locale)
+    const client = graphqlSsrClient(locale)
     const { data } = await client.query({
       query: PagesStaticPathsDocument,
       variables: {
-        first: 10,
+        first: import.meta.graphCommerce.limitSsg ? 1 : 1000,
         urlStartsWith: 'about',
       },
     })
     return data.pages.map((page) => ({
-      params: { url: page.url.split('/').slice(1)[0] },
+      params: { url: page.url.split('/').slice(1) },
       locale,
     }))
   }
   const paths = (await Promise.all(locales.map(path))).flat(1)
-  // console.log(paths)
+
   return { paths, fallback: 'blocking' }
 }
 ```
