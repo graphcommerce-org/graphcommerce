@@ -1,5 +1,12 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 8.0.0-canary.91
+
+### Patch Changes
+
+- [#2172](https://github.com/graphcommerce-org/graphcommerce/pull/2172) [`871e07a`](https://github.com/graphcommerce-org/graphcommerce/commit/871e07ac8bbb7e6c392a740a8244f69992b42b76) - Recently viewed products would show skeleton items even after loading succeeded
+  ([@paales](https://github.com/paales))
+
 ## 8.0.0-canary.90
 
 ## 8.0.0-canary.89
