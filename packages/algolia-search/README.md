@@ -113,14 +113,9 @@ npm install react-instantsearch-hooks-server
 2. Add the new serverState property to the `SearchResultProps` type
 
 ```
-type SearchResultProps = DefaultPageQuery &
-  ProductListQuery &
+type SearchResultProps = ProductListQuery &
   ProductFiltersQuery &
-  CategorySearchQuery & {
-   filterTypes: FilterTypes
-   params: ProductListParams
-+   serverState?: unknown
-   }
+  CategorySearchQuery & { filterTypes: FilterTypes; params: ProductListParams, serverState?: unknown }
 ```
 
 3. Add the `getServerState` method from the `react-instantsearch-hooks-server`
