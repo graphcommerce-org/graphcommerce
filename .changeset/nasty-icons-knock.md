@@ -1,6 +1,6 @@
 ---
-"@graphcommerce/magento-cart": patch
-"@graphcommerce/magento-customer": patch
+'@graphcommerce/magento-cart': patch
+'@graphcommerce/magento-customer': patch
 ---
 
-fix(GCOM-1317): fix bug where inactive cached cart could be set as currentCartId
+Solved an issue where the inactive cart would set as the current cart when the customer had signed in, checked out their cart, session expired and tried to log in again.

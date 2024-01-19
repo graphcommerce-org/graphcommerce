@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/framer-scroller": patch
+'@graphcommerce/framer-scroller': patch
 ---
 
-Fixed bug which caused the scrollerButton to become unclickable
+Solved an issue where the Previous and Next buttons would become unclickable for Scrollers.

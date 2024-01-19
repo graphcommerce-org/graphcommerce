@@ -2,4 +2,4 @@
 '@graphcommerce/magento-cart-items': minor
 ---
 
-Add crosssells to cart
+Added a new `<CartCrosssellsScroller />` component to render crosssells in a horizontal scroller in the cart.

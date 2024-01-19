@@ -6,4 +6,4 @@
 '@graphcommerce/magento-cart-pickup': patch
 ---
 
-Disabled Ripple on all ActionCard ‘Select’ and ‘Change’ so the rendering is more subtle during checkout.
+Disabled ripple animations on all ActionCard ‘Select’ and ‘Change’ so the rendering is more subtle during checkout.

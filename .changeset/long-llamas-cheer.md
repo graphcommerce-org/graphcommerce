@@ -2,4 +2,4 @@
 '@graphcommerce/magento-recently-viewed-products': minor
 ---
 
-Added recently viewed products hook and render component
+Created a new `<RecentlyViewedProducts/>` component and render it on product pages.

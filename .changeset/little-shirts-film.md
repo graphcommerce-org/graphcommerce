@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/graphcms-ui": patch
+'@graphcommerce/graphcms-ui': patch
 ---
 
-feat(GCOM-1190): add renderer to support rendering Hygraph elements with a CSS class
+Added support to add css class names to RichText elements from Hygraph

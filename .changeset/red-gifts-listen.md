@@ -3,4 +3,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Add showButtons prop to scrollerButton
+Add `showButtons` prop to `<ScrollerButton/>`

@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/magento-product": major
+'@graphcommerce/magento-product': major
 ---
 
-Removed legacyProductRoute from GraphCommerce
+Removed the `legacyProductRoute` configuration option from GraphCommerce
