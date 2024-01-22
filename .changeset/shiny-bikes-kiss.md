@@ -2,4 +2,4 @@
 '@graphcommerce/magento-customer': patch
 ---
 
-fix email update snackbar styling
+The message when the email was updated was unstyled.

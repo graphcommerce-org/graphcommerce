@@ -2,4 +2,4 @@
 '@graphcommerce/magento-customer': patch
 ---
 
-Update OrderDetails and styling
+Order details page in the customer account section is completely redesigned to be more in line with other areas.

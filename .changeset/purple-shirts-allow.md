@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/magento-product": patch
+'@graphcommerce/magento-product': patch
 ---
 
-Do not break words when wrapping
+The name of the product in the `<ProductListItem/>` would break words in the middle of a word instead of using a normal word break.

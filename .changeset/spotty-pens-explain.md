@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/magento-product-configurable": patch
+'@graphcommerce/magento-product-configurable': patch
 ---
 
-Spread product back into products instead of only adding items
+Prevent aggregations from being excluded when executing the `defaultConfigurableOptionsSelection`

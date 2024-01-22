@@ -6,4 +6,4 @@
 '@graphcommerce/ecommerce-ui': minor
 ---
 
-Wishlist will now support configurable products and uses the ActionCardLayout
+Wishlist will now support configurable products and uses the `<ActionCardLayout/>`

@@ -2,4 +2,4 @@
 '@graphcommerce/hygraph-dynamic-rows': patch
 ---
 
-enabled multiple rows per Dynamic Row
+Allow muiltiple rows for each Dynamic Row entry in Hygraph

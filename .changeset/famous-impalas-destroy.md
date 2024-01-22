@@ -2,4 +2,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Added info icon for Snackbar when severity is set to info
+The `<Snackbar/>` component now accepts an icon when severity is set to info

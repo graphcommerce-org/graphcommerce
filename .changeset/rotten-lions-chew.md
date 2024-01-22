@@ -2,4 +2,4 @@
 '@graphcommerce/magento-customer': patch
 ---
 
-Dismiss login page and go back to previous page asap when logging in
+When a user is logged in the modal is dismissed immediately without showing a succes page. This speeds up the interaction with the site.

@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/next-ui": patch
+'@graphcommerce/next-ui': patch
 ---
 
-Removed whitespace on top of the zoomed in image on the PDP.
+On certain breakpoints the Product page gallery had additional padding applied.

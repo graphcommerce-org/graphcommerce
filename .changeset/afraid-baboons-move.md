@@ -2,4 +2,4 @@
 '@graphcommerce/magento-graphcms': patch
 ---
 
-Added ProductScroller component with built-in skeleton loader
+New `<ProductScroller />` component for easy horizontal product scrollers.

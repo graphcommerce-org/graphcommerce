@@ -2,4 +2,4 @@
 '@graphcommerce/magento-product': patch
 ---
 
-fix maxWidth on productPageDescription
+Forward the maxWidth prop to the `<ColumnTwoWithTop />` component from the `<ProductPageDescription maxWidth='lg'/>` component.

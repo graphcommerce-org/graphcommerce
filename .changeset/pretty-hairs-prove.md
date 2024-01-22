@@ -2,4 +2,4 @@
 '@graphcommerce/magento-graphcms': patch
 ---
 
-Added .graphqlrc.yml for graphql file autocompletion
+Added `.graphqlrc.yml` for graphql file autocompletion in projects using VSCode.

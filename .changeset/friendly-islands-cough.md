@@ -2,4 +2,4 @@
 '@graphcommerce/framer-scroller': patch
 ---
 
-SideBarGallery image won't start scrolling from the beginning if user clicks multiple times on the scroll button.
+Fixes issue where the `<SidebarGallery />` would start jumping around if a user clicks the next button multiple times in short succession.

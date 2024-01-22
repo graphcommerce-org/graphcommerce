@@ -8,4 +8,4 @@
 '@graphcommerce/magento-product': minor
 ---
 
-Created UI for all customizable options except for the file upload customizable option
+Support for all customizable product options (except file upload) on the product pages and in the cart.

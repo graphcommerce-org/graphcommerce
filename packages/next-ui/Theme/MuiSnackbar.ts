@@ -1,6 +1,6 @@
-import { ComponentsVariants } from '@mui/material'
+import { ComponentsVariants, Theme } from '@mui/material'
 
-type SnackbarVariants = NonNullable<ComponentsVariants['MuiSnackbar']>
+type SnackbarVariants = NonNullable<ComponentsVariants<Theme>['MuiSnackbar']>
 
 /**
  * The current implementation of the MuiSnackbar will only be 50% wide if no width is specificed,
