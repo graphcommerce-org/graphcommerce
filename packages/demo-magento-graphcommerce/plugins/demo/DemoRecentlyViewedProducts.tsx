@@ -44,19 +44,21 @@ function DemoRecentlyViewedProducts(props: PluginProps<RecentlyViewedProductsPro
   return (
     <>
       <Box ref={ref} className='recentlyViewedProducts' sx={{ height: '1px' }} />
-      <AddProductsToCartForm>
-        <SidebarSlider sidebar={<Typography variant='h2'>{title}</Typography>}>
-          {filterNonNullableKeys(items).map((item) => (
-            <RenderType
-              key={item.uid}
-              renderer={productListRenderer}
-              sizes={responsiveVal(200, 400)}
-              titleComponent='h3'
-              {...item}
-            />
-          ))}
-        </SidebarSlider>
-      </AddProductsToCartForm>
+      {items.length > 0 && (
+        <AddProductsToCartForm>
+          <SidebarSlider sidebar={<Typography variant='h2'>{title}</Typography>}>
+            {filterNonNullableKeys(items).map((item) => (
+              <RenderType
+                key={item.uid}
+                renderer={productListRenderer}
+                sizes={responsiveVal(200, 400)}
+                titleComponent='h3'
+                {...item}
+              />
+            ))}
+          </SidebarSlider>
+        </AddProductsToCartForm>
+      )}
     </>
   )
 }
