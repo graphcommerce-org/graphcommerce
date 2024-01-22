@@ -1,5 +1,12 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 8.0.0-canary.92
+
+### Patch Changes
+
+- [`38ec023`](https://github.com/graphcommerce-org/graphcommerce/commit/38ec0237306dd77ed7882b3b99dafa94e817dc67) - Make sure the DemoRecentlyViewedProducts doesn't render without any items
+  ([@paales](https://github.com/paales))
+
 ## 8.0.0-canary.91
 
 ### Patch Changes
