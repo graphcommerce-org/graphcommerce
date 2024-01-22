@@ -13,7 +13,7 @@
   "types": "src/index.ts",
   "dependencies": {
     "@hygraph/management-sdk": "1.2.4",
-    "@whatwg-node/fetch": "^0.9.14",
+    "@whatwg-node/fetch": "^0.9.15",
     "graphql-tag": "^2.12.6",
     "prompts": "^2.4.2"
   },

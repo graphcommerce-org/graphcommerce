@@ -1,4 +1,4 @@
-import { ComponentsVariants, darken } from '@mui/material'
+import { ComponentsVariants, Theme, darken } from '@mui/material'
 import { responsiveVal } from '../Styles'
 
 declare module '@mui/material/Chip/Chip' {
@@ -10,7 +10,7 @@ declare module '@mui/material/Chip/Chip' {
   }
 }
 
-type ChipVariants = NonNullable<ComponentsVariants['MuiChip']>
+type ChipVariants = NonNullable<ComponentsVariants<Theme>['MuiChip']>
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const MuiChip: ChipVariants = [

@@ -64,7 +64,7 @@ function fabWidthHeight(size: FabSize, theme: Theme) {
   }
 }
 
-type FabVariants = NonNullable<ComponentsVariants['MuiFab']>
+type FabVariants = NonNullable<ComponentsVariants<Theme>['MuiFab']>
 
 const sizes: FabSize[] = [
   'smaller',
