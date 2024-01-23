@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.93
+
+### Patch Changes
+
+- [`d267f19`](https://github.com/graphcommerce-org/graphcommerce/commit/d267f19d6ab85f7dc1088974b3fee6148a537c20) - Disable the pagination thumbnails
+  ([@paales](https://github.com/paales))
+
 ## 8.0.0-canary.92
 
 ## 8.0.0-canary.91
