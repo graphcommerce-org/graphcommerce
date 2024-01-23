@@ -3,4 +3,4 @@
 "@graphcommerce/hygraph-cli": patch
 ---
 
-Fix hygraph 6to7 cli
+Solve issue where a Hygraph DynamicRow conditions were missing fields in the OrCondition
