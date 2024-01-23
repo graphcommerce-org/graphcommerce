@@ -1,7 +1,7 @@
 import { migrationAction, client } from '../migrationAction'
 import { Schema } from '../types'
 
-export const graphcommerce7_unknown_to_8 = async (schema: Schema) => {
+export const graphcommerce8to9 = async (schema: Schema) => {
   if (!client) {
     return 0
   }

@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.graphcommerce7_unknown_to_8 = void 0;
+exports.graphcommerce8to9 = void 0;
 const migrationAction_1 = require("../migrationAction");
-const graphcommerce7_unknown_to_8 = async (schema) => {
+const graphcommerce8to9 = async (schema) => {
     if (!migrationAction_1.client) {
         return 0;
     }
@@ -19,4 +19,4 @@ const graphcommerce7_unknown_to_8 = async (schema) => {
     }
     return migrationAction_1.client.run(true);
 };
-exports.graphcommerce7_unknown_to_8 = graphcommerce7_unknown_to_8;
+exports.graphcommerce8to9 = graphcommerce8to9;
