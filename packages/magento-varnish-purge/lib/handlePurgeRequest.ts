@@ -1,6 +1,6 @@
 import { NormalizedCacheObject, ApolloClient } from '@graphcommerce/graphql'
 import { storefrontConfig, storefrontAll } from '@graphcommerce/next-ui'
-import { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next'
 import { rimraf } from 'rimraf'
 import { PurgeGetProductPathsDocument } from '../graphql/PurgeGetProductPaths.gql'
 

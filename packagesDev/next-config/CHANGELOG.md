@@ -1,5 +1,32 @@
 # Change Log
 
+## 8.0.0-canary.94
+
+### Patch Changes
+
+- [#2169](https://github.com/graphcommerce-org/graphcommerce/pull/2169) [`eab3f0b`](https://github.com/graphcommerce-org/graphcommerce/commit/eab3f0b0b459f5b6cc4e50d787ac1e8ae545b708) - Solve issue where a Hygraph DynamicRow conditions were missing fields in the OrCondition
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.0-canary.93
+
+### Patch Changes
+
+- [`d267f19`](https://github.com/graphcommerce-org/graphcommerce/commit/d267f19d6ab85f7dc1088974b3fee6148a537c20) - Disable the pagination thumbnails
+  ([@paales](https://github.com/paales))
+
+## 8.0.0-canary.92
+
+## 8.0.0-canary.91
+
+### Patch Changes
+
+- [#2172](https://github.com/graphcommerce-org/graphcommerce/pull/2172) [`279599e`](https://github.com/graphcommerce-org/graphcommerce/commit/279599e7a86bd96ea9e36065af3c367df9e02a63) - Updated documentation to reflect recent code changes
+  ([@paales](https://github.com/paales))
+
+## 8.0.0-canary.90
+
+## 8.0.0-canary.89
+
 ## 8.0.0-canary.88
 
 ## 8.0.0-canary.87

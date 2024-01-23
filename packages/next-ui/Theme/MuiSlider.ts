@@ -1,11 +1,11 @@
-import { ComponentsVariants } from '@mui/material'
+import { ComponentsVariants, Theme } from '@mui/material'
 
 declare module '@mui/material/Slider/Slider' {
   interface SliderPropsSizeOverrides {
     large: true
   }
 }
-type SliderVariants = NonNullable<ComponentsVariants['MuiSlider']>
+type SliderVariants = NonNullable<ComponentsVariants<Theme>['MuiSlider']>
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const MuiSlider: SliderVariants = [

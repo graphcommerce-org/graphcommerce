@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/magento-product": patch
+'@graphcommerce/magento-product': patch
 ---
 
-Fixed filters dissapearing when no items are found with applied filters
+The filter bar would completely disappear when there were no items returned.

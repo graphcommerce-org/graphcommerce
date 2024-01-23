@@ -2,4 +2,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Wrap the logo in a div on the homepage to prevent redirection.
+When viewing the homepage the logo will not have a `<a/>` tag wrapped anymore.

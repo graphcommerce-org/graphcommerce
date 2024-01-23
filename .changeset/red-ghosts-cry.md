@@ -2,4 +2,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-filterNonNullable keys simplified the types which caused unions to be collapsed
+The `filterNonNullable` method would collapse TypeScript unions because of the `Simplify<>` helper, this is now omitted retulting in working unions.

@@ -2,4 +2,4 @@
 '@graphcommerce/magento-product-bundle': patch
 ---
 
-Fixed bug where you could only select 1 as quantity for bundled products
+Solved an issue where the quantity selector was not working for bundled products

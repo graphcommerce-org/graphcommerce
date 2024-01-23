@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/magento-graphcms": patch
+'@graphcommerce/magento-graphcms': patch
 ---
 
-feat(GCOM-1215): prevent + / - qty buttons from overlapping the “Star…
+Prevent + / - qty buttons from being render over the “Start Checkout” button

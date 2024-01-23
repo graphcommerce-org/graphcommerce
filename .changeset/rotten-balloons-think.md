@@ -2,4 +2,4 @@
 '@graphcommerce/magento-category': patch
 ---
 
-Fixed a bug where pagination would be added when navigating to a subcategory from a paginated page
+Solved an issue where the currently paginated page would be included in URL for the subcategory, resulting in a 404 error for some pages.

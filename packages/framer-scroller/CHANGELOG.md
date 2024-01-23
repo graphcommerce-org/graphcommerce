@@ -1,5 +1,22 @@
 # Change Log
 
+## 8.0.0-canary.94
+
+## 8.0.0-canary.93
+
+## 8.0.0-canary.92
+
+### Patch Changes
+
+- [`dc86f2f`](https://github.com/graphcommerce-org/graphcommerce/commit/dc86f2fbd439a63a2c9f2deaee38abe87a3c3bab) - Log the related element if the ScrollerProvider couldn’t find any children during load.
+  ([@paales](https://github.com/paales))
+
+## 8.0.0-canary.91
+
+## 8.0.0-canary.90
+
+## 8.0.0-canary.89
+
 ## 8.0.0-canary.88
 
 ## 8.0.0-canary.87

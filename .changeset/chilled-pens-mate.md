@@ -2,4 +2,4 @@
 '@graphcommerce/graphcms-ui': patch
 ---
 
-Add alt text to image inside rich text
+Added support for the alt attribute for images inside Rich text areas coming from Hygraph.

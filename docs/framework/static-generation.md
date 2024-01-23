@@ -24,20 +24,19 @@ For example, client-side rendering is used to display customer data on the
 // Example from /pages/account/index.tsx
 
 function AccountIndexPage() {
-  const { data, loading, error } = useQuery(AccountDashboardDocument, {
+  const dashboard = useCustomerQuery(AccountDashboardDocument, {
     fetchPolicy: 'cache-and-network',
-    ssr: false,
   })
   const { data: config } = useQuery(StoreConfigDocument)
   ...
 
-  const customer = data?.customer
+  const customer = dashboard.data?.customer
   ...
 }
 ```
 
-In the same file, `getStaticProps` runs the DefaultPageDocument query to fetch
-the data needed to render the layout (header, footer, menu etc.)
+In the same file, `getStaticProps` runs the LayoutDocument query to fetch the
+data needed to render the layout (header, footer, menu etc.)
 
 ```tsx
 // Example from /pages/account/index.tsx
@@ -45,17 +44,11 @@ the data needed to render the layout (header, footer, menu etc.)
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
  ...
 
-  const page = staticClient.query({
-    query: DefaultPageDocument,
-    variables: {
-      url: 'account',
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
-    },
-  })
+  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   return {
     props: {
-      ...(await page).data,
+      ...(await layout).data,
       up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
@@ -71,19 +64,14 @@ All paths specified by a function called `getStaticPaths` will be statically
 pre-rendered at build-time.
 
 For example, `getStaticPaths` runs the ProductStaticPaths query to fetch a list
-of all configurable product paths:
+of all products:
 
 ```tsx
-// Example from /pages/product/configurable/[url].tsx
+// Example from /pages/p/[url].tsx
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
- ...
   const path = (locale: string) =>
-    getProductStaticPaths(
-      graphqlSsrClient(locale),
-      locale,
-      'ConfigurableProduct',
-    )
+    getProductStaticPaths(graphqlSsrClient(locale), locale)
   const paths = (await Promise.all(locales.map(path))).flat(1)
 
   return { paths, fallback: 'blocking' }
@@ -117,7 +105,7 @@ You can test the static build process by running it locally:
 The build proces locally will not pre-render product pages to reduce build time:
 
 ```tsx
-// Example from /pages/product/configurable/[url].tsx
+// Example from /pages/p/[url].tsx
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
@@ -129,11 +117,14 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 <details open>
     <summary>Disabling Static Generation on production</summary>
 
-To disable or limit the amount of pages that are statically pre-redered, slice
-the paths array. This will reduce build-time:
+To limit the static generation of pages you can configure the
+[limitSsg](../framework/config.md#limitssg-boolean)
+
+To disable or limit the amount of product apges that are statically pre-redered,
+slice the paths array. This will reduce build-time:
 
 ```tsx
-// Example from /pages/product/configurable/[url].tsx
+// Example from /pages/p/[url].tsx
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   ...
@@ -153,12 +144,12 @@ Most pages have value for `revalidate` in the object that is returned by
 `getStaticProps`:
 
 ```tsx
-// Example from /pages/product/configurable/[url].tsx
+// Example from /pages/p/[url].tsx
 
 return {
   props: {
     ...(await productPage).data,
-    ...(await typeProductPage).data,
+    // other stuff
     apolloState: await conf.then(() => client.cache.extract()),
     up,
   },
@@ -166,13 +157,15 @@ return {
 }
 ```
 
-When set, static pages will be regenerated at run-time (on-demand) every 20
+When set, static pages will be revalidated at run-time (on-demand) every 20
 minutes.
 
 The initial request to the product page will show the cached page. After 20
-minutes, the regeneration of the page is triggered on the first following
+minutes, the revalidation of the page is triggered on the first following
 request. Once the page has been successfully generated, the cache will be
 invalidated and the updated product page is shown.
+
+Note: Pages that aren't visited will not be revalidated automatically.
 
 ## FAQ
 
