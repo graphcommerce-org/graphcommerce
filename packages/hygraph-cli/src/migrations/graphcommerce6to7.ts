@@ -303,20 +303,5 @@ export const graphcommerce6to7 = async (schema: Schema) => {
     'model',
   )
 
-  migrationAction(
-    schema,
-    'componentUnionField',
-    'create',
-    {
-      displayName: 'Conditions',
-      apiId: 'conditions',
-      parentApiId: 'ConditionOr',
-      componentApiIds: ['ConditionText', 'ConditionNumber'],
-      isList: true,
-    },
-    'ConditionOr',
-    'component',
-  )
-
   return client.run(true)
 }
