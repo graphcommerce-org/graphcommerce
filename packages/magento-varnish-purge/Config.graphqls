@@ -1,0 +1,6 @@
+extend input GraphCommerceConfig {
+  """
+  List of IP addresses that are allowed to send PURGE requests
+  """
+  purgeAllowList: [String!]
+}
