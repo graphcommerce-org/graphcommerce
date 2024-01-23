@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.95
+
+### Patch Changes
+
+- [#2146](https://github.com/graphcommerce-org/graphcommerce/pull/2146) [`3c19305`](https://github.com/graphcommerce-org/graphcommerce/commit/3c19305a7107d250bd898a9f4dfef38e362c2cbf) - Display the details of configurable products in the cart.
+  ([@mikekeehnen](https://github.com/mikekeehnen))
+
 ## 8.0.0-canary.94
 
 ## 8.0.0-canary.93
