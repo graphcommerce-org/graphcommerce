@@ -28,7 +28,7 @@ export const demoConfig: PartialDeep<GraphCommerceConfig, { recurseIntoArrays: t
   demoMode: true,
   limitSsg: true,
   compare: true,
-  sidebarGallery: { paginationVariant: 'THUMBNAILS_BOTTOM' },
+  sidebarGallery: { paginationVariant: 'DOTS' },
   configurableVariantForSimple: true,
   configurableVariantValues: { url: true, content: true, gallery: true },
   recentlyViewedProducts: { enabled: true, maxCount: 20 },
