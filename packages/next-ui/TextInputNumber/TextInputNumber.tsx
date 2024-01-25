@@ -162,8 +162,8 @@ export function TextInputNumber(props: TextInputNumberProps) {
         updateDisabled(e.target)
       }}
       inputProps={{
-        ...inputProps,
         'aria-label': i18n._(/* i18n */ 'Number'),
+        ...inputProps,
         sx: [
           {
             typography: 'body1',

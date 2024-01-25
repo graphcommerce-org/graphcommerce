@@ -3,4 +3,4 @@
 '@graphcommerce/magento-product': patch
 ---
 
-Added Skeleton render type to productListRenderer
+New `<ProductListItemSkeleton />` component and added support to the productListRenderer. Used for the new Recently Viewed Products feature.

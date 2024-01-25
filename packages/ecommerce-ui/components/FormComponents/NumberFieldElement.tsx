@@ -146,8 +146,8 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
               ),
             }}
             inputProps={{
-              ...inputProps,
               'aria-label': i18n._(/* i18n */ 'Number'),
+              ...inputProps,
               className: `${inputProps?.className ?? ''} ${classes.quantityInput}`,
               sx: {
                 typography: 'body1',

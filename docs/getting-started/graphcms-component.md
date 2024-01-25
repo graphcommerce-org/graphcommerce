@@ -172,7 +172,7 @@ fragment RowRenderer on Page @inject(into: ["HygraphPage"]) {
     ...RowServiceOptions
     ...RowContentLinks
     ...RowProduct
-    ...Banner
+    ...RowLinks
   }
 }
 ```

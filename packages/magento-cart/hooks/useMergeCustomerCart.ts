@@ -15,7 +15,8 @@ export function useMergeCustomerCart() {
   const assignCurrentCartId = useAssignCurrentCartId()
   const [merge] = useMutation(UseMergeCustomerCartDocument, { errorPolicy: 'all' })
 
-  const destinationCartId = useCustomerQuery(CustomerCartDocument)?.data?.customerCart.id
+  const destinationCartId = useCustomerQuery(CustomerCartDocument, { fetchPolicy: 'network-only' })
+    ?.data?.customerCart.id
 
   useEffect(() => {
     // If we don't have a customer cart, we're done

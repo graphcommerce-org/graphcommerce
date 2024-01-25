@@ -16,4 +16,15 @@ fragment DynamicRow on DynamicRow @injectable {
     ...RowQuote
     ...RowLinks
   }
+
+  rows {
+    __typename
+    ... on Node {
+      id
+    }
+
+    ...RowColumnOne
+    ...RowQuote
+    ...RowLinks
+  }
 }

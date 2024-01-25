@@ -1,5 +1,65 @@
 # Change Log
 
+## 8.0.0-canary.95
+
+## 8.0.0-canary.94
+
+## 8.0.0-canary.93
+
+## 8.0.0-canary.92
+
+## 8.0.0-canary.91
+
+## 8.0.0-canary.90
+
+## 8.0.0-canary.89
+
+## 8.0.0-canary.88
+
+## 8.0.0-canary.87
+
+### Patch Changes
+
+- [#2168](https://github.com/graphcommerce-org/graphcommerce/pull/2168) [`986dc96`](https://github.com/graphcommerce-org/graphcommerce/commit/986dc96e6e88b58471dfcccf952d99bbb8a81884) - Added schema-dts as a dependency, so it isn't required in the example
+  ([@paales](https://github.com/paales))
+
+## 8.0.0-canary.86
+
+## 8.0.0-canary.85
+
+## 8.0.0-canary.84
+
+## 8.0.0-canary.83
+
+### Patch Changes
+
+- [#2164](https://github.com/graphcommerce-org/graphcommerce/pull/2164) [`5224755`](https://github.com/graphcommerce-org/graphcommerce/commit/522475503fd40e4718fd4d7d33f8164c01588c0c) - Fixed filters dissapearing when no items are found with applied filters
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.0-canary.82
+
+### Patch Changes
+
+- [#2150](https://github.com/graphcommerce-org/graphcommerce/pull/2150) [`59844cd`](https://github.com/graphcommerce-org/graphcommerce/commit/59844cdd8adfaf03d22b04b9082552e22f386fb6) - Fixed a bug which caused the default values of the productAddToCartForm to be overwritten if the selected configurable option of a product contained a visible simple product. Before the fix you could not add the same product twice without reloading the page.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.0-canary.81
+
+## 8.0.0-canary.80
+
+## 8.0.0-canary.79
+
+## 8.0.0-canary.78
+
+## 8.0.0-canary.77
+
+### Patch Changes
+
+- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - a11y improvements (see https://github.com/graphcommerce-org/graphcommerce/issues/1995 for more info)
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.0-canary.76
+
 ## 8.0.0-canary.75
 
 ### Patch Changes

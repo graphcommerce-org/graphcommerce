@@ -1,5 +1,55 @@
 # Change Log
 
+## 8.0.0-canary.95
+
+## 8.0.0-canary.94
+
+## 8.0.0-canary.93
+
+## 8.0.0-canary.92
+
+## 8.0.0-canary.91
+
+## 8.0.0-canary.90
+
+### Patch Changes
+
+- [#2170](https://github.com/graphcommerce-org/graphcommerce/pull/2170) [`f3e906f`](https://github.com/graphcommerce-org/graphcommerce/commit/f3e906f7e374ce22d36af29c0f3c8153e18300e6) - fix(GCOM-1317): fix bug where inactive cached cart could be set as currentCartId
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.0-canary.89
+
+## 8.0.0-canary.88
+
+### Patch Changes
+
+- [#2166](https://github.com/graphcommerce-org/graphcommerce/pull/2166) [`304b816`](https://github.com/graphcommerce-org/graphcommerce/commit/304b81659caf82d9f500401d21da4110dd40db61) - Dismiss login page and go back to previous page asap when logging in
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.0-canary.87
+
+## 8.0.0-canary.86
+
+## 8.0.0-canary.85
+
+## 8.0.0-canary.84
+
+## 8.0.0-canary.83
+
+## 8.0.0-canary.82
+
+## 8.0.0-canary.81
+
+## 8.0.0-canary.80
+
+## 8.0.0-canary.79
+
+## 8.0.0-canary.78
+
+## 8.0.0-canary.77
+
+## 8.0.0-canary.76
+
 ## 8.0.0-canary.75
 
 ## 8.0.0-canary.74

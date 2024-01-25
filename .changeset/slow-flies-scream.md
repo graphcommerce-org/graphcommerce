@@ -2,4 +2,4 @@
 '@graphcommerce/magento-cart': minor
 ---
 
-Added ordernumber to succes page.
+Added the customers order number to succes page.

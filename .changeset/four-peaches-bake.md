@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/magento-cart": patch
+'@graphcommerce/magento-cart': patch
 ---
 
-When signing in the cartFab would not always properly reflect the current items in the cart
+After signing in the `<CartFab/>` would not always properly reflect if there are items in the customers cart.

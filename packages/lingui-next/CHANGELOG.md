@@ -1,5 +1,50 @@
 # Change Log
 
+## 8.0.0-canary.95
+
+## 8.0.0-canary.94
+
+## 8.0.0-canary.93
+
+## 8.0.0-canary.92
+
+## 8.0.0-canary.91
+
+## 8.0.0-canary.90
+
+## 8.0.0-canary.89
+
+## 8.0.0-canary.88
+
+## 8.0.0-canary.87
+
+## 8.0.0-canary.86
+
+## 8.0.0-canary.85
+
+## 8.0.0-canary.84
+
+## 8.0.0-canary.83
+
+## 8.0.0-canary.82
+
+## 8.0.0-canary.81
+
+## 8.0.0-canary.80
+
+## 8.0.0-canary.79
+
+### Patch Changes
+
+- [#2137](https://github.com/graphcommerce-org/graphcommerce/pull/2137) [`df507b1`](https://github.com/graphcommerce-org/graphcommerce/commit/df507b194c67eef7b02df858c07938bb308b5397) - Don't render pseudo-locale in HTML lang attribute
+  ([@hnsr](https://github.com/hnsr))
+
+## 8.0.0-canary.78
+
+## 8.0.0-canary.77
+
+## 8.0.0-canary.76
+
 ## 8.0.0-canary.75
 
 ## 8.0.0-canary.74

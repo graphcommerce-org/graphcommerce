@@ -2,4 +2,4 @@
 '@graphcommerce/magento-compare': patch
 ---
 
-Fix compare button hover state on product page
+Compare button didn't have a proper hover state on the product page.

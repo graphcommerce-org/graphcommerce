@@ -2,4 +2,4 @@
 '@graphcommerce/mollie-magento-payment': patch
 ---
 
-Show error snackbar when payment failed instead of when it was successful
+An error message would be shown when a payment was sucessfull instead of when an error occured.

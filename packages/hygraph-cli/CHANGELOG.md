@@ -1,5 +1,50 @@
 # @graphcommerce/hygraph-cli
 
+## 8.0.0-canary.95
+
+## 8.0.0-canary.94
+
+### Patch Changes
+
+- [#2169](https://github.com/graphcommerce-org/graphcommerce/pull/2169) [`eab3f0b`](https://github.com/graphcommerce-org/graphcommerce/commit/eab3f0b0b459f5b6cc4e50d787ac1e8ae545b708) - Solve issue where a Hygraph DynamicRow conditions were missing fields in the OrCondition
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.0-canary.93
+
+## 8.0.0-canary.92
+
+## 8.0.0-canary.91
+
+## 8.0.0-canary.90
+
+## 8.0.0-canary.89
+
+## 8.0.0-canary.88
+
+## 8.0.0-canary.87
+
+## 8.0.0-canary.86
+
+## 8.0.0-canary.85
+
+## 8.0.0-canary.84
+
+## 8.0.0-canary.83
+
+## 8.0.0-canary.82
+
+## 8.0.0-canary.81
+
+## 8.0.0-canary.80
+
+## 8.0.0-canary.79
+
+## 8.0.0-canary.78
+
+## 8.0.0-canary.77
+
+## 8.0.0-canary.76
+
 ## 8.0.0-canary.75
 
 ## 8.0.0-canary.74

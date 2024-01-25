@@ -1,5 +1,55 @@
 # Change Log
 
+## 8.0.0-canary.95
+
+## 8.0.0-canary.94
+
+## 8.0.0-canary.93
+
+## 8.0.0-canary.92
+
+## 8.0.0-canary.91
+
+### Patch Changes
+
+- [#2172](https://github.com/graphcommerce-org/graphcommerce/pull/2172) [`279599e`](https://github.com/graphcommerce-org/graphcommerce/commit/279599e7a86bd96ea9e36065af3c367df9e02a63) - Updated documentation to reflect recent code changes
+  ([@paales](https://github.com/paales))
+
+## 8.0.0-canary.90
+
+## 8.0.0-canary.89
+
+### Patch Changes
+
+- [`b850ab0`](https://github.com/graphcommerce-org/graphcommerce/commit/b850ab06e3fff1cd274651d8082557ed2c308f55) - Updated roadmap and feature-list
+  ([@paales](https://github.com/paales))
+
+## 8.0.0-canary.88
+
+## 8.0.0-canary.87
+
+## 8.0.0-canary.86
+
+## 8.0.0-canary.85
+
+## 8.0.0-canary.84
+
+## 8.0.0-canary.83
+
+## 8.0.0-canary.82
+
+## 8.0.0-canary.81
+
+## 8.0.0-canary.80
+
+## 8.0.0-canary.79
+
+## 8.0.0-canary.78
+
+## 8.0.0-canary.77
+
+## 8.0.0-canary.76
+
 ## 8.0.0-canary.75
 
 ## 8.0.0-canary.74

@@ -8,7 +8,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Breakpoint, Fab, FabProps, Link, LinkProps } from '@mui/material'
 import { useRouter } from 'next/router'
-import { MouseEventHandler } from 'react'
+import { KeyboardEventHandler, MouseEventHandler } from 'react'
 import type { SetRequired } from 'type-fest'
 
 export type SearchLinkProps = {
@@ -29,9 +29,24 @@ const { classes } = extendableComponent(name, parts)
  */
 export function SearchLink(props: SearchLinkProps) {
   const { href, sx = [], children, breakpoint, fab, onClick, ...linkProps } = props
+  const router = useRouter()
   const fabSize = useFabSize('responsive')
   const iconSize = useIconSvgSize('large')
   const { sx: fabSx = [], size, color, ...fabProps } = fab ?? {}
+
+  const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
+    e.preventDefault()
+    onClick?.(e)
+    return router.push(href)
+  }
+
+  const handleKeyDown: KeyboardEventHandler<HTMLAnchorElement> = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      return router.push(href)
+    }
+    return undefined
+  }
 
   return (
     <>
@@ -40,6 +55,9 @@ export function SearchLink(props: SearchLinkProps) {
         rel='noindex'
         className={classes.root}
         underline='none'
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
         sx={[
           (theme) => ({
             justifySelf: 'center',

@@ -1,5 +1,70 @@
 # Change Log
 
+## 8.0.0-canary.95
+
+## 8.0.0-canary.94
+
+## 8.0.0-canary.93
+
+## 8.0.0-canary.92
+
+## 8.0.0-canary.91
+
+## 8.0.0-canary.90
+
+## 8.0.0-canary.89
+
+## 8.0.0-canary.88
+
+## 8.0.0-canary.87
+
+## 8.0.0-canary.86
+
+## 8.0.0-canary.85
+
+## 8.0.0-canary.84
+
+### Patch Changes
+
+- [#2161](https://github.com/graphcommerce-org/graphcommerce/pull/2161) [`cc5c636`](https://github.com/graphcommerce-org/graphcommerce/commit/cc5c636f9f2b3d9fa33384b9a02d6ad3631aa414) - Removed whitespace on top of the zoomed in image on the PDP.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.0-canary.83
+
+## 8.0.0-canary.82
+
+## 8.0.0-canary.81
+
+## 8.0.0-canary.80
+
+### Patch Changes
+
+- [#2138](https://github.com/graphcommerce-org/graphcommerce/pull/2138) [`a057d62`](https://github.com/graphcommerce-org/graphcommerce/commit/a057d6274e1d427e631ab3fad7a16078315103b8) - Wrap the logo in a div on the homepage to prevent redirection.
+  ([@carlocarels90](https://github.com/carlocarels90))
+
+## 8.0.0-canary.79
+
+### Patch Changes
+
+- [#2137](https://github.com/graphcommerce-org/graphcommerce/pull/2137) [`df507b1`](https://github.com/graphcommerce-org/graphcommerce/commit/df507b194c67eef7b02df858c07938bb308b5397) - Don't render pseudo-locale in HTML lang attribute
+  ([@hnsr](https://github.com/hnsr))
+
+## 8.0.0-canary.78
+
+### Patch Changes
+
+- [#2135](https://github.com/graphcommerce-org/graphcommerce/pull/2135) [`7b017f5`](https://github.com/graphcommerce-org/graphcommerce/commit/7b017f58ba3be587d20a7f52c84b2907d52fe201) - Fix incorrect canonical URLs when i18n domain routing is used
+  ([@hnsr](https://github.com/hnsr))
+
+## 8.0.0-canary.77
+
+### Patch Changes
+
+- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - a11y improvements (see https://github.com/graphcommerce-org/graphcommerce/issues/1995 for more info)
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.0-canary.76
+
 ## 8.0.0-canary.75
 
 ## 8.0.0-canary.74

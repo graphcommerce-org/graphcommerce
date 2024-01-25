@@ -1,3 +1,4 @@
+import { usePageContext } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { useFormGqlQuery } from '@graphcommerce/react-hook-form'
 import { useRouter } from 'next/router'
@@ -72,6 +73,12 @@ export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {})
 
     if (isValid && isSubmitSuccessful) mode = hasAccount ? 'signin' : 'signup'
   }
+
+  const { closeSteps = 0 } = usePageContext() ?? {}
+  useEffect(() => {
+    // Automatically close the overlay if the user is signed in
+    if (mode === 'signedin' && closeSteps > 0) window.history.go(closeSteps * -1)
+  }, [mode, closeSteps])
 
   return { mode, form, submit }
 }
