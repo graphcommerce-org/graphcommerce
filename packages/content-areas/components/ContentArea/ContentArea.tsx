@@ -1,8 +1,7 @@
 import { ProductListItemRenderer } from '@graphcommerce/magento-product'
-import { PageContent } from '../../types'
+import { UniversalPageQuery } from '../../queries/UniversalPage.gql'
 
-export interface ContentAreaProps {
-  content: PageContent
+type ContentAreaProps = UniversalPageQuery & {
   productListRenderer: ProductListItemRenderer
 }
 

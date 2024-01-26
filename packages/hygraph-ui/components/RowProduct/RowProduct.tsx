@@ -15,13 +15,13 @@ import {
 
 type VariantRenderer = Record<
   NonNullable<RowProductFragment['variant']>,
-  React.VFC<RowProductFragment & { productListItemRenderer: ProductListItemRenderer }>
+  React.FC<RowProductFragment & { productListItemRenderer: ProductListItemRenderer }>
 >
 
 type RowProductProps = RowProductFragment & {
   renderer?: Partial<VariantRenderer>
   productListItemRenderer: ProductListItemRenderer
-} & ProductSpecsFragment & { items?: unknown } & { sku?: string | null | undefined }
+} & ProductSpecsFragment & { sku?: string | null | undefined }
 
 const defaultRenderer: Partial<VariantRenderer> = {
   Specs,

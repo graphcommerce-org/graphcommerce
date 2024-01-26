@@ -1,0 +1,21 @@
+extend type UniversalPage {
+  hygraphPage: Page
+}
+
+extend type RowProduct {
+  category: CategoryTree
+    @resolveTo(
+      sourceName: "m2" # Which source does the target field belong to?
+      sourceTypeName: "Query" # Which root type does the target field belong to?
+      sourceFieldName: "categories" # What is the source field name?
+      # Regular resolver
+      requiredSelectionSet: "{ identity }"
+      sourceArgs: { filters: { url_key: { eq: "{root.identity}" } } }
+      result: "items[0]"
+
+      # Batching resolver (requires all values to resolve, so nothing will be returned if any of the values are missing)
+      # keyField: "identity"
+      # keysArg: "filters.url_key.in"
+      # result: "items"
+    )
+}

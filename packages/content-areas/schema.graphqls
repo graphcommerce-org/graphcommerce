@@ -1,0 +1,24 @@
+type UniversalMeta {
+  """
+  Meta title
+  """
+  title: String
+
+  """
+  A description of the product for usage in search engine results.
+  """
+  description: String
+}
+
+type UniversalPage {
+  title: String
+  meta: UniversalMeta
+}
+
+input UniversalPageInput {
+  url: String!
+}
+
+extend type Query {
+  pageContent(input: UniversalPageInput!): UniversalPage
+}

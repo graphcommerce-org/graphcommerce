@@ -1,21 +1,16 @@
-import {
-  AddProductsToCartForm,
-  ProductListItemRenderer,
-  ProductListItemsFragment,
-} from '@graphcommerce/magento-product'
+import { AddProductsToCartForm, ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { ParagraphWithSidebarSlide, RenderType } from '@graphcommerce/next-ui'
 import { useTheme } from '@mui/material'
 import { Asset } from '../../Asset/Asset'
-import { RowProductFragment } from '../RowProduct.gql'
 import { RichText } from '../../RichText'
+import { RowProductFragment } from '../RowProduct.gql'
 
-type BackstoryProps = RowProductFragment &
-  ProductListItemsFragment & { productListItemRenderer: ProductListItemRenderer }
+type BackstoryProps = RowProductFragment & { productListItemRenderer: ProductListItemRenderer }
 
 export function Backstory(props: BackstoryProps) {
-  const { productCopy, asset, productListItemRenderer, ...productListItems } = props
+  const { productCopy, asset, category, productListItemRenderer } = props
   const theme = useTheme()
-  const singleItem = productListItems?.items?.[(productListItems.items?.length ?? 1) - 1]
+  const singleItem = category?.products?.items?.[(category?.products?.items?.length ?? 1) - 1]
 
   if (!singleItem) return null
 

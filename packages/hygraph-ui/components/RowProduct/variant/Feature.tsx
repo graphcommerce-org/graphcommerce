@@ -6,8 +6,7 @@ import { ProductFeatureMediaFragment } from './ProductFeatureMedia.gql'
 import { RichText } from '../../RichText'
 import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 
-type FeatureProps = RowProductFragment &
-  ProductFeatureMediaFragment & { productListItemRenderer: ProductListItemRenderer }
+type FeatureProps = RowProductFragment & { productListItemRenderer: ProductListItemRenderer }
 
 export function Feature(props: FeatureProps) {
   const { productCopy, title, media_gallery } = props

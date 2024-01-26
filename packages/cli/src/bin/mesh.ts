@@ -4,7 +4,6 @@ import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { exit } from 'node:process'
 import {
-  isMonorepo,
   loadConfig,
   packageRoots,
   replaceConfigInString,
@@ -81,11 +80,28 @@ const main = async () => {
   // Scan the current working directory to also read all graphqls files.
   conf.additionalTypeDefs.push('**/*.graphqls')
 
+  conf.additionalResolvers = []
+
+  // conf.additionalResolvers.push('**/resolvers/**/*.ts')
+
   const deps = resolveDependenciesSync()
   const packages = [...deps.values()].filter((p) => p !== '.')
   packageRoots(packages).forEach((r) => {
     conf.additionalTypeDefs.push(`${r}/**/*.graphqls`)
   })
+
+  const meshScan = [...deps.values()].map(async (r) => {
+    const resolver = `${r}/mesh.ts`
+
+    const hasResolver = await fs
+      .stat(resolver)
+      .then(() => true)
+      .catch(() => false)
+
+    if (!conf.additionalResolvers) conf.additionalResolvers = []
+    if (hasResolver) conf.additionalResolvers.push(resolver)
+  })
+  await Promise.all(meshScan)
 
   if (!conf.serve) conf.serve = {}
   if (!conf.serve.playgroundTitle) conf.serve.playgroundTitle = 'GraphCommerce® Mesh'
