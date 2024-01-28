@@ -6,6 +6,6 @@ type ContentAreaProps = UniversalPageQuery & {
 }
 
 export function ContentArea(props: ContentAreaProps) {
-  const { content, productListRenderer, renderer } = props
+  const { pageContent } = props
   return <div />
 }

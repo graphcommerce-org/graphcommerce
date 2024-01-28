@@ -1,4 +1,4 @@
-type UniversalMeta {
+type UniSeo {
   """
   Meta title
   """
@@ -12,13 +12,17 @@ type UniversalMeta {
 
 type UniversalPage {
   title: String
-  meta: UniversalMeta
+  meta: Seo
 }
 
 input UniversalPageInput {
   url: String!
 }
 
-extend type Query {
+type UniversalApi {
   pageContent(input: UniversalPageInput!): UniversalPage
+}
+
+extend type Query {
+  common: UniversalApi
 }

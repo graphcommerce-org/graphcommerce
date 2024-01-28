@@ -43,16 +43,22 @@ export const resolvers: Resolvers = {
         info,
         selectionSet,
       })
-
       const hygraphPage = pages?.[0]
       if (!hygraphPage) return null
-
       const { title, metaTitle, metaDescription } = hygraphPage
       return {
         title,
         meta: { title: metaTitle, description: metaDescription },
         hygraphPage,
       }
+    },
+  },
+
+  RowProduct: {
+    category: async (root, _args, context, info) => {
+      // This resolver should be called as a RowProduct is returned by the resolver below.
+      console.log('Called')
+      return null
     },
   },
 }

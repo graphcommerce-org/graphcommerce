@@ -3073,8 +3073,14 @@ __metadata:
     "@graphql-mesh/plugin-http-details-extensions": "npm:latest"
     "@graphql-mesh/runtime": "npm:latest"
     "@graphql-mesh/store": "npm:latest"
+    "@graphql-mesh/transform-encapsulate": "npm:latest"
     "@graphql-mesh/transform-filter-schema": "npm:latest"
+    "@graphql-mesh/transform-hoist-field": "npm:latest"
+    "@graphql-mesh/transform-naming-convention": "npm:latest"
+    "@graphql-mesh/transform-prefix": "npm:latest"
     "@graphql-mesh/transform-prune": "npm:latest"
+    "@graphql-mesh/transform-rename": "npm:latest"
+    "@graphql-mesh/transform-replace-field": "npm:latest"
     "@graphql-mesh/types": "npm:latest"
     "@graphql-mesh/utils": "npm:latest"
     "@graphql-tools/utils": "npm:^10.0.12"
@@ -5060,6 +5066,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-mesh/transform-encapsulate@npm:latest":
+  version: 0.96.3
+  resolution: "@graphql-mesh/transform-encapsulate@npm:0.96.3"
+  dependencies:
+    "@graphql-tools/delegate": "npm:^10.0.3"
+    "@graphql-tools/wrap": "npm:^10.0.1"
+  peerDependencies:
+    "@graphql-mesh/types": ^0.96.3
+    "@graphql-mesh/utils": ^0.96.3
+    "@graphql-tools/utils": ^9.2.1 || ^10.0.0
+    graphql: "*"
+    tslib: ^2.4.0
+  checksum: 28ec7d4b375fb9533bf4612542250729dce99e9c59caf4bf3dc07dd6c04dba08e90017a995ebc1a1a37fa92e0d7c0233c215f214abc65817645b4728d110ac9f
+  languageName: node
+  linkType: hard
+
 "@graphql-mesh/transform-filter-schema@npm:latest":
   version: 0.96.3
   resolution: "@graphql-mesh/transform-filter-schema@npm:0.96.3"
@@ -5077,6 +5099,58 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-mesh/transform-hoist-field@npm:latest":
+  version: 0.96.3
+  resolution: "@graphql-mesh/transform-hoist-field@npm:0.96.3"
+  dependencies:
+    "@graphql-tools/delegate": "npm:^10.0.0"
+    "@graphql-tools/wrap": "npm:^10.0.0"
+  peerDependencies:
+    "@graphql-mesh/types": ^0.96.3
+    "@graphql-mesh/utils": ^0.96.3
+    "@graphql-tools/utils": ^9.2.1 || ^10.0.0
+    graphql: "*"
+  checksum: 474032723aff262ef058795d79b8b1a07faa352f5fbb4a40b2cac839b8667260fe0622c5b2633123f3a5e0781374d946c4c3cb12c242eb003c5ef2b31f9374fa
+  languageName: node
+  linkType: hard
+
+"@graphql-mesh/transform-naming-convention@npm:latest":
+  version: 0.96.3
+  resolution: "@graphql-mesh/transform-naming-convention@npm:0.96.3"
+  dependencies:
+    "@graphql-tools/delegate": "npm:^10.0.0"
+    "@graphql-tools/wrap": "npm:^10.0.0"
+    change-case: "npm:^4.1.2"
+    graphql-scalars: "npm:^1.22.4"
+    lower-case: "npm:^2.0.2"
+    upper-case: "npm:^2.0.2"
+  peerDependencies:
+    "@graphql-mesh/types": ^0.96.3
+    "@graphql-mesh/utils": ^0.96.3
+    "@graphql-tools/utils": ^9.2.1 || ^10.0.0
+    graphql: "*"
+    tslib: ^2.5.0
+  checksum: 55304749b1cb1545df81423e53573c923e04cd44012bda42d2f4e9f0645b68ab969046c138cb0a9577ad5c887bd3ea94de22add94dcba3138e7aecd0a7e00a3d
+  languageName: node
+  linkType: hard
+
+"@graphql-mesh/transform-prefix@npm:latest":
+  version: 0.96.3
+  resolution: "@graphql-mesh/transform-prefix@npm:0.96.3"
+  dependencies:
+    "@graphql-tools/delegate": "npm:^10.0.0"
+    "@graphql-tools/wrap": "npm:^10.0.0"
+    graphql-scalars: "npm:^1.22.4"
+  peerDependencies:
+    "@graphql-mesh/types": ^0.96.3
+    "@graphql-mesh/utils": ^0.96.3
+    "@graphql-tools/utils": ^9.2.1 || ^10.0.0
+    graphql: "*"
+    tslib: ^2.4.0
+  checksum: 377cfa87f89c312d38ae7bb29556f655fb075880576849536af5ae9335cc899a28d09c54d69bb379d43ddba7c50e4fb63bd997187cb618cab3a41a5722a509c4
+  languageName: node
+  linkType: hard
+
 "@graphql-mesh/transform-prune@npm:latest":
   version: 0.96.3
   resolution: "@graphql-mesh/transform-prune@npm:0.96.3"
@@ -5086,6 +5160,40 @@ __metadata:
     graphql: "*"
     tslib: ^2.4.0
   checksum: 2196913707d351730a12dc7eb629c63cda86e5ce24f47b9371131c059f8821e29fe71f33df85a6fc75c640d8c97340fbc062b6372f8696e01f7266d348e58d80
+  languageName: node
+  linkType: hard
+
+"@graphql-mesh/transform-rename@npm:latest":
+  version: 0.96.4
+  resolution: "@graphql-mesh/transform-rename@npm:0.96.4"
+  dependencies:
+    "@graphql-tools/delegate": "npm:^10.0.0"
+    "@graphql-tools/wrap": "npm:^10.0.0"
+    graphql-scalars: "npm:^1.22.4"
+  peerDependencies:
+    "@graphql-mesh/types": ^0.96.3
+    "@graphql-mesh/utils": ^0.96.3
+    "@graphql-tools/utils": ^9.2.1 || ^10.0.0
+    graphql: "*"
+    tslib: ^2.4.0
+  checksum: 29e9bf4246f10b7942c2bc0fdcce20790d29498b58a7a8d965d68c309b0d001a49335fa04a517aee5e21bd338fdb11f9c4f4f46f86342fade00d5d52df0c36a1
+  languageName: node
+  linkType: hard
+
+"@graphql-mesh/transform-replace-field@npm:latest":
+  version: 0.96.3
+  resolution: "@graphql-mesh/transform-replace-field@npm:0.96.3"
+  dependencies:
+    "@graphql-tools/code-file-loader": "npm:^8.0.0"
+    "@graphql-tools/graphql-file-loader": "npm:^8.0.0"
+    "@graphql-tools/load": "npm:^8.0.0"
+  peerDependencies:
+    "@graphql-mesh/types": ^0.96.3
+    "@graphql-mesh/utils": ^0.96.3
+    "@graphql-tools/utils": ^9.2.1 || ^10.0.0
+    graphql: "*"
+    tslib: ^2.4.0
+  checksum: ada933730ef507b27814e015bbc32da5a94e3e1adbc18fe1247b889efb164143b4139ad38ea02ece7ed9370ff23d5865f20e2480653656e598610d2e9e1fba65
   languageName: node
   linkType: hard
 
@@ -5586,7 +5694,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/wrap@npm:^10.0.0":
+"@graphql-tools/wrap@npm:^10.0.0, @graphql-tools/wrap@npm:^10.0.1":
   version: 10.0.1
   resolution: "@graphql-tools/wrap@npm:10.0.1"
   dependencies:
@@ -12007,6 +12115,17 @@ __metadata:
   peerDependencies:
     graphql: 14 - 16
   checksum: f8167925a110e8e1de93d56c14245e7e64391dc8dce5002dd01bf24a3059f345d4ca1bb6ce2040e2ec78264211b0704e75da3e63984f0f74d2042f697a4e8cc6
+  languageName: node
+  linkType: hard
+
+"graphql-scalars@npm:^1.22.4":
+  version: 1.22.4
+  resolution: "graphql-scalars@npm:1.22.4"
+  dependencies:
+    tslib: "npm:^2.5.0"
+  peerDependencies:
+    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: d7df28c7bcd274049ee2b93536036b22bc2591bdb86a627a46d4557161965df96c8da6c4f7dc01684d46580d75c7b2fbba7fc5042b763b5b6cba879dc79e010e
   languageName: node
   linkType: hard
 
