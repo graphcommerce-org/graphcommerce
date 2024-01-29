@@ -1,5 +1,12 @@
 # @graphcommerce/hygraph-dynamic-rows
 
+## 8.0.0-canary.98
+
+### Patch Changes
+
+- [#2182](https://github.com/graphcommerce-org/graphcommerce/pull/2182) [`a93c312`](https://github.com/graphcommerce-org/graphcommerce/commit/a93c312b9d6e0d6cc102b49cc3ad02953200a1f6) - Dynamic rows would break page rendering if there was a dynamic row but no page returned
+  ([@paales](https://github.com/paales))
+
 ## 8.0.0-canary.97
 
 ## 8.0.0-canary.96
