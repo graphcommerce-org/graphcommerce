@@ -85,6 +85,8 @@ function matchCondition(
   return false
 }
 
+type Page = HygraphPagesQuery['pages'][number]
+
 /**
  * Fetch the page content for the given urls.
  *
@@ -119,14 +121,17 @@ export async function hygraphDynamicRows(
 
   const [pageResult, dynamicResult] = await Promise.all([pageQuery, dynamicRows])
 
+  const page = pageResult.data.pages[0] as Page | undefined
+
   // Create a copy of the content array.
-  const content = pageResult.data.pages[0]?.content ?? []
+  const content = page?.content ?? []
 
   dynamicResult?.data.dynamicRows.forEach((dynamicRow) => {
     const { placement, target, rows, row } = dynamicRow
     if (!rows && !row) return
 
-    const rowsToMerge = rows.length > 0 ? rows : [row]
+    const rowsToMerge = rows
+    if (row && rows.length === 0) rowsToMerge.push(row)
 
     if (!target) {
       if (placement === 'BEFORE') content.unshift(...rowsToMerge)
@@ -142,6 +147,22 @@ export async function hygraphDynamicRows(
 
   if (!content.length) return pageResult
 
+  const dynamicPage: Page = {
+    id: 'dynamic-page',
+    __typename: 'Page',
+    metaRobots: 'INDEX_FOLLOW',
+    metaTitle: '',
+    metaDescription: '',
+    url: '',
+    content: [],
+    relatedPages: [],
+  }
+
   // Return the merged page result.
-  return { data: { ...pageResult.data, pages: [{ ...pageResult.data.pages[0], content }] } }
+  return {
+    data: {
+      ...pageResult.data,
+      pages: [{ ...dynamicPage, ...page, content }],
+    },
+  }
 }
