@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.96
+
+### Patch Changes
+
+- [#2179](https://github.com/graphcommerce-org/graphcommerce/pull/2179) [`2e6afd9`](https://github.com/graphcommerce-org/graphcommerce/commit/2e6afd945a41f94facfc0379ca6416de8552341f) - The `<UpdateItemQuantity />` component now accepts `textInputProps` to be passed to the `<TextInputNumber/>`.
+  ([@paales](https://github.com/paales))
+
 ## 8.0.0-canary.95
 
 ## 8.0.0-canary.94
