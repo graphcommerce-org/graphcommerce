@@ -1,9 +1,3 @@
-/**
- * - Boven de product description zetten? in rowrenderer zetten
- * - Hoe gaan we dit optioneel maken?
- * - Hoe gaan we dit upgradebaar maken? management sdk
- */
-
 import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import {
