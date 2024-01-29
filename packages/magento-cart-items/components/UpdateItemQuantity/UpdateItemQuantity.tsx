@@ -1,5 +1,5 @@
 import { ApolloCartErrorSnackbar, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { TextInputNumber } from '@graphcommerce/next-ui'
+import { TextInputNumber, TextInputNumberProps } from '@graphcommerce/next-ui'
 import { useFormAutoSubmit, UseFormGraphQlOptions } from '@graphcommerce/react-hook-form'
 import { SxProps, Theme } from '@mui/material'
 import React from 'react'
@@ -15,15 +15,17 @@ type UpdateItemQuantityFormReturn = UseFormGraphQlOptions<
 >
 
 export type UpdateItemQuantityProps = Omit<UpdateItemQuantityMutationVariables, 'cartId'> & {
+  formOptions?: Omit<UpdateItemQuantityFormReturn, 'mode' | 'defaultValues'>
+  textInputProps?: TextInputNumberProps
   sx?: SxProps<Theme>
-} & Omit<UpdateItemQuantityFormReturn, 'mode' | 'defaultValues'>
+}
 
 export function UpdateItemQuantity(props: UpdateItemQuantityProps) {
-  const { uid, quantity, sx, ...formProps } = props
+  const { uid, quantity, sx, textInputProps, formOptions } = props
   const form = useFormGqlMutationCart(UpdateItemQuantityDocument, {
     defaultValues: { uid, quantity },
     mode: 'onChange',
-    ...formProps,
+    ...formOptions,
   })
   const { muiRegister, required, handleSubmit, formState, error, reset } = form
 
@@ -41,6 +43,7 @@ export function UpdateItemQuantity(props: UpdateItemQuantityProps) {
         {...muiRegister('quantity', { required: required.quantity })}
         helperText={formState.errors.quantity?.message}
         sx={sx}
+        {...textInputProps}
       />
       <ApolloCartErrorSnackbar error={error} onClose={() => reset({ quantity })} />
     </form>
