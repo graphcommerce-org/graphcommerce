@@ -15,7 +15,15 @@ export const Column: ColumnContentType['component'] = (incoming) => {
   const [imageProps, props] = extractImageBackgroundProps(additional)
 
   const columnElement = useRef(null)
-  const { backgroundColor, children, minHeight, verticalAlignment, width, appearance } = props
+  const {
+    backgroundColor,
+    children,
+    minHeight,
+    verticalAlignment,
+    width,
+    appearance,
+    contentType,
+  } = additional
 
   // let image = desktopImage
   // if (mobileImage && matchMedia && matchMedia('(max-width: 768px)').matches) {
@@ -104,7 +112,13 @@ export const Column: ColumnContentType['component'] = (incoming) => {
   // }, [backgroundSize, image, setBgImageStyle])
 
   return (
-    <Box className={cssClasses} sx={dynamicStyles} ref={columnElement}>
+    <Box
+      data-appearance={appearance}
+      data-content-type={contentType}
+      className={cssClasses.join(' ')}
+      sx={dynamicStyles}
+      ref={columnElement}
+    >
       {children}
     </Box>
   )

@@ -1,4 +1,5 @@
 import React from 'react'
+import { MeshContext } from '../../examples/magento-graphcms/.mesh'
 
 export type ContentTypeConfigChildren = Array<ContentTypeConfigWithString>
 
@@ -13,11 +14,11 @@ export type ContentTypeConfig<T extends string = string> = {
 export type ParseProps<
   Config extends ContentTypeConfig = ContentTypeConfig,
   R extends Record<string, unknown> = Record<string, unknown>,
-> = (node: HTMLElement, config: Config) => R
+> = (node: HTMLElement, config: Config, context: MeshContext) => R | Promise<R>
 
 export type ContentType<Config extends ContentTypeConfig, R extends Record<string, unknown>> = {
   configAggregator: ParseProps<Config, R>
-  component: React.FC<Config & R>
+  component: React.FC<Config & Omit<R, 'children'> & { children: React.ReactNode }>
 }
 
 export type RenderComponent<T extends string = string> = React.FC<

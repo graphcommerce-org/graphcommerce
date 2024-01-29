@@ -34,6 +34,10 @@ export function VideoBackground(props: VideoBackgroundComponentProps) {
   const [, youtubeId] = youtubeRegExp.exec(videoSrc) ?? []
   const [, vimeoId] = vimeoRegExp.exec(videoSrc) ?? []
 
+  // File type urls are in the format mp4:http://example.com/video.mp4
+  const [format, ...urlParts] = videoSrc.split(':')
+  const videoUrl = urlParts.join(':')
+
   return (
     <Box
       sx={[
@@ -65,7 +69,7 @@ export function VideoBackground(props: VideoBackgroundComponentProps) {
       )}
 
       {!vimeoId && !youtubeId && (
-        <VideoBox src={videoSrc} autoPlay playsInline muted controls sx={sx} />
+        <VideoBox src={videoUrl} autoPlay playsInline muted controls sx={sx} />
       )}
     </Box>
   )
