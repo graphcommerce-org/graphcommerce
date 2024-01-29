@@ -52,6 +52,7 @@
     "@graphcommerce/magento-customer": "8.0.0-canary.95",
     "@graphcommerce/magento-graphql": "8.0.0-canary.95",
     "@graphcommerce/magento-newsletter": "8.0.0-canary.95",
+    "@graphcommerce/magento-pagebuilder": "8.0.0-canary.95",
     "@graphcommerce/magento-payment-included": "8.0.0-canary.95",
     "@graphcommerce/magento-product": "8.0.0-canary.95",
     "@graphcommerce/magento-product-bundle": "8.0.0-canary.95",

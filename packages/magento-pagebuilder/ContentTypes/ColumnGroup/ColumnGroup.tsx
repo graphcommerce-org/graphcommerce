@@ -9,5 +9,5 @@ import { ColumnGroupContentType } from './types'
 export const ColumnGroup: ColumnGroupContentType['component'] = (props) => {
   const { display, children } = props
 
-  return <Box sx={{ flexWrap: { xs: 'wrap', md: 'initial' }, display }}>{children}</Box>
+  return <Box sx={{ display: 'flex', flexWrap: { xs: 'wrap', md: 'initial' } }}>{children}</Box>
 }

@@ -1,6 +1,6 @@
 import type { Resolvers, MeshContext } from '@graphcommerce/graphql-mesh'
-import { detectPageBuilder } from '../parser/detectPageBuilder'
-import { parser } from '../parser/parser'
+import { detectPageBuilder } from './parser/detectPageBuilder'
+import { parser } from './parser/parser'
 
 function warnNoContent(
   content: string | null | undefined,

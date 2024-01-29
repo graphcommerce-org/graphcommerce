@@ -104,7 +104,7 @@ export const Column: ColumnContentType['component'] = (incoming) => {
   // }, [backgroundSize, image, setBgImageStyle])
 
   return (
-    <Box sx={dynamicStyles} ref={columnElement}>
+    <Box className={cssClasses} sx={dynamicStyles} ref={columnElement}>
       {children}
     </Box>
   )

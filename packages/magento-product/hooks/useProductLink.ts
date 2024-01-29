@@ -1,6 +1,6 @@
 import { ProductLinkFragment } from './ProductLink.gql'
 
-export type ProductLinkProps = Omit<ProductLinkFragment, 'uid'>
+export type ProductLinkProps = Partial<ProductLinkFragment>
 
 export const productRoute = import.meta.graphCommerce.productRoute ?? '/p/'
 
