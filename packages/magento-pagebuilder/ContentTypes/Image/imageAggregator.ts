@@ -72,7 +72,7 @@ export const imageAggregator: ImageContentType['configAggregator'] = (node) => {
     ...getImageProps(),
     openInNewTab: link?.getAttribute('target') === '_blank',
     ...getAdvanced(node),
-    link: link?.getAttribute('href'),
-    linkType: link?.getAttribute('data-link-type'),
+    link: link?.getAttribute('href') ?? null,
+    linkType: link?.getAttribute('data-link-type') ?? null,
   }
 }
