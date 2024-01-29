@@ -33,3 +33,5 @@ sources:
           Content-Currency: "{context.headers['content-currency']}"
 serve:
   playground: true
+additionalResolvers:
+  - '@graphcommerce/magento-pagebuilder/mesh.ts'

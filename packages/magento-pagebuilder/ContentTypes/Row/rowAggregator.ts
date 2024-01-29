@@ -22,7 +22,7 @@ export const rowAggregator: RowContentType['configAggregator'] = (node, props) =
     ...getMediaBackgroundProps(dataNode),
     enableParallax: dataNode.getAttribute('data-enable-parallax') === '1',
     parallaxSpeed: Number(dataNode.getAttribute('data-parallax-speed')),
-    backgroundType: dataNode.getAttribute('data-background-type'),
+    backgroundType: (dataNode.getAttribute('data-background-type') as 'image') ?? null,
 
     ...getImageBackgroundProps(dataNode),
     ...getAdvanced(dataNode),

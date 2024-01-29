@@ -14,7 +14,7 @@ export const Block: BlockContentType['component'] = (props) => {
   const { content } = additional
 
   return (
-    <Box style={cssProps} className={cssClasses.join(' ')}>
+    <Box sx={cssProps} className={cssClasses.join(' ')}>
       {content?.map((child, index) => (
         // eslint-disable-next-line react/no-array-index-key
         <PagebuilderRender contentItem={child} key={index} />

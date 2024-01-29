@@ -11,7 +11,7 @@ export const videoAggregator: VideoContentType['configAggregator'] = (node: HTML
     url: (iframe && iframe.getAttribute('src')) || (video && video.getAttribute('src')) || null,
     autoplay: !!(video && video.getAttribute('autoplay') === 'true'),
     muted: !!(video && video.getAttribute('muted') === 'true'),
-    maxWidth: node.childNodes[0].style.maxWidth || null,
+    maxWidth: (node.childNodes[0] as HTMLElement).style.maxWidth ?? null,
     ...getAdvanced(node),
   }
 }

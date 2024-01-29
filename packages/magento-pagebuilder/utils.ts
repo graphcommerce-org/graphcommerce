@@ -208,7 +208,7 @@ export type MediaQueryProps = {
 
 /** Retrieve media queries from a master format node */
 export function getMediaQuery(node: HTMLElement): MediaQueryProps {
-  const sx: SxProps<Theme> = []
+  const sx: SxProps<Theme>[] = []
   const dataset = Object.keys(node.dataset)
 
   const medias = dataset.filter((key) => key.match(/media-/)).map((key) => node.dataset[key] ?? '')
@@ -222,5 +222,5 @@ export function getMediaQuery(node: HTMLElement): MediaQueryProps {
     sx.push({ [media]: cssToJSXStyle(styles[i]) })
   })
 
-  return { sx }
+  return { sx: sx as SxProps<Theme> }
 }

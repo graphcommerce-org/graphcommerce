@@ -3677,6 +3677,7 @@ __metadata:
     "@graphcommerce/magento-customer": "npm:8.0.0-canary.95"
     "@graphcommerce/magento-graphql": "npm:8.0.0-canary.95"
     "@graphcommerce/magento-newsletter": "npm:8.0.0-canary.95"
+    "@graphcommerce/magento-pagebuilder": "npm:8.0.0-canary.95"
     "@graphcommerce/magento-payment-included": "npm:8.0.0-canary.95"
     "@graphcommerce/magento-product": "npm:8.0.0-canary.95"
     "@graphcommerce/magento-product-bundle": "npm:8.0.0-canary.95"
@@ -3767,7 +3768,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-pagebuilder@workspace:packages/magento-pagebuilder":
+"@graphcommerce/magento-pagebuilder@npm:8.0.0-canary.95, @graphcommerce/magento-pagebuilder@workspace:packages/magento-pagebuilder":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-pagebuilder@workspace:packages/magento-pagebuilder"
   dependencies:

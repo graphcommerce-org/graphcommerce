@@ -5,10 +5,12 @@ import { ButtonItem } from './ContentTypes/ButtonItem/ButtonItem'
 import { Buttons } from './ContentTypes/Buttons/Buttons'
 import { Column } from './ContentTypes/Column/Column'
 import { ColumnGroup } from './ContentTypes/ColumnGroup/ColumnGroup'
+import { ColumnLine } from './ContentTypes/ColumnLine/ColumnLine'
 import { Divider } from './ContentTypes/Divider/Divider'
 import { Heading } from './ContentTypes/Heading/Heading'
 import { Html } from './ContentTypes/Html/Html'
 import { Image } from './ContentTypes/Image/Image'
+import { Products } from './ContentTypes/Products/Products'
 import { RootContainer } from './ContentTypes/RootContainer/RootContainer'
 import { Row } from './ContentTypes/Row/Row'
 import { Slider } from './ContentTypes/Slider/Slider'
@@ -23,6 +25,7 @@ const renderTypes = {
   'root-container': RootContainer,
   row: Row,
   column: Column,
+  'column-line': ColumnLine,
   'column-group': ColumnGroup,
   image: Image,
   heading: Heading,
@@ -33,7 +36,7 @@ const renderTypes = {
   'button-item': ButtonItem,
   block: Block,
   // dynamic_block,
-  // products,
+  products: Products,
   html: Html,
   divider: Divider,
   video: Video,

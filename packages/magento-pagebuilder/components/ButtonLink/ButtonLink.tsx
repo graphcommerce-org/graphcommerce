@@ -1,12 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { useApolloClient, useQuery } from '@graphcommerce/graphql'
-import { productLink, ProductLinkProps } from '@graphcommerce/magento-product'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { productLink } from '@graphcommerce/magento-product'
 import { Button, ButtonProps, SxProps, Theme } from '@mui/material'
-import { useRouter } from 'next/router'
-import React from 'react'
-import { RouteDocument } from '../../Route.gql'
 import { ButtonLinkProps } from './getButtonLinkProps'
+import { useQuery } from '@graphcommerce/graphql'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 
 type ButtonLinkComponentProps = ButtonLinkProps & {
   sx?: SxProps<Theme>
@@ -17,46 +14,28 @@ function isButton(props: any): props is ButtonLinkComponentProps {
 }
 
 export function ButtonLink(props: ButtonLinkComponentProps) {
-  const config = useQuery(StoreConfigDocument).data?.storeConfig
-  const client = useApolloClient()
-  const { locale, push } = useRouter()
-
-  if (!isButton(props)) return null
+  // if (!isButton(props)) return null
 
   const { buttonType, link, openInNewTab = false, buttonText, linkType, sx } = props
 
+  const linkBase = useQuery(StoreConfigDocument).data?.storeConfig?.secure_base_link_url
+
   const buttonProps: ButtonProps<'a'> = {
-    // onClick: handleClick,
     variant: buttonType === 'link' ? 'text' : 'pill',
     color: buttonType === 'primary' ? 'primary' : 'secondary',
   }
 
-  const handleClick: React.MouseEventHandler<HTMLAnchorElement> = async (e) => {
-    const { target } = e
+  if (!link) return null
 
-    const baseUrl = config?.secure_base_link_url ?? 'x'
-
-    if (!(target instanceof HTMLAnchorElement)) return
-    if (!target.href.startsWith(baseUrl)) return
-    e.preventDefault()
-
-    const url = target.href.substring(baseUrl.length - 1)
-
-    const res = await client.query({ query: RouteDocument, variables: { url } })
-
-    const route = res.data?.route
-    if (!route) {
-      console.warn('Route not found', url)
-      return
-    }
-
-    if (route.type === 'PRODUCT') {
-      await push(productLink(route as ProductLinkProps))
-    }
-  }
+  const relativeUrl = linkBase ? link.replace(linkBase, '').trim() : link
 
   return (
-    <Button href={link ?? ''} sx={sx} {...buttonProps} onClick={handleClick}>
+    <Button
+      href={linkType === 'product' ? productLink({ url_key: relativeUrl }) : relativeUrl}
+      sx={sx}
+      {...buttonProps}
+      target={openInNewTab ? '_blank' : undefined}
+    >
       {buttonText}
     </Button>
   )

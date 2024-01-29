@@ -2,6 +2,9 @@ scalar PagebuilderAST
 extend type CategoryTree {
   pagebuilder: PagebuilderAST
 }
+extend interface CategoryInterface {
+  pagebuilder: PagebuilderAST
+}
 extend type ComplexTextValue {
   pagebuilder: PagebuilderAST
 }

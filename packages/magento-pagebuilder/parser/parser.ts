@@ -18,7 +18,7 @@ export const createContentTypeObject = (type: string, node?: HTMLElement): Conte
 })
 
 /** Walk over tree nodes extracting each content types configuration */
-export const walk = (
+export const walk = async (
   rootEl: Node,
   contentTypeStructureObj: ContentTypeConfig,
   treeWalkerCb: (node: Node) => TreeWalker,
@@ -40,11 +40,13 @@ export const walk = (
     }
 
     const props = createContentTypeObject(contentType, currentNode)
+
     const aggregator = getContentType(contentType)
 
     if (aggregator && typeof aggregator === 'function') {
       try {
-        const result = { ...props, ...aggregator(currentNode, props) }
+        // eslint-disable-next-line no-await-in-loop
+        const result = { ...props, ...(await aggregator(currentNode, props)) }
 
         if (!getIsHidden(currentNode)) contentTypeStructureObj.children.push(result)
       } catch (e) {
@@ -56,7 +58,7 @@ export const walk = (
       )
     }
 
-    walk(currentNode, props, treeWalkerCb)
+    await walk(currentNode, props, treeWalkerCb)
     currentNode = tree.nextSibling()
   }
 
