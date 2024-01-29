@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.97
+
+### Minor Changes
+
+- [#2175](https://github.com/graphcommerce-org/graphcommerce/pull/2175) [`a6bcb87`](https://github.com/graphcommerce-org/graphcommerce/commit/a6bcb8785d54ef735d82154a775822d84f2b2b80) - Autofill country dropdown in CreateCustomerAddressForm so AddPostcodeNLAddressFields plugin works by default
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 8.0.0-canary.96
 
 ## 8.0.0-canary.95

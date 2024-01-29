@@ -2,7 +2,7 @@
   "name": "@graphcommerce/graphql-mesh",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "8.0.0-canary.96",
+  "version": "8.0.0-canary.97",
   "main": "index.ts",
   "dependencies": {
     "@graphql-mesh/apollo-link": "latest",
@@ -24,9 +24,9 @@
   },
   "peerDependencies": {
     "@apollo/client": "^3",
-    "@graphcommerce/eslint-config-pwa": "^8.0.0-canary.96",
-    "@graphcommerce/prettier-config-pwa": "^8.0.0-canary.96",
-    "@graphcommerce/typescript-config-pwa": "^8.0.0-canary.96",
+    "@graphcommerce/eslint-config-pwa": "^8.0.0-canary.97",
+    "@graphcommerce/prettier-config-pwa": "^8.0.0-canary.97",
+    "@graphcommerce/typescript-config-pwa": "^8.0.0-canary.97",
     "graphql": "^16.7.1"
   },
   "devDependencies": {
