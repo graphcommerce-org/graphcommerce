@@ -7,7 +7,6 @@ import { ContentTypeConfig } from '../types'
 // eslint-disable-next-line import/no-cycle
 import { getIsHidden, isHTMLElement } from '../utils'
 import { detectPageBuilder } from './detectPageBuilder'
-import { MeshContext } from '../../../examples/magento-graphcms/.mesh'
 
 const pbStyleAttribute = 'data-pb-style'
 const bodyId = 'html-body'
@@ -22,7 +21,6 @@ export const createContentTypeObject = (type: string, node?: HTMLElement): Conte
 export const walk = async (
   rootEl: Node,
   contentTypeStructureObj: ContentTypeConfig,
-  context: MeshContext,
   treeWalkerCb: (node: Node) => TreeWalker,
 ) => {
   const tree = treeWalkerCb(rootEl)
@@ -48,7 +46,7 @@ export const walk = async (
     if (aggregator && typeof aggregator === 'function') {
       try {
         // eslint-disable-next-line no-await-in-loop
-        const result = { ...props, ...(await aggregator(currentNode, props, context)) }
+        const result = { ...props, ...(await aggregator(currentNode, props)) }
 
         if (!getIsHidden(currentNode)) contentTypeStructureObj.children.push(result)
       } catch (e) {
@@ -60,7 +58,7 @@ export const walk = async (
       )
     }
 
-    await walk(currentNode, props, context, treeWalkerCb)
+    await walk(currentNode, props, treeWalkerCb)
     currentNode = tree.nextSibling()
   }
 
@@ -130,7 +128,7 @@ export const convertToInlineStyles = (document: HTMLElement | Document) => {
   })
 }
 
-export const parser = (htmlStr: string | null | undefined, context: MeshContext) => {
+export const parser = (htmlStr: string | null | undefined) => {
   if (!detectPageBuilder(htmlStr)) return null
 
   const jsdom = new JSDOM(`<!DOCTYPE html>${htmlStr}`)
@@ -144,7 +142,7 @@ export const parser = (htmlStr: string | null | undefined, context: MeshContext)
   body.id = bodyId
   convertToInlineStyles(jsdom.window.document)
 
-  return walk(body, stageContentType, context, (rootEl) =>
+  return walk(body, stageContentType, (rootEl) =>
     document.createTreeWalker(
       rootEl,
       // eslint-disable-next-line no-bitwise

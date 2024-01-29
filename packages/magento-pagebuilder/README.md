@@ -11,10 +11,8 @@ yarn add @graphcommerce/magento-pagebuilder
 Add the following to your .meshrc.yml:
 
 ```yml
-additionalTypeDefs:
-  - '@graphcommerce/magento-pagebuilder/mesh/schema.graphqls'
 additionalResolvers:
-  - '@graphcommerce/magento-pagebuilder/mesh/resolvers.ts'
+  - '@graphcommerce/magento-pagebuilder/mesh.ts'
 ```
 
 Integrate by using any of the [exported components](./index.ts).
