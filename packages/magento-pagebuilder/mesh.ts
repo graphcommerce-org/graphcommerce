@@ -30,7 +30,7 @@ export const resolvers: Resolvers = {
       selectionSet: `{ content }`,
       resolve: ({ content }, _, ctx) => {
         warnNoContent(content, 'content', 'CmsPage', ctx)
-        return parser(content, ctx)
+        return parser(content)
       },
     },
     content: ({ content }) => nullIfPagebuilder(content),
@@ -40,7 +40,7 @@ export const resolvers: Resolvers = {
       selectionSet: `{ content }`,
       resolve: ({ content }, _, ctx) => {
         warnNoContent(content, 'content', 'CmsBlock', ctx)
-        return parser(content, ctx)
+        return parser(content)
       },
     },
     content: ({ content }) => nullIfPagebuilder(content),
@@ -50,7 +50,7 @@ export const resolvers: Resolvers = {
       selectionSet: `{ description }`,
       resolve: ({ description }, _, ctx) => {
         warnNoContent(description, 'description', 'CategoryTree', ctx)
-        return parser(description, ctx)
+        return parser(description)
       },
     },
     // description: ({ description }) => nullIfPagebuilder(description),
@@ -60,7 +60,7 @@ export const resolvers: Resolvers = {
       selectionSet: `{ html }`,
       resolve: ({ html }, _, ctx) => {
         warnNoContent(html, 'html', 'ComplexTextValue', ctx)
-        return parser(html, ctx)
+        return parser(html)
       },
     },
     html: ({ html }) => nullIfPagebuilder(html) ?? '',
