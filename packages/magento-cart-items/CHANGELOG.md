@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.99
+
+### Patch Changes
+
+- [#2183](https://github.com/graphcommerce-org/graphcommerce/pull/2183) [`afc8810`](https://github.com/graphcommerce-org/graphcommerce/commit/afc8810d89f409f1ea2f6e82a01b3120ded208f9) - When updating the quantity of the product in the cart it could happen that the form would become out of sync with the actual data.
+  ([@paales](https://github.com/paales))
+
 ## 8.0.0-canary.98
 
 ## 8.0.0-canary.97

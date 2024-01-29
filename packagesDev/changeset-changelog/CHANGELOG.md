@@ -1,5 +1,7 @@
 # @graphcommerce/changeset-changelog
 
+## 8.0.0-canary.99
+
 ## 8.0.0-canary.98
 
 ## 8.0.0-canary.97
