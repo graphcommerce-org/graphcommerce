@@ -1,0 +1,5 @@
+fragment UniversalPage_Hygraph on UniversalPage @inject(into: ["UniversalPage_Data"]) {
+  hygraphPage {
+    ...HygraphPage
+  }
+}

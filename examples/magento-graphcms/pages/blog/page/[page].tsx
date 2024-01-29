@@ -1,5 +1,5 @@
+import { ContentArea, PageContent, pageContent } from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   PageMeta,
@@ -13,19 +13,14 @@ import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
 import {
-  BlogList,
-  BlogListDocument,
-  BlogListQuery,
-  BlogPathsDocument,
-  BlogPathsQuery,
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
-  RowRenderer,
+  productListRenderer,
 } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
-type Props = HygraphPagesQuery & BlogListQuery & BlogPathsQuery
+type Props = BlogListQuery & BlogPathsQuery & { content: PageContent }
 type RouteProps = { page: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
@@ -33,23 +28,21 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 const pageSize = 16
 
 function BlogPage(props: Props) {
-  const { pages, blogPosts, pagesConnection } = props
+  const { content, blogPosts, pagesConnection } = props
   const router = useRouter()
-  const page = pages[0]
-  const title = page.title ?? ''
 
   return (
     <>
-      <PageMeta title={title} metaDescription={title} canonical={`/${page.url}`} />
+      <PageMeta {...content} />
 
       <LayoutHeader floatingMd>
         <LayoutTitle size='small' component='span'>
-          {title}
+          {content.title}
         </LayoutTitle>
       </LayoutHeader>
 
       <Container maxWidth='xl'>
-        <LayoutTitle variant='h1'>{title}</LayoutTitle>
+        <LayoutTitle variant='h1'>{content.title}</LayoutTitle>
       </Container>
 
       <BlogList blogPosts={blogPosts} />
@@ -63,7 +56,7 @@ function BlogPage(props: Props) {
         )}
       />
 
-      <RowRenderer content={page.content} />
+      <ContentArea content={content} productListRenderer={productListRenderer} />
     </>
   )
 }
@@ -98,7 +91,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const staticClient = graphqlSsrClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
-  const defaultPage = hygraphPageContent(staticClient, 'blog')
+  const content = pageContent(staticClient, 'blog')
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const blogPosts = staticClient.query({
@@ -107,13 +100,13 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   })
   const blogPaths = staticClient.query({ query: BlogPathsDocument })
 
-  if (!(await defaultPage).data.pages?.[0]) return { notFound: true }
+  if ((await content).notFound) return { notFound: true }
   if (!(await blogPosts).data.blogPosts.length) return { notFound: true }
   if (Number(params?.page) <= 0) return { notFound: true }
 
   return {
     props: {
-      ...(await defaultPage).data,
+      content: await content,
       ...(await blogPosts).data,
       ...(await blogPaths).data,
       ...(await layout).data,

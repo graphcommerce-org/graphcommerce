@@ -3,5 +3,4 @@ query Layout {
     __typename
   }
   ...MenuQueryFragment
-  ...FooterQueryFragment
 }

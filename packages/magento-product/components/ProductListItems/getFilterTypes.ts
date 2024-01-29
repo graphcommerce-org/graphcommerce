@@ -1,4 +1,5 @@
-import { gql, ApolloClient, NormalizedCacheObject, TypedDocumentNode } from '@graphcommerce/graphql'
+import type { ApolloClient, NormalizedCacheObject, TypedDocumentNode } from '@graphcommerce/graphql'
+import { gql } from '@graphcommerce/graphql/apollo'
 import type { Exact } from '@graphcommerce/graphql-mesh'
 
 type FilterInputTypesQueryVariables = Exact<{ [key: string]: never }>
