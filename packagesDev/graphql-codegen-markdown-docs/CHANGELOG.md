@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0
+
+### Patch Changes
+
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`2e46389`](https://github.com/graphcommerce-org/graphcommerce/commit/2e46389edcd506c490cd7273be384e5c42df4a9e) - Render `framework/config.md` more nicely, so that we follow a more typescript-esque style and inline the enums.
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 8.0.0-canary.100
 
 ## 8.0.0-canary.99

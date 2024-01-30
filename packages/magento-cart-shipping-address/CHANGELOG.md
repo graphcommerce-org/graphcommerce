@@ -1,5 +1,15 @@
 # Change Log
 
+## 8.0.0
+
+### Patch Changes
+
+- [#2115](https://github.com/graphcommerce-org/graphcommerce/pull/2115) [`105a1af`](https://github.com/graphcommerce-org/graphcommerce/commit/105a1af8b820de8873e430ae398f1922d39a9110) - Disabled ripple animations on all ActionCard ‘Select’ and ‘Change’ so the rendering is more subtle during checkout.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2118](https://github.com/graphcommerce-org/graphcommerce/pull/2118) [`0cdaad2`](https://github.com/graphcommerce-org/graphcommerce/commit/0cdaad28fb9a20fb5b0b1d339f197b938aa3595a) - Fixed bug where if the customer created a new address during checkout it would not be persisted when navigating back from the payment step.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.0.0-canary.100
 
 ## 8.0.0-canary.99

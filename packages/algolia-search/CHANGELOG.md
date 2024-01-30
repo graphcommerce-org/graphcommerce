@@ -1,5 +1,12 @@
 # @graphcommerce/algolia-search
 
+## 8.0.0
+
+### Patch Changes
+
+- [#2172](https://github.com/graphcommerce-org/graphcommerce/pull/2172) [`279599e`](https://github.com/graphcommerce-org/graphcommerce/commit/279599e7a86bd96ea9e36065af3c367df9e02a63) - Updated examples in the documentation to reflect the changes made in GraphCommerce.
+  ([@paales](https://github.com/paales))
+
 ## 8.0.0-canary.100
 
 ## 8.0.0-canary.99

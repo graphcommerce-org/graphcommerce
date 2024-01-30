@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0
+
+### Patch Changes
+
+- [#2145](https://github.com/graphcommerce-org/graphcommerce/pull/2145) [`4fc2fda`](https://github.com/graphcommerce-org/graphcommerce/commit/4fc2fda92519159631cfe9a8eafcef58197f9986) - Solved an issue where the currently paginated page would be included in URL for the subcategory, resulting in a 404 error for some pages.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.0.0-canary.100
 
 ## 8.0.0-canary.99

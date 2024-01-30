@@ -1,5 +1,15 @@
 # Change Log
 
+## 8.0.0
+
+### Patch Changes
+
+- [#2114](https://github.com/graphcommerce-org/graphcommerce/pull/2114) [`5b63623`](https://github.com/graphcommerce-org/graphcommerce/commit/5b63623e70cb72afa82f6e39cefc77c7b0fec74e) - Added support for the alt attribute for images inside Rich text areas coming from Hygraph.
+  ([@StefanAngenent](https://github.com/StefanAngenent))
+
+- [#2071](https://github.com/graphcommerce-org/graphcommerce/pull/2071) [`6876939`](https://github.com/graphcommerce-org/graphcommerce/commit/68769398f64604443a148583f1392976f71c2423) - Added support to add css class names to RichText elements from Hygraph
+  ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 8.0.0-canary.100
 
 ## 8.0.0-canary.99

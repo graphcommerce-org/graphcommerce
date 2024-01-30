@@ -1,5 +1,15 @@
 # @graphcommerce/hygraph-dynamic-rows
 
+## 8.0.0
+
+### Patch Changes
+
+- [`df385d9`](https://github.com/graphcommerce-org/graphcommerce/commit/df385d9a2e724715e0f08cc13b1bef6748b38b82) - Allow muiltiple rows for each Dynamic Row entry in Hygraph
+  ([@JoshuaS98](https://github.com/JoshuaS98))
+
+- [#2182](https://github.com/graphcommerce-org/graphcommerce/pull/2182) [`a93c312`](https://github.com/graphcommerce-org/graphcommerce/commit/a93c312b9d6e0d6cc102b49cc3ad02953200a1f6) - Dynamic rows would break page rendering if there was a dynamic row but no page returned
+  ([@paales](https://github.com/paales))
+
 ## 8.0.0-canary.100
 
 ## 8.0.0-canary.99

@@ -1,5 +1,71 @@
 # Change Log
 
+## 8.0.0
+
+### Minor Changes
+
+- [#2133](https://github.com/graphcommerce-org/graphcommerce/pull/2133) [`133f908`](https://github.com/graphcommerce-org/graphcommerce/commit/133f908200a79589036420f2925835724522cab8) - Added new `<LazyHydrate/>` component to improve the Total Blocking Time and implemented them in, `<RowRenderer/>`, `<ProductListItemBase/>`, `<Footer/>` and for the `<NavigationProvider/>`. Reduced the TBT by 50% on the homepage and other pages.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2073](https://github.com/graphcommerce-org/graphcommerce/pull/2073) [`05ce566`](https://github.com/graphcommerce-org/graphcommerce/commit/05ce5665b3c63b0620266c8ac35e8b555e2029e8) - It is now allowed to use children inside the footer component
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2018](https://github.com/graphcommerce-org/graphcommerce/pull/2018) [`750aa6a`](https://github.com/graphcommerce-org/graphcommerce/commit/750aa6a72710869d54244467253212e551d335e0) - Changed the layout of the succes page. We are using ActionCards right now to match the design of the cart.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+### Patch Changes
+
+- [#2161](https://github.com/graphcommerce-org/graphcommerce/pull/2161) [`cc5c636`](https://github.com/graphcommerce-org/graphcommerce/commit/cc5c636f9f2b3d9fa33384b9a02d6ad3631aa414) - On certain breakpoints the Product page gallery had additional padding applied.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2138](https://github.com/graphcommerce-org/graphcommerce/pull/2138) [`a057d62`](https://github.com/graphcommerce-org/graphcommerce/commit/a057d6274e1d427e631ab3fad7a16078315103b8) - When viewing the homepage the logo will not have a `<a/>` tag wrapped anymore.
+  ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`da21357`](https://github.com/graphcommerce-org/graphcommerce/commit/da2135744dddfa0d211c59589090ebb1977c38c9) - The `<Snackbar/>` component now accepts an icon when severity is set to info
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2135](https://github.com/graphcommerce-org/graphcommerce/pull/2135) [`7b017f5`](https://github.com/graphcommerce-org/graphcommerce/commit/7b017f58ba3be587d20a7f52c84b2907d52fe201) - Fix incorrect canonical URLs when i18n domain routing is used
+  ([@hnsr](https://github.com/hnsr))
+
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`727d100`](https://github.com/graphcommerce-org/graphcommerce/commit/727d1004dfcb7dddf6e35b6b157a34491bb05cc6) - Fixed ItemScroller component className. Changed from SidebarSlider to ItemScroller
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - Accessibility improvements for the frontend: Added skip content link. Removed empty buttons from tab flow. Gave focus to elements (such as the menu) that appear when after clicking a button. Improved aria labels where needed
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`7fc4bb9`](https://github.com/graphcommerce-org/graphcommerce/commit/7fc4bb925c59da46961c9656a2a67b37a9c2d652) - Removed the 'NoSSR' functionality from `<WaitForQueries/>` component as it slows down rendering. The 'feature' was necessary for the following use case: When hydrating a component that was server rendered and was living inside a `<Suspense />` component. It would cause an hydration error and this was the workaround. With useSuspenseQuery and React 18, this problem will not occur.
+  ([@StefanAngenent](https://github.com/StefanAngenent))
+
+- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`d608830`](https://github.com/graphcommerce-org/graphcommerce/commit/d608830ce77f85ff725cc106b9fc55a22012c74c) - Added `disableBackdropClick` prop to MessageSnackbar to allow page interaction without closing the snackbar
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`695f40c`](https://github.com/graphcommerce-org/graphcommerce/commit/695f40cf220636d17f04bc9b0ce86c549c740386) - The `filterNonNullable` method would collapse TypeScript unions because of the `Simplify<>` helper, this is now omitted retulting in working unions.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2066](https://github.com/graphcommerce-org/graphcommerce/pull/2066) [`3b1f585`](https://github.com/graphcommerce-org/graphcommerce/commit/3b1f585153672a644a613411134e5ad36aa4c266) - Add `showButtons` prop to `<ScrollerButton/>`
+  ([@StefanAngenent](https://github.com/StefanAngenent))
+
+- [#2045](https://github.com/graphcommerce-org/graphcommerce/pull/2045) [`1ac1e09`](https://github.com/graphcommerce-org/graphcommerce/commit/1ac1e09897daadd646200cb3ddc2aa75a51e182e) - Make sure the product image gallery traps focus and scrollbar doesn't disappear suddenly
+  ([@JoshuaS98](https://github.com/JoshuaS98))
+
+- [#2105](https://github.com/graphcommerce-org/graphcommerce/pull/2105) [`185f9dd`](https://github.com/graphcommerce-org/graphcommerce/commit/185f9ddebff0eaf1f388faebe88a5d400294512a) - Fixed bug in Chrome where the mobile menu wouldn't open after the first selected level
+  ([@mikekeehnen](https://github.com/mikekeehnen))
+
+- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`94e1ae8`](https://github.com/graphcommerce-org/graphcommerce/commit/94e1ae811fe9eb0051863e8be91c6399ddcdf22f) - Added `<DismissibleSnackbar/>` component to allow messages to be shown only once
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2137](https://github.com/graphcommerce-org/graphcommerce/pull/2137) [`df507b1`](https://github.com/graphcommerce-org/graphcommerce/commit/df507b194c67eef7b02df858c07938bb308b5397) - Don't render pseudo-locale in HTML lang attribute
+  ([@hnsr](https://github.com/hnsr))
+
+- [#2125](https://github.com/graphcommerce-org/graphcommerce/pull/2125) [`5224ee5`](https://github.com/graphcommerce-org/graphcommerce/commit/5224ee5001c94a19f226fa36106e76739319297c) - If there is an open menu in an overlay, pressing the escape button now closes the menu instead of the overlay.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`53947d3`](https://github.com/graphcommerce-org/graphcommerce/commit/53947d39f2f3ee578c14903c96a2b356d99d9475) - Implemented 'Message' variant for `<RowColumnOne/>` to show an important message which, after dismissing, will not show again
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2121](https://github.com/graphcommerce-org/graphcommerce/pull/2121) [`a5da6ff`](https://github.com/graphcommerce-org/graphcommerce/commit/a5da6ffc8be359e93c7bde986134f7162aae13b9) - Change the critical css injection location to be in the head instead of `<style>` tags in the body. It had a number of negative consequences, such as the famous "flash of unstyled content" (FOUC) and the re-paint and re-layout required.
+  ([@paales](https://github.com/paales))
+
 ## 8.0.0-canary.100
 
 ## 8.0.0-canary.99

@@ -1,5 +1,29 @@
 # Change Log
 
+## 8.0.0
+
+### Minor Changes
+
+- [#2106](https://github.com/graphcommerce-org/graphcommerce/pull/2106) [`9f8c3ca`](https://github.com/graphcommerce-org/graphcommerce/commit/9f8c3cac214006315055f37cf8d4a783eb99a7ec) - Split off Magento known issues to separate page
+  ([@hnsr](https://github.com/hnsr))
+
+### Patch Changes
+
+- [#2112](https://github.com/graphcommerce-org/graphcommerce/pull/2112) [`15a2037`](https://github.com/graphcommerce-org/graphcommerce/commit/15a2037372cd615602d3e2f3deedba9766fc172c) - Make the "Search" string translatable and fix typo.
+  ([@carlocarels90](https://github.com/carlocarels90))
+
+- [`b850ab0`](https://github.com/graphcommerce-org/graphcommerce/commit/b850ab06e3fff1cd274651d8082557ed2c308f55) - Updated roadmap and feature-list
+  ([@paales](https://github.com/paales))
+
+- [#2172](https://github.com/graphcommerce-org/graphcommerce/pull/2172) [`279599e`](https://github.com/graphcommerce-org/graphcommerce/commit/279599e7a86bd96ea9e36065af3c367df9e02a63) - Updated examples in the documentation to reflect the changes made in GraphCommerce.
+  ([@paales](https://github.com/paales))
+
+- [#2119](https://github.com/graphcommerce-org/graphcommerce/pull/2119) [`6adb2e7`](https://github.com/graphcommerce-org/graphcommerce/commit/6adb2e72ece8210757ced178779dfba11b1bcf55) - Clarify texts by adding formatting and correcting spelling.
+  ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2104](https://github.com/graphcommerce-org/graphcommerce/pull/2104) [`d0f1f5a`](https://github.com/graphcommerce-org/graphcommerce/commit/d0f1f5a2d1380d1c3931e23218924d5e8b1fc60d) - Document workaround/patch for broken cart error handling with Magento 2.4.6.
+  ([@hnsr](https://github.com/hnsr))
+
 ## 8.0.0-canary.100
 
 ## 8.0.0-canary.99

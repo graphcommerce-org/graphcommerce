@@ -1,5 +1,15 @@
 # Change Log
 
+## 8.0.0
+
+### Patch Changes
+
+- [#2093](https://github.com/graphcommerce-org/graphcommerce/pull/2093) [`112b041`](https://github.com/graphcommerce-org/graphcommerce/commit/112b041f01a33fbd521ce3eb3955844f96b29917) - Created a new experimental mutation abort feature inside `useFormGql`. This will allow redundant mutations to be canceled. This is enabled when the `experimental_useV2` prop on the `useFormGql` hook is used.
+  ([@mikekeehnen](https://github.com/mikekeehnen))
+
+- [#2007](https://github.com/graphcommerce-org/graphcommerce/pull/2007) [`f59c276`](https://github.com/graphcommerce-org/graphcommerce/commit/f59c276605f9ed649d1197a9ba0e3f12d7c6d026) - Crosssell behavior now properly shows for the latest added product. Added latest submitted variables to be retrieved when using the useFormGql hook.
+  ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 8.0.0-canary.100
 
 ## 8.0.0-canary.99

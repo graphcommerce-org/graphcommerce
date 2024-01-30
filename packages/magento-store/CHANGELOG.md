@@ -1,5 +1,15 @@
 # Change Log
 
+## 8.0.0
+
+### Patch Changes
+
+- [#2067](https://github.com/graphcommerce-org/graphcommerce/pull/2067) [`3406794`](https://github.com/graphcommerce-org/graphcommerce/commit/340679434e0ff1033c8158ef03a091e06e20e6a9) - Prevent HandleRedirect errors by filtering out empty URL values from the candidates array.
+  ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2140](https://github.com/graphcommerce-org/graphcommerce/pull/2140) [`b34d85c`](https://github.com/graphcommerce-org/graphcommerce/commit/b34d85c8c5403c6f49b506b714ee314b8344fd99) - Solve incorrect redirect when locale has own domain
+  ([@hnsr](https://github.com/hnsr))
+
 ## 8.0.0-canary.100
 
 ## 8.0.0-canary.99

@@ -1,5 +1,32 @@
 # Change Log
 
+## 8.0.0
+
+### Minor Changes
+
+- [#2099](https://github.com/graphcommerce-org/graphcommerce/pull/2099) [`ff796b8`](https://github.com/graphcommerce-org/graphcommerce/commit/ff796b838fae6cb5e35b101500133b0235a8677d) - Support for all customizable product options (except file upload) on the product pages and in the cart.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`13e23e4`](https://github.com/graphcommerce-org/graphcommerce/commit/13e23e4265bac70fb4d0830e4661019e71ce299f) - Wishlist will now support configurable products and uses the `<ActionCardLayout/>`
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+### Patch Changes
+
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`bc90852`](https://github.com/graphcommerce-org/graphcommerce/commit/bc90852755479e48d25a370deccce0ca74e1e48f) - When selecting a non-existing option on a configurable product page, the price would be updated.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2058](https://github.com/graphcommerce-org/graphcommerce/pull/2058) [`16dc488`](https://github.com/graphcommerce-org/graphcommerce/commit/16dc4889543106238b1a87694e75586e4c1a787c) - Provide instant feedback on availble attribute options when making a selection on a configurable product
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2146](https://github.com/graphcommerce-org/graphcommerce/pull/2146) [`3c19305`](https://github.com/graphcommerce-org/graphcommerce/commit/3c19305a7107d250bd898a9f4dfef38e362c2cbf) - Display the details of configurable products in the cart.
+  ([@mikekeehnen](https://github.com/mikekeehnen))
+
+- [#2137](https://github.com/graphcommerce-org/graphcommerce/pull/2137) [`df507b1`](https://github.com/graphcommerce-org/graphcommerce/commit/df507b194c67eef7b02df858c07938bb308b5397) - Don't render pseudo-locale in HTML lang attribute
+  ([@hnsr](https://github.com/hnsr))
+
+- [#2159](https://github.com/graphcommerce-org/graphcommerce/pull/2159) [`17a5304`](https://github.com/graphcommerce-org/graphcommerce/commit/17a5304cbe297d29ddddce0d88f2c1bff220b59d) - Prevent aggregations from being excluded when executing the `defaultConfigurableOptionsSelection`
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 8.0.0-canary.100
 
 ## 8.0.0-canary.99

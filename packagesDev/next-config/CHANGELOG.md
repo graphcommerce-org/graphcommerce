@@ -1,5 +1,41 @@
 # Change Log
 
+## 8.0.0
+
+### Minor Changes
+
+- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`437f467`](https://github.com/graphcommerce-org/graphcommerce/commit/437f467ce1bd9182954be753f1ce17056ab62e85) - Upgraded the graphcommerce repo to the yarn 4 package manager
+  ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2156](https://github.com/graphcommerce-org/graphcommerce/pull/2156) [`69b816c`](https://github.com/graphcommerce-org/graphcommerce/commit/69b816cd739af2999ec2a5053f09b9bb10379c52) - Updated dependencies. Fixed trace-to-tree.mjs to debug build perf and added trace-to-event-format.mjs for compatibility with about://tracing.
+  ([@paales](https://github.com/paales))
+
+- [#2078](https://github.com/graphcommerce-org/graphcommerce/pull/2078) [`5f409e6`](https://github.com/graphcommerce-org/graphcommerce/commit/5f409e617afae36d5c6224f3c6eb8d085fc2e84c) - Added @graphcommerce packages in node_modules to nextjs watch options
+  ([@KMalkowski](https://github.com/KMalkowski))
+
+- [#2129](https://github.com/graphcommerce-org/graphcommerce/pull/2129) [`dca4490`](https://github.com/graphcommerce-org/graphcommerce/commit/dca4490b97319e9d4117277719adef395ed1e7b4) - Created `./devcontainer/devcontainer.json` to automatically run Graphcommerce after opening Codespaces
+  ([@action-simon](https://github.com/action-simon))
+
+- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`6306182`](https://github.com/graphcommerce-org/graphcommerce/commit/6306182196321bdab509a8dcfe09eb00da10303a) - Moved all internal `@graphcommerce/*` dependencies to `peerDependencies` and resolve remaining peer dependency issues
+  ([@paales](https://github.com/paales))
+
+- [`d267f19`](https://github.com/graphcommerce-org/graphcommerce/commit/d267f19d6ab85f7dc1088974b3fee6148a537c20) - Disable the pagination thumbnails
+  ([@paales](https://github.com/paales))
+
+- [#2172](https://github.com/graphcommerce-org/graphcommerce/pull/2172) [`279599e`](https://github.com/graphcommerce-org/graphcommerce/commit/279599e7a86bd96ea9e36065af3c367df9e02a63) - Updated examples in the documentation to reflect the changes made in GraphCommerce.
+  ([@paales](https://github.com/paales))
+
+- [#2116](https://github.com/graphcommerce-org/graphcommerce/pull/2116) [`e0e5e82`](https://github.com/graphcommerce-org/graphcommerce/commit/e0e5e82af36ca38a78fc031e0c680daaab5909ad) - Node.js version of gitpod updated to node 18
+  ([@action-simon](https://github.com/action-simon))
+
+- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`77b1bac`](https://github.com/graphcommerce-org/graphcommerce/commit/77b1bac4db9c903a29c3969823da663875408be0) - Upgraded to nextjs 14.0.2, and updated other related dependencies. Removed @mui/material/modern alias as that doesnt work in combination with nextjs 14.0.2.
+  ([@paales](https://github.com/paales))
+
+- [#2169](https://github.com/graphcommerce-org/graphcommerce/pull/2169) [`eab3f0b`](https://github.com/graphcommerce-org/graphcommerce/commit/eab3f0b0b459f5b6cc4e50d787ac1e8ae545b708) - Solve issue where a Hygraph DynamicRow conditions were missing fields in the OrCondition
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.0.0-canary.100
 
 ## 8.0.0-canary.99
