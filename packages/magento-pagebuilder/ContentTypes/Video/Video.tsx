@@ -50,6 +50,7 @@ export const Video: VideoContentType['component'] = (props) => {
                 autoPlay={autoplay}
                 muted={muted}
                 controls
+                loop
                 sx={{ position: 'absolute', height: '100%', left: 0, top: 0, width: '100%' }}
               />
             )}

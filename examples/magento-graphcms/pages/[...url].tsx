@@ -93,7 +93,7 @@ function CategoryPage(props: CategoryProps) {
 
       {isCategory && !isLanding && (
         <>
-          <CategoryDescription {...category} />
+          <CategoryDescription category={category} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
           <CategoryFilterLayout
             params={params}

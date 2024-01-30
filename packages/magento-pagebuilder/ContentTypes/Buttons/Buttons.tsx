@@ -11,7 +11,7 @@ import { ButtonsContentType } from './types'
 export const Buttons: ButtonsContentType['component'] = (props) => {
   const [cssProps, cssClasses, additional] = extractAdvancedProps(props)
 
-  const { isSameWidth, children, appearance } = additional
+  const { isSameWidth, children, appearance, contentType } = additional
 
   const justify = {
     left: 'start',
@@ -27,6 +27,8 @@ export const Buttons: ButtonsContentType['component'] = (props) => {
 
   return (
     <Box
+      data-content-type={contentType}
+      data-appearance={appearance}
       sx={[
         cssProps,
         (theme) => ({

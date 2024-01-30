@@ -1,14 +1,15 @@
-import { Image } from '@graphcommerce/image'
+import { Image, ImageProps } from '@graphcommerce/image'
 import { SxProps, Theme } from '@mui/material'
 import { extractImageBackgroundProps } from './extractImageBackgroundProps'
 import { ImageBackgroundProps } from './getImageBackgroundProps'
 
-type ImageBackgroundComponentProps = ImageBackgroundProps & {
+export type ImageBackgroundComponentProps = ImageBackgroundProps & {
   sx?: SxProps<Theme>
+  sizes?: ImageProps['sizes']
 }
 
 export function ImageBackground(props: ImageBackgroundComponentProps) {
-  const { sx = [] } = props
+  const { sx = [], sizes } = props
   const [
     {
       desktopImage,
@@ -29,7 +30,7 @@ export function ImageBackground(props: ImageBackgroundComponentProps) {
         <Image
           src={desktopImage}
           layout='fill'
-          sizes='100vw'
+          sizes={sizes}
           sx={{ objectFit, objectPosition }}
           pictureProps={{ sx: [...(Array.isArray(sx) ? sx : [sx])] }}
         />

@@ -6,11 +6,11 @@ export const component = 'CategoryDescription'
 export const exported = '@graphcommerce/magento-category'
 
 const PagebuilderProductPageDescription: ReactPlugin<typeof CategoryDescription> = (props) => {
-  const { Prev, pagebuilder, ...rest } = props
+  const { Prev, category, ...rest } = props
 
   return (
-    <Pagebuilder pagebuilder={pagebuilder}>
-      <Prev {...rest} />
+    <Pagebuilder pagebuilder={category.pagebuilder}>
+      <Prev category={category} {...rest} />
     </Pagebuilder>
   )
 }

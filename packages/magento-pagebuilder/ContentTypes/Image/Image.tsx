@@ -1,6 +1,7 @@
 import { Box } from '@mui/material'
 import { extractAdvancedProps, extractBorderProps } from '../../utils'
 import { ImageContentType } from './types'
+import { ImageBackground } from '../../components/MediaBackground/ImageBackground'
 
 /**
  * Page Builder Image component.
@@ -32,7 +33,12 @@ export const Image: ImageContentType['component'] = (props) => {
   const isSame = desktopImage?.src === mobileImage?.src
 
   return (
-    <Box component='figure' sx={figureStyles}>
+    <Box
+      data-content-type={contentType}
+      data-appearance={appearance}
+      component='figure'
+      sx={figureStyles}
+    >
       {desktopImage?.src && (
         <Box
           component='img'
@@ -42,6 +48,7 @@ export const Image: ImageContentType['component'] = (props) => {
           sx={[
             {
               ...border,
+              width: '100%',
               objectFit: 'contain',
               display: {
                 xs: isSame ? 'inline-block' : 'none',

@@ -11,10 +11,10 @@ type TextRendererProps = TextProps & {
 export function TextRenderer(props: TextRendererProps) {
   const { textContent, sx = [] } = props
 
-  const clickHandler = (event) => {
-    event.prventDefault()
-    console.log('handleclick')
-  }
+  // const clickHandler = (event) => {
+  //   event.prventDefault()
+  //   console.log('handleclick')
+  // }
 
   if (!textContent) return null
 
@@ -30,8 +30,8 @@ export function TextRenderer(props: TextRendererProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       dangerouslySetInnerHTML={{ __html: textContent }}
-      onClick={clickHandler}
-      onKeyDown={clickHandler}
+      // onClick={clickHandler}
+      // onKeyDown={clickHandler}
       role='presentation'
     />
   )

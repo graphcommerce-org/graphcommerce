@@ -230,7 +230,7 @@ const { categories, products, ..., stylesheet } = props
 
 ```tsx
 <CategoryDescription
-  description={category.description}
+  category={category}
   sx={{ stylesheet, minWidth: '100vw' }}
 />
 ```

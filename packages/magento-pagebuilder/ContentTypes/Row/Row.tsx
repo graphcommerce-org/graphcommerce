@@ -1,17 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Image } from '@graphcommerce/image'
-import { Box, Container, SxProps, Theme, useMediaQuery } from '@mui/material'
-import React, { useEffect, useRef, useState, CSSProperties } from 'react'
+import { Box, Container, SxProps, Theme } from '@mui/material'
+import { useRef, useState } from 'react'
 import { MediaBackground } from '../../components/MediaBackground/MediaBackground'
-import { extractImageBackgroundProps } from '../../components/MediaBackground/extractImageBackgroundProps'
-import { extractVideoBackgroundProps } from '../../components/MediaBackground/extractVideoBackgroundProps'
 import { extractAdvancedProps, verticalAlignmentToFlex } from '../../utils'
-import defaultClasses from './row.module.css'
 import { RowContentType } from './types'
-
-const { matchMedia } = globalThis
-
-const classes = {}
 
 /**
  * Page Builder Row component.
@@ -28,18 +20,19 @@ export const Row: RowContentType['component'] = (props) => {
 
   const {
     appearance,
+    contentType,
     verticalAlignment,
     minHeight,
     backgroundColor,
     enableParallax,
     parallaxSpeed = 0.5,
-    // mediaQueries,
+    mediaQueries,
     children,
     backgroundType,
-
-    ...remaining
+    sx,
   } = additional
 
+  console.log(mediaQueries)
   const dynamicStyles: SxProps<Theme> = {
     minHeight,
     ...cssProps,
@@ -54,6 +47,8 @@ export const Row: RowContentType['component'] = (props) => {
   if (appearance === 'full-bleed') {
     return (
       <Box
+        data-content-type={contentType}
+        data-apperance={appearance}
         className='Row full-bleed'
         sx={{
           ...dynamicStyles,
@@ -78,6 +73,8 @@ export const Row: RowContentType['component'] = (props) => {
   if (appearance === 'full-width') {
     return (
       <Box
+        data-content-type={contentType}
+        data-apperance={appearance}
         className='Row full-width'
         sx={{
           ...dynamicStyles,
@@ -119,17 +116,18 @@ export const Row: RowContentType['component'] = (props) => {
   }
 
   return (
-    <Container className='Row contained' maxWidth='lg' sx={{ display: 'grid', backgroundColor }}>
+    <Container
+      data-content-type={contentType}
+      data-apperance={appearance}
+      className='Row contained'
+      maxWidth='lg'
+      sx={{
+        display: 'grid',
+        backgroundColor,
+      }}
+    >
       <MediaBackground {...props} sx={{ gridArea: '1/1', minHeight: 0 }} />
-      <Box
-        sx={[
-          dynamicStyles,
-          {
-            gridArea: '1 / 1',
-            zIndex: 1,
-          },
-        ]}
-      >
+      <Box data-content-type={contentType} sx={dynamicStyles}>
         {children}
       </Box>
     </Container>

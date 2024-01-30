@@ -12,15 +12,7 @@ export const Products: ProductsContentType['component'] = (props) => {
   const { appearance, products } = additional
 
   if (appearance === 'grid') {
-    return (
-      <Container>
-        <ProductListItems items={products} size='small' titleComponent='h3' title={''} />
-      </Container>
-    )
+    return <ProductListItems items={products} size='small' titleComponent='h3' title={''} />
   }
-  return (
-    <Container>
-      <ProductScroller items={products} productListRenderer={productListRenderer} />
-    </Container>
-  )
+  return <ProductScroller items={products} productListRenderer={productListRenderer} />
 }

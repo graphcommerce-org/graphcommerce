@@ -1,7 +1,18 @@
 import { Box, SxProps, Theme } from '@mui/material'
 import React, { useRef } from 'react'
+import {
+  ImageBackground,
+  ImageBackgroundComponentProps,
+} from '../../components/MediaBackground/ImageBackground'
 import { extractImageBackgroundProps } from '../../components/MediaBackground/extractImageBackgroundProps'
-import { extractAdvancedProps } from '../../utils'
+import {
+  extractAdvancedProps,
+  extractBorderProps,
+  extractCssClassesProps,
+  extractMarginProps,
+  extractPaddingProps,
+  extractTextAlignProps,
+} from '../../utils'
 import { ColumnContentType } from './types'
 
 /**
@@ -11,8 +22,12 @@ import { ColumnContentType } from './types'
  * Builder.
  */
 export const Column: ColumnContentType['component'] = (incoming) => {
-  const [cssProps, cssClasses, additional] = extractAdvancedProps(incoming)
-  const [imageProps, props] = extractImageBackgroundProps(additional)
+  const [padding, remainging] = extractPaddingProps(incoming)
+  const [margin, remainging2] = extractMarginProps(remainging)
+  const [border, remainging3] = extractBorderProps(remainging2)
+  const [textAlign, remainging4] = extractTextAlignProps(remainging3)
+  const [cssClasses, remainging5] = extractCssClassesProps(remainging4)
+  const [imageProps, props] = extractImageBackgroundProps(remainging5)
 
   const columnElement = useRef(null)
   const {
@@ -23,7 +38,8 @@ export const Column: ColumnContentType['component'] = (incoming) => {
     width,
     appearance,
     contentType,
-  } = additional
+    sx,
+  } = props
 
   // let image = desktopImage
   // if (mobileImage && matchMedia && matchMedia('(max-width: 768px)').matches) {
@@ -31,7 +47,6 @@ export const Column: ColumnContentType['component'] = (incoming) => {
   // }
 
   const flexDirection = 'column'
-  const display = 'flex'
 
   let alignSelf: React.CSSProperties['alignSelf']
 
@@ -66,60 +81,38 @@ export const Column: ColumnContentType['component'] = (incoming) => {
       break
   }
 
-  const dynamicStyles: SxProps<Theme> = {
-    alignSelf,
-    backgroundColor,
-    ...cssProps,
-    display,
-    flexDirection,
-    justifyContent,
-    minHeight,
-    verticalAlignment,
-    width,
-  }
-
-  // if (image) {
-  //   dynamicStyles.backgroundImage = bgImageStyle
-  //   dynamicStyles.backgroundSize = backgroundSize
-  //   dynamicStyles.backgroundPosition = backgroundPosition
-  //   dynamicStyles.backgroundAttachment = backgroundAttachment
-  //   dynamicStyles.backgroundRepeat = backgroundRepeat
-  // }
-
-  // // Determine the containers width and optimize the image
-  // useEffect(() => {
-  //   if (image && columnElement.current) {
-  //     if (backgroundSize === 'cover') {
-  //       setBgImageStyle(
-  //         `url(${resourceUrl(image, {
-  //           type: 'image-wysiwyg',
-  //           width: columnElement.current.offsetWidth,
-  //           height: columnElement.current.offsetHeight,
-  //           quality: 85,
-  //           crop: false,
-  //           fit: 'cover',
-  //         })})`,
-  //       )
-  //     } else {
-  //       setBgImageStyle(
-  //         `url(${resourceUrl(image, {
-  //           type: 'image-wysiwyg',
-  //           quality: 85,
-  //         })})`,
-  //       )
-  //     }
-  //   }
-  // }, [backgroundSize, image, setBgImageStyle])
-
+  const hasImage = imageProps.desktopImage || imageProps.mobileImage
+  const sizes = width?.toString().replace('px', 'vw') as ImageBackgroundComponentProps['sizes']
   return (
     <Box
       data-appearance={appearance}
       data-content-type={contentType}
       className={cssClasses.join(' ')}
-      sx={dynamicStyles}
+      sx={[
+        {
+          alignSelf,
+          backgroundColor,
+          ...margin,
+          ...border,
+          ...textAlign,
+          flexDirection,
+          justifyContent,
+          minHeight,
+          verticalAlignment,
+          width,
+        },
+        hasImage ? { display: 'grid' } : { ...padding },
+      ]}
       ref={columnElement}
     >
-      {children}
+      {hasImage ? (
+        <>
+          <ImageBackground sizes={sizes} {...imageProps} sx={{ gridArea: '1 / 1' }} />
+          <Box sx={{ gridArea: '1/1', zIndex: 1, p: 1, ...padding }}>{children}</Box>
+        </>
+      ) : (
+        <>{children}</>
+      )}
     </Box>
   )
 }

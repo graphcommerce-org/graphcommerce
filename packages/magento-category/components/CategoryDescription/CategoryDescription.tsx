@@ -2,7 +2,8 @@ import { extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { CategoryDescriptionFragment } from './CategoryDescription.gql'
 
-export type CategoryDescriptionProps = Omit<CategoryDescriptionFragment, 'uid'> & {
+export type CategoryDescriptionProps = {
+  category: CategoryDescriptionFragment
   sx?: SxProps<Theme>
 }
 
@@ -11,7 +12,8 @@ const parts = ['root'] as const
 const { classes } = extendableComponent(cmpName, parts)
 
 export function CategoryDescription(props: CategoryDescriptionProps) {
-  const { name, description, display_mode, sx = [], ...divProps } = props
+  const { category, sx = [], ...divProps } = props
+  const { description } = category
 
   return description ? (
     // eslint-disable-next-line react/no-danger
