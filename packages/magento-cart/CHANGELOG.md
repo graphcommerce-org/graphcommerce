@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.0-canary.100
+
+### Patch Changes
+
+- [#2184](https://github.com/graphcommerce-org/graphcommerce/pull/2184) [`28b7e6e`](https://github.com/graphcommerce-org/graphcommerce/commit/28b7e6ef3e3f698751c6e82431fd14fb35463dd6) - When a customer would return from a payment gateway and it would erroneously query the cart GraphCommerce would immediately create a new empty cart while it shouldn't.
+  ([@paales](https://github.com/paales))
+
 ## 8.0.0-canary.99
 
 ## 8.0.0-canary.98
