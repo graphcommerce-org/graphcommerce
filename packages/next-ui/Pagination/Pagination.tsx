@@ -23,6 +23,7 @@ const { classes } = extendableComponent('Pagination', parts)
  */
 export function Pagination(props: PagePaginationProps) {
   const { count, page, renderLink, classes: styles, sx = [], ...paginationProps } = props
+  // console.log({ paginationProps })
 
   const { items } = usePagination({
     count,
