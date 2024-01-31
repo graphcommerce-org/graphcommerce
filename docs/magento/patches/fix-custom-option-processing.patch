@@ -1,0 +1,23 @@
+From ae5c89e5af2c14dea33b5c5d49ead84d55fd02f8 Mon Sep 17 00:00:00 2001
+From: Shomi Adarsh <shomi.adarsh@gds.ey.com>
+Date: Thu, 22 Jun 2023 13:48:07 +0530
+Subject: [PATCH] GraphQL cannot add product with customizable option to cart
+ #37599
+
+---
+ app/code/Magento/Quote/Model/Quote.php | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Model/Quote.php b/Model/Quote.php
+index 572d87d5f4bec..6a2575d974336 100644
+--- a/Model/Quote.php
++++ b/Model/Quote.php
+@@ -1647,6 +1647,8 @@ public function addProduct(
+             );
+         }
+
++        $productId = $product->getId();
++        $product = clone $this->productRepository->getById($productId, false, $this->getStore()->getId());
+         $cartCandidates = $product->getTypeInstance()->prepareForCartAdvanced($request, $product, $processMode);
+
+         /**
