@@ -10,6 +10,7 @@ An overview of bugs and limitations you may run into with Magento's GraphQL API:
 
 Affected Magento versions:
 
+- `2.4.7`: fixed after 2.4.7-beta1
 - `2.4.6`: all versions
 
 This is caused by a regression which results in some GraphQL errors no longer
@@ -27,6 +28,7 @@ https://github.com/magento/magento2/commit/49cbe774020d3dfa6ee2b8702376a947801c9
 
 Affected Magento versions:
 
+- `2.4.7`: unknown, see below
 - `2.4.6`: all versions
 
 When adding a product to cart, custom options are not processed and saved
@@ -51,7 +53,7 @@ See also:
 - Original PR: https://github.com/magento/magento2/issues/37599
 - PR regarding revert of fix: https://github.com/magento/magento2/issues/37928
 
-## Adding products to cart with pre-existing items that are out of stock, always results in an error
+## Adding products to cart with pre-existing items that are out of stock always results in an error
 
 Affected Magento versions:
 
