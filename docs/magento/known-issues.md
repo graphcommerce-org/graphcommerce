@@ -73,6 +73,23 @@ See also:
 - Issue: https://github.com/magento/magento2/issues/37908
 - PR with fix: https://github.com/magento/magento2/pull/38014/files
 
+## Bundle selection products are not shown due to their visibility setting
+
+Affected Magento versions:
+
+- `2.4.6`: all versions
+
+The `BundleItemOption.product` GraphQL field is returned as `null` if the
+product visibility is set to not be visible in the catalog (which you may not
+want).
+
+As a workaround you can apply the following patches:
+
+- [fix-bundle-selection-visibility-catalog.patch](./patches/fix-bundle-selection-visibility-catalog.patch)
+- [fix-bundle-selection-visibility-related.patch](./patches/fix-bundle-selection-visibility-related.patch)
+
+See also https://github.com/magento/magento2/issues/37774
+
 ## Next steps
 
 - [Overview](./readme)
