@@ -32,7 +32,7 @@ const redirect = (from: string, to: string, permanent: boolean, locale?: string)
 
   // eslint-disable-next-line no-console
   console.log(
-    `[redirectOrNotFound: /${prefix}/${from}] ${
+    `[redirectOrNotFound: ${prefix ? `/${prefix}` : ''}/${from}] ${
       permanent ? 'Permanent' : 'Temporary'
     } redirect to ${destination}`,
   )

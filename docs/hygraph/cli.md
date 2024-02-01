@@ -58,9 +58,9 @@ The following steps are needed to utilize this tool:
    1. Copy the project ID from the URL when logged in
       `https://app.hygraph.com/PROJECT_ID_IS_HERE/master`
    2. Add the project ID to your env file:
-      `GC_HYGRAPH_PROJECT_ID=”{YOUR_PROJECT_ID}”`
+      `GC_HYGRAPH_PROJECT_ID="{YOUR_PROJECT_ID}"`
 4. Add your hygraphManagementApi to your env file like this:
-   `GC_HYGRAPH_MANAGEMENT_API="{YOUR_MANAGEMENT_API}"`
+   1. Copy the Management API URL and add to your env file: `GC_HYGRAPH_MANAGEMENT_API="{YOUR_MANAGEMENT_API}"`
 5. Run `yarn graphcommerce hygraph-migrate`
 6. Select the migration you want to run and press enter.
 7. The migrations should now be applied, check your Hygraph Schema if changes
