@@ -78,6 +78,7 @@
     "@graphcommerce/typescript-config-pwa": "8.0.0"
   },
   "changesets": [
+    "good-rocks-matter",
     "popular-pants-learn",
     "spotty-bugs-act",
     "twenty-hornets-study",

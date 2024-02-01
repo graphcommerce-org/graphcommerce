@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.1-canary.1
+
+### Patch Changes
+
+- [#2186](https://github.com/graphcommerce-org/graphcommerce/pull/2186) [`09eb25c`](https://github.com/graphcommerce-org/graphcommerce/commit/09eb25c9892bf4cf57519024e31c2ae4cf2f7a0b) - Update Magento known issues
+  ([@hnsr](https://github.com/hnsr))
+
 ## 8.0.1-canary.0
 
 ### Patch Changes
