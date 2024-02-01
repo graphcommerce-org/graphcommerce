@@ -77,5 +77,10 @@
     "@graphcommerce/prettier-config-pwa": "8.0.0",
     "@graphcommerce/typescript-config-pwa": "8.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "popular-pants-learn",
+    "spotty-bugs-act",
+    "twenty-hornets-study",
+    "two-baboons-wink"
+  ]
 }

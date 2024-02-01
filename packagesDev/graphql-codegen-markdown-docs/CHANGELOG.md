@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.1-canary.0
+
+### Patch Changes
+
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`6c4cee8`](https://github.com/graphcommerce-org/graphcommerce/commit/6c4cee8469ee4934281bda53ac96aeb5af2f9479) - Make sure the config page can be properly rendered in the docs
+  ([@paales](https://github.com/paales))
+
 ## 8.0.0
 
 ### Patch Changes

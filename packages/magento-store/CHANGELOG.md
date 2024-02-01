@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.1-canary.0
+
+### Patch Changes
+
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`61f90af`](https://github.com/graphcommerce-org/graphcommerce/commit/61f90afc8bc229b2cd4793f724509783af138deb) - redirectOrNotFound would log the incorrect request URL
+  ([@paales](https://github.com/paales))
+
 ## 8.0.0
 
 ### Patch Changes
