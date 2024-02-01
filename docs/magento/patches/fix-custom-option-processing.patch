@@ -1,0 +1,15 @@
+Fix custom options not saving on addProductsToCart. See https://github.com/magento/magento2/issues/37599
+
+@package magento/module-quote
+
+--- a/Model/Quote.php
++++ b/Model/Quote.php
+@@ -1647,6 +1647,8 @@ public function addProduct(
+             );
+         }
+
++        $productId = $product->getId();
++        $product = clone $this->productRepository->getById($productId, false, $this->getStore()->getId());
+         $cartCandidates = $product->getTypeInstance()->prepareForCartAdvanced($request, $product, $processMode);
+
+         /**

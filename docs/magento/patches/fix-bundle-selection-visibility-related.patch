@@ -1,0 +1,19 @@
+Fix bundle product children not showing up on some products, see https://github.com/magento/magento2/issues/37774
+
+@package magento/module-related-product-graph-ql
+
+diff --git a/Model/Resolver/Batch/AbstractLikedProducts.php b/Model/Resolver/Batch/AbstractLikedProducts.php
+index fac7b23d408e3..f35af6f4885d2 100644
+--- a/Model/Resolver/Batch/AbstractLikedProducts.php
++++ b/Model/Resolver/Batch/AbstractLikedProducts.php
+@@ -94,9 +94,7 @@ private function findRelations(array $products, array $loadAttributes, int $link
+         $this->searchCriteriaBuilder->addFilter('entity_id', $relatedIds, 'in');
+         $relatedSearchResult = $this->productDataProvider->getList(
+             $this->searchCriteriaBuilder->create(),
+-            $loadAttributes,
+-            false,
+-            true
++            $loadAttributes
+         );
+         //Filling related products map.
+         /** @var \Magento\Catalog\Api\Data\ProductInterface[] $relatedProducts */
