@@ -115,12 +115,12 @@ When Magento's StoreConfig adds this value, this can be replaced.
 
 Use compare functionality
 
-#### compareVariant: 'CHECKBOX' | 'ICON' = 'ICON'
+#### compareVariant: CHECKBOX | ICON = `ICON`
 
 By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
 This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
 
-#### configurableVariantForSimple: boolean = false
+#### configurableVariantForSimple: boolean = `false`
 
 If a simple product is part of a Configurable product page, should the simple product be
 rendered as a configured option of the configurable product page?
@@ -133,19 +133,19 @@ Magento also returns the Simple product and the Configurable product the simple 
 If that is the case we render the configurable product page instead of the simple product page but
 the options to select the simple product are pre-selected.
 
-#### configurableVariantValues: [MagentoConfigurableVariantValues](#MagentoConfigurableVariantValues) = { content: true, url: true }
+#### configurableVariantValues: [MagentoConfigurableVariantValues](#MagentoConfigurableVariantValues) = `{ content: true, url: true }`
 
 When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant.
 
 Enabling options here will allow switching of those variants.
 
-#### crossSellsHideCartItems: boolean = false
+#### crossSellsHideCartItems: boolean = `false`
 
 Determines if cross sell items should be shown when the user already has the product in their cart. This will result in a product will popping off the screen when you add it to the cart.
 
 Default: 'false'
 
-#### crossSellsRedirectItems: boolean = false
+#### crossSellsRedirectItems: boolean = `false`
 
 Determines if, after adding a cross-sell item to the cart, the user should be redirected to the cross-sell items of the product they just added.
 
@@ -163,7 +163,7 @@ This value should match Magento 2's configuration value for
 
 Debug configuration for GraphCommerce
 
-#### demoMode: boolean = true
+#### demoMode: boolean = `true`
 
 Enables some demo specific code that is probably not useful for a project:
 
@@ -263,7 +263,7 @@ By default GraphCommerce will statically generate all product and category pages
 
 To enable next.js' preview mode, configure the secret you'd like to use.
 
-#### productFiltersLayout: 'DEFAULT' | 'SIDEBAR' = 'DEFAULT'
+#### productFiltersLayout: DEFAULT | SIDEBAR = `DEFAULT`
 
 Layout how the filters are rendered.
 DEFAULT: Will be rendered as horzontal chips on desktop and mobile
@@ -427,6 +427,6 @@ Number of recently viewed products to be stored in localStorage
 
 SidebarGalleryConfig will contain all configuration values for the Sidebar Gallery component.
 
-#### paginationVariant: 'DOTS' | 'THUMBNAILS_BOTTOM'
+#### paginationVariant: DOTS | THUMBNAILS_BOTTOM
 
 Variant used for the pagination

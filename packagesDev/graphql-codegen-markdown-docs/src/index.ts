@@ -48,7 +48,7 @@ export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPlugi
     BooleanValue: {
       leave: (node) => (node.value ? 'true' : 'false'),
     },
-    EnumValue: { leave: (node) => `'${node.value}'` },
+    EnumValue: { leave: (node) => `${node.value}` },
     IntValue: { leave: (node) => node.value },
     ObjectValue: {
       leave: (node) => {
@@ -66,7 +66,7 @@ export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPlugi
     },
     InputValueDefinition: {
       leave: (node) => {
-        const defaultValue = node.defaultValue ? ` = ${node.defaultValue}` : ''
+        const defaultValue = node.defaultValue ? ` = \`${node.defaultValue}\`` : ''
         return `${node.name}: ${node.type}${defaultValue}${descriptionText(node)}`
       },
     },
@@ -92,7 +92,7 @@ export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPlugi
     EnumTypeDefinition: {
       leave: (node) => {
         if (node.values)
-          enumStings.set(node.name, node.values.map((v) => `'${v.trim()}'`).join(' | '))
+          enumStings.set(node.name, node.values.map((v) => `${v.trim()}`).join(' | '))
         return ''
       },
     },
