@@ -43,7 +43,9 @@ export function ProductListPagination({
       <PaginationExtended
         count={page_info?.total_pages}
         page={page_info?.current_page ?? 1}
-        paginationHref={({ page }) => `${productListLink({ ...params, currentPage: page })}`}
+        paginationHref={({ page }) =>
+          `${productListLink({ ...params, currentPage: page })}${page === 1 ? '' : '#products'}`
+        }
         {...paginationProps}
       />
     )
