@@ -27,6 +27,9 @@ _export(exports, {
     MagentoConfigurableVariantValuesSchema: function() {
         return MagentoConfigurableVariantValuesSchema;
     },
+    PaginationVariantSchema: function() {
+        return PaginationVariantSchema;
+    },
     ProductFiltersLayoutSchema: function() {
         return ProductFiltersLayoutSchema;
     },
@@ -52,6 +55,10 @@ const definedNonNullAnySchema = _zod.z.any().refine((v)=>isDefinedNonNullAny(v))
 const CompareVariantSchema = _zod.z.enum([
     "CHECKBOX",
     "ICON"
+]);
+const PaginationVariantSchema = _zod.z.enum([
+    "COMPACT",
+    "EXTENDED"
 ]);
 const ProductFiltersLayoutSchema = _zod.z.enum([
     "DEFAULT",
@@ -94,6 +101,7 @@ function GraphCommerceConfigSchema() {
         previewSecret: _zod.z.string().nullish(),
         productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),
+        productListPaginationVariant: PaginationVariantSchema,
         productRoute: _zod.z.string().nullish(),
         recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),

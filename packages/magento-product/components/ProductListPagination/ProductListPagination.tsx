@@ -1,5 +1,5 @@
-import { MuiPagination, Pagination } from '@graphcommerce/next-ui'
-import { Link, PaginationProps } from '@mui/material'
+import { PaginationExtended, Pagination } from '@graphcommerce/next-ui'
+import { Box, Link, PaginationProps } from '@mui/material'
 import { productListLink } from '../../hooks/useProductListLink'
 import { ProductListParams } from '../ProductListItems/filterTypes'
 import { ProductListPaginationFragment } from './ProductListPagination.gql'
@@ -16,8 +16,8 @@ export function ProductListPagination({
 }: ProductPaginationProps) {
   if (!page_info || !page_info.total_pages || !page_info.current_page) return null
 
-  return (
-    <>
+  if (import.meta.graphCommerce.productListPaginationVariant !== 'EXTENDED') {
+    return (
       <Pagination
         count={page_info?.total_pages}
         page={page_info?.current_page ?? 1}
@@ -35,11 +35,19 @@ export function ProductListPagination({
         }}
         {...paginationProps}
       />
-      <MuiPagination
+    )
+  }
+
+  if (import.meta.graphCommerce.productListPaginationVariant === 'EXTENDED') {
+    return (
+      <PaginationExtended
         count={page_info?.total_pages}
         page={page_info?.current_page ?? 1}
-        {...params}
+        paginationHref={({ page }) => `${productListLink({ ...params, currentPage: page })}`}
+        {...paginationProps}
       />
-    </>
-  )
+    )
+  }
+
+  return null
 }

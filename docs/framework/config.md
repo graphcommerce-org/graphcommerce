@@ -109,6 +109,13 @@ GraphQL Magento endpoint.
 Examples:
 - https://magento2.test/graphql
 
+#### productListPaginationVariant: 'COMPACT' | 'EXTENDED' (required) = 'COMPACT'
+
+Pagination variant for the product listings.
+
+COMPACT means: "< Page X of Y >"
+EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
+
 #### storefront: [GraphCommerceStorefrontConfig](#GraphCommerceStorefrontConfig)[] (required)
 
 All storefront configuration for the project
