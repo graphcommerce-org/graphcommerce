@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
-import { FormRow, FullPageMessage } from '@graphcommerce/next-ui'
+import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
+import { PaymentOptionsProps, useCartLock } from '@graphcommerce/magento-cart-payment-method'
+import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
+import { ErrorSnackbar, FormRow, FullPageMessage } from '@graphcommerce/next-ui'
 import {
   FieldValues,
   FormProvider,
@@ -36,13 +37,13 @@ export function BraintreeField<T extends FieldValues = FieldValues>(
     name: HostedFieldsHostedFieldsFieldName
   } & Omit<UseControllerProps<T>, 'name' | 'defaultValue'>,
 ) {
-  const { hostedFields, id, label, name, control } = props
+  const { hostedFields, id, label, name, control, disabled } = props
   const scopedName: HostedFieldsHostedFieldsFieldName = name
 
   const { field, fieldState, formState } = useController({
     name: name as Path<T>,
     control,
-    disabled: !hostedFields,
+    disabled: !hostedFields || disabled,
     shouldUnregister: true,
     rules: {
       validate: () => {
@@ -105,13 +106,13 @@ export function BraintreeField<T extends FieldValues = FieldValues>(
   return (
     <TextField
       id={id}
-      name={name}
       label={label}
       error={invalid}
       helperText={error?.message}
       focused={focused}
       InputProps={{ slots: { input: Field } }}
       InputLabelProps={{ shrink }}
+      {...field}
     />
   )
 }
@@ -119,7 +120,27 @@ export function BraintreeField<T extends FieldValues = FieldValues>(
 /** It sets the selected payment method on the cart. */
 export function PaymentMethodOptions(props: PaymentOptionsProps) {
   const { code, step, Container } = props
-  const hostedFields = useBraintreeHostedFields()
+  const [hostedFields, threeDSecure] = useBraintreeHostedFields()
+  const cart = useCartQuery(BillingPageDocument)
+  const [lockstate, lock, unlock] = useCartLock()
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    if (!lockstate.justLocked && lockstate.locked) unlock({})
+  }, [lockstate.justLocked, lockstate.locked, unlock])
+
+  useEffect(() => {
+    if (!threeDSecure) return
+
+    threeDSecure.on('lookup-complete', (data, next) => {
+      console.log('lookup-complete', data)
+      next?.()
+    })
+    threeDSecure.on('customer-canceled', (data, next) => {
+      console.log('customer-canceled', data)
+      next?.()
+    })
+  }, [threeDSecure])
 
   /**
    * In the this folder you'll also find a PaymentMethodOptionsNoop.graphql document that is
@@ -132,11 +153,50 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
     }
   >(BraintreePaymentMethodOptionsDocument, {
     defaultValues: { code },
+    experimental_useV2: true,
     onBeforeSubmit: async (variables) => {
       if (!hostedFields) throw new Error('Hosted fields not available')
+      if (!threeDSecure) throw new Error('3D Secure not available')
+      if (!cart.data?.cart?.prices?.grand_total?.value) throw Error('Cart total not found')
 
-      const { nonce } = await hostedFields.tokenize()
-      return { ...variables, deviceData: '', nonce, isTokenEnabler: false }
+      try {
+        const tokenResult = await hostedFields.tokenize()
+
+        const verifyResult = await threeDSecure.verifyCard({
+          nonce: tokenResult.nonce,
+          amount: String(cart.data.cart.prices.grand_total.value),
+          bin: tokenResult.details.bin,
+          collectDeviceData: true,
+          billingAddress: {
+            givenName: cart.data.cart.billing_address?.firstname,
+            surname: cart.data.cart.billing_address?.lastname,
+            countryCodeAlpha2: cart.data.cart.billing_address?.country?.code,
+            streetAddress: cart.data.cart.billing_address?.street?.join(' '),
+            postalCode: cart.data.cart.billing_address?.postcode ?? undefined,
+            phoneNumber: cart.data.cart.billing_address?.telephone ?? undefined,
+            region: cart.data.cart.billing_address?.region?.code ?? undefined,
+            locality: cart.data.cart.billing_address?.city,
+          },
+          email: cart.data.cart.email ?? undefined,
+          mobilePhoneNumber: cart.data.cart.billing_address?.telephone ?? undefined,
+        })
+
+        if (!verifyResult.threeDSecureInfo.liabilityShifted) {
+          throw Error('Liability not shifted')
+        }
+
+        await lock({ method: code })
+        return { ...variables, deviceData: '', nonce: verifyResult.nonce, isTokenEnabler: false }
+      } catch (e) {
+        if (e instanceof Error) {
+          form.setError('nonce', {
+            message:
+              'Could not verify your Credit Card, please check your information and try again.',
+          })
+          await unlock({})
+        }
+        throw e
+      }
     },
   })
 
@@ -146,13 +206,21 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
   /** To use an external Pay button we register the current form to be handled there as well. */
   useFormCompose({ form, step, submit, key: `PaymentMethodOptions_${code}` })
 
+  const nonce = form.getFieldState('nonce')
+
+  const loading = !hostedFields
+
   /** This is the form that the user can fill in. In this case we don't wat the user to fill in anything. */
   return (
     <FormProvider {...form}>
       <form onSubmit={submit}>
+        <ErrorSnackbar open={nonce.invalid} onClose={() => form.clearErrors('nonce')}>
+          <>{nonce.error?.message}</>
+        </ErrorSnackbar>
+
         <input type='hidden' {...register('code')} />
 
-        {!hostedFields && (
+        {loading && (
           <FullPageMessage
             icon={<CircularProgress />}
             title={<Trans id='Loading' />}
@@ -161,7 +229,7 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
           />
         )}
 
-        <Box sx={[!hostedFields && { display: 'none' }]}>
+        <Box sx={[loading && { display: 'none' }]}>
           <Container>
             <FormRow sx={[]}>
               <BraintreeField

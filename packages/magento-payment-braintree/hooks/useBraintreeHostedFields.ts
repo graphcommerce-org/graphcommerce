@@ -1,4 +1,4 @@
-import braintree, { HostedFields } from 'braintree-web'
+import braintree, { HostedFields, ThreeDSecure } from 'braintree-web'
 import { useEffect, useState } from 'react'
 import { useBraintreeClient } from './useBraintree'
 
@@ -6,16 +6,21 @@ let teardownPromise: Promise<void> | undefined | void
 
 export function useBraintreeHostedFields() {
   const braintreePromise = useBraintreeClient()
-  const [hostedFields, setHostedFields] = useState<HostedFields | undefined>(undefined)
+  const [hostedFields, setHostedFields] = useState<
+    [HostedFields, ThreeDSecure] | [undefined, undefined]
+  >([undefined, undefined])
 
   useEffect(() => {
-    if (!hostedFields) {
+    if (!hostedFields[0] && !teardownPromise) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       braintreePromise.then(async (client) => {
         if (teardownPromise) {
           await teardownPromise
           teardownPromise = undefined
         }
+
+        const threeDSecure = await braintree.threeDSecure.create({ client, version: 2 })
+
         const hosted = await braintree.hostedFields.create({
           client,
           styles: {
@@ -37,14 +42,15 @@ export function useBraintreeHostedFields() {
           },
         })
 
-        setHostedFields(hosted)
+        setHostedFields([hosted, threeDSecure])
       })
     }
 
     return () => {
-      teardownPromise = hostedFields?.teardown()
+      teardownPromise = hostedFields[0]?.teardown()
+      hostedFields[1]?.teardown()
     }
   }, [])
 
-  return teardownPromise ? undefined : hostedFields
+  return teardownPromise ? [undefined, undefined] : hostedFields
 }
