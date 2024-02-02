@@ -279,6 +279,13 @@ export type GraphCommerceConfig = {
   /** Product filters with better UI for mobile and desktop. */
   productFiltersPro?: InputMaybe<Scalars['Boolean']['input']>;
   /**
+   * Pagination variant for the product listings.
+   *
+   * COMPACT means: "< Page X of Y >"
+   * EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
+   */
+  productListPaginationVariant?: PaginationVariant;
+  /**
    * By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
    *
    * Default: '/p/'
@@ -392,6 +399,10 @@ export type MagentoConfigurableVariantValues = {
   url?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type PaginationVariant =
+  | 'COMPACT'
+  | 'EXTENDED';
+
 export type ProductFiltersLayout =
   | 'DEFAULT'
   | 'SIDEBAR';
@@ -428,6 +439,8 @@ export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny
 
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
+export const PaginationVariantSchema = z.enum(['COMPACT', 'EXTENDED']);
+
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
 export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM']);
@@ -459,6 +472,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     previewSecret: z.string().nullish(),
     productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
     productFiltersPro: z.boolean().nullish(),
+    productListPaginationVariant: PaginationVariantSchema,
     productRoute: z.string().nullish(),
     recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
     robotsAllow: z.boolean().nullish(),

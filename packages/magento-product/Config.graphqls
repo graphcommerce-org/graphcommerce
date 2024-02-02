@@ -3,6 +3,11 @@ enum ProductFiltersLayout {
   SIDEBAR
 }
 
+enum PaginationVariant {
+  COMPACT
+  EXTENDED
+}
+
 extend input GraphCommerceConfig {
   """
   Product filters with better UI for mobile and desktop.
@@ -37,4 +42,12 @@ extend input GraphCommerceConfig {
   Default: 'false'
   """
   crossSellsHideCartItems: Boolean = false
+
+  """
+  Pagination variant for the product listings.
+
+  COMPACT means: "< Page X of Y >"
+  EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
+  """
+  productListPaginationVariant: PaginationVariant! = COMPACT
 }
