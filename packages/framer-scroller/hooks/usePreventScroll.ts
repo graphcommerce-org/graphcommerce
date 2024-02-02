@@ -1,23 +1,23 @@
+import { useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { unstable_getScrollbarSize as getScrollbarSize } from '@mui/utils'
-import { useEffect, useId } from 'react'
 
-function usePreventScroll(shouldPrevent: boolean) {
-  const id = useId()
-
-  useEffect(() => {
-    if (shouldPrevent) {
-      const scrollbarSize = getScrollbarSize(document)
-
-      document.body.style.overflow = 'hidden'
-      document.body.style.paddingRight = `${scrollbarSize}px`
-    }
-
-    return () => {
-      document.body.style.overflow = ''
-      document.body.style.paddingRight = ''
-    }
-  }, [id, shouldPrevent])
+export function unlockScroll() {
+  document.body.style.overflow = ''
+  document.body.style.paddingRight = ''
 }
 
-export const unstable_usePreventScroll = usePreventScroll
+export function lockScroll() {
+  const scrollbarSize = getScrollbarSize(document)
+  document.body.style.overflow = 'hidden'
+  document.body.style.paddingRight = `${scrollbarSize}px`
+}
+
+function useScrollLock(shouldPrevent: boolean) {
+  useIsomorphicLayoutEffect(() => {
+    if (shouldPrevent) lockScroll()
+    return () => unlockScroll()
+  }, [shouldPrevent])
+}
+
+export const unstable_usePreventScroll = useScrollLock
