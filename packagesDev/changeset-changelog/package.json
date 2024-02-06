@@ -2,7 +2,7 @@
   "name": "@graphcommerce/changeset-changelog",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "8.0.1-canary.2",
+  "version": "8.0.1-canary.3",
   "type": "commonjs",
   "main": "dist/index.js",
   "types": "src/index.ts",
