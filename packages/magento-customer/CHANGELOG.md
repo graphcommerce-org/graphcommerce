@@ -1,5 +1,21 @@
 # Change Log
 
+## 8.0.1
+
+### Patch Changes
+
+- [#2177](https://github.com/graphcommerce-org/graphcommerce/pull/2177) [`816d789`](https://github.com/graphcommerce-org/graphcommerce/commit/816d7893159528bbe4ffc51c3958c806b81b58b0) - Change sorting for customer orders in Descending Created at order
+  ([@LaurensFranken](https://github.com/LaurensFranken))
+
+- [#2191](https://github.com/graphcommerce-org/graphcommerce/pull/2191) [`13ffa6b`](https://github.com/graphcommerce-org/graphcommerce/commit/13ffa6b945f1c72bf1fdc9298e4ce5dd76b48d73) - When a user was logging in from the checkout react would be caught in an infinite loop and thus the page would hang
+  ([@JoshuaS98](https://github.com/JoshuaS98))
+
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`09a2cc3`](https://github.com/graphcommerce-org/graphcommerce/commit/09a2cc35ceb5e714ffd02e573eebe7de842ae327) - Do not try to automatically invalidate the current token and fully rely on the Session Expired dialog
+  ([@paales](https://github.com/paales))
+
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`ee969bf`](https://github.com/graphcommerce-org/graphcommerce/commit/ee969bfc5415392747b04e0484685f5c611a2559) - After signing out the currentCartId was still returning a value causing the cart to be shown after signing out
+  ([@paales](https://github.com/paales))
+
 ## 8.0.1-canary.4
 
 ### Patch Changes

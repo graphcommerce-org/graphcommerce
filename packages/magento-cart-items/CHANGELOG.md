@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.1
+
+### Patch Changes
+
+- [#2190](https://github.com/graphcommerce-org/graphcommerce/pull/2190) [`770a309`](https://github.com/graphcommerce-org/graphcommerce/commit/770a309cdf0586aaaed5defd345e451dee8d89c8) - Fixed a bug concerning customizable options. Customizable options of configurable products are shown again in the cart.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.0.1-canary.4
 
 ## 8.0.1-canary.3

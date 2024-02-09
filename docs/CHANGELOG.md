@@ -1,5 +1,15 @@
 # Change Log
 
+## 8.0.1
+
+### Patch Changes
+
+- [#2186](https://github.com/graphcommerce-org/graphcommerce/pull/2186) [`09eb25c`](https://github.com/graphcommerce-org/graphcommerce/commit/09eb25c9892bf4cf57519024e31c2ae4cf2f7a0b) - Update Magento known issues
+  ([@hnsr](https://github.com/hnsr))
+
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`6c4cee8`](https://github.com/graphcommerce-org/graphcommerce/commit/6c4cee8469ee4934281bda53ac96aeb5af2f9479) - Make sure the config page can be properly rendered in the docs
+  ([@paales](https://github.com/paales))
+
 ## 8.0.1-canary.4
 
 ## 8.0.1-canary.3
