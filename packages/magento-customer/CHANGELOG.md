@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.1-canary.4
+
+### Patch Changes
+
+- [#2191](https://github.com/graphcommerce-org/graphcommerce/pull/2191) [`13ffa6b`](https://github.com/graphcommerce-org/graphcommerce/commit/13ffa6b945f1c72bf1fdc9298e4ce5dd76b48d73) - When a user was logging in from the checkout react would be caught in an infinite loop and thus the page would hang
+  ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 8.0.1-canary.3
 
 ## 8.0.1-canary.2
