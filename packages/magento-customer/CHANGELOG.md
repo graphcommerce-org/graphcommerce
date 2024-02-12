@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.2
+
+### Patch Changes
+
+- [#2197](https://github.com/graphcommerce-org/graphcommerce/pull/2197) [`044331c`](https://github.com/graphcommerce-org/graphcommerce/commit/044331cf1ea3a6040cfe8e0f79fb62025d5a9d90) - Revert: Change sorting for customer orders in Descending Created at order
+  ([@paales](https://github.com/paales))
+
 ## 8.0.2-canary.3
 
 ## 8.0.2-canary.2

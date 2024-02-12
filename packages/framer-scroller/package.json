@@ -2,7 +2,7 @@
   "name": "@graphcommerce/framer-scroller",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "8.0.2-canary.3",
+  "version": "8.0.2",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
@@ -18,11 +18,11 @@
     "popmotion": "11.0.5"
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^8.0.2-canary.3",
-    "@graphcommerce/framer-utils": "^8.0.2-canary.3",
-    "@graphcommerce/image": "^8.0.2-canary.3",
-    "@graphcommerce/prettier-config-pwa": "^8.0.2-canary.3",
-    "@graphcommerce/typescript-config-pwa": "^8.0.2-canary.3",
+    "@graphcommerce/eslint-config-pwa": "^8.0.2",
+    "@graphcommerce/framer-utils": "^8.0.2",
+    "@graphcommerce/image": "^8.0.2",
+    "@graphcommerce/prettier-config-pwa": "^8.0.2",
+    "@graphcommerce/typescript-config-pwa": "^8.0.2",
     "@lingui/core": "^4.2.1",
     "@lingui/react": "^4.2.1",
     "@mui/material": "^5.10.16",
