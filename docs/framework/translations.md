@@ -215,6 +215,10 @@ msgstr ""
 > suggestions in VS Code with the
 > [Github copilot extention ↗](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot).
 
+## Use country specific locales like `en-us` and `en-gb`
+
+Configure `linguiLocale` in the storefront config.
+
 ## Next steps
 
 - Learn more about
