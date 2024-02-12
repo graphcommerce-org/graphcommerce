@@ -1,5 +1,7 @@
 # @graphcommerce/magento-payment-paypal
 
+## 8.0.2-canary.2
+
 ## 8.0.2-canary.1
 
 ## 8.0.2-canary.0

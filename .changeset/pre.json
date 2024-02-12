@@ -78,6 +78,7 @@
     "@graphcommerce/typescript-config-pwa": "8.0.1"
   },
   "changesets": [
+    "friendly-birds-scream",
     "lucky-stingrays-tell",
     "yellow-phones-give"
   ]
