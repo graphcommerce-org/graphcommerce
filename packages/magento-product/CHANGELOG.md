@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.2-canary.3
+
+### Patch Changes
+
+- [#2201](https://github.com/graphcommerce-org/graphcommerce/pull/2201) [`e16fea4`](https://github.com/graphcommerce-org/graphcommerce/commit/e16fea4b0ff9661fd15a32089fbfc0c6a1c903fe) - Fix issue where patches would not be applied correctly on the AddProductsAddToCartForm
+  ([@paales](https://github.com/paales))
+
 ## 8.0.2-canary.2
 
 ## 8.0.2-canary.1
