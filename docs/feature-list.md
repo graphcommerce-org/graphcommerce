@@ -87,15 +87,15 @@ Features taken from the Magento Commerce 2 Feature List
 - [x] Blend content and commerce by adding products to content pages and rich
       content to product pages. — [Enhanced]
 - [x] Create reusable dynamic blocks targeted to customer segments. — [Commerce]
-- [x] Easily stage and preview content for seamless updates. — [Enhanced]
-- [x] Manage upcoming site changes with a timeline dashboard. — [Enhanced]
+- [x] Easily stage and preview content for seamless updates. — [Partial]
+- [x] Manage upcoming site changes with a timeline dashboard. - [Commerce]
 - [x] Organize content pages and add pagination, navigation, and menus with a
       page hierarchy tool. — [Enhanced]
 - [x] Track and restore previous versions of content pages. — [Enhanced]
 - [x] Engage customers with exciting imagery from Adobe Stock, straight from
       your Adobe Commerce instance.
 - [x] Save content and layouts as templates. Apply them to new areas across
-      sites and store views. — [Enhanced]
+      sites and store views.
 - [x] Provide creatives, designers, and agencies with direct, controlled access
       to the Media Gallery.
 
@@ -214,7 +214,7 @@ Features taken from the Magento Commerce 2 Feature List
 ### Checkout
 
 - [x] Include a mini cart on store pages to summarize products in the cart.
-- [x] Display an order summary with product images in checkout.
+- [x] Display an order summary with product images in checkout. [Todo]
 - [x] Offer guest and registered user checkout. Registered customers are
       automatically recognized when they enter their email addresses.
 - [ ] Boost conversion rates with an Instant Purchase option that uses saved
@@ -382,7 +382,7 @@ Features taken from the Magento Commerce 2 Feature List
       APIs with REST and GraphQL support. — [Enhanced]
 - [x] Smoothly manage interactions between extensions using plug-ins and
       dependency injection software design patterns. —
-      [Plugins](https://www.graphcommerce.org/docs/framework/plugins-react_)
+      [Plugins](https://www.graphcommerce.org/docs/framework/plugins-react)
 - [ ] Accelerate time-to-market and improve code quality with a fully-automated
       testing framework.
 - [ ] Update code with a standalone installer that checks for prerequisites
@@ -404,10 +404,12 @@ Features taken from the Magento Commerce 2 Feature List
 - [x] Feel confident with regular scanning, external penetration testing, and
       bug bounty programs that promote core platform security.
 - [x] Stay informed about security issues through the Adobe Security Center and
-      mailing list.
+      mailing list. [Commerce]
 - [x] Prevent private data from sending to third parties with Egress Filtering.
+      [Commerce]
 - [x] Support for leading iPaaS platforms to enable enterprise integrations
 - [x] Optimize your upgrade process with the Upgrade Compatibility Tool.
+      [Commerce]
 
 ### Layout and theming
 
