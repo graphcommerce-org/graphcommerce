@@ -20,14 +20,16 @@ export function AccountOrders(props: AccountOrdersProps) {
   const pageInfo = orders?.page_info
   const isFirstPage = pageInfo?.current_page === 1
 
-  const endLatestIndex = Math.min(2, orders?.items?.length || 2)
-  const latestOrders = orders?.items?.slice(0, endLatestIndex)
+  // whenever it's possible, pick last {amountLatestOrders} items, then reverse the resulting array,
+  // because we want to render the latest order first,
+  // but the API returns the orders in ASC order...
+  const latestOrders = orders?.items
+    .slice(Math.max((orders?.items?.length ?? 0) - 2, 0), orders?.items?.length)
+    .reverse()
 
-  const startOlderIndex = Math.min(2, orders?.items?.length || 0)
-  const endOlderIndex = orders?.items?.length || 0
   const olderOrders = isFirstPage
-  ? orders?.items?.slice(startOlderIndex, endOlderIndex)
-  : orders?.items
+    ? orders?.items.slice(0, Math.max((orders?.items?.length ?? 0) - 2, 0)).reverse()
+    : orders?.items
 
   return (
     <Box

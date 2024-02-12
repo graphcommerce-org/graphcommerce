@@ -1,7 +1,4 @@
-query AccountDashboardOrders(
-  $currentPage: Int!,
-  $pageSize: Int!,
-  $sort: CustomerOrderSortInput = { sort_direction: DESC, sort_field: CREATED_AT }) {
+query AccountDashboardOrders($currentPage: Int!, $pageSize: Int!) {
   customer {
     ...AccountOrders
   }
