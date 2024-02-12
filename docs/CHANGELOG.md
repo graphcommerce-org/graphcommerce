@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.2-canary.1
+
+### Patch Changes
+
+- [#2193](https://github.com/graphcommerce-org/graphcommerce/pull/2193) [`317250a`](https://github.com/graphcommerce-org/graphcommerce/commit/317250a580b9f0b5175d9df93ba2cf62193ea383) - Updated docs to reflect featurelist more accurately
+  ([@paales](https://github.com/paales))
+
 ## 8.0.2-canary.0
 
 ### Patch Changes

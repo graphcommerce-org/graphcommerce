@@ -78,6 +78,7 @@
     "@graphcommerce/typescript-config-pwa": "8.0.1"
   },
   "changesets": [
-    "lucky-stingrays-tell"
+    "lucky-stingrays-tell",
+    "yellow-phones-give"
   ]
 }
