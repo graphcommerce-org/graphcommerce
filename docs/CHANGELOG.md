@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.2-canary.0
+
+### Patch Changes
+
+- [#2195](https://github.com/graphcommerce-org/graphcommerce/pull/2195) [`207cd41`](https://github.com/graphcommerce-org/graphcommerce/commit/207cd4147621e53353b0b354c80d575df78089f0) - Documentation on multistore setup added
+  ([@paales](https://github.com/paales))
+
 ## 8.0.1
 
 ### Patch Changes
