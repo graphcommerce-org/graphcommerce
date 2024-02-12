@@ -23,13 +23,14 @@ import {
   BraintreePaymentMethodOptionsMutationVariables,
 } from '../../BraintreePaymentMethodOptions.gql'
 import { useBraintreeHostedFields } from '../../hooks/useBraintreeHostedFields'
+import { isBraintreeError } from '../../utils/isBraintreeError'
 
 const Field = React.forwardRef<any, { ownerState: unknown; as: string }>((props, ref) => {
   const { ownerState, as, ...rest } = props
   return <Box {...rest} ref={ref} sx={{ height: 54, width: '100%' }} />
 })
 
-export function BraintreeField<T extends FieldValues = FieldValues>(
+export function BraintreeField<T extends FieldValues>(
   props: {
     hostedFields: HostedFields | undefined
     id: string
@@ -40,13 +41,17 @@ export function BraintreeField<T extends FieldValues = FieldValues>(
   const { hostedFields, id, label, name, control, disabled } = props
   const scopedName: HostedFieldsHostedFieldsFieldName = name
 
-  const { field, fieldState, formState } = useController({
+  const {
+    field: { ref, ...field },
+    fieldState,
+  } = useController({
     name: name as Path<T>,
     control,
-    disabled: !hostedFields || disabled,
-    shouldUnregister: true,
+    disabled: Boolean(!hostedFields || disabled),
+    // shouldUnregister: true,
     rules: {
       validate: () => {
+        console.log('validate')
         if (!hostedFields) return false
         const hostedField = hostedFields.getState().fields[name]
 
@@ -65,7 +70,7 @@ export function BraintreeField<T extends FieldValues = FieldValues>(
   const [shrink, setShrink] = useState(false)
 
   // Manual ref handling
-  field.ref({
+  ref({
     focus: () => {
       hostedFields?.focus(scopedName)
       setFocused(true)
@@ -73,33 +78,34 @@ export function BraintreeField<T extends FieldValues = FieldValues>(
   })
 
   useEffect(() => {
-    const onBlur = (event: HostedFieldsEvent) => {
+    if (!hostedFields) return () => {}
+    const handleBlur = (event: HostedFieldsEvent) => {
       if (event.emittedBy !== name) return
       setShrink(!event.fields[name].isEmpty)
       setFocused(false)
     }
-    const onFocus = (event: HostedFieldsEvent) => {
+    const handleFocus = (event: HostedFieldsEvent) => {
       if (event.emittedBy !== name) return
       setShrink(true)
       setFocused(true)
     }
-    const onNotEmpty = (event: HostedFieldsEvent) => {
+    const handleNotEmpty = (event: HostedFieldsEvent) => {
       if (event.emittedBy !== name) return
       setShrink(true)
     }
 
     try {
-      hostedFields?.on('focus', onFocus)
-      hostedFields?.on('blur', onBlur)
-      hostedFields?.on('notEmpty', onNotEmpty)
+      hostedFields.on('focus', handleFocus)
+      hostedFields.on('blur', handleBlur)
+      hostedFields.on('notEmpty', handleNotEmpty)
     } catch {
       // swallow error, sometimes due to timing issue this gets called after the hostedFields.teardown() is called.
     }
 
     return () => {
-      hostedFields?.off('focus', onFocus)
-      hostedFields?.off('blur', onBlur)
-      hostedFields?.off('blur', onNotEmpty)
+      hostedFields.off('focus', handleFocus)
+      hostedFields.off('blur', handleBlur)
+      hostedFields.off('blur', handleNotEmpty)
     }
   }, [hostedFields, name])
 
@@ -188,13 +194,59 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
         await lock({ method: code })
         return { ...variables, deviceData: '', nonce: verifyResult.nonce, isTokenEnabler: false }
       } catch (e) {
-        if (e instanceof Error) {
+        if (isBraintreeError(e)) {
+          switch (e.code) {
+            case 'HOSTED_FIELDS_FIELDS_EMPTY':
+              // occurs when none of the fields are filled in
+              console.error('All fields are empty! Please fill out the form.')
+              break
+            case 'HOSTED_FIELDS_FIELDS_INVALID':
+              // occurs when certain fields do not pass client side validation
+              // console.error('Some fields are invalid:', tokenizeErr.details.invalidFieldKeys)
+
+              // you can also programtically access the field containers for the invalid fields
+              // e.details.invalidFields.forEach((fieldContainer) => {
+              //   form.setError(fieldContainer.fieldKey, {})
+              //   fieldContainer.className = 'invalid'
+              // })
+              break
+            case 'HOSTED_FIELDS_TOKENIZATION_FAIL_ON_DUPLICATE':
+              // occurs when:
+              //   * the client token used for client authorization was generated
+              //     with a customer ID and the fail on duplicate payment method
+              //     option is set to true
+              //   * the card being tokenized has previously been vaulted (with any customer)
+              // See: https://developers.braintreepayments.com/reference/request/client-token/generate/#options.fail_on_duplicate_payment_method
+              console.error('This payment method already exists in your vault.')
+              break
+            case 'HOSTED_FIELDS_TOKENIZATION_CVV_VERIFICATION_FAILED':
+              // occurs when:
+              //   * the client token used for client authorization was generated
+              //     with a customer ID and the verify card option is set to true
+              //     and you have credit card verification turned on in the Braintree
+              //     control panel
+              //   * the cvv does not pass verfication (https://developers.braintreepayments.com/reference/general/testing/#avs-and-cvv/cid-responses)
+              // See: https://developers.braintreepayments.com/reference/request/client-token/generate/#options.verify_card
+              console.error('CVV did not pass verification')
+              break
+            case 'HOSTED_FIELDS_FAILED_TOKENIZATION':
+              // occurs for any other tokenization error on the server
+              console.error('Tokenization failed server side. Is the card valid?')
+              break
+            case 'HOSTED_FIELDS_TOKENIZATION_NETWORK_ERROR':
+              // occurs when the Braintree gateway cannot be contacted
+              console.error('Network error occurred when tokenizing.')
+              break
+            default:
+              console.error('Something bad happened!', e)
+          }
+        } else if (e instanceof Error) {
           form.setError('nonce', {
             message:
               'Could not verify your Credit Card, please check your information and try again.',
           })
-          await unlock({})
         }
+        await unlock({})
         throw e
       }
     },
