@@ -64,8 +64,8 @@ export function CheckboxElement<TFieldValues extends FieldValues>({
                 label={label || ''}
                 control={
                   <Checkbox
-                    inputRef={checkboxRef}
                     {...rest}
+                    inputRef={checkboxRef}
                     color={rest.color || 'primary'}
                     sx={{
                       ...(Array.isArray(sx) ? sx : [sx]),
