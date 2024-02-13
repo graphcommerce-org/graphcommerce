@@ -1,5 +1,82 @@
 # Change Log
 
+## 8.0.2
+
+## 8.0.2-canary.3
+
+## 8.0.2-canary.2
+
+## 8.0.2-canary.1
+
+## 8.0.2-canary.0
+
+## 8.0.1
+
+## 8.0.1-canary.4
+
+## 8.0.1-canary.3
+
+## 8.0.1-canary.2
+
+## 8.0.1-canary.1
+
+## 8.0.1-canary.0
+
+## 8.0.0
+
+### Minor Changes
+
+- [#2110](https://github.com/graphcommerce-org/graphcommerce/pull/2110) [`d2e716d`](https://github.com/graphcommerce-org/graphcommerce/commit/d2e716d437fcfed13388ef536a8e73513744027b) - ---
+
+  '@graphcommerce/magento-cart-email': minor '@graphcommerce/magento-customer': minor
+
+  ***
+
+  Added a new `enableGuestCheckoutLogin` configuration: During customer login, GraphCommerce queries Magento to determine whether the customer account already exists or not. If not, the sign-up form is shown instead.
+
+  To restore previous behavior, set `enableGuestCheckoutLogin` to true. For Magento versions, 2.4.7, 2.4.6-p1 and up, 2.4.5-p3 and up, 2.4.4-p4 and up, the following setting must be set to Yes: `Stores -> Configuration -> Sales -> Checkout -> Checkout Options -> Enable Guest Checkout Login` ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+### Patch Changes
+
+- [#2107](https://github.com/graphcommerce-org/graphcommerce/pull/2107) [`2f51504`](https://github.com/graphcommerce-org/graphcommerce/commit/2f5150456eabcce410ad8a0f1cbebeedabb6564c) - Remember email adress when going from checkout to signin/up form
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.0-canary.100
+
+## 8.0.0-canary.99
+
+## 8.0.0-canary.98
+
+## 8.0.0-canary.97
+
+## 8.0.0-canary.96
+
+## 8.0.0-canary.95
+
+## 8.0.0-canary.94
+
+## 8.0.0-canary.93
+
+## 8.0.0-canary.92
+
+## 8.0.0-canary.91
+
+## 8.0.0-canary.90
+
+## 8.0.0-canary.89
+
+## 8.0.0-canary.88
+
+## 8.0.0-canary.87
+
+## 8.0.0-canary.86
+
+## 8.0.0-canary.85
+
+## 8.0.0-canary.84
+
+## 8.0.0-canary.83
+
 ## 8.0.0-canary.82
 
 ## 8.0.0-canary.81

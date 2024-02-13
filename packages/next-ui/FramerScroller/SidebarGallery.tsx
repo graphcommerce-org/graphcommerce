@@ -190,7 +190,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 },
                 zoomed && {
                   position: 'relative',
-                  top: 0,
+                  top: { xs: 0, md: 0 },
                   marginTop: 0,
                   paddingTop: dvh(100),
                 },

@@ -2,8 +2,6 @@
 
 Integrates GraphCommerce with the Magento PayPal module.
 
-Note: Not yet working
-
 ## Installation
 
 1. Find current version of your `@graphcommerce/magento-cart-payment-method` in

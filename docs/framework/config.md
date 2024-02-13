@@ -115,12 +115,12 @@ When Magento's StoreConfig adds this value, this can be replaced.
 
 Use compare functionality
 
-#### compareVariant: 'CHECKBOX' | 'ICON' = 'ICON'
+#### compareVariant: CHECKBOX | ICON = `ICON`
 
 By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
 This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
 
-#### configurableVariantForSimple: boolean = false
+#### configurableVariantForSimple: boolean = `false`
 
 If a simple product is part of a Configurable product page, should the simple product be
 rendered as a configured option of the configurable product page?
@@ -133,19 +133,19 @@ Magento also returns the Simple product and the Configurable product the simple 
 If that is the case we render the configurable product page instead of the simple product page but
 the options to select the simple product are pre-selected.
 
-#### configurableVariantValues: [MagentoConfigurableVariantValues](#MagentoConfigurableVariantValues) = { content: true, url: true }
+#### configurableVariantValues: [MagentoConfigurableVariantValues](#MagentoConfigurableVariantValues) = `{ content: true, url: true }`
 
 When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant.
 
 Enabling options here will allow switching of those variants.
 
-#### crossSellsHideCartItems: boolean = false
+#### crossSellsHideCartItems: boolean = `false`
 
 Determines if cross sell items should be shown when the user already has the product in their cart. This will result in a product will popping off the screen when you add it to the cart.
 
 Default: 'false'
 
-#### crossSellsRedirectItems: boolean = false
+#### crossSellsRedirectItems: boolean = `false`
 
 Determines if, after adding a cross-sell item to the cart, the user should be redirected to the cross-sell items of the product they just added.
 
@@ -163,7 +163,7 @@ This value should match Magento 2's configuration value for
 
 Debug configuration for GraphCommerce
 
-#### demoMode: boolean = true
+#### demoMode: boolean = `true`
 
 Enables some demo specific code that is probably not useful for a project:
 
@@ -204,6 +204,10 @@ ReCAPTCHA can then be enabled/disabled for the different forms, separately (Stor
 The Google Tagmanager ID to be used on the site.
 
 This value is required even if you are configuring different values for each locale.
+
+#### hygraphManagementApi: string
+
+Hygraph Management API. **Only used for migrations.**
 
 #### hygraphProjectId: string
 
@@ -251,13 +255,15 @@ yarn graphcommerce hygraph-migrate
 
 #### limitSsg: boolean
 
-Limit the static generation of SSG when building
+Limit the static generation of SSG when building.
+
+By default GraphCommerce will statically generate all product and category pages during build. This can take quite a long time, to skip this step set this value to true.
 
 #### previewSecret: string
 
 To enable next.js' preview mode, configure the secret you'd like to use.
 
-#### productFiltersLayout: 'DEFAULT' | 'SIDEBAR' = 'DEFAULT'
+#### productFiltersLayout: DEFAULT | SIDEBAR = `DEFAULT`
 
 Layout how the filters are rendered.
 DEFAULT: Will be rendered as horzontal chips on desktop and mobile
@@ -328,7 +334,9 @@ All storefront configuration for the project
 
 #### locale: string (required)
 
-Must be a locale string https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers
+Must be a [locale string](https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers) for automatic redirects to work.
+
+This value can be used as a sub-path identifier only, make sure linguiLocale is configured for each URL.
 
 #### magentoStoreCode: string (required)
 
@@ -384,7 +392,9 @@ Add a gcms-locales header to make sure queries return in a certain language, can
 
 #### linguiLocale: string
 
-Specify a custom locale for to load translations.
+Specify a custom locale for to load translations. Must be lowercase valid locale.
+
+This value is also used for the Intl.
 
 ### MagentoConfigurableVariantValues
 
@@ -421,6 +431,6 @@ Number of recently viewed products to be stored in localStorage
 
 SidebarGalleryConfig will contain all configuration values for the Sidebar Gallery component.
 
-#### paginationVariant: 'DOTS' | 'THUMBNAILS_BOTTOM'
+#### paginationVariant: DOTS | THUMBNAILS_BOTTOM
 
 Variant used for the pagination

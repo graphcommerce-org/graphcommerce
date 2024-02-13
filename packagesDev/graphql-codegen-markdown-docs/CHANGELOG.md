@@ -1,5 +1,80 @@
 # Change Log
 
+## 8.0.2
+
+## 8.0.2-canary.3
+
+## 8.0.2-canary.2
+
+## 8.0.2-canary.1
+
+## 8.0.2-canary.0
+
+## 8.0.1
+
+### Patch Changes
+
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`6c4cee8`](https://github.com/graphcommerce-org/graphcommerce/commit/6c4cee8469ee4934281bda53ac96aeb5af2f9479) - Make sure the config page can be properly rendered in the docs
+  ([@paales](https://github.com/paales))
+
+## 8.0.1-canary.4
+
+## 8.0.1-canary.3
+
+## 8.0.1-canary.2
+
+## 8.0.1-canary.1
+
+## 8.0.1-canary.0
+
+### Patch Changes
+
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`6c4cee8`](https://github.com/graphcommerce-org/graphcommerce/commit/6c4cee8469ee4934281bda53ac96aeb5af2f9479) - Make sure the config page can be properly rendered in the docs
+  ([@paales](https://github.com/paales))
+
+## 8.0.0
+
+### Patch Changes
+
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`2e46389`](https://github.com/graphcommerce-org/graphcommerce/commit/2e46389edcd506c490cd7273be384e5c42df4a9e) - Render `framework/config.md` more nicely, so that we follow a more typescript-esque style and inline the enums.
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 8.0.0-canary.100
+
+## 8.0.0-canary.99
+
+## 8.0.0-canary.98
+
+## 8.0.0-canary.97
+
+## 8.0.0-canary.96
+
+## 8.0.0-canary.95
+
+## 8.0.0-canary.94
+
+## 8.0.0-canary.93
+
+## 8.0.0-canary.92
+
+## 8.0.0-canary.91
+
+## 8.0.0-canary.90
+
+## 8.0.0-canary.89
+
+## 8.0.0-canary.88
+
+## 8.0.0-canary.87
+
+## 8.0.0-canary.86
+
+## 8.0.0-canary.85
+
+## 8.0.0-canary.84
+
+## 8.0.0-canary.83
+
 ## 8.0.0-canary.82
 
 ## 8.0.0-canary.81

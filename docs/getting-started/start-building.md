@@ -84,31 +84,26 @@ property, you need to modify a query.
   /node_modules/@graphcommerce/magento-category/queries/CategoryQueryFragment.graphql,
   and copy it's contents
 - In /graphql/CategoryPage.graphql, paste the contents of
-  `...CategoryQueryFragment` and add `children_count` property:
+  `...CategoryQueryFragment`, remove the existing fragments and add
+  `children_count` property:
 
 ```graphql
-query CategoryPage($url: String!, $rootCategory: String!) {
-  ...MenuQueryFragment
-  ...FooterQueryFragment
-  ...PageContentQueryFragment
+query CategoryPage($url: String!) {
   ...CategoryQueryFragment
 
   categories(filters: { url_path: { eq: $url } }) {
     items {
       uid
       children_count
-      ...CategoryBreadcrumb
-      ...CategoryDescription
-      ...CategoryChildren
-      ...CategoryMeta
-      ...CategoryHeroNav
     }
   }
 }
 ```
 
 - Save the file. /graphql/CategoryPage.gql.ts should be regenerated, and contain
-  the following addition:
+  the following addition.
+- GraphCommerce's GraphQL Codegen will automatically merge the added query with
+  the query in the fragment (only if the query and arguments match exactly).
 
 ```json
 { "kind": "Field", "name": { "kind": "Name", "value": "children_count" } }

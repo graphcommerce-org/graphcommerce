@@ -196,6 +196,13 @@ const graphcommerce6to7 = async (schema) => {
         enumerationApiId: 'RowColumnOneVariants',
         parentApiId: 'RowColumnOne',
     }, 'RowColumnOne', 'model');
+    (0, migrationAction_1.migrationAction)(schema, 'componentUnionField', 'create', {
+        displayName: 'Conditions',
+        apiId: 'conditions',
+        parentApiId: 'ConditionOr',
+        componentApiIds: ['ConditionText', 'ConditionNumber'],
+        isList: true,
+    }, 'ConditionOr', 'component');
     return migrationAction_1.client.run(true);
 };
 exports.graphcommerce6to7 = graphcommerce6to7;

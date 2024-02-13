@@ -32,6 +32,9 @@ const name = 'TextInputNumber' as const
 const parts = ['quantity', 'quantityInput', 'button'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
+/**
+ * @deprecated Please us NumberFieldElement
+ */
 export function TextInputNumber(props: TextInputNumberProps) {
   const {
     DownProps = {},

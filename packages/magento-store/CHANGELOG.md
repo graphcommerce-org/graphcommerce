@@ -1,5 +1,83 @@
 # Change Log
 
+## 8.0.2
+
+## 8.0.2-canary.3
+
+## 8.0.2-canary.2
+
+## 8.0.2-canary.1
+
+## 8.0.2-canary.0
+
+## 8.0.1
+
+### Patch Changes
+
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`61f90af`](https://github.com/graphcommerce-org/graphcommerce/commit/61f90afc8bc229b2cd4793f724509783af138deb) - redirectOrNotFound would log the incorrect request URL
+  ([@paales](https://github.com/paales))
+
+## 8.0.1-canary.4
+
+## 8.0.1-canary.3
+
+## 8.0.1-canary.2
+
+## 8.0.1-canary.1
+
+## 8.0.1-canary.0
+
+### Patch Changes
+
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`61f90af`](https://github.com/graphcommerce-org/graphcommerce/commit/61f90afc8bc229b2cd4793f724509783af138deb) - redirectOrNotFound would log the incorrect request URL
+  ([@paales](https://github.com/paales))
+
+## 8.0.0
+
+### Patch Changes
+
+- [#2067](https://github.com/graphcommerce-org/graphcommerce/pull/2067) [`3406794`](https://github.com/graphcommerce-org/graphcommerce/commit/340679434e0ff1033c8158ef03a091e06e20e6a9) - Prevent HandleRedirect errors by filtering out empty URL values from the candidates array.
+  ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2140](https://github.com/graphcommerce-org/graphcommerce/pull/2140) [`b34d85c`](https://github.com/graphcommerce-org/graphcommerce/commit/b34d85c8c5403c6f49b506b714ee314b8344fd99) - Solve incorrect redirect when locale has own domain
+  ([@hnsr](https://github.com/hnsr))
+
+## 8.0.0-canary.100
+
+## 8.0.0-canary.99
+
+## 8.0.0-canary.98
+
+## 8.0.0-canary.97
+
+## 8.0.0-canary.96
+
+## 8.0.0-canary.95
+
+## 8.0.0-canary.94
+
+## 8.0.0-canary.93
+
+## 8.0.0-canary.92
+
+## 8.0.0-canary.91
+
+## 8.0.0-canary.90
+
+## 8.0.0-canary.89
+
+## 8.0.0-canary.88
+
+## 8.0.0-canary.87
+
+## 8.0.0-canary.86
+
+## 8.0.0-canary.85
+
+## 8.0.0-canary.84
+
+## 8.0.0-canary.83
+
 ## 8.0.0-canary.82
 
 ## 8.0.0-canary.81

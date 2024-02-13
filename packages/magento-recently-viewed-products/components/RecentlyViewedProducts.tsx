@@ -20,7 +20,7 @@ export function RecentlyViewedProducts(props: RecentlyViewedProductsProps) {
 
   if (
     !import.meta.graphCommerce.recentlyViewedProducts?.enabled ||
-    (!productList.loading && !productList.products.length)
+    (!productList.loading && !productList.products.length && isInView)
   ) {
     return null
   }
@@ -35,7 +35,7 @@ export function RecentlyViewedProducts(props: RecentlyViewedProductsProps) {
       ref={ref}
       productListRenderer={productListRenderer}
       title={title}
-      items={[...loadingProducts, ...productList.products]}
+      items={productList.loading ? loadingProducts : productList.products}
       {...scrollerProps}
     />
   )

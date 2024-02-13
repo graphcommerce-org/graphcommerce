@@ -203,7 +203,7 @@ msgid "Customer Service"
 msgstr "Klantenservice"
 
 msgid "Dark Mode"
-msgstr "Donker modus"
+msgstr "Donkere modus"
 
 msgid "Decrease"
 msgstr "Verminderen"

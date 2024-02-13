@@ -1,5 +1,103 @@
 # Change Log
 
+## 8.0.2
+
+## 8.0.2-canary.3
+
+## 8.0.2-canary.2
+
+## 8.0.2-canary.1
+
+## 8.0.2-canary.0
+
+## 8.0.1
+
+## 8.0.1-canary.4
+
+## 8.0.1-canary.3
+
+## 8.0.1-canary.2
+
+## 8.0.1-canary.1
+
+## 8.0.1-canary.0
+
+## 8.0.0
+
+### Minor Changes
+
+- [#2075](https://github.com/graphcommerce-org/graphcommerce/pull/2075) [`34dee45`](https://github.com/graphcommerce-org/graphcommerce/commit/34dee456ef686174b62e604911a0ba84cbd3d002) - Added the customers order number to succes page.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2018](https://github.com/graphcommerce-org/graphcommerce/pull/2018) [`750aa6a`](https://github.com/graphcommerce-org/graphcommerce/commit/750aa6a72710869d54244467253212e551d335e0) - Changed the layout of the succes page. We are using ActionCards right now to match the design of the cart.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+### Patch Changes
+
+- [#2184](https://github.com/graphcommerce-org/graphcommerce/pull/2184) [`28b7e6e`](https://github.com/graphcommerce-org/graphcommerce/commit/28b7e6ef3e3f698751c6e82431fd14fb35463dd6) - When a customer would return from a payment gateway and it would erroneously query the cart GraphCommerce would immediately create a new empty cart while it shouldn't.
+  ([@paales](https://github.com/paales))
+
+- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`6d7ed0a`](https://github.com/graphcommerce-org/graphcommerce/commit/6d7ed0a2a3d9b3c6193f86bce6889ff24adf3e83) - After signing in the `<CartFab/>` would not always properly reflect if there are items in the customers cart.
+  ([@paales](https://github.com/paales))
+
+- [#2089](https://github.com/graphcommerce-org/graphcommerce/pull/2089) [`4b6bbf0`](https://github.com/graphcommerce-org/graphcommerce/commit/4b6bbf06572c71e266cc2407e4533833712898e2) - The `<CartFab/>` wouldn't reflect that there are items in the cart when a customer refreshes the page after adding a product to the cart, without viewing the cart.
+  ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2170](https://github.com/graphcommerce-org/graphcommerce/pull/2170) [`f3e906f`](https://github.com/graphcommerce-org/graphcommerce/commit/f3e906f7e374ce22d36af29c0f3c8153e18300e6) - Solved an issue where the inactive cart would set as the current cart when the customer had signed in, checked out their cart, session expired and tried to log in again.
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2107](https://github.com/graphcommerce-org/graphcommerce/pull/2107) [`2f51504`](https://github.com/graphcommerce-org/graphcommerce/commit/2f5150456eabcce410ad8a0f1cbebeedabb6564c) - Remember email adress when going from checkout to signin/up form
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`ab834fb`](https://github.com/graphcommerce-org/graphcommerce/commit/ab834fbfe057fb507c371a6d22af282cc1b195d4) - Added a new 'Session expired' dialog that is shown when a GraphQL query or mutation returns a `graphql-authorization` error. This error is returned when the user's session has expired. The dialog allows the user to sign in again and then the query or mutation is re-executed.
+  ([@paales](https://github.com/paales))
+
+## 8.0.0-canary.100
+
+### Patch Changes
+
+- [#2184](https://github.com/graphcommerce-org/graphcommerce/pull/2184) [`28b7e6e`](https://github.com/graphcommerce-org/graphcommerce/commit/28b7e6ef3e3f698751c6e82431fd14fb35463dd6) - When a customer would return from a payment gateway and it would erroneously query the cart GraphCommerce would immediately create a new empty cart while it shouldn't.
+  ([@paales](https://github.com/paales))
+
+## 8.0.0-canary.99
+
+## 8.0.0-canary.98
+
+## 8.0.0-canary.97
+
+## 8.0.0-canary.96
+
+## 8.0.0-canary.95
+
+## 8.0.0-canary.94
+
+## 8.0.0-canary.93
+
+## 8.0.0-canary.92
+
+## 8.0.0-canary.91
+
+## 8.0.0-canary.90
+
+### Patch Changes
+
+- [#2170](https://github.com/graphcommerce-org/graphcommerce/pull/2170) [`f3e906f`](https://github.com/graphcommerce-org/graphcommerce/commit/f3e906f7e374ce22d36af29c0f3c8153e18300e6) - fix(GCOM-1317): fix bug where inactive cached cart could be set as currentCartId
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.0-canary.89
+
+## 8.0.0-canary.88
+
+## 8.0.0-canary.87
+
+## 8.0.0-canary.86
+
+## 8.0.0-canary.85
+
+## 8.0.0-canary.84
+
+## 8.0.0-canary.83
+
 ## 8.0.0-canary.82
 
 ## 8.0.0-canary.81

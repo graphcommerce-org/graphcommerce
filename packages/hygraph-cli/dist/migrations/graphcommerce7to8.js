@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.graphcommerce7to7_1 = void 0;
+exports.graphcommerce7to8 = void 0;
 const management_sdk_1 = require("@hygraph/management-sdk");
 const migrationAction_1 = require("../migrationAction");
-const graphcommerce7to7_1 = async (schema) => {
+const graphcommerce7to8 = async (schema) => {
     if (!migrationAction_1.client) {
         return 0;
     }
@@ -31,6 +31,13 @@ const graphcommerce7to7_1 = async (schema) => {
         },
         parentApiId: 'DynamicRow',
     }, 'DynamicRow', 'model');
+    (0, migrationAction_1.migrationAction)(schema, 'componentUnionField', 'create', {
+        displayName: 'Conditions',
+        apiId: 'conditions',
+        parentApiId: 'ConditionOr',
+        componentApiIds: ['ConditionText', 'ConditionNumber'],
+        isList: true,
+    }, 'ConditionOr', 'component');
     return migrationAction_1.client.run(true);
 };
-exports.graphcommerce7to7_1 = graphcommerce7to7_1;
+exports.graphcommerce7to8 = graphcommerce7to8;

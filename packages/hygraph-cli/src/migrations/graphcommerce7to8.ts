@@ -2,7 +2,7 @@ import { VisibilityTypes } from '@hygraph/management-sdk'
 import { migrationAction, client } from '../migrationAction'
 import { Schema } from '../types'
 
-export const graphcommerce7to7_1 = async (schema: Schema) => {
+export const graphcommerce7to8 = async (schema: Schema) => {
   if (!client) {
     return 0
   }
@@ -39,6 +39,21 @@ export const graphcommerce7to7_1 = async (schema: Schema) => {
     },
     'DynamicRow',
     'model',
+  )
+
+  migrationAction(
+    schema,
+    'componentUnionField',
+    'create',
+    {
+      displayName: 'Conditions',
+      apiId: 'conditions',
+      parentApiId: 'ConditionOr',
+      componentApiIds: ['ConditionText', 'ConditionNumber'],
+      isList: true,
+    },
+    'ConditionOr',
+    'component',
   )
 
   return client.run(true)

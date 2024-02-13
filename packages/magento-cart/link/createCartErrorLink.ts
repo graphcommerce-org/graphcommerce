@@ -49,6 +49,11 @@ export const cartErrorLink = onError(({ graphQLErrors, operation, forward }) => 
 
   if (!cartErr) return undefined
 
+  if (globalThis.location?.search) {
+    const urlParams = new URLSearchParams(window.location.search)
+    if (urlParams.get('cart_id')) return forward(operation)
+  }
+
   return fromPromise(client?.mutate({ mutation: CreateEmptyCartDocument }))
     .filter((value) => Boolean(value))
     .flatMap((cartData) => {

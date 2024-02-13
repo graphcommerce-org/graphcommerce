@@ -109,7 +109,7 @@ function SearchResultPage(props: SearchResultProps) {
             <NoSearchResults search={search} />
           </Container>
         )}
-        {products && products.items && products?.items?.length > 0 && (
+        {((products && products.items && products?.items?.length > 0) || params.filters) && (
           <SearchFilterLayout
             params={params}
             filters={filters}
