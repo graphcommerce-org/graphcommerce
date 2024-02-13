@@ -1,8 +1,6 @@
 import { ExpandPaymentMethods } from '@graphcommerce/magento-cart-payment-method'
 import { UseAdyenPaymentMethodsDocument } from './UseAdyenPaymentMethods.gql'
-
-export const nonNullable = <T>(value: T): value is NonNullable<T> =>
-  value !== null && value !== undefined
+import { nonNullable } from '@graphcommerce/next-ui'
 
 export const adyenHppExpandMethods: ExpandPaymentMethods = async (available, context) => {
   if (!context.id) return []

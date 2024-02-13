@@ -84,7 +84,7 @@ export type UseGqlDocumentHandler<V extends FieldValues> = {
   ) => V
 }
 
-export function handlerFactory<Q, V extends FieldValues>(
+function handlerFactory<Q, V extends FieldValues>(
   document: TypedDocumentNode<Q, V>,
 ): UseGqlDocumentHandler<V> {
   type Defaults = Partial<Pick<V, OptionalKeys<V>>>

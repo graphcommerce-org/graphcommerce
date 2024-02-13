@@ -31,9 +31,7 @@ export type AdyenPaymentResponse = {
   additionalData?: Types.checkout.PaymentResponse['additionalData']
 }
 
-export function parsePaymentResponse(
-  status?: AdyenPaymentResponseFragment | null,
-): AdyenPaymentResponse {
+function parsePaymentResponse(status?: AdyenPaymentResponseFragment | null): AdyenPaymentResponse {
   if (!status?.resultCode) return { isFinal: false, resultCode: ResultCodeEnum.Error }
 
   const { isFinal, resultCode, action, additionalData } = status

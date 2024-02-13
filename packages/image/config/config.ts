@@ -13,10 +13,10 @@ export type ImageLoaderPropsWithConfig = ImageLoaderProps & {
 
 export const {
   deviceSizes: configDeviceSizes,
-  imageSizes: configImageSizes,
-  loader: configLoader,
-  path: configPath,
-  domains: configDomains,
+  // imageSizes: configImageSizes,
+  // loader: configLoader,
+  // path: configPath,
+  // domains: configDomains,
   // eslint-disable-next-line no-underscore-dangle
 } = (process.env.__NEXT_IMAGE_OPTS as unknown as ImageConfigComplete) || imageConfigDefault
 
