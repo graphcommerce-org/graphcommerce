@@ -17,6 +17,7 @@ import {
   SxProps,
   Theme,
 } from '@mui/material'
+import { useRef } from 'react'
 
 export type CheckboxElementProps<T extends FieldValues> = Omit<CheckboxProps, 'name'> & {
   parseError?: (error: FieldError) => string
@@ -42,12 +43,15 @@ export function CheckboxElement<TFieldValues extends FieldValues>({
     rules.required = i18n._(/* i18n */ 'This field is required')
   }
 
+  const checkboxRef = useRef<HTMLInputElement>(null)
+
   return (
     <Controller
       name={name}
       rules={rules}
       control={control}
       render={({ field: { value, onChange }, fieldState: { invalid, error } }) => {
+        if (invalid) checkboxRef.current?.focus()
         const parsedHelperText = error
           ? typeof parseError === 'function'
             ? parseError(error)
@@ -60,6 +64,7 @@ export function CheckboxElement<TFieldValues extends FieldValues>({
                 label={label || ''}
                 control={
                   <Checkbox
+                    inputRef={checkboxRef}
                     {...rest}
                     color={rest.color || 'primary'}
                     sx={{
