@@ -30,9 +30,9 @@ export function useMergeCustomerCart() {
           mutation: UseMergeCustomerCartDocument,
           variables: { sourceCartId: currentCartId, destinationCartId },
         })
+        // We're not handling exceptions here:
+        // If the merge returns an error, we'll use the customer cart without merging the guest cart.
         .catch((e) => {
-          // We're not handling exceptions here:
-          // If the merge returns an error, we'll use the customer cart without merging the guest cart.
           console.error('Error merging carts', e)
         })
     }
