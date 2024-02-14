@@ -1,6 +1,6 @@
-import { useMutation } from '@graphcommerce/graphql'
+import { useApolloClient } from '@graphcommerce/graphql'
 import { useCustomerQuery } from '@graphcommerce/magento-customer'
-import { useEffect } from 'react'
+import { useMemo } from 'react'
 import { CustomerCartDocument } from './CustomerCart.gql'
 import { UseMergeCustomerCartDocument } from './UseMergeCustomerCart.gql'
 import { useAssignCurrentCartId } from './useAssignCurrentCartId'
@@ -11,33 +11,31 @@ import { useCurrentCartId } from './useCurrentCartId'
  * - Merge the guest cart into the customer cart
  */
 export function useMergeCustomerCart() {
-  const { currentCartId } = useCurrentCartId()
+  const { currentCartId: sourceCartId } = useCurrentCartId()
+  const client = useApolloClient()
   const assignCurrentCartId = useAssignCurrentCartId()
-  const [merge] = useMutation(UseMergeCustomerCartDocument, { errorPolicy: 'all' })
 
   const destinationCartId = useCustomerQuery(CustomerCartDocument, { fetchPolicy: 'network-only' })
     ?.data?.customerCart.id
 
-  useEffect(() => {
-    // If we don't have a customer cart, we're done
-    // If the vistor cart is the same as the customer cart, we're done
-    if (!destinationCartId || currentCartId === destinationCartId) return
+  useMemo(() => {
+    if (!destinationCartId || sourceCartId === destinationCartId) return
 
-    // If the visitor has a guest cart, try merging it into the customer cart
-    if (currentCartId) {
+    if (sourceCartId) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      merge({ variables: { sourceCartId: currentCartId, destinationCartId } })
-        // We're not handling exceptions here:
-        // If the merge returns an error, we'll use the customer cart without merging the guest cart.
+      client
+        .mutate({
+          mutation: UseMergeCustomerCartDocument,
+          variables: { sourceCartId, destinationCartId },
+        })
         .catch((e) => {
+          // We're not handling exceptions here:
+          // If the merge returns an error, we'll use the customer cart without merging the guest cart.
           console.error('Error merging carts', e)
         })
-        .finally(() => {
-          // Assign the customer cart as the new cart id
-          assignCurrentCartId(destinationCartId)
-        })
-    } else {
-      assignCurrentCartId(destinationCartId)
     }
-  }, [assignCurrentCartId, destinationCartId, merge, currentCartId])
+
+    // Assign the customer cart as the new cart id
+    assignCurrentCartId(destinationCartId)
+  }, [assignCurrentCartId, client, sourceCartId, destinationCartId])
 }
