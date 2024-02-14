@@ -11,7 +11,7 @@ import { useCurrentCartId } from './useCurrentCartId'
  * - Merge the guest cart into the customer cart
  */
 export function useMergeCustomerCart() {
-  const { currentCartId: sourceCartId } = useCurrentCartId()
+  const { currentCartId } = useCurrentCartId()
   const client = useApolloClient()
   const assignCurrentCartId = useAssignCurrentCartId()
 
@@ -19,14 +19,16 @@ export function useMergeCustomerCart() {
     ?.data?.customerCart.id
 
   useMemo(() => {
-    if (!destinationCartId || sourceCartId === destinationCartId) return
+    // If we don't have a customer cart, we're done
+    // If the vistor cart is the same as the customer cart, we're done
+    if (!destinationCartId || currentCartId === destinationCartId) return
 
-    if (sourceCartId) {
+    if (currentCartId) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       client
         .mutate({
           mutation: UseMergeCustomerCartDocument,
-          variables: { sourceCartId, destinationCartId },
+          variables: { sourceCartId: currentCartId, destinationCartId },
         })
         .catch((e) => {
           // We're not handling exceptions here:
@@ -37,5 +39,5 @@ export function useMergeCustomerCart() {
 
     // Assign the customer cart as the new cart id
     assignCurrentCartId(destinationCartId)
-  }, [assignCurrentCartId, client, sourceCartId, destinationCartId])
+  }, [assignCurrentCartId, client, currentCartId, destinationCartId])
 }
