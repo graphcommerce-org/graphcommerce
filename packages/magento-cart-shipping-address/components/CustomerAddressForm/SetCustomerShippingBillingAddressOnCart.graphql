@@ -1,7 +1,9 @@
-mutation SetCustomerShippingBillingAddressOnCart($cartId: String!, $customerAddressId: Int!) {
-  setShippingAddressesOnCart(
-    input: { cart_id: $cartId, shipping_addresses: [{ customer_address_id: $customerAddressId }] }
-  ) {
+mutation SetCustomerShippingBillingAddressOnCart(
+  $cartId: String!
+  $shippingAddress: ShippingAddressInput!
+  $billingAddress: BillingAddressInput!
+) {
+  setShippingAddressesOnCart(input: { cart_id: $cartId, shipping_addresses: [$shippingAddress] }) {
     cart {
       id
       __typename
@@ -9,9 +11,7 @@ mutation SetCustomerShippingBillingAddressOnCart($cartId: String!, $customerAddr
     }
   }
 
-  setBillingAddressOnCart(
-    input: { cart_id: $cartId, billing_address: { customer_address_id: $customerAddressId } }
-  ) {
+  setBillingAddressOnCart(input: { cart_id: $cartId, billing_address: $billingAddress }) {
     cart {
       id
       __typename
