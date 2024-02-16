@@ -1,5 +1,7 @@
 # Change Log
 
+## 8.0.3-canary.1
+
 ## 8.0.3-canary.0
 
 ## 8.0.2

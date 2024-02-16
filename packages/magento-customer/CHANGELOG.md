@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.3-canary.1
+
+### Patch Changes
+
+- [#2207](https://github.com/graphcommerce-org/graphcommerce/pull/2207) [`4d7594c`](https://github.com/graphcommerce-org/graphcommerce/commit/4d7594ca2174f74bfa9f66a464b77b3fd04f3560) - After changing the default shipping or billing address in the account section other address would not properly update
+  ([@paales](https://github.com/paales))
+
 ## 8.0.3-canary.0
 
 ## 8.0.2

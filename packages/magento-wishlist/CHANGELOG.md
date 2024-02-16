@@ -1,5 +1,7 @@
 # @graphcommerce/magento-wishlist
 
+## 8.0.3-canary.1
+
 ## 8.0.3-canary.0
 
 ### Patch Changes

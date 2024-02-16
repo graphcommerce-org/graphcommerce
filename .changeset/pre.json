@@ -78,6 +78,8 @@
     "@graphcommerce/typescript-config-pwa": "8.0.2"
   },
   "changesets": [
-    "afraid-toys-matter"
+    "afraid-toys-matter",
+    "quick-vans-sniff",
+    "three-carrots-poke"
   ]
 }

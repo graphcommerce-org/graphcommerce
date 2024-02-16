@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.3-canary.1
+
+### Patch Changes
+
+- [#2207](https://github.com/graphcommerce-org/graphcommerce/pull/2207) [`9876b13`](https://github.com/graphcommerce-org/graphcommerce/commit/9876b139b2c12c860a16af97eddea761d1059110) - Remove redundant query on the success page for logged in customers
+  ([@paales](https://github.com/paales))
+
 ## 8.0.3-canary.0
 
 ## 8.0.2
