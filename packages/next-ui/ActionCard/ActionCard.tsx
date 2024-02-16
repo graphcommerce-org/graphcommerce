@@ -92,7 +92,7 @@ export function ActionCard(props: ActionCardProps) {
     selected = false,
     reset,
     disabled = false,
-    size = 'medium',
+    size = 'responsive',
     color = 'primary',
     variant = 'outlined',
     layout = 'list',
@@ -144,7 +144,9 @@ export function ActionCard(props: ActionCardProps) {
             px: { xs: responsiveVal(8, 12), md: responsiveVal(10, 14), lg: responsiveVal(12, 16) },
             py: { xs: responsiveVal(4, 6), md: responsiveVal(10, 12), lg: responsiveVal(12, 14) },
             display: { xs: 'flex', md: 'block', lg: 'block' },
-            typography: { xs: 'body2', md: 'body2', lg: '' },
+            [theme.breakpoints.down('lg')]: {
+              typography: 'body2',
+            },
           },
 
           '&.variantDefault': {
