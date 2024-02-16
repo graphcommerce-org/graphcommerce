@@ -1,5 +1,12 @@
 # @graphcommerce/magento-wishlist
 
+## 8.0.3-canary.0
+
+### Patch Changes
+
+- [#2208](https://github.com/graphcommerce-org/graphcommerce/pull/2208) [`3228ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/3228ba893a8f1b70b99f05492c53d6a0feda80c3) - Images are not spread anymore but instead are contained within the borders of the image container.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.0.2
 
 ## 8.0.2-canary.3
