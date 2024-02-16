@@ -192,12 +192,11 @@ export function ActionCard(props: ActionCardProps) {
                 mb: { xs: '-5px', sm: '-7px', md: '-8px' },
               },
             },
-            // PR QUESTION WHAT TO DO HERE
             '&.sizeResponsive': {
-              mt: { xs: '3px', sm: '5px', md: '7px', lg: '8px' },
-              mb: { xs: '4px', sm: '6px', md: '8px', lg: '9px' },
+              mt: { xs: '2px', sm: '3px', md: '6px', lg: '8px' },
+              mb: { xs: '3px', sm: '4px', md: '7px', lg: '9px' },
               '&::after': {
-                mb: { xs: '-3px', sm: '-5px', md: '-7px', lg: '-8px' },
+                mb: { xs: '-2px', sm: '-3px', md: '-6px', lg: '-8px' },
               },
             },
           },
@@ -315,6 +314,7 @@ export function ActionCard(props: ActionCardProps) {
                   '&.sizeSmall': { typography: 'body2' },
                   '&.sizeMedium': { typography: 'body1' },
                   '&.sizeLarge': { typography: 'h6' },
+                  '&.sizeResponsive': { typography: { xs: 'body2', md: 'body1', lg: 'h6' } },
                 }}
               >
                 {title}
@@ -357,6 +357,7 @@ export function ActionCard(props: ActionCardProps) {
                 typography: 'body1',
                 '&.sizeMedium': { typographty: 'subtitle1' },
                 '&.sizeLarge': { typography: 'h6' },
+                '&.sizeResponsive': { typography: { xs: 'body1', md: 'subtitle1', lg: 'h6' } },
               }}
             >
               {price}

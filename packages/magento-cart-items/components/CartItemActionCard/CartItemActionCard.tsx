@@ -65,6 +65,11 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
           '&.sizeSmall': {
             px: 0,
           },
+          '&.sizeResponsive': {
+            [theme.breakpoints.down('md')]: {
+              px: 0,
+            },
+          },
           '& .ActionCard-end': {
             justifyContent: readOnly ? 'center' : 'space-between',
           },
@@ -124,15 +129,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
               borderRadius: 1,
               objectFit: 'contain',
             }}
-            sizes={
-              size === 'responsive'
-                ? {
-                    xs: productImageSizes.small,
-                    md: productImageSizes.medium,
-                    lg: productImageSizes.large,
-                  }
-                : productImageSizes[size]
-            }
+            sizes={size === 'responsive' ? productImageSizes.small : productImageSizes[size]}
           />
         )
       }
