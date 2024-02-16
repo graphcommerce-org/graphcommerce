@@ -21,7 +21,6 @@ export type WishlistItemActionCardProps = {
   selectedOptions?: InputMaybe<string[]> | undefined
   isConfigurableUncompleted?: boolean
   secondaryAction?: ReactNode
-  imageObjectFit?: 'fill' | 'none' | 'contain' | 'cover' | 'scale-down'
 } & OwnerState &
   Omit<ActionCardProps, 'value' | 'image' | 'price' | 'title' | 'action'>
 type OwnerState = { withOptions?: boolean }
@@ -59,7 +58,6 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
     selectedOptions,
     secondaryAction,
     variant = 'default',
-    imageObjectFit = 'fill',
     ...rest
   } = props
   const { id, product } = item
@@ -118,7 +116,7 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
               layout='fill'
               src={product?.small_image?.url}
               sx={{
-                objectFit: imageObjectFit,
+                objectFit: 'contain',
                 width: productImageSizes[size],
                 height: productImageSizes[size],
                 display: 'block',
