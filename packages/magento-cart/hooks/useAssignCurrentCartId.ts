@@ -8,7 +8,7 @@ export const CART_ID_COOKIE = 'cart'
 export function writeCartId(cache: ApolloCache<object>, id: string | null = null) {
   cache.writeQuery({
     query: CurrentCartIdDocument,
-    data: { currentCartId: { __typename: 'CurrentCartId', id } },
+    data: { currentCartId: { __typename: 'CurrentCartId', locked: false, id } },
     broadcast: true,
   })
 }

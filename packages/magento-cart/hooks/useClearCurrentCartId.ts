@@ -10,11 +10,7 @@ export function useClearCurrentCartId() {
     const id = cache.readQuery({ query: CurrentCartIdDocument })?.currentCartId?.id
     if (!id) return
 
-    cache.writeQuery({
-      query: CurrentCartIdDocument,
-      data: { currentCartId: { __typename: 'CurrentCartId', id: null } },
-      broadcast: true,
-    })
+    cache.evict({ fieldName: 'currentCartId', broadcast: true })
     cookie(CART_ID_COOKIE, null)
   }
 }
