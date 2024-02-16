@@ -184,7 +184,7 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
   })
 
 // todo: move most of the styles to the graphcommerce library while still allowing for extensibility.
-const createOverrides = (theme: Theme): Components => ({
+const createOverrides = (theme: Theme): Components<Theme> => ({
   MuiCssBaseline: {
     styleOverrides: {
       body: {
@@ -388,7 +388,7 @@ const createOverrides = (theme: Theme): Components => ({
 })
 
 export const lightTheme = createThemeWithPalette(lightPalette)
-lightTheme.components = createOverrides(lightTheme)
+lightTheme.components = createOverrides(lightTheme) as Components
 
 export const darkTheme = createThemeWithPalette(darkPalette)
-darkTheme.components = createOverrides(darkTheme)
+darkTheme.components = createOverrides(darkTheme) as Components

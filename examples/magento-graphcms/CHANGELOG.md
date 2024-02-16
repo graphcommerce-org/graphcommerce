@@ -1,5 +1,76 @@
 # Change Log
 
+## 8.0.2
+
+## 8.0.2-canary.3
+
+## 8.0.2-canary.2
+
+## 8.0.2-canary.1
+
+## 8.0.2-canary.0
+
+## 8.0.1
+
+## 8.0.1-canary.4
+
+## 8.0.1-canary.3
+
+## 8.0.1-canary.2
+
+## 8.0.1-canary.1
+
+## 8.0.1-canary.0
+
+## 8.0.0
+
+### Patch Changes
+
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`7664e45`](https://github.com/graphcommerce-org/graphcommerce/commit/7664e45873142078eb6681fd1bb268db8035cb2e) - New `<ProductScroller />` component for easy horizontal product scrollers.
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2112](https://github.com/graphcommerce-org/graphcommerce/pull/2112) [`15a2037`](https://github.com/graphcommerce-org/graphcommerce/commit/15a2037372cd615602d3e2f3deedba9766fc172c) - Make the "Search" string translatable and fix typo.
+  ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`eb29cbe`](https://github.com/graphcommerce-org/graphcommerce/commit/eb29cbef56f8f7275ffe6760ef5e9f8d2598c7c4) - Added the `<RecentlyViewedProducts/>` feature to product pages.
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2122](https://github.com/graphcommerce-org/graphcommerce/pull/2122) [`7750f72`](https://github.com/graphcommerce-org/graphcommerce/commit/7750f7253ded34acb4cd8b75598bf0ad1bca6d5c) - Added `.graphqlrc.yml` for graphql file autocompletion in projects using VSCode.
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2103](https://github.com/graphcommerce-org/graphcommerce/pull/2103) [`23392ba`](https://github.com/graphcommerce-org/graphcommerce/commit/23392babb89ce3e77dc98713ee897f72ab66d6a1) - Prevent + / - qty buttons from being render over the “Start Checkout” button
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`5f4455b`](https://github.com/graphcommerce-org/graphcommerce/commit/5f4455b1cccddf1501f0279e5ca2d9277a07ff07) - New `<ProductListItemSkeleton />` component and added support to the productListRenderer. Used for the new Recently Viewed Products feature.
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`53947d3`](https://github.com/graphcommerce-org/graphcommerce/commit/53947d39f2f3ee578c14903c96a2b356d99d9475) - Implemented 'Message' variant for `<RowColumnOne/>` to show an important message which, after dismissing, will not show again
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 8.0.0-canary.100
+
+## 8.0.0-canary.99
+
+## 8.0.0-canary.98
+
+## 8.0.0-canary.97
+
+## 8.0.0-canary.96
+
+## 8.0.0-canary.95
+
+## 8.0.0-canary.94
+
+## 8.0.0-canary.93
+
+## 8.0.0-canary.92
+
+## 8.0.0-canary.91
+
+## 8.0.0-canary.90
+
+## 8.0.0-canary.89
+
 ## 8.0.0-canary.88
 
 ## 8.0.0-canary.87

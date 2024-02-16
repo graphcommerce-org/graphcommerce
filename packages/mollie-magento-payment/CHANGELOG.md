@@ -1,5 +1,61 @@
 # Change Log
 
+## 8.0.2
+
+## 8.0.2-canary.3
+
+## 8.0.2-canary.2
+
+## 8.0.2-canary.1
+
+## 8.0.2-canary.0
+
+## 8.0.1
+
+## 8.0.1-canary.4
+
+## 8.0.1-canary.3
+
+## 8.0.1-canary.2
+
+## 8.0.1-canary.1
+
+## 8.0.1-canary.0
+
+## 8.0.0
+
+### Patch Changes
+
+- [#2092](https://github.com/graphcommerce-org/graphcommerce/pull/2092) [`1edd198`](https://github.com/graphcommerce-org/graphcommerce/commit/1edd198dc6b102be423a5285d9fe4437b69ca165) - An error message would be shown when a payment was sucessfull instead of when an error occured.
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2124](https://github.com/graphcommerce-org/graphcommerce/pull/2124) [`3bd80b8`](https://github.com/graphcommerce-org/graphcommerce/commit/3bd80b88351963ae95aaa97b2cfa25f8e526a128) - Fixed the issue where a guest returned to a empty cart after a canceled payment with Mollie
+  ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 8.0.0-canary.100
+
+## 8.0.0-canary.99
+
+## 8.0.0-canary.98
+
+## 8.0.0-canary.97
+
+## 8.0.0-canary.96
+
+## 8.0.0-canary.95
+
+## 8.0.0-canary.94
+
+## 8.0.0-canary.93
+
+## 8.0.0-canary.92
+
+## 8.0.0-canary.91
+
+## 8.0.0-canary.90
+
+## 8.0.0-canary.89
+
 ## 8.0.0-canary.88
 
 ## 8.0.0-canary.87

@@ -1,4 +1,4 @@
-# Upgrading from GraphCommerce 6 to 7
+# Upgrading from GraphCommerce 7 to 8
 
 Depending on the amounts of customisations you've made, there are some manual
 steps. Please follow the regular [upgrade steps first](./readme.md).

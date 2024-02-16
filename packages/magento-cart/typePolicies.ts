@@ -27,15 +27,12 @@ export const cartTypePolicies: StrictTypedTypePolicies = {
       },
     },
   },
-
   Query: {
     fields: {
-      currentCartId: (_, { toReference }) => toReference({ __typename: 'CurrentCartId' }),
       cart: (_, { args, toReference }) =>
         toReference({ __typename: 'Cart', id: (args as QuerycartArgs)?.cart_id }),
     },
   },
-
   Mutation: {
     fields: {
       createEmptyCart: {

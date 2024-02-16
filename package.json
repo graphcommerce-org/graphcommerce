@@ -3,7 +3,7 @@
   "name": "root",
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "5.0.0",
-  "packageManager": "yarn@4.0.2",
+  "packageManager": "yarn@4.1.0",
   "private": true,
   "workspaces": [
     "docs",
@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@changesets/cli": "2.27.1",
-    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
     "concurrently": "8.2.2",
     "jest-environment-jsdom": "^29.7.0",
@@ -54,11 +54,11 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@playwright/test": "1.40.1",
-    "@types/event-stream": "^4",
-    "eslint": "8.55.0",
+    "@playwright/test": "1.41.0",
+    "@types/event-stream": "^4.0.5",
+    "eslint": "8.56.0",
     "event-stream": "^4.0.1",
-    "prettier": "3.1.1",
+    "prettier": "3.2.4",
     "typescript": "5.3.3"
   },
   "resolutions": {

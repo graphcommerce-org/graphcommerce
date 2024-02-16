@@ -1,5 +1,6 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { CountryRegionsDocument } from '@graphcommerce/magento-store'
+import { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
+import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   Form,
   FormActions,
@@ -22,12 +23,18 @@ import { CreateCustomerAddressDocument } from './CreateCustomerAddress.gql'
 
 export function CreateCustomerAddressForm() {
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
+  const { data: config } = useQuery(StoreConfigDocument)
   const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
   const router = useRouter()
+
+  const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase() as CountryCodeEnum
 
   const form = useFormGqlMutation(
     CreateCustomerAddressDocument,
     {
+      defaultValues: {
+        countryCode: shopCountry,
+      },
       onBeforeSubmit: (formData) => {
         const region = countries
           ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)

@@ -87,15 +87,15 @@ Features taken from the Magento Commerce 2 Feature List
 - [x] Blend content and commerce by adding products to content pages and rich
       content to product pages. — [Enhanced]
 - [x] Create reusable dynamic blocks targeted to customer segments. — [Commerce]
-- [x] Easily stage and preview content for seamless updates. — [Enhanced]
-- [x] Manage upcoming site changes with a timeline dashboard. — [Enhanced]
+- [x] Easily stage and preview content for seamless updates. — [Partial]
+- [x] Manage upcoming site changes with a timeline dashboard. - [Commerce]
 - [x] Organize content pages and add pagination, navigation, and menus with a
       page hierarchy tool. — [Enhanced]
 - [x] Track and restore previous versions of content pages. — [Enhanced]
 - [x] Engage customers with exciting imagery from Adobe Stock, straight from
       your Adobe Commerce instance.
 - [x] Save content and layouts as templates. Apply them to new areas across
-      sites and store views. — [Enhanced]
+      sites and store views.
 - [x] Provide creatives, designers, and agencies with direct, controlled access
       to the Media Gallery.
 
@@ -125,8 +125,8 @@ Features taken from the Magento Commerce 2 Feature List
       grouped products.
 - [x] Offer virtual products like memberships, services and warranties.
 - [x] Include downloadable/digital products with samples.
-- [ ] Allow customer-personalized products (e.g., upload images and text for
-      monogramming). — [Todo]
+- [x] Allow customer-personalized products (e.g., upload images and text for
+      monogramming). — (No upload support yet)
 - [x] Manage inventory across multiple locations
 - [x] Create new products through a guided online process.
 - [x] Define unlimited product attributes.
@@ -153,12 +153,13 @@ Features taken from the Magento Commerce 2 Feature List
 - [ ] Present product category items in grid or list format. — [Todo]
 - [x] Customize the look and feel of categories and assigned product pages. —
       [Enhanced]
-- [ ] Arrange products on category pages with drag-and-drop merchandising and
+- [x] Arrange products on category pages with drag-and-drop merchandising and
       automated sorting rules. — [Commerce]
 - [ ] Control which products and categories can be viewed by each customer
       group. — [Commerce]
-- [ ] Show side-by-side product comparisons with two or more products. — [Todo]
-- [ ] Display recently viewed products. — [Todo]
+- [x] Show side-by-side product comparisons with two or more products. —
+      [Enhanced]
+- [x] Display recently viewed products. — [Enhanced]
 - [x] Compare products. — [Enhanced]
 - [x] Increase search relevancy and scalability with Elasticsearch technology.
 - [x] Set stop words, attribute weightings, and search synonyms for higher
@@ -213,9 +214,9 @@ Features taken from the Magento Commerce 2 Feature List
 ### Checkout
 
 - [x] Include a mini cart on store pages to summarize products in the cart.
-- [x] Display an order summary with product images in checkout.
-- [ ] Offer guest and registered user checkout. Registered customers are
-      automatically recognized when they enter their email addresses. — [Todo]
+- [x] Display an order summary with product images in checkout. [Todo]
+- [x] Offer guest and registered user checkout. Registered customers are
+      automatically recognized when they enter their email addresses.
 - [ ] Boost conversion rates with an Instant Purchase option that uses saved
       payment and shipping information to speed checkout. — [Todo]
 - [x] Enable shoppers to create a customer account with one click on the
@@ -234,7 +235,8 @@ Features taken from the Magento Commerce 2 Feature List
 ### Payments
 
 - [ ] Download and work with your preferred payment gateway through the Magento
-      Marketplace.
+      Marketplace. —
+      [Supported Payment Methods](https://www.graphcommerce.org/docs/magento#payment-gateways)
 - [x] Securely pass credit card information directly from the client browser to
       the payment gateway, bypassing the Adobe Commerce application.
 - [x] Qualify for the easiest level of PCI compliance (SAQ-A or SAQ A-EP),
@@ -378,8 +380,9 @@ Features taken from the Magento Commerce 2 Feature List
       easier and durable over multiple releases. — [Enhanced]
 - [x] Integrate Adobe Commerce with third-party applications using efficient web
       APIs with REST and GraphQL support. — [Enhanced]
-- [ ] Smoothly manage interactions between extensions using plug-ins and
-      dependency injection software design patterns.
+- [x] Smoothly manage interactions between extensions using plug-ins and
+      dependency injection software design patterns. —
+      [Plugins](https://www.graphcommerce.org/docs/framework/plugins-react)
 - [ ] Accelerate time-to-market and improve code quality with a fully-automated
       testing framework.
 - [ ] Update code with a standalone installer that checks for prerequisites
@@ -401,10 +404,12 @@ Features taken from the Magento Commerce 2 Feature List
 - [x] Feel confident with regular scanning, external penetration testing, and
       bug bounty programs that promote core platform security.
 - [x] Stay informed about security issues through the Adobe Security Center and
-      mailing list.
+      mailing list. [Commerce]
 - [x] Prevent private data from sending to third parties with Egress Filtering.
+      [Commerce]
 - [x] Support for leading iPaaS platforms to enable enterprise integrations
 - [x] Optimize your upgrade process with the Upgrade Compatibility Tool.
+      [Commerce]
 
 ### Layout and theming
 

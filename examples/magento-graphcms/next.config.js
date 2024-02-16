@@ -20,18 +20,12 @@ const nextConfig = {
     maxInactiveAge: 1000 * 60 * 10,
     pagesBufferLength: 10,
   },
-  experimental: {
-    scrollRestoration: true,
-  },
   optimizeFonts: false,
   images: {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   eslint: {
     ignoreDuringBuilds: true,
-  },
-  experimental: {
-    scrollRestoration: true,
   },
 }
 

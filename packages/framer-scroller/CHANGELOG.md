@@ -1,5 +1,81 @@
 # Change Log
 
+## 8.0.2
+
+## 8.0.2-canary.3
+
+## 8.0.2-canary.2
+
+## 8.0.2-canary.1
+
+## 8.0.2-canary.0
+
+## 8.0.1
+
+## 8.0.1-canary.4
+
+## 8.0.1-canary.3
+
+## 8.0.1-canary.2
+
+## 8.0.1-canary.1
+
+## 8.0.1-canary.0
+
+## 8.0.0
+
+### Patch Changes
+
+- [#2085](https://github.com/graphcommerce-org/graphcommerce/pull/2085) [`3c92993`](https://github.com/graphcommerce-org/graphcommerce/commit/3c92993d9ca74f24ea784b20448958ca1bb8e224) - Fixes issue where the `<SidebarGallery />` would start jumping around if a user clicks the next button multiple times in short succession.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - Accessibility improvements for the frontend: Added skip content link. Removed empty buttons from tab flow. Gave focus to elements (such as the menu) that appear when after clicking a button. Improved aria labels where needed
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2157](https://github.com/graphcommerce-org/graphcommerce/pull/2157) [`b1afcd0`](https://github.com/graphcommerce-org/graphcommerce/commit/b1afcd00b6680cd5167691e47a691461382226d3) - Solved an issue where the Previous and Next buttons would become unclickable for Scrollers.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2066](https://github.com/graphcommerce-org/graphcommerce/pull/2066) [`3b1f585`](https://github.com/graphcommerce-org/graphcommerce/commit/3b1f585153672a644a613411134e5ad36aa4c266) - Add `showButtons` prop to `<ScrollerButton/>`
+  ([@StefanAngenent](https://github.com/StefanAngenent))
+
+- [#2045](https://github.com/graphcommerce-org/graphcommerce/pull/2045) [`1ac1e09`](https://github.com/graphcommerce-org/graphcommerce/commit/1ac1e09897daadd646200cb3ddc2aa75a51e182e) - Make sure the product image gallery traps focus and scrollbar doesn't disappear suddenly
+  ([@JoshuaS98](https://github.com/JoshuaS98))
+
+- [#2011](https://github.com/graphcommerce-org/graphcommerce/pull/2011) [`da821af`](https://github.com/graphcommerce-org/graphcommerce/commit/da821af185bf6419fa2aeca31e5985bf99b7bbb9) - Added a new Gallery Thumbnails feature that shows product thumbnails below the product gallery on the product page.
+  ([@mikekeehnen](https://github.com/mikekeehnen))
+
+- [`dc86f2f`](https://github.com/graphcommerce-org/graphcommerce/commit/dc86f2fbd439a63a2c9f2deaee38abe87a3c3bab) - Log the related element if the ScrollerProvider couldn’t find any children during load.
+  ([@paales](https://github.com/paales))
+
+## 8.0.0-canary.100
+
+## 8.0.0-canary.99
+
+## 8.0.0-canary.98
+
+## 8.0.0-canary.97
+
+## 8.0.0-canary.96
+
+## 8.0.0-canary.95
+
+## 8.0.0-canary.94
+
+## 8.0.0-canary.93
+
+## 8.0.0-canary.92
+
+### Patch Changes
+
+- [`dc86f2f`](https://github.com/graphcommerce-org/graphcommerce/commit/dc86f2fbd439a63a2c9f2deaee38abe87a3c3bab) - Log the related element if the ScrollerProvider couldn’t find any children during load.
+  ([@paales](https://github.com/paales))
+
+## 8.0.0-canary.91
+
+## 8.0.0-canary.90
+
+## 8.0.0-canary.89
+
 ## 8.0.0-canary.88
 
 ## 8.0.0-canary.87

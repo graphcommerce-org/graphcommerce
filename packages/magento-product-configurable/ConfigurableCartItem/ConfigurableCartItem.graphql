@@ -10,7 +10,10 @@ fragment ConfigurableCartItem on ConfigurableCartItem @inject(into: ["CartItem"]
   }
   configured_variant {
     uid
+    ...ProductLink
+    sku
     name
+    sku
     thumbnail {
       ...ProductImage
     }

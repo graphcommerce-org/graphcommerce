@@ -1,4 +1,4 @@
-import { ComponentsVariants } from '@mui/material'
+import { ComponentsVariants, Theme } from '@mui/material'
 import { responsiveVal } from '../Styles/responsiveVal'
 
 declare module '@mui/material/Button/Button' {
@@ -8,7 +8,7 @@ declare module '@mui/material/Button/Button' {
   }
 }
 
-type ButtonVariants = NonNullable<ComponentsVariants['MuiButton']>
+type ButtonVariants = NonNullable<ComponentsVariants<Theme>['MuiButton']>
 
 export const MuiButtonResponsive: ButtonVariants = [
   {

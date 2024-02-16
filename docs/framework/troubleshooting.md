@@ -6,16 +6,23 @@ If any errors are detected during the build phase, the console and browser will
 display an error message. Common causes for errors are:
 
 ```bash
+[next] [GraphQL Errors] failed to fetch to https://magento.test/graphql products
+```
+
+You are connecting with a local endpoint with a self signed SSL certicate, start
+your dev server with `NODE_TLS_REJECT_UNAUTHORIZED=0 yarn dev`
+
+```bash
 [next] 🕸️ - m2: Failed to generate schema: request to [...] failed, reason: connect ETIMEDOUT
 ```
 
-Missing MAGENTO_ENDPOINT environment variable in your .env file
+Missing `magentoEndpoint` in your graphcommerce.config.js
 
 ```bash
 🕸️ - m2: Failed to generate schema: invalid json response body at [...] reason: Unexpected '<'
 ```
 
-MAGENTO_ENDPOINT environment variable is not pointing to a Magento graphql
+`magentoEndpoint` environment variable is not pointing to a Magento graphql
 endpoint
 
 ```bash
@@ -28,24 +35,7 @@ The Magento version is outdated. Make sure you are running Magento 2.4.3 and up
 Error: Invalid src prop ([...]) on 'next/image', hostname "[...]" is not configured under images in your 'next.config.js'
 ```
 
-Add the image domain to IMAGE_DOMAINS in your .env file
-
-```bash
-File /[...]/node_modules/@graphcommerce/magento-payment-braint
-ree/hooks/UseBraintree.graphql caused error: Unable to find field "createBraintreeClientToken" on type "Mutation"!
-```
-
-Remove "@graphcommerce/magento-payment-braintree" from your dependencies in
-package.json. Run `yarn` to update dependencies, then run `yarn dev`.
-
-```bash
-File /[...]/node_modules/@graphcommerce/mollie-magento-payment
-/components/MolliePlaceOrder/MolliePlaceOrder.graphql caused error: Unable to
-find field "mollie_redirect_url" on type "Order"!
-```
-
-Remove "@graphcommerce/mollie-magento-payment" from your dependencies in
-package.json. Run `yarn` to update dependencies, then run `yarn dev`.
+Add the image domain to the next.config.js
 
 ```bash
 node_modules/@graphcommerce/graphql/generated/fragments.json

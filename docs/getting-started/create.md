@@ -10,6 +10,7 @@ start building.
 
 ### Requirements
 
+- Lixux, MacOS or WSL2
 - Install and use node 16/18: `nvm install 16` or `nvm use 16`
 - Install yarn: `corepack enable`
 
