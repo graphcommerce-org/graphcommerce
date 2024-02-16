@@ -77,5 +77,7 @@
     "@graphcommerce/prettier-config-pwa": "8.0.2",
     "@graphcommerce/typescript-config-pwa": "8.0.2"
   },
-  "changesets": []
+  "changesets": [
+    "afraid-toys-matter"
+  ]
 }
