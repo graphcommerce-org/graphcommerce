@@ -80,7 +80,14 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             alignSelf: 'flex-start',
           },
           '& .ActionCard-secondaryAction': {
-            typography: typographySizes[size],
+            typography:
+              size === 'responsive'
+                ? {
+                    xs: typographySizes.small,
+                    md: typographySizes.medium,
+                    lg: typographySizes.large,
+                  }
+                : typographySizes[size],
             display: 'flex',
             alignItems: 'center',
             color: 'text.secondary',
@@ -165,7 +172,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             uid={uid}
             quantity={quantity}
             product={product}
-            buttonProps={{ size }}
+            buttonProps={{ size: size === 'responsive' ? 'large' : size }}
           />
         )
       }
