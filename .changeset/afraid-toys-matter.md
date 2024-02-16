@@ -1,5 +1,5 @@
 ---
-'@graphcommerce/magento-wishlist': patch
+"@graphcommerce/magento-wishlist": patch
 ---
 
-Added the option to change the objectFit sx prop of the image on the wishlistItemActionCard
+Images are not spread anymore but instead are contained within the borders of the image container.
