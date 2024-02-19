@@ -1,7 +1,8 @@
-mutation SetCustomerShippingAddressOnCart($cartId: String!, $customerAddressId: Int!) {
-  setShippingAddressesOnCart(
-    input: { cart_id: $cartId, shipping_addresses: [{ customer_address_id: $customerAddressId }] }
-  ) {
+mutation SetCustomerShippingAddressOnCart(
+  $cartId: String!
+  $shippingAddress: ShippingAddressInput!
+) {
+  setShippingAddressesOnCart(input: { cart_id: $cartId, shipping_addresses: [$shippingAddress] }) {
     cart {
       id
       __typename
