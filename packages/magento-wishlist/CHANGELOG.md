@@ -1,5 +1,7 @@
 # @graphcommerce/magento-wishlist
 
+## 8.0.3-canary.3
+
 ## 8.0.3-canary.2
 
 ## 8.0.3-canary.1

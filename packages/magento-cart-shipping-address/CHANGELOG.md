@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.3-canary.3
+
+### Patch Changes
+
+- [#2206](https://github.com/graphcommerce-org/graphcommerce/pull/2206) [`646db64`](https://github.com/graphcommerce-org/graphcommerce/commit/646db640ec09c1c82584f5543ab487a44ab8d260) - Solves an issue where the billing address of a logged in customer would not set set when a shipping address was already set
+  ([@paales](https://github.com/paales))
+
 ## 8.0.3-canary.2
 
 ### Patch Changes
