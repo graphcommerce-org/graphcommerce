@@ -1,37 +1,17 @@
 import { PasswordElement } from '@graphcommerce/ecommerce-ui'
-import { useApolloClient } from '@graphcommerce/graphql'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { Button, FormRow, FormActions } from '@graphcommerce/next-ui'
-import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { Box, FormControl, Link, SxProps, Theme } from '@mui/material'
-import { CustomerDocument } from '../../hooks'
+import { useSignInForm } from '../../hooks/useSignInForm'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
-import { SignInDocument } from './SignIn.gql'
-import { signOut } from '../SignOutForm/signOut'
 
 export type SignInFormProps = { email: string; sx?: SxProps<Theme> }
 
 export function SignInForm(props: SignInFormProps) {
   const { email, sx } = props
-  const client = useApolloClient()
-  const form = useFormGqlMutation(
-    SignInDocument,
-    {
-      defaultValues: { email },
-      onBeforeSubmit: async (values) => {
-        const oldEmail = client.cache.readQuery({ query: CustomerDocument })?.customer?.email
 
-        /**
-         * We are logging in because the session expired, but we're logging in with a different
-         * email address, we need to reset the store.
-         */
-        if (oldEmail && oldEmail !== email) signOut(client)
-        return { ...values, email }
-      },
-    },
-    { errorPolicy: 'all' },
-  )
+  const form = useSignInForm({ email })
 
   const { handleSubmit, required, formState, error, control } = form
   const [remainingError, authError] = graphqlErrorByCategory({

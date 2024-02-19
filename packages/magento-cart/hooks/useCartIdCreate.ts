@@ -1,16 +1,14 @@
 import { useApolloClient } from '@graphcommerce/graphql'
 import { i18n } from '@lingui/core'
 import { CreateEmptyCartDocument } from './CreateEmptyCart.gql'
-import { CurrentCartIdDocument } from './CurrentCartId.gql'
-import { useAssignCurrentCartId } from './useAssignCurrentCartId'
+import { readCartId, useAssignCurrentCartId } from './useAssignCurrentCartId'
 
 export function useCartIdCreate() {
   const client = useApolloClient()
   const assignCurrentCartId = useAssignCurrentCartId()
 
   return async (): Promise<string> => {
-    const currentCartId = client.cache.readQuery({ query: CurrentCartIdDocument })?.currentCartId
-      ?.id
+    const currentCartId = readCartId(client.cache)?.id
 
     if (currentCartId) return currentCartId
 

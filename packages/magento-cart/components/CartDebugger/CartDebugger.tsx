@@ -1,6 +1,6 @@
 import { useApolloClient } from '@graphcommerce/graphql'
 import { Button } from '@mui/material'
-import { CurrentCartIdDocument } from '../../hooks/CurrentCartId.gql'
+import { readCartId, writeCartId } from '../../hooks'
 
 export function CartDebugger() {
   const client = useApolloClient()
@@ -12,24 +12,14 @@ export function CartDebugger() {
         variant='text'
         size='small'
         onClick={() => {
-          const currentCardId = client.readQuery({ query: CurrentCartIdDocument })
-          if (!currentCardId?.currentCartId) {
+          const currentCartId = readCartId(client.cache)
+          if (!currentCartId) {
             // eslint-disable-next-line no-console
             console.log('No customerToken available, nothing to break')
           } else {
             // eslint-disable-next-line no-console
             console.log(`Changing current token to a random one`)
-
-            client.writeQuery({
-              query: CurrentCartIdDocument,
-              data: {
-                currentCartId: {
-                  ...currentCardId.currentCartId,
-                  id: `${Math.random().toString(36).slice(2)}random-cardId`,
-                },
-              },
-              broadcast: true,
-            })
+            writeCartId(client.cache, `${Math.random().toString(36).slice(2)}random-cardId`)
           }
         }}
       >

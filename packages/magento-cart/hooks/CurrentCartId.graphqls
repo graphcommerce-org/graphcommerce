@@ -4,6 +4,7 @@ extend type Query {
 
 type CurrentCartId {
   id: String
+  locked: Boolean
 }
 
 input RegisterCartIdInput {
