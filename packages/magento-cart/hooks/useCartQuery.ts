@@ -15,15 +15,18 @@ import { useCurrentCartId } from './useCurrentCartId'
 export function useCartQuery<Q, V extends { cartId: string; [index: string]: unknown }>(
   document: TypedDocumentNode<Q, V>,
   options: QueryHookOptions<Q, Omit<V, 'cartId'>> & {
+    /**
+     * @deprecated Not used anymore, when the cart_id is in the URL, it will always be used.
+     */
     allowUrl?: boolean
   } = {},
 ) {
-  const { allowUrl = true, ...queryOptions } = options
+  const { allowUrl, ...queryOptions } = options
   const router = useRouter()
   const { currentCartId, locked } = useCurrentCartId()
 
   const urlCartId = router.query.cart_id
-  const usingUrl = allowUrl && typeof urlCartId === 'string'
+  const usingUrl = typeof urlCartId === 'string'
   const cartId = usingUrl ? urlCartId : currentCartId
 
   if (usingUrl) queryOptions.fetchPolicy = 'cache-first'
