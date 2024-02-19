@@ -1,5 +1,12 @@
 # @graphcommerce/ecommerce-ui
 
+## 8.0.3-canary.4
+
+### Patch Changes
+
+- [#2203](https://github.com/graphcommerce-org/graphcommerce/pull/2203) [`7ef7dc7`](https://github.com/graphcommerce-org/graphcommerce/commit/7ef7dc7631f61a2feba67a531a210df9c22fed4b) - CheckboxElement, MultiSelectElement, NumberFieldElement, SelectElement, SliderElement and TextFieldElement have their inputRef passed, allowing focus to be set by the form.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.0.3-canary.3
 
 ## 8.0.3-canary.2
