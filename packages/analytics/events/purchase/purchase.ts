@@ -10,7 +10,7 @@ export const purchase = <C extends PaymentMethodContextFragment>(
     transaction_id: orderNumber,
     currency: cart?.prices?.grand_total?.currency,
     value: cart?.prices?.grand_total?.value,
-    coupon: cart?.applied_coupons?.map((coupon) => coupon?.code),
+    coupon: cart?.applied_coupons?.map((coupon) => coupon?.code).join(' '),
     payment_type: cart?.selected_payment_method?.code,
     tax: cart?.prices?.applied_taxes?.reduce((sum, tax) => sum + (tax?.amount?.value ?? 0), 0),
     items: cart?.items?.map((item) => ({
