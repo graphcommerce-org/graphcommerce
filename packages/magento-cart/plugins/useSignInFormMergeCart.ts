@@ -1,10 +1,9 @@
 import { useApolloClient } from '@graphcommerce/graphql'
 import type { useSignInForm } from '@graphcommerce/magento-customer/hooks/useSignInForm'
 import type { MethodPlugin } from '@graphcommerce/next-config'
-import { useAssignCurrentCartId } from '../hooks'
-import { CurrentCartIdDocument } from '../hooks/CurrentCartId.gql'
+import { cartLock, readCartId, useAssignCurrentCartId } from '../hooks'
 import { CustomerCartDocument } from '../hooks/CustomerCart.gql'
-import { UseMergeCustomerCartDocument } from '../hooks/UseMergeCustomerCart.gql'
+import { MergeCartsDocument } from '../hooks/MergeCarts.gql'
 
 export const func = 'useSignInForm'
 export const exported = '@graphcommerce/magento-customer/hooks/useSignInForm'
@@ -16,15 +15,9 @@ const useSignInFormMergeCart: MethodPlugin<typeof useSignInForm> = (useSignInFor
   return useSignInForm({
     ...options,
     onComplete: async (data, variables) => {
-      const currentCartId = client.cache.readQuery({ query: CurrentCartIdDocument })?.currentCartId
-      if (currentCartId?.id && !currentCartId.locked) {
-        client.cache.writeQuery({
-          query: CurrentCartIdDocument,
-          data: { currentCartId: { ...currentCartId, locked: true } },
-        })
-      }
-
       await options.onComplete?.(data, variables)
+
+      cartLock(client.cache, true)
 
       const customerCart = await client.query({
         query: CustomerCartDocument,
@@ -32,22 +25,22 @@ const useSignInFormMergeCart: MethodPlugin<typeof useSignInForm> = (useSignInFor
       })
       const destinationCartId = customerCart.data.customerCart.id
 
-      // If we don't have a customer cart, we're done
-      // If the vistor cart is the same as the customer cart, we're done
-      if (!destinationCartId || currentCartId?.id === destinationCartId) return
-
-      // Assign the customer cart as the new cart id
-      assignCurrentCartId(destinationCartId)
-
-      if (currentCartId?.id) {
-        await client
-          .mutate({
-            mutation: UseMergeCustomerCartDocument,
-            variables: { sourceCartId: currentCartId.id, destinationCartId },
+      try {
+        const sourceCartId = readCartId(client.cache)?.id
+        if (sourceCartId && sourceCartId !== destinationCartId) {
+          await client.mutate({
+            mutation: MergeCartsDocument,
+            variables: { sourceCartId, destinationCartId },
           })
-          // We're not handling exceptions here:
-          // If the merge returns an error, we'll use the customer cart without merging the guest cart.
-          .catch((e) => console.error('Error merging carts', e))
+        }
+      } catch (error) {
+        console.error(
+          'Error merging carts, continuing without merging, this might cause issues.',
+          error,
+        )
+      } finally {
+        // Assign the customer cart as the new cart id
+        assignCurrentCartId(destinationCartId)
       }
     },
   })

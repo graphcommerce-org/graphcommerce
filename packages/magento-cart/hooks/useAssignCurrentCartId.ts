@@ -13,6 +13,21 @@ export function writeCartId(cache: ApolloCache<object>, id: string | null = null
   })
 }
 
+export function readCartId(cache: ApolloCache<object>) {
+  return cache.readQuery({ query: CurrentCartIdDocument })?.currentCartId
+}
+
+export function cartLock(cache: ApolloCache<object>, locked: boolean) {
+  const currentCartId = cache.readQuery({ query: CurrentCartIdDocument })?.currentCartId
+  if (currentCartId?.id && currentCartId.locked !== locked) {
+    cache.writeQuery({
+      query: CurrentCartIdDocument,
+      data: { currentCartId: { ...currentCartId, locked } },
+      broadcast: true,
+    })
+  }
+}
+
 export function useAssignCurrentCartId() {
   const { cache } = useApolloClient()
 
