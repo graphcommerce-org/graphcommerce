@@ -49,6 +49,7 @@ export function SelectElement<TFieldValues extends FieldValues, O extends Option
             {...rest}
             value={value ?? ''}
             {...field}
+            inputRef={ref}
             onChange={(event) => {
               let item: number | string | O | undefined = event.target.value
               if (type === 'number') item = Number(item)
