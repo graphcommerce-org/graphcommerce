@@ -43,23 +43,21 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
       control={control}
       rules={validation}
       defaultValue={defaultValue}
-      render={({ field: { value, onChange, onBlur, ref }, fieldState: { error } }) => (
+      render={({ field: { onChange, ref, ...field }, fieldState: { error } }) => (
         <TextField
           {...rest}
-          name={name}
-          value={value ?? ''}
+          {...field}
           onChange={(ev) => {
             onChange(
               type === 'number' && ev.target.value ? Number(ev.target.value) : ev.target.value,
             )
             rest.onChange?.(ev)
           }}
-          onBlur={onBlur}
+          inputRef={ref}
           required={required}
           type={type}
           error={Boolean(error) || rest.error}
           helperText={error ? error.message : rest.helperText}
-          inputRef={ref}
         />
       )}
     />

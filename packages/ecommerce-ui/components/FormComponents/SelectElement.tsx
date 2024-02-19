@@ -37,7 +37,7 @@ export function SelectElement<TFieldValues extends FieldValues, O extends Option
       rules={validation}
       control={control}
       defaultValue={defaultValue}
-      render={({ field: { onBlur, onChange, value }, fieldState: { invalid, error } }) => {
+      render={({ field: { onChange, value, ref, ...field }, fieldState: { invalid, error } }) => {
         // handle shrink on number input fields
         if (type === 'number' && typeof value !== 'undefined') {
           rest.InputLabelProps = rest.InputLabelProps || {}
@@ -47,9 +47,8 @@ export function SelectElement<TFieldValues extends FieldValues, O extends Option
         return (
           <TextField
             {...rest}
-            name={name}
             value={value ?? ''}
-            onBlur={onBlur}
+            {...field}
             onChange={(event) => {
               let item: number | string | O | undefined = event.target.value
               if (type === 'number') item = Number(item)

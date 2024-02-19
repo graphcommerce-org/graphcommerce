@@ -72,7 +72,7 @@ export function MultiSelectElement<TFieldValues extends FieldValues>(
       name={name}
       rules={rules}
       control={control}
-      render={({ field: { value, onChange, onBlur }, fieldState: { invalid, error } }) => {
+      render={({ field: { value, onChange, ...field }, fieldState: { invalid, error } }) => {
         helperText = error
           ? typeof parseError === 'function'
             ? parseError(error)
@@ -102,6 +102,7 @@ export function MultiSelectElement<TFieldValues extends FieldValues>(
             )}
             <Select
               {...rest}
+              {...field}
               id={rest.id || `select-multi-select-${name}`}
               multiple
               label={label || undefined}
@@ -109,7 +110,6 @@ export function MultiSelectElement<TFieldValues extends FieldValues>(
               value={value || []}
               required={required}
               onChange={onChange}
-              onBlur={onBlur}
               MenuProps={{
                 ...rest.MenuProps,
                 PaperProps: {
@@ -126,23 +126,23 @@ export function MultiSelectElement<TFieldValues extends FieldValues>(
                 typeof rest.renderValue === 'function'
                   ? rest.renderValue
                   : showChips
-                  ? (selected) => (
-                      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                        {((selected as any[]) || []).map((selectedValue) => (
-                          <Chip
-                            key={selectedValue}
-                            label={selectedValue}
-                            style={{ display: 'flex', flexWrap: 'wrap' }}
-                            onDelete={() => {
-                              onChange(value.filter((i: any) => i !== selectedValue))
-                              // setValue(name, formValue.filter((i: any) => i !== value), { shouldValidate: true })
-                            }}
-                            deleteIcon={<IconSvg src={iconClose} />}
-                          />
-                        ))}
-                      </div>
-                    )
-                  : (selected) => (Array.isArray(selected) ? selected.join(', ') : '')
+                    ? (selected) => (
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {((selected as any[]) || []).map((selectedValue) => (
+                            <Chip
+                              key={selectedValue}
+                              label={selectedValue}
+                              style={{ display: 'flex', flexWrap: 'wrap' }}
+                              onDelete={() => {
+                                onChange(value.filter((i: any) => i !== selectedValue))
+                                // setValue(name, formValue.filter((i: any) => i !== value), { shouldValidate: true })
+                              }}
+                              deleteIcon={<IconSvg src={iconClose} />}
+                            />
+                          ))}
+                        </div>
+                      )
+                    : (selected) => (Array.isArray(selected) ? selected.join(', ') : '')
               }
             >
               {options.map((item) => {
