@@ -29,8 +29,7 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
   const usingUrl = typeof urlCartId === 'string'
   const cartId = usingUrl ? urlCartId : currentCartId
 
-  if (usingUrl) queryOptions.fetchPolicy = 'cache-first'
-  if (locked) queryOptions.fetchPolicy = 'standby'
+  if (usingUrl || locked) queryOptions.fetchPolicy = 'cache-only'
 
   if (usingUrl && typeof queryOptions.returnPartialData === 'undefined')
     queryOptions.returnPartialData = true

@@ -19,11 +19,12 @@ const useSignInFormMergeCart: MethodPlugin<typeof useSignInForm> = (useSignInFor
 
       cartLock(client.cache, true)
 
-      const customerCart = await client.query({
-        query: CustomerCartDocument,
-        fetchPolicy: 'network-only',
-      })
-      const destinationCartId = customerCart.data.customerCart.id
+      const destinationCartId = (
+        await client.query({
+          query: CustomerCartDocument,
+          fetchPolicy: 'network-only',
+        })
+      ).data.customerCart.id
 
       try {
         const sourceCartId = readCartId(client.cache)?.id
