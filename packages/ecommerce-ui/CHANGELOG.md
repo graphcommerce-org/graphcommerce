@@ -1,12 +1,5 @@
 # @graphcommerce/ecommerce-ui
 
-## 8.1.0-canary.3
-
-### Patch Changes
-
-- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`eb14696`](https://github.com/graphcommerce-org/graphcommerce/commit/eb14696fc65e084a06790c88a8218fb3003f7c2c) - `<WaitForQueries/>` will default to loading, restoring the previous behavior. This might introduce , this might introduce an additional spinner but prevents a flash where it is shown that there is no cart
-  ([@paales](https://github.com/paales))
-
 ## 8.1.0-canary.2
 
 ## 8.0.3-canary.1
