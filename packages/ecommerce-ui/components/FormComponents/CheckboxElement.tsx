@@ -47,7 +47,8 @@ export function CheckboxElement<TFieldValues extends FieldValues>({
       name={name}
       rules={rules}
       control={control}
-      render={({ field: { value, onChange }, fieldState: { invalid, error } }) => {
+      render={({ field: { value, onChange, ref, ...field }, fieldState: { invalid, error } }) => {
+        // eslint-disable-next-line no-nested-ternary
         const parsedHelperText = error
           ? typeof parseError === 'function'
             ? parseError(error)
@@ -61,6 +62,8 @@ export function CheckboxElement<TFieldValues extends FieldValues>({
                 control={
                   <Checkbox
                     {...rest}
+                    {...field}
+                    inputRef={ref}
                     color={rest.color || 'primary'}
                     sx={{
                       ...(Array.isArray(sx) ? sx : [sx]),
@@ -68,9 +71,7 @@ export function CheckboxElement<TFieldValues extends FieldValues>({
                     }}
                     value={value}
                     checked={!!value}
-                    onChange={() => {
-                      onChange(!value)
-                    }}
+                    onChange={() => onChange(!value)}
                   />
                 }
               />
