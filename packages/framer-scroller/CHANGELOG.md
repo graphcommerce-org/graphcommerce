@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.3-canary.2
+
+### Patch Changes
+
+- [#2211](https://github.com/graphcommerce-org/graphcommerce/pull/2211) [`2fc62cd`](https://github.com/graphcommerce-org/graphcommerce/commit/2fc62cd550c8831071c51c1088a94da584a0790b) - Do not show the a product thumbnails when there is only a single image.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.0.3-canary.1
 
 ## 8.0.3-canary.0
