@@ -1,12 +1,5 @@
 # Change Log
 
-## 8.1.0-canary.2
-
-### Minor Changes
-
-- [#2211](https://github.com/graphcommerce-org/graphcommerce/pull/2211) [`2fc62cd`](https://github.com/graphcommerce-org/graphcommerce/commit/2fc62cd550c8831071c51c1088a94da584a0790b) - We stopped showing the thumbnails in the sidebargallery when there is only 1 image.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
 ## 8.0.3-canary.1
 
 ## 8.0.3-canary.0
