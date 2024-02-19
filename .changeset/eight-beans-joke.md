@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/framer-scroller": minor
+'@graphcommerce/framer-scroller': patch
 ---
 
-We stopped showing the thumbnails in the sidebargallery when there is only 1 image.
+Do not show the a product thumbnails when there is only a single image.
