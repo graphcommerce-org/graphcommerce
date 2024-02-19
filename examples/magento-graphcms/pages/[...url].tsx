@@ -2,11 +2,13 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
+  appendSiblingsAsChildren,
   CategoryChildren,
   CategoryDescription,
   CategoryHeroNav,
   CategoryHeroNavTitle,
   CategoryMeta,
+  findParentBreadcrumbItem,
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
 import {
@@ -159,6 +161,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const filteredCategoryUid = productListParams && productListParams.filters.category_uid?.in?.[0]
 
   const category = categoryPage.then((res) => res.data.categories?.items?.[0])
+  const waitForSiblings = appendSiblingsAsChildren(category, staticClient)
   let categoryUid = filteredCategoryUid
   if (!categoryUid) {
     categoryUid = (await category)?.uid ?? ''
@@ -190,14 +193,14 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   if ((await products)?.errors) return { notFound: true }
 
-  const { category_name, category_url_path } =
-    (await categoryPage).data.categories?.items?.[0]?.breadcrumbs?.[0] ?? {}
+  const { category_url_path, category_name } = findParentBreadcrumbItem(await category) ?? {}
 
   const up =
     category_url_path && category_name
       ? { href: `/${category_url_path}`, title: category_name }
       : { href: `/`, title: 'Home' }
 
+  await waitForSiblings
   const result = {
     props: {
       ...(await categoryPage).data,
