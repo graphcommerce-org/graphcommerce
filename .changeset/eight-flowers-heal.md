@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/ecommerce-ui": minor
+'@graphcommerce/ecommerce-ui': patch
 ---
 
 Invalid checkboxes are now focussed
