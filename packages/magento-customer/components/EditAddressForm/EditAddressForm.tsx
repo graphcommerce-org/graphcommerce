@@ -53,7 +53,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
       onBeforeSubmit: (formData) => {
         const region = countries
           ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)
-          ?.available_regions?.find((r) => r?.id === formData.region)
+          ?.available_regions?.find((r) => r?.id === formData.region?.region_id)
         const regionData = {
           region:
             (region && {
@@ -81,7 +81,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
     <>
       <Form onSubmit={submitHandler} noValidate sx={sx}>
         <NameFields form={form} prefix />
-        <AddressFields form={form} />
+        <AddressFields form={form} name={{ regionId: 'region.region_id' }} />
 
         <FormRow>
           <TextField
