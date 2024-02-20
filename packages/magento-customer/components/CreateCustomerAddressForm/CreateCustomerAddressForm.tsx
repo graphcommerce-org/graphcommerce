@@ -1,3 +1,4 @@
+import { ApolloErrorSnackbar } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -13,11 +14,9 @@ import {
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { TextField } from '@mui/material'
 import { useRouter } from 'next/router'
 import { AddressFields } from '../AddressFields/AddressFields'
-import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { NameFields } from '../NameFields/NameFields'
 import { CreateCustomerAddressDocument } from './CreateCustomerAddress.gql'
 
@@ -51,9 +50,8 @@ export function CreateCustomerAddressForm() {
             {},
         }
       },
-      onComplete: () => {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        router.push(`/account/addresses`)
+      onComplete: ({ errors }) => {
+        if (!errors) router.back()
       },
     },
     { errorPolicy: 'all' },
@@ -101,12 +99,11 @@ export function CreateCustomerAddressForm() {
           </Button>
         </FormActions>
       </Form>
-
       <MessageSnackbar open={Boolean(data) && !error} variant='pill' severity='success'>
         <Trans id='Your address has been added' components={{ 0: <strong /> }} />
       </MessageSnackbar>
 
-      <ApolloCustomerErrorAlert error={error} />
+      <ApolloErrorSnackbar error={error} />
     </>
   )
 }
