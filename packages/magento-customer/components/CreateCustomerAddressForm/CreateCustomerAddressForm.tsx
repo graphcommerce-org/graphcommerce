@@ -68,7 +68,7 @@ export function CreateCustomerAddressForm() {
     <>
       <Form onSubmit={submitHandler} noValidate>
         <NameFields form={form} prefix />
-        <AddressFields form={form} regionId='region.region_id' />
+        <AddressFields form={form} name={{ regionId: 'region.region_id' }} />
 
         <FormRow>
           <TextField
