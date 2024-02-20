@@ -1,4 +1,4 @@
-fragment JsonLdProductReview on ProductInterface @inject(into: ["JsonLdProduct"]) {
+fragment JsonLdProductReview on ProductInterface {
   ...ProductReviews
   review_count
   rating_summary

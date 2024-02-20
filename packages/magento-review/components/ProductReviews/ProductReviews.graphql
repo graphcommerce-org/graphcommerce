@@ -1,4 +1,4 @@
-fragment ProductReviews on ProductInterface @inject(into: ["ProductPageItem"]) {
+fragment ProductReviews on ProductInterface {
   reviews(pageSize: $reviewPageSize, currentPage: $reviewPage) {
     page_info {
       total_pages
@@ -16,6 +16,7 @@ fragment ProductReviews on ProductInterface @inject(into: ["ProductPageItem"]) {
       text
     }
   }
+  rating_summary
   review_count
   url_key
   sku
