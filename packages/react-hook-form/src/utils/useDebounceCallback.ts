@@ -3,7 +3,7 @@ import useEventCallback from '@mui/utils/useEventCallback'
 import { useEffect, useRef } from 'react'
 import debounce, { DebounceOptions } from './debounce'
 
-export function useDebouncedCallback<T extends (...args: unknown[]) => unknown>(
+export function useDebouncedCallback<T extends (...args: any[]) => unknown>(
   callback: T,
   { initialWait, maxWait, wait }: DebounceOptions = {},
 ): T {

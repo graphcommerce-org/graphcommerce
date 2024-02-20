@@ -15,6 +15,7 @@ import {
 } from 'react-hook-form'
 import { DebounceOptions } from './utils/debounce'
 import { useDebouncedCallback } from './utils/useDebounceCallback'
+import { useFormValidFields } from './useFormValidFields'
 
 export type UseFormAutoSubmitOptions<TForm extends UseFormReturn<V>, V extends FieldValues> = {
   /** Instance of current form */
@@ -111,6 +112,8 @@ export type FormAutoSubmitProps<TFieldValues extends FieldValues = FieldValues> 
    */
   // eslint-disable-next-line react/no-unused-prop-types
   parallel?: boolean
+
+  noValidate?: boolean
 } & DebounceOptions &
   Omit<UseWatchProps<TFieldValues>, 'defaultValue'>
 
@@ -120,7 +123,7 @@ export type FormAutoSubmitProps<TFieldValues extends FieldValues = FieldValues> 
 function FormAutoSubmitBase<TFieldValues extends FieldValues = FieldValues>(
   props: FormAutoSubmitProps<TFieldValues>,
 ) {
-  const { wait, initialWait, maxWait, submit, parallel, ...watchOptions } = props
+  const { wait, initialWait, maxWait, submit, parallel, noValidate, ...watchOptions } = props
 
   // We create a stable object from the values, so that we can compare them later
   const values = useMemoObject(cloneDeep(useWatch(watchOptions)))
@@ -139,7 +142,7 @@ function FormAutoSubmitBase<TFieldValues extends FieldValues = FieldValues>(
     { wait, initialWait, maxWait },
   )
 
-  const valid = isValid && !isValidating
+  const valid = (noValidate ? true : isValid) && !isValidating
   const allowed = parallel || !isSubmitting
   const canSubmit = valid && allowed
 
