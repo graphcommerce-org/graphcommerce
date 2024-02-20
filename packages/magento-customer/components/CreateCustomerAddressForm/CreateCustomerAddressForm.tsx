@@ -38,7 +38,7 @@ export function CreateCustomerAddressForm() {
       onBeforeSubmit: (formData) => {
         const region = countries
           ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)
-          ?.available_regions?.find((r) => r?.id === formData.region)
+          ?.available_regions?.find((r) => r?.id === formData.region.region_id)
 
         return {
           ...formData,
@@ -68,7 +68,7 @@ export function CreateCustomerAddressForm() {
     <>
       <Form onSubmit={submitHandler} noValidate>
         <NameFields form={form} prefix />
-        <AddressFields form={form} />
+        <AddressFields form={form} regionId='region.region_id' />
 
         <FormRow>
           <TextField
