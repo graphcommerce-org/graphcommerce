@@ -4,6 +4,7 @@ import { productListLink } from '@graphcommerce/magento-product/hooks/useProduct
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { Box, Link, SxProps, Theme } from '@mui/material'
 import { CategoryChildrenFragment } from './CategoryChildren.gql'
+import { useRouter } from 'next/router'
 
 type CategoryChildrenProps = Omit<CategoryChildrenFragment, 'uid'> & {
   params: ProductListParams
@@ -19,8 +20,15 @@ export function CategoryChildren(props: CategoryChildrenProps) {
 
   const { currentPage, ...paramsWithoutCurrentPage } = params
 
-  if (!children || children.length === 0) return null
+  const router = useRouter()
 
+  if (
+    !children ||
+    children.length === 0 ||
+    (children?.[0]?.uid === paramsWithoutCurrentPage.filters.category_uid?.in?.[0] &&
+      children.length === 1)
+  )
+    return null
   return (
     <ScrollerProvider scrollSnapAlign='none'>
       <Box
@@ -70,9 +78,9 @@ export function CategoryChildren(props: CategoryChildrenProps) {
                     left: 0,
                     right: 0,
                     margin: '0 auto',
-                    opacity: 0,
+                    opacity: cat.url_path && router.asPath.includes(cat.url_path) ? 1 : 0,
                     transition: 'opacity .2s ease, bottom .2s ease',
-                    bottom: 0,
+                    bottom: cat.url_path && router.asPath.includes(cat.url_path) ? 5 : 0,
                   },
                   '&:hover': {
                     '&:before': {
