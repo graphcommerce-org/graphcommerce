@@ -8,6 +8,7 @@ export type SelectElementProps<T extends FieldValues, O extends OptionBase> = Om
   TextFieldProps,
   'name' | 'type' | 'onChange' | 'defaultValue'
 > & {
+  /** @deprecated Please use the rules props instead */
   validation?: ControllerProps<T>['rules']
   options?: O[]
   type?: 'string' | 'number'
@@ -19,22 +20,23 @@ export function SelectElement<TFieldValues extends FieldValues, O extends Option
   required,
   options = [],
   type,
-  validation = {},
+  validation,
   control,
   defaultValue,
+  rules = validation ?? {},
   ...rest
 }: SelectElementProps<TFieldValues, O>): JSX.Element {
   const isNativeSelect = !!rest.SelectProps?.native
   const ChildComponent = isNativeSelect ? 'option' : MenuItem
 
-  if (required && !validation.required) {
-    validation.required = i18n._(/* i18n */ 'This field is required')
+  if (required && !rules.required) {
+    rules.required = i18n._(/* i18n */ 'This field is required')
   }
 
   return (
     <Controller
       name={name}
-      rules={validation}
+      rules={rules}
       control={control}
       defaultValue={defaultValue}
       render={({ field: { onChange, value, ref, ...field }, fieldState: { invalid, error } }) => {

@@ -143,7 +143,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           variant='outlined'
           type='text'
           required={required.telephone}
-          validation={{
+          rules={{
             pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
           }}
           label={<Trans id='Telephone' />}

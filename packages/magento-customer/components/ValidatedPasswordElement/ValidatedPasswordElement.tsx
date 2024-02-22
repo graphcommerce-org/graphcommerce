@@ -15,16 +15,16 @@ export function ValidatedPasswordElement<TFieldValues extends FieldValues>(
   const minPasswordLength = Number(storeConfig?.minimum_password_length) ?? 0
   const passwordMinCharacterSets = Number(storeConfig?.required_character_classes_number) ?? 0
 
-  const validation: NonNullable<PasswordElementProps<TFieldValues>['validation']> = {}
+  const rules: NonNullable<PasswordElementProps<TFieldValues>['rules']> = {}
 
-  validation.minLength = {
+  rules.minLength = {
     value: minPasswordLength,
     message: i18n._(/* i18n */ 'Password must have at least {minPasswordLength} characters', {
       minPasswordLength,
     }),
   }
 
-  validation.validate = (value: string) => {
+  rules.validate = (value: string) => {
     const pass = value.trim()
     let counter = 0
 
@@ -43,5 +43,5 @@ export function ValidatedPasswordElement<TFieldValues extends FieldValues>(
     return true
   }
 
-  return <PasswordElement {...textFieldProps} validation={validation} />
+  return <PasswordElement {...textFieldProps} rules={rules} />
 }

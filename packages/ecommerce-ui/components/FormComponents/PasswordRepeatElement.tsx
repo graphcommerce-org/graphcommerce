@@ -14,7 +14,7 @@ export function PasswordRepeatElement<TFieldValues extends FieldValues>({
   return (
     <PasswordElement
       {...rest}
-      validation={{
+      rules={{
         validate: (value: string) =>
           value === pwValue || i18n._(/* i18n */ "Passwords don't match"),
       }}

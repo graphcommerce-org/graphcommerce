@@ -20,7 +20,7 @@ export function AddressHousenumber<
       control={control}
       name={name.houseNumber}
       required={required[name.houseNumber]}
-      validation={{
+      rules={{
         pattern: {
           value: houseNumberPattern,
           message: i18n._(/* i18n */ 'Please provide a valid house number'),

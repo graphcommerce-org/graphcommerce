@@ -39,7 +39,7 @@ export function CustomizableAreaOption(props: CustomizableAreaOptionProps) {
         name={`cartItems.${index}.entered_options.${optionIndex}.value`}
         label={title}
         required={Boolean(required)}
-        validation={{ maxLength }}
+        rules={{ maxLength }}
         helperText={
           (maxLength ?? 0) > 0 &&
           i18n._(/* i18n*/ 'There is a maximum of ‘{maxLength}’ characters', {
