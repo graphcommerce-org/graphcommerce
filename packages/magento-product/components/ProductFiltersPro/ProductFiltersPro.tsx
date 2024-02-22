@@ -50,7 +50,7 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
   const defaultValues = useMemoObject(toFilterParams(params))
   const form = useForm<ProductFilterParams>({ defaultValues, ...formProps })
 
-  const push = useProductListLinkReplace({ scroll: false })
+  const push = useProductListLinkReplace({ scroll: false, shallow: true })
   const submit = useEventCallback(
     form.handleSubmit(async (formValues) =>
       push({ ...toProductListParams(formValues), currentPage: 1 }),
