@@ -19,6 +19,7 @@ import {
 } from '@mui/material'
 
 export type CheckboxElementProps<T extends FieldValues> = Omit<CheckboxProps, 'name'> & {
+  /** @deprecated Form value parsing should happen in the handleSubmit function of the form */
   parseError?: (error: FieldError) => string
   label?: FormControlLabelProps['label']
   helperText?: string

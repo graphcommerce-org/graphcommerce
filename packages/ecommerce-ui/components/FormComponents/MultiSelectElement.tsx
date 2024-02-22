@@ -27,6 +27,7 @@ export type MultiSelectElementProps<T extends FieldValues> = Omit<SelectProps, '
   itemValue?: string
   itemLabel?: string
   required?: boolean
+  /** @deprecated Form value parsing should happen in the handleSubmit function of the form */
   parseError?: (error: FieldError) => string
   minWidth?: number
   menuMaxHeight?: number
