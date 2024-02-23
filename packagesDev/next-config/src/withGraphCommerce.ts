@@ -103,7 +103,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
       if (graphcommerceConfig.guestOnlyMode) {
         rewrites.beforeFiles.push(
           ...[
-            { source: '/account', destination: '/404' },
+            { source: '/account/:path*', destination: '/404' },
             { source: '/checkout/customer/:path*', destination: '/404' },
           ],
         )
