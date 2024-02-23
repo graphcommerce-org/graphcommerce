@@ -40,8 +40,9 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
     return { ...query, defaultValues: {} }
 
   // Find the requested simple product on the configurable variants and get the attributes.
-  const attributes = configurable?.variants?.find((v) => v?.product?.uid === simple?.uid)
-    ?.attributes
+  const attributes = configurable?.variants?.find(
+    (v) => v?.product?.uid === simple?.uid,
+  )?.attributes
 
   const selectedOptions = (attributes ?? []).filter(nonNullable).map((a) => a.uid)
   if (!selectedOptions.length)
@@ -72,7 +73,7 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
 
   client.cache.writeQuery({
     query: GetConfigurableOptionsSelectionDocument,
-    variables: { urlKey: configurable.url_key, selectedOptions, reviewPage: 1, reviewPageSize: 3 },
+    variables: { urlKey: configurable.url_key, selectedOptions },
     data: {
       products: {
         ...query?.products,
