@@ -16,6 +16,7 @@ import {
 
 export type SliderElementProps<T extends FieldValues> = Omit<SliderProps, 'control'> & {
   label?: string
+  /** @deprecated Form value parsing should happen in the handleSubmit function of the form */
   parseError?: (error: FieldError) => string
   required?: boolean
   formControlProps?: FormControlProps

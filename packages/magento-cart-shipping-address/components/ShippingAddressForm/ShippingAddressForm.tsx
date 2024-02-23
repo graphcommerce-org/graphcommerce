@@ -134,16 +134,16 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
 
   return (
     <Form onSubmit={submit} noValidate sx={sx}>
-      <NameFields form={form} key='name' readOnly={readOnly} />
-      <AddressFields form={form} key='addressfields' readOnly={readOnly} />
-      <FormRow key='telephone'>
+      <NameFields form={form} readOnly={readOnly} />
+      <AddressFields form={form} readOnly={readOnly} />
+      <FormRow>
         <TextFieldElement
           control={form.control}
           name='telephone'
           variant='outlined'
           type='text'
           required={required.telephone}
-          validation={{
+          rules={{
             pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
           }}
           label={<Trans id='Telephone' />}

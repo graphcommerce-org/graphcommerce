@@ -100,7 +100,7 @@ export function PickupLocationForm(props: PickupLocationFormProps) {
           <TextFieldElement
             name='searchTerm'
             control={control}
-            validation={{ required: false, minLength: 4 }}
+            rules={{ required: false, minLength: 4 }}
             label={<Trans id='Zip code or city' />}
             type='text'
           />

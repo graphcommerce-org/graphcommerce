@@ -21,6 +21,7 @@ export type CheckboxButtonGroupProps<T extends FieldValues> = {
   options: { id: string | number; label: string }[] | any[]
   helperText?: string
   required?: boolean
+  /** @deprecated Form value parsing should happen in the handleSubmit function of the form */
   parseError?: (error: FieldError) => string
   label?: string
   labelKey?: string
