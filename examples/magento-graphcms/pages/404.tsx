@@ -18,7 +18,7 @@ function RouteNotFoundPage() {
     </Link>,
   ]
 
-  !import.meta.graphCommerce.guestOnlyMode &&
+  if (!import.meta.graphCommerce.guestOnlyMode)
     links.push(
       <Link key={1} href='/account' color='primary' underline='hover'>
         <Trans id='Account' />
