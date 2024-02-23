@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.3-canary.5
+
+### Patch Changes
+
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`7c9f5da`](https://github.com/graphcommerce-org/graphcommerce/commit/7c9f5da1d458a19b0316c556c75415ff28bc5b2d) - Added noValidate prop so we can use the FormAutoSubmit component to submit partial forms
+  ([@paales](https://github.com/paales))
+
 ## 8.0.3-canary.4
 
 ## 8.0.3-canary.3

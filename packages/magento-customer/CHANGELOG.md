@@ -1,5 +1,15 @@
 # Change Log
 
+## 8.0.3-canary.5
+
+### Patch Changes
+
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`6b61a93`](https://github.com/graphcommerce-org/graphcommerce/commit/6b61a93476505e66a3135844b9bce62ccdd1bdcf) - Solve an issue where the customer could not save their region in the customer account section.
+  ([@paales](https://github.com/paales))
+
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`dbd943d`](https://github.com/graphcommerce-org/graphcommerce/commit/dbd943d9f588f24d5c73bdf35f2d3bbc5e0e3406) - Split out AddressFields into separate components and allow renaming fields.
+  ([@paales](https://github.com/paales))
+
 ## 8.0.3-canary.4
 
 ## 8.0.3-canary.3

@@ -1,5 +1,12 @@
 # @graphcommerce/ecommerce-ui
 
+## 8.0.3-canary.5
+
+### Patch Changes
+
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`e12d1dc`](https://github.com/graphcommerce-org/graphcommerce/commit/e12d1dc201bf7b23a996bd58a256a117b91a9334) - Rename validation to rules for all Form field components and deprecate validation
+  ([@paales](https://github.com/paales))
+
 ## 8.0.3-canary.4
 
 ### Patch Changes
