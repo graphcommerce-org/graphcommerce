@@ -53,11 +53,11 @@ export type CustomerFabProps = Omit<CustomerFabContentProps, 'session'>
 export function CustomerFab(props: CustomerFabProps) {
   const session = useCustomerSession()
 
+  if (import.meta.graphCommerce.guestOnlyMode) return null
+
   return (
-    !import.meta.graphCommerce.guestOnlyMode && (
-      <NoSsr fallback={<CustomerFabContent {...props} />}>
-        <CustomerFabContent session={session} {...props} />
-      </NoSsr>
-    )
+    <NoSsr fallback={<CustomerFabContent {...props} />}>
+      <CustomerFabContent session={session} {...props} />
+    </NoSsr>
   )
 }
