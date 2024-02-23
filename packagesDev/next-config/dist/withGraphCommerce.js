@@ -83,6 +83,12 @@ function withGraphCommerce(nextConfig, cwd) {
             if (Array.isArray(rewrites)) {
                 rewrites = { beforeFiles: rewrites, afterFiles: [], fallback: [] };
             }
+            if (graphcommerceConfig.guestOnlyMode) {
+                rewrites.beforeFiles.push(...[
+                    { source: '/account/:path*', destination: '/404' },
+                    { source: '/checkout/customer/:path*', destination: '/404' },
+                ]);
+            }
             if (graphcommerceConfig.productRoute && graphcommerceConfig.productRoute !== '/p/') {
                 rewrites.beforeFiles.push({
                     source: `${graphcommerceConfig.productRoute ?? '/p/'}:path*`,
