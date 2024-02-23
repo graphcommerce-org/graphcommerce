@@ -32,9 +32,11 @@ export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
             {breadcrumb.category_name}
           </Link>
         ))}
-      <Link href={`/${category?.url_path}`} underline='hover' color='inherit'>
-        {category?.name}
-      </Link>
+      {category && (
+        <Link href={`/${category?.url_path}`} underline='hover' color='inherit'>
+          {category?.name}
+        </Link>
+      )}
       <Typography color='text.primary'>{name}</Typography>
     </Breadcrumbs>
   )
