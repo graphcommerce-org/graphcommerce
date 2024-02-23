@@ -4,6 +4,7 @@ import type {
   FilterRangeTypeInput,
   SortEnum,
 } from '@graphcommerce/graphql-mesh'
+import { useRouter } from 'next/router'
 import { FilterTypes, ProductListParams } from './filterTypes'
 
 export function parseParams(
@@ -72,4 +73,16 @@ export function extractUrlQuery(params?: { url: string[] }) {
 
   if (queryIndex > 0 && !query.length) return [undefined, undefined] as const
   return [url, query] as const
+}
+
+export function useFilterParams(props: {
+  filterTypes?: FilterTypes | undefined
+}): ProductListParams | undefined {
+  const { filterTypes } = props
+  const router = useRouter()
+  const path = router.asPath.startsWith('/c/') ? router.asPath.slice(3) : router.asPath.slice(1)
+  const [url, query] = extractUrlQuery({ url: path.split('/') })
+  if (!url || !query || !filterTypes) return undefined
+
+  return parseParams(url, query, filterTypes)
 }
