@@ -16,7 +16,6 @@ fragment ProductReviews on ProductInterface {
       text
     }
   }
-  rating_summary
   review_count
   url_key
   sku

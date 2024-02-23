@@ -8,7 +8,7 @@ import { RowProductFragment } from '../RowProduct.gql'
 type ReviewsProps = RowProductFragment & Partial<ProductReviewsProps>
 
 export function Reviews(props: ReviewsProps) {
-  const { title, reviews, url_key, review_count, rating_summary, sku } = props
+  const { title, reviews, url_key, review_count, sku } = props
 
   const { data, loading } = useQuery(StoreConfigDocument)
 
@@ -45,7 +45,6 @@ export function Reviews(props: ReviewsProps) {
         url_key={url_key ?? ''}
         sku={sku}
         review_count={review_count ?? 0}
-        rating_summary={rating_summary ?? 0}
       />
     </Row>
   )

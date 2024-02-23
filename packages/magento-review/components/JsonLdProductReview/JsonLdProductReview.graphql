@@ -1,3 +1,4 @@
 fragment JsonLdProductReview on ProductInterface {
+  rating_summary
   ...ProductReviews
 }
