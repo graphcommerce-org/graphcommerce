@@ -100,6 +100,15 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
         rewrites = { beforeFiles: rewrites, afterFiles: [], fallback: [] }
       }
 
+      if (graphcommerceConfig.guestOnlyMode) {
+        rewrites.beforeFiles.push(
+          ...[
+            { source: '/account', destination: '/404' },
+            { source: '/checkout/customer/:path*', destination: '/404' },
+          ],
+        )
+      }
+
       if (graphcommerceConfig.productRoute && graphcommerceConfig.productRoute !== '/p/') {
         rewrites.beforeFiles.push({
           source: `${graphcommerceConfig.productRoute ?? '/p/'}:path*`,
