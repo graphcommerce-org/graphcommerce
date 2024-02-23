@@ -73,7 +73,8 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
             endAdornment: (
               <WaitForQueries waitFor={isEmailAvailable}>
                 {(isEmailAvailable.data?.isEmailAvailable ||
-                  !import.meta.graphCommerce.enableGuestCheckoutLogin) && (
+                  (!import.meta.graphCommerce.enableGuestCheckoutLogin &&
+                    !import.meta.graphCommerce.guestOnlyMode)) && (
                   <Button
                     href={`/account/signin?email=${email}`}
                     color='secondary'

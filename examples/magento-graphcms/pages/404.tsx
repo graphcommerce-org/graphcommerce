@@ -16,10 +16,14 @@ function RouteNotFoundPage() {
     <Link key={0} href='/' color='primary' underline='hover'>
       <Trans id='Store home' />
     </Link>,
-    <Link key={1} href='/account' color='primary' underline='hover'>
-      <Trans id='Account' />
-    </Link>,
   ]
+
+  !import.meta.graphCommerce.guestOnlyMode &&
+    links.push(
+      <Link key={1} href='/account' color='primary' underline='hover'>
+        <Trans id='Account' />
+      </Link>,
+    )
 
   return (
     <>
