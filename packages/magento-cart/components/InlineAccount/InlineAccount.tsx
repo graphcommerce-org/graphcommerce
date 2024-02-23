@@ -45,81 +45,80 @@ export function InlineAccount(props: InlineAccountProps) {
   const canSignUp = isEmailAvailableData?.isEmailAvailable?.is_email_available === true
 
   if (loggedIn || !canSignUp) return null
+  if (import.meta.graphCommerce.guestOnlyMode) return null
 
   return (
-    !import.meta.graphCommerce.guestOnlyMode && (
-      <div>
+    <div>
+      <Box
+        className={classes.root}
+        sx={[
+          (theme) => ({
+            borderRadius: '4px',
+            border: `1px solid ${theme.palette.divider}`,
+            padding: theme.spacings.md,
+            marginTop: theme.spacings.sm,
+          }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      >
         <Box
-          className={classes.root}
-          sx={[
-            (theme) => ({
-              borderRadius: '4px',
-              border: `1px solid ${theme.palette.divider}`,
-              padding: theme.spacings.md,
-              marginTop: theme.spacings.sm,
-            }),
-            ...(Array.isArray(sx) ? sx : [sx]),
-          ]}
+          className={classes.innerContainer}
+          sx={(theme) => ({
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: theme.spacings.md,
+            [theme.breakpoints.up('sm')]: {
+              alignItems: 'flex-end',
+              flexDirection: 'unset',
+              gap: 0,
+            },
+          })}
         >
-          <Box
-            className={classes.innerContainer}
-            sx={(theme) => ({
-              display: 'flex',
-              justifyContent: 'space-between',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              gap: theme.spacings.md,
-              [theme.breakpoints.up('sm')]: {
-                alignItems: 'flex-end',
-                flexDirection: 'unset',
-                gap: 0,
-              },
-            })}
-          >
-            <div>
-              <Typography variant='h4' className={classes.title} sx={{ paddingBottom: '8px' }}>
-                {title ?? <Trans id='No account yet?' />}
-              </Typography>
-              {description ?? <Trans id='You can track your order status and much more!' />}
-            </div>
-            <div>
-              {!toggled && (
-                <Button
-                  variant='pill'
-                  color='secondary'
-                  loading={loading}
-                  onClick={() => setToggled(!toggled)}
-                  className={classes.button}
-                  sx={{ minWidth: 160 }}
-                >
-                  <Trans id='Create an account' />
-                </Button>
-              )}
-            </div>
-          </Box>
-          {cart?.email && toggled && (
-            <Box className={classes.form} sx={(theme) => ({ marginTop: theme.spacings.sm })}>
-              <FormRow>
-                <TextField
-                  variant='outlined'
-                  type='email'
-                  label='Email'
-                  value={cart?.email}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-              </FormRow>
-              <SignUpFormInline
-                firstname={firstname ?? ''}
-                lastname={lastname}
-                email={cart?.email}
-                onSubmitted={() => setToggled(false)}
-              />
-            </Box>
-          )}
+          <div>
+            <Typography variant='h4' className={classes.title} sx={{ paddingBottom: '8px' }}>
+              {title ?? <Trans id='No account yet?' />}
+            </Typography>
+            {description ?? <Trans id='You can track your order status and much more!' />}
+          </div>
+          <div>
+            {!toggled && (
+              <Button
+                variant='pill'
+                color='secondary'
+                loading={loading}
+                onClick={() => setToggled(!toggled)}
+                className={classes.button}
+                sx={{ minWidth: 160 }}
+              >
+                <Trans id='Create an account' />
+              </Button>
+            )}
+          </div>
         </Box>
-      </div>
-    )
+        {cart?.email && toggled && (
+          <Box className={classes.form} sx={(theme) => ({ marginTop: theme.spacings.sm })}>
+            <FormRow>
+              <TextField
+                variant='outlined'
+                type='email'
+                label='Email'
+                value={cart?.email}
+                InputProps={{
+                  readOnly: true,
+                }}
+              />
+            </FormRow>
+            <SignUpFormInline
+              firstname={firstname ?? ''}
+              lastname={lastname}
+              email={cart?.email}
+              onSubmitted={() => setToggled(false)}
+            />
+          </Box>
+        )}
+      </Box>
+    </div>
   )
 }
