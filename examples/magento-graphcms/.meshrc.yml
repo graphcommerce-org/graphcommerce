@@ -31,5 +31,6 @@ sources:
           X-ReCaptcha: "{context.headers['x-recaptcha']}"
           Preview-Version: "{context.headers['preview-version']}"
           Content-Currency: "{context.headers['content-currency']}"
+          X-Forwarded-For: "{context.headers['x-forwarded-for']}"
 serve:
   playground: true
