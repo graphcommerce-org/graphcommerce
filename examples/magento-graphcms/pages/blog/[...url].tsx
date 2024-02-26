@@ -1,46 +1,52 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { PageMeta, GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import {
+  PageMeta,
+  BlogTitle,
+  GetStaticProps,
+  Row,
+  LayoutTitle,
+  LayoutHeader,
+} from '@graphcommerce/next-ui'
 import { GetStaticPaths } from 'next'
 import {
   BlogAuthor,
   BlogHeader,
   BlogList,
-  BlogPostTaggedPathsDocument,
-  BlogListTaggedDocument,
-  BlogListTaggedQuery,
+  BlogListDocument,
+  BlogListQuery,
+  BlogPostPathsDocument,
   BlogTags,
-  BlogTitle,
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
   RowRenderer,
-} from '../../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+} from '../../components'
+import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = HygraphPagesQuery & BlogListTaggedQuery
-type RouteProps = { url: string }
+type Props = HygraphPagesQuery & BlogListQuery
+type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function BlogPage(props: Props) {
-  const { pages, blogPosts } = props
+  const { blogPosts, pages } = props
+
   const page = pages[0]
-  const title = page.title ?? ''
+  const title = page?.title ?? ''
 
   return (
     <>
       <LayoutHeader floatingMd>
-        <LayoutTitle size='small'>{title}</LayoutTitle>
+        <LayoutTitle size='small' component='span'>
+          {title}
+        </LayoutTitle>
       </LayoutHeader>
       <Row>
         <PageMeta title={title} metaDescription={title} canonical={`/${page.url}`} />
 
-        <BlogTitle>
-          <Trans id='Tagged in: {title}' values={{ title }} />
-        </BlogTitle>
+        <BlogTitle>{title}</BlogTitle>
 
         {page.author ? <BlogAuthor author={page.author} date={page.date} /> : null}
         {page.asset ? <BlogHeader asset={page.asset} /> : null}
@@ -63,13 +69,13 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
   const responses = locales.map(async (locale) => {
     const staticClient = graphqlSsrClient(locale)
-    const BlogPostPaths = staticClient.query({ query: BlogPostTaggedPathsDocument })
+    const BlogPostPaths = staticClient.query({ query: BlogPostPathsDocument })
     const { pages } = (await BlogPostPaths).data
     return (
-      pages.map((page) => ({
-        params: { url: `${page?.url}`.replace('blog/tagged/', '') },
-        locale,
-      })) ?? []
+      pages.map((page) => {
+        const url = page.url.replace('blog/', '').split('/')
+        return { params: { url }, locale }
+      }) ?? []
     )
   })
   const paths = (await Promise.all(responses)).flat(1)
@@ -77,17 +83,19 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
-  const urlKey = params?.url ?? '??'
+  const urlKey = params?.url.reduce((a, b) => `${a}/${b}`) ?? ''
+
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
-  const limit = 99
+  const limit = 4
   const conf = client.query({ query: StoreConfigDocument })
-  const page = hygraphPageContent(staticClient, `blog/tagged/${urlKey}`)
+
+  const page = hygraphPageContent(staticClient, `blog/${urlKey}`)
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const blogPosts = staticClient.query({
-    query: BlogListTaggedDocument,
-    variables: { currentUrl: [`blog/tagged/${urlKey}`], first: limit, tagged: params?.url },
+    query: BlogListDocument,
+    variables: { currentUrl: [`blog/${urlKey}`], first: limit },
   })
   if (!(await page).data.pages?.[0]) return { notFound: true }
 
@@ -96,7 +104,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       ...(await page).data,
       ...(await blogPosts).data,
       ...(await layout).data,
-      up: { href: '/blog', title: 'Blog' },
+      up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
