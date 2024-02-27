@@ -98,6 +98,7 @@ function CategoryPage(props: CategoryProps) {
           <CategoryDescription description={category.description} />
           <CategoryChildren params={params}>{category.children}</CategoryChildren>
           <CategoryFilterLayout
+            categories={categories}
             params={params}
             filters={filters}
             products={products}
