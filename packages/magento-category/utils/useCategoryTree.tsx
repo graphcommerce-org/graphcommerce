@@ -16,16 +16,16 @@ export function useCategoryTree(props: UseCategoryTreeProps) {
     'category_name',
     'category_level',
     'category_url_path',
-  ]).map((breadcrumbs) => ({
-    level: breadcrumbs.category_level,
-    title: breadcrumbs.category_name,
+  ]).map((breadcrumb) => ({
+    level: breadcrumb.category_level,
+    title: `${`> ${breadcrumb.category_name}`}`,
     value: productListLink({
       ...params,
       currentPage: 0,
-      url: breadcrumbs.category_url_path,
-      filters: { category_uid: { eq: breadcrumbs.category_uid } },
+      url: breadcrumb.category_url_path,
+      filters: { category_uid: { eq: breadcrumb.category_uid } },
     }),
-    active: params?.url === breadcrumbs.category_url_path,
+    active: params?.url === breadcrumb.category_url_path,
   }))
 
   const children = filterNonNullableKeys(category.children, [
@@ -47,7 +47,7 @@ export function useCategoryTree(props: UseCategoryTreeProps) {
   if (!children.find((item) => item.value === `/${category.url_path}`))
     children.push({
       level: Math.max(...parents.map((breadcrumb) => breadcrumb.level)),
-      title: category.name,
+      title: `${`> ${category.name}`}`,
       value: productListLink({
         ...params,
         currentPage: 0,
