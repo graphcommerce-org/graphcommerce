@@ -1,3 +1,4 @@
+import { CategoryQueryFragment } from '@graphcommerce/magento-category'
 import {
   FilterTypes,
   ProductFiltersPro,
@@ -22,7 +23,6 @@ import {
 import { StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { ProductListItems } from './ProductListItems'
-import { CategoryQueryFragment } from '@graphcommerce/magento-category'
 
 export type ProductListFilterLayoutProps = ProductListQuery &
   ProductFiltersQuery & {
@@ -69,6 +69,7 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
               <ProductFiltersProAllFiltersSidebar
                 total_count={total_count}
                 sort_fields={sort_fields}
+                {...props}
               />
             }
             count={<ProductListCount total_count={total_count} />}
