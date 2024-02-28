@@ -5,11 +5,9 @@ import {
   ActionCardListForm,
   ChipOverlayOrPopper,
   ChipOverlayOrPopperProps,
-  filterNonNullableKeys,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { useRouter } from 'next/router'
-import { productListLink } from '../../hooks/useProductListLink'
 import { ProductListParams } from '../ProductListItems/filterTypes'
 
 export type CategoryFilterProps = CategoryQueryFragment &
