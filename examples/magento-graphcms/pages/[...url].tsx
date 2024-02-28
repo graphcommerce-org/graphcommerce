@@ -2,11 +2,13 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
+  CategoryBreadcrumb,
   CategoryChildren,
   CategoryDescription,
   CategoryHeroNav,
   CategoryHeroNavTitle,
   CategoryMeta,
+  CategoryPopperBreadcrumb,
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
 import {
@@ -62,11 +64,19 @@ function CategoryPage(props: CategoryProps) {
         canonical={page?.url ? `/${page.url}` : undefined}
         {...category}
       />
-      <LayoutHeader floatingMd>
+      <LayoutHeader floatingMd sx={{ display: 'none' }}>
         <LayoutTitle size='small' component='span'>
           {category?.name ?? page.title}
         </LayoutTitle>
       </LayoutHeader>
+
+      {isCategory && (
+        <Container maxWidth={false}>
+          <CategoryBreadcrumb {...category} />
+          <CategoryPopperBreadcrumb {...category} />
+        </Container>
+      )}
+
       {!isLanding && (
         <Container maxWidth={false}>
           <LayoutTitle
