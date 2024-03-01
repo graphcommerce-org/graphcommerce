@@ -88,7 +88,7 @@ export function useFilterParams(props: {
   const [url, query] = extractUrlQuery({ url: path.split('#')[0].split('/') })
   if (!url || !query || !filterTypes) return { params, shallow: false }
 
-  const searchParam = url.startsWith('search/') ? url.split('/')[1] : null
+  const searchParam = url.startsWith('search') ? url.split('/')[1] ?? '' : null
   const clientParams = parseParams(url, query, filterTypes, searchParam)
 
   if (clientParams && !clientParams?.filters.category_uid && params?.filters.category_uid)
