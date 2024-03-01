@@ -32,7 +32,9 @@ export function useCategoryCatalog<T extends ProductListQuery & { params?: Produ
     },
     skip: !shallow && !loggedIn,
   })
-  showPageLoadIndicator.set(productList.loading)
+  showPageLoadIndicator.set(
+    (!loggedIn || !!productList.previousData?.products) && productList.loading,
+  )
 
   let products = productList.data?.products
   if (shallow) {
