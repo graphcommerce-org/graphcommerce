@@ -35,9 +35,9 @@ import {
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
-export type CategoryProps = ProductListQuery &
-  CategoryPageQuery &
+export type CategoryProps = CategoryPageQuery &
   HygraphPagesQuery &
+  ProductListQuery &
   ProductFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
 export type CategoryRoute = { url: string[] }
 
@@ -45,9 +45,9 @@ type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
 function CategoryPage(props: CategoryProps) {
-  const { categories, filters, filterTypes, pages, params, products } = props
-  const category = categories?.items?.[0]
+  const { categories, products, filters, params, filterTypes, pages } = props
 
+  const category = categories?.items?.[0]
   const isLanding = category?.display_mode === 'PAGE'
   const page = pages?.[0]
   const isCategory = params && category && products?.items && filterTypes
