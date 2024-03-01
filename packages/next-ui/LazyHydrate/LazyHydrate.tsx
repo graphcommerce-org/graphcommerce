@@ -65,7 +65,7 @@ export function LazyHydrate(props: LazyHydrateProps) {
           startTransition(() => setIsHydrated(true))
         }
       },
-      { rootMargin: '500px' },
+      { rootMargin: '200px' },
     )
     observer.observe(rootRef.current)
 
