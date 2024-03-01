@@ -14,6 +14,7 @@ import {
   ProductListPagination,
   ProductListParamsProvider,
   ProductListSort,
+  useSearchCatalog,
 } from '@graphcommerce/magento-search'
 import { StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
@@ -21,7 +22,7 @@ import { ProductListFilterLayoutProps } from './CategoryFilterLayout'
 import { productListRenderer } from './productListRenderer'
 
 export function SearchFilterLayout(props: ProductListFilterLayoutProps) {
-  const { params, filters, products, filterTypes, title, id } = props
+  const { params, filters, products, filterTypes, title, id, mask } = useSearchCatalog(props)
 
   if (!(params && products?.items && filterTypes)) return null
 
@@ -33,6 +34,7 @@ export function SearchFilterLayout(props: ProductListFilterLayoutProps) {
       items={products.items}
       loadingEager={6}
       title={title}
+      mask={mask}
     />
   )
 

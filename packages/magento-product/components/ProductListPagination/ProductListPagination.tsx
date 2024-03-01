@@ -1,4 +1,4 @@
-import { Pagination } from '@graphcommerce/next-ui'
+import { NextLink, Pagination } from '@graphcommerce/next-ui'
 import { Link, PaginationProps } from '@mui/material'
 import { productListLink } from '../../hooks/useProductListLink'
 import { ProductListParams } from '../ProductListItems/filterTypes'
@@ -26,6 +26,8 @@ export function ProductListPagination({
           <Link
             {...btnProps}
             href={`${productListLink({ ...params, currentPage: btnProps.page })}${suffix}`}
+            component={NextLink}
+            shallow
             color='inherit'
           >
             {icon}

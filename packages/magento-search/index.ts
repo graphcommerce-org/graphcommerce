@@ -7,6 +7,7 @@ export * from './components/SearchLink/SearchLink'
 export * from './CategorySearch.gql'
 export * from './components/SearchButton/SearchButton'
 export * from './components/SearchContext/SearchContext'
+export * from './hooks/useSearchCatalog'
 
 export {
   ProductListSort,

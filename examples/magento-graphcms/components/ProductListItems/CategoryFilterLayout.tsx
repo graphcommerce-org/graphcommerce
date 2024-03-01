@@ -17,6 +17,7 @@ import {
   ProductListParamsProvider,
   ProductListQuery,
   ProductListSort,
+  useCategoryCatalog,
 } from '@graphcommerce/magento-product'
 import { StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
@@ -31,13 +32,15 @@ export type ProductListFilterLayoutProps = ProductListQuery &
   }
 
 export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
-  const { params, filters, products, filterTypes, title, id } = props
+  const { params, filters, products, filterTypes, title, id, mask } = useCategoryCatalog(props)
 
   if (!(params && products?.items && filterTypes)) return null
 
   const { total_count, sort_fields, page_info } = products
 
-  const items = <ProductListItems items={products.items} loadingEager={6} title={title} />
+  const items = (
+    <ProductListItems items={products.items} loadingEager={6} title={title} mask={mask} />
+  )
 
   if (import.meta.graphCommerce.productFiltersPro) {
     const horizontalFilters = (

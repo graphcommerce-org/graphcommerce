@@ -6,6 +6,8 @@ import type {
 } from '@graphcommerce/graphql-mesh'
 import { useRouter } from 'next/router'
 import { FilterTypes, ProductListParams } from './filterTypes'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { equal } from '@wry/equality'
 
 export function parseParams(
   url: string,
@@ -77,12 +79,20 @@ export function extractUrlQuery(params?: { url: string[] }) {
 
 export function useFilterParams(props: {
   filterTypes?: FilterTypes | undefined
-}): ProductListParams | undefined {
-  const { filterTypes } = props
+  params?: ProductListParams
+}) {
+  const { filterTypes, params } = props
   const router = useRouter()
-  const path = router.asPath.startsWith('/c/') ? router.asPath.slice(3) : router.asPath.slice(1)
-  const [url, query] = extractUrlQuery({ url: path.split('/') })
-  if (!url || !query || !filterTypes) return undefined
 
-  return parseParams(url, query, filterTypes)
+  const path = router.asPath.startsWith('/c/') ? router.asPath.slice(3) : router.asPath.slice(1)
+  const [url, query] = extractUrlQuery({ url: path.split('#')[0].split('/') })
+  if (!url || !query || !filterTypes) return { params, shallow: false }
+
+  const searchParam = url.startsWith('search/') ? url.split('/')[1] : null
+  const clientParams = parseParams(url, query, filterTypes, searchParam)
+
+  if (clientParams && !clientParams?.filters.category_uid && params?.filters.category_uid)
+    clientParams.filters.category_uid = params?.filters.category_uid
+
+  return { params: clientParams, shallow: !equal(params, clientParams) }
 }

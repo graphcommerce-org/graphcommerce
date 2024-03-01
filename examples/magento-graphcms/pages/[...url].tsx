@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { flushMeasurePerf, useQuery } from '@graphcommerce/graphql'
+import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   CategoryChildren,
   CategoryDescription,
@@ -9,7 +9,6 @@ import {
   CategoryMeta,
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
-import { useCustomerQuery } from '@graphcommerce/magento-customer'
 import {
   extractUrlQuery,
   FilterTypes,
@@ -20,7 +19,6 @@ import {
   ProductListDocument,
   ProductListParams,
   ProductListQuery,
-  useFilterParams,
 } from '@graphcommerce/magento-product'
 import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutHeader, LayoutTitle, MetaRobots } from '@graphcommerce/next-ui'
@@ -37,41 +35,17 @@ import {
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
-export type CategoryProps = CategoryPageQuery &
+export type CategoryProps = ProductListQuery &
+  CategoryPageQuery &
   HygraphPagesQuery &
-  ProductListQuery &
-  ProductFiltersQuery & { filterTypes?: FilterTypes }
+  ProductFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
 export type CategoryRoute = { url: string[] }
 
 type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
-function useCustomerPricing(
-  props: CategoryProps,
-): CategoryProps & { params?: ProductListParams; loading: boolean } {
-  const { categories, products } = props
-  const category = categories?.items?.[0]
-
-  const params = useFilterParams(props)
-  const storeConfig = useQuery(StoreConfigDocument)
-
-  const { data, previousData, loading } = useCustomerQuery(ProductListDocument, {
-    variables: {
-      pageSize: storeConfig.data?.storeConfig?.grid_per_page ?? 24,
-      ...params,
-      filters: {
-        ...params?.filters,
-        category_uid: { eq: category?.uid },
-      },
-    },
-    skip: !products?.items,
-  })
-
-  return { loading, ...props, ...(data ?? previousData) }
-}
-
 function CategoryPage(props: CategoryProps) {
-  const { categories, filters, products, filterTypes, pages, params } = useCustomerPricing(props)
+  const { categories, filters, filterTypes, pages, params, products } = props
   const category = categories?.items?.[0]
 
   const isLanding = category?.display_mode === 'PAGE'
@@ -206,7 +180,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
         variables: {
           pageSize: (await conf).data.storeConfig?.grid_per_page ?? 24,
           ...productListParams,
-          filters: { ...productListParams?.filters, category_uid: { eq: categoryUid } },
         },
       })
     : undefined

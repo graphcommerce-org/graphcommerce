@@ -26,6 +26,7 @@
     "@graphcommerce/graphql-mesh": "^8.0.3-canary.4",
     "@graphcommerce/image": "^8.0.3-canary.4",
     "@graphcommerce/magento-cart": "^8.0.3-canary.4",
+    "@graphcommerce/magento-customer": "^8.0.3-canary.4",
     "@graphcommerce/magento-store": "^8.0.3-canary.4",
     "@graphcommerce/next-ui": "^8.0.3-canary.4",
     "@graphcommerce/prettier-config-pwa": "^8.0.3-canary.4",

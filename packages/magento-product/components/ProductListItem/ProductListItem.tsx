@@ -1,5 +1,5 @@
 import { ImageProps } from '@graphcommerce/image'
-import { extendableComponent } from '@graphcommerce/next-ui'
+import { cssFlag, cssNotFlag, extendableComponent } from '@graphcommerce/next-ui'
 import { SxProps, Theme, useEventCallback, Skeleton } from '@mui/material'
 import React from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
@@ -49,6 +49,7 @@ type BaseProps = {
   imageOnly?: boolean
   children?: React.ReactNode
   sx?: SxProps<Theme>
+  mask?: boolean
   // eslint-disable-next-line react/no-unused-prop-types
   onClick?: (event: React.MouseEvent<HTMLAnchorElement>, item: ProductListItemFragment) => void
 } & StyleProps &
@@ -82,11 +83,12 @@ export function ProductListItemReal(props: ProductProps) {
     aspectRatio = [4, 3],
     titleComponent = 'h2',
     sx = [],
+    mask,
     onClick,
   } = props
 
-  const handleClick = useEventCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => onClick?.(e, props),
+  const handleClick = useEventCallback((e: React.MouseEvent<HTMLAnchorElement>) =>
+    onClick?.(e, props),
   )
 
   return (
@@ -131,7 +133,21 @@ export function ProductListItemReal(props: ProductProps) {
             title={name}
             subTitle={subTitle}
           >
-            <ProductListPrice {...price_range.minimum_price} />
+            <ProductListPrice
+              {...price_range.minimum_price}
+              sx={{
+                [cssFlag('signed-in')]: { display: mask ? 'none' : undefined },
+              }}
+            />
+
+            <Skeleton
+              variant='text'
+              sx={{
+                width: '50px',
+                [cssFlag('signed-in')]: { display: mask ? 'inherit' : 'none' },
+                [cssNotFlag('signed-in')]: { display: 'none' },
+              }}
+            />
           </ProductListItemTitleAndPrice>
           {children}
         </>
