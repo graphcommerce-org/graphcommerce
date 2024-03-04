@@ -1,4 +1,5 @@
 import type { RuntimeCaching } from '@serwist/build'
+import { nextImagePlugin } from './nextImagePlugin'
 
 export const runtimeCaching: RuntimeCaching[] = [
   {
@@ -38,11 +39,11 @@ export const runtimeCaching: RuntimeCaching[] = [
     urlPattern: /\/_next\/image\?url=.+$/i,
     handler: 'StaleWhileRevalidate',
     options: {
+      plugins: [nextImagePlugin('next-image')],
       cacheName: 'next-image',
       expiration: {
         maxEntries: 1000, // 1000 images
         maxAgeSeconds: 168 * 60 * 60, // 1 week
-
         matchOptions: { ignoreVary: true },
       },
     },
