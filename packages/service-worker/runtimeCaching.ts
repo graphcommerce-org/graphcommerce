@@ -45,6 +45,7 @@ export const runtimeCaching: RuntimeCaching[] = [
         maxEntries: 1000, // 1000 images
         maxAgeSeconds: 168 * 60 * 60, // 1 week
         matchOptions: { ignoreVary: true },
+        purgeOnQuotaError: true,
       },
     },
   },
