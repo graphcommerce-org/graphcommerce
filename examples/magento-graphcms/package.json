@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "@apollo/client": "~3.11.10",
-    "@ducanh2912/next-pwa": "9.7.2",
     "@emotion/cache": "^11.13.1",
     "@emotion/react": "11.12.0",
     "@emotion/server": "^11.11.0",
@@ -80,6 +79,7 @@
     "@graphcommerce/next-ui": "9.0.0-canary.107",
     "@graphcommerce/react-hook-form": "9.0.0-canary.107",
     "@lingui/conf": "4.14.0",
+    "@graphcommerce/service-worker": "8.0.3-canary.6",
     "@lingui/core": "4.14.0",
     "@lingui/macro": "4.14.0",
     "@lingui/react": "4.14.0",
@@ -89,6 +89,7 @@
     "@next/env": "15.0.3",
     "@parcel/watcher": "^2.4.1",
     "@unts/patch-package": "^8.0.0",
+    "@serwist/next": "^8.4.4",
     "concurrently": "8.2.2",
     "cross-env": "^7.0.3",
     "dotenv": "16.4.5",

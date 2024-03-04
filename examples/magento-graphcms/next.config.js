@@ -2,16 +2,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 require('dotenv').config({ path: `${__dirname}/.env` })
 
-const { withGraphCommerce, runtimeCachingOptimizations } = require('@graphcommerce/next-config')
+const { withGraphCommerce } = require('@graphcommerce/next-config')
 
-// eslint-disable-next-line import/order
-const withPWA = require('@ducanh2912/next-pwa').default({
-  dest: 'public',
-  disable: process.env.NODE_ENV === 'development',
-  extendDefaultRuntimeCaching: true,
-  workboxOptions: {
-    runtimeCaching: runtimeCachingOptimizations,
-  },
+const withPWA = require('@serwist/next').default({
+  // disable: process.env.NODE_ENV === 'development',
+  swSrc: 'lib/sw.ts',
+  swDest: 'public/sw.js',
+  exclude: [/sitemap/, /robots/, 'sw.js'],
 })
 
 /** @type {import('next').NextConfig} */
