@@ -48,11 +48,10 @@ function validateAndBuildStartPaymentParams(cartData: BraintreeLocalPaymentsCart
 
   return {
     amount: amount.toString(),
-
     currencyCode,
     shippingAddressRequired: false,
     email: cart?.email ?? '',
-    phone,
+    phone: phone ?? '',
     givenName,
     surname,
     address: { streetAddress, extendedAddress, locality, postalCode, region, countryCode },
@@ -98,7 +97,7 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
       if (!selectedMethod?.code) throw Error('Selected method not found')
       const options = validateAndBuildStartPaymentParams(cartData)
 
-      lock({ payment_id: null, method: selectedMethod?.code })
+      await lock({ payment_id: null, method: selectedMethod?.code })
 
       const localPayment = await localPaymentPromise
       try {
@@ -109,8 +108,8 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
             buttonText: 'Return to website',
             url: window.location.href,
           },
-          onPaymentStart: ({ paymentId }, next) => {
-            lock({ payment_id: paymentId, method: selectedMethod?.code })
+          onPaymentStart: async ({ paymentId }, next) => {
+            await lock({ payment_id: paymentId, method: selectedMethod?.code })
             next()
           },
         })
