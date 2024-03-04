@@ -12,6 +12,7 @@
     }
   },
   "dependencies": {
+    "@graphcommerce/next-ui": "^8.0.3-canary.6",
     "@serwist/build": "^8.4.4",
     "@serwist/next": "^8.4.4",
     "@serwist/precaching": "^8.4.4",
