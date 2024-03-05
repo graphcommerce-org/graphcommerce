@@ -1,0 +1,5 @@
+fragment ConfigurableCartItem_GiftMessage on ConfigurableCartItem @inject(into: ["CartItem"]) {
+  gift_message {
+    ...GiftMessage_Data
+  }
+}

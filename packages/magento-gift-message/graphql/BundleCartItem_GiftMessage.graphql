@@ -1,0 +1,5 @@
+fragment BundleCartItem_GiftMessage on BundleCartItem @inject(into: ["CartItem"]) {
+  gift_message {
+    ...GiftMessage_Data
+  }
+}

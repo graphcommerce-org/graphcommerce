@@ -1,0 +1,3 @@
+fragment ProductInterface_GiftMessage on ProductInterface {
+  gift_message_available
+}

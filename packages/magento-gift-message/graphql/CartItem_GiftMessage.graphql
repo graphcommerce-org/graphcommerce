@@ -1,0 +1,5 @@
+fragment CartItem_GiftMessage on BundleCartItem {
+  gift_message {
+    ...GiftMessage_Data
+  }
+}

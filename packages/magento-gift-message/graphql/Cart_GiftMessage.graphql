@@ -1,0 +1,5 @@
+fragment Cart_GiftMessage on Cart {
+  gift_message {
+    ...GiftMessage_Data
+  }
+}

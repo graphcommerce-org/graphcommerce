@@ -1,0 +1,5 @@
+fragment SimpleCartItem_GiftMessage on SimpleCartItem @inject(into: ["CartItem"]) {
+  gift_message {
+    ...GiftMessage_Data
+  }
+}

@@ -1,0 +1,5 @@
+fragment GiftMessage_Data on GiftMessage {
+  from
+  message
+  to
+}
