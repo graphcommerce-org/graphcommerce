@@ -23,6 +23,8 @@ import {
   ProductPagePriceTiers,
   ProductShortDescription,
   ProductSidebarDelivery,
+  ProductPageBreadcrumb,
+  ProductPagePopperBreadcrumb,
 } from '@graphcommerce/magento-product'
 import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {
@@ -36,7 +38,7 @@ import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/m
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import { GetStaticProps, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Divider, Link, Typography } from '@mui/material'
+import { Container, Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutDocument,
@@ -73,7 +75,12 @@ function ProductPage(props: Props) {
   return (
     <>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
-        <LayoutHeader floatingMd>
+        <LayoutHeader
+          floatingMd
+          sx={{
+            '& .LayoutHeaderContent-left': { display: { md: 'none' } },
+          }}
+        >
           <LayoutTitle size='small' component='span'>
             <ProductPageName product={product} />
           </LayoutTitle>
@@ -90,6 +97,16 @@ function ProductPage(props: Props) {
         />
 
         <ProductPageMeta product={product} />
+
+        <Container
+          maxWidth={false}
+          sx={(theme) => ({
+            marginBottom: theme.spacings.xs,
+          })}
+        >
+          <ProductPageBreadcrumb {...product} />
+          <ProductPagePopperBreadcrumb {...product} />
+        </Container>
 
         <ProductPageGallery
           product={product}
@@ -224,8 +241,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
-  const product = productPage.then(
-    (pp) => pp.data.products?.items?.find((p) => p?.url_key === urlKey),
+  const product = productPage.then((pp) =>
+    pp.data.products?.items?.find((p) => p?.url_key === urlKey),
   )
 
   const pages = hygraphPageContent(staticClient, 'product/global', product, true)

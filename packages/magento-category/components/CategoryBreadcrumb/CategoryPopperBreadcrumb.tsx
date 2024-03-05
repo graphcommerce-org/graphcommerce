@@ -7,7 +7,7 @@ import { PopperBreadcrumb } from './PopperBreadcrumb'
 type CategoryPageBreadcrumbsProps = CategoryBreadcrumbFragment & Omit<BreadcrumbsProps, 'children'>
 
 export function CategoryPopperBreadcrumb(props: CategoryPageBreadcrumbsProps) {
-  const { breadcrumbs, name, sx, uid, url_path, ...breadcrumbsProps } = props
+  const { breadcrumbs, name, uid, url_path, ...breadcrumbsProps } = props
   const level = 1
 
   const composedBreadcrumbs = useMemo(

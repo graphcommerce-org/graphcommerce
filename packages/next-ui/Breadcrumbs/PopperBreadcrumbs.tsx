@@ -1,34 +1,34 @@
-import { ProductPageBreadcrumbFragment } from '@graphcommerce/magento-product'
-import { IconSvg, filterNonNullableKeys, iconClose, iconEllypsis } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
 import {
-  Breadcrumbs,
   Box,
+  Breadcrumbs as BreadcrumbsBase,
+  BreadcrumbsProps as BreadcrumbsPropsBase,
   Chip,
+  ClickAwayListener,
+  Fade,
   Link,
+  LinkProps,
+  MenuItem,
+  MenuList,
   Popper,
   Typography,
   useTheme,
-  Fade,
-  BreadcrumbsProps,
-  ClickAwayListener,
-  MenuList,
-  MenuItem,
 } from '@mui/material'
-import { useState, MouseEvent, useRef, SyntheticEvent } from 'react'
-import { CategoryBreadcrumbFragment } from './CategoryBreadcrumb.gql'
+import { useRef, useState, MouseEvent, SyntheticEvent } from 'react'
+import { IconSvg } from '../IconSvg'
+import { iconClose, iconEllypsis } from '../icons'
 
-type CategoryBreadcrumbProps = CategoryBreadcrumbFragment
-type ProductBreadcrumbProps = NonNullable<
-  NonNullable<ProductPageBreadcrumbFragment['categories']>[0]
->
-export type PopperBreadcrumbProps = (CategoryBreadcrumbProps | ProductBreadcrumbProps) &
-  Omit<BreadcrumbsProps, 'children'> & { numOfBreadcrumbsToShow?: number }
+type BreadcrumbsProps = {
+  breadcrumbs: Pick<LinkProps, 'underline' | 'key' | 'color' | 'href' | 'children'>[]
+  name?: string | null
+} & Omit<BreadcrumbsPropsBase, 'children'>
 
-export function PopperBreadcrumb(props: PopperBreadcrumbProps) {
-  const { breadcrumbs, sx, numOfBreadcrumbsToShow = 2, ...breadcrumbsProps } = props
+export function PopperBreadcrumbs(props: BreadcrumbsProps) {
+  const { breadcrumbs, name, sx, ...breadcrumbsProps } = props
   const [anchorElement, setAnchorElement] = useState<HTMLButtonElement | null>(null)
   const anchorRef = useRef<HTMLButtonElement>(null)
   const theme = useTheme()
+  const numOfBreadcrumbsToShow = 1
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     setAnchorElement(anchorElement ? null : e.currentTarget)
@@ -48,11 +48,9 @@ export function PopperBreadcrumb(props: PopperBreadcrumbProps) {
     }
   }
 
-  if (!breadcrumbs) return null
-
   return (
     <>
-      <Breadcrumbs
+      <BreadcrumbsBase
         {...breadcrumbsProps}
         sx={[
           {
@@ -61,7 +59,7 @@ export function PopperBreadcrumb(props: PopperBreadcrumbProps) {
               flexWrap: 'nowrap',
               '& .MuiBreadcrumbs-li': {
                 '&:nth-of-type(1)': {
-                  display: breadcrumbs.length <= numOfBreadcrumbsToShow ? 'none' : 'flex',
+                  display: breadcrumbs.length >= numOfBreadcrumbsToShow ? 'flex' : 'none',
                 },
                 '&:nth-last-of-type(1)': {
                   display: 'inline-flex',
@@ -70,7 +68,7 @@ export function PopperBreadcrumb(props: PopperBreadcrumbProps) {
               },
               '& .MuiBreadcrumbs-separator': {
                 '&:nth-of-type(2)': {
-                  display: breadcrumbs.length <= numOfBreadcrumbsToShow ? 'none' : 'flex',
+                  display: breadcrumbs.length >= numOfBreadcrumbsToShow ? 'flex' : 'none',
                 },
               },
             },
@@ -79,7 +77,7 @@ export function PopperBreadcrumb(props: PopperBreadcrumbProps) {
         ]}
       >
         <Chip
-          aria-describedby={anchorElement ? 'old-popper' : undefined}
+          aria-describedby={anchorElement ? 'simple-popper' : undefined}
           ref={anchorRef}
           component='button'
           variant='outlined'
@@ -89,7 +87,10 @@ export function PopperBreadcrumb(props: PopperBreadcrumbProps) {
           sx={{
             borderRadius: 2,
             padding: 0,
-            display: numOfBreadcrumbsToShow ? 'flex' : 'none',
+            display: {
+              xs: breadcrumbs.length ? 'flex' : 'none',
+              md: breadcrumbs.length >= numOfBreadcrumbsToShow ? 'flex' : 'none',
+            },
             '& .MuiChip-label': {
               display: 'flex',
               alignItems: 'center',
@@ -97,31 +98,27 @@ export function PopperBreadcrumb(props: PopperBreadcrumbProps) {
             },
           }}
         />
-        {filterNonNullableKeys(breadcrumbs, ['category_level'])
+        {!breadcrumbs.length && (
+          <Link href='/' underline='hover' color='text.primary' variant='body1'>
+            <Trans id='Home' />
+          </Link>
+        )}
+        {breadcrumbs
           .slice(
-            breadcrumbs.length - numOfBreadcrumbsToShow < 0
+            breadcrumbs.length - numOfBreadcrumbsToShow <= 0
               ? 0
               : breadcrumbs.length - numOfBreadcrumbsToShow,
-            breadcrumbs.length - 1,
+            breadcrumbs.length,
           )
-          .sort((a, b) => a.category_level - b.category_level)
           .map((breadcrumb) => (
-            <Link
-              key={breadcrumb.category_uid}
-              underline='hover'
-              color='text.primary'
-              href={`/${breadcrumb.category_url_path}`}
-              variant='body1'
-            >
-              {breadcrumb.category_name}
-            </Link>
+            <Link {...breadcrumb} underline='hover' color='text.primary' variant='body1' />
           ))}
         <Typography component='span' color='text.primary' variant='body1' fontWeight='600' noWrap>
-          {breadcrumbs[breadcrumbs.length - 1]?.category_name}
+          {name}
         </Typography>
-      </Breadcrumbs>
+      </BreadcrumbsBase>
       <Popper
-        id={anchorElement ? 'old-popper' : undefined}
+        id={anchorElement ? 'simple-popper' : undefined}
         anchorEl={anchorElement}
         open={Boolean(anchorElement)}
         disablePortal
@@ -137,8 +134,8 @@ export function PopperBreadcrumb(props: PopperBreadcrumbProps) {
         ]}
         sx={{
           display: {
-            xs: breadcrumbs.length > 2 ? 'block' : 'none',
-            md: breadcrumbs.length > numOfBreadcrumbsToShow ? 'block' : 'none',
+            xs: breadcrumbs.length ? 'block' : 'none',
+            md: breadcrumbs.length >= numOfBreadcrumbsToShow ? 'block' : 'none',
           },
           maxWidth: `calc(100% - ${theme.page.horizontal} * 2)`,
           zIndex: 100,
@@ -161,33 +158,47 @@ export function PopperBreadcrumb(props: PopperBreadcrumbProps) {
                     py: `calc(${theme.spacings.xxs} / 2)`,
                   }}
                 >
-                  {filterNonNullableKeys(breadcrumbs, ['category_level'])
-                    .slice(0, breadcrumbs.length - 1)
-                    .sort((a, b) => a.category_level - b.category_level)
-                    .map((breadcrumb) => (
-                      <MenuItem
-                        key={breadcrumb.category_uid}
+                  <MenuItem
+                    sx={{
+                      minHeight: 'auto',
+                      padding: 0,
+                    }}
+                  >
+                    <Link
+                      href='/'
+                      underline='none'
+                      color='text.primary'
+                      variant='body1'
+                      noWrap
+                      sx={{
+                        flex: 1,
+                        padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
+                      }}
+                    >
+                      <Trans id='Home' />
+                    </Link>
+                  </MenuItem>
+                  {breadcrumbs.map((breadcrumb) => (
+                    <MenuItem
+                      key={breadcrumb.key}
+                      sx={{
+                        minHeight: 'auto',
+                        padding: 0,
+                      }}
+                    >
+                      <Link
+                        {...breadcrumb}
+                        underline='none'
+                        color='text.primary'
+                        variant='body1'
+                        noWrap
                         sx={{
-                          minHeight: 'auto',
-                          padding: 0,
+                          flex: 1,
+                          padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
                         }}
-                      >
-                        <Link
-                          underline='none'
-                          color='text.primary'
-                          href={`/${breadcrumb.category_url_path}`}
-                          variant='body1'
-                          noWrap
-                          sx={{
-                            flex: 1,
-                            padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
-                          }}
-                        >
-                          {breadcrumb.category_name}
-                        </Link>
-                      </MenuItem>
-                    ))}
-
+                      />
+                    </MenuItem>
+                  ))}
                   <Typography
                     component='li'
                     color='text.primary'
@@ -198,7 +209,7 @@ export function PopperBreadcrumb(props: PopperBreadcrumbProps) {
                       padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
                     }}
                   >
-                    {breadcrumbs[breadcrumbs.length - 1]?.category_name}
+                    {name}
                   </Typography>
                 </MenuList>
               </ClickAwayListener>
