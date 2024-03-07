@@ -1,16 +1,6 @@
 import { Trans } from '@lingui/react'
-import {
-  Breadcrumbs as BreadcrumbsBase,
-  BreadcrumbsProps as BreadcrumbsPropsBase,
-  Link,
-  LinkProps,
-  Typography,
-} from '@mui/material'
-
-type BreadcrumbsProps = {
-  breadcrumbs: Pick<LinkProps, 'underline' | 'key' | 'color' | 'href' | 'children'>[]
-  name?: string | null
-} & BreadcrumbsPropsBase
+import { Breadcrumbs as BreadcrumbsBase, Link, Typography } from '@mui/material'
+import { BreadcrumbsProps } from './BreadcrumbsType'
 
 export function Breadcrumbs(props: BreadcrumbsProps) {
   const { breadcrumbs, name, ...breadcrumbsProps } = props
@@ -20,10 +10,10 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
       <Link href='/' underline='hover' color='inherit'>
         <Trans id='Home' />
       </Link>
-      {breadcrumbs.map((breadcrumb) => (
+      {breadcrumbs.slice(0, breadcrumbs.length - 1).map((breadcrumb) => (
         <Link {...breadcrumb} />
       ))}
-      <Typography color='text.primary'>{name}</Typography>
+      <Typography color='text.primary'>{breadcrumbs[breadcrumbs.length - 1].children}</Typography>
     </BreadcrumbsBase>
   )
 }

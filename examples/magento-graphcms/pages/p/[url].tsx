@@ -24,7 +24,6 @@ import {
   ProductShortDescription,
   ProductSidebarDelivery,
   ProductPageBreadcrumb,
-  ProductPagePopperBreadcrumb,
 } from '@graphcommerce/magento-product'
 import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {
@@ -105,7 +104,6 @@ function ProductPage(props: Props) {
           })}
         >
           <ProductPageBreadcrumb {...product} />
-          <ProductPagePopperBreadcrumb {...product} />
         </Container>
 
         <ProductPageGallery

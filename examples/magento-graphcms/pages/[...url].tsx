@@ -8,7 +8,6 @@ import {
   CategoryHeroNav,
   CategoryHeroNavTitle,
   CategoryMeta,
-  CategoryPopperBreadcrumb,
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
 import {
@@ -73,7 +72,6 @@ function CategoryPage(props: CategoryProps) {
       {isCategory && (
         <Container maxWidth={false}>
           <CategoryBreadcrumb {...category} />
-          <CategoryPopperBreadcrumb {...category} />
         </Container>
       )}
 

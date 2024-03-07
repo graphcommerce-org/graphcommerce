@@ -9,13 +9,22 @@ type ProductPageBreadcrumbsProps = ProductPageBreadcrumbFragment &
   Omit<BreadcrumbsProps, 'children'>
 
 export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
-  const { categories, name, ...breadcrumbProps } = props
+  const { categories, name, uid, url_key, ...breadcrumbProps } = props
   const prev = usePrevPageRouter()
 
   const category =
     categories?.find((c) => `/${c?.url_path}` === prev?.asPath) ?? productPageCategory(props)
 
   const breadcrumbsList = useMemo(() => {
+    const productItem = [
+      {
+        underline: 'hover' as const,
+        key: uid,
+        color: 'inherit',
+        href: `/${url_key}`,
+        children: name,
+      },
+    ]
     const categoryItem = category
       ? [
           {
@@ -38,17 +47,15 @@ export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
         children: breadcrumb.category_name,
       }))
 
-    sortedBreadcrumbsList.push(...categoryItem)
+    sortedBreadcrumbsList.push(...categoryItem, ...productItem)
 
     return sortedBreadcrumbsList
-  }, [category])
-
-  console.log(breadcrumbsList)
+  }, [category, name, uid, url_key])
 
   return (
     <>
-      <Breadcrumbs breadcrumbs={breadcrumbsList} name={name} {...breadcrumbProps} />
-      <PopperBreadcrumbs breadcrumbs={breadcrumbsList} name={name} {...breadcrumbProps} />
+      <Breadcrumbs breadcrumbs={breadcrumbsList} {...breadcrumbProps} />
+      <PopperBreadcrumbs breadcrumbs={breadcrumbsList} {...breadcrumbProps} />
     </>
   )
 }

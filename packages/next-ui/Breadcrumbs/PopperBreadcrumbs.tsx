@@ -2,12 +2,10 @@ import { Trans } from '@lingui/react'
 import {
   Box,
   Breadcrumbs as BreadcrumbsBase,
-  BreadcrumbsProps as BreadcrumbsPropsBase,
   Chip,
   ClickAwayListener,
   Fade,
   Link,
-  LinkProps,
   MenuItem,
   MenuList,
   Popper,
@@ -17,18 +15,15 @@ import {
 import { useRef, useState, MouseEvent, SyntheticEvent } from 'react'
 import { IconSvg } from '../IconSvg'
 import { iconClose, iconEllypsis } from '../icons'
-
-type BreadcrumbsProps = {
-  breadcrumbs: Pick<LinkProps, 'underline' | 'key' | 'color' | 'href' | 'children'>[]
-  name?: string | null
-} & Omit<BreadcrumbsPropsBase, 'children'>
+import { BreadcrumbsJsonLd } from './BreadcrumbsJsonLd'
+import { BreadcrumbsProps } from './BreadcrumbsType'
+import { jsonLdBreadcrumb } from './jsonLdBreadcrumb'
 
 export function PopperBreadcrumbs(props: BreadcrumbsProps) {
-  const { breadcrumbs, name, sx, ...breadcrumbsProps } = props
+  const { breadcrumbs, sx, numOfBreadcrumbsToShow = 2, ...breadcrumbsProps } = props
   const [anchorElement, setAnchorElement] = useState<HTMLButtonElement | null>(null)
   const anchorRef = useRef<HTMLButtonElement>(null)
   const theme = useTheme()
-  const numOfBreadcrumbsToShow = 1
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     setAnchorElement(anchorElement ? null : e.currentTarget)
@@ -50,6 +45,15 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
 
   return (
     <>
+      {breadcrumbs.length && (
+        <BreadcrumbsJsonLd
+          breadcrumbs={breadcrumbs}
+          render={(bc) => ({
+            '@context': 'https://schema.org',
+            ...jsonLdBreadcrumb(bc),
+          })}
+        />
+      )}
       <BreadcrumbsBase
         {...breadcrumbsProps}
         sx={[
@@ -108,13 +112,13 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
             breadcrumbs.length - numOfBreadcrumbsToShow <= 0
               ? 0
               : breadcrumbs.length - numOfBreadcrumbsToShow,
-            breadcrumbs.length,
+            breadcrumbs.length - 1,
           )
           .map((breadcrumb) => (
             <Link {...breadcrumb} underline='hover' color='text.primary' variant='body1' />
           ))}
         <Typography component='span' color='text.primary' variant='body1' fontWeight='600' noWrap>
-          {name}
+          {breadcrumbs[breadcrumbs.length - 1].children}
         </Typography>
       </BreadcrumbsBase>
       <Popper
@@ -178,7 +182,7 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
                       <Trans id='Home' />
                     </Link>
                   </MenuItem>
-                  {breadcrumbs.map((breadcrumb) => (
+                  {breadcrumbs.slice(0, breadcrumbs.length - 1).map((breadcrumb) => (
                     <MenuItem
                       key={breadcrumb.key}
                       sx={{
@@ -209,7 +213,7 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
                       padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
                     }}
                   >
-                    {name}
+                    {breadcrumbs[breadcrumbs.length - 1].children}
                   </Typography>
                 </MenuList>
               </ClickAwayListener>
