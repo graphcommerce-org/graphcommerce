@@ -1,9 +1,10 @@
-import { MutationHookOptions, TypedDocumentNode } from '@graphcommerce/graphql'
+import { MutationHookOptions, TypedDocumentNode, useApolloClient } from '@graphcommerce/graphql'
 import {
   useFormGqlMutation,
   UseFormGqlMutationReturn,
   UseFormGraphQlOptions,
 } from '@graphcommerce/react-hook-form'
+import { CurrentCartIdDocument } from './CurrentCartId.gql'
 import { useCartIdCreate } from './useCartIdCreate'
 
 export function useFormGqlMutationCart<
@@ -15,14 +16,20 @@ export function useFormGqlMutationCart<
   operationOptions?: MutationHookOptions<Q, V>,
 ): UseFormGqlMutationReturn<Q, V> {
   const cartId = useCartIdCreate()
+  const client = useApolloClient()
 
-  const onBeforeSubmit = async (variables: V) => {
-    const vars = { ...variables, cartId: await cartId() }
-    return options.onBeforeSubmit ? options.onBeforeSubmit(vars) : vars
-  }
   const result = useFormGqlMutation<Q, V>(
     document,
-    { ...options, onBeforeSubmit },
+    {
+      ...options,
+      onBeforeSubmit: async (variables) => {
+        const vars = { ...variables, cartId: await cartId() }
+
+        const res = client.cache.readQuery({ query: CurrentCartIdDocument })
+        if (res?.currentCartId?.locked) return false
+        return options.onBeforeSubmit ? options.onBeforeSubmit(vars) : vars
+      },
+    },
     { errorPolicy: 'all', ...operationOptions },
   )
 
