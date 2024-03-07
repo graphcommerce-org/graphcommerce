@@ -102,7 +102,7 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
             },
           }}
         />
-        {!breadcrumbs.length && (
+        {breadcrumbs.length <= 1 && (
           <Link href='/' underline='hover' color='text.primary' variant='body1'>
             <Trans id='Home' />
           </Link>
@@ -146,7 +146,7 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
         }}
       >
         {({ TransitionProps }) => (
-          <Fade {...TransitionProps} timeout={350}>
+          <Fade {...TransitionProps} timeout={200}>
             <Box>
               <ClickAwayListener onClickAway={handleClickAway}>
                 <MenuList
@@ -189,6 +189,7 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
                         minHeight: 'auto',
                         padding: 0,
                       }}
+                      onClick={handleClickAway}
                     >
                       <Link
                         {...breadcrumb}
