@@ -9,7 +9,7 @@ type ProductPageBreadcrumbsProps = ProductPageBreadcrumbFragment &
   Omit<BreadcrumbsProps, 'children'>
 
 export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
-  const { categories, name, uid, url_key, ...breadcrumbProps } = props
+  const { categories, name, uid, url_key, ...breadcrumbsProps } = props
   const prev = usePrevPageRouter()
 
   const category =
@@ -54,8 +54,11 @@ export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
 
   return (
     <>
-      <Breadcrumbs breadcrumbs={breadcrumbsList} {...breadcrumbProps} />
-      <PopperBreadcrumbs breadcrumbs={breadcrumbsList} {...breadcrumbProps} />
+      {import.meta.graphCommerce.breadcrumbs?.breadcrumbsVariant === 'POPPER' ? (
+        <PopperBreadcrumbs breadcrumbs={breadcrumbsList} name={name} {...breadcrumbsProps} />
+      ) : (
+        <Breadcrumbs breadcrumbs={breadcrumbsList} name={name} {...breadcrumbsProps} />
+      )}
     </>
   )
 }

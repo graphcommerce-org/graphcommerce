@@ -3,6 +3,11 @@ extend input GraphCommerceConfig {
   Configuration for the SidebarGallery component
   """
   sidebarGallery: SidebarGalleryConfig
+
+  """
+  Configuration for the SidebarGallery component
+  """
+  breadcrumbs: BreadcrumbsConfig
 }
 
 """
@@ -21,4 +26,22 @@ input SidebarGalleryConfig {
   Variant used for the pagination
   """
   paginationVariant: SidebarGalleryPaginationVariant
+}
+
+"""
+Enumeration of all possible styles for the Breadcrumbs.
+"""
+enum BreadcrumbsVariant {
+  DEFAULT
+  POPPER
+}
+
+"""
+BreadcrumbsConfig will contain all configuration values for the Breadcrumbs component.
+"""
+input BreadcrumbsConfig {
+  """
+  Variant used for the pagination
+  """
+  breadcrumbsVariant: BreadcrumbsVariant
 }

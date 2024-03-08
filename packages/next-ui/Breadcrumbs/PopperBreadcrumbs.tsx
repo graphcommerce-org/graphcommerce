@@ -16,11 +16,11 @@ import { useRef, useState, MouseEvent, SyntheticEvent } from 'react'
 import { IconSvg } from '../IconSvg'
 import { iconClose, iconEllypsis } from '../icons'
 import { BreadcrumbsJsonLd } from './BreadcrumbsJsonLd'
-import { BreadcrumbsProps } from './BreadcrumbsType'
 import { jsonLdBreadcrumb } from './jsonLdBreadcrumb'
+import { BreadcrumbsProps } from './types'
 
 export function PopperBreadcrumbs(props: BreadcrumbsProps) {
-  const { breadcrumbs, sx, numOfBreadcrumbsToShow = 2, ...breadcrumbsProps } = props
+  const { breadcrumbs, name, sx, numOfBreadcrumbsToShow = 2 } = props
   const [anchorElement, setAnchorElement] = useState<HTMLButtonElement | null>(null)
   const anchorRef = useRef<HTMLButtonElement>(null)
   const theme = useTheme()
@@ -55,7 +55,6 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
         />
       )}
       <BreadcrumbsBase
-        {...breadcrumbsProps}
         sx={[
           {
             overflowX: 'clip',
@@ -118,7 +117,7 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
             <Link {...breadcrumb} underline='hover' color='text.primary' variant='body1' />
           ))}
         <Typography component='span' color='text.primary' variant='body1' fontWeight='600' noWrap>
-          {breadcrumbs[breadcrumbs.length - 1].children}
+          {name}
         </Typography>
       </BreadcrumbsBase>
       <Popper
@@ -214,7 +213,7 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
                       padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
                     }}
                   >
-                    {breadcrumbs[breadcrumbs.length - 1].children}
+                    {name}
                   </Typography>
                 </MenuList>
               </ClickAwayListener>

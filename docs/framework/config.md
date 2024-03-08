@@ -1,4 +1,12 @@
 <!-- Automatically generated from Config.graphqls -->
+### BreadcrumbsConfig
+
+BreadcrumbsConfig will contain all configuration values for the Breadcrumbs component.
+
+#### breadcrumbsVariant: DEFAULT | POPPER
+
+Variant used for the pagination
+
 # GraphCommerce configuration system
 
 Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file
@@ -104,6 +112,10 @@ Examples:
 #### storefront: [GraphCommerceStorefrontConfig](#GraphCommerceStorefrontConfig)[] (required)
 
 All storefront configuration for the project
+
+#### breadcrumbs: [BreadcrumbsConfig](#BreadcrumbsConfig)
+
+Configuration for the SidebarGallery component
 
 #### cartDisplayPricesInclTax: boolean
 

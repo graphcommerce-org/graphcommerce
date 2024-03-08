@@ -71,7 +71,12 @@ function CategoryPage(props: CategoryProps) {
 
       {isCategory && (
         <Container maxWidth={false}>
-          <CategoryBreadcrumb {...category} />
+          <CategoryBreadcrumb
+            name={category?.name}
+            uid={category?.uid}
+            url_path={category?.url_path}
+            breadcrumbs={category?.breadcrumbs}
+          />
         </Container>
       )}
 

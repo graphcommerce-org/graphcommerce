@@ -6,7 +6,7 @@ import { CategoryBreadcrumbFragment } from './CategoryBreadcrumb.gql'
 type CategoryPageBreadcrumbsProps = CategoryBreadcrumbFragment & Omit<BreadcrumbsProps, 'children'>
 
 export function CategoryBreadcrumb(props: CategoryPageBreadcrumbsProps) {
-  const { breadcrumbs, level, name, uid, url_path, ...breadcrumbsProps } = props
+  const { breadcrumbs, name, uid, url_path, ...breadcrumbsProps } = props
 
   const breadcrumbsList = useMemo(() => {
     const categoryItem = [
@@ -36,8 +36,11 @@ export function CategoryBreadcrumb(props: CategoryPageBreadcrumbsProps) {
 
   return (
     <>
-      <Breadcrumbs breadcrumbs={breadcrumbsList} {...breadcrumbsProps} />
-      <PopperBreadcrumbs breadcrumbs={breadcrumbsList} {...breadcrumbsProps} />
+      {import.meta.graphCommerce.breadcrumbs?.breadcrumbsVariant === 'POPPER' ? (
+        <PopperBreadcrumbs breadcrumbs={breadcrumbsList} name={name} {...breadcrumbsProps} />
+      ) : (
+        <Breadcrumbs breadcrumbs={breadcrumbsList} name={name} {...breadcrumbsProps} />
+      )}
     </>
   )
 }

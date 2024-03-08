@@ -103,7 +103,12 @@ function ProductPage(props: Props) {
             marginBottom: theme.spacings.xs,
           })}
         >
-          <ProductPageBreadcrumb {...product} />
+          <ProductPageBreadcrumb
+            categories={product?.categories}
+            name={product?.name}
+            uid={product?.uid}
+            url_key={product?.url_key}
+          />
         </Container>
 
         <ProductPageGallery

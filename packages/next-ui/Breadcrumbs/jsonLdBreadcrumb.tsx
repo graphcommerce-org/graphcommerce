@@ -1,4 +1,4 @@
-import { BreadcrumbsProps } from './BreadcrumbsType'
+import { BreadcrumbsProps } from './types'
 
 export function jsonLdBreadcrumb(props: BreadcrumbsProps['breadcrumbs']) {
   const [...breadcrumbs] = props
