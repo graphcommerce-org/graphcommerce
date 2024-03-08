@@ -4,11 +4,14 @@ import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { useRouter } from 'next/router'
 import { useCartLockWithToken } from '../../hooks/useCartLockWithToken'
 import { MolliePlaceOrderDocument } from './MolliePlaceOrder.gql'
+import { useApolloClient } from '@graphcommerce/graphql'
+import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 
 export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
   const { step, code } = props
   const { push } = useRouter()
   const [, lock] = useCartLockWithToken()
+  const { cache } = useApolloClient()
 
   const form = useFormGqlMutationCart(MolliePlaceOrderDocument, {
     onBeforeSubmit(variables) {
@@ -19,6 +22,8 @@ export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
       current.searchParams.set('order_number', 'ORDER_NUMBER')
       current.searchParams.set('method', code)
       current.searchParams.set('locked', '1')
+      const customerToken = cache.readQuery({ query: CustomerTokenDocument })?.customerToken?.token
+      if (customerToken) current.searchParams.set('customer_token', customerToken)
       const returnUrl = current
         .toString()
         .replace('PAYMENT_TOKEN', '{{payment_token}}')
@@ -33,7 +38,14 @@ export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
 
       // When redirecting to the payment gateway
       if (mollie_redirect_url && mollie_payment_token) {
-        await lock({ mollie_payment_token, method: code, order_number })
+        const customerToken = cache.readQuery({ query: CustomerTokenDocument })?.customerToken
+          ?.token
+        await lock({
+          mollie_payment_token,
+          method: code,
+          order_number,
+          customer_token: customerToken,
+        })
         await new Promise((resolve) => {
           setTimeout(resolve, 1000)
         })

@@ -1,4 +1,4 @@
-import { ComposedForm, WaitForQueries } from '@graphcommerce/ecommerce-ui'
+import { ComposedForm } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   ApolloCartErrorFullPage,
@@ -16,6 +16,7 @@ import {
   useCartLock,
   PaymentMethodActionCardListForm,
   PaymentMethodContextProvider,
+  WaitForPaymentQueries,
 } from '@graphcommerce/magento-cart-payment-method'
 import { SubscribeToNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -49,7 +50,7 @@ function PaymentPage() {
     <ComposedForm>
       <PageMeta title={i18n._(/* i18n */ 'Payment')} metaRobots={['noindex']} />
 
-      <WaitForQueries
+      <WaitForPaymentQueries
         waitFor={[billingPage]}
         fallback={
           <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />}>

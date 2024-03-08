@@ -1,0 +1,15 @@
+mutation ReviveCart($cartId: String!) {
+  mollieRestoreCart(input: { cart_id: $cartId }) {
+    cart {
+      __typename
+      id
+      email
+      ...BillingAddress
+      ...ShippingAddress
+      ...Coupon
+      ...PaymentMethodContext
+      ...CartItems
+      ...CartTotals
+    }
+  }
+}
