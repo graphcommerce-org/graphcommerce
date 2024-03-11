@@ -142,7 +142,7 @@ function PaymentPage() {
             </Container>
           </>
         )}
-      </WaitForQueries>
+      </WaitForPaymentQueries>
     </ComposedForm>
   )
 }
