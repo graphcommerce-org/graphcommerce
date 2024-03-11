@@ -3,6 +3,7 @@ import { CartLockState, useCartLock } from '@graphcommerce/magento-cart-payment-
 type MSPLockState = CartLockState & {
   success?: string | null
   order_number?: string | null
+  customer_token?: string | null
 }
 
 /**

@@ -1,11 +1,11 @@
+import { useApolloClient } from '@graphcommerce/graphql'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
+import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { useRouter } from 'next/router'
 import { useCartLockWithToken } from '../../hooks/useCartLockWithToken'
 import { MolliePlaceOrderDocument } from './MolliePlaceOrder.gql'
-import { useApolloClient } from '@graphcommerce/graphql'
-import { CustomerTokenDocument } from '@graphcommerce/magento-customer'
 
 export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
   const { step, code } = props

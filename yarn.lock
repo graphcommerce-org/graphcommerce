@@ -4572,7 +4572,6 @@ __metadata:
     "@graphcommerce/magento-search": "npm:8.0.3-canary.6"
     "@graphcommerce/magento-store": "npm:8.0.3-canary.6"
     "@graphcommerce/magento-wishlist": "npm:8.0.3-canary.6"
-    "@graphcommerce/mollie-magento-payment": "npm:8.0.3-canary.6"
     "@graphcommerce/next-config": "npm:8.0.3-canary.6"
     "@graphcommerce/next-ui": "npm:8.0.3-canary.6"
     "@graphcommerce/prettier-config-pwa": "npm:8.0.3-canary.6"
@@ -5536,7 +5535,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/mollie-magento-payment@npm:8.0.3-canary.6, @graphcommerce/mollie-magento-payment@workspace:packages/mollie-magento-payment":
+"@graphcommerce/mollie-magento-payment@workspace:packages/mollie-magento-payment":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/mollie-magento-payment@workspace:packages/mollie-magento-payment"
   peerDependencies:

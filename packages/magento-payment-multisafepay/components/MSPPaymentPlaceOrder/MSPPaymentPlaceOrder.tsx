@@ -11,6 +11,7 @@ import { useRouter } from 'next/router'
 import { useMSPCartLock } from '../../hooks/useMSPCartLock'
 import { MSPPaymentHandlerDocument } from '../MSPPaymentHandler/MSPPaymentHandler.gql'
 import { MSPPaymentPlaceOrderDocument } from './MSPPaymentPlaceOrder.gql'
+import { useCustomerSession } from '@graphcommerce/magento-customer'
 
 export function MSPPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
   const { code, step } = props
@@ -21,6 +22,7 @@ export function MSPPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
 
   const [restoreCart, restoreResult] = useMutation(MSPPaymentHandlerDocument)
   const billingPage = useCartQuery(BillingPageDocument)
+  const { token } = useCustomerSession()
 
   /**
    * In the this folder you'll also find a PaymentMethodOptionsNoop.graphql document that is
@@ -51,6 +53,7 @@ export function MSPPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
       await lock({
         method: selectedMethod.code,
         order_number: result.data?.placeOrder?.order.order_number,
+        customer_token: token,
       })
 
       await new Promise((resolve) => setTimeout(resolve, 1000))
