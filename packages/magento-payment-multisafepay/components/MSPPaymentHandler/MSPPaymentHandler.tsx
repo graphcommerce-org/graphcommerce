@@ -46,6 +46,7 @@ export const MSPPaymentHandler = (props: PaymentHandlerProps) => {
             __typename: 'CustomerToken',
           },
         },
+        broadcast: true,
       })
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     restore({ variables: { cartId } }).then(({ data }) => {
