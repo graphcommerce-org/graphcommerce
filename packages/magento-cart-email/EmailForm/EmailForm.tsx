@@ -70,11 +70,10 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
           }}
           InputProps={{
             autoComplete: 'email',
-            endAdornment: (
+            endAdornment: !import.meta.graphCommerce.guestOnlyMode && (
               <WaitForQueries waitFor={isEmailAvailable}>
                 {(isEmailAvailable.data?.isEmailAvailable ||
-                  (!import.meta.graphCommerce.enableGuestCheckoutLogin &&
-                    !import.meta.graphCommerce.guestOnlyMode)) && (
+                  !import.meta.graphCommerce.enableGuestCheckoutLogin) && (
                   <Button
                     href={`/account/signin?email=${email}`}
                     color='secondary'
