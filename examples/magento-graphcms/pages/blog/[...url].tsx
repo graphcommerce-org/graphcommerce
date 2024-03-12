@@ -71,19 +71,14 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
     const staticClient = graphqlSsrClient(locale)
     const BlogPostPaths = staticClient.query({ query: BlogPostPathsDocument })
     const { pages } = (await BlogPostPaths).data
-    return (
-      pages.map((page) => {
-        const url = page.url.replace('blog/', '').split('/')
-        return { params: { url }, locale }
-      }) ?? []
-    )
+    return pages.map((page) => ({ params: { url: page.url.split('/').slice(1) }, locale })) ?? []
   })
   const paths = (await Promise.all(responses)).flat(1)
   return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
-  const urlKey = params?.url.reduce((a, b) => `${a}/${b}`) ?? ''
+  const urlKey = params?.url.join('/') ?? ''
 
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)

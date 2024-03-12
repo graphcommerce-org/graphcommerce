@@ -21,7 +21,7 @@ import {
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery & BlogListTaggedQuery
-type RouteProps = { url: string[] }
+type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
@@ -66,10 +66,10 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
     const BlogPostPaths = staticClient.query({ query: BlogPostTaggedPathsDocument })
     const { pages } = (await BlogPostPaths).data
     return (
-      pages.map((page) => {
-        const url = page.url.replace('blog/tagged/', '').split('/')
-        return { params: { url }, locale }
-      }) ?? []
+      pages.map((page) => ({
+        params: { url: `${page?.url}`.replace('blog/tagged/', '') },
+        locale,
+      })) ?? []
     )
   })
   const paths = (await Promise.all(responses)).flat(1)
@@ -77,7 +77,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
-  const urlKey = params?.url.reduce((a, b) => `${a}/${b}`) ?? ''
+  const urlKey = params?.url ?? '??'
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)
   const limit = 99
@@ -87,7 +87,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
 
   const blogPosts = staticClient.query({
     query: BlogListTaggedDocument,
-    variables: { currentUrl: [`blog/tagged/${urlKey}`], first: limit, tagged: urlKey },
+    variables: { currentUrl: [`blog/tagged/${urlKey}`], first: limit, tagged: params?.url },
   })
   if (!(await page).data.pages?.[0]) return { notFound: true }
 
