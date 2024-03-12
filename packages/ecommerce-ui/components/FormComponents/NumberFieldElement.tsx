@@ -54,21 +54,21 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
       control={control}
       rules={rules}
       defaultValue={defaultValue}
-      render={({ field: { value, onChange, onBlur }, fieldState: { invalid, error } }) => {
+      render={({ field: { value, onChange, ref, ...field }, fieldState: { invalid, error } }) => {
         const valueAsNumber = value ? parseFloat(value) : 0
 
         return (
           <TextField
             {...textFieldProps}
-            variant={variant}
-            name={name}
+            {...field}
+            inputRef={ref}
             value={value ?? ''}
             onChange={(ev) => {
               const newValue = (ev.target as HTMLInputElement).valueAsNumber
               onChange(Number.isNaN(newValue) ? '' : newValue)
               textFieldProps.onChange?.(ev)
             }}
-            onBlur={onBlur}
+            variant={variant}
             required={required}
             error={invalid}
             helperText={error ? error.message : textFieldProps.helperText}

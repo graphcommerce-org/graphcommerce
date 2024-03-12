@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { useGo, usePageContext } from '@graphcommerce/framer-next-pages'
+import { ApolloErrorSnackbar } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import {
@@ -13,11 +13,10 @@ import {
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { SxProps, TextField, Theme } from '@mui/material'
+import { useRouter } from 'next/router'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import { AddressFields } from '../AddressFields/AddressFields'
-import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { NameFields } from '../NameFields/NameFields'
 import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
 
@@ -32,8 +31,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
   const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
   const { address, sx } = props
 
-  const { closeSteps } = usePageContext()
-  const onComplete = useGo(closeSteps * -1)
+  const router = useRouter()
 
   const form = useFormGqlMutation(
     UpdateCustomerAddressDocument,
@@ -49,11 +47,12 @@ export function EditAddressForm(props: EditAddressFormProps) {
         telephone: address?.telephone,
         houseNumber: address?.street?.[1] ?? '',
         addition: address?.street?.[2] ?? '',
+        region: address?.region,
       },
       onBeforeSubmit: (formData) => {
         const region = countries
           ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)
-          ?.available_regions?.find((r) => r?.id === formData.region)
+          ?.available_regions?.find((r) => r?.id === formData.region?.region_id)
         const regionData = {
           region:
             (region && {
@@ -69,7 +68,9 @@ export function EditAddressForm(props: EditAddressFormProps) {
           ...regionData,
         }
       },
-      onComplete,
+      onComplete: ({ errors }) => {
+        if (!errors) router.back()
+      },
     },
     { errorPolicy: 'all' },
   )
@@ -81,7 +82,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
     <>
       <Form onSubmit={submitHandler} noValidate sx={sx}>
         <NameFields form={form} prefix />
-        <AddressFields form={form} />
+        <AddressFields form={form} name={{ regionId: 'region.region_id' }} />
 
         <FormRow>
           <TextField
@@ -115,7 +116,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
         </FormActions>
       </Form>
 
-      <ApolloCustomerErrorAlert error={error} />
+      <ApolloErrorSnackbar error={error} />
     </>
   )
 }

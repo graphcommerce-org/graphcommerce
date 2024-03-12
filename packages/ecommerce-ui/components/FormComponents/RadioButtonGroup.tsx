@@ -20,6 +20,7 @@ export type RadioButtonGroupProps<T extends FieldValues> = {
   options: { label: string; id: string | number }[] | any[]
   helperText?: string
   required?: boolean
+  /** @deprecated Form value parsing should happen in the handleSubmit function of the form */
   parseError?: (error: FieldError) => string
   label?: string
   labelKey?: string

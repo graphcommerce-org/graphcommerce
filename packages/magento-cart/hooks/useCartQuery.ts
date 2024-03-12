@@ -15,18 +15,21 @@ import { useCurrentCartId } from './useCurrentCartId'
 export function useCartQuery<Q, V extends { cartId: string; [index: string]: unknown }>(
   document: TypedDocumentNode<Q, V>,
   options: QueryHookOptions<Q, Omit<V, 'cartId'>> & {
+    /**
+     * @deprecated Not used anymore, when the cart_id is in the URL, it will always be used.
+     */
     allowUrl?: boolean
   } = {},
 ) {
-  const { allowUrl = true, ...queryOptions } = options
+  const { allowUrl, ...queryOptions } = options
   const router = useRouter()
-  const { currentCartId } = useCurrentCartId()
+  const { currentCartId, locked } = useCurrentCartId()
 
   const urlCartId = router.query.cart_id
-  const usingUrl = allowUrl && typeof urlCartId === 'string'
+  const usingUrl = typeof urlCartId === 'string'
   const cartId = usingUrl ? urlCartId : currentCartId
 
-  if (usingUrl) queryOptions.fetchPolicy = 'cache-first'
+  if (usingUrl || locked) queryOptions.fetchPolicy = 'cache-only'
 
   if (usingUrl && typeof queryOptions.returnPartialData === 'undefined')
     queryOptions.returnPartialData = true
@@ -34,10 +37,5 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
   queryOptions.variables = { cartId, ...options?.variables } as V
   queryOptions.skip = queryOptions?.skip || !cartId
 
-  const result = useQuery(document, queryOptions as QueryHookOptions<Q, V>)
-
-  return {
-    ...result,
-    // error: called && !currentCartId ? noCartError : result.error,
-  }
+  return useQuery(document, queryOptions as QueryHookOptions<Q, V>)
 }

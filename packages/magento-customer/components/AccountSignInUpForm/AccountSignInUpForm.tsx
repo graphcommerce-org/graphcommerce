@@ -144,7 +144,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
                 name='email'
                 required
                 type='email'
-                validation={{
+                rules={{
                   required: true,
                   pattern: { value: emailPattern, message: '' },
                 }}

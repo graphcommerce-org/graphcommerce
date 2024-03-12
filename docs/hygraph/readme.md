@@ -24,7 +24,7 @@ file:
 
 `hygraphEndpoint: ''`  
 Hygraph API URL. Once logged in, copy it from Project Settings > Api Access >
-Content API
+High Performance Content API
 
 ## Adding content to pages
 
