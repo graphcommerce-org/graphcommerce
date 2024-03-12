@@ -141,8 +141,8 @@ export function ActionCard(props: ActionCardProps) {
             display: 'block',
           },
           '&.sizeResponsive': {
-            px: { xs: responsiveVal(8, 12), md: responsiveVal(10, 14), lg: responsiveVal(12, 16) },
-            py: { xs: responsiveVal(4, 6), md: responsiveVal(10, 12), lg: responsiveVal(12, 14) },
+            px: responsiveVal(8, 16),
+            py: responsiveVal(4, 14),
             display: { xs: 'flex', md: 'block', lg: 'block' },
             [theme.breakpoints.down('lg')]: {
               typography: 'body2',
@@ -195,10 +195,10 @@ export function ActionCard(props: ActionCardProps) {
               },
             },
             '&.sizeResponsive': {
-              mt: { xs: '2px', sm: '3px', md: '6px', lg: '8px' },
-              mb: { xs: '3px', sm: '4px', md: '7px', lg: '9px' },
+              mt: responsiveVal(2, 8),
+              mb: responsiveVal(3, 9),
               '&::after': {
-                mb: { xs: '-2px', sm: '-3px', md: '-6px', lg: '-8px' },
+                mb: responsiveVal(-2, -8),
               },
             },
           },
@@ -357,7 +357,7 @@ export function ActionCard(props: ActionCardProps) {
               sx={{
                 textAlign: 'right',
                 typography: 'body1',
-                '&.sizeMedium': { typographty: 'subtitle1' },
+                '&.sizeMedium': { typography: 'subtitle1' },
                 '&.sizeLarge': { typography: 'h6' },
                 '&.sizeResponsive': { typography: { xs: 'body1', md: 'subtitle1', lg: 'h6' } },
               }}
