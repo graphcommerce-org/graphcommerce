@@ -207,6 +207,8 @@ This value is required even if you are configuring different values for each loc
 
 #### guestOnlyMode: boolean
 
+Disables all login functionalities
+
 #### hygraphManagementApi: string
 
 Hygraph Management API. **Only used for migrations.**

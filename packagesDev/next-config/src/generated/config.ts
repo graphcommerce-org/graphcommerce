@@ -203,6 +203,7 @@ export type GraphCommerceConfig = {
    * This value is required even if you are configuring different values for each locale.
    */
   googleTagmanagerId?: InputMaybe<Scalars['String']['input']>;
+  /** Disables all login functionalities */
   guestOnlyMode?: InputMaybe<Scalars['Boolean']['input']>;
   /**
    * The HyGraph endpoint.

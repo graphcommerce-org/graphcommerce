@@ -1,3 +1,6 @@
 extend input GraphCommerceConfig {
+  """
+  Disables all login functionalities
+  """
   guestOnlyMode: Boolean
 }
