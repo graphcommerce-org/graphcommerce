@@ -1,0 +1,11 @@
+query HygraphStaticPaths($pageSize: Int!, $skip: Int, $where: PageWhereInput) {
+  pages(first: $pageSize, skip: $skip, where: $where) {
+    url
+  }
+
+  pagesConnection {
+    aggregate {
+      count
+    }
+  }
+}

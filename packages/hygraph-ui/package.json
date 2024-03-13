@@ -12,8 +12,10 @@
     }
   },
   "peerDependencies": {
+    "@apollo/client": "~3.8.10",
     "@graphcommerce/eslint-config-pwa": "^8.0.5-canary.5",
     "@graphcommerce/graphql": "^8.0.5-canary.5",
+    "@graphcommerce/graphql-mesh": "^8.0.5-canary.5",
     "@graphcommerce/image": "^8.0.5-canary.5",
     "@graphcommerce/next-ui": "^8.0.5-canary.5",
     "@graphcommerce/prettier-config-pwa": "^8.0.5-canary.5",
