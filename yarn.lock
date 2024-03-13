@@ -2963,8 +2963,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/graphcms-ui@workspace:packages/hygraph-ui"
   peerDependencies:
+    "@apollo/client": ~3.8.10
     "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
     "@graphcommerce/graphql": ^8.0.3-canary.6
+    "@graphcommerce/graphql-mesh": ^8.0.3-canary.6
     "@graphcommerce/image": ^8.0.3-canary.6
     "@graphcommerce/next-ui": ^8.0.3-canary.6
     "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
