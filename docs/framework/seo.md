@@ -35,29 +35,27 @@ Dynamic example
 />
 ```
 
-## Generate the XML sitemap
+## Robots.txt & XML sitemaps
 
-GraphCommerce uses
-[next-sitemap ↗](https://github.com/iamvishnusankar/next-sitemap) to generate
-the sitemap, which is located in the directory /public/sitemap.xml. For example,
-view the [demo sitemap.xml ↗](https://graphcommerce.vercel.app/sitemap.xml)
+GraphCommerce serves robots.txt & XML sitemap routes through the page router.
+(`pages/robots.txt.tsx` & `pages/sitemap/`)  
+By default the robots.txt allows/disallows robots based on the
+[`robotsAllow` configuration](./config.md#robotsallow-boolean) and contains a
+separate sitemap for product, category & content pages.
 
-Generating the sitemap.xml file is part of the static build process. Use
-`yarn build` to initiate the build process and to generate a new sitemap.xml
-file.
+### Multi domain setup
 
-Sitemap generation uses the
-[`canonicalBaseUrl` configuration](./config.md#canonicalbaseurl-string).
+When using a multi domain setup (e.g. https://mydomain.nl &
+https://mydomain.com) using the
+[`canonicalBaseUrl` configuration](./config.md#canonicalbaseurl-string), the
+robots.txt will only include sitemaps specific to that domain.
 
-## Modify /robots.txt
+### Multi locale setup
 
-GraphCommerce creates a /robots.txt file on build time. Its contents can be
-modified by editing /next-sitemap.js. For example, view the
-[demo robots.txt ↗](https://graphcommerce.vercel.app/robots.txt)
-
-Generating the robot.txt file is part of the static build process. Use
-`yarn build` to initiate the build process and to generate a new robots.txt
-file.
+When using a multi locale based setup (e.g.
+https://graphcommerce.vercel.app/en-gb), the robots.txt will include sitemaps
+for all locales on the global domain. Example:
+[robots.txt](https://graphcommerce.vercel.app/robots.txt)
 
 ## Next steps
 
