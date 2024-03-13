@@ -402,6 +402,11 @@ Add a gcms-locales header to make sure queries return in a certain language, can
 
 Specify a custom locale for to load translations.
 
+#### robotsAllow: boolean
+
+Allow the site to be indexed by search engines.
+If false, the robots.txt file will be set to disallow all.
+
 ### MagentoConfigurableVariantValues
 
 Options to configure which values will be replaced when a variant is selected on the product page.
