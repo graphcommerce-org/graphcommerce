@@ -1,6 +1,8 @@
 import { ProductListParams, productListLink } from '@graphcommerce/magento-product'
-import { filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { IconSvg, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { CategoryQueryFragment } from '../queries/CategoryQueryFragment.gql'
+import { iconChevronLeft } from '@graphcommerce/next-ui'
+import { Box } from '@mui/material'
 
 type UseCategoryTreeProps = CategoryQueryFragment & {
   params?: ProductListParams
@@ -17,45 +19,51 @@ export function useCategoryTree(props: UseCategoryTreeProps) {
     'category_level',
     'category_url_path',
   ]).map((breadcrumb) => ({
-    level: breadcrumb.category_level,
-    title: `${`> ${breadcrumb.category_name}`}`,
+    title: (
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <IconSvg src={iconChevronLeft} />
+        {`${breadcrumb.category_name}`}
+      </Box>
+    ),
     value: productListLink({
       ...params,
       currentPage: 0,
       url: breadcrumb.category_url_path,
       filters: { category_uid: { eq: breadcrumb.category_uid } },
     }),
+    indent: 0,
     active: params?.url === breadcrumb.category_url_path,
   }))
 
-  const children = filterNonNullableKeys(category.children, [
+  let children = filterNonNullableKeys(category.children, [
     'url_path',
     'name',
     'include_in_menu',
   ]).map((categoryItem) => ({
-    level: Math.max(...parents.map((breadcrumb) => breadcrumb.level)) + 1,
-    title: `${`* ${categoryItem.name}`}`,
+    title: <>{`${`${categoryItem.name}`}`}</>,
     value: productListLink({
       ...params,
       currentPage: 0,
       url: categoryItem.url_path,
       filters: { category_uid: { eq: categoryItem.uid } },
     }),
+    indent: 4,
     active: params.url === categoryItem.url_path,
   }))
 
   if (!children.find((item) => item.value === `/${category.url_path}`))
     children.push({
-      level: Math.max(...parents.map((breadcrumb) => breadcrumb.level)),
-      title: `${`> ${category.name}`}`,
+      title: <>{`${` ${category.name}`}`}</>,
       value: productListLink({
         ...params,
         currentPage: 0,
         url: category.url_path,
         filters: { category_uid: { eq: category.uid } },
       }),
+      indent: 3,
       active: true,
     })
+  else children = children.map((child) => ({ ...child, indent: 3 }))
 
-  return parents.concat(children).sort((a, b) => a.level - b.level)
+  return parents.concat(children).sort((a, b) => a.indent - b.indent)
 }

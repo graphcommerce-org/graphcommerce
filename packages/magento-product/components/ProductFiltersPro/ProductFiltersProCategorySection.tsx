@@ -24,6 +24,23 @@ export function ProductFiltersProCategorySection(props: ProductFiltersCategorySe
           {CategoryTree.map((item) => (
             <ActionCard
               {...item}
+              sx={{
+                '& .ActionCard-title': {
+                  ml: item.indent,
+                },
+                '&.variantDefault::after': {
+                  display: item.indent === 0 ? 'inherit' : 'none',
+                },
+                '&.sizeSmall': {
+                  pl: 0,
+                },
+                '&.sizeMedium': {
+                  pl: 0,
+                },
+                '&.sizeLarge': {
+                  pl: 0,
+                },
+              }}
               key={item.value ?? ''}
               value={item.value}
               selected={item.active}
