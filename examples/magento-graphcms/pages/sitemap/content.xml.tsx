@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   // Filter out category pages as they are already added in sitemap/categories.xml
   excludes.push(
-    ...(await getCategoryStaticPaths(graphqlSsrClient(locale), locale)).map(
+    ...(await getCategoryStaticPaths(graphqlSsrClient(locale), locale, { limit: false })).map(
       (path) => `/${typeof path === 'string' ? path : path.params.url.join('/')}`,
     ),
   )
