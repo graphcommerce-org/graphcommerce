@@ -11,17 +11,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const options = { locale, defaultLocale, pathname: '/', isLocaleDomain: false }
 
-  const paths = (await getCategoryStaticPaths(graphqlSsrClient(locale), locale)).map<ISitemapField>(
-    (path) => {
-      const loc = typeof path === 'string' ? path : path.params.url.join('/')
-      return {
-        loc: canonicalize(options, `/${loc}`) ?? '',
-        lastmod: new Date().toISOString(),
-        changefreq: 'daily' as const,
-        priority: 0.8,
-      }
-    },
-  )
+  const paths = (
+    await getCategoryStaticPaths(graphqlSsrClient(locale), locale, { limit: false })
+  ).map<ISitemapField>((path) => {
+    const loc = typeof path === 'string' ? path : path.params.url.join('/')
+    return {
+      loc: canonicalize(options, `/${loc}`) ?? '',
+      lastmod: new Date().toISOString(),
+      changefreq: 'daily' as const,
+      priority: 0.8,
+    }
+  })
 
   res.setHeader(
     'Cache-Control',
