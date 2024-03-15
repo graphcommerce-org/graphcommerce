@@ -53,6 +53,7 @@ const _zod = require("zod");
 const isDefinedNonNullAny = (v)=>v !== undefined && v !== null;
 const definedNonNullAnySchema = _zod.z.any().refine((v)=>isDefinedNonNullAny(v));
 const BreadcrumbsVariantSchema = _zod.z.enum([
+    "BACK_BUTTON",
     "DEFAULT",
     "POPPER"
 ]);

@@ -10,6 +10,7 @@ type ProductPageBreadcrumbsProps = ProductPageBreadcrumbFragment &
 
 export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
   const { categories, name, uid, url_key, ...breadcrumbsProps } = props
+  const breadcrumbsVariant = import.meta.graphCommerce.breadcrumbs?.breadcrumbsVariant
   const prev = usePrevPageRouter()
 
   const category =
@@ -52,9 +53,11 @@ export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
     return sortedBreadcrumbsList
   }, [category, name, uid, url_key])
 
+  if (breadcrumbsVariant === 'BACK_BUTTON') return null
+
   return (
     <>
-      {import.meta.graphCommerce.breadcrumbs?.breadcrumbsVariant === 'POPPER' ? (
+      {breadcrumbsVariant === 'POPPER' ? (
         <PopperBreadcrumbs breadcrumbs={breadcrumbsList} name={name} {...breadcrumbsProps} />
       ) : (
         <Breadcrumbs breadcrumbs={breadcrumbsList} name={name} {...breadcrumbsProps} />

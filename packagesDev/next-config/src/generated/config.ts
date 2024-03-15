@@ -24,6 +24,7 @@ export type BreadcrumbsConfig = {
 
 /** Enumeration of all possible styles for the Breadcrumbs. */
 export type BreadcrumbsVariant =
+  | 'BACK_BUTTON'
   | 'DEFAULT'
   | 'POPPER';
 
@@ -439,7 +440,7 @@ export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== und
 
 export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v));
 
-export const BreadcrumbsVariantSchema = z.enum(['DEFAULT', 'POPPER']);
+export const BreadcrumbsVariantSchema = z.enum(['BACK_BUTTON', 'DEFAULT', 'POPPER']);
 
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 

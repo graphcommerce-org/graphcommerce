@@ -3,7 +3,7 @@
 
 BreadcrumbsConfig will contain all configuration values for the Breadcrumbs component.
 
-#### breadcrumbsVariant: DEFAULT | POPPER
+#### breadcrumbsVariant: BACK_BUTTON | DEFAULT | POPPER
 
 Variant used for the pagination
 

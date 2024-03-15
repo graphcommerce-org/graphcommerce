@@ -7,6 +7,7 @@ type CategoryPageBreadcrumbsProps = CategoryBreadcrumbFragment & Omit<Breadcrumb
 
 export function CategoryBreadcrumb(props: CategoryPageBreadcrumbsProps) {
   const { breadcrumbs, name, uid, url_path, ...breadcrumbsProps } = props
+  const breadcrumbsVariant = import.meta.graphCommerce.breadcrumbs?.breadcrumbsVariant
 
   const breadcrumbsList = useMemo(() => {
     const categoryItem = [
@@ -34,9 +35,11 @@ export function CategoryBreadcrumb(props: CategoryPageBreadcrumbsProps) {
     return sortedBreadcrumbsList
   }, [breadcrumbs, name, uid, url_path])
 
+  if (breadcrumbsVariant === 'BACK_BUTTON') return null
+
   return (
     <>
-      {import.meta.graphCommerce.breadcrumbs?.breadcrumbsVariant === 'POPPER' ? (
+      {breadcrumbsVariant === 'POPPER' ? (
         <PopperBreadcrumbs breadcrumbs={breadcrumbsList} name={name} {...breadcrumbsProps} />
       ) : (
         <Breadcrumbs breadcrumbs={breadcrumbsList} name={name} {...breadcrumbsProps} />

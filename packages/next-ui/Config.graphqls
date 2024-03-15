@@ -34,6 +34,7 @@ Enumeration of all possible styles for the Breadcrumbs.
 enum BreadcrumbsVariant {
   DEFAULT
   POPPER
+  BACK_BUTTON
 }
 
 """
