@@ -7,13 +7,13 @@ exports.writeInterceptors = void 0;
 const node_fs_1 = __importDefault(require("node:fs"));
 const path_1 = __importDefault(require("path"));
 // eslint-disable-next-line import/no-extraneous-dependencies
-const glob_1 = __importDefault(require("glob"));
+const glob_1 = require("glob");
 const resolveDependenciesSync_1 = require("../utils/resolveDependenciesSync");
 function writeInterceptors(interceptors, cwd = process.cwd()) {
     const dependencies = (0, resolveDependenciesSync_1.resolveDependenciesSync)(cwd);
     const existing = [];
     dependencies.forEach((dependency) => {
-        const files = glob_1.default.sync(`${dependency}/**/*.interceptor.tsx`, { cwd });
+        const files = (0, glob_1.sync)(`${dependency}/**/*.interceptor.tsx`, { cwd });
         existing.push(...files);
     });
     Object.entries(interceptors).forEach(([, plugin]) => {

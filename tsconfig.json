@@ -1,5 +1,8 @@
 {
   "extends": "@graphcommerce/typescript-config-pwa/nextjs.json",
   "exclude": ["**/node_modules", "**/.*/"],
-  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.d.ts", "jest.config.mjs"]
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.d.ts", "jest.config.ts"],
+  "compilerOptions": {
+    "moduleSuffixes": [".interceptor", ""],
+  },
 }

@@ -5,10 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.findPlugins = void 0;
 const core_1 = require("@swc/core");
-// eslint-disable-next-line import/no-extraneous-dependencies
 const chalk_1 = __importDefault(require("chalk"));
-// eslint-disable-next-line import/no-extraneous-dependencies
-const glob_1 = __importDefault(require("glob"));
+const glob_1 = require("glob");
 const get_1 = __importDefault(require("lodash/get"));
 const resolveDependenciesSync_1 = require("../utils/resolveDependenciesSync");
 const generateInterceptors_1 = require("./generateInterceptors");
@@ -41,7 +39,7 @@ function findPlugins(config, cwd = process.cwd()) {
     const errors = [];
     const plugins = [];
     dependencies.forEach((dependency, path) => {
-        const files = glob_1.default.sync(`${dependency}/plugins/**/*.{ts,tsx}`);
+        const files = (0, glob_1.sync)(`${dependency}/plugins/**/*.{ts,tsx}`);
         files.forEach((file) => {
             try {
                 const result = parseStructure(file);

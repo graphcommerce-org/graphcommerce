@@ -1,8 +1,6 @@
 import { parseFileSync } from '@swc/core'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import chalk from 'chalk'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import glob from 'glob'
+import { sync as globSync } from 'glob'
 import get from 'lodash/get'
 import type { Path } from 'react-hook-form'
 import { GraphCommerceConfig } from '../generated/config'
@@ -57,7 +55,7 @@ export function findPlugins(config: GraphCommerceConfig, cwd: string = process.c
   const errors: string[] = []
   const plugins: PluginConfig[] = []
   dependencies.forEach((dependency, path) => {
-    const files = glob.sync(`${dependency}/plugins/**/*.{ts,tsx}`)
+    const files = globSync(`${dependency}/plugins/**/*.{ts,tsx}`)
     files.forEach((file) => {
       try {
         const result = parseStructure(file)
@@ -93,16 +91,19 @@ export function findPlugins(config: GraphCommerceConfig, cwd: string = process.c
   })
 
   if (process.env.NODE_ENV === 'development' && debug) {
-    const byExported = plugins.reduce((acc, plugin) => {
-      const componentStr = isReactPluginConfig(plugin) ? plugin.component : ''
-      const funcStr = isMethodPluginConfig(plugin) ? plugin.func : ''
-      const key = `🔌 ${chalk.greenBright(
-        `Plugins loaded for ${plugin.exported}#${componentStr}${funcStr}`,
-      )}`
-      if (!acc[key]) acc[key] = []
-      acc[key].push(plugin)
-      return acc
-    }, {} as Record<string, Pick<PluginConfig, 'plugin' | 'ifConfig' | 'enabled'>[]>)
+    const byExported = plugins.reduce(
+      (acc, plugin) => {
+        const componentStr = isReactPluginConfig(plugin) ? plugin.component : ''
+        const funcStr = isMethodPluginConfig(plugin) ? plugin.func : ''
+        const key = `🔌 ${chalk.greenBright(
+          `Plugins loaded for ${plugin.exported}#${componentStr}${funcStr}`,
+        )}`
+        if (!acc[key]) acc[key] = []
+        acc[key].push(plugin)
+        return acc
+      },
+      {} as Record<string, Pick<PluginConfig, 'plugin' | 'ifConfig' | 'enabled'>[]>,
+    )
 
     const toLog: string[] = []
     Object.entries(byExported).forEach(([key, p]) => {

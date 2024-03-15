@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'path'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import glob from 'glob'
+import { sync as globSync } from 'glob'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 import { GenerateInterceptorsReturn } from './generateInterceptors'
 
@@ -12,7 +12,7 @@ export function writeInterceptors(
   const dependencies = resolveDependenciesSync(cwd)
   const existing: string[] = []
   dependencies.forEach((dependency) => {
-    const files = glob.sync(`${dependency}/**/*.interceptor.tsx`, { cwd })
+    const files = globSync(`${dependency}/**/*.interceptor.tsx`, { cwd })
     existing.push(...files)
   })
 
