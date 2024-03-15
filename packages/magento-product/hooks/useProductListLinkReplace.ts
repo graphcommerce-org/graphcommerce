@@ -13,7 +13,7 @@ export function useProductListLinkReplace(props?: UseProductLinkPushProps) {
   const { setParams } = useProductListParamsContext()
   const router = useRouter()
 
-  return (params: ProductListParams) => {
+  return (params: ProductListParams, productLinkPushPropsReturn?: UseProductLinkPushProps) => {
     const queryUrl = router.query.url ?? []
     const comingFromURLWithoutFilters = !queryUrl.includes('q')
 
@@ -23,8 +23,12 @@ export function useProductListLinkReplace(props?: UseProductLinkPushProps) {
 
     if (router.asPath === path) return false
 
+    const options = { ...props, ...productLinkPushPropsReturn }
+    const newPath = options.scroll ? `${path}#products` : path
+
     // push the first filter, so the new route (on browser back) will be e.g. /women/fruit instead of /women
-    if (comingFromURLWithoutFilters) return router.push(path, path, props)
-    return router.replace(path, path, props)
+    if (comingFromURLWithoutFilters)
+      return router.push(newPath, newPath, { ...props, ...productLinkPushPropsReturn })
+    return router.replace(newPath, newPath, { ...props, ...productLinkPushPropsReturn })
   }
 }
