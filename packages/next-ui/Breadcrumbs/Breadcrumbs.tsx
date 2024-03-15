@@ -5,16 +5,17 @@ import { jsonLdBreadcrumb } from './jsonLdBreadcrumb'
 import { BreadcrumbsProps } from './types'
 
 export function Breadcrumbs(props: BreadcrumbsProps) {
-  const { breadcrumbs, name, sx } = props
+  const { breadcrumbs, name, baseUrl, sx } = props
 
   return (
     <>
       {breadcrumbs.length && (
         <BreadcrumbsJsonLd
+          baseUrl={baseUrl}
           breadcrumbs={breadcrumbs}
-          render={(bc) => ({
+          render={(bc, url) => ({
             '@context': 'https://schema.org',
-            ...jsonLdBreadcrumb(bc),
+            ...jsonLdBreadcrumb(bc, url),
           })}
         />
       )}

@@ -1,4 +1,6 @@
 import { usePrevPageRouter } from '@graphcommerce/framer-next-pages'
+import { useQuery } from '@graphcommerce/graphql'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Breadcrumbs, PopperBreadcrumbs, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { BreadcrumbsProps } from '@mui/material'
 import { useMemo } from 'react'
@@ -10,6 +12,8 @@ type ProductPageBreadcrumbsProps = ProductPageBreadcrumbFragment &
 
 export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
   const { categories, name, uid, url_key, ...breadcrumbsProps } = props
+  const config = useQuery(StoreConfigDocument).data?.storeConfig
+  const baseUrl = config?.secure_base_link_url ?? import.meta.graphCommerce.canonicalBaseUrl
   const breadcrumbsVariant = import.meta.graphCommerce.breadcrumbs?.breadcrumbsVariant
   const prev = usePrevPageRouter()
 
@@ -58,9 +62,19 @@ export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
   return (
     <>
       {breadcrumbsVariant === 'POPPER' ? (
-        <PopperBreadcrumbs breadcrumbs={breadcrumbsList} name={name} {...breadcrumbsProps} />
+        <PopperBreadcrumbs
+          breadcrumbs={breadcrumbsList}
+          name={name}
+          baseUrl={baseUrl}
+          {...breadcrumbsProps}
+        />
       ) : (
-        <Breadcrumbs breadcrumbs={breadcrumbsList} name={name} {...breadcrumbsProps} />
+        <Breadcrumbs
+          breadcrumbs={breadcrumbsList}
+          name={name}
+          baseUrl={baseUrl}
+          {...breadcrumbsProps}
+        />
       )}
     </>
   )

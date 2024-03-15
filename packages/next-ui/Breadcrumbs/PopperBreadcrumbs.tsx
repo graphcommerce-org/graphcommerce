@@ -20,7 +20,7 @@ import { jsonLdBreadcrumb } from './jsonLdBreadcrumb'
 import { BreadcrumbsProps } from './types'
 
 export function PopperBreadcrumbs(props: BreadcrumbsProps) {
-  const { breadcrumbs, name, sx, numOfBreadcrumbsToShow = 2 } = props
+  const { breadcrumbs, name, baseUrl, sx, numOfBreadcrumbsToShow = 2 } = props
   const [anchorElement, setAnchorElement] = useState<HTMLButtonElement | null>(null)
   const anchorRef = useRef<HTMLButtonElement>(null)
   const theme = useTheme()
@@ -47,10 +47,11 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
     <>
       {breadcrumbs.length && (
         <BreadcrumbsJsonLd
+          baseUrl={baseUrl}
           breadcrumbs={breadcrumbs}
-          render={(bc) => ({
+          render={(bc, url) => ({
             '@context': 'https://schema.org',
-            ...jsonLdBreadcrumb(bc),
+            ...jsonLdBreadcrumb(bc, url),
           })}
         />
       )}

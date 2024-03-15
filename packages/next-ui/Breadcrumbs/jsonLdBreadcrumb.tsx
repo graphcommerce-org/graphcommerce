@@ -1,7 +1,10 @@
 import { BreadcrumbsProps } from './types'
 
-export function jsonLdBreadcrumb(props: BreadcrumbsProps['breadcrumbs']) {
-  const [...breadcrumbs] = props
+export function jsonLdBreadcrumb(
+  breadcrumbs: BreadcrumbsProps['breadcrumbs'],
+  baseUrl?: string | null,
+) {
+  const itemBaseUrl = baseUrl?.endsWith('/') ? baseUrl?.substring(0, baseUrl.length - 1) : baseUrl
 
   return {
     '@type': 'BreadcrumbList',
@@ -10,7 +13,7 @@ export function jsonLdBreadcrumb(props: BreadcrumbsProps['breadcrumbs']) {
         '@type': 'ListItem',
         name: breadcrumb?.children,
         position: index + 1,
-        item: `${import.meta.graphCommerce.canonicalBaseUrl}/${breadcrumb?.href}`,
+        item: `${itemBaseUrl}/${breadcrumb?.href?.startsWith('/') ? breadcrumb?.href?.substring(1, breadcrumb?.href.length) : breadcrumb?.href}`,
       })) ?? [],
   }
 }
