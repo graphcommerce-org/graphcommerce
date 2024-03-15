@@ -39,7 +39,7 @@ export function CategoryBreadcrumb(props: CategoryPageBreadcrumbsProps) {
     return sortedBreadcrumbsList
   }, [breadcrumbs, name, uid, url_path])
 
-  if (breadcrumbsVariant === 'BACK_BUTTON') return null
+  if (!breadcrumbsVariant || breadcrumbsVariant === 'BACK_BUTTON') return null
 
   return (
     <>
