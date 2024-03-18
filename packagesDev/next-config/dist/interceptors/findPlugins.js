@@ -39,7 +39,7 @@ function findPlugins(config, cwd = process.cwd()) {
     const errors = [];
     const plugins = [];
     dependencies.forEach((dependency, path) => {
-        const files = (0, glob_1.sync)(`${dependency}/plugins/**/*.{ts,tsx}`);
+        const files = (0, glob_1.sync)(`${dependency}/plugins/**/*.{ts,tsx}`, { dotRelative: true });
         files.forEach((file) => {
             try {
                 const result = parseStructure(file);

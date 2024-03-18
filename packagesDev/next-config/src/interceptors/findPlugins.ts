@@ -55,7 +55,7 @@ export function findPlugins(config: GraphCommerceConfig, cwd: string = process.c
   const errors: string[] = []
   const plugins: PluginConfig[] = []
   dependencies.forEach((dependency, path) => {
-    const files = globSync(`${dependency}/plugins/**/*.{ts,tsx}`)
+    const files = globSync(`${dependency}/plugins/**/*.{ts,tsx}`, { dotRelative: true })
     files.forEach((file) => {
       try {
         const result = parseStructure(file)
