@@ -7,11 +7,10 @@ exports.findOriginalSource = void 0;
 const path_1 = __importDefault(require("path"));
 const core_1 = require("@swc/core");
 const generateInterceptors_1 = require("./generateInterceptors");
-function parseStructure(resolved, findExport, resolve) {
+function parseAndFindExport(resolved, findExport, resolve) {
     if (!resolved?.source)
-        return resolved;
-    const { dependency, source } = resolved;
-    const ast = (0, core_1.parseSync)(source, { syntax: 'typescript', tsx: true, comments: true });
+        return undefined;
+    const ast = (0, core_1.parseSync)(resolved.source, { syntax: 'typescript', tsx: true, comments: true });
     for (const node of ast.body) {
         if (node.type === 'ExportDeclaration') {
             switch (node.declaration.type) {
@@ -40,17 +39,17 @@ function parseStructure(resolved, findExport, resolve) {
         if (node.type === 'ExportAllDeclaration') {
             const isRelative = node.source.value.startsWith('.');
             if (isRelative) {
-                const d = dependency.endsWith('/index') ? dependency.slice(0, -6) : dependency;
+                const d = resolved.dependency === resolved.denormalized
+                    ? resolved.dependency.substring(0, resolved.dependency.lastIndexOf('/'))
+                    : resolved.dependency;
                 const newPath = path_1.default.join(d, node.source.value);
                 const resolveResult = resolve(newPath, { includeSources: true });
                 // eslint-disable-next-line no-continue
                 if (!resolveResult)
                     continue;
-                const newResolved = parseStructure(resolveResult, findExport, resolve);
-                if (newResolved && dependency !== newResolved.dependency) {
-                    // console.log(findExport, newPath, newResolved)
+                const newResolved = parseAndFindExport(resolveResult, findExport, resolve);
+                if (newResolved && resolved.dependency !== newResolved.dependency)
                     return newResolved;
-                }
             }
         }
     }
@@ -60,7 +59,7 @@ function findOriginalSource(plug, resolved, resolve) {
     if (!resolved?.source)
         return resolved;
     const findExport = (0, generateInterceptors_1.isMethodPluginConfig)(plug) ? plug.func : plug.component;
-    const result = parseStructure(resolved, findExport, resolve);
+    const result = parseAndFindExport(resolved, findExport, resolve);
     if (!result) {
         throw new Error(`Could not find original source for ${findExport}`);
     }
