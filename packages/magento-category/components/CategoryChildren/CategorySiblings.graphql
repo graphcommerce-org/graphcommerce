@@ -1,0 +1,7 @@
+query CategorySiblings($parentUid: String!) {
+  categories(filters: { parent_category_uid: { eq: $parentUid } }) {
+    items {
+      ...NavigationItem
+    }
+  }
+}
