@@ -1,17 +1,16 @@
 import path from 'path'
-import { parseFileSync, parseSync } from '@swc/core'
+import { parseSync } from '@swc/core'
 import { ResolveDependency, ResolveDependencyReturn } from '../utils/resolveDependency'
 import { PluginConfig, isMethodPluginConfig } from './generateInterceptors'
-import { find } from 'lodash'
 
 function parseStructure(
   resolved: ResolveDependencyReturn,
   findExport: string,
   resolve: ResolveDependency,
 ): ResolveDependencyReturn | undefined {
+  if (!resolved?.source) return resolved
   const { dependency, source } = resolved
-  if (!source) return resolved
-  const ast = parseSync(source, { syntax: 'typescript', tsx: true })
+  const ast = parseSync(source, { syntax: 'typescript', tsx: true, comments: true })
 
   for (const node of ast.body) {
     if (node.type === 'ExportDeclaration') {
@@ -42,11 +41,11 @@ function parseStructure(
         const d = dependency.endsWith('/index') ? dependency.slice(0, -6) : dependency
         const newPath = path.join(d, node.source.value)
 
-        const newResolved = parseStructure(
-          resolve(newPath, { includeSources: true }),
-          findExport,
-          resolve,
-        )
+        const resolveResult = resolve(newPath, { includeSources: true })
+        // eslint-disable-next-line no-continue
+        if (!resolveResult) continue
+
+        const newResolved = parseStructure(resolveResult, findExport, resolve)
 
         if (newResolved && dependency !== newResolved.dependency) {
           // console.log(findExport, newPath, newResolved)
@@ -64,7 +63,7 @@ export function findOriginalSource(
   resolved: ResolveDependencyReturn,
   resolve: ResolveDependency,
 ) {
-  if (!resolved.source) return resolved
+  if (!resolved?.source) return resolved
   const findExport = isMethodPluginConfig(plug) ? plug.func : plug.component
   const result = parseStructure(resolved, findExport, resolve)
 

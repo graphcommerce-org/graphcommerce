@@ -43,14 +43,14 @@ In this example we're going to add some text to list items, just like the text
    contents:
 
    ```tsx
-   import type { ProductListItem } from '@graphcommerce/magento-product'
-   import type { ReactPlugin } from '@graphcommerce/next-config'
+   import type { ProductListItemProps } from '@graphcommerce/magento-product'
+   import type { PluginProps } from '@graphcommerce/next-config'
    import { Typography } from '@mui/material'
 
    export const component = 'ProductListItem' // Component to extend, required
    export const exported = '@graphcommerce/magento-product' // Location where the component is exported, required
 
-   const ListPlugin: ReactPlugin<typeof ProductListItem> = (props) => {
+   const ListPlugin = (props: PluginProps<ProductListItemProps>) => {
      // Prev in this case is ProductListItem, you should be able to see this if you log it.
      const { Prev, ...rest } = props
      return (

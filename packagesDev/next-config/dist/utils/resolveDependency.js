@@ -8,7 +8,8 @@ const node_fs_1 = __importDefault(require("node:fs"));
 const resolveDependenciesSync_1 = require("./resolveDependenciesSync");
 const resolveDependency = (cwd = process.cwd()) => {
     const dependencies = (0, resolveDependenciesSync_1.resolveDependenciesSync)(cwd);
-    return (dependency, { includeSources = false } = {}) => {
+    function resolve(dependency, options = {}) {
+        const { includeSources = false } = options;
         let dependencyPaths = {
             root: '.',
             source: '',
@@ -33,7 +34,7 @@ const resolveDependency = (cwd = process.cwd()) => {
                     return exists;
                 }));
                 if (!fromRoot) {
-                    throw Error(`Can't find plugin ${dependency}`);
+                    return;
                 }
                 const denormalized = fromRoot.replace(root, depCandidate);
                 let fromModule = !relative
@@ -45,6 +46,7 @@ const resolveDependency = (cwd = process.cwd()) => {
             }
         });
         return dependencyPaths;
-    };
+    }
+    return resolve;
 };
 exports.resolveDependency = resolveDependency;

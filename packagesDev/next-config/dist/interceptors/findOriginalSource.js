@@ -8,10 +8,10 @@ const path_1 = __importDefault(require("path"));
 const core_1 = require("@swc/core");
 const generateInterceptors_1 = require("./generateInterceptors");
 function parseStructure(resolved, findExport, resolve) {
-    const { dependency, source } = resolved;
-    if (!source)
+    if (!resolved?.source)
         return resolved;
-    const ast = (0, core_1.parseSync)(source, { syntax: 'typescript', tsx: true });
+    const { dependency, source } = resolved;
+    const ast = (0, core_1.parseSync)(source, { syntax: 'typescript', tsx: true, comments: true });
     for (const node of ast.body) {
         if (node.type === 'ExportDeclaration') {
             switch (node.declaration.type) {
@@ -42,7 +42,11 @@ function parseStructure(resolved, findExport, resolve) {
             if (isRelative) {
                 const d = dependency.endsWith('/index') ? dependency.slice(0, -6) : dependency;
                 const newPath = path_1.default.join(d, node.source.value);
-                const newResolved = parseStructure(resolve(newPath, { includeSources: true }), findExport, resolve);
+                const resolveResult = resolve(newPath, { includeSources: true });
+                // eslint-disable-next-line no-continue
+                if (!resolveResult)
+                    continue;
+                const newResolved = parseStructure(resolveResult, findExport, resolve);
                 if (newResolved && dependency !== newResolved.dependency) {
                     // console.log(findExport, newPath, newResolved)
                     return newResolved;
@@ -53,7 +57,7 @@ function parseStructure(resolved, findExport, resolve) {
     return undefined;
 }
 function findOriginalSource(plug, resolved, resolve) {
-    if (!resolved.source)
+    if (!resolved?.source)
         return resolved;
     const findExport = (0, generateInterceptors_1.isMethodPluginConfig)(plug) ? plug.func : plug.component;
     const result = parseStructure(resolved, findExport, resolve);

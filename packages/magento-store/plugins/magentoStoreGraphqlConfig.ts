@@ -3,7 +3,7 @@ import type { MethodPlugin } from '@graphcommerce/next-config'
 import { createStoreLink } from '../link/createStoreLink'
 
 export const func = 'graphqlConfig'
-export const exported = '@graphcommerce/graphql/config'
+export const exported = '@graphcommerce/graphql'
 
 const magentoStoreGraphqlConfig: MethodPlugin<typeof graphqlConfig> = (prev, config) => {
   const results = prev(config)

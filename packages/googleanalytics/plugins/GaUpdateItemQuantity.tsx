@@ -2,7 +2,7 @@ import type { UpdateItemQuantityProps } from '@graphcommerce/magento-cart-items'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
 
 export const component = 'UpdateItemQuantity'
-export const exported = '@graphcommerce/magento-cart-items/components/UpdateItemQuantity/UpdateItemQuantity'
+export const exported = '@graphcommerce/magento-cart-items'
 export const ifConfig: IfConfig = 'googleAnalyticsId'
 
 /**

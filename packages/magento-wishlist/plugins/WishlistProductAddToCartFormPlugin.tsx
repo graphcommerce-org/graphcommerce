@@ -2,8 +2,10 @@ import { useCustomerSession } from '@graphcommerce/magento-customer'
 import {
   useFormAddProductsToCart,
   type AddProductsToCartForm,
+  type AddProductsToCartForm_original,
+  AddProductsToCartFormProps,
 } from '@graphcommerce/magento-product'
-import { InputMaybe, ReactPlugin } from '@graphcommerce/next-config'
+import { InputMaybe, PluginProps, ReactPlugin } from '@graphcommerce/next-config'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useWishlistItems } from '../hooks'
@@ -57,7 +59,7 @@ function WishlistUrlHandler() {
   return null
 }
 
-export const Plugin: ReactPlugin<typeof AddProductsToCartForm> = (props) => {
+export const Plugin = (props: PluginProps<AddProductsToCartFormProps>) => {
   const { Prev, children, ...rest } = props
 
   // @todo: Do we also want to remove the item from the wishlist?

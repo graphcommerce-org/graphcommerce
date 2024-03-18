@@ -1,23 +1,31 @@
 import fs from 'node:fs'
 import { resolveDependenciesSync } from './resolveDependenciesSync'
 
-export type ResolveDependencyReturn = {
-  dependency: string
-  denormalized: string
-  root: string
-  fromRoot: string
-  fromModule: string
-  source?: string
-}
+export type ResolveDependencyReturn =
+  | undefined
+  | {
+      dependency: string
+      denormalized: string
+      root: string
+      fromRoot: string
+      fromModule: string
+      source?: string
+    }
 
 export type ResolveDependency = (
   req: string,
-  options?: { includeSources?: boolean },
+  options?: { includeSources?: boolean; optional?: boolean },
 ) => ResolveDependencyReturn
 
 export const resolveDependency = (cwd: string = process.cwd()) => {
   const dependencies = resolveDependenciesSync(cwd)
-  return (dependency: string, { includeSources = false } = {}): ResolveDependencyReturn => {
+
+  function resolve(
+    dependency: string,
+    options: { includeSources?: boolean } = {},
+  ): ResolveDependencyReturn {
+    const { includeSources = false } = options
+
     let dependencyPaths = {
       root: '.',
       source: '',
@@ -49,7 +57,7 @@ export const resolveDependency = (cwd: string = process.cwd()) => {
         )
 
         if (!fromRoot) {
-          throw Error(`Can't find plugin ${dependency}`)
+          return
         }
 
         const denormalized = fromRoot.replace(root, depCandidate)
@@ -65,4 +73,6 @@ export const resolveDependency = (cwd: string = process.cwd()) => {
     })
     return dependencyPaths
   }
+
+  return resolve
 }

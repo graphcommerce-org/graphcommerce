@@ -35,11 +35,11 @@ export class InterceptorPlugin {
       const [plugins, errors] = findPlugins(this.config)
 
       plugins.forEach((p) => {
-        const absoluteFilePath = `${path.join(
-          process.cwd(),
-          this.resolveDependency(p.plugin).fromRoot,
-        )}.tsx`
-        compilation.fileDependencies.add(absoluteFilePath)
+        const resolved = this.resolveDependency(p.plugin)
+        if (resolved) {
+          const absoluteFilePath = `${path.join(process.cwd(), resolved.fromRoot)}.tsx`
+          compilation.fileDependencies.add(absoluteFilePath)
+        }
       })
 
       this.interceptors = generateInterceptors(plugins, this.resolveDependency, this.config.debug)

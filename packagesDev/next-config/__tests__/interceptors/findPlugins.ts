@@ -27,7 +27,7 @@ it('finds plugins', () => {
       {
         "component": "UpdateItemQuantity",
         "enabled": true,
-        "exported": "@graphcommerce/magento-cart-items/components/UpdateItemQuantity/UpdateItemQuantity",
+        "exported": "@graphcommerce/magento-cart-items",
         "ifConfig": "googleAnalyticsId",
         "plugin": "@graphcommerce/googleanalytics/plugins/GaUpdateItemQuantity",
       },
@@ -138,7 +138,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "exported": "@graphcommerce/graphql/config",
+        "exported": "@graphcommerce/graphql",
         "func": "graphqlConfig",
         "plugin": "@graphcommerce/graphcms-ui/plugins/hygraphGraphqlConfig",
       },
@@ -150,7 +150,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "exported": "@graphcommerce/magento-customer/hooks/useSignInForm",
+        "exported": "@graphcommerce/magento-customer",
         "func": "useSignInForm",
         "plugin": "@graphcommerce/magento-cart/plugins/useSignInFormMergeCart",
       },
@@ -222,7 +222,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "exported": "@graphcommerce/graphql/config",
+        "exported": "@graphcommerce/graphql",
         "func": "graphqlConfig",
         "plugin": "@graphcommerce/magento-store/plugins/magentoStoreGraphqlConfig",
       },
@@ -258,7 +258,7 @@ it('finds plugins', () => {
       {
         "component": "RowLinks",
         "enabled": false,
-        "exported": "@graphcommerce/next-ui/Row/RowLinks/RowLinks",
+        "exported": "@graphcommerce/next-ui",
         "ifConfig": "demoMode",
         "plugin": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoRowLinks",
       },
@@ -342,21 +342,21 @@ it('finds plugins', () => {
       {
         "component": "ProductPageName",
         "enabled": false,
-        "exported": "@graphcommerce/magento-product/components/ProductPageName/ProductPageName",
+        "exported": "@graphcommerce/magento-product",
         "ifConfig": "configurableVariantValues.content",
         "plugin": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageName",
       },
       {
         "component": "ProductPageMeta",
         "enabled": false,
-        "exported": "@graphcommerce/magento-product/components/ProductPageMeta/ProductPageMeta",
+        "exported": "@graphcommerce/magento-product",
         "ifConfig": "configurableVariantValues.url",
         "plugin": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageMeta",
       },
       {
         "component": "ProductPageJsonLd",
         "enabled": false,
-        "exported": "@graphcommerce/magento-product/components/JsonLdProduct/ProductPageJsonLd",
+        "exported": "@graphcommerce/magento-product",
         "ifConfig": "configurableVariantValues.content",
         "plugin": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageJsonLd",
       },
@@ -370,7 +370,7 @@ it('finds plugins', () => {
       {
         "component": "ProductPageMeta",
         "enabled": false,
-        "exported": "@graphcommerce/magento-product/components/ProductPageMeta/ProductPageMeta",
+        "exported": "@graphcommerce/magento-product",
         "ifConfig": "recentlyViewedProducts.enabled",
         "plugin": "@graphcommerce/magento-recently-viewed-products/plugins/RegisterProductAsRecentlyViewed",
       },

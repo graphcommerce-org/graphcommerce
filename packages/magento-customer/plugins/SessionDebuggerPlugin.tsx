@@ -1,6 +1,6 @@
-import type { FramerNextPages } from '@graphcommerce/framer-next-pages'
+import type { PagesProps } from '@graphcommerce/framer-next-pages'
 import { useApolloClient } from '@graphcommerce/graphql/apollo'
-import type { IfConfig, ReactPlugin } from '@graphcommerce/next-config'
+import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { Button } from '@mui/material'
 import { CustomerTokenDocument } from '../hooks/CustomerToken.gql'
 
@@ -8,7 +8,7 @@ export const component = 'FramerNextPages'
 export const exported = '@graphcommerce/framer-next-pages'
 export const ifConfig: IfConfig = 'debug.sessions'
 
-const SessionDebuggerPlugin: ReactPlugin<typeof FramerNextPages> = (props) => {
+const SessionDebuggerPlugin = (props: PluginProps<PagesProps>) => {
   const { Prev, ...rest } = props
   const client = useApolloClient()
 
