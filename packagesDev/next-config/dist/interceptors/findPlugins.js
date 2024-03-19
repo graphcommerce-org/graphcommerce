@@ -5,23 +5,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.findPlugins = void 0;
 const core_1 = require("@swc/core");
+// eslint-disable-next-line import/no-extraneous-dependencies
 const chalk_1 = __importDefault(require("chalk"));
 const glob_1 = require("glob");
 const get_1 = __importDefault(require("lodash/get"));
+const extract_const_value_1 = require("next/dist/build/analysis/extract-const-value");
 const resolveDependenciesSync_1 = require("../utils/resolveDependenciesSync");
 const generateInterceptors_1 = require("./generateInterceptors");
+function maybeExtractExportedConstValue(ast, name) {
+    try {
+        return (0, extract_const_value_1.extractExportedConstValue)(ast, name);
+    }
+    catch (e) {
+        return undefined;
+    }
+}
 function parseStructure(file) {
     const ast = (0, core_1.parseFileSync)(file, { syntax: 'typescript', tsx: true });
-    const imports = {};
     const exports = {};
+    const component = maybeExtractExportedConstValue(ast, 'component');
+    const exported = maybeExtractExportedConstValue(ast, 'exported');
+    const ifConfig = maybeExtractExportedConstValue(ast, 'ifConfig');
+    const replace = maybeExtractExportedConstValue(ast, 'replace');
+    console.log(component, exported, ifConfig, replace);
     ast.body.forEach((node) => {
-        if (node.type === 'ImportDeclaration') {
-            node.specifiers.forEach((s) => {
-                if (s.type === 'ImportSpecifier') {
-                    imports[s.local.value] = node.source.value;
-                }
-            });
-        }
         if (node.type === 'ExportDeclaration' && node.declaration.type === 'VariableDeclaration') {
             node.declaration.declarations.forEach((declaration) => {
                 if (declaration.init?.type === 'StringLiteral' && declaration.id.type === 'Identifier') {
@@ -51,14 +58,7 @@ function findPlugins(config, cwd = process.cwd()) {
                     enabled: !result.ifConfig || Boolean((0, get_1.default)(config, result.ifConfig)),
                 };
                 if (!(0, generateInterceptors_1.isPluginConfig)(pluginConfig)) {
-                    if (!(0, generateInterceptors_1.isPluginBaseConfig)(pluginConfig))
-                        errors.push(`Plugin ${file} is not a valid plugin, make it has "export const exported = '@graphcommerce/my-package"`);
-                    else if (file.endsWith('.ts')) {
-                        errors.push(`Plugin ${file} is not a valid plugin, please define the method to create a plugin for "export const method = 'someMethod'"`);
-                    }
-                    else if (file.endsWith('.tsx')) {
-                        errors.push(`Plugin ${file} is not a valid plugin, please define the compoennt to create a plugin for "export const component = 'SomeComponent'"`);
-                    }
+                    errors.push(`Plugin ${file} is not a valid plugin, make it has "export const exported = '@graphcommerce/my-package"`);
                 }
                 else {
                     plugins.push(pluginConfig);
@@ -71,9 +71,7 @@ function findPlugins(config, cwd = process.cwd()) {
     });
     if (process.env.NODE_ENV === 'development' && debug) {
         const byExported = plugins.reduce((acc, plugin) => {
-            const componentStr = (0, generateInterceptors_1.isReactPluginConfig)(plugin) ? plugin.component : '';
-            const funcStr = (0, generateInterceptors_1.isMethodPluginConfig)(plugin) ? plugin.func : '';
-            const key = `🔌 ${chalk_1.default.greenBright(`Plugins loaded for ${plugin.exported}#${componentStr}${funcStr}`)}`;
+            const key = `🔌 ${chalk_1.default.greenBright(`Plugins loaded for ${plugin.exported}#${plugin.exportString}`)}`;
             if (!acc[key])
                 acc[key] = [];
             acc[key].push(plugin);

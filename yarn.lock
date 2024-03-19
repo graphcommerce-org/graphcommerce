@@ -3048,10 +3048,13 @@ __metadata:
     "@graphql-mesh/types": "npm:latest"
     "@graphql-mesh/utils": "npm:latest"
     "@graphql-tools/utils": "npm:^10.0.12"
+    "@types/uglify-es": "npm:^3"
     "@whatwg-node/fetch": "npm:^0.9.15"
     fetch-retry: "npm:^5.0.6"
+    long: "npm:^5.2.3"
     tslib: "npm:^2.6.2"
     typescript: "npm:5.3.3"
+    uglify-es: "npm:3.3.9"
   peerDependencies:
     "@apollo/client": ^3
     "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
@@ -7871,6 +7874,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/uglify-es@npm:^3":
+  version: 3.0.3
+  resolution: "@types/uglify-es@npm:3.0.3"
+  dependencies:
+    "@types/uglify-js": "npm:*"
+  checksum: 10c0/b13bed1687e64c8d6be4150245df1a0aa9bd9683c71b3a7712bd6b5f6ca4d9a2517f4b58fdf24b80afb9529ddace0422dd51d7f3a407879348faeb254f4399ba
+  languageName: node
+  linkType: hard
+
+"@types/uglify-js@npm:*":
+  version: 3.17.5
+  resolution: "@types/uglify-js@npm:3.17.5"
+  dependencies:
+    source-map: "npm:^0.6.1"
+  checksum: 10c0/e225d7da26a7a8b71e71f584ab2b4e14f9bd61e2ae4c72fa14d3d862ebfb8f3c1c24414048f23ea485e93618d3370e6c9d5e5af51b6a836d48ec453a26e419f4
+  languageName: node
+  linkType: hard
+
 "@types/unist@npm:*, @types/unist@npm:^3.0.0":
   version: 3.0.2
   resolution: "@types/unist@npm:3.0.2"
@@ -9705,6 +9726,13 @@ __metadata:
   version: 2.20.3
   resolution: "commander@npm:2.20.3"
   checksum: 10c0/74c781a5248c2402a0a3e966a0a2bba3c054aad144f5c023364be83265e796b20565aa9feff624132ff629aa64e16999fa40a743c10c12f7c61e96a794b99288
+  languageName: node
+  linkType: hard
+
+"commander@npm:~2.13.0":
+  version: 2.13.0
+  resolution: "commander@npm:2.13.0"
+  checksum: 10c0/e3441096034439e506493ca1e5e9d5d5723ee0eadc3b2b92b3dd332b1d8fcbe72b70a1127f6790e6b3bedde3054316e9fe2cb36cef6ac051000b01559a16ba58
   languageName: node
   linkType: hard
 
@@ -14360,6 +14388,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"long@npm:^5.2.3":
+  version: 5.2.3
+  resolution: "long@npm:5.2.3"
+  checksum: 10c0/6a0da658f5ef683b90330b1af76f06790c623e148222da9d75b60e266bbf88f803232dd21464575681638894a84091616e7f89557aa087fd14116c0f4e0e43d9
+  languageName: node
+  linkType: hard
+
 "loose-envify@npm:^1.0.0, loose-envify@npm:^1.1.0, loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
@@ -18376,6 +18411,18 @@ __metadata:
   version: 1.0.37
   resolution: "ua-parser-js@npm:1.0.37"
   checksum: 10c0/dac8cf82a55b2e097bd2286954e01454c4cfcf23c9d9b56961ce94bda3cec5a38ca536e6e84c20a4000a9d4b4a4abcbd98ec634ccebe21be36595ea3069126e4
+  languageName: node
+  linkType: hard
+
+"uglify-es@npm:3.3.9":
+  version: 3.3.9
+  resolution: "uglify-es@npm:3.3.9"
+  dependencies:
+    commander: "npm:~2.13.0"
+    source-map: "npm:~0.6.1"
+  bin:
+    uglifyjs: bin/uglifyjs
+  checksum: 10c0/b591de4ea2c7153f446f80f2559bbabcb4ff53a17dbfd27b9bb980b31f5fb7e563bdae6e9abc07d97ecb484ac4ceba4c7a207e6854cb2aaca72e80e6090c989e
   languageName: node
   linkType: hard
 

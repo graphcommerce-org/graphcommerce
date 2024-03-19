@@ -863,3 +863,6 @@ it('can correctly find the source for deeper chained exports', () => {
     `"@graphcommerce/next-ui/Blog/BlogTags/BlogTag"`,
   )
 })
+
+it('Should apply overrides to the correct file', () => {})
+it("Should throw an error when an override doesn't exist", () => {})

@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.findOriginalSource = void 0;
 const path_1 = __importDefault(require("path"));
 const core_1 = require("@swc/core");
-const generateInterceptors_1 = require("./generateInterceptors");
 function parseAndFindExport(resolved, findExport, resolve) {
     if (!resolved?.source)
         return undefined;
@@ -58,10 +57,9 @@ function parseAndFindExport(resolved, findExport, resolve) {
 function findOriginalSource(plug, resolved, resolve) {
     if (!resolved?.source)
         return resolved;
-    const findExport = (0, generateInterceptors_1.isMethodPluginConfig)(plug) ? plug.func : plug.component;
-    const result = parseAndFindExport(resolved, findExport, resolve);
+    const result = parseAndFindExport(resolved, plug.exportString, resolve);
     if (!result) {
-        throw new Error(`Could not find original source for ${findExport}`);
+        throw new Error(`Could not find original source for ${plug.exportString}`);
     }
     return result;
 }

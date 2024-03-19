@@ -64,11 +64,10 @@ export function findOriginalSource(
   resolve: ResolveDependency,
 ) {
   if (!resolved?.source) return resolved
-  const findExport = isMethodPluginConfig(plug) ? plug.func : plug.component
-  const result = parseAndFindExport(resolved, findExport, resolve)
+  const result = parseAndFindExport(resolved, plug.exportString, resolve)
 
   if (!result) {
-    throw new Error(`Could not find original source for ${findExport}`)
+    throw new Error(`Could not find original source for ${plug.exportString}`)
   }
   return result
 }
