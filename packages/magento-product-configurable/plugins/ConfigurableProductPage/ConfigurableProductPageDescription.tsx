@@ -6,8 +6,7 @@ import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { useConfigurableSelectedVariant } from '../../hooks'
 
 export const component = 'ProductPageDescription'
-export const exported =
-  '@graphcommerce/magento-product/components/ProductPageDescription/ProductPageDescription'
+export const exported = '@graphcommerce/magento-product'
 export const ifConfig: IfConfig = 'configurableVariantValues.content'
 
 export const ConfigurableProductPageDescription = (

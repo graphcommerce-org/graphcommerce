@@ -3,8 +3,8 @@ import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { Box } from '@mui/material'
 import { CompareProductToggle } from '../components'
 
-export const component = 'ProductListItem' // Component to extend, required
-export const exported = '@graphcommerce/magento-product' // Location where the component is exported, required
+export const component = 'ProductListItem'
+export const exported = '@graphcommerce/magento-product'
 export const ifConfig: IfConfig = 'compare'
 
 function CompareAbleProductListItem(props: PluginProps<ProductListItemProps>) {

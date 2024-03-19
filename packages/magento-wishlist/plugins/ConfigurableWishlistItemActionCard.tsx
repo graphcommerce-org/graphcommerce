@@ -4,8 +4,7 @@ import { Box } from '@mui/material'
 import { ConfigurableWishlistItemAction } from '../components/WishlistItemActionCard/ConfigurableWishlistItemAction'
 
 export const component = 'WishlistItemActionCard'
-export const exported =
-  '@graphcommerce/magento-wishlist/components/WishlistItemActionCard/WishlistItemActionCard'
+export const exported = '@graphcommerce/magento-wishlist'
 
 const ConfigurableWishlistItemActionCard = (props: PluginProps<WishlistItemActionCardProps>) => {
   const { Prev, details, item } = props

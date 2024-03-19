@@ -1,11 +1,9 @@
 import { useCustomerSession } from '@graphcommerce/magento-customer'
 import {
   useFormAddProductsToCart,
-  type AddProductsToCartForm,
-  type AddProductsToCartForm_original,
   AddProductsToCartFormProps,
 } from '@graphcommerce/magento-product'
-import { InputMaybe, PluginProps, ReactPlugin } from '@graphcommerce/next-config'
+import { InputMaybe, PluginProps } from '@graphcommerce/next-config'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useWishlistItems } from '../hooks'

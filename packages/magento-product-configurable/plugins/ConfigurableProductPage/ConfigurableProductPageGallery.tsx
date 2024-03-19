@@ -3,8 +3,7 @@ import type { PluginProps } from '@graphcommerce/next-config'
 import { useConfigurableOptionsSelection } from '../../hooks'
 
 export const component = 'ProductPageGallery'
-export const exported =
-  '@graphcommerce/magento-product/components/ProductPageGallery/ProductPageGallery'
+export const exported = '@graphcommerce/magento-product'
 
 const ConfigurableProductPageGallery = (
   props: PluginProps<ProductPageGalleryProps> & AddToCartItemSelector,

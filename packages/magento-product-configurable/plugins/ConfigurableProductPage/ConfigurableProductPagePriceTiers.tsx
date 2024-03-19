@@ -6,10 +6,9 @@ import type { PluginProps } from '@graphcommerce/next-config'
 import { useConfigurableSelectedVariant } from '../../hooks'
 
 export const component = 'ProductPagePriceTiers'
-export const exported =
-  '@graphcommerce/magento-product/components/ProductPagePrice/ProductPagePriceTiers'
+export const exported = '@graphcommerce/magento-product'
 
-const ConfigurableProductPagePriceTiers: PluginType = (
+const ConfigurableProductPagePriceTiers = (
   props: PluginProps<ProductPagePriceTiersProps> & AddToCartItemSelector,
 ) => {
   const { Prev, product, index, ...rest } = props

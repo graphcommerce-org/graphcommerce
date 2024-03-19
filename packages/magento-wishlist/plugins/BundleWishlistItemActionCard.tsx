@@ -6,8 +6,7 @@ import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 
 export const component = 'WishlistItemActionCard'
-export const exported =
-  '@graphcommerce/magento-wishlist/components/WishlistItemActionCard/WishlistItemActionCard'
+export const exported = '@graphcommerce/magento-wishlist'
 
 export const BundleWishlistItemActionCard = (props: PluginProps<WishlistItemActionCardProps>) => {
   const { Prev, item } = props

@@ -3,8 +3,7 @@ import { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { gtagRemoveFromCart } from '../events/gtagRemoveFromCart/gtagRemoveFromCart'
 
 export const component = 'RemoveItemFromCart'
-export const exported =
-  '@graphcommerce/magento-cart-items/components/RemoveItemFromCart/RemoveItemFromCart'
+export const exported = '@graphcommerce/magento-cart-items'
 export const ifConfig: IfConfig = 'googleAnalyticsId'
 
 export const GaRemoveItemFromCart = (props: PluginProps<RemoveItemFromCartProps>) => {
