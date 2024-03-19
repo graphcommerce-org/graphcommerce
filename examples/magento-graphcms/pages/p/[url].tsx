@@ -63,7 +63,6 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 
 function ProductPage(props: Props) {
   const { products, relatedUpsells, usps, sidebarUsps, pages, defaultValues } = props
-  const breadcrumbsVariant = import.meta.graphCommerce.breadcrumbs?.breadcrumbsVariant
 
   const product = mergeDeep(
     products?.items?.[0],
@@ -75,10 +74,7 @@ function ProductPage(props: Props) {
   return (
     <>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
-        <LayoutHeader
-          floatingMd
-          hideBackButton={breadcrumbsVariant === 'DEFAULT' || breadcrumbsVariant === 'POPPER'}
-        >
+        <LayoutHeader floatingMd>
           <LayoutTitle size='small' component='span'>
             <ProductPageName product={product} />
           </LayoutTitle>

@@ -47,7 +47,6 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, C
 
 function CategoryPage(props: CategoryProps) {
   const { categories, products, filters, params, filterTypes, pages } = props
-  const breadcrumbsVariant = import.meta.graphCommerce.breadcrumbs?.breadcrumbsVariant
 
   const category = categories?.items?.[0]
   const isLanding = category?.display_mode === 'PAGE'
@@ -64,10 +63,7 @@ function CategoryPage(props: CategoryProps) {
         canonical={page?.url ? `/${page.url}` : undefined}
         {...category}
       />
-      <LayoutHeader
-        floatingMd
-        hideBackButton={breadcrumbsVariant === 'DEFAULT' || breadcrumbsVariant === 'POPPER'}
-      >
+      <LayoutHeader floatingMd>
         <LayoutTitle size='small' component='span'>
           {category?.name ?? page.title}
         </LayoutTitle>

@@ -11,7 +11,7 @@ export function CategoryBreadcrumb(props: CategoryPageBreadcrumbsProps) {
   const { breadcrumbs, name, uid, url_path, ...breadcrumbsProps } = props
   const config = useQuery(StoreConfigDocument).data?.storeConfig
   const baseUrl = config?.secure_base_link_url ?? import.meta.graphCommerce.canonicalBaseUrl
-  const breadcrumbsVariant = import.meta.graphCommerce.breadcrumbs?.breadcrumbsVariant
+  const breadcrumbsVariant = import.meta.graphCommerce?.breadcrumbsVariant ?? 'BACK_BUTTON'
 
   const breadcrumbsList = useMemo(() => {
     const categoryItem = [
@@ -39,7 +39,7 @@ export function CategoryBreadcrumb(props: CategoryPageBreadcrumbsProps) {
     return sortedBreadcrumbsList
   }, [breadcrumbs, name, uid, url_path])
 
-  if (!breadcrumbsVariant || breadcrumbsVariant === 'BACK_BUTTON') return null
+  if (breadcrumbsVariant === 'BACK_BUTTON') return null
 
   return (
     <>

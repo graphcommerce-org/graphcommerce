@@ -57,7 +57,8 @@ export function LayoutHeader(props: LayoutHeaderProps) {
     sx = [],
     bgColor,
   } = props
-  const showBack = useShowBack() && !hideBackButton
+  const breadcrumbsVariant = import.meta.graphCommerce?.breadcrumbsVariant ?? 'BACK_BUTTON'
+  const showBack = useShowBack() && !hideBackButton && breadcrumbsVariant === 'BACK_BUTTON'
   const showClose = useShowClose()
 
   const floatFallback = !children

@@ -1,12 +1,4 @@
 <!-- Automatically generated from Config.graphqls -->
-### BreadcrumbsConfig
-
-BreadcrumbsConfig will contain all configuration values for the Breadcrumbs component.
-
-#### breadcrumbsVariant: BACK_BUTTON | DEFAULT | POPPER
-
-Variant used for the pagination
-
 # GraphCommerce configuration system
 
 Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file
@@ -113,7 +105,7 @@ Examples:
 
 All storefront configuration for the project
 
-#### breadcrumbs: [BreadcrumbsConfig](#BreadcrumbsConfig)
+#### breadcrumbsVariant: BACK_BUTTON | DEFAULT | POPPER = `BACK_BUTTON`
 
 Configuration for the SidebarGallery component
 

@@ -9,9 +9,6 @@ function _export(target, all) {
     });
 }
 _export(exports, {
-    BreadcrumbsConfigSchema: function() {
-        return BreadcrumbsConfigSchema;
-    },
     BreadcrumbsVariantSchema: function() {
         return BreadcrumbsVariantSchema;
     },
@@ -69,14 +66,9 @@ const SidebarGalleryPaginationVariantSchema = _zod.z.enum([
     "DOTS",
     "THUMBNAILS_BOTTOM"
 ]);
-function BreadcrumbsConfigSchema() {
-    return _zod.z.object({
-        breadcrumbsVariant: BreadcrumbsVariantSchema.nullish()
-    });
-}
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
-        breadcrumbs: BreadcrumbsConfigSchema().nullish(),
+        breadcrumbsVariant: BreadcrumbsVariantSchema.nullish(),
         canonicalBaseUrl: _zod.z.string().min(1),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
         compare: _zod.z.boolean().nullish(),

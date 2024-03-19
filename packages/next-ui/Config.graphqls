@@ -7,7 +7,7 @@ extend input GraphCommerceConfig {
   """
   Configuration for the SidebarGallery component
   """
-  breadcrumbs: BreadcrumbsConfig
+  breadcrumbsVariant: BreadcrumbsVariant = BACK_BUTTON
 }
 
 """
@@ -32,17 +32,7 @@ input SidebarGalleryConfig {
 Enumeration of all possible styles for the Breadcrumbs.
 """
 enum BreadcrumbsVariant {
+  BACK_BUTTON
   DEFAULT
   POPPER
-  BACK_BUTTON
-}
-
-"""
-BreadcrumbsConfig will contain all configuration values for the Breadcrumbs component.
-"""
-input BreadcrumbsConfig {
-  """
-  Variant used for the pagination
-  """
-  breadcrumbsVariant: BreadcrumbsVariant
 }

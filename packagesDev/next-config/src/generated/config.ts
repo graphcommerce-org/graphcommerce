@@ -16,12 +16,6 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
-/** BreadcrumbsConfig will contain all configuration values for the Breadcrumbs component. */
-export type BreadcrumbsConfig = {
-  /** Variant used for the pagination */
-  breadcrumbsVariant?: InputMaybe<BreadcrumbsVariant>;
-};
-
 /** Enumeration of all possible styles for the Breadcrumbs. */
 export type BreadcrumbsVariant =
   | 'BACK_BUTTON'
@@ -111,7 +105,7 @@ export type CompareVariant =
  */
 export type GraphCommerceConfig = {
   /** Configuration for the SidebarGallery component */
-  breadcrumbs?: InputMaybe<BreadcrumbsConfig>;
+  breadcrumbsVariant?: InputMaybe<BreadcrumbsVariant>;
   /**
    * The canonical base URL is used for SEO purposes.
    *
@@ -448,15 +442,9 @@ export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
 export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM']);
 
-export function BreadcrumbsConfigSchema(): z.ZodObject<Properties<BreadcrumbsConfig>> {
-  return z.object({
-    breadcrumbsVariant: BreadcrumbsVariantSchema.nullish()
-  })
-}
-
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
-    breadcrumbs: BreadcrumbsConfigSchema().nullish(),
+    breadcrumbsVariant: BreadcrumbsVariantSchema.nullish(),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     compare: z.boolean().nullish(),
