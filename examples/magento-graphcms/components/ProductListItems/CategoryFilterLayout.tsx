@@ -1,3 +1,4 @@
+import { ProductAttributeSortInput } from '@graphcommerce/graphql-mesh'
 import {
   FilterTypes,
   ProductFiltersPro,
@@ -28,10 +29,11 @@ export type ProductListFilterLayoutProps = ProductListQuery &
     params?: ProductListParams
     id: string
     title: string
+    defaultSortBy: keyof ProductAttributeSortInput
   }
 
 export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
-  const { params, filters, products, filterTypes, title, id } = props
+  const { params, filters, products, filterTypes, title, id, defaultSortBy } = props
 
   if (!(params && products?.items && filterTypes)) return null
 
@@ -43,9 +45,17 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
     const horizontalFilters = (
       <ProductListFiltersContainer>
         <ProductFiltersProFilterChips />
-        <ProductFiltersProSortChip total_count={total_count} sort_fields={sort_fields} />
+        <ProductFiltersProSortChip
+          total_count={total_count}
+          sort_fields={sort_fields}
+          defaultSortBy={defaultSortBy}
+        />
         <ProductFiltersProLimitChip />
-        <ProductFiltersProAllFiltersChip total_count={total_count} sort_fields={sort_fields} />
+        <ProductFiltersProAllFiltersChip
+          total_count={total_count}
+          sort_fields={sort_fields}
+          defaultSortBy={defaultSortBy}
+        />
       </ProductListFiltersContainer>
     )
 
@@ -65,6 +75,7 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
               <ProductFiltersProAllFiltersSidebar
                 total_count={total_count}
                 sort_fields={sort_fields}
+                defaultSortBy={defaultSortBy}
               />
             }
             count={<ProductListCount total_count={total_count} />}

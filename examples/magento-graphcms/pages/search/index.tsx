@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
+import { ProductAttributeSortInput } from '@graphcommerce/graphql-mesh'
 import {
   ProductListDocument,
   extractUrlQuery,
@@ -36,7 +37,11 @@ import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphql
 
 type SearchResultProps = ProductListQuery &
   ProductFiltersQuery &
-  CategorySearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
+  CategorySearchQuery & {
+    filterTypes: FilterTypes
+    params: ProductListParams
+    defaultSortBy: keyof ProductAttributeSortInput
+  }
 type RouteProps = { url: string[] }
 export type GetPageStaticProps = GetStaticProps<
   LayoutNavigationProps,
@@ -45,7 +50,7 @@ export type GetPageStaticProps = GetStaticProps<
 >
 
 function SearchResultPage(props: SearchResultProps) {
-  const { products, categories, params, filters, filterTypes } = props
+  const { products, categories, params, filters, filterTypes, defaultSortBy } = props
   const search = params.url.split('/')[1]
   const totalSearchResults = (categories?.items?.length ?? 0) + (products?.total_count ?? 0)
   const noSearchResults = search && (!products || (products.items && products?.items?.length <= 0))
@@ -117,6 +122,7 @@ function SearchResultPage(props: SearchResultProps) {
             filterTypes={filterTypes}
             id={search}
             title={`Search ${search}`}
+            defaultSortBy={defaultSortBy}
           />
         )}
       </SearchContext>
@@ -154,12 +160,19 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const filters = staticClient.query({ query: ProductFiltersDocument, variables: { search } })
 
+  const defaultSortBy = ((await conf).data.storeConfig?.catalog_default_sort_by ??
+    'position') as keyof ProductAttributeSortInput
+
   const products = staticClient.query({
     query: ProductListDocument,
     variables: {
       pageSize: (await conf).data.storeConfig?.grid_per_page ?? 12,
       ...productListParams,
       search,
+      sort:
+        productListParams?.sort && Object.keys(productListParams?.sort).length === 0
+          ? { [defaultSortBy]: 'ASC' }
+          : productListParams?.sort,
     },
   })
 
@@ -176,6 +189,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       filterTypes: await filterTypes,
       params: productListParams,
       up: { href: '/', title: 'Home' },
+      defaultSortBy,
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

@@ -21,7 +21,7 @@ import { ProductListFilterLayoutProps } from './CategoryFilterLayout'
 import { productListRenderer } from './productListRenderer'
 
 export function SearchFilterLayout(props: ProductListFilterLayoutProps) {
-  const { params, filters, products, filterTypes, title, id } = props
+  const { params, filters, products, filterTypes, title, id, defaultSortBy } = props
 
   if (!(params && products?.items && filterTypes)) return null
 
@@ -40,9 +40,17 @@ export function SearchFilterLayout(props: ProductListFilterLayoutProps) {
     const horizontalFilters = (
       <ProductListFiltersContainer>
         <ProductFiltersProFilterChips />
-        <ProductFiltersProSortChip total_count={total_count} sort_fields={sort_fields} />
+        <ProductFiltersProSortChip
+          total_count={total_count}
+          sort_fields={sort_fields}
+          defaultSortBy={defaultSortBy}
+        />
         <ProductFiltersProLimitChip />
-        <ProductFiltersProAllFiltersChip total_count={total_count} sort_fields={sort_fields} />
+        <ProductFiltersProAllFiltersChip
+          total_count={total_count}
+          sort_fields={sort_fields}
+          defaultSortBy={defaultSortBy}
+        />
       </ProductListFiltersContainer>
     )
 
@@ -62,6 +70,7 @@ export function SearchFilterLayout(props: ProductListFilterLayoutProps) {
               <ProductFiltersProAllFiltersSidebar
                 total_count={total_count}
                 sort_fields={sort_fields}
+                defaultSortBy={defaultSortBy}
               />
             }
             count={<ProductListCount total_count={total_count} />}
