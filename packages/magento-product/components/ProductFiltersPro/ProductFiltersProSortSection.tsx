@@ -1,6 +1,5 @@
 import { useWatch } from '@graphcommerce/ecommerce-ui'
-import { useQuery } from '@graphcommerce/graphql'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { ProductAttributeSortInput } from '@graphcommerce/graphql-mesh'
 import {
   ActionCard,
   ActionCardAccordion,
@@ -12,26 +11,33 @@ import { Trans } from '@lingui/react'
 import { useMemo } from 'react'
 import { ProductListSortFragment } from '../ProductListSort/ProductListSort.gql'
 import { useProductFiltersPro } from './ProductFiltersPro'
+import { ProductFiltersProSortDirectionArrow } from './ProductFiltersProSortDirectionArrow'
+import { handleSort } from './handleSort'
 
-export type ProductFiltersProSortSectionProps = ProductListSortFragment
+export type ProductFiltersProSortSectionProps = ProductListSortFragment & {
+  defaultSortBy: keyof ProductAttributeSortInput
+}
 
 export function ProductFiltersProSortSection(props: ProductFiltersProSortSectionProps) {
-  const { sort_fields } = props
+  const { sort_fields, defaultSortBy } = props
   const { form } = useProductFiltersPro()
   const { control } = form
   const activeSort = useWatch({ control, name: 'sort' })
-
-  const { data: storeConfigQuery } = useQuery(StoreConfigDocument)
-  const defaultSort = storeConfigQuery?.storeConfig?.catalog_default_sort_by
-
+  const sortDirection = useWatch({ control, name: 'dir' })
   const options = useMemo(
     () =>
       filterNonNullableKeys(sort_fields?.options, ['value', 'label']).map((option) => ({
         ...option,
-        value: option.value === defaultSort ? null : option.value,
+        value: option.value,
         title: option.label,
+        ...(activeSort === option.value
+          ? {
+              onClick: () => handleSort({ activeSort, defaultSortBy, form, sortDirection }),
+              price: <ProductFiltersProSortDirectionArrow sortDirection={sortDirection} />,
+            }
+          : null),
       })),
-    [defaultSort, sort_fields?.options],
+    [activeSort, defaultSortBy, form, sortDirection, sort_fields?.options],
   )
 
   return (

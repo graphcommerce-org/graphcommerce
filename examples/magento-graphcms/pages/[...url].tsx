@@ -24,6 +24,7 @@ import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-
 import { GetStaticProps, LayoutHeader, LayoutTitle, MetaRobots } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
+import { ProductAttributeSortInput } from '../.mesh'
 import {
   CategoryFilterLayout,
   LayoutDocument,
@@ -38,15 +39,18 @@ import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsr
 export type CategoryProps = CategoryPageQuery &
   HygraphPagesQuery &
   ProductListQuery &
-  ProductFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
+  ProductFiltersQuery & {
+    filterTypes?: FilterTypes
+    params?: ProductListParams
+    defaultSortBy: keyof ProductAttributeSortInput
+  }
 export type CategoryRoute = { url: string[] }
 
 type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
 function CategoryPage(props: CategoryProps) {
-  const { categories, products, filters, params, filterTypes, pages } = props
-
+  const { categories, products, filters, params, filterTypes, pages, defaultSortBy } = props
   const category = categories?.items?.[0]
   const isLanding = category?.display_mode === 'PAGE'
   const page = pages?.[0]
@@ -102,6 +106,7 @@ function CategoryPage(props: CategoryProps) {
             filterTypes={filterTypes}
             title={category.name ?? ''}
             id={category.uid}
+            defaultSortBy={defaultSortBy}
           />
         </>
       )}
@@ -159,6 +164,10 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const filteredCategoryUid = productListParams && productListParams.filters.category_uid?.in?.[0]
 
   const category = categoryPage.then((res) => res.data.categories?.items?.[0])
+  const defaultSortBy = ((await category)?.default_sort_by ??
+    (await conf).data.storeConfig?.catalog_default_sort_by ??
+    'position') as keyof ProductAttributeSortInput
+
   let categoryUid = filteredCategoryUid
   if (!categoryUid) {
     categoryUid = (await category)?.uid ?? ''
@@ -181,6 +190,10 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
           pageSize: (await conf).data.storeConfig?.grid_per_page ?? 24,
           ...productListParams,
           filters: { ...productListParams?.filters, category_uid: { eq: categoryUid } },
+          sort:
+            productListParams?.sort && Object.keys(productListParams?.sort).length === 0
+              ? { [defaultSortBy]: 'ASC' }
+              : productListParams?.sort,
         },
       })
     : undefined
@@ -207,6 +220,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await layout).data,
       filterTypes: await filterTypes,
       params: productListParams,
+      defaultSortBy,
       apolloState: await conf.then(() => client.cache.extract()),
       up,
     },
