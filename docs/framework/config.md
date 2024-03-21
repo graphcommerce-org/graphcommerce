@@ -205,6 +205,10 @@ The Google Tagmanager ID to be used on the site.
 
 This value is required even if you are configuring different values for each locale.
 
+#### guestOnlyMode: boolean
+
+Disables all login functionalities
+
 #### hygraphManagementApi: string
 
 Hygraph Management API. **Only used for migrations.**

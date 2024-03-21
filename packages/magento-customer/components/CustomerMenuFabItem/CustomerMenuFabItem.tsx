@@ -40,6 +40,8 @@ function CustomerMenuFabItemContent(props: CustomerMenuFabItemProps) {
 export function CustomerMenuFabItem(props: CustomerMenuFabItemProps) {
   const session = useCustomerSession()
 
+  if (import.meta.graphCommerce.guestOnlyMode) return null
+
   return (
     <NoSsr fallback={<CustomerMenuFabItemContent {...props} />}>
       <CustomerMenuFabItemContent session={session} {...props} />

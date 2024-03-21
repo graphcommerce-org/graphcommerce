@@ -45,6 +45,7 @@ export function InlineAccount(props: InlineAccountProps) {
   const canSignUp = isEmailAvailableData?.isEmailAvailable?.is_email_available === true
 
   if (loggedIn || !canSignUp) return null
+  if (import.meta.graphCommerce.guestOnlyMode) return null
 
   return (
     <div>
