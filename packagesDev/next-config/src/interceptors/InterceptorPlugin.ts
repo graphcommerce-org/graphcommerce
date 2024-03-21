@@ -35,7 +35,7 @@ export class InterceptorPlugin {
       const [plugins, errors] = findPlugins(this.config)
 
       plugins.forEach((p) => {
-        const resolved = this.resolveDependency(p.plugin)
+        const resolved = this.resolveDependency(p.sourceModule)
         if (resolved) {
           const absoluteFilePath = `${path.join(process.cwd(), resolved.fromRoot)}.tsx`
           compilation.fileDependencies.add(absoluteFilePath)
@@ -58,21 +58,24 @@ export class InterceptorPlugin {
           path.resolve(resource.context, resource.request),
         )
 
-        if (issuer.endsWith('interceptor.tsx') && this.interceptors[requestPath]) {
-          logger.log(`Interceptor ${issuer} is requesting the original ${requestPath}`)
+        const split = requestPath.split('/')
+        const searchFor = `${split[split.length - 1]}.interceptor.tsx`
+
+        if (issuer.endsWith(searchFor) && this.interceptors[requestPath]) {
+          console.log(`Interceptor ${issuer} is requesting the original ${requestPath}`)
           return
         }
 
         const interceptorForRequest = this.interceptorByDepependency[resource.request]
         if (interceptorForRequest) {
-          logger.log(`Intercepting dep... ${interceptorForRequest.dependency}`)
           resource.request = `${interceptorForRequest.denormalized}.interceptor.tsx`
+          console.log(`Intercepting dep... ${interceptorForRequest.dependency}`, resource.request)
         }
 
         const interceptorForPath = this.interceptors[requestPath]
         if (interceptorForPath) {
-          logger.log(`Intercepting fromRoot... ${interceptorForPath.fromRoot}`)
           resource.request = `${resource.request}.interceptor.tsx`
+          console.log(`Intercepting fromRoot... ${interceptorForPath.dependency}`, resource.request)
         }
       })
     })

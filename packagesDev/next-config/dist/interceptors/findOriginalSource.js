@@ -56,11 +56,17 @@ function parseAndFindExport(resolved, findExport, resolve) {
 }
 function findOriginalSource(plug, resolved, resolve) {
     if (!resolved?.source)
-        return resolved;
-    const result = parseAndFindExport(resolved, plug.exportString, resolve);
-    if (!result) {
-        throw new Error(`Could not find original source for ${plug.exportString}`);
+        return {
+            resolved: undefined,
+            error: new Error(`Could not resolve ${plug.targetModule}`),
+        };
+    const newResolved = parseAndFindExport(resolved, plug.targetExport, resolve);
+    if (!newResolved) {
+        return {
+            resolved: undefined,
+            error: new Error(`Can not find ${plug.targetModule}#${plug.sourceExport} for plugin ${plug.sourceModule}`),
+        };
     }
-    return result;
+    return { resolved: newResolved, error: undefined };
 }
 exports.findOriginalSource = findOriginalSource;

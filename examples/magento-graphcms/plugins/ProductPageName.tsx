@@ -1,7 +1,7 @@
 import { ProductPageNameProps } from '@graphcommerce/magento-product'
 import { PluginConfig } from '@graphcommerce/next-config'
 
-export const config: PluginConfig<'demoMode'> = {
+export const config: PluginConfig = {
   type: 'replace',
   module: '@graphcommerce/magento-product',
   ifConfig: 'demoMode',

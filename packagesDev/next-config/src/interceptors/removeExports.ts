@@ -1,22 +1,17 @@
-import { parseSync, Identifier, printSync } from '@swc/core'
+/* eslint-disable max-classes-per-file */
+import { Identifier } from '@swc/core'
 import { Visitor } from './Visitor'
 
-class RenameVisitor extends Visitor {
+export class RenameVisitor extends Visitor {
   constructor(
     private replace: string[],
-    private suffix: string,
+    private suffix: (v: string) => string,
   ) {
     super()
   }
 
   visitIdentifier(n: Identifier): Identifier {
-    if (this.replace.includes(n.value)) n.value += this.suffix
+    if (this.replace.includes(n.value)) n.value = this.suffix(n.value)
     return n
   }
-}
-
-export function removeExports(source: string, replace: string[], suffix: string): string {
-  const ast = parseSync(source, { syntax: 'typescript', tsx: true, comments: true })
-  new RenameVisitor(replace, suffix).visitModule(ast)
-  return printSync(ast).code
 }

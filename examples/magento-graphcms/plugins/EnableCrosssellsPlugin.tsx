@@ -15,7 +15,7 @@ export const ifConfig: IfConfig = 'demoMode'
  */
 function EnableCrossselsPlugin(props: PluginProps<AddProductsToCartFormProps>) {
   const { Prev, redirect = 'added', ...rest } = props
-  return <Prev {...rest} redirect={redirect} />
+  return <Prev {...rest} redirect={false} />
 }
 
 export const Plugin = EnableCrossselsPlugin

@@ -1,7 +1,7 @@
 import path from 'path'
 import { parseSync } from '@swc/core'
 import { ResolveDependency, ResolveDependencyReturn } from '../utils/resolveDependency'
-import { PluginConfig, isMethodPluginConfig } from './generateInterceptors'
+import { PluginConfig } from './generateInterceptors'
 
 function parseAndFindExport(
   resolved: ResolveDependencyReturn,
@@ -62,12 +62,24 @@ export function findOriginalSource(
   plug: PluginConfig,
   resolved: ResolveDependencyReturn,
   resolve: ResolveDependency,
-) {
-  if (!resolved?.source) return resolved
-  const result = parseAndFindExport(resolved, plug.exportString, resolve)
+):
+  | { resolved: NonNullable<ResolveDependencyReturn>; error: undefined }
+  | { resolved: undefined; error: Error } {
+  if (!resolved?.source)
+    return {
+      resolved: undefined,
+      error: new Error(`Could not resolve ${plug.targetModule}`),
+    }
 
-  if (!result) {
-    throw new Error(`Could not find original source for ${plug.exportString}`)
+  const newResolved = parseAndFindExport(resolved, plug.targetExport, resolve)
+
+  if (!newResolved) {
+    return {
+      resolved: undefined,
+      error: new Error(
+        `Can not find ${plug.targetModule}#${plug.sourceExport} for plugin ${plug.sourceModule}`,
+      ),
+    }
   }
-  return result
+  return { resolved: newResolved, error: undefined }
 }

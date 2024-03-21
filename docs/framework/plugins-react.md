@@ -100,11 +100,6 @@ import { Plugin as AwesomeProductListItem } from '../../examples/magento-graphcm
 import { ComponentProps } from 'react'
 import { ProductListItem as ProductListItemBase } from '.'
 
-/**
- * Interceptor for `<ProductListItem/>` with these plugins:
- *
- * - `../../examples/magento-graphcms/plugins/AwesomeProductListItem`
- */
 type ProductListItemProps = ComponentProps<typeof ProductListItemBase>
 
 function AwesomeProductListItemInterceptor(props: ProductListItemProps) {

@@ -1,50 +1,52 @@
 import path from 'node:path'
+import { parseSync, printSync } from '@swc/core'
 import { GraphCommerceDebugConfig } from '../generated/config'
 import { ResolveDependency, ResolveDependencyReturn } from '../utils/resolveDependency'
 import { findOriginalSource } from './findOriginalSource'
-import { removeExports } from './removeExports'
+import { RenameVisitor } from './removeExports'
 
 type PluginBaseConfig = {
   type: 'component' | 'method' | 'replace'
-  module: string
-  exportString: string
-  plugin: string
+  targetModule: string
+  sourceExport: string
+  sourceModule: string
+  targetExport: string
   enabled: boolean
-  ifConfig?: string
+  ifConfig?: string | [string, string]
 }
 
 export function isPluginBaseConfig(plugin: Partial<PluginBaseConfig>): plugin is PluginBaseConfig {
   return (
-    typeof plugin.exported === 'string' &&
-    typeof plugin.plugin === 'string' &&
+    typeof plugin.type === 'string' &&
+    typeof plugin.sourceModule === 'string' &&
     typeof plugin.enabled === 'boolean' &&
-    typeof plugin.exportString === 'string'
+    typeof plugin.targetExport === 'string'
   )
 }
 
-type ReactPluginConfig = PluginBaseConfig & { pluginType: 'component' }
-type MethodPluginConfig = PluginBaseConfig & { pluginType: 'method' }
-type ReplacePluginConfig = PluginBaseConfig & { pluginType: 'replace' }
+type ReactPluginConfig = PluginBaseConfig & { type: 'component' }
+type MethodPluginConfig = PluginBaseConfig & { type: 'method' }
+type ReplacePluginConfig = PluginBaseConfig & { type: 'replace' }
 
 export function isReactPluginConfig(
   plugin: Partial<PluginBaseConfig>,
 ): plugin is ReactPluginConfig {
   if (!isPluginBaseConfig(plugin)) return false
-  return plugin.exportString !== undefined
+  return plugin.type === 'component'
 }
 
 export function isMethodPluginConfig(
   plugin: Partial<PluginBaseConfig>,
 ): plugin is MethodPluginConfig {
   if (!isPluginBaseConfig(plugin)) return false
-  return plugin.exportString !== undefined
+  return plugin.type === 'method'
 }
 
 export function isReplacePluginConfig(
   plugin: Partial<PluginBaseConfig>,
 ): plugin is ReactPluginConfig {
   if (!isPluginBaseConfig(plugin)) return false
-  return plugin.exportString !== undefined
+  return plugin.type === 'replace'
 }
 
 export type PluginConfig = ReactPluginConfig | MethodPluginConfig | ReplacePluginConfig
@@ -54,9 +56,7 @@ export function isPluginConfig(plugin: Partial<PluginConfig>): plugin is PluginC
 }
 
 type Interceptor = ResolveDependencyReturn & {
-  components: Record<string, ReactPluginConfig[]>
-  funcs: Record<string, MethodPluginConfig[]>
-  replaces: Record<string, ReplacePluginConfig[]>
+  targetExports: Record<string, PluginConfig[]>
   target: string
   source: string
   template?: string
@@ -66,33 +66,45 @@ export type MaterializedPlugin = Interceptor & { template: string }
 
 function moveRelativeDown(plugins: PluginConfig[]) {
   return [...plugins].sort((a, b) => {
-    if (a.plugin.startsWith('.') && !b.plugin.startsWith('.')) return 1
-    if (!a.plugin.startsWith('.') && b.plugin.startsWith('.')) return -1
+    if (a.sourceModule.startsWith('.') && !b.sourceModule.startsWith('.')) return 1
+    if (!a.sourceModule.startsWith('.') && b.sourceModule.startsWith('.')) return -1
     return 0
   })
 }
+
+export const SOURCE_START = '/** ❗️ Original (modified) source starts here **/'
+export const SOURCE_END = '/** ❗️ Original (modified) source ends here **/'
+
+const originalSuffix = '_original'
+const sourceSuffix = '_source'
+const interceptorSuffix = '_interceptor'
+const disabledSuffix = '_DISABLED'
+const name = (plugin: PluginConfig) =>
+  plugin.sourceExport === 'plugin' || plugin.sourceExport === 'Plugin'
+    ? plugin.sourceModule.split('/')[plugin.sourceModule.split('/').length - 1]
+    : plugin.sourceExport
+const originalName = (n: string) => `${n}${originalSuffix}`
+const sourceName = (n: string) => `${n}${sourceSuffix}`
+const interceptorName = (n: string) => `${n}${interceptorSuffix}`
 
 export function generateInterceptor(
   interceptor: Interceptor,
   config: GraphCommerceDebugConfig,
 ): MaterializedPlugin {
-  const { dependency, components, funcs, source } = interceptor
+  const { dependency, targetExports, source } = interceptor
 
-  const pluginConfigs = [...Object.entries(components), ...Object.entries(funcs)]
-    .map(([, plugins]) => plugins)
-    .flat()
+  const pluginConfigs = [...Object.entries(targetExports)].map(([, plugins]) => plugins).flat()
 
+  // console.log('pluginConfigs', pluginConfigs)
   const duplicateImports = new Set()
 
   const pluginImports = moveRelativeDown(
-    [...pluginConfigs].sort((a, b) => a.plugin.localeCompare(b.plugin)),
+    [...pluginConfigs].sort((a, b) => a.sourceModule.localeCompare(b.sourceModule)),
   )
-    .map((plugin) => {
-      const { plugin: p } = plugin
-      if (isReactPluginConfig(plugin))
-        return `import { Plugin as ${p.split('/')[p.split('/').length - 1]} } from '${p}'`
-      return `import { plugin as ${p.split('/')[p.split('/').length - 1]} } from '${p}'`
-    })
+    .map(
+      (plugin) =>
+        `import { ${plugin.sourceExport} as ${sourceName(name(plugin))} } from '${plugin.sourceModule}'`,
+    )
     .filter((str) => {
       if (duplicateImports.has(str)) return false
       duplicateImports.add(str)
@@ -100,37 +112,31 @@ export function generateInterceptor(
     })
     .join('\n')
 
-  const ogSuffix = '_original'
-  const icSuffix = 'Prev'
-  const replaceCandidates = [...Object.keys(components), ...Object.keys(funcs)]
+  const ast = parseSync(source, { syntax: 'typescript', tsx: true, comments: true })
 
-  const originalSource = removeExports(source, replaceCandidates, ogSuffix)
+  new RenameVisitor(Object.keys(targetExports), (s) => originalName(s)).visitModule(ast)
 
-  const entries: [string, PluginConfig[]][] = [
-    ...Object.entries(components),
-    ...Object.entries(funcs),
-  ]
-  const pluginExports = entries
+  const pluginExports = Object.entries(targetExports)
     .map(([base, plugins]) => {
       const duplicateInterceptors = new Set()
-      const name = (p: PluginConfig) => p.plugin.split('/')[p.plugin.split('/').length - 1]
 
-      const filterNoDuplicate = (p: PluginConfig) => {
-        if (duplicateInterceptors.has(name(p))) return false
-        duplicateInterceptors.add(name(p))
-        return true
-      }
-
-      let carry = `${base}${ogSuffix}`
+      let carry = originalName(base)
 
       const pluginStr = plugins
         .reverse()
-        .filter(filterNoDuplicate)
-        .map((p, i) => {
+        .filter((p: PluginConfig) => {
+          if (duplicateInterceptors.has(name(p))) return false
+          duplicateInterceptors.add(name(p))
+          return true
+        })
+        .map((p) => {
           let result
 
-          const definition =
-            i === plugins.length - 1 ? `export const ${base}` : `const ${name(p)}${icSuffix}`
+          if (isReplacePluginConfig(p)) {
+            new RenameVisitor([originalName(p.targetExport)], (s) =>
+              s.replace(originalSuffix, disabledSuffix),
+            ).visitModule(ast)
+          }
 
           if (isReactPluginConfig(p)) {
             const wrapChain = plugins
@@ -141,14 +147,16 @@ export function generateInterceptor(
             const body = config.pluginStatus
               ? `{
   logInterceptor(\`🔌 Rendering ${base} with plugin(s): ${wrapChain} wrapping <${base}/>\`)
-  return <${name(p)} {...props} Prev={${carry}} />
+  return <${sourceName(name(p))} {...props} Prev={${carry}} />
 }`
               : `(
-  <${name(p)} {...props} Prev={${carry}} />
+  <${sourceName(name(p))} {...props} Prev={${carry}} />
 )`
 
-            result = `${definition} = (props: InterceptorProps<typeof ${name(p)}>) => ${body}`
-          } else {
+            result = `const ${interceptorName(name(p))} = (props: InterceptorProps<typeof ${name(p)}>) => ${body}`
+          }
+
+          if (isMethodPluginConfig(p)) {
             const wrapChain = plugins
               .reverse()
               .map((pl) => `${name(pl)}()`)
@@ -159,18 +167,19 @@ export function generateInterceptor(
   logInterceptor(
     \`🔌 Calling ${base} with plugin(s): ${wrapChain} wrapping ${base}()\`
   )
-  return ${name(p)}(${carry}, ...args)
+  return ${sourceName(name(p))}(${carry}, ...args)
 }`
               : `
-${name(p)}(${carry}, ...args)`
+${sourceName(name(p))}(${carry}, ...args)`
 
-            result = `${definition}: typeof ${carry} = (...args) => ${body}
+            result = `const ${interceptorName(name(p))}: typeof ${carry} = (...args) => ${body}
 `
           }
 
-          carry = `${name(p)}${icSuffix}`
+          carry = p.type === 'replace' ? sourceName(name(p)) : interceptorName(name(p))
           return result
         })
+        .filter((v) => !!v)
         .join('\n')
 
       const isComponent = plugins.every((p) => isReactPluginConfig(p))
@@ -178,13 +187,10 @@ ${name(p)}(${carry}, ...args)`
         throw new Error(`Cannot mix React and Method plugins for ${base} in ${dependency}.`)
       }
 
-      return `
-/**
- * Interceptor for \`${isComponent ? `<${base}/>` : `${base}()`}\` with these plugins:
- * 
-${plugins.map((p) => ` * - \`${p.plugin}\``).join('\n')}
- */
-${pluginStr}`
+      return `${pluginStr}
+
+export const ${base} = ${carry}
+`
     })
     .join('\n')
 
@@ -201,13 +207,17 @@ const logInterceptor = (log: string, ...additional: unknown[]) => {
 
   const template = `// eslint-disable
 /* This file is automatically generated for ${dependency} */
-
-import type { InterceptorProps } from '@graphcommerce/next-config'
+${
+  Object.values(targetExports).some((t) => t.some((p) => p.type === 'component'))
+    ? `import type { InterceptorProps } from '@graphcommerce/next-config'
+`
+    : ''
+}
 ${pluginImports}
 
-/** ❗️ Original (modified) source starts here: */
-${originalSource}
-/** ❗️ Original (modified) source ends here **/
+${SOURCE_START}
+${printSync(ast).code}
+${SOURCE_END}
 ${logOnce}${pluginExports}
 `
 
@@ -221,23 +231,24 @@ export function generateInterceptors(
   resolve: ResolveDependency,
   config?: GraphCommerceDebugConfig | null | undefined,
 ): GenerateInterceptorsReturn {
-  // todo: Do not use reduce as we're passing the accumulator to the next iteration
-  const byExportedComponent = moveRelativeDown(plugins).reduce<Record<string, Interceptor>>(
+  const byTargetModuleAndExport = moveRelativeDown(plugins).reduce<Record<string, Interceptor>>(
     (acc, plug) => {
-      let { exported, plugin, exportString } = plug
+      let { sourceModule: pluginPath } = plug
       if (!isPluginConfig(plug) || !plug.enabled) return acc
 
-      const result = resolve(exported, { includeSources: true })
-      const resolved = findOriginalSource(plug, result, resolve)
+      const result = resolve(plug.targetModule, { includeSources: true })
+      const { error, resolved } = findOriginalSource(plug, result, resolve)
 
-      if (!resolved) throw Error(`Could not resolve ${exported}`)
+      if (error) {
+        return acc
+      }
 
       const { fromRoot } = resolved
 
-      if (plugin.startsWith('.')) {
-        const resolvedPlugin = resolve(plugin)
+      if (pluginPath.startsWith('.')) {
+        const resolvedPlugin = resolve(pluginPath)
         if (resolvedPlugin) {
-          plugin = path.relative(
+          pluginPath = path.relative(
             resolved.fromRoot.split('/').slice(0, -1).join('/'),
             resolvedPlugin.fromRoot,
           )
@@ -248,33 +259,22 @@ export function generateInterceptors(
         acc[resolved.fromRoot] = {
           ...resolved,
           target: `${resolved.fromRoot}.interceptor`,
-          components: {},
-          funcs: {},
-          replaces: {},
+          targetExports: {},
         } as Interceptor
       }
 
-      switch (plug.pluginType) {
-        case 'component':
-          if (!acc[fromRoot].components[exportString]) acc[fromRoot].components[exportString] = []
-          acc[fromRoot].components[exportString].push({ ...plug, plugin })
-          break
-        case 'method':
-          if (!acc[fromRoot].funcs[exportString]) acc[fromRoot].funcs[exportString] = []
-          acc[fromRoot].funcs[exportString].push({ ...plug, plugin })
-          break
-        case 'replace':
-          if (!acc[fromRoot].replaces[exportString]) acc[fromRoot].replaces[exportString] = []
-          acc[fromRoot].replaces[exportString].push({ ...plug, plugin })
-          break
-      }
+      if (!acc[fromRoot].targetExports[plug.targetExport])
+        acc[fromRoot].targetExports[plug.targetExport] = []
+
+      acc[fromRoot].targetExports[plug.targetExport].push({ ...plug, sourceModule: pluginPath })
+
       return acc
     },
     {},
   )
 
   return Object.fromEntries(
-    Object.entries(byExportedComponent).map(([target, interceptor]) => [
+    Object.entries(byTargetModuleAndExport).map(([target, interceptor]) => [
       target,
       generateInterceptor(interceptor, config ?? {}),
     ]),

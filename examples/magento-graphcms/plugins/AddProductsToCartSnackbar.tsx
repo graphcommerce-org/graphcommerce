@@ -1,23 +1,22 @@
 import { useFormState } from '@graphcommerce/ecommerce-ui'
 import { ApolloCartErrorSnackbar } from '@graphcommerce/magento-cart'
+import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
+import { AddProductsToCartSnackbarProps } from '@graphcommerce/magento-product/components/AddProductsToCart/AddProductsToCartSnackbar'
+import { toUserErrors } from '@graphcommerce/magento-product/components/AddProductsToCart/toUserErrors'
 import {
   Button,
   ErrorSnackbar,
-  ErrorSnackbarProps,
   filterNonNullableKeys,
   iconChevronRight,
   IconSvg,
   MessageSnackbar,
-  MessageSnackbarProps,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { useRouter } from 'next/router'
-import { toUserErrors } from './toUserErrors'
-import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
-export type AddProductsToCartSnackbarProps = {
-  errorSnackbar?: Omit<ErrorSnackbarProps, 'open'>
-  successSnackbar?: Omit<MessageSnackbarProps, 'open' | 'action'>
+export const config = {
+  type: 'replace',
+  module: '@graphcommerce/magento-product',
 }
 
 export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps) {
@@ -80,8 +79,8 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
           <Trans
             id={
               productsAdded.length === 1
-                ? '<0>{name}</0> has been added to your shopping cart!'
-                : '<0>{name}</0> have been added to your shopping cart!'
+                ? '<0>{name}</0> has been added to your shopping cart! VERVANGEN'
+                : '<0>{name}</0> have been added to your shopping cart! VERVANGENHOOR'
             }
             components={{ 0: <strong /> }}
             values={{
