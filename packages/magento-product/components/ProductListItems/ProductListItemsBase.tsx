@@ -26,9 +26,6 @@ const name = 'ProductListItemsBase' as const
 
 const { withState } = extendableComponent<ComponentState, typeof name, typeof slots>(name, slots)
 
-/**
- * Comment here
- */
 export function ProductListItemsBase(props: ProductItemsGridProps) {
   const {
     items,

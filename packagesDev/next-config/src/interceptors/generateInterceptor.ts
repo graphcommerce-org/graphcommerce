@@ -4,7 +4,7 @@ import prettierConf from '@graphcommerce/prettier-config-pwa'
 import prettier from 'prettier'
 import { GraphCommerceDebugConfig } from '../generated/config'
 import { ResolveDependencyReturn } from '../utils/resolveDependency'
-import { RenameVisitor } from './removeExports'
+import { RenameVisitor } from './RenameVisitor'
 import { parseSync, printSync } from './swc'
 
 type PluginBaseConfig = {

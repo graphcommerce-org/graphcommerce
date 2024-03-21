@@ -15,9 +15,7 @@ export const config: PluginConfig = {
  * - Remove the `ifConfig` to always enable this.
  * - Create your own plugins https://www.graphcommerce.org/docs/framework/plugins-react
  */
-function EnableCrossselsPlugin(props: PluginProps<AddProductsToCartFormProps>) {
+export function AddProductsToCartForm(props: PluginProps<AddProductsToCartFormProps>) {
   const { Prev, redirect = 'added', ...rest } = props
   return <Prev {...rest} redirect={redirect} />
 }
-
-export const AddProductsToCartForm = EnableCrossselsPlugin

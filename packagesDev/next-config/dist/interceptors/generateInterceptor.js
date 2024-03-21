@@ -8,7 +8,7 @@ exports.generateInterceptor = exports.moveRelativeDown = exports.SOURCE_END = ex
 const prettier_config_pwa_1 = __importDefault(require("@graphcommerce/prettier-config-pwa"));
 // eslint-disable-next-line import/no-extraneous-dependencies
 const prettier_1 = __importDefault(require("prettier"));
-const removeExports_1 = require("./removeExports");
+const RenameVisitor_1 = require("./RenameVisitor");
 const swc_1 = require("./swc");
 function isPluginBaseConfig(plugin) {
     return (typeof plugin.type === 'string' &&
@@ -96,7 +96,7 @@ async function generateInterceptor(interceptor, config, originalSource) {
     })
         .join('\n');
     const ast = (0, swc_1.parseSync)(source);
-    new removeExports_1.RenameVisitor(Object.keys(targetExports), (s) => originalName(s)).visitModule(ast);
+    new RenameVisitor_1.RenameVisitor(Object.keys(targetExports), (s) => originalName(s)).visitModule(ast);
     const pluginExports = Object.entries(targetExports)
         .map(([base, plugins]) => {
         const duplicateInterceptors = new Set();
@@ -112,7 +112,7 @@ async function generateInterceptor(interceptor, config, originalSource) {
             .map((p) => {
             let result;
             if (isReplacePluginConfig(p)) {
-                new removeExports_1.RenameVisitor([originalName(p.targetExport)], (s) => s.replace(originalSuffix, disabledSuffix)).visitModule(ast);
+                new RenameVisitor_1.RenameVisitor([originalName(p.targetExport)], (s) => s.replace(originalSuffix, disabledSuffix)).visitModule(ast);
             }
             if (isReactPluginConfig(p)) {
                 const wrapChain = plugins

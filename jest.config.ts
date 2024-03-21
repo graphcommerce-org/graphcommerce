@@ -6,8 +6,6 @@ const createJestConfig = nextJest({
   dir: './examples/magento-graphcms',
 })
 
-// console.log(require.resolve('prettier-2'))
-
 // Add any custom config to be passed to Jest
 /** @type {import('jest').Config} */
 const customJestConfig = {
@@ -17,10 +15,7 @@ const customJestConfig = {
   moduleDirectories: ['node_modules', '<rootDir>/'],
   testEnvironment: 'jest-environment-jsdom',
   modulePathIgnorePatterns: ['__mocks__', '.interceptor.ts'],
-  // prettierPath: require.resolve('prettier-2'),
 }
-
-// console.log(createJestConfig(customJestConfig)().then(async (res) => console.log(await res)))
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
 export default createJestConfig(customJestConfig)
