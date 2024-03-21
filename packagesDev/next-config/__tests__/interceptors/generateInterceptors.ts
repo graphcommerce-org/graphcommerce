@@ -383,14 +383,12 @@ it('adds debug logging to interceptors for components', async () => {
       )
       return hygraphInitMemoryCacheSource(graphqlConfigOriginal, ...args)
     }
-
     const magentoInitMemoryCacheInterceptor: typeof hygraphInitMemoryCacheInterceptor = (...args) => {
       logInterceptor(
         \`🔌 Calling graphqlConfig with plugin(s): hygraphInitMemoryCache() wrapping magentoInitMemoryCache() wrapping graphqlConfig()\`,
       )
       return magentoInitMemoryCacheSource(hygraphInitMemoryCacheInterceptor, ...args)
     }
-
     export const graphqlConfig = magentoInitMemoryCacheInterceptor"
   `)
 })
@@ -461,7 +459,7 @@ it('Should apply overrides to the correct file', async () => {
     interceptors['packages/magento-product/components/ProductStaticPaths/getProductStaticPaths']
       ?.template
   expectImport(result).toMatchInlineSnapshot(
-    `"import { getProductStaticPaths as getProductStaticPathsSource } from '../../../../examples/magento-graphcms/plugins/replaceGetProductStaticPaths'"`,
+    `"import { getProductStaticPaths as getProductStaticPathsSource } from '../../../../plugins/replaceGetProductStaticPaths'"`,
   )
 
   expectOriginal(result).toContain(`getProductStaticPathsDisabled`)

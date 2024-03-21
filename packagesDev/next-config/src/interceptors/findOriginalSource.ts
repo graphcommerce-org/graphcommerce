@@ -2,6 +2,7 @@ import path from 'path'
 import { ResolveDependency, ResolveDependencyReturn } from '../utils/resolveDependency'
 import { PluginConfig } from './generateInterceptor'
 import { parseSync } from './swc'
+import { ExportAllDeclaration } from '@swc/core'
 
 function parseAndFindExport(
   resolved: ResolveDependencyReturn,
@@ -33,30 +34,39 @@ function parseAndFindExport(
     }
   }
 
-  for (const node of ast.body) {
-    if (node.type === 'ExportAllDeclaration') {
-      const isRelative = node.source.value.startsWith('.')
-      if (isRelative) {
-        const d =
-          resolved.dependency === resolved.denormalized
-            ? resolved.dependency.substring(0, resolved.dependency.lastIndexOf('/'))
-            : resolved.dependency
+  const exports = ast.body
+    .filter((node): node is ExportAllDeclaration => node.type === 'ExportAllDeclaration')
+    .sort((a, b) => {
+      const probablyA = a.source.value.includes(findExport)
+      const probablyB = b.source.value.includes(findExport)
+      // eslint-disable-next-line no-nested-ternary
+      return probablyA === probablyB ? 0 : probablyA ? -1 : 1
+    })
 
-        const newPath = path.join(d, node.source.value)
+  for (const node of exports) {
+    const isRelative = node.source.value.startsWith('.')
+    if (isRelative) {
+      const d =
+        resolved.dependency === resolved.denormalized
+          ? resolved.dependency.substring(0, resolved.dependency.lastIndexOf('/'))
+          : resolved.dependency
 
-        const resolveResult = resolve(newPath, { includeSources: true })
-        // eslint-disable-next-line no-continue
-        if (!resolveResult) continue
+      const newPath = path.join(d, node.source.value)
 
-        const newResolved = parseAndFindExport(resolveResult, findExport, resolve)
+      const resolveResult = resolve(newPath, { includeSources: true })
+      // eslint-disable-next-line no-continue
+      if (!resolveResult) continue
 
-        if (newResolved && resolved.dependency !== newResolved.dependency) return newResolved
-      }
+      const newResolved = parseAndFindExport(resolveResult, findExport, resolve)
+
+      if (newResolved && resolved.dependency !== newResolved.dependency) return newResolved
     }
   }
 
   return undefined
 }
+
+const cachedResults = new Map<string, ResolveDependencyReturn>()
 
 export function findOriginalSource(
   plug: PluginConfig,
@@ -71,6 +81,14 @@ export function findOriginalSource(
       error: new Error(`Could not resolve ${plug.targetModule}`),
     }
 
+  const cacheKey = `${plug.targetModule}#${plug.targetExport}`
+  if (cachedResults.has(cacheKey)) {
+    return {
+      resolved: cachedResults.get(cacheKey) as NonNullable<ResolveDependencyReturn>,
+      error: undefined,
+    }
+  }
+
   const newResolved = parseAndFindExport(resolved, plug.targetExport, resolve)
 
   if (!newResolved) {
@@ -81,5 +99,7 @@ export function findOriginalSource(
       ),
     }
   }
+
+  cachedResults.set(cacheKey, newResolved)
   return { resolved: newResolved, error: undefined }
 }

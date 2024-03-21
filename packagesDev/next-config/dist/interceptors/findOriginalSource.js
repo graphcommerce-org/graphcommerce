@@ -34,32 +34,46 @@ function parseAndFindExport(resolved, findExport, resolve) {
             }
         }
     }
-    for (const node of ast.body) {
-        if (node.type === 'ExportAllDeclaration') {
-            const isRelative = node.source.value.startsWith('.');
-            if (isRelative) {
-                const d = resolved.dependency === resolved.denormalized
-                    ? resolved.dependency.substring(0, resolved.dependency.lastIndexOf('/'))
-                    : resolved.dependency;
-                const newPath = path_1.default.join(d, node.source.value);
-                const resolveResult = resolve(newPath, { includeSources: true });
-                // eslint-disable-next-line no-continue
-                if (!resolveResult)
-                    continue;
-                const newResolved = parseAndFindExport(resolveResult, findExport, resolve);
-                if (newResolved && resolved.dependency !== newResolved.dependency)
-                    return newResolved;
-            }
+    const exports = ast.body
+        .filter((node) => node.type === 'ExportAllDeclaration')
+        .sort((a, b) => {
+        const probablyA = a.source.value.includes(findExport);
+        const probablyB = b.source.value.includes(findExport);
+        // eslint-disable-next-line no-nested-ternary
+        return probablyA === probablyB ? 0 : probablyA ? -1 : 1;
+    });
+    for (const node of exports) {
+        const isRelative = node.source.value.startsWith('.');
+        if (isRelative) {
+            const d = resolved.dependency === resolved.denormalized
+                ? resolved.dependency.substring(0, resolved.dependency.lastIndexOf('/'))
+                : resolved.dependency;
+            const newPath = path_1.default.join(d, node.source.value);
+            const resolveResult = resolve(newPath, { includeSources: true });
+            // eslint-disable-next-line no-continue
+            if (!resolveResult)
+                continue;
+            const newResolved = parseAndFindExport(resolveResult, findExport, resolve);
+            if (newResolved && resolved.dependency !== newResolved.dependency)
+                return newResolved;
         }
     }
     return undefined;
 }
+const cachedResults = new Map();
 function findOriginalSource(plug, resolved, resolve) {
     if (!resolved?.source)
         return {
             resolved: undefined,
             error: new Error(`Could not resolve ${plug.targetModule}`),
         };
+    const cacheKey = `${plug.targetModule}#${plug.targetExport}`;
+    if (cachedResults.has(cacheKey)) {
+        return {
+            resolved: cachedResults.get(cacheKey),
+            error: undefined,
+        };
+    }
     const newResolved = parseAndFindExport(resolved, plug.targetExport, resolve);
     if (!newResolved) {
         return {
@@ -67,6 +81,7 @@ function findOriginalSource(plug, resolved, resolve) {
             error: new Error(`Can not find ${plug.targetModule}#${plug.sourceExport} for plugin ${plug.sourceModule}`),
         };
     }
+    cachedResults.set(cacheKey, newResolved);
     return { resolved: newResolved, error: undefined };
 }
 exports.findOriginalSource = findOriginalSource;

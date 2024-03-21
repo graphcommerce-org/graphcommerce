@@ -34,16 +34,16 @@ export function parseStructure(ast: Module, gcConfig: GraphCommerceConfig, sourc
   } = exports
 
   const exportVals = Object.keys(rest)
-  if (component) exportVals.push('Plugin')
-  if (func) exportVals.push('plugin')
+  if (component && !moduleConfig) exportVals.push('Plugin')
+  if (func && !moduleConfig) exportVals.push('plugin')
 
   return exportVals
     .map((exportVal) => {
       let config = isObject(moduleConfig) ? moduleConfig : {}
 
-      if (component) {
+      if (!moduleConfig && component) {
         config = { type: 'component', module: exported, ifConfig, export: 'Plugin' }
-      } else if (func) {
+      } else if (!moduleConfig && func) {
         config = { type: 'method', module: exported, ifConfig, export: 'plugin' }
       } else if (isObject(moduleConfig)) {
         config = { ...moduleConfig, export: exportVal }

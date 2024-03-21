@@ -1,4 +1,5 @@
 import path from 'node:path'
+import fs from 'node:fs/promises'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { GraphCommerceDebugConfig } from '../generated/config'
 import { ResolveDependency } from '../utils/resolveDependency'
@@ -28,6 +29,7 @@ export async function generateInterceptors(
       const { error, resolved } = findOriginalSource(plug, result, resolve)
 
       if (error) {
+        console.log(error.message)
         return acc
       }
 
@@ -63,10 +65,21 @@ export async function generateInterceptors(
 
   return Object.fromEntries(
     await Promise.all(
-      Object.entries(byTargetModuleAndExport).map(
-        async ([target, interceptor]) =>
-          [target, await generateInterceptor(interceptor, config ?? {})] as const,
-      ),
+      Object.entries(byTargetModuleAndExport).map(async ([target, interceptor]) => {
+        const file = `${interceptor.fromRoot}.interceptor.tsx`
+
+        const originalSource = (await fs
+          .access(file, fs.constants.F_OK)
+          .then(() => true)
+          .catch(() => false))
+          ? (await fs.readFile(file)).toString()
+          : undefined
+
+        return [
+          target,
+          await generateInterceptor(interceptor, config ?? {}, originalSource),
+        ] as const
+      }),
     ),
   )
 }

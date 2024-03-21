@@ -23,17 +23,17 @@ function parseStructure(ast, gcConfig, sourceModule) {
         console.error(`Plugin error for`, errors.join('\n'));
     const { config: moduleConfig, component, func, exported, ifConfig, plugin, Plugin, ...rest } = exports;
     const exportVals = Object.keys(rest);
-    if (component)
+    if (component && !moduleConfig)
         exportVals.push('Plugin');
-    if (func)
+    if (func && !moduleConfig)
         exportVals.push('plugin');
     return exportVals
         .map((exportVal) => {
         let config = isObject(moduleConfig) ? moduleConfig : {};
-        if (component) {
+        if (!moduleConfig && component) {
             config = { type: 'component', module: exported, ifConfig, export: 'Plugin' };
         }
-        else if (func) {
+        else if (!moduleConfig && func) {
             config = { type: 'method', module: exported, ifConfig, export: 'plugin' };
         }
         else if (isObject(moduleConfig)) {

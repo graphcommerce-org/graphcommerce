@@ -6,59 +6,85 @@ import { findPlugins } from './findPlugins'
 import { generateInterceptors, GenerateInterceptorsReturn } from './generateInterceptors'
 import { writeInterceptors } from './writeInterceptors'
 
+let interceptors: GenerateInterceptorsReturn | undefined
+let interceptorByDepependency: GenerateInterceptorsReturn | undefined
+
+let generating = false
+
+let totalGenerationTime = 0
+
 export class InterceptorPlugin {
-  private interceptors: GenerateInterceptorsReturn | undefined
-
-  private interceptorByDepependency: GenerateInterceptorsReturn | undefined
-
   private resolveDependency: ResolveDependency
 
-  constructor(private config: GraphCommerceConfig) {
+  constructor(
+    private config: GraphCommerceConfig,
+    private regenerate: boolean = false,
+  ) {
     this.resolveDependency = resolveDependency()
 
-    console.log('generating plugin interceptors')
-
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    this.#generateInterceptors()
+    if (regenerate) this.#generateInterceptors()
   }
 
   #generateInterceptors = async () => {
+    if (generating) return
+    generating = true
+    const start = Date.now()
+
     const [plugins, errors] = findPlugins(this.config)
 
-    const interceptors = await generateInterceptors(
+    // console.log(errors)
+
+    // const found = Date.now()
+    // console.log('Found plugins in', found - start, 'ms')
+
+    const generatedInterceptors = await generateInterceptors(
       plugins,
       this.resolveDependency,
       this.config.debug,
     )
 
-    await writeInterceptors(interceptors)
-    this.interceptors = interceptors
+    // const generated = Date.now()
+    // console.log('Generated interceptors in', generated - found, 'ms')
 
-    this.interceptorByDepependency = Object.fromEntries(
+    await writeInterceptors(generatedInterceptors)
+
+    // const wrote = Date.now()
+    // console.log('Wrote interceptors in', wrote - generated, 'ms')
+
+    interceptors = generatedInterceptors
+
+    interceptorByDepependency = Object.fromEntries(
       Object.values(interceptors).map((i) => [i.dependency, i]),
     )
+
+    totalGenerationTime += Date.now() - start
+    generating = false
   }
 
   apply(compiler: Compiler): void {
     const logger = compiler.getInfrastructureLogger('InterceptorPlugin')
 
     // After the compilation has succeeded we watch all possible plugin locations.
-    compiler.hooks.afterCompile.tap('InterceptorPlugin', (compilation) => {
-      console.log('generate interceptors after compile')
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const [plugins, errors] = findPlugins(this.config)
+    if (this.regenerate) {
+      compiler.hooks.afterCompile.tap('InterceptorPlugin', (compilation) => {
+        // console.log('generate interceptors after compile')
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const [plugins, errors] = findPlugins(this.config)
 
-      plugins.forEach((p) => {
-        const source = this.resolveDependency(p.sourceModule)
-        // const target = this.resolveDependency(p.targetModule)
-        if (source) {
-          const absoluteFilePath = `${path.join(process.cwd(), source.fromRoot)}.tsx`
-          compilation.fileDependencies.add(absoluteFilePath)
-        }
+        plugins.forEach((p) => {
+          const source = this.resolveDependency(p.sourceModule)
+          // const target = this.resolveDependency(p.targetModule)
+          if (source) {
+            const absoluteFilePath = `${path.join(process.cwd(), source.fromRoot)}.tsx`
+            compilation.fileDependencies.add(absoluteFilePath)
+          }
+        })
+
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        this.#generateInterceptors()
       })
-
-      this.#generateInterceptors()
-    })
+    }
 
     compiler.hooks.normalModuleFactory.tap('InterceptorPlugin', (nmf) => {
       nmf.hooks.beforeResolve.tap('InterceptorPlugin', (resource) => {
@@ -69,26 +95,26 @@ export class InterceptorPlugin {
           path.resolve(resource.context, resource.request),
         )
 
-        if (!this.interceptors || !this.interceptorByDepependency) {
-          console.log('interceptors not ready')
+        if (!interceptors || !interceptorByDepependency) {
+          // console.log('interceptors not ready')
           return
         }
 
         const split = requestPath.split('/')
         const searchFor = `${split[split.length - 1]}.interceptor.tsx`
 
-        if (issuer.endsWith(searchFor) && this.interceptors[requestPath]) {
+        if (issuer.endsWith(searchFor) && interceptors[requestPath]) {
           logger.log(`Interceptor ${issuer} is requesting the original ${requestPath}`)
           return
         }
 
-        const interceptorForRequest = this.interceptorByDepependency[resource.request]
+        const interceptorForRequest = interceptorByDepependency[resource.request]
         if (interceptorForRequest) {
           resource.request = `${interceptorForRequest.denormalized}.interceptor.tsx`
           logger.log(`Intercepting dep... ${interceptorForRequest.dependency}`, resource.request)
         }
 
-        const interceptorForPath = this.interceptors[requestPath]
+        const interceptorForPath = interceptors[requestPath]
         if (interceptorForPath) {
           resource.request = `${resource.request}.interceptor.tsx`
           logger.log(`Intercepting fromRoot... ${interceptorForPath.dependency}`, resource.request)

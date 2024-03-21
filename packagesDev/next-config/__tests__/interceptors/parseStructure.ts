@@ -2,13 +2,13 @@ import { GraphCommerceConfig } from '../../src/generated/config'
 import { parseStructure } from '../../src/interceptors/parseStructure'
 import { parseSync } from '../../src/interceptors/swc'
 
-it("correctly the new PluginConfig and it's ifConfig configuration", () => {
-  const fakeconfig = {
-    googleRecaptchaKey: '123',
-    googleAnalyticsId: '123',
-    demoMode: true,
-  } as GraphCommerceConfig
+const fakeconfig = {
+  googleRecaptchaKey: '123',
+  googleAnalyticsId: '123',
+  demoMode: true,
+} as GraphCommerceConfig
 
+it("correctly the new PluginConfig and it's ifConfig configuration", () => {
   const src = `
 import { getProductStaticPaths as getProductStaticPathsType } from '@graphcommerce/magento-product'
 import { PluginConfig } from '@graphcommerce/next-config'
@@ -43,12 +43,6 @@ export const getProductStaticPaths: typeof getProductStaticPathsType = async () 
 })
 
 it('correctly the classic component plugin config', () => {
-  const fakeconfig = {
-    googleRecaptchaKey: '123',
-    googleAnalyticsId: '123',
-    demoMode: true,
-  } as GraphCommerceConfig
-
   const src = `
 import type { ProdustListItemConfigurableProps } from '@graphcommerce/magento-product-configurable'
 import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
@@ -81,12 +75,6 @@ export const Plugin = DemoProductListItemConfigurable
 })
 
 it('correctly the classic method plugin config', () => {
-  const fakeconfig = {
-    googleRecaptchaKey: '123',
-    googleAnalyticsId: '123',
-    demoMode: true,
-  } as GraphCommerceConfig
-
   const src = `
 import { graphqlConfig, setContext } from '@graphcommerce/graphql'
 import type { MethodPlugin } from '@graphcommerce/next-config'
@@ -125,6 +113,47 @@ export const plugin = hygraphGraphqlConfig
       "targetExport": "graphqlConfig",
       "targetModule": "@graphcommerce/graphql",
       "type": "method",
+    }
+  `)
+})
+
+it('parses the correct export when both the classic and new config is present', () => {
+  const src = `import { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
+import { IfConfig, PluginConfig, PluginProps } from '@graphcommerce/next-config'
+
+export const component = 'AddProductsToCartForm'
+export const exported = '@graphcommerce/magento-product'
+export const ifConfig: IfConfig = 'demoMode'
+
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/magento-product',
+  ifConfig: 'demoMode',
+}
+
+function EnableCrossselsPlugin(props: PluginProps<AddProductsToCartFormProps>) {
+  const { Prev, redirect = 'added', ...rest } = props
+  return <Prev {...rest} redirect={redirect} />
+}
+
+export const AddProductsToCartForm = EnableCrossselsPlugin
+`
+
+  const plugins = parseStructure(
+    parseSync(src),
+    fakeconfig,
+    './plugins/MyAddProductsToCartFormPlugin.tsx',
+  )
+  expect(plugins).toHaveLength(1)
+  expect(plugins[0]).toMatchInlineSnapshot(`
+    {
+      "enabled": true,
+      "ifConfig": "demoMode",
+      "sourceExport": "AddProductsToCartForm",
+      "sourceModule": "./plugins/MyAddProductsToCartFormPlugin.tsx",
+      "targetExport": "AddProductsToCartForm",
+      "targetModule": "@graphcommerce/magento-product",
+      "type": "component",
     }
   `)
 })
