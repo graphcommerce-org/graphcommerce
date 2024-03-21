@@ -3,9 +3,9 @@ import { resolveDependency } from '../../src/utils/resolveDependency'
 
 const projectRoot = `${process.cwd()}/examples/magento-graphcms`
 
-it('writes all interceptors to disk', () => {
+it('writes all interceptors to disk', async () => {
   const resolve = resolveDependency(projectRoot)
-  generateInterceptors(
+  await generateInterceptors(
     [
       {
         type: 'component',

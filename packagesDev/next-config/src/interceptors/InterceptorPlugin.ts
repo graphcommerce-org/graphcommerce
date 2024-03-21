@@ -7,23 +7,36 @@ import { generateInterceptors, GenerateInterceptorsReturn } from './generateInte
 import { writeInterceptors } from './writeInterceptors'
 
 export class InterceptorPlugin {
-  private interceptors: GenerateInterceptorsReturn
+  private interceptors: GenerateInterceptorsReturn | undefined
 
-  private interceptorByDepependency: GenerateInterceptorsReturn
+  private interceptorByDepependency: GenerateInterceptorsReturn | undefined
 
   private resolveDependency: ResolveDependency
 
   constructor(private config: GraphCommerceConfig) {
     this.resolveDependency = resolveDependency()
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    console.log('generating plugin interceptors')
+
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    this.#generateInterceptors()
+  }
+
+  #generateInterceptors = async () => {
     const [plugins, errors] = findPlugins(this.config)
-    this.interceptors = generateInterceptors(plugins, this.resolveDependency, this.config.debug)
-    this.interceptorByDepependency = Object.fromEntries(
-      Object.values(this.interceptors).map((i) => [i.dependency, i]),
+
+    const interceptors = await generateInterceptors(
+      plugins,
+      this.resolveDependency,
+      this.config.debug,
     )
 
-    writeInterceptors(this.interceptors)
+    await writeInterceptors(interceptors)
+    this.interceptors = interceptors
+
+    this.interceptorByDepependency = Object.fromEntries(
+      Object.values(interceptors).map((i) => [i.dependency, i]),
+    )
   }
 
   apply(compiler: Compiler): void {
@@ -31,22 +44,20 @@ export class InterceptorPlugin {
 
     // After the compilation has succeeded we watch all possible plugin locations.
     compiler.hooks.afterCompile.tap('InterceptorPlugin', (compilation) => {
+      console.log('generate interceptors after compile')
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const [plugins, errors] = findPlugins(this.config)
 
       plugins.forEach((p) => {
-        const resolved = this.resolveDependency(p.sourceModule)
-        if (resolved) {
-          const absoluteFilePath = `${path.join(process.cwd(), resolved.fromRoot)}.tsx`
+        const source = this.resolveDependency(p.sourceModule)
+        // const target = this.resolveDependency(p.targetModule)
+        if (source) {
+          const absoluteFilePath = `${path.join(process.cwd(), source.fromRoot)}.tsx`
           compilation.fileDependencies.add(absoluteFilePath)
         }
       })
 
-      this.interceptors = generateInterceptors(plugins, this.resolveDependency, this.config.debug)
-      this.interceptorByDepependency = Object.fromEntries(
-        Object.values(this.interceptors).map((i) => [i.dependency, i]),
-      )
-      writeInterceptors(this.interceptors)
+      this.#generateInterceptors()
     })
 
     compiler.hooks.normalModuleFactory.tap('InterceptorPlugin', (nmf) => {
@@ -58,24 +69,29 @@ export class InterceptorPlugin {
           path.resolve(resource.context, resource.request),
         )
 
+        if (!this.interceptors || !this.interceptorByDepependency) {
+          console.log('interceptors not ready')
+          return
+        }
+
         const split = requestPath.split('/')
         const searchFor = `${split[split.length - 1]}.interceptor.tsx`
 
         if (issuer.endsWith(searchFor) && this.interceptors[requestPath]) {
-          console.log(`Interceptor ${issuer} is requesting the original ${requestPath}`)
+          logger.log(`Interceptor ${issuer} is requesting the original ${requestPath}`)
           return
         }
 
         const interceptorForRequest = this.interceptorByDepependency[resource.request]
         if (interceptorForRequest) {
           resource.request = `${interceptorForRequest.denormalized}.interceptor.tsx`
-          console.log(`Intercepting dep... ${interceptorForRequest.dependency}`, resource.request)
+          logger.log(`Intercepting dep... ${interceptorForRequest.dependency}`, resource.request)
         }
 
         const interceptorForPath = this.interceptors[requestPath]
         if (interceptorForPath) {
           resource.request = `${resource.request}.interceptor.tsx`
-          console.log(`Intercepting fromRoot... ${interceptorForPath.dependency}`, resource.request)
+          logger.log(`Intercepting fromRoot... ${interceptorForPath.dependency}`, resource.request)
         }
       })
     })

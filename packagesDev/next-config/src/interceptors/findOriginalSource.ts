@@ -1,7 +1,7 @@
 import path from 'path'
-import { parseSync } from '@swc/core'
 import { ResolveDependency, ResolveDependencyReturn } from '../utils/resolveDependency'
-import { PluginConfig } from './generateInterceptors'
+import { PluginConfig } from './generateInterceptor'
+import { parseSync } from './swc'
 
 function parseAndFindExport(
   resolved: ResolveDependencyReturn,
@@ -9,7 +9,7 @@ function parseAndFindExport(
   resolve: ResolveDependency,
 ): ResolveDependencyReturn {
   if (!resolved?.source) return undefined
-  const ast = parseSync(resolved.source, { syntax: 'typescript', tsx: true, comments: true })
+  const ast = parseSync(resolved.source)
 
   for (const node of ast.body) {
     if (node.type === 'ExportDeclaration') {

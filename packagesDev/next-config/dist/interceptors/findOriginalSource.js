@@ -5,11 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.findOriginalSource = void 0;
 const path_1 = __importDefault(require("path"));
-const core_1 = require("@swc/core");
+const swc_1 = require("./swc");
 function parseAndFindExport(resolved, findExport, resolve) {
     if (!resolved?.source)
         return undefined;
-    const ast = (0, core_1.parseSync)(resolved.source, { syntax: 'typescript', tsx: true, comments: true });
+    const ast = (0, swc_1.parseSync)(resolved.source);
     for (const node of ast.body) {
         if (node.type === 'ExportDeclaration') {
             switch (node.declaration.type) {

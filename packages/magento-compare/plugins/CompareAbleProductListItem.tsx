@@ -2,6 +2,7 @@ import { ProductListItemProps } from '@graphcommerce/magento-product'
 import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { Box } from '@mui/material'
 import { CompareProductToggle } from '../components'
+import { CompareProductIdInternalFragment } from '../graphql'
 
 export const component = 'ProductListItem'
 export const exported = '@graphcommerce/magento-product'
@@ -14,7 +15,7 @@ function CompareAbleProductListItem(props: PluginProps<ProductListItemProps>) {
     return (
       <Prev topRight={topRight} {...rest}>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <CompareProductToggle {...rest} product={props} />
+          <CompareProductToggle {...rest} product={props as CompareProductIdInternalFragment} />
         </Box>
         {children}
       </Prev>
@@ -30,7 +31,7 @@ function CompareAbleProductListItem(props: PluginProps<ProductListItemProps>) {
         topRight={
           <>
             {topRight}
-            <CompareProductToggle {...rest} product={props} />
+            <CompareProductToggle {...rest} product={props as CompareProductIdInternalFragment} />
           </>
         }
       >
@@ -38,4 +39,5 @@ function CompareAbleProductListItem(props: PluginProps<ProductListItemProps>) {
       </Prev>
     )
 }
+
 export const Plugin = CompareAbleProductListItem

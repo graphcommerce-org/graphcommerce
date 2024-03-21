@@ -33,7 +33,8 @@
     "packages:5": "yarn workspace @graphcommerce/cli dev",
     "packages:6": "yarn workspace @graphcommerce/changeset-changelog dev",
     "packages:7": "yarn workspace @graphcommerce/graphql-codegen-markdown-docs dev",
-    "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'"
+    "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'",
+    "jest-watch": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --watch"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -48,17 +49,19 @@
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
     "concurrently": "8.2.2",
-    "jest-environment-jsdom": "^29.7.0",
     "patch-package": "8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@graphql-codegen/testing": "3.0.1",
     "@playwright/test": "1.41.0",
     "@types/event-stream": "^4.0.5",
     "eslint": "8.56.0",
     "event-stream": "^4.0.1",
     "jest": "next",
+    "jest-diff": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "prettier": "3.2.4",
     "typescript": "5.3.3"
   },

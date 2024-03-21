@@ -5,7 +5,7 @@ import chalk from 'chalk'
 import { sync as globSync } from 'glob'
 import { GraphCommerceConfig } from '../generated/config'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
-import { PluginConfig } from './generateInterceptors'
+import { PluginConfig } from './generateInterceptor'
 import { parseStructure } from './parseStructure'
 
 const pluginLogs: Record<string, string> = {}

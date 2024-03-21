@@ -1,9 +1,9 @@
-import { Module, parseFileSync } from '@swc/core'
+import { Module } from '@swc/core'
 import get from 'lodash/get'
 import { z } from 'zod'
-import { extractExports } from './extractExports'
-import { PluginConfig } from './generateInterceptors'
 import { GraphCommerceConfig } from '../generated/config'
+import { extractExports } from './extractExports'
+import { PluginConfig } from './generateInterceptor'
 
 const pluginConfigParsed = z.object({
   type: z.enum(['component', 'method', 'replace']),

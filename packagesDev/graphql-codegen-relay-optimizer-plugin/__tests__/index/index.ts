@@ -1,7 +1,7 @@
 import '@graphql-codegen/testing'
 import { Types } from '@graphql-codegen/plugin-helpers'
 import { buildSchema, parse, print, ASTNode } from 'graphql'
-import { plugin } from '../src'
+import { plugin } from '../../src'
 
 const testSchema = buildSchema(/* GraphQL */ `
   type Avatar {

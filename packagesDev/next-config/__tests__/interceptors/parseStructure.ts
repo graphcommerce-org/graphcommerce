@@ -1,6 +1,6 @@
-import { parseSync } from '@swc/core'
 import { GraphCommerceConfig } from '../../src/generated/config'
 import { parseStructure } from '../../src/interceptors/parseStructure'
+import { parseSync } from '../../src/interceptors/swc'
 
 it("correctly the new PluginConfig and it's ifConfig configuration", () => {
   const fakeconfig = {
@@ -25,7 +25,7 @@ export const getProductStaticPaths: typeof getProductStaticPathsType = async () 
   { params: { url: 'demo-product' } },
 ]
 `
-  const ast = parseSync(src, { syntax: 'typescript', tsx: true })
+  const ast = parseSync(src)
 
   const plugins = parseStructure(ast, fakeconfig, './plugins/MyPlugin.tsx')
   expect(plugins).toHaveLength(1)
@@ -63,7 +63,7 @@ function DemoProductListItemConfigurable(props: PluginProps<ProdustListItemConfi
 }
 export const Plugin = DemoProductListItemConfigurable
 `
-  const ast = parseSync(src, { syntax: 'typescript', tsx: true })
+  const ast = parseSync(src)
 
   const plugins = parseStructure(ast, fakeconfig, './plugins/MyPlugin')
   expect(plugins).toHaveLength(1)
@@ -94,6 +94,7 @@ import type { MethodPlugin } from '@graphcommerce/next-config'
 export const func = 'graphqlConfig'
 export const exported = '@graphcommerce/graphql'
 
+/* Hoi */
 const hygraphGraphqlConfig: MethodPlugin<typeof graphqlConfig> = (prev, config) => {
   const results = prev(config)
 
@@ -112,7 +113,7 @@ const hygraphGraphqlConfig: MethodPlugin<typeof graphqlConfig> = (prev, config) 
 
 export const plugin = hygraphGraphqlConfig
 `
-  const ast = parseSync(src, { syntax: 'typescript', tsx: true })
+  const ast = parseSync(src)
 
   const plugins = parseStructure(ast, fakeconfig, './plugins/MyPlugin')
   expect(plugins).toHaveLength(1)

@@ -117,7 +117,7 @@ function extractValue(node: Node, path?: string[], optional: boolean = false): a
     }
   } else if (isArrayExpression(node)) {
     // e.g. [1, 2, 3]
-    const arr = []
+    const arr: any[] = []
     for (let i = 0, len = node.elements.length; i < len; i++) {
       const elem = node.elements[i]
       if (elem) {

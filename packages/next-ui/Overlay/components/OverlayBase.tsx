@@ -247,7 +247,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     const cancelY = scroll.y.on('change', handleScroll)
 
     const ro = new ResizeObserver(handleResize)
-    ro.observe(scrollerRef.current)
+    if (scrollerRef.current) ro.observe(scrollerRef.current)
     ro.observe(beforeRef.current)
     ro.observe(overlayPaneRef.current)
     ro.observe(overlayRef.current)
