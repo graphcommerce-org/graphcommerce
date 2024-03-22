@@ -4,11 +4,13 @@ import { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-meth
 import { useRouter } from 'next/router'
 import { usePayPalCartLock } from '../../hooks/usePayPalCartLock'
 import { PayPalPaymentPlaceOrderDocument } from './PayPalPaymentPlaceOrder.gql'
+import { useCustomerSession } from '@graphcommerce/magento-customer'
 
 export function PayPalPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
   const { code, step } = props
   const [, lock] = usePayPalCartLock()
   const { push } = useRouter()
+  const { token: sessionToken } = useCustomerSession()
 
   const form = useFormGqlMutationCart(PayPalPaymentPlaceOrderDocument, {
     onBeforeSubmit: (variables) => ({
@@ -27,7 +29,7 @@ export function PayPalPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
           'Error while starting the PayPal payment, please try again with a different payment method',
         )
 
-      await lock({ token, method: code, PayerID: null })
+      await lock({ token, method: code, PayerID: null, customerToken: sessionToken })
       // We are going to redirect, but we're not waiting, because we need to complete the submission to release the buttons
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       push(start)

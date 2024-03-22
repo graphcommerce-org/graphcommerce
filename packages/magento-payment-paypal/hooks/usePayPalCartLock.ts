@@ -3,6 +3,7 @@ import { CartLockState, useCartLock } from '@graphcommerce/magento-cart-payment-
 type PayPalLockState = CartLockState & {
   token?: string | null
   PayerID: string | null
+  customerToken?: string | null
 }
 
 /**

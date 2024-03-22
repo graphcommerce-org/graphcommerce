@@ -21,6 +21,7 @@
     "@graphcommerce/magento-cart-checkout": "^8.0.3-canary.7",
     "@graphcommerce/magento-cart-payment-method": "^8.0.3-canary.7",
     "@graphcommerce/magento-cart-shipping-address": "^8.0.3-canary.7",
+    "@graphcommerce/magento-customer": "^8.0.3-canary.7",
     "@graphcommerce/magento-product": "^8.0.3-canary.7",
     "@graphcommerce/magento-product-configurable": "^8.0.3-canary.7",
     "@graphcommerce/magento-store": "^8.0.3-canary.7",

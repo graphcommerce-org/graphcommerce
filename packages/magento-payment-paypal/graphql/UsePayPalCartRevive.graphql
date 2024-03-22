@@ -1,0 +1,15 @@
+mutation UsePayPalCartRevive($cartId: String!, $paymentMethod: PaymentMethodInput!) {
+  setPaymentMethodOnCart(input: { cart_id: $cartId, payment_method: $paymentMethod }) {
+    cart {
+      __typename
+      id
+      email
+      ...BillingAddress
+      ...ShippingAddress
+      ...Coupon
+      ...PaymentMethodContext
+      ...OrderSuccesPage
+      ...PaymentMethodUpdated
+    }
+  }
+}

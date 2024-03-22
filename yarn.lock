@@ -3677,6 +3677,7 @@ __metadata:
     "@graphcommerce/magento-customer": "npm:8.0.3-canary.7"
     "@graphcommerce/magento-graphql": "npm:8.0.3-canary.7"
     "@graphcommerce/magento-newsletter": "npm:8.0.3-canary.7"
+    "@graphcommerce/magento-payment-adyen": "npm:8.0.3-canary.7"
     "@graphcommerce/magento-payment-included": "npm:8.0.3-canary.7"
     "@graphcommerce/magento-product": "npm:8.0.3-canary.7"
     "@graphcommerce/magento-product-bundle": "npm:8.0.3-canary.7"
@@ -3794,7 +3795,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-payment-adyen@workspace:packages/magento-payment-adyen":
+"@graphcommerce/magento-payment-adyen@npm:8.0.3-canary.7, @graphcommerce/magento-payment-adyen@workspace:packages/magento-payment-adyen":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-adyen@workspace:packages/magento-payment-adyen"
   peerDependencies:
@@ -3915,6 +3916,7 @@ __metadata:
     "@graphcommerce/magento-cart-checkout": ^8.0.3-canary.7
     "@graphcommerce/magento-cart-payment-method": ^8.0.3-canary.7
     "@graphcommerce/magento-cart-shipping-address": ^8.0.3-canary.7
+    "@graphcommerce/magento-customer": ^8.0.3-canary.7
     "@graphcommerce/magento-product": ^8.0.3-canary.7
     "@graphcommerce/magento-product-configurable": ^8.0.3-canary.7
     "@graphcommerce/magento-store": ^8.0.3-canary.7
@@ -3941,7 +3943,9 @@ __metadata:
     "@graphcommerce/graphql": ^8.0.3-canary.7
     "@graphcommerce/image": ^8.0.3-canary.7
     "@graphcommerce/magento-cart": ^8.0.3-canary.7
+    "@graphcommerce/magento-cart-checkout": ^8.0.3-canary.7
     "@graphcommerce/magento-cart-payment-method": ^8.0.3-canary.7
+    "@graphcommerce/magento-customer": ^8.0.3-canary.7
     "@graphcommerce/magento-store": ^8.0.3-canary.7
     "@graphcommerce/next-ui": ^8.0.3-canary.7
     "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.7
