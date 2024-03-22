@@ -14,6 +14,7 @@ import {
   ProductPageName,
   ProductPageAddToCartActionsRow,
   ProductPageAddToCartQuantityRow,
+  ProductPageBreadcrumb,
   productPageCategory,
   ProductPageDescription,
   ProductPageGallery,
@@ -23,7 +24,6 @@ import {
   ProductPagePriceTiers,
   ProductShortDescription,
   ProductSidebarDelivery,
-  ProductPageBreadcrumb,
 } from '@graphcommerce/magento-product'
 import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import {

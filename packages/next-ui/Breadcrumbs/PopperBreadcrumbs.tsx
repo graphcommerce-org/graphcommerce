@@ -4,7 +4,6 @@ import {
   Breadcrumbs as BreadcrumbsBase,
   Chip,
   ClickAwayListener,
-  Fade,
   Link,
   MenuItem,
   MenuList,
@@ -127,7 +126,6 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
         open={Boolean(anchorElement)}
         disablePortal
         placement='bottom-start'
-        transition
         modifiers={[
           { name: 'offset', options: { offset: [0, 10] } },
           {
@@ -145,82 +143,78 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
           zIndex: 100,
         }}
       >
-        {({ TransitionProps }) => (
-          <Fade {...TransitionProps} timeout={200}>
-            <Box>
-              <ClickAwayListener onClickAway={handleClickAway}>
-                <MenuList
-                  autoFocusItem={Boolean(anchorElement)}
-                  onKeyDown={handleKeyDown}
+        <Box>
+          <ClickAwayListener onClickAway={handleClickAway}>
+            <MenuList
+              autoFocusItem={Boolean(anchorElement)}
+              onKeyDown={handleKeyDown}
+              sx={{
+                backgroundColor: 'background.paper',
+                borderRadius: 3,
+                boxShadow: 12,
+                display: 'flex',
+                flexDirection: 'column',
+                overflow: 'hidden auto',
+                py: `calc(${theme.spacings.xxs} / 2)`,
+              }}
+            >
+              <MenuItem
+                sx={{
+                  minHeight: 'auto',
+                  padding: 0,
+                }}
+              >
+                <Link
+                  href='/'
+                  underline='none'
+                  color='text.primary'
+                  variant='body1'
+                  noWrap
                   sx={{
-                    backgroundColor: 'background.paper',
-                    borderRadius: 3,
-                    boxShadow: 12,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    overflow: 'hidden auto',
-                    py: `calc(${theme.spacings.xxs} / 2)`,
+                    flex: 1,
+                    padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
                   }}
                 >
-                  <MenuItem
-                    sx={{
-                      minHeight: 'auto',
-                      padding: 0,
-                    }}
-                  >
-                    <Link
-                      href='/'
-                      underline='none'
-                      color='text.primary'
-                      variant='body1'
-                      noWrap
-                      sx={{
-                        flex: 1,
-                        padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
-                      }}
-                    >
-                      <Trans id='Home' />
-                    </Link>
-                  </MenuItem>
-                  {breadcrumbs.slice(0, breadcrumbs.length - 1).map((breadcrumb) => (
-                    <MenuItem
-                      key={breadcrumb.key}
-                      sx={{
-                        minHeight: 'auto',
-                        padding: 0,
-                      }}
-                      onClick={handleClickAway}
-                    >
-                      <Link
-                        {...breadcrumb}
-                        underline='none'
-                        color='text.primary'
-                        variant='body1'
-                        noWrap
-                        sx={{
-                          flex: 1,
-                          padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
-                        }}
-                      />
-                    </MenuItem>
-                  ))}
-                  <Typography
-                    component='li'
+                  <Trans id='Home' />
+                </Link>
+              </MenuItem>
+              {breadcrumbs.slice(0, breadcrumbs.length - 1).map((breadcrumb) => (
+                <MenuItem
+                  key={breadcrumb.key}
+                  sx={{
+                    minHeight: 'auto',
+                    padding: 0,
+                  }}
+                  onClick={handleClickAway}
+                >
+                  <Link
+                    {...breadcrumb}
+                    underline='none'
                     color='text.primary'
                     variant='body1'
-                    fontWeight='600'
                     noWrap
                     sx={{
+                      flex: 1,
                       padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
                     }}
-                  >
-                    {name}
-                  </Typography>
-                </MenuList>
-              </ClickAwayListener>
-            </Box>
-          </Fade>
-        )}
+                  />
+                </MenuItem>
+              ))}
+              <Typography
+                component='li'
+                color='text.primary'
+                variant='body1'
+                fontWeight='600'
+                noWrap
+                sx={{
+                  padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
+                }}
+              >
+                {name}
+              </Typography>
+            </MenuList>
+          </ClickAwayListener>
+        </Box>
       </Popper>
     </>
   )
