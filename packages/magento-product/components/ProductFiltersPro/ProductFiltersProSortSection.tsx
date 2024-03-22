@@ -8,7 +8,7 @@ import {
   filterNonNullableKeys,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { ProductListSortFragment } from '../ProductListSort/ProductListSort.gql'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import { ProductFiltersProSortDirectionArrow } from './ProductFiltersProSortDirectionArrow'
@@ -32,13 +32,18 @@ export function ProductFiltersProSortSection(props: ProductFiltersProSortSection
         title: option.label,
         ...(activeSort === option.value
           ? {
-              onClick: () => handleSort({ activeSort, defaultSortBy, form, sortDirection }),
+              onClick: () => handleSort({ form, sortDirection }),
               price: <ProductFiltersProSortDirectionArrow sortDirection={sortDirection} />,
             }
           : null),
       })),
-    [activeSort, defaultSortBy, form, sortDirection, sort_fields?.options],
+    [activeSort, form, sortDirection, sort_fields?.options],
   )
+
+  useEffect(() => {
+    if (activeSort === null) form.setValue('sort', defaultSortBy)
+    if (sortDirection === null) form.setValue('dir', 'ASC')
+  }, [activeSort, defaultSortBy, form, sortDirection])
 
   return (
     <ActionCardAccordion
