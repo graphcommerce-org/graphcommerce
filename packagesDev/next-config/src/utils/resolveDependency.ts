@@ -9,7 +9,8 @@ export type ResolveDependencyReturn =
       root: string
       fromRoot: string
       fromModule: string
-      source?: string
+      source: string
+      sourcePath: string
     }
 
 export type ResolveDependency = (
@@ -29,6 +30,7 @@ export const resolveDependency = (cwd: string = process.cwd()) => {
     let dependencyPaths = {
       root: '.',
       source: '',
+      sourcePath: '',
       dependency,
       fromRoot: dependency,
       fromModule: dependency,
@@ -42,16 +44,21 @@ export const resolveDependency = (cwd: string = process.cwd()) => {
         const rootCandidate = dependency.replace(depCandidate, root)
 
         let source = ''
+        let sourcePath = ''
+
         const fromRoot = [
           `${rootCandidate}`,
           `${rootCandidate}/index`,
           `${rootCandidate}/src/index`,
         ].find((location) =>
           ['ts', 'tsx'].find((extension) => {
-            const exists = fs.existsSync(`${location}.${extension}`)
+            const candidatePath = `${location}.${extension}`
+            const exists = fs.existsSync(candidatePath)
 
-            if (includeSources && exists)
-              source = fs.readFileSync(`${location}.${extension}`, 'utf-8')
+            if (includeSources && exists) {
+              source = fs.readFileSync(candidatePath, 'utf-8')
+              sourcePath = candidatePath
+            }
             return exists
           }),
         )
@@ -68,7 +75,15 @@ export const resolveDependency = (cwd: string = process.cwd()) => {
 
         if (dependency.startsWith('./')) fromModule = `.${relative}`
 
-        dependencyPaths = { root, dependency, denormalized, fromRoot, fromModule, source }
+        dependencyPaths = {
+          root,
+          dependency,
+          denormalized,
+          fromRoot,
+          fromModule,
+          source,
+          sourcePath,
+        }
       }
     })
     return dependencyPaths

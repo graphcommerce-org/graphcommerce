@@ -74,12 +74,16 @@ const sourceSuffix = 'Source'
 const interceptorSuffix = 'Interceptor'
 const disabledSuffix = 'Disabled'
 const name = (plugin: PluginConfig) =>
-  plugin.sourceExport === 'plugin' || plugin.sourceExport === 'Plugin'
-    ? plugin.sourceModule.split('/')[plugin.sourceModule.split('/').length - 1]
-    : plugin.sourceExport
+  `${plugin.sourceExport}${plugin.sourceModule
+    .split('/')
+    [plugin.sourceModule.split('/').length - 1].replace(/[^a-zA-Z0-9]/g, '')}`
+
+const fileName = (plugin: PluginConfig) => `${plugin.sourceModule}#${plugin.sourceExport}`
+
 const originalName = (n: string) => `${n}${originalSuffix}`
 const sourceName = (n: string) => `${n}${sourceSuffix}`
 const interceptorName = (n: string) => `${n}${interceptorSuffix}`
+const interceptorPropsName = (n: string) => `${interceptorName(n)}Props`
 
 export function moveRelativeDown(plugins: PluginConfig[]) {
   return [...plugins].sort((a, b) => {
@@ -112,14 +116,14 @@ function extractIdentifier(source: string | undefined) {
 export async function generateInterceptor(
   interceptor: Interceptor,
   config: GraphCommerceDebugConfig,
-  originalSource?: string,
+  oldInterceptorSource?: string,
 ): Promise<MaterializedPlugin> {
   const identifer = generateIdentifyer(JSON.stringify(interceptor) + JSON.stringify(config))
 
   const { dependency, targetExports, source } = interceptor
 
-  if (originalSource && identifer === extractIdentifier(originalSource))
-    return { ...interceptor, template: originalSource }
+  if (oldInterceptorSource && identifer === extractIdentifier(oldInterceptorSource))
+    return { ...interceptor, template: oldInterceptorSource }
 
   const pluginConfigs = [...Object.entries(targetExports)].map(([, plugins]) => plugins).flat()
 
@@ -149,6 +153,7 @@ export async function generateInterceptor(
       const duplicateInterceptors = new Set()
 
       let carry = originalName(base)
+      const carryProps: string[] = []
 
       const pluginStr = plugins
         .reverse()
@@ -160,42 +165,39 @@ export async function generateInterceptor(
         .map((p) => {
           let result
 
+          const wrapChain = plugins
+            .reverse()
+            .map((pl) => name(pl))
+            .join(' wrapping ')
+
           if (isReplacePluginConfig(p)) {
             new RenameVisitor([originalName(p.targetExport)], (s) =>
               s.replace(originalSuffix, disabledSuffix),
             ).visitModule(ast)
+
+            carryProps.push(interceptorPropsName(name(p)))
+
+            result = `type ${interceptorPropsName(name(p))} = React.ComponentProps<typeof ${sourceName(name(p))}>`
           }
 
           if (isReactPluginConfig(p)) {
-            const wrapChain = plugins
-              .reverse()
-              .map((pl) => `<${name(pl)}/>`)
-              .join(' wrapping ')
+            carryProps.push(interceptorPropsName(name(p)))
 
-            const body = config.pluginStatus
-              ? `{
-                   logInterceptor(\`🔌 Rendering ${base} with plugin(s): ${wrapChain} wrapping <${base}/>\`)
-                   return <${sourceName(name(p))} {...props} Prev={${carry}} />
-                 }`
-              : `<${sourceName(name(p))} {...props} Prev={${carry}} />`
+            result = `
+              type ${interceptorPropsName(name(p))} = DistributedOmit<React.ComponentProps<typeof ${sourceName(name(p))}>, 'Prev'>
+              const ${interceptorName(name(p))} = (props: ${carryProps.join(' & ')}) => {
+                ${config.pluginStatus ? `logOnce(\`🔌 Rendering ${base} with plugin(s): ${wrapChain} wrapping <${base}/>\`)` : ''}
 
-            result = `const ${interceptorName(name(p))} = (props: DistributedOmit<Parameters<typeof ${sourceName(name(p))}>[0], 'Prev'>) => ${body}`
+                if (!props['data-plugin']) logOnce('${fileName(p)} does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.')
+                return <${sourceName(name(p))} {...props} Prev={${carry} as React.FC} />
+              }`
           }
 
           if (isMethodPluginConfig(p)) {
-            const wrapChain = plugins
-              .reverse()
-              .map((pl) => `${name(pl)}()`)
-              .join(' wrapping ')
-
-            const body = config.pluginStatus
-              ? `{
-                   logInterceptor(\`🔌 Calling ${base} with plugin(s): ${wrapChain} wrapping ${base}()\`)
-                   return ${sourceName(name(p))}(${carry}, ...args)
-                 }`
-              : `${sourceName(name(p))}(${carry}, ...args)`
-
-            result = `const ${interceptorName(name(p))}: typeof ${carry} = (...args) => ${body}`
+            result = `const ${interceptorName(name(p))}: typeof ${carry} = (...args) => {
+                ${config.pluginStatus ? `logOnce(\`🔌 Calling ${base} with plugin(s): ${wrapChain} wrapping ${base}()\`)` : ''}
+                return ${sourceName(name(p))}(${carry}, ...args)
+              }`
           }
 
           carry = p.type === 'replace' ? sourceName(name(p)) : interceptorName(name(p))
@@ -204,49 +206,61 @@ export async function generateInterceptor(
         .filter((v) => !!v)
         .join('\n')
 
-      const isComponent = plugins.every((p) => isReactPluginConfig(p))
+      const isComponent = plugins.every((p) => isReplacePluginConfig(p) || isReactPluginConfig(p))
       if (isComponent && plugins.some((p) => isMethodPluginConfig(p))) {
         throw new Error(`Cannot mix React and Method plugins for ${base} in ${dependency}.`)
       }
 
-      return `${pluginStr}
+      if (process.env.NODE_ENV === 'development' && isComponent) {
+        return `${pluginStr}
+          export const ${base}: typeof ${carry} = (props) => {
+            return <${carry} {...props} data-plugin />
+          }`
+      }
+
+      return `
+        ${pluginStr}
         export const ${base} = ${carry}
-        `
+      `
     })
     .join('\n')
 
-  const logOnce = config.pluginStatus
-    ? `
+  const logOnce =
+    config.pluginStatus || process.env.NODE_ENV === 'development'
+      ? `
         const logged: Set<string> = new Set();
-        const logInterceptor = (log: string, ...additional: unknown[]) => {
+        const logOnce = (log: string, ...additional: unknown[]) => {
           if (logged.has(log)) return
           logged.add(log)
-          console.log(log, ...additional)
+          console.warn(log, ...additional)
         }
         `
-    : ''
+      : ''
 
   const template = `/* hash:${identifer} */
-  /* eslint-disable */
-      /* This file is automatically generated for ${dependency} */
-      ${
-        Object.values(targetExports).some((t) => t.some((p) => p.type === 'component'))
-          ? `import type { DistributedOmit } from 'type-fest'`
-          : ''
-      }
+    /* eslint-disable */
+    /* This file is automatically generated for ${dependency} */
+    ${
+      Object.values(targetExports).some((t) => t.some((p) => p.type === 'component'))
+        ? `import type { DistributedOmit } from 'type-fest'`
+        : ''
+    }
 
-      ${pluginImports}
+    ${pluginImports}
 
-      ${SOURCE_START}
-      ${printSync(ast).code}
-      ${SOURCE_END}
-      ${logOnce}${pluginExports}
-`
+    ${SOURCE_START}
+    ${printSync(ast).code}
+    ${SOURCE_END}
+    ${logOnce}${pluginExports}
+  `
 
-  const templateFormatted = await prettier.format(template, {
-    ...prettierConf,
-    parser: 'typescript',
-  })
+  let templateFormatted
+  try {
+    templateFormatted = await prettier.format(template, { ...prettierConf, parser: 'typescript' })
+  } catch (e) {
+    console.log('Error formatting interceptor: ', e, 'using raw template.')
+    templateFormatted = template
+  }
 
   return { ...interceptor, template: templateFormatted }
 }

@@ -13,6 +13,7 @@ const resolveDependency = (cwd = process.cwd()) => {
         let dependencyPaths = {
             root: '.',
             source: '',
+            sourcePath: '',
             dependency,
             fromRoot: dependency,
             fromModule: dependency,
@@ -23,14 +24,18 @@ const resolveDependency = (cwd = process.cwd()) => {
                 const relative = dependency.replace(depCandidate, '');
                 const rootCandidate = dependency.replace(depCandidate, root);
                 let source = '';
+                let sourcePath = '';
                 const fromRoot = [
                     `${rootCandidate}`,
                     `${rootCandidate}/index`,
                     `${rootCandidate}/src/index`,
                 ].find((location) => ['ts', 'tsx'].find((extension) => {
-                    const exists = node_fs_1.default.existsSync(`${location}.${extension}`);
-                    if (includeSources && exists)
-                        source = node_fs_1.default.readFileSync(`${location}.${extension}`, 'utf-8');
+                    const candidatePath = `${location}.${extension}`;
+                    const exists = node_fs_1.default.existsSync(candidatePath);
+                    if (includeSources && exists) {
+                        source = node_fs_1.default.readFileSync(candidatePath, 'utf-8');
+                        sourcePath = candidatePath;
+                    }
                     return exists;
                 }));
                 if (!fromRoot) {
@@ -42,7 +47,15 @@ const resolveDependency = (cwd = process.cwd()) => {
                     : `./${relative.split('/')[relative.split('/').length - 1]}`;
                 if (dependency.startsWith('./'))
                     fromModule = `.${relative}`;
-                dependencyPaths = { root, dependency, denormalized, fromRoot, fromModule, source };
+                dependencyPaths = {
+                    root,
+                    dependency,
+                    denormalized,
+                    fromRoot,
+                    fromModule,
+                    source,
+                    sourcePath,
+                };
             }
         });
         return dependencyPaths;

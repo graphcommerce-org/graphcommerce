@@ -72,13 +72,42 @@ it('it generates an interceptor', async () => {
     interceptors['packages/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext']
       ?.template
   expectInterceptor(result).toMatchInlineSnapshot(`
-    "const AddBraintreeMethodsInterceptor = (
-      props: DistributedOmit<Parameters<typeof AddBraintreeMethodsSource>[0], 'Prev'>,
-    ) => <AddBraintreeMethodsSource {...props} Prev={PaymentMethodContextProviderOriginal} />
-    const AddMollieMethodsInterceptor = (
-      props: DistributedOmit<Parameters<typeof AddMollieMethodsSource>[0], 'Prev'>,
-    ) => <AddMollieMethodsSource {...props} Prev={AddBraintreeMethodsInterceptor} />
-    export const PaymentMethodContextProvider = AddMollieMethodsInterceptor"
+    "type PluginAddBraintreeMethodsInterceptorProps = DistributedOmit<
+      React.ComponentProps<typeof PluginAddBraintreeMethodsSource>,
+      'Prev'
+    >
+    const PluginAddBraintreeMethodsInterceptor = (props: PluginAddBraintreeMethodsInterceptorProps) => {
+      if (!props['data-plugin'])
+        logOnce(
+          '@graphcommerce/magento-payment-braintree/plugins/AddBraintreeMethods#Plugin does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.',
+        )
+      return (
+        <PluginAddBraintreeMethodsSource
+          {...props}
+          Prev={PaymentMethodContextProviderOriginal as React.FC}
+        />
+      )
+    }
+
+    type PluginAddMollieMethodsInterceptorProps = DistributedOmit<
+      React.ComponentProps<typeof PluginAddMollieMethodsSource>,
+      'Prev'
+    >
+    const PluginAddMollieMethodsInterceptor = (
+      props: PluginAddBraintreeMethodsInterceptorProps & PluginAddMollieMethodsInterceptorProps,
+    ) => {
+      if (!props['data-plugin'])
+        logOnce(
+          '@graphcommerce/mollie-magento-payment/plugins/AddMollieMethods#Plugin does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.',
+        )
+      return (
+        <PluginAddMollieMethodsSource
+          {...props}
+          Prev={PluginAddBraintreeMethodsInterceptor as React.FC}
+        />
+      )
+    }
+    export const PaymentMethodContextProvider = PluginAddMollieMethodsInterceptor"
   `)
 })
 
@@ -106,7 +135,7 @@ it("resolves a 'root plugin' to be relative to the interceptor", async () => {
   ).toMatchInlineSnapshot(`
     "import type { DistributedOmit } from 'type-fest'
 
-    import { Plugin as AddPaymentMethodEnhancerSource } from '../../../plugins/AddPaymentMethodEnhancer'"
+    import { Plugin as PluginAddPaymentMethodEnhancerSource } from '../../../plugins/AddPaymentMethodEnhancer'"
   `)
 })
 
@@ -139,20 +168,46 @@ it('it can apply multiple plugins to a single export', async () => {
   expectImport(result).toMatchInlineSnapshot(`
     "import type { DistributedOmit } from 'type-fest'
 
-    import { Plugin as AddAdyenMethodsSource } from '@graphcommerce/magento-payment-adyen/plugins/AddAdyenMethods'
-    import { Plugin as AddMollieMethodsSource } from '@graphcommerce/mollie-magento-payment/plugins/AddMollieMethods'"
+    import { Plugin as PluginAddAdyenMethodsSource } from '@graphcommerce/magento-payment-adyen/plugins/AddAdyenMethods'
+    import { Plugin as PluginAddMollieMethodsSource } from '@graphcommerce/mollie-magento-payment/plugins/AddMollieMethods'"
   `)
 
   expectOriginal(result).toContain('PaymentMethodContextProviderOriginal')
 
   expectInterceptor(result).toMatchInlineSnapshot(`
-    "const AddAdyenMethodsInterceptor = (
-      props: DistributedOmit<Parameters<typeof AddAdyenMethodsSource>[0], 'Prev'>,
-    ) => <AddAdyenMethodsSource {...props} Prev={PaymentMethodContextProviderOriginal} />
-    const AddMollieMethodsInterceptor = (
-      props: DistributedOmit<Parameters<typeof AddMollieMethodsSource>[0], 'Prev'>,
-    ) => <AddMollieMethodsSource {...props} Prev={AddAdyenMethodsInterceptor} />
-    export const PaymentMethodContextProvider = AddMollieMethodsInterceptor"
+    "type PluginAddAdyenMethodsInterceptorProps = DistributedOmit<
+      React.ComponentProps<typeof PluginAddAdyenMethodsSource>,
+      'Prev'
+    >
+    const PluginAddAdyenMethodsInterceptor = (props: PluginAddAdyenMethodsInterceptorProps) => {
+      if (!props['data-plugin'])
+        logOnce(
+          '@graphcommerce/magento-payment-adyen/plugins/AddAdyenMethods#Plugin does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.',
+        )
+      return (
+        <PluginAddAdyenMethodsSource
+          {...props}
+          Prev={PaymentMethodContextProviderOriginal as React.FC}
+        />
+      )
+    }
+
+    type PluginAddMollieMethodsInterceptorProps = DistributedOmit<
+      React.ComponentProps<typeof PluginAddMollieMethodsSource>,
+      'Prev'
+    >
+    const PluginAddMollieMethodsInterceptor = (
+      props: PluginAddAdyenMethodsInterceptorProps & PluginAddMollieMethodsInterceptorProps,
+    ) => {
+      if (!props['data-plugin'])
+        logOnce(
+          '@graphcommerce/mollie-magento-payment/plugins/AddMollieMethods#Plugin does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.',
+        )
+      return (
+        <PluginAddMollieMethodsSource {...props} Prev={PluginAddAdyenMethodsInterceptor as React.FC} />
+      )
+    }
+    export const PaymentMethodContextProvider = PluginAddMollieMethodsInterceptor"
   `)
 })
 
@@ -184,10 +239,23 @@ it('it handles on duplicates gracefully', async () => {
     interceptors['packages/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext']
       ?.template
   expectInterceptor(result).toMatchInlineSnapshot(`
-    "const AddBraintreeMethodsInterceptor = (
-      props: DistributedOmit<Parameters<typeof AddBraintreeMethodsSource>[0], 'Prev'>,
-    ) => <AddBraintreeMethodsSource {...props} Prev={PaymentMethodContextProviderOriginal} />
-    export const PaymentMethodContextProvider = AddBraintreeMethodsInterceptor"
+    "type PluginAddBraintreeMethodsInterceptorProps = DistributedOmit<
+      React.ComponentProps<typeof PluginAddBraintreeMethodsSource>,
+      'Prev'
+    >
+    const PluginAddBraintreeMethodsInterceptor = (props: PluginAddBraintreeMethodsInterceptorProps) => {
+      if (!props['data-plugin'])
+        logOnce(
+          '@graphcommerce/magento-payment-braintree/plugins/AddBraintreeMethods#Plugin does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.',
+        )
+      return (
+        <PluginAddBraintreeMethodsSource
+          {...props}
+          Prev={PaymentMethodContextProviderOriginal as React.FC}
+        />
+      )
+    }
+    export const PaymentMethodContextProvider = PluginAddBraintreeMethodsInterceptor"
   `)
 })
 
@@ -344,8 +412,8 @@ it('adds debug logging to interceptors for components', async () => {
   )
 
   expectImport(interceptors['packages/graphql/config']?.template).toMatchInlineSnapshot(`
-    "import { plugin as magentoInitMemoryCacheSource } from '@graphcommerce/magento-graphql/plugins/magentoInitMemoryCache'
-    import { plugin as hygraphInitMemoryCacheSource } from '@graphcommerce/magento-hygraph/plugins/hygraphInitMemoryCache'"
+    "import { plugin as pluginmagentoInitMemoryCacheSource } from '@graphcommerce/magento-graphql/plugins/magentoInitMemoryCache'
+    import { plugin as pluginhygraphInitMemoryCacheSource } from '@graphcommerce/magento-hygraph/plugins/hygraphInitMemoryCache'"
   `)
 
   expectOriginal(interceptors['packages/graphql/config']?.template).toMatchInlineSnapshot(`
@@ -372,24 +440,27 @@ it('adds debug logging to interceptors for components', async () => {
 
   expectInterceptor(interceptors['packages/graphql/config']?.template).toMatchInlineSnapshot(`
     "const logged: Set<string> = new Set()
-    const logInterceptor = (log: string, ...additional: unknown[]) => {
+    const logOnce = (log: string, ...additional: unknown[]) => {
       if (logged.has(log)) return
       logged.add(log)
-      console.log(log, ...additional)
+      console.warn(log, ...additional)
     }
-    const hygraphInitMemoryCacheInterceptor: typeof graphqlConfigOriginal = (...args) => {
-      logInterceptor(
-        \`🔌 Calling graphqlConfig with plugin(s): magentoInitMemoryCache() wrapping hygraphInitMemoryCache() wrapping graphqlConfig()\`,
+
+    const pluginhygraphInitMemoryCacheInterceptor: typeof graphqlConfigOriginal = (...args) => {
+      logOnce(
+        \`🔌 Calling graphqlConfig with plugin(s): pluginmagentoInitMemoryCache wrapping pluginhygraphInitMemoryCache wrapping graphqlConfig()\`,
       )
-      return hygraphInitMemoryCacheSource(graphqlConfigOriginal, ...args)
+      return pluginhygraphInitMemoryCacheSource(graphqlConfigOriginal, ...args)
     }
-    const magentoInitMemoryCacheInterceptor: typeof hygraphInitMemoryCacheInterceptor = (...args) => {
-      logInterceptor(
-        \`🔌 Calling graphqlConfig with plugin(s): hygraphInitMemoryCache() wrapping magentoInitMemoryCache() wrapping graphqlConfig()\`,
+    const pluginmagentoInitMemoryCacheInterceptor: typeof pluginhygraphInitMemoryCacheInterceptor = (
+      ...args
+    ) => {
+      logOnce(
+        \`🔌 Calling graphqlConfig with plugin(s): pluginhygraphInitMemoryCache wrapping pluginmagentoInitMemoryCache wrapping graphqlConfig()\`,
       )
-      return magentoInitMemoryCacheSource(hygraphInitMemoryCacheInterceptor, ...args)
+      return pluginmagentoInitMemoryCacheSource(pluginhygraphInitMemoryCacheInterceptor, ...args)
     }
-    export const graphqlConfig = magentoInitMemoryCacheInterceptor"
+    export const graphqlConfig = pluginmagentoInitMemoryCacheInterceptor"
   `)
 })
 
@@ -459,7 +530,7 @@ it('Should apply overrides to the correct file', async () => {
     interceptors['packages/magento-product/components/ProductStaticPaths/getProductStaticPaths']
       ?.template
   expectImport(result).toMatchInlineSnapshot(
-    `"import { getProductStaticPaths as getProductStaticPathsSource } from '../../../../plugins/replaceGetProductStaticPaths'"`,
+    `"import { getProductStaticPaths as getProductStaticPathsreplaceGetProductStaticPathsSource } from '../../../../plugins/replaceGetProductStaticPaths'"`,
   )
 
   expectOriginal(result).toContain(`getProductStaticPathsDisabled`)
@@ -588,8 +659,8 @@ export const Plugin = ConfigurableProductPageName
   expectImport(result).toMatchInlineSnapshot(`
     "import type { DistributedOmit } from 'type-fest'
 
-    import { Plugin as ConfigurableProductPageNameSource } from '@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageName'
-    import { ProductPageName as ProductPageNameSource } from '../../../../plugins/MyPlugin'"
+    import { Plugin as PluginConfigurableProductPageNameSource } from '@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageName'
+    import { ProductPageName as ProductPageNameMyPluginSource } from '../../../../plugins/MyPlugin'"
   `)
 
   expectOriginal(result).toMatchInlineSnapshot(`
@@ -604,9 +675,29 @@ export const Plugin = ConfigurableProductPageName
   `)
 
   expectInterceptor(result).toMatchInlineSnapshot(`
-    "const ConfigurableProductPageNameInterceptor = (
-      props: DistributedOmit<Parameters<typeof ConfigurableProductPageNameSource>[0], 'Prev'>,
-    ) => <ConfigurableProductPageNameSource {...props} Prev={ProductPageNameSource} />
-    export const ProductPageName = ConfigurableProductPageNameInterceptor"
+    "type ProductPageNameMyPluginInterceptorProps = React.ComponentProps<
+      typeof ProductPageNameMyPluginSource
+    >
+
+    type PluginConfigurableProductPageNameInterceptorProps = DistributedOmit<
+      React.ComponentProps<typeof PluginConfigurableProductPageNameSource>,
+      'Prev'
+    >
+    const PluginConfigurableProductPageNameInterceptor = (
+      props: ProductPageNameMyPluginInterceptorProps &
+        PluginConfigurableProductPageNameInterceptorProps,
+    ) => {
+      if (!props['data-plugin'])
+        logOnce(
+          '@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageName#Plugin does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.',
+        )
+      return (
+        <PluginConfigurableProductPageNameSource
+          {...props}
+          Prev={ProductPageNameMyPluginSource as React.FC}
+        />
+      )
+    }
+    export const ProductPageName = PluginConfigurableProductPageNameInterceptor"
   `)
 })

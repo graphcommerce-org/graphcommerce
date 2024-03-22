@@ -67,13 +67,13 @@ function findOriginalSource(plug, resolved, resolve) {
             resolved: undefined,
             error: new Error(`Could not resolve ${plug.targetModule}`),
         };
-    const cacheKey = `${plug.targetModule}#${plug.targetExport}`;
-    if (cachedResults.has(cacheKey)) {
-        return {
-            resolved: cachedResults.get(cacheKey),
-            error: undefined,
-        };
-    }
+    // const cacheKey = `${plug.targetModule}#${plug.targetExport}`
+    // if (cachedResults.has(cacheKey)) {
+    //   return {
+    //     resolved: cachedResults.get(cacheKey) as NonNullable<ResolveDependencyReturn>,
+    //     error: undefined,
+    //   }
+    // }
     const newResolved = parseAndFindExport(resolved, plug.targetExport, resolve);
     if (!newResolved) {
         return {
@@ -81,7 +81,7 @@ function findOriginalSource(plug, resolved, resolve) {
             error: new Error(`Can not find ${plug.targetModule}#${plug.sourceExport} for plugin ${plug.sourceModule}`),
         };
     }
-    cachedResults.set(cacheKey, newResolved);
+    // cachedResults.set(cacheKey, newResolved)
     return { resolved: newResolved, error: undefined };
 }
 exports.findOriginalSource = findOriginalSource;

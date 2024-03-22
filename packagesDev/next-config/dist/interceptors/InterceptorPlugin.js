@@ -27,9 +27,10 @@ class InterceptorPlugin {
     }
     #generateInterceptors = async () => {
         if (generating)
-            return;
+            return {};
         generating = true;
         const start = Date.now();
+        // console.log('Generating interceptors...')
         const [plugins, errors] = (0, findPlugins_1.findPlugins)(this.config);
         // console.log(errors)
         // const found = Date.now()
@@ -44,6 +45,7 @@ class InterceptorPlugin {
         interceptorByDepependency = Object.fromEntries(Object.values(interceptors).map((i) => [i.dependency, i]));
         totalGenerationTime += Date.now() - start;
         generating = false;
+        return generatedInterceptors;
     };
     apply(compiler) {
         const logger = compiler.getInfrastructureLogger('InterceptorPlugin');
@@ -55,14 +57,18 @@ class InterceptorPlugin {
                 const [plugins, errors] = (0, findPlugins_1.findPlugins)(this.config);
                 plugins.forEach((p) => {
                     const source = this.resolveDependency(p.sourceModule);
-                    // const target = this.resolveDependency(p.targetModule)
                     if (source) {
                         const absoluteFilePath = `${path_1.default.join(process.cwd(), source.fromRoot)}.tsx`;
                         compilation.fileDependencies.add(absoluteFilePath);
                     }
                 });
                 // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                this.#generateInterceptors();
+                this.#generateInterceptors().then((i) => {
+                    Object.entries(i).forEach(([key, { sourcePath }]) => {
+                        const absoluteFilePath = path_1.default.join(process.cwd(), sourcePath);
+                        compilation.fileDependencies.add(absoluteFilePath);
+                    });
+                });
             });
         }
         compiler.hooks.normalModuleFactory.tap('InterceptorPlugin', (nmf) => {

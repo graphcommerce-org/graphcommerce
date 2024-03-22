@@ -81,13 +81,13 @@ export function findOriginalSource(
       error: new Error(`Could not resolve ${plug.targetModule}`),
     }
 
-  const cacheKey = `${plug.targetModule}#${plug.targetExport}`
-  if (cachedResults.has(cacheKey)) {
-    return {
-      resolved: cachedResults.get(cacheKey) as NonNullable<ResolveDependencyReturn>,
-      error: undefined,
-    }
-  }
+  // const cacheKey = `${plug.targetModule}#${plug.targetExport}`
+  // if (cachedResults.has(cacheKey)) {
+  //   return {
+  //     resolved: cachedResults.get(cacheKey) as NonNullable<ResolveDependencyReturn>,
+  //     error: undefined,
+  //   }
+  // }
 
   const newResolved = parseAndFindExport(resolved, plug.targetExport, resolve)
 
@@ -100,6 +100,6 @@ export function findOriginalSource(
     }
   }
 
-  cachedResults.set(cacheKey, newResolved)
+  // cachedResults.set(cacheKey, newResolved)
   return { resolved: newResolved, error: undefined }
 }
