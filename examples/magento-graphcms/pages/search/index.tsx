@@ -160,8 +160,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const filters = staticClient.query({ query: ProductFiltersDocument, variables: { search } })
 
-  const defaultSortBy = ((await conf).data.storeConfig?.catalog_default_sort_by ??
-    'position') as keyof ProductAttributeSortInput
+  const defaultSortBy = (await conf).data.storeConfig
+    ?.catalog_default_sort_by as keyof ProductAttributeSortInput
 
   const products = staticClient.query({
     query: ProductListDocument,
