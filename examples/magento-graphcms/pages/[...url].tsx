@@ -165,8 +165,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const category = categoryPage.then((res) => res.data.categories?.items?.[0])
   const defaultSortBy = ((await category)?.default_sort_by ??
-    (await conf).data.storeConfig?.catalog_default_sort_by ??
-    'position') as keyof ProductAttributeSortInput
+    (await conf).data.storeConfig?.catalog_default_sort_by) as keyof ProductAttributeSortInput
 
   let categoryUid = filteredCategoryUid
   if (!categoryUid) {
