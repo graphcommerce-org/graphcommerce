@@ -11,7 +11,7 @@ import {
   Typography,
   useTheme,
 } from '@mui/material'
-import { useRef, useState, MouseEvent, SyntheticEvent } from 'react'
+import { useRef, useState, MouseEvent } from 'react'
 import { IconSvg } from '../IconSvg'
 import { iconClose, iconEllypsis } from '../icons'
 import { BreadcrumbsJsonLd } from './BreadcrumbsJsonLd'
@@ -28,11 +28,7 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
     setAnchorElement(anchorElement ? null : e.currentTarget)
   }
 
-  const handleClickAway = (event: Event | SyntheticEvent) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLDivElement)) {
-      return
-    }
-
+  const handleClickAway = () => {
     setAnchorElement(null)
   }
 
