@@ -1,5 +1,7 @@
 # Change Log
 
+## 8.0.3-canary.8
+
 ## 8.0.3-canary.7
 
 ### Patch Changes
