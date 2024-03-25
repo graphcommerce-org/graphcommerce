@@ -146,23 +146,6 @@ const config = {
 
 Or use `GC_DEBUG_PLUGIN_STATUS=true` in your environment variables.
 
-## How does it work?
-
-After the creation of the plugin file GraphCommerce will create an 'interceptor'
-for your file.
-
-To see the the created plugin for ProductListItem, '_Go to Definition_'
-(CMD/Ctrl+Click) on `<ProductListItem>` in
-`components/ProductListItems/productListRenderer.tsx`. You should now go to the
-`ProductListItem.interceptor.tsx` file.
-
-In this file the original `ProductListItem` is replaced with
-`PluginDemoProductListItemInterceptor`. The interceptor renders
-`<PluginDemoProductListItemSource />` with a `Prev` prop which is the plugin.
-
-The whole plugin 'chain' is constructed here and eventually ending up on
-`ProductListItemOriginal` which is the original component (but renamed).
-
 ### How are plugins loaded?
 
 GraphCommerce uses a custom Webpack plugin to load the plugins. The plugin does
@@ -175,18 +158,6 @@ Package locations are the root and all packages with `graphcommerce` in the name
 
 The Webpack plugin statically analyses the plugin files to find any valid
 configuration. This is then used to create the interceptors.
-
-### Possible use cases
-
-In the examples above we've extended the product list items, but it should also
-work for other things such as:
-
-- Google Tag Manager
-- Google Analytics
-- Google Recaptcha
-- Compare functionality
-- Wishlist functionality
-- etc.
 
 ### Conditionally include a plugin
 
@@ -213,6 +184,38 @@ export const config: PluginConfig<'compareVariant'> = {
 
 ### Plugin loading order
 
-A plugin is injected later than the dependencies of the package. So if a plugin
-is loaded too early, make sure the package has a dependency on the other
-package.
+The plugin loading order is determined by the order of the dependencies defined
+in the package.json. If the order isn't correct, make sure you've defined the
+correct dependencies in your package.json.
+
+Local plugins are closest to the original component, meaning that package
+specific plugins have already been called before your plugin is called.
+
+## How does it work?
+
+After the creation of the plugin file GraphCommerce will create an 'interceptor'
+for your file.
+
+To see the the created plugin for ProductListItem, '_Go to Definition_'
+(CMD/Ctrl+Click) on `<ProductListItem>` in
+`components/ProductListItems/productListRenderer.tsx`. You should now go to the
+`ProductListItem.interceptor.tsx` file.
+
+In this file the original `ProductListItem` is replaced with
+`PluginDemoProductListItemInterceptor`. The interceptor renders
+`<PluginDemoProductListItemSource />` with a `Prev` prop which is the plugin.
+
+The whole plugin 'chain' is constructed here and eventually ending up on
+`ProductListItemOriginal` which is the original component (but renamed).
+
+### Examples
+
+In the examples above we've extended the product list items, but it should also
+work for other things such as:
+
+- [Update the gallery when a configurable is selected](https://github.com/graphcommerce-org/graphcommerce/blob/canary/packages/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageGallery.tsx)
+- [Insert the Google Recaptcha Script](https://github.com/graphcommerce-org/graphcommerce/blob/canary/packages/googlerecaptcha/plugins/GrecaptchaGraphQLProvider.tsx)
+- [Activate Google Recaptcha when a form is loaded](https://github.com/graphcommerce-org/graphcommerce/blob/canary/packages/googlerecaptcha/plugins/GrecaptchaApolloErrorSnackbar.tsx)
+- [Add a compare icon next to the cart icon](https://github.com/graphcommerce-org/graphcommerce/blob/canary/packages/magento-compare/plugins/AddCompareFabNextToCart.tsx)
+- [Add a compare icon to the ProductListItem](https://github.com/graphcommerce-org/graphcommerce/blob/canary/packages/magento-compare/plugins/CompareAbleProductListItem.tsx)
+- etc.
