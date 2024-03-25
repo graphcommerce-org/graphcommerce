@@ -497,6 +497,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
             height={height}
             data-nimg
             sx={[style, ...(Array.isArray(sx) ? sx : [sx])]}
+            fetchPriority={loading === 'eager' ? 'high' : undefined}
           />
         ) : (
           <Picture {...pictureProps}>
@@ -518,42 +519,9 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
               sizes={sizes}
               data-nimg
               decoding='async'
+              fetchPriority={loading === 'eager' ? 'high' : undefined}
             />
           </Picture>
-        )}
-        {loading === 'eager' && (
-          <Head>
-            {unoptimized ? (
-              <link key={`__nimg-unoptimized-${src}`} rel='preload' as='image' href={src} />
-            ) : (
-              <>
-                <link
-                  key={`img-${srcSet3x}${sizes}`}
-                  rel='preload'
-                  as='image'
-                  media='(-webkit-min-device-pixel-ratio: 2.5)'
-                  imageSrcSet={srcSet3x}
-                  imageSizes={sizes}
-                />
-                <link
-                  key={`img-${srcSet2x}${sizes}`}
-                  rel='preload'
-                  as='image'
-                  media='(-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 2.49)'
-                  imageSrcSet={srcSet2x}
-                  imageSizes={sizes}
-                />
-                <link
-                  key={`img-${srcSet1x}${sizes}`}
-                  rel='preload'
-                  as='image'
-                  media='(-webkit-max-device-pixel-ratio: 1.49)'
-                  imageSrcSet={srcSet1x}
-                  imageSizes={sizes}
-                />
-              </>
-            )}
-          </Head>
         )}
       </>
     )
