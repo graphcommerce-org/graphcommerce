@@ -1,17 +1,23 @@
+import { useLocale } from '../hooks/useLocale'
+
 export type TimeAgoProps = {
   date: Date
+  /**
+   * @deprecated No longer used
+   */
   locale?: string
 }
 
 export function TimeAgo(props: TimeAgoProps) {
-  const { date, locale = 'en' } = props
+  const { date } = props
   const msPerMinute = 60 * 1000
   const msPerHour = msPerMinute * 60
   const msPerDay = msPerHour * 24
 
   const timestamp = date.getTime()
   const elapsed = Date.now() - timestamp
-  const rtf = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' })
+
+  const rtf = new Intl.RelativeTimeFormat(useLocale(), { numeric: 'auto' })
 
   if (elapsed < msPerMinute) {
     return <span>{rtf.format(-Math.floor(elapsed / 1000), 'seconds')}</span>

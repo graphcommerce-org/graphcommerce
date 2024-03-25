@@ -15,9 +15,7 @@ function linguiNextConfig(config) {
   const { locales, ...otherConfig } = config
   return {
     orderBy: 'messageId',
-    locales: isMonorepo()
-      ? ['en', 'nl', 'fr', 'de', 'es', 'it']
-      : config.locales.map((l) => l?.split('-')[0]),
+    locales: isMonorepo() ? ['en', 'nl', 'fr', 'de', 'es', 'it'] : config.locales,
     // formatOptions: { lineNumbers: false, origins: false, explicitIdAsDefault: true },
     format: formatter({ explicitIdAsDefault: true, lineNumbers: false, origins: false }),
     catalogs: [
