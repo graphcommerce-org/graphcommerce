@@ -1,5 +1,0 @@
-query QueryWitInjectable {
-  storeConfig {
-    ...InjectableFragment
-  }
-}

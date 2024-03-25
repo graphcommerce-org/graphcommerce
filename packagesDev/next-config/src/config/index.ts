@@ -1,4 +1,4 @@
-import type { Path } from 'react-hook-form'
+import type { Path, PathValue } from 'react-hook-form'
 import { GraphCommerceConfig } from '../generated/config'
 
 export * from './commands/generateConfig'
@@ -12,4 +12,6 @@ declare global {
   }
 }
 
-export type IfConfig = Path<GraphCommerceConfig>
+export type IfConfig<P extends Path<GraphCommerceConfig> = Path<GraphCommerceConfig>> =
+  | P
+  | [P, PathValue<GraphCommerceConfig, P>]

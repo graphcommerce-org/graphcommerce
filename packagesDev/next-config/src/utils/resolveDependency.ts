@@ -1,21 +1,36 @@
 import fs from 'node:fs'
 import { resolveDependenciesSync } from './resolveDependenciesSync'
 
-export type ResolveDependencyReturn = {
-  dependency: string
-  denormalized: string
-  root: string
-  fromRoot: string
-  fromModule: string
-}
+export type ResolveDependencyReturn =
+  | undefined
+  | {
+      dependency: string
+      denormalized: string
+      root: string
+      fromRoot: string
+      fromModule: string
+      source: string
+      sourcePath: string
+    }
 
-export type ResolveDependency = (req: string) => ResolveDependencyReturn
+export type ResolveDependency = (
+  req: string,
+  options?: { includeSources?: boolean; optional?: boolean },
+) => ResolveDependencyReturn
 
 export const resolveDependency = (cwd: string = process.cwd()) => {
   const dependencies = resolveDependenciesSync(cwd)
-  return (dependency: string): ResolveDependencyReturn => {
+
+  function resolve(
+    dependency: string,
+    options: { includeSources?: boolean } = {},
+  ): ResolveDependencyReturn {
+    const { includeSources = false } = options
+
     let dependencyPaths = {
       root: '.',
+      source: '',
+      sourcePath: '',
       dependency,
       fromRoot: dependency,
       fromModule: dependency,
@@ -27,15 +42,29 @@ export const resolveDependency = (cwd: string = process.cwd()) => {
         const relative = dependency.replace(depCandidate, '')
 
         const rootCandidate = dependency.replace(depCandidate, root)
+
+        let source = ''
+        let sourcePath = ''
+
         const fromRoot = [
           `${rootCandidate}`,
           `${rootCandidate}/index`,
           `${rootCandidate}/src/index`,
         ].find((location) =>
-          ['ts', 'tsx'].find((extension) => fs.existsSync(`${location}.${extension}`)),
+          ['ts', 'tsx'].find((extension) => {
+            const candidatePath = `${location}.${extension}`
+            const exists = fs.existsSync(candidatePath)
+
+            if (includeSources && exists) {
+              source = fs.readFileSync(candidatePath, 'utf-8')
+              sourcePath = candidatePath
+            }
+            return exists
+          }),
         )
+
         if (!fromRoot) {
-          throw Error(`Can't find plugin ${dependency}`)
+          return
         }
 
         const denormalized = fromRoot.replace(root, depCandidate)
@@ -46,9 +75,19 @@ export const resolveDependency = (cwd: string = process.cwd()) => {
 
         if (dependency.startsWith('./')) fromModule = `.${relative}`
 
-        dependencyPaths = { root, dependency, denormalized, fromRoot, fromModule }
+        dependencyPaths = {
+          root,
+          dependency,
+          denormalized,
+          fromRoot,
+          fromModule,
+          source,
+          sourcePath,
+        }
       }
     })
     return dependencyPaths
   }
+
+  return resolve
 }

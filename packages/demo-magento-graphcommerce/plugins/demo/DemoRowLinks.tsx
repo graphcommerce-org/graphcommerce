@@ -3,7 +3,7 @@ import type { RowLinksProps } from '@graphcommerce/next-ui'
 import { responsiveVal } from '@graphcommerce/next-ui'
 
 export const component = 'RowLinks'
-export const exported = '@graphcommerce/next-ui/Row/RowLinks/RowLinks'
+export const exported = '@graphcommerce/next-ui'
 export const ifConfig: IfConfig = 'demoMode'
 
 function DemoRowLinks(props: PluginProps<RowLinksProps>) {

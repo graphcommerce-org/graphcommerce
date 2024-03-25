@@ -1,15 +1,12 @@
-import type { CartItemActionCard } from '@graphcommerce/magento-cart-items'
+import type { CartItemActionCardProps } from '@graphcommerce/magento-cart-items'
 import type { PluginProps } from '@graphcommerce/next-config'
 import { isTypename } from '@graphcommerce/next-ui'
 import { ConfigurableCartItemOptions } from '../components'
 
 export const component = 'CartItemActionCard'
-export const exported =
-  '@graphcommerce/magento-cart-items/components/CartItemActionCard/CartItemActionCard'
+export const exported = '@graphcommerce/magento-cart-items'
 
-export function ConfigurableCartItemActionCard(
-  props: PluginProps<React.ComponentProps<typeof CartItemActionCard>>,
-) {
+export function ConfigurableCartItemActionCard(props: PluginProps<CartItemActionCardProps>) {
   const { Prev, ...rest } = props
 
   if (!isTypename(rest.cartItem, ['ConfigurableCartItem'])) return <Prev {...rest} />

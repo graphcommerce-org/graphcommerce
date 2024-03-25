@@ -40,9 +40,8 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
   const items = filterNonNullableKeys(data?.addProductsToCart?.cart.items)
 
   const productsAdded = items
-    .filter(
-      (item) =>
-        submittedVariables?.cartItems?.find((cartItem) => cartItem.sku === item.product.sku),
+    .filter((item) =>
+      submittedVariables?.cartItems?.find((cartItem) => cartItem.sku === item.product.sku),
     )
     .map((product) => product.product.name || '')
 

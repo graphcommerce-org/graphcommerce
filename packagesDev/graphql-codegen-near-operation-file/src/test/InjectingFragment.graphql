@@ -1,3 +1,0 @@
-fragment InjectingFragment on StoreConfig @inject(into: ["InjectableFragment"]) {
-  base_url
-}

@@ -1,10 +1,10 @@
 import { graphqlConfig, setContext } from '@graphcommerce/graphql'
-import type { MethodPlugin } from '@graphcommerce/next-config'
+import type { FunctionPlugin } from '@graphcommerce/next-config'
 
 export const func = 'graphqlConfig'
-export const exported = '@graphcommerce/graphql/config'
+export const exported = '@graphcommerce/graphql'
 
-const hygraphGraphqlConfig: MethodPlugin<typeof graphqlConfig> = (prev, config) => {
+const hygraphGraphqlConfig: FunctionPlugin<typeof graphqlConfig> = (prev, config) => {
   const results = prev(config)
 
   const locales = config.storefront.hygraphLocales

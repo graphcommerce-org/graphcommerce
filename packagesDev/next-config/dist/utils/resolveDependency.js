@@ -8,9 +8,12 @@ const node_fs_1 = __importDefault(require("node:fs"));
 const resolveDependenciesSync_1 = require("./resolveDependenciesSync");
 const resolveDependency = (cwd = process.cwd()) => {
     const dependencies = (0, resolveDependenciesSync_1.resolveDependenciesSync)(cwd);
-    return (dependency) => {
+    function resolve(dependency, options = {}) {
+        const { includeSources = false } = options;
         let dependencyPaths = {
             root: '.',
+            source: '',
+            sourcePath: '',
             dependency,
             fromRoot: dependency,
             fromModule: dependency,
@@ -20,13 +23,23 @@ const resolveDependency = (cwd = process.cwd()) => {
             if (dependency === depCandidate || dependency.startsWith(`${depCandidate}/`)) {
                 const relative = dependency.replace(depCandidate, '');
                 const rootCandidate = dependency.replace(depCandidate, root);
+                let source = '';
+                let sourcePath = '';
                 const fromRoot = [
                     `${rootCandidate}`,
                     `${rootCandidate}/index`,
                     `${rootCandidate}/src/index`,
-                ].find((location) => ['ts', 'tsx'].find((extension) => node_fs_1.default.existsSync(`${location}.${extension}`)));
+                ].find((location) => ['ts', 'tsx'].find((extension) => {
+                    const candidatePath = `${location}.${extension}`;
+                    const exists = node_fs_1.default.existsSync(candidatePath);
+                    if (includeSources && exists) {
+                        source = node_fs_1.default.readFileSync(candidatePath, 'utf-8');
+                        sourcePath = candidatePath;
+                    }
+                    return exists;
+                }));
                 if (!fromRoot) {
-                    throw Error(`Can't find plugin ${dependency}`);
+                    return;
                 }
                 const denormalized = fromRoot.replace(root, depCandidate);
                 let fromModule = !relative
@@ -34,10 +47,19 @@ const resolveDependency = (cwd = process.cwd()) => {
                     : `./${relative.split('/')[relative.split('/').length - 1]}`;
                 if (dependency.startsWith('./'))
                     fromModule = `.${relative}`;
-                dependencyPaths = { root, dependency, denormalized, fromRoot, fromModule };
+                dependencyPaths = {
+                    root,
+                    dependency,
+                    denormalized,
+                    fromRoot,
+                    fromModule,
+                    source,
+                    sourcePath,
+                };
             }
         });
         return dependencyPaths;
-    };
+    }
+    return resolve;
 };
 exports.resolveDependency = resolveDependency;

@@ -30,6 +30,7 @@ yarn-error.log*
 **/public/workbox-*.js
 **/public/sw.js
 *.interceptor.tsx
+*.interceptor.ts
 
 .vercel
 

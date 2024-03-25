@@ -56,6 +56,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
     experimental: {
       ...nextConfig.experimental,
       scrollRestoration: true,
+      bundlePagesExternals: true,
       swcPlugins: [...(nextConfig.experimental?.swcPlugins ?? []), ['@lingui/swc-plugin', {}]],
     },
     i18n: {
@@ -177,7 +178,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
         }
       }
 
-      config.plugins.push(new InterceptorPlugin(graphcommerceConfig))
+      config.plugins.push(new InterceptorPlugin(graphcommerceConfig, !options.isServer))
 
       return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config
     },

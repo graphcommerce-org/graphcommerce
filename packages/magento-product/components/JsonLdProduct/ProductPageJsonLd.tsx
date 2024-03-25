@@ -1,7 +1,7 @@
 import { JsonLd } from '@graphcommerce/next-ui'
 import { JsonLdProductFragment } from './JsonLdProduct.gql'
 
-type ProductPageJsonLdProps<T extends { '@type': string }> = {
+export type ProductPageJsonLdProps<T extends { '@type': string }> = {
   product: JsonLdProductFragment
   render: (product: JsonLdProductFragment) => T & { '@context': 'https://schema.org' }
 }

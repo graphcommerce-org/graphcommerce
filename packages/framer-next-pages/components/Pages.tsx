@@ -45,9 +45,8 @@ function getPageInfo(router: NextRouter) {
 export function FramerNextPages(props: PagesProps) {
   const { router, Component, pageProps: incomingProps, fallback = '/', fallbackRoute = '/' } = props
 
-  // @ts-expect-error Key of the route is still private, should be fixed in https://github.com/vercel/next.js/pull/37192
   // eslint-disable-next-line no-underscore-dangle
-  const key = router._key as string
+  const key = (router as NextRouter & { _key: string })._key
 
   useMeasureDynamicViewportSize()
   const items = useRef<PageItem[]>([])
