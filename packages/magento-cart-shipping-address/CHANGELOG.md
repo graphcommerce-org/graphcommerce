@@ -1,10 +1,14 @@
 # Change Log
 
-## 8.0.3-canary.9
+## 8.0.3
 
-## 8.0.3-canary.8
+### Patch Changes
 
-## 8.0.3-canary.7
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`d67c89d`](https://github.com/graphcommerce-org/graphcommerce/commit/d67c89d464a60f0e2618dab670b63a39f6291341) - Deprecate the allowUrl option for useCartQuery, it was already enabled by default and should never be set to false.
+  ([@paales](https://github.com/paales))
+
+- [#2206](https://github.com/graphcommerce-org/graphcommerce/pull/2206) [`646db64`](https://github.com/graphcommerce-org/graphcommerce/commit/646db640ec09c1c82584f5543ab487a44ab8d260) - Solves an issue where the billing address of a logged in customer would not set set when a shipping address was already set
+  ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.6
 

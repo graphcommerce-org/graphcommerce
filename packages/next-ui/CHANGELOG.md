@@ -1,15 +1,6 @@
 # Change Log
 
-## 8.0.3-canary.9
-
-### Patch Changes
-
-- [#2228](https://github.com/graphcommerce-org/graphcommerce/pull/2228) [`0c0cacb`](https://github.com/graphcommerce-org/graphcommerce/commit/0c0cacb8725f0a626ea5d3acf154d83c433c3eb7) - apply correct type for the inert property
-  ([@carlocarels90](https://github.com/carlocarels90))
-
-## 8.0.3-canary.8
-
-## 8.0.3-canary.7
+## 8.0.3
 
 ## 8.0.3-canary.6
 
