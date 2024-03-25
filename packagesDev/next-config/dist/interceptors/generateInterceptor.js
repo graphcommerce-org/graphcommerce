@@ -26,7 +26,7 @@ exports.isReactPluginConfig = isReactPluginConfig;
 function isMethodPluginConfig(plugin) {
     if (!isPluginBaseConfig(plugin))
         return false;
-    return plugin.type === 'method';
+    return plugin.type === 'function';
 }
 exports.isMethodPluginConfig = isMethodPluginConfig;
 function isReplacePluginConfig(plugin) {
@@ -129,9 +129,10 @@ async function generateInterceptor(interceptor, config, oldInterceptorSource) {
               const ${interceptorName(name(p))} = (props: ${carryProps.join(' & ')}) => {
                 ${config.pluginStatus ? `logOnce(\`🔌 Rendering ${base} with plugin(s): ${wrapChain} wrapping <${base}/>\`)` : ''}
 
-                ${process.env.NODE_ENV === 'development' &&
-                    `if(!props['data-plugin'])
-                  logOnce('${fileName(p)} does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.')`}
+                ${process.env.NODE_ENV === 'development'
+                    ? `if(!props['data-plugin'])
+                  logOnce('${fileName(p)} does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.')`
+                    : ''}
                 return <${sourceName(name(p))} {...props} Prev={${carry} as React.FC} />
               }`;
             }

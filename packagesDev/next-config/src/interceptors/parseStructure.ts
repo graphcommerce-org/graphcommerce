@@ -6,7 +6,7 @@ import { extractExports } from './extractExports'
 import { PluginConfig } from './generateInterceptor'
 
 const pluginConfigParsed = z.object({
-  type: z.enum(['component', 'method', 'replace']),
+  type: z.enum(['component', 'function', 'replace']),
   module: z.string(),
   export: z.string(),
   ifConfig: z.union([z.string(), z.tuple([z.string(), z.string()])]).optional(),
@@ -44,7 +44,7 @@ export function parseStructure(ast: Module, gcConfig: GraphCommerceConfig, sourc
       if (!moduleConfig && component) {
         config = { type: 'component', module: exported, ifConfig, export: 'Plugin' }
       } else if (!moduleConfig && func) {
-        config = { type: 'method', module: exported, ifConfig, export: 'plugin' }
+        config = { type: 'function', module: exported, ifConfig, export: 'plugin' }
       } else if (isObject(moduleConfig)) {
         config = { ...moduleConfig, export: exportVal }
       } else {

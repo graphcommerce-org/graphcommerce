@@ -14,6 +14,14 @@ export type PluginProps<P extends Record<string, unknown> = Record<string, unkno
   Prev: React.FC<P>
 }
 
+export type FunctionPlugin<T extends (...args: any[]) => any> = (
+  prev: T,
+  ...args: Parameters<T>
+) => ReturnType<T>
+
+/**
+ * @deprecated use FunctionPlugin instead
+ */
 export type MethodPlugin<T extends (...args: any[]) => any> = (
   prev: T,
   ...args: Parameters<T>
@@ -25,4 +33,4 @@ export type PluginConfig<P extends Path<GraphCommerceConfig> = Path<GraphCommerc
   ifConfig?: P | [P, PathValue<GraphCommerceConfig, P>]
 }
 
-export type PluginType = 'component' | 'method' | 'replace'
+export type PluginType = 'component' | 'function' | 'replace'

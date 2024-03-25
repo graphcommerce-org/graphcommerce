@@ -19,11 +19,12 @@ async function writeInterceptors(interceptors, cwd = process.cwd()) {
     const dependencies = (0, resolveDependenciesSync_1.resolveDependenciesSync)(cwd);
     const existing = [];
     dependencies.forEach((dependency) => {
-        const files = (0, glob_1.sync)(`${dependency}/**/*.interceptor.tsx`, { cwd });
+        const files = (0, glob_1.sync)([`${dependency}/**/*.interceptor.tsx`, `${dependency}/**/*.interceptor.ts`], { cwd });
         existing.push(...files);
     });
     const written = Object.entries(interceptors).map(async ([, plugin]) => {
-        const relativeFile = `${plugin.fromRoot}.interceptor.tsx`;
+        const extension = plugin.sourcePath.endsWith('.tsx') ? '.tsx' : '.ts';
+        const relativeFile = `${plugin.fromRoot}.interceptor${extension}`;
         if (existing.includes(relativeFile)) {
             delete existing[existing.indexOf(relativeFile)];
         }

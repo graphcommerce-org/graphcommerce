@@ -8,7 +8,7 @@ const get_1 = __importDefault(require("lodash/get"));
 const zod_1 = require("zod");
 const extractExports_1 = require("./extractExports");
 const pluginConfigParsed = zod_1.z.object({
-    type: zod_1.z.enum(['component', 'method', 'replace']),
+    type: zod_1.z.enum(['component', 'function', 'replace']),
     module: zod_1.z.string(),
     export: zod_1.z.string(),
     ifConfig: zod_1.z.union([zod_1.z.string(), zod_1.z.tuple([zod_1.z.string(), zod_1.z.string()])]).optional(),
@@ -34,7 +34,7 @@ function parseStructure(ast, gcConfig, sourceModule) {
             config = { type: 'component', module: exported, ifConfig, export: 'Plugin' };
         }
         else if (!moduleConfig && func) {
-            config = { type: 'method', module: exported, ifConfig, export: 'plugin' };
+            config = { type: 'function', module: exported, ifConfig, export: 'plugin' };
         }
         else if (isObject(moduleConfig)) {
             config = { ...moduleConfig, export: exportVal };

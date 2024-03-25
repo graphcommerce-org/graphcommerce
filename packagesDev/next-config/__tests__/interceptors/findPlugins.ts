@@ -234,7 +234,7 @@ it('finds plugins', () => {
         "sourceModule": "./@graphcommerce/graphcms-ui/plugins/hygraphGraphqlConfig",
         "targetExport": "graphqlConfig",
         "targetModule": "@graphcommerce/graphql",
-        "type": "method",
+        "type": "function",
       },
       {
         "enabled": true,
@@ -242,7 +242,7 @@ it('finds plugins', () => {
         "sourceModule": "./@graphcommerce/hygraph-dynamic-rows/plugins/hygraphDynamicRowsPageContent",
         "targetExport": "hygraphPageContent",
         "targetModule": "@graphcommerce/graphcms-ui",
-        "type": "method",
+        "type": "function",
       },
       {
         "enabled": true,
@@ -250,7 +250,7 @@ it('finds plugins', () => {
         "sourceModule": "./@graphcommerce/magento-cart/plugins/useSignInFormMergeCart",
         "targetExport": "useSignInForm",
         "targetModule": "@graphcommerce/magento-customer",
-        "type": "method",
+        "type": "function",
       },
       {
         "enabled": true,
@@ -274,7 +274,7 @@ it('finds plugins', () => {
         "sourceModule": "./@graphcommerce/magento-graphql/plugins/magentoGraphqlConfig",
         "targetExport": "graphqlConfig",
         "targetModule": "@graphcommerce/graphql/config",
-        "type": "method",
+        "type": "function",
       },
       {
         "enabled": true,
@@ -374,11 +374,11 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "plugin",
+        "sourceExport": "graphqlConfig",
         "sourceModule": "./@graphcommerce/magento-store/plugins/magentoStoreGraphqlConfig",
         "targetExport": "graphqlConfig",
         "targetModule": "@graphcommerce/graphql",
-        "type": "method",
+        "type": "function",
       },
       {
         "enabled": true,

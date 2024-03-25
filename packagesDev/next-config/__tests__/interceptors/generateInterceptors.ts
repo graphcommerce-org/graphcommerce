@@ -77,10 +77,6 @@ it('it generates an interceptor', async () => {
       'Prev'
     >
     const PluginAddBraintreeMethodsInterceptor = (props: PluginAddBraintreeMethodsInterceptorProps) => {
-      if (!props['data-plugin'])
-        logOnce(
-          '@graphcommerce/magento-payment-braintree/plugins/AddBraintreeMethods#Plugin does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.',
-        )
       return (
         <PluginAddBraintreeMethodsSource
           {...props}
@@ -96,10 +92,6 @@ it('it generates an interceptor', async () => {
     const PluginAddMollieMethodsInterceptor = (
       props: PluginAddBraintreeMethodsInterceptorProps & PluginAddMollieMethodsInterceptorProps,
     ) => {
-      if (!props['data-plugin'])
-        logOnce(
-          '@graphcommerce/mollie-magento-payment/plugins/AddMollieMethods#Plugin does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.',
-        )
       return (
         <PluginAddMollieMethodsSource
           {...props}
@@ -180,10 +172,6 @@ it('it can apply multiple plugins to a single export', async () => {
       'Prev'
     >
     const PluginAddAdyenMethodsInterceptor = (props: PluginAddAdyenMethodsInterceptorProps) => {
-      if (!props['data-plugin'])
-        logOnce(
-          '@graphcommerce/magento-payment-adyen/plugins/AddAdyenMethods#Plugin does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.',
-        )
       return (
         <PluginAddAdyenMethodsSource
           {...props}
@@ -199,10 +187,6 @@ it('it can apply multiple plugins to a single export', async () => {
     const PluginAddMollieMethodsInterceptor = (
       props: PluginAddAdyenMethodsInterceptorProps & PluginAddMollieMethodsInterceptorProps,
     ) => {
-      if (!props['data-plugin'])
-        logOnce(
-          '@graphcommerce/mollie-magento-payment/plugins/AddMollieMethods#Plugin does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.',
-        )
       return (
         <PluginAddMollieMethodsSource {...props} Prev={PluginAddAdyenMethodsInterceptor as React.FC} />
       )
@@ -244,10 +228,6 @@ it('it handles on duplicates gracefully', async () => {
       'Prev'
     >
     const PluginAddBraintreeMethodsInterceptor = (props: PluginAddBraintreeMethodsInterceptorProps) => {
-      if (!props['data-plugin'])
-        logOnce(
-          '@graphcommerce/magento-payment-braintree/plugins/AddBraintreeMethods#Plugin does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.',
-        )
       return (
         <PluginAddBraintreeMethodsSource
           {...props}
@@ -346,7 +326,7 @@ it('generates method interceptors alognside component interceptors', async () =>
         sourceModule: '@graphcommerce/magento-graphql/plugins/MagentoGraphqlGraphqlProvider',
       },
       {
-        type: 'method',
+        type: 'function',
         targetExport: 'graphqlConfig',
         enabled: true,
         sourceExport: 'Plugin',
@@ -354,7 +334,7 @@ it('generates method interceptors alognside component interceptors', async () =>
         sourceModule: '@graphcommerce/magento-graphql/plugins/magentoInitMemoryCache',
       },
       {
-        type: 'method',
+        type: 'function',
         targetExport: 'graphqlConfig',
         enabled: true,
         sourceExport: 'Plugin',
@@ -391,7 +371,7 @@ it('adds debug logging to interceptors for components', async () => {
         sourceModule: '@graphcommerce/magento-graphql/plugins/MagentoGraphqlGraphqlProvider',
       },
       {
-        type: 'method',
+        type: 'function',
         targetExport: 'graphqlConfig',
         enabled: true,
         sourceExport: 'plugin',
@@ -399,7 +379,7 @@ it('adds debug logging to interceptors for components', async () => {
         sourceModule: '@graphcommerce/magento-graphql/plugins/magentoInitMemoryCache',
       },
       {
-        type: 'method',
+        type: 'function',
         targetExport: 'graphqlConfig',
         enabled: true,
         sourceExport: 'plugin',
@@ -687,10 +667,6 @@ export const Plugin = ConfigurableProductPageName
       props: ProductPageNameMyPluginInterceptorProps &
         PluginConfigurableProductPageNameInterceptorProps,
     ) => {
-      if (!props['data-plugin'])
-        logOnce(
-          '@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageName#Plugin does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.',
-        )
       return (
         <PluginConfigurableProductPageNameSource
           {...props}
@@ -700,4 +676,25 @@ export const Plugin = ConfigurableProductPageName
     }
     export const ProductPageName = PluginConfigurableProductPageNameInterceptor"
   `)
+})
+
+it('generates to a .ts file when the target file is a .ts as well', async () => {
+  const resolve = resolveDependency(projectRoot)
+  const interceptors = await generateInterceptors(
+    [
+      {
+        type: 'function',
+        targetExport: 'graphqlConfig',
+        enabled: true,
+        sourceExport: 'Plugin',
+        targetModule: '@graphcommerce/graphql',
+        sourceModule: '@graphcommerce/magento-graphql/plugins/magentoInitMemoryCache',
+      },
+    ],
+    resolve,
+  )
+
+  expect(Object.keys(interceptors)[0]).toMatchInlineSnapshot(`"packages/graphql/config"`)
+  const interceptor = interceptors['packages/graphql/config']
+  expect(interceptor.sourcePath).toBe(`packages/graphql/config.ts`)
 })

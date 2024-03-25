@@ -1,7 +1,7 @@
 # Plugins GraphCommerce
 
-GraphCommerce's plugin system allows you to extend GraphCommerce's built-in
-components or functions with your own logic.
+GraphCommerce's plugin system allows you to extend or replace GraphCommerce's
+built-in components or functions with your own logic.
 
 - No runtime overhead: The plugin system is fully implemented in webpack and
 - Easy plugin creation: Configuration should happen in the plugin file, not a
@@ -13,10 +13,11 @@ components or functions with your own logic.
 A plugin is a way to modify React Components or a Function by wrapping them,
 without having to modify the code directly.
 
-For the M2 people: Think of around plugins, but without configuration files and
-no performance penalty.
+> For the M2 people: Think of around plugins, but without configuration files
+> and no performance penalty.
 
-GraphCommerce has two kinds of plugins, React Component plugins and Function
+GraphCommerce has three kinds of plugins, component plugins, function plugins
+and replacement plugins.
 
 React Component plugins, which can be used to:
 
@@ -33,24 +34,34 @@ Function plugins, which can be used to:
 - Modify the arguments of a function
 - Skip calling the original function conditionally
 
-## How do I write a React Component plugin?
+Replacement plugins, which can be used to:
+
+- Replace any export with your own implementation
+- Replace an internal component used by another internal component with your own
+  implementation.
+
+## How do I write a component plugin?
 
 In this example we're going to add some text to list items, just like the text
 ‘BY GC’ that can seen in the demo on
 [category pages](https://graphcommerce.vercel.app/en/women/business).
 
-1. Create a new file in `/plugins/ProductListItemByGC.tsx` with the following
-   contents:
+1. Create a new file in `/plugins/MyProductListItemPlugin.tsx` with the
+   following contents:
 
    ```tsx
    import type { ProductListItemProps } from '@graphcommerce/magento-product'
-   import type { PluginProps } from '@graphcommerce/next-config'
+   import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
    import { Typography } from '@mui/material'
 
-   export const component = 'ProductListItem' // Component to extend, required
-   export const exported = '@graphcommerce/magento-product' // Location where the component is exported, required
+   export const config: PluginConfig = {
+     type: 'component',
+     module: '@graphcommerce/magento-product',
+   }
 
-   const ListPlugin = (props: PluginProps<ProductListItemProps>) => {
+   export const ProductListItem = (
+     props: PluginProps<ProductListItemProps>,
+   ) => {
      // Prev in this case is ProductListItem, you should be able to see this if you log it.
      const { Prev, ...rest } = props
      return (
@@ -64,7 +75,6 @@ In this example we're going to add some text to list items, just like the text
        />
      )
    }
-   export const Plugin = ListPlugin // An export with the name Plugin, required
    ```
 
 2. Trigger the 'interceptor generation' so GraphCommerce knows of the existence
@@ -73,19 +83,18 @@ In this example we're going to add some text to list items, just like the text
    and save the file
 
    If everything went as expected you should see `Plugin!` below the product
-   name. If that doesn't work try restarting the dev server.
+   name. (If that doesn't work try restarting the dev server once)
 
-3. Happy programming!
-
-4. You can enable debug mode in your graphcommerce.config.js:
+3. You can enable debug mode in your graphcommerce.config.js:
 
    ```js
+   // Or use GC_DEBUG_PLUGIN_STATUS=true in your environment variables.
    const config = {
-     debug: {
-       pluginStatus: true,
-     },
+     debug: { pluginStatus: true },
    }
    ```
+
+## How do I write a function plugin?
 
 ## How does it work?
 

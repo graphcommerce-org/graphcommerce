@@ -8,7 +8,7 @@ const fakeconfig = {
   demoMode: true,
 } as GraphCommerceConfig
 
-it("correctly the new PluginConfig and it's ifConfig configuration", () => {
+it("correctly parses the new PluginConfig and it's ifConfig configuration", () => {
   const src = `
 import { getProductStaticPaths as getProductStaticPathsType } from '@graphcommerce/magento-product'
 import { PluginConfig } from '@graphcommerce/next-config'
@@ -27,14 +27,14 @@ export const getProductStaticPaths: typeof getProductStaticPathsType = async () 
 `
   const ast = parseSync(src)
 
-  const plugins = parseStructure(ast, fakeconfig, './plugins/MyPlugin.tsx')
+  const plugins = parseStructure(ast, fakeconfig, './plugins/MyReplace')
   expect(plugins).toHaveLength(1)
   expect(plugins[0]).toMatchInlineSnapshot(`
     {
       "enabled": true,
       "ifConfig": "demoMode",
       "sourceExport": "getProductStaticPaths",
-      "sourceModule": "./plugins/MyPlugin.tsx",
+      "sourceModule": "./plugins/MyReplace",
       "targetExport": "getProductStaticPaths",
       "targetModule": "@graphcommerce/magento-product",
       "type": "replace",
@@ -59,14 +59,14 @@ export const Plugin = DemoProductListItemConfigurable
 `
   const ast = parseSync(src)
 
-  const plugins = parseStructure(ast, fakeconfig, './plugins/MyPlugin')
+  const plugins = parseStructure(ast, fakeconfig, './plugins/MyComponentPlugin')
   expect(plugins).toHaveLength(1)
   expect(plugins[0]).toMatchInlineSnapshot(`
     {
       "enabled": true,
       "ifConfig": "demoMode",
       "sourceExport": "Plugin",
-      "sourceModule": "./plugins/MyPlugin",
+      "sourceModule": "./plugins/MyComponentPlugin",
       "targetExport": "ProductListItemConfigurable",
       "targetModule": "@graphcommerce/magento-product-configurable",
       "type": "component",
@@ -74,7 +74,7 @@ export const Plugin = DemoProductListItemConfigurable
   `)
 })
 
-it('correctly the classic method plugin config', () => {
+it('correctly parses the classic function plugin config', () => {
   const src = `
 import { graphqlConfig, setContext } from '@graphcommerce/graphql'
 import type { MethodPlugin } from '@graphcommerce/next-config'
@@ -82,7 +82,6 @@ import type { MethodPlugin } from '@graphcommerce/next-config'
 export const func = 'graphqlConfig'
 export const exported = '@graphcommerce/graphql'
 
-/* Hoi */
 const hygraphGraphqlConfig: MethodPlugin<typeof graphqlConfig> = (prev, config) => {
   const results = prev(config)
 
@@ -103,16 +102,16 @@ export const plugin = hygraphGraphqlConfig
 `
   const ast = parseSync(src)
 
-  const plugins = parseStructure(ast, fakeconfig, './plugins/MyPlugin')
+  const plugins = parseStructure(ast, fakeconfig, './plugins/MyClassicFunctionPlugin')
   expect(plugins).toHaveLength(1)
   expect(plugins[0]).toMatchInlineSnapshot(`
     {
       "enabled": true,
       "sourceExport": "plugin",
-      "sourceModule": "./plugins/MyPlugin",
+      "sourceModule": "./plugins/MyClassicFunctionPlugin",
       "targetExport": "graphqlConfig",
       "targetModule": "@graphcommerce/graphql",
-      "type": "method",
+      "type": "function",
     }
   `)
 })

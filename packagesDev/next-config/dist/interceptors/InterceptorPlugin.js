@@ -80,19 +80,24 @@ class InterceptorPlugin {
                     return;
                 }
                 const split = requestPath.split('/');
-                const searchFor = `${split[split.length - 1]}.interceptor.tsx`;
-                if (issuer.endsWith(searchFor) && interceptors[requestPath]) {
+                const targets = [
+                    `${split[split.length - 1]}.interceptor.tsx`,
+                    `${split[split.length - 1]}.interceptor.ts`,
+                ];
+                if (targets.some((target) => issuer.endsWith(target)) && interceptors[requestPath]) {
                     logger.log(`Interceptor ${issuer} is requesting the original ${requestPath}`);
                     return;
                 }
                 const interceptorForRequest = interceptorByDepependency[resource.request];
                 if (interceptorForRequest) {
-                    resource.request = `${interceptorForRequest.denormalized}.interceptor.tsx`;
+                    const extension = interceptorForRequest.sourcePath.endsWith('.tsx') ? '.tsx' : '.ts';
+                    resource.request = `${interceptorForRequest.denormalized}.interceptor${extension}`;
                     logger.log(`Intercepting dep... ${interceptorForRequest.dependency}`, resource.request);
                 }
                 const interceptorForPath = interceptors[requestPath];
                 if (interceptorForPath) {
-                    resource.request = `${resource.request}.interceptor.tsx`;
+                    const extension = interceptorForPath.sourcePath.endsWith('.tsx') ? '.tsx' : '.ts';
+                    resource.request = `${resource.request}.interceptor${extension}`;
                     logger.log(`Intercepting fromRoot... ${interceptorForPath.dependency}`, resource.request);
                 }
             });
