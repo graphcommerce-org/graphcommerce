@@ -12,7 +12,7 @@ const writeInterceptors_1 = require("./writeInterceptors");
 let interceptors;
 let interceptorByDepependency;
 let generating = false;
-let totalGenerationTime = 0;
+// let totalGenerationTime = 0
 class InterceptorPlugin {
     config;
     regenerate;
@@ -43,7 +43,7 @@ class InterceptorPlugin {
         // console.log('Wrote interceptors in', wrote - generated, 'ms')
         interceptors = generatedInterceptors;
         interceptorByDepependency = Object.fromEntries(Object.values(interceptors).map((i) => [i.dependency, i]));
-        totalGenerationTime += Date.now() - start;
+        // totalGenerationTime += Date.now() - start
         generating = false;
         return generatedInterceptors;
     };

@@ -11,7 +11,7 @@ let interceptorByDepependency: GenerateInterceptorsReturn | undefined
 
 let generating = false
 
-let totalGenerationTime = 0
+// let totalGenerationTime = 0
 
 export class InterceptorPlugin {
   private resolveDependency: ResolveDependency
@@ -60,7 +60,7 @@ export class InterceptorPlugin {
       Object.values(interceptors).map((i) => [i.dependency, i]),
     )
 
-    totalGenerationTime += Date.now() - start
+    // totalGenerationTime += Date.now() - start
     generating = false
 
     return generatedInterceptors
