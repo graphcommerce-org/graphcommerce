@@ -1,4 +1,4 @@
-import type { ProductPageMeta } from '@graphcommerce/magento-product'
+import type { ProductPageMetaProps } from '@graphcommerce/magento-product'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { useMemoObject } from '@graphcommerce/next-ui'
 import { useEffect } from 'react'
@@ -9,7 +9,7 @@ export const exported = '@graphcommerce/magento-product'
 export const ifConfig: IfConfig = 'googleAnalyticsId'
 
 /** When a product is added to the Cart, send a Google Analytics event */
-function GaViewItem(props: PluginProps<React.ComponentProps<typeof ProductPageMeta>>) {
+function GaViewItem(props: PluginProps<ProductPageMetaProps>) {
   const { Prev, product } = props
   const { price_range } = product
 
