@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.4-canary.0
+
+### Patch Changes
+
+- [#2221](https://github.com/graphcommerce-org/graphcommerce/pull/2221) [`0ba1fdc`](https://github.com/graphcommerce-org/graphcommerce/commit/0ba1fdc9a2d005f47cd1725fe723e77da4cc5b9d) - After a user just logged in the checkout, the useFormGqlMutationCart would still run even though the cart was locked.
+  ([@paales](https://github.com/paales))
+
 ## 8.0.3
 
 ### Patch Changes
