@@ -27,7 +27,6 @@
     "@graphcommerce/framer-next-pages": "8.0.4-canary.0",
     "@graphcommerce/framer-scroller": "8.0.4-canary.0",
     "@graphcommerce/framer-utils": "8.0.4-canary.0",
-    "@graphcommerce/google-datalayer": "8.0.4-canary.0",
     "@graphcommerce/googleanalytics": "8.0.4-canary.0",
     "@graphcommerce/googlerecaptcha": "8.0.4-canary.0",
     "@graphcommerce/googletagmanager": "8.0.4-canary.0",
