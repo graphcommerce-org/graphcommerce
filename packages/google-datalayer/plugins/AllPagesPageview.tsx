@@ -18,6 +18,8 @@ function AllPagesPageview(props: PluginProps<PagesProps>) {
       /**
        * Todo: the actual page_view event is currently disabled, because we run the risk of double counting page views.
        * https://developers.google.com/analytics/devguides/collection/ga4/views?client_type=gtag#manually_send_page_view_events
+       *
+       * https://developers.google.com/analytics/devguides/collection/ga4/single-page-applications?implementation=event
        */
       // event('page_view', {
       //   page_title: '<Page Title>',

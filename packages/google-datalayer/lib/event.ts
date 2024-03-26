@@ -12,10 +12,12 @@ type EventType = keyof (typeof EventFormatSchema)['Enum']
 const eventMap: { [key in EventType]: EventMapFunctionType } = {
   GA4: (eventName, eventData) => {
     if (import.meta.graphCommerce.googleAnalyticsId) {
+      console.log('gtag', eventName, eventData)
       globalThis.gtag('event', eventName, eventData)
     }
 
     if (import.meta.graphCommerce.googleTagmanagerId) {
+      console.log('dataLayer', eventName, eventData)
       globalThis.dataLayer.push({ event: eventName, ...eventData })
     }
   },
@@ -35,5 +37,6 @@ const eventMap: { [key in EventType]: EventMapFunctionType } = {
 const eventsToBeFired = import.meta.graphCommerce.analytics?.eventFormat ?? ['GA4']
 
 export const event: EventMapFunctionType = (eventName, eventData) => {
+  console.log('firing event', eventName, eventData)
   eventsToBeFired.map((e) => eventMap[e](eventName, eventData))
 }
