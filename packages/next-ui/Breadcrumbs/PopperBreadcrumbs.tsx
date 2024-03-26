@@ -3,10 +3,7 @@ import {
   Box,
   Breadcrumbs as BreadcrumbsBase,
   IconButton,
-  ClickAwayListener,
   Link,
-  MenuItem,
-  MenuList,
   Popper,
   Typography,
   useTheme,
@@ -15,6 +12,7 @@ import { useRef, useState, MouseEvent } from 'react'
 import { IconSvg } from '../IconSvg'
 import { iconClose, iconEllypsis } from '../icons'
 import { BreadcrumbsJsonLd } from './BreadcrumbsJsonLd'
+import { PopperBreadcrumbsList } from './PopperBreadcrumbsList'
 import { jsonLdBreadcrumb } from './jsonLdBreadcrumb'
 import { BreadcrumbsProps } from './types'
 
@@ -139,76 +137,13 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
         }}
       >
         <Box>
-          <ClickAwayListener onClickAway={handleClickAway}>
-            <MenuList
-              autoFocusItem={Boolean(anchorElement)}
-              onKeyDown={handleKeyDown}
-              sx={{
-                backgroundColor: 'background.paper',
-                borderRadius: 3,
-                boxShadow: 12,
-                display: 'flex',
-                flexDirection: 'column',
-                overflow: 'hidden auto',
-                py: `calc(${theme.spacings.xxs} / 2)`,
-              }}
-            >
-              <MenuItem
-                sx={{
-                  minHeight: 'auto',
-                  padding: 0,
-                }}
-              >
-                <Link
-                  href='/'
-                  underline='none'
-                  color='text.primary'
-                  variant='body1'
-                  noWrap
-                  sx={{
-                    flex: 1,
-                    padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
-                  }}
-                >
-                  <Trans id='Home' />
-                </Link>
-              </MenuItem>
-              {breadcrumbs.slice(0, breadcrumbs.length - 1).map((breadcrumb) => (
-                <MenuItem
-                  key={breadcrumb.key}
-                  sx={{
-                    minHeight: 'auto',
-                    padding: 0,
-                  }}
-                  onClick={handleClickAway}
-                >
-                  <Link
-                    {...breadcrumb}
-                    underline='none'
-                    color='text.primary'
-                    variant='body1'
-                    noWrap
-                    sx={{
-                      flex: 1,
-                      padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
-                    }}
-                  />
-                </MenuItem>
-              ))}
-              <Typography
-                component='li'
-                color='text.primary'
-                variant='body1'
-                fontWeight='600'
-                noWrap
-                sx={{
-                  padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
-                }}
-              >
-                {name}
-              </Typography>
-            </MenuList>
-          </ClickAwayListener>
+          <PopperBreadcrumbsList
+            autoFocus={Boolean(anchorElement)}
+            breadcrumbs={breadcrumbs}
+            name={name}
+            handleClickAway={handleClickAway}
+            handleKeyDown={handleKeyDown}
+          />
         </Box>
       </Popper>
     </>
