@@ -2,7 +2,7 @@ import { Trans } from '@lingui/react'
 import {
   Box,
   Breadcrumbs as BreadcrumbsBase,
-  Chip,
+  IconButton,
   ClickAwayListener,
   Link,
   MenuItem,
@@ -75,28 +75,27 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       >
-        <Chip
+        <IconButton
           aria-describedby={anchorElement ? 'simple-popper' : undefined}
           ref={anchorRef}
-          component='button'
-          variant='outlined'
           color='default'
-          label={<IconSvg src={anchorElement ? iconClose : iconEllypsis} />}
           onClick={handleClick}
           sx={{
             borderRadius: 2,
-            padding: 0,
+            border: `1px solid ${theme.palette.divider}`,
+            boxShadow: 1,
+            color: 'text.primary',
             display: {
               xs: breadcrumbs.length ? 'flex' : 'none',
               md: breadcrumbs.length >= numOfBreadcrumbsToShow ? 'flex' : 'none',
             },
-            '& .MuiChip-label': {
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            },
+            px: 1.5,
+            py: 0.7,
+            typography: 'caption',
           }}
-        />
+        >
+          <IconSvg src={anchorElement ? iconClose : iconEllypsis} />
+        </IconButton>
         {breadcrumbs.length <= 1 && (
           <Link href='/' underline='hover' color='text.primary' variant='body1'>
             <Trans id='Home' />
