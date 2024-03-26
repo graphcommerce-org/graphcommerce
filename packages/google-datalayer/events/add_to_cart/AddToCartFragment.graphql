@@ -1,5 +1,10 @@
 fragment AddToCartFragment on Cart @inject(into: ["CartItemCountChanged"]) {
   items {
+    quantity
+    product {
+      sku
+      name
+    }
     prices {
       discounts {
         amount {
@@ -15,6 +20,11 @@ fragment AddToCartFragment on Cart @inject(into: ["CartItemCountChanged"]) {
         currency
         value
       }
+    }
+  }
+  prices {
+    grand_total {
+      currency
     }
   }
 }

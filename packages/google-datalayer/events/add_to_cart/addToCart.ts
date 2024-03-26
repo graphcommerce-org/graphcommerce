@@ -1,33 +1,40 @@
 import { AddProductsToCartMutationVariables } from '@graphcommerce/magento-product'
+import { nonNullable } from '@graphcommerce/next-ui'
 import { event } from '../../lib/event'
 import { AddToCartFragment } from './AddToCartFragment.gql'
 
 export const addToCart = (
-  items: AddToCartFragment,
+  cart: AddToCartFragment,
   variables: AddProductsToCartMutationVariables,
 ) => {
-  const firstItem = items?.[0]
-  if (!firstItem || !firstItem.prices || !firstItem.prices.row_total_including_tax.value)
-    return undefined
-
-  const pricePerItemInclTax = firstItem.prices.row_total_including_tax.value / firstItem.quantity
-  const addToCartValue = pricePerItemInclTax * variables.cartItems[0].quantity
+  const itemsInCart = variables.cartItems.map((request) => ({
+    request,
+    result: cart.items?.find((item) => item?.product.sku === request.sku),
+  }))
 
   return event('add_to_cart', {
-    currency: items?.[0]?.prices?.price.currency,
-    value: addToCartValue,
-    items: [
-      {
-        item_id: firstItem.product.sku,
-        item_name: firstItem.product.name,
-        currency: firstItem.prices?.price.currency,
-        price: pricePerItemInclTax,
-        quantity: variables.cartItems[0].quantity,
-        discount: firstItem.prices?.discounts?.reduce(
-          (sum, discount) => sum + (discount?.amount?.value ?? 0),
-          0,
-        ),
-      },
-    ],
+    currency: cart.prices?.grand_total?.currency,
+    value: itemsInCart.reduce(
+      (sum, { request, result }) =>
+        sum + (result?.prices?.row_total_including_tax.value ?? 1) / request.quantity,
+      0,
+    ),
+    items: itemsInCart
+      .map(({ request, result }) => {
+        if (!result) return null
+        const { product, prices } = result
+        return {
+          item_id: product.sku,
+          item_name: product.name,
+          currency: prices?.price.currency,
+          price: (prices?.row_total_including_tax.value ?? 1) / request.quantity,
+          quantity: request.quantity,
+          discount: prices?.discounts?.reduce(
+            (sum, discount) => sum + (discount?.amount?.value ?? 0) / request.quantity,
+            0,
+          ),
+        }
+      })
+      .filter(nonNullable),
   })
 }
