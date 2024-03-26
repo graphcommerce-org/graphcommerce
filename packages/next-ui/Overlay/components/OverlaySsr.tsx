@@ -31,6 +31,7 @@ export function OverlaySsr(props: OverlayProps) {
     <OverlayContainer active={active} hidden={hidden}>
       <ScrollerProvider {...variantsToScrollSnapType(props)}>
         <OverlayBase
+          disableInert
           variantMd={variantMd}
           variantSm={variantSm}
           active={active}
