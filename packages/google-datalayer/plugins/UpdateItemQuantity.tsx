@@ -5,7 +5,6 @@ import { event } from '../lib/event'
 export const component = 'UpdateItemQuantity'
 export const exported =
   '@graphcommerce/magento-cart-items/components/UpdateItemQuantity/UpdateItemQuantity'
-export const ifConfig: IfConfig = 'analytics'
 
 /**
  * When a product is added to the Cart, by using the + button on cart page, send a Google Analytics

@@ -5,7 +5,6 @@ import { removeFromCart } from '../events/remove_from_cart'
 export const component = 'RemoveItemFromCart'
 export const exported =
   '@graphcommerce/magento-cart-items/components/RemoveItemFromCart/RemoveItemFromCart'
-export const ifConfig: IfConfig = 'analytics'
 
 export const RemoveItemFromCart: ReactPlugin<typeof Original> = (props) => {
   const { Prev, uid, quantity, prices, product, buttonProps } = props

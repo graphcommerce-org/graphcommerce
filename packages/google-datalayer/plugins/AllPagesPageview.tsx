@@ -6,7 +6,6 @@ import { event } from '../lib/event'
 
 export const component = 'FramerNextPages'
 export const exported = '@graphcommerce/framer-next-pages'
-export const ifConfig: IfConfig = 'analytics'
 
 function AllPagesPageview(props: PluginProps<PagesProps>) {
   const { Prev, ...rest } = props

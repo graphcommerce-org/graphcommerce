@@ -6,7 +6,6 @@ import { addPaymentInfo } from '../events/add_payment_info'
 
 export const component = 'PaymentMethodButton'
 export const exported = '@graphcommerce/magento-cart-payment-method'
-export const ifConfig: IfConfig = 'analytics'
 
 // @todo This plugin can probably be migrated to the actual form that is submitted.
 function PaymentMethodButton(props: PluginProps<PaymentMethodButtonProps>) {
