@@ -3,6 +3,11 @@ extend input GraphCommerceConfig {
   Configuration for the SidebarGallery component
   """
   sidebarGallery: SidebarGalleryConfig
+
+  """
+  Configuration for the SidebarGallery component
+  """
+  breadcrumbsVariant: BreadcrumbsVariant = BACK_BUTTON
 }
 
 """
@@ -21,4 +26,13 @@ input SidebarGalleryConfig {
   Variant used for the pagination
   """
   paginationVariant: SidebarGalleryPaginationVariant
+}
+
+"""
+Enumeration of all possible styles for the Breadcrumbs.
+"""
+enum BreadcrumbsVariant {
+  BACK_BUTTON
+  DEFAULT
+  POPPER
 }
