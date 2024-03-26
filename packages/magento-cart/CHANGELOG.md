@@ -1,5 +1,25 @@
 # Change Log
 
+## 8.0.4-canary.0
+
+### Patch Changes
+
+- [#2221](https://github.com/graphcommerce-org/graphcommerce/pull/2221) [`0ba1fdc`](https://github.com/graphcommerce-org/graphcommerce/commit/0ba1fdc9a2d005f47cd1725fe723e77da4cc5b9d) - After a user just logged in the checkout, the useFormGqlMutationCart would still run even though the cart was locked.
+  ([@paales](https://github.com/paales))
+
+## 8.0.3
+
+### Patch Changes
+
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`d67c89d`](https://github.com/graphcommerce-org/graphcommerce/commit/d67c89d464a60f0e2618dab670b63a39f6291341) - Deprecate the allowUrl option for useCartQuery, it was already enabled by default and should never be set to false.
+  ([@paales](https://github.com/paales))
+
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`3fbf3da`](https://github.com/graphcommerce-org/graphcommerce/commit/3fbf3da8a67f2fbaa7fa974a37cbbf34613844e4) - Solve an issue where the user would be presented with the Session expired dialog when the user would be logging in during the checkout process.
+  ([@paales](https://github.com/paales))
+
+- [#2207](https://github.com/graphcommerce-org/graphcommerce/pull/2207) [`9876b13`](https://github.com/graphcommerce-org/graphcommerce/commit/9876b139b2c12c860a16af97eddea761d1059110) - Remove redundant query on the success page for logged in customers
+  ([@paales](https://github.com/paales))
+
 ## 8.0.3-canary.6
 
 ## 8.0.3-canary.5

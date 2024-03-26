@@ -5,7 +5,7 @@ import type { PageItem } from '../types'
 
 declare module 'react' {
   interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
-    inert?: 'true'
+    inert?: boolean | undefined
   }
 }
 
@@ -42,7 +42,7 @@ export function Page(props: PageProps) {
     <m.div
       layoutScroll
       style={{ position, top, zIndex, minHeight: dvh(100), left: 0, right: 0 }}
-      inert={!active ? 'true' : undefined}
+      inert={!active ? true : undefined}
       data-nosnippet={!active ? true : undefined}
       aria-hidden={!active ? true : undefined}
     >
