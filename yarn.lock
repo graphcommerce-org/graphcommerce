@@ -2815,35 +2815,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/analytics@npm:8.0.0-canary.74, @graphcommerce/analytics@workspace:packages/analytics":
-  version: 0.0.0-use.local
-  resolution: "@graphcommerce/analytics@workspace:packages/analytics"
-  peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.0-canary.74
-    "@graphcommerce/graphql-mesh": ^8.0.0-canary.74
-    "@graphcommerce/magento-cart": ^8.0.0-canary.74
-    "@graphcommerce/magento-cart-shipping-method": ^8.0.0-canary.74
-    "@graphcommerce/magento-product": ^8.0.0-canary.74
-    "@graphcommerce/next-config": ^8.0.0-canary.74
-    "@graphcommerce/next-ui": ^8.0.0-canary.74
-    "@graphcommerce/prettier-config-pwa": ^8.0.0-canary.74
-    "@graphcommerce/typescript-config-pwa": ^8.0.0-canary.74
-    "@mui/material": ^5.14.20
-    next: ^14
-    react: ^18.2.0
-    react-dom: ^18.2.0
-  peerDependenciesMeta:
-    "@graphcommerce/magento-cart":
-      optional: true
-    "@graphcommerce/magento-cart-payment-method":
-      optional: true
-    "@graphcommerce/magento-cart-shipping-method":
-      optional: true
-    "@graphcommerce/magento-product":
-      optional: true
-  languageName: unknown
-  linkType: soft
-
 "@graphcommerce/browserslist-config-pwa@workspace:packagesDev/browserslist-config":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/browserslist-config-pwa@workspace:packagesDev/browserslist-config"
@@ -3096,7 +3067,36 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/googleanalytics@npm:8.0.0-canary.74, @graphcommerce/googleanalytics@workspace:packages/googleanalytics":
+"@graphcommerce/google-datalayer@npm:8.0.3-canary.2, @graphcommerce/google-datalayer@workspace:packages/datalayer":
+  version: 0.0.0-use.local
+  resolution: "@graphcommerce/google-datalayer@workspace:packages/datalayer"
+  peerDependencies:
+    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.2
+    "@graphcommerce/graphql-mesh": ^8.0.3-canary.2
+    "@graphcommerce/magento-cart": ^8.0.3-canary.2
+    "@graphcommerce/magento-cart-shipping-method": ^8.0.3-canary.2
+    "@graphcommerce/magento-product": ^8.0.3-canary.2
+    "@graphcommerce/next-config": ^8.0.3-canary.2
+    "@graphcommerce/next-ui": ^8.0.3-canary.2
+    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.2
+    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.2
+    "@mui/material": ^5.14.20
+    next: ^14
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  peerDependenciesMeta:
+    "@graphcommerce/magento-cart":
+      optional: true
+    "@graphcommerce/magento-cart-payment-method":
+      optional: true
+    "@graphcommerce/magento-cart-shipping-method":
+      optional: true
+    "@graphcommerce/magento-product":
+      optional: true
+  languageName: unknown
+  linkType: soft
+
+"@graphcommerce/googleanalytics@npm:8.0.3-canary.2, @graphcommerce/googleanalytics@workspace:packages/googleanalytics":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/googleanalytics@workspace:packages/googleanalytics"
   dependencies:
@@ -3846,66 +3846,66 @@ __metadata:
   dependencies:
     "@apollo/client": "npm:~3.8.8"
     "@ducanh2912/next-pwa": "npm:9.7.2"
-    "@graphcommerce/analytics": "npm:8.0.0-canary.74"
-    "@graphcommerce/cli": "npm:8.0.0-canary.74"
-    "@graphcommerce/demo-magento-graphcommerce": "npm:8.0.0-canary.74"
-    "@graphcommerce/ecommerce-ui": "npm:8.0.0-canary.74"
-    "@graphcommerce/eslint-config-pwa": "npm:8.0.0-canary.74"
-    "@graphcommerce/framer-next-pages": "npm:8.0.0-canary.74"
-    "@graphcommerce/framer-scroller": "npm:8.0.0-canary.74"
-    "@graphcommerce/framer-utils": "npm:8.0.0-canary.74"
-    "@graphcommerce/googleanalytics": "npm:8.0.0-canary.74"
-    "@graphcommerce/googlerecaptcha": "npm:8.0.0-canary.74"
-    "@graphcommerce/googletagmanager": "npm:8.0.0-canary.74"
-    "@graphcommerce/graphcms-ui": "npm:8.0.0-canary.74"
-    "@graphcommerce/graphql": "npm:8.0.0-canary.74"
-    "@graphcommerce/graphql-mesh": "npm:8.0.0-canary.74"
-    "@graphcommerce/hygraph-cli": "npm:8.0.0-canary.74"
-    "@graphcommerce/hygraph-dynamic-rows": "npm:8.0.0-canary.74"
-    "@graphcommerce/image": "npm:8.0.0-canary.74"
-    "@graphcommerce/lingui-next": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-cart": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-cart-billing-address": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-cart-checkout": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-cart-coupon": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-cart-email": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-cart-items": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-cart-payment-method": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-cart-shipping-address": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-cart-shipping-method": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-category": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-cms": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-compare": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-customer": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-graphql": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-newsletter": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-payment-included": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-product": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-product-bundle": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-product-configurable": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-product-downloadable": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-product-grouped": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-product-simple": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-product-virtual": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-recently-viewed-products": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-review": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-search": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-store": "npm:8.0.0-canary.74"
-    "@graphcommerce/magento-wishlist": "npm:8.0.0-canary.74"
-    "@graphcommerce/next-config": "npm:8.0.0-canary.74"
-    "@graphcommerce/next-ui": "npm:8.0.0-canary.74"
-    "@graphcommerce/prettier-config-pwa": "npm:8.0.0-canary.74"
-    "@graphcommerce/react-hook-form": "npm:8.0.0-canary.74"
-    "@graphcommerce/typescript-config-pwa": "npm:8.0.0-canary.74"
-    "@lingui/cli": "npm:4.6.0"
-    "@lingui/core": "npm:4.6.0"
-    "@lingui/macro": "npm:4.6.0"
-    "@lingui/react": "npm:4.6.0"
-    "@mui/lab": "npm:5.0.0-alpha.155"
-    "@mui/material": "npm:5.14.20"
-    "@next/env": "npm:14.0.4"
-    "@parcel/watcher": "npm:^2.3.0"
-    "@playwright/test": "npm:1.40.1"
+    "@graphcommerce/cli": "npm:8.0.3-canary.2"
+    "@graphcommerce/demo-magento-graphcommerce": "npm:8.0.3-canary.2"
+    "@graphcommerce/ecommerce-ui": "npm:8.0.3-canary.2"
+    "@graphcommerce/eslint-config-pwa": "npm:8.0.3-canary.2"
+    "@graphcommerce/framer-next-pages": "npm:8.0.3-canary.2"
+    "@graphcommerce/framer-scroller": "npm:8.0.3-canary.2"
+    "@graphcommerce/framer-utils": "npm:8.0.3-canary.2"
+    "@graphcommerce/google-datalayer": "npm:8.0.3-canary.2"
+    "@graphcommerce/googleanalytics": "npm:8.0.3-canary.2"
+    "@graphcommerce/googlerecaptcha": "npm:8.0.3-canary.2"
+    "@graphcommerce/googletagmanager": "npm:8.0.3-canary.2"
+    "@graphcommerce/graphcms-ui": "npm:8.0.3-canary.2"
+    "@graphcommerce/graphql": "npm:8.0.3-canary.2"
+    "@graphcommerce/graphql-mesh": "npm:8.0.3-canary.2"
+    "@graphcommerce/hygraph-cli": "npm:8.0.3-canary.2"
+    "@graphcommerce/hygraph-dynamic-rows": "npm:8.0.3-canary.2"
+    "@graphcommerce/image": "npm:8.0.3-canary.2"
+    "@graphcommerce/lingui-next": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-cart": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-cart-billing-address": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-cart-checkout": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-cart-coupon": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-cart-email": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-cart-items": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-cart-payment-method": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-cart-shipping-address": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-cart-shipping-method": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-category": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-cms": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-compare": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-customer": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-graphql": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-newsletter": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-payment-included": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-product": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-product-bundle": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-product-configurable": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-product-downloadable": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-product-grouped": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-product-simple": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-product-virtual": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-recently-viewed-products": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-review": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-search": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-store": "npm:8.0.3-canary.2"
+    "@graphcommerce/magento-wishlist": "npm:8.0.3-canary.2"
+    "@graphcommerce/next-config": "npm:8.0.3-canary.2"
+    "@graphcommerce/next-ui": "npm:8.0.3-canary.2"
+    "@graphcommerce/prettier-config-pwa": "npm:8.0.3-canary.2"
+    "@graphcommerce/react-hook-form": "npm:8.0.3-canary.2"
+    "@graphcommerce/typescript-config-pwa": "npm:8.0.3-canary.2"
+    "@lingui/cli": "npm:4.7.0"
+    "@lingui/core": "npm:4.7.0"
+    "@lingui/macro": "npm:4.7.0"
+    "@lingui/react": "npm:4.7.0"
+    "@mui/lab": "npm:5.0.0-alpha.161"
+    "@mui/material": "npm:5.15.5"
+    "@next/env": "npm:14.1.0"
+    "@parcel/watcher": "npm:^2.4.0"
+    "@playwright/test": "npm:1.41.0"
     "@types/node": "npm:^18"
     "@types/react": "npm:^18.2.43"
     "@types/react-dom": "npm:^18.2.17"

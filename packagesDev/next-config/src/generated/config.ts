@@ -28,8 +28,8 @@ export type CompareVariant =
 
 /** EventFormat is an enumatation of different event formats. This decides what the format of the event data will be. */
 export type EventFormat =
-  | 'GA4'
-  | 'LEGACY';
+  | 'GA3'
+  | 'GA4';
 
 /**
  * # GraphCommerce configuration system
@@ -440,7 +440,7 @@ export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny
 
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
-export const EventFormatSchema = z.enum(['GA4', 'LEGACY']);
+export const EventFormatSchema = z.enum(['GA3', 'GA4']);
 
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 

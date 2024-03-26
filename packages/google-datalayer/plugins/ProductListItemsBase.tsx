@@ -4,7 +4,7 @@ import { ItemList } from '../components/AnalyticsItemList'
 
 export const component = 'ProductListItemsBase'
 export const exported = '@graphcommerce/magento-product'
-export const ifConfig: IfConfig = 'googleTagmanagerId'
+export const ifConfig: IfConfig = 'analytics'
 
 export function ProductListItemsBase(props: PluginProps<ProductItemsGridProps>) {
   const { Prev, ...rest } = props

@@ -7,7 +7,7 @@ import { event } from '../lib/event'
 
 export const component = 'ProductPageMeta'
 export const exported = '@graphcommerce/magento-product'
-export const ifConfig: IfConfig = 'googleTagmanagerId'
+export const ifConfig: IfConfig = 'analytics'
 
 /** When a product is added to the Cart, send a Google Analytics event */
 function ViewItem(props: PluginProps<React.ComponentProps<typeof ProductPageMeta>>) {

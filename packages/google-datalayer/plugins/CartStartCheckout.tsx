@@ -4,7 +4,7 @@ import { beginCheckout } from '../events/begin_checkout'
 
 export const component = 'CartStartCheckout'
 export const exported = '@graphcommerce/magento-cart'
-export const ifConfig: IfConfig = 'googleAnalyticsId'
+export const ifConfig: IfConfig = 'analytics'
 
 export function CartStartCheckout(props: PluginProps<CartStartCheckoutProps>) {
   const { Prev, onStart, ...rest } = props

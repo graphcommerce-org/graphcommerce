@@ -7,7 +7,7 @@ import { viewCart } from '../events/view_cart'
 
 export const component = 'CartStartCheckoutLinkOrButton'
 export const exported = '@graphcommerce/magento-cart'
-export const ifConfig: IfConfig = 'googleTagmanagerId'
+export const ifConfig: IfConfig = 'analytics'
 
 export function CartStartCheckoutLinkOrButton(
   props: PluginProps<CartStartCheckoutLinkOrButtonProps>,

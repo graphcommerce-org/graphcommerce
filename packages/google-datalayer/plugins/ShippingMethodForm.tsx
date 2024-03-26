@@ -4,7 +4,7 @@ import { addShippingInfo } from '../events/add_shipping_info'
 
 export const component = 'ShippingMethodForm'
 export const exported = '@graphcommerce/magento-cart-shipping-method'
-export const ifConfig: IfConfig = 'googleTagmanagerId'
+export const ifConfig: IfConfig = 'analytics'
 
 /** When the ShippingMethod is submitted the result is sent to Google Analytics */
 export function ShippingMethodForm(props: PluginProps<ShippingMethodFormProps>) {

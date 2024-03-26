@@ -6,7 +6,7 @@ import { ComponentProps } from 'react'
 
 export const component = 'ProductListItemReal'
 export const exported = '@graphcommerce/magento-product'
-export const ifConfig: IfConfig = 'googleTagmanagerId'
+export const ifConfig: IfConfig = 'analytics'
 
 function ProductListItemsBase(props: PluginProps<ComponentProps<typeof ProductListItemReal>>) {
   const { Prev, onClick, ...rest } = props

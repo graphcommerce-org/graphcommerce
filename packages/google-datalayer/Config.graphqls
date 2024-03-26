@@ -6,7 +6,7 @@ extend input GraphCommerceConfig {
 EventFormat is an enumatation of different event formats. This decides what the format of the event data will be.
 """
 enum EventFormat {
-  LEGACY
+  GA3
   GA4
 }
 

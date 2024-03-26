@@ -3,7 +3,7 @@
 
 AnalyticsConfig will contain all configuration values for the analytics in GraphCommerce.
 
-#### eventFormat: GA4 | LEGACY[]
+#### eventFormat: GA3 | GA4[]
 
 eventFormat contains the list of fired and formatted events
 

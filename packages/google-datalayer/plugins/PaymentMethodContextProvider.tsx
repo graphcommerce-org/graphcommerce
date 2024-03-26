@@ -4,7 +4,7 @@ import { purchase } from '../events/purchase'
 
 export const component = 'PaymentMethodContextProvider'
 export const exported = '@graphcommerce/magento-cart-payment-method'
-export const ifConfig: IfConfig = 'googleTagmanagerId'
+export const ifConfig: IfConfig = 'analytics'
 
 function PaymentMethodContextProvider(props: PluginProps<PaymentMethodContextProviderProps>) {
   const { Prev, onSuccess, ...rest } = props

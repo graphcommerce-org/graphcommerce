@@ -30,6 +30,7 @@
     "@graphcommerce/googleanalytics": "8.0.4-canary.0",
     "@graphcommerce/googlerecaptcha": "8.0.4-canary.0",
     "@graphcommerce/googletagmanager": "8.0.4-canary.0",
+    "@graphcommerce/google-datalayer": "8.0.4-canary.0",
     "@graphcommerce/graphcms-ui": "8.0.4-canary.0",
     "@graphcommerce/graphql": "8.0.4-canary.0",
     "@graphcommerce/graphql-mesh": "8.0.4-canary.0",

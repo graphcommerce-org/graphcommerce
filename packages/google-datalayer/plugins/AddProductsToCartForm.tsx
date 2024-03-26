@@ -4,7 +4,7 @@ import { addToCart } from '../events/add_to_cart'
 
 export const component = 'AddProductsToCartForm'
 export const exported = '@graphcommerce/magento-product'
-export const ifConfig: IfConfig = 'googleTagmanagerId'
+export const ifConfig: IfConfig = 'analytics'
 
 /** When a product is added to the Cart, send a Google Analytics event */
 function AddProductsToCartForm(props: PluginProps<AddProductsToCartFormProps>) {
