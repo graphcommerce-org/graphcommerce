@@ -1,11 +1,11 @@
 import { CartStartCheckoutProps } from '@graphcommerce/magento-cart'
-import { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import { PluginProps } from '@graphcommerce/next-config'
 import { beginCheckout } from '../events/begin_checkout'
 
 export const component = 'CartStartCheckout'
 export const exported = '@graphcommerce/magento-cart'
 
-export function CartStartCheckout(props: PluginProps<CartStartCheckoutProps>) {
+export function GoogleDatalayerCartStartCheckout(props: PluginProps<CartStartCheckoutProps>) {
   const { Prev, onStart, ...rest } = props
   return (
     <Prev
@@ -18,4 +18,4 @@ export function CartStartCheckout(props: PluginProps<CartStartCheckoutProps>) {
   )
 }
 
-export const Plugin = CartStartCheckout
+export const Plugin = GoogleDatalayerCartStartCheckout

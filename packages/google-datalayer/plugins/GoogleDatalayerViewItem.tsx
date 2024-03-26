@@ -1,5 +1,5 @@
 import type { ProductPageMeta } from '@graphcommerce/magento-product'
-import { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import { PluginProps } from '@graphcommerce/next-config'
 import { useMemoObject } from '@graphcommerce/next-ui'
 import React, { useEffect } from 'react'
 import { productToItem } from '../lib'
@@ -9,7 +9,7 @@ export const component = 'ProductPageMeta'
 export const exported = '@graphcommerce/magento-product'
 
 /** When a product is added to the Cart, send a Google Analytics event */
-function ViewItem(props: PluginProps<React.ComponentProps<typeof ProductPageMeta>>) {
+function GoogleDatalayerViewItem(props: PluginProps<React.ComponentProps<typeof ProductPageMeta>>) {
   const { Prev, product } = props
   const { price_range } = product
 
@@ -26,4 +26,4 @@ function ViewItem(props: PluginProps<React.ComponentProps<typeof ProductPageMeta
   return <Prev {...props} />
 }
 
-export const Plugin = ViewItem
+export const Plugin = GoogleDatalayerViewItem

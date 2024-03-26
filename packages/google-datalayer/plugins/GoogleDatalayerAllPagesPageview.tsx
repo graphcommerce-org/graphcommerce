@@ -1,5 +1,5 @@
 import type { PagesProps } from '@graphcommerce/framer-next-pages'
-import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import type { PluginProps } from '@graphcommerce/next-config'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { event } from '../lib/event'
@@ -7,7 +7,7 @@ import { event } from '../lib/event'
 export const component = 'FramerNextPages'
 export const exported = '@graphcommerce/framer-next-pages'
 
-function AllPagesPageview(props: PluginProps<PagesProps>) {
+function GoogleDatalayerAllPagesPageview(props: PluginProps<PagesProps>) {
   const { Prev, ...rest } = props
 
   const { events } = useRouter()
@@ -34,4 +34,4 @@ function AllPagesPageview(props: PluginProps<PagesProps>) {
   return <Prev {...rest} />
 }
 
-export const Plugin = AllPagesPageview
+export const Plugin = GoogleDatalayerAllPagesPageview

@@ -1,5 +1,5 @@
 import type { UpdateItemQuantityProps } from '@graphcommerce/magento-cart-items'
-import { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import { PluginProps } from '@graphcommerce/next-config'
 import { event } from '../lib/event'
 
 export const component = 'UpdateItemQuantity'
@@ -10,7 +10,7 @@ export const exported =
  * When a product is added to the Cart, by using the + button on cart page, send a Google Analytics
  * event
  */
-function UpdateItemQuantity(props: PluginProps<UpdateItemQuantityProps>) {
+function GoogleDatalayerUpdateItemQuantity(props: PluginProps<UpdateItemQuantityProps>) {
   const { Prev, formOptions, quantity, ...rest } = props
 
   return (
@@ -62,4 +62,4 @@ function UpdateItemQuantity(props: PluginProps<UpdateItemQuantityProps>) {
   )
 }
 
-export const Plugin = UpdateItemQuantity
+export const Plugin = GoogleDatalayerUpdateItemQuantity
