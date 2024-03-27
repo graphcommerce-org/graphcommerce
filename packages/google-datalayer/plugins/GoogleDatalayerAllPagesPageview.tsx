@@ -24,7 +24,7 @@ function GoogleDatalayerAllPagesPageview(props: PluginProps<PagesProps>) {
       //   page_title: '<Page Title>',
       //   page_location: '<Page Location>',
       // })
-      event('pageview', { page: url })
+      // event('pageview', { page: url })
     }
 
     events.on('routeChangeComplete', onRouteChangeComplete)
