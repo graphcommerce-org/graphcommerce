@@ -80,7 +80,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
 
   if (isNavigationButton(props)) {
     const { childItems, name, href } = props
-    const skipChildren = itemPath.length + 1 > serverRenderDepth && !isSelected && !!href
+    const skipChildren = itemPath.length > serverRenderDepth && !isSelected && !!href
 
     return (
       <NavigationLI className={classes.li}>
