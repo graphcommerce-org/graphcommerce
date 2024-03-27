@@ -15,6 +15,7 @@ it('resolves dependences', () => {
       "@graphcommerce/magento-cart-shipping-method" => "packages/magento-cart-shipping-method",
       "@graphcommerce/googlerecaptcha" => "packages/googlerecaptcha",
       "@graphcommerce/googletagmanager" => "packages/googletagmanager",
+      "@graphcommerce/google-datalayer" => "packages/google-datalayer",
       "@graphcommerce/graphcms-ui" => "packages/hygraph-ui",
       "@graphcommerce/lingui-next" => "packages/lingui-next",
       "@graphcommerce/next-config" => "packagesDev/next-config",

@@ -11,6 +11,9 @@
       "project": "./tsconfig.json"
     }
   },
+  "dependencies": {
+    "@graphcommerce/google-datalayer": "8.0.4-canary.0"
+  },
   "devDependencies": {
     "@types/gapi.client.tagmanager": "^2.0.4"
   },
@@ -19,6 +22,7 @@
     "@graphcommerce/next-ui": "^8.0.4-canary.0",
     "@graphcommerce/prettier-config-pwa": "^8.0.4-canary.0",
     "@graphcommerce/typescript-config-pwa": "^8.0.4-canary.0",
+    "@mui/material": "^5.10.16",
     "next": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
