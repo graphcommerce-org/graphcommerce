@@ -22,6 +22,12 @@ export type AnalyticsConfig = {
   eventFormat?: InputMaybe<Array<EventFormat>>;
 };
 
+/** Enumeration of all possible styles for the Breadcrumbs. */
+export type BreadcrumbsVariant =
+  | 'BACK_BUTTON'
+  | 'DEFAULT'
+  | 'POPPER';
+
 export type CompareVariant =
   | 'CHECKBOX'
   | 'ICON';
@@ -110,6 +116,8 @@ export type EventFormat =
  */
 export type GraphCommerceConfig = {
   analytics?: InputMaybe<AnalyticsConfig>;
+  /** Configuration for the SidebarGallery component */
+  breadcrumbsVariant?: InputMaybe<BreadcrumbsVariant>;
   /**
    * The canonical base URL is used for SEO purposes.
    *
@@ -438,6 +446,8 @@ export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== und
 
 export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v));
 
+export const BreadcrumbsVariantSchema = z.enum(['BACK_BUTTON', 'DEFAULT', 'POPPER']);
+
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
 export const EventFormatSchema = z.enum(['GA3', 'GA4']);
@@ -455,6 +465,7 @@ export function AnalyticsConfigSchema(): z.ZodObject<Properties<AnalyticsConfig>
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
     analytics: AnalyticsConfigSchema().nullish(),
+    breadcrumbsVariant: BreadcrumbsVariantSchema.nullish(),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     compare: z.boolean().nullish(),

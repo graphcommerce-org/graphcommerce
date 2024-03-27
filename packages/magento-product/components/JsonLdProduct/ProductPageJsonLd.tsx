@@ -8,5 +8,5 @@ type ProductPageJsonLdProps<T extends { '@type': string }> = {
 
 export function ProductPageJsonLd<T extends { '@type': string }>(props: ProductPageJsonLdProps<T>) {
   const { product, render } = props
-  return <JsonLd<T> item={render(product)} />
+  return <JsonLd<T> item={render(product)} keyVal='product-jsonld' />
 }

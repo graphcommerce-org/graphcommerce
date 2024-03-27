@@ -1,2 +1,2 @@
-export * from './CategoryBreadcrumb'
 export * from './CategoryBreadcrumb.gql'
+export * from './CategoryBreadcrumb'

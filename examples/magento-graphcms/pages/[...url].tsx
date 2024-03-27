@@ -2,6 +2,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
+  CategoryBreadcrumb,
   CategoryChildren,
   CategoryDescription,
   CategoryHeroNav,
@@ -67,6 +68,18 @@ function CategoryPage(props: CategoryProps) {
           {category?.name ?? page.title}
         </LayoutTitle>
       </LayoutHeader>
+
+      {isCategory && (
+        <Container maxWidth={false}>
+          <CategoryBreadcrumb
+            name={category?.name}
+            uid={category?.uid}
+            url_path={category?.url_path}
+            breadcrumbs={category?.breadcrumbs}
+          />
+        </Container>
+      )}
+
       {!isLanding && (
         <Container maxWidth={false}>
           <LayoutTitle
