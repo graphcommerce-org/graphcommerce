@@ -75,9 +75,11 @@
     "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "8.0.3",
     "@graphcommerce/next-config": "8.0.3",
     "@graphcommerce/prettier-config-pwa": "8.0.3",
-    "@graphcommerce/typescript-config-pwa": "8.0.3"
+    "@graphcommerce/typescript-config-pwa": "8.0.3",
+    "@graphcommerce/google-datalayer": "8.0.4-canary.0"
   },
   "changesets": [
+    "flat-wombats-lie",
     "hot-pets-dress",
     "rotten-rules-reflect",
     "silly-hotels-visit"
