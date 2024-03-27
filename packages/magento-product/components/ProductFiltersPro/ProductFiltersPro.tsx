@@ -1,7 +1,8 @@
 import { useForm, UseFormProps, UseFormReturn } from '@graphcommerce/ecommerce-ui'
-import { useMemoObject } from '@graphcommerce/next-ui'
+import { useMatchMedia, useMemoObject } from '@graphcommerce/next-ui'
 import { useEventCallback } from '@mui/material'
-import React, { BaseSyntheticEvent, createContext, useContext, useMemo } from 'react'
+import { useRouter } from 'next/router'
+import React, { BaseSyntheticEvent, createContext, useContext, useEffect, useMemo } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
 import {
@@ -50,11 +51,41 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
   const defaultValues = useMemoObject(toFilterParams(params))
   const form = useForm<ProductFilterParams>({ defaultValues, ...formProps })
 
-  const push = useProductListLinkReplace({ scroll: false })
+  const matchMedia = useMatchMedia()
+  const router = useRouter()
+
+  const push = useProductListLinkReplace()
+
+  // compensate for sticky header on mobile screens when scrolling to '#products'
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      if (matchMedia.down('md') && url.includes('#products')) {
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            window.scrollBy(
+              0,
+              (document.querySelector('.LayoutHeader-root')?.getBoundingClientRect().height ?? 0) *
+                -1,
+            )
+          })
+        })
+      }
+    }
+
+    router.events.on('routeChangeComplete', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [matchMedia, router])
+
   const submit = useEventCallback(
-    form.handleSubmit(async (formValues) =>
-      push({ ...toProductListParams(formValues), currentPage: 1 }),
-    ),
+    form.handleSubmit(async (formValues) => {
+      const scroll = !(
+        import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && matchMedia.up('md')
+      )
+      return push({ ...toProductListParams(formValues), currentPage: 1 }, { scroll })
+    }),
   )
 
   const filterFormContext: FilterFormContextProps = useMemo(
