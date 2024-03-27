@@ -85,7 +85,7 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
             components={{ 0: <strong /> }}
             values={{
               name: formatter.format(
-                addedItems.map((item) => item.cartItem?.product.name).filter(nonNullable),
+                addedItems.map((item) => item?.itemInCart?.product.name).filter(nonNullable),
               ),
             }}
           />
