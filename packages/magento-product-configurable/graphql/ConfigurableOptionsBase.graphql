@@ -1,0 +1,34 @@
+fragment ConfigurableOptionsBase on ConfigurableProduct @injectable {
+  __typename
+  uid
+  sku
+  name
+  url_key
+  price_range {
+    minimum_price {
+      final_price {
+        ...Money
+      }
+      regular_price {
+        ...Money
+      }
+    }
+  }
+  configurable_options {
+    attribute_code
+    uid
+    label
+    position
+    use_default
+    values {
+      ...ConfigurableOptionValue
+    }
+  }
+  configurable_product_options_selection {
+    options_available_for_selection {
+      attribute_code
+      option_value_uids
+    }
+  }
+  ...ProductPageDescription
+}

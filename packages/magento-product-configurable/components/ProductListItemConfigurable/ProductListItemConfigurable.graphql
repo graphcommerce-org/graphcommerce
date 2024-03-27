@@ -13,19 +13,4 @@ fragment ProductListItemConfigurable on ConfigurableProduct @inject(into: ["Prod
       }
     }
   }
-  variants {
-    attributes {
-      value_index
-      uid
-      code
-    }
-    product {
-      uid
-      sku
-      name
-      small_image {
-        ...ProductImage
-      }
-    }
-  }
 }
