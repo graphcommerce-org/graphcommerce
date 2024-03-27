@@ -12,10 +12,9 @@ function GoogleDatalayerAddProductsToCartForm(props: PluginProps<AddProductsToCa
   return (
     <Prev
       {...rest}
-      onComplete={(data, variables) => {
-        if (data.data?.addProductsToCart?.cart)
-          addToCart(data.data.addProductsToCart.cart, variables)
-        return onComplete?.(data, variables)
+      onComplete={(result, variables) => {
+        addToCart(result, variables)
+        return onComplete?.(result, variables)
       }}
     />
   )

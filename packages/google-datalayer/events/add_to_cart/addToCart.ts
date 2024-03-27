@@ -1,40 +1,61 @@
-import { AddProductsToCartMutationVariables } from '@graphcommerce/magento-product'
+import type { FetchResult } from '@graphcommerce/graphql'
+import {
+  AddProductsToCartFields,
+  AddProductsToCartMutation,
+  findAddedItems,
+  toUserErrors,
+} from '@graphcommerce/magento-product'
 import { nonNullable } from '@graphcommerce/next-ui'
 import { event } from '../../lib/event'
-import { AddToCartFragment } from './AddToCartFragment.gql'
 
 export const addToCart = (
-  cart: AddToCartFragment,
-  variables: AddProductsToCartMutationVariables,
+  result: FetchResult<AddProductsToCartMutation>,
+  variables: AddProductsToCartFields,
 ) => {
-  const itemsInCart = variables.cartItems.map((request) => ({
-    request,
-    result: cart.items?.find((item) => item?.product.sku === request.sku),
-  }))
+  const { data, errors } = result
+  const cart = data?.addProductsToCart?.cart
 
-  return event('add_to_cart', {
-    currency: cart.prices?.grand_total?.currency,
-    value: itemsInCart.reduce(
-      (sum, { request, result }) =>
-        sum + (result?.prices?.row_total_including_tax.value ?? 1) / request.quantity,
+  const addedItems = findAddedItems(data, variables)
+
+  const items = addedItems
+    .map(({ itemVariable, itemInCart }) => {
+      if (!itemInCart) return null
+      const { product, prices } = itemInCart
+      return {
+        item_id: product.sku,
+        item_name: product.name,
+        currency: prices?.price.currency,
+        price: (prices?.row_total_including_tax.value ?? 1) / itemInCart.quantity,
+        quantity: itemVariable.quantity,
+        discount: prices?.discounts?.reduce(
+          (sum, discount) => sum + (discount?.amount?.value ?? 0) / itemVariable.quantity,
+          0,
+        ),
+      }
+    })
+    .filter(nonNullable)
+
+  const userErrors = toUserErrors(result.data)
+  if ((errors && errors.length > 0) || userErrors.length > 0) {
+    event('add_to_cart_error', {
+      userErrors: userErrors?.map((e) => e.message),
+      errors: errors?.map((e) => e.message),
+      variables,
+    })
+  }
+
+  if (!items.length) {
+    console.log('successfull but no items')
+    return
+  }
+
+  event('add_to_cart', {
+    currency: cart?.prices?.grand_total?.currency,
+    value: addedItems.reduce(
+      (sum, { itemVariable, itemInCart }) =>
+        sum + (itemInCart?.prices?.row_total_including_tax.value ?? 1) / itemVariable.quantity,
       0,
     ),
-    items: itemsInCart
-      .map(({ request, result }) => {
-        if (!result) return null
-        const { product, prices } = result
-        return {
-          item_id: product.sku,
-          item_name: product.name,
-          currency: prices?.price.currency,
-          price: (prices?.row_total_including_tax.value ?? 1) / request.quantity,
-          quantity: request.quantity,
-          discount: prices?.discounts?.reduce(
-            (sum, discount) => sum + (discount?.amount?.value ?? 0) / request.quantity,
-            0,
-          ),
-        }
-      })
-      .filter(nonNullable),
+    items,
   })
 }

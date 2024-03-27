@@ -4,14 +4,16 @@ import {
   Button,
   ErrorSnackbar,
   ErrorSnackbarProps,
-  filterNonNullableKeys,
   iconChevronRight,
   IconSvg,
   MessageSnackbar,
   MessageSnackbarProps,
+  nonNullable,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { useRouter } from 'next/router'
+import { useMemo } from 'react'
+import { findAddedItems } from './findAddedItems'
 import { toUserErrors } from './toUserErrors'
 import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
@@ -37,14 +39,10 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
     !userErrors.length &&
     !redirect
 
-  const items = filterNonNullableKeys(data?.addProductsToCart?.cart.items)
-
-  const productsAdded = items
-    .filter(
-      (item) =>
-        submittedVariables?.cartItems?.find((cartItem) => cartItem.sku === item.product.sku),
-    )
-    .map((product) => product.product.name || '')
+  const addedItems = useMemo(
+    () => findAddedItems(data, submittedVariables),
+    [data, submittedVariables],
+  )
 
   const showErrorSnackbar = userErrors.length > 0
 
@@ -80,13 +78,15 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
         >
           <Trans
             id={
-              productsAdded.length === 1
+              addedItems.length === 1
                 ? '<0>{name}</0> has been added to your shopping cart!'
                 : '<0>{name}</0> have been added to your shopping cart!'
             }
             components={{ 0: <strong /> }}
             values={{
-              name: formatter.format(productsAdded),
+              name: formatter.format(
+                addedItems.map((item) => item.cartItem?.product.name).filter(nonNullable),
+              ),
             }}
           />
         </MessageSnackbar>
