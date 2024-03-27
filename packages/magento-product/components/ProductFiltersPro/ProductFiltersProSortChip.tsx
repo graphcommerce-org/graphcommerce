@@ -1,6 +1,5 @@
 import { useWatch } from '@graphcommerce/ecommerce-ui'
-import { useQuery } from '@graphcommerce/graphql'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { ProductAttributeSortInput } from '@graphcommerce/graphql-mesh'
 import {
   ActionCard,
   ActionCardListForm,
@@ -9,34 +8,47 @@ import {
   filterNonNullableKeys,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { ProductListSortFragment } from '../ProductListSort/ProductListSort.gql'
 import { useProductFiltersPro } from './ProductFiltersPro'
+import { ProductFiltersProSortDirectionArrow } from './ProductFiltersProSortDirectionArrow'
+import { handleSort } from './handleSort'
 
 export type ProductListActionSortProps = ProductListSortFragment &
   Omit<
     ChipOverlayOrPopperProps,
     'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
-  >
+  > & {
+    defaultSortBy: keyof ProductAttributeSortInput
+  }
 
 export function ProductFiltersProSortChip(props: ProductListActionSortProps) {
-  const { sort_fields, chipProps, ...rest } = props
+  const { sort_fields, chipProps, defaultSortBy, ...rest } = props
   const { params, form, submit } = useProductFiltersPro()
   const { control } = form
   const activeSort = useWatch({ control, name: 'sort' })
-
-  const { data: storeConfigQuery } = useQuery(StoreConfigDocument)
-  const defaultSort = storeConfigQuery?.storeConfig?.catalog_default_sort_by
+  const sortDirection = useWatch({ control, name: 'dir' })
 
   const options = useMemo(
     () =>
       filterNonNullableKeys(sort_fields?.options, ['value', 'label']).map((option) => ({
         ...option,
-        value: option.value === defaultSort ? null : option.value,
+        value: option.value,
         title: option.label,
+        ...(activeSort === option.value
+          ? {
+              onClick: () => handleSort({ form, sortDirection }),
+              price: <ProductFiltersProSortDirectionArrow sortDirection={sortDirection} />,
+            }
+          : null),
       })),
-    [defaultSort, sort_fields?.options],
+    [activeSort, form, sortDirection, sort_fields?.options],
   )
+
+  useEffect(() => {
+    if (activeSort === null) form.setValue('sort', defaultSortBy)
+    if (sortDirection === null) form.setValue('dir', 'ASC')
+  }, [activeSort, defaultSortBy, form, sortDirection])
 
   return (
     <ChipOverlayOrPopper
