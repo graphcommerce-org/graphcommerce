@@ -2,7 +2,7 @@
   "name": "@graphcommerce/graphql",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "8.0.4",
+  "version": "8.0.5-canary.0",
   "sideEffects": false,
   "main": "index.ts",
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -13,8 +13,8 @@
     }
   },
   "dependencies": {
-    "@graphcommerce/graphql-codegen-near-operation-file": "8.0.4",
-    "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "8.0.4",
+    "@graphcommerce/graphql-codegen-near-operation-file": "8.0.5-canary.0",
+    "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "8.0.5-canary.0",
     "@graphql-codegen/add": "5.0.1",
     "@graphql-codegen/fragment-matcher": "5.0.1",
     "@graphql-codegen/introspection": "4.0.1",
@@ -28,9 +28,9 @@
   },
   "peerDependencies": {
     "@apollo/client": "^3",
-    "@graphcommerce/eslint-config-pwa": "^8.0.4",
-    "@graphcommerce/prettier-config-pwa": "^8.0.4",
-    "@graphcommerce/typescript-config-pwa": "^8.0.4",
+    "@graphcommerce/eslint-config-pwa": "^8.0.5-canary.0",
+    "@graphcommerce/prettier-config-pwa": "^8.0.5-canary.0",
+    "@graphcommerce/typescript-config-pwa": "^8.0.5-canary.0",
     "graphql": "^16.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

@@ -78,5 +78,7 @@
     "@graphcommerce/prettier-config-pwa": "8.0.4",
     "@graphcommerce/typescript-config-pwa": "8.0.4"
   },
-  "changesets": []
+  "changesets": [
+    "yellow-parents-trade"
+  ]
 }

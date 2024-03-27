@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.5-canary.0
+
+### Patch Changes
+
+- [#2230](https://github.com/graphcommerce-org/graphcommerce/pull/2230) [`1da6b82`](https://github.com/graphcommerce-org/graphcommerce/commit/1da6b82dbb7e1543542d809ea625a8867643ea68) - Fix menu item visibility in accessability tree
+  ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 8.0.4
 
 ### Patch Changes
