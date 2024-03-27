@@ -114,7 +114,6 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
         </Typography>
       </BreadcrumbsBase>
       <Popper
-        id={anchorElement ? 'simple-popper' : undefined}
         anchorEl={anchorElement}
         open={Boolean(anchorElement)}
         disablePortal
