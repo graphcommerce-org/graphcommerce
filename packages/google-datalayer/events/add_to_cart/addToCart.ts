@@ -44,10 +44,7 @@ export const addToCart = (
     })
   }
 
-  if (!items.length) {
-    console.log('successfull but no items')
-    return
-  }
+  if (!items.length) return
 
   event('add_to_cart', {
     currency: cart?.prices?.grand_total?.currency,
