@@ -1,5 +1,16 @@
 # Change Log
 
+## 8.0.5-canary.0
+
+## 8.0.4
+
+### Patch Changes
+
+- [#2225](https://github.com/graphcommerce-org/graphcommerce/pull/2225) [`29407d2`](https://github.com/graphcommerce-org/graphcommerce/commit/29407d28c4f7c2629f8c5ead658bfb203f5d81cf) - Fixed a bug on Firefox in which all overlays would retrigger the scrollTo function on opening or closing.
+  ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 8.0.4-canary.1
+
 ## 8.0.4-canary.0
 
 ### Patch Changes
