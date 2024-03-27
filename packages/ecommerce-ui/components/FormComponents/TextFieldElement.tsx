@@ -1,5 +1,11 @@
 /* eslint-disable no-nested-ternary */
-import { Controller, FieldValues, UseControllerProps } from '@graphcommerce/react-hook-form'
+import { InputCheckmark } from '@graphcommerce/next-ui'
+import {
+  Controller,
+  FieldValues,
+  UseControllerProps,
+  useController,
+} from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { TextField, TextFieldProps } from '@mui/material'
 
@@ -9,6 +15,8 @@ export type TextFieldElementProps<T extends FieldValues = FieldValues> = Omit<
 > & {
   /** @deprecated Please use the rules props instead */
   validation?: UseControllerProps<T>['rules']
+
+  showValid?: boolean
 } & UseControllerProps<T>
 
 export function TextFieldElement<TFieldValues extends FieldValues>({
@@ -34,29 +42,33 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
     }
   }
 
+  const {
+    field: { onChange, ref, ...field },
+    fieldState: { error },
+  } = useController({ name, control, rules, defaultValue })
+
   return (
-    <Controller
-      name={name}
-      control={control}
-      rules={rules}
-      defaultValue={defaultValue}
-      render={({ field: { onChange, ref, ...field }, fieldState: { error } }) => (
-        <TextField
-          {...rest}
-          {...field}
-          onChange={(ev) => {
-            onChange(
-              type === 'number' && ev.target.value ? Number(ev.target.value) : ev.target.value,
-            )
-            rest.onChange?.(ev)
-          }}
-          inputRef={ref}
-          required={required}
-          type={type}
-          error={Boolean(error) || rest.error}
-          helperText={error ? error.message : rest.helperText}
-        />
-      )}
+    <TextField
+      {...rest}
+      {...field}
+      onChange={(ev) => {
+        onChange(type === 'number' && ev.target.value ? Number(ev.target.value) : ev.target.value)
+        rest.onChange?.(ev)
+      }}
+      inputRef={ref}
+      required={required}
+      type={type}
+      error={Boolean(error) || rest.error}
+      helperText={error ? error.message : rest.helperText}
+      InputProps={{
+        ...rest.InputProps,
+        endAdornment:
+          rest.showValid && field.value ? (
+            <InputCheckmark show={!error} />
+          ) : (
+            rest.InputProps?.endAdornment
+          ),
+      }}
     />
   )
 }

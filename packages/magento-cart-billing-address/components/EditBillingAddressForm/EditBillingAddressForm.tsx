@@ -22,6 +22,7 @@ import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { SxProps, TextField, Theme } from '@mui/material'
 import { GetBillingAddressDocument } from './GetBillingAddress.gql'
+import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 
 export type EditBillingAddressFormProps = { sx?: SxProps<Theme> }
 
@@ -62,7 +63,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
     },
   })
 
-  const { handleSubmit, formState, required, error, muiRegister, valid } = form
+  const { handleSubmit, formState, required, error, control } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
@@ -72,19 +73,21 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
         <AddressFields form={form} />
 
         <FormRow>
-          <TextField
+          <TextFieldElement
+            control={control}
+            name='telephone'
             variant='outlined'
             type='text'
             error={!!formState.errors.telephone}
             required={required.telephone}
             label={<Trans id='Telephone' />}
-            {...muiRegister('telephone', {
+            rules={{
               required: required.telephone,
               pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-            })}
+            }}
             helperText={formState.isSubmitted && formState.errors.telephone?.message}
             disabled={formState.isSubmitting}
-            InputProps={{ endAdornment: <InputCheckmark show={valid.telephone} /> }}
+            showValid
           />
         </FormRow>
 

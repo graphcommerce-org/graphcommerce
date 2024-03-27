@@ -59,10 +59,8 @@ export function NameFields(props: NameFieldProps) {
           variant='outlined'
           type='text'
           label={<Trans id='First Name' />}
-          InputProps={{
-            readOnly,
-            endAdornment: <InputCheckmark show={valid.firstname} />,
-          }}
+          InputProps={{ readOnly }}
+          showValid
         />
         <TextFieldElement
           control={form.control}
@@ -71,10 +69,8 @@ export function NameFields(props: NameFieldProps) {
           variant='outlined'
           type='text'
           label={<Trans id='Last Name' />}
-          InputProps={{
-            readOnly,
-            endAdornment: <InputCheckmark show={valid.lastname} />,
-          }}
+          InputProps={{ readOnly }}
+          showValid
         />
       </FormRow>
     </>

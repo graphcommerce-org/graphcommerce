@@ -147,10 +147,8 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
             pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
           }}
           label={<Trans id='Telephone' />}
-          InputProps={{
-            readOnly,
-            endAdornment: <InputCheckmark show={valid.telephone} />,
-          }}
+          InputProps={{ readOnly }}
+          showValid
         />
       </FormRow>
       <ApolloCartErrorAlert error={error} />

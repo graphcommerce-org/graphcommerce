@@ -1,4 +1,9 @@
-import { MutationHookOptions, TypedDocumentNode, useMutation } from '@apollo/client'
+import {
+  MutationHookOptions,
+  TypedDocumentNode,
+  useApolloClient,
+  useMutation,
+} from '@apollo/client'
 import { FieldValues, useForm, UseFormReturn } from 'react-hook-form'
 import { useFormGql, UseFormGqlMethods, UseFormGraphQlOptions } from './useFormGql'
 import { useFormMuiRegister, UseMuiFormRegister } from './useFormMuiRegister'
@@ -10,7 +15,13 @@ export type UseFormGqlMutationReturn<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   V extends FieldValues = FieldValues,
 > = UseFormGqlMethods<Q, V> &
-  UseFormReturn<V> & { muiRegister: UseMuiFormRegister<V>; valid: UseFormValidReturn<V> }
+  UseFormReturn<V> & {
+    /**
+     * @deprecated Please use TextFieldElement
+     */
+    muiRegister: UseMuiFormRegister<V>
+    valid: UseFormValidReturn<V>
+  }
 
 export function isFormGqlOperation<
   V extends FieldValues,
@@ -38,7 +49,5 @@ export function useFormGqlMutation<Q extends Record<string, unknown>, V extends 
   const tuple = useMutation(document, operationOptions)
   const operation = useFormGql({ document, form, tuple, ...options })
   const muiRegister = useFormMuiRegister(form)
-  const valid = useFormValidFields(form, operation.required)
-
-  return { ...form, ...operation, valid, muiRegister }
+  return { ...form, ...operation, muiRegister, valid: {} }
 }

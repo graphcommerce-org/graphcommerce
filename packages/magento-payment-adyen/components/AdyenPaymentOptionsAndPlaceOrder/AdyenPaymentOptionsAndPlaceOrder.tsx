@@ -1,4 +1,9 @@
-import { useFormCompose, useFormPersist, useFormValidFields } from '@graphcommerce/ecommerce-ui'
+import {
+  TextFieldElement,
+  useFormCompose,
+  useFormPersist,
+  useFormValidFields,
+} from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import {
   PaymentOptionsProps,
@@ -54,7 +59,7 @@ export function HppOptions(props: PaymentOptionsProps) {
     },
   })
 
-  const { handleSubmit, muiRegister, formState, required } = form
+  const { handleSubmit, control, formState, required } = form
 
   const submit = handleSubmit(() => {})
 
@@ -76,8 +81,13 @@ export function HppOptions(props: PaymentOptionsProps) {
     <form key={key} onSubmit={submit} noValidate>
       {conf?.issuers && (
         <FormRow>
-          <TextField
+          <TextFieldElement
+            control={control}
+            name='issuer'
             defaultValue=''
+            rules={{
+              required: { value: true, message: 'Please provide an issuer' },
+            }}
             variant='outlined'
             color='secondary'
             select
@@ -86,10 +96,6 @@ export function HppOptions(props: PaymentOptionsProps) {
             helperText={formState.isSubmitted && formState.errors.issuer?.message}
             label={brandCode === 'ideal' ? 'Select your bank' : conf?.name}
             required
-            {...muiRegister('issuer', {
-              required: { value: true, message: 'Please provide an issuer' },
-            })}
-            InputProps={{ endAdornment: <InputCheckmark show={valid.issuer} select /> }}
           >
             {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
             <option value='' />
@@ -102,7 +108,7 @@ export function HppOptions(props: PaymentOptionsProps) {
                 </option>
               )
             })}
-          </TextField>
+          </TextFieldElement>
         </FormRow>
       )}
     </form>
