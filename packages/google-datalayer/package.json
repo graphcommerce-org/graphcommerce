@@ -40,5 +40,8 @@
     "@graphcommerce/magento-product": {
       "optional": true
     }
+  },
+  "devDependencies": {
+    "@types/gtag.js": "^0.0.19"
   }
 }

@@ -11,9 +11,6 @@
       "project": "./tsconfig.json"
     }
   },
-  "devDependencies": {
-    "@types/gtag.js": "^0.0.18"
-  },
   "dependencies": {
     "@graphcommerce/google-datalayer": "8.0.5-canary.0"
   },
