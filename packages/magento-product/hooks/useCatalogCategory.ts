@@ -13,8 +13,6 @@ import { useFilterParams } from '../components/ProductListItems/filteredProductL
 export function useCategoryCatalog<T extends ProductListQuery & { params?: ProductListParams }>(
   props: T,
 ) {
-  const { products: incomingProducts, ...rest } = props
-
   const { params, shallow } = useFilterParams(props)
   const storeConfig = useQuery(StoreConfigDocument)
 
@@ -32,25 +30,20 @@ export function useCategoryCatalog<T extends ProductListQuery & { params?: Produ
     },
     skip: !shallow && !loggedIn,
   })
+
   showPageLoadIndicator.set(
     (!loggedIn || !!productList.previousData?.products) && productList.loading,
   )
 
-  let products = productList.data?.products
-  if (shallow) {
-    products ??= productList.previousData?.products
-  }
-  if (!shallow || !loggedIn) {
-    products ??= incomingProducts
-  }
+  let { data } = productList
+  if (shallow) data ??= productList.previousData
+  if (!shallow || !loggedIn) data ??= props
 
   // If the user is logged in we might need to show a skeleton:
   let mask = session.query.loading
   if (!session.query.loading && session.loggedIn) {
-    const noData = !productList.data?.products
-    const noPrevious = !productList.previousData?.products
-    mask = shallow ? noData && noPrevious : noData
+    mask = shallow ? !productList.data && !productList.previousData : !productList.data
   }
 
-  return { ...rest, params, mask, products }
+  return { ...props, params, mask, ...data }
 }
