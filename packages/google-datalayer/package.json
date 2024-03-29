@@ -40,5 +40,8 @@
     "@graphcommerce/magento-product": {
       "optional": true
     }
+  },
+  "dependencies": {
+    "web-vitals": "^3.5.2"
   }
 }

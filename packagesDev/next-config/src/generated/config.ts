@@ -18,6 +18,8 @@ export type Scalars = {
 
 /** AnalyticsConfig will contain all configuration values for the analytics in GraphCommerce. */
 export type AnalyticsConfig = {
+  /** Enable core web vitals tracking for GraphCommerce */
+  coreWebVitals?: InputMaybe<Scalars['Boolean']['input']>;
   /** eventFormat contains the list of fired and formatted events */
   eventFormat?: InputMaybe<Array<EventFormat>>;
 };
@@ -448,6 +450,7 @@ export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS
 
 export function AnalyticsConfigSchema(): z.ZodObject<Properties<AnalyticsConfig>> {
   return z.object({
+    coreWebVitals: z.boolean().nullish(),
     eventFormat: z.array(EventFormatSchema).nullish()
   })
 }

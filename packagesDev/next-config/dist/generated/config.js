@@ -70,6 +70,7 @@ const SidebarGalleryPaginationVariantSchema = _zod.z.enum([
 ]);
 function AnalyticsConfigSchema() {
     return _zod.z.object({
+        coreWebVitals: _zod.z.boolean().nullish(),
         eventFormat: _zod.z.array(EventFormatSchema).nullish()
     });
 }

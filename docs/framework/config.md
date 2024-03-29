@@ -3,6 +3,10 @@
 
 AnalyticsConfig will contain all configuration values for the analytics in GraphCommerce.
 
+#### coreWebVitals: boolean
+
+Enable core web vitals tracking for GraphCommerce
+
 #### eventFormat: GA3 | GA4[]
 
 eventFormat contains the list of fired and formatted events

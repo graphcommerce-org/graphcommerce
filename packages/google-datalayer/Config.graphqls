@@ -18,4 +18,9 @@ input AnalyticsConfig {
   eventFormat contains the list of fired and formatted events
   """
   eventFormat: [EventFormat!]
+
+  """
+  Enable core web vitals tracking for GraphCommerce
+  """
+  coreWebVitals: Boolean
 }
