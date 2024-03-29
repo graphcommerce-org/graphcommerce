@@ -27,6 +27,7 @@ export function PopperBreadcrumbsList(props: PopperBreadcrumbsListProps) {
       <Box
         ref={listRef}
         onKeyDown={handleKeyDown}
+        tabIndex={-1}
         sx={{
           backgroundColor: 'background.paper',
           borderRadius: 3,
@@ -64,7 +65,7 @@ export function PopperBreadcrumbsList(props: PopperBreadcrumbsListProps) {
             variant='body1'
             noWrap
             onClick={handleClickAway}
-            tabIndex={-1}
+            tabIndex={0}
             sx={{
               flex: 1,
               padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
