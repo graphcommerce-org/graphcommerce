@@ -1,7 +1,7 @@
 import type { PagesProps } from '@graphcommerce/framer-next-pages'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { useEffect } from 'react'
-import webVitals, { Metric } from 'web-vitals/attribution'
+import { onCLS, onFCP, onFID, onINP, onLCP, onTTFB, Metric } from 'web-vitals/attribution'
 import { event } from '../lib/event'
 
 export const component = 'FramerNextPages'
@@ -18,12 +18,12 @@ function GoogleDatalayerCoreWebVitals(props: PluginProps<PagesProps>) {
     }
 
     const opts = { reportAllChanges: true }
-    webVitals.onCLS((m) => sendToGTM(m, m.attribution.largestShiftTarget), opts)
-    webVitals.onFCP((m) => sendToGTM(m), opts)
-    webVitals.onFID((m) => sendToGTM(m, m.attribution.eventTarget), opts)
-    webVitals.onINP((m) => sendToGTM(m, m.attribution.eventTarget), opts)
-    webVitals.onLCP((m) => sendToGTM(m, m.attribution.element), opts)
-    webVitals.onTTFB((m) => sendToGTM(m), opts)
+    onCLS((m) => sendToGTM(m, m.attribution.largestShiftTarget), opts)
+    onFCP((m) => sendToGTM(m), opts)
+    onFID((m) => sendToGTM(m, m.attribution.eventTarget), opts)
+    onINP((m) => sendToGTM(m, m.attribution.eventTarget), opts)
+    onLCP((m) => sendToGTM(m, m.attribution.element), opts)
+    onTTFB((m) => sendToGTM(m), opts)
   })
 
   return <Prev {...rest} />
