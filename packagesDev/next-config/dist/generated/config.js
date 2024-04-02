@@ -15,9 +15,6 @@ _export(exports, {
     CompareVariantSchema: function() {
         return CompareVariantSchema;
     },
-    EventFormatSchema: function() {
-        return EventFormatSchema;
-    },
     GraphCommerceConfigSchema: function() {
         return GraphCommerceConfigSchema;
     },
@@ -56,10 +53,6 @@ const CompareVariantSchema = _zod.z.enum([
     "CHECKBOX",
     "ICON"
 ]);
-const EventFormatSchema = _zod.z.enum([
-    "GA3",
-    "GA4"
-]);
 const ProductFiltersLayoutSchema = _zod.z.enum([
     "DEFAULT",
     "SIDEBAR"
@@ -70,13 +63,11 @@ const SidebarGalleryPaginationVariantSchema = _zod.z.enum([
 ]);
 function AnalyticsConfigSchema() {
     return _zod.z.object({
-        coreWebVitals: _zod.z.boolean().nullish(),
-        eventFormat: _zod.z.array(EventFormatSchema).nullish()
+        coreWebVitals: _zod.z.boolean().nullish()
     });
 }
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
-        analytics: AnalyticsConfigSchema().nullish(),
         canonicalBaseUrl: _zod.z.string().min(1),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
         compare: _zod.z.boolean().nullish(),

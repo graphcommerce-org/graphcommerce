@@ -7,10 +7,6 @@ AnalyticsConfig will contain all configuration values for the analytics in Graph
 
 Enable core web vitals tracking for GraphCommerce
 
-#### eventFormat: GA3 | GA4[]
-
-eventFormat contains the list of fired and formatted events
-
 # GraphCommerce configuration system
 
 Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file
@@ -116,8 +112,6 @@ Examples:
 #### storefront: [GraphCommerceStorefrontConfig](#GraphCommerceStorefrontConfig)[] (required)
 
 All storefront configuration for the project
-
-#### analytics: [AnalyticsConfig](#AnalyticsConfig)
 
 #### cartDisplayPricesInclTax: boolean
 

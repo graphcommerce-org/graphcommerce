@@ -20,18 +20,11 @@ export type Scalars = {
 export type AnalyticsConfig = {
   /** Enable core web vitals tracking for GraphCommerce */
   coreWebVitals?: InputMaybe<Scalars['Boolean']['input']>;
-  /** eventFormat contains the list of fired and formatted events */
-  eventFormat?: InputMaybe<Array<EventFormat>>;
 };
 
 export type CompareVariant =
   | 'CHECKBOX'
   | 'ICON';
-
-/** EventFormat is an enumatation of different event formats. This decides what the format of the event data will be. */
-export type EventFormat =
-  | 'GA3'
-  | 'GA4';
 
 /**
  * # GraphCommerce configuration system
@@ -111,7 +104,6 @@ export type EventFormat =
  * Below is a list of all possible configurations that can be set by GraphCommerce.
  */
 export type GraphCommerceConfig = {
-  analytics?: InputMaybe<AnalyticsConfig>;
   /**
    * The canonical base URL is used for SEO purposes.
    *
@@ -442,22 +434,18 @@ export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny
 
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
-export const EventFormatSchema = z.enum(['GA3', 'GA4']);
-
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
 export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM']);
 
 export function AnalyticsConfigSchema(): z.ZodObject<Properties<AnalyticsConfig>> {
   return z.object({
-    coreWebVitals: z.boolean().nullish(),
-    eventFormat: z.array(EventFormatSchema).nullish()
+    coreWebVitals: z.boolean().nullish()
   })
 }
 
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
-    analytics: AnalyticsConfigSchema().nullish(),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     compare: z.boolean().nullish(),
