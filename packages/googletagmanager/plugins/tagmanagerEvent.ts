@@ -18,11 +18,9 @@ const tagmanagerEvent: MethodPlugin<typeof event> = (prev, eventName, eventData)
   prev(eventName, eventData)
 
   if (ecommerceEvents.test(eventName)) {
-    console.log('ecommerce', eventName, eventData)
     window.dataLayer?.push({ ecommerce: null })
     window.dataLayer?.push({ event: eventName, ecommerce: eventData })
   } else {
-    console.log('generic', eventName, eventData)
     window.dataLayer?.push({ event: eventName, ...eventData })
   }
 }

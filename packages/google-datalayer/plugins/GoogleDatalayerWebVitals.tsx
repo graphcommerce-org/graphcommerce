@@ -13,8 +13,12 @@ function GoogleDatalayerCoreWebVitals(props: PluginProps<PagesProps>) {
   const { Prev, ...rest } = props
 
   useEffect(() => {
-    const sendToGTM = (m: Metric, target?: string | undefined) => {
-      event(`cwv_${m.name.toLowerCase()}`, { value: m.delta, cwv: { ...m, target } })
+    const sendToGTM = (m: Metric, cwv_target?: string | undefined) => {
+      event(`cwv_${m.name.toLowerCase()}`, {
+        value: m.delta,
+        cwv_target,
+        ...Object.fromEntries(Object.entries(m).map(([key, value]) => [`cwv_${key}`, value])),
+      })
     }
 
     const opts = { reportAllChanges: true }
