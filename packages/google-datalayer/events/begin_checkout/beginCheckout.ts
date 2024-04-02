@@ -3,7 +3,7 @@ import { BeginCheckoutFragment } from './BeginCheckoutFragment.gql'
 
 export const beginCheckout = <C extends BeginCheckoutFragment>(cart?: C | null) =>
   event('begin_checkout', {
-    ...cart,
+    cart_id: cart?.id,
     currency: cart?.prices?.grand_total?.currency,
     value: cart?.prices?.grand_total?.value,
     coupon: cart?.applied_coupons?.map((coupon) => coupon?.code),

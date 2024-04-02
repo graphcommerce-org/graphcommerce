@@ -1,4 +1,5 @@
 fragment ViewCartFragment on Cart @inject(into: ["CartItemCountChanged"]) {
+  id
   prices {
     grand_total {
       currency

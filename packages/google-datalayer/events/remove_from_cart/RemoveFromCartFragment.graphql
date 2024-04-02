@@ -1,4 +1,5 @@
 fragment RemoveFromCartFragment on Cart @inject(into: ["CartItemCountChanged"]) {
+  id
   __typename
   prices {
     grand_total {

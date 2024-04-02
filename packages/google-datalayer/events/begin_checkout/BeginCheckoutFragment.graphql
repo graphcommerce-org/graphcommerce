@@ -1,4 +1,5 @@
 fragment BeginCheckoutFragment on Cart @inject(into: ["CartStartCheckout"]) {
+  id
   prices {
     grand_total {
       currency
