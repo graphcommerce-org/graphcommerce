@@ -14,12 +14,7 @@ export function GoogleDatalayerCartStartCheckoutLinkOrButton(
   const { Prev, onStart, ...rest } = props
 
   const cartObject = useMemoObject({ items: rest.items, prices: rest.prices })
-
-  useEffect(() => {
-    if (cartObject.items) {
-      viewCart(cartObject)
-    }
-  }, [cartObject])
+  useEffect(() => viewCart(cartObject), [cartObject])
 
   return (
     <Prev
