@@ -9,8 +9,14 @@ function _export(target, all) {
     });
 }
 _export(exports, {
+    AnalyticsConfigSchema: function() {
+        return AnalyticsConfigSchema;
+    },
     CompareVariantSchema: function() {
         return CompareVariantSchema;
+    },
+    EventFormatSchema: function() {
+        return EventFormatSchema;
     },
     GraphCommerceConfigSchema: function() {
         return GraphCommerceConfigSchema;
@@ -50,6 +56,10 @@ const CompareVariantSchema = _zod.z.enum([
     "CHECKBOX",
     "ICON"
 ]);
+const EventFormatSchema = _zod.z.enum([
+    "GA3",
+    "GA4"
+]);
 const ProductFiltersLayoutSchema = _zod.z.enum([
     "DEFAULT",
     "SIDEBAR"
@@ -58,8 +68,14 @@ const SidebarGalleryPaginationVariantSchema = _zod.z.enum([
     "DOTS",
     "THUMBNAILS_BOTTOM"
 ]);
+function AnalyticsConfigSchema() {
+    return _zod.z.object({
+        eventFormat: _zod.z.array(EventFormatSchema).nullish()
+    });
+}
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
+        analytics: AnalyticsConfigSchema().nullish(),
         canonicalBaseUrl: _zod.z.string().min(1),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
         compare: _zod.z.boolean().nullish(),

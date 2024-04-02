@@ -1,22 +1,9 @@
 import { useStorefrontConfig } from '@graphcommerce/next-ui'
-import { useRouter } from 'next/router'
 import Script from 'next/script'
-import { useEffect } from 'react'
 
 export function GoogleTagManagerScript() {
-  const { events } = useRouter()
   const id =
     useStorefrontConfig().googleTagmanagerId ?? import.meta.graphCommerce.googleTagmanagerId
-
-  useEffect(() => {
-    const onRouteChangeComplete = (url: string) => {
-      const dataLayer = globalThis.dataLayer as Record<string, unknown>[] | undefined
-      dataLayer?.push({ event: 'pageview', page: url })
-    }
-
-    events.on('routeChangeComplete', onRouteChangeComplete)
-    return () => events.off('routeChangeComplete', onRouteChangeComplete)
-  }, [events])
 
   return (
     <>
