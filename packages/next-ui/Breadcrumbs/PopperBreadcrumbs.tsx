@@ -22,6 +22,18 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
   const anchorRef = useRef<HTMLButtonElement>(null)
   const theme = useTheme()
 
+  const showHomeBreadcrumbItem =
+    breadcrumbs.length <= 1 ||
+    breadcrumbs.length - numOfBreadcrumbsToShow < 0 ||
+    numOfBreadcrumbsToShow === 0
+  const showFirstBreadcrumbListItem =
+    breadcrumbs.length >= numOfBreadcrumbsToShow && numOfBreadcrumbsToShow > 0
+  const showFirstBreadcrumbItem =
+    breadcrumbs.length - numOfBreadcrumbsToShow <= 0 || numOfBreadcrumbsToShow === 0
+  const breadcrumbItemToStart = showFirstBreadcrumbItem
+    ? 0
+    : breadcrumbs.length - numOfBreadcrumbsToShow
+
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     setAnchorElement(anchorElement ? null : e.currentTarget)
   }
@@ -56,7 +68,10 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
               flexWrap: 'nowrap',
               '& .MuiBreadcrumbs-li': {
                 '&:nth-of-type(1)': {
-                  display: breadcrumbs.length >= numOfBreadcrumbsToShow ? 'flex' : 'none',
+                  display: {
+                    xs: breadcrumbs.length >= 2 ? 'flex' : 'none',
+                    md: showFirstBreadcrumbListItem ? 'flex' : 'none',
+                  },
                 },
                 '&:nth-last-of-type(1)': {
                   display: 'inline-flex',
@@ -65,7 +80,23 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
               },
               '& .MuiBreadcrumbs-separator': {
                 '&:nth-of-type(2)': {
-                  display: breadcrumbs.length >= numOfBreadcrumbsToShow ? 'flex' : 'none',
+                  display: {
+                    xs: breadcrumbs.length >= 2 ? 'flex' : 'none',
+                    md: showFirstBreadcrumbListItem ? 'flex' : 'none',
+                  },
+                },
+              },
+            },
+
+            [theme.breakpoints.down('md')]: {
+              '& .MuiBreadcrumbs-li': {
+                '&:not(:nth-last-of-type(-n+3))': {
+                  display: 'none',
+                },
+              },
+              '& .MuiBreadcrumbs-separator': {
+                '&:not(:nth-last-of-type(-n+2))': {
+                  display: 'none',
                 },
               },
             },
@@ -74,7 +105,7 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
         ]}
       >
         <IconButton
-          aria-describedby={anchorElement ? 'simple-popper' : undefined}
+          aria-describedby={anchorElement ? 'breadcrumb-list' : undefined}
           ref={anchorRef}
           color='default'
           onClick={handleClick}
@@ -83,10 +114,6 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
             border: `1px solid ${theme.palette.divider}`,
             boxShadow: 1,
             color: 'text.primary',
-            display: {
-              xs: breadcrumbs.length ? 'flex' : 'none',
-              md: breadcrumbs.length >= numOfBreadcrumbsToShow ? 'flex' : 'none',
-            },
             px: 1.5,
             py: 0.7,
             typography: 'caption',
@@ -94,21 +121,14 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
         >
           <IconSvg src={anchorElement ? iconClose : iconEllypsis} />
         </IconButton>
-        {breadcrumbs.length <= 1 && (
+        {showHomeBreadcrumbItem && (
           <Link href='/' underline='hover' color='text.primary' variant='body1'>
             <Trans id='Home' />
           </Link>
         )}
-        {breadcrumbs
-          .slice(
-            breadcrumbs.length - numOfBreadcrumbsToShow <= 0
-              ? 0
-              : breadcrumbs.length - numOfBreadcrumbsToShow,
-            breadcrumbs.length - 1,
-          )
-          .map((breadcrumb) => (
-            <Link {...breadcrumb} underline='hover' color='text.primary' variant='body1' />
-          ))}
+        {breadcrumbs.slice(breadcrumbItemToStart, breadcrumbs.length - 1).map((breadcrumb) => (
+          <Link {...breadcrumb} underline='hover' color='text.primary' variant='body1' />
+        ))}
         <Typography component='span' color='text.primary' variant='body1' fontWeight='600' noWrap>
           {name}
         </Typography>
@@ -128,7 +148,7 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
         ]}
         sx={{
           display: {
-            xs: breadcrumbs.length ? 'block' : 'none',
+            xs: breadcrumbs.length >= 2 ? 'block' : 'none',
             md: breadcrumbs.length >= numOfBreadcrumbsToShow ? 'block' : 'none',
           },
           maxWidth: `calc(100% - ${theme.page.horizontal} * 2)`,
