@@ -113,6 +113,8 @@ Examples:
 
 All storefront configuration for the project
 
+#### analytics: [AnalyticsConfig](#AnalyticsConfig)
+
 #### cartDisplayPricesInclTax: boolean
 
 Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.

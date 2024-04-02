@@ -14,11 +14,11 @@ function GoogleDatalayerCoreWebVitals(props: PluginProps<PagesProps>) {
 
   useEffect(() => {
     const sendToGTM = (m: Metric, target?: string | undefined) => {
-      event(`cwv_${m.name.toLowerCase()}`, { ...m, value: m.delta, target })
+      event(`cwv_${m.name.toLowerCase()}`, { value: m.delta, cwv: { ...m, target } })
     }
 
     const opts = { reportAllChanges: true }
-    onCLS((m) => sendToGTM(m, m.attribution.largestShiftTarget), opts)
+    onCLS((m) => sendToGTM(m, m.attribution.largestShiftTarget))
     onFCP((m) => sendToGTM(m), opts)
     onFID((m) => sendToGTM(m, m.attribution.eventTarget), opts)
     onINP((m) => sendToGTM(m, m.attribution.eventTarget), opts)

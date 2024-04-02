@@ -1,3 +1,7 @@
+extend input GraphCommerceConfig {
+  analytics: AnalyticsConfig
+}
+
 """
 AnalyticsConfig will contain all configuration values for the analytics in GraphCommerce.
 """

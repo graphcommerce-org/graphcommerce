@@ -68,6 +68,7 @@ function AnalyticsConfigSchema() {
 }
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
+        analytics: AnalyticsConfigSchema().nullish(),
         canonicalBaseUrl: _zod.z.string().min(1),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
         compare: _zod.z.boolean().nullish(),

@@ -104,6 +104,7 @@ export type CompareVariant =
  * Below is a list of all possible configurations that can be set by GraphCommerce.
  */
 export type GraphCommerceConfig = {
+  analytics?: InputMaybe<AnalyticsConfig>;
   /**
    * The canonical base URL is used for SEO purposes.
    *
@@ -446,6 +447,7 @@ export function AnalyticsConfigSchema(): z.ZodObject<Properties<AnalyticsConfig>
 
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
+    analytics: AnalyticsConfigSchema().nullish(),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     compare: z.boolean().nullish(),
