@@ -119,7 +119,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
       }
     },
   })
-  const { handleSubmit, valid, formState, required, error } = form
+  const { handleSubmit, formState, required, error } = form
   const submit = handleSubmit(() => {})
 
   useFormPersist({ form, name: 'ShippingAddressForm' })

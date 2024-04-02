@@ -1,3 +1,4 @@
+import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { useHistoryGo } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
@@ -8,21 +9,13 @@ import {
   NameFields,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
-import {
-  Button,
-  Form,
-  FormActions,
-  FormDivider,
-  FormRow,
-  InputCheckmark,
-} from '@graphcommerce/next-ui'
+import { Button, Form, FormActions, FormDivider, FormRow } from '@graphcommerce/next-ui'
 import { phonePattern } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { SxProps, TextField, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material'
 import { GetBillingAddressDocument } from './GetBillingAddress.gql'
-import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 
 export type EditBillingAddressFormProps = { sx?: SxProps<Theme> }
 

@@ -23,7 +23,6 @@ import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
 type EditAddressFormProps = {
   address?: AccountAddressFragment
   sx?: SxProps<Theme>
-  onCompleteRoute?: string
 }
 
 export function EditAddressForm(props: EditAddressFormProps) {

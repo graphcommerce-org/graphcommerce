@@ -1,4 +1,4 @@
-import { PasswordElement } from '@graphcommerce/ecommerce-ui'
+import { PasswordElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import {
   Button,
@@ -12,7 +12,6 @@ import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { TextField } from '@mui/material'
 import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError'
 import {
   UpdateCustomerEmailDocument,
@@ -32,13 +31,17 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
     UpdateCustomerEmailMutationVariables & { currentEmail?: string; confirmEmail?: string }
   >(
     UpdateCustomerEmailDocument,
-    {},
+    {
+      defaultValues: {
+        currentEmail: email,
+      },
+    },
     {
       errorPolicy: 'all',
     },
   )
 
-  const { handleSubmit, error, required, formState, watch, muiRegister, reset, control } = form
+  const { handleSubmit, error, required, formState, watch, reset, control } = form
   const [remainingError, authenticationError] = graphqlErrorByCategory({
     category: 'graphql-authentication',
     error,
@@ -51,30 +54,20 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
   return (
     <Form onSubmit={submit} noValidate>
       <FormRow>
-        <TextField
-          key='current-email'
+        <TextFieldElement
           variant='outlined'
           type='text'
-          autoComplete='email'
-          autoFocus
-          error={formState.isSubmitted && !!formState.errors.currentEmail}
-          helperText={formState.isSubmitted && formState.errors.currentEmail?.message}
           label={<Trans id='Current email' />}
           required
-          value={email}
-          {...muiRegister('currentEmail', {
-            required: true,
-            pattern: { value: emailPattern, message: '' },
-          })}
-          InputProps={{
-            readOnly: true,
-          }}
+          name='currentEmail'
+          control={control}
+          showValid
+          InputProps={{ readOnly: true }}
         />
       </FormRow>
 
       <FormRow>
-        <TextField
-          key='email'
+        <TextFieldElement
           variant='outlined'
           type='text'
           autoComplete='off'
@@ -82,12 +75,15 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           helperText={formState.isSubmitted && formState.errors.email?.message}
           label={<Trans id='New email' />}
           required={required.email}
-          {...muiRegister('email', {
+          name='email'
+          rules={{
             required: true,
             pattern: { value: emailPattern, message: '' },
-          })}
+          }}
+          showValid
+          control={control}
         />
-        <TextField
+        <TextFieldElement
           key='confirm-email'
           variant='outlined'
           type='text'
@@ -96,10 +92,13 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           helperText={formState.isSubmitted && formState.errors.confirmEmail?.message}
           label={<Trans id='Confirm new email' />}
           required
-          {...muiRegister('confirmEmail', {
+          name='confirmEmail'
+          rules={{
             required: true,
             validate: (value) => value === watchNewEmail || i18n._(/* i18n */ "Emails don't match"),
-          })}
+          }}
+          showValid
+          control={control}
         />
       </FormRow>
 

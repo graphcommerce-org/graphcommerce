@@ -1,11 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import { InputCheckmark } from '@graphcommerce/next-ui'
-import {
-  Controller,
-  FieldValues,
-  UseControllerProps,
-  useController,
-} from '@graphcommerce/react-hook-form'
+import { FieldValues, UseControllerProps, useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { TextField, TextFieldProps } from '@mui/material'
 
@@ -27,6 +22,7 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
   control,
   defaultValue,
   rules = validation,
+  showValid,
   ...rest
 }: TextFieldElementProps<TFieldValues>): JSX.Element {
   if (required && !rules.required) {
@@ -63,7 +59,7 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
       InputProps={{
         ...rest.InputProps,
         endAdornment:
-          rest.showValid && field.value ? (
+          showValid && field.value ? (
             <InputCheckmark show={!error} />
           ) : (
             rest.InputProps?.endAdornment
