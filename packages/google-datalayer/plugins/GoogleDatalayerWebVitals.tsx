@@ -8,16 +8,20 @@ export const component = 'FramerNextPages'
 export const exported = '@graphcommerce/framer-next-pages'
 export const ifConfig: IfConfig = 'analytics.coreWebVitals'
 
-/** When a product is added to the Cart, send a Google Analytics event */
+/** When a product is added to the Cart, send a Google Analytics event.
+ *
+ * Based on this information: https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#send-the-results-to-google-analytics
+ *
+ */
 function GoogleDatalayerCoreWebVitals(props: PluginProps<PagesProps>) {
   const { Prev, ...rest } = props
 
   useEffect(() => {
-    const sendToGTM = (m: Metric, cwv_target?: string | undefined) => {
+    const sendToGTM = (m: Metric, debug_target?: string | undefined) => {
       event(`cwv_${m.name.toLowerCase()}`, {
         value: m.delta,
-        cwv_target,
-        ...Object.fromEntries(Object.entries(m).map(([key, value]) => [`cwv_${key}`, value])),
+        debug_target,
+        ...Object.fromEntries(Object.entries(m).map(([key, value]) => [`metric_${key}`, value])),
       })
     }
 
