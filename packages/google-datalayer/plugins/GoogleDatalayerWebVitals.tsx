@@ -24,7 +24,7 @@ function GoogleDatalayerCoreWebVitals(props: PluginProps<PagesProps>) {
     onINP((m) => sendToGTM(m, m.attribution.eventTarget), opts)
     onLCP((m) => sendToGTM(m, m.attribution.element), opts)
     onTTFB((m) => sendToGTM(m), opts)
-  })
+  }, [])
 
   return <Prev {...rest} />
 }
