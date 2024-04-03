@@ -1,6 +1,6 @@
 import { productPageCategory } from '@graphcommerce/magento-product'
 import { nonNullable } from '@graphcommerce/next-ui'
-import { ProductToItemFragment } from './ProductToItem.gql'
+import { ProductToGoogleDatalayerItemFragment } from './ProductToGoogleDatalayerItem.gql'
 
 export type GoogleDatalayerItem = {
   item_id: string
@@ -24,7 +24,9 @@ export type GoogleDatalayerItem = {
   quantity?: number
 }
 
-export function productToItem<P extends ProductToItemFragment>(item: P): GoogleDatalayerItem {
+export function productToGoogleDatalayerItem<P extends ProductToGoogleDatalayerItemFragment>(
+  item: P,
+): GoogleDatalayerItem {
   const category = productPageCategory(item)
   const item_categories = Object.fromEntries(
     [...(category?.breadcrumbs?.map((b) => b?.category_name) ?? []), category?.name]

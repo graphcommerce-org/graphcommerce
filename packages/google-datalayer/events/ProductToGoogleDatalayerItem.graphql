@@ -1,4 +1,5 @@
-fragment ProductToItem on ProductInterface {
+fragment ProductToGoogleDatalayerItem on ProductInterface {
+  uid
   name
   sku
   price_range {
@@ -12,6 +13,5 @@ fragment ProductToItem on ProductInterface {
       }
     }
   }
-
   ...ProductPageBreadcrumb
 }

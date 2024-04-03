@@ -1,7 +1,7 @@
 fragment AddShippingInfoFragment on Cart @inject(into: ["ShippingMethodSelected"]) {
   id
   prices {
-    grand_total {
+    subtotal_including_tax {
       currency
       value
     }

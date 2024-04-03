@@ -1,7 +1,20 @@
 fragment ViewCartFragment on Cart @inject(into: ["CartItemCountChanged"]) {
-  id
   prices {
     grand_total {
+      currency
+      value
+    }
+    applied_taxes {
+      amount {
+        value
+      }
+    }
+    discounts {
+      amount {
+        value
+      }
+    }
+    subtotal_including_tax {
       currency
       value
     }

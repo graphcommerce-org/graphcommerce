@@ -1,19 +1,19 @@
 fragment AddPaymentInfoFragment on Cart
 @inject(into: ["PaymentMethodContext", "PaymentMethodUpdated"]) {
-  id
-  items {
-    ...CartItemToGoogleDatalayerItem
-  }
   applied_coupons {
     code
   }
   prices {
-    grand_total {
+    subtotal_including_tax {
       currency
       value
     }
   }
   selected_payment_method {
     code
+  }
+
+  items {
+    ...CartItemToGoogleDatalayerItem
   }
 }

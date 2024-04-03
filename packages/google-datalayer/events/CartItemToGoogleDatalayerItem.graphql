@@ -2,17 +2,23 @@ fragment CartItemToGoogleDatalayerItem on CartItemInterface {
   __typename
   uid
   product {
-    ...ProductToItem
+    ...ProductToGoogleDatalayerItem
   }
   prices {
     price {
-      value
-      currency
+      ...Money
     }
-    discounts {
-      amount {
-        value
-      }
+    price_including_tax {
+      ...Money
+    }
+    row_total {
+      ...Money
+    }
+    row_total_including_tax {
+      ...Money
+    }
+    total_item_discount {
+      ...Money
     }
   }
   quantity

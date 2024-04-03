@@ -1,9 +1,9 @@
 import { nonNullable, useMemoObject } from '@graphcommerce/next-ui'
 import { useEventCallback } from '@mui/material'
 import React, { useEffect, useMemo } from 'react'
-import { ProductToItemFragment } from '../events/ProductToItem.gql'
+import { ProductToGoogleDatalayerItemFragment } from '../events/ProductToGoogleDatalayerItem.gql'
 import { event } from '../events/event'
-import { productToItem } from '../events/productToItem'
+import { productToGoogleDatalayerItem } from '../events/productToGoogleDatalayerItem'
 
 export const AnalyticsItemListContext = React.createContext<
   | {
@@ -12,7 +12,7 @@ export const AnalyticsItemListContext = React.createContext<
   | undefined
 >(undefined)
 
-export function AnalyticsItemList<P extends ProductToItemFragment = ProductToItemFragment>(props: {
+export function AnalyticsItemList<P extends ProductToGoogleDatalayerItemFragment>(props: {
   title: string
   items?: (P | null | undefined)[] | null
   listId?: string
@@ -24,7 +24,7 @@ export function AnalyticsItemList<P extends ProductToItemFragment = ProductToIte
   const eventData = useMemoObject({
     item_list_id,
     item_list_name,
-    items: items?.filter(nonNullable)?.map((item) => productToItem(item)) ?? [],
+    items: items?.filter(nonNullable)?.map((item) => productToGoogleDatalayerItem(item)) ?? [],
   })
 
   useEffect(() => event('view_item_list', eventData), [eventData])

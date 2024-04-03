@@ -9,8 +9,8 @@ export const purchase = <C extends PaymentMethodContextFragment>(
 ) =>
   event('purchase', {
     transaction_id: orderNumber,
-    currency: cart?.prices?.grand_total?.currency,
-    value: cart?.prices?.grand_total?.value,
+    currency: cart?.prices?.subtotal_including_tax?.currency,
+    value: cart?.prices?.subtotal_including_tax?.value,
     coupon: cart?.applied_coupons?.map((coupon) => coupon?.code).join(' '),
     payment_type: cart?.selected_payment_method?.code,
     tax: cart?.prices?.applied_taxes?.reduce((sum, tax) => sum + (tax?.amount?.value ?? 0), 0),

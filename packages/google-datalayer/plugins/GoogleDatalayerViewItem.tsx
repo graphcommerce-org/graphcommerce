@@ -2,7 +2,7 @@ import type { ProductPageMeta } from '@graphcommerce/magento-product'
 import { PluginProps } from '@graphcommerce/next-config'
 import { useMemoObject } from '@graphcommerce/next-ui'
 import React, { useEffect } from 'react'
-import { productToItem } from '../events/productToItem'
+import { productToGoogleDatalayerItem } from '../events/productToGoogleDatalayerItem'
 import { event } from '../events/event'
 
 export const component = 'ProductPageMeta'
@@ -16,7 +16,7 @@ function GoogleDatalayerViewItem(props: PluginProps<React.ComponentProps<typeof 
   const viewItem = useMemoObject({
     currency: price_range.minimum_price.final_price.currency,
     value: price_range.minimum_price.final_price.value,
-    items: [productToItem(product)],
+    items: [productToGoogleDatalayerItem(product)],
   })
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   useEffect(() => {
