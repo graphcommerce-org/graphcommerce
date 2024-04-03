@@ -1,9 +1,16 @@
-import React, { useState, useRef, startTransition, useLayoutEffect, useEffect } from 'react'
+import React, {
+  useState,
+  useRef,
+  startTransition,
+  useLayoutEffect,
+  useEffect,
+  HTMLAttributes,
+} from 'react'
 
 // Make sure the server doesn't choke on the useLayoutEffect
 export const useLayoutEffect2 = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
-export type LazyHydrateProps = {
+export type LazyHydrateProps = HTMLAttributes<HTMLElement> & {
   /**
    * The content is always rendered on the server and on the client it uses the server rendered HTML until it is hydrated.
    */
@@ -25,7 +32,7 @@ export type LazyHydrateProps = {
  * This can be a way to improve the TBT of a page.
  */
 export function LazyHydrate(props: LazyHydrateProps) {
-  const { hydrated, children } = props
+  const { hydrated, children, ...elementProps } = props
   const rootRef = useRef<HTMLElement>(null)
 
   const [isHydrated, setIsHydrated] = useState(hydrated || false)
@@ -58,15 +65,24 @@ export function LazyHydrate(props: LazyHydrateProps) {
   }, [hydrated, isHydrated])
 
   if (isHydrated) {
-    return <section>{children}</section>
+    return <section {...elementProps}>{children}</section>
   }
 
   if (typeof window === 'undefined') {
-    return <section data-lazy-hydrate>{children}</section>
+    return (
+      <section data-lazy-hydrate {...elementProps}>
+        {children}
+      </section>
+    )
   }
 
   return (
-    // eslint-disable-next-line react/no-danger
-    <section ref={rootRef} dangerouslySetInnerHTML={{ __html: '' }} suppressHydrationWarning />
+    <section
+      ref={rootRef}
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={{ __html: '' }}
+      suppressHydrationWarning
+      {...elementProps}
+    />
   )
 }
