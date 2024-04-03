@@ -8,30 +8,6 @@ fragment RemoveFromCartFragment on Cart @inject(into: ["CartItemCountChanged"]) 
     }
   }
   items {
-    __typename
-    uid
-    product {
-      uid
-      sku
-      name
-    }
-    prices {
-      price {
-        value
-        currency
-      }
-      discounts {
-        amount {
-          value
-        }
-      }
-    }
-    quantity
-    ... on ConfigurableCartItem {
-      configured_variant {
-        uid
-        sku
-      }
-    }
+    ...CartItemToGoogleDatalayerItem
   }
 }

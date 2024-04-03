@@ -1,0 +1,25 @@
+fragment CartItemToGoogleDatalayerItem on CartItemInterface {
+  __typename
+  uid
+  product {
+    ...ProductToItem
+  }
+  prices {
+    price {
+      value
+      currency
+    }
+    discounts {
+      amount {
+        value
+      }
+    }
+  }
+  quantity
+  ... on ConfigurableCartItem {
+    configured_variant {
+      uid
+      sku
+    }
+  }
+}

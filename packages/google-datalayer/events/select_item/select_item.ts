@@ -1,4 +1,4 @@
-import { event } from '../../lib/event'
+import { event } from '../event'
 
 export const selectItem = (itemListId: string, itemListName: string, items: unknown[]) =>
   event('select_item', {

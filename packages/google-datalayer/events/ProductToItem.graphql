@@ -12,9 +12,6 @@ fragment ProductToItem on ProductInterface {
       }
     }
   }
-  categories {
-    uid
-    url_key
-    name
-  }
+
+  ...ProductPageBreadcrumb
 }

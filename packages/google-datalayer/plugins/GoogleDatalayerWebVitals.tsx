@@ -2,7 +2,7 @@ import type { PagesProps } from '@graphcommerce/framer-next-pages'
 import { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { useEffect } from 'react'
 import { onCLS, onFCP, onFID, onINP, onLCP, onTTFB, Metric } from 'web-vitals/attribution'
-import { event } from '../lib/event'
+import { event } from '../events/event'
 
 export const component = 'FramerNextPages'
 export const exported = '@graphcommerce/framer-next-pages'

@@ -6,7 +6,7 @@ import {
   toUserErrors,
 } from '@graphcommerce/magento-product'
 import { nonNullable } from '@graphcommerce/next-ui'
-import { event } from '../../lib/event'
+import { event } from '../event'
 
 export const addToCart = (
   result: FetchResult<AddProductsToCartMutation>,

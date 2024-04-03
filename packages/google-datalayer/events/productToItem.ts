@@ -1,6 +1,8 @@
+import { productPageCategory } from '@graphcommerce/magento-product'
+import { nonNullable } from '@graphcommerce/next-ui'
 import { ProductToItemFragment } from './ProductToItem.gql'
 
-export type Item = {
+export type GoogleDatalayerItem = {
   item_id: string
   item_name: string
   affiliation?: string
@@ -22,17 +24,20 @@ export type Item = {
   quantity?: number
 }
 
-export function productToItem<P extends ProductToItemFragment>(item: P): Item {
+export function productToItem<P extends ProductToItemFragment>(item: P): GoogleDatalayerItem {
+  const category = productPageCategory(item)
+  const item_categories = Object.fromEntries(
+    [...(category?.breadcrumbs?.map((b) => b?.category_name) ?? []), category?.name]
+      .filter(nonNullable)
+      .map((name, index) => [`item_category${index > 0 ? index + 1 : ''}`, name]),
+  )
+
   return {
     item_id: item.sku ?? '',
     item_name: item.name ?? '',
     price: item.price_range?.minimum_price.final_price.value ?? undefined,
     currency: item.price_range?.minimum_price.final_price.currency ?? undefined,
     discount: item.price_range?.minimum_price.discount?.amount_off ?? undefined,
-    item_category: item.categories?.[0]?.name ?? undefined,
-    item_category2: item.categories?.[1]?.name ?? undefined,
-    item_category3: item.categories?.[2]?.name ?? undefined,
-    item_category4: item.categories?.[3]?.name ?? undefined,
-    item_category5: item.categories?.[4]?.name ?? undefined,
+    ...item_categories,
   }
 }

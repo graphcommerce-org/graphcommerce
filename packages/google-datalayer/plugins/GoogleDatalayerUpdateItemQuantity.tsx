@@ -1,6 +1,6 @@
 import type { UpdateItemQuantityProps } from '@graphcommerce/magento-cart-items'
 import { PluginProps } from '@graphcommerce/next-config'
-import { event } from '../lib/event'
+import { event } from '../events/event'
 
 export const component = 'UpdateItemQuantity'
 export const exported =
