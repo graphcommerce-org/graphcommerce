@@ -2,4 +2,4 @@
 "@graphcommerce/next-ui": patch
 ---
 
-Allow and pass HTML attributes via the Lazyhydrate component
+Update Lazyhydrate component to accept and pass HTML attributes, and replace <section> with <Box> to enable the use of all Box props on the element.

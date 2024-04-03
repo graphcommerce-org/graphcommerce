@@ -1,16 +1,10 @@
-import React, {
-  useState,
-  useRef,
-  startTransition,
-  useLayoutEffect,
-  useEffect,
-  HTMLAttributes,
-} from 'react'
+import { Box, BoxProps } from '@mui/material'
+import React, { useState, useRef, startTransition, useLayoutEffect, useEffect } from 'react'
 
 // Make sure the server doesn't choke on the useLayoutEffect
 export const useLayoutEffect2 = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
-export type LazyHydrateProps = HTMLAttributes<HTMLElement> & {
+export type LazyHydrateProps = BoxProps<'div'> & {
   /**
    * The content is always rendered on the server and on the client it uses the server rendered HTML until it is hydrated.
    */
@@ -33,7 +27,7 @@ export type LazyHydrateProps = HTMLAttributes<HTMLElement> & {
  */
 export function LazyHydrate(props: LazyHydrateProps) {
   const { hydrated, children, ...elementProps } = props
-  const rootRef = useRef<HTMLElement>(null)
+  const rootRef = useRef<HTMLDivElement>(null)
 
   const [isHydrated, setIsHydrated] = useState(hydrated || false)
   if (!isHydrated && hydrated) setIsHydrated(true)
@@ -65,19 +59,19 @@ export function LazyHydrate(props: LazyHydrateProps) {
   }, [hydrated, isHydrated])
 
   if (isHydrated) {
-    return <section {...elementProps}>{children}</section>
+    return <Box {...elementProps}>{children}</Box>
   }
 
   if (typeof window === 'undefined') {
     return (
-      <section data-lazy-hydrate {...elementProps}>
+      <Box data-lazy-hydrate {...elementProps}>
         {children}
-      </section>
+      </Box>
     )
   }
 
   return (
-    <section
+    <Box
       ref={rootRef}
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: '' }}
