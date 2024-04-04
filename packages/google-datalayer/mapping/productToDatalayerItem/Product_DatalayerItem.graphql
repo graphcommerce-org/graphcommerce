@@ -1,0 +1,17 @@
+fragment Product_DatalayerItem on ProductInterface {
+  uid
+  name
+  sku
+  price_range {
+    minimum_price {
+      final_price {
+        value
+        currency
+      }
+      discount {
+        amount_off
+      }
+    }
+  }
+  ...ProductPageBreadcrumb
+}

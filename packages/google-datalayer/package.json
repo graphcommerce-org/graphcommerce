@@ -13,12 +13,10 @@
   },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^8.0.5-canary.0",
-    "@graphcommerce/graphql-mesh": "^8.0.5-canary.0",
     "@graphcommerce/magento-cart": "^8.0.5-canary.0",
     "@graphcommerce/magento-cart-payment-method": "^8.0.5-canary.0",
     "@graphcommerce/magento-cart-shipping-method": "^8.0.5-canary.0",
     "@graphcommerce/magento-product": "^8.0.5-canary.0",
-    "@graphcommerce/next-config": "^8.0.5-canary.0",
     "@graphcommerce/next-ui": "^8.0.5-canary.0",
     "@graphcommerce/prettier-config-pwa": "^8.0.5-canary.0",
     "@graphcommerce/typescript-config-pwa": "^8.0.5-canary.0",
@@ -40,5 +38,8 @@
     "@graphcommerce/magento-product": {
       "optional": true
     }
+  },
+  "dependencies": {
+    "web-vitals": "^3.5.2"
   }
 }

@@ -2,10 +2,11 @@ import { ApolloCartErrorSnackbar, useFormGqlMutationCart } from '@graphcommerce/
 import { Button, ButtonProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme, styled } from '@mui/material'
+import type { DistributedOmit } from 'type-fest'
 import { CartItemFragment } from '../../Api/CartItem.gql'
 import { RemoveItemFromCartDocument } from './RemoveItemFromCart.gql'
 
-export type RemoveItemFromCartProps = Omit<CartItemFragment, '__typename'> & {
+export type RemoveItemFromCartProps = DistributedOmit<CartItemFragment, '__typename'> & {
   sx?: SxProps<Theme>
   buttonProps?: Omit<ButtonProps, 'type' | 'loading'>
 }
