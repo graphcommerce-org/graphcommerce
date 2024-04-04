@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.5-canary.3
+
+### Patch Changes
+
+- [#2236](https://github.com/graphcommerce-org/graphcommerce/pull/2236) [`85fb916`](https://github.com/graphcommerce-org/graphcommerce/commit/85fb916e5ec2a1456a93a59bf92a5f414fee8595) - Solve issue where the inert prop wouldnt be properly forwarded
+  ([@paales](https://github.com/paales))
+
 ## 8.0.5-canary.2
 
 ### Patch Changes

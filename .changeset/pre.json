@@ -79,7 +79,9 @@
     "@graphcommerce/typescript-config-pwa": "8.0.4"
   },
   "changesets": [
+    "angry-eels-jump",
     "dull-goats-cheat",
+    "hungry-ties-tell",
     "large-radios-happen",
     "rotten-penguins-confess",
     "yellow-parents-trade"
