@@ -15,7 +15,9 @@ const DatalayerSelectItemContext = React.createContext<((itemId: string) => void
 export function useViewItemList() {
   const context = useContext(DatalayerSelectItemContext)
   if (!context) {
-    throw new Error('selectItem must be used within a AnalyticsItemList')
+    return (itemId: string) => {
+      console.log(`No DatalayerSelectItemContext provider found, trying to select item ${itemId}`)
+    }
   }
   return context
 }

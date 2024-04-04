@@ -1,4 +1,4 @@
-import { event, googleEventNames } from '@graphcommerce/google-datalayer/events/event'
+import { googleEventNames, sendEvent } from '@graphcommerce/google-datalayer'
 import type { IfConfig, MethodPlugin } from '@graphcommerce/next-config'
 
 export const func = 'sendEvent'
@@ -13,7 +13,7 @@ declare global {
 
 const ecommerceEvents = new RegExp(`${googleEventNames.join('|')}`, 'i')
 
-const tagmanagerEvent: MethodPlugin<typeof event> = (prev, eventName, eventData) => {
+const tagmanagerEvent: MethodPlugin<typeof sendEvent> = (prev, eventName, eventData) => {
   prev(eventName, eventData)
 
   if (ecommerceEvents.test(eventName)) {
