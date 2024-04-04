@@ -18,7 +18,6 @@ export function useFormGqlQuery<Q extends Record<string, unknown>, V extends Fie
   const tuple = useLazyQuery(document, operationOptions)
   const operation = useFormGql({ document, form, tuple, ...options })
   const muiRegister = useFormMuiRegister(form)
-  // const valid = useFormValidFields(form, operation.required)
 
   return { ...form, ...operation, valid: {}, muiRegister }
 }

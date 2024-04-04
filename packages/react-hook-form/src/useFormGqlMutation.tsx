@@ -15,6 +15,9 @@ export type UseFormGqlMutationReturn<
      * @deprecated Please use TextFieldElement
      */
     muiRegister: UseMuiFormRegister<V>
+    /**
+     * @deprecated Please use TextFieldElement showValid
+     */
     valid: UseFormValidReturn<V>
   }
 
