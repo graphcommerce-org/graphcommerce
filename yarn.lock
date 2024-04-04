@@ -2839,8 +2839,8 @@ __metadata:
     "@parcel/watcher": "npm:^2.4.0"
     "@playwright/test": "npm:1.41.0"
     "@types/node": "npm:^18"
-    "@types/react": "npm:^18.2.48"
-    "@types/react-dom": "npm:^18.2.18"
+    "@types/react": "npm:18.2.74"
+    "@types/react-dom": "npm:18.2.24"
     "@types/react-is": "npm:^18.2.4"
     babel-plugin-macros: "npm:^3.1.0"
     concurrently: "npm:8.2.2"
@@ -2894,8 +2894,8 @@ __metadata:
     "@parcel/watcher": "npm:^2.4.0"
     "@playwright/test": "npm:1.41.0"
     "@types/node": "npm:^18"
-    "@types/react": "npm:^18.2.48"
-    "@types/react-dom": "npm:^18.2.18"
+    "@types/react": "npm:18.2.74"
+    "@types/react-dom": "npm:18.2.24"
     "@types/react-is": "npm:^18.2.4"
     babel-plugin-macros: "npm:^3.1.0"
     concurrently: "npm:8.2.2"
@@ -3266,8 +3266,8 @@ __metadata:
     "@parcel/watcher": "npm:^2.4.0"
     "@playwright/test": "npm:1.41.0"
     "@types/node": "npm:^18"
-    "@types/react": "npm:^18.2.48"
-    "@types/react-dom": "npm:^18.2.18"
+    "@types/react": "npm:18.2.74"
+    "@types/react-dom": "npm:18.2.24"
     "@types/react-is": "npm:^18.2.4"
     babel-plugin-macros: "npm:^3.1.0"
     concurrently: "npm:8.2.2"
@@ -3797,8 +3797,8 @@ __metadata:
     "@parcel/watcher": "npm:^2.4.0"
     "@playwright/test": "npm:1.41.0"
     "@types/node": "npm:^18"
-    "@types/react": "npm:^18.2.48"
-    "@types/react-dom": "npm:^18.2.18"
+    "@types/react": "npm:18.2.74"
+    "@types/react-dom": "npm:18.2.24"
     "@types/react-is": "npm:^18.2.4"
     babel-plugin-macros: "npm:^3.1.0"
     concurrently: "npm:8.2.2"
@@ -7856,12 +7856,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^18.0.0, @types/react-dom@npm:^18.2.18":
-  version: 18.2.22
-  resolution: "@types/react-dom@npm:18.2.22"
+"@types/react-dom@npm:18.2.24, @types/react-dom@npm:^18.0.0":
+  version: 18.2.24
+  resolution: "@types/react-dom@npm:18.2.24"
   dependencies:
     "@types/react": "npm:*"
-  checksum: 10c0/cd85b5f402126e44b8c7b573e74737389816abcc931b2b14d8f946ba81cce8637ea490419488fcae842efb1e2f69853bc30522e43fd8359e1007d4d14b8d8146
+  checksum: 10c0/9ec38e5ab4727c56ef17bd8e938ead88748ba19db314b8d9807714a5cae430f5b799514667b221b4f2dc8d9b4ca17dd1c3da8c41c083c2de9eddcc31bec6b8ff
   languageName: node
   linkType: hard
 
@@ -7883,14 +7883,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^18.2.48":
-  version: 18.2.71
-  resolution: "@types/react@npm:18.2.71"
+"@types/react@npm:*, @types/react@npm:18.2.74":
+  version: 18.2.74
+  resolution: "@types/react@npm:18.2.74"
   dependencies:
     "@types/prop-types": "npm:*"
-    "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10c0/0b2fc05a33aa83f09880c1172f6112450fa507ea56a168521172161e057277a8a474ff2fae02fa4910ce74853d7b5cff560586f912a0c9d8102cfd316bdb1b19
+  checksum: 10c0/347e38b4c5dc20d50ff71bf04b7caaef490e5ff695e74a0088a13fbb2a0c5d125a5ecfd142adfa30f0176da0e2734942c91ba61d95ce269c43b3265bd7379361
   languageName: node
   linkType: hard
 
@@ -7917,13 +7916,6 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: 10c0/6eeb9c27d99bf4b393bf168d43208f63e78cefca5644662a0bdb2bdbf8352386f4f3aca66add138fc41bce5f66fd48a0de430a1473f11b612fbed0375ae78031
-  languageName: node
-  linkType: hard
-
-"@types/scheduler@npm:*":
-  version: 0.16.8
-  resolution: "@types/scheduler@npm:0.16.8"
-  checksum: 10c0/f86de504945b8fc41b1f391f847444d542e2e4067cf7e5d9bfeb5d2d2393d3203b1161bc0ef3b1e104d828dabfb60baf06e8d2c27e27ff7e8258e6e618d8c4ec
   languageName: node
   linkType: hard
 
