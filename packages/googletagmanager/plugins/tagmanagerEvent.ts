@@ -1,8 +1,8 @@
 import { event, googleEventNames } from '@graphcommerce/google-datalayer/events/event'
 import type { IfConfig, MethodPlugin } from '@graphcommerce/next-config'
 
-export const func = 'event'
-export const exported = '@graphcommerce/google-datalayer/events/event'
+export const func = 'sendEvent'
+export const exported = '@graphcommerce/google-datalayer/api/sendEvent'
 export const ifConfig: IfConfig = 'googleTagmanagerId'
 
 declare global {

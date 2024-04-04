@@ -1,4 +1,5 @@
 # @graphcommerce/google-datalayer
 
-This package contains utilities that can be used in different app analytics
-trackers.
+Implemenation of the datalayer in GraphCommerce.
+
+See [./Config.graphqls](./Config.graphqls) for additional configuration.

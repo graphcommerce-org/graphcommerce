@@ -1,6 +1,8 @@
 import type { UpdateItemQuantityProps } from '@graphcommerce/magento-cart-items'
-import { PluginProps } from '@graphcommerce/next-config'
-import { event } from '../events/event'
+import type { PluginProps } from '@graphcommerce/next-config'
+import { sendEvent } from '../api/sendEvent'
+import { cartItemToDatalayerItem } from '../mapping/cartItemToDatalayerItem/cartItemToDatalayerItem'
+import { datalayerItemsToCurrencyValue } from '../mapping/datalayerItemsToCurrencyValue/datalayerItemsToCurrencyValue'
 
 export const component = 'UpdateItemQuantity'
 export const exported =
@@ -28,28 +30,12 @@ function GoogleDatalayerUpdateItemQuantity(props: PluginProps<UpdateItemQuantity
           const diffQuantity = variables.quantity - quantity
           const absQuantity = Math.abs(diffQuantity)
 
-          if (!itemInCart || diffQuantity === 0) return original
+          if (!itemInCart?.quantity || diffQuantity === 0) return original
 
-          const rowPrice = itemInCart?.prices?.row_total_including_tax.value ?? 1
-          const rowQuantity = itemInCart?.quantity ?? 1
-          const { product, prices } = itemInCart
-
-          event(diffQuantity < 0 ? 'remove_from_cart' : 'add_to_cart', {
-            currency: itemInCart?.prices?.price.currency,
-            value: (rowPrice / rowQuantity) * absQuantity,
-            items: [
-              {
-                item_id: product.sku,
-                item_name: product.name,
-                currency: prices?.price.currency,
-                price: rowPrice / rowQuantity,
-                quantity: absQuantity,
-                discount: prices?.discounts?.reduce(
-                  (sum, discount) => sum + (discount?.amount?.value ?? 0) / rowQuantity,
-                  0,
-                ),
-              },
-            ],
+          const items = [{ ...cartItemToDatalayerItem(itemInCart), quantity: absQuantity }]
+          sendEvent(diffQuantity < 0 ? 'remove_from_cart' : 'add_to_cart', {
+            ...datalayerItemsToCurrencyValue(items),
+            items,
           })
 
           return original

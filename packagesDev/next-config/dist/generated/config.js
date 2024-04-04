@@ -9,11 +9,11 @@ function _export(target, all) {
     });
 }
 _export(exports, {
-    AnalyticsConfigSchema: function() {
-        return AnalyticsConfigSchema;
-    },
     CompareVariantSchema: function() {
         return CompareVariantSchema;
+    },
+    DatalayerConfigSchema: function() {
+        return DatalayerConfigSchema;
     },
     GraphCommerceConfigSchema: function() {
         return GraphCommerceConfigSchema;
@@ -61,14 +61,13 @@ const SidebarGalleryPaginationVariantSchema = _zod.z.enum([
     "DOTS",
     "THUMBNAILS_BOTTOM"
 ]);
-function AnalyticsConfigSchema() {
+function DatalayerConfigSchema() {
     return _zod.z.object({
         coreWebVitals: _zod.z.boolean().nullish()
     });
 }
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
-        analytics: AnalyticsConfigSchema().nullish(),
         canonicalBaseUrl: _zod.z.string().min(1),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
         compare: _zod.z.boolean().nullish(),
@@ -78,6 +77,7 @@ function GraphCommerceConfigSchema() {
         crossSellsHideCartItems: _zod.z.boolean().nullish(),
         crossSellsRedirectItems: _zod.z.boolean().nullish(),
         customerRequireEmailConfirmation: _zod.z.boolean().nullish(),
+        dataLayer: DatalayerConfigSchema().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
         demoMode: _zod.z.boolean().nullish(),
         enableGuestCheckoutLogin: _zod.z.boolean().nullish(),

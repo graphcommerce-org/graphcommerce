@@ -1,11 +1,11 @@
-import { event } from '@graphcommerce/google-datalayer/events/event'
+import { sendEvent } from '@graphcommerce/google-datalayer/api/sendEvent'
 import type { IfConfig, MethodPlugin } from '@graphcommerce/next-config'
 
-export const func = 'event'
-export const exported = '@graphcommerce/google-datalayer/events/event'
+export const func = 'sendEvent'
+export const exported = '@graphcommerce/google-datalayer/api/sendEvent'
 export const ifConfig: IfConfig = 'googleAnalyticsId'
 
-const gtagEvent: MethodPlugin<typeof event> = (prev, eventName, eventData) => {
+const gtagEvent: MethodPlugin<typeof sendEvent> = (prev, eventName, eventData) => {
   prev(eventName, eventData)
   globalThis.gtag('event', eventName, eventData)
 }

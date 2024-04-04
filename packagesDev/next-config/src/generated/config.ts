@@ -16,15 +16,15 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
-/** AnalyticsConfig will contain all configuration values for the analytics in GraphCommerce. */
-export type AnalyticsConfig = {
-  /** Enable core web vitals tracking for GraphCommerce */
-  coreWebVitals?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
 export type CompareVariant =
   | 'CHECKBOX'
   | 'ICON';
+
+/** GoogleDatalayerConfig to allow enabling certain aspects of the datalayer */
+export type DatalayerConfig = {
+  /** Enable core web vitals tracking for GraphCommerce */
+  coreWebVitals?: InputMaybe<Scalars['Boolean']['input']>;
+};
 
 /**
  * # GraphCommerce configuration system
@@ -104,7 +104,6 @@ export type CompareVariant =
  * Below is a list of all possible configurations that can be set by GraphCommerce.
  */
 export type GraphCommerceConfig = {
-  analytics?: InputMaybe<AnalyticsConfig>;
   /**
    * The canonical base URL is used for SEO purposes.
    *
@@ -166,6 +165,7 @@ export type GraphCommerceConfig = {
    * `customer/create_account/confirm` and should be removed once we can query
    */
   customerRequireEmailConfirmation?: InputMaybe<Scalars['Boolean']['input']>;
+  dataLayer?: InputMaybe<DatalayerConfig>;
   /** Debug configuration for GraphCommerce */
   debug?: InputMaybe<GraphCommerceDebugConfig>;
   /**
@@ -439,7 +439,7 @@ export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
 export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM']);
 
-export function AnalyticsConfigSchema(): z.ZodObject<Properties<AnalyticsConfig>> {
+export function DatalayerConfigSchema(): z.ZodObject<Properties<DatalayerConfig>> {
   return z.object({
     coreWebVitals: z.boolean().nullish()
   })
@@ -447,7 +447,6 @@ export function AnalyticsConfigSchema(): z.ZodObject<Properties<AnalyticsConfig>
 
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
-    analytics: AnalyticsConfigSchema().nullish(),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     compare: z.boolean().nullish(),
@@ -457,6 +456,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     crossSellsHideCartItems: z.boolean().nullish(),
     crossSellsRedirectItems: z.boolean().nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
+    dataLayer: DatalayerConfigSchema().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().nullish(),
     enableGuestCheckoutLogin: z.boolean().nullish(),

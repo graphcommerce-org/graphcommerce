@@ -1,7 +1,7 @@
 <!-- Automatically generated from Config.graphqls -->
-### AnalyticsConfig
+### DatalayerConfig
 
-AnalyticsConfig will contain all configuration values for the analytics in GraphCommerce.
+GoogleDatalayerConfig to allow enabling certain aspects of the datalayer
 
 #### coreWebVitals: boolean
 
@@ -113,8 +113,6 @@ Examples:
 
 All storefront configuration for the project
 
-#### analytics: [AnalyticsConfig](#AnalyticsConfig)
-
 #### cartDisplayPricesInclTax: boolean
 
 Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.
@@ -168,6 +166,8 @@ customer requires email confirmation.
 
 This value should match Magento 2's configuration value for
 `customer/create_account/confirm` and should be removed once we can query
+
+#### dataLayer: [DatalayerConfig](#DatalayerConfig)
 
 #### debug: [GraphCommerceDebugConfig](#GraphCommerceDebugConfig)
 

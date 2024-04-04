@@ -1,11 +1,11 @@
 extend input GraphCommerceConfig {
-  analytics: AnalyticsConfig
+  dataLayer: DatalayerConfig
 }
 
 """
-AnalyticsConfig will contain all configuration values for the analytics in GraphCommerce.
+GoogleDatalayerConfig to allow enabling certain aspects of the datalayer
 """
-input AnalyticsConfig {
+input DatalayerConfig {
   """
   Enable core web vitals tracking for GraphCommerce
   """
