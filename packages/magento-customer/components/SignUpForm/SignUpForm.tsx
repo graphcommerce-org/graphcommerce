@@ -1,4 +1,4 @@
-import { PasswordRepeatElement } from '@graphcommerce/ecommerce-ui'
+import { PasswordRepeatElement, SwitchElement } from '@graphcommerce/ecommerce-ui'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation, useFormPersist } from '@graphcommerce/react-hook-form'
@@ -78,9 +78,9 @@ export function SignUpForm(props: SignUpFormProps) {
 
       <NameFields form={form} prefix />
 
-      <FormControlLabel
-        control={<Switch color='primary' />}
-        {...muiRegister('isSubscribed', { required: required.isSubscribed })}
+      <SwitchElement
+        control={control}
+        name='isSubscribed'
         disabled={formState.isSubmitting}
         label={<Trans id='Subscribe to newsletter' />}
       />
