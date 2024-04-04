@@ -1,5 +1,13 @@
 # Change Log
 
+## 8.0.5-canary.2
+
+### Patch Changes
+
+- [#2235](https://github.com/graphcommerce-org/graphcommerce/pull/2235) [`de99691`](https://github.com/graphcommerce-org/graphcommerce/commit/de9969155e271cc2535147479b80b602a1b9c335) - The Lazyhydrate component to accepts any BoxProps. Replaced `<section>` with a `<Box>` so it doesn't hold symantic meaning.
+
+  Please note: If you've used child selectors to style the section, please make sure you update your styles. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 8.0.5-canary.1
 
 ## 8.0.5-canary.0
