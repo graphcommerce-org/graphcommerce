@@ -39,7 +39,7 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
   }
 
   const {
-    field: { onChange, ref, ...field },
+    field: { onChange, ref, value = '', ...field },
     fieldState: { error },
   } = useController({ name, control, rules, defaultValue })
 
@@ -47,6 +47,7 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
     <TextField
       {...rest}
       {...field}
+      value={value}
       onChange={(ev) => {
         onChange(type === 'number' && ev.target.value ? Number(ev.target.value) : ev.target.value)
         rest.onChange?.(ev)
@@ -59,11 +60,7 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
       InputProps={{
         ...rest.InputProps,
         endAdornment:
-          showValid && field.value ? (
-            <InputCheckmark show={!error} />
-          ) : (
-            rest.InputProps?.endAdornment
-          ),
+          showValid && value ? <InputCheckmark show={!error} /> : rest.InputProps?.endAdornment,
       }}
     />
   )
