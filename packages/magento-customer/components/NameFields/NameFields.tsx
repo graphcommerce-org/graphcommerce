@@ -1,5 +1,5 @@
 import { SelectElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
-import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
+import { FormRow } from '@graphcommerce/next-ui'
 import { assertFormGqlOperation, UseFormReturn } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -27,7 +27,7 @@ export function NameFields(props: NameFieldProps) {
   const { prefix, form, readOnly, prefixes = [mr, mrs, other] } = props
   assertFormGqlOperation<NameFieldValues>(form)
 
-  const { control, required, valid } = form
+  const { control, required } = form
 
   return (
     <>
@@ -40,20 +40,15 @@ export function NameFields(props: NameFieldProps) {
             required={required.prefix}
             name='prefix'
             label={<Trans id='Prefix' />}
-            InputProps={{
-              readOnly,
-              endAdornment: <InputCheckmark show={valid.prefix} select />,
-            }}
-            options={prefixes.map((option) => ({
-              id: option,
-              label: option,
-            }))}
+            showValid
+            InputProps={{ readOnly }}
+            options={prefixes.map((option) => ({ id: option, label: option }))}
           />
         </FormRow>
       )}
       <FormRow>
         <TextFieldElement
-          control={form.control}
+          control={control}
           name='firstname'
           required={required.firstname}
           variant='outlined'
@@ -63,7 +58,7 @@ export function NameFields(props: NameFieldProps) {
           showValid
         />
         <TextFieldElement
-          control={form.control}
+          control={control}
           name='lastname'
           required={required.lastname}
           variant='outlined'
