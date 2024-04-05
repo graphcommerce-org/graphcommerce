@@ -4,13 +4,12 @@ fragment AddPaymentInfoFragment on Cart
     uid
     prices {
       price {
-        currency
-        value
+        ...Money
       }
       discounts {
+        label
         amount {
-          currency
-          value
+          ...Money
         }
       }
     }
@@ -26,8 +25,7 @@ fragment AddPaymentInfoFragment on Cart
   }
   prices {
     grand_total {
-      currency
-      value
+      ...Money
     }
   }
   selected_payment_method {

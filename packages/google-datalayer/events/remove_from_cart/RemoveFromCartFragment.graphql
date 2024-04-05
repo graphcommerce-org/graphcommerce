@@ -2,8 +2,7 @@ fragment RemoveFromCartFragment on Cart @inject(into: ["CartItemCountChanged"]) 
   __typename
   prices {
     grand_total {
-      currency
-      value
+      ...Money
     }
   }
   items {
@@ -16,12 +15,12 @@ fragment RemoveFromCartFragment on Cart @inject(into: ["CartItemCountChanged"]) 
     }
     prices {
       price {
-        value
-        currency
+        ...Money
       }
       discounts {
+        label
         amount {
-          value
+          ...Money
         }
       }
     }

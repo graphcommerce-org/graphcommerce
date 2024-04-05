@@ -1,8 +1,7 @@
 fragment BeginCheckoutFragment on Cart @inject(into: ["CartStartCheckout"]) {
   prices {
     grand_total {
-      currency
-      value
+      ...Money
     }
   }
   applied_coupons {
@@ -18,12 +17,12 @@ fragment BeginCheckoutFragment on Cart @inject(into: ["CartStartCheckout"]) {
     }
     prices {
       price {
-        value
-        currency
+        ...Money
       }
       discounts {
+        label
         amount {
-          value
+          ...Money
         }
       }
     }

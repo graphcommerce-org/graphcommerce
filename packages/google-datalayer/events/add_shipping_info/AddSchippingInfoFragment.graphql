@@ -1,8 +1,7 @@
 fragment AddShippingInfoFragment on Cart @inject(into: ["ShippingMethodSelected"]) {
   prices {
     grand_total {
-      currency
-      value
+      ...Money
     }
   }
   applied_coupons {
@@ -18,12 +17,12 @@ fragment AddShippingInfoFragment on Cart @inject(into: ["ShippingMethodSelected"
     }
     prices {
       price {
-        value
-        currency
+        ...Money
       }
       discounts {
+        label
         amount {
-          value
+          ...Money
         }
       }
     }

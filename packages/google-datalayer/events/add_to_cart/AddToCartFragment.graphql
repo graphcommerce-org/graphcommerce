@@ -7,18 +7,16 @@ fragment AddToCartFragment on Cart @inject(into: ["CartItemCountChanged"]) {
     }
     prices {
       discounts {
+        label
         amount {
-          currency
-          value
+          ...Money
         }
       }
       row_total_including_tax {
-        currency
-        value
+        ...Money
       }
       price {
-        currency
-        value
+        ...Money
       }
     }
   }
