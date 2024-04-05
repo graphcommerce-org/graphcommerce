@@ -85,7 +85,7 @@
     "patch-package": "8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.49.3",
+    "react-hook-form": "^7.51.2",
     "sharp": "0.33.2",
     "webpack": "5.89.0"
   },
