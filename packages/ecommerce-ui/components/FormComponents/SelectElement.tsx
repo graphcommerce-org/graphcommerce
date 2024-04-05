@@ -80,7 +80,11 @@ export function SelectElement<TFieldValues extends FieldValues, O extends Option
       InputProps={{
         ...rest.InputProps,
         endAdornment:
-          showValid && value ? <InputCheckmark show={!error} /> : rest.InputProps?.endAdornment,
+          showValid && value && !error ? (
+            <InputCheckmark show={!error} />
+          ) : (
+            rest.InputProps?.endAdornment
+          ),
       }}
     >
       {isNativeSelect && <option />}

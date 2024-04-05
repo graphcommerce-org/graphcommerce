@@ -60,7 +60,11 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
       InputProps={{
         ...rest.InputProps,
         endAdornment:
-          showValid && value ? <InputCheckmark show={!error} /> : rest.InputProps?.endAdornment,
+          showValid && value && !error ? (
+            <InputCheckmark show={!error} />
+          ) : (
+            rest.InputProps?.endAdornment
+          ),
       }}
     />
   )
