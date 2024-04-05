@@ -1,10 +1,10 @@
 import {
-  phonePattern,
-  useFormAutoSubmit,
-  useFormCompose,
-  UseFormComposeOptions,
-  useFormPersist,
+  FormAutoSubmit,
+  FormPersist,
   TextFieldElement,
+  UseFormComposeOptions,
+  phonePattern,
+  useFormCompose,
 } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import {
@@ -20,15 +20,12 @@ import {
   useCustomerQuery,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Form, FormRow, InputCheckmark } from '@graphcommerce/next-ui'
+import { Form, FormRow } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
 import React from 'react'
-import {
-  findCustomerAddressFromCartAddress,
-  isCartAddressACustomerAddress,
-} from '../../utils/findCustomerAddressFromCartAddress'
+import { isCartAddressACustomerAddress } from '../../utils/findCustomerAddressFromCartAddress'
 import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from './GetAddresses.gql'
 import { SetBillingAddressDocument } from './SetBillingAddress.gql'
@@ -104,6 +101,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           saveInAddressBook: true,
         },
     mode: 'onChange',
+    experimental_useV2: true,
     onBeforeSubmit: (variables) => {
       const regionId = countries
         ?.find((country) => country?.two_letter_abbreviation === variables.countryCode)
@@ -119,23 +117,21 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
       }
     },
   })
-  const { handleSubmit, formState, required, error } = form
+  const { handleSubmit, required, error } = form
   const submit = handleSubmit(() => {})
 
-  useFormPersist({ form, name: 'ShippingAddressForm' })
   useFormCompose({ form, step, submit, key: 'ShippingAddressForm' })
-
-  const autoSubmitting = useFormAutoSubmit({
-    form,
-    submit,
-    fields: ['postcode', 'countryCode', 'regionId'],
-  })
-  const readOnly = formState.isSubmitting && !autoSubmitting
 
   return (
     <Form onSubmit={submit} noValidate sx={sx}>
-      <NameFields form={form} readOnly={readOnly} />
-      <AddressFields form={form} readOnly={readOnly} />
+      <FormAutoSubmit
+        submit={submit}
+        control={form.control}
+        name={['postcode', 'countryCode', 'regionId']}
+      />
+      <FormPersist form={form} name='ShippingAddressForm' />
+      <NameFields form={form} />
+      <AddressFields form={form} />
       <FormRow>
         <TextFieldElement
           control={form.control}
@@ -147,7 +143,6 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
             pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
           }}
           label={<Trans id='Telephone' />}
-          InputProps={{ readOnly }}
           showValid
         />
       </FormRow>
