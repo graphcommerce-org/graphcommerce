@@ -1,0 +1,4 @@
+fragment Cart_ViewCart on Cart @inject(into: ["CartItemCountChanged"]) {
+  __typename
+  ...Cart_DatalayerItems
+}
