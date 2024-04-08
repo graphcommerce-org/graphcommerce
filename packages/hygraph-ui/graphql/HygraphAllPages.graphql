@@ -1,4 +1,4 @@
-query HygraphAllPages($first: Int = 1000) {
+query HygraphAllPages($first: Int = 100) {
   pages(first: $first) {
     url
   }

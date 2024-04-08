@@ -1,5 +1,5 @@
 query AllDynamicRows {
-  dynamicRows(first: 1000) {
+  dynamicRows(first: 100) {
     id
     conditions {
       __typename
