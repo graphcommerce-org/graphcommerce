@@ -104,10 +104,10 @@ export default function MyAutoSubmitForm() {
 }
 ```
 
-### `useFormPersist`
+### `FormPersist`
 
 ```tsx
-import { useFormAutoSubmit } from '@graphcommerce/react-hook-form'
+import { FormPersist } from '@graphcommerce/react-hook-form'
 
 export default function MyAutoSubmitForm() {
   // Regular useForm hook, but you can also use useFormGqlMutation
@@ -117,11 +117,10 @@ export default function MyAutoSubmitForm() {
   const submit = handleSubmit(() => {
     console.log('submitted')
   })
-  const autoSubmitting = useFormPersist({ form, name: 'MyForm' })
-  const disableFields = formState.isSubmitting && !autoSubmitting
 
   return (
     <form onSubmit={submit} noValidate>
+      <FormPersist form={form} name='MyForm'>
       <input
         type='text'
         {...register('couponCode', { required: required.couponCode })}

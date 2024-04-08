@@ -1,8 +1,8 @@
 import { SelectElement } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
-import { FormRow, InputCheckmark, filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { useFormCompose, useFormPersist, useFormValidFields } from '@graphcommerce/react-hook-form'
+import { FormRow, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { FormPersist, useFormCompose } from '@graphcommerce/react-hook-form'
 import { SetMolliePaymentMethodIssuerOnCartDocument } from './SetMolliePaymentMethodIssuerOnCart.gql'
 
 type MollieIssuerOptionsProps = PaymentOptionsProps & {
@@ -21,18 +21,18 @@ export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
   const { handleSubmit, formState, required, control } = form
   const submit = handleSubmit(() => {})
 
-  // Since the issuer isn't retrievable from Magento we persist this value.
-  useFormPersist({
-    form,
-    name: `PaymentMethodOptions_${code}`,
-    persist: ['issuer'],
-    storage: 'localStorage',
-  })
   useFormCompose({ form, step, submit, key: `PaymentMethodOptions_${code}` })
 
   return (
     <>
       <form onSubmit={submit} noValidate>
+        <FormPersist
+          // Since the issuer isn't retrievable from Magento we persist this value.
+          form={form}
+          name={`PaymentMethodOptions_${code}`}
+          persist={['issuer']}
+          storage='localStorage'
+        />
         <FormRow>
           <SelectElement
             control={control}

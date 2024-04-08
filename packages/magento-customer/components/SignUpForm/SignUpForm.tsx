@@ -1,10 +1,9 @@
 import { PasswordRepeatElement, SwitchElement } from '@graphcommerce/ecommerce-ui'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
-import { useFormGqlMutation, useFormPersist } from '@graphcommerce/react-hook-form'
+import { FormPersist, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { Alert, FormControlLabel, Switch } from '@mui/material'
+import { Alert } from '@mui/material'
 import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError/ApolloCustomerErrorSnackbar'
 import { NameFields } from '../NameFields/NameFields'
 import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
@@ -33,12 +32,10 @@ export function SignUpForm(props: SignUpFormProps) {
     { errorPolicy: 'all' },
   )
 
-  const { muiRegister, handleSubmit, required, formState, error, control } = form
+  const { handleSubmit, required, formState, error, control } = form
   const [remainingError, inputError] = graphqlErrorByCategory({ category: 'graphql-input', error })
 
   const submitHandler = handleSubmit(() => {})
-
-  useFormPersist({ form, name: 'SignUp', exclude: ['password', 'confirmPassword'] })
 
   if (requireEmailValidation && form.formState.isSubmitSuccessful) {
     return (
@@ -51,6 +48,7 @@ export function SignUpForm(props: SignUpFormProps) {
   return (
     <form onSubmit={submitHandler} noValidate>
       <FormRow>
+        <FormPersist form={form} name='SignUp' exclude={['password', 'confirmPassword']} />
         <ValidatedPasswordElement
           control={control}
           name='password'

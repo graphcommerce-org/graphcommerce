@@ -2,10 +2,10 @@ import { CheckboxElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { extendableComponent, FormDiv } from '@graphcommerce/next-ui'
 import {
+  FormPersist,
   useForm,
   useFormCompose,
   UseFormComposeOptions,
-  useFormPersist,
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Box, Link, SxProps, Theme } from '@mui/material'
@@ -39,8 +39,6 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
     console.log(values)
   })
 
-  useFormPersist({ form, name: 'PaymentAgreementsForm' })
-
   useFormCompose({ form, step, submit, key: 'PaymentAgreementsForm' })
 
   if (data?.checkoutAgreements?.length === 0) return null
@@ -50,6 +48,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
       className={classes.form}
       sx={[(theme) => ({ pt: theme.spacings.md }), ...(Array.isArray(sx) ? sx : [sx])]}
     >
+      <FormPersist form={form} name='PaymentAgreementsForm' />
       <form noValidate onSubmit={submit} name='cartAgreements'>
         <Box className={classes.formInner} sx={{ typography: 'body1', display: 'inline-block' }}>
           {data?.checkoutAgreements &&

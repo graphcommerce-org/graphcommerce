@@ -1,17 +1,10 @@
-import {
-  TextFieldElement,
-  useFormCompose,
-  useFormPersist,
-  useFormValidFields,
-} from '@graphcommerce/ecommerce-ui'
+import { FormPersist, TextFieldElement, useFormCompose } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import {
   PaymentOptionsProps,
   usePaymentMethodContext,
 } from '@graphcommerce/magento-cart-payment-method'
-import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { TextField } from '@mui/material'
+import { FormRow } from '@graphcommerce/next-ui'
 import { useRouter } from 'next/router'
 import { useAdyenCartLock } from '../../hooks/useAdyenCartLock'
 import { useAdyenPaymentMethod } from '../../hooks/useAdyenPaymentMethod'
@@ -64,9 +57,6 @@ export function HppOptions(props: PaymentOptionsProps) {
   const submit = handleSubmit(() => {})
 
   const key = `PaymentMethodOptions_${code}${brandCode}`
-  useFormPersist({ form, name: key, persist: ['issuer'], storage: 'localStorage' })
-
-  const valid = useFormValidFields(form, required)
 
   /** To use an external Pay button we register the current form to be handled there as well. */
   useFormCompose({ form, step, submit, key })
@@ -79,6 +69,7 @@ export function HppOptions(props: PaymentOptionsProps) {
    */
   return (
     <form key={key} onSubmit={submit} noValidate>
+      <FormPersist form={form} name={key} persist={['issuer']} storage='localStorage' />
       {conf?.issuers && (
         <FormRow>
           <TextFieldElement
