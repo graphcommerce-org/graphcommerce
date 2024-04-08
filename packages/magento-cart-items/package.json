@@ -31,5 +31,8 @@
     "next": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "type-fest": "^4.15.0"
   }
 }

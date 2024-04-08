@@ -2796,7 +2796,7 @@ __metadata:
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     sharp: "npm:0.33.2"
-    type-fest: "npm:^4.9.0"
+    type-fest: "npm:^4.15.0"
     typescript: "npm:5.3.3"
     webpack: "npm:5.89.0"
   languageName: unknown
@@ -2851,7 +2851,7 @@ __metadata:
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     sharp: "npm:0.33.2"
-    type-fest: "npm:^4.9.0"
+    type-fest: "npm:^4.15.0"
     typescript: "npm:5.3.3"
     webpack: "npm:5.89.0"
   languageName: unknown
@@ -3223,7 +3223,7 @@ __metadata:
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     sharp: "npm:0.33.2"
-    type-fest: "npm:^4.9.0"
+    type-fest: "npm:^4.15.0"
     typescript: "npm:5.3.3"
     webpack: "npm:5.89.0"
   languageName: unknown
@@ -3385,6 +3385,8 @@ __metadata:
 "@graphcommerce/magento-cart-items@npm:8.0.5-canary.4, @graphcommerce/magento-cart-items@workspace:packages/magento-cart-items":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-items@workspace:packages/magento-cart-items"
+  dependencies:
+    type-fest: "npm:^4.15.0"
   peerDependencies:
     "@graphcommerce/eslint-config-pwa": ^8.0.5-canary.4
     "@graphcommerce/graphql": ^8.0.5-canary.4
@@ -3758,7 +3760,7 @@ __metadata:
     react-dom: "npm:^18.2.0"
     react-hook-form: "npm:^7.51.2"
     sharp: "npm:0.33.2"
-    type-fest: "npm:^4.9.0"
+    type-fest: "npm:^4.15.0"
     typescript: "npm:5.3.3"
     webpack: "npm:5.89.0"
   languageName: unknown
@@ -18134,10 +18136,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^4.9.0":
-  version: 4.9.0
-  resolution: "type-fest@npm:4.9.0"
-  checksum: 10c0/7e6423f7337928a7323ce8a68cfbbaf30ecb70b9c635207899e58297d219c71be4a8c50b52afb9fe09c9f44b2c4276d0a44bb95acabab7bc942455f980aad267
+"type-fest@npm:^4.15.0":
+  version: 4.15.0
+  resolution: "type-fest@npm:4.15.0"
+  checksum: 10c0/677a7da18dbbe07668bdf47fcb976fdcbea77e118156a7245182fdf65633d69228ce773b0022d507636945a8f22b593e09a3c08f695d2aecf96f035ff0186825
   languageName: node
   linkType: hard
 
