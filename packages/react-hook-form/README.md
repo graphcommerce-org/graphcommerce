@@ -77,10 +77,10 @@ export default function MyComponent() {
 }
 ```
 
-## `useFormAutoSubmit`
+## `FormAutoSubmit`
 
 ```tsx
-import { useFormAutoSubmit } from '@graphcommerce/react-hook-form'
+import { FormAutoSubmit } from '@graphcommerce/react-hook-form'
 
 export default function MyAutoSubmitForm() {
   // Regular useForm hook, but you can also use useFormGqlMutation
@@ -90,20 +90,13 @@ export default function MyAutoSubmitForm() {
   const submit = handleSubmit(() => {
     console.log('submitted')
   })
-  const autoSubmitting = useFormAutoSubmit({
-    form,
-    submit,
-    fields: ['couponCode'], //optional, default: all fields
-    wait: 1200, // optional, default: 500ms
-  })
-  const disableFields = formState.isSubmitting && !autoSubmitting
 
   return (
     <form onSubmit={submit} noValidate>
+      <FormAutoSubmit control={control} submit={submit} name={['couponCode']} wait={1200}>
       <input
         type='text'
         {...register('couponCode', { required: required.couponCode })}
-        disabled={formState.isSubmitting}
       />
       {errors.couponCode?.message}
     </form>
