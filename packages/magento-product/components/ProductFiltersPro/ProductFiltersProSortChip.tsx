@@ -12,7 +12,6 @@ import { useEffect, useMemo } from 'react'
 import { ProductListSortFragment } from '../ProductListSort/ProductListSort.gql'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import { ProductFiltersProSortDirectionArrow } from './ProductFiltersProSortDirectionArrow'
-import { handleSort } from './handleSort'
 
 export type ProductListActionSortProps = ProductListSortFragment &
   Omit<
@@ -37,7 +36,10 @@ export function ProductFiltersProSortChip(props: ProductListActionSortProps) {
         title: option.label,
         ...(activeSort === option.value
           ? {
-              onClick: () => handleSort({ form, sortDirection }),
+              onClick: () =>
+                sortDirection === 'ASC'
+                  ? form.setValue('dir', 'DESC')
+                  : form.setValue('dir', 'ASC'),
               price: <ProductFiltersProSortDirectionArrow sortDirection={sortDirection} />,
             }
           : null),

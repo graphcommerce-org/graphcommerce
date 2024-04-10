@@ -21,7 +21,7 @@ export function productListLink(props: ProductListParams): string {
   // Something like: /sort/position,price/dir/asc,asc
   const [sortBy] = Object.keys(sort)
   if (sort && sortBy) query += `/sort/${sortBy}`
-  if (sort && sortBy && sort[sortBy] && sort[sortBy] === 'DESC') query += `/dir/DESC`
+  if (sort && sortBy && sort[sortBy] && sort[sortBy] === 'DESC') query += `/dir/desc`
   if (pageSize) query += `/page-size/${pageSize}`
 
   // Apply filters
