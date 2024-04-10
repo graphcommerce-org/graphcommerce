@@ -12,9 +12,6 @@ _export(exports, {
     AnalyticsConfigSchema: function() {
         return AnalyticsConfigSchema;
     },
-    BreadcrumbsVariantSchema: function() {
-        return BreadcrumbsVariantSchema;
-    },
     CompareVariantSchema: function() {
         return CompareVariantSchema;
     },
@@ -55,11 +52,6 @@ _export(exports, {
 const _zod = require("zod");
 const isDefinedNonNullAny = (v)=>v !== undefined && v !== null;
 const definedNonNullAnySchema = _zod.z.any().refine((v)=>isDefinedNonNullAny(v));
-const BreadcrumbsVariantSchema = _zod.z.enum([
-    "BACK_BUTTON",
-    "DEFAULT",
-    "POPPER"
-]);
 const CompareVariantSchema = _zod.z.enum([
     "CHECKBOX",
     "ICON"
@@ -84,7 +76,6 @@ function AnalyticsConfigSchema() {
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
         analytics: AnalyticsConfigSchema().nullish(),
-        breadcrumbsVariant: BreadcrumbsVariantSchema.nullish(),
         canonicalBaseUrl: _zod.z.string().min(1),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
         compare: _zod.z.boolean().nullish(),
