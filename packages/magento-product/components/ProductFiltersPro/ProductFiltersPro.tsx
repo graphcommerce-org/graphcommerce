@@ -1,8 +1,14 @@
 import { useForm, UseFormProps, UseFormReturn } from '@graphcommerce/ecommerce-ui'
 import { useMatchMedia, useMemoObject } from '@graphcommerce/next-ui'
-import { useEventCallback } from '@mui/material'
-import { useRouter } from 'next/router'
-import React, { BaseSyntheticEvent, createContext, useContext, useEffect, useMemo } from 'react'
+import { useEventCallback, useTheme } from '@mui/material'
+import React, {
+  BaseSyntheticEvent,
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
 import {
@@ -52,32 +58,14 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
   const form = useForm<ProductFilterParams>({ defaultValues, ...formProps })
 
   const matchMedia = useMatchMedia()
-  const router = useRouter()
+  const theme = useTheme()
+  const [formScrollMarginTopOffset, setFormScrollMarginTopOffset] = useState<string>('0px')
+
+  useEffect(() => {
+    if (matchMedia.down('md')) setFormScrollMarginTopOffset(theme.appShell.headerHeightSm)
+  }, [matchMedia, theme.appShell.headerHeightSm])
 
   const push = useProductListLinkReplace()
-
-  // compensate for sticky header on mobile screens when scrolling to '#products'
-  useEffect(() => {
-    const handleRouteChange = (url) => {
-      if (matchMedia.down('md') && url.includes('#products')) {
-        requestAnimationFrame(() => {
-          setTimeout(() => {
-            window.scrollBy(
-              0,
-              (document.querySelector('.LayoutHeader-root')?.getBoundingClientRect().height ?? 0) *
-                -1,
-            )
-          })
-        })
-      }
-    }
-
-    router.events.on('routeChangeComplete', handleRouteChange)
-
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [matchMedia, router])
 
   const submit = useEventCallback(
     form.handleSubmit(async (formValues) => {
@@ -102,7 +90,14 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
 
   return (
     <FilterFormContext.Provider value={filterFormContext}>
-      <form noValidate onSubmit={submit} id='products' />
+      <form
+        noValidate
+        onSubmit={submit}
+        id='products'
+        style={{
+          scrollMarginTop: formScrollMarginTopOffset,
+        }}
+      />
       {children}
     </FilterFormContext.Provider>
   )
