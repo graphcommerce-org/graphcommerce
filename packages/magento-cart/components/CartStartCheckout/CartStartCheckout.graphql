@@ -4,7 +4,6 @@ fragment CartStartCheckout on Cart @injectable {
       ...Money
     }
   }
-
   items {
     errors {
       message

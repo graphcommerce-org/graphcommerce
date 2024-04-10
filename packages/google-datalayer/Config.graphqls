@@ -1,21 +1,13 @@
 extend input GraphCommerceConfig {
-  analytics: AnalyticsConfig
+  dataLayer: DatalayerConfig
 }
 
 """
-EventFormat is an enumatation of different event formats. This decides what the format of the event data will be.
+GoogleDatalayerConfig to allow enabling certain aspects of the datalayer
 """
-enum EventFormat {
-  GA3
-  GA4
-}
-
-"""
-AnalyticsConfig will contain all configuration values for the analytics in GraphCommerce.
-"""
-input AnalyticsConfig {
+input DatalayerConfig {
   """
-  eventFormat contains the list of fired and formatted events
+  Enable core web vitals tracking for GraphCommerce
   """
-  eventFormat: [EventFormat!]
+  coreWebVitals: Boolean
 }

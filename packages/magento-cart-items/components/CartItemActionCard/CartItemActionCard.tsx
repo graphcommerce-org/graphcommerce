@@ -133,16 +133,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
         </>
       }
       price={<Money {...(inclTaxes ? prices?.row_total_including_tax : prices?.row_total)} />}
-      action={
-        !readOnly && (
-          <RemoveItemFromCart
-            uid={uid}
-            quantity={quantity}
-            product={product}
-            buttonProps={{ size }}
-          />
-        )
-      }
+      action={!readOnly && <RemoveItemFromCart {...cartItem} buttonProps={{ size }} />}
       size={size}
       after={filterNonNullableKeys(errors).map((error) => (
         <Box sx={{ color: 'error.main', typography: 'caption' }} key={error.message}>
