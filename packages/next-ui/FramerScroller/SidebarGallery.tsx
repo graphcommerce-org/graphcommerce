@@ -180,7 +180,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   position: 'relative',
                   paddingTop: `min(${ratio}, ${maxHeight})`,
                   [theme.breakpoints.down('md')]: {
-                    width: '100vw',
+                    width: '100%',
                   },
                   [theme.breakpoints.up('md')]: {
                     height: `calc(${dvh(100)} - ${theme.appShell.headerHeightMd} - ${
