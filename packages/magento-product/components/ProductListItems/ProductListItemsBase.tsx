@@ -18,7 +18,6 @@ export type ProductItemsGridProps = {
   loadingEager?: number
   title: string
   sx?: BoxProps['sx']
-  mask?: boolean
 } & Pick<ProductListItemProps, 'onClick' | 'titleComponent'> &
   ComponentState
 
@@ -84,7 +83,6 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
                 titleComponent={titleComponent}
                 onClick={onClick}
                 noReport
-                mask={mask}
               />
             </LazyHydrate>
           ) : null,

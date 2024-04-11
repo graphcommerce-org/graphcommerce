@@ -1,6 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { mergeDeep } from '@graphcommerce/graphql'
+import { SignedInMaskProvider, useSessionScopeQuery } from '@graphcommerce/magento-customer'
 import {
   AddProductsToCartButton,
   AddProductsToCartError,
@@ -54,14 +55,17 @@ import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphql
 type Props = HygraphPagesQuery &
   UspsQuery &
   ProductPage2Query &
-  Pick<AddProductsToCartFormProps, 'defaultValues'>
+  Pick<AddProductsToCartFormProps, 'defaultValues'> & { urlKey: string }
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductPage(props: Props) {
-  const { products, relatedUpsells, usps, sidebarUsps, pages, defaultValues } = props
+  const { usps, sidebarUsps, pages, defaultValues, urlKey } = props
+
+  const scopedQuery = useSessionScopeQuery(ProductPage2Document, { variables: { urlKey } }, props)
+  const { products, relatedUpsells } = scopedQuery.data
 
   const product = mergeDeep(
     products?.items?.[0],
@@ -71,7 +75,7 @@ function ProductPage(props: Props) {
   if (!product?.sku || !product.url_key) return null
 
   return (
-    <>
+    <SignedInMaskProvider mask={scopedQuery.mask}>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
         <LayoutHeader floatingMd>
           <LayoutTitle size='small' component='span'>
@@ -195,7 +199,7 @@ function ProductPage(props: Props) {
         productListRenderer={productListRenderer}
         sx={(theme) => ({ mb: theme.spacings.xxl })}
       />
-    </>
+    </SignedInMaskProvider>
   )
 }
 
@@ -224,8 +228,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
-  const product = productPage.then(
-    (pp) => pp.data.products?.items?.find((p) => p?.url_key === urlKey),
+  const product = productPage.then((pp) =>
+    pp.data.products?.items?.find((p) => p?.url_key === urlKey),
   )
 
   const pages = hygraphPageContent(staticClient, 'product/global', product, true)
@@ -240,6 +244,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   return {
     props: {
+      urlKey,
       ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),
       ...(await layout).data,
       ...(await pages).data,

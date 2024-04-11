@@ -1,3 +1,4 @@
+import { SignedInMaskProvider } from '@graphcommerce/magento-customer'
 import {
   FilterTypes,
   ProductFiltersPro,
@@ -17,7 +18,6 @@ import {
   ProductListParamsProvider,
   ProductListQuery,
   ProductListSort,
-  useCategoryCatalog,
 } from '@graphcommerce/magento-product'
 import { StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
@@ -32,15 +32,13 @@ export type ProductListFilterLayoutProps = ProductListQuery &
   }
 
 export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
-  const { params, filters, products, filterTypes, title, id, mask } = useCategoryCatalog(props)
+  const { params, filters, products, filterTypes, title, id } = props
 
   if (!(params && products?.items && filterTypes)) return null
 
   const { total_count, sort_fields, page_info } = products
 
-  const items = (
-    <ProductListItems items={products.items} loadingEager={6} title={title} mask={mask} />
-  )
+  const items = <ProductListItems items={products.items} loadingEager={6} title={title} />
 
   if (import.meta.graphCommerce.productFiltersPro) {
     const horizontalFilters = (
@@ -90,7 +88,7 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
 
   if (!import.meta.graphCommerce.productFiltersPro) {
     return (
-      <>
+      <SignedInMaskProvider mask={mask}>
         <StickyBelowHeader>
           <ProductListParamsProvider value={params}>
             <ProductListFiltersContainer>
@@ -104,7 +102,7 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
           {items}
           <ProductListPagination page_info={page_info} params={params} />
         </Container>
-      </>
+      </SignedInMaskProvider>
     )
   }
 

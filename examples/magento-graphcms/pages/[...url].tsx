@@ -9,6 +9,7 @@ import {
   CategoryMeta,
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
+import { SignedInMaskProvider } from '@graphcommerce/magento-customer'
 import {
   extractUrlQuery,
   FilterTypes,
@@ -19,6 +20,7 @@ import {
   ProductListDocument,
   ProductListParams,
   ProductListQuery,
+  useProductList,
 } from '@graphcommerce/magento-product'
 import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutHeader, LayoutTitle, MetaRobots } from '@graphcommerce/next-ui'
@@ -45,7 +47,7 @@ type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
 function CategoryPage(props: CategoryProps) {
-  const { categories, products, filters, params, filterTypes, pages } = props
+  const { categories, products, filters, params, filterTypes, pages, mask } = useProductList(props)
 
   const category = categories?.items?.[0]
   const isLanding = category?.display_mode === 'PAGE'
@@ -53,7 +55,7 @@ function CategoryPage(props: CategoryProps) {
   const isCategory = params && category && products?.items && filterTypes
 
   return (
-    <>
+    <SignedInMaskProvider mask={mask}>
       <CategoryMeta
         params={params}
         title={page?.metaTitle}
@@ -109,6 +111,7 @@ function CategoryPage(props: CategoryProps) {
         <RowRenderer
           content={page.content}
           renderer={{
+            // eslint-disable-next-line react/no-unstable-nested-components
             RowProduct: (rowProps) => (
               <RowProduct
                 {...rowProps}
@@ -119,7 +122,7 @@ function CategoryPage(props: CategoryProps) {
           }}
         />
       )}
-    </>
+    </SignedInMaskProvider>
   )
 }
 

@@ -50,8 +50,6 @@ type BaseProps = {
   children?: React.ReactNode
   sx?: SxProps<Theme>
   // eslint-disable-next-line react/no-unused-prop-types
-  mask?: boolean
-  // eslint-disable-next-line react/no-unused-prop-types
   onClick?: (event: React.MouseEvent<HTMLAnchorElement>, item: ProductListItemFragment) => void
 } & StyleProps &
   Omit<ProductListItemTitleAndPriceProps, 'title' | 'classes' | 'children'> &
@@ -84,7 +82,6 @@ export function ProductListItemReal(props: ProductProps) {
     aspectRatio = [4, 3],
     titleComponent = 'h2',
     sx = [],
-    mask,
     onClick,
   } = props
 
@@ -134,7 +131,7 @@ export function ProductListItemReal(props: ProductProps) {
             title={name}
             subTitle={subTitle}
           >
-            <ProductListPrice {...price_range.minimum_price} mask={mask} />
+            <ProductListPrice {...price_range.minimum_price} />
           </ProductListItemTitleAndPrice>
           {children}
         </>

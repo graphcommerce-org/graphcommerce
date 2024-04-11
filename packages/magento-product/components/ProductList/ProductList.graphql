@@ -4,6 +4,7 @@ query ProductList(
   $filters: ProductAttributeFilterInput = {}
   $sort: ProductAttributeSortInput = {}
   $search: String = ""
+  $sessionScope: SessionScopeInput = { loggedIn: false }
 ) {
   products(
     pageSize: $pageSize
@@ -11,7 +12,7 @@ query ProductList(
     filter: $filters
     sort: $sort
     search: $search
-  ) {
+  ) @sessionScope(sessionScope: $sessionScope) {
     ...ProductListFilters
     ...ProductListCount
     ...ProductListPagination
