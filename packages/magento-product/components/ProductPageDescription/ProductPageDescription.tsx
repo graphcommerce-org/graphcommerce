@@ -26,7 +26,7 @@ export function ProductPageDescription(props: ProductPageDescriptionProps) {
   const { product, right, fontSize = 'subtitle1', maxWidth = 'lg', sx = [] } = props
 
   return (
-    <LazyHydrate height={500}>
+    <LazyHydrate sx={{ height: 500 }}>
       <ColumnTwoWithTop
         maxWidth={maxWidth}
         className={classes.root}
