@@ -1,6 +1,6 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Breadcrumbs, PopperBreadcrumbs, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { PopperBreadcrumbs, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { BreadcrumbsProps } from '@mui/material'
 import { useMemo } from 'react'
 import { CategoryBreadcrumbFragment } from './CategoryBreadcrumb.gql'
@@ -42,22 +42,11 @@ export function CategoryBreadcrumb(props: CategoryPageBreadcrumbsProps) {
   if (breadcrumbsVariant === 'BACK_BUTTON') return null
 
   return (
-    <>
-      {breadcrumbsVariant === 'POPPER' ? (
-        <PopperBreadcrumbs
-          breadcrumbs={breadcrumbsList}
-          name={name}
-          baseUrl={baseUrl}
-          {...breadcrumbsProps}
-        />
-      ) : (
-        <Breadcrumbs
-          breadcrumbs={breadcrumbsList}
-          name={name}
-          baseUrl={baseUrl}
-          {...breadcrumbsProps}
-        />
-      )}
-    </>
+    <PopperBreadcrumbs
+      breadcrumbs={breadcrumbsList}
+      name={name}
+      baseUrl={baseUrl}
+      {...breadcrumbsProps}
+    />
   )
 }

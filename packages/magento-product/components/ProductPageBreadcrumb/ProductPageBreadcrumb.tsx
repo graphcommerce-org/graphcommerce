@@ -1,7 +1,7 @@
 import { usePrevPageRouter } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Breadcrumbs, PopperBreadcrumbs, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { PopperBreadcrumbs, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { BreadcrumbsProps } from '@mui/material'
 import { useMemo } from 'react'
 import { productPageCategory } from '../ProductPageCategory/productPageCategory'
@@ -60,22 +60,11 @@ export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
   if (breadcrumbsVariant === 'BACK_BUTTON') return null
 
   return (
-    <>
-      {breadcrumbsVariant === 'POPPER' ? (
-        <PopperBreadcrumbs
-          breadcrumbs={breadcrumbsList}
-          name={name}
-          baseUrl={baseUrl}
-          {...breadcrumbsProps}
-        />
-      ) : (
-        <Breadcrumbs
-          breadcrumbs={breadcrumbsList}
-          name={name}
-          baseUrl={baseUrl}
-          {...breadcrumbsProps}
-        />
-      )}
-    </>
+    <PopperBreadcrumbs
+      breadcrumbs={breadcrumbsList}
+      name={name}
+      baseUrl={baseUrl}
+      {...breadcrumbsProps}
+    />
   )
 }
