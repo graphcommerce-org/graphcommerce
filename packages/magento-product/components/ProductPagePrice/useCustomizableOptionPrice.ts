@@ -104,11 +104,20 @@ export function useCustomizableOptionPrice(props: UseCustomizableOptionPriceProp
       return (
         optionPrice +
         filterNonNullableKeys(value)
-          .filter((v) => cartItem.customizable_options?.[productOption.uid].includes(v.uid))
+          .filter(
+            (v) =>
+              cartItem.customizable_options?.[productOption.uid] &&
+              cartItem.customizable_options?.[productOption.uid].includes(v.uid),
+          )
           .reduce((p, v) => p + calcOptionPrice(v, price), 0)
       )
     }
 
-    return optionPrice + calcOptionPrice(value, price)
+    if (
+      cartItem.entered_options?.filter((v) => v?.uid === productOption.uid && v.value).length !== 0
+    )
+      return optionPrice + calcOptionPrice(value, price)
+
+    return optionPrice
   }, price.value ?? 0)
 }
