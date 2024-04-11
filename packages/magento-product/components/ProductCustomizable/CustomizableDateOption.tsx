@@ -22,7 +22,7 @@ export function CustomizableDateOption(props: CustomizableDateOptionProps) {
     minDate = new Date('1950-11-12T00:00'),
     maxDate = new Date('9999-11-12T00:00'),
   } = props
-  const { register, setValue, setError, getFieldState, clearErrors, control } =
+  const { register, setValue, setError, getFieldState, clearErrors, control, resetField } =
     useFormAddProductsToCart()
 
   const { invalid } = getFieldState(`cartItems.${index}.entered_options.${optionIndex}.value`)
@@ -61,10 +61,12 @@ export function CustomizableDateOption(props: CustomizableDateOptionProps) {
           } else {
             clearErrors(`cartItems.${index}.entered_options.${optionIndex}.value`)
           }
-          setValue(
-            `cartItems.${index}.entered_options.${optionIndex}.value`,
-            `${data.currentTarget.value.replace('T', ' ')}:00`,
-          )
+          if (data.currentTarget.value)
+            setValue(
+              `cartItems.${index}.entered_options.${optionIndex}.value`,
+              `${data.currentTarget.value.replace('T', ' ')}:00`,
+            )
+          else resetField(`cartItems.${index}.entered_options.${optionIndex}.value`)
         }}
       />
     </Box>

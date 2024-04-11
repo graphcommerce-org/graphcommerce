@@ -11,7 +11,7 @@ type CustomizableFieldOptionProps = React.ComponentProps<
 
 export function CustomizableFieldOption(props: CustomizableFieldOptionProps) {
   const { uid, required, optionIndex, index, title, fieldValue } = props
-  const { control, register } = useFormAddProductsToCart()
+  const { control, register, resetField } = useFormAddProductsToCart()
 
   const maxLength = fieldValue?.max_characters ?? 0
   return (
@@ -43,6 +43,10 @@ export function CustomizableFieldOption(props: CustomizableFieldOptionProps) {
             maxLength,
           })
         }
+        onChange={(data) => {
+          if (!data.currentTarget.value)
+            resetField(`cartItems.${index}.entered_options.${optionIndex}.value`)
+        }}
       />
     </Box>
   )
