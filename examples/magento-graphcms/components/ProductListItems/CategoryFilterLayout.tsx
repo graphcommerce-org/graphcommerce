@@ -88,7 +88,7 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
 
   if (!import.meta.graphCommerce.productFiltersPro) {
     return (
-      <SignedInMaskProvider mask={mask}>
+      <>
         <StickyBelowHeader>
           <ProductListParamsProvider value={params}>
             <ProductListFiltersContainer>
@@ -102,7 +102,7 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
           {items}
           <ProductListPagination page_info={page_info} params={params} />
         </Container>
-      </SignedInMaskProvider>
+      </>
     )
   }
 
