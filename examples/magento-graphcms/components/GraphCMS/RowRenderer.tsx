@@ -1,4 +1,5 @@
 import { LazyHydrate, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
+import { memo } from 'react'
 import { RowBlogContent } from '../Blog'
 import { PageContentQueryFragment } from './PageContentQueryFragment.gql'
 import { RowButtonLinkList } from './RowButtonLinkList/RowButtonLinkList'
@@ -36,7 +37,7 @@ export type PageProps = RowRendererFragment & {
   loadingEager?: number
 }
 
-export function RowRenderer(props: PageProps) {
+export const RowRenderer = memo<PageProps>((props) => {
   const { content, renderer, loadingEager = 2 } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as ContentTypeRenderer
 
@@ -49,4 +50,4 @@ export function RowRenderer(props: PageProps) {
       ))}
     </>
   )
-}
+})
