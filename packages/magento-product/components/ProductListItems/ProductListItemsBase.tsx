@@ -35,7 +35,6 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
     size = 'normal',
     titleComponent,
     onClick,
-    mask,
   } = props
 
   const classes = withState({ size })
