@@ -43,7 +43,7 @@ export function MSPPaymentOptions(props: PaymentOptionsProps) {
             control={control}
             name='paymentMethod.multisafepay_ideal.issuer_id'
             required
-            validation={{ required: { message: 'Please provide an issuer', value: true } }}
+            rules={{ required: { message: 'Please provide an issuer', value: true } }}
             variant='outlined'
             color='secondary'
             select

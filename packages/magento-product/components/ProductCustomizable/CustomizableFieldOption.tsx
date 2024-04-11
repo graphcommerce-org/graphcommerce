@@ -29,7 +29,7 @@ export function CustomizableFieldOption(props: CustomizableFieldOptionProps) {
         control={control}
         name={`cartItems.${index}.entered_options.${optionIndex}.value`}
         required={Boolean(required)}
-        validation={{
+        rules={{
           maxLength: {
             value: maxLength,
             message: i18n._(/* i18n*/ 'There is a maximum of ‘{maxLength}’ characters', {

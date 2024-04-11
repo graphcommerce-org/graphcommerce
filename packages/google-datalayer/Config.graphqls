@@ -1,0 +1,13 @@
+extend input GraphCommerceConfig {
+  dataLayer: DatalayerConfig
+}
+
+"""
+GoogleDatalayerConfig to allow enabling certain aspects of the datalayer
+"""
+input DatalayerConfig {
+  """
+  Enable core web vitals tracking for GraphCommerce
+  """
+  coreWebVitals: Boolean
+}

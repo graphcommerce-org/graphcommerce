@@ -20,7 +20,11 @@ import { GetAddressesDocument } from '../ShippingAddressForm/GetAddresses.gql'
 import { CustomerAddressActionCard } from './CustomerAddressActionCard'
 import { SetCustomerBillingAddressOnCartDocument } from './SetCustomerBillingAddressOnCart.gql'
 import { SetCustomerShippingAddressOnCartDocument } from './SetCustomerShippingAddressOnCart.gql'
-import { SetCustomerShippingBillingAddressOnCartDocument } from './SetCustomerShippingBillingAddressOnCart.gql'
+import {
+  SetCustomerShippingBillingAddressOnCartDocument,
+  SetCustomerShippingBillingAddressOnCartMutation,
+  SetCustomerShippingBillingAddressOnCartMutationVariables,
+} from './SetCustomerShippingBillingAddressOnCart.gql'
 
 type CustomerAddressListProps = Pick<UseFormComposeOptions, 'step'> & {
   children?: React.ReactNode
@@ -31,7 +35,8 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
   const { step, children, sx } = props
 
   const customer = useQuery(CustomerDocument)
-  const cart = useCartQuery(GetAddressesDocument).data?.cart
+  const cartQuery = useCartQuery(GetAddressesDocument)
+  const cart = cartQuery.data?.cart
 
   const customerAddresses = filterNonNullableKeys(customer.data?.customer?.addresses, ['id'])
 
@@ -45,46 +50,75 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
     findCustomerAddressFromCartAddress(customerAddresses, cartBilling)?.id || null
   const defaultBillingId = customerAddresses.find((a) => a.default_billing)?.id || undefined
 
+  let mode: 'both' | 'shipping' | 'billing' = 'both'
   let Mutation = SetCustomerShippingBillingAddressOnCartDocument
+  let cartAddressId = cartShippingId
 
-  // The customer already has their billing address configured AND has a different shipping address than the billing address
+  // The customer already has their billing/shipping address configured AND has a different shipping address than the billing address
   // we are only going to update the shipping address here.
-  if (cartShippingId && cartBillingId && cartBillingId !== cartShippingId)
+  if (cartBillingId && cartShippingId && cartBillingId !== cartShippingId) {
     Mutation = SetCustomerShippingAddressOnCartDocument
+    mode = 'shipping'
+  }
+
+  // Billing/Shipping address is different in account, but billing address gets set by default by Magento, so we only need to handle the shipping address.
+  if (cartBillingId && !cartShippingId && defaultBillingId !== defaultShippingId) {
+    Mutation = SetCustomerShippingAddressOnCartDocument
+    mode = 'shipping'
+  }
 
   // For a virtual cart this is the only mutation we can use.
-  if (cart?.is_virtual) Mutation = SetCustomerBillingAddressOnCartDocument
+  if (cart?.is_virtual) {
+    Mutation = SetCustomerBillingAddressOnCartDocument
+    cartAddressId = cartBillingId
+    mode = 'billing'
+  }
 
-  const form = useFormGqlMutationCart(Mutation, {
+  const form = useFormGqlMutationCart<
+    SetCustomerShippingBillingAddressOnCartMutation,
+    SetCustomerShippingBillingAddressOnCartMutationVariables & {
+      customer_address_id: number | null
+    }
+  >(Mutation, {
     experimental_useV2: true,
-    defaultValues: {
-      billingAddress: { customer_address_id: cartBillingId },
-      shippingAddress: { customer_address_id: cartShippingId },
+    defaultValues: { customer_address_id: cartAddressId },
+    onBeforeSubmit: (vars) => {
+      const { customer_address_id } = vars
+      if (customer_address_id === -1) return false
+
+      switch (mode) {
+        case 'both':
+          return {
+            ...vars,
+            billingAddress: { same_as_shipping: true },
+            shippingAddress: { customer_address_id },
+          }
+        case 'shipping':
+          return { ...vars, shippingAddress: { customer_address_id } }
+        case 'billing':
+        default:
+          return { ...vars, billingAddress: { customer_address_id } }
+      }
     },
-    onBeforeSubmit: (vars) => (vars.shippingAddress.customer_address_id === -1 ? false : vars),
   })
 
   const { handleSubmit, error, control, setValue, watch } = form
-
-  // If customer selects 'new address' then we do not have to submit anything so we provide an empty submit function.
-  const formShippingId = watch('shippingAddress.customer_address_id')
+  const formAddressId = watch('customer_address_id')
 
   useMemo(() => {
-    if (!formShippingId && !cartShippingId && defaultShippingId) {
-      // console.log('shippingAddress.customer_address_id', defaultShippingId)
-      setValue('shippingAddress.customer_address_id', defaultShippingId, { shouldValidate: true })
+    if (mode === 'both' || mode === 'shipping') {
+      if (!cartAddressId && defaultShippingId) {
+        // console.log('shippingAddress.customer_address_id', defaultShippingId)
+        setValue('customer_address_id', defaultShippingId, { shouldValidate: true })
+      }
     }
-
-    if (!cartBillingId && defaultBillingId) {
-      // console.log('billingAddress.customer_address_id', defaultBillingId)
-      setValue('billingAddress.customer_address_id', defaultBillingId, { shouldValidate: true })
+    if (mode === 'billing') {
+      if (!cartAddressId && defaultBillingId) {
+        // console.log('billingAddress.customer_address_id', defaultBillingId)
+        setValue('customer_address_id', defaultBillingId, { shouldValidate: true })
+      }
     }
-
-    if (!cartBillingId && !defaultBillingId && defaultShippingId) {
-      // console.log('billingAddress.customer_address_id', defaultShippingId)
-      setValue('billingAddress.customer_address_id', defaultShippingId, { shouldValidate: true })
-    }
-  }, [cartBillingId, cartShippingId, defaultBillingId, defaultShippingId, formShippingId, setValue])
+  }, [cartAddressId, defaultBillingId, defaultShippingId, mode, setValue])
 
   const submit = handleSubmit(() => {})
 
@@ -96,11 +130,11 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
 
   return (
     <>
-      <FormAutoSubmit control={form.control} submit={submit} exact wait={0} />
+      <FormAutoSubmit control={form.control} submit={submit} wait={0} />
       <Box component='form' onSubmit={submit} noValidate sx={sx}>
         <ActionCardListForm
           control={control}
-          name='shippingAddress.customer_address_id'
+          name='customer_address_id'
           errorMessage={i18n._(/* i18n */ 'Please select a shipping address')}
           collapse
           size='large'
@@ -113,7 +147,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
         />
         <ApolloCartErrorAlert error={error} />
       </Box>
-      {formShippingId === -1 && children}
+      {formAddressId === -1 && children}
     </>
   )
 }

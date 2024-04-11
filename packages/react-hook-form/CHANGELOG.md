@@ -1,5 +1,45 @@
 # Change Log
 
+## 8.0.5-canary.4
+
+### Patch Changes
+
+- [#2237](https://github.com/graphcommerce-org/graphcommerce/pull/2237) [`60f387d`](https://github.com/graphcommerce-org/graphcommerce/commit/60f387d4a037736aa8105fa45728ee481bdaf887) - Solve an issue where the checkout address form wouldn't be automatically submitted on change.
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 8.0.5-canary.3
+
+## 8.0.5-canary.2
+
+## 8.0.5-canary.1
+
+## 8.0.5-canary.0
+
+## 8.0.4
+
+## 8.0.4-canary.1
+
+## 8.0.4-canary.0
+
+## 8.0.3
+
+### Patch Changes
+
+- [#2206](https://github.com/graphcommerce-org/graphcommerce/pull/2206) [`855ab09`](https://github.com/graphcommerce-org/graphcommerce/commit/855ab097b9ea204a7c73c6550b7a5e9e2290f378) - Cleanup `<FormAutoSubmit/>` and remove internal hook.
+  ([@paales](https://github.com/paales))
+
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`7c9f5da`](https://github.com/graphcommerce-org/graphcommerce/commit/7c9f5da1d458a19b0316c556c75415ff28bc5b2d) - Added noValidate prop so we can use the FormAutoSubmit component to submit partial forms
+  ([@paales](https://github.com/paales))
+
+## 8.0.3-canary.6
+
+## 8.0.3-canary.5
+
+### Patch Changes
+
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`7c9f5da`](https://github.com/graphcommerce-org/graphcommerce/commit/7c9f5da1d458a19b0316c556c75415ff28bc5b2d) - Added noValidate prop so we can use the FormAutoSubmit component to submit partial forms
+  ([@paales](https://github.com/paales))
+
 ## 8.0.3-canary.4
 
 ## 8.0.3-canary.3

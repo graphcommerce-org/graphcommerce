@@ -1,4 +1,12 @@
 <!-- Automatically generated from Config.graphqls -->
+### DatalayerConfig
+
+GoogleDatalayerConfig to allow enabling certain aspects of the datalayer
+
+#### coreWebVitals: boolean
+
+Enable core web vitals tracking for GraphCommerce
+
 # GraphCommerce configuration system
 
 Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file
@@ -158,6 +166,8 @@ customer requires email confirmation.
 
 This value should match Magento 2's configuration value for
 `customer/create_account/confirm` and should be removed once we can query
+
+#### dataLayer: [DatalayerConfig](#DatalayerConfig)
 
 #### debug: [GraphCommerceDebugConfig](#GraphCommerceDebugConfig)
 

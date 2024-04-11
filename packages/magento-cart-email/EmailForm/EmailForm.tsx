@@ -64,7 +64,7 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
           label={<Trans id='Email' />}
           required={required.email}
           disabled={cartEmail.loading}
-          validation={{
+          rules={{
             required: required.email,
             pattern: { value: emailPattern, message: '' },
           }}

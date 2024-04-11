@@ -1,13 +1,7 @@
 import { dvh } from '@graphcommerce/framer-utils'
 import { m, useIsPresent } from 'framer-motion'
-import React from 'react'
+import React, { HTMLAttributes } from 'react'
 import type { PageItem } from '../types'
-
-declare module 'react' {
-  interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
-    inert?: 'true'
-  }
-}
 
 export type PageProps = Pick<PageItem, 'routerKey'> & {
   active: boolean
@@ -42,7 +36,7 @@ export function Page(props: PageProps) {
     <m.div
       layoutScroll
       style={{ position, top, zIndex, minHeight: dvh(100), left: 0, right: 0 }}
-      inert={!active ? 'true' : undefined}
+      inert={!active ? ('true' as unknown as boolean) : undefined}
       data-nosnippet={!active ? true : undefined}
       aria-hidden={!active ? true : undefined}
     >

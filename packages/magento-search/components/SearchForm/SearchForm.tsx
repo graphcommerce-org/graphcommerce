@@ -60,7 +60,7 @@ export function SearchForm(props: SearchFormProps) {
         color='primary'
         control={control}
         InputProps={{ ...textFieldProps?.InputProps, endAdornment }}
-        validation={{ minLength: 3 }}
+        rules={{ minLength: 3 }}
         inputRef={searchInputElement}
         {...textFieldProps}
       />
