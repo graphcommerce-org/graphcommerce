@@ -144,8 +144,9 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               display: 'grid',
               gridTemplate: '"left" "right"',
               [theme.breakpoints.up('md')]: {
-                // gridTemplateColumns: '1fr auto',
-                gridTemplate: '"left right" / 1fr auto',
+                gridTemplate: `"left right" / 1fr calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
+                  theme.page.horizontal
+                } * 2)`,
               },
               background:
                 theme.palette.mode === 'light'
@@ -159,6 +160,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
               [theme.breakpoints.up('md')]: {
                 marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
+                gridTemplateColumns: '1fr auto',
               },
               paddingRight: 0,
             },
@@ -348,11 +350,6 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 justifyItems: 'start',
                 alignContent: 'center',
                 position: 'relative',
-                [theme.breakpoints.up('md')]: {
-                  width: `calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
-                    theme.page.horizontal
-                  } * 2)`,
-                },
               },
               zoomed && {
                 [theme.breakpoints.up('md')]: {
