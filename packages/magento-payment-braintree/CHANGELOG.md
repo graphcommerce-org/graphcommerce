@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.5-canary.5
+
+### Patch Changes
+
+- [#2188](https://github.com/graphcommerce-org/graphcommerce/pull/2188) [`eec7498`](https://github.com/graphcommerce-org/graphcommerce/commit/eec7498213f34f0f850123b577b77bf678e3c80b) - Braintree Credit Card: Hosted payment fields now have proper styling and all focus/blur and error states are correctly handled.
+  ([@paales](https://github.com/paales))
+
 ## 8.0.5-canary.4
 
 ## 8.0.5-canary.3
