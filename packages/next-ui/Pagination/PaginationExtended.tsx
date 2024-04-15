@@ -61,7 +61,7 @@ export function PaginationExtended(props: PaginationExtendedProps) {
         count={count}
         defaultPage={page}
         page={page}
-        siblingCount={1}
+        siblingCount={0}
         boundaryCount={1}
         size={size ?? 'large'}
         renderItem={
