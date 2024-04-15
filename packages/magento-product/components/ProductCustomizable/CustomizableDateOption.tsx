@@ -61,7 +61,7 @@ export function CustomizableDateOption(props: CustomizableDateOptionProps) {
             }}
           >
             {/* Change fontFamily so the + is properly outlined */}
-            <span style={{ fontFamily: 'arial', paddingTop: '1px' }}>+{'\u00A0'}</span>
+            <span style={{ fontFamily: 'arial' }}>+{'\u00A0'}</span>
             <Money
               value={
                 dateValue.price_type === 'PERCENT'
@@ -86,7 +86,10 @@ export function CustomizableDateOption(props: CustomizableDateOptionProps) {
         name={`cartItems.${index}.entered_options.${optionIndex}.value`}
         sx={{
           width: '100%',
-          '& input[type="datetime-local"]::-webkit-calendar-picker-indicator': { display: 'none' },
+          '& input[type="datetime-local"]::-webkit-calendar-picker-indicator': {
+            filter: (theme) => (theme.palette.mode === 'dark' ? 'invert(100%)' : 'none'),
+            mr: '10px',
+          },
         }}
         required={!!required}
         error={invalid}
