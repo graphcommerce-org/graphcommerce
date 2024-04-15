@@ -1,5 +1,11 @@
-query HygraphAllPages($first: Int = 100) {
-  pages(first: $first) {
+query HygraphAllPages($first: Int = 100, $skip: Int) {
+  pages(first: $first, skip: $skip) {
     url
+  }
+
+  pagesConnection {
+    aggregate {
+      count
+    }
   }
 }
