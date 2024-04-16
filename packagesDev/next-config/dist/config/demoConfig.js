@@ -35,7 +35,7 @@ exports.demoConfig = {
     ],
     productFiltersPro: true,
     productFiltersLayout: 'DEFAULT',
-    productListPaginationVariant: 'EXTENDED',
+    productListPaginationVariant: 'COMPACT',
     compareVariant: 'ICON',
     robotsAllow: false,
     demoMode: true,
