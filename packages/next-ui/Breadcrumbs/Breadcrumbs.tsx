@@ -12,11 +12,11 @@ import { useRef, useState, MouseEvent } from 'react'
 import { IconSvg } from '../IconSvg'
 import { iconClose, iconEllypsis } from '../icons'
 import { BreadcrumbsJsonLd } from './BreadcrumbsJsonLd'
-import { PopperBreadcrumbsList } from './PopperBreadcrumbsList'
+import { BreadcrumbsList } from './BreadcrumbsList'
 import { jsonLdBreadcrumb } from './jsonLdBreadcrumb'
 import { BreadcrumbsProps } from './types'
 
-export function PopperBreadcrumbs(props: BreadcrumbsProps) {
+export function Breadcrumbs(props: BreadcrumbsProps) {
   const { breadcrumbs, name, baseUrl, sx, breadcrumbsAmount = 2 } = props
   const [anchorElement, setAnchorElement] = useState<HTMLButtonElement | null>(null)
   const anchorRef = useRef<HTMLButtonElement>(null)
@@ -151,7 +151,7 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
         }}
       >
         <Box>
-          <PopperBreadcrumbsList
+          <BreadcrumbsList
             autoFocus={Boolean(anchorElement)}
             breadcrumbs={breadcrumbs}
             name={name}

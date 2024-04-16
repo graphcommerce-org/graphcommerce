@@ -1,2 +1,2 @@
-export * from './PopperBreadcrumbs'
+export * from './Breadcrumbs'
 export * from './types'

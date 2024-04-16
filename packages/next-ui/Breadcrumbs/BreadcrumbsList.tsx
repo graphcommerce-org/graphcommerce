@@ -11,7 +11,7 @@ type PopperBreadcrumbsListProps = {
   handleKeyDown: (event: React.KeyboardEvent) => void
 }
 
-export function PopperBreadcrumbsList(props: PopperBreadcrumbsListProps) {
+export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
   const { breadcrumbs, autoFocus, name, handleClickAway, handleKeyDown } = props
   const listRef = useRef<HTMLDivElement | null>(null)
   const theme = useTheme()
