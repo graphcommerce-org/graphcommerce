@@ -113,7 +113,7 @@ Examples:
 
 All storefront configuration for the project
 
-#### breadcrumbsVariant: BACK_BUTTON | DEFAULT | POPPER = `BACK_BUTTON`
+#### breadcrumbs: boolean = `false`
 
 Configuration for the SidebarGallery component
 

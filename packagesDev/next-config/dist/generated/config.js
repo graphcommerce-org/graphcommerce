@@ -9,9 +9,6 @@ function _export(target, all) {
     });
 }
 _export(exports, {
-    BreadcrumbsVariantSchema: function() {
-        return BreadcrumbsVariantSchema;
-    },
     CompareVariantSchema: function() {
         return CompareVariantSchema;
     },
@@ -52,11 +49,6 @@ _export(exports, {
 const _zod = require("zod");
 const isDefinedNonNullAny = (v)=>v !== undefined && v !== null;
 const definedNonNullAnySchema = _zod.z.any().refine((v)=>isDefinedNonNullAny(v));
-const BreadcrumbsVariantSchema = _zod.z.enum([
-    "BACK_BUTTON",
-    "DEFAULT",
-    "POPPER"
-]);
 const CompareVariantSchema = _zod.z.enum([
     "CHECKBOX",
     "ICON"
@@ -76,7 +68,7 @@ function DatalayerConfigSchema() {
 }
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
-        breadcrumbsVariant: BreadcrumbsVariantSchema.nullish(),
+        breadcrumbs: _zod.z.boolean().nullish(),
         canonicalBaseUrl: _zod.z.string().min(1),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
         compare: _zod.z.boolean().nullish(),

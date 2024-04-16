@@ -8,13 +8,13 @@ import { productPageCategory } from '../ProductPageCategory/productPageCategory'
 import { ProductPageBreadcrumbFragment } from './ProductPageBreadcrumb.gql'
 
 type ProductPageBreadcrumbsProps = ProductPageBreadcrumbFragment &
-  Omit<BreadcrumbsProps, 'children'>
+  Omit<BreadcrumbsProps, 'children'> & { breadcrumbsAmount?: number }
 
 export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
   const { categories, name, uid, url_key, ...breadcrumbsProps } = props
   const config = useQuery(StoreConfigDocument).data?.storeConfig
   const baseUrl = config?.secure_base_link_url ?? import.meta.graphCommerce.canonicalBaseUrl
-  const breadcrumbsVariant = import.meta.graphCommerce?.breadcrumbsVariant ?? 'BACK_BUTTON'
+  const showBreadcrumbs = import.meta.graphCommerce?.breadcrumbs
   const prev = usePrevPageRouter()
 
   const category =
@@ -57,7 +57,7 @@ export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
     return sortedBreadcrumbsList
   }, [category, name, uid, url_key])
 
-  if (breadcrumbsVariant === 'BACK_BUTTON') return null
+  if (!showBreadcrumbs) return null
 
   return (
     <PopperBreadcrumbs

@@ -17,22 +17,17 @@ import { jsonLdBreadcrumb } from './jsonLdBreadcrumb'
 import { BreadcrumbsProps } from './types'
 
 export function PopperBreadcrumbs(props: BreadcrumbsProps) {
-  const { breadcrumbs, name, baseUrl, sx, numOfBreadcrumbsToShow = 2 } = props
+  const { breadcrumbs, name, baseUrl, sx, breadcrumbsAmount = 2 } = props
   const [anchorElement, setAnchorElement] = useState<HTMLButtonElement | null>(null)
   const anchorRef = useRef<HTMLButtonElement>(null)
   const theme = useTheme()
 
-  const showHomeBreadcrumbItem =
-    breadcrumbs.length <= 1 ||
-    breadcrumbs.length - numOfBreadcrumbsToShow < 0 ||
-    numOfBreadcrumbsToShow === 0
-  const showFirstBreadcrumbListItem =
-    breadcrumbs.length >= numOfBreadcrumbsToShow && numOfBreadcrumbsToShow > 0
-  const showFirstBreadcrumbItem =
-    breadcrumbs.length - numOfBreadcrumbsToShow <= 0 || numOfBreadcrumbsToShow === 0
-  const breadcrumbItemToStart = showFirstBreadcrumbItem
-    ? 0
-    : breadcrumbs.length - numOfBreadcrumbsToShow
+  const isDefault = breadcrumbsAmount === 0
+  const showHome = isDefault || breadcrumbs.length < 2 || breadcrumbs.length - breadcrumbsAmount < 0
+  const showButtonMobile = breadcrumbs.length > 1
+  const showButtonDesktop = breadcrumbsAmount > 0 && breadcrumbs.length >= breadcrumbsAmount
+  const showFirst = isDefault || breadcrumbs.length - breadcrumbsAmount <= 0
+  const startIndex = showFirst ? 0 : breadcrumbs.length - breadcrumbsAmount
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     setAnchorElement(anchorElement ? null : e.currentTarget)
@@ -69,8 +64,8 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
               '& .MuiBreadcrumbs-li': {
                 '&:nth-of-type(1)': {
                   display: {
-                    xs: breadcrumbs.length >= 2 ? 'flex' : 'none',
-                    md: showFirstBreadcrumbListItem ? 'flex' : 'none',
+                    xs: showButtonMobile ? 'flex' : 'none',
+                    md: showButtonDesktop ? 'flex' : 'none',
                   },
                 },
                 '&:nth-last-of-type(1)': {
@@ -81,8 +76,8 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
               '& .MuiBreadcrumbs-separator': {
                 '&:nth-of-type(2)': {
                   display: {
-                    xs: breadcrumbs.length >= 2 ? 'flex' : 'none',
-                    md: showFirstBreadcrumbListItem ? 'flex' : 'none',
+                    xs: showButtonMobile ? 'flex' : 'none',
+                    md: showButtonDesktop ? 'flex' : 'none',
                   },
                 },
               },
@@ -121,12 +116,12 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
         >
           <IconSvg src={anchorElement ? iconClose : iconEllypsis} />
         </IconButton>
-        {showHomeBreadcrumbItem && (
+        {showHome && (
           <Link href='/' underline='hover' color='text.primary' variant='body1'>
             <Trans id='Home' />
           </Link>
         )}
-        {breadcrumbs.slice(breadcrumbItemToStart, breadcrumbs.length - 1).map((breadcrumb) => (
+        {breadcrumbs.slice(startIndex, breadcrumbs.length - 1).map((breadcrumb) => (
           <Link {...breadcrumb} underline='hover' color='text.primary' variant='body1' />
         ))}
         <Typography component='span' color='text.primary' variant='body1' fontWeight='600' noWrap>
@@ -148,8 +143,8 @@ export function PopperBreadcrumbs(props: BreadcrumbsProps) {
         ]}
         sx={{
           display: {
-            xs: breadcrumbs.length >= 2 ? 'block' : 'none',
-            md: breadcrumbs.length >= numOfBreadcrumbsToShow ? 'block' : 'none',
+            xs: showButtonMobile ? 'block' : 'none',
+            md: breadcrumbs.length >= breadcrumbsAmount ? 'block' : 'none',
           },
           maxWidth: `calc(100% - ${theme.page.horizontal} * 2)`,
           zIndex: 100,
