@@ -12,7 +12,4 @@ mutation SignUp(
   $dateOfBirth: String
 ) {
   ...CreateCustomerMutationFragment
-  generateCustomerToken(email: $email, password: $password) {
-    token
-  }
 }
