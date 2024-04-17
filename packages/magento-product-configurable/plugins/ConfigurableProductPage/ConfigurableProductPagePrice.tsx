@@ -1,8 +1,4 @@
-import {
-  AddToCartItemSelector,
-  ProductPagePriceFragment,
-  type ProductPagePrice,
-} from '@graphcommerce/magento-product'
+import { AddToCartItemSelector, type ProductPagePrice } from '@graphcommerce/magento-product'
 import type { ReactPlugin } from '@graphcommerce/next-config'
 import { useConfigurableSelectedVariant } from '../../hooks'
 
@@ -16,12 +12,15 @@ const ConfigurableProductPagePrice: PluginType = (props) => {
   const { Prev, product, index, ...rest } = props
   const variant = useConfigurableSelectedVariant({ url_key: product.url_key, index })
 
-  if (product.__typename === 'GroupedProduct') return <Prev {...props} />
-  const finalProduct: ProductPagePriceFragment = variant
-    ? { ...variant, options: product.options }
-    : product
+  if (product.__typename !== 'ConfigurableProduct') return <Prev {...props} />
 
-  return <Prev product={finalProduct} index={index} {...rest} />
+  return (
+    <Prev
+      product={variant ? { ...variant, options: product.options } : product}
+      index={index}
+      {...rest}
+    />
+  )
 }
 
 export const Plugin = ConfigurableProductPagePrice
