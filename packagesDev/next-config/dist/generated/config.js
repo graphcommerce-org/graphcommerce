@@ -36,6 +36,9 @@ _export(exports, {
     SidebarGalleryPaginationVariantSchema: function() {
         return SidebarGalleryPaginationVariantSchema;
     },
+    SignInModesSchema: function() {
+        return SignInModesSchema;
+    },
     definedNonNullAnySchema: function() {
         return definedNonNullAnySchema;
     },
@@ -58,6 +61,11 @@ const SidebarGalleryPaginationVariantSchema = _zod.z.enum([
     "DOTS",
     "THUMBNAILS_BOTTOM"
 ]);
+const SignInModesSchema = _zod.z.enum([
+    "DEFAULT",
+    "DISABLE_GUEST_CHECKOUT",
+    "GUEST_ONLY"
+]);
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
         canonicalBaseUrl: _zod.z.string().min(1),
@@ -75,7 +83,6 @@ function GraphCommerceConfigSchema() {
         googleAnalyticsId: _zod.z.string().nullish(),
         googleRecaptchaKey: _zod.z.string().nullish(),
         googleTagmanagerId: _zod.z.string().nullish(),
-        guestOnlyMode: _zod.z.boolean().nullish(),
         hygraphEndpoint: _zod.z.string().min(1),
         hygraphManagementApi: _zod.z.string().nullish(),
         hygraphProjectId: _zod.z.string().nullish(),
@@ -115,7 +122,8 @@ function GraphCommerceStorefrontConfigSchema() {
         hygraphLocales: _zod.z.array(_zod.z.string().min(1)).nullish(),
         linguiLocale: _zod.z.string().nullish(),
         locale: _zod.z.string().min(1),
-        magentoStoreCode: _zod.z.string().min(1)
+        magentoStoreCode: _zod.z.string().min(1),
+        signInMode: SignInModesSchema.nullish()
     });
 }
 function MagentoConfigurableVariantValuesSchema() {
