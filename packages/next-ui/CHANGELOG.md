@@ -1,5 +1,18 @@
 # Change Log
 
+## 8.0.5-canary.7
+
+### Patch Changes
+
+- [#2241](https://github.com/graphcommerce-org/graphcommerce/pull/2241) [`6f3fe60`](https://github.com/graphcommerce-org/graphcommerce/commit/6f3fe60441762d55cb46d587279121e8fe469cdd) - Decreased layout shift on product pages by reserving space for sidebar
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2241](https://github.com/graphcommerce-org/graphcommerce/pull/2241) [`cde3c31`](https://github.com/graphcommerce-org/graphcommerce/commit/cde3c310abf2ac3c82d1062d5fb0a4c00ba50cff) - Removed unnecessary vendor prefixes
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2241](https://github.com/graphcommerce-org/graphcommerce/pull/2241) [`4c83636`](https://github.com/graphcommerce-org/graphcommerce/commit/4c836366c324881ee5121c645c5f94fc60e3ebb3) - Prevent horizontal scrollbar on small screens when using SidebarGallery
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 8.0.5-canary.6
 
 ## 8.0.5-canary.5
