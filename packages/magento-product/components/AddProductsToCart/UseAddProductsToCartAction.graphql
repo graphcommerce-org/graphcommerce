@@ -1,6 +1,6 @@
 fragment UseAddProductsToCartAction on ProductInterface @injectable {
   uid
   sku
-  x_left_in_stock: only_x_left_in_stock
+  only_x_left_in_stock
   stock_status
 }

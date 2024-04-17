@@ -9,7 +9,7 @@ type ProductSidebarDeliveryProps = {
 
 export function ProductSidebarDelivery(props: ProductSidebarDeliveryProps) {
   const { product } = props
-  const { stock_status, x_left_in_stock } = product ?? {}
+  const { stock_status, only_x_left_in_stock } = product ?? {}
 
   let title = <Trans id='Order before 22:00' />
   let subtitle = <Trans id='Next day delivery - Shipping free' />
@@ -17,16 +17,16 @@ export function ProductSidebarDelivery(props: ProductSidebarDeliveryProps) {
   if (stock_status === 'OUT_OF_STOCK') {
     title = <Trans id='Out of stock' />
     subtitle = <Trans id='We are sorry, this product is currently out of stock.' />
-  } else if (stock_status === 'IN_STOCK' && x_left_in_stock) {
+  } else if (stock_status === 'IN_STOCK' && only_x_left_in_stock) {
     title = <Trans id='Only a few left' />
     subtitle = (
       <Trans
         id='Only {amount_left_in_stock} left in stock.'
-        values={{ amount_left_in_stock: x_left_in_stock }}
+        values={{ amount_left_in_stock: only_x_left_in_stock }}
       />
     )
   }
-  if (x_left_in_stock === 1) {
+  if (only_x_left_in_stock === 1) {
     subtitle = <Trans id='Only 1 left in stock.' />
   }
 
