@@ -1,7 +1,13 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { SearchLink } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, Separator, icon404, IconSvg } from '@graphcommerce/next-ui'
+import {
+  GetStaticProps,
+  Separator,
+  icon404,
+  IconSvg,
+  useStorefrontConfig,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Container, Typography, Link } from '@mui/material'
 import React from 'react'
@@ -12,13 +18,15 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 
 function RouteNotFoundPage() {
+  const { signInMode } = useStorefrontConfig()
+
   const links = [
     <Link key={0} href='/' color='primary' underline='hover'>
       <Trans id='Store home' />
     </Link>,
   ]
 
-  if (!import.meta.graphCommerce.guestOnlyMode)
+  if (signInMode !== 'GUEST_ONLY')
     links.push(
       <Link key={1} href='/account' color='primary' underline='hover'>
         <Trans id='Account' />

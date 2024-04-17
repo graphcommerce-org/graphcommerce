@@ -1,6 +1,14 @@
-extend input GraphCommerceConfig {
+enum SignInModes {
+  GUEST_ONLY
+  DISABLE_GUEST_CHECKOUT
+  DEFAULT
+}
+
+extend input GraphCommerceStorefrontConfig {
   """
-  Disables all login functionalities
+  GUEST_ONLY disables all login functionalities
+  SIGNED_IN_ONLY disables all guest functionalities
+  DEFAULT allows all functionalities
   """
-  guestOnlyMode: Boolean
+  signInMode: SignInModes = DEFAULT
 }

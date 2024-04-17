@@ -6,7 +6,7 @@ import {
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { IsEmailAvailableDocument, useCustomerSession } from '@graphcommerce/magento-customer'
-import { extendableComponent, FormRow } from '@graphcommerce/next-ui'
+import { extendableComponent, FormRow, useStorefrontConfig } from '@graphcommerce/next-ui'
 import {
   emailPattern,
   useFormAutoSubmit,
@@ -31,6 +31,8 @@ const { classes } = extendableComponent(name, parts)
 
 const EmailFormBase = React.memo<EmailFormProps>((props) => {
   const { step, sx } = props
+
+  const { signInMode } = useStorefrontConfig()
 
   const cartEmail = useCartQuery(CartEmailDocument)
 
@@ -70,7 +72,7 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
           }}
           InputProps={{
             autoComplete: 'email',
-            endAdornment: !import.meta.graphCommerce.guestOnlyMode && (
+            endAdornment: signInMode !== 'GUEST_ONLY' && (
               <WaitForQueries waitFor={isEmailAvailable}>
                 {(isEmailAvailable.data?.isEmailAvailable ||
                   !import.meta.graphCommerce.enableGuestCheckoutLogin) && (

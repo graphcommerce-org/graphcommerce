@@ -203,8 +203,6 @@ export type GraphCommerceConfig = {
    * This value is required even if you are configuring different values for each locale.
    */
   googleTagmanagerId?: InputMaybe<Scalars['String']['input']>;
-  /** Disables all login functionalities */
-  guestOnlyMode?: InputMaybe<Scalars['Boolean']['input']>;
   /**
    * The HyGraph endpoint.
    *
@@ -375,6 +373,12 @@ export type GraphCommerceStorefrontConfig = {
    * - b2b-us
    */
   magentoStoreCode: Scalars['String']['input'];
+  /**
+   * GUEST_ONLY disables all login functionalities
+   * SIGNED_IN_ONLY disables all guest functionalities
+   * DEFAULT allows all functionalities
+   */
+  signInMode?: InputMaybe<SignInModes>;
 };
 
 /** Options to configure which values will be replaced when a variant is selected on the product page. */
@@ -417,6 +421,11 @@ export type SidebarGalleryPaginationVariant =
   | 'DOTS'
   | 'THUMBNAILS_BOTTOM';
 
+export type SignInModes =
+  | 'DEFAULT'
+  | 'DISABLE_GUEST_CHECKOUT'
+  | 'GUEST_ONLY';
+
 
 type Properties<T> = Required<{
   [K in keyof T]: z.ZodType<T[K], any, T[K]>;
@@ -433,6 +442,8 @@ export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
 export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM']);
+
+export const SignInModesSchema = z.enum(['DEFAULT', 'DISABLE_GUEST_CHECKOUT', 'GUEST_ONLY']);
 
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
@@ -451,7 +462,6 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     googleAnalyticsId: z.string().nullish(),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
-    guestOnlyMode: z.boolean().nullish(),
     hygraphEndpoint: z.string().min(1),
     hygraphManagementApi: z.string().nullish(),
     hygraphProjectId: z.string().nullish(),
@@ -493,7 +503,8 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
     hygraphLocales: z.array(z.string().min(1)).nullish(),
     linguiLocale: z.string().nullish(),
     locale: z.string().min(1),
-    magentoStoreCode: z.string().min(1)
+    magentoStoreCode: z.string().min(1),
+    signInMode: SignInModesSchema.nullish()
   })
 }
 
