@@ -92,17 +92,16 @@ function ProductPage(props: Props) {
 
         <ProductPageMeta product={product} />
 
-        {typeof import.meta.graphCommerce.breadcrumbs === 'boolean' &&
-          import.meta.graphCommerce.breadcrumbs && (
-            <Container maxWidth={false} sx={(theme) => ({ marginBottom: theme.spacings.xs })}>
-              <ProductPageBreadcrumbs
-                categories={product?.categories}
-                name={product?.name}
-                uid={product?.uid}
-                url_key={product?.url_key}
-              />
-            </Container>
-          )}
+        {import.meta.graphCommerce.breadcrumbs && (
+          <Container maxWidth={false} sx={(theme) => ({ marginBottom: theme.spacings.xs })}>
+            <ProductPageBreadcrumbs
+              categories={product?.categories}
+              name={product?.name}
+              uid={product?.uid}
+              url_key={product?.url_key}
+            />
+          </Container>
+        )}
 
         <ProductPageGallery
           product={product}

@@ -1,10 +1,8 @@
 import { Trans } from '@lingui/react'
 import {
-  Box,
   Breadcrumbs as BreadcrumbsBase,
   IconButton,
   Link,
-  Popper,
   Typography,
   useTheme,
 } from '@mui/material'
@@ -12,7 +10,6 @@ import { useRef, useState, MouseEvent } from 'react'
 import { IconSvg } from '../IconSvg'
 import { iconClose, iconEllypsis } from '../icons'
 import { BreadcrumbsJsonLd } from './BreadcrumbsJsonLd'
-import { BreadcrumbsList } from './BreadcrumbsList'
 import { jsonLdBreadcrumb } from './jsonLdBreadcrumb'
 import type { BreadcrumbsType } from './types'
 
@@ -31,16 +28,6 @@ export function Breadcrumbs(props: BreadcrumbsType) {
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     setAnchorElement(anchorElement ? null : e.currentTarget)
-  }
-
-  const handleClickAway = () => {
-    setAnchorElement(null)
-  }
-
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === 'Escape') {
-      setAnchorElement(null)
-    }
   }
 
   return (
@@ -128,38 +115,6 @@ export function Breadcrumbs(props: BreadcrumbsType) {
           {name}
         </Typography>
       </BreadcrumbsBase>
-      <Popper
-        anchorEl={anchorElement}
-        open={Boolean(anchorElement)}
-        disablePortal
-        placement='bottom-start'
-        modifiers={[
-          { name: 'offset', options: { offset: [0, 10] } },
-          {
-            name: 'preventOverflow',
-            enabled: true,
-            options: { altBoundary: false, padding: 10 },
-          },
-        ]}
-        sx={{
-          display: {
-            xs: showButtonMobile ? 'block' : 'none',
-            md: breadcrumbs.length >= breadcrumbsAmount ? 'block' : 'none',
-          },
-          maxWidth: `calc(100% - ${theme.page.horizontal} * 2)`,
-          zIndex: 100,
-        }}
-      >
-        <Box>
-          <BreadcrumbsList
-            autoFocus={Boolean(anchorElement)}
-            breadcrumbs={breadcrumbs}
-            name={name}
-            handleClickAway={handleClickAway}
-            handleKeyDown={handleKeyDown}
-          />
-        </Box>
-      </Popper>
     </>
   )
 }
