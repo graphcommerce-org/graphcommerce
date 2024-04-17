@@ -40,7 +40,6 @@ export function CustomizableDropDownOption(props: CustomizableDropDownOptionProp
         }}
         color='primary'
         value={value ?? ''}
-        label={title}
         {...field}
         inputRef={ref}
         onChange={(event) => onChange(event.target.value)}
@@ -51,7 +50,7 @@ export function CustomizableDropDownOption(props: CustomizableDropDownOptionProp
       >
         {filterNonNullableKeys(dropdownValue, ['title']).map((option) => (
           <MenuItem key={option.uid} value={option.uid}>
-            <ListItemText>{option.title}</ListItemText>
+            <Box>{option.title}</Box>
 
             {option.price ? (
               <Box

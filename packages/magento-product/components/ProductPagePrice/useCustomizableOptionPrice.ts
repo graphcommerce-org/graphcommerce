@@ -4,13 +4,13 @@ import { MoneyFragment } from '@graphcommerce/magento-store'
 import { filterNonNullableKeys, isTypename, nonNullable } from '@graphcommerce/next-ui'
 import type { Simplify } from 'type-fest'
 import { AddToCartItemSelector, useFormAddProductsToCart } from '../AddProductsToCart'
-import { CustomizableAreaOptionFragment } from '../ProductCustomizable/CustomizableAreaOption.gql'
-import { CustomizableCheckboxOptionFragment } from '../ProductCustomizable/CustomizableCheckboxOption.gql'
-import { CustomizableDateOptionFragment } from '../ProductCustomizable/CustomizableDateOption.gql'
-import { CustomizableDropDownOptionFragment } from '../ProductCustomizable/CustomizableDropDownOption.gql'
-import { CustomizableFieldOptionFragment } from '../ProductCustomizable/CustomizableFieldOption.gql'
-import { CustomizableFileOptionFragment } from '../ProductCustomizable/CustomizableFileOption.gql'
-import { CustomizableMultipleOptionFragment } from '../ProductCustomizable/CustomizableMultipleOption.gql'
+import type { CustomizableAreaOptionFragment } from '../ProductCustomizable/CustomizableAreaOption.gql'
+import type { CustomizableCheckboxOptionFragment } from '../ProductCustomizable/CustomizableCheckboxOption.gql'
+import type { CustomizableDateOptionFragment } from '../ProductCustomizable/CustomizableDateOption.gql'
+import type { CustomizableDropDownOptionFragment } from '../ProductCustomizable/CustomizableDropDownOption.gql'
+import type { CustomizableFieldOptionFragment } from '../ProductCustomizable/CustomizableFieldOption.gql'
+import type { CustomizableFileOptionFragment } from '../ProductCustomizable/CustomizableFileOption.gql'
+import type { CustomizableMultipleOptionFragment } from '../ProductCustomizable/CustomizableMultipleOption.gql'
 import { CustomizableRadioOptionFragment } from '../ProductCustomizable/CustomizableRadioOption.gql'
 import { ProductCustomizable_SimpleProduct_Fragment } from '../ProductCustomizable/ProductCustomizable.gql'
 import { ProductPagePriceFragment } from './ProductPagePrice.gql'
@@ -86,12 +86,12 @@ export function useCustomizableOptionPrice(props: UseCustomizableOptionPriceProp
   if (isTypename(product, ['GroupedProduct'])) return price.value
   if (!product.options || product.options.length === 0) return price.value
 
-  return product.options.filter(nonNullable).reduce((optionPrice, productOption) => {
-    if (
-      !cartItem.customizable_options?.[productOption.uid] &&
-      !cartItem.entered_options?.find((o) => productOption.uid && o?.uid && o?.value)
+  const finalPrice = product.options.filter(nonNullable).reduce((optionPrice, productOption) => {
+    const isCustomizable = Boolean(cartItem.customizable_options?.[productOption.uid])
+    const isEntered = Boolean(
+      cartItem.entered_options?.find((o) => productOption.uid && o?.uid && o?.value),
     )
-      return optionPrice
+    if (!isCustomizable && !isEntered) return optionPrice
 
     const selector = allSelectors[productOption.__typename] as
       | undefined
@@ -100,6 +100,7 @@ export function useCustomizableOptionPrice(props: UseCustomizableOptionPriceProp
 
     if (!value) return 0
 
+    // If the option can have multiple values
     if (Array.isArray(value)) {
       return (
         optionPrice +
@@ -113,6 +114,7 @@ export function useCustomizableOptionPrice(props: UseCustomizableOptionPriceProp
       )
     }
 
+    // If the option can have a single value entered.
     if (
       cartItem.entered_options?.filter((v) => v?.uid === productOption.uid && v.value).length !== 0
     )
@@ -120,4 +122,6 @@ export function useCustomizableOptionPrice(props: UseCustomizableOptionPriceProp
 
     return optionPrice
   }, price.value ?? 0)
+
+  return finalPrice
 }
