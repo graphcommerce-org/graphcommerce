@@ -205,10 +205,6 @@ The Google Tagmanager ID to be used on the site.
 
 This value is required even if you are configuring different values for each locale.
 
-#### guestOnlyMode: boolean
-
-Disables all login functionalities
-
 #### hygraphManagementApi: string
 
 Hygraph Management API. **Only used for migrations.**
@@ -395,6 +391,12 @@ Add a gcms-locales header to make sure queries return in a certain language, can
 #### linguiLocale: string
 
 Specify a custom locale for to load translations.
+
+#### signInMode: DEFAULT | DISABLE_GUEST_CHECKOUT | GUEST_ONLY = `DEFAULT`
+
+GUEST_ONLY disables all login functionalities
+SIGNED_IN_ONLY disables all guest functionalities
+DEFAULT allows all functionalities
 
 ### MagentoConfigurableVariantValues
 
