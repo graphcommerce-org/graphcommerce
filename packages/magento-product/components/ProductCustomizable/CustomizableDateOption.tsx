@@ -91,13 +91,13 @@ export function CustomizableDateOption(props: CustomizableDateOptionProps) {
             mr: '10px',
           },
         }}
+        defaultValue=''
         required={!!required}
         error={invalid}
         helperText={invalid ? <Trans id='Invalid date' /> : ''}
         type='datetime-local'
         InputProps={{
           endAdornment: price,
-          hiddenLabel: true,
           inputProps: {
             min: minDate.toISOString().replace(/:00.000Z/, ''),
             max: maxDate.toISOString().replace(/:00.000Z/, ''),
