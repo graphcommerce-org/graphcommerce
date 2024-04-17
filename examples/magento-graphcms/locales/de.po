@@ -280,8 +280,8 @@ msgstr "Kostenlos"
 msgid "Grand total"
 msgstr "Gesamtsumme"
 
-msgid "Have an account?"
-msgstr "Haben Sie ein Kundenkonto?"
+msgid "Guest checkout is disabled for this store please login to continue."
+msgstr "Der Gast-Checkout ist für diesen Shop deaktiviert. Bitte melden Sie sich an, um fortzufahren."
 
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Hallo {firstname}! Sie sind jetzt angemeldet!"
@@ -792,9 +792,6 @@ msgstr "Bewertungen geschrieben: {0}"
 
 msgid "You are reviewing {0}"
 msgstr "Sie bewerten {0}"
-
-msgid "You can find your order history in your account!"
-msgstr "Sie können Ihren Bestellverlauf in Ihrem Kundenkonto einsehen!"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "Sie können sich jetzt <0>erneut anmelden</0>."

@@ -280,8 +280,8 @@ msgstr "Free"
 msgid "Grand total"
 msgstr "Grand total"
 
-msgid "Have an account?"
-msgstr "Have an account?"
+msgid "Guest checkout is disabled for this store please login to continue."
+msgstr "Guest checkout is disabled for this store please login to continue."
 
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Hi {firstname}! You’re now logged in!"
@@ -792,9 +792,6 @@ msgstr "Written {0} reviews"
 
 msgid "You are reviewing {0}"
 msgstr "You are reviewing {0}"
-
-msgid "You can find your order history in your account!"
-msgstr "You can find your order history in your account!"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "You can now <0>sign in again</0>."

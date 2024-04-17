@@ -280,8 +280,8 @@ msgstr "Gratis"
 msgid "Grand total"
 msgstr "Totaal"
 
-msgid "Have an account?"
-msgstr "Heeft u al een account?"
+msgid "Guest checkout is disabled for this store please login to continue."
+msgstr "Afrekenen als gast is uitgeschakeld voor deze winkel. Log in om door te gaan."
 
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Hallo {firstname}! U bent nu ingelogd!"
@@ -792,9 +792,6 @@ msgstr "{0} reviews geschreven"
 
 msgid "You are reviewing {0}"
 msgstr "U reviewt {0}"
-
-msgid "You can find your order history in your account!"
-msgstr "U kunt uw bestelgeschiedenis in uw account vinden!"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "U kunt nu <0>opnieuw inloggen</0>"

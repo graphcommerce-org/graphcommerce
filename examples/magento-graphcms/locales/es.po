@@ -280,8 +280,8 @@ msgstr "Gratis"
 msgid "Grand total"
 msgstr "Total"
 
-msgid "Have an account?"
-msgstr "¿Tiene una cuenta?"
+msgid "Guest checkout is disabled for this store please login to continue."
+msgstr "El pago como invitado está deshabilitado para esta tienda. Inicie sesión para continuar."
 
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "¡Hola {firstname}! Ya estás conectado!"
@@ -792,9 +792,6 @@ msgstr "Escribir {0} comentarios"
 
 msgid "You are reviewing {0}"
 msgstr "Está revisando {0}"
-
-msgid "You can find your order history in your account!"
-msgstr "¡Puede encontrar el historial de sus pedidos en su cuenta!"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "Ahora puede<0>iniciar sesión de nuevo</0>."
