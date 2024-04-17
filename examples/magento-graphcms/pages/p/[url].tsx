@@ -14,7 +14,7 @@ import {
   ProductPageName,
   ProductPageAddToCartActionsRow,
   ProductPageAddToCartQuantityRow,
-  ProductPageBreadcrumb,
+  ProductPageBreadcrumbs,
   productPageCategory,
   ProductPageDescription,
   ProductPageGallery,
@@ -92,16 +92,17 @@ function ProductPage(props: Props) {
 
         <ProductPageMeta product={product} />
 
-        {import.meta.graphCommerce.breadcrumbs && (
-          <Container maxWidth={false} sx={(theme) => ({ marginBottom: theme.spacings.xs })}>
-            <ProductPageBreadcrumb
-              categories={product?.categories}
-              name={product?.name}
-              uid={product?.uid}
-              url_key={product?.url_key}
-            />
-          </Container>
-        )}
+        {typeof import.meta.graphCommerce.breadcrumbs === 'boolean' &&
+          import.meta.graphCommerce.breadcrumbs && (
+            <Container maxWidth={false} sx={(theme) => ({ marginBottom: theme.spacings.xs })}>
+              <ProductPageBreadcrumbs
+                categories={product?.categories}
+                name={product?.name}
+                uid={product?.uid}
+                url_key={product?.url_key}
+              />
+            </Container>
+          )}
 
         <ProductPageGallery
           product={product}
