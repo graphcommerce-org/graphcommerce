@@ -43,6 +43,8 @@ function configToEnvSchema(schema) {
             node = node.unwrap();
         if (node instanceof zod_1.ZodNullable)
             node = node.unwrap();
+        if (node instanceof zod_1.ZodDefault)
+            node = node.removeDefault();
         if (node instanceof zod_1.ZodObject) {
             if (path.length > 0) {
                 envSchema[(0, exports.toEnvStr)(path)] = zod_1.z
