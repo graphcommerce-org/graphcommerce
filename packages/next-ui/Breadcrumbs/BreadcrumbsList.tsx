@@ -1,12 +1,12 @@
 import { Trans } from '@lingui/react'
 import { Box, ClickAwayListener, Link, Typography, alpha, useTheme } from '@mui/material'
 import { useEffect, useRef } from 'react'
-import { BreadcrumbsProps } from './types'
+import type { BreadcrumbsType } from './types'
 
 type PopperBreadcrumbsListProps = {
   autoFocus: boolean
-  breadcrumbs: BreadcrumbsProps['breadcrumbs']
-  name?: BreadcrumbsProps['name']
+  breadcrumbs: BreadcrumbsType['breadcrumbs']
+  name?: BreadcrumbsType['name']
   handleClickAway: () => void
   handleKeyDown: (event: React.KeyboardEvent) => void
 }

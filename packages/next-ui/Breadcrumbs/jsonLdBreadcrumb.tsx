@@ -1,7 +1,7 @@
-import { BreadcrumbsProps } from './types'
+import type { BreadcrumbsType } from './types'
 
 export function jsonLdBreadcrumb(
-  breadcrumbs: BreadcrumbsProps['breadcrumbs'],
+  breadcrumbs: BreadcrumbsType['breadcrumbs'],
   baseUrl?: string | null,
 ) {
   const itemBaseUrl = baseUrl?.endsWith('/') ? baseUrl?.substring(0, baseUrl.length - 1) : baseUrl

@@ -1,9 +1,9 @@
 import { JsonLd } from '../JsonLd/JsonLd'
-import { BreadcrumbsProps } from './types'
+import type { BreadcrumbsType } from './types'
 
-type BreadcrumbsJsonLdProps<T extends { '@type': string }> = BreadcrumbsProps & {
+type BreadcrumbsJsonLdProps<T extends { '@type': string }> = BreadcrumbsType & {
   render: (
-    breadcrumbs: BreadcrumbsProps['breadcrumbs'],
+    breadcrumbs: BreadcrumbsType['breadcrumbs'],
     baseUrl?: string | null,
   ) => T & { '@context': 'https://schema.org' }
 }

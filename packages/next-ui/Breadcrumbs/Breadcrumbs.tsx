@@ -14,9 +14,9 @@ import { iconClose, iconEllypsis } from '../icons'
 import { BreadcrumbsJsonLd } from './BreadcrumbsJsonLd'
 import { BreadcrumbsList } from './BreadcrumbsList'
 import { jsonLdBreadcrumb } from './jsonLdBreadcrumb'
-import { BreadcrumbsProps } from './types'
+import type { BreadcrumbsType } from './types'
 
-export function Breadcrumbs(props: BreadcrumbsProps) {
+export function Breadcrumbs(props: BreadcrumbsType) {
   const { breadcrumbs, name, baseUrl, sx, breadcrumbsAmount = 2 } = props
   const [anchorElement, setAnchorElement] = useState<HTMLButtonElement | null>(null)
   const anchorRef = useRef<HTMLButtonElement>(null)
