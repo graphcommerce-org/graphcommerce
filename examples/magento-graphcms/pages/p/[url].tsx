@@ -14,7 +14,7 @@ import {
   ProductPageName,
   ProductPageAddToCartActionsRow,
   ProductPageAddToCartQuantityRow,
-  ProductPageBreadcrumb,
+  ProductPageBreadcrumbs,
   productPageCategory,
   ProductPageDescription,
   ProductPageGallery,
@@ -99,7 +99,7 @@ function ProductPage(props: Props) {
               marginBottom: theme.spacings.xs,
             })}
           >
-            <ProductPageBreadcrumb
+            <ProductPageBreadcrumbs
               categories={product?.categories}
               name={product?.name}
               uid={product?.uid}
