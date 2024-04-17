@@ -1,6 +1,6 @@
 import { Controller, ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import { Box, MenuItem, TextField, TextFieldProps } from '@mui/material'
+import { MenuItem, TextField, TextFieldProps } from '@mui/material'
 
 type OptionBase = { id: string | number; label: string | number }
 
@@ -15,10 +15,7 @@ export type SelectElementProps<T extends FieldValues, O extends OptionBase> = Om
   onChange?: (value: string | number) => void
 } & Omit<ControllerProps<T>, 'render'>
 
-export function SelectElement<
-  TFieldValues extends FieldValues,
-  O extends OptionBase & { price?: React.ReactNode },
->({
+export function SelectElement<TFieldValues extends FieldValues, O extends OptionBase>({
   name,
   required,
   options = [],
@@ -27,7 +24,6 @@ export function SelectElement<
   control,
   defaultValue,
   rules = validation ?? {},
-  sx,
   ...rest
 }: SelectElementProps<TFieldValues, O>): JSX.Element {
   const isNativeSelect = !!rest.SelectProps?.native
@@ -53,15 +49,6 @@ export function SelectElement<
         return (
           <TextField
             {...rest}
-            sx={[
-              {
-                '& .MuiSelect-select': {
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                },
-              },
-              ...(Array.isArray(sx) ? sx : [sx]),
-            ]}
             value={value ?? ''}
             {...field}
             inputRef={ref}
@@ -78,16 +65,8 @@ export function SelectElement<
           >
             {isNativeSelect && <option />}
             {options.map((item) => (
-              <ChildComponent
-                key={item.id}
-                value={item.id}
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <Box>{item.label}</Box>
-                {item.price && <Box>{item.price}</Box>}
+              <ChildComponent key={item.id} value={item.id}>
+                {item.label}
               </ChildComponent>
             ))}
           </TextField>

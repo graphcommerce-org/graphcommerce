@@ -1,6 +1,6 @@
-import { SelectElement } from '@graphcommerce/ecommerce-ui'
+import { SelectElement, useController } from '@graphcommerce/ecommerce-ui'
 import { SectionHeader, filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { Box } from '@mui/material'
+import { Box, ListItemText, MenuItem, TextField, Typography } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import { OptionTypeRenderer } from './CustomizableAreaOption'
 import { Money } from '@graphcommerce/magento-store'
@@ -13,53 +13,70 @@ export function CustomizableDropDownOption(props: CustomizableDropDownOptionProp
   const { uid, required, index, title, dropdownValue, productPrice, currency } = props
   const { control, getValues } = useFormAddProductsToCart()
 
+  const {
+    field: { onChange, value, ref, ...field },
+    fieldState: { invalid, error },
+  } = useController({
+    name: `cartItems.${index}.customizable_options.${uid}`,
+    rules: {
+      required: Boolean(required),
+    },
+    control,
+    defaultValue: '',
+  })
+
   return (
     <Box>
       <SectionHeader labelLeft={title} sx={{ mt: 0 }} />
-      <SelectElement
-        sx={{ width: '100%' }}
+
+      <TextField
+        sx={{
+          width: '100%',
+          '& .MuiSelect-select': {
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          },
+        }}
         color='primary'
-        control={control}
-        name={`cartItems.${index}.customizable_options.${uid}`}
+        value={value ?? ''}
         label={title}
+        {...field}
+        inputRef={ref}
+        onChange={(event) => onChange(event.target.value)}
+        select
         required={Boolean(required)}
-        defaultValue=''
-        options={filterNonNullableKeys(dropdownValue, ['title']).map((option) => {
-          const price =
-            option.price === 0
-              ? null
-              : option.price && (
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      typography: 'body1',
-                      '&.sizeMedium': { typographty: 'subtitle1' },
-                      '&.sizeLarge': { typography: 'h6' },
-                      color:
-                        option.uid === getValues(`cartItems.${index}.customizable_options.${uid}`)
-                          ? 'text.primary'
-                          : 'text.secondary',
-                    }}
-                  >
-                    {/* Change fontFamily so the + is properly outlined */}
-                    <span style={{ fontFamily: 'arial', paddingTop: '1px' }}>+{'\u00A0'}</span>
-                    <Money
-                      value={
-                        option.price_type === 'PERCENT'
-                          ? productPrice * (option.price / 100)
-                          : option.price
-                      }
-                      currency={currency}
-                    />
-                  </Box>
-                )
-          return {
-            id: option.uid,
-            label: option.title,
-            price,
-          }
-        })}
-      />
+        error={invalid}
+        helperText={error?.message}
+      >
+        {filterNonNullableKeys(dropdownValue, ['title']).map((option) => (
+          <MenuItem key={option.uid} value={option.uid}>
+            <ListItemText>{option.title}</ListItemText>
+
+            {option.price ? (
+              <Box
+                sx={{
+                  // display: 'flex',
+                  typography: 'body1',
+                  '&.sizeMedium': { typographty: 'subtitle1' },
+                  '&.sizeLarge': { typography: 'h6' },
+                  color: option.uid === value ? 'text.primary' : 'text.secondary',
+                }}
+              >
+                <span style={{ fontFamily: 'arial', paddingTop: '1px' }}>+&nbsp;</span>
+                <Money
+                  value={
+                    option.price_type === 'PERCENT'
+                      ? productPrice * (option.price / 100)
+                      : option.price
+                  }
+                  currency={currency}
+                />
+              </Box>
+            ) : null}
+          </MenuItem>
+        ))}
+      </TextField>
     </Box>
   )
 }
