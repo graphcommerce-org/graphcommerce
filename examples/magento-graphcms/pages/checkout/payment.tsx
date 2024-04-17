@@ -17,6 +17,8 @@ import {
   PaymentMethodActionCardListForm,
   PaymentMethodContextProvider,
 } from '@graphcommerce/magento-cart-payment-method'
+import { useCustomerSession } from '@graphcommerce/magento-customer'
+import { UnauthenticatedFullPageMessage } from '@graphcommerce/magento-customer/components/WaitForCustomer/UnauthenticatedFullPageMessage'
 import { SubscribeToNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -29,6 +31,7 @@ import {
   Stepper,
   IconSvg,
   LayoutTitle,
+  useStorefrontConfig,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -45,7 +48,13 @@ function PaymentPage() {
   const cartExists =
     typeof billingPage.data?.cart !== 'undefined' && (billingPage.data.cart?.items?.length ?? 0) > 0
 
-  return (
+  const { signInMode } = useStorefrontConfig()
+  const { loggedIn } = useCustomerSession()
+  const disableGuestCheckout = signInMode === 'DISABLE_GUEST_CHECKOUT' && !loggedIn
+
+  return disableGuestCheckout ? (
+    <UnauthenticatedFullPageMessage />
+  ) : (
     <ComposedForm>
       <PageMeta title={i18n._(/* i18n */ 'Payment')} metaRobots={['noindex']} />
 

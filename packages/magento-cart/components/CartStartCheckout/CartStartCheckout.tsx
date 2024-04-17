@@ -1,9 +1,15 @@
 import { Money } from '@graphcommerce/magento-store'
-import { iconChevronRight, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
+import {
+  iconChevronRight,
+  IconSvg,
+  extendableComponent,
+  useStorefrontConfig,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Button, ButtonProps, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
+import { useCustomerSession } from '@graphcommerce/magento-customer'
 
 export type CartStartCheckoutProps = CartStartCheckoutFragment & {
   children?: React.ReactNode
@@ -32,6 +38,10 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
     ...cart
   } = props
 
+  const { signInMode } = useStorefrontConfig()
+  const { loggedIn } = useCustomerSession()
+  const disableGuestCheckout = signInMode === 'DISABLE_GUEST_CHECKOUT' && !loggedIn
+
   const hasTotals = (cart.prices?.grand_total?.value ?? 0) > 0
   const hasErrors = cart.items?.some((item) => (item?.errors?.length ?? 0) > 0)
 
@@ -56,7 +66,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
           onStart?.(e, cart)
           return onClick?.(e)
         }}
-        disabled={disabled || !hasTotals || hasErrors}
+        disabled={disabled || !hasTotals || hasErrors || disableGuestCheckout}
         {...buttonProps}
       >
         <Box
@@ -81,6 +91,12 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
       {hasErrors && (
         <Box sx={(theme) => ({ color: 'error.main', mt: theme.spacings.xs })}>
           <Trans id='Some items in your cart contain errors, please update or remove them, then try again.' />
+        </Box>
+      )}
+
+      {disableGuestCheckout && (
+        <Box sx={(theme) => ({ color: 'error.main', mt: theme.spacings.xs })}>
+          <Trans id='Guest checkout is disabled for this store please login to continue.' />
         </Box>
       )}
     </Box>
