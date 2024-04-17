@@ -92,19 +92,21 @@ function ProductPage(props: Props) {
 
         <ProductPageMeta product={product} />
 
-        <Container
-          maxWidth={false}
-          sx={(theme) => ({
-            marginBottom: theme.spacings.xs,
-          })}
-        >
-          <ProductPageBreadcrumb
-            categories={product?.categories}
-            name={product?.name}
-            uid={product?.uid}
-            url_key={product?.url_key}
-          />
-        </Container>
+        {import.meta.graphCommerce?.breadcrumbs && (
+          <Container
+            maxWidth={false}
+            sx={(theme) => ({
+              marginBottom: theme.spacings.xs,
+            })}
+          >
+            <ProductPageBreadcrumb
+              categories={product?.categories}
+              name={product?.name}
+              uid={product?.uid}
+              url_key={product?.url_key}
+            />
+          </Container>
+        )}
 
         <ProductPageGallery
           product={product}

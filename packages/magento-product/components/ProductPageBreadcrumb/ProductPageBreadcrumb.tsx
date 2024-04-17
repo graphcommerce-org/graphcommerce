@@ -14,7 +14,6 @@ export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
   const { categories, name, uid, url_key, ...breadcrumbsProps } = props
   const config = useQuery(StoreConfigDocument).data?.storeConfig
   const baseUrl = config?.secure_base_link_url ?? import.meta.graphCommerce.canonicalBaseUrl
-  const showBreadcrumbs = import.meta.graphCommerce?.breadcrumbs
   const prev = usePrevPageRouter()
 
   const category =
@@ -56,8 +55,6 @@ export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
 
     return sortedBreadcrumbsList
   }, [category, name, uid, url_key])
-
-  if (!showBreadcrumbs) return null
 
   return (
     <Breadcrumbs
