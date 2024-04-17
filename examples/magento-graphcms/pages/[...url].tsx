@@ -69,7 +69,7 @@ function CategoryPage(props: CategoryProps) {
         </LayoutTitle>
       </LayoutHeader>
 
-      {isCategory && import.meta.graphCommerce?.breadcrumbs && (
+      {import.meta.graphCommerce.breadcrumbs && isCategory && (
         <Container maxWidth={false}>
           <CategoryBreadcrumb
             name={category?.name}

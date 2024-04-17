@@ -92,7 +92,7 @@ function ProductPage(props: Props) {
 
         <ProductPageMeta product={product} />
 
-        {import.meta.graphCommerce?.breadcrumbs && (
+        {import.meta.graphCommerce.breadcrumbs && (
           <Container
             maxWidth={false}
             sx={(theme) => ({
