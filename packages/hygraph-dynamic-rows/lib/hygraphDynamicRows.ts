@@ -7,7 +7,7 @@ import {
   ConditionAndFragment,
   DynamicRowsDocument,
 } from '../graphql'
-import { getAllHygraphDynamicRows } from './RenameGetAllHygraphDynamicRows'
+import { getAllHygraphDynamicRows } from './getAllHygraphDynamicRows'
 
 /**
  * This generally works the same way as lodash get, however, when encountering an array it will
