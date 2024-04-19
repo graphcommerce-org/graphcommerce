@@ -1,5 +1,5 @@
-import { ApolloClient, NormalizedCacheObject, ApolloQueryResult } from '@apollo/client'
-import { HygraphAllPagesDocument, HygraphAllPagesQuery } from '@graphcommerce/graphcms-ui'
+import type { ApolloClient, NormalizedCacheObject, ApolloQueryResult } from '@apollo/client'
+import { HygraphAllPagesDocument, HygraphAllPagesQuery } from '../graphql'
 
 type Urls = { url: string }
 
