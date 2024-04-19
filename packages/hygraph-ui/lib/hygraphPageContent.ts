@@ -1,6 +1,6 @@
 import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import { HygraphPagesQuery, HygraphPagesDocument } from '../graphql'
-import { getAllHygraphPages } from './GetAllHygraphPages'
+import { getAllHygraphPages } from './renameHygraphPages'
 
 /**
  * Fetch the page content for the given urls.

@@ -1,9 +1,9 @@
-import { ApolloClient, NormalizedCacheObject, ApolloQueryResult } from '@apollo/client'
+import type { ApolloClient, NormalizedCacheObject, ApolloQueryResult } from '@apollo/client'
 import { AllDynamicRowsDocument, AllDynamicRowsQuery } from '../graphql'
 
 type DynamicRows = AllDynamicRowsQuery['dynamicRows']
 
-export async function GetAllHygraphDynamicRows(
+export async function getAllHygraphDynamicRows(
   client: ApolloClient<NormalizedCacheObject>,
   options: { pageSize?: number } = {},
 ) {

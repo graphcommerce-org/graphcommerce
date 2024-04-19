@@ -7,7 +7,7 @@ import {
   ConditionAndFragment,
   DynamicRowsDocument,
 } from '../graphql'
-import { GetAllHygraphDynamicRows } from './GetAllHygraphDynamicRows'
+import { getAllHygraphDynamicRows } from './RenameGetAllHygraphDynamicRows'
 
 /**
  * This generally works the same way as lodash get, however, when encountering an array it will
@@ -97,7 +97,7 @@ export async function hygraphDynamicRows(
   const alwaysCache = process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined
   const fetchPolicy = cached ? alwaysCache : undefined
 
-  const allRoutes = await GetAllHygraphDynamicRows(client)
+  const allRoutes = await getAllHygraphDynamicRows(client)
 
   // Get the required rowIds from the conditions
   const properties = { ...(await additionalProperties), url }
