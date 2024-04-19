@@ -1,5 +1,7 @@
 # @graphcommerce/google-datalayer
 
+## 8.0.5-canary.9
+
 ## 8.0.5-canary.8
 
 ## 8.0.5-canary.7

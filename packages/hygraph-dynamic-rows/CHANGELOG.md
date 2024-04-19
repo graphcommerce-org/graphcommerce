@@ -1,5 +1,12 @@
 # @graphcommerce/hygraph-dynamic-rows
 
+## 8.0.5-canary.9
+
+### Patch Changes
+
+- [#2238](https://github.com/graphcommerce-org/graphcommerce/pull/2238) [`db86432`](https://github.com/graphcommerce-org/graphcommerce/commit/db864324277fd5fb680c66eaa87d211cd7be4905) - Changed query limit to 100 from a 1000 on HygraphAllPages and AllDynamicRows query and added pagination.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.0.5-canary.8
 
 ## 8.0.5-canary.7
