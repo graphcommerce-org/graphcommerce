@@ -40,7 +40,7 @@ export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButt
 
   return (
     <LinkOrButton
-      href='/checkout'
+      href={disableGuestCheckout ? '/account/signin' : '/checkout'}
       onClick={(
         e: React.MouseEvent<HTMLButtonElement & HTMLAnchorElement & HTMLSpanElement, MouseEvent>,
       ) => {
@@ -48,7 +48,7 @@ export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButt
         onStart?.(e, cart)
       }}
       button={{ variant: 'pill', ...button }}
-      disabled={disabled || !hasTotals || hasErrors || disableGuestCheckout}
+      disabled={disabled || !hasTotals || hasErrors}
       color='secondary'
       endIcon={<IconSvg src={iconChevronRight} />}
       {...linkOrButtonProps}

@@ -54,7 +54,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
       ]}
     >
       <Button
-        href='/checkout'
+        href={disableGuestCheckout ? '/account/signin' : '/checkout'}
         id='cart-start-checkout'
         variant='pill'
         color='secondary'
@@ -66,7 +66,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
           onStart?.(e, cart)
           return onClick?.(e)
         }}
-        disabled={disabled || !hasTotals || hasErrors || disableGuestCheckout}
+        disabled={disabled || !hasTotals || hasErrors}
         {...buttonProps}
       >
         <Box
@@ -91,12 +91,6 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
       {hasErrors && (
         <Box sx={(theme) => ({ color: 'error.main', mt: theme.spacings.xs })}>
           <Trans id='Some items in your cart contain errors, please update or remove them, then try again.' />
-        </Box>
-      )}
-
-      {disableGuestCheckout && (
-        <Box sx={(theme) => ({ color: 'error.main', mt: theme.spacings.xs })}>
-          <Trans id='Guest checkout is disabled for this store please login to continue.' />
         </Box>
       )}
     </Box>
