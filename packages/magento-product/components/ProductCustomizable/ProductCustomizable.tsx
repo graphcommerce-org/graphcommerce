@@ -38,7 +38,7 @@ type ProductCustomizableProps = AddToCartItemSelector & {
     ? { renderer?: OptionTypeRendererProp }
     : { renderer: OptionTypeRendererProp })
 
-export function ProductCustomizable(props: ProductCustomizableProps) {
+function ProductCustomizable(props: ProductCustomizableProps) {
   const { product, renderer, index = 0 } = props
 
   return (
@@ -57,3 +57,5 @@ export function ProductCustomizable(props: ProductCustomizableProps) {
     </>
   )
 }
+
+export { ProductCustomizable, type OptionTypeRenderer }
