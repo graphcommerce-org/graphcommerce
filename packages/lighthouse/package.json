@@ -2,7 +2,7 @@
   "name": "@graphcommerce/lighthouse",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "8.0.6-canary.3",
+  "version": "8.0.6-canary.4",
   "private": true,
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -13,9 +13,9 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^8.0.6-canary.3",
-    "@graphcommerce/prettier-config-pwa": "^8.0.6-canary.3",
-    "@graphcommerce/typescript-config-pwa": "^8.0.6-canary.3",
+    "@graphcommerce/eslint-config-pwa": "^8.0.6-canary.4",
+    "@graphcommerce/prettier-config-pwa": "^8.0.6-canary.4",
+    "@graphcommerce/typescript-config-pwa": "^8.0.6-canary.4",
     "next": "*"
   }
 }
