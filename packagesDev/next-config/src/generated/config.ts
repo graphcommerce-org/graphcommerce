@@ -86,7 +86,7 @@ export type DatalayerConfig = {
  *
  * You can export configuration by running `yarn graphcommerce export-config`
  *
- * ## Extending the configuration in your  project
+ * ## Extending the configuration in your project
  *
  * Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceStorefrontConfig inputs to add configuration.
  *
@@ -365,9 +365,17 @@ export type GraphCommerceStorefrontConfig = {
   googleTagmanagerId?: InputMaybe<Scalars['String']['input']>;
   /** Add a gcms-locales header to make sure queries return in a certain language, can be an array to define fallbacks. */
   hygraphLocales?: InputMaybe<Array<Scalars['String']['input']>>;
-  /** Specify a custom locale for to load translations. */
+  /**
+   * Specify a custom locale for to load translations. Must be lowercase valid locale.
+   *
+   * This value is also used for the Intl.
+   */
   linguiLocale?: InputMaybe<Scalars['String']['input']>;
-  /** Must be a locale string https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers */
+  /**
+   * Must be a [locale string](https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers) for automatic redirects to work.
+   *
+   * This value can be used as a sub-path identifier only, make sure linguiLocale is configured for each URL.
+   */
   locale: Scalars['String']['input'];
   /**
    * Magento store code.
