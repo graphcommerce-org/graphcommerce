@@ -1,5 +1,73 @@
 # Change Log
 
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent BillingPage query from rerunning on each mutation
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
+### Patch Changes
+
+- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods.
+  ([@paales](https://github.com/paales))
+
+## 8.0.5
+
+### Patch Changes
+
+- [#2239](https://github.com/graphcommerce-org/graphcommerce/pull/2239) [`a2a6e78`](https://github.com/graphcommerce-org/graphcommerce/commit/a2a6e78291ab978f4ef1236a4476b4d54555af7f) - Prices of products are now updated when customizable options are selected
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+### Patch Changes
+
+- [#2239](https://github.com/graphcommerce-org/graphcommerce/pull/2239) [`a2a6e78`](https://github.com/graphcommerce-org/graphcommerce/commit/a2a6e78291ab978f4ef1236a4476b4d54555af7f) - Prices of products are now updated when customizable options are selected
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+## 8.0.5-canary.5
+
+## 8.0.5-canary.4
+
+## 8.0.5-canary.3
+
+## 8.0.5-canary.2
+
+## 8.0.5-canary.1
+
+## 8.0.5-canary.0
+
+## 8.0.4
+
+## 8.0.4-canary.1
+
+## 8.0.4-canary.0
+
+## 8.0.3
+
+### Patch Changes
+
+- [#2217](https://github.com/graphcommerce-org/graphcommerce/pull/2217) [`2b750da`](https://github.com/graphcommerce-org/graphcommerce/commit/2b750da77723d37485da01df05f52d19b80cc90c) - fix for breadcrumbs on pdp when no category attached to product
+  ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 8.0.3-canary.6
 
 ### Patch Changes

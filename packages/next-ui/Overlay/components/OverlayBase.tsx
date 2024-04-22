@@ -52,6 +52,7 @@ export type LayoutOverlayBaseProps = {
   isPresent: boolean
   safeToRemove?: (() => void) | null | undefined
   overlayPaneProps?: MotionProps
+  disableInert?: boolean
 
   /* For `variantSm='left|right' */
   widthSm?: string | false
@@ -109,6 +110,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     isPresent,
     safeToRemove,
     overlayPaneProps,
+    disableInert,
     widthMd = 'max(800px, 50vw)',
     widthSm = 'max(300px, 80vw)',
   } = props
@@ -363,7 +365,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   return (
     <>
       <MotionDiv
-        inert={active ? undefined : 'true'}
+        inert={active ? undefined : ('true' as unknown as boolean)}
         className={classes.backdrop}
         style={{ opacity: positions.open.visible }}
         sx={[
@@ -385,7 +387,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         ]}
       />
       <Scroller
-        inert={active ? undefined : 'true'}
+        inert={disableInert || active ? undefined : ('true' as unknown as boolean)}
         className={`${classes.scroller} ${className ?? ''}`}
         grid={false}
         onClick={onClickAway}

@@ -1,3 +1,4 @@
+import { NumberFieldElement } from '@graphcommerce/ecommerce-ui'
 import { ApolloCartErrorAlert, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { Money } from '@graphcommerce/magento-store'
 import {
@@ -6,7 +7,6 @@ import {
   iconChevronRight,
   MessageSnackbar,
   IconSvg,
-  TextInputNumber,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Divider, Typography, Alert, Box, SxProps, Theme } from '@mui/material'
@@ -64,7 +64,7 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
     }),
   })
 
-  const { handleSubmit, formState, muiRegister, required, control, error, data } = form
+  const { handleSubmit, formState, required, control, error, data } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
@@ -91,12 +91,14 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         {...optionsProps}
       />
 
-      <TextInputNumber
+      <NumberFieldElement
         variant='outlined'
         error={formState.isSubmitted && !!formState.errors.quantity}
         required={required.quantity}
         inputProps={{ min: 1 }}
-        {...muiRegister('quantity', { required: required.quantity })}
+        name='quantity'
+        rules={{ required: required.quantity }}
+        control={control}
         helperText={formState.isSubmitted && formState.errors.quantity?.message}
         // disabled={loading}
         size='small'

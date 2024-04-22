@@ -17,6 +17,7 @@ it('resolves dependences', () => {
       "@graphcommerce/googleanalytics" => "packages/googleanalytics",
       "@graphcommerce/googlerecaptcha" => "packages/googlerecaptcha",
       "@graphcommerce/googletagmanager" => "packages/googletagmanager",
+      "@graphcommerce/google-datalayer" => "packages/google-datalayer",
       "@graphcommerce/graphcms-ui" => "packages/hygraph-ui",
       "@graphcommerce/graphql" => "packages/graphql",
       "@graphcommerce/graphql-codegen-near-operation-file" => "packagesDev/graphql-codegen-near-operation-file",

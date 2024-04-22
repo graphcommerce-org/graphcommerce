@@ -1,7 +1,7 @@
 import { SelectElement, FieldValues, FieldPath, useWatch } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
-import { FormRow, InputCheckmark, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { FormRow, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { useMemo } from 'react'
 import { AddressFieldsOptions, useAddressFieldsForm } from './useAddressFieldsForm'
@@ -43,7 +43,7 @@ export function AddressCountryRegion<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(props: AddressFieldsOptions<TFieldValues, TName>) {
   const form = useAddressCountryRegion<TFieldValues, TName>(props)
-  const { control, name, readOnly, required, valid, countryList, regionList } = form
+  const { control, name, readOnly, required, countryList, regionList } = form
 
   return (
     <FormRow>
@@ -54,10 +54,8 @@ export function AddressCountryRegion<
         variant='outlined'
         label={<Trans id='Country' />}
         required={required[name.countryCode]}
-        InputProps={{
-          readOnly,
-          endAdornment: <InputCheckmark show={valid[name.countryCode]} select />,
-        }}
+        showValid
+        InputProps={{ readOnly }}
         options={countryList.map((country) => ({
           id: country.two_letter_abbreviation,
           label: country.full_name_locale,
@@ -72,10 +70,8 @@ export function AddressCountryRegion<
           variant='outlined'
           label={<Trans id='Region' />}
           required
-          InputProps={{
-            readOnly,
-            endAdornment: <InputCheckmark show={valid[name.regionId]} select />,
-          }}
+          showValid
+          InputProps={{ readOnly }}
           options={regionList.map((region) => ({ ...region, label: region.name }))}
         />
       )}

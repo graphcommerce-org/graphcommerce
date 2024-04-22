@@ -1,11 +1,17 @@
-query AllDynamicRows {
-  dynamicRows(first: 1000) {
+query AllDynamicRows($first: Int = 100, $skip: Int) {
+  dynamicRows(first: $first, skip: $skip) {
     id
     conditions {
       __typename
       ...ConditionNumber
       ...ConditionText
       ...ConditionAnd
+    }
+  }
+
+  pagesConnection {
+    aggregate {
+      count
     }
   }
 }

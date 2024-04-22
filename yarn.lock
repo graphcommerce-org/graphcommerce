@@ -2595,14 +2595,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/address-fields-nl@workspace:packages/address-fields-nl"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.3-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/magento-customer": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/magento-customer": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -2620,17 +2620,17 @@ __metadata:
     algoliasearch: "npm:^4.22.1"
     react-instantsearch-hooks-web: "npm:^6.47.3"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.3-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/graphql-mesh": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/magento-search": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-config": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/graphql-mesh": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/magento-search": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-config": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -2655,7 +2655,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/cli@npm:8.0.3-canary.6, @graphcommerce/cli@workspace:packages/cli":
+"@graphcommerce/cli@npm:8.0.6-canary.3, @graphcommerce/cli@workspace:packages/cli":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/cli@workspace:packages/cli"
   dependencies:
@@ -2674,11 +2674,11 @@ __metadata:
     rimraf: "npm:^5.0.5"
     tslib: "npm:^2.6.2"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/hygraph-cli": ^8.0.3-canary.6
-    "@graphcommerce/next-config": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/hygraph-cli": ^8.0.6-canary.3
+    "@graphcommerce/next-config": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     graphql: ^16.7.1
     react: ^18.2.0
   bin:
@@ -2693,18 +2693,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/demo-magento-graphcommerce@npm:8.0.3-canary.6, @graphcommerce/demo-magento-graphcommerce@workspace:packages/demo-magento-graphcommerce":
+"@graphcommerce/demo-magento-graphcommerce@npm:8.0.6-canary.3, @graphcommerce/demo-magento-graphcommerce@workspace:packages/demo-magento-graphcommerce":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/demo-magento-graphcommerce@workspace:packages/demo-magento-graphcommerce"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/framer-scroller": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/magento-product-configurable": ^8.0.3-canary.6
-    "@graphcommerce/magento-recently-viewed-products": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/framer-scroller": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/magento-product-configurable": ^8.0.6-canary.3
+    "@graphcommerce/magento-recently-viewed-products": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
     next: "*"
@@ -2717,20 +2717,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/docs@workspace:docs"
   peerDependencies:
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/ecommerce-ui@npm:8.0.3-canary.6, @graphcommerce/ecommerce-ui@workspace:packages/ecommerce-ui":
+"@graphcommerce/ecommerce-ui@npm:8.0.6-canary.3, @graphcommerce/ecommerce-ui@workspace:packages/ecommerce-ui":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/ecommerce-ui@workspace:packages/ecommerce-ui"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -2742,11 +2742,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/eslint-config-pwa@npm:8.0.3-canary.6, @graphcommerce/eslint-config-pwa@workspace:packagesDev/eslint-config":
+"@graphcommerce/eslint-config-pwa@npm:8.0.6-canary.3, @graphcommerce/eslint-config-pwa@workspace:packagesDev/eslint-config":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/eslint-config-pwa@workspace:packagesDev/eslint-config"
   dependencies:
-    "@graphcommerce/typescript-config-pwa": "npm:8.0.3-canary.6"
+    "@graphcommerce/typescript-config-pwa": "npm:8.0.6-canary.3"
     "@next/eslint-plugin-next": "npm:14.1.0"
     "@typescript-eslint/eslint-plugin": "npm:^6.19.0"
     "@typescript-eslint/parser": "npm:^6.19.0"
@@ -2766,9 +2766,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/framer-next-pages-example@workspace:packages/framer-next-pages/example"
   dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:8.0.3-canary.6"
-    "@graphcommerce/prettier-config-pwa": "npm:8.0.3-canary.6"
-    "@graphcommerce/typescript-config-pwa": "npm:8.0.3-canary.6"
+    "@graphcommerce/eslint-config-pwa": "npm:8.0.6-canary.3"
+    "@graphcommerce/prettier-config-pwa": "npm:8.0.6-canary.3"
+    "@graphcommerce/typescript-config-pwa": "npm:8.0.6-canary.3"
     "@lingui/cli": "npm:4.7.0"
     "@lingui/core": "npm:4.7.0"
     "@lingui/macro": "npm:4.7.0"
@@ -2779,8 +2779,8 @@ __metadata:
     "@parcel/watcher": "npm:^2.4.0"
     "@playwright/test": "npm:1.41.0"
     "@types/node": "npm:^18"
-    "@types/react": "npm:^18.2.48"
-    "@types/react-dom": "npm:^18.2.18"
+    "@types/react": "npm:^18.2.74"
+    "@types/react-dom": "npm:^18.2.24"
     "@types/react-is": "npm:^18.2.4"
     babel-plugin-macros: "npm:^3.1.0"
     concurrently: "npm:8.2.2"
@@ -2796,20 +2796,20 @@ __metadata:
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     sharp: "npm:0.33.2"
-    type-fest: "npm:^4.13.1"
+    type-fest: "npm:^4.15.0"
     typescript: "npm:5.3.3"
     webpack: "npm:5.89.0"
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/framer-next-pages@npm:8.0.3-canary.6, @graphcommerce/framer-next-pages@workspace:packages/framer-next-pages":
+"@graphcommerce/framer-next-pages@npm:8.0.6-canary.3, @graphcommerce/framer-next-pages@workspace:packages/framer-next-pages":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/framer-next-pages@workspace:packages/framer-next-pages"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/framer-utils": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/framer-utils": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     framer-motion: ^10.0.0
     next: "*"
     react: ^18.2.0
@@ -2821,9 +2821,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/framer-scroller-example@workspace:packages/framer-scroller/example"
   dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:8.0.3-canary.6"
-    "@graphcommerce/prettier-config-pwa": "npm:8.0.3-canary.6"
-    "@graphcommerce/typescript-config-pwa": "npm:8.0.3-canary.6"
+    "@graphcommerce/eslint-config-pwa": "npm:8.0.6-canary.3"
+    "@graphcommerce/prettier-config-pwa": "npm:8.0.6-canary.3"
+    "@graphcommerce/typescript-config-pwa": "npm:8.0.6-canary.3"
     "@lingui/cli": "npm:4.7.0"
     "@lingui/core": "npm:4.7.0"
     "@lingui/macro": "npm:4.7.0"
@@ -2834,8 +2834,8 @@ __metadata:
     "@parcel/watcher": "npm:^2.4.0"
     "@playwright/test": "npm:1.41.0"
     "@types/node": "npm:^18"
-    "@types/react": "npm:^18.2.48"
-    "@types/react-dom": "npm:^18.2.18"
+    "@types/react": "npm:^18.2.74"
+    "@types/react-dom": "npm:^18.2.24"
     "@types/react-is": "npm:^18.2.4"
     babel-plugin-macros: "npm:^3.1.0"
     concurrently: "npm:8.2.2"
@@ -2851,23 +2851,23 @@ __metadata:
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     sharp: "npm:0.33.2"
-    type-fest: "npm:^4.13.1"
+    type-fest: "npm:^4.15.0"
     typescript: "npm:5.3.3"
     webpack: "npm:5.89.0"
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/framer-scroller@npm:8.0.3-canary.6, @graphcommerce/framer-scroller@workspace:packages/framer-scroller":
+"@graphcommerce/framer-scroller@npm:8.0.6-canary.3, @graphcommerce/framer-scroller@workspace:packages/framer-scroller":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/framer-scroller@workspace:packages/framer-scroller"
   dependencies:
     popmotion: "npm:11.0.5"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/framer-utils": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/framer-utils": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
@@ -2878,37 +2878,67 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/framer-utils@npm:8.0.3-canary.6, @graphcommerce/framer-utils@workspace:packages/framer-utils":
+"@graphcommerce/framer-utils@npm:8.0.6-canary.3, @graphcommerce/framer-utils@workspace:packages/framer-utils":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/framer-utils@workspace:packages/framer-utils"
   dependencies:
     framesync: "npm:^6.1.2"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     framer-motion: ^10.0.0
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/googleanalytics@npm:8.0.3-canary.6, @graphcommerce/googleanalytics@workspace:packages/googleanalytics":
+"@graphcommerce/google-datalayer@npm:8.0.6-canary.3, @graphcommerce/google-datalayer@workspace:packages/google-datalayer":
+  version: 0.0.0-use.local
+  resolution: "@graphcommerce/google-datalayer@workspace:packages/google-datalayer"
+  dependencies:
+    web-vitals: "npm:^3.5.2"
+  peerDependencies:
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-payment-method": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-shipping-method": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
+    "@mui/material": ^5.14.20
+    next: ^14
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  peerDependenciesMeta:
+    "@graphcommerce/magento-cart":
+      optional: true
+    "@graphcommerce/magento-cart-payment-method":
+      optional: true
+    "@graphcommerce/magento-cart-shipping-method":
+      optional: true
+    "@graphcommerce/magento-product":
+      optional: true
+  languageName: unknown
+  linkType: soft
+
+"@graphcommerce/googleanalytics@npm:8.0.6-canary.3, @graphcommerce/googleanalytics@workspace:packages/googleanalytics":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/googleanalytics@workspace:packages/googleanalytics"
   dependencies:
-    "@types/gtag.js": "npm:^0.0.18"
+    "@graphcommerce/google-datalayer": "npm:8.0.6-canary.3"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql-mesh": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-payment-method": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-shipping-method": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/next-config": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql-mesh": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-payment-method": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-shipping-method": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/next-config": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@mui/material": ^5.10.16
     next: "*"
     react: ^18.2.0
@@ -2925,17 +2955,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/googlerecaptcha@npm:8.0.3-canary.6, @graphcommerce/googlerecaptcha@workspace:packages/googlerecaptcha":
+"@graphcommerce/googlerecaptcha@npm:8.0.6-canary.3, @graphcommerce/googlerecaptcha@workspace:packages/googlerecaptcha":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/googlerecaptcha@workspace:packages/googlerecaptcha"
   dependencies:
     "@types/grecaptcha": "npm:^3.0.7"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@mui/material": ^5.10.16
     next: "*"
     react: ^18.2.0
@@ -2943,32 +2973,34 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/googletagmanager@npm:8.0.3-canary.6, @graphcommerce/googletagmanager@workspace:packages/googletagmanager":
+"@graphcommerce/googletagmanager@npm:8.0.6-canary.3, @graphcommerce/googletagmanager@workspace:packages/googletagmanager":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/googletagmanager@workspace:packages/googletagmanager"
   dependencies:
+    "@graphcommerce/google-datalayer": "npm:8.0.6-canary.3"
     "@types/gapi.client.tagmanager": "npm:^2.0.4"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
+    "@mui/material": ^5.10.16
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/graphcms-ui@npm:8.0.3-canary.6, @graphcommerce/graphcms-ui@workspace:packages/hygraph-ui":
+"@graphcommerce/graphcms-ui@npm:8.0.6-canary.3, @graphcommerce/graphcms-ui@workspace:packages/hygraph-ui":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/graphcms-ui@workspace:packages/hygraph-ui"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@mui/material": ^5.10.16
     next: "*"
     react: ^18.2.0
@@ -2987,14 +3019,14 @@ __metadata:
     "@types/parse-filepath": "npm:^1.0.2"
     parse-filepath: "npm:^1.0.2"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     graphql: ^16.7.1
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/graphql-codegen-near-operation-file@npm:8.0.3-canary.6, @graphcommerce/graphql-codegen-near-operation-file@workspace:packagesDev/graphql-codegen-near-operation-file":
+"@graphcommerce/graphql-codegen-near-operation-file@npm:8.0.6-canary.3, @graphcommerce/graphql-codegen-near-operation-file@workspace:packagesDev/graphql-codegen-near-operation-file":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/graphql-codegen-near-operation-file@workspace:packagesDev/graphql-codegen-near-operation-file"
   dependencies:
@@ -3005,14 +3037,14 @@ __metadata:
     "@types/parse-filepath": "npm:^1.0.2"
     parse-filepath: "npm:^1.0.2"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     graphql: ^16.7.1
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/graphql-codegen-relay-optimizer-plugin@npm:8.0.3-canary.6, @graphcommerce/graphql-codegen-relay-optimizer-plugin@workspace:packagesDev/graphql-codegen-relay-optimizer-plugin":
+"@graphcommerce/graphql-codegen-relay-optimizer-plugin@npm:8.0.6-canary.3, @graphcommerce/graphql-codegen-relay-optimizer-plugin@workspace:packagesDev/graphql-codegen-relay-optimizer-plugin":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/graphql-codegen-relay-optimizer-plugin@workspace:packagesDev/graphql-codegen-relay-optimizer-plugin"
   dependencies:
@@ -3021,13 +3053,13 @@ __metadata:
     "@types/relay-compiler": "npm:8.0.4"
     typescript: "npm:5.3.3"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
     graphql: ^16.7.1
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/graphql-mesh@npm:8.0.3-canary.6, @graphcommerce/graphql-mesh@workspace:packages/graphql-mesh":
+"@graphcommerce/graphql-mesh@npm:8.0.6-canary.3, @graphcommerce/graphql-mesh@workspace:packages/graphql-mesh":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/graphql-mesh@workspace:packages/graphql-mesh"
   dependencies:
@@ -3053,19 +3085,19 @@ __metadata:
     uglify-es: "npm:3.3.9"
   peerDependencies:
     "@apollo/client": ^3
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     graphql: ^16.7.1
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/graphql@npm:8.0.3-canary.6, @graphcommerce/graphql@workspace:packages/graphql":
+"@graphcommerce/graphql@npm:8.0.6-canary.3, @graphcommerce/graphql@workspace:packages/graphql":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/graphql@workspace:packages/graphql"
   dependencies:
-    "@graphcommerce/graphql-codegen-near-operation-file": "npm:8.0.3-canary.6"
-    "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "npm:8.0.3-canary.6"
+    "@graphcommerce/graphql-codegen-near-operation-file": "npm:8.0.6-canary.3"
+    "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "npm:8.0.6-canary.3"
     "@graphql-codegen/add": "npm:5.0.1"
     "@graphql-codegen/fragment-matcher": "npm:5.0.1"
     "@graphql-codegen/introspection": "npm:4.0.1"
@@ -3078,16 +3110,16 @@ __metadata:
     apollo3-cache-persist: "npm:^0.14.1"
   peerDependencies:
     "@apollo/client": ^3
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     graphql: ^16.7.1
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/hygraph-cli@npm:8.0.3-canary.6, @graphcommerce/hygraph-cli@workspace:packages/hygraph-cli":
+"@graphcommerce/hygraph-cli@npm:8.0.6-canary.3, @graphcommerce/hygraph-cli@workspace:packages/hygraph-cli":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/hygraph-cli@workspace:packages/hygraph-cli"
   dependencies:
@@ -3099,10 +3131,10 @@ __metadata:
     typescript: "npm:5.3.3"
   peerDependencies:
     "@apollo/client": ^3
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/next-config": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/next-config": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     dotenv: ^16.1.4
     graphql: ^16.7.1
   languageName: unknown
@@ -3113,10 +3145,10 @@ __metadata:
   resolution: "@graphcommerce/hygraph-dynamic-rows-ui@workspace:packages/hygraph-dynamic-rows-ui"
   dependencies:
     "@apollo/client": "npm:~3.8.10"
-    "@graphcommerce/eslint-config-pwa": "npm:8.0.3-canary.6"
-    "@graphcommerce/next-config": "npm:8.0.3-canary.6"
-    "@graphcommerce/prettier-config-pwa": "npm:8.0.3-canary.6"
-    "@graphcommerce/typescript-config-pwa": "npm:8.0.3-canary.6"
+    "@graphcommerce/eslint-config-pwa": "npm:8.0.6-canary.3"
+    "@graphcommerce/next-config": "npm:8.0.6-canary.3"
+    "@graphcommerce/prettier-config-pwa": "npm:8.0.6-canary.3"
+    "@graphcommerce/typescript-config-pwa": "npm:8.0.6-canary.3"
     "@hygraph/app-sdk-react": "npm:^0.0.3"
     "@lingui/core": "npm:^4.7.0"
     "@lingui/macro": "npm:^4.7.0"
@@ -3137,17 +3169,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/hygraph-dynamic-rows@npm:8.0.3-canary.6, @graphcommerce/hygraph-dynamic-rows@workspace:packages/hygraph-dynamic-rows":
+"@graphcommerce/hygraph-dynamic-rows@npm:8.0.6-canary.3, @graphcommerce/hygraph-dynamic-rows@workspace:packages/hygraph-dynamic-rows":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/hygraph-dynamic-rows@workspace:packages/hygraph-dynamic-rows"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphcms-ui": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphcms-ui": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@mui/material": ^5.10.16
     next: "*"
     react: ^18.2.0
@@ -3159,9 +3191,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/image-example@workspace:packages/image/example"
   dependencies:
-    "@graphcommerce/eslint-config-pwa": "npm:8.0.3-canary.6"
-    "@graphcommerce/prettier-config-pwa": "npm:8.0.3-canary.6"
-    "@graphcommerce/typescript-config-pwa": "npm:8.0.3-canary.6"
+    "@graphcommerce/eslint-config-pwa": "npm:8.0.6-canary.3"
+    "@graphcommerce/prettier-config-pwa": "npm:8.0.6-canary.3"
+    "@graphcommerce/typescript-config-pwa": "npm:8.0.6-canary.3"
     "@lingui/cli": "npm:4.7.0"
     "@lingui/core": "npm:4.7.0"
     "@lingui/macro": "npm:4.7.0"
@@ -3172,8 +3204,8 @@ __metadata:
     "@parcel/watcher": "npm:^2.4.0"
     "@playwright/test": "npm:1.41.0"
     "@types/node": "npm:^18"
-    "@types/react": "npm:^18.2.48"
-    "@types/react-dom": "npm:^18.2.18"
+    "@types/react": "npm:^18.2.74"
+    "@types/react-dom": "npm:^18.2.24"
     "@types/react-is": "npm:^18.2.4"
     babel-plugin-macros: "npm:^3.1.0"
     concurrently: "npm:8.2.2"
@@ -3189,20 +3221,20 @@ __metadata:
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     sharp: "npm:0.33.2"
-    type-fest: "npm:^4.13.1"
+    type-fest: "npm:^4.15.0"
     typescript: "npm:5.3.3"
     webpack: "npm:5.89.0"
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/image@npm:8.0.3-canary.6, @graphcommerce/image@workspace:packages/image":
+"@graphcommerce/image@npm:8.0.6-canary.3, @graphcommerce/image@workspace:packages/image":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/image@workspace:packages/image"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/framer-utils": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/framer-utils": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@mui/material": ^5.10.16
     next: "*"
     react: ^18.2.0
@@ -3214,24 +3246,24 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/lighthouse@workspace:packages/lighthouse"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     next: "*"
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/lingui-next@npm:8.0.3-canary.6, @graphcommerce/lingui-next@workspace:packages/lingui-next":
+"@graphcommerce/lingui-next@npm:8.0.6-canary.3, @graphcommerce/lingui-next@workspace:packages/lingui-next":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/lingui-next@workspace:packages/lingui-next"
   dependencies:
     "@lingui/conf": "npm:4.7.0"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/next-config": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/next-config": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3241,21 +3273,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-cart-billing-address@npm:8.0.3-canary.6, @graphcommerce/magento-cart-billing-address@workspace:packages/magento-cart-billing-address":
+"@graphcommerce/magento-cart-billing-address@npm:8.0.6-canary.3, @graphcommerce/magento-cart-billing-address@workspace:packages/magento-cart-billing-address":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-billing-address@workspace:packages/magento-cart-billing-address"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/framer-next-pages": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-customer": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/framer-next-pages": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-shipping-address": ^8.0.6-canary.3
+    "@graphcommerce/magento-customer": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3267,22 +3301,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-cart-checkout@npm:8.0.3-canary.6, @graphcommerce/magento-cart-checkout@workspace:packages/magento-cart-checkout":
+"@graphcommerce/magento-cart-checkout@npm:8.0.6-canary.3, @graphcommerce/magento-cart-checkout@workspace:packages/magento-cart-checkout":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-checkout@workspace:packages/magento-cart-checkout"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-coupon": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-items": ^8.0.3-canary.6
-    "@graphcommerce/magento-customer": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-coupon": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-items": ^8.0.6-canary.3
+    "@graphcommerce/magento-customer": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3294,19 +3328,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-cart-coupon@npm:8.0.3-canary.6, @graphcommerce/magento-cart-coupon@workspace:packages/magento-cart-coupon":
+"@graphcommerce/magento-cart-coupon@npm:8.0.6-canary.3, @graphcommerce/magento-cart-coupon@workspace:packages/magento-cart-coupon":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-coupon@workspace:packages/magento-cart-coupon"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3318,22 +3353,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-cart-email@npm:8.0.3-canary.6, @graphcommerce/magento-cart-email@workspace:packages/magento-cart-email":
+"@graphcommerce/magento-cart-email@npm:8.0.6-canary.3, @graphcommerce/magento-cart-email@workspace:packages/magento-cart-email":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-email@workspace:packages/magento-cart-email"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.3-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-customer": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-customer": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3345,21 +3380,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-cart-items@npm:8.0.3-canary.6, @graphcommerce/magento-cart-items@workspace:packages/magento-cart-items":
+"@graphcommerce/magento-cart-items@npm:8.0.6-canary.3, @graphcommerce/magento-cart-items@workspace:packages/magento-cart-items":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-items@workspace:packages/magento-cart-items"
+  dependencies:
+    type-fest: "npm:^4.15.0"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-customer": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-customer": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3371,21 +3408,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-cart-payment-method@npm:8.0.3-canary.6, @graphcommerce/magento-cart-payment-method@workspace:packages/magento-cart-payment-method":
+"@graphcommerce/magento-cart-payment-method@npm:8.0.6-canary.3, @graphcommerce/magento-cart-payment-method@workspace:packages/magento-cart-payment-method":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-payment-method@workspace:packages/magento-cart-payment-method"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/framer-scroller": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-shipping-address": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/framer-scroller": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-shipping-address": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3401,18 +3438,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-pickup@workspace:packages/magento-cart-pickup"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.3-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/graphql-mesh": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-shipping-method": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/graphql-mesh": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-shipping-method": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3424,20 +3461,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-cart-shipping-address@npm:8.0.3-canary.6, @graphcommerce/magento-cart-shipping-address@workspace:packages/magento-cart-shipping-address":
+"@graphcommerce/magento-cart-shipping-address@npm:8.0.6-canary.3, @graphcommerce/magento-cart-shipping-address@workspace:packages/magento-cart-shipping-address":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-shipping-address@workspace:packages/magento-cart-shipping-address"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.3-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-customer": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-customer": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3449,21 +3486,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-cart-shipping-method@npm:8.0.3-canary.6, @graphcommerce/magento-cart-shipping-method@workspace:packages/magento-cart-shipping-method":
+"@graphcommerce/magento-cart-shipping-method@npm:8.0.6-canary.3, @graphcommerce/magento-cart-shipping-method@workspace:packages/magento-cart-shipping-method":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-shipping-method@workspace:packages/magento-cart-shipping-method"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/framer-scroller": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-shipping-address": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/framer-scroller": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-shipping-address": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3475,24 +3512,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-cart@npm:8.0.3-canary.6, @graphcommerce/magento-cart@workspace:packages/magento-cart":
+"@graphcommerce/magento-cart@npm:8.0.6-canary.3, @graphcommerce/magento-cart@workspace:packages/magento-cart":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart@workspace:packages/magento-cart"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.3-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/framer-next-pages": ^8.0.3-canary.6
-    "@graphcommerce/framer-scroller": ^8.0.3-canary.6
-    "@graphcommerce/framer-utils": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-customer": ^8.0.3-canary.6
-    "@graphcommerce/magento-graphql": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/framer-next-pages": ^8.0.6-canary.3
+    "@graphcommerce/framer-scroller": ^8.0.6-canary.3
+    "@graphcommerce/framer-utils": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-customer": ^8.0.6-canary.3
+    "@graphcommerce/magento-graphql": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3504,19 +3541,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-category@npm:8.0.3-canary.6, @graphcommerce/magento-category@workspace:packages/magento-category":
+"@graphcommerce/magento-category@npm:8.0.6-canary.3, @graphcommerce/magento-category@workspace:packages/magento-category":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-category@workspace:packages/magento-category"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/framer-scroller": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/framer-scroller": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3527,15 +3564,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-cms@npm:8.0.3-canary.6, @graphcommerce/magento-cms@workspace:packages/magento-cms":
+"@graphcommerce/magento-cms@npm:8.0.6-canary.3, @graphcommerce/magento-cms@workspace:packages/magento-cms":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cms@workspace:packages/magento-cms"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3546,20 +3583,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-compare@npm:8.0.3-canary.6, @graphcommerce/magento-compare@workspace:packages/magento-compare":
+"@graphcommerce/magento-compare@npm:8.0.6-canary.3, @graphcommerce/magento-compare@workspace:packages/magento-compare":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-compare@workspace:packages/magento-compare"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.3-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/framer-next-pages": ^8.0.3-canary.6
-    "@graphcommerce/framer-utils": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/framer-next-pages": ^8.0.6-canary.3
+    "@graphcommerce/framer-utils": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3576,10 +3613,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-customer-account@workspace:packages/magento-customer-account"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/magento-customer": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/magento-customer": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
   languageName: unknown
   linkType: soft
 
@@ -3587,16 +3624,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-customer-order@workspace:packages/magento-customer-order"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/graphql-mesh": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-customer": ^8.0.3-canary.6
-    "@graphcommerce/magento-graphql": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/graphql-mesh": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-customer": ^8.0.6-canary.3
+    "@graphcommerce/magento-graphql": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3608,23 +3645,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-customer@npm:8.0.3-canary.6, @graphcommerce/magento-customer@workspace:packages/magento-customer":
+"@graphcommerce/magento-customer@npm:8.0.6-canary.3, @graphcommerce/magento-customer@workspace:packages/magento-customer":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-customer@workspace:packages/magento-customer"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.3-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/framer-next-pages": ^8.0.3-canary.6
-    "@graphcommerce/framer-utils": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/graphql-mesh": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-graphql": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/framer-next-pages": ^8.0.6-canary.3
+    "@graphcommerce/framer-utils": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/graphql-mesh": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-graphql": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3643,56 +3680,56 @@ __metadata:
   dependencies:
     "@apollo/client": "npm:~3.8.10"
     "@ducanh2912/next-pwa": "npm:9.7.2"
-    "@graphcommerce/cli": "npm:8.0.3-canary.6"
-    "@graphcommerce/demo-magento-graphcommerce": "npm:8.0.3-canary.6"
-    "@graphcommerce/ecommerce-ui": "npm:8.0.3-canary.6"
-    "@graphcommerce/eslint-config-pwa": "npm:8.0.3-canary.6"
-    "@graphcommerce/framer-next-pages": "npm:8.0.3-canary.6"
-    "@graphcommerce/framer-scroller": "npm:8.0.3-canary.6"
-    "@graphcommerce/framer-utils": "npm:8.0.3-canary.6"
-    "@graphcommerce/googleanalytics": "npm:8.0.3-canary.6"
-    "@graphcommerce/googlerecaptcha": "npm:8.0.3-canary.6"
-    "@graphcommerce/googletagmanager": "npm:8.0.3-canary.6"
-    "@graphcommerce/graphcms-ui": "npm:8.0.3-canary.6"
-    "@graphcommerce/graphql": "npm:8.0.3-canary.6"
-    "@graphcommerce/graphql-mesh": "npm:8.0.3-canary.6"
-    "@graphcommerce/hygraph-cli": "npm:8.0.3-canary.6"
-    "@graphcommerce/hygraph-dynamic-rows": "npm:8.0.3-canary.6"
-    "@graphcommerce/image": "npm:8.0.3-canary.6"
-    "@graphcommerce/lingui-next": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-cart": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-cart-billing-address": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-cart-checkout": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-cart-coupon": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-cart-email": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-cart-items": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-cart-payment-method": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-cart-shipping-address": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-cart-shipping-method": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-category": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-cms": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-compare": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-customer": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-graphql": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-newsletter": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-payment-included": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-product": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-product-bundle": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-product-configurable": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-product-downloadable": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-product-grouped": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-product-simple": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-product-virtual": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-recently-viewed-products": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-review": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-search": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-store": "npm:8.0.3-canary.6"
-    "@graphcommerce/magento-wishlist": "npm:8.0.3-canary.6"
-    "@graphcommerce/next-config": "npm:8.0.3-canary.6"
-    "@graphcommerce/next-ui": "npm:8.0.3-canary.6"
-    "@graphcommerce/prettier-config-pwa": "npm:8.0.3-canary.6"
-    "@graphcommerce/react-hook-form": "npm:8.0.3-canary.6"
-    "@graphcommerce/typescript-config-pwa": "npm:8.0.3-canary.6"
+    "@graphcommerce/cli": "npm:8.0.6-canary.3"
+    "@graphcommerce/demo-magento-graphcommerce": "npm:8.0.6-canary.3"
+    "@graphcommerce/ecommerce-ui": "npm:8.0.6-canary.3"
+    "@graphcommerce/eslint-config-pwa": "npm:8.0.6-canary.3"
+    "@graphcommerce/framer-next-pages": "npm:8.0.6-canary.3"
+    "@graphcommerce/framer-scroller": "npm:8.0.6-canary.3"
+    "@graphcommerce/framer-utils": "npm:8.0.6-canary.3"
+    "@graphcommerce/googleanalytics": "npm:8.0.6-canary.3"
+    "@graphcommerce/googlerecaptcha": "npm:8.0.6-canary.3"
+    "@graphcommerce/googletagmanager": "npm:8.0.6-canary.3"
+    "@graphcommerce/graphcms-ui": "npm:8.0.6-canary.3"
+    "@graphcommerce/graphql": "npm:8.0.6-canary.3"
+    "@graphcommerce/graphql-mesh": "npm:8.0.6-canary.3"
+    "@graphcommerce/hygraph-cli": "npm:8.0.6-canary.3"
+    "@graphcommerce/hygraph-dynamic-rows": "npm:8.0.6-canary.3"
+    "@graphcommerce/image": "npm:8.0.6-canary.3"
+    "@graphcommerce/lingui-next": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-cart": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-cart-billing-address": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-cart-checkout": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-cart-coupon": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-cart-email": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-cart-items": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-cart-payment-method": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-cart-shipping-address": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-cart-shipping-method": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-category": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-cms": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-compare": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-customer": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-graphql": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-newsletter": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-payment-included": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-product": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-product-bundle": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-product-configurable": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-product-downloadable": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-product-grouped": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-product-simple": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-product-virtual": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-recently-viewed-products": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-review": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-search": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-store": "npm:8.0.6-canary.3"
+    "@graphcommerce/magento-wishlist": "npm:8.0.6-canary.3"
+    "@graphcommerce/next-config": "npm:8.0.6-canary.3"
+    "@graphcommerce/next-ui": "npm:8.0.6-canary.3"
+    "@graphcommerce/prettier-config-pwa": "npm:8.0.6-canary.3"
+    "@graphcommerce/react-hook-form": "npm:8.0.6-canary.3"
+    "@graphcommerce/typescript-config-pwa": "npm:8.0.6-canary.3"
     "@lingui/cli": "npm:4.7.0"
     "@lingui/core": "npm:4.7.0"
     "@lingui/macro": "npm:4.7.0"
@@ -3703,8 +3740,8 @@ __metadata:
     "@parcel/watcher": "npm:^2.4.0"
     "@playwright/test": "npm:1.41.0"
     "@types/node": "npm:^18"
-    "@types/react": "npm:^18.2.48"
-    "@types/react-dom": "npm:^18.2.18"
+    "@types/react": "npm:^18.2.74"
+    "@types/react-dom": "npm:^18.2.24"
     "@types/react-is": "npm:^18.2.4"
     babel-plugin-macros: "npm:^3.1.0"
     concurrently: "npm:8.2.2"
@@ -3719,41 +3756,41 @@ __metadata:
     prettier: "npm:3.2.4"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
-    react-hook-form: "npm:^7.49.3"
+    react-hook-form: "npm:^7.51.2"
     sharp: "npm:0.33.2"
-    type-fest: "npm:^4.13.1"
+    type-fest: "npm:^4.15.0"
     typescript: "npm:5.3.3"
     webpack: "npm:5.89.0"
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-graphql@npm:8.0.3-canary.6, @graphcommerce/magento-graphql@workspace:packages/magento-graphql":
+"@graphcommerce/magento-graphql@npm:8.0.6-canary.3, @graphcommerce/magento-graphql@workspace:packages/magento-graphql":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-graphql@workspace:packages/magento-graphql"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-newsletter@npm:8.0.3-canary.6, @graphcommerce/magento-newsletter@workspace:packages/magento-newsletter":
+"@graphcommerce/magento-newsletter@npm:8.0.6-canary.3, @graphcommerce/magento-newsletter@workspace:packages/magento-newsletter":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-newsletter@workspace:packages/magento-newsletter"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.3-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-customer": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-customer": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3772,15 +3809,15 @@ __metadata:
     "@types/jsdom": "npm:^21.1.6"
     jsdom: "npm:^23.2.0"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/magento-category": ^8.0.3-canary.6
-    "@graphcommerce/magento-cms": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/magento-category": ^8.0.6-canary.3
+    "@graphcommerce/magento-cms": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3796,18 +3833,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-adyen@workspace:packages/magento-payment-adyen"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.3-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/graphql-mesh": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-payment-method": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/graphql-mesh": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-payment-method": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3825,19 +3862,19 @@ __metadata:
     "@types/braintree-web": "npm:^3.96.10"
     braintree-web: "npm:^3.99.0"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-payment-method": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-shipping-address": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/magento-product-configurable": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-payment-method": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-shipping-address": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/magento-product-configurable": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3849,23 +3886,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-payment-included@npm:8.0.3-canary.6, @graphcommerce/magento-payment-included@workspace:packages/magento-payment-included":
+"@graphcommerce/magento-payment-included@npm:8.0.6-canary.3, @graphcommerce/magento-payment-included@workspace:packages/magento-payment-included":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-included@workspace:packages/magento-payment-included"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-payment-method": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-shipping-address": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/magento-product-configurable": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-payment-method": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-shipping-address": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/magento-product-configurable": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3881,14 +3919,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-klarna@workspace:packages/magento-payment-klarna"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3904,22 +3942,22 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-multisafepay@workspace:packages/magento-payment-multisafepay"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.3-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/graphql-mesh": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-checkout": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-payment-method": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-shipping-address": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/magento-product-configurable": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/graphql-mesh": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-checkout": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-payment-method": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-shipping-address": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/magento-product-configurable": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3934,16 +3972,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-payment-paypal@workspace:packages/magento-payment-paypal"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.3-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-payment-method": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-payment-method": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3955,23 +3993,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-product-bundle@npm:8.0.3-canary.6, @graphcommerce/magento-product-bundle@workspace:packages/magento-product-bundle":
+"@graphcommerce/magento-product-bundle@npm:8.0.6-canary.3, @graphcommerce/magento-product-bundle@workspace:packages/magento-product-bundle":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product-bundle@workspace:packages/magento-product-bundle"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.3-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-items": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/magento-product-simple": ^8.0.3-canary.6
-    "@graphcommerce/magento-product-virtual": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-items": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/magento-product-simple": ^8.0.6-canary.3
+    "@graphcommerce/magento-product-virtual": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3982,27 +4020,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-product-configurable@npm:8.0.3-canary.6, @graphcommerce/magento-product-configurable@workspace:packages/magento-product-configurable":
+"@graphcommerce/magento-product-configurable@npm:8.0.6-canary.3, @graphcommerce/magento-product-configurable@workspace:packages/magento-product-configurable":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product-configurable@workspace:packages/magento-product-configurable"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.3-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/graphql-mesh": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/lingui-next": 8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-items": ^8.0.3-canary.6
-    "@graphcommerce/magento-category": ^8.0.3-canary.6
-    "@graphcommerce/magento-customer": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/magento-product-simple": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/graphql-mesh": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/lingui-next": 8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-items": ^8.0.6-canary.3
+    "@graphcommerce/magento-category": ^8.0.6-canary.3
+    "@graphcommerce/magento-customer": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/magento-product-simple": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4014,18 +4052,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-product-downloadable@npm:8.0.3-canary.6, @graphcommerce/magento-product-downloadable@workspace:packages/magento-product-downloadable":
+"@graphcommerce/magento-product-downloadable@npm:8.0.6-canary.3, @graphcommerce/magento-product-downloadable@workspace:packages/magento-product-downloadable":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product-downloadable@workspace:packages/magento-product-downloadable"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4035,18 +4073,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-product-grouped@npm:8.0.3-canary.6, @graphcommerce/magento-product-grouped@workspace:packages/magento-product-grouped":
+"@graphcommerce/magento-product-grouped@npm:8.0.6-canary.3, @graphcommerce/magento-product-grouped@workspace:packages/magento-product-grouped":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product-grouped@workspace:packages/magento-product-grouped"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/magento-product-simple": ^8.0.3-canary.6
-    "@graphcommerce/magento-product-virtual": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/magento-product-simple": ^8.0.6-canary.3
+    "@graphcommerce/magento-product-virtual": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4056,18 +4094,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-product-simple@npm:8.0.3-canary.6, @graphcommerce/magento-product-simple@workspace:packages/magento-product-simple":
+"@graphcommerce/magento-product-simple@npm:8.0.6-canary.3, @graphcommerce/magento-product-simple@workspace:packages/magento-product-simple":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product-simple@workspace:packages/magento-product-simple"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-items": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-items": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4077,18 +4115,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-product-virtual@npm:8.0.3-canary.6, @graphcommerce/magento-product-virtual@workspace:packages/magento-product-virtual":
+"@graphcommerce/magento-product-virtual@npm:8.0.6-canary.3, @graphcommerce/magento-product-virtual@workspace:packages/magento-product-virtual":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product-virtual@workspace:packages/magento-product-virtual"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-items": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-items": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4098,25 +4136,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-product@npm:8.0.3-canary.6, @graphcommerce/magento-product@workspace:packages/magento-product":
+"@graphcommerce/magento-product@npm:8.0.6-canary.3, @graphcommerce/magento-product@workspace:packages/magento-product":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-product@workspace:packages/magento-product"
   dependencies:
     schema-dts: "npm:^1.1.2"
     typescript: "npm:5.3.3"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.3-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/framer-next-pages": ^8.0.3-canary.6
-    "@graphcommerce/framer-scroller": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/graphql-mesh": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/framer-next-pages": ^8.0.6-canary.3
+    "@graphcommerce/framer-scroller": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/graphql-mesh": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4128,20 +4166,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-recently-viewed-products@npm:8.0.3-canary.6, @graphcommerce/magento-recently-viewed-products@workspace:packages/magento-recently-viewed-products":
+"@graphcommerce/magento-recently-viewed-products@npm:8.0.6-canary.3, @graphcommerce/magento-recently-viewed-products@workspace:packages/magento-recently-viewed-products":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-recently-viewed-products@workspace:packages/magento-recently-viewed-products"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/graphql-mesh": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/magento-product-configurable": ^8.0.3-canary.6
-    "@graphcommerce/next-config": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/graphql-mesh": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/magento-product-configurable": ^8.0.6-canary.3
+    "@graphcommerce/next-config": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@mui/material": ^5.10.16
     framer-motion: ^10.0.0
     next: "*"
@@ -4150,24 +4188,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-review@npm:8.0.3-canary.6, @graphcommerce/magento-review@workspace:packages/magento-review":
+"@graphcommerce/magento-review@npm:8.0.6-canary.3, @graphcommerce/magento-review@workspace:packages/magento-review":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-review@workspace:packages/magento-review"
   dependencies:
     schema-dts: "npm:^1.1.2"
     typescript: "npm:5.3.3"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/graphql-mesh": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-customer": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/graphql-mesh": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-customer": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4178,19 +4217,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-search@npm:8.0.3-canary.6, @graphcommerce/magento-search@workspace:packages/magento-search":
+"@graphcommerce/magento-search@npm:8.0.6-canary.3, @graphcommerce/magento-search@workspace:packages/magento-search":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-search@workspace:packages/magento-search"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.3-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4201,17 +4240,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-store@npm:8.0.3-canary.6, @graphcommerce/magento-store@workspace:packages/magento-store":
+"@graphcommerce/magento-store@npm:8.0.6-canary.3, @graphcommerce/magento-store@workspace:packages/magento-store":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-store@workspace:packages/magento-store"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/graphql-mesh": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/graphql-mesh": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4222,24 +4261,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-wishlist@npm:8.0.3-canary.6, @graphcommerce/magento-wishlist@workspace:packages/magento-wishlist":
+"@graphcommerce/magento-wishlist@npm:8.0.6-canary.3, @graphcommerce/magento-wishlist@workspace:packages/magento-wishlist":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-wishlist@workspace:packages/magento-wishlist"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.3-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/graphql-mesh": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-customer": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/magento-product-configurable": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-config": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/graphql-mesh": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-customer": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/magento-product-configurable": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-config": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4255,21 +4294,21 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphcommerce/mollie-magento-payment@workspace:packages/mollie-magento-payment"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^8.0.3-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/graphql": ^8.0.3-canary.6
-    "@graphcommerce/graphql-mesh": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-payment-method": ^8.0.3-canary.6
-    "@graphcommerce/magento-cart-shipping-address": ^8.0.3-canary.6
-    "@graphcommerce/magento-product": ^8.0.3-canary.6
-    "@graphcommerce/magento-product-configurable": ^8.0.3-canary.6
-    "@graphcommerce/magento-store": ^8.0.3-canary.6
-    "@graphcommerce/next-ui": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/react-hook-form": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/ecommerce-ui": ^8.0.6-canary.3
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/graphql": ^8.0.6-canary.3
+    "@graphcommerce/graphql-mesh": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-payment-method": ^8.0.6-canary.3
+    "@graphcommerce/magento-cart-shipping-address": ^8.0.6-canary.3
+    "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/magento-product-configurable": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
+    "@graphcommerce/next-ui": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/react-hook-form": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4280,7 +4319,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/next-config@npm:8.0.3-canary.6, @graphcommerce/next-config@workspace:packagesDev/next-config":
+"@graphcommerce/next-config@npm:8.0.6-canary.3, @graphcommerce/next-config@workspace:packagesDev/next-config":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/next-config@workspace:packagesDev/next-config"
   dependencies:
@@ -4308,7 +4347,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/next-ui@npm:8.0.3-canary.6, @graphcommerce/next-ui@workspace:packages/next-ui":
+"@graphcommerce/next-ui@npm:8.0.6-canary.3, @graphcommerce/next-ui@workspace:packages/next-ui":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/next-ui@workspace:packages/next-ui"
   dependencies:
@@ -4322,14 +4361,14 @@ __metadata:
     react-is: "npm:^18.2.0"
     typescript: "npm:5.3.3"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/framer-next-pages": ^8.0.3-canary.6
-    "@graphcommerce/framer-scroller": ^8.0.3-canary.6
-    "@graphcommerce/framer-utils": ^8.0.3-canary.6
-    "@graphcommerce/image": ^8.0.3-canary.6
-    "@graphcommerce/lingui-next": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/framer-next-pages": ^8.0.6-canary.3
+    "@graphcommerce/framer-scroller": ^8.0.6-canary.3
+    "@graphcommerce/framer-utils": ^8.0.6-canary.3
+    "@graphcommerce/image": ^8.0.6-canary.3
+    "@graphcommerce/lingui-next": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -4342,7 +4381,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/prettier-config-pwa@npm:8.0.3-canary.6, @graphcommerce/prettier-config-pwa@workspace:packagesDev/prettier-config":
+"@graphcommerce/prettier-config-pwa@npm:8.0.6-canary.3, @graphcommerce/prettier-config-pwa@workspace:packagesDev/prettier-config":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/prettier-config-pwa@workspace:packagesDev/prettier-config"
   dependencies:
@@ -4352,16 +4391,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/react-hook-form@npm:8.0.3-canary.6, @graphcommerce/react-hook-form@workspace:packages/react-hook-form":
+"@graphcommerce/react-hook-form@npm:8.0.6-canary.3, @graphcommerce/react-hook-form@workspace:packages/react-hook-form":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/react-hook-form@workspace:packages/react-hook-form"
   dependencies:
     "@testing-library/react": "npm:^14.1.2"
   peerDependencies:
     "@apollo/client": ^3
-    "@graphcommerce/eslint-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.0.3-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.0.3-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
+    "@graphcommerce/typescript-config-pwa": ^8.0.6-canary.3
     graphql: ^16.6.0
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -4369,7 +4408,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/typescript-config-pwa@npm:8.0.3-canary.6, @graphcommerce/typescript-config-pwa@workspace:packagesDev/typescript-config":
+"@graphcommerce/typescript-config-pwa@npm:8.0.6-canary.3, @graphcommerce/typescript-config-pwa@workspace:packagesDev/typescript-config":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/typescript-config-pwa@workspace:packagesDev/typescript-config"
   dependencies:
@@ -7542,13 +7581,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/gtag.js@npm:^0.0.18":
-  version: 0.0.18
-  resolution: "@types/gtag.js@npm:0.0.18"
-  checksum: 10c0/af7a0a5769c5cfbe75e47f2b0346a65db8234b3c89775b897681548dfb6898edb3145153e2bc5dd1751a5ace221e03e6a68b7650ecacc6aa16a099aa9d925c99
-  languageName: node
-  linkType: hard
-
 "@types/hogan.js@npm:^3.0.0":
   version: 3.0.5
   resolution: "@types/hogan.js@npm:3.0.5"
@@ -7755,12 +7787,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^18.0.0, @types/react-dom@npm:^18.2.18":
+"@types/react-dom@npm:^18.0.0":
   version: 18.2.18
   resolution: "@types/react-dom@npm:18.2.18"
   dependencies:
     "@types/react": "npm:*"
   checksum: 10c0/74dba11a1b8156f3a763f3fca1fb4ec1dcd349153279b8bf79210024a69f994bf2cf0728198c047f8130c5318420ea56281b0a4ef84c8ae943cd9a0cac705220
+  languageName: node
+  linkType: hard
+
+"@types/react-dom@npm:^18.2.24":
+  version: 18.2.24
+  resolution: "@types/react-dom@npm:18.2.24"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: 10c0/9ec38e5ab4727c56ef17bd8e938ead88748ba19db314b8d9807714a5cae430f5b799514667b221b4f2dc8d9b4ca17dd1c3da8c41c083c2de9eddcc31bec6b8ff
   languageName: node
   linkType: hard
 
@@ -7782,14 +7823,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^18.2.48":
-  version: 18.2.48
-  resolution: "@types/react@npm:18.2.48"
+"@types/react@npm:*, @types/react@npm:^18.2.74":
+  version: 18.2.74
+  resolution: "@types/react@npm:18.2.74"
   dependencies:
     "@types/prop-types": "npm:*"
-    "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10c0/7e89f18ea2928b1638f564b156d692894dcb9352a7e0a807873c97e858abe1f23dbd165a25dd088a991344e973fdeef88ba5724bfb64504b74072cbc9c220c3a
+  checksum: 10c0/347e38b4c5dc20d50ff71bf04b7caaef490e5ff695e74a0088a13fbb2a0c5d125a5ecfd142adfa30f0176da0e2734942c91ba61d95ce269c43b3265bd7379361
   languageName: node
   linkType: hard
 
@@ -7816,13 +7856,6 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: 10c0/6eeb9c27d99bf4b393bf168d43208f63e78cefca5644662a0bdb2bdbf8352386f4f3aca66add138fc41bce5f66fd48a0de430a1473f11b612fbed0375ae78031
-  languageName: node
-  linkType: hard
-
-"@types/scheduler@npm:*":
-  version: 0.16.8
-  resolution: "@types/scheduler@npm:0.16.8"
-  checksum: 10c0/f86de504945b8fc41b1f391f847444d542e2e4067cf7e5d9bfeb5d2d2393d3203b1161bc0ef3b1e104d828dabfb60baf06e8d2c27e27ff7e8258e6e618d8c4ec
   languageName: node
   linkType: hard
 
@@ -16299,12 +16332,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:^7.49.3":
-  version: 7.49.3
-  resolution: "react-hook-form@npm:7.49.3"
+"react-hook-form@npm:^7.51.2":
+  version: 7.51.2
+  resolution: "react-hook-form@npm:7.51.2"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18
-  checksum: 10c0/f8e5b2dcc3d97c820b4fbac262d7e914d74f385f26f34da31b8efc6c0f32ba995f2a2330bdfd3d8b7c8b56a52349a0cbc0c0dbe9053b3971e5e0c78003dfb7f0
+  checksum: 10c0/9d5e303b64f77330f244304854522e4f588fd3a5554734d2daebf64230195eb42c44504e074d5acfabd6f33a2272ffca4ebef7a54fad7019ae519471b720327e
   languageName: node
   linkType: hard
 
@@ -18229,10 +18262,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^4.13.1":
-  version: 4.13.1
-  resolution: "type-fest@npm:4.13.1"
-  checksum: 10c0/5ef2232fa78c0bc09249abbfd17d13ff154873846d7d7b264fa3e774ed33df244284cbdff367c6e3d4b46f1c40800482d55501a943d1fdd30ea6651b374b1353
+"type-fest@npm:^4.15.0":
+  version: 4.15.0
+  resolution: "type-fest@npm:4.15.0"
+  checksum: 10c0/677a7da18dbbe07668bdf47fcb976fdcbea77e118156a7245182fdf65633d69228ce773b0022d507636945a8f22b593e09a3c08f695d2aecf96f035ff0186825
   languageName: node
   linkType: hard
 
@@ -18646,6 +18679,13 @@ __metadata:
   version: 3.3.2
   resolution: "web-streams-polyfill@npm:3.3.2"
   checksum: 10c0/623c2fced2ef77d5afdbc43acef64b8af609a32125b691eae286d534a36004c8a71030f0e78068516774a97fd90dbfb3726b10fd569a2d158e60c83a539c489e
+  languageName: node
+  linkType: hard
+
+"web-vitals@npm:^3.5.2":
+  version: 3.5.2
+  resolution: "web-vitals@npm:3.5.2"
+  checksum: 10c0/662b385d6e96a18677cf8726454b65f3aecfdca330df72a82f73f293a5708ba9d191964649f8d363a1e64062a826a99805ade8c573a6492b91e02275b6860308
   languageName: node
   linkType: hard
 

@@ -1,5 +1,70 @@
 # Change Log
 
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.6-canary.1
+
+### Patch Changes
+
+- [#2213](https://github.com/graphcommerce-org/graphcommerce/pull/2213) [`9b8349f`](https://github.com/graphcommerce-org/graphcommerce/commit/9b8349f0001a786f9b1666f050ae226316bd16f3) - Removed the ProductPage query from the examples directory as it isn't used anymore
+  ([@paales](https://github.com/paales))
+
+## 8.0.6-canary.0
+
+### Patch Changes
+
+- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods.
+  ([@paales](https://github.com/paales))
+
+## 8.0.5
+
+### Patch Changes
+
+- [#2236](https://github.com/graphcommerce-org/graphcommerce/pull/2236) [`1a20a34`](https://github.com/graphcommerce-org/graphcommerce/commit/1a20a34a8b55781ee3e88731b5e2623a85c64ccd) - Enable bundlePagesExternals for Vercel environments
+  ([@paales](https://github.com/paales))
+
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+## 8.0.5-canary.5
+
+## 8.0.5-canary.4
+
+## 8.0.5-canary.3
+
+### Patch Changes
+
+- [#2236](https://github.com/graphcommerce-org/graphcommerce/pull/2236) [`1a20a34`](https://github.com/graphcommerce-org/graphcommerce/commit/1a20a34a8b55781ee3e88731b5e2623a85c64ccd) - Enable bundlePagesExternals for Vercel environments
+  ([@paales](https://github.com/paales))
+
+## 8.0.5-canary.2
+
+## 8.0.5-canary.1
+
+## 8.0.5-canary.0
+
+## 8.0.4
+
+## 8.0.4-canary.1
+
+## 8.0.4-canary.0
+
+## 8.0.3
+
 ## 8.0.3-canary.6
 
 ## 8.0.3-canary.5
