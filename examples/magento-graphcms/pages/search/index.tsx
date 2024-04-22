@@ -38,10 +38,7 @@ import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphql
 
 type SearchResultProps = ProductListQuery &
   ProductFiltersQuery &
-  CategorySearchQuery & {
-    filterTypes: FilterTypes
-    params: ProductListParams
-  }
+  CategorySearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
 type RouteProps = { url: string[] }
 export type GetPageStaticProps = GetStaticProps<
   LayoutNavigationProps,

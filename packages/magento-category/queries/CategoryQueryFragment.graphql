@@ -2,7 +2,6 @@ fragment CategoryQueryFragment on Query {
   categories(filters: { url_path: { eq: $url } }) {
     items {
       uid
-      default_sort_by
       ...CategoryDefault
       ...CategoryBreadcrumb
       ...CategoryDescription
