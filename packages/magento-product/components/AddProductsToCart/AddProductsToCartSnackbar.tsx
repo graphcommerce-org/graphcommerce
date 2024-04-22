@@ -8,6 +8,7 @@ import {
   IconSvg,
   MessageSnackbar,
   MessageSnackbarProps,
+  nonNullable,
   useLocale,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
