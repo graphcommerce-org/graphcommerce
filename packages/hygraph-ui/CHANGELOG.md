@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.6-canary.3
+
+### Patch Changes
+
+- [#2219](https://github.com/graphcommerce-org/graphcommerce/pull/2219) [`2ed2055`](https://github.com/graphcommerce-org/graphcommerce/commit/2ed20550324c104265d72f22339fbedb26fb433b) - Allow blog pages to be nested
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.0.6-canary.2
 
 ## 8.0.6-canary.1
