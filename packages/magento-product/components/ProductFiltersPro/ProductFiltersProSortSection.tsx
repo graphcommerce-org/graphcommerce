@@ -1,59 +1,25 @@
-import { useWatch } from '@graphcommerce/ecommerce-ui'
-import { ProductAttributeSortInput } from '@graphcommerce/graphql-mesh'
-import {
-  ActionCard,
-  ActionCardAccordion,
-  ActionCardListForm,
-  Button,
-  filterNonNullableKeys,
-} from '@graphcommerce/next-ui'
+import { ActionCard, ActionCardAccordion, ActionCardListForm, Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { useEffect, useMemo } from 'react'
+import { CategoryDefaultFragment } from '../ProductListItems/CategoryDefault.gql'
 import { ProductListSortFragment } from '../ProductListSort/ProductListSort.gql'
 import { useProductFiltersPro } from './ProductFiltersPro'
-import { ProductFiltersProSortDirectionArrow } from './ProductFiltersProSortDirectionArrow'
+import { useProductFiltersProSort } from './useProductFiltersProSort'
 
 export type ProductFiltersProSortSectionProps = ProductListSortFragment & {
-  defaultSortBy: keyof ProductAttributeSortInput
+  category?: CategoryDefaultFragment
 }
 
 export function ProductFiltersProSortSection(props: ProductFiltersProSortSectionProps) {
-  const { sort_fields, defaultSortBy } = props
   const { form } = useProductFiltersPro()
-  const { control } = form
-  const activeSort = useWatch({ control, name: 'sort' })
-  const sortDirection = useWatch({ control, name: 'dir' })
-  const options = useMemo(
-    () =>
-      filterNonNullableKeys(sort_fields?.options, ['value', 'label']).map((option) => ({
-        ...option,
-        value: option.value,
-        title: option.label,
-        ...(activeSort === option.value
-          ? {
-              onClick: () =>
-                sortDirection === 'ASC'
-                  ? form.setValue('dir', 'DESC')
-                  : form.setValue('dir', 'ASC'),
-              price: <ProductFiltersProSortDirectionArrow sortDirection={sortDirection} />,
-            }
-          : null),
-      })),
-    [activeSort, form, sortDirection, sort_fields?.options],
-  )
-
-  useEffect(() => {
-    if (activeSort === null) form.setValue('sort', defaultSortBy)
-    if (sortDirection === null) form.setValue('dir', 'ASC')
-  }, [activeSort, defaultSortBy, form, sortDirection])
+  const { options, showReset, selected } = useProductFiltersProSort(props)
 
   return (
     <ActionCardAccordion
-      defaultExpanded={!!activeSort}
+      defaultExpanded={selected}
       summary={<Trans id='Sort By' />}
       details={
         <ActionCardListForm
-          control={control}
+          control={form.control}
           name='sort'
           layout='list'
           variant='default'
@@ -63,7 +29,7 @@ export function ProductFiltersProSortSection(props: ProductFiltersProSortSection
         />
       }
       right={
-        activeSort ? (
+        showReset ? (
           <Button
             color='primary'
             onClick={(e) => {

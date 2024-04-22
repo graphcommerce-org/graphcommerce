@@ -29,7 +29,7 @@ const defaultRenderer = {
 }
 
 export function ProductFiltersProAllFiltersChip(props: ProductFiltersProAllFiltersChipProps) {
-  const { sort_fields, total_count, renderer, defaultSortBy, ...rest } = props
+  const { sort_fields, total_count, renderer, category, ...rest } = props
 
   const { submit, params, aggregations, appliedAggregations } = useProductFiltersPro()
   const { sort } = params
@@ -62,7 +62,7 @@ export function ProductFiltersProAllFiltersChip(props: ProductFiltersProAllFilte
           <ProductFiltersProSortSection
             sort_fields={sort_fields}
             total_count={total_count}
-            defaultSortBy={defaultSortBy}
+            category={category}
           />
           <ProductFiltersProLimitSection />
           <ProductFiltersProAggregations renderer={{ ...defaultRenderer, ...renderer }} />

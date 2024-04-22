@@ -40,17 +40,9 @@ export function SearchFilterLayout(props: ProductListFilterLayoutProps) {
     const horizontalFilters = (
       <ProductListFiltersContainer>
         <ProductFiltersProFilterChips />
-        <ProductFiltersProSortChip
-          total_count={total_count}
-          sort_fields={sort_fields}
-          defaultSortBy={defaultSortBy}
-        />
+        <ProductFiltersProSortChip total_count={total_count} sort_fields={sort_fields} />
         <ProductFiltersProLimitChip />
-        <ProductFiltersProAllFiltersChip
-          total_count={total_count}
-          sort_fields={sort_fields}
-          defaultSortBy={defaultSortBy}
-        />
+        <ProductFiltersProAllFiltersChip total_count={total_count} sort_fields={sort_fields} />
       </ProductListFiltersContainer>
     )
 
@@ -70,7 +62,6 @@ export function SearchFilterLayout(props: ProductListFilterLayoutProps) {
               <ProductFiltersProAllFiltersSidebar
                 total_count={total_count}
                 sort_fields={sort_fields}
-                defaultSortBy={defaultSortBy}
               />
             }
             count={<ProductListCount total_count={total_count} />}

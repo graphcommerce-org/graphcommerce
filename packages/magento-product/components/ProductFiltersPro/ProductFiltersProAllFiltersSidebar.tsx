@@ -20,14 +20,14 @@ const defaultRenderer = {
 }
 
 export function ProductFiltersProAllFiltersSidebar(props: ProductFiltersProAllFiltersSidebarProps) {
-  const { sort_fields, total_count, renderer, sx = [], defaultSortBy } = props
+  const { sort_fields, total_count, renderer, sx = [], category } = props
 
   return (
     <Box sx={[{ display: { xs: 'none', md: 'grid' } }, ...(Array.isArray(sx) ? sx : [sx])]}>
       <ProductFiltersProSortSection
         sort_fields={sort_fields}
         total_count={total_count}
-        defaultSortBy={defaultSortBy}
+        category={category}
       />
       <ProductFiltersProLimitSection />
       <ProductFiltersProAggregations renderer={{ ...defaultRenderer, ...renderer }} />

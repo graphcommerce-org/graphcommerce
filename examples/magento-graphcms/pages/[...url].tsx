@@ -16,6 +16,7 @@ import {
   parseParams,
   ProductFiltersDocument,
   ProductFiltersQuery,
+  productListApplyCategoryDefaults,
   ProductListDocument,
   ProductListParams,
   ProductListQuery,
@@ -24,7 +25,6 @@ import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-
 import { GetStaticProps, LayoutHeader, LayoutTitle, MetaRobots } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
-import { ProductAttributeSortInput } from '../.mesh'
 import {
   CategoryFilterLayout,
   LayoutDocument,
@@ -42,7 +42,6 @@ export type CategoryProps = CategoryPageQuery &
   ProductFiltersQuery & {
     filterTypes?: FilterTypes
     params?: ProductListParams
-    defaultSortBy: keyof ProductAttributeSortInput
   }
 export type CategoryRoute = { url: string[] }
 
@@ -50,7 +49,7 @@ type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
 function CategoryPage(props: CategoryProps) {
-  const { categories, products, filters, params, filterTypes, pages, defaultSortBy } = props
+  const { categories, products, filters, params, filterTypes, pages } = props
   const category = categories?.items?.[0]
   const isLanding = category?.display_mode === 'PAGE'
   const page = pages?.[0]
@@ -106,7 +105,7 @@ function CategoryPage(props: CategoryProps) {
             filterTypes={filterTypes}
             title={category.name ?? ''}
             id={category.uid}
-            defaultSortBy={defaultSortBy}
+            category={category}
           />
         </>
       )}
@@ -161,20 +160,14 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const productListParams = parseParams(url, query, await filterTypes)
-  const filteredCategoryUid = productListParams && productListParams.filters.category_uid?.in?.[0]
+  const filteredCategoryUid = productListParams?.filters.category_uid?.in?.[0]
 
   const category = categoryPage.then((res) => res.data.categories?.items?.[0])
-  const defaultSortBy = ((await category)?.default_sort_by ??
-    (await conf).data.storeConfig?.catalog_default_sort_by) as keyof ProductAttributeSortInput
 
-  let categoryUid = filteredCategoryUid
-  if (!categoryUid) {
-    categoryUid = (await category)?.uid ?? ''
-    if (productListParams) productListParams.filters.category_uid = { in: [categoryUid] }
-  }
+  const categoryUid = filteredCategoryUid ?? (await category)?.uid ?? ''
 
   const pages = hygraphPageContent(staticClient, url, category)
-  const hasCategory = Boolean(productListParams && categoryUid)
+  const hasCategory = productListParams && categoryUid
 
   const filters = hasCategory
     ? staticClient.query({
@@ -185,15 +178,11 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const products = hasCategory
     ? staticClient.query({
         query: ProductListDocument,
-        variables: {
-          pageSize: (await conf).data.storeConfig?.grid_per_page ?? 24,
-          ...productListParams,
-          filters: { ...productListParams?.filters, category_uid: { eq: categoryUid } },
-          sort:
-            productListParams?.sort && Object.keys(productListParams?.sort).length === 0
-              ? { [defaultSortBy]: 'ASC' }
-              : productListParams?.sort,
-        },
+        variables: await productListApplyCategoryDefaults(
+          productListParams,
+          (await conf).data,
+          category,
+        ),
       })
     : undefined
 
@@ -219,7 +208,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await layout).data,
       filterTypes: await filterTypes,
       params: productListParams,
-      defaultSortBy,
       apolloState: await conf.then(() => client.cache.extract()),
       up,
     },

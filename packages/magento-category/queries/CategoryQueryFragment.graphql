@@ -3,6 +3,7 @@ fragment CategoryQueryFragment on Query {
     items {
       uid
       default_sort_by
+      ...CategoryDefault
       ...CategoryBreadcrumb
       ...CategoryDescription
       ...CategoryChildren
