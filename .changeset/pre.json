@@ -79,8 +79,19 @@
     "@graphcommerce/typescript-config-pwa": "8.0.5"
   },
   "changesets": [
+    "calm-humans-tickle",
     "clever-eagles-lie",
+    "dry-rivers-train",
+    "dry-snakes-do",
+    "dull-badgers-prove",
+    "hip-pianos-sip",
+    "hot-cameras-design",
+    "lemon-impalas-know",
+    "moody-vans-juggle",
+    "ninety-impalas-grab",
+    "silly-wasps-rhyme",
     "slow-kiwis-exercise",
+    "tender-ads-rest",
     "unlucky-crabs-notice"
   ]
 }
