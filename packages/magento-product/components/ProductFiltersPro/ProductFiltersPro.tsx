@@ -1,6 +1,7 @@
 import { useForm, UseFormProps, UseFormReturn } from '@graphcommerce/ecommerce-ui'
-import { useMatchMedia, useMemoObject } from '@graphcommerce/next-ui'
+import { useMatchMediaMotionValue, useMemoObject } from '@graphcommerce/next-ui'
 import { useEventCallback, useTheme } from '@mui/material'
+import { m, useTransform } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { BaseSyntheticEvent, createContext, useContext, useMemo, useRef } from 'react'
 import { productListLinkFromFilter } from '../../hooks/useProductListLink'
@@ -44,6 +45,8 @@ export type FilterFormProviderProps = Omit<
   params: ProductListParams
 } & DataProps
 
+const isSidebar = import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR'
+
 export function ProductFiltersPro(props: FilterFormProviderProps) {
   const { children, params, aggregations, appliedAggregations, filterTypes, ...formProps } = props
 
@@ -53,23 +56,19 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
 
   const router = useRouter()
   const theme = useTheme()
-  const matchMedia = useMatchMedia()
+  const isDesktop = useMatchMediaMotionValue('up', 'md')
+  const scrollMarginTop = useTransform(() => (isDesktop.get() ? 0 : theme.appShell.headerHeightSm))
+  const scroll = useTransform(() => !isSidebar || isDesktop.get())
 
   const submit = useEventCallback(
     form.handleSubmit(async (formValues) => {
-      const queryUrl = router.query.url ?? []
-      const comingFromURLWithoutFilters = !queryUrl.includes('q')
       const path = productListLinkFromFilter({ ...formValues, currentPage: 1 })
-
-      const isMd = matchMedia.up('md')
-      const scroll = !(import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && isMd)
-
-      if (!isMd && ref.current) ref.current.style.scrollMarginTop = theme.appShell.headerHeightSm
-      else ref.current?.style.removeProperty('scroll-margin-top')
-
       if (router.asPath === path) return false
-      if (comingFromURLWithoutFilters) return router.push(path, path, { scroll })
-      return router.replace(path, path, { scroll })
+
+      const opts = { scroll: scroll.get() }
+      return (router.query.url ?? []).includes('q')
+        ? router.replace(path, path, opts)
+        : router.push(path, path, opts)
     }),
   )
 
@@ -87,7 +86,7 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
 
   return (
     <FilterFormContext.Provider value={filterFormContext}>
-      <form ref={ref} noValidate onSubmit={submit} id='products' />
+      <m.form ref={ref} noValidate onSubmit={submit} id='products' style={{ scrollMarginTop }} />
       {children}
     </FilterFormContext.Provider>
   )
