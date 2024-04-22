@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.5
+
+### Patch Changes
+
+- [#2224](https://github.com/graphcommerce-org/graphcommerce/pull/2224) [`4dd2d01`](https://github.com/graphcommerce-org/graphcommerce/commit/4dd2d01b3e14e3107ee3e337bef2a8528d654e75) - When applying a filter it would not always scroll to the #products.
+  ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 8.0.6-canary.4
 
 ### Patch Changes
