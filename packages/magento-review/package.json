@@ -18,6 +18,7 @@
     "typescript": "5.3.3"
   },
   "peerDependencies": {
+    "@graphcommerce/ecommerce-ui": "^8.0.6-canary.1",
     "@graphcommerce/eslint-config-pwa": "^8.0.6-canary.1",
     "@graphcommerce/graphql": "^8.0.6-canary.1",
     "@graphcommerce/graphql-mesh": "^8.0.6-canary.1",

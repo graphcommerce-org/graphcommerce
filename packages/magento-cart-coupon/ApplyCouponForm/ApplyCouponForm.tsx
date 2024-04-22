@@ -1,8 +1,9 @@
+import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
 import { responsiveVal, Button, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { Box, FormControl, SxProps, TextField, Theme } from '@mui/material'
+import { Box, FormControl, SxProps, Theme } from '@mui/material'
 import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
 
 export type ApplyCouponFormProps = { sx?: SxProps<Theme> }
@@ -14,7 +15,7 @@ const { classes } = extendableComponent(name, parts)
 export function ApplyCouponForm(props: ApplyCouponFormProps) {
   const { sx = [] } = props
   const form = useFormGqlMutationCart(ApplyCouponFormDocument)
-  const { handleSubmit, muiRegister, formState, required, error } = form
+  const { handleSubmit, control, formState, required, error } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
@@ -33,14 +34,17 @@ export function ApplyCouponForm(props: ApplyCouponFormProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <TextField
+      <TextFieldElement
         variant='outlined'
         type='text'
         error={!!formState.errors.couponCode || !!error}
         required={required.couponCode}
-        {...muiRegister('couponCode', { required: required.couponCode })}
+        name='couponCode'
+        rules={{ required: required.couponCode }}
+        control={control}
         helperText={formState.errors.couponCode?.message}
         disabled={formState.isSubmitting}
+        showValid
       />
       <FormControl>
         <Button

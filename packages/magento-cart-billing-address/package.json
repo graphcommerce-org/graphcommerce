@@ -12,11 +12,13 @@
     }
   },
   "peerDependencies": {
+    "@graphcommerce/ecommerce-ui": "^8.0.6-canary.1",
     "@graphcommerce/eslint-config-pwa": "^8.0.6-canary.1",
     "@graphcommerce/framer-next-pages": "^8.0.6-canary.1",
     "@graphcommerce/graphql": "^8.0.6-canary.1",
     "@graphcommerce/image": "^8.0.6-canary.1",
     "@graphcommerce/magento-cart": "^8.0.6-canary.1",
+    "@graphcommerce/magento-cart-shipping-address": "^8.0.6-canary.1",
     "@graphcommerce/magento-customer": "^8.0.6-canary.1",
     "@graphcommerce/magento-store": "^8.0.6-canary.1",
     "@graphcommerce/next-ui": "^8.0.6-canary.1",

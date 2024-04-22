@@ -1,4 +1,4 @@
-import { ApolloErrorSnackbar } from '@graphcommerce/ecommerce-ui'
+import { ApolloErrorSnackbar, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -57,7 +57,7 @@ export function CreateCustomerAddressForm() {
     { errorPolicy: 'all' },
   )
 
-  const { handleSubmit, formState, required, error, muiRegister, valid, data } = form
+  const { handleSubmit, formState, required, error, control, valid, data } = form
   const submitHandler = handleSubmit((_, e) => {
     if (!formState.errors) e?.target.reset()
   })
@@ -69,19 +69,21 @@ export function CreateCustomerAddressForm() {
         <AddressFields form={form} name={{ regionId: 'region.region_id' }} />
 
         <FormRow>
-          <TextField
+          <TextFieldElement
             variant='outlined'
             type='text'
             error={!!formState.errors.telephone}
             required={required.telephone}
             label={<Trans id='Telephone' />}
-            {...muiRegister('telephone', {
+            control={control}
+            name='telephone'
+            rules={{
               required: required.telephone,
               pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-            })}
+            }}
             helperText={formState.isSubmitted && formState.errors.telephone?.message}
             disabled={formState.isSubmitting}
-            InputProps={{ endAdornment: <InputCheckmark show={valid.telephone} /> }}
+            showValid
           />
         </FormRow>
 

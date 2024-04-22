@@ -9,6 +9,9 @@ export const cartTypePolicies: StrictTypedTypePolicies = {
   CartPrices: {
     merge: (exiting, incoming, { mergeObjects }) => mergeObjects(exiting, incoming),
   },
+  CartItemPrices: {
+    merge: (exiting, incoming, { mergeObjects }) => mergeObjects(exiting, incoming),
+  },
   Cart: {
     fields: {
       shipping_addresses: {
