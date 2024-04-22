@@ -39,10 +39,7 @@ import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsr
 export type CategoryProps = CategoryPageQuery &
   HygraphPagesQuery &
   ProductListQuery &
-  ProductFiltersQuery & {
-    filterTypes?: FilterTypes
-    params?: ProductListParams
-  }
+  ProductFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
 export type CategoryRoute = { url: string[] }
 
 type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
@@ -160,11 +157,15 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
   const productListParams = parseParams(url, query, await filterTypes)
-  const filteredCategoryUid = productListParams?.filters.category_uid?.in?.[0]
+  const filteredCategoryUid = productListParams && productListParams.filters.category_uid?.in?.[0]
 
   const category = categoryPage.then((res) => res.data.categories?.items?.[0])
 
-  const categoryUid = filteredCategoryUid ?? (await category)?.uid ?? ''
+  let categoryUid = filteredCategoryUid
+  if (!categoryUid) {
+    categoryUid = (await category)?.uid ?? ''
+    if (productListParams) productListParams.filters.category_uid = { in: [categoryUid] }
+  }
 
   const pages = hygraphPageContent(staticClient, url, category)
   const hasCategory = productListParams && categoryUid
