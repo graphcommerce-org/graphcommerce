@@ -4,12 +4,12 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { useMemo } from 'react'
+import { CategoryDefaultFragment } from '../ProductListItems/CategoryDefault.gql'
 import { ProductFilterParams } from '../ProductListItems/filterTypes'
+import { ProductListSortFragment } from '../ProductListSort'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import type { ProductListActionSortProps } from './ProductFiltersProSortChip'
 import { ProductFiltersProSortDirectionArrow } from './ProductFiltersProSortDirectionArrow'
-import { ProductListSortFragment } from '../ProductListSort'
-import { CategoryDefaultFragment } from '../ProductListItems/CategoryDefault.gql'
 
 const exclude = ['relevance', 'position']
 

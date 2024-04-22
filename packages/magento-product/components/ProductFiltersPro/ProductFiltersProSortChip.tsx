@@ -8,11 +8,11 @@ import { Trans } from '@lingui/react'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import { UseProductFiltersProSortProps, useProductFiltersProSort } from './useProductFiltersProSort'
 
-export type ProductListActionSortProps = Omit<
-  ChipOverlayOrPopperProps,
-  'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
-> &
-  UseProductFiltersProSortProps
+export type ProductListActionSortProps = UseProductFiltersProSortProps &
+  Omit<
+    ChipOverlayOrPopperProps,
+    'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
+  >
 
 export function ProductFiltersProSortChip(props: ProductListActionSortProps) {
   const { sort_fields, chipProps, category, ...rest } = props
@@ -27,7 +27,6 @@ export function ProductFiltersProSortChip(props: ProductListActionSortProps) {
       selected={selected}
       selectedLabel={selectedLabel}
       onApply={submit}
-      onClose={submit}
       onReset={
         showReset
           ? () => {
@@ -38,6 +37,7 @@ export function ProductFiltersProSortChip(props: ProductListActionSortProps) {
             }
           : undefined
       }
+      onClose={submit}
     >
       {() => (
         <ActionCardListForm

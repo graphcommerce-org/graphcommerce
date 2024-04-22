@@ -29,7 +29,7 @@ export type ProductListFilterLayoutProps = ProductListQuery &
     params?: ProductListParams
     id: string
     title: string
-    category: CategoryDefaultFragment
+    category?: CategoryDefaultFragment
   }
 
 export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
