@@ -1,4 +1,4 @@
-import { useForm, useFormAutoSubmit } from '@graphcommerce/ecommerce-ui'
+import { FormAutoSubmit, useForm } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { LayoutOverlayHeader, LayoutTitle, responsiveVal } from '@graphcommerce/next-ui'
 import {
@@ -24,10 +24,10 @@ function SheetDemo() {
   const { variantMd, variantSm, justifyMd, justifySm, sizeMd, sizeSm } = layout
 
   const submit = form.handleSubmit(setLayout)
-  useFormAutoSubmit({ form, submit, wait: 0 })
 
   return (
     <>
+      <FormAutoSubmit control={form.control} submit={submit} wait={0} />
       <LayoutOverlayHeader>
         <LayoutTitle size='small'>
           <Hidden mdDown>

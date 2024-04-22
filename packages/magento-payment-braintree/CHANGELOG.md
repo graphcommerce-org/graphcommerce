@@ -1,5 +1,25 @@
 # Change Log
 
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent BillingPage query from rerunning on each mutation
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
+## 8.0.5
+
+### Patch Changes
+
+- [#2188](https://github.com/graphcommerce-org/graphcommerce/pull/2188) [`eec7498`](https://github.com/graphcommerce-org/graphcommerce/commit/eec7498213f34f0f850123b577b77bf678e3c80b) - Braintree Credit Card: Hosted payment fields now have proper styling and all focus/blur and error states are correctly handled.
+  ([@paales](https://github.com/paales))
+
 ## 8.0.5-canary.10
 
 ## 8.0.5-canary.9

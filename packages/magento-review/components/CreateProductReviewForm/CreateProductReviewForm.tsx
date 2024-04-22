@@ -1,3 +1,4 @@
+import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { ProductReviewRatingInput } from '@graphcommerce/graphql-mesh'
 import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
@@ -12,7 +13,7 @@ import {
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { Box, TextField, Typography, Alert, Button, SxProps, Theme } from '@mui/material'
+import { Box, Typography, Alert, Button, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { CreateProductReviewDocument } from './CreateProductReview.gql'
@@ -54,7 +55,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
     },
     { errorPolicy: 'all' },
   )
-  const { handleSubmit, muiRegister, formState, required, error } = form
+  const { handleSubmit, control, formState, required, error } = form
   const submitHandler = handleSubmit(() => {})
 
   useEffect(() => {
@@ -91,13 +92,16 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
   return (
     <Form onSubmit={submitHandler} noValidate className={classes.root} sx={sx}>
       <FormRow>
-        <TextField
+        <TextFieldElement
           variant='outlined'
           type='text'
           error={!!formState.errors.nickname || !!error}
           label={<Trans id='Name' />}
           required={required.nickname}
-          {...muiRegister('nickname', { required: required.nickname })}
+          name='nickname'
+          rules={{ required: required.nickname }}
+          showValid
+          control={control}
           helperText={formState.errors.nickname?.message}
           disabled={formState.isSubmitting}
           InputProps={{
@@ -169,26 +173,32 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
       </Box>
 
       <FormRow>
-        <TextField
+        <TextFieldElement
           variant='outlined'
           type='text'
           error={!!formState.errors.summary || !!error}
           label={<Trans id='Summary' />}
           required={required.summary}
-          {...muiRegister('summary', { required: required.summary })}
+          name='summary'
+          rules={{ required: required.summary }}
+          control={control}
+          showValid
           helperText={formState.errors.summary?.message}
           disabled={formState.isSubmitting}
         />
       </FormRow>
 
       <FormRow>
-        <TextField
+        <TextFieldElement
           variant='outlined'
           type='text'
           error={!!formState.errors.text || !!error}
           label={<Trans id='Review' />}
           required={required.text}
-          {...muiRegister('text', { required: required.text })}
+          name='text'
+          rules={{ required: required.text }}
+          control={control}
+          showValid
           helperText={formState.errors.text?.message}
           disabled={formState.isSubmitting}
           multiline

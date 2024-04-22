@@ -5,8 +5,7 @@ fragment Product_DatalayerItem on ProductInterface {
   price_range {
     minimum_price {
       final_price {
-        value
-        currency
+        ...Money
       }
       discount {
         amount_off

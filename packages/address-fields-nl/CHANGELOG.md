@@ -1,5 +1,20 @@
 # @graphcommerce/address-fields-nl
 
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
+## 8.0.5
+
+### Patch Changes
+
+- [#2244](https://github.com/graphcommerce-org/graphcommerce/pull/2244) [`b988ecb`](https://github.com/graphcommerce-org/graphcommerce/commit/b988ecb3809c422e6871cd29905f6f495bda49f1) - Fix export name
+  ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 8.0.5-canary.10
 
 ### Patch Changes

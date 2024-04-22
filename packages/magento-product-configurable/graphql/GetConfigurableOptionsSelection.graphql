@@ -1,9 +1,4 @@
-query GetConfigurableOptionsSelection(
-  $urlKey: String!
-  $selectedOptions: [ID!] = []
-  $reviewPageSize: Int = 3
-  $reviewPage: Int = 1
-) {
+query GetConfigurableOptionsSelection($urlKey: String!, $selectedOptions: [ID!] = []) {
   products(filter: { url_key: { eq: $urlKey } }) {
     __typename
     items {

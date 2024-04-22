@@ -26,7 +26,7 @@ import {
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery & BlogListQuery
-type RouteProps = { url: string }
+type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
@@ -71,16 +71,14 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
     const staticClient = graphqlSsrClient(locale)
     const BlogPostPaths = staticClient.query({ query: BlogPostPathsDocument })
     const { pages } = (await BlogPostPaths).data
-    return (
-      pages.map((page) => ({ params: { url: `${page?.url}`.replace('blog/', '') }, locale })) ?? []
-    )
+    return pages.map((page) => ({ params: { url: page.url.split('/').slice(1) }, locale })) ?? []
   })
   const paths = (await Promise.all(responses)).flat(1)
   return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
-  const urlKey = params?.url ?? '??'
+  const urlKey = params?.url.join('/') ?? ''
 
   const client = graphqlSharedClient(locale)
   const staticClient = graphqlSsrClient(locale)

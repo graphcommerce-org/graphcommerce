@@ -1,5 +1,20 @@
 # Change Log
 
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
+## 8.0.5
+
 ## 8.0.5-canary.10
 
 ## 8.0.5-canary.9
