@@ -86,7 +86,7 @@ export type DatalayerConfig = {
  *
  * You can export configuration by running `yarn graphcommerce export-config`
  *
- * ## Extending the configuration in your  project
+ * ## Extending the configuration in your project
  *
  * Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceStorefrontConfig inputs to add configuration.
  *
