@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.6-canary.1
+
+### Patch Changes
+
+- [#2213](https://github.com/graphcommerce-org/graphcommerce/pull/2213) [`9b8349f`](https://github.com/graphcommerce-org/graphcommerce/commit/9b8349f0001a786f9b1666f050ae226316bd16f3) - Removed the ProductPage query from the examples directory as it isn't used anymore
+  ([@paales](https://github.com/paales))
+
 ## 8.0.6-canary.0
 
 ### Patch Changes

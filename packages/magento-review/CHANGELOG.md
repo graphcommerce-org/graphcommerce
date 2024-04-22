@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.6-canary.1
+
+### Patch Changes
+
+- [#2213](https://github.com/graphcommerce-org/graphcommerce/pull/2213) [`a0d952e`](https://github.com/graphcommerce-org/graphcommerce/commit/a0d952e6b8a71a7451bfdb2bdb5150fc218169e2) - Moved product reviews to the relatedUpsells query so we do not pass the queryComplexity limit
+  ([@paales](https://github.com/paales))
+
 ## 8.0.6-canary.0
 
 ## 8.0.5

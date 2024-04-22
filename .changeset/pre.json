@@ -79,6 +79,8 @@
     "@graphcommerce/typescript-config-pwa": "8.0.5"
   },
   "changesets": [
-    "slow-kiwis-exercise"
+    "clever-eagles-lie",
+    "slow-kiwis-exercise",
+    "unlucky-crabs-notice"
   ]
 }
