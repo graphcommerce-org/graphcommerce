@@ -4228,6 +4228,7 @@ __metadata:
     "@graphcommerce/graphql": ^8.0.6-canary.3
     "@graphcommerce/image": ^8.0.6-canary.3
     "@graphcommerce/magento-product": ^8.0.6-canary.3
+    "@graphcommerce/magento-store": ^8.0.6-canary.3
     "@graphcommerce/next-ui": ^8.0.6-canary.3
     "@graphcommerce/prettier-config-pwa": ^8.0.6-canary.3
     "@graphcommerce/react-hook-form": ^8.0.6-canary.3
