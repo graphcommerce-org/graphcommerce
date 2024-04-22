@@ -9,6 +9,7 @@ export type LayoutOverlayState = Omit<
   | 'mdSpacingTop'
   | 'smSpacingTop'
   | 'overlayPaneProps'
+  | 'disableInert'
   | 'widthMd'
   | 'widthSm'
 >

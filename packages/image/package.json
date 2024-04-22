@@ -2,7 +2,7 @@
   "name": "@graphcommerce/image",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "8.0.4",
+  "version": "8.0.5-canary.10",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
@@ -15,10 +15,10 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^8.0.4",
-    "@graphcommerce/framer-utils": "^8.0.4",
-    "@graphcommerce/prettier-config-pwa": "^8.0.4",
-    "@graphcommerce/typescript-config-pwa": "^8.0.4",
+    "@graphcommerce/eslint-config-pwa": "^8.0.5-canary.10",
+    "@graphcommerce/framer-utils": "^8.0.5-canary.10",
+    "@graphcommerce/prettier-config-pwa": "^8.0.5-canary.10",
+    "@graphcommerce/typescript-config-pwa": "^8.0.5-canary.10",
     "@mui/material": "^5.10.16",
     "next": "*",
     "react": "^18.2.0",

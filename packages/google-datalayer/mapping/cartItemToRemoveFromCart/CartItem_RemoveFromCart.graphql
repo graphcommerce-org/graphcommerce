@@ -1,0 +1,3 @@
+fragment CartItem_RemoveFromCart on CartItemInterface @inject(into: ["CartItem"]) {
+  ...CartItem_DatalayerItem
+}

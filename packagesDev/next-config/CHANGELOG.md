@@ -1,5 +1,32 @@
 # Change Log
 
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+## 8.0.5-canary.5
+
+## 8.0.5-canary.4
+
+## 8.0.5-canary.3
+
+### Patch Changes
+
+- [#2236](https://github.com/graphcommerce-org/graphcommerce/pull/2236) [`1a20a34`](https://github.com/graphcommerce-org/graphcommerce/commit/1a20a34a8b55781ee3e88731b5e2623a85c64ccd) - Enable bundlePagesExternals for Vercel environments
+  ([@paales](https://github.com/paales))
+
+## 8.0.5-canary.2
+
+## 8.0.5-canary.1
+
+## 8.0.5-canary.0
+
 ## 8.0.4
 
 ## 8.0.4-canary.1

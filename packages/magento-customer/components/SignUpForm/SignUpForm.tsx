@@ -5,11 +5,11 @@ import { useFormGqlMutation, useFormPersist } from '@graphcommerce/react-hook-fo
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Alert, FormControlLabel, Switch } from '@mui/material'
+import { useSignInForm } from '../../hooks/useSignInForm'
 import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError/ApolloCustomerErrorSnackbar'
 import { NameFields } from '../NameFields/NameFields'
 import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
-import { SignUpConfirmDocument } from './SignUpConfirm.gql'
 
 type SignUpFormProps = { email: string }
 
@@ -18,17 +18,23 @@ const requireEmailValidation = import.meta.graphCommerce.customerRequireEmailCon
 export function SignUpForm(props: SignUpFormProps) {
   const { email } = props
 
-  const Mutation = requireEmailValidation ? SignUpConfirmDocument : SignUpDocument
-
+  const signIn = useSignInForm({ email })
   const form = useFormGqlMutation<
     SignUpMutation,
     SignUpMutationVariables & { confirmPassword?: string }
   >(
-    Mutation,
+    SignUpDocument,
     {
       defaultValues: { email },
       onBeforeSubmit: (values) => ({ ...values, email }),
       experimental_useV2: true,
+      onComplete: async (result, variables) => {
+        if (!result.errors && !requireEmailValidation) {
+          signIn.setValue('email', variables.email)
+          signIn.setValue('password', variables.password)
+          await signIn.handleSubmit(() => {})()
+        }
+      },
     },
     { errorPolicy: 'all' },
   )

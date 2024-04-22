@@ -1,24 +1,23 @@
-import { ProductListItemReal } from '@graphcommerce/magento-product'
-import { PluginProps } from '@graphcommerce/next-config'
+import { ProductListItem } from '@graphcommerce/magento-product'
+import type { PluginProps } from '@graphcommerce/next-config'
 import { useEventCallback } from '@mui/material'
 import { ComponentProps } from 'react'
-import { useListItemHandler } from '../components/AnalyticsItemList'
+import { useViewItemList } from '../components/DatalayerViewItemList'
 
-export const component = 'ProductListItemReal'
+export const component = 'ProductListItem'
 export const exported = '@graphcommerce/magento-product'
 
 function GoogleDatalayerProductListItem(
-  props: PluginProps<ComponentProps<typeof ProductListItemReal>>,
+  props: PluginProps<ComponentProps<typeof ProductListItem>>,
 ) {
   const { Prev, onClick, ...rest } = props
-  const { sku, price_range, name } = rest
-  const handle = useListItemHandler({ sku, price_range, name })
+  const selectItem = useViewItemList()
 
   return (
     <Prev
       {...rest}
       onClick={useEventCallback<NonNullable<typeof onClick>>((e, item) => {
-        handle()
+        if (item.sku) selectItem(item.sku)
         return onClick?.(e, item)
       })}
     />

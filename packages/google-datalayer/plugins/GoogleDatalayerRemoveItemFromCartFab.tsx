@@ -1,24 +1,25 @@
 import type { RemoveItemFromCartFab as Original } from '@graphcommerce/magento-cart-items'
-import { ReactPlugin } from '@graphcommerce/next-config'
-import { removeFromCart } from '../events/remove_from_cart'
+import type { ReactPlugin } from '@graphcommerce/next-config'
+import { sendEvent } from '../api/sendEvent'
+import { cartItemToRemoveFromCart } from '../mapping/cartItemToRemoveFromCart/cartToRemoveFromCart'
 
 export const component = 'RemoveItemFromCartFab'
 export const exported =
   '@graphcommerce/magento-cart-items/components/RemoveItemFromCart/RemoveItemFromCartFab'
 
 export const GoogleDatalayerRemoveItemFromCartFab: ReactPlugin<typeof Original> = (props) => {
-  const { Prev, uid, quantity, prices, product, fabProps } = props
+  const { Prev, fabProps } = props
 
   return (
     <Prev
       {...props}
-      product={product}
       fabProps={{
+        ...fabProps,
         onClick: (e) => {
-          removeFromCart({
-            __typename: 'Cart',
-            items: [{ uid, __typename: 'SimpleCartItem', product, quantity, prices }],
-          })
+          sendEvent(
+            'remove_from_cart',
+            cartItemToRemoveFromCart({ __typename: 'SimpleCartItem', ...props }),
+          )
           fabProps?.onClick?.(e)
         },
       }}
