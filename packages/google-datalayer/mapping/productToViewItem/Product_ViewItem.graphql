@@ -1,0 +1,3 @@
+fragment Product_ViewItem on ProductInterface {
+  ...Product_DatalayerItem
+}

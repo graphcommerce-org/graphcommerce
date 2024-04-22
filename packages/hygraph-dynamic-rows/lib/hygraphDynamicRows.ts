@@ -1,13 +1,13 @@
 import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import {
-  AllDynamicRowsDocument,
   ConditionTextFragment,
   ConditionNumberFragment,
   ConditionOrFragment,
   ConditionAndFragment,
   DynamicRowsDocument,
 } from '../graphql'
+import { getAllHygraphDynamicRows } from './getAllHygraphDynamicRows'
 
 /**
  * This generally works the same way as lodash get, however, when encountering an array it will
@@ -97,17 +97,16 @@ export async function hygraphDynamicRows(
   const alwaysCache = process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined
   const fetchPolicy = cached ? alwaysCache : undefined
 
-  const allRoutes = await client.query({ query: AllDynamicRowsDocument, fetchPolicy: alwaysCache })
+  const allRoutes = await getAllHygraphDynamicRows(client)
 
   // Get the required rowIds from the conditions
   const properties = { ...(await additionalProperties), url }
 
-  const rowIds = allRoutes.data.dynamicRows
+  const rowIds = allRoutes
     .filter((availableDynamicRow) =>
       availableDynamicRow.conditions.some((condition) => matchCondition(condition, properties)),
     )
     .map((row) => row.id)
-
   const dynamicRows =
     rowIds.length !== 0
       ? client.query({ query: DynamicRowsDocument, variables: { rowIds }, fetchPolicy })

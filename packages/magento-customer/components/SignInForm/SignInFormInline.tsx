@@ -1,9 +1,9 @@
 import { PasswordElement } from '@graphcommerce/ecommerce-ui'
 import { Button, extendableComponent } from '@graphcommerce/next-ui'
-import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { Box, Link, SxProps, Theme } from '@mui/material'
-import { SignInDocument, SignInMutationVariables } from './SignIn.gql'
+import { useSignInForm } from '../../hooks/useSignInForm'
+import { SignInMutationVariables } from './SignIn.gql'
 
 type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'> & {
   sx?: SxProps<Theme>
@@ -14,11 +14,8 @@ const { classes } = extendableComponent('SignInFormInline', ['form', 'button'] a
 
 export function SignInFormInline(props: InlineSignInFormProps) {
   const { email, children, sx = [] } = props
-  const form = useFormGqlMutation(
-    SignInDocument,
-    { defaultValues: { email }, onBeforeSubmit: (values) => ({ ...values, email }) },
-    { errorPolicy: 'all' },
-  )
+  const form = useSignInForm({ email })
+
   const { handleSubmit, required, formState, control } = form
   const submitHandler = handleSubmit(() => {})
 

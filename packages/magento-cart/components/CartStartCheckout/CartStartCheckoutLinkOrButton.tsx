@@ -4,13 +4,13 @@ import { SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 
-export type CartStartCheckoutLinkOrButtonProps = CartStartCheckoutFragment & {
+export type CartStartCheckoutLinkOrButtonProps = Partial<CartStartCheckoutFragment> & {
   children?: React.ReactNode
   sx?: SxProps<Theme>
   disabled?: boolean
   onStart?: (
     e: React.MouseEvent<HTMLButtonElement & HTMLAnchorElement & HTMLSpanElement>,
-    cart: CartStartCheckoutFragment,
+    cart: Partial<CartStartCheckoutFragment>,
   ) => void
   linkOrButtonProps?: LinkOrButtonProps
 }

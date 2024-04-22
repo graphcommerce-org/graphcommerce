@@ -1,0 +1,6 @@
+fragment Cart_BeginCheckout on Cart @inject(into: ["CartStartCheckout"]) {
+  applied_coupons {
+    code
+  }
+  ...Cart_DatalayerItems
+}

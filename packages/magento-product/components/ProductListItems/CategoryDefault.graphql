@@ -1,0 +1,5 @@
+fragment CategoryDefault on CategoryInterface {
+  uid
+  default_sort_by
+  available_sort_by
+}

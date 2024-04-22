@@ -1,21 +1,14 @@
 import { useForm, UseFormProps, UseFormReturn } from '@graphcommerce/ecommerce-ui'
 import { useMatchMedia, useMemoObject } from '@graphcommerce/next-ui'
 import { useEventCallback, useTheme } from '@mui/material'
-import React, {
-  BaseSyntheticEvent,
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
-import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
+import { useRouter } from 'next/router'
+import React, { BaseSyntheticEvent, createContext, useContext, useMemo, useRef } from 'react'
+import { productListLinkFromFilter } from '../../hooks/useProductListLink'
 import { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
 import {
   ProductFilterParams,
   ProductListParams,
   toFilterParams,
-  toProductListParams,
 } from '../ProductListItems/filterTypes'
 
 type DataProps = {
@@ -56,23 +49,27 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
 
   const defaultValues = useMemoObject(toFilterParams(params))
   const form = useForm<ProductFilterParams>({ defaultValues, ...formProps })
+  const ref = useRef<HTMLFormElement>(null)
 
-  const matchMedia = useMatchMedia()
+  const router = useRouter()
   const theme = useTheme()
-  const [formScrollMarginTopOffset, setFormScrollMarginTopOffset] = useState<string>('0px')
-
-  useEffect(() => {
-    if (matchMedia.down('md')) setFormScrollMarginTopOffset(theme.appShell.headerHeightSm)
-  }, [matchMedia, theme.appShell.headerHeightSm])
-
-  const push = useProductListLinkReplace()
+  const matchMedia = useMatchMedia()
 
   const submit = useEventCallback(
     form.handleSubmit(async (formValues) => {
-      const scroll = !(
-        import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && matchMedia.up('md')
-      )
-      return push({ ...toProductListParams(formValues), currentPage: 1 }, { scroll })
+      const queryUrl = router.query.url ?? []
+      const comingFromURLWithoutFilters = !queryUrl.includes('q')
+      const path = productListLinkFromFilter({ ...formValues, currentPage: 1 })
+
+      const isMd = matchMedia.up('md')
+      const scroll = !(import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && isMd)
+
+      if (!isMd && ref.current) ref.current.style.scrollMarginTop = theme.appShell.headerHeightSm
+      else ref.current?.style.removeProperty('scroll-margin-top')
+
+      if (router.asPath === path) return false
+      if (comingFromURLWithoutFilters) return router.push(path, path, { scroll })
+      return router.replace(path, path, { scroll })
     }),
   )
 
@@ -90,14 +87,7 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
 
   return (
     <FilterFormContext.Provider value={filterFormContext}>
-      <form
-        noValidate
-        onSubmit={submit}
-        id='products'
-        style={{
-          scrollMarginTop: formScrollMarginTopOffset,
-        }}
-      />
+      <form ref={ref} noValidate onSubmit={submit} id='products' />
       {children}
     </FilterFormContext.Provider>
   )

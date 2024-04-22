@@ -9,7 +9,7 @@ fragment PaymentMethodContext on Cart @injectable {
   prices {
     applied_taxes {
       amount {
-        value
+        ...Money
       }
     }
   }

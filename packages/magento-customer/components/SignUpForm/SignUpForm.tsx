@@ -1,15 +1,14 @@
-import { PasswordRepeatElement } from '@graphcommerce/ecommerce-ui'
+import { PasswordRepeatElement, SwitchElement } from '@graphcommerce/ecommerce-ui'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
-import { useFormGqlMutation, useFormPersist } from '@graphcommerce/react-hook-form'
+import { FormPersist, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { Alert, FormControlLabel, Switch } from '@mui/material'
+import { Alert } from '@mui/material'
+import { useSignInForm } from '../../hooks/useSignInForm'
 import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError/ApolloCustomerErrorSnackbar'
 import { NameFields } from '../NameFields/NameFields'
 import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
-import { SignUpConfirmDocument } from './SignUpConfirm.gql'
 
 type SignUpFormProps = { email: string }
 
@@ -18,27 +17,31 @@ const requireEmailValidation = import.meta.graphCommerce.customerRequireEmailCon
 export function SignUpForm(props: SignUpFormProps) {
   const { email } = props
 
-  const Mutation = requireEmailValidation ? SignUpConfirmDocument : SignUpDocument
-
+  const signIn = useSignInForm({ email })
   const form = useFormGqlMutation<
     SignUpMutation,
     SignUpMutationVariables & { confirmPassword?: string }
   >(
-    Mutation,
+    SignUpDocument,
     {
       defaultValues: { email },
       onBeforeSubmit: (values) => ({ ...values, email }),
       experimental_useV2: true,
+      onComplete: async (result, variables) => {
+        if (!result.errors && !requireEmailValidation) {
+          signIn.setValue('email', variables.email)
+          signIn.setValue('password', variables.password)
+          await signIn.handleSubmit(() => {})()
+        }
+      },
     },
     { errorPolicy: 'all' },
   )
 
-  const { muiRegister, handleSubmit, required, formState, error, control } = form
+  const { handleSubmit, required, formState, error, control } = form
   const [remainingError, inputError] = graphqlErrorByCategory({ category: 'graphql-input', error })
 
   const submitHandler = handleSubmit(() => {})
-
-  useFormPersist({ form, name: 'SignUp', exclude: ['password', 'confirmPassword'] })
 
   if (requireEmailValidation && form.formState.isSubmitSuccessful) {
     return (
@@ -51,6 +54,7 @@ export function SignUpForm(props: SignUpFormProps) {
   return (
     <form onSubmit={submitHandler} noValidate>
       <FormRow>
+        <FormPersist form={form} name='SignUp' exclude={['password', 'confirmPassword']} />
         <ValidatedPasswordElement
           control={control}
           name='password'
@@ -78,9 +82,9 @@ export function SignUpForm(props: SignUpFormProps) {
 
       <NameFields form={form} prefix />
 
-      <FormControlLabel
-        control={<Switch color='primary' />}
-        {...muiRegister('isSubscribed', { required: required.isSubscribed })}
+      <SwitchElement
+        control={control}
+        name='isSubscribed'
         disabled={formState.isSubmitting}
         label={<Trans id='Subscribe to newsletter' />}
       />

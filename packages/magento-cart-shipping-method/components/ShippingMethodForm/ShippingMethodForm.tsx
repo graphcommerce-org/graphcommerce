@@ -13,11 +13,9 @@ import {
 import {
   FormAutoSubmit,
   FormProvider,
-  useFormAutoSubmit,
   useFormCompose,
   UseFormComposeOptions,
   UseFormGraphQlOptions,
-  useFormPersist,
   useWatch,
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
