@@ -5,16 +5,14 @@ import {
   ChipOverlayOrPopperProps,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { CategoryDefaultFragment } from '../ProductListItems/CategoryDefault.gql'
-import { ProductListSortFragment } from '../ProductListSort/ProductListSort.gql'
 import { useProductFiltersPro } from './ProductFiltersPro'
-import { useProductFiltersProSort } from './useProductFiltersProSort'
+import { UseProductFiltersProSortProps, useProductFiltersProSort } from './useProductFiltersProSort'
 
-export type ProductListActionSortProps = ProductListSortFragment &
-  Omit<
-    ChipOverlayOrPopperProps,
-    'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
-  > & { category?: CategoryDefaultFragment }
+export type ProductListActionSortProps = Omit<
+  ChipOverlayOrPopperProps,
+  'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
+> &
+  UseProductFiltersProSortProps
 
 export function ProductFiltersProSortChip(props: ProductListActionSortProps) {
   const { sort_fields, chipProps, category, ...rest } = props

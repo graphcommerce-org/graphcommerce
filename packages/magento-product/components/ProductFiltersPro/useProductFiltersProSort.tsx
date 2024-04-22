@@ -8,8 +8,14 @@ import { ProductFilterParams } from '../ProductListItems/filterTypes'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import type { ProductListActionSortProps } from './ProductFiltersProSortChip'
 import { ProductFiltersProSortDirectionArrow } from './ProductFiltersProSortDirectionArrow'
+import { ProductListSortFragment } from '../ProductListSort'
+import { CategoryDefaultFragment } from '../ProductListItems/CategoryDefault.gql'
 
 const exclude = ['relevance', 'position']
+
+export type UseProductFiltersProSortProps = ProductListSortFragment & {
+  category?: CategoryDefaultFragment
+}
 
 export function useProductFiltersProSort(props: ProductListActionSortProps) {
   const { sort_fields, category } = props

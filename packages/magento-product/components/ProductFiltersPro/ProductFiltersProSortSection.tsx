@@ -1,13 +1,9 @@
 import { ActionCard, ActionCardAccordion, ActionCardListForm, Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { CategoryDefaultFragment } from '../ProductListItems/CategoryDefault.gql'
-import { ProductListSortFragment } from '../ProductListSort/ProductListSort.gql'
 import { useProductFiltersPro } from './ProductFiltersPro'
-import { useProductFiltersProSort } from './useProductFiltersProSort'
+import { UseProductFiltersProSortProps, useProductFiltersProSort } from './useProductFiltersProSort'
 
-export type ProductFiltersProSortSectionProps = ProductListSortFragment & {
-  category?: CategoryDefaultFragment
-}
+export type ProductFiltersProSortSectionProps = UseProductFiltersProSortProps
 
 export function ProductFiltersProSortSection(props: ProductFiltersProSortSectionProps) {
   const { form } = useProductFiltersPro()
