@@ -1,6 +1,0 @@
-export * from './components'
-export * from './events/gtagBeginCheckout/gtagBeginCheckout'
-export * from './events/gtagAddPaymentInfo/gtagAddPaymentInfo'
-export * from './events/gtagAddPurchaseInfo/gtagAddPurchaseInfo'
-export * from './events/gtagAddShippingInfo/gtagAddShippingInfo'
-export * from './events/gtagAddToCart/gtagAddToCart'

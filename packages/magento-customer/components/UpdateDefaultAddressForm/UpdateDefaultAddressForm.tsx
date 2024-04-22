@@ -26,7 +26,7 @@ export function UpdateDefaultAddressForm(props: UpdateDefaultAddressFormProps) {
   const form = useFormGqlMutation(
     UpdateDefaultAddressDocument,
     { mode: 'onChange', defaultValues },
-    { errorPolicy: 'all' },
+    { errorPolicy: 'all', refetchQueries: ['AccountDashboardAddresses'] },
   )
 
   const { handleSubmit, control, error, reset, formState } = form

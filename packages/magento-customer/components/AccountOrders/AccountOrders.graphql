@@ -1,5 +1,5 @@
 fragment AccountOrders on Customer {
-  orders(filter: {}, pageSize: $pageSize, currentPage: $currentPage, sort: $sort) {
+  orders(filter: {}, pageSize: $pageSize, currentPage: $currentPage) {
     items {
       ...OrderCard
     }

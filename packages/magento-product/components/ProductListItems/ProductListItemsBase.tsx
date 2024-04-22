@@ -1,7 +1,7 @@
 import { LazyHydrate, RenderType, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
 import { Box, BoxProps } from '@mui/material'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
-import { AddProductsToCartForm } from '../AddProductsToCart'
+import { AddProductsToCartForm } from '../../index'
 import { ProductListItemProps } from '../ProductListItem/ProductListItem'
 import { ProductListItemRenderer } from './renderer'
 

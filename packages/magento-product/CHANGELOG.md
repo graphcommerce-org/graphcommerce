@@ -1,5 +1,84 @@
 # Change Log
 
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+### Patch Changes
+
+- [#2239](https://github.com/graphcommerce-org/graphcommerce/pull/2239) [`a2a6e78`](https://github.com/graphcommerce-org/graphcommerce/commit/a2a6e78291ab978f4ef1236a4476b4d54555af7f) - Prices of products are now updated when customizable options are selected
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+## 8.0.5-canary.5
+
+## 8.0.5-canary.4
+
+## 8.0.5-canary.3
+
+## 8.0.5-canary.2
+
+## 8.0.5-canary.1
+
+## 8.0.5-canary.0
+
+## 8.0.4
+
+## 8.0.4-canary.1
+
+## 8.0.4-canary.0
+
+## 8.0.3
+
+### Patch Changes
+
+- [#2217](https://github.com/graphcommerce-org/graphcommerce/pull/2217) [`2b750da`](https://github.com/graphcommerce-org/graphcommerce/commit/2b750da77723d37485da01df05f52d19b80cc90c) - fix for breadcrumbs on pdp when no category attached to product
+  ([@JoshuaS98](https://github.com/JoshuaS98))
+
+## 8.0.3-canary.6
+
+### Patch Changes
+
+- [#2217](https://github.com/graphcommerce-org/graphcommerce/pull/2217) [`2b750da`](https://github.com/graphcommerce-org/graphcommerce/commit/2b750da77723d37485da01df05f52d19b80cc90c) - fix for breadcrumbs on pdp when no category attached to product
+  ([@JoshuaS98](https://github.com/JoshuaS98))
+
+## 8.0.3-canary.5
+
+## 8.0.3-canary.4
+
+## 8.0.3-canary.3
+
+## 8.0.3-canary.2
+
+## 8.0.3-canary.1
+
+## 8.0.3-canary.0
+
+## 8.0.2
+
+### Patch Changes
+
+- [#2201](https://github.com/graphcommerce-org/graphcommerce/pull/2201) [`e16fea4`](https://github.com/graphcommerce-org/graphcommerce/commit/e16fea4b0ff9661fd15a32089fbfc0c6a1c903fe) - Fix issue where patches would not be applied correctly on the AddProductsAddToCartForm
+  ([@paales](https://github.com/paales))
+
+## 8.0.2-canary.3
+
+### Patch Changes
+
+- [#2201](https://github.com/graphcommerce-org/graphcommerce/pull/2201) [`e16fea4`](https://github.com/graphcommerce-org/graphcommerce/commit/e16fea4b0ff9661fd15a32089fbfc0c6a1c903fe) - Fix issue where patches would not be applied correctly on the AddProductsAddToCartForm
+  ([@paales](https://github.com/paales))
+
+## 8.0.2-canary.2
+
+## 8.0.2-canary.1
+
+## 8.0.2-canary.0
+
 ## 8.0.1
 
 ## 8.0.1-canary.4

@@ -1,5 +1,59 @@
 # @graphcommerce/cli
 
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+## 8.0.5-canary.5
+
+## 8.0.5-canary.4
+
+## 8.0.5-canary.3
+
+## 8.0.5-canary.2
+
+## 8.0.5-canary.1
+
+## 8.0.5-canary.0
+
+## 8.0.4
+
+## 8.0.4-canary.1
+
+## 8.0.4-canary.0
+
+## 8.0.3
+
+## 8.0.3-canary.6
+
+## 8.0.3-canary.5
+
+## 8.0.3-canary.4
+
+## 8.0.3-canary.3
+
+## 8.0.3-canary.2
+
+## 8.0.3-canary.1
+
+## 8.0.3-canary.0
+
+## 8.0.2
+
+## 8.0.2-canary.3
+
+## 8.0.2-canary.2
+
+## 8.0.2-canary.1
+
+## 8.0.2-canary.0
+
 ## 8.0.1
 
 ## 8.0.1-canary.4

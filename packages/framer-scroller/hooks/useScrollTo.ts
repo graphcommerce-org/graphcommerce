@@ -108,9 +108,13 @@ export function useScrollTo() {
 
       if (Array.isArray(incoming)) {
         const checkPositions = getScrollSnapPositions()
-        if (checkPositions.x[incoming[0]] !== to.x || checkPositions.y[incoming[1]] !== to.y)
-          await scrollTo(incoming, options, __retrigger + 1)
+        // We check if the value is close enough, since firefox does not round in whole pixels. Values in in`to` could be > 0 but < 1
+        const closeEnoughX = checkPositions.x.some((x) => Math.abs(x - to.x) <= 1)
+        const closeEnoughY = checkPositions.y.some((y) => Math.abs(y - to.y) <= 1)
+
+        if (!closeEnoughX || !closeEnoughY) await scrollTo(incoming, options, __retrigger + 1)
       }
+
       enableSnap()
     },
     [scrollerRef, enableSnap, getScrollSnapPositions, disableSnap, register, scroll, duration],

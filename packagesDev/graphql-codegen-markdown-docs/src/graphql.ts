@@ -1,4 +1,4 @@
-import {
+import type {
   ListTypeNode,
   NonNullTypeNode,
   NamedTypeNode,

@@ -12,7 +12,15 @@ const ConfigurableProductPagePrice: PluginType = (props) => {
   const { Prev, product, index, ...rest } = props
   const variant = useConfigurableSelectedVariant({ url_key: product.url_key, index })
 
-  return <Prev product={variant ?? product} index={index} {...rest} />
+  if (product.__typename !== 'ConfigurableProduct') return <Prev {...props} />
+
+  return (
+    <Prev
+      product={variant ? { ...variant, options: product.options } : product}
+      index={index}
+      {...rest}
+    />
+  )
 }
 
 export const Plugin = ConfigurableProductPagePrice

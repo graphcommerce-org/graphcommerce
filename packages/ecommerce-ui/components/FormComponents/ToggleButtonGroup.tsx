@@ -25,6 +25,7 @@ type SingleToggleButtonProps = Omit<ToggleButtonProps, 'value' | 'children'> & {
 export type ToggleButtonGroupElementProps<T extends FieldValues> = ToggleButtonGroupProps & {
   required?: boolean
   label?: string
+  /** @deprecated Form value parsing should happen in the handleSubmit function of the form */
   parseError?: (error: FieldError) => string
   options: SingleToggleButtonProps[]
   formLabelProps?: FormLabelProps

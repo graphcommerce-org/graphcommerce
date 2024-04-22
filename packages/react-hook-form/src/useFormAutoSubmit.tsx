@@ -5,16 +5,17 @@ import { useMemoObject } from '@graphcommerce/next-ui/hooks/useMemoObject'
 import { debounce } from '@mui/material'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
-  Control,
   DeepPartialSkipArrayKey,
   FieldPath,
   FieldValues,
   UseFormReturn,
+  UseWatchProps,
   useFormState,
   useWatch,
 } from 'react-hook-form'
 import { DebounceOptions } from './utils/debounce'
 import { useDebouncedCallback } from './utils/useDebounceCallback'
+import { useFormValidFields } from './useFormValidFields'
 
 export type UseFormAutoSubmitOptions<TForm extends UseFormReturn<V>, V extends FieldValues> = {
   /** Instance of current form */
@@ -98,21 +99,8 @@ export function useFormAutoSubmit<
   return submitting
 }
 
-export type FormAutoSubmitProps<
-  TFieldValues extends FieldValues = FieldValues,
-  TFieldNames extends readonly FieldPath<TFieldValues>[] = readonly FieldPath<TFieldValues>[],
-> = {
-  // eslint-disable-next-line react/no-unused-prop-types
-  control: Control<TFieldValues>
+export type FormAutoSubmitProps<TFieldValues extends FieldValues = FieldValues> = {
   /** Autosubmit only when these field names update */
-  // eslint-disable-next-line react/no-unused-prop-types
-  name?: readonly [...TFieldNames]
-
-  // eslint-disable-next-line react/no-unused-prop-types
-  disabled?: boolean
-
-  // eslint-disable-next-line react/no-unused-prop-types
-  exact?: boolean
 
   /** SubmitHandler */
   // eslint-disable-next-line react/no-unused-prop-types
@@ -124,13 +112,18 @@ export type FormAutoSubmitProps<
    */
   // eslint-disable-next-line react/no-unused-prop-types
   parallel?: boolean
-} & DebounceOptions
 
-function useFormAutoSubmit2<
-  TFieldValues extends FieldValues = FieldValues,
-  TFieldNames extends readonly FieldPath<TFieldValues>[] = readonly FieldPath<TFieldValues>[],
->(props: FormAutoSubmitProps<TFieldValues, TFieldNames>) {
-  const { wait, initialWait, maxWait, submit, parallel, ...watchOptions } = props
+  noValidate?: boolean
+} & DebounceOptions &
+  Omit<UseWatchProps<TFieldValues>, 'defaultValue'>
+
+/**
+ * This is made a components so the useWatch that is used here doesn't retrigger the rerender of the parent component.
+ */
+function FormAutoSubmitBase<TFieldValues extends FieldValues = FieldValues>(
+  props: FormAutoSubmitProps<TFieldValues>,
+) {
+  const { wait, initialWait, maxWait, submit, parallel, noValidate, ...watchOptions } = props
 
   // We create a stable object from the values, so that we can compare them later
   const values = useMemoObject(cloneDeep(useWatch(watchOptions)))
@@ -149,7 +142,7 @@ function useFormAutoSubmit2<
     { wait, initialWait, maxWait },
   )
 
-  const valid = isValid && !isValidating
+  const valid = (noValidate ? true : isValid) && !isValidating
   const allowed = parallel || !isSubmitting
   const canSubmit = valid && allowed
 
@@ -157,17 +150,7 @@ function useFormAutoSubmit2<
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     submitDebounced()
   }
-}
 
-/**
- * We're wrapping this in a component so that the parent component doesn't rerender on every
- * submission.
- */
-function FormAutoSubmitBase<
-  TFieldValues extends FieldValues = FieldValues,
-  TFieldNames extends readonly FieldPath<TFieldValues>[] = readonly FieldPath<TFieldValues>[],
->(props: FormAutoSubmitProps<TFieldValues, TFieldNames>) {
-  useFormAutoSubmit2(props)
   return null
 }
 

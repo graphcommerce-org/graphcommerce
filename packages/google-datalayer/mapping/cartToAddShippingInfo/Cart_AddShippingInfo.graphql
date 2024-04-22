@@ -1,0 +1,12 @@
+fragment Cart_AddShippingInfo on Cart @inject(into: ["ShippingMethodSelected"]) {
+  applied_coupons {
+    code
+  }
+  shipping_addresses {
+    selected_shipping_method {
+      carrier_code
+      method_code
+    }
+  }
+  ...Cart_DatalayerItems
+}

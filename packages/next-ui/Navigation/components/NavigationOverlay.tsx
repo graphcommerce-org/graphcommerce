@@ -162,6 +162,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
             }
             right={
               <Fab
+                disabled={!activeAndNotClosing}
                 color='inherit'
                 onClick={handleClose}
                 sx={{ boxShadow: 'none', my: fabMarginY }}

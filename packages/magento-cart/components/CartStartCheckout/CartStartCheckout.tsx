@@ -5,12 +5,15 @@ import { Box, Button, ButtonProps, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 
-export type CartStartCheckoutProps = CartStartCheckoutFragment & {
+export type CartStartCheckoutProps = Partial<CartStartCheckoutFragment> & {
   children?: React.ReactNode
   sx?: SxProps<Theme>
   buttonProps?: ButtonProps<'button'>
   disabled?: boolean
-  onStart?: (e: React.MouseEvent<HTMLButtonElement>, cart: CartStartCheckoutFragment) => void
+  onStart?: (
+    e: React.MouseEvent<HTMLButtonElement>,
+    cart: Partial<CartStartCheckoutFragment>,
+  ) => void
 }
 
 const name = 'CartStartCheckout' as const

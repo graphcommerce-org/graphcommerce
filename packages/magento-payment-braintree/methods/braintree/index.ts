@@ -4,7 +4,7 @@ import {
 } from '@graphcommerce/magento-cart-payment-method'
 import { PaymentMethodOptions } from './PaymentMethodOptions'
 
-export const braintree = {
+export const braintree: PaymentModule = {
   PaymentOptions: PaymentMethodOptions,
   PaymentPlaceOrder: PaymentMethodPlaceOrderNoop,
-} as PaymentModule
+}

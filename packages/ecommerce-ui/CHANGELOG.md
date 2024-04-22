@@ -1,5 +1,85 @@
 # @graphcommerce/ecommerce-ui
 
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+## 8.0.5-canary.5
+
+## 8.0.5-canary.4
+
+## 8.0.5-canary.3
+
+## 8.0.5-canary.2
+
+## 8.0.5-canary.1
+
+## 8.0.5-canary.0
+
+## 8.0.4
+
+## 8.0.4-canary.1
+
+## 8.0.4-canary.0
+
+## 8.0.3
+
+### Patch Changes
+
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`e12d1dc`](https://github.com/graphcommerce-org/graphcommerce/commit/e12d1dc201bf7b23a996bd58a256a117b91a9334) - Rename validation to rules for all Form field components and deprecate validation
+  ([@paales](https://github.com/paales))
+
+- [#2203](https://github.com/graphcommerce-org/graphcommerce/pull/2203) [`7ef7dc7`](https://github.com/graphcommerce-org/graphcommerce/commit/7ef7dc7631f61a2feba67a531a210df9c22fed4b) - CheckboxElement, MultiSelectElement, NumberFieldElement, SelectElement, SliderElement and TextFieldElement have their inputRef passed, allowing focus to be set by the form.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`eb14696`](https://github.com/graphcommerce-org/graphcommerce/commit/eb14696fc65e084a06790c88a8218fb3003f7c2c) - `<WaitForQueries/>` will default to loading, restoring the previous behavior. This might introduce , this might introduce an additional spinner but prevents a flash where it is shown that there is no cart
+  ([@paales](https://github.com/paales))
+
+## 8.0.3-canary.6
+
+## 8.0.3-canary.5
+
+### Patch Changes
+
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`e12d1dc`](https://github.com/graphcommerce-org/graphcommerce/commit/e12d1dc201bf7b23a996bd58a256a117b91a9334) - Rename validation to rules for all Form field components and deprecate validation
+  ([@paales](https://github.com/paales))
+
+## 8.0.3-canary.4
+
+### Patch Changes
+
+- [#2203](https://github.com/graphcommerce-org/graphcommerce/pull/2203) [`7ef7dc7`](https://github.com/graphcommerce-org/graphcommerce/commit/7ef7dc7631f61a2feba67a531a210df9c22fed4b) - CheckboxElement, MultiSelectElement, NumberFieldElement, SelectElement, SliderElement and TextFieldElement have their inputRef passed, allowing focus to be set by the form.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.3-canary.3
+
+## 8.0.3-canary.2
+
+### Patch Changes
+
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`eb14696`](https://github.com/graphcommerce-org/graphcommerce/commit/eb14696fc65e084a06790c88a8218fb3003f7c2c) - `<WaitForQueries/>` will default to loading, restoring the previous behavior. This might introduce , this might introduce an additional spinner but prevents a flash where it is shown that there is no cart
+  ([@paales](https://github.com/paales))
+
+## 8.0.3-canary.1
+
+## 8.0.3-canary.0
+
+## 8.0.2
+
+## 8.0.2-canary.3
+
+## 8.0.2-canary.2
+
+## 8.0.2-canary.1
+
+## 8.0.2-canary.0
+
 ## 8.0.1
 
 ## 8.0.1-canary.4
