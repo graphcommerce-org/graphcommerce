@@ -1,5 +1,28 @@
 # Change Log
 
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
+## 8.0.5
+
+### Patch Changes
+
+- [#2237](https://github.com/graphcommerce-org/graphcommerce/pull/2237) [`60f387d`](https://github.com/graphcommerce-org/graphcommerce/commit/60f387d4a037736aa8105fa45728ee481bdaf887) - Solve an issue where the checkout address form wouldn't be automatically submitted on change.
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+## 8.0.5-canary.5
+
 ## 8.0.5-canary.4
 
 ### Patch Changes

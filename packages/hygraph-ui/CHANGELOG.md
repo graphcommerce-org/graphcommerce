@@ -1,5 +1,33 @@
 # Change Log
 
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
+## 8.0.5
+
+### Patch Changes
+
+- [#2238](https://github.com/graphcommerce-org/graphcommerce/pull/2238) [`db86432`](https://github.com/graphcommerce-org/graphcommerce/commit/db864324277fd5fb680c66eaa87d211cd7be4905) - Changed query limit to 100 from a 1000 on HygraphAllPages and AllDynamicRows query and added pagination.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+### Patch Changes
+
+- [#2238](https://github.com/graphcommerce-org/graphcommerce/pull/2238) [`db86432`](https://github.com/graphcommerce-org/graphcommerce/commit/db864324277fd5fb680c66eaa87d211cd7be4905) - Changed query limit to 100 from a 1000 on HygraphAllPages and AllDynamicRows query and added pagination.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.5-canary.8
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+## 8.0.5-canary.5
+
 ## 8.0.5-canary.4
 
 ## 8.0.5-canary.3

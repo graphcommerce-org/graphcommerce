@@ -1,5 +1,28 @@
 # Change Log
 
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
+## 8.0.5
+
+### Patch Changes
+
+- [#2237](https://github.com/graphcommerce-org/graphcommerce/pull/2237) [`8d385fb`](https://github.com/graphcommerce-org/graphcommerce/commit/8d385fb83751c97ea62621a163989eddfd1a2f22) - When the checkout address is saved, the billing address would diverge from the shipping address in some cases. In other cases it wouldn't be set at all or would be set to the shipping address.
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+## 8.0.5-canary.5
+
 ## 8.0.5-canary.4
 
 ### Patch Changes

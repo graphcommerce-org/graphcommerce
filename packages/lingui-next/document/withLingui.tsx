@@ -4,6 +4,7 @@ import { DocumentContext, DocumentInitialProps } from 'next/document'
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import type NextDocument from 'next/document'
 import React from 'react'
+import { normalizeLocale } from '../lib/normalizeLocale'
 import { MessageLoader } from '../types'
 
 export type LinguiDocumentProps = { linguiScriptTag: React.ReactNode }
@@ -16,7 +17,7 @@ export function withLingui(
     static async getInitialProps(ctx: DocumentContext) {
       const initial = await Document.getInitialProps(ctx)
 
-      const locale = ctx.locale?.split('-')?.[0]
+      const locale = normalizeLocale(ctx.locale)
 
       if (!locale) return initial
       try {
