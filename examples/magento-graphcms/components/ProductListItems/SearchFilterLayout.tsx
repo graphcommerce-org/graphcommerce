@@ -21,7 +21,7 @@ import { ProductListFilterLayoutProps } from './CategoryFilterLayout'
 import { productListRenderer } from './productListRenderer'
 
 export function SearchFilterLayout(props: ProductListFilterLayoutProps) {
-  const { params, filters, products, filterTypes, title, id, defaultSortBy } = props
+  const { params, filters, products, filterTypes, title, id } = props
 
   if (!(params && products?.items && filterTypes)) return null
 

@@ -35,7 +35,7 @@ export type ProductListFilterLayoutProps = ProductListQuery &
 export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
   const { params, filters, products, filterTypes, title, id, category } = props
 
-  if (!(params && products?.items && filterTypes) || !category) return null
+  if (!(params && products?.items && filterTypes)) return null
 
   const { total_count, sort_fields, page_info } = products
 
