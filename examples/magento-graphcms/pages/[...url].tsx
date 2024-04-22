@@ -47,6 +47,7 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, C
 
 function CategoryPage(props: CategoryProps) {
   const { categories, products, filters, params, filterTypes, pages } = props
+
   const category = categories?.items?.[0]
   const isLanding = category?.display_mode === 'PAGE'
   const page = pages?.[0]
@@ -160,7 +161,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const filteredCategoryUid = productListParams && productListParams.filters.category_uid?.in?.[0]
 
   const category = categoryPage.then((res) => res.data.categories?.items?.[0])
-
   let categoryUid = filteredCategoryUid
   if (!categoryUid) {
     categoryUid = (await category)?.uid ?? ''
@@ -168,7 +168,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   }
 
   const pages = hygraphPageContent(staticClient, url, category)
-  const hasCategory = productListParams && categoryUid
+  const hasCategory = Boolean(productListParams && categoryUid)
 
   const filters = hasCategory
     ? staticClient.query({
