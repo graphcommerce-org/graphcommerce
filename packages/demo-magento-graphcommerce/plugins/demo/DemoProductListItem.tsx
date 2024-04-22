@@ -19,4 +19,5 @@ function DemoProductListItem(props: PluginProps<ProductListItemProps>) {
     />
   )
 }
+
 export const Plugin = DemoProductListItem

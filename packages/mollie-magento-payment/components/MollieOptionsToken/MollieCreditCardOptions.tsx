@@ -12,6 +12,12 @@ import { MollieField } from './MollieField'
 import { SetMolliePaymentMethodTokenOnCartDocument } from './SetMolliePaymentMethodTokenOnCart.gql'
 import { mollieContext, MollieContext } from './mollieContext'
 
+declare global {
+  interface Window {
+    Mollie?: Mollie
+  }
+}
+
 export function MollieCreditCardOptions(props: PaymentOptionsProps) {
   const { code, step, Container } = props
   const [loaded, setLoaded] = useState<boolean>(false)
@@ -38,11 +44,9 @@ export function MollieCreditCardOptions(props: PaymentOptionsProps) {
   useFormCompose({ form, step, submit, key: `PaymentMethodOptions_${code}` })
 
   useEffect(() => {
-    // @ts-expect-error window.Mollie is not defined in TS
     if (!window.Mollie || mollie) return
 
-    // @ts-expect-error window.Mollie is not defined in TS
-    const mollieInstance = (window.Mollie as Mollie)('pfl_Ah5xUV4c6z', {
+    const mollieInstance = window.Mollie('pfl_Ah5xUV4c6z', {
       locale: conf.data?.storeConfig?.locale ?? 'en_US',
       testmode: true,
     })
