@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.6
+
+### Patch Changes
+
+- [#1984](https://github.com/graphcommerce-org/graphcommerce/pull/1984) [`e05534f`](https://github.com/graphcommerce-org/graphcommerce/commit/e05534fff4990fd584fe401b55b6d9a33934e048) - Added docs about caching
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.5
 
 ## 8.0.6-canary.4
