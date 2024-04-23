@@ -18,6 +18,8 @@ export type PaginationExtendedProps = {
   sx?: SxProps<Theme>
   size?: 'small' | 'medium' | 'large'
   paginationHref: (params: PaginationRenderItemParams) => string
+  siblingCount?: number
+  boundaryCount?: number
 } & Omit<PaginationProps, 'count' | 'url' | 'defaultPage' | 'page'>
 
 const parts = ['root', 'button', 'icon'] as const
@@ -36,7 +38,16 @@ function Next() {
  * Read more: https://ahrefs.com/blog/rel-prev-next-pagination/
  */
 export function PaginationExtended(props: PaginationExtendedProps) {
-  const { count, page, sx = [], size, paginationHref, renderItem } = props
+  const {
+    count,
+    page,
+    sx = [],
+    size,
+    paginationHref,
+    renderItem,
+    siblingCount,
+    boundaryCount,
+  } = props
 
   return (
     <Box
@@ -53,6 +64,17 @@ export function PaginationExtended(props: PaginationExtendedProps) {
           '& .Mui-disabled': {
             background: 'none',
           },
+          '& .MuiPagination-ul': {
+            justifyContent: 'center',
+          },
+          '& .MuiPaginationItem-root': {
+            minWidth: '35px',
+            height: '35px',
+            padding: 0,
+            '&.MuiPaginationItem-previousNext, &.MuiPaginationItem-ellipsis': {
+              margin: 0,
+            },
+          },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -61,8 +83,8 @@ export function PaginationExtended(props: PaginationExtendedProps) {
         count={count}
         defaultPage={page}
         page={page}
-        siblingCount={0}
-        boundaryCount={1}
+        siblingCount={siblingCount ?? 1}
+        boundaryCount={boundaryCount ?? 1}
         size={size ?? 'large'}
         renderItem={
           renderItem ??
