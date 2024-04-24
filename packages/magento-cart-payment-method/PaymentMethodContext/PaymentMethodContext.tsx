@@ -11,6 +11,7 @@ import {
 } from '../Api/PaymentMethod'
 import { PaymentMethodContextFragment } from '../Api/PaymentMethodContext.gql'
 import { GetPaymentMethodContextDocument } from './GetPaymentMethodContext.gql'
+import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 
 type PaymentMethodContextProps = {
   methods: PaymentMethod[]
@@ -65,16 +66,19 @@ export function PaymentMethodContextProvider(props: PaymentMethodContextProvider
     },
   )
 
-  const [methods, setMethods] = useState<PaymentMethod[]>([])
   const [selectedMethod, setSelectedMethod] = useState<PaymentMethod>()
   const [selectedModule, setSelectedModule] = useState<PaymentModule>()
 
   const availableMethods = useMemo(() => {
-    const allMethods = cartContext?.available_payment_methods ?? []
+    const allMethods = filterNonNullableKeys(cartContext?.available_payment_methods)
     const free = allMethods.find((method) => method?.code === 'free')
 
     return free ? [free] : allMethods
   }, [cartContext?.available_payment_methods])
+
+  const [methods, setMethods] = useState<PaymentMethod[]>(
+    availableMethods.map((m) => ({ ...m, code: `${m.code}_placeholder`, child: '' })),
+  )
 
   // Expand the payment methods
   useEffect(() => {

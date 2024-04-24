@@ -146,7 +146,7 @@ function withGraphCommerce(nextConfig, cwd) {
                     '@mui/system': '@mui/system/modern',
                 };
             }
-            config.plugins.push(new InterceptorPlugin_1.InterceptorPlugin(graphcommerceConfig));
+            config.plugins.push(new InterceptorPlugin_1.InterceptorPlugin(graphcommerceConfig, !options.isServer));
             return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config;
         },
     };

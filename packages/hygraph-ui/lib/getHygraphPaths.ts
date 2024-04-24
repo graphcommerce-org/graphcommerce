@@ -1,5 +1,5 @@
 import { ApolloClient, NormalizedCacheObject, ApolloQueryResult } from '@apollo/client'
-import { PageWhereInput } from '@graphcommerce/graphql-mesh'
+import type { PageWhereInput } from '@graphcommerce/graphql-mesh'
 import { GetStaticPathsResult } from 'next'
 import {
   HygraphStaticPathsDocument,

@@ -31,7 +31,7 @@ export type ProductFilterParams = {
 
 export function toFilterParams(params: ProductListParams): ProductFilterParams {
   const [sortKey] = Object.keys(params.sort) as [keyof ProductAttributeSortInput]
-  const dir = params.sort[sortKey] as SortEnum | undefined
+  const dir = params.sort[sortKey]?.toUpperCase() as SortEnum | undefined
 
   return {
     ...params,

@@ -1,5 +1,108 @@
 # Change Log
 
+## 8.1.0-canary.7
+
+## 8.1.0-canary.6
+
+## 8.1.0-canary.5
+
+### Minor Changes
+
+- [#2226](https://github.com/graphcommerce-org/graphcommerce/pull/2226) [`8939df2`](https://github.com/graphcommerce-org/graphcommerce/commit/8939df22eda57e681f83076707e856700f8b2e21) - Big improvements to the plugin system: Typescript validated, deeper resolution, new configuration object, replace plugins, and more ifConfig options.
+
+  1. Plugins now use TypeScript's `"moduleSuffixes": [".interceptor", ""]` [functionality](https://www.typescriptlang.org/tsconfig#moduleSuffixes) which means that plugins now correctly resolve via TypeScript. So if you _go to reference_ in VSCode (or any other editor), you go to the interceptor directly and see which plugins are applied there. This also means that plugins are automatically checked during build (and will fail if there are errors).
+  2. The exported type of an _intercepted component_ now has the types of all plugins applied. This means that plugins can modify the props of components (and is still validated with TypeScript). To make this work a plugin must always forward props to the `<Prev>` to ensure that values are correctly passed on.
+  3. Plugins will now always be applied to deepest resolved path. This means that a plugin automatically applies to internal usages as well. This thus means that plugins do not need to be written with an internal path, but can keep the parent path. Istead of writing `@graphcommerce/magento-cart-items/components/RemoveItemFromCart/RemoveItemFromCartFab` you can now write `@graphcommerce/magento-cart-items`.
+  4. A new configuration object for plugins is created instead of separate exports (the legacy format is still supported though):
+
+     ```tsx
+     export const config: PluginConfig = {
+       type: 'component'
+       module: '@graphcommerce/magento-product',
+       ifConfig: 'demoMode',
+     }
+     ```
+
+     This also means that the _name of the export_ dictates the name of the component/function the plugin is applied.
+
+  5. We now support replace plugins (`type: 'replace'`), which allow you to replace the original component/function/const completely (and type checked of course).
+
+     ```tsx
+     import { ProductPageNameProps } from "@graphcommerce/magento-product";
+     import { PluginConfig } from "@graphcommerce/next-config";
+
+     export const config: PluginConfig = {
+       type: "replace",
+       module: "@graphcommerce/magento-product",
+     };
+
+     export function ProductPageName(props: ProductPageNameProps) {
+       const { product } = props;
+       return <div>REPLACEMENT {product.url_key}</div>;
+     }
+     ```
+
+     Plugin files can now have multiple exports for the same configuration. So next to the `ProductPageName` you can also have a `ProductPagePrice` export for example in the same file.
+
+  6. We now support `ifConfig` tuple which allows you to apply a plugin only if a certain configuration is set.
+
+     ```tsx
+     export const config: PluginConfig = {
+       type: "replace",
+       module: "@graphcommerce/magento-product",
+       ifConfig: ["theme", "my-theme"],
+     };
+     ```
+
+     This allows you to support multiple builds with different plugins applied. For example one build with `GC_THEME=my-theme` and another with `GC_THEME=my-other-theme`. ([@paales](https://github.com/paales))
+
+## 8.0.6-canary.4
+
+### Patch Changes
+
+- [#2227](https://github.com/graphcommerce-org/graphcommerce/pull/2227) [`d597719`](https://github.com/graphcommerce-org/graphcommerce/commit/d597719baaabbe079660ac063fd021d871831511) - Added option to change sort order (ASC / DESC) for sort options (Name, price, position etc) on catalog and search pages.
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.6-canary.1
+
+### Patch Changes
+
+- [#2213](https://github.com/graphcommerce-org/graphcommerce/pull/2213) [`9b8349f`](https://github.com/graphcommerce-org/graphcommerce/commit/9b8349f0001a786f9b1666f050ae226316bd16f3) - Removed the ProductPage query from the examples directory as it isn't used anymore
+  ([@paales](https://github.com/paales))
+
+## 8.0.6-canary.0
+
+### Patch Changes
+
+- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods.
+  ([@paales](https://github.com/paales))
+
+## 8.0.5
+
+### Patch Changes
+
+- [#2236](https://github.com/graphcommerce-org/graphcommerce/pull/2236) [`1a20a34`](https://github.com/graphcommerce-org/graphcommerce/commit/1a20a34a8b55781ee3e88731b5e2623a85c64ccd) - Enable bundlePagesExternals for Vercel environments
+  ([@paales](https://github.com/paales))
+
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
 ## 8.0.5-canary.5
 
 ## 8.0.5-canary.4

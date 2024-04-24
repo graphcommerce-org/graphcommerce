@@ -11,7 +11,7 @@ fragment CartTotals on Cart
         ...Money
       }
     }
-    # https://github.com/magento/magento2/pull/31322
+    # todo: https://github.com/magento/magento2/pull/31322
     available_shipping_methods {
       carrier_code
       method_code
