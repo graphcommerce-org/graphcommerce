@@ -1,5 +1,6 @@
 import { Image } from '@graphcommerce/image'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart/hooks'
+import { productEditLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import {
   ActionCard,
@@ -7,7 +8,8 @@ import {
   responsiveVal,
   filterNonNullableKeys,
 } from '@graphcommerce/next-ui'
-import { Box, Link } from '@mui/material'
+import { Trans } from '@lingui/react'
+import { Box, Button, Link } from '@mui/material'
 import { CartItemFragment } from '../../Api/CartItem.gql'
 import { RemoveItemFromCart } from '../RemoveItemFromCart/RemoveItemFromCart'
 import { UpdateItemQuantity } from '../UpdateItemQuantity/UpdateItemQuantity'
@@ -133,7 +135,21 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
         </>
       }
       price={<Money {...(inclTaxes ? prices?.row_total_including_tax : prices?.row_total)} />}
-      action={!readOnly && <RemoveItemFromCart {...cartItem} buttonProps={{ size }} />}
+      action={
+        !readOnly && (
+          <>
+            <RemoveItemFromCart {...cartItem} buttonProps={{ size }} />
+            <Button
+              variant='inline'
+              color='primary'
+              size='medium'
+              href={`${productEditLink(product)}?cartItemId=${uid}`}
+            >
+              <Trans id='Edit' />
+            </Button>
+          </>
+        )
+      }
       size={size}
       after={filterNonNullableKeys(errors).map((error) => (
         <Box sx={{ color: 'error.main', typography: 'caption' }} key={error.message}>

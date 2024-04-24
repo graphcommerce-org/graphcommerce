@@ -8,6 +8,10 @@ export function productLink(link: ProductLinkProps) {
   return `${productRoute}${link.url_key}`
 }
 
+export function productEditLink(link: ProductLinkProps) {
+  return `${productRoute}edit/${link.url_key}`
+}
+
 export function useProductLink(props: ProductLinkProps) {
   return productLink(props)
 }
