@@ -1,34 +1,29 @@
 import { getCategoryStaticPaths } from '@graphcommerce/magento-category'
-import { canonicalize } from '@graphcommerce/next-ui'
+import {
+  excludeSitemap,
+  staticPathsToString,
+  getServerSidePropsSitemap,
+  toSitemapFields,
+} from '@graphcommerce/next-ui'
 import { GetServerSideProps } from 'next'
-import { ISitemapField, getServerSideSitemapLegacy } from 'next-sitemap'
 import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { locale, res, defaultLocale } = context
+const excludes = []
+const additionalPaths = ['']
 
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { locale } = context
   if (!locale) throw Error('Locale not found')
 
-  const options = { locale, defaultLocale, pathname: '/', isLocaleDomain: false }
-
-  const paths = (
-    await getCategoryStaticPaths(graphqlSsrClient(locale), locale, { limit: false })
-  ).map<ISitemapField>((path) => {
-    const loc = typeof path === 'string' ? path : path.params.url.join('/')
-    return {
-      loc: canonicalize(options, `/${loc}`) ?? '',
-      lastmod: new Date().toISOString(),
-      changefreq: 'daily' as const,
-      priority: 0.8,
-    }
+  const categoryPaths = await getCategoryStaticPaths(graphqlSsrClient(locale), locale, {
+    limit: false,
   })
 
-  res.setHeader(
-    'Cache-Control',
-    `public, s-maxage=${60 * 60 * 2}, stale-while-revalidate=${60 * 60 * 24}`,
-  )
-  const result = getServerSideSitemapLegacy(context, paths)
-  return result
+  const paths = [...categoryPaths, ...additionalPaths]
+    .map(staticPathsToString)
+    .filter(excludeSitemap(excludes))
+
+  return getServerSidePropsSitemap(context, toSitemapFields(context, paths))
 }
 
-export default function SitemapIndex() {}
+export default function Sitemap() {}
