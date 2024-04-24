@@ -2,41 +2,25 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { mergeDeep } from '@graphcommerce/graphql'
 import {
-  AddProductsToCartButton,
-  AddProductsToCartError,
   AddProductsToCartForm,
   AddProductsToCartFormProps,
-  AddProductsToCartQuantity,
   getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
-  ProductCustomizable,
   ProductPageName,
-  ProductPageAddToCartActionsRow,
-  ProductPageAddToCartQuantityRow,
   productPageCategory,
   ProductPageDescription,
   ProductPageGallery,
   ProductPageJsonLd,
   ProductPageMeta,
-  ProductPagePrice,
-  ProductPagePriceTiers,
   ProductShortDescription,
-  ProductSidebarDelivery,
 } from '@graphcommerce/magento-product'
-import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
-import {
-  ConfigurableProductOptions,
-  defaultConfigurableOptionsSelection,
-} from '@graphcommerce/magento-product-configurable'
-import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
+import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-product-configurable'
 import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-products'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
-import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
-import { GetStaticProps, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
+import { Money, redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { GetStaticProps, isTypename, LayoutHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutDocument,
@@ -50,6 +34,8 @@ import {
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { AddProductsToCartView } from '../../components/AddProductsToCartView'
+import { Typography } from '@mui/material'
 
 type Props = HygraphPagesQuery &
   UspsQuery &
@@ -116,51 +102,7 @@ function ProductPage(props: Props) {
             <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           </div>
 
-          {isTypename(product, ['ConfigurableProduct']) && (
-            <ConfigurableProductOptions
-              product={product}
-              optionEndLabels={{
-                size: (
-                  <Link
-                    href='/modal/product/global/size'
-                    rel='nofollow'
-                    color='primary'
-                    underline='hover'
-                  >
-                    <Trans id='Which size is right?' />
-                  </Link>
-                ),
-              }}
-            />
-          )}
-          {isTypename(product, ['BundleProduct']) && (
-            <BundleProductOptions product={product} layout='stack' />
-          )}
-          {isTypename(product, ['DownloadableProduct']) && (
-            <DownloadableProductOptions product={product} />
-          )}
-          {!isTypename(product, ['GroupedProduct']) && <ProductCustomizable product={product} />}
-
-          <Divider />
-
-          <ProductPageAddToCartQuantityRow product={product}>
-            <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
-
-            <AddProductsToCartError>
-              <Typography component='div' variant='h3' lineHeight='1'>
-                <ProductPagePrice product={product} />
-              </Typography>
-            </AddProductsToCartError>
-          </ProductPageAddToCartQuantityRow>
-
-          <ProductPagePriceTiers product={product} />
-
-          <ProductSidebarDelivery product={product} />
-
-          <ProductPageAddToCartActionsRow product={product}>
-            <AddProductsToCartButton fullWidth product={product} />
-            <ProductWishlistChipDetail {...product} />
-          </ProductPageAddToCartActionsRow>
+          <AddProductsToCartView product={product} />
 
           <Usps usps={sidebarUsps} size='small' />
         </ProductPageGallery>
@@ -224,8 +166,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
-  const product = productPage.then(
-    (pp) => pp.data.products?.items?.find((p) => p?.url_key === urlKey),
+  const product = productPage.then((pp) =>
+    pp.data.products?.items?.find((p) => p?.url_key === urlKey),
   )
 
   const pages = hygraphPageContent(staticClient, 'product/global', product, true)
