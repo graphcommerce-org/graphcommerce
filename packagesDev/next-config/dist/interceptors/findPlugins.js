@@ -17,10 +17,14 @@ function findPlugins(config, cwd = process.cwd()) {
     const debug = Boolean(config.debug?.pluginStatus);
     const errors = [];
     const plugins = [];
-    dependencies.forEach((dependency, path) => {
-        const files = (0, glob_1.sync)(`${dependency}/plugins/**/*.{ts,tsx}`, { dotRelative: true });
+    dependencies.forEach((filePath, packageName) => {
+        const files = (0, glob_1.sync)(`${filePath}/plugins/**/*.{ts,tsx}`);
         files.forEach((file) => {
-            const sourceModule = file.replace(dependency, path).replace('.tsx', '').replace('.ts', '');
+            let sourceModule = file.replace('.tsx', '').replace('.ts', '');
+            if (file.startsWith(filePath))
+                sourceModule = `${packageName}/${sourceModule.slice(filePath.length + 1)}`;
+            if (packageName === '.' && !sourceModule.startsWith('.'))
+                sourceModule = `./${sourceModule}`;
             try {
                 const ast = (0, core_1.parseFileSync)(file, { syntax: 'typescript', tsx: true });
                 (0, parseStructure_1.parseStructure)(ast, config, sourceModule).forEach((result) => {
