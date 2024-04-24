@@ -29,4 +29,5 @@ exports.demoConfig = {
     configurableVariantForSimple: true,
     configurableVariantValues: { url: true, content: true, gallery: true },
     recentlyViewedProducts: { enabled: true, maxCount: 20 },
+    breadcrumbs: false,
 };
