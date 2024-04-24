@@ -4,6 +4,7 @@ import {
   excludeSitemap,
   staticPathsToString,
   getServerSidePropsSitemap,
+  toSitemapFields,
 } from '@graphcommerce/next-ui'
 import { GetServerSideProps } from 'next'
 import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
