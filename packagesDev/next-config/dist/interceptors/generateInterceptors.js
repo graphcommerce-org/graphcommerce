@@ -8,7 +8,7 @@ const node_path_1 = __importDefault(require("node:path"));
 const promises_1 = __importDefault(require("node:fs/promises"));
 const findOriginalSource_1 = require("./findOriginalSource");
 const generateInterceptor_1 = require("./generateInterceptor");
-async function generateInterceptors(plugins, resolve, config) {
+async function generateInterceptors(plugins, resolve, config, force) {
     const byTargetModuleAndExport = (0, generateInterceptor_1.moveRelativeDown)(plugins).reduce((acc, plug) => {
         let { sourceModule: pluginPath } = plug;
         if (!(0, generateInterceptor_1.isPluginConfig)(plug) || !plug.enabled)
@@ -40,10 +40,11 @@ async function generateInterceptors(plugins, resolve, config) {
     }, {});
     return Object.fromEntries(await Promise.all(Object.entries(byTargetModuleAndExport).map(async ([target, interceptor]) => {
         const file = `${interceptor.fromRoot}.interceptor.tsx`;
-        const originalSource = (await promises_1.default
-            .access(file, promises_1.default.constants.F_OK)
-            .then(() => true)
-            .catch(() => false))
+        const originalSource = !force &&
+            (await promises_1.default
+                .access(file, promises_1.default.constants.F_OK)
+                .then(() => true)
+                .catch(() => false))
             ? (await promises_1.default.readFile(file)).toString()
             : undefined;
         return [

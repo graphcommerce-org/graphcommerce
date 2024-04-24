@@ -19,6 +19,7 @@ export async function generateInterceptors(
   plugins: PluginConfig[],
   resolve: ResolveDependency,
   config?: GraphCommerceDebugConfig | null | undefined,
+  force?: boolean,
 ): Promise<GenerateInterceptorsReturn> {
   const byTargetModuleAndExport = moveRelativeDown(plugins).reduce<Record<string, Interceptor>>(
     (acc, plug) => {
@@ -68,12 +69,14 @@ export async function generateInterceptors(
       Object.entries(byTargetModuleAndExport).map(async ([target, interceptor]) => {
         const file = `${interceptor.fromRoot}.interceptor.tsx`
 
-        const originalSource = (await fs
-          .access(file, fs.constants.F_OK)
-          .then(() => true)
-          .catch(() => false))
-          ? (await fs.readFile(file)).toString()
-          : undefined
+        const originalSource =
+          !force &&
+          (await fs
+            .access(file, fs.constants.F_OK)
+            .then(() => true)
+            .catch(() => false))
+            ? (await fs.readFile(file)).toString()
+            : undefined
 
         return [
           target,
