@@ -96,7 +96,7 @@ ProductPageConfigurable.pageOptions = {
   layoutProps: {
     variantMd: 'right',
     variantSm: 'bottom',
-    widthMd: '700px',
+    widthMd: '960px',
     sizeMd: 'floating',
     sizeSm: 'full',
     justifyMd: 'start',
