@@ -402,9 +402,7 @@ Add a gcms-locales header to make sure queries return in a certain language, can
 
 #### linguiLocale: string
 
-Specify a custom locale for to load translations. Must be lowercase valid locale.
-
-This value is also used for the Intl.
+Custom locale used to load the .po files. Must be a valid locale, also used for Intl functions.
 
 ### MagentoConfigurableVariantValues
 
