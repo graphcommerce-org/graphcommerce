@@ -64,7 +64,7 @@ Duplicate and rename the configuration example file to:
 ## Step 3: Start the app
 
 ```bash
-yarn
+touch yarn.lock && yarn
 # Install dependencies (may take a while)
 ```
 
