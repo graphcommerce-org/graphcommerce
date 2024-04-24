@@ -1,91 +1,72 @@
-import { canonicalize } from '@graphcommerce/next-ui'
+import {
+  canonicalize,
+  getServerSidePropsRobotsTxt,
+  robotsTxt,
+  storefrontAll,
+  storefrontConfig,
+} from '@graphcommerce/next-ui'
 import { GetServerSideProps } from 'next'
 
-// eslint-disable-next-line @typescript-eslint/require-await
+const sitemapRoutes = ['/sitemap/content.xml', '/sitemap/categories.xml', '/sitemap/products.xml']
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { locale, res, defaultLocale } = context
+  const { locale } = context
+  const storefront = storefrontConfig(locale)
 
-  if (!locale) throw Error('Locale not found')
+  if (!storefront) return { notFound: true }
 
-  const options = { locale, defaultLocale, pathname: '/', isLocaleDomain: false }
-  const configStorefront = import.meta.graphCommerce.storefront
-  const storefront = configStorefront.find((s) => s.locale === locale)
-  if (!storefront) {
-    throw Error(`Locale must be one of: ${configStorefront.map((s) => s.locale).join(', ')}`)
-  }
+  const allStores = storefront.domain
+    ? storefrontAll.filter((store) => store.domain === storefront.domain)
+    : storefrontAll.filter((store) => !store.domain)
 
-  const sitemaps = ['/sitemap/content.xml', '/sitemap/categories.xml', '/sitemap/products.xml']
+  const checkStore = allStores.find((store) => store.defaultLocale) ?? allStores[0]
+  if (storefront !== checkStore) return { notFound: true }
 
-  // prettier-ignore
-  const robots = [
-    ...(
-      // Disallow all robots when global setting for robotsAllow is false (or not set)
-      !import.meta.graphCommerce.robotsAllow || 
-      // or when robotsAllow for the current store is false AND the current store has its own domain or is the default locale 
-      // (when a store does not have its own domain, it uses a locale suffix (e.g.: /en-US/). 
-      // robot.txt files should always be located in the root, therefore stores without a domain use the global robotsAllow setting)
-      (storefront.robotsAllow === false && (storefront.domain || storefront.locale === defaultLocale)) ? 
-      [
-        `# *`, 
-        `User-agent: *`, 
-        `Disallow: /`, 
-        ``,
-      ] : []
-    ),
+  const robotsAllow =
+    typeof storefront.robotsAllow === 'boolean'
+      ? storefront.robotsAllow
+      : import.meta.graphCommerce.robotsAllow
 
-    `# *`,
-    `User-agent: *`,
-    ...[
-      '/switch-stores', 
-      '/search', 
-      '/account', 
-      '/cart', 
-      '/checkout', 
-      '/wishlist'
-    ].map(disallow => `Disallow: ${disallow}`),
+  const sitemaps = allStores
+    .flatMap((store) =>
+      sitemapRoutes.map((route) => {
+        const options = {
+          defaultLocale: storefront.locale,
+          pathname: '/',
+          isLocaleDomain: false,
+          locale: store.locale,
+        }
+        const url = canonicalize(options, route)
+        return `Sitemap: ${url}`
+      }),
+    )
+    .join('\n')
 
-    ``,
-    `# AhrefsSiteAudit`,
-    `User-agent: AhrefsSiteAudit`,
-    `Allow: /`,
+  const robots = robotsTxt`
+    ${!robotsAllow && `User-agent: *`}
+    ${!robotsAllow && `Disallow: /`}
 
-    ``,
-    `# AhrefsBot`,
-    `User-agent: AhrefsBot`,
-    `Allow: /`,
+    User-agent: *
+    Disallow: /switch-stores
+    Disallow: /search
+    Disallow: /account
+    Disallow: /cart
+    Disallow: /checkout
+    Disallow: /wishlist
 
-    ``,
-    `# SiteAuditBot`,
-    `User-agent: SiteAuditBot`,
-    `Allow: /`,
+    User-agent: AhrefsSiteAudit
+    Allow: /
 
-    ``,
-    `# Host`,
-    `Host: ${canonicalize(options, `/`)}`,
+    User-agent: AhrefsBot
+    Allow: /
 
-    ``,
-    `# Sitemaps`,
-    ...(storefront.domain ? 
-      // When the current store has its own domain, only show sitemaps for the specific store
-      sitemaps.map(sitemap => 
-        `Sitemap: ${canonicalize({...options, locale: storefront.locale, defaultLocale: storefront.locale}, `${sitemap}`)}`,
-      ) 
-      : 
-      // When the current store does not have its own domain, show sitemaps for all stores on the same global domain
-      configStorefront.filter(store => !store.domain).map((store) => sitemaps.map(sitemap => 
-        `Sitemap: ${canonicalize({...options, locale: store.locale}, `${sitemap}`)}`,
-      )).flat()
-    ),
-  ].join(`
-`)
+    User-agent: SiteAuditBot
+    Allow: /
 
-  res.setHeader('Content-Type', 'text/plain')
-  res.write(robots)
-  res.end()
-
-  return {
-    props: {},
-  }
+    # Sitemaps
+    ${sitemaps}
+  `
+  return getServerSidePropsRobotsTxt(context, robots)
 }
 
-export default function SitemapIndex() {}
+export default function RobotsTxt() {}
