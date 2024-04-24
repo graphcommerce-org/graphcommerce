@@ -4,7 +4,6 @@ import { canonicalize } from '@graphcommerce/next-ui'
 import { GetServerSideProps } from 'next'
 import { ISitemapField, getServerSideSitemapLegacy } from 'next-sitemap'
 import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
-import { isMatch } from '../../lib/sitemap/matcher'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { locale, res, defaultLocale } = context
@@ -42,15 +41,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     ),
   )
 
+  const excludesRegExp = excludes.map((exclude) => new RegExp(exclude.replace(/\*/g, '.*?')))
   const options = { locale, defaultLocale, pathname: '/', isLocaleDomain: false }
-
   const paths = [
     ...additionalPaths,
     ...(await getHygraphStaticPaths(graphqlSsrClient(locale), locale, {
       filter: { metaRobots_not: 'NOINDEX_NOFOLLOW' },
     })),
   ]
-    .filter((path) => !isMatch(`/${typeof path === 'string' ? path : path.params.url}`, excludes))
+    .filter(
+      (path) =>
+        !excludesRegExp.some((pattern) =>
+          pattern.test(`/${typeof path === 'string' ? path : path.params.url}`),
+        ),
+    )
     .map<ISitemapField>((path) => {
       const loc = typeof path === 'string' ? path : path.params.url
       return {
