@@ -9,7 +9,7 @@ import { GetServerSideProps } from 'next'
 import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 const excludes = []
-const additionalPaths = ['']
+const additionalPaths = []
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { locale } = context
