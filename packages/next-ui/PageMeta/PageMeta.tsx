@@ -70,15 +70,15 @@ export function canonicalize(router: PartialNextRouter, incoming?: Canonical) {
     if (localeDomain) {
       canonical = localeDomain
     } else {
-      href = addBasePath(addLocale(as, curLocale, router.defaultLocale))
-
       const conf = storefrontConfig(router.locale)
 
-      let siteUrl =
-        storefrontConfig(router.locale)?.canonicalBaseUrl ||
-        import.meta.graphCommerce.canonicalBaseUrl
+      href = addBasePath(
+        addLocale(as, curLocale, conf?.domain ? conf.locale : router.defaultLocale),
+      )
 
-      if (conf?.domain) siteUrl = `https://${conf.domain}`
+      let siteUrl = conf?.canonicalBaseUrl || import.meta.graphCommerce.canonicalBaseUrl
+
+      if (conf?.domain && !conf?.canonicalBaseUrl) siteUrl = `https://${conf.domain}`
 
       if (siteUrl.endsWith('/')) siteUrl = siteUrl.slice(0, -1)
 
