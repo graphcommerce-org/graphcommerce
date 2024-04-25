@@ -112,8 +112,19 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
     },
     transpilePackages,
     webpack: (config: Configuration, options) => {
-      // Allow importing yml/yaml files for graphql-mesh
-      config.module?.rules?.push({ test: /\.ya?ml$/, use: 'js-yaml-loader' })
+      if (!config.module) config.module = { rules: [] }
+
+      config.module = {
+        ...config.module,
+        rules: [
+          ...(config.module.rules ?? []),
+          // Allow importing yml/yaml files for graphql-mesh
+          { test: /\.ya?ml$/, use: 'js-yaml-loader' },
+          // @lingui .po file support
+          { test: /\.po/, use: '@lingui/loader' },
+        ],
+        exprContextCritical: false,
+      }
 
       if (!config.plugins) config.plugins = []
 
@@ -146,9 +157,6 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
           )
         }
       }
-
-      // @lingui .po file support
-      config.module?.rules?.push({ test: /\.po/, use: '@lingui/loader' })
 
       config.snapshot = {
         ...(config.snapshot ?? {}),
