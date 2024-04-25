@@ -1,35 +1,16 @@
 import { Box, Popper, useTheme } from '@mui/material'
-import { Dispatch, SetStateAction } from 'react'
 import { BreadcrumbsList } from './BreadcrumbsList'
 import type { BreadcrumbsType } from './types'
 
 export type BreadcrumbsPopperType = BreadcrumbsType & {
   anchorElement: HTMLButtonElement | null
-  setAnchorElement: Dispatch<SetStateAction<HTMLButtonElement | null>>
   showButtonMobile: boolean
+  onClose: () => void
 }
 
 export function BreadcrumbsPopper(props: BreadcrumbsPopperType) {
-  const {
-    breadcrumbs,
-    breadcrumbsAmount,
-    name,
-    anchorElement,
-    setAnchorElement,
-    showButtonMobile,
-  } = props
-
+  const { breadcrumbs, breadcrumbsAmount, name, anchorElement, showButtonMobile, onClose } = props
   const theme = useTheme()
-
-  const handleClickAway = () => {
-    setAnchorElement(null)
-  }
-
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === 'Escape') {
-      setAnchorElement(null)
-    }
-  }
 
   return (
     <Popper
@@ -50,7 +31,10 @@ export function BreadcrumbsPopper(props: BreadcrumbsPopperType) {
           xs: showButtonMobile ? 'block' : 'none',
           md: breadcrumbsAmount && breadcrumbs.length >= breadcrumbsAmount ? 'block' : 'none',
         },
-        maxWidth: `calc(100% - ${theme.page.horizontal} * 2)`,
+        maxWidth: {
+          md: `calc(100vw - ${theme.spacings.xxl} * 2)`,
+          xs: `calc(100vw - ${theme.page.horizontal} * 2)`,
+        },
         zIndex: 100,
       }}
     >
@@ -59,8 +43,7 @@ export function BreadcrumbsPopper(props: BreadcrumbsPopperType) {
           autoFocus={Boolean(anchorElement)}
           breadcrumbs={breadcrumbs}
           name={name}
-          handleClickAway={handleClickAway}
-          handleKeyDown={handleKeyDown}
+          onClose={onClose}
         />
       </Box>
     </Popper>
