@@ -66,8 +66,8 @@ export type Interceptor = ResolveDependencyReturn & {
 
 export type MaterializedPlugin = Interceptor & { template: string }
 
-export const SOURCE_START = '/** ❗️ Original (modified) source starts here **/'
-export const SOURCE_END = '/** ❗️ Original (modified) source ends here **/'
+export const SOURCE_START = '/** Original source starts here (do not modify!): **/'
+export const SOURCE_END = '/** Original source ends here (do not modify!) **/'
 
 const originalSuffix = 'Original'
 const sourceSuffix = 'Source'
@@ -154,6 +154,11 @@ export async function generateInterceptor(
 
       let carry = originalName(base)
       const carryProps: string[] = []
+      const pluginSee: string[] = []
+
+      pluginSee.push(
+        `@see {@link file://${interceptor.sourcePathRelative}} for original source file`,
+      )
 
       const pluginStr = plugins
         .reverse()
@@ -178,6 +183,10 @@ export async function generateInterceptor(
             carryProps.push(interceptorPropsName(name(p)))
 
             result = `type ${interceptorPropsName(name(p))} = React.ComponentProps<typeof ${sourceName(name(p))}>`
+
+            pluginSee.push(
+              `@see {${sourceName(name(p))}} for replacement of the original source (original source not used)`,
+            )
           }
 
           if (isReactPluginConfig(p)) {
@@ -196,6 +205,8 @@ export async function generateInterceptor(
                 }
                 return <${sourceName(name(p))} {...props} Prev={${carry} as React.FC} />
               }`
+
+            pluginSee.push(`@see {${sourceName(name(p))}} for source of applied plugin`)
           }
 
           if (isMethodPluginConfig(p)) {
@@ -203,6 +214,7 @@ export async function generateInterceptor(
                 ${config.pluginStatus ? `logOnce(\`🔌 Calling ${base} with plugin(s): ${wrapChain} wrapping ${base}()\`)` : ''}
                 return ${sourceName(name(p))}(${carry}, ...args)
               }`
+            pluginSee.push(`@see {${sourceName(name(p))}} for source of applied plugin`)
           }
 
           carry = p.type === 'replace' ? sourceName(name(p)) : interceptorName(name(p))
@@ -216,8 +228,18 @@ export async function generateInterceptor(
         throw new Error(`Cannot mix React and Method plugins for ${base} in ${dependency}.`)
       }
 
+      const seeString = `
+      /**
+       * Interceptor is the generated interceptor for the original.
+       *
+       * This file is not meant to be modified directly and is auto-generated if the plugins or the original source changes.
+       * 
+       ${pluginSee.map((s) => `* ${s}`).join('\n')}
+       */`
+
       if (process.env.NODE_ENV === 'development' && isComponent) {
         return `${pluginStr}
+          ${seeString}
           export const ${base}: typeof ${carry} = (props) => {
             return <${carry} {...props} data-plugin />
           }`
@@ -225,6 +247,7 @@ export async function generateInterceptor(
 
       return `
         ${pluginStr}
+        ${seeString}
         export const ${base} = ${carry}
       `
     })
@@ -253,6 +276,7 @@ export async function generateInterceptor(
 
     ${pluginImports}
 
+    /** @see {@link file://${interceptor.sourcePathRelative}} for source of original */
     ${SOURCE_START}
     ${printSync(ast).code}
     ${SOURCE_END}

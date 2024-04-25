@@ -14,6 +14,7 @@ const resolveDependency = (cwd = process.cwd()) => {
             root: '.',
             source: '',
             sourcePath: '',
+            sourcePathRelative: '',
             dependency,
             fromRoot: dependency,
             fromModule: dependency,
@@ -45,6 +46,9 @@ const resolveDependency = (cwd = process.cwd()) => {
                 let fromModule = !relative
                     ? '.'
                     : `./${relative.split('/')[relative.split('/').length - 1]}`;
+                const sourcePathRelative = !sourcePath
+                    ? '.'
+                    : `./${sourcePath.split('/')[sourcePath.split('/').length - 1]}`;
                 if (dependency.startsWith('./'))
                     fromModule = `.${relative}`;
                 dependencyPaths = {
@@ -55,6 +59,7 @@ const resolveDependency = (cwd = process.cwd()) => {
                     fromModule,
                     source,
                     sourcePath,
+                    sourcePathRelative,
                 };
             }
         });

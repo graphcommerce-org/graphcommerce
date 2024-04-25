@@ -8,8 +8,10 @@ import { resolveDependency } from '../../src/utils/resolveDependency'
 
 const projectRoot = `${process.cwd()}/examples/magento-graphcms`
 
+const startLocation = '/** @see {@link file://'
+
 const expectImport = (value: string | undefined): jest.JestMatchers<string> =>
-  expect(value?.slice(value.indexOf(`import`) - 1, value.indexOf(SOURCE_START) - 1).trim())
+  expect(value?.slice(value.indexOf(`import`) - 1, value.indexOf(startLocation) - 1).trim())
 
 const expectInterceptor = (value: string | undefined): jest.JestMatchers<string> => {
   const val = value?.slice(value.indexOf(SOURCE_END) + SOURCE_END.length).trim()
@@ -99,6 +101,16 @@ it('it generates an interceptor', async () => {
         />
       )
     }
+
+    /**
+     * Interceptor is the generated interceptor for the original.
+     *
+     * This file is not meant to be modified directly and is auto-generated if the plugins or the original source changes.
+     *
+     * @see {@link file://./PaymentMethodContext.tsx} for original source file
+     * @see {PluginAddBraintreeMethodsSource} for source of applied plugin
+     * @see {PluginAddMollieMethodsSource} for source of applied plugin
+     */
     export const PaymentMethodContextProvider = PluginAddMollieMethodsInterceptor"
   `)
 })
@@ -191,6 +203,16 @@ it('it can apply multiple plugins to a single export', async () => {
         <PluginAddMollieMethodsSource {...props} Prev={PluginAddAdyenMethodsInterceptor as React.FC} />
       )
     }
+
+    /**
+     * Interceptor is the generated interceptor for the original.
+     *
+     * This file is not meant to be modified directly and is auto-generated if the plugins or the original source changes.
+     *
+     * @see {@link file://./PaymentMethodContext.tsx} for original source file
+     * @see {PluginAddAdyenMethodsSource} for source of applied plugin
+     * @see {PluginAddMollieMethodsSource} for source of applied plugin
+     */
     export const PaymentMethodContextProvider = PluginAddMollieMethodsInterceptor"
   `)
 })
@@ -235,6 +257,15 @@ it('it handles on duplicates gracefully', async () => {
         />
       )
     }
+
+    /**
+     * Interceptor is the generated interceptor for the original.
+     *
+     * This file is not meant to be modified directly and is auto-generated if the plugins or the original source changes.
+     *
+     * @see {@link file://./PaymentMethodContext.tsx} for original source file
+     * @see {PluginAddBraintreeMethodsSource} for source of applied plugin
+     */
     export const PaymentMethodContextProvider = PluginAddBraintreeMethodsInterceptor"
   `)
 })
@@ -440,6 +471,16 @@ it('adds debug logging to interceptors for components', async () => {
       )
       return pluginmagentoInitMemoryCacheSource(pluginhygraphInitMemoryCacheInterceptor, ...args)
     }
+
+    /**
+     * Interceptor is the generated interceptor for the original.
+     *
+     * This file is not meant to be modified directly and is auto-generated if the plugins or the original source changes.
+     *
+     * @see {@link file://./config.ts} for original source file
+     * @see {pluginhygraphInitMemoryCacheSource} for source of applied plugin
+     * @see {pluginmagentoInitMemoryCacheSource} for source of applied plugin
+     */
     export const graphqlConfig = pluginmagentoInitMemoryCacheInterceptor"
   `)
 })
@@ -674,6 +715,16 @@ export const Plugin = ConfigurableProductPageName
         />
       )
     }
+
+    /**
+     * Interceptor is the generated interceptor for the original.
+     *
+     * This file is not meant to be modified directly and is auto-generated if the plugins or the original source changes.
+     *
+     * @see {@link file://./ProductPageName.tsx} for original source file
+     * @see {ProductPageNameMyPluginSource} for replacement of the original source (original source not used)
+     * @see {PluginConfigurableProductPageNameSource} for source of applied plugin
+     */
     export const ProductPageName = PluginConfigurableProductPageNameInterceptor"
   `)
 })
