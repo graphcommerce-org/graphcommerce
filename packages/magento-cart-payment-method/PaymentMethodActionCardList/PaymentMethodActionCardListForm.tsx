@@ -17,7 +17,7 @@ import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
 import { useEffect } from 'react'
 import { PaymentOptionsProps } from '../Api/PaymentMethod'
-import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
+import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 import { useCartLock } from '../hooks'
 
 function PaymentMethodActionCard(

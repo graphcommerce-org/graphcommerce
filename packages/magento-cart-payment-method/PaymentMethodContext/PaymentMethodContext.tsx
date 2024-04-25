@@ -1,8 +1,9 @@
 import { useApolloClient } from '@graphcommerce/graphql'
 import { useCartQuery, useClearCurrentCartId } from '@graphcommerce/magento-cart'
+import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { useEventCallback } from '@mui/material'
 import { useRouter } from 'next/router'
-import React, { useContext, useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import {
   ExpandPaymentMethodsContext,
   PaymentMethod,
@@ -11,20 +12,7 @@ import {
 } from '../Api/PaymentMethod'
 import { PaymentMethodContextFragment } from '../Api/PaymentMethodContext.gql'
 import { GetPaymentMethodContextDocument } from './GetPaymentMethodContext.gql'
-import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
-
-type PaymentMethodContextProps = {
-  methods: PaymentMethod[]
-  selectedMethod?: PaymentMethod
-  setSelectedMethod: (method: PaymentMethod | undefined) => void
-  modules: PaymentMethodModules
-  selectedModule?: PaymentModule
-  setSelectedModule: (module: PaymentModule | undefined) => void
-  onSuccess: (orderNumber: string) => Promise<void>
-}
-
-const paymentMethodContext = React.createContext<PaymentMethodContextProps | undefined>(undefined)
-paymentMethodContext.displayName = 'PaymentMethodContext'
+import { PaymentMethodContextType, paymentMethodContext } from './paymentMethodContextType'
 
 export type PaymentMethodContextProviderProps = {
   modules?: PaymentMethodModules
@@ -55,7 +43,7 @@ export function PaymentMethodContextProvider(props: PaymentMethodContextProvider
     [client, context?.data?.cart],
   )
 
-  const onSuccessCb: NonNullable<PaymentMethodContextProps['onSuccess']> = useEventCallback(
+  const onSuccessCb: NonNullable<PaymentMethodContextType['onSuccess']> = useEventCallback(
     async (orderNumber) => {
       await onSuccess?.(orderNumber, context.data?.cart)
       await push({
@@ -116,17 +104,4 @@ export function PaymentMethodContextProvider(props: PaymentMethodContextProvider
       {children}
     </paymentMethodContext.Provider>
   )
-}
-
-export function usePaymentMethodContext(optional: true): PaymentMethodContextProps | undefined
-export function usePaymentMethodContext(optional?: false): PaymentMethodContextProps
-export function usePaymentMethodContext(optional = false) {
-  const context = useContext(paymentMethodContext)
-  if (!optional && typeof context === 'undefined') {
-    throw Error(
-      'usePaymentMethodContext must be used within a PaymentMethodContextProvider or provide the optional=true argument',
-    )
-  }
-
-  return useContext(paymentMethodContext)
 }
