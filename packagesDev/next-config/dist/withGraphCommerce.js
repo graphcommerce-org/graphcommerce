@@ -101,8 +101,8 @@ function withGraphCommerce(nextConfig, cwd) {
             // Make import.meta.graphCommerce available for usage.
             config.plugins.push(new webpack_1.DefinePlugin(importMetaPaths));
             // To properly properly treeshake @apollo/client we need to define the __DEV__ property
+            config.plugins.push(new webpack_1.DefinePlugin({ 'globalThis.__DEV__': options.dev }));
             if (!options.isServer) {
-                config.plugins.push(new webpack_1.DefinePlugin({ __DEV__: options.dev }));
                 if (graphcommerceConfig.debug?.webpackCircularDependencyPlugin) {
                     config.plugins.push(new circular_dependency_plugin_1.default({
                         exclude: /readable-stream|duplexer2|node_modules\/next/,
