@@ -34,7 +34,7 @@ function ProductPageConfigurable(props: Props) {
 
   return (
     <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
-      <ProductPageMeta product={product} />
+      {/* <ProductPageMeta product={product} /> */}
 
       <LayoutOverlayHeader
         switchPoint={0}
