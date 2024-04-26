@@ -22,15 +22,20 @@ const BreadcrumbsPopper = dynamic(
 )
 
 export function Breadcrumbs(props: BreadcrumbsType) {
-  const { breadcrumbs, name, baseUrl, sx, breadcrumbsAmount = 4 } = props
+  const {
+    breadcrumbs,
+    name,
+    baseUrl,
+    sx,
+    breadcrumbsAmountDesktop = 4,
+    breadcrumbsAmountMobile = 3,
+  } = props
   const [anchorElement, setAnchorElement] = useState<HTMLButtonElement | null>(null)
   const theme = useTheme()
 
-  const breadcrumbsAmountMobile = breadcrumbsAmount - 1
-  const isDefault = breadcrumbsAmount === 0
-
+  const isDefault = breadcrumbsAmountDesktop === 0
   const showButtonMobile = breadcrumbs.length >= breadcrumbsAmountMobile && !isDefault
-  const showButtonDesktop = breadcrumbs.length >= breadcrumbsAmount && !isDefault
+  const showButtonDesktop = breadcrumbs.length >= breadcrumbsAmountDesktop && !isDefault
 
   const handleClick = useEventCallback((event: MouseEvent<HTMLButtonElement>) => {
     setAnchorElement((el) => (el !== event.currentTarget ? event.currentTarget : null))
@@ -78,21 +83,19 @@ export function Breadcrumbs(props: BreadcrumbsType) {
               },
             },
 
-            // Demo of 4. Since breadcrumbsAmountMobile is 4
             [theme.breakpoints.up('md')]: showButtonDesktop && {
               '& .MuiBreadcrumbs-li': {
-                [`&:not(:nth-last-of-type(-n+${breadcrumbsAmount + 1}))`]: {
+                [`&:not(:nth-last-of-type(-n+${breadcrumbsAmountDesktop + 1}))`]: {
                   display: 'none',
                 },
               },
               '& .MuiBreadcrumbs-separator': {
-                [`&:not(:nth-last-of-type(-n+${breadcrumbsAmount}))`]: {
+                [`&:not(:nth-last-of-type(-n+${breadcrumbsAmountDesktop}))`]: {
                   display: 'none',
                 },
               },
             },
 
-            // Demo of 3. Since breadcrumbsAmountMobile is 3
             [theme.breakpoints.down('md')]: showButtonMobile && {
               '& .MuiBreadcrumbs-li': {
                 [`&:not(:nth-last-of-type(-n+${breadcrumbsAmountMobile}))`]: {
@@ -136,7 +139,7 @@ export function Breadcrumbs(props: BreadcrumbsType) {
               breadcrumbs={breadcrumbs}
               anchorElement={anchorElement}
               onClose={handleClose}
-              showDesktopAmount={breadcrumbsAmount}
+              showDesktopAmount={breadcrumbsAmountDesktop}
               showMobileAmount={breadcrumbsAmountMobile}
             />
           </Box>
