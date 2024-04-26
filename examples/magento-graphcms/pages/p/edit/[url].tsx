@@ -49,7 +49,7 @@ function ProductPageConfigurable(props: Props) {
         </LayoutTitle>
       </LayoutOverlayHeader>
 
-      <ProductPageGallery
+      {/* <ProductPageGallery
         product={product}
         disableZoom
         sx={(theme) => ({
@@ -72,20 +72,10 @@ function ProductPageConfigurable(props: Props) {
             p: theme.spacings.md,
             px: theme.page.horizontal,
           },
-          // '& .SidebarGallery-root': {
-          //   [theme.breakpoints.up('md')]: {
-          //     gridTemplate: `"left" "right"`,
-          //   },
-          // },
         })}
-      >
-        {/* <div>
-          <Typography variant='h3' component='div' gutterBottom>
-            <ProductPageName product={product} />
-          </Typography>
-        </div> */}
-        <AddProductsToCartView product={product} />
-      </ProductPageGallery>
+      > */}
+      <AddProductsToCartView product={product} />
+      {/* </ProductPageGallery> */}
     </AddProductsToCartForm>
   )
 }
