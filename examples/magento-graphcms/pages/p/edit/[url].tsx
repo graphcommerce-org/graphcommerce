@@ -49,7 +49,7 @@ function ProductPageConfigurable(props: Props) {
         </LayoutTitle>
       </LayoutOverlayHeader>
 
-      {/* <ProductPageGallery
+      <ProductPageGallery
         product={product}
         disableZoom
         sx={(theme) => ({
@@ -73,9 +73,9 @@ function ProductPageConfigurable(props: Props) {
             px: theme.page.horizontal,
           },
         })}
-      > */}
-      <AddProductsToCartView product={product} />
-      {/* </ProductPageGallery> */}
+      >
+        <AddProductsToCartView product={product} />
+      </ProductPageGallery>
     </AddProductsToCartForm>
   )
 }
