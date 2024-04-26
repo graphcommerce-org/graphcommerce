@@ -1,17 +1,18 @@
 import { Trans } from '@lingui/react'
-import { Box, Link, Typography, alpha, useTheme } from '@mui/material'
+import { Box, Link, alpha, useTheme } from '@mui/material'
 import { useEffect, useRef, KeyboardEvent } from 'react'
 import type { BreadcrumbsType } from './types'
 
 type PopperBreadcrumbsListProps = {
   autoFocus: boolean
   breadcrumbs: BreadcrumbsType['breadcrumbs']
-  name?: BreadcrumbsType['name']
+  showDesktopAmount?: number
+  showMobileAmount?: number
   onClose: () => void
 }
 
 export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
-  const { breadcrumbs, autoFocus, name, onClose } = props
+  const { autoFocus, breadcrumbs, showDesktopAmount = 4, showMobileAmount = 3, onClose } = props
   const listRef = useRef<HTMLDivElement | null>(null)
   const theme = useTheme()
 
@@ -40,6 +41,20 @@ export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
         flexDirection: 'column',
         overflow: 'hidden auto',
         py: `calc(${theme.spacings.xxs} / 2)`,
+        [theme.breakpoints.up('md')]: {
+          '& a.MuiLink-root': {
+            [`&:not(:nth-last-of-type(n+${showDesktopAmount}))`]: {
+              display: 'none',
+            },
+          },
+        },
+        [theme.breakpoints.down('md')]: {
+          '& a.MuiLink-root': {
+            [`&:not(:nth-last-of-type(n+${showMobileAmount}))`]: {
+              display: 'none',
+            },
+          },
+        },
       }}
     >
       <Link
@@ -60,7 +75,7 @@ export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
       >
         <Trans id='Home' />
       </Link>
-      {breadcrumbs.slice(0, breadcrumbs.length - 1).map((breadcrumb) => (
+      {breadcrumbs.slice(0, breadcrumbs.length).map((breadcrumb) => (
         <Link
           {...breadcrumb}
           key={breadcrumb.key}
@@ -79,17 +94,6 @@ export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
           }}
         />
       ))}
-      <Typography
-        color='text.primary'
-        variant='body1'
-        fontWeight='600'
-        noWrap
-        sx={{
-          padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
-        }}
-      >
-        {name}
-      </Typography>
     </Box>
   )
 }

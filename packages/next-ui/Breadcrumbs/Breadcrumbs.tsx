@@ -22,16 +22,15 @@ const BreadcrumbsPopper = dynamic(
 )
 
 export function Breadcrumbs(props: BreadcrumbsType) {
-  const { breadcrumbs, name, baseUrl, sx, breadcrumbsAmount = 2 } = props
+  const { breadcrumbs, name, baseUrl, sx, breadcrumbsAmount = 4 } = props
   const [anchorElement, setAnchorElement] = useState<HTMLButtonElement | null>(null)
   const theme = useTheme()
 
+  const breadcrumbsAmountMobile = breadcrumbsAmount - 1
   const isDefault = breadcrumbsAmount === 0
-  const showHome = isDefault || breadcrumbs.length < 2 || breadcrumbs.length - breadcrumbsAmount < 0
-  const showButtonMobile = breadcrumbs.length > 1
-  const showButtonDesktop = breadcrumbsAmount > 0 && breadcrumbs.length >= breadcrumbsAmount
-  const showFirst = isDefault || breadcrumbs.length - breadcrumbsAmount <= 0
-  const startIndex = showFirst ? 0 : breadcrumbs.length - breadcrumbsAmount
+
+  const showButtonMobile = breadcrumbs.length >= breadcrumbsAmountMobile && !isDefault
+  const showButtonDesktop = breadcrumbs.length >= breadcrumbsAmount && !isDefault
 
   const handleClick = useEventCallback((event: MouseEvent<HTMLButtonElement>) => {
     setAnchorElement((el) => (el !== event.currentTarget ? event.currentTarget : null))
@@ -79,16 +78,32 @@ export function Breadcrumbs(props: BreadcrumbsType) {
               },
             },
 
-            [theme.breakpoints.down('md')]: {
+            // Demo of 4. Since breadcrumbsAmountMobile is 4
+            [theme.breakpoints.up('md')]: showButtonDesktop && {
               '& .MuiBreadcrumbs-li': {
-                '&:not(:nth-last-of-type(-n+3))': {
+                [`&:not(:nth-last-of-type(-n+${breadcrumbsAmount + 1}))`]: {
                   display: 'none',
                 },
               },
               '& .MuiBreadcrumbs-separator': {
-                '&:not(:nth-last-of-type(-n+2))': {
+                [`&:not(:nth-last-of-type(-n+${breadcrumbsAmount}))`]: {
                   display: 'none',
                 },
+              },
+            },
+
+            // Demo of 3. Since breadcrumbsAmountMobile is 3
+            [theme.breakpoints.down('md')]: showButtonMobile && {
+              '& .MuiBreadcrumbs-li': {
+                [`&:not(:nth-last-of-type(-n+${breadcrumbsAmountMobile}))`]: {
+                  display: 'none',
+                },
+              },
+              '& .MuiBreadcrumbs-separator': {
+                [`&:not(:nth-last-of-type(-n+${breadcrumbsAmountMobile > 0 ? breadcrumbsAmountMobile - 1 : breadcrumbsAmountMobile}))`]:
+                  {
+                    display: 'none',
+                  },
               },
             },
           },
@@ -100,7 +115,7 @@ export function Breadcrumbs(props: BreadcrumbsType) {
           touchEvent='onTouchStart'
           onClickAway={handleClose}
         >
-          <Box sx={{ position: 'relative' }}>
+          <Box sx={{ position: 'relative', display: 'flex' }}>
             <IconButton
               aria-describedby={anchorElement ? 'breadcrumb-list' : undefined}
               color='default'
@@ -111,7 +126,7 @@ export function Breadcrumbs(props: BreadcrumbsType) {
                 boxShadow: 1,
                 color: 'text.primary',
                 px: 1.5,
-                py: 0.7,
+                py: { xs: 0.3, md: 0.5 },
                 typography: 'caption',
               }}
             >
@@ -119,20 +134,17 @@ export function Breadcrumbs(props: BreadcrumbsType) {
             </IconButton>
             <BreadcrumbsPopper
               breadcrumbs={breadcrumbs}
-              name={name}
-              breadcrumbsAmount={breadcrumbsAmount}
               anchorElement={anchorElement}
-              showButtonMobile={showButtonMobile}
               onClose={handleClose}
+              showDesktopAmount={breadcrumbsAmount}
+              showMobileAmount={breadcrumbsAmountMobile}
             />
           </Box>
         </ClickAwayListener>
-        {showHome && (
-          <Link href='/' underline='hover' color='text.primary' variant='body1'>
-            <Trans id='Home' />
-          </Link>
-        )}
-        {breadcrumbs.slice(startIndex, breadcrumbs.length - 1).map((breadcrumb) => (
+        <Link href='/' underline='hover' color='text.primary' variant='body1'>
+          <Trans id='Home' />
+        </Link>
+        {breadcrumbs.slice(0, breadcrumbs.length - 1).map((breadcrumb) => (
           <Link {...breadcrumb} underline='hover' color='text.primary' variant='body1' />
         ))}
         <Typography component='span' color='text.primary' variant='body1' fontWeight='600' noWrap>
