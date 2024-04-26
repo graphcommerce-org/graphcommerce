@@ -74,7 +74,7 @@ function ProductPage(props: Props) {
   return (
     <>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
-        <LayoutHeader floatingMd>
+        <LayoutHeader floatingMd hideBackButton={!!import.meta.graphCommerce.breadcrumbs}>
           <LayoutTitle size='small' component='span'>
             <ProductPageName product={product} />
           </LayoutTitle>

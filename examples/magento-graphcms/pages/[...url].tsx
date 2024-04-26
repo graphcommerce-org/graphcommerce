@@ -63,7 +63,10 @@ function CategoryPage(props: CategoryProps) {
         canonical={page?.url ? `/${page.url}` : undefined}
         {...category}
       />
-      <LayoutHeader floatingMd>
+      <LayoutHeader
+        floatingMd
+        hideBackButton={!!(import.meta.graphCommerce.breadcrumbs && isCategory)}
+      >
         <LayoutTitle size='small' component='span'>
           {category?.name ?? page.title}
         </LayoutTitle>
