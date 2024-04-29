@@ -1,13 +1,14 @@
-import type { RemoveItemFromCartFab as Original } from '@graphcommerce/magento-cart-items'
-import type { ReactPlugin } from '@graphcommerce/next-config'
+import type { RemoveItemFromCartFabProps } from '@graphcommerce/magento-cart-items'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { sendEvent } from '../api/sendEvent'
 import { cartItemToRemoveFromCart } from '../mapping/cartItemToRemoveFromCart/cartToRemoveFromCart'
 
-export const component = 'RemoveItemFromCartFab'
-export const exported =
-  '@graphcommerce/magento-cart-items/components/RemoveItemFromCart/RemoveItemFromCartFab'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/magento-cart-items',
+}
 
-export const GoogleDatalayerRemoveItemFromCartFab: ReactPlugin<typeof Original> = (props) => {
+export function RemoveItemFromCartFab(props: PluginProps<RemoveItemFromCartFabProps>) {
   const { Prev, fabProps } = props
 
   return (
@@ -26,5 +27,3 @@ export const GoogleDatalayerRemoveItemFromCartFab: ReactPlugin<typeof Original> 
     />
   )
 }
-
-export const Plugin = GoogleDatalayerRemoveItemFromCartFab
