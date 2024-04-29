@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.8
+
+### Patch Changes
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`a56a7c6`](https://github.com/graphcommerce-org/graphcommerce/commit/a56a7c67cf27dfb91bf763a873beeec562ab3156) - Solve an issue where the cart would be sometimes undefined, but Partial was too eleborate
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.7
 
 ## 8.1.0-canary.6

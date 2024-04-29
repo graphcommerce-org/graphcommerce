@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.8
+
+### Patch Changes
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for linguiLocale
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.7
 
 ## 8.1.0-canary.6

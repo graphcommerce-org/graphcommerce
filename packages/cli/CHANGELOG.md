@@ -1,5 +1,12 @@
 # @graphcommerce/cli
 
+## 8.1.0-canary.8
+
+### Patch Changes
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`cfc0f4e`](https://github.com/graphcommerce-org/graphcommerce/commit/cfc0f4e015f3b3a7348b882eb7440222b3e26a07) - Make sure the interceptors are generated before the typecheck is ran.
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.7
 
 ## 8.1.0-canary.6

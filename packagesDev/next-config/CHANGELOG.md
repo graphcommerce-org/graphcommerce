@@ -1,5 +1,30 @@
 # Change Log
 
+## 8.1.0-canary.8
+
+### Patch Changes
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`5153904`](https://github.com/graphcommerce-org/graphcommerce/commit/51539045cb3e14424141a65a1fd89216d3ee6fc2) - Added PRIVATE_ADDITIONAL_DEPENDENCIES to enable packages that we do not want to have in the examples directory but we do want to be able to demo.
+  ([@paales](https://github.com/paales))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`6831040`](https://github.com/graphcommerce-org/graphcommerce/commit/68310401448b7b42b53757db4a84de4a01e35aa2) - reduce bundlesize of @apollo/client
+  ([@paales](https://github.com/paales))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`81c6c81`](https://github.com/graphcommerce-org/graphcommerce/commit/81c6c81e1b4a31df3c400a3ee4311bdf2b46a2b5) - Solved an issue where the plugins would be generated with the wrong path
+  ([@paales](https://github.com/paales))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`6831040`](https://github.com/graphcommerce-org/graphcommerce/commit/68310401448b7b42b53757db4a84de4a01e35aa2) - Suppress warning where a dependency is an expression, Added uglify-es and long as the dependencies couldn’t be found
+  ([@paales](https://github.com/paales))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`cfc0f4e`](https://github.com/graphcommerce-org/graphcommerce/commit/cfc0f4e015f3b3a7348b882eb7440222b3e26a07) - Make sure the interceptors are generated before the typecheck is ran.
+  ([@paales](https://github.com/paales))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for linguiLocale
+  ([@paales](https://github.com/paales))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`3f9d8f5`](https://github.com/graphcommerce-org/graphcommerce/commit/3f9d8f5ee9437fa90589ebd8ba8d1e790006b6ae) - Added better interceptor comments and link to original files
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.7
 
 ## 8.1.0-canary.6
