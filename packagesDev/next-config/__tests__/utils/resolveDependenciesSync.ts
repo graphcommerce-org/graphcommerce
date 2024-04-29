@@ -61,6 +61,10 @@ it('resolves dependences', () => {
       "@graphcommerce/eslint-config-pwa" => "packagesDev/eslint-config",
       "@graphcommerce/typescript-config-pwa" => "packagesDev/typescript-config",
       "@graphcommerce/prettier-config-pwa" => "packagesDev/prettier-config",
+      "@graphcommerce/magento-cart-pickup" => "packages/magento-cart-pickup",
+      "@graphcommerce/magento-payment-braintree" => "packages/magento-payment-braintree",
+      "@graphcommerce/mollie-magento-payment" => "packages/mollie-magento-payment",
+      "@graphcommerce/magento-payment-paypal" => "packages/magento-payment-paypal",
     }
   `)
 })

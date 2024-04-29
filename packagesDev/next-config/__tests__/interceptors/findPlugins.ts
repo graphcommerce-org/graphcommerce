@@ -33,8 +33,8 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "ifConfig": "googleAnalyticsId",
-        "sourceExport": "Plugin",
-        "sourceModule": "@graphcommerce/googleanalytics/plugins/GaFramerNextPages",
+        "sourceExport": "FramerNextPages",
+        "sourceModule": "@graphcommerce/googleanalytics/plugins/GoogleAnalyticsTag",
         "targetExport": "FramerNextPages",
         "targetModule": "@graphcommerce/framer-next-pages",
         "type": "component",
@@ -498,8 +498,8 @@ it('finds plugins', () => {
       {
         "enabled": false,
         "ifConfig": "googleTagmanagerId",
-        "sourceExport": "Plugin",
-        "sourceModule": "@graphcommerce/googletagmanager/plugins/GtagFramerNextPages",
+        "sourceExport": "FramerNextPages",
+        "sourceModule": "@graphcommerce/googletagmanager/plugins/GoogleTagmanagerTag",
         "targetExport": "FramerNextPages",
         "targetModule": "@graphcommerce/framer-next-pages",
         "type": "component",
@@ -507,7 +507,7 @@ it('finds plugins', () => {
       {
         "enabled": false,
         "ifConfig": "dataLayer.coreWebVitals",
-        "sourceExport": "Plugin",
+        "sourceExport": "FramerNextPages",
         "sourceModule": "@graphcommerce/google-datalayer/plugins/GoogleDatalayerWebVitals",
         "targetExport": "FramerNextPages",
         "targetModule": "@graphcommerce/framer-next-pages",

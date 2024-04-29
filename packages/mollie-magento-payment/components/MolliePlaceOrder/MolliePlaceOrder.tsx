@@ -34,12 +34,15 @@ export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
       // When redirecting to the payment gateway
       if (mollie_redirect_url && mollie_payment_token) {
         await lock({ mollie_payment_token, method: code, order_number })
-        await new Promise((resolve) => {
-          setTimeout(resolve, 1000)
-        })
+
         await push(mollie_redirect_url)
       } else {
-        throw Error('Incomplete response')
+        console.error(`incomplete mollie response, cannot redirect`, data.placeOrder)
+
+        form.setError('root', {
+          message:
+            'An error occurred while processing your payment. Please contact the store owner',
+        })
       }
     },
   })

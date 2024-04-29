@@ -1,19 +1,22 @@
 import type { PagesProps } from '@graphcommerce/framer-next-pages'
-import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useEventCallback } from '@mui/material'
 import { useEffect } from 'react'
 import { onCLS, onFCP, onFID, onINP, onLCP, onTTFB, Metric } from 'web-vitals/attribution'
 import { sendEvent } from '../api/sendEvent'
 
-export const component = 'FramerNextPages'
-export const exported = '@graphcommerce/framer-next-pages'
-export const ifConfig: IfConfig = 'dataLayer.coreWebVitals'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/framer-next-pages',
+  ifConfig: 'dataLayer.coreWebVitals',
+}
 
-/** When a product is added to the Cart, send a Google Analytics event.
+/**
+ * When a product is added to the Cart, send a Google Analytics event.
  *
  * Based on this information: https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#send-the-results-to-google-analytics
  */
-function GoogleDatalayerCoreWebVitals(props: PluginProps<PagesProps>) {
+export function FramerNextPages(props: PluginProps<PagesProps>) {
   const { Prev, ...rest } = props
 
   const sendCoreWebVitals = useEventCallback((m: Metric, debug_target?: string | undefined) => {
@@ -36,5 +39,3 @@ function GoogleDatalayerCoreWebVitals(props: PluginProps<PagesProps>) {
 
   return <Prev {...rest} />
 }
-
-export const Plugin = GoogleDatalayerCoreWebVitals
