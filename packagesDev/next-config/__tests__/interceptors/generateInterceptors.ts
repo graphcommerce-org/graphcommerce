@@ -75,12 +75,15 @@ it('it generates an interceptor', async () => {
       ?.template
   expectInterceptor(result).toMatchInlineSnapshot(`
     "type AddBraintreeMethodsProps = OmitPrev<React.ComponentProps<typeof AddBraintreeMethods>, 'Prev'>
+
     const AddBraintreeMethodsInterceptor = (props: AddBraintreeMethodsProps) => (
       <AddBraintreeMethods {...props} Prev={PaymentMethodContextProviderOriginal} />
     )
 
-    type AddMollieMethodsProps = OmitPrev<React.ComponentProps<typeof AddMollieMethods>, 'Prev'>
-    const AddMollieMethodsInterceptor = (props: AddBraintreeMethodsProps & AddMollieMethodsProps) => (
+    type AddMollieMethodsProps = AddBraintreeMethodsProps &
+      OmitPrev<React.ComponentProps<typeof AddMollieMethods>, 'Prev'>
+
+    const AddMollieMethodsInterceptor = (props: AddMollieMethodsProps) => (
       <AddMollieMethods {...props} Prev={AddBraintreeMethodsInterceptor} />
     )
 
@@ -162,12 +165,15 @@ it('it can apply multiple plugins to a single export', async () => {
 
   expectInterceptor(result).toMatchInlineSnapshot(`
     "type AddAdyenMethodsProps = OmitPrev<React.ComponentProps<typeof AddAdyenMethods>, 'Prev'>
+
     const AddAdyenMethodsInterceptor = (props: AddAdyenMethodsProps) => (
       <AddAdyenMethods {...props} Prev={PaymentMethodContextProviderOriginal} />
     )
 
-    type AddMollieMethodsProps = OmitPrev<React.ComponentProps<typeof AddMollieMethods>, 'Prev'>
-    const AddMollieMethodsInterceptor = (props: AddAdyenMethodsProps & AddMollieMethodsProps) => (
+    type AddMollieMethodsProps = AddAdyenMethodsProps &
+      OmitPrev<React.ComponentProps<typeof AddMollieMethods>, 'Prev'>
+
+    const AddMollieMethodsInterceptor = (props: AddMollieMethodsProps) => (
       <AddMollieMethods {...props} Prev={AddAdyenMethodsInterceptor} />
     )
 
@@ -213,6 +219,7 @@ it('it handles on duplicates gracefully', async () => {
       ?.template
   expectInterceptor(result).toMatchInlineSnapshot(`
     "type AddBraintreeMethodsProps = OmitPrev<React.ComponentProps<typeof AddBraintreeMethods>, 'Prev'>
+
     const AddBraintreeMethodsInterceptor = (props: AddBraintreeMethodsProps) => (
       <AddBraintreeMethods {...props} Prev={PaymentMethodContextProviderOriginal} />
     )
@@ -655,13 +662,12 @@ export const Plugin = ConfigurableProductPageName
   expectInterceptor(result).toMatchInlineSnapshot(`
     "type MyPluginProps = React.ComponentProps<typeof MyPlugin>
 
-    type ConfigurableProductPageNameProps = OmitPrev<
-      React.ComponentProps<typeof ConfigurableProductPageName>,
-      'Prev'
-    >
-    const ConfigurableProductPageNameInterceptor = (
-      props: MyPluginProps & ConfigurableProductPageNameProps,
-    ) => <ConfigurableProductPageName {...props} Prev={MyPlugin} />
+    type ConfigurableProductPageNameProps = MyPluginProps &
+      OmitPrev<React.ComponentProps<typeof ConfigurableProductPageName>, 'Prev'>
+
+    const ConfigurableProductPageNameInterceptor = (props: ConfigurableProductPageNameProps) => (
+      <ConfigurableProductPageName {...props} Prev={MyPlugin} />
+    )
 
     /**
      * Here you see the 'interceptor' that is applying all the configured plugins.
