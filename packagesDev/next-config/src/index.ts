@@ -9,6 +9,7 @@ export * from './withGraphCommerce'
 export * from './generated/config'
 export * from './config'
 export * from './runtimeCachingOptimizations'
+export * from './interceptors/commands/codegenInterceptors'
 
 export type PluginProps<P extends Record<string, unknown> = Record<string, unknown>> = P & {
   Prev: React.FC<P>

@@ -1,7 +1,5 @@
-import { normalizeLocale } from '@graphcommerce/lingui-next'
 import { useMemo } from 'react'
-import { useStorefrontConfig } from './useStorefrontConfig'
-import { useLocale } from '@graphcommerce/next-ui'
+import { useLocale } from './useLocale'
 
 export type DateTimeFormatProps = Intl.DateTimeFormatOptions
 

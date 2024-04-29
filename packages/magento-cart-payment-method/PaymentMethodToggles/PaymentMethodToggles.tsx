@@ -19,7 +19,7 @@ import {
 import { i18n } from '@lingui/core'
 import { Box, FormControl, FormHelperText, SxProps, Theme } from '@mui/material'
 import { useEffect } from 'react'
-import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
+import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 import { useCartLock } from '../hooks/useCartLock'
 
 export type PaymentMethodTogglesProps = Pick<UseFormComposeOptions, 'step'> & {

@@ -5,14 +5,15 @@ import { Box, Button, ButtonProps, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 
-export type CartStartCheckoutProps = Partial<CartStartCheckoutFragment> & {
+export type CartStartCheckoutProps = {
   children?: React.ReactNode
   sx?: SxProps<Theme>
   buttonProps?: ButtonProps<'button'>
   disabled?: boolean
+  cart?: CartStartCheckoutFragment | null | undefined
   onStart?: (
     e: React.MouseEvent<HTMLButtonElement>,
-    cart: Partial<CartStartCheckoutFragment>,
+    cart: CartStartCheckoutFragment | null | undefined,
   ) => void
 }
 
@@ -32,11 +33,11 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
     buttonProps: { onClick, ...buttonProps } = {},
     disabled,
     sx = [],
-    ...cart
+    cart,
   } = props
 
-  const hasTotals = (cart.prices?.grand_total?.value ?? 0) > 0
-  const hasErrors = cart.items?.some((item) => (item?.errors?.length ?? 0) > 0)
+  const hasTotals = (cart?.prices?.grand_total?.value ?? 0) > 0
+  const hasErrors = cart?.items?.some((item) => (item?.errors?.length ?? 0) > 0)
 
   return (
     <Box
@@ -74,7 +75,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
         </Box>{' '}
         {hasTotals && (
           <span className={classes.checkoutMoney}>
-            <Money {...cart.prices?.grand_total} />
+            <Money {...cart?.prices?.grand_total} />
           </span>
         )}
       </Button>

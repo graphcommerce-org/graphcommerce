@@ -1,5 +1,8 @@
 import { loadConfig } from '../loadConfig'
 import { exportConfigToEnv } from '../utils/exportConfigToEnv'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export async function exportConfig() {

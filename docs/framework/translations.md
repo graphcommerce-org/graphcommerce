@@ -158,10 +158,8 @@ msgstr "Cart ({0})"
  */
 const config = {
   i18n: [
-    {
-      locale: 'sv-fi',
-      magentoStoreCode: 'sv_FI',
-    },
+    { locale: 'sv-fi', magentoStoreCode: 'sv_FI', linguiLocale: 'sv' },
+    { locale: 'fr-be', magentoStoreCode: 'sv_FI', linguiLocale: 'fr-be' },
   ],
 }
 ```
@@ -176,6 +174,7 @@ const config = {
 ├─────────────┼─────────────┼─────────┤
 │ en (source) │     208     │    -    │
 │ sv          │     208     │   208   │
+│ fr-be       │     208     │   208   │
 └─────────────┴─────────────┴─────────┘
 ```
 

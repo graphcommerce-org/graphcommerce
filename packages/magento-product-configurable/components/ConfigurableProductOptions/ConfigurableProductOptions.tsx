@@ -1,14 +1,7 @@
-import { normalizeLocale } from '@graphcommerce/lingui-next'
 import { AddToCartItemSelector, useFormAddProductsToCart } from '@graphcommerce/magento-product'
-import {
-  filterNonNullableKeys,
-  ActionCardListProps,
-  useStorefrontConfig,
-  useLocale,
-} from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, ActionCardListProps, useLocale } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Box, SxProps, Theme } from '@mui/material'
-import { useRouter } from 'next/router'
 import React, { useEffect, useMemo } from 'react'
 import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
 import { useConfigurableOptionsSelection } from '../../hooks'

@@ -17,10 +17,14 @@ export function findPlugins(config: GraphCommerceConfig, cwd: string = process.c
 
   const errors: string[] = []
   const plugins: PluginConfig[] = []
-  dependencies.forEach((dependency, path) => {
-    const files = globSync(`${dependency}/plugins/**/*.{ts,tsx}`, { dotRelative: true })
+  dependencies.forEach((filePath, packageName) => {
+    const files = globSync(`${filePath}/plugins/**/*.{ts,tsx}`)
     files.forEach((file) => {
-      const sourceModule = file.replace(dependency, path).replace('.tsx', '').replace('.ts', '')
+      let sourceModule = file.replace('.tsx', '').replace('.ts', '')
+      if (file.startsWith(filePath))
+        sourceModule = `${packageName}/${sourceModule.slice(filePath.length + 1)}`
+
+      if (packageName === '.' && !sourceModule.startsWith('.')) sourceModule = `./${sourceModule}`
 
       try {
         const ast = parseFileSync(file, { syntax: 'typescript', tsx: true })

@@ -121,8 +121,9 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
       config.plugins.push(new DefinePlugin(importMetaPaths))
 
       // To properly properly treeshake @apollo/client we need to define the __DEV__ property
+      config.plugins.push(new DefinePlugin({ 'globalThis.__DEV__': options.dev }))
+
       if (!options.isServer) {
-        config.plugins.push(new DefinePlugin({ __DEV__: options.dev }))
         if (graphcommerceConfig.debug?.webpackCircularDependencyPlugin) {
           config.plugins.push(
             new CircularDependencyPlugin({
