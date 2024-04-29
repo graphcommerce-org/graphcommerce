@@ -34,7 +34,8 @@
     "packages:6": "yarn workspace @graphcommerce/changeset-changelog dev",
     "packages:7": "yarn workspace @graphcommerce/graphql-codegen-markdown-docs dev",
     "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'",
-    "jest-watch": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --watch"
+    "jest-watch": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --watch",
+    "test": "NODE_OPTIONS=\"--experimental-vm-modules\" jest"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
