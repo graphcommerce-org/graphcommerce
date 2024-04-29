@@ -51,7 +51,7 @@ const fileName = (plugin) => `${plugin.sourceModule}#${plugin.sourceExport}`;
 const originalName = (n) => `${n}${originalSuffix}`;
 const sourceName = (n) => `${n}`;
 const interceptorName = (n) => `${n}${interceptorSuffix}`;
-const interceptorPropsName = (n) => `${interceptorName(n)}Props`;
+const interceptorPropsName = (n) => `${n}Props`;
 function moveRelativeDown(plugins) {
     return [...plugins].sort((a, b) => {
         if (a.sourceModule.startsWith('.') && !b.sourceModule.startsWith('.'))
@@ -102,7 +102,7 @@ async function generateInterceptor(interceptor, config, oldInterceptorSource) {
         .map(([base, plugins]) => {
         const duplicateInterceptors = new Set();
         let carry = originalName(base);
-        const carryProps = [];
+        let carryProps = [];
         const pluginSee = [];
         pluginSee.push(`@see {@link file://${interceptor.sourcePathRelative}} for original source file`);
         const pluginStr = plugins
@@ -126,11 +126,11 @@ async function generateInterceptor(interceptor, config, oldInterceptorSource) {
                 pluginSee.push(`@see {${sourceName(name(p))}} for replacement of the original source (original source not used)`);
             }
             if (isReactPluginConfig(p)) {
-                carryProps.push(interceptorPropsName(name(p)));
                 const withBraces = config.pluginStatus || process.env.NODE_ENV === 'development';
                 result = `
-              type ${interceptorPropsName(name(p))} = OmitPrev<React.ComponentProps<typeof ${sourceName(name(p))}>, 'Prev'>
-              const ${interceptorName(name(p))} = (props: ${carryProps.join(' & ')}) => ${withBraces ? `{` : ''}
+              type ${interceptorPropsName(name(p))} = ${carryProps.join(' & ')} & OmitPrev<React.ComponentProps<typeof ${sourceName(name(p))}>, 'Prev'>
+              
+              const ${interceptorName(name(p))} = (props: ${interceptorPropsName(name(p))}) => ${withBraces ? `{` : '('}
                 ${config.pluginStatus ? `logOnce(\`🔌 Rendering ${base} with plugin(s): ${wrapChain} wrapping <${base}/>\`)` : ''}
 
                 ${process.env.NODE_ENV === 'development'
@@ -138,7 +138,8 @@ async function generateInterceptor(interceptor, config, oldInterceptorSource) {
                   logOnce('${fileName(p)} does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.')`
                     : ''}
                 ${withBraces ? `return` : ''} <${sourceName(name(p))} {...props} Prev={${carry}} />
-              ${withBraces ? `}` : ''}`;
+              ${withBraces ? `}` : ')'}`;
+                carryProps = [interceptorPropsName(name(p))];
                 pluginSee.push(`@see {${sourceName(name(p))}} for source of applied plugin`);
             }
             if (isMethodPluginConfig(p)) {

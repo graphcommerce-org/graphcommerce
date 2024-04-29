@@ -83,7 +83,7 @@ const fileName = (plugin: PluginConfig) => `${plugin.sourceModule}#${plugin.sour
 const originalName = (n: string) => `${n}${originalSuffix}`
 const sourceName = (n: string) => `${n}`
 const interceptorName = (n: string) => `${n}${interceptorSuffix}`
-const interceptorPropsName = (n: string) => `${interceptorName(n)}Props`
+const interceptorPropsName = (n: string) => `${n}Props`
 
 export function moveRelativeDown(plugins: PluginConfig[]) {
   return [...plugins].sort((a, b) => {
@@ -153,7 +153,7 @@ export async function generateInterceptor(
       const duplicateInterceptors = new Set()
 
       let carry = originalName(base)
-      const carryProps: string[] = []
+      let carryProps: string[] = []
       const pluginSee: string[] = []
 
       pluginSee.push(
@@ -190,13 +190,12 @@ export async function generateInterceptor(
           }
 
           if (isReactPluginConfig(p)) {
-            carryProps.push(interceptorPropsName(name(p)))
-
             const withBraces = config.pluginStatus || process.env.NODE_ENV === 'development'
 
             result = `
-              type ${interceptorPropsName(name(p))} = OmitPrev<React.ComponentProps<typeof ${sourceName(name(p))}>, 'Prev'>
-              const ${interceptorName(name(p))} = (props: ${carryProps.join(' & ')}) => ${withBraces ? `{` : ''}
+              type ${interceptorPropsName(name(p))} = ${carryProps.join(' & ')} & OmitPrev<React.ComponentProps<typeof ${sourceName(name(p))}>, 'Prev'>
+              
+              const ${interceptorName(name(p))} = (props: ${interceptorPropsName(name(p))}) => ${withBraces ? `{` : '('}
                 ${config.pluginStatus ? `logOnce(\`🔌 Rendering ${base} with plugin(s): ${wrapChain} wrapping <${base}/>\`)` : ''}
 
                 ${
@@ -206,8 +205,9 @@ export async function generateInterceptor(
                     : ''
                 }
                 ${withBraces ? `return` : ''} <${sourceName(name(p))} {...props} Prev={${carry}} />
-              ${withBraces ? `}` : ''}`
+              ${withBraces ? `}` : ')'}`
 
+            carryProps = [interceptorPropsName(name(p))]
             pluginSee.push(`@see {${sourceName(name(p))}} for source of applied plugin`)
           }
 

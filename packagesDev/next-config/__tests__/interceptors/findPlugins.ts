@@ -229,7 +229,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "GraphQLProvider",
         "sourceModule": "@graphcommerce/magento-cart/plugins/MagentoCartGraphqlProvider",
         "targetExport": "GraphQLProvider",
         "targetModule": "@graphcommerce/graphql",
@@ -237,7 +237,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "GraphQLProvider",
         "sourceModule": "@graphcommerce/magento-customer/plugins/MagentoCustomerGraphqlProvider",
         "targetExport": "GraphQLProvider",
         "targetModule": "@graphcommerce/graphql",
@@ -525,7 +525,7 @@ it('finds plugins', () => {
       {
         "enabled": false,
         "ifConfig": "compare",
-        "sourceExport": "Plugin",
+        "sourceExport": "GraphQLProvider",
         "sourceModule": "@graphcommerce/magento-compare/plugins/AddCompareTypePolicies",
         "targetExport": "GraphQLProvider",
         "targetModule": "@graphcommerce/graphql",
@@ -552,7 +552,7 @@ it('finds plugins', () => {
       {
         "enabled": false,
         "ifConfig": "debug.sessions",
-        "sourceExport": "Plugin",
+        "sourceExport": "FramerNextPages",
         "sourceModule": "@graphcommerce/magento-customer/plugins/SessionDebuggerPlugin",
         "targetExport": "FramerNextPages",
         "targetModule": "@graphcommerce/framer-next-pages",

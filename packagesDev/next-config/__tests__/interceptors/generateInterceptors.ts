@@ -74,21 +74,15 @@ it('it generates an interceptor', async () => {
     interceptors['packages/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext']
       ?.template
   expectInterceptor(result).toMatchInlineSnapshot(`
-    "type AddBraintreeMethodsInterceptorProps = OmitPrev<
-      React.ComponentProps<typeof AddBraintreeMethods>,
-      'Prev'
-    >
-    const AddBraintreeMethodsInterceptor = (props: AddBraintreeMethodsInterceptorProps) => (
+    "type AddBraintreeMethodsProps = OmitPrev<React.ComponentProps<typeof AddBraintreeMethods>, 'Prev'>
+    const AddBraintreeMethodsInterceptor = (props: AddBraintreeMethodsProps) => (
       <AddBraintreeMethods {...props} Prev={PaymentMethodContextProviderOriginal} />
     )
 
-    type AddMollieMethodsInterceptorProps = OmitPrev<
-      React.ComponentProps<typeof AddMollieMethods>,
-      'Prev'
-    >
-    const AddMollieMethodsInterceptor = (
-      props: AddBraintreeMethodsInterceptorProps & AddMollieMethodsInterceptorProps,
-    ) => <AddMollieMethods {...props} Prev={AddBraintreeMethodsInterceptor} />
+    type AddMollieMethodsProps = OmitPrev<React.ComponentProps<typeof AddMollieMethods>, 'Prev'>
+    const AddMollieMethodsInterceptor = (props: AddBraintreeMethodsProps & AddMollieMethodsProps) => (
+      <AddMollieMethods {...props} Prev={AddBraintreeMethodsInterceptor} />
+    )
 
     /**
      * Here you see the 'interceptor' that is applying all the configured plugins.
@@ -167,21 +161,15 @@ it('it can apply multiple plugins to a single export', async () => {
   expectOriginal(result).toContain('PaymentMethodContextProviderOriginal')
 
   expectInterceptor(result).toMatchInlineSnapshot(`
-    "type AddAdyenMethodsInterceptorProps = OmitPrev<
-      React.ComponentProps<typeof AddAdyenMethods>,
-      'Prev'
-    >
-    const AddAdyenMethodsInterceptor = (props: AddAdyenMethodsInterceptorProps) => (
+    "type AddAdyenMethodsProps = OmitPrev<React.ComponentProps<typeof AddAdyenMethods>, 'Prev'>
+    const AddAdyenMethodsInterceptor = (props: AddAdyenMethodsProps) => (
       <AddAdyenMethods {...props} Prev={PaymentMethodContextProviderOriginal} />
     )
 
-    type AddMollieMethodsInterceptorProps = OmitPrev<
-      React.ComponentProps<typeof AddMollieMethods>,
-      'Prev'
-    >
-    const AddMollieMethodsInterceptor = (
-      props: AddAdyenMethodsInterceptorProps & AddMollieMethodsInterceptorProps,
-    ) => <AddMollieMethods {...props} Prev={AddAdyenMethodsInterceptor} />
+    type AddMollieMethodsProps = OmitPrev<React.ComponentProps<typeof AddMollieMethods>, 'Prev'>
+    const AddMollieMethodsInterceptor = (props: AddAdyenMethodsProps & AddMollieMethodsProps) => (
+      <AddMollieMethods {...props} Prev={AddAdyenMethodsInterceptor} />
+    )
 
     /**
      * Here you see the 'interceptor' that is applying all the configured plugins.
@@ -224,11 +212,8 @@ it('it handles on duplicates gracefully', async () => {
     interceptors['packages/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext']
       ?.template
   expectInterceptor(result).toMatchInlineSnapshot(`
-    "type AddBraintreeMethodsInterceptorProps = OmitPrev<
-      React.ComponentProps<typeof AddBraintreeMethods>,
-      'Prev'
-    >
-    const AddBraintreeMethodsInterceptor = (props: AddBraintreeMethodsInterceptorProps) => (
+    "type AddBraintreeMethodsProps = OmitPrev<React.ComponentProps<typeof AddBraintreeMethods>, 'Prev'>
+    const AddBraintreeMethodsInterceptor = (props: AddBraintreeMethodsProps) => (
       <AddBraintreeMethods {...props} Prev={PaymentMethodContextProviderOriginal} />
     )
 
@@ -668,14 +653,14 @@ export const Plugin = ConfigurableProductPageName
   `)
 
   expectInterceptor(result).toMatchInlineSnapshot(`
-    "type MyPluginInterceptorProps = React.ComponentProps<typeof MyPlugin>
+    "type MyPluginProps = React.ComponentProps<typeof MyPlugin>
 
-    type ConfigurableProductPageNameInterceptorProps = OmitPrev<
+    type ConfigurableProductPageNameProps = OmitPrev<
       React.ComponentProps<typeof ConfigurableProductPageName>,
       'Prev'
     >
     const ConfigurableProductPageNameInterceptor = (
-      props: MyPluginInterceptorProps & ConfigurableProductPageNameInterceptorProps,
+      props: MyPluginProps & ConfigurableProductPageNameProps,
     ) => <ConfigurableProductPageName {...props} Prev={MyPlugin} />
 
     /**
