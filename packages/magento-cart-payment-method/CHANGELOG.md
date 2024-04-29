@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.8
+
+### Patch Changes
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`d345474`](https://github.com/graphcommerce-org/graphcommerce/commit/d345474fb190d158629cd5fd5e68a78724fa2fb6) - Due to a cyclic dependency the actual PaymentMethodPlaceOrder button would sometimes be undefined.
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.7
 
 ## 8.1.0-canary.6
