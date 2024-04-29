@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "concurrently -k -n codegen,next 'graphql-codegen -w' 'next dev'",
     "codegen": "graphcommerce codegen-config && graphcommerce codegen-interceptors && mesh build && graphql-codegen",
-    "build": "graphcommerce codegen-config && graphcommerce codegen-interceptors && mesh build && graphql-codegen && next build,
+    "build": "graphcommerce codegen-config && graphcommerce codegen-interceptors && mesh build && graphql-codegen && next build",
     "start": "next start",
     "tsc:lint": "tsc --noEmit -p .",
     "lingui": "cross-env NODE_ENV=development lingui extract --clean",
