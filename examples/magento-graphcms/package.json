@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "concurrently -k -n codegen,next 'graphql-codegen -w' 'next dev'",
     "codegen": "graphcommerce codegen-config && graphcommerce codegen-interceptors && mesh build && graphql-codegen",
-    "build": "graphcommerce codegen-config && graphcommerce codegen-interceptors && mesh build && graphql-codegen && next build && next-sitemap",
+    "build": "graphcommerce codegen-config && graphcommerce codegen-interceptors && mesh build && graphql-codegen && next build",
     "start": "next start",
     "tsc:lint": "tsc --noEmit -p .",
     "lingui": "cross-env NODE_ENV=development lingui extract --clean",
@@ -82,7 +82,6 @@
     "framer-motion": "10.18.0",
     "graphql": "^16.8.1",
     "next": "14.1.0",
-    "next-sitemap": "4.2.3",
     "patch-package": "8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

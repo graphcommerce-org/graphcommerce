@@ -123,7 +123,8 @@ function GraphCommerceStorefrontConfigSchema() {
         hygraphLocales: _zod.z.array(_zod.z.string().min(1)).nullish(),
         linguiLocale: _zod.z.string().nullish(),
         locale: _zod.z.string().min(1),
-        magentoStoreCode: _zod.z.string().min(1)
+        magentoStoreCode: _zod.z.string().min(1),
+        robotsAllow: _zod.z.boolean().nullish()
     });
 }
 function MagentoConfigurableVariantValuesSchema() {

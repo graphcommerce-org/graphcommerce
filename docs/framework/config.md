@@ -404,6 +404,11 @@ Add a gcms-locales header to make sure queries return in a certain language, can
 
 Custom locale used to load the .po files. Must be a valid locale, also used for Intl functions.
 
+#### robotsAllow: boolean
+
+Allow the site to be indexed by search engines.
+If false, the robots.txt file will be set to disallow all.
+
 ### MagentoConfigurableVariantValues
 
 Options to configure which values will be replaced when a variant is selected on the product page.

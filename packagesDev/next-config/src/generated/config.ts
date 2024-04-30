@@ -384,6 +384,11 @@ export type GraphCommerceStorefrontConfig = {
    * - b2b-us
    */
   magentoStoreCode: Scalars['String']['input'];
+  /**
+   * Allow the site to be indexed by search engines.
+   * If false, the robots.txt file will be set to disallow all.
+   */
+  robotsAllow?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Options to configure which values will be replaced when a variant is selected on the product page. */
@@ -508,7 +513,8 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
     hygraphLocales: z.array(z.string().min(1)).nullish(),
     linguiLocale: z.string().nullish(),
     locale: z.string().min(1),
-    magentoStoreCode: z.string().min(1)
+    magentoStoreCode: z.string().min(1),
+    robotsAllow: z.boolean().nullish()
   })
 }
 
