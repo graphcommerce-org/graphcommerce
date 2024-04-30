@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.10
+
+### Patch Changes
+
+- [#2251](https://github.com/graphcommerce-org/graphcommerce/pull/2251) [`bc6a9b4`](https://github.com/graphcommerce-org/graphcommerce/commit/bc6a9b4a7e9769977e98449a418bb239f92ec544) - When creating a release PR, make sure it is created against the main branch so it can be directly merged.
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.9
 
 ### Patch Changes
