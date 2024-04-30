@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.9
+
+### Patch Changes
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`4f7fe02`](https://github.com/graphcommerce-org/graphcommerce/commit/4f7fe02c6f0f017d7a52559df1972551eb0cba47) - Added robotsAllow to storefront config
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 8.1.0-canary.8
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.9
+
+### Patch Changes
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`7652234`](https://github.com/graphcommerce-org/graphcommerce/commit/7652234e222c3f4d8de3817fe907b5b6925a5493) - Replaced next-sitemap with page router based robots.txt & sitemaps
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 8.1.0-canary.8
 
 ### Patch Changes

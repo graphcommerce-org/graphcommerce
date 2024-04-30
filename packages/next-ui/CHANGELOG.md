@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.9
+
+### Patch Changes
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`d7459fe`](https://github.com/graphcommerce-org/graphcommerce/commit/d7459feb6e6902af09ab9ff766c0b3b1a74fb723) - Updated canonicalize helper for better multi domain support
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 8.1.0-canary.8
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.9
+
+### Patch Changes
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`0ccec63`](https://github.com/graphcommerce-org/graphcommerce/commit/0ccec630825d5fad398366beae90b3c90b2f84b8) - Added helper method to get Hygraph paths
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 8.1.0-canary.8
 
 ## 8.1.0-canary.7

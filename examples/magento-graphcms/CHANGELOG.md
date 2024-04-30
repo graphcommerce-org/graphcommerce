@@ -1,5 +1,21 @@
 # Change Log
 
+## 8.1.0-canary.9
+
+### Minor Changes
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`4ef6765`](https://github.com/graphcommerce-org/graphcommerce/commit/4ef6765d52fa56cfbe12b7e4e81aa183cc590a87) - Move products sitemap to sitemap folder
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`7652234`](https://github.com/graphcommerce-org/graphcommerce/commit/7652234e222c3f4d8de3817fe907b5b6925a5493) - Replaced next-sitemap with page router based robots.txt & sitemaps
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`4543c8d`](https://github.com/graphcommerce-org/graphcommerce/commit/4543c8d3af455b709a4cb3cad2e9d5d70cffb969) - Added separate sitemap for categories
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`0ccec63`](https://github.com/graphcommerce-org/graphcommerce/commit/0ccec630825d5fad398366beae90b3c90b2f84b8) - Added separate sitemap for Hygraph pages
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 8.1.0-canary.8
 
 ## 8.1.0-canary.7
