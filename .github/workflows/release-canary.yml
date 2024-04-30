@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           cache: yarn
-          node-version: 20
+          node-version: 18
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
       - name: yarn install && yarn postinstall
@@ -70,7 +70,6 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v4
         with:
-          base: main
           branch: changeset-release/from-canary
           title: 'Release ${{ steps.vars.outputs.date }}'
       - name: Check outputs
