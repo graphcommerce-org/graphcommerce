@@ -74,7 +74,7 @@ const sourceSuffix = 'Plugin'
 const interceptorSuffix = 'Interceptor'
 const disabledSuffix = 'Disabled'
 const name = (plugin: PluginConfig) =>
-  `${plugin.sourceModule
+  `${plugin.sourceExport}${plugin.sourceModule
     .split('/')
     [plugin.sourceModule.split('/').length - 1].replace(/[^a-zA-Z0-9]/g, '')}`
 
@@ -180,9 +180,7 @@ export async function generateInterceptor(
               s.replace(originalSuffix, disabledSuffix),
             ).visitModule(ast)
 
-            carryProps.push(interceptorPropsName(name(p)))
-
-            result = `type ${interceptorPropsName(name(p))} = React.ComponentProps<typeof ${sourceName(name(p))}>`
+            carryProps.push(`React.ComponentProps<typeof ${sourceName(name(p))}>`)
 
             pluginSee.push(
               `@see {${sourceName(name(p))}} for replacement of the original source (original source not used)`,
