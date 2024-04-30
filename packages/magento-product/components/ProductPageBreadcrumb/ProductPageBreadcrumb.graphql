@@ -7,7 +7,6 @@ fragment ProductPageBreadcrumb on ProductInterface {
     name
     url_path
     include_in_menu
-    level
     breadcrumbs {
       category_name
       category_uid
