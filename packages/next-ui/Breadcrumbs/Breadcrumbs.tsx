@@ -68,7 +68,7 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
           !maxItems && {
             '& .MuiBreadcrumbs-ol': {
               flexWrap: 'nowrap',
-              '& li.MuiBreadcrumbs-li': {
+              '& .MuiBreadcrumbs-li': {
                 '&:nth-of-type(1)': {
                   display: {
                     xs: showButtonMobile ? 'flex' : 'none',
@@ -81,7 +81,7 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
                 },
               },
             },
-            '& li.MuiBreadcrumbs-separator': {
+            '& .MuiBreadcrumbs-separator': {
               '&:nth-of-type(2)': {
                 display: {
                   xs: !showButtonMobile && 'none',
@@ -91,13 +91,7 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
             },
 
             [theme.breakpoints.down('md')]: showButtonMobile && {
-              '& li.MuiBreadcrumbs-li': {
-                display: 'none',
-                [`&:nth-last-of-type(-n+${breadcrumbsAmountMobile * 2})`]: {
-                  display: 'flex',
-                },
-              },
-              '& li.MuiBreadcrumbs-separator': {
+              '& .MuiBreadcrumbs-li, & .MuiBreadcrumbs-separator': {
                 display: 'none',
                 [`&:nth-last-of-type(-n+${breadcrumbsAmountMobile * 2})`]: {
                   display: 'flex',
@@ -106,13 +100,7 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
             },
 
             [theme.breakpoints.up('md')]: showButtonDesktop && {
-              '& li.MuiBreadcrumbs-li': {
-                display: 'none',
-                [`&:nth-last-of-type(-n+${breadcrumbsAmountDesktop * 2})`]: {
-                  display: 'flex',
-                },
-              },
-              '& li.MuiBreadcrumbs-separator': {
+              '& .MuiBreadcrumbs-li, & .MuiBreadcrumbs-separator': {
                 display: 'none',
                 [`&:nth-last-of-type(-n+${breadcrumbsAmountDesktop * 2})`]: {
                   display: 'flex',

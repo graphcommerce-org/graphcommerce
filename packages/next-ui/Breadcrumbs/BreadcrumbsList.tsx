@@ -42,14 +42,14 @@ export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
         overflow: 'hidden auto',
         py: `calc(${theme.spacings.xxs} / 2)`,
         [theme.breakpoints.up('md')]: {
-          '& a.MuiLink-root': {
+          '& .MuiLink-root': {
             [`:nth-last-of-type(-n+${showDesktopAmount})`]: {
               display: 'none',
             },
           },
         },
         [theme.breakpoints.down('md')]: {
-          '& a.MuiLink-root': {
+          '& .MuiLink-root': {
             [`:nth-last-of-type(-n+${showMobileAmount})`]: {
               display: 'none',
             },
