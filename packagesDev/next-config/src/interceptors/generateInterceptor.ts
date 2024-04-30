@@ -223,7 +223,7 @@ export async function generateInterceptor(
         .filter((v) => !!v)
         .join('\n')
 
-      const isComponent = plugins.every((p) => isReplacePluginConfig(p) || isReactPluginConfig(p))
+      const isComponent = plugins.every((p) => isReactPluginConfig(p))
       if (isComponent && plugins.some((p) => isMethodPluginConfig(p))) {
         throw new Error(`Cannot mix React and Method plugins for ${base} in ${dependency}.`)
       }
