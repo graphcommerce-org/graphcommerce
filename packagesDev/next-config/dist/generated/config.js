@@ -74,7 +74,8 @@ function GraphCommerceStorefrontConfigSchema() {
         hygraphLocales: zod_1.z.array(zod_1.z.string().min(1)).nullish(),
         linguiLocale: zod_1.z.string().nullish(),
         locale: zod_1.z.string().min(1),
-        magentoStoreCode: zod_1.z.string().min(1)
+        magentoStoreCode: zod_1.z.string().min(1),
+        robotsAllow: zod_1.z.boolean().nullish()
     });
 }
 exports.GraphCommerceStorefrontConfigSchema = GraphCommerceStorefrontConfigSchema;

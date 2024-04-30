@@ -1,5 +1,39 @@
 # Change Log
 
+## 8.1.0
+
+### Patch Changes
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`6831040`](https://github.com/graphcommerce-org/graphcommerce/commit/68310401448b7b42b53757db4a84de4a01e35aa2) - Suppress warning where a dependency is an expression, Added uglify-es and long as the dependencies couldn’t be found
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+## 8.1.0-canary.8
+
+### Patch Changes
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`6831040`](https://github.com/graphcommerce-org/graphcommerce/commit/68310401448b7b42b53757db4a84de4a01e35aa2) - Suppress warning where a dependency is an expression, Added uglify-es and long as the dependencies couldn’t be found
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.7
+
+## 8.1.0-canary.6
+
+## 8.1.0-canary.5
+
+## 8.0.6-canary.4
+
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
 ## 8.0.5
 
 ## 8.0.5-canary.10
