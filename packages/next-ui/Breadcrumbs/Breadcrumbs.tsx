@@ -56,9 +56,9 @@ export function Breadcrumbs(props: BreadcrumbsType) {
         />
       )}
       <BreadcrumbsBase
+        aria-label='breadcrumb'
         sx={[
           {
-            overflowX: 'clip',
             '& .MuiBreadcrumbs-ol': {
               flexWrap: 'nowrap',
               '& .MuiBreadcrumbs-li': {
@@ -103,10 +103,9 @@ export function Breadcrumbs(props: BreadcrumbsType) {
                 },
               },
               '& .MuiBreadcrumbs-separator': {
-                [`&:not(:nth-last-of-type(-n+${breadcrumbsAmountMobile > 0 ? breadcrumbsAmountMobile - 1 : breadcrumbsAmountMobile}))`]:
-                  {
-                    display: 'none',
-                  },
+                [`&:not(:nth-last-of-type(-n+${breadcrumbsAmountMobile}))`]: {
+                  display: 'none',
+                },
               },
             },
           },
@@ -125,12 +124,12 @@ export function Breadcrumbs(props: BreadcrumbsType) {
               onClick={handleClick}
               sx={{
                 borderRadius: 2,
-                border: `1px solid ${theme.palette.divider}`,
-                boxShadow: 1,
+                boxShadow: 6,
                 color: 'text.primary',
-                px: 1.5,
+                px: 1,
                 py: { xs: 0.3, md: 0.5 },
                 typography: 'caption',
+                backgroundColor: 'background.paper',
               }}
             >
               <IconSvg src={anchorElement ? iconClose : iconEllypsis} />

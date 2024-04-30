@@ -28,6 +28,8 @@ export type LayoutHeaderProps = FloatingProps &
     sx?: SxProps<Theme>
 
     hideBackButton?: boolean
+
+    breadcrumbs?: boolean
   }
 
 type ComponentStyleProps = {
@@ -49,6 +51,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
     children,
     divider,
     hideBackButton = false,
+    breadcrumbs = false,
     primary,
     secondary,
     noAlign = false,
@@ -140,6 +143,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
             '&.divider': {
               marginBottom: 0,
             },
+            '& .LayoutHeaderContent-left': breadcrumbs && { display: 'none' },
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
