@@ -34,7 +34,7 @@
     "packages:6": "yarn workspace @graphcommerce/changeset-changelog dev",
     "packages:7": "yarn workspace @graphcommerce/graphql-codegen-markdown-docs dev",
     "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'",
-    "jest-watch": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --watch",
+    "jest-watch": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal\" NODE_OPTIONS=\"--experimental-vm-modules\" jest --watch",
     "test": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal\" NODE_OPTIONS=\"--experimental-vm-modules\" jest"
   },
   "sideEffects": false,

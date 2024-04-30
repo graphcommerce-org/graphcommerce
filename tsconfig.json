@@ -18,6 +18,6 @@
     "incremental": true,
     "moduleSuffixes": [".interceptor", ""],
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.d.ts", "jest.config.ts"],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.d.ts", "jest.config.mjs"],
   "exclude": ["node_modules"],
 }
