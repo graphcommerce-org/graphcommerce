@@ -1,0 +1,9 @@
+fragment RetailStore on PickupLocation {
+  __typename
+  pickup_location_code
+  description
+  name
+  ...StoreListItem
+  ...StoreMarker
+  ...StoreInfoWindow
+}

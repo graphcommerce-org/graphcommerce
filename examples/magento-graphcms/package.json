@@ -64,6 +64,7 @@
     "@graphcommerce/magento-review": "8.1.0-canary.6",
     "@graphcommerce/magento-search": "8.1.0-canary.6",
     "@graphcommerce/magento-store": "8.1.0-canary.6",
+    "@graphcommerce/magento-store-locator": "8.1.0-canary.6",
     "@graphcommerce/magento-wishlist": "8.1.0-canary.6",
     "@graphcommerce/next-config": "8.1.0-canary.6",
     "@graphcommerce/next-ui": "8.1.0-canary.6",

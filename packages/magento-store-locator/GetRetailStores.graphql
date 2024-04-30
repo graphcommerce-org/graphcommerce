@@ -1,0 +1,7 @@
+query GetRetailStores {
+  pickupLocations(pageSize: 500) {
+    items {
+      ...RetailStore
+    }
+  }
+}

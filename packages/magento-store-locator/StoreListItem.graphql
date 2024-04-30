@@ -1,0 +1,11 @@
+fragment StoreListItem on PickupLocation {
+  __typename
+  pickup_location_code
+  name
+  street
+  postcode
+  city
+
+  lat: latitude
+  lng: longitude
+}

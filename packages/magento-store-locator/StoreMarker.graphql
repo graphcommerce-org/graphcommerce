@@ -1,0 +1,6 @@
+fragment StoreMarker on PickupLocation {
+  name
+  lng: longitude
+  lat: latitude
+  pickup_location_code
+}

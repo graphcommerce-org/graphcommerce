@@ -1,0 +1,33 @@
+{
+  "name": "@graphcommerce/magento-store-locator",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "8.1.0-canary.6",
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "peerDependencies": {
+    "@googlemaps/js-api-loader": "^1.16.6",
+    "@googlemaps/markerclusterer": "^2.5.3",
+    "@graphcommerce/ecommerce-ui": "^8.1.0-canary.6",
+    "@graphcommerce/eslint-config-pwa": "^8.1.0-canary.6",
+    "@graphcommerce/graphql": "^8.1.0-canary.6",
+    "@graphcommerce/magento-store": "^8.1.0-canary.6",
+    "@graphcommerce/next-ui": "8.1.0-canary.6",
+    "@graphcommerce/prettier-config-pwa": "^8.1.0-canary.6",
+    "@graphcommerce/react-hook-form": "^8.1.0-canary.6",
+    "@graphcommerce/typescript-config-pwa": "^8.1.0-canary.6",
+    "@lingui/core": "^4.2.1",
+    "@lingui/macro": "^4.2.1",
+    "@lingui/react": "^4.2.1",
+    "@mui/material": "^5.10.16",
+    "next": "*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

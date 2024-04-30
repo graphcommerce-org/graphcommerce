@@ -2579,6 +2579,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@googlemaps/js-api-loader@npm:^1.16.6":
+  version: 1.16.6
+  resolution: "@googlemaps/js-api-loader@npm:1.16.6"
+  dependencies:
+    fast-deep-equal: "npm:^3.1.3"
+  checksum: 10c0/084f92f0cef9920e8ef7e54cd7931dddef102a4baf20fe4ba30d45dee3327748c626f1b40ccc158c76544e8d88ccebb41edf6c65d115fdd25d5bdebd7d909bb6
+  languageName: node
+  linkType: hard
+
+"@googlemaps/markerclusterer@npm:^2.5.3":
+  version: 2.5.3
+  resolution: "@googlemaps/markerclusterer@npm:2.5.3"
+  dependencies:
+    fast-deep-equal: "npm:^3.1.3"
+    supercluster: "npm:^8.0.1"
+  checksum: 10c0/29954c8ad97f7cf0383dc5d4e1d04de4844cc527865cb3a75b73672f29e3087eb0a8a2a594fa75d968f6c40bc90f44ffbf0b1a478e7353eb81361aeff61c2602
+  languageName: node
+  linkType: hard
+
 "@graphcms/zoid@npm:^9.0.64-alpha.3":
   version: 9.0.64-alpha.3
   resolution: "@graphcms/zoid@npm:9.0.64-alpha.3"
@@ -3724,6 +3743,7 @@ __metadata:
     "@graphcommerce/magento-review": "npm:8.1.0-canary.6"
     "@graphcommerce/magento-search": "npm:8.1.0-canary.6"
     "@graphcommerce/magento-store": "npm:8.1.0-canary.6"
+    "@graphcommerce/magento-store-locator": "npm:8.1.0-canary.6"
     "@graphcommerce/magento-wishlist": "npm:8.1.0-canary.6"
     "@graphcommerce/next-config": "npm:8.1.0-canary.6"
     "@graphcommerce/next-ui": "npm:8.1.0-canary.6"
@@ -4228,6 +4248,30 @@ __metadata:
     "@graphcommerce/magento-product": ^8.1.0-canary.6
     "@graphcommerce/magento-store": ^8.1.0-canary.6
     "@graphcommerce/next-ui": ^8.1.0-canary.6
+    "@graphcommerce/prettier-config-pwa": ^8.1.0-canary.6
+    "@graphcommerce/react-hook-form": ^8.1.0-canary.6
+    "@graphcommerce/typescript-config-pwa": ^8.1.0-canary.6
+    "@lingui/core": ^4.2.1
+    "@lingui/macro": ^4.2.1
+    "@lingui/react": ^4.2.1
+    "@mui/material": ^5.10.16
+    next: "*"
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  languageName: unknown
+  linkType: soft
+
+"@graphcommerce/magento-store-locator@npm:8.1.0-canary.6, @graphcommerce/magento-store-locator@workspace:packages/magento-store-locator":
+  version: 0.0.0-use.local
+  resolution: "@graphcommerce/magento-store-locator@workspace:packages/magento-store-locator"
+  peerDependencies:
+    "@googlemaps/js-api-loader": ^1.16.6
+    "@googlemaps/markerclusterer": ^2.5.3
+    "@graphcommerce/ecommerce-ui": ^8.1.0-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.1.0-canary.6
+    "@graphcommerce/graphql": ^8.1.0-canary.6
+    "@graphcommerce/magento-store": ^8.1.0-canary.6
+    "@graphcommerce/next-ui": 8.1.0-canary.6
     "@graphcommerce/prettier-config-pwa": ^8.1.0-canary.6
     "@graphcommerce/react-hook-form": ^8.1.0-canary.6
     "@graphcommerce/typescript-config-pwa": ^8.1.0-canary.6
@@ -14106,6 +14150,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"kdbush@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "kdbush@npm:4.0.2"
+  checksum: 10c0/d50183b299c57e2573114e902ab47aed7494be3ca41b66d456779ecc3b2f153f491de341f9609965414784f728894f9a9001152eb9f3a40cd3755521c06a45a3
+  languageName: node
+  linkType: hard
+
 "keyv@npm:^4.5.3":
   version: 4.5.4
   resolution: "keyv@npm:4.5.4"
@@ -16846,6 +16897,8 @@ __metadata:
   resolution: "root@workspace:."
   dependencies:
     "@changesets/cli": "npm:2.27.1"
+    "@googlemaps/js-api-loader": "npm:^1.16.6"
+    "@googlemaps/markerclusterer": "npm:^2.5.3"
     "@graphql-codegen/testing": "npm:3.0.1"
     "@playwright/test": "npm:1.41.0"
     "@testing-library/jest-dom": "npm:^6.2.0"
@@ -17769,6 +17822,15 @@ __metadata:
   version: 4.2.0
   resolution: "stylis@npm:4.2.0"
   checksum: 10c0/a7128ad5a8ed72652c6eba46bed4f416521bc9745a460ef5741edc725252cebf36ee45e33a8615a7057403c93df0866ab9ee955960792db210bb80abd5ac6543
+  languageName: node
+  linkType: hard
+
+"supercluster@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "supercluster@npm:8.0.1"
+  dependencies:
+    kdbush: "npm:^4.0.2"
+  checksum: 10c0/79121e6dbff67b3036ea6651f3baddb942478830ba3ecbc27455715ab5bd269de8381dc04618c0c15963346ea2ed0f81cd5f767c2978a63e2841807c73445d57
   languageName: node
   linkType: hard
 

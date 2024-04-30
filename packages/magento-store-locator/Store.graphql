@@ -1,0 +1,12 @@
+fragment Store on PickupLocation {
+  city
+  description
+  lat: latitude
+  lng: longitude
+  name
+  pickup_location_code
+  phone
+  postcode
+  region
+  street
+}

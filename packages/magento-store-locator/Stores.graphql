@@ -1,0 +1,7 @@
+query Stores {
+  pickupLocations {
+    items {
+      ...Store
+    }
+  }
+}
