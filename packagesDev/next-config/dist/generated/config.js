@@ -101,7 +101,7 @@ function GraphCommerceConfigSchema() {
         previewSecret: _zod.z.string().nullish(),
         productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),
-        productListPaginationVariant: PaginationVariantSchema,
+        productListPaginationVariant: PaginationVariantSchema.nullish(),
         productRoute: _zod.z.string().nullish(),
         recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
