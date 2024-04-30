@@ -21,21 +21,27 @@ const BreadcrumbsPopper = dynamic(
   async () => (await import('./BreadcrumbsPopper')).BreadcrumbsPopper,
 )
 
-export function Breadcrumbs(props: BreadcrumbsType) {
+export type BreadcrumbsProps = BreadcrumbsType & {
+  maxItems?: number
+}
+
+export function Breadcrumbs(props: BreadcrumbsProps) {
   const {
     breadcrumbs,
     name,
     baseUrl,
     sx,
-    breadcrumbsAmountDesktop = 4,
-    breadcrumbsAmountMobile = 3,
+    breadcrumbsAmountDesktop = 3,
+    breadcrumbsAmountMobile = 2,
+    maxItems,
   } = props
   const [anchorElement, setAnchorElement] = useState<HTMLButtonElement | null>(null)
   const theme = useTheme()
 
-  const isDefault = breadcrumbsAmountDesktop === 0
-  const showButtonMobile = breadcrumbs.length >= breadcrumbsAmountMobile && !isDefault
-  const showButtonDesktop = breadcrumbs.length >= breadcrumbsAmountDesktop && !isDefault
+  const isDefaultMobile = breadcrumbsAmountMobile === 0
+  const showButtonMobile = breadcrumbs.length > breadcrumbsAmountMobile && !isDefaultMobile
+  const isDefaultDesktop = breadcrumbsAmountDesktop === 0
+  const showButtonDesktop = breadcrumbs.length > breadcrumbsAmountDesktop && !isDefaultDesktop
 
   const handleClick = useEventCallback((event: MouseEvent<HTMLButtonElement>) => {
     setAnchorElement((el) => (el !== event.currentTarget ? event.currentTarget : null))
@@ -57,11 +63,12 @@ export function Breadcrumbs(props: BreadcrumbsType) {
       )}
       <BreadcrumbsBase
         aria-label='breadcrumb'
+        maxItems={maxItems}
         sx={[
-          {
+          !maxItems && {
             '& .MuiBreadcrumbs-ol': {
               flexWrap: 'nowrap',
-              '& .MuiBreadcrumbs-li': {
+              '& li.MuiBreadcrumbs-li': {
                 '&:nth-of-type(1)': {
                   display: {
                     xs: showButtonMobile ? 'flex' : 'none',
@@ -73,38 +80,42 @@ export function Breadcrumbs(props: BreadcrumbsType) {
                   overflowX: 'hidden',
                 },
               },
-              '& .MuiBreadcrumbs-separator': {
-                '&:nth-of-type(2)': {
-                  display: {
-                    xs: showButtonMobile ? 'flex' : 'none',
-                    md: showButtonDesktop ? 'flex' : 'none',
-                  },
-                },
-              },
             },
-
-            [theme.breakpoints.up('md')]: showButtonDesktop && {
-              '& .MuiBreadcrumbs-li': {
-                [`&:not(:nth-last-of-type(-n+${breadcrumbsAmountDesktop + 1}))`]: {
-                  display: 'none',
-                },
-              },
-              '& .MuiBreadcrumbs-separator': {
-                [`&:not(:nth-last-of-type(-n+${breadcrumbsAmountDesktop}))`]: {
-                  display: 'none',
+            '& li.MuiBreadcrumbs-separator': {
+              '&:nth-of-type(2)': {
+                display: {
+                  xs: !showButtonMobile && 'none',
+                  md: !showButtonDesktop && 'none',
                 },
               },
             },
 
             [theme.breakpoints.down('md')]: showButtonMobile && {
-              '& .MuiBreadcrumbs-li': {
-                [`&:not(:nth-last-of-type(-n+${breadcrumbsAmountMobile}))`]: {
-                  display: 'none',
+              '& li.MuiBreadcrumbs-li': {
+                display: 'none',
+                [`&:nth-last-of-type(-n+${breadcrumbsAmountMobile * 2})`]: {
+                  display: 'flex',
                 },
               },
-              '& .MuiBreadcrumbs-separator': {
-                [`&:not(:nth-last-of-type(-n+${breadcrumbsAmountMobile}))`]: {
-                  display: 'none',
+              '& li.MuiBreadcrumbs-separator': {
+                display: 'none',
+                [`&:nth-last-of-type(-n+${breadcrumbsAmountMobile * 2})`]: {
+                  display: 'flex',
+                },
+              },
+            },
+
+            [theme.breakpoints.up('md')]: showButtonDesktop && {
+              '& li.MuiBreadcrumbs-li': {
+                display: 'none',
+                [`&:nth-last-of-type(-n+${breadcrumbsAmountDesktop * 2})`]: {
+                  display: 'flex',
+                },
+              },
+              '& li.MuiBreadcrumbs-separator': {
+                display: 'none',
+                [`&:nth-last-of-type(-n+${breadcrumbsAmountDesktop * 2})`]: {
+                  display: 'flex',
                 },
               },
             },
@@ -112,37 +123,39 @@ export function Breadcrumbs(props: BreadcrumbsType) {
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       >
-        <ClickAwayListener
-          mouseEvent='onMouseDown'
-          touchEvent='onTouchStart'
-          onClickAway={handleClose}
-        >
-          <Box sx={{ position: 'relative', display: 'flex' }}>
-            <IconButton
-              aria-describedby={anchorElement ? 'breadcrumb-list' : undefined}
-              color='default'
-              onClick={handleClick}
-              sx={{
-                borderRadius: 2,
-                boxShadow: 6,
-                color: 'text.primary',
-                px: 1,
-                py: { xs: 0.3, md: 0.5 },
-                typography: 'caption',
-                backgroundColor: 'background.paper',
-              }}
-            >
-              <IconSvg src={anchorElement ? iconClose : iconEllypsis} />
-            </IconButton>
-            <BreadcrumbsPopper
-              breadcrumbs={breadcrumbs}
-              anchorElement={anchorElement}
-              onClose={handleClose}
-              showDesktopAmount={breadcrumbsAmountDesktop}
-              showMobileAmount={breadcrumbsAmountMobile}
-            />
-          </Box>
-        </ClickAwayListener>
+        {!maxItems && (
+          <ClickAwayListener
+            mouseEvent='onMouseDown'
+            touchEvent='onTouchStart'
+            onClickAway={handleClose}
+          >
+            <Box sx={{ position: 'relative', display: 'flex' }}>
+              <IconButton
+                aria-describedby={anchorElement ? 'breadcrumb-list' : undefined}
+                color='default'
+                onClick={handleClick}
+                sx={{
+                  borderRadius: 2,
+                  boxShadow: 6,
+                  color: 'text.primary',
+                  px: 1,
+                  py: { xs: 0.3, md: 0.5 },
+                  typography: 'caption',
+                  backgroundColor: 'background.paper',
+                }}
+              >
+                <IconSvg src={anchorElement ? iconClose : iconEllypsis} />
+              </IconButton>
+              <BreadcrumbsPopper
+                breadcrumbs={breadcrumbs}
+                anchorElement={anchorElement}
+                onClose={handleClose}
+                showDesktopAmount={breadcrumbsAmountDesktop}
+                showMobileAmount={breadcrumbsAmountMobile}
+              />
+            </Box>
+          </ClickAwayListener>
+        )}
         <Link href='/' underline='hover' color='text.primary' variant='body1'>
           <Trans id='Home' />
         </Link>

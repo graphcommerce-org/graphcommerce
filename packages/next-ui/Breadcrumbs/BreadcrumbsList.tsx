@@ -43,14 +43,14 @@ export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
         py: `calc(${theme.spacings.xxs} / 2)`,
         [theme.breakpoints.up('md')]: {
           '& a.MuiLink-root': {
-            [`&:not(:nth-last-of-type(n+${showDesktopAmount}))`]: {
+            [`:nth-last-of-type(-n+${showDesktopAmount})`]: {
               display: 'none',
             },
           },
         },
         [theme.breakpoints.down('md')]: {
           '& a.MuiLink-root': {
-            [`&:not(:nth-last-of-type(n+${showMobileAmount}))`]: {
+            [`:nth-last-of-type(-n+${showMobileAmount})`]: {
               display: 'none',
             },
           },
