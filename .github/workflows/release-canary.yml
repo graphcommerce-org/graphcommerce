@@ -70,6 +70,7 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v4
         with:
+          base: main
           branch: changeset-release/from-canary
           title: 'Release ${{ steps.vars.outputs.date }}'
       - name: Check outputs
