@@ -18,21 +18,14 @@ type StoreLocatorMapContextType = {
 const StoreLocatorMapContext = createContext<StoreLocatorMapContextType | undefined>(undefined)
 
 type StoreLocatorMapLoaderProps = {
-  children: ReactNode
-  zoom?: number
-}
-
-const netherlandsBounds = {
-  north: 53.793538,
-  south: 50.748514,
-  west: 3.394408,
-  east: 7.149987,
+  mapOptions: google.maps.MapOptions
+  children: React.ReactNode
 }
 
 export function StoreLocatorMapLoader(props: StoreLocatorMapLoaderProps) {
   const apiKey =
     import.meta.graphCommerce.googleMapsApi ?? 'AIzaSyD5g-gFYTuvqhrD4XxiMemuLpiKlnnmDn0' // @todo
-  const { children, zoom = 7 } = props
+  const { mapOptions, children } = props
   const mapsRef = useRef<HTMLDivElement>(null)
   const [map, setMap] = useState<google.maps.Map>()
 
@@ -50,26 +43,9 @@ export function StoreLocatorMapLoader(props: StoreLocatorMapLoaderProps) {
       const loader = new Loader({ apiKey, version: 'weekly' })
       await Promise.all([loader.importLibrary('maps'), loader.importLibrary('marker')])
 
-      setMap(
-        new window.google.maps.Map(mapsRef.current, {
-          center: {
-            lat: 52.21305320395243,
-            lng: 5.7388971606916925,
-          },
-          restriction: {
-            latLngBounds: netherlandsBounds,
-            strictBounds: false,
-          },
-          zoom,
-          minZoom: 6,
-          zoomControl: true,
-          mapId: 'e827860a9d12894b',
-          mapTypeControl: false,
-          streetViewControl: false,
-        }),
-      )
+      setMap(new window.google.maps.Map(mapsRef.current, mapOptions))
     })()
-  }, [apiKey, zoom])
+  }, [apiKey, mapOptions])
 
   return <StoreLocatorMapContext.Provider value={value}>{children}</StoreLocatorMapContext.Provider>
 }

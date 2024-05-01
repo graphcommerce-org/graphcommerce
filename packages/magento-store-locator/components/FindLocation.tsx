@@ -1,17 +1,13 @@
 import { useWatch } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import Button from '@mui/material/Button'
+import { usePosition } from '../helpers/usePosition'
 import { useStoreLocatorForm } from './StoreLocatorFormProvider'
-import { PositionProps } from '../helpers/usePosition'
 
-export type FindLocationProps = {
-  onLocationLookup: (props: PositionProps) => void
-}
-
-export function FindLocation(props: FindLocationProps) {
-  const { onLocationLookup } = props
+export function FindLocation() {
   const { reset, control } = useStoreLocatorForm()
   const search = useWatch({ control, name: 'search' })
+  const { updatePosition } = usePosition()
 
   const handleSearch = async () => {
     try {
@@ -23,7 +19,7 @@ export function FindLocation(props: FindLocationProps) {
         const lat = location.lat()
         const lng = location.lng()
 
-        onLocationLookup({ lat, lng })
+        updatePosition({ lat, lng })
         reset({ search: '' })
       }
     } catch (error) {

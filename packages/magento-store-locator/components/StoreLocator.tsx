@@ -1,25 +1,19 @@
-import { useWatch } from '@graphcommerce/react-hook-form'
-import { Box, Theme, useMediaQuery } from '@mui/material'
+import { Box } from '@mui/material'
 import { usePosition } from '../helpers/usePosition'
-import { useStoreMarkers } from '../helpers/useStoreMarkers'
 import { useStores } from '../helpers/useStores'
 import { useCurrentPositionMarker } from './CurrentPositionMarker'
+import { Marker } from './Marker'
 import { StoreFilters } from './StoreFilters'
 import { StoreList } from './StoreList'
-import { useStoreLocatorForm } from './StoreLocatorFormProvider'
 import { useStoreLocatorMap } from './StoreLocatorMapLoader'
-import { Marker } from './Marker'
 
 export function StoreLocator() {
-  const { ref, map } = useStoreLocatorMap()
-  const { position, updatePosition } = usePosition()
+  const { ref } = useStoreLocatorMap()
+  const { position } = usePosition()
   const { stores } = useStores(position)
-  const { control } = useStoreLocatorForm()
-  const [selected] = useWatch({ control, name: ['selected'] })
 
-  // const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
   useCurrentPositionMarker(position)
-  // useStoreMarkers(stores, isMobile, selected, map)
+
   console.log('rendering storelocator')
 
   return (
@@ -58,7 +52,7 @@ export function StoreLocator() {
         })}
       >
         <StoreFilters />
-        <StoreList position={position} onLocationLookup={updatePosition} />
+        <StoreList position={position} />
       </Box>
 
       <Box sx={{ height: '100%', gridArea: 'map' }} className='Scroller-root'>

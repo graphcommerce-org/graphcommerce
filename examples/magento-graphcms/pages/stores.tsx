@@ -8,7 +8,7 @@ import {
 import { GetStaticProps, LayoutTitle, LayoutOverlayHeader, PageMeta } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, Container } from '@mui/material'
+import { Box } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
@@ -28,7 +28,29 @@ function Stores() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <StoreLocatorFormProvider>
-        <StoreLocatorMapLoader>
+        <StoreLocatorMapLoader
+          mapOptions={{
+            center: {
+              lat: 52.21305320395243,
+              lng: 5.7388971606916925,
+            },
+            restriction: {
+              latLngBounds: {
+                north: 53.793538,
+                south: 50.748514,
+                west: 3.394408,
+                east: 7.149987,
+              },
+              strictBounds: false,
+            },
+            zoom: 6,
+            minZoom: 6,
+            zoomControl: true,
+            mapId: 'e827860a9d12894b',
+            mapTypeControl: false,
+            streetViewControl: false,
+          }}
+        >
           <StoreLocator />
         </StoreLocatorMapLoader>
       </StoreLocatorFormProvider>

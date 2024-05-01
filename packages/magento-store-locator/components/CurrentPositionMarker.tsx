@@ -29,7 +29,6 @@ export function useCurrentPositionMarker(position: useCurrentPositionMarkerProps
       if (marker) {
         map.panTo(LatLng)
         map.setCenter(LatLng)
-        console.log('setting current position marker')
         map.setZoom(11)
       }
     }

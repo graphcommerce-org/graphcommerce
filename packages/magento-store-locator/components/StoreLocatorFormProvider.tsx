@@ -1,4 +1,4 @@
-import { useForm, useFormPersist, UseFormReturn } from '@graphcommerce/ecommerce-ui'
+import { FormPersist, useForm, useFormPersist, UseFormReturn } from '@graphcommerce/ecommerce-ui'
 import { createContext, ReactNode, useContext } from 'react'
 import { StoreFragment } from '../Store.gql'
 
@@ -17,12 +17,6 @@ export function useStoreLocatorForm() {
   return context
 }
 
-function Persist() {
-  const form = useStoreLocatorForm()
-  useFormPersist({ form, name: 'storelocator', persist: ['selectedStore'] })
-  return null
-}
-
 export function StoreLocatorFormProvider(props: { children: ReactNode }) {
   const { children } = props
 
@@ -32,7 +26,7 @@ export function StoreLocatorFormProvider(props: { children: ReactNode }) {
 
   return (
     <StoreLocatorFormContext.Provider value={form}>
-      <Persist />
+      <FormPersist form={form} name='StoreLocatorForm' />
       {children}
     </StoreLocatorFormContext.Provider>
   )
