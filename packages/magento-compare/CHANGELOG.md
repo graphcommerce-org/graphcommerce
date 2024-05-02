@@ -1,5 +1,12 @@
 # @graphcommerce/magento-compare
 
+## 8.1.0
+
+### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders.
+  ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 8.1.0-canary.11
 
 ## 8.1.0-canary.10
