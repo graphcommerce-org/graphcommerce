@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.11
+
+### Patch Changes
+
+- [#2255](https://github.com/graphcommerce-org/graphcommerce/pull/2255) [`679d07d`](https://github.com/graphcommerce-org/graphcommerce/commit/679d07dad5b5e2dab3c0f3d537716b6115af8ef7) - make the ProductPageMeta fragment injectable
+  ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 8.1.0-canary.10
 
 ## 8.1.0-canary.9
