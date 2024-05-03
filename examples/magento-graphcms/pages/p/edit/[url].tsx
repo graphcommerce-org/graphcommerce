@@ -1,11 +1,12 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
+import { EditCartItemForm, useEditCartItemFormProps } from '@graphcommerce/magento-cart-items'
 import {
   AddProductsToCartFormProps,
   AddProductsToCartForm,
   ProductPageGallery,
   ProductPageName,
-  ProductPageMeta,
+  AddProductsToCartButton,
 } from '@graphcommerce/magento-product'
 import {
   GetServerSideProps,
@@ -30,22 +31,26 @@ function ProductPageConfigurable(props: Props) {
 
   const product = products?.items?.[0]
 
+  const formProps = useEditCartItemFormProps()
+
   if (!product?.sku || !product.url_key) return null
 
   return (
-    <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
+    <AddProductsToCartForm key={product.uid} defaultValues={defaultValues} {...formProps}>
+      <EditCartItemForm product={product} />
       {/* <ProductPageMeta product={product} /> */}
 
       <LayoutOverlayHeader
         switchPoint={0}
         noAlign
-        sx={(theme) => ({
-          '&.noAlign': { marginBottom: '0px' },
-        })}
-        primary='Save'
+        sx={() => ({ '&.noAlign': { marginBottom: '0px' } })}
+        primary={<AddProductsToCartButton fullWidth product={product} variant='inline' />}
       >
         <LayoutTitle size='small' component='span'>
-          <Trans id='Edit' /> <ProductPageName product={product} />
+          <Trans
+            id='Editing <Name/>'
+            components={{ Name: <ProductPageName product={product} /> }}
+          />
         </LayoutTitle>
       </LayoutOverlayHeader>
 
