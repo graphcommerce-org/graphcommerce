@@ -37,7 +37,6 @@ function ProductPageConfigurable(props: Props) {
 
   return (
     <AddProductsToCartForm key={product.uid} defaultValues={defaultValues} {...formProps}>
-      <EditCartItemForm product={product} />
       {/* <ProductPageMeta product={product} /> */}
 
       <LayoutOverlayHeader
@@ -81,6 +80,7 @@ function ProductPageConfigurable(props: Props) {
       >
         <AddProductsToCartView product={product} />
       </ProductPageGallery>
+      <EditCartItemForm product={product} />
     </AddProductsToCartForm>
   )
 }

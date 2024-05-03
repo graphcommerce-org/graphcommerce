@@ -110,7 +110,7 @@ msgid "Cart ({0})"
 msgstr "Winkelwagen ({0})"
 
 msgid "Change"
-msgstr "Verander"
+msgstr "Wijzig"
 
 msgid "Checkout summary"
 msgstr "Samenvatting"
@@ -680,7 +680,7 @@ msgid "Summary"
 msgstr "Omschrijving"
 
 msgid "Switch stores"
-msgstr "Verander winkel"
+msgstr "Winkel wisselen"
 
 msgid "Tagged in: {title}"
 msgstr "Getagged in: {title}"

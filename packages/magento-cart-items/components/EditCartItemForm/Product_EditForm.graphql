@@ -1,0 +1,8 @@
+fragment Product_EditForm on ProductInterface {
+  ...ProductCustomizable
+  ...ProductWeight
+  ...ProductPageItem
+  ...ConfigurableOptions
+  ...DownloadableProductOptions
+  ...BundleProductOptions
+}

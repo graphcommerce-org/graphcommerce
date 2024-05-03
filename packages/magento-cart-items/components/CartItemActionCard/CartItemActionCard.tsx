@@ -135,21 +135,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
         </>
       }
       price={<Money {...(inclTaxes ? prices?.row_total_including_tax : prices?.row_total)} />}
-      action={
-        !readOnly && (
-          <>
-            <RemoveItemFromCart {...cartItem} buttonProps={{ size }} />
-            <Button
-              variant='inline'
-              color='primary'
-              size='medium'
-              href={`${productEditLink(product)}?cartItemId=${uid}`}
-            >
-              <Trans id='Edit' />
-            </Button>
-          </>
-        )
-      }
+      action={!readOnly && <RemoveItemFromCart {...cartItem} buttonProps={{ size }} />}
       size={size}
       after={filterNonNullableKeys(errors).map((error) => (
         <Box sx={{ color: 'error.main', typography: 'caption' }} key={error.message}>
@@ -157,6 +143,18 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
         </Box>
       ))}
       {...rest}
+      details={
+        <>
+          {rest.details}
+          <Button
+            variant='inline'
+            color='secondary'
+            href={`${productEditLink(product)}?cartItemId=${uid}`}
+          >
+            <Trans id='Edit' />
+          </Button>
+        </>
+      }
     />
   )
 }
