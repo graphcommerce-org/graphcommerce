@@ -9,13 +9,13 @@ import {
 import { isTypename, filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import type { SetRequired, SetNonNullable } from 'type-fest'
 import { CartItemFragment } from '../Api/CartItem.gql'
-import { Product_EditFormFragment } from '../components/EditCartItemForm/Product_EditForm.gql'
+import { EditCartItemFormFragment } from '../components/EditCartItemForm/EditCartItemForm'
 
 type F = 'customizable_options' | 'entered_options' | 'selected_options'
 type CartItemInput = SetNonNullable<SetRequired<AddProductsToCartFields['cartItems'][number], F>, F>
 
 export type CartItemToCartItemInputProps = {
-  product: Product_EditFormFragment
+  product: EditCartItemFormFragment
   cartItem?: CartItemFragment | null
 } & SelectorsProp
 
