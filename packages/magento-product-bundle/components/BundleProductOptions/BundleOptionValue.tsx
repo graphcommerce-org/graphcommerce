@@ -92,7 +92,6 @@ export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionV
                 width: '100%',
               },
             }}
-            returnValueAsString
             name={`cartItems.${index}.entered_options.${idx}.value`}
             onMouseDown={(e) => e.stopPropagation()}
           />
