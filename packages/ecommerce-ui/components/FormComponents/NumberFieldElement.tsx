@@ -16,6 +16,7 @@ export type NumberFieldElementProps<T extends FieldValues = FieldValues> = Omit<
   DownProps?: IconButtonProps
   UpProps?: IconButtonProps
   sx?: SxProps<Theme>
+  returnValueAsString?: boolean
 } & Omit<ControllerProps<T>, 'render'>
 
 type OwnerState = { size?: 'small' | 'medium' }
@@ -39,6 +40,7 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
     required,
     defaultValue,
     variant = 'outlined',
+    returnValueAsString = false,
     ...textFieldProps
   } = props
 
@@ -65,7 +67,8 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
             value={value ?? ''}
             onChange={(ev) => {
               const newValue = (ev.target as HTMLInputElement).valueAsNumber
-              onChange(Number.isNaN(newValue) ? '' : newValue)
+              if (Number.isNaN(newValue)) onChange('')
+              else onChange(returnValueAsString ? `${newValue}` : newValue)
               textFieldProps.onChange?.(ev)
             }}
             variant={variant}
@@ -108,7 +111,7 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
                   size='smaller'
                   onClick={() => {
                     if ((valueAsNumber || Infinity) <= inputProps.min) return
-                    onChange(value - 1)
+                    onChange(returnValueAsString ? `${valueAsNumber - 1}` : value - 1)
                   }}
                   sx={{
                     boxShadow: variant === 'standard' ? 4 : 0,
@@ -129,7 +132,7 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
                   size='smaller'
                   onClick={() => {
                     if (valueAsNumber >= (inputProps.max ?? Infinity)) return
-                    onChange(valueAsNumber + 1)
+                    onChange(returnValueAsString ? `${valueAsNumber + 1}` : value + 1)
                   }}
                   sx={{
                     boxShadow: variant === 'standard' ? 4 : 0,
