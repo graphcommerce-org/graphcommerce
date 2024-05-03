@@ -11,30 +11,25 @@ export const component = 'AddProductsToCartButton'
 export const exported = '@graphcommerce/magento-product'
 
 export const Plugin: ReactPlugin<typeof AddProductsToCartButton> = (props) => {
-  const { Prev } = props
+  const { Prev, ...rest } = props
 
   const router = useRouter()
-  const cartId = useCurrentCartId().currentCartId
 
-  const [deleteCartItem] = useMutation(RemoveItemFromCartDocument, {
-    variables: { cartId, uid: router.query.cartItemId as string },
-  })
   const form = useContext(AddProductsToCartContext)
 
   const submitHandler = form?.handleSubmit(() => {})
 
   return router.asPath.includes('/p/edit') ? (
     <Prev
-      {...props}
+      {...rest}
       onClick={async () => {
-        await deleteCartItem()
         if (submitHandler) await submitHandler()
       }}
       type='button'
     >
-      <Trans id='Edit' />
+      <Trans id='Save' />
     </Prev>
   ) : (
-    <Prev {...props} />
+    <Prev {...rest} />
   )
 }
