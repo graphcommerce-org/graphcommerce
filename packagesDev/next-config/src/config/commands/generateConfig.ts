@@ -2,9 +2,12 @@ import { writeFileSync } from 'fs'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { generate } from '@graphql-codegen/cli'
 import { transformFileSync } from '@swc/core'
+import dotenv from 'dotenv'
 import { isMonorepo } from '../../utils/isMonorepo'
 import { resolveDependenciesSync } from '../../utils/resolveDependenciesSync'
 import { resolveDependency } from '../../utils/resolveDependency'
+
+dotenv.config()
 
 const packages = [...resolveDependenciesSync().values()].filter((p) => p !== '.')
 
@@ -13,8 +16,11 @@ const resolve = resolveDependency()
 const schemaLocations = packages.map((p) => `${p}/**/Config.graphqls`)
 
 export async function generateConfig() {
-  const targetTs = `${resolve('@graphcommerce/next-config').root}/src/generated/config.ts`
-  const targetJs = `${resolve('@graphcommerce/next-config').root}/dist/generated/config.js`
+  const resolved = resolve('@graphcommerce/next-config')
+  if (!resolved) throw Error('Could not resolve @graphcommerce/next-config')
+
+  const targetTs = `${resolved.root}/src/generated/config.ts`
+  const targetJs = `${resolved.root}/dist/generated/config.js`
 
   await generate({
     silent: true,

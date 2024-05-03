@@ -16,6 +16,7 @@ import {
   parseParams,
   ProductFiltersDocument,
   ProductFiltersQuery,
+  productListApplyCategoryDefaults,
   ProductListDocument,
   ProductListParams,
   ProductListQuery,
@@ -102,6 +103,7 @@ function CategoryPage(props: CategoryProps) {
             filterTypes={filterTypes}
             title={category.name ?? ''}
             id={category.uid}
+            category={category}
           />
         </>
       )}
@@ -177,11 +179,11 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const products = hasCategory
     ? staticClient.query({
         query: ProductListDocument,
-        variables: {
-          pageSize: (await conf).data.storeConfig?.grid_per_page ?? 24,
-          ...productListParams,
-          filters: { ...productListParams?.filters, category_uid: { eq: categoryUid } },
-        },
+        variables: await productListApplyCategoryDefaults(
+          productListParams,
+          (await conf).data,
+          category,
+        ),
       })
     : undefined
 

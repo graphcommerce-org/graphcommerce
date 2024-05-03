@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
+import { ProductAttributeSortInput } from '@graphcommerce/graphql-mesh'
 import {
   ProductListDocument,
   extractUrlQuery,
@@ -20,6 +21,7 @@ import {
   SearchContext,
   SearchDivider,
   SearchForm,
+  productListApplySearchDefaults,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutTitle, LayoutHeader, FormRow } from '@graphcommerce/next-ui'
@@ -156,11 +158,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const products = staticClient.query({
     query: ProductListDocument,
-    variables: {
-      pageSize: (await conf).data.storeConfig?.grid_per_page ?? 12,
-      ...productListParams,
-      search,
-    },
+    variables: productListApplySearchDefaults(productListParams, (await conf).data),
   })
 
   const categories = search

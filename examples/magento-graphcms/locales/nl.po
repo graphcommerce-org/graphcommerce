@@ -280,9 +280,6 @@ msgstr "Gratis"
 msgid "Grand total"
 msgstr "Totaal"
 
-msgid "Have an account?"
-msgstr "Heeft u al een account?"
-
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Hallo {firstname}! U bent nu ingelogd!"
 
@@ -541,6 +538,9 @@ msgstr "Recent bekeken producten"
 msgid "Region"
 msgstr "Regio"
 
+msgid "Relevance"
+msgstr "Relevantie"
+
 msgid "Remove"
 msgstr "Verwijder"
 
@@ -715,6 +715,9 @@ msgstr "Er is een maximum van ‘{maxLength}’ karakters"
 msgid "This cart is assigned to {email}. Please sign in to continue shopping."
 msgstr "Deze winkelwagen is toegewezen aan {email}. Log in om verder te winkelen."
 
+msgid "This field is invalid"
+msgstr "Dit veld is ongeldig"
+
 msgid "This field is required"
 msgstr "Dit veld is verplicht"
 
@@ -792,9 +795,6 @@ msgstr "{0} reviews geschreven"
 
 msgid "You are reviewing {0}"
 msgstr "U reviewt {0}"
-
-msgid "You can find your order history in your account!"
-msgstr "U kunt uw bestelgeschiedenis in uw account vinden!"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "U kunt nu <0>opnieuw inloggen</0>"

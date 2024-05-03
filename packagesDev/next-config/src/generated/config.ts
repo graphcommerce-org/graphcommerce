@@ -86,7 +86,7 @@ export type DatalayerConfig = {
  *
  * You can export configuration by running `yarn graphcommerce export-config`
  *
- * ## Extending the configuration in your  project
+ * ## Extending the configuration in your project
  *
  * Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceStorefrontConfig inputs to add configuration.
  *
@@ -365,9 +365,13 @@ export type GraphCommerceStorefrontConfig = {
   googleTagmanagerId?: InputMaybe<Scalars['String']['input']>;
   /** Add a gcms-locales header to make sure queries return in a certain language, can be an array to define fallbacks. */
   hygraphLocales?: InputMaybe<Array<Scalars['String']['input']>>;
-  /** Specify a custom locale for to load translations. */
+  /** Custom locale used to load the .po files. Must be a valid locale, also used for Intl functions. */
   linguiLocale?: InputMaybe<Scalars['String']['input']>;
-  /** Must be a locale string https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers */
+  /**
+   * Must be a [locale string](https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers) for automatic redirects to work.
+   *
+   * This value can be used as a sub-path identifier only, make sure linguiLocale is configured for each URL.
+   */
   locale: Scalars['String']['input'];
   /**
    * Magento store code.
@@ -380,6 +384,11 @@ export type GraphCommerceStorefrontConfig = {
    * - b2b-us
    */
   magentoStoreCode: Scalars['String']['input'];
+  /**
+   * Allow the site to be indexed by search engines.
+   * If false, the robots.txt file will be set to disallow all.
+   */
+  robotsAllow?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Options to configure which values will be replaced when a variant is selected on the product page. */
@@ -504,7 +513,8 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
     hygraphLocales: z.array(z.string().min(1)).nullish(),
     linguiLocale: z.string().nullish(),
     locale: z.string().min(1),
-    magentoStoreCode: z.string().min(1)
+    magentoStoreCode: z.string().min(1),
+    robotsAllow: z.boolean().nullish()
   })
 }
 

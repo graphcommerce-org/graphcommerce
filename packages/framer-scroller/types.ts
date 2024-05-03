@@ -16,9 +16,7 @@ export type ScrollSnapProps = {
   scrollSnapStop: ScrollSnapStop
 }
 
-export type ReactHtmlRefObject =
-  | React.RefObject<HTMLElement>
-  | React.MutableRefObject<HTMLElement | undefined>
+export type ReactHtmlRefObject = React.MutableRefObject<HTMLElement | undefined>
 
 export type SnapPositionDirection = 'left' | 'right' | 'up' | 'down'
 

@@ -57,20 +57,24 @@ it('replaces config in string', () => {
                 },
                 {
                   "cartDisplayPricesInclTax": true,
+                  "linguiLocale": "fr",
                   "locale": "fr-be",
                   "magentoStoreCode": "fr_BE",
                 },
                 {
                   "cartDisplayPricesInclTax": true,
+                  "linguiLocale": "nl",
                   "locale": "nl-be",
                   "magentoStoreCode": "nl_BE",
                 },
                 {
                   "cartDisplayPricesInclTax": true,
+                  "linguiLocale": "en",
                   "locale": "en-gb",
                   "magentoStoreCode": "en_GB",
                 },
                 {
+                  "linguiLocale": "en",
                   "locale": "en-ca",
                   "magentoStoreCode": "en_CA",
                 },

@@ -23,5 +23,15 @@
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "testing.openTesting": "neverOpen",
+  "jest.enable": false,
+  "jest.outputConfig": {
+    "revealOn": "run",
+    "revealWithFocus": "none",
+    "clearOnRun": "none"
+  },
+  "workbench.editor.customLabels.patterns": {
+    "**/*.interceptor.ts*": "${filename}.${extname} (auto generated)"
   }
 }

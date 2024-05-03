@@ -14,7 +14,7 @@ import { FormRow } from '@graphcommerce/next-ui'
 import { PostcodeNLAutoFill } from '../components/PostcodeNLAutoFill'
 
 export const component = 'AddressFields'
-export const exported = '@graphcommerce/magento-customer/components/AddressFields/AddressFields'
+export const exported = '@graphcommerce/magento-customer'
 
 function AddPostcodeNLAddressFields<
   TFieldValues extends FieldValues = FieldValues,

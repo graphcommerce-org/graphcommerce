@@ -19,8 +19,7 @@ query BraintreeLocalPaymentsCart($cartId: String!) {
     }
     prices {
       grand_total {
-        currency
-        value
+        ...Money
       }
     }
   }

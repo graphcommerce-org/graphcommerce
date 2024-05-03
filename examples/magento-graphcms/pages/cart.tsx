@@ -49,7 +49,7 @@ function CartPage() {
       />
       <LayoutOverlayHeader
         switchPoint={0}
-        primary={<CartStartCheckoutLinkOrButton {...data?.cart} disabled={hasError} />}
+        primary={<CartStartCheckoutLinkOrButton cart={data?.cart} disabled={hasError} />}
         divider={
           <Container maxWidth='md'>
             <Stepper currentStep={hasItems ? 1 : 0} steps={3} />
@@ -88,7 +88,7 @@ function CartPage() {
               sx={(theme) => ({ mt: theme.spacings.md })}
             />
             <OverlayStickyBottom sx={{ py: 0.1 }}>
-              <CartStartCheckout {...data?.cart} disabled={hasError} />
+              <CartStartCheckout cart={data?.cart} disabled={hasError} />
             </OverlayStickyBottom>
           </>
         ) : (

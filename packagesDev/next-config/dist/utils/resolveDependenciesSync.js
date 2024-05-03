@@ -8,7 +8,7 @@ const node_fs_1 = __importDefault(require("node:fs"));
 const node_path_1 = __importDefault(require("node:path"));
 const PackagesSort_1 = require("./PackagesSort");
 const resolveCache = new Map();
-function resolveRecursivePackageJson(dependencyPath, dependencyStructure, root) {
+function resolveRecursivePackageJson(dependencyPath, dependencyStructure, root, additionalDependencies = []) {
     const isRoot = dependencyPath === root;
     const fileName = require.resolve(node_path_1.default.join(dependencyPath, 'package.json'));
     const packageJsonFile = node_fs_1.default.readFileSync(fileName, 'utf-8').toString();
@@ -22,8 +22,9 @@ function resolveRecursivePackageJson(dependencyPath, dependencyStructure, root) 
         return dependencyStructure;
     const dependencies = [
         ...new Set([
-            ...Object.keys(packageJson.dependencies ?? {}),
-            ...Object.keys(packageJson.devDependencies ?? {}),
+            ...Object.keys(packageJson.dependencies ?? []),
+            ...Object.keys(packageJson.devDependencies ?? []),
+            ...additionalDependencies,
             // ...Object.keys(packageJson.peerDependencies ?? {}),
         ].filter((name) => name.includes('graphcommerce'))),
     ];
@@ -63,7 +64,7 @@ function resolveDependenciesSync(root = process.cwd()) {
     const cached = resolveCache.get(root);
     if (cached)
         return cached;
-    const dependencyStructure = resolveRecursivePackageJson(root, {}, root);
+    const dependencyStructure = resolveRecursivePackageJson(root, {}, root, process.env.PRIVATE_ADDITIONAL_DEPENDENCIES?.split(',') ?? []);
     const sorted = sortDependencies(dependencyStructure);
     resolveCache.set(root, sorted);
     return sorted;
