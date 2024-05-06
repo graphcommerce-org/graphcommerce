@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.12
+
+### Patch Changes
+
+- [#2250](https://github.com/graphcommerce-org/graphcommerce/pull/2250) [`e56e836`](https://github.com/graphcommerce-org/graphcommerce/commit/e56e836f1fc463bf286c62668a4b65f320d5dc4a) - Make the back/up buttons translatable
+  ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 8.1.0-canary.11
 
 ## 8.1.0-canary.10
