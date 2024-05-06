@@ -9,7 +9,7 @@ import {
 import { isTypename, filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import type { SetRequired, SetNonNullable } from 'type-fest'
 import { CartItemFragment } from '../Api/CartItem.gql'
-import { EditCartItemFormFragment } from '../components/EditCartItemForm/EditCartItemForm'
+import { EditCartItemFormFragment } from '../components/EditCartItemForm/EditCartItemForm.gql'
 
 type F = 'customizable_options' | 'entered_options' | 'selected_options'
 type CartItemInput = SetNonNullable<SetRequired<AddProductsToCartFields['cartItems'][number], F>, F>

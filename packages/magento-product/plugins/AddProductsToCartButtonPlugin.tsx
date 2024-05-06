@@ -1,7 +1,4 @@
-import { useMutation } from '@graphcommerce/graphql'
-import { useCurrentCartId } from '@graphcommerce/magento-cart'
-import { RemoveItemFromCartDocument } from '@graphcommerce/magento-cart-items'
-import type { ReactPlugin } from '@graphcommerce/next-config'
+import type { PluginProps } from '@graphcommerce/next-config'
 import { Trans } from '@lingui/react'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
@@ -10,7 +7,7 @@ import { AddProductsToCartButton, AddProductsToCartContext } from '../components
 export const component = 'AddProductsToCartButton'
 export const exported = '@graphcommerce/magento-product'
 
-export const Plugin: ReactPlugin<typeof AddProductsToCartButton> = (props) => {
+export const Plugin = (props: PluginProps<typeof AddProductsToCartButton>) => {
   const { Prev, ...rest } = props
 
   const router = useRouter()
