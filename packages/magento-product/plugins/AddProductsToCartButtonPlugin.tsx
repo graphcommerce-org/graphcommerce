@@ -2,12 +2,12 @@ import type { PluginProps } from '@graphcommerce/next-config'
 import { Trans } from '@lingui/react'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
-import { AddProductsToCartButton, AddProductsToCartContext } from '../components'
+import { AddProductsToCartButtonProps, AddProductsToCartContext } from '../components'
 
 export const component = 'AddProductsToCartButton'
 export const exported = '@graphcommerce/magento-product'
 
-export const Plugin = (props: PluginProps<typeof AddProductsToCartButton>) => {
+export const Plugin = (props: PluginProps<AddProductsToCartButtonProps>) => {
   const { Prev, ...rest } = props
 
   const router = useRouter()
