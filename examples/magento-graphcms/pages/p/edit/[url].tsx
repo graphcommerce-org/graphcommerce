@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
+import { ReturnToCartButton } from '@graphcommerce/magento-cart'
 import { EditCartItemForm, useEditCartItemFormProps } from '@graphcommerce/magento-cart-items'
 import {
   AddProductsToCartFormProps,
@@ -43,6 +44,7 @@ function ProductPageConfigurable(props: Props) {
         switchPoint={0}
         noAlign
         sx={() => ({ '&.noAlign': { marginBottom: '0px' } })}
+        secondary={<ReturnToCartButton />}
         primary={<AddProductsToCartButton fullWidth product={product} variant='inline' />}
       >
         <LayoutTitle size='small' component='span'>
