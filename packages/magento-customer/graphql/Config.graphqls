@@ -1,13 +1,15 @@
 enum SignInModes {
   GUEST_ONLY
   DISABLE_GUEST_CHECKOUT
+  DISABLE_GUEST_ADD_TO_CART
   DEFAULT
 }
 
 extend input GraphCommerceStorefrontConfig {
   """
   GUEST_ONLY disables all login functionalities
-  SIGNED_IN_ONLY disables all guest functionalities
+  DISABLE_GUEST_CHECKOUT disables guest checkout. Products can still be added to the cart if not logged in.
+  DISABLE_GUEST_ADD_TO_CART disables disables guest checkout. Products CAN NOT be added to the cart if not logged in.
   DEFAULT allows all functionalities
   """
   signInMode: SignInModes = DEFAULT
