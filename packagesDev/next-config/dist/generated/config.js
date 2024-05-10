@@ -134,7 +134,7 @@ function GraphCommerceStorefrontConfigSchema() {
         linguiLocale: _zod.z.string().nullish(),
         locale: _zod.z.string().min(1),
         magentoStoreCode: _zod.z.string().min(1),
-        signInMode: SignInModesSchema.nullish()
+        signInMode: SignInModesSchema.nullish(),
         robotsAllow: _zod.z.boolean().nullish()
     });
 }
