@@ -1,9 +1,15 @@
-import { FullPageMessage, IconSvg, iconPerson } from '@graphcommerce/next-ui'
+import { FullPageMessage, FullPageMessageProps, IconSvg, iconPerson } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
+import React from 'react'
 import { useCustomerSession } from '../../hooks'
 
-export function UnauthenticatedFullPageMessage() {
+type UnauthenticatedFullPageMessageProps = Omit<FullPageMessageProps, 'icon' | 'title'> & {
+  icon?: React.ReactNode
+  title?: React.ReactNode
+}
+
+export function UnauthenticatedFullPageMessage(props: UnauthenticatedFullPageMessageProps) {
   const session = useCustomerSession()
 
   return (
@@ -15,6 +21,7 @@ export function UnauthenticatedFullPageMessage() {
           {!session.valid ? <Trans id='Sign in' /> : <Trans id='Sign in or create an account!' />}
         </Button>
       }
+      {...props}
     />
   )
 }
