@@ -36,9 +36,8 @@ export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButt
   const { loggedIn } = useCustomerSession()
   const disableGuestCheckout = signInMode === 'DISABLE_GUEST_CHECKOUT' && !loggedIn
 
-  const hasTotals = (cart.prices?.grand_total?.value ?? 0) > 0
-  const hasErrors = cart.items?.some((item) => (item?.errors?.length ?? 0) > 0)
-
+  const hasTotals = (cart?.prices?.grand_total?.value ?? 0) > 0
+  const hasErrors = cart?.items?.some((item) => (item?.errors?.length ?? 0) > 0)
 
   return (
     <LinkOrButton

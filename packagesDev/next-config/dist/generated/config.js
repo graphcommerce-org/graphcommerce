@@ -75,7 +75,6 @@ function DatalayerConfigSchema() {
         coreWebVitals: _zod.z.boolean().nullish()
     });
 }
-
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
         canonicalBaseUrl: _zod.z.string().min(1),
@@ -134,8 +133,8 @@ function GraphCommerceStorefrontConfigSchema() {
         linguiLocale: _zod.z.string().nullish(),
         locale: _zod.z.string().min(1),
         magentoStoreCode: _zod.z.string().min(1),
-        signInMode: SignInModesSchema.nullish(),
-        robotsAllow: _zod.z.boolean().nullish()
+        robotsAllow: _zod.z.boolean().nullish(),
+        signInMode: SignInModesSchema.nullish()
     });
 }
 function MagentoConfigurableVariantValuesSchema() {
