@@ -392,10 +392,11 @@ Add a gcms-locales header to make sure queries return in a certain language, can
 
 Specify a custom locale for to load translations.
 
-#### signInMode: DEFAULT | DISABLE_GUEST_CHECKOUT | GUEST_ONLY = `DEFAULT`
+#### signInMode: DEFAULT | DISABLE_GUEST_ADD_TO_CART | DISABLE_GUEST_CHECKOUT | GUEST_ONLY = `DEFAULT`
 
 GUEST_ONLY disables all login functionalities
-SIGNED_IN_ONLY disables all guest functionalities
+DISABLE_GUEST_CHECKOUT disables guest checkout. Products can still be added to the cart if not logged in.
+DISABLE_GUEST_ADD_TO_CART disables disables guest checkout. Products CAN NOT be added to the cart if not logged in.
 DEFAULT allows all functionalities
 
 ### MagentoConfigurableVariantValues

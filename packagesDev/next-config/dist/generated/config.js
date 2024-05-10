@@ -63,6 +63,7 @@ const SidebarGalleryPaginationVariantSchema = _zod.z.enum([
 ]);
 const SignInModesSchema = _zod.z.enum([
     "DEFAULT",
+    "DISABLE_GUEST_ADD_TO_CART",
     "DISABLE_GUEST_CHECKOUT",
     "GUEST_ONLY"
 ]);
