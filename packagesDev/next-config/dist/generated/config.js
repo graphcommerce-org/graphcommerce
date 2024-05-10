@@ -12,6 +12,9 @@ _export(exports, {
     CompareVariantSchema: function() {
         return CompareVariantSchema;
     },
+    DatalayerConfigSchema: function() {
+        return DatalayerConfigSchema;
+    },
     GraphCommerceConfigSchema: function() {
         return GraphCommerceConfigSchema;
     },
@@ -67,6 +70,12 @@ const SignInModesSchema = _zod.z.enum([
     "DISABLE_GUEST_CHECKOUT",
     "GUEST_ONLY"
 ]);
+function DatalayerConfigSchema() {
+    return _zod.z.object({
+        coreWebVitals: _zod.z.boolean().nullish()
+    });
+}
+
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
         canonicalBaseUrl: _zod.z.string().min(1),
@@ -78,6 +87,7 @@ function GraphCommerceConfigSchema() {
         crossSellsHideCartItems: _zod.z.boolean().nullish(),
         crossSellsRedirectItems: _zod.z.boolean().nullish(),
         customerRequireEmailConfirmation: _zod.z.boolean().nullish(),
+        dataLayer: DatalayerConfigSchema().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
         demoMode: _zod.z.boolean().nullish(),
         enableGuestCheckoutLogin: _zod.z.boolean().nullish(),
@@ -125,6 +135,7 @@ function GraphCommerceStorefrontConfigSchema() {
         locale: _zod.z.string().min(1),
         magentoStoreCode: _zod.z.string().min(1),
         signInMode: SignInModesSchema.nullish()
+        robotsAllow: _zod.z.boolean().nullish()
     });
 }
 function MagentoConfigurableVariantValuesSchema() {

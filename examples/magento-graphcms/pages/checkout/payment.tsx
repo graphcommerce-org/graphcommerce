@@ -174,7 +174,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await layout).data,
-      up: { href: '/checkout', title: 'Shipping' },
+      up: { href: '/checkout', title: i18n._(/* i18n */ 'Shipping') },
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

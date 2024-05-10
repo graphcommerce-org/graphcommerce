@@ -4,6 +4,7 @@ import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import { OptionTypeRenderer } from './CustomizableAreaOption'
+import { Money } from '@graphcommerce/magento-store'
 
 type CustomizableDateOptionProps = React.ComponentProps<
   OptionTypeRenderer['CustomizableDateOption']
@@ -21,14 +22,56 @@ export function CustomizableDateOption(props: CustomizableDateOptionProps) {
     title,
     minDate = new Date('1950-11-12T00:00'),
     maxDate = new Date('9999-11-12T00:00'),
+    dateValue,
+    currency,
+    productPrice,
   } = props
-  const { register, setValue, setError, getFieldState, clearErrors, control } =
-    useFormAddProductsToCart()
+  const {
+    register,
+    setValue,
+    setError,
+    getFieldState,
+    clearErrors,
+    control,
+    resetField,
+    getValues,
+  } = useFormAddProductsToCart()
 
   const { invalid } = getFieldState(`cartItems.${index}.entered_options.${optionIndex}.value`)
 
   minDate.setSeconds(0, 0)
   maxDate.setSeconds(0, 0)
+  if (!dateValue) return null
+
+  const price =
+    dateValue.price === 0
+      ? null
+      : dateValue.price && (
+          <Box
+            sx={{
+              display: 'flex',
+              typography: 'body1',
+              '&.sizeMedium': { typographty: 'subtitle1' },
+              '&.sizeLarge': { typography: 'h6' },
+              color:
+                dateValue.uid ===
+                getValues(`cartItems.${index}.entered_options.${optionIndex}.value`)
+                  ? 'text.primary'
+                  : 'text.secondary',
+            }}
+          >
+            {/* Change fontFamily so the + is properly outlined */}
+            <span style={{ fontFamily: 'arial' }}>+{'\u00A0'}</span>
+            <Money
+              value={
+                dateValue.price_type === 'PERCENT'
+                  ? productPrice * (dateValue.price / 100)
+                  : dateValue.price
+              }
+              currency={currency}
+            />
+          </Box>
+        )
   return (
     <Box>
       <input
@@ -41,12 +84,20 @@ export function CustomizableDateOption(props: CustomizableDateOptionProps) {
       <TextFieldElement
         control={control}
         name={`cartItems.${index}.entered_options.${optionIndex}.value`}
-        sx={{ width: '100%' }}
+        sx={{
+          width: '100%',
+          '& input[type="datetime-local"]::-webkit-calendar-picker-indicator': {
+            filter: (theme) => (theme.palette.mode === 'dark' ? 'invert(100%)' : 'none'),
+            mr: '10px',
+          },
+        }}
+        defaultValue=''
         required={!!required}
         error={invalid}
         helperText={invalid ? <Trans id='Invalid date' /> : ''}
         type='datetime-local'
         InputProps={{
+          endAdornment: price,
           inputProps: {
             min: minDate.toISOString().replace(/:00.000Z/, ''),
             max: maxDate.toISOString().replace(/:00.000Z/, ''),
@@ -61,10 +112,12 @@ export function CustomizableDateOption(props: CustomizableDateOptionProps) {
           } else {
             clearErrors(`cartItems.${index}.entered_options.${optionIndex}.value`)
           }
-          setValue(
-            `cartItems.${index}.entered_options.${optionIndex}.value`,
-            `${data.currentTarget.value.replace('T', ' ')}:00`,
-          )
+          if (data.currentTarget.value)
+            setValue(
+              `cartItems.${index}.entered_options.${optionIndex}.value`,
+              `${data.currentTarget.value.replace('T', ' ')}:00`,
+            )
+          else resetField(`cartItems.${index}.entered_options.${optionIndex}.value`)
         }}
       />
     </Box>

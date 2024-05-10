@@ -1,5 +1,86 @@
 # @graphcommerce/ecommerce-ui
 
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+## 8.1.0-canary.8
+
+## 8.1.0-canary.7
+
+## 8.1.0-canary.6
+
+## 8.1.0-canary.5
+
+## 8.0.6-canary.4
+
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Make sure the TextFieldElement doesn’t give a uncontrolled to controlled warning.
+  Convert SelectElement to useController instead of a separate Controller component.
+  Make sure the original endAdornment is always shown only until the value is valid ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`d4e693d`](https://github.com/graphcommerce-org/graphcommerce/commit/d4e693d553198c9a1ef398d000ca23d209e6c2ba) - The `<WaitForQueries/>` component now uses the useIsSSR hook which prevents loading spinners when navigating on the client, which make all account/cart/checkout pages faster.
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
+## 8.0.5
+
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+## 8.0.5-canary.5
+
+## 8.0.5-canary.4
+
+## 8.0.5-canary.3
+
+## 8.0.5-canary.2
+
+## 8.0.5-canary.1
+
+## 8.0.5-canary.0
+
+## 8.0.4
+
+## 8.0.4-canary.1
+
+## 8.0.4-canary.0
+
+## 8.0.3
+
+### Patch Changes
+
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`e12d1dc`](https://github.com/graphcommerce-org/graphcommerce/commit/e12d1dc201bf7b23a996bd58a256a117b91a9334) - Rename validation to rules for all Form field components and deprecate validation
+  ([@paales](https://github.com/paales))
+
+- [#2203](https://github.com/graphcommerce-org/graphcommerce/pull/2203) [`7ef7dc7`](https://github.com/graphcommerce-org/graphcommerce/commit/7ef7dc7631f61a2feba67a531a210df9c22fed4b) - CheckboxElement, MultiSelectElement, NumberFieldElement, SelectElement, SliderElement and TextFieldElement have their inputRef passed, allowing focus to be set by the form.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`eb14696`](https://github.com/graphcommerce-org/graphcommerce/commit/eb14696fc65e084a06790c88a8218fb3003f7c2c) - `<WaitForQueries/>` will default to loading, restoring the previous behavior. This might introduce , this might introduce an additional spinner but prevents a flash where it is shown that there is no cart
+  ([@paales](https://github.com/paales))
+
 ## 8.0.3-canary.6
 
 ## 8.0.3-canary.5

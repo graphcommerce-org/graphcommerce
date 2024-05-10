@@ -11,7 +11,7 @@ export type ProductTypenames = NonNullable<
 export async function getProductStaticPaths(
   client: ApolloClient<NormalizedCacheObject>,
   locale: string,
-  typename?: ProductTypenames,
+  options: { limit?: boolean } = { limit: import.meta.graphCommerce.limitSsg || false },
 ) {
   const query = client.query({
     query: ProductStaticPathsDocument,
@@ -36,8 +36,7 @@ export async function getProductStaticPaths(
   const paths: Return['paths'] = (await Promise.all(pages))
     .map((q) => q.data.products?.items)
     .flat(1)
-    .filter((item) => (typename ? item?.__typename === typename : true))
     .map((p) => ({ params: { url: `${p?.url_key}` }, locale }))
 
-  return import.meta.graphCommerce.limitSsg ? paths.slice(0, 1) : paths
+  return options.limit ? paths.slice(0, 1) : paths
 }

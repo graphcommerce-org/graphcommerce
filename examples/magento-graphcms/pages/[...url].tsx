@@ -16,12 +16,14 @@ import {
   parseParams,
   ProductFiltersDocument,
   ProductFiltersQuery,
+  productListApplyCategoryDefaults,
   ProductListDocument,
   ProductListParams,
   ProductListQuery,
 } from '@graphcommerce/magento-product'
 import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutHeader, LayoutTitle, MetaRobots } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
@@ -102,6 +104,7 @@ function CategoryPage(props: CategoryProps) {
             filterTypes={filterTypes}
             title={category.name ?? ''}
             id={category.uid}
+            category={category}
           />
         </>
       )}
@@ -177,11 +180,11 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const products = hasCategory
     ? staticClient.query({
         query: ProductListDocument,
-        variables: {
-          pageSize: (await conf).data.storeConfig?.grid_per_page ?? 24,
-          ...productListParams,
-          filters: { ...productListParams?.filters, category_uid: { eq: categoryUid } },
-        },
+        variables: await productListApplyCategoryDefaults(
+          productListParams,
+          (await conf).data,
+          category,
+        ),
       })
     : undefined
 
@@ -196,7 +199,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const up =
     category_url_path && category_name
       ? { href: `/${category_url_path}`, title: category_name }
-      : { href: `/`, title: 'Home' }
+      : { href: `/`, title: i18n._(/* i18n */ 'Home') }
 
   const result = {
     props: {

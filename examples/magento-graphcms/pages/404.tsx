@@ -8,6 +8,7 @@ import {
   IconSvg,
   useStorefrontConfig,
 } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container, Typography, Link } from '@mui/material'
 import React from 'react'
@@ -81,7 +82,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await layout).data,
-      up: { href: '/', title: 'Home' },
+      up: { href: '/', title: i18n._(/* i18n */ 'Home') },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

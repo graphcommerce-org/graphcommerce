@@ -1,13 +1,13 @@
-import type { graphqlConfig } from '@graphcommerce/graphql'
-import type { MethodPlugin } from '@graphcommerce/next-config'
+import type { graphqlConfig as graphqlConfigType } from '@graphcommerce/graphql'
+import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 import { createStoreLink } from '../link/createStoreLink'
 
-export const func = 'graphqlConfig'
-export const exported = '@graphcommerce/graphql/config'
-
-const magentoStoreGraphqlConfig: MethodPlugin<typeof graphqlConfig> = (prev, config) => {
-  const results = prev(config)
-  return { ...results, links: [...results.links, createStoreLink(config.storefront.locale)] }
+export const config: PluginConfig = {
+  type: 'function',
+  module: '@graphcommerce/graphql',
 }
 
-export const plugin = magentoStoreGraphqlConfig
+export const graphqlConfig: FunctionPlugin<typeof graphqlConfigType> = (prev, conf) => {
+  const results = prev(conf)
+  return { ...results, links: [...results.links, createStoreLink(conf.storefront.locale)] }
+}

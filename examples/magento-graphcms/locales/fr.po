@@ -541,6 +541,9 @@ msgstr "Derniers produits consultés"
 msgid "Region"
 msgstr "Région"
 
+msgid "Relevance"
+msgstr "Pertinence"
+
 msgid "Remove"
 msgstr "Supprimer"
 
@@ -714,6 +717,9 @@ msgstr "Il y a un maximum de caractères '{maxLength}'"
 
 msgid "This cart is assigned to {email}. Please sign in to continue shopping."
 msgstr "Ce panier est assigné à {email}. Veuillez vous connecter pour continuer vos achats."
+
+msgid "This field is invalid"
+msgstr "Ce champ est invalide"
 
 msgid "This field is required"
 msgstr "Ce champ est requis"

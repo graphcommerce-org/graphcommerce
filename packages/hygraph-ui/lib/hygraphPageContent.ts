@@ -1,5 +1,6 @@
 import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
-import { HygraphAllPagesDocument, HygraphPagesQuery, HygraphPagesDocument } from '../graphql'
+import { HygraphPagesQuery, HygraphPagesDocument } from '../graphql'
+import { getAllHygraphPages } from './getAllHygraphPages'
 
 /**
  * Fetch the page content for the given urls.
@@ -28,10 +29,9 @@ async function pageContent(
   const alwaysCache = process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined
   const fetchPolicy = cached ? alwaysCache : undefined
 
-  const allRoutes = await client.query({ query: HygraphAllPagesDocument, fetchPolicy: alwaysCache })
-
+  const allRoutes = await getAllHygraphPages(client)
   // Only do the query when there the page is found in the allRoutes
-  const found = allRoutes.data.pages.some((page) => page.url === url)
+  const found = allRoutes.some((page) => page.url === url)
 
   return found
     ? client.query({ query: HygraphPagesDocument, variables: { url }, fetchPolicy })

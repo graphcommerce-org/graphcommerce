@@ -20,6 +20,12 @@ export type CompareVariant =
   | 'CHECKBOX'
   | 'ICON';
 
+/** GoogleDatalayerConfig to allow enabling certain aspects of the datalayer */
+export type DatalayerConfig = {
+  /** Enable core web vitals tracking for GraphCommerce */
+  coreWebVitals?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 /**
  * # GraphCommerce configuration system
  *
@@ -80,7 +86,7 @@ export type CompareVariant =
  *
  * You can export configuration by running `yarn graphcommerce export-config`
  *
- * ## Extending the configuration in your  project
+ * ## Extending the configuration in your project
  *
  * Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceStorefrontConfig inputs to add configuration.
  *
@@ -159,6 +165,7 @@ export type GraphCommerceConfig = {
    * `customer/create_account/confirm` and should be removed once we can query
    */
   customerRequireEmailConfirmation?: InputMaybe<Scalars['Boolean']['input']>;
+  dataLayer?: InputMaybe<DatalayerConfig>;
   /** Debug configuration for GraphCommerce */
   debug?: InputMaybe<GraphCommerceDebugConfig>;
   /**
@@ -358,9 +365,13 @@ export type GraphCommerceStorefrontConfig = {
   googleTagmanagerId?: InputMaybe<Scalars['String']['input']>;
   /** Add a gcms-locales header to make sure queries return in a certain language, can be an array to define fallbacks. */
   hygraphLocales?: InputMaybe<Array<Scalars['String']['input']>>;
-  /** Specify a custom locale for to load translations. */
+  /** Custom locale used to load the .po files. Must be a valid locale, also used for Intl functions. */
   linguiLocale?: InputMaybe<Scalars['String']['input']>;
-  /** Must be a locale string https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers */
+  /**
+   * Must be a [locale string](https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers) for automatic redirects to work.
+   *
+   * This value can be used as a sub-path identifier only, make sure linguiLocale is configured for each URL.
+   */
   locale: Scalars['String']['input'];
   /**
    * Magento store code.
@@ -380,6 +391,10 @@ export type GraphCommerceStorefrontConfig = {
    * DEFAULT allows all functionalities
    */
   signInMode?: InputMaybe<SignInModes>;
+   * Allow the site to be indexed by search engines.
+   * If false, the robots.txt file will be set to disallow all.
+   */
+  robotsAllow?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Options to configure which values will be replaced when a variant is selected on the product page. */
@@ -446,6 +461,11 @@ export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM']);
 
 export const SignInModesSchema = z.enum(['DEFAULT', 'DISABLE_GUEST_ADD_TO_CART', 'DISABLE_GUEST_CHECKOUT', 'GUEST_ONLY']);
+export function DatalayerConfigSchema(): z.ZodObject<Properties<DatalayerConfig>> {
+  return z.object({
+    coreWebVitals: z.boolean().nullish()
+  })
+}
 
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
@@ -458,6 +478,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     crossSellsHideCartItems: z.boolean().nullish(),
     crossSellsRedirectItems: z.boolean().nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
+    dataLayer: DatalayerConfigSchema().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().nullish(),
     enableGuestCheckoutLogin: z.boolean().nullish(),
@@ -507,6 +528,7 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
     locale: z.string().min(1),
     magentoStoreCode: z.string().min(1),
     signInMode: SignInModesSchema.nullish()
+    robotsAllow: z.boolean().nullish()
   })
 }
 

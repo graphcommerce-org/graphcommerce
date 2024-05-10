@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { ApolloErrorSnackbar } from '@graphcommerce/ecommerce-ui'
+import { ApolloErrorSnackbar, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import {
@@ -23,6 +23,9 @@ import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
 type EditAddressFormProps = {
   address?: AccountAddressFragment
   sx?: SxProps<Theme>
+  /**
+   * @deprecated not used, can be safely removed.
+   */
   onCompleteRoute?: string
 }
 
@@ -75,7 +78,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
     { errorPolicy: 'all' },
   )
 
-  const { handleSubmit, formState, required, error, muiRegister, valid } = form
+  const { handleSubmit, formState, required, error, control, valid } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
@@ -85,19 +88,21 @@ export function EditAddressForm(props: EditAddressFormProps) {
         <AddressFields form={form} name={{ regionId: 'region.region_id' }} />
 
         <FormRow>
-          <TextField
+          <TextFieldElement
+            control={control}
+            name='telephone'
             variant='outlined'
             type='text'
             error={!!formState.errors.telephone}
             required={required.telephone}
             label={<Trans id='Telephone' />}
-            {...muiRegister('telephone', {
+            rules={{
               required: required.telephone,
               pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-            })}
+            }}
             helperText={formState.isSubmitted && formState.errors.telephone?.message}
             disabled={formState.isSubmitting}
-            InputProps={{ endAdornment: <InputCheckmark show={valid.telephone} /> }}
+            showValid
           />
         </FormRow>
 

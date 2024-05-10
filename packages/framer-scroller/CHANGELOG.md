@@ -1,5 +1,78 @@
 # Change Log
 
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+## 8.1.0-canary.8
+
+## 8.1.0-canary.7
+
+## 8.1.0-canary.6
+
+## 8.1.0-canary.5
+
+## 8.0.6-canary.4
+
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
+## 8.0.5
+
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+## 8.0.5-canary.5
+
+## 8.0.5-canary.4
+
+## 8.0.5-canary.3
+
+## 8.0.5-canary.2
+
+## 8.0.5-canary.1
+
+## 8.0.5-canary.0
+
+## 8.0.4
+
+### Patch Changes
+
+- [#2225](https://github.com/graphcommerce-org/graphcommerce/pull/2225) [`29407d2`](https://github.com/graphcommerce-org/graphcommerce/commit/29407d28c4f7c2629f8c5ead658bfb203f5d81cf) - Fixed a bug on Firefox in which all overlays would retrigger the scrollTo function on opening or closing.
+  ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 8.0.4-canary.1
+
+## 8.0.4-canary.0
+
+### Patch Changes
+
+- [#2225](https://github.com/graphcommerce-org/graphcommerce/pull/2225) [`29407d2`](https://github.com/graphcommerce-org/graphcommerce/commit/29407d28c4f7c2629f8c5ead658bfb203f5d81cf) - Fixed a bug on Firefox in which all overlays would retrigger the scrollTo function on opening or closing.
+  ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 8.0.3
+
+### Patch Changes
+
+- [#2211](https://github.com/graphcommerce-org/graphcommerce/pull/2211) [`2fc62cd`](https://github.com/graphcommerce-org/graphcommerce/commit/2fc62cd550c8831071c51c1088a94da584a0790b) - Do not show the a product thumbnails when there is only a single image.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.0.3-canary.6
 
 ## 8.0.3-canary.5

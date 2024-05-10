@@ -1,7 +1,7 @@
 import { usePageContext } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
+import { useUrlQuery } from '@graphcommerce/next-ui'
 import { useFormGqlQuery } from '@graphcommerce/react-hook-form'
-import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { CustomerDocument } from './Customer.gql'
 import {
@@ -10,7 +10,6 @@ import {
   IsEmailAvailableQueryVariables,
 } from './IsEmailAvailable.gql'
 import { useCustomerSession } from './useCustomerSession'
-import { useUrlQuery } from '@graphcommerce/next-ui'
 
 export type UseFormIsEmailAvailableProps = {
   onSubmitted?: (data: { email: string }) => void

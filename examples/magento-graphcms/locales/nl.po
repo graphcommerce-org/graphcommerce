@@ -541,6 +541,9 @@ msgstr "Recent bekeken producten"
 msgid "Region"
 msgstr "Regio"
 
+msgid "Relevance"
+msgstr "Relevantie"
+
 msgid "Remove"
 msgstr "Verwijder"
 
@@ -714,6 +717,9 @@ msgstr "Er is een maximum van ‘{maxLength}’ karakters"
 
 msgid "This cart is assigned to {email}. Please sign in to continue shopping."
 msgstr "Deze winkelwagen is toegewezen aan {email}. Log in om verder te winkelen."
+
+msgid "This field is invalid"
+msgstr "Dit veld is ongeldig"
 
 msgid "This field is required"
 msgstr "Dit veld is verplicht"

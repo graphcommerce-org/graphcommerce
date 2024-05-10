@@ -1,46 +1,56 @@
-import braintree, { HostedFields } from 'braintree-web'
-import { useRef } from 'react'
+import braintree, { HostedFields, ThreeDSecure } from 'braintree-web'
+import { useEffect, useState } from 'react'
 import { useBraintreeClient } from './useBraintree'
 
-let hostedFieldsPromise: Promise<HostedFields> | undefined
-function getLocalPaymentPromise(braintreePromise: ReturnType<typeof useBraintreeClient>) {
-  if (!hostedFieldsPromise) {
-    hostedFieldsPromise = new Promise((resolve, reject) => {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      ;(async () => {
-        try {
-          const client = await braintreePromise
-
-          resolve(
-            await braintree.hostedFields.create({
-              client,
-              fields: {
-                number: {
-                  container: '#card-number',
-                  // placeholder: '4111 1111 1111 1111',
-                },
-                cvv: {
-                  container: '#cvv',
-                  // placeholder: '123',
-                },
-                expirationDate: {
-                  container: '#expiration-date',
-                  // placeholder: '10/2022',
-                },
-              },
-            }),
-          )
-        } catch (e) {
-          reject(e)
-        }
-      })()
-    })
-  }
-
-  return hostedFieldsPromise
-}
+let teardownPromise: Promise<void> | undefined | void
 
 export function useBraintreeHostedFields() {
   const braintreePromise = useBraintreeClient()
-  return useRef<Promise<HostedFields>>(getLocalPaymentPromise(braintreePromise)).current
+  const [hostedFields, setHostedFields] = useState<
+    [HostedFields, ThreeDSecure] | [undefined, undefined]
+  >([undefined, undefined])
+
+  useEffect(() => {
+    if (!hostedFields[0] && !teardownPromise) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      braintreePromise.then(async (client) => {
+        if (teardownPromise) {
+          await teardownPromise
+          teardownPromise = undefined
+        }
+
+        const threeDSecure = await braintree.threeDSecure.create({ client, version: 2 })
+
+        const hosted = await braintree.hostedFields.create({
+          client,
+          styles: {
+            input: {
+              // change input styles to match
+              // bootstrap styles
+              'font-size': '1rem',
+              color: '#495057',
+              'padding-left': '16px',
+              'padding-right': '16px',
+            },
+          },
+          fields: {
+            number: { container: '#card-number' },
+            cvv: { container: '#cvv' },
+            expirationDate: { container: '#expiration-date' },
+            // cardholderName: { container: '#cardholder-name' },
+            // postalCode: { container: '#postal-code' },
+          },
+        })
+
+        setHostedFields([hosted, threeDSecure])
+      })
+    }
+
+    return () => {
+      teardownPromise = hostedFields[0]?.teardown()
+      hostedFields[1]?.teardown()
+    }
+  }, [])
+
+  return teardownPromise ? [undefined, undefined] : hostedFields
 }

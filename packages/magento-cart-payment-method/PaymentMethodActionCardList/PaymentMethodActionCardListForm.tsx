@@ -7,17 +7,17 @@ import {
   ActionCardProps,
 } from '@graphcommerce/next-ui'
 import {
+  FormPersist,
   useForm,
   useFormCompose,
   UseFormComposeOptions,
-  useFormPersist,
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
 import { useEffect } from 'react'
 import { PaymentOptionsProps } from '../Api/PaymentMethod'
-import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
+import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 import { useCartLock } from '../hooks'
 
 function PaymentMethodActionCard(
@@ -84,7 +84,6 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
 
   const paymentMethod = watch('paymentMethod')
 
-  useFormPersist({ form, name: 'PaymentMethodActionCardList' })
   useFormCompose({ form, step: 1, submit, key: 'PaymentMethodActionCardList' })
 
   // todo: Do not useEffect to set value, usePaymentMethodContext should calculate these values.
@@ -109,21 +108,24 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
   if (!methods || methods.length < 1) return null
 
   return (
-    <ActionCardListForm<PaymentOptionsProps & ActionCardProps, FormFields>
-      control={control}
-      name='paymentMethod'
-      errorMessage={i18n._(/* i18n */ 'Please select a payment method')}
-      collapse
-      size='large'
-      color='secondary'
-      items={methods.map((method) => ({
-        ...method,
-        value: `${method.code}___${method.child}`,
-        step,
-        Container: FormDiv,
-        disabled: !modules?.[method.code ?? ''],
-      }))}
-      render={PaymentMethodActionCard}
-    />
+    <>
+      <FormPersist form={form} name='PaymentMethodActionCardList' />
+      <ActionCardListForm<PaymentOptionsProps & ActionCardProps, FormFields>
+        control={control}
+        name='paymentMethod'
+        errorMessage={i18n._(/* i18n */ 'Please select a payment method')}
+        collapse
+        size='large'
+        color='secondary'
+        items={methods.map((method) => ({
+          ...method,
+          value: `${method.code}___${method.child}`,
+          step,
+          Container: FormDiv,
+          disabled: !modules?.[method.code ?? ''],
+        }))}
+        render={PaymentMethodActionCard}
+      />
+    </>
   )
 }

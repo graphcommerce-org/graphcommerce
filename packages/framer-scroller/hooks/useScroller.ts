@@ -121,7 +121,6 @@ export function useScroller<
   }
 
   const ref: React.RefCallback<E> = (el) => {
-    // @ts-expect-error current is assignable
     scrollerRef.current = el ?? undefined
     if (typeof forwardedRef === 'function') forwardedRef(el)
     else if (forwardedRef) forwardedRef.current = el

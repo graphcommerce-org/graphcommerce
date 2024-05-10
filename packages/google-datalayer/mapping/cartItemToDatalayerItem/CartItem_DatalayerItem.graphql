@@ -1,0 +1,31 @@
+fragment CartItem_DatalayerItem on CartItemInterface {
+  __typename
+  uid
+  product {
+    ...Product_DatalayerItem
+  }
+  prices {
+    price {
+      ...Money
+    }
+    price_including_tax {
+      ...Money
+    }
+    row_total {
+      ...Money
+    }
+    row_total_including_tax {
+      ...Money
+    }
+    total_item_discount {
+      ...Money
+    }
+  }
+  quantity
+  ... on ConfigurableCartItem {
+    configured_variant {
+      uid
+      sku
+    }
+  }
+}

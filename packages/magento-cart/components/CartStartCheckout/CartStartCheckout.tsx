@@ -11,12 +11,16 @@ import React from 'react'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
 
-export type CartStartCheckoutProps = CartStartCheckoutFragment & {
+export type CartStartCheckoutProps = {
   children?: React.ReactNode
   sx?: SxProps<Theme>
   buttonProps?: ButtonProps<'button'>
   disabled?: boolean
-  onStart?: (e: React.MouseEvent<HTMLButtonElement>, cart: CartStartCheckoutFragment) => void
+  cart?: CartStartCheckoutFragment | null | undefined
+  onStart?: (
+    e: React.MouseEvent<HTMLButtonElement>,
+    cart: CartStartCheckoutFragment | null | undefined,
+  ) => void
 }
 
 const name = 'CartStartCheckout' as const
@@ -35,7 +39,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
     buttonProps: { onClick, ...buttonProps } = {},
     disabled,
     sx = [],
-    ...cart
+    cart,
   } = props
 
   const { signInMode } = useStorefrontConfig()
@@ -44,6 +48,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
 
   const hasTotals = (cart.prices?.grand_total?.value ?? 0) > 0
   const hasErrors = cart.items?.some((item) => (item?.errors?.length ?? 0) > 0)
+
 
   return (
     <Box
@@ -81,7 +86,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
         </Box>{' '}
         {hasTotals && (
           <span className={classes.checkoutMoney}>
-            <Money {...cart.prices?.grand_total} />
+            <Money {...cart?.prices?.grand_total} />
           </span>
         )}
       </Button>

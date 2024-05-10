@@ -18,6 +18,7 @@ query ProductPage2($urlKey: String!, $reviewPageSize: Int = 3, $reviewPage: Int 
       uid
       ...UpsellProducts
       ...RelatedProducts
+      ...ProductReviews
     }
   }
 }

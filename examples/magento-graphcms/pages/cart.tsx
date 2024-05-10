@@ -55,7 +55,7 @@ function CartPage() {
       />
       <LayoutOverlayHeader
         switchPoint={0}
-        primary={<CartStartCheckoutLinkOrButton {...data?.cart} disabled={hasError} />}
+        primary={<CartStartCheckoutLinkOrButton cart={data?.cart} disabled={hasError} />}
         divider={
           <Container maxWidth='md'>
             <Stepper currentStep={hasItems ? 1 : 0} steps={3} />
