@@ -50,7 +50,9 @@ function PaymentPage() {
 
   const { signInMode } = useStorefrontConfig()
   const { loggedIn } = useCustomerSession()
-  const disableGuestCheckout = signInMode === 'DISABLE_GUEST_CHECKOUT' && !loggedIn
+  const disableGuestCheckout =
+    (signInMode === 'DISABLE_GUEST_CHECKOUT' || signInMode === 'DISABLE_GUEST_ADD_TO_CART') &&
+    !loggedIn
 
   return disableGuestCheckout ? (
     <UnauthenticatedFullPageMessage />

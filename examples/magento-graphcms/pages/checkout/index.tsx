@@ -24,6 +24,7 @@ import {
   useCustomerQuery,
   useCustomerSession,
 } from '@graphcommerce/magento-customer'
+import { UnauthenticatedFullPageMessage } from '@graphcommerce/magento-customer/components/WaitForCustomer/UnauthenticatedFullPageMessage'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   FormActions,
@@ -42,7 +43,6 @@ import { CircularProgress, Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutDocument, LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { UnauthenticatedFullPageMessage } from '@graphcommerce/magento-customer/components/WaitForCustomer/UnauthenticatedFullPageMessage'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
@@ -54,7 +54,9 @@ function ShippingPage() {
 
   const { signInMode } = useStorefrontConfig()
   const { loggedIn } = useCustomerSession()
-  const disableGuestCheckout = signInMode === 'DISABLE_GUEST_CHECKOUT' && !loggedIn
+  const disableGuestCheckout =
+    (signInMode === 'DISABLE_GUEST_CHECKOUT' || signInMode === 'DISABLE_GUEST_ADD_TO_CART') &&
+    !loggedIn
 
   const cartExists =
     typeof shippingPage.data?.cart !== 'undefined' &&

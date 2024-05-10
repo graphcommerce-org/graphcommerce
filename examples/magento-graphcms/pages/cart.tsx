@@ -11,6 +11,7 @@ import {
 import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
 import { CartItemsActionCards, CartCrosssellsScroller } from '@graphcommerce/magento-cart-items'
+import { UnauthenticatedFullPageMessage } from '@graphcommerce/magento-customer/components/WaitForCustomer/UnauthenticatedFullPageMessage'
 import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
@@ -20,12 +21,14 @@ import {
   LayoutOverlayHeader,
   FullPageMessage,
   OverlayStickyBottom,
+  useStorefrontConfig,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
+import { useCustomerSession } from '@graphcommerce/magento-customer'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -40,7 +43,10 @@ function CartPage() {
   const hasItems =
     (data?.cart?.total_quantity ?? 0) > 0 &&
     typeof data?.cart?.prices?.grand_total?.value !== 'undefined'
+  const { loggedIn } = useCustomerSession()
 
+  const { signInMode } = useStorefrontConfig()
+  const loginRequiredForCart = signInMode === 'DISABLE_GUEST_ADD_TO_CART' && !loggedIn
   return (
     <>
       <PageMeta
@@ -57,7 +63,7 @@ function CartPage() {
         }
       >
         <LayoutTitle size='small' component='span' icon={hasItems ? iconShoppingBag : undefined}>
-          {hasItems ? (
+          {hasItems && !loginRequiredForCart ? (
             <Trans
               id='Total <0/>'
               components={{ 0: <Money {...data?.cart?.prices?.grand_total} /> }}
@@ -67,34 +73,38 @@ function CartPage() {
           )}
         </LayoutTitle>
       </LayoutOverlayHeader>
-      <WaitForQueries
-        waitFor={cart}
-        fallback={
-          <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />}>
-            <Trans id='This may take a second' />
-          </FullPageMessage>
-        }
-      >
-        {hasItems ? (
-          <>
-            <Container maxWidth='md'>
-              <CartItemsActionCards cart={data.cart} sx={{ position: 'relative', zIndex: 1 }} />
-              <CouponAccordion key='couponform' sx={(theme) => ({ mt: theme.spacings.md })} />
-              <CartTotals containerMargin sx={{ typography: 'body1' }} />
-              <ApolloCartErrorAlert error={error} />
-            </Container>
-            <CartCrosssellsScroller
-              renderer={productListRenderer}
-              sx={(theme) => ({ mt: theme.spacings.md })}
-            />
-            <OverlayStickyBottom sx={{ py: 0.1 }}>
-              <CartStartCheckout {...data?.cart} disabled={hasError} />
-            </OverlayStickyBottom>
-          </>
-        ) : (
-          <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
-        )}
-      </WaitForQueries>
+      {loginRequiredForCart ? (
+        <UnauthenticatedFullPageMessage disableMargin />
+      ) : (
+        <WaitForQueries
+          waitFor={cart}
+          fallback={
+            <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />}>
+              <Trans id='This may take a second' />
+            </FullPageMessage>
+          }
+        >
+          {hasItems ? (
+            <>
+              <Container maxWidth='md'>
+                <CartItemsActionCards cart={data.cart} sx={{ position: 'relative', zIndex: 1 }} />
+                <CouponAccordion key='couponform' sx={(theme) => ({ mt: theme.spacings.md })} />
+                <CartTotals containerMargin sx={{ typography: 'body1' }} />
+                <ApolloCartErrorAlert error={error} />
+              </Container>
+              <CartCrosssellsScroller
+                renderer={productListRenderer}
+                sx={(theme) => ({ mt: theme.spacings.md })}
+              />
+              <OverlayStickyBottom sx={{ py: 0.1 }}>
+                <CartStartCheckout {...data?.cart} disabled={hasError} />
+              </OverlayStickyBottom>
+            </>
+          ) : (
+            <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
+          )}
+        </WaitForQueries>
+      )}
     </>
   )
 }
