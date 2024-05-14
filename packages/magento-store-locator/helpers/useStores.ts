@@ -1,7 +1,4 @@
-import { useQuery } from '@graphcommerce/graphql'
-import { nonNullable } from '@graphcommerce/next-ui'
 import { StoreFragment } from '../Store.gql'
-import { StoresDocument } from '../Stores.gql'
 import { usePosition } from './usePosition'
 
 // Converts numeric degrees to radians
@@ -47,14 +44,12 @@ function sortStores(position: google.maps.LatLngLiteral | null, stores: StoreFra
   return stores
 }
 
-export function useStores(position: ReturnType<typeof usePosition>['position']) {
-  const { data, loading } = useQuery(StoresDocument)
-
-  const stores = data?.pickupLocations?.items?.filter(nonNullable) ?? []
-
+export function useStores(
+  position: ReturnType<typeof usePosition>['position'],
+  stores: StoreFragment[],
+) {
   return {
-    stores: sortStores(position, stores),
+    sortedStores: sortStores(position, stores),
     position,
-    loading,
   }
 }

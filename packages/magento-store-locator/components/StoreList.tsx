@@ -93,25 +93,25 @@ export function StoreListLoader() {
   )
 }
 
-export type StoreListProps = { position: PositionProps }
+export type StoreListProps = { position: PositionProps; stores: StoreFragment[] }
 
 export function StoreList(props: StoreListProps) {
-  const { position } = props
-  const { stores, loading } = useStores(position)
-  const filteredStores = useFilteredStores(stores)
-  const first = stores?.[0]?.pickup_location_code
-  const storeList = filteredStores || stores
+  const { position, stores } = props
+  const { sortedStores } = useStores(position, stores)
+  const filteredStores = useFilteredStores(sortedStores)
+  const first = sortedStores?.[0]?.pickup_location_code
+  const storeList = filteredStores || sortedStores
 
   return (
-    <WaitForQueries waitFor={!loading} fallback={<StoreListLoader />}>
+    <>
       {storeList.length > 0 ? (
         <StoreListResults
           first={position && first ? first : undefined}
-          stores={filteredStores || stores}
+          stores={filteredStores || sortedStores}
         />
       ) : (
         <StoreListNoResults />
       )}
-    </WaitForQueries>
+    </>
   )
 }

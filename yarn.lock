@@ -3453,7 +3453,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-cart-pickup@workspace:packages/magento-cart-pickup":
+"@graphcommerce/magento-cart-pickup@npm:8.1.0-canary.6, @graphcommerce/magento-cart-pickup@workspace:packages/magento-cart-pickup":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-pickup@workspace:packages/magento-cart-pickup"
   peerDependencies:
@@ -3723,6 +3723,7 @@ __metadata:
     "@graphcommerce/magento-cart-email": "npm:8.1.0-canary.6"
     "@graphcommerce/magento-cart-items": "npm:8.1.0-canary.6"
     "@graphcommerce/magento-cart-payment-method": "npm:8.1.0-canary.6"
+    "@graphcommerce/magento-cart-pickup": "npm:8.1.0-canary.6"
     "@graphcommerce/magento-cart-shipping-address": "npm:8.1.0-canary.6"
     "@graphcommerce/magento-cart-shipping-method": "npm:8.1.0-canary.6"
     "@graphcommerce/magento-category": "npm:8.1.0-canary.6"

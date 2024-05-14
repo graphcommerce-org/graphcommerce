@@ -3,12 +3,10 @@ import { iconSearch, IconSvg } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import Box from '@mui/material/Box'
 import InputAdornment from '@mui/material/InputAdornment'
-import { useStores } from '../helpers/useStores'
 import { useStoreLocatorForm } from './StoreLocatorFormProvider'
 
 export function StoreFilters() {
   const { control } = useStoreLocatorForm()
-  const { loading } = useStores(null)
 
   return (
     <Box>
@@ -25,7 +23,6 @@ export function StoreFilters() {
             </InputAdornment>
           ),
         }}
-        disabled={loading}
         sx={(theme) => ({
           mb: theme.spacings.xs,
 

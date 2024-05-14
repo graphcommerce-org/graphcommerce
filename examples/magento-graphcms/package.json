@@ -44,6 +44,7 @@
     "@graphcommerce/magento-cart-email": "8.1.0-canary.6",
     "@graphcommerce/magento-cart-items": "8.1.0-canary.6",
     "@graphcommerce/magento-cart-payment-method": "8.1.0-canary.6",
+    "@graphcommerce/magento-cart-pickup": "8.1.0-canary.6",
     "@graphcommerce/magento-cart-shipping-address": "8.1.0-canary.6",
     "@graphcommerce/magento-cart-shipping-method": "8.1.0-canary.6",
     "@graphcommerce/magento-category": "8.1.0-canary.6",

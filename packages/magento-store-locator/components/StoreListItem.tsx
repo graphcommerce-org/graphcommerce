@@ -1,12 +1,14 @@
 import { IconSvg } from '@graphcommerce/next-ui'
 import { useWatch } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { ButtonBase, Typography, Box } from '@mui/material'
+import { ButtonBase, Typography, Box, Chip } from '@mui/material'
 import React from 'react'
 import { StoreFragment } from '../Store.gql'
 import LocationPackageIcon from '../icons/LocationPackageIcon.svg'
 import { StoreInfo } from './StoreInfo'
 import { useStoreLocatorForm } from './StoreLocatorFormProvider'
+import { i18n } from '@lingui/core'
+import { StoreChip } from './StoreChip'
 
 type RetailStoreListItemProps = { store: StoreFragment; isClosestStore?: boolean }
 
@@ -26,19 +28,17 @@ const StoreListItemRender = React.memo<
         }}
         sx={(theme) => ({
           '&.MuiButtonBase-root': {
-            padding: { xs: '0.7em 4em 0.7em 0.7em', md: '0.8em 4em 0.8em 0.8em' },
+            padding: theme.spacings.xxs,
             backgroundColor: theme.palette.background.paper,
             cursor: 'pointer',
-            position: 'relative',
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
             width: '100%',
             borderRadius: '10px',
-            display: 'flex',
             marginBottom: { xs: theme.spacings.xxs, md: theme.spacings.xs },
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            textAlign: 'left',
             typography: theme.typography.body1,
-            lineHeight: { xs: '22px', md: '1.7em' },
+            // lineHeight: { xs: '22px', md: '1.7em' },
             border: isSelected
               ? `2px solid ${theme.palette.secondary.main}`
               : `1px solid ${theme.palette.divider}`,
@@ -48,45 +48,37 @@ const StoreListItemRender = React.memo<
               borderWidth: 2,
             }),
           },
-
-          ...(isSelected && {
-            paddingRight: { xs: '0.7em !important', md: '0.8em !important' },
-          }),
-
           ...(isClosestStore && {
             boxShadow: 4,
           }),
-
-          '& .LocationPackageIcon': {
-            position: 'absolute',
-            right: '15px',
-            top: 0,
-            bottom: 0,
-            margin: 'auto',
-            height: '1.4em',
-            fontSize: '40px',
-          },
         })}
       >
-        {isClosestStore && (
-          <Typography variant='subtitle2' sx={(theme) => ({ color: theme.palette.primary.main })}>
-            <Trans id='Closest store' />
+        <Box>
+          <strong>{store.name}</strong>
+          <Typography variant='body1' sx={{ '&.MuiTypography-root': { fontSize: '15px' } }}>
+            {store.phone} <br />
+            {store.street}, {store.postcode}, {store.city}
           </Typography>
-        )}
-        {isSelectedStore && (
-          <Typography variant='subtitle2' sx={(theme) => ({ color: theme.palette.primary.main })}>
-            <Trans id='Selected store' />
-          </Typography>
-        )}
-        <strong>{store.name}</strong>
-        <Typography variant='body1' sx={{ '&.MuiTypography-root': { fontSize: '15px' } }}>
-          {store.phone} <br />
-          {store.street}, {store.postcode}, {store.city}
-        </Typography>
-        {isSelected ? (
-          <StoreInfo content={store} />
-        ) : (
-          <IconSvg src={LocationPackageIcon} className='LocationPackageIcon' size='large' />
+        </Box>
+        <Box
+          sx={(theme) => ({
+            display: 'flex',
+            alignSelf: 'stretch',
+            flexDirection: 'column',
+            gap: theme.spacings.xxs,
+          })}
+        >
+          {isSelectedStore && (
+            <StoreChip variant='primary' label={i18n._(/* i18n */ 'Your store')} />
+          )}
+          {isClosestStore && (
+            <StoreChip variant='outlined' label={i18n._(/* i18n */ 'Closest store')} />
+          )}
+        </Box>
+        {isSelected && (
+          <Box sx={{ flexBasis: '100%' }}>
+            <StoreInfo content={store} />
+          </Box>
         )}
       </ButtonBase>
     </Box>

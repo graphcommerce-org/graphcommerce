@@ -1,16 +1,31 @@
 import { Box } from '@mui/material'
+import { StoreFragment } from '../Store.gql'
 import { usePosition } from '../helpers/usePosition'
 import { useStores } from '../helpers/useStores'
 import { useCurrentPositionMarker } from './CurrentPositionMarker'
-import { Marker } from './Marker'
+
 import { StoreFilters } from './StoreFilters'
 import { StoreList } from './StoreList'
 import { useStoreLocatorMap } from './StoreLocatorMapLoader'
+import { Marker } from './Marker'
 
-export function StoreLocator() {
+export type MarkerConfig = {
+  markerImageSrc?: string
+  activeMarkerImageSrc?: string
+  imageWidth?: number
+  imageHeight?: number
+  onMarkerClick?: (store: StoreFragment) => void
+}
+
+type StoreLocatorProps = {
+  stores: StoreFragment[]
+  markerConfig?: MarkerConfig
+}
+
+export function StoreLocator({ stores, markerConfig }: StoreLocatorProps) {
   const { ref } = useStoreLocatorMap()
   const { position } = usePosition()
-  const { stores } = useStores(position)
+  const { sortedStores } = useStores(position, stores)
 
   useCurrentPositionMarker(position)
 
@@ -52,13 +67,13 @@ export function StoreLocator() {
         })}
       >
         <StoreFilters />
-        <StoreList position={position} />
+        <StoreList position={position} stores={sortedStores} />
       </Box>
 
       <Box sx={{ height: '100%', gridArea: 'map' }} className='Scroller-root'>
         <Box sx={{ height: '100%' }} ref={ref} id='map' />
-        {stores.map((store) => (
-          <Marker key={store.pickup_location_code} store={store} />
+        {sortedStores.map((store) => (
+          <Marker key={store.pickup_location_code} store={store} markerConfig={markerConfig} />
         ))}
       </Box>
     </Box>

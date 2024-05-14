@@ -5,6 +5,8 @@ import {
   StoreLocator,
   StoreLocatorFormProvider,
 } from '@graphcommerce/magento-store-locator'
+import { StoreFragment } from '@graphcommerce/magento-store-locator/Store.gql'
+import { StoresDocument } from '@graphcommerce/magento-store-locator/Stores.gql'
 import { GetStaticProps, LayoutTitle, LayoutOverlayHeader, PageMeta } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -15,7 +17,7 @@ import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
-function Stores() {
+function Stores({ stores }: { stores: StoreFragment[] }) {
   return (
     <>
       <PageMeta title={i18n._(/* i18n */ 'Stores')} metaRobots={['noindex']} />
@@ -48,10 +50,18 @@ function Stores() {
             zoomControl: true,
             mapId: 'e827860a9d12894b',
             mapTypeControl: false,
-            streetViewControl: false,
+            streetViewControl: true,
           }}
         >
-          <StoreLocator />
+          <StoreLocator
+            stores={stores}
+            markerConfig={{
+              markerImageSrc: '/icons/download-solid.svg',
+              activeMarkerImageSrc: '/icons/cloud-solid.svg',
+              onMarkerClick: (store: StoreFragment) =>
+                console.log('hello from', store.pickup_location_code),
+            }}
+          />
         </StoreLocatorMapLoader>
       </StoreLocatorFormProvider>
     </>
@@ -85,10 +95,12 @@ export default Stores
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
+  const stores = client.query({ query: StoresDocument })
 
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
+      stores: (await stores).data.pickupLocations?.items ?? [],
     },
   }
 }

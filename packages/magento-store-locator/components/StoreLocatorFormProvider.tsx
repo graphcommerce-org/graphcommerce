@@ -1,4 +1,4 @@
-import { FormPersist, useForm, useFormPersist, UseFormReturn } from '@graphcommerce/ecommerce-ui'
+import { FormPersist, useForm, UseFormReturn } from '@graphcommerce/ecommerce-ui'
 import { createContext, ReactNode, useContext } from 'react'
 import { StoreFragment } from '../Store.gql'
 
