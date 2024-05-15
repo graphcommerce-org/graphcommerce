@@ -68,7 +68,7 @@ export function useAddProductsToCartAction(
       if (process.env.NODE_ENV !== 'production') {
         if (!sku) console.warn(`You must provide a 'sku' to useAddProductsToCartAction`)
       }
-      setValue(`cartItems.${index}.sku`, sku ?? '')
+      if (!getValues(`cartItems.${index}.sku`)) setValue(`cartItems.${index}.sku`, sku ?? '')
       startTransition(() => {
         onClickIncoming?.(e)
       })
