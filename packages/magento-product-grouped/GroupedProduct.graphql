@@ -1,0 +1,13 @@
+fragment GroupedProduct on GroupedProduct {
+  items {
+    position
+    qty
+    product {
+      uid
+      __typename
+      ...ProductListItem
+      ...ProductListItemSimple
+      ...ProductListItemVirtual
+    }
+  }
+}
