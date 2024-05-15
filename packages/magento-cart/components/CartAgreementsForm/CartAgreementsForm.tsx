@@ -24,10 +24,11 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
 
   // sort conditions so checkboxes will be placed first
   const sortedAgreements = data?.checkoutAgreements
-    ? [...data.checkoutAgreements].sort((a, b) =>
-        // eslint-disable-next-line no-nested-ternary
-        a?.mode === 'MANUAL' ? -1 : b?.mode === 'MANUAL' ? 1 : 0,
-      )
+    ? [...data.checkoutAgreements]?.sort((a, b) => {
+        if (a?.mode === 'MANUAL') return -1
+        if (b?.mode === 'MANUAL') return 1
+        return 0
+      })
     : []
 
   const form = useForm()
