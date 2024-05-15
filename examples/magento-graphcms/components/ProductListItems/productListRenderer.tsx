@@ -71,6 +71,14 @@ export const productListRenderer: ProductListItemRenderer = {
   GroupedProduct: (props) => (
     <ProductListItemGrouped
       {...props}
+      sx={{
+        '& .ProductListPrice-root': {
+          display: 'none',
+        },
+        '& .ProductListItem-discount': {
+          display: 'none',
+        },
+      }}
       aspectRatio={[1, 1]}
       bottomLeft={<ProductReviewSummary {...props} />}
       topRight={<ProductWishlistChip {...props} />}
