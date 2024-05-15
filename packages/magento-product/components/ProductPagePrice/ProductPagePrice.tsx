@@ -25,6 +25,8 @@ export function ProductPagePrice(props: ProductPagePriceProps) {
 
   const priceValue = useCustomizableOptionPrice(props)
 
+  if (product.__typename === 'GroupedProduct') return null
+
   return (
     <>
       {product.price_range.minimum_price.regular_price.value !== price.value && (
