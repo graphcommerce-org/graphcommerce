@@ -1,4 +1,4 @@
-fragment CategoryHeroNav on CategoryTree {
+fragment CategoryHeroNav on CategoryTree @injectable {
   uid
   level
   is_anchor
@@ -8,5 +8,6 @@ fragment CategoryHeroNav on CategoryTree {
     url_path
     name
     include_in_menu
+    image
   }
 }
