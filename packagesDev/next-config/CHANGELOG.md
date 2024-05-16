@@ -1,5 +1,15 @@
 # Change Log
 
+## 8.0.6
+
+### Patch Changes
+
+- [#2248](https://github.com/graphcommerce-org/graphcommerce/pull/2248) [`0289bfb`](https://github.com/graphcommerce-org/graphcommerce/commit/0289bfb5ed611c55212d530cb0bf6a27995e74bd) - reduce bundlesize of @apollo/client
+  ([@paales](https://github.com/paales))
+
+- [#2248](https://github.com/graphcommerce-org/graphcommerce/pull/2248) [`0289bfb`](https://github.com/graphcommerce-org/graphcommerce/commit/0289bfb5ed611c55212d530cb0bf6a27995e74bd) - Suppress warning where a dependency is an expression, Added uglify-es and long as the dependencies couldn’t be found
+  ([@paales](https://github.com/paales))
+
 ## 8.0.5
 
 ### Patch Changes

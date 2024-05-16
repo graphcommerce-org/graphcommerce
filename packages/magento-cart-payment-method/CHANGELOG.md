@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.0.6
+
+### Patch Changes
+
+- [#2248](https://github.com/graphcommerce-org/graphcommerce/pull/2248) [`e262419`](https://github.com/graphcommerce-org/graphcommerce/commit/e2624194cc1c1b9bb625892c2856900c071c936c) - Compatibility with Magento 2.4.7
+  ([@paales](https://github.com/paales))
+
 ## 8.0.5
 
 ## 8.0.5-canary.10

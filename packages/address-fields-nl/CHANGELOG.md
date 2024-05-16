@@ -1,5 +1,7 @@
 # @graphcommerce/address-fields-nl
 
+## 8.0.6
+
 ## 8.0.5
 
 ### Patch Changes
