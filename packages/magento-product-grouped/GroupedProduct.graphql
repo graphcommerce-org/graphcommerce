@@ -6,8 +6,6 @@ fragment GroupedProduct on GroupedProduct {
       uid
       __typename
       ...ProductListItem
-      ...ProductListItemSimple
-      ...ProductListItemVirtual
     }
   }
 }
