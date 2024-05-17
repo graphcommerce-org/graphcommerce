@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.14
+
+### Patch Changes
+
+- [`831d7cd`](https://github.com/graphcommerce-org/graphcommerce/commit/831d7cd64a40b7b58748fd9637199b88938e75b7) - Compatibility with Magento 2.4.7
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.13
 
 ## 8.1.0-canary.12
