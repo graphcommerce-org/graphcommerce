@@ -13,6 +13,7 @@ export function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProps) {
       if (!result.data?.placeOrder?.order) return
       await onSuccess(result.data.placeOrder.order.order_number)
     },
+    submitWhileLocked: true,
   })
 
   const { handleSubmit } = form
