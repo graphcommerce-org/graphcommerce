@@ -14,6 +14,7 @@ import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { iconMoon, iconSun } from '../icons'
+import { getCssFlag, setCssFlag } from '../utils/cssFlags'
 
 type Mode = 'dark' | 'light'
 type UserMode = 'auto' | Mode
@@ -22,6 +23,7 @@ type ColorModeContext = {
   userMode: UserMode
   browserMode: Mode
   currentMode: Mode
+  isSingleMode: boolean
   toggle: () => void
 }
 
@@ -29,48 +31,61 @@ export const colorModeContext = createContext(undefined as unknown as ColorModeC
 colorModeContext.displayName = 'ColorModeContext'
 
 type ThemeProviderProps = {
-  // eslint-disable-next-line react/no-unused-prop-types
-  light: Theme
-  // eslint-disable-next-line react/no-unused-prop-types
-  dark: Theme
-
   children: React.ReactNode
-}
+  ssrMode?: Mode
+  listenToBrowser?: boolean
+} & (
+  | { light: Theme; dark?: undefined }
+  | { light?: undefined; dark: Theme }
+  | { light: Theme; dark: Theme }
+)
 
 /**
  * Wrapper around `import { ThemeProvider } from '@mui/material'`
  *
  * The multi DarkLightModeThemeProvider allows switching between light and dark mode based on URL
  * and on user input.
- *
- * If you _just_ wan't a single theme, use the import { ThemeProvider } from '@mui/material' instead.
  */
 export function DarkLightModeThemeProvider(props: ThemeProviderProps) {
-  const { children, light, dark } = props
+  const { children, light, dark, ssrMode = 'light', listenToBrowser = true } = props
+  const [configuredMode, setConfiguredMode] = useState<UserMode>(listenToBrowser ? 'auto' : ssrMode)
+  const setThemeMode = (mode: UserMode) => {
+    setConfiguredMode(mode)
+    setCssFlag('configuredMode', mode)
+  }
 
-  // todo: Save this in local storage
-  const [userMode, setUserMode] = useState<UserMode>('auto')
   const browserMode: Mode = useMediaQuery('(prefers-color-scheme: dark)') ? 'dark' : 'light'
 
   // If the user has set a mode, use that. Otherwise, use the browser mode.
-  const currentMode = userMode === 'auto' ? browserMode : userMode
-  const theme = currentMode === 'light' ? light : dark
+  const currentMode = configuredMode === 'auto' ? browserMode : configuredMode
+
+  let theme: Theme = light || dark // Default
+  if (light && currentMode === 'light') theme = light
+  else if (dark) theme = dark
+
+  useEffect(() => {
+    const flag = getCssFlag('configuredMode') as Mode
+    if (flag) {
+      setConfiguredMode(flag)
+    }
+  }, [setConfiguredMode])
 
   // If a URL parameter is present, switch from auto to light or dark mode
   const { asPath } = useRouter()
   useEffect(() => {
-    if (asPath.includes('darkmode')) setUserMode('dark')
+    if (asPath.includes('darkmode')) setConfiguredMode('dark')
   }, [asPath])
 
   // Create the context
   const colorContext: ColorModeContext = useMemo(
     () => ({
       browserMode,
-      userMode,
+      userMode: configuredMode,
       currentMode,
-      toggle: () => setUserMode(currentMode === 'light' ? 'dark' : 'light'),
+      isSingleMode: !light || !dark,
+      toggle: () => setThemeMode(currentMode === 'light' ? 'dark' : 'light'),
     }),
-    [browserMode, currentMode, userMode],
+    [browserMode, configuredMode, currentMode, light, dark],
   )
 
   return (
@@ -85,7 +100,12 @@ export function useColorMode() {
 }
 
 export function DarkLightModeToggleFab(props: Omit<FabProps, 'onClick'>) {
-  const { currentMode, toggle } = useColorMode()
+  const { currentMode, isSingleMode, toggle } = useColorMode()
+
+  if (isSingleMode) {
+    return null
+  }
+
   return (
     <Fab size='large' color='inherit' onClick={toggle} {...props}>
       <IconSvg src={currentMode === 'light' ? iconMoon : iconSun} size='large' />
@@ -100,7 +120,11 @@ export function DarkLightModeToggleFab(props: Omit<FabProps, 'onClick'>) {
  */
 export function DarkLightModeMenuSecondaryItem(props: ListItemButtonProps) {
   const { sx = [] } = props
-  const { currentMode, toggle } = useColorMode()
+  const { currentMode, isSingleMode, toggle } = useColorMode()
+
+  if (isSingleMode) {
+    return null
+  }
 
   return (
     <ListItemButton {...props} sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]} dense onClick={toggle}>
