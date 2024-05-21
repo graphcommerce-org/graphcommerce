@@ -1,7 +1,7 @@
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { PaymentPlaceOrderProps } from '../Api/PaymentMethod'
-import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
+import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 import { PaymentMethodPlaceOrderNoopDocument } from './PaymentMethodPlaceOrderNoop.gql'
 
 export function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProps) {
@@ -10,7 +10,7 @@ export function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProps) {
 
   const form = useFormGqlMutationCart(PaymentMethodPlaceOrderNoopDocument, {
     onComplete: async (result) => {
-      if (!result.data?.placeOrder) return
+      if (!result.data?.placeOrder?.order) return
       await onSuccess(result.data.placeOrder.order.order_number)
     },
   })

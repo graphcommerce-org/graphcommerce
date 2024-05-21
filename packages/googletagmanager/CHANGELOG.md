@@ -1,5 +1,89 @@
 # Change Log
 
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+## 8.1.0-canary.8
+
+## 8.1.0-canary.7
+
+## 8.1.0-canary.6
+
+## 8.1.0-canary.5
+
+## 8.0.6-canary.4
+
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
+## 8.0.5
+
+### Patch Changes
+
+- [#2233](https://github.com/graphcommerce-org/graphcommerce/pull/2233) [`cabeadc`](https://github.com/graphcommerce-org/graphcommerce/commit/cabeadce2b73ce072a2fa8b8ab1ab49907cda13b) - Added core web vitals measurements to the datalayer.
+  ([@paales](https://github.com/paales))
+
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+## 8.0.5-canary.5
+
+## 8.0.5-canary.4
+
+## 8.0.5-canary.3
+
+## 8.0.5-canary.2
+
+## 8.0.5-canary.1
+
+### Patch Changes
+
+- [#2233](https://github.com/graphcommerce-org/graphcommerce/pull/2233) [`cabeadc`](https://github.com/graphcommerce-org/graphcommerce/commit/cabeadce2b73ce072a2fa8b8ab1ab49907cda13b) - Added core web vitals measurements to the datalayer.
+  ([@paales](https://github.com/paales))
+
+## 8.0.5-canary.0
+
+## 8.0.4
+
+### Patch Changes
+
+- [#2158](https://github.com/graphcommerce-org/graphcommerce/pull/2158) [`34de808`](https://github.com/graphcommerce-org/graphcommerce/commit/34de8085e9352d1f3b20b26746685370ea10ab90) - Extracted the datalayer from the googleanalytics package and moved to google-datalayer package. Make sure Google Analytics and Google Tagmanager both can send events individually. Be able to configure the datalayer will send as GA4 or legacy GA3 events.
+  ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 8.0.4-canary.1
+
+### Patch Changes
+
+- [#2158](https://github.com/graphcommerce-org/graphcommerce/pull/2158) [`34de808`](https://github.com/graphcommerce-org/graphcommerce/commit/34de8085e9352d1f3b20b26746685370ea10ab90) - Extracted the datalayer from the googleanalytics package and moved to google-datalayer package. Make sure Google Analytics and Google Tagmanager both can send events individually. Be able to configure the datalayer will send as GA4 or legacy GA3 events.
+  ([@mikekeehnen](https://github.com/mikekeehnen))
+
+## 8.0.4-canary.0
+
+## 8.0.3
+
 ## 8.0.3-canary.6
 
 ## 8.0.3-canary.5

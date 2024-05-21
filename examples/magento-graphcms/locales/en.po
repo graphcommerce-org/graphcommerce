@@ -280,9 +280,6 @@ msgstr "Free"
 msgid "Grand total"
 msgstr "Grand total"
 
-msgid "Have an account?"
-msgstr "Have an account?"
-
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Hi {firstname}! You’re now logged in!"
 
@@ -541,6 +538,9 @@ msgstr "Recently viewed products"
 msgid "Region"
 msgstr "Region"
 
+msgid "Relevance"
+msgstr "Relevance"
+
 msgid "Remove"
 msgstr "Remove"
 
@@ -715,6 +715,9 @@ msgstr "There is a maximum of ‘{maxLength}’ characters"
 msgid "This cart is assigned to {email}. Please sign in to continue shopping."
 msgstr "This cart is assigned to {email}. Please sign in to continue shopping."
 
+msgid "This field is invalid"
+msgstr "This field is invalid"
+
 msgid "This field is required"
 msgstr "This field is required"
 
@@ -792,9 +795,6 @@ msgstr "Written {0} reviews"
 
 msgid "You are reviewing {0}"
 msgstr "You are reviewing {0}"
-
-msgid "You can find your order history in your account!"
-msgstr "You can find your order history in your account!"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "You can now <0>sign in again</0>."

@@ -1,7 +1,7 @@
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { PaymentMethodOptionsProps } from '../Api/PaymentMethod'
-import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
+import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 
 const name = 'PaymentMethodOptions' as const
 const parts = ['root'] as const

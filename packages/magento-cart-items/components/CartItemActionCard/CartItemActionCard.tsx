@@ -169,9 +169,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
       action={
         !readOnly && (
           <RemoveItemFromCart
-            uid={uid}
-            quantity={quantity}
-            product={product}
+            {...cartItem}
             buttonProps={{ size: size === 'responsive' ? 'large' : size }}
           />
         )

@@ -1,4 +1,5 @@
 import {
+  CategoryDefaultFragment,
   FilterTypes,
   ProductFiltersPro,
   ProductFiltersProAllFiltersChip,
@@ -28,10 +29,11 @@ export type ProductListFilterLayoutProps = ProductListQuery &
     params?: ProductListParams
     id: string
     title: string
+    category?: CategoryDefaultFragment
   }
 
 export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
-  const { params, filters, products, filterTypes, title, id } = props
+  const { params, filters, products, filterTypes, title, id, category } = props
 
   if (!(params && products?.items && filterTypes)) return null
 
@@ -43,9 +45,17 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
     const horizontalFilters = (
       <ProductListFiltersContainer>
         <ProductFiltersProFilterChips />
-        <ProductFiltersProSortChip total_count={total_count} sort_fields={sort_fields} />
+        <ProductFiltersProSortChip
+          total_count={total_count}
+          sort_fields={sort_fields}
+          category={category}
+        />
         <ProductFiltersProLimitChip />
-        <ProductFiltersProAllFiltersChip total_count={total_count} sort_fields={sort_fields} />
+        <ProductFiltersProAllFiltersChip
+          total_count={total_count}
+          sort_fields={sort_fields}
+          category={category}
+        />
       </ProductListFiltersContainer>
     )
 
@@ -65,6 +75,7 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
               <ProductFiltersProAllFiltersSidebar
                 total_count={total_count}
                 sort_fields={sort_fields}
+                category={category}
               />
             }
             count={<ProductListCount total_count={total_count} />}

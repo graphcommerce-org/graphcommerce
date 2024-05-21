@@ -3,6 +3,9 @@ import { canonicalize, nonNullable } from '@graphcommerce/next-ui'
 import { productLink } from '../../hooks/useProductLink'
 import { ProductStaticPathsDocument } from './ProductStaticPaths.gql'
 
+/**
+ * @deprecated Not used anymore, use `getProductStaticPaths` instead.
+ */
 export async function getSitemapPaths(
   client: ApolloClient<NormalizedCacheObject>,
   ctx: { locale?: string; defaultLocale?: string },

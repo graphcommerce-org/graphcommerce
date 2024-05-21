@@ -1,4 +1,7 @@
 import { CartAddressFragment } from '@graphcommerce/magento-cart/components/CartAddress/CartAddress.gql'
+import { nonNullable } from '@graphcommerce/next-ui'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { equal } from '@wry/equality'
 
 type PartialNullable<T> = {
   [P in keyof T]?: T[P] | null
@@ -6,27 +9,21 @@ type PartialNullable<T> = {
 
 type AddressSignature = PartialNullable<Omit<CartAddressFragment, '__typename'>>
 
-const pluckAddress = ({
-  firstname,
-  lastname,
-  street,
-  city,
-  country,
-  telephone,
-  company,
-  postcode,
-  region,
-}: AddressSignature): AddressSignature => ({
-  firstname,
-  lastname,
-  street,
-  city,
-  country,
-  telephone,
-  company,
-  postcode,
-  region,
-})
+const comparisonString = (a: AddressSignature) =>
+  [
+    a.firstname,
+    a.lastname,
+    ...(a.street ?? []),
+    a.city,
+    a.country?.code,
+    a.company,
+    a.postcode,
+    a.region?.region_id,
+    a.telephone,
+  ]
+    .filter(Boolean)
+    .map((v) => (v ? `${v}`.trim() : ''))
+    .join('|')
 
 export function isSameAddress(
   address1: AddressSignature | null | undefined,
@@ -39,5 +36,5 @@ export function isSameAddress(
   // one of the thow is undefined/null the other is defined.
   if (!address1 || !address2) return false
 
-  return JSON.stringify(pluckAddress(address1)) === JSON.stringify(pluckAddress(address2))
+  return comparisonString(address1) === comparisonString(address2)
 }

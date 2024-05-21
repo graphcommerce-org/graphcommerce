@@ -1,4 +1,12 @@
 <!-- Automatically generated from Config.graphqls -->
+### DatalayerConfig
+
+GoogleDatalayerConfig to allow enabling certain aspects of the datalayer
+
+#### coreWebVitals: boolean
+
+Enable core web vitals tracking for GraphCommerce
+
 # GraphCommerce configuration system
 
 Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file
@@ -58,7 +66,7 @@ Examples:
 
 You can export configuration by running `yarn graphcommerce export-config`
 
-## Extending the configuration in your  project
+## Extending the configuration in your project
 
 Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceStorefrontConfig inputs to add configuration.
 
@@ -158,6 +166,8 @@ customer requires email confirmation.
 
 This value should match Magento 2's configuration value for
 `customer/create_account/confirm` and should be removed once we can query
+
+#### dataLayer: [DatalayerConfig](#DatalayerConfig)
 
 #### debug: [GraphCommerceDebugConfig](#GraphCommerceDebugConfig)
 
@@ -334,7 +344,9 @@ All storefront configuration for the project
 
 #### locale: string (required)
 
-Must be a locale string https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers
+Must be a [locale string](https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers) for automatic redirects to work.
+
+This value can be used as a sub-path identifier only, make sure linguiLocale is configured for each URL.
 
 #### magentoStoreCode: string (required)
 
@@ -390,7 +402,12 @@ Add a gcms-locales header to make sure queries return in a certain language, can
 
 #### linguiLocale: string
 
-Specify a custom locale for to load translations.
+Custom locale used to load the .po files. Must be a valid locale, also used for Intl functions.
+
+#### robotsAllow: boolean
+
+Allow the site to be indexed by search engines.
+If false, the robots.txt file will be set to disallow all.
 
 ### MagentoConfigurableVariantValues
 

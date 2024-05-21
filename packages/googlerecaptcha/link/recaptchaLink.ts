@@ -16,7 +16,22 @@ export const recaptchaLink = setContext(async (operation, context) => {
     globalThis.grecaptcha?.ready(resolve)
   })
 
-  const token = await globalThis.grecaptcha.execute(recaptchaKey, { action: 'submit' })
+  let token: string | null = null
+  let failure = 0
+  while (failure < 5) {
+    try {
+      // eslint-disable-next-line no-await-in-loop
+      token = await globalThis.grecaptcha.execute(recaptchaKey, { action: 'submit' })
+      break
+    } catch {
+      failure++
+    }
+  }
+
+  if (!token) {
+    console.error('Failed to get reCAPTCHA token after 5 attempts')
+    return context
+  }
 
   if (!context.headers) context.headers = {}
   context.headers['X-ReCaptcha'] = token

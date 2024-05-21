@@ -15,7 +15,6 @@ import {
 } from 'react-hook-form'
 import { DebounceOptions } from './utils/debounce'
 import { useDebouncedCallback } from './utils/useDebounceCallback'
-import { useFormValidFields } from './useFormValidFields'
 
 export type UseFormAutoSubmitOptions<TForm extends UseFormReturn<V>, V extends FieldValues> = {
   /** Instance of current form */
@@ -54,6 +53,9 @@ export type UseFormAutoSubmitOptions<TForm extends UseFormReturn<V>, V extends F
  * Q: How to I resubmit if the form is modified during the request?
  *    formState.isDirty should be true after the submission
  * @see useFormGqlMutation.tsx for an example implementation
+ *
+ *
+ * @deprecated Please use the <FormAutoSubmit /> component instead. This method causes excessive rerenders.
  */
 export function useFormAutoSubmit<
   Form extends UseFormReturn<V>,

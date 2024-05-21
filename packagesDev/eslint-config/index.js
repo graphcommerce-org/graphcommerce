@@ -160,7 +160,7 @@ module.exports = {
       rules: { 'import/no-default-export': 'off' },
     },
     {
-      files: ['**/*.interceptor.tsx'],
+      files: ['**/*.interceptor.tsx', '**/*.interceptor.ts'],
       rules: {
         'import/export': 'off',
         'import/first': 'off',

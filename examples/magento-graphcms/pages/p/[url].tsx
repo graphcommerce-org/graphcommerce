@@ -35,6 +35,7 @@ import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-r
 import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import { GetStaticProps, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -224,8 +225,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
-  const product = productPage.then(
-    (pp) => pp.data.products?.items?.find((p) => p?.url_key === urlKey),
+  const product = productPage.then((pp) =>
+    pp.data.products?.items?.find((p) => p?.url_key === urlKey),
   )
 
   const pages = hygraphPageContent(staticClient, 'product/global', product, true)
@@ -235,7 +236,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
-      : { href: `/`, title: 'Home' }
+      : { href: `/`, title: i18n._(/* i18n */ 'Home') }
   const usps = staticClient.query({ query: UspsDocument, fetchPolicy: 'cache-first' })
 
   return {

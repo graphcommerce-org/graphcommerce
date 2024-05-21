@@ -1,5 +1,103 @@
 # Change Log
 
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+## 8.1.0-canary.8
+
+### Patch Changes
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`a56a7c6`](https://github.com/graphcommerce-org/graphcommerce/commit/a56a7c67cf27dfb91bf763a873beeec562ab3156) - Solve an issue where the cart would be sometimes undefined, but Partial was too eleborate
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.7
+
+## 8.1.0-canary.6
+
+## 8.1.0-canary.5
+
+## 8.0.6-canary.4
+
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders.
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
+## 8.0.5
+
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+## 8.0.5-canary.5
+
+## 8.0.5-canary.4
+
+## 8.0.5-canary.3
+
+## 8.0.5-canary.2
+
+## 8.0.5-canary.1
+
+## 8.0.5-canary.0
+
+## 8.0.4
+
+### Patch Changes
+
+- [#2221](https://github.com/graphcommerce-org/graphcommerce/pull/2221) [`0ba1fdc`](https://github.com/graphcommerce-org/graphcommerce/commit/0ba1fdc9a2d005f47cd1725fe723e77da4cc5b9d) - After a user just logged in the checkout, the useFormGqlMutationCart would still run even though the cart was locked.
+  ([@paales](https://github.com/paales))
+
+## 8.0.4-canary.1
+
+## 8.0.4-canary.0
+
+### Patch Changes
+
+- [#2221](https://github.com/graphcommerce-org/graphcommerce/pull/2221) [`0ba1fdc`](https://github.com/graphcommerce-org/graphcommerce/commit/0ba1fdc9a2d005f47cd1725fe723e77da4cc5b9d) - After a user just logged in the checkout, the useFormGqlMutationCart would still run even though the cart was locked.
+  ([@paales](https://github.com/paales))
+
+## 8.0.3
+
+### Patch Changes
+
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`d67c89d`](https://github.com/graphcommerce-org/graphcommerce/commit/d67c89d464a60f0e2618dab670b63a39f6291341) - Deprecate the allowUrl option for useCartQuery, it was already enabled by default and should never be set to false.
+  ([@paales](https://github.com/paales))
+
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`3fbf3da`](https://github.com/graphcommerce-org/graphcommerce/commit/3fbf3da8a67f2fbaa7fa974a37cbbf34613844e4) - Solve an issue where the user would be presented with the Session expired dialog when the user would be logging in during the checkout process.
+  ([@paales](https://github.com/paales))
+
+- [#2207](https://github.com/graphcommerce-org/graphcommerce/pull/2207) [`9876b13`](https://github.com/graphcommerce-org/graphcommerce/commit/9876b139b2c12c860a16af97eddea761d1059110) - Remove redundant query on the success page for logged in customers
+  ([@paales](https://github.com/paales))
+
 ## 8.0.3-canary.6
 
 ## 8.0.3-canary.5

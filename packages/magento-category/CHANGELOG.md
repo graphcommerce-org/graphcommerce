@@ -1,5 +1,79 @@
 # Change Log
 
+## 8.1.0-canary.15
+
+### Patch Changes
+
+- [#2267](https://github.com/graphcommerce-org/graphcommerce/pull/2267) [`9d5fd11`](https://github.com/graphcommerce-org/graphcommerce/commit/9d5fd11c7130612e80523608ab442976f3f5ddc5) - make the CategoryHeroNav fragment injectable and add image to the childeren
+  ([@carlocarels90](https://github.com/carlocarels90))
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+## 8.1.0-canary.8
+
+## 8.1.0-canary.7
+
+## 8.1.0-canary.6
+
+## 8.1.0-canary.5
+
+## 8.0.6-canary.4
+
+### Patch Changes
+
+- [#2227](https://github.com/graphcommerce-org/graphcommerce/pull/2227) [`d597719`](https://github.com/graphcommerce-org/graphcommerce/commit/d597719baaabbe079660ac063fd021d871831511) - Added option to change sort order (ASC / DESC) for sort options (Name, price, position etc) on catalog and search pages.
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
+## 8.0.5
+
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+## 8.0.5-canary.5
+
+## 8.0.5-canary.4
+
+## 8.0.5-canary.3
+
+## 8.0.5-canary.2
+
+## 8.0.5-canary.1
+
+## 8.0.5-canary.0
+
+## 8.0.4
+
+## 8.0.4-canary.1
+
+## 8.0.4-canary.0
+
+## 8.0.3
+
 ## 8.0.3-canary.6
 
 ## 8.0.3-canary.5

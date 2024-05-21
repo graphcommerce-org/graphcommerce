@@ -280,9 +280,6 @@ msgstr "Kostenlos"
 msgid "Grand total"
 msgstr "Gesamtsumme"
 
-msgid "Have an account?"
-msgstr "Haben Sie ein Kundenkonto?"
-
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Hallo {firstname}! Sie sind jetzt angemeldet!"
 
@@ -541,6 +538,9 @@ msgstr "Kürzlich angesehene Produkte"
 msgid "Region"
 msgstr "Region"
 
+msgid "Relevance"
+msgstr "Relevanz"
+
 msgid "Remove"
 msgstr "Entfernen"
 
@@ -715,6 +715,9 @@ msgstr "Es gibt maximal '{maxLength}' Zeichen"
 msgid "This cart is assigned to {email}. Please sign in to continue shopping."
 msgstr "Dieser Warenkorb ist {email} zugewiesen. Bitte melden Sie sich an, um mit dem Einkauf fortzufahren."
 
+msgid "This field is invalid"
+msgstr "Dieses Feld ist ungültig"
+
 msgid "This field is required"
 msgstr "Dieses Feld ist erforderlich"
 
@@ -792,9 +795,6 @@ msgstr "Bewertungen geschrieben: {0}"
 
 msgid "You are reviewing {0}"
 msgstr "Sie bewerten {0}"
-
-msgid "You can find your order history in your account!"
-msgstr "Sie können Ihren Bestellverlauf in Ihrem Kundenkonto einsehen!"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "Sie können sich jetzt <0>erneut anmelden</0>."
