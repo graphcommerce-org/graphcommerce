@@ -1,9 +1,11 @@
+import { CategoryQueryFragment } from '@graphcommerce/magento-category'
 import {
   CategoryDefaultFragment,
   FilterTypes,
   ProductFiltersPro,
   ProductFiltersProAllFiltersChip,
   ProductFiltersProAllFiltersSidebar,
+  ProductFiltersProCategoryChip,
   ProductFiltersProClearAll,
   ProductFiltersProFilterChips,
   ProductFiltersProLayoutSidebar,
@@ -30,6 +32,7 @@ export type ProductListFilterLayoutProps = ProductListQuery &
     id: string
     title: string
     category?: CategoryDefaultFragment
+    categories?: CategoryQueryFragment['categories']
   }
 
 export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
@@ -44,6 +47,7 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
   if (import.meta.graphCommerce.productFiltersPro) {
     const horizontalFilters = (
       <ProductListFiltersContainer>
+        <ProductFiltersProCategoryChip {...props} />
         <ProductFiltersProFilterChips />
         <ProductFiltersProSortChip
           total_count={total_count}
@@ -76,6 +80,7 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
                 total_count={total_count}
                 sort_fields={sort_fields}
                 category={category}
+                {...props}
               />
             }
             count={<ProductListCount total_count={total_count} />}
