@@ -14,6 +14,7 @@ import {
   ProductPageName,
   ProductPageAddToCartActionsRow,
   ProductPageAddToCartQuantityRow,
+  ProductPageBreadcrumbs,
   productPageCategory,
   ProductPageDescription,
   ProductPageGallery,
@@ -37,7 +38,7 @@ import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import { GetStaticProps, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Divider, Link, Typography } from '@mui/material'
+import { Container, Divider, Link, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutDocument,
@@ -74,7 +75,7 @@ function ProductPage(props: Props) {
   return (
     <>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
-        <LayoutHeader floatingMd>
+        <LayoutHeader floatingMd breadcrumbs={Boolean(import.meta.graphCommerce.breadcrumbs)}>
           <LayoutTitle size='small' component='span'>
             <ProductPageName product={product} />
           </LayoutTitle>
@@ -91,6 +92,17 @@ function ProductPage(props: Props) {
         />
 
         <ProductPageMeta product={product} />
+
+        {import.meta.graphCommerce.breadcrumbs && (
+          <Container maxWidth={false} sx={(theme) => ({ marginBottom: theme.spacings.xs })}>
+            <ProductPageBreadcrumbs
+              categories={product?.categories}
+              name={product?.name}
+              uid={product?.uid}
+              url_key={product?.url_key}
+            />
+          </Container>
+        )}
 
         <ProductPageGallery
           product={product}

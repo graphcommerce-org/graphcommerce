@@ -1,5 +1,7 @@
 fragment ProductPageBreadcrumb on ProductInterface {
+  uid
   name
+  url_key
   categories {
     uid
     name

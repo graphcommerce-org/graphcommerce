@@ -3,6 +3,7 @@ import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/gra
 import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   appendSiblingsAsChildren,
+  CategoryBreadcrumbs,
   CategoryChildren,
   CategoryDescription,
   CategoryHeroNav,
@@ -66,11 +67,23 @@ function CategoryPage(props: CategoryProps) {
         canonical={page?.url ? `/${page.url}` : undefined}
         {...category}
       />
-      <LayoutHeader floatingMd>
+      <LayoutHeader floatingMd breadcrumbs={Boolean(import.meta.graphCommerce.breadcrumbs)}>
         <LayoutTitle size='small' component='span'>
           {category?.name ?? page.title}
         </LayoutTitle>
       </LayoutHeader>
+
+      {import.meta.graphCommerce.breadcrumbs && isCategory && (
+        <Container maxWidth={false}>
+          <CategoryBreadcrumbs
+            name={category?.name}
+            uid={category?.uid}
+            url_path={category?.url_path}
+            breadcrumbs={category?.breadcrumbs}
+          />
+        </Container>
+      )}
+
       {!isLanding && (
         <Container maxWidth={false}>
           <LayoutTitle
