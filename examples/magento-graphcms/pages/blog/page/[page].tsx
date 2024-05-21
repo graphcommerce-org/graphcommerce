@@ -8,6 +8,7 @@ import {
   LayoutTitle,
   LayoutHeader,
 } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import { Container, Link } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
@@ -118,7 +119,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       ...(await blogPaths).data,
       ...(await layout).data,
       urlEntity: { relative_url: `blog` },
-      up: { href: '/blog', title: 'Blog' },
+      up: { href: '/blog', title: i18n._(/* i18n */ 'Blog') },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

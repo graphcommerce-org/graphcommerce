@@ -2,13 +2,12 @@
   "name": "@graphcommerce/graphql-codegen-near-operation-file",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "8.0.5",
+  "version": "8.1.0-canary.15",
   "sideEffects": false,
   "type": "commonjs",
   "main": "dist/index.js",
   "types": "src/index.ts",
   "scripts": {
-    "test": "jest",
     "dev": "tsc -W --preserveWatchOutput",
     "build": "tsc",
     "prepack": "tsc"
@@ -29,9 +28,9 @@
     "parse-filepath": "^1.0.2"
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^8.0.5",
-    "@graphcommerce/prettier-config-pwa": "^8.0.5",
-    "@graphcommerce/typescript-config-pwa": "^8.0.5",
+    "@graphcommerce/eslint-config-pwa": "^8.1.0-canary.15",
+    "@graphcommerce/prettier-config-pwa": "^8.1.0-canary.15",
+    "@graphcommerce/typescript-config-pwa": "^8.1.0-canary.15",
     "graphql": "^16.7.1"
   }
 }

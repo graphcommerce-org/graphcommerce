@@ -1,9 +1,7 @@
-import { normalizeLocale } from '@graphcommerce/lingui-next'
 import { AddToCartItemSelector, useFormAddProductsToCart } from '@graphcommerce/magento-product'
-import { filterNonNullableKeys, ActionCardListProps } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, ActionCardListProps, useLocale } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Box, SxProps, Theme } from '@mui/material'
-import { useRouter } from 'next/router'
 import React, { useEffect, useMemo } from 'react'
 import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
 import { useConfigurableOptionsSelection } from '../../hooks'
@@ -27,7 +25,6 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
     ...other
   } = props
   const { setError, clearErrors } = useFormAddProductsToCart()
-  const { locale } = useRouter()
 
   const options = filterNonNullableKeys(product.configurable_options, [
     'attribute_code',
@@ -41,8 +38,9 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
     (configured?.configurable_product_options_selection?.options_available_for_selection ?? [])
       .length === 0
 
+  const locale = useLocale()
   const allLabels = useMemo(() => {
-    const formatter = new Intl.ListFormat(normalizeLocale(locale), {
+    const formatter = new Intl.ListFormat(locale, {
       style: 'long',
       type: 'conjunction',
     })

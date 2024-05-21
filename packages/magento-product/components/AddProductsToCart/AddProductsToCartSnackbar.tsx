@@ -9,9 +9,9 @@ import {
   MessageSnackbar,
   MessageSnackbarProps,
   nonNullable,
+  useLocale,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { findAddedItems } from './findAddedItems'
 import { toUserErrors } from './toUserErrors'
@@ -26,9 +26,8 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
   const { errorSnackbar, successSnackbar } = props
   const { error, data, redirect, control, submittedVariables } = useFormAddProductsToCart()
   const formState = useFormState({ control })
-  const { locale } = useRouter()
 
-  const formatter = new Intl.ListFormat(locale, { style: 'long', type: 'conjunction' })
+  const formatter = new Intl.ListFormat(useLocale(), { style: 'long', type: 'conjunction' })
 
   const userErrors = toUserErrors(data)
 

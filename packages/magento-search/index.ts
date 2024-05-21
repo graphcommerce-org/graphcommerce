@@ -19,3 +19,4 @@ export {
 } from '@graphcommerce/magento-product'
 
 export * from '@graphcommerce/magento-product/components/ProductFiltersPro'
+export * from './utils/productListApplySearchDefaults'

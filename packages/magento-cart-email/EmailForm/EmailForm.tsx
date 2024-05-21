@@ -9,7 +9,7 @@ import { IsEmailAvailableDocument, useCustomerSession } from '@graphcommerce/mag
 import { extendableComponent, FormRow } from '@graphcommerce/next-ui'
 import {
   emailPattern,
-  useFormAutoSubmit,
+  FormAutoSubmit,
   useFormCompose,
   UseFormComposeOptions,
 } from '@graphcommerce/react-hook-form'
@@ -49,10 +49,10 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
   const submit = handleSubmit(() => {})
 
   useFormCompose({ form, step, submit, key: 'EmailForm' })
-  useFormAutoSubmit({ form, submit })
 
   return (
     <Box component='form' noValidate onSubmit={submit} sx={sx}>
+      <FormAutoSubmit control={form.control} submit={submit} />
       <FormRow className={classes.formRow} sx={{ py: 0 }}>
         <TextFieldElement
           control={form.control}

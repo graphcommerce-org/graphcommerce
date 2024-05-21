@@ -73,7 +73,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       ...(await countryRegions).data,
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      up: { href: '/account', title: 'Account' },
+      up: { href: '/account', title: i18n._(/* i18n */ 'Account') },
     },
   }
 }

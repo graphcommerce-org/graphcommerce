@@ -1,11 +1,9 @@
 fragment AvailableShippingMethod on AvailableShippingMethod {
   price_incl_tax {
-    currency
-    value
+    ...Money
   }
   price_excl_tax {
-    currency
-    value
+    ...Money
   }
   available
   carrier_code
