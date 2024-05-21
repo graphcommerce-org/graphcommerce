@@ -50,6 +50,9 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
   } else {
     price = prices?.price.value
   }
+  const hasOptions =
+    (cartItem.__typename === 'SimpleCartItem' || cartItem.__typename === 'VirtualCartItem') &&
+    cartItem.customizable_options.length > 0
 
   return (
     <ActionCard
@@ -146,13 +149,15 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
       details={
         <>
           {rest.details}
-          <Button
-            variant='inline'
-            color='secondary'
-            href={`${productEditLink(product)}?cartItemId=${uid}`}
-          >
-            <Trans id='Edit' />
-          </Button>
+          {hasOptions && (
+            <Button
+              variant='inline'
+              color='secondary'
+              href={`${productEditLink(product)}?cartItemId=${uid}`}
+            >
+              <Trans id='Edit' />
+            </Button>
+          )}
         </>
       }
     />
