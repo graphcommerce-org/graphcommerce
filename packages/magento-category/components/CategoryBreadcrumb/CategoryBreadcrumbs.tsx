@@ -1,12 +1,13 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Breadcrumbs, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { Breadcrumbs, BreadcrumbsType, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { BreadcrumbsProps } from '@mui/material'
 import { useMemo } from 'react'
 import { CategoryBreadcrumbFragment } from './CategoryBreadcrumb.gql'
 
 export type CategoryBreadcrumbsProps = CategoryBreadcrumbFragment &
-  Omit<BreadcrumbsProps, 'children'> & { breadcrumbsAmount?: number }
+  Omit<BreadcrumbsProps, 'children'> &
+  Omit<BreadcrumbsType, 'breadcrumbs'>
 
 export function CategoryBreadcrumbs(props: CategoryBreadcrumbsProps) {
   const { breadcrumbs, name, uid, url_path, ...breadcrumbsProps } = props
