@@ -39,126 +39,128 @@ export function GroupedProductActionCard(props: GroupedProductActionCardProps) {
     ...rest
   } = props
 
-  const { control, setValue } = useFormAddProductsToCart()
+  const { control, register } = useFormAddProductsToCart()
   if (!sku) return null
-  setValue(`cartItems.${index}.sku`, sku)
 
   return (
-    <ActionCard
-      variant='default'
-      value={uid}
-      sx={[
-        (theme) => ({
-          '&.ActionCard-root': {
-            px: 0,
-            py: theme.spacings.xs,
-          },
-          '& .ActionCard-title': {
-            width: '100%',
-          },
-          '& .MuiBox-root': {
-            justifyContent: 'space-between',
-            alignItems: 'stretch',
-          },
-          '&.sizeSmall': {
-            px: 0,
-          },
-          '& .ActionCard-end': {
-            justifyContent: 'space-between',
-          },
-          '& .ActionCard-action': {
-            pr: theme.spacings.xs,
-          },
-          '& .ActionCard-image': {
-            alignSelf: 'flex-start',
-          },
-          '& .ActionCard-secondaryAction': {
-            typography: typographySizes[size],
-            display: 'flex',
-            alignItems: 'center',
-            color: 'text.secondary',
-            gap: '10px',
-            justifyContent: 'start',
-          },
-          '& .ActionCard-price': {
-            typography: typographySizes[size],
-            pr: theme.spacings.xs,
-            mb: { xs: 0.5, sm: 0 },
-          },
-        }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-      image={
-        small_image?.url && (
-          <Image
-            layout='fill'
-            src={small_image?.url}
-            sx={{
-              width: productImageSizes[size],
-              height: productImageSizes[size],
-              display: 'block',
-              borderRadius: 1,
-              objectFit: 'contain',
-            }}
-            sizes={productImageSizes[size]}
-          />
-        )
-      }
-      title={
-        url_key ? (
-          <Link
-            href={url_key}
-            underline='hover'
-            sx={{
-              color: 'inherit',
-              flexWrap: 'nowrap',
-              maxWidth: 'max-content',
-            }}
-          >
-            {name}
-          </Link>
-        ) : (
-          name
-        )
-      }
-      secondaryAction={
-        <NumberFieldElement
-          size='small'
-          inputProps={{ min: 0 }}
-          defaultValue={1}
-          control={control}
-          sx={{
-            width: responsiveVal(80, 120),
-            mt: 2,
-            '& .MuiFormHelperText-root': {
-              margin: 1,
+    <>
+      <input type='hidden' {...register(`cartItems.${index}.sku`)} value={sku} />
+      <ActionCard
+        variant='default'
+        value={uid}
+        sx={[
+          (theme) => ({
+            '&.ActionCard-root': {
+              px: 0,
+              py: theme.spacings.xs,
+            },
+            '& .ActionCard-title': {
               width: '100%',
             },
-          }}
-          name={`cartItems.${index}.quantity`}
-          onMouseDown={(e) => e.stopPropagation()}
-        />
-      }
-      price={
-        <Box>
-          <Box>
-            <Money {...price_range.minimum_price.final_price} />
-          </Box>
-          {price_range.minimum_price.final_price.value !==
-            price_range.minimum_price.regular_price.value && (
-            <Box
-              component='span'
+            '& .MuiBox-root': {
+              justifyContent: 'space-between',
+              alignItems: 'stretch',
+            },
+            '&.sizeSmall': {
+              px: 0,
+            },
+            '& .ActionCard-end': {
+              justifyContent: 'space-between',
+            },
+            '& .ActionCard-action': {
+              pr: theme.spacings.xs,
+            },
+            '& .ActionCard-image': {
+              alignSelf: 'flex-start',
+            },
+            '& .ActionCard-secondaryAction': {
+              typography: typographySizes[size],
+              display: 'flex',
+              alignItems: 'center',
+              color: 'text.secondary',
+              gap: '10px',
+              justifyContent: 'start',
+            },
+            '& .ActionCard-price': {
+              typography: typographySizes[size],
+              pr: theme.spacings.xs,
+              mb: { xs: 0.5, sm: 0 },
+            },
+          }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+        image={
+          small_image?.url && (
+            <Image
+              layout='fill'
+              src={small_image?.url}
               sx={{
-                textDecoration: 'line-through',
-                color: 'text.disabled',
+                width: productImageSizes[size],
+                height: productImageSizes[size],
+                display: 'block',
+                borderRadius: 1,
+                objectFit: 'contain',
+              }}
+              sizes={productImageSizes[size]}
+            />
+          )
+        }
+        title={
+          url_key ? (
+            <Link
+              href={url_key}
+              underline='hover'
+              sx={{
+                color: 'inherit',
+                flexWrap: 'nowrap',
+                maxWidth: 'max-content',
               }}
             >
-              <Money {...price_range.minimum_price.regular_price} />
+              {name}
+            </Link>
+          ) : (
+            name
+          )
+        }
+        secondaryAction={
+          <NumberFieldElement
+            size='small'
+            inputProps={{ min: 0 }}
+            defaultValue={1}
+            control={control}
+            sx={{
+              width: responsiveVal(80, 120),
+              mt: 2,
+              '& .MuiFormHelperText-root': {
+                margin: 1,
+                width: '100%',
+              },
+            }}
+            name={`cartItems.${index}.quantity`}
+            onMouseDown={(e) => e.stopPropagation()}
+          />
+        }
+        price={
+          <Box>
+            <Box>
+              <Money {...price_range.minimum_price.final_price} />
             </Box>
-          )}
-        </Box>
-      }
-      {...rest}
-    />
+            {price_range.minimum_price.final_price.value !==
+              price_range.minimum_price.regular_price.value && (
+              <Box
+                component='span'
+                sx={{
+                  textDecoration: 'line-through',
+                  color: 'text.disabled',
+                }}
+              >
+                <Money {...price_range.minimum_price.regular_price} />
+              </Box>
+            )}
+          </Box>
+        }
+        {...rest}
+      />
+    </>
   )
 }
