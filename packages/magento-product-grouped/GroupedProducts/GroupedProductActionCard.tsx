@@ -36,12 +36,13 @@ export function GroupedProductActionCard(props: GroupedProductActionCardProps) {
     size = 'large',
     index = 0,
     sku,
+    url_rewrites,
     ...rest
   } = props
 
   const { control, register } = useFormAddProductsToCart()
   if (!sku) return null
-
+  const hasUrl = (url_rewrites ?? []).length > 0
   return (
     <>
       <input type='hidden' {...register(`cartItems.${index}.sku`)} value={sku} />
@@ -106,7 +107,7 @@ export function GroupedProductActionCard(props: GroupedProductActionCardProps) {
           )
         }
         title={
-          url_key ? (
+          url_key && hasUrl ? (
             <Link
               href={url_key}
               underline='hover'
