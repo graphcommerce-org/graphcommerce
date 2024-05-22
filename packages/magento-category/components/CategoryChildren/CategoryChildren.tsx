@@ -32,6 +32,8 @@ export function CategoryChildren(props: CategoryChildrenProps) {
   const hasNavigatableChildren = childItems.some((cat) => !cat.active)
   if (!hasNavigatableChildren) return null
 
+  const isSidebarLayout = import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR'
+
   return (
     <ScrollerProvider scrollSnapAlign='none'>
       <Box
@@ -39,7 +41,7 @@ export function CategoryChildren(props: CategoryChildrenProps) {
         sx={[
           (theme) => ({
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent: isSidebarLayout ? { xs: 'center', md: 'flex-start' } : 'center',
             marginBottom: theme.spacings.sm,
           }),
           ...(Array.isArray(sx) ? sx : [sx]),
@@ -50,7 +52,7 @@ export function CategoryChildren(props: CategoryChildrenProps) {
           hideScrollbar
           sx={{ gridAutoColumns: `max-content` }}
         >
-          {childItems.map((category) => (
+          {childItems.map((category, i) => (
             <Link
               key={category.href}
               underline='none'
@@ -61,7 +63,7 @@ export function CategoryChildren(props: CategoryChildrenProps) {
                 whiteSpace: 'nowrap',
                 display: 'block',
                 marginRight: theme.spacings.xxs,
-                marginLeft: theme.spacings.xxs,
+                marginLeft: i === 0 && isSidebarLayout ? 0 : theme.spacings.xxs,
                 typography: 'h6',
                 position: 'relative',
                 paddingBottom: '8px',

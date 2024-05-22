@@ -17,7 +17,12 @@ export function ProductFiltersProCategorySection(props: ProductFiltersCategorySe
 
   return (
     <ActionCardAccordion
-      defaultExpanded={false}
+      sx={{
+        '& .MuiAccordionSummary-root': {
+          display: 'none',
+        },
+      }}
+      defaultExpanded
       summary={<Trans id='Categories' />}
       details={
         <ActionCardList value='Categories' variant='default'>

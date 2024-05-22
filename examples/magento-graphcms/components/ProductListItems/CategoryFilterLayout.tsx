@@ -1,11 +1,14 @@
-import { CategoryQueryFragment } from '@graphcommerce/magento-category'
+import {
+  CategoryChildren,
+  CategoryDescription,
+  CategoryQueryFragment,
+} from '@graphcommerce/magento-category'
 import {
   CategoryDefaultFragment,
   FilterTypes,
   ProductFiltersPro,
   ProductFiltersProAllFiltersChip,
   ProductFiltersProAllFiltersSidebar,
-  ProductFiltersProCategoryChip,
   ProductFiltersProClearAll,
   ProductFiltersProFilterChips,
   ProductFiltersProLayoutSidebar,
@@ -21,8 +24,9 @@ import {
   ProductListQuery,
   ProductListSort,
 } from '@graphcommerce/magento-product'
-import { StickyBelowHeader } from '@graphcommerce/next-ui'
+import { LayoutTitle, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
+import { CategoryPageQuery } from '../../graphql/CategoryPage.gql'
 import { ProductListItems } from './ProductListItems'
 
 export type ProductListFilterLayoutProps = ProductListQuery &
@@ -31,8 +35,11 @@ export type ProductListFilterLayoutProps = ProductListQuery &
     params?: ProductListParams
     id: string
     title: string
-    category?: CategoryDefaultFragment
+    category?: CategoryDefaultFragment &
+      NonNullable<NonNullable<CategoryPageQuery['categories']>['items']>[number]
     categories?: CategoryQueryFragment['categories']
+    description?: React.ReactNode
+    layoutChildren?: React.ReactNode
   }
 
 export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
@@ -44,10 +51,42 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
 
   const items = <ProductListItems items={products.items} loadingEager={6} title={title} />
 
+  const isSidebarLayout = import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR'
+
+  const content = (
+    <>
+      <LayoutTitle
+        gutterTop
+        variant='h1'
+        sx={(theme) => ({
+          marginBottom: (category?.description || category?.children) && theme.spacings.md,
+          alignItems: { xs: 'center', md: isSidebarLayout ? 'flex-start' : 'center' },
+        })}
+        gutterBottom={!category?.description && category?.children?.length === 0}
+      >
+        {title}
+      </LayoutTitle>
+      <CategoryDescription
+        sx={
+          isSidebarLayout
+            ? {
+                p: 0,
+                ml: 0,
+                textAlign: { xs: 'center', md: 'left' },
+              }
+            : {
+                textAlign: 'center',
+              }
+        }
+        description={category?.description}
+      />
+      <CategoryChildren params={params}>{category?.children}</CategoryChildren>
+    </>
+  )
+
   if (import.meta.graphCommerce.productFiltersPro) {
     const horizontalFilters = (
       <ProductListFiltersContainer>
-        <ProductFiltersProCategoryChip {...props} />
         <ProductFiltersProFilterChips />
         <ProductFiltersProSortChip
           total_count={total_count}
@@ -71,7 +110,7 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
         appliedAggregations={products?.aggregations}
         filterTypes={filterTypes}
       >
-        {import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' ? (
+        {isSidebarLayout ? (
           <ProductFiltersProLayoutSidebar
             clearAll={<ProductFiltersProClearAll />}
             horizontalFilters={horizontalFilters}
@@ -86,9 +125,11 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
             count={<ProductListCount total_count={total_count} />}
             pagination={<ProductListPagination page_info={page_info} params={params} />}
             items={items}
+            content={content}
           />
         ) : (
           <>
+            {content}
             <StickyBelowHeader>{horizontalFilters}</StickyBelowHeader>
             <Container maxWidth={false}>
               <ProductListCount total_count={total_count} />

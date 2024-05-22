@@ -4,8 +4,6 @@ import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   appendSiblingsAsChildren,
   CategoryBreadcrumbs,
-  CategoryChildren,
-  CategoryDescription,
   CategoryHeroNav,
   CategoryHeroNavTitle,
   CategoryMeta,
@@ -56,6 +54,7 @@ function CategoryPage(props: CategoryProps) {
   const isLanding = category?.display_mode === 'PAGE'
   const page = pages?.[0]
   const isCategory = params && category && products?.items && filterTypes
+  const isSidebarLayout = import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR'
 
   return (
     <>
@@ -76,6 +75,12 @@ function CategoryPage(props: CategoryProps) {
       {import.meta.graphCommerce.breadcrumbs && isCategory && (
         <Container maxWidth={false}>
           <CategoryBreadcrumbs
+            sx={{
+              display: {
+                xs: 'block',
+                md: !isSidebarLayout || (isSidebarLayout && isLanding) ? 'block' : 'none',
+              },
+            }}
             name={category?.name}
             uid={category?.uid}
             url_path={category?.url_path}
@@ -84,7 +89,7 @@ function CategoryPage(props: CategoryProps) {
         </Container>
       )}
 
-      {!isLanding && (
+      {!isCategory && !isLanding && (
         <Container maxWidth={false}>
           <LayoutTitle
             variant='h1'
@@ -109,20 +114,16 @@ function CategoryPage(props: CategoryProps) {
       )}
 
       {isCategory && !isLanding && (
-        <>
-          <CategoryDescription description={category.description} />
-          <CategoryChildren params={params}>{category.children}</CategoryChildren>
-          <CategoryFilterLayout
-            categories={categories}
-            params={params}
-            filters={filters}
-            products={products}
-            filterTypes={filterTypes}
-            title={category.name ?? ''}
-            id={category.uid}
-            category={category}
-          />
-        </>
+        <CategoryFilterLayout
+          categories={categories}
+          params={params}
+          filters={filters}
+          products={products}
+          filterTypes={filterTypes}
+          title={category.name ?? page.title ?? ''}
+          id={category.uid}
+          category={category}
+        />
       )}
       {page && (
         <RowRenderer
