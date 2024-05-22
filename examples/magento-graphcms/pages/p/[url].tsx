@@ -30,6 +30,7 @@ import {
   defaultConfigurableOptionsSelection,
 } from '@graphcommerce/magento-product-configurable'
 import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
+import { GroupedProducts } from '@graphcommerce/magento-product-grouped'
 import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-products'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -140,23 +141,28 @@ function ProductPage(props: Props) {
           {isTypename(product, ['DownloadableProduct']) && (
             <DownloadableProductOptions product={product} />
           )}
-          {!isTypename(product, ['GroupedProduct']) && <ProductCustomizable product={product} />}
+          {isTypename(product, ['GroupedProduct']) && <GroupedProducts product={product} />}
 
-          <Divider />
+          {!isTypename(product, ['GroupedProduct']) && (
+            <>
+              <ProductCustomizable product={product} />
+              <Divider />
 
-          <ProductPageAddToCartQuantityRow product={product}>
-            <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
+              <ProductPageAddToCartQuantityRow product={product}>
+                <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
 
-            <AddProductsToCartError>
-              <Typography component='div' variant='h3' lineHeight='1'>
-                <ProductPagePrice product={product} />
-              </Typography>
-            </AddProductsToCartError>
-          </ProductPageAddToCartQuantityRow>
+                <AddProductsToCartError>
+                  <Typography component='div' variant='h3' lineHeight='1'>
+                    <ProductPagePrice product={product} />
+                  </Typography>
+                </AddProductsToCartError>
+              </ProductPageAddToCartQuantityRow>
 
-          <ProductPagePriceTiers product={product} />
+              <ProductPagePriceTiers product={product} />
 
-          <ProductSidebarDelivery product={product} />
+              <ProductSidebarDelivery product={product} />
+            </>
+          )}
 
           <ProductPageAddToCartActionsRow product={product}>
             <AddProductsToCartButton fullWidth product={product} />

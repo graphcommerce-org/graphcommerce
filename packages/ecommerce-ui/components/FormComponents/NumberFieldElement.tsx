@@ -115,7 +115,11 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
             aria-label={i18n._(/* i18n */ 'Decrease')}
             size='smaller'
             onClick={() => {
-              if ((valueAsNumber || Infinity) <= inputProps.min) return
+              if (
+                (valueAsNumber || Infinity) <= inputProps.min ||
+                (inputProps.min === 0 && valueAsNumber <= inputProps.min)
+              )
+                return
               onChange(value - 1)
             }}
             sx={{

@@ -5,7 +5,7 @@ import {
   CrosssellsDocument,
   CrosssellsQuery,
 } from '@graphcommerce/magento-cart'
-import { ExtendableComponent, nonNullable } from '@graphcommerce/next-ui'
+import { ExtendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme, useThemeProps } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useMemo, useRef } from 'react'
@@ -90,7 +90,7 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
         const requestData = {
           cartId,
           cartItems: cartItems
-            .filter((cartItem) => cartItem.sku)
+            .filter((cartItem) => cartItem.sku && cartItem.quantity !== 0)
             .map(({ customizable_options, ...cartItem }) => {
               const options = Object.values(customizable_options ?? {})
                 .flat(1)
