@@ -3,19 +3,7 @@ fragment ProductPageGroupedQueryFragment on Query {
     items {
       __typename
       uid
-      ... on GroupedProduct {
-        items {
-          position
-          qty
-          product {
-            uid
-            __typename
-            ...ProductListItem
-            ...ProductListItemSimple
-            ...ProductListItemVirtual
-          }
-        }
-      }
+      ...GroupedProduct
     }
   }
 }

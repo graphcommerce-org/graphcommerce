@@ -1,5 +1,24 @@
 # Change Log
 
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+## 8.1.0-canary.16
+
+### Patch Changes
+
+- [#2275](https://github.com/graphcommerce-org/graphcommerce/pull/2275) [`29e496c`](https://github.com/graphcommerce-org/graphcommerce/commit/29e496ca815d102ac7952dc81c6c4ab9e164d031) - Prevent ScrollerThumbnail from scrolling the page horizontally
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
 ## 8.1.0-canary.11
 
 ## 8.1.0-canary.10

@@ -77,7 +77,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
-      up: { href: '/account', title: 'Account' },
+      up: { href: '/account', title: i18n._(/* i18n */ 'Account') },
     },
   }
 }

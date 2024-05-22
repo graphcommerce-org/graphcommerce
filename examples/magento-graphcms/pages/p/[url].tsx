@@ -177,7 +177,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
-      : { href: `/`, title: 'Home' }
+      : { href: `/`, title: i18n._(/* i18n */ 'Home') }
   const usps = staticClient.query({ query: UspsDocument, fetchPolicy: 'cache-first' })
 
   return {

@@ -13,6 +13,8 @@ export function ProductShortDescription(props: ProductShortDescriptionProps) {
   const { product, sx = [] } = props
   const { short_description } = product
 
+  if (!short_description?.html) return null
+
   return (
     <Typography
       variant='body1'

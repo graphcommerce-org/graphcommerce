@@ -12,6 +12,7 @@ import {
 import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import { ConfigurableProductOptions } from '@graphcommerce/magento-product-configurable'
 import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
+import { GroupedProducts } from '@graphcommerce/magento-product-grouped'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import { isTypename } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
@@ -50,7 +51,28 @@ export function AddProductsToCartView(props: AddProductsToCartViewProps) {
       {isTypename(product, ['DownloadableProduct']) && (
         <DownloadableProductOptions product={product} />
       )}
-      {!isTypename(product, ['GroupedProduct']) && <ProductCustomizable product={product} />}
+      {isTypename(product, ['GroupedProduct']) && <GroupedProducts product={product} />}
+
+      {!isTypename(product, ['GroupedProduct']) && (
+        <>
+          <ProductCustomizable product={product} />
+          <Divider />
+
+          <ProductPageAddToCartQuantityRow product={product}>
+            <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
+
+            <AddProductsToCartError>
+              <Typography component='div' variant='h3' lineHeight='1'>
+                <ProductPagePrice product={product} />
+              </Typography>
+            </AddProductsToCartError>
+          </ProductPageAddToCartQuantityRow>
+
+          <ProductPagePriceTiers product={product} />
+
+          <ProductSidebarDelivery product={product} />
+        </>
+      )}
 
       <Divider />
 

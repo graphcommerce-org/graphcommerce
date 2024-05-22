@@ -32,7 +32,7 @@ const typographySizes = {
 }
 
 export function CartItemActionCard(props: CartItemActionCardProps) {
-  const { cartItem, sx = [], size = 'large', readOnly = false, ...rest } = props
+  const { cartItem, sx = [], size = 'responsive', readOnly = false, ...rest } = props
   const { uid, quantity, prices, errors, product } = cartItem
   const { name, thumbnail, url_key } = product
 
@@ -70,6 +70,11 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
           '&.sizeSmall': {
             px: 0,
           },
+          '&.sizeResponsive': {
+            [theme.breakpoints.down('md')]: {
+              px: 0,
+            },
+          },
           '& .ActionCard-end': {
             justifyContent: readOnly ? 'center' : 'space-between',
           },
@@ -80,7 +85,14 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             alignSelf: 'flex-start',
           },
           '& .ActionCard-secondaryAction': {
-            typography: typographySizes[size],
+            typography:
+              size === 'responsive'
+                ? {
+                    xs: typographySizes.small,
+                    md: typographySizes.medium,
+                    lg: typographySizes.large,
+                  }
+                : typographySizes[size],
             display: 'flex',
             alignItems: 'center',
             color: 'text.secondary',
@@ -89,7 +101,14 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             justifyContent: 'start',
           },
           '& .ActionCard-price': {
-            typography: typographySizes[size],
+            typography:
+              size === 'responsive'
+                ? {
+                    xs: typographySizes.small,
+                    md: typographySizes.medium,
+                    lg: typographySizes.large,
+                  }
+                : typographySizes[size],
             pr: readOnly ? 0 : theme.spacings.xs,
             mb: { xs: 0.5, sm: 0 },
           },
@@ -102,13 +121,27 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             layout='fill'
             src={thumbnail?.url}
             sx={{
-              width: productImageSizes[size],
-              height: productImageSizes[size],
+              width:
+                size === 'responsive'
+                  ? {
+                      xs: productImageSizes.small,
+                      md: productImageSizes.medium,
+                      lg: productImageSizes.large,
+                    }
+                  : productImageSizes[size],
+              height:
+                size === 'responsive'
+                  ? {
+                      xs: productImageSizes.small,
+                      md: productImageSizes.medium,
+                      lg: productImageSizes.large,
+                    }
+                  : productImageSizes[size],
               display: 'block',
               borderRadius: 1,
               objectFit: 'contain',
             }}
-            sizes={productImageSizes[size]}
+            sizes={size === 'responsive' ? productImageSizes.small : productImageSizes[size]}
           />
         )
       }
@@ -138,7 +171,14 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
         </>
       }
       price={<Money {...(inclTaxes ? prices?.row_total_including_tax : prices?.row_total)} />}
-      action={!readOnly && <RemoveItemFromCart {...cartItem} buttonProps={{ size }} />}
+      action={
+        !readOnly && (
+          <RemoveItemFromCart
+            {...cartItem}
+            buttonProps={{ size: size === 'responsive' ? 'large' : size }}
+          />
+        )
+      }
       size={size}
       after={filterNonNullableKeys(errors).map((error) => (
         <Box sx={{ color: 'error.main', typography: 'caption' }} key={error.message}>

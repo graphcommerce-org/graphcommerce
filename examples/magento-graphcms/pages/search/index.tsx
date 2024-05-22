@@ -1,6 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
-import { ProductAttributeSortInput } from '@graphcommerce/graphql-mesh'
 import {
   ProductListDocument,
   extractUrlQuery,
@@ -173,7 +172,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await layout)?.data,
       filterTypes: await filterTypes,
       params: productListParams,
-      up: { href: '/', title: 'Home' },
+      up: { href: '/', title: i18n._(/* i18n */ 'Home') },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

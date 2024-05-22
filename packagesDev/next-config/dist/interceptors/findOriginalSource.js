@@ -33,6 +33,22 @@ function parseAndFindExport(resolved, findExport, resolve) {
                     break;
             }
         }
+        if (node.type === 'ExportNamedDeclaration') {
+            for (const specifier of node.specifiers) {
+                if (specifier.type === 'ExportSpecifier') {
+                    if (specifier.exported?.value === findExport)
+                        return resolved;
+                }
+                else if (specifier.type === 'ExportDefaultSpecifier') {
+                    // todo
+                }
+                else if (specifier.type === 'ExportNamespaceSpecifier') {
+                    // todo
+                }
+            }
+        }
+        // todo: if (node.type === 'ExportDefaultDeclaration') {}
+        // todo: if (node.type === 'ExportDefaultExpression') {}
     }
     const exports = ast.body
         .filter((node) => node.type === 'ExportAllDeclaration')
@@ -78,7 +94,7 @@ function findOriginalSource(plug, resolved, resolve) {
     if (!newResolved) {
         return {
             resolved: undefined,
-            error: new Error(`Can not find ${plug.targetModule}#${plug.sourceExport} for plugin ${plug.sourceModule}`),
+            error: new Error(`Plugin target not found ${plug.targetModule}#${plug.sourceExport} for plugin ${plug.sourceModule}#${plug.sourceExport}`),
         };
     }
     // cachedResults.set(cacheKey, newResolved)

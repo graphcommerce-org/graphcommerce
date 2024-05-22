@@ -74,7 +74,7 @@ const sourceSuffix = 'Plugin'
 const interceptorSuffix = 'Interceptor'
 const disabledSuffix = 'Disabled'
 const name = (plugin: PluginConfig) =>
-  `${plugin.sourceModule
+  `${plugin.sourceExport}${plugin.sourceModule
     .split('/')
     [plugin.sourceModule.split('/').length - 1].replace(/[^a-zA-Z0-9]/g, '')}`
 
@@ -180,9 +180,7 @@ export async function generateInterceptor(
               s.replace(originalSuffix, disabledSuffix),
             ).visitModule(ast)
 
-            carryProps.push(interceptorPropsName(name(p)))
-
-            result = `type ${interceptorPropsName(name(p))} = React.ComponentProps<typeof ${sourceName(name(p))}>`
+            carryProps.push(`React.ComponentProps<typeof ${sourceName(name(p))}>`)
 
             pluginSee.push(
               `@see {${sourceName(name(p))}} for replacement of the original source (original source not used)`,
@@ -225,7 +223,7 @@ export async function generateInterceptor(
         .filter((v) => !!v)
         .join('\n')
 
-      const isComponent = plugins.every((p) => isReplacePluginConfig(p) || isReactPluginConfig(p))
+      const isComponent = plugins.every((p) => isReactPluginConfig(p))
       if (isComponent && plugins.some((p) => isMethodPluginConfig(p))) {
         throw new Error(`Cannot mix React and Method plugins for ${base} in ${dependency}.`)
       }

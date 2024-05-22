@@ -1,5 +1,24 @@
 # Change Log
 
+## 8.1.0-canary.18
+
+### Patch Changes
+
+- [#2277](https://github.com/graphcommerce-org/graphcommerce/pull/2277) [`f9199f7`](https://github.com/graphcommerce-org/graphcommerce/commit/f9199f798583138a68dd641ea6637375c487f29b) - Solve issue where Braintree wouldn't place the order after successfully validating a Credit Card.
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.17
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
 ## 8.1.0-canary.11
 
 ## 8.1.0-canary.10
