@@ -73,27 +73,6 @@ export function AddProductsToCartView(props: AddProductsToCartViewProps) {
           <ProductSidebarDelivery product={product} />
         </>
       )}
-
-      <Divider />
-
-      <ProductPageAddToCartQuantityRow product={product}>
-        <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
-
-        <AddProductsToCartError>
-          <Typography component='div' variant='h3' lineHeight='1'>
-            <ProductPagePrice product={product} />
-          </Typography>
-        </AddProductsToCartError>
-      </ProductPageAddToCartQuantityRow>
-
-      <ProductPagePriceTiers product={product} />
-
-      <ProductSidebarDelivery product={product} />
-
-      <ProductPageAddToCartActionsRow product={product}>
-        <AddProductsToCartButton fullWidth product={product} />
-        <ProductWishlistChipDetail {...product} />
-      </ProductPageAddToCartActionsRow>
     </>
   )
 }
