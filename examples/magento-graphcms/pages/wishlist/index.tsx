@@ -17,7 +17,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { CircularProgress, Container, Theme, useMediaQuery } from '@mui/material'
+import { CircularProgress, Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -26,12 +26,6 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function WishlistPage() {
   const wishlistItems = useWishlistItems()
-
-  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'), {
-    defaultMatches: false,
-  })
-
-  const size: WishlistItemActionCardProps['size'] = isMobile ? 'small' : 'large'
 
   return (
     <>
@@ -73,7 +67,7 @@ function WishlistPage() {
           ) : (
             <>
               {wishlistItems.items.map((item) => (
-                <WishlistItemActionCard key={item.id} item={item} size={size} />
+                <WishlistItemActionCard key={item.id} item={item} />
               ))}
             </>
           )}
