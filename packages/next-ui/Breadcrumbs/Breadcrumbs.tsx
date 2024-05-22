@@ -16,6 +16,7 @@ import { iconClose, iconEllypsis } from '../icons'
 import { BreadcrumbsJsonLd } from './BreadcrumbsJsonLd'
 import { jsonLdBreadcrumb } from './jsonLdBreadcrumb'
 import type { BreadcrumbsType } from './types'
+import { useRouter } from 'next/router'
 
 const BreadcrumbsPopper = dynamic(
   async () => (await import('./BreadcrumbsPopper')).BreadcrumbsPopper,
@@ -48,6 +49,8 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
   })
 
   const handleClose = () => setAnchorElement(null)
+
+  const router = useRouter()
 
   return (
     <>
@@ -150,9 +153,11 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
         {breadcrumbs.slice(0, breadcrumbs.length - 1).map((breadcrumb) => (
           <Link {...breadcrumb} underline='hover' color='text.primary' variant='body1' />
         ))}
-        <Typography component='span' color='text.primary' variant='body1' fontWeight='600' noWrap>
-          {name}
-        </Typography>
+        {!router.asPath.includes('/p') && (
+          <Typography component='span' color='text.primary' variant='body1' fontWeight='600' noWrap>
+            {name}
+          </Typography>
+        )}
       </BreadcrumbsBase>
     </>
   )
