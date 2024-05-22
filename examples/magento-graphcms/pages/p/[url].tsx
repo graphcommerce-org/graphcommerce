@@ -142,28 +142,27 @@ function ProductPage(props: Props) {
             <DownloadableProductOptions product={product} />
           )}
           {isTypename(product, ['GroupedProduct']) && <GroupedProducts product={product} />}
+
           {!isTypename(product, ['GroupedProduct']) && (
             <>
               <ProductCustomizable product={product} />
               <Divider />
+
+              <ProductPageAddToCartQuantityRow product={product}>
+                <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
+
+                <AddProductsToCartError>
+                  <Typography component='div' variant='h3' lineHeight='1'>
+                    <ProductPagePrice product={product} />
+                  </Typography>
+                </AddProductsToCartError>
+              </ProductPageAddToCartQuantityRow>
+
+              <ProductPagePriceTiers product={product} />
+
+              <ProductSidebarDelivery product={product} />
             </>
           )}
-
-          <ProductPageAddToCartQuantityRow product={product}>
-            {!isTypename(product, ['GroupedProduct']) && (
-              <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
-            )}
-
-            <AddProductsToCartError>
-              <Typography component='div' variant='h3' lineHeight='1'>
-                <ProductPagePrice product={product} />
-              </Typography>
-            </AddProductsToCartError>
-          </ProductPageAddToCartQuantityRow>
-
-          <ProductPagePriceTiers product={product} />
-
-          <ProductSidebarDelivery product={product} />
 
           <ProductPageAddToCartActionsRow product={product}>
             <AddProductsToCartButton fullWidth product={product} />
