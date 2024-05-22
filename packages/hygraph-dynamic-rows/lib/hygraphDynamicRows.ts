@@ -117,7 +117,7 @@ export async function hygraphDynamicRows(
   const page = pageResult.data.pages[0] as Page | undefined
 
   // Create a copy of the content array.
-  const content = page?.content ?? []
+  const content = [...(page?.content ?? [])]
 
   dynamicResult?.data.dynamicRows.forEach((dynamicRow) => {
     const { placement, target, rows, row } = dynamicRow

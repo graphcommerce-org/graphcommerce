@@ -1,5 +1,20 @@
 # Change Log
 
+## 8.1.0-canary.17
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+### Patch Changes
+
+- [#2267](https://github.com/graphcommerce-org/graphcommerce/pull/2267) [`9d5fd11`](https://github.com/graphcommerce-org/graphcommerce/commit/9d5fd11c7130612e80523608ab442976f3f5ddc5) - make the CategoryHeroNav fragment injectable and add image to the childeren
+  ([@carlocarels90](https://github.com/carlocarels90))
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
 ## 8.1.0-canary.12
 
 ## 8.1.0-canary.11

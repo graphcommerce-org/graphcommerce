@@ -50,7 +50,7 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
   const classes = withState({ active })
 
   const scrollIntoView = () =>
-    ref.current?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'auto' })
+    ref.current?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'auto' })
 
   useEffect(() => {
     if (active && ref.current) {
