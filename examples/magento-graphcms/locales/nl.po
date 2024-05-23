@@ -238,8 +238,11 @@ msgstr "Wijzig adres"
 msgid "Edit billing address"
 msgstr "Wijzig factuuradres"
 
-msgid "Editing <Name/>"
-msgstr "<Name/> bewerken"
+msgid "Edit options"
+msgstr "Opties bewerken"
+
+msgid "Editing product"
+msgstr "Product bewerken"
 
 msgid "Email"
 msgstr "E-mail"
@@ -573,9 +576,6 @@ msgstr "Review score"
 
 msgid "Reviews"
 msgstr "Reviews"
-
-msgid "Save"
-msgstr "Opslaan"
 
 msgid "Save changes"
 msgstr "Wijzigingen opslaan"

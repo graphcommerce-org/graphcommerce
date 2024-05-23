@@ -238,8 +238,11 @@ msgstr "Editar dirección"
 msgid "Edit billing address"
 msgstr "Editar dirección de facturación"
 
-msgid "Editing <Name/>"
-msgstr "Edición <Name/>"
+msgid "Edit options"
+msgstr "Editar opciones"
+
+msgid "Editing product"
+msgstr "Editando producto"
 
 msgid "Email"
 msgstr "Correo electrónico"
@@ -573,9 +576,6 @@ msgstr "Puntuación de revisión"
 
 msgid "Reviews"
 msgstr "Comentarios"
-
-msgid "Save"
-msgstr "Guardar"
 
 msgid "Save changes"
 msgstr "Guardar cambios"
