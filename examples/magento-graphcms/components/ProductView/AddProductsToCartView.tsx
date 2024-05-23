@@ -1,9 +1,7 @@
 import {
-  AddProductsToCartButton,
   AddProductsToCartError,
   AddProductsToCartQuantity,
   ProductCustomizable,
-  ProductPageAddToCartActionsRow,
   ProductPageAddToCartQuantityRow,
   ProductPagePrice,
   ProductPagePriceTiers,
@@ -13,7 +11,6 @@ import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
 import { ConfigurableProductOptions } from '@graphcommerce/magento-product-configurable'
 import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
 import { GroupedProducts } from '@graphcommerce/magento-product-grouped'
-import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import { isTypename } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Divider, Link, Typography } from '@mui/material'
