@@ -31,7 +31,7 @@ import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit }
 
 const MotionBox = styled(m.div)({})
 
-type OwnerState = { zoomed: boolean; disableZoom: boolean }
+type OwnerState = { zoomed: boolean; disableZoom: boolean; sticky: boolean }
 const name = 'SidebarGallery' as const
 const parts = [
   'row',
@@ -60,6 +60,7 @@ export type SidebarGalleryProps = {
   routeHash?: string
   sx?: SxProps<Theme>
   disableZoom?: boolean
+  disableSticky?: boolean
 } & Pick<ScrollerButtonProps, 'showButtons'>
 
 export function SidebarGallery(props: SidebarGalleryProps) {
@@ -71,6 +72,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     routeHash = 'gallery',
     showButtons,
     disableZoom = false,
+    disableSticky = false,
   } = props
 
   const router = useRouter()
@@ -103,7 +105,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     }
   }
 
-  const classes = withState({ zoomed, disableZoom })
+  const classes = withState({ zoomed, disableZoom, sticky: !disableSticky })
   const theme = useTheme()
   const windowRef = useRef(typeof window !== 'undefined' ? window : null)
 
@@ -186,7 +188,9 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                     height: `calc(${dvh(100)} - ${theme.appShell.headerHeightMd} - ${
                       theme.spacings.lg
                     })`,
-                    position: 'sticky',
+                    '&.sticky': {
+                      position: 'sticky',
+                    },
                     top: theme.appShell.headerHeightMd,
                   },
                 },

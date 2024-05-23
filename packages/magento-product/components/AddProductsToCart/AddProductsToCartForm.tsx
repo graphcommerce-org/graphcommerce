@@ -5,10 +5,10 @@ import {
   CrosssellsDocument,
   CrosssellsQuery,
 } from '@graphcommerce/magento-cart'
-import { ExtendableComponent } from '@graphcommerce/next-ui'
+import { ExtendableComponent, nonNullable } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme, useThemeProps } from '@mui/material'
 import { useRouter } from 'next/router'
-import { useId, useMemo, useRef } from 'react'
+import { useMemo, useRef } from 'react'
 import { AddProductsToCartDocument, AddProductsToCartMutation } from './AddProductsToCart.gql'
 import {
   AddProductsToCartSnackbar,

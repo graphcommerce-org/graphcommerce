@@ -1,6 +1,6 @@
 import { Image } from '@graphcommerce/image'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart/hooks'
-import { productEditLink } from '@graphcommerce/magento-product'
+import { ProductLinkProps } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import {
   ActionCard,
@@ -31,6 +31,10 @@ const typographySizes = {
   large: 'subtitle1',
 }
 
+export function productEditLink(link: ProductLinkProps) {
+  return `/checkout/item/${link.url_key}`
+}
+
 export function CartItemActionCard(props: CartItemActionCardProps) {
   const { cartItem, sx = [], size = 'responsive', readOnly = false, ...rest } = props
   const { uid, quantity, prices, errors, product } = cartItem
@@ -50,9 +54,11 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
   } else {
     price = prices?.price.value
   }
-  const hasOptions =
+
+  const hasOptions = !(
     (cartItem.__typename === 'SimpleCartItem' || cartItem.__typename === 'VirtualCartItem') &&
-    cartItem.customizable_options.length > 0
+    cartItem.customizable_options.length === 0
+  )
 
   return (
     <ActionCard

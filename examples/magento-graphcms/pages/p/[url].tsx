@@ -14,13 +14,17 @@ import {
   ProductPageJsonLd,
   ProductPageMeta,
   ProductShortDescription,
+  ProductPageAddToCartActionsRow,
+  AddProductsToCartButton,
 } from '@graphcommerce/magento-product'
 import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-product-configurable'
 import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-products'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { Money, redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, isTypename, LayoutHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
+import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutDocument,
@@ -31,11 +35,11 @@ import {
   RowRenderer,
   Usps,
 } from '../../components'
+import { AddProductsToCartView } from '../../components/AddProductsToCartView'
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
-import { AddProductsToCartView } from '../../components/AddProductsToCartView'
-import { Typography } from '@mui/material'
+import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 
 type Props = HygraphPagesQuery &
   UspsQuery &
@@ -85,7 +89,7 @@ function ProductPage(props: Props) {
         >
           <div>
             {isTypename(product, ['ConfigurableProduct', 'BundleProduct']) && (
-              <Typography component='div' variant='body2' color='text.disabled'>
+              <Typography component='div' variant='body1' color='text.disabled'>
                 <Trans
                   id='As low as <0/>'
                   components={{ 0: <Money {...product.price_range.minimum_price.final_price} /> }}
@@ -103,6 +107,11 @@ function ProductPage(props: Props) {
           </div>
 
           <AddProductsToCartView product={product} />
+
+          <ProductPageAddToCartActionsRow product={product}>
+            <AddProductsToCartButton fullWidth product={product} />
+            <ProductWishlistChipDetail {...product} />
+          </ProductPageAddToCartActionsRow>
 
           <Usps usps={sidebarUsps} size='small' />
         </ProductPageGallery>
