@@ -1,4 +1,4 @@
-fragment DownloadableProductOptions on DownloadableProduct {
+fragment DownloadableProductOptions on DownloadableProduct @injectable {
   __typename
   uid
   ... on DownloadableProduct {

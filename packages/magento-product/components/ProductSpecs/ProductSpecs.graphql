@@ -1,4 +1,4 @@
-fragment ProductSpecs on Products {
+fragment ProductSpecs on Products @injectable {
   aggregations {
     attribute_code
     count

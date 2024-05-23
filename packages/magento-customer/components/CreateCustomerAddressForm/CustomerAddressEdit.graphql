@@ -1,4 +1,4 @@
-fragment CustomerAddressEdit on CustomerAddress {
+fragment CustomerAddressEdit on CustomerAddress @injectable {
   id
   ...CustomerAddress
 }

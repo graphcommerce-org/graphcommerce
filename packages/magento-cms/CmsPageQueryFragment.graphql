@@ -1,4 +1,4 @@
-fragment CmsPageQueryFragment on Query {
+fragment CmsPageQueryFragment on Query @injectable {
   cmsPage(identifier: $urlKey) {
     identifier
     ...CmsPageMeta

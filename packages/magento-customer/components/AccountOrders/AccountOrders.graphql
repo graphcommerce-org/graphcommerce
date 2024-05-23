@@ -1,4 +1,4 @@
-fragment AccountOrders on Customer {
+fragment AccountOrders on Customer @injectable {
   orders(filter: {}, pageSize: $pageSize, currentPage: $currentPage) {
     items {
       ...OrderCard

@@ -1,4 +1,4 @@
-fragment CustomizableAreaOption on CustomizableAreaOption {
+fragment CustomizableAreaOption on CustomizableAreaOption @injectable {
   product_sku
   areaValue: value {
     max_characters

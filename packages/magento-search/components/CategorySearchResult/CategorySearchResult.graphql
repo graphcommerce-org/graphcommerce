@@ -1,4 +1,4 @@
-fragment CategorySearchResult on CategoryTree {
+fragment CategorySearchResult on CategoryTree @injectable {
   uid
   url_path
   name

@@ -1,4 +1,4 @@
-fragment UpsellProducts on ProductInterface {
+fragment UpsellProducts on ProductInterface @injectable {
   upsell_products {
     ...ProductListItem
   }

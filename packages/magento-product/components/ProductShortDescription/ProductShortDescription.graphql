@@ -1,4 +1,4 @@
-fragment ProductShortDescription on ProductInterface {
+fragment ProductShortDescription on ProductInterface @injectable {
   url_key
   short_description {
     ...ComplexTextValue

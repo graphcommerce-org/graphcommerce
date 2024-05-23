@@ -1,4 +1,4 @@
-fragment VirtualCartItem on VirtualCartItem @inject(into: ["CartItem"]) {
+fragment VirtualCartItem on VirtualCartItem @injectable @inject(into: ["CartItem"]) {
   customizable_options {
     ...SelectedCustomizableOption
   }

@@ -1,4 +1,4 @@
-fragment CustomerAddress on CustomerAddress {
+fragment CustomerAddress on CustomerAddress @injectable {
   id
 
   prefix

@@ -1,4 +1,4 @@
-fragment CategoryBreadcrumb on CategoryInterface {
+fragment CategoryBreadcrumb on CategoryInterface @injectable {
   uid
   name
   url_path

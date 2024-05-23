@@ -1,4 +1,4 @@
-fragment ProductListPrice on ProductPrice {
+fragment ProductListPrice on ProductPrice @injectable {
   regular_price {
     ...Money
   }

@@ -1,4 +1,4 @@
-fragment ProductPageName on ProductInterface {
+fragment ProductPageName on ProductInterface @injectable {
   name
   url_key
 }

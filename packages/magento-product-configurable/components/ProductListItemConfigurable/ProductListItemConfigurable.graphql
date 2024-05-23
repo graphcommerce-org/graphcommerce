@@ -1,4 +1,6 @@
-fragment ProductListItemConfigurable on ConfigurableProduct @inject(into: ["ProductListItem"]) {
+fragment ProductListItemConfigurable on ConfigurableProduct
+@injectable
+@inject(into: ["ProductListItem"]) {
   __typename
   uid
   configurable_options {

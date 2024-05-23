@@ -1,4 +1,4 @@
-fragment UseOrderCardItemImages on CustomerOrders {
+fragment UseOrderCardItemImages on CustomerOrders @injectable {
   items {
     items {
       product_url_key

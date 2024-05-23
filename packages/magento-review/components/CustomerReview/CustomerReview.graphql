@@ -1,4 +1,4 @@
-fragment CustomerReview on ProductReview {
+fragment CustomerReview on ProductReview @injectable {
   average_rating
   created_at
   product {

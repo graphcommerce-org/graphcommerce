@@ -1,4 +1,4 @@
-fragment OrderDetails on CustomerOrder {
+fragment OrderDetails on CustomerOrder @injectable {
   number
   order_date
   invoices {

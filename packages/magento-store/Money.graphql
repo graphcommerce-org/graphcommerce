@@ -1,4 +1,4 @@
-fragment Money on Money {
+fragment Money on Money @injectable {
   currency
   value
 }

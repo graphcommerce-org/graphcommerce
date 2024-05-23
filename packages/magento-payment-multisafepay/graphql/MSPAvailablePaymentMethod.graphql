@@ -1,4 +1,5 @@
 fragment MSPAvailablePaymentMethod on AvailablePaymentMethod
+@injectable
 @inject(into: ["AvailablePaymentMethod"]) {
   multisafepay_additional_data {
     image

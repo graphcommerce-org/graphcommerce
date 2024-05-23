@@ -1,4 +1,4 @@
-fragment ProductPageBreadcrumb on ProductInterface {
+fragment ProductPageBreadcrumb on ProductInterface @injectable {
   name
   categories {
     uid

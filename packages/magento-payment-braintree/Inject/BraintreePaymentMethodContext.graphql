@@ -1,4 +1,4 @@
-fragment BraintreePaymentMethodContext on Cart @inject(into: ["PaymentMethodContext"]) {
+fragment BraintreePaymentMethodContext on Cart @injectable @inject(into: ["PaymentMethodContext"]) {
   shipping_addresses {
     country {
       code

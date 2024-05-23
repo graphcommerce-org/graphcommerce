@@ -1,4 +1,4 @@
-fragment ProductListItems on Products {
+fragment ProductListItems on Products @injectable {
   items {
     __typename
     uid

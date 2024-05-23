@@ -1,4 +1,4 @@
-fragment CustomizableDropDownOption on CustomizableDropDownOption {
+fragment CustomizableDropDownOption on CustomizableDropDownOption @injectable {
   dropdownValue: value {
     option_type_id
     price

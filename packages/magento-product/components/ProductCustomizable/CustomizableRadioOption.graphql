@@ -1,4 +1,4 @@
-fragment CustomizableRadioOption on CustomizableRadioOption {
+fragment CustomizableRadioOption on CustomizableRadioOption @injectable {
   radioValue: value {
     option_type_id
     price

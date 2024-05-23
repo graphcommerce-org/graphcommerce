@@ -1,4 +1,4 @@
-fragment ProductPageBundleQueryFragment on Query {
+fragment ProductPageBundleQueryFragment on Query @injectable {
   typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
     items {
       __typename

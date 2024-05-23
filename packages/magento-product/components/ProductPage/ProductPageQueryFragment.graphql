@@ -1,4 +1,4 @@
-fragment ProductPageQueryFragment on Query {
+fragment ProductPageQueryFragment on Query @injectable {
   products(filter: { url_key: { eq: $urlKey } }) {
     ...ProductSpecs
     items {

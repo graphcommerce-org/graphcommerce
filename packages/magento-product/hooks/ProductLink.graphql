@@ -1,4 +1,4 @@
-fragment ProductLink on ProductInterface {
+fragment ProductLink on ProductInterface @injectable {
   __typename
   uid
   url_key

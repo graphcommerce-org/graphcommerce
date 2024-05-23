@@ -1,4 +1,4 @@
-fragment TrackingLink on ShipmentTracking {
+fragment TrackingLink on ShipmentTracking @injectable {
   carrier
   number
   title

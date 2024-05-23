@@ -1,4 +1,4 @@
-fragment CategoryDefault on CategoryInterface {
+fragment CategoryDefault on CategoryInterface @injectable {
   uid
   default_sort_by
   available_sort_by

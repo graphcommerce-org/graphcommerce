@@ -1,4 +1,4 @@
-fragment AccountAddresses on Customer {
+fragment AccountAddresses on Customer @injectable {
   addresses {
     ...AccountAddress
   }

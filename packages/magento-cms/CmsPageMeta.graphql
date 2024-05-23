@@ -1,4 +1,4 @@
-fragment CmsPageMeta on CmsPage {
+fragment CmsPageMeta on CmsPage @injectable {
   meta_title
   meta_description
   url_key

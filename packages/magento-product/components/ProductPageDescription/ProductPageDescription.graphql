@@ -1,4 +1,4 @@
-fragment ProductPageDescription on ProductInterface {
+fragment ProductPageDescription on ProductInterface @injectable {
   name
   ...ProductShortDescription
   description {

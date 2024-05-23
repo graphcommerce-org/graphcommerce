@@ -1,4 +1,4 @@
-fragment ProductPageGallery on ProductInterface {
+fragment ProductPageGallery on ProductInterface @injectable {
   media_gallery {
     __typename
     label

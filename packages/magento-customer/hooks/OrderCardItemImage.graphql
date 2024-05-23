@@ -1,4 +1,4 @@
-fragment OrderCardItemImage on ProductInterface {
+fragment OrderCardItemImage on ProductInterface @injectable {
   uid
   thumbnail {
     ...ProductImage

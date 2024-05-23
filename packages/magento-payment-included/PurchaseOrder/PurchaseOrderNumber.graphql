@@ -1,3 +1,5 @@
-fragment PurchaseOrderNumber on SelectedPaymentMethod @inject(into: ["SelectedPaymentMethod"]) {
+fragment PurchaseOrderNumber on SelectedPaymentMethod
+@injectable
+@inject(into: ["SelectedPaymentMethod"]) {
   purchase_order_number
 }

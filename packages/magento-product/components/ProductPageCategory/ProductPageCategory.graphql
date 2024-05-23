@@ -1,4 +1,4 @@
-fragment ProductPageCategory on ProductInterface {
+fragment ProductPageCategory on ProductInterface @injectable {
   categories {
     uid
     name

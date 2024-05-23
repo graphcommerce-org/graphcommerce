@@ -1,4 +1,4 @@
-fragment CustomizableFileOption on CustomizableFileOption {
+fragment CustomizableFileOption on CustomizableFileOption @injectable {
   product_sku
   fileValue: value {
     file_extension

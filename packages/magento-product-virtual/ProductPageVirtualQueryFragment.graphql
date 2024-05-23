@@ -1,4 +1,4 @@
-fragment ProductPageVirtualQueryFragment on Query {
+fragment ProductPageVirtualQueryFragment on Query @injectable {
   typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
     items {
       __typename

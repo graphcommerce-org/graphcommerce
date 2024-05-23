@@ -1,4 +1,4 @@
-fragment BundleProductOptions on BundleProduct {
+fragment BundleProductOptions on BundleProduct @injectable {
   ship_bundle_items
   dynamic_sku
   dynamic_price

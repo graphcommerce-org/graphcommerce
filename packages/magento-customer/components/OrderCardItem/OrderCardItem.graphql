@@ -1,4 +1,4 @@
-fragment OrderCardItem on OrderItemInterface {
+fragment OrderCardItem on OrderItemInterface @injectable {
   product_sku
   product_url_key
 }

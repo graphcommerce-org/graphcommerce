@@ -1,4 +1,4 @@
-fragment AccountAddress on CustomerAddress {
+fragment AccountAddress on CustomerAddress @injectable {
   ...CustomerAddress
   default_billing
   default_shipping

@@ -1,4 +1,4 @@
-fragment CustomizableFieldOption on CustomizableFieldOption {
+fragment CustomizableFieldOption on CustomizableFieldOption @injectable {
   product_sku
   fieldValue: value {
     max_characters

@@ -1,4 +1,4 @@
-fragment ConfigurableOptionValueImage on ConfigurableProductOptionsValues {
+fragment ConfigurableOptionValueImage on ConfigurableProductOptionsValues @injectable {
   uid
   use_default_value
   store_label

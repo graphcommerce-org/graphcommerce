@@ -1,4 +1,4 @@
-fragment CustomizableOption on CustomizableOptionInterface {
+fragment CustomizableOption on CustomizableOptionInterface @injectable {
   uid
   required
   sort_order

@@ -1,4 +1,4 @@
-fragment CartItem_DatalayerItem on CartItemInterface {
+fragment CartItem_DatalayerItem on CartItemInterface @injectable {
   __typename
   uid
   product {

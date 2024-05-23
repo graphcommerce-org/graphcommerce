@@ -1,4 +1,4 @@
-fragment Cart_BeginCheckout on Cart @inject(into: ["CartStartCheckout"]) {
+fragment Cart_BeginCheckout on Cart @injectable @inject(into: ["CartStartCheckout"]) {
   applied_coupons {
     code
   }

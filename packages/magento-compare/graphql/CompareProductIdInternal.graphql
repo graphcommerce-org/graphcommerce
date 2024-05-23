@@ -1,4 +1,5 @@
 fragment CompareProductIdInternal on ProductInterface
+@injectable
 @inject(into: ["UseAddProductsToCartAction", "ProductListItem"]) {
   __typename
   compare_product_id: id

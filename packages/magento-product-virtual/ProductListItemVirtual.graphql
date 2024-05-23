@@ -1,3 +1,3 @@
-fragment ProductListItemVirtual on VirtualProduct @inject(into: ["ProductListItem"]) {
+fragment ProductListItemVirtual on VirtualProduct @injectable @inject(into: ["ProductListItem"]) {
   uid
 }

@@ -1,4 +1,4 @@
-fragment ProductWishlistChip on ProductInterface {
+fragment ProductWishlistChip on ProductInterface @injectable {
   name
   sku
   url_key

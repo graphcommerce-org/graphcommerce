@@ -1,4 +1,4 @@
-fragment CategoryQueryFragment on Query {
+fragment CategoryQueryFragment on Query @injectable {
   categories(filters: { url_path: { eq: $url } }) {
     items {
       uid

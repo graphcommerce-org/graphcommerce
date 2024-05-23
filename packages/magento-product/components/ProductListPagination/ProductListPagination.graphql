@@ -1,4 +1,4 @@
-fragment ProductListPagination on Products {
+fragment ProductListPagination on Products @injectable {
   page_info {
     current_page
     total_pages

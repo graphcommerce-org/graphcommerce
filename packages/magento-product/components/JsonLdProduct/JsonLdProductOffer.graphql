@@ -1,4 +1,4 @@
-fragment JsonLdProductOffer on ProductInterface {
+fragment JsonLdProductOffer on ProductInterface @injectable {
   price_range {
     minimum_price {
       regular_price {

@@ -1,3 +1,3 @@
-fragment CmsPagePagebuilder on CmsPage @inject(into: ["CmsPageContent"]) {
+fragment CmsPagePagebuilder on CmsPage @injectable @inject(into: ["CmsPageContent"]) {
   pagebuilder
 }

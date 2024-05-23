@@ -1,4 +1,4 @@
-fragment OrderCard on CustomerOrder {
+fragment OrderCard on CustomerOrder @injectable {
   number
   shipments {
     tracking {

@@ -1,4 +1,4 @@
-fragment CartSummary on Cart {
+fragment CartSummary on Cart @injectable {
   email
 
   is_virtual

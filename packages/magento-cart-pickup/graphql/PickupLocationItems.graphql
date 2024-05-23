@@ -1,4 +1,4 @@
-fragment PickupLocationitems on Cart @inject(into: ["AvailableShippingMethods"]) {
+fragment PickupLocationitems on Cart @injectable @inject(into: ["AvailableShippingMethods"]) {
   items {
     __typename
     uid

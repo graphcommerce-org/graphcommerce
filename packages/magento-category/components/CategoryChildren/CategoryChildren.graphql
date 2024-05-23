@@ -1,4 +1,4 @@
-fragment CategoryChildren on CategoryTree {
+fragment CategoryChildren on CategoryTree @injectable {
   uid
   children {
     uid

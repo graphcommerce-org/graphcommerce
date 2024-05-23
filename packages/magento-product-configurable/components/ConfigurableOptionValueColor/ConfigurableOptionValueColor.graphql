@@ -1,4 +1,4 @@
-fragment ConfigurableOptionValueColor on ConfigurableProductOptionsValues {
+fragment ConfigurableOptionValueColor on ConfigurableProductOptionsValues @injectable {
   uid
   use_default_value
   store_label

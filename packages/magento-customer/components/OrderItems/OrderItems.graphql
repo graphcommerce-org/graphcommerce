@@ -1,4 +1,4 @@
-fragment OrderItems on CustomerOrder {
+fragment OrderItems on CustomerOrder @injectable {
   items {
     ...OrderItem
   }

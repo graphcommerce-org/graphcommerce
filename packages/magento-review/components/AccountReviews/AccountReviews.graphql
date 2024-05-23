@@ -1,4 +1,4 @@
-fragment AccountReviews on ProductReviews {
+fragment AccountReviews on ProductReviews @injectable {
   items {
     ...CustomerReview
   }

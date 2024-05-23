@@ -1,3 +1,3 @@
-fragment CartTotalQuantity on Cart @inject(into: ["CartItemCountChanged"]) {
+fragment CartTotalQuantity on Cart @injectable @inject(into: ["CartItemCountChanged"]) {
   total_quantity
 }

@@ -1,4 +1,4 @@
-fragment ProductListSort on Products {
+fragment ProductListSort on Products @injectable {
   total_count
   sort_fields {
     default

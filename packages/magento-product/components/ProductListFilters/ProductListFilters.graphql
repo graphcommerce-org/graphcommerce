@@ -1,4 +1,4 @@
-fragment ProductListFilters on Products {
+fragment ProductListFilters on Products @injectable {
   aggregations {
     __typename
     label

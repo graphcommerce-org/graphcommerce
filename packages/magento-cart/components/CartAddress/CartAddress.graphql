@@ -1,4 +1,4 @@
-fragment CartAddress on CartAddressInterface {
+fragment CartAddress on CartAddressInterface @injectable {
   __typename
   firstname
   lastname

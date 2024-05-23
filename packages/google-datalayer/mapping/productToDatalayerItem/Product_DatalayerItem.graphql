@@ -1,4 +1,4 @@
-fragment Product_DatalayerItem on ProductInterface {
+fragment Product_DatalayerItem on ProductInterface @injectable {
   uid
   name
   sku

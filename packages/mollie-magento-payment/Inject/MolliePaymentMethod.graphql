@@ -1,4 +1,5 @@
 fragment MollieAvailablePaymentMethod on AvailablePaymentMethod
+@injectable
 @inject(into: ["AvailablePaymentMethod"]) {
   mollie_available_issuers {
     code

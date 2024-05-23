@@ -1,4 +1,4 @@
-fragment AvailableShippingMethod on AvailableShippingMethod {
+fragment AvailableShippingMethod on AvailableShippingMethod @injectable {
   price_incl_tax {
     ...Money
   }

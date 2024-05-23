@@ -1,4 +1,4 @@
-fragment CompareListFragment on CompareList {
+fragment CompareListFragment on CompareList @injectable {
   uid
   attributes {
     code

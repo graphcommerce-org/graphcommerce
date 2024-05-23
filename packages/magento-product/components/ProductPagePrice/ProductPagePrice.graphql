@@ -1,4 +1,4 @@
-fragment ProductPagePrice on ProductInterface {
+fragment ProductPagePrice on ProductInterface @injectable {
   __typename
   url_key
   price_range {

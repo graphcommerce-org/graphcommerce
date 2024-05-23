@@ -1,4 +1,4 @@
-fragment AdyenPaymentResponse on AdyenPaymentStatus {
+fragment AdyenPaymentResponse on AdyenPaymentStatus @injectable {
   action
   additionalData
   isFinal

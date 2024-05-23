@@ -1,3 +1,3 @@
-fragment WishlistStoreConfig on StoreConfig @inject(into: ["StoreConfigFragment"]) {
+fragment WishlistStoreConfig on StoreConfig @injectable @inject(into: ["StoreConfigFragment"]) {
   magento_wishlist_general_is_enabled
 }

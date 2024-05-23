@@ -1,4 +1,4 @@
-fragment ConfigurableOptionValue on ConfigurableProductOptionsValues {
+fragment ConfigurableOptionValue on ConfigurableProductOptionsValues @injectable {
   __typename
   uid
   ...ConfigurableOptionValueColor

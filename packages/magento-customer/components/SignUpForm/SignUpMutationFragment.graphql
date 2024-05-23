@@ -1,4 +1,4 @@
-fragment CreateCustomerMutationFragment on Mutation {
+fragment CreateCustomerMutationFragment on Mutation @injectable {
   createCustomer(
     input: {
       email: $email

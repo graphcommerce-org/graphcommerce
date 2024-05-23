@@ -1,4 +1,4 @@
-fragment RelatedProducts on ProductInterface {
+fragment RelatedProducts on ProductInterface @injectable {
   related_products {
     ...ProductListItem
   }

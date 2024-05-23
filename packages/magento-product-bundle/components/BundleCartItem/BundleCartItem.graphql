@@ -1,4 +1,4 @@
-fragment BundleCartItem on BundleCartItem @inject(into: ["CartItem"]) {
+fragment BundleCartItem on BundleCartItem @injectable @inject(into: ["CartItem"]) {
   prices {
     price {
       currency

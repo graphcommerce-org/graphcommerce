@@ -1,4 +1,4 @@
-fragment ProductVideo on ProductVideo {
+fragment ProductVideo on ProductVideo @injectable {
   video_content {
     media_type
     video_description

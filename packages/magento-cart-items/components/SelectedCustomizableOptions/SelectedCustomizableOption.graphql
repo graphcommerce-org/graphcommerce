@@ -1,4 +1,4 @@
-fragment SelectedCustomizableOption on SelectedCustomizableOption {
+fragment SelectedCustomizableOption on SelectedCustomizableOption @injectable {
   customizable_option_uid
   is_required
   label

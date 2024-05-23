@@ -1,4 +1,4 @@
-fragment ConfigurableCartItem on ConfigurableCartItem @inject(into: ["CartItem"]) {
+fragment ConfigurableCartItem on ConfigurableCartItem @injectable @inject(into: ["CartItem"]) {
   configurable_options {
     configurable_product_option_uid
     configurable_product_option_value_uid

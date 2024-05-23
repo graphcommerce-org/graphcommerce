@@ -1,4 +1,4 @@
-fragment DownloadableCartItem on DownloadableCartItem @inject(into: ["CartItem"]) {
+fragment DownloadableCartItem on DownloadableCartItem @injectable @inject(into: ["CartItem"]) {
   customizable_options {
     ...SelectedCustomizableOption
   }

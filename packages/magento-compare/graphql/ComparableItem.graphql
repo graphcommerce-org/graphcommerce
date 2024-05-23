@@ -1,4 +1,4 @@
-fragment ComparableItem on ComparableItem {
+fragment ComparableItem on ComparableItem @injectable {
   uid
   attributes {
     code

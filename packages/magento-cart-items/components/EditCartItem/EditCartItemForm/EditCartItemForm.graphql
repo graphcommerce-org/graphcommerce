@@ -1,4 +1,4 @@
-fragment EditCartItemForm on ProductInterface {
+fragment EditCartItemForm on ProductInterface @injectable {
   ...ProductCustomizable
   ...ProductWeight
   ...ProductPageItem

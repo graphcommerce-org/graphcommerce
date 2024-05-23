@@ -1,4 +1,6 @@
-fragment AccountDashboardCustomerReviews on Customer @inject(into: ["AccountDashboardCustomer"]) {
+fragment AccountDashboardCustomerReviews on Customer
+@injectable
+@inject(into: ["AccountDashboardCustomer"]) {
   reviews {
     page_info {
       total_pages

@@ -1,4 +1,4 @@
-fragment ImageSwatchData on ImageSwatchData {
+fragment ImageSwatchData on ImageSwatchData @injectable {
   value
   thumbnail
 }

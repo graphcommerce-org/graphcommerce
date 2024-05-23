@@ -1,4 +1,4 @@
-fragment ProductImage on ProductImage {
+fragment ProductImage on ProductImage @injectable {
   url
   label
 }

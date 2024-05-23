@@ -1,3 +1,3 @@
-fragment ProductListCount on Products {
+fragment ProductListCount on Products @injectable {
   total_count
 }

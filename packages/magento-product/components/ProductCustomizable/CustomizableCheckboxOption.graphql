@@ -1,4 +1,4 @@
-fragment CustomizableCheckboxOption on CustomizableCheckboxOption {
+fragment CustomizableCheckboxOption on CustomizableCheckboxOption @injectable {
   checkboxValue: value {
     price
     price_type

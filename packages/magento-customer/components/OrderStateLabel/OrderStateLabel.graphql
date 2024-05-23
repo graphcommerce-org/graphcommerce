@@ -1,4 +1,4 @@
-fragment OrderStateLabel on CustomerOrder {
+fragment OrderStateLabel on CustomerOrder @injectable {
   items {
     quantity_ordered
     quantity_shipped

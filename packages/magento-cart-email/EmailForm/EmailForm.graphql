@@ -1,4 +1,4 @@
-fragment EmailForm on Cart {
+fragment EmailForm on Cart @injectable {
   id
   email
 }

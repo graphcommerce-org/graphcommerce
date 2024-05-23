@@ -1,4 +1,4 @@
-fragment CustomizableMultipleOption on CustomizableMultipleOption {
+fragment CustomizableMultipleOption on CustomizableMultipleOption @injectable {
   multipleValue: value {
     option_type_id
     price

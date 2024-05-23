@@ -1,4 +1,4 @@
-fragment ConfigurableProductForm on ConfigurableProduct {
+fragment ConfigurableProductForm on ConfigurableProduct @injectable {
   sku
   configurable_options {
     attribute_code

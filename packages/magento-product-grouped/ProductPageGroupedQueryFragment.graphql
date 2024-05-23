@@ -1,4 +1,4 @@
-fragment ProductPageGroupedQueryFragment on Query {
+fragment ProductPageGroupedQueryFragment on Query @injectable {
   typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
     items {
       __typename

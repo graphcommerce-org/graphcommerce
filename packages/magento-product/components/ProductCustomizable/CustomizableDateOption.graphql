@@ -1,4 +1,4 @@
-fragment CustomizableDateOption on CustomizableDateOption {
+fragment CustomizableDateOption on CustomizableDateOption @injectable {
   product_sku
   dateValue: value {
     price

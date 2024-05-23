@@ -1,4 +1,4 @@
-fragment GroupedProduct on GroupedProduct {
+fragment GroupedProduct on GroupedProduct @injectable {
   items {
     position
     qty

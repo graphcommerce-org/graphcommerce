@@ -1,4 +1,4 @@
-fragment SimpleCartItem on SimpleCartItem @inject(into: ["CartItem"]) {
+fragment SimpleCartItem on SimpleCartItem @injectable @inject(into: ["CartItem"]) {
   customizable_options {
     ...SelectedCustomizableOption
   }

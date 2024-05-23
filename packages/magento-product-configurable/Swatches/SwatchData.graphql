@@ -1,4 +1,4 @@
-fragment SwatchData on SwatchDataInterface {
+fragment SwatchData on SwatchDataInterface @injectable {
   __typename
   ...TextSwatchData
   ...ColorSwatchData

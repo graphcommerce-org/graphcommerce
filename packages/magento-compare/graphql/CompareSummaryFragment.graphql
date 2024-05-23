@@ -1,4 +1,4 @@
-fragment CompareSummaryFragment on CompareList {
+fragment CompareSummaryFragment on CompareList @injectable {
   uid
   item_count
   items {

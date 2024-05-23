@@ -1,4 +1,4 @@
-fragment CategoryMeta on CategoryTree {
+fragment CategoryMeta on CategoryTree @injectable {
   name
   meta_title
   meta_description

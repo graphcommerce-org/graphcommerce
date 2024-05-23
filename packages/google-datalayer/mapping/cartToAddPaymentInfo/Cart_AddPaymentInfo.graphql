@@ -1,4 +1,5 @@
 fragment Cart_AddPaymentInfo on Cart
+@injectable
 @inject(into: ["PaymentMethodContext", "PaymentMethodUpdated"]) {
   applied_coupons {
     code

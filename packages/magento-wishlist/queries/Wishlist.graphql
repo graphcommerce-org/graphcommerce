@@ -1,4 +1,4 @@
-fragment Wishlist on Wishlist {
+fragment Wishlist on Wishlist @injectable {
   __typename
   id
   items_count
