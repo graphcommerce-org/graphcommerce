@@ -21,6 +21,7 @@ import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-prod
 import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-products'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { Money, redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import { GetStaticProps, isTypename, LayoutHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -39,7 +40,6 @@ import { AddProductsToCartView } from '../../components/ProductView/AddProductsT
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
-import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 
 export type Props = HygraphPagesQuery &
   UspsQuery &
