@@ -5,7 +5,7 @@ import {
   CrosssellsDocument,
   CrosssellsQuery,
 } from '@graphcommerce/magento-cart'
-import { ExtendableComponent } from '@graphcommerce/next-ui'
+import { ExtendableComponent, nonNullable } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme, useThemeProps } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useMemo, useRef } from 'react'
@@ -103,7 +103,12 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
                   ...(cartItem.selected_options ?? []).filter(Boolean),
                   ...options,
                 ],
-                entered_options: cartItem.entered_options?.filter((option) => option?.value),
+                entered_options: [
+                  ...(cartItem.entered_options
+                    ?.filter((option) => option?.value)
+                    .filter(nonNullable)
+                    .map((option) => ({ uid: option.uid, value: `${option?.value}` })) ?? []),
+                ],
               }
             }),
         }

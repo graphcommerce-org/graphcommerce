@@ -17,6 +17,7 @@ export type AddProductsToCartButtonProps = UseAddProductsToCartActionProps &
     | 'onClick'
     | 'sx'
     | 'children'
+    | 'type'
   >
 
 export function AddProductsToCartButton(props: AddProductsToCartButtonProps) {

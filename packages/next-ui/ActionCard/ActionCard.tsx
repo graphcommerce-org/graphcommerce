@@ -47,6 +47,7 @@ export type ActionCardProps = {
 
 const parts = [
   'root',
+  'rootInner',
   'image',
   'title',
   'action',
@@ -76,6 +77,13 @@ const { withState, selectors } = extendableComponent<StateProps, typeof name, ty
 )
 
 export const actionCardSelectors = selectors
+
+export const actionCardImageSizes = {
+  small: responsiveVal(60, 80),
+  medium: responsiveVal(60, 80),
+  large: responsiveVal(100, 120),
+  responsive: responsiveVal(60, 120),
+}
 
 export function ActionCard(props: ActionCardProps) {
   const {
@@ -144,9 +152,7 @@ export function ActionCard(props: ActionCardProps) {
             px: responsiveVal(8, 16),
             py: responsiveVal(4, 14),
             display: { xs: 'flex', md: 'block', lg: 'block' },
-            [theme.breakpoints.down('lg')]: {
-              typography: 'body2',
-            },
+            [theme.breakpoints.down('md')]: { typography: 'body2' },
           },
 
           '&.variantDefault': {
@@ -276,6 +282,7 @@ export function ActionCard(props: ActionCardProps) {
       ]}
     >
       <Box
+        className={classes.rootInner}
         sx={{
           display: 'flex',
           flexDirection: 'row',

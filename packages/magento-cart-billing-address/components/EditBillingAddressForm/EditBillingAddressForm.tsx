@@ -51,8 +51,8 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
         regionId,
       }
     },
-    onComplete: ({ errors }) => {
-      if (!errors) goToCheckout()
+    onComplete: async ({ errors }) => {
+      if (!errors) await goToCheckout()
     },
   })
 

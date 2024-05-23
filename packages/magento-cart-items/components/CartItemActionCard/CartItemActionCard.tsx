@@ -1,13 +1,15 @@
 import { Image } from '@graphcommerce/image'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart/hooks'
+import { ProductLinkProps } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import {
   ActionCard,
   ActionCardProps,
-  responsiveVal,
   filterNonNullableKeys,
+  actionCardImageSizes,
 } from '@graphcommerce/next-ui'
-import { Box, Link } from '@mui/material'
+import { Trans } from '@lingui/react'
+import { Box, Button, Link } from '@mui/material'
 import { CartItemFragment } from '../../Api/CartItem.gql'
 import { RemoveItemFromCart } from '../RemoveItemFromCart/RemoveItemFromCart'
 import { UpdateItemQuantity } from '../UpdateItemQuantity/UpdateItemQuantity'
@@ -17,16 +19,8 @@ export type CartItemActionCardProps = { cartItem: CartItemFragment; readOnly?: b
   'value' | 'image' | 'price' | 'title' | 'action'
 >
 
-export const productImageSizes = {
-  small: responsiveVal(60, 80),
-  medium: responsiveVal(60, 80),
-  large: responsiveVal(100, 120),
-}
-
-const typographySizes = {
-  small: 'body2',
-  medium: 'body1',
-  large: 'subtitle1',
+export function productEditLink(link: ProductLinkProps) {
+  return `/checkout/item/${link.url_key}`
 }
 
 export function CartItemActionCard(props: CartItemActionCardProps) {
@@ -49,6 +43,11 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
     price = prices?.price.value
   }
 
+  const hasOptions = !(
+    (cartItem.__typename === 'SimpleCartItem' || cartItem.__typename === 'VirtualCartItem') &&
+    cartItem.customizable_options.length === 0
+  )
+
   return (
     <ActionCard
       value={uid}
@@ -58,7 +57,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             px: 0,
             py: theme.spacings.xs,
           },
-          '& .MuiBox-root': {
+          '& .ActionCard-rootInner': {
             justifyContent: 'space-between',
             alignItems: 'stretch',
           },
@@ -66,9 +65,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             px: 0,
           },
           '&.sizeResponsive': {
-            [theme.breakpoints.down('md')]: {
-              px: 0,
-            },
+            [theme.breakpoints.down('md')]: { px: 0 },
           },
           '& .ActionCard-end': {
             justifyContent: readOnly ? 'center' : 'space-between',
@@ -80,30 +77,11 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             alignSelf: 'flex-start',
           },
           '& .ActionCard-secondaryAction': {
-            typography:
-              size === 'responsive'
-                ? {
-                    xs: typographySizes.small,
-                    md: typographySizes.medium,
-                    lg: typographySizes.large,
-                  }
-                : typographySizes[size],
-            display: 'flex',
-            alignItems: 'center',
-            color: 'text.secondary',
-            mt: 1,
-            gap: '10px',
-            justifyContent: 'start',
+            display: 'grid',
+            rowGap: theme.spacings.xs,
+            justifyItems: 'start',
           },
           '& .ActionCard-price': {
-            typography:
-              size === 'responsive'
-                ? {
-                    xs: typographySizes.small,
-                    md: typographySizes.medium,
-                    lg: typographySizes.large,
-                  }
-                : typographySizes[size],
             pr: readOnly ? 0 : theme.spacings.xs,
             mb: { xs: 0.5, sm: 0 },
           },
@@ -116,27 +94,13 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             layout='fill'
             src={thumbnail?.url}
             sx={{
-              width:
-                size === 'responsive'
-                  ? {
-                      xs: productImageSizes.small,
-                      md: productImageSizes.medium,
-                      lg: productImageSizes.large,
-                    }
-                  : productImageSizes[size],
-              height:
-                size === 'responsive'
-                  ? {
-                      xs: productImageSizes.small,
-                      md: productImageSizes.medium,
-                      lg: productImageSizes.large,
-                    }
-                  : productImageSizes[size],
+              width: actionCardImageSizes[size],
+              height: actionCardImageSizes[size],
               display: 'block',
               borderRadius: 1,
               objectFit: 'contain',
             }}
-            sizes={size === 'responsive' ? productImageSizes.small : productImageSizes[size]}
+            sizes={actionCardImageSizes[size]}
           />
         )
       }
@@ -159,10 +123,30 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
       }
       secondaryAction={
         <>
-          {readOnly ? quantity : <UpdateItemQuantity uid={uid} quantity={quantity} />}
-          {' ⨉ '}
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              color: 'text.secondary',
+              mt: 1,
+              gap: '10px',
+              justifyContent: 'start',
+            }}
+          >
+            {readOnly ? quantity : <UpdateItemQuantity uid={uid} quantity={quantity} />}
+            {' ⨉ '}
 
-          <Money value={price} currency={prices?.price.currency} />
+            <Money value={price} currency={prices?.price.currency} />
+          </Box>
+          {hasOptions && (
+            <Button
+              variant='inline'
+              color='secondary'
+              href={`${productEditLink(product)}?cartItemId=${uid}`}
+            >
+              <Trans id='Edit options' />
+            </Button>
+          )}
         </>
       }
       price={<Money {...(inclTaxes ? prices?.row_total_including_tax : prices?.row_total)} />}
@@ -181,6 +165,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
         </Box>
       ))}
       {...rest}
+      details={<>{rest.details}</>}
     />
   )
 }

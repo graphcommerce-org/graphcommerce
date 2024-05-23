@@ -11,27 +11,28 @@ export function BundleProductCartItemOptions(props: BundleProductCartItemOptions
 
   return (
     <>
-      {bundle_options?.map(
-        (option) =>
-          option?.values.filter(nonNullable).map((option_value) => (
-            <Box
-              key={option_value.uid}
-              sx={(theme) => ({
-                display: 'flex',
-                gap: theme.spacings.xxs,
-                [theme.breakpoints.down('sm')]: {
-                  fontSize: theme.typography.caption.fontSize,
-                },
-              })}
-            >
-              <Box sx={{ color: 'text.primary' }}>{option_value.label}</Box>
-              {option_value.price > 0 && (
-                <Box sx={(theme) => ({ position: 'absolute', right: theme.spacings.xs })}>
-                  <Money currency={prices?.price.currency} value={option_value.price} />
-                </Box>
-              )}
+      {bundle_options?.map((option) =>
+        option?.values.filter(nonNullable).map((option_value) => (
+          <Box
+            key={option_value.uid}
+            sx={(theme) => ({
+              display: 'flex',
+              gap: theme.spacings.xxs,
+              [theme.breakpoints.down('sm')]: {
+                fontSize: theme.typography.caption.fontSize,
+              },
+            })}
+          >
+            <Box sx={{ color: 'text.primary' }}>
+              {option_value.label} {option_value.quantity > 1 && `x${option_value.quantity}`}
             </Box>
-          )),
+            {option_value.price > 0 && (
+              <Box sx={(theme) => ({ position: 'absolute', right: theme.spacings.xs })}>
+                <Money currency={prices?.price.currency} value={option_value.price} />
+              </Box>
+            )}
+          </Box>
+        )),
       )}
 
       <SelectedCustomizableOptions {...props} />
