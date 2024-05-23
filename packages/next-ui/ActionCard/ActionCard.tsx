@@ -77,6 +77,13 @@ const { withState, selectors } = extendableComponent<StateProps, typeof name, ty
 
 export const actionCardSelectors = selectors
 
+export const actionCardImageSizes = {
+  small: responsiveVal(60, 80),
+  medium: responsiveVal(60, 80),
+  large: responsiveVal(100, 120),
+  responsive: responsiveVal(60, 120),
+}
+
 export function ActionCard(props: ActionCardProps) {
   const {
     title,

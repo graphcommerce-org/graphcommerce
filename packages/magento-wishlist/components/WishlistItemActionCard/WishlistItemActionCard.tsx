@@ -3,10 +3,10 @@ import { AddProductsToCartForm, useProductLink } from '@graphcommerce/magento-pr
 import { Money } from '@graphcommerce/magento-store'
 import { InputMaybe } from '@graphcommerce/next-config'
 import {
-  responsiveVal,
   extendableComponent,
   ActionCard,
   ActionCardProps,
+  actionCardImageSizes,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button, Link, SxProps, Theme } from '@mui/material'
@@ -37,12 +37,6 @@ const parts = [
   'root',
 ] as const
 const { classes } = extendableComponent<OwnerState, typeof compName, typeof parts>(compName, parts)
-
-export const productImageSizes = {
-  small: responsiveVal(60, 80),
-  medium: responsiveVal(60, 80),
-  large: responsiveVal(100, 120),
-}
 
 const typographySizes = {
   small: 'body2',
@@ -136,26 +130,12 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
               src={product?.small_image?.url}
               sx={{
                 objectFit: 'contain',
-                width:
-                  size === 'responsive'
-                    ? {
-                        xs: productImageSizes.small,
-                        md: productImageSizes.medium,
-                        lg: productImageSizes.large,
-                      }
-                    : productImageSizes[size],
-                height:
-                  size === 'responsive'
-                    ? {
-                        xs: productImageSizes.small,
-                        md: productImageSizes.medium,
-                        lg: productImageSizes.large,
-                      }
-                    : productImageSizes[size],
+                width: actionCardImageSizes[size],
+                height: actionCardImageSizes[size],
                 display: 'block',
                 borderRadius: 1,
               }}
-              sizes={size === 'responsive' ? productImageSizes.small : productImageSizes[size]}
+              sizes={actionCardImageSizes[size]}
             />
           )
         }

@@ -6,18 +6,17 @@ import {
   useFormAddProductsToCart,
 } from '@graphcommerce/magento-product/components'
 import { Money } from '@graphcommerce/magento-store'
-import { ActionCard, ActionCardProps, responsiveVal } from '@graphcommerce/next-ui'
+import {
+  ActionCard,
+  ActionCardProps,
+  actionCardImageSizes,
+  responsiveVal,
+} from '@graphcommerce/next-ui'
 import { Box, Link } from '@mui/material'
 
 export type GroupedProductActionCardProps = ProductPageItemFragment &
   Omit<ActionCardProps, 'value' | 'image' | 'price' | 'title' | 'action'> &
   AddToCartItemSelector
-
-export const productImageSizes = {
-  small: responsiveVal(60, 80),
-  medium: responsiveVal(60, 80),
-  large: responsiveVal(100, 120),
-}
 
 const typographySizes = {
   small: 'body2',
@@ -96,13 +95,13 @@ export function GroupedProductActionCard(props: GroupedProductActionCardProps) {
               layout='fill'
               src={small_image?.url}
               sx={{
-                width: productImageSizes[size],
-                height: productImageSizes[size],
+                width: actionCardImageSizes[size],
+                height: actionCardImageSizes[size],
                 display: 'block',
                 borderRadius: 1,
                 objectFit: 'contain',
               }}
-              sizes={productImageSizes[size]}
+              sizes={actionCardImageSizes[size]}
             />
           )
         }
