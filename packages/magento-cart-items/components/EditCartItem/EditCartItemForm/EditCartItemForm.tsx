@@ -1,7 +1,6 @@
 import { UseHistoryLink, useHistoryGo } from '@graphcommerce/framer-next-pages'
 import { useMutation } from '@graphcommerce/graphql'
-import { useCartQuery, useCurrentCartId } from '@graphcommerce/magento-cart/hooks'
-import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
+import { useCurrentCartId } from '@graphcommerce/magento-cart/hooks'
 import {
   useFormAddProductsToCart,
   AddProductsToCartFormProps,
@@ -34,13 +33,15 @@ export function useEditCartItemFormProps(
       await deleteCartItem()
       return variables
     },
-    onComplete: goToCart,
+    onComplete: async () => {
+      await goToCart()
+    },
   }
 }
 
-type UseCartItemEditProps = CartItemToCartItemInputProps & AddToCartItemSelector
+export type EditCartItemFormProps = CartItemToCartItemInputProps & AddToCartItemSelector
 
-export function useCartItemEdit(props: UseCartItemEditProps) {
+export function EditCartItemForm(props: EditCartItemFormProps) {
   const { product, selectors, cartItem, index = 0 } = props
   const { setValue } = useFormAddProductsToCart()
 
@@ -52,12 +53,5 @@ export function useCartItemEdit(props: UseCartItemEditProps) {
     const cartItemInput = cartItemToCartItemInput({ product, cartItem, selectors })
     if (cartItemInput) setValue(`cartItems.${index}`, cartItemInput)
   })
-}
-
-export function EditCartItemForm(props: Omit<UseCartItemEditProps, 'cartItem'>) {
-  const router = useRouter()
-  const cart = useCartQuery(CartPageDocument)
-  const cartItem = cart.data?.cart?.items?.find((item) => item?.uid === router.query.cartItemId)
-  useCartItemEdit({ ...props, cartItem })
   return null
 }

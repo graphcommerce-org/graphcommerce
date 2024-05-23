@@ -23,6 +23,7 @@ export const productImageSizes = {
   small: responsiveVal(60, 80),
   medium: responsiveVal(60, 80),
   large: responsiveVal(100, 120),
+  responsive: responsiveVal(60, 120),
 }
 
 const typographySizes = {
@@ -127,27 +128,13 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             layout='fill'
             src={thumbnail?.url}
             sx={{
-              width:
-                size === 'responsive'
-                  ? {
-                      xs: productImageSizes.small,
-                      md: productImageSizes.medium,
-                      lg: productImageSizes.large,
-                    }
-                  : productImageSizes[size],
-              height:
-                size === 'responsive'
-                  ? {
-                      xs: productImageSizes.small,
-                      md: productImageSizes.medium,
-                      lg: productImageSizes.large,
-                    }
-                  : productImageSizes[size],
+              width: productImageSizes[size],
+              height: productImageSizes[size],
               display: 'block',
               borderRadius: 1,
               objectFit: 'contain',
             }}
-            sizes={size === 'responsive' ? productImageSizes.small : productImageSizes[size]}
+            sizes={productImageSizes[size]}
           />
         )
       }

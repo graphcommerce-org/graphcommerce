@@ -1,5 +1,8 @@
-import { PageOptions, useHistoryGo, useHistoryLink } from '@graphcommerce/framer-next-pages'
+import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
+import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
+import { ApolloCartErrorAlert, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
+import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
 import {
   EditCartItemButton,
   EditCartItemForm,
@@ -12,6 +15,7 @@ import {
   ProductPageName,
 } from '@graphcommerce/magento-product'
 import {
+  FullPageMessage,
   GetServerSideProps,
   LayoutOverlay,
   LayoutOverlayHeader,
@@ -23,12 +27,13 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
+import { CircularProgress, Typography } from '@mui/material'
+import { useRouter } from 'next/router'
 import { LayoutNavigationProps } from '../../../components'
-import { AddProductsToCartView } from '../../../components/AddProductsToCartView'
+import { AddProductsToCartView } from '../../../components/ProductView/AddProductsToCartView'
 import { UspsQuery } from '../../../components/Usps/Usps.gql'
 import { ProductPage2Query } from '../../../graphql/ProductPage2.gql'
 import { getStaticProps } from '../../p/[url]'
-import { Typography } from '@mui/material'
 
 type Props = UspsQuery & ProductPage2Query & Pick<AddProductsToCartFormProps, 'defaultValues'>
 
@@ -40,71 +45,64 @@ function CartItemEdit(props: Props) {
   const product = products?.items?.[0]
   const formProps = useEditCartItemFormProps({ href: '/cart' })
 
+  const cart = useCartQuery(CartPageDocument)
+  const { cartItemId } = useRouter().query
+  const cartItem = cart.data?.cart?.items?.find((item) => item?.uid === cartItemId)
+
   if (!product?.sku || !product.url_key) return null
 
   return (
-    <AddProductsToCartForm
-      key={product.uid}
-      defaultValues={defaultValues}
-      redirect={false}
-      disableSuccessSnackbar
-      {...formProps}
+    <WaitForQueries
+      waitFor={cart}
+      fallback={
+        <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />}>
+          <Trans id='This may take a second' />
+        </FullPageMessage>
+      }
     >
-      <PageMeta title={i18n._(/* i18n */ 'Cart')} metaRobots={['noindex']} />
-
-      <LayoutOverlayHeader
-        switchPoint={0}
-        noAlign
-        sx={() => ({ '&.noAlign': { marginBottom: '0px' } })}
-        primary={<>&nbsp;</>}
-        // primary={<AddProductsToCartButton fullWidth product={product} variant='inline' />}
+      <AddProductsToCartForm
+        key={product.uid}
+        defaultValues={defaultValues}
+        redirect={false}
+        disableSuccessSnackbar
+        {...formProps}
       >
-        <LayoutTitle size='small' component='span' icon={iconShoppingBag}>
-          <Trans id='Cart' components={{ Name: <ProductPageName product={product} /> }} />
-        </LayoutTitle>
-      </LayoutOverlayHeader>
+        <PageMeta title={i18n._(/* i18n */ 'Cart')} metaRobots={['noindex']} />
 
-      <ProductPageGallery
-        product={product}
-        disableZoom
-        disableSticky
-        sx={(theme) => ({
-          maxWidth: '500px',
-          mb: 0,
-          '& .SidebarGallery-scrollerContainer': {
-            height: '100%',
-            top: 0,
-          },
-          '& .SidebarGallery-root': {
-            [theme.breakpoints.up('md')]: {
-              gridTemplate: '"left" "right"',
-            },
-          },
-          '& .SidebarGallery-sidebar': {
-            display: 'grid',
-            rowGap: theme.spacings.sm,
-            p: theme.spacings.md,
-            px: theme.page.horizontal,
-          },
-        })}
-      >
-        <div>
-          <Typography component='div' variant='body1' color='text.disabled'>
-            <Trans id='Editing' />
-          </Typography>
+        <LayoutOverlayHeader
+          switchPoint={0}
+          noAlign
+          sx={() => ({ '&.noAlign': { marginBottom: '0px' } })}
+          primary={<>&nbsp;</>}
+          // primary={<AddProductsToCartButton fullWidth product={product} variant='inline' />}
+        >
+          <LayoutTitle size='small' component='span' icon={iconShoppingBag}>
+            <Trans id='Editing product' />
+          </LayoutTitle>
+        </LayoutOverlayHeader>
 
+        <ProductPageGallery
+          product={product}
+          disableZoom
+          disableSticky
+          variantMd='oneColumn'
+          sx={(theme) => ({
+            maxWidth: '500px',
+            mb: 0,
+            '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
+          })}
+        >
           <Typography variant='h3' component='div' gutterBottom>
             <ProductPageName product={product} />
           </Typography>
-        </div>
-
-        <AddProductsToCartView product={product} />
+          <AddProductsToCartView product={product} />
+        </ProductPageGallery>
+        <EditCartItemForm product={product} cartItem={cartItem} />
         <OverlayStickyBottom sx={{ display: 'flex', justifyContent: 'center' }}>
-          <EditCartItemButton product={product} sx={(theme) => ({ mb: theme.spacings.md })} />
+          <EditCartItemButton product={product} sx={(theme) => ({ my: theme.spacings.md })} />
         </OverlayStickyBottom>
-      </ProductPageGallery>
-      <EditCartItemForm product={product} />
-    </AddProductsToCartForm>
+      </AddProductsToCartForm>
+    </WaitForQueries>
   )
 }
 

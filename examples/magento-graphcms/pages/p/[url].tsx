@@ -35,7 +35,7 @@ import {
   RowRenderer,
   Usps,
 } from '../../components'
-import { AddProductsToCartView } from '../../components/AddProductsToCartView'
+import { AddProductsToCartView } from '../../components/ProductView/AddProductsToCartView'
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'

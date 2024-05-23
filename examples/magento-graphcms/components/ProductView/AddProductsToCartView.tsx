@@ -17,7 +17,7 @@ import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import { isTypename } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Divider, Link, Typography } from '@mui/material'
-import { ProductPage2Query } from '../graphql/ProductPage2.gql'
+import { ProductPage2Query } from '../../graphql/ProductPage2.gql'
 
 export type AddProductsToCartViewProps = {
   product: NonNullable<NonNullable<NonNullable<ProductPage2Query['products']>['items']>[number]>

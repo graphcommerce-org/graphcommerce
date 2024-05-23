@@ -11,7 +11,7 @@ export function EditCartItemButton(props: AddProductsToCartButtonProps) {
 
   return (
     <Button type='submit' color='secondary' variant='pill' size='large' {...rest} {...action}>
-      {children || <Trans id='Save' />}
+      {children || <Trans id='Save changes' />}
     </Button>
   )
 }
