@@ -18,7 +18,7 @@ export const useRemoveItemFromCart: FunctionPlugin<typeof useRemoveItemFromCartB
       if (!result.errors) {
         sendEvent(
           'remove_from_cart',
-          cartItemToRemoveFromCart({ __typename: 'SimpleCartItem', ...props }),
+          cartItemToRemoveFromCart({ ...props, __typename: 'SimpleCartItem' }),
         )
       }
       return props.onComplete?.(result, variables)

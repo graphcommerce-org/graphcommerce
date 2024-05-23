@@ -8,11 +8,14 @@ import {
   RemoveItemFromCartDocument,
 } from '../components/RemoveItemFromCart/RemoveItemFromCart.gql'
 
-export type UseRemoveItemFromCartProps = CartItemFragment &
-  UseFormGraphQlOptions<RemoveItemFromCartMutation, RemoveItemFromCartMutationVariables>
+export type UseRemoveItemFromCartProps = DistributedOmit<CartItemFragment, '__typename'> &
+  Omit<
+    UseFormGraphQlOptions<RemoveItemFromCartMutation, RemoveItemFromCartMutationVariables>,
+    'errors'
+  >
 
 export function useRemoveItemFromCart(props: UseRemoveItemFromCartProps) {
-  const { uid, ...options } = props
+  const { uid, errors, ...options } = props
 
   const form = useFormGqlMutationCart(RemoveItemFromCartDocument, {
     defaultValues: { uid },

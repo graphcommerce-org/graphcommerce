@@ -78,7 +78,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
     { errorPolicy: 'all' },
   )
 
-  const { handleSubmit, formState, required, error, control, valid } = form
+  const { handleSubmit, formState, required, error, control } = form
   const submitHandler = handleSubmit(() => {})
 
   return (

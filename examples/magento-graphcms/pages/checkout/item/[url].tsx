@@ -1,16 +1,11 @@
 import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
-import { ApolloCartErrorAlert, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
+import { useCartQuery } from '@graphcommerce/magento-cart'
 import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
-import {
-  EditCartItemButton,
-  EditCartItemForm,
-  useEditCartItemFormProps,
-} from '@graphcommerce/magento-cart-items'
+import { EditCartItemButton, EditCartItemForm } from '@graphcommerce/magento-cart-items'
 import {
   AddProductsToCartFormProps,
-  AddProductsToCartForm,
   ProductPageGallery,
   ProductPageName,
 } from '@graphcommerce/magento-product'
@@ -43,10 +38,9 @@ type GetSSP = GetServerSideProps<LayoutNavigationProps, Props, RouteProps>
 function CartItemEdit(props: Props) {
   const { products, defaultValues } = props
   const product = products?.items?.[0]
-  const formProps = useEditCartItemFormProps({ href: '/cart' })
 
+  const cartItemId = useRouter().query.cartItemId as string
   const cart = useCartQuery(CartPageDocument)
-  const { cartItemId } = useRouter().query
   const cartItem = cart.data?.cart?.items?.find((item) => item?.uid === cartItemId)
 
   if (!product?.sku || !product.url_key) return null
@@ -60,48 +54,50 @@ function CartItemEdit(props: Props) {
         </FullPageMessage>
       }
     >
-      <AddProductsToCartForm
-        key={product.uid}
-        defaultValues={defaultValues}
-        redirect={false}
-        disableSuccessSnackbar
-        {...formProps}
-      >
-        <PageMeta title={i18n._(/* i18n */ 'Cart')} metaRobots={['noindex']} />
-
-        <LayoutOverlayHeader
-          switchPoint={0}
-          noAlign
-          sx={() => ({ '&.noAlign': { marginBottom: '0px' } })}
-          primary={<>&nbsp;</>}
-          // primary={<AddProductsToCartButton fullWidth product={product} variant='inline' />}
-        >
-          <LayoutTitle size='small' component='span' icon={iconShoppingBag}>
-            <Trans id='Editing product' />
-          </LayoutTitle>
-        </LayoutOverlayHeader>
-
-        <ProductPageGallery
+      {cartItem && (
+        <EditCartItemForm
+          key={cartItemId}
+          href='/cart'
           product={product}
-          disableZoom
-          disableSticky
-          variantMd='oneColumn'
-          sx={(theme) => ({
-            maxWidth: '500px',
-            mb: 0,
-            '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
-          })}
+          cartItem={cartItem}
+          defaultValues={defaultValues}
+          redirect={false}
+          disableSuccessSnackbar
         >
-          <Typography variant='h3' component='div' gutterBottom>
-            <ProductPageName product={product} />
-          </Typography>
-          <AddProductsToCartView product={product} />
-        </ProductPageGallery>
-        <EditCartItemForm product={product} cartItem={cartItem} />
-        <OverlayStickyBottom sx={{ display: 'flex', justifyContent: 'center' }}>
-          <EditCartItemButton product={product} sx={(theme) => ({ my: theme.spacings.md })} />
-        </OverlayStickyBottom>
-      </AddProductsToCartForm>
+          <PageMeta title={i18n._(/* i18n */ 'Cart')} metaRobots={['noindex']} />
+
+          <LayoutOverlayHeader
+            switchPoint={0}
+            noAlign
+            sx={() => ({ '&.noAlign': { marginBottom: '0px' } })}
+            primary={<>&nbsp;</>}
+          >
+            <LayoutTitle size='small' component='span' icon={iconShoppingBag}>
+              <Trans id='Editing product' />
+            </LayoutTitle>
+          </LayoutOverlayHeader>
+
+          <ProductPageGallery
+            product={product}
+            disableZoom
+            disableSticky
+            variantMd='oneColumn'
+            sx={(theme) => ({
+              maxWidth: '500px',
+              mb: 0,
+              '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
+            })}
+          >
+            <Typography variant='h3' component='div' gutterBottom>
+              <ProductPageName product={product} />
+            </Typography>
+            <AddProductsToCartView product={product} />
+          </ProductPageGallery>
+          <OverlayStickyBottom sx={{ display: 'flex', justifyContent: 'center' }}>
+            <EditCartItemButton product={product} sx={(theme) => ({ my: theme.spacings.sm })} />
+          </OverlayStickyBottom>
+        </EditCartItemForm>
+      )}
     </WaitForQueries>
   )
 }

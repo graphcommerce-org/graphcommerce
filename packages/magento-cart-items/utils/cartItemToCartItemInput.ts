@@ -7,16 +7,14 @@ import {
   productCustomizableSelectors,
 } from '@graphcommerce/magento-product'
 import { isTypename, filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
-import type { SetRequired, SetNonNullable } from 'type-fest'
 import { CartItemFragment } from '../Api/CartItem.gql'
 import { EditCartItemFormFragment } from '../components/EditCartItem/EditCartItemForm/EditCartItemForm.gql'
 
-type F = 'customizable_options' | 'entered_options' | 'selected_options'
-type CartItemInput = SetNonNullable<SetRequired<AddProductsToCartFields['cartItems'][number], F>, F>
+type CartItemInput = AddProductsToCartFields['cartItems'][number]
 
 export type CartItemToCartItemInputProps = {
   product: EditCartItemFormFragment
-  cartItem?: CartItemFragment | null
+  cartItem: CartItemFragment
 } & SelectorsProp
 
 export function cartItemToCartItemInput(
@@ -64,6 +62,7 @@ export function cartItemToCartItemInput(
 
       if (Array.isArray(possibleProductValues)) {
         const value = cartItemCustomizableOptionValue.map((v) => v.customizable_option_value_uid)
+        if (!cartItemInput.customizable_options) cartItemInput.customizable_options = {}
         cartItemInput.customizable_options[productOption.uid] = isTypename(productOption, [
           'CustomizableRadioOption',
           'CustomizableDropDownOption',
@@ -72,6 +71,8 @@ export function cartItemToCartItemInput(
           : value
       } else {
         const idx = (productOption.sort_order ?? 0) + 100
+
+        if (!cartItemInput.entered_options) cartItemInput.entered_options = []
         cartItemInput.entered_options[idx] = {
           uid: productOption.uid,
           value: cartItemCustomizableOptionValue[0].value,
@@ -100,11 +101,13 @@ export function cartItemToCartItemInput(
 
       if (!value) return
       if (productBundleItem.options?.some((o) => o?.can_change_quantity)) {
+        if (!cartItemInput.entered_options) cartItemInput.entered_options = []
         cartItemInput.entered_options[idx] = {
           uid: value.uid,
           value: `${value.quantity}`,
         }
       } else {
+        if (!cartItemInput.selected_options) cartItemInput.selected_options = []
         cartItemInput.selected_options[idx] = value.uid
       }
     })
