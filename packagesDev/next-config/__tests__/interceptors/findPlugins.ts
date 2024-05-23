@@ -109,19 +109,11 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "RemoveItemFromCartFab",
-        "sourceModule": "@graphcommerce/google-datalayer/plugins/GoogleDatalayerRemoveItemFromCartFab",
-        "targetExport": "RemoveItemFromCartFab",
-        "targetModule": "@graphcommerce/magento-cart-items",
-        "type": "component",
-      },
-      {
-        "enabled": true,
-        "sourceExport": "RemoveItemFromCart",
+        "sourceExport": "useRemoveItemFromCart",
         "sourceModule": "@graphcommerce/google-datalayer/plugins/GoogleDatalayerRemoveItemFromCart",
-        "targetExport": "RemoveItemFromCart",
+        "targetExport": "useRemoveItemFromCart",
         "targetModule": "@graphcommerce/magento-cart-items",
-        "type": "component",
+        "type": "function",
       },
       {
         "enabled": true,
