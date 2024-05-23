@@ -1,5 +1,6 @@
 ---
-"@graphcommerce/magento-cart-items": patch
+'@graphcommerce/magento-cart-items': patch
+'@graphcommerce/google-datalayer': patch
 ---
 
-Create useRemoveCartItem hook to allow for reuse while maintaining plugins
+Create useRemoveItemFromCart hook to allow for reuse while keeping compatibility with plugins.
