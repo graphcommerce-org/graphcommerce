@@ -26,7 +26,7 @@ export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
   const isFree = amount && amount.value === 0
 
   const title =
-    carrier_title === 'Free Shipping' ? carrier_title : `${carrier_title} ${method_title}`
+    carrier_title === 'Free Shipping' ? carrier_title : `${carrier_title} ${method_title || ''}`
 
   return (
     <ActionCard
