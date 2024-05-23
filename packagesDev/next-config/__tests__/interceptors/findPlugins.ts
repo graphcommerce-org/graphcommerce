@@ -86,7 +86,7 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "sourceExport": "Plugin",
-        "sourceModule": "@graphcommerce/google-datalayer/plugins/GoogleDatalayerUpdateItemQuantity",
+        "sourceModule": "@graphcommerce/google-datalayer/plugins/GoogleDatalayerUseRemoveItemFromCart",
         "targetExport": "UpdateItemQuantity",
         "targetModule": "@graphcommerce/magento-cart-items/components/UpdateItemQuantity/UpdateItemQuantity",
         "type": "component",
