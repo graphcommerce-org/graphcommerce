@@ -57,7 +57,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             px: 0,
             py: theme.spacings.xs,
           },
-          '& .MuiBox-root': {
+          '& .ActionCard-rootInner': {
             justifyContent: 'space-between',
             alignItems: 'stretch',
           },
@@ -65,9 +65,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             px: 0,
           },
           '&.sizeResponsive': {
-            [theme.breakpoints.down('md')]: {
-              px: 0,
-            },
+            [theme.breakpoints.down('md')]: { px: 0 },
           },
           '& .ActionCard-end': {
             justifyContent: readOnly ? 'center' : 'space-between',
@@ -77,6 +75,11 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
           },
           '& .ActionCard-image': {
             alignSelf: 'flex-start',
+          },
+          '& .ActionCard-secondaryAction': {
+            display: 'grid',
+            rowGap: theme.spacings.xs,
+            justifyItems: 'start',
           },
           '& .ActionCard-price': {
             pr: readOnly ? 0 : theme.spacings.xs,

@@ -57,7 +57,7 @@ export function GroupedProductActionCard(props: GroupedProductActionCardProps) {
             '& .ActionCard-title': {
               width: '100%',
             },
-            '& .MuiBox-root': {
+            '& .ActionCard-rootInner': {
               justifyContent: 'space-between',
               alignItems: 'stretch',
             },

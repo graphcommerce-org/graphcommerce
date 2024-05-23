@@ -47,6 +47,7 @@ export type ActionCardProps = {
 
 const parts = [
   'root',
+  'rootInner',
   'image',
   'title',
   'action',
@@ -283,6 +284,7 @@ export function ActionCard(props: ActionCardProps) {
       ]}
     >
       <Box
+        className={classes.rootInner}
         sx={{
           display: 'flex',
           flexDirection: 'row',
