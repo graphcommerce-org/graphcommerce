@@ -1,5 +1,17 @@
 # Change Log
 
+## 8.1.0-canary.20
+
+### Minor Changes
+
+- [#2246](https://github.com/graphcommerce-org/graphcommerce/pull/2246) [`13524f9`](https://github.com/graphcommerce-org/graphcommerce/commit/13524f991a810c1679db49b3b8b4f04f90d0d6c1) - Added the ability to edit cart items with full support for all product types and custom options
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+### Patch Changes
+
+- [#2246](https://github.com/graphcommerce-org/graphcommerce/pull/2246) [`fc5c04d`](https://github.com/graphcommerce-org/graphcommerce/commit/fc5c04d4a2c0301be7d3cc983d9b31f6fcaf6fe6) - Create useRemoveItemFromCart hook to allow for reuse while keeping compatibility with plugins.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.1.0-canary.19
 
 ## 8.1.0-canary.18

@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.20
+
+### Patch Changes
+
+- [#2246](https://github.com/graphcommerce-org/graphcommerce/pull/2246) [`13524f9`](https://github.com/graphcommerce-org/graphcommerce/commit/13524f991a810c1679db49b3b8b4f04f90d0d6c1) - SidebarGallery now supports two more props disableSticky and variantMd default|oneColumn
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.1.0-canary.19
 
 ## 8.1.0-canary.18
