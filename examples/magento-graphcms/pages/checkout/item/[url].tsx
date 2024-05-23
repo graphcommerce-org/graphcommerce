@@ -4,11 +4,7 @@ import { flushMeasurePerf } from '@graphcommerce/graphql'
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { EditCartItemButton, EditCartItemForm } from '@graphcommerce/magento-cart-items'
-import {
-  AddProductsToCartFormProps,
-  ProductPageGallery,
-  ProductPageName,
-} from '@graphcommerce/magento-product'
+import { ProductPageGallery, ProductPageName } from '@graphcommerce/magento-product'
 import {
   FullPageMessage,
   GetServerSideProps,
@@ -24,13 +20,8 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import { LayoutNavigationProps } from '../../../components'
-import { AddProductsToCartView } from '../../../components/ProductView/AddProductsToCartView'
-import { UspsQuery } from '../../../components/Usps/Usps.gql'
-import { ProductPage2Query } from '../../../graphql/ProductPage2.gql'
-import { getStaticProps } from '../../p/[url]'
-
-type Props = UspsQuery & ProductPage2Query & Pick<AddProductsToCartFormProps, 'defaultValues'>
+import { LayoutNavigationProps, AddProductsToCartView } from '../../../components'
+import { Props, getStaticProps } from '../../p/[url]'
 
 type RouteProps = { url: string }
 type GetSSP = GetServerSideProps<LayoutNavigationProps, Props, RouteProps>

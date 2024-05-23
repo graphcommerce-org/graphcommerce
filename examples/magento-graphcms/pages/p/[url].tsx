@@ -41,7 +41,7 @@ import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPa
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 
-type Props = HygraphPagesQuery &
+export type Props = HygraphPagesQuery &
   UspsQuery &
   ProductPage2Query &
   Pick<AddProductsToCartFormProps, 'defaultValues'>
