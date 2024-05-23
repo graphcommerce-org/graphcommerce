@@ -1,5 +1,4 @@
 import { ActionCardLayout, ActionCardLayoutProps, nonNullable } from '@graphcommerce/next-ui'
-import { Theme, useMediaQuery } from '@mui/material'
 import { CartItemsFragment } from '../../Api/CartItems.gql'
 import {
   CartItemActionCard,
@@ -8,7 +7,13 @@ import {
 
 export type CartProps = Omit<ActionCardLayoutProps, 'className'> & {
   cart?: CartItemsFragment | null
+  /**
+   * @deprecated Not used anymore, please use the size prop
+   */
   sizeSm?: CartItemActionCardProps['size']
+  /**
+   * @deprecated Not used anymore, please use the size prop
+   */
   sizeMd?: CartItemActionCardProps['size']
   variant?: CartItemActionCardProps['variant']
   itemProps?: Omit<
@@ -31,32 +36,25 @@ export function CartItemsActionCards(props: CartProps) {
     children,
     layout = 'list',
     itemProps = {},
-    sizeSm = 'medium',
-    sizeMd = 'large',
     variant = 'default',
     ...remainingProps
   } = props
-
-  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'), {
-    defaultMatches: false,
-  })
-
-  const size = isMobile ? sizeSm : sizeMd
 
   if (!cart?.items?.length) return null
 
   return (
     <ActionCardLayout layout={layout} {...remainingProps}>
-      {cart.items?.filter(nonNullable).map((item) => (
-        <CartItemActionCard
-          key={item.uid}
-          cartItem={item}
-          layout={layout}
-          size={size}
-          variant={variant}
-          {...itemProps}
-        />
-      ))}
+      {cart.items
+        ?.filter(nonNullable)
+        .map((item) => (
+          <CartItemActionCard
+            key={item.uid}
+            cartItem={item}
+            layout={layout}
+            variant={variant}
+            {...itemProps}
+          />
+        ))}
       {children}
     </ActionCardLayout>
   )

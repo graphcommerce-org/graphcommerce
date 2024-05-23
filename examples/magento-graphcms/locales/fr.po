@@ -238,6 +238,12 @@ msgstr "Modifier l'adresse"
 msgid "Edit billing address"
 msgstr "Modifier l'adresse de facturation"
 
+msgid "Edit options"
+msgstr "Modifier les options"
+
+msgid "Editing product"
+msgstr "Modification du produit"
+
 msgid "Email"
 msgstr "Email"
 

@@ -1,5 +1,20 @@
 # @graphcommerce/google-datalayer
 
+## 8.1.0-canary.20
+
+### Patch Changes
+
+- [#2246](https://github.com/graphcommerce-org/graphcommerce/pull/2246) [`fc5c04d`](https://github.com/graphcommerce-org/graphcommerce/commit/fc5c04d4a2c0301be7d3cc983d9b31f6fcaf6fe6) - Create useRemoveItemFromCart hook to allow for reuse while keeping compatibility with plugins.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.1.0-canary.19
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+## 8.1.0-canary.16
+
 ## 8.1.0-canary.15
 
 ## 8.1.0-canary.14

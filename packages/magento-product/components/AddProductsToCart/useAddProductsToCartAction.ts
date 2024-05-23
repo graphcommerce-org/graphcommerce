@@ -68,7 +68,8 @@ export function useAddProductsToCartAction(
       if (process.env.NODE_ENV !== 'production') {
         if (!sku) console.warn(`You must provide a 'sku' to useAddProductsToCartAction`)
       }
-      setValue(`cartItems.${index}.sku`, sku ?? '')
+      // TODO should be removed, setting the form value on submission isn't a great idea.
+      if (!getValues(`cartItems.${index}.sku`)) setValue(`cartItems.${index}.sku`, sku ?? '')
       startTransition(() => {
         onClickIncoming?.(e)
       })
