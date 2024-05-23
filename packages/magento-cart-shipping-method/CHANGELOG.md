@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.19
+
+### Patch Changes
+
+- [#2264](https://github.com/graphcommerce-org/graphcommerce/pull/2264) [`e5291a4`](https://github.com/graphcommerce-org/graphcommerce/commit/e5291a426c57635f69fb9ec44f4abe150f04c9ed) - prevent rendering 'null' when method_title is not provided
+  ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 8.1.0-canary.18
 
 ## 8.1.0-canary.17
