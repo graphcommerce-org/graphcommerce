@@ -12,7 +12,7 @@ export type ProductFiltersProLayoutSidebarProps = {
   count?: React.ReactNode
   pagination: React.ReactNode
   header?: React.ReactNode
-  content?: React.ReactNode
+  children?: React.ReactNode
 } & Partial<OwnerProps>
 
 type OwnerProps = {
@@ -33,7 +33,7 @@ export function ProductFiltersProLayoutSidebar(props: ProductFiltersProLayoutSid
     sidebarFilters,
     header,
     headerPosition = 'before',
-    content,
+    children,
   } = props
 
   const { form, submit } = useProductFiltersPro()
@@ -91,7 +91,7 @@ export function ProductFiltersProLayoutSidebar(props: ProductFiltersProLayoutSid
             {sidebarFilters}
           </Box>
         )}
-        {content && <Box gridArea='content'>{content}</Box>}
+        {children && <Box gridArea='content'>{children}</Box>}
         <StickyBelowHeader sx={{ display: { md: 'none', gridArea: 'horizontalFilters' } }}>
           {horizontalFilters}
         </StickyBelowHeader>

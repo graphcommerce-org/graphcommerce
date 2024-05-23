@@ -1,11 +1,5 @@
+import { CategoryChildren, CategoryDescription } from '@graphcommerce/magento-category'
 import {
-  CategoryChildren,
-  CategoryDescription,
-  CategoryQueryFragment,
-} from '@graphcommerce/magento-category'
-import {
-  CategoryDefaultFragment,
-  FilterTypes,
   ProductFiltersPro,
   ProductFiltersProAllFiltersChip,
   ProductFiltersProAllFiltersSidebar,
@@ -14,32 +8,17 @@ import {
   ProductFiltersProLayoutSidebar,
   ProductFiltersProLimitChip,
   ProductFiltersProSortChip,
-  ProductFiltersQuery,
   ProductListCount,
   ProductListFilters,
   ProductListFiltersContainer,
   ProductListPagination,
-  ProductListParams,
   ProductListParamsProvider,
-  ProductListQuery,
   ProductListSort,
 } from '@graphcommerce/magento-product'
 import { LayoutTitle, StickyBelowHeader } from '@graphcommerce/next-ui'
-import { Box, Container } from '@mui/material'
-import { CategoryPageQuery } from '../../graphql/CategoryPage.gql'
+import { Container } from '@mui/material'
 import { ProductListItems } from './ProductListItems'
-
-export type ProductListFilterLayoutProps = ProductListQuery &
-  ProductFiltersQuery & {
-    filterTypes?: FilterTypes
-    params?: ProductListParams
-    id: string
-    title: string
-    category?: CategoryDefaultFragment &
-      NonNullable<NonNullable<CategoryPageQuery['categories']>['items']>[number]
-    categories?: CategoryQueryFragment['categories']
-    description?: React.ReactNode
-  }
+import { ProductListFilterLayoutProps } from './CategoryFilterLayout'
 
 export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
   const { params, filters, products, filterTypes, title, id, category } = props
@@ -51,6 +30,37 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
   const items = <ProductListItems items={products.items} loadingEager={6} title={title} />
 
   const isSidebarLayout = import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR'
+
+  const content = (
+    <>
+      <LayoutTitle
+        gutterTop
+        variant='h1'
+        sx={(theme) => ({
+          marginBottom: (category?.description || category?.children) && theme.spacings.md,
+          alignItems: { xs: 'center', md: isSidebarLayout ? 'flex-start' : 'center' },
+        })}
+        gutterBottom={!category?.description && category?.children?.length === 0}
+      >
+        {title}
+      </LayoutTitle>
+      <CategoryDescription
+        sx={
+          isSidebarLayout
+            ? {
+                p: 0,
+                ml: 0,
+                textAlign: { xs: 'center', md: 'left' },
+              }
+            : {
+                textAlign: 'center',
+              }
+        }
+        description={category?.description}
+      />
+      <CategoryChildren params={params}>{category?.children}</CategoryChildren>
+    </>
+  )
 
   if (import.meta.graphCommerce.productFiltersPro) {
     const horizontalFilters = (
@@ -98,7 +108,7 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
               gutterTop
               variant='h1'
               sx={(theme) => ({
-                mb: (category?.description || category?.children) && theme.spacings.md,
+                marginBottom: (category?.description || category?.children) && theme.spacings.md,
                 alignItems: { xs: 'center', md: 'flex-start' },
               })}
               gutterBottom={!category?.description && category?.children?.length === 0}
@@ -106,46 +116,40 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
               {title}
             </LayoutTitle>
             <CategoryDescription
-              textAlignMd='start'
               sx={{ p: 0, ml: 0, textAlign: { xs: 'center', md: 'left' } }}
               description={category?.description}
             />
-            <CategoryChildren
-              sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}
-              params={params}
-            >
-              {category?.children}
-            </CategoryChildren>
+            <CategoryChildren params={params}>{category?.children}</CategoryChildren>
           </ProductFiltersProLayoutSidebar>
         ) : (
           <>
-            <Box
+            <LayoutTitle
+              gutterTop
+              variant='h1'
               sx={(theme) => ({
-                display: 'grid',
-                rowGap: theme.spacings.sm,
-                mb: theme.spacings.sm,
+                marginBottom: (category?.description || category?.children) && theme.spacings.md,
+                alignItems: { xs: 'center', md: isSidebarLayout ? 'flex-start' : 'center' },
               })}
+              gutterBottom={!category?.description && category?.children?.length === 0}
             >
-              <LayoutTitle
-                gutterTop
-                variant='h1'
-                sx={{ alignItems: { xs: 'center', md: 'center' } }}
-                gutterBottom={false}
-              >
-                {title}
-              </LayoutTitle>
-              <CategoryDescription
-                textAlignMd='center'
-                textAlignSm='center'
-                sx={(theme) => ({ px: theme.page.horizontal })}
-                description={category?.description}
-              />
-              <CategoryChildren sx={{ justifyContent: 'center' }} params={params}>
-                {category?.children}
-              </CategoryChildren>
-            </Box>
+              {title}
+            </LayoutTitle>
+            <CategoryDescription
+              sx={
+                isSidebarLayout
+                  ? {
+                      p: 0,
+                      ml: 0,
+                      textAlign: { xs: 'center', md: 'left' },
+                    }
+                  : {
+                      textAlign: 'center',
+                    }
+              }
+              description={category?.description}
+            />
+            <CategoryChildren params={params}>{category?.children}</CategoryChildren>
             <StickyBelowHeader>{horizontalFilters}</StickyBelowHeader>
-
             <Container maxWidth={false}>
               <ProductListCount total_count={total_count} />
               {items}
@@ -160,19 +164,6 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
   if (!import.meta.graphCommerce.productFiltersPro) {
     return (
       <>
-        <LayoutTitle
-          gutterTop
-          variant='h1'
-          sx={(theme) => ({
-            mb: (category?.description || category?.children) && theme.spacings.md,
-            alignItems: { xs: 'center', md: 'center' },
-          })}
-          gutterBottom={!category?.description && category?.children?.length === 0}
-        >
-          {title}
-        </LayoutTitle>
-        <CategoryDescription sx={{ textAlign: 'center' }} description={category?.description} />
-        <CategoryChildren params={params}>{category?.children}</CategoryChildren>
         <StickyBelowHeader>
           <ProductListParamsProvider value={params}>
             <ProductListFiltersContainer>

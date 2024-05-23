@@ -4,6 +4,8 @@ import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   appendSiblingsAsChildren,
   CategoryBreadcrumbs,
+  CategoryChildren,
+  CategoryDescription,
   CategoryHeroNav,
   CategoryHeroNavTitle,
   CategoryMeta,
@@ -66,7 +68,7 @@ function CategoryPage(props: CategoryProps) {
         canonical={page?.url ? `/${page.url}` : undefined}
         {...category}
       />
-      <LayoutHeader floatingMd breadcrumbs={Boolean(import.meta.graphCommerce.breadcrumbs)}>
+      <LayoutHeader floatingMd>
         <LayoutTitle size='small' component='span'>
           {category?.name ?? page.title}
         </LayoutTitle>
@@ -75,16 +77,13 @@ function CategoryPage(props: CategoryProps) {
       {import.meta.graphCommerce.breadcrumbs && isCategory && (
         <Container maxWidth={false}>
           <CategoryBreadcrumbs
+            category={category}
             sx={{
               display: {
                 xs: 'block',
                 md: !isSidebarLayout || (isSidebarLayout && isLanding) ? 'block' : 'none',
               },
             }}
-            name={category?.name}
-            uid={category?.uid}
-            url_path={category?.url_path}
-            breadcrumbs={category?.breadcrumbs}
           />
         </Container>
       )}

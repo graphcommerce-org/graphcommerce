@@ -64,7 +64,7 @@ function ProductPage(props: Props) {
   return (
     <>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
-        <LayoutHeader floatingMd breadcrumbs={Boolean(import.meta.graphCommerce.breadcrumbs)}>
+        <LayoutHeader floatingMd>
           <LayoutTitle size='small' component='span'>
             <ProductPageName product={product} />
           </LayoutTitle>
@@ -84,12 +84,7 @@ function ProductPage(props: Props) {
 
         {import.meta.graphCommerce.breadcrumbs && (
           <Container maxWidth={false} sx={(theme) => ({ marginBottom: theme.spacings.xs })}>
-            <ProductPageBreadcrumbs
-              categories={product?.categories}
-              name={product?.name}
-              uid={product?.uid}
-              url_key={product?.url_key}
-            />
+            <ProductPageBreadcrumbs product={product} />
           </Container>
         )}
 

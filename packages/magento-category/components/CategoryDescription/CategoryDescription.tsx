@@ -2,16 +2,29 @@ import { extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { CategoryDescriptionFragment } from './CategoryDescription.gql'
 
-export type CategoryDescriptionProps = Omit<CategoryDescriptionFragment, 'uid'> & {
-  sx?: SxProps<Theme>
+type StateProps = {
+  textAlignSm?: 'start' | 'center'
+  textAlignMd?: 'start' | 'center'
 }
-
 const cmpName = 'CategoryDescription' as const
 const parts = ['root'] as const
-const { classes } = extendableComponent(cmpName, parts)
+const { withState } = extendableComponent<StateProps, typeof parts>(cmpName, parts)
+
+export type CategoryDescriptionProps = Omit<CategoryDescriptionFragment, 'uid'> &
+  StateProps & { sx?: SxProps<Theme> }
 
 export function CategoryDescription(props: CategoryDescriptionProps) {
-  const { name, description, display_mode, sx = [], ...divProps } = props
+  const {
+    name,
+    description,
+    display_mode,
+    sx = [],
+    textAlignSm = 'center',
+    textAlignMd = 'center',
+    ...divProps
+  } = props
+
+  const classes = withState({ textAlignSm, textAlignMd })
 
   return description ? (
     // eslint-disable-next-line react/no-danger
@@ -21,12 +34,20 @@ export function CategoryDescription(props: CategoryDescriptionProps) {
       dangerouslySetInnerHTML={{ __html: description }}
       sx={[
         (theme) => ({
-          gridArea: 'description',
-          margin: `0 auto ${theme.spacings.sm}`,
-          padding: `0 ${theme.page.horizontal}`,
-          textAlign: 'center',
-          maxWidth: { md: '900px' },
           typography: 'subtitle1',
+          [theme.breakpoints.down('sm')]: {
+            textAlign: textAlignSm,
+            '&.textAlignSmCenter': {
+              mx: 'auto',
+            },
+          },
+          [theme.breakpoints.up('md')]: {
+            maxWidth: '900px',
+            textAlign: textAlignMd,
+            '&.textAlignMdCenter': {
+              mx: 'auto',
+            },
+          },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

@@ -17,6 +17,7 @@ import { BreadcrumbsJsonLd } from './BreadcrumbsJsonLd'
 import { jsonLdBreadcrumb } from './jsonLdBreadcrumb'
 import type { BreadcrumbsType } from './types'
 import { useRouter } from 'next/router'
+import { useCanonical } from '../PageMeta/PageMeta'
 
 const BreadcrumbsPopper = dynamic(
   async () => (await import('./BreadcrumbsPopper')).BreadcrumbsPopper,
@@ -30,7 +31,7 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
   const {
     breadcrumbs,
     name,
-    baseUrl,
+
     sx,
     breadcrumbsAmountDesktop = 3,
     breadcrumbsAmountMobile = 2,
@@ -56,11 +57,10 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
     <>
       {breadcrumbs.length && (
         <BreadcrumbsJsonLd
-          baseUrl={baseUrl}
           breadcrumbs={breadcrumbs}
           render={(bc, url) => ({
             '@context': 'https://schema.org',
-            ...jsonLdBreadcrumb(bc, url),
+            ...jsonLdBreadcrumb(bc),
           })}
         />
       )}

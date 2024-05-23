@@ -28,8 +28,6 @@ export type LayoutHeaderProps = FloatingProps &
     sx?: SxProps<Theme>
 
     hideBackButton?: boolean
-
-    breadcrumbs?: boolean
   }
 
 type ComponentStyleProps = {
@@ -51,7 +49,6 @@ export function LayoutHeader(props: LayoutHeaderProps) {
     children,
     divider,
     hideBackButton = false,
-    breadcrumbs = false,
     primary,
     secondary,
     noAlign = false,
@@ -60,7 +57,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
     sx = [],
     bgColor,
   } = props
-  const showBack = useShowBack() && !hideBackButton
+  const showBack = useShowBack() && !hideBackButton && !import.meta.graphCommerce.breadcrumbs
   const showClose = useShowClose()
 
   const floatFallback = !children
@@ -143,7 +140,7 @@ export function LayoutHeader(props: LayoutHeaderProps) {
             '&.divider': {
               marginBottom: 0,
             },
-            '& .LayoutHeaderContent-left': breadcrumbs && { display: 'none' },
+            // '& .LayoutHeaderContent-left': breadcrumbs && { display: 'none' },
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

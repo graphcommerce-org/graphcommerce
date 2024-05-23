@@ -7,13 +7,14 @@ import { useMemo } from 'react'
 import { productPageCategory } from '../ProductPageCategory/productPageCategory'
 import { ProductPageBreadcrumbFragment } from './ProductPageBreadcrumb.gql'
 
-export type ProductPageBreadcrumbsProps = ProductPageBreadcrumbFragment &
-  Omit<BreadcrumbsProps, 'children'> & { breadcrumbsAmount?: number }
+export type ProductPageBreadcrumbsProps = Omit<BreadcrumbsProps, 'children'> & {
+  breadcrumbsAmount?: number
+  product: ProductPageBreadcrumbFragment
+}
 
 export function ProductPageBreadcrumbs(props: ProductPageBreadcrumbsProps) {
-  const { categories, name, uid, url_key, ...breadcrumbsProps } = props
-  const config = useQuery(StoreConfigDocument).data?.storeConfig
-  const baseUrl = config?.secure_base_link_url ?? import.meta.graphCommerce.canonicalBaseUrl
+  const { product, ...breadcrumbsProps } = props
+  const { categories, name, uid, url_key } = product
   const prev = usePrevPageRouter()
 
   const category =
@@ -56,12 +57,5 @@ export function ProductPageBreadcrumbs(props: ProductPageBreadcrumbsProps) {
     return sortedBreadcrumbsList
   }, [category, name, uid, url_key])
 
-  return (
-    <Breadcrumbs
-      breadcrumbs={breadcrumbsList}
-      name={name}
-      baseUrl={baseUrl}
-      {...breadcrumbsProps}
-    />
-  )
+  return <Breadcrumbs breadcrumbs={breadcrumbsList} name={name} {...breadcrumbsProps} />
 }
