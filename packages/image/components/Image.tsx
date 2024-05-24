@@ -220,6 +220,7 @@ export type ImageProps = IntrisincImage & {
   dontReportWronglySizedImages?: boolean
   width?: number
   height?: number
+  disabled?: boolean
   pictureProps?: JSX.IntrinsicElements['picture'] & { sx?: SxProps<Theme> }
   /**
    * Possible values:
