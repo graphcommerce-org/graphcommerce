@@ -84,6 +84,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     variantMd = 'default',
   } = props
 
+  console.log(images)
+
   const router = useRouter()
   const prevRoute = usePrevPageRouter()
   // const classes = useMergedClasses(useStyles({ clientHeight, aspectRatio }).classes, props.classes)
