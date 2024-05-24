@@ -16,18 +16,17 @@ export function ScrollerThumbnails(props: ThumbnailsProps) {
   return (
     images.length > 1 && (
       <ThumbnailContainer sx={sx}>
-        {images.map(
-          (item, i) =>
-            !item.disabled && (
-              <ScrollerThumbnail
-                // eslint-disable-next-line react/no-array-index-key
-                key={`${i}-image`}
-                idx={i}
-                image={item}
-                {...buttonProps}
-              />
-            ),
-        )}
+        {images
+          .filter((item) => !item.disabled)
+          .map((item, i) => (
+            <ScrollerThumbnail
+              // eslint-disable-next-line react/no-array-index-key
+              key={`${i}-image`}
+              idx={i}
+              image={item}
+              {...buttonProps}
+            />
+          ))}
       </ThumbnailContainer>
     )
   )
