@@ -25,7 +25,13 @@ export function ProductPageGallery(props: ProductPageGalleryProps) {
       .sort((a, b) => (a.position ?? 0) - (b.position ?? 0))
       .map((item) => {
         if (item.__typename === 'ProductImage')
-          return { src: item.url ?? '', alt: item.label || undefined, width, height }
+          return {
+            src: item.url ?? '',
+            alt: item.label || undefined,
+            width,
+            height,
+            disabled: item.disabled ?? false,
+          }
         return {
           src: '',
           alt: `{${item.__typename} not yet supported}`,
