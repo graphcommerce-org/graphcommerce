@@ -75,22 +75,13 @@ export function ConfigurableProductOption(props: Props) {
     (o) => o?.attribute_code === attribute_code,
   )?.option_value_uids
 
-  const items = filterNonNullableKeys(values, ['uid']).map((ov) => {
-    console.log(
-      'NEW: ',
-      ov.store_label,
-      !available,
-      available?.includes(ov.uid),
-      availableConfigurableProductOptions?.includes(ov.uid),
-    )
-
-    return {
-      value: ov.uid,
-      ...ov,
-      // disabled: !(!available || available.includes(ov.uid)) || !availableConfigurableProductOptions?.includes(ov.uid),
-      disabled: !availableConfigurableProductOptions?.includes(ov.uid),
-    }
-  })
+  const items = filterNonNullableKeys(values, ['uid']).map((ov) => ({
+    value: ov.uid,
+    ...ov,
+    disabled:
+      !(!available || available.includes(ov.uid)) ||
+      !availableConfigurableProductOptions?.includes(ov.uid),
+  }))
 
   if (!values) return null
 
