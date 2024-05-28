@@ -53,6 +53,7 @@ export type LayoutOverlayBaseProps = {
   safeToRemove?: (() => void) | null | undefined
   overlayPaneProps?: MotionProps
   disableInert?: boolean
+  blacklistedPages?: string[]
 
   /* For `variantSm='left|right' */
   widthSm?: string | false

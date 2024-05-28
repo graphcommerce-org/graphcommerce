@@ -102,8 +102,17 @@ export function FramerNextPages(props: PagesProps) {
 
   let renderItems = [...items.current]
 
+  /**  Removes the page if included in the blacklist of the overlay. **/
+  const overlayBlacklist: string[] = renderItems.at(-1)?.layoutProps?.blacklistedPages as string[]
+  if (
+    renderItems.length > 1 &&
+    overlayBlacklist?.includes(renderItems.at(0)?.routerContext.pageInfo.asPath ?? '')
+  ) {
+    renderItems = renderItems.slice(1)
+  }
+
   /** We need to render back to the last item that isn't an overlay. */
-  const plainIdx = findPlainIdx(items.current)
+  const plainIdx = findPlainIdx(renderItems)
 
   const shouldLoadFb = plainIdx === -1 && typeof window !== 'undefined' && !fb
 
