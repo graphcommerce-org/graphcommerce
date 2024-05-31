@@ -1,7 +1,11 @@
 import { usePrevPageRouter } from '@graphcommerce/framer-next-pages'
-import { Breadcrumbs, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { categoryToBreadcrumbs } from '@graphcommerce/magento-category'
+import { Breadcrumbs } from '@graphcommerce/next-ui'
+import { BreadcrumbsJsonLd } from '@graphcommerce/next-ui/Breadcrumbs/BreadcrumbsJsonLd'
+import { jsonLdBreadcrumb } from '@graphcommerce/next-ui/Breadcrumbs/jsonLdBreadcrumb'
 import { BreadcrumbsProps } from '@mui/material'
-import { useMemo } from 'react'
+import { useRouter } from 'next/router'
+import { BreadcrumbList } from 'schema-dts'
 import { productPageCategory } from '../ProductPageCategory/productPageCategory'
 import { ProductPageBreadcrumbFragment } from './ProductPageBreadcrumb.gql'
 
@@ -12,48 +16,24 @@ export type ProductPageBreadcrumbsProps = Omit<BreadcrumbsProps, 'children'> & {
 
 export function ProductPageBreadcrumbs(props: ProductPageBreadcrumbsProps) {
   const { product, ...breadcrumbsProps } = props
-  const { categories, name, uid, url_key } = product
+  const { categories } = product
   const prev = usePrevPageRouter()
+  const router = useRouter()
 
   const category =
     categories?.find((c) => `/${c?.url_path}` === prev?.asPath) ?? productPageCategory(product)
 
-  const breadcrumbsList = useMemo(() => {
-    const productItem = [
-      {
-        underline: 'hover' as const,
-        key: uid,
-        color: 'inherit',
-        href: `/${url_key}`,
-        children: name,
-      },
-    ]
-    const categoryItem = category
-      ? [
-          {
-            underline: 'hover' as const,
-            key: category.uid,
-            color: 'inherit',
-            href: `/${category.url_path}`,
-            children: category.name,
-          },
-        ]
-      : []
+  if (!category || !product.name || !product.url_key) return null
 
-    const sortedBreadcrumbsList = filterNonNullableKeys(category?.breadcrumbs, ['category_level'])
-      .sort((a, b) => a.category_level - b.category_level)
-      .map((breadcrumb) => ({
-        underline: 'hover' as const,
-        key: breadcrumb.category_uid,
-        color: 'inherit',
-        href: `/${breadcrumb.category_url_path}`,
-        children: breadcrumb.category_name,
-      }))
+  const breadcrumbs = categoryToBreadcrumbs(category)
 
-    sortedBreadcrumbsList.push(...categoryItem, ...productItem)
-
-    return sortedBreadcrumbsList
-  }, [category, name, uid, url_key])
-
-  return <Breadcrumbs breadcrumbs={breadcrumbsList} name={name} {...breadcrumbsProps} />
+  return (
+    <>
+      <BreadcrumbsJsonLd<BreadcrumbList>
+        breadcrumbs={[...breadcrumbs, { name: product.name, href: product.url_key }]}
+        render={(bc) => ({ '@context': 'https://schema.org', ...jsonLdBreadcrumb(bc, router) })}
+      />
+      <Breadcrumbs breadcrumbs={breadcrumbs} lastIsLink {...breadcrumbsProps} />
+    </>
+  )
 }

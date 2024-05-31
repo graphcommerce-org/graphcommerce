@@ -1,9 +1,11 @@
-import { BreadcrumbsProps as BreadcrumbsPropsBase, LinkProps } from '@mui/material'
+import { Theme } from '@emotion/react'
+import { SxProps } from '@mui/material'
+
+export type BreadcrumbItem = {
+  name: string
+  href: string
+}
 
 export type BreadcrumbsType = {
-  breadcrumbs: Pick<LinkProps, 'underline' | 'key' | 'color' | 'href' | 'children'>[]
-  name?: string | null
-  breadcrumbsAmountDesktop?: number
-  breadcrumbsAmountMobile?: number
-  baseUrl?: string | null
-} & Omit<BreadcrumbsPropsBase, 'children'>
+  breadcrumbs: ({ sx?: SxProps<Theme> } & BreadcrumbItem)[]
+}

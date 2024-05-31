@@ -2,14 +2,12 @@ import { JsonLd } from '../JsonLd/JsonLd'
 import type { BreadcrumbsType } from './types'
 
 type BreadcrumbsJsonLdProps<T extends { '@type': string }> = BreadcrumbsType & {
-  render: (
-    breadcrumbs: BreadcrumbsType['breadcrumbs'],
-    baseUrl?: string | null,
-  ) => T & { '@context': 'https://schema.org' }
+  render: (breadcrumbs: BreadcrumbsType['breadcrumbs']) => T & { '@context': 'https://schema.org' }
 }
 
 export function BreadcrumbsJsonLd<T extends { '@type': string }>(props: BreadcrumbsJsonLdProps<T>) {
-  const { render, breadcrumbs, baseUrl } = props
+  const { render, breadcrumbs } = props
 
-  return <JsonLd<T> item={render(breadcrumbs, baseUrl)} keyVal='breadcrumb-jsonld' />
+  if (!breadcrumbs.length) return null
+  return <JsonLd<T> item={render(breadcrumbs)} keyVal='breadcrumb-jsonld' />
 }

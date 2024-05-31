@@ -1,14 +1,20 @@
+import { NextRouter } from 'next/router'
+import type { BreadcrumbList } from 'schema-dts'
+import { canonicalize } from '../PageMeta/PageMeta'
+import { filterNonNullableKeys } from '../RenderType'
 import type { BreadcrumbsType } from './types'
 
-export function jsonLdBreadcrumb(breadcrumbs: BreadcrumbsType['breadcrumbs']) {
+export function jsonLdBreadcrumb(
+  breadcrumbs: BreadcrumbsType['breadcrumbs'],
+  router: NextRouter,
+): BreadcrumbList {
   return {
     '@type': 'BreadcrumbList',
-    itemListElement:
-      breadcrumbs?.map((breadcrumb, index) => ({
-        '@type': 'ListItem',
-        name: breadcrumb?.children,
-        position: index + 1,
-        item: breadcrumb.href,
-      })) ?? [],
+    itemListElement: filterNonNullableKeys(breadcrumbs, ['href']).map(({ name, href }, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name,
+      item: canonicalize(router, href),
+    })),
   }
 }
