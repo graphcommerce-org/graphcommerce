@@ -8,6 +8,7 @@ import { useRouter } from 'next/router'
 import { BreadcrumbList } from 'schema-dts'
 import { productPageCategory } from '../ProductPageCategory/productPageCategory'
 import { ProductPageBreadcrumbFragment } from './ProductPageBreadcrumb.gql'
+import { productLink } from '../../hooks/useProductLink'
 
 export type ProductPageBreadcrumbsProps = Omit<BreadcrumbsProps, 'children'> & {
   breadcrumbsAmount?: number
@@ -30,7 +31,7 @@ export function ProductPageBreadcrumbs(props: ProductPageBreadcrumbsProps) {
   return (
     <>
       <BreadcrumbsJsonLd<BreadcrumbList>
-        breadcrumbs={[...breadcrumbs, { name: product.name, href: product.url_key }]}
+        breadcrumbs={[...breadcrumbs, { name: product.name, href: productLink(product) }]}
         render={(bc) => ({ '@context': 'https://schema.org', ...jsonLdBreadcrumb(bc, router) })}
       />
       <Breadcrumbs breadcrumbs={breadcrumbs} lastIsLink {...breadcrumbsProps} />
