@@ -1,6 +1,4 @@
 import { usePrevPageRouter } from '@graphcommerce/framer-next-pages'
-import { useQuery } from '@graphcommerce/graphql'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Breadcrumbs, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { BreadcrumbsProps } from '@mui/material'
 import { useMemo } from 'react'
@@ -18,7 +16,7 @@ export function ProductPageBreadcrumbs(props: ProductPageBreadcrumbsProps) {
   const prev = usePrevPageRouter()
 
   const category =
-    categories?.find((c) => `/${c?.url_path}` === prev?.asPath) ?? productPageCategory(props)
+    categories?.find((c) => `/${c?.url_path}` === prev?.asPath) ?? productPageCategory(product)
 
   const breadcrumbsList = useMemo(() => {
     const productItem = [

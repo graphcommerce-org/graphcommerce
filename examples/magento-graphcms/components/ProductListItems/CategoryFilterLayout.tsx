@@ -50,8 +50,6 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
 
   const items = <ProductListItems items={products.items} loadingEager={6} title={title} />
 
-  const isSidebarLayout = import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR'
-
   if (import.meta.graphCommerce.productFiltersPro) {
     const horizontalFilters = (
       <ProductListFiltersContainer>
@@ -78,7 +76,7 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
         appliedAggregations={products?.aggregations}
         filterTypes={filterTypes}
       >
-        {isSidebarLayout ? (
+        {import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' ? (
           <ProductFiltersProLayoutSidebar
             clearAll={<ProductFiltersProClearAll />}
             horizontalFilters={horizontalFilters}

@@ -6,9 +6,12 @@ type StateProps = {
   textAlignSm?: 'start' | 'center'
   textAlignMd?: 'start' | 'center'
 }
-const cmpName = 'CategoryDescription' as const
+const componentName = 'CategoryDescription' as const
 const parts = ['root'] as const
-const { withState } = extendableComponent<StateProps, typeof parts>(cmpName, parts)
+const { withState } = extendableComponent<StateProps, typeof componentName, typeof parts>(
+  componentName,
+  parts,
+)
 
 export type CategoryDescriptionProps = Omit<CategoryDescriptionFragment, 'uid'> &
   StateProps & { sx?: SxProps<Theme> }

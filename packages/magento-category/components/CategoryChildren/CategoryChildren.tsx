@@ -36,12 +36,12 @@ export function CategoryChildren(props: CategoryChildrenProps) {
     <ScrollerProvider scrollSnapAlign='none'>
       <Box
         className={classes.container}
-        sx={[(theme) => ({ display: 'flex' }), ...(Array.isArray(sx) ? sx : [sx])]}
+        sx={[{ display: 'flex' }, ...(Array.isArray(sx) ? sx : [sx])]}
       >
         <Scroller
           className={classes.scroller}
           hideScrollbar
-          sx={(theme) => ({ gridAutoColumns: `max-content`, columnGap: theme.spacings.xxs })}
+          sx={(theme) => ({ gridAutoColumns: `max-content`, columnGap: theme.spacings.sm })}
         >
           {childItems.map((category) => (
             <Link
