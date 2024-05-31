@@ -4,8 +4,6 @@ import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   appendSiblingsAsChildren,
   CategoryBreadcrumbs,
-  CategoryChildren,
-  CategoryDescription,
   CategoryHeroNav,
   CategoryHeroNavTitle,
   CategoryMeta,
@@ -114,7 +112,6 @@ function CategoryPage(props: CategoryProps) {
 
       {isCategory && !isLanding && (
         <CategoryFilterLayout
-          categories={categories}
           params={params}
           filters={filters}
           products={products}

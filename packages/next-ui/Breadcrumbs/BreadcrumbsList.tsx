@@ -78,7 +78,7 @@ export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
       {breadcrumbs.slice(0, breadcrumbs.length).map((breadcrumb) => (
         <Link
           {...breadcrumb}
-          key={breadcrumb.key}
+          key={breadcrumb.href}
           underline='none'
           color='text.primary'
           variant='body1'

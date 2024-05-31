@@ -37,7 +37,6 @@ export type ProductListFilterLayoutProps = ProductListQuery &
     title: string
     category?: CategoryDefaultFragment &
       NonNullable<NonNullable<CategoryPageQuery['categories']>['items']>[number]
-    categories?: CategoryQueryFragment['categories']
     description?: React.ReactNode
   }
 
