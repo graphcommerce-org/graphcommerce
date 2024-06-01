@@ -54,7 +54,6 @@ function CategoryPage(props: CategoryProps) {
   const isLanding = category?.display_mode === 'PAGE'
   const page = pages?.[0]
   const isCategory = params && category && products?.items && filterTypes
-  const isSidebarLayout = import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR'
 
   return (
     <>
@@ -72,36 +71,15 @@ function CategoryPage(props: CategoryProps) {
         </LayoutTitle>
       </LayoutHeader>
 
-      {import.meta.graphCommerce.breadcrumbs && isCategory && (
-        <Container maxWidth={false}>
-          <CategoryBreadcrumbs
-            category={category}
-            sx={{
-              display: {
-                xs: 'block',
-                md: !isSidebarLayout || (isSidebarLayout && isLanding) ? 'block' : 'none',
-              },
-            }}
-          />
-        </Container>
-      )}
-
       {!isCategory && !isLanding && (
         <Container maxWidth={false}>
-          <LayoutTitle
-            variant='h1'
-            gutterTop
-            sx={(theme) => ({
-              marginBottom: category?.description && theme.spacings.md,
-            })}
-            gutterBottom={
-              !isCategory || (!category?.description && category?.children?.length === 0)
-            }
-          >
-            {category?.name ?? page.title}
+          <LayoutTitle variant='h1' gutterTop gutterBottom>
+            {page.title}
           </LayoutTitle>
         </Container>
       )}
+
+      {isCategory && isLanding && <CategoryBreadcrumbs category={category} pageGutter />}
       {isCategory && isLanding && (
         <CategoryHeroNav
           {...category}
@@ -121,6 +99,7 @@ function CategoryPage(props: CategoryProps) {
           category={category}
         />
       )}
+
       {page && (
         <RowRenderer
           content={page.content}

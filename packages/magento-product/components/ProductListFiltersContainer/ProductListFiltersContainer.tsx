@@ -136,8 +136,8 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
             className={classes.scroller}
             hideScrollbar
             sx={(theme) => ({
-              paddingLeft: theme.page.horizontal,
-              paddingRight: theme.page.horizontal,
+              // paddingLeft: theme.page.horizontal,
+              // paddingRight: theme.page.horizontal,
               paddingBottom: '1px',
               [theme.breakpoints.up('md')]: {
                 borderRadius: '99em',
@@ -145,7 +145,6 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
                 paddingRight: '8px',
               },
               py: '5px',
-
               columnGap: '6px',
               gridAutoColumns: 'min-content',
             })}

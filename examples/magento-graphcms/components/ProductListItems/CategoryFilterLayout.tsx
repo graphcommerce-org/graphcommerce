@@ -1,7 +1,7 @@
 import {
+  CategoryBreadcrumbs,
   CategoryChildren,
   CategoryDescription,
-  CategoryQueryFragment,
 } from '@graphcommerce/magento-category'
 import {
   CategoryDefaultFragment,
@@ -24,7 +24,7 @@ import {
   ProductListQuery,
   ProductListSort,
 } from '@graphcommerce/magento-product'
-import { LayoutTitle, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { LayoutTitle, Row, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Box, Container } from '@mui/material'
 import { CategoryPageQuery } from '../../graphql/CategoryPage.gql'
 import { ProductListItems } from './ProductListItems'
@@ -40,151 +40,219 @@ export type ProductListFilterLayoutProps = ProductListQuery &
     description?: React.ReactNode
   }
 
-export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
-  const { params, filters, products, filterTypes, title, id, category } = props
+function CategoryFilterLayoutSidebar(props: ProductListFilterLayoutProps) {
+  const { id, filters, filterTypes, params, products, title, category } = props
 
   if (!(params && products?.items && filterTypes)) return null
-
   const { total_count, sort_fields, page_info } = products
 
-  const items = <ProductListItems items={products.items} loadingEager={6} title={title} />
-
-  if (import.meta.graphCommerce.productFiltersPro) {
-    const horizontalFilters = (
-      <ProductListFiltersContainer>
-        <ProductFiltersProFilterChips />
-        <ProductFiltersProSortChip
-          total_count={total_count}
-          sort_fields={sort_fields}
-          category={category}
-        />
-        <ProductFiltersProLimitChip />
-        <ProductFiltersProAllFiltersChip
-          total_count={total_count}
-          sort_fields={sort_fields}
-          category={category}
-        />
-      </ProductListFiltersContainer>
-    )
-
-    return (
-      <ProductFiltersPro
-        key={id}
-        params={params}
-        aggregations={filters?.aggregations}
-        appliedAggregations={products?.aggregations}
-        filterTypes={filterTypes}
-      >
-        {import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' ? (
-          <ProductFiltersProLayoutSidebar
-            clearAll={<ProductFiltersProClearAll />}
-            horizontalFilters={horizontalFilters}
-            sidebarFilters={
-              <ProductFiltersProAllFiltersSidebar
-                total_count={total_count}
-                sort_fields={sort_fields}
-                category={category}
-                {...props}
-              />
-            }
-            count={<ProductListCount total_count={total_count} />}
-            pagination={<ProductListPagination page_info={page_info} params={params} />}
-            items={items}
-          >
-            <LayoutTitle
-              gutterTop
-              variant='h1'
-              sx={(theme) => ({
-                mb: (category?.description || category?.children) && theme.spacings.md,
-                alignItems: { xs: 'center', md: 'flex-start' },
-              })}
-              gutterBottom={!category?.description && category?.children?.length === 0}
-            >
-              {title}
-            </LayoutTitle>
-            <CategoryDescription
-              textAlignMd='start'
-              sx={{ p: 0, ml: 0, textAlign: { xs: 'center', md: 'left' } }}
-              description={category?.description}
+  return (
+    <ProductFiltersPro
+      key={id}
+      params={params}
+      aggregations={filters?.aggregations}
+      appliedAggregations={products?.aggregations}
+      filterTypes={filterTypes}
+    >
+      <CategoryBreadcrumbs
+        category={category}
+        sx={(theme) => ({
+          mx: theme.page.horizontal,
+          mb: theme.spacings.md,
+          [theme.breakpoints.down('md')]: {
+            '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+          },
+        })}
+      />
+      <ProductFiltersProLayoutSidebar
+        clearAll={<ProductFiltersProClearAll />}
+        horizontalFilters={
+          <ProductListFiltersContainer>
+            <ProductFiltersProFilterChips />
+            <ProductFiltersProSortChip
+              total_count={total_count}
+              sort_fields={sort_fields}
+              category={category}
             />
-            <CategoryChildren
-              sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}
-              params={params}
-            >
-              {category?.children}
-            </CategoryChildren>
-          </ProductFiltersProLayoutSidebar>
-        ) : (
-          <>
-            <Box
-              sx={(theme) => ({
-                display: 'grid',
-                rowGap: theme.spacings.sm,
-                mb: theme.spacings.sm,
-              })}
-            >
-              <LayoutTitle
-                gutterTop
-                variant='h1'
-                sx={{ alignItems: { xs: 'center', md: 'center' } }}
-                gutterBottom={false}
-              >
-                {title}
-              </LayoutTitle>
-              <CategoryDescription
-                textAlignMd='center'
-                textAlignSm='center'
-                sx={(theme) => ({ px: theme.page.horizontal })}
-                description={category?.description}
-              />
-              <CategoryChildren sx={{ justifyContent: 'center' }} params={params}>
-                {category?.children}
-              </CategoryChildren>
-            </Box>
-            <StickyBelowHeader>{horizontalFilters}</StickyBelowHeader>
+            <ProductFiltersProLimitChip />
+            <ProductFiltersProAllFiltersChip
+              total_count={total_count}
+              sort_fields={sort_fields}
+              category={category}
+            />
+          </ProductListFiltersContainer>
+        }
+        sidebarFilters={
+          <ProductFiltersProAllFiltersSidebar
+            total_count={total_count}
+            sort_fields={sort_fields}
+            category={category}
+            {...props}
+          />
+        }
+        count={<ProductListCount total_count={total_count} sx={{ width: 'unset' }} />}
+        pagination={<ProductListPagination page_info={page_info} params={params} />}
+        items={<ProductListItems items={products.items} loadingEager={6} title={title} />}
+      >
+        <Box
+          sx={(theme) => ({
+            display: 'grid',
+            rowGap: theme.spacings.sm,
+            gridTemplateColumns: 'minmax(0, 1fr)',
+          })}
+        >
+          <LayoutTitle
+            gutterTop={false}
+            gutterBottom={false}
+            variant='h1'
+            sx={{ alignItems: 'start' }}
+          >
+            {title}
+          </LayoutTitle>
+          <CategoryDescription
+            textAlignMd='start'
+            textAlignSm='start'
+            description={category?.description}
+          />
+          <CategoryChildren sx={{ justifyContent: 'start' }} params={params}>
+            {category?.children}
+          </CategoryChildren>
+        </Box>
+      </ProductFiltersProLayoutSidebar>
+    </ProductFiltersPro>
+  )
+}
 
-            <Container maxWidth={false}>
-              <ProductListCount total_count={total_count} />
-              {items}
-              <ProductListPagination page_info={page_info} params={params} />
-            </Container>
-          </>
-        )}
-      </ProductFiltersPro>
-    )
-  }
+function CategoryFilterLayoutDefault(props: ProductListFilterLayoutProps) {
+  const { id, filters, filterTypes, params, products, title, category } = props
 
-  if (!import.meta.graphCommerce.productFiltersPro) {
-    return (
-      <>
+  if (!(params && products?.items && filterTypes)) return null
+  const { total_count, sort_fields, page_info } = products
+
+  return (
+    <ProductFiltersPro
+      key={id}
+      params={params}
+      aggregations={filters?.aggregations}
+      appliedAggregations={products?.aggregations}
+      filterTypes={filterTypes}
+    >
+      <CategoryBreadcrumbs
+        category={category}
+        sx={(theme) => ({
+          height: 0,
+          mx: theme.page.horizontal,
+          [theme.breakpoints.down('md')]: {
+            '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+          },
+        })}
+      />
+      <Box
+        sx={(theme) => ({
+          display: 'grid',
+          rowGap: theme.spacings.sm,
+          mb: theme.spacings.sm,
+          gridTemplateColumns: 'minmax(0, 1fr)',
+        })}
+      >
         <LayoutTitle
           gutterTop
           variant='h1'
-          sx={(theme) => ({
-            mb: (category?.description || category?.children) && theme.spacings.md,
-            alignItems: { xs: 'center', md: 'center' },
-          })}
-          gutterBottom={!category?.description && category?.children?.length === 0}
+          sx={{ alignItems: { xs: 'left', md: 'center' } }}
+          gutterBottom={false}
         >
           {title}
         </LayoutTitle>
-        <CategoryDescription sx={{ textAlign: 'center' }} description={category?.description} />
-        <CategoryChildren params={params}>{category?.children}</CategoryChildren>
-        <StickyBelowHeader>
-          <ProductListParamsProvider value={params}>
-            <ProductListFiltersContainer>
-              <ProductListSort sort_fields={sort_fields} total_count={total_count} />
-              <ProductListFilters {...filters} filterTypes={filterTypes} />
-            </ProductListFiltersContainer>
-          </ProductListParamsProvider>
-        </StickyBelowHeader>
-        <Container maxWidth={false}>
-          <ProductListCount total_count={total_count} />
-          {items}
-          <ProductListPagination page_info={page_info} params={params} />
-        </Container>
-      </>
-    )
+        <CategoryDescription
+          textAlignMd='center'
+          textAlignSm='center'
+          sx={(theme) => ({ px: theme.page.horizontal })}
+          description={category?.description}
+        />
+        <CategoryChildren
+          sx={(theme) => ({
+            justifyContent: 'center',
+            '& .CategoryChildren-scroller': { px: theme.page.horizontal },
+          })}
+          params={params}
+        >
+          {category?.children}
+        </CategoryChildren>
+      </Box>
+      <StickyBelowHeader>
+        <ProductListFiltersContainer>
+          <ProductFiltersProFilterChips />
+          <ProductFiltersProSortChip
+            total_count={total_count}
+            sort_fields={sort_fields}
+            category={category}
+          />
+          <ProductFiltersProLimitChip />
+          <ProductFiltersProAllFiltersChip
+            total_count={total_count}
+            sort_fields={sort_fields}
+            category={category}
+          />
+        </ProductListFiltersContainer>
+      </StickyBelowHeader>
+
+      <Container maxWidth={false}>
+        <ProductListCount total_count={total_count} />
+        <ProductListItems items={products.items} loadingEager={6} title={title} />
+        <ProductListPagination page_info={page_info} params={params} />
+      </Container>
+    </ProductFiltersPro>
+  )
+}
+
+function CategoryFiltersLayoutClassic(props: ProductListFilterLayoutProps) {
+  const { id, filters, filterTypes, params, products, title, category } = props
+
+  if (!(params && products?.items && filterTypes)) return null
+  const { total_count, sort_fields, page_info } = products
+
+  return (
+    <>
+      <LayoutTitle
+        gutterTop
+        variant='h1'
+        sx={(theme) => ({
+          mb: (category?.description || category?.children) && theme.spacings.md,
+          alignItems: { xs: 'center', md: 'center' },
+        })}
+        gutterBottom={!category?.description && category?.children?.length === 0}
+      >
+        {title}
+      </LayoutTitle>
+      <CategoryDescription sx={{ textAlign: 'center' }} description={category?.description} />
+      <CategoryChildren params={params}>{category?.children}</CategoryChildren>
+      <StickyBelowHeader>
+        <ProductListParamsProvider value={params}>
+          <ProductListFiltersContainer>
+            <ProductListSort sort_fields={sort_fields} total_count={total_count} />
+            <ProductListFilters {...filters} filterTypes={filterTypes} />
+          </ProductListFiltersContainer>
+        </ProductListParamsProvider>
+      </StickyBelowHeader>
+      <Container maxWidth={false}>
+        <ProductListCount total_count={total_count} />
+        <ProductListItems items={products.items} loadingEager={6} title={title} />
+        <ProductListPagination page_info={page_info} params={params} />
+      </Container>
+    </>
+  )
+}
+
+export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
+  if (import.meta.graphCommerce.productFiltersPro) {
+    if (import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR')
+      return <CategoryFilterLayoutSidebar {...props} />
+
+    return <CategoryFilterLayoutDefault {...props} />
+  }
+
+  if (!import.meta.graphCommerce.productFiltersPro) {
+    return <CategoryFiltersLayoutClassic {...props} />
   }
 
   return null

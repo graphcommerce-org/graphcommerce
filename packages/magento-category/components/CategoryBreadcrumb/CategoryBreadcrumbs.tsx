@@ -8,21 +8,28 @@ import { CategoryBreadcrumbFragment } from './CategoryBreadcrumb.gql'
 import { categoryToBreadcrumbs } from './categoryToBreadcrumbs'
 
 export type CategoryBreadcrumbsProps = Omit<BreadcrumbsProps, 'children'> & {
-  category: CategoryBreadcrumbFragment
+  category?: CategoryBreadcrumbFragment
 }
 
 export function CategoryBreadcrumbs(props: CategoryBreadcrumbsProps) {
-  const { category, ...breadcrumbsProps } = props
+  const { category, sx, ...breadcrumbsProps } = props
   const router = useRouter()
 
+  if (!category) return null
+
   const breadcrumbs = categoryToBreadcrumbs(category)
+
   return (
     <>
       <BreadcrumbsJsonLd<BreadcrumbList>
         breadcrumbs={breadcrumbs}
         render={(bc) => ({ '@context': 'https://schema.org', ...jsonLdBreadcrumb(bc, router) })}
       />
-      <Breadcrumbs breadcrumbs={breadcrumbs} {...breadcrumbsProps} />
+      <Breadcrumbs
+        breadcrumbs={breadcrumbs}
+        {...breadcrumbsProps}
+        sx={[...(Array.isArray(sx) ? sx : [sx])]}
+      />
     </>
   )
 }

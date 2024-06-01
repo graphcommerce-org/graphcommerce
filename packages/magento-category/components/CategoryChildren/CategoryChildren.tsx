@@ -41,7 +41,10 @@ export function CategoryChildren(props: CategoryChildrenProps) {
         <Scroller
           className={classes.scroller}
           hideScrollbar
-          sx={(theme) => ({ gridAutoColumns: `max-content`, columnGap: theme.spacings.sm })}
+          sx={(theme) => ({
+            gridAutoColumns: `max-content`,
+            columnGap: theme.spacings.sm,
+          })}
         >
           {childItems.map((category) => (
             <Link
