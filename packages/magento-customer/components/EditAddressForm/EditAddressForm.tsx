@@ -2,18 +2,11 @@
 import { ApolloErrorSnackbar, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
-import {
-  Button,
-  Form,
-  FormActions,
-  FormDivider,
-  FormRow,
-  InputCheckmark,
-} from '@graphcommerce/next-ui'
+import { Button, Form, FormActions, FormDivider, FormRow } from '@graphcommerce/next-ui'
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { SxProps, TextField, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import { AddressFields } from '../AddressFields/AddressFields'
@@ -27,12 +20,13 @@ type EditAddressFormProps = {
    * @deprecated not used, can be safely removed.
    */
   onCompleteRoute?: string
+  disabled?: boolean
 }
 
 export function EditAddressForm(props: EditAddressFormProps) {
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
   const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
-  const { address, sx } = props
+  const { address, disabled, sx } = props
 
   const router = useRouter()
 
@@ -84,8 +78,8 @@ export function EditAddressForm(props: EditAddressFormProps) {
   return (
     <>
       <Form onSubmit={submitHandler} noValidate sx={sx}>
-        <NameFields form={form} prefix />
-        <AddressFields form={form} name={{ regionId: 'region.region_id' }} />
+        <NameFields form={form} prefix disabled={disabled} />
+        <AddressFields form={form} name={{ regionId: 'region.region_id' }} disabled={disabled} />
 
         <FormRow>
           <TextFieldElement
@@ -101,7 +95,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
               pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
             }}
             helperText={formState.isSubmitted && formState.errors.telephone?.message}
-            disabled={formState.isSubmitting}
+            disabled={formState.isSubmitting || disabled}
             showValid
           />
         </FormRow>
@@ -115,6 +109,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
             color='primary'
             size='large'
             loading={formState.isSubmitting}
+            disabled={disabled}
           >
             <Trans id='Save changes' />
           </Button>

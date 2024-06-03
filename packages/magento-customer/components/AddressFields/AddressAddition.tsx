@@ -11,6 +11,7 @@ export function AddressAddition<
 
   return (
     <TextFieldElement
+      {...props}
       control={control}
       name={name.addition}
       variant='outlined'

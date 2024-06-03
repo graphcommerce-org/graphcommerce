@@ -11,6 +11,7 @@ export function AddressPostcode<
 
   return (
     <TextFieldElement
+      {...props}
       control={control}
       name={name.postcode}
       variant='outlined'

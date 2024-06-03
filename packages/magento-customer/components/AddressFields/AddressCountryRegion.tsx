@@ -48,6 +48,7 @@ export function AddressCountryRegion<
   return (
     <FormRow>
       <SelectElement
+        {...props}
         control={control}
         name={name.countryCode}
         SelectProps={{ autoWidth: true }}

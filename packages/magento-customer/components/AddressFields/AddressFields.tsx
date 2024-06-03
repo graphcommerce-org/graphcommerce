@@ -11,7 +11,7 @@ import { AddressFieldsOptions } from './useAddressFieldsForm'
 export type AddressFieldsProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-> = AddressFieldsOptions<TFieldValues, TName> & { countryFirst?: boolean }
+> = AddressFieldsOptions<TFieldValues, TName> & { countryFirst?: boolean; disabled?: boolean }
 
 export function AddressFields<
   TFieldValues extends FieldValues = FieldValues,

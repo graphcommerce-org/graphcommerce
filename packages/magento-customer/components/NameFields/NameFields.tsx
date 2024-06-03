@@ -14,6 +14,7 @@ type NameFieldValues = {
 type NameFieldProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   form: UseFormReturn<any>
+  disabled?: boolean
   readOnly?: boolean
   prefix?: boolean
   prefixes?: string[]
@@ -24,7 +25,7 @@ export function NameFields(props: NameFieldProps) {
   const mrs = i18n._(/* i18n */ 'Mrs')
   const other = i18n._(/* i18n */ 'Other')
 
-  const { prefix, form, readOnly, prefixes = [mr, mrs, other] } = props
+  const { prefix, form, readOnly, prefixes = [mr, mrs, other], disabled } = props
   assertFormGqlOperation<NameFieldValues>(form)
 
   const { control, required } = form
@@ -43,6 +44,7 @@ export function NameFields(props: NameFieldProps) {
             showValid
             InputProps={{ readOnly }}
             options={prefixes.map((option) => ({ id: option, label: option }))}
+            disabled={disabled}
           />
         </FormRow>
       )}
@@ -56,6 +58,7 @@ export function NameFields(props: NameFieldProps) {
           label={<Trans id='First Name' />}
           InputProps={{ readOnly }}
           showValid
+          disabled={disabled}
         />
         <TextFieldElement
           control={control}
@@ -66,6 +69,7 @@ export function NameFields(props: NameFieldProps) {
           label={<Trans id='Last Name' />}
           InputProps={{ readOnly }}
           showValid
+          disabled={disabled}
         />
       </FormRow>
     </>

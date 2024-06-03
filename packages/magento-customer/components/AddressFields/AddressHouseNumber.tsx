@@ -16,6 +16,7 @@ export function AddressHousenumber<
   const { control, name, readOnly, required } = form
   return (
     <TextFieldElement
+      {...props}
       control={control}
       name={name.houseNumber}
       required={required[name.houseNumber]}
