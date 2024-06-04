@@ -1,5 +1,15 @@
 # Change Log
 
+## 8.1.0
+
+### Patch Changes
+
+- [#2277](https://github.com/graphcommerce-org/graphcommerce/pull/2277) [`f9199f7`](https://github.com/graphcommerce-org/graphcommerce/commit/f9199f798583138a68dd641ea6637375c487f29b) - Solve issue where Braintree wouldn't place the order after successfully validating a Credit Card.
+  ([@paales](https://github.com/paales))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent BillingPage query from rerunning on each mutation
+  ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 8.1.0-canary.21
 
 ## 8.1.0-canary.20
