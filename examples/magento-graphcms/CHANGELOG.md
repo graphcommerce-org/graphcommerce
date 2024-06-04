@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.21
+
+### Patch Changes
+
+- [#2285](https://github.com/graphcommerce-org/graphcommerce/pull/2285) [`d5e7371`](https://github.com/graphcommerce-org/graphcommerce/commit/d5e73716990bf1d5a5ee40d88f9cd8266750ec66) - Resolve overlay issue by using the correct sharedKey + correct typo
+  ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 8.1.0-canary.20
 
 ## 8.1.0-canary.19
