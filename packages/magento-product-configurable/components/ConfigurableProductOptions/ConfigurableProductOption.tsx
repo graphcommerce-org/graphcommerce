@@ -12,7 +12,6 @@ import {
 import { useWatch } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Box, SxProps, Theme } from '@mui/material'
-import { ConfigurableOptionsSelectionFragment } from '../../graphql'
 import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
 import { UseConfigurableOptionsSelection, useConfigurableOptionsForSelection } from '../../hooks'
 import {
@@ -20,17 +19,12 @@ import {
   ConfigurableOptionValueFragment,
 } from '../ConfigurableOptionValue'
 
-export type AvailableOptionsProps = NonNullable<
-  ConfigurableOptionsSelectionFragment['configurable_product_options_selection']
->['options_available_for_selection']
-
 type Props = NonNullable<
   NonNullable<ConfigurableOptionsFragment['configurable_options']>[number]
 > & {
   index: number
   optionIndex: number
   optionEndLabels?: Record<string, React.ReactNode>
-  availableOptions?: AvailableOptionsProps
   sx?: SxProps<Theme>
   attribute_code: string
   render: typeof ConfigurableOptionValue
@@ -43,7 +37,6 @@ export function ConfigurableProductOption(props: Props) {
     index,
     optionIndex,
     optionEndLabels,
-    availableOptions,
     sx,
     attribute_code,
     url_key,
@@ -71,16 +64,10 @@ export function ConfigurableProductOption(props: Props) {
       (o) => o?.attribute_code === attribute_code,
     )?.option_value_uids
 
-  const availableConfigurableProductOptions = availableOptions?.find(
-    (o) => o?.attribute_code === attribute_code,
-  )?.option_value_uids
-
   const items = filterNonNullableKeys(values, ['uid']).map((ov) => ({
     value: ov.uid,
     ...ov,
-    disabled:
-      !(!available || available.includes(ov.uid)) ||
-      !availableConfigurableProductOptions?.includes(ov.uid),
+    disabled: !(!available || available.includes(ov.uid)),
   }))
 
   if (!values) return null

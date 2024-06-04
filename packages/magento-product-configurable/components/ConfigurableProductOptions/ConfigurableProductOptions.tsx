@@ -6,7 +6,7 @@ import React, { useEffect, useMemo } from 'react'
 import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
 import { useConfigurableOptionsSelection } from '../../hooks'
 import { ConfigurableOptionValue } from '../ConfigurableOptionValue/ConfigurableOptionValue'
-import { AvailableOptionsProps, ConfigurableProductOption } from './ConfigurableProductOption'
+import { ConfigurableProductOption } from './ConfigurableProductOption'
 
 export type ConfigurableProductOptionsProps = AddToCartItemSelector & {
   optionEndLabels?: Record<string, React.ReactNode>
@@ -31,9 +31,6 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
     'label',
     'values',
   ])
-
-  const availableOptions = product.configurable_product_options_selection
-    ?.options_available_for_selection as AvailableOptionsProps
 
   const { configured } = useConfigurableOptionsSelection({ url_key: product.url_key, index })
   const unavailable =
@@ -67,7 +64,6 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
           key={option.uid}
           render={render}
           optionEndLabels={optionEndLabels}
-          availableOptions={availableOptions}
           index={index}
           optionIndex={optionIndex}
           sx={sx}
