@@ -1,5 +1,15 @@
 # Change Log
 
+## 8.1.0
+
+### Patch Changes
+
+- [#2219](https://github.com/graphcommerce-org/graphcommerce/pull/2219) [`2ed2055`](https://github.com/graphcommerce-org/graphcommerce/commit/2ed20550324c104265d72f22339fbedb26fb433b) - Allow blog pages to be nested
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`0ccec63`](https://github.com/graphcommerce-org/graphcommerce/commit/0ccec630825d5fad398366beae90b3c90b2f84b8) - Added helper method to get Hygraph paths
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 8.1.0-canary.21
 
 ## 8.1.0-canary.20

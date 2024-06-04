@@ -1,5 +1,15 @@
 # Change Log
 
+## 8.1.0
+
+### Patch Changes
+
+- [#2267](https://github.com/graphcommerce-org/graphcommerce/pull/2267) [`9d5fd11`](https://github.com/graphcommerce-org/graphcommerce/commit/9d5fd11c7130612e80523608ab442976f3f5ddc5) - make the CategoryHeroNav fragment injectable and add image to the childeren
+  ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2227](https://github.com/graphcommerce-org/graphcommerce/pull/2227) [`d597719`](https://github.com/graphcommerce-org/graphcommerce/commit/d597719baaabbe079660ac063fd021d871831511) - Added option to change sort order (ASC / DESC) for sort options (Name, price, position etc) on catalog and search pages.
+  ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 8.1.0-canary.21
 
 ## 8.1.0-canary.20
