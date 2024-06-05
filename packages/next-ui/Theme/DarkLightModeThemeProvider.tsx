@@ -51,7 +51,7 @@ export function DarkLightModeThemeProvider(props: ThemeProviderProps) {
   const [configuredMode, setConfiguredMode] = useState<UserMode>(listenToBrowser ? 'auto' : ssrMode)
   const setThemeMode = (mode: UserMode) => {
     setConfiguredMode(mode)
-    setCssFlag('configuredMode', mode)
+    setCssFlag('color-scheme', mode)
   }
 
   const browserMode: Mode = useMediaQuery('(prefers-color-scheme: dark)') ? 'dark' : 'light'
@@ -64,10 +64,8 @@ export function DarkLightModeThemeProvider(props: ThemeProviderProps) {
   else if (dark) theme = dark
 
   useEffect(() => {
-    const flag = getCssFlag('configuredMode') as Mode
-    if (flag) {
-      setConfiguredMode(flag)
-    }
+    const flag = getCssFlag('color-scheme') as Mode
+    if (flag) setConfiguredMode(flag)
   }, [setConfiguredMode])
 
   // If a URL parameter is present, switch from auto to light or dark mode
