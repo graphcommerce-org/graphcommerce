@@ -41,7 +41,7 @@ query ProductList(
 }
 
 # Fragment used for a ProductListItem used when rendering any listing
-fragment ProductListItem on ProductInterface @injectable {
+fragment ProductListItem on ProductInterface {
   uid
   ...ProductLink
   sku
@@ -59,8 +59,8 @@ fragment ProductListItem on ProductInterface @injectable {
 
 ## How to modify an existing query?
 
-Some Fragments inside GraphCommerce have been marked as `@injectable` which
-allows you to inject our own fields in the fragments.
+Fragments inside GraphCommerce allows you to inject our own fields in the
+fragments.
 
 ```graphql
 fragment MyCustomFragment on ProductInterface

@@ -1,4 +1,4 @@
-fragment ShippingMethodSelected on Cart @injectable {
+fragment ShippingMethodSelected on Cart {
   id
   shipping_addresses {
     selected_shipping_method {

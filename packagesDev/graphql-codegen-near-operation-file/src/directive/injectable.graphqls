@@ -1,4 +1,6 @@
 """
+DEPRECATED, CAN BE COMPLETELY OMITTED
+
 Defines wheter a Fragment can be injected
 
 ```graphql
@@ -10,7 +12,7 @@ fragment MyInjectableFragment on Model @injectable {
 directive @injectable on FRAGMENT_DEFINITION
 
 """
-Defines whether a Fragment injects into an @injectable
+Defines whether a Fragment injects into another Fragment
 
 ```graphql
 fragment MyFragment on Model @inject(into ["MyInjectableFragment"]) {
