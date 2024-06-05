@@ -6,7 +6,7 @@ import { ThumbnailContainer } from './ThumbnailContainer'
 export type ThumbnailsProps = {
   buttonProps?: Omit<ButtonProps, 'onClick' | 'children'>
   sx?: SxProps<Theme>
-  images: Pick<ImageProps, 'src' | 'height' | 'width' | 'disabled'>[]
+  images: Pick<ImageProps, 'src' | 'height' | 'width'>[]
 }
 
 const componentName = 'ScrollerThumbnails'
@@ -16,17 +16,15 @@ export function ScrollerThumbnails(props: ThumbnailsProps) {
   return (
     images.length > 1 && (
       <ThumbnailContainer sx={sx}>
-        {images
-          .filter((item) => !item.disabled)
-          .map((item, i) => (
-            <ScrollerThumbnail
-              // eslint-disable-next-line react/no-array-index-key
-              key={`${i}-image`}
-              idx={i}
-              image={item}
-              {...buttonProps}
-            />
-          ))}
+        {images.map((item, i) => (
+          <ScrollerThumbnail
+            // eslint-disable-next-line react/no-array-index-key
+            key={`${i}-image`}
+            idx={i}
+            image={item}
+            {...buttonProps}
+          />
+        ))}
       </ThumbnailContainer>
     )
   )

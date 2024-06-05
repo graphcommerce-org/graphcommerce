@@ -244,26 +244,24 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   },
                 ]}
               >
-                {images
-                  .filter((img) => !img.disabled)
-                  .map((image, idx) => (
-                    <MotionImageAspect
-                      key={typeof image.src === 'string' ? image.src : idx}
-                      layout
-                      layoutDependency={zoomed}
-                      src={image.src}
-                      width={image.width}
-                      height={image.height}
-                      loading={idx === 0 ? 'eager' : 'lazy'}
-                      sx={{ display: 'block', objectFit: 'contain' }}
-                      sizes={{
-                        0: '100vw',
-                        [theme.breakpoints.values.md]: zoomed ? '100vw' : '60vw',
-                      }}
-                      alt={image.alt || `Product Image ${idx}` || undefined}
-                      dontReportWronglySizedImages
-                    />
-                  ))}
+                {images.map((image, idx) => (
+                  <MotionImageAspect
+                    key={typeof image.src === 'string' ? image.src : idx}
+                    layout
+                    layoutDependency={zoomed}
+                    src={image.src}
+                    width={image.width}
+                    height={image.height}
+                    loading={idx === 0 ? 'eager' : 'lazy'}
+                    sx={{ display: 'block', objectFit: 'contain' }}
+                    sizes={{
+                      0: '100vw',
+                      [theme.breakpoints.values.md]: zoomed ? '100vw' : '60vw',
+                    }}
+                    alt={image.alt || `Product Image ${idx}` || undefined}
+                    dontReportWronglySizedImages
+                  />
+                ))}
               </Scroller>
               <MotionBox
                 layout='position'
