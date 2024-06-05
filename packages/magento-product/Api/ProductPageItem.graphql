@@ -1,4 +1,4 @@
-fragment ProductPageItem on ProductInterface @injectable {
+fragment ProductPageItem on ProductInterface {
   __typename
   uid
   ...ProductListItem

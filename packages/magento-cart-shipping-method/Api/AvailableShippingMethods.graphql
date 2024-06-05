@@ -1,4 +1,4 @@
-fragment AvailableShippingMethods on Cart @injectable @inject(into: ["ShippingAddress"]) {
+fragment AvailableShippingMethods on Cart @inject(into: ["ShippingAddress"]) {
   shipping_addresses {
     available_shipping_methods {
       ...AvailableShippingMethod

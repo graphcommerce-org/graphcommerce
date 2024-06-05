@@ -1,4 +1,4 @@
-fragment ShippingPageFragment on Cart @injectable {
+fragment ShippingPageFragment on Cart {
   ...BillingAddress
   ...ShippingAddress
   ...CartSummary

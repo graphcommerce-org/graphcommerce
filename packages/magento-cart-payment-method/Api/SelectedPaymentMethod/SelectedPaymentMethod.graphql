@@ -1,4 +1,4 @@
-fragment SelectedPaymentMethod on SelectedPaymentMethod @injectable {
+fragment SelectedPaymentMethod on SelectedPaymentMethod {
   code
   title
 }

@@ -1,4 +1,4 @@
-fragment CartItemCountChanged on Cart @injectable {
+fragment CartItemCountChanged on Cart {
   __typename
   id
   total_quantity
