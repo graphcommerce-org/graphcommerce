@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -90,7 +90,9 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     query: BlogListTaggedDocument,
     variables: { currentUrl: [`blog/tagged/${urlKey}`], first: limit, tagged: params?.url },
   })
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+
+  if (!(await page).data.pages?.[0])
+    return redirectOrNotFound(staticClient, conf, { url: `blog/${urlKey}` }, locale)
 
   return {
     props: {
