@@ -24,8 +24,6 @@ export function ProductFiltersProCategorySection(props: ProductFiltersCategorySe
 
   if (!categoryTree) return null
 
-  const size = useIconSvgSize('medium')
-
   return (
     <ActionCardAccordion
       sx={[

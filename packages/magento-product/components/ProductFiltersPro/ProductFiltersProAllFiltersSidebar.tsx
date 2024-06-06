@@ -1,13 +1,14 @@
-import { CategoryQueryFragment } from '@graphcommerce/magento-category'
 import { Box, SxProps, Theme } from '@mui/material'
-import { ProductListParams } from '../ProductListItems/filterTypes'
 import { ProductFilterEqualSection } from './ProductFilterEqualSection'
 import { ProductFilterRangeSection } from './ProductFilterRangeSection'
 import {
   ProductFiltersProAggregations,
   ProductFiltersProAggregationsProps,
 } from './ProductFiltersProAggregations'
-import { ProductFiltersProCategorySection } from './ProductFiltersProCategorySection'
+import {
+  ProductFiltersCategorySectionProps,
+  ProductFiltersProCategorySection,
+} from './ProductFiltersProCategorySection'
 import { ProductFiltersProLimitSection } from './ProductFiltersProLimitSection'
 import {
   ProductFiltersProSortSection,
@@ -16,7 +17,7 @@ import {
 
 export type ProductFiltersProAllFiltersSidebarProps = ProductFiltersProAggregationsProps &
   ProductFiltersProSortSectionProps &
-  CategoryQueryFragment & { sx?: SxProps<Theme>; params?: ProductListParams }
+  ProductFiltersCategorySectionProps & { sx?: SxProps<Theme> }
 
 const defaultRenderer = {
   FilterRangeTypeInput: ProductFilterRangeSection,
@@ -24,11 +25,11 @@ const defaultRenderer = {
 }
 
 export function ProductFiltersProAllFiltersSidebar(props: ProductFiltersProAllFiltersSidebarProps) {
-  const { sort_fields, total_count, renderer, sx = [], category, categories, params } = props
+  const { sort_fields, total_count, renderer, sx = [], category, params } = props
 
   return (
     <Box sx={[{ display: { xs: 'none', md: 'grid' } }, ...(Array.isArray(sx) ? sx : [sx])]}>
-      <ProductFiltersProCategorySection categories={categories} params={params} />
+      <ProductFiltersProCategorySection category={category} params={params} />
       <ProductFiltersProSortSection
         sort_fields={sort_fields}
         total_count={total_count}

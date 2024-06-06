@@ -59,10 +59,10 @@ function CategoryFilterLayoutSidebar(props: ProductListFilterLayoutProps) {
       filterTypes={filterTypes}
       autoSubmitMd
     >
-      <CategoryBreadcrumbs
+      {/* <CategoryBreadcrumbs
         category={category}
         sx={(theme) => ({ mx: theme.page.horizontal, mb: theme.spacings.md })}
-      />
+      /> */}
 
       <Container
         maxWidth={false}
@@ -100,12 +100,7 @@ function CategoryFilterLayoutSidebar(props: ProductListFilterLayoutProps) {
           <ProductFiltersProClearAll
             sx={{ display: { xs: 'none', md: 'block' }, alignSelf: 'center' }}
           />
-          <ProductFiltersProCategorySection
-            category={category}
-            params={params}
-            hideTitle
-            // sx={{ mb: 2 }}
-          />
+          <ProductFiltersProCategorySection category={category} params={params} hideTitle />
           <ProductFiltersProSortSection
             sort_fields={sort_fields}
             total_count={total_count}
@@ -130,28 +125,26 @@ function CategoryFilterLayoutSidebar(props: ProductListFilterLayoutProps) {
           })}
         >
           <Typography variant='h1'>{title}</Typography>
-          {category?.description && (
-            <CategoryDescription
-              textAlignMd='start'
-              textAlignSm='start'
-              description={category?.description}
-            />
-          )}
-          {category?.children && (
-            <CategoryChildren
-              sx={(theme) => ({
-                justifyContent: 'start',
-                display: { xs: 'block', md: 'none' },
-                '& .CategoryChildren-scroller': {
-                  px: theme.page.horizontal,
-                  mx: `calc(${theme.page.horizontal} * -1)`,
-                },
-              })}
-              params={params}
-            >
-              {category?.children}
-            </CategoryChildren>
-          )}
+
+          <CategoryDescription
+            textAlignMd='start'
+            textAlignSm='start'
+            description={category?.description}
+          />
+
+          <CategoryChildren
+            sx={(theme) => ({
+              justifyContent: 'start',
+              display: { xs: 'block', md: 'none' },
+              '& .CategoryChildren-scroller': {
+                px: theme.page.horizontal,
+                mx: `calc(${theme.page.horizontal} * -1)`,
+              },
+            })}
+            params={params}
+          >
+            {category?.children}
+          </CategoryChildren>
         </Box>
 
         <StickyBelowHeader sx={{ display: { md: 'none', gridArea: 'horizontalFilters' } }}>
@@ -298,8 +291,16 @@ function CategoryFiltersLayoutClassic(props: ProductListFilterLayoutProps) {
       >
         {title}
       </LayoutTitle>
-      <CategoryDescription sx={{ textAlign: 'center' }} description={category?.description} />
-      <CategoryChildren params={params}>{category?.children}</CategoryChildren>
+      <CategoryDescription
+        sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.sm })}
+        description={category?.description}
+      />
+      <CategoryChildren
+        params={params}
+        sx={(theme) => ({ justifyContent: 'center', mb: theme.spacings.sm })}
+      >
+        {category?.children}
+      </CategoryChildren>
       <StickyBelowHeader>
         <ProductListParamsProvider value={params}>
           <ProductListFiltersContainer>
