@@ -246,6 +246,12 @@ width, borderRadius and margin. Performance-wise, font-size and line-height
 should not be scaled with responsiveVal. To learn more, look into
 [responsive font sizes](../framework/typography.md).
 
+## Disabling darkmode or lightmode site wide
+
+Remove light={lightTheme} or dark={darkTheme} from the
+`<DarkLightModeThemeProvider />` in \_app.tsx to disable darkmode or lightmode
+site wide.
+
 ## Next steps
 
 - Learn about [icons](../framework/icons.md) in GraphCommerce
