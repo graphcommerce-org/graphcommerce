@@ -1,55 +1,68 @@
-import { CategoryQueryFragment, useCategoryTree } from '@graphcommerce/magento-category'
-import { ActionCard, ActionCardAccordion, ActionCardList } from '@graphcommerce/next-ui'
+import { UseCategoryTreeProps, useCategoryTree } from '@graphcommerce/magento-category'
+import {
+  ActionCard,
+  ActionCardAccordion,
+  ActionCardList,
+  IconSvg,
+  iconChevronLeft,
+  useIconSvgSize,
+  responsiveVal,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
+import { Box, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
-import { ProductListParams } from '../ProductListItems/filterTypes'
 
-export type ProductFiltersCategorySectionProps = CategoryQueryFragment & {
-  params?: ProductListParams
+export type ProductFiltersCategorySectionProps = UseCategoryTreeProps & {
+  hideTitle?: boolean
+  sx?: SxProps<Theme>
 }
 
 export function ProductFiltersProCategorySection(props: ProductFiltersCategorySectionProps) {
-  const { categories, params } = props
+  const { hideTitle, sx } = props
   const router = useRouter()
-  const CategoryTree = useCategoryTree({ categories, params })
+  const categoryTree = useCategoryTree(props)
 
-  if (!CategoryTree) return null
+  if (!categoryTree) return null
+
+  const size = useIconSvgSize('medium')
 
   return (
     <ActionCardAccordion
-      sx={{
-        '& .MuiAccordionSummary-root': {
-          display: 'none',
-        },
-      }}
+      sx={[
+        hideTitle ? { '& .MuiAccordionSummary-root': { display: 'none' } } : {},
+        sx,
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       defaultExpanded
       summary={<Trans id='Categories' />}
       details={
-        <ActionCardList value='Categories' variant='default'>
-          {CategoryTree.map((item) => (
+        <ActionCardList value='cat' variant='default'>
+          {categoryTree.map((item) => (
             <ActionCard
               {...item}
-              sx={{
-                '& .ActionCard-title': {
-                  ml: item.indent,
+              title={
+                item.isBack ? (
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <IconSvg src={iconChevronLeft} size='medium' />
+                    {item.title}
+                  </Box>
+                ) : (
+                  item.title
+                )
+              }
+              sx={[
+                item.isBack ? {} : {},
+                {
+                  '&.sizeSmall': { pl: responsiveVal(8 * item.indent, 12 * item.indent) },
+                  '&.sizeMedium': { pl: responsiveVal(10 * item.indent, 14 * item.indent) },
+                  '&.sizeLarge': { pl: responsiveVal(12 * item.indent, 16 * item.indent) },
+                  '&.sizeResponsive': { pl: responsiveVal(8 * item.indent, 16 * item.indent) },
                 },
-                '&.variantDefault::after': {
-                  display: item.indent === 0 ? 'inherit' : 'none',
-                },
-                '&.sizeSmall': {
-                  pl: 0,
-                },
-                '&.sizeMedium': {
-                  pl: 0,
-                },
-                '&.sizeLarge': {
-                  pl: 0,
-                },
-              }}
-              key={item.value ?? ''}
-              value={item.value}
-              selected={item.active}
-              onClick={() => router.push(item.value)}
+              ]}
+              value={item.href}
+              key={item.href}
+              selected={item.selected}
+              onClick={() => router.push(item.href)}
             />
           ))}
         </ActionCardList>

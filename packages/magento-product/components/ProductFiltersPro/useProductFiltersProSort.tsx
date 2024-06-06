@@ -41,7 +41,9 @@ export function useProductFiltersProSort(props: ProductListActionSortProps) {
 
   const formSort = useWatch({ control, name: 'sort' })
   const formDirection = useWatch({ control, name: 'dir' })
-  const showReset = Boolean(formSort !== defaultSortBy || formDirection === 'DESC')
+  const showReset =
+    (formDirection !== null || formSort !== null) &&
+    Boolean(formSort !== defaultSortBy || formDirection === 'DESC')
   const selected = Boolean(params.sort && (params.sort !== defaultSortBy || params.dir === 'DESC'))
 
   const options = useMemo(

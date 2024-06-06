@@ -1,5 +1,5 @@
 import { useForm, useWatch } from '@graphcommerce/ecommerce-ui'
-import { CategoryQueryFragment, useCategoryTree } from '@graphcommerce/magento-category'
+import { UseCategoryTreeProps, useCategoryTree } from '@graphcommerce/magento-category'
 import {
   ActionCard,
   ActionCardListForm,
@@ -8,23 +8,20 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { useRouter } from 'next/router'
-import { ProductListParams } from '../ProductListItems/filterTypes'
 
-export type CategoryFilterProps = CategoryQueryFragment &
+export type CategoryFilterProps = UseCategoryTreeProps &
   Omit<
     ChipOverlayOrPopperProps,
     'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
-  > & {
-    params?: ProductListParams
-  }
+  >
 
 export function ProductFiltersProCategoryChip(props: CategoryFilterProps) {
-  const { categories, params, ...rest } = props
+  const { category, params, ...rest } = props
   const form = useForm()
   const router = useRouter()
   const activeCategory = useWatch({ control: form.control, name: 'category' })
 
-  const CategoryTree = useCategoryTree({ categories, params })
+  const CategoryTree = useCategoryTree(props)
 
   if (!CategoryTree) return null
 
@@ -37,8 +34,8 @@ export function ProductFiltersProCategoryChip(props: CategoryFilterProps) {
       {...rest}
       overlayProps={{ sizeSm: 'minimal', sizeMd: 'minimal', ...rest.overlayProps }}
       label={<Trans id='Categories' />}
-      selected={Boolean(CategoryTree.find((option) => option.active))}
-      selectedLabel={CategoryTree.find((option) => option.active)?.value}
+      selected={Boolean(CategoryTree.find((option) => option.selected))}
+      selectedLabel={CategoryTree.find((option) => option.selected)?.href}
       onApply={submit}
       onClose={submit}
       onReset={activeCategory ? () => form.setValue('category', null) : undefined}

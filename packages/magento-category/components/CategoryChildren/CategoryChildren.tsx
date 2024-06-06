@@ -44,6 +44,7 @@ export function CategoryChildren(props: CategoryChildrenProps) {
           sx={(theme) => ({
             gridAutoColumns: `max-content`,
             columnGap: theme.spacings.sm,
+            marginBottom: '-8px',
           })}
         >
           {childItems.map((category) => (
