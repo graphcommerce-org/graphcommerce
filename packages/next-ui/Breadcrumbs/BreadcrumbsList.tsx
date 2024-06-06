@@ -92,7 +92,9 @@ export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
               backgroundColor: alpha(theme.palette.action.hover, 0.025),
             },
           }}
-        />
+        >
+          {breadcrumb.name}
+        </Link>
       ))}
     </Box>
   )

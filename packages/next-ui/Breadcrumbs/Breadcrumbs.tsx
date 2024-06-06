@@ -18,6 +18,8 @@ import { useState, MouseEvent } from 'react'
 import { IconSvg } from '../IconSvg'
 import { iconClose, iconEllypsis } from '../icons'
 import type { BreadcrumbsType } from './types'
+import { i18n } from '@lingui/core'
+import { Button } from '../Button'
 
 const BreadcrumbsPopper = dynamic(
   async () => (await import('./BreadcrumbsPopper')).BreadcrumbsPopper,
@@ -37,12 +39,13 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
   const {
     breadcrumbs,
     sx,
-    breadcrumbsAmountDesktop = 3,
+    breadcrumbsAmountDesktop = 4,
     breadcrumbsAmountMobile = 2,
     lastIsLink = false,
     maxItems,
     itemSx = [],
     linkProps,
+    ...rest
   } = props
   const [anchorElement, setAnchorElement] = useState<HTMLButtonElement | null>(null)
   const theme = useTheme()
@@ -63,7 +66,8 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
 
   return (
     <MuiBreadcrumbs
-      aria-label='breadcrumb'
+      {...rest}
+      aria-label={i18n._(/* i18n*/ `Breadcrumbs`)}
       maxItems={maxItems}
       color='inherit'
       sx={[
@@ -121,22 +125,25 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
           onClickAway={handleClose}
         >
           <Box sx={{ position: 'relative', display: 'flex' }}>
-            <IconButton
+            <Button
               aria-describedby={anchorElement ? 'breadcrumb-list' : undefined}
-              color='default'
+              color='inherit'
+              variant='pill'
+              size='small'
               onClick={handleClick}
               sx={{
-                borderRadius: 2,
-                boxShadow: 6,
-                color: 'text.primary',
-                px: 1,
-                py: { xs: 0.3, md: 0.5 },
-                typography: 'caption',
-                backgroundColor: 'background.paper',
+                minWidth: 0,
+                // borderRadius: 2,
+                // boxShadow: 6,
+                // color: 'text.primary',
+                // px: 1,
+                // py: { xs: 0.3, md: 0.5 },
+                // typography: 'caption',
+                // backgroundColor: 'background.paper',
               }}
             >
               <IconSvg src={anchorElement ? iconClose : iconEllypsis} />
-            </IconButton>
+            </Button>
             <BreadcrumbsPopper
               breadcrumbs={breadcrumbs}
               anchorElement={anchorElement}

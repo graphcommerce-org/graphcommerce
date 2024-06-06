@@ -79,7 +79,18 @@ function CategoryPage(props: CategoryProps) {
         </Container>
       )}
 
-      {isCategory && isLanding && <CategoryBreadcrumbs category={category} pageGutter />}
+      {isCategory && isLanding && (
+        <CategoryBreadcrumbs
+          category={category}
+          sx={(theme) => ({
+            mx: theme.page.horizontal,
+            height: 0,
+            [theme.breakpoints.down('md')]: {
+              '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+            },
+          })}
+        />
+      )}
       {isCategory && isLanding && (
         <CategoryHeroNav
           {...category}

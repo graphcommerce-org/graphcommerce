@@ -24,8 +24,8 @@ import {
   ProductListQuery,
   ProductListSort,
 } from '@graphcommerce/magento-product'
-import { LayoutTitle, Row, StickyBelowHeader } from '@graphcommerce/next-ui'
-import { Box, Container } from '@mui/material'
+import { LayoutTitle, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { Box, Container, Typography } from '@mui/material'
 import { CategoryPageQuery } from '../../graphql/CategoryPage.gql'
 import { ProductListItems } from './ProductListItems'
 
@@ -56,13 +56,7 @@ function CategoryFilterLayoutSidebar(props: ProductListFilterLayoutProps) {
     >
       <CategoryBreadcrumbs
         category={category}
-        sx={(theme) => ({
-          mx: theme.page.horizontal,
-          mb: theme.spacings.md,
-          [theme.breakpoints.down('md')]: {
-            '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-          },
-        })}
+        sx={(theme) => ({ mx: theme.page.horizontal, mb: theme.spacings.md })}
       />
       <ProductFiltersProLayoutSidebar
         clearAll={<ProductFiltersProClearAll />}
@@ -101,14 +95,7 @@ function CategoryFilterLayoutSidebar(props: ProductListFilterLayoutProps) {
             gridTemplateColumns: 'minmax(0, 1fr)',
           })}
         >
-          <LayoutTitle
-            gutterTop={false}
-            gutterBottom={false}
-            variant='h1'
-            sx={{ alignItems: 'start' }}
-          >
-            {title}
-          </LayoutTitle>
+          <Typography variant='h1'>{title}</Typography>
           <CategoryDescription
             textAlignMd='start'
             textAlignSm='start'

@@ -27,7 +27,7 @@ export function useProductFiltersProSort(props: ProductListActionSortProps) {
     () =>
       filterNonNullableKeys(sort_fields?.options).map((o) =>
         !category?.uid && o.value === 'position'
-          ? { value: 'relevance', label: i18n._('Relevance') }
+          ? { value: 'relevance', label: i18n._(/* i18n*/ 'Relevance') }
           : o,
       ),
     [category?.uid, sort_fields?.options],
