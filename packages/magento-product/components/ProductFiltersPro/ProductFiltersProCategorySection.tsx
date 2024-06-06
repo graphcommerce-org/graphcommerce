@@ -5,7 +5,6 @@ import {
   ActionCardList,
   IconSvg,
   iconChevronLeft,
-  useIconSvgSize,
   responsiveVal,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'

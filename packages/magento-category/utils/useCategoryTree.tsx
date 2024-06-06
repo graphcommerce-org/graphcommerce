@@ -4,7 +4,7 @@ import { CategoryBreadcrumbFragment } from '../components/CategoryBreadcrumb'
 import { CategoryChildrenFragment } from '../components/CategoryChildren/CategoryChildren.gql'
 
 export type UseCategoryTreeProps = {
-  category: CategoryChildrenFragment & CategoryBreadcrumbFragment
+  category?: CategoryChildrenFragment & CategoryBreadcrumbFragment
   params?: ProductListParams
 }
 
