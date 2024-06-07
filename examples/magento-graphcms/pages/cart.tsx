@@ -109,7 +109,6 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
     sizeMd: 'floating',
     sizeSm: 'full',
     justifyMd: 'start',
-    blacklistedPages: ['/checkout'],
   },
 }
 CartPage.pageOptions = pageOptions

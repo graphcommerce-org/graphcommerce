@@ -1,7 +1,5 @@
 ---
-"@graphcommerce/framer-next-pages": minor
-"@graphcommerce/magento-graphcms": minor
-"@graphcommerce/next-ui": minor
+'@graphcommerce/framer-next-pages': minor
 ---
 
-Add page blacklists to overlays, prevent checkout on looping back and forth with the cart overlay when navigating directly to the checkout.
+Prevent checkout on looping back and forth with the cart overlay when navigating directly to the checkout.

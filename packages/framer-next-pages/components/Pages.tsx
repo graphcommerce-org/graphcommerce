@@ -102,11 +102,15 @@ export function FramerNextPages(props: PagesProps) {
 
   let renderItems = [...items.current]
 
-  /**  Removes the page if included in the blacklist of the overlay. **/
-  const overlayBlacklist: string[] = renderItems.at(-1)?.layoutProps?.blacklistedPages as string[]
+  /**  Removes the page if the up path equls the path of a overlay and there is no history present **/
+  const upPath = (renderItems.at(0)?.pageProps?.up as { href: string; title: string })?.href
+  const overlayPath = renderItems.at(-1)?.routerContext.pageInfo.asPath
   if (
-    renderItems.length > 1 &&
-    overlayBlacklist?.includes(renderItems.at(0)?.routerContext.pageInfo.asPath ?? '')
+    renderItems.length === 2 &&
+    upPath &&
+    overlayPath &&
+    upPath === overlayPath &&
+    renderItems.at(-1)?.overlayGroup
   ) {
     renderItems = renderItems.slice(1)
   }

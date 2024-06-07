@@ -12,7 +12,6 @@ export type LayoutOverlayState = Omit<
   | 'disableInert'
   | 'widthMd'
   | 'widthSm'
-  | 'blacklistedPages'
 >
 
 export function useLayoutState() {
