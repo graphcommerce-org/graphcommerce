@@ -22,6 +22,9 @@ msgstr "<0>{name}</0> è stato aggiunto al tuo carrello!"
 msgid "<0>{name}</0> has been added to your wishlist!"
 msgstr "<0>{name}</0> è stato aggiunto alla tua lista dei desideri!"
 
+msgid "<0>{name}</0> have been added to your shopping cart!"
+msgstr "<0>{name}</0> è stato aggiunto al tuo carrello!"
+
 msgid "Above <0/>"
 msgstr "Sopra <0/>"
 

@@ -75,19 +75,27 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
             </Button>
           }
         >
-          <Trans
-            id={
-              addedItems.length === 1
-                ? '<0>{name}</0> has been added to your shopping cart!'
-                : '<0>{name}</0> have been added to your shopping cart!'
-            }
-            components={{ 0: <strong /> }}
-            values={{
-              name: formatter.format(
-                addedItems.map((item) => item?.itemInCart?.product.name).filter(nonNullable),
-              ),
-            }}
-          />
+          {addedItems.length <= 1 ? (
+            <Trans
+              id='<0>{name}</0> has been added to your shopping cart!'
+              components={{ 0: <strong /> }}
+              values={{
+                name: formatter.format(
+                  addedItems.map((item) => item?.itemInCart?.product.name).filter(nonNullable),
+                ),
+              }}
+            />
+          ) : (
+            <Trans
+              id='<0>{name}</0> have been added to your shopping cart!'
+              components={{ 0: <strong /> }}
+              values={{
+                name: formatter.format(
+                  addedItems.map((item) => item?.itemInCart?.product.name).filter(nonNullable),
+                ),
+              }}
+            />
+          )}
         </MessageSnackbar>
       )}
     </>
