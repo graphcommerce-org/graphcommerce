@@ -12,7 +12,7 @@ export function productListApplySearchDefaults(
   if (!newParams.pageSize) newParams.pageSize = conf.storeConfig?.grid_per_page ?? 12
 
   if (Object.keys(newParams.sort).length === 0) {
-    newParams.sort = { relevance: 'ASC' }
+    newParams.sort = { relevance: 'DESC' }
   }
 
   return newParams

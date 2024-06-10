@@ -4,6 +4,7 @@ import { ProductFilterRangeSection } from './ProductFilterRangeSection'
 import {
   ProductFiltersProAggregations,
   ProductFiltersProAggregationsProps,
+  productFiltersProSectionRenderer,
 } from './ProductFiltersProAggregations'
 import {
   ProductFiltersCategorySectionProps,
@@ -19,11 +20,12 @@ export type ProductFiltersProAllFiltersSidebarProps = ProductFiltersProAggregati
   ProductFiltersProSortSectionProps &
   ProductFiltersCategorySectionProps & { sx?: SxProps<Theme> }
 
-const defaultRenderer = {
-  FilterRangeTypeInput: ProductFilterRangeSection,
-  FilterEqualTypeInput: ProductFilterEqualSection,
-}
-
+/**
+ * @deprecated Not used anymore
+ *
+ * @param props
+ * @returns
+ */
 export function ProductFiltersProAllFiltersSidebar(props: ProductFiltersProAllFiltersSidebarProps) {
   const { sort_fields, total_count, renderer, sx = [], category, params } = props
 
@@ -36,7 +38,9 @@ export function ProductFiltersProAllFiltersSidebar(props: ProductFiltersProAllFi
         category={category}
       />
       <ProductFiltersProLimitSection />
-      <ProductFiltersProAggregations renderer={{ ...defaultRenderer, ...renderer }} />
+      <ProductFiltersProAggregations
+        renderer={{ ...productFiltersProSectionRenderer, ...renderer }}
+      />
     </Box>
   )
 }
