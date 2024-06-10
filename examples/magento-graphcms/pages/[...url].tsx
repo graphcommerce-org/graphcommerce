@@ -2,11 +2,12 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
-  CategoryChildren,
-  CategoryDescription,
+  appendSiblingsAsChildren,
+  CategoryBreadcrumbs,
   CategoryHeroNav,
   CategoryHeroNavTitle,
   CategoryMeta,
+  findParentBreadcrumbItem,
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
 import {
@@ -69,21 +70,26 @@ function CategoryPage(props: CategoryProps) {
           {category?.name ?? page.title}
         </LayoutTitle>
       </LayoutHeader>
-      {!isLanding && (
+
+      {!isCategory && !isLanding && (
         <Container maxWidth={false}>
-          <LayoutTitle
-            variant='h1'
-            gutterTop
-            sx={(theme) => ({
-              marginBottom: category?.description && theme.spacings.md,
-            })}
-            gutterBottom={
-              !isCategory || (!category?.description && category?.children?.length === 0)
-            }
-          >
-            {category?.name ?? page.title}
+          <LayoutTitle variant='h1' gutterTop gutterBottom>
+            {page.title}
           </LayoutTitle>
         </Container>
+      )}
+
+      {isCategory && isLanding && (
+        <CategoryBreadcrumbs
+          category={category}
+          sx={(theme) => ({
+            mx: theme.page.horizontal,
+            height: 0,
+            [theme.breakpoints.down('md')]: {
+              '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+            },
+          })}
+        />
       )}
       {isCategory && isLanding && (
         <CategoryHeroNav
@@ -94,20 +100,17 @@ function CategoryPage(props: CategoryProps) {
       )}
 
       {isCategory && !isLanding && (
-        <>
-          <CategoryDescription description={category.description} />
-          <CategoryChildren params={params}>{category.children}</CategoryChildren>
-          <CategoryFilterLayout
-            params={params}
-            filters={filters}
-            products={products}
-            filterTypes={filterTypes}
-            title={category.name ?? ''}
-            id={category.uid}
-            category={category}
-          />
-        </>
+        <CategoryFilterLayout
+          params={params}
+          filters={filters}
+          products={products}
+          filterTypes={filterTypes}
+          title={category.name ?? page.title ?? ''}
+          id={category.uid}
+          category={category}
+        />
       )}
+
       {page && (
         <RowRenderer
           content={page.content}
@@ -162,6 +165,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const filteredCategoryUid = productListParams && productListParams.filters.category_uid?.in?.[0]
 
   const category = categoryPage.then((res) => res.data.categories?.items?.[0])
+  const waitForSiblings = appendSiblingsAsChildren(category, staticClient)
   let categoryUid = filteredCategoryUid
   if (!categoryUid) {
     categoryUid = (await category)?.uid ?? ''
@@ -193,14 +197,14 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   if ((await products)?.errors) return { notFound: true }
 
-  const { category_name, category_url_path } =
-    (await categoryPage).data.categories?.items?.[0]?.breadcrumbs?.[0] ?? {}
+  const { category_url_path, category_name } = findParentBreadcrumbItem(await category) ?? {}
 
   const up =
     category_url_path && category_name
       ? { href: `/${category_url_path}`, title: category_name }
       : { href: `/`, title: i18n._(/* i18n */ 'Home') }
 
+  await waitForSiblings
   const result = {
     props: {
       ...(await categoryPage).data,

@@ -140,6 +140,9 @@ export function LayoutHeader(props: LayoutHeaderProps) {
             '&.divider': {
               marginBottom: 0,
             },
+            '& .LayoutHeaderContent-left': import.meta.graphCommerce.breadcrumbs && {
+              display: 'none',
+            },
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

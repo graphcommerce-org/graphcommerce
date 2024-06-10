@@ -11,11 +11,13 @@ import {
 import { Trans } from '@lingui/react'
 import { useMemo } from 'react'
 import { useProductFiltersPro } from './ProductFiltersPro'
+import { SxProps, Theme } from '@mui/material'
 
-export type ProductFiltersProLimitSectionProps = Record<string, unknown>
+export type ProductFiltersProLimitSectionProps = { sx?: SxProps<Theme> }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSectionProps) {
+  const { sx } = props
   const { form } = useProductFiltersPro()
   const { control } = form
   const activePageSize = useWatch({ control, name: 'pageSize' })
@@ -38,6 +40,7 @@ export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSecti
 
   return (
     <ActionCardAccordion
+      sx={sx}
       defaultExpanded={!!activePageSize}
       summary={<Trans id='Per page' />}
       details={

@@ -13,5 +13,5 @@ export function ProductPageJsonLd<T extends { '@type': string }, P extends JsonL
   props: ProductPageJsonLdProps<T, P>,
 ) {
   const { product, render } = props
-  return <JsonLd<T> item={render(product)} />
+  return <JsonLd<T> item={render(product)} keyVal='product-jsonld' />
 }

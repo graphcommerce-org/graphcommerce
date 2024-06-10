@@ -2749,7 +2749,7 @@ __metadata:
     "@graphql-tools/utils": "npm:^10.0.12"
     cosmiconfig: "npm:^8.3.6"
     detect-package-manager: "npm:^3.0.1"
-    graphql-codegen-typescript-validation-schema: "npm:^0.12.1"
+    graphql-codegen-typescript-validation-schema: "npm:^0.14.1"
     graphql-tag: "npm:^2.12.6"
     rimraf: "npm:^5.0.5"
     tslib: "npm:^2.6.2"
@@ -4236,6 +4236,7 @@ __metadata:
     "@graphcommerce/graphql-mesh": ^8.1.0-canary.26
     "@graphcommerce/image": ^8.1.0-canary.26
     "@graphcommerce/magento-cart": ^8.1.0-canary.26
+    "@graphcommerce/magento-category": ^8.1.0-canary.26
     "@graphcommerce/magento-store": ^8.1.0-canary.26
     "@graphcommerce/next-ui": ^8.1.0-canary.26
     "@graphcommerce/prettier-config-pwa": ^8.1.0-canary.26
@@ -4694,16 +4695,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/schema-ast@npm:4.0.0":
-  version: 4.0.0
-  resolution: "@graphql-codegen/schema-ast@npm:4.0.0"
+"@graphql-codegen/plugin-helpers@npm:^5.0.3":
+  version: 5.0.3
+  resolution: "@graphql-codegen/plugin-helpers@npm:5.0.3"
   dependencies:
-    "@graphql-codegen/plugin-helpers": "npm:^5.0.0"
     "@graphql-tools/utils": "npm:^10.0.0"
-    tslib: "npm:~2.5.0"
+    change-case-all: "npm:1.0.15"
+    common-tags: "npm:1.8.2"
+    import-from: "npm:4.0.0"
+    lodash: "npm:~4.17.0"
+    tslib: "npm:~2.6.0"
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 10c0/82b7dcca9bbec4406d107e97f611d4c8657a65064a19c93e5319047a780a051392ef70e27b5d501e765eb0fb0a3f08d69e5051d7797c5d2f0756bae93e871154
+  checksum: 10c0/1ea0d46ccdf449f43afe8ee0222bf96769b3efdb8262688964f4eff725c43caac4caa36859bcbd6a2ba611aea2adaa6bb2e86bc1d06ec9636f11952ebe260036
   languageName: node
   linkType: hard
 
@@ -4717,6 +4721,19 @@ __metadata:
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
   checksum: 10c0/1223353d72ad236cad194e5915fadc9ccf91d57cc827b14b47b54442c89daf0e978e49ef52b00abd074d024e1291c0e66a063b4df2f340dad415f672a47c251f
+  languageName: node
+  linkType: hard
+
+"@graphql-codegen/schema-ast@npm:4.0.2":
+  version: 4.0.2
+  resolution: "@graphql-codegen/schema-ast@npm:4.0.2"
+  dependencies:
+    "@graphql-codegen/plugin-helpers": "npm:^5.0.3"
+    "@graphql-tools/utils": "npm:^10.0.0"
+    tslib: "npm:~2.6.0"
+  peerDependencies:
+    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 10c0/533b1bfa6c01d02ff2ec688a478e8daeb9bda1d69d63b1bca8adf9ab606a4a315da4e0f45444836646b8e539e8c76891af536afd9fb3a7e36d40f8bd04218748
   languageName: node
   linkType: hard
 
@@ -4862,7 +4879,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/visitor-plugin-common@npm:4.1.0, @graphql-codegen/visitor-plugin-common@npm:^4.0.0, @graphql-codegen/visitor-plugin-common@npm:^4.1.0":
+"@graphql-codegen/visitor-plugin-common@npm:4.1.0, @graphql-codegen/visitor-plugin-common@npm:^4.1.0":
   version: 4.1.0
   resolution: "@graphql-codegen/visitor-plugin-common@npm:4.1.0"
   dependencies:
@@ -4879,6 +4896,26 @@ __metadata:
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
   checksum: 10c0/361c32fc98359df0e6d799ac210b0659b210abf9ecdf5c3906f53e885b65b24987fb517ba3771e8759140dc25c0474d6702a25a7950811d00de4ad61a88d66b7
+  languageName: node
+  linkType: hard
+
+"@graphql-codegen/visitor-plugin-common@npm:^5.0.0":
+  version: 5.1.0
+  resolution: "@graphql-codegen/visitor-plugin-common@npm:5.1.0"
+  dependencies:
+    "@graphql-codegen/plugin-helpers": "npm:^5.0.3"
+    "@graphql-tools/optimize": "npm:^2.0.0"
+    "@graphql-tools/relay-operation-optimizer": "npm:^7.0.0"
+    "@graphql-tools/utils": "npm:^10.0.0"
+    auto-bind: "npm:~4.0.0"
+    change-case-all: "npm:1.0.15"
+    dependency-graph: "npm:^0.11.0"
+    graphql-tag: "npm:^2.11.0"
+    parse-filepath: "npm:^1.0.2"
+    tslib: "npm:~2.6.0"
+  peerDependencies:
+    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 10c0/500b0da52c9e1aab514db3eb2481d5c780238a5382745f354779d69d17d5d2b0b9e07386690557f0c387d0634f02c7f93c71d4e228843db2c5292ac414ebc875
   languageName: node
   linkType: hard
 
@@ -12377,19 +12414,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-codegen-typescript-validation-schema@npm:^0.12.1":
-  version: 0.12.1
-  resolution: "graphql-codegen-typescript-validation-schema@npm:0.12.1"
+"graphql-codegen-typescript-validation-schema@npm:^0.14.1":
+  version: 0.14.1
+  resolution: "graphql-codegen-typescript-validation-schema@npm:0.14.1"
   dependencies:
     "@graphql-codegen/plugin-helpers": "npm:^5.0.0"
-    "@graphql-codegen/schema-ast": "npm:4.0.0"
-    "@graphql-codegen/visitor-plugin-common": "npm:^4.0.0"
+    "@graphql-codegen/schema-ast": "npm:4.0.2"
+    "@graphql-codegen/visitor-plugin-common": "npm:^5.0.0"
     "@graphql-tools/utils": "npm:^10.0.0"
     graphlib: "npm:^2.1.8"
     graphql: "npm:^16.6.0"
   peerDependencies:
     graphql: ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 10c0/21b3fde1f7f0453d2c66e7f9a0e6ccd464e5b2b7c62d8cd84ecc5b3fb7a95aec1a29a35bd585d164d73ade1f307d5975691742dbae06107a74bf32deb6a882fd
+  checksum: 10c0/ebab280a0ae3bd820115c4bc92599493865ffb24b1b45db910afdf4eb36b117119a4e905aa26fa62ac04e116ef5f7643be9257831ab8d99ec58415816d2b1782
   languageName: node
   linkType: hard
 
@@ -18595,13 +18632,6 @@ __metadata:
   version: 2.4.1
   resolution: "tslib@npm:2.4.1"
   checksum: 10c0/9ac0e4fd1033861f0b4f0d848dc3009ebcc3aa4757a06e8602a2d8a7aed252810e3540e54e70709f06c0f95311faa8584f769bcbede48aff785eb7e4d399b9ec
-  languageName: node
-  linkType: hard
-
-"tslib@npm:~2.5.0":
-  version: 2.5.3
-  resolution: "tslib@npm:2.5.3"
-  checksum: 10c0/4cb1817d34fae5b27d146e6c4a468d4155097d95c1335d0bc9690f11f33e63844806bf4ed6d97c30c72b8d85261b66cbbe16d871d9c594ac05701ec83e62a607
   languageName: node
   linkType: hard
 

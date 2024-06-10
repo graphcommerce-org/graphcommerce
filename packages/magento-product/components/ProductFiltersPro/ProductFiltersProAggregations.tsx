@@ -1,4 +1,8 @@
 import { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
+import { ProductFilterEqualChip } from './ProductFilterEqualChip'
+import { ProductFilterEqualSection } from './ProductFilterEqualSection'
+import { ProductFilterRangeChip } from './ProductFilterRangeChip'
+import { ProductFilterRangeSection } from './ProductFilterRangeSection'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import { excludeCategory } from './activeAggregations'
 import { applyAggregationCount } from './applyAggregationCount'
@@ -11,6 +15,16 @@ export type FilterRenderer = Record<string, React.FC<FilterProps>>
 
 export type ProductFiltersProAggregationsProps = {
   renderer?: FilterRenderer
+}
+
+export const productFiltersProSectionRenderer = {
+  FilterRangeTypeInput: ProductFilterRangeSection,
+  FilterEqualTypeInput: ProductFilterEqualSection,
+}
+
+export const productFiltersProChipRenderer = {
+  FilterEqualTypeInput: ProductFilterEqualChip,
+  FilterRangeTypeInput: ProductFilterRangeChip,
 }
 
 export function ProductFiltersProAggregations(props: ProductFiltersProAggregationsProps) {

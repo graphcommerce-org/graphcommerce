@@ -40,12 +40,7 @@ export const LayoutTitle = React.forwardRef<HTMLDivElement, TitleProps>((props, 
           alignItems: 'center',
           justifyContent: 'center',
           gap: `6px`,
-          flexFlow: 'unset',
-          [theme.breakpoints.up('md')]: {
-            flexFlow: 'column',
-          },
           '&.sizeSmall': {
-            flexFlow: 'unset',
             overflow: 'hidden',
             '& svg': {
               width: responsiveVal(24, 28),
