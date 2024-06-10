@@ -86,7 +86,7 @@ export type DatalayerConfig = {
  *
  * You can export configuration by running `yarn graphcommerce export-config`
  *
- * ## Extending the configuration in your  project
+ * ## Extending the configuration in your project
  *
  * Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceStorefrontConfig inputs to add configuration.
  *
@@ -104,6 +104,8 @@ export type DatalayerConfig = {
  * Below is a list of all possible configurations that can be set by GraphCommerce.
  */
 export type GraphCommerceConfig = {
+  /** Configuration for the SidebarGallery component */
+  breadcrumbs?: InputMaybe<Scalars['Boolean']['input']>;
   /**
    * The canonical base URL is used for SEO purposes.
    *
@@ -365,9 +367,13 @@ export type GraphCommerceStorefrontConfig = {
   googleTagmanagerId?: InputMaybe<Scalars['String']['input']>;
   /** Add a gcms-locales header to make sure queries return in a certain language, can be an array to define fallbacks. */
   hygraphLocales?: InputMaybe<Array<Scalars['String']['input']>>;
-  /** Specify a custom locale for to load translations. */
+  /** Custom locale used to load the .po files. Must be a valid locale, also used for Intl functions. */
   linguiLocale?: InputMaybe<Scalars['String']['input']>;
-  /** Must be a locale string https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers */
+  /**
+   * Must be a [locale string](https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers) for automatic redirects to work.
+   *
+   * This value can be used as a sub-path identifier only, make sure linguiLocale is configured for each URL.
+   */
   locale: Scalars['String']['input'];
   /**
    * Magento store code.
@@ -380,6 +386,11 @@ export type GraphCommerceStorefrontConfig = {
    * - b2b-us
    */
   magentoStoreCode: Scalars['String']['input'];
+  /**
+   * Allow the site to be indexed by search engines.
+   * If false, the robots.txt file will be set to disallow all.
+   */
+  robotsAllow?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Options to configure which values will be replaced when a variant is selected on the product page. */
@@ -447,18 +458,19 @@ export function DatalayerConfigSchema(): z.ZodObject<Properties<DatalayerConfig>
 
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
+    breadcrumbs: z.boolean().default(false).nullish(),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     compare: z.boolean().nullish(),
-    compareVariant: CompareVariantSchema.nullish(),
-    configurableVariantForSimple: z.boolean().nullish(),
+    compareVariant: CompareVariantSchema.default("ICON").nullish(),
+    configurableVariantForSimple: z.boolean().default(false).nullish(),
     configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
-    crossSellsHideCartItems: z.boolean().nullish(),
-    crossSellsRedirectItems: z.boolean().nullish(),
+    crossSellsHideCartItems: z.boolean().default(false).nullish(),
+    crossSellsRedirectItems: z.boolean().default(false).nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
     dataLayer: DatalayerConfigSchema().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
-    demoMode: z.boolean().nullish(),
+    demoMode: z.boolean().default(true).nullish(),
     enableGuestCheckoutLogin: z.boolean().nullish(),
     googleAnalyticsId: z.string().nullish(),
     googleRecaptchaKey: z.string().nullish(),
@@ -471,7 +483,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     previewSecret: z.string().nullish(),
-    productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
+    productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
     productFiltersPro: z.boolean().nullish(),
     productRoute: z.string().nullish(),
     recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
@@ -504,7 +516,8 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
     hygraphLocales: z.array(z.string().min(1)).nullish(),
     linguiLocale: z.string().nullish(),
     locale: z.string().min(1),
-    magentoStoreCode: z.string().min(1)
+    magentoStoreCode: z.string().min(1),
+    robotsAllow: z.boolean().nullish()
   })
 }
 

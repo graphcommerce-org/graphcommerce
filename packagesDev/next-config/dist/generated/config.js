@@ -68,18 +68,19 @@ function DatalayerConfigSchema() {
 }
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
+        breadcrumbs: _zod.z.boolean().default(false).nullish(),
         canonicalBaseUrl: _zod.z.string().min(1),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
         compare: _zod.z.boolean().nullish(),
-        compareVariant: CompareVariantSchema.nullish(),
-        configurableVariantForSimple: _zod.z.boolean().nullish(),
+        compareVariant: CompareVariantSchema.default("ICON").nullish(),
+        configurableVariantForSimple: _zod.z.boolean().default(false).nullish(),
         configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
-        crossSellsHideCartItems: _zod.z.boolean().nullish(),
-        crossSellsRedirectItems: _zod.z.boolean().nullish(),
+        crossSellsHideCartItems: _zod.z.boolean().default(false).nullish(),
+        crossSellsRedirectItems: _zod.z.boolean().default(false).nullish(),
         customerRequireEmailConfirmation: _zod.z.boolean().nullish(),
         dataLayer: DatalayerConfigSchema().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
-        demoMode: _zod.z.boolean().nullish(),
+        demoMode: _zod.z.boolean().default(true).nullish(),
         enableGuestCheckoutLogin: _zod.z.boolean().nullish(),
         googleAnalyticsId: _zod.z.string().nullish(),
         googleRecaptchaKey: _zod.z.string().nullish(),
@@ -92,7 +93,7 @@ function GraphCommerceConfigSchema() {
         limitSsg: _zod.z.boolean().nullish(),
         magentoEndpoint: _zod.z.string().min(1),
         previewSecret: _zod.z.string().nullish(),
-        productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
+        productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),
         productRoute: _zod.z.string().nullish(),
         recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
@@ -123,7 +124,8 @@ function GraphCommerceStorefrontConfigSchema() {
         hygraphLocales: _zod.z.array(_zod.z.string().min(1)).nullish(),
         linguiLocale: _zod.z.string().nullish(),
         locale: _zod.z.string().min(1),
-        magentoStoreCode: _zod.z.string().min(1)
+        magentoStoreCode: _zod.z.string().min(1),
+        robotsAllow: _zod.z.boolean().nullish()
     });
 }
 function MagentoConfigurableVariantValuesSchema() {

@@ -94,15 +94,26 @@ function withGraphCommerce(nextConfig, cwd) {
         },
         transpilePackages,
         webpack: (config, options) => {
-            // Allow importing yml/yaml files for graphql-mesh
-            config.module?.rules?.push({ test: /\.ya?ml$/, use: 'js-yaml-loader' });
+            if (!config.module)
+                config.module = { rules: [] };
+            config.module = {
+                ...config.module,
+                rules: [
+                    ...(config.module.rules ?? []),
+                    // Allow importing yml/yaml files for graphql-mesh
+                    { test: /\.ya?ml$/, use: 'js-yaml-loader' },
+                    // @lingui .po file support
+                    { test: /\.po/, use: '@lingui/loader' },
+                ],
+                exprContextCritical: false,
+            };
             if (!config.plugins)
                 config.plugins = [];
             // Make import.meta.graphCommerce available for usage.
             config.plugins.push(new webpack_1.DefinePlugin(importMetaPaths));
             // To properly properly treeshake @apollo/client we need to define the __DEV__ property
+            config.plugins.push(new webpack_1.DefinePlugin({ 'globalThis.__DEV__': options.dev }));
             if (!options.isServer) {
-                config.plugins.push(new webpack_1.DefinePlugin({ __DEV__: options.dev }));
                 if (graphcommerceConfig.debug?.webpackCircularDependencyPlugin) {
                     config.plugins.push(new circular_dependency_plugin_1.default({
                         exclude: /readable-stream|duplexer2|node_modules\/next/,
@@ -122,8 +133,6 @@ function withGraphCommerce(nextConfig, cwd) {
                     }));
                 }
             }
-            // @lingui .po file support
-            config.module?.rules?.push({ test: /\.po/, use: '@lingui/loader' });
             config.snapshot = {
                 ...(config.snapshot ?? {}),
                 managedPaths: [
@@ -146,7 +155,7 @@ function withGraphCommerce(nextConfig, cwd) {
                     '@mui/system': '@mui/system/modern',
                 };
             }
-            config.plugins.push(new InterceptorPlugin_1.InterceptorPlugin(graphcommerceConfig));
+            config.plugins.push(new InterceptorPlugin_1.InterceptorPlugin(graphcommerceConfig, !options.isServer));
             return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config;
         },
     };

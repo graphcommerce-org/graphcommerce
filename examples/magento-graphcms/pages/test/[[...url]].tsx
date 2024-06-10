@@ -6,6 +6,7 @@ import { GetStaticPaths } from 'next'
 import { LayoutDocument, LayoutNavigation, LayoutNavigationProps } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 import { LayoutDemo } from './minimal-page-shell/[[...url]]'
+import { i18n } from '@lingui/core'
 
 type Props = { url: string }
 type RouteProps = { url: string[] }
@@ -68,7 +69,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   return {
     props: {
       url,
-      up: url !== 'index' ? { href: '/', title: 'Home' } : null,
+      up: url !== 'index' ? { href: '/', title: i18n._(/* i18n */ 'Home') } : null,
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },

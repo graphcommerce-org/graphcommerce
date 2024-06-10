@@ -9,6 +9,9 @@ export const cartTypePolicies: StrictTypedTypePolicies = {
   CartPrices: {
     merge: (exiting, incoming, { mergeObjects }) => mergeObjects(exiting, incoming),
   },
+  CartItemPrices: {
+    merge: (exiting, incoming, { mergeObjects }) => mergeObjects(exiting, incoming),
+  },
   Cart: {
     fields: {
       shipping_addresses: {
@@ -21,6 +24,7 @@ export const cartTypePolicies: StrictTypedTypePolicies = {
           return merged ? [merged] : []
         },
       },
+      items: { merge: (_, incoming) => incoming },
       prices: {
         merge: (existing: CartPrices[] | undefined, incoming: CartPrices[], options) =>
           options.mergeObjects(existing ?? {}, incoming),

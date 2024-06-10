@@ -15,11 +15,9 @@ export const CategoryHeroNavTitle = memo<CategoryHeroNavTitleProps>((props) => {
       variant='h1'
       sx={[
         (theme) => ({
-          justifyContent: 'center',
           [theme.breakpoints.up('md')]: {
-            margin: 0,
-            alignItems: 'start',
-            justifyContent: 'end',
+            m: 0,
+            justifyContent: 'start',
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

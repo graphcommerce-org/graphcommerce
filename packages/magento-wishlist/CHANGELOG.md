@@ -1,5 +1,74 @@
 # @graphcommerce/magento-wishlist
 
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
+## 8.1.0-canary.20
+
+## 8.1.0-canary.19
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+### Minor Changes
+
+- [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed useMediaQuery from the wishlist and cart ItemActionCard and replaced it with a new responsive size prop.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+## 8.1.0-canary.8
+
+## 8.1.0-canary.7
+
+## 8.1.0-canary.6
+
+## 8.1.0-canary.5
+
+## 8.0.6-canary.4
+
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
+## 8.0.5
+
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+## 8.0.5-canary.7
+
 ## 8.0.5-canary.6
 
 ## 8.0.5-canary.5

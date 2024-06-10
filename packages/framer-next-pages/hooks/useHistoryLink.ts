@@ -10,24 +10,17 @@ export function useHistoryLink(options: UseHistoryLink) {
   const prevRouter = usePrevPageRouter()
   const router = useRouter()
 
-  const onClick =
-    href === prevRouter?.asPath
-      ? (e: ClickEvent) => {
-          e.preventDefault()
-          router.back()
-        }
-      : undefined
+  const onClick = (e: ClickEvent) => {
+    e.preventDefault()
+
+    if (href === prevRouter?.asPath) return router.back()
+    return router.replace(href)
+  }
 
   return { onClick, href }
 }
 
 export function useHistoryGo(options: UseHistoryLink) {
-  const { onClick, href } = useHistoryLink(options)
-  const router = useRouter()
-
-  return () => {
-    if (onClick) onClick({ preventDefault: () => {} })
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    else router.push(href)
-  }
+  const { onClick } = useHistoryLink(options)
+  return () => onClick({ preventDefault: () => {} })
 }

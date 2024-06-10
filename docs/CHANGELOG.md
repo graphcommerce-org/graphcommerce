@@ -1,5 +1,89 @@
 # Change Log
 
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
+## 8.1.0-canary.20
+
+## 8.1.0-canary.19
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+### Patch Changes
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`7652234`](https://github.com/graphcommerce-org/graphcommerce/commit/7652234e222c3f4d8de3817fe907b5b6925a5493) - Replaced next-sitemap with page router based robots.txt & sitemaps
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 8.1.0-canary.8
+
+### Patch Changes
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for linguiLocale
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.7
+
+## 8.1.0-canary.6
+
+### Patch Changes
+
+- [#1984](https://github.com/graphcommerce-org/graphcommerce/pull/1984) [`e05534f`](https://github.com/graphcommerce-org/graphcommerce/commit/e05534fff4990fd584fe401b55b6d9a33934e048) - Added docs about caching
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.5
+
+## 8.0.6-canary.4
+
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
+### Patch Changes
+
+- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods.
+  ([@paales](https://github.com/paales))
+
+## 8.0.5
+
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+## 8.0.5-canary.7
+
 ## 8.0.5-canary.6
 
 ## 8.0.5-canary.5

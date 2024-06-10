@@ -1,32 +1,26 @@
-import type { RemoveItemFromCart } from '@graphcommerce/magento-cart-items'
-import type { ReactPlugin } from '@graphcommerce/next-config'
+import type { useRemoveItemFromCart as useRemoveItemFromCartBase } from '@graphcommerce/magento-cart-items'
+import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 import { sendEvent } from '../api/sendEvent'
 import { cartItemToRemoveFromCart } from '../mapping/cartItemToRemoveFromCart/cartToRemoveFromCart'
 
-export const component = 'RemoveItemFromCart'
-export const exported =
-  '@graphcommerce/magento-cart-items/components/RemoveItemFromCart/RemoveItemFromCart'
-
-export const GoogleDatalayerRemoveItemFromCart: ReactPlugin<typeof RemoveItemFromCart> = (
-  props,
-) => {
-  const { Prev, buttonProps } = props
-
-  return (
-    <Prev
-      {...props}
-      buttonProps={{
-        ...buttonProps,
-        onClick: (e) => {
-          sendEvent(
-            'remove_from_cart',
-            cartItemToRemoveFromCart({ __typename: 'SimpleCartItem', ...props }),
-          )
-          buttonProps?.onClick?.(e)
-        },
-      }}
-    />
-  )
+export const config: PluginConfig = {
+  type: 'function',
+  module: '@graphcommerce/magento-cart-items',
 }
 
-export const Plugin = GoogleDatalayerRemoveItemFromCart
+export const useRemoveItemFromCart: FunctionPlugin<typeof useRemoveItemFromCartBase> = (
+  usePrev,
+  props,
+) =>
+  usePrev({
+    ...props,
+    onComplete: (result, variables) => {
+      if (!result.errors) {
+        sendEvent(
+          'remove_from_cart',
+          cartItemToRemoveFromCart({ ...props, __typename: 'SimpleCartItem' }),
+        )
+      }
+      return props.onComplete?.(result, variables)
+    },
+  })

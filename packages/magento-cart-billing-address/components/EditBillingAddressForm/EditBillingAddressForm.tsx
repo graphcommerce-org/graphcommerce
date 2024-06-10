@@ -1,3 +1,4 @@
+import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { useHistoryGo } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
@@ -8,19 +9,12 @@ import {
   NameFields,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
-import {
-  Button,
-  Form,
-  FormActions,
-  FormDivider,
-  FormRow,
-  InputCheckmark,
-} from '@graphcommerce/next-ui'
+import { Button, Form, FormActions, FormDivider, FormRow } from '@graphcommerce/next-ui'
 import { phonePattern } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { SxProps, TextField, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material'
 import { GetBillingAddressDocument } from './GetBillingAddress.gql'
 
 export type EditBillingAddressFormProps = { sx?: SxProps<Theme> }
@@ -57,12 +51,12 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
         regionId,
       }
     },
-    onComplete: ({ errors }) => {
-      if (!errors) goToCheckout()
+    onComplete: async ({ errors }) => {
+      if (!errors) await goToCheckout()
     },
   })
 
-  const { handleSubmit, formState, required, error, muiRegister, valid } = form
+  const { handleSubmit, formState, required, error, control } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
@@ -72,19 +66,21 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
         <AddressFields form={form} />
 
         <FormRow>
-          <TextField
+          <TextFieldElement
+            control={control}
+            name='telephone'
             variant='outlined'
             type='text'
             error={!!formState.errors.telephone}
             required={required.telephone}
             label={<Trans id='Telephone' />}
-            {...muiRegister('telephone', {
+            rules={{
               required: required.telephone,
               pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-            })}
+            }}
             helperText={formState.isSubmitted && formState.errors.telephone?.message}
             disabled={formState.isSubmitting}
-            InputProps={{ endAdornment: <InputCheckmark show={valid.telephone} /> }}
+            showValid
           />
         </FormRow>
 

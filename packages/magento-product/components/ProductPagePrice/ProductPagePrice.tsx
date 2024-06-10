@@ -5,8 +5,13 @@ import { extendableComponent } from '@graphcommerce/next-ui'
 import { AddToCartItemSelector, useFormAddProductsToCart } from '../AddProductsToCart'
 import { ProductPagePriceFragment } from './ProductPagePrice.gql'
 import { getProductTierPrice } from './getProductTierPrice'
+import {
+  UseCustomizableOptionPriceProps,
+  useCustomizableOptionPrice,
+} from './useCustomizableOptionPrice'
 
-export type ProductPagePriceProps = { product: ProductPagePriceFragment } & AddToCartItemSelector
+export type ProductPagePriceProps = { product: ProductPagePriceFragment } & AddToCartItemSelector &
+  UseCustomizableOptionPriceProps
 
 const { classes } = extendableComponent('ProductPagePrice', [
   'finalPrice',
@@ -21,6 +26,7 @@ export function ProductPagePrice(props: ProductPagePriceProps) {
   const price =
     getProductTierPrice(product, quantity) ?? product.price_range.minimum_price.final_price
 
+  const priceValue = useCustomizableOptionPrice(props)
   const regularPrice = product.price_range.minimum_price.regular_price
 
   return (
@@ -32,7 +38,7 @@ export function ProductPagePrice(props: ProductPagePriceProps) {
           skeleton={{ variant: 'text', sx: { width: '3em', transform: 'none' } }}
           sx={[{ textDecoration: 'line-through', color: 'text.disabled', marginRight: '8px' }]}
         >
-          <Money {...product.price_range.minimum_price.regular_price} />
+          <Money {...regularPrice} />
         </SignedInMask>
       )}
       <SignedInMask
@@ -40,7 +46,7 @@ export function ProductPagePrice(props: ProductPagePriceProps) {
         skeleton={{ variant: 'text', sx: { width: '3em', transform: 'none' } }}
         className={classes.finalPrice}
       >
-        <Money {...price} />
+        <Money {...price} value={priceValue} />
       </SignedInMask>
     </>
   )

@@ -5,6 +5,9 @@ import { CategoryBreadcrumbFragment } from './CategoryBreadcrumb.gql'
 
 type CategoryPageBreadcrumbsProps = CategoryBreadcrumbFragment & Omit<BreadcrumbsProps, 'children'>
 
+/**
+ * @deprecated Please use CategoryBreadcrumbs
+ */
 export function CategoryBreadcrumb(props: CategoryPageBreadcrumbsProps) {
   const { breadcrumbs, name, ...breadcrumbsProps } = props
 

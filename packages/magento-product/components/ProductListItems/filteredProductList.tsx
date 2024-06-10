@@ -38,7 +38,7 @@ export function parseParams(
     }
     if (param === 'dir') {
       const [sortBy] = Object.keys(categoryVariables.sort)
-      if (sortBy) categoryVariables.sort[sortBy] = value as SortEnum
+      if (sortBy) categoryVariables.sort[sortBy] = value?.toUpperCase() as SortEnum
       return undefined
     }
 

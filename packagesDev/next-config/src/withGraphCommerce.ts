@@ -112,8 +112,19 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
     },
     transpilePackages,
     webpack: (config: Configuration, options) => {
-      // Allow importing yml/yaml files for graphql-mesh
-      config.module?.rules?.push({ test: /\.ya?ml$/, use: 'js-yaml-loader' })
+      if (!config.module) config.module = { rules: [] }
+
+      config.module = {
+        ...config.module,
+        rules: [
+          ...(config.module.rules ?? []),
+          // Allow importing yml/yaml files for graphql-mesh
+          { test: /\.ya?ml$/, use: 'js-yaml-loader' },
+          // @lingui .po file support
+          { test: /\.po/, use: '@lingui/loader' },
+        ],
+        exprContextCritical: false,
+      }
 
       if (!config.plugins) config.plugins = []
 
@@ -121,8 +132,9 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
       config.plugins.push(new DefinePlugin(importMetaPaths))
 
       // To properly properly treeshake @apollo/client we need to define the __DEV__ property
+      config.plugins.push(new DefinePlugin({ 'globalThis.__DEV__': options.dev }))
+
       if (!options.isServer) {
-        config.plugins.push(new DefinePlugin({ __DEV__: options.dev }))
         if (graphcommerceConfig.debug?.webpackCircularDependencyPlugin) {
           config.plugins.push(
             new CircularDependencyPlugin({
@@ -146,9 +158,6 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
           )
         }
       }
-
-      // @lingui .po file support
-      config.module?.rules?.push({ test: /\.po/, use: '@lingui/loader' })
 
       config.snapshot = {
         ...(config.snapshot ?? {}),
@@ -178,7 +187,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
         }
       }
 
-      config.plugins.push(new InterceptorPlugin(graphcommerceConfig))
+      config.plugins.push(new InterceptorPlugin(graphcommerceConfig, !options.isServer))
 
       return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config
     },

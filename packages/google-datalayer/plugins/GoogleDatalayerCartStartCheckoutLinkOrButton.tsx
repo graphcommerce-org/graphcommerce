@@ -15,7 +15,7 @@ export function GoogleDatalayerCartStartCheckoutLinkOrButton(
     <Prev
       {...rest}
       onStart={(e, cart) => {
-        sendEvent('begin_checkout', cartToBeginCheckout(cart))
+        if (cart) sendEvent('begin_checkout', cartToBeginCheckout(cart))
         return onStart?.(e, cart)
       }}
     />

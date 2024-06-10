@@ -1,4 +1,4 @@
-fragment CategoryPathFragment on CategoryTree @injectable {
+fragment CategoryPathFragment on CategoryTree {
   uid
   url_path
   children {

@@ -238,6 +238,12 @@ msgstr "Editar dirección"
 msgid "Edit billing address"
 msgstr "Editar dirección de facturación"
 
+msgid "Edit options"
+msgstr "Editar opciones"
+
+msgid "Editing product"
+msgstr "Editando producto"
+
 msgid "Email"
 msgstr "Correo electrónico"
 
@@ -279,9 +285,6 @@ msgstr "Gratis"
 
 msgid "Grand total"
 msgstr "Total"
-
-msgid "Have an account?"
-msgstr "¿Tiene una cuenta?"
 
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "¡Hola {firstname}! Ya estás conectado!"
@@ -541,6 +544,9 @@ msgstr "Productos vistos recientemente"
 msgid "Region"
 msgstr "Región"
 
+msgid "Relevance"
+msgstr "Relevancia"
+
 msgid "Remove"
 msgstr "Eliminar"
 
@@ -715,6 +721,9 @@ msgstr "Hay un máximo de caracteres '{maxLength}'"
 msgid "This cart is assigned to {email}. Please sign in to continue shopping."
 msgstr "Este carrito está asignado a {email}. Inicie sesión para continuar comprando."
 
+msgid "This field is invalid"
+msgstr "Este campo es inválido"
+
 msgid "This field is required"
 msgstr "Este campo es obligatorio"
 
@@ -792,9 +801,6 @@ msgstr "Escribir {0} comentarios"
 
 msgid "You are reviewing {0}"
 msgstr "Está revisando {0}"
-
-msgid "You can find your order history in your account!"
-msgstr "¡Puede encontrar el historial de sus pedidos en su cuenta!"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "Ahora puede<0>iniciar sesión de nuevo</0>."

@@ -1,15 +1,14 @@
 import { productLink } from '@graphcommerce/magento-product/hooks/useProductLink'
-import type { WishlistItemActionCard } from '@graphcommerce/magento-wishlist'
-import type { ReactPlugin } from '@graphcommerce/next-config'
+import type { WishlistItemActionCardProps } from '@graphcommerce/magento-wishlist'
+import type { PluginProps } from '@graphcommerce/next-config'
 import { IconSvg, iconChevronRight } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 
 export const component = 'WishlistItemActionCard'
-export const exported =
-  '@graphcommerce/magento-wishlist/components/WishlistItemActionCard/WishlistItemActionCard'
+export const exported = '@graphcommerce/magento-wishlist'
 
-export const BundleWishlistItemActionCard: ReactPlugin<typeof WishlistItemActionCard> = (props) => {
+export const BundleWishlistItemActionCard = (props: PluginProps<WishlistItemActionCardProps>) => {
   const { Prev, item } = props
   const { product } = item
 

@@ -110,7 +110,7 @@ msgid "Cart ({0})"
 msgstr "Winkelwagen ({0})"
 
 msgid "Change"
-msgstr "Verander"
+msgstr "Wijzig"
 
 msgid "Checkout summary"
 msgstr "Samenvatting"
@@ -238,6 +238,12 @@ msgstr "Wijzig adres"
 msgid "Edit billing address"
 msgstr "Wijzig factuuradres"
 
+msgid "Edit options"
+msgstr "Opties bewerken"
+
+msgid "Editing product"
+msgstr "Product bewerken"
+
 msgid "Email"
 msgstr "E-mail"
 
@@ -279,9 +285,6 @@ msgstr "Gratis"
 
 msgid "Grand total"
 msgstr "Totaal"
-
-msgid "Have an account?"
-msgstr "Heeft u al een account?"
 
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Hallo {firstname}! U bent nu ingelogd!"
@@ -541,6 +544,9 @@ msgstr "Recent bekeken producten"
 msgid "Region"
 msgstr "Regio"
 
+msgid "Relevance"
+msgstr "Relevantie"
+
 msgid "Remove"
 msgstr "Verwijder"
 
@@ -590,7 +596,7 @@ msgid "Select your bank"
 msgstr "Kies uw bank"
 
 msgid "Send password reset email"
-msgstr "Stuur een wachtwoord reset e-email"
+msgstr "Stuur een wachtwoord reset e-mail"
 
 msgid "Set your new password"
 msgstr "Stel uw nieuwe wachtwoord in"
@@ -680,7 +686,7 @@ msgid "Summary"
 msgstr "Omschrijving"
 
 msgid "Switch stores"
-msgstr "Verander winkel"
+msgstr "Winkel wisselen"
 
 msgid "Tagged in: {title}"
 msgstr "Getagged in: {title}"
@@ -714,6 +720,9 @@ msgstr "Er is een maximum van ‘{maxLength}’ karakters"
 
 msgid "This cart is assigned to {email}. Please sign in to continue shopping."
 msgstr "Deze winkelwagen is toegewezen aan {email}. Log in om verder te winkelen."
+
+msgid "This field is invalid"
+msgstr "Dit veld is ongeldig"
 
 msgid "This field is required"
 msgstr "Dit veld is verplicht"
@@ -792,9 +801,6 @@ msgstr "{0} reviews geschreven"
 
 msgid "You are reviewing {0}"
 msgstr "U reviewt {0}"
-
-msgid "You can find your order history in your account!"
-msgstr "U kunt uw bestelgeschiedenis in uw account vinden!"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "U kunt nu <0>opnieuw inloggen</0>"

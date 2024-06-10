@@ -160,13 +160,11 @@ imported from there (the `<IconSvg>` component will convert the relative path to
 an absolute path)
 
 ```tsx
-...
+//...
 import customIcon from './my-custom-icon.svg'
 
-...
-return (
-  <IconSvg src={iconSucustomIconpport} size='large' />
-)
+//...
+return <IconSvg src={customIcon} size='large' />
 ```
 
 To use a custom icon in your component, follow the same steps as described in
@@ -177,27 +175,23 @@ the [previous paragraph](#using-a-different-icon-from-the-icon-pack).
 
 ## Using a different icon pack
 
-To override all or multiple icons with your own, add an icon override array to
-/theme.ts:
+To override all or multiple icons with your own, you can write a replace plugin
+to achieve this:
 
 ```tsx
-// /components/theme.ts
-import { iconCart, iconChat } from '@graphcommerce/next-ui'
+// /plugins/icons/Icons.ts
+import { PluginConfig } from '@graphcommerce/next-config'
+import iconBasket from './basket.svg'
 import customCartIcon from './my-custom-cart-icon.svg'
 import customChatIcon from './my-custom-chat-icon.svg'
 
-// ...
-const createOverrides = (theme: Theme): Components => ({
-  //... other component styling
+export const config: PluginConfig = {
+  type: 'replace',
+  module: '@graphcommerce/next-ui',
+}
 
-  IconSvg: {
-    overrides: [
-      [iconCart, customCartIcon],
-      [iconChat, customChatIcon],
-    ],
-  },
-})
-// ...
+export const iconShoppingBag = iconBasket
+export const iconChart = iconBasket
 ```
 
 All icons must meet the svg specifications as described above

@@ -1,6 +1,4 @@
-fragment CartTotals on Cart
-@injectable
-@inject(into: ["CartItemCountChanged", "PaymentMethodUpdated"]) {
+fragment CartTotals on Cart @inject(into: ["CartItemCountChanged", "PaymentMethodUpdated"]) {
   shipping_addresses {
     selected_shipping_method {
       carrier_code
@@ -11,7 +9,7 @@ fragment CartTotals on Cart
         ...Money
       }
     }
-    # https://github.com/magento/magento2/pull/31322
+    # todo: https://github.com/magento/magento2/pull/31322
     available_shipping_methods {
       carrier_code
       method_code
