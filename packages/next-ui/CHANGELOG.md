@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.27
+
+### Minor Changes
+
+- [#2273](https://github.com/graphcommerce-org/graphcommerce/pull/2273) [`77955c5`](https://github.com/graphcommerce-org/graphcommerce/commit/77955c56ac8633ab1c5e0f3ddb25e3a87236e2bb) - Improve Breadcrumbs on Category and Product pages
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 8.1.0-canary.26
 
 ### Minor Changes
