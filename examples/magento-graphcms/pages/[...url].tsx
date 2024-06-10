@@ -86,16 +86,18 @@ function CategoryPage(props: CategoryProps) {
 
       {isCategory && isLanding && (
         <>
-          <CategoryBreadcrumbs
-            category={category}
-            sx={(theme) => ({
-              mx: theme.page.horizontal,
-              height: 0,
-              [theme.breakpoints.down('md')]: {
-                '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-              },
-            })}
-          />
+          {import.meta.graphCommerce.breadcrumbs && (
+            <CategoryBreadcrumbs
+              category={category}
+              sx={(theme) => ({
+                mx: theme.page.horizontal,
+                height: 0,
+                [theme.breakpoints.down('md')]: {
+                  '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+                },
+              })}
+            />
+          )}
           <CategoryHeroNav
             {...category}
             asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} loading='eager' />}
