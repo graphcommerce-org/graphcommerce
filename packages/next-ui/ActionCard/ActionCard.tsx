@@ -13,7 +13,7 @@ import { extendableComponent, responsiveVal } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
 
 type Variants = 'outlined' | 'default'
-type Size = 'large' | 'medium' | 'small'
+type Size = 'large' | 'medium' | 'small' | 'responsive'
 type Color = 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning'
 type Layout = 'inline' | 'grid' | 'list' | 'stack'
 
@@ -47,6 +47,7 @@ export type ActionCardProps = {
 
 const parts = [
   'root',
+  'rootInner',
   'image',
   'title',
   'action',
@@ -77,6 +78,13 @@ const { withState, selectors } = extendableComponent<StateProps, typeof name, ty
 
 export const actionCardSelectors = selectors
 
+export const actionCardImageSizes = {
+  small: responsiveVal(60, 80),
+  medium: responsiveVal(60, 80),
+  large: responsiveVal(100, 120),
+  responsive: responsiveVal(60, 120),
+}
+
 export function ActionCard(props: ActionCardProps) {
   const {
     title,
@@ -92,7 +100,7 @@ export function ActionCard(props: ActionCardProps) {
     selected = false,
     reset,
     disabled = false,
-    size = 'medium',
+    size = 'responsive',
     color = 'primary',
     variant = 'outlined',
     layout = 'list',
@@ -140,6 +148,12 @@ export function ActionCard(props: ActionCardProps) {
             py: responsiveVal(12, 14),
             display: 'block',
           },
+          '&.sizeResponsive': {
+            px: responsiveVal(8, 16),
+            py: responsiveVal(4, 14),
+            display: { xs: 'flex', md: 'block', lg: 'block' },
+            [theme.breakpoints.down('md')]: { typography: 'body2' },
+          },
 
           '&.variantDefault': {
             position: 'relative',
@@ -184,6 +198,13 @@ export function ActionCard(props: ActionCardProps) {
               mb: { xs: '6px', sm: '8px', md: '9px' },
               '&::after': {
                 mb: { xs: '-5px', sm: '-7px', md: '-8px' },
+              },
+            },
+            '&.sizeResponsive': {
+              mt: responsiveVal(2, 8),
+              mb: responsiveVal(3, 9),
+              '&::after': {
+                mb: responsiveVal(-2, -8),
               },
             },
           },
@@ -261,6 +282,7 @@ export function ActionCard(props: ActionCardProps) {
       ]}
     >
       <Box
+        className={classes.rootInner}
         sx={{
           display: 'flex',
           flexDirection: 'row',
@@ -301,6 +323,7 @@ export function ActionCard(props: ActionCardProps) {
                   '&.sizeSmall': { typography: 'body2' },
                   '&.sizeMedium': { typography: 'body1' },
                   '&.sizeLarge': { typography: 'h6' },
+                  '&.sizeResponsive': { typography: { xs: 'body2', md: 'body1', lg: 'h6' } },
                 }}
               >
                 {title}
@@ -341,8 +364,9 @@ export function ActionCard(props: ActionCardProps) {
               sx={{
                 textAlign: 'right',
                 typography: 'body1',
-                '&.sizeMedium': { typographty: 'subtitle1' },
+                '&.sizeMedium': { typography: 'subtitle1' },
                 '&.sizeLarge': { typography: 'h6' },
+                '&.sizeResponsive': { typography: { xs: 'body1', md: 'subtitle1', lg: 'h6' } },
               }}
             >
               {price}

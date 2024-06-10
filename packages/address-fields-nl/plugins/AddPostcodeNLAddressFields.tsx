@@ -9,14 +9,16 @@ import {
   AddressPostcode,
   AddressStreet,
 } from '@graphcommerce/magento-customer'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { FormRow } from '@graphcommerce/next-ui'
 import { PostcodeNLAutoFill } from '../components/PostcodeNLAutoFill'
 
-export const component = 'AddressFields'
-export const exported = '@graphcommerce/magento-customer'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/magento-customer',
+}
 
-function AddPostcodeNLAddressFields<
+export function AddressFields<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(props: PluginProps<AddressFieldsProps<TFieldValues, TName>>) {
@@ -38,13 +40,11 @@ function AddPostcodeNLAddressFields<
             <AddressStreet {...props} />
             <AddressCity {...props} />
           </FormRow>
+          <PostcodeNLAutoFill {...props} />
         </>
       ) : (
         <Prev countryFirst {...props} />
       )}
-      <PostcodeNLAutoFill {...props} />
     </>
   )
 }
-
-export const Plugin = AddPostcodeNLAddressFields

@@ -1,4 +1,4 @@
-fragment ProductCustomizable on CustomizableProductInterface @injectable {
+fragment ProductCustomizable on CustomizableProductInterface {
   options {
     uid
     __typename

@@ -104,6 +104,8 @@ export type DatalayerConfig = {
  * Below is a list of all possible configurations that can be set by GraphCommerce.
  */
 export type GraphCommerceConfig = {
+  /** Configuration for the SidebarGallery component */
+  breadcrumbs?: InputMaybe<Scalars['Boolean']['input']>;
   /**
    * The canonical base URL is used for SEO purposes.
    *
@@ -469,18 +471,19 @@ export function DatalayerConfigSchema(): z.ZodObject<Properties<DatalayerConfig>
 
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
+    breadcrumbs: z.boolean().default(false).nullish(),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     compare: z.boolean().nullish(),
-    compareVariant: CompareVariantSchema.nullish(),
-    configurableVariantForSimple: z.boolean().nullish(),
+    compareVariant: CompareVariantSchema.default("ICON").nullish(),
+    configurableVariantForSimple: z.boolean().default(false).nullish(),
     configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
-    crossSellsHideCartItems: z.boolean().nullish(),
-    crossSellsRedirectItems: z.boolean().nullish(),
+    crossSellsHideCartItems: z.boolean().default(false).nullish(),
+    crossSellsRedirectItems: z.boolean().default(false).nullish(),
     customerRequireEmailConfirmation: z.boolean().nullish(),
     dataLayer: DatalayerConfigSchema().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
-    demoMode: z.boolean().nullish(),
+    demoMode: z.boolean().default(true).nullish(),
     enableGuestCheckoutLogin: z.boolean().nullish(),
     googleAnalyticsId: z.string().nullish(),
     googleRecaptchaKey: z.string().nullish(),
@@ -493,7 +496,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     previewSecret: z.string().nullish(),
-    productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
+    productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
     productFiltersPro: z.boolean().nullish(),
     productListPaginationVariant: PaginationVariantSchema.nullish(),
     productRoute: z.string().nullish(),

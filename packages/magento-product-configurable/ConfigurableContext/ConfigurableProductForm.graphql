@@ -27,7 +27,6 @@ fragment ConfigurableProductForm on ConfigurableProduct {
     }
     product {
       ...ProductListItem
-      ...ProductListItemSimple
     }
   }
 }

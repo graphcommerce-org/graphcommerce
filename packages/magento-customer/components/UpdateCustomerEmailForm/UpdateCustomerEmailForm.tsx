@@ -135,7 +135,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
         variant='pill'
         severity='success'
         sticky
-        open={formState.isSubmitSuccessful && !error}
+        open={formState.isSubmitSuccessful && !formState.isSubmitting && !error}
       >
         <Trans id='Successfully updated email' />
       </MessageSnackbar>

@@ -1,4 +1,4 @@
-fragment CartPageFragment on Cart @injectable {
+fragment CartPageFragment on Cart {
   id
   __typename
   email

@@ -31,7 +31,14 @@ import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit }
 
 const MotionBox = styled(m.div)({})
 
-type OwnerState = { zoomed: boolean; disableZoom: boolean }
+type SidebarGalleryVariant = 'default' | 'oneColumn'
+
+type OwnerState = {
+  zoomed: boolean
+  disableZoom: boolean
+  sticky: boolean
+  variantMd: SidebarGalleryVariant
+}
 const name = 'SidebarGallery' as const
 const parts = [
   'row',
@@ -60,6 +67,8 @@ export type SidebarGalleryProps = {
   routeHash?: string
   sx?: SxProps<Theme>
   disableZoom?: boolean
+  disableSticky?: boolean
+  variantMd?: SidebarGalleryVariant
 } & Pick<ScrollerButtonProps, 'showButtons'>
 
 export function SidebarGallery(props: SidebarGalleryProps) {
@@ -71,6 +80,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     routeHash = 'gallery',
     showButtons,
     disableZoom = false,
+    disableSticky = false,
+    variantMd = 'default',
   } = props
 
   const router = useRouter()
@@ -103,7 +114,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     }
   }
 
-  const classes = withState({ zoomed, disableZoom })
+  const classes = withState({ zoomed, disableZoom, sticky: !disableSticky, variantMd })
   const theme = useTheme()
   const windowRef = useRef(typeof window !== 'undefined' ? window : null)
 
@@ -144,25 +155,31 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               display: 'grid',
               gridTemplate: '"left" "right"',
               [theme.breakpoints.up('md')]: {
-                gridTemplate: `"left right" / 1fr calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
-                  theme.page.horizontal
-                } * 2)`,
+                '&:not(.variantMdOneColumn)': {
+                  gridTemplate: `"left right" / 1fr calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
+                    theme.page.horizontal
+                  } * 2)`,
+                },
               },
               background:
                 theme.palette.mode === 'light'
                   ? theme.palette.background.image
                   : theme.palette.background.paper,
-              paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
-            },
-            zoomed && {
-              position: 'relative',
-              zIndex: theme.zIndex.modal,
-              marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
-              [theme.breakpoints.up('md')]: {
-                marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
-                gridTemplateColumns: '1fr auto',
+
+              '&:not(.variantMdOneColumn)': {
+                paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
               },
-              paddingRight: 0,
+
+              '&.zoomed': {
+                position: 'relative',
+                zIndex: theme.zIndex.modal,
+                marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
+                [theme.breakpoints.up('md')]: {
+                  marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
+                  gridTemplateColumns: '1fr auto',
+                },
+                paddingRight: 0,
+              },
             },
           ]}
         >
@@ -183,11 +200,15 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                     width: '100%',
                   },
                   [theme.breakpoints.up('md')]: {
-                    height: `calc(${dvh(100)} - ${theme.appShell.headerHeightMd} - ${
-                      theme.spacings.lg
-                    })`,
-                    position: 'sticky',
-                    top: theme.appShell.headerHeightMd,
+                    '&:not(.variantMdOneColumn)': {
+                      height: `calc(${dvh(100)} - ${theme.appShell.headerHeightMd} - ${
+                        theme.spacings.lg
+                      })`,
+                      '&.sticky': {
+                        position: 'sticky',
+                      },
+                      top: theme.appShell.headerHeightMd,
+                    },
                   },
                 },
                 zoomed && {
@@ -335,7 +356,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 'THUMBNAILS_BOTTOM' ? (
                   <ScrollerThumbnails images={images} />
                 ) : (
-                  <ScrollerDots />
+                  <ScrollerDots layout />
                 )}
               </Box>
             </MotionBox>
@@ -370,9 +391,11 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               sx={{
                 boxSizing: 'border-box',
                 width: '100%',
-                padding: `${theme.spacings.lg} ${theme.page.horizontal}`,
-                [theme.breakpoints.up('md')]: {
-                  paddingLeft: theme.spacings.lg,
+                '&:not(.variantMdOneColumn)': {
+                  padding: `${theme.spacings.lg} ${theme.page.horizontal}`,
+                  [theme.breakpoints.up('md')]: {
+                    paddingLeft: theme.spacings.lg,
+                  },
                 },
               }}
             >

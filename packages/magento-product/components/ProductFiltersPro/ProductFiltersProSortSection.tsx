@@ -1,16 +1,21 @@
 import { ActionCard, ActionCardAccordion, ActionCardListForm, Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
+import { SxProps, Theme } from '@mui/material'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import { UseProductFiltersProSortProps, useProductFiltersProSort } from './useProductFiltersProSort'
 
-export type ProductFiltersProSortSectionProps = UseProductFiltersProSortProps
+export type ProductFiltersProSortSectionProps = UseProductFiltersProSortProps & {
+  sx?: SxProps<Theme>
+}
 
 export function ProductFiltersProSortSection(props: ProductFiltersProSortSectionProps) {
+  const { sx } = props
   const { form } = useProductFiltersPro()
   const { options, showReset, selected } = useProductFiltersProSort(props)
 
   return (
     <ActionCardAccordion
+      sx={sx}
       defaultExpanded={selected}
       summary={<Trans id='Sort By' />}
       details={

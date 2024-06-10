@@ -1,5 +1,44 @@
 # Change Log
 
+## 8.1.0-canary.27
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+### Patch Changes
+
+- [#2282](https://github.com/graphcommerce-org/graphcommerce/pull/2282) [`e048f61`](https://github.com/graphcommerce-org/graphcommerce/commit/e048f6165ae5a15be99fba0c3d3529c700477d3e) - Disable configurable product options that are unavailable for selection.
+  ([@carlocarels90](https://github.com/carlocarels90))
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
+## 8.1.0-canary.20
+
+## 8.1.0-canary.19
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
 ## 8.1.0-canary.10
 
 ## 8.1.0-canary.9

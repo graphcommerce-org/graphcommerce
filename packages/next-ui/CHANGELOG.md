@@ -1,5 +1,59 @@
 # Change Log
 
+## 8.1.0-canary.27
+
+### Minor Changes
+
+- [#2273](https://github.com/graphcommerce-org/graphcommerce/pull/2273) [`77955c5`](https://github.com/graphcommerce-org/graphcommerce/commit/77955c56ac8633ab1c5e0f3ddb25e3a87236e2bb) - Improve Breadcrumbs on Category and Product pages
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.1.0-canary.26
+
+### Minor Changes
+
+- [#2274](https://github.com/graphcommerce-org/graphcommerce/pull/2274) [`4a24813`](https://github.com/graphcommerce-org/graphcommerce/commit/4a248130041484833768fe6018f91d05a59522de) - Add props to DarkLightModeThemeProvider to disable dark/light mode or to change the default ssr mode. Save user chosen mode in localStorage
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2274](https://github.com/graphcommerce-org/graphcommerce/pull/2274) [`57131cf`](https://github.com/graphcommerce-org/graphcommerce/commit/57131cfcc43695cc3e22f28912feb2a8439620a7) - Created a cssFlags functionality to allow for conditional rendering based on stored flags in the localStorage
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
+## 8.1.0-canary.20
+
+## 8.1.0-canary.19
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+### Minor Changes
+
+- [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed useMediaQuery from the wishlist and cart ItemActionCard and replaced it with a new responsive size prop.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
 ## 8.1.0-canary.10
 
 ## 8.1.0-canary.9

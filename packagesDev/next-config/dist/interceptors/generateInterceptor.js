@@ -45,7 +45,7 @@ const originalSuffix = 'Original';
 const sourceSuffix = 'Plugin';
 const interceptorSuffix = 'Interceptor';
 const disabledSuffix = 'Disabled';
-const name = (plugin) => `${plugin.sourceModule
+const name = (plugin) => `${plugin.sourceExport}${plugin.sourceModule
     .split('/')[plugin.sourceModule.split('/').length - 1].replace(/[^a-zA-Z0-9]/g, '')}`;
 const fileName = (plugin) => `${plugin.sourceModule}#${plugin.sourceExport}`;
 const originalName = (n) => `${n}${originalSuffix}`;
@@ -121,8 +121,7 @@ async function generateInterceptor(interceptor, config, oldInterceptorSource) {
                 .join(' wrapping ');
             if (isReplacePluginConfig(p)) {
                 new RenameVisitor_1.RenameVisitor([originalName(p.targetExport)], (s) => s.replace(originalSuffix, disabledSuffix)).visitModule(ast);
-                carryProps.push(interceptorPropsName(name(p)));
-                result = `type ${interceptorPropsName(name(p))} = React.ComponentProps<typeof ${sourceName(name(p))}>`;
+                carryProps.push(`React.ComponentProps<typeof ${sourceName(name(p))}>`);
                 pluginSee.push(`@see {${sourceName(name(p))}} for replacement of the original source (original source not used)`);
             }
             if (isReactPluginConfig(p)) {
@@ -154,7 +153,7 @@ async function generateInterceptor(interceptor, config, oldInterceptorSource) {
         })
             .filter((v) => !!v)
             .join('\n');
-        const isComponent = plugins.every((p) => isReplacePluginConfig(p) || isReactPluginConfig(p));
+        const isComponent = plugins.every((p) => isReactPluginConfig(p));
         if (isComponent && plugins.some((p) => isMethodPluginConfig(p))) {
             throw new Error(`Cannot mix React and Method plugins for ${base} in ${dependency}.`);
         }

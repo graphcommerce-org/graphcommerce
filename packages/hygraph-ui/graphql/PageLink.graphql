@@ -1,4 +1,4 @@
-fragment PageLink on PageLink @injectable {
+fragment PageLink on PageLink {
   title
   url
   description {

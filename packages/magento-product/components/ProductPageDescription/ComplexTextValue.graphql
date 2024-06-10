@@ -1,4 +1,4 @@
-fragment ComplexTextValue on ComplexTextValue @injectable {
+fragment ComplexTextValue on ComplexTextValue {
   html
   __typename
 }

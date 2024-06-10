@@ -90,7 +90,7 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
         const requestData = {
           cartId,
           cartItems: cartItems
-            .filter((cartItem) => cartItem.sku)
+            .filter((cartItem) => cartItem.sku && cartItem.quantity !== 0)
             .map(({ customizable_options, ...cartItem }) => {
               const options = Object.values(customizable_options ?? {})
                 .flat(1)
@@ -103,7 +103,12 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
                   ...(cartItem.selected_options ?? []).filter(Boolean),
                   ...options,
                 ],
-                entered_options: cartItem.entered_options?.filter((option) => option?.value),
+                entered_options: [
+                  ...(cartItem.entered_options
+                    ?.filter((option) => option?.value)
+                    .filter(nonNullable)
+                    .map((option) => ({ uid: option.uid, value: `${option?.value}` })) ?? []),
+                ],
               }
             }),
         }

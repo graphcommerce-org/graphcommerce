@@ -1,5 +1,44 @@
 # Change Log
 
+## 8.1.0-canary.27
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+### Patch Changes
+
+- [#2266](https://github.com/graphcommerce-org/graphcommerce/pull/2266) [`0d1fe7a`](https://github.com/graphcommerce-org/graphcommerce/commit/0d1fe7a26ed2d18510c8767795294654c478fb88) - Enable the use of one or more anchor links within the 'checkbox_text' field and customize their paths.
+  ([@carlocarels90](https://github.com/carlocarels90))
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
+## 8.1.0-canary.20
+
+## 8.1.0-canary.19
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
 ## 8.1.0-canary.10
 
 ## 8.1.0-canary.9

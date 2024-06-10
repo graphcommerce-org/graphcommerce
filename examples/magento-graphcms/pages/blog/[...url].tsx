@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   PageMeta,
   BlogTitle,
@@ -9,6 +9,7 @@ import {
   LayoutTitle,
   LayoutHeader,
 } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import { GetStaticPaths } from 'next'
 import {
   BlogAuthor,
@@ -92,14 +93,16 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     query: BlogListDocument,
     variables: { currentUrl: [`blog/${urlKey}`], first: limit },
   })
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+
+  if (!(await page).data.pages?.[0])
+    return redirectOrNotFound(staticClient, conf, { url: `blog/${urlKey}` }, locale)
 
   return {
     props: {
       ...(await page).data,
       ...(await blogPosts).data,
       ...(await layout).data,
-      up: { href: '/', title: 'Home' },
+      up: { href: '/', title: i18n._(/* i18n */ 'Home') },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
