@@ -8,10 +8,12 @@ import {
 } from '../components/ProductListItems/filterTypes'
 
 export function productListLinkFromFilter(props: ProductFilterParams): string {
-  const { url, sort, dir, currentPage, pageSize, filters: incoming } = props
+  const { url, sort, dir, currentPage, pageSize, filters: incoming, search } = props
   const isSearch = url.startsWith('search')
   const filters = isSearch ? incoming : { ...incoming, category_uid: undefined }
   const uid = incoming?.category_uid?.eq || incoming?.category_uid?.in?.[0]
+
+  const urlBase = isSearch ? `search/${search}` : url
 
   // base url path generation
   let paginateSort = ``
@@ -38,9 +40,9 @@ export function productListLinkFromFilter(props: ProductFilterParams): string {
 
   // it's a category with filters, use the /c/ route.
   if (query && !isSearch)
-    return `/c/${url}${paginateSort}/q${uid ? `/category_uid/${uid}` : ''}${query}`
+    return `/c/${urlBase}${paginateSort}/q${uid ? `/category_uid/${uid}` : ''}${query}`
 
-  return query ? `/${url}${paginateSort}/q${query}` : `/${url}${paginateSort}`
+  return query ? `/${urlBase}${paginateSort}/q${query}` : `/${urlBase}${paginateSort}`
 }
 
 export function productListLink(props: ProductListParams): string {

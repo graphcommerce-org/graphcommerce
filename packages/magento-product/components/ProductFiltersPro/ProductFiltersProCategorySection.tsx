@@ -3,13 +3,15 @@ import {
   ActionCard,
   ActionCardAccordion,
   ActionCardList,
+  ActionCardListForm,
+  ActionCardProps,
   IconSvg,
   iconChevronLeft,
   responsiveVal,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, SxProps, Theme } from '@mui/material'
-import { useRouter } from 'next/router'
+import { useProductFiltersPro } from './ProductFiltersPro'
 
 export type ProductFiltersCategorySectionProps = UseCategoryTreeProps & {
   hideTitle?: boolean
@@ -18,8 +20,8 @@ export type ProductFiltersCategorySectionProps = UseCategoryTreeProps & {
 
 export function ProductFiltersProCategorySection(props: ProductFiltersCategorySectionProps) {
   const { hideTitle, sx } = props
-  const router = useRouter()
   const categoryTree = useCategoryTree(props)
+  const { form, submit } = useProductFiltersPro()
 
   if (!categoryTree) return null
 
@@ -33,7 +35,18 @@ export function ProductFiltersProCategorySection(props: ProductFiltersCategorySe
       defaultExpanded
       summary={<Trans id='Categories' />}
       details={
-        <ActionCardList value='cat' variant='default'>
+        <ActionCardList
+          variant='default'
+          value={form.getValues('url')}
+          onChange={async (e, value) => {
+            const item = categoryTree.find((i) => i.value === value)
+            if (!item) return
+
+            form.setValue('url', item.value)
+            form.setValue('filters', { category_uid: { in: [item?.uid] } })
+            await submit()
+          }}
+        >
           {categoryTree.map((item) => (
             <ActionCard
               {...item}
@@ -47,19 +60,12 @@ export function ProductFiltersProCategorySection(props: ProductFiltersCategorySe
                   item.title
                 )
               }
-              sx={[
-                item.isBack ? {} : {},
-                {
-                  '&.sizeSmall': { pl: responsiveVal(8 * item.indent, 12 * item.indent) },
-                  '&.sizeMedium': { pl: responsiveVal(10 * item.indent, 14 * item.indent) },
-                  '&.sizeLarge': { pl: responsiveVal(12 * item.indent, 16 * item.indent) },
-                  '&.sizeResponsive': { pl: responsiveVal(8 * item.indent, 16 * item.indent) },
-                },
-              ]}
-              value={item.href}
-              key={item.href}
-              selected={item.selected}
-              onClick={() => router.push(item.href)}
+              sx={{
+                '&.sizeSmall': { pl: responsiveVal(8 * item.indent, 12 * item.indent) },
+                '&.sizeMedium': { pl: responsiveVal(10 * item.indent, 14 * item.indent) },
+                '&.sizeLarge': { pl: responsiveVal(12 * item.indent, 16 * item.indent) },
+                '&.sizeResponsive': { pl: responsiveVal(8 * item.indent, 16 * item.indent) },
+              }}
             />
           ))}
         </ActionCardList>

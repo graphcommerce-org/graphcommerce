@@ -1,4 +1,4 @@
-import { ProductListParams, productListLink } from '@graphcommerce/magento-product'
+import { ProductListParams } from '@graphcommerce/magento-product'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { CategoryBreadcrumbFragment } from '../components/CategoryBreadcrumb'
 import { CategoryChildrenFragment } from '../components/CategoryChildren/CategoryChildren.gql'
@@ -10,10 +10,11 @@ export type UseCategoryTreeProps = {
 
 type CategoryTreeItem = {
   title: React.ReactNode
-  href: string
+  value: string
   selected: boolean
   isBack?: boolean
   indent: number
+  uid: string
 }
 
 export function useCategoryTree(props: UseCategoryTreeProps): CategoryTreeItem[] | null {
@@ -27,15 +28,11 @@ export function useCategoryTree(props: UseCategoryTreeProps): CategoryTreeItem[]
     'category_url_path',
   ]).map<CategoryTreeItem>((breadcrumb) => ({
     title: breadcrumb.category_name,
-    href: productListLink({
-      ...params,
-      currentPage: 0,
-      url: breadcrumb.category_url_path,
-      filters: { category_uid: { eq: breadcrumb.category_uid } },
-    }),
+    value: breadcrumb.category_url_path,
     indent: 0,
     isBack: true,
     selected: params?.url === breadcrumb.category_url_path,
+    uid: breadcrumb.category_uid,
   }))
 
   let children = filterNonNullableKeys(category.children, [
@@ -44,29 +41,21 @@ export function useCategoryTree(props: UseCategoryTreeProps): CategoryTreeItem[]
     'include_in_menu',
   ]).map<CategoryTreeItem>((categoryItem) => ({
     title: <>{`${`${categoryItem.name}`}`}</>,
-    href: productListLink({
-      ...params,
-      currentPage: 0,
-      url: categoryItem.url_path,
-      filters: { category_uid: { eq: categoryItem.uid } },
-    }),
+    value: categoryItem.url_path,
     indent: 2,
     isBack: false,
     selected: params.url === categoryItem.url_path,
+    uid: categoryItem.uid,
   }))
 
-  if (!children.find((item) => item.href === `/${category.url_path}`))
+  if (!children.find((item) => item.value === category.url_path))
     children.push({
       title: <> {category.name}</>,
-      href: productListLink({
-        ...params,
-        currentPage: 0,
-        url: category.url_path,
-        filters: { category_uid: { eq: category.uid } },
-      }),
+      value: category.url_path,
       indent: 1,
       isBack: false,
       selected: true,
+      uid: category.uid,
     })
   else children = children.map((child) => ({ ...child, indent: 2 }))
 

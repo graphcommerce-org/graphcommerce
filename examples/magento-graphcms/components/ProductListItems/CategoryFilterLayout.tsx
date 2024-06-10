@@ -1,4 +1,3 @@
-import { SignedInMaskProvider } from '@graphcommerce/magento-customer'
 import {
   CategoryBreadcrumbs,
   CategoryChildren,
@@ -41,7 +40,6 @@ export type ProductListFilterLayoutProps = ProductListQuery &
     title: string
     category?: CategoryDefaultFragment &
       NonNullable<NonNullable<CategoryPageQuery['categories']>['items']>[number]
-    description?: React.ReactNode
   }
 
 function CategoryFilterLayoutSidebar(props: ProductListFilterLayoutProps) {
@@ -99,6 +97,7 @@ function CategoryFilterLayoutSidebar(props: ProductListFilterLayoutProps) {
 
           <CategoryChildren
             sx={(theme) => ({
+              display: { xs: 'grid', md: 'none' },
               justifyContent: 'start',
               '& .CategoryChildren-scroller': {
                 px: theme.page.horizontal,

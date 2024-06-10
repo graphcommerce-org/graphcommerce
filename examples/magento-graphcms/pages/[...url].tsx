@@ -10,6 +10,7 @@ import {
   findParentBreadcrumbItem,
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
+import { SignedInMaskProvider } from '@graphcommerce/magento-customer'
 import {
   extractUrlQuery,
   FilterTypes,
@@ -21,6 +22,7 @@ import {
   ProductListDocument,
   ProductListParams,
   ProductListQuery,
+  useProductList,
 } from '@graphcommerce/magento-product'
 import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutHeader, LayoutTitle, MetaRobots } from '@graphcommerce/next-ui'
@@ -48,9 +50,12 @@ type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
 function CategoryPage(props: CategoryProps) {
-  const { categories, products, filters, params, filterTypes, pages, mask } = useProductList(props)
+  const { categories, pages, ...rest } = props
+  const { products, filters, params, filterTypes, mask, category } = useProductList({
+    ...rest,
+    category: categories?.items?.[0],
+  })
 
-  const category = categories?.items?.[0]
   const isLanding = category?.display_mode === 'PAGE'
   const page = pages?.[0]
   const isCategory = params && category && products?.items && filterTypes
@@ -80,23 +85,23 @@ function CategoryPage(props: CategoryProps) {
       )}
 
       {isCategory && isLanding && (
-        <CategoryBreadcrumbs
-          category={category}
-          sx={(theme) => ({
-            mx: theme.page.horizontal,
-            height: 0,
-            [theme.breakpoints.down('md')]: {
-              '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-            },
-          })}
-        />
-      )}
-      {isCategory && isLanding && (
-        <CategoryHeroNav
-          {...category}
-          asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} loading='eager' />}
-          title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
-        />
+        <>
+          <CategoryBreadcrumbs
+            category={category}
+            sx={(theme) => ({
+              mx: theme.page.horizontal,
+              height: 0,
+              [theme.breakpoints.down('md')]: {
+                '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+              },
+            })}
+          />
+          <CategoryHeroNav
+            {...category}
+            asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} loading='eager' />}
+            title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
+          />
+        </>
       )}
 
       {isCategory && !isLanding && (
@@ -181,6 +186,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
         variables: { filters: { category_uid: { eq: categoryUid } } },
       })
     : undefined
+
   const products = hasCategory
     ? staticClient.query({
         query: ProductListDocument,

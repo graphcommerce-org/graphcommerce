@@ -56,26 +56,11 @@ function SearchResultPage(props: SearchResultProps) {
       />
 
       <SearchContext>
-        <LayoutHeader floatingMd switchPoint={0}>
-          <SearchForm
-            search={search}
-            textFieldProps={{
-              variant: 'outlined',
-              autoComplete: 'off',
-              size: 'small',
-              placeholder: 'Search all products',
-              sx: { width: '81vw' },
-            }}
-          />
-        </LayoutHeader>
-
         <SearchFilterLayout
           params={params}
           filters={filters}
           products={products}
           filterTypes={filterTypes}
-          id={search}
-          title={`Search ${search}`}
         />
       </SearchContext>
     </>

@@ -1,3 +1,4 @@
+import { SignedInMaskProvider } from '@graphcommerce/magento-customer'
 import {
   NoSearchResults,
   ProductFiltersPro,
@@ -6,6 +7,7 @@ import {
   ProductFiltersProClearAll,
   ProductFiltersProLimitChip,
   ProductFiltersProLimitSection,
+  ProductFiltersProSearchField,
   ProductFiltersProSortChip,
   ProductFiltersProSortSection,
   ProductListCount,
@@ -19,19 +21,22 @@ import {
   productFiltersProSectionRenderer,
   useProductList,
 } from '@graphcommerce/magento-search'
-import { LayoutTitle, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { LayoutHeader, LayoutTitle, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Container, Typography } from '@mui/material'
+import { Box, Container } from '@mui/material'
 import { ProductListFilterLayoutProps } from './CategoryFilterLayout'
 import { ProductListItems } from './ProductListItems'
+import { i18n } from '@lingui/core'
 
-function SearchFilterLayoutSidebar(props: Omit<ProductListFilterLayoutProps, 'category'>) {
-  const { id, filters, filterTypes, params, products, title } = props
+type SearchFilterLayoutProps = Omit<ProductListFilterLayoutProps, 'category' | 'id' | 'title'>
+
+function SearchFilterLayoutSidebar(props: SearchFilterLayoutProps) {
+  const { filters, filterTypes, params, products } = props
 
   if (!params || !products?.items || !filterTypes) return null
   const { total_count, sort_fields, page_info } = products
 
-  const search = params.url.split('/')[1]
+  const search = `${params.search}`
   const totalSearchResults =
     // (categories?.items?.length ?? 0) +
     products?.total_count ?? 0
@@ -57,7 +62,6 @@ function SearchFilterLayoutSidebar(props: Omit<ProductListFilterLayoutProps, 'ca
             xs: `"horizontalFilters" "count" "items" "pagination"`,
             md: `
               "sidebar search"      auto
-              "sidebar title"      auto
               "sidebar count"      auto
               "sidebar items"      auto
               "sidebar pagination" 1fr
@@ -66,33 +70,11 @@ function SearchFilterLayoutSidebar(props: Omit<ProductListFilterLayoutProps, 'ca
           },
         })}
       >
-        <SearchForm
-          totalResults={totalSearchResults}
-          search={search}
+        <ProductFiltersProSearchField
           sx={{ gridArea: 'search', display: { xs: 'none', md: 'block' } }}
-          textFieldProps={{
-            autoFocus: true,
-            fullWidth: true,
-            placeholder: 'Search all products',
-          }}
+          fullWidth
+          placeholder={i18n._(/* i18n*/ `Search all products...`)}
         />
-
-        <Box
-          sx={(theme) => ({
-            gridArea: 'title',
-            display: { xs: 'none', md: 'grid' },
-            gridAutoFlow: 'row',
-            rowGap: theme.spacings.xs,
-          })}
-        >
-          <Typography variant='h3'>
-            {search ? (
-              <Trans id='Results for &lsquo;{search}&rsquo;' values={{ search }} />
-            ) : (
-              <Trans id='All products' />
-            )}
-          </Typography>
-        </Box>
 
         <StickyBelowHeader sx={{ display: { md: 'none', gridArea: 'horizontalFilters' } }}>
           <ProductListFiltersContainer
@@ -119,7 +101,7 @@ function SearchFilterLayoutSidebar(props: Omit<ProductListFilterLayoutProps, 'ca
           {products.items.length <= 0 ? (
             <NoSearchResults search={search} />
           ) : (
-            <ProductListItems items={products.items} loadingEager={6} title={title} />
+            <ProductListItems items={products.items} loadingEager={6} title={`Search ${search}`} />
           )}
         </Box>
 
@@ -143,11 +125,12 @@ function SearchFilterLayoutSidebar(props: Omit<ProductListFilterLayoutProps, 'ca
   )
 }
 
-function SearchFilterLayoutDefault(props: Omit<ProductListFilterLayoutProps, 'category'>) {
-  const { filters, filterTypes, params, products, title } = props
+function SearchFilterLayoutDefault(props: SearchFilterLayoutProps) {
+  const { filters, filterTypes, params, products } = props
 
   if (!(params && products?.items && filterTypes)) return null
   const { total_count, sort_fields, page_info } = products
+  const search = `${params.search}`
 
   return (
     <ProductFiltersPro
@@ -155,7 +138,18 @@ function SearchFilterLayoutDefault(props: Omit<ProductListFilterLayoutProps, 'ca
       aggregations={filters?.aggregations}
       appliedAggregations={products?.aggregations}
       filterTypes={filterTypes}
+      autoSubmitMd
     >
+      <LayoutHeader floatingMd switchPoint={0}>
+        <ProductFiltersProSearchField
+          variant='outlined'
+          autoComplete='off'
+          size='small'
+          placeholder={i18n._(/* i18n*/ `Search all products...`)}
+          sx={{ width: '81vw' }}
+        />
+      </LayoutHeader>
+
       <Box
         sx={(theme) => ({
           display: 'grid',
@@ -170,9 +164,14 @@ function SearchFilterLayoutDefault(props: Omit<ProductListFilterLayoutProps, 'ca
           sx={{ alignItems: { xs: 'left', md: 'center' } }}
           gutterBottom={false}
         >
-          {title}
+          {search ? (
+            <Trans id='Results for &lsquo;{search}&rsquo;' values={{ search }} />
+          ) : (
+            <Trans id='All products' />
+          )}
         </LayoutTitle>
       </Box>
+
       <StickyBelowHeader>
         <ProductListFiltersContainer>
           <ProductFiltersProAggregations renderer={productFiltersProChipRenderer} />
@@ -181,26 +180,38 @@ function SearchFilterLayoutDefault(props: Omit<ProductListFilterLayoutProps, 'ca
           <ProductFiltersProAllFiltersChip total_count={total_count} sort_fields={sort_fields} />
         </ProductListFiltersContainer>
       </StickyBelowHeader>
-
       <Container maxWidth={false}>
         <ProductListCount total_count={total_count} />
-        <ProductListItems items={products.items} loadingEager={6} title={title} />
+        <ProductListItems items={products.items} loadingEager={6} title={`Search ${search}`} />
         <ProductListPagination page_info={page_info} params={params} />
       </Container>
     </ProductFiltersPro>
   )
 }
 
-function SearchFiltersLayoutClassic(props: Omit<ProductListFilterLayoutProps, 'category'>) {
-  const { id, filters, filterTypes, params, products, title } = props
+function SearchFiltersLayoutClassic(props: SearchFilterLayoutProps) {
+  const { filters, filterTypes, params, products } = props
 
   if (!(params && products?.items && filterTypes)) return null
   const { total_count, sort_fields, page_info } = products
+  const search = `${params.search}`
 
   return (
     <>
+      <LayoutHeader floatingMd switchPoint={0}>
+        <SearchForm
+          search={search}
+          textFieldProps={{
+            variant: 'outlined',
+            autoComplete: 'off',
+            size: 'small',
+            placeholder: i18n._(/* i18n*/ `Search all products...`),
+            sx: { width: '81vw' },
+          }}
+        />
+      </LayoutHeader>
       <LayoutTitle gutterTop variant='h1' sx={{ alignItems: { xs: 'center', md: 'center' } }}>
-        {title}
+        Search {params.search}
       </LayoutTitle>
       <StickyBelowHeader>
         <ProductListParamsProvider value={params}>
@@ -212,26 +223,27 @@ function SearchFiltersLayoutClassic(props: Omit<ProductListFilterLayoutProps, 'c
       </StickyBelowHeader>
       <Container maxWidth={false}>
         <ProductListCount total_count={total_count} />
-        <ProductListItems items={products.items} loadingEager={6} title={title} />
+        <ProductListItems items={products.items} loadingEager={6} title={`Search ${search}`} />
         <ProductListPagination page_info={page_info} params={params} />
       </Container>
     </>
   )
 }
 
-export function SearchFilterLayout(props: Omit<ProductListFilterLayoutProps, 'category'>) {
+export function SearchFilterLayout(props: SearchFilterLayoutProps) {
   const { mask, ...rest } = useProductList(props)
 
-  if (import.meta.graphCommerce.productFiltersPro) {
-    if (import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR')
-      return <SearchFilterLayoutSidebar {...rest} />
-
-    return <SearchFilterLayoutDefault {...rest} />
-  }
-
-  if (!import.meta.graphCommerce.productFiltersPro) {
-    return <SearchFiltersLayoutClassic {...rest} />
-  }
-
-  return null
+  return (
+    <SignedInMaskProvider mask={mask}>
+      {import.meta.graphCommerce.productFiltersPro &&
+        import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
+          <SearchFilterLayoutSidebar {...rest} />
+        )}
+      {import.meta.graphCommerce.productFiltersPro &&
+        import.meta.graphCommerce.productFiltersLayout !== 'SIDEBAR' && (
+          <SearchFilterLayoutDefault {...rest} />
+        )}
+      {!import.meta.graphCommerce.productFiltersPro && <SearchFiltersLayoutClassic {...rest} />}
+    </SignedInMaskProvider>
+  )
 }

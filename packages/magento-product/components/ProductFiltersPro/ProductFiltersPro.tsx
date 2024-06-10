@@ -57,7 +57,14 @@ function AutoSubmitSidebarDesktop() {
     defaultMatches: false,
   })
 
-  return <FormAutoSubmit control={form.control} disabled={autoSubmitDisabled} submit={submit} />
+  return (
+    <FormAutoSubmit
+      control={form.control}
+      disabled={autoSubmitDisabled}
+      submit={submit}
+      name={['filters', 'url', 'sort', 'pageSize', 'currentPage', 'dir']}
+    />
+  )
 }
 
 export function ProductFiltersPro(props: FilterFormProviderProps) {
@@ -84,9 +91,14 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
   const submit = useEventCallback(
     form.handleSubmit(async (formValues) => {
       const path = productListLinkFromFilter({ ...formValues, currentPage: 1 })
+
       if (router.asPath === path) return false
 
-      const opts = { scroll: scroll.get(), shallow: true }
+      const opts = {
+        scroll: scroll.get(),
+        shallow: formValues.url.startsWith('search') || formValues.url === defaultValues.url,
+      }
+
       return (router.query.url ?? []).includes('q')
         ? router.replace(path, path, opts)
         : router.push(path, path, opts)
