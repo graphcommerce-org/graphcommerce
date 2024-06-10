@@ -1,4 +1,4 @@
-fragment CategoryHeroNav on CategoryTree @injectable {
+fragment CategoryHeroNav on CategoryTree {
   uid
   level
   is_anchor

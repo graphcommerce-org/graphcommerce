@@ -1,4 +1,4 @@
-fragment Asset on Asset @injectable {
+fragment Asset on Asset {
   url
   width
   height

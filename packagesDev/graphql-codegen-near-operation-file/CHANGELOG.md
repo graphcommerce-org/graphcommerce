@@ -1,5 +1,22 @@
 # Change Log
 
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+### Patch Changes
+
+- [#2289](https://github.com/graphcommerce-org/graphcommerce/pull/2289) [`d2a6f58`](https://github.com/graphcommerce-org/graphcommerce/commit/d2a6f58276abadb132473d4da2d7d25e0b996106) - Do not require fragments to be marked @injectable but always accept @inject directives.
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
 ## 8.1.0-canary.20
 
 ## 8.1.0-canary.19

@@ -1,4 +1,4 @@
-fragment DynamicRow on DynamicRow @injectable {
+fragment DynamicRow on DynamicRow {
   placement
   target {
     ... on Node {

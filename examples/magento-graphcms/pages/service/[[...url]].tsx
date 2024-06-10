@@ -4,7 +4,7 @@ import {
   hygraphPageContent,
   HygraphPagesQuery,
 } from '@graphcommerce/graphcms-ui'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Container } from '@mui/material'
@@ -84,7 +84,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const page = hygraphPageContent(staticClient, url)
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
 
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+  if (!(await page).data.pages?.[0]) return redirectOrNotFound(staticClient, conf, { url }, locale)
 
   const isRoot = url === 'service'
 

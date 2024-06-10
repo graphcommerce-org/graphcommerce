@@ -1,4 +1,4 @@
-fragment ProductPageMeta on ProductInterface @injectable {
+fragment ProductPageMeta on ProductInterface {
   ...ProductLink
   sku
   name

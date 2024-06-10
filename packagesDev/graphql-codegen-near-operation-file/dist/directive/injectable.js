@@ -97,14 +97,14 @@ function injectInjectable(injectables, injector) {
             });
         });
         if (!found)
-            throwInjectError(injectVal, `fragment ${target} @injectable { ... } can not be found or isn't injectable`);
+            throwInjectError(injectVal, `fragment ${target} { ... } can not be found`);
     });
 }
 function injectableDirective(documentFiles) {
     const documents = documentFiles
         .map(({ document }) => document)
         .filter((doc) => doc);
-    const injectables = documents.filter((d) => isFragment(d) && hasInjectableDirective(d));
+    const injectables = documents.filter((d) => isFragment(d));
     const injectors = documents.filter((d) => isFragment(d) && hasInjectDirective(d));
     injectors.forEach((d) => injectInjectable(injectables, d));
     return documentFiles;

@@ -1,5 +1,27 @@
 # Change Log
 
+## 8.1.0-canary.26
+
+### Minor Changes
+
+- [#2274](https://github.com/graphcommerce-org/graphcommerce/pull/2274) [`4a24813`](https://github.com/graphcommerce-org/graphcommerce/commit/4a248130041484833768fe6018f91d05a59522de) - Add props to DarkLightModeThemeProvider to disable dark/light mode or to change the default ssr mode. Save user chosen mode in localStorage
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2274](https://github.com/graphcommerce-org/graphcommerce/pull/2274) [`57131cf`](https://github.com/graphcommerce-org/graphcommerce/commit/57131cfcc43695cc3e22f28912feb2a8439620a7) - Created a cssFlags functionality to allow for conditional rendering based on stored flags in the localStorage
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
 ## 8.1.0-canary.20
 
 ## 8.1.0-canary.19

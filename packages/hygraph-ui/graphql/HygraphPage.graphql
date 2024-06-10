@@ -1,4 +1,4 @@
-fragment HygraphPage on Page @injectable {
+fragment HygraphPage on Page {
   title
   metaTitle
   metaDescription
