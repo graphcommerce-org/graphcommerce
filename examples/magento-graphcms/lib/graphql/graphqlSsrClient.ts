@@ -36,32 +36,14 @@ function client(locale: string | undefined, fetchPolicy: FetchPolicy = 'no-cache
   })
 }
 
-const sharedClient: {
-  [locale: string]: ApolloClient<NormalizedCacheObject>
-} = {}
-
 /**
  * Any queries made with the graphqlSharedClient will be send to the browser and injected in the
  * browser's cache.
  */
 export function graphqlSharedClient(locale: string | undefined) {
-  if (!locale) return client(locale, 'cache-first')
-
-  // Create a client if it doesn't exist for the locale.
-  if (!sharedClient[locale]) sharedClient[locale] = client(locale, 'cache-first')
-  return sharedClient[locale]
+  return client(locale, 'cache-first')
 }
 
-const ssrClient: {
-  [locale: string]: ApolloClient<NormalizedCacheObject>
-} = {}
-
 export function graphqlSsrClient(locale: string | undefined) {
-  i18nSsrLoader(locale)
-  if (!locale) return client(locale, 'no-cache')
-
-  // Create a client if it doesn't exist for the locale.
-  if (!ssrClient[locale]) ssrClient[locale] = client(locale, 'no-cache')
-
-  return ssrClient[locale]
+  return client(locale, 'no-cache')
 }
