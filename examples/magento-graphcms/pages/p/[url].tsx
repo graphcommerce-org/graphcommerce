@@ -185,6 +185,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const conf = client.query({ query: StoreConfigDocument })
   const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const usps = staticClient.query({ query: UspsDocument, fetchPolicy: 'cache-first' })
 
   const product = productPage.then((pp) =>
     pp.data.products?.items?.find((p) => p?.url_key === urlKey),
@@ -198,7 +199,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
       : { href: `/`, title: i18n._(/* i18n */ 'Home') }
-  const usps = staticClient.query({ query: UspsDocument, fetchPolicy: 'cache-first' })
 
   return {
     props: {
