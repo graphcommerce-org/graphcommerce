@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.28
+
+### Patch Changes
+
+- [#2292](https://github.com/graphcommerce-org/graphcommerce/pull/2292) [`6258adb`](https://github.com/graphcommerce-org/graphcommerce/commit/6258adbe294590ba52d3aaf65712cdc561f32c4c) - Be able to handle plugin runtime values values when parsing the source. Also, make sure parsed plugin sources do not return duplicate plugins.
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.27
 
 ## 8.1.0-canary.26
