@@ -34,10 +34,11 @@ export function parseStructure(ast: Module, gcConfig: GraphCommerceConfig, sourc
   } = exports
 
   const exportVals = Object.keys(rest)
+
   if (component && !moduleConfig) exportVals.push('Plugin')
   if (func && !moduleConfig) exportVals.push('plugin')
 
-  return exportVals
+  const pluginConfigs = exportVals
     .map((exportVal) => {
       let config = isObject(moduleConfig) ? moduleConfig : {}
 
@@ -49,6 +50,7 @@ export function parseStructure(ast: Module, gcConfig: GraphCommerceConfig, sourc
         config = { ...moduleConfig, export: exportVal }
       } else {
         console.error(`Plugin configuration invalid! See ${sourceModule}`)
+        return null
       }
 
       const parsed = pluginConfigParsed.safeParse(config)
@@ -79,4 +81,15 @@ export function parseStructure(ast: Module, gcConfig: GraphCommerceConfig, sourc
       return val
     })
     .filter(nonNullable)
+
+  const newPluginConfigs = pluginConfigs.reduce<PluginConfig[]>((acc, pluginConfig) => {
+    if (
+      !acc.find((accPluginConfig) => accPluginConfig.sourceExport === pluginConfig.sourceExport)
+    ) {
+      acc.push(pluginConfig)
+    }
+    return acc
+  }, [])
+
+  return newPluginConfigs
 }
