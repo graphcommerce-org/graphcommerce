@@ -1,7 +1,7 @@
 import {
-  FormAutoSubmit,
   FormPersist,
   UseFormComposeOptions,
+  useFormAutoSubmit,
   useFormCompose,
 } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
@@ -122,7 +122,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
 
   const submit = handleSubmit(() => {})
 
-  // We want to persist the form because we can't send the 'new address' state to the server, but we do want to keep this selection.
+  useFormAutoSubmit({ form, submit, forceInitialSubmit: true })
   useFormCompose({ form, step, submit, key: 'CustomerAddressForm' })
 
   if (customer.loading || customerAddresses.length === 0) return <>{children}</>
@@ -130,7 +130,6 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
   return (
     <>
       <FormPersist form={form} name='CustomerAddressForm' />
-      <FormAutoSubmit control={form.control} submit={submit} wait={0} />
       <Box component='form' onSubmit={submit} noValidate sx={sx}>
         <ActionCardListForm
           control={control}
