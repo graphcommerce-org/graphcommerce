@@ -21,7 +21,7 @@ import {
   productFiltersProSectionRenderer,
   useProductList,
 } from '@graphcommerce/magento-search'
-import { LayoutHeader, LayoutTitle, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { LayoutHeader, LayoutTitle, StickyBelowHeader, responsiveVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Container } from '@mui/material'
 import { ProductListFilterLayoutProps } from './CategoryFilterLayout'
@@ -40,6 +40,8 @@ function SearchFilterLayoutSidebar(props: SearchFilterLayoutProps) {
   const totalSearchResults =
     // (categories?.items?.length ?? 0) +
     products?.total_count ?? 0
+
+  const sidebarWidth = responsiveVal(200, 350, 960, 1920)
 
   return (
     <ProductFiltersPro
@@ -65,7 +67,7 @@ function SearchFilterLayoutSidebar(props: SearchFilterLayoutProps) {
               "sidebar count"      auto
               "sidebar items"      auto
               "sidebar pagination" 1fr
-              /300px   auto
+              /${sidebarWidth}   auto
             `,
           },
         })}
@@ -96,12 +98,25 @@ function SearchFilterLayoutSidebar(props: SearchFilterLayoutProps) {
           total_count={total_count}
           sx={{ gridArea: 'count', width: '100%', my: 0, height: '1em' }}
         />
-
         <Box gridArea='items'>
           {products.items.length <= 0 ? (
             <NoSearchResults search={search} />
           ) : (
-            <ProductListItems items={products.items} loadingEager={6} title={`Search ${search}`} />
+            <ProductListItems
+              items={products.items}
+              loadingEager={6}
+              title={`Search ${search}`}
+              calcColumns={(theme) => {
+                const totalWidth = (spacing: string) =>
+                  `calc(100vw - (${theme.page.horizontal} * 2 + ${sidebarWidth} + ${theme.spacings[spacing]}))`
+                return {
+                  xs: { count: 2 },
+                  md: { totalWidth: totalWidth('md'), count: 3 },
+                  lg: { totalWidth: totalWidth('md'), count: 4 },
+                  xl: { totalWidth: totalWidth('xxl'), count: 5 },
+                }
+              }}
+            />
           )}
         </Box>
 

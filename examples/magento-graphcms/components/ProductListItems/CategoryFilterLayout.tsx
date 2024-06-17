@@ -27,7 +27,7 @@ import {
   productFiltersProChipRenderer,
   productFiltersProSectionRenderer,
 } from '@graphcommerce/magento-product'
-import { LayoutTitle, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { LayoutTitle, StickyBelowHeader, responsiveVal } from '@graphcommerce/next-ui'
 import { Box, Container, Typography } from '@mui/material'
 import { CategoryPageQuery } from '../../graphql/CategoryPage.gql'
 import { ProductListItems } from './ProductListItems'
@@ -48,6 +48,8 @@ function CategoryFilterLayoutSidebar(props: ProductListFilterLayoutProps) {
   if (!params || !products?.items || !filterTypes || !category) return null
   const { total_count, sort_fields, page_info } = products
 
+  const sidebarWidth = responsiveVal(200, 350, 960, 1920)
+
   return (
     <ProductFiltersPro
       key={id}
@@ -65,7 +67,6 @@ function CategoryFilterLayoutSidebar(props: ProductListFilterLayoutProps) {
           rowGap: theme.spacings.md,
           columnGap: { xs: theme.spacings.md, xl: theme.spacings.xxl },
           mb: theme.spacings.xl,
-
           gridTemplate: {
             xs: `"title" "horizontalFilters" "count" "items" "pagination"`,
             md: `
@@ -73,7 +74,7 @@ function CategoryFilterLayoutSidebar(props: ProductListFilterLayoutProps) {
               "sidebar count"      auto
               "sidebar items"      auto
               "sidebar pagination" 1fr
-              /300px   auto
+              /${sidebarWidth}   auto
             `,
           },
         })}
@@ -116,7 +117,21 @@ function CategoryFilterLayoutSidebar(props: ProductListFilterLayoutProps) {
         />
 
         <Box sx={{ gridArea: 'items' }}>
-          <ProductListItems items={products.items} loadingEager={6} title={title} />
+          <ProductListItems
+            items={products.items}
+            loadingEager={6}
+            title={title}
+            calcColumns={(theme) => {
+              const totalWidth = (spacing: string) =>
+                `calc(100vw - (${theme.page.horizontal} * 2 + ${sidebarWidth} + ${theme.spacings[spacing]}))`
+              return {
+                xs: { count: 2 },
+                md: { totalWidth: totalWidth('md'), count: 3 },
+                lg: { totalWidth: totalWidth('md'), count: 4 },
+                xl: { totalWidth: totalWidth('xxl'), count: 5 },
+              }
+            }}
+          />
         </Box>
 
         <ProductListPagination
@@ -252,7 +267,7 @@ function CategoryFilterLayoutDefault(props: ProductListFilterLayoutProps) {
   )
 }
 
-function CategoryFiltersLayoutClassic(props: ProductListFilterLayoutProps) {
+function CategoryFilterLayoutClassic(props: ProductListFilterLayoutProps) {
   const { id, filters, filterTypes, params, products, title, category } = props
 
   if (!(params && products?.items && filterTypes)) return null
@@ -313,7 +328,7 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
   }
 
   if (!import.meta.graphCommerce.productFiltersPro) {
-    return <CategoryFiltersLayoutClassic {...props} />
+    return <CategoryFilterLayoutClassic {...props} />
   }
 
   return null
