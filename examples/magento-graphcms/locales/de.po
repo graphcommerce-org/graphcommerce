@@ -13,11 +13,12 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-msgid "<0>{name}</0> has been added to your comparison!"
-msgstr "<0>{name}</0> wurde zu Ihrer Vergleichsliste hinzugefügt!"
-
+#. js-lingui-generated-id
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> wurde zu Ihrem Warenkorb hinzugefügt!"
+
+msgid "<0>{name}</0> has been added to your comparison!"
+msgstr "<0>{name}</0> wurde zu Ihrer Vergleichsliste hinzugefügt!"
 
 msgid "<0>{name}</0> has been added to your wishlist!"
 msgstr "<0>{name}</0> wurde zu Ihrer Wunschliste hinzugefügt!"
@@ -36,9 +37,6 @@ msgstr "Fügen Sie ein weiteres Produkt hinzu, um den Vergleich zu starten."
 
 msgid "Add new address"
 msgstr "Neue Adresse hinzufügen"
-
-msgid "Add to Cart"
-msgstr "Zum Warenkorb hinzufügen"
 
 msgid "Add to cart quantity"
 msgstr "Zum Warenkorb hinzufügen Menge"
@@ -109,6 +107,9 @@ msgstr "Warenkorb"
 msgid "Cart ({0})"
 msgstr "Warenkorb ({0})"
 
+msgid "Categories"
+msgstr "Kategorien"
+
 msgid "Change"
 msgstr "Ändern"
 
@@ -144,9 +145,6 @@ msgstr "Produkte vergleichen"
 
 msgid "Complete the payment on your bank’s website."
 msgstr "Schließen Sie die Zahlung auf der Website Ihrer Bank ab."
-
-msgid "Complete your purchase"
-msgstr "Schließen Sie Ihren Kauf ab"
 
 msgid "Configure"
 msgstr "Konfigurieren"
@@ -211,6 +209,10 @@ msgstr "Verringern"
 msgid "Delete this address"
 msgstr "Diese Adresse löschen"
 
+#. js-lingui-generated-id
+msgid "Complete your purchase"
+msgstr "Schließen Sie Ihren Kauf ab"
+
 msgid "Discount code"
 msgstr "Rabattcode"
 
@@ -255,6 +257,10 @@ msgstr "E-Mail-Adressen stimmen nicht überein"
 
 msgid "Empty comparelist"
 msgstr "Vergleichsliste leeren"
+
+#. js-lingui-generated-id
+msgid "{0, plural, one {<0>{1}</0> has been added to your shopping cart} two {<1>{2}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
+msgstr "{0, plural, one {<0>{1}</0> wurde zu Ihrem Warenkorb hinzugefügt} two {<1>{2}</1> wurden zu Ihrem Warenkorb hinzugefügt!} other {# Produkte wurden zu Ihrem Warenkorb hinzugefügt!}}"
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Geben Sie Ihre E-Mail-Adresse ein, um sich anzumelden oder ein Kundenkonto zu erstellen"
@@ -751,9 +757,6 @@ msgstr "Vergleich ansehen"
 msgid "View less items"
 msgstr "Weniger Artikel anzeigen"
 
-msgid "View shopping cart"
-msgstr "Warenkorb anzeigen"
-
 msgid "View wishlist"
 msgstr "Wunschliste anzeigen"
 
@@ -871,11 +874,19 @@ msgstr "Ihre Wunschliste ist leer"
 msgid "Zip code or city"
 msgstr "Postleitzahl oder Stadt"
 
+#. js-lingui-generated-id
+msgid "Add to Cart"
+msgstr "In den Warenkorb"
+
 msgid "canceled"
 msgstr "abgebrochen"
 
 msgid "invoiced"
 msgstr "in Rechnung gestellt"
+
+#. js-lingui-generated-id
+msgid "View shopping cart"
+msgstr "Warenkorb anzeigen"
 
 msgid "no products"
 msgstr "keine Produkte"

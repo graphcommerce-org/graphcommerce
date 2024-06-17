@@ -6,12 +6,13 @@ import {
   ErrorSnackbarProps,
   iconChevronRight,
   IconSvg,
+  ListFormat,
   MessageSnackbar,
   MessageSnackbarProps,
   nonNullable,
   useLocale,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Plural, Trans } from '@lingui/macro'
 import { useMemo } from 'react'
 import { findAddedItems } from './findAddedItems'
 import { toUserErrors } from './toUserErrors'
@@ -20,18 +21,19 @@ import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 export type AddProductsToCartSnackbarProps = {
   errorSnackbar?: Omit<ErrorSnackbarProps, 'open'>
   successSnackbar?: Omit<MessageSnackbarProps, 'open' | 'action'>
+  disableSuccessSnackbar?: boolean
 }
 
 export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps) {
-  const { errorSnackbar, successSnackbar } = props
+  const { errorSnackbar, successSnackbar, disableSuccessSnackbar } = props
   const { error, data, redirect, control, submittedVariables } = useFormAddProductsToCart()
   const formState = useFormState({ control })
 
-  const formatter = new Intl.ListFormat(useLocale(), { style: 'long', type: 'conjunction' })
-
+  const locale = useLocale()
   const userErrors = toUserErrors(data)
 
   const showSuccess =
+    !disableSuccessSnackbar &&
     !formState.isSubmitting &&
     formState.isSubmitSuccessful &&
     !error?.message &&
@@ -71,22 +73,29 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
               endIcon={<IconSvg src={iconChevronRight} />}
               sx={{ display: 'flex' }}
             >
-              <Trans id='View shopping cart' />
+              <Trans>View shopping cart</Trans>
             </Button>
           }
         >
-          <Trans
-            id={
-              addedItems.length === 1
-                ? '<0>{name}</0> has been added to your shopping cart!'
-                : '<0>{name}</0> have been added to your shopping cart!'
+          <Plural
+            value={addedItems.length}
+            one={
+              <Trans>
+                <ListFormat formatStyle='long' type='conjunction'>
+                  {addedItems.map((item) => item?.itemInCart?.product.name).filter(nonNullable)}
+                </ListFormat>{' '}
+                has been added to your shopping cart
+              </Trans>
             }
-            components={{ 0: <strong /> }}
-            values={{
-              name: formatter.format(
-                addedItems.map((item) => item?.itemInCart?.product.name).filter(nonNullable),
-              ),
-            }}
+            two={
+              <Trans>
+                <ListFormat formatStyle='long' type='conjunction'>
+                  {addedItems.map((item) => item?.itemInCart?.product.name).filter(nonNullable)}
+                </ListFormat>{' '}
+                have been added to your shopping cart!
+              </Trans>
+            }
+            other={<Trans># products have been added to your shopping cart!</Trans>}
           />
         </MessageSnackbar>
       )}

@@ -13,11 +13,12 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-msgid "<0>{name}</0> has been added to your comparison!"
-msgstr "<0>{name}</0> has been added to your comparison!"
-
+#. js-lingui-generated-id
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> has been added to your shopping cart!"
+
+msgid "<0>{name}</0> has been added to your comparison!"
+msgstr "<0>{name}</0> has been added to your comparison!"
 
 msgid "<0>{name}</0> has been added to your wishlist!"
 msgstr "<0>{name}</0> has been added to your wishlist!"
@@ -36,9 +37,6 @@ msgstr "Add another product to start comparing."
 
 msgid "Add new address"
 msgstr "Add new address"
-
-msgid "Add to Cart"
-msgstr "Add to Cart"
 
 msgid "Add to cart quantity"
 msgstr "Add to cart quantity"
@@ -109,6 +107,9 @@ msgstr "Cart"
 msgid "Cart ({0})"
 msgstr "Cart ({0})"
 
+msgid "Categories"
+msgstr "Categories"
+
 msgid "Change"
 msgstr "Change"
 
@@ -144,9 +145,6 @@ msgstr "Compare products"
 
 msgid "Complete the payment on your bank’s website."
 msgstr "Complete the payment on your bank’s website."
-
-msgid "Complete your purchase"
-msgstr "Complete your purchase"
 
 msgid "Configure"
 msgstr "Configure"
@@ -211,6 +209,10 @@ msgstr "Decrease"
 msgid "Delete this address"
 msgstr "Delete this address"
 
+#. js-lingui-generated-id
+msgid "Complete your purchase"
+msgstr "Complete your purchase"
+
 msgid "Discount code"
 msgstr "Discount code"
 
@@ -255,6 +257,10 @@ msgstr "Emails don't match"
 
 msgid "Empty comparelist"
 msgstr "Empty comparelist"
+
+#. js-lingui-generated-id
+msgid "{0, plural, one {<0>{1}</0> has been added to your shopping cart} two {<1>{2}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
+msgstr "{0, plural, one {<0>{1}</0> has been added to your shopping cart} two {<1>{2}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Fill in your e-mail to login or create an account"
@@ -751,9 +757,6 @@ msgstr "View comparison"
 msgid "View less items"
 msgstr "View less items"
 
-msgid "View shopping cart"
-msgstr "View shopping cart"
-
 msgid "View wishlist"
 msgstr "View wishlist"
 
@@ -871,11 +874,19 @@ msgstr "Your wishlist is empty"
 msgid "Zip code or city"
 msgstr "Zip code or city"
 
+#. js-lingui-generated-id
+msgid "Add to Cart"
+msgstr "Add to Cart"
+
 msgid "canceled"
 msgstr "canceled"
 
 msgid "invoiced"
 msgstr "invoiced"
+
+#. js-lingui-generated-id
+msgid "View shopping cart"
+msgstr "View shopping cart"
 
 msgid "no products"
 msgstr "no products"

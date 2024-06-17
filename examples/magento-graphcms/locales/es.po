@@ -13,11 +13,12 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#. js-lingui-generated-id
+msgid "<0>{name}</0> has been added to your shopping cart!"
+msgstr "¡<0>{name}</0> ha sido añadido a su carrito de compras!"
+
 msgid "<0>{name}</0> has been added to your comparison!"
 msgstr "¡<0>{name}</0> ha sido añadido a tu comparación!"
-
-msgid "<0>{name}</0> has been added to your shopping cart!"
-msgstr "<0>{name}</0> ha sido añadido a su carrito de compras!"
 
 msgid "<0>{name}</0> has been added to your wishlist!"
 msgstr "<0>{name}</0> ha sido añadido a su lista de deseos!"
@@ -36,9 +37,6 @@ msgstr "Añade otro producto para empezar a comparar."
 
 msgid "Add new address"
 msgstr "Añadir nueva dirección"
-
-msgid "Add to Cart"
-msgstr "Añadir al carrito"
 
 msgid "Add to cart quantity"
 msgstr "Añadir al carrito cantidad"
@@ -109,6 +107,9 @@ msgstr "Carrito"
 msgid "Cart ({0})"
 msgstr "Carrito ({0})"
 
+msgid "Categories"
+msgstr "Categorías"
+
 msgid "Change"
 msgstr "Cambiar"
 
@@ -144,9 +145,6 @@ msgstr "Comparar productos"
 
 msgid "Complete the payment on your bank’s website."
 msgstr "Complete el pago en el sitio web de su banco."
-
-msgid "Complete your purchase"
-msgstr "Complete su compra"
 
 msgid "Configure"
 msgstr "Configurar"
@@ -211,6 +209,10 @@ msgstr "Disminuir"
 msgid "Delete this address"
 msgstr "Eliminar esta dirección"
 
+#. js-lingui-generated-id
+msgid "Complete your purchase"
+msgstr "Complete su compra"
+
 msgid "Discount code"
 msgstr "Código de descuento"
 
@@ -255,6 +257,10 @@ msgstr "Los correos electrónicos no coinciden"
 
 msgid "Empty comparelist"
 msgstr "Ecuación vacía"
+
+#. js-lingui-generated-id
+msgid "{0, plural, one {<0>{1}</0> has been added to your shopping cart} two {<1>{2}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
+msgstr "{0, plural, one {<0>{1}</0> se ha añadido a su carrito de compras} two {<1>{2}</1> se han añadido a su carrito de compras!} other {# productos se han añadido a su carrito de compras!}}"
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Rellene su correo electrónico para iniciar sesión o crear una cuenta"
@@ -751,9 +757,6 @@ msgstr "Ver comparación"
 msgid "View less items"
 msgstr "Ver menos artículos"
 
-msgid "View shopping cart"
-msgstr "Ver carrito de compras"
-
 msgid "View wishlist"
 msgstr "Ver lista de deseos"
 
@@ -871,11 +874,19 @@ msgstr "Su lista de deseos está vacía"
 msgid "Zip code or city"
 msgstr "Código postal o ciudad"
 
+#. js-lingui-generated-id
+msgid "Add to Cart"
+msgstr "Añadir al carrito"
+
 msgid "canceled"
 msgstr "cancelado"
 
 msgid "invoiced"
 msgstr "facturado"
+
+#. js-lingui-generated-id
+msgid "View shopping cart"
+msgstr "Ver carrito de compras"
 
 msgid "no products"
 msgstr "no hay productos"

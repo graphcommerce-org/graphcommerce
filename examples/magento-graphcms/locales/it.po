@@ -13,11 +13,12 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#. js-lingui-generated-id
+msgid "<0>{name}</0> has been added to your shopping cart!"
+msgstr "<0>{name}</0> è stato aggiunto al carrello!"
+
 msgid "<0>{name}</0> has been added to your comparison!"
 msgstr "<0>{name}</0> è stato aggiunto al confronto!"
-
-msgid "<0>{name}</0> has been added to your shopping cart!"
-msgstr "<0>{name}</0> è stato aggiunto al tuo carrello!"
 
 msgid "<0>{name}</0> has been added to your wishlist!"
 msgstr "<0>{name}</0> è stato aggiunto alla tua lista dei desideri!"
@@ -36,9 +37,6 @@ msgstr "Aggiungi un altro prodotto per iniziare il confronto."
 
 msgid "Add new address"
 msgstr "Aggiungi nuovo indirizzo"
-
-msgid "Add to Cart"
-msgstr "Aggiungi al carrello"
 
 msgid "Add to cart quantity"
 msgstr "Aggiungi al carrello quantità"
@@ -109,6 +107,9 @@ msgstr "Carrello"
 msgid "Cart ({0})"
 msgstr "Carrello ({0})"
 
+msgid "Categories"
+msgstr "Categorie"
+
 msgid "Change"
 msgstr "Cambia"
 
@@ -144,9 +145,6 @@ msgstr "Confronta i prodotti"
 
 msgid "Complete the payment on your bank’s website."
 msgstr "Completa il pagamento sul sito del tuo banco."
-
-msgid "Complete your purchase"
-msgstr "Completa il tuo acquisto"
 
 msgid "Configure"
 msgstr "Configura"
@@ -211,6 +209,10 @@ msgstr "Diminuire"
 msgid "Delete this address"
 msgstr "Elimina questo indirizzo"
 
+#. js-lingui-generated-id
+msgid "Complete your purchase"
+msgstr "Completa il tuo acquisto"
+
 msgid "Discount code"
 msgstr "Codice sconto"
 
@@ -255,6 +257,10 @@ msgstr "Email non corrispondenti"
 
 msgid "Empty comparelist"
 msgstr "Equazione vuota"
+
+#. js-lingui-generated-id
+msgid "{0, plural, one {<0>{1}</0> has been added to your shopping cart} two {<1>{2}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
+msgstr "{0, plural, one {<0>{1}</0> è stato aggiunto al carrello} two {<1>{2}</1> sono stati aggiunti al carrello!} other {# prodotti sono stati aggiunti al carrello!}}"
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Compila il tuo indirizzo email per accedere o creare un account"
@@ -751,9 +757,6 @@ msgstr "Visualizza il confronto"
 msgid "View less items"
 msgstr "Visualizza meno articoli"
 
-msgid "View shopping cart"
-msgstr "Visualizza carrello"
-
 msgid "View wishlist"
 msgstr "Visualizza lista desideri"
 
@@ -871,11 +874,19 @@ msgstr "La tua lista desideri è vuota"
 msgid "Zip code or city"
 msgstr "CAP o città"
 
+#. js-lingui-generated-id
+msgid "Add to Cart"
+msgstr ""
+
 msgid "canceled"
 msgstr "annullato"
 
 msgid "invoiced"
 msgstr "fatturato"
+
+#. js-lingui-generated-id
+msgid "View shopping cart"
+msgstr ""
 
 msgid "no products"
 msgstr "nessun prodotto"

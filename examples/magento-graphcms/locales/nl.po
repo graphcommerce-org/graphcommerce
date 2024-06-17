@@ -13,11 +13,12 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#. js-lingui-generated-id
+msgid "<0>{name}</0> has been added to your shopping cart!"
+msgstr "<0>{name}</0> is toegevoegd aan je winkelwagen!"
+
 msgid "<0>{name}</0> has been added to your comparison!"
 msgstr "<0>{name}</0> is toegevoegd aan je vergelijking!"
-
-msgid "<0>{name}</0> has been added to your shopping cart!"
-msgstr "<0>{name}</0> is toegevoegd aan uw winkelwagen!"
 
 msgid "<0>{name}</0> has been added to your wishlist!"
 msgstr "<0>{name}</0> is toegevoegd aan je verlanglijst!"
@@ -36,9 +37,6 @@ msgstr "Voeg nog een product toe om te vergelijken"
 
 msgid "Add new address"
 msgstr "Voeg nieuw adres toe"
-
-msgid "Add to Cart"
-msgstr "In winkelwagen"
 
 msgid "Add to cart quantity"
 msgstr "Voeg toe aan winkelwagen aantal"
@@ -109,6 +107,9 @@ msgstr "Winkelwagen"
 msgid "Cart ({0})"
 msgstr "Winkelwagen ({0})"
 
+msgid "Categories"
+msgstr "Categorieën"
+
 msgid "Change"
 msgstr "Wijzig"
 
@@ -144,9 +145,6 @@ msgstr "Vergelijk producten"
 
 msgid "Complete the payment on your bank’s website."
 msgstr "Voltooi de betaling op uw bank's website."
-
-msgid "Complete your purchase"
-msgstr "Maak uw bestelling compleet"
 
 msgid "Configure"
 msgstr "Configureer"
@@ -211,6 +209,10 @@ msgstr "Verminderen"
 msgid "Delete this address"
 msgstr "Verwijder dit adres"
 
+#. js-lingui-generated-id
+msgid "Complete your purchase"
+msgstr "Maak uw bestelling compleet"
+
 msgid "Discount code"
 msgstr "Kortingscode"
 
@@ -255,6 +257,10 @@ msgstr "E-mailadressen komen niet overeen"
 
 msgid "Empty comparelist"
 msgstr "Wissen"
+
+#. js-lingui-generated-id
+msgid "{0, plural, one {<0>{1}</0> has been added to your shopping cart} two {<1>{2}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
+msgstr "{0, plural, one {<0>{1}</0> is toegevoegd aan je winkelwagen} two {<1>{2}</1> zijn toegevoegd aan je winkelwagen!} other {# producten zijn toegevoegd aan je winkelwagen!}}"
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Vul uw e-mailadres in om in te loggen of maak een account aan"
@@ -751,9 +757,6 @@ msgstr "Bekijk vergelijking"
 msgid "View less items"
 msgstr "Bekijk minder items"
 
-msgid "View shopping cart"
-msgstr "Bekijk winkelwagen"
-
 msgid "View wishlist"
 msgstr "Bekijk verlanglijst"
 
@@ -871,11 +874,19 @@ msgstr "Uw verlanglijst is leeg"
 msgid "Zip code or city"
 msgstr "Postcode of stad"
 
+#. js-lingui-generated-id
+msgid "Add to Cart"
+msgstr "In winkelwagen"
+
 msgid "canceled"
 msgstr "geannuleerd"
 
 msgid "invoiced"
 msgstr "gefactureerd"
+
+#. js-lingui-generated-id
+msgid "View shopping cart"
+msgstr "Bekijk winkelwagen"
 
 msgid "no products"
 msgstr "geen producten"
