@@ -27,7 +27,7 @@ import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import { GetStaticProps, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutDocument,
@@ -42,6 +42,7 @@ import { AddProductsToCartView } from '../../components/ProductView/AddProductsT
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { isType } from 'graphql'
 
 export type Props = HygraphPagesQuery &
   UspsQuery &
@@ -87,9 +88,17 @@ function ProductPage(props: Props) {
         <ProductPageMeta product={product} />
 
         {import.meta.graphCommerce.breadcrumbs && (
-          <Container maxWidth={false} sx={(theme) => ({ marginBottom: theme.spacings.xs })}>
-            <ProductPageBreadcrumbs product={product} />
-          </Container>
+          <ProductPageBreadcrumbs
+            product={product}
+            sx={(theme) => ({
+              py: `calc(${theme.spacings.xxs} / 2)`,
+              pl: theme.page.horizontal,
+              background: theme.palette.background.paper,
+              [theme.breakpoints.down('md')]: {
+                '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+              },
+            })}
+          />
         )}
 
         <ProductPageGallery
@@ -97,6 +106,7 @@ function ProductPage(props: Props) {
           sx={(theme) => ({
             '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
           })}
+          disableSticky
         >
           <div>
             {isTypename(product, ['ConfigurableProduct', 'BundleProduct']) && (

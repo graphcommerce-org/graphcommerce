@@ -27,7 +27,9 @@ const SignedInMaskContext = createContext<SignedInMaskContextType | null>(null)
 export function useSignedInMask() {
   const context = useContext(SignedInMaskContext)
   if (!context) {
-    console.warn('useSignedInMask was used without a SignedInMaskProvider')
+    console.warn(
+      "useSignedInMask was used without a SignedInMaskProvider, this means that customer specific pricing probably isn't working.",
+    )
     return { mask: false }
   }
   return context

@@ -15,11 +15,10 @@ import {
   CategorySearchDocument,
   CategorySearchQuery,
   SearchContext,
-  SearchForm,
   productListApplySearchDefaults,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutHeader } from '@graphcommerce/next-ui'
+import { GetStaticProps } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import {
   LayoutDocument,
@@ -40,7 +39,7 @@ export type GetPageStaticProps = GetStaticProps<
 >
 
 function SearchResultPage(props: SearchResultProps) {
-  const { products, categories, params, filters, filterTypes } = props
+  const { products, params, filters, filterTypes } = props
   const search = params.url.split('/')[1]
 
   return (

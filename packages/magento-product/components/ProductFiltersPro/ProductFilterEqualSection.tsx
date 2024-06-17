@@ -66,7 +66,7 @@ export function ProductFilterEqualSection(props: FilterProps) {
           multiple
           layout='list'
           variant='default'
-          size='medium'
+          size='responsive'
           items={items}
           showMoreAfter={4}
         />

@@ -36,6 +36,7 @@ export function ProductFiltersProCategorySection(props: ProductFiltersCategorySe
       summary={<Trans id='Categories' />}
       details={
         <ActionCardList
+          size='responsive'
           variant='default'
           value={form.getValues('url')}
           onChange={async (e, value) => {
@@ -47,27 +48,33 @@ export function ProductFiltersProCategorySection(props: ProductFiltersCategorySe
             await submit()
           }}
         >
-          {categoryTree.map((item) => (
-            <ActionCard
-              {...item}
-              title={
-                item.isBack ? (
-                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <IconSvg src={iconChevronLeft} size='medium' />
-                    {item.title}
-                  </Box>
-                ) : (
-                  item.title
-                )
-              }
-              sx={{
-                '&.sizeSmall': { pl: responsiveVal(8 * item.indent, 12 * item.indent) },
-                '&.sizeMedium': { pl: responsiveVal(10 * item.indent, 14 * item.indent) },
-                '&.sizeLarge': { pl: responsiveVal(12 * item.indent, 16 * item.indent) },
-                '&.sizeResponsive': { pl: responsiveVal(8 * item.indent, 16 * item.indent) },
-              }}
-            />
-          ))}
+          {categoryTree.map((item) => {
+            const indent = item.isBack ? 0 : item.indent + 1
+            return (
+              <ActionCard
+                key={item.value}
+                {...item}
+                size='responsive'
+                title={
+                  item.isBack ? (
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                      <IconSvg src={iconChevronLeft} size='medium' />
+                      {item.title}
+                    </Box>
+                  ) : (
+                    item.title
+                  )
+                }
+                sx={{
+                  '&.sizeSmall': { pl: responsiveVal(8 * indent, 12 * indent) },
+                  '&.sizeMedium': { pl: responsiveVal(10 * indent, 14 * indent) },
+                  '&.sizeLarge': { pl: responsiveVal(12 * indent, 16 * indent) },
+                  '&.sizeResponsive': { pl: responsiveVal(8 * indent, 16 * indent) },
+                  '& .ActionCard-title.selected': { fontWeight: 'bold' },
+                }}
+              />
+            )
+          })}
         </ActionCardList>
       }
       right={undefined}

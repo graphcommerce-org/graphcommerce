@@ -157,15 +157,15 @@ export function ActionCard(props: ActionCardProps) {
 
           '&.variantDefault': {
             position: 'relative',
-            '&::after': {
-              content: '""',
-              position: 'absolute',
-              width: '100%',
-              left: 0,
-              bottom: '-1px',
-              borderBottom: `1px solid ${theme.palette.divider}`,
-              display: 'block',
-            },
+            // '&::after': {
+            //   content: '""',
+            //   position: 'absolute',
+            //   width: '100%',
+            //   left: 0,
+            //   bottom: '-1px',
+            //   borderBottom: `1px solid ${theme.palette.divider}`,
+            //   display: 'block',
+            // },
             '&.selected': {
               backgroundColor:
                 theme.palette.mode === 'light'
@@ -201,10 +201,10 @@ export function ActionCard(props: ActionCardProps) {
               },
             },
             '&.sizeResponsive': {
-              mt: responsiveVal(2, 8),
-              mb: responsiveVal(3, 9),
+              // mt: responsiveVal(2, 8),
+              // mb: responsiveVal(3, 9),
               '&::after': {
-                mb: responsiveVal(-2, -8),
+                // mb: responsiveVal(-2, -8),
               },
             },
           },
@@ -320,10 +320,10 @@ export function ActionCard(props: ActionCardProps) {
               <Box
                 className={classes.title}
                 sx={{
-                  '&.sizeSmall': { typography: 'body2' },
+                  '&.sizeSmall': { typography: 'body1' },
                   '&.sizeMedium': { typography: 'body1' },
                   '&.sizeLarge': { typography: 'h6' },
-                  '&.sizeResponsive': { typography: { xs: 'body2', md: 'body1', lg: 'h6' } },
+                  '&.sizeResponsive': { typography: { xs: 'body1', md: 'body1', lg: 'body1' } },
                 }}
               >
                 {title}
