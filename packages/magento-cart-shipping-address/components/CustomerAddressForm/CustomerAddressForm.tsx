@@ -14,7 +14,7 @@ import { CustomerDocument } from '@graphcommerce/magento-customer'
 import { ActionCardListForm, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Box, SxProps, Theme } from '@mui/material'
-import React, { useMemo } from 'react'
+import React, { useEffect } from 'react'
 import { findCustomerAddressFromCartAddress } from '../../utils/findCustomerAddressFromCartAddress'
 import { GetAddressesDocument } from '../ShippingAddressForm/GetAddresses.gql'
 import { CustomerAddressActionCard } from './CustomerAddressActionCard'
@@ -105,7 +105,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
   const { handleSubmit, error, control, setValue, watch } = form
   const formAddressId = watch('customer_address_id')
 
-  useMemo(() => {
+  useEffect(() => {
     if (mode === 'both' || mode === 'shipping') {
       if (!cartAddressId && defaultShippingId) {
         // console.log('shippingAddress.customer_address_id', defaultShippingId)
