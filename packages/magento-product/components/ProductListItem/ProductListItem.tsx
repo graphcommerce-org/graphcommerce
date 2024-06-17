@@ -1,6 +1,6 @@
 import { ImageProps } from '@graphcommerce/image'
-import { cssFlag, cssNotFlag, extendableComponent } from '@graphcommerce/next-ui'
-import { SxProps, Theme, useEventCallback, Skeleton, Link, Button } from '@mui/material'
+import { extendableComponent } from '@graphcommerce/next-ui'
+import { SxProps, Theme, useEventCallback, Skeleton } from '@mui/material'
 import React from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { productLink } from '../../hooks/useProductLink'

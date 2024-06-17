@@ -6,7 +6,6 @@ import { useCustomerSession } from './useCustomerSession'
 /**
  * Creates a scope based on customer's session.
  *
- *
  * Todo: Generalize this feature to be used for other scopes.
  *
  * Other plugins should be able to define their own scopes and create a plugin on this method to augment the specific scope.
