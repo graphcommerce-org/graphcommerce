@@ -81,7 +81,7 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
             value={addedItems.length}
             one={
               <Trans>
-                <ListFormat formatStyle='long' type='conjunction'>
+                <ListFormat listStyle='long' type='conjunction'>
                   {addedItems.map((item) => item?.itemInCart?.product.name).filter(nonNullable)}
                 </ListFormat>{' '}
                 has been added to your shopping cart
@@ -89,7 +89,7 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
             }
             two={
               <Trans>
-                <ListFormat formatStyle='long' type='conjunction'>
+                <ListFormat listStyle='long' type='conjunction'>
                   {addedItems.map((item) => item?.itemInCart?.product.name).filter(nonNullable)}
                 </ListFormat>{' '}
                 have been added to your shopping cart!
