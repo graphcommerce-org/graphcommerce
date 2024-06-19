@@ -42,7 +42,7 @@ input ConfirmEmailInput {
   email: String!
 }
 
-type Mutation {
+type Mutation @doc(description: "Jajaj") {
   """
   Confirms the email address for a customer.
   """
