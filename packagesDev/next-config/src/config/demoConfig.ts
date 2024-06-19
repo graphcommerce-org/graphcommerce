@@ -7,6 +7,7 @@ export const demoConfig: PartialDeep<GraphCommerceConfig, { recurseIntoArrays: t
   canonicalBaseUrl: 'https://graphcommerce.vercel.app',
   hygraphEndpoint: 'https://eu-central-1.cdn.hygraph.com/content/ckhx7xadya6xs01yxdujt8i80/master',
   magentoEndpoint: 'https://backend.reachdigital.dev/graphql',
+  magentoVersion: 246,
   storefront: [
     { locale: 'en', magentoStoreCode: 'en_US', defaultLocale: true },
     {
