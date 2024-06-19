@@ -5,7 +5,7 @@ query ProductList(
   $sort: ProductAttributeSortInput = {}
   $search: String = ""
   $sessionScope: SessionScopeInput = { loggedIn: false }
-  $onlyItems: Boolean = true
+  $onlyItems: Boolean = false
 ) {
   products(
     pageSize: $pageSize

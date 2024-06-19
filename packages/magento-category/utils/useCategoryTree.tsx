@@ -8,13 +8,14 @@ export type UseCategoryTreeProps = {
   params?: ProductListParams
 }
 
-type CategoryTreeItem = {
+export type CategoryTreeItem = {
   title: React.ReactNode
   value: string
   selected: boolean
   isBack?: boolean
   indent: number
   uid: string
+  count: null | number
 }
 
 export function useCategoryTree(props: UseCategoryTreeProps): CategoryTreeItem[] | null {
@@ -33,6 +34,7 @@ export function useCategoryTree(props: UseCategoryTreeProps): CategoryTreeItem[]
     isBack: true,
     selected: params?.url === breadcrumb.category_url_path,
     uid: breadcrumb.category_uid,
+    count: null,
   }))
 
   let children = filterNonNullableKeys(category.children, [
@@ -46,6 +48,7 @@ export function useCategoryTree(props: UseCategoryTreeProps): CategoryTreeItem[]
     isBack: false,
     selected: params.url === categoryItem.url_path,
     uid: categoryItem.uid,
+    count: null,
   }))
 
   if (!children.find((item) => item.value === category.url_path))
@@ -56,6 +59,7 @@ export function useCategoryTree(props: UseCategoryTreeProps): CategoryTreeItem[]
       isBack: false,
       selected: true,
       uid: category.uid,
+      count: null,
     })
   else children = children.map((child) => ({ ...child, indent: 2 }))
 

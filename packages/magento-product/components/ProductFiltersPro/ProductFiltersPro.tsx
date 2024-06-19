@@ -1,4 +1,11 @@
-import { FormAutoSubmit, useForm, UseFormProps, UseFormReturn } from '@graphcommerce/ecommerce-ui'
+import {
+  FormAutoSubmit,
+  SubmitHandler,
+  useForm,
+  UseFormHandleSubmit,
+  UseFormProps,
+  UseFormReturn,
+} from '@graphcommerce/ecommerce-ui'
 import { useMatchMediaMotionValue, useMemoObject } from '@graphcommerce/next-ui'
 import { Theme, useEventCallback, useMediaQuery, useTheme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
@@ -31,9 +38,12 @@ type FilterFormContextProps = DataProps & {
 
 const FilterFormContext = createContext<FilterFormContextProps | null>(null)
 
-export const useProductFiltersPro = () => {
+export function useProductFiltersPro(optional: true): FilterFormContextProps | null
+export function useProductFiltersPro(optional?: false): FilterFormContextProps
+export function useProductFiltersPro(optional: boolean = false) {
   const context = useContext(FilterFormContext)
-  if (!context) throw Error('useProductFiltersPro should be used inside ProductFiltersPro')
+  if (!optional && !context)
+    throw Error('useProductFiltersPro should be used inside ProductFiltersPro')
   return context
 }
 
@@ -47,6 +57,8 @@ export type FilterFormProviderProps = Omit<
    * Whether the filter should scroll to the products list and whether to submit the form on change.
    */
   autoSubmitMd?: boolean
+
+  handleSubmit?: SubmitHandler<ProductFilterParams>
 } & DataProps
 
 function AutoSubmitSidebarDesktop() {
@@ -75,6 +87,7 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
     appliedAggregations,
     filterTypes,
     autoSubmitMd = false,
+    handleSubmit,
     ...formProps
   } = props
 
@@ -98,6 +111,8 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
         scroll: scroll.get(),
         shallow: formValues.url.startsWith('search') || formValues.url === defaultValues.url,
       }
+
+      await handleSubmit?.(formValues)
 
       return (router.query.url ?? []).includes('q')
         ? router.replace(path, path, opts)

@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
+import { CategoryTreeItem, MenuQueryFragment } from '@graphcommerce/magento-category'
 import {
   ProductListDocument,
   extractUrlQuery,
@@ -28,7 +29,8 @@ import {
 } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-type SearchResultProps = ProductListQuery &
+type SearchResultProps = MenuQueryFragment &
+  ProductListQuery &
   ProductFiltersQuery &
   CategorySearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
 type RouteProps = { url: string[] }
@@ -39,7 +41,7 @@ export type GetPageStaticProps = GetStaticProps<
 >
 
 function SearchResultPage(props: SearchResultProps) {
-  const { products, params, filters, filterTypes } = props
+  const { products, params, filters, filterTypes, menu } = props
   const search = params.url.split('/')[1]
 
   return (
@@ -60,6 +62,7 @@ function SearchResultPage(props: SearchResultProps) {
           filters={filters}
           products={products}
           filterTypes={filterTypes}
+          menu={menu}
         />
       </SearchContext>
     </>
@@ -74,7 +77,7 @@ SearchResultPage.pageOptions = pageOptions
 
 export default SearchResultPage
 
-export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
+export const getServerSideProps: GetPageStaticProps = async ({ params, locale }) => {
   const [searchShort = '', query = []] = extractUrlQuery(params)
   const search = searchShort.length >= 3 ? searchShort : ''
 
@@ -94,7 +97,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   if (!productListParams) return { notFound: true, revalidate: 60 * 20 }
 
-  const filters = staticClient.query({ query: ProductFiltersDocument, variables: { search } })
+  const filters = staticClient.query({ query: ProductFiltersDocument, variables: { search: '' } })
 
   const products = staticClient.query({
     query: ProductListDocument,
@@ -116,7 +119,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       up: { href: '/', title: i18n._(/* i18n */ 'Home') },
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
   }
   flushMeasurePerf()
   return result

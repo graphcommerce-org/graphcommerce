@@ -13,6 +13,7 @@ import {
   ProductFiltersProClearAll,
   ProductFiltersProLimitChip,
   ProductFiltersProLimitSection,
+  ProductFiltersProNoResults,
   ProductFiltersProSortChip,
   ProductFiltersProSortSection,
   ProductFiltersQuery,
@@ -117,21 +118,25 @@ function CategoryFilterLayoutSidebar(props: ProductListFilterLayoutProps) {
         />
 
         <Box sx={{ gridArea: 'items' }}>
-          <ProductListItems
-            items={products.items}
-            loadingEager={6}
-            title={title}
-            calcColumns={(theme) => {
-              const totalWidth = (spacing: string) =>
-                `calc(100vw - (${theme.page.horizontal} * 2 + ${sidebarWidth} + ${theme.spacings[spacing]}))`
-              return {
-                xs: { count: 2 },
-                md: { totalWidth: totalWidth('md'), count: 3 },
-                lg: { totalWidth: totalWidth('md'), count: 4 },
-                xl: { totalWidth: totalWidth('xxl'), count: 5 },
-              }
-            }}
-          />
+          {products.items.length <= 0 ? (
+            <ProductFiltersProNoResults />
+          ) : (
+            <ProductListItems
+              items={products.items}
+              loadingEager={6}
+              title={title}
+              calcColumns={(theme) => {
+                const totalWidth = (spacing: string) =>
+                  `calc(100vw - (${theme.page.horizontal} * 2 + ${sidebarWidth} + ${theme.spacings[spacing]}))`
+                return {
+                  xs: { count: 2 },
+                  md: { totalWidth: totalWidth('md'), count: 3 },
+                  lg: { totalWidth: totalWidth('md'), count: 4 },
+                  xl: { totalWidth: totalWidth('xxl'), count: 5 },
+                }
+              }}
+            />
+          )}
         </Box>
 
         <ProductListPagination

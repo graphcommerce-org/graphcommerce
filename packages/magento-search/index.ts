@@ -8,6 +8,7 @@ export * from './components/SearchDivider/SearchDivider'
 export * from './components/SearchForm/SearchForm'
 export * from './components/SearchLink/SearchLink'
 export * from './hooks/useProductList'
+export * from './components/ProductFiltersPro/ProductFiltersProCategorySectionSearch'
 
 export {
   ProductListCount,
