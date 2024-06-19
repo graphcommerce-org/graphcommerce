@@ -1,6 +1,6 @@
 # This is a commpatibility file: This does not implement any working functionality and only serves as a way to make the schema compatible with Magento 2.4.7
 
-extend type StoreConfig {
+type StoreConfig {
   """
   Indicates if the new accounts need confirmation.
   """
@@ -21,7 +21,7 @@ enum ConfirmationStatusEnum {
   ACCOUNT_CONFIRMATION_NOT_REQUIRED
 }
 
-extend type Customer {
+type Customer {
   """
   The customer's confirmation status.
   """
@@ -42,7 +42,7 @@ input ConfirmEmailInput {
   email: String!
 }
 
-extend type Mutation {
+type Mutation {
   """
   Confirms the email address for a customer.
   """
