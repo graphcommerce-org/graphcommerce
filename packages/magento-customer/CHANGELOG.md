@@ -1,5 +1,30 @@
 # Change Log
 
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
+## 8.1.0-canary.28
+
+## 8.1.0-canary.27
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+### Patch Changes
+
+- [#2283](https://github.com/graphcommerce-org/graphcommerce/pull/2283) [`170aebd`](https://github.com/graphcommerce-org/graphcommerce/commit/170aebde3fb0705504e6d0919e7fbad0b89c1197) - Prevent success message from showing up when form is still submitting a new request to update the users email
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.21
+
 ## 8.1.0-canary.20
 
 ## 8.1.0-canary.19

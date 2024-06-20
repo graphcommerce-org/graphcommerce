@@ -356,7 +356,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 'THUMBNAILS_BOTTOM' ? (
                   <ScrollerThumbnails images={images} />
                 ) : (
-                  <ScrollerDots />
+                  <ScrollerDots layout />
                 )}
               </Box>
             </MotionBox>

@@ -1,5 +1,30 @@
 # Change Log
 
+## 8.1.0-canary.30
+
+### Patch Changes
+
+- [#2295](https://github.com/graphcommerce-org/graphcommerce/pull/2295) [`0ca6827`](https://github.com/graphcommerce-org/graphcommerce/commit/0ca682793bf7feb0cae2bd776a4eaa2899d980a0) - Fixed shipping address not getting set for logged-in customers with default address
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 8.1.0-canary.29
+
+## 8.1.0-canary.28
+
+## 8.1.0-canary.27
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
 ## 8.1.0-canary.20
 
 ## 8.1.0-canary.19

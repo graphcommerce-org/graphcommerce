@@ -12,6 +12,7 @@ export type ProductFiltersProLayoutSidebarProps = {
   count?: React.ReactNode
   pagination: React.ReactNode
   header?: React.ReactNode
+  children?: React.ReactNode
 } & Partial<OwnerProps>
 
 type OwnerProps = {
@@ -32,6 +33,7 @@ export function ProductFiltersProLayoutSidebar(props: ProductFiltersProLayoutSid
     sidebarFilters,
     header,
     headerPosition = 'before',
+    children,
   } = props
 
   const { form, submit } = useProductFiltersPro()
@@ -47,8 +49,6 @@ export function ProductFiltersProLayoutSidebar(props: ProductFiltersProLayoutSid
 
       <FormAutoSubmit control={form.control} disabled={autoSubmitDisabled} submit={submit} />
 
-      <StickyBelowHeader sx={{ display: { md: 'none' } }}>{horizontalFilters}</StickyBelowHeader>
-
       <Container
         maxWidth={false}
         className={classes.content}
@@ -56,12 +56,16 @@ export function ProductFiltersProLayoutSidebar(props: ProductFiltersProLayoutSid
           display: 'grid',
           gridTemplate: {
             xs: `
-              "beforeContent" auto
-              "items"         auto
-              "afterContent"  auto
+              "content"           auto
+              "horizontalFilters" auto
+              "beforeContent"     auto
+              "items"             auto
+              "afterContent"      auto
             `,
-            md: `
-              "topleft beforeContent" auto
+            md: ` 
+              "topleft content"   auto
+              "sidebar content"   auto
+              "sidebar beforeContent" auto
               "sidebar items"         min-content
               "sidebar afterContent"  1fr
               /300px   auto
@@ -87,6 +91,10 @@ export function ProductFiltersProLayoutSidebar(props: ProductFiltersProLayoutSid
             {sidebarFilters}
           </Box>
         )}
+        {children && <Box gridArea='content'>{children}</Box>}
+        <StickyBelowHeader sx={{ display: { md: 'none', gridArea: 'horizontalFilters' } }}>
+          {horizontalFilters}
+        </StickyBelowHeader>
 
         <Box gridArea='beforeContent' sx={{ mt: { md: 0 } }}>
           {count}

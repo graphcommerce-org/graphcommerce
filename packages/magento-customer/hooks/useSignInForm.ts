@@ -1,4 +1,5 @@
 import { useApolloClient } from '@graphcommerce/graphql'
+import { setCssFlag } from '@graphcommerce/next-ui'
 import { UseFormGraphQlOptions, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import {
   SignInDocument,
@@ -37,6 +38,10 @@ export function useSignInForm({ email, ...options }: UseSignInFormProps) {
         return options?.onBeforeSubmit
           ? options.onBeforeSubmit({ ...values, email })
           : { ...values, email }
+      },
+      onComplete: (...args) => {
+        setCssFlag('signed-in', true)
+        return options.onComplete?.(...args)
       },
     },
     { errorPolicy: 'all' },

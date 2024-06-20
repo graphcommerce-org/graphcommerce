@@ -608,7 +608,7 @@ msgid "Select your bank"
 msgstr "Kies uw bank"
 
 msgid "Send password reset email"
-msgstr "Stuur een wachtwoord reset e-email"
+msgstr "Stuur een wachtwoord reset e-mail"
 
 msgid "Set your new password"
 msgstr "Stel uw nieuwe wachtwoord in"

@@ -1,4 +1,4 @@
-fragment CartItem on CartItemInterface @injectable {
+fragment CartItem on CartItemInterface {
   uid
   quantity
   __typename

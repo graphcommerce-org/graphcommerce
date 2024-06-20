@@ -34,7 +34,7 @@ function AccountForgotPasswordPage() {
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account-public',
-  sharedKey: () => 'account-signin',
+  sharedKey: () => 'account-public',
   Layout: LayoutOverlay,
 }
 AccountForgotPasswordPage.pageOptions = pageOptions

@@ -1,5 +1,30 @@
 # Change Log
 
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
+### Patch Changes
+
+- [#2290](https://github.com/graphcommerce-org/graphcommerce/pull/2290) [`21f2ac0`](https://github.com/graphcommerce-org/graphcommerce/commit/21f2ac06b95cfc9b51febe19e6859cbba2b578b4) - Fix cors issues with Dynamic Row Property Picker App
+  ([@JoshuaS98](https://github.com/JoshuaS98))
+
+## 8.1.0-canary.28
+
+## 8.1.0-canary.27
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
 ## 8.1.0-canary.20
 
 ## 8.1.0-canary.19

@@ -1,0 +1,55 @@
+# This is a commpatibility file: This does not implement any working functionality and only serves as a way to make the schema compatible with Magento 2.4.7
+
+type StoreConfig {
+  """
+  Indicates if the new accounts need confirmation.
+  """
+  create_account_confirmation: Boolean
+}
+
+"""
+List of account confirmation statuses.
+"""
+enum ConfirmationStatusEnum {
+  """
+  Account confirmed
+  """
+  ACCOUNT_CONFIRMED
+  """
+  Account confirmation not required
+  """
+  ACCOUNT_CONFIRMATION_NOT_REQUIRED
+}
+
+type Customer {
+  """
+  The customer's confirmation status.
+  """
+  confirmation_status: ConfirmationStatusEnum!
+}
+
+"""
+Contains details about a customer email address to confirm.
+"""
+input ConfirmEmailInput {
+  """
+  The key to confirm the email address.
+  """
+  confirmation_key: String!
+  """
+  The email address to be confirmed.
+  """
+  email: String!
+}
+
+type Mutation @doc(description: "Jajaj") {
+  """
+  Confirms the email address for a customer.
+  """
+  confirmEmail(
+    """
+    An input object to identify the customer to confirm the email.
+    """
+    input: ConfirmEmailInput!
+  ): CustomerOutput
+}

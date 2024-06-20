@@ -1,0 +1,64 @@
+"""
+Contains details about an address.
+"""
+input EstimateAddressInput {
+  """
+  The two-letter code representing the customer's country.
+  """
+  country_code: CountryCodeEnum!
+  """
+  The customer's ZIP or postal code.
+  """
+  postcode: String
+  """
+  An object containing the region name, region code, and region ID.
+  """
+  region: CustomerAddressRegionInput
+}
+
+input EstimateTotalsInput {
+  """
+  Customer's address to estimate totals.
+  """
+  address: EstimateAddressInput!
+  """
+  The unique ID of the cart to query.
+  """
+  cart_id: String!
+  """
+  Selected shipping method to estimate totals.
+  """
+  shipping_method: ShippingMethodInput
+}
+
+"""
+Estimate totals output.
+"""
+type EstimateTotalsOutput {
+  """
+  Cart after totals estimation
+  """
+  cart: Cart
+}
+
+type Mutation {
+  """
+  Estimate shipping method(s) for cart based on address
+  """
+  estimateShippingMethods(
+    """
+    An input object that specifies details for estimation of available shipping methods
+    """
+    input: EstimateTotalsInput!
+  ): [AvailableShippingMethod]
+
+  """
+  Estimate totals for cart based on the address
+  """
+  estimateTotals(
+    """
+    An input object that specifies details for cart totals estimation
+    """
+    input: EstimateTotalsInput!
+  ): EstimateTotalsOutput!
+}

@@ -1,5 +1,33 @@
 # Change Log
 
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
+## 8.1.0-canary.28
+
+## 8.1.0-canary.27
+
+### Minor Changes
+
+- [#2273](https://github.com/graphcommerce-org/graphcommerce/pull/2273) [`77955c5`](https://github.com/graphcommerce-org/graphcommerce/commit/77955c56ac8633ab1c5e0f3ddb25e3a87236e2bb) - Improve Breadcrumbs on Category and Product pages
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2273](https://github.com/graphcommerce-org/graphcommerce/pull/2273) [`aa56540`](https://github.com/graphcommerce-org/graphcommerce/commit/aa56540af91638c09e4c7a0a1648aaa6c5fa0afb) - If a category has no children, the sibling links will be shown on the category page.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
 ## 8.1.0-canary.20
 
 ## 8.1.0-canary.19

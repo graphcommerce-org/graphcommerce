@@ -8,13 +8,14 @@ import {
   jsonLdProduct,
   jsonLdProductOffer,
   ProductPageName,
+  ProductPageAddToCartActionsRow,
+  ProductPageBreadcrumbs,
   productPageCategory,
   ProductPageDescription,
   ProductPageGallery,
   ProductPageJsonLd,
   ProductPageMeta,
   ProductShortDescription,
-  ProductPageAddToCartActionsRow,
   AddProductsToCartButton,
 } from '@graphcommerce/magento-product'
 import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-product-configurable'
@@ -25,7 +26,7 @@ import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import { GetStaticProps, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Typography } from '@mui/material'
+import { Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutDocument,
@@ -80,6 +81,12 @@ function ProductPage(props: Props) {
         />
 
         <ProductPageMeta product={product} />
+
+        {import.meta.graphCommerce.breadcrumbs && (
+          <Container maxWidth={false} sx={(theme) => ({ marginBottom: theme.spacings.xs })}>
+            <ProductPageBreadcrumbs product={product} />
+          </Container>
+        )}
 
         <ProductPageGallery
           product={product}

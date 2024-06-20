@@ -1,4 +1,4 @@
-fragment Coupon on Cart @injectable {
+fragment Coupon on Cart {
   id
   __typename
   applied_coupons {
