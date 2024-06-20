@@ -1,3 +1,0 @@
-type AvailablePaymentMethod {
-  is_deferred: Boolean
-}
