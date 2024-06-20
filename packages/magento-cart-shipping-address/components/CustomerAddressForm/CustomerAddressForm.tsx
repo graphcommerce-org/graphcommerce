@@ -107,16 +107,24 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
 
   useEffect(() => {
     if (mode === 'both' || mode === 'shipping') {
-      if (!cartAddressId && defaultShippingId) {
+      if (!cartAddressId && !cartShipping && defaultShippingId) {
         setValue('customer_address_id', defaultShippingId, { shouldValidate: true })
       }
     }
     if (mode === 'billing') {
-      if (!cartAddressId && defaultBillingId) {
+      if (!cartAddressId && !cartBilling && defaultBillingId) {
         setValue('customer_address_id', defaultBillingId, { shouldValidate: true })
       }
     }
-  }, [cartAddressId, defaultBillingId, defaultShippingId, mode, setValue])
+  }, [
+    cartAddressId,
+    cartBilling,
+    cartShipping,
+    defaultBillingId,
+    defaultShippingId,
+    mode,
+    setValue,
+  ])
 
   const submit = handleSubmit(() => {})
 
