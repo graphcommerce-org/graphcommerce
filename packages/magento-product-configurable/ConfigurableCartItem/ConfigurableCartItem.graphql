@@ -5,7 +5,7 @@ fragment ConfigurableCartItem on ConfigurableCartItem @inject(into: ["CartItem"]
     option_label
     value_label
   }
-  customizable_options {
+  configurable_customizable: customizable_options {
     ...SelectedCustomizableOption
   }
   configured_variant {
