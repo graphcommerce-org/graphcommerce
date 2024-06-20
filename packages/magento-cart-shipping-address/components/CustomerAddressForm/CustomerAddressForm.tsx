@@ -108,13 +108,11 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
   useEffect(() => {
     if (mode === 'both' || mode === 'shipping') {
       if (!cartAddressId && defaultShippingId) {
-        // console.log('shippingAddress.customer_address_id', defaultShippingId)
         setValue('customer_address_id', defaultShippingId, { shouldValidate: true })
       }
     }
     if (mode === 'billing') {
       if (!cartAddressId && defaultBillingId) {
-        // console.log('billingAddress.customer_address_id', defaultBillingId)
         setValue('customer_address_id', defaultBillingId, { shouldValidate: true })
       }
     }
