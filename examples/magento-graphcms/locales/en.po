@@ -28,6 +28,9 @@ msgstr "Above <0/>"
 msgid "Account"
 msgstr "Account"
 
+msgid "Account confirmation"
+msgstr "Account confirmation"
+
 msgid "Add address"
 msgstr "Add address"
 
@@ -157,8 +160,14 @@ msgstr "Confirm new email"
 msgid "Confirm password"
 msgstr "Confirm password"
 
+msgid "Confirm registration"
+msgstr "Confirm registration"
+
 msgid "Confirmation + Track & trace"
 msgstr "Confirmation + Track & trace"
+
+msgid "Confirmation succesfull. You will be redirected to the login page..."
+msgstr "Confirmation succesfull. You will be redirected to the login page..."
 
 msgid "Contact"
 msgstr "Contact"
@@ -258,6 +267,9 @@ msgstr "Empty comparelist"
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Fill in your e-mail to login or create an account"
+
+msgid "Fill in your email to confirm registration"
+msgstr "Fill in your email to confirm registration"
 
 msgid "Fill in your new password, confirm it and click on the save button."
 msgstr "Fill in your new password, confirm it and click on the save button."

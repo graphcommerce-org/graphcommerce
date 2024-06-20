@@ -3701,6 +3701,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@graphcommerce/magento-customer-confirm@workspace:^, @graphcommerce/magento-customer-confirm@workspace:packages/magento-customer-confirm":
+  version: 0.0.0-use.local
+  resolution: "@graphcommerce/magento-customer-confirm@workspace:packages/magento-customer-confirm"
+  peerDependencies:
+    "@graphcommerce/graphql": ^8.1.0-canary.20
+    "@graphcommerce/graphql-mesh": ^8.1.0-canary.20
+    "@graphcommerce/magento-customer": 8.1.0-canary.20
+    "@graphcommerce/magento-graphql": ^8.1.0-canary.20
+    "@lingui/core": ^4.2.1
+    "@lingui/macro": ^4.2.1
+    "@lingui/react": ^4.2.1
+    "@mui/material": ^5.10.16
+    graphql: ^16.0.0
+    next: "*"
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  languageName: unknown
+  linkType: soft
+
 "@graphcommerce/magento-customer-order@workspace:packages/magento-customer-order":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-customer-order@workspace:packages/magento-customer-order"
@@ -3791,6 +3810,7 @@ __metadata:
     "@graphcommerce/magento-cms": "npm:8.1.0-canary.20"
     "@graphcommerce/magento-compare": "npm:8.1.0-canary.20"
     "@graphcommerce/magento-customer": "npm:8.1.0-canary.20"
+    "@graphcommerce/magento-customer-confirm": "workspace:^"
     "@graphcommerce/magento-graphql": "npm:8.1.0-canary.20"
     "@graphcommerce/magento-newsletter": "npm:8.1.0-canary.20"
     "@graphcommerce/magento-payment-included": "npm:8.1.0-canary.20"

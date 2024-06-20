@@ -28,6 +28,9 @@ msgstr "Sopra <0/>"
 msgid "Account"
 msgstr "Account"
 
+msgid "Account confirmation"
+msgstr "Conferma del conto"
+
 msgid "Add address"
 msgstr "Aggiungi indirizzo"
 
@@ -157,8 +160,14 @@ msgstr "Conferma nuovo indirizzo email"
 msgid "Confirm password"
 msgstr "Conferma password"
 
+msgid "Confirm registration"
+msgstr "Confermare la registrazione"
+
 msgid "Confirmation + Track & trace"
 msgstr "Conferma + Track & trace"
+
+msgid "Confirmation succesfull. You will be redirected to the login page..."
+msgstr "Conferma riuscita. Verrete reindirizzati alla pagina di accesso..."
 
 msgid "Contact"
 msgstr "Contatto"
@@ -258,6 +267,9 @@ msgstr "Equazione vuota"
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Compila il tuo indirizzo email per accedere o creare un account"
+
+msgid "Fill in your email to confirm registration"
+msgstr "Inserite la vostra e-mail per confermare la registrazione"
 
 msgid "Fill in your new password, confirm it and click on the save button."
 msgstr "Compila la tua nuova password, conferma e clicca sul pulsante salva."

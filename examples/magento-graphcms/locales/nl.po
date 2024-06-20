@@ -28,6 +28,9 @@ msgstr "Boven <0/>"
 msgid "Account"
 msgstr "Account"
 
+msgid "Account confirmation"
+msgstr "Account bevestiging"
+
 msgid "Add address"
 msgstr "Adres toevoegen"
 
@@ -157,8 +160,14 @@ msgstr "Bevestig nieuwe email"
 msgid "Confirm password"
 msgstr "Bevestig wachtwoord"
 
+msgid "Confirm registration"
+msgstr "Registratie bevestigen"
+
 msgid "Confirmation + Track & trace"
 msgstr "Bevestiging + Track & trace"
+
+msgid "Confirmation succesfull. You will be redirected to the login page..."
+msgstr "Bevestiging succesvol. U wordt doorgestuurd naar de inlogpagina..."
 
 msgid "Contact"
 msgstr "Contact"
@@ -258,6 +267,9 @@ msgstr "Wissen"
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Vul uw e-mailadres in om in te loggen of maak een account aan"
+
+msgid "Fill in your email to confirm registration"
+msgstr "Vul je e-mailadres in om de registratie te bevestigen"
 
 msgid "Fill in your new password, confirm it and click on the save button."
 msgstr "Vul uw nieuwe wachtwoord in, bevestig het en klik op de opslaan knop."
