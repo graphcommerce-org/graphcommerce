@@ -1,0 +1,27 @@
+interface OrderItemInterface {
+  """
+  The selected gift message for the order item
+  """
+  gift_message: GiftMessage
+}
+
+type OrderItem {
+  """
+  The selected gift message for the order item
+  """
+  gift_message: GiftMessage
+}
+
+type BundleOrderItem {
+  """
+  The selected gift message for the order item
+  """
+  gift_message: GiftMessage
+}
+
+type DownloadableOrderItem {
+  """
+  The selected gift message for the order item
+  """
+  gift_message: GiftMessage
+}
