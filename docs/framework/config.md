@@ -109,6 +109,12 @@ GraphQL Magento endpoint.
 Examples:
 - https://magento2.test/graphql
 
+#### magentoVersion: number (required)
+
+Version of the Magento backend.
+
+Values: 245, 246, 247 for Magento 2.4.5, 2.4.6, 2.4.7 respectively.
+
 #### storefront: [GraphCommerceStorefrontConfig](#GraphCommerceStorefrontConfig)[] (required)
 
 All storefront configuration for the project

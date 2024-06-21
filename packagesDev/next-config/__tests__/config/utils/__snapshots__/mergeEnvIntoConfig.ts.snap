@@ -58,6 +58,7 @@ exports[`traverses a schema and returns a list of env variables that match 1`] =
   "GC_HYGRAPH_WRITE_ACCESS_TOKEN",
   "GC_LIMIT_SSG",
   "GC_MAGENTO_ENDPOINT",
+  "GC_MAGENTO_VERSION",
   "GC_PREVIEW_SECRET",
   "GC_PRODUCT_FILTERS_LAYOUT",
   "GC_PRODUCT_FILTERS_PRO",

@@ -101,7 +101,13 @@ export function configToEnvSchema(schema: ZodNode) {
       return
     }
 
-    if (node instanceof ZodString || node instanceof ZodNumber || node instanceof ZodEnum) {
+    if (node instanceof ZodNumber) {
+      envSchema[toEnvStr(path)] = z.coerce.number().optional()
+      envToDot[toEnvStr(path)] = dotNotation(path)
+      return
+    }
+
+    if (node instanceof ZodString || node instanceof ZodEnum) {
       envSchema[toEnvStr(path)] = node.optional()
       envToDot[toEnvStr(path)] = dotNotation(path)
       return

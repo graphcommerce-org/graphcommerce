@@ -32,6 +32,20 @@ it('parses an env config object', () => {
   expect(result).toMatchSnapshot()
 })
 
+it('parses an env string value to a number', () => {
+  const [envSchema] = configToEnvSchema(GraphCommerceConfigSchema())
+  const result = envSchema.safeParse({ GC_MAGENTO_VERSION: '247' })
+
+  expect(result.success).toBe(true)
+  if (result.success) {
+    expect(result.data).toMatchInlineSnapshot(`
+      {
+        "GC_MAGENTO_VERSION": 247,
+      }
+    `)
+  }
+})
+
 it('correctly validates if a value is JSON', () => {
   const [envSchema] = configToEnvSchema(GraphCommerceConfigSchema())
   const result = envSchema.safeParse({
@@ -65,12 +79,12 @@ it('correctly validates if a value is JSON', () => {
 it('converts an env schema to a config schema', () => {
   const configFile: GraphCommerceConfig = {
     storefront: [{ locale: 'en', hygraphLocales: ['en'], magentoStoreCode: 'en_us' }],
-    customerRequireEmailConfirmation: false,
     productFiltersPro: false,
     canonicalBaseUrl: 'https://example.com',
     hygraphEndpoint: 'https://example.com',
     magentoEndpoint: 'https://example.com',
     previewSecret: 'secret',
+    magentoVersion: 247,
   }
 
   const environmentVariables = {

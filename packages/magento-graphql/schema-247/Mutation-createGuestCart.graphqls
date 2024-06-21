@@ -1,0 +1,20 @@
+input CreateGuestCartInput {
+  """
+  Optional client-generated ID
+  """
+  cart_uid: ID
+}
+
+type CreateGuestCartOutput {
+  """
+  The newly created cart.
+  """
+  cart: Cart
+}
+
+type Mutation {
+  """
+  Create a new shopping cart
+  """
+  createGuestCart(input: CreateGuestCartInput): CreateGuestCartOutput
+}

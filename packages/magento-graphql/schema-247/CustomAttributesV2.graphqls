@@ -1,0 +1,48 @@
+"""
+Specifies the value for attribute.
+"""
+input AttributeValueInput {
+  """
+  The code of the attribute.
+  """
+  attribute_code: String!
+  """
+  An array containing selected options for a select or multiselect attribute.
+  """
+  selected_options: [AttributeInputSelectedOption]
+  """
+  The value assigned to the attribute.
+  """
+  value: String
+}
+
+"""
+Specifies selected option for a select or multiselect attribute value.
+"""
+input AttributeInputSelectedOption {
+  """
+  The attribute option value.
+  """
+  value: String!
+}
+
+input CustomerCreateInput {
+  """
+  The customer's custom attributes.
+  """
+  custom_attributes: [AttributeValueInput]
+}
+
+input CustomerUpdateInput {
+  """
+  The customer's custom attributes.
+  """
+  custom_attributes: [AttributeValueInput]
+}
+
+input CustomerAddressInput {
+  """
+  Custom attributes assigned to the customer address.
+  """
+  custom_attributesV2: [AttributeValueInput]
+}

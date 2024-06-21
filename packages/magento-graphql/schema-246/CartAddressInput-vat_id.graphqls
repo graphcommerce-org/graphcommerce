@@ -1,0 +1,15 @@
+input CartAddressInput {
+  vat_id: String
+}
+
+interface CartAddressInteface {
+  vat_id: String
+}
+
+type ShippingCartAddress implements CartAddressInterface {
+  vat_id: String
+}
+
+type BillingCartAddress {
+  vat_id: String
+}
