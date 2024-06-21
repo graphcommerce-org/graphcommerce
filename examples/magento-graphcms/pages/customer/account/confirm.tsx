@@ -43,6 +43,9 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
 
+  if (!(await conf).data.storeConfig?.create_account_confirmation)
+    return { notFound: true, revalidate: 60 * 20 }
+
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),

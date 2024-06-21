@@ -1,9 +1,9 @@
 import { TextFieldElement, emailPattern, useFormGqlMutation } from '@graphcommerce/ecommerce-ui'
-import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer/components'
-import { FormActions, FormRow, LayoutTitle, iconPerson, Button } from '@graphcommerce/next-ui'
+import { FormActions, FormRow, LayoutTitle, Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Alert, Box, FormControl, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
+import { ApolloCustomerErrorAlert } from '../ApolloCustomerError'
 import { ConfirmCustomerDocument } from './ConfirmCustomer.gql'
 
 export function ConfirmCustomerForm() {
@@ -15,11 +15,11 @@ export function ConfirmCustomerForm() {
       variables.key = key?.toString() ?? ''
       return variables
     },
-    onComplete(results) {
-      setTimeout(() => {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        router.push(`/account/signin?email=${results.data?.confirmEmail?.customer.email}`)
-      }, 1000)
+    onComplete: async (results) => {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 1000)
+      })
+      await router.push(`/account/signin?email=${results.data?.confirmEmail?.customer.email}`)
     },
   })
 
@@ -29,7 +29,7 @@ export function ConfirmCustomerForm() {
 
   return (
     <Box component='form' onSubmit={submitHandler}>
-      <LayoutTitle icon={iconPerson} variant='h2' gutterBottom={false}>
+      <LayoutTitle variant='h2' gutterBottom={false}>
         <Trans id='Account confirmation' />
       </LayoutTitle>
       <Typography variant='h6' textAlign='center'>

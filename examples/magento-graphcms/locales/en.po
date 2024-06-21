@@ -112,6 +112,9 @@ msgstr "Cart"
 msgid "Cart ({0})"
 msgstr "Cart ({0})"
 
+msgid "Categories"
+msgstr "Categories"
+
 msgid "Change"
 msgstr "Change"
 

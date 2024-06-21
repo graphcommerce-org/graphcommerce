@@ -112,6 +112,9 @@ msgstr "Winkelwagen"
 msgid "Cart ({0})"
 msgstr "Winkelwagen ({0})"
 
+msgid "Categories"
+msgstr "Categorieën"
+
 msgid "Change"
 msgstr "Wijzig"
 
