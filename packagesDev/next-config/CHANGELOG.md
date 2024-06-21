@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.32
+
+### Patch Changes
+
+- [#2299](https://github.com/graphcommerce-org/graphcommerce/pull/2299) [`85d258a`](https://github.com/graphcommerce-org/graphcommerce/commit/85d258a0d1a48bb1b502cccba30a9844f2257814) - Solve an issue where an env variable wouldn't be coerced to a Number if a Config.graphqls value is defined as an Int/Float
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.31
 
 ## 8.1.0-canary.30
