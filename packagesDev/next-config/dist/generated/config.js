@@ -92,7 +92,7 @@ function GraphCommerceConfigSchema() {
         hygraphWriteAccessToken: _zod.z.string().nullish(),
         limitSsg: _zod.z.boolean().nullish(),
         magentoEndpoint: _zod.z.string().min(1),
-        magentoVersion: _zod.z.number().default(245),
+        magentoVersion: _zod.z.number(),
         previewSecret: _zod.z.string().nullish(),
         productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),

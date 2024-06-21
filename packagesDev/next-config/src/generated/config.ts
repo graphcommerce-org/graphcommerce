@@ -282,7 +282,7 @@ export type GraphCommerceConfig = {
    *
    * Values: 245, 246, 247 for Magento 2.4.5, 2.4.6, 2.4.7 respectively.
    */
-  magentoVersion?: Scalars['Int']['input'];
+  magentoVersion: Scalars['Int']['input'];
   /** To enable next.js' preview mode, configure the secret you'd like to use. */
   previewSecret?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -488,7 +488,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     hygraphWriteAccessToken: z.string().nullish(),
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
-    magentoVersion: z.number().default(245),
+    magentoVersion: z.number(),
     previewSecret: z.string().nullish(),
     productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
     productFiltersPro: z.boolean().nullish(),
