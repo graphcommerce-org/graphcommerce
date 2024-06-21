@@ -17,7 +17,7 @@ type SignUpFormProps = { email: string }
 export function SignUpForm(props: SignUpFormProps) {
   const { email } = props
 
-  const { data } = useQuery(StoreConfigDocument)
+  const storeConfig = useQuery(StoreConfigDocument)
   const signIn = useSignInForm({ email })
   const form = useFormGqlMutation<
     SignUpMutation,
@@ -29,7 +29,7 @@ export function SignUpForm(props: SignUpFormProps) {
       onBeforeSubmit: (values) => ({ ...values, email }),
       experimental_useV2: true,
       onComplete: async (result, variables) => {
-        if (!result.errors && !data?.storeConfig?.create_account_confirmation) {
+        if (!result.errors && !storeConfig.data?.storeConfig?.create_account_confirmation) {
           signIn.setValue('email', variables.email)
           signIn.setValue('password', variables.password)
           await signIn.handleSubmit(() => {})()
@@ -45,7 +45,7 @@ export function SignUpForm(props: SignUpFormProps) {
   const submitHandler = handleSubmit(() => {})
 
   if (
-    data?.storeConfig?.create_account_confirmation &&
+    storeConfig.data?.storeConfig?.create_account_confirmation &&
     !error &&
     form.formState.isSubmitSuccessful
   ) {

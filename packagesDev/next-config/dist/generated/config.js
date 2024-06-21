@@ -77,7 +77,6 @@ function GraphCommerceConfigSchema() {
         configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
         crossSellsHideCartItems: _zod.z.boolean().default(false).nullish(),
         crossSellsRedirectItems: _zod.z.boolean().default(false).nullish(),
-        customerRequireEmailConfirmation: _zod.z.boolean().nullish(),
         dataLayer: DatalayerConfigSchema().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
         demoMode: _zod.z.boolean().default(true).nullish(),

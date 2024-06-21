@@ -1,5 +1,7 @@
 import { ApolloErrorAlert, PasswordRepeatElement } from '@graphcommerce/ecommerce-ui'
+import { useQuery } from '@graphcommerce/graphql'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, extendableComponent, Form, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
@@ -23,11 +25,10 @@ const { classes } = extendableComponent('SignUpFormInline', [
   'buttonContainer',
 ] as const)
 
-const requireEmailValidation = import.meta.graphCommerce.customerRequireEmailConfirmation ?? false
-
 export function SignUpFormInline(props: SignUpFormInlineProps) {
   const { email, children, firstname, lastname, onSubmitted } = props
 
+  const storeConfig = useQuery(StoreConfigDocument)
   const signIn = useSignInForm({ email })
   const form = useFormGqlMutation<
     SignUpMutation,
@@ -44,7 +45,7 @@ export function SignUpFormInline(props: SignUpFormInlineProps) {
       },
       onBeforeSubmit: (values) => ({ ...values, email }),
       onComplete: async (result, variables) => {
-        if (!result.errors && !requireEmailValidation) {
+        if (!result.errors && !storeConfig.data?.storeConfig?.create_account_confirmation) {
           signIn.setValue('email', variables.email)
           signIn.setValue('password', variables.password)
           await signIn.handleSubmit(() => {})()
@@ -59,7 +60,11 @@ export function SignUpFormInline(props: SignUpFormInlineProps) {
   const [remainingError, inputError] = graphqlErrorByCategory({ category: 'graphql-input', error })
   const submitHandler = handleSubmit(() => {})
 
-  if (requireEmailValidation && form.formState.isSubmitSuccessful) {
+  if (
+    storeConfig.data?.storeConfig?.create_account_confirmation &&
+    !error &&
+    form.formState.isSubmitSuccessful
+  ) {
     return (
       <Alert>
         <Trans id='Please check your inbox to validate your email ({email})' values={{ email }} />
