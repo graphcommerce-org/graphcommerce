@@ -1,0 +1,39 @@
+"""
+Contains reCAPTCHA V3-Invisible configuration details.
+"""
+type ReCaptchaConfigurationV3 {
+  """
+  The position of the invisible reCAPTCHA badge on each page.
+  """
+  badge_position: String!
+  """
+  The message that appears to the user if validation fails.
+  """
+  failure_message: String!
+  """
+  A list of forms on the storefront that have been configured to use reCAPTCHA V3.
+  """
+  forms: [ReCaptchaFormEnum]!
+  """
+  Return whether recaptcha is enabled or not
+  """
+  is_enabled: Boolean!
+  """
+  A two-character code that specifies the language that is used for Google reCAPTCHA text and messaging.
+  """
+  language_code: String
+  """
+  The minimum score that identifies a user interaction as a potential risk.
+  """
+  minimum_score: Float!
+  """
+  The website key generated when the Google reCAPTCHA account was registered.
+  """
+  website_key: String!
+}
+type Query {
+  """
+  Returns details about Google reCAPTCHA V3-Invisible configuration.
+  """
+  recaptchaV3Config: ReCaptchaConfigurationV3
+}

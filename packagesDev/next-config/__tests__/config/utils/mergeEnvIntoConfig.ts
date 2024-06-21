@@ -79,12 +79,12 @@ it('correctly validates if a value is JSON', () => {
 it('converts an env schema to a config schema', () => {
   const configFile: GraphCommerceConfig = {
     storefront: [{ locale: 'en', hygraphLocales: ['en'], magentoStoreCode: 'en_us' }],
-    customerRequireEmailConfirmation: false,
     productFiltersPro: false,
     canonicalBaseUrl: 'https://example.com',
     hygraphEndpoint: 'https://example.com',
     magentoEndpoint: 'https://example.com',
     previewSecret: 'secret',
+    magentoVersion: 247,
   }
 
   const environmentVariables = {

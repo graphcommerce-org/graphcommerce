@@ -31,16 +31,6 @@ input EstimateTotalsInput {
   shipping_method: ShippingMethodInput
 }
 
-"""
-Estimate totals output.
-"""
-type EstimateTotalsOutput {
-  """
-  Cart after totals estimation
-  """
-  cart: Cart
-}
-
 type Mutation {
   """
   Estimate shipping method(s) for cart based on address
@@ -51,14 +41,4 @@ type Mutation {
     """
     input: EstimateTotalsInput!
   ): [AvailableShippingMethod]
-
-  """
-  Estimate totals for cart based on the address
-  """
-  estimateTotals(
-    """
-    An input object that specifies details for cart totals estimation
-    """
-    input: EstimateTotalsInput!
-  ): EstimateTotalsOutput!
 }

@@ -1,5 +1,14 @@
 # Change Log
 
+## 8.1.0-canary.32
+
+## 8.1.0-canary.31
+
+### Patch Changes
+
+- [#2297](https://github.com/graphcommerce-org/graphcommerce/pull/2297) [`e41cb6f`](https://github.com/graphcommerce-org/graphcommerce/commit/e41cb6fcdde95629d29c03b1a700c6097f00c901) - Prevent gallery thunbnails from scrolling when opening or closing a layout overlay
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 8.1.0-canary.30
 
 ## 8.1.0-canary.29

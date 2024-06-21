@@ -1,0 +1,40 @@
+input ContactUsInput {
+  """
+  The shopper's comment to the merchant.
+  """
+  comment: String!
+  """
+  The email address of the shopper.
+  """
+  email: String!
+  """
+  The full name of the shopper.
+  """
+  name: String!
+  """
+  The shopper's telephone number.
+  """
+  telephone: String
+}
+
+"""
+Contains the status of the request.
+"""
+type ContactUsOutput {
+  """
+  Indicates whether the request was successful.
+  """
+  status: Boolean!
+}
+
+type Mutation {
+  """
+  Send a 'Contact Us' email to the merchant.
+  """
+  contactUs(
+    """
+    An input object that defines shopper information.
+    """
+    input: ContactUsInput!
+  ): ContactUsOutput
+}

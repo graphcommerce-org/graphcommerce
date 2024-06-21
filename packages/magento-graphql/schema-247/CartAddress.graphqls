@@ -1,0 +1,56 @@
+input CartAddressInput {
+  """
+  The customer's fax number.
+  """
+  fax: String
+  """
+  The middle name of the person associated with the billing/shipping address.
+  """
+  middlename: String
+  """
+  An honorific, such as Dr., Mr., or Mrs.
+  """
+  prefix: String
+  """
+  A value such as Sr., Jr., or III.
+  """
+  suffix: String
+}
+
+type BillingCartAdress {
+  """
+  The customer's fax number.
+  """
+  fax: String
+  """
+  The middle name of the person associated with the billing/shipping address.
+  """
+  middlename: String
+  """
+  An honorific, such as Dr., Mr., or Mrs.
+  """
+  prefix: String
+  """
+  A value such as Sr., Jr., or III.
+  """
+  suffix: String
+}
+
+type ShippingCartAddress {
+  """
+  The customer's fax number.
+  """
+  fax: String
+  """
+  The middle name of the person associated with the billing/shipping address.
+  """
+  middlename: String
+  """
+  An honorific, such as Dr., Mr., or Mrs.
+  """
+  prefix: String
+  """
+  A value such as Sr., Jr., or III.
+  """
+  suffix: String
+}

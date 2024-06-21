@@ -109,7 +109,7 @@ GraphQL Magento endpoint.
 Examples:
 - https://magento2.test/graphql
 
-#### magentoVersion: number (required) = `245`
+#### magentoVersion: number (required)
 
 Version of the Magento backend.
 
