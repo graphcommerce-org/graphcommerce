@@ -1,5 +1,8 @@
-import { MenuQueryFragment, CategoryTreeItem } from '@graphcommerce/magento-category'
-import { NavigationItemFragment } from '@graphcommerce/magento-category/queries/NavigationItem.gql'
+import type {
+  MenuQueryFragment,
+  CategoryTreeItem,
+  NavigationItemFragment,
+} from '@graphcommerce/magento-category'
 import {
   ProductFiltersProCategoryAccordion,
   ProductFiltersProCategoryAccordionProps,
@@ -8,8 +11,6 @@ import {
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { useWatch } from '@graphcommerce/react-hook-form'
 import { useMemo } from 'react'
-import { CategoryTree } from '../../../../examples/magento-graphcms/.mesh'
-import { useConfigurableOptionsForSelection } from '@graphcommerce/magento-product-configurable'
 
 type MenuItem = NavigationItemFragment & {
   children?: Array<MenuItem | null | undefined> | null | undefined
@@ -69,10 +70,6 @@ function isParent<U extends TreeItem>(item: U, parent: U): boolean {
   return false
 }
 
-function isChild<U extends TreeItem>(item: U, child: U): boolean {
-  return isParent(child, item)
-}
-
 type ProductFiltersProCategorySectionSearchProps = Omit<
   ProductFiltersProCategoryAccordionProps,
   'categoryTree' | 'onChange'
@@ -84,7 +81,7 @@ export function ProductFiltersProCategorySectionSearch(
   props: ProductFiltersProCategorySectionSearchProps,
 ) {
   const { menu } = props
-  const { form, submit, appliedAggregations, aggregations } = useProductFiltersPro()
+  const { form, submit } = useProductFiltersPro()
 
   const name = `filters.category_uid.in` as const
   const currentFilter = useWatch({ control: form.control, name })
@@ -113,20 +110,17 @@ export function ProductFiltersProCategorySectionSearch(
       return false
     })
 
-    const currentCounts = filterNonNullableKeys(
-      appliedAggregations?.find((agg) => agg?.attribute_code === 'category_uid')?.options,
-      ['count'],
-    )
     return treeFlatMap<TreeItem, CategoryTreeItem>(tree, (item, level) => ({
       uid: item.uid,
       title: item.name,
       value: item.url_path ?? '',
       selected: currentFilter?.includes(item.uid) ?? false,
-      indent: level - 1,
-      count: currentCounts.find((i) => item.uid === i.value)?.count ?? null,
+      indent: level,
+      count: null,
+      // count: currentCounts.find((i) => item.uid === i.value)?.count ?? null,
       isBack: isParent(item, activeItem),
     }))
-  }, [appliedAggregations, currentFilter, menu?.items])
+  }, [currentFilter, menu?.items])
 
   if (!treeWithCounts) return null
 

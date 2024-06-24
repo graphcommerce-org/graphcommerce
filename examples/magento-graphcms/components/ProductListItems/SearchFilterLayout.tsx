@@ -224,7 +224,7 @@ function SearchFilterLayoutSidebar(props: SearchFilterLayoutProps) {
           <ProductFiltersProClearAll
             sx={{ display: { xs: 'none', md: 'block' }, alignSelf: 'center' }}
           />
-          <ProductFiltersProCategorySectionSearch menu={menu} />
+          <ProductFiltersProCategorySectionSearch menu={menu} hideTitle />
           <ProductFiltersProSortSection sort_fields={sort_fields} total_count={total_count} />
           <ProductFiltersProLimitSection />
           <ProductFiltersProAggregations renderer={productFiltersProSectionRenderer} />
