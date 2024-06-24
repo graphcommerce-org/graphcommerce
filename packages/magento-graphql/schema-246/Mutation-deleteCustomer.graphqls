@@ -2,5 +2,5 @@ type Mutation {
   """
   Delete customer account
   """
-  deleteCustomer: Boolean
+  deleteCustomer: Boolean @deprecated(reason: "Magento >= 2.4.6")
 }

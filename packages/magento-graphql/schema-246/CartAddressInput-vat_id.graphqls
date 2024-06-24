@@ -1,15 +1,15 @@
 input CartAddressInput {
-  vat_id: String
+  vat_id: String @deprecated(reason: "Magento >= 2.4.6")
 }
 
 interface CartAddressInterface {
-  vat_id: String
+  vat_id: String @deprecated(reason: "Magento >= 2.4.6")
 }
 
 type ShippingCartAddress implements CartAddressInterface {
-  vat_id: String
+  vat_id: String @deprecated(reason: "Magento >= 2.4.6")
 }
 
 type BillingCartAddress {
-  vat_id: String
+  vat_id: String @deprecated(reason: "Magento >= 2.4.6")
 }
