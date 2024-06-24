@@ -169,8 +169,8 @@ msgstr "Registratie bevestigen"
 msgid "Confirmation + Track & trace"
 msgstr "Bevestiging + Track & trace"
 
-msgid "Confirmation succesfull. You will be redirected to the login page..."
-msgstr "Bevestiging succesvol. U wordt doorgestuurd naar de inlogpagina..."
+msgid "Confirmation succesfull. Use the button below to redirect to login"
+msgstr "Bevestiging succesvol. Gebruik de onderstaande knop om door te gaan naar inloggen"
 
 msgid "Contact"
 msgstr "Contact"
@@ -744,6 +744,9 @@ msgstr "Dit veld is verplicht"
 
 msgid "This may take a second"
 msgstr "Dit kan een seconde duren"
+
+msgid "To login"
+msgstr "Naar login"
 
 msgid "Total <0/>"
 msgstr "Totaal <0/>"

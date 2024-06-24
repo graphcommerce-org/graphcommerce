@@ -15,15 +15,9 @@ export function ConfirmCustomerForm() {
       variables.key = key?.toString() ?? ''
       return variables
     },
-    onComplete: async (results) => {
-      await new Promise((resolve) => {
-        setTimeout(resolve, 1000)
-      })
-      await router.push(`/account/signin?email=${results.data?.confirmEmail?.customer.email}`)
-    },
   })
 
-  const { control, formState, error, handleSubmit } = form
+  const { control, formState, error, handleSubmit, data: responseData } = form
 
   const submitHandler = handleSubmit(() => {})
 
@@ -53,24 +47,34 @@ export function ConfirmCustomerForm() {
       </FormRow>
       {formState.isSubmitSuccessful && (
         <Alert severity='success'>
-          <Trans id='Confirmation succesfull. You will be redirected to the login page...' />
+          <Trans id='Confirmation succesfull. Use the button below to redirect to login' />
         </Alert>
       )}
 
       <ApolloCustomerErrorAlert error={error} />
       <FormActions>
-        <FormControl>
+        {!formState.isSubmitSuccessful || error ? (
+          <FormControl>
+            <Button
+              type='submit'
+              loading={formState.isSubmitting}
+              color='primary'
+              variant='pill'
+              size='large'
+            >
+              <Trans id='Confirm registration' />
+            </Button>
+          </FormControl>
+        ) : (
           <Button
-            type='submit'
-            loading={formState.isSubmitting}
-            color='primary'
             variant='pill'
+            color='info'
             size='large'
-            disabled={formState.isSubmitSuccessful}
+            href={`/account/signin?email=${responseData?.confirmEmail?.customer.email}`}
           >
-            <Trans id='Confirm registration' />
+            <Trans id='To login' />
           </Button>
-        </FormControl>
+        )}
       </FormActions>
     </Box>
   )

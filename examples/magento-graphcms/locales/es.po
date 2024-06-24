@@ -169,8 +169,8 @@ msgstr "Confirmar inscripción"
 msgid "Confirmation + Track & trace"
 msgstr "Confirmación + Seguimiento"
 
-msgid "Confirmation succesfull. You will be redirected to the login page..."
-msgstr "Confirmación exitosa. Será redirigido a la página de inicio de sesión..."
+msgid "Confirmation succesfull. Use the button below to redirect to login"
+msgstr "Confirmación exitosa. Utilice el botón de abajo para redirigir al inicio de sesión"
 
 msgid "Contact"
 msgstr "Contacto"
@@ -744,6 +744,9 @@ msgstr "Este campo es obligatorio"
 
 msgid "This may take a second"
 msgstr "Esto puede tardar un segundo"
+
+msgid "To login"
+msgstr "Para iniciar sesión"
 
 msgid "Total <0/>"
 msgstr "Total <0/>"
