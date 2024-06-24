@@ -2,7 +2,7 @@ input CartAddressInput {
   vat_id: String
 }
 
-interface CartAddressInteface {
+interface CartAddressInterface {
   vat_id: String
 }
 
