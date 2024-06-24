@@ -13,7 +13,8 @@ export function productListLinkFromFilter(props: ProductFilterParams): string {
   const filters = isSearch ? incoming : { ...incoming, category_uid: undefined }
   const uid = incoming?.category_uid?.eq || incoming?.category_uid?.in?.[0]
 
-  const urlBase = isSearch ? `search/${search}` : url
+  let urlBase = url
+  if (isSearch) urlBase = search ? `search/${search}` : 'search'
 
   // base url path generation
   let paginateSort = ``

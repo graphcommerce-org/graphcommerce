@@ -11,10 +11,11 @@ const { classes, selectors } = extendableComponent('ProductListCount', [
 
 export type ProductCountProps = ProductListCountFragment & {
   sx?: SxProps<Theme>
+  children?: React.ReactNode
 }
 
 export function ProductListCount(props: ProductCountProps) {
-  const { total_count, sx = [] } = props
+  const { total_count, children, sx = [] } = props
 
   return (
     <Box
@@ -44,6 +45,7 @@ export function ProductListCount(props: ProductCountProps) {
         {total_count === 0 && <Trans id='no products' />}
         {total_count === 1 && <Trans id='one product' />}
         {(total_count ?? 0) > 1 && <Trans id='{total_count} products' values={{ total_count }} />}
+        {children ? <> {children}</> : null}
       </Typography>
       <Divider component='div' className={classes.line} />
     </Box>

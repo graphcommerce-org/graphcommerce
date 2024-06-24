@@ -14,6 +14,9 @@ query ProductList(
     sort: $sort
     search: $search
   ) @sessionScope(sessionScope: $sessionScope) {
+    suggestions {
+      search
+    }
     ...ProductListFilters @skip(if: $onlyItems)
     ...ProductListCount @skip(if: $onlyItems)
     ...ProductListPagination @skip(if: $onlyItems)

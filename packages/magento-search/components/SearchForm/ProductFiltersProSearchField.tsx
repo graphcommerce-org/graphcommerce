@@ -17,8 +17,10 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
 
   const { form, submit } = useProductFiltersPro()
   const searchInputElement = useRef<HTMLInputElement>(null)
+
   useEffect(() => {
-    searchInputElement.current?.focus()
+    const timeout = setTimeout(() => searchInputElement.current?.focus(), 100)
+    return () => clearTimeout(timeout)
   }, [])
 
   return (
@@ -50,7 +52,6 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
             />
           ),
         }}
-        rules={{ minLength: 3 }}
         inputRef={searchInputElement}
         {...rest}
       />

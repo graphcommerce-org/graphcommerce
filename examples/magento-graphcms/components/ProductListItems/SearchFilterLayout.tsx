@@ -1,5 +1,14 @@
+import { useApolloClient, useQuery } from '@apollo/client'
 import { MenuQueryFragment } from '@graphcommerce/magento-category'
 import { SignedInMaskProvider } from '@graphcommerce/magento-customer'
+import {
+  FilterTypes,
+  ProductListDocument,
+  ProductListParams,
+  toProductListParams,
+  useProductFiltersPro,
+  useRouterFilterParams,
+} from '@graphcommerce/magento-product'
 import {
   NoSearchResults,
   ProductFiltersPro,
@@ -21,20 +30,73 @@ import {
   SearchForm,
   productFiltersProChipRenderer,
   productFiltersProSectionRenderer,
+  productListApplySearchDefaults,
   useProductList,
 } from '@graphcommerce/magento-search'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { LayoutHeader, LayoutTitle, StickyBelowHeader, responsiveVal } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container } from '@mui/material'
 import { ProductListFilterLayoutProps } from './CategoryFilterLayout'
 import { ProductListItems } from './ProductListItems'
+import { useWatch } from 'react-hook-form'
 
 type SearchFilterLayoutProps = Omit<ProductListFilterLayoutProps, 'category' | 'id' | 'title'> &
   MenuQueryFragment
 
+// Ook al heb je een trage API, wil je alsnop zo snel mogelijk changes zien.
+// Je wil bij alle submits een request afvuren.
+// We willen alle results gebruiken die 'achter' lopen.
+
+// Form submission -> URL will be changed -> useQuery will be updated.
+
+// Als een request klaar is wil je alle voorgaande requests cancellen (of in ieder geval de resultaten negeren).
+
+/**
+ * 1. Je vult iets in in een search field.
+ * 2. Door FormAutoSubmit wordt de submit function aangeroepen en daarmee de handleSubmit callback van ProductFiltersPro
+ *    - FormAutoSubmit wacht niet op de loading state van het formulier, maar throttled wel. (de parallel prop)
+ * 3. Hierin voer je GraphQL Query uit voor die search term.
+ *
+ */
+
+// Server params
+// Shallow URL Params
+// Form params
+
+const productListQueries: Array<Promise<unknown>> = []
+
+type CurrentSearchProps = { params: ProductListParams }
+
+function CurrentSearch(props: CurrentSearchProps) {
+  const { params } = props
+  const { form } = useProductFiltersPro()
+  const resultSearch = params.search ?? ''
+  const targetSearch = useWatch({ control: form.control, name: 'search' }) ?? ''
+
+  const remaining = targetSearch.startsWith(resultSearch)
+    ? targetSearch.slice(resultSearch.length)
+    : ''
+
+  return (
+    <>
+      , searching for{' '}
+      <Box component='span' sx={{}}>
+        {resultSearch}
+      </Box>
+      <Box component='span' sx={{ textDecoration: 'underline' }}>
+        {remaining}
+      </Box>
+    </>
+  )
+}
+
 function SearchFilterLayoutSidebar(props: SearchFilterLayoutProps) {
   const { filters, filterTypes, params, products, menu } = props
+  const client = useApolloClient()
+
+  const storeConfig = useQuery(StoreConfigDocument).data
 
   if (!params || !products?.items || !filterTypes) return null
   const { total_count, sort_fields, page_info } = products
@@ -53,6 +115,32 @@ function SearchFilterLayoutSidebar(props: SearchFilterLayoutProps) {
       appliedAggregations={products?.aggregations}
       filterTypes={filterTypes}
       autoSubmitMd
+      handleSubmit={async (filterParams, next) => {
+        if (!storeConfig) return
+
+        const variables = productListApplySearchDefaults(
+          toProductListParams(filterParams),
+          storeConfig,
+        )
+
+        const promise = client.query({ query: ProductListDocument, variables })
+
+        // Push the query to the queue array.
+        productListQueries.push(promise)
+
+        await promise
+
+        // If the current request is still in the array, it may be rendered (URL may be updated)
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        if (productListQueries.includes(promise)) next()
+
+        // Remove all requests that are before the current request
+        const index = productListQueries.indexOf(promise)
+        if (index > -1) {
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
+          productListQueries.splice(0, index + 1)
+        }
+      }}
     >
       <Container
         maxWidth={false}
@@ -66,12 +154,12 @@ function SearchFilterLayoutSidebar(props: SearchFilterLayoutProps) {
           gridTemplate: {
             xs: `"horizontalFilters" "count" "items" "pagination"`,
             md: `
-              "sidebar search"      auto
-              "sidebar count"      auto
-              "sidebar items"      auto
-              "sidebar pagination" 1fr
-              /${sidebarWidth}   auto
-            `,
+                "sidebar search"      auto
+                "sidebar count"      auto
+                "sidebar items"      auto
+                "sidebar pagination" 1fr
+                /${sidebarWidth}   auto
+              `,
           },
         })}
       >
@@ -100,7 +188,10 @@ function SearchFilterLayoutSidebar(props: SearchFilterLayoutProps) {
         <ProductListCount
           total_count={total_count}
           sx={{ gridArea: 'count', width: '100%', my: 0, height: '1em' }}
-        />
+        >
+          <CurrentSearch params={params} />
+        </ProductListCount>
+
         <Box gridArea='items'>
           {products.items.length <= 0 ? (
             <NoSearchResults search={search} />
@@ -252,7 +343,7 @@ export function SearchFilterLayout(props: SearchFilterLayoutProps) {
   const { mask, ...rest } = useProductList(props)
 
   return (
-    <>
+    <SignedInMaskProvider mask={mask}>
       {import.meta.graphCommerce.productFiltersPro &&
         import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
           <SearchFilterLayoutSidebar {...rest} />
@@ -262,6 +353,6 @@ export function SearchFilterLayout(props: SearchFilterLayoutProps) {
           <SearchFilterLayoutDefault {...rest} />
         )}
       {!import.meta.graphCommerce.productFiltersPro && <SearchFiltersLayoutClassic {...rest} />}
-    </>
+    </SignedInMaskProvider>
   )
 }

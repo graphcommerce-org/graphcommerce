@@ -2,7 +2,7 @@ import { useSessionScopeQuery } from '@graphcommerce/magento-customer'
 import { ProductListDocument, ProductListQuery } from '../components/ProductList/ProductList.gql'
 import { CategoryDefaultFragment } from '../components/ProductListItems/CategoryDefault.gql'
 import { ProductListParams } from '../components/ProductListItems/filterTypes'
-import { useFilterParams } from '../components/ProductListItems/filteredProductList'
+import { useRouterFilterParams } from '../components/ProductListItems/filteredProductList'
 import { useProductListApplyCategoryDefaults } from '../components/ProductListItems/productListApplyCategoryDefaults'
 
 /**
@@ -16,10 +16,15 @@ export function useProductList<
   },
 >(props: T) {
   const { category } = props
-  const { params, shallow } = useFilterParams(props)
+  const { params, shallow } = useRouterFilterParams(props)
   const variables = useProductListApplyCategoryDefaults(params, category)
 
   const result = useSessionScopeQuery(ProductListDocument, { variables, skip: !shallow }, props)
 
-  return { ...props, ...result.data, mask: result.mask }
+  return {
+    ...props,
+    ...result.data,
+    params,
+    mask: result.mask,
+  }
 }

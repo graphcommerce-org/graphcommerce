@@ -1,6 +1,7 @@
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, SxProps, Theme, Typography } from '@mui/material'
+import { useRouter } from 'next/router'
 
 export type NoSearchResultsProps = { search: string; sx?: SxProps<Theme> }
 
@@ -11,7 +12,7 @@ const { classes } = extendableComponent(name, parts)
 export function NoSearchResults(props: NoSearchResultsProps) {
   const { search, sx = [] } = props
 
-  const term = `'${search}'`
+  const term = search ? `'${search}'` : 'DIT NOG FIXEN'
 
   return (
     <Box

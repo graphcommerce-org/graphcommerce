@@ -1,10 +1,10 @@
 import {
+  DeepPartial,
   FormAutoSubmit,
-  SubmitHandler,
   useForm,
-  UseFormHandleSubmit,
   UseFormProps,
   UseFormReturn,
+  WatchObserver,
 } from '@graphcommerce/ecommerce-ui'
 import { useMatchMediaMotionValue, useMemoObject } from '@graphcommerce/next-ui'
 import { Theme, useEventCallback, useMediaQuery, useTheme } from '@mui/material'
@@ -18,6 +18,7 @@ import {
   ProductListParams,
   toFilterParams,
 } from '../ProductListItems/filterTypes'
+import type { Subscription } from 'react-hook-form/dist/utils/createSubject'
 
 type DataProps = {
   filterTypes: Record<string, string | undefined>
@@ -31,7 +32,12 @@ type FilterFormContextProps = DataProps & {
    * - `watch` -> `useWatch`
    * - `formState` -> `useFormState`
    */
-  form: Omit<UseFormReturn<ProductFilterParams>, 'formState' | 'watch'>
+  form: Omit<UseFormReturn<ProductFilterParams>, 'formState' | 'watch'> & {
+    watch: (
+      callback: WatchObserver<ProductFilterParams>,
+      defaultValues?: DeepPartial<ProductFilterParams>,
+    ) => Subscription
+  }
   params: ProductFilterParams
   submit: (e?: BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>
 }
@@ -58,7 +64,10 @@ export type FilterFormProviderProps = Omit<
    */
   autoSubmitMd?: boolean
 
-  handleSubmit?: SubmitHandler<ProductFilterParams>
+  handleSubmit?: (
+    formValues: ProductFilterParams,
+    next: () => Promise<void>,
+  ) => Promise<void> | void
 } & DataProps
 
 function AutoSubmitSidebarDesktop() {
@@ -104,19 +113,21 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
   const submit = useEventCallback(
     form.handleSubmit(async (formValues) => {
       const path = productListLinkFromFilter({ ...formValues, currentPage: 1 })
-
       if (router.asPath === path) return false
 
-      const opts = {
-        scroll: scroll.get(),
-        shallow: formValues.url.startsWith('search') || formValues.url === defaultValues.url,
+      const next = async () => {
+        const opts = {
+          scroll: scroll.get(),
+          shallow: formValues.url.startsWith('search') || formValues.url === defaultValues.url,
+        }
+
+        await ((router.query.url ?? []).includes('q')
+          ? router.replace(path, path, opts)
+          : router.push(path, path, opts))
       }
 
-      await handleSubmit?.(formValues)
-
-      return (router.query.url ?? []).includes('q')
-        ? router.replace(path, path, opts)
-        : router.push(path, path, opts)
+      if (handleSubmit) return handleSubmit(formValues, next)
+      return next()
     }),
   )
 
