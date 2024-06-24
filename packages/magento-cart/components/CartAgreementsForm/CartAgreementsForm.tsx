@@ -1,6 +1,6 @@
 import { CheckboxElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
-import { extendableComponent, FormDiv } from '@graphcommerce/next-ui'
+import { extendableComponent, FormDiv, useStorefrontConfig } from '@graphcommerce/next-ui'
 import {
   FormPersist,
   useForm,
@@ -30,7 +30,10 @@ const containsAnchorTag = (str: string): boolean => {
 
 export function CartAgreementsForm(props: CartAgreementsFormProps) {
   const { step, sx = [] } = props
-  const { data } = useQuery(CartAgreementsDocument)
+  const currentStoreCode = useStorefrontConfig().magentoStoreCode
+  const { data } = useQuery(CartAgreementsDocument, {
+    context: { headers: { store: currentStoreCode } },
+  })
 
   // sort conditions so checkboxes will be placed first
   const sortedAgreements = data?.checkoutAgreements
