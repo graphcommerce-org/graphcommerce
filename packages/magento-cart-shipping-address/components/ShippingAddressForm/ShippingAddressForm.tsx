@@ -7,7 +7,6 @@ import {
   useFormCompose,
 } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
-import { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
 import {
   ApolloCartErrorAlert,
   useCartQuery,
@@ -22,7 +21,7 @@ import {
   BusinessFields,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Form, FormRow, useStorefrontConfig } from '@graphcommerce/next-ui'
+import { Form, FormRow } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
@@ -44,20 +43,15 @@ export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'> & {
    */
   ignoreCache?: boolean
   sx?: SxProps<Theme>
-  vatRequired?: { required?: boolean; optional?: CountryCodeEnum[] }
 }
 
 export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) => {
-  const { step, sx, vatRequired = {} } = props
+  const { step, sx } = props
   const { data: cartQuery } = useCartQuery(GetAddressesDocument)
   const { data: config } = useQuery(StoreConfigDocument)
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
   const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
   const { data: customerQuery } = useCustomerQuery(CustomerDocument)
-
-  const showBusinessFields =
-    useStorefrontConfig().customerBusinessFieldsEnable ??
-    import.meta.graphCommerce.customerBusinessFieldsEnable
 
   const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase()
 
@@ -94,7 +88,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
 
   const form = useFormGqlMutationCart<
     SetShippingBillingAddressMutation,
-    SetShippingBillingAddressMutationVariables & { hasCompanyFields: boolean }
+    SetShippingBillingAddressMutationVariables & { hasBusinessFields: boolean }
   >(Mutation, {
     defaultValues: isCartAddressACustomerAddress(customerQuery?.customer?.addresses, currentAddress)
       ? { saveInAddressBook: true }
@@ -106,7 +100,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
             currentAddress?.telephone !== '000 - 000 0000' ? currentAddress?.telephone : '',
           city: currentAddress?.city ?? '',
           company: currentAddress?.company ?? '',
-          vat_id: currentAddress?.vat_id ?? '',
+          vatId: currentAddress?.vat_id ?? '',
           postcode: currentAddress?.postcode ?? '',
           street: currentAddress?.street?.[0] ?? '',
           houseNumber: currentAddress?.street?.[1] ?? '',
@@ -162,7 +156,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           showValid
         />
       </FormRow>
-      {showBusinessFields && <BusinessFields vatRequired={vatRequired} form={form} />}
+      <BusinessFields form={form} />
       <ApolloCartErrorAlert error={error} />
       <FormPersist form={form} name='ShippingAddressForm' />
     </Form>

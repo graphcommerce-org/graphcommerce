@@ -2,10 +2,15 @@ import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { useHistoryGo } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { SetBillingAddressDocument } from '@graphcommerce/magento-cart-shipping-address/components/ShippingAddressForm/SetBillingAddress.gql'
+import {
+  SetBillingAddressDocument,
+  SetBillingAddressMutation,
+  SetBillingAddressMutationVariables,
+} from '@graphcommerce/magento-cart-shipping-address/components/ShippingAddressForm/SetBillingAddress.gql'
 import {
   AddressFields,
   ApolloCustomerErrorAlert,
+  BusinessFields,
   NameFields,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
@@ -27,7 +32,10 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
 
   const goToCheckout = useHistoryGo({ href: '/checkout/payment' })
 
-  const form = useFormGqlMutationCart(SetBillingAddressDocument, {
+  const form = useFormGqlMutationCart<
+    SetBillingAddressMutation,
+    SetBillingAddressMutationVariables & { hasBusinessFields: boolean }
+  >(SetBillingAddressDocument, {
     defaultValues: {
       firstname: address?.firstname,
       lastname: address?.lastname,
@@ -38,12 +46,20 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
       telephone: address?.telephone,
       houseNumber: address?.street?.[1] ?? '',
       addition: address?.street?.[2] ?? '',
+      company: address?.company ?? '',
+      vatId: address?.vat_id ?? '',
+      hasBusinessFields: !!address?.company || !!address?.vat_id,
       saveInAddressBook: true,
     },
     onBeforeSubmit: (variables) => {
       const regionId = countries
         ?.find((country) => country?.two_letter_abbreviation === variables.countryCode)
         ?.available_regions?.find((region) => region?.id === variables.regionId)?.id
+
+      if (!variables.hasBusinessFields) {
+        variables.company = ''
+        variables.vatId = ''
+      }
 
       return {
         ...variables,
@@ -83,6 +99,8 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
             showValid
           />
         </FormRow>
+
+        <BusinessFields form={form} />
 
         <FormDivider />
 

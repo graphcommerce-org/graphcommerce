@@ -8,10 +8,11 @@ export function BusinessVAT<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(
   props: BusinessFieldsOptions<TFieldValues, TName> & {
-    vatRequired: { required?: boolean; optional?: CountryCodeEnum[] }
+    required?: boolean
+    optional?: CountryCodeEnum[]
   },
 ) {
-  const { vatRequired } = props
+  const { required, optional } = props
   const form = useBusinessFieldsForm<TFieldValues, TName>(props)
   const { control, name, readOnly } = form
 
@@ -20,14 +21,10 @@ export function BusinessVAT<
   return (
     <TextFieldElement
       control={control}
-      name={name.vat_id}
+      name={name.vatId}
       variant='outlined'
       type='text'
-      required={
-        vatRequired.required
-          ? !vatRequired.optional?.includes(countryCode)
-          : vatRequired.optional?.includes(countryCode)
-      }
+      required={required ? !optional?.includes(countryCode) : optional?.includes(countryCode)}
       label={<Trans id='VAT' />}
       showValid
       InputProps={{ readOnly }}

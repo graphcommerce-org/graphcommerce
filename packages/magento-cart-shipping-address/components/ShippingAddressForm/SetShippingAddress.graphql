@@ -1,7 +1,7 @@
 mutation SetShippingAddress(
   $cartId: String!
   $company: String
-  $vat_id: String
+  $vatId: String
   $firstname: String!
   $lastname: String!
   $postcode: String!
@@ -22,7 +22,7 @@ mutation SetShippingAddress(
         {
           address: {
             company: $company
-            vat_id: $vat_id
+            vat_id: $vatId
             firstname: $firstname
             lastname: $lastname
             postcode: $postcode

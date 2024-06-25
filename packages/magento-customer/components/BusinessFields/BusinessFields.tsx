@@ -1,6 +1,5 @@
 import { CheckboxElement, FieldPath, FieldValues, useWatch } from '@graphcommerce/ecommerce-ui'
-import { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
-import { FormRow } from '@graphcommerce/next-ui'
+import { FormRow, useStorefrontConfig } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { BusinessCompany } from './BusinessCompany'
 import { BusinessVAT } from './BusinessVAT'
@@ -10,29 +9,32 @@ export type BusinessFieldsProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = BusinessFieldsOptions<TFieldValues, TName> & {
-  vatRequired: { required?: boolean; optional?: CountryCodeEnum[] }
+  label?: React.ReactNode
 }
 
 export function BusinessFields<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(props: BusinessFieldsProps<TFieldValues, TName>) {
-  const form = useBusinessFieldsForm(props)
+  const { label = <Trans id='Business' />, ...rest } = props
+  const form = useBusinessFieldsForm(rest)
   const { name, control } = form
 
-  const hasCompanyFields = useWatch({ name: name.hasCompanyFields, control })
+  const hasBusinessFields = useWatch({ name: name.hasBusinessFields, control })
+
+  const enable =
+    useStorefrontConfig().customerBusinessFieldsEnable ??
+    import.meta.graphCommerce.customerBusinessFieldsEnable
+
+  if (!enable) return null
 
   return (
     <>
-      <CheckboxElement
-        label={<Trans id='Business' />}
-        control={control}
-        name={name.hasCompanyFields}
-      />
-      {hasCompanyFields && (
+      <CheckboxElement label={label} control={control} name={name.hasBusinessFields} />
+      {hasBusinessFields && (
         <FormRow>
           <BusinessCompany {...props} />
-          <BusinessVAT {...props} />
+          {import.meta.graphCommerce.magentoVersion >= 245 && <BusinessVAT {...props} />}
         </FormRow>
       )}
     </>

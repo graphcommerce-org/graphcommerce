@@ -18,8 +18,8 @@ export type BusinessFieldsOptions<
   // eslint-disable-next-line react/no-unused-prop-types
   name?: {
     company?: TName
-    vat_id?: TName
-    hasCompanyFields?: TName
+    vatId?: TName
+    hasBusinessFields?: TName
     countryCode?: TName
   }
 }
@@ -34,8 +34,8 @@ export function useBusinessFieldsForm<
     ...form,
     name: {
       company: 'company' as TName,
-      vat_id: 'vat_id' as TName,
-      hasCompanyFields: 'hasCompanyFields' as TName,
+      vatId: 'vatId' as TName,
+      hasBusinessFields: 'hasBusinessFields' as TName,
       countryCode: 'countryCode' as TName,
       ...props.name,
     },
