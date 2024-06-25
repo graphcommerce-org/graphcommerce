@@ -77,6 +77,7 @@ function GraphCommerceConfigSchema() {
         configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
         crossSellsHideCartItems: _zod.z.boolean().default(false).nullish(),
         crossSellsRedirectItems: _zod.z.boolean().default(false).nullish(),
+        customerBusinessFieldsEnable: _zod.z.boolean().nullish(),
         customerRequireEmailConfirmation: _zod.z.boolean().nullish(),
         dataLayer: DatalayerConfigSchema().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
@@ -117,6 +118,7 @@ function GraphCommerceStorefrontConfigSchema() {
     return _zod.z.object({
         canonicalBaseUrl: _zod.z.string().nullish(),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
+        customerBusinessFieldsEnable: _zod.z.boolean().nullish(),
         defaultLocale: _zod.z.boolean().nullish(),
         domain: _zod.z.string().nullish(),
         googleAnalyticsId: _zod.z.string().nullish(),

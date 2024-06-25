@@ -169,6 +169,10 @@ Determines if, after adding a cross-sell item to the cart, the user should be re
 
 Default: 'false'
 
+#### customerBusinessFieldsEnable: boolean
+
+Enables business fields inside the checkout
+
 #### customerRequireEmailConfirmation: boolean
 
 Due to a limitation in the GraphQL API of Magento 2, we need to know if the
@@ -381,6 +385,10 @@ Examples:
 #### cartDisplayPricesInclTax: boolean
 
 Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.
+
+#### customerBusinessFieldsEnable: boolean
+
+Enables business fields inside the checkout
 
 #### defaultLocale: boolean
 

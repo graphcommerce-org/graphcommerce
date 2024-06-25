@@ -22,7 +22,7 @@ import {
   BusinessFields,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Form, FormRow } from '@graphcommerce/next-ui'
+import { Form, FormRow, useStorefrontConfig } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
@@ -54,6 +54,10 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
   const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
   const { data: customerQuery } = useCustomerQuery(CustomerDocument)
+
+  const showBusinessFields =
+    useStorefrontConfig().customerBusinessFieldsEnable ??
+    import.meta.graphCommerce.customerBusinessFieldsEnable
 
   const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase()
 
@@ -158,7 +162,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           showValid
         />
       </FormRow>
-      <BusinessFields vatRequired={vatRequired} form={form} />
+      {showBusinessFields && <BusinessFields vatRequired={vatRequired} form={form} />}
       <ApolloCartErrorAlert error={error} />
       <FormPersist form={form} name='ShippingAddressForm' />
     </Form>

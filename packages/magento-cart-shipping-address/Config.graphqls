@@ -1,0 +1,13 @@
+extend input GraphCommerceConfig {
+  """
+  Enables business fields inside the checkout
+  """
+  customerBusinessFieldsEnable: Boolean
+}
+
+extend input GraphCommerceStorefrontConfig {
+  """
+  Enables business fields inside the checkout
+  """
+  customerBusinessFieldsEnable: Boolean
+}
