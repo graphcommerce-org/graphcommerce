@@ -18,6 +18,7 @@ import {
   CustomerDocument,
   NameFields,
   useCustomerQuery,
+  BusinessFields,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Form, FormRow } from '@graphcommerce/next-ui'
@@ -30,7 +31,11 @@ import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from './GetAddresses.gql'
 import { SetBillingAddressDocument } from './SetBillingAddress.gql'
 import { SetShippingAddressDocument } from './SetShippingAddress.gql'
-import { SetShippingBillingAddressDocument } from './SetShippingBillingAddress.gql'
+import {
+  SetShippingBillingAddressDocument,
+  SetShippingBillingAddressMutation,
+  SetShippingBillingAddressMutationVariables,
+} from './SetShippingBillingAddress.gql'
 
 export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'> & {
   /**
@@ -81,7 +86,10 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
     Mutation = SetBillingAddressDocument
   }
 
-  const form = useFormGqlMutationCart(Mutation, {
+  const form = useFormGqlMutationCart<
+    SetShippingBillingAddressMutation,
+    SetShippingBillingAddressMutationVariables & { hasCompanyFields: boolean }
+  >(Mutation, {
     defaultValues: isCartAddressACustomerAddress(customerQuery?.customer?.addresses, currentAddress)
       ? { saveInAddressBook: true }
       : {
@@ -92,6 +100,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
             currentAddress?.telephone !== '000 - 000 0000' ? currentAddress?.telephone : '',
           city: currentAddress?.city ?? '',
           company: currentAddress?.company ?? '',
+          vat_id: currentAddress?.vat_id ?? '',
           postcode: currentAddress?.postcode ?? '',
           street: currentAddress?.street?.[0] ?? '',
           houseNumber: currentAddress?.street?.[1] ?? '',
@@ -132,6 +141,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
       <FormPersist form={form} name='ShippingAddressForm' />
       <NameFields form={form} />
       <AddressFields form={form} />
+      <BusinessFields form={form} />
       <FormRow>
         <TextFieldElement
           control={form.control}
