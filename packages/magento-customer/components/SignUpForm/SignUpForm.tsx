@@ -54,7 +54,6 @@ export function SignUpForm(props: SignUpFormProps) {
   return (
     <form onSubmit={submitHandler} noValidate>
       <FormRow>
-        <FormPersist form={form} name='SignUp' exclude={['password', 'confirmPassword']} />
         <ValidatedPasswordElement
           control={control}
           name='password'
@@ -103,6 +102,7 @@ export function SignUpForm(props: SignUpFormProps) {
           <Trans id='Create Account' />
         </Button>
       </FormActions>
+      <FormPersist form={form} name='SignUp' exclude={['password', 'confirmPassword']} />
     </form>
   )
 }
