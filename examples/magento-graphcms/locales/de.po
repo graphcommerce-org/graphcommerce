@@ -100,6 +100,9 @@ msgstr "Rechnungsadresse"
 msgid "Blog"
 msgstr "Blog"
 
+msgid "Business"
+msgstr "Business"
+
 msgid "Buy {quantity} for <0/> and save {percent}%"
 msgstr "Kaufen Sie {quantity} für <0/> und sparen Sie {percent}%"
 
@@ -108,6 +111,9 @@ msgstr "Warenkorb"
 
 msgid "Cart ({0})"
 msgstr "Warenkorb ({0})"
+
+msgid "Categories"
+msgstr "Kategorien"
 
 msgid "Change"
 msgstr "Ändern"
@@ -132,6 +138,9 @@ msgstr "Alle Filter löschen"
 
 msgid "Close"
 msgstr "Schließen"
+
+msgid "Company name"
+msgstr "Name des Unternehmens"
 
 msgid "Compare"
 msgstr "Vergleichen"
@@ -738,6 +747,9 @@ msgstr "Versuchen Sie ein anderes Produkt"
 
 msgid "Try a different search"
 msgstr "Versuchen Sie eine andere Suche"
+
+msgid "VAT"
+msgstr "MwSt."
 
 msgid "View Product"
 msgstr "Produkt ansehen"

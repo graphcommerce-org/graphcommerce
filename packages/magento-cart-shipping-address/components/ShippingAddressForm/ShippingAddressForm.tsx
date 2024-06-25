@@ -7,6 +7,7 @@ import {
   useFormCompose,
 } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
+import { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
 import {
   ApolloCartErrorAlert,
   useCartQuery,
@@ -43,10 +44,11 @@ export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'> & {
    */
   ignoreCache?: boolean
   sx?: SxProps<Theme>
+  vatRequired?: { required?: boolean; optional?: CountryCodeEnum[] }
 }
 
 export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) => {
-  const { step, sx } = props
+  const { step, sx, vatRequired = {} } = props
   const { data: cartQuery } = useCartQuery(GetAddressesDocument)
   const { data: config } = useQuery(StoreConfigDocument)
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
@@ -138,10 +140,10 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         control={form.control}
         name={['postcode', 'countryCode', 'regionId']}
       />
-      <FormPersist form={form} name='ShippingAddressForm' />
+
       <NameFields form={form} />
       <AddressFields form={form} />
-      <BusinessFields form={form} />
+
       <FormRow>
         <TextFieldElement
           control={form.control}
@@ -156,7 +158,9 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           showValid
         />
       </FormRow>
+      <BusinessFields vatRequired={vatRequired} form={form} />
       <ApolloCartErrorAlert error={error} />
+      <FormPersist form={form} name='ShippingAddressForm' />
     </Form>
   )
 })

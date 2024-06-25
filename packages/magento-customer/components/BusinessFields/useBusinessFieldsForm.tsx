@@ -20,6 +20,7 @@ export type BusinessFieldsOptions<
     company?: TName
     vat_id?: TName
     hasCompanyFields?: TName
+    countryCode?: TName
   }
 }
 
@@ -35,6 +36,7 @@ export function useBusinessFieldsForm<
       company: 'company' as TName,
       vat_id: 'vat_id' as TName,
       hasCompanyFields: 'hasCompanyFields' as TName,
+      countryCode: 'countryCode' as TName,
       ...props.name,
     },
     readOnly,

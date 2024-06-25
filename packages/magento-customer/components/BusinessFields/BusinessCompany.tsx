@@ -7,7 +7,7 @@ export function BusinessCompany<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(props: BusinessFieldsOptions<TFieldValues, TName>) {
   const form = useBusinessFieldsForm<TFieldValues, TName>(props)
-  const { control, name, readOnly, required } = form
+  const { control, name, readOnly } = form
 
   return (
     <TextFieldElement
@@ -15,8 +15,8 @@ export function BusinessCompany<
       name={name.company}
       variant='outlined'
       type='text'
-      required={required[name.company]}
-      label={<Trans id='Company' />}
+      required
+      label={<Trans id='Company name' />}
       showValid
       InputProps={{ readOnly }}
     />

@@ -1,14 +1,17 @@
 import { CheckboxElement, FieldPath, FieldValues, useWatch } from '@graphcommerce/ecommerce-ui'
+import { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
 import { FormRow } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
 import { BusinessCompany } from './BusinessCompany'
 import { BusinessVAT } from './BusinessVAT'
 import { BusinessFieldsOptions, useBusinessFieldsForm } from './useBusinessFieldsForm'
-import { Trans } from '@lingui/react'
 
 export type BusinessFieldsProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-> = BusinessFieldsOptions<TFieldValues, TName>
+> = BusinessFieldsOptions<TFieldValues, TName> & {
+  vatRequired: { required?: boolean; optional?: CountryCodeEnum[] }
+}
 
 export function BusinessFields<
   TFieldValues extends FieldValues = FieldValues,
@@ -22,7 +25,7 @@ export function BusinessFields<
   return (
     <>
       <CheckboxElement
-        label={<Trans id='Is Business' />}
+        label={<Trans id='Business' />}
         control={control}
         name={name.hasCompanyFields}
       />

@@ -15,6 +15,7 @@
     "@graphcommerce/ecommerce-ui": "^8.1.0-canary.33",
     "@graphcommerce/eslint-config-pwa": "^8.1.0-canary.33",
     "@graphcommerce/graphql": "^8.1.0-canary.33",
+    "@graphcommerce/graphql-mesh": "^8.1.0-canary.33",
     "@graphcommerce/image": "^8.1.0-canary.33",
     "@graphcommerce/magento-cart": "^8.1.0-canary.33",
     "@graphcommerce/magento-customer": "^8.1.0-canary.33",
