@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.36
+
+### Minor Changes
+
+- [#2284](https://github.com/graphcommerce-org/graphcommerce/pull/2284) [`5ee712c`](https://github.com/graphcommerce-org/graphcommerce/commit/5ee712c962c6b0dda903172660d70cf433321b7e) - Prevent checkout on looping back and forth with the cart overlay when navigating directly to the checkout.
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 8.1.0-canary.35
 
 ## 8.1.0-canary.34
