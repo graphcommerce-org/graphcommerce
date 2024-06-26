@@ -31,6 +31,9 @@ msgstr "Account"
 msgid "Account confirmation"
 msgstr "Account bevestiging"
 
+msgid "Account confirmed. You can now proceed to sign in."
+msgstr "Account bevestigd. U kunt nu doorgaan met inloggen."
+
 msgid "Add address"
 msgstr "Adres toevoegen"
 
@@ -168,9 +171,6 @@ msgstr "Registratie bevestigen"
 
 msgid "Confirmation + Track & trace"
 msgstr "Bevestiging + Track & trace"
-
-msgid "Confirmation succesfull. Use the button below to redirect to login"
-msgstr "Bevestiging succesvol. Gebruik de onderstaande knop om door te gaan naar inloggen"
 
 msgid "Contact"
 msgstr "Contact"
@@ -508,9 +508,6 @@ msgstr "Persoonlijke details"
 msgid "Place order"
 msgstr "Plaats bestelling"
 
-msgid "Please check your inbox to validate your email ({email})"
-msgstr "Controleer uw inbox om uw e-mailadres te valideren ({email})"
-
 msgid "Please enter a valid email address"
 msgstr "Vul een geldig e-mailadres in"
 
@@ -558,6 +555,9 @@ msgstr "Recent bekeken producten"
 
 msgid "Region"
 msgstr "Regio"
+
+msgid "Registration successful. Please check your inbox to confirm your email address ({email})"
+msgstr "Registratie succesvol. Controleer uw inbox om uw e-mailadres te bevestigen ({email})"
 
 msgid "Relevance"
 msgstr "Relevantie"
@@ -745,9 +745,6 @@ msgstr "Dit veld is verplicht"
 msgid "This may take a second"
 msgstr "Dit kan een seconde duren"
 
-msgid "To login"
-msgstr "Naar login"
-
 msgid "Total <0/>"
 msgstr "Totaal <0/>"
 
@@ -822,6 +819,9 @@ msgstr "U reviewt {0}"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "U kunt nu <0>opnieuw inloggen</0>"
+
+msgid "You can only confirm you account by clicking on the link in your email."
+msgstr "U kunt uw account alleen bevestigen door op de link in uw e-mail te klikken."
 
 msgid "You can track your order status and much more!"
 msgstr "U kunt uw bestelstatus bijhouden en veel meer!"

@@ -51,7 +51,10 @@ export function SignUpForm(props: SignUpFormProps) {
   ) {
     return (
       <Alert>
-        <Trans id='Please check your inbox to validate your email ({email})' values={{ email }} />
+        <Trans
+          id='Registration successful. Please check your inbox to confirm your email address ({email})'
+          values={{ email }}
+        />
       </Alert>
     )
   }

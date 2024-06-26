@@ -31,6 +31,9 @@ msgstr "Account"
 msgid "Account confirmation"
 msgstr "Account confirmation"
 
+msgid "Account confirmed. You can now proceed to sign in."
+msgstr "Account confirmed. You can now proceed to sign in."
+
 msgid "Add address"
 msgstr "Add address"
 
@@ -168,9 +171,6 @@ msgstr "Confirm registration"
 
 msgid "Confirmation + Track & trace"
 msgstr "Confirmation + Track & trace"
-
-msgid "Confirmation succesfull. Use the button below to redirect to login"
-msgstr "Confirmation succesfull. Use the button below to redirect to login"
 
 msgid "Contact"
 msgstr "Contact"
@@ -508,9 +508,6 @@ msgstr "Personal details"
 msgid "Place order"
 msgstr "Place order"
 
-msgid "Please check your inbox to validate your email ({email})"
-msgstr "Please check your inbox to validate your email ({email})"
-
 msgid "Please enter a valid email address"
 msgstr "Please enter a valid email address"
 
@@ -558,6 +555,9 @@ msgstr "Recently viewed products"
 
 msgid "Region"
 msgstr "Region"
+
+msgid "Registration successful. Please check your inbox to confirm your email address ({email})"
+msgstr "Registration successful. Please check your inbox to confirm your email address ({email})"
 
 msgid "Relevance"
 msgstr "Relevance"
@@ -745,9 +745,6 @@ msgstr "This field is required"
 msgid "This may take a second"
 msgstr "This may take a second"
 
-msgid "To login"
-msgstr "To login"
-
 msgid "Total <0/>"
 msgstr "Total <0/>"
 
@@ -822,6 +819,9 @@ msgstr "You are reviewing {0}"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "You can now <0>sign in again</0>."
+
+msgid "You can only confirm you account by clicking on the link in your email."
+msgstr "You can only confirm you account by clicking on the link in your email."
 
 msgid "You can track your order status and much more!"
 msgstr "You can track your order status and much more!"

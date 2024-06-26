@@ -59,7 +59,9 @@ test.describe('Authentication flow', () => {
       test.expect(await element.innerText()).toBeDefined()
     } else {
       test.expect((result.data as SignUpMutation).generateCustomerToken).toBeUndefined()
-      const element = page.locator('text=Please check your inbox to validate your email')
+      const element = page.locator(
+        'text=Registration successful. Please check your inbox to confirm your email address',
+      )
       test.expect(await element.innerText()).toBeDefined()
     }
   })

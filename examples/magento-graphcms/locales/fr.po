@@ -31,6 +31,9 @@ msgstr "Compte"
 msgid "Account confirmation"
 msgstr "Confirmation du compte"
 
+msgid "Account confirmed. You can now proceed to sign in."
+msgstr "Compte confirmé. Vous pouvez maintenant vous connecter."
+
 msgid "Add address"
 msgstr "Ajouter une adresse"
 
@@ -168,9 +171,6 @@ msgstr "Confirmer l'inscription"
 
 msgid "Confirmation + Track & trace"
 msgstr "Confirmation + Traçage"
-
-msgid "Confirmation succesfull. Use the button below to redirect to login"
-msgstr "Confirmation réussie. Utilisez le bouton ci-dessous pour vous rediriger vers le login"
 
 msgid "Contact"
 msgstr "Contact"
@@ -508,9 +508,6 @@ msgstr "Informations personnelles"
 msgid "Place order"
 msgstr "Placer la commande"
 
-msgid "Please check your inbox to validate your email ({email})"
-msgstr "Veuillez vérifier votre boîte de réception pour valider votre email ({email})"
-
 msgid "Please enter a valid email address"
 msgstr "Veuillez entrer une adresse email valide"
 
@@ -558,6 +555,9 @@ msgstr "Derniers produits consultés"
 
 msgid "Region"
 msgstr "Région"
+
+msgid "Registration successful. Please check your inbox to confirm your email address ({email})"
+msgstr "Inscription réussie. Veuillez vérifier votre boîte de réception pour confirmer votre adresse email ({email})"
 
 msgid "Relevance"
 msgstr "Pertinence"
@@ -745,9 +745,6 @@ msgstr "Ce champ est requis"
 msgid "This may take a second"
 msgstr "Ceci peut prendre un instant"
 
-msgid "To login"
-msgstr "Pour se connecter"
-
 msgid "Total <0/>"
 msgstr "Total <0/>"
 
@@ -822,6 +819,9 @@ msgstr "Vous évaluez {0}"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "Vous pouvez maintenant<0>vous connecter à nouveau</0>."
+
+msgid "You can only confirm you account by clicking on the link in your email."
+msgstr "Vous ne pouvez confirmer votre compte qu'en cliquant sur le lien dans votre email."
 
 msgid "You can track your order status and much more!"
 msgstr "Vous pouvez suivre l'état de votre commande et beaucoup plus!"

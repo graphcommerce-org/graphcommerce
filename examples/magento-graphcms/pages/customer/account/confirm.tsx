@@ -23,7 +23,7 @@ function AccountConfirmPage() {
           <Trans id='Account confirmation' />
         </LayoutTitle>
       </LayoutOverlayHeader>
-      <Container maxWidth='md'>
+      <Container maxWidth='sm'>
         <ConfirmCustomerForm />
       </Container>
     </>
