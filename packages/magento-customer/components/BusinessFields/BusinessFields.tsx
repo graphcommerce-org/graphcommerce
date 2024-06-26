@@ -20,7 +20,7 @@ export function BusinessFields<
   const form = useBusinessFieldsForm(rest)
   const { name, control } = form
 
-  const hasBusinessFields = useWatch({ name: name.hasBusinessFields, control })
+  const isBusiness = useWatch({ name: name.isBusiness, control })
 
   const enable =
     useStorefrontConfig().customerBusinessFieldsEnable ??
@@ -30,8 +30,8 @@ export function BusinessFields<
 
   return (
     <>
-      <CheckboxElement label={label} control={control} name={name.hasBusinessFields} />
-      {hasBusinessFields && (
+      <CheckboxElement label={label} control={control} name={name.isBusiness} />
+      {isBusiness && (
         <FormRow>
           <BusinessCompany {...props} />
           {import.meta.graphCommerce.magentoVersion >= 245 && <BusinessVAT {...props} />}

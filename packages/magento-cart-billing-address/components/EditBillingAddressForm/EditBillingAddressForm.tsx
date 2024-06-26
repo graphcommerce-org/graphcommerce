@@ -34,7 +34,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
 
   const form = useFormGqlMutationCart<
     SetBillingAddressMutation,
-    SetBillingAddressMutationVariables & { hasBusinessFields: boolean }
+    SetBillingAddressMutationVariables & { isBusiness: boolean }
   >(SetBillingAddressDocument, {
     defaultValues: {
       firstname: address?.firstname,
@@ -48,7 +48,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
       addition: address?.street?.[2] ?? '',
       company: address?.company ?? '',
       vatId: address?.vat_id ?? '',
-      hasBusinessFields: !!address?.company || !!address?.vat_id,
+      isBusiness: !!address?.company || !!address?.vat_id,
       saveInAddressBook: true,
     },
     onBeforeSubmit: (variables) => {
@@ -56,7 +56,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
         ?.find((country) => country?.two_letter_abbreviation === variables.countryCode)
         ?.available_regions?.find((region) => region?.id === variables.regionId)?.id
 
-      if (!variables.hasBusinessFields) {
+      if (!variables.isBusiness) {
         variables.company = ''
         variables.vatId = ''
       }

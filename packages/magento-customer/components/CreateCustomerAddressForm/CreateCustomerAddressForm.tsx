@@ -33,7 +33,7 @@ export function CreateCustomerAddressForm() {
 
   const form = useFormGqlMutation<
     CreateCustomerAddressMutation,
-    CreateCustomerAddressMutationVariables & { hasBusinessFields: boolean }
+    CreateCustomerAddressMutationVariables & { isBusiness: boolean }
   >(
     CreateCustomerAddressDocument,
     {

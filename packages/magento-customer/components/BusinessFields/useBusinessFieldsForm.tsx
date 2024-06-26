@@ -19,7 +19,7 @@ export type BusinessFieldsOptions<
   name?: {
     company?: TName
     vatId?: TName
-    hasBusinessFields?: TName
+    isBusiness?: TName
     countryCode?: TName
   }
 }
@@ -35,7 +35,7 @@ export function useBusinessFieldsForm<
     name: {
       company: 'company' as TName,
       vatId: 'vatId' as TName,
-      hasBusinessFields: 'hasBusinessFields' as TName,
+      isBusiness: 'isBusiness' as TName,
       countryCode: 'countryCode' as TName,
       ...props.name,
     },

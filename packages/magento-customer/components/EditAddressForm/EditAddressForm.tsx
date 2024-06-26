@@ -36,7 +36,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
 
   const form = useFormGqlMutation<
     UpdateCustomerAddressMutation,
-    UpdateCustomerAddressMutationVariables & { hasBusinessFields: boolean }
+    UpdateCustomerAddressMutationVariables & { isBusiness: boolean }
   >(
     UpdateCustomerAddressDocument,
     {
@@ -54,7 +54,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
         region: address?.region,
         company: address?.company ?? '',
         vatId: address?.vat_id ?? '',
-        hasBusinessFields: !!address?.company || !!address?.vat_id,
+        isBusiness: !!address?.company || !!address?.vat_id,
       },
       onBeforeSubmit: (formData) => {
         const region = countries
@@ -69,7 +69,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
             }) ??
             null,
         }
-        if (!formData.hasBusinessFields) {
+        if (!formData.isBusiness) {
           formData.company = ''
           formData.vatId = ''
         }
