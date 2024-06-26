@@ -2,7 +2,6 @@
 
 exports[`parses an env config object 1`] = `
 {
-  "GC_CUSTOMER_REQUIRE_EMAIL_CONFIRMATION": false,
   "GC_DEMO_MODE": true,
   "GC_STOREFRONT": [
     {
@@ -38,7 +37,6 @@ exports[`traverses a schema and returns a list of env variables that match 1`] =
   "GC_CONFIGURABLE_VARIANT_VALUES_URL",
   "GC_CROSS_SELLS_HIDE_CART_ITEMS",
   "GC_CROSS_SELLS_REDIRECT_ITEMS",
-  "GC_CUSTOMER_REQUIRE_EMAIL_CONFIRMATION",
   "GC_DATA_LAYER",
   "GC_DATA_LAYER_CORE_WEB_VITALS",
   "GC_DEBUG",
