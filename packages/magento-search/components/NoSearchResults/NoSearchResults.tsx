@@ -1,7 +1,10 @@
+import {
+  useProductFilterProHasFiltersApplied,
+  useProductFiltersProClearAllAction,
+} from '@graphcommerce/magento-product'
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
-import { Box, SxProps, Theme, Typography } from '@mui/material'
-import { useRouter } from 'next/router'
+import { Trans } from '@lingui/macro'
+import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
 
 export type NoSearchResultsProps = { search: string; sx?: SxProps<Theme> }
 
@@ -12,7 +15,10 @@ const { classes } = extendableComponent(name, parts)
 export function NoSearchResults(props: NoSearchResultsProps) {
   const { search, sx = [] } = props
 
-  const term = search ? `'${search}'` : 'DIT NOG FIXEN'
+  const term = search ? `'${search}'` : ''
+
+  const clearAll = useProductFiltersProClearAllAction()
+  const hasFilters = useProductFilterProHasFiltersApplied()
 
   return (
     <Box
@@ -27,10 +33,25 @@ export function NoSearchResults(props: NoSearchResultsProps) {
       ]}
     >
       <Typography variant='h5' align='center'>
-        <Trans id="We couldn't find any results for {term}" values={{ term }} />
+        <Trans>We couldn&apos;t find any results for {term}</Trans>
       </Typography>
       <p>
-        <Trans id='Try a different search' />
+        {hasFilters ? (
+          <Trans>
+            Try a different search or{' '}
+            <Link
+              href='#'
+              onClick={(e) => {
+                e.preventDefault()
+                return clearAll()
+              }}
+            >
+              clear current filters
+            </Link>
+          </Trans>
+        ) : (
+          <Trans>Try a different search</Trans>
+        )}
       </p>
     </Box>
   )

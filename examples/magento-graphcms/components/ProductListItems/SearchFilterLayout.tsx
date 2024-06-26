@@ -1,14 +1,7 @@
 import { useApolloClient, useQuery } from '@apollo/client'
 import { MenuQueryFragment } from '@graphcommerce/magento-category'
 import { SignedInMaskProvider } from '@graphcommerce/magento-customer'
-import {
-  FilterTypes,
-  ProductListDocument,
-  ProductListParams,
-  toProductListParams,
-  useProductFiltersPro,
-  useRouterFilterParams,
-} from '@graphcommerce/magento-product'
+import { ProductListDocument, toProductListParams } from '@graphcommerce/magento-product'
 import {
   NoSearchResults,
   ProductFiltersPro,
@@ -17,10 +10,9 @@ import {
   ProductFiltersProCategorySectionSearch,
   ProductFiltersProClearAll,
   ProductFiltersProLimitChip,
-  ProductFiltersProLimitSection,
   ProductFiltersProSearchField,
+  ProductFiltersProSearchTerm,
   ProductFiltersProSortChip,
-  ProductFiltersProSortSection,
   ProductListCount,
   ProductListFilters,
   ProductListFiltersContainer,
@@ -36,11 +28,10 @@ import {
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { LayoutHeader, LayoutTitle, StickyBelowHeader, responsiveVal } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
-import { Box, Container } from '@mui/material'
+import { Trans } from '@lingui/macro'
+import { Box, Container, Typography } from '@mui/material'
 import { ProductListFilterLayoutProps } from './CategoryFilterLayout'
 import { ProductListItems } from './ProductListItems'
-import { useWatch } from 'react-hook-form'
 
 type SearchFilterLayoutProps = Omit<ProductListFilterLayoutProps, 'category' | 'id' | 'title'> &
   MenuQueryFragment
@@ -66,31 +57,6 @@ type SearchFilterLayoutProps = Omit<ProductListFilterLayoutProps, 'category' | '
 // Form params
 
 const productListQueries: Array<Promise<unknown>> = []
-
-type CurrentSearchProps = { params: ProductListParams }
-
-function CurrentSearch(props: CurrentSearchProps) {
-  const { params } = props
-  const { form } = useProductFiltersPro()
-  const resultSearch = params.search ?? ''
-  const targetSearch = useWatch({ control: form.control, name: 'search' }) ?? ''
-
-  const remaining = targetSearch.startsWith(resultSearch)
-    ? targetSearch.slice(resultSearch.length)
-    : ''
-
-  return (
-    <>
-      , searching for{' '}
-      <Box component='span' sx={{}}>
-        {resultSearch}
-      </Box>
-      <Box component='span' sx={{ textDecoration: 'underline' }}>
-        {remaining}
-      </Box>
-    </>
-  )
-}
 
 function SearchFilterLayoutSidebar(props: SearchFilterLayoutProps) {
   const { filters, filterTypes, params, products, menu } = props
@@ -154,20 +120,29 @@ function SearchFilterLayoutSidebar(props: SearchFilterLayoutProps) {
           gridTemplate: {
             xs: `"horizontalFilters" "count" "items" "pagination"`,
             md: `
-                "sidebar search"      auto
-                "sidebar count"      auto
-                "sidebar items"      auto
-                "sidebar pagination" 1fr
-                /${sidebarWidth}   auto
-              `,
+              "sidebar search"      auto
+              "sidebar count"      auto
+              "sidebar items"      auto
+              "sidebar pagination" 1fr
+              /${sidebarWidth}   auto
+            `,
           },
         })}
       >
-        <ProductFiltersProSearchField
-          sx={{ gridArea: 'search', display: { xs: 'none', md: 'block' } }}
-          fullWidth
-          placeholder={i18n._(/* i18n*/ `Search all products...`)}
-        />
+        <Box
+          sx={(theme) => ({
+            gridArea: 'search',
+            display: 'grid',
+            gridAutoFlow: 'row',
+            rowGap: theme.spacings.xs,
+          })}
+        >
+          <Typography variant='h2'>
+            <ProductFiltersProSearchTerm params={params}>
+              <Trans>All products</Trans>
+            </ProductFiltersProSearchTerm>
+          </Typography>
+        </Box>
 
         <StickyBelowHeader sx={{ display: { md: 'none', gridArea: 'horizontalFilters' } }}>
           <ProductListFiltersContainer
@@ -184,14 +159,10 @@ function SearchFilterLayoutSidebar(props: SearchFilterLayoutProps) {
             <ProductFiltersProAllFiltersChip total_count={total_count} sort_fields={sort_fields} />
           </ProductListFiltersContainer>
         </StickyBelowHeader>
-
         <ProductListCount
           total_count={total_count}
           sx={{ gridArea: 'count', width: '100%', my: 0, height: '1em' }}
-        >
-          <CurrentSearch params={params} />
-        </ProductListCount>
-
+        />
         <Box gridArea='items'>
           {products.items.length <= 0 ? (
             <NoSearchResults search={search} />
@@ -213,20 +184,18 @@ function SearchFilterLayoutSidebar(props: SearchFilterLayoutProps) {
             />
           )}
         </Box>
-
         <ProductListPagination
           page_info={page_info}
           params={params}
           sx={{ gridArea: 'pagination', my: 0 }}
         />
-
         <Box className='sidebar' sx={{ gridArea: 'sidebar', display: { xs: 'none', md: 'block' } }}>
           <ProductFiltersProClearAll
             sx={{ display: { xs: 'none', md: 'block' }, alignSelf: 'center' }}
           />
-          <ProductFiltersProCategorySectionSearch menu={menu} hideTitle />
-          <ProductFiltersProSortSection sort_fields={sort_fields} total_count={total_count} />
-          <ProductFiltersProLimitSection />
+          <ProductFiltersProCategorySectionSearch menu={menu} defaultExpanded />
+          {/* <ProductFiltersProSortSection sort_fields={sort_fields} total_count={total_count} /> */}
+          {/* <ProductFiltersProLimitSection /> */}
           <ProductFiltersProAggregations renderer={productFiltersProSectionRenderer} />
         </Box>
       </Container>
@@ -273,11 +242,9 @@ function SearchFilterLayoutDefault(props: SearchFilterLayoutProps) {
           sx={{ alignItems: { xs: 'left', md: 'center' } }}
           gutterBottom={false}
         >
-          {search ? (
-            <Trans id='Results for &lsquo;{search}&rsquo;' values={{ search }} />
-          ) : (
-            <Trans id='All products' />
-          )}
+          <ProductFiltersProSearchTerm params={params}>
+            <Trans>All products</Trans>
+          </ProductFiltersProSearchTerm>
         </LayoutTitle>
       </Box>
 

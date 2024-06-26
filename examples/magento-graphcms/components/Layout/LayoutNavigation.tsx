@@ -1,7 +1,7 @@
 import { CartFab } from '@graphcommerce/magento-cart'
 import { magentoMenuToNavigation } from '@graphcommerce/magento-category'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
-import { SearchLink } from '@graphcommerce/magento-search'
+import { ProductFiltersProSearchField, SearchLink } from '@graphcommerce/magento-search'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import {
   DesktopNavActions,
@@ -145,13 +145,11 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </DesktopNavBar>
 
             <DesktopNavActions>
-              {!router.pathname.startsWith('/search') && (
-                <SearchLink
-                  href='/search'
-                  aria-label={i18n._(/* i18n */ 'Search...')}
-                  breakpoint='lg'
-                />
-              )}
+              <ProductFiltersProSearchField
+                sx={{ display: { xs: 'none', md: 'block', width: '400px' } }}
+                fullWidth
+                placeholder={i18n._(/* i18n*/ `Search all products...`)}
+              />
               <Fab
                 href='/service'
                 aria-label={i18n._(/* i18n */ 'Customer Service')}

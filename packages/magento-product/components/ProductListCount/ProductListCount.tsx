@@ -42,10 +42,10 @@ export function ProductListCount(props: ProductCountProps) {
         className={classes.count}
         sx={{ lineHeight: 0 }}
       >
+        {children ? <> {children} </> : null}
         {total_count === 0 && <Trans id='no products' />}
         {total_count === 1 && <Trans id='one product' />}
         {(total_count ?? 0) > 1 && <Trans id='{total_count} products' values={{ total_count }} />}
-        {children ? <> {children}</> : null}
       </Typography>
       <Divider component='div' className={classes.line} />
     </Box>

@@ -9,6 +9,7 @@ export * from './components/SearchForm/SearchForm'
 export * from './components/SearchLink/SearchLink'
 export * from './hooks/useProductList'
 export * from './components/ProductFiltersPro/ProductFiltersProCategorySectionSearch'
+export * from './components/ProductFiltersPro/ProductFiltersProSearchHeader'
 
 export {
   ProductListCount,

@@ -12,7 +12,7 @@ export type ActionCardAccordionProps = {
 }
 
 export function ActionCardAccordion(props: ActionCardAccordionProps) {
-  const { summary, details, right, defaultExpanded = true, sx } = props
+  const { summary, details, right, defaultExpanded = false, sx } = props
   const [expanded, setExpanded] = useState(defaultExpanded)
   const handleChange = () => setExpanded(!expanded)
 

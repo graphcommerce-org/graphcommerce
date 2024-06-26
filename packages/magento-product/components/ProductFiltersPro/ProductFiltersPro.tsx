@@ -10,7 +10,15 @@ import { useMatchMediaMotionValue, useMemoObject } from '@graphcommerce/next-ui'
 import { Theme, useEventCallback, useMediaQuery, useTheme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { BaseSyntheticEvent, createContext, useContext, useMemo, useRef } from 'react'
+import React, {
+  BaseSyntheticEvent,
+  createContext,
+  MutableRefObject,
+  useContext,
+  useMemo,
+  useRef,
+} from 'react'
+import type { Subscription } from 'react-hook-form/dist/utils/createSubject'
 import { productListLinkFromFilter } from '../../hooks/useProductListLink'
 import { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
 import {
@@ -18,7 +26,6 @@ import {
   ProductListParams,
   toFilterParams,
 } from '../ProductListItems/filterTypes'
-import type { Subscription } from 'react-hook-form/dist/utils/createSubject'
 
 type DataProps = {
   filterTypes: Record<string, string | undefined>
@@ -43,6 +50,10 @@ type FilterFormContextProps = DataProps & {
 }
 
 const FilterFormContext = createContext<FilterFormContextProps | null>(null)
+
+export const globalFilterContextRef: MutableRefObject<FilterFormContextProps | null> = {
+  current: null,
+}
 
 export function useProductFiltersPro(optional: true): FilterFormContextProps | null
 export function useProductFiltersPro(optional?: false): FilterFormContextProps
@@ -142,6 +153,8 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
     }),
     [form, defaultValues, submit, appliedAggregations, filterTypes, aggregations],
   )
+
+  globalFilterContextRef.current = filterFormContext
 
   return (
     <FilterFormContext.Provider value={filterFormContext}>
