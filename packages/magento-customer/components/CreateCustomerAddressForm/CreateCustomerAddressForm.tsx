@@ -38,6 +38,11 @@ export function CreateCustomerAddressForm() {
           ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)
           ?.available_regions?.find((r) => r?.id === formData.region.region_id)
 
+        if (!formData.isBusiness) {
+          formData.company = ''
+          formData.vatId = ''
+        }
+
         return {
           ...formData,
           region:

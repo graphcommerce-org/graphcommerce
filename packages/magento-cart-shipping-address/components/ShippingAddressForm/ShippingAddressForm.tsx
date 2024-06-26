@@ -31,11 +31,7 @@ import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from './GetAddresses.gql'
 import { SetBillingAddressDocument } from './SetBillingAddress.gql'
 import { SetShippingAddressDocument } from './SetShippingAddress.gql'
-import {
-  SetShippingBillingAddressDocument,
-  SetShippingBillingAddressMutation,
-  SetShippingBillingAddressMutationVariables,
-} from './SetShippingBillingAddress.gql'
+import { SetShippingBillingAddressDocument } from './SetShippingBillingAddress.gql'
 
 export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'> & {
   /**
