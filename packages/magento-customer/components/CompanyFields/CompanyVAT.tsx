@@ -25,7 +25,7 @@ export function CompanyVAT<
       variant='outlined'
       type='text'
       required={required ? !optional?.includes(countryCode) : optional?.includes(countryCode)}
-      label={<Trans id='VAT' />}
+      label={<Trans id='VAT Number' />}
       showValid
       InputProps={{ readOnly }}
     />

@@ -760,8 +760,8 @@ msgstr "Probeer een ander product"
 msgid "Try a different search"
 msgstr "Probeer een andere zoekopdracht"
 
-msgid "VAT"
-msgstr "BTW"
+msgid "VAT Number"
+msgstr "BTW-nummer"
 
 msgid "View Product"
 msgstr "Bekijk product"

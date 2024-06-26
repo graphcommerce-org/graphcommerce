@@ -760,8 +760,8 @@ msgstr "Versuchen Sie ein anderes Produkt"
 msgid "Try a different search"
 msgstr "Versuchen Sie eine andere Suche"
 
-msgid "VAT"
-msgstr "MwSt."
+msgid "VAT Number"
+msgstr "USt-IdNr."
 
 msgid "View Product"
 msgstr "Produkt ansehen"
