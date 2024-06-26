@@ -1,19 +1,19 @@
 import { TextFieldElement, FieldValues, FieldPath, useWatch } from '@graphcommerce/ecommerce-ui'
 import { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
 import { Trans } from '@lingui/react'
-import { BusinessFieldsOptions, useBusinessFieldsForm } from './useBusinessFieldsForm'
+import { CompanyFieldsOptions, useCompanyFieldsForm } from './useCompanyFieldsForm'
 
-export function BusinessVAT<
+export function CompanyVAT<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(
-  props: BusinessFieldsOptions<TFieldValues, TName> & {
+  props: CompanyFieldsOptions<TFieldValues, TName> & {
     required?: boolean
     optional?: CountryCodeEnum[]
   },
 ) {
   const { required, optional } = props
-  const form = useBusinessFieldsForm<TFieldValues, TName>(props)
+  const form = useCompanyFieldsForm<TFieldValues, TName>(props)
   const { control, name, readOnly } = form
 
   const countryCode = useWatch({ control, name: name.countryCode })

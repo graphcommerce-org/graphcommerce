@@ -106,9 +106,6 @@ msgstr "Factuuradres"
 msgid "Blog"
 msgstr "Blog"
 
-msgid "Business"
-msgstr "Zakelijk"
-
 msgid "Buy {quantity} for <0/> and save {percent}%"
 msgstr "Koop {quantity} voor <0/> en bespaar {percent}%"
 
@@ -144,6 +141,9 @@ msgstr "Alle filters wissen"
 
 msgid "Close"
 msgstr "Sluiten"
+
+msgid "Company"
+msgstr "Bedrijf"
 
 msgid "Company name"
 msgstr "Bedrijfsnaam"

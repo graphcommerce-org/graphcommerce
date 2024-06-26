@@ -1,12 +1,12 @@
 import { TextFieldElement, FieldValues, FieldPath } from '@graphcommerce/ecommerce-ui'
 import { Trans } from '@lingui/react'
-import { BusinessFieldsOptions, useBusinessFieldsForm } from './useBusinessFieldsForm'
+import { CompanyFieldsOptions, useCompanyFieldsForm } from './useCompanyFieldsForm'
 
-export function BusinessCompany<
+export function CompanyName<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
->(props: BusinessFieldsOptions<TFieldValues, TName>) {
-  const form = useBusinessFieldsForm<TFieldValues, TName>(props)
+>(props: CompanyFieldsOptions<TFieldValues, TName>) {
+  const form = useCompanyFieldsForm<TFieldValues, TName>(props)
   const { control, name, readOnly } = form
 
   return (

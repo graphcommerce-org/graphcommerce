@@ -169,9 +169,11 @@ Determines if, after adding a cross-sell item to the cart, the user should be re
 
 Default: 'false'
 
-#### customerBusinessFieldsEnable: boolean
+#### customerCompanyFieldsEnable: boolean
 
-Enables business fields inside the checkout
+Enables company fields inside the checkout:
+- Company name
+- VAT ID
 
 #### dataLayer: [DatalayerConfig](#DatalayerConfig)
 
@@ -378,9 +380,11 @@ Examples:
 
 Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.
 
-#### customerBusinessFieldsEnable: boolean
+#### customerCompanyFieldsEnable: boolean
 
-Enables business fields inside the checkout
+Enables company fields inside the checkout:
+- Company name
+- VAT ID
 
 #### defaultLocale: boolean
 

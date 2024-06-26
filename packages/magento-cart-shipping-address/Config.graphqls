@@ -1,13 +1,17 @@
 extend input GraphCommerceConfig {
   """
-  Enables business fields inside the checkout
+  Enables company fields inside the checkout:
+  - Company name
+  - VAT ID
   """
-  customerBusinessFieldsEnable: Boolean
+  customerCompanyFieldsEnable: Boolean
 }
 
 extend input GraphCommerceStorefrontConfig {
   """
-  Enables business fields inside the checkout
+  Enables company fields inside the checkout:
+  - Company name
+  - VAT ID
   """
-  customerBusinessFieldsEnable: Boolean
+  customerCompanyFieldsEnable: Boolean
 }

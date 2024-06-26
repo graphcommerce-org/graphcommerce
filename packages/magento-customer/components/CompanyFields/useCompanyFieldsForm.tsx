@@ -5,7 +5,7 @@ import {
   assertFormGqlOperation,
 } from '@graphcommerce/react-hook-form'
 
-export type BusinessFieldsOptions<
+export type CompanyFieldsOptions<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = {
@@ -19,15 +19,15 @@ export type BusinessFieldsOptions<
   name?: {
     company?: TName
     vatId?: TName
-    isBusiness?: TName
+    isCompany?: TName
     countryCode?: TName
   }
 }
 
-export function useBusinessFieldsForm<
+export function useCompanyFieldsForm<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
->(props: BusinessFieldsOptions<TFieldValues, TName>) {
+>(props: CompanyFieldsOptions<TFieldValues, TName>) {
   const { form, readOnly } = props
   assertFormGqlOperation<TFieldValues>(form)
   return {
@@ -35,7 +35,7 @@ export function useBusinessFieldsForm<
     name: {
       company: 'company' as TName,
       vatId: 'vatId' as TName,
-      isBusiness: 'isBusiness' as TName,
+      isCompany: 'isCompany' as TName,
       countryCode: 'countryCode' as TName,
       ...props.name,
     },

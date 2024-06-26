@@ -106,9 +106,6 @@ msgstr "Adresse de facturation"
 msgid "Blog"
 msgstr "Blog"
 
-msgid "Business"
-msgstr "Entreprises"
-
 msgid "Buy {quantity} for <0/> and save {percent}%"
 msgstr "Achetez {quantity} pour <0/> et économisez {percent}%"
 
@@ -144,6 +141,9 @@ msgstr "Effacer tous les filtres"
 
 msgid "Close"
 msgstr "Fermer"
+
+msgid "Company"
+msgstr "Entreprise"
 
 msgid "Company name"
 msgstr "Nom de l'entreprise"

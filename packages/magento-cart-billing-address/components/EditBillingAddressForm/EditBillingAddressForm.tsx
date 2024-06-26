@@ -6,7 +6,7 @@ import { SetBillingAddressDocument } from '@graphcommerce/magento-cart-shipping-
 import {
   AddressFields,
   ApolloCustomerErrorAlert,
-  BusinessFields,
+  CompanyFields,
   NameFields,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
@@ -40,7 +40,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
       addition: address?.street?.[2] ?? '',
       company: address?.company ?? '',
       vatId: address?.vat_id ?? '',
-      isBusiness: Boolean(address?.company || !!address?.vat_id),
+      isCompany: Boolean(address?.company || !!address?.vat_id),
       saveInAddressBook: true,
     },
     onBeforeSubmit: (variables) => {
@@ -48,7 +48,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
         ?.find((country) => country?.two_letter_abbreviation === variables.countryCode)
         ?.available_regions?.find((region) => region?.id === variables.regionId)?.id
 
-      if (!variables.isBusiness) {
+      if (!variables.isCompany) {
         variables.company = ''
         variables.vatId = ''
       }
@@ -92,7 +92,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
           />
         </FormRow>
 
-        <BusinessFields form={form} />
+        <CompanyFields form={form} />
 
         <FormDivider />
 

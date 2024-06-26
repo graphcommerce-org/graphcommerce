@@ -15,7 +15,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { useRouter } from 'next/router'
 import { AddressFields } from '../AddressFields/AddressFields'
-import { BusinessFields } from '../BusinessFields'
+import { CompanyFields } from '../CompanyFields'
 import { NameFields } from '../NameFields/NameFields'
 import { CreateCustomerAddressDocument } from './CreateCustomerAddress.gql'
 
@@ -38,7 +38,7 @@ export function CreateCustomerAddressForm() {
           ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)
           ?.available_regions?.find((r) => r?.id === formData.region.region_id)
 
-        if (!formData.isBusiness) {
+        if (!formData.isCompany) {
           formData.company = ''
           formData.vatId = ''
         }
@@ -90,7 +90,7 @@ export function CreateCustomerAddressForm() {
             showValid
           />
         </FormRow>
-        <BusinessFields form={form} />
+        <CompanyFields form={form} />
 
         <FormDivider />
 

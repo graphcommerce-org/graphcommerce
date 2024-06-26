@@ -18,7 +18,7 @@ import {
   CustomerDocument,
   NameFields,
   useCustomerQuery,
-  BusinessFields,
+  CompanyFields,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Form, FormRow } from '@graphcommerce/next-ui'
@@ -149,7 +149,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           showValid
         />
       </FormRow>
-      <BusinessFields form={form} />
+      <CompanyFields form={form} />
       <ApolloCartErrorAlert error={error} />
       <FormPersist form={form} name='ShippingAddressForm' />
     </Form>

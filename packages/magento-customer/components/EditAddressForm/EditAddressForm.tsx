@@ -10,7 +10,7 @@ import { SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import { AddressFields } from '../AddressFields/AddressFields'
-import { BusinessFields } from '../BusinessFields'
+import { CompanyFields } from '../CompanyFields'
 import { NameFields } from '../NameFields/NameFields'
 import {
   UpdateCustomerAddressDocument,
@@ -51,7 +51,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
         region: address?.region,
         company: address?.company ?? '',
         vatId: address?.vat_id ?? '',
-        isBusiness: Boolean(address?.company || address?.vat_id),
+        isCompany: Boolean(address?.company || address?.vat_id),
       },
       onBeforeSubmit: (formData) => {
         const region = countries
@@ -66,7 +66,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
             }) ??
             null,
         }
-        if (!formData.isBusiness) {
+        if (!formData.isCompany) {
           formData.company = ''
           formData.vatId = ''
         }
@@ -110,7 +110,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
             showValid
           />
         </FormRow>
-        <BusinessFields form={form} />
+        <CompanyFields form={form} />
 
         <FormDivider />
 
