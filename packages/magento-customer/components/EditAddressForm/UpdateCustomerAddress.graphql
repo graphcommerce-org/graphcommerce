@@ -17,6 +17,7 @@ mutation UpdateCustomerAddress(
   $vatId: String
   $defaultBilling: Boolean
   $defaultShipping: Boolean
+  $isBusiness: Boolean = false
 ) {
   updateCustomerAddress(
     id: $id
@@ -38,6 +39,7 @@ mutation UpdateCustomerAddress(
       default_shipping: $defaultShipping
     }
   ) {
+    isBusiness: id @include(if: $isBusiness)
     id
     ...CustomerAddress
   }

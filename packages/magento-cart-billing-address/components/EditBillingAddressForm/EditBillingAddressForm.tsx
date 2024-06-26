@@ -2,11 +2,7 @@ import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { useHistoryGo } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import {
-  SetBillingAddressDocument,
-  SetBillingAddressMutation,
-  SetBillingAddressMutationVariables,
-} from '@graphcommerce/magento-cart-shipping-address/components/ShippingAddressForm/SetBillingAddress.gql'
+import { SetBillingAddressDocument } from '@graphcommerce/magento-cart-shipping-address/components/ShippingAddressForm/SetBillingAddress.gql'
 import {
   AddressFields,
   ApolloCustomerErrorAlert,
@@ -18,7 +14,6 @@ import { Button, Form, FormActions, FormDivider, FormRow } from '@graphcommerce/
 import { phonePattern } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { SxProps, Theme } from '@mui/material'
 import { GetBillingAddressDocument } from './GetBillingAddress.gql'
 
@@ -32,10 +27,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
 
   const goToCheckout = useHistoryGo({ href: '/checkout/payment' })
 
-  const form = useFormGqlMutationCart<
-    SetBillingAddressMutation,
-    SetBillingAddressMutationVariables & { isBusiness: boolean }
-  >(SetBillingAddressDocument, {
+  const form = useFormGqlMutationCart(SetBillingAddressDocument, {
     defaultValues: {
       firstname: address?.firstname,
       lastname: address?.lastname,
@@ -48,7 +40,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
       addition: address?.street?.[2] ?? '',
       company: address?.company ?? '',
       vatId: address?.vat_id ?? '',
-      isBusiness: !!address?.company || !!address?.vat_id,
+      isBusiness: Boolean(address?.company || !!address?.vat_id),
       saveInAddressBook: true,
     },
     onBeforeSubmit: (variables) => {

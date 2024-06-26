@@ -86,10 +86,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
     Mutation = SetBillingAddressDocument
   }
 
-  const form = useFormGqlMutationCart<
-    SetShippingBillingAddressMutation,
-    SetShippingBillingAddressMutationVariables & { isBusiness: boolean }
-  >(Mutation, {
+  const form = useFormGqlMutationCart(Mutation, {
     defaultValues: isCartAddressACustomerAddress(customerQuery?.customer?.addresses, currentAddress)
       ? { saveInAddressBook: true }
       : {

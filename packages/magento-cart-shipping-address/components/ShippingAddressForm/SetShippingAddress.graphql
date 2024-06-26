@@ -14,6 +14,7 @@ mutation SetShippingAddress(
   $telephone: String = "000 - 000 0000"
   $saveInAddressBook: Boolean!
   $customerNote: String
+  $isBusiness: Boolean = false
 ) {
   setShippingAddressesOnCart(
     input: {
@@ -39,6 +40,7 @@ mutation SetShippingAddress(
     }
   ) {
     cart {
+      isBusiness: id @include(if: $isBusiness)
       id
       __typename
       ...ShippingAddress

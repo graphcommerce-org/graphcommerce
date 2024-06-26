@@ -16,6 +16,7 @@ mutation CreateCustomerAddress(
   $vatId: String
   $defaultBilling: Boolean = false
   $defaultShipping: Boolean = false
+  $isBusiness: Boolean = false
 ) {
   createCustomerAddress(
     input: {
@@ -36,6 +37,7 @@ mutation CreateCustomerAddress(
       default_shipping: $defaultShipping
     }
   ) {
+    isBusiness: id @include(if: $isBusiness)
     id
   }
 }

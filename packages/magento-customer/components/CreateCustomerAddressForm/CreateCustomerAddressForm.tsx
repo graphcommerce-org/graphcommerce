@@ -17,11 +17,7 @@ import { useRouter } from 'next/router'
 import { AddressFields } from '../AddressFields/AddressFields'
 import { BusinessFields } from '../BusinessFields'
 import { NameFields } from '../NameFields/NameFields'
-import {
-  CreateCustomerAddressDocument,
-  CreateCustomerAddressMutation,
-  CreateCustomerAddressMutationVariables,
-} from './CreateCustomerAddress.gql'
+import { CreateCustomerAddressDocument } from './CreateCustomerAddress.gql'
 
 export function CreateCustomerAddressForm() {
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
@@ -31,10 +27,7 @@ export function CreateCustomerAddressForm() {
 
   const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase() as CountryCodeEnum
 
-  const form = useFormGqlMutation<
-    CreateCustomerAddressMutation,
-    CreateCustomerAddressMutationVariables & { isBusiness: boolean }
-  >(
+  const form = useFormGqlMutation(
     CreateCustomerAddressDocument,
     {
       defaultValues: {
