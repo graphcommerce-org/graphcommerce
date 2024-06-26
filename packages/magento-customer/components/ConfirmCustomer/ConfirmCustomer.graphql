@@ -1,0 +1,7 @@
+mutation ConfirmCustomer($key: String!, $email: String!) {
+  confirmEmail(input: { confirmation_key: $key, email: $email }) {
+    customer {
+      email
+    }
+  }
+}

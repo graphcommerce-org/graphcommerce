@@ -68,4 +68,5 @@ input QuoteItemsSortInput {
 
 type Cart {
   itemsV2(pageSize: Int = 20, currentPage: Int = 1, sort: QuoteItemsSortInput): CartItems
+    @deprecated(reason: "Magento >= 2.4.7")
 }

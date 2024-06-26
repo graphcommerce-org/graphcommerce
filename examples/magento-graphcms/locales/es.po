@@ -28,6 +28,12 @@ msgstr "Arriba <0/>"
 msgid "Account"
 msgstr "Cuenta"
 
+msgid "Account confirmation"
+msgstr "Confirmación de cuenta"
+
+msgid "Account confirmed. You can now proceed to sign in."
+msgstr "Cuenta confirmada. Ahora puede proceder a iniciar sesión."
+
 msgid "Add address"
 msgstr "Añadir dirección"
 
@@ -166,6 +172,9 @@ msgstr "Confirmar nuevo correo electrónico"
 msgid "Confirm password"
 msgstr "Confirmar contraseña"
 
+msgid "Confirm registration"
+msgstr "Confirmar inscripción"
+
 msgid "Confirmation + Track & trace"
 msgstr "Confirmación + Seguimiento"
 
@@ -267,6 +276,9 @@ msgstr "Ecuación vacía"
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Rellene su correo electrónico para iniciar sesión o crear una cuenta"
+
+msgid "Fill in your email to confirm registration"
+msgstr "Introduce tu correo electrónico para confirmar el registro"
 
 msgid "Fill in your new password, confirm it and click on the save button."
 msgstr "Rellene su nueva contraseña, confirme e introduzca el botón de guardar."
@@ -502,9 +514,6 @@ msgstr "Detalles personales"
 msgid "Place order"
 msgstr "Realizar pedido"
 
-msgid "Please check your inbox to validate your email ({email})"
-msgstr "Por favor, compruebe su bandeja de entrada para validar su correo electrónico ({email})"
-
 msgid "Please enter a valid email address"
 msgstr "Por favor, introduzca una dirección de correo electrónico válida"
 
@@ -552,6 +561,9 @@ msgstr "Productos vistos recientemente"
 
 msgid "Region"
 msgstr "Región"
+
+msgid "Registration successful. Please check your inbox to confirm your email address ({email})"
+msgstr "Registro exitoso. Por favor, compruebe su bandeja de entrada para confirmar su dirección de correo electrónico ({email})"
 
 msgid "Relevance"
 msgstr "Relevancia"
@@ -816,6 +828,9 @@ msgstr "Está revisando {0}"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "Ahora puede<0>iniciar sesión de nuevo</0>."
+
+msgid "You can only confirm you account by clicking on the link in your email."
+msgstr "Solo puedes confirmar tu cuenta haciendo clic en el enlace de tu correo electrónico."
 
 msgid "You can track your order status and much more!"
 msgstr "¡Puede seguir el estado de su pedido y mucho más!"

@@ -1,5 +1,19 @@
 # Change Log
 
+## 8.1.0-canary.35
+
+### Patch Changes
+
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new EmailElement component to make re-use easier
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.34
+
+### Minor Changes
+
+- [#2303](https://github.com/graphcommerce-org/graphcommerce/pull/2303) [`f407e96`](https://github.com/graphcommerce-org/graphcommerce/commit/f407e961868683a257c8f7fe8ceb588fb825db9b) - Get shippingMethodPrices from selected shipping method if supported on the magento version
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 8.1.0-canary.33
 
 ## 8.1.0-canary.32

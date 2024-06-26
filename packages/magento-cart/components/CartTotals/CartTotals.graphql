@@ -8,8 +8,14 @@ fragment CartTotals on Cart @inject(into: ["CartItemCountChanged", "PaymentMetho
       amount {
         ...Money
       }
+      price_excl_tax {
+        ...Money
+      }
+      price_incl_tax {
+        ...Money
+      }
     }
-    # todo: https://github.com/magento/magento2/pull/31322
+    # todo: When 245 is not supported anymore, remove available_shipping_methods from fragment.
     available_shipping_methods {
       carrier_code
       method_code

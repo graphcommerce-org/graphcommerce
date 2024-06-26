@@ -40,5 +40,5 @@ type Mutation {
     An input object that specifies details for estimation of available shipping methods
     """
     input: EstimateTotalsInput!
-  ): [AvailableShippingMethod]
+  ): [AvailableShippingMethod] @deprecated(reason: "Magento >= 2.4.7")
 }

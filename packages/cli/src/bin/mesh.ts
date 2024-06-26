@@ -88,7 +88,7 @@ const main = async () => {
   packageRoots(packages).forEach((r) => {
     const alsoScan = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254]
       .filter((v) => v > mV)
-      .map((v) => `${r}/schema-${v}/**/*.graphqls`)
+      .map((v) => `${r}/*/schema-${v}/**/*.graphqls`)
 
     conf.additionalTypeDefs.push(`${r}/*/schema/**/*.graphqls`)
     conf.additionalTypeDefs.push(...alsoScan)

@@ -26,5 +26,5 @@ type Query {
   """
   Retrieve guest order details based on token.
   """
-  guestOrderByToken(input: OrderTokenInput!): CustomerOrder!
+  guestOrderByToken(input: OrderTokenInput!): CustomerOrder! @deprecated(reason: "Magento >= 2.4.7")
 }

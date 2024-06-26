@@ -8,7 +8,6 @@ import { removeColor } from './rewriteLegancyEnv'
 
 const env = {
   GC_ADVANCED_FILTERS: '0',
-  GC_CUSTOMER_REQUIRE_EMAIL_CONFIRMATION: 'false',
   GC_DEMO_MODE: '1',
   GC_SINGLE_PRODUCT_ROUTE: '1',
   GC_STOREFRONT_0_LOCALE: 'en',
