@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.35
+
+### Minor Changes
+
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`47bb47b`](https://github.com/graphcommerce-org/graphcommerce/commit/47bb47bac4b3689a6859afbc587274d813e0b072) - Implement confirm email functionality
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 8.1.0-canary.34
 
 ## 8.1.0-canary.33
