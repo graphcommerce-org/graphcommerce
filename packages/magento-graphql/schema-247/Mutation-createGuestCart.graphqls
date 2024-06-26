@@ -17,4 +17,5 @@ type Mutation {
   Create a new shopping cart
   """
   createGuestCart(input: CreateGuestCartInput): CreateGuestCartOutput
+    @deprecated(reason: "Magento >= 2.4.7")
 }

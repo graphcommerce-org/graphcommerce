@@ -159,14 +159,6 @@ export type GraphCommerceConfig = {
    * Default: 'false'
    */
   crossSellsRedirectItems?: InputMaybe<Scalars['Boolean']['input']>;
-  /**
-   * Due to a limitation in the GraphQL API of Magento 2, we need to know if the
-   * customer requires email confirmation.
-   *
-   * This value should match Magento 2's configuration value for
-   * `customer/create_account/confirm` and should be removed once we can query
-   */
-  customerRequireEmailConfirmation?: InputMaybe<Scalars['Boolean']['input']>;
   dataLayer?: InputMaybe<DatalayerConfig>;
   /** Debug configuration for GraphCommerce */
   debug?: InputMaybe<GraphCommerceDebugConfig>;
@@ -473,7 +465,6 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
     crossSellsHideCartItems: z.boolean().default(false).nullish(),
     crossSellsRedirectItems: z.boolean().default(false).nullish(),
-    customerRequireEmailConfirmation: z.boolean().nullish(),
     dataLayer: DatalayerConfigSchema().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().default(true).nullish(),

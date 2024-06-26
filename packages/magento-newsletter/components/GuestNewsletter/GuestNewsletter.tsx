@@ -1,5 +1,6 @@
 import {
   ApolloErrorSnackbar,
+  EmailElement,
   TextFieldElement,
   useFormGqlMutation,
 } from '@graphcommerce/ecommerce-ui'
@@ -28,15 +29,12 @@ export function GuestNewsletter(props: GuestNewsletterProps) {
       onSubmit={submit}
       sx={[(theme) => ({ gap: theme.spacings.xs }), ...(Array.isArray(sx) ? sx : [sx])]}
     >
-      <TextFieldElement
-        required
-        variant='outlined'
-        type='email'
-        label={i18n._(/* i18n */ 'Email address')}
+      <EmailElement
         control={control}
         name='email'
+        required
+        variant='outlined'
         size='medium'
-        inputProps={{ autoComplete: 'email' }}
         disabled={submittedWithoutErrors}
       />
 

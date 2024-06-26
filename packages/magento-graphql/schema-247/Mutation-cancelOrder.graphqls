@@ -30,5 +30,5 @@ type Mutation {
   """
   Cancel the specified customer order.
   """
-  cancelOrder(input: CancelOrderInput!): CancelOrderOutput
+  cancelOrder(input: CancelOrderInput!): CancelOrderOutput @deprecated(reason: "Magento >= 2.4.7")
 }

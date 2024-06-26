@@ -17,5 +17,5 @@ type Mutation {
     An input object that specifies details for cart totals estimation
     """
     input: EstimateTotalsInput!
-  ): EstimateTotalsOutput!
+  ): EstimateTotalsOutput! @deprecated(reason: "Magento >= 2.4.7")
 }

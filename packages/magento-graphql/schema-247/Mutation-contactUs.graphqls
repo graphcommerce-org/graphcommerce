@@ -36,5 +36,5 @@ type Mutation {
     An input object that defines shopper information.
     """
     input: ContactUsInput!
-  ): ContactUsOutput
+  ): ContactUsOutput @deprecated(reason: "Magento >= 2.4.7")
 }

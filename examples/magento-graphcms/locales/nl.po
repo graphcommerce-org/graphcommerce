@@ -28,6 +28,12 @@ msgstr "Boven <0/>"
 msgid "Account"
 msgstr "Account"
 
+msgid "Account confirmation"
+msgstr "Account bevestiging"
+
+msgid "Account confirmed. You can now proceed to sign in."
+msgstr "Account bevestigd. U kunt nu doorgaan met inloggen."
+
 msgid "Add address"
 msgstr "Adres toevoegen"
 
@@ -109,6 +115,9 @@ msgstr "Winkelwagen"
 msgid "Cart ({0})"
 msgstr "Winkelwagen ({0})"
 
+msgid "Categories"
+msgstr "Categorieën"
+
 msgid "Change"
 msgstr "Wijzig"
 
@@ -156,6 +165,9 @@ msgstr "Bevestig nieuwe email"
 
 msgid "Confirm password"
 msgstr "Bevestig wachtwoord"
+
+msgid "Confirm registration"
+msgstr "Registratie bevestigen"
 
 msgid "Confirmation + Track & trace"
 msgstr "Bevestiging + Track & trace"
@@ -258,6 +270,9 @@ msgstr "Wissen"
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Vul uw e-mailadres in om in te loggen of maak een account aan"
+
+msgid "Fill in your email to confirm registration"
+msgstr "Vul je e-mailadres in om de registratie te bevestigen"
 
 msgid "Fill in your new password, confirm it and click on the save button."
 msgstr "Vul uw nieuwe wachtwoord in, bevestig het en klik op de opslaan knop."
@@ -493,9 +508,6 @@ msgstr "Persoonlijke details"
 msgid "Place order"
 msgstr "Plaats bestelling"
 
-msgid "Please check your inbox to validate your email ({email})"
-msgstr "Controleer uw inbox om uw e-mailadres te valideren ({email})"
-
 msgid "Please enter a valid email address"
 msgstr "Vul een geldig e-mailadres in"
 
@@ -543,6 +555,9 @@ msgstr "Recent bekeken producten"
 
 msgid "Region"
 msgstr "Regio"
+
+msgid "Registration successful. Please check your inbox to confirm your email address ({email})"
+msgstr "Registratie succesvol. Controleer uw inbox om uw e-mailadres te bevestigen ({email})"
 
 msgid "Relevance"
 msgstr "Relevantie"
@@ -804,6 +819,9 @@ msgstr "U reviewt {0}"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "U kunt nu <0>opnieuw inloggen</0>"
+
+msgid "You can only confirm you account by clicking on the link in your email."
+msgstr "U kunt uw account alleen bevestigen door op de link in uw e-mail te klikken."
 
 msgid "You can track your order status and much more!"
 msgstr "U kunt uw bestelstatus bijhouden en veel meer!"
