@@ -1,10 +1,10 @@
 import { cloneDeep, useQuery } from '@graphcommerce/graphql'
-import { ProductListParams } from '@graphcommerce/magento-product'
+import { ProductListParams, ProductListQueryVariables } from '@graphcommerce/magento-product'
 import { StoreConfigDocument, StoreConfigQuery } from '@graphcommerce/magento-store'
 
 export function useProductListApplySearchDefaults(
   params: ProductListParams | undefined,
-): ProductListParams | undefined {
+): ProductListQueryVariables | undefined {
   const storeConfig = useQuery(StoreConfigDocument)
 
   if (!params) return params
@@ -23,7 +23,7 @@ export function useProductListApplySearchDefaults(
 export function productListApplySearchDefaults(
   params: ProductListParams | undefined,
   conf: StoreConfigQuery,
-) {
+): ProductListQueryVariables | undefined {
   if (!params) return params
   const newParams = cloneDeep(params)
 

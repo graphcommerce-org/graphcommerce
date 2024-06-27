@@ -1,5 +1,5 @@
 import { QueryHookOptions, QueryResult, TypedDocumentNode, useQuery } from '@graphcommerce/graphql'
-import { SessionScopeInput } from '@graphcommerce/graphql-mesh'
+import { InputMaybe, SessionScopeInput } from '@graphcommerce/graphql-mesh'
 import { useCustomerSession } from './useCustomerSession'
 
 /**
@@ -34,7 +34,7 @@ export function useSessionScope(): SessionScopeInput {
  */
 export function useSessionScopeQuery<
   Q,
-  V extends { sessionScope?: SessionScopeInput; [index: string]: unknown },
+  V extends { sessionScope?: InputMaybe<SessionScopeInput>; [index: string]: unknown },
 >(
   document: TypedDocumentNode<Q, V>,
   options: QueryHookOptions<Q, V>,

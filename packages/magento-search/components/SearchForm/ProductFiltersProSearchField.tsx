@@ -22,7 +22,7 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
 
   const isSearchPage = router.asPath.startsWith('/search')
 
-  const defaultValue = `${context?.params.search ?? router.query.url ?? ''}`
+  const defaultValue = `${context?.params.search ?? router.query.url?.[0] ?? ''}`
 
   useEffect(() => {
     if (!searchInputElement.current) return
@@ -45,6 +45,7 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
           await router.push(`/search/${value}`)
           return
         }
+        ctx.form.setValue('currentPage', 1)
         ctx.form.setValue('search', value)
         await ctx.submit()
       }}
