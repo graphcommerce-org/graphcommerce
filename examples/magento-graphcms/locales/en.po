@@ -59,9 +59,6 @@ msgstr "Addresses"
 msgid "All filters"
 msgstr "All filters"
 
-msgid "All products"
-msgstr "All products"
-
 msgid "All {name}"
 msgstr "All {name}"
 
@@ -231,6 +228,10 @@ msgstr "Discover our collection and place your first order!"
 msgid "Discover our collection and write your first review!"
 msgstr "Discover our collection and write your first review!"
 
+#. js-lingui-generated-id
+msgid "Did you mean: {list}"
+msgstr "Did you mean: {list}"
+
 msgid "Edit"
 msgstr "Edit"
 
@@ -303,6 +304,10 @@ msgstr "Housenumber"
 
 msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
 msgstr "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
+
+#. js-lingui-generated-id
+msgid "We couldn't find any results for {term}"
+msgstr "We couldn't find any results for {term}"
 
 msgid "In comparelist"
 msgstr "In comparelist"
@@ -544,6 +549,10 @@ msgstr "Product not available in {allLabels}"
 msgid "Products"
 msgstr "Products"
 
+#. js-lingui-generated-id
+msgid "Results for ‘{search}’"
+msgstr "Results for ‘{search}’"
+
 msgid "Recently viewed products"
 msgstr "Recently viewed products"
 
@@ -745,6 +754,14 @@ msgstr "Try a different product"
 msgid "Try a different search"
 msgstr "Try a different search"
 
+#. js-lingui-generated-id
+msgid "Try a different search or <0>clear current filters</0>"
+msgstr "Try a different search or <0>clear current filters</0>"
+
+#. js-lingui-generated-id
+msgid "Try a different search"
+msgstr "Try a different search"
+
 msgid "View Product"
 msgstr "View Product"
 
@@ -772,8 +789,8 @@ msgstr "We are sorry, this product is currently out of stock."
 msgid "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
 msgstr "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
 
-msgid "We couldn't find any results for {term}"
-msgstr "We couldn't find any results for {term}"
+msgid "We couldn't find any products."
+msgstr "We couldn't find any products."
 
 msgid "We couldn't find the page you were looking for"
 msgstr "We couldn't find the page you were looking for"
@@ -783,9 +800,6 @@ msgstr "We’re processing your payment, this will take a few seconds."
 
 msgid "We’ve send a password reset link to your email address!"
 msgstr "We’ve send a password reset link to your email address!"
-
-msgid "Which size is right?"
-msgstr "Which size is right?"
 
 msgid "Whoops our bad..."
 msgstr "Whoops our bad..."
@@ -883,6 +897,10 @@ msgstr "canceled"
 
 msgid "invoiced"
 msgstr "invoiced"
+
+#. js-lingui-generated-id
+msgid "All products"
+msgstr "All products"
 
 #. js-lingui-generated-id
 msgid "View shopping cart"

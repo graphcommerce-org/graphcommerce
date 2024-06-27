@@ -59,9 +59,6 @@ msgstr "Adressen"
 msgid "All filters"
 msgstr "Alle filters"
 
-msgid "All products"
-msgstr "Alle producten"
-
 msgid "All {name}"
 msgstr "Alle {name}"
 
@@ -231,6 +228,10 @@ msgstr "Ontdek onze collectie en plaats uw eerste bestelling!"
 msgid "Discover our collection and write your first review!"
 msgstr "Ontdek onze collectie en schrijf uw eerste review!"
 
+#. js-lingui-generated-id
+msgid "Did you mean: {list}"
+msgstr "Bedoelde u: {list}"
+
 msgid "Edit"
 msgstr "Bewerk"
 
@@ -303,6 +304,10 @@ msgstr "Huisnummer"
 
 msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
 msgstr "Als u uw bestelling succesvol heeft betaald, dan zal de bestelling <0>doorkomen</0>, maar er is een communicatiefout met de website."
+
+#. js-lingui-generated-id
+msgid "We couldn't find any results for {term}"
+msgstr "We konden geen resultaten vinden voor {term}"
 
 msgid "In comparelist"
 msgstr "In vergelijking"
@@ -544,6 +549,10 @@ msgstr "Product niet beschikbaar in {allLabels}"
 msgid "Products"
 msgstr "Producten"
 
+#. js-lingui-generated-id
+msgid "Results for ‘{search}’"
+msgstr "Resultaten voor ‘{search}’"
+
 msgid "Recently viewed products"
 msgstr "Recent bekeken producten"
 
@@ -745,6 +754,14 @@ msgstr "Probeer een ander product"
 msgid "Try a different search"
 msgstr "Probeer een andere zoekopdracht"
 
+#. js-lingui-generated-id
+msgid "Try a different search or <0>clear current filters</0>"
+msgstr "Probeer een andere zoekopdracht of <0>verwijder huidige filters</0>"
+
+#. js-lingui-generated-id
+msgid "Try a different search"
+msgstr "Probeer een andere zoekopdracht"
+
 msgid "View Product"
 msgstr "Bekijk product"
 
@@ -772,8 +789,8 @@ msgstr "We zijn sorry, dit product is momenteel niet op voorraad."
 msgid "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
 msgstr "We kunnen uw betaling niet verwerken, we hebben een niet-ondersteunde status ontvangen \"<0>{resultCode}</0>\". Probeer het opnieuw of selecteer een andere betaalmethode."
 
-msgid "We couldn't find any results for {term}"
-msgstr "We konden geen resultaten vinden voor {term}"
+msgid "We couldn't find any products."
+msgstr "We konden geen producten vinden."
 
 msgid "We couldn't find the page you were looking for"
 msgstr "We kunnen de pagina niet vinden waar u naar op zoek bent."
@@ -783,9 +800,6 @@ msgstr "Uw betaling wordt verwerkt, dit duurt een paar seconden"
 
 msgid "We’ve send a password reset link to your email address!"
 msgstr "Een wachtwoord reset link naar uw e-mailadres gestuurd"
-
-msgid "Which size is right?"
-msgstr "Wat is de juiste maat?"
 
 msgid "Whoops our bad..."
 msgstr "Oeps.."
@@ -883,6 +897,10 @@ msgstr "geannuleerd"
 
 msgid "invoiced"
 msgstr "gefactureerd"
+
+#. js-lingui-generated-id
+msgid "All products"
+msgstr "Alle producten"
 
 #. js-lingui-generated-id
 msgid "View shopping cart"

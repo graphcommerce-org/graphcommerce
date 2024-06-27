@@ -59,9 +59,6 @@ msgstr "Direcciones"
 msgid "All filters"
 msgstr "Todos los filtros"
 
-msgid "All products"
-msgstr "Todos los productos"
-
 msgid "All {name}"
 msgstr "Todos los {name}"
 
@@ -231,6 +228,10 @@ msgstr "Descubra nuestra colección y realice su primera compra!"
 msgid "Discover our collection and write your first review!"
 msgstr "Descubra nuestra colección y escriba su primera reseña!"
 
+#. js-lingui-generated-id
+msgid "Did you mean: {list}"
+msgstr "¿Quiso decir: {list}"
+
 msgid "Edit"
 msgstr "Editar"
 
@@ -303,6 +304,10 @@ msgstr "Número de casa"
 
 msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
 msgstr "Si ha pagado correctamente su pedido, el pedido <0>llegará</0> a su destino, pero hay un error de comunicación con el sitio web."
+
+#. js-lingui-generated-id
+msgid "We couldn't find any results for {term}"
+msgstr "No pudimos encontrar ningún resultado para {term}"
 
 msgid "In comparelist"
 msgstr "En la lista de comparación"
@@ -544,6 +549,10 @@ msgstr "Producto no disponible en {allLabels}"
 msgid "Products"
 msgstr "Productos"
 
+#. js-lingui-generated-id
+msgid "Results for ‘{search}’"
+msgstr "Resultados para ‘{search}’"
+
 msgid "Recently viewed products"
 msgstr "Productos vistos recientemente"
 
@@ -745,6 +754,14 @@ msgstr "Pruebe un producto diferente"
 msgid "Try a different search"
 msgstr "Pruebe una búsqueda diferente"
 
+#. js-lingui-generated-id
+msgid "Try a different search or <0>clear current filters</0>"
+msgstr "Pruebe una búsqueda diferente o <0>borre los filtros actuales</0>"
+
+#. js-lingui-generated-id
+msgid "Try a different search"
+msgstr "Pruebe una búsqueda diferente"
+
 msgid "View Product"
 msgstr "Ver producto "
 
@@ -772,8 +789,8 @@ msgstr "Lo sentimos, este producto está agotado actualmente."
 msgid "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
 msgstr "No podemos procesar su pago, recibimos un estado no compatible \"<0>{resultCode}</0>\". Inténtelo de nuevo o seleccione un método de pago diferente."
 
-msgid "We couldn't find any results for {term}"
-msgstr "No se encontraron resultados para {term}"
+msgid "We couldn't find any products."
+msgstr "No pudimos encontrar ningún producto."
 
 msgid "We couldn't find the page you were looking for"
 msgstr "No se encontró la página que estaba buscando"
@@ -783,9 +800,6 @@ msgstr "Estamos procesando su pago, esto tardará unos segundos."
 
 msgid "We’ve send a password reset link to your email address!"
 msgstr "¡Le hemos enviado un enlace para restablecer la contraseña a su correo electrónico!"
-
-msgid "Which size is right?"
-msgstr "¿Qué tamaño es correcto?"
 
 msgid "Whoops our bad..."
 msgstr "¡Vaya, algo malo sucedió..."
@@ -883,6 +897,10 @@ msgstr "cancelado"
 
 msgid "invoiced"
 msgstr "facturado"
+
+#. js-lingui-generated-id
+msgid "All products"
+msgstr "Todos los productos"
 
 #. js-lingui-generated-id
 msgid "View shopping cart"
