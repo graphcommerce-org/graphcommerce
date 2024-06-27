@@ -1,5 +1,6 @@
 import { NumberFormat, NumberFormatPropsType } from './NumberFormat'
 
+// https://en.wikipedia.org/wiki/ISO_4217#List_of_ISO_4217_currency_codes
 type Currency =
   | 'AED'
   | 'AFN'
@@ -177,13 +178,11 @@ type Currency =
   | 'XUA'
   | 'XXX'
   | 'YER'
-  | 'YER'
   | 'ZAR'
   | 'ZMW'
   | 'ZWL'
 
 export type CurrencyFormatProps = Omit<NumberFormatPropsType, 'numberStyle'> & {
-  // https://en.wikipedia.org/wiki/ISO_4217#List_of_ISO_4217_currency_codes
   currency: Currency | (string & Record<never, never>)
 }
 

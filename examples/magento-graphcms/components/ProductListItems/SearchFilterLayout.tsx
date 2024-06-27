@@ -1,7 +1,11 @@
 import { useApolloClient, useQuery } from '@apollo/client'
 import { MenuQueryFragment } from '@graphcommerce/magento-category'
 import { SignedInMaskProvider } from '@graphcommerce/magento-customer'
-import { ProductListDocument, toProductListParams } from '@graphcommerce/magento-product'
+import {
+  ProductListDocument,
+  ProductListSuggestions,
+  toProductListParams,
+} from '@graphcommerce/magento-product'
 import {
   NoSearchResults,
   ProductFiltersPro,
@@ -26,7 +30,13 @@ import {
   useProductList,
 } from '@graphcommerce/magento-search'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { LayoutHeader, LayoutTitle, StickyBelowHeader, responsiveVal } from '@graphcommerce/next-ui'
+import {
+  LayoutHeader,
+  LayoutTitle,
+  StickyBelowHeader,
+  filterNonNullableKeys,
+  responsiveVal,
+} from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
 import { Box, Container, Typography } from '@mui/material'
@@ -109,6 +119,7 @@ function SearchFilterLayoutSidebar(props: LayoutProps) {
               <Trans>All products</Trans>
             </ProductFiltersProSearchTerm>
           </Typography>
+          <ProductListSuggestions products={products} />
         </Box>
 
         <StickyBelowHeader sx={{ display: { md: 'none', gridArea: 'horizontalFilters' } }}>
