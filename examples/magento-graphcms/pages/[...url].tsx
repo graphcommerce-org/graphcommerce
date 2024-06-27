@@ -51,17 +51,18 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, C
 
 function CategoryPage(props: CategoryProps) {
   const { categories, pages, ...rest } = props
-  const { products, filters, params, filterTypes, mask, category } = useProductList({
+  const productList = useProductList({
     ...rest,
     category: categories?.items?.[0],
   })
+  const { products, params, category } = productList
 
   const isLanding = category?.display_mode === 'PAGE'
   const page = pages?.[0]
-  const isCategory = params && category && products?.items && filterTypes
+  const isCategory = params && category && products?.items
 
   return (
-    <SignedInMaskProvider mask={mask}>
+    <SignedInMaskProvider mask={productList.mask}>
       <CategoryMeta
         params={params}
         title={page?.metaTitle}
@@ -108,10 +109,7 @@ function CategoryPage(props: CategoryProps) {
 
       {isCategory && !isLanding && (
         <CategoryFilterLayout
-          params={params}
-          filters={filters}
-          products={products}
-          filterTypes={filterTypes}
+          {...productList}
           title={category.name ?? page.title ?? ''}
           id={category.uid}
           category={category}

@@ -1,10 +1,9 @@
-import { useApolloClient, useQuery } from '@apollo/client'
 import { MenuQueryFragment } from '@graphcommerce/magento-category'
 import { SignedInMaskProvider } from '@graphcommerce/magento-customer'
 import {
-  ProductListDocument,
+  ProductFiltersProLimitSection,
+  ProductFiltersProSortSection,
   ProductListSuggestions,
-  toProductListParams,
 } from '@graphcommerce/magento-product'
 import {
   NoSearchResults,
@@ -26,17 +25,9 @@ import {
   SearchForm,
   productFiltersProChipRenderer,
   productFiltersProSectionRenderer,
-  productListApplySearchDefaults,
   useProductList,
 } from '@graphcommerce/magento-search'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  LayoutHeader,
-  LayoutTitle,
-  StickyBelowHeader,
-  filterNonNullableKeys,
-  responsiveVal,
-} from '@graphcommerce/next-ui'
+import { LayoutHeader, LayoutTitle, StickyBelowHeader, responsiveVal } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
 import { Box, Container, Typography } from '@mui/material'
@@ -47,26 +38,6 @@ type SearchFilterLayoutProps = Omit<ProductListFilterLayoutProps, 'category' | '
   MenuQueryFragment
 
 type LayoutProps = ReturnType<typeof useProductList<SearchFilterLayoutProps>>
-
-// Ook al heb je een trage API, wil je alsnop zo snel mogelijk changes zien.
-// Je wil bij alle submits een request afvuren.
-// We willen alle results gebruiken die 'achter' lopen.
-
-// Form submission -> URL will be changed -> useQuery will be updated.
-
-// Als een request klaar is wil je alle voorgaande requests cancellen (of in ieder geval de resultaten negeren).
-
-/**
- * 1. Je vult iets in in een search field.
- * 2. Door FormAutoSubmit wordt de submit function aangeroepen en daarmee de handleSubmit callback van ProductFiltersPro
- *    - FormAutoSubmit wacht niet op de loading state van het formulier, maar throttled wel. (de parallel prop)
- * 3. Hierin voer je GraphQL Query uit voor die search term.
- *
- */
-
-// Server params
-// Shallow URL Params
-// Form params
 
 function SearchFilterLayoutSidebar(props: LayoutProps) {
   const { filters, filterTypes, params, products, menu, handleSubmit } = props
@@ -171,8 +142,8 @@ function SearchFilterLayoutSidebar(props: LayoutProps) {
             sx={{ display: { xs: 'none', md: 'block' }, alignSelf: 'center' }}
           />
           <ProductFiltersProCategorySectionSearch menu={menu} defaultExpanded />
-          {/* <ProductFiltersProSortSection sort_fields={sort_fields} total_count={total_count} /> */}
-          {/* <ProductFiltersProLimitSection /> */}
+          <ProductFiltersProSortSection sort_fields={sort_fields} total_count={total_count} />
+          <ProductFiltersProLimitSection />
           <ProductFiltersProAggregations renderer={productFiltersProSectionRenderer} />
         </Box>
       </Container>
@@ -181,7 +152,7 @@ function SearchFilterLayoutSidebar(props: LayoutProps) {
 }
 
 function SearchFilterLayoutDefault(props: LayoutProps) {
-  const { filters, filterTypes, params, products } = props
+  const { filters, filterTypes, params, products, handleSubmit } = props
 
   if (!(params && products?.items && filterTypes)) return null
   const { total_count, sort_fields, page_info } = products
@@ -194,6 +165,7 @@ function SearchFilterLayoutDefault(props: LayoutProps) {
       appliedAggregations={products?.aggregations}
       filterTypes={filterTypes}
       autoSubmitMd
+      handleSubmit={handleSubmit}
     >
       <LayoutHeader floatingMd switchPoint={0}>
         <ProductFiltersProSearchField
@@ -205,25 +177,29 @@ function SearchFilterLayoutDefault(props: LayoutProps) {
         />
       </LayoutHeader>
 
-      <Box
+      <Container
+        maxWidth={false}
         sx={(theme) => ({
           display: 'grid',
           rowGap: theme.spacings.sm,
           mb: theme.spacings.sm,
-          gridTemplateColumns: 'minmax(0, 1fr)',
+          gridAutoFlow: 'row',
+          justifyItems: { xs: 'left', md: 'center' },
         })}
       >
         <LayoutTitle
           gutterTop
           variant='h1'
-          sx={{ alignItems: { xs: 'left', md: 'center' } }}
+          sx={{ display: { xs: 'none', md: 'block' } }}
+          // sx={{ alignItems: { xs: 'left', md: 'center' } }}
           gutterBottom={false}
         >
           <ProductFiltersProSearchTerm params={params}>
             <Trans>All products</Trans>
           </ProductFiltersProSearchTerm>
         </LayoutTitle>
-      </Box>
+        <ProductListSuggestions products={products} />
+      </Container>
 
       <StickyBelowHeader>
         <ProductListFiltersContainer>
@@ -235,7 +211,11 @@ function SearchFilterLayoutDefault(props: LayoutProps) {
       </StickyBelowHeader>
       <Container maxWidth={false}>
         <ProductListCount total_count={total_count} />
-        <ProductListItems items={products.items} loadingEager={6} title={`Search ${search}`} />
+        {products.items.length <= 0 ? (
+          <NoSearchResults search={search} />
+        ) : (
+          <ProductListItems items={products.items} loadingEager={6} title={`Search ${search}`} />
+        )}
         <ProductListPagination page_info={page_info} params={params} />
       </Container>
     </ProductFiltersPro>

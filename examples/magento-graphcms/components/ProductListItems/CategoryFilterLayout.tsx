@@ -27,6 +27,7 @@ import {
   ProductListSort,
   productFiltersProChipRenderer,
   productFiltersProSectionRenderer,
+  useProductList,
 } from '@graphcommerce/magento-product'
 import { LayoutTitle, StickyBelowHeader, responsiveVal } from '@graphcommerce/next-ui'
 import { Box, Container, Typography } from '@mui/material'
@@ -43,12 +44,13 @@ export type ProductListFilterLayoutProps = ProductListQuery &
       NonNullable<NonNullable<CategoryPageQuery['categories']>['items']>[number]
   }
 
-function CategoryFilterLayoutSidebar(props: ProductListFilterLayoutProps) {
-  const { id, filters, filterTypes, params, products, title, category } = props
+type LayoutProps = ReturnType<typeof useProductList<ProductListFilterLayoutProps>>
+
+function CategoryFilterLayoutSidebar(props: LayoutProps) {
+  const { id, filters, filterTypes, params, products, title, category, handleSubmit } = props
 
   if (!params || !products?.items || !filterTypes || !category) return null
   const { total_count, sort_fields, page_info } = products
-
   const sidebarWidth = responsiveVal(200, 350, 960, 1920)
 
   return (
@@ -59,6 +61,7 @@ function CategoryFilterLayoutSidebar(props: ProductListFilterLayoutProps) {
       appliedAggregations={products?.aggregations}
       filterTypes={filterTypes}
       autoSubmitMd
+      handleSubmit={handleSubmit}
     >
       <Container
         maxWidth={false}
@@ -186,8 +189,8 @@ function CategoryFilterLayoutSidebar(props: ProductListFilterLayoutProps) {
   )
 }
 
-function CategoryFilterLayoutDefault(props: ProductListFilterLayoutProps) {
-  const { id, filters, filterTypes, params, products, title, category } = props
+function CategoryFilterLayoutDefault(props: LayoutProps) {
+  const { id, filters, filterTypes, params, products, title, category, handleSubmit } = props
 
   if (!(params && products?.items && filterTypes)) return null
   const { total_count, sort_fields, page_info } = products
@@ -199,6 +202,7 @@ function CategoryFilterLayoutDefault(props: ProductListFilterLayoutProps) {
       aggregations={filters?.aggregations}
       appliedAggregations={products?.aggregations}
       filterTypes={filterTypes}
+      handleSubmit={handleSubmit}
     >
       {import.meta.graphCommerce.breadcrumbs && (
         <CategoryBreadcrumbs
@@ -271,7 +275,7 @@ function CategoryFilterLayoutDefault(props: ProductListFilterLayoutProps) {
   )
 }
 
-function CategoryFilterLayoutClassic(props: ProductListFilterLayoutProps) {
+function CategoryFilterLayoutClassic(props: LayoutProps) {
   const { id, filters, filterTypes, params, products, title, category } = props
 
   if (!(params && products?.items && filterTypes)) return null
@@ -323,17 +327,18 @@ function CategoryFilterLayoutClassic(props: ProductListFilterLayoutProps) {
   )
 }
 
-export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
-  if (import.meta.graphCommerce.productFiltersPro) {
-    if (import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR')
-      return <CategoryFilterLayoutSidebar {...props} />
-
-    return <CategoryFilterLayoutDefault {...props} />
-  }
-
-  if (!import.meta.graphCommerce.productFiltersPro) {
-    return <CategoryFilterLayoutClassic {...props} />
-  }
-
-  return null
+export function CategoryFilterLayout(props: LayoutProps) {
+  return (
+    <>
+      {import.meta.graphCommerce.productFiltersPro &&
+        import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
+          <CategoryFilterLayoutSidebar {...props} />
+        )}
+      {import.meta.graphCommerce.productFiltersPro &&
+        import.meta.graphCommerce.productFiltersLayout !== 'SIDEBAR' && (
+          <CategoryFilterLayoutDefault {...props} />
+        )}
+      {!import.meta.graphCommerce.productFiltersPro && <CategoryFilterLayoutClassic {...props} />}
+    </>
+  )
 }
