@@ -1,18 +1,12 @@
+import { TextFieldElementProps } from '@graphcommerce/ecommerce-ui'
 import {
-  FormAutoSubmit,
-  TextFieldElement,
-  TextFieldElementProps,
-} from '@graphcommerce/ecommerce-ui'
-import {
-  globalFilterContextRef,
   ProductFilterParams,
+  globalFilterForm,
   useProductFiltersPro,
 } from '@graphcommerce/magento-product'
-import { ChangeEvent, useEffect, useRef } from 'react'
-import { SearchFormAdornment } from './SearchFormAdornment'
-import { Box, TextField } from '@mui/material'
-import { useDebouncedCallback } from '@graphcommerce/react-hook-form/src/utils/useDebounceCallback'
+import { TextField } from '@mui/material'
 import { useRouter } from 'next/router'
+import { ChangeEvent, useEffect, useRef } from 'react'
 
 type ProductFiltersProSearchFieldProps = Omit<
   TextFieldElementProps<ProductFilterParams>,
@@ -26,10 +20,14 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
   const searchInputElement = useRef<HTMLInputElement>(null)
   const router = useRouter()
 
+  const isSearchPage = router.asPath.startsWith('/search')
+
+  const defaultValue = `${context?.params.search ?? router.query.url ?? ''}`
+
   useEffect(() => {
-    const timeout = setTimeout(() => searchInputElement.current?.focus(), 100)
-    return () => clearTimeout(timeout)
-  }, [])
+    if (!searchInputElement.current) return
+    searchInputElement.current.value = isSearchPage ? defaultValue : ''
+  }, [isSearchPage])
 
   return (
     <TextField
@@ -38,20 +36,23 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
       type='text'
       name='search'
       color='primary'
-      defaultValue={context?.params.search ?? ''}
-      onChange={useDebouncedCallback(
-        (e: ChangeEvent<HTMLInputElement>) => {
-          const ctx = context ?? globalFilterContextRef.current
-          if (!ctx) {
-            return router.push(`/search/${e.target.value}`)
-          } else {
-            const { form, submit } = ctx
-            form.setValue('search', e.target.value)
-            return submit()
-          }
+      defaultValue={defaultValue}
+      onChange={async (e: ChangeEvent<HTMLInputElement>) => {
+        const ctx = context ?? globalFilterForm.current
+        const { value = '' } = e.target
+        // Go to the search page when we're not there.
+        if (!ctx || !isSearchPage) {
+          await router.push(`/search/${value}`)
+          return
+        }
+        ctx.form.setValue('search', value)
+        await ctx.submit()
+      }}
+      InputProps={{
+        sx: {
+          borderRadius: '100em',
         },
-        { wait: 200, maxWait: 400 },
-      )}
+      }}
       // InputProps={{
       //   ...InputProps,
       //   endAdornment: (

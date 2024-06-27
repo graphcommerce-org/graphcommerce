@@ -1,4 +1,6 @@
 import { QueryResult, useQuery } from '@graphcommerce/graphql'
+import { removeCssFlag, setCssFlag } from '@graphcommerce/next-ui'
+import { useEffect } from 'react'
 import {
   CustomerTokenDocument,
   CustomerTokenQuery,
@@ -16,6 +18,13 @@ export type UseCustomerSessionReturn = {
 export function useCustomerSession(_: UseCustomerSessionOptions = {}) {
   const query = useQuery(CustomerTokenDocument)
   const tokenData = query.data?.customerToken
+
+  useEffect(() => {
+    if (!query.loading) {
+      if (tokenData?.token) setCssFlag('signed-in', true)
+      else removeCssFlag('signed-in')
+    }
+  }, [query.loading, tokenData?.token])
 
   return {
     ...tokenData,

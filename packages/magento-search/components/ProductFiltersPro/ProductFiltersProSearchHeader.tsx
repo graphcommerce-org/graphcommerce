@@ -21,14 +21,14 @@ export function ProductFiltersProSearchTerm(props: ProductFiltersProSearchHeader
     ? targetSearch.slice(resultSearch.length)
     : ''
 
-  if (!resultSearch) return children
+  if (!resultSearch && !targetSearch) return children
 
   const search = (
     <>
       <Box component='span' sx={{}}>
         {resultSearch}
       </Box>
-      <Box component='span' sx={{ textDecoration: 'underline' }}>
+      <Box component='span' sx={{ color: 'text.disabled' }}>
         {remaining}
       </Box>
     </>

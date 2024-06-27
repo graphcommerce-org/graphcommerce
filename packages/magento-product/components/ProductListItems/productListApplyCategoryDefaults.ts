@@ -32,7 +32,11 @@ export function useProductListApplyCategoryDefaults(
 export async function productListApplyCategoryDefaults(
   params: ProductListParams | undefined,
   conf: StoreConfigQuery,
-  category: Promise<CategoryDefaultFragment | null | undefined>,
+  category:
+    | Promise<CategoryDefaultFragment | null | undefined>
+    | CategoryDefaultFragment
+    | null
+    | undefined,
 ) {
   if (!params) return params
 

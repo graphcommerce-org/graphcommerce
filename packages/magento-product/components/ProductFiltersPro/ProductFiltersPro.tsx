@@ -15,6 +15,7 @@ import React, {
   createContext,
   MutableRefObject,
   useContext,
+  useEffect,
   useMemo,
   useRef,
 } from 'react'
@@ -51,7 +52,7 @@ type FilterFormContextProps = DataProps & {
 
 const FilterFormContext = createContext<FilterFormContextProps | null>(null)
 
-export const globalFilterContextRef: MutableRefObject<FilterFormContextProps | null> = {
+export const globalFilterForm: MutableRefObject<FilterFormContextProps | null> = {
   current: null,
 }
 
@@ -77,7 +78,7 @@ export type FilterFormProviderProps = Omit<
 
   handleSubmit?: (
     formValues: ProductFilterParams,
-    next: () => Promise<void>,
+    next: (shallow?: boolean, replace?: boolean) => Promise<void>,
   ) => Promise<void> | void
 } & DataProps
 
@@ -126,15 +127,12 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
       const path = productListLinkFromFilter({ ...formValues, currentPage: 1 })
       if (router.asPath === path) return false
 
-      const next = async () => {
-        const opts = {
-          scroll: scroll.get(),
-          shallow: formValues.url.startsWith('search') || formValues.url === defaultValues.url,
-        }
+      const isSearch = router.asPath.startsWith('/search')
+      const isFilter = (router.query.url ?? []).includes('q')
 
-        await ((router.query.url ?? []).includes('q')
-          ? router.replace(path, path, opts)
-          : router.push(path, path, opts))
+      const next = async (shallow = false, replace: boolean = isSearch || isFilter) => {
+        const opts = { shallow, scroll: scroll.get() }
+        await (replace ? router.replace(path, path, opts) : router.push(path, path, opts))
       }
 
       if (handleSubmit) return handleSubmit(formValues, next)
@@ -154,7 +152,12 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
     [form, defaultValues, submit, appliedAggregations, filterTypes, aggregations],
   )
 
-  globalFilterContextRef.current = filterFormContext
+  useEffect(() => {
+    globalFilterForm.current = filterFormContext
+    return () => {
+      globalFilterForm.current = null
+    }
+  }, [filterFormContext])
 
   return (
     <FilterFormContext.Provider value={filterFormContext}>

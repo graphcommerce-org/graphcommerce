@@ -132,7 +132,6 @@ function CategoryFilterLayoutSidebar(props: ProductListFilterLayoutProps) {
                   xs: { count: 2 },
                   md: { totalWidth: totalWidth('md'), count: 3 },
                   lg: { totalWidth: totalWidth('md'), count: 4 },
-                  xl: { totalWidth: totalWidth('xxl'), count: 5 },
                 }
               }}
             />

@@ -1,6 +1,5 @@
 import { QueryHookOptions, QueryResult, TypedDocumentNode, useQuery } from '@graphcommerce/graphql'
 import { SessionScopeInput } from '@graphcommerce/graphql-mesh'
-import { showPageLoadIndicator } from '@graphcommerce/next-ui'
 import { useCustomerSession } from './useCustomerSession'
 
 /**
@@ -51,10 +50,6 @@ export function useSessionScopeQuery<
     variables: { ...options.variables, sessionScope } as V,
     skip: skip && !sessionScope.loggedIn,
   })
-
-  showPageLoadIndicator.set(
-    (!sessionScope.loggedIn || !!clientQuery.previousData) && clientQuery.loading,
-  )
 
   let { data } = clientQuery
   if (!skip) data ??= clientQuery.previousData

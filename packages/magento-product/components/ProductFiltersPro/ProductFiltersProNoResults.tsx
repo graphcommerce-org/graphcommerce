@@ -8,7 +8,7 @@ const name = 'ProductFiltersProNoResults' as const
 const parts = ['root'] as const
 const { classes } = extendableComponent(name, parts)
 
-export function ProductFiltersProNoResults(props: NoSearchResultsProps) {
+export function ProductFiltersProNoResults(props: ProductFiltersProNoResultsProps) {
   const { sx = [] } = props
 
   return (

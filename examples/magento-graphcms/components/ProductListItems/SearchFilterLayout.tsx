@@ -36,6 +36,8 @@ import { ProductListItems } from './ProductListItems'
 type SearchFilterLayoutProps = Omit<ProductListFilterLayoutProps, 'category' | 'id' | 'title'> &
   MenuQueryFragment
 
+type LayoutProps = ReturnType<typeof useProductList<SearchFilterLayoutProps>>
+
 // Ook al heb je een trage API, wil je alsnop zo snel mogelijk changes zien.
 // Je wil bij alle submits een request afvuren.
 // We willen alle results gebruiken die 'achter' lopen.
@@ -56,22 +58,12 @@ type SearchFilterLayoutProps = Omit<ProductListFilterLayoutProps, 'category' | '
 // Shallow URL Params
 // Form params
 
-const productListQueries: Array<Promise<unknown>> = []
-
-function SearchFilterLayoutSidebar(props: SearchFilterLayoutProps) {
-  const { filters, filterTypes, params, products, menu } = props
-  const client = useApolloClient()
-
-  const storeConfig = useQuery(StoreConfigDocument).data
+function SearchFilterLayoutSidebar(props: LayoutProps) {
+  const { filters, filterTypes, params, products, menu, handleSubmit } = props
 
   if (!params || !products?.items || !filterTypes) return null
   const { total_count, sort_fields, page_info } = products
-
   const search = `${params.search}`
-  const totalSearchResults =
-    // (categories?.items?.length ?? 0) +
-    products?.total_count ?? 0
-
   const sidebarWidth = responsiveVal(200, 350, 960, 1920)
 
   return (
@@ -81,32 +73,7 @@ function SearchFilterLayoutSidebar(props: SearchFilterLayoutProps) {
       appliedAggregations={products?.aggregations}
       filterTypes={filterTypes}
       autoSubmitMd
-      handleSubmit={async (filterParams, next) => {
-        if (!storeConfig) return
-
-        const variables = productListApplySearchDefaults(
-          toProductListParams(filterParams),
-          storeConfig,
-        )
-
-        const promise = client.query({ query: ProductListDocument, variables })
-
-        // Push the query to the queue array.
-        productListQueries.push(promise)
-
-        await promise
-
-        // If the current request is still in the array, it may be rendered (URL may be updated)
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        if (productListQueries.includes(promise)) next()
-
-        // Remove all requests that are before the current request
-        const index = productListQueries.indexOf(promise)
-        if (index > -1) {
-          // eslint-disable-next-line @typescript-eslint/no-floating-promises
-          productListQueries.splice(0, index + 1)
-        }
-      }}
+      handleSubmit={handleSubmit}
     >
       <Container
         maxWidth={false}
@@ -178,7 +145,6 @@ function SearchFilterLayoutSidebar(props: SearchFilterLayoutProps) {
                   xs: { count: 2 },
                   md: { totalWidth: totalWidth('md'), count: 3 },
                   lg: { totalWidth: totalWidth('md'), count: 4 },
-                  xl: { totalWidth: totalWidth('xxl'), count: 5 },
                 }
               }}
             />
@@ -203,7 +169,7 @@ function SearchFilterLayoutSidebar(props: SearchFilterLayoutProps) {
   )
 }
 
-function SearchFilterLayoutDefault(props: SearchFilterLayoutProps) {
+function SearchFilterLayoutDefault(props: LayoutProps) {
   const { filters, filterTypes, params, products } = props
 
   if (!(params && products?.items && filterTypes)) return null
@@ -265,7 +231,7 @@ function SearchFilterLayoutDefault(props: SearchFilterLayoutProps) {
   )
 }
 
-function SearchFiltersLayoutClassic(props: SearchFilterLayoutProps) {
+function SearchFiltersLayoutClassic(props: LayoutProps) {
   const { filters, filterTypes, params, products } = props
 
   if (!(params && products?.items && filterTypes)) return null
@@ -307,19 +273,21 @@ function SearchFiltersLayoutClassic(props: SearchFilterLayoutProps) {
 }
 
 export function SearchFilterLayout(props: SearchFilterLayoutProps) {
-  const { mask, ...rest } = useProductList(props)
+  const productList = useProductList(props)
 
   return (
-    <SignedInMaskProvider mask={mask}>
+    <SignedInMaskProvider mask={productList.mask}>
       {import.meta.graphCommerce.productFiltersPro &&
         import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
-          <SearchFilterLayoutSidebar {...rest} />
+          <SearchFilterLayoutSidebar {...productList} />
         )}
       {import.meta.graphCommerce.productFiltersPro &&
         import.meta.graphCommerce.productFiltersLayout !== 'SIDEBAR' && (
-          <SearchFilterLayoutDefault {...rest} />
+          <SearchFilterLayoutDefault {...productList} />
         )}
-      {!import.meta.graphCommerce.productFiltersPro && <SearchFiltersLayoutClassic {...rest} />}
+      {!import.meta.graphCommerce.productFiltersPro && (
+        <SearchFiltersLayoutClassic {...productList} />
+      )}
     </SignedInMaskProvider>
   )
 }

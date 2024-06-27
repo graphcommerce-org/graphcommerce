@@ -1,15 +1,25 @@
-import { useSessionScopeQuery } from '@graphcommerce/magento-customer'
+import { ApolloQueryResult, useQuery } from '@graphcommerce/graphql'
+import { CustomerTokenDocument, useSessionScopeQuery } from '@graphcommerce/magento-customer'
 import {
+  FilterFormProviderProps,
   ProductListDocument,
   ProductListParams,
   ProductListQuery,
+  prefetchProductList,
+  toProductListParams,
   useRouterFilterParams,
 } from '@graphcommerce/magento-product'
-import { useProductListApplySearchDefaults } from '../utils/productListApplySearchDefaults'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { useEventCallback } from '@mui/material'
+import {
+  productListApplySearchDefaults,
+  useProductListApplySearchDefaults,
+} from '../utils/productListApplySearchDefaults'
 
 /**
  * - Handles shallow routing requests
  * - Handles customer specific product list queries
+ * - Creates a prefetch function to preload the product list
  */
 export function useProductList<
   T extends ProductListQuery & {
@@ -19,12 +29,22 @@ export function useProductList<
   const { params, shallow } = useRouterFilterParams(props)
   const variables = useProductListApplySearchDefaults(params)
   const result = useSessionScopeQuery(ProductListDocument, { variables, skip: !shallow }, props)
+  const storeConfig = useQuery(StoreConfigDocument).data
 
-  return {
-    ...props,
-    ...result.data,
-    params,
-    mask: result.mask,
-    client: result.client,
-  }
+  const handleSubmit: NonNullable<FilterFormProviderProps['handleSubmit']> = useEventCallback(
+    async (formValues, next) => {
+      if (!storeConfig) return
+
+      const vars = {
+        ...productListApplySearchDefaults(toProductListParams(formValues), storeConfig),
+        sessionScope: {
+          loggedIn: !!result.client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken
+            ?.token,
+        },
+      }
+      await prefetchProductList(vars, next, result.client)
+    },
+  )
+
+  return { ...props, ...result.data, params, mask: result.mask, handleSubmit }
 }
