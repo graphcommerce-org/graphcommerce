@@ -159,6 +159,12 @@ export type GraphCommerceConfig = {
    * Default: 'false'
    */
   crossSellsRedirectItems?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
+   * Enables company fields inside the checkout:
+   * - Company name
+   * - VAT ID
+   */
+  customerCompanyFieldsEnable?: InputMaybe<Scalars['Boolean']['input']>;
   /** Enable customer account deletion through the account section */
   customerDeleteEnabled?: InputMaybe<Scalars['Boolean']['input']>;
   dataLayer?: InputMaybe<DatalayerConfig>;
@@ -348,6 +354,12 @@ export type GraphCommerceStorefrontConfig = {
   /** Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax. */
   cartDisplayPricesInclTax?: InputMaybe<Scalars['Boolean']['input']>;
   /**
+   * Enables company fields inside the checkout:
+   * - Company name
+   * - VAT ID
+   */
+  customerCompanyFieldsEnable?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
    * There can only be one entry with defaultLocale set to true.
    * - If there are more, the first one is used.
    * - If there is none, the first entry is used.
@@ -467,6 +479,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
     crossSellsHideCartItems: z.boolean().default(false).nullish(),
     crossSellsRedirectItems: z.boolean().default(false).nullish(),
+    customerCompanyFieldsEnable: z.boolean().nullish(),
     customerDeleteEnabled: z.boolean().nullish(),
     dataLayer: DatalayerConfigSchema().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
@@ -509,6 +522,7 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
   return z.object({
     canonicalBaseUrl: z.string().nullish(),
     cartDisplayPricesInclTax: z.boolean().nullish(),
+    customerCompanyFieldsEnable: z.boolean().nullish(),
     defaultLocale: z.boolean().nullish(),
     domain: z.string().nullish(),
     googleAnalyticsId: z.string().nullish(),

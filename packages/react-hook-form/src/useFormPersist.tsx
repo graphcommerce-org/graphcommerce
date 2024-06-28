@@ -39,7 +39,7 @@ export type UseFormPersistOptions<
  *
  * Todo: Use wath callback so it won't trigger a rerender
  *
- * @deprecated Please use <FormPersist /> instead. This method causes INP problems.
+ * @deprecated Please use the FormPersist component instead. This method causes INP problems.
  */
 export function useFormPersist<V extends FieldValues>(options: UseFormPersistOptions<V>) {
   const { form, name, storage = 'sessionStorage', exclude = [], persist = [] } = options
@@ -98,6 +98,9 @@ export function useFormPersist<V extends FieldValues>(options: UseFormPersistOpt
   }, [name, storage, valuesJson])
 }
 
+/**
+ * Please make sure to always include this component at the end of your form because of useWatch rules: https://react-hook-form.com/docs/usewatch
+ */
 export function FormPersist<V extends FieldValues>(props: UseFormPersistOptions<V>) {
   useFormPersist(props)
   return null

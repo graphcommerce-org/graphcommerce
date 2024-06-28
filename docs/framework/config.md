@@ -169,6 +169,12 @@ Determines if, after adding a cross-sell item to the cart, the user should be re
 
 Default: 'false'
 
+#### customerCompanyFieldsEnable: boolean
+
+Enables company fields inside the checkout:
+- Company name
+- VAT ID
+
 #### customerDeleteEnabled: boolean
 
 Enable customer account deletion through the account section
@@ -377,6 +383,12 @@ Examples:
 #### cartDisplayPricesInclTax: boolean
 
 Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.
+
+#### customerCompanyFieldsEnable: boolean
+
+Enables company fields inside the checkout:
+- Company name
+- VAT ID
 
 #### defaultLocale: boolean
 

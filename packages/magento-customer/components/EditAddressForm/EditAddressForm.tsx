@@ -1,22 +1,15 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { ApolloErrorSnackbar, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
-import {
-  Button,
-  Form,
-  FormActions,
-  FormDivider,
-  FormRow,
-  InputCheckmark,
-} from '@graphcommerce/next-ui'
+import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { SxProps, TextField, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import { AddressFields } from '../AddressFields/AddressFields'
+import { CompanyFields } from '../CompanyFields'
 import { NameFields } from '../NameFields/NameFields'
 import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
 
@@ -51,6 +44,9 @@ export function EditAddressForm(props: EditAddressFormProps) {
         houseNumber: address?.street?.[1] ?? '',
         addition: address?.street?.[2] ?? '',
         region: address?.region,
+        company: address?.company ?? '',
+        vatId: address?.vat_id ?? '',
+        isCompany: Boolean(address?.company || address?.vat_id),
       },
       onBeforeSubmit: (formData) => {
         const region = countries
@@ -64,6 +60,10 @@ export function EditAddressForm(props: EditAddressFormProps) {
               region_id: region.id,
             }) ??
             null,
+        }
+        if (!formData.isCompany) {
+          formData.company = ''
+          formData.vatId = ''
         }
 
         return {
@@ -84,9 +84,9 @@ export function EditAddressForm(props: EditAddressFormProps) {
   return (
     <>
       <Form onSubmit={submitHandler} noValidate sx={sx}>
+        <CompanyFields form={form} />
         <NameFields form={form} prefix />
         <AddressFields form={form} name={{ regionId: 'region.region_id' }} />
-
         <FormRow>
           <TextFieldElement
             control={control}
@@ -105,8 +105,6 @@ export function EditAddressForm(props: EditAddressFormProps) {
             showValid
           />
         </FormRow>
-
-        <FormDivider />
 
         <FormActions sx={{ paddingBottom: 0 }}>
           <Button

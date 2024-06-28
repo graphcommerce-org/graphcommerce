@@ -1,6 +1,6 @@
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
+import { Box, Link, SxProps, Theme } from '@mui/material'
 import { AddressMultiLine } from '../AddressMultiLine/AddressMultiLine'
 import { DeleteCustomerAddressForm } from '../DeleteCustomerAddressForm/DeleteCustomerAddressForm'
 import { UpdateDefaultAddressForm } from '../UpdateDefaultAddressForm/UpdateDefaultAddressForm'
@@ -31,7 +31,6 @@ export function AccountAddress(props: AccountAddressProps) {
     >
       <Box className={classes.address} sx={{ '& > span': { display: 'block' } }}>
         <AddressMultiLine id={id} {...addressProps} />
-        <Typography variant='body1' component='div'>{addressProps.telephone}</Typography>
         <Box className={classes.switches} sx={(theme) => ({ paddingTop: theme.spacings.xxs })}>
           <UpdateDefaultAddressForm id={id} {...addressProps} />
         </Box>

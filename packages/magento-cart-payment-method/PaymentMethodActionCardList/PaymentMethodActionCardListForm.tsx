@@ -109,7 +109,6 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
 
   return (
     <>
-      <FormPersist form={form} name='PaymentMethodActionCardList' />
       <ActionCardListForm<PaymentOptionsProps & ActionCardProps, FormFields>
         control={control}
         name='paymentMethod'
@@ -126,6 +125,7 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
         }))}
         render={PaymentMethodActionCard}
       />
+      <FormPersist form={form} name='PaymentMethodActionCardList' />
     </>
   )
 }

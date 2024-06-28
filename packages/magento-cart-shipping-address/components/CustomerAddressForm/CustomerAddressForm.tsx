@@ -107,18 +107,24 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
 
   useEffect(() => {
     if (mode === 'both' || mode === 'shipping') {
-      if (!cartAddressId && defaultShippingId) {
-        // console.log('shippingAddress.customer_address_id', defaultShippingId)
+      if (!cartAddressId && !cartShipping && defaultShippingId) {
         setValue('customer_address_id', defaultShippingId, { shouldValidate: true })
       }
     }
     if (mode === 'billing') {
-      if (!cartAddressId && defaultBillingId) {
-        // console.log('billingAddress.customer_address_id', defaultBillingId)
+      if (!cartAddressId && !cartBilling && defaultBillingId) {
         setValue('customer_address_id', defaultBillingId, { shouldValidate: true })
       }
     }
-  }, [cartAddressId, defaultBillingId, defaultShippingId, mode, setValue])
+  }, [
+    cartAddressId,
+    cartBilling,
+    cartShipping,
+    defaultBillingId,
+    defaultShippingId,
+    mode,
+    setValue,
+  ])
 
   const submit = handleSubmit(() => {})
 
@@ -129,7 +135,6 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
 
   return (
     <>
-      <FormPersist form={form} name='CustomerAddressForm' />
       <FormAutoSubmit control={form.control} submit={submit} wait={0} />
       <Box component='form' onSubmit={submit} noValidate sx={sx}>
         <ActionCardListForm
@@ -148,6 +153,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
         <ApolloCartErrorAlert error={error} />
       </Box>
       {formAddressId === -1 && children}
+      <FormPersist form={form} name='CustomerAddressForm' />
     </>
   )
 }

@@ -1,5 +1,10 @@
 export * from './Api/BillingAddress.gql'
 export * from './Api/ShippingAddress.gql'
-
-export * from './components/ShippingAddressForm/ShippingAddressForm'
 export * from './components/CustomerAddressForm/CustomerAddressForm'
+export * from './components/CustomerAddressForm/SetCustomerBillingAddressOnCart.gql'
+export * from './components/CustomerAddressForm/SetCustomerShippingAddressOnCart.gql'
+export * from './components/CustomerAddressForm/SetCustomerShippingBillingAddressOnCart.gql'
+export * from './components/ShippingAddressForm/SetBillingAddress.gql'
+export * from './components/ShippingAddressForm/SetShippingAddress.gql'
+export * from './components/ShippingAddressForm/SetShippingBillingAddress.gql'
+export * from './components/ShippingAddressForm/ShippingAddressForm'
