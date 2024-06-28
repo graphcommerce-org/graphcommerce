@@ -9,6 +9,11 @@ extend input GraphCommerceConfig {
   `Stores -> Configuration -> Sales -> Checkout -> Checkout Options -> Enable Guest Checkout Login`
   """
   enableGuestCheckoutLogin: Boolean
+
+  """
+  Enable customer account deletion through the account section
+  """
+  customerDeleteEnabled: Boolean
 }
 
 extend input GraphCommerceDebugConfig {

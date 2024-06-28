@@ -159,6 +159,8 @@ export type GraphCommerceConfig = {
    * Default: 'false'
    */
   crossSellsRedirectItems?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Enable customer account deletion through the account section */
+  customerDeleteEnabled?: InputMaybe<Scalars['Boolean']['input']>;
   dataLayer?: InputMaybe<DatalayerConfig>;
   /** Debug configuration for GraphCommerce */
   debug?: InputMaybe<GraphCommerceDebugConfig>;
@@ -465,6 +467,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
     crossSellsHideCartItems: z.boolean().default(false).nullish(),
     crossSellsRedirectItems: z.boolean().default(false).nullish(),
+    customerDeleteEnabled: z.boolean().nullish(),
     dataLayer: DatalayerConfigSchema().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().default(true).nullish(),

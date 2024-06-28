@@ -26,6 +26,7 @@ import {
   TimeAgo,
   LayoutTitle,
   LayoutHeader,
+  iconBin,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -129,6 +130,15 @@ function AccountIndexPage() {
                 '&:hover': { background: theme.palette.background.paper },
               })}
             />
+            {import.meta.graphCommerce.customerDeleteEnabled && (
+              <AccountMenuItem
+                href='/account/delete'
+                disableRipple
+                iconSrc={iconBin}
+                title={<Trans id='Delete account' />}
+              />
+            )}
+
             <SignOutForm
               // eslint-disable-next-line react/no-unstable-nested-components
               button={({ formState }) => (

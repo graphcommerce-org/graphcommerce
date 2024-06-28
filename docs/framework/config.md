@@ -169,6 +169,10 @@ Determines if, after adding a cross-sell item to the cart, the user should be re
 
 Default: 'false'
 
+#### customerDeleteEnabled: boolean
+
+Enable customer account deletion through the account section
+
 #### dataLayer: [DatalayerConfig](#DatalayerConfig)
 
 #### debug: [GraphCommerceDebugConfig](#GraphCommerceDebugConfig)
