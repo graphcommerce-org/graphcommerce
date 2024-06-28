@@ -1,8 +1,7 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { ApolloErrorSnackbar, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
-import { Button, Form, FormActions, FormDivider, FormRow } from '@graphcommerce/next-ui'
+import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -12,11 +11,7 @@ import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import { AddressFields } from '../AddressFields/AddressFields'
 import { CompanyFields } from '../CompanyFields'
 import { NameFields } from '../NameFields/NameFields'
-import {
-  UpdateCustomerAddressDocument,
-  UpdateCustomerAddressMutation,
-  UpdateCustomerAddressMutationVariables,
-} from './UpdateCustomerAddress.gql'
+import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
 
 type EditAddressFormProps = {
   address?: AccountAddressFragment
@@ -89,9 +84,9 @@ export function EditAddressForm(props: EditAddressFormProps) {
   return (
     <>
       <Form onSubmit={submitHandler} noValidate sx={sx}>
+        <CompanyFields form={form} />
         <NameFields form={form} prefix />
         <AddressFields form={form} name={{ regionId: 'region.region_id' }} />
-
         <FormRow>
           <TextFieldElement
             control={control}
@@ -110,9 +105,6 @@ export function EditAddressForm(props: EditAddressFormProps) {
             showValid
           />
         </FormRow>
-        <CompanyFields form={form} />
-
-        <FormDivider />
 
         <FormActions sx={{ paddingBottom: 0 }}>
           <Button

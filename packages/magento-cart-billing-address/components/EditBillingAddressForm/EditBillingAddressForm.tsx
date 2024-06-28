@@ -2,7 +2,7 @@ import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { useHistoryGo } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { SetBillingAddressDocument } from '@graphcommerce/magento-cart-shipping-address/components/ShippingAddressForm/SetBillingAddress.gql'
+import { SetBillingAddressDocument } from '@graphcommerce/magento-cart-shipping-address'
 import {
   AddressFields,
   ApolloCustomerErrorAlert,
@@ -70,6 +70,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
   return (
     <>
       <Form onSubmit={submitHandler} noValidate sx={sx}>
+        <CompanyFields form={form} />
         <NameFields form={form} prefix />
         <AddressFields form={form} />
 
@@ -91,8 +92,6 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
             showValid
           />
         </FormRow>
-
-        <CompanyFields form={form} />
 
         <FormDivider />
 

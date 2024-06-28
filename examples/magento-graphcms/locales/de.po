@@ -13,6 +13,10 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#. js-lingui-generated-id
+msgid "Business"
+msgstr "Geschäftlich"
+
 msgid "<0>{name}</0> has been added to your comparison!"
 msgstr "<0>{name}</0> wurde zu Ihrer Vergleichsliste hinzugefügt!"
 
@@ -141,9 +145,6 @@ msgstr "Alle Filter löschen"
 
 msgid "Close"
 msgstr "Schließen"
-
-msgid "Company"
-msgstr "Unternehmen"
 
 msgid "Company name"
 msgstr "Name des Unternehmens"
@@ -924,6 +925,10 @@ msgstr "zurückgesandt"
 
 msgid "shipped"
 msgstr "versandt"
+
+#. js-lingui-generated-id
+msgid "Private"
+msgstr "Privat"
 
 msgid "{count} Per page"
 msgstr "{count} pro Seite"

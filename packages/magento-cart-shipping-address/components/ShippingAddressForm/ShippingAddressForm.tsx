@@ -84,7 +84,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
 
   const form = useFormGqlMutationCart(Mutation, {
     defaultValues: isCartAddressACustomerAddress(customerQuery?.customer?.addresses, currentAddress)
-      ? { saveInAddressBook: true }
+      ? { saveInAddressBook: true, isCompany: false }
       : {
           // todo(paales): change to something more sustainable
           firstname: currentAddress?.firstname ?? customerQuery?.customer?.firstname ?? '',
@@ -101,6 +101,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           regionId: currentAddress?.region?.region_id ?? null,
           countryCode: currentAddress?.country.code ?? shopCountry, // todo: replace by the default shipping country of the store + geoip,
           saveInAddressBook: true,
+          isCompany: Boolean(currentAddress?.company || currentAddress?.vat_id),
         },
     mode: 'onChange',
     experimental_useV2: true,
@@ -132,6 +133,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         name={['postcode', 'countryCode', 'regionId']}
       />
 
+      <CompanyFields form={form} />
       <NameFields form={form} />
       <AddressFields form={form} />
 
@@ -149,7 +151,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           showValid
         />
       </FormRow>
-      <CompanyFields form={form} />
+
       <ApolloCartErrorAlert error={error} />
       <FormPersist form={form} name='ShippingAddressForm' />
     </Form>

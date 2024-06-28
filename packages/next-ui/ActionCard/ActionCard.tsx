@@ -39,7 +39,7 @@ export type ActionCardProps = {
   secondaryAction?: React.ReactNode
   onClick?: (event: React.MouseEvent<HTMLElement>, value: string | number | null) => void
   selected?: boolean
-  value: string | number | null
+  value: string | number | boolean | null
   reset?: React.ReactNode
   disabled?: boolean
   error?: boolean

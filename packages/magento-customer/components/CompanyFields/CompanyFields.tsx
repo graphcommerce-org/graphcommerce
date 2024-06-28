@@ -1,6 +1,12 @@
-import { CheckboxElement, FieldPath, FieldValues, useWatch } from '@graphcommerce/ecommerce-ui'
-import { FormRow, useStorefrontConfig } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { FieldPath, FieldValues, useWatch } from '@graphcommerce/ecommerce-ui'
+import {
+  ActionCard,
+  ActionCardListForm,
+  ActionCardProps,
+  FormRow,
+  useStorefrontConfig,
+} from '@graphcommerce/next-ui'
+import { t } from '@lingui/macro'
 import { CompanyName } from './CompanyName'
 import { CompanyVAT } from './CompanyVAT'
 import { CompanyFieldsOptions, useCompanyFieldsForm } from './useCompanyFieldsForm'
@@ -8,15 +14,13 @@ import { CompanyFieldsOptions, useCompanyFieldsForm } from './useCompanyFieldsFo
 export type CompanyFieldsProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-> = CompanyFieldsOptions<TFieldValues, TName> & {
-  label?: React.ReactNode
-}
+> = CompanyFieldsOptions<TFieldValues, TName>
 
 export function CompanyFields<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(props: CompanyFieldsProps<TFieldValues, TName>) {
-  const { label = <Trans id='Company' />, ...rest } = props
+  const { ...rest } = props
   const form = useCompanyFieldsForm(rest)
   const { name, control } = form
 
@@ -30,7 +34,33 @@ export function CompanyFields<
 
   return (
     <>
-      <CheckboxElement label={label} control={control} name={name.isCompany} />
+      <FormRow>
+        <ActionCardListForm<ActionCardProps, TFieldValues>
+          render={ActionCard}
+          control={control}
+          name={name.isCompany}
+          size='medium'
+          layout='inline'
+          variant='outlined'
+          color='secondary'
+          required
+          items={[
+            { value: false, title: t`Private` },
+            { value: true, title: t`Business` },
+          ]}
+        />
+      </FormRow>
+
+      {/* <FormDivider /> */}
+
+      {/* <SwitchElement
+        label={<Trans>Company</Trans>}
+        control={control}
+        name={name.isCompany}
+        color='secondary'
+      /> */}
+
+      {/* <CheckboxElement label={<Trans>Company</Trans>} control={control} name={name.isCompany} /> */}
       {isCompany && (
         <FormRow>
           <CompanyName {...props} />

@@ -69,6 +69,7 @@ export function CreateCustomerAddressForm() {
   return (
     <>
       <Form onSubmit={submitHandler} noValidate>
+        <CompanyFields form={form} />
         <NameFields form={form} prefix />
         <AddressFields form={form} name={{ regionId: 'region.region_id' }} />
 
@@ -90,9 +91,6 @@ export function CreateCustomerAddressForm() {
             showValid
           />
         </FormRow>
-        <CompanyFields form={form} />
-
-        <FormDivider />
 
         <FormActions>
           <Button
