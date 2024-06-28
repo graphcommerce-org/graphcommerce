@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.37
+
+### Patch Changes
+
+- [#2300](https://github.com/graphcommerce-org/graphcommerce/pull/2300) [`19adebe`](https://github.com/graphcommerce-org/graphcommerce/commit/19adebe2ff896c65d21543fc9243a36393747e06) - Fixed CustomerAddressForm resetting to a saved address when trying to use a new address
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 8.1.0-canary.36
 
 ## 8.1.0-canary.35
