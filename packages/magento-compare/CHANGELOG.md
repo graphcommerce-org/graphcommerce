@@ -1,5 +1,7 @@
 # @graphcommerce/magento-compare
 
+## 8.1.0-canary.39
+
 ## 8.1.0-canary.38
 
 ### Patch Changes

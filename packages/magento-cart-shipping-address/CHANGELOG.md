@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.39
+
+### Minor Changes
+
+- [#2307](https://github.com/graphcommerce-org/graphcommerce/pull/2307) [`20cb571`](https://github.com/graphcommerce-org/graphcommerce/commit/20cb57171ae5bff0b86a341ea4db59ea3f4f639a) - Add save in address book checkbox to shipping address form
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 8.1.0-canary.38
 
 ### Minor Changes
