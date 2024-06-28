@@ -2,30 +2,30 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { AccountDeleteForm } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle, iconBin } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { Trans, t } from '@lingui/macro'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { i18n } from '@lingui/core'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountDeletePage() {
   return (
     <>
-      <PageMeta title={i18n._(/* i18n */ 'Reviews')} metaRobots={['noindex']} />
+      <PageMeta title={t`Delete account`} metaRobots={['noindex']} />
 
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconBin}>
-          <Trans id='Delete account' />
+          <Trans>Delete account</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
 
       <Container maxWidth='md'>
-        <PageMeta title={i18n._(/* i18n */ 'Delete account')} metaRobots={['noindex']} />
+        <PageMeta title={t`Delete account`} metaRobots={['noindex']} />
 
         <LayoutTitle icon={iconBin}>
-          <Trans id='Delete account' />
+          <Trans>Delete account</Trans>
         </LayoutTitle>
         <AccountDeleteForm />
       </Container>
