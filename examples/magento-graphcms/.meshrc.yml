@@ -19,6 +19,39 @@ sources:
             - '*.!{localizations,scheduledIn,documentInStages*,createdAt*,updatedAt*,publishedAt*,createdBy,updatedBy,publishedBy,history,scheduledIn*}'
       - prune:
           skipPruning: []
+
+  - name: algolia
+    handler:
+      openapi:
+        endpoint: "https://l5vhvr29j0.algolia.net/"
+#        source: "https://raw.githubusercontent.com/algolia/api-clients-automation/main/specs/search/spec.yml"
+#        source: "https://raw.githubusercontent.com/algolia/api-clients-automation/20af70266ff23ac13b76082bb7c0562710442154/specs/bundled/search.yml"
+        source: "./spec.yaml"
+        ignoreErrorResponses: true
+        schemaHeaders:
+          X-Algolia-Application-Id: "L5VHVR29J0"
+          X-Algolia-API-Key: "30dfc78cc040565cd7d7d025c0c99899"
+        operationHeaders:
+          X-Algolia-Application-Id: "L5VHVR29J0"
+          X-Algolia-API-Key: "30dfc78cc040565cd7d7d025c0c99899"
+    transforms:
+#      - namingConvention:
+#          mode: bare
+#          typeNames: pascalCase
+#          enumValues: upperCase
+#          fieldNames: camelCase
+#          fieldArgumentNames: camelCase
+      - prefix:
+          value: algolia_
+          includeRootOperations: true
+          includeTypes: false
+          mode: bare
+      - prefix:
+          value: Algolia
+          includeRootOperations: false
+          includeTypes: true
+          mode: bare
+
   - name: m2
     handler:
       graphql:
@@ -31,5 +64,10 @@ sources:
           X-ReCaptcha: "{context.headers['x-recaptcha']}"
           Preview-Version: "{context.headers['preview-version']}"
           Content-Currency: "{context.headers['content-currency']}"
+          Engine: "{args.engine}"
+
+
+additionalResolvers:
+  - 'lib/algolia/query/products.ts'
 serve:
   playground: true
