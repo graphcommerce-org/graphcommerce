@@ -602,6 +602,9 @@ msgstr "Évaluations"
 msgid "Save changes"
 msgstr "Sauvegarder les modifications"
 
+msgid "Save in address book"
+msgstr "Enregistrer dans le carnet d'adresses"
+
 msgid "Save new password"
 msgstr "Sauvegarder le nouveau mot de passe"
 

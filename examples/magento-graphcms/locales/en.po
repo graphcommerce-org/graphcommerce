@@ -602,6 +602,9 @@ msgstr "Reviews"
 msgid "Save changes"
 msgstr "Save changes"
 
+msgid "Save in address book"
+msgstr "Save in address book"
+
 msgid "Save new password"
 msgstr "Save new password"
 
