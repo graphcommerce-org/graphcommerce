@@ -24,7 +24,7 @@ import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/mage
 import { Form, FormRow } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, SxProps, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { isCartAddressACustomerAddress } from '../../utils/findCustomerAddressFromCartAddress'
 import { isSameAddress } from '../../utils/isSameAddress'
