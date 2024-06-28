@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.40
+
+### Patch Changes
+
+- [#2296](https://github.com/graphcommerce-org/graphcommerce/pull/2296) [`e7aab8f`](https://github.com/graphcommerce-org/graphcommerce/commit/e7aab8f51f6c5e4d5133b025e7e6ea6301818f23) - Fixed Place order button not working (in dev mode) for certain payment methods
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 8.1.0-canary.39
 
 ## 8.1.0-canary.38
