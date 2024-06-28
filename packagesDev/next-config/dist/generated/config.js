@@ -78,6 +78,7 @@ function GraphCommerceConfigSchema() {
         crossSellsHideCartItems: _zod.z.boolean().default(false).nullish(),
         crossSellsRedirectItems: _zod.z.boolean().default(false).nullish(),
         customerCompanyFieldsEnable: _zod.z.boolean().nullish(),
+        customerDeleteEnabled: _zod.z.boolean().nullish(),
         dataLayer: DatalayerConfigSchema().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
         demoMode: _zod.z.boolean().default(true).nullish(),

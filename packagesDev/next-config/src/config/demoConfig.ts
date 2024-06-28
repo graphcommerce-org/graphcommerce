@@ -49,4 +49,5 @@ export const demoConfig: PartialDeep<GraphCommerceConfig, { recurseIntoArrays: t
   configurableVariantValues: { url: true, content: true, gallery: true },
   recentlyViewedProducts: { enabled: true, maxCount: 20 },
   breadcrumbs: false,
+  customerDeleteEnabled: true,
 }

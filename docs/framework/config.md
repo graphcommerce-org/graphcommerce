@@ -175,6 +175,10 @@ Enables company fields inside the checkout:
 - Company name
 - VAT ID
 
+#### customerDeleteEnabled: boolean
+
+Enable customer account deletion through the account section
+
 #### dataLayer: [DatalayerConfig](#DatalayerConfig)
 
 #### debug: [GraphCommerceDebugConfig](#GraphCommerceDebugConfig)

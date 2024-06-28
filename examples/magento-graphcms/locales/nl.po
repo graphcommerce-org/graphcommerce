@@ -14,6 +14,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-generated-id
+msgid "Doing so will remove all your data including order history and saved shipping / billing addresses."
+msgstr "Dit zal al uw gegevens verwijderen, inclusief bestelgeschiedenis en opgeslagen verzend-/factuuradressen."
+
+#. js-lingui-generated-id
+msgid "I understand that my account will be deleted and this can not be undone."
+msgstr "Ik begrijp dat mijn account zal worden verwijderd en dat dit niet ongedaan kan worden gemaakt."
+
+#. js-lingui-generated-id
+msgid "Are you sure you want to delete your account?"
+msgstr "Weet u zeker dat u uw account wilt verwijderen?"
+
+#. js-lingui-generated-id
 msgid "Business"
 msgstr "Zakelijk"
 
@@ -221,11 +233,18 @@ msgstr "Huidige email"
 msgid "Customer Service"
 msgstr "Klantenservice"
 
+#. js-lingui-generated-id
+msgid "Account deletion successful"
+msgstr "Account verwijdering succesvol"
+
 msgid "Dark Mode"
 msgstr "Donkere modus"
 
 msgid "Decrease"
 msgstr "Verminderen"
+
+msgid "Delete account"
+msgstr "Verwijder account"
 
 msgid "Delete this address"
 msgstr "Verwijder dit adres"
@@ -899,8 +918,16 @@ msgstr "Uw sessie is verlopen"
 msgid "Your wishlist is empty"
 msgstr "Uw verlanglijst is leeg"
 
+#. js-lingui-generated-id
+msgid "Delete account"
+msgstr "Verwijder account"
+
 msgid "Zip code or city"
 msgstr "Postcode of stad"
+
+#. js-lingui-generated-id
+msgid "Return to home"
+msgstr "Terug naar home"
 
 msgid "canceled"
 msgstr "geannuleerd"
@@ -928,6 +955,10 @@ msgstr "terug gestuurd"
 
 msgid "shipped"
 msgstr "verzonden"
+
+#. js-lingui-generated-id
+msgid "The given email does not match the account email"
+msgstr "Het opgegeven e-mailadres komt niet overeen met het account e-mailadres"
 
 #. js-lingui-generated-id
 msgid "Private"

@@ -14,6 +14,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-generated-id
+msgid "Doing so will remove all your data including order history and saved shipping / billing addresses."
+msgstr "Doing so will remove all your data including order history and saved shipping / billing addresses."
+
+#. js-lingui-generated-id
+msgid "I understand that my account will be deleted and this can not be undone."
+msgstr "I understand that my account will be deleted and this can not be undone."
+
+#. js-lingui-generated-id
+msgid "Are you sure you want to delete your account?"
+msgstr "Are you sure you want to delete your account?"
+
+#. js-lingui-generated-id
 msgid "Business"
 msgstr "Business"
 
@@ -221,11 +233,18 @@ msgstr "Current email"
 msgid "Customer Service"
 msgstr "Customer Service"
 
+#. js-lingui-generated-id
+msgid "Account deletion successful"
+msgstr "Account deletion successful"
+
 msgid "Dark Mode"
 msgstr "Dark Mode"
 
 msgid "Decrease"
 msgstr "Decrease"
+
+msgid "Delete account"
+msgstr "Delete account"
 
 msgid "Delete this address"
 msgstr "Delete this address"
@@ -899,8 +918,16 @@ msgstr "Your session is expired"
 msgid "Your wishlist is empty"
 msgstr "Your wishlist is empty"
 
+#. js-lingui-generated-id
+msgid "Delete account"
+msgstr "Delete account"
+
 msgid "Zip code or city"
 msgstr "Zip code or city"
+
+#. js-lingui-generated-id
+msgid "Return to home"
+msgstr "Return to home"
 
 msgid "canceled"
 msgstr "canceled"
@@ -928,6 +955,10 @@ msgstr "returned"
 
 msgid "shipped"
 msgstr "shipped"
+
+#. js-lingui-generated-id
+msgid "The given email does not match the account email"
+msgstr "The given email does not match the account email"
 
 #. js-lingui-generated-id
 msgid "Private"
