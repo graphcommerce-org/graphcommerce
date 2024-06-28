@@ -1,0 +1,10 @@
+type AlgoliaProductHitAdditionalProperties {
+  name: String
+  sku: String
+  print_holiday: String
+  print_mood: String
+}
+
+type Algoliahit {
+  additionalProperties: AlgoliaProductHitAdditionalProperties
+}

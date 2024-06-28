@@ -7,7 +7,9 @@ import type {
   Resolvers,
   Aggregation,
   AggregationOption,
+  QueryattributesListArgs,
 } from '../../../.mesh'
+import { M2Types } from '../../../.mesh/sources/m2/types'
 
 function assertAdditional(
   additional: unknown,
@@ -15,7 +17,7 @@ function assertAdditional(
   return true
 }
 
-function mapPriceRange(prices: any, currency: CurrencyEnum): PriceRange {
+function mapPriceRange(prices: object, currency: CurrencyEnum): PriceRange {
   return {
     maximum_price: {
       regular_price: { value: prices[currency].default_max, currency },
@@ -28,11 +30,33 @@ function mapPriceRange(prices: any, currency: CurrencyEnum): PriceRange {
   }
 }
 
-function mapAlgoliaFacetsToAggregations(algoliaFacets: object): Aggregation[] {
-  let aggregations: Aggregation[] = []
+function mapFiltersForAlgolia(filters: object) {
+  const filterArray: object[] = []
+
+  Object.keys(filters).forEach((value) => {
+    const filterValueArray = filters[value]?.in
+    console.log('filtersBem', value)
+    for (let i = 0; i < filterValueArray.length; i++) {
+      if (filterValueArray[i]) {
+        console.log('pushObject', {
+          facetFilters_Input: { String: `${value}:${filterValueArray[i]}` },
+        })
+        filterArray.push({ facetFilters_Input: { String: `${value}:${filterValueArray[i]}` } })
+      }
+    }
+  })
+  return filterArray
+}
+
+function mapAlgoliaFacetsToAggregations(
+  algoliaFacets: object,
+  attributes: M2Types.Maybe<M2Types.CustomAttributeMetadataInterface>[] | undefined,
+): Aggregation[] {
+  const aggregations: Aggregation[] = []
   Object.keys(algoliaFacets).forEach((facetIndex) => {
     const facet: object = algoliaFacets[facetIndex]
-    let optionsCheck: AggregationOption[] = []
+    const optionsCheck: AggregationOption[] = []
+    const attributeLabel = attributes?.find((attribute) => attribute?.code === facetIndex)
     Object.keys(facet).forEach((filter) => {
       optionsCheck.push({
         label: filter,
@@ -40,13 +64,20 @@ function mapAlgoliaFacetsToAggregations(algoliaFacets: object): Aggregation[] {
         value: filter,
       })
     })
-    aggregations.push({
-      label: facetIndex,
-      attribute_code: facetIndex,
-      options: optionsCheck,
-    })
+    if (attributeLabel) {
+      aggregations.push({
+        label: attributeLabel.label,
+        attribute_code: facetIndex,
+        options: optionsCheck,
+      })
+    } else {
+      aggregations.push({
+        label: facetIndex,
+        attribute_code: facetIndex,
+        options: optionsCheck,
+      })
+    }
   })
-
   return aggregations
 }
 
@@ -62,41 +93,63 @@ export const resolver: Resolvers = {
       if (!todo.isAlgolia) {
         return context.m2.Query.products({ root, args, context, info })
       }
-      const term = args.search
 
       const inputArgs: Mutationalgolia_searchSingleIndexArgs = {
         indexName: 'magento2_demonl_NL_products',
         input: {
           Search_parameters_as_object_Input: {
-            query: 'sock',
+            query: args.search,
             facets: ['*'],
-            hitsPerPage: 1,
+            hitsPerPage: args.pageSize ? args.pageSize : 10,
+            facetFilters: mapFiltersForAlgolia(args.filter),
           },
         },
       }
 
-      const searchResults = await context.algolia.Mutation.algolia_searchSingleIndex({
-        root,
-        args: inputArgs,
-        selectionSet: /* GraphQL */ `
-          {
-            hits {
-              __typename
-              objectID
-              additionalProperties
+      const attributeArgs: QueryattributesListArgs = {
+        entityType: 'CATALOG_PRODUCT',
+      }
+
+      // Note: the attributelist query requires magento: ^2.4.7
+      const [searchResults, attributeList] = await Promise.all([
+        context.algolia.Mutation.algolia_searchSingleIndex({
+          root,
+          args: inputArgs,
+          selectionSet: /* GraphQL */ `
+            {
+              hits {
+                __typename
+                objectID
+                additionalProperties
+              }
+              facets {
+                additionalProperties
+              }
             }
-            facets {
-              additionalProperties
+          `,
+          // autoSelectionSetWithDepth: 10,
+          context,
+          info,
+        }),
+        context.m2.Query.attributesList({
+          root,
+          args: attributeArgs,
+          selectionSet: /* GraphQL */ `
+            {
+              items {
+                label
+                code
+              }
             }
-          }
-        `,
-        // autoSelectionSetWithDepth: 10,
-        context,
-        info,
-      })
+          `,
+          context,
+          info,
+        }),
+      ])
 
       const aggregations = mapAlgoliaFacetsToAggregations(
         searchResults?.facets?.additionalProperties,
+        attributeList?.items,
       )
 
       const algoliaItems = filterNonNullableKeys(searchResults?.hits).map((hit) => {
@@ -104,10 +157,21 @@ export const resolver: Resolvers = {
 
         if (!assertAdditional(additionalProperties)) return null
 
+        const typenames: object = {
+          bundle: 'BundleProduct',
+          simple: 'SimpleProduct',
+          configurable: 'ConfigurableProduct',
+          downloadable: 'DownloadableProduct',
+          virtual: 'VirtualProduct',
+          grouped: 'GroupedProduct',
+        }
+
         return {
-          __typename: 'SimpleProduct',
+          __typename: typenames[hit.additionalProperties.type_id],
           uid: objectID,
-          sku: hit.additionalProperties.sku,
+          sku: Array.isArray(hit.additionalProperties.sku)
+            ? hit.additionalProperties.sku[0]
+            : hit?.additionalProperties?.sku,
           price_range: mapPriceRange(hit.additionalProperties.price, todo.currency),
           // Mandatory fields, but todo
           rating_summary: 0,
@@ -121,7 +185,7 @@ export const resolver: Resolvers = {
           // custom_attributesV2: null,
           // description: null,
           // gift_message_available: null,
-          // image: hit.additionalProperties.image_url,
+          image: { url: hit.additionalProperties.image_url, label: 'test', position: 0 },
           // media_gallery: [],
           // meta_description: null,
           // meta_keyword: null,
@@ -139,10 +203,11 @@ export const resolver: Resolvers = {
           // special_price: null,
           // special_to_date: null,
           // stock_status: null,
-          // swatch_image: null,
-          // thumbnail: null,
+          small_image: { url: hit.additionalProperties.image_url },
+          swatch_image: hit.additionalProperties.image_url,
+          thumbnail: { url: hit.additionalProperties.image_url },
           // upsell_products: [],
-          // url_key: null,
+          url_key: hit.additionalProperties.url,
           // url_suffix: null,
         }
       })
@@ -153,7 +218,7 @@ export const resolver: Resolvers = {
 
       return {
         items: algoliaItems,
-        aggregations: aggregations,
+        aggregations,
         page_info: { current_page: 1, page_size: 1, total_pages: 1 },
         suggestions: [],
         total_count: 1,
