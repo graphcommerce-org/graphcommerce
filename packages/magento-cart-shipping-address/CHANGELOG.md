@@ -1,5 +1,35 @@
 # Change Log
 
+## 8.1.0
+
+### Minor Changes
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Add company and vat fields to shipping and billing forms
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2307](https://github.com/graphcommerce-org/graphcommerce/pull/2307) [`20cb571`](https://github.com/graphcommerce-org/graphcommerce/commit/20cb57171ae5bff0b86a341ea4db59ea3f4f639a) - Add save in address book checkbox to shipping address form
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2295](https://github.com/graphcommerce-org/graphcommerce/pull/2295) [`0ca6827`](https://github.com/graphcommerce-org/graphcommerce/commit/0ca682793bf7feb0cae2bd776a4eaa2899d980a0) - Fixed shipping address not getting set for logged-in customers with default address
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2300](https://github.com/graphcommerce-org/graphcommerce/pull/2300) [`19adebe`](https://github.com/graphcommerce-org/graphcommerce/commit/19adebe2ff896c65d21543fc9243a36393747e06) - Fixed CustomerAddressForm resetting to a saved address when trying to use a new address
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders.
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - The billing and shipping address of a customer would not be recognized as the same address although they would effectively be the same
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving <FromPersist/> below the form components
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 8.1.0-canary.41
 
 ## 8.1.0-canary.40

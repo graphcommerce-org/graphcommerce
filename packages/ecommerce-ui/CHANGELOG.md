@@ -1,5 +1,22 @@
 # @graphcommerce/ecommerce-ui
 
+## 8.1.0
+
+### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Make sure the TextFieldElement doesn’t give a uncontrolled to controlled warning.
+  Convert SelectElement to useController instead of a separate Controller component.
+  Make sure the original endAdornment is always shown only until the value is valid ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new EmailElement component to make re-use easier
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`d4e693d`](https://github.com/graphcommerce-org/graphcommerce/commit/d4e693d553198c9a1ef398d000ca23d209e6c2ba) - The `<WaitForQueries/>` component now uses the useIsSSR hook which prevents loading spinners when navigating on the client, which make all account/cart/checkout pages faster.
+  ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 8.1.0-canary.41
 
 ## 8.1.0-canary.40
