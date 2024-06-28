@@ -43,7 +43,11 @@ export default AccountDeletePage
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = graphqlSharedClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
-  if (!import.meta.graphCommerce.customerDeleteEnabled) return { notFound: true }
+  if (
+    import.meta.graphCommerce.magentoVersion < 246 ||
+    !import.meta.graphCommerce.customerDeleteEnabled
+  )
+    return { notFound: true }
 
   return {
     props: {

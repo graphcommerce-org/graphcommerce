@@ -130,14 +130,15 @@ function AccountIndexPage() {
                 '&:hover': { background: theme.palette.background.paper },
               })}
             />
-            {import.meta.graphCommerce.customerDeleteEnabled && (
-              <AccountMenuItem
-                href='/account/delete'
-                disableRipple
-                iconSrc={iconBin}
-                title={<Trans id='Delete account' />}
-              />
-            )}
+            {import.meta.graphCommerce.magentoVersion >= 246 &&
+              import.meta.graphCommerce.customerDeleteEnabled && (
+                <AccountMenuItem
+                  href='/account/delete'
+                  disableRipple
+                  iconSrc={iconBin}
+                  title={<Trans id='Delete account' />}
+                />
+              )}
 
             <SignOutForm
               // eslint-disable-next-line react/no-unstable-nested-components
