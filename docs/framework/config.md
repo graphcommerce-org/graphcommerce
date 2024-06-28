@@ -295,6 +295,13 @@ SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
 
 Product filters with better UI for mobile and desktop.
 
+#### productListPaginationVariant: COMPACT | EXTENDED = `COMPACT`
+
+Pagination variant for the product listings.
+
+COMPACT means: "< Page X of Y >"
+EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
+
 #### productRoute: string
 
 By default we route products to /p/[url] but you can change this to /product/[url] if you wish.

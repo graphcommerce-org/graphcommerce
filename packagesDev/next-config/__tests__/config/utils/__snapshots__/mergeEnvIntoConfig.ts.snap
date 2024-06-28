@@ -62,6 +62,7 @@ exports[`traverses a schema and returns a list of env variables that match 1`] =
   "GC_PREVIEW_SECRET",
   "GC_PRODUCT_FILTERS_LAYOUT",
   "GC_PRODUCT_FILTERS_PRO",
+  "GC_PRODUCT_LIST_PAGINATION_VARIANT",
   "GC_PRODUCT_ROUTE",
   "GC_RECENTLY_VIEWED_PRODUCTS",
   "GC_RECENTLY_VIEWED_PRODUCTS_ENABLED",
