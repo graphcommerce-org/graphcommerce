@@ -30,6 +30,7 @@ function mapPriceRange(prices: object, currency: CurrencyEnum): PriceRange {
   }
 }
 
+// Map filters recieved from arguments to algolia facetfilter format
 function mapFiltersForAlgolia(filters: object) {
   const filterArray: object[] = []
 
@@ -148,7 +149,8 @@ export const resolver: Resolvers = {
         attributeList?.items,
       )
 
-      const algoliaItems = filterNonNullableKeys(searchResults?.hits).map((hit) => {
+      // Map algolia results to magento products format
+      const items = filterNonNullableKeys(searchResults?.hits).map((hit) => {
         const { objectID, additionalProperties } = hit
 
         if (!assertAdditional(additionalProperties)) return null
@@ -208,12 +210,12 @@ export const resolver: Resolvers = {
         }
       })
 
-      if (!algoliaItems) {
+      if (!items) {
         return context.m2.Query.products({ root, args, context, info })
       }
 
       return {
-        items: algoliaItems,
+        items,
         aggregations,
         page_info: { current_page: 1, page_size: 1, total_pages: 1 },
         suggestions: [],
