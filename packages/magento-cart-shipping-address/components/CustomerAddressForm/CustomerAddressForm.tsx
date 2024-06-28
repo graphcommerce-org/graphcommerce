@@ -135,7 +135,6 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
 
   return (
     <>
-      <FormPersist form={form} name='CustomerAddressForm' />
       <FormAutoSubmit control={form.control} submit={submit} wait={0} />
       <Box component='form' onSubmit={submit} noValidate sx={sx}>
         <ActionCardListForm
@@ -154,6 +153,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
         <ApolloCartErrorAlert error={error} />
       </Box>
       {formAddressId === -1 && children}
+      <FormPersist form={form} name='CustomerAddressForm' />
     </>
   )
 }

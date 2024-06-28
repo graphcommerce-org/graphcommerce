@@ -31,6 +31,8 @@ export function AddressMultiLine(props: AddressMultiLineProps) {
     city,
     postcode,
     country_code,
+    telephone,
+    vat_id,
     sx = [],
   } = props
   const countryName = useFindCountry(country_code)?.full_name_locale ?? country_code
@@ -55,6 +57,8 @@ export function AddressMultiLine(props: AddressMultiLineProps) {
         {regionName && `${regionName}, `}
         {countryName}
       </div>
+      <div>{telephone}</div>
+      <div>{vat_id}</div>
     </Typography>
   )
 }

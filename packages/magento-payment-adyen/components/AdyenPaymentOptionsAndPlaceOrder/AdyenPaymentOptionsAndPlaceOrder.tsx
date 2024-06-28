@@ -69,7 +69,6 @@ export function HppOptions(props: PaymentOptionsProps) {
    */
   return (
     <form key={key} onSubmit={submit} noValidate>
-      <FormPersist form={form} name={key} persist={['issuer']} storage='localStorage' />
       {conf?.issuers && (
         <FormRow>
           <TextFieldElement
@@ -102,6 +101,7 @@ export function HppOptions(props: PaymentOptionsProps) {
           </TextFieldElement>
         </FormRow>
       )}
+      <FormPersist form={form} name={key} persist={['issuer']} storage='localStorage' />
     </form>
   )
 }

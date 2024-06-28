@@ -59,7 +59,6 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
       className={classes.form}
       sx={[(theme) => ({ pt: theme.spacings.md }), ...(Array.isArray(sx) ? sx : [sx])]}
     >
-      <FormPersist form={form} name='PaymentAgreementsForm' />
       <form noValidate onSubmit={submit} name='cartAgreements'>
         <Box className={classes.formInner} sx={{ typography: 'body1', display: 'inline-block' }}>
           {data?.checkoutAgreements &&
@@ -134,6 +133,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
             })}
         </Box>
       </form>
+      <FormPersist form={form} name='PaymentAgreementsForm' />
     </FormDiv>
   )
 }

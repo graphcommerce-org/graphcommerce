@@ -49,10 +49,10 @@ export function SubscribeToNewsletter(props: CheckoutNewsletterProps) {
 
   return (
     <Box sx={sx}>
-      <FormPersist form={form} name='NewsletterSubscribeForm' />
       <form onSubmit={submit} noValidate>
         <CheckboxElement color='secondary' control={control} name='subscribe' label={label} />
       </form>
+      <FormPersist form={form} name='NewsletterSubscribeForm' />
     </Box>
   )
 }
