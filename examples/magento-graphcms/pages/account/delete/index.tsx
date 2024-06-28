@@ -6,7 +6,6 @@ import { Trans, t } from '@lingui/macro'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
-import { i18n } from '@lingui/core'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -51,7 +50,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
       size: 'max',
-      up: { href: '/account', title: i18n._(/* i18n */ 'Account') },
     },
   }
 }
