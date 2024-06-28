@@ -35,12 +35,8 @@ function mapFiltersForAlgolia(filters: object) {
 
   Object.keys(filters).forEach((value) => {
     const filterValueArray = filters[value]?.in
-    console.log('filtersBem', value)
     for (let i = 0; i < filterValueArray.length; i++) {
       if (filterValueArray[i]) {
-        console.log('pushObject', {
-          facetFilters_Input: { String: `${value}:${filterValueArray[i]}` },
-        })
         filterArray.push({ facetFilters_Input: { String: `${value}:${filterValueArray[i]}` } })
       }
     }
