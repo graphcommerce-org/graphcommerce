@@ -595,6 +595,9 @@ msgstr "Rezensions"
 msgid "Save changes"
 msgstr "Änderungen speichern"
 
+msgid "Save in address book"
+msgstr "Im Adressbuch speichern"
+
 msgid "Save new password"
 msgstr "Neues Passwort speichern"
 

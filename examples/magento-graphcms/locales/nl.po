@@ -595,6 +595,9 @@ msgstr "Reviews"
 msgid "Save changes"
 msgstr "Wijzigingen opslaan"
 
+msgid "Save in address book"
+msgstr "Opslaan in adresboek"
+
 msgid "Save new password"
 msgstr "Sla nieuw wachtwoord op"
 

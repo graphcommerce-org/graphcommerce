@@ -1,4 +1,5 @@
 import {
+  CheckboxElement,
   FormAutoSubmit,
   FormPersist,
   TextFieldElement,
@@ -23,7 +24,7 @@ import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/mage
 import { Form, FormRow } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme } from '@mui/material'
+import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { isCartAddressACustomerAddress } from '../../utils/findCustomerAddressFromCartAddress'
 import { isSameAddress } from '../../utils/isSameAddress'
@@ -146,6 +147,14 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           showValid
         />
       </FormRow>
+      {customerQuery?.customer && (
+        <CheckboxElement
+          control={form.control}
+          name='saveInAddressBook'
+          label={<Trans id='Save in address book' />}
+        />
+      )}
+
       <ApolloCartErrorAlert error={error} />
     </Form>
   )
