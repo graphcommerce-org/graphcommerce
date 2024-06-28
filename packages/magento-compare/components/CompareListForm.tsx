@@ -64,8 +64,8 @@ export function CompareListForm(props: CompareListFormProps) {
   )
   return (
     <CompareFormContext.Provider value={value}>
-      <FormPersist form={form} name='CompareList' />
       {children}
+      <FormPersist form={form} name='CompareList' />
     </CompareFormContext.Provider>
   )
 }

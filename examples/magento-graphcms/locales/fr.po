@@ -13,6 +13,10 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#. js-lingui-generated-id
+msgid "Business"
+msgstr "Entreprise"
+
 msgid "<0>{name}</0> has been added to your comparison!"
 msgstr "<0>{name}</0> a été ajouté à votre comparatif !"
 
@@ -141,6 +145,9 @@ msgstr "Effacer tous les filtres"
 
 msgid "Close"
 msgstr "Fermer"
+
+msgid "Company name"
+msgstr "Nom de l'entreprise"
 
 msgid "Compare"
 msgstr "Comparez"
@@ -757,6 +764,9 @@ msgstr "Essayez un autre produit"
 msgid "Try a different search"
 msgstr "Essayez une autre recherche"
 
+msgid "VAT Number"
+msgstr "Numéro de TVA"
+
 msgid "View Product"
 msgstr "Voir le produit"
 
@@ -918,6 +928,10 @@ msgstr "retournée"
 
 msgid "shipped"
 msgstr "expédiée"
+
+#. js-lingui-generated-id
+msgid "Private"
+msgstr "Privé"
 
 msgid "{count} Per page"
 msgstr "{count} Par page"

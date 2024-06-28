@@ -22,6 +22,8 @@ export function findCustomerAddressFromCartAddress<CustomerAddress extends Custo
         customerAddr.country_code === cartAddress.country.code,
         customerAddr.region?.region_code === cartAddress.region?.code,
         customerAddr.telephone === cartAddress.telephone,
+        customerAddr.company === cartAddress.company,
+        customerAddr.vat_id === cartAddress.vat_id,
       ].filter((v) => !v).length === 0,
   )
 }

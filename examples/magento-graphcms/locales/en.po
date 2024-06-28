@@ -13,6 +13,10 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#. js-lingui-generated-id
+msgid "Business"
+msgstr "Business"
+
 msgid "<0>{name}</0> has been added to your comparison!"
 msgstr "<0>{name}</0> has been added to your comparison!"
 
@@ -141,6 +145,9 @@ msgstr "Clear all filters"
 
 msgid "Close"
 msgstr "Close"
+
+msgid "Company name"
+msgstr "Company name"
 
 msgid "Compare"
 msgstr "Compare"
@@ -757,6 +764,9 @@ msgstr "Try a different product"
 msgid "Try a different search"
 msgstr "Try a different search"
 
+msgid "VAT Number"
+msgstr "VAT Number"
+
 msgid "View Product"
 msgstr "View Product"
 
@@ -918,6 +928,10 @@ msgstr "returned"
 
 msgid "shipped"
 msgstr "shipped"
+
+#. js-lingui-generated-id
+msgid "Private"
+msgstr "Private"
 
 msgid "{count} Per page"
 msgstr "{count} Per page"

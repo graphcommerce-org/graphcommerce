@@ -19,6 +19,7 @@ import {
   CustomerDocument,
   NameFields,
   useCustomerQuery,
+  CompanyFields,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Form, FormRow } from '@graphcommerce/next-ui'
@@ -84,7 +85,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
 
   const form = useFormGqlMutationCart(Mutation, {
     defaultValues: isCartAddressACustomerAddress(customerQuery?.customer?.addresses, currentAddress)
-      ? { saveInAddressBook: true }
+      ? { saveInAddressBook: true, isCompany: false }
       : {
           // todo(paales): change to something more sustainable
           firstname: currentAddress?.firstname ?? customerQuery?.customer?.firstname ?? '',
@@ -93,6 +94,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
             currentAddress?.telephone !== '000 - 000 0000' ? currentAddress?.telephone : '',
           city: currentAddress?.city ?? '',
           company: currentAddress?.company ?? '',
+          vatId: currentAddress?.vat_id ?? '',
           postcode: currentAddress?.postcode ?? '',
           street: currentAddress?.street?.[0] ?? '',
           houseNumber: currentAddress?.street?.[1] ?? '',
@@ -100,6 +102,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           regionId: currentAddress?.region?.region_id ?? null,
           countryCode: currentAddress?.country.code ?? shopCountry, // todo: replace by the default shipping country of the store + geoip,
           saveInAddressBook: true,
+          isCompany: Boolean(currentAddress?.company || currentAddress?.vat_id),
         },
     mode: 'onChange',
     experimental_useV2: true,
@@ -130,9 +133,11 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         control={form.control}
         name={['postcode', 'countryCode', 'regionId']}
       />
-      <FormPersist form={form} name='ShippingAddressForm' />
+
+      <CompanyFields form={form} />
       <NameFields form={form} />
       <AddressFields form={form} />
+
       <FormRow>
         <TextFieldElement
           control={form.control}
@@ -156,6 +161,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
       )}
 
       <ApolloCartErrorAlert error={error} />
+      <FormPersist form={form} name='ShippingAddressForm' />
     </Form>
   )
 })

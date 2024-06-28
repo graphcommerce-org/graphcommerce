@@ -7,16 +7,15 @@ import {
   FormActions,
   FormDivider,
   FormRow,
-  InputCheckmark,
   Button,
   MessageSnackbar,
 } from '@graphcommerce/next-ui'
 import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { TextField } from '@mui/material'
 import { useRouter } from 'next/router'
 import { AddressFields } from '../AddressFields/AddressFields'
+import { CompanyFields } from '../CompanyFields'
 import { NameFields } from '../NameFields/NameFields'
 import { CreateCustomerAddressDocument } from './CreateCustomerAddress.gql'
 
@@ -39,6 +38,11 @@ export function CreateCustomerAddressForm() {
           ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)
           ?.available_regions?.find((r) => r?.id === formData.region.region_id)
 
+        if (!formData.isCompany) {
+          formData.company = ''
+          formData.vatId = ''
+        }
+
         return {
           ...formData,
           region:
@@ -57,7 +61,7 @@ export function CreateCustomerAddressForm() {
     { errorPolicy: 'all' },
   )
 
-  const { handleSubmit, formState, required, error, control, valid, data } = form
+  const { handleSubmit, formState, required, error, control, data } = form
   const submitHandler = handleSubmit((_, e) => {
     if (!formState.errors) e?.target.reset()
   })
@@ -65,6 +69,7 @@ export function CreateCustomerAddressForm() {
   return (
     <>
       <Form onSubmit={submitHandler} noValidate>
+        <CompanyFields form={form} />
         <NameFields form={form} prefix />
         <AddressFields form={form} name={{ regionId: 'region.region_id' }} />
 
@@ -86,8 +91,6 @@ export function CreateCustomerAddressForm() {
             showValid
           />
         </FormRow>
-
-        <FormDivider />
 
         <FormActions>
           <Button

@@ -97,7 +97,7 @@ function ShippingPage() {
               <>
                 {(customerAddresses.data?.customer?.addresses?.length ?? 0) >= 1 ? (
                   <CustomerAddressForm step={2} sx={(theme) => ({ mt: theme.spacings.lg })}>
-                    <ShippingAddressForm ignoreCache step={3} />
+                    <ShippingAddressForm step={3} />
                   </CustomerAddressForm>
                 ) : (
                   <>

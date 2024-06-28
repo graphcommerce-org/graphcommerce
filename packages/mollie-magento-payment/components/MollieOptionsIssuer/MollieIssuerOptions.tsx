@@ -26,13 +26,6 @@ export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
   return (
     <>
       <form onSubmit={submit} noValidate>
-        <FormPersist
-          // Since the issuer isn't retrievable from Magento we persist this value.
-          form={form}
-          name={`PaymentMethodOptions_${code}`}
-          persist={['issuer']}
-          storage='localStorage'
-        />
         <FormRow>
           <SelectElement
             control={control}
@@ -53,6 +46,13 @@ export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
         </FormRow>
       </form>
       {children}
+      <FormPersist
+          // Since the issuer isn't retrievable from Magento we persist this value.
+          form={form}
+          name={`PaymentMethodOptions_${code}`}
+          persist={['issuer']}
+          storage='localStorage'
+        />
     </>
   )
 }
