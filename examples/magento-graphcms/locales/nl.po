@@ -22,6 +22,10 @@ msgid "I understand that my account will be deleted and this can not be undone."
 msgstr "Ik begrijp dat mijn account zal worden verwijderd en dat dit niet ongedaan kan worden gemaakt."
 
 #. js-lingui-generated-id
+msgid "We couldn't find any results"
+msgstr "We konden geen resultaten vinden"
+
+#. js-lingui-generated-id
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> is toegevoegd aan je winkelwagen!"
 
@@ -985,6 +989,10 @@ msgstr "verzonden"
 #. js-lingui-generated-id
 msgid "The given email does not match the account email"
 msgstr "Het opgegeven e-mailadres komt niet overeen met het account e-mailadres"
+
+#. js-lingui-generated-id
+msgid "Clear current filters"
+msgstr "Huidige filters wissen"
 
 #. js-lingui-generated-id
 msgid "Private"

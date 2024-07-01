@@ -60,13 +60,11 @@ function treeWalkFilter<U extends TreeItem>(
 }
 
 function isParent<U extends TreeItem>(item: U, parent: U): boolean {
-  let p: U | undefined = parent.parent as U | undefined
-
+  let p = parent.parent
   while (p) {
     if (p.uid === item.uid) return true
-    p = p.parent as U | undefined
+    p = p.parent
   }
-
   return false
 }
 
@@ -81,16 +79,18 @@ export function ProductFiltersProCategorySectionSearch(
   props: ProductFiltersProCategorySectionSearchProps,
 ) {
   const { menu } = props
-  const { form, submit } = useProductFiltersPro()
+  const { form, submit, params, aggregations, appliedAggregations } = useProductFiltersPro()
+  const currentFilter = params.filters.category_uid?.in
 
-  const name = `filters.category_uid.in` as const
-  const currentFilter = useWatch({ control: form.control, name })
-
-  const treeWithCounts = useMemo(() => {
+  const categoryTree = useMemo(() => {
     const rootCategory = menu?.items?.[0]
     if (!rootCategory) return []
 
     let tree: TreeItem | undefined = menuItemToTreeItem(rootCategory, undefined)
+
+    const currentCounts = appliedAggregations?.find(
+      (a) => a?.attribute_code === 'category_uid',
+    )?.options
 
     const activeItem = treeFind(tree, (item) => currentFilter?.includes(item.uid) ?? false) ?? tree
 
@@ -110,31 +110,36 @@ export function ProductFiltersProCategorySectionSearch(
       return false
     })
 
-    return treeFlatMap<TreeItem, CategoryTreeItem>(tree, (item, level) => ({
-      uid: item.uid,
-      title: item.name,
-      value: item.url_path ?? '',
-      selected: currentFilter?.includes(item.uid) ?? false,
-      indent: level,
-      count: null,
-      // count: currentCounts.find((i) => item.uid === i.value)?.count ?? null,
-      isBack: isParent(item, activeItem),
-    }))
-  }, [currentFilter, menu?.items])
+    return treeFlatMap<TreeItem, CategoryTreeItem>(tree, (item, level) => {
+      const count = null // currentCounts?.find((i) => item.uid === i?.value)?.count ?? null
 
-  if (!treeWithCounts) return null
+      // if (item.is_anchor) {
+      //   console.log(item.children)
+      // } else {
+      // }
+
+      return {
+        uid: item.uid,
+        title: item.name,
+        value: item.url_path ?? '',
+        selected: currentFilter?.includes(item.uid) ?? false,
+        indent: level - 1,
+        count,
+        isBack: isParent(item, activeItem),
+      }
+    }).slice(1)
+  }, [appliedAggregations, currentFilter, menu?.items])
+
+  if (!categoryTree) return null
 
   return (
     <ProductFiltersProCategoryAccordion
-      categoryTree={treeWithCounts}
+      categoryTree={categoryTree}
       {...props}
       onChange={async (item) => {
         form.setValue('filters', {
           category_uid: {
-            in:
-              item.uid === currentFilter?.[0] || item.uid === treeWithCounts[0].uid
-                ? null
-                : [item?.uid],
+            in: item.uid === currentFilter?.[0] ? null : [item?.uid],
           },
         })
 

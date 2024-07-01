@@ -42,7 +42,7 @@ export function useProductList<
             ?.token,
         },
       }
-      await prefetchProductList(vars, next, result.client)
+      await prefetchProductList(vars, next, result.client, true)
     },
   )
 

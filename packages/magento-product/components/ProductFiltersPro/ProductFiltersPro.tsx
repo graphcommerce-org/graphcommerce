@@ -46,6 +46,11 @@ type FilterFormContextProps = DataProps & {
       defaultValues?: DeepPartial<ProductFilterParams>,
     ) => Subscription
   }
+  /**
+   * Parameters of the currently displayed items.
+   *
+   * To get active form values use `useWatch`.
+   */
   params: ProductFilterParams
   submit: (e?: BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>
 }

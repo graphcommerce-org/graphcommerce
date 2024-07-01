@@ -30,7 +30,9 @@ import { i18n } from '@lingui/core'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
-  CategoryFilterLayout,
+  ProductListLayoutClassic,
+  ProductListLayoutDefault,
+  ProductListLayoutSidebar,
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
@@ -76,7 +78,6 @@ function CategoryPage(props: CategoryProps) {
           {category?.name ?? page.title}
         </LayoutTitle>
       </LayoutHeader>
-
       {!isCategory && !isLanding && (
         <Container maxWidth={false}>
           <LayoutTitle variant='h1' gutterTop gutterBottom>
@@ -84,7 +85,6 @@ function CategoryPage(props: CategoryProps) {
           </LayoutTitle>
         </Container>
       )}
-
       {isCategory && isLanding && (
         <>
           {import.meta.graphCommerce.breadcrumbs && (
@@ -106,16 +106,39 @@ function CategoryPage(props: CategoryProps) {
           />
         </>
       )}
-
       {isCategory && !isLanding && (
-        <CategoryFilterLayout
-          {...productList}
-          title={category.name ?? page.title ?? ''}
-          id={category.uid}
-          category={category}
-        />
+        <>
+          {import.meta.graphCommerce.productFiltersPro &&
+            import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
+              <ProductListLayoutSidebar
+                {...productList}
+                key={category.uid}
+                title={category.name ?? page.title ?? ''}
+                id={category.uid}
+                category={category}
+              />
+            )}
+          {import.meta.graphCommerce.productFiltersPro &&
+            import.meta.graphCommerce.productFiltersLayout !== 'SIDEBAR' && (
+              <ProductListLayoutDefault
+                {...productList}
+                key={category.uid}
+                title={category.name ?? page.title ?? ''}
+                id={category.uid}
+                category={category}
+              />
+            )}
+          {!import.meta.graphCommerce.productFiltersPro && (
+            <ProductListLayoutClassic
+              {...productList}
+              key={category.uid}
+              title={category.name ?? page.title ?? ''}
+              id={category.uid}
+              category={category}
+            />
+          )}
+        </>
       )}
-
       {page && (
         <RowRenderer
           content={page.content}

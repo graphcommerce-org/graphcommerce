@@ -20,6 +20,7 @@ export function ProductListSuggestions(props: ProductListSuggestionsProps) {
     <ListFormat listStyle='short' type='disjunction'>
       {filterNonNullableKeys(products.suggestions).map((s) => (
         <Link
+          key={s.search}
           href={productListLinkFromFilter({ ...params, search: s.search })}
           onClick={() => {
             form.setValue('currentPage', 1)

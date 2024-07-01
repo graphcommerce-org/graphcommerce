@@ -1,6 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
-import { CategoryTreeItem, MenuQueryFragment } from '@graphcommerce/magento-category'
+import { MenuQueryFragment } from '@graphcommerce/magento-category'
+import { SignedInMaskProvider } from '@graphcommerce/magento-customer'
 import {
   ProductListDocument,
   extractUrlQuery,
@@ -15,17 +16,20 @@ import {
 import {
   CategorySearchDocument,
   CategorySearchQuery,
-  SearchContext,
+  ProductFiltersProSearchField,
   productListApplySearchDefaults,
+  useProductList,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps } from '@graphcommerce/next-ui'
+import { GetStaticProps, LayoutHeader } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import {
+  ProductListLayoutClassic,
+  ProductListLayoutDefault,
+  ProductListLayoutSidebar,
   LayoutDocument,
   LayoutNavigation,
   LayoutNavigationProps,
-  SearchFilterLayout,
 } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
@@ -41,7 +45,8 @@ export type GetPageStaticProps = GetStaticProps<
 >
 
 function SearchResultPage(props: SearchResultProps) {
-  const { products, params, filters, filterTypes, menu } = props
+  const productList = useProductList(props)
+  const { params, menu } = productList
   const search = params.url.split('/')[1]
 
   return (
@@ -55,16 +60,29 @@ function SearchResultPage(props: SearchResultProps) {
         metaRobots={['noindex']}
         canonical='/search'
       />
-
-      <SearchContext>
-        <SearchFilterLayout
-          params={params}
-          filters={filters}
-          products={products}
-          filterTypes={filterTypes}
-          menu={menu}
+      <LayoutHeader floatingMd switchPoint={0}>
+        <ProductFiltersProSearchField
+          variant='outlined'
+          autoComplete='off'
+          size='small'
+          placeholder={i18n._(/* i18n*/ `Search all products...`)}
+          sx={{ width: '81vw' }}
         />
-      </SearchContext>
+      </LayoutHeader>
+
+      <SignedInMaskProvider mask={productList.mask}>
+        {import.meta.graphCommerce.productFiltersPro &&
+          import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
+            <ProductListLayoutSidebar {...productList} menu={menu} />
+          )}
+        {import.meta.graphCommerce.productFiltersPro &&
+          import.meta.graphCommerce.productFiltersLayout !== 'SIDEBAR' && (
+            <ProductListLayoutDefault {...productList} menu={menu} />
+          )}
+        {!import.meta.graphCommerce.productFiltersPro && (
+          <ProductListLayoutClassic {...productList} menu={menu} />
+        )}
+      </SignedInMaskProvider>
     </>
   )
 }

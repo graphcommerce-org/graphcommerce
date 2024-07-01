@@ -19,10 +19,13 @@ import {
 
 const productListQueries: Array<Promise<ApolloQueryResult<ProductListQuery>>> = []
 
+type Next = Parameters<NonNullable<FilterFormProviderProps['handleSubmit']>>[1]
+
 export const prefetchProductList = async (
   variables: ProductListQueryVariables,
-  next: (shallow?: boolean, replace?: boolean) => Promise<void>,
+  next: Next,
   client: ApolloClient<unknown>,
+  shallow: boolean,
 ) => {
   showPageLoadIndicator.set(true)
 
@@ -54,8 +57,10 @@ export const prefetchProductList = async (
   if (productListQueries.length === 0) showPageLoadIndicator.set(false)
 
   if (includes) {
+    // todo: When navigating a category, it should now be a shallow route
+
     // If the resolved request  is still in the array, it may be rendered (URL may be updated)
-    await next(true)
+    await next(shallow)
   }
 }
 
@@ -92,7 +97,10 @@ export function useProductList<
         },
       }
 
-      await prefetchProductList(vars, next, result.client)
+      const shallow =
+        JSON.stringify(vars.filters?.category_uid) !== JSON.stringify(params?.filters.category_uid)
+
+      await prefetchProductList(vars, next, result.client, shallow)
     },
   )
 

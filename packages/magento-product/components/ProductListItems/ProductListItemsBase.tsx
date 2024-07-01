@@ -39,7 +39,7 @@ export type ProductItemsGridProps = {
   loadingEager?: number
   title: string
   sx?: BoxProps['sx']
-  calcColumns?: (theme: Theme) => ColumnsConfig
+  columns?: ((theme: Theme) => ColumnsConfig) | ColumnsConfig
 } & Pick<ProductListItemProps, 'onClick' | 'titleComponent'> &
   ComponentState
 
@@ -57,28 +57,27 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
     size = 'normal',
     titleComponent,
     onClick,
-    calcColumns,
+    columns,
   } = props
 
   const theme = useTheme()
 
   const totalWidth = `calc(100vw - ${theme.page.horizontal} * 2)`
   const gap = theme.spacings.md
-  let columns = calcColumns?.(theme) ?? {
-    xs: { count: 2 },
-    md: { count: 3 },
-    lg: { count: 4 },
-  }
 
-  if (!columns && size === 'small') {
-    columns = {
-      xs: { gap: theme.spacings.md, count: 2 },
-      md: { gap: theme.spacings.md, count: 3 },
-      lg: { totalWidth: `${theme.breakpoints.values.xl}px`, gap: theme.spacings.md, count: 4 },
+  let columnConfig = typeof columns === 'function' ? columns(theme) : columns
+
+  if (!columnConfig && size === 'small') {
+    columnConfig = {
+      xs: { count: 2 },
+      md: { count: 3 },
+      lg: { count: 4, totalWidth: `${theme.breakpoints.values.xl}px` },
     }
   }
 
-  ///
+  if (!columnConfig) {
+    columnConfig = { xs: { count: 2 }, md: { count: 3 }, lg: { count: 4 } }
+  }
 
   const classes = withState({ size })
 
@@ -87,16 +86,14 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
       <Box
         className={classes.root}
         sx={[
-          ...Object.entries(columns ?? {}).map(([key, column]) => ({
+          ...Object.entries(columnConfig).map(([key, column]) => ({
             [theme.breakpoints.up(key as Breakpoint)]: {
               gap: column.gap ?? gap,
               // width: totalWidth,
               gridTemplateColumns: `repeat(${column.count}, 1fr)`,
             },
           })),
-          (theme) => ({
-            display: 'grid',
-          }),
+          { display: 'grid' },
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       >
@@ -110,7 +107,7 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
               <RenderType
                 renderer={renderers}
                 sizes={Object.fromEntries(
-                  Object.entries(columns ?? {}).map(([key, column]) => {
+                  Object.entries(columnConfig ?? {}).map(([key, column]) => {
                     const totalW = column.totalWidth ?? totalWidth
                     const columnGap = column.gap ?? gap
                     return [
