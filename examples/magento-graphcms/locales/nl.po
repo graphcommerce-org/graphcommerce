@@ -14,8 +14,24 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-generated-id
+msgid "Doing so will remove all your data including order history and saved shipping / billing addresses."
+msgstr "Dit zal al uw gegevens verwijderen, inclusief bestelgeschiedenis en opgeslagen verzend-/factuuradressen."
+
+#. js-lingui-generated-id
+msgid "I understand that my account will be deleted and this can not be undone."
+msgstr "Ik begrijp dat mijn account zal worden verwijderd en dat dit niet ongedaan kan worden gemaakt."
+
+#. js-lingui-generated-id
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> is toegevoegd aan je winkelwagen!"
+
+#. js-lingui-generated-id
+msgid "Are you sure you want to delete your account?"
+msgstr "Weet u zeker dat u uw account wilt verwijderen?"
+
+#. js-lingui-generated-id
+msgid "Business"
+msgstr "Zakelijk"
 
 msgid "<0>{name}</0> has been added to your comparison!"
 msgstr "<0>{name}</0> is toegevoegd aan je vergelijking!"
@@ -28,6 +44,12 @@ msgstr "Boven <0/>"
 
 msgid "Account"
 msgstr "Account"
+
+msgid "Account confirmation"
+msgstr "Account bevestiging"
+
+msgid "Account confirmed. You can now proceed to sign in."
+msgstr "Account bevestigd. U kunt nu doorgaan met inloggen."
 
 msgid "Add address"
 msgstr "Adres toevoegen"
@@ -131,6 +153,9 @@ msgstr "Alle filters wissen"
 msgid "Close"
 msgstr "Sluiten"
 
+msgid "Company name"
+msgstr "Bedrijfsnaam"
+
 msgid "Compare"
 msgstr "Vergelijk"
 
@@ -151,6 +176,9 @@ msgstr "Bevestig nieuwe email"
 
 msgid "Confirm password"
 msgstr "Bevestig wachtwoord"
+
+msgid "Confirm registration"
+msgstr "Registratie bevestigen"
 
 msgid "Confirmation + Track & trace"
 msgstr "Bevestiging + Track & trace"
@@ -197,11 +225,18 @@ msgstr "Huidige email"
 msgid "Customer Service"
 msgstr "Klantenservice"
 
+#. js-lingui-generated-id
+msgid "Account deletion successful"
+msgstr "Account verwijdering succesvol"
+
 msgid "Dark Mode"
 msgstr "Donkere modus"
 
 msgid "Decrease"
 msgstr "Verminderen"
+
+msgid "Delete account"
+msgstr "Verwijder account"
 
 msgid "Delete this address"
 msgstr "Verwijder dit adres"
@@ -265,6 +300,9 @@ msgstr "{0, plural, one {<0>{1}</0> is toegevoegd aan je winkelwagen} two {<1>{2
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Vul uw e-mailadres in om in te loggen of maak een account aan"
+
+msgid "Fill in your email to confirm registration"
+msgstr "Vul je e-mailadres in om de registratie te bevestigen"
 
 msgid "Fill in your new password, confirm it and click on the save button."
 msgstr "Vul uw nieuwe wachtwoord in, bevestig het en klik op de opslaan knop."
@@ -504,9 +542,6 @@ msgstr "Persoonlijke details"
 msgid "Place order"
 msgstr "Plaats bestelling"
 
-msgid "Please check your inbox to validate your email ({email})"
-msgstr "Controleer uw inbox om uw e-mailadres te valideren ({email})"
-
 msgid "Please enter a valid email address"
 msgstr "Vul een geldig e-mailadres in"
 
@@ -559,6 +594,9 @@ msgstr "Recent bekeken producten"
 msgid "Region"
 msgstr "Regio"
 
+msgid "Registration successful. Please check your inbox to confirm your email address ({email})"
+msgstr "Registratie succesvol. Controleer uw inbox om uw e-mailadres te bevestigen ({email})"
+
 msgid "Relevance"
 msgstr "Relevantie"
 
@@ -594,6 +632,9 @@ msgstr "Reviews"
 
 msgid "Save changes"
 msgstr "Wijzigingen opslaan"
+
+msgid "Save in address book"
+msgstr "Opslaan in adresboek"
 
 msgid "Save new password"
 msgstr "Sla nieuw wachtwoord op"
@@ -762,6 +803,9 @@ msgstr "Probeer een andere zoekopdracht of <0>verwijder huidige filters</0>"
 msgid "Try a different search"
 msgstr "Probeer een andere zoekopdracht"
 
+msgid "VAT Number"
+msgstr "BTW-nummer"
+
 msgid "View Product"
 msgstr "Bekijk product"
 
@@ -821,6 +865,9 @@ msgstr "U reviewt {0}"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "U kunt nu <0>opnieuw inloggen</0>"
+
+msgid "You can only confirm you account by clicking on the link in your email."
+msgstr "U kunt uw account alleen bevestigen door op de link in uw e-mail te klikken."
 
 msgid "You can track your order status and much more!"
 msgstr "U kunt uw bestelstatus bijhouden en veel meer!"
@@ -885,8 +932,16 @@ msgstr "Uw sessie is verlopen"
 msgid "Your wishlist is empty"
 msgstr "Uw verlanglijst is leeg"
 
+#. js-lingui-generated-id
+msgid "Delete account"
+msgstr "Verwijder account"
+
 msgid "Zip code or city"
 msgstr "Postcode of stad"
+
+#. js-lingui-generated-id
+msgid "Return to home"
+msgstr "Terug naar home"
 
 #. js-lingui-generated-id
 msgid "Add to Cart"
@@ -926,6 +981,14 @@ msgstr "terug gestuurd"
 
 msgid "shipped"
 msgstr "verzonden"
+
+#. js-lingui-generated-id
+msgid "The given email does not match the account email"
+msgstr "Het opgegeven e-mailadres komt niet overeen met het account e-mailadres"
+
+#. js-lingui-generated-id
+msgid "Private"
+msgstr "Privé"
 
 msgid "{count} Per page"
 msgstr "{count} Per pagina"

@@ -160,13 +160,13 @@ export type GraphCommerceConfig = {
    */
   crossSellsRedirectItems?: InputMaybe<Scalars['Boolean']['input']>;
   /**
-   * Due to a limitation in the GraphQL API of Magento 2, we need to know if the
-   * customer requires email confirmation.
-   *
-   * This value should match Magento 2's configuration value for
-   * `customer/create_account/confirm` and should be removed once we can query
+   * Enables company fields inside the checkout:
+   * - Company name
+   * - VAT ID
    */
-  customerRequireEmailConfirmation?: InputMaybe<Scalars['Boolean']['input']>;
+  customerCompanyFieldsEnable?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Enable customer account deletion through the account section */
+  customerDeleteEnabled?: InputMaybe<Scalars['Boolean']['input']>;
   dataLayer?: InputMaybe<DatalayerConfig>;
   /** Debug configuration for GraphCommerce */
   debug?: InputMaybe<GraphCommerceDebugConfig>;
@@ -277,6 +277,12 @@ export type GraphCommerceConfig = {
    * - https://magento2.test/graphql
    */
   magentoEndpoint: Scalars['String']['input'];
+  /**
+   * Version of the Magento backend.
+   *
+   * Values: 245, 246, 247 for Magento 2.4.5, 2.4.6, 2.4.7 respectively.
+   */
+  magentoVersion: Scalars['Int']['input'];
   /** To enable next.js' preview mode, configure the secret you'd like to use. */
   previewSecret?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -287,6 +293,13 @@ export type GraphCommerceConfig = {
   productFiltersLayout?: InputMaybe<ProductFiltersLayout>;
   /** Product filters with better UI for mobile and desktop. */
   productFiltersPro?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
+   * Pagination variant for the product listings.
+   *
+   * COMPACT means: "< Page X of Y >"
+   * EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
+   */
+  productListPaginationVariant?: InputMaybe<PaginationVariant>;
   /**
    * By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
    *
@@ -347,6 +360,12 @@ export type GraphCommerceStorefrontConfig = {
   canonicalBaseUrl?: InputMaybe<Scalars['String']['input']>;
   /** Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax. */
   cartDisplayPricesInclTax?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
+   * Enables company fields inside the checkout:
+   * - Company name
+   * - VAT ID
+   */
+  customerCompanyFieldsEnable?: InputMaybe<Scalars['Boolean']['input']>;
   /**
    * There can only be one entry with defaultLocale set to true.
    * - If there are more, the first one is used.
@@ -410,6 +429,10 @@ export type MagentoConfigurableVariantValues = {
   url?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type PaginationVariant =
+  | 'COMPACT'
+  | 'EXTENDED';
+
 export type ProductFiltersLayout =
   | 'DEFAULT'
   | 'SIDEBAR';
@@ -446,6 +469,8 @@ export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny
 
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
+export const PaginationVariantSchema = z.enum(['COMPACT', 'EXTENDED']);
+
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
 export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM']);
@@ -467,7 +492,8 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
     crossSellsHideCartItems: z.boolean().default(false).nullish(),
     crossSellsRedirectItems: z.boolean().default(false).nullish(),
-    customerRequireEmailConfirmation: z.boolean().nullish(),
+    customerCompanyFieldsEnable: z.boolean().nullish(),
+    customerDeleteEnabled: z.boolean().nullish(),
     dataLayer: DatalayerConfigSchema().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().default(true).nullish(),
@@ -482,9 +508,11 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     hygraphWriteAccessToken: z.string().nullish(),
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
+    magentoVersion: z.number(),
     previewSecret: z.string().nullish(),
     productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
     productFiltersPro: z.boolean().nullish(),
+    productListPaginationVariant: PaginationVariantSchema.nullish(),
     productRoute: z.string().nullish(),
     recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
     robotsAllow: z.boolean().nullish(),
@@ -508,6 +536,7 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
   return z.object({
     canonicalBaseUrl: z.string().nullish(),
     cartDisplayPricesInclTax: z.boolean().nullish(),
+    customerCompanyFieldsEnable: z.boolean().nullish(),
     defaultLocale: z.boolean().nullish(),
     domain: z.string().nullish(),
     googleAnalyticsId: z.string().nullish(),

@@ -42,12 +42,15 @@ export function CartTotals(props: CartTotalsProps) {
   const { shipping_addresses, prices } = data.cart
   const shippingMethod = shipping_addresses?.[0]?.selected_shipping_method
 
-  const shippingMethodPrices = shipping_addresses?.[0]?.available_shipping_methods?.find(
-    (avail) =>
-      (shippingMethod?.amount?.value ?? 0) > 0 &&
-      avail?.carrier_code === shippingMethod?.carrier_code &&
-      avail?.method_code === shippingMethod?.method_code,
-  )
+  const shippingMethodPrices =
+    import.meta.graphCommerce.magentoVersion >= 246
+      ? shippingMethod
+      : shipping_addresses?.[0]?.available_shipping_methods?.find(
+          (avail) =>
+            (shippingMethod?.amount?.value ?? 0) > 0 &&
+            avail?.carrier_code === shippingMethod?.carrier_code &&
+            avail?.method_code === shippingMethod?.method_code,
+        )
 
   return (
     <Box

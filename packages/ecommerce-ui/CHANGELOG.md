@@ -1,5 +1,36 @@
 # @graphcommerce/ecommerce-ui
 
+## 8.1.0-canary.41
+
+## 8.1.0-canary.40
+
+## 8.1.0-canary.39
+
+## 8.1.0-canary.38
+
+## 8.1.0-canary.37
+
+## 8.1.0-canary.36
+
+## 8.1.0-canary.35
+
+### Patch Changes
+
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new EmailElement component to make re-use easier
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.34
+
+## 8.1.0-canary.33
+
+## 8.1.0-canary.32
+
+## 8.1.0-canary.31
+
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
 ## 8.1.0-canary.28
 
 ## 8.1.0-canary.27

@@ -7,6 +7,7 @@ export const demoConfig: PartialDeep<GraphCommerceConfig, { recurseIntoArrays: t
   canonicalBaseUrl: 'https://graphcommerce.vercel.app',
   hygraphEndpoint: 'https://eu-central-1.cdn.hygraph.com/content/ckhx7xadya6xs01yxdujt8i80/master',
   magentoEndpoint: 'https://backend.reachdigital.dev/graphql',
+  magentoVersion: 246,
   storefront: [
     { locale: 'en', magentoStoreCode: 'en_US', defaultLocale: true },
     {
@@ -37,6 +38,7 @@ export const demoConfig: PartialDeep<GraphCommerceConfig, { recurseIntoArrays: t
   ],
   productFiltersPro: true,
   productFiltersLayout: 'DEFAULT',
+  productListPaginationVariant: 'COMPACT',
   compareVariant: 'ICON',
   robotsAllow: false,
 
@@ -48,4 +50,5 @@ export const demoConfig: PartialDeep<GraphCommerceConfig, { recurseIntoArrays: t
   configurableVariantValues: { url: true, content: true, gallery: true },
   recentlyViewedProducts: { enabled: true, maxCount: 20 },
   breadcrumbs: false,
+  customerDeleteEnabled: true,
 }

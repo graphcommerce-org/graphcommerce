@@ -14,8 +14,24 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-generated-id
+msgid "Doing so will remove all your data including order history and saved shipping / billing addresses."
+msgstr "Doing so will remove all your data including order history and saved shipping / billing addresses."
+
+#. js-lingui-generated-id
+msgid "I understand that my account will be deleted and this can not be undone."
+msgstr "I understand that my account will be deleted and this can not be undone."
+
+#. js-lingui-generated-id
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> has been added to your shopping cart!"
+
+#. js-lingui-generated-id
+msgid "Are you sure you want to delete your account?"
+msgstr "Are you sure you want to delete your account?"
+
+#. js-lingui-generated-id
+msgid "Business"
+msgstr "Business"
 
 msgid "<0>{name}</0> has been added to your comparison!"
 msgstr "<0>{name}</0> has been added to your comparison!"
@@ -28,6 +44,12 @@ msgstr "Above <0/>"
 
 msgid "Account"
 msgstr "Account"
+
+msgid "Account confirmation"
+msgstr "Account confirmation"
+
+msgid "Account confirmed. You can now proceed to sign in."
+msgstr "Account confirmed. You can now proceed to sign in."
 
 msgid "Add address"
 msgstr "Add address"
@@ -131,6 +153,9 @@ msgstr "Clear all filters"
 msgid "Close"
 msgstr "Close"
 
+msgid "Company name"
+msgstr "Company name"
+
 msgid "Compare"
 msgstr "Compare"
 
@@ -151,6 +176,9 @@ msgstr "Confirm new email"
 
 msgid "Confirm password"
 msgstr "Confirm password"
+
+msgid "Confirm registration"
+msgstr "Confirm registration"
 
 msgid "Confirmation + Track & trace"
 msgstr "Confirmation + Track & trace"
@@ -197,11 +225,18 @@ msgstr "Current email"
 msgid "Customer Service"
 msgstr "Customer Service"
 
+#. js-lingui-generated-id
+msgid "Account deletion successful"
+msgstr "Account deletion successful"
+
 msgid "Dark Mode"
 msgstr "Dark Mode"
 
 msgid "Decrease"
 msgstr "Decrease"
+
+msgid "Delete account"
+msgstr "Delete account"
 
 msgid "Delete this address"
 msgstr "Delete this address"
@@ -265,6 +300,9 @@ msgstr "{0, plural, one {<0>{1}</0> has been added to your shopping cart} two {<
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Fill in your e-mail to login or create an account"
+
+msgid "Fill in your email to confirm registration"
+msgstr "Fill in your email to confirm registration"
 
 msgid "Fill in your new password, confirm it and click on the save button."
 msgstr "Fill in your new password, confirm it and click on the save button."
@@ -504,9 +542,6 @@ msgstr "Personal details"
 msgid "Place order"
 msgstr "Place order"
 
-msgid "Please check your inbox to validate your email ({email})"
-msgstr "Please check your inbox to validate your email ({email})"
-
 msgid "Please enter a valid email address"
 msgstr "Please enter a valid email address"
 
@@ -559,6 +594,9 @@ msgstr "Recently viewed products"
 msgid "Region"
 msgstr "Region"
 
+msgid "Registration successful. Please check your inbox to confirm your email address ({email})"
+msgstr "Registration successful. Please check your inbox to confirm your email address ({email})"
+
 msgid "Relevance"
 msgstr "Relevance"
 
@@ -594,6 +632,9 @@ msgstr "Reviews"
 
 msgid "Save changes"
 msgstr "Save changes"
+
+msgid "Save in address book"
+msgstr "Save in address book"
 
 msgid "Save new password"
 msgstr "Save new password"
@@ -762,6 +803,9 @@ msgstr "Try a different search or <0>clear current filters</0>"
 msgid "Try a different search"
 msgstr "Try a different search"
 
+msgid "VAT Number"
+msgstr "VAT Number"
+
 msgid "View Product"
 msgstr "View Product"
 
@@ -821,6 +865,9 @@ msgstr "You are reviewing {0}"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "You can now <0>sign in again</0>."
+
+msgid "You can only confirm you account by clicking on the link in your email."
+msgstr "You can only confirm you account by clicking on the link in your email."
 
 msgid "You can track your order status and much more!"
 msgstr "You can track your order status and much more!"
@@ -885,8 +932,16 @@ msgstr "Your session is expired"
 msgid "Your wishlist is empty"
 msgstr "Your wishlist is empty"
 
+#. js-lingui-generated-id
+msgid "Delete account"
+msgstr "Delete account"
+
 msgid "Zip code or city"
 msgstr "Zip code or city"
+
+#. js-lingui-generated-id
+msgid "Return to home"
+msgstr "Return to home"
 
 #. js-lingui-generated-id
 msgid "Add to Cart"
@@ -926,6 +981,14 @@ msgstr "returned"
 
 msgid "shipped"
 msgstr "shipped"
+
+#. js-lingui-generated-id
+msgid "The given email does not match the account email"
+msgstr "The given email does not match the account email"
+
+#. js-lingui-generated-id
+msgid "Private"
+msgstr "Private"
 
 msgid "{count} Per page"
 msgstr "{count} Per page"

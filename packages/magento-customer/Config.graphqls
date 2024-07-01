@@ -1,14 +1,5 @@
 extend input GraphCommerceConfig {
   """
-  Due to a limitation in the GraphQL API of Magento 2, we need to know if the
-  customer requires email confirmation.
-
-  This value should match Magento 2's configuration value for
-  `customer/create_account/confirm` and should be removed once we can query
-  """
-  customerRequireEmailConfirmation: Boolean
-
-  """
   Enable Guest Checkout Login:
   During customer login, GraphCommerce queries Magento to determine whether
   the customer account already exists or not. If not, the sign-up form is shown instead.
@@ -18,6 +9,11 @@ extend input GraphCommerceConfig {
   `Stores -> Configuration -> Sales -> Checkout -> Checkout Options -> Enable Guest Checkout Login`
   """
   enableGuestCheckoutLogin: Boolean
+
+  """
+  Enable customer account deletion through the account section
+  """
+  customerDeleteEnabled: Boolean
 }
 
 extend input GraphCommerceDebugConfig {

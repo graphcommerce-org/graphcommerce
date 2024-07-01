@@ -48,6 +48,7 @@ async function cleanup() {
 }
 const main = async () => {
     const conf = (await (0, findConfig_1.findConfig)({}));
+    const graphCommerce = (0, next_config_1.loadConfig)(root);
     // We're configuring a custom fetch function
     conf.customFetch = require.resolve('@graphcommerce/graphql-mesh/customFetch');
     conf.serve = { ...conf.serve, endpoint: '/api/graphql' };
@@ -72,8 +73,13 @@ const main = async () => {
     conf.additionalTypeDefs.push('**/*.graphqls');
     const deps = (0, next_config_1.resolveDependenciesSync)();
     const packages = [...deps.values()].filter((p) => p !== '.');
+    const mV = graphCommerce.magentoVersion ?? 246;
     (0, next_config_1.packageRoots)(packages).forEach((r) => {
-        conf.additionalTypeDefs.push(`${r}/**/*.graphqls`);
+        const alsoScan = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254]
+            .filter((v) => v > mV)
+            .map((v) => `${r}/*/schema-${v}/**/*.graphqls`);
+        conf.additionalTypeDefs.push(`${r}/*/schema/**/*.graphqls`);
+        conf.additionalTypeDefs.push(...alsoScan);
     });
     if (!conf.serve)
         conf.serve = {};
@@ -87,7 +93,7 @@ const main = async () => {
             },
         },
     ];
-    const yamlString = (0, next_config_1.replaceConfigInString)(yaml_1.default.stringify(conf), (0, next_config_1.loadConfig)(root));
+    const yamlString = (0, next_config_1.replaceConfigInString)(yaml_1.default.stringify(conf), graphCommerce);
     await node_fs_1.promises.writeFile(tmpMeshLocation, yamlString);
     // Reexport the mesh to is can be used by packages
     await node_fs_1.promises.writeFile(`${meshDir}/.mesh.ts`, `export * from '${relativePath.split(node_path_1.default.sep).join('/')}.mesh'`, { encoding: 'utf8' });

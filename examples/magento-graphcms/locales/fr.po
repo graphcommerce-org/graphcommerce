@@ -14,8 +14,24 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-generated-id
+msgid "Doing so will remove all your data including order history and saved shipping / billing addresses."
+msgstr "Cela supprimera toutes vos données, y compris l'historique des commandes et les adresses de livraison / facturation enregistrées."
+
+#. js-lingui-generated-id
+msgid "I understand that my account will be deleted and this can not be undone."
+msgstr "Je comprends que mon compte sera supprimé et que cela ne pourra pas être annulé."
+
+#. js-lingui-generated-id
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "<0>{name}</0> a été ajouté à votre panier !"
+
+#. js-lingui-generated-id
+msgid "Are you sure you want to delete your account?"
+msgstr "Êtes-vous sûr de vouloir supprimer votre compte ?"
+
+#. js-lingui-generated-id
+msgid "Business"
+msgstr "Entreprise"
 
 msgid "<0>{name}</0> has been added to your comparison!"
 msgstr "<0>{name}</0> a été ajouté à votre comparatif !"
@@ -28,6 +44,12 @@ msgstr "Au-dessus de <0/>"
 
 msgid "Account"
 msgstr "Compte"
+
+msgid "Account confirmation"
+msgstr "Confirmation du compte"
+
+msgid "Account confirmed. You can now proceed to sign in."
+msgstr "Compte confirmé. Vous pouvez maintenant vous connecter."
 
 msgid "Add address"
 msgstr "Ajouter une adresse"
@@ -131,6 +153,9 @@ msgstr "Effacer tous les filtres"
 msgid "Close"
 msgstr "Fermer"
 
+msgid "Company name"
+msgstr "Nom de l'entreprise"
+
 msgid "Compare"
 msgstr "Comparez"
 
@@ -151,6 +176,9 @@ msgstr "Confirmer le nouvel email"
 
 msgid "Confirm password"
 msgstr "Confirmer le mot de passe"
+
+msgid "Confirm registration"
+msgstr "Confirmer l'inscription"
 
 msgid "Confirmation + Track & trace"
 msgstr "Confirmation + Traçage"
@@ -197,11 +225,18 @@ msgstr "Email actuel"
 msgid "Customer Service"
 msgstr "Service client"
 
+#. js-lingui-generated-id
+msgid "Account deletion successful"
+msgstr "Suppression du compte réussie"
+
 msgid "Dark Mode"
 msgstr "Mode sombre"
 
 msgid "Decrease"
 msgstr "Diminuer"
+
+msgid "Delete account"
+msgstr "Supprimer le compte"
 
 msgid "Delete this address"
 msgstr "Supprimer cette adresse"
@@ -265,6 +300,9 @@ msgstr "{0, plural, one {<0>{1}</0> a été ajouté à votre panier} two {<1>{2}
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Remplissez votre email pour vous connecter ou créer un compte"
+
+msgid "Fill in your email to confirm registration"
+msgstr "Remplissez votre email pour confirmer l'inscription"
 
 msgid "Fill in your new password, confirm it and click on the save button."
 msgstr "Remplissez votre nouveau mot de passe, confirmez-le et cliquez sur le bouton de sauvegarde."
@@ -504,9 +542,6 @@ msgstr "Informations personnelles"
 msgid "Place order"
 msgstr "Placer la commande"
 
-msgid "Please check your inbox to validate your email ({email})"
-msgstr "Veuillez vérifier votre boîte de réception pour valider votre email ({email})"
-
 msgid "Please enter a valid email address"
 msgstr "Veuillez entrer une adresse email valide"
 
@@ -559,6 +594,9 @@ msgstr "Derniers produits consultés"
 msgid "Region"
 msgstr "Région"
 
+msgid "Registration successful. Please check your inbox to confirm your email address ({email})"
+msgstr "Inscription réussie. Veuillez vérifier votre boîte de réception pour confirmer votre adresse email ({email})"
+
 msgid "Relevance"
 msgstr "Pertinence"
 
@@ -594,6 +632,9 @@ msgstr "Évaluations"
 
 msgid "Save changes"
 msgstr "Sauvegarder les modifications"
+
+msgid "Save in address book"
+msgstr "Enregistrer dans le carnet d'adresses"
 
 msgid "Save new password"
 msgstr "Sauvegarder le nouveau mot de passe"
@@ -762,6 +803,9 @@ msgstr "Essayez une autre recherche ou <0>effacez les filtres actuels</0>"
 msgid "Try a different search"
 msgstr "Essayez une autre recherche"
 
+msgid "VAT Number"
+msgstr "Numéro de TVA"
+
 msgid "View Product"
 msgstr "Voir le produit"
 
@@ -821,6 +865,9 @@ msgstr "Vous évaluez {0}"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "Vous pouvez maintenant<0>vous connecter à nouveau</0>."
+
+msgid "You can only confirm you account by clicking on the link in your email."
+msgstr "Vous ne pouvez confirmer votre compte qu'en cliquant sur le lien dans votre email."
 
 msgid "You can track your order status and much more!"
 msgstr "Vous pouvez suivre l'état de votre commande et beaucoup plus!"
@@ -885,8 +932,16 @@ msgstr "Votre session a expiré"
 msgid "Your wishlist is empty"
 msgstr "Votre liste de souhaits est vide"
 
+#. js-lingui-generated-id
+msgid "Delete account"
+msgstr "Supprimer le compte"
+
 msgid "Zip code or city"
 msgstr "Code postal ou ville"
+
+#. js-lingui-generated-id
+msgid "Return to home"
+msgstr "Retour à l'accueil"
 
 #. js-lingui-generated-id
 msgid "Add to Cart"
@@ -926,6 +981,14 @@ msgstr "retournée"
 
 msgid "shipped"
 msgstr "expédiée"
+
+#. js-lingui-generated-id
+msgid "The given email does not match the account email"
+msgstr "L'email donné ne correspond pas à l'email du compte"
+
+#. js-lingui-generated-id
+msgid "Private"
+msgstr "Privé"
 
 msgid "{count} Per page"
 msgstr "{count} Par page"

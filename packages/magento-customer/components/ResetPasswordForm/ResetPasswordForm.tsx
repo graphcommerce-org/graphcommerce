@@ -1,4 +1,4 @@
-import { PasswordRepeatElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { EmailElement, PasswordRepeatElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
@@ -44,12 +44,10 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
   return (
     <Form onSubmit={submitHandler} noValidate>
       <FormRow>
-        <TextFieldElement
+        <EmailElement
           control={control}
           name='email'
           variant='outlined'
-          type='email'
-          label={<Trans id='Email' />}
           required
           disabled={formState.isSubmitting}
         />

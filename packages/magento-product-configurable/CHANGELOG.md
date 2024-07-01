@@ -1,5 +1,36 @@
 # Change Log
 
+## 8.1.0-canary.41
+
+## 8.1.0-canary.40
+
+## 8.1.0-canary.39
+
+## 8.1.0-canary.38
+
+## 8.1.0-canary.37
+
+## 8.1.0-canary.36
+
+## 8.1.0-canary.35
+
+## 8.1.0-canary.34
+
+## 8.1.0-canary.33
+
+### Patch Changes
+
+- [#2302](https://github.com/graphcommerce-org/graphcommerce/pull/2302) [`6b7f908`](https://github.com/graphcommerce-org/graphcommerce/commit/6b7f908b7a2561e9d7f6ec3eaf2a6aca8d77b72f) - Fixed tier prices not working for non-configurable products
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 8.1.0-canary.32
+
+## 8.1.0-canary.31
+
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
 ## 8.1.0-canary.28
 
 ## 8.1.0-canary.27

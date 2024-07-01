@@ -1,5 +1,52 @@
 # Change Log
 
+## 8.1.0-canary.41
+
+### Patch Changes
+
+- [#2242](https://github.com/graphcommerce-org/graphcommerce/pull/2242) [`a4cce76`](https://github.com/graphcommerce-org/graphcommerce/commit/a4cce76ca37af2bec604e953ada4bb11bd91f55d) - Add option to show an extended version of the pagination component. Configurable via the "productListPaginationVariant" key in your graphcommerce.config.js
+  COMPACT means: "< Page X of Y >"
+  EXTENDED means: "< 1 2 ... [5] ... 10 11 >" ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.1.0-canary.40
+
+### Minor Changes
+
+- [#2306](https://github.com/graphcommerce-org/graphcommerce/pull/2306) [`5e188e8`](https://github.com/graphcommerce-org/graphcommerce/commit/5e188e830dca4730c73830858f59a94e9d41ed12) - Add delete account functionality to the account section. Disabled by default and can be enabled through the config.
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.39
+
+## 8.1.0-canary.38
+
+### Minor Changes
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Add company and vat fields to shipping and billing forms
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.37
+
+## 8.1.0-canary.36
+
+## 8.1.0-canary.35
+
+## 8.1.0-canary.34
+
+## 8.1.0-canary.33
+
+## 8.1.0-canary.32
+
+### Patch Changes
+
+- [#2299](https://github.com/graphcommerce-org/graphcommerce/pull/2299) [`85d258a`](https://github.com/graphcommerce-org/graphcommerce/commit/85d258a0d1a48bb1b502cccba30a9844f2257814) - Solve an issue where an env variable wouldn't be coerced to a Number if a Config.graphqls value is defined as an Int/Float
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.31
+
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
 ## 8.1.0-canary.28
 
 ### Patch Changes

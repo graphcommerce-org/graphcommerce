@@ -1,4 +1,4 @@
-import { NextLink, Pagination } from '@graphcommerce/next-ui'
+import { NextLink, PaginationExtended, Pagination } from '@graphcommerce/next-ui'
 import { Link, PaginationProps } from '@mui/material'
 import { productListLink } from '../../hooks/useProductListLink'
 import { ProductListParams } from '../ProductListItems/filterTypes'
@@ -16,25 +16,42 @@ export function ProductListPagination({
 }: ProductPaginationProps) {
   if (!page_info || !page_info.total_pages || !page_info.current_page) return null
 
-  return (
-    <Pagination
-      count={page_info?.total_pages}
-      page={page_info?.current_page ?? 1}
-      renderLink={(_, icon, btnProps) => {
-        const suffix = btnProps.page === 1 ? '' : `#products`
-        return (
-          <Link
-            {...btnProps}
-            href={`${productListLink({ ...params, currentPage: btnProps.page })}${suffix}`}
-            component={NextLink}
-            shallow
-            color='inherit'
-          >
-            {icon}
-          </Link>
-        )
-      }}
-      {...paginationProps}
-    />
-  )
+  if (import.meta.graphCommerce.productListPaginationVariant !== 'EXTENDED') {
+    return (
+      <Pagination
+        count={page_info?.total_pages}
+        page={page_info?.current_page ?? 1}
+        renderLink={(_, icon, btnProps) => {
+          const suffix = btnProps.page === 1 ? '' : `#products`
+          return (
+            <Link
+              {...btnProps}
+              href={`${productListLink({ ...params, currentPage: btnProps.page })}${suffix}`}
+              component={NextLink}
+              shallow
+              color='inherit'
+            >
+              {icon}
+            </Link>
+          )
+        }}
+        {...paginationProps}
+      />
+    )
+  }
+
+  if (import.meta.graphCommerce.productListPaginationVariant === 'EXTENDED') {
+    return (
+      <PaginationExtended
+        count={page_info?.total_pages}
+        page={page_info?.current_page ?? 1}
+        paginationHref={({ page }) =>
+          `${productListLink({ ...params, currentPage: page })}${page === 1 ? '' : '#products'}`
+        }
+        {...paginationProps}
+      />
+    )
+  }
+
+  return null
 }
