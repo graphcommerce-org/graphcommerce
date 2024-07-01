@@ -1,9 +1,15 @@
 import { Money } from '@graphcommerce/magento-store'
-import { iconChevronRight, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
+import {
+  iconChevronRight,
+  IconSvg,
+  extendableComponent,
+  useStorefrontConfig,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Button, ButtonProps, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
+import { useCustomerSession } from '@graphcommerce/magento-customer'
 
 export type CartStartCheckoutProps = {
   children?: React.ReactNode
@@ -36,6 +42,10 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
     cart,
   } = props
 
+  const { signInMode } = useStorefrontConfig()
+  const { loggedIn } = useCustomerSession()
+  const disableGuestCheckout = signInMode === 'DISABLE_GUEST_CHECKOUT' && !loggedIn
+
   const hasTotals = (cart?.prices?.grand_total?.value ?? 0) > 0
   const hasErrors = cart?.items?.some((item) => (item?.errors?.length ?? 0) > 0)
 
@@ -48,7 +58,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
       ]}
     >
       <Button
-        href='/checkout'
+        href={disableGuestCheckout ? '/account/signin' : '/checkout'}
         id='cart-start-checkout'
         variant='pill'
         color='secondary'

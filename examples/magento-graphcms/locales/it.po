@@ -327,6 +327,9 @@ msgstr "Gratis"
 msgid "Grand total"
 msgstr "Totale"
 
+msgid "Guest checkout is disabled for this store please login to continue."
+msgstr "Il pagamento come ospite è disabilitato per questo negozio, effettua l'accesso per continuare."
+
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Ciao {firstname}! Ora sei loggato!"
 

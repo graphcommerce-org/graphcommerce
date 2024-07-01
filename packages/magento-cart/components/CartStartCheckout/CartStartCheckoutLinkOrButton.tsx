@@ -1,8 +1,15 @@
-import { iconChevronRight, IconSvg, LinkOrButton, LinkOrButtonProps } from '@graphcommerce/next-ui'
+import {
+  iconChevronRight,
+  IconSvg,
+  LinkOrButton,
+  LinkOrButtonProps,
+  useStorefrontConfig,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
+import { useCustomerSession } from '@graphcommerce/magento-customer'
 
 export type CartStartCheckoutLinkOrButtonProps = {
   children?: React.ReactNode
@@ -25,12 +32,16 @@ export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButt
     cart,
   } = props
 
+  const { signInMode } = useStorefrontConfig()
+  const { loggedIn } = useCustomerSession()
+  const disableGuestCheckout = signInMode === 'DISABLE_GUEST_CHECKOUT' && !loggedIn
+
   const hasTotals = (cart?.prices?.grand_total?.value ?? 0) > 0
   const hasErrors = cart?.items?.some((item) => (item?.errors?.length ?? 0) > 0)
 
   return (
     <LinkOrButton
-      href='/checkout'
+      href={disableGuestCheckout ? '/account/signin' : '/checkout'}
       onClick={(
         e: React.MouseEvent<HTMLButtonElement & HTMLAnchorElement & HTMLSpanElement, MouseEvent>,
       ) => {

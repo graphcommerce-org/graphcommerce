@@ -19,7 +19,12 @@ import {
   CustomerAddressForm,
 } from '@graphcommerce/magento-cart-shipping-address'
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
-import { CustomerDocument, useCustomerQuery } from '@graphcommerce/magento-customer'
+import {
+  CustomerDocument,
+  useCustomerQuery,
+  useCustomerSession,
+} from '@graphcommerce/magento-customer'
+import { UnauthenticatedFullPageMessage } from '@graphcommerce/magento-customer/components/WaitForCustomer/UnauthenticatedFullPageMessage'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   FormActions,
@@ -30,6 +35,7 @@ import {
   LayoutTitle,
   FullPageMessage,
   iconAddresses,
+  useStorefrontConfig,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -46,11 +52,19 @@ function ShippingPage() {
   const shippingPage = useCartQuery(ShippingPageDocument, { fetchPolicy: 'cache-and-network' })
   const customerAddresses = useCustomerQuery(CustomerDocument, { fetchPolicy: 'cache-and-network' })
 
+  const { signInMode } = useStorefrontConfig()
+  const { loggedIn } = useCustomerSession()
+  const disableGuestCheckout =
+    (signInMode === 'DISABLE_GUEST_CHECKOUT' || signInMode === 'DISABLE_GUEST_ADD_TO_CART') &&
+    !loggedIn
+
   const cartExists =
     typeof shippingPage.data?.cart !== 'undefined' &&
     (shippingPage.data.cart?.items?.length ?? 0) > 0
 
-  return (
+  return disableGuestCheckout ? (
+    <UnauthenticatedFullPageMessage />
+  ) : (
     <>
       <PageMeta title={i18n._(/* i18n */ 'Shipping')} metaRobots={['noindex']} />
       <WaitForQueries

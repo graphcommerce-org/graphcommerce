@@ -434,6 +434,13 @@ Custom locale used to load the .po files. Must be a valid locale, also used for 
 Allow the site to be indexed by search engines.
 If false, the robots.txt file will be set to disallow all.
 
+#### signInMode: DEFAULT | DISABLE_GUEST_ADD_TO_CART | DISABLE_GUEST_CHECKOUT | GUEST_ONLY = `DEFAULT`
+
+GUEST_ONLY disables all login functionalities
+DISABLE_GUEST_CHECKOUT disables guest checkout. Products can still be added to the cart if not logged in.
+DISABLE_GUEST_ADD_TO_CART disables disables guest checkout. Products CAN NOT be added to the cart if not logged in.
+DEFAULT allows all functionalities
+
 ### MagentoConfigurableVariantValues
 
 Options to configure which values will be replaced when a variant is selected on the product page.

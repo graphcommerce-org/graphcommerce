@@ -4,7 +4,7 @@ import {
   useCustomerSession,
   useGuestQuery,
 } from '@graphcommerce/magento-customer'
-import { Button, FormRow, extendableComponent } from '@graphcommerce/next-ui'
+import { Button, FormRow, extendableComponent, useStorefrontConfig } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, SxProps, TextField, Theme, Typography } from '@mui/material'
 import React, { useState } from 'react'
@@ -28,6 +28,8 @@ const { classes } = extendableComponent(name, parts)
 export function InlineAccount(props: InlineAccountProps) {
   const { title, description, sx = [] } = props
 
+  const { signInMode } = useStorefrontConfig()
+
   const [toggled, setToggled] = useState<boolean>(false)
 
   const { loading, data } = useCartQuery(InlineAccountDocument)
@@ -43,6 +45,7 @@ export function InlineAccount(props: InlineAccountProps) {
   const canSignUp = isEmailAvailableData?.isEmailAvailable?.is_email_available === true
 
   if (loggedIn || !canSignUp) return null
+  if (signInMode === 'GUEST_ONLY') return null
 
   return (
     <div>

@@ -410,6 +410,13 @@ export type GraphCommerceStorefrontConfig = {
    * If false, the robots.txt file will be set to disallow all.
    */
   robotsAllow?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
+   * GUEST_ONLY disables all login functionalities
+   * DISABLE_GUEST_CHECKOUT disables guest checkout. Products can still be added to the cart if not logged in.
+   * DISABLE_GUEST_ADD_TO_CART disables disables guest checkout. Products CAN NOT be added to the cart if not logged in.
+   * DEFAULT allows all functionalities
+   */
+  signInMode?: InputMaybe<SignInModes>;
 };
 
 /** Options to configure which values will be replaced when a variant is selected on the product page. */
@@ -456,6 +463,12 @@ export type SidebarGalleryPaginationVariant =
   | 'DOTS'
   | 'THUMBNAILS_BOTTOM';
 
+export type SignInModes =
+  | 'DEFAULT'
+  | 'DISABLE_GUEST_ADD_TO_CART'
+  | 'DISABLE_GUEST_CHECKOUT'
+  | 'GUEST_ONLY';
+
 
 type Properties<T> = Required<{
   [K in keyof T]: z.ZodType<T[K], any, T[K]>;
@@ -474,6 +487,8 @@ export const PaginationVariantSchema = z.enum(['COMPACT', 'EXTENDED']);
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
 export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM']);
+
+export const SignInModesSchema = z.enum(['DEFAULT', 'DISABLE_GUEST_ADD_TO_CART', 'DISABLE_GUEST_CHECKOUT', 'GUEST_ONLY']);
 
 export function DatalayerConfigSchema(): z.ZodObject<Properties<DatalayerConfig>> {
   return z.object({
@@ -546,7 +561,8 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
     linguiLocale: z.string().nullish(),
     locale: z.string().min(1),
     magentoStoreCode: z.string().min(1),
-    robotsAllow: z.boolean().nullish()
+    robotsAllow: z.boolean().nullish(),
+    signInMode: SignInModesSchema.nullish()
   })
 }
 

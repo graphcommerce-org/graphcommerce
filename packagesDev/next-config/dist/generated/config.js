@@ -42,6 +42,9 @@ _export(exports, {
     SidebarGalleryPaginationVariantSchema: function() {
         return SidebarGalleryPaginationVariantSchema;
     },
+    SignInModesSchema: function() {
+        return SignInModesSchema;
+    },
     definedNonNullAnySchema: function() {
         return definedNonNullAnySchema;
     },
@@ -67,6 +70,12 @@ const ProductFiltersLayoutSchema = _zod.z.enum([
 const SidebarGalleryPaginationVariantSchema = _zod.z.enum([
     "DOTS",
     "THUMBNAILS_BOTTOM"
+]);
+const SignInModesSchema = _zod.z.enum([
+    "DEFAULT",
+    "DISABLE_GUEST_ADD_TO_CART",
+    "DISABLE_GUEST_CHECKOUT",
+    "GUEST_ONLY"
 ]);
 function DatalayerConfigSchema() {
     return _zod.z.object({
@@ -136,7 +145,8 @@ function GraphCommerceStorefrontConfigSchema() {
         linguiLocale: _zod.z.string().nullish(),
         locale: _zod.z.string().min(1),
         magentoStoreCode: _zod.z.string().min(1),
-        robotsAllow: _zod.z.boolean().nullish()
+        robotsAllow: _zod.z.boolean().nullish(),
+        signInMode: SignInModesSchema.nullish()
     });
 }
 function MagentoConfigurableVariantValuesSchema() {

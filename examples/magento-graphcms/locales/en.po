@@ -327,6 +327,9 @@ msgstr "Free"
 msgid "Grand total"
 msgstr "Grand total"
 
+msgid "Guest checkout is disabled for this store please login to continue."
+msgstr "Guest checkout is disabled for this store please login to continue."
+
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Hi {firstname}! You’re now logged in!"
 
