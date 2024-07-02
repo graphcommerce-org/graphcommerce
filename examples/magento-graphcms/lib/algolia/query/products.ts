@@ -34,6 +34,10 @@ function mapPriceRange(prices: object, currency: CurrencyEnum): PriceRange {
 function mapFiltersForAlgolia(filters: object) {
   const filterArray: object[] = []
 
+  if (!filters) {
+    return []
+  }
+  
   Object.keys(filters).forEach((value) => {
     const filterValueArray = filters[value]?.in
     for (let i = 0; i < filterValueArray.length; i++) {
