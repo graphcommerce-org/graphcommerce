@@ -1,6 +1,15 @@
-import { LinearProgress, Fade } from '@mui/material'
+import { LinearProgress, LinearProgressProps } from '@mui/material'
+import { m, motionValue, useTransform } from 'framer-motion'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { forwardRef, useEffect, useState } from 'react'
+
+export const showPageLoadIndicator = motionValue(false)
+
+const MLinearProgress = m(
+  forwardRef((props: Omit<LinearProgressProps, 'style'>, ref: LinearProgressProps['ref']) => (
+    <LinearProgress ref={ref} {...props} />
+  )),
+)
 
 /**
  * Creates a [LinearProgress](https://mui.com/components/progress/#linear) animation when the route
@@ -24,18 +33,20 @@ export function PageLoadIndicator() {
     }
   }, [events])
 
+  const opacity = useTransform(() => (showPageLoadIndicator.get() || loading ? 1 : 0))
+
   return (
-    <Fade in={loading}>
-      <LinearProgress
-        sx={{
-          position: 'fixed',
-          width: '100%',
-          top: 0,
-          height: 3,
-          marginBottom: '-3px',
-          zIndex: 'tooltip',
-        }}
-      />
-    </Fade>
+    <MLinearProgress
+      style={{ opacity }}
+      sx={{
+        position: 'fixed',
+        width: '100%',
+        top: 0,
+        height: 3,
+        marginBottom: '-3px',
+        zIndex: 'tooltip',
+        transition: 'opacity 0.3s',
+      }}
+    />
   )
 }

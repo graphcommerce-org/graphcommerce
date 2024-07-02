@@ -44,7 +44,7 @@ const { selectors, withState } = extendableComponent<ComponentStyleProps, 'Layou
   ['root'] as const,
 )
 
-export function LayoutHeader(props: LayoutHeaderProps) {
+export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
   const {
     children,
     divider,
@@ -162,5 +162,4 @@ export function LayoutHeader(props: LayoutHeaderProps) {
       </LayoutHeaderContent>
     </Box>
   )
-}
-LayoutHeader.selectors = selectors
+})

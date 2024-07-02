@@ -1,6 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { mergeDeep } from '@graphcommerce/graphql'
+import { SignedInMaskProvider, useSessionScopeQuery } from '@graphcommerce/magento-customer'
 import {
   AddProductsToCartForm,
   AddProductsToCartFormProps,
@@ -26,7 +27,7 @@ import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import { GetStaticProps, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Container, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutDocument,
@@ -45,14 +46,17 @@ import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphql
 export type Props = HygraphPagesQuery &
   UspsQuery &
   ProductPage2Query &
-  Pick<AddProductsToCartFormProps, 'defaultValues'>
+  Pick<AddProductsToCartFormProps, 'defaultValues'> & { urlKey: string }
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductPage(props: Props) {
-  const { products, relatedUpsells, usps, sidebarUsps, pages, defaultValues } = props
+  const { usps, sidebarUsps, pages, defaultValues, urlKey } = props
+
+  const scopedQuery = useSessionScopeQuery(ProductPage2Document, { variables: { urlKey } }, props)
+  const { products, relatedUpsells } = scopedQuery.data
 
   const product = mergeDeep(
     products?.items?.[0],
@@ -62,7 +66,7 @@ function ProductPage(props: Props) {
   if (!product?.sku || !product.url_key) return null
 
   return (
-    <>
+    <SignedInMaskProvider mask={scopedQuery.mask}>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
         <LayoutHeader floatingMd>
           <LayoutTitle size='small' component='span'>
@@ -83,9 +87,17 @@ function ProductPage(props: Props) {
         <ProductPageMeta product={product} />
 
         {import.meta.graphCommerce.breadcrumbs && (
-          <Container maxWidth={false} sx={(theme) => ({ marginBottom: theme.spacings.xs })}>
-            <ProductPageBreadcrumbs product={product} />
-          </Container>
+          <ProductPageBreadcrumbs
+            product={product}
+            sx={(theme) => ({
+              py: `calc(${theme.spacings.xxs} / 2)`,
+              pl: theme.page.horizontal,
+              background: theme.palette.background.paper,
+              [theme.breakpoints.down('md')]: {
+                '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+              },
+            })}
+          />
         )}
 
         <ProductPageGallery
@@ -93,6 +105,7 @@ function ProductPage(props: Props) {
           sx={(theme) => ({
             '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
           })}
+          disableSticky
         >
           <div>
             {isTypename(product, ['ConfigurableProduct', 'BundleProduct']) && (
@@ -153,7 +166,7 @@ function ProductPage(props: Props) {
         productListRenderer={productListRenderer}
         sx={(theme) => ({ mb: theme.spacings.xxl })}
       />
-    </>
+    </SignedInMaskProvider>
   )
 }
 
@@ -181,6 +194,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const conf = client.query({ query: StoreConfigDocument })
   const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const usps = staticClient.query({ query: UspsDocument, fetchPolicy: 'cache-first' })
 
   const product = productPage.then((pp) =>
     pp.data.products?.items?.find((p) => p?.url_key === urlKey),
@@ -194,10 +208,10 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
       : { href: `/`, title: i18n._(/* i18n */ 'Home') }
-  const usps = staticClient.query({ query: UspsDocument, fetchPolicy: 'cache-first' })
 
   return {
     props: {
+      urlKey,
       ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),
       ...(await layout).data,
       ...(await pages).data,

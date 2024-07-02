@@ -27,14 +27,20 @@ export function applyAggregationCount(
 
     return {
       ...aggregation,
-      options: filterNonNullableKeys(aggregation?.options)?.map((option) => {
-        if (applied && filterCount === 1) return option
-        if (applied && filterCount > 1) return { ...option, count: null }
-        return {
-          ...option,
-          count: appliedAggregation?.options?.find((o) => o?.value === option?.value)?.count ?? 0,
-        }
-      }),
+      options: filterNonNullableKeys(aggregation?.options)
+        ?.map((option) => {
+          if (applied && filterCount === 1) return option
+          if (applied && filterCount > 1) return { ...option, count: null }
+          return {
+            ...option,
+            count: appliedAggregation?.options?.find((o) => o?.value === option?.value)?.count ?? 0,
+          }
+        })
+        .sort((a, b) => {
+          if (a.count === 0) return 1
+          if (b.count === 0) return -1
+          return 0
+        }),
     }
   })
 }

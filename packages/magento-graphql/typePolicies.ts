@@ -28,7 +28,7 @@ export const magentoTypePolicies: TypedTypePolicies = {
   AvailablePaymentMethod: { keyFields: ['code'] },
   AvailableShippingMethod: { keyFields: ['carrier_code', 'method_code'] },
   // BillingCartAddress: { keyFields: false },
-  Breadcrumb: { keyFields: ['category_uid'] },
+  // Breadcrumb: { keyFields: ['category_uid'] },
   BundleCartItem: { keyFields: ['uid'] },
   // BundleCreditMemoItem: { keyFields: ['id'] },
   // BundleInvoiceItem: { keyFields: ['id'] },

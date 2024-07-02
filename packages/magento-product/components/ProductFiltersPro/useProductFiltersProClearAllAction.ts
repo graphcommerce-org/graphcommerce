@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { ProductFilterParams } from '../ProductListItems/filterTypes'
 import { useProductFiltersPro } from './ProductFiltersPro'
 
-export function useClearAllFiltersAction() {
+export function useProductFiltersProClearAllAction() {
   const { form, submit } = useProductFiltersPro()
   const { reset, getValues } = form
 

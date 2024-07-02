@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import { cloneDeep } from '@apollo/client/utilities'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useMemoObject } from '@graphcommerce/next-ui/hooks/useMemoObject'
@@ -13,8 +14,7 @@ import {
   useFormState,
   useWatch,
 } from 'react-hook-form'
-import { DebounceOptions } from './utils/debounce'
-import { useDebouncedCallback } from './utils/useDebounceCallback'
+import { DebounceSettings, useDebounce } from './utils/useDebounce'
 
 export type UseFormAutoSubmitOptions<TForm extends UseFormReturn<V>, V extends FieldValues> = {
   /** Instance of current form */
@@ -116,23 +116,40 @@ export type FormAutoSubmitProps<TFieldValues extends FieldValues = FieldValues> 
   parallel?: boolean
 
   noValidate?: boolean
-} & DebounceOptions &
-  Omit<UseWatchProps<TFieldValues>, 'defaultValue'>
 
-/**
- * This is made a components so the useWatch that is used here doesn't retrigger the rerender of the parent component.
- */
-function FormAutoSubmitBase<TFieldValues extends FieldValues = FieldValues>(
+  wait?: number
+
+  /**
+   * Only 0 does anthing and will submit immediately. Any other value will be ignored.
+   *
+   * @deprecated Please use leading instead
+   */
+  initialWait?: number
+} & Omit<UseWatchProps<TFieldValues>, 'defaultValue'> &
+  DebounceSettings
+
+export function useAutoSubmitBase<TFieldValues extends FieldValues = FieldValues>(
   props: FormAutoSubmitProps<TFieldValues>,
 ) {
-  const { wait, initialWait, maxWait, submit, parallel, noValidate, ...watchOptions } = props
+  const {
+    wait = 166,
+    initialWait,
+    maxWait,
+    leading,
+    trailing,
+
+    submit,
+    parallel,
+    noValidate,
+    ...watchOptions
+  } = props
 
   // We create a stable object from the values, so that we can compare them later
   const values = useMemoObject(cloneDeep(useWatch(watchOptions)))
   const oldValues = useRef<DeepPartialSkipArrayKey<TFieldValues>>(values)
   const { isValidating, isSubmitting, isValid } = useFormState(watchOptions)
 
-  const submitDebounced = useDebouncedCallback(
+  const submitDebounced = useDebounce(
     async () => {
       try {
         oldValues.current = values
@@ -141,7 +158,8 @@ function FormAutoSubmitBase<TFieldValues extends FieldValues = FieldValues>(
         // We're not interested if the submission actually succeeds, that should be handled by the form itself.
       }
     },
-    { wait, initialWait, maxWait },
+    wait,
+    { leading: leading ?? initialWait === 0, maxWait, trailing },
   )
 
   const valid = (noValidate ? true : isValid) && !isValidating
@@ -152,7 +170,15 @@ function FormAutoSubmitBase<TFieldValues extends FieldValues = FieldValues>(
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     submitDebounced()
   }
+}
 
+/**
+ * This is made a components so the useWatch that is used here doesn't retrigger the rerender of the parent component.
+ */
+function FormAutoSubmitBase<TFieldValues extends FieldValues = FieldValues>(
+  props: FormAutoSubmitProps<TFieldValues>,
+) {
+  useAutoSubmitBase(props)
   return null
 }
 

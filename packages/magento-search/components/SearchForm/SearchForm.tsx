@@ -29,7 +29,9 @@ export function SearchForm(props: SearchFormProps) {
   const form = useForm({ defaultValues: { search } })
   const { handleSubmit, setValue, control } = form
 
-  const submit = handleSubmit((formData) => router.replace(`/${urlHandle}/${formData.search}`))
+  const submit = handleSubmit((formData) =>
+    router.replace(`/${urlHandle}/${formData.search}`, undefined, { shallow: true }),
+  )
 
   const endAdornment = (
     <SearchFormAdornment

@@ -5,7 +5,7 @@ import { ChipOverlayOrPopper, extendableComponent } from '@graphcommerce/next-ui
 import { isFilterTypeRange } from '../ProductListItems/filterTypes'
 import { getMinMaxFromOptions, PriceSlider } from './PriceSlider'
 import { useProductFiltersPro } from './ProductFiltersPro'
-import { FilterProps } from './ProductFiltersProAggregations'
+import type { FilterProps } from './ProductFiltersProAggregations'
 
 const { classes } = extendableComponent('FilterRangeType', ['root', 'container', 'slider'] as const)
 

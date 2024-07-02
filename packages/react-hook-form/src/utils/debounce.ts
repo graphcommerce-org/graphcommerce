@@ -3,8 +3,24 @@ export interface Cancelable {
 }
 
 export type DebounceOptions = {
+  /**
+   *
+   * Wait for 200 ms after a request before submitting.
+   *
+   * in milliseconds
+   */
   wait?: number
+  /**
+   * If there are any pending calls, execute them after this time anyways.
+   *
+   * in milliseconds
+   */
   maxWait?: number
+  /**
+   * By default the initialWait is the same as the wait time, but you can set this to a lower value for the initial call.
+   *
+   * in milliseconds
+   */
   initialWait?: number
 }
 

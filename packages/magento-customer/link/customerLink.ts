@@ -49,6 +49,10 @@ const addTokenHeader = setContext((_, context) => {
 
     if (query?.customerToken?.token) {
       context.headers.authorization = `Bearer ${query?.customerToken?.token}`
+
+      // todo implement x-magento-cache-id
+      // But to be able to do this, we need to forward the header from the original request to the client.
+      // GraphQL Mesh currently does not support forwarding headers.
       return context
     }
     return context

@@ -15,6 +15,7 @@ export type FilterRenderer = Record<string, React.FC<FilterProps>>
 
 export type ProductFiltersProAggregationsProps = {
   renderer?: FilterRenderer
+  hideEmpty?: boolean
 }
 
 export const productFiltersProSectionRenderer = {
@@ -28,14 +29,13 @@ export const productFiltersProChipRenderer = {
 }
 
 export function ProductFiltersProAggregations(props: ProductFiltersProAggregationsProps) {
-  const { renderer } = props
+  const { renderer, hideEmpty } = props
   const { params, aggregations, appliedAggregations, filterTypes } = useProductFiltersPro()
 
   return (
     <>
       {excludeCategory(
-        applyAggregationCount(aggregations, appliedAggregations, params),
-        params,
+        applyAggregationCount(aggregations, appliedAggregations, params, hideEmpty),
       ).map((aggregation) => {
         const filterType = filterTypes[aggregation.attribute_code]
         if (!filterType) return null

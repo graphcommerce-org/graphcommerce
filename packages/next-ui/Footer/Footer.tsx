@@ -31,7 +31,7 @@ export function Footer(props: FooterProps) {
   } = props
 
   return (
-    <LazyHydrate>
+    <LazyHydrate height={300}>
       <Container
         sx={[
           (theme) => ({

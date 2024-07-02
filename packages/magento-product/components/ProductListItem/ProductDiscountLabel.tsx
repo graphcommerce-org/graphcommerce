@@ -1,4 +1,4 @@
-import { useNumberFormat } from '@graphcommerce/next-ui'
+import { PercentFormat } from '@graphcommerce/next-ui'
 import { Box, BoxProps } from '@mui/material'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 
@@ -7,7 +7,6 @@ export type ProductDiscountLabelProps = Pick<ProductListItemFragment, 'price_ran
 
 export function ProductDiscountLabel(props: ProductDiscountLabelProps) {
   const { price_range, ...boxProps } = props
-  const formatter = useNumberFormat({ style: 'percent', maximumFractionDigits: 1 })
   const discount = Math.floor(price_range.minimum_price.discount?.percent_off ?? 0)
 
   return (
@@ -26,7 +25,7 @@ export function ProductDiscountLabel(props: ProductDiscountLabelProps) {
           }}
           {...boxProps}
         >
-          {formatter.format(discount / -100)}
+          <PercentFormat>{discount / 100}</PercentFormat>
         </Box>
       )}
     </>

@@ -14,8 +14,8 @@ const cmpName = 'CategoryHeroNav' as const
 const parts = ['wrapper', 'categories', 'title', 'placeholder'] as const
 const { classes } = extendableComponent(cmpName, parts)
 
-export function CategoryHeroNav({ children, title, asset, sx = [] }: CategoryHeroNavProps) {
-  return (
+export const CategoryHeroNav = React.memo<CategoryHeroNavProps>(
+  ({ children, title, asset, sx = [] }) => (
     <Row
       className={classes.wrapper}
       maxWidth={false}
@@ -133,5 +133,5 @@ export function CategoryHeroNav({ children, title, asset, sx = [] }: CategoryHer
         <Box>{asset}</Box>
       </Box>
     </Row>
-  )
-}
+  ),
+)

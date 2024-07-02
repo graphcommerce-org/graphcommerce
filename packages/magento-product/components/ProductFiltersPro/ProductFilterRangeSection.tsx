@@ -5,7 +5,7 @@ import { Trans } from '@lingui/react'
 import { isFilterTypeRange } from '../ProductListItems/filterTypes'
 import { PriceSlider, getMinMaxFromOptions } from './PriceSlider'
 import { useProductFiltersPro } from './ProductFiltersPro'
-import { FilterProps } from './ProductFiltersProAggregations'
+import type { FilterProps } from './ProductFiltersProAggregations'
 
 export function ProductFilterRangeSection(props: FilterProps) {
   const { aggregation } = props

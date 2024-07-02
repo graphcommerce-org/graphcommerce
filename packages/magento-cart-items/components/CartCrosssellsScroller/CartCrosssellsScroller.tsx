@@ -5,7 +5,7 @@ import {
   ProductScroller,
   ProductScrollerProps,
 } from '@graphcommerce/magento-product'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/macro'
 
 export type CartItemCrosssellsProps = {
   renderer: ProductListItemRenderer
@@ -24,7 +24,7 @@ export function CartCrosssellsScroller(props: CartItemCrosssellsProps) {
         productListRenderer={renderer}
         items={crossSellItems}
         sx={sx}
-        title={title ?? <Trans id='Complete your purchase' />}
+        title={title ?? <Trans>Complete your purchase</Trans>}
         titleProps={{ variant: 'h6', ...titleProps }}
       />
     </AddProductsToCartForm>

@@ -100,7 +100,7 @@ export const ProductWishlistIconButton = React.memo<ProductWishlistChipProps>((p
           <Trans
             id='<0>{name}</0> has been added to your wishlist!'
             components={{ 0: <strong /> }}
-            values={{ name }}
+            values={{ name: product.name }}
           />
         </MessageSnackbar>
       )}

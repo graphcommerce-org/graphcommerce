@@ -9,13 +9,7 @@ export function useRecentlyViewedProducts(props: UseRecentlyViewedProductsProps)
   let { skus, loading } = useRecentlyViewedSkus()
 
   const productList = useQuery(ProductListDocument, {
-    variables: {
-      filters: {
-        sku: {
-          in: skus.map((p) => p.sku).sort(),
-        },
-      },
-    },
+    variables: { onlyItems: true, filters: { sku: { in: skus.map((p) => p.sku).sort() } } },
     skip: loading || !skus.length || skip,
   })
 

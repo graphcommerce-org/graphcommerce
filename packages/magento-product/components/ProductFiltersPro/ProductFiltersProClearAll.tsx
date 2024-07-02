@@ -1,11 +1,9 @@
 import { Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
-import { useProductFiltersPro } from './ProductFiltersPro'
 import { ProductFiltersProAggregationsProps } from './ProductFiltersProAggregations'
-import { activeAggregations } from './activeAggregations'
-import { applyAggregationCount } from './applyAggregationCount'
-import { useClearAllFiltersAction } from './useClearAllFiltersHandler'
+import { useProductFiltersProClearAllAction } from './useProductFiltersProClearAllAction'
+import { useProductFilterProHasFiltersApplied } from './useProductFiltersProHasFiltersApplied'
 
 type AllFiltersSidebar = ProductFiltersProAggregationsProps & {
   sx?: SxProps<Theme>
@@ -14,18 +12,8 @@ type AllFiltersSidebar = ProductFiltersProAggregationsProps & {
 export function ProductFiltersProClearAll(props: AllFiltersSidebar) {
   const { sx = [] } = props
 
-  const { params, aggregations, appliedAggregations } = useProductFiltersPro()
-  const { sort } = params
-
-  const clearAll = useClearAllFiltersAction()
-
-  const activeFilters = activeAggregations(
-    applyAggregationCount(aggregations, appliedAggregations, params),
-    params,
-  ).map(({ label }) => label)
-
-  const allFilters = [...activeFilters, sort].filter(Boolean)
-  const hasFilters = allFilters.length > 0
+  const clearAll = useProductFiltersProClearAllAction()
+  const hasFilters = useProductFilterProHasFiltersApplied()
 
   if (!hasFilters) return null
 

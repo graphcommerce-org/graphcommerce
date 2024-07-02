@@ -477,7 +477,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       quality,
       sizes,
       width,
-      scale: 0.5,
+      scale: 0.667,
     })
 
     if (layout !== 'fixed' && !style) style = {}
