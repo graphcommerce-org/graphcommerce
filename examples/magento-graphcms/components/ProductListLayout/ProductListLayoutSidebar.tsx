@@ -152,13 +152,18 @@ export function ProductListLayoutSidebar(props: ProductListLayoutProps) {
               },
             })}
           >
-            <ProductFiltersProAggregations renderer={productFiltersProChipRenderer} />
-            <ProductFiltersProSortChip
-              total_count={total_count}
-              sort_fields={sort_fields}
-              category={category}
-            />
-            <ProductFiltersProLimitChip />
+            <ProductFiltersProAggregations renderer={productFiltersProChipRenderer} hideEmpty />
+            {products.items.length > 0 && (
+              <>
+                <ProductFiltersProSortChip
+                  total_count={total_count}
+                  sort_fields={sort_fields}
+                  category={category}
+                />
+                <ProductFiltersProLimitChip />
+              </>
+            )}
+
             <ProductFiltersProAllFiltersChip
               total_count={total_count}
               sort_fields={sort_fields}
@@ -184,13 +189,15 @@ export function ProductListLayoutSidebar(props: ProductListLayoutProps) {
               <ProductFiltersProCategorySectionSearch menu={menu} defaultExpanded />
             )}
           </>
+
           <ProductFiltersProSortSection
             sort_fields={sort_fields}
             total_count={total_count}
             category={category}
           />
           <ProductFiltersProLimitSection />
-          <ProductFiltersProAggregations renderer={productFiltersProSectionRenderer} />
+
+          <ProductFiltersProAggregations renderer={productFiltersProSectionRenderer} hideEmpty />
         </Box>
       </Container>
     </ProductFiltersPro>

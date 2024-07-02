@@ -6,7 +6,7 @@ import { useProductFilterProHasFiltersApplied } from './useProductFiltersProHasF
 
 export type ProductFitlersProNoResultProps = { search?: string | null; sx?: SxProps<Theme> }
 
-const name = 'NoSearchResults' as const
+const name = 'ProductFiltersProNoResults' as const
 const parts = ['root'] as const
 const { classes } = extendableComponent(name, parts)
 

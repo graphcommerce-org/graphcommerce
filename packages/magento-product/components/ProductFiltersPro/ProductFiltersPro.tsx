@@ -33,7 +33,7 @@ type DataProps = {
   appliedAggregations?: ProductListFiltersFragment['aggregations']
 } & ProductListFiltersFragment
 
-type FilterFormContextProps = DataProps & {
+export type ProductFiltersProContext = DataProps & {
   /**
    * Watch and formState are known to cause performance issues.
    *
@@ -55,14 +55,14 @@ type FilterFormContextProps = DataProps & {
   submit: (e?: BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>
 }
 
-const FilterFormContext = createContext<FilterFormContextProps | null>(null)
+const FilterFormContext = createContext<ProductFiltersProContext | null>(null)
 
-export const globalFilterForm: MutableRefObject<FilterFormContextProps | null> = {
+export const globalFormContextRef: MutableRefObject<ProductFiltersProContext | null> = {
   current: null,
 }
 
-export function useProductFiltersPro(optional: true): FilterFormContextProps | null
-export function useProductFiltersPro(optional?: false): FilterFormContextProps
+export function useProductFiltersPro(optional: true): ProductFiltersProContext | null
+export function useProductFiltersPro(optional?: false): ProductFiltersProContext
 export function useProductFiltersPro(optional: boolean = false) {
   const context = useContext(FilterFormContext)
   if (!optional && !context)
@@ -145,24 +145,26 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
     }),
   )
 
-  const filterFormContext: FilterFormContextProps = useMemo(
-    () => ({
+  const filterFormContext = useMemo(() => {
+    const ctx: ProductFiltersProContext = {
       form,
       params: defaultValues,
       submit,
       appliedAggregations,
       filterTypes,
       aggregations,
-    }),
-    [form, defaultValues, submit, appliedAggregations, filterTypes, aggregations],
-  )
-
-  useEffect(() => {
-    globalFilterForm.current = filterFormContext
-    return () => {
-      globalFilterForm.current = null
     }
-  }, [filterFormContext])
+    globalFormContextRef.current = ctx
+    return ctx
+  }, [form, defaultValues, submit, appliedAggregations, filterTypes, aggregations])
+
+  // When the component unmounts, we want to clear the global filter form
+  useEffect(
+    () => () => {
+      globalFormContextRef.current = null
+    },
+    [],
+  )
 
   return (
     <FilterFormContext.Provider value={filterFormContext}>

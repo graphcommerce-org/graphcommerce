@@ -2,6 +2,7 @@ import { ApolloQueryResult, ApolloClient, useQuery } from '@graphcommerce/graphq
 import { CustomerTokenDocument, useSessionScopeQuery } from '@graphcommerce/magento-customer'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { showPageLoadIndicator } from '@graphcommerce/next-ui'
+import { debounce } from '@graphcommerce/ecommerce-ui'
 import { useEventCallback } from '@mui/material'
 import { FilterFormProviderProps } from '../components'
 import {
@@ -21,48 +22,54 @@ const productListQueries: Array<Promise<ApolloQueryResult<ProductListQuery>>> = 
 
 type Next = Parameters<NonNullable<FilterFormProviderProps['handleSubmit']>>[1]
 
-export const prefetchProductList = async (
-  variables: ProductListQueryVariables,
-  next: Next,
-  client: ApolloClient<unknown>,
-  shallow: boolean,
-) => {
-  showPageLoadIndicator.set(true)
+export const prefetchProductList = debounce(
+  async (
+    variables: ProductListQueryVariables,
+    next: Next,
+    client: ApolloClient<unknown>,
+    shallow: boolean,
+  ) => {
+    showPageLoadIndicator.set(true)
 
-  const promise = client.query({
-    query: ProductListDocument,
-    variables: {
-      ...variables,
-      sessionScope: {
-        loggedIn: !!client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken?.token,
+    const promise = client.query({
+      query: ProductListDocument,
+      variables: {
+        ...variables,
+        sessionScope: {
+          loggedIn: !!client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken
+            ?.token,
+        },
       },
-    },
-  })
+    })
 
-  // Push the query to the queue array.
-  productListQueries.push(promise)
+    // Push the query to the queue array.
+    productListQueries.push(promise)
 
-  // Since we're waiting here the form will be submitting for longer.
-  await promise
+    // Since we're waiting here the form will be submitting for longer.
+    await promise
 
-  const includes = productListQueries.includes(promise)
+    const includes = productListQueries.includes(promise)
 
-  // Remove all requests that are before the current request
-  const index = productListQueries.indexOf(promise)
-  if (index > -1) {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    productListQueries.splice(0, index + 1)
-  }
+    // Remove all requests that are before the current request
+    const index = productListQueries.indexOf(promise)
+    if (index > -1) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      productListQueries.splice(0, index + 1)
+    }
 
-  if (productListQueries.length === 0) showPageLoadIndicator.set(false)
+    if (productListQueries.length === 0) showPageLoadIndicator.set(false)
 
-  if (includes) {
-    // todo: When navigating a category, it should now be a shallow route
+    if (includes) {
+      // todo: When navigating a category, it should now be a shallow route
 
-    // If the resolved request  is still in the array, it may be rendered (URL may be updated)
-    await next(shallow)
-  }
-}
+      // If the resolved request  is still in the array, it may be rendered (URL may be updated)
+      await next(shallow)
+    }
+  },
+  200,
+  // the maxWait is now set to a somewhat shorter time than the average query time.
+  { leading: true, maxWait: 700, trailing: true },
+)
 
 /**
  * - Handles shallow routing requests
@@ -96,11 +103,16 @@ export function useProductList<
             ?.token,
         },
       }
+      console.log(
+        JSON.stringify(vars.filters?.category_uid) === JSON.stringify(params?.filters.category_uid),
+      )
 
-      const shallow =
-        JSON.stringify(vars.filters?.category_uid) !== JSON.stringify(params?.filters.category_uid)
-
-      await prefetchProductList(vars, next, result.client, shallow)
+      await prefetchProductList(
+        vars,
+        next,
+        result.client,
+        JSON.stringify(vars.filters?.category_uid) === JSON.stringify(params?.filters.category_uid),
+      )
     },
   )
 

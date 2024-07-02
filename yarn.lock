@@ -4471,6 +4471,7 @@ __metadata:
     "@graphcommerce/eslint-config-pwa": ^8.1.0-canary.41
     "@graphcommerce/prettier-config-pwa": ^8.1.0-canary.41
     "@graphcommerce/typescript-config-pwa": ^8.1.0-canary.41
+    "@graphcommerce/utils": ^8.1.0-canary.41
     graphql: ^16.6.0
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -4483,6 +4484,21 @@ __metadata:
   resolution: "@graphcommerce/typescript-config-pwa@workspace:packagesDev/typescript-config"
   dependencies:
     "@tsconfig/node18": "npm:^18.2.2"
+  languageName: unknown
+  linkType: soft
+
+"@graphcommerce/utils@workspace:packages/utils":
+  version: 0.0.0-use.local
+  resolution: "@graphcommerce/utils@workspace:packages/utils"
+  dependencies:
+    moderndash: "npm:^3.12.0"
+  peerDependencies:
+    "@graphcommerce/eslint-config-pwa": ^8.1.0-canary.41
+    "@graphcommerce/prettier-config-pwa": ^8.1.0-canary.41
+    "@graphcommerce/typescript-config-pwa": ^8.1.0-canary.41
+    next: "*"
+    react: ^18.2.0
+    react-dom: ^18.2.0
   languageName: unknown
   linkType: soft
 
@@ -12773,6 +12789,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hotscript@npm:1.0.13":
+  version: 1.0.13
+  resolution: "hotscript@npm:1.0.13"
+  checksum: 10c0/423ea2aa437befeeffc32ea5a364b0d833f442fecdd7531c6fe8dc3df092c58d31145f757ad505ec7629ce4bb0eb8ff58889c8a58fe36312f975ff682f5cd422
+  languageName: node
+  linkType: hard
+
 "htm@npm:^3.0.0":
   version: 3.1.1
   resolution: "htm@npm:3.1.1"
@@ -15570,6 +15593,15 @@ __metadata:
   bin:
     mkdirp: dist/cjs/src/bin.js
   checksum: 10c0/9f2b975e9246351f5e3a40dcfac99fcd0baa31fbfab615fe059fb11e51f10e4803c63de1f384c54d656e4db31d000e4767e9ef076a22e12a641357602e31d57d
+  languageName: node
+  linkType: hard
+
+"moderndash@npm:^3.12.0":
+  version: 3.12.0
+  resolution: "moderndash@npm:3.12.0"
+  dependencies:
+    hotscript: "npm:1.0.13"
+  checksum: 10c0/0c3c46b5be97abd0fe624bbc9a4b70c95be384cf84c1b01c28db93b99cd14dcaf61e2bd6de13891ca32c4ad92601f9e38460f1a55b727df64b6a50398c5c4ac5
   languageName: node
   linkType: hard
 

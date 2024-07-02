@@ -1,73 +1,84 @@
 import { TextFieldElementProps } from '@graphcommerce/ecommerce-ui'
-import {
-  ProductFilterParams,
-  globalFilterForm,
-  useProductFiltersPro,
-} from '@graphcommerce/magento-product'
-import { TextField } from '@mui/material'
+import { ProductFilterParams, globalFormContextRef } from '@graphcommerce/magento-product'
+import { IconSvg, iconClose, iconSearch } from '@graphcommerce/next-ui'
+import { FabProps, IconButton, TextField } from '@mui/material'
 import { useRouter } from 'next/router'
-import { ChangeEvent, useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 type ProductFiltersProSearchFieldProps = Omit<
   TextFieldElementProps<ProductFilterParams>,
   'control' | 'name'
->
+> & {
+  fab?: FabProps
+}
 
 export function ProductFiltersProSearchField(props: ProductFiltersProSearchFieldProps) {
   const { InputProps, ...rest } = props
 
-  const context = useProductFiltersPro(true)
-  const searchInputElement = useRef<HTMLInputElement>(null)
   const router = useRouter()
 
-  const isSearchPage = router.asPath.startsWith('/search')
+  const searchPage = router.asPath.startsWith('/search')
+  const [expanded, setExpanded] = useState(searchPage)
 
-  const defaultValue = `${context?.params.search ?? router.query.url?.[0] ?? ''}`
+  const ref = useRef<HTMLInputElement>(null)
+
+  const start = useRef<number | null>(null)
 
   useEffect(() => {
-    if (!searchInputElement.current) return
-    searchInputElement.current.value = isSearchPage ? defaultValue : ''
-  }, [isSearchPage])
+    if (!searchPage) setExpanded(false)
+  }, [searchPage])
+
+  if (!expanded && !searchPage) {
+    return (
+      <IconButton onClick={() => setExpanded(true)}>
+        <IconSvg src={iconSearch} />
+      </IconButton>
+    )
+  }
 
   return (
     <TextField
       fullWidth
-      variant='outlined'
+      variant='standard'
       type='text'
       name='search'
       color='primary'
-      defaultValue={defaultValue}
-      onChange={async (e: ChangeEvent<HTMLInputElement>) => {
-        const ctx = context ?? globalFilterForm.current
-        const { value = '' } = e.target
-        // Go to the search page when we're not there.
-        if (!ctx || !isSearchPage) {
-          await router.push(`/search/${value}`)
-          return
+      onChange={(e) => {
+        const context = globalFormContextRef.current
+
+        if (!start.current) start.current = Date.now()
+
+        // When we're not on the search page, we want to navigate as soon as possible.
+        // We only want to navigate once, and let the rest be handled by the search page.
+        if (!context) {
+          return router.push(`/search/${e.target.value}`)
         }
-        ctx.form.setValue('currentPage', 1)
-        ctx.form.setValue('search', value)
-        await ctx.submit()
+
+        context.form.setValue('currentPage', 1)
+        context.form.setValue('search', e.target.value)
+        return context.submit()
       }}
       InputProps={{
-        sx: {
-          borderRadius: '100em',
-        },
+        ...InputProps,
+        endAdornment: (
+          <IconButton
+            onClick={() => {
+              const context = globalFormContextRef.current
+              if (ref.current) ref.current.value = ''
+
+              if (!context) return undefined
+
+              context.form.setValue('currentPage', 1)
+              context.form.setValue('search', '')
+              return context.submit()
+            }}
+            size='small'
+          >
+            <IconSvg src={iconClose} />
+          </IconButton>
+        ),
       }}
-      // InputProps={{
-      //   ...InputProps,
-      //   endAdornment: (
-      //     <SearchFormAdornment
-      //       control={form?.control}
-      //       name='search'
-      //       onReset={() => {
-      //         context?.form.setValue('search', null)
-      //         return context.submit?.()
-      //       }}
-      //     />
-      //   ),
-      // }}
-      inputRef={searchInputElement}
+      inputRef={ref}
       {...rest}
     />
   )

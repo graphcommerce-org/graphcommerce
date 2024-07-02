@@ -38,7 +38,7 @@ export function UpdateItemQuantity(props: UpdateItemQuantityProps) {
 
   return (
     <form noValidate onSubmit={submit}>
-      <FormAutoSubmit control={control} submit={submit} initialWait={0} />
+      <FormAutoSubmit control={control} submit={submit} leading />
       <NumberFieldElement
         control={control}
         name='quantity'
