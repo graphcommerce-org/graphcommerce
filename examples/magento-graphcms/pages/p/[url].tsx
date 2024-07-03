@@ -187,7 +187,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     pp.data.products?.items?.find((p) => p?.url_key === urlKey),
   )
 
-  const pages = hygraphPageContent(staticClient, 'product/global', product, !draftMode)
+  const pages = hygraphPageContent(staticClient, 'product/global', product)
   if (!(await product)) return redirectOrNotFound(staticClient, conf, params, locale)
 
   const category = productPageCategory(await product)
