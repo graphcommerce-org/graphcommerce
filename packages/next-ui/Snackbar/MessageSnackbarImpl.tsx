@@ -28,6 +28,7 @@ export type MessageSnackbarProps = Omit<
   children?: React.ReactNode
   onClose?: () => void
   sx?: SxProps<Theme>
+  disableClose?: boolean
 } & OwnerState
 
 type OwnerState = {
@@ -62,6 +63,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
     severity = 'info',
     sx,
     disableBackdropClick,
+    disableClose,
     ...snackbarProps
   } = props
 
@@ -159,19 +161,21 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
                   {action}
                 </Box>
               )}
-              <Fab
-                className={classes.close}
-                aria-label={i18n._(/* i18n */ 'Close')}
-                size='small'
-                onClick={hideSnackbar}
-                onMouseDown={preventAnimationBubble}
-                onTouchStart={preventAnimationBubble}
-                sx={(theme) => ({
-                  backgroundColor: lighten(theme.palette.background.paper, 0.1),
-                })}
-              >
-                <IconSvg src={iconClose} />
-              </Fab>
+              {!disableClose && (
+                <Fab
+                  className={classes.close}
+                  aria-label={i18n._(/* i18n */ 'Close')}
+                  size='small'
+                  onClick={hideSnackbar}
+                  onMouseDown={preventAnimationBubble}
+                  onTouchStart={preventAnimationBubble}
+                  sx={(theme) => ({
+                    backgroundColor: lighten(theme.palette.background.paper, 0.1),
+                  })}
+                >
+                  <IconSvg src={iconClose} />
+                </Fab>
+              )}
             </>
           }
         />

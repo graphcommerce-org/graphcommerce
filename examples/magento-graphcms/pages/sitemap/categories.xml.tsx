@@ -15,7 +15,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { locale } = context
   if (!locale) throw Error('Locale not found')
 
-  const categoryPaths = await getCategoryStaticPaths(graphqlSsrClient(locale), locale, {
+  const categoryPaths = await getCategoryStaticPaths(graphqlSsrClient(context), locale, {
     limit: false,
   })
 

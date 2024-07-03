@@ -69,7 +69,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (import.meta.graphCommerce.limitSsg) return { paths: [], fallback: 'blocking' }
 
   const responses = locales.map(async (locale) => {
-    const staticClient = graphqlSsrClient(locale)
+    const staticClient = graphqlSsrClient({ locale })
     const BlogPostPaths = staticClient.query({ query: BlogPostPathsDocument })
     const { pages } = (await BlogPostPaths).data
     return pages.map((page) => ({ params: { url: page.url.split('/').slice(1) }, locale })) ?? []
@@ -78,11 +78,12 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const { locale, params } = context
   const urlKey = params?.url.join('/') ?? ''
 
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
   const limit = 4
   const conf = client.query({ query: StoreConfigDocument })
 

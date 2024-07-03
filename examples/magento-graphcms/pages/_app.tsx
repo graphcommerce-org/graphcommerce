@@ -1,3 +1,4 @@
+import { DraftMode } from '@graphcommerce/ecommerce-ui'
 import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 import { GraphQLProvider } from '@graphcommerce/graphql'
 import { GlobalHead } from '@graphcommerce/magento-store'
@@ -24,6 +25,7 @@ export default function ThemedApp(props: AppProps) {
             <CssBaseline />
             <PageLoadIndicator />
             <FramerNextPages {...props} />
+            <DraftMode />
           </DarkLightModeThemeProvider>
         </GraphQLProvider>
       </I18nProvider>

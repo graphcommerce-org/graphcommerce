@@ -181,6 +181,8 @@ Enable customer account deletion through the account section
 
 #### dataLayer: [DatalayerConfig](#DatalayerConfig)
 
+Datalayer config
+
 #### debug: [GraphCommerceDebugConfig](#GraphCommerceDebugConfig)
 
 Debug configuration for GraphCommerce

@@ -80,7 +80,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const responses = locales.map(async (locale) => {
-    const staticClient = graphqlSsrClient(locale)
+    const staticClient = graphqlSsrClient({ locale })
     const blogPosts = staticClient.query({ query: BlogPathsDocument })
     const total = Math.ceil((await blogPosts).data.pagesConnection.aggregate.count / pageSize)
     const pages: string[] = []
@@ -93,10 +93,11 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const { params } = context
   const skip = Math.abs((Number(params?.page ?? '1') - 1) * pageSize)
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
   const defaultPage = hygraphPageContent(staticClient, 'blog')

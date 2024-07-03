@@ -13,6 +13,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { draftMode } from 'next/headers'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -47,8 +48,8 @@ AccountAuthenticationPage.pageOptions = pageOptions
 
 export default AccountAuthenticationPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
   return {

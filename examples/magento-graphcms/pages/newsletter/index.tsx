@@ -67,10 +67,10 @@ NewsletterSubscribe.pageOptions = pageOptions
 
 export default NewsletterSubscribe
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
+export const getStaticProps: GetPageStaticProps = async (context) => {
   const url = `newsletter`
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })
   const page = hygraphPageContent(staticClient, url)
   const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })

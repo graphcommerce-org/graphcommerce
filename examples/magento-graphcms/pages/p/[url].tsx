@@ -166,15 +166,16 @@ export default ProductPage
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  const path = (locale: string) => getProductStaticPaths(graphqlSsrClient(locale), locale)
+  const path = (locale: string) => getProductStaticPaths(graphqlSsrClient({ locale }), locale)
   const paths = (await Promise.all(locales.map(path))).flat(1)
 
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const { locale, params } = context
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
 
   const urlKey = params?.url ?? '??'
 
@@ -186,7 +187,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     pp.data.products?.items?.find((p) => p?.url_key === urlKey),
   )
 
-  const pages = hygraphPageContent(staticClient, 'product/global', product, true)
+  const pages = hygraphPageContent(staticClient, 'product/global', product, !draftMode)
   if (!(await product)) return redirectOrNotFound(staticClient, conf, params, locale)
 
   const category = productPageCategory(await product)

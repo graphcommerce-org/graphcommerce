@@ -93,9 +93,12 @@ AboutUs.pageOptions = pageOptions
 
 export default AboutUs
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+export const getStaticProps: GetPageStaticProps = async ({
+  locale,
+  draftMode,
+}) => {
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
 
   const conf = client.query({ query: StoreConfigDocument })
   const layout = staticClient.query({
@@ -210,9 +213,12 @@ AboutUs.pageOptions = pageOptions
 
 export default AboutUs
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+export const getStaticProps: GetPageStaticProps = async ({
+  locale,
+  draftMode,
+}) => {
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
 
   const conf = client.query({ query: StoreConfigDocument })
   const page = hygraphPageContent(staticClient, 'about/about-us')
@@ -262,9 +268,10 @@ export const getStaticPaths: GetPageStaticPaths = (context) => ({
 export const getStaticProps: GetPageStaticProps = async ({
   locale,
   params,
+  draftMode,
 }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
 
   const conf = client.query({ query: StoreConfigDocument })
   const page = hygraphPageContent(staticClient, `about/${params?.url}`)
