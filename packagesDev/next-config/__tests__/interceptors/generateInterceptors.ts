@@ -405,21 +405,32 @@ it('adds debug logging to interceptors for components', async () => {
   expectOriginal(interceptors['packages/graphql/config']?.template).toMatchInlineSnapshot(`
     "import { ApolloLink, TypePolicies } from '@apollo/client'
     import type { GraphCommerceStorefrontConfig } from '@graphcommerce/next-config'
+    import type { SetRequired } from 'type-fest'
     import { MigrateCache } from './components/GraphQLProvider/migrateCache'
+    export interface PreviewData {}
+    export type PreviewConfig = {
+      preview?: boolean
+      previewData?: PreviewData & Record<string, unknown>
+      draftMode?: boolean
+    }
     export type ApolloClientConfigInput = {
       storefront: GraphCommerceStorefrontConfig
       links?: ApolloLink[]
       policies?: TypePolicies[]
       migrations?: MigrateCache[]
-    }
-    export type ApolloClientConfig = Required<ApolloClientConfigInput>
+    } & PreviewConfig
+    export type ApolloClientConfig = SetRequired<
+      ApolloClientConfigInput,
+      'links' | 'policies' | 'migrations'
+    >
     export function graphqlConfigOriginal(config: ApolloClientConfigInput): ApolloClientConfig {
-      const { storefront, links = [], policies = [], migrations = [] } = config
+      const { storefront, links = [], policies = [], migrations = [], ...rest } = config
       return {
         storefront,
         links,
         policies,
         migrations,
+        ...rest,
       }
     }"
   `)
