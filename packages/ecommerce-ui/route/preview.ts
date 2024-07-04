@@ -7,8 +7,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   // const domain = req.url ? new URL(req.url) : undefined
   const referer = req.headers.referer ? new URL(req.headers.referer) : undefined
-
-  const redirectTo = referer && req.headers.host === referer.host ? referer.pathname : '/'
+  const redirectTo =
+    req.headers.redirectTo ??
+    (referer && req.headers.host === referer.host ? referer.pathname : '/')
 
   if (!action) {
     res.status(400).json({ message: 'No action provided' })
@@ -16,15 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return
   }
 
-  if (action === 'enable') {
-    if (!req.query.secret) {
-      res.setDraftMode({ enable: false })
-      res.clearPreviewData()
-      res.writeHead(307, { Location: redirectTo })
-      res.end()
-      return
-    }
-
+  if (action === 'enable' && req.query.secret) {
     if (req.query.secret !== import.meta.graphCommerce.previewSecret) {
       // This secret should only be known to this API route and the CMS
       res.status(401).json({ message: 'Invalid token' })
@@ -33,7 +26,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     res.setDraftMode({ enable: true })
-
     const previewData = req.query.previewDat
       ? (JSON.parse(`${req.query.previewData}`) as PreviewData)
       : previewModeDefaults()
@@ -47,7 +39,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   if (action === 'revalidate') {
-    const { referer } = req.headers
     const url = referer ? new URL(referer) : undefined
 
     if (!url) {

@@ -8,5 +8,5 @@ export const config: PluginConfig = {
 
 export const previewModeDefaults: FunctionPlugin<typeof base> = (prev, ...args) => ({
   ...prev(...args),
-  hygraphStage: 'PUBLISHED',
+  hygraphStage: 'DRAFT',
 })

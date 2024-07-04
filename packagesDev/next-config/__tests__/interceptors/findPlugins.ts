@@ -165,6 +165,14 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "previewModeDefaults",
+        "sourceModule": "@graphcommerce/graphcms-ui/plugins/hygraphPreviewModeDefaults",
+        "targetExport": "previewModeDefaults",
+        "targetModule": "@graphcommerce/ecommerce-ui",
+        "type": "function",
+      },
+      {
+        "enabled": true,
         "sourceExport": "plugin",
         "sourceModule": "@graphcommerce/graphcms-ui/plugins/hygraphGraphqlConfig",
         "targetExport": "graphqlConfig",
@@ -173,16 +181,8 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "previewModeDefaults",
-        "sourceModule": "@graphcommerce/graphcms-ui/plugins/hygraphDraftModeDefaults",
-        "targetExport": "previewModeDefaults",
-        "targetModule": "@graphcommerce/ecommerce-ui",
-        "type": "function",
-      },
-      {
-        "enabled": true,
         "sourceExport": "PreviewModeToolbar",
-        "sourceModule": "@graphcommerce/graphcms-ui/plugins/HygraphDraftModeToolbar",
+        "sourceModule": "@graphcommerce/graphcms-ui/plugins/HygraphPreviewModeToolbar",
         "targetExport": "PreviewModeToolbar",
         "targetModule": "@graphcommerce/ecommerce-ui",
         "type": "component",
