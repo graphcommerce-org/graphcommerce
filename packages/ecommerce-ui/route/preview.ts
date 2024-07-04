@@ -5,6 +5,11 @@ import { previewModeDefaults } from '../components/PreviewMode/previewModeDefaul
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { action } = req.query
 
+  // const domain = req.url ? new URL(req.url) : undefined
+  const referer = req.headers.referer ? new URL(req.headers.referer) : undefined
+
+  const redirectTo = referer && req.headers.host === referer.host ? referer.pathname : '/'
+
   if (!action) {
     res.status(400).json({ message: 'No action provided' })
     res.end()
@@ -15,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (!req.query.secret) {
       res.setDraftMode({ enable: false })
       res.clearPreviewData()
-      res.writeHead(307, { Location: req.headers.referer ?? `/` })
+      res.writeHead(307, { Location: redirectTo })
       res.end()
       return
     }
@@ -59,6 +64,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.setPreviewData(JSON.parse(`${req.query.previewData}`) as PreviewData)
   }
 
-  res.writeHead(307, { Location: req.headers.referer ?? `/` })
+  res.writeHead(307, { Location: redirectTo })
   res.end()
 }
