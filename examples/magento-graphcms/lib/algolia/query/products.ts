@@ -15,7 +15,6 @@ import type {
 } from '../../../.mesh'
 import { M2Types } from '../../../.mesh/sources/m2/types'
 import { Maybe } from 'graphql/jsutils/Maybe'
-import { count } from 'console'
 
 function assertAdditional(
   additional: unknown,
@@ -48,6 +47,11 @@ function mapFiltersForAlgolia(filters?: ProductAttributeFilterInput) {
     const filterValueArray = filters[value]?.in
     if (filters[value]?.in) {
       for (let i = 0; i < filterValueArray.length; i++) {
+        if (value === 'categoryIds') {
+          filterArray.push({
+            facetFilters_Input: { String: `${value}:${atob(filterValueArray[i])}` },
+          })
+        }
         if (filterValueArray[i]) {
           filterArray.push({ facetFilters_Input: { String: `${value}:${filterValueArray[i]}` } })
         }
