@@ -165,11 +165,27 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "previewModeDefaults",
+        "sourceModule": "@graphcommerce/graphcms-ui/plugins/hygraphPreviewModeDefaults",
+        "targetExport": "previewModeDefaults",
+        "targetModule": "@graphcommerce/ecommerce-ui",
+        "type": "function",
+      },
+      {
+        "enabled": true,
         "sourceExport": "plugin",
         "sourceModule": "@graphcommerce/graphcms-ui/plugins/hygraphGraphqlConfig",
         "targetExport": "graphqlConfig",
         "targetModule": "@graphcommerce/graphql",
         "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "PreviewModeToolbar",
+        "sourceModule": "@graphcommerce/graphcms-ui/plugins/HygraphPreviewModeToolbar",
+        "targetExport": "PreviewModeToolbar",
+        "targetModule": "@graphcommerce/ecommerce-ui",
+        "type": "component",
       },
       {
         "enabled": true,
@@ -395,6 +411,15 @@ it('finds plugins', () => {
         "sourceModule": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoProductListItem",
         "targetExport": "ProductListItem",
         "targetModule": "@graphcommerce/magento-product",
+        "type": "component",
+      },
+      {
+        "enabled": false,
+        "ifConfig": "previewSecret",
+        "sourceExport": "FramerNextPages",
+        "sourceModule": "@graphcommerce/ecommerce-ui/plugins/PreviewModeFramerNextPages",
+        "targetExport": "FramerNextPages",
+        "targetModule": "@graphcommerce/framer-next-pages",
         "type": "component",
       },
       {

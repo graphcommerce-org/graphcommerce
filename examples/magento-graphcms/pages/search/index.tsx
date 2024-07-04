@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { flushMeasurePerf } from '@graphcommerce/graphql'
+import { cacheFirst, flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   ProductListDocument,
   extractUrlQuery,
@@ -90,16 +90,20 @@ SearchResultPage.pageOptions = pageOptions
 
 export default SearchResultPage
 
-export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const { locale, params } = context
   const [searchShort = '', query = []] = extractUrlQuery(params)
   const search = searchShort.length >= 3 ? searchShort : ''
 
-  const client = graphqlSharedClient(locale)
+  const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
 
-  const staticClient = graphqlSsrClient(locale)
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const staticClient = graphqlSsrClient(context)
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   const productListParams = parseParams(
     search ? `search/${search}` : 'search',

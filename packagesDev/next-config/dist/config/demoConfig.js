@@ -48,4 +48,5 @@ exports.demoConfig = {
     recentlyViewedProducts: { enabled: true, maxCount: 20 },
     breadcrumbs: false,
     customerDeleteEnabled: true,
+    previewSecret: 'SECRET',
 };
