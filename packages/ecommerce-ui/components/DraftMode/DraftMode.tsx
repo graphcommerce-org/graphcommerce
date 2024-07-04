@@ -21,7 +21,7 @@ export function getPreviewUrl() {
   return url
 }
 
-function DraftModeToolbar() {
+function DraftModeEnabled() {
   const router = useRouter()
 
   const form = useForm<{ previewData: PreviewData }>({
@@ -88,5 +88,5 @@ function DraftModeToolbar() {
 }
 
 export function DraftMode() {
-  return <DraftModeToolbar />
+  return <DraftModeEnabled />
 }
