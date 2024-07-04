@@ -25,7 +25,6 @@ export default function ThemedApp(props: AppProps) {
             <CssBaseline />
             <PageLoadIndicator />
             <FramerNextPages {...props} />
-            <DraftMode />
           </DarkLightModeThemeProvider>
         </GraphQLProvider>
       </I18nProvider>

@@ -28,7 +28,7 @@ export const globalApolloClient: { current: ApolloClient<NormalizedCacheObject> 
 }
 
 export type GraphQLProviderProps = AppProps &
-  Omit<ApolloClientConfigInput, 'storefront' | 'draftMode'> & { children: React.ReactNode }
+  Omit<ApolloClientConfigInput, 'storefront'> & { children: React.ReactNode }
 
 /**
  * The GraphQLProvider allows us to configure the ApolloClient and provide it to the rest of the
@@ -48,7 +48,7 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
     migrations,
     policies,
     storefront,
-    draftMode: router.isPreview,
+    preview: router.isPreview,
   })
   const config = useRef<ApolloClientConfig>(conf)
   config.current = conf
@@ -81,7 +81,6 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
       ssrMode,
       defaultOptions: {
         preview: {
-          draftMode: router.isPreview,
           preview: router.isPreview,
         } as PreviewConfig,
       } as DefaultOptions,

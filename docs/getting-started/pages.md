@@ -93,10 +93,7 @@ AboutUs.pageOptions = pageOptions
 
 export default AboutUs
 
-export const getStaticProps: GetPageStaticProps = async ({
-  locale,
-  draftMode,
-}) => {
+export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
 
@@ -213,10 +210,7 @@ AboutUs.pageOptions = pageOptions
 
 export default AboutUs
 
-export const getStaticProps: GetPageStaticProps = async ({
-  locale,
-  draftMode,
-}) => {
+export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
 

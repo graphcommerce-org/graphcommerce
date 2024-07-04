@@ -15,7 +15,6 @@ declare module '@graphcommerce/graphql/config' {
 export const graphqlConfig: FunctionPlugin<typeof graphqlConfigType> = (prev, conf) => {
   const results = prev(conf)
 
-  const isPreview = conf.draftMode || conf.preview
   const previewVersion = conf.previewData?.magentoPreviewVersion
 
   return {
@@ -25,7 +24,7 @@ export const graphqlConfig: FunctionPlugin<typeof graphqlConfigType> = (prev, co
       setContext((_, context) => {
         if (!context.headers) context.headers = {}
         context.headers.store = conf.storefront.magentoStoreCode
-        if (isPreview) {
+        if (conf.preview) {
           // To disable caching from the backend, we provide a bogus cache ID.
           context.headers['x-magento-cache-id'] =
             `random-cache-id${Math.random().toString(36).slice(2)}`

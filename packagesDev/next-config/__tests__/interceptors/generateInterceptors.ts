@@ -411,7 +411,6 @@ it('adds debug logging to interceptors for components', async () => {
     export type PreviewConfig = {
       preview?: boolean
       previewData?: PreviewData & Record<string, unknown>
-      draftMode?: boolean
     }
     export type ApolloClientConfigInput = {
       storefront: GraphCommerceStorefrontConfig

@@ -8,7 +8,6 @@ export interface PreviewData {}
 export type PreviewConfig = {
   preview?: boolean
   previewData?: PreviewData & Record<string, unknown>
-  draftMode?: boolean
 }
 
 export type ApolloClientConfigInput = {

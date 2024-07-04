@@ -4,56 +4,56 @@ import {
   MessageSnackbar,
   iconClose,
   iconContrast,
-  iconInfo,
   iconRefresh,
 } from '@graphcommerce/next-ui'
-import { FormPersist, FormProvider, useForm, useFormContext } from '@graphcommerce/react-hook-form'
-import { Box, IconButton, Tooltip, TooltipProps, styled, tooltipClasses } from '@mui/material'
+import { FormAutoSubmit, FormPersist, FormProvider, useForm } from '@graphcommerce/react-hook-form'
+import { Box, IconButton } from '@mui/material'
 import { useRouter } from 'next/router'
-import { SelectElement } from '../FormComponents'
+import { DraftModeActions } from './DraftModeActions'
+import { DraftModeToolbar } from './DraftModeToolbar'
+import { LightTooltip } from './LightTooltip'
+import { draftModeDefaults } from './draftModeDefaults'
 
-function HygraphConfig() {
-  const form = useFormContext<PreviewData>()
-  const { control } = form
-
-  return (
-    <>
-      <SelectElement
-        control={control}
-        name='hygraphStage'
-        color='secondary'
-        select
-        label='Hygraph Stage'
-        size='small'
-        sx={{ width: '140px' }}
-        SelectProps={{
-          MenuProps: { style: { zIndex: 20000 } },
-        }}
-        onChange={() => {}}
-        options={[
-          { id: 'DRAFT', label: 'DRAFT' },
-          { id: 'PUBLISHED', label: 'PUBLISHED' },
-        ]}
-      />
-      <FormPersist form={form} name='PreviewData' />
-    </>
-  )
+export function getPreviewUrl() {
+  const url = new URL(window.location.href)
+  url.pathname = '/api/preview'
+  ;[...url.searchParams.entries()].forEach(([key]) => url.searchParams.delete(key))
+  return url
 }
 
-const LightTooltip = styled<typeof Tooltip>(({ className, ...props }) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))(({ theme }) => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: theme.palette.common.white,
-    color: theme.palette.text.primary,
-    boxShadow: theme.shadows[1],
-  },
-}))
-
-export function DraftMode() {
+function DraftModeToolbar() {
   const router = useRouter()
 
-  const form = useForm<PreviewData>({ defaultValues: { hygraphStage: 'DRAFT' } })
+  const form = useForm<{ previewData: PreviewData }>({
+    defaultValues: { previewData: draftModeDefaults() },
+  })
+
+  const submit = form.handleSubmit((formValues) => {
+    const url = getPreviewUrl()
+    url.searchParams.append('action', 'update')
+
+    Object.entries(formValues).forEach(([key, value]) => {
+      url.searchParams.append(key, JSON.stringify(value))
+    })
+
+    window.location.href = url.toString()
+  })
+
+  const exitHandler = form.handleSubmit(() => {
+    const url = getPreviewUrl()
+    url.searchParams.append('action', 'exit')
+
+    window.location.href = url.toString()
+  })
+
+  const revalidateHandler = form.handleSubmit((formValues) => {
+    const url = getPreviewUrl()
+    Object.entries(formValues).forEach(([key, value]) => {
+      url.searchParams.append(key, `${value}`)
+    })
+    url.searchParams.append('action', 'revalidate')
+    window.location.href = url.toString()
+  })
 
   return (
     <FormProvider {...form}>
@@ -65,47 +65,28 @@ export function DraftMode() {
         disableClose
         icon={iconContrast}
         onClose={() => {}}
-        action={
-          <>
-            <LightTooltip title='Revalidate / Regenerate Page' placement='top'>
-              <IconButton
-                color='secondary'
-                type='submit'
-                value='revalidate'
-                onClick={() => {
-                  window.location.href = '/api/preview?revalidate=1'
-                }}
-              >
-                <IconSvg src={iconRefresh} />
-              </IconButton>
-            </LightTooltip>
-            <LightTooltip title='Stop preview mode' placement='top'>
-              <IconButton
-                color='secondary'
-                type='submit'
-                value='exit'
-                onClick={() => {
-                  window.location.href = '/api/preview'
-                }}
-              >
-                <IconSvg src={iconClose} />
-              </IconButton>
-            </LightTooltip>
-          </>
-        }
+        action={<DraftModeActions />}
       >
         <Box sx={{ display: 'grid', gridAutoFlow: 'column', placeItems: 'center', gap: 4 }}>
-          <Box sx={{ display: 'flex', placeItems: 'center' }}>
-            Preview Mode
-            <LightTooltip title='You are currently viewing the website in Preview Mode (caches are disabled).'>
-              <IconButton size='small'>
-                <IconSvg src={iconInfo} />
-              </IconButton>
-            </LightTooltip>
-          </Box>
-          <HygraphConfig />
+          <DraftModeToolbar />
+          <LightTooltip title='Revalidate / Regenerate Page' placement='top'>
+            <IconButton color='secondary' type='submit' onClick={revalidateHandler}>
+              <IconSvg src={iconRefresh} />
+            </IconButton>
+          </LightTooltip>
+          <LightTooltip title='Stop preview mode' placement='top'>
+            <IconButton color='secondary' type='submit' onClick={exitHandler}>
+              <IconSvg src={iconClose} />
+            </IconButton>
+          </LightTooltip>
         </Box>
       </MessageSnackbar>
+      <FormPersist form={form} name='DraftModePreviewData' />
+      <FormAutoSubmit control={form.control} submit={submit} />
     </FormProvider>
   )
+}
+
+export function DraftMode() {
+  return <DraftModeToolbar />
 }

@@ -5,7 +5,7 @@ export function cachePolicy(
   client: ApolloClient<object>,
   requestedCachePolicy: FetchPolicy,
 ): FetchPolicy {
-  return process.env.NODE_ENV !== 'development' && !getPreviewData(client)?.draftMode
+  return process.env.NODE_ENV !== 'development' && !getPreviewData(client)?.preview
     ? requestedCachePolicy
     : 'network-only'
 }

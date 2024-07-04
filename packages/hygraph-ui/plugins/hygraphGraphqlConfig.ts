@@ -22,7 +22,7 @@ const hygraphGraphqlConfig: FunctionPlugin<typeof graphqlConfig> = (prev, config
     context.headers['gcms-locales'] = locales.join(',')
 
     const stage = config.previewData?.hygraphStage ?? 'DRAFT'
-    if (config.draftMode) {
+    if (config.preview) {
       context.headers['gcms-stage'] = stage
     }
 

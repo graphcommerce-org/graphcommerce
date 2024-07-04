@@ -23,6 +23,14 @@ it('finds plugins', () => {
     [
       {
         "enabled": true,
+        "sourceExport": "FramerNextPages",
+        "sourceModule": "@graphcommerce/ecommerce-ui/plugins/DraftMode",
+        "targetExport": "FramerNextPages",
+        "targetModule": "@graphcommerce/framer-next-pages",
+        "type": "component",
+      },
+      {
+        "enabled": true,
         "ifConfig": "googleAnalyticsId",
         "sourceExport": "plugin",
         "sourceModule": "@graphcommerce/googleanalytics/plugins/gtagEvent",
@@ -170,6 +178,14 @@ it('finds plugins', () => {
         "targetExport": "graphqlConfig",
         "targetModule": "@graphcommerce/graphql",
         "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "DraftModeToolbar",
+        "sourceModule": "@graphcommerce/graphcms-ui/plugins/HygraphDraftModeToolbar",
+        "targetExport": "DraftModeToolbar",
+        "targetModule": "@graphcommerce/ecommerce-ui",
+        "type": "component",
       },
       {
         "enabled": true,

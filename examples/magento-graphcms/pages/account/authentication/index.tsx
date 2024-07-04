@@ -13,7 +13,6 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
-import { draftMode } from 'next/headers'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
