@@ -1,8 +1,7 @@
 import { PreviewData } from '@graphcommerce/graphql'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { draftModeDefaults } from '../components/DraftMode/draftModeDefaults'
+import { previewModeDefaults } from '../components/PreviewMode/previewModeDefaults'
 
-//http://localhost:3000/api/preview?action=enable&secret=UzI1NiIsI
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { action } = req.query
 
@@ -29,7 +28,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     res.setDraftMode({ enable: true })
-    res.setPreviewData(draftModeDefaults())
+
+    const previewData = req.query.previewDat
+      ? (JSON.parse(`${req.query.previewData}`) as PreviewData)
+      : previewModeDefaults()
+
+    res.setPreviewData(previewData)
   }
 
   if (action === 'exit') {

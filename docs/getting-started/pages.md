@@ -259,11 +259,8 @@ export const getStaticPaths: GetPageStaticPaths = (context) => ({
   fallback: 'blocking',
 })
 
-export const getStaticProps: GetPageStaticProps = async ({
-  locale,
-  params,
-  draftMode,
-}) => {
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const { params } = context
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
 

@@ -1,4 +1,3 @@
-import { DraftMode } from '@graphcommerce/ecommerce-ui'
 import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 import { GraphQLProvider } from '@graphcommerce/graphql'
 import { GlobalHead } from '@graphcommerce/magento-store'

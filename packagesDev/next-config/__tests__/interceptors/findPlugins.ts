@@ -24,7 +24,7 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "sourceExport": "FramerNextPages",
-        "sourceModule": "@graphcommerce/ecommerce-ui/plugins/DraftMode",
+        "sourceModule": "@graphcommerce/ecommerce-ui/plugins/PreviewMode",
         "targetExport": "FramerNextPages",
         "targetModule": "@graphcommerce/framer-next-pages",
         "type": "component",
@@ -181,9 +181,9 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "DraftModeToolbar",
-        "sourceModule": "@graphcommerce/graphcms-ui/plugins/HygraphDraftModeToolbar",
-        "targetExport": "DraftModeToolbar",
+        "sourceExport": "PreviewModeToolbar",
+        "sourceModule": "@graphcommerce/graphcms-ui/plugins/HygraphPreviewModeToolbar",
+        "targetExport": "PreviewModeToolbar",
         "targetModule": "@graphcommerce/ecommerce-ui",
         "type": "component",
       },

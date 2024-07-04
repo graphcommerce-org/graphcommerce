@@ -1,6 +1,6 @@
 import {
-  useDraftModeForm,
-  type DraftModeToolbarProps,
+  usePreviewModeForm,
+  type PreviewModeToolbarProps,
   SelectElement,
 } from '@graphcommerce/ecommerce-ui'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
@@ -11,7 +11,7 @@ export const config: PluginConfig = {
 }
 
 function HygraphConfig() {
-  const form = useDraftModeForm()
+  const form = usePreviewModeForm()
   const { control } = form
 
   return (
@@ -23,7 +23,7 @@ function HygraphConfig() {
       select
       label='Hygraph Stage'
       size='small'
-      sx={{ width: '140px' }}
+      sx={{ width: '150px' }}
       SelectProps={{
         MenuProps: { style: { zIndex: 20000 } },
       }}
@@ -36,7 +36,7 @@ function HygraphConfig() {
   )
 }
 
-export const DraftModeToolbar = (props: PluginProps<DraftModeToolbarProps>) => {
+export const PreviewModeToolbar = (props: PluginProps<PreviewModeToolbarProps>) => {
   const { Prev, ...rest } = props
   return (
     <>

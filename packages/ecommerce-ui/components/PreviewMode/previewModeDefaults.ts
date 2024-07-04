@@ -1,5 +1,5 @@
 import { PreviewData } from '@graphcommerce/graphql'
 
-export function draftModeDefaults(): PreviewData {
+export function previewModeDefaults(): PreviewData {
   return {}
 }
