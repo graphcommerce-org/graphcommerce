@@ -12,6 +12,7 @@ import { Box, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutDocument, LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
@@ -77,7 +78,10 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const conf = client.query({ query: StoreConfigDocument })
   const page = hygraphPageContent(staticClient, `modal/${urlKey}`)
 
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
 

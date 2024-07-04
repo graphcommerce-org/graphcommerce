@@ -35,6 +35,7 @@ import { Trans } from '@lingui/react'
 import { CircularProgress, Container, Dialog, Typography } from '@mui/material'
 import { LayoutDocument, LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { cacheFirst } from '@graphcommerce/graphql'
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
@@ -158,7 +159,10 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const staticClient = graphqlSsrClient(context)
 
   const conf = client.query({ query: StoreConfigDocument })
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   return {
     props: {

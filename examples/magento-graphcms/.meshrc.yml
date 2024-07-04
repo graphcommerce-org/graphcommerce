@@ -32,5 +32,6 @@ sources:
           X-ReCaptcha: "{context.headers['x-recaptcha']}"
           Preview-Version: "{context.headers['preview-version']}"
           Content-Currency: "{context.headers['content-currency']}"
+          X-Magento-Cache-Id: "{context.headers['x-magento-cache-id']}"
 serve:
   playground: true

@@ -167,6 +167,7 @@ export type GraphCommerceConfig = {
   customerCompanyFieldsEnable?: InputMaybe<Scalars['Boolean']['input']>;
   /** Enable customer account deletion through the account section */
   customerDeleteEnabled?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Datalayer config */
   dataLayer?: InputMaybe<DatalayerConfig>;
   /** Debug configuration for GraphCommerce */
   debug?: InputMaybe<GraphCommerceDebugConfig>;
@@ -512,7 +513,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     previewSecret: z.string().nullish(),
     productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
     productFiltersPro: z.boolean().nullish(),
-    productListPaginationVariant: PaginationVariantSchema.nullish(),
+    productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
     productRoute: z.string().nullish(),
     recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
     robotsAllow: z.boolean().nullish(),

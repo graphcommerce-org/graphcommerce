@@ -9,9 +9,10 @@ import {
   SxProps,
   Theme,
   Portal,
+  SvgIconProps,
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { IconSvg } from '../IconSvg'
+import { IconSvg, IconSvgProps } from '../IconSvg'
 import { extendableComponent, breakpointVal } from '../Styles'
 import { iconClose, iconCheckmark, iconSadFace } from '../icons'
 import iconInfo from '../icons/info.svg'
@@ -29,6 +30,7 @@ export type MessageSnackbarProps = Omit<
   onClose?: () => void
   sx?: SxProps<Theme>
   disableClose?: boolean
+  icon?: IconSvgProps['src']
 } & OwnerState
 
 type OwnerState = {
@@ -40,6 +42,8 @@ type OwnerState = {
    * Setting this to true allows interaction with the rest of the page without closing the Snackbar
    */
   disableBackdropClick?: boolean
+  disableClose?: boolean
+  disableIcon?: boolean
 }
 
 const name = 'MessageSnackbarImpl' as const
@@ -64,10 +68,20 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
     sx,
     disableBackdropClick,
     disableClose,
+    disableIcon,
+    icon,
     ...snackbarProps
   } = props
 
-  const classes = withState({ sticky, size, severity, variant })
+  const classes = withState({
+    sticky,
+    size,
+    severity,
+    variant,
+    disableBackdropClick,
+    disableClose,
+    disableIcon,
+  })
 
   useEffect(() => {
     setShowSnackbar(!!open)
@@ -91,9 +105,10 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
     }
   }
 
-  let icon = iconCheckmark
-  if (severity === 'info') icon = iconInfo
-  if (severity === 'error') icon = iconSadFace
+  let icon2 = iconCheckmark
+  if (severity === 'info') icon2 = iconInfo
+  if (severity === 'error') icon2 = iconSadFace
+  if (icon) icon2 = icon
 
   return (
     <Portal>
@@ -150,10 +165,32 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
                 gridArea: 'children',
               },
             },
+
+            '&.disableIcon .MuiSnackbarContent-message': {
+              gridTemplate: {
+                xs: `"children close"
+                       "action action"`,
+                md: '"children action close"',
+              },
+            },
+            '&.disableClose .MuiSnackbarContent-message': {
+              gridTemplate: {
+                xs: `"icon children"
+                       "action action"`,
+                md: '"icon children action"',
+              },
+            },
+            '&.disableIcon.disableClose .MuiSnackbarContent-message': {
+              gridTemplate: {
+                xs: `"children"
+                       "action"`,
+                md: '"children action"',
+              },
+            },
           })}
           message={
             <>
-              <IconSvg src={icon} size='large' />
+              {!disableIcon && <IconSvg src={icon2} size='large' />}
               <Box gridArea='children'>{children}</Box>
               {/* </Box> */}
               {action && (

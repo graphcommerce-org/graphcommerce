@@ -37,6 +37,7 @@ import { CircularProgress, Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutDocument, LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
@@ -153,7 +154,10 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const conf = client.query({ query: StoreConfigDocument })
   const staticClient = graphqlSsrClient(context)
 
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   return {
     props: {

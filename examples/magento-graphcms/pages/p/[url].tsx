@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { mergeDeep } from '@graphcommerce/graphql'
+import { cacheFirst, mergeDeep } from '@graphcommerce/graphql'
 import {
   AddProductsToCartForm,
   AddProductsToCartFormProps,
@@ -181,7 +181,10 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
 
   const conf = client.query({ query: StoreConfigDocument })
   const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   const product = productPage.then((pp) =>
     pp.data.products?.items?.find((p) => p?.url_key === urlKey),
@@ -195,7 +198,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
       : { href: `/`, title: i18n._(/* i18n */ 'Home') }
-  const usps = staticClient.query({ query: UspsDocument, fetchPolicy: 'cache-first' })
+  const usps = staticClient.query({ query: UspsDocument, fetchPolicy: cacheFirst(staticClient) })
 
   return {
     props: {

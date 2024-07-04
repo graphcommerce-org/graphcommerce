@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { flushMeasurePerf } from '@graphcommerce/graphql'
+import { cacheFirst, flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   appendSiblingsAsChildren,
   CategoryBreadcrumbs,
@@ -160,7 +160,10 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     query: CategoryPageDocument,
     variables: { url },
   })
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   const productListParams = parseParams(url, query, await filterTypes)
   const filteredCategoryUid = productListParams && productListParams.filters.category_uid?.in?.[0]

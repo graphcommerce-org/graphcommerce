@@ -11,6 +11,7 @@ import {
   RowRenderer,
 } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
+import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = HygraphPagesQuery & {
   latestList: ProductListQuery
@@ -79,7 +80,10 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
 
   const conf = client.query({ query: StoreConfigDocument })
   const page = hygraphPageContent(staticClient, 'page/home')
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
   const favoritesList = staticClient.query({

@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { flushMeasurePerf } from '@graphcommerce/graphql'
+import { cacheFirst, flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   ProductListDocument,
   extractUrlQuery,
@@ -100,7 +100,10 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const filterTypes = getFilterTypes(client)
 
   const staticClient = graphqlSsrClient(context)
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   const productListParams = parseParams(
     search ? `search/${search}` : 'search',

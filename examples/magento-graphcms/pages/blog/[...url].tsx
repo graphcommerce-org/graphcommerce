@@ -25,6 +25,7 @@ import {
   RowRenderer,
 } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = HygraphPagesQuery & BlogListQuery
 type RouteProps = { url: string[] }
@@ -88,7 +89,10 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const conf = client.query({ query: StoreConfigDocument })
 
   const page = hygraphPageContent(staticClient, `blog/${urlKey}`)
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   const blogPosts = staticClient.query({
     query: BlogListDocument,
