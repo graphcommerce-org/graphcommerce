@@ -11,6 +11,7 @@ import type {
   ProductAttributeFilterInput,
   AlgoliafacetFilters_Input,
   CategoryTree,
+  CategoryResult,
 } from '../../../.mesh'
 import { M2Types } from '../../../.mesh/sources/m2/types'
 import { Maybe } from 'graphql/jsutils/Maybe'
@@ -56,60 +57,37 @@ function mapFiltersForAlgolia(filters?: ProductAttributeFilterInput) {
   return filterArray
 }
 
-/**
- * 
- *   uid
-    name
-    uid
-    children {
+type TestArray = { label: Maybe<string> | undefined; value: string | undefined; count: number }
+function recursiveOptions(category: Maybe<CategoryTree>, facetList: object): TestArray[] {
+  const options: TestArray[] = []
+  if (category?.children?.length) {
+    category.children.forEach((child) => {
+      const childData = recursiveOptions(child, facetList)
+      options.push(...childData)
+    })
+  }
 
+  options.push({ label: category?.name, value: category?.uid, count: facetList[category.id] })
+  return options
+}
 
-                {
-              "label": "Photography",
-              "value": "OTE=",
-              "count": 435
-            },
-
-
- */
-
-// function recursiveOptions(category: Maybe<CategoryTree>): {label: Maybe<string> | undefined, value:string, count:number  }[]{
-
-//    let options =  category?.children?.map((child) => recursiveOptions(child))
-
-//    options?.push({label: category?.name, value: category?.uid, count: 0})
-
-//    return options
-// }
-
-// function mapOptions(children){
-//   const optionsArray = []
-//   for(let i = 0; i < categoryList.items.length){
-//     if (categoryList.items[i].children.length > 0){
-//       optionsArray.push(...mapOptions(children))
-//     }
-
-//   }
-// }
-// function categoryMapping(categoryList: Object, categoryLabel): Aggregation {
-//   const optionsArray = []
-//   for(let i = 0; i < categoryList.items.length){
-//     if (categoryList.items[i].children.length > 0){
-//       optionsArray.push(...mapOptions(children))
-//     }
-//   }
-//   return {
-//     label: categoryLabel,
-//     attribute_code: 'categoryIds',
-//     options: optionsCheck,
-//   }
-// }
+function categoryMapping(
+  categoryList: CategoryResult,
+  categoryLabel,
+  facetList: object,
+): Aggregation {
+  return {
+    label: categoryLabel,
+    attribute_code: categoryLabel,
+    options: recursiveOptions(categoryList.items[0], facetList),
+  }
+}
 
 // Map algolia facets to aggregations format
 function mapAlgoliaFacetsToAggregations(
   algoliaFacets: object,
   attributes: M2Types.Maybe<M2Types.CustomAttributeMetadataInterface>[] | undefined,
-  categoryList: Array,
+  categoryList: CategoryResult,
 ): Aggregation[] {
   const aggregations: Aggregation[] = []
   Object.keys(algoliaFacets).forEach((facetIndex) => {
@@ -129,6 +107,8 @@ function mapAlgoliaFacetsToAggregations(
         attribute_code: facetIndex,
         options: optionsCheck,
       })
+    } else if (facetIndex === 'categoryIds') {
+      aggregations.push(categoryMapping(categoryList, facetIndex, algoliaFacets[facetIndex]))
     } else {
       aggregations.push({
         label: facetIndex,
@@ -213,6 +193,9 @@ export const resolver: Resolvers = {
           selectionSet: /* GraphQL */ `
             {
               items {
+                uid
+                name
+                id
                 children {
                   uid
                   name
@@ -244,6 +227,7 @@ export const resolver: Resolvers = {
       const aggregations = mapAlgoliaFacetsToAggregations(
         searchResults?.facets?.additionalProperties,
         attributeList?.items,
+        categoryList,
       )
 
       // Map algolia results to magento products format
