@@ -1,0 +1,19 @@
+type AlgoliaProductHitAdditionalProperties {
+  name: String
+  sku: String
+  print_holiday: String
+  print_mood: Str
+}
+
+type Algoliahit {
+  additionalProperties: AlgoliaProductHitAdditionalProperties
+}
+
+input ProductAttributeFilterInput {
+  """
+  When set to true, the query is passed to Algolia.
+
+  This is faster, but is only recommended for search and category pages as the data could be out of date and many fields of a product aren't supported.
+  """
+  useAlgolia: Boolean
+}

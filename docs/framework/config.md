@@ -85,6 +85,22 @@ Below is a list of all possible configurations that can be set by GraphCommerce.
 
 ### GraphCommerceConfig
 
+#### algoliaApplicationId: string (required)
+
+Configure your Algolia application ID.
+
+Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
+
+#### algoliaIndexNamePrefix: string (required)
+
+Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix
+
+#### algoliaSearchOnlyApiKey: string (required)
+
+Configure your Algolia Search Only API Key.
+
+Stores > Configuration > Algolia Search > Credentials and Basic Setup > Search-only (public) API key
+
 #### canonicalBaseUrl: string (required)
 
 The canonical base URL is used for SEO purposes.
@@ -362,6 +378,10 @@ Examples:
 - default
 - en-us
 - b2b-us
+
+#### algoliaIndexNamePrefix: string
+
+Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix
 
 #### canonicalBaseUrl: string
 

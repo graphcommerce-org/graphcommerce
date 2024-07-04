@@ -8,8 +8,13 @@ import type {
   Aggregation,
   AggregationOption,
   QueryattributesListArgs,
+  ProductAttributeFilterInput,
+  AlgoliafacetFilters_Input,
+  CategoryTree,
 } from '../../../.mesh'
 import { M2Types } from '../../../.mesh/sources/m2/types'
+import { Maybe } from 'graphql/jsutils/Maybe'
+import { count } from 'console'
 
 function assertAdditional(
   additional: unknown,
@@ -31,27 +36,80 @@ function mapPriceRange(prices: object, currency: CurrencyEnum): PriceRange {
 }
 
 // Map filters recieved from arguments to algolia facetfilter format
-function mapFiltersForAlgolia(filters: object) {
-  const filterArray: object[] = []
+function mapFiltersForAlgolia(filters?: ProductAttributeFilterInput) {
+  const filterArray: AlgoliafacetFilters_Input[] = []
 
   if (!filters) {
     return []
   }
-  
+
   Object.keys(filters).forEach((value) => {
     const filterValueArray = filters[value]?.in
-    for (let i = 0; i < filterValueArray.length; i++) {
-      if (filterValueArray[i]) {
-        filterArray.push({ facetFilters_Input: { String: `${value}:${filterValueArray[i]}` } })
+    if (filters[value]?.in) {
+      for (let i = 0; i < filterValueArray.length; i++) {
+        if (filterValueArray[i]) {
+          filterArray.push({ facetFilters_Input: { String: `${value}:${filterValueArray[i]}` } })
+        }
       }
     }
   })
   return filterArray
 }
 
+/**
+ * 
+ *   uid
+    name
+    uid
+    children {
+
+
+                {
+              "label": "Photography",
+              "value": "OTE=",
+              "count": 435
+            },
+
+
+ */
+
+// function recursiveOptions(category: Maybe<CategoryTree>): {label: Maybe<string> | undefined, value:string, count:number  }[]{
+
+//    let options =  category?.children?.map((child) => recursiveOptions(child))
+
+//    options?.push({label: category?.name, value: category?.uid, count: 0})
+
+//    return options
+// }
+
+// function mapOptions(children){
+//   const optionsArray = []
+//   for(let i = 0; i < categoryList.items.length){
+//     if (categoryList.items[i].children.length > 0){
+//       optionsArray.push(...mapOptions(children))
+//     }
+
+//   }
+// }
+// function categoryMapping(categoryList: Object, categoryLabel): Aggregation {
+//   const optionsArray = []
+//   for(let i = 0; i < categoryList.items.length){
+//     if (categoryList.items[i].children.length > 0){
+//       optionsArray.push(...mapOptions(children))
+//     }
+//   }
+//   return {
+//     label: categoryLabel,
+//     attribute_code: 'categoryIds',
+//     options: optionsCheck,
+//   }
+// }
+
+// Map algolia facets to aggregations format
 function mapAlgoliaFacetsToAggregations(
   algoliaFacets: object,
   attributes: M2Types.Maybe<M2Types.CustomAttributeMetadataInterface>[] | undefined,
+  categoryList: Array,
 ): Aggregation[] {
   const aggregations: Aggregation[] = []
   Object.keys(algoliaFacets).forEach((facetIndex) => {
@@ -85,18 +143,26 @@ function mapAlgoliaFacetsToAggregations(
 export const resolver: Resolvers = {
   Query: {
     products: async (root, args, context, info) => {
-      const todo: { prefix: string; isAlgolia: boolean; currency: CurrencyEnum } = {
-        prefix: 'magento2_demo',
-        isAlgolia: true,
-        currency: 'EUR',
-      }
+      const storeConfig = await context.m2.Query.storeConfig({
+        root,
+        info,
+        context,
+        selectionSet: /* GraphQL */ `
+          {
+            store_code
+            default_display_currency_code
+          }
+        `,
+      })
 
-      if (!todo.isAlgolia) {
+      // Object.keys(info.operation.selectionSet);
+
+      if (!args.filter?.useAlgolia || !storeConfig) {
         return context.m2.Query.products({ root, args, context, info })
       }
 
       const inputArgs: Mutationalgolia_searchSingleIndexArgs = {
-        indexName: 'magento2_demonl_NL_products',
+        indexName: `${import.meta.graphCommerce.algoliaIndexNamePrefix}${storeConfig?.store_code}_products`,
         input: {
           Search_parameters_as_object_Input: {
             query: args.search,
@@ -107,12 +173,8 @@ export const resolver: Resolvers = {
         },
       }
 
-      const attributeArgs: QueryattributesListArgs = {
-        entityType: 'CATALOG_PRODUCT',
-      }
-
       // Note: the attributelist query requires magento: ^2.4.7
-      const [searchResults, attributeList] = await Promise.all([
+      const [searchResults, attributeList, categoryList] = await Promise.all([
         context.algolia.Mutation.algolia_searchSingleIndex({
           root,
           args: inputArgs,
@@ -134,12 +196,43 @@ export const resolver: Resolvers = {
         }),
         context.m2.Query.attributesList({
           root,
-          args: attributeArgs,
+          args: { entityType: 'CATALOG_PRODUCT', filters: { is_filterable: true } },
           selectionSet: /* GraphQL */ `
             {
               items {
                 label
                 code
+              }
+            }
+          `,
+          context,
+          info,
+        }),
+        context.m2.Query.categories({
+          root,
+          selectionSet: /* GraphQL */ `
+            {
+              items {
+                children {
+                  uid
+                  name
+                  id
+                  children {
+                    name
+                    uid
+                    id
+                    children {
+                      name
+                      uid
+                      id
+                      children {
+                        id
+                        name
+                        uid
+                      }
+                    }
+                  }
+                }
               }
             }
           `,
@@ -174,7 +267,10 @@ export const resolver: Resolvers = {
           sku: Array.isArray(hit.additionalProperties.sku)
             ? hit.additionalProperties.sku[0]
             : hit?.additionalProperties?.sku,
-          price_range: mapPriceRange(hit.additionalProperties.price, todo.currency),
+          price_range: mapPriceRange(
+            additionalProperties.price,
+            storeConfig?.default_display_currency_code,
+          ),
           // Mandatory fields, but todo
           rating_summary: 0,
           review_count: 0,
