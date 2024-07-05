@@ -8,6 +8,7 @@ import type {
   CategoryTree,
   CurrencyEnum,
   CustomAttributeMetadataInterface,
+  InputMaybe,
   Maybe,
   MeshContext,
   PriceRange,
@@ -67,7 +68,7 @@ function mapPriceRange(
 }
 
 // Map filters recieved from arguments to algolia facetfilter format
-function mapFiltersForAlgolia(filters?: ProductAttributeFilterInput) {
+function mapFiltersForAlgolia(filters?: InputMaybe<ProductAttributeFilterInput>) {
   const filterArray: AlgoliafacetFilters_Input[] = []
 
   if (!filters) {
@@ -202,7 +203,8 @@ export const resolvers: Resolvers = {
     products: async (root, args, context, info) => {
       const store = getStoreHeader(context)
 
-      if (!args.filter?.useAlgolia || !store) {
+      const isAgolia = (args.filter?.engine?.in ?? [args.filter?.engine?.eq])[0] === 'algolia'
+      if (!isAgolia || !store) {
         return context.m2.Query.products({ root, args, context, info })
       }
 

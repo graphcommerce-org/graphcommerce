@@ -112,7 +112,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const filters = staticClient.query({
     query: ProductFiltersDocument,
-    variables: { search, filters: { useAlgolia: true } },
+    variables: { search, filters: { engine: { eq: 'agolia' } } },
   })
 
   const products = staticClient.query({
@@ -120,11 +120,9 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     variables: productListApplySearchDefaults(productListParams, (await conf).data),
   })
 
-  const categories = undefined
-
-  // search
-  //   ? staticClient.query({ query: CategorySearchDocument, variables: { search } })
-  //   : undefined
+  const categories = false
+    ? staticClient.query({ query: CategorySearchDocument, variables: { search } })
+    : undefined
 
   const result = {
     props: {

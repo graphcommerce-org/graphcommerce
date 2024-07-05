@@ -29,5 +29,5 @@ input ProductAttributeFilterInput {
 
   This is faster, but is only recommended for search and category pages as the data could be out of date and many fields of a product aren't supported.
   """
-  useAlgolia: Boolean
+  engine: FilterEqualTypeInput
 }
