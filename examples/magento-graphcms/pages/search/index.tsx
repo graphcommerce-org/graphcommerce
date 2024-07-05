@@ -112,7 +112,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const filters = staticClient.query({
     query: ProductFiltersDocument,
-    variables: { search, filters: { engine: { eq: 'agolia' } } },
+    variables: { search, filters: { engine: { eq: 'algolia' } } },
   })
 
   const products = staticClient.query({
