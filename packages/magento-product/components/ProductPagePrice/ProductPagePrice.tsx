@@ -1,5 +1,5 @@
 import { useWatch } from '@graphcommerce/ecommerce-ui'
-import { SignedInMask } from '@graphcommerce/magento-customer'
+import { InContextMask } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { AddToCartItemSelector, useFormAddProductsToCart } from '../AddProductsToCart'
@@ -32,22 +32,22 @@ export function ProductPagePrice(props: ProductPagePriceProps) {
   return (
     <>
       {regularPrice.value !== price.value && (
-        <SignedInMask
+        <InContextMask
           component='span'
           className={classes.discountPrice}
           skeleton={{ variant: 'text', sx: { width: '3em', transform: 'none' } }}
           sx={[{ textDecoration: 'line-through', color: 'text.disabled', marginRight: '8px' }]}
         >
           <Money {...regularPrice} />
-        </SignedInMask>
+        </InContextMask>
       )}
-      <SignedInMask
+      <InContextMask
         component='span'
         skeleton={{ variant: 'text', sx: { width: '3em', transform: 'none' } }}
         className={classes.finalPrice}
       >
         <Money {...price} value={priceValue} />
-      </SignedInMask>
+      </InContextMask>
     </>
   )
 }

@@ -1,5 +1,4 @@
-import { ApolloQueryResult, useQuery } from '@graphcommerce/graphql'
-import { CustomerTokenDocument, useSessionScopeQuery } from '@graphcommerce/magento-customer'
+import { useInContextQuery, useQuery } from '@graphcommerce/graphql'
 import {
   FilterFormProviderProps,
   ProductListDocument,
@@ -28,21 +27,19 @@ export function useProductList<
 >(props: T) {
   const { params, shallow } = useRouterFilterParams(props)
   const variables = useProductListApplySearchDefaults(params)
-  const result = useSessionScopeQuery(ProductListDocument, { variables, skip: !shallow }, props)
+  const result = useInContextQuery(ProductListDocument, { variables, skip: !shallow }, props)
   const storeConfig = useQuery(StoreConfigDocument).data
 
   const handleSubmit: NonNullable<FilterFormProviderProps['handleSubmit']> = useEventCallback(
     async (formValues, next) => {
       if (!storeConfig) return
 
-      const vars = {
-        ...productListApplySearchDefaults(toProductListParams(formValues), storeConfig),
-        sessionScope: {
-          loggedIn: !!result.client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken
-            ?.token,
-        },
-      }
-      await prefetchProductList(vars, next, result.client, true)
+      await prefetchProductList(
+        productListApplySearchDefaults(toProductListParams(formValues), storeConfig),
+        next,
+        result.client,
+        true,
+      )
     },
   )
 

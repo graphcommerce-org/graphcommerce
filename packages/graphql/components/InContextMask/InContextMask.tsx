@@ -5,7 +5,7 @@ import React, { createContext, useContext, useMemo } from 'react'
 
 type MaskProp = { skeleton?: SkeletonProps }
 
-interface SignedInMaskTypeMap<
+interface InContextMaskTypeMap<
   AdditionalProps = MaskProp,
   RootComponent extends React.ElementType = 'div',
 > {
@@ -13,40 +13,40 @@ interface SignedInMaskTypeMap<
   defaultComponent: RootComponent
 }
 
-export type SignedInMaskProps<
-  RootComponent extends React.ElementType = SignedInMaskTypeMap['defaultComponent'],
+export type InContextMaskProps<
+  RootComponent extends React.ElementType = InContextMaskTypeMap['defaultComponent'],
   AdditionalProps = MaskProp,
-> = OverrideProps<SignedInMaskTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+> = OverrideProps<InContextMaskTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType
 }
 
-type SignedInMaskContextType = { mask: boolean }
+type InContextMaskContextType = { mask: boolean }
 
-const SignedInMaskContext = createContext<SignedInMaskContextType | null>(null)
+const InContextMaskContext = createContext<InContextMaskContextType | null>(null)
 
-export function useSignedInMask() {
-  const context = useContext(SignedInMaskContext)
+export function useInContextInputMask() {
+  const context = useContext(InContextMaskContext)
   if (!context) {
     console.warn(
-      "useSignedInMask was used without a SignedInMaskProvider, this means that customer specific pricing probably isn't working.",
+      "useInContextInputMask was used without a InContextMaskProvider, this means that customer specific pricing probably isn't working.",
     )
     return { mask: false }
   }
   return context
 }
 
-export function SignedInMaskProvider(props: { mask: boolean; children: React.ReactNode }) {
+export function InContextMaskProvider(props: { mask: boolean; children: React.ReactNode }) {
   const { mask = false, children } = props
   return (
-    <SignedInMaskContext.Provider value={useMemo(() => ({ mask }), [mask])}>
+    <InContextMaskContext.Provider value={useMemo(() => ({ mask }), [mask])}>
       {children}
-    </SignedInMaskContext.Provider>
+    </InContextMaskContext.Provider>
   )
 }
 
-export function useSignedInMaskSx(props: { sx?: SxProps<Theme>; skeleton?: SkeletonProps }) {
+export function useInContextInputMaskSx(props: { sx?: SxProps<Theme>; skeleton?: SkeletonProps }) {
   const { sx = [], skeleton } = props
-  const { mask } = useSignedInMask()
+  const { mask } = useInContextInputMask()
 
   return {
     mask,
@@ -67,9 +67,12 @@ export function useSignedInMaskSx(props: { sx?: SxProps<Theme>; skeleton?: Skele
   }
 }
 
-export function SignedInMask(props: SignedInMaskProps) {
+/**
+ * A component that renders a skeleton mask when the user is signed in.
+ */
+export function InContextMask(props: InContextMaskProps) {
   const { skeleton, children, ...rest } = props
-  const { mask, componentSx, maskSx } = useSignedInMaskSx(props)
+  const { mask, componentSx, maskSx } = useInContextInputMaskSx(props)
 
   return (
     <>

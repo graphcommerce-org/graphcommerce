@@ -146,9 +146,14 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
             <DesktopNavActions>
               <ProductFiltersProSearchField
-                sx={{ display: { xs: 'none', md: 'block', width: '400px' } }}
+                sx={
+                  {
+                    // display: { xs: 'none', md: 'block' },
+                    // width: '400px',
+                  }
+                }
                 fullWidth
-                placeholder={i18n._(/* i18n*/ `Search all products...`)}
+                input={{ placeholder: i18n._(/* i18n*/ `Search all products...`) }}
               />
               <Fab
                 href='/service'

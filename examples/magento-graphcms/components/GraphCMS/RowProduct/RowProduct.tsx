@@ -1,4 +1,4 @@
-import { SignedInMaskProvider, useSessionScopeQuery } from '@graphcommerce/magento-customer'
+import { InContextMaskProvider, useInContextQuery } from '@graphcommerce/graphql'
 import { ProductListDocument, ProductListItemsFragment } from '@graphcommerce/magento-product'
 import { ProductSpecsFragment } from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.gql'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
@@ -41,7 +41,7 @@ export function RowProduct(props: RowProductProps) {
   const mergedRenderer = { ...defaultRenderer, ...renderer } as VariantRenderer
 
   const urlKeys = filterNonNullableKeys(items).map((item) => item.url_key)
-  const scoped = useSessionScopeQuery(
+  const scoped = useInContextQuery(
     ProductListDocument,
     { variables: { onlyItems: true, filters: { url_key: { in: urlKeys } } } },
     { products: { items } },
@@ -58,8 +58,8 @@ export function RowProduct(props: RowProductProps) {
     })
 
   return (
-    <SignedInMaskProvider mask={scoped.mask}>
+    <InContextMaskProvider mask={scoped.mask}>
       <RenderType {...rest} {...products} />
-    </SignedInMaskProvider>
+    </InContextMaskProvider>
   )
 }

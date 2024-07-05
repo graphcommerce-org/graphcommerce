@@ -1,8 +1,13 @@
-import { ApolloQueryResult, ApolloClient, useQuery } from '@graphcommerce/graphql'
-import { CustomerTokenDocument, useSessionScopeQuery } from '@graphcommerce/magento-customer'
+import { debounce } from '@graphcommerce/ecommerce-ui'
+import {
+  ApolloQueryResult,
+  ApolloClient,
+  useQuery,
+  useInContextQuery,
+  getInContextInput,
+} from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { showPageLoadIndicator } from '@graphcommerce/next-ui'
-import { debounce } from '@graphcommerce/ecommerce-ui'
 import { useEventCallback } from '@mui/material'
 import { FilterFormProviderProps } from '../components'
 import {
@@ -26,20 +31,14 @@ export const prefetchProductList = debounce(
   async (
     variables: ProductListQueryVariables,
     next: Next,
-    client: ApolloClient<unknown>,
+    client: ApolloClient<any>,
     shallow: boolean,
   ) => {
     showPageLoadIndicator.set(true)
 
     const promise = client.query({
       query: ProductListDocument,
-      variables: {
-        ...variables,
-        sessionScope: {
-          loggedIn: !!client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken
-            ?.token,
-        },
-      },
+      variables: { ...variables, inContext: getInContextInput(client) },
     })
 
     // Push the query to the queue array.
@@ -85,42 +84,24 @@ export function useProductList<
   const { params, shallow } = useRouterFilterParams(props)
   const variables = useProductListApplyCategoryDefaults(params, category)
 
-  const result = useSessionScopeQuery(ProductListDocument, { variables, skip: !shallow }, props)
+  const result = useInContextQuery(ProductListDocument, { variables, skip: !shallow }, props)
   const storeConfig = useQuery(StoreConfigDocument).data
 
   const handleSubmit: NonNullable<FilterFormProviderProps['handleSubmit']> = useEventCallback(
     async (formValues, next) => {
       if (!storeConfig) return
 
-      const vars = {
-        ...(await productListApplyCategoryDefaults(
-          toProductListParams(formValues),
-          storeConfig,
-          category,
-        )),
-        sessionScope: {
-          loggedIn: !!result.client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken
-            ?.token,
-        },
-      }
-      console.log(
-        JSON.stringify(vars.filters?.category_uid) === JSON.stringify(params?.filters.category_uid),
+      const vars = await productListApplyCategoryDefaults(
+        toProductListParams(formValues),
+        storeConfig,
+        category,
       )
 
-      await prefetchProductList(
-        vars,
-        next,
-        result.client,
-        JSON.stringify(vars.filters?.category_uid) === JSON.stringify(params?.filters.category_uid),
-      )
+      const shallowNow =
+        JSON.stringify(vars.filters?.category_uid) === JSON.stringify(params?.filters.category_uid)
+      await prefetchProductList(vars, next, result.client, shallowNow)
     },
   )
 
-  return {
-    ...props,
-    ...result.data,
-    params,
-    mask: result.mask,
-    handleSubmit,
-  }
+  return { ...props, ...result.data, params, mask: result.mask, handleSubmit }
 }

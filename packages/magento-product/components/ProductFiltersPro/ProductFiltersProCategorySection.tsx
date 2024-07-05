@@ -58,6 +58,7 @@ export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCateg
         <ActionCardList
           size='responsive'
           variant='default'
+          sx={{ mb: 2 }}
           value={form.getValues('url')}
           onChange={async (e, value) => {
             const item = categoryTree.find((i) => i.value === value)

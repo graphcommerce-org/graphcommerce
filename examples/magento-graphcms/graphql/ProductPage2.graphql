@@ -2,9 +2,9 @@ query ProductPage2(
   $urlKey: String!
   $reviewPageSize: Int = 3
   $reviewPage: Int = 1
-  $sessionScope: SessionScopeInput
+  $inContext: InContextInput
 ) {
-  products(filter: { url_key: { eq: $urlKey } }) @sessionScope(sessionScope: $sessionScope) {
+  products(filter: { url_key: { eq: $urlKey } }) @inContext(context: $inContext) {
     ...ProductSpecs
     items {
       __typename
@@ -19,8 +19,7 @@ query ProductPage2(
     }
   }
   # Workaround for https://github.com/magento/magento2/issues/32427
-  relatedUpsells: products(filter: { url_key: { eq: $urlKey } })
-    @sessionScope(sessionScope: $sessionScope) {
+  relatedUpsells: products(filter: { url_key: { eq: $urlKey } }) @inContext(context: $inContext) {
     items {
       uid
       ...UpsellProducts

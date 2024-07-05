@@ -38,6 +38,24 @@ export async function productListApplyCategoryDefaults(
     | CategoryDefaultFragment
     | null
     | undefined,
+): Promise<ProductListQueryVariables | undefined>
+export async function productListApplyCategoryDefaults(
+  params: ProductListParams,
+  conf: StoreConfigQuery,
+  category:
+    | Promise<CategoryDefaultFragment | null | undefined>
+    | CategoryDefaultFragment
+    | null
+    | undefined,
+): Promise<ProductListQueryVariables>
+export async function productListApplyCategoryDefaults(
+  params: ProductListParams | undefined,
+  conf: StoreConfigQuery,
+  category:
+    | Promise<CategoryDefaultFragment | null | undefined>
+    | CategoryDefaultFragment
+    | null
+    | undefined,
 ): Promise<ProductListQueryVariables | undefined> {
   if (!params) return params
 

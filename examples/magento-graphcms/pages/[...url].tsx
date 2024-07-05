@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { cacheFirst, flushMeasurePerf } from '@graphcommerce/graphql'
+import { cacheFirst, flushMeasurePerf, InContextMaskProvider } from '@graphcommerce/graphql'
 import {
   appendSiblingsAsChildren,
   CategoryBreadcrumbs,
@@ -10,7 +10,6 @@ import {
   findParentBreadcrumbItem,
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
-import { SignedInMaskProvider } from '@graphcommerce/magento-customer'
 import {
   extractUrlQuery,
   FilterTypes,
@@ -64,7 +63,7 @@ function CategoryPage(props: CategoryProps) {
   const isCategory = params && category && products?.items
 
   return (
-    <SignedInMaskProvider mask={productList.mask}>
+    <InContextMaskProvider mask={productList.mask}>
       <CategoryMeta
         params={params}
         title={page?.metaTitle}
@@ -153,7 +152,7 @@ function CategoryPage(props: CategoryProps) {
           }}
         />
       )}
-    </SignedInMaskProvider>
+    </InContextMaskProvider>
   )
 }
 

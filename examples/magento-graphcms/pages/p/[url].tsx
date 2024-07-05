@@ -1,7 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { cacheFirst, mergeDeep } from '@graphcommerce/graphql'
-import { SignedInMaskProvider, useSessionScopeQuery } from '@graphcommerce/magento-customer'
+import {
+  cacheFirst,
+  InContextMaskProvider,
+  mergeDeep,
+  useInContextQuery,
+} from '@graphcommerce/graphql'
 import {
   AddProductsToCartForm,
   AddProductsToCartFormProps,
@@ -55,7 +59,7 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 function ProductPage(props: Props) {
   const { usps, sidebarUsps, pages, defaultValues, urlKey } = props
 
-  const scopedQuery = useSessionScopeQuery(ProductPage2Document, { variables: { urlKey } }, props)
+  const scopedQuery = useInContextQuery(ProductPage2Document, { variables: { urlKey } }, props)
   const { products, relatedUpsells } = scopedQuery.data
 
   const product = mergeDeep(
@@ -66,7 +70,7 @@ function ProductPage(props: Props) {
   if (!product?.sku || !product.url_key) return null
 
   return (
-    <SignedInMaskProvider mask={scopedQuery.mask}>
+    <InContextMaskProvider mask={scopedQuery.mask}>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
         <LayoutHeader floatingMd>
           <LayoutTitle size='small' component='span'>
@@ -166,7 +170,7 @@ function ProductPage(props: Props) {
         productListRenderer={productListRenderer}
         sx={(theme) => ({ mb: theme.spacings.xxl })}
       />
-    </SignedInMaskProvider>
+    </InContextMaskProvider>
   )
 }
 

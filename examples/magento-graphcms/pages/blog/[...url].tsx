@@ -8,8 +8,10 @@ import {
   Row,
   LayoutTitle,
   LayoutHeader,
+  Breadcrumbs,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
+import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   BlogAuthor,
@@ -45,6 +47,21 @@ function BlogPage(props: Props) {
           {title}
         </LayoutTitle>
       </LayoutHeader>
+      <Container maxWidth={false}>
+        <Breadcrumbs
+          sx={(theme) => ({
+            mx: theme.page.horizontal,
+            mb: theme.spacings.sm,
+            [theme.breakpoints.down('md')]: {
+              '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+            },
+          })}
+          breadcrumbs={[
+            { href: '/blog', name: i18n._(/* i18n*/ `Blog`) },
+            { href: `/${page.url}`, name: title },
+          ]}
+        />
+      </Container>
       <Row>
         <PageMeta title={title} metaDescription={title} canonical={`/${page.url}`} />
 
@@ -107,7 +124,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await page).data,
       ...(await blogPosts).data,
       ...(await layout).data,
-      up: { href: '/', title: i18n._(/* i18n */ 'Home') },
+      up: { href: '/blog', title: i18n._(/* i18n */ 'Blog') },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

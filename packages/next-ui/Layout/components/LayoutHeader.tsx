@@ -28,6 +28,9 @@ export type LayoutHeaderProps = FloatingProps &
     sx?: SxProps<Theme>
 
     hideBackButton?: boolean
+
+    hideSm?: boolean
+    hideMd?: boolean
   }
 
 type ComponentStyleProps = {
@@ -36,6 +39,8 @@ type ComponentStyleProps = {
   children: boolean
   floatingSm: boolean
   floatingMd: boolean
+  hideSm: boolean
+  hideMd: boolean
   size: 'small' | 'responsive'
 }
 
@@ -56,6 +61,8 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
     size = 'responsive',
     sx = [],
     bgColor,
+    hideSm = false,
+    hideMd = false,
   } = props
   const showBack = useShowBack() && !hideBackButton
   const showClose = useShowClose()
@@ -88,6 +95,8 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
     children: !!children,
     divider: !!divider,
     size,
+    hideSm,
+    hideMd,
   })
 
   return (
@@ -115,6 +124,9 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
             '&.divider': {
               marginBottom: 0,
             },
+            '&.hideSm .LayoutHeaderContent-left': {
+              display: 'none',
+            },
           },
 
           [theme.breakpoints.up('md')]: {
@@ -140,7 +152,7 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
             '&.divider': {
               marginBottom: 0,
             },
-            '& .LayoutHeaderContent-left': import.meta.graphCommerce.breadcrumbs && {
+            '&.hideMd .LayoutHeaderContent-left': {
               display: 'none',
             },
           },

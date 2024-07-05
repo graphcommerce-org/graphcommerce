@@ -1,4 +1,4 @@
-import { SignedInMask } from '@graphcommerce/magento-customer'
+import { InContextMask } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
@@ -22,7 +22,7 @@ export function ProductPagePriceTiers(props: ProductPagePriceTiersProps) {
   if (!priceTiers.length) return null
 
   return (
-    <SignedInMask sx={sx} variant='rectangular'>
+    <InContextMask sx={sx} variant='rectangular'>
       {priceTiers.map(({ quantity, final_price, discount }) => (
         <div key={quantity}>
           <Trans
@@ -32,6 +32,6 @@ export function ProductPagePriceTiers(props: ProductPagePriceTiersProps) {
           />
         </div>
       ))}
-    </SignedInMask>
+    </InContextMask>
   )
 }

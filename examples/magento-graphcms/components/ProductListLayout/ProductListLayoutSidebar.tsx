@@ -1,4 +1,8 @@
-import { CategoryDescription, CategoryChildren } from '@graphcommerce/magento-category'
+import {
+  CategoryDescription,
+  CategoryChildren,
+  CategoryBreadcrumbs,
+} from '@graphcommerce/magento-category'
 import {
   ProductFiltersPro,
   ProductListSuggestions,
@@ -43,6 +47,24 @@ export function ProductListLayoutSidebar(props: ProductListLayoutProps) {
       autoSubmitMd
       handleSubmit={handleSubmit}
     >
+      {import.meta.graphCommerce.breadcrumbs && (
+        <>
+          {category && (
+            <CategoryBreadcrumbs
+              category={category}
+              sx={(theme) => ({
+                // height: 0,
+                mb: theme.spacings.sm,
+                mx: theme.page.horizontal,
+                [theme.breakpoints.down('md')]: {
+                  '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+                },
+              })}
+            />
+          )}
+        </>
+      )}
+
       <Container
         maxWidth={false}
         sx={(theme) => ({
@@ -81,23 +103,6 @@ export function ProductListLayoutSidebar(props: ProductListLayoutProps) {
                 textAlignSm='start'
                 description={category?.description}
               />
-
-              <CategoryChildren
-                sx={(theme) => ({
-                  display: {
-                    xs: 'grid',
-                    md: import.meta.graphCommerce.breadcrumbs === true ? undefined : 'none',
-                  },
-                  justifyContent: 'start',
-                  '& .CategoryChildren-scroller': {
-                    px: theme.page.horizontal,
-                    mx: `calc(${theme.page.horizontal} * -1)`,
-                  },
-                })}
-                params={params}
-              >
-                {category?.children}
-              </CategoryChildren>
             </>
           ) : (
             <>
@@ -184,7 +189,12 @@ export function ProductListLayoutSidebar(props: ProductListLayoutProps) {
           />
           <>
             {category ? (
-              <ProductFiltersProCategorySection category={category} params={params} />
+              <ProductFiltersProCategorySection
+                category={category}
+                params={params}
+                hideBreadcrumbs
+                // hideTitle={import.meta.graphCommerce.breadcrumbs !== true}
+              />
             ) : (
               <ProductFiltersProCategorySectionSearch menu={menu} defaultExpanded />
             )}

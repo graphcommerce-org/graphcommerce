@@ -1,7 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { cacheFirst, flushMeasurePerf } from '@graphcommerce/graphql'
+import { InContextMaskProvider, cacheFirst, flushMeasurePerf } from '@graphcommerce/graphql'
 import { MenuQueryFragment } from '@graphcommerce/magento-category'
-import { SignedInMaskProvider } from '@graphcommerce/magento-customer'
 import {
   ProductListDocument,
   extractUrlQuery,
@@ -63,14 +62,13 @@ function SearchResultPage(props: SearchResultProps) {
       <LayoutHeader floatingMd switchPoint={0}>
         <ProductFiltersProSearchField
           variant='outlined'
-          autoComplete='off'
           size='small'
-          placeholder={i18n._(/* i18n*/ `Search all products...`)}
+          // placeholder={i18n._(/* i18n*/ `Search all products...`)}
           sx={{ width: '81vw' }}
         />
       </LayoutHeader>
 
-      <SignedInMaskProvider mask={productList.mask}>
+      <InContextMaskProvider mask={productList.mask}>
         {import.meta.graphCommerce.productFiltersPro &&
           import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
             <ProductListLayoutSidebar {...productList} menu={menu} />
@@ -82,7 +80,7 @@ function SearchResultPage(props: SearchResultProps) {
         {!import.meta.graphCommerce.productFiltersPro && (
           <ProductListLayoutClassic {...productList} menu={menu} />
         )}
-      </SignedInMaskProvider>
+      </InContextMaskProvider>
     </>
   )
 }

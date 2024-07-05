@@ -21,6 +21,10 @@ export function useProductListApplySearchDefaults(
 }
 
 export function productListApplySearchDefaults(
+  params: ProductListParams,
+  conf: StoreConfigQuery,
+): ProductListQueryVariables
+export function productListApplySearchDefaults(
   params: ProductListParams | undefined,
   conf: StoreConfigQuery,
 ): ProductListQueryVariables | undefined {
