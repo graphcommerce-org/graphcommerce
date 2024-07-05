@@ -44,16 +44,16 @@ function mapFiltersForAlgolia(filters?: ProductAttributeFilterInput) {
   }
 
   Object.keys(filters).forEach((value) => {
-    const filterValueArray = filters[value]?.in
+    const filterValueArray: string[] = filters[value]?.in
     if (filters[value]?.in) {
       for (let i = 0; i < filterValueArray.length; i++) {
-        if (value === 'categoryIds') {
-          filterArray.push({
-            facetFilters_Input: { String: `${value}:${atob(filterValueArray[i])}` },
-          })
+        if (value !== 'category_uid') {
+          filterArray.push({ facetFilters_Input: { String: `${value}:${filterValueArray[i]}` } })
         }
         if (filterValueArray[i]) {
-          filterArray.push({ facetFilters_Input: { String: `${value}:${filterValueArray[i]}` } })
+          filterArray.push({
+            facetFilters_Input: { String: `categoryIds:${atob(filterValueArray[i])}` },
+          })
         }
       }
     }
@@ -61,9 +61,8 @@ function mapFiltersForAlgolia(filters?: ProductAttributeFilterInput) {
   return filterArray
 }
 
-type TestArray = { label: Maybe<string> | undefined; value: string | undefined; count: number }
-function recursiveOptions(category: Maybe<CategoryTree>, facetList: object): TestArray[] {
-  const options: TestArray[] = []
+function recursiveOptions(category: Maybe<CategoryTree>, facetList: object): AggregationOption[] {
+  const options: AggregationOption[] = []
   if (category?.children?.length) {
     category.children.forEach((child) => {
       const childData = recursiveOptions(child, facetList)
@@ -112,7 +111,7 @@ function mapAlgoliaFacetsToAggregations(
         options: optionsCheck,
       })
     } else if (facetIndex === 'categoryIds') {
-      aggregations.push(categoryMapping(categoryList, facetIndex, algoliaFacets[facetIndex]))
+      aggregations.push(categoryMapping(categoryList, 'category_uid', algoliaFacets[facetIndex]))
     } else {
       aggregations.push({
         label: facetIndex,
@@ -307,8 +306,10 @@ export const resolver: Resolvers = {
         aggregations,
         page_info: { current_page: 1, page_size: 1, total_pages: 1 },
         suggestions: [],
-        total_count: 1,
-        sort_fields: null,
+        total_count: searchResults?.nbHits,
+        sort_fields: {
+          default: 'relevance',
+        },
       }
     },
   },
