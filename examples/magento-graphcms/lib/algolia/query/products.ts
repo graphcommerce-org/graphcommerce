@@ -61,34 +61,48 @@ function mapFiltersForAlgolia(filters?: ProductAttributeFilterInput) {
   return filterArray
 }
 
-function recursiveOptions(category: Maybe<CategoryTree>, facetList: object): AggregationOption[] {
+function recursiveOptions(
+  category: CategoryTree,
+  facetList: algoliaFacetOption,
+): AggregationOption[] {
   const options: AggregationOption[] = []
   if (category?.children?.length) {
     category.children.forEach((child) => {
-      const childData = recursiveOptions(child, facetList)
-      options.push(...childData)
+      if (child) {
+        const childData = recursiveOptions(child, facetList)
+        options.push(...childData)
+      }
     })
   }
 
-  options.push({ label: category?.name, value: category?.uid, count: facetList[category.id] })
+  const count = category?.id ? facetList[category?.id] : 0
+  options.push({ label: category?.name, value: category?.uid, count })
   return options
 }
 
 function categoryMapping(
   categoryList: CategoryResult,
   categoryLabel,
-  facetList: object,
+  facetList: algoliaFacetOption,
 ): Aggregation {
+  const options =
+    categoryList.items && categoryList.items[0]
+      ? recursiveOptions(categoryList.items[0], facetList)
+      : []
+
   return {
     label: categoryLabel,
     attribute_code: categoryLabel,
-    options: recursiveOptions(categoryList.items[0], facetList),
+    options,
   }
 }
 
+type algoliaFacets = { [facetName: string]: algoliaFacetOption }
+type algoliaFacetOption = { [facetOption: string]: number }
+
 // Map algolia facets to aggregations format
 function mapAlgoliaFacetsToAggregations(
-  algoliaFacets: object,
+  algoliaFacets: algoliaFacets,
   attributes: M2Types.Maybe<M2Types.CustomAttributeMetadataInterface>[] | undefined,
   categoryList: CategoryResult,
 ): Aggregation[] {
