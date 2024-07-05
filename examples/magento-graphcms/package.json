@@ -22,6 +22,7 @@
   "dependencies": {
     "@apollo/client": "~3.8.10",
     "@ducanh2912/next-pwa": "9.7.2",
+    "@graphcommerce/algolia-mesh": "8.1.0-canary.27",
     "@graphcommerce/cli": "8.1.0-canary.27",
     "@graphcommerce/demo-magento-graphcommerce": "8.1.0-canary.27",
     "@graphcommerce/ecommerce-ui": "8.1.0-canary.27",
@@ -109,6 +110,10 @@
     "prettier": "3.2.4",
     "type-fest": "^4.15.0",
     "typescript": "5.3.3"
+  },
+  "resolutions": {
+    "typescript": "5.3.3",
+    "webpack": "5.89.0"
   },
   "browserslist": [
     "> 1% in alt-EU",

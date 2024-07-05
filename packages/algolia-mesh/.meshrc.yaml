@@ -1,0 +1,32 @@
+sources:
+  - name: algolia
+    handler:
+      openapi:
+        endpoint: 'https://l5vhvr29j0.algolia.net/'
+        source: './algolia-spec.yaml'
+        ignoreErrorResponses: true
+        schemaHeaders:
+          X-Algolia-Application-Id: '{graphCommerce.algoliaApplicationId}'
+          X-Algolia-API-Key: '{graphCommerce.algoliaSearchOnlyApiKey}'
+        operationHeaders:
+          X-Algolia-Application-Id: '{graphCommerce.algoliaApplicationId}'
+          X-Algolia-API-Key: '{graphCommerce.algoliaSearchOnlyApiKey}'
+    transforms:
+      #  - namingConvention:
+      #      mode: bare
+      #      typeNames: pascalCase
+      #      enumValues: upperCase
+      #      fieldNames: camelCase
+      #      fieldArgumentNames: camelCase
+      - prefix:
+          value: algolia_
+          includeRootOperations: true
+          includeTypes: false
+          mode: bare
+      - prefix:
+          value: Algolia
+          includeRootOperations: false
+          includeTypes: true
+          mode: bare
+additionalResolvers:
+  - './mesh/resolvers.ts'

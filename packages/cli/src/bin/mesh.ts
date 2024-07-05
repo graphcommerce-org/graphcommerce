@@ -4,7 +4,6 @@ import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { exit } from 'node:process'
 import {
-  isMonorepo,
   loadConfig,
   packageRoots,
   replaceConfigInString,
@@ -12,8 +11,10 @@ import {
 } from '@graphcommerce/next-config'
 import { graphqlMesh, DEFAULT_CLI_PARAMS, GraphQLMeshCLIParams } from '@graphql-mesh/cli'
 import { Logger, YamlConfig } from '@graphql-mesh/types'
+import { Handler } from '@graphql-mesh/types/typings/config'
 import { DefaultLogger } from '@graphql-mesh/utils'
 import dotenv from 'dotenv'
+import type { OmitIndexSignature, Entries } from 'type-fest'
 import yaml from 'yaml'
 import { findConfig } from '../utils/findConfig'
 
@@ -65,6 +66,30 @@ const main = async () => {
       return path.relative(root, require.resolve(additionalResolver))
 
     return additionalResolver
+  })
+
+  type DefinedHandler = OmitIndexSignature<Handler>
+
+  conf.sources = conf.sources.map((source) => {
+    const definedHandlers = Object.entries(source.handler) as Entries<DefinedHandler>
+    return {
+      ...source,
+      handler: Object.fromEntries(
+        definedHandlers.map(([key, value]) => {
+          if (key === 'openapi' && value) {
+            const openapi = value as NonNullable<DefinedHandler['openapi']>
+            if (openapi.source.startsWith('@')) {
+              return [
+                key,
+                { ...openapi, source: path.relative(root, require.resolve(openapi.source)) },
+              ]
+            }
+          }
+
+          return [key, value]
+        }),
+      ),
+    }
   })
 
   // Rewrite additionalTypeDefs so we can use module resolution more easily

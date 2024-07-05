@@ -1,10 +1,7 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.withGraphCommerce = void 0;
-const circular_dependency_plugin_1 = __importDefault(require("circular-dependency-plugin"));
+// import CircularDependencyPlugin from 'circular-dependency-plugin'
 const plugin_1 = require("inspectpack/plugin");
 const webpack_1 = require("webpack");
 const loadConfig_1 = require("./config/loadConfig");
@@ -114,11 +111,13 @@ function withGraphCommerce(nextConfig, cwd) {
             // To properly properly treeshake @apollo/client we need to define the __DEV__ property
             config.plugins.push(new webpack_1.DefinePlugin({ 'globalThis.__DEV__': options.dev }));
             if (!options.isServer) {
-                if (graphcommerceConfig.debug?.webpackCircularDependencyPlugin) {
-                    config.plugins.push(new circular_dependency_plugin_1.default({
-                        exclude: /readable-stream|duplexer2|node_modules\/next/,
-                    }));
-                }
+                // if (graphcommerceConfig.debug?.webpackCircularDependencyPlugin) {
+                //   config.plugins.push(
+                //     new CircularDependencyPlugin({
+                //       exclude: /readable-stream|duplexer2|node_modules\/next/,
+                //     }),
+                //   )
+                // }
                 if (graphcommerceConfig.debug?.webpackDuplicatesPlugin) {
                     config.plugins.push(new plugin_1.DuplicatesPlugin({
                         ignoredPackages: [

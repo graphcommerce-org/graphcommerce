@@ -60,6 +60,24 @@ const main = async () => {
             return node_path_1.default.relative(root, require.resolve(additionalResolver));
         return additionalResolver;
     });
+    conf.sources = conf.sources.map((source) => {
+        const definedHandlers = Object.entries(source.handler);
+        return {
+            ...source,
+            handler: Object.fromEntries(definedHandlers.map(([key, value]) => {
+                if (key === 'openapi' && value) {
+                    const openapi = value;
+                    if (openapi.source.startsWith('@')) {
+                        return [
+                            key,
+                            { ...openapi, source: node_path_1.default.relative(root, require.resolve(openapi.source)) },
+                        ];
+                    }
+                }
+                return [key, value];
+            })),
+        };
+    });
     // Rewrite additionalTypeDefs so we can use module resolution more easily
     if (!conf.additionalTypeDefs)
         conf.additionalTypeDefs = [];

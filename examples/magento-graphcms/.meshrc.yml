@@ -19,14 +19,26 @@ sources:
             - '*.!{localizations,scheduledIn,documentInStages*,createdAt*,updatedAt*,publishedAt*,createdBy,updatedBy,publishedBy,history,scheduledIn*}'
       - prune:
           skipPruning: []
+  - name: m2
+    handler:
+      graphql:
+        endpoint: '{graphCommerce.magentoEndpoint}'
+        useGETForQueries: true
+        batch: false
+        operationHeaders:
+          Store: '{context.headers.store}'
+          Authorization: '{context.headers.authorization}'
+          X-ReCaptcha: "{context.headers['x-recaptcha']}"
+          Preview-Version: "{context.headers['preview-version']}"
+          Content-Currency: "{context.headers['content-currency']}"
 
   - name: algolia
     handler:
       openapi:
-        endpoint: 'https://l5vhvr29j0.algolia.net/'
+        endpoint: 'https://{graphCommerce.algoliaApplicationId}.algolia.net/'
         # source: "https://raw.githubusercontent.com/algolia/api-clients-automation/main/specs/search/spec.yml"
         # source: "https://raw.githubusercontent.com/algolia/api-clients-automation/20af70266ff23ac13b76082bb7c0562710442154/specs/bundled/search.yml"
-        source: './spec.yaml'
+        source: '@graphcommerce/algolia-mesh/algolia-spec.yaml'
         ignoreErrorResponses: true
         schemaHeaders:
           X-Algolia-Application-Id: '{graphCommerce.algoliaApplicationId}'
@@ -51,22 +63,7 @@ sources:
           includeRootOperations: false
           includeTypes: true
           mode: bare
-
-  - name: m2
-    handler:
-      graphql:
-        endpoint: '{graphCommerce.magentoEndpoint}'
-        useGETForQueries: true
-        batch: false
-        operationHeaders:
-          Store: '{context.headers.store}'
-          Authorization: '{context.headers.authorization}'
-          X-ReCaptcha: "{context.headers['x-recaptcha']}"
-          Preview-Version: "{context.headers['preview-version']}"
-          Content-Currency: "{context.headers['content-currency']}"
-          Engine: '{args.engine}'
-
 additionalResolvers:
-  - 'lib/algolia/query/products.ts'
+  - '@graphcommerce/algolia-mesh/mesh/resolvers.ts'
 serve:
   playground: true

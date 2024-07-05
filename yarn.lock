@@ -2688,6 +2688,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@graphcommerce/algolia-mesh@npm:8.1.0-canary.27, @graphcommerce/algolia-mesh@workspace:packages/algolia-mesh":
+  version: 0.0.0-use.local
+  resolution: "@graphcommerce/algolia-mesh@workspace:packages/algolia-mesh"
+  peerDependencies:
+    "@graphcommerce/graphql-mesh": ^8.1.0-canary.27
+  languageName: unknown
+  linkType: soft
+
 "@graphcommerce/algolia-search@workspace:packages/algolia-search":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/algolia-search@workspace:packages/algolia-search"
@@ -3756,6 +3764,7 @@ __metadata:
   dependencies:
     "@apollo/client": "npm:~3.8.10"
     "@ducanh2912/next-pwa": "npm:9.7.2"
+    "@graphcommerce/algolia-mesh": "npm:8.1.0-canary.27"
     "@graphcommerce/cli": "npm:8.1.0-canary.27"
     "@graphcommerce/demo-magento-graphcommerce": "npm:8.1.0-canary.27"
     "@graphcommerce/ecommerce-ui": "npm:8.1.0-canary.27"

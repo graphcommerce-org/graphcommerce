@@ -68,6 +68,9 @@ function DatalayerConfigSchema() {
 }
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
+        algoliaApplicationId: _zod.z.string().min(1),
+        algoliaIndexNamePrefix: _zod.z.string().min(1),
+        algoliaSearchOnlyApiKey: _zod.z.string().min(1),
         breadcrumbs: _zod.z.boolean().default(false).nullish(),
         canonicalBaseUrl: _zod.z.string().min(1),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
@@ -114,6 +117,7 @@ function GraphCommerceDebugConfigSchema() {
 }
 function GraphCommerceStorefrontConfigSchema() {
     return _zod.z.object({
+        algoliaIndexNamePrefix: _zod.z.string().nullish(),
         canonicalBaseUrl: _zod.z.string().nullish(),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
         defaultLocale: _zod.z.boolean().nullish(),

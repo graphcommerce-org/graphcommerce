@@ -1,0 +1,18 @@
+{
+  "name": "@graphcommerce/algolia-mesh",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "8.1.0-canary.27",
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "peerDependencies": {
+    "@graphcommerce/graphql-mesh": "^8.1.0-canary.27",
+    "@graphcommerce/next-config": "^8.1.0-canary.27"
+  }
+}

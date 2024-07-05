@@ -1,8 +1,22 @@
+type AlgoliaPriceValue {
+  default: Float
+  default_formatted: String
+  special_from_date: String
+  special_to_date: String
+  default_max: Float
+  default_original_formatted: String
+}
+
+type AlgoliaPrice {
+  SOME_CURRENCY: AlgoliaPriceValue
+}
+
 type AlgoliaProductHitAdditionalProperties {
   name: String
   sku: String
   print_holiday: String
   print_mood: String
+  price: AlgoliaPrice
 }
 
 type Algoliahit {

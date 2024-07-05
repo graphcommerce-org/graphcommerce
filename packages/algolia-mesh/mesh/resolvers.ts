@@ -1,20 +1,40 @@
-import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import type {
-  AlgoliaProductHitAdditionalProperties,
-  CurrencyEnum,
-  Mutationalgolia_searchSingleIndexArgs,
-  PriceRange,
-  Resolvers,
   Aggregation,
   AggregationOption,
-  QueryattributesListArgs,
-  ProductAttributeFilterInput,
   AlgoliafacetFilters_Input,
-  CategoryTree,
+  AlgoliaPrice,
+  AlgoliaProductHitAdditionalProperties,
   CategoryResult,
-} from '../../../.mesh'
-import { M2Types } from '../../../.mesh/sources/m2/types'
-import { Maybe } from 'graphql/jsutils/Maybe'
+  CategoryTree,
+  CurrencyEnum,
+  CustomAttributeMetadataInterface,
+  Maybe,
+  MeshContext,
+  Mutationalgolia_searchSingleIndexArgs,
+  PriceRange,
+  ProductAttributeFilterInput,
+  QueryproductsArgs,
+  RequireFields,
+  ResolverFn,
+  Resolvers,
+  ResolversParentTypes,
+  ResolversTypes,
+  StoreConfig,
+} from '@graphcommerce/graphql-mesh'
+
+export function nonNullable<T>(value: T): value is NonNullable<T> {
+  return value !== null && value !== undefined
+}
+
+const typenames = {
+  bundle: 'BundleProduct',
+  simple: 'SimpleProduct',
+  configurable: 'ConfigurableProduct',
+  downloadable: 'DownloadableProduct',
+  virtual: 'VirtualProduct',
+  grouped: 'GroupedProduct',
+  giftcard: 'GiftCardProduct',
+} as const
 
 function assertAdditional(
   additional: unknown,
@@ -22,15 +42,27 @@ function assertAdditional(
   return true
 }
 
-function mapPriceRange(prices: object, currency: CurrencyEnum): PriceRange {
+function mapPriceRange(
+  price: AlgoliaProductHitAdditionalProperties['price'],
+  defaultDisplayCurrencyCode: StoreConfig['default_display_currency_code'],
+): PriceRange {
+  if (!defaultDisplayCurrencyCode) throw new Error('Currency is required')
+
+  const key = defaultDisplayCurrencyCode as keyof AlgoliaPrice
+  const currency = defaultDisplayCurrencyCode as CurrencyEnum
+
   return {
     maximum_price: {
-      regular_price: { value: prices[currency].default_max, currency },
-      final_price: { value: prices[currency].default_max, currency },
+      regular_price: { currency, value: price?.[key]?.default_max },
+      final_price: { currency, value: price?.[key]?.default_max },
+      // discount,
+      // fixed_product_taxes
     },
     minimum_price: {
-      regular_price: { value: prices[currency].default, currency },
-      final_price: { value: prices[currency].default, currency },
+      regular_price: { currency, value: price?.[key]?.default },
+      final_price: { currency, value: price?.[key]?.default },
+      // discount,
+      // fixed_product_taxes
     },
   }
 }
@@ -63,7 +95,7 @@ function mapFiltersForAlgolia(filters?: ProductAttributeFilterInput) {
 
 function recursiveOptions(
   category: CategoryTree,
-  facetList: algoliaFacetOption,
+  facetList: AlgoliaFacetOption,
 ): AggregationOption[] {
   const options: AggregationOption[] = []
   if (category?.children?.length) {
@@ -81,42 +113,49 @@ function recursiveOptions(
 }
 
 function categoryMapping(
-  categoryList: CategoryResult,
-  categoryLabel,
-  facetList: algoliaFacetOption,
+  categoryList: CategoryResult | null | undefined,
+  categoryLabel: string,
+  facetList: AlgoliaFacetOption,
 ): Aggregation {
   const options =
-    categoryList.items && categoryList.items[0]
+    categoryList?.items && categoryList.items[0]
       ? recursiveOptions(categoryList.items[0], facetList)
       : []
 
-  return {
-    label: categoryLabel,
-    attribute_code: categoryLabel,
-    options,
-  }
+  return { label: categoryLabel, attribute_code: categoryLabel, options }
 }
 
-type algoliaFacets = { [facetName: string]: algoliaFacetOption }
-type algoliaFacetOption = { [facetOption: string]: number }
+type AlgoliaFacets = { [facetName: string]: AlgoliaFacetOption }
+type AlgoliaFacetOption = { [facetOption: string]: number }
 
 // Map algolia facets to aggregations format
 function mapAlgoliaFacetsToAggregations(
-  algoliaFacets: algoliaFacets,
-  attributes: M2Types.Maybe<M2Types.CustomAttributeMetadataInterface>[] | undefined,
-  categoryList: CategoryResult,
+  algoliaFacets: AlgoliaFacets,
+  attributes: Maybe<CustomAttributeMetadataInterface>[] | undefined,
+  categoryList?: null | CategoryResult,
 ): Aggregation[] {
   const aggregations: Aggregation[] = []
+
+  // const aggr2: Aggregation[] = Object.entries(algoliaFacets).map(([attribute_code, value]) => {
+  //   const attributeLabel = attributes?.find((attribute) => attribute?.code === attribute_code)
+
+  //   return {
+  //     attribute_code,
+  //     label: attributeLabel?.label ?? attribute_code,
+  //     options: Object.entries(value).map(([label, count]) => ({
+  //       label,
+  //       count,
+  //       value: label,
+  //     })),
+  //   }
+  // })
+
   Object.keys(algoliaFacets).forEach((facetIndex) => {
     const facet: object = algoliaFacets[facetIndex]
     const optionsCheck: AggregationOption[] = []
     const attributeLabel = attributes?.find((attribute) => attribute?.code === facetIndex)
     Object.keys(facet).forEach((filter) => {
-      optionsCheck.push({
-        label: filter,
-        count: facet[filter],
-        value: filter,
-      })
+      optionsCheck.push({ label: filter, count: facet[filter], value: filter })
     })
     if (attributeLabel) {
       aggregations.push({
@@ -137,7 +176,25 @@ function mapAlgoliaFacetsToAggregations(
   return aggregations
 }
 
-export const resolver: Resolvers = {
+function algoliaUrlToUrlKey(url?: string, base?: string | null): string | null {
+  if (!url || !base) return null
+  return url.replace(base, '')
+}
+
+type Item = NonNullable<
+  Awaited<
+    ReturnType<
+      ResolverFn<
+        ResolversTypes['Products'],
+        ResolversParentTypes['Query'],
+        MeshContext,
+        RequireFields<QueryproductsArgs, 'pageSize' | 'currentPage'>
+      >
+    >
+  >['items']
+>[number]
+
+export const resolvers: Resolvers = {
   Query: {
     products: async (root, args, context, info) => {
       const storeConfig = await context.m2.Query.storeConfig({
@@ -148,6 +205,7 @@ export const resolver: Resolvers = {
           {
             store_code
             default_display_currency_code
+            base_link_url
           }
         `,
       })
@@ -242,28 +300,20 @@ export const resolver: Resolvers = {
       ])
 
       const aggregations = mapAlgoliaFacetsToAggregations(
-        searchResults?.facets?.additionalProperties,
+        searchResults?.facets?.additionalProperties as AlgoliaFacets,
         attributeList?.items,
         categoryList,
       )
 
       // Map algolia results to magento products format
-      const items = filterNonNullableKeys(searchResults?.hits).map((hit) => {
+      const items = (searchResults?.hits ?? [])?.filter(nonNullable).map<Item>((hit) => {
         const { objectID, additionalProperties } = hit
 
         if (!assertAdditional(additionalProperties)) return null
 
-        const typenames: object = {
-          bundle: 'BundleProduct',
-          simple: 'SimpleProduct',
-          configurable: 'ConfigurableProduct',
-          downloadable: 'DownloadableProduct',
-          virtual: 'VirtualProduct',
-          grouped: 'GroupedProduct',
-        }
-
         return {
-          __typename: typenames[hit.additionalProperties.type_id],
+          redirect_code: 0,
+          __typename: typenames[hit.additionalProperties.type_id as keyof typeof typenames],
           uid: objectID,
           sku: Array.isArray(hit.additionalProperties.sku)
             ? hit.additionalProperties.sku[0]
@@ -306,14 +356,13 @@ export const resolver: Resolvers = {
           swatch_image: hit.additionalProperties.image_url,
           thumbnail: { url: hit.additionalProperties.image_url },
           // upsell_products: [],
-          url_key: hit.additionalProperties.url,
-          // url_suffix: null,
+          url_key: algoliaUrlToUrlKey(
+            hit.additionalProperties.url as string | undefined,
+            storeConfig?.base_link_url,
+          ),
+          url_suffix: storeConfig.product_url_suffix,
         }
       })
-
-      if (!items) {
-        return context.m2.Query.products({ root, args, context, info })
-      }
 
       return {
         items,
@@ -323,10 +372,9 @@ export const resolver: Resolvers = {
         total_count: searchResults?.nbHits,
         sort_fields: {
           default: 'relevance',
+          options: [{ label: 'Relevance', value: 'relevance' }],
         },
       }
     },
   },
 }
-
-export default resolver
