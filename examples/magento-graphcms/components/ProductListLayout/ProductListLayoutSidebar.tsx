@@ -152,7 +152,7 @@ export function ProductListLayoutSidebar(props: ProductListLayoutProps) {
               },
             })}
           >
-            <ProductFiltersProAggregations renderer={productFiltersProChipRenderer} hideEmpty />
+            <ProductFiltersProAggregations renderer={productFiltersProChipRenderer} />
             {products.items.length > 0 && (
               <>
                 <ProductFiltersProSortChip
@@ -197,7 +197,7 @@ export function ProductListLayoutSidebar(props: ProductListLayoutProps) {
           />
           <ProductFiltersProLimitSection />
 
-          <ProductFiltersProAggregations renderer={productFiltersProSectionRenderer} hideEmpty />
+          <ProductFiltersProAggregations renderer={productFiltersProSectionRenderer} />
         </Box>
       </Container>
     </ProductFiltersPro>
