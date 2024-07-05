@@ -1,5 +1,4 @@
 import {
-  NormalizedCacheObject,
   ApolloClient,
   ApolloLink,
   errorLink,
@@ -9,14 +8,18 @@ import {
   graphqlConfig,
   mergeTypePolicies,
   FetchPolicy,
+  DefaultOptions,
+  PreviewConfig,
 } from '@graphcommerce/graphql'
 import { MeshApolloLink, getBuiltMesh } from '@graphcommerce/graphql-mesh'
 import { storefrontConfig, storefrontConfigDefault } from '@graphcommerce/next-ui'
+import { GetStaticPropsContext } from 'next'
 import { i18nSsrLoader } from '../i18n/I18nProvider'
 
-function client(locale: string | undefined, fetchPolicy: FetchPolicy = 'no-cache') {
+function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-cache') {
   const config = graphqlConfig({
-    storefront: storefrontConfig(locale) ?? storefrontConfigDefault(),
+    storefront: storefrontConfig(context.locale) ?? storefrontConfigDefault(),
+    ...(context as PreviewConfig),
   })
 
   return new ApolloClient({
@@ -32,7 +35,10 @@ function client(locale: string | undefined, fetchPolicy: FetchPolicy = 'no-cache
     }),
     ssrMode: true,
     name: 'ssr',
-    defaultOptions: { query: { errorPolicy: 'all', fetchPolicy } },
+    defaultOptions: {
+      preview: context as PreviewConfig,
+      query: { errorPolicy: 'all', fetchPolicy },
+    } as DefaultOptions,
   })
 }
 
@@ -40,10 +46,11 @@ function client(locale: string | undefined, fetchPolicy: FetchPolicy = 'no-cache
  * Any queries made with the graphqlSharedClient will be send to the browser and injected in the
  * browser's cache.
  */
-export function graphqlSharedClient(locale: string | undefined) {
-  return client(locale, 'cache-first')
+export function graphqlSharedClient(context: GetStaticPropsContext) {
+  return client(context, 'cache-first')
 }
 
-export function graphqlSsrClient(locale: string | undefined) {
-  return client(locale, 'no-cache')
+export function graphqlSsrClient(context: GetStaticPropsContext) {
+  i18nSsrLoader(context.locale)
+  return client(context, 'no-cache')
 }

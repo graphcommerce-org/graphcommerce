@@ -1,4 +1,7 @@
 extend input GraphCommerceConfig {
+  """
+  Datalayer config
+  """
   dataLayer: DatalayerConfig
 }
 

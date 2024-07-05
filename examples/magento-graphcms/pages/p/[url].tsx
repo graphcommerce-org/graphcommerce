@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { mergeDeep } from '@graphcommerce/graphql'
+import { cacheFirst, mergeDeep } from '@graphcommerce/graphql'
 import { SignedInMaskProvider, useSessionScopeQuery } from '@graphcommerce/magento-customer'
 import {
   AddProductsToCartForm,
@@ -179,22 +179,25 @@ export default ProductPage
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  const path = (locale: string) => getProductStaticPaths(graphqlSsrClient(locale), locale)
+  const path = (locale: string) => getProductStaticPaths(graphqlSsrClient({ locale }), locale)
   const paths = (await Promise.all(locales.map(path))).flat(1)
 
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const { locale, params } = context
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
 
   const urlKey = params?.url ?? '??'
 
   const conf = client.query({ query: StoreConfigDocument })
   const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
-  const usps = staticClient.query({ query: UspsDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   const product = productPage.then((pp) =>
     pp.data.products?.items?.find((p) => p?.url_key === urlKey),
@@ -208,6 +211,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
       : { href: `/`, title: i18n._(/* i18n */ 'Home') }
+  const usps = staticClient.query({ query: UspsDocument, fetchPolicy: cacheFirst(staticClient) })
 
   return {
     props: {

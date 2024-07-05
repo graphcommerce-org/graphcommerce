@@ -1,4 +1,5 @@
 import type { ApolloClient, NormalizedCacheObject, ApolloQueryResult } from '@apollo/client'
+import { cacheFirst } from '@graphcommerce/graphql'
 import { AllDynamicRowsDocument, AllDynamicRowsQuery } from '../graphql'
 
 type DynamicRows = AllDynamicRowsQuery['dynamicRows']
@@ -8,10 +9,11 @@ export async function getAllHygraphDynamicRows(
   options: { pageSize?: number } = {},
 ) {
   const { pageSize = 100 } = options
+
   const query = client.query({
     query: AllDynamicRowsDocument,
     variables: { first: pageSize },
-    fetchPolicy: process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined,
+    fetchPolicy: cacheFirst(client),
   })
 
   const pages: Promise<ApolloQueryResult<AllDynamicRowsQuery>>[] = [query]
@@ -24,7 +26,7 @@ export async function getAllHygraphDynamicRows(
         client.query({
           query: AllDynamicRowsDocument,
           variables: { first: pageSize, skip: pageSize * (i - 1) },
-          fetchPolicy: process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined,
+          fetchPolicy: cacheFirst(client),
         }),
       )
     }

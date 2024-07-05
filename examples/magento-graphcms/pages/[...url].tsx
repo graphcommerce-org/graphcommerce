@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { flushMeasurePerf } from '@graphcommerce/graphql'
+import { cacheFirst, flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   appendSiblingsAsChildren,
   CategoryBreadcrumbs,
@@ -168,26 +168,30 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   // Disable getStaticPaths while in development mode
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  const path = (loc: string) => getCategoryStaticPaths(graphqlSsrClient(loc), loc)
+  const path = (locale: string) => getCategoryStaticPaths(graphqlSsrClient({ locale }), locale)
   const paths = (await Promise.all(locales.map(path))).flat(1)
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const { params, locale } = context
   const [url, query] = extractUrlQuery(params)
   if (!url || !query) return { notFound: true }
 
-  const client = graphqlSharedClient(locale)
+  const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
 
-  const staticClient = graphqlSsrClient(locale)
+  const staticClient = graphqlSsrClient(context)
 
   const categoryPage = staticClient.query({
     query: CategoryPageDocument,
     variables: { url },
   })
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   const productListParams = parseParams(url, query, await filterTypes)
   const filteredCategoryUid = productListParams && productListParams.filters.category_uid?.in?.[0]
