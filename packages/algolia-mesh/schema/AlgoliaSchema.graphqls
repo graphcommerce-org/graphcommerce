@@ -11,12 +11,26 @@ type AlgoliaPrice {
   SOME_CURRENCY: AlgoliaPriceValue
 }
 
+scalar AlgoliaSku
+
 type AlgoliaProductHitAdditionalProperties {
   name: String
-  sku: String
-  print_holiday: String
-  print_mood: String
+  sku: AlgoliaSku
   price: AlgoliaPrice
+
+  # categories
+  # categories_without_path
+  # categoryIds
+  is_stock: Int
+  ordered_qty: Int
+  created_at: String
+  url: String
+  visibility_search: Int
+  visibility_catalog: Int
+  type_id: String
+  rating_summary: String
+  thumbnail_url: String
+  image_url: String
 }
 
 type Algoliahit {

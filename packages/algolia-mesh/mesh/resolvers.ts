@@ -176,7 +176,7 @@ function mapAlgoliaFacetsToAggregations(
   return aggregations
 }
 
-function algoliaUrlToUrlKey(url?: string, base?: string | null): string | null {
+function algoliaUrlToUrlKey(url?: string | null, base?: string | null): string | null {
   if (!url || !base) return null
   return url.replace(base, '')
 }
@@ -198,12 +198,27 @@ function getStoreHeader(context: MeshContext) {
   return (context as MeshContext & { headers: Record<string, string | undefined> }).headers.store
 }
 
+/**
+ * For the URL https://configurator.reachdigital.dev/media/catalog/product/cache/d911de87cf9e562637815cc5a14b1b05/1/0/1087_1_3.jpg
+ * Remove /cache/HASH from the URL but only if the url contains media/catalog/product
+ * @param url
+ */
+function getOriginalImage(url?: string | undefined | null) {
+  if (!url) return url
+
+  if (!url.includes('media/catalog/product')) {
+    return url
+  }
+  return url.replace(/\/cache\/[a-z0-9]+/, '')
+}
+
 export const resolvers: Resolvers = {
   Query: {
     products: async (root, args, context, info) => {
       const store = getStoreHeader(context)
 
       const isAgolia = (args.filter?.engine?.in ?? [args.filter?.engine?.eq])[0] === 'algolia'
+
       if (!isAgolia || !store) {
         return context.m2.Query.products({ root, args, context, info })
       }
@@ -223,8 +238,13 @@ export const resolvers: Resolvers = {
               },
             },
           },
+          autoSelectionSetWithDepth: 10,
           selectionSet: /* GraphQL */ `
             {
+              nbPages
+              hitsPerPage
+              page
+              nbHits
               hits {
                 __typename
                 objectID
@@ -313,22 +333,35 @@ export const resolvers: Resolvers = {
 
         if (!assertAdditional(additionalProperties)) return null
 
+        const {
+          sku,
+          created_at,
+          image_url,
+          is_stock,
+
+          price,
+          thumbnail_url,
+          type_id,
+          url,
+
+          // not used
+          ordered_qty,
+          visibility_catalog,
+          visibility_search,
+
+          // The rest will be spread into the product
+          ...rest
+        } = additionalProperties
+
         return {
           redirect_code: 0,
-          __typename:
-            algoliaTypeToTypename[
-              hit.additionalProperties.type_id as keyof typeof algoliaTypeToTypename
-            ],
-          uid: objectID,
-          sku: Array.isArray(hit.additionalProperties.sku)
-            ? hit.additionalProperties.sku[0]
-            : hit?.additionalProperties?.sku,
-          price_range: mapPriceRange(
-            additionalProperties.price,
-            storeConfig?.default_display_currency_code,
-          ),
-          // Mandatory fields, but todo
-          rating_summary: 0,
+          __typename: algoliaTypeToTypename[type_id as keyof typeof algoliaTypeToTypename],
+          uid: btoa(objectID),
+          sku: Array.isArray(sku) ? sku[0] : `${sku}`,
+          price_range: mapPriceRange(price, storeConfig?.default_display_currency_code),
+          created_at: created_at ? new Date(created_at).toISOString() : null,
+          stock_status: is_stock ? 'IN_STOCK' : 'OUT_OF_STOCK',
+
           review_count: 0,
           reviews: { items: [], page_info: {} },
 
@@ -339,12 +372,11 @@ export const resolvers: Resolvers = {
           // custom_attributesV2: null,
           // description: null,
           // gift_message_available: null,
-          image: { url: hit.additionalProperties.image_url, label: 'test', position: 0 },
+          image: { url: getOriginalImage(image_url) },
           // media_gallery: [],
-          // meta_description: null,
+          meta_description: hit.additionalProperties.meta_description,
           // meta_keyword: null,
           // meta_title: null,
-          name: additionalProperties.name,
           // new_from_date: null,
           // new_to_date: null,
           // only_x_left_in_stock: null,
@@ -357,22 +389,24 @@ export const resolvers: Resolvers = {
           // special_price: null,
           // special_to_date: null,
           // stock_status: null,
-          small_image: { url: hit.additionalProperties.image_url },
-          swatch_image: hit.additionalProperties.image_url,
-          thumbnail: { url: hit.additionalProperties.image_url },
+          small_image: { url: getOriginalImage(thumbnail_url) },
+          swatch_image: getOriginalImage(image_url),
+          thumbnail: { url: getOriginalImage(thumbnail_url) },
           // upsell_products: [],
-          url_key: algoliaUrlToUrlKey(
-            hit.additionalProperties.url as string | undefined,
-            storeConfig?.base_link_url,
-          ),
+          url_key: algoliaUrlToUrlKey(url, storeConfig?.base_link_url),
           url_suffix: storeConfig?.product_url_suffix,
+          ...rest,
         }
       })
 
       return {
         items,
         aggregations,
-        page_info: { current_page: 1, page_size: 1, total_pages: 1 },
+        page_info: {
+          current_page: searchResults?.page,
+          page_size: searchResults?.hitsPerPage,
+          total_pages: searchResults?.nbPages,
+        },
         suggestions: [],
         total_count: searchResults?.nbHits,
         sort_fields: {
