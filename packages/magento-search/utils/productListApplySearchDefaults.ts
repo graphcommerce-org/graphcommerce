@@ -14,6 +14,8 @@ export function productListApplySearchDefaults(
   if (Object.keys(newParams.sort).length === 0) {
     newParams.sort = { relevance: 'DESC' }
   }
-
+  if (!newParams.filters.useAlgolia) {
+    newParams.filters.useAlgolia = true
+  }
   return newParams
 }

@@ -2,7 +2,7 @@ type AlgoliaProductHitAdditionalProperties {
   name: String
   sku: String
   print_holiday: String
-  print_mood: Str
+  print_mood: String
 }
 
 type Algoliahit {
