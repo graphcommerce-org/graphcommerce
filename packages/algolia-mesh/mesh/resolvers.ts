@@ -10,7 +10,6 @@ import type {
   CustomAttributeMetadataInterface,
   Maybe,
   MeshContext,
-  Mutationalgolia_searchSingleIndexArgs,
   PriceRange,
   ProductAttributeFilterInput,
   QueryproductsArgs,
@@ -26,7 +25,7 @@ export function nonNullable<T>(value: T): value is NonNullable<T> {
   return value !== null && value !== undefined
 }
 
-const typenames = {
+const algoliaTypeToTypename = {
   bundle: 'BundleProduct',
   simple: 'SimpleProduct',
   configurable: 'ConfigurableProduct',
@@ -194,45 +193,34 @@ type Item = NonNullable<
   >['items']
 >[number]
 
+function getStoreHeader(context: MeshContext) {
+  return (context as MeshContext & { headers: Record<string, string | undefined> }).headers.store
+}
+
 export const resolvers: Resolvers = {
   Query: {
     products: async (root, args, context, info) => {
-      const storeConfig = await context.m2.Query.storeConfig({
-        root,
-        info,
-        context,
-        selectionSet: /* GraphQL */ `
-          {
-            store_code
-            default_display_currency_code
-            base_link_url
-          }
-        `,
-      })
+      const store = getStoreHeader(context)
 
-      // Object.keys(info.operation.selectionSet);
-
-      if (!args.filter?.useAlgolia || !storeConfig) {
+      if (!args.filter?.useAlgolia || !store) {
         return context.m2.Query.products({ root, args, context, info })
       }
 
-      const inputArgs: Mutationalgolia_searchSingleIndexArgs = {
-        indexName: `${import.meta.graphCommerce.algoliaIndexNamePrefix}${storeConfig?.store_code}_products`,
-        input: {
-          Search_parameters_as_object_Input: {
-            query: args.search,
-            facets: ['*'],
-            hitsPerPage: args.pageSize ? args.pageSize : 10,
-            facetFilters: mapFiltersForAlgolia(args.filter),
-          },
-        },
-      }
-
       // Note: the attributelist query requires magento: ^2.4.7
-      const [searchResults, attributeList, categoryList] = await Promise.all([
+      const [searchResults, attributeList, categoryList, storeConfig] = await Promise.all([
         context.algolia.Mutation.algolia_searchSingleIndex({
           root,
-          args: inputArgs,
+          args: {
+            indexName: `${import.meta.graphCommerce.algoliaIndexNamePrefix}${store}_products`,
+            input: {
+              Search_parameters_as_object_Input: {
+                query: args.search,
+                facets: ['*'],
+                hitsPerPage: args.pageSize ? args.pageSize : 10,
+                facetFilters: mapFiltersForAlgolia(args.filter),
+              },
+            },
+          },
           selectionSet: /* GraphQL */ `
             {
               hits {
@@ -297,6 +285,18 @@ export const resolvers: Resolvers = {
           context,
           info,
         }),
+        context.m2.Query.storeConfig({
+          root,
+          info,
+          context,
+          selectionSet: /* GraphQL */ `
+            {
+              root_category_uid
+              default_display_currency_code
+              base_link_url
+            }
+          `,
+        }),
       ])
 
       const aggregations = mapAlgoliaFacetsToAggregations(
@@ -313,7 +313,10 @@ export const resolvers: Resolvers = {
 
         return {
           redirect_code: 0,
-          __typename: typenames[hit.additionalProperties.type_id as keyof typeof typenames],
+          __typename:
+            algoliaTypeToTypename[
+              hit.additionalProperties.type_id as keyof typeof algoliaTypeToTypename
+            ],
           uid: objectID,
           sku: Array.isArray(hit.additionalProperties.sku)
             ? hit.additionalProperties.sku[0]
@@ -360,7 +363,7 @@ export const resolvers: Resolvers = {
             hit.additionalProperties.url as string | undefined,
             storeConfig?.base_link_url,
           ),
-          url_suffix: storeConfig.product_url_suffix,
+          url_suffix: storeConfig?.product_url_suffix,
         }
       })
 

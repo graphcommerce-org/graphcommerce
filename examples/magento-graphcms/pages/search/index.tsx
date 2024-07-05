@@ -110,16 +110,21 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   if (!productListParams) return { notFound: true, revalidate: 60 * 20 }
 
-  const filters = staticClient.query({ query: ProductFiltersDocument, variables: { search } })
+  const filters = staticClient.query({
+    query: ProductFiltersDocument,
+    variables: { search, filters: { useAlgolia: true } },
+  })
 
   const products = staticClient.query({
     query: ProductListDocument,
     variables: productListApplySearchDefaults(productListParams, (await conf).data),
   })
 
-  const categories = search
-    ? staticClient.query({ query: CategorySearchDocument, variables: { search } })
-    : undefined
+  const categories = undefined
+
+  // search
+  //   ? staticClient.query({ query: CategorySearchDocument, variables: { search } })
+  //   : undefined
 
   const result = {
     props: {
