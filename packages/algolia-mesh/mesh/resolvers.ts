@@ -348,6 +348,7 @@ export const resolvers: Resolvers = {
           ordered_qty,
           visibility_catalog,
           visibility_search,
+          rating_summary,
 
           // The rest will be spread into the product
           ...rest
@@ -363,6 +364,7 @@ export const resolvers: Resolvers = {
           stock_status: is_stock ? 'IN_STOCK' : 'OUT_OF_STOCK',
 
           review_count: 0,
+          rating_summary: Number(rating_summary),
           reviews: { items: [], page_info: {} },
 
           // canonical_url: null,
@@ -374,7 +376,6 @@ export const resolvers: Resolvers = {
           // gift_message_available: null,
           image: { url: getOriginalImage(image_url) },
           // media_gallery: [],
-          meta_description: hit.additionalProperties.meta_description,
           // meta_keyword: null,
           // meta_title: null,
           // new_from_date: null,
