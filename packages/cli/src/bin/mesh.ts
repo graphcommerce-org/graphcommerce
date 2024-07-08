@@ -16,6 +16,9 @@ import dotenv from 'dotenv'
 import yaml from 'yaml'
 import { findConfig } from '../utils/findConfig'
 
+import 'tsx/cjs' // support importing typescript configs in CommonJS
+import 'tsx/esm' // support importing typescript configs in ESM
+
 dotenv.config()
 
 export function handleFatalError(e: Error, logger: Logger = new DefaultLogger('◈')) {
