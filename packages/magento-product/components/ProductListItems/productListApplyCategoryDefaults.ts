@@ -31,14 +31,14 @@ export function useProductListApplyCategoryDefaults(
 }
 
 export async function productListApplyCategoryDefaults(
-  params: ProductListParams | undefined,
+  params: undefined,
   conf: StoreConfigQuery,
   category:
     | Promise<CategoryDefaultFragment | null | undefined>
     | CategoryDefaultFragment
     | null
     | undefined,
-): Promise<ProductListQueryVariables | undefined>
+): Promise<undefined>
 export async function productListApplyCategoryDefaults(
   params: ProductListParams,
   conf: StoreConfigQuery,
