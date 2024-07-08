@@ -48,7 +48,11 @@ export function useDebounce<T extends (...args: never[]) => unknown>(
   options?: DebounceSettings,
 ): DebouncedFunc<T> {
   const cb = useEventCallback(func)
-  const opts = useMemoObject(options)
+
+  const opts = useMemoObject(
+    Object.fromEntries(Object.entries(options ?? {}).filter(([, v]) => v !== undefined)),
+  )
+
   return useMemo(() => debounce<T>(cb, wait, opts), [cb, opts, wait])
 }
 

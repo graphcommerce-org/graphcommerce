@@ -100,6 +100,7 @@ function AutoSubmitSidebarDesktop() {
       control={form.control}
       disabled={autoSubmitDisabled}
       submit={submit}
+      leading
       name={['filters', 'url', 'sort', 'pageSize', 'currentPage', 'dir']}
     />
   )
@@ -169,8 +170,8 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
   return (
     <FilterFormContext.Provider value={filterFormContext}>
       <m.form ref={ref} noValidate onSubmit={submit} id='products' style={{ scrollMarginTop }} />
-      {autoSubmitMd && <AutoSubmitSidebarDesktop />}
       {children}
+      {autoSubmitMd && <AutoSubmitSidebarDesktop />}
     </FilterFormContext.Provider>
   )
 }
