@@ -41,7 +41,6 @@ export function ProductListItemTitleAndPrice(props: ProductListItemTitleAndPrice
           overflowWrap: 'break-word',
           maxWidth: '100%',
           gridArea: 'title',
-          // fontWeight: 'fontWeightBold',
         }}
         className={classes.title}
       >

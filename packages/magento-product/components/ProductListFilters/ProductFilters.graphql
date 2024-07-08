@@ -1,5 +1,10 @@
-query ProductFilters($filters: ProductAttributeFilterInput = {}, $search: String) {
-  filters: products(filter: $filters, currentPage: 1, pageSize: 1, search: $search) {
+query ProductFilters(
+  $filters: ProductAttributeFilterInput = {}
+  $search: String
+  $inContext: InContextInput
+) {
+  filters: products(filter: $filters, currentPage: 1, pageSize: 1, search: $search)
+    @inContext(context: $inContext) {
     ...ProductListFilters
   }
 }

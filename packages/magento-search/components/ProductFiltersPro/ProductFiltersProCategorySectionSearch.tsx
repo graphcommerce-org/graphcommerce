@@ -9,7 +9,6 @@ import {
   useProductFiltersPro,
 } from '@graphcommerce/magento-product'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { useWatch } from '@graphcommerce/react-hook-form'
 import { useMemo } from 'react'
 
 type MenuItem = NavigationItemFragment & {
@@ -17,6 +16,7 @@ type MenuItem = NavigationItemFragment & {
 }
 
 type TreeItem = NavigationItemFragment & {
+  visible?: boolean
   parent: TreeItem | undefined
   children: TreeItem[]
 }
@@ -59,6 +59,17 @@ function treeWalkFilter<U extends TreeItem>(
   return children.length > 0 || fn(newTreeItem) ? newTreeItem : undefined
 }
 
+function treeWalk<U extends TreeItem>(root: U | undefined, fn: (item: U) => void) {
+  if (!root) return
+  root.children.map((child) => treeWalk(child as U, fn))
+  fn(root)
+}
+
+function allParents<U extends TreeItem>(item: U): U[] {
+  const parents = item.parent ? [item.parent, ...allParents(item.parent)] : []
+  return parents as U[]
+}
+
 function isParent<U extends TreeItem>(item: U, parent: U): boolean {
   let p = parent.parent
   while (p) {
@@ -88,11 +99,20 @@ export function ProductFiltersProCategorySectionSearch(
 
     let tree: TreeItem | undefined = menuItemToTreeItem(rootCategory, undefined)
 
-    const currentCounts = appliedAggregations?.find(
-      (a) => a?.attribute_code === 'category_uid',
-    )?.options
+    const currentCounts = aggregations?.find((a) => a?.attribute_code === 'category_uid')?.options
 
     const activeItem = treeFind(tree, (item) => currentFilter?.includes(item.uid) ?? false) ?? tree
+
+    // Mark all parents as visible if they have a count.
+    treeWalk(tree, (item) => {
+      const count = currentCounts?.find((i) => item.uid === i?.value)?.count ?? null
+      if (!count) return
+
+      item.visible = true
+      allParents(item).forEach((p) => {
+        p.visible = true
+      })
+    })
 
     tree = treeWalkFilter(tree, (item) => {
       // If currently active
@@ -110,13 +130,10 @@ export function ProductFiltersProCategorySectionSearch(
       return false
     })
 
-    return treeFlatMap<TreeItem, CategoryTreeItem>(tree, (item, level) => {
-      const count = null // currentCounts?.find((i) => item.uid === i?.value)?.count ?? null
+    // Als een child een count heeft, dan alle parents ook een count geven
 
-      // if (item.is_anchor) {
-      //   console.log(item.children)
-      // } else {
-      // }
+    return treeFlatMap<TreeItem, CategoryTreeItem>(tree, (item, level) => {
+      const count = currentCounts?.find((i) => item.uid === i?.value)?.count ?? null
 
       return {
         uid: item.uid,
@@ -126,8 +143,11 @@ export function ProductFiltersProCategorySectionSearch(
         indent: level - 1,
         count,
         isBack: isParent(item, activeItem),
+        visible: item.visible,
       }
-    }).slice(1)
+    })
+      .slice(1)
+      .filter((c) => c.visible)
   }, [appliedAggregations, currentFilter, menu?.items])
 
   if (!categoryTree) return null

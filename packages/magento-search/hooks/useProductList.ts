@@ -1,6 +1,8 @@
 import { useInContextQuery, useQuery } from '@graphcommerce/graphql'
 import {
   FilterFormProviderProps,
+  ProductFiltersDocument,
+  ProductFiltersQuery,
   ProductListDocument,
   ProductListParams,
   ProductListQuery,
@@ -21,13 +23,21 @@ import {
  * - Creates a prefetch function to preload the product list
  */
 export function useProductList<
-  T extends ProductListQuery & {
-    params?: ProductListParams
-  },
+  T extends ProductListQuery &
+    ProductFiltersQuery & {
+      params?: ProductListParams
+    },
 >(props: T) {
   const { params, shallow } = useRouterFilterParams(props)
   const variables = useProductListApplySearchDefaults(params)
   const result = useInContextQuery(ProductListDocument, { variables, skip: !shallow }, props)
+
+  const filters = useInContextQuery(
+    ProductFiltersDocument,
+    { variables: { search: params?.search }, skip: !shallow },
+    props,
+  )
+
   const storeConfig = useQuery(StoreConfigDocument).data
 
   const handleSubmit: NonNullable<FilterFormProviderProps['handleSubmit']> = useEventCallback(
@@ -43,5 +53,12 @@ export function useProductList<
     },
   )
 
-  return { ...props, ...result.data, params, mask: result.mask, handleSubmit }
+  return {
+    ...props,
+    filters: filters.data.filters,
+    ...result.data,
+    params,
+    mask: result.mask,
+    handleSubmit,
+  }
 }

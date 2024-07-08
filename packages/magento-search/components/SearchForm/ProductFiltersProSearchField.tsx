@@ -43,7 +43,8 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
   const [expanded, setExpanded] = useState(searchPage)
   useMemo(() => setExpanded(searchPage), [searchPage])
 
-  const searchTerm = searchPage ? `${router.query.url?.[0]}` : ''
+  const queryUrl = router.query.url?.[0] ?? ''
+  const searchTerm = searchPage && queryUrl !== 'q' ? queryUrl : ''
 
   const ref = useRef<HTMLInputElement>(null)
   useEffect(() => {
@@ -56,13 +57,13 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
 
   return (
     <>
-      <FormControl
-        className={classes.root}
-        variant='outlined'
-        {...rest}
-        sx={[
-          (theme) => ({
-            [theme.breakpoints.between('xs', 'lg')]: {
+      {visible && (
+        <FormControl
+          className={classes.root}
+          variant='outlined'
+          {...rest}
+          sx={[
+            (theme) => ({
               '&:not(.visible)': {
                 opacity: 0,
                 width: 'min-content',
@@ -71,83 +72,70 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
                 opacity: 1,
                 width: '400px',
               },
-            },
-            [theme.breakpoints.up('lg')]: {
-              opacity: 1,
-              width: '400px',
-            },
-          }),
-          ...(Array.isArray(rest.sx) ? rest.sx : [rest.sx]),
-        ]}
-      >
-        <OutlinedInput
-          fullWidth
-          type='text'
-          name='search'
-          color='primary'
-          className={classes.input}
-          onChange={(e) => {
-            const context = globalFormContextRef.current
-
-            // When we're not on the search page, we want to navigate as soon as possible.
-            // We only want to navigate once, and let the rest be handled by the search page.
-            if (!context || !searchPage) {
-              return router.push(`/search/${e.target.value}`)
-            }
-
-            context.form.setValue('currentPage', 1)
-            context.form.setValue('search', e.target.value)
-            return context.submit()
-          }}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
+            }),
+            ...(Array.isArray(rest.sx) ? rest.sx : [rest.sx]),
+          ]}
+        >
+          <OutlinedInput
+            fullWidth
+            type='text'
+            name='search'
+            color='primary'
+            className={classes.input}
+            // autoFocus={searchPage}
+            onChange={(e) => {
               const context = globalFormContextRef.current
-              if (!context) return undefined
+
+              // When we're not on the search page, we want to navigate as soon as possible.
+              // We only want to navigate once, and let the rest be handled by the search page.
+              if (!context || !searchPage) {
+                return router.push(`/search/${e.target.value}`)
+              }
+
               context.form.setValue('currentPage', 1)
-              context.form.setValue('search', e.currentTarget.value)
+              context.form.setValue('search', e.target.value)
               return context.submit()
-            }
-          }}
-          {...input}
-          onBlur={() => {
-            if (!searchPage && !showPageLoadIndicator.get()) setExpanded(false)
-          }}
-          endAdornment={
-            <>
-              {/* <Button
-              color='primary'
-              variant='text'
-              onClick={() => {
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
                 const context = globalFormContextRef.current
-                if (ref.current) ref.current.value = ''
                 if (!context) return undefined
                 context.form.setValue('currentPage', 1)
-                context.form.setValue('search', '')
+                context.form.setValue('search', e.currentTarget.value)
                 return context.submit()
-              }}
-            >
-              Reset
-            </Button> */}
-              <IconButton
-                color='inherit'
-                size='small'
-                sx={{
-                  display: {
-                    lg: 'none',
-                  },
-                }}
-                onClick={() => {
-                  setExpanded(false)
-                  // if (searchPage) router.back()
-                }}
-              >
-                <IconSvg src={iconClose} size='large' />
-              </IconButton>
-            </>
-          }
-          inputRef={ref}
-        />
-      </FormControl>
+              }
+            }}
+            placeholder={t`Search...`}
+            {...input}
+            onBlur={() => {
+              if (!searchPage && !showPageLoadIndicator.get()) setExpanded(false)
+            }}
+            endAdornment={
+              <>
+                <IconButton
+                  color='inherit'
+                  size='small'
+                  onClick={() => {
+                    const context = globalFormContextRef.current
+
+                    if (context?.form.getValues('search')) {
+                      context.form.setValue('currentPage', 1)
+                      context.form.setValue('search', '')
+                      context.submit()
+                    } else {
+                      setExpanded(false)
+                      if (searchPage) router.back()
+                    }
+                  }}
+                >
+                  <IconSvg src={iconClose} size='large' />
+                </IconButton>
+              </>
+            }
+            inputRef={ref}
+          />
+        </FormControl>
+      )}
       <Fab
         className={classes.fab}
         onClick={() => {
@@ -161,7 +149,7 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
           {
             display: {
               xs: visible ? 'none' : 'inline-flex',
-              lg: 'none',
+              // lg: 'none',
             },
           },
           ...(Array.isArray(fab?.sx) ? fab.sx : [fab?.sx]),

@@ -25,9 +25,7 @@ export function ProductFiltersProSearchTerm(props: ProductFiltersProSearchHeader
 
   const search = (
     <>
-      <Box component='span' sx={{}}>
-        {resultSearch}
-      </Box>
+      <Box component='span'>{resultSearch}</Box>
       <Box component='span' sx={{ color: 'text.disabled' }}>
         {remaining}
       </Box>

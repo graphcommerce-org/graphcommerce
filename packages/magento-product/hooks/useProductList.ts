@@ -9,7 +9,7 @@ import {
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { showPageLoadIndicator } from '@graphcommerce/next-ui'
 import { useEventCallback } from '@mui/material'
-import { FilterFormProviderProps } from '../components'
+import { FilterFormProviderProps, ProductFiltersDocument } from '../components'
 import {
   ProductListDocument,
   ProductListQuery,
@@ -23,7 +23,7 @@ import {
   useProductListApplyCategoryDefaults,
 } from '../components/ProductListItems/productListApplyCategoryDefaults'
 
-const productListQueries: Array<Promise<ApolloQueryResult<ProductListQuery>>> = []
+const productListQueries: Array<Promise<any>> = []
 
 type Next = Parameters<NonNullable<FilterFormProviderProps['handleSubmit']>>[1]
 
@@ -34,23 +34,37 @@ export const prefetchProductList = debounce(
     client: ApolloClient<any>,
     shallow: boolean,
   ) => {
+    if (!shallow) return next(shallow)
+
     showPageLoadIndicator.set(true)
 
-    const promise = client.query({
+    const inContext = getInContextInput(client)
+    const productList = client.query({
       query: ProductListDocument,
-      variables: { ...variables, inContext: getInContextInput(client) },
+      variables: { ...variables, inContext },
     })
 
+    const productFilters = client.query({
+      query: ProductFiltersDocument,
+      variables: {
+        filters: { category_uid: variables.filters?.category_uid },
+        search: variables.search,
+        inContext,
+      },
+    })
+
+    const both = Promise.all([productList, productFilters])
+
     // Push the query to the queue array.
-    productListQueries.push(promise)
+    productListQueries.push(both)
 
     // Since we're waiting here the form will be submitting for longer.
-    await promise
+    await both
 
-    const includes = productListQueries.includes(promise)
+    const includes = productListQueries.includes(both)
 
     // Remove all requests that are before the current request
-    const index = productListQueries.indexOf(promise)
+    const index = productListQueries.indexOf(both)
     if (index > -1) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       productListQueries.splice(0, index + 1)

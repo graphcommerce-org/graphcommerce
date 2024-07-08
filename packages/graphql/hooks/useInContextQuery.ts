@@ -36,7 +36,6 @@ export function useInContextQuery<
 
   let { data } = clientQuery
   if (!skip) data ??= clientQuery.previousData
-  // else if (!inContext.loggedIn) data ??= unscopedResult
 
   // If the user is logged in we might need to show a skeleton:
   let mask = session.query.loading

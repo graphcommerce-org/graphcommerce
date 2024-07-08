@@ -17,6 +17,7 @@ export type CategoryTreeItem = {
   indent: number
   uid: string
   count: null | number
+  visible?: boolean
 }
 
 export function useCategoryTree(props: UseCategoryTreeProps): CategoryTreeItem[] | null {

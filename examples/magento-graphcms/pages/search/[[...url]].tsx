@@ -112,7 +112,7 @@ export const getServerSideProps: GetPageStaticProps = async (context) => {
 
   if (!productListParams) return { notFound: true, revalidate: 60 * 20 }
 
-  const filters = staticClient.query({ query: ProductFiltersDocument, variables: { search: '' } })
+  const filters = staticClient.query({ query: ProductFiltersDocument, variables: { search } })
 
   const products = staticClient.query({
     query: ProductListDocument,
