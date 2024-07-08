@@ -53,7 +53,6 @@ export function ProductListLayoutSidebar(props: ProductListLayoutProps) {
             <CategoryBreadcrumbs
               category={category}
               sx={(theme) => ({
-                // height: 0,
                 mb: theme.spacings.sm,
                 mx: theme.page.horizontal,
                 [theme.breakpoints.down('md')]: {
@@ -193,7 +192,6 @@ export function ProductListLayoutSidebar(props: ProductListLayoutProps) {
                 category={category}
                 params={params}
                 hideBreadcrumbs
-                // hideTitle={import.meta.graphCommerce.breadcrumbs !== true}
               />
             ) : (
               <ProductFiltersProCategorySectionSearch menu={menu} defaultExpanded />

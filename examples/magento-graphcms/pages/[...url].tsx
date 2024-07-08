@@ -204,7 +204,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   }
 
   const pages = hygraphPageContent(staticClient, url, category)
-  const hasCategory = Boolean(productListParams && categoryUid)
+  const hasCategory = !!productListParams && categoryUid
 
   const filters = hasCategory
     ? staticClient.query({

@@ -7,6 +7,7 @@ import {
   iconSearch,
   showPageLoadIndicator,
 } from '@graphcommerce/next-ui'
+import { t } from '@lingui/macro'
 import {
   Fab,
   FabProps,
@@ -111,7 +112,6 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
           onBlur={() => {
             if (!searchPage && !showPageLoadIndicator.get()) setExpanded(false)
           }}
-          placeholder='Search for products...'
           endAdornment={
             <>
               {/* <Button
@@ -146,35 +146,6 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
             </>
           }
           inputRef={ref}
-          sx={[
-            (theme) => ({
-              // bgcolor: 'background.paper',
-              // borderRadius: '100px',
-
-              // borderRadius: theme.shape.borderRadius * 6,
-
-              // pl: 2,
-              // pr: '5px',
-              // py: 1,
-              // py: 1,
-              // '& .MuiInputBase-root.MuiOutlinedInput-root': {
-              //   typography: 'body1',
-              //   whiteSpace: 'nowrap',
-              //   border: `2px solid ${theme.palette.primary.main}`,
-              //   borderRadius: theme.shape.borderRadius * 6,
-              //   boxShadow: theme.shadows[3],
-              // },
-              // '& .MuiInputBase-input': { pl: 3 },
-              '& fieldset': {
-                // borderRadius: theme.shape.borderRadius,
-                // boxShadow: theme.shadows[1],
-                // borderColor: theme.palette.background.paper,
-                // border: 'none',
-              },
-              // '& .MuiFormControl-root': { px: 0 },
-              // '& use': { stroke: theme.palette.text.primary },
-            }),
-          ]}
         />
       </FormControl>
       <Fab

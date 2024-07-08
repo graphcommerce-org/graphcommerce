@@ -145,16 +145,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </DesktopNavBar>
 
             <DesktopNavActions>
-              <ProductFiltersProSearchField
-                sx={
-                  {
-                    // display: { xs: 'none', md: 'block' },
-                    // width: '400px',
-                  }
-                }
-                fullWidth
-                input={{ placeholder: i18n._(/* i18n*/ `Search all products...`) }}
-              />
+              <ProductFiltersProSearchField fullWidth />
               <Fab
                 href='/service'
                 aria-label={i18n._(/* i18n */ 'Customer Service')}

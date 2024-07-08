@@ -60,12 +60,7 @@ function SearchResultPage(props: SearchResultProps) {
         canonical='/search'
       />
       <LayoutHeader floatingMd switchPoint={0}>
-        <ProductFiltersProSearchField
-          variant='outlined'
-          size='small'
-          // placeholder={i18n._(/* i18n*/ `Search all products...`)}
-          sx={{ width: '81vw' }}
-        />
+        <ProductFiltersProSearchField variant='outlined' size='small' sx={{ width: '81vw' }} />
       </LayoutHeader>
 
       <InContextMaskProvider mask={productList.mask}>
