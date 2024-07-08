@@ -22,7 +22,6 @@
     "inspectpack": "^4.7.1",
     "js-yaml-loader": "^1.2.2",
     "lodash": "^4.17.21",
-    "woodpile": "^0.0.5",
     "znv": "^0.4.0",
     "zod": "^3.23.8"
   },

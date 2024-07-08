@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateConfig = void 0;
+exports.generateConfig = generateConfig;
 const fs_1 = require("fs");
 // eslint-disable-next-line import/no-extraneous-dependencies
 const cli_1 = require("@graphql-codegen/cli");
@@ -55,4 +55,3 @@ async function generateConfig() {
     });
     (0, fs_1.writeFileSync)(targetJs, result.code);
 }
-exports.generateConfig = generateConfig;

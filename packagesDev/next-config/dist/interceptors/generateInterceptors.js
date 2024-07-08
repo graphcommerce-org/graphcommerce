@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateInterceptors = void 0;
+exports.generateInterceptors = generateInterceptors;
 const node_path_1 = __importDefault(require("node:path"));
 const promises_1 = __importDefault(require("node:fs/promises"));
 const findOriginalSource_1 = require("./findOriginalSource");
@@ -53,4 +53,3 @@ async function generateInterceptors(plugins, resolve, config, force) {
         ];
     })));
 }
-exports.generateInterceptors = generateInterceptors;

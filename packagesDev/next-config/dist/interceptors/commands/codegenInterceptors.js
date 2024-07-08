@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.codegenInterceptors = void 0;
+exports.codegenInterceptors = codegenInterceptors;
 const loadConfig_1 = require("../../config/loadConfig");
 const resolveDependency_1 = require("../../utils/resolveDependency");
 const findPlugins_1 = require("../findPlugins");
@@ -20,4 +20,3 @@ async function codegenInterceptors() {
     // console.log('Generated interceptors in', generated - found, 'ms')
     await (0, writeInterceptors_1.writeInterceptors)(generatedInterceptors);
 }
-exports.codegenInterceptors = codegenInterceptors;

@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loadConfig = void 0;
+exports.loadConfig = loadConfig;
 /* eslint-disable no-console */
 // eslint-disable-next-line import/no-extraneous-dependencies
 const cosmiconfig_1 = require("cosmiconfig");
@@ -60,4 +60,3 @@ function loadConfig(cwd) {
         throw error;
     }
 }
-exports.loadConfig = loadConfig;

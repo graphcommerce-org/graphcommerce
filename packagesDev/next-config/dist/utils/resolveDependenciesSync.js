@@ -3,7 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.resolveDependenciesSync = exports.sortDependencies = void 0;
+exports.sortDependencies = sortDependencies;
+exports.resolveDependenciesSync = resolveDependenciesSync;
 const node_fs_1 = __importDefault(require("node:fs"));
 const node_path_1 = __importDefault(require("node:path"));
 const PackagesSort_1 = require("./PackagesSort");
@@ -50,7 +51,6 @@ function sortDependencies(dependencyStructure) {
     const sortedKeys = [...sorter.sort().keys()];
     return new Map(sortedKeys.map((key) => [key, dependencyStructure[key].dirName]));
 }
-exports.sortDependencies = sortDependencies;
 /**
  * This will return a list of all dependencies that have `graphcommerce` in the name, matching:
  *
@@ -69,4 +69,3 @@ function resolveDependenciesSync(root = process.cwd()) {
     resolveCache.set(root, sorted);
     return sorted;
 }
-exports.resolveDependenciesSync = resolveDependenciesSync;

@@ -595,7 +595,7 @@ class Visitor {
         return n;
     }
     visitTsFnParameters(params) {
-        return params.map(this.visitTsFnParameter.bind(this));
+        return params?.map(this.visitTsFnParameter.bind(this));
     }
     visitTsFnParameter(n) {
         n.typeAnnotation = this.visitTsTypeAnnotation(n.typeAnnotation);

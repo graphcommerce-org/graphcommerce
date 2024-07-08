@@ -4556,7 +4556,6 @@ __metadata:
     js-yaml-loader: "npm:^1.2.2"
     lodash: "npm:^4.17.21"
     typescript: "npm:5.5.3"
-    woodpile: "npm:^0.0.5"
     znv: "npm:^0.4.0"
     zod: "npm:^3.23.8"
   peerDependencies:
@@ -18586,11 +18585,11 @@ __metadata:
 
 "typescript@patch:typescript@npm%3A5.5.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.4.2#optional!builtin<compat/typescript>":
   version: 5.5.3
-  resolution: "typescript@patch:typescript@npm%3A5.5.3#optional!builtin<compat/typescript>::version=5.5.3&hash=5adc0c"
+  resolution: "typescript@patch:typescript@npm%3A5.5.3#optional!builtin<compat/typescript>::version=5.5.3&hash=379a07"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/5a437c416251334deeaf29897157032311f3f126547cfdc4b133768b606cb0e62bcee733bb97cf74c42fe7268801aea1392d8e40988cdef112e9546eba4c03c5
+  checksum: 10c0/911c7811d61f57f07df79c4a35f56a0f426a65426a020e5fcd792f66559f399017205f5f10255329ab5a3d8c2d1f1d19530aeceffda70758a521fae1d469432e
   languageName: node
   linkType: hard
 
@@ -19205,13 +19204,6 @@ __metadata:
   dependencies:
     string-width: "npm:^1.0.2 || 2 || 3 || 4"
   checksum: 10c0/1d9c2a3e36dfb09832f38e2e699c367ef190f96b82c71f809bc0822c306f5379df87bab47bed27ea99106d86447e50eb972d3c516c2f95782807a9d082fbea95
-  languageName: node
-  linkType: hard
-
-"woodpile@npm:^0.0.5":
-  version: 0.0.5
-  resolution: "woodpile@npm:0.0.5"
-  checksum: 10c0/342161265898e59fb746bcb9420967f9c6fd32b54911f959748d5c228566866a9e6df2dbfadc2ce45019deadfc240f9bcee2986821d2f0cb2ce4f143244fe6fc
   languageName: node
   linkType: hard
 
