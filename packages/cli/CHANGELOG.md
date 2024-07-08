@@ -1,5 +1,12 @@
 # @graphcommerce/cli
 
+## 8.1.0-canary.44
+
+### Patch Changes
+
+- [`44ea147`](https://github.com/graphcommerce-org/graphcommerce/commit/44ea1474d1429d05f535df903beb1fb2c0ca7754) - Added missing tsx package
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.43
 
 ### Patch Changes
