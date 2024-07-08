@@ -35,7 +35,8 @@
     "graphql-codegen-typescript-validation-schema": "^0.14.1",
     "graphql-tag": "^2.12.6",
     "rimraf": "^5.0.5",
-    "tslib": "^2.6.2"
+    "tslib": "^2.6.2",
+    "tsx": "^4.16.2"
   },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^8.1.0-canary.43",
