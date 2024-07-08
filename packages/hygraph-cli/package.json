@@ -2,7 +2,7 @@
   "name": "@graphcommerce/hygraph-cli",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "8.1.0-canary.42",
+  "version": "8.1.0-canary.44",
   "scripts": {
     "dev": "tsc --preserveWatchOutput --watch",
     "build": "tsc",
@@ -19,10 +19,10 @@
   },
   "peerDependencies": {
     "@apollo/client": "^3",
-    "@graphcommerce/eslint-config-pwa": "^8.1.0-canary.42",
-    "@graphcommerce/next-config": "^8.1.0-canary.42",
-    "@graphcommerce/prettier-config-pwa": "^8.1.0-canary.42",
-    "@graphcommerce/typescript-config-pwa": "^8.1.0-canary.42",
+    "@graphcommerce/eslint-config-pwa": "^8.1.0-canary.44",
+    "@graphcommerce/next-config": "^8.1.0-canary.44",
+    "@graphcommerce/prettier-config-pwa": "^8.1.0-canary.44",
+    "@graphcommerce/typescript-config-pwa": "^8.1.0-canary.44",
     "dotenv": "^16.1.4",
     "graphql": "^16.7.1"
   },
