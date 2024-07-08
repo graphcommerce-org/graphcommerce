@@ -15,7 +15,7 @@
     "schema-dts": "^1.1.2"
   },
   "devDependencies": {
-    "typescript": "5.3.3"
+    "typescript": "5.5.3"
   },
   "peerDependencies": {
     "@graphcommerce/ecommerce-ui": "^8.1.0-canary.42",

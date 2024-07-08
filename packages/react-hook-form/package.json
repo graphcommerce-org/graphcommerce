@@ -12,7 +12,7 @@
     }
   },
   "devDependencies": {
-    "@testing-library/react": "^14.1.2"
+    "@testing-library/react": "^14.3.1"
   },
   "peerDependencies": {
     "@apollo/client": "^3",

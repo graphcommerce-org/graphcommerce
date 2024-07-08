@@ -5,6 +5,6 @@
   "version": "8.1.0-canary.42",
   "sideEffects": false,
   "devDependencies": {
-    "@tsconfig/node18": "^18.2.2"
+    "@tsconfig/node18": "^18.2.4"
   }
 }
