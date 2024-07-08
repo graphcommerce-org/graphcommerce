@@ -1,5 +1,12 @@
 # @graphcommerce/cli
 
+## 8.1.0-canary.43
+
+### Patch Changes
+
+- [`6184a28`](https://github.com/graphcommerce-org/graphcommerce/commit/6184a28b2ba2dc70189a9b881887696dc0a346c8) - Fixed issue where codegen would throw an error: SyntaxError: Cannot use import statement outside a module.
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.42
 
 ## 8.1.0-canary.41
