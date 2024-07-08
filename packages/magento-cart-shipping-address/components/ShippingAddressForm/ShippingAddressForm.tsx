@@ -23,8 +23,8 @@ import {
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Form, FormRow } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
-import { SxProps, Theme } from '@mui/material'
+import { Trans } from '@lingui/macro'
+import { SxProps, Theme, Typography } from '@mui/material'
 import React from 'react'
 import { isCartAddressACustomerAddress } from '../../utils/findCustomerAddressFromCartAddress'
 import { isSameAddress } from '../../utils/isSameAddress'
@@ -102,6 +102,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           countryCode: currentAddress?.country.code ?? shopCountry, // todo: replace by the default shipping country of the store + geoip,
           saveInAddressBook: true,
           isCompany: Boolean(currentAddress?.company || currentAddress?.vat_id),
+          customerNote: '',
         },
     mode: 'onChange',
     experimental_useV2: true,
@@ -115,7 +116,6 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         telephone: variables.telephone || '000 - 000 0000',
         region: regionId ? variables.region : '',
         regionId,
-        customerNote: '',
         addition: variables.addition ?? '',
       }
     },
@@ -147,10 +147,28 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           rules={{
             pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
           }}
-          label={<Trans id='Telephone' />}
+          label={<Trans>Telephone</Trans>}
           showValid
         />
       </FormRow>
+
+      {!isVirtual && !customerQuery?.customer && (
+        <>
+          <Typography variant='h6'>
+            <Trans>Shipping Notes</Trans>
+          </Typography>
+          <FormRow>
+            <TextFieldElement
+              control={form.control}
+              name='customerNote'
+              label={<Trans>Note</Trans>}
+              multiline
+              minRows={3}
+              required={required.customerNote}
+            />
+          </FormRow>
+        </>
+      )}
 
       <ApolloCartErrorAlert error={error} />
       <FormPersist form={form} name='ShippingAddressForm' />
