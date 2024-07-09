@@ -22,6 +22,18 @@ msgid "I understand that my account will be deleted and this can not be undone."
 msgstr "Entiendo que mi cuenta será eliminada y esto no se puede deshacer."
 
 #. js-lingui-generated-id
+msgid "Orders"
+msgstr "Pedidos"
+
+#. js-lingui-generated-id
+msgid "Newletter"
+msgstr "Boletín"
+
+#. js-lingui-generated-id
+msgid "Guest order status"
+msgstr "Estado del pedido de invitados"
+
+#. js-lingui-generated-id
 msgid "Are you sure you want to delete your account?"
 msgstr "¿Estás seguro de que quieres eliminar tu cuenta?"
 
@@ -443,6 +455,10 @@ msgstr "No hay problemas! Introduzca su dirección de correo electrónico y le e
 
 msgid "Number"
 msgstr "Número"
+
+#. js-lingui-generated-id
+msgid "Postcode"
+msgstr "Código postal"
 
 msgid "Ok"
 msgstr "Ok"
@@ -935,8 +951,16 @@ msgstr "cancelado"
 msgid "invoiced"
 msgstr "facturado"
 
+#. js-lingui-generated-id
+msgid "Order number"
+msgstr "Número de pedido"
+
 msgid "no products"
 msgstr "no hay productos"
+
+#. js-lingui-generated-id
+msgid "Get order"
+msgstr "Obtener pedido"
 
 msgid "one product"
 msgstr "un producto"
@@ -955,6 +979,10 @@ msgstr "devuelto"
 
 msgid "shipped"
 msgstr "enviado"
+
+#. js-lingui-generated-id
+msgid "Customer Service"
+msgstr "Servicio al cliente"
 
 #. js-lingui-generated-id
 msgid "The given email does not match the account email"

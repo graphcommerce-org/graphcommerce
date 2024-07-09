@@ -82,7 +82,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      size: 'max',
       up: { href: '/account/addresses', title: i18n._(/* i18n */ 'Addresses') },
     },
   }
