@@ -64,7 +64,7 @@ export function useProductFiltersProSearchInput<
       context.form.setValue('search', e.currentTarget.value)
       await context.submit()
 
-      props.onChange?.(e)
+      return props.onChange?.(e)
     },
     buttonProps: {
       ...buttonProps,
@@ -74,9 +74,13 @@ export function useProductFiltersProSearchInput<
         if (context?.form.getValues('search')) {
           context.form.setValue('currentPage', 1)
           context.form.setValue('search', '')
+          if (internalRef.current) internalRef.current.value = ''
           await context.submit()
-        } else if (searchPage) router.back()
-        buttonProps.onClick?.(e)
+        } else if (searchPage) {
+          router.back()
+          if (internalRef.current) internalRef.current.value = ''
+          buttonProps.onClick?.(e)
+        }
       },
     },
   }
