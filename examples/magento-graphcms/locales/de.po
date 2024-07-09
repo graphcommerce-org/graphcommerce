@@ -22,6 +22,10 @@ msgid "I understand that my account will be deleted and this can not be undone."
 msgstr "Mir ist bewusst, dass mein Konto gelöscht wird und dies nicht rückgängig gemacht werden kann."
 
 #. js-lingui-generated-id
+msgid "Search all products..."
+msgstr "Alle Produkte durchsuchen..."
+
+#. js-lingui-generated-id
 msgid "We couldn't find any results"
 msgstr "Wir konnten keine Ergebnisse finden"
 
@@ -592,6 +596,10 @@ msgstr "Produkte"
 msgid "Results for ‘{search}’"
 msgstr "Ergebnisse für ‘{search}’"
 
+#. js-lingui-generated-id
+msgid "Telephone"
+msgstr "Telefon"
+
 msgid "Recently viewed products"
 msgstr "Kürzlich angesehene Produkte"
 
@@ -636,9 +644,6 @@ msgstr "Rezensions"
 
 msgid "Save changes"
 msgstr "Änderungen speichern"
-
-msgid "Save in address book"
-msgstr "Im Adressbuch speichern"
 
 msgid "Save new password"
 msgstr "Neues Passwort speichern"
@@ -944,6 +949,10 @@ msgid "Zip code or city"
 msgstr "Postleitzahl oder Stadt"
 
 #. js-lingui-generated-id
+msgid "Save in address book"
+msgstr "Im Adressbuch speichern"
+
+#. js-lingui-generated-id
 msgid "Return to home"
 msgstr "Zurück zur Startseite"
 
@@ -953,6 +962,10 @@ msgstr "In den Warenkorb"
 
 msgid "canceled"
 msgstr "abgebrochen"
+
+#. js-lingui-generated-id
+msgid "Shipping Note"
+msgstr "Lieferschein"
 
 msgid "invoiced"
 msgstr "in Rechnung gestellt"
