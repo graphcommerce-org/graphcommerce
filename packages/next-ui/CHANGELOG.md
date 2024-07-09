@@ -1,5 +1,44 @@
 # Change Log
 
+## 8.1.0-canary.45
+
+### Patch Changes
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`1895176`](https://github.com/graphcommerce-org/graphcommerce/commit/1895176b5776adcf588999ceab7edd6f53cff294) - USPS would be loaded after other pages, causing uneceesasry slowdown
+  ([@paales](https://github.com/paales))
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`74eb239`](https://github.com/graphcommerce-org/graphcommerce/commit/74eb2393a64988649178d59f53b33d41fecdd769) - Added Intl components and replaced usage sites
+  ([@paales](https://github.com/paales))
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`012b865`](https://github.com/graphcommerce-org/graphcommerce/commit/012b86560d93e35dd7ca4a9469ed65e6fb83ead0) - Move arguments of responsiveVal around so the minBreakpoint can be given as third argument
+  ([@paales](https://github.com/paales))
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`223f16a`](https://github.com/graphcommerce-org/graphcommerce/commit/223f16a0e9a7718e52e81a4e2902471a8b78d35c) - LazyHydrate component now accepts a height prop that allows deferring of rendering of the child component when initially rendered on the client. This improves performance.
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.44
+
+## 8.1.0-canary.43
+
+## 8.1.0-canary.42
+
+## 8.1.0-canary.41
+
+### Patch Changes
+
+- [#2242](https://github.com/graphcommerce-org/graphcommerce/pull/2242) [`a4cce76`](https://github.com/graphcommerce-org/graphcommerce/commit/a4cce76ca37af2bec604e953ada4bb11bd91f55d) - Add option to show an extended version of the pagination component. Configurable via the "productListPaginationVariant" key in your graphcommerce.config.js
+  COMPACT means: "< Page X of Y >"
+  EXTENDED means: "< 1 2 ... [5] ... 10 11 >" ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.1.0-canary.40
+
+### Minor Changes
+
+- [#2306](https://github.com/graphcommerce-org/graphcommerce/pull/2306) [`5e188e8`](https://github.com/graphcommerce-org/graphcommerce/commit/5e188e830dca4730c73830858f59a94e9d41ed12) - Add delete account functionality to the account section. Disabled by default and can be enabled through the config.
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.39
+
 ## 8.1.0-canary.38
 
 ## 8.1.0-canary.37

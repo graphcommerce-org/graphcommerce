@@ -179,7 +179,13 @@ Enables company fields inside the checkout:
 - Company name
 - VAT ID
 
+#### customerDeleteEnabled: boolean
+
+Enable customer account deletion through the account section
+
 #### dataLayer: [DatalayerConfig](#DatalayerConfig)
+
+Datalayer config
 
 #### debug: [GraphCommerceDebugConfig](#GraphCommerceDebugConfig)
 
@@ -294,6 +300,13 @@ SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
 #### productFiltersPro: boolean
 
 Product filters with better UI for mobile and desktop.
+
+#### productListPaginationVariant: COMPACT | EXTENDED = `COMPACT`
+
+Pagination variant for the product listings.
+
+COMPACT means: "< Page X of Y >"
+EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
 
 #### productRoute: string
 

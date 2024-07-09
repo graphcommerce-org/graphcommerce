@@ -167,6 +167,9 @@ export type GraphCommerceConfig = {
    * - VAT ID
    */
   customerCompanyFieldsEnable?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Enable customer account deletion through the account section */
+  customerDeleteEnabled?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Datalayer config */
   dataLayer?: InputMaybe<DatalayerConfig>;
   /** Debug configuration for GraphCommerce */
   debug?: InputMaybe<GraphCommerceDebugConfig>;
@@ -293,6 +296,13 @@ export type GraphCommerceConfig = {
   productFiltersLayout?: InputMaybe<ProductFiltersLayout>;
   /** Product filters with better UI for mobile and desktop. */
   productFiltersPro?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
+   * Pagination variant for the product listings.
+   *
+   * COMPACT means: "< Page X of Y >"
+   * EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
+   */
+  productListPaginationVariant?: InputMaybe<PaginationVariant>;
   /**
    * By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
    *
@@ -422,6 +432,10 @@ export type MagentoConfigurableVariantValues = {
   url?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type PaginationVariant =
+  | 'COMPACT'
+  | 'EXTENDED';
+
 export type ProductFiltersLayout =
   | 'DEFAULT'
   | 'SIDEBAR';
@@ -458,6 +472,8 @@ export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny
 
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
+export const PaginationVariantSchema = z.enum(['COMPACT', 'EXTENDED']);
+
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
 export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM']);
@@ -481,6 +497,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     crossSellsRedirectItems: z.boolean().default(false).nullish(),
     customerAddressNoteEnable: z.boolean().nullish(),
     customerCompanyFieldsEnable: z.boolean().nullish(),
+    customerDeleteEnabled: z.boolean().nullish(),
     dataLayer: DatalayerConfigSchema().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().default(true).nullish(),
@@ -499,6 +516,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     previewSecret: z.string().nullish(),
     productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
     productFiltersPro: z.boolean().nullish(),
+    productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
     productRoute: z.string().nullish(),
     recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
     robotsAllow: z.boolean().nullish(),

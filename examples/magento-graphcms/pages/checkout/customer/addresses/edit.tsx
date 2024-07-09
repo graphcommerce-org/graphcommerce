@@ -89,8 +89,8 @@ CheckoutCustomerAddressesEdit.pageOptions = pageOptions
 
 export default CheckoutCustomerAddressesEdit
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
   return {

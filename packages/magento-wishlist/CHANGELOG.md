@@ -1,5 +1,24 @@
 # @graphcommerce/magento-wishlist
 
+## 8.1.0-canary.45
+
+### Patch Changes
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`02c98e2`](https://github.com/graphcommerce-org/graphcommerce/commit/02c98e217a42fe2258acfad40be577e4a9109345) - Add to wishlist message missed the product name
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.44
+
+## 8.1.0-canary.43
+
+## 8.1.0-canary.42
+
+## 8.1.0-canary.41
+
+## 8.1.0-canary.40
+
+## 8.1.0-canary.39
+
 ## 8.1.0-canary.38
 
 ## 8.1.0-canary.37

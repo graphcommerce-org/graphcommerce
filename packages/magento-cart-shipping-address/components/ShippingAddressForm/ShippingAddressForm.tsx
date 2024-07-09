@@ -1,4 +1,5 @@
 import {
+  CheckboxElement,
   FormAutoSubmit,
   FormPersist,
   TextFieldElement,
@@ -151,6 +152,13 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           showValid
         />
       </FormRow>
+      {customerQuery?.customer && (
+        <CheckboxElement
+          control={form.control}
+          name='saveInAddressBook'
+          label={<Trans id='Save in address book' />}
+        />
+      )}
 
       {!isVirtual && import.meta.graphCommerce.customerAddressNoteEnable && (
         <FormRow>

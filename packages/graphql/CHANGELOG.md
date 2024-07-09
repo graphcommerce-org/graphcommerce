@@ -1,5 +1,29 @@
 # Change Log
 
+## 8.1.0-canary.45
+
+### Patch Changes
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`d066e6f`](https://github.com/graphcommerce-org/graphcommerce/commit/d066e6f904ca68a8771ab73ce30aa06d11fc71b6) - When loading a page, always create a new graphql client, so that cache isn't shared for each request, causing an unnecessary large page size.
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.44
+
+## 8.1.0-canary.43
+
+## 8.1.0-canary.42
+
+### Patch Changes
+
+- [#2308](https://github.com/graphcommerce-org/graphcommerce/pull/2308) [`8faa5ac`](https://github.com/graphcommerce-org/graphcommerce/commit/8faa5ac618ecfdacd6d5eb751b4110c423aef97f) - Added Draft Mode support. When enabled it will be shown.
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.41
+
+## 8.1.0-canary.40
+
+## 8.1.0-canary.39
+
 ## 8.1.0-canary.38
 
 ## 8.1.0-canary.37

@@ -11,5 +11,4 @@ fragment ProductListItem on ProductInterface {
       ...ProductListPrice
     }
   }
-  ...ConfigurableOptions
 }

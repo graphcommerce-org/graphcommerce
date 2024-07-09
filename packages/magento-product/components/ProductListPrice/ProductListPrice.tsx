@@ -1,10 +1,12 @@
+import { InContextMask } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { Typography, TypographyProps, Box } from '@mui/material'
+import { Typography, TypographyProps } from '@mui/material'
 import { ProductListPriceFragment } from './ProductListPrice.gql'
 
 export const productListPrice = extendableComponent('ProductListPrice', [
   'root',
+  'finalPrice',
   'discountPrice',
 ] as const)
 
@@ -18,19 +20,22 @@ export function ProductListPrice(props: ProductListPriceProps) {
   return (
     <Typography component='div' variant='body1' className={classes.root} sx={sx}>
       {regular_price.value !== final_price.value && (
-        <Box
+        <InContextMask
           component='span'
           sx={{
             textDecoration: 'line-through',
             color: 'text.disabled',
             marginRight: '8px',
           }}
+          skeleton={{ width: '3.5em' }}
           className={classes.discountPrice}
         >
           <Money {...regular_price} />
-        </Box>
+        </InContextMask>
       )}
-      <Money {...final_price} />
+      <InContextMask className={classes.finalPrice} component='span' skeleton={{ width: '3.5em' }}>
+        <Money {...final_price} />
+      </InContextMask>
     </Typography>
   )
 }

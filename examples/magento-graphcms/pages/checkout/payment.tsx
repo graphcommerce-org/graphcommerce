@@ -35,6 +35,7 @@ import { Trans } from '@lingui/react'
 import { CircularProgress, Container, Dialog, Typography } from '@mui/material'
 import { LayoutDocument, LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { cacheFirst } from '@graphcommerce/graphql'
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
@@ -153,12 +154,15 @@ PaymentPage.pageOptions = pageOptions
 
 export default PaymentPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
 
   const conf = client.query({ query: StoreConfigDocument })
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   return {
     props: {

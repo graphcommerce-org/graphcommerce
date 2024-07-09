@@ -7,6 +7,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { LayoutDocument, LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -45,12 +46,15 @@ EditBillingAddress.pageOptions = pageOptions
 
 export default EditBillingAddress
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
-  const staticClient = graphqlSsrClient(locale)
+  const staticClient = graphqlSsrClient(context)
 
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   return {
     props: {
