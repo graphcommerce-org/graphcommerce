@@ -162,20 +162,23 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
           ]}
           render={CustomerAddressActionCard}
         />
+        {!isVirtual &&
+          formAddressId !== -1 &&
+          import.meta.graphCommerce.customerAddressNoteEnable && (
+            <FormRow>
+              <TextFieldElement
+                control={form.control}
+                name='shippingAddress.customer_notes'
+                label={<Trans>Shipping Note</Trans>}
+                multiline
+                minRows={3}
+              />
+            </FormRow>
+          )}
         <ApolloCartErrorAlert error={error} />
       </Box>
       {formAddressId === -1 && children}
-      {!isVirtual && import.meta.graphCommerce.customerAddressNoteEnable && (
-        <FormRow>
-          <TextFieldElement
-            control={form.control}
-            name='shippingAddress.customer_notes'
-            label={<Trans>Shipping Note</Trans>}
-            multiline
-            minRows={3}
-          />
-        </FormRow>
-      )}
+
       <FormPersist form={form} name='CustomerAddressForm' />
     </>
   )

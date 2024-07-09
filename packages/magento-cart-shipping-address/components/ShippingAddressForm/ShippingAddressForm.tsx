@@ -152,20 +152,18 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         />
       </FormRow>
 
-      {!isVirtual &&
-        !customerQuery?.customer &&
-        import.meta.graphCommerce.customerAddressNoteEnable && (
-          <FormRow>
-            <TextFieldElement
-              control={form.control}
-              name='customerNote'
-              label={<Trans>Shipping Note</Trans>}
-              multiline
-              minRows={3}
-              required={required.customerNote}
-            />
-          </FormRow>
-        )}
+      {!isVirtual && import.meta.graphCommerce.customerAddressNoteEnable && (
+        <FormRow>
+          <TextFieldElement
+            control={form.control}
+            name='customerNote'
+            label={<Trans>Shipping Note</Trans>}
+            multiline
+            minRows={3}
+            required={required.customerNote}
+          />
+        </FormRow>
+      )}
 
       <ApolloCartErrorAlert error={error} />
       <FormPersist form={form} name='ShippingAddressForm' />
