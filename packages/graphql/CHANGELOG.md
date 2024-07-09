@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.45
+
+### Patch Changes
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`d066e6f`](https://github.com/graphcommerce-org/graphcommerce/commit/d066e6f904ca68a8771ab73ce30aa06d11fc71b6) - When loading a page, always create a new graphql client, so that cache isn't shared for each request, causing an unnecessary large page size.
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.44
 
 ## 8.1.0-canary.43
