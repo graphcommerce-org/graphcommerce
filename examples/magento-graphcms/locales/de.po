@@ -22,6 +22,10 @@ msgid "I understand that my account will be deleted and this can not be undone."
 msgstr "Mir ist bewusst, dass mein Konto gelöscht wird und dies nicht rückgängig gemacht werden kann."
 
 #. js-lingui-generated-id
+msgid "Search all products..."
+msgstr "Alle Produkte durchsuchen..."
+
+#. js-lingui-generated-id
 msgid "We couldn't find any results"
 msgstr "Wir konnten keine Ergebnisse finden"
 
@@ -589,12 +593,12 @@ msgid "Products"
 msgstr "Produkte"
 
 #. js-lingui-generated-id
-msgid "Telephone"
-msgstr "Telefon"
-
-#. js-lingui-generated-id
 msgid "Results for ‘{search}’"
 msgstr "Ergebnisse für ‘{search}’"
+
+#. js-lingui-generated-id
+msgid "Telephone"
+msgstr "Telefon"
 
 msgid "Recently viewed products"
 msgstr "Kürzlich angesehene Produkte"
