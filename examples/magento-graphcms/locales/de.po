@@ -645,9 +645,6 @@ msgstr "Rezensions"
 msgid "Save changes"
 msgstr "Änderungen speichern"
 
-msgid "Save in address book"
-msgstr "Im Adressbuch speichern"
-
 msgid "Save new password"
 msgstr "Neues Passwort speichern"
 
@@ -950,6 +947,10 @@ msgstr "Kundenkonto löschen"
 
 msgid "Zip code or city"
 msgstr "Postleitzahl oder Stadt"
+
+#. js-lingui-generated-id
+msgid "Save in address book"
+msgstr "Im Adressbuch speichern"
 
 #. js-lingui-generated-id
 msgid "Return to home"

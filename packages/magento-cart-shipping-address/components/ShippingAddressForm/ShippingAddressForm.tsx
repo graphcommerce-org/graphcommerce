@@ -156,7 +156,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         <CheckboxElement
           control={form.control}
           name='saveInAddressBook'
-          label={<Trans id='Save in address book' />}
+          label={<Trans>Save in address book</Trans>}
         />
       )}
 

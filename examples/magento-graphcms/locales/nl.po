@@ -645,9 +645,6 @@ msgstr "Reviews"
 msgid "Save changes"
 msgstr "Wijzigingen opslaan"
 
-msgid "Save in address book"
-msgstr "Opslaan in adresboek"
-
 msgid "Save new password"
 msgstr "Sla nieuw wachtwoord op"
 
@@ -950,6 +947,10 @@ msgstr "Verwijder account"
 
 msgid "Zip code or city"
 msgstr "Postcode of stad"
+
+#. js-lingui-generated-id
+msgid "Save in address book"
+msgstr "Opslaan in adresboek"
 
 #. js-lingui-generated-id
 msgid "Return to home"
