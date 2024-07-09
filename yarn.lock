@@ -3414,7 +3414,7 @@ __metadata:
     long: "npm:^5.2.3"
     tslib: "npm:^2.6.3"
     typescript: "npm:5.5.3"
-    uglify-es: "npm:~3.3.10"
+    uglify-es: "npm:3.3.10"
   peerDependencies:
     "@apollo/client": ^3
     "@graphcommerce/eslint-config-pwa": ^8.1.0-canary.44
@@ -19406,7 +19406,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uglify-es@npm:~3.3.10":
+"uglify-es@npm:3.3.10":
   version: 3.3.10
   resolution: "uglify-es@npm:3.3.10"
   dependencies:
