@@ -15,12 +15,21 @@ export const getInContextInput: FunctionPlugin<typeof getInContextInputType> = (
   prev,
   client,
   ...args
-) => ({
-  ...prev(client, ...args),
-  loggedIn: !!client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken?.token,
-})
+) => {
+  const loggedIn = !!client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken?.token
+  const res = prev(client, ...args)
+  if (!loggedIn) return res
 
-export const useInContextInput: FunctionPlugin<typeof useInContextInputType> = (prev, ...args) => ({
-  ...prev(...args),
-  loggedIn: useCustomerSession().loggedIn,
-})
+  return { ...res, loggedIn: true }
+}
+
+export const useInContextInput: FunctionPlugin<typeof useInContextInputType> = (prev, ...args) => {
+  const { loggedIn } = useCustomerSession()
+  const res = prev(...args)
+  if (!loggedIn) return res
+
+  return {
+    ...res,
+    loggedIn: true,
+  }
+}

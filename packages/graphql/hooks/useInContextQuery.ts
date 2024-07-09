@@ -1,5 +1,9 @@
 import type { InputMaybe, InContextInput } from '@graphcommerce/graphql-mesh'
-import { useCustomerSession } from '@graphcommerce/magento-customer/hooks'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useIsSSR } from '@graphcommerce/next-ui/hooks/useIsSsr'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { getCssFlag, removeCssFlag, setCssFlag } from '@graphcommerce/next-ui/utils/cssFlags'
+import { useEffect } from 'react'
 import { QueryHookOptions, QueryResult, TypedDocumentNode, useQuery } from '../apollo'
 import { useInContextInput } from './useInContextInput'
 
@@ -25,8 +29,14 @@ export function useInContextQuery<
   unscopedResult: Q,
 ): Omit<QueryResult<Q, V>, 'data'> & { data: Q; mask: boolean } {
   const { skip = true } = options
-  const session = useCustomerSession()
   const context = useInContextInput()
+  const isSsr = useIsSSR()
+
+  useEffect(() => {
+    if (isSsr) return
+    if (context && !getCssFlag('in-context')) setCssFlag('in-context', true)
+    else if (!context && getCssFlag('in-context')) removeCssFlag('in-context')
+  }, [context, isSsr])
 
   const clientQuery = useQuery<Q, V>(document, {
     ...options,
@@ -38,8 +48,8 @@ export function useInContextQuery<
   if (!skip) data ??= clientQuery.previousData
 
   // If the user is logged in we might need to show a skeleton:
-  let mask = session.query.loading
-  if (!session.query.loading && session.loggedIn) {
+  let mask = isSsr
+  if (!isSsr && context) {
     mask = !skip ? !clientQuery.data && !clientQuery.previousData : !clientQuery.data
   }
 

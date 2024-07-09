@@ -52,14 +52,14 @@ export function useInContextInputMaskSx(props: { sx?: SxProps<Theme>; skeleton?:
     mask,
     componentSx: [
       mask && {
-        [cssFlag('signed-in')]: { display: 'none' },
+        [cssFlag('in-context')]: { display: 'none' },
       },
       ...(Array.isArray(sx) ? sx : [sx]),
     ],
     maskSx: [
       {
         display: 'inline-block',
-        [cssNotFlag('signed-in')]: { display: 'none' },
+        [cssNotFlag('in-context')]: { display: 'none' },
       },
       ...(Array.isArray(sx) ? sx : [sx]),
       ...(Array.isArray(skeleton?.sx) ? skeleton.sx : [skeleton?.sx]),

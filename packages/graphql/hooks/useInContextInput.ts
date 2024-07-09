@@ -10,8 +10,8 @@ export function getInContextInput(client: ApolloClient<any>): InContextInput | u
  *
  * Other plugins should be able to define their own scopes and create a plugin on this method to augment the specific scope.
  *
- * - User configured currency
- * - Adobe Commerce preview functionality
- * - Hygraph preview functionality
+ * @see @graphcommerce/magento-customer/plugins/magentoCustomerGetInContext.ts
+ *
+ * Note: ONLY return a value if the frontend should use the inContext directive.
  */
 export const useInContextInput = (): InContextInput | undefined => undefined

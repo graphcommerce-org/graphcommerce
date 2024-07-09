@@ -19,13 +19,6 @@ export function useCustomerSession(_: UseCustomerSessionOptions = {}) {
   const query = useQuery(CustomerTokenDocument)
   const tokenData = query.data?.customerToken
 
-  useEffect(() => {
-    if (!query.loading) {
-      if (tokenData?.token) setCssFlag('signed-in', true)
-      else removeCssFlag('signed-in')
-    }
-  }, [query.loading, tokenData?.token])
-
   return {
     ...tokenData,
     loggedIn: Boolean(tokenData?.token),
