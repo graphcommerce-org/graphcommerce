@@ -213,6 +213,22 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "getInContextInput",
+        "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerGetInContext",
+        "targetExport": "getInContextInput",
+        "targetModule": "@graphcommerce/graphql",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "useInContextInput",
+        "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerGetInContext",
+        "targetExport": "useInContextInput",
+        "targetModule": "@graphcommerce/graphql",
+        "type": "function",
+      },
+      {
+        "enabled": true,
         "sourceExport": "GraphQLProvider",
         "sourceModule": "@graphcommerce/magento-customer/plugins/MagentoCustomerGraphqlProvider",
         "targetExport": "GraphQLProvider",
