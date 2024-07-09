@@ -78,6 +78,8 @@ export const prefetchProductList = debounce(
       // If the resolved request  is still in the array, it may be rendered (URL may be updated)
       await next(shallow)
     }
+
+    return undefined
   },
   200,
   // the maxWait is now set to a somewhat shorter time than the average query time.

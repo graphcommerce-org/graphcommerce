@@ -2,8 +2,9 @@ query ProductFilters(
   $filters: ProductAttributeFilterInput = {}
   $search: String
   $context: InContextInput
-) @inContext(context: $context) {
-  filters: products(filter: $filters, currentPage: 1, pageSize: 1, search: $search) {
+) {
+  filters: products(filter: $filters, currentPage: 1, pageSize: 1, search: $search)
+    @inContext(context: $context) {
     ...ProductListFilters
   }
 }

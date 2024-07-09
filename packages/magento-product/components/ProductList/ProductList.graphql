@@ -6,14 +6,14 @@ query ProductList(
   $search: String = ""
   $context: InContextInput = { loggedIn: false }
   $onlyItems: Boolean = false
-) @inContext(context: $context) {
+) {
   products(
     pageSize: $pageSize
     currentPage: $currentPage
     filter: $filters
     sort: $sort
     search: $search
-  ) {
+  ) @inContext(context: $context) {
     ...ProductListSuggestions @skip(if: $onlyItems)
     ...ProductListFilters @skip(if: $onlyItems)
     ...ProductListCount @skip(if: $onlyItems)
