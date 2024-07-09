@@ -32,6 +32,11 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
           {...props}
           formControl={formControl}
           inputRef={inputRef}
+          buttonProps={{
+            onClick: () => {
+              setExpanded(false)
+            },
+          }}
           onBlur={() => {
             if (!searchPage && !showPageLoadIndicator.get()) setExpanded(false)
           }}

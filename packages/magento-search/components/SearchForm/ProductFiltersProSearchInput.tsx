@@ -19,7 +19,7 @@ import { useSearchPageAndParam } from './useSearchPageAndParam'
 export function useProductFiltersProSearchInput<
   P extends InputBaseProps & { buttonProps?: ButtonBaseProps },
 >(props: P): P {
-  const { buttonProps = {}, inputRef, ...rest } = props
+  const { buttonProps = {}, inputRef } = props
 
   const router = useRouter()
   const [searchPage, searchParam] = useSearchPageAndParam()
@@ -79,6 +79,7 @@ export function useProductFiltersProSearchInput<
         } else if (searchPage) {
           router.back()
           if (internalRef.current) internalRef.current.value = ''
+        } else {
           buttonProps.onClick?.(e)
         }
       },
