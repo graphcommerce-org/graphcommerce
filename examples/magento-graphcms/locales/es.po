@@ -557,6 +557,10 @@ msgstr "Producto no disponible en {allLabels}"
 msgid "Products"
 msgstr "Productos"
 
+#. js-lingui-generated-id
+msgid "Telephone"
+msgstr "Teléfono"
+
 msgid "Recently viewed products"
 msgstr "Productos vistos recientemente"
 
@@ -901,6 +905,10 @@ msgstr "Código postal o ciudad"
 
 msgid "canceled"
 msgstr "cancelado"
+
+#. js-lingui-generated-id
+msgid "Shipping Note"
+msgstr "Nota de envío"
 
 msgid "invoiced"
 msgstr "facturado"

@@ -169,6 +169,10 @@ Determines if, after adding a cross-sell item to the cart, the user should be re
 
 Default: 'false'
 
+#### customerAddressNoteEnable: boolean
+
+Enables the shipping notes field in the checkout
+
 #### customerCompanyFieldsEnable: boolean
 
 Enables company fields inside the checkout:

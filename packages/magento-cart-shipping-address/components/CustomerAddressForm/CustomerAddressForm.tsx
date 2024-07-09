@@ -15,7 +15,7 @@ import { CustomerDocument } from '@graphcommerce/magento-customer'
 import { ActionCardListForm, FormRow, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
-import { Box, SxProps, Theme, Typography } from '@mui/material'
+import { Box, SxProps, Theme } from '@mui/material'
 import React, { useEffect } from 'react'
 import { findCustomerAddressFromCartAddress } from '../../utils/findCustomerAddressFromCartAddress'
 import { GetAddressesDocument } from '../ShippingAddressForm/GetAddresses.gql'
@@ -165,21 +165,16 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
         <ApolloCartErrorAlert error={error} />
       </Box>
       {formAddressId === -1 && children}
-      {!isVirtual && (
-        <>
-          <Typography variant='h6'>
-            <Trans>Shipping Notes</Trans>
-          </Typography>
-          <FormRow>
-            <TextFieldElement
-              control={form.control}
-              name='shippingAddress.customer_notes'
-              label={<Trans>Note</Trans>}
-              multiline
-              minRows={3}
-            />
-          </FormRow>
-        </>
+      {!isVirtual && import.meta.graphCommerce.customerAddressNoteEnable && (
+        <FormRow>
+          <TextFieldElement
+            control={form.control}
+            name='shippingAddress.customer_notes'
+            label={<Trans>Shipping Note</Trans>}
+            multiline
+            minRows={3}
+          />
+        </FormRow>
       )}
       <FormPersist form={form} name='CustomerAddressForm' />
     </>

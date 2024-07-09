@@ -24,7 +24,7 @@ import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/mage
 import { Form, FormRow } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
-import { SxProps, Theme, Typography } from '@mui/material'
+import { SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { isCartAddressACustomerAddress } from '../../utils/findCustomerAddressFromCartAddress'
 import { isSameAddress } from '../../utils/isSameAddress'
@@ -152,23 +152,20 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         />
       </FormRow>
 
-      {!isVirtual && !customerQuery?.customer && (
-        <>
-          <Typography variant='h6'>
-            <Trans>Shipping Notes</Trans>
-          </Typography>
+      {!isVirtual &&
+        !customerQuery?.customer &&
+        import.meta.graphCommerce.customerAddressNoteEnable && (
           <FormRow>
             <TextFieldElement
               control={form.control}
               name='customerNote'
-              label={<Trans>Note</Trans>}
+              label={<Trans>Shipping Note</Trans>}
               multiline
               minRows={3}
               required={required.customerNote}
             />
           </FormRow>
-        </>
-      )}
+        )}
 
       <ApolloCartErrorAlert error={error} />
       <FormPersist form={form} name='ShippingAddressForm' />
