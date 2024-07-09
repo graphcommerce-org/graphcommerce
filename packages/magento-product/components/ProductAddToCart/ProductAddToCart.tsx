@@ -9,7 +9,7 @@ import {
   IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/macro'
 import { Divider, Typography, ButtonProps, Box, Alert } from '@mui/material'
 import React from 'react'
 import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
@@ -93,7 +93,7 @@ export function ProductAddToCart(
           })}
           {...buttonProps}
         >
-          <Trans id='Add to Cart' />
+          <Trans>Add to Cart</Trans>
         </Button>
         {additionalButtons}
       </Box>
@@ -125,15 +125,13 @@ export function ProductAddToCart(
             color='secondary'
             endIcon={<IconSvg src={iconChevronRight} />}
           >
-            <Trans id='View shopping cart' />
+            <Trans>View shopping cart</Trans>
           </Button>
         }
       >
-        <Trans
-          id='<0>{name}</0> has been added to your shopping cart!'
-          components={{ 0: <strong /> }}
-          values={{ name }}
-        />
+        <Trans>
+          <strong>{name}</strong> has been added to your shopping cart!
+        </Trans>
       </MessageSnackbar>
     </Box>
   )

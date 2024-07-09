@@ -40,7 +40,7 @@ export function useSignInForm({ email, ...options }: UseSignInFormProps) {
           : { ...values, email }
       },
       onComplete: (...args) => {
-        setCssFlag('signed-in', true)
+        setCssFlag('in-context', true)
         return options.onComplete?.(...args)
       },
     },

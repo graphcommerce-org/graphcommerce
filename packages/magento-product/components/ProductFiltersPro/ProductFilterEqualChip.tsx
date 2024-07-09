@@ -12,7 +12,7 @@ import { Box } from '@mui/material'
 import { useMemo } from 'react'
 import { isFilterTypeEqual } from '../ProductListItems/filterTypes'
 import { useProductFiltersPro } from './ProductFiltersPro'
-import { FilterProps } from './ProductFiltersProAggregations'
+import type { FilterProps } from './ProductFiltersProAggregations'
 
 export function ProductFilterEqualChip(props: FilterProps) {
   const { aggregation } = props

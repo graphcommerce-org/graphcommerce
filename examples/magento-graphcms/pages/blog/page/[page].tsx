@@ -7,6 +7,7 @@ import {
   Pagination,
   LayoutTitle,
   LayoutHeader,
+  Breadcrumbs,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Container, Link } from '@mui/material'
@@ -50,7 +51,8 @@ function BlogPage(props: Props) {
         </LayoutTitle>
       </LayoutHeader>
 
-      <Container maxWidth='xl'>
+      <Container maxWidth={false}>
+        <Breadcrumbs breadcrumbs={[{ href: `/${page.url}`, name: title }]} />
         <LayoutTitle variant='h1'>{title}</LayoutTitle>
       </Container>
 

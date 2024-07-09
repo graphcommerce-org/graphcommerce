@@ -45,9 +45,6 @@ export function setCssFlag(flagName: string, val: true | string) {
   saveFlags(flags)
 }
 
-/**
- * @deprecated flags are not intendend to be used in JS, so this should only be used for debugging purposes.
- */
 export function getCssFlag(flagName: string) {
   return loadFlags()[flagName]
 }

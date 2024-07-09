@@ -1,5 +1,6 @@
 export * from './AccountAddress/AccountAddress'
 export * from './AccountAddresses/AccountAddresses'
+export * from './AccountAddresses/AccountAddresses'
 export * from './AccountAddresses/AccountAddresses.gql'
 export * from './AccountDeleteForm/AccountDeleteForm'
 export * from './AccountLatestOrder/AccountLatestOrder'

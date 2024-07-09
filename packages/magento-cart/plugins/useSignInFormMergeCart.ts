@@ -16,6 +16,7 @@ const useSignInFormMergeCart: MethodPlugin<typeof useSignInForm> = (useSignInFor
     ...options,
     onComplete: async (data, variables) => {
       await options.onComplete?.(data, variables)
+      if (data.errors) return
 
       cartLock(client.cache, true)
 
