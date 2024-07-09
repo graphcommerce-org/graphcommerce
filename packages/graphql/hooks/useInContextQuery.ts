@@ -13,12 +13,12 @@ import { useInContextInput } from './useInContextInput'
  * - When a query is always scoped. This method specifically targets queries that can resolve unscoped (guest) and both scoped (customer) data.
  *
  * Usage:
- * - Define a `@inContext(context: $inContext)` directive in your query
- * - Use the useInContextInputQuery
+ * - Define a `@inContext(context: $context)` directive in your query
+ * - Use the useInContextQuery
  */
 export function useInContextQuery<
   Q,
-  V extends { inContext?: InputMaybe<InContextInput>; [index: string]: unknown },
+  V extends { context?: InputMaybe<InContextInput>; [index: string]: unknown },
 >(
   document: TypedDocumentNode<Q, V>,
   options: QueryHookOptions<Q, V>,
@@ -26,12 +26,12 @@ export function useInContextQuery<
 ): Omit<QueryResult<Q, V>, 'data'> & { data: Q; mask: boolean } {
   const { skip = true } = options
   const session = useCustomerSession()
-  const inContext = useInContextInput()
+  const context = useInContextInput()
 
   const clientQuery = useQuery<Q, V>(document, {
     ...options,
-    variables: { ...options.variables, inContext } as V,
-    skip: skip && !inContext,
+    variables: { ...options.variables, context } as V,
+    skip: skip && !context,
   })
 
   let { data } = clientQuery

@@ -13,4 +13,4 @@ input InContextInput {
 """
 Certain values are only available in the context of a session and need to have the cache scoped to these values.
 """
-directive @inContext(context: InContextInput) on FIELD
+directive @inContext(context: InContextInput) on QUERY

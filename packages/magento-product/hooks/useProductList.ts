@@ -38,10 +38,10 @@ export const prefetchProductList = debounce(
 
     showPageLoadIndicator.set(true)
 
-    const inContext = getInContextInput(client)
+    const context = getInContextInput(client)
     const productList = client.query({
       query: ProductListDocument,
-      variables: { ...variables, inContext },
+      variables: { ...variables, context },
     })
 
     const productFilters = client.query({
@@ -49,7 +49,7 @@ export const prefetchProductList = debounce(
       variables: {
         filters: { category_uid: variables.filters?.category_uid },
         search: variables.search,
-        inContext,
+        context,
       },
     })
 

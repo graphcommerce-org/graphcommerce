@@ -20,7 +20,7 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
   const [expanded, setExpanded] = useState(searchPage)
   useMemo(() => {
     if (expanded !== searchPage) setExpanded(searchPage)
-  }, [searchPage])
+  }, [expanded, searchPage])
 
   const visible = expanded || searchPage
   const inputRef = useRef<HTMLInputElement>(null)

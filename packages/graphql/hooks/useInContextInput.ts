@@ -6,7 +6,7 @@ export function getInContextInput(client: ApolloClient<any>): InContextInput | u
 }
 
 /**
- * Defines a method to handle the current scope for the query.
+ * Defines a method to handle the current context for the query.
  *
  * Other plugins should be able to define their own scopes and create a plugin on this method to augment the specific scope.
  *

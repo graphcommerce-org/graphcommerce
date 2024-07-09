@@ -145,7 +145,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </DesktopNavBar>
 
             <DesktopNavActions>
-              <ProductFiltersProSearchField fullWidth formControl={{ sx: { width: '400px' } }} />
+              <ProductFiltersProSearchField formControl={{ sx: { width: '400px' } }} />
               <Fab
                 href='/service'
                 aria-label={i18n._(/* i18n */ 'Customer Service')}
