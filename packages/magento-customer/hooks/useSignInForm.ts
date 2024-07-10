@@ -10,7 +10,7 @@ import { signOut } from '../components/SignOutForm/signOut'
 import { CustomerDocument } from './Customer.gql'
 
 type UseSignInFormProps = {
-  email: string
+  email?: string
 } & UseFormGraphQlOptions<SignInMutation, SignInMutationVariables>
 
 /**
@@ -35,9 +35,8 @@ export function useSignInForm({ email, ...options }: UseSignInFormProps) {
          */
         if (oldEmail && oldEmail !== email) signOut(client)
 
-        return options?.onBeforeSubmit
-          ? options.onBeforeSubmit({ ...values, email })
-          : { ...values, email }
+        const newValues = email ? { ...values, email } : values
+        return options?.onBeforeSubmit ? options.onBeforeSubmit(newValues) : newValues
       },
       onComplete: (...args) => {
         setCssFlag('in-context', true)
