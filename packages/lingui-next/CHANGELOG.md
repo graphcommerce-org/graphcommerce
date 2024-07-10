@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.46
+
+### Patch Changes
+
+- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`59874b5`](https://github.com/graphcommerce-org/graphcommerce/commit/59874b572bda17905dc836554f9a3e31f393eb3e) - Solve issue where the page would reload during development when the first call to /graphql was made.
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.45
 
 ## 8.1.0-canary.44

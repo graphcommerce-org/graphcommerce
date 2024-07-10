@@ -1,5 +1,17 @@
 # Change Log
 
+## 8.1.0-canary.46
+
+### Minor Changes
+
+- [#2313](https://github.com/graphcommerce-org/graphcommerce/pull/2313) [`511e75c`](https://github.com/graphcommerce-org/graphcommerce/commit/511e75c3f8c077e617ed17e5042796e2411f312f) - Add the customerNote field to the shipping and customer address forms
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`ccd218c`](https://github.com/graphcommerce-org/graphcommerce/commit/ccd218c827d8ba7e632fa40ed75ad63a38620275) - Solve an issue where interceptors were immediately deleted after generating
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.45
 
 ## 8.1.0-canary.44

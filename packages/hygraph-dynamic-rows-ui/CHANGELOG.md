@@ -1,5 +1,12 @@
 # @graphcommerce/hygraph-dynamic-rows-ui
 
+## 8.1.0-canary.46
+
+### Patch Changes
+
+- [#2316](https://github.com/graphcommerce-org/graphcommerce/pull/2316) [`28d4708`](https://github.com/graphcommerce-org/graphcommerce/commit/28d470861a10a38690d565d236ce573905038d2b) - fix hygraph studio bugs in Dynamic Row UI module. Style config screen DR UI app.
+  ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 8.1.0-canary.45
 
 ## 8.1.0-canary.44

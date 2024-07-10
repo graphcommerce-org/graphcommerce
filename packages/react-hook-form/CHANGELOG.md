@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.46
+
+### Patch Changes
+
+- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`490bbfb`](https://github.com/graphcommerce-org/graphcommerce/commit/490bbfb5d88a7f58e83fa9c8b7f475c277a0eda3) - Added missing dependencies of lodash and @types/lodash
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.45
 
 ## 8.1.0-canary.44
