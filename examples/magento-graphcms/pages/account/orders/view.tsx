@@ -104,7 +104,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await countryRegions).data,
       apolloState: await config.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      size: 'max',
       up: { href: '/account/orders', title: i18n._(/* i18n */ 'Orders') },
     },
   }

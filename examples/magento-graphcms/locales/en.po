@@ -22,6 +22,10 @@ msgid "I understand that my account will be deleted and this can not be undone."
 msgstr "I understand that my account will be deleted and this can not be undone."
 
 #. js-lingui-generated-id
+msgid "Newletter"
+msgstr "Newletter"
+
+#. js-lingui-generated-id
 msgid "Search all products..."
 msgstr "Search all products..."
 
@@ -160,6 +164,10 @@ msgstr "Clear all filters"
 
 msgid "Close"
 msgstr "Close"
+
+#. js-lingui-generated-id
+msgid "Order status"
+msgstr "Order status"
 
 msgid "Company name"
 msgstr "Company name"
@@ -460,6 +468,10 @@ msgstr "No worries! Enter your email address and we will send an email with inst
 msgid "Number"
 msgstr "Number"
 
+#. js-lingui-generated-id
+msgid "Postcode"
+msgstr "Postcode"
+
 msgid "Ok"
 msgstr "Ok"
 
@@ -573,9 +585,6 @@ msgstr "Please select a shipping method"
 
 msgid "Please select a value for ‘{label}’"
 msgstr "Please select a value for ‘{label}’"
-
-msgid "Postcode"
-msgstr "Postcode"
 
 msgid "Prefix"
 msgstr "Prefix"
@@ -971,6 +980,10 @@ msgid "invoiced"
 msgstr "invoiced"
 
 #. js-lingui-generated-id
+msgid "Order number"
+msgstr "Order number"
+
+#. js-lingui-generated-id
 msgid "All products"
 msgstr "All products"
 
@@ -980,6 +993,10 @@ msgstr "View shopping cart"
 
 msgid "no products"
 msgstr "no products"
+
+#. js-lingui-generated-id
+msgid "Get order"
+msgstr "Get order"
 
 msgid "one product"
 msgstr "one product"
@@ -998,6 +1015,10 @@ msgstr "returned"
 
 msgid "shipped"
 msgstr "shipped"
+
+#. js-lingui-generated-id
+msgid "Customer Service"
+msgstr "Customer Service"
 
 #. js-lingui-generated-id
 msgid "The given email does not match the account email"

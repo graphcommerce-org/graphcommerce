@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 
-export function useUrlQuery<T extends Record<string, string | null>>() {
-  const { query, replace } = useRouter()
+export function useUrlQuery<T extends Record<string, string | null>>(doPush?: boolean) {
+  const { query, replace, push } = useRouter()
 
   const setRouterQuery = useCallback(
     (incoming: T) => {
@@ -13,9 +13,11 @@ export function useUrlQuery<T extends Record<string, string | null>>() {
 
       if (JSON.stringify(current) === JSON.stringify(newQuery)) return Promise.resolve(true)
 
-      return replace({ query: newQuery }, undefined, { shallow: true })
+      return doPush
+        ? push({ query: newQuery })
+        : replace({ query: newQuery }, undefined, { shallow: true })
     },
-    [replace],
+    [doPush, push, replace],
   )
 
   return [query as T, setRouterQuery] as const
