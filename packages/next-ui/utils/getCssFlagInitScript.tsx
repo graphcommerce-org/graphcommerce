@@ -1,3 +1,4 @@
+export const FLAGS_STORAGE_KEY = 'gc-flags'
 
 export function getCssFlagsInitScript() {
   return (

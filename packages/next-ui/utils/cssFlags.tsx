@@ -1,5 +1,4 @@
-export const FLAGS_STORAGE_KEY = 'gc-flags'
-export const FLAG_PREFIX = 'data'
+import { FLAGS_STORAGE_KEY } from './getCssFlagInitScript'
 
 function loadFlags() {
   const flags = JSON.parse(localStorage.getItem(FLAGS_STORAGE_KEY) || '{}')

@@ -8,10 +8,11 @@ export type LinguiProviderProps = Omit<I18nProviderProps, 'i18n'> & {
   children: React.ReactNode
   loader: MessageLoader
   ssrLoader: SyncMessageLoader
+  locale?: string
 }
 
 export function LinguiProvider(props: LinguiProviderProps) {
-  const { loader, ssrLoader, ...i18nProviderProps } = props
+  const { loader, ssrLoader, locale, ...i18nProviderProps } = props
 
   const localeOnly = useLocale()
 
