@@ -76,7 +76,7 @@ export function GuestOrderOverviewForm() {
             <Button
               type='submit'
               loading={formState.isSubmitting}
-              color='primary'
+              color='secondary'
               variant='pill'
               size='large'
             >

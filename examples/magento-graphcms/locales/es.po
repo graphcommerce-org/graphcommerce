@@ -22,20 +22,12 @@ msgid "I understand that my account will be deleted and this can not be undone."
 msgstr "Entiendo que mi cuenta será eliminada y esto no se puede deshacer."
 
 #. js-lingui-generated-id
-msgid "Orders"
-msgstr "Pedidos"
-
-#. js-lingui-generated-id
 msgid "Newletter"
 msgstr "Boletín"
 
 #. js-lingui-generated-id
 msgid "Search all products..."
 msgstr "Buscar todos los productos..."
-
-#. js-lingui-generated-id
-msgid "Guest order status"
-msgstr "Estado del pedido de invitados"
 
 #. js-lingui-generated-id
 msgid "We couldn't find any results"
@@ -172,6 +164,10 @@ msgstr "Borrar todos los filtros"
 
 msgid "Close"
 msgstr "Cerrar"
+
+#. js-lingui-generated-id
+msgid "Order status"
+msgstr "Estado del pedido"
 
 msgid "Company name"
 msgstr "Nombre de la empresa"
@@ -589,9 +585,6 @@ msgstr "Por favor, seleccione un método de envío"
 
 msgid "Please select a value for ‘{label}’"
 msgstr "Seleccione un valor para {label}"
-
-msgid "Postcode"
-msgstr "Código postal"
 
 msgid "Prefix"
 msgstr "Prefijo"

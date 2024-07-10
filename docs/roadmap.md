@@ -11,26 +11,16 @@ roadmap.
 
 [Upcoming in the next release](https://github.com/graphcommerce-org/graphcommerce/releases?q=prerelease%3Atrue&expanded=true)
 
-- [ ] Google Datalayer improvements to better handling gtag.js or GTM
 - [ ] Product page gallery improvements: Grid of images, animated thumbnails,
       Video support + disable zoom feature.
-- [ ] Web Vitals: Reduce Total Blocking Time, to improve INP metic.
-- [ ] Web Vitals: Defer rendering of elements further on the page, to improve
-      INP metic.
-- [ ] Magento Open Source GraphQL API Coverage with detailed GraphQL analysis
-      per version.
 - [ ] Create a generic CMS integration framework, removing the hard Hygraph
       requirement
 - [ ] Web Migration to next/image in favor of @graphcommerce/image
-- [ ] Improved category navigation: Navigate to sibling categories + Category
-      tree navigation in sidebar.
-- [ ] i18n configuration separation from URL structure.
 - [ ] Improved cache invalidation logic for category and product pages by using
       the Varnish PURGE functionality of Magento.
-- [ ] Customer specific pricing support for category and product pages.
 - [ ] Support for very large carts with 100+ items.
-- [ ] Plugin system redesign so typescript correctly identifies plugins and can
-      type check all the integrations.
+- [ ] Abstractions for integration with multiple catalog/search API's like
+      Algolia, Magento Live Search and various layered navigation modules.
 
 ## Considering / researching
 
@@ -44,12 +34,25 @@ roadmap.
 - [ ] Store locator
 - [ ] PageBuilder support
       [depends on ↗](https://github.com/magento/magento2/issues/37768)
-- [ ] Abstractions for integration with multiple catalog/search API's like
-      Algolia, Magento Live Search and various layered navigation modules.
 
 ## Released
 
 [See all releases](https://github.com/graphcommerce-org/graphcommerce/releases?q=prerelease%3Afalse+&expanded=true)
+
+- [x] Web Vitals: Reduce Total Blocking Time, to improve INP metic.
+- [x] Web Vitals: Defer rendering of elements further on the page, to improve
+      INP metic.
+- [x] Magento Open Source GraphQL API Coverage with detailed GraphQL analysis
+      per version.
+- [x] Plugin system redesign so typescript correctly identifies plugins and can
+      type check all the integrations.
+- [x] Google Datalayer improvements to better handling gtag.js or GTM
+- [x] Improved category navigation: Navigate to sibling categories + Category
+      tree navigation in sidebar.
+- [x] i18n configuration separation from URL structure.
+- [x] Customer specific pricing support for category and product pages.
+
+---
 
 - [x] Product page gallery improvements: Thumbnails
 - [x] Major improvements to Accessibility
