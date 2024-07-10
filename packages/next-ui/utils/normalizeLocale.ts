@@ -1,4 +1,4 @@
-import { storefrontConfig, storefrontConfigDefault } from '@graphcommerce/next-ui'
+import { storefrontConfig, storefrontConfigDefault } from './storefrontConfig'
 
 /**
  * To support using multiple storefronts using the same language locale (which

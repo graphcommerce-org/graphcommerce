@@ -1,12 +1,8 @@
-import {
-  LinguiProvider,
-  LinguiProviderProps,
-  normalizeLocale,
-  SyncMessageLoader,
-} from '@graphcommerce/lingui-next'
+import { LinguiProvider, LinguiProviderProps, SyncMessageLoader } from '@graphcommerce/lingui-next'
+import { normalizeLocale } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 
-type I18nProviderProps = Pick<LinguiProviderProps, 'locale' | 'children'>
+type I18nProviderProps = Pick<LinguiProviderProps, 'children'>
 
 const ssrLoader: SyncMessageLoader = (l: string) =>
   // eslint-disable-next-line global-require, import/no-dynamic-require, @typescript-eslint/no-var-requires

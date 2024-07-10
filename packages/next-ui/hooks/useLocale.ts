@@ -1,4 +1,4 @@
-import { normalizeLocale } from '@graphcommerce/lingui-next'
+import { normalizeLocale } from '../utils/normalizeLocale'
 import { useStorefrontConfig } from './useStorefrontConfig'
 
 export function useLocale(): Intl.BCP47LanguageTag {
