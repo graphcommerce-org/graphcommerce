@@ -30,12 +30,12 @@ msgid "Newletter"
 msgstr "Newsletter"
 
 #. js-lingui-generated-id
-msgid "Guest order status"
-msgstr "Status der Gastbestellung"
-
-#. js-lingui-generated-id
 msgid "Search all products..."
 msgstr "Alle Produkte durchsuchen..."
+
+#. js-lingui-generated-id
+msgid "Guest order status"
+msgstr "Status der Gastbestellung"
 
 #. js-lingui-generated-id
 msgid "We couldn't find any results"

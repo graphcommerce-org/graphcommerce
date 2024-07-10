@@ -22,18 +22,6 @@ msgid "I understand that my account will be deleted and this can not be undone."
 msgstr "Ik begrijp dat mijn account zal worden verwijderd en dat dit niet ongedaan kan worden gemaakt."
 
 #. js-lingui-generated-id
-msgid "Search all products..."
-msgstr "Zoek alle producten..."
-
-#. js-lingui-generated-id
-msgid "We couldn't find any results"
-msgstr "We konden geen resultaten vinden"
-
-#. js-lingui-generated-id
-msgid "<0>{name}</0> has been added to your shopping cart!"
-msgstr "<0>{name}</0> is toegevoegd aan je winkelwagen!"
-
-#. js-lingui-generated-id
 msgid "Orders"
 msgstr "Bestellingen"
 
@@ -42,8 +30,20 @@ msgid "Newletter"
 msgstr "Nieuwsbrief"
 
 #. js-lingui-generated-id
+msgid "Search all products..."
+msgstr "Zoek alle producten..."
+
+#. js-lingui-generated-id
 msgid "Guest order status"
 msgstr "Bestelstatus gasten"
+
+#. js-lingui-generated-id
+msgid "We couldn't find any results"
+msgstr "We konden geen resultaten vinden"
+
+#. js-lingui-generated-id
+msgid "<0>{name}</0> has been added to your shopping cart!"
+msgstr "<0>{name}</0> is toegevoegd aan je winkelwagen!"
 
 #. js-lingui-generated-id
 msgid "Are you sure you want to delete your account?"
@@ -987,16 +987,16 @@ msgid "invoiced"
 msgstr "gefactureerd"
 
 #. js-lingui-generated-id
+msgid "Order number"
+msgstr "Bestelnummer"
+
+#. js-lingui-generated-id
 msgid "All products"
 msgstr "Alle producten"
 
 #. js-lingui-generated-id
 msgid "View shopping cart"
 msgstr "Bekijk winkelwagen"
-
-#. js-lingui-generated-id
-msgid "Order number"
-msgstr "Bestelnummer"
 
 msgid "no products"
 msgstr "geen producten"
