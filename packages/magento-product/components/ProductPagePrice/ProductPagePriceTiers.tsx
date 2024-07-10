@@ -1,7 +1,8 @@
+import { InContextMask } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, SxProps, Theme } from '@mui/material'
+import { SxProps, Theme } from '@mui/material'
 import { ProductPagePriceFragment } from './ProductPagePrice.gql'
 
 export type ProductPagePriceTiersProps = {
@@ -21,7 +22,7 @@ export function ProductPagePriceTiers(props: ProductPagePriceTiersProps) {
   if (!priceTiers.length) return null
 
   return (
-    <Box sx={sx}>
+    <InContextMask sx={sx} variant='rectangular'>
       {priceTiers.map(({ quantity, final_price, discount }) => (
         <div key={quantity}>
           <Trans
@@ -31,6 +32,6 @@ export function ProductPagePriceTiers(props: ProductPagePriceTiersProps) {
           />
         </div>
       ))}
-    </Box>
+    </InContextMask>
   )
 }

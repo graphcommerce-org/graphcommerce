@@ -1,6 +1,7 @@
 import {
   FormAutoSubmit,
   FormPersist,
+  TextFieldElement,
   UseFormComposeOptions,
   useFormCompose,
 } from '@graphcommerce/ecommerce-ui'
@@ -11,8 +12,9 @@ import {
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { CustomerDocument } from '@graphcommerce/magento-customer'
-import { ActionCardListForm, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { ActionCardListForm, FormRow, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/macro'
 import { Box, SxProps, Theme } from '@mui/material'
 import React, { useEffect } from 'react'
 import { findCustomerAddressFromCartAddress } from '../../utils/findCustomerAddressFromCartAddress'
@@ -37,6 +39,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
   const customer = useQuery(CustomerDocument)
   const cartQuery = useCartQuery(GetAddressesDocument)
   const cart = cartQuery.data?.cart
+  const isVirtual = cart?.is_virtual ?? false
 
   const customerAddresses = filterNonNullableKeys(customer.data?.customer?.addresses, ['id'])
 
@@ -91,10 +94,19 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
           return {
             ...vars,
             billingAddress: { same_as_shipping: true },
-            shippingAddress: { customer_address_id },
+            shippingAddress: {
+              customer_address_id,
+              customer_notes: vars.shippingAddress.customer_notes ?? '',
+            },
           }
         case 'shipping':
-          return { ...vars, shippingAddress: { customer_address_id } }
+          return {
+            ...vars,
+            shippingAddress: {
+              customer_address_id,
+              customer_notes: vars.shippingAddress.customer_notes ?? '',
+            },
+          }
         case 'billing':
         default:
           return { ...vars, billingAddress: { customer_address_id } }
@@ -150,9 +162,23 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
           ]}
           render={CustomerAddressActionCard}
         />
+        {!isVirtual &&
+          formAddressId !== -1 &&
+          import.meta.graphCommerce.customerAddressNoteEnable && (
+            <FormRow>
+              <TextFieldElement
+                control={form.control}
+                name='shippingAddress.customer_notes'
+                label={<Trans>Shipping Note</Trans>}
+                multiline
+                minRows={3}
+              />
+            </FormRow>
+          )}
         <ApolloCartErrorAlert error={error} />
       </Box>
       {formAddressId === -1 && children}
+
       <FormPersist form={form} name='CustomerAddressForm' />
     </>
   )

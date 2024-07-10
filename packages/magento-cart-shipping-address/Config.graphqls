@@ -5,6 +5,11 @@ extend input GraphCommerceConfig {
   - VAT ID
   """
   customerCompanyFieldsEnable: Boolean
+
+  """
+  Enables the shipping notes field in the checkout
+  """
+  customerAddressNoteEnable: Boolean
 }
 
 extend input GraphCommerceStorefrontConfig {

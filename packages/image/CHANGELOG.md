@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.45
+
+### Patch Changes
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`16b5767`](https://github.com/graphcommerce-org/graphcommerce/commit/16b576721785c2cc9fe92570e00ca092aaae4c23) - When viewing the website on a 1x monitor, serve a little bit smaller images.
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.44
 
 ## 8.1.0-canary.43

@@ -12,8 +12,7 @@ import { ConfigurableProductOptions } from '@graphcommerce/magento-product-confi
 import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
 import { GroupedProducts } from '@graphcommerce/magento-product-grouped'
 import { isTypename } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
-import { Divider, Link, Typography } from '@mui/material'
+import { Divider, Typography } from '@mui/material'
 import { ProductPage2Query } from '../../graphql/ProductPage2.gql'
 
 export type AddProductsToCartViewProps = {
@@ -26,21 +25,7 @@ export function AddProductsToCartView(props: AddProductsToCartViewProps) {
   return (
     <>
       {isTypename(product, ['ConfigurableProduct']) && (
-        <ConfigurableProductOptions
-          product={product}
-          optionEndLabels={{
-            size: (
-              <Link
-                href='/modal/product/global/size'
-                rel='nofollow'
-                color='primary'
-                underline='hover'
-              >
-                <Trans id='Which size is right?' />
-              </Link>
-            ),
-          }}
-        />
+        <ConfigurableProductOptions product={product} />
       )}
       {isTypename(product, ['BundleProduct']) && (
         <BundleProductOptions product={product} layout='stack' />

@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.45
+
+### Patch Changes
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`c30ac07`](https://github.com/graphcommerce-org/graphcommerce/commit/c30ac07d1e9aee5fb3df483404d8a8ca853c93ce) - Make sure the edit cart item isn't shown for an order
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.44
 
 ## 8.1.0-canary.43

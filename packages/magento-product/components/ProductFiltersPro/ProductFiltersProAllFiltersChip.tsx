@@ -13,7 +13,7 @@ import {
 } from './ProductFiltersProSortSection'
 import { activeAggregations } from './activeAggregations'
 import { applyAggregationCount } from './applyAggregationCount'
-import { useClearAllFiltersAction } from './useClearAllFiltersHandler'
+import { useProductFiltersProClearAllAction } from './useProductFiltersProClearAllAction'
 
 export type ProductFiltersProAllFiltersChipProps = ProductFiltersProAggregationsProps &
   ProductFiltersProSortSectionProps &
@@ -36,7 +36,7 @@ export function ProductFiltersProAllFiltersChip(props: ProductFiltersProAllFilte
   const allFilters = [...activeFilters, sort].filter(Boolean)
   const hasFilters = allFilters.length > 0
 
-  const clearAll = useClearAllFiltersAction()
+  const clearAll = useProductFiltersProClearAllAction()
 
   return (
     <ChipOverlayOrPopper

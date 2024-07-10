@@ -1,5 +1,12 @@
 import { Box, BoxProps } from '@mui/material'
-import React, { useState, useRef, startTransition, useLayoutEffect, useEffect } from 'react'
+import React, {
+  useState,
+  useRef,
+  startTransition,
+  useLayoutEffect,
+  useEffect,
+  CSSProperties,
+} from 'react'
 
 // Make sure the server doesn't choke on the useLayoutEffect
 export const useLayoutEffect2 = typeof window !== 'undefined' ? useLayoutEffect : useEffect
@@ -18,6 +25,14 @@ export type LazyHydrateProps = BoxProps<'div'> & {
    * - Hydrate the component on some state `<LazyHydrate hydrated={someState}>` where someState initially is false and later becomes true.
    */
   hydrated?: boolean
+
+  /**
+   * By default LazyHydrate does not defer the rendering of components when they are rendered client
+   * side, because using an IntersectionObserver on an element with no height, will cause all siblings to render at once.
+   *
+   * By proving a height, we can use the IntersectionObserver on the client as well.
+   */
+  height?: CSSProperties['height']
 }
 
 /**
@@ -26,7 +41,7 @@ export type LazyHydrateProps = BoxProps<'div'> & {
  * This can be a way to improve the TBT of a page.
  */
 export function LazyHydrate(props: LazyHydrateProps) {
-  const { hydrated, children, ...elementProps } = props
+  const { hydrated, children, height, ...elementProps } = props
   const rootRef = useRef<HTMLDivElement>(null)
 
   const [isHydrated, setIsHydrated] = useState(hydrated || false)
@@ -37,7 +52,7 @@ export function LazyHydrate(props: LazyHydrateProps) {
     if (isHydrated || !rootRef.current) return undefined
 
     // If the element wasn't rendered on the server, we hydrate it immediately
-    if (!rootRef.current?.hasAttribute('data-lazy-hydrate')) {
+    if (!height && !rootRef.current?.hasAttribute('data-lazy-hydrate')) {
       setIsHydrated(true)
       return undefined
     }
@@ -77,6 +92,7 @@ export function LazyHydrate(props: LazyHydrateProps) {
       dangerouslySetInnerHTML={{ __html: '' }}
       suppressHydrationWarning
       {...elementProps}
+      style={{ ...elementProps.style, height }}
     />
   )
 }

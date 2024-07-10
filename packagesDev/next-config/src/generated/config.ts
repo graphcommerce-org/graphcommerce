@@ -159,6 +159,8 @@ export type GraphCommerceConfig = {
    * Default: 'false'
    */
   crossSellsRedirectItems?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Enables the shipping notes field in the checkout */
+  customerAddressNoteEnable?: InputMaybe<Scalars['Boolean']['input']>;
   /**
    * Enables company fields inside the checkout:
    * - Company name
@@ -493,6 +495,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
     crossSellsHideCartItems: z.boolean().default(false).nullish(),
     crossSellsRedirectItems: z.boolean().default(false).nullish(),
+    customerAddressNoteEnable: z.boolean().nullish(),
     customerCompanyFieldsEnable: z.boolean().nullish(),
     customerDeleteEnabled: z.boolean().nullish(),
     dataLayer: DatalayerConfigSchema().nullish(),
