@@ -33,10 +33,10 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "ifConfig": "googleAnalyticsId",
-        "sourceExport": "FramerNextPages",
+        "sourceExport": "DocumentHeadEnd",
         "sourceModule": "@graphcommerce/googleanalytics/plugins/GoogleAnalyticsTag",
-        "targetExport": "FramerNextPages",
-        "targetModule": "@graphcommerce/framer-next-pages",
+        "targetExport": "DocumentHeadEnd",
+        "targetModule": "@graphcommerce/next-ui/server",
         "type": "component",
       },
       {
@@ -432,10 +432,19 @@ it('finds plugins', () => {
       {
         "enabled": false,
         "ifConfig": "googleTagmanagerId",
-        "sourceExport": "FramerNextPages",
+        "sourceExport": "DocumentBodyStart",
         "sourceModule": "@graphcommerce/googletagmanager/plugins/GoogleTagmanagerTag",
-        "targetExport": "FramerNextPages",
-        "targetModule": "@graphcommerce/framer-next-pages",
+        "targetExport": "DocumentBodyStart",
+        "targetModule": "@graphcommerce/next-ui/server",
+        "type": "component",
+      },
+      {
+        "enabled": false,
+        "ifConfig": "googleTagmanagerId",
+        "sourceExport": "DocumentHeadEnd",
+        "sourceModule": "@graphcommerce/googletagmanager/plugins/GoogleTagmanagerTag",
+        "targetExport": "DocumentHeadEnd",
+        "targetModule": "@graphcommerce/next-ui/server",
         "type": "component",
       },
       {
