@@ -1,11 +1,28 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: 100%;
   max-width: 1200px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.3;
+  font-size: 18px;
+  background-color: aliceblue;
+  padding: 32px 24px;
+  border-radius: 8px;
+  margin: 0 auto;
+}
+
+.contentWrapper {
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin: 0 auto;
+}
+
+.logoWrapper {
+  position: relative;
+  height: 60px;
+  width: 50%;
+  margin-bottom: 32px;
 }
 
 .title {
@@ -13,6 +30,12 @@
   font-weight: 600;
   line-height: 32px;
   margin-bottom: 16px;
+}
+
+.author {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 16px;
 }
 
 .desciption {
@@ -40,19 +63,51 @@
   text-decoration: none;
   font-weight: 500;
   border: 0px;
-  margin: 16px 0px 0px;
+  margin: 16px 0 0 0;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 18px;
   line-height: 16px;
-  height: 24px;
+  height: 40px;
   min-width: 24px;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
   color: rgb(255, 255, 255);
-  background-color: rgb(90, 92, 236);
+  background-color: #2563eb;
+  transition: background-color 0.2s ease 0s;
 }
 
 .button:hover {
   cursor: pointer;
-  background-color: rgb(58, 48, 166);
+  background-color: #1d4ed8;
+}
+
+.button[aria-disabled='true'] {
+  background-color: rgb(200, 200, 200);
+}
+
+.button[aria-disabled='true']:hover {
+  background-color: rgb(192, 192, 192);
+}
+
+.button[aria-disabled='false'] {
+  background-color: #16a34a;
+}
+
+.button[aria-disabled='false']:hover {
+  background-color: #15803d;
+}
+
+.buttonsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  column-gap: 24px;
+}
+
+.textInput {
+  display: inline;
+  margin: 24px 0;
+  font-size: 18px;
+  padding: 12px 6px;
 }

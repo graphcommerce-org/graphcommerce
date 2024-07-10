@@ -8,7 +8,7 @@ import { fetchGraphQLInterface } from '../lib/fetchGraphQLInterface'
 import { __Field } from '../types'
 
 export function PropertyPicker() {
-  const { value, onChange, field, extension } = useFieldExtension()
+  const { value, onChange, extension } = useFieldExtension()
   const [localValue, setLocalValue] = useState<string | undefined | null>(
     typeof value === 'string' ? value : undefined,
   )
@@ -29,7 +29,7 @@ export function PropertyPicker() {
     return fetchGraphQLInterface(client)
   }, [extension.config.backend])
 
-  // Prepare options 
+  // Prepare options
   const numberOptions = useMemo(
     () =>
       createOptionsFromInterfaceObject(
@@ -60,10 +60,10 @@ export function PropertyPicker() {
     [numberOptions, textOptions],
   )
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore - outdated types from @hygraph/app-sdk-react
-  const fieldType = field.parent.apiId ?? 'ConditionText'
-  const options = fieldType === 'ConditionNumber' ? allOptions.number : allOptions.text
+  // For now this we can not split number and text field options anymore as Hygraph made parent field apiId unreachable :/
+  // const fieldType = field.parent.apiId ?? 'ConditionText'
+  // const options = fieldType === 'ConditionNumber' ? allOptions.number : allOptions.text
+  const options = [...allOptions.text, ...allOptions.number]
 
   if (!fields) {
     Promise.resolve(graphQLInterfaceQuery)
