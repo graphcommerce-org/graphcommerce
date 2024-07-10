@@ -1,14 +1,13 @@
 import { useApp, Wrapper } from '@hygraph/app-sdk-react'
+import Image from 'next/image'
 import { useState } from 'react'
 import styles from './setup.module.css'
 
 function Install() {
-  // @ts-expect-error - outdated types from @hygraph/app-sdk-react
-  const { updateInstallation, installation, showToast, extension } = useApp()
+  const { updateInstallation, installation, showToast } = useApp()
+
   const installed = installation.status === 'COMPLETED'
   const [gqlUri, setGqlUri] = useState('')
-
-  const changedUri = extension.config.backend !== gqlUri
 
   const saveOnClick = () =>
     updateInstallation({
@@ -64,10 +63,8 @@ function Install() {
 
   let buttonText: string
   let buttonAction: typeof uninstallOnClick | typeof installOnClick
-  if (changedUri) {
-    buttonText = 'Save'
-    buttonAction = saveOnClick
-  } else if (installed) {
+
+  if (installed) {
     buttonText = 'Disable app'
     buttonAction = uninstallOnClick
   } else {
@@ -78,17 +75,30 @@ function Install() {
   return (
     <>
       <>
-        <span>GraphQL API URI</span>
+        <span>
+          <strong>GraphQL API URI</strong>
+        </span>
         <input
           name='gql-uri'
-          defaultValue={extension.config.backend}
+          className={styles.textInput}
+          defaultValue={(installation.config.backend as string) ?? ''}
           onChange={(e) => setGqlUri(e.target.value)}
         />
       </>
 
-      <button type='button' className={styles.button} onClick={buttonAction}>
-        {buttonText}
-      </button>
+      <div className={styles.buttonsContainer}>
+        <button type='button' className={styles.button} onClick={saveOnClick} data-save-button>
+          Save
+        </button>
+        <button
+          type='button'
+          className={styles.button}
+          onClick={buttonAction}
+          aria-disabled={installed}
+        >
+          {buttonText}
+        </button>
+      </div>
     </>
   )
 }
@@ -96,16 +106,28 @@ function Install() {
 export function Page() {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Dynamic Rows Property Selector</h1>
-      <p className={styles.description}>
-        Enhance your content management experience with Dynamic Rows, specifically designed to
-        integrate seamlessly with our Dynamic Row module. It features an intuitive property picker
-        field, allowing for effortless selection and organization of properties to customize your
-        content layout. Press install to get started!
-      </p>
-      <Wrapper>
-        <Install />
-      </Wrapper>
+      <div className={styles.contentWrapper}>
+        <div className={styles.logoWrapper}>
+          <Image
+            src='https://www.graphcommerce.org/_next/static/media/graphcommerce.a8fe7e28.svg'
+            layout='fill'
+            alt='GraphCommerce logo'
+          />
+        </div>
+
+        <h1 className={styles.title}>
+          Dynamic Rows Property Selector <span className={styles.author}>by Joshua Bolk</span>
+        </h1>
+        <p className={styles.description}>
+          Enhance your content management experience with Dynamic Rows, specifically designed to
+          integrate seamlessly with our Dynamic Row module. It features an intuitive property picker
+          field, allowing for effortless selection and organization of properties to customize your
+          content layout. Enable the app and put your graphQL URI to get started.
+        </p>
+        <Wrapper>
+          <Install />
+        </Wrapper>
+      </div>
     </div>
   )
 }
