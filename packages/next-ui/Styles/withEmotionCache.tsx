@@ -1,10 +1,10 @@
 import type { EmotionJSX } from '@emotion/react/types/jsx-namespace'
 import createEmotionServer from '@emotion/server/create-instance'
-// eslint-disable-next-line @next/next/no-document-import-in-page
 import { AppType } from 'next/app'
+// eslint-disable-next-line @next/next/no-document-import-in-page
 import type NextDocument from 'next/document'
 // eslint-disable-next-line @next/next/no-document-import-in-page
-import type { DocumentContext, DocumentInitialProps } from 'next/document'
+import type { DocumentContext } from 'next/document'
 import { EmotionProviderProps } from './EmotionProvider'
 import { createEmotionCache } from './createEmotionCache'
 

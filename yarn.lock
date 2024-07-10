@@ -4598,7 +4598,6 @@ __metadata:
     "@graphcommerce/framer-scroller": ^8.1.0-canary.45
     "@graphcommerce/framer-utils": ^8.1.0-canary.45
     "@graphcommerce/image": ^8.1.0-canary.45
-    "@graphcommerce/lingui-next": ^8.1.0-canary.45
     "@graphcommerce/prettier-config-pwa": ^8.1.0-canary.45
     "@graphcommerce/typescript-config-pwa": ^8.1.0-canary.45
     "@lingui/core": ^4.2.1
@@ -4628,6 +4627,8 @@ __metadata:
   resolution: "@graphcommerce/react-hook-form@workspace:packages/react-hook-form"
   dependencies:
     "@testing-library/react": "npm:^14.1.2"
+    "@types/lodash": "npm:^4.17.6"
+    lodash: "npm:^4.17.21"
   peerDependencies:
     "@apollo/client": ^3
     "@graphcommerce/eslint-config-pwa": ^8.1.0-canary.45
@@ -8258,6 +8259,13 @@ __metadata:
   version: 4.14.202
   resolution: "@types/lodash@npm:4.14.202"
   checksum: 10c0/6064d43c8f454170841bd67c8266cc9069d9e570a72ca63f06bceb484cb4a3ee60c9c1f305c1b9e3a87826049fd41124b8ef265c4dd08b00f6766609c7fe9973
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:^4.17.6":
+  version: 4.17.6
+  resolution: "@types/lodash@npm:4.17.6"
+  checksum: 10c0/3b197ac47af9443fee8c4719c5ffde527d7febc018b827d44a6bc2523c728c7adfdd25196fdcfe3eed827993e0c41a917d0da6e78938b18b2be94164789f1117
   languageName: node
   linkType: hard
 

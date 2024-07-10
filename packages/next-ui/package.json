@@ -31,7 +31,6 @@
     "@graphcommerce/framer-scroller": "^8.1.0-canary.45",
     "@graphcommerce/framer-utils": "^8.1.0-canary.45",
     "@graphcommerce/image": "^8.1.0-canary.45",
-    "@graphcommerce/lingui-next": "^8.1.0-canary.45",
     "@graphcommerce/prettier-config-pwa": "^8.1.0-canary.45",
     "@graphcommerce/typescript-config-pwa": "^8.1.0-canary.45",
     "@lingui/core": "^4.2.1",
