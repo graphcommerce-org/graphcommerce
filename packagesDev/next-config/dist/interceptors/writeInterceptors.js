@@ -17,19 +17,19 @@ function checkFileExists(file) {
 }
 async function writeInterceptors(interceptors, cwd = process.cwd()) {
     const dependencies = (0, resolveDependenciesSync_1.resolveDependenciesSync)(cwd);
-    const existing = [];
+    const existing = new Set();
     dependencies.forEach((dependency) => {
         const files = (0, glob_1.sync)([`${dependency}/**/*.interceptor.tsx`, `${dependency}/**/*.interceptor.ts`], { cwd });
-        existing.push(...files);
+        files.forEach((file) => existing.add(file));
     });
     const written = Object.entries(interceptors).map(async ([, plugin]) => {
         const extension = plugin.sourcePath.endsWith('.tsx') ? '.tsx' : '.ts';
         const relativeFile = `${plugin.fromRoot}.interceptor${extension}`;
-        if (existing.includes(relativeFile)) {
-            delete existing[existing.indexOf(relativeFile)];
+        if (existing.has(relativeFile)) {
+            existing.delete(relativeFile);
         }
-        if (existing.includes(`./${relativeFile}`)) {
-            delete existing[existing.indexOf(`./${relativeFile}`)];
+        if (existing.has(`./${relativeFile}`)) {
+            existing.delete(`./${relativeFile}`);
         }
         const fileToWrite = path_1.default.join(cwd, relativeFile);
         const isSame = (await checkFileExists(fileToWrite)) &&
@@ -38,7 +38,7 @@ async function writeInterceptors(interceptors, cwd = process.cwd()) {
             await promises_1.default.writeFile(fileToWrite, plugin.template);
     });
     // Cleanup unused interceptors
-    const cleaned = existing.map(async (file) => (await checkFileExists(file)) && (await promises_1.default.unlink(file)));
+    const cleaned = [...existing].map(async (file) => (await checkFileExists(file)) && (await promises_1.default.unlink(file)));
     await Promise.all(written);
     await Promise.all(cleaned);
 }
