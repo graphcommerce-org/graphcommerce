@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.48
+
+### Minor Changes
+
+- [#2319](https://github.com/graphcommerce-org/graphcommerce/pull/2319) [`a3409e8`](https://github.com/graphcommerce-org/graphcommerce/commit/a3409e8a629ee95413da6547cbdcf48aa2502c23) - Created a new TelephoneElement component to make re-use easier
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 8.1.0-canary.47
 
 ## 8.1.0-canary.46
