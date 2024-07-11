@@ -1,9 +1,8 @@
-import { ApolloErrorSnackbar, TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { ApolloErrorSnackbar, TelephoneElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
-import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -88,19 +87,11 @@ export function EditAddressForm(props: EditAddressFormProps) {
         <NameFields form={form} prefix />
         <AddressFields form={form} name={{ regionId: 'region.region_id' }} />
         <FormRow>
-          <TextFieldElement
+          <TelephoneElement
+            variant='outlined'
+            required={required.telephone}
             control={control}
             name='telephone'
-            variant='outlined'
-            type='text'
-            error={!!formState.errors.telephone}
-            required={required.telephone}
-            label={<Trans id='Telephone' />}
-            rules={{
-              required: required.telephone,
-              pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-            }}
-            helperText={formState.isSubmitted && formState.errors.telephone?.message}
             disabled={formState.isSubmitting}
             showValid
           />
