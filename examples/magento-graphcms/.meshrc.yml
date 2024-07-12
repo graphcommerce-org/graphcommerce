@@ -36,8 +36,6 @@ sources:
     handler:
       openapi:
         endpoint: 'https://{graphCommerce.algoliaApplicationId}.algolia.net/'
-        # source: "https://raw.githubusercontent.com/algolia/api-clients-automation/main/specs/search/spec.yml"
-        # source: "https://raw.githubusercontent.com/algolia/api-clients-automation/20af70266ff23ac13b76082bb7c0562710442154/specs/bundled/search.yml"
         source: '@graphcommerce/algolia-mesh/algolia-spec.yaml'
         ignoreErrorResponses: true
         schemaHeaders:
@@ -50,12 +48,6 @@ sources:
           - type: Query
             fieldName: searchSingleIndex
     transforms:
-      #  - namingConvention:
-      #      mode: bare
-      #      typeNames: pascalCase
-      #      enumValues: upperCase
-      #      fieldNames: camelCase
-      #      fieldArgumentNames: camelCase
       - prefix:
           value: algolia_
           includeRootOperations: true

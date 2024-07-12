@@ -2,8 +2,8 @@ sources:
   - name: algolia
     handler:
       openapi:
-        endpoint: 'https://l5vhvr29j0.algolia.net/'
-        source: './algolia-spec.yaml'
+        endpoint: 'https://{graphCommerce.algoliaApplicationId}.algolia.net/'
+        source: '@graphcommerce/algolia-mesh/algolia-spec.yaml'
         ignoreErrorResponses: true
         schemaHeaders:
           X-Algolia-Application-Id: '{graphCommerce.algoliaApplicationId}'
@@ -11,13 +11,10 @@ sources:
         operationHeaders:
           X-Algolia-Application-Id: '{graphCommerce.algoliaApplicationId}'
           X-Algolia-API-Key: '{graphCommerce.algoliaSearchOnlyApiKey}'
+        selectQueryOrMutationField:
+          - type: Query
+            fieldName: searchSingleIndex
     transforms:
-      #  - namingConvention:
-      #      mode: bare
-      #      typeNames: pascalCase
-      #      enumValues: upperCase
-      #      fieldNames: camelCase
-      #      fieldArgumentNames: camelCase
       - prefix:
           value: algolia_
           includeRootOperations: true
