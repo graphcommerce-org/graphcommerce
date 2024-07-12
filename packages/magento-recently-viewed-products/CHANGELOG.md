@@ -1,5 +1,7 @@
 # @graphcommerce/magento-recently-viewed-products
 
+## 8.1.0-canary.50
+
 ## 8.1.0-canary.49
 
 ## 8.1.0-canary.48
