@@ -33,7 +33,6 @@ sources:
           Preview-Version: "{context.headers['preview-version']}"
           Content-Currency: "{context.headers['content-currency']}"
           X-Magento-Cache-Id: "{context.headers['x-magento-cache-id']}"
-
   - name: algolia
     handler:
       openapi:

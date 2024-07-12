@@ -66,3 +66,15 @@ export async function productListApplyCategoryDefaults(
 
   return newParams
 }
+
+export function categoryDefaultsToProductListFilters(
+  variables: ProductListQueryVariables | undefined,
+): ProductListQueryVariables {
+  return {
+    ...variables,
+    filters: {
+      category_uid: variables?.filters?.category_uid,
+      engine: variables?.filters?.engine,
+    },
+  }
+}

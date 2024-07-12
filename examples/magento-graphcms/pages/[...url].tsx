@@ -21,6 +21,7 @@ import {
   ProductListDocument,
   ProductListParams,
   ProductListQuery,
+  categoryDefaultsToProductListFilters,
   useProductList,
 } from '@graphcommerce/magento-product'
 import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -209,7 +210,9 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const filters = hasCategory
     ? staticClient.query({
         query: ProductFiltersDocument,
-        variables: { filters: { category_uid: { eq: categoryUid } } },
+        variables: categoryDefaultsToProductListFilters(
+          await productListApplyCategoryDefaults(productListParams, (await conf).data, category),
+        ),
       })
     : undefined
 

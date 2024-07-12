@@ -14,6 +14,7 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { useEventCallback } from '@mui/material'
 import {
   productListApplySearchDefaults,
+  searchDefaultsToProductListFilters,
   useProductListApplySearchDefaults,
 } from '../utils/productListApplySearchDefaults'
 
@@ -31,10 +32,9 @@ export function useProductList<
   const { params, shallow } = useRouterFilterParams(props)
   const variables = useProductListApplySearchDefaults(params)
   const result = useInContextQuery(ProductListDocument, { variables, skip: !shallow }, props)
-
   const filters = useInContextQuery(
     ProductFiltersDocument,
-    { variables: { search: params?.search }, skip: !shallow },
+    { variables: searchDefaultsToProductListFilters(variables), skip: !shallow },
     props,
   )
 
@@ -44,8 +44,10 @@ export function useProductList<
     async (formValues, next) => {
       if (!storeConfig) return
 
+      const vars = productListApplySearchDefaults(toProductListParams(formValues), storeConfig)
       await prefetchProductList(
-        productListApplySearchDefaults(toProductListParams(formValues), storeConfig),
+        vars,
+        searchDefaultsToProductListFilters(vars),
         next,
         result.client,
         true,

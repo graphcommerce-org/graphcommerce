@@ -21,6 +21,7 @@ import type {
   ResolversTypes,
   StoreConfig,
 } from '@graphcommerce/graphql-mesh'
+import type { GraphQLResolveInfo } from 'graphql'
 
 export function nonNullable<T>(value: T): value is NonNullable<T> {
   return value !== null && value !== undefined
@@ -136,20 +137,6 @@ function mapAlgoliaFacetsToAggregations(
 ): Aggregation[] {
   const aggregations: Aggregation[] = []
 
-  // const aggr2: Aggregation[] = Object.entries(algoliaFacets).map(([attribute_code, value]) => {
-  //   const attributeLabel = attributes?.find((attribute) => attribute?.code === attribute_code)
-
-  //   return {
-  //     attribute_code,
-  //     label: attributeLabel?.label ?? attribute_code,
-  //     options: Object.entries(value).map(([label, count]) => ({
-  //       label,
-  //       count,
-  //       value: label,
-  //     })),
-  //   }
-  // })
-
   Object.keys(algoliaFacets).forEach((facetIndex) => {
     const facet: object = algoliaFacets[facetIndex]
     const optionsCheck: AggregationOption[] = []
@@ -196,6 +183,77 @@ type Item = NonNullable<
 
 function getStoreHeader(context: MeshContext) {
   return (context as MeshContext & { headers: Record<string, string | undefined> }).headers.store
+}
+
+function getMagento2Meta(context: MeshContext, info: GraphQLResolveInfo) {
+  return [
+    context.m2.Query.attributesList({
+      args: { entityType: 'CATALOG_PRODUCT', filters: { is_filterable: true } },
+      selectionSet: /* GraphQL */ `
+        {
+          items {
+            label
+            code
+          }
+        }
+      `,
+      context,
+      info,
+    }),
+    context.m2.Query.categories({
+      selectionSet: /* GraphQL */ `
+        {
+          items {
+            uid
+            name
+            id
+            children {
+              uid
+              name
+              id
+              children {
+                name
+                uid
+                id
+                children {
+                  name
+                  uid
+                  id
+                  children {
+                    id
+                    name
+                    uid
+                  }
+                }
+              }
+            }
+          }
+        }
+      `,
+      context,
+      info,
+    }),
+    context.m2.Query.storeConfig({
+      info,
+      context,
+      selectionSet: /* GraphQL */ `
+        {
+          root_category_uid
+          default_display_currency_code
+          base_link_url
+        }
+      `,
+    }),
+  ] as const
+}
+
+let magento2Meta: ReturnType<typeof getMagento2Meta>
+
+function getMagento2MetaCached(context: MeshContext, info: GraphQLResolveInfo) {
+  if (magento2Meta) return magento2Meta
+  // eslint-disable-next-line @typescript-eslint/no-floating-promises
+  magento2Meta = getMagento2Meta(context, info)
+  return magento2Meta
 }
 
 /**
@@ -253,70 +311,10 @@ export const resolvers: Resolvers = {
               }
             }
           `,
-          // autoSelectionSetWithDepth: 10,
           context,
           info,
         }),
-        context.m2.Query.attributesList({
-          root,
-          args: { entityType: 'CATALOG_PRODUCT', filters: { is_filterable: true } },
-          selectionSet: /* GraphQL */ `
-            {
-              items {
-                label
-                code
-              }
-            }
-          `,
-          context,
-          info,
-        }),
-        context.m2.Query.categories({
-          root,
-          selectionSet: /* GraphQL */ `
-            {
-              items {
-                uid
-                name
-                id
-                children {
-                  uid
-                  name
-                  id
-                  children {
-                    name
-                    uid
-                    id
-                    children {
-                      name
-                      uid
-                      id
-                      children {
-                        id
-                        name
-                        uid
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          `,
-          context,
-          info,
-        }),
-        context.m2.Query.storeConfig({
-          root,
-          info,
-          context,
-          selectionSet: /* GraphQL */ `
-            {
-              root_category_uid
-              default_display_currency_code
-              base_link_url
-            }
-          `,
-        }),
+        ...getMagento2MetaCached(context, info),
       ])
 
       const aggregations = mapAlgoliaFacetsToAggregations(
