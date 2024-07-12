@@ -1,0 +1,56 @@
+input CartAddressInput {
+  """
+  The customer's fax number.
+  """
+  fax: String @deprecated(reason: "Magento >= 2.4.7")
+  """
+  The middle name of the person associated with the billing/shipping address.
+  """
+  middlename: String @deprecated(reason: "Magento >= 2.4.7")
+  """
+  An honorific, such as Dr., Mr., or Mrs.
+  """
+  prefix: String @deprecated(reason: "Magento >= 2.4.7")
+  """
+  A value such as Sr., Jr., or III.
+  """
+  suffix: String @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type BillingCartAdress {
+  """
+  The customer's fax number.
+  """
+  fax: String @deprecated(reason: "Magento >= 2.4.7")
+  """
+  The middle name of the person associated with the billing/shipping address.
+  """
+  middlename: String @deprecated(reason: "Magento >= 2.4.7")
+  """
+  An honorific, such as Dr., Mr., or Mrs.
+  """
+  prefix: String @deprecated(reason: "Magento >= 2.4.7")
+  """
+  A value such as Sr., Jr., or III.
+  """
+  suffix: String @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type ShippingCartAddress {
+  """
+  The customer's fax number.
+  """
+  fax: String @deprecated(reason: "Magento >= 2.4.7")
+  """
+  The middle name of the person associated with the billing/shipping address.
+  """
+  middlename: String @deprecated(reason: "Magento >= 2.4.7")
+  """
+  An honorific, such as Dr., Mr., or Mrs.
+  """
+  prefix: String @deprecated(reason: "Magento >= 2.4.7")
+  """
+  A value such as Sr., Jr., or III.
+  """
+  suffix: String @deprecated(reason: "Magento >= 2.4.7")
+}

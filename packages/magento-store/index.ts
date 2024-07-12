@@ -1,7 +1,6 @@
 export * from './components/GlobalHead/GlobalHead'
 export * from './hooks/useFindCountry'
 export * from './hooks/useFindRegion'
-export * from './link/createStoreLink'
 export * from './localeToStore'
 export * from './Money'
 export * from './Money.gql'

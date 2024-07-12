@@ -17,6 +17,7 @@ import {
   RowRenderer,
 } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
@@ -56,12 +57,11 @@ ServicePage.pageOptions = pageOptions
 
 export default ServicePage
 
-// eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = async (locale: string) => {
-    const client = graphqlSsrClient(locale)
+    const client = graphqlSsrClient({ locale })
     const { data } = await client.query({
       query: PagesStaticPathsDocument,
       variables: {
@@ -76,13 +76,17 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const { locale, params } = context
   const url = params?.url ? `service/${params?.url.join('/')}` : `service`
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })
   const page = hygraphPageContent(staticClient, url)
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   if (!(await page).data.pages?.[0]) return redirectOrNotFound(staticClient, conf, { url }, locale)
 

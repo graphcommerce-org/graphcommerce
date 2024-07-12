@@ -138,7 +138,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
 
             <Money value={price} currency={prices?.price.currency} />
           </Box>
-          {hasOptions && (
+          {hasOptions && !readOnly && (
             <Button
               variant='inline'
               color='secondary'

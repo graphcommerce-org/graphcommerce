@@ -2,15 +2,9 @@ import {
   ProductListItem,
   OverlayAreaKeys,
   ProductListItemProps,
-  useProductListParamsContext,
-  isFilterTypeEqual,
 } from '@graphcommerce/magento-product'
 import { SwatchList } from '../../SwatchList'
 import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
-
-export type ProductListItemConfigurableActionProps = ProductListItemConfigurableFragment & {
-  variant?: NonNullable<ProductListItemConfigurableFragment['variants']>[0]
-}
 
 export type ProdustListItemConfigurableProps = ProductListItemConfigurableFragment &
   ProductListItemProps & {
@@ -19,7 +13,6 @@ export type ProdustListItemConfigurableProps = ProductListItemConfigurableFragme
 
 export function ProductListItemConfigurable(props: ProdustListItemConfigurableProps) {
   const {
-    variants,
     configurable_options,
     children,
     swatchLocations = { bottomLeft: [], bottomRight: [], topLeft: [], topRight: [] },
@@ -29,40 +22,10 @@ export function ProductListItemConfigurable(props: ProdustListItemConfigurablePr
     topRight,
     ...configurableProduct
   } = props
-  const { params } = useProductListParamsContext()
-
-  const options: [string, string[]][] =
-    configurable_options
-      ?.filter(
-        (option) =>
-          option?.attribute_code &&
-          params.filters[option.attribute_code] &&
-          isFilterTypeEqual(params.filters[option.attribute_code]),
-      )
-      .map((option) => {
-        const filter = params.filters[option?.attribute_code ?? '']
-        return [option?.attribute_code ?? '', (filter?.in as string[]) ?? []]
-      }) ?? []
-
-  const selected = {}
-
-  options.forEach(([attr, values]) => {
-    if (!selected[attr]) selected[attr] = values
-  })
-
-  const matchingVariants = variants?.filter(
-    (variant) =>
-      variant?.attributes?.filter(
-        (attribute) =>
-          selected[attribute?.code ?? ''] !== undefined &&
-          selected[attribute?.code ?? ''].includes(String(attribute?.value_index)),
-      ).length,
-  )
 
   return (
     <ProductListItem
       {...configurableProduct}
-      small_image={matchingVariants?.[0]?.product?.small_image ?? configurableProduct.small_image}
       topLeft={
         <>
           {topLeft}

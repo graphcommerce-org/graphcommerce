@@ -41,15 +41,14 @@ AccountForgotPasswordPage.pageOptions = pageOptions
 
 export default AccountForgotPasswordPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      size: 'max',
       up: { href: '/account/signin', title: i18n._(/* i18n */ 'Sign in') },
     },
   }

@@ -1,5 +1,59 @@
 # @graphcommerce/cli
 
+## 8.1.0-canary.49
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+## 8.1.0-canary.46
+
+## 8.1.0-canary.45
+
+## 8.1.0-canary.44
+
+### Patch Changes
+
+- [`44ea147`](https://github.com/graphcommerce-org/graphcommerce/commit/44ea1474d1429d05f535df903beb1fb2c0ca7754) - Added missing tsx package
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.43
+
+### Patch Changes
+
+- [`6184a28`](https://github.com/graphcommerce-org/graphcommerce/commit/6184a28b2ba2dc70189a9b881887696dc0a346c8) - Fixed issue where codegen would throw an error: SyntaxError: Cannot use import statement outside a module.
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.42
+
+## 8.1.0-canary.41
+
+## 8.1.0-canary.40
+
+## 8.1.0-canary.39
+
+## 8.1.0-canary.38
+
+## 8.1.0-canary.37
+
+## 8.1.0-canary.36
+
+## 8.1.0-canary.35
+
+## 8.1.0-canary.34
+
+## 8.1.0-canary.33
+
+## 8.1.0-canary.32
+
+## 8.1.0-canary.31
+
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
+## 8.1.0-canary.28
+
 ## 8.1.0-canary.27
 
 ## 8.1.0-canary.26

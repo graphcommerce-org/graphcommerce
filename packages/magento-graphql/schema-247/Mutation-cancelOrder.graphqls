@@ -1,0 +1,34 @@
+"""
+Defines the order to cancel.
+"""
+input CancelOrderInput {
+  """
+  Order ID.
+  """
+  order_id: ID!
+  """
+  Cancellation reason.
+  """
+  reason: String!
+}
+
+"""
+Contains the updated customer order and error message if any.
+"""
+type CancelOrderOutput {
+  """
+  Error encountered while cancelling the order.
+  """
+  error: String
+  """
+  Updated customer order.
+  """
+  order: CustomerOrder
+}
+
+type Mutation {
+  """
+  Cancel the specified customer order.
+  """
+  cancelOrder(input: CancelOrderInput!): CancelOrderOutput @deprecated(reason: "Magento >= 2.4.7")
+}

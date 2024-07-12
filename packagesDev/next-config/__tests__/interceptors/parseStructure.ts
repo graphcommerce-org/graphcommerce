@@ -156,3 +156,53 @@ export const AddProductsToCartForm = EnableCrossselsPlugin
     }
   `)
 })
+
+it('parses', () => {
+  const src = `
+  import {
+  PaymentMethodContextProviderProps,
+  PaymentModule,
+} from '@graphcommerce/magento-cart-payment-method'
+import type { PluginProps } from '@graphcommerce/next-config'
+import { AdyenPaymentActionCard } from '../components/AdyenPaymentActionCard/AdyenPaymentActionCard'
+import { AdyenPaymentHandler } from '../components/AdyenPaymentHandler/AdyenPaymentHandler'
+import { HppOptions } from '../components/AdyenPaymentOptionsAndPlaceOrder/AdyenPaymentOptionsAndPlaceOrder'
+import { adyenHppExpandMethods } from '../hooks/adyenHppExpandMethods'
+
+export const adyen_hpp: PaymentModule = {
+  PaymentOptions: HppOptions,
+  PaymentPlaceOrder: () => null,
+  PaymentHandler: AdyenPaymentHandler,
+  PaymentActionCard: AdyenPaymentActionCard,
+  expandMethods: adyenHppExpandMethods,
+}
+
+export const component = 'PaymentMethodContextProvider'
+export const exported = '@graphcommerce/magento-cart-payment-method'
+
+function AddAdyenMethods(props: PluginProps<PaymentMethodContextProviderProps>) {
+  const { modules, Prev, ...rest } = props
+  return <Prev {...rest} modules={{ ...modules, adyen_hpp }} />
+}
+
+export const Plugin = AddAdyenMethods
+`
+
+  const plugins = parseStructure(
+    parseSync(src),
+    fakeconfig,
+    '@graphcommerce/magento-payment-adyen/plugins/AddAdyenMethods.tsx',
+  )
+  expect(plugins).toHaveLength(1)
+  expect(plugins[0]).toMatchInlineSnapshot(`
+    {
+      "enabled": true,
+      "sourceExport": "Plugin",
+      "sourceModule": "@graphcommerce/magento-payment-adyen/plugins/AddAdyenMethods.tsx",
+      "targetExport": "PaymentMethodContextProvider",
+      "targetModule": "@graphcommerce/magento-cart-payment-method",
+      "type": "component",
+    }
+  `)
+  expect(plugins[1]).toMatchInlineSnapshot(`undefined`)
+})

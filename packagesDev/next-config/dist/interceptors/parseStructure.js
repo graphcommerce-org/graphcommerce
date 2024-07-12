@@ -27,7 +27,7 @@ function parseStructure(ast, gcConfig, sourceModule) {
         exportVals.push('Plugin');
     if (func && !moduleConfig)
         exportVals.push('plugin');
-    return exportVals
+    const pluginConfigs = exportVals
         .map((exportVal) => {
         let config = isObject(moduleConfig) ? moduleConfig : {};
         if (!moduleConfig && component) {
@@ -41,6 +41,7 @@ function parseStructure(ast, gcConfig, sourceModule) {
         }
         else {
             console.error(`Plugin configuration invalid! See ${sourceModule}`);
+            return null;
         }
         const parsed = pluginConfigParsed.safeParse(config);
         if (!parsed.success) {
@@ -67,5 +68,12 @@ function parseStructure(ast, gcConfig, sourceModule) {
         return val;
     })
         .filter(nonNullable);
+    const newPluginConfigs = pluginConfigs.reduce((acc, pluginConfig) => {
+        if (!acc.find((accPluginConfig) => accPluginConfig.sourceExport === pluginConfig.sourceExport)) {
+            acc.push(pluginConfig);
+        }
+        return acc;
+    }, []);
+    return newPluginConfigs;
 }
 exports.parseStructure = parseStructure;

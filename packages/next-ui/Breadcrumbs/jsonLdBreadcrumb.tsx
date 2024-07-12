@@ -1,6 +1,6 @@
 import { NextRouter } from 'next/router'
 import type { BreadcrumbList } from 'schema-dts'
-import { canonicalize } from '../PageMeta/PageMeta'
+import { canonicalize } from '../PageMeta/canonicalize'
 import type { BreadcrumbsType } from './types'
 
 export function jsonLdBreadcrumb(

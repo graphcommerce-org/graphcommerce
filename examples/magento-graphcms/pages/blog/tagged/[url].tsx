@@ -20,6 +20,7 @@ import {
   RowRenderer,
 } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = HygraphPagesQuery & BlogListTaggedQuery
 type RouteProps = { url: string }
@@ -63,7 +64,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (import.meta.graphCommerce.limitSsg) return { paths: [], fallback: 'blocking' }
 
   const responses = locales.map(async (locale) => {
-    const staticClient = graphqlSsrClient(locale)
+    const staticClient = graphqlSsrClient({ locale })
     const BlogPostPaths = staticClient.query({ query: BlogPostTaggedPathsDocument })
     const { pages } = (await BlogPostPaths).data
     return (
@@ -77,14 +78,18 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const { locale, params } = context
   const urlKey = params?.url ?? '??'
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
   const limit = 99
   const conf = client.query({ query: StoreConfigDocument })
   const page = hygraphPageContent(staticClient, `blog/tagged/${urlKey}`)
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   const blogPosts = staticClient.query({
     query: BlogListTaggedDocument,

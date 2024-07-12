@@ -1,0 +1,21 @@
+"""
+Estimate totals output.
+"""
+type EstimateTotalsOutput {
+  """
+  Cart after totals estimation
+  """
+  cart: Cart
+}
+
+type Mutation {
+  """
+  Estimate totals for cart based on the address
+  """
+  estimateTotals(
+    """
+    An input object that specifies details for cart totals estimation
+    """
+    input: EstimateTotalsInput!
+  ): EstimateTotalsOutput! @deprecated(reason: "Magento >= 2.4.7")
+}

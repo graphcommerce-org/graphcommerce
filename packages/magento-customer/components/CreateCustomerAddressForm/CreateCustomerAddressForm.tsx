@@ -1,22 +1,13 @@
-import { ApolloErrorSnackbar, TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { ApolloErrorSnackbar, TelephoneElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  Form,
-  FormActions,
-  FormDivider,
-  FormRow,
-  InputCheckmark,
-  Button,
-  MessageSnackbar,
-} from '@graphcommerce/next-ui'
-import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { Form, FormActions, FormRow, Button, MessageSnackbar } from '@graphcommerce/next-ui'
+import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { TextField } from '@mui/material'
 import { useRouter } from 'next/router'
 import { AddressFields } from '../AddressFields/AddressFields'
+import { CompanyFields } from '../CompanyFields'
 import { NameFields } from '../NameFields/NameFields'
 import { CreateCustomerAddressDocument } from './CreateCustomerAddress.gql'
 
@@ -39,6 +30,11 @@ export function CreateCustomerAddressForm() {
           ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)
           ?.available_regions?.find((r) => r?.id === formData.region.region_id)
 
+        if (!formData.isCompany) {
+          formData.company = ''
+          formData.vatId = ''
+        }
+
         return {
           ...formData,
           region:
@@ -57,7 +53,7 @@ export function CreateCustomerAddressForm() {
     { errorPolicy: 'all' },
   )
 
-  const { handleSubmit, formState, required, error, control, valid, data } = form
+  const { handleSubmit, formState, required, error, control, data } = form
   const submitHandler = handleSubmit((_, e) => {
     if (!formState.errors) e?.target.reset()
   })
@@ -65,29 +61,20 @@ export function CreateCustomerAddressForm() {
   return (
     <>
       <Form onSubmit={submitHandler} noValidate>
+        <CompanyFields form={form} />
         <NameFields form={form} prefix />
         <AddressFields form={form} name={{ regionId: 'region.region_id' }} />
 
         <FormRow>
-          <TextFieldElement
+          <TelephoneElement
             variant='outlined'
-            type='text'
-            error={!!formState.errors.telephone}
             required={required.telephone}
-            label={<Trans id='Telephone' />}
             control={control}
             name='telephone'
-            rules={{
-              required: required.telephone,
-              pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-            }}
-            helperText={formState.isSubmitted && formState.errors.telephone?.message}
             disabled={formState.isSubmitting}
             showValid
           />
         </FormRow>
-
-        <FormDivider />
 
         <FormActions>
           <Button

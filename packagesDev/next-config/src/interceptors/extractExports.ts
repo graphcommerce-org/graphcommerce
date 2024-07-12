@@ -112,8 +112,8 @@ function extractValue(node: Node, path?: string[], optional: boolean = false): a
       case 'undefined':
         return undefined
       default:
-        if (optional) return RUNTIME_VALUE
-        throw new UnsupportedValueError(`Unknown identifier "${node.value}"`, path)
+        return RUNTIME_VALUE
+      // throw new UnsupportedValueError(`Unknown identifier "${node.value}"`, path)
     }
   } else if (isArrayExpression(node)) {
     // e.g. [1, 2, 3]
@@ -123,11 +123,11 @@ function extractValue(node: Node, path?: string[], optional: boolean = false): a
       if (elem) {
         if (elem.spread) {
           // e.g. [ ...a ]
-          if (optional) return RUNTIME_VALUE
-          throw new UnsupportedValueError(
-            'Unsupported spread operator in the Array Expression',
-            path,
-          )
+          return RUNTIME_VALUE
+          // throw new UnsupportedValueError(
+          //   'Unsupported spread operator in the Array Expression',
+          //   path,
+          // )
         }
 
         arr.push(extractValue(elem.expression, path && [...path, `[${i}]`], optional))
@@ -144,11 +144,11 @@ function extractValue(node: Node, path?: string[], optional: boolean = false): a
     for (const prop of node.properties) {
       if (!isKeyValueProperty(prop)) {
         // e.g. { ...a }
-        if (optional) return RUNTIME_VALUE
-        throw new UnsupportedValueError(
-          'Unsupported spread operator in the Object Expression',
-          path,
-        )
+        return RUNTIME_VALUE
+        // throw new UnsupportedValueError(
+        //   'Unsupported spread operator in the Object Expression',
+        //   path,
+        // )
       }
 
       let key
@@ -159,11 +159,11 @@ function extractValue(node: Node, path?: string[], optional: boolean = false): a
         // e.g. { "a": 1, "b": 2 }
         key = prop.key.value
       } else {
-        if (optional) return RUNTIME_VALUE
-        throw new UnsupportedValueError(
-          `Unsupported key type "${prop.key.type}" in the Object Expression`,
-          path,
-        )
+        return RUNTIME_VALUE
+        // throw new UnsupportedValueError(
+        //   `Unsupported key type "${prop.key.type}" in the Object Expression`,
+        //   path,
+        // )
       }
 
       obj[key] = extractValue(prop.value, path && [...path, key])
@@ -174,8 +174,8 @@ function extractValue(node: Node, path?: string[], optional: boolean = false): a
     // e.g. `abc`
     if (node.expressions.length !== 0) {
       // TODO: should we add support for `${'e'}d${'g'}'e'`?
-      if (optional) return RUNTIME_VALUE
-      throw new UnsupportedValueError('Unsupported template literal with expressions', path)
+      return RUNTIME_VALUE
+      // throw new UnsupportedValueError('Unsupported template literal with expressions', path)
     }
 
     // When TemplateLiteral has 0 expressions, the length of quasis is always 1.
@@ -191,8 +191,8 @@ function extractValue(node: Node, path?: string[], optional: boolean = false): a
 
     return cooked ?? raw
   } else {
-    if (optional) return RUNTIME_VALUE
-    throw new UnsupportedValueError(`Unsupported node type "${node.type}"`, path)
+    return RUNTIME_VALUE
+    // throw new UnsupportedValueError(`Unsupported node type "${node.type}"`, path)
   }
 }
 

@@ -18,6 +18,9 @@ import type { OmitIndexSignature, Entries } from 'type-fest'
 import yaml from 'yaml'
 import { findConfig } from '../utils/findConfig'
 
+import 'tsx/cjs' // support importing typescript configs in CommonJS
+import 'tsx/esm' // support importing typescript configs in ESM
+
 dotenv.config()
 
 export function handleFatalError(e: Error, logger: Logger = new DefaultLogger('◈')) {
@@ -53,6 +56,7 @@ async function cleanup() {
 
 const main = async () => {
   const conf = (await findConfig({})) as YamlConfig.Config
+  const graphCommerce = loadConfig(root)
 
   // We're configuring a custom fetch function
   conf.customFetch = require.resolve('@graphcommerce/graphql-mesh/customFetch')
@@ -108,8 +112,15 @@ const main = async () => {
 
   const deps = resolveDependenciesSync()
   const packages = [...deps.values()].filter((p) => p !== '.')
+
+  const mV = graphCommerce.magentoVersion ?? 246
   packageRoots(packages).forEach((r) => {
-    conf.additionalTypeDefs.push(`${r}/**/*.graphqls`)
+    const alsoScan = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254]
+      .filter((v) => v > mV)
+      .map((v) => `${r}/*/schema-${v}/**/*.graphqls`)
+
+    conf.additionalTypeDefs.push(`${r}/*/schema/**/*.graphqls`)
+    conf.additionalTypeDefs.push(...alsoScan)
   })
 
   if (!conf.serve) conf.serve = {}
@@ -124,7 +135,7 @@ const main = async () => {
     },
   ]
 
-  const yamlString = replaceConfigInString(yaml.stringify(conf), loadConfig(root))
+  const yamlString = replaceConfigInString(yaml.stringify(conf), graphCommerce)
   await fs.writeFile(tmpMeshLocation, yamlString)
 
   // Reexport the mesh to is can be used by packages

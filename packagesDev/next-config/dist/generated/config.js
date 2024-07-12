@@ -27,6 +27,9 @@ _export(exports, {
     MagentoConfigurableVariantValuesSchema: function() {
         return MagentoConfigurableVariantValuesSchema;
     },
+    PaginationVariantSchema: function() {
+        return PaginationVariantSchema;
+    },
     ProductFiltersLayoutSchema: function() {
         return ProductFiltersLayoutSchema;
     },
@@ -52,6 +55,10 @@ const definedNonNullAnySchema = _zod.z.any().refine((v)=>isDefinedNonNullAny(v))
 const CompareVariantSchema = _zod.z.enum([
     "CHECKBOX",
     "ICON"
+]);
+const PaginationVariantSchema = _zod.z.enum([
+    "COMPACT",
+    "EXTENDED"
 ]);
 const ProductFiltersLayoutSchema = _zod.z.enum([
     "DEFAULT",
@@ -80,7 +87,9 @@ function GraphCommerceConfigSchema() {
         configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
         crossSellsHideCartItems: _zod.z.boolean().default(false).nullish(),
         crossSellsRedirectItems: _zod.z.boolean().default(false).nullish(),
-        customerRequireEmailConfirmation: _zod.z.boolean().nullish(),
+        customerAddressNoteEnable: _zod.z.boolean().nullish(),
+        customerCompanyFieldsEnable: _zod.z.boolean().nullish(),
+        customerDeleteEnabled: _zod.z.boolean().nullish(),
         dataLayer: DatalayerConfigSchema().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
         demoMode: _zod.z.boolean().default(true).nullish(),
@@ -95,9 +104,11 @@ function GraphCommerceConfigSchema() {
         hygraphWriteAccessToken: _zod.z.string().nullish(),
         limitSsg: _zod.z.boolean().nullish(),
         magentoEndpoint: _zod.z.string().min(1),
+        magentoVersion: _zod.z.number(),
         previewSecret: _zod.z.string().nullish(),
         productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),
+        productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
         productRoute: _zod.z.string().nullish(),
         recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
@@ -120,6 +131,7 @@ function GraphCommerceStorefrontConfigSchema() {
         algoliaIndexNamePrefix: _zod.z.string().nullish(),
         canonicalBaseUrl: _zod.z.string().nullish(),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
+        customerCompanyFieldsEnable: _zod.z.boolean().nullish(),
         defaultLocale: _zod.z.boolean().nullish(),
         domain: _zod.z.string().nullish(),
         googleAnalyticsId: _zod.z.string().nullish(),

@@ -16,7 +16,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   if (!locale) throw Error('Locale not defined')
 
-  const productPaths = await getProductStaticPaths(graphqlSsrClient(locale), locale, {
+  const productPaths = await getProductStaticPaths(graphqlSsrClient(context), locale, {
     limit: false,
   })
 

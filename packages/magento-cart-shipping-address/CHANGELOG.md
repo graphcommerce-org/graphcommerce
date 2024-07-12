@@ -1,5 +1,79 @@
 # Change Log
 
+## 8.1.0-canary.49
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+## 8.1.0-canary.46
+
+### Minor Changes
+
+- [#2313](https://github.com/graphcommerce-org/graphcommerce/pull/2313) [`511e75c`](https://github.com/graphcommerce-org/graphcommerce/commit/511e75c3f8c077e617ed17e5042796e2411f312f) - Add the customerNote field to the shipping and customer address forms
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.45
+
+## 8.1.0-canary.44
+
+## 8.1.0-canary.43
+
+## 8.1.0-canary.42
+
+## 8.1.0-canary.41
+
+## 8.1.0-canary.40
+
+## 8.1.0-canary.39
+
+### Minor Changes
+
+- [#2307](https://github.com/graphcommerce-org/graphcommerce/pull/2307) [`20cb571`](https://github.com/graphcommerce-org/graphcommerce/commit/20cb57171ae5bff0b86a341ea4db59ea3f4f639a) - Add save in address book checkbox to shipping address form
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.38
+
+### Minor Changes
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Add company and vat fields to shipping and billing forms
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving <FromPersist/> below the form components
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.37
+
+### Patch Changes
+
+- [#2300](https://github.com/graphcommerce-org/graphcommerce/pull/2300) [`19adebe`](https://github.com/graphcommerce-org/graphcommerce/commit/19adebe2ff896c65d21543fc9243a36393747e06) - Fixed CustomerAddressForm resetting to a saved address when trying to use a new address
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 8.1.0-canary.36
+
+## 8.1.0-canary.35
+
+## 8.1.0-canary.34
+
+## 8.1.0-canary.33
+
+## 8.1.0-canary.32
+
+## 8.1.0-canary.31
+
+## 8.1.0-canary.30
+
+### Patch Changes
+
+- [#2295](https://github.com/graphcommerce-org/graphcommerce/pull/2295) [`0ca6827`](https://github.com/graphcommerce-org/graphcommerce/commit/0ca682793bf7feb0cae2bd776a4eaa2899d980a0) - Fixed shipping address not getting set for logged-in customers with default address
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 8.1.0-canary.29
+
+## 8.1.0-canary.28
+
 ## 8.1.0-canary.27
 
 ## 8.1.0-canary.26
