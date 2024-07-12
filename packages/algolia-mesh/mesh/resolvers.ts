@@ -225,17 +225,15 @@ export const resolvers: Resolvers = {
 
       // Note: the attributelist query requires magento: ^2.4.7
       const [searchResults, attributeList, categoryList, storeConfig] = await Promise.all([
-        context.algolia.Mutation.algolia_searchSingleIndex({
+        context.algolia.Query.algolia_searchSingleIndex({
           root,
           args: {
             indexName: `${import.meta.graphCommerce.algoliaIndexNamePrefix}${store}_products`,
             input: {
-              Search_parameters_as_object_Input: {
-                query: args.search,
-                facets: ['*'],
-                hitsPerPage: args.pageSize ? args.pageSize : 10,
-                facetFilters: mapFiltersForAlgolia(args.filter),
-              },
+              query: args.search,
+              facets: ['*'],
+              hitsPerPage: args.pageSize ? args.pageSize : 10,
+              facetFilters: mapFiltersForAlgolia(args.filter),
             },
           },
           autoSelectionSetWithDepth: 10,
