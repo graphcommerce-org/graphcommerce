@@ -46,6 +46,9 @@ sources:
         operationHeaders:
           X-Algolia-Application-Id: '{graphCommerce.algoliaApplicationId}'
           X-Algolia-API-Key: '{graphCommerce.algoliaSearchOnlyApiKey}'
+        selectQueryOrMutationField:
+          - type: Query
+            fieldName: searchSingleIndex
     transforms:
       #  - namingConvention:
       #      mode: bare

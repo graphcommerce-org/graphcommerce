@@ -11,8 +11,14 @@
       "project": "./tsconfig.json"
     }
   },
+  "scripts": {
+    "generate": "tsx generate-spec.mts"
+  },
   "peerDependencies": {
     "@graphcommerce/graphql-mesh": "^8.1.0-canary.27",
     "@graphcommerce/next-config": "^8.1.0-canary.27"
+  },
+  "devDependencies": {
+    "tsx": "^4.16.2"
   }
 }
