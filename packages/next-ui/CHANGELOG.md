@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.49
+
+### Patch Changes
+
+- [#2317](https://github.com/graphcommerce-org/graphcommerce/pull/2317) [`6c173c7`](https://github.com/graphcommerce-org/graphcommerce/commit/6c173c7bba601413cc5e1c9cf0595b8ec262fb92) - Added new plugin insertion points: `<DocumentHeadStart/>`, `<DocumentHeadEnd/>`, `<DocumentBodyEnd/>`, `<DocumentBodyStart/>` for the \_document.app to allow creating plugins for those locations to insert scripts etc.
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.48
 
 ## 8.1.0-canary.47

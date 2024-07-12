@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.49
+
+### Patch Changes
+
+- [#2317](https://github.com/graphcommerce-org/graphcommerce/pull/2317) [`ff95ab3`](https://github.com/graphcommerce-org/graphcommerce/commit/ff95ab31ee6e00c86cd9e96031f7babbd20e4280) - useSignInForm now optionally expects an email
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.48
 
 ### Minor Changes
