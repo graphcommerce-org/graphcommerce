@@ -2,9 +2,9 @@ import {
   CheckboxElement,
   FormAutoSubmit,
   FormPersist,
+  TelephoneElement,
   TextFieldElement,
   UseFormComposeOptions,
-  phonePattern,
   useFormCompose,
 } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
@@ -23,7 +23,6 @@ import {
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Form, FormRow } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
 import { SxProps, Theme } from '@mui/material'
 import React from 'react'
@@ -139,16 +138,11 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
       <AddressFields form={form} />
 
       <FormRow>
-        <TextFieldElement
+        <TelephoneElement
           control={form.control}
           name='telephone'
           variant='outlined'
-          type='text'
           required={required.telephone}
-          rules={{
-            pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-          }}
-          label={<Trans>Telephone</Trans>}
           showValid
         />
       </FormRow>
