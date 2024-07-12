@@ -46,3 +46,221 @@ input CustomerAddressInput {
   """
   custom_attributesV2: [AttributeValueInput]
 }
+
+type CustomerAddress {
+  """
+  Custom attributes assigned to the customer address.
+  """
+  custom_attributesV2(attributeCodes: [ID!]): [AttributeValueInterface]!
+    @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type Customer {
+  """
+  Customer's custom attributes.
+  """
+  custom_attributes(attributeCodes: [ID!]): [AttributeValueInterface]
+    @deprecated(reason: "Magento >= 2.4.7")
+}
+
+"""
+An input object that specifies the filters used for attributes.
+"""
+input AttributeFilterInput {
+  """
+  Whether a product or category attribute can be compared against another or not.
+  """
+  is_comparable: Boolean
+  """
+  Whether a product or category attribute can be filtered or not.
+  """
+  is_filterable: Boolean
+  """
+  Whether a product or category attribute can be filtered in search or not.
+  """
+  is_filterable_in_search: Boolean
+  """
+  Whether a product or category attribute can use HTML on front or not.
+  """
+  is_html_allowed_on_front: Boolean
+  """
+  Whether a product or category attribute can be searched or not.
+  """
+  is_searchable: Boolean
+  """
+  Whether a product or category attribute can be used for price rules or not.
+  """
+  is_used_for_price_rules: Boolean
+  """
+  Whether a product or category attribute is used for promo rules or not.
+  """
+  is_used_for_promo_rules: Boolean
+  """
+  Whether a product or category attribute is visible in advanced search or not.
+  """
+  is_visible_in_advanced_search: Boolean
+  """
+  Whether a product or category attribute is visible on front or not.
+  """
+  is_visible_on_front: Boolean
+  """
+  Whether a product or category attribute has WYSIWYG enabled or not.
+  """
+  is_wysiwyg_enabled: Boolean
+  """
+  Whether a product or category attribute is used in product listing or not.
+  """
+  used_in_product_listing: Boolean
+}
+
+interface ProductInterface {
+  """
+  Product custom attributes.
+  """
+  custom_attributesV2(filters: AttributeFilterInput): ProductCustomAttributes
+    @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type VirtualProduct {
+  """
+  Product custom attributes.
+  """
+  custom_attributesV2(filters: AttributeFilterInput): ProductCustomAttributes
+    @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type SimpleProduct {
+  """
+  Product custom attributes.
+  """
+  custom_attributesV2(filters: AttributeFilterInput): ProductCustomAttributes
+    @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type ConfigurableProduct {
+  """
+  Product custom attributes.
+  """
+  custom_attributesV2(filters: AttributeFilterInput): ProductCustomAttributes
+    @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type GroupedProduct {
+  """
+  Product custom attributes.
+  """
+  custom_attributesV2(filters: AttributeFilterInput): ProductCustomAttributes
+    @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type BundleProduct {
+  """
+  Product custom attributes.
+  """
+  custom_attributesV2(filters: AttributeFilterInput): ProductCustomAttributes
+    @deprecated(reason: "Magento >= 2.4.7")
+}
+type DownloadableProduct {
+  """
+  Product custom attributes.
+  """
+  custom_attributesV2(filters: AttributeFilterInput): ProductCustomAttributes
+    @deprecated(reason: "Magento >= 2.4.7")
+}
+"""
+Product custom attributes
+"""
+type ProductCustomAttributes {
+  """
+  Errors when retrieving custom attributes metadata.
+  """
+  errors: [AttributeMetadataError]!
+  """
+  Requested custom attributes
+  """
+  items: [AttributeValueInterface]!
+}
+
+"""
+Attribute metadata retrieval error.
+"""
+type AttributeMetadataError {
+  """
+  Attribute metadata retrieval error message.
+  """
+  message: String!
+  """
+  Attribute metadata retrieval error type.
+  """
+  type: AttributeMetadataErrorType!
+}
+
+"""
+Attribute metadata retrieval error types.
+"""
+enum AttributeMetadataErrorType {
+  """
+  The requested entity was not found.
+  """
+  ENTITY_NOT_FOUND
+  """
+  The requested attribute was not found.
+  """
+  ATTRIBUTE_NOT_FOUND
+  """
+  The filter cannot be applied as it does not belong to the entity
+  """
+  FILTER_NOT_FOUND
+  """
+  Not categorized error, see the error message.
+  """
+  UNDEFINED
+}
+
+interface AttributeValueInterface {
+  """
+  The attribute code.
+  """
+  code: ID!
+}
+
+type AttributeValue implements AttributeValueInterface {
+  """
+  The attribute code.
+  """
+  code: ID!
+  """
+  The attribute value.
+  """
+  value: String!
+}
+
+type AttributeSelectedOptions implements AttributeValueInterface {
+  """
+  The attribute code.
+  """
+  code: ID!
+  selected_options: [AttributeSelectedOptionInterface]!
+}
+
+interface AttributeSelectedOptionInterface {
+  """
+  The attribute selected option label.
+  """
+  label: String!
+  """
+  The attribute selected option value.
+  """
+  value: String!
+}
+
+type AttributeSelectedOption implements AttributeSelectedOptionInterface {
+  """
+  The attribute selected option label.
+  """
+  label: String!
+  """
+  The attribute selected option value.
+  """
+  value: String!
+}
