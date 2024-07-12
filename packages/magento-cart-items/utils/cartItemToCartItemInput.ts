@@ -34,11 +34,7 @@ export function cartItemToCartItemInput(
     entered_options: [],
   }
 
-  const cartItemCustomizableOptions = filterNonNullableKeys(
-    isTypename(cartItem, ['ConfigurableCartItem'])
-      ? cartItem.configurable_customizable
-      : cartItem.customizable_options,
-  )
+  const cartItemCustomizableOptions = filterNonNullableKeys(cartItem.customizable_options ?? {})
 
   if (cartItemCustomizableOptions.length > 0) {
     product.options?.filter(nonNullable).forEach((productOption) => {
@@ -88,7 +84,7 @@ export function cartItemToCartItemInput(
   }
 
   if (isTypename(cartItem, ['BundleCartItem']) && isTypename(product, ['BundleProduct'])) {
-    filterNonNullableKeys(product.items).forEach((productBundleItem, i) => {
+    filterNonNullableKeys(product.items).forEach((productBundleItem) => {
       const cartItemBundleOption = cartItem.bundle_options.find(
         (option) => option?.uid === productBundleItem?.uid,
       )

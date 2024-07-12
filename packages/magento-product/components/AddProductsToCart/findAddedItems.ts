@@ -47,10 +47,7 @@ export function findAddedItems(
         }
       }
 
-      const customizable_options = isTypename(cartItem, ['ConfigurableCartItem'])
-        ? cartItem.configurable_customizable
-        : cartItem.customizable_options
-
+      const { customizable_options } = cartItem
       const matchEntered = filterNonNullableKeys(itemVariable.entered_options).every(
         (requestOption) =>
           customizable_options.find(
