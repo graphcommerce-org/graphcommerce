@@ -1,5 +1,5 @@
 mutation SubscribeCustomer {
-  updateCustomer(input: { is_subscribed: true }) {
+  updateCustomerV2(input: { is_subscribed: true }) {
     customer {
       is_subscribed
     }
