@@ -33,33 +33,5 @@ sources:
           Preview-Version: "{context.headers['preview-version']}"
           Content-Currency: "{context.headers['content-currency']}"
           X-Magento-Cache-Id: "{context.headers['x-magento-cache-id']}"
-  - name: algolia
-    handler:
-      openapi:
-        endpoint: 'https://{graphCommerce.algoliaApplicationId}.algolia.net/'
-        source: '@graphcommerce/algolia-mesh/algolia-spec.yaml'
-        ignoreErrorResponses: true
-        schemaHeaders:
-          X-Algolia-Application-Id: '{graphCommerce.algoliaApplicationId}'
-          X-Algolia-API-Key: '{graphCommerce.algoliaSearchOnlyApiKey}'
-        operationHeaders:
-          X-Algolia-Application-Id: '{graphCommerce.algoliaApplicationId}'
-          X-Algolia-API-Key: '{graphCommerce.algoliaSearchOnlyApiKey}'
-        selectQueryOrMutationField:
-          - type: Query
-            fieldName: searchSingleIndex
-    transforms:
-      - prefix:
-          value: algolia_
-          includeRootOperations: true
-          includeTypes: false
-          mode: bare
-      - prefix:
-          value: Algolia
-          includeRootOperations: false
-          includeTypes: true
-          mode: bare
-additionalResolvers:
-  - '@graphcommerce/algolia-mesh/mesh/resolvers.ts'
 serve:
   playground: true

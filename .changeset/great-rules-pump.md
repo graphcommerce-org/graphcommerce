@@ -3,4 +3,4 @@
 '@graphcommerce/cli': minor
 ---
 
-While loading the graphqlMesh configuration it will automatically
+When generating the mesh the configuration is passed through `@graphcommerce/graphql-mesh/meshConfig` allowing plugins to modify the mesh configuration without having to change the `.meshrc.yaml` itself.

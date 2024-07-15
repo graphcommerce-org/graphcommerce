@@ -17,8 +17,6 @@ export function useProductListApplySearchDefaults(
     newParams.sort = { relevance: 'DESC' }
   }
 
-  newParams.filters.engine = { eq: 'algolia' }
-
   return newParams
 }
 
@@ -39,8 +37,6 @@ export function productListApplySearchDefaults(
     newParams.sort = { relevance: 'DESC' }
   }
 
-  newParams.filters.engine = { eq: 'algolia' }
-
   return newParams
 }
 
@@ -49,6 +45,6 @@ export function searchDefaultsToProductListFilters(
 ): ProductListQueryVariables {
   return {
     ...variables,
-    filters: { engine: variables?.filters?.engine },
+    filters: {},
   }
 }
