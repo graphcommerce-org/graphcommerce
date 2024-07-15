@@ -110,6 +110,8 @@ export type GraphCommerceConfig = {
    * Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
    */
   algoliaApplicationId: Scalars['String']['input'];
+  /** By default the catalog will not use algolia. Set this to true to enable Algolia for the catalog. */
+  algoliaCatalogEnabled?: InputMaybe<Scalars['Boolean']['input']>;
   /** Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix */
   algoliaIndexNamePrefix: Scalars['String']['input'];
   /**
@@ -503,6 +505,7 @@ export function DatalayerConfigSchema(): z.ZodObject<Properties<DatalayerConfig>
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
     algoliaApplicationId: z.string().min(1),
+    algoliaCatalogEnabled: z.boolean().nullish(),
     algoliaIndexNamePrefix: z.string().min(1),
     algoliaSearchOnlyApiKey: z.string().min(1),
     breadcrumbs: z.boolean().default(false).nullish(),

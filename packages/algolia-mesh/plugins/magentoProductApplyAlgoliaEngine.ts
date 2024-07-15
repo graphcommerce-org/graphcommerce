@@ -14,12 +14,21 @@ export const config: PluginConfig = {
 
 export const useProductListApplyCategoryDefaults: FunctionPlugin<
   typeof useProductListApplyDefaults
-> = (prev, params, category) => applyEngineVariables(prev(params, category))
+> = (prev, params, category) => {
+  if (import.meta.graphCommerce.algoliaCatalogEnabled !== true) return prev(params, category)
+  return applyEngineVariables(prev(params, category))
+}
 
 export const productListApplyCategoryDefaults: FunctionPlugin<
   typeof productListApplyDefaults
-> = async (prev, params, conf, category) => applyEngineVariables(await prev(params, conf, category))
+> = async (prev, params, conf, category) => {
+  if (import.meta.graphCommerce.algoliaCatalogEnabled !== true) return prev(params, conf, category)
+  return applyEngineVariables(await prev(params, conf, category))
+}
 
 export const categoryDefaultsToProductListFilters: FunctionPlugin<
   typeof defaultsToProductListFilters
-> = (prev, variables) => applyEngineVariables(prev(variables))
+> = (prev, variables) => {
+  if (import.meta.graphCommerce.algoliaCatalogEnabled !== true) return prev(variables)
+  return applyEngineVariables(prev(variables))
+}

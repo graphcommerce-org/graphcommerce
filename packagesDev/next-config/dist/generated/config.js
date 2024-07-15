@@ -76,6 +76,7 @@ function DatalayerConfigSchema() {
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
         algoliaApplicationId: _zod.z.string().min(1),
+        algoliaCatalogEnabled: _zod.z.boolean().nullish(),
         algoliaIndexNamePrefix: _zod.z.string().min(1),
         algoliaSearchOnlyApiKey: _zod.z.string().min(1),
         breadcrumbs: _zod.z.boolean().default(false).nullish(),

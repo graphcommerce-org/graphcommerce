@@ -135,6 +135,10 @@ Values: 245, 246, 247 for Magento 2.4.5, 2.4.6, 2.4.7 respectively.
 
 All storefront configuration for the project
 
+#### algoliaCatalogEnabled: boolean
+
+By default the catalog will not use algolia. Set this to true to enable Algolia for the catalog.
+
 #### breadcrumbs: boolean = `false`
 
 Configuration for the SidebarGallery component
