@@ -1,9 +1,9 @@
 import { IconSvg, iconSearch, showPageLoadIndicator } from '@graphcommerce/next-ui'
 import { Fab, FabProps } from '@mui/material'
-import { useMemo, useRef, useState } from 'react'
+import dynamic from 'next/dynamic'
+import { useMemo, useState } from 'react'
 import { ProductFiltersProSearchInputProps } from './ProductFiltersProSearchInput'
 import { useSearchPageAndParam } from './useSearchPageAndParam'
-import dynamic from 'next/dynamic'
 
 type ProductFiltersProSearchFieldProps = ProductFiltersProSearchInputProps & {
   fab?: FabProps
@@ -19,11 +19,10 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
   const [searchPage] = useSearchPageAndParam()
   const [expanded, setExpanded] = useState(searchPage)
   useMemo(() => {
-    if (expanded !== searchPage) setExpanded(searchPage)
-  }, [expanded, searchPage])
+    if (!searchPage) setExpanded(searchPage)
+  }, [searchPage])
 
   const visible = expanded || searchPage
-  const inputRef = useRef<HTMLInputElement>(null)
 
   return (
     <>
@@ -31,7 +30,8 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
         <ProductFiltersProSearchInputLazy
           {...props}
           formControl={formControl}
-          inputRef={inputRef}
+          inputRef={(element: HTMLInputElement) => element?.focus()}
+          // autoFocus
           buttonProps={{
             onClick: () => {
               setExpanded(false)
@@ -45,17 +45,13 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
       <Fab
         onClick={() => {
           setExpanded(true)
-          inputRef.current?.focus()
+          // inputRef.current?.focus()
         }}
         color='inherit'
         size='large'
         {...fab}
         sx={[
-          {
-            display: {
-              xs: visible ? 'none' : 'inline-flex',
-            },
-          },
+          { display: { xs: visible ? 'none' : 'inline-flex' } },
           ...(Array.isArray(fab?.sx) ? fab.sx : [fab?.sx]),
         ]}
       >
