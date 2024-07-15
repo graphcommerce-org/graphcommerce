@@ -1,0 +1,5 @@
+mutation contactUs($comment: String!, $email: String!, $name: String!, $telephone: String) {
+  contactUs(input: { comment: $comment, email: $email, name: $name, telephone: $telephone }) {
+    status
+  }
+}
