@@ -1,0 +1,27 @@
+import { MeshContext, Maybe, StoreConfig } from '@graphcommerce/graphql-mesh'
+
+export type GetStoreConfigReturn =
+  | Maybe<
+      Pick<
+        StoreConfig,
+        | 'root_category_uid'
+        | 'default_display_currency_code'
+        | 'base_link_url'
+        | 'product_url_suffix'
+      >
+    >
+  | undefined
+
+export function getStoreConfig(context: MeshContext): Promise<StoreConfig> {
+  return context.m2.Query.storeConfig({
+    context,
+    selectionSet: /* GraphQL */ `
+      {
+        root_category_uid
+        default_display_currency_code
+        base_link_url
+        product_url_suffix
+      }
+    `,
+  })
+}

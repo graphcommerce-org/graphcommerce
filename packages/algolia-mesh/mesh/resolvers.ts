@@ -1,98 +1,16 @@
 import type {
   Aggregation,
   AggregationOption,
-  AlgoliafacetFilters_Input,
-  AlgoliaPrice,
-  AlgoliaProductHitAdditionalProperties,
   CategoryResult,
   CategoryTree,
-  CurrencyEnum,
-  CustomAttributeMetadataInterface,
-  InputMaybe,
-  Maybe,
   MeshContext,
-  PriceRange,
-  ProductAttributeFilterInput,
-  QueryproductsArgs,
-  RequireFields,
-  ResolverFn,
   Resolvers,
-  ResolversParentTypes,
-  ResolversTypes,
-  StoreConfig,
 } from '@graphcommerce/graphql-mesh'
-import type { GraphQLResolveInfo } from 'graphql'
-
-export function nonNullable<T>(value: T): value is NonNullable<T> {
-  return value !== null && value !== undefined
-}
-
-const algoliaTypeToTypename = {
-  bundle: 'BundleProduct',
-  simple: 'SimpleProduct',
-  configurable: 'ConfigurableProduct',
-  downloadable: 'DownloadableProduct',
-  virtual: 'VirtualProduct',
-  grouped: 'GroupedProduct',
-  giftcard: 'GiftCardProduct',
-} as const
-
-function assertAdditional(
-  additional: unknown,
-): additional is AlgoliaProductHitAdditionalProperties {
-  return true
-}
-
-function mapPriceRange(
-  price: AlgoliaProductHitAdditionalProperties['price'],
-  defaultDisplayCurrencyCode: StoreConfig['default_display_currency_code'],
-): PriceRange {
-  if (!defaultDisplayCurrencyCode) throw new Error('Currency is required')
-
-  const key = defaultDisplayCurrencyCode as keyof AlgoliaPrice
-  const currency = defaultDisplayCurrencyCode as CurrencyEnum
-
-  return {
-    maximum_price: {
-      regular_price: { currency, value: price?.[key]?.default_max },
-      final_price: { currency, value: price?.[key]?.default_max },
-      // discount,
-      // fixed_product_taxes
-    },
-    minimum_price: {
-      regular_price: { currency, value: price?.[key]?.default },
-      final_price: { currency, value: price?.[key]?.default },
-      // discount,
-      // fixed_product_taxes
-    },
-  }
-}
-
-// Map filters recieved from arguments to algolia facetfilter format
-function mapFiltersForAlgolia(filters?: InputMaybe<ProductAttributeFilterInput>) {
-  const filterArray: AlgoliafacetFilters_Input[] = []
-
-  if (!filters) {
-    return []
-  }
-
-  Object.keys(filters).forEach((value) => {
-    const filterValueArray: string[] = filters[value]?.in
-    if (filters[value]?.in) {
-      for (let i = 0; i < filterValueArray.length; i++) {
-        if (value !== 'category_uid') {
-          filterArray.push({ facetFilters_Input: { String: `${value}:${filterValueArray[i]}` } })
-        }
-        if (filterValueArray[i]) {
-          filterArray.push({
-            facetFilters_Input: { String: `categoryIds:${atob(filterValueArray[i])}` },
-          })
-        }
-      }
-    }
-  })
-  return filterArray
-}
+import { AttributeList, attributeList } from './attributeList'
+import { productFilterInputToAlgoliafacetFiltersInput } from './productFilterInputToAlgoliafacetFiltersInput'
+import { algoliaHitToMagentoProduct } from './algoliaHitToMagentoProduct'
+import { getStoreConfig } from './getStoreConfig'
+import { nonNullable } from './utils'
 
 function recursiveOptions(
   category: CategoryTree,
@@ -132,7 +50,7 @@ type AlgoliaFacetOption = { [facetOption: string]: number }
 // Map algolia facets to aggregations format
 function mapAlgoliaFacetsToAggregations(
   algoliaFacets: AlgoliaFacets,
-  attributes: Maybe<CustomAttributeMetadataInterface>[] | undefined,
+  attributes: AttributeList,
   categoryList?: null | CategoryResult,
 ): Aggregation[] {
   const aggregations: Aggregation[] = []
@@ -163,43 +81,13 @@ function mapAlgoliaFacetsToAggregations(
   return aggregations
 }
 
-function algoliaUrlToUrlKey(url?: string | null, base?: string | null): string | null {
-  if (!url || !base) return null
-  return url.replace(base, '')
-}
-
-type Item = NonNullable<
-  Awaited<
-    ReturnType<
-      ResolverFn<
-        ResolversTypes['Products'],
-        ResolversParentTypes['Query'],
-        MeshContext,
-        RequireFields<QueryproductsArgs, 'pageSize' | 'currentPage'>
-      >
-    >
-  >['items']
->[number]
-
 function getStoreHeader(context: MeshContext) {
   return (context as MeshContext & { headers: Record<string, string | undefined> }).headers.store
 }
 
-function getMagento2Meta(context: MeshContext, info: GraphQLResolveInfo) {
+function getMagento2Meta(context: MeshContext, isSearch: boolean) {
   return [
-    context.m2.Query.attributesList({
-      args: { entityType: 'CATALOG_PRODUCT', filters: { is_filterable: true } },
-      selectionSet: /* GraphQL */ `
-        {
-          items {
-            label
-            code
-          }
-        }
-      `,
-      context,
-      info,
-    }),
+    attributeList(context, isSearch),
     context.m2.Query.categories({
       selectionSet: /* GraphQL */ `
         {
@@ -231,43 +119,18 @@ function getMagento2Meta(context: MeshContext, info: GraphQLResolveInfo) {
         }
       `,
       context,
-      info,
     }),
-    context.m2.Query.storeConfig({
-      info,
-      context,
-      selectionSet: /* GraphQL */ `
-        {
-          root_category_uid
-          default_display_currency_code
-          base_link_url
-        }
-      `,
-    }),
+    getStoreConfig(context),
   ] as const
 }
 
 let magento2Meta: ReturnType<typeof getMagento2Meta>
 
-function getMagento2MetaCached(context: MeshContext, info: GraphQLResolveInfo) {
+function getMagento2MetaCached(context: MeshContext, isSearch: boolean) {
   if (magento2Meta) return magento2Meta
   // eslint-disable-next-line @typescript-eslint/no-floating-promises
-  magento2Meta = getMagento2Meta(context, info)
+  magento2Meta = getMagento2Meta(context, isSearch)
   return magento2Meta
-}
-
-/**
- * For the URL https://configurator.reachdigital.dev/media/catalog/product/cache/d911de87cf9e562637815cc5a14b1b05/1/0/1087_1_3.jpg
- * Remove /cache/HASH from the URL but only if the url contains media/catalog/product
- * @param url
- */
-function getOriginalImage(url?: string | undefined | null) {
-  if (!url) return url
-
-  if (!url.includes('media/catalog/product')) {
-    return url
-  }
-  return url.replace(/\/cache\/[a-z0-9]+/, '')
 }
 
 export const resolvers: Resolvers = {
@@ -277,12 +140,13 @@ export const resolvers: Resolvers = {
 
       const isAgolia = (args.filter?.engine?.in ?? [args.filter?.engine?.eq])[0] === 'algolia'
 
-      if (!isAgolia || !store) {
+      if (!isAgolia || !args.filter || !store) {
         return context.m2.Query.products({ root, args, context, info })
       }
 
-      // Note: the attributelist query requires magento: ^2.4.7
-      const [searchResults, attributeList, categoryList, storeConfig] = await Promise.all([
+      const { engine, ...filters } = args.filter
+
+      const [searchResults, attrList, categoryList, storeConfig] = await Promise.all([
         context.algolia.Query.algolia_searchSingleIndex({
           root,
           args: {
@@ -291,10 +155,9 @@ export const resolvers: Resolvers = {
               query: args.search,
               facets: ['*'],
               hitsPerPage: args.pageSize ? args.pageSize : 10,
-              facetFilters: mapFiltersForAlgolia(args.filter),
+              facetFilters: productFilterInputToAlgoliafacetFiltersInput(filters),
             },
           },
-          autoSelectionSetWithDepth: 10,
           selectionSet: /* GraphQL */ `
             {
               nbPages
@@ -314,91 +177,18 @@ export const resolvers: Resolvers = {
           context,
           info,
         }),
-        ...getMagento2MetaCached(context, info),
+        ...getMagento2MetaCached(context, !!args.search),
       ])
 
-      const aggregations = mapAlgoliaFacetsToAggregations(
-        searchResults?.facets?.additionalProperties as AlgoliaFacets,
-        attributeList?.items,
-        categoryList,
-      )
-
-      // Map algolia results to magento products format
-      const items = (searchResults?.hits ?? [])?.filter(nonNullable).map<Item>((hit) => {
-        const { objectID, additionalProperties } = hit
-
-        if (!assertAdditional(additionalProperties)) return null
-
-        const {
-          sku,
-          created_at,
-          image_url,
-          is_stock,
-
-          price,
-          thumbnail_url,
-          type_id,
-          url,
-
-          // not used
-          ordered_qty,
-          visibility_catalog,
-          visibility_search,
-          rating_summary,
-
-          // The rest will be spread into the product
-          ...rest
-        } = additionalProperties
-
-        return {
-          redirect_code: 0,
-          __typename: algoliaTypeToTypename[type_id as keyof typeof algoliaTypeToTypename],
-          uid: btoa(objectID),
-          sku: Array.isArray(sku) ? sku[0] : `${sku}`,
-          price_range: mapPriceRange(price, storeConfig?.default_display_currency_code),
-          created_at: created_at ? new Date(created_at).toISOString() : null,
-          stock_status: is_stock ? 'IN_STOCK' : 'OUT_OF_STOCK',
-
-          review_count: 0,
-          rating_summary: Number(rating_summary),
-          reviews: { items: [], page_info: {} },
-
-          // canonical_url: null,
-          // categories: [],
-          // country_of_manufacture: null,
-          // crosssell_products: [],
-          // custom_attributesV2: null,
-          // description: null,
-          // gift_message_available: null,
-          image: { url: getOriginalImage(image_url) },
-          // media_gallery: [],
-          // meta_keyword: null,
-          // meta_title: null,
-          // new_from_date: null,
-          // new_to_date: null,
-          // only_x_left_in_stock: null,
-          // options_container: null,
-          // price_tiers: [],
-          // product_links: [],
-          // related_products: [],
-          // short_description: null,
-          // small_image: null,
-          // special_price: null,
-          // special_to_date: null,
-          // stock_status: null,
-          small_image: { url: getOriginalImage(thumbnail_url) },
-          swatch_image: getOriginalImage(image_url),
-          thumbnail: { url: getOriginalImage(thumbnail_url) },
-          // upsell_products: [],
-          url_key: algoliaUrlToUrlKey(url, storeConfig?.base_link_url),
-          url_suffix: storeConfig?.product_url_suffix,
-          ...rest,
-        }
-      })
-
       return {
-        items,
-        aggregations,
+        items: (searchResults?.hits ?? [])
+          ?.filter(nonNullable)
+          .map((h) => algoliaHitToMagentoProduct(h, storeConfig)),
+        aggregations: mapAlgoliaFacetsToAggregations(
+          searchResults?.facets?.additionalProperties as AlgoliaFacets,
+          attrList,
+          categoryList,
+        ),
         page_info: {
           current_page: searchResults?.page,
           page_size: searchResults?.hitsPerPage,

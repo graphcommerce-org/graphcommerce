@@ -2854,13 +2854,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/algolia-mesh@npm:8.1.0-canary.49, @graphcommerce/algolia-mesh@workspace:packages/algolia-mesh":
+"@graphcommerce/algolia-mesh@workspace:packages/algolia-mesh":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/algolia-mesh@workspace:packages/algolia-mesh"
   dependencies:
+    graphql: "npm:^16.0.0"
     tsx: "npm:^4.16.2"
   peerDependencies:
     "@graphcommerce/graphql-mesh": ^8.1.0-canary.49
+    "@graphcommerce/magento-product": ^8.1.0-canary.49
+    "@graphcommerce/magento-search": ^8.1.0-canary.49
     "@graphcommerce/next-config": ^8.1.0-canary.49
   languageName: unknown
   linkType: soft
@@ -3936,7 +3939,6 @@ __metadata:
   dependencies:
     "@apollo/client": "npm:~3.8.10"
     "@ducanh2912/next-pwa": "npm:9.7.2"
-    "@graphcommerce/algolia-mesh": "npm:8.1.0-canary.49"
     "@graphcommerce/cli": "npm:8.1.0-canary.49"
     "@graphcommerce/demo-magento-graphcommerce": "npm:8.1.0-canary.49"
     "@graphcommerce/ecommerce-ui": "npm:8.1.0-canary.49"
@@ -13157,7 +13159,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql@npm:^16.5.0, graphql@npm:^16.6.0, graphql@npm:^16.8.1":
+"graphql@npm:^16.0.0, graphql@npm:^16.5.0, graphql@npm:^16.6.0, graphql@npm:^16.8.1":
   version: 16.9.0
   resolution: "graphql@npm:16.9.0"
   checksum: 10c0/a8850f077ff767377237d1f8b1da2ec70aeb7623cdf1dfc9e1c7ae93accc0c8149c85abe68923be9871a2934b1bce5a2496f846d4d56e1cfb03eaaa7ddba9b6a
