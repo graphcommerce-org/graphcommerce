@@ -22,7 +22,6 @@
   "dependencies": {
     "@apollo/client": "~3.8.10",
     "@ducanh2912/next-pwa": "9.7.2",
-    "@graphcommerce/algolia-mesh": "8.1.0-canary.49",
     "@graphcommerce/cli": "8.1.0-canary.49",
     "@graphcommerce/demo-magento-graphcommerce": "8.1.0-canary.49",
     "@graphcommerce/ecommerce-ui": "8.1.0-canary.49",
