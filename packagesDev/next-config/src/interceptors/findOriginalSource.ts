@@ -93,7 +93,7 @@ export function findOriginalSource(
   if (!resolved?.source)
     return {
       resolved: undefined,
-      error: new Error(`Could not resolve ${plug.targetModule}`),
+      error: new Error(`Plugin: Can not find module ${plug.targetModule} for ${plug.sourceModule}`),
     }
 
   // const cacheKey = `${plug.targetModule}#${plug.targetExport}`

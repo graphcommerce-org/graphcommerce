@@ -17,8 +17,10 @@ import dotenv from 'dotenv'
 import type { OmitIndexSignature, Entries } from 'type-fest'
 import yaml from 'yaml'
 import { findConfig } from '../utils/findConfig'
-
+import type { meshConfig as meshConfigBase } from '@graphcommerce/graphql-mesh/meshConfig'
+// eslint-disable-next-line import/no-unresolved
 import 'tsx/cjs' // support importing typescript configs in CommonJS
+// eslint-disable-next-line import/no-unresolved
 import 'tsx/esm' // support importing typescript configs in ESM
 
 dotenv.config()
@@ -55,8 +57,15 @@ async function cleanup() {
 }
 
 const main = async () => {
-  const conf = (await findConfig({})) as YamlConfig.Config
+  const baseConf = (await findConfig({})) as YamlConfig.Config
   const graphCommerce = loadConfig(root)
+
+  // eslint-disable-next-line global-require
+  // @ts-ignore Might not exist
+  const { meshConfig } = (await import('@graphcommerce/graphql-mesh/meshConfig.interceptor')) as {
+    meshConfig: typeof meshConfigBase
+  }
+  const conf = meshConfig(baseConf, graphCommerce)
 
   // We're configuring a custom fetch function
   conf.customFetch = require.resolve('@graphcommerce/graphql-mesh/customFetch')
