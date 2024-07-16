@@ -111,10 +111,6 @@
     "type-fest": "^4.21.0",
     "typescript": "5.5.3"
   },
-  "resolutions": {
-    "typescript": "5.3.3",
-    "webpack": "5.89.0"
-  },
   "browserslist": [
     "> 1% in alt-EU",
     "not IE 11"
