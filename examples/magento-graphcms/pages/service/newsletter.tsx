@@ -1,9 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { cacheFirst } from '@graphcommerce/graphql'
 import { GuestNewsletter } from '@graphcommerce/magento-newsletter'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { Container } from '@mui/material'
+import { Container, Typography } from '@mui/material'
 import {
   LayoutDocument,
   LayoutOverlay,
@@ -12,7 +13,7 @@ import {
   RowRenderer,
 } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { cacheFirst } from '@graphcommerce/graphql'
+import { t } from '@lingui/macro'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
@@ -29,24 +30,20 @@ function NewsletterSubscribe({ pages }: Props) {
         metaDescription={title}
         canonical={pages?.[0]?.url ? `/${pages[0].url}` : undefined}
       />
-      <LayoutOverlayHeader
-        switchPoint={0}
-        noAlign
-        sx={(theme) => ({
-          '&.noAlign': { marginBottom: theme.spacings.sm },
-          '& + .MuiContainer-root': {
-            marginBottom: theme.spacings.sm,
-          },
-        })}
-      >
+      <LayoutOverlayHeader>
         <LayoutTitle component='span' size='small'>
           {title}
         </LayoutTitle>
       </LayoutOverlayHeader>
 
+      <Container maxWidth='md'>
+        <LayoutTitle>{title}</LayoutTitle>
+      </Container>
+
       <RowRenderer {...pages[0]} />
 
-      <Container maxWidth={false}>
+      <Container maxWidth='md'>
+        {page?.title && <Typography variant='h3'>{t`Subscribe to our newsletter`}</Typography>}
         <GuestNewsletter />
       </Container>
     </>
@@ -56,20 +53,14 @@ function NewsletterSubscribe({ pages }: Props) {
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'left',
   Layout: LayoutOverlay,
-  layoutProps: {
-    variantMd: 'right',
-    sizeMd: 'floating',
-    justifyMd: 'end',
-    widthMd: '500px',
-    sizeSm: 'floating',
-  },
+  layoutProps: { variantMd: 'left' },
 }
 NewsletterSubscribe.pageOptions = pageOptions
 
 export default NewsletterSubscribe
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
-  const url = `newsletter`
+  const url = `service/newsletter`
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })

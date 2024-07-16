@@ -52,7 +52,7 @@ export function Footer(props: FooterProps) {
             </Link>
           )}
           {import.meta.graphCommerce.magentoVersion >= 247 && (
-            <Link href='/contact-us' color='textPrimary' underline='always'>
+            <Link href='/service/contact-us' color='textPrimary' underline='always'>
               <Trans>Contact</Trans>
             </Link>
           )}

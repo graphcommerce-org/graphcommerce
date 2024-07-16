@@ -5,28 +5,69 @@ import {
   TextFieldElement,
 } from '@graphcommerce/ecommerce-ui'
 import { Button, Form, FormRow, MessageSnackbar } from '@graphcommerce/next-ui'
-import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { FormPersist, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { CustomerDocument, useCustomerQuery } from '../../hooks'
-import { contactUsDocument } from './contactUs.gql'
+import { CustomerDocument, CustomerQuery, useCustomerQuery } from '../../hooks'
+import { ContactUsDocument } from './ContactUsMutation.gql'
+
+function findTelephone(data: CustomerQuery): string | undefined {
+  const { customer } = data
+  if (!customer) return undefined
+
+  let telephone = ''
+
+  for (const address of customer.addresses ?? []) {
+    // eslint-disable-next-line no-continue
+    if (!address?.telephone) continue
+
+    if (!telephone && address?.telephone) {
+      telephone = address.telephone
+    }
+
+    if (address.default_billing && address.telephone) {
+      return address.telephone
+    }
+    if (address.default_shipping && address.telephone) {
+      telephone = address.telephone
+      break
+    }
+  }
+
+  return telephone
+}
 
 export function ContactForm() {
-  const customerQuery = useCustomerQuery(CustomerDocument)
-  const customer = customerQuery.data?.customer
-
-  const form = useFormGqlMutation(contactUsDocument, {
-    defaultValues: {
-      email: customer?.email ?? '',
-      name: customer
-        ? `${customer?.firstname ?? ''} ${customer?.middlename ?? ''} ${customer?.lastname ?? ''}`.replaceAll(
-            '  ',
-            ' ',
-          )
-        : '',
-    },
+  const form = useFormGqlMutation(ContactUsDocument, {
+    experimental_useV2: true,
   })
 
-  const { control, formState, required, error, handleSubmit } = form
+  const { control, formState, error, handleSubmit, setValue, getValues } = form
+
+  useCustomerQuery(CustomerDocument, {
+    onCompleted: (data) => {
+      if (!data.customer) return
+
+      const telephone = findTelephone(data)
+
+      if (!getValues('input.telephone') && telephone) {
+        setValue('input.telephone', telephone)
+      }
+
+      if (!getValues('input.email') && data.customer?.email) {
+        setValue('input.email', data.customer?.email)
+      }
+
+      if (!getValues('input.name') && data.customer) {
+        setValue(
+          'input.name',
+          `${data.customer?.firstname ?? ''} ${data.customer?.middlename ?? ''} ${data.customer?.lastname ?? ''}`.replaceAll(
+            '  ',
+            ' ',
+          ),
+        )
+      }
+    },
+  })
 
   const submit = handleSubmit(() => {})
 
@@ -37,38 +78,37 @@ export function ContactForm() {
       <FormRow>
         <TextFieldElement
           control={control}
-          name='name'
+          name='input.name'
           label={<Trans>Name</Trans>}
           variant='outlined'
-          required={required.name}
+          required
           disabled={formState.isSubmitting}
         />
       </FormRow>
       <FormRow>
         <EmailElement
           control={control}
-          name='email'
+          name='input.email'
           variant='outlined'
-          required={required.email}
+          required
           disabled={formState.isSubmitting}
         />
       </FormRow>
       <FormRow>
         <TelephoneElement
           control={control}
-          name='telephone'
+          name='input.telephone'
           variant='outlined'
-          required={required.telephone}
           disabled={formState.isSubmitting}
         />
       </FormRow>
       <FormRow>
         <TextFieldElement
           control={control}
-          name='comment'
+          name='input.comment'
           label={<Trans>Message</Trans>}
           variant='outlined'
-          required={required.comment}
+          required
           disabled={formState.isSubmitting}
           multiline
           minRows={3}
@@ -80,10 +120,12 @@ export function ContactForm() {
         color='primary'
         type='submit'
         size='large'
+        disabled={submittedWithoutErrors}
       >
         <Trans>Submit</Trans>
       </Button>
 
+      <FormPersist form={form} name='ContactUs' />
       <MessageSnackbar
         open={submittedWithoutErrors}
         variant='pill'
