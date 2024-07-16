@@ -361,63 +361,6 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed'
         '404':
           $ref: '#/components/responses/IndexNotFound'
-  /1/indexes/{indexName}/{objectID}:
-    get:
-      tags:
-        - search
-      operationId: getObject
-      x-acl:
-        - search
-      summary: Retrieve a record
-      description: >
-        Retrieves one record by its object ID.
-        
-        
-        To retrieve more than one record, use the [`objects` operation](#tag/Records/operation/getObjects).
-
-      parameters:
-        - $ref: '#/components/parameters/IndexName'
-        - $ref: '#/components/parameters/ObjectID'
-        - name: attributesToRetrieve
-          in: query
-          description: >
-            Attributes to include with the records in the response.
-            
-            This is useful to reduce the size of the API response.
-            
-            By default, all retrievable attributes are returned.
-            
-            
-            `objectID` is always retrieved.
-            
-            
-            Attributes included in `unretrievableAttributes`
-            
-            won't be retrieved unless the request is authenticated with the admin API key.
-
-          schema:
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                title: getObjectResponse
-                type: object
-                description: The requested record.
-                additionalProperties:
-                  $ref: '#/components/schemas/attribute'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '402':
-          $ref: '#/components/responses/FeatureNotEnabled'
-        '403':
-          $ref: '#/components/responses/MethodNotAllowed'
-        '404':
-          $ref: '#/components/responses/IndexNotFound'
   /1/indexes/{indexName}/settings:
     get:
       tags:
@@ -3236,10 +3179,6 @@ components:
             This overrides Algolia's default [normalization](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/normalization/).
 
           type: object
-          example:
-            default:
-              ä: ae
-              ü: ue
           additionalProperties:
             type: object
             additionalProperties:

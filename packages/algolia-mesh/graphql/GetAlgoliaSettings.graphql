@@ -1,0 +1,122 @@
+query GetAlgoliaSettings {
+  algolia_getSettings(indexName: "magento2_demoen_US_products") {
+    attributesForFaceting
+    replicas
+    paginationLimitedTo
+    unretrievableAttributes
+    disableTypoToleranceOnWords
+    attributesToTransliterate
+    camelCaseAttributes
+    decompoundedAttributes {
+      de
+    }
+    indexLanguages
+    disablePrefixOnAttributes
+    allowCompressionOfIntegerArray
+    numericAttributesForFiltering
+    separatorsToIndex
+    searchableAttributes
+    userData {
+      settingID
+      pluginVersion
+    }
+    customNormalization
+    attributeForDistinct
+    attributesToRetrieve
+    ranking
+    customRanking
+    relevancyStrictness
+    attributesToHighlight
+    attributesToSnippet
+    highlightPreTag
+    highlightPostTag
+    snippetEllipsisText
+    restrictHighlightAndSnippetArrays
+    hitsPerPage
+    minWordSizefor1Typo
+    minWordSizefor2Typos
+    typoTolerance {
+      __typename
+      ... on Algolia_Boolean_container {
+        Boolean
+      }
+      ... on Algolia_typo_tolerance_container {
+        typo_tolerance
+      }
+    }
+    allowTyposOnNumericTokens
+    disableTypoToleranceOnAttributes
+    ignorePlurals {
+      __typename
+      ... on Algolia_supportedLanguage_container {
+        supportedLanguage
+      }
+      ... on Algolia_Boolean_container {
+        Boolean
+      }
+    }
+    removeStopWords {
+      __typename
+    }
+    keepDiacriticsOnCharacters
+    queryLanguages
+    decompoundQuery
+    enableRules
+    enablePersonalization
+    queryType
+    removeWordsIfNoResults
+    mode
+    semanticSearch {
+      eventSources {
+        __typename
+        ... on Algolia_String_container {
+          String
+        }
+        ... on Algolia_Void_container {
+          Void
+        }
+      }
+    }
+    advancedSyntax
+    optionalWords
+    disableExactOnAttributes
+    exactOnSingleWordQuery
+    alternativesAsExact
+    advancedSyntaxFeatures
+    distinct
+    replaceSynonymsInHighlight
+    minProximity
+    responseFields
+    maxFacetHits
+    maxValuesPerFacet
+    sortFacetValuesBy
+    attributeCriteriaComputedByMinProximity
+    renderingContent {
+      facetOrdering {
+        facets {
+          order
+        }
+        values {
+          additionalProperties {
+            key
+            value {
+              order
+              sortRemainingBy
+              hide
+            }
+          }
+        }
+      }
+    }
+    enableReRanking
+    reRankingApplyFilter {
+      __typename
+      ... on Algolia_String_container {
+        String
+      }
+      ... on Algolia_Void_container {
+        Void
+      }
+    }
+  }
+}

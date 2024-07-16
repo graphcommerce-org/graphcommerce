@@ -41,6 +41,11 @@ const newSchema: OpenAPIV3.Document = {
               ? Object.fromEntries(
                   Object.entries(schema.properties).map(([propertyKey, property]) => {
                     if (isRef(property)) return [propertyKey, property]
+
+                    if (propertyKey === 'customNormalization') {
+                      return [propertyKey, { ...property, example: undefined }]
+                    }
+
                     return [propertyKey, { ...property, default: undefined }]
                   }),
                 )
@@ -71,7 +76,13 @@ const newSchema: OpenAPIV3.Document = {
         .filter(([path, pathItem]) => {
           if (!pathItem) return
 
-          if (path === '/1/indexes/*/queries' || path === '/1/indexes/*/objects') return false
+          // Remove the search endpoint + remove the getObjects endpoint.
+          if (
+            path === '/1/indexes/*/queries' ||
+            path === '/1/indexes/*/objects' ||
+            path === '/1/indexes/{indexName}/{objectID}'
+          )
+            return false
 
           const keys = ['post', 'get', 'put', 'delete', 'patch', 'options'] as const
           if (keys.every((key) => !pathItem[key])) return false

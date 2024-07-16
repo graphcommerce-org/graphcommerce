@@ -35,7 +35,10 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
                 'X-Algolia-Application-Id': graphCommerceConfig.algoliaApplicationId,
                 'X-Algolia-API-Key': graphCommerceConfig.algoliaSearchOnlyApiKey,
               },
-              selectQueryOrMutationField: [{ type: 'Query', fieldName: 'searchSingleIndex' }],
+              selectQueryOrMutationField: [
+                { type: 'Query', fieldName: 'searchSingleIndex' },
+                { type: 'Query', fieldName: 'searchForFacetValues' },
+              ],
             },
           },
           transforms: [

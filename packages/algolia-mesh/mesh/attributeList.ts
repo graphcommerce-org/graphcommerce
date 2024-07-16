@@ -4,22 +4,33 @@ import { filterNonNullableKeys } from '@graphcommerce/next-ui/RenderType/filterN
 
 export type AttributeList = { label: string; code: string }[]
 
+const attributeListCache = new Map<string, AttributeList>()
+
 export async function attributeList(
   context: MeshContext,
   isSearch: boolean,
 ): Promise<AttributeList> {
-  if (import.meta.graphCommerce.magentoVersion >= 247) {
-    const items = await context.m2.Query.attributesList({
-      args: {
-        entityType: 'CATALOG_PRODUCT',
-        filters: isSearch ? { is_filterable_in_search: true } : { is_filterable: true },
-      },
-      selectionSet: `{ items{ code label } }`,
-      context,
-    }).then((res) => res?.items)
+  const cacheKey = isSearch ? 'search' : 'default'
 
-    return filterNonNullableKeys(items, ['label'])
+  if (attributeListCache.has(cacheKey)) {
+    return attributeListCache.get(cacheKey) as AttributeList
+  }
+  if (!attributeListCache.has(cacheKey)) {
+    if (import.meta.graphCommerce.magentoVersion >= 247) {
+      const items = await context.m2.Query.attributesList({
+        args: {
+          entityType: 'CATALOG_PRODUCT',
+          filters: isSearch ? { is_filterable_in_search: true } : { is_filterable: true },
+        },
+        selectionSet: `{ items{ code label } }`,
+        context,
+      }).then((res) => res?.items)
+
+      attributeListCache.set(cacheKey, filterNonNullableKeys(items, ['label']))
+    } else {
+      attributeListCache.set(cacheKey, [])
+    }
   }
 
-  return []
+  return attributeListCache.get(cacheKey) as AttributeList
 }

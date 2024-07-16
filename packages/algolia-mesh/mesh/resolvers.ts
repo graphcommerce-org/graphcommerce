@@ -1,4 +1,5 @@
 import type { MeshContext, Resolvers } from '@graphcommerce/graphql-mesh'
+import { storefrontConfigDefault } from '@graphcommerce/next-ui/server'
 import { algoliaFacetsToAggregations } from './algoliaFacetsToAggregations'
 import { algoliaHitToMagentoProduct } from './algoliaHitToMagentoProduct'
 import { attributeList } from './attributeList'
@@ -10,74 +11,27 @@ function getStoreHeader(context: MeshContext) {
   return (context as MeshContext & { headers: Record<string, string | undefined> }).headers.store
 }
 
-function getMagento2Meta(context: MeshContext, isSearch: boolean) {
-  return [
-    attributeList(context, isSearch),
-    context.m2.Query.categories({
-      selectionSet: /* GraphQL */ `
-        {
-          items {
-            uid
-            name
-            id
-            children {
-              uid
-              name
-              id
-              children {
-                name
-                uid
-                id
-                children {
-                  name
-                  uid
-                  id
-                  children {
-                    id
-                    name
-                    uid
-                  }
-                }
-              }
-            }
-          }
-        }
-      `,
-      context,
-    }),
-    getStoreConfig(context),
-  ] as const
-}
-
-let magento2Meta: ReturnType<typeof getMagento2Meta>
-
-function getMagento2MetaCached(context: MeshContext, isSearch: boolean) {
-  if (magento2Meta) return magento2Meta
-  // eslint-disable-next-line @typescript-eslint/no-floating-promises
-  magento2Meta = getMagento2Meta(context, isSearch)
-  return magento2Meta
+function getIndexName(context: MeshContext) {
+  const storeCode = getStoreHeader(context) ?? storefrontConfigDefault().magentoStoreCode
+  return `${import.meta.graphCommerce.algoliaIndexNamePrefix}${storeCode}_products`
 }
 
 export const resolvers: Resolvers = {
   Query: {
     products: async (root, args, context, info) => {
-      const store = getStoreHeader(context)
-
       const isAgolia = (args.filter?.engine?.in ?? [args.filter?.engine?.eq])[0] === 'algolia'
 
-      if (!isAgolia || !args.filter || !store) {
-        return context.m2.Query.products({ root, args, context, info })
-      }
+      if (!isAgolia) return context.m2.Query.products({ root, args, context, info })
 
-      const { engine, ...filters } = args.filter
+      const { engine, ...filters } = args.filter ?? {}
 
       const [searchResults, attrList, categoryList, storeConfig] = await Promise.all([
         context.algolia.Query.algolia_searchSingleIndex({
           root,
           args: {
-            indexName: `${import.meta.graphCommerce.algoliaIndexNamePrefix}${store}_products`,
+            indexName: getIndexName(context),
             input: {
-              query: args.search,
+              query: args.search ?? '',
               facets: ['*'],
               hitsPerPage: args.pageSize ? args.pageSize : 10,
               facetFilters: productFilterInputToAlgoliafacetFiltersInput(filters),
@@ -102,13 +56,46 @@ export const resolvers: Resolvers = {
           context,
           info,
         }),
-        ...getMagento2MetaCached(context, !!args.search),
+        attributeList(context, !!args.search),
+        context.m2.Query.categories({
+          selectionSet: /* GraphQL */ `
+            {
+              items {
+                uid
+                name
+                id
+                children {
+                  uid
+                  name
+                  id
+                  children {
+                    name
+                    uid
+                    id
+                    children {
+                      name
+                      uid
+                      id
+                      children {
+                        id
+                        name
+                        uid
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          `,
+          context,
+        }),
+        getStoreConfig(context),
       ])
 
+      const hits = (searchResults?.hits ?? [])?.filter(nonNullable)
+
       return {
-        items: (searchResults?.hits ?? [])
-          ?.filter(nonNullable)
-          .map((h) => algoliaHitToMagentoProduct(h, storeConfig)),
+        items: hits.map((hit) => algoliaHitToMagentoProduct(hit, storeConfig)),
         aggregations: algoliaFacetsToAggregations(
           searchResults?.facets?.additionalProperties,
           attrList,
