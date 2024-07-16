@@ -5,7 +5,8 @@ import {
   ApolloError,
   LazyQueryResultTuple,
 } from '@apollo/client'
-import useEventCallback from '@mui/material/utils/useEventCallback'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import useEventCallback from '@mui/utils/useEventCallback'
 import { useEffect, useRef } from 'react'
 import { DefaultValues, FieldValues, UseFormProps, UseFormReturn } from 'react-hook-form'
 import diff from './diff'
