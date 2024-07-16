@@ -5,6 +5,7 @@ import {
   ApolloError,
   LazyQueryResultTuple,
 } from '@apollo/client'
+import useEventCallback from '@mui/material/utils/useEventCallback'
 import { useEffect, useRef } from 'react'
 import { DefaultValues, FieldValues, UseFormProps, UseFormReturn } from 'react-hook-form'
 import diff from './diff'
@@ -104,6 +105,11 @@ export function useFormGql<Q, V extends FieldValues>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [valuesString, form])
 
+  const beforeSubmit: NonNullable<typeof onBeforeSubmit> = useEventCallback(
+    onBeforeSubmit ?? ((v) => v),
+  )
+  const complete: NonNullable<typeof onComplete> = useEventCallback(onComplete ?? (() => undefined))
+
   const handleSubmit: UseFormReturn<V>['handleSubmit'] = (onValid, onInvalid) =>
     form.handleSubmit(async (formValues, event) => {
       // Combine defaults with the formValues and encode
@@ -111,11 +117,10 @@ export function useFormGql<Q, V extends FieldValues>(
       let variables = experimental_useV2 ? formValues : encode({ ...defaultValues, ...formValues })
 
       // Wait for the onBeforeSubmit to complete
-      if (onBeforeSubmit) {
-        const res = await onBeforeSubmit(variables)
-        if (res === false) return
-        variables = res
-      }
+      const res = await beforeSubmit(variables)
+      if (res === false) return
+      variables = res
+
       // if (variables === false) onInvalid?.(formValues, event)
 
       submittedVariables.current = variables
@@ -126,7 +131,7 @@ export function useFormGql<Q, V extends FieldValues>(
         context: { fetchOptions: { signal: controllerRef.current.signal } },
       })
 
-      if (onComplete && result.data) await onComplete(result, variables)
+      if (result.data) await complete(result, variables)
 
       // Reset the state of the form if it is unmodified afterwards
       if (typeof diff(form.getValues(), formValues) === 'undefined' && !experimental_useV2)
