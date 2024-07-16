@@ -28,9 +28,15 @@ To use this package, follow these steps:
 1. **Install the Package:** Ensure you have installed the
    `@graphcommerce/googleanalytics` package.
 
-2. **Configuration:** Configure the following
-   [configuration values](https://github.com/graphcommerce-org/graphcommerce/blob/canary/packages/googleanalytics/Config.graphqls)
-   in your `graphcommerce.config.js`.
+2. **Configuration:** Add the following configuration values in your
+   `graphcommerce.config.js`:
+
+   ```javascript
+   // graphcommerce.config.js
+   const config = {
+     googleAnalyticsId: 'YOUR_MEASUREMENT_ID',
+   }
+   ```
 
 3. **Google Analytics Setup:** Configure the
    `Page changes based on browser history events.` in Google Analytics. Refer to
@@ -57,8 +63,8 @@ The following events are supported by default in GraphCommerce:
 
 ## Google Tag Manager
 
-This package makes it easy to add _Google Tag Manager_ to your GraphCommerce
-webshop.
+The `@graphcommerce/googletagmanager` package makes it easy to add **Google Tag
+Manager (GTM)** to your GraphCommerce webshop.
 
 ### Installation
 
@@ -67,9 +73,20 @@ To use this package, follow these steps:
 1. **Install the Package:** Ensure you have installed the
    `@graphcommerce/googletagmanager` package.
 
-2. **Configuration:** Configure the following
-   [configuration values](https://github.com/graphcommerce-org/graphcommerce/blob/canary/packages/googletagmanager/Config.graphqls)
-   in your `graphcommerce.config.js`.
+2. **Configuration:** Add the following configuration values in your
+   `graphcommerce.config.js`:
+
+   ```javascript
+   // graphcommerce.config.js
+   const config = {
+     googleTagmanagerId: 'YOUR_GTM_ID',
+   }
+   ```
+
+3. **GTM Setup:** Ensure you have set up your GTM account and container. Refer
+   to the
+   [official GTM documentation](https://developers.google.com/tag-manager/quickstart)
+   for initial setup steps.
 
 ---
 
