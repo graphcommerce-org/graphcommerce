@@ -60,32 +60,14 @@ export const resolvers: Resolvers = {
         }),
         attributeList(context, !!args.search),
         context.m2.Query.categories({
+          args: { filters: {} },
           selectionSet: /* GraphQL */ `
             {
               items {
                 uid
                 name
                 id
-                children {
-                  uid
-                  name
-                  id
-                  children {
-                    name
-                    uid
-                    id
-                    children {
-                      name
-                      uid
-                      id
-                      children {
-                        id
-                        name
-                        uid
-                      }
-                    }
-                  }
-                }
+                position
               }
             }
           `,

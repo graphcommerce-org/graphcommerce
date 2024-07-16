@@ -9,35 +9,24 @@ import { AttributeList } from './attributeList'
 type AlgoliaFacets = { [facetName: string]: AlgoliaFacetOption }
 type AlgoliaFacetOption = { [facetOption: string]: number }
 
-function recursiveOptions(
-  category: CategoryTree,
-  facetList: AlgoliaFacetOption,
-): AggregationOption[] {
-  const options: AggregationOption[] = []
-  if (category?.children?.length) {
-    category.children.forEach((child) => {
-      if (child) {
-        const childData = recursiveOptions(child, facetList)
-        options.push(...childData)
-      }
-    })
-  }
-
-  const count = category?.id ? facetList[category?.id] : 0
-  options.push({ label: category?.name, value: category?.uid, count })
-  return options
-}
-
 function categoryMapping(
   categoryList: CategoryResult | null | undefined,
   facetList: AlgoliaFacetOption,
-) {
-  const options =
-    categoryList?.items && categoryList.items[0]
-      ? recursiveOptions(categoryList.items[0], facetList)
-      : []
+): AggregationOption[] {
+  if (!categoryList?.items) {
+    return []
+  }
 
-  return options
+  return categoryList?.items
+    ?.map((category) => {
+      const count = category?.id ? facetList[category?.id] : 0
+      return { label: category?.name, value: category?.uid ?? '', count }
+    })
+    .filter((category) => {
+      if (category.count > 0) {
+        return category
+      }
+    })
 }
 
 function assertAlgoliaFacets(facets: any): facets is AlgoliaFacets {
@@ -65,7 +54,6 @@ export function algoliaFacetsToAggregations(
   // Select the right one EUR/USD
   // Sort the aggregations by the numeric value of the key.
   // Add as price aggregation
-
   Object.entries(algoliaFacets).forEach(([facetIndex, facet]) => {
     let attribute_code = facetIndex
 
@@ -102,11 +90,9 @@ export function algoliaFacetsToAggregations(
       attribute_code = 'category_uid'
     }
 
-    // TODO
+    //todo
     const position = 0
-
     const options = Object.entries(facet).map(([filter, count]) => {
-      console.log(count, filter)
       return {
         label: filter,
         count,
@@ -124,7 +110,12 @@ export function algoliaFacetsToAggregations(
         position,
       })
     } else {
-      aggregations.push({ label, attribute_code, options, position })
+      aggregations.push({
+        label,
+        attribute_code,
+        options,
+        position,
+      })
     }
   })
 
