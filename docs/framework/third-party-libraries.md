@@ -4,25 +4,41 @@ menu: Third Party Libraries
 
 # Third Party Libraries
 
+Welcome to the Third Party Libraries documentation. This page provides details
+on integrating various third-party libraries into your GraphCommerce webshop.
+
+---
+
+## Available Libraries
+
+- [Google Analytics](#google-analytics)
+- [Google Tag Manager](#google-tag-manager)
+
+---
+
 ## Google Analytics
 
 The `@graphcommerce/googleanalytics` package makes it easy to add Google
 Analytics GA4 to your GraphCommerce webshop.
 
-### How to use this package?
+### Installation
 
-To use our standard events, follow these steps:
+To use this package, follow these steps:
 
-- Ensure you have installed the `@graphcommerce/googleanalytics` package.
-- Configure the following
-  ([configuration values](https://github.com/graphcommerce-org/graphcommerce/blob/canary/packages/googleanalytics/Config.graphqls))
-  in your graphcommerce.config.js
-- Make sure you also configure the
-  `Page changes based on browser history events.` configuration in Google
-  Analytics, see
-  [docs](https://developers.google.com/analytics/devguides/collection/ga4/single-page-applications?implementation=browser-history#implement_single-page_application_measurement).
+1. **Install the Package:** Ensure you have installed the
+   `@graphcommerce/googleanalytics` package.
 
-### Events
+2. **Configuration:** Configure the following
+   [configuration values](https://github.com/graphcommerce-org/graphcommerce/blob/canary/packages/googleanalytics/Config.graphqls)
+   in your `graphcommerce.config.js`.
+
+3. **Google Analytics Setup:** Configure the
+   `Page changes based on browser history events.` in Google Analytics. Refer to
+   the
+   [official documentation](https://developers.google.com/analytics/devguides/collection/ga4/single-page-applications?implementation=browser-history#implement_single-page_application_measurement)
+   for more details.
+
+### Supported Events
 
 The following events are supported by default in GraphCommerce:
 
@@ -39,6 +55,24 @@ The following events are supported by default in GraphCommerce:
 
 ---
 
-## Next steps
+## Google Tag Manager
+
+This package makes it easy to add _Google Tag Manager_ to your GraphCommerce
+webshop.
+
+### Installation
+
+To use this package, follow these steps:
+
+1. **Install the Package:** Ensure you have installed the
+   `@graphcommerce/googletagmanager` package.
+
+2. **Configuration:** Configure the following
+   [configuration values](https://github.com/graphcommerce-org/graphcommerce/blob/canary/packages/googletagmanager/Config.graphqls)
+   in your `graphcommerce.config.js`.
+
+---
+
+## Next Steps
 
 - Learn about [Translations](../framework/translations.md) in GraphCommerce
