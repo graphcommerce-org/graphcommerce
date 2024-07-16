@@ -1,5 +1,16 @@
 # Change Log
 
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+## 8.1.0-canary.50
+
+### Patch Changes
+
+- [#2321](https://github.com/graphcommerce-org/graphcommerce/pull/2321) [`fa261d4`](https://github.com/graphcommerce-org/graphcommerce/commit/fa261d4ae600b46ae08c5ca7514163f2da54eead) - Add the possibility to place content before or after the scroller.
+  ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 8.1.0-canary.49
 
 ### Patch Changes

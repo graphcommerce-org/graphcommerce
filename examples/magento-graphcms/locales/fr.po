@@ -378,9 +378,6 @@ msgstr "Date invalide"
 msgid "Invalid email address"
 msgstr "Adresse email invalide"
 
-msgid "Invalid phone number"
-msgstr "Numéro de téléphone invalide"
-
 msgid "It appears you are offline, please try again later."
 msgstr "Il semble que vous soyez hors ligne, veuillez réessayer plus tard."
 
@@ -765,9 +762,6 @@ msgstr "Changer de boutique"
 msgid "Tagged in: {title}"
 msgstr "Tag: {title}"
 
-msgid "Telephone"
-msgstr "Téléphone"
-
 msgid "Thank you for your order!"
 msgstr "Merci pour votre commande!"
 
@@ -975,6 +969,10 @@ msgstr "annulée"
 #. js-lingui-generated-id
 msgid "Shipping Note"
 msgstr "Note d'envoi"
+
+#. js-lingui-generated-id
+msgid "Invalid phone number"
+msgstr "Numéro de téléphone invalide"
 
 msgid "invoiced"
 msgstr "facturée"

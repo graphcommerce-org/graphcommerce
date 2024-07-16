@@ -69,6 +69,8 @@ export type SidebarGalleryProps = {
   disableZoom?: boolean
   disableSticky?: boolean
   variantMd?: SidebarGalleryVariant
+  beforeScroller?: React.ReactNode
+  afterScroller?: React.ReactNode
 } & Pick<ScrollerButtonProps, 'showButtons'>
 
 export function SidebarGallery(props: SidebarGalleryProps) {
@@ -82,6 +84,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     disableZoom = false,
     disableSticky = false,
     variantMd = 'default',
+    beforeScroller,
+    afterScroller,
   } = props
 
   const router = useRouter()
@@ -220,6 +224,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 if (!zoomed) document.body.style.overflow = ''
               }}
             >
+              {beforeScroller}
               <Scroller
                 className={classes.scroller}
                 hideScrollbar
@@ -261,6 +266,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   />
                 ))}
               </Scroller>
+              {afterScroller}
               <MotionBox
                 layout='position'
                 layoutDependency={zoomed}

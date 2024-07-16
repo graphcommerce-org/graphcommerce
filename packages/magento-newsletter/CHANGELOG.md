@@ -1,5 +1,16 @@
 # Change Log
 
+## 8.1.0-canary.52
+
+### Minor Changes
+
+- [#2320](https://github.com/graphcommerce-org/graphcommerce/pull/2320) [`dc5e85c`](https://github.com/graphcommerce-org/graphcommerce/commit/dc5e85c95dad6145fde02a6e54f0fbd1cdfe9e3d) - Replace depricated updateCustomer mutations with updateCustomerV2
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.51
+
+## 8.1.0-canary.50
+
 ## 8.1.0-canary.49
 
 ## 8.1.0-canary.48
