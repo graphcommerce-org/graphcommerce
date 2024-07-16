@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.withGraphCommerce = void 0;
+exports.withGraphCommerce = withGraphCommerce;
 // import CircularDependencyPlugin from 'circular-dependency-plugin'
 const plugin_1 = require("inspectpack/plugin");
 const webpack_1 = require("webpack");
@@ -159,4 +159,3 @@ function withGraphCommerce(nextConfig, cwd) {
         },
     };
 }
-exports.withGraphCommerce = withGraphCommerce;

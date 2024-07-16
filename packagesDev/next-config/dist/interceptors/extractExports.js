@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.extractExports = exports.RUNTIME_VALUE = exports.UnsupportedValueError = exports.NoSuchDeclarationError = void 0;
+exports.RUNTIME_VALUE = exports.UnsupportedValueError = exports.NoSuchDeclarationError = void 0;
+exports.extractExports = extractExports;
 class NoSuchDeclarationError extends Error {
 }
 exports.NoSuchDeclarationError = NoSuchDeclarationError;
@@ -201,4 +202,3 @@ function extractExports(module) {
     }
     return [exports, errors];
 }
-exports.extractExports = extractExports;

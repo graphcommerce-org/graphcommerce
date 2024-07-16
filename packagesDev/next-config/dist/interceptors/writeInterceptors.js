@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.writeInterceptors = void 0;
+exports.writeInterceptors = writeInterceptors;
 const promises_1 = __importDefault(require("node:fs/promises"));
 const path_1 = __importDefault(require("path"));
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -42,4 +42,3 @@ async function writeInterceptors(interceptors, cwd = process.cwd()) {
     await Promise.all(written);
     await Promise.all(cleaned);
 }
-exports.writeInterceptors = writeInterceptors;

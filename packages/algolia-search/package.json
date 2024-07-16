@@ -12,7 +12,7 @@
     }
   },
   "dependencies": {
-    "algoliasearch": "^4.22.1",
+    "algoliasearch": "^4.24.0",
     "react-instantsearch-hooks-web": "^6.47.3"
   },
   "peerDependencies": {

@@ -16,29 +16,29 @@
     "dev": "next dev"
   },
   "dependencies": {
-    "@apollo/client": "~3.8.10",
+    "@apollo/client": "~3.10.8",
     "@graphcommerce/next-config": "8.1.0-canary.52",
     "@hygraph/app-sdk-react": "^0.0.3",
-    "@lingui/core": "^4.7.0",
-    "@lingui/macro": "^4.7.0",
-    "@lingui/react": "^4.7.0",
-    "@mui/material": "5.15.5",
+    "@lingui/core": "^4.11.2",
+    "@lingui/macro": "^4.11.2",
+    "@lingui/react": "^4.11.2",
+    "@mui/material": "5.16.0",
     "cross-env": "^7.0.3",
-    "dotenv": "16.3.1",
-    "graphql": "^16.8.1",
-    "next": "14.1.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "webpack": "5.89.0"
+    "dotenv": "16.4.5",
+    "graphql": "^16.9.0",
+    "next": "14.2.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "webpack": "~5.92.1"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "8.1.0-canary.52",
     "@graphcommerce/prettier-config-pwa": "8.1.0-canary.52",
     "@graphcommerce/typescript-config-pwa": "8.1.0-canary.52",
-    "@types/react-is": "^18.2.4",
+    "@types/react-is": "^18.3.0",
     "babel-plugin-macros": "^3.1.0",
-    "eslint": "8.56.0",
-    "prettier": "3.2.4",
-    "typescript": "5.3.3"
+    "eslint": "9.6.0",
+    "prettier": "3.3.2",
+    "typescript": "5.5.3"
   }
 }
