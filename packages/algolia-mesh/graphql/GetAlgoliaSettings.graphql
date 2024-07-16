@@ -37,10 +37,10 @@ query GetAlgoliaSettings {
     minWordSizefor2Typos
     typoTolerance {
       __typename
-      ... on Algolia_Boolean_container {
+      ... on AlgoliaBoolean_container {
         Boolean
       }
-      ... on Algolia_typo_tolerance_container {
+      ... on Algoliatypo_tolerance_container {
         typo_tolerance
       }
     }
@@ -48,10 +48,10 @@ query GetAlgoliaSettings {
     disableTypoToleranceOnAttributes
     ignorePlurals {
       __typename
-      ... on Algolia_supportedLanguage_container {
+      ... on AlgoliasupportedLanguage_container {
         supportedLanguage
       }
-      ... on Algolia_Boolean_container {
+      ... on AlgoliaBoolean_container {
         Boolean
       }
     }
@@ -69,10 +69,10 @@ query GetAlgoliaSettings {
     semanticSearch {
       eventSources {
         __typename
-        ... on Algolia_String_container {
+        ... on AlgoliaString_container {
           String
         }
-        ... on Algolia_Void_container {
+        ... on AlgoliaVoid_container {
           Void
         }
       }
@@ -111,10 +111,10 @@ query GetAlgoliaSettings {
     enableReRanking
     reRankingApplyFilter {
       __typename
-      ... on Algolia_String_container {
+      ... on AlgoliaString_container {
         String
       }
-      ... on Algolia_Void_container {
+      ... on AlgoliaVoid_container {
         Void
       }
     }
