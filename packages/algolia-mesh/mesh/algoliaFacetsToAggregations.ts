@@ -102,8 +102,6 @@ export function algoliaFacetsToAggregations(
       attribute_code = 'category_uid'
     }
 
-    const label = attributes?.find((attribute) => attribute?.code === attribute_code)?.label
-
     // TODO
     const position = 0
 
@@ -116,9 +114,9 @@ export function algoliaFacetsToAggregations(
       }
     })
 
-    if (label) {
-      aggregations.push({ label, attribute_code, options, position })
-    } else if (facetIndex === 'categoryIds') {
+    const label =
+      attributes?.find((attribute) => attribute?.code === attribute_code)?.label ?? attribute_code
+    if (facetIndex === 'categoryIds') {
       aggregations.push({
         label,
         attribute_code,
@@ -126,7 +124,7 @@ export function algoliaFacetsToAggregations(
         position,
       })
     } else {
-      aggregations.push({ label: facetIndex, attribute_code, options })
+      aggregations.push({ label, attribute_code, options, position })
     }
   })
 
