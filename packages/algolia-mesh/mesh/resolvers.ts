@@ -4,7 +4,10 @@ import { algoliaFacetsToAggregations } from './algoliaFacetsToAggregations'
 import { algoliaHitToMagentoProduct } from './algoliaHitToMagentoProduct'
 import { attributeList } from './attributeList'
 import { getStoreConfig } from './getStoreConfig'
-import { productFilterInputToAlgoliafacetFiltersInput } from './productFilterInputToAlgoliafacetFiltersInput'
+import {
+  productFilterInputToAlgoliaFacetFiltersInput,
+  productFilterInputToAlgoliaNumericFiltersInput,
+} from './productFilterInputToAlgoliafacetFiltersInput'
 import { nonNullable } from './utils'
 
 function getStoreHeader(context: MeshContext) {
@@ -34,7 +37,8 @@ export const resolvers: Resolvers = {
               query: args.search ?? '',
               facets: ['*'],
               hitsPerPage: args.pageSize ? args.pageSize : 10,
-              facetFilters: productFilterInputToAlgoliafacetFiltersInput(filters),
+              facetFilters: productFilterInputToAlgoliaFacetFiltersInput(filters),
+              numericFilters: productFilterInputToAlgoliaNumericFiltersInput(filters),
             },
           },
           selectionSet: /* GraphQL */ `
@@ -48,9 +52,7 @@ export const resolvers: Resolvers = {
                 objectID
                 additionalProperties
               }
-              facets {
-                additionalProperties
-              }
+              facets
             }
           `,
           context,
@@ -96,11 +98,7 @@ export const resolvers: Resolvers = {
 
       return {
         items: hits.map((hit) => algoliaHitToMagentoProduct(hit, storeConfig)),
-        aggregations: algoliaFacetsToAggregations(
-          searchResults?.facets?.additionalProperties,
-          attrList,
-          categoryList,
-        ),
+        aggregations: algoliaFacetsToAggregations(searchResults?.facets, attrList, categoryList),
         page_info: {
           current_page: searchResults?.page,
           page_size: searchResults?.hitsPerPage,
@@ -108,6 +106,18 @@ export const resolvers: Resolvers = {
         },
         suggestions: [],
         total_count: searchResults?.nbHits,
+
+        /**
+         * TODO: Algolia Catalog.
+         *
+         *
+         * The M2 Algolia module supports different sorting options.
+         * https://www.algolia.com/doc/integration/magento-2/how-it-works/indexing/?client=php#sorting-strategies
+         *
+         * This means that we need to get the replicas from the algolia_getSettings query.
+         *
+         * Based on the selected sorting option we need to select the correct virtual replica.
+         */
         sort_fields: {
           default: 'relevance',
           options: [{ label: 'Relevance', value: 'relevance' }],

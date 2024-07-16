@@ -42,7 +42,7 @@ const newSchema: OpenAPIV3.Document = {
                   Object.entries(schema.properties).map(([propertyKey, property]) => {
                     if (isRef(property)) return [propertyKey, property]
 
-                    if (propertyKey === 'customNormalization') {
+                    if (propertyKey === 'customNormalization' || propertyKey === 'facets') {
                       return [propertyKey, { ...property, example: undefined }]
                     }
 

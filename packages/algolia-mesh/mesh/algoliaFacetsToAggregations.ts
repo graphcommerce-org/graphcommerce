@@ -30,18 +30,25 @@ function recursiveOptions(
 
 function categoryMapping(
   categoryList: CategoryResult | null | undefined,
-  categoryLabel: string,
   facetList: AlgoliaFacetOption,
-): Aggregation {
+) {
   const options =
     categoryList?.items && categoryList.items[0]
       ? recursiveOptions(categoryList.items[0], facetList)
       : []
 
-  return { label: categoryLabel, attribute_code: categoryLabel, options }
+  return options
 }
 
-// Map algolia facets to aggregations format
+function assertAlgoliaFacets(facets: any): facets is AlgoliaFacets {
+  return true
+}
+
+/**
+ * Map algolia facets to aggregations format
+ *
+ * TODO: Make sure the aggregations are sorted correctly: https://magento-247-git-canary-graphcommerce.vercel.app/men/photography
+ */
 export function algoliaFacetsToAggregations(
   algoliaFacets: any,
   attributes: AttributeList,
@@ -49,28 +56,79 @@ export function algoliaFacetsToAggregations(
 ): Aggregation[] {
   const aggregations: Aggregation[] = []
 
-  Object.keys(algoliaFacets as AlgoliaFacets).forEach((facetIndex) => {
-    const facet: object = algoliaFacets[facetIndex]
-    const optionsCheck: AggregationOption[] = []
-    const attributeLabel = attributes?.find((attribute) => attribute?.code === facetIndex)
-    Object.keys(facet).forEach((filter) => {
-      optionsCheck.push({ label: filter, count: facet[filter], value: filter })
+  if (!assertAlgoliaFacets(algoliaFacets)) throw Error('these are not facets')
+
+  // Price aggregation:
+  // 'price.EUR.default': { '5': 1, '14': 47, '4.95': 302, '9.99': 84, '2.48': 1 },
+  // 'price.USD.default': { '6.3167': 302, '12.7577': 84, '17.8766': 47, '3.164': 1, '6.3845': 1 },
+
+  // Select the right one EUR/USD
+  // Sort the aggregations by the numeric value of the key.
+  // Add as price aggregation
+
+  Object.entries(algoliaFacets).forEach(([facetIndex, facet]) => {
+    let attribute_code = facetIndex
+
+    if (facetIndex.startsWith('categories.level')) return
+
+    // TODO select the correct price facet.
+    if (facetIndex.startsWith('price')) {
+      attribute_code = 'price'
+
+      // The price should become something like this:
+
+      // Sort all options and generate the label and value ranges.
+      // {
+      //   "attribute_code": "price",
+      //   "count": 2,
+      //   "label": "Price",
+      //   "options": [
+      //     {
+      //       "count": 388,
+      //       "label": "0-11.3",
+      //       "value": "0_11.3"
+      //     },
+      //     {
+      //       "count": 47,
+      //       "label": "11.3-22.6",
+      //       "value": "11.3_22.6"
+      //     }
+      //   ],
+      //   "position": null
+      // },
+    }
+
+    if (facetIndex === 'categoryIds') {
+      attribute_code = 'category_uid'
+    }
+
+    const label = attributes?.find((attribute) => attribute?.code === attribute_code)?.label
+
+    // TODO
+    const position = 0
+
+    const options = Object.entries(facet).map(([filter, count]) => {
+      console.log(count, filter)
+      return {
+        label: filter,
+        count,
+        value: filter,
+      }
     })
-    if (attributeLabel) {
-      aggregations.push({
-        label: attributeLabel.label,
-        attribute_code: facetIndex,
-        options: optionsCheck,
-      })
+
+    if (label) {
+      aggregations.push({ label, attribute_code, options, position })
     } else if (facetIndex === 'categoryIds') {
-      aggregations.push(categoryMapping(categoryList, 'category_uid', algoliaFacets[facetIndex]))
-    } else {
       aggregations.push({
-        label: facetIndex,
-        attribute_code: facetIndex,
-        options: optionsCheck,
+        label,
+        attribute_code,
+        options: categoryMapping(categoryList, algoliaFacets[facetIndex]),
+        position,
       })
+    } else {
+      aggregations.push({ label: facetIndex, attribute_code, options })
     }
   })
+
   return aggregations
 }

@@ -1027,8 +1027,7 @@ components:
             
             For more information, see [facets](https://www.algolia.com/doc/guides/managing-results/refine-results/faceting/#contextual-facet-values-and-counts).
 
-          example:
-            - '*'
+          default: []
           x-categories:
             - Faceting
         facetingAfterDistinct:
@@ -2223,10 +2222,6 @@ components:
               x-additionalPropertiesName: facet count
               type: integer
           description: Facet counts.
-          example:
-            category:
-              food: 1
-              tech: 42
         facets_stats:
           title: facetsStats
           type: object

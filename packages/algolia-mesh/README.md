@@ -8,4 +8,28 @@ An implementation of Algolia through the GraphQL Mesh.
 2. `yarn add @graphcommerce/address-fields-nl@9.0.0` (replace 9.0.0 with the
    version of the step above)
 3. Configure the following ([configuration values](./Config.graphqls)) in your
-   graphcommerce.config.js
+   graphcommerce.config.js:
+
+   ```js
+   const config = {
+     algoliaApplicationId: 'your-algolia-application-id', // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
+     algoliaIndexNamePrefix: 'default_', // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix
+     algoliaSearchOnlyApiKey: 'blabla_', // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Search-only (public) API key
+     algoliaCatalogEnabled: false, // start with search and if everything works as expected, you can move on to the catalog.
+   }
+   ```
+
+### Configuration
+
+Make sure the Magento 2 module is correctly installed and working.
+
+.. Facets?
+
+### Customization
+
+..
+
+## Algolia for Catalog
+
+Note: Currently the Catalog is supported, however multiple sorting options
+aren't yet.

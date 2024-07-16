@@ -12,6 +12,7 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
   graphCommerceConfig,
 ) => {
   if (!graphCommerceConfig.algoliaApplicationId || !graphCommerceConfig.algoliaSearchOnlyApiKey) {
+    console.log('Algolia credentials not provided, skipping Algolia plugin')
     return prev(baseConfig, graphCommerceConfig)
   }
 
