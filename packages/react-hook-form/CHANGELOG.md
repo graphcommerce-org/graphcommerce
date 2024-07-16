@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.1.0-canary.53
+
+### Minor Changes
+
+- [#2325](https://github.com/graphcommerce-org/graphcommerce/pull/2325) [`058fb17`](https://github.com/graphcommerce-org/graphcommerce/commit/058fb1777bdaa51ded6d37529e59a3cc5f0eac06) - Solve an issue where onBeforeSubmit and onComplete would become an 'stale closure' where variables inside wouldn't be updated. By wrapping onBeforeSubmit and onComplete in useEventCallback these functions are updated when outside values get changed.
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 8.1.0-canary.52
 
 ## 8.1.0-canary.51
