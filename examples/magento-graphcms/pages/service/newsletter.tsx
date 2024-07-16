@@ -4,6 +4,7 @@ import { cacheFirst } from '@graphcommerce/graphql'
 import { GuestNewsletter } from '@graphcommerce/magento-newsletter'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { t, Trans } from '@lingui/macro'
 import { Container, Typography } from '@mui/material'
 import {
   LayoutDocument,
@@ -13,7 +14,6 @@ import {
   RowRenderer,
 } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { t } from '@lingui/macro'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
@@ -43,7 +43,11 @@ function NewsletterSubscribe({ pages }: Props) {
       <RowRenderer {...pages[0]} />
 
       <Container maxWidth='md'>
-        {page?.title && <Typography variant='h3'>{t`Subscribe to our newsletter`}</Typography>}
+        {page?.title && (
+          <Typography variant='h3'>
+            <Trans id='Subscribe to newsletter'>Subscribe to newsletter</Trans>
+          </Typography>
+        )}
         <GuestNewsletter />
       </Container>
     </>
@@ -76,6 +80,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     props: {
       ...(await page).data,
       ...(await layout).data,
+      up: { href: '/service', title: t`Customer Service` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
