@@ -31,6 +31,20 @@ type ReCaptchaConfigurationV3 {
   """
   website_key: String!
 }
+
+enum ReCaptchaFormEnum {
+  PLACE_ORDER
+  CONTACT
+  CUSTOMER_LOGIN
+  CUSTOMER_FORGOT_PASSWORD
+  CUSTOMER_CREATE
+  CUSTOMER_EDIT
+  NEWSLETTER
+  PRODUCT_REVIEW
+  SENDFRIEND
+  BRAINTREE
+}
+
 type Query {
   """
   Returns details about Google reCAPTCHA V3-Invisible configuration.

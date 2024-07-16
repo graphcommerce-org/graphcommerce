@@ -6,14 +6,11 @@ import { SelectedCustomizableOptionFragment } from './SelectedCustomizableOption
 
 type SelectedCustomizableOptionProps = CartItemFragment & {
   customizable_options?: (SelectedCustomizableOptionFragment | null | undefined)[] | null
-  configurable_customizable?: (SelectedCustomizableOptionFragment | null | undefined)[] | null
 }
 
 export function SelectedCustomizableOptions(props: SelectedCustomizableOptionProps) {
-  const { customizable_options, product, configurable_customizable } = props
-  const options = customizable_options
-    ? filterNonNullableKeys(customizable_options, [])
-    : filterNonNullableKeys(configurable_customizable, [])
+  const { customizable_options, product } = props
+  const options = filterNonNullableKeys(customizable_options, [])
 
   if (!options.length) return null
 

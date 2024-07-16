@@ -1,5 +1,6 @@
 import { Image, ImageProps } from '@graphcommerce/image'
 import { styled, SxProps, Theme } from '@mui/material'
+import { memo } from 'react'
 import { AssetFragment } from './Asset.gql'
 
 export type { AssetFragment } from './Asset.gql'
@@ -18,7 +19,7 @@ type AssetProps = {
   sx?: SxProps<Theme>
 } & Omit<ImageProps, 'src' | 'width' | 'height' | 'alt' | 'sx'>
 
-export function Asset(props: AssetProps) {
+export const Asset = memo<AssetProps>((props) => {
   const { asset, sx = [], ...imgProps } = props
 
   if (isImage(asset)) {
@@ -55,4 +56,4 @@ export function Asset(props: AssetProps) {
 
   if (process.env.NODE_ENV !== 'production') return <div>{asset.mimeType} not supported</div>
   return null
-}
+})

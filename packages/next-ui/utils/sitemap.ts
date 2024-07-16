@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext, GetStaticPathsResult } from 'next'
 import { getServerSideSitemapLegacy, ISitemapField } from 'next-sitemap'
-import { canonicalize } from '../PageMeta/PageMeta'
+import { canonicalize } from '../PageMeta/canonicalize'
 
 export function excludeSitemap(excludes: string[]) {
   const regexp = excludes.map((exclude) => new RegExp(exclude.replace(/\*/g, '.*?')))

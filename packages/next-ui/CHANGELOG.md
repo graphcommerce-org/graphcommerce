@@ -1,5 +1,55 @@
 # Change Log
 
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+## 8.1.0-canary.50
+
+### Patch Changes
+
+- [#2321](https://github.com/graphcommerce-org/graphcommerce/pull/2321) [`fa261d4`](https://github.com/graphcommerce-org/graphcommerce/commit/fa261d4ae600b46ae08c5ca7514163f2da54eead) - Add the possibility to place content before or after the scroller.
+  ([@carlocarels90](https://github.com/carlocarels90))
+
+## 8.1.0-canary.49
+
+### Patch Changes
+
+- [#2317](https://github.com/graphcommerce-org/graphcommerce/pull/2317) [`6c173c7`](https://github.com/graphcommerce-org/graphcommerce/commit/6c173c7bba601413cc5e1c9cf0595b8ec262fb92) - Added new plugin insertion points: `<DocumentHeadStart/>`, `<DocumentHeadEnd/>`, `<DocumentBodyEnd/>`, `<DocumentBodyStart/>` for the \_document.app to allow creating plugins for those locations to insert scripts etc.
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+### Minor Changes
+
+- [#2315](https://github.com/graphcommerce-org/graphcommerce/pull/2315) [`fb9118e`](https://github.com/graphcommerce-org/graphcommerce/commit/fb9118ec819d1b507d4fbde04f2ca34ec01ecf49) - Add guestOrder functionality, remove `size: 'max'` from getStaticProps
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.46
+
+### Patch Changes
+
+- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`59874b5`](https://github.com/graphcommerce-org/graphcommerce/commit/59874b572bda17905dc836554f9a3e31f393eb3e) - Solve issue where the page would reload during development when the first call to /graphql was made.
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.45
+
+### Patch Changes
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`1895176`](https://github.com/graphcommerce-org/graphcommerce/commit/1895176b5776adcf588999ceab7edd6f53cff294) - USPS would be loaded after other pages, causing uneceesasry slowdown
+  ([@paales](https://github.com/paales))
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`74eb239`](https://github.com/graphcommerce-org/graphcommerce/commit/74eb2393a64988649178d59f53b33d41fecdd769) - Added Intl components and replaced usage sites
+  ([@paales](https://github.com/paales))
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`012b865`](https://github.com/graphcommerce-org/graphcommerce/commit/012b86560d93e35dd7ca4a9469ed65e6fb83ead0) - Move arguments of responsiveVal around so the minBreakpoint can be given as third argument
+  ([@paales](https://github.com/paales))
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`223f16a`](https://github.com/graphcommerce-org/graphcommerce/commit/223f16a0e9a7718e52e81a4e2902471a8b78d35c) - LazyHydrate component now accepts a height prop that allows deferring of rendering of the child component when initially rendered on the client. This improves performance.
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.44
 
 ## 8.1.0-canary.43

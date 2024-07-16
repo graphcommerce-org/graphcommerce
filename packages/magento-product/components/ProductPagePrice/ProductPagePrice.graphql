@@ -13,12 +13,6 @@ fragment ProductPagePrice on ProductInterface {
       final_price {
         ...Money
       }
-      fixed_product_taxes {
-        amount {
-          ...Money
-        }
-        label
-      }
     }
   }
   price_tiers {

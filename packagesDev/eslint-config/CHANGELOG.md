@@ -1,5 +1,26 @@
 # Change Log
 
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+## 8.1.0-canary.46
+
+### Patch Changes
+
+- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`fe8fce7`](https://github.com/graphcommerce-org/graphcommerce/commit/fe8fce7f5a82e227ed4a1992415af73fa7d0bb79) - Importing \*.interceptor is NOT allowed
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.45
+
 ## 8.1.0-canary.44
 
 ## 8.1.0-canary.43

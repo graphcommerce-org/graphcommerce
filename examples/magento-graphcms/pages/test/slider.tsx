@@ -92,7 +92,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
   const productList = staticClient.query({
     query: ProductListDocument,
-    variables: { pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
+    variables: { onlyItems: true, pageSize: 8, filters: { category_uid: { eq: 'MTAy' } } },
   })
 
   return {

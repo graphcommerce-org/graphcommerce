@@ -2,9 +2,9 @@ import {
   CheckboxElement,
   FormAutoSubmit,
   FormPersist,
+  TelephoneElement,
   TextFieldElement,
   UseFormComposeOptions,
-  phonePattern,
   useFormCompose,
 } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
@@ -23,8 +23,7 @@ import {
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Form, FormRow } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/macro'
 import { SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { isCartAddressACustomerAddress } from '../../utils/findCustomerAddressFromCartAddress'
@@ -103,6 +102,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           countryCode: currentAddress?.country.code ?? shopCountry, // todo: replace by the default shipping country of the store + geoip,
           saveInAddressBook: true,
           isCompany: Boolean(currentAddress?.company || currentAddress?.vat_id),
+          customerNote: '',
         },
     mode: 'onChange',
     experimental_useV2: true,
@@ -116,7 +116,6 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         telephone: variables.telephone || '000 - 000 0000',
         region: regionId ? variables.region : '',
         regionId,
-        customerNote: '',
         addition: variables.addition ?? '',
       }
     },
@@ -139,16 +138,11 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
       <AddressFields form={form} />
 
       <FormRow>
-        <TextFieldElement
+        <TelephoneElement
           control={form.control}
           name='telephone'
           variant='outlined'
-          type='text'
           required={required.telephone}
-          rules={{
-            pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-          }}
-          label={<Trans id='Telephone' />}
           showValid
         />
       </FormRow>
@@ -156,8 +150,21 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         <CheckboxElement
           control={form.control}
           name='saveInAddressBook'
-          label={<Trans id='Save in address book' />}
+          label={<Trans>Save in address book</Trans>}
         />
+      )}
+
+      {!isVirtual && import.meta.graphCommerce.customerAddressNoteEnable && (
+        <FormRow>
+          <TextFieldElement
+            control={form.control}
+            name='customerNote'
+            label={<Trans>Shipping Note</Trans>}
+            multiline
+            minRows={3}
+            required={required.customerNote}
+          />
+        </FormRow>
       )}
 
       <ApolloCartErrorAlert error={error} />

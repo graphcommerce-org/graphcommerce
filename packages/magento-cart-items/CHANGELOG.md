@@ -1,5 +1,31 @@
 # Change Log
 
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+### Minor Changes
+
+- [#2322](https://github.com/graphcommerce-org/graphcommerce/pull/2322) [`4d08a2b`](https://github.com/graphcommerce-org/graphcommerce/commit/4d08a2bd8c1919bd85b18e8e856775d18fb67e00) - Rename configurable_customizable back to customizable_options
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+## 8.1.0-canary.46
+
+## 8.1.0-canary.45
+
+### Patch Changes
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`c30ac07`](https://github.com/graphcommerce-org/graphcommerce/commit/c30ac07d1e9aee5fb3df483404d8a8ca853c93ce) - Make sure the edit cart item isn't shown for an order
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.44
 
 ## 8.1.0-canary.43

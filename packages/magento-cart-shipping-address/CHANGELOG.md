@@ -1,5 +1,26 @@
 # Change Log
 
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+## 8.1.0-canary.46
+
+### Minor Changes
+
+- [#2313](https://github.com/graphcommerce-org/graphcommerce/pull/2313) [`511e75c`](https://github.com/graphcommerce-org/graphcommerce/commit/511e75c3f8c077e617ed17e5042796e2411f312f) - Add the customerNote field to the shipping and customer address forms
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.45
+
 ## 8.1.0-canary.44
 
 ## 8.1.0-canary.43

@@ -2,23 +2,14 @@ import { useLocale } from '@graphcommerce/next-ui'
 import { i18n, Messages } from '@lingui/core'
 import { I18nProvider, I18nProviderProps } from '@lingui/react'
 import React, { useMemo } from 'react'
-import { normalizeLocale } from '../lib/normalizeLocale'
 import { MessageLoader, SyncMessageLoader } from '../types'
 
 export type LinguiProviderProps = Omit<I18nProviderProps, 'i18n'> & {
   children: React.ReactNode
   loader: MessageLoader
   ssrLoader: SyncMessageLoader
-  /**
-   * @deprecated not necessary anumore
-   */
   locale?: string
 }
-
-/**
- * @deprecated use normalizeLocale
- */
-export const localeConfig = normalizeLocale
 
 export function LinguiProvider(props: LinguiProviderProps) {
   const { loader, ssrLoader, locale, ...i18nProviderProps } = props

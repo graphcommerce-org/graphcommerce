@@ -1,5 +1,5 @@
 mutation UpdateCustomerName($prefix: String, $firstname: String!, $lastname: String!) {
-  updateCustomer(input: { prefix: $prefix, firstname: $firstname, lastname: $lastname }) {
+  updateCustomerV2(input: { prefix: $prefix, firstname: $firstname, lastname: $lastname }) {
     customer {
       prefix
       firstname

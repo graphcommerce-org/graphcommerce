@@ -69,6 +69,8 @@ export type SidebarGalleryProps = {
   disableZoom?: boolean
   disableSticky?: boolean
   variantMd?: SidebarGalleryVariant
+  beforeScroller?: React.ReactNode
+  afterScroller?: React.ReactNode
 } & Pick<ScrollerButtonProps, 'showButtons'>
 
 export function SidebarGallery(props: SidebarGalleryProps) {
@@ -82,6 +84,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     disableZoom = false,
     disableSticky = false,
     variantMd = 'default',
+    beforeScroller,
+    afterScroller,
   } = props
 
   const router = useRouter()
@@ -156,7 +160,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               gridTemplate: '"left" "right"',
               [theme.breakpoints.up('md')]: {
                 '&:not(.variantMdOneColumn)': {
-                  gridTemplate: `"left right" / 1fr calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
+                  gridTemplate: `"left right" / 1fr calc(${responsiveVal(300, 500, undefined, theme.breakpoints.values.lg)} + ${
                     theme.page.horizontal
                   } * 2)`,
                 },
@@ -201,13 +205,11 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   },
                   [theme.breakpoints.up('md')]: {
                     '&:not(.variantMdOneColumn)': {
-                      height: `calc(${dvh(100)} - ${theme.appShell.headerHeightMd} - ${
-                        theme.spacings.lg
-                      })`,
+                      height: `max(${dvh(90)}, 40vw)`,
                       '&.sticky': {
                         position: 'sticky',
+                        top: theme.appShell.headerHeightMd,
                       },
-                      top: theme.appShell.headerHeightMd,
                     },
                   },
                 },
@@ -222,6 +224,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 if (!zoomed) document.body.style.overflow = ''
               }}
             >
+              {beforeScroller}
               <Scroller
                 className={classes.scroller}
                 hideScrollbar
@@ -263,6 +266,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   />
                 ))}
               </Scroller>
+              {afterScroller}
               <MotionBox
                 layout='position'
                 layoutDependency={zoomed}
@@ -374,10 +378,10 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               },
               zoomed && {
                 [theme.breakpoints.up('md')]: {
-                  marginLeft: `calc((${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
+                  marginLeft: `calc((${responsiveVal(300, 500, undefined, theme.breakpoints.values.lg)} + ${
                     theme.page.horizontal
                   } * 2) * -1)`,
-                  left: `calc(${responsiveVal(300, 500, theme.breakpoints.values.lg)} + ${
+                  left: `calc(${responsiveVal(300, 500, undefined, theme.breakpoints.values.lg)} + ${
                     theme.page.horizontal
                   } * 2)`,
                 },

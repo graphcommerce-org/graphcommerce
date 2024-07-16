@@ -1,24 +1,4 @@
-export const FLAGS_STORAGE_KEY = 'gc-flags'
-export const FLAG_PREFIX = 'data'
-
-export function getCssFlagsInitScript() {
-  return (
-    <script
-      id='init-gc-flags'
-      key='mui-color-scheme-init'
-      // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{
-        __html: `(function() {
-try {
-  const flags = JSON.parse(localStorage.getItem('${FLAGS_STORAGE_KEY}') || '{}')
-  Object.entries(flags).forEach(([key, val]) => {
-    document.documentElement.setAttribute('data-' +key, typeof val === 'boolean' ? '' : val)
-  })
-} catch(e){}})();`,
-      }}
-    />
-  )
-}
+import { FLAGS_STORAGE_KEY } from './getCssFlagInitScript'
 
 function loadFlags() {
   const flags = JSON.parse(localStorage.getItem(FLAGS_STORAGE_KEY) || '{}')
@@ -45,9 +25,6 @@ export function setCssFlag(flagName: string, val: true | string) {
   saveFlags(flags)
 }
 
-/**
- * @deprecated flags are not intendend to be used in JS, so this should only be used for debugging purposes.
- */
 export function getCssFlag(flagName: string) {
   return loadFlags()[flagName]
 }

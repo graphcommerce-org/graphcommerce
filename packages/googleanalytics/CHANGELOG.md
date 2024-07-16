@@ -1,5 +1,26 @@
 # Change Log
 
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+### Patch Changes
+
+- [#2317](https://github.com/graphcommerce-org/graphcommerce/pull/2317) [`2f4a61d`](https://github.com/graphcommerce-org/graphcommerce/commit/2f4a61dfee853579c96fceb5351e459aa9524a60) - Moved import locations of Google Analytics and Google Tagmanager scripts to their recommended locations
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+## 8.1.0-canary.46
+
+## 8.1.0-canary.45
+
 ## 8.1.0-canary.44
 
 ## 8.1.0-canary.43

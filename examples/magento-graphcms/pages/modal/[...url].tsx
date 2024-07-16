@@ -91,7 +91,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      size: 'max',
     },
     revalidate: 60 * 20,
   }

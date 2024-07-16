@@ -1,5 +1,41 @@
 # Change Log
 
+## 8.1.0-canary.52
+
+### Minor Changes
+
+- [#2320](https://github.com/graphcommerce-org/graphcommerce/pull/2320) [`dc5e85c`](https://github.com/graphcommerce-org/graphcommerce/commit/dc5e85c95dad6145fde02a6e54f0fbd1cdfe9e3d) - Replace depricated updateCustomer mutations with updateCustomerV2
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.51
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+### Patch Changes
+
+- [#2317](https://github.com/graphcommerce-org/graphcommerce/pull/2317) [`ff95ab3`](https://github.com/graphcommerce-org/graphcommerce/commit/ff95ab31ee6e00c86cd9e96031f7babbd20e4280) - useSignInForm now optionally expects an email
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.48
+
+### Minor Changes
+
+- [#2319](https://github.com/graphcommerce-org/graphcommerce/pull/2319) [`a3409e8`](https://github.com/graphcommerce-org/graphcommerce/commit/a3409e8a629ee95413da6547cbdcf48aa2502c23) - Created a new TelephoneElement component to make re-use easier
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.47
+
+### Minor Changes
+
+- [#2315](https://github.com/graphcommerce-org/graphcommerce/pull/2315) [`fb9118e`](https://github.com/graphcommerce-org/graphcommerce/commit/fb9118ec819d1b507d4fbde04f2ca34ec01ecf49) - Add guestOrder functionality, remove `size: 'max'` from getStaticProps
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.46
+
+## 8.1.0-canary.45
+
 ## 8.1.0-canary.44
 
 ## 8.1.0-canary.43

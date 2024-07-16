@@ -147,6 +147,12 @@ module.exports = {
             message: 'Import from @mui/material instead of @emotion/react.',
           },
         ],
+        patterns: [
+          {
+            group: ['*.interceptor'],
+            message: 'Importing *.interceptor is NOT allowed',
+          },
+        ],
       },
     ],
   },

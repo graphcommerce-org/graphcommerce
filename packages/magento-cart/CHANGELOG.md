@@ -1,5 +1,26 @@
 # Change Log
 
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+## 8.1.0-canary.46
+
+## 8.1.0-canary.45
+
+### Patch Changes
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`2faebf1`](https://github.com/graphcommerce-org/graphcommerce/commit/2faebf16fbda95390872ac0debe979fa570ed904) - When signing in make sure the cart isn't merged if the login is unsuccesful
+  ([@paales](https://github.com/paales))
+
 ## 8.1.0-canary.44
 
 ## 8.1.0-canary.43

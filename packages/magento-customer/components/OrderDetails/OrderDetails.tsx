@@ -3,8 +3,8 @@ import {
   iconInvoice,
   IconSvg,
   extendableComponent,
-  useDateTimeFormat,
   breakpointVal,
+  DateTimeFormat,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, SxProps, Theme, Typography, lighten } from '@mui/material'
@@ -38,8 +38,6 @@ export function OrderDetails(props: OrderDetailsProps) {
     invoices,
     sx = [],
   } = props
-
-  const dateFormatter = useDateTimeFormat({ year: 'numeric', month: 'long', day: 'numeric' })
 
   return (
     <SectionContainer
@@ -99,7 +97,7 @@ export function OrderDetails(props: OrderDetailsProps) {
             className={classes.orderDetailTitle}
             sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '4px' } }}
           >
-            <Typography>{order_date && dateFormatter.format(new Date(order_date))}</Typography>
+            <DateTimeFormat>{order_date}</DateTimeFormat>
           </SectionContainer>
         </Box>
 

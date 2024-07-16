@@ -1,4 +1,9 @@
-import { useUp, usePrevUp, usePageContext } from '@graphcommerce/framer-next-pages'
+import {
+  useUp,
+  usePrevUp,
+  usePageContext,
+  usePrevPageRouter,
+} from '@graphcommerce/framer-next-pages'
 import { i18n } from '@lingui/core'
 import { Box, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -41,6 +46,7 @@ export function LayoutHeaderBack(props: BackProps) {
   const up = useUp()
   const prevUp = usePrevUp()
   const { backSteps } = usePageContext()
+  const prevPageRouter = usePrevPageRouter()
 
   const backIcon = <IconSvg src={iconChevronLeft} size='medium' />
   const canClickBack = backSteps > 0 && path !== prevUp?.href
@@ -48,6 +54,8 @@ export function LayoutHeaderBack(props: BackProps) {
   let label = i18n._(/* i18n */ 'Back')
   if (up?.href === path && up?.title) label = up.title
   if (prevUp?.href === path && prevUp?.title) label = prevUp.title
+
+  if (up && prevPageRouter?.asPath === up?.href) label = up.title
 
   if (canClickBack) {
     return (
