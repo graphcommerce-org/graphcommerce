@@ -4,6 +4,7 @@ import {
   WaitForCustomer,
   OrderDetailPageDocument,
   CancelOrderForm,
+  canCancelOrder,
 } from '@graphcommerce/magento-customer'
 import {
   CountryRegionsDocument,
@@ -35,8 +36,7 @@ function CancelOrderPage(props: Props) {
   const { data } = orders
   const order = data?.customer?.orders?.items?.[0]
 
-  const canCancelOrder =
-    (order?.status === 'Pending' || order?.status === 'Processing') && !order.shipments?.length
+  const cancelOrder = order && canCancelOrder(order)
 
   return (
     <>
@@ -58,7 +58,7 @@ function CancelOrderPage(props: Props) {
             </LayoutTitle>
           )}
 
-          {order && !canCancelOrder && (
+          {order && !cancelOrder && (
             <LayoutTitle
               icon={iconBin}
               gutterBottom={false}
@@ -68,7 +68,7 @@ function CancelOrderPage(props: Props) {
             </LayoutTitle>
           )}
 
-          {orderId && order && canCancelOrder && (
+          {orderId && order && cancelOrder && (
             <>
               <LayoutTitle
                 icon={iconBin}

@@ -8,6 +8,7 @@ import {
   OrderItems,
   OrderDetailPageDocument,
   OrderStateLabel,
+  OrderActionButtons,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -68,9 +69,9 @@ function OrderDetailPage() {
                 metaRobots={['noindex']}
               />
               <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
-                <OrderStateLabel items={order.items} />
+                <OrderStateLabel {...order} />
               </Typography>
-
+              <OrderActionButtons isCustomerOrder {...order} />
               <OrderDetails {...order} />
               <OrderItems {...order} images={images} />
               <OrderTotals {...order} />
