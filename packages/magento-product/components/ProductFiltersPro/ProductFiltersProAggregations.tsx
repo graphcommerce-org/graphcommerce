@@ -1,3 +1,4 @@
+import { AttributeFrontendInputEnum } from '@graphcommerce/graphql-mesh'
 import { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
 import { ProductFilterEqualChip } from './ProductFilterEqualChip'
 import { ProductFilterEqualSection } from './ProductFilterEqualSection'
@@ -11,20 +12,24 @@ export type FilterProps = {
   aggregation: NonNullable<NonNullable<ProductListFiltersFragment['aggregations']>[number]>
 }
 
-export type FilterRenderer = Record<string, React.FC<FilterProps>>
+export type FilterRenderer = Record<AttributeFrontendInputEnum, React.FC<FilterProps>>
 
 export type ProductFiltersProAggregationsProps = {
-  renderer?: FilterRenderer
+  renderer?: Partial<FilterRenderer>
 }
 
-export const productFiltersProSectionRenderer = {
-  FilterRangeTypeInput: ProductFilterRangeSection,
-  FilterEqualTypeInput: ProductFilterEqualSection,
+export const productFiltersProSectionRenderer: Partial<FilterRenderer> = {
+  SELECT: ProductFilterEqualSection,
+  MULTISELECT: ProductFilterEqualSection,
+  BOOLEAN: ProductFilterEqualSection,
+  PRICE: ProductFilterRangeSection,
 }
 
-export const productFiltersProChipRenderer = {
-  FilterEqualTypeInput: ProductFilterEqualChip,
-  FilterRangeTypeInput: ProductFilterRangeChip,
+export const productFiltersProChipRenderer: Partial<FilterRenderer> = {
+  SELECT: ProductFilterEqualChip,
+  MULTISELECT: ProductFilterEqualChip,
+  BOOLEAN: ProductFilterEqualChip,
+  PRICE: ProductFilterRangeChip,
 }
 
 export function ProductFiltersProAggregations(props: ProductFiltersProAggregationsProps) {
@@ -36,7 +41,10 @@ export function ProductFiltersProAggregations(props: ProductFiltersProAggregatio
       {excludeCategory(applyAggregationCount(aggregations, appliedAggregations, params)).map(
         (aggregation) => {
           const filterType = filterTypes[aggregation.attribute_code]
-          if (!filterType) return null
+          if (!filterType) {
+            console.log('Filter not recognized', aggregation.attribute_code, filterTypes)
+            return null
+          }
 
           const Component = renderer?.[filterType]
           if (!Component) {
