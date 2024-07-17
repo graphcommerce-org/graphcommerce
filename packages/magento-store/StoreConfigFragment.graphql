@@ -30,5 +30,8 @@ fragment StoreConfigFragment on StoreConfig {
   grid_per_page
   grid_per_page_values
   list_per_page
-  create_account_confirmation
+  order_cancellation_enabled
+  order_cancellation_reasons {
+    description
+  }
 }

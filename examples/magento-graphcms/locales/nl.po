@@ -22,6 +22,10 @@ msgid "I understand that my account will be deleted and this can not be undone."
 msgstr "Ik begrijp dat mijn account zal worden verwijderd en dat dit niet ongedaan kan worden gemaakt."
 
 #. js-lingui-generated-id
+msgid "Orders"
+msgstr "Bestellingen"
+
+#. js-lingui-generated-id
 msgid "Newletter"
 msgstr "Nieuwsbrief"
 
@@ -32,6 +36,14 @@ msgstr "Zoek alle producten..."
 #. js-lingui-generated-id
 msgid "We couldn't find any results"
 msgstr "We konden geen resultaten vinden"
+
+#. js-lingui-generated-id
+msgid "Shipping method"
+msgstr "Verzendmethode"
+
+#. js-lingui-generated-id
+msgid "I understand that my order will be canceled and this can not be undone."
+msgstr "Ik begrijp dat mijn bestelling wordt geannuleerd en dat dit niet ongedaan kan worden gemaakt."
 
 #. js-lingui-generated-id
 msgid "<0>{name}</0> has been added to your shopping cart!"
@@ -280,6 +292,10 @@ msgid "Discover our collection and write your first review!"
 msgstr "Ontdek onze collectie en schrijf uw eerste review!"
 
 #. js-lingui-generated-id
+msgid "Payment method"
+msgstr "Betaalmethode"
+
+#. js-lingui-generated-id
 msgid "Did you mean: {list}"
 msgstr "Bedoelde u: {list}"
 
@@ -343,6 +359,10 @@ msgstr "Wachtwoord vergeten?"
 
 msgid "Free"
 msgstr "Gratis"
+
+#. js-lingui-generated-id
+msgid "Order #{orderId} not found"
+msgstr "Order #{orderId} niet gevonden"
 
 msgid "Grand total"
 msgstr "Totaal"
@@ -423,6 +443,10 @@ msgstr "Dhr"
 msgid "Mrs"
 msgstr "Mvr"
 
+#. js-lingui-generated-id
+msgid "Order has successfully been canceled"
+msgstr "Bestelling is geannuleerd"
+
 msgid "Name"
 msgstr "Naam"
 
@@ -455,9 +479,6 @@ msgstr "Nog geen account?"
 
 msgid "No orders found"
 msgstr "Geen bestellingen gevonden"
-
-msgid "No payment information"
-msgstr "Geen betalingsinformatie"
 
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "Geen zorgen! Vul uw e-mailadres in en we sturen een email met instructies om het wachtwoord te resetten."
@@ -492,18 +513,6 @@ msgstr "Bestelling #{orderId}"
 
 msgid "Order before 22:00"
 msgstr "Bestel voor 22:00"
-
-msgid "Order date"
-msgstr "Besteldatum"
-
-msgid "Order details"
-msgstr "Besteldetails"
-
-msgid "Order not found"
-msgstr "Bestelling niet gevonden"
-
-msgid "Order number"
-msgstr "Bestelnummer"
 
 msgid "Order summary"
 msgstr "Besteloverzicht"
@@ -818,6 +827,10 @@ msgstr "Probeer een andere zoekopdracht"
 msgid "VAT Number"
 msgstr "BTW-nummer"
 
+#. js-lingui-generated-id
+msgid "Reason"
+msgstr "Reden"
+
 msgid "View Product"
 msgstr "Bekijk product"
 
@@ -871,6 +884,10 @@ msgstr "Geschreven door {nickname}"
 
 msgid "Written {0} reviews"
 msgstr "{0} reviews geschreven"
+
+#. js-lingui-generated-id
+msgid "Are you sure you want to cancel your order? This action is not reversable."
+msgstr "Weet je zeker dat je je bestelling wilt annuleren? Deze actie kan niet ongedaan worden gemaakt."
 
 msgid "You are reviewing {0}"
 msgstr "U reviewt {0}"
@@ -967,12 +984,32 @@ msgid "canceled"
 msgstr "geannuleerd"
 
 #. js-lingui-generated-id
+msgid "Shipping address"
+msgstr "Verzendadres"
+
+#. js-lingui-generated-id
 msgid "Shipping Note"
 msgstr "Verzendnotitie"
 
 #. js-lingui-generated-id
+msgid "Order #{orderId}"
+msgstr "Bestelling #{orderId}"
+
+#. js-lingui-generated-id
 msgid "Invalid phone number"
 msgstr "Ongeldig telefoonnummer"
+
+#. js-lingui-generated-id
+msgid "Billing address"
+msgstr "Factuuradres"
+
+#. js-lingui-generated-id
+msgid "Order date"
+msgstr "Besteldatum"
+
+#. js-lingui-generated-id
+msgid "Back"
+msgstr "Terug"
 
 msgid "invoiced"
 msgstr "gefactureerd"
@@ -984,6 +1021,10 @@ msgstr "Bestelnummer"
 #. js-lingui-generated-id
 msgid "All products"
 msgstr "Alle producten"
+
+#. js-lingui-generated-id
+msgid "No payment information"
+msgstr "Geen betalingsinformatie"
 
 #. js-lingui-generated-id
 msgid "View shopping cart"
@@ -999,11 +1040,19 @@ msgstr "Bestelling belijken"
 msgid "one product"
 msgstr "één product"
 
+#. js-lingui-generated-id
+msgid "Cancel order #{orderId}"
+msgstr "Annuleer bestelling #{orderId}"
+
 msgid "partially processed"
 msgstr "gedeeltelijk verwerkt"
 
 msgid "processed"
 msgstr "verwerkt"
+
+#. js-lingui-generated-id
+msgid "Order #{orderId} can not be canceled"
+msgstr "Bestelling #{orderId} kan niet worden geannuleerd"
 
 msgid "refunded"
 msgstr "terug betaald"
@@ -1011,8 +1060,20 @@ msgstr "terug betaald"
 msgid "returned"
 msgstr "terug gestuurd"
 
+#. js-lingui-generated-id
+msgid "Order not found"
+msgstr "Bestelling niet gevonden"
+
 msgid "shipped"
 msgstr "verzonden"
+
+#. js-lingui-generated-id
+msgid "Cancel order"
+msgstr "Bestelling annuleren"
+
+#. js-lingui-generated-id
+msgid "Reorder"
+msgstr "Nabestellen"
 
 #. js-lingui-generated-id
 msgid "Customer Service"
@@ -1021,6 +1082,10 @@ msgstr "Klantenservice"
 #. js-lingui-generated-id
 msgid "The given email does not match the account email"
 msgstr "Het opgegeven e-mailadres komt niet overeen met het account e-mailadres"
+
+#. js-lingui-generated-id
+msgid "Order details"
+msgstr "Bestelgegevens"
 
 #. js-lingui-generated-id
 msgid "Clear current filters"

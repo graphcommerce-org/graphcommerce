@@ -18,7 +18,7 @@ import {
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/macro'
 import { Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
@@ -42,14 +42,14 @@ function OrderDetailPage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconBox}>
-          <Trans id='Order #{orderId}' values={{ orderId }} />
+          <Trans>Order #{orderId}</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <WaitForCustomer waitFor={orders}>
           {(!orderId || !order) && (
             <IconHeader src={iconBox} size='large'>
-              <Trans id='Order not found' />
+              <Trans>Order not found</Trans>
             </IconHeader>
           )}
 
@@ -58,7 +58,7 @@ function OrderDetailPage() {
             gutterBottom={false}
             sx={(theme) => ({ mb: theme.spacings.xxs })}
           >
-            <Trans id='Order #{orderId}' values={{ orderId }} />
+            <Trans>Order #{orderId}</Trans>
           </LayoutTitle>
 
           {orderId && order && (
@@ -70,6 +70,7 @@ function OrderDetailPage() {
               <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
                 <OrderStateLabel items={order.items} />
               </Typography>
+
               <OrderDetails {...order} />
               <OrderItems {...order} images={images} />
               <OrderTotals {...order} />

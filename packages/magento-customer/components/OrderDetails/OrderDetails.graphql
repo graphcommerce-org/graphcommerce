@@ -1,6 +1,8 @@
 fragment OrderDetails on CustomerOrder {
+  id
   number
   order_date
+  status
   invoices {
     id
     number
