@@ -1,3 +1,5 @@
+import { useQuery } from '@graphcommerce/graphql'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   SectionContainer,
   iconInvoice,
@@ -11,8 +13,6 @@ import { Box, Button, SxProps, Theme, Typography, lighten } from '@mui/material'
 import { AddressMultiLine } from '../AddressMultiLine/AddressMultiLine'
 import { TrackingLink } from '../TrackingLink/TrackingLink'
 import { OrderDetailsFragment } from './OrderDetails.gql'
-import { useQuery } from '@graphcommerce/graphql'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
 
 export type OrderDetailsProps = Partial<OrderDetailsFragment> & {
   sx?: SxProps<Theme>
