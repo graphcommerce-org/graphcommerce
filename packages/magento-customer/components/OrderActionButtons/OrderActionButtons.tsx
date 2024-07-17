@@ -4,6 +4,7 @@ import { Box } from '@mui/material'
 import { canCancelOrder } from '../../utils'
 import { OrderDetailsFragment } from '../OrderDetails/OrderDetails.gql'
 import { OrderItemsFragment } from '../OrderItems/OrderItems.gql'
+import { ReorderItems } from '../ReorderItems/ReorderItems'
 
 export type OrderActionButtonsProps = OrderDetailsFragment &
   OrderItemsFragment & {
@@ -12,17 +13,14 @@ export type OrderActionButtonsProps = OrderDetailsFragment &
 
 export function OrderActionButtons(props: OrderActionButtonsProps) {
   const cancelOrder = canCancelOrder(props)
-  const { number, isCustomerOrder = false } = props
+  const { number, items, isCustomerOrder = false } = props
   return (
     <Box
       sx={[
         (theme) => ({ display: 'flex', justifyContent: 'space-between', mb: theme.spacings.xxs }),
       ]}
     >
-      {/* Placeholder, will be further inplemented in: GCOM-1406 */}
-      <Button variant='contained' color='primary'>
-        <Trans>Reorder</Trans>
-      </Button>
+      <ReorderItems orderNumber={number} items={items} />
       {cancelOrder && isCustomerOrder && (
         <Button variant='contained' color='error' href={`account/orders/cancel?orderId=${number}`}>
           <Trans>Cancel order</Trans>

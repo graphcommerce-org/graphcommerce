@@ -6,6 +6,7 @@ import { Box, Typography } from '@mui/material'
 import { useMemo } from 'react'
 import { useOrderCardItemImages } from '../../hooks'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError'
+import { OrderActionButtons } from '../OrderActionButtons/OrderActionButtons'
 import { OrderDetails } from '../OrderDetails/OrderDetails'
 import { OrderTotals } from '../OrderDetails/OrderTotals'
 import { OrderItems } from '../OrderItems/OrderItems'
@@ -89,6 +90,7 @@ export function GuestOrderOverviewForm() {
           <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
             <OrderStateLabel items={orderData?.guestOrder.items} />
           </Typography>
+          <OrderActionButtons {...orderData?.guestOrder} />
           <OrderDetails {...orderData?.guestOrder} />
           <OrderItems {...orderData?.guestOrder} images={images} />
           <OrderTotals {...orderData?.guestOrder} />
