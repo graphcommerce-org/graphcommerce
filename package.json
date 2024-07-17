@@ -59,12 +59,12 @@
     "@playwright/test": "1.45.1",
     "@types/event-stream": "^4.0.5",
     "@types/jest": "^29.5.12",
-    "eslint": "9.6.0",
+    "eslint": "^9.7.0",
     "event-stream": "^4.0.1",
     "jest": "next",
     "jest-diff": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "prettier": "3.3.2",
+    "prettier": "3.3.3",
     "typescript": "5.5.3"
   },
   "resolutions": {

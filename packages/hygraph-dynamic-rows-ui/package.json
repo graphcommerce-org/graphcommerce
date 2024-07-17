@@ -18,18 +18,18 @@
   "dependencies": {
     "@apollo/client": "~3.10.8",
     "@graphcommerce/next-config": "8.1.0-canary.52",
-    "@hygraph/app-sdk-react": "^0.0.3",
+    "@hygraph/app-sdk-react": "^0.0.4",
     "@lingui/core": "^4.11.2",
     "@lingui/macro": "^4.11.2",
     "@lingui/react": "^4.11.2",
-    "@mui/material": "5.16.0",
+    "@mui/material": "5.16.4",
     "cross-env": "^7.0.3",
     "dotenv": "16.4.5",
     "graphql": "^16.9.0",
-    "next": "14.2.4",
+    "next": "14.2.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "webpack": "~5.92.1"
+    "webpack": "~5.93.0"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "8.1.0-canary.52",
@@ -37,8 +37,8 @@
     "@graphcommerce/typescript-config-pwa": "8.1.0-canary.52",
     "@types/react-is": "^18.3.0",
     "babel-plugin-macros": "^3.1.0",
-    "eslint": "9.6.0",
-    "prettier": "3.3.2",
+    "eslint": "^9.7.0",
+    "prettier": "3.3.3",
     "typescript": "5.5.3"
   }
 }

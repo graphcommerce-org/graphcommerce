@@ -18,7 +18,7 @@
     "@swc/core": "1.6.13",
     "@swc/wasm-web": "^1.6.7",
     "circular-dependency-plugin": "^5.2.2",
-    "glob": "^10.4.3",
+    "glob": "^10.4.5",
     "inspectpack": "^4.7.1",
     "js-yaml-loader": "^1.2.2",
     "lodash": "^4.17.21",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@types/circular-dependency-plugin": "^5.0.8",
-    "@types/lodash": "^4.17.6",
+    "@types/lodash": "^4.17.7",
     "typescript": "5.5.3"
   },
   "peerDependencies": {

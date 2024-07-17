@@ -17,7 +17,7 @@
     "@graphql-mesh/transform-prune": "latest",
     "@graphql-mesh/types": "latest",
     "@graphql-mesh/utils": "latest",
-    "@graphql-tools/utils": "^10.0.12",
+    "@graphql-tools/utils": "^10.3.2",
     "@whatwg-node/fetch": "^0.9.18",
     "fetch-retry": "^5.0.6",
     "long": "^5.2.3",

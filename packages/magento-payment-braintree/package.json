@@ -15,7 +15,7 @@
     "@types/braintree-web": "^3.96.12"
   },
   "dependencies": {
-    "braintree-web": "^3.102.0"
+    "braintree-web": "^3.103.0"
   },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^8.1.0-canary.52",
