@@ -55,8 +55,9 @@ export async function getFilterTypes(
   const typeMap: FilterTypes = Object.fromEntries(
     filterInputTypes.data?.__type.inputFields
       .map<[string, AttributeFrontendInputEnum] | undefined>((field) => {
-        if (field.type.name === 'FilterEqualTypeInput') return [field.type.name, 'SELECT']
-        if (field.type.name === 'FilterMatchTypeInput') return [field.type.name, 'TEXT']
+        if (field.type.name === 'FilterEqualTypeInput') return [field.name, 'SELECT']
+        if (field.type.name === 'FilterRangeTypeInput') return [field.name, 'PRICE']
+        if (field.type.name === 'FilterMatchTypeInput') return [field.name, 'TEXT']
         return undefined
       })
       .filter(nonNullable),
