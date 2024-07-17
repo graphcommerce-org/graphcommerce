@@ -1,11 +1,14 @@
 import { Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Box } from '@mui/material'
-import { OrderProps, canCancelOrder } from '../../utils'
+import { canCancelOrder } from '../../utils'
+import { OrderDetailsFragment } from '../OrderDetails/OrderDetails.gql'
+import { OrderItemsFragment } from '../OrderItems/OrderItems.gql'
 
-export type OrderActionButtonsProps = OrderProps & {
-  isCustomerOrder?: boolean
-}
+export type OrderActionButtonsProps = OrderDetailsFragment &
+  OrderItemsFragment & {
+    isCustomerOrder?: boolean
+  }
 
 export function OrderActionButtons(props: OrderActionButtonsProps) {
   const cancelOrder = canCancelOrder(props)

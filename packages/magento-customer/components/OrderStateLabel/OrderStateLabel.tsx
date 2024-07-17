@@ -1,9 +1,9 @@
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, SxProps, Theme } from '@mui/material'
-import { OrderProps, OrderState, getOrderState } from '../../utils'
+import { OrderStateProps, OrderState, getOrderState } from '../../utils'
 
-type OrderStateLabelPropsBase = OrderProps
+type OrderStateLabelPropsBase = OrderStateProps
 
 export type OrderStateRenderer = Record<
   OrderState,

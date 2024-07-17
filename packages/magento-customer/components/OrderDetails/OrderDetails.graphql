@@ -11,9 +11,7 @@ fragment OrderDetails on CustomerOrder {
   shipments {
     id
     tracking {
-      title
-      carrier
-      number
+      ...TrackingLink
     }
   }
   payment_methods {

@@ -96,7 +96,7 @@ export function OrderCard(props: OrderCardProps) {
           <span>#{number}</span>
         </OrderRow>
         <OrderRow>
-          <OrderStateLabel items={items} />
+          <OrderStateLabel {...props} />
         </OrderRow>
         <Box className={classes.orderProducts}>
           <Box

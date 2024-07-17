@@ -1,5 +1,5 @@
 import { OrderDetailsFragment } from '../components/OrderDetails/OrderDetails.gql'
-import { OrderItemsFragment } from '../components/OrderItems/OrderItems.gql'
+import { OrderStateLabelFragment } from '../components/OrderStateLabel/OrderStateLabel.gql'
 
 export type OrderState =
   | 'Ordered'
@@ -10,9 +10,10 @@ export type OrderState =
   | 'Returned'
   | 'Pending'
 
-export type OrderProps = OrderDetailsFragment & OrderItemsFragment
+export type OrderStateProps = Pick<OrderDetailsFragment, 'shipping_address' | 'shipments'> &
+  OrderStateLabelFragment
 
-export function getOrderState(props: OrderProps) {
+export function getOrderState(props: OrderStateProps) {
   const { items, shipping_address } = props
 
   let orderState: OrderState = 'Pending'
@@ -34,7 +35,7 @@ export function getOrderState(props: OrderProps) {
   return orderState
 }
 
-export function canCancelOrder(props: OrderProps) {
+export function canCancelOrder(props: OrderStateProps) {
   const state = getOrderState(props)
   const { shipments } = props
 
