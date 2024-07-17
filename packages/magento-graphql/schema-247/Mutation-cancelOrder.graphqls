@@ -32,3 +32,18 @@ type Mutation {
   """
   cancelOrder(input: CancelOrderInput!): CancelOrderOutput @deprecated(reason: "Magento >= 2.4.7")
 }
+
+type CancellationReason {
+  description: String!
+}
+
+type StoreConfig {
+  """
+  Indicates whether orders can be cancelled by customers or not.
+  """
+  order_cancellation_enabled: Boolean!
+  """
+  An array containing available cancellation reasons.
+  """
+  order_cancellation_reasons: [CancellationReason]!
+}
