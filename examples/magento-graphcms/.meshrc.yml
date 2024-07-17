@@ -24,7 +24,7 @@ sources:
     handler:
       graphql:
         endpoint: '{graphCommerce.magentoEndpoint}'
-        useGETForQueries: false
+        useGETForQueries: true
         batch: false
         operationHeaders:
           Store: '{context.headers.store}'

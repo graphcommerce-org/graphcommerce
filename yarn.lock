@@ -5422,19 +5422,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/delegate@npm:^10.0.11, @graphql-tools/delegate@npm:^10.0.12, @graphql-tools/delegate@npm:^10.0.4":
-  version: 10.0.13
-  resolution: "@graphql-tools/delegate@npm:10.0.13"
+"@graphql-tools/delegate@npm:10.0.10":
+  version: 10.0.10
+  resolution: "@graphql-tools/delegate@npm:10.0.10"
   dependencies:
     "@graphql-tools/batch-execute": "npm:^9.0.4"
-    "@graphql-tools/executor": "npm:^1.2.8"
-    "@graphql-tools/schema": "npm:^10.0.4"
-    "@graphql-tools/utils": "npm:^10.2.3"
+    "@graphql-tools/executor": "npm:^1.2.1"
+    "@graphql-tools/schema": "npm:^10.0.3"
+    "@graphql-tools/utils": "npm:^10.0.13"
     dataloader: "npm:^2.2.2"
     tslib: "npm:^2.5.0"
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: 10c0/defa99544290f0e5126f5c795470878de9ca4f8c1a9aec370031439625fab06c6135d15a0c6bc079c971a5210a23f01b7cb90f2c1d67f8f8c077e2f14bca4f92
+  checksum: 10c0/b132f123ac3a9d5d8be8984704674ca09747e7e6308da63e09f8db35fdc210853ad8a2ed5184e27ce18af3324a3739149258b35069c74a927f5a320d551c30cf
   languageName: node
   linkType: hard
 
@@ -5498,7 +5498,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/executor@npm:^1.2.5, @graphql-tools/executor@npm:^1.2.8":
+"@graphql-tools/executor@npm:^1.2.1, @graphql-tools/executor@npm:^1.2.5, @graphql-tools/executor@npm:^1.2.8":
   version: 1.2.8
   resolution: "@graphql-tools/executor@npm:1.2.8"
   dependencies:
