@@ -2996,6 +2996,7 @@ __metadata:
     "@types/react": "npm:^18.3.3"
     "@types/react-dom": "npm:^18.3.0"
     "@types/react-is": "npm:^18.3.0"
+    "@unts/patch-package": "npm:^8.0.0"
     babel-plugin-macros: "npm:^3.1.0"
     concurrently: "npm:8.2.2"
     cross-env: "npm:^7.0.3"
@@ -3005,7 +3006,6 @@ __metadata:
     graphql: "npm:^16.9.0"
     next: "npm:14.2.5"
     next-sitemap: "npm:4.2.3"
-    patch-package: "npm:8.0.0"
     prettier: "npm:3.3.3"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
@@ -3051,6 +3051,7 @@ __metadata:
     "@types/react": "npm:^18.3.3"
     "@types/react-dom": "npm:^18.3.0"
     "@types/react-is": "npm:^18.3.0"
+    "@unts/patch-package": "npm:^8.0.0"
     babel-plugin-macros: "npm:^3.1.0"
     concurrently: "npm:8.2.2"
     cross-env: "npm:^7.0.3"
@@ -3060,7 +3061,6 @@ __metadata:
     graphql: "npm:^16.9.0"
     next: "npm:14.2.5"
     next-sitemap: "npm:4.2.3"
-    patch-package: "npm:8.0.0"
     prettier: "npm:3.3.3"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
@@ -3422,6 +3422,7 @@ __metadata:
     "@types/react": "npm:^18.3.3"
     "@types/react-dom": "npm:^18.3.0"
     "@types/react-is": "npm:^18.3.0"
+    "@unts/patch-package": "npm:^8.0.0"
     babel-plugin-macros: "npm:^3.1.0"
     concurrently: "npm:8.2.2"
     cross-env: "npm:^7.0.3"
@@ -3431,7 +3432,6 @@ __metadata:
     graphql: "npm:^16.9.0"
     next: "npm:14.2.5"
     next-sitemap: "npm:4.2.3"
-    patch-package: "npm:8.0.0"
     prettier: "npm:3.3.3"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
@@ -3960,6 +3960,7 @@ __metadata:
     "@types/react": "npm:^18.3.3"
     "@types/react-dom": "npm:^18.3.0"
     "@types/react-is": "npm:^18.3.0"
+    "@unts/patch-package": "npm:^8.0.0"
     babel-plugin-macros: "npm:^3.1.0"
     concurrently: "npm:8.2.2"
     cross-env: "npm:^7.0.3"
@@ -3968,7 +3969,6 @@ __metadata:
     framer-motion: "npm:10.18.0"
     graphql: "npm:^16.9.0"
     next: "npm:14.2.5"
-    patch-package: "npm:8.0.0"
     prettier: "npm:3.3.3"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
@@ -5422,19 +5422,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/delegate@npm:10.0.10":
-  version: 10.0.10
-  resolution: "@graphql-tools/delegate@npm:10.0.10"
+"@graphql-tools/delegate@npm:^10.0.11, @graphql-tools/delegate@npm:^10.0.12, @graphql-tools/delegate@npm:^10.0.4":
+  version: 10.0.13
+  resolution: "@graphql-tools/delegate@npm:10.0.13"
   dependencies:
     "@graphql-tools/batch-execute": "npm:^9.0.4"
-    "@graphql-tools/executor": "npm:^1.2.1"
-    "@graphql-tools/schema": "npm:^10.0.3"
-    "@graphql-tools/utils": "npm:^10.0.13"
+    "@graphql-tools/executor": "npm:^1.2.8"
+    "@graphql-tools/schema": "npm:^10.0.4"
+    "@graphql-tools/utils": "npm:^10.2.3"
     dataloader: "npm:^2.2.2"
     tslib: "npm:^2.5.0"
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: 10c0/b132f123ac3a9d5d8be8984704674ca09747e7e6308da63e09f8db35fdc210853ad8a2ed5184e27ce18af3324a3739149258b35069c74a927f5a320d551c30cf
+  checksum: 10c0/defa99544290f0e5126f5c795470878de9ca4f8c1a9aec370031439625fab06c6135d15a0c6bc079c971a5210a23f01b7cb90f2c1d67f8f8c077e2f14bca4f92
   languageName: node
   linkType: hard
 
@@ -5498,7 +5498,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/executor@npm:^1.2.1, @graphql-tools/executor@npm:^1.2.5, @graphql-tools/executor@npm:^1.2.8":
+"@graphql-tools/executor@npm:^1.2.5, @graphql-tools/executor@npm:^1.2.8":
   version: 1.2.8
   resolution: "@graphql-tools/executor@npm:1.2.8"
   dependencies:
@@ -8231,6 +8231,31 @@ __metadata:
     "@typescript-eslint/types": "npm:7.16.1"
     eslint-visitor-keys: "npm:^3.4.3"
   checksum: 10c0/060bc6770ba3ea271c6a844501f4dfee1b8842a0c405e60d2a258466b1b4e66086234a3fddac8745bb1a39a89eab29afeaf16133ad925bd426ac8fdb13fb7f94
+  languageName: node
+  linkType: hard
+
+"@unts/patch-package@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "@unts/patch-package@npm:8.0.0"
+  dependencies:
+    "@yarnpkg/lockfile": "npm:^1.1.0"
+    chalk: "npm:^4.1.2"
+    ci-info: "npm:^3.7.0"
+    cross-spawn: "npm:^7.0.3"
+    find-yarn-workspace-root: "npm:^2.0.0"
+    fs-extra: "npm:^9.0.0"
+    json-stable-stringify: "npm:^1.0.2"
+    klaw-sync: "npm:^6.0.0"
+    minimist: "npm:^1.2.6"
+    open: "npm:^7.4.2"
+    rimraf: "npm:^2.6.3"
+    semver: "npm:^7.5.3"
+    slash: "npm:^2.0.0"
+    tmp: "npm:^0.0.33"
+    yaml: "npm:^2.2.2"
+  bin:
+    patch-package: index.js
+  checksum: 10c0/7c589cd02e8f53134f516b8a34498054f8823aafcf227372f1c6bab0914857210a5bcf47535a981103e00f77aaaed16482ef0c085442241f4bfbe6766ea68d75
   languageName: node
   linkType: hard
 
@@ -16128,31 +16153,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"patch-package@npm:8.0.0":
-  version: 8.0.0
-  resolution: "patch-package@npm:8.0.0"
-  dependencies:
-    "@yarnpkg/lockfile": "npm:^1.1.0"
-    chalk: "npm:^4.1.2"
-    ci-info: "npm:^3.7.0"
-    cross-spawn: "npm:^7.0.3"
-    find-yarn-workspace-root: "npm:^2.0.0"
-    fs-extra: "npm:^9.0.0"
-    json-stable-stringify: "npm:^1.0.2"
-    klaw-sync: "npm:^6.0.0"
-    minimist: "npm:^1.2.6"
-    open: "npm:^7.4.2"
-    rimraf: "npm:^2.6.3"
-    semver: "npm:^7.5.3"
-    slash: "npm:^2.0.0"
-    tmp: "npm:^0.0.33"
-    yaml: "npm:^2.2.2"
-  bin:
-    patch-package: index.js
-  checksum: 10c0/690eab0537e953a3fd7d32bb23f0e82f97cd448f8244c3227ed55933611a126f9476397325c06ad2c11d881a19b427a02bd1881bee78d89f1731373fc4fe0fee
-  languageName: node
-  linkType: hard
-
 "path-browserify@npm:1.0.1":
   version: 1.0.1
   resolution: "path-browserify@npm:1.0.1"
@@ -17254,13 +17254,13 @@ __metadata:
     "@testing-library/react": "npm:^14.3.1"
     "@types/event-stream": "npm:^4.0.5"
     "@types/jest": "npm:^29.5.12"
+    "@unts/patch-package": "npm:^8.0.0"
     concurrently: "npm:8.2.2"
     eslint: "npm:^9.7.0"
     event-stream: "npm:^4.0.1"
     jest: "npm:next"
     jest-diff: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^29.7.0"
-    patch-package: "npm:8.0.0"
     prettier: "npm:3.3.3"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
