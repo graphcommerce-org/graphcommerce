@@ -1,4 +1,5 @@
-import { useCurrentCartId } from '@graphcommerce/magento-cart'
+import { useApolloClient } from '@graphcommerce/graphql'
+import { cartLock, useCurrentCartId } from '@graphcommerce/magento-cart'
 import { useUrlQuery } from '@graphcommerce/next-ui'
 import { useEffect, useState } from 'react'
 
@@ -19,9 +20,10 @@ let justLocked = false
  * Todo: Block all operations on the cart while the cart is being blocked.
  */
 export function useCartLock<E extends CartLockState>() {
-  const { currentCartId } = useCurrentCartId()
+  const { currentCartId, locked } = useCurrentCartId()
   const [queryState, setRouterQuery] = useUrlQuery<E>()
   const [, setForceRender] = useState(0)
+  const client = useApolloClient()
 
   useEffect(() => {
     const pageshow = (e: PageTransitionEvent) => {
@@ -38,6 +40,7 @@ export function useCartLock<E extends CartLockState>() {
   const lock = (params: Omit<E, 'locked' | 'cart_id'>) => {
     if (!currentCartId) return undefined
     justLocked = true
+    cartLock(client.cache, true)
     return setRouterQuery({
       locked: '1',
       cart_id: currentCartId,
@@ -46,13 +49,14 @@ export function useCartLock<E extends CartLockState>() {
   }
 
   const unlock = async (params: Omit<E, 'locked' | 'cart_id' | 'method'>) => {
+    cartLock(client.cache, false)
     await setRouterQuery({ cart_id: null, locked: null, method: null, ...params } as E)
     return queryState
   }
 
   const resulting: Omit<E, 'locked'> & { locked: boolean; justLocked: boolean } = {
     ...queryState,
-    locked: queryState.locked === '1' || Boolean(queryState.PayerID),
+    locked: locked || queryState.locked === '1' || Boolean(queryState.PayerID),
     justLocked,
   }
 

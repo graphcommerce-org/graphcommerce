@@ -1,10 +1,5 @@
 import { Image } from '@graphcommerce/image'
-import {
-  responsiveVal,
-  extendableComponent,
-  useDateTimeFormat,
-  IconSvg,
-} from '@graphcommerce/next-ui'
+import { responsiveVal, extendableComponent, IconSvg, DateTimeFormat } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { CustomerReviewFragment } from './CustomerReview.gql'
 import filledStar from './review_star_filled.svg'
@@ -28,8 +23,6 @@ export function CustomerReview(props: CustomerReviewProps) {
   const totalStars = 5
   const valuePerStar = maxAverageRating / totalStars
   const totalFilledStars = (average_rating / maxAverageRating / valuePerStar) * 100
-
-  const dateFormatter = useDateTimeFormat({ dateStyle: 'long' })
 
   return (
     <Box
@@ -98,7 +91,7 @@ export function CustomerReview(props: CustomerReviewProps) {
           color: theme.palette.text.disabled,
         })}
       >
-        {dateFormatter.format(new Date(created_at ?? ''))}
+        <DateTimeFormat>{created_at}</DateTimeFormat>
       </Box>
     </Box>
   )

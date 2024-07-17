@@ -8,6 +8,9 @@ import { ProductPageBreadcrumbFragment } from './ProductPageBreadcrumb.gql'
 type ProductPageBreadcrumbsProps = ProductPageBreadcrumbFragment &
   Omit<BreadcrumbsProps, 'children'>
 
+/**
+ * @deprecated Please use ProductPageBreadcrumbs
+ */
 export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
   const { categories, name, ...breadcrumbProps } = props
   const prev = usePrevPageRouter()
@@ -32,9 +35,11 @@ export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
             {breadcrumb.category_name}
           </Link>
         ))}
-      <Link href={`/${category?.url_path}`} underline='hover' color='inherit'>
-        {category?.name}
-      </Link>
+      {category && (
+        <Link href={`/${category?.url_path}`} underline='hover' color='inherit'>
+          {category?.name}
+        </Link>
+      )}
       <Typography color='text.primary'>{name}</Typography>
     </Breadcrumbs>
   )

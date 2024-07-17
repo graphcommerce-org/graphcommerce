@@ -1,4 +1,5 @@
 fragment ProductPagePrice on ProductInterface {
+  __typename
   url_key
   price_range {
     minimum_price {
@@ -12,12 +13,6 @@ fragment ProductPagePrice on ProductInterface {
       final_price {
         ...Money
       }
-      fixed_product_taxes {
-        amount {
-          ...Money
-        }
-        label
-      }
     }
   }
   price_tiers {
@@ -30,4 +25,6 @@ fragment ProductPagePrice on ProductInterface {
     }
     quantity
   }
+
+  ...ProductCustomizable
 }

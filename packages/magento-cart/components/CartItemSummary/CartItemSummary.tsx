@@ -38,10 +38,7 @@ type OrderSummaryProps = ActionCardLayoutProps & {
 
 export function CartItemSummary(props: OrderSummaryProps) {
   const { sx = [], size, layout = 'list', itemProps, ...cardLayout } = props
-  const { data } = useCartQuery(CartItemSummaryDocument, {
-    allowUrl: true,
-    fetchPolicy: 'cache-only',
-  })
+  const { data } = useCartQuery(CartItemSummaryDocument, { fetchPolicy: 'cache-only' })
 
   if (!data?.cart) return null
 
@@ -85,7 +82,7 @@ export function CartItemSummary(props: OrderSummaryProps) {
             className={classes.scrollerContainer}
             {...cardLayout}
           >
-            {items?.filter(nonNullable).map((item) => (
+            {(items ?? []).filter(nonNullable).map((item) => (
               <CartItemActionCard
                 readOnly
                 key={item.uid}

@@ -1,6 +1,6 @@
 import { useFormState } from '@graphcommerce/ecommerce-ui'
 import { useEventCallback } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { startTransition, useEffect, useState } from 'react'
 import { UseAddProductsToCartActionFragment } from './UseAddProductsToCartAction.gql'
 import { toUserErrors } from './toUserErrors'
 import { AddToCartItemSelector, useFormAddProductsToCart } from './useFormAddProductsToCart'
@@ -68,8 +68,11 @@ export function useAddProductsToCartAction(
       if (process.env.NODE_ENV !== 'production') {
         if (!sku) console.warn(`You must provide a 'sku' to useAddProductsToCartAction`)
       }
-      setValue(`cartItems.${index}.sku`, sku ?? '')
-      onClickIncoming?.(e)
+      // TODO should be removed, setting the form value on submission isn't a great idea.
+      if (!getValues(`cartItems.${index}.sku`)) setValue(`cartItems.${index}.sku`, sku ?? '')
+      startTransition(() => {
+        onClickIncoming?.(e)
+      })
     }),
     onMouseDown: useEventCallback((e) => e.stopPropagation()),
     showSuccess,

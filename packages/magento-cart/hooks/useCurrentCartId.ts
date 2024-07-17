@@ -10,5 +10,10 @@ export function useCurrentCartId<
   V extends CurrentCartIdQueryVariables,
 >(options: QueryHookOptions<Q, V> = {}) {
   const queryResults = useQuery<Q, V>(CurrentCartIdDocument, options)
-  return { currentCartId: queryResults.data?.currentCartId?.id || '', ...queryResults }
+
+  return {
+    currentCartId: queryResults.data?.currentCartId?.id || '',
+    locked: queryResults.data?.currentCartId?.locked || false,
+    ...queryResults,
+  }
 }

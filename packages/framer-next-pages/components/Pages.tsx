@@ -45,9 +45,8 @@ function getPageInfo(router: NextRouter) {
 export function FramerNextPages(props: PagesProps) {
   const { router, Component, pageProps: incomingProps, fallback = '/', fallbackRoute = '/' } = props
 
-  // @ts-expect-error Key of the route is still private, should be fixed in https://github.com/vercel/next.js/pull/37192
   // eslint-disable-next-line no-underscore-dangle
-  const key = router._key as string
+  const key = (router as NextRouter & { _key: string })._key
 
   useMeasureDynamicViewportSize()
   const items = useRef<PageItem[]>([])
@@ -103,8 +102,21 @@ export function FramerNextPages(props: PagesProps) {
 
   let renderItems = [...items.current]
 
+  /**  Removes the page if the up path equls the path of a overlay and there is no history present **/
+  const upPath = (renderItems.at(0)?.pageProps?.up as { href: string; title: string })?.href
+  const overlayPath = renderItems.at(-1)?.routerContext.pageInfo.asPath
+  if (
+    renderItems.length === 2 &&
+    upPath &&
+    overlayPath &&
+    upPath === overlayPath &&
+    renderItems.at(-1)?.overlayGroup
+  ) {
+    renderItems = renderItems.slice(1)
+  }
+
   /** We need to render back to the last item that isn't an overlay. */
-  const plainIdx = findPlainIdx(items.current)
+  const plainIdx = findPlainIdx(renderItems)
 
   const shouldLoadFb = plainIdx === -1 && typeof window !== 'undefined' && !fb
 

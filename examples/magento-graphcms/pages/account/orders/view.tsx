@@ -90,9 +90,9 @@ OrderDetailPage.pageOptions = pageOptions
 
 export default OrderDetailPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
   const config = client.query({ query: StoreConfigDocument })
 
   const countryRegions = staticClient.query({
@@ -104,8 +104,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       ...(await countryRegions).data,
       apolloState: await config.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      size: 'max',
-      up: { href: '/account/orders', title: 'Orders' },
+      up: { href: '/account/orders', title: i18n._(/* i18n */ 'Orders') },
     },
   }
 }

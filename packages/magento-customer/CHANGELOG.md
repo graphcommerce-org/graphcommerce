@@ -1,5 +1,259 @@
 # Change Log
 
+## 8.1.0-canary.53
+
+## 8.1.0-canary.52
+
+### Minor Changes
+
+- [#2320](https://github.com/graphcommerce-org/graphcommerce/pull/2320) [`dc5e85c`](https://github.com/graphcommerce-org/graphcommerce/commit/dc5e85c95dad6145fde02a6e54f0fbd1cdfe9e3d) - Replace depricated updateCustomer mutations with updateCustomerV2
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.51
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+### Patch Changes
+
+- [#2317](https://github.com/graphcommerce-org/graphcommerce/pull/2317) [`ff95ab3`](https://github.com/graphcommerce-org/graphcommerce/commit/ff95ab31ee6e00c86cd9e96031f7babbd20e4280) - useSignInForm now optionally expects an email
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.48
+
+### Minor Changes
+
+- [#2319](https://github.com/graphcommerce-org/graphcommerce/pull/2319) [`a3409e8`](https://github.com/graphcommerce-org/graphcommerce/commit/a3409e8a629ee95413da6547cbdcf48aa2502c23) - Created a new TelephoneElement component to make re-use easier
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.47
+
+### Minor Changes
+
+- [#2315](https://github.com/graphcommerce-org/graphcommerce/pull/2315) [`fb9118e`](https://github.com/graphcommerce-org/graphcommerce/commit/fb9118ec819d1b507d4fbde04f2ca34ec01ecf49) - Add guestOrder functionality, remove `size: 'max'` from getStaticProps
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.46
+
+## 8.1.0-canary.45
+
+## 8.1.0-canary.44
+
+## 8.1.0-canary.43
+
+## 8.1.0-canary.42
+
+## 8.1.0-canary.41
+
+## 8.1.0-canary.40
+
+### Minor Changes
+
+- [#2306](https://github.com/graphcommerce-org/graphcommerce/pull/2306) [`5e188e8`](https://github.com/graphcommerce-org/graphcommerce/commit/5e188e830dca4730c73830858f59a94e9d41ed12) - Add delete account functionality to the account section. Disabled by default and can be enabled through the config.
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.39
+
+## 8.1.0-canary.38
+
+### Minor Changes
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Add company and vat fields to shipping and billing forms
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving <FromPersist/> below the form components
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.37
+
+## 8.1.0-canary.36
+
+## 8.1.0-canary.35
+
+### Minor Changes
+
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`47bb47b`](https://github.com/graphcommerce-org/graphcommerce/commit/47bb47bac4b3689a6859afbc587274d813e0b072) - Implement confirm email functionality
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new EmailElement component to make re-use easier
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.34
+
+## 8.1.0-canary.33
+
+## 8.1.0-canary.32
+
+## 8.1.0-canary.31
+
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
+## 8.1.0-canary.28
+
+## 8.1.0-canary.27
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+### Patch Changes
+
+- [#2283](https://github.com/graphcommerce-org/graphcommerce/pull/2283) [`170aebd`](https://github.com/graphcommerce-org/graphcommerce/commit/170aebde3fb0705504e6d0919e7fbad0b89c1197) - Prevent success message from showing up when form is still submitting a new request to update the users email
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.21
+
+## 8.1.0-canary.20
+
+## 8.1.0-canary.19
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+## 8.1.0-canary.8
+
+## 8.1.0-canary.7
+
+## 8.1.0-canary.6
+
+## 8.1.0-canary.5
+
+## 8.0.6-canary.4
+
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders.
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
+## 8.0.5
+
+### Patch Changes
+
+- [#2243](https://github.com/graphcommerce-org/graphcommerce/pull/2243) [`c2ddb9e`](https://github.com/graphcommerce-org/graphcommerce/commit/c2ddb9e1e9d08b4363cc1ffa31e23d715ab1bdb6) - Solve an issue where the cart wouldn't be merged after the customer created a new account.
+  ([@paales](https://github.com/paales))
+
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+### Patch Changes
+
+- [#2243](https://github.com/graphcommerce-org/graphcommerce/pull/2243) [`c2ddb9e`](https://github.com/graphcommerce-org/graphcommerce/commit/c2ddb9e1e9d08b4363cc1ffa31e23d715ab1bdb6) - Solve an issue where the cart wouldn't be merged after the customer created a new account.
+  ([@paales](https://github.com/paales))
+
+## 8.0.5-canary.5
+
+## 8.0.5-canary.4
+
+## 8.0.5-canary.3
+
+## 8.0.5-canary.2
+
+## 8.0.5-canary.1
+
+## 8.0.5-canary.0
+
+## 8.0.4
+
+## 8.0.4-canary.1
+
+## 8.0.4-canary.0
+
+## 8.0.3
+
+### Patch Changes
+
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`6b61a93`](https://github.com/graphcommerce-org/graphcommerce/commit/6b61a93476505e66a3135844b9bce62ccdd1bdcf) - Solve an issue where the customer could not save their region in the customer account section.
+  ([@paales](https://github.com/paales))
+
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`3fbf3da`](https://github.com/graphcommerce-org/graphcommerce/commit/3fbf3da8a67f2fbaa7fa974a37cbbf34613844e4) - Solve an issue where the user would be presented with the Session expired dialog when the user would be logging in during the checkout process.
+  ([@paales](https://github.com/paales))
+
+- [#2207](https://github.com/graphcommerce-org/graphcommerce/pull/2207) [`4d7594c`](https://github.com/graphcommerce-org/graphcommerce/commit/4d7594ca2174f74bfa9f66a464b77b3fd04f3560) - After changing the default shipping or billing address in the account section other address would not properly update
+  ([@paales](https://github.com/paales))
+
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`dbd943d`](https://github.com/graphcommerce-org/graphcommerce/commit/dbd943d9f588f24d5c73bdf35f2d3bbc5e0e3406) - Split out AddressFields into separate components and allow renaming fields.
+  ([@paales](https://github.com/paales))
+
+## 8.0.3-canary.6
+
+## 8.0.3-canary.5
+
+### Patch Changes
+
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`6b61a93`](https://github.com/graphcommerce-org/graphcommerce/commit/6b61a93476505e66a3135844b9bce62ccdd1bdcf) - Solve an issue where the customer could not save their region in the customer account section.
+  ([@paales](https://github.com/paales))
+
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`dbd943d`](https://github.com/graphcommerce-org/graphcommerce/commit/dbd943d9f588f24d5c73bdf35f2d3bbc5e0e3406) - Split out AddressFields into separate components and allow renaming fields.
+  ([@paales](https://github.com/paales))
+
+## 8.0.3-canary.4
+
+## 8.0.3-canary.3
+
+## 8.0.3-canary.2
+
+### Patch Changes
+
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`3fbf3da`](https://github.com/graphcommerce-org/graphcommerce/commit/3fbf3da8a67f2fbaa7fa974a37cbbf34613844e4) - Solve an issue where the user would be presented with the Session expired dialog when the user would be logging in during the checkout process.
+  ([@paales](https://github.com/paales))
+
+## 8.0.3-canary.1
+
+### Patch Changes
+
+- [#2207](https://github.com/graphcommerce-org/graphcommerce/pull/2207) [`4d7594c`](https://github.com/graphcommerce-org/graphcommerce/commit/4d7594ca2174f74bfa9f66a464b77b3fd04f3560) - After changing the default shipping or billing address in the account section other address would not properly update
+  ([@paales](https://github.com/paales))
+
+## 8.0.3-canary.0
+
 ## 8.0.2
 
 ### Patch Changes

@@ -1,13 +1,15 @@
 import { ApolloErrorAlert, PasswordRepeatElement } from '@graphcommerce/ecommerce-ui'
+import { useQuery } from '@graphcommerce/graphql'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, extendableComponent, Form, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { Alert, Box } from '@mui/material'
 import React from 'react'
+import { useSignInForm } from '../../hooks/useSignInForm'
 import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
 import { SignUpMutationVariables, SignUpMutation, SignUpDocument } from './SignUp.gql'
-import { SignUpConfirmDocument } from './SignUpConfirm.gql'
 
 type SignUpFormInlineProps = Pick<SignUpMutationVariables, 'email'> & {
   children?: React.ReactNode
@@ -23,17 +25,16 @@ const { classes } = extendableComponent('SignUpFormInline', [
   'buttonContainer',
 ] as const)
 
-const requireEmailValidation = import.meta.graphCommerce.customerRequireEmailConfirmation ?? false
-
 export function SignUpFormInline(props: SignUpFormInlineProps) {
-  const { email, children, firstname, lastname, onSubmitted = () => {} } = props
-  const Mutation = requireEmailValidation ? SignUpConfirmDocument : SignUpDocument
+  const { email, children, firstname, lastname, onSubmitted } = props
 
+  const storeConfig = useQuery(StoreConfigDocument)
+  const signIn = useSignInForm({ email })
   const form = useFormGqlMutation<
     SignUpMutation,
     SignUpMutationVariables & { confirmPassword?: string }
   >(
-    Mutation,
+    SignUpDocument,
     {
       // todo(paales): This causes dirty data to be send to the backend.
       defaultValues: {
@@ -43,8 +44,13 @@ export function SignUpFormInline(props: SignUpFormInlineProps) {
         lastname: lastname ?? '-',
       },
       onBeforeSubmit: (values) => ({ ...values, email }),
-      onComplete: (result) => {
-        if (!result.errors) onSubmitted()
+      onComplete: async (result, variables) => {
+        if (!result.errors && !storeConfig.data?.storeConfig?.create_account_confirmation) {
+          signIn.setValue('email', variables.email)
+          signIn.setValue('password', variables.password)
+          await signIn.handleSubmit(() => {})()
+        }
+        if (!result.errors) onSubmitted?.()
       },
     },
     { errorPolicy: 'all' },
@@ -54,10 +60,17 @@ export function SignUpFormInline(props: SignUpFormInlineProps) {
   const [remainingError, inputError] = graphqlErrorByCategory({ category: 'graphql-input', error })
   const submitHandler = handleSubmit(() => {})
 
-  if (requireEmailValidation && form.formState.isSubmitSuccessful) {
+  if (
+    storeConfig.data?.storeConfig?.create_account_confirmation &&
+    !error &&
+    form.formState.isSubmitSuccessful
+  ) {
     return (
       <Alert>
-        <Trans id='Please check your inbox to validate your email ({email})' values={{ email }} />
+        <Trans
+          id='Registration successful. Please check your inbox to confirm your email address ({email})'
+          values={{ email }}
+        />
       </Alert>
     )
   }

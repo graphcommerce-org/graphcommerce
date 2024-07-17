@@ -5,8 +5,8 @@ import {
   CrosssellsDocument,
   CrosssellsQuery,
 } from '@graphcommerce/magento-cart'
-import { ExtendableComponent, nonNullable } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme, useThemeProps } from '@mui/material'
+import { ErrorSnackbarProps, MessageSnackbarProps, nonNullable } from '@graphcommerce/next-ui'
+import { Box, SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useMemo, useRef } from 'react'
 import { AddProductsToCartDocument, AddProductsToCartMutation } from './AddProductsToCart.gql'
@@ -22,29 +22,26 @@ import {
 } from './useFormAddProductsToCart'
 
 export type AddProductsToCartFormProps = {
-  // The props are actually used, but are passed through useThemeProps and that breaks react/no-unused-prop-types
-  // eslint-disable-next-line react/no-unused-prop-types
   children: React.ReactNode
-  // eslint-disable-next-line react/no-unused-prop-types
   sx?: SxProps<Theme>
-  // eslint-disable-next-line react/no-unused-prop-types
   redirect?: RedirectType
+  snackbarProps?: AddProductsToCartSnackbarProps
 
+  /**
+   * @deprecated use snackbarProps.errorSnackbar instead
+   */
+  errorSnackbar?: Omit<ErrorSnackbarProps, 'open'>
+  /**
+   * @deprecated use snackbarProps.successSnackbar instead
+   */
+  successSnackbar?: Omit<MessageSnackbarProps, 'open' | 'action'>
+  /**
+   * @deprecated use snackbarProps.disableSuccessSnackbar instead
+   */
   disableSuccessSnackbar?: boolean
-} & UseFormGraphQlOptions<AddProductsToCartMutation, AddProductsToCartFields> &
-  AddProductsToCartSnackbarProps
+} & UseFormGraphQlOptions<AddProductsToCartMutation, AddProductsToCartFields>
 
 const name = 'AddProductsToCartForm'
-
-/** Expose the component to be exendable in your theme.components */
-declare module '@mui/material/styles/components' {
-  interface Components {
-    AddProductsToCartForm?: Pick<
-      ExtendableComponent<Omit<AddProductsToCartFormProps, 'children'>>,
-      'defaultProps'
-    >
-  }
-}
 
 /**
  * Component that handles adding products to the cart. Used on the product page, but can be used for
@@ -66,8 +63,9 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
     disableSuccessSnackbar,
     errorSnackbar,
     successSnackbar,
+    snackbarProps,
     ...formProps
-  } = useThemeProps({ name, props })
+  } = props
   const router = useRouter()
   const client = useApolloClient()
   const crosssellsQuery = useRef<Promise<ApolloQueryResult<CrosssellsQuery>>>()
@@ -90,7 +88,7 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
         const requestData = {
           cartId,
           cartItems: cartItems
-            .filter((cartItem) => cartItem.sku)
+            .filter((cartItem) => cartItem.sku && cartItem.quantity !== 0)
             .map(({ customizable_options, ...cartItem }) => {
               const options = Object.values(customizable_options ?? {})
                 .flat(1)
@@ -103,7 +101,12 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
                   ...(cartItem.selected_options ?? []).filter(Boolean),
                   ...options,
                 ],
-                entered_options: cartItem.entered_options?.filter((option) => option?.value),
+                entered_options: [
+                  ...(cartItem.entered_options
+                    ?.filter((option) => option?.value)
+                    .filter(nonNullable)
+                    .map((option) => ({ uid: option.uid, value: `${option?.value}` })) ?? []),
+                ],
               }
             }),
         }
@@ -155,12 +158,12 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
       <Box component='form' onSubmit={submit} noValidate sx={sx} className={name}>
         {children}
       </Box>
-      {disableSuccessSnackbar ? null : (
-        <AddProductsToCartSnackbar
-          errorSnackbar={errorSnackbar}
-          successSnackbar={successSnackbar}
-        />
-      )}
+      <AddProductsToCartSnackbar
+        errorSnackbar={errorSnackbar}
+        successSnackbar={successSnackbar}
+        disableSuccessSnackbar={disableSuccessSnackbar}
+        {...snackbarProps}
+      />
     </AddProductsToCartContext.Provider>
   )
 }

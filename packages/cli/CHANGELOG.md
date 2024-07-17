@@ -1,5 +1,174 @@
 # @graphcommerce/cli
 
+## 8.1.0-canary.53
+
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+## 8.1.0-canary.46
+
+## 8.1.0-canary.45
+
+## 8.1.0-canary.44
+
+### Patch Changes
+
+- [`44ea147`](https://github.com/graphcommerce-org/graphcommerce/commit/44ea1474d1429d05f535df903beb1fb2c0ca7754) - Added missing tsx package
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.43
+
+### Patch Changes
+
+- [`6184a28`](https://github.com/graphcommerce-org/graphcommerce/commit/6184a28b2ba2dc70189a9b881887696dc0a346c8) - Fixed issue where codegen would throw an error: SyntaxError: Cannot use import statement outside a module.
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.42
+
+## 8.1.0-canary.41
+
+## 8.1.0-canary.40
+
+## 8.1.0-canary.39
+
+## 8.1.0-canary.38
+
+## 8.1.0-canary.37
+
+## 8.1.0-canary.36
+
+## 8.1.0-canary.35
+
+## 8.1.0-canary.34
+
+## 8.1.0-canary.33
+
+## 8.1.0-canary.32
+
+## 8.1.0-canary.31
+
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
+## 8.1.0-canary.28
+
+## 8.1.0-canary.27
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
+## 8.1.0-canary.20
+
+## 8.1.0-canary.19
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+## 8.1.0-canary.8
+
+### Patch Changes
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`cfc0f4e`](https://github.com/graphcommerce-org/graphcommerce/commit/cfc0f4e015f3b3a7348b882eb7440222b3e26a07) - Make sure the interceptors are generated before the typecheck is ran.
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.7
+
+## 8.1.0-canary.6
+
+## 8.1.0-canary.5
+
+## 8.0.6-canary.4
+
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
+## 8.0.5
+
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+## 8.0.5-canary.5
+
+## 8.0.5-canary.4
+
+## 8.0.5-canary.3
+
+## 8.0.5-canary.2
+
+## 8.0.5-canary.1
+
+## 8.0.5-canary.0
+
+## 8.0.4
+
+## 8.0.4-canary.1
+
+## 8.0.4-canary.0
+
+## 8.0.3
+
+## 8.0.3-canary.6
+
+## 8.0.3-canary.5
+
+## 8.0.3-canary.4
+
+## 8.0.3-canary.3
+
+## 8.0.3-canary.2
+
+## 8.0.3-canary.1
+
+## 8.0.3-canary.0
+
 ## 8.0.2
 
 ## 8.0.2-canary.3

@@ -3,10 +3,10 @@ import { AddProductsToCartForm, useProductLink } from '@graphcommerce/magento-pr
 import { Money } from '@graphcommerce/magento-store'
 import { InputMaybe } from '@graphcommerce/next-config'
 import {
-  responsiveVal,
   extendableComponent,
   ActionCard,
   ActionCardProps,
+  actionCardImageSizes,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button, Link, SxProps, Theme } from '@mui/material'
@@ -38,12 +38,6 @@ const parts = [
 ] as const
 const { classes } = extendableComponent<OwnerState, typeof compName, typeof parts>(compName, parts)
 
-export const productImageSizes = {
-  small: responsiveVal(60, 80),
-  medium: responsiveVal(60, 80),
-  large: responsiveVal(100, 120),
-}
-
 const typographySizes = {
   small: 'body2',
   medium: 'body1',
@@ -53,7 +47,7 @@ const typographySizes = {
 export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
   const {
     sx = [],
-    size = 'large',
+    size = 'responsive',
     item,
     selectedOptions,
     secondaryAction,
@@ -87,6 +81,11 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
             '&.sizeSmall': {
               px: 0,
             },
+            '&.sizeResponsive': {
+              [theme.breakpoints.down('md')]: {
+                px: 0,
+              },
+            },
             '& .ActionCard-action': {
               alignSelf: 'flex-end',
             },
@@ -94,7 +93,14 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
               alignSelf: 'flex-start',
             },
             '& .ActionCard-secondaryAction': {
-              typography: typographySizes[size],
+              typography:
+                size === 'responsive'
+                  ? {
+                      xs: typographySizes.small,
+                      md: typographySizes.medium,
+                      lg: typographySizes.large,
+                    }
+                  : typographySizes[size],
               display: 'flex',
               alignItems: 'center',
               color: 'text.secondary',
@@ -103,7 +109,14 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
               justifyContent: 'start',
             },
             '& .ActionCard-price': {
-              typography: typographySizes[size],
+              typography:
+                size === 'responsive'
+                  ? {
+                      xs: typographySizes.small,
+                      md: typographySizes.medium,
+                      lg: typographySizes.large,
+                    }
+                  : typographySizes[size],
               mb: { xs: 0.5, sm: 0 },
             },
           }),
@@ -116,12 +129,13 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
               layout='fill'
               src={product?.small_image?.url}
               sx={{
-                width: productImageSizes[size],
-                height: productImageSizes[size],
+                objectFit: 'contain',
+                width: actionCardImageSizes[size],
+                height: actionCardImageSizes[size],
                 display: 'block',
                 borderRadius: 1,
               }}
-              sizes={productImageSizes[size]}
+              sizes={actionCardImageSizes[size]}
             />
           )
         }

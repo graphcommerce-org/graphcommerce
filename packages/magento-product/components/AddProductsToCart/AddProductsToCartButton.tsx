@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/macro'
 import {
   useAddProductsToCartAction,
   UseAddProductsToCartActionProps,
@@ -17,6 +17,7 @@ export type AddProductsToCartButtonProps = UseAddProductsToCartActionProps &
     | 'onClick'
     | 'sx'
     | 'children'
+    | 'type'
   >
 
 export function AddProductsToCartButton(props: AddProductsToCartButtonProps) {
@@ -25,7 +26,7 @@ export function AddProductsToCartButton(props: AddProductsToCartButtonProps) {
 
   return (
     <Button type='submit' color='primary' variant='pill' size='large' {...rest} {...action}>
-      {children || <Trans id='Add to Cart' />}
+      {children || <Trans>Add to Cart</Trans>}
     </Button>
   )
 }

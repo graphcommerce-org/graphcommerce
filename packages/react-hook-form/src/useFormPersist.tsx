@@ -1,5 +1,14 @@
+import { useMemoObject } from '@graphcommerce/next-ui/hooks/useMemoObject'
 import { useEffect } from 'react'
-import { FieldValues, UseFormReturn, Path, FieldPath, PathValue } from 'react-hook-form'
+import {
+  FieldValues,
+  UseFormReturn,
+  Path,
+  FieldPath,
+  PathValue,
+  useWatch,
+  useFormState,
+} from 'react-hook-form'
 
 export type UseFormPersistOptions<
   TFieldValues extends FieldValues = FieldValues,
@@ -29,24 +38,30 @@ export type UseFormPersistOptions<
  * dirty fields when the form is initialized
  *
  * Todo: Use wath callback so it won't trigger a rerender
+ *
+ * @deprecated Please use the FormPersist component instead. This method causes INP problems.
  */
 export function useFormPersist<V extends FieldValues>(options: UseFormPersistOptions<V>) {
   const { form, name, storage = 'sessionStorage', exclude = [], persist = [] } = options
-  const { setValue, watch, formState } = form
+  const { setValue, control } = form
+
+  const formState = useFormState({ control })
+  const allFields = useWatch({ control })
 
   const dirtyFieldKeys = Object.keys(formState.dirtyFields) as Path<V>[]
 
-  // Get all dirty field values and exclude sensitive data
+  // // Get all dirty field values and exclude sensitive data
   const newValues = Object.fromEntries(
-    dirtyFieldKeys.filter((f) => !exclude.includes(f)).map((field) => [field, watch(field)]),
+    dirtyFieldKeys.filter((f) => !exclude.includes(f)).map((field) => [field, allFields[field]]),
   )
 
   // Amend the values with the values that should always be persisted
   persist.forEach((persistKey) => {
-    const value = watch(persistKey)
+    const value = allFields[persistKey]
     if (value) newValues[persistKey] = value
   })
 
+  // const valuesJson = useMemoObject(newValues)
   const valuesJson = JSON.stringify(newValues)
 
   // Restore changes
@@ -81,4 +96,12 @@ export function useFormPersist<V extends FieldValues>(options: UseFormPersistOpt
       //
     }
   }, [name, storage, valuesJson])
+}
+
+/**
+ * Please make sure to always include this component at the end of your form because of useWatch rules: https://react-hook-form.com/docs/usewatch
+ */
+export function FormPersist<V extends FieldValues>(props: UseFormPersistOptions<V>) {
+  useFormPersist(props)
+  return null
 }

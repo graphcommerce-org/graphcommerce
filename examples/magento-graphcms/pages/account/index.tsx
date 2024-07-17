@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { useQuery } from '@graphcommerce/graphql'
+import { cacheFirst, useQuery } from '@graphcommerce/graphql'
 import {
   AccountDashboardDocument,
   AccountMenu,
@@ -26,6 +26,7 @@ import {
   TimeAgo,
   LayoutTitle,
   LayoutHeader,
+  iconBin,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -129,6 +130,16 @@ function AccountIndexPage() {
                 '&:hover': { background: theme.palette.background.paper },
               })}
             />
+            {import.meta.graphCommerce.magentoVersion >= 246 &&
+              import.meta.graphCommerce.customerDeleteEnabled && (
+                <AccountMenuItem
+                  href='/account/delete'
+                  disableRipple
+                  iconSrc={iconBin}
+                  title={<Trans id='Delete account' />}
+                />
+              )}
+
             <SignOutForm
               // eslint-disable-next-line react/no-unstable-nested-components
               button={({ formState }) => (
@@ -156,16 +167,19 @@ AccountIndexPage.pageOptions = pageOptions
 
 export default AccountIndexPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const staticClient = graphqlSsrClient(locale)
-  const client = graphqlSharedClient(locale)
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const staticClient = graphqlSsrClient(context)
+  const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   return {
     props: {
       ...(await layout).data,
-      up: { href: '/', title: 'Home' },
+      up: { href: '/', title: i18n._(/* i18n */ 'Home') },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

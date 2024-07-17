@@ -1,42 +1,37 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { mergeDeep } from '@graphcommerce/graphql'
 import {
-  AddProductsToCartButton,
-  AddProductsToCartError,
+  cacheFirst,
+  InContextMaskProvider,
+  mergeDeep,
+  useInContextQuery,
+} from '@graphcommerce/graphql'
+import {
   AddProductsToCartForm,
   AddProductsToCartFormProps,
-  AddProductsToCartQuantity,
   getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
-  ProductCustomizable,
   ProductPageName,
   ProductPageAddToCartActionsRow,
-  ProductPageAddToCartQuantityRow,
+  ProductPageBreadcrumbs,
   productPageCategory,
   ProductPageDescription,
   ProductPageGallery,
   ProductPageJsonLd,
   ProductPageMeta,
-  ProductPagePrice,
-  ProductPagePriceTiers,
   ProductShortDescription,
-  ProductSidebarDelivery,
+  AddProductsToCartButton,
 } from '@graphcommerce/magento-product'
-import { BundleProductOptions } from '@graphcommerce/magento-product-bundle'
-import {
-  ConfigurableProductOptions,
-  defaultConfigurableOptionsSelection,
-} from '@graphcommerce/magento-product-configurable'
-import { DownloadableProductOptions } from '@graphcommerce/magento-product-downloadable'
+import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-product-configurable'
 import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-products'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import { GetStaticProps, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Divider, Link, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   LayoutDocument,
@@ -47,21 +42,25 @@ import {
   RowRenderer,
   Usps,
 } from '../../components'
+import { AddProductsToCartView } from '../../components/ProductView/AddProductsToCartView'
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-type Props = HygraphPagesQuery &
+export type Props = HygraphPagesQuery &
   UspsQuery &
   ProductPage2Query &
-  Pick<AddProductsToCartFormProps, 'defaultValues'>
+  Pick<AddProductsToCartFormProps, 'defaultValues'> & { urlKey: string }
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductPage(props: Props) {
-  const { products, relatedUpsells, usps, sidebarUsps, pages, defaultValues } = props
+  const { usps, sidebarUsps, pages, defaultValues, urlKey } = props
+
+  const scopedQuery = useInContextQuery(ProductPage2Document, { variables: { urlKey } }, props)
+  const { products, relatedUpsells } = scopedQuery.data
 
   const product = mergeDeep(
     products?.items?.[0],
@@ -71,7 +70,7 @@ function ProductPage(props: Props) {
   if (!product?.sku || !product.url_key) return null
 
   return (
-    <>
+    <InContextMaskProvider mask={scopedQuery.mask}>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
         <LayoutHeader floatingMd>
           <LayoutTitle size='small' component='span'>
@@ -91,15 +90,30 @@ function ProductPage(props: Props) {
 
         <ProductPageMeta product={product} />
 
+        {import.meta.graphCommerce.breadcrumbs && (
+          <ProductPageBreadcrumbs
+            product={product}
+            sx={(theme) => ({
+              py: `calc(${theme.spacings.xxs} / 2)`,
+              pl: theme.page.horizontal,
+              background: theme.palette.background.paper,
+              [theme.breakpoints.down('md')]: {
+                '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+              },
+            })}
+          />
+        )}
+
         <ProductPageGallery
           product={product}
           sx={(theme) => ({
             '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
           })}
+          disableSticky
         >
           <div>
             {isTypename(product, ['ConfigurableProduct', 'BundleProduct']) && (
-              <Typography component='div' variant='body2' color='text.disabled'>
+              <Typography component='div' variant='body1' color='text.disabled'>
                 <Trans
                   id='As low as <0/>'
                   components={{ 0: <Money {...product.price_range.minimum_price.final_price} /> }}
@@ -116,46 +130,7 @@ function ProductPage(props: Props) {
             <ProductReviewChip rating={product.rating_summary} reviewSectionId='reviews' />
           </div>
 
-          {isTypename(product, ['ConfigurableProduct']) && (
-            <ConfigurableProductOptions
-              product={product}
-              optionEndLabels={{
-                size: (
-                  <Link
-                    href='/modal/product/global/size'
-                    rel='nofollow'
-                    color='primary'
-                    underline='hover'
-                  >
-                    <Trans id='Which size is right?' />
-                  </Link>
-                ),
-              }}
-            />
-          )}
-          {isTypename(product, ['BundleProduct']) && (
-            <BundleProductOptions product={product} layout='stack' />
-          )}
-          {isTypename(product, ['DownloadableProduct']) && (
-            <DownloadableProductOptions product={product} />
-          )}
-          {!isTypename(product, ['GroupedProduct']) && <ProductCustomizable product={product} />}
-
-          <Divider />
-
-          <ProductPageAddToCartQuantityRow product={product}>
-            <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
-
-            <AddProductsToCartError>
-              <Typography component='div' variant='h3' lineHeight='1'>
-                <ProductPagePrice product={product} />
-              </Typography>
-            </AddProductsToCartError>
-          </ProductPageAddToCartQuantityRow>
-
-          <ProductPagePriceTiers product={product} />
-
-          <ProductSidebarDelivery product={product} />
+          <AddProductsToCartView product={product} />
 
           <ProductPageAddToCartActionsRow product={product}>
             <AddProductsToCartButton fullWidth product={product} />
@@ -195,7 +170,7 @@ function ProductPage(props: Props) {
         productListRenderer={productListRenderer}
         sx={(theme) => ({ mb: theme.spacings.xxl })}
       />
-    </>
+    </InContextMaskProvider>
   )
 }
 
@@ -208,24 +183,28 @@ export default ProductPage
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  const path = (locale: string) => getProductStaticPaths(graphqlSsrClient(locale), locale)
+  const path = (locale: string) => getProductStaticPaths(graphqlSsrClient({ locale }), locale)
   const paths = (await Promise.all(locales.map(path))).flat(1)
 
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const { locale, params } = context
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
 
   const urlKey = params?.url ?? '??'
 
   const conf = client.query({ query: StoreConfigDocument })
   const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
-  const product = productPage.then(
-    (pp) => pp.data.products?.items?.find((p) => p?.url_key === urlKey),
+  const product = productPage.then((pp) =>
+    pp.data.products?.items?.find((p) => p?.url_key === urlKey),
   )
 
   const pages = hygraphPageContent(staticClient, 'product/global', product, true)
@@ -235,11 +214,12 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
-      : { href: `/`, title: 'Home' }
-  const usps = staticClient.query({ query: UspsDocument, fetchPolicy: 'cache-first' })
+      : { href: `/`, title: i18n._(/* i18n */ 'Home') }
+  const usps = staticClient.query({ query: UspsDocument, fetchPolicy: cacheFirst(staticClient) })
 
   return {
     props: {
+      urlKey,
       ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),
       ...(await layout).data,
       ...(await pages).data,

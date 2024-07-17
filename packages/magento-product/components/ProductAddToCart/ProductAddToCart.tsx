@@ -1,15 +1,15 @@
+import { NumberFieldElement } from '@graphcommerce/ecommerce-ui'
 import type { ProductInterface } from '@graphcommerce/graphql-mesh'
 import { ApolloCartErrorAlert, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { Money, MoneyProps } from '@graphcommerce/magento-store'
 import {
   Button,
   MessageSnackbar,
-  TextInputNumber,
   iconChevronRight,
   IconSvg,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/macro'
 import { Divider, Typography, ButtonProps, Box, Alert } from '@mui/material'
 import React from 'react'
 import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
@@ -40,7 +40,7 @@ export function ProductAddToCart(
     defaultValues: { ...variables },
   })
 
-  const { handleSubmit, formState, error, muiRegister, required, data } = form
+  const { handleSubmit, formState, error, control, required, data } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
@@ -58,15 +58,17 @@ export function ProductAddToCart(
         <Money {...price} />
       </Typography>
 
-      <TextInputNumber
+      <NumberFieldElement
         variant='outlined'
         error={formState.isSubmitted && !!formState.errors.quantity}
         required={required.quantity}
         inputProps={{ min: 1 }}
-        {...muiRegister('quantity', { required: required.quantity })}
+        name='quantity'
+        rules={{ required: required.quantity }}
         helperText={formState.isSubmitted && formState.errors.quantity?.message}
         disabled={formState.isSubmitting}
         size='small'
+        control={control}
       />
       {children}
       <Box
@@ -91,7 +93,7 @@ export function ProductAddToCart(
           })}
           {...buttonProps}
         >
-          <Trans id='Add to Cart' />
+          <Trans>Add to Cart</Trans>
         </Button>
         {additionalButtons}
       </Box>
@@ -123,15 +125,13 @@ export function ProductAddToCart(
             color='secondary'
             endIcon={<IconSvg src={iconChevronRight} />}
           >
-            <Trans id='View shopping cart' />
+            <Trans>View shopping cart</Trans>
           </Button>
         }
       >
-        <Trans
-          id='<0>{name}</0> has been added to your shopping cart!'
-          components={{ 0: <strong /> }}
-          values={{ name }}
-        />
+        <Trans>
+          <strong>{name}</strong> has been added to your shopping cart!
+        </Trans>
       </MessageSnackbar>
     </Box>
   )

@@ -1,4 +1,4 @@
-import { useForm, useFormPersist, UseFormReturn, useWatch } from '@graphcommerce/ecommerce-ui'
+import { FormPersist, useForm, UseFormReturn, useWatch } from '@graphcommerce/ecommerce-ui'
 import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import React, { createContext, useContext, useEffect, useMemo, useRef } from 'react'
 import { useCompareList } from '../hooks'
@@ -25,7 +25,6 @@ export function CompareListForm(props: CompareListFormProps) {
     defaultValues: { selected: [...Array(gridColumns).keys()] },
   })
 
-  useFormPersist({ form, name: 'CompareList', storage: 'localStorage' })
   const selectedState = form.watch('selected')
   const selectedPrevious = useRef<number[]>(selectedState)
   const compareAbleItems = compareListData?.compareList?.items
@@ -60,10 +59,15 @@ export function CompareListForm(props: CompareListFormProps) {
   }, [compareAbleItems?.length, compareListCount, form, gridColumns, selectedState])
 
   const value = useMemo(
-    () => ({ ...form, selectedPrevious } satisfies CompareFormContextType),
+    () => ({ ...form, selectedPrevious }) satisfies CompareFormContextType,
     [form],
   )
-  return <CompareFormContext.Provider value={value}>{children}</CompareFormContext.Provider>
+  return (
+    <CompareFormContext.Provider value={value}>
+      {children}
+      <FormPersist form={form} name='CompareList' />
+    </CompareFormContext.Provider>
+  )
 }
 
 export function useCompareForm() {

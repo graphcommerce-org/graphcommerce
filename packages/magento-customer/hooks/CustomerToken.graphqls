@@ -1,8 +1,0 @@
-extend type Query {
-  customerToken: CustomerToken
-}
-
-extend type CustomerToken {
-  createdAt: String
-  valid: Boolean
-}

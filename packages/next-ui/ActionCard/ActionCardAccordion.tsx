@@ -29,6 +29,7 @@ export function ActionCardAccordion(props: ActionCardAccordionProps) {
           '&.Mui-expanded': { my: 0 },
           '::before': { display: 'none' },
           border: 'none',
+          borderBottom: `1px solid ${theme.palette.divider}`,
           '&:not(.Mui-expanded)': { borderBottom: `1px solid ${theme.palette.divider}` },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
@@ -39,7 +40,7 @@ export function ActionCardAccordion(props: ActionCardAccordionProps) {
         expandIcon={<IconSvg src={iconChevronDown} />}
         sx={{
           px: 0,
-          typography: 'h6',
+          typography: 'subtitle1',
           minHeight: 54,
           '& .MuiAccordionSummary-content': {
             display: 'flex',

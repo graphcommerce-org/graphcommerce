@@ -1,19 +1,27 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateConfig = void 0;
 const fs_1 = require("fs");
 // eslint-disable-next-line import/no-extraneous-dependencies
 const cli_1 = require("@graphql-codegen/cli");
 const core_1 = require("@swc/core");
+const dotenv_1 = __importDefault(require("dotenv"));
 const isMonorepo_1 = require("../../utils/isMonorepo");
 const resolveDependenciesSync_1 = require("../../utils/resolveDependenciesSync");
 const resolveDependency_1 = require("../../utils/resolveDependency");
+dotenv_1.default.config();
 const packages = [...(0, resolveDependenciesSync_1.resolveDependenciesSync)().values()].filter((p) => p !== '.');
 const resolve = (0, resolveDependency_1.resolveDependency)();
 const schemaLocations = packages.map((p) => `${p}/**/Config.graphqls`);
 async function generateConfig() {
-    const targetTs = `${resolve('@graphcommerce/next-config').root}/src/generated/config.ts`;
-    const targetJs = `${resolve('@graphcommerce/next-config').root}/dist/generated/config.js`;
+    const resolved = resolve('@graphcommerce/next-config');
+    if (!resolved)
+        throw Error('Could not resolve @graphcommerce/next-config');
+    const targetTs = `${resolved.root}/src/generated/config.ts`;
+    const targetJs = `${resolved.root}/dist/generated/config.js`;
     await (0, cli_1.generate)({
         silent: true,
         schema: ['graphql/**/Config.graphqls', ...schemaLocations],

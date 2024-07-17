@@ -1,8 +1,12 @@
 import { QueryResult } from '@graphcommerce/graphql'
-import React, { startTransition, useEffect, useState } from 'react'
+import { useIsSSR } from '@graphcommerce/next-ui'
+import React from 'react'
 
 export type WaitForQueriesProps = {
   waitFor: QueryResult<any, any> | boolean | (QueryResult<any, any> | boolean)[] | undefined
+  /**
+   * @deprecated Will be automatically correct.
+   */
   noSsr?: boolean
   children: React.ReactNode
   fallback?: React.ReactNode
@@ -10,14 +14,9 @@ export type WaitForQueriesProps = {
 
 /** Shows the fallback during: SSR, Hydration and Query Loading. */
 export const WaitForQueries = (props: WaitForQueriesProps) => {
-  const { waitFor, fallback, children, noSsr = false } = props
+  const { waitFor, fallback, children } = props
 
-  // Make sure the first render is always the same as the server.
-  // Make sure we we use startTransition to make sure we don't get into trouble with Suspense.
-  const [mounted, setMounted] = useState(!noSsr)
-  useEffect(() => {
-    if (noSsr) startTransition(() => setMounted(true))
-  }, [noSsr])
+  const mounted = !useIsSSR()
 
   // We are done when all queries either have data or an error.
   const isDone = (Array.isArray(waitFor) ? waitFor : [waitFor]).every((res) => {

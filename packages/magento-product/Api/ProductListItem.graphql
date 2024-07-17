@@ -1,4 +1,4 @@
-fragment ProductListItem on ProductInterface @injectable {
+fragment ProductListItem on ProductInterface {
   uid
   ...ProductLink
   sku
@@ -11,5 +11,4 @@ fragment ProductListItem on ProductInterface @injectable {
       ...ProductListPrice
     }
   }
-  ...ConfigurableOptions
 }

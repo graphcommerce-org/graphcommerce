@@ -12,13 +12,13 @@ import { ActionCardLayout } from './ActionCardLayout'
 type MultiSelect = {
   multiple: true
   collapse?: false
-  value: (string | number | null)[]
+  value: (string | boolean | number | null)[]
 
   onChange?: (event: React.MouseEvent<HTMLElement>, value: MultiSelect['value']) => void
 }
 type Select = {
   multiple?: boolean
-  value: string | number | null
+  value: string | boolean | number | null
   collapse?: boolean
 
   /** Value is null when deselected when not required */
@@ -44,6 +44,7 @@ function isValueSelected(
   candidate?: Select['value'] | MultiSelect['value'],
 ) {
   if (candidate === undefined) return false
+  if (typeof value === 'boolean') return value
   if (Array.isArray(candidate)) return candidate.indexOf(value) >= 0
   return value === candidate
 }

@@ -1,13 +1,34 @@
 import { LazyHydrate, RenderType, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
-import { Box, BoxProps } from '@mui/material'
+import { Box, BoxProps, Breakpoint, Theme, useTheme } from '@mui/material'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
-import { AddProductsToCartForm } from '../../index'
+import { AddProductsToCartForm } from '../AddProductsToCart'
 import { ProductListItemProps } from '../ProductListItem/ProductListItem'
 import { ProductListItemRenderer } from './renderer'
 
 type ComponentState = {
   size?: 'normal' | 'small'
 }
+
+type ColumnConfig = {
+  /**
+   * The total width of the grid, this is used to provde the correct values to the image sizes prop so the right image size is loaded.
+   *
+   * @default "calc(100vw - ${theme.page.horizontal} * 2)"
+   */
+  totalWidth?: string
+  /**
+   * Gap between the columns/rows
+   *
+   * @default theme.spacings.md
+   */
+  gap?: string
+  /**
+   * Number of columns
+   */
+  count: number
+}
+
+type ColumnsConfig = Partial<Record<Breakpoint, ColumnConfig>>
 
 export type ProductItemsGridProps = {
   items?:
@@ -18,6 +39,7 @@ export type ProductItemsGridProps = {
   loadingEager?: number
   title: string
   sx?: BoxProps['sx']
+  columns?: ((theme: Theme) => ColumnsConfig) | ColumnsConfig
 } & Pick<ProductListItemProps, 'onClick' | 'titleComponent'> &
   ComponentState
 
@@ -35,7 +57,27 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
     size = 'normal',
     titleComponent,
     onClick,
+    columns,
   } = props
+
+  const theme = useTheme()
+
+  const totalWidth = `calc(100vw - ${theme.page.horizontal} * 2)`
+  const gap = theme.spacings.md
+
+  let columnConfig = typeof columns === 'function' ? columns(theme) : columns
+
+  if (!columnConfig && size === 'small') {
+    columnConfig = {
+      xs: { count: 2 },
+      md: { count: 3 },
+      lg: { count: 4, totalWidth: `${theme.breakpoints.values.xl}px` },
+    }
+  }
+
+  if (!columnConfig) {
+    columnConfig = { xs: { count: 2 }, md: { count: 3 }, lg: { count: 4 } }
+  }
 
   const classes = withState({ size })
 
@@ -44,40 +86,40 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
       <Box
         className={classes.root}
         sx={[
-          (theme) => ({
-            display: 'grid',
-            gridColumnGap: theme.spacings.md,
-            gridRowGap: theme.spacings.md,
-
-            '&.sizeSmall': {
-              gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
+          ...Object.entries(columnConfig).map(([key, column]) => ({
+            [theme.breakpoints.up(key as Breakpoint)]: {
+              gap: column.gap ?? gap,
+              // width: totalWidth,
+              gridTemplateColumns: `repeat(${column.count}, 1fr)`,
             },
-            '&.sizeNormal': {
-              gridTemplateColumns: {
-                xs: `repeat(2, 1fr)`,
-                md: `repeat(3, 1fr)`,
-                lg: `repeat(4, 1fr)`,
-              },
-            },
-          }),
+          })),
+          { display: 'grid' },
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       >
         {items?.map((item, idx) =>
           item ? (
-            <LazyHydrate key={item.uid ?? ''} hydrated={loadingEager > idx ? true : undefined}>
+            <LazyHydrate
+              key={item.uid ?? ''}
+              hydrated={loadingEager > idx ? true : undefined}
+              height={responsiveVal(250, 500)}
+            >
               <RenderType
                 renderer={renderers}
-                sizes={
-                  size === 'small'
-                    ? { 0: '100vw', 354: '50vw', 675: '30vw', 1255: '23vw', 1500: '337px' }
-                    : { 0: '100vw', 367: '48vw', 994: '30vw', 1590: '23vw', 1920: '443px' }
-                }
+                sizes={Object.fromEntries(
+                  Object.entries(columnConfig ?? {}).map(([key, column]) => {
+                    const totalW = column.totalWidth ?? totalWidth
+                    const columnGap = column.gap ?? gap
+                    return [
+                      theme.breakpoints.values[key as Breakpoint],
+                      `calc((${totalW} - (${columnGap} * ${column.count - 1})) / ${column.count})`,
+                    ]
+                  }),
+                )}
                 {...item}
                 loading={loadingEager > idx ? 'eager' : 'lazy'}
                 titleComponent={titleComponent}
                 onClick={onClick}
-                noReport
               />
             </LazyHydrate>
           ) : null,

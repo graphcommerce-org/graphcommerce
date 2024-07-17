@@ -1,5 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Controller, ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
+import {
+  Controller,
+  ControllerProps,
+  FieldValues,
+  useController,
+} from '@graphcommerce/react-hook-form'
 import React, { MouseEventHandler } from 'react'
 import { ActionCardProps } from './ActionCard'
 import { ActionCardList, ActionCardListProps } from './ActionCardList'
@@ -43,38 +48,41 @@ export function ActionCardListForm<
       : selectValues === itemValue
   }
 
+  const {
+    field: { onChange, value, ref },
+    fieldState,
+    formState,
+  } = useController({
+    ...props,
+    control,
+    name,
+    defaultValue,
+    rules: { required: errorMessage || required, ...rules },
+  })
+
   return (
-    <Controller
-      {...props}
-      control={control}
-      name={name}
-      defaultValue={defaultValue}
-      rules={{ required: errorMessage || required, ...rules }}
-      render={({ field: { onChange, value, ref }, fieldState, formState }) => (
-        <ActionCardList
-          {...other}
-          multiple={multiple}
-          required={required}
-          value={value}
-          ref={ref}
-          onChange={(_, incomming) => onChange(incomming)}
-          error={formState.isSubmitted && !!fieldState.error}
-          errorMessage={fieldState.error?.message}
-        >
-          {items.map((item) => (
-            <RenderItem
-              {...item}
-              key={item.value ?? ''}
-              value={item.value}
-              selected={onSelect(item.value, value)}
-              onReset={(e) => {
-                e.preventDefault()
-                onChange(null)
-              }}
-            />
-          ))}
-        </ActionCardList>
-      )}
-    />
+    <ActionCardList
+      {...other}
+      multiple={multiple}
+      required={required}
+      value={value}
+      ref={ref}
+      onChange={(_, incomming) => onChange(incomming)}
+      error={formState.isSubmitted && !!fieldState.error}
+      errorMessage={fieldState.error?.message}
+    >
+      {items.map((item) => (
+        <RenderItem
+          {...item}
+          key={`${item.value}`}
+          value={item.value}
+          selected={onSelect(item.value, value)}
+          onReset={(e) => {
+            e.preventDefault()
+            onChange(null)
+          }}
+        />
+      ))}
+    </ActionCardList>
   )
 }

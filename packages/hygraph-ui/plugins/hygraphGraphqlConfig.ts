@@ -1,10 +1,16 @@
 import { graphqlConfig, setContext } from '@graphcommerce/graphql'
-import type { MethodPlugin } from '@graphcommerce/next-config'
+import type { FunctionPlugin } from '@graphcommerce/next-config'
 
 export const func = 'graphqlConfig'
-export const exported = '@graphcommerce/graphql/config'
+export const exported = '@graphcommerce/graphql'
 
-const hygraphGraphqlConfig: MethodPlugin<typeof graphqlConfig> = (prev, config) => {
+declare module '@graphcommerce/graphql/config' {
+  interface PreviewData {
+    hygraphStage?: string
+  }
+}
+
+const hygraphGraphqlConfig: FunctionPlugin<typeof graphqlConfig> = (prev, config) => {
   const results = prev(config)
 
   const locales = config.storefront.hygraphLocales
@@ -14,6 +20,12 @@ const hygraphGraphqlConfig: MethodPlugin<typeof graphqlConfig> = (prev, config) 
   const hygraphLink = setContext((_, context) => {
     if (!context.headers) context.headers = {}
     context.headers['gcms-locales'] = locales.join(',')
+
+    const stage = config.previewData?.hygraphStage ?? 'DRAFT'
+    if (config.preview) {
+      context.headers['gcms-stage'] = stage
+    }
+
     return context
   })
 

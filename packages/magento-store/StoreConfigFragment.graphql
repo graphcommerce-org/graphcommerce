@@ -1,4 +1,4 @@
-fragment StoreConfigFragment on StoreConfig @injectable {
+fragment StoreConfigFragment on StoreConfig {
   website_name
   store_code
   store_name
@@ -30,4 +30,5 @@ fragment StoreConfigFragment on StoreConfig @injectable {
   grid_per_page
   grid_per_page_values
   list_per_page
+  create_account_confirmation
 }

@@ -1,5 +1,223 @@
 # Change Log
 
+## 8.1.0-canary.53
+
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+### Minor Changes
+
+- [#2315](https://github.com/graphcommerce-org/graphcommerce/pull/2315) [`fb9118e`](https://github.com/graphcommerce-org/graphcommerce/commit/fb9118ec819d1b507d4fbde04f2ca34ec01ecf49) - Add guestOrder functionality, remove `size: 'max'` from getStaticProps
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.46
+
+## 8.1.0-canary.45
+
+## 8.1.0-canary.44
+
+## 8.1.0-canary.43
+
+## 8.1.0-canary.42
+
+## 8.1.0-canary.41
+
+## 8.1.0-canary.40
+
+### Minor Changes
+
+- [#2306](https://github.com/graphcommerce-org/graphcommerce/pull/2306) [`5e188e8`](https://github.com/graphcommerce-org/graphcommerce/commit/5e188e830dca4730c73830858f59a94e9d41ed12) - Add delete account functionality to the account section. Disabled by default and can be enabled through the config.
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.39
+
+### Minor Changes
+
+- [#2307](https://github.com/graphcommerce-org/graphcommerce/pull/2307) [`20cb571`](https://github.com/graphcommerce-org/graphcommerce/commit/20cb57171ae5bff0b86a341ea4db59ea3f4f639a) - Add save in address book checkbox to shipping address form
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.38
+
+### Minor Changes
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Add company and vat fields to shipping and billing forms
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.37
+
+## 8.1.0-canary.36
+
+## 8.1.0-canary.35
+
+### Minor Changes
+
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`47bb47b`](https://github.com/graphcommerce-org/graphcommerce/commit/47bb47bac4b3689a6859afbc587274d813e0b072) - Implement confirm email functionality
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.34
+
+## 8.1.0-canary.33
+
+## 8.1.0-canary.32
+
+## 8.1.0-canary.31
+
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
+## 8.1.0-canary.28
+
+## 8.1.0-canary.27
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
+### Patch Changes
+
+- [#2285](https://github.com/graphcommerce-org/graphcommerce/pull/2285) [`d5e7371`](https://github.com/graphcommerce-org/graphcommerce/commit/d5e73716990bf1d5a5ee40d88f9cd8266750ec66) - Resolve overlay issue by using the correct sharedKey + correct typo
+  ([@carlocarels90](https://github.com/carlocarels90))
+
+## 8.1.0-canary.20
+
+## 8.1.0-canary.19
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+### Minor Changes
+
+- [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed useMediaQuery from the wishlist and cart ItemActionCard and replaced it with a new responsive size prop.
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+### Patch Changes
+
+- [#2250](https://github.com/graphcommerce-org/graphcommerce/pull/2250) [`e56e836`](https://github.com/graphcommerce-org/graphcommerce/commit/e56e836f1fc463bf286c62668a4b65f320d5dc4a) - Make the back/up buttons translatable
+  ([@carlocarels90](https://github.com/carlocarels90))
+
+## 8.1.0-canary.11
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+### Minor Changes
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`4ef6765`](https://github.com/graphcommerce-org/graphcommerce/commit/4ef6765d52fa56cfbe12b7e4e81aa183cc590a87) - Move products sitemap to sitemap folder
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`7652234`](https://github.com/graphcommerce-org/graphcommerce/commit/7652234e222c3f4d8de3817fe907b5b6925a5493) - Replaced next-sitemap with page router based robots.txt & sitemaps
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`4543c8d`](https://github.com/graphcommerce-org/graphcommerce/commit/4543c8d3af455b709a4cb3cad2e9d5d70cffb969) - Added separate sitemap for categories
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`0ccec63`](https://github.com/graphcommerce-org/graphcommerce/commit/0ccec630825d5fad398366beae90b3c90b2f84b8) - Added separate sitemap for Hygraph pages
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 8.1.0-canary.8
+
+## 8.1.0-canary.7
+
+## 8.1.0-canary.6
+
+## 8.1.0-canary.5
+
+## 8.0.6-canary.4
+
+### Patch Changes
+
+- [#2227](https://github.com/graphcommerce-org/graphcommerce/pull/2227) [`d597719`](https://github.com/graphcommerce-org/graphcommerce/commit/d597719baaabbe079660ac063fd021d871831511) - Added option to change sort order (ASC / DESC) for sort options (Name, price, position etc) on catalog and search pages.
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
+## 8.0.5
+
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+## 8.0.5-canary.5
+
+## 8.0.5-canary.4
+
+## 8.0.5-canary.3
+
+## 8.0.5-canary.2
+
+## 8.0.5-canary.1
+
+## 8.0.5-canary.0
+
+## 8.0.4
+
+## 8.0.4-canary.1
+
+## 8.0.4-canary.0
+
+## 8.0.3
+
+## 8.0.3-canary.6
+
+## 8.0.3-canary.5
+
+## 8.0.3-canary.4
+
+## 8.0.3-canary.3
+
+## 8.0.3-canary.2
+
+## 8.0.3-canary.1
+
+## 8.0.3-canary.0
+
 ## 8.0.2
 
 ## 8.0.2-canary.3

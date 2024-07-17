@@ -1,12 +1,14 @@
 import { GraphQLProviderProps } from '@graphcommerce/graphql'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { cartErrorLink } from '../link/createCartErrorLink'
 import { cartTypePolicies, migrateCart } from '../typePolicies'
 
-export const component = 'GraphQLProvider'
-export const exported = '@graphcommerce/graphql'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/graphql',
+}
 
-function MagentoCartGraphqlProvider(props: PluginProps<GraphQLProviderProps>) {
+export function GraphQLProvider(props: PluginProps<GraphQLProviderProps>) {
   const { Prev, links = [], policies = [], migrations = [], ...rest } = props
   return (
     <Prev
@@ -17,5 +19,3 @@ function MagentoCartGraphqlProvider(props: PluginProps<GraphQLProviderProps>) {
     />
   )
 }
-
-export const Plugin = MagentoCartGraphqlProvider

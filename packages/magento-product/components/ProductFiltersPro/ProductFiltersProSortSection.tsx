@@ -1,56 +1,36 @@
-import { useWatch } from '@graphcommerce/ecommerce-ui'
-import { useQuery } from '@graphcommerce/graphql'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  ActionCard,
-  ActionCardAccordion,
-  ActionCardListForm,
-  Button,
-  filterNonNullableKeys,
-} from '@graphcommerce/next-ui'
+import { ActionCard, ActionCardAccordion, ActionCardListForm, Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { useMemo } from 'react'
-import { ProductListSortFragment } from '../ProductListSort/ProductListSort.gql'
+import { SxProps, Theme } from '@mui/material'
 import { useProductFiltersPro } from './ProductFiltersPro'
+import { UseProductFiltersProSortProps, useProductFiltersProSort } from './useProductFiltersProSort'
 
-export type ProductFiltersProSortSectionProps = ProductListSortFragment
+export type ProductFiltersProSortSectionProps = UseProductFiltersProSortProps & {
+  sx?: SxProps<Theme>
+}
 
 export function ProductFiltersProSortSection(props: ProductFiltersProSortSectionProps) {
-  const { sort_fields } = props
+  const { sx } = props
   const { form } = useProductFiltersPro()
-  const { control } = form
-  const activeSort = useWatch({ control, name: 'sort' })
-
-  const { data: storeConfigQuery } = useQuery(StoreConfigDocument)
-  const defaultSort = storeConfigQuery?.storeConfig?.catalog_default_sort_by
-
-  const options = useMemo(
-    () =>
-      filterNonNullableKeys(sort_fields?.options, ['value', 'label']).map((option) => ({
-        ...option,
-        value: option.value === defaultSort ? null : option.value,
-        title: option.label,
-      })),
-    [defaultSort, sort_fields?.options],
-  )
+  const { options, showReset, selected } = useProductFiltersProSort(props)
 
   return (
     <ActionCardAccordion
-      defaultExpanded={!!activeSort}
+      sx={sx}
+      defaultExpanded={selected}
       summary={<Trans id='Sort By' />}
       details={
         <ActionCardListForm
-          control={control}
+          control={form.control}
           name='sort'
           layout='list'
           variant='default'
-          size='medium'
+          size='responsive'
           render={ActionCard}
           items={options}
         />
       }
       right={
-        activeSort ? (
+        showReset ? (
           <Button
             color='primary'
             onClick={(e) => {

@@ -1,15 +1,14 @@
-import { type CartItemActionCard } from '@graphcommerce/magento-cart-items'
-import type { PluginProps } from '@graphcommerce/next-config'
+import { CartItemActionCardProps } from '@graphcommerce/magento-cart-items'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { isTypename } from '@graphcommerce/next-ui'
 import { BundleProductCartItemOptions } from '../components/BundleProductCartItemOptions/BundleProductCartItemOptions'
 
-export const component = 'CartItemActionCard'
-export const exported =
-  '@graphcommerce/magento-cart-items/components/CartItemActionCard/CartItemActionCard'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/magento-cart-items',
+}
 
-export function BundleCartItemActionCard(
-  props: PluginProps<React.ComponentProps<typeof CartItemActionCard>>,
-) {
+export function CartItemActionCard(props: PluginProps<CartItemActionCardProps>) {
   const { Prev, ...rest } = props
 
   if (!isTypename(rest.cartItem, ['BundleCartItem'])) return <Prev {...rest} />
@@ -26,5 +25,3 @@ export function BundleCartItemActionCard(
     />
   )
 }
-
-export const Plugin = BundleCartItemActionCard

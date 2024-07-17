@@ -1,9 +1,17 @@
-import React, { useState, useRef, startTransition, useLayoutEffect, useEffect } from 'react'
+import { Box, BoxProps } from '@mui/material'
+import React, {
+  useState,
+  useRef,
+  startTransition,
+  useLayoutEffect,
+  useEffect,
+  CSSProperties,
+} from 'react'
 
 // Make sure the server doesn't choke on the useLayoutEffect
 export const useLayoutEffect2 = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
-export type LazyHydrateProps = {
+export type LazyHydrateProps = BoxProps<'div'> & {
   /**
    * The content is always rendered on the server and on the client it uses the server rendered HTML until it is hydrated.
    */
@@ -17,6 +25,14 @@ export type LazyHydrateProps = {
    * - Hydrate the component on some state `<LazyHydrate hydrated={someState}>` where someState initially is false and later becomes true.
    */
   hydrated?: boolean
+
+  /**
+   * By default LazyHydrate does not defer the rendering of components when they are rendered client
+   * side, because using an IntersectionObserver on an element with no height, will cause all siblings to render at once.
+   *
+   * By proving a height, we can use the IntersectionObserver on the client as well.
+   */
+  height?: CSSProperties['height']
 }
 
 /**
@@ -25,8 +41,8 @@ export type LazyHydrateProps = {
  * This can be a way to improve the TBT of a page.
  */
 export function LazyHydrate(props: LazyHydrateProps) {
-  const { hydrated, children } = props
-  const rootRef = useRef<HTMLElement>(null)
+  const { hydrated, children, height, ...elementProps } = props
+  const rootRef = useRef<HTMLDivElement>(null)
 
   const [isHydrated, setIsHydrated] = useState(hydrated || false)
   if (!isHydrated && hydrated) setIsHydrated(true)
@@ -36,7 +52,7 @@ export function LazyHydrate(props: LazyHydrateProps) {
     if (isHydrated || !rootRef.current) return undefined
 
     // If the element wasn't rendered on the server, we hydrate it immediately
-    if (!rootRef.current?.hasAttribute('data-lazy-hydrate')) {
+    if (!height && !rootRef.current?.hasAttribute('data-lazy-hydrate')) {
       setIsHydrated(true)
       return undefined
     }
@@ -58,15 +74,25 @@ export function LazyHydrate(props: LazyHydrateProps) {
   }, [hydrated, isHydrated])
 
   if (isHydrated) {
-    return <section>{children}</section>
+    return <Box {...elementProps}>{children}</Box>
   }
 
   if (typeof window === 'undefined') {
-    return <section data-lazy-hydrate>{children}</section>
+    return (
+      <Box data-lazy-hydrate {...elementProps}>
+        {children}
+      </Box>
+    )
   }
 
   return (
-    // eslint-disable-next-line react/no-danger
-    <section ref={rootRef} dangerouslySetInnerHTML={{ __html: '' }} suppressHydrationWarning />
+    <Box
+      ref={rootRef}
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={{ __html: '' }}
+      suppressHydrationWarning
+      {...elementProps}
+      style={{ ...elementProps.style, height }}
+    />
   )
 }

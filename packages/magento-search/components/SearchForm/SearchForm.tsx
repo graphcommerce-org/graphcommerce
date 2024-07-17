@@ -29,7 +29,9 @@ export function SearchForm(props: SearchFormProps) {
   const form = useForm({ defaultValues: { search } })
   const { handleSubmit, setValue, control } = form
 
-  const submit = handleSubmit((formData) => router.replace(`/${urlHandle}/${formData.search}`))
+  const submit = handleSubmit((formData) =>
+    router.replace(`/${urlHandle}/${formData.search}`, undefined, { shallow: true }),
+  )
 
   const endAdornment = (
     <SearchFormAdornment
@@ -58,7 +60,7 @@ export function SearchForm(props: SearchFormProps) {
         color='primary'
         control={control}
         InputProps={{ ...textFieldProps?.InputProps, endAdornment }}
-        validation={{ minLength: 3 }}
+        rules={{ minLength: 3 }}
         inputRef={searchInputElement}
         {...textFieldProps}
       />

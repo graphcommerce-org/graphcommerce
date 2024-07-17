@@ -16,6 +16,7 @@ import {
 
 export type SliderElementProps<T extends FieldValues> = Omit<SliderProps, 'control'> & {
   label?: string
+  /** @deprecated Form value parsing should happen in the handleSubmit function of the form */
   parseError?: (error: FieldError) => string
   required?: boolean
   formControlProps?: FormControlProps
@@ -39,7 +40,7 @@ export function SliderElement<TFieldValues extends FieldValues>({
       name={name}
       control={control}
       rules={rules}
-      render={({ field: { onChange, value }, fieldState: { invalid, error } }) => {
+      render={({ field, fieldState: { invalid, error } }) => {
         const parsedHelperText = error
           ? typeof parseError === 'function'
             ? parseError(error)
@@ -52,12 +53,7 @@ export function SliderElement<TFieldValues extends FieldValues>({
                 {label}
               </FormLabel>
             )}
-            <Slider
-              {...other}
-              value={value}
-              onChange={onChange}
-              valueLabelDisplay={other.valueLabelDisplay || 'auto'}
-            />
+            <Slider {...other} {...field} valueLabelDisplay={other.valueLabelDisplay || 'auto'} />
             {parsedHelperText && (
               <FormHelperText error={invalid}>{parsedHelperText}</FormHelperText>
             )}

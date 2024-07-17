@@ -1,4 +1,4 @@
-import { storefrontConfig, storefrontConfigDefault } from '@graphcommerce/next-ui'
+import { useLocale } from '@graphcommerce/next-ui'
 import { i18n, Messages } from '@lingui/core'
 import { I18nProvider, I18nProviderProps } from '@lingui/react'
 import React, { useMemo } from 'react'
@@ -8,16 +8,13 @@ export type LinguiProviderProps = Omit<I18nProviderProps, 'i18n'> & {
   children: React.ReactNode
   loader: MessageLoader
   ssrLoader: SyncMessageLoader
-  locale: string
+  locale?: string
 }
-
-export const localeConfig = (locale: string = storefrontConfigDefault().locale) =>
-  storefrontConfig(locale)?.linguiLocale ?? locale?.split('-')[0]
 
 export function LinguiProvider(props: LinguiProviderProps) {
   const { loader, ssrLoader, locale, ...i18nProviderProps } = props
 
-  const localeOnly = localeConfig(locale)
+  const localeOnly = useLocale()
 
   useMemo(() => {
     const data = globalThis.document?.getElementById('lingui')

@@ -43,6 +43,8 @@ function configToEnvSchema(schema) {
             node = node.unwrap();
         if (node instanceof zod_1.ZodNullable)
             node = node.unwrap();
+        if (node instanceof zod_1.ZodDefault)
+            node = node.removeDefault();
         if (node instanceof zod_1.ZodObject) {
             if (path.length > 0) {
                 envSchema[(0, exports.toEnvStr)(path)] = zod_1.z
@@ -73,7 +75,12 @@ function configToEnvSchema(schema) {
             });
             return;
         }
-        if (node instanceof zod_1.ZodString || node instanceof zod_1.ZodNumber || node instanceof zod_1.ZodEnum) {
+        if (node instanceof zod_1.ZodNumber) {
+            envSchema[(0, exports.toEnvStr)(path)] = zod_1.z.coerce.number().optional();
+            envToDot[(0, exports.toEnvStr)(path)] = (0, exports.dotNotation)(path);
+            return;
+        }
+        if (node instanceof zod_1.ZodString || node instanceof zod_1.ZodEnum) {
             envSchema[(0, exports.toEnvStr)(path)] = node.optional();
             envToDot[(0, exports.toEnvStr)(path)] = (0, exports.dotNotation)(path);
             return;

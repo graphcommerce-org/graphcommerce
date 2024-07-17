@@ -1,9 +1,5 @@
-import {
-  LinguiProvider,
-  LinguiProviderProps,
-  localeConfig,
-  SyncMessageLoader,
-} from '@graphcommerce/lingui-next'
+import { LinguiProvider, LinguiProviderProps, SyncMessageLoader } from '@graphcommerce/lingui-next'
+import { normalizeLocale } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 
 type I18nProviderProps = Pick<LinguiProviderProps, 'locale' | 'children'>
@@ -13,7 +9,7 @@ const ssrLoader: SyncMessageLoader = (l: string) =>
   typeof window === 'undefined' ? require(`../../locales/${l}.po`) : { messages: [] }
 
 export function i18nSsrLoader(locale?: string) {
-  const linguiLocale = localeConfig(locale)
+  const linguiLocale = normalizeLocale(locale)
   i18n.load(linguiLocale, ssrLoader(linguiLocale).messages)
   i18n.activate(linguiLocale)
 }

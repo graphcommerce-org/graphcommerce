@@ -1,0 +1,6 @@
+query GuestOrder($orderNumber: String!, $email: String!, $postcode: String!) {
+  guestOrder(input: { number: $orderNumber, email: $email, postcode: $postcode }) {
+    ...OrderDetails
+    ...OrderItems
+  }
+}

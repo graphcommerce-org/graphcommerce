@@ -1,5 +1,204 @@
 # Change Log
 
+## 8.1.0-canary.53
+
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+### Minor Changes
+
+- [#2322](https://github.com/graphcommerce-org/graphcommerce/pull/2322) [`4d08a2b`](https://github.com/graphcommerce-org/graphcommerce/commit/4d08a2bd8c1919bd85b18e8e856775d18fb67e00) - Rename configurable_customizable back to customizable_options
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+## 8.1.0-canary.46
+
+## 8.1.0-canary.45
+
+## 8.1.0-canary.44
+
+## 8.1.0-canary.43
+
+## 8.1.0-canary.42
+
+## 8.1.0-canary.41
+
+## 8.1.0-canary.40
+
+## 8.1.0-canary.39
+
+## 8.1.0-canary.38
+
+## 8.1.0-canary.37
+
+## 8.1.0-canary.36
+
+## 8.1.0-canary.35
+
+## 8.1.0-canary.34
+
+## 8.1.0-canary.33
+
+### Patch Changes
+
+- [#2302](https://github.com/graphcommerce-org/graphcommerce/pull/2302) [`6b7f908`](https://github.com/graphcommerce-org/graphcommerce/commit/6b7f908b7a2561e9d7f6ec3eaf2a6aca8d77b72f) - Fixed tier prices not working for non-configurable products
+  ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 8.1.0-canary.32
+
+## 8.1.0-canary.31
+
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
+## 8.1.0-canary.28
+
+## 8.1.0-canary.27
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+### Patch Changes
+
+- [#2282](https://github.com/graphcommerce-org/graphcommerce/pull/2282) [`e048f61`](https://github.com/graphcommerce-org/graphcommerce/commit/e048f6165ae5a15be99fba0c3d3529c700477d3e) - Disable configurable product options that are unavailable for selection.
+  ([@carlocarels90](https://github.com/carlocarels90))
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
+## 8.1.0-canary.20
+
+## 8.1.0-canary.19
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+## 8.1.0-canary.8
+
+### Patch Changes
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for linguiLocale
+  ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.7
+
+## 8.1.0-canary.6
+
+## 8.1.0-canary.5
+
+## 8.0.6-canary.4
+
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.6-canary.1
+
+### Patch Changes
+
+- [#2213](https://github.com/graphcommerce-org/graphcommerce/pull/2213) [`a0d952e`](https://github.com/graphcommerce-org/graphcommerce/commit/a0d952e6b8a71a7451bfdb2bdb5150fc218169e2) - Moved product reviews to the relatedUpsells query so we do not pass the queryComplexity limit
+  ([@paales](https://github.com/paales))
+
+## 8.0.6-canary.0
+
+### Patch Changes
+
+- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods.
+  ([@paales](https://github.com/paales))
+
+## 8.0.5
+
+### Patch Changes
+
+- [#2239](https://github.com/graphcommerce-org/graphcommerce/pull/2239) [`a2a6e78`](https://github.com/graphcommerce-org/graphcommerce/commit/a2a6e78291ab978f4ef1236a4476b4d54555af7f) - Prices of products are now updated when customizable options are selected
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+### Patch Changes
+
+- [#2239](https://github.com/graphcommerce-org/graphcommerce/pull/2239) [`a2a6e78`](https://github.com/graphcommerce-org/graphcommerce/commit/a2a6e78291ab978f4ef1236a4476b4d54555af7f) - Prices of products are now updated when customizable options are selected
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+## 8.0.5-canary.5
+
+## 8.0.5-canary.4
+
+## 8.0.5-canary.3
+
+## 8.0.5-canary.2
+
+## 8.0.5-canary.1
+
+## 8.0.5-canary.0
+
+## 8.0.4
+
+## 8.0.4-canary.1
+
+## 8.0.4-canary.0
+
+## 8.0.3
+
+## 8.0.3-canary.6
+
+## 8.0.3-canary.5
+
+## 8.0.3-canary.4
+
+## 8.0.3-canary.3
+
+## 8.0.3-canary.2
+
+## 8.0.3-canary.1
+
+## 8.0.3-canary.0
+
 ## 8.0.2
 
 ## 8.0.2-canary.3

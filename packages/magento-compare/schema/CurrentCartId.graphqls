@@ -1,0 +1,12 @@
+extend type Query {
+  currentCartId: CurrentCartId
+}
+
+type CurrentCartId {
+  id: String
+  locked: Boolean
+}
+
+input RegisterCartIdInput {
+  cart_id: String!
+}

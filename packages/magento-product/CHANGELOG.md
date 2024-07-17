@@ -1,5 +1,223 @@
 # Change Log
 
+## 8.1.0-canary.53
+
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+### Minor Changes
+
+- [#2322](https://github.com/graphcommerce-org/graphcommerce/pull/2322) [`4d08a2b`](https://github.com/graphcommerce-org/graphcommerce/commit/4d08a2bd8c1919bd85b18e8e856775d18fb67e00) - Rename configurable_customizable back to customizable_options
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+## 8.1.0-canary.46
+
+## 8.1.0-canary.45
+
+## 8.1.0-canary.44
+
+## 8.1.0-canary.43
+
+## 8.1.0-canary.42
+
+## 8.1.0-canary.41
+
+### Patch Changes
+
+- [#2242](https://github.com/graphcommerce-org/graphcommerce/pull/2242) [`a4cce76`](https://github.com/graphcommerce-org/graphcommerce/commit/a4cce76ca37af2bec604e953ada4bb11bd91f55d) - Add option to show an extended version of the pagination component. Configurable via the "productListPaginationVariant" key in your graphcommerce.config.js
+  COMPACT means: "< Page X of Y >"
+  EXTENDED means: "< 1 2 ... [5] ... 10 11 >" ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.1.0-canary.40
+
+## 8.1.0-canary.39
+
+## 8.1.0-canary.38
+
+## 8.1.0-canary.37
+
+## 8.1.0-canary.36
+
+## 8.1.0-canary.35
+
+## 8.1.0-canary.34
+
+## 8.1.0-canary.33
+
+## 8.1.0-canary.32
+
+## 8.1.0-canary.31
+
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
+## 8.1.0-canary.28
+
+## 8.1.0-canary.27
+
+### Minor Changes
+
+- [#2273](https://github.com/graphcommerce-org/graphcommerce/pull/2273) [`77955c5`](https://github.com/graphcommerce-org/graphcommerce/commit/77955c56ac8633ab1c5e0f3ddb25e3a87236e2bb) - Improve Breadcrumbs on Category and Product pages
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
+## 8.1.0-canary.20
+
+## 8.1.0-canary.19
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
+### Patch Changes
+
+- [#2255](https://github.com/graphcommerce-org/graphcommerce/pull/2255) [`679d07d`](https://github.com/graphcommerce-org/graphcommerce/commit/679d07dad5b5e2dab3c0f3d537716b6115af8ef7) - make the ProductPageMeta fragment injectable
+  ([@carlocarels90](https://github.com/carlocarels90))
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+## 8.1.0-canary.8
+
+## 8.1.0-canary.7
+
+## 8.1.0-canary.6
+
+## 8.1.0-canary.5
+
+### Patch Changes
+
+- [#2224](https://github.com/graphcommerce-org/graphcommerce/pull/2224) [`4dd2d01`](https://github.com/graphcommerce-org/graphcommerce/commit/4dd2d01b3e14e3107ee3e337bef2a8528d654e75) - When applying a filter it would not always scroll to the #products.
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.6-canary.4
+
+### Patch Changes
+
+- [#2227](https://github.com/graphcommerce-org/graphcommerce/pull/2227) [`d597719`](https://github.com/graphcommerce-org/graphcommerce/commit/d597719baaabbe079660ac063fd021d871831511) - Added option to change sort order (ASC / DESC) for sort options (Name, price, position etc) on catalog and search pages.
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.6-canary.3
+
+## 8.0.6-canary.2
+
+### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent BillingPage query from rerunning on each mutation
+  ([@FrankHarland](https://github.com/FrankHarland))
+
+## 8.0.6-canary.1
+
+## 8.0.6-canary.0
+
+### Patch Changes
+
+- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods.
+  ([@paales](https://github.com/paales))
+
+## 8.0.5
+
+### Patch Changes
+
+- [#2239](https://github.com/graphcommerce-org/graphcommerce/pull/2239) [`a2a6e78`](https://github.com/graphcommerce-org/graphcommerce/commit/a2a6e78291ab978f4ef1236a4476b4d54555af7f) - Prices of products are now updated when customizable options are selected
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.5-canary.10
+
+## 8.0.5-canary.9
+
+## 8.0.5-canary.8
+
+### Patch Changes
+
+- [#2239](https://github.com/graphcommerce-org/graphcommerce/pull/2239) [`a2a6e78`](https://github.com/graphcommerce-org/graphcommerce/commit/a2a6e78291ab978f4ef1236a4476b4d54555af7f) - Prices of products are now updated when customizable options are selected
+  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.0.5-canary.7
+
+## 8.0.5-canary.6
+
+## 8.0.5-canary.5
+
+## 8.0.5-canary.4
+
+## 8.0.5-canary.3
+
+## 8.0.5-canary.2
+
+## 8.0.5-canary.1
+
+## 8.0.5-canary.0
+
+## 8.0.4
+
+## 8.0.4-canary.1
+
+## 8.0.4-canary.0
+
+## 8.0.3
+
+### Patch Changes
+
+- [#2217](https://github.com/graphcommerce-org/graphcommerce/pull/2217) [`2b750da`](https://github.com/graphcommerce-org/graphcommerce/commit/2b750da77723d37485da01df05f52d19b80cc90c) - fix for breadcrumbs on pdp when no category attached to product
+  ([@JoshuaS98](https://github.com/JoshuaS98))
+
+## 8.0.3-canary.6
+
+### Patch Changes
+
+- [#2217](https://github.com/graphcommerce-org/graphcommerce/pull/2217) [`2b750da`](https://github.com/graphcommerce-org/graphcommerce/commit/2b750da77723d37485da01df05f52d19b80cc90c) - fix for breadcrumbs on pdp when no category attached to product
+  ([@JoshuaS98](https://github.com/JoshuaS98))
+
+## 8.0.3-canary.5
+
+## 8.0.3-canary.4
+
+## 8.0.3-canary.3
+
+## 8.0.3-canary.2
+
+## 8.0.3-canary.1
+
+## 8.0.3-canary.0
+
 ## 8.0.2
 
 ### Patch Changes

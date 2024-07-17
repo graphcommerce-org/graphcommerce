@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import { cloneDeep } from '@apollo/client/utilities'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useMemoObject } from '@graphcommerce/next-ui/hooks/useMemoObject'
@@ -5,16 +6,15 @@ import { useMemoObject } from '@graphcommerce/next-ui/hooks/useMemoObject'
 import { debounce } from '@mui/material'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
-  Control,
   DeepPartialSkipArrayKey,
   FieldPath,
   FieldValues,
   UseFormReturn,
+  UseWatchProps,
   useFormState,
   useWatch,
 } from 'react-hook-form'
-import { DebounceOptions } from './utils/debounce'
-import { useDebouncedCallback } from './utils/useDebounceCallback'
+import { DebounceSettings, useDebounce } from './utils/useDebounce'
 
 export type UseFormAutoSubmitOptions<TForm extends UseFormReturn<V>, V extends FieldValues> = {
   /** Instance of current form */
@@ -53,6 +53,9 @@ export type UseFormAutoSubmitOptions<TForm extends UseFormReturn<V>, V extends F
  * Q: How to I resubmit if the form is modified during the request?
  *    formState.isDirty should be true after the submission
  * @see useFormGqlMutation.tsx for an example implementation
+ *
+ *
+ * @deprecated Please use the <FormAutoSubmit /> component instead. This method causes excessive rerenders.
  */
 export function useFormAutoSubmit<
   Form extends UseFormReturn<V>,
@@ -98,21 +101,8 @@ export function useFormAutoSubmit<
   return submitting
 }
 
-export type FormAutoSubmitProps<
-  TFieldValues extends FieldValues = FieldValues,
-  TFieldNames extends readonly FieldPath<TFieldValues>[] = readonly FieldPath<TFieldValues>[],
-> = {
-  // eslint-disable-next-line react/no-unused-prop-types
-  control: Control<TFieldValues>
+export type FormAutoSubmitProps<TFieldValues extends FieldValues = FieldValues> = {
   /** Autosubmit only when these field names update */
-  // eslint-disable-next-line react/no-unused-prop-types
-  name?: readonly [...TFieldNames]
-
-  // eslint-disable-next-line react/no-unused-prop-types
-  disabled?: boolean
-
-  // eslint-disable-next-line react/no-unused-prop-types
-  exact?: boolean
 
   /** SubmitHandler */
   // eslint-disable-next-line react/no-unused-prop-types
@@ -124,20 +114,42 @@ export type FormAutoSubmitProps<
    */
   // eslint-disable-next-line react/no-unused-prop-types
   parallel?: boolean
-} & DebounceOptions
 
-function useFormAutoSubmit2<
-  TFieldValues extends FieldValues = FieldValues,
-  TFieldNames extends readonly FieldPath<TFieldValues>[] = readonly FieldPath<TFieldValues>[],
->(props: FormAutoSubmitProps<TFieldValues, TFieldNames>) {
-  const { wait, initialWait, maxWait, submit, parallel, ...watchOptions } = props
+  noValidate?: boolean
+
+  wait?: number
+
+  /**
+   * Only 0 does anthing and will submit immediately. Any other value will be ignored.
+   *
+   * @deprecated Please use leading instead
+   */
+  initialWait?: number
+} & Omit<UseWatchProps<TFieldValues>, 'defaultValue'> &
+  DebounceSettings
+
+export function useAutoSubmitBase<TFieldValues extends FieldValues = FieldValues>(
+  props: FormAutoSubmitProps<TFieldValues>,
+) {
+  const {
+    wait = 166,
+    initialWait,
+    maxWait,
+    leading,
+    trailing,
+
+    submit,
+    parallel,
+    noValidate,
+    ...watchOptions
+  } = props
 
   // We create a stable object from the values, so that we can compare them later
   const values = useMemoObject(cloneDeep(useWatch(watchOptions)))
   const oldValues = useRef<DeepPartialSkipArrayKey<TFieldValues>>(values)
   const { isValidating, isSubmitting, isValid } = useFormState(watchOptions)
 
-  const submitDebounced = useDebouncedCallback(
+  const submitDebounced = useDebounce(
     async () => {
       try {
         oldValues.current = values
@@ -146,10 +158,11 @@ function useFormAutoSubmit2<
         // We're not interested if the submission actually succeeds, that should be handled by the form itself.
       }
     },
-    { wait, initialWait, maxWait },
+    wait,
+    { leading: leading ?? initialWait === 0, maxWait, trailing },
   )
 
-  const valid = isValid && !isValidating
+  const valid = (noValidate ? true : isValid) && !isValidating
   const allowed = parallel || !isSubmitting
   const canSubmit = valid && allowed
 
@@ -160,14 +173,12 @@ function useFormAutoSubmit2<
 }
 
 /**
- * We're wrapping this in a component so that the parent component doesn't rerender on every
- * submission.
+ * This is made a components so the useWatch that is used here doesn't retrigger the rerender of the parent component.
  */
-function FormAutoSubmitBase<
-  TFieldValues extends FieldValues = FieldValues,
-  TFieldNames extends readonly FieldPath<TFieldValues>[] = readonly FieldPath<TFieldValues>[],
->(props: FormAutoSubmitProps<TFieldValues, TFieldNames>) {
-  useFormAutoSubmit2(props)
+function FormAutoSubmitBase<TFieldValues extends FieldValues = FieldValues>(
+  props: FormAutoSubmitProps<TFieldValues>,
+) {
+  useAutoSubmitBase(props)
   return null
 }
 

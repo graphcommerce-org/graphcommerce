@@ -1,4 +1,9 @@
-import { FormAutoSubmit, TextFieldElement, emailPattern } from '@graphcommerce/ecommerce-ui'
+import {
+  EmailElement,
+  FormAutoSubmit,
+  TextFieldElement,
+  emailPattern,
+} from '@graphcommerce/ecommerce-ui'
 import { useApolloClient } from '@graphcommerce/graphql'
 import {
   ActionCard,
@@ -138,18 +143,11 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
           <FormAutoSubmit {...form} submit={submit} />
           <Box>
             <FormRow>
-              <TextFieldElement
+              <EmailElement
                 variant='outlined'
                 control={control}
                 name='email'
                 required
-                type='email'
-                validation={{
-                  required: true,
-                  pattern: { value: emailPattern, message: '' },
-                }}
-                error={formState.isSubmitted && !!formState.errors.email}
-                label={<Trans id='Email' />}
                 InputProps={{
                   endAdornment:
                     mode === 'session-expired' ? (

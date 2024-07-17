@@ -1,17 +1,16 @@
 import {
   SelectedCustomizableOptions,
-  type CartItemActionCard,
+  CartItemActionCardProps,
 } from '@graphcommerce/magento-cart-items'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { isTypename } from '@graphcommerce/next-ui'
 
-export const component = 'CartItemActionCard'
-export const exported =
-  '@graphcommerce/magento-cart-items/components/CartItemActionCard/CartItemActionCard'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/magento-cart-items',
+}
 
-export function VirtualCartItemActionCard(
-  props: PluginProps<React.ComponentProps<typeof CartItemActionCard>>,
-) {
+export function CartItemActionCard(props: PluginProps<CartItemActionCardProps>) {
   const { Prev, ...rest } = props
 
   if (!isTypename(rest.cartItem, ['VirtualCartItem'])) return <Prev {...rest} />
@@ -28,5 +27,3 @@ export function VirtualCartItemActionCard(
     />
   )
 }
-
-export const Plugin = VirtualCartItemActionCard

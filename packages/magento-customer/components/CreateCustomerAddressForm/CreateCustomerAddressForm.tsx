@@ -1,23 +1,13 @@
+import { ApolloErrorSnackbar, TelephoneElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  Form,
-  FormActions,
-  FormDivider,
-  FormRow,
-  InputCheckmark,
-  Button,
-  MessageSnackbar,
-} from '@graphcommerce/next-ui'
-import { phonePattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { Form, FormActions, FormRow, Button, MessageSnackbar } from '@graphcommerce/next-ui'
+import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { TextField } from '@mui/material'
 import { useRouter } from 'next/router'
 import { AddressFields } from '../AddressFields/AddressFields'
-import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
+import { CompanyFields } from '../CompanyFields'
 import { NameFields } from '../NameFields/NameFields'
 import { CreateCustomerAddressDocument } from './CreateCustomerAddress.gql'
 
@@ -38,7 +28,12 @@ export function CreateCustomerAddressForm() {
       onBeforeSubmit: (formData) => {
         const region = countries
           ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)
-          ?.available_regions?.find((r) => r?.id === formData.region)
+          ?.available_regions?.find((r) => r?.id === formData.region.region_id)
+
+        if (!formData.isCompany) {
+          formData.company = ''
+          formData.vatId = ''
+        }
 
         return {
           ...formData,
@@ -51,15 +46,14 @@ export function CreateCustomerAddressForm() {
             {},
         }
       },
-      onComplete: () => {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        router.push(`/account/addresses`)
+      onComplete: ({ errors }) => {
+        if (!errors) router.back()
       },
     },
     { errorPolicy: 'all' },
   )
 
-  const { handleSubmit, formState, required, error, muiRegister, valid, data } = form
+  const { handleSubmit, formState, required, error, control, data } = form
   const submitHandler = handleSubmit((_, e) => {
     if (!formState.errors) e?.target.reset()
   })
@@ -67,27 +61,20 @@ export function CreateCustomerAddressForm() {
   return (
     <>
       <Form onSubmit={submitHandler} noValidate>
+        <CompanyFields form={form} />
         <NameFields form={form} prefix />
-        <AddressFields form={form} />
+        <AddressFields form={form} name={{ regionId: 'region.region_id' }} />
 
         <FormRow>
-          <TextField
+          <TelephoneElement
             variant='outlined'
-            type='text'
-            error={!!formState.errors.telephone}
             required={required.telephone}
-            label={<Trans id='Telephone' />}
-            {...muiRegister('telephone', {
-              required: required.telephone,
-              pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-            })}
-            helperText={formState.isSubmitted && formState.errors.telephone?.message}
+            control={control}
+            name='telephone'
             disabled={formState.isSubmitting}
-            InputProps={{ endAdornment: <InputCheckmark show={valid.telephone} /> }}
+            showValid
           />
         </FormRow>
-
-        <FormDivider />
 
         <FormActions>
           <Button
@@ -101,12 +88,11 @@ export function CreateCustomerAddressForm() {
           </Button>
         </FormActions>
       </Form>
-
       <MessageSnackbar open={Boolean(data) && !error} variant='pill' severity='success'>
         <Trans id='Your address has been added' components={{ 0: <strong /> }} />
       </MessageSnackbar>
 
-      <ApolloCustomerErrorAlert error={error} />
+      <ApolloErrorSnackbar error={error} />
     </>
   )
 }

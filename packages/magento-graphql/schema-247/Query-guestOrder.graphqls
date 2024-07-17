@@ -1,0 +1,31 @@
+type CustomerOrder {
+  """
+  Order customer email.
+  """
+  email: String
+}
+
+"""
+Input to retrieve an order based on details.
+"""
+input OrderInformationInput {
+  """
+  Order billing address email.
+  """
+  email: String!
+  """
+  Order number.
+  """
+  number: String!
+  """
+  Order billing address postcode.
+  """
+  postcode: String!
+}
+
+type Query {
+  """
+  Retrieve guest order details based on number, email and postcode.
+  """
+  guestOrder(input: OrderInformationInput!): CustomerOrder! @deprecated(reason: "Magento >= 2.4.7")
+}

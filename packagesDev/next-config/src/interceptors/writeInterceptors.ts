@@ -1,40 +1,56 @@
-import fs from 'node:fs'
+import fs from 'node:fs/promises'
 import path from 'path'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import glob from 'glob'
+import { sync as globSync } from 'glob'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 import { GenerateInterceptorsReturn } from './generateInterceptors'
 
-export function writeInterceptors(
+function checkFileExists(file: string) {
+  return fs
+    .access(file, fs.constants.F_OK)
+    .then(() => true)
+    .catch(() => false)
+}
+
+export async function writeInterceptors(
   interceptors: GenerateInterceptorsReturn,
   cwd: string = process.cwd(),
 ) {
   const dependencies = resolveDependenciesSync(cwd)
-  const existing: string[] = []
+  const existing = new Set<string>()
   dependencies.forEach((dependency) => {
-    const files = glob.sync(`${dependency}/**/*.interceptor.tsx`, { cwd })
-    existing.push(...files)
+    const files = globSync(
+      [`${dependency}/**/*.interceptor.tsx`, `${dependency}/**/*.interceptor.ts`],
+      { cwd },
+    )
+    files.forEach((file) => existing.add(file))
   })
 
-  Object.entries(interceptors).forEach(([, plugin]) => {
-    const relativeFile = `${plugin.fromRoot}.interceptor.tsx`
+  const written = Object.entries(interceptors).map(async ([, plugin]) => {
+    const extension = plugin.sourcePath.endsWith('.tsx') ? '.tsx' : '.ts'
+    const relativeFile = `${plugin.fromRoot}.interceptor${extension}`
 
-    if (existing.includes(relativeFile)) {
-      delete existing[existing.indexOf(relativeFile)]
+    if (existing.has(relativeFile)) {
+      existing.delete(relativeFile)
     }
-    if (existing.includes(`./${relativeFile}`)) {
-      delete existing[existing.indexOf(`./${relativeFile}`)]
+    if (existing.has(`./${relativeFile}`)) {
+      existing.delete(`./${relativeFile}`)
     }
 
     const fileToWrite = path.join(cwd, relativeFile)
 
     const isSame =
-      fs.existsSync(fileToWrite) &&
-      fs.readFileSync(fileToWrite, 'utf8').toString() === plugin.template
+      (await checkFileExists(fileToWrite)) &&
+      (await fs.readFile(fileToWrite, 'utf8')).toString() === plugin.template
 
-    if (!isSame) fs.writeFileSync(fileToWrite, plugin.template)
+    if (!isSame) await fs.writeFile(fileToWrite, plugin.template)
   })
 
   // Cleanup unused interceptors
-  existing.forEach((file) => fs.existsSync(file) && fs.unlinkSync(file))
+  const cleaned = [...existing].map(
+    async (file) => (await checkFileExists(file)) && (await fs.unlink(file)),
+  )
+
+  await Promise.all(written)
+  await Promise.all(cleaned)
 }

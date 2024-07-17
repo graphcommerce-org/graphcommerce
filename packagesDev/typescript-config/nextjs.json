@@ -16,6 +16,7 @@
     "noImplicitAny": false,
     "jsx": "preserve",
     "jsxImportSource": "@emotion/react",
-    "incremental": true
+    "incremental": true,
+    "moduleSuffixes": [".interceptor", ""]
   }
 }

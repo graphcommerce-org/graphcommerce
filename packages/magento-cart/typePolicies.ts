@@ -2,11 +2,14 @@ import { ApolloCache, NormalizedCacheObject } from '@graphcommerce/graphql'
 import type { StrictTypedTypePolicies } from '@graphcommerce/graphql'
 import type { CartPrices, QuerycartArgs, ShippingCartAddress } from '@graphcommerce/graphql-mesh'
 import { CartFabDocument } from './components/CartFab/CartFab.gql'
-import { CurrentCartIdDocument } from './hooks/CurrentCartId.gql'
+import { readCartId, writeCartId } from './hooks'
 
 export const cartTypePolicies: StrictTypedTypePolicies = {
   CurrentCartId: { keyFields: [] },
   CartPrices: {
+    merge: (exiting, incoming, { mergeObjects }) => mergeObjects(exiting, incoming),
+  },
+  CartItemPrices: {
     merge: (exiting, incoming, { mergeObjects }) => mergeObjects(exiting, incoming),
   },
   Cart: {
@@ -21,6 +24,7 @@ export const cartTypePolicies: StrictTypedTypePolicies = {
           return merged ? [merged] : []
         },
       },
+      items: { merge: (_, incoming) => incoming },
       prices: {
         merge: (existing: CartPrices[] | undefined, incoming: CartPrices[], options) =>
           options.mergeObjects(existing ?? {}, incoming),
@@ -53,11 +57,10 @@ export const migrateCart = (
   oldCache: ApolloCache<NormalizedCacheObject>,
   newCache: ApolloCache<NormalizedCacheObject>,
 ) => {
-  const currentCartId = oldCache.readQuery({ query: CurrentCartIdDocument })
-  const cartId = currentCartId?.currentCartId?.id
+  const cartId = readCartId(oldCache)?.id
 
   if (cartId) {
-    newCache.writeQuery({ query: CurrentCartIdDocument, data: currentCartId, broadcast: true })
+    writeCartId(newCache, cartId)
 
     // We have special handling for the CartFab because it tries to load data only from the cache.
     const cartFab = oldCache.readQuery({ query: CartFabDocument })

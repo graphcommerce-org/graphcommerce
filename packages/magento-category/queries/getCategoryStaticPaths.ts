@@ -10,6 +10,7 @@ type StaticPathsResult = GetStaticPathsResult<{ url: string[] }>
 const getCategoryStaticPaths = async (
   client: ApolloClient<NormalizedCacheObject>,
   locale: string,
+  options: { limit?: boolean } = { limit: import.meta.graphCommerce.limitSsg || false },
 ) => {
   const { data } = await client.query({
     query: GetCategoryStaticPathsDocument,
@@ -24,7 +25,7 @@ const getCategoryStaticPaths = async (
   }
   data.categories?.items?.forEach(add)
 
-  return import.meta.graphCommerce.limitSsg ? paths.slice(0, 1) : paths
+  return options.limit ? paths.slice(0, 1) : paths
 }
 
 export { getCategoryStaticPaths }

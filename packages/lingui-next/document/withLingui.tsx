@@ -1,3 +1,4 @@
+import { normalizeLocale } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import { DocumentContext, DocumentInitialProps } from 'next/document'
@@ -16,7 +17,7 @@ export function withLingui(
     static async getInitialProps(ctx: DocumentContext) {
       const initial = await Document.getInitialProps(ctx)
 
-      const locale = ctx.locale?.split('-')?.[0]
+      const locale = normalizeLocale(ctx.locale)
 
       if (!locale) return initial
       try {

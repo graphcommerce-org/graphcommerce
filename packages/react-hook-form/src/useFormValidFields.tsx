@@ -7,6 +7,8 @@ export type UseFormValidReturn<TFieldValues> = Partial<Record<Path<TFieldValues>
  * ### useFormValidFields
  *
  * Record field names as key and boolean as value indicating whether the field is valid
+ *
+ * @deprecated Please use TextInputElement, SelectElement, etc. with the showValid prop
  */
 export function useFormValidFields<TFieldValues extends FieldValues>(
   form: Pick<UseFormReturn<TFieldValues>, 'watch' | 'formState'>,
