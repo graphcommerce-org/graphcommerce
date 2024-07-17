@@ -1,5 +1,12 @@
 # Change Log
 
+## 9.0.0-canary.54
+
+### Major Changes
+
+- [#2204](https://github.com/graphcommerce-org/graphcommerce/pull/2204) [`42843eb`](https://github.com/graphcommerce-org/graphcommerce/commit/42843eb760f8301eb7901bb0d888c95792ff0b4b) - add X-Forwarded-For header to mesh
+  ([@SumVur](https://github.com/SumVur))
+
 ## 8.1.0-canary.53
 
 ## 8.1.0-canary.52
