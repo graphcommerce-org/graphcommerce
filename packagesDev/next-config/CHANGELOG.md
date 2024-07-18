@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.58
+
+### Minor Changes
+
+- [#2330](https://github.com/graphcommerce-org/graphcommerce/pull/2330) [`5701e71`](https://github.com/graphcommerce-org/graphcommerce/commit/5701e71454ffb52880cd15c3341826d9502284d0) - Added support for boolean `ifConfig: ['customerXMagentoCacheIdDisable', true]` values in plugin configurations ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.57
 
 ## 9.0.0-canary.56

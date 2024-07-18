@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.58
+
+### Minor Changes
+
+- [#2330](https://github.com/graphcommerce-org/graphcommerce/pull/2330) [`bc3ec5e`](https://github.com/graphcommerce-org/graphcommerce/commit/bc3ec5e439b97cea4a2cef23e4008c7e0cfd6797) - Created a new @graphql-mesh plugin to forward headers from backends as forwardedHeaders in extensions ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.57
 
 ## 9.0.0-canary.56

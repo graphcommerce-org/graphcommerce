@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.58
+
+### Patch Changes
+
+- [#2328](https://github.com/graphcommerce-org/graphcommerce/pull/2328) [`ee04368`](https://github.com/graphcommerce-org/graphcommerce/commit/ee04368444f732e5541a595db6e2ef66d15add68) - Move to attributesList to get a list of filterable attributes instead of using an introspection query. `productFiltersProSectionRenderer` and `productFiltersProChipRenderer` keys now now one of `AttributeFrontendInputEnum`. ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.57
 
 ## 9.0.0-canary.56
