@@ -57,7 +57,6 @@ function algoliaPricesToPricesAggregations(
   let interval = Math.round(
     (priceArraylist[priceArraylist.length - 1].value - priceArraylist[0].value) / 2,
   )
-  console.log('prijses', priceArraylist)
 
   const pricesBucket: { [key: number]: { count: number; value: string; label: string } } = {}
   let increasingInterval = interval
@@ -79,6 +78,23 @@ function algoliaPricesToPricesAggregations(
         pricesBucket[increasingInterval].count += price.count
       }
     } else {
+      increasingInterval += interval
+      pricesBucket[increasingInterval] = {
+        count: price.count,
+        value:
+          increasingInterval == interval
+            ? `0_${interval}`
+            : `${increasingInterval - interval}_${increasingInterval}`,
+        label:
+          increasingInterval == interval
+            ? `0_${interval}`
+            : `${increasingInterval - interval}-${increasingInterval}`,
+      }
+    }
+    if (
+      price.value === increasingInterval &&
+      priceArraylist[priceArraylist.length - 1].value !== price.value
+    ) {
       increasingInterval += interval
       pricesBucket[increasingInterval] = {
         count: price.count,
