@@ -22,6 +22,25 @@ function getIndexName(context: MeshContext, sortOption = '') {
   return `${import.meta.graphCommerce.algoliaIndexNamePrefix}${storeCode}_products`
 }
 
+function sortOptions(replicas): { value: string; label: string }[] {
+  if (!replicas) {
+    return []
+  }
+  const sortOptions: { value: string; label: string }[] = replicas?.replicas?.map((replica) => {
+    return {
+      value: replica?.replace(/virtual\(magento2_demonl_NL_products_([^)]*)\)/, '$1'),
+      label: replica
+        ?.replace(/virtual\(magento2_demonl_NL_products_([^)]*)\)/, '$1') // Remove virtual(magento2_demonl_NL_products_)
+        .replace(/_/g, ' ') // Replace underscores with spaces
+        .replace(/\bdefault\b/, '') // Remove the word 'default'
+        .replace(/\s{2,}/g, ' ') // Remove any extra spaces created by the removal of 'default'
+        .trim() // Trim the string
+        .replace(/\b\w/g, (char) => char.toUpperCase()), // Capitalize the first letter of every word,
+    }
+  })
+  return sortOptions
+}
+
 export const resolvers: Resolvers = {
   Query: {
     products: async (root, args, context, info) => {
@@ -33,35 +52,8 @@ export const resolvers: Resolvers = {
 
       const { engine, ...filters } = args.filter ?? {}
 
-      //retrieve replicas to determine sort options
-      const replicas = await context.algolia.Query.algolia_getSettings({
-        root,
-        args: {
-          indexName: getIndexName(context),
-        },
-        selectionSet: /* GraphQL */ `
-          {
-            replicas
-          }
-        `,
-        context,
-        info,
-      })
-      const sortOptions: { value: string; label: string }[] = replicas?.replicas?.map((replica) => {
-        return {
-          value: replica?.replace(/virtual\(magento2_demonl_NL_products_([^)]*)\)/, '$1'),
-          label: replica?.replace(/virtual\(magento2_demonl_NL_products_([^)]*)\)/, '$1')  // Remove virtual(magento2_demonl_NL_products_)
-          .replace(/_/g, ' ')  // Replace underscores with spaces
-          .replace(/\bdefault\b/, '')  // Remove the word 'default'
-          .replace(/\s{2,}/g, ' ')  // Remove any extra spaces created by the removal of 'default'
-          .trim()  // Trim the string
-          .replace(/\b\w/g, char => char.toUpperCase());  // Capitalize the first letter of every word,
-        }
-      })
-      // str.replace(/virtual\(([^)]+)\)/, '$1');
-
       const storeConfig = await getStoreConfig(context)
-      const [searchResults, attrList, categoryList] = await Promise.all([
+      const [searchResults, attrList, categoryList, replicas] = await Promise.all([
         context.algolia.Query.algolia_searchSingleIndex({
           root,
           args: {
@@ -106,6 +98,19 @@ export const resolvers: Resolvers = {
           `,
           context,
         }),
+        await context.algolia.Query.algolia_getSettings({
+          root,
+          args: {
+            indexName: getIndexName(context),
+          },
+          selectionSet: /* GraphQL */ `
+            {
+              replicas
+            }
+          `,
+          context,
+          info,
+        }),
       ])
 
       const hits = (searchResults?.hits ?? [])?.filter(nonNullable)
@@ -139,7 +144,7 @@ export const resolvers: Resolvers = {
          */
         sort_fields: {
           default: 'relevance',
-          options: [{ label: 'Relevance', value: 'relevance' }, ...sortOptions],
+          options: [{ label: 'Relevance', value: 'relevance' }, ...sortOptions(replicas)],
         },
       }
     },
