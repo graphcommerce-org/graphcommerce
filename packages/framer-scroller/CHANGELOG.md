@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
 ## 8.1.0-canary.52
 
 ## 8.1.0-canary.51
@@ -46,8 +56,7 @@
 
 ### Patch Changes
 
-- [#2297](https://github.com/graphcommerce-org/graphcommerce/pull/2297) [`e41cb6f`](https://github.com/graphcommerce-org/graphcommerce/commit/e41cb6fcdde95629d29c03b1a700c6097f00c901) - Prevent gallery thunbnails from scrolling when opening or closing a layout overlay
-  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2297](https://github.com/graphcommerce-org/graphcommerce/pull/2297) [`e41cb6f`](https://github.com/graphcommerce-org/graphcommerce/commit/e41cb6fcdde95629d29c03b1a700c6097f00c901) - Prevent gallery thunbnails from scrolling when opening or closing a layout overlay ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ## 8.1.0-canary.30
 
@@ -73,8 +82,7 @@
 
 ### Patch Changes
 
-- [#2246](https://github.com/graphcommerce-org/graphcommerce/pull/2246) [`13524f9`](https://github.com/graphcommerce-org/graphcommerce/commit/13524f991a810c1679db49b3b8b4f04f90d0d6c1) - SidebarGallery now supports two more props disableSticky and variantMd default|oneColumn
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2246](https://github.com/graphcommerce-org/graphcommerce/pull/2246) [`13524f9`](https://github.com/graphcommerce-org/graphcommerce/commit/13524f991a810c1679db49b3b8b4f04f90d0d6c1) - SidebarGallery now supports two more props disableSticky and variantMd default|oneColumn ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.1.0-canary.19
 
@@ -86,8 +94,7 @@
 
 ### Patch Changes
 
-- [#2275](https://github.com/graphcommerce-org/graphcommerce/pull/2275) [`29e496c`](https://github.com/graphcommerce-org/graphcommerce/commit/29e496ca815d102ac7952dc81c6c4ab9e164d031) - Prevent ScrollerThumbnail from scrolling the page horizontally
-  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2275](https://github.com/graphcommerce-org/graphcommerce/pull/2275) [`29e496c`](https://github.com/graphcommerce-org/graphcommerce/commit/29e496ca815d102ac7952dc81c6c4ab9e164d031) - Prevent ScrollerThumbnail from scrolling the page horizontally ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ## 8.1.0-canary.15
 
@@ -149,8 +156,7 @@
 
 ### Patch Changes
 
-- [#2225](https://github.com/graphcommerce-org/graphcommerce/pull/2225) [`29407d2`](https://github.com/graphcommerce-org/graphcommerce/commit/29407d28c4f7c2629f8c5ead658bfb203f5d81cf) - Fixed a bug on Firefox in which all overlays would retrigger the scrollTo function on opening or closing.
-  ([@mikekeehnen](https://github.com/mikekeehnen))
+- [#2225](https://github.com/graphcommerce-org/graphcommerce/pull/2225) [`29407d2`](https://github.com/graphcommerce-org/graphcommerce/commit/29407d28c4f7c2629f8c5ead658bfb203f5d81cf) - Fixed a bug on Firefox in which all overlays would retrigger the scrollTo function on opening or closing. ([@mikekeehnen](https://github.com/mikekeehnen))
 
 ## 8.0.4-canary.1
 
@@ -158,15 +164,13 @@
 
 ### Patch Changes
 
-- [#2225](https://github.com/graphcommerce-org/graphcommerce/pull/2225) [`29407d2`](https://github.com/graphcommerce-org/graphcommerce/commit/29407d28c4f7c2629f8c5ead658bfb203f5d81cf) - Fixed a bug on Firefox in which all overlays would retrigger the scrollTo function on opening or closing.
-  ([@mikekeehnen](https://github.com/mikekeehnen))
+- [#2225](https://github.com/graphcommerce-org/graphcommerce/pull/2225) [`29407d2`](https://github.com/graphcommerce-org/graphcommerce/commit/29407d28c4f7c2629f8c5ead658bfb203f5d81cf) - Fixed a bug on Firefox in which all overlays would retrigger the scrollTo function on opening or closing. ([@mikekeehnen](https://github.com/mikekeehnen))
 
 ## 8.0.3
 
 ### Patch Changes
 
-- [#2211](https://github.com/graphcommerce-org/graphcommerce/pull/2211) [`2fc62cd`](https://github.com/graphcommerce-org/graphcommerce/commit/2fc62cd550c8831071c51c1088a94da584a0790b) - Do not show the a product thumbnails when there is only a single image.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2211](https://github.com/graphcommerce-org/graphcommerce/pull/2211) [`2fc62cd`](https://github.com/graphcommerce-org/graphcommerce/commit/2fc62cd550c8831071c51c1088a94da584a0790b) - Do not show the a product thumbnails when there is only a single image. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.3-canary.6
 
@@ -180,8 +184,7 @@
 
 ### Patch Changes
 
-- [#2211](https://github.com/graphcommerce-org/graphcommerce/pull/2211) [`2fc62cd`](https://github.com/graphcommerce-org/graphcommerce/commit/2fc62cd550c8831071c51c1088a94da584a0790b) - Do not show the a product thumbnails when there is only a single image.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2211](https://github.com/graphcommerce-org/graphcommerce/pull/2211) [`2fc62cd`](https://github.com/graphcommerce-org/graphcommerce/commit/2fc62cd550c8831071c51c1088a94da584a0790b) - Do not show the a product thumbnails when there is only a single image. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.3-canary.1
 
@@ -213,26 +216,19 @@
 
 ### Patch Changes
 
-- [#2085](https://github.com/graphcommerce-org/graphcommerce/pull/2085) [`3c92993`](https://github.com/graphcommerce-org/graphcommerce/commit/3c92993d9ca74f24ea784b20448958ca1bb8e224) - Fixes issue where the `<SidebarGallery />` would start jumping around if a user clicks the next button multiple times in short succession.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2085](https://github.com/graphcommerce-org/graphcommerce/pull/2085) [`3c92993`](https://github.com/graphcommerce-org/graphcommerce/commit/3c92993d9ca74f24ea784b20448958ca1bb8e224) - Fixes issue where the `<SidebarGallery />` would start jumping around if a user clicks the next button multiple times in short succession. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - Accessibility improvements for the frontend: Added skip content link. Removed empty buttons from tab flow. Gave focus to elements (such as the menu) that appear when after clicking a button. Improved aria labels where needed
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - Accessibility improvements for the frontend: Added skip content link. Removed empty buttons from tab flow. Gave focus to elements (such as the menu) that appear when after clicking a button. Improved aria labels where needed ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2157](https://github.com/graphcommerce-org/graphcommerce/pull/2157) [`b1afcd0`](https://github.com/graphcommerce-org/graphcommerce/commit/b1afcd00b6680cd5167691e47a691461382226d3) - Solved an issue where the Previous and Next buttons would become unclickable for Scrollers.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2157](https://github.com/graphcommerce-org/graphcommerce/pull/2157) [`b1afcd0`](https://github.com/graphcommerce-org/graphcommerce/commit/b1afcd00b6680cd5167691e47a691461382226d3) - Solved an issue where the Previous and Next buttons would become unclickable for Scrollers. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2066](https://github.com/graphcommerce-org/graphcommerce/pull/2066) [`3b1f585`](https://github.com/graphcommerce-org/graphcommerce/commit/3b1f585153672a644a613411134e5ad36aa4c266) - Add `showButtons` prop to `<ScrollerButton/>`
-  ([@StefanAngenent](https://github.com/StefanAngenent))
+- [#2066](https://github.com/graphcommerce-org/graphcommerce/pull/2066) [`3b1f585`](https://github.com/graphcommerce-org/graphcommerce/commit/3b1f585153672a644a613411134e5ad36aa4c266) - Add `showButtons` prop to `<ScrollerButton/>` ([@StefanAngenent](https://github.com/StefanAngenent))
 
-- [#2045](https://github.com/graphcommerce-org/graphcommerce/pull/2045) [`1ac1e09`](https://github.com/graphcommerce-org/graphcommerce/commit/1ac1e09897daadd646200cb3ddc2aa75a51e182e) - Make sure the product image gallery traps focus and scrollbar doesn't disappear suddenly
-  ([@JoshuaS98](https://github.com/JoshuaS98))
+- [#2045](https://github.com/graphcommerce-org/graphcommerce/pull/2045) [`1ac1e09`](https://github.com/graphcommerce-org/graphcommerce/commit/1ac1e09897daadd646200cb3ddc2aa75a51e182e) - Make sure the product image gallery traps focus and scrollbar doesn't disappear suddenly ([@JoshuaS98](https://github.com/JoshuaS98))
 
-- [#2011](https://github.com/graphcommerce-org/graphcommerce/pull/2011) [`da821af`](https://github.com/graphcommerce-org/graphcommerce/commit/da821af185bf6419fa2aeca31e5985bf99b7bbb9) - Added a new Gallery Thumbnails feature that shows product thumbnails below the product gallery on the product page.
-  ([@mikekeehnen](https://github.com/mikekeehnen))
+- [#2011](https://github.com/graphcommerce-org/graphcommerce/pull/2011) [`da821af`](https://github.com/graphcommerce-org/graphcommerce/commit/da821af185bf6419fa2aeca31e5985bf99b7bbb9) - Added a new Gallery Thumbnails feature that shows product thumbnails below the product gallery on the product page. ([@mikekeehnen](https://github.com/mikekeehnen))
 
-- [`dc86f2f`](https://github.com/graphcommerce-org/graphcommerce/commit/dc86f2fbd439a63a2c9f2deaee38abe87a3c3bab) - Log the related element if the ScrollerProvider couldn’t find any children during load.
-  ([@paales](https://github.com/paales))
+- [`dc86f2f`](https://github.com/graphcommerce-org/graphcommerce/commit/dc86f2fbd439a63a2c9f2deaee38abe87a3c3bab) - Log the related element if the ScrollerProvider couldn’t find any children during load. ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.100
 
@@ -254,8 +250,7 @@
 
 ### Patch Changes
 
-- [`dc86f2f`](https://github.com/graphcommerce-org/graphcommerce/commit/dc86f2fbd439a63a2c9f2deaee38abe87a3c3bab) - Log the related element if the ScrollerProvider couldn’t find any children during load.
-  ([@paales](https://github.com/paales))
+- [`dc86f2f`](https://github.com/graphcommerce-org/graphcommerce/commit/dc86f2fbd439a63a2c9f2deaee38abe87a3c3bab) - Log the related element if the ScrollerProvider couldn’t find any children during load. ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.91
 
@@ -271,8 +266,7 @@
 
 ### Patch Changes
 
-- [#2157](https://github.com/graphcommerce-org/graphcommerce/pull/2157) [`b1afcd0`](https://github.com/graphcommerce-org/graphcommerce/commit/b1afcd00b6680cd5167691e47a691461382226d3) - Fixed bug which caused the scrollerButton to become unclickable
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2157](https://github.com/graphcommerce-org/graphcommerce/pull/2157) [`b1afcd0`](https://github.com/graphcommerce-org/graphcommerce/commit/b1afcd00b6680cd5167691e47a691461382226d3) - Fixed bug which caused the scrollerButton to become unclickable ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.85
 
@@ -294,8 +288,7 @@
 
 ### Patch Changes
 
-- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - a11y improvements (see https://github.com/graphcommerce-org/graphcommerce/issues/1995 for more info)
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - a11y improvements (see https://github.com/graphcommerce-org/graphcommerce/issues/1995 for more info) ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.0-canary.76
 
@@ -1400,31 +1393,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 
@@ -1522,12 +1515,12 @@
   <ScrollerDots
     layout
     sx={{
-      "& .ScrollerDot-circle": {
-        bgcolor: "green",
+      '& .ScrollerDot-circle': {
+        bgcolor: 'green',
       },
-      "& .ScrollerDot-circle.active": {
-        bgcolor: "hotpink",
-        opacity: "1 !important",
+      '& .ScrollerDot-circle.active': {
+        bgcolor: 'hotpink',
+        opacity: '1 !important',
       },
     }}
   />

@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
 ## 8.1.0-canary.52
 
 ## 8.1.0-canary.51
@@ -70,8 +80,7 @@
 
 ### Patch Changes
 
-- [#2264](https://github.com/graphcommerce-org/graphcommerce/pull/2264) [`e5291a4`](https://github.com/graphcommerce-org/graphcommerce/commit/e5291a426c57635f69fb9ec44f4abe150f04c9ed) - prevent rendering 'null' when method_title is not provided
-  ([@carlocarels90](https://github.com/carlocarels90))
+- [#2264](https://github.com/graphcommerce-org/graphcommerce/pull/2264) [`e5291a4`](https://github.com/graphcommerce-org/graphcommerce/commit/e5291a426c57635f69fb9ec44f4abe150f04c9ed) - prevent rendering 'null' when method_title is not provided ([@carlocarels90](https://github.com/carlocarels90))
 
 ## 8.1.0-canary.18
 
@@ -109,8 +118,7 @@
 
 ### Patch Changes
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders.
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.6-canary.1
 
@@ -188,11 +196,9 @@
 
 ### Patch Changes
 
-- [#2093](https://github.com/graphcommerce-org/graphcommerce/pull/2093) [`112b041`](https://github.com/graphcommerce-org/graphcommerce/commit/112b041f01a33fbd521ce3eb3955844f96b29917) - Created a new experimental mutation abort feature inside `useFormGql`. This will allow redundant mutations to be canceled. This is enabled when the `experimental_useV2` prop on the `useFormGql` hook is used.
-  ([@mikekeehnen](https://github.com/mikekeehnen))
+- [#2093](https://github.com/graphcommerce-org/graphcommerce/pull/2093) [`112b041`](https://github.com/graphcommerce-org/graphcommerce/commit/112b041f01a33fbd521ce3eb3955844f96b29917) - Created a new experimental mutation abort feature inside `useFormGql`. This will allow redundant mutations to be canceled. This is enabled when the `experimental_useV2` prop on the `useFormGql` hook is used. ([@mikekeehnen](https://github.com/mikekeehnen))
 
-- [#2115](https://github.com/graphcommerce-org/graphcommerce/pull/2115) [`105a1af`](https://github.com/graphcommerce-org/graphcommerce/commit/105a1af8b820de8873e430ae398f1922d39a9110) - Disabled ripple animations on all ActionCard ‘Select’ and ‘Change’ so the rendering is more subtle during checkout.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2115](https://github.com/graphcommerce-org/graphcommerce/pull/2115) [`105a1af`](https://github.com/graphcommerce-org/graphcommerce/commit/105a1af8b820de8873e430ae398f1922d39a9110) - Disabled ripple animations on all ActionCard ‘Select’ and ‘Change’ so the rendering is more subtle during checkout. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.100
 
@@ -1524,31 +1530,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 
