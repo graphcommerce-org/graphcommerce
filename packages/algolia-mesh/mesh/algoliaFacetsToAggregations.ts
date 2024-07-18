@@ -44,10 +44,9 @@ function compare(a, b) {
   return 0
 }
 
-function algoliaPricesToPricesAggregations(
-  pricesList: { [key: string]: number },
-  currency,
-): AggregationOption[] {
+function algoliaPricesToPricesAggregations(pricesList: {
+  [key: string]: number
+}): AggregationOption[] {
   const priceArraylist: { value: number; count: number }[] = Object.entries(pricesList)
     .sort(compare)
     .map((price) => {

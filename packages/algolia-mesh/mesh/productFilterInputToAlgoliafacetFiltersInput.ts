@@ -9,6 +9,7 @@ import {
   isFilterTypeMatch,
 } from '@graphcommerce/magento-product'
 import { InputMaybe } from '@graphcommerce/next-config'
+import { GetStoreConfigReturn } from './getStoreConfig'
 import { nonNullable } from './utils'
 
 /**
@@ -20,7 +21,6 @@ export function productFilterInputToAlgoliaFacetFiltersInput(
   filters?: InputMaybe<ProductAttributeFilterInput>,
 ) {
   const filterArray: AlgoliafacetFilters_Input[] = []
-
   if (!filters) {
     return []
   }
@@ -52,17 +52,46 @@ export function productFilterInputToAlgoliaFacetFiltersInput(
  * https://www.algolia.com/doc/api-reference/api-parameters/numericFilters/#examples
  */
 export function productFilterInputToAlgoliaNumericFiltersInput(
+  storeConfig: GetStoreConfigReturn,
   filters?: InputMaybe<ProductAttributeFilterInput>,
 ) {
   const filterArray: AlgolianumericFilters_Input[] = []
-
+  if (!storeConfig) {
+    throw Error('StoreConfig is missing')
+  }
   if (!filters) {
     return []
   }
 
   Object.entries(filters).forEach(([key, value]) => {
     if (isFilterTypeRange(value)) {
-      // Todo implement range filters
+      if (key === 'price') {
+        filterArray.push(
+          {
+            numericFilters_Input: {
+              String: `price.${storeConfig.default_display_currency_code}.default >= ${value.from}`,
+            },
+          },
+          {
+            numericFilters_Input: {
+              String: `price.${storeConfig.default_display_currency_code}.default <= ${value.to}`,
+            },
+          },
+        )
+      } else {
+        filterArray.push(
+          {
+            numericFilters_Input: {
+              String: `${key} > ${value.from}`,
+            },
+          },
+          {
+            numericFilters_Input: {
+              String: `${key} < ${value.to}`,
+            },
+          },
+        )
+      }
     }
   })
 

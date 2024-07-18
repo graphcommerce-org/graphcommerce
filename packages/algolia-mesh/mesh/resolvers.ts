@@ -28,7 +28,8 @@ export const resolvers: Resolvers = {
 
       const { engine, ...filters } = args.filter ?? {}
 
-      const [searchResults, attrList, categoryList, storeConfig] = await Promise.all([
+      const storeConfig = await getStoreConfig(context)
+      const [searchResults, attrList, categoryList] = await Promise.all([
         context.algolia.Query.algolia_searchSingleIndex({
           root,
           args: {
@@ -38,7 +39,7 @@ export const resolvers: Resolvers = {
               facets: ['*'],
               hitsPerPage: args.pageSize ? args.pageSize : 10,
               facetFilters: productFilterInputToAlgoliaFacetFiltersInput(filters),
-              numericFilters: productFilterInputToAlgoliaNumericFiltersInput(filters),
+              numericFilters: productFilterInputToAlgoliaNumericFiltersInput(storeConfig, filters),
             },
           },
           selectionSet: /* GraphQL */ `
@@ -73,7 +74,6 @@ export const resolvers: Resolvers = {
           `,
           context,
         }),
-        getStoreConfig(context),
       ])
 
       const hits = (searchResults?.hits ?? [])?.filter(nonNullable)
