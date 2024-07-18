@@ -229,6 +229,18 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "ifConfig": [
+          "customerXMagentoCacheIdDisable",
+          false,
+        ],
+        "sourceExport": "GraphQLProvider",
+        "sourceModule": "@graphcommerce/magento-customer/plugins/XMagentoCacheIdGraphQLProvider",
+        "targetExport": "GraphQLProvider",
+        "targetModule": "@graphcommerce/graphql",
+        "type": "component",
+      },
+      {
+        "enabled": true,
         "sourceExport": "GraphQLProvider",
         "sourceModule": "@graphcommerce/magento-customer/plugins/MagentoCustomerGraphqlProvider",
         "targetExport": "GraphQLProvider",

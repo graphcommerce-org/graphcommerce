@@ -169,6 +169,12 @@ export type GraphCommerceConfig = {
   customerCompanyFieldsEnable?: InputMaybe<Scalars['Boolean']['input']>;
   /** Enable customer account deletion through the account section */
   customerDeleteEnabled?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
+   * X-Magento-Cache-Id allows Varnish to cache requests that are made in the browser while users are logged in. For example the products query can now be cached for logged in users.
+   *
+   * This can be disabled when Varnish is running out of available memory.
+   */
+  customerXMagentoCacheIdDisable?: InputMaybe<Scalars['Boolean']['input']>;
   /** Datalayer config */
   dataLayer?: InputMaybe<DatalayerConfig>;
   /** Debug configuration for GraphCommerce */
@@ -498,6 +504,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     customerAddressNoteEnable: z.boolean().nullish(),
     customerCompanyFieldsEnable: z.boolean().nullish(),
     customerDeleteEnabled: z.boolean().nullish(),
+    customerXMagentoCacheIdDisable: z.boolean().nullish(),
     dataLayer: DatalayerConfigSchema().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
     demoMode: z.boolean().default(true).nullish(),
