@@ -16,6 +16,7 @@ const generateCustomerToken: FieldPolicy<Mutation['generateCustomerToken']> = {
           token: options.readField('token', incoming) as string,
           createdAt: new Date().toUTCString(),
           valid: true,
+          xMagentoCacheId: null,
         },
       },
     })
