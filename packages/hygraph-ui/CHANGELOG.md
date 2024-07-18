@@ -1,5 +1,7 @@
 # Change Log
 
+## 9.0.0-canary.57
+
 ## 9.0.0-canary.56
 
 ## 9.0.0-canary.55
@@ -32,8 +34,7 @@
 
 ### Patch Changes
 
-- [#2308](https://github.com/graphcommerce-org/graphcommerce/pull/2308) [`8faa5ac`](https://github.com/graphcommerce-org/graphcommerce/commit/8faa5ac618ecfdacd6d5eb751b4110c423aef97f) - Added Draft Mode support. When enabled it will be shown.
-  ([@paales](https://github.com/paales))
+- [#2308](https://github.com/graphcommerce-org/graphcommerce/pull/2308) [`8faa5ac`](https://github.com/graphcommerce-org/graphcommerce/commit/8faa5ac618ecfdacd6d5eb751b4110c423aef97f) - Added Draft Mode support. When enabled it will be shown. ([@paales](https://github.com/paales))
 
 ## 8.1.0-canary.41
 
@@ -103,8 +104,7 @@
 
 ### Patch Changes
 
-- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`0ccec63`](https://github.com/graphcommerce-org/graphcommerce/commit/0ccec630825d5fad398366beae90b3c90b2f84b8) - Added helper method to get Hygraph paths
-  ([@bramvanderholst](https://github.com/bramvanderholst))
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`0ccec63`](https://github.com/graphcommerce-org/graphcommerce/commit/0ccec630825d5fad398366beae90b3c90b2f84b8) - Added helper method to get Hygraph paths ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 8.1.0-canary.8
 
@@ -120,8 +120,7 @@
 
 ### Patch Changes
 
-- [#2219](https://github.com/graphcommerce-org/graphcommerce/pull/2219) [`2ed2055`](https://github.com/graphcommerce-org/graphcommerce/commit/2ed20550324c104265d72f22339fbedb26fb433b) - Allow blog pages to be nested
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2219](https://github.com/graphcommerce-org/graphcommerce/pull/2219) [`2ed2055`](https://github.com/graphcommerce-org/graphcommerce/commit/2ed20550324c104265d72f22339fbedb26fb433b) - Allow blog pages to be nested ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.6-canary.2
 
@@ -133,8 +132,7 @@
 
 ### Patch Changes
 
-- [#2238](https://github.com/graphcommerce-org/graphcommerce/pull/2238) [`db86432`](https://github.com/graphcommerce-org/graphcommerce/commit/db864324277fd5fb680c66eaa87d211cd7be4905) - Changed query limit to 100 from a 1000 on HygraphAllPages and AllDynamicRows query and added pagination.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2238](https://github.com/graphcommerce-org/graphcommerce/pull/2238) [`db86432`](https://github.com/graphcommerce-org/graphcommerce/commit/db864324277fd5fb680c66eaa87d211cd7be4905) - Changed query limit to 100 from a 1000 on HygraphAllPages and AllDynamicRows query and added pagination. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.5-canary.10
 
@@ -142,8 +140,7 @@
 
 ### Patch Changes
 
-- [#2238](https://github.com/graphcommerce-org/graphcommerce/pull/2238) [`db86432`](https://github.com/graphcommerce-org/graphcommerce/commit/db864324277fd5fb680c66eaa87d211cd7be4905) - Changed query limit to 100 from a 1000 on HygraphAllPages and AllDynamicRows query and added pagination.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2238](https://github.com/graphcommerce-org/graphcommerce/pull/2238) [`db86432`](https://github.com/graphcommerce-org/graphcommerce/commit/db864324277fd5fb680c66eaa87d211cd7be4905) - Changed query limit to 100 from a 1000 on HygraphAllPages and AllDynamicRows query and added pagination. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.5-canary.8
 
@@ -211,11 +208,9 @@
 
 ### Patch Changes
 
-- [#2114](https://github.com/graphcommerce-org/graphcommerce/pull/2114) [`5b63623`](https://github.com/graphcommerce-org/graphcommerce/commit/5b63623e70cb72afa82f6e39cefc77c7b0fec74e) - Added support for the alt attribute for images inside Rich text areas coming from Hygraph.
-  ([@StefanAngenent](https://github.com/StefanAngenent))
+- [#2114](https://github.com/graphcommerce-org/graphcommerce/pull/2114) [`5b63623`](https://github.com/graphcommerce-org/graphcommerce/commit/5b63623e70cb72afa82f6e39cefc77c7b0fec74e) - Added support for the alt attribute for images inside Rich text areas coming from Hygraph. ([@StefanAngenent](https://github.com/StefanAngenent))
 
-- [#2071](https://github.com/graphcommerce-org/graphcommerce/pull/2071) [`6876939`](https://github.com/graphcommerce-org/graphcommerce/commit/68769398f64604443a148583f1392976f71c2423) - Added support to add css class names to RichText elements from Hygraph
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2071](https://github.com/graphcommerce-org/graphcommerce/pull/2071) [`6876939`](https://github.com/graphcommerce-org/graphcommerce/commit/68769398f64604443a148583f1392976f71c2423) - Added support to add css class names to RichText elements from Hygraph ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.0-canary.100
 

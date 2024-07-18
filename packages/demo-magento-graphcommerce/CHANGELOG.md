@@ -1,5 +1,7 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 9.0.0-canary.57
+
 ## 9.0.0-canary.56
 
 ## 9.0.0-canary.55
@@ -26,8 +28,7 @@
 
 ### Patch Changes
 
-- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`3b648fd`](https://github.com/graphcommerce-org/graphcommerce/commit/3b648fd310e43bf7a03c3e446e97426d2f5bbfb2) - Remove large demo item, as it doesn't properly work and isn't as pretty as it can be
-  ([@paales](https://github.com/paales))
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`3b648fd`](https://github.com/graphcommerce-org/graphcommerce/commit/3b648fd310e43bf7a03c3e446e97426d2f5bbfb2) - Remove large demo item, as it doesn't properly work and isn't as pretty as it can be ([@paales](https://github.com/paales))
 
 ## 8.1.0-canary.44
 
@@ -191,11 +192,9 @@
 
 ### Patch Changes
 
-- [#2155](https://github.com/graphcommerce-org/graphcommerce/pull/2155) [`6a34c4a`](https://github.com/graphcommerce-org/graphcommerce/commit/6a34c4a870948ffb31f90b678e7e108066cb09a9) - Added AddProductsToCartForm context provider to the recently viewed products demo to fix a bug surrounding a form that was null.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2155](https://github.com/graphcommerce-org/graphcommerce/pull/2155) [`6a34c4a`](https://github.com/graphcommerce-org/graphcommerce/commit/6a34c4a870948ffb31f90b678e7e108066cb09a9) - Added AddProductsToCartForm context provider to the recently viewed products demo to fix a bug surrounding a form that was null. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [`38ec023`](https://github.com/graphcommerce-org/graphcommerce/commit/38ec0237306dd77ed7882b3b99dafa94e817dc67) - Make sure the DemoRecentlyViewedProducts doesn't render without any items
-  ([@paales](https://github.com/paales))
+- [`38ec023`](https://github.com/graphcommerce-org/graphcommerce/commit/38ec0237306dd77ed7882b3b99dafa94e817dc67) - Make sure the DemoRecentlyViewedProducts doesn't render without any items ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.100
 
@@ -217,15 +216,13 @@
 
 ### Patch Changes
 
-- [`38ec023`](https://github.com/graphcommerce-org/graphcommerce/commit/38ec0237306dd77ed7882b3b99dafa94e817dc67) - Make sure the DemoRecentlyViewedProducts doesn't render without any items
-  ([@paales](https://github.com/paales))
+- [`38ec023`](https://github.com/graphcommerce-org/graphcommerce/commit/38ec0237306dd77ed7882b3b99dafa94e817dc67) - Make sure the DemoRecentlyViewedProducts doesn't render without any items ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.91
 
 ### Patch Changes
 
-- [#2172](https://github.com/graphcommerce-org/graphcommerce/pull/2172) [`871e07a`](https://github.com/graphcommerce-org/graphcommerce/commit/871e07ac8bbb7e6c392a740a8244f69992b42b76) - Recently viewed products would show skeleton items even after loading succeeded
-  ([@paales](https://github.com/paales))
+- [#2172](https://github.com/graphcommerce-org/graphcommerce/pull/2172) [`871e07a`](https://github.com/graphcommerce-org/graphcommerce/commit/871e07ac8bbb7e6c392a740a8244f69992b42b76) - Recently viewed products would show skeleton items even after loading succeeded ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.90
 
@@ -241,8 +238,7 @@
 
 ### Patch Changes
 
-- [#2155](https://github.com/graphcommerce-org/graphcommerce/pull/2155) [`6a34c4a`](https://github.com/graphcommerce-org/graphcommerce/commit/6a34c4a870948ffb31f90b678e7e108066cb09a9) - Added AddProductsToCartForm context provider to the recently viewed products demo to fix a bug surrounding a form that was null.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2155](https://github.com/graphcommerce-org/graphcommerce/pull/2155) [`6a34c4a`](https://github.com/graphcommerce-org/graphcommerce/commit/6a34c4a870948ffb31f90b678e7e108066cb09a9) - Added AddProductsToCartForm context provider to the recently viewed products demo to fix a bug surrounding a form that was null. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.84
 

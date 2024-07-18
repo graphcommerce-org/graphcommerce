@@ -3,7 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.extractExternalFragmentsInUse = exports.appendExtensionToFilePath = exports.defineFilepathSubfolder = void 0;
+exports.defineFilepathSubfolder = defineFilepathSubfolder;
+exports.appendExtensionToFilePath = appendExtensionToFilePath;
+exports.extractExternalFragmentsInUse = extractExternalFragmentsInUse;
 /* eslint-disable import/no-cycle */
 const path_1 = require("path");
 const graphql_1 = require("graphql");
@@ -12,12 +14,10 @@ function defineFilepathSubfolder(baseFilePath, folder) {
     const parsedPath = (0, parse_filepath_1.default)(baseFilePath);
     return (0, path_1.join)(parsedPath.dir, folder, parsedPath.base).replace(/\\/g, '/');
 }
-exports.defineFilepathSubfolder = defineFilepathSubfolder;
 function appendExtensionToFilePath(baseFilePath, extension) {
     const parsedPath = (0, parse_filepath_1.default)(baseFilePath);
     return (0, path_1.join)(parsedPath.dir, parsedPath.name + extension).replace(/\\/g, '/');
 }
-exports.appendExtensionToFilePath = appendExtensionToFilePath;
 function extractExternalFragmentsInUse(documentNode, fragmentNameToFile, result = {}, level = 0) {
     const ignoreList = new Set();
     // First, take all fragments definition from the current file, and mark them as ignored
@@ -42,4 +42,3 @@ function extractExternalFragmentsInUse(documentNode, fragmentNameToFile, result 
     });
     return result;
 }
-exports.extractExternalFragmentsInUse = extractExternalFragmentsInUse;

@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.rewriteLegacyEnv = void 0;
+exports.rewriteLegacyEnv = rewriteLegacyEnv;
 const cloneDeep_1 = __importDefault(require("lodash/cloneDeep"));
 const mergeEnvIntoConfig_1 = require("./mergeEnvIntoConfig");
 function rewriteLegacyEnv(schema, env, config = {}) {
@@ -113,4 +113,3 @@ function rewriteLegacyEnv(schema, env, config = {}) {
     const [newConfig, envApplied] = (0, mergeEnvIntoConfig_1.mergeEnvIntoConfig)(schema, config, clonedEnv);
     return [newConfig, [...applied, ...envApplied]];
 }
-exports.rewriteLegacyEnv = rewriteLegacyEnv;

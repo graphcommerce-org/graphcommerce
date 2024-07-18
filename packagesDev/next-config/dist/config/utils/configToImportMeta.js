@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.configToImportMeta = void 0;
+exports.configToImportMeta = configToImportMeta;
 function flattenKeys(value, initialPathPrefix, stringify) {
     // Is a scalar:
     if (value === null || value === undefined || typeof value === 'number') {
@@ -37,4 +37,3 @@ function flattenKeys(value, initialPathPrefix, stringify) {
 function configToImportMeta(config, path = 'import.meta.graphCommerce', stringify = true) {
     return flattenKeys(config, path, stringify);
 }
-exports.configToImportMeta = configToImportMeta;

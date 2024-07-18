@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findConfig = void 0;
+exports.findConfig = findConfig;
 /* eslint-disable import/no-extraneous-dependencies */
 const path_1 = __importDefault(require("path"));
 const utils_1 = require("@graphql-mesh/utils");
@@ -69,4 +69,3 @@ async function findConfig(options) {
     const { config } = results;
     return config;
 }
-exports.findConfig = findConfig;
