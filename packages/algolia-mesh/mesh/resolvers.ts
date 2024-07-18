@@ -14,8 +14,11 @@ function getStoreHeader(context: MeshContext) {
   return (context as MeshContext & { headers: Record<string, string | undefined> }).headers.store
 }
 
-function getIndexName(context: MeshContext) {
+function getIndexName(context: MeshContext, sortOption = '') {
   const storeCode = getStoreHeader(context) ?? storefrontConfigDefault().magentoStoreCode
+  if (sortOption) {
+    return `${import.meta.graphCommerce.algoliaIndexNamePrefix}${storeCode}_products_${sortOption}`
+  }
   return `${import.meta.graphCommerce.algoliaIndexNamePrefix}${storeCode}_products`
 }
 
@@ -26,14 +29,44 @@ export const resolvers: Resolvers = {
 
       if (!isAgolia) return context.m2.Query.products({ root, args, context, info })
 
+      const sort = 'price_default_asc'
+
       const { engine, ...filters } = args.filter ?? {}
+
+      //retrieve replicas to determine sort options
+      const replicas = await context.algolia.Query.algolia_getSettings({
+        root,
+        args: {
+          indexName: getIndexName(context),
+        },
+        selectionSet: /* GraphQL */ `
+          {
+            replicas
+          }
+        `,
+        context,
+        info,
+      })
+      const sortOptions: { value: string; label: string }[] = replicas?.replicas?.map((replica) => {
+        let label = replica
+          ?.replace(/virtual\(magento2_demonl_NL_products_([^)]*)\)/, '$1')
+          .replace(/_/g, ' ')
+          .replace(/\bdefault\b/, '')
+
+        return {
+          value: replica?.replace(/virtual\(magento2_demonl_NL_products_([^)]*)\)/, '$1'),
+          label: label?.replace(/\s{2,}/g, ' ').trim(),
+        }
+      })
+      console.log('sortOptions', sortOptions)
+      // str.replace(/virtual\(([^)]+)\)/, '$1');
 
       const storeConfig = await getStoreConfig(context)
       const [searchResults, attrList, categoryList] = await Promise.all([
         context.algolia.Query.algolia_searchSingleIndex({
           root,
           args: {
-            indexName: getIndexName(context),
+            indexName: getIndexName(context, sort),
             input: {
               query: args.search ?? '',
               facets: ['*'],
@@ -107,7 +140,7 @@ export const resolvers: Resolvers = {
          */
         sort_fields: {
           default: 'relevance',
-          options: [{ label: 'Relevance', value: 'relevance' }],
+          options: [{ label: 'Relevance', value: 'relevance' }, ...sortOptions],
         },
       }
     },
