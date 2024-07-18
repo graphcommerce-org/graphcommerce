@@ -71,7 +71,7 @@ function OrderDetailPage() {
               <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
                 <OrderStateLabel {...order} />
               </Typography>
-              <OrderActionButtons isCustomerOrder {...order} />
+              <OrderActionButtons {...order} />
               <OrderDetails {...order} />
               <OrderItems {...order} images={images} />
               <OrderTotals {...order} />

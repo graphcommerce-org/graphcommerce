@@ -6,14 +6,11 @@ import { OrderDetailsFragment } from '../OrderDetails/OrderDetails.gql'
 import { OrderItemsFragment } from '../OrderItems/OrderItems.gql'
 import { ReorderItems } from '../ReorderItems/ReorderItems'
 
-export type OrderActionButtonsProps = OrderDetailsFragment &
-  OrderItemsFragment & {
-    isCustomerOrder?: boolean
-  }
+export type OrderActionButtonsProps = OrderDetailsFragment & OrderItemsFragment
 
 export function OrderActionButtons(props: OrderActionButtonsProps) {
   const cancelOrder = canCancelOrder(props)
-  const { number, items, isCustomerOrder = false } = props
+  const { number, items } = props
   return (
     <Box
       sx={[
@@ -21,7 +18,7 @@ export function OrderActionButtons(props: OrderActionButtonsProps) {
       ]}
     >
       <ReorderItems orderNumber={number} items={items} />
-      {cancelOrder && isCustomerOrder && (
+      {cancelOrder && (
         <Button variant='contained' color='error' href={`account/orders/cancel?orderId=${number}`}>
           <Trans>Cancel order</Trans>
         </Button>

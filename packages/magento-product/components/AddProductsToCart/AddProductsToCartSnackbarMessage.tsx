@@ -1,5 +1,5 @@
 import { ApolloError } from '@graphcommerce/graphql'
-import { CartUserInputErrorType, CheckoutUserInputErrorCodes } from '@graphcommerce/graphql-mesh'
+import { CartUserInputError } from '@graphcommerce/graphql-mesh'
 import { ApolloCartErrorSnackbar } from '@graphcommerce/magento-cart'
 import {
   Button,
@@ -17,7 +17,7 @@ export type AddProductsToCartSnackbarMessageProps = {
   errorSnackbar?: Omit<ErrorSnackbarProps, 'open'>
   successSnackbar?: Omit<MessageSnackbarProps, 'open' | 'action'>
   error?: ApolloError
-  userErrors?: { code: CartUserInputErrorType | CheckoutUserInputErrorCodes; message: string }[]
+  userErrors?: Pick<CartUserInputError, 'message'>[]
   showSuccess: boolean
   addedItems: string[]
 }

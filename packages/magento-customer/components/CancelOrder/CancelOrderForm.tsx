@@ -43,7 +43,7 @@ export function CancelOrderForm(props: CancelOrderFormProps) {
           label={<Trans>Reason</Trans>}
           required={required.reason}
           disabled={formState.isSubmitting || submittedWithoutErrors}
-          options={options.map((option) => ({
+          options={options?.map((option) => ({
             id: option?.description ?? '',
             label: option?.description ?? '',
           }))}
