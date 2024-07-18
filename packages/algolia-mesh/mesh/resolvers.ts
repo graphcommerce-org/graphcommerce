@@ -48,17 +48,16 @@ export const resolvers: Resolvers = {
         info,
       })
       const sortOptions: { value: string; label: string }[] = replicas?.replicas?.map((replica) => {
-        let label = replica
-          ?.replace(/virtual\(magento2_demonl_NL_products_([^)]*)\)/, '$1')
-          .replace(/_/g, ' ')
-          .replace(/\bdefault\b/, '')
-
         return {
           value: replica?.replace(/virtual\(magento2_demonl_NL_products_([^)]*)\)/, '$1'),
-          label: label?.replace(/\s{2,}/g, ' ').trim(),
+          label: replica?.replace(/virtual\(magento2_demonl_NL_products_([^)]*)\)/, '$1')  // Remove virtual(magento2_demonl_NL_products_)
+          .replace(/_/g, ' ')  // Replace underscores with spaces
+          .replace(/\bdefault\b/, '')  // Remove the word 'default'
+          .replace(/\s{2,}/g, ' ')  // Remove any extra spaces created by the removal of 'default'
+          .trim()  // Trim the string
+          .replace(/\b\w/g, char => char.toUpperCase());  // Capitalize the first letter of every word,
         }
       })
-      console.log('sortOptions', sortOptions)
       // str.replace(/virtual\(([^)]+)\)/, '$1');
 
       const storeConfig = await getStoreConfig(context)
