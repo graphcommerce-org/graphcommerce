@@ -1,5 +1,18 @@
 # Change Log
 
+## 9.0.0-canary.56
+
+### Patch Changes
+
+- [#2329](https://github.com/graphcommerce-org/graphcommerce/pull/2329) [`6301fe3`](https://github.com/graphcommerce-org/graphcommerce/commit/6301fe33e73be1a151d0f8290e83418b4b87a738) - Document patch custom_attributesV2 for null attribute values issue
+  ([@SimonPrins](https://github.com/SimonPrins))
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
 ## 8.1.0-canary.52
 
 ## 8.1.0-canary.51

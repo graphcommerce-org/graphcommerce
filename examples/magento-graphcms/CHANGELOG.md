@@ -1,5 +1,23 @@
 # Change Log
 
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+### Minor Changes
+
+- [#2324](https://github.com/graphcommerce-org/graphcommerce/pull/2324) [`1c8b1e4`](https://github.com/graphcommerce-org/graphcommerce/commit/1c8b1e441ac44935bfd2215d62a71c02b3ba7e6f) - Implement the contactUs mutation, add contact us overlay
+  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 9.0.0-canary.54
+
+### Major Changes
+
+- [#2204](https://github.com/graphcommerce-org/graphcommerce/pull/2204) [`42843eb`](https://github.com/graphcommerce-org/graphcommerce/commit/42843eb760f8301eb7901bb0d888c95792ff0b4b) - add X-Forwarded-For header to mesh
+  ([@SumVur](https://github.com/SumVur))
+
+## 8.1.0-canary.53
+
 ## 8.1.0-canary.52
 
 ## 8.1.0-canary.51
