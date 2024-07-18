@@ -110,29 +110,6 @@ function algoliaPricesToPricesAggregations(
     }
   })
   return Object.values(pricesBucket)
-
-  // const arrayLength = Math.ceil(priceArraylist[priceArraylist.length - 1].value / interval)
-  // const pricesOptions: AggregationOption[] = []
-
-  // for (let i = 0; i < arrayLength; i++) {
-  //   const counts = priceArraylist.filter((price) => {
-  //     const priceValue: number = +price.value
-  //     if (priceValue >= interval * i && priceValue <= interval * (i + 1)) {
-  //       return price
-  //     }
-  //   })
-  //   let totalCount = 0
-  //   counts.forEach((count) => {
-  //     totalCount += count.count
-  //   })
-
-  //   pricesOptions.push({
-  //     label: `${interval * i}-${interval * (i + 1)}`,
-  //     value: `${interval * i}_${interval * (i + 1)}`,
-  //     count: totalCount,
-  //   })
-  // }
-  // return pricesOptions
 }
 
 function assertAlgoliaFacets(facets: any): facets is AlgoliaFacets {
