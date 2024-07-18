@@ -21,13 +21,19 @@ An implementation of Algolia through the GraphQL Mesh.
 
 ### Configuration
 
-Make sure the Magento 2 module is correctly installed and working.
-
-.. Facets?
+1. Make sure the Magento 2 module is correctly installed and working.
+2. Setup the fields that you want to index in algolia
+   `Stores > configuration > Algolia Search > Products > Products`
+3. Configure your aggregations/filters, make sure that the aggregation fields
+   are also indexed in step 2
+   `Stores > Configuration > Algolia Search > Instant Search Page > Facets`
+4. Make sure the aggregations fields are made filterable(Use in layerd
+   Navigation), so the attributeList query can retrieve the labels.
+   `Stores > Products > Attributes`
 
 ### Customization
 
-..
+Customise the code by creating plugins on the functions you want to adjust
 
 ## Algolia for Catalog
 
