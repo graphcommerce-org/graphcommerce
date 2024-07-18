@@ -1,5 +1,15 @@
 # @graphcommerce/hygraph-dynamic-rows
 
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
 ## 8.1.0-canary.52
 
 ## 8.1.0-canary.51
@@ -82,8 +92,7 @@
 
 ### Patch Changes
 
-- [#2268](https://github.com/graphcommerce-org/graphcommerce/pull/2268) [`8ffe2d5`](https://github.com/graphcommerce-org/graphcommerce/commit/8ffe2d5d1b040797ee4987d7740de5fdeadd4f72) - Fix for non extensible object error in Dynamic Row package
-  ([@JoshuaS98](https://github.com/JoshuaS98))
+- [#2268](https://github.com/graphcommerce-org/graphcommerce/pull/2268) [`8ffe2d5`](https://github.com/graphcommerce-org/graphcommerce/commit/8ffe2d5d1b040797ee4987d7740de5fdeadd4f72) - Fix for non extensible object error in Dynamic Row package ([@JoshuaS98](https://github.com/JoshuaS98))
 
 ## 8.1.0-canary.12
 
@@ -115,8 +124,7 @@
 
 ### Patch Changes
 
-- [#2238](https://github.com/graphcommerce-org/graphcommerce/pull/2238) [`db86432`](https://github.com/graphcommerce-org/graphcommerce/commit/db864324277fd5fb680c66eaa87d211cd7be4905) - Changed query limit to 100 from a 1000 on HygraphAllPages and AllDynamicRows query and added pagination.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2238](https://github.com/graphcommerce-org/graphcommerce/pull/2238) [`db86432`](https://github.com/graphcommerce-org/graphcommerce/commit/db864324277fd5fb680c66eaa87d211cd7be4905) - Changed query limit to 100 from a 1000 on HygraphAllPages and AllDynamicRows query and added pagination. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.5-canary.10
 
@@ -124,8 +132,7 @@
 
 ### Patch Changes
 
-- [#2238](https://github.com/graphcommerce-org/graphcommerce/pull/2238) [`db86432`](https://github.com/graphcommerce-org/graphcommerce/commit/db864324277fd5fb680c66eaa87d211cd7be4905) - Changed query limit to 100 from a 1000 on HygraphAllPages and AllDynamicRows query and added pagination.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2238](https://github.com/graphcommerce-org/graphcommerce/pull/2238) [`db86432`](https://github.com/graphcommerce-org/graphcommerce/commit/db864324277fd5fb680c66eaa87d211cd7be4905) - Changed query limit to 100 from a 1000 on HygraphAllPages and AllDynamicRows query and added pagination. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.5-canary.8
 
@@ -193,11 +200,9 @@
 
 ### Patch Changes
 
-- [`df385d9`](https://github.com/graphcommerce-org/graphcommerce/commit/df385d9a2e724715e0f08cc13b1bef6748b38b82) - Allow muiltiple rows for each Dynamic Row entry in Hygraph
-  ([@JoshuaS98](https://github.com/JoshuaS98))
+- [`df385d9`](https://github.com/graphcommerce-org/graphcommerce/commit/df385d9a2e724715e0f08cc13b1bef6748b38b82) - Allow muiltiple rows for each Dynamic Row entry in Hygraph ([@JoshuaS98](https://github.com/JoshuaS98))
 
-- [#2182](https://github.com/graphcommerce-org/graphcommerce/pull/2182) [`a93c312`](https://github.com/graphcommerce-org/graphcommerce/commit/a93c312b9d6e0d6cc102b49cc3ad02953200a1f6) - Dynamic rows would break page rendering if there was a dynamic row but no page returned
-  ([@paales](https://github.com/paales))
+- [#2182](https://github.com/graphcommerce-org/graphcommerce/pull/2182) [`a93c312`](https://github.com/graphcommerce-org/graphcommerce/commit/a93c312b9d6e0d6cc102b49cc3ad02953200a1f6) - Dynamic rows would break page rendering if there was a dynamic row but no page returned ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.100
 
@@ -207,8 +212,7 @@
 
 ### Patch Changes
 
-- [#2182](https://github.com/graphcommerce-org/graphcommerce/pull/2182) [`a93c312`](https://github.com/graphcommerce-org/graphcommerce/commit/a93c312b9d6e0d6cc102b49cc3ad02953200a1f6) - Dynamic rows would break page rendering if there was a dynamic row but no page returned
-  ([@paales](https://github.com/paales))
+- [#2182](https://github.com/graphcommerce-org/graphcommerce/pull/2182) [`a93c312`](https://github.com/graphcommerce-org/graphcommerce/commit/a93c312b9d6e0d6cc102b49cc3ad02953200a1f6) - Dynamic rows would break page rendering if there was a dynamic row but no page returned ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.97
 

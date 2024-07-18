@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
 ## 8.1.0-canary.52
 
 ## 8.1.0-canary.51
@@ -178,19 +188,15 @@
 
 ### Minor Changes
 
-- [#2099](https://github.com/graphcommerce-org/graphcommerce/pull/2099) [`ff796b8`](https://github.com/graphcommerce-org/graphcommerce/commit/ff796b838fae6cb5e35b101500133b0235a8677d) - Support for all customizable product options (except file upload) on the product pages and in the cart.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2099](https://github.com/graphcommerce-org/graphcommerce/pull/2099) [`ff796b8`](https://github.com/graphcommerce-org/graphcommerce/commit/ff796b838fae6cb5e35b101500133b0235a8677d) - Support for all customizable product options (except file upload) on the product pages and in the cart. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`13e23e4`](https://github.com/graphcommerce-org/graphcommerce/commit/13e23e4265bac70fb4d0830e4661019e71ce299f) - Wishlist will now support configurable products and uses the `<ActionCardLayout/>`
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`13e23e4`](https://github.com/graphcommerce-org/graphcommerce/commit/13e23e4265bac70fb4d0830e4661019e71ce299f) - Wishlist will now support configurable products and uses the `<ActionCardLayout/>` ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ### Patch Changes
 
-- [#2115](https://github.com/graphcommerce-org/graphcommerce/pull/2115) [`105a1af`](https://github.com/graphcommerce-org/graphcommerce/commit/105a1af8b820de8873e430ae398f1922d39a9110) - Disabled ripple animations on all ActionCard ‘Select’ and ‘Change’ so the rendering is more subtle during checkout.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2115](https://github.com/graphcommerce-org/graphcommerce/pull/2115) [`105a1af`](https://github.com/graphcommerce-org/graphcommerce/commit/105a1af8b820de8873e430ae398f1922d39a9110) - Disabled ripple animations on all ActionCard ‘Select’ and ‘Change’ so the rendering is more subtle during checkout. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2028](https://github.com/graphcommerce-org/graphcommerce/pull/2028) [`dd5499d`](https://github.com/graphcommerce-org/graphcommerce/commit/dd5499daedb0a5cd38081f2bd7892df40bb23e16) - Solved an issue where the quantity selector was not working for bundled products
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2028](https://github.com/graphcommerce-org/graphcommerce/pull/2028) [`dd5499d`](https://github.com/graphcommerce-org/graphcommerce/commit/dd5499daedb0a5cd38081f2bd7892df40bb23e16) - Solved an issue where the quantity selector was not working for bundled products ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.100
 
@@ -254,8 +260,7 @@
 
 ### Minor Changes
 
-- [#2099](https://github.com/graphcommerce-org/graphcommerce/pull/2099) [`ff796b8`](https://github.com/graphcommerce-org/graphcommerce/commit/ff796b838fae6cb5e35b101500133b0235a8677d) - Created UI for all customizable options except for the file upload customizable option
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2099](https://github.com/graphcommerce-org/graphcommerce/pull/2099) [`ff796b8`](https://github.com/graphcommerce-org/graphcommerce/commit/ff796b838fae6cb5e35b101500133b0235a8677d) - Created UI for all customizable options except for the file upload customizable option ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.70
 
@@ -1544,31 +1549,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 

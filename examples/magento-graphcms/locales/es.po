@@ -34,6 +34,10 @@ msgid "We couldn't find any results"
 msgstr "No pudimos encontrar ningún resultado"
 
 #. js-lingui-generated-id
+msgid "Name"
+msgstr "Nombre"
+
+#. js-lingui-generated-id
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr "¡<0>{name}</0> ha sido añadido a su carrito de compras!"
 
@@ -122,6 +126,10 @@ msgstr "Sé el primero en escribir una reseña!"
 
 msgid "Below <0/>"
 msgstr "Abajo <0/>"
+
+#. js-lingui-generated-id
+msgid "Contact us"
+msgstr "Póngase en contacto con nosotros"
 
 msgid "Billing address"
 msgstr "Dirección de facturación"
@@ -956,6 +964,10 @@ msgid "Save in address book"
 msgstr "Guardar en la libreta de direcciones"
 
 #. js-lingui-generated-id
+msgid "Ok"
+msgstr "Ok"
+
+#. js-lingui-generated-id
 msgid "Return to home"
 msgstr "Volver a inicio"
 
@@ -971,11 +983,23 @@ msgid "Shipping Note"
 msgstr "Nota de envío"
 
 #. js-lingui-generated-id
+msgid "Your message has been received, we will contact you as soon as we can"
+msgstr "Su mensaje ha sido recibido, nos pondremos en contacto con usted lo antes posible."
+
+#. js-lingui-generated-id
 msgid "Invalid phone number"
 msgstr "Número de teléfono no válido"
 
+#. js-lingui-generated-id
+msgid "Submit"
+msgstr "Enviar"
+
 msgid "invoiced"
 msgstr "facturado"
+
+#. js-lingui-generated-id
+msgid "Contact"
+msgstr "Contacto"
 
 #. js-lingui-generated-id
 msgid "Order number"
@@ -1021,6 +1045,10 @@ msgstr "Servicio al cliente"
 #. js-lingui-generated-id
 msgid "The given email does not match the account email"
 msgstr "El correo electrónico proporcionado no coincide con el correo electrónico de la cuenta"
+
+#. js-lingui-generated-id
+msgid "Message"
+msgstr "Mensaje"
 
 #. js-lingui-generated-id
 msgid "Clear current filters"
