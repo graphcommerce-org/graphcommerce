@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.parseStructure = void 0;
+exports.parseStructure = parseStructure;
 const get_1 = __importDefault(require("lodash/get"));
 const zod_1 = require("zod");
 const extractExports_1 = require("./extractExports");
@@ -82,4 +82,3 @@ function parseStructure(ast, gcConfig, sourceModule) {
     }, []);
     return newPluginConfigs;
 }
-exports.parseStructure = parseStructure;

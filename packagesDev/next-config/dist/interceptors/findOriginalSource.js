@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findOriginalSource = void 0;
+exports.findOriginalSource = findOriginalSource;
 const path_1 = __importDefault(require("path"));
 const swc_1 = require("./swc");
 function parseAndFindExport(resolved, findExport, resolve) {
@@ -100,4 +100,3 @@ function findOriginalSource(plug, resolved, resolve) {
     // cachedResults.set(cacheKey, newResolved)
     return { resolved: newResolved, error: undefined };
 }
-exports.findOriginalSource = findOriginalSource;

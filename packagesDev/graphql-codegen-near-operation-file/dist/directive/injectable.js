@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.injectableDirective = void 0;
+exports.injectableDirective = injectableDirective;
 const graphql_1 = require("graphql");
 function isFragment(document) {
     let is = false;
@@ -109,4 +109,3 @@ function injectableDirective(documentFiles) {
     injectors.forEach((d) => injectInjectable(injectables, d));
     return documentFiles;
 }
-exports.injectableDirective = injectableDirective;

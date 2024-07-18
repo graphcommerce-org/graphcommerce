@@ -20,10 +20,10 @@
     }
   },
   "dependencies": {
-    "@graphql-codegen/add": "5.0.1",
-    "@graphql-codegen/plugin-helpers": "5.0.2",
-    "@graphql-codegen/visitor-plugin-common": "4.1.0",
-    "@graphql-tools/utils": "^10.0.12",
+    "@graphql-codegen/add": "5.0.3",
+    "@graphql-codegen/plugin-helpers": "5.0.4",
+    "@graphql-codegen/visitor-plugin-common": "5.3.1",
+    "@graphql-tools/utils": "^10.3.2",
     "@types/parse-filepath": "^1.0.2",
     "parse-filepath": "^1.0.2"
   },

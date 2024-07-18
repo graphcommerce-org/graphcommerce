@@ -22,20 +22,20 @@
     "mesh": "dist/bin/mesh.js"
   },
   "dependencies": {
-    "@graphql-codegen/cli": "5.0.1",
+    "@graphql-codegen/cli": "5.0.2",
     "@graphql-mesh/cli": "latest",
     "@graphql-mesh/cross-helpers": "latest",
     "@graphql-mesh/runtime": "latest",
     "@graphql-mesh/store": "latest",
     "@graphql-mesh/types": "latest",
     "@graphql-mesh/utils": "latest",
-    "@graphql-tools/utils": "^10.0.12",
+    "@graphql-tools/utils": "^10.3.2",
     "cosmiconfig": "^8.3.6",
-    "detect-package-manager": "^3.0.1",
-    "graphql-codegen-typescript-validation-schema": "^0.14.1",
+    "detect-package-manager": "^3.0.2",
+    "graphql-codegen-typescript-validation-schema": "^0.15.0",
     "graphql-tag": "^2.12.6",
-    "rimraf": "^5.0.5",
-    "tslib": "^2.6.2",
+    "rimraf": "^5.0.9",
+    "tslib": "^2.6.3",
     "tsx": "^4.16.2"
   },
   "peerDependencies": {
