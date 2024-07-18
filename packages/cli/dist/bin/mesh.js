@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.handleFatalError = void 0;
+exports.handleFatalError = handleFatalError;
 /* eslint-disable import/no-extraneous-dependencies */
 const node_fs_1 = require("node:fs");
 const node_path_1 = __importDefault(require("node:path"));
@@ -25,7 +25,6 @@ function handleFatalError(e, logger = new utils_1.DefaultLogger('◈')) {
     if (process.env.JEST == null)
         (0, node_process_1.exit)(1);
 }
-exports.handleFatalError = handleFatalError;
 const root = process.cwd();
 const meshDir = node_path_1.default.dirname(require.resolve('@graphcommerce/graphql-mesh'));
 const relativePath = node_path_1.default.join(node_path_1.default.relative(meshDir, root), '/');

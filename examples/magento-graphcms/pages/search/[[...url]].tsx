@@ -95,7 +95,7 @@ export const getServerSideProps: GetPageStaticProps = async (context) => {
 
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
-  const filterTypes = getFilterTypes(client)
+  const filterTypes = getFilterTypes(client, true)
 
   const staticClient = graphqlSsrClient(context)
   const layout = staticClient.query({

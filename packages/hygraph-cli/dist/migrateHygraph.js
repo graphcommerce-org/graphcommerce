@@ -26,7 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.migrateHygraph = void 0;
+exports.migrateHygraph = migrateHygraph;
 const fs_1 = __importDefault(require("fs"));
 const next_config_1 = require("@graphcommerce/next-config");
 const dotenv_1 = __importDefault(require("dotenv"));
@@ -93,4 +93,3 @@ async function migrateHygraph() {
         (0, log_functions_1.graphcommerceLog)(`[GraphCommerce]: An error occurred: ${error}`, 'error');
     }
 }
-exports.migrateHygraph = migrateHygraph;

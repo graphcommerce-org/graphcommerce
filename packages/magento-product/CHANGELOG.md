@@ -1,13 +1,28 @@
 # Change Log
 
+## 9.0.0-canary.58
+
+### Patch Changes
+
+- [#2328](https://github.com/graphcommerce-org/graphcommerce/pull/2328) [`ee04368`](https://github.com/graphcommerce-org/graphcommerce/commit/ee04368444f732e5541a595db6e2ef66d15add68) - Move to attributesList to get a list of filterable attributes instead of using an introspection query. `productFiltersProSectionRenderer` and `productFiltersProChipRenderer` keys now now one of `AttributeFrontendInputEnum`. ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
 ## 8.1.0-canary.52
 
 ## 8.1.0-canary.51
 
 ### Minor Changes
 
-- [#2322](https://github.com/graphcommerce-org/graphcommerce/pull/2322) [`4d08a2b`](https://github.com/graphcommerce-org/graphcommerce/commit/4d08a2bd8c1919bd85b18e8e856775d18fb67e00) - Rename configurable_customizable back to customizable_options
-  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2322](https://github.com/graphcommerce-org/graphcommerce/pull/2322) [`4d08a2b`](https://github.com/graphcommerce-org/graphcommerce/commit/4d08a2bd8c1919bd85b18e8e856775d18fb67e00) - Rename configurable_customizable back to customizable_options ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ## 8.1.0-canary.50
 
@@ -31,9 +46,7 @@
 
 ### Patch Changes
 
-- [#2242](https://github.com/graphcommerce-org/graphcommerce/pull/2242) [`a4cce76`](https://github.com/graphcommerce-org/graphcommerce/commit/a4cce76ca37af2bec604e953ada4bb11bd91f55d) - Add option to show an extended version of the pagination component. Configurable via the "productListPaginationVariant" key in your graphcommerce.config.js
-  COMPACT means: "< Page X of Y >"
-  EXTENDED means: "< 1 2 ... [5] ... 10 11 >" ([@FrankHarland](https://github.com/FrankHarland))
+- [#2242](https://github.com/graphcommerce-org/graphcommerce/pull/2242) [`a4cce76`](https://github.com/graphcommerce-org/graphcommerce/commit/a4cce76ca37af2bec604e953ada4bb11bd91f55d) - Add option to show an extended version of the pagination component. Configurable via the "productListPaginationVariant" key in your graphcommerce.config.js COMPACT means: "< Page X of Y >" EXTENDED means: "< 1 2 ... [5] ... 10 11 >" ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.1.0-canary.40
 
@@ -65,8 +78,7 @@
 
 ### Minor Changes
 
-- [#2273](https://github.com/graphcommerce-org/graphcommerce/pull/2273) [`77955c5`](https://github.com/graphcommerce-org/graphcommerce/commit/77955c56ac8633ab1c5e0f3ddb25e3a87236e2bb) - Improve Breadcrumbs on Category and Product pages
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2273](https://github.com/graphcommerce-org/graphcommerce/pull/2273) [`77955c5`](https://github.com/graphcommerce-org/graphcommerce/commit/77955c56ac8633ab1c5e0f3ddb25e3a87236e2bb) - Improve Breadcrumbs on Category and Product pages ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.1.0-canary.26
 
@@ -102,8 +114,7 @@
 
 ### Patch Changes
 
-- [#2255](https://github.com/graphcommerce-org/graphcommerce/pull/2255) [`679d07d`](https://github.com/graphcommerce-org/graphcommerce/commit/679d07dad5b5e2dab3c0f3d537716b6115af8ef7) - make the ProductPageMeta fragment injectable
-  ([@carlocarels90](https://github.com/carlocarels90))
+- [#2255](https://github.com/graphcommerce-org/graphcommerce/pull/2255) [`679d07d`](https://github.com/graphcommerce-org/graphcommerce/commit/679d07dad5b5e2dab3c0f3d537716b6115af8ef7) - make the ProductPageMeta fragment injectable ([@carlocarels90](https://github.com/carlocarels90))
 
 ## 8.1.0-canary.10
 
@@ -119,15 +130,13 @@
 
 ### Patch Changes
 
-- [#2224](https://github.com/graphcommerce-org/graphcommerce/pull/2224) [`4dd2d01`](https://github.com/graphcommerce-org/graphcommerce/commit/4dd2d01b3e14e3107ee3e337bef2a8528d654e75) - When applying a filter it would not always scroll to the #products.
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2224](https://github.com/graphcommerce-org/graphcommerce/pull/2224) [`4dd2d01`](https://github.com/graphcommerce-org/graphcommerce/commit/4dd2d01b3e14e3107ee3e337bef2a8528d654e75) - When applying a filter it would not always scroll to the #products. ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.6-canary.4
 
 ### Patch Changes
 
-- [#2227](https://github.com/graphcommerce-org/graphcommerce/pull/2227) [`d597719`](https://github.com/graphcommerce-org/graphcommerce/commit/d597719baaabbe079660ac063fd021d871831511) - Added option to change sort order (ASC / DESC) for sort options (Name, price, position etc) on catalog and search pages.
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2227](https://github.com/graphcommerce-org/graphcommerce/pull/2227) [`d597719`](https://github.com/graphcommerce-org/graphcommerce/commit/d597719baaabbe079660ac063fd021d871831511) - Added option to change sort order (ASC / DESC) for sort options (Name, price, position etc) on catalog and search pages. ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.6-canary.3
 
@@ -135,11 +144,9 @@
 
 ### Patch Changes
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent BillingPage query from rerunning on each mutation
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent BillingPage query from rerunning on each mutation ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.6-canary.1
 
@@ -147,15 +154,13 @@
 
 ### Patch Changes
 
-- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods.
-  ([@paales](https://github.com/paales))
+- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods. ([@paales](https://github.com/paales))
 
 ## 8.0.5
 
 ### Patch Changes
 
-- [#2239](https://github.com/graphcommerce-org/graphcommerce/pull/2239) [`a2a6e78`](https://github.com/graphcommerce-org/graphcommerce/commit/a2a6e78291ab978f4ef1236a4476b4d54555af7f) - Prices of products are now updated when customizable options are selected
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2239](https://github.com/graphcommerce-org/graphcommerce/pull/2239) [`a2a6e78`](https://github.com/graphcommerce-org/graphcommerce/commit/a2a6e78291ab978f4ef1236a4476b4d54555af7f) - Prices of products are now updated when customizable options are selected ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.5-canary.10
 
@@ -165,8 +170,7 @@
 
 ### Patch Changes
 
-- [#2239](https://github.com/graphcommerce-org/graphcommerce/pull/2239) [`a2a6e78`](https://github.com/graphcommerce-org/graphcommerce/commit/a2a6e78291ab978f4ef1236a4476b4d54555af7f) - Prices of products are now updated when customizable options are selected
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2239](https://github.com/graphcommerce-org/graphcommerce/pull/2239) [`a2a6e78`](https://github.com/graphcommerce-org/graphcommerce/commit/a2a6e78291ab978f4ef1236a4476b4d54555af7f) - Prices of products are now updated when customizable options are selected ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.5-canary.7
 
@@ -194,15 +198,13 @@
 
 ### Patch Changes
 
-- [#2217](https://github.com/graphcommerce-org/graphcommerce/pull/2217) [`2b750da`](https://github.com/graphcommerce-org/graphcommerce/commit/2b750da77723d37485da01df05f52d19b80cc90c) - fix for breadcrumbs on pdp when no category attached to product
-  ([@JoshuaS98](https://github.com/JoshuaS98))
+- [#2217](https://github.com/graphcommerce-org/graphcommerce/pull/2217) [`2b750da`](https://github.com/graphcommerce-org/graphcommerce/commit/2b750da77723d37485da01df05f52d19b80cc90c) - fix for breadcrumbs on pdp when no category attached to product ([@JoshuaS98](https://github.com/JoshuaS98))
 
 ## 8.0.3-canary.6
 
 ### Patch Changes
 
-- [#2217](https://github.com/graphcommerce-org/graphcommerce/pull/2217) [`2b750da`](https://github.com/graphcommerce-org/graphcommerce/commit/2b750da77723d37485da01df05f52d19b80cc90c) - fix for breadcrumbs on pdp when no category attached to product
-  ([@JoshuaS98](https://github.com/JoshuaS98))
+- [#2217](https://github.com/graphcommerce-org/graphcommerce/pull/2217) [`2b750da`](https://github.com/graphcommerce-org/graphcommerce/commit/2b750da77723d37485da01df05f52d19b80cc90c) - fix for breadcrumbs on pdp when no category attached to product ([@JoshuaS98](https://github.com/JoshuaS98))
 
 ## 8.0.3-canary.5
 
@@ -220,15 +222,13 @@
 
 ### Patch Changes
 
-- [#2201](https://github.com/graphcommerce-org/graphcommerce/pull/2201) [`e16fea4`](https://github.com/graphcommerce-org/graphcommerce/commit/e16fea4b0ff9661fd15a32089fbfc0c6a1c903fe) - Fix issue where patches would not be applied correctly on the AddProductsAddToCartForm
-  ([@paales](https://github.com/paales))
+- [#2201](https://github.com/graphcommerce-org/graphcommerce/pull/2201) [`e16fea4`](https://github.com/graphcommerce-org/graphcommerce/commit/e16fea4b0ff9661fd15a32089fbfc0c6a1c903fe) - Fix issue where patches would not be applied correctly on the AddProductsAddToCartForm ([@paales](https://github.com/paales))
 
 ## 8.0.2-canary.3
 
 ### Patch Changes
 
-- [#2201](https://github.com/graphcommerce-org/graphcommerce/pull/2201) [`e16fea4`](https://github.com/graphcommerce-org/graphcommerce/commit/e16fea4b0ff9661fd15a32089fbfc0c6a1c903fe) - Fix issue where patches would not be applied correctly on the AddProductsAddToCartForm
-  ([@paales](https://github.com/paales))
+- [#2201](https://github.com/graphcommerce-org/graphcommerce/pull/2201) [`e16fea4`](https://github.com/graphcommerce-org/graphcommerce/commit/e16fea4b0ff9661fd15a32089fbfc0c6a1c903fe) - Fix issue where patches would not be applied correctly on the AddProductsAddToCartForm ([@paales](https://github.com/paales))
 
 ## 8.0.2-canary.2
 
@@ -252,60 +252,43 @@
 
 ### Major Changes
 
-- [#2041](https://github.com/graphcommerce-org/graphcommerce/pull/2041) [`bc3a833`](https://github.com/graphcommerce-org/graphcommerce/commit/bc3a8339b0b0f15b4d5cb014d4f95e6ea28c2cfe) - Removed the `legacyProductRoute` configuration option from GraphCommerce
-  ([@paales](https://github.com/paales))
+- [#2041](https://github.com/graphcommerce-org/graphcommerce/pull/2041) [`bc3a833`](https://github.com/graphcommerce-org/graphcommerce/commit/bc3a8339b0b0f15b4d5cb014d4f95e6ea28c2cfe) - Removed the `legacyProductRoute` configuration option from GraphCommerce ([@paales](https://github.com/paales))
 
 ### Minor Changes
 
-- [#2133](https://github.com/graphcommerce-org/graphcommerce/pull/2133) [`133f908`](https://github.com/graphcommerce-org/graphcommerce/commit/133f908200a79589036420f2925835724522cab8) - Added new `<LazyHydrate/>` component to improve the Total Blocking Time and implemented them in, `<RowRenderer/>`, `<ProductListItemBase/>`, `<Footer/>` and for the `<NavigationProvider/>`. Reduced the TBT by 50% on the homepage and other pages.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2133](https://github.com/graphcommerce-org/graphcommerce/pull/2133) [`133f908`](https://github.com/graphcommerce-org/graphcommerce/commit/133f908200a79589036420f2925835724522cab8) - Added new `<LazyHydrate/>` component to improve the Total Blocking Time and implemented them in, `<RowRenderer/>`, `<ProductListItemBase/>`, `<Footer/>` and for the `<NavigationProvider/>`. Reduced the TBT by 50% on the homepage and other pages. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2099](https://github.com/graphcommerce-org/graphcommerce/pull/2099) [`ff796b8`](https://github.com/graphcommerce-org/graphcommerce/commit/ff796b838fae6cb5e35b101500133b0235a8677d) - Support for all customizable product options (except file upload) on the product pages and in the cart.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2099](https://github.com/graphcommerce-org/graphcommerce/pull/2099) [`ff796b8`](https://github.com/graphcommerce-org/graphcommerce/commit/ff796b838fae6cb5e35b101500133b0235a8677d) - Support for all customizable product options (except file upload) on the product pages and in the cart. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`13e23e4`](https://github.com/graphcommerce-org/graphcommerce/commit/13e23e4265bac70fb4d0830e4661019e71ce299f) - Wishlist will now support configurable products and uses the `<ActionCardLayout/>`
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`13e23e4`](https://github.com/graphcommerce-org/graphcommerce/commit/13e23e4265bac70fb4d0830e4661019e71ce299f) - Wishlist will now support configurable products and uses the `<ActionCardLayout/>` ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ### Patch Changes
 
-- [#2083](https://github.com/graphcommerce-org/graphcommerce/pull/2083) [`ca493c7`](https://github.com/graphcommerce-org/graphcommerce/commit/ca493c7b208b8526c1109695d54bad7b2956a8bd) - Filters which are not yet applied and all options have 0 results, will not be shown anymore.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2083](https://github.com/graphcommerce-org/graphcommerce/pull/2083) [`ca493c7`](https://github.com/graphcommerce-org/graphcommerce/commit/ca493c7b208b8526c1109695d54bad7b2956a8bd) - Filters which are not yet applied and all options have 0 results, will not be shown anymore. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`89b58be`](https://github.com/graphcommerce-org/graphcommerce/commit/89b58be9812e1e515b6996b2f5ce67ab8a596980) - The ProductFilters and ProductList queries would only run after the hygraphPageContent query would be resolved, although they don't depend on each other, now they run in parallel.
-  ([@paales](https://github.com/paales))
+- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`89b58be`](https://github.com/graphcommerce-org/graphcommerce/commit/89b58be9812e1e515b6996b2f5ce67ab8a596980) - The ProductFilters and ProductList queries would only run after the hygraphPageContent query would be resolved, although they don't depend on each other, now they run in parallel. ([@paales](https://github.com/paales))
 
-- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`8d4f1ef`](https://github.com/graphcommerce-org/graphcommerce/commit/8d4f1ef00bd7a8b8ca3be46302ce3959eae33a23) - When a product has a discount price, render that on the product page
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`8d4f1ef`](https://github.com/graphcommerce-org/graphcommerce/commit/8d4f1ef00bd7a8b8ca3be46302ce3959eae33a23) - When a product has a discount price, render that on the product page ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - Accessibility improvements for the frontend: Added skip content link. Removed empty buttons from tab flow. Gave focus to elements (such as the menu) that appear when after clicking a button. Improved aria labels where needed
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - Accessibility improvements for the frontend: Added skip content link. Removed empty buttons from tab flow. Gave focus to elements (such as the menu) that appear when after clicking a button. Improved aria labels where needed ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2058](https://github.com/graphcommerce-org/graphcommerce/pull/2058) [`16dc488`](https://github.com/graphcommerce-org/graphcommerce/commit/16dc4889543106238b1a87694e75586e4c1a787c) - Provide instant feedback on availble attribute options when making a selection on a configurable product
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2058](https://github.com/graphcommerce-org/graphcommerce/pull/2058) [`16dc488`](https://github.com/graphcommerce-org/graphcommerce/commit/16dc4889543106238b1a87694e75586e4c1a787c) - Provide instant feedback on availble attribute options when making a selection on a configurable product ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2164](https://github.com/graphcommerce-org/graphcommerce/pull/2164) [`5224755`](https://github.com/graphcommerce-org/graphcommerce/commit/522475503fd40e4718fd4d7d33f8164c01588c0c) - The filter bar would completely disappear when there were no items returned.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2164](https://github.com/graphcommerce-org/graphcommerce/pull/2164) [`5224755`](https://github.com/graphcommerce-org/graphcommerce/commit/522475503fd40e4718fd4d7d33f8164c01588c0c) - The filter bar would completely disappear when there were no items returned. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2150](https://github.com/graphcommerce-org/graphcommerce/pull/2150) [`59844cd`](https://github.com/graphcommerce-org/graphcommerce/commit/59844cdd8adfaf03d22b04b9082552e22f386fb6) - Solved an issue where the same product could not be added multiple times to the cart without reloading the page.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2150](https://github.com/graphcommerce-org/graphcommerce/pull/2150) [`59844cd`](https://github.com/graphcommerce-org/graphcommerce/commit/59844cdd8adfaf03d22b04b9082552e22f386fb6) - Solved an issue where the same product could not be added multiple times to the cart without reloading the page. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`0d2cb22`](https://github.com/graphcommerce-org/graphcommerce/commit/0d2cb22a58451d40102981263209aacb93016c76) - Removed unwanted space below <ProductListItem/> images caused by line-height. Images are now perfectly square as expected.
-  ([@bramvanderholst](https://github.com/bramvanderholst))
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`0d2cb22`](https://github.com/graphcommerce-org/graphcommerce/commit/0d2cb22a58451d40102981263209aacb93016c76) - Removed unwanted space below <ProductListItem/> images caused by line-height. Images are now perfectly square as expected. ([@bramvanderholst](https://github.com/bramvanderholst))
 
-- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`154cd12`](https://github.com/graphcommerce-org/graphcommerce/commit/154cd12438f6cb30638e37b9a76a0649992b90f4) - The name of the product in the `<ProductListItem/>` would break words in the middle of a word instead of using a normal word break.
-  ([@paales](https://github.com/paales))
+- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`154cd12`](https://github.com/graphcommerce-org/graphcommerce/commit/154cd12438f6cb30638e37b9a76a0649992b90f4) - The name of the product in the `<ProductListItem/>` would break words in the middle of a word instead of using a normal word break. ([@paales](https://github.com/paales))
 
-- [#2007](https://github.com/graphcommerce-org/graphcommerce/pull/2007) [`f59c276`](https://github.com/graphcommerce-org/graphcommerce/commit/f59c276605f9ed649d1197a9ba0e3f12d7c6d026) - Crosssell behavior now properly shows for the latest added product. Added latest submitted variables to be retrieved when using the useFormGql hook.
-  ([@JoshuaS98](https://github.com/JoshuaS98))
+- [#2007](https://github.com/graphcommerce-org/graphcommerce/pull/2007) [`f59c276`](https://github.com/graphcommerce-org/graphcommerce/commit/f59c276605f9ed649d1197a9ba0e3f12d7c6d026) - Crosssell behavior now properly shows for the latest added product. Added latest submitted variables to be retrieved when using the useFormGql hook. ([@JoshuaS98](https://github.com/JoshuaS98))
 
-- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`0335dd9`](https://github.com/graphcommerce-org/graphcommerce/commit/0335dd9417b8fe1c4f1009dad354b9edab892b9f) - The product page will now also load all information that a ProductListItem will load
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`0335dd9`](https://github.com/graphcommerce-org/graphcommerce/commit/0335dd9417b8fe1c4f1009dad354b9edab892b9f) - The product page will now also load all information that a ProductListItem will load ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2076](https://github.com/graphcommerce-org/graphcommerce/pull/2076) [`f860e68`](https://github.com/graphcommerce-org/graphcommerce/commit/f860e68603526a15dcf2567f4ca57230423ef5c3) - Forward the maxWidth prop to the `<ColumnTwoWithTop />` component from the `<ProductPageDescription maxWidth='lg'/>` component.
-  ([@StefanAngenent](https://github.com/StefanAngenent))
+- [#2076](https://github.com/graphcommerce-org/graphcommerce/pull/2076) [`f860e68`](https://github.com/graphcommerce-org/graphcommerce/commit/f860e68603526a15dcf2567f4ca57230423ef5c3) - Forward the maxWidth prop to the `<ColumnTwoWithTop />` component from the `<ProductPageDescription maxWidth='lg'/>` component. ([@StefanAngenent](https://github.com/StefanAngenent))
 
-- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`5f4455b`](https://github.com/graphcommerce-org/graphcommerce/commit/5f4455b1cccddf1501f0279e5ca2d9277a07ff07) - New `<ProductListItemSkeleton />` component and added support to the productListRenderer. Used for the new Recently Viewed Products feature.
-  ([@bramvanderholst](https://github.com/bramvanderholst))
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`5f4455b`](https://github.com/graphcommerce-org/graphcommerce/commit/5f4455b1cccddf1501f0279e5ca2d9277a07ff07) - New `<ProductListItemSkeleton />` component and added support to the productListRenderer. Used for the new Recently Viewed Products feature. ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 8.0.0-canary.100
 
@@ -337,8 +320,7 @@
 
 ### Patch Changes
 
-- [#2168](https://github.com/graphcommerce-org/graphcommerce/pull/2168) [`986dc96`](https://github.com/graphcommerce-org/graphcommerce/commit/986dc96e6e88b58471dfcccf952d99bbb8a81884) - Added schema-dts as a dependency, so it isn't required in the example
-  ([@paales](https://github.com/paales))
+- [#2168](https://github.com/graphcommerce-org/graphcommerce/pull/2168) [`986dc96`](https://github.com/graphcommerce-org/graphcommerce/commit/986dc96e6e88b58471dfcccf952d99bbb8a81884) - Added schema-dts as a dependency, so it isn't required in the example ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.86
 
@@ -350,15 +332,13 @@
 
 ### Patch Changes
 
-- [#2164](https://github.com/graphcommerce-org/graphcommerce/pull/2164) [`5224755`](https://github.com/graphcommerce-org/graphcommerce/commit/522475503fd40e4718fd4d7d33f8164c01588c0c) - Fixed filters dissapearing when no items are found with applied filters
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2164](https://github.com/graphcommerce-org/graphcommerce/pull/2164) [`5224755`](https://github.com/graphcommerce-org/graphcommerce/commit/522475503fd40e4718fd4d7d33f8164c01588c0c) - Fixed filters dissapearing when no items are found with applied filters ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.82
 
 ### Patch Changes
 
-- [#2150](https://github.com/graphcommerce-org/graphcommerce/pull/2150) [`59844cd`](https://github.com/graphcommerce-org/graphcommerce/commit/59844cdd8adfaf03d22b04b9082552e22f386fb6) - Fixed a bug which caused the default values of the productAddToCartForm to be overwritten if the selected configurable option of a product contained a visible simple product. Before the fix you could not add the same product twice without reloading the page.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2150](https://github.com/graphcommerce-org/graphcommerce/pull/2150) [`59844cd`](https://github.com/graphcommerce-org/graphcommerce/commit/59844cdd8adfaf03d22b04b9082552e22f386fb6) - Fixed a bug which caused the default values of the productAddToCartForm to be overwritten if the selected configurable option of a product contained a visible simple product. Before the fix you could not add the same product twice without reloading the page. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.81
 
@@ -372,8 +352,7 @@
 
 ### Patch Changes
 
-- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - a11y improvements (see https://github.com/graphcommerce-org/graphcommerce/issues/1995 for more info)
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - a11y improvements (see https://github.com/graphcommerce-org/graphcommerce/issues/1995 for more info) ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.0-canary.76
 
@@ -381,18 +360,15 @@
 
 ### Patch Changes
 
-- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`89b58be`](https://github.com/graphcommerce-org/graphcommerce/commit/89b58be9812e1e515b6996b2f5ce67ab8a596980) - The ProductFilters and ProductList queries would only run after the hygraphPageContent query would be resolved, although they don't depend on each other, now they run in parallel.
-  ([@paales](https://github.com/paales))
+- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`89b58be`](https://github.com/graphcommerce-org/graphcommerce/commit/89b58be9812e1e515b6996b2f5ce67ab8a596980) - The ProductFilters and ProductList queries would only run after the hygraphPageContent query would be resolved, although they don't depend on each other, now they run in parallel. ([@paales](https://github.com/paales))
 
-- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`154cd12`](https://github.com/graphcommerce-org/graphcommerce/commit/154cd12438f6cb30638e37b9a76a0649992b90f4) - Do not break words when wrapping
-  ([@paales](https://github.com/paales))
+- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`154cd12`](https://github.com/graphcommerce-org/graphcommerce/commit/154cd12438f6cb30638e37b9a76a0649992b90f4) - Do not break words when wrapping ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.74
 
 ### Minor Changes
 
-- [#2133](https://github.com/graphcommerce-org/graphcommerce/pull/2133) [`133f908`](https://github.com/graphcommerce-org/graphcommerce/commit/133f908200a79589036420f2925835724522cab8) - Added lazy hydration to improve total blocking time. Added LazyHydrate component which can be wrapped around other components you want to lazy hydrate.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2133](https://github.com/graphcommerce-org/graphcommerce/pull/2133) [`133f908`](https://github.com/graphcommerce-org/graphcommerce/commit/133f908200a79589036420f2925835724522cab8) - Added lazy hydration to improve total blocking time. Added LazyHydrate component which can be wrapped around other components you want to lazy hydrate. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.73
 
@@ -402,8 +378,7 @@
 
 ### Minor Changes
 
-- [#2099](https://github.com/graphcommerce-org/graphcommerce/pull/2099) [`ff796b8`](https://github.com/graphcommerce-org/graphcommerce/commit/ff796b838fae6cb5e35b101500133b0235a8677d) - Created UI for all customizable options except for the file upload customizable option
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2099](https://github.com/graphcommerce-org/graphcommerce/pull/2099) [`ff796b8`](https://github.com/graphcommerce-org/graphcommerce/commit/ff796b838fae6cb5e35b101500133b0235a8677d) - Created UI for all customizable options except for the file upload customizable option ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.70
 
@@ -411,8 +386,7 @@
 
 ### Major Changes
 
-- [#2041](https://github.com/graphcommerce-org/graphcommerce/pull/2041) [`bc3a833`](https://github.com/graphcommerce-org/graphcommerce/commit/bc3a8339b0b0f15b4d5cb014d4f95e6ea28c2cfe) - Removed legacyProductRoute from GraphCommerce
-  ([@paales](https://github.com/paales))
+- [#2041](https://github.com/graphcommerce-org/graphcommerce/pull/2041) [`bc3a833`](https://github.com/graphcommerce-org/graphcommerce/commit/bc3a8339b0b0f15b4d5cb014d4f95e6ea28c2cfe) - Removed legacyProductRoute from GraphCommerce ([@paales](https://github.com/paales))
 
 ## 7.1.0-canary.68
 
@@ -420,8 +394,7 @@
 
 ### Patch Changes
 
-- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`6f214fb`](https://github.com/graphcommerce-org/graphcommerce/commit/6f214fbfd8ef24cc6dcba72f403bdcb1d8a5ed8a) - Remove marginBottom from ProductScroller by default and let implementor set the margin
-  ([@StefanAngenent](https://github.com/StefanAngenent))
+- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`6f214fb`](https://github.com/graphcommerce-org/graphcommerce/commit/6f214fbfd8ef24cc6dcba72f403bdcb1d8a5ed8a) - Remove marginBottom from ProductScroller by default and let implementor set the margin ([@StefanAngenent](https://github.com/StefanAngenent))
 
 ## 7.1.0-canary.66
 
@@ -1991,31 +1964,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 

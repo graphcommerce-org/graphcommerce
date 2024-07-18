@@ -1,5 +1,17 @@
 # @graphcommerce/magento-wishlist
 
+## 9.0.0-canary.58
+
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
 ## 8.1.0-canary.52
 
 ## 8.1.0-canary.51
@@ -18,8 +30,7 @@
 
 ### Patch Changes
 
-- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`02c98e2`](https://github.com/graphcommerce-org/graphcommerce/commit/02c98e217a42fe2258acfad40be577e4a9109345) - Add to wishlist message missed the product name
-  ([@paales](https://github.com/paales))
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`02c98e2`](https://github.com/graphcommerce-org/graphcommerce/commit/02c98e217a42fe2258acfad40be577e4a9109345) - Add to wishlist message missed the product name ([@paales](https://github.com/paales))
 
 ## 8.1.0-canary.44
 
@@ -79,8 +90,7 @@
 
 ### Minor Changes
 
-- [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed useMediaQuery from the wishlist and cart ItemActionCard and replaced it with a new responsive size prop.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed useMediaQuery from the wishlist and cart ItemActionCard and replaced it with a new responsive size prop. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.1.0-canary.16
 
@@ -150,8 +160,7 @@
 
 ### Patch Changes
 
-- [#2208](https://github.com/graphcommerce-org/graphcommerce/pull/2208) [`3228ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/3228ba893a8f1b70b99f05492c53d6a0feda80c3) - Images are not spread anymore but instead are contained within the borders of the image container.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2208](https://github.com/graphcommerce-org/graphcommerce/pull/2208) [`3228ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/3228ba893a8f1b70b99f05492c53d6a0feda80c3) - Images are not spread anymore but instead are contained within the borders of the image container. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.3-canary.6
 
@@ -169,8 +178,7 @@
 
 ### Patch Changes
 
-- [#2208](https://github.com/graphcommerce-org/graphcommerce/pull/2208) [`3228ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/3228ba893a8f1b70b99f05492c53d6a0feda80c3) - Images are not spread anymore but instead are contained within the borders of the image container.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2208](https://github.com/graphcommerce-org/graphcommerce/pull/2208) [`3228ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/3228ba893a8f1b70b99f05492c53d6a0feda80c3) - Images are not spread anymore but instead are contained within the borders of the image container. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.2
 
@@ -198,8 +206,7 @@
 
 ### Minor Changes
 
-- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`13e23e4`](https://github.com/graphcommerce-org/graphcommerce/commit/13e23e4265bac70fb4d0830e4661019e71ce299f) - Wishlist will now support configurable products and uses the `<ActionCardLayout/>`
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`13e23e4`](https://github.com/graphcommerce-org/graphcommerce/commit/13e23e4265bac70fb4d0830e4661019e71ce299f) - Wishlist will now support configurable products and uses the `<ActionCardLayout/>` ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.100
 
@@ -1688,31 +1695,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 

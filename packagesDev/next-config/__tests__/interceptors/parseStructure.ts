@@ -206,3 +206,83 @@ export const Plugin = AddAdyenMethods
   `)
   expect(plugins[1]).toMatchInlineSnapshot(`undefined`)
 })
+
+it('correctly allows false value in the ifConfig', () => {
+  const src = `
+import { PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import { xMagentoCacheIdHeader } from '../link/xMagentoCacheIdHeader'
+import { GraphQLProviderProps } from '@graphcommerce/graphql'
+
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/graphql',
+  ifConfig: ['customerXMagentoCacheIdDisable', false],
+}
+
+export function GraphQLProvider(props: PluginProps<GraphQLProviderProps>) {
+  const { Prev, links = [], ...rest } = props
+  return <Prev {...rest} links={[...links, xMagentoCacheIdHeader]} />
+}
+`
+  const ast = parseSync(src)
+
+  expect(
+    parseStructure(ast, {} as GraphCommerceConfig, './plugins/MyReplace')[0].enabled,
+  ).toBeTruthy()
+
+  expect(
+    parseStructure(
+      ast,
+      { customerXMagentoCacheIdDisable: true } as GraphCommerceConfig,
+      './plugins/MyReplace',
+    )[0].enabled,
+  ).toBeFalsy()
+
+  expect(
+    parseStructure(
+      ast,
+      { customerXMagentoCacheIdDisable: false } as GraphCommerceConfig,
+      './plugins/MyReplace',
+    )[0].enabled,
+  ).toBeTruthy()
+})
+
+it('correctly allows true value in the ifConfig', () => {
+  const src = `
+import { PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import { xMagentoCacheIdHeader } from '../link/xMagentoCacheIdHeader'
+import { GraphQLProviderProps } from '@graphcommerce/graphql'
+
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/graphql',
+  ifConfig: ['customerXMagentoCacheIdDisable', true],
+}
+
+export function GraphQLProvider(props: PluginProps<GraphQLProviderProps>) {
+  const { Prev, links = [], ...rest } = props
+  return <Prev {...rest} links={[...links, xMagentoCacheIdHeader]} />
+}
+`
+  const ast = parseSync(src)
+
+  expect(
+    parseStructure(ast, {} as GraphCommerceConfig, './plugins/MyReplace')[0].enabled,
+  ).toBeFalsy()
+
+  expect(
+    parseStructure(
+      ast,
+      { customerXMagentoCacheIdDisable: true } as GraphCommerceConfig,
+      './plugins/MyReplace',
+    )[0].enabled,
+  ).toBeTruthy()
+
+  expect(
+    parseStructure(
+      ast,
+      { customerXMagentoCacheIdDisable: false } as GraphCommerceConfig,
+      './plugins/MyReplace',
+    )[0].enabled,
+  ).toBeFalsy()
+})

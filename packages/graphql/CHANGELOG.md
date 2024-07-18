@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.0.0-canary.58
+
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
 ## 8.1.0-canary.52
 
 ## 8.1.0-canary.51
@@ -14,22 +26,19 @@
 
 ### Minor Changes
 
-- [#2315](https://github.com/graphcommerce-org/graphcommerce/pull/2315) [`fb9118e`](https://github.com/graphcommerce-org/graphcommerce/commit/fb9118ec819d1b507d4fbde04f2ca34ec01ecf49) - Add guestOrder functionality, remove `size: 'max'` from getStaticProps
-  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2315](https://github.com/graphcommerce-org/graphcommerce/pull/2315) [`fb9118e`](https://github.com/graphcommerce-org/graphcommerce/commit/fb9118ec819d1b507d4fbde04f2ca34ec01ecf49) - Add guestOrder functionality, remove `size: 'max'` from getStaticProps ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ## 8.1.0-canary.46
 
 ### Patch Changes
 
-- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`fe8fce7`](https://github.com/graphcommerce-org/graphcommerce/commit/fe8fce7f5a82e227ed4a1992415af73fa7d0bb79) - Importing \*.interceptor is NOT allowed
-  ([@paales](https://github.com/paales))
+- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`fe8fce7`](https://github.com/graphcommerce-org/graphcommerce/commit/fe8fce7f5a82e227ed4a1992415af73fa7d0bb79) - Importing \*.interceptor is NOT allowed ([@paales](https://github.com/paales))
 
 ## 8.1.0-canary.45
 
 ### Patch Changes
 
-- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`d066e6f`](https://github.com/graphcommerce-org/graphcommerce/commit/d066e6f904ca68a8771ab73ce30aa06d11fc71b6) - When loading a page, always create a new graphql client, so that cache isn't shared for each request, causing an unnecessary large page size.
-  ([@paales](https://github.com/paales))
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`d066e6f`](https://github.com/graphcommerce-org/graphcommerce/commit/d066e6f904ca68a8771ab73ce30aa06d11fc71b6) - When loading a page, always create a new graphql client, so that cache isn't shared for each request, causing an unnecessary large page size. ([@paales](https://github.com/paales))
 
 ## 8.1.0-canary.44
 
@@ -39,8 +48,7 @@
 
 ### Patch Changes
 
-- [#2308](https://github.com/graphcommerce-org/graphcommerce/pull/2308) [`8faa5ac`](https://github.com/graphcommerce-org/graphcommerce/commit/8faa5ac618ecfdacd6d5eb751b4110c423aef97f) - Added Draft Mode support. When enabled it will be shown.
-  ([@paales](https://github.com/paales))
+- [#2308](https://github.com/graphcommerce-org/graphcommerce/pull/2308) [`8faa5ac`](https://github.com/graphcommerce-org/graphcommerce/commit/8faa5ac618ecfdacd6d5eb751b4110c423aef97f) - Added Draft Mode support. When enabled it will be shown. ([@paales](https://github.com/paales))
 
 ## 8.1.0-canary.41
 
@@ -198,11 +206,9 @@
 
 ### Patch Changes
 
-- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`4a29bf7`](https://github.com/graphcommerce-org/graphcommerce/commit/4a29bf7e0d6cfa4ee360ef3f28b779689f6c1e11) - Include @connection, @export, @defer and @nonreactive in schema, so they can be used, in queries
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`4a29bf7`](https://github.com/graphcommerce-org/graphcommerce/commit/4a29bf7e0d6cfa4ee360ef3f28b779689f6c1e11) - Include @connection, @export, @defer and @nonreactive in schema, so they can be used, in queries ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`072cd14`](https://github.com/graphcommerce-org/graphcommerce/commit/072cd14f29b58b907ce04ee294e8fb9c6190556a) - Allow `configurable_product_options_selection` to be stored in the `localStorage` so queries do not need to be re-executed when the page loads.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`072cd14`](https://github.com/graphcommerce-org/graphcommerce/commit/072cd14f29b58b907ce04ee294e8fb9c6190556a) - Allow `configurable_product_options_selection` to be stored in the `localStorage` so queries do not need to be re-executed when the page loads. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.100
 

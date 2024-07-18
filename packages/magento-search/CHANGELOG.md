@@ -1,5 +1,21 @@
 # Change Log
 
+## 9.0.0-canary.58
+
+### Patch Changes
+
+- [#2328](https://github.com/graphcommerce-org/graphcommerce/pull/2328) [`ee04368`](https://github.com/graphcommerce-org/graphcommerce/commit/ee04368444f732e5541a595db6e2ef66d15add68) - Move to attributesList to get a list of filterable attributes instead of using an introspection query. `productFiltersProSectionRenderer` and `productFiltersProChipRenderer` keys now now one of `AttributeFrontendInputEnum`. ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
 ## 8.1.0-canary.52
 
 ## 8.1.0-canary.51
@@ -178,14 +194,11 @@
 
 ### Patch Changes
 
-- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`9091dbb`](https://github.com/graphcommerce-org/graphcommerce/commit/9091dbb01a47aa6ba40932a66ed055b7f07c1cec) - Make sure the search link in the header is a soft navigation instead of a hard browser navigation.
-  ([@paales](https://github.com/paales))
+- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`9091dbb`](https://github.com/graphcommerce-org/graphcommerce/commit/9091dbb01a47aa6ba40932a66ed055b7f07c1cec) - Make sure the search link in the header is a soft navigation instead of a hard browser navigation. ([@paales](https://github.com/paales))
 
-- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - Accessibility improvements for the frontend: Added skip content link. Removed empty buttons from tab flow. Gave focus to elements (such as the menu) that appear when after clicking a button. Improved aria labels where needed
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - Accessibility improvements for the frontend: Added skip content link. Removed empty buttons from tab flow. Gave focus to elements (such as the menu) that appear when after clicking a button. Improved aria labels where needed ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`fe37229`](https://github.com/graphcommerce-org/graphcommerce/commit/fe372294d6a42b1108e0fcef306b297baed5eb71) - Take the `per_page` configuration in account for the search results
-  ([@paales](https://github.com/paales))
+- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`fe37229`](https://github.com/graphcommerce-org/graphcommerce/commit/fe372294d6a42b1108e0fcef306b297baed5eb71) - Take the `per_page` configuration in account for the search results ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.100
 
@@ -237,8 +250,7 @@
 
 ### Patch Changes
 
-- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - a11y improvements (see https://github.com/graphcommerce-org/graphcommerce/issues/1995 for more info)
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - a11y improvements (see https://github.com/graphcommerce-org/graphcommerce/issues/1995 for more info) ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.0-canary.76
 
@@ -246,11 +258,9 @@
 
 ### Patch Changes
 
-- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`9091dbb`](https://github.com/graphcommerce-org/graphcommerce/commit/9091dbb01a47aa6ba40932a66ed055b7f07c1cec) - Make sure the search link in the header is a nextjs navigation
-  ([@paales](https://github.com/paales))
+- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`9091dbb`](https://github.com/graphcommerce-org/graphcommerce/commit/9091dbb01a47aa6ba40932a66ed055b7f07c1cec) - Make sure the search link in the header is a nextjs navigation ([@paales](https://github.com/paales))
 
-- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`fe37229`](https://github.com/graphcommerce-org/graphcommerce/commit/fe372294d6a42b1108e0fcef306b297baed5eb71) - Take the per_page configuration in account for the search results
-  ([@paales](https://github.com/paales))
+- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`fe37229`](https://github.com/graphcommerce-org/graphcommerce/commit/fe372294d6a42b1108e0fcef306b297baed5eb71) - Take the per_page configuration in account for the search results ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.74
 
@@ -1303,31 +1313,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 

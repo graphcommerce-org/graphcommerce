@@ -1,5 +1,17 @@
 # @graphcommerce/address-fields-nl
 
+## 9.0.0-canary.58
+
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
 ## 8.1.0-canary.52
 
 ## 8.1.0-canary.51
@@ -110,15 +122,13 @@
 
 ### Patch Changes
 
-- [#2244](https://github.com/graphcommerce-org/graphcommerce/pull/2244) [`b988ecb`](https://github.com/graphcommerce-org/graphcommerce/commit/b988ecb3809c422e6871cd29905f6f495bda49f1) - Fix export name
-  ([@JoshuaS98](https://github.com/JoshuaS98))
+- [#2244](https://github.com/graphcommerce-org/graphcommerce/pull/2244) [`b988ecb`](https://github.com/graphcommerce-org/graphcommerce/commit/b988ecb3809c422e6871cd29905f6f495bda49f1) - Fix export name ([@JoshuaS98](https://github.com/JoshuaS98))
 
 ## 8.0.5-canary.10
 
 ### Patch Changes
 
-- [#2244](https://github.com/graphcommerce-org/graphcommerce/pull/2244) [`b988ecb`](https://github.com/graphcommerce-org/graphcommerce/commit/b988ecb3809c422e6871cd29905f6f495bda49f1) - Fix export name
-  ([@JoshuaS98](https://github.com/JoshuaS98))
+- [#2244](https://github.com/graphcommerce-org/graphcommerce/pull/2244) [`b988ecb`](https://github.com/graphcommerce-org/graphcommerce/commit/b988ecb3809c422e6871cd29905f6f495bda49f1) - Fix export name ([@JoshuaS98](https://github.com/JoshuaS98))
 
 ## 8.0.5-canary.9
 
@@ -150,8 +160,7 @@
 
 ### Patch Changes
 
-- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`b9d92c8`](https://github.com/graphcommerce-org/graphcommerce/commit/b9d92c8bcdb9c3d0fdbd9c004b864b97bc52fcb1) - Refactor the AddressFields and use FormAutoSubmit and separate AddressField components
-  ([@paales](https://github.com/paales))
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`b9d92c8`](https://github.com/graphcommerce-org/graphcommerce/commit/b9d92c8bcdb9c3d0fdbd9c004b864b97bc52fcb1) - Refactor the AddressFields and use FormAutoSubmit and separate AddressField components ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.6
 
@@ -159,8 +168,7 @@
 
 ### Patch Changes
 
-- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`b9d92c8`](https://github.com/graphcommerce-org/graphcommerce/commit/b9d92c8bcdb9c3d0fdbd9c004b864b97bc52fcb1) - Refactor the AddressFields and use FormAutoSubmit and separate AddressField components
-  ([@paales](https://github.com/paales))
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`b9d92c8`](https://github.com/graphcommerce-org/graphcommerce/commit/b9d92c8bcdb9c3d0fdbd9c004b864b97bc52fcb1) - Refactor the AddressFields and use FormAutoSubmit and separate AddressField components ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.4
 

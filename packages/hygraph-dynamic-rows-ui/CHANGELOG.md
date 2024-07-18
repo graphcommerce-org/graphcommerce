@@ -1,5 +1,17 @@
 # @graphcommerce/hygraph-dynamic-rows-ui
 
+## 9.0.0-canary.58
+
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
 ## 8.1.0-canary.52
 
 ## 8.1.0-canary.51
@@ -16,8 +28,7 @@
 
 ### Patch Changes
 
-- [#2316](https://github.com/graphcommerce-org/graphcommerce/pull/2316) [`28d4708`](https://github.com/graphcommerce-org/graphcommerce/commit/28d470861a10a38690d565d236ce573905038d2b) - fix hygraph studio bugs in Dynamic Row UI module. Style config screen DR UI app.
-  ([@JoshuaS98](https://github.com/JoshuaS98))
+- [#2316](https://github.com/graphcommerce-org/graphcommerce/pull/2316) [`28d4708`](https://github.com/graphcommerce-org/graphcommerce/commit/28d470861a10a38690d565d236ce573905038d2b) - fix hygraph studio bugs in Dynamic Row UI module. Style config screen DR UI app. ([@JoshuaS98](https://github.com/JoshuaS98))
 
 ## 8.1.0-canary.45
 
@@ -29,8 +40,7 @@
 
 ### Patch Changes
 
-- [#2308](https://github.com/graphcommerce-org/graphcommerce/pull/2308) [`8faa5ac`](https://github.com/graphcommerce-org/graphcommerce/commit/8faa5ac618ecfdacd6d5eb751b4110c423aef97f) - Added Draft Mode support. When enabled it will be shown.
-  ([@paales](https://github.com/paales))
+- [#2308](https://github.com/graphcommerce-org/graphcommerce/pull/2308) [`8faa5ac`](https://github.com/graphcommerce-org/graphcommerce/commit/8faa5ac618ecfdacd6d5eb751b4110c423aef97f) - Added Draft Mode support. When enabled it will be shown. ([@paales](https://github.com/paales))
 
 ## 8.1.0-canary.41
 
@@ -188,8 +198,7 @@
 
 ### Minor Changes
 
-- [#2100](https://github.com/graphcommerce-org/graphcommerce/pull/2100) [`4df891a`](https://github.com/graphcommerce-org/graphcommerce/commit/4df891a4c18b29cc52447eab3a97c66948b6c18f) - Add Dynamic Row UI for property UI field through a custom Hygraph application
-  ([@JoshuaS98](https://github.com/JoshuaS98))
+- [#2100](https://github.com/graphcommerce-org/graphcommerce/pull/2100) [`4df891a`](https://github.com/graphcommerce-org/graphcommerce/commit/4df891a4c18b29cc52447eab3a97c66948b6c18f) - Add Dynamic Row UI for property UI field through a custom Hygraph application ([@JoshuaS98](https://github.com/JoshuaS98))
 
 ## 8.0.0-canary.100
 

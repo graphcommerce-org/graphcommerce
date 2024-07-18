@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.0.0-canary.58
+
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
 ## 8.1.0-canary.52
 
 ## 8.1.0-canary.51
@@ -44,8 +56,7 @@
 
 ### Patch Changes
 
-- [#2299](https://github.com/graphcommerce-org/graphcommerce/pull/2299) [`c6ac45b`](https://github.com/graphcommerce-org/graphcommerce/commit/c6ac45b8ff41dcaa47f1e5d40d04e120990870aa) - Added a magentoVersion configuration value to be able to differentiate features based on the Magento version
-  ([@paales](https://github.com/paales))
+- [#2299](https://github.com/graphcommerce-org/graphcommerce/pull/2299) [`c6ac45b`](https://github.com/graphcommerce-org/graphcommerce/commit/c6ac45b8ff41dcaa47f1e5d40d04e120990870aa) - Added a magentoVersion configuration value to be able to differentiate features based on the Magento version ([@paales](https://github.com/paales))
 
 ## 8.1.0-canary.31
 

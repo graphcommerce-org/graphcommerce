@@ -1,0 +1,5 @@
+mutation ContactUs($input: ContactUsInput!) {
+  contactUs(input: $input) {
+    status
+  }
+}

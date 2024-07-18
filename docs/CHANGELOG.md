@@ -1,5 +1,21 @@
 # Change Log
 
+## 9.0.0-canary.58
+
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+### Patch Changes
+
+- [#2329](https://github.com/graphcommerce-org/graphcommerce/pull/2329) [`6301fe3`](https://github.com/graphcommerce-org/graphcommerce/commit/6301fe33e73be1a151d0f8290e83418b4b87a738) - Document patch custom_attributesV2 for null attribute values issue ([@SimonPrins](https://github.com/SimonPrins))
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
 ## 8.1.0-canary.52
 
 ## 8.1.0-canary.51
@@ -26,9 +42,7 @@
 
 ### Patch Changes
 
-- [#2242](https://github.com/graphcommerce-org/graphcommerce/pull/2242) [`a4cce76`](https://github.com/graphcommerce-org/graphcommerce/commit/a4cce76ca37af2bec604e953ada4bb11bd91f55d) - Add option to show an extended version of the pagination component. Configurable via the "productListPaginationVariant" key in your graphcommerce.config.js
-  COMPACT means: "< Page X of Y >"
-  EXTENDED means: "< 1 2 ... [5] ... 10 11 >" ([@FrankHarland](https://github.com/FrankHarland))
+- [#2242](https://github.com/graphcommerce-org/graphcommerce/pull/2242) [`a4cce76`](https://github.com/graphcommerce-org/graphcommerce/commit/a4cce76ca37af2bec604e953ada4bb11bd91f55d) - Add option to show an extended version of the pagination component. Configurable via the "productListPaginationVariant" key in your graphcommerce.config.js COMPACT means: "< Page X of Y >" EXTENDED means: "< 1 2 ... [5] ... 10 11 >" ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.1.0-canary.40
 
@@ -96,15 +110,13 @@
 
 ### Patch Changes
 
-- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`7652234`](https://github.com/graphcommerce-org/graphcommerce/commit/7652234e222c3f4d8de3817fe907b5b6925a5493) - Replaced next-sitemap with page router based robots.txt & sitemaps
-  ([@bramvanderholst](https://github.com/bramvanderholst))
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`7652234`](https://github.com/graphcommerce-org/graphcommerce/commit/7652234e222c3f4d8de3817fe907b5b6925a5493) - Replaced next-sitemap with page router based robots.txt & sitemaps ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 8.1.0-canary.8
 
 ### Patch Changes
 
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for linguiLocale
-  ([@paales](https://github.com/paales))
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for linguiLocale ([@paales](https://github.com/paales))
 
 ## 8.1.0-canary.7
 
@@ -112,8 +124,7 @@
 
 ### Patch Changes
 
-- [#1984](https://github.com/graphcommerce-org/graphcommerce/pull/1984) [`e05534f`](https://github.com/graphcommerce-org/graphcommerce/commit/e05534fff4990fd584fe401b55b6d9a33934e048) - Added docs about caching
-  ([@paales](https://github.com/paales))
+- [#1984](https://github.com/graphcommerce-org/graphcommerce/pull/1984) [`e05534f`](https://github.com/graphcommerce-org/graphcommerce/commit/e05534fff4990fd584fe401b55b6d9a33934e048) - Added docs about caching ([@paales](https://github.com/paales))
 
 ## 8.1.0-canary.5
 
@@ -129,8 +140,7 @@
 
 ### Patch Changes
 
-- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods.
-  ([@paales](https://github.com/paales))
+- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods. ([@paales](https://github.com/paales))
 
 ## 8.0.5
 
@@ -182,11 +192,9 @@
 
 ### Patch Changes
 
-- [#2195](https://github.com/graphcommerce-org/graphcommerce/pull/2195) [`207cd41`](https://github.com/graphcommerce-org/graphcommerce/commit/207cd4147621e53353b0b354c80d575df78089f0) - Documentation on multistore setup added
-  ([@paales](https://github.com/paales))
+- [#2195](https://github.com/graphcommerce-org/graphcommerce/pull/2195) [`207cd41`](https://github.com/graphcommerce-org/graphcommerce/commit/207cd4147621e53353b0b354c80d575df78089f0) - Documentation on multistore setup added ([@paales](https://github.com/paales))
 
-- [#2193](https://github.com/graphcommerce-org/graphcommerce/pull/2193) [`317250a`](https://github.com/graphcommerce-org/graphcommerce/commit/317250a580b9f0b5175d9df93ba2cf62193ea383) - Updated docs to reflect featurelist more accurately
-  ([@paales](https://github.com/paales))
+- [#2193](https://github.com/graphcommerce-org/graphcommerce/pull/2193) [`317250a`](https://github.com/graphcommerce-org/graphcommerce/commit/317250a580b9f0b5175d9df93ba2cf62193ea383) - Updated docs to reflect featurelist more accurately ([@paales](https://github.com/paales))
 
 ## 8.0.2-canary.3
 
@@ -196,25 +204,21 @@
 
 ### Patch Changes
 
-- [#2193](https://github.com/graphcommerce-org/graphcommerce/pull/2193) [`317250a`](https://github.com/graphcommerce-org/graphcommerce/commit/317250a580b9f0b5175d9df93ba2cf62193ea383) - Updated docs to reflect featurelist more accurately
-  ([@paales](https://github.com/paales))
+- [#2193](https://github.com/graphcommerce-org/graphcommerce/pull/2193) [`317250a`](https://github.com/graphcommerce-org/graphcommerce/commit/317250a580b9f0b5175d9df93ba2cf62193ea383) - Updated docs to reflect featurelist more accurately ([@paales](https://github.com/paales))
 
 ## 8.0.2-canary.0
 
 ### Patch Changes
 
-- [#2195](https://github.com/graphcommerce-org/graphcommerce/pull/2195) [`207cd41`](https://github.com/graphcommerce-org/graphcommerce/commit/207cd4147621e53353b0b354c80d575df78089f0) - Documentation on multistore setup added
-  ([@paales](https://github.com/paales))
+- [#2195](https://github.com/graphcommerce-org/graphcommerce/pull/2195) [`207cd41`](https://github.com/graphcommerce-org/graphcommerce/commit/207cd4147621e53353b0b354c80d575df78089f0) - Documentation on multistore setup added ([@paales](https://github.com/paales))
 
 ## 8.0.1
 
 ### Patch Changes
 
-- [#2186](https://github.com/graphcommerce-org/graphcommerce/pull/2186) [`09eb25c`](https://github.com/graphcommerce-org/graphcommerce/commit/09eb25c9892bf4cf57519024e31c2ae4cf2f7a0b) - Update Magento known issues
-  ([@hnsr](https://github.com/hnsr))
+- [#2186](https://github.com/graphcommerce-org/graphcommerce/pull/2186) [`09eb25c`](https://github.com/graphcommerce-org/graphcommerce/commit/09eb25c9892bf4cf57519024e31c2ae4cf2f7a0b) - Update Magento known issues ([@hnsr](https://github.com/hnsr))
 
-- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`6c4cee8`](https://github.com/graphcommerce-org/graphcommerce/commit/6c4cee8469ee4934281bda53ac96aeb5af2f9479) - Make sure the config page can be properly rendered in the docs
-  ([@paales](https://github.com/paales))
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`6c4cee8`](https://github.com/graphcommerce-org/graphcommerce/commit/6c4cee8469ee4934281bda53ac96aeb5af2f9479) - Make sure the config page can be properly rendered in the docs ([@paales](https://github.com/paales))
 
 ## 8.0.1-canary.4
 
@@ -226,39 +230,31 @@
 
 ### Patch Changes
 
-- [#2186](https://github.com/graphcommerce-org/graphcommerce/pull/2186) [`09eb25c`](https://github.com/graphcommerce-org/graphcommerce/commit/09eb25c9892bf4cf57519024e31c2ae4cf2f7a0b) - Update Magento known issues
-  ([@hnsr](https://github.com/hnsr))
+- [#2186](https://github.com/graphcommerce-org/graphcommerce/pull/2186) [`09eb25c`](https://github.com/graphcommerce-org/graphcommerce/commit/09eb25c9892bf4cf57519024e31c2ae4cf2f7a0b) - Update Magento known issues ([@hnsr](https://github.com/hnsr))
 
 ## 8.0.1-canary.0
 
 ### Patch Changes
 
-- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`6c4cee8`](https://github.com/graphcommerce-org/graphcommerce/commit/6c4cee8469ee4934281bda53ac96aeb5af2f9479) - Make sure the config page can be properly rendered in the docs
-  ([@paales](https://github.com/paales))
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`6c4cee8`](https://github.com/graphcommerce-org/graphcommerce/commit/6c4cee8469ee4934281bda53ac96aeb5af2f9479) - Make sure the config page can be properly rendered in the docs ([@paales](https://github.com/paales))
 
 ## 8.0.0
 
 ### Minor Changes
 
-- [#2106](https://github.com/graphcommerce-org/graphcommerce/pull/2106) [`9f8c3ca`](https://github.com/graphcommerce-org/graphcommerce/commit/9f8c3cac214006315055f37cf8d4a783eb99a7ec) - Split off Magento known issues to separate page
-  ([@hnsr](https://github.com/hnsr))
+- [#2106](https://github.com/graphcommerce-org/graphcommerce/pull/2106) [`9f8c3ca`](https://github.com/graphcommerce-org/graphcommerce/commit/9f8c3cac214006315055f37cf8d4a783eb99a7ec) - Split off Magento known issues to separate page ([@hnsr](https://github.com/hnsr))
 
 ### Patch Changes
 
-- [#2112](https://github.com/graphcommerce-org/graphcommerce/pull/2112) [`15a2037`](https://github.com/graphcommerce-org/graphcommerce/commit/15a2037372cd615602d3e2f3deedba9766fc172c) - Make the "Search" string translatable and fix typo.
-  ([@carlocarels90](https://github.com/carlocarels90))
+- [#2112](https://github.com/graphcommerce-org/graphcommerce/pull/2112) [`15a2037`](https://github.com/graphcommerce-org/graphcommerce/commit/15a2037372cd615602d3e2f3deedba9766fc172c) - Make the "Search" string translatable and fix typo. ([@carlocarels90](https://github.com/carlocarels90))
 
-- [`b850ab0`](https://github.com/graphcommerce-org/graphcommerce/commit/b850ab06e3fff1cd274651d8082557ed2c308f55) - Updated roadmap and feature-list
-  ([@paales](https://github.com/paales))
+- [`b850ab0`](https://github.com/graphcommerce-org/graphcommerce/commit/b850ab06e3fff1cd274651d8082557ed2c308f55) - Updated roadmap and feature-list ([@paales](https://github.com/paales))
 
-- [#2172](https://github.com/graphcommerce-org/graphcommerce/pull/2172) [`279599e`](https://github.com/graphcommerce-org/graphcommerce/commit/279599e7a86bd96ea9e36065af3c367df9e02a63) - Updated examples in the documentation to reflect the changes made in GraphCommerce.
-  ([@paales](https://github.com/paales))
+- [#2172](https://github.com/graphcommerce-org/graphcommerce/pull/2172) [`279599e`](https://github.com/graphcommerce-org/graphcommerce/commit/279599e7a86bd96ea9e36065af3c367df9e02a63) - Updated examples in the documentation to reflect the changes made in GraphCommerce. ([@paales](https://github.com/paales))
 
-- [#2119](https://github.com/graphcommerce-org/graphcommerce/pull/2119) [`6adb2e7`](https://github.com/graphcommerce-org/graphcommerce/commit/6adb2e72ece8210757ced178779dfba11b1bcf55) - Clarify texts by adding formatting and correcting spelling.
-  ([@carlocarels90](https://github.com/carlocarels90))
+- [#2119](https://github.com/graphcommerce-org/graphcommerce/pull/2119) [`6adb2e7`](https://github.com/graphcommerce-org/graphcommerce/commit/6adb2e72ece8210757ced178779dfba11b1bcf55) - Clarify texts by adding formatting and correcting spelling. ([@carlocarels90](https://github.com/carlocarels90))
 
-- [#2104](https://github.com/graphcommerce-org/graphcommerce/pull/2104) [`d0f1f5a`](https://github.com/graphcommerce-org/graphcommerce/commit/d0f1f5a2d1380d1c3931e23218924d5e8b1fc60d) - Document workaround/patch for broken cart error handling with Magento 2.4.6.
-  ([@hnsr](https://github.com/hnsr))
+- [#2104](https://github.com/graphcommerce-org/graphcommerce/pull/2104) [`d0f1f5a`](https://github.com/graphcommerce-org/graphcommerce/commit/d0f1f5a2d1380d1c3931e23218924d5e8b1fc60d) - Document workaround/patch for broken cart error handling with Magento 2.4.6. ([@hnsr](https://github.com/hnsr))
 
 ## 8.0.0-canary.100
 
@@ -282,8 +278,7 @@
 
 ### Patch Changes
 
-- [#2172](https://github.com/graphcommerce-org/graphcommerce/pull/2172) [`279599e`](https://github.com/graphcommerce-org/graphcommerce/commit/279599e7a86bd96ea9e36065af3c367df9e02a63) - Updated documentation to reflect recent code changes
-  ([@paales](https://github.com/paales))
+- [#2172](https://github.com/graphcommerce-org/graphcommerce/pull/2172) [`279599e`](https://github.com/graphcommerce-org/graphcommerce/commit/279599e7a86bd96ea9e36065af3c367df9e02a63) - Updated documentation to reflect recent code changes ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.90
 
@@ -291,8 +286,7 @@
 
 ### Patch Changes
 
-- [`b850ab0`](https://github.com/graphcommerce-org/graphcommerce/commit/b850ab06e3fff1cd274651d8082557ed2c308f55) - Updated roadmap and feature-list
-  ([@paales](https://github.com/paales))
+- [`b850ab0`](https://github.com/graphcommerce-org/graphcommerce/commit/b850ab06e3fff1cd274651d8082557ed2c308f55) - Updated roadmap and feature-list ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.88
 
@@ -1281,31 +1275,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 

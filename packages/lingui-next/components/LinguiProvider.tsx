@@ -19,7 +19,7 @@ export function LinguiProvider(props: LinguiProviderProps) {
   useMemo(() => {
     const data = globalThis.document?.getElementById('lingui')
 
-    if (data?.lang === localeOnly && data.textContent) {
+    if (data?.lang === localeOnly && data?.textContent) {
       // @todo: We're not loading the plurals dynamically, but we can't because it will load the complete module.
       i18n.load(localeOnly, JSON.parse(data.textContent) as Messages)
       i18n.activate(localeOnly)

@@ -2,7 +2,7 @@
   "name": "@graphcommerce/demo-magento-graphcommerce",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "8.1.0-canary.52",
+  "version": "9.0.0-canary.58",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
@@ -15,14 +15,14 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^8.1.0-canary.52",
-    "@graphcommerce/framer-scroller": "^8.1.0-canary.52",
-    "@graphcommerce/magento-product": "^8.1.0-canary.52",
-    "@graphcommerce/magento-product-configurable": "^8.1.0-canary.52",
-    "@graphcommerce/magento-recently-viewed-products": "^8.1.0-canary.52",
-    "@graphcommerce/next-ui": "^8.1.0-canary.52",
-    "@graphcommerce/prettier-config-pwa": "^8.1.0-canary.52",
-    "@graphcommerce/typescript-config-pwa": "^8.1.0-canary.52",
+    "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.58",
+    "@graphcommerce/framer-scroller": "^9.0.0-canary.58",
+    "@graphcommerce/magento-product": "^9.0.0-canary.58",
+    "@graphcommerce/magento-product-configurable": "^9.0.0-canary.58",
+    "@graphcommerce/magento-recently-viewed-products": "^9.0.0-canary.58",
+    "@graphcommerce/next-ui": "^9.0.0-canary.58",
+    "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.58",
+    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.58",
     "@mui/material": "^5.10.16",
     "framer-motion": "^10.0.0",
     "next": "*",

@@ -1,7 +1,9 @@
 query CustomerToken {
   customerToken @client {
+    __typename
     ...CustomerTokenFragment
     createdAt
     valid
+    xMagentoCacheId
   }
 }

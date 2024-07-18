@@ -53,20 +53,20 @@ const _zod = require("zod");
 const isDefinedNonNullAny = (v)=>v !== undefined && v !== null;
 const definedNonNullAnySchema = _zod.z.any().refine((v)=>isDefinedNonNullAny(v));
 const CompareVariantSchema = _zod.z.enum([
-    "CHECKBOX",
-    "ICON"
+    'CHECKBOX',
+    'ICON'
 ]);
 const PaginationVariantSchema = _zod.z.enum([
-    "COMPACT",
-    "EXTENDED"
+    'COMPACT',
+    'EXTENDED'
 ]);
 const ProductFiltersLayoutSchema = _zod.z.enum([
-    "DEFAULT",
-    "SIDEBAR"
+    'DEFAULT',
+    'SIDEBAR'
 ]);
 const SidebarGalleryPaginationVariantSchema = _zod.z.enum([
-    "DOTS",
-    "THUMBNAILS_BOTTOM"
+    'DOTS',
+    'THUMBNAILS_BOTTOM'
 ]);
 function DatalayerConfigSchema() {
     return _zod.z.object({
@@ -87,6 +87,7 @@ function GraphCommerceConfigSchema() {
         customerAddressNoteEnable: _zod.z.boolean().nullish(),
         customerCompanyFieldsEnable: _zod.z.boolean().nullish(),
         customerDeleteEnabled: _zod.z.boolean().nullish(),
+        customerXMagentoCacheIdDisable: _zod.z.boolean().nullish(),
         dataLayer: DatalayerConfigSchema().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
         demoMode: _zod.z.boolean().default(true).nullish(),
