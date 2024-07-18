@@ -57,27 +57,66 @@ function algoliaPricesToPricesAggregations(
   let interval = Math.round(
     (priceArraylist[priceArraylist.length - 1].value - priceArraylist[0].value) / 2,
   )
-  const arrayLength = Math.ceil(priceArraylist[priceArraylist.length - 1].value / interval)
-  const pricesOptions: AggregationOption[] = []
-  for (let i = 0; i < arrayLength; i++) {
-    const counts = priceArraylist.filter((price) => {
-      const priceValue: number = +price.value
-      if (priceValue >= interval * i && priceValue <= interval * (i + 1)) {
-        return price
-      }
-    })
-    let totalCount = 0
-    counts.forEach((count) => {
-      totalCount += count.count
-    })
+  console.log('prijses', priceArraylist)
 
-    pricesOptions.push({
-      label: `${interval * i}-${interval * (i + 1)}`,
-      value: `${interval * i}_${interval * (i + 1)}`,
-      count: totalCount,
-    })
-  }
-  return pricesOptions
+  const pricesBucket: { [key: number]: { count: number; value: string; label: string } } = {}
+  let increasingInterval = interval
+  priceArraylist.forEach((price) => {
+    if (price.value <= increasingInterval) {
+      if (!pricesBucket[increasingInterval]) {
+        pricesBucket[increasingInterval] = {
+          count: price.count,
+          value:
+            increasingInterval == interval
+              ? `0_${interval}`
+              : `${increasingInterval - interval}_${increasingInterval}`,
+          label:
+            increasingInterval == interval
+              ? `0_${interval}`
+              : `${increasingInterval - interval}-${increasingInterval}`,
+        }
+      } else {
+        pricesBucket[increasingInterval].count += price.count
+      }
+    } else {
+      increasingInterval += interval
+      pricesBucket[increasingInterval] = {
+        count: price.count,
+        value:
+          increasingInterval == interval
+            ? `0_${interval}`
+            : `${increasingInterval - interval}_${increasingInterval}`,
+        label:
+          increasingInterval == interval
+            ? `0_${interval}`
+            : `${increasingInterval - interval}-${increasingInterval}`,
+      }
+    }
+  })
+  return Object.values(pricesBucket)
+
+  // const arrayLength = Math.ceil(priceArraylist[priceArraylist.length - 1].value / interval)
+  // const pricesOptions: AggregationOption[] = []
+
+  // for (let i = 0; i < arrayLength; i++) {
+  //   const counts = priceArraylist.filter((price) => {
+  //     const priceValue: number = +price.value
+  //     if (priceValue >= interval * i && priceValue <= interval * (i + 1)) {
+  //       return price
+  //     }
+  //   })
+  //   let totalCount = 0
+  //   counts.forEach((count) => {
+  //     totalCount += count.count
+  //   })
+
+  //   pricesOptions.push({
+  //     label: `${interval * i}-${interval * (i + 1)}`,
+  //     value: `${interval * i}_${interval * (i + 1)}`,
+  //     count: totalCount,
+  //   })
+  // }
+  // return pricesOptions
 }
 
 function assertAlgoliaFacets(facets: any): facets is AlgoliaFacets {
