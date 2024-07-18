@@ -80,7 +80,12 @@ export const resolvers: Resolvers = {
 
       return {
         items: hits.map((hit) => algoliaHitToMagentoProduct(hit, storeConfig)),
-        aggregations: algoliaFacetsToAggregations(searchResults?.facets, attrList, categoryList),
+        aggregations: algoliaFacetsToAggregations(
+          searchResults?.facets,
+          attrList,
+          storeConfig,
+          categoryList,
+        ),
         page_info: {
           current_page: searchResults?.page,
           page_size: searchResults?.hitsPerPage,
