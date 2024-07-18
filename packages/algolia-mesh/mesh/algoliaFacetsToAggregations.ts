@@ -44,48 +44,18 @@ function compare(a, b) {
   return 0
 }
 
-function algoliaPricesToPricesAggregations(pricesList, currency): AggregationOption[] {
-  // Price aggregation:
-  // 'price.EUR.default': { '5': 1, '14': 47, '4.95': 302, '9.99': 84, '2.48': 1 },
-  // 'price.USD.default': { '6.3167': 302, '12.7577': 84, '17.8766': 47, '3.164': 1, '6.3845': 1 },
-
-  // Select the right one EUR/USD
-  // Sort the aggregations by the numeric value of the key.
-  // Add as price aggregation
-
-  // The price should become something like this:
-
-  // Sort all options and generate the label and value ranges.
-  // {
-  //   "attribute_code": "price",
-  //   "count": 2,
-  //   "label": "Price",
-  //   "options": [
-  //     {
-  //       "count": 388,
-  //       "label": "0-11.3",
-  //       "value": "0_11.3"
-  //     },
-  //     {
-  //       "count": 47,
-  //       "label": "11.3-22.6",
-  //       "value": "11.3_22.6"
-  //     }
-  //   ],
-  //   "position": null
-  // },
-
+function algoliaPricesToPricesAggregations(
+  pricesList: { [key: string]: number },
+  currency,
+): AggregationOption[] {
   const priceArraylist: { value: number; count: number }[] = Object.entries(pricesList)
     .sort(compare)
     .map((price) => {
-      if (typeof price[1] !== number) {
-      }
       const value: number = +price[0]
-      const count: number = +price[1]
       return { value, count: price[1] }
     })
   let interval = Math.round(
-    (priceArraylist[priceArraylist.length - 1].value - priceArraylist[0].value) / 3,
+    (priceArraylist[priceArraylist.length - 1].value - priceArraylist[0].value) / 2,
   )
   const arrayLength = Math.ceil(priceArraylist[priceArraylist.length - 1].value / interval)
   const pricesOptions: AggregationOption[] = []
