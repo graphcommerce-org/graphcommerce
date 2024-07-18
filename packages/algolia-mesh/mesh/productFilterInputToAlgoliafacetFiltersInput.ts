@@ -82,12 +82,12 @@ export function productFilterInputToAlgoliaNumericFiltersInput(
         filterArray.push(
           {
             numericFilters_Input: {
-              String: `${key} > ${value.from}`,
+              String: `${key} >= ${value.from}`,
             },
           },
           {
             numericFilters_Input: {
-              String: `${key} < ${value.to}`,
+              String: `${key} <= ${value.to}`,
             },
           },
         )
