@@ -87,7 +87,7 @@ function algoliaPricesToPricesAggregations(
             : `${increasingInterval - interval}_${increasingInterval}`,
         label:
           increasingInterval == interval
-            ? `0_${interval}`
+            ? `0-${interval}`
             : `${increasingInterval - interval}-${increasingInterval}`,
       }
     }
