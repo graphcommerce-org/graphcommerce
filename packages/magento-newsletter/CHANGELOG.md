@@ -1,5 +1,7 @@
 # Change Log
 
+## 9.0.0-canary.57
+
 ## 9.0.0-canary.56
 
 ## 9.0.0-canary.55
@@ -12,8 +14,7 @@
 
 ### Minor Changes
 
-- [#2320](https://github.com/graphcommerce-org/graphcommerce/pull/2320) [`dc5e85c`](https://github.com/graphcommerce-org/graphcommerce/commit/dc5e85c95dad6145fde02a6e54f0fbd1cdfe9e3d) - Replace depricated updateCustomer mutations with updateCustomerV2
-  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2320](https://github.com/graphcommerce-org/graphcommerce/pull/2320) [`dc5e85c`](https://github.com/graphcommerce-org/graphcommerce/commit/dc5e85c95dad6145fde02a6e54f0fbd1cdfe9e3d) - Replace depricated updateCustomer mutations with updateCustomerV2 ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ## 8.1.0-canary.51
 
@@ -45,8 +46,7 @@
 
 ### Patch Changes
 
-- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving <FromPersist/> below the form components
-  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving <FromPersist/> below the form components ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ## 8.1.0-canary.37
 
@@ -56,8 +56,7 @@
 
 ### Patch Changes
 
-- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new EmailElement component to make re-use easier
-  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new EmailElement component to make re-use easier ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ## 8.1.0-canary.34
 
@@ -127,8 +126,7 @@
 
 ### Patch Changes
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders.
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.6-canary.1
 
@@ -168,8 +166,7 @@
 
 ### Patch Changes
 
-- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`d67c89d`](https://github.com/graphcommerce-org/graphcommerce/commit/d67c89d464a60f0e2618dab670b63a39f6291341) - Deprecate the allowUrl option for useCartQuery, it was already enabled by default and should never be set to false.
-  ([@paales](https://github.com/paales))
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`d67c89d`](https://github.com/graphcommerce-org/graphcommerce/commit/d67c89d464a60f0e2618dab670b63a39f6291341) - Deprecate the allowUrl option for useCartQuery, it was already enabled by default and should never be set to false. ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.6
 
@@ -183,8 +180,7 @@
 
 ### Patch Changes
 
-- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`d67c89d`](https://github.com/graphcommerce-org/graphcommerce/commit/d67c89d464a60f0e2618dab670b63a39f6291341) - Deprecate the allowUrl option for useCartQuery, it was already enabled by default and should never be set to false.
-  ([@paales](https://github.com/paales))
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`d67c89d`](https://github.com/graphcommerce-org/graphcommerce/commit/d67c89d464a60f0e2618dab670b63a39f6291341) - Deprecate the allowUrl option for useCartQuery, it was already enabled by default and should never be set to false. ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.1
 
@@ -1421,31 +1417,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 

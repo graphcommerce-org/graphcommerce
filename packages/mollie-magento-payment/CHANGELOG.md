@@ -1,5 +1,7 @@
 # Change Log
 
+## 9.0.0-canary.57
+
 ## 9.0.0-canary.56
 
 ## 9.0.0-canary.55
@@ -40,8 +42,7 @@
 
 ### Patch Changes
 
-- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving <FromPersist/> below the form components
-  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving <FromPersist/> below the form components ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ## 8.1.0-canary.37
 
@@ -117,8 +118,7 @@
 
 ### Patch Changes
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders.
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.6-canary.1
 
@@ -196,11 +196,9 @@
 
 ### Patch Changes
 
-- [#2092](https://github.com/graphcommerce-org/graphcommerce/pull/2092) [`1edd198`](https://github.com/graphcommerce-org/graphcommerce/commit/1edd198dc6b102be423a5285d9fe4437b69ca165) - An error message would be shown when a payment was sucessfull instead of when an error occured.
-  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2092](https://github.com/graphcommerce-org/graphcommerce/pull/2092) [`1edd198`](https://github.com/graphcommerce-org/graphcommerce/commit/1edd198dc6b102be423a5285d9fe4437b69ca165) - An error message would be shown when a payment was sucessfull instead of when an error occured. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-- [#2124](https://github.com/graphcommerce-org/graphcommerce/pull/2124) [`3bd80b8`](https://github.com/graphcommerce-org/graphcommerce/commit/3bd80b88351963ae95aaa97b2cfa25f8e526a128) - Fixed the issue where a guest returned to a empty cart after a canceled payment with Mollie
-  ([@mikekeehnen](https://github.com/mikekeehnen))
+- [#2124](https://github.com/graphcommerce-org/graphcommerce/pull/2124) [`3bd80b8`](https://github.com/graphcommerce-org/graphcommerce/commit/3bd80b88351963ae95aaa97b2cfa25f8e526a128) - Fixed the issue where a guest returned to a empty cart after a canceled payment with Mollie ([@mikekeehnen](https://github.com/mikekeehnen))
 
 ## 8.0.0-canary.100
 
@@ -1549,31 +1547,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 

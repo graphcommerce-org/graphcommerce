@@ -1,5 +1,7 @@
 # Change Log
 
+## 9.0.0-canary.57
+
 ## 9.0.0-canary.56
 
 ## 9.0.0-canary.55
@@ -58,8 +60,7 @@
 
 ### Patch Changes
 
-- [#2290](https://github.com/graphcommerce-org/graphcommerce/pull/2290) [`21f2ac0`](https://github.com/graphcommerce-org/graphcommerce/commit/21f2ac06b95cfc9b51febe19e6859cbba2b578b4) - Fix cors issues with Dynamic Row Property Picker App
-  ([@JoshuaS98](https://github.com/JoshuaS98))
+- [#2290](https://github.com/graphcommerce-org/graphcommerce/pull/2290) [`21f2ac0`](https://github.com/graphcommerce-org/graphcommerce/commit/21f2ac06b95cfc9b51febe19e6859cbba2b578b4) - Fix cors issues with Dynamic Row Property Picker App ([@JoshuaS98](https://github.com/JoshuaS98))
 
 ## 8.1.0-canary.28
 
@@ -105,8 +106,7 @@
 
 ### Patch Changes
 
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`6831040`](https://github.com/graphcommerce-org/graphcommerce/commit/68310401448b7b42b53757db4a84de4a01e35aa2) - Suppress warning where a dependency is an expression, Added uglify-es and long as the dependencies couldn’t be found
-  ([@paales](https://github.com/paales))
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`6831040`](https://github.com/graphcommerce-org/graphcommerce/commit/68310401448b7b42b53757db4a84de4a01e35aa2) - Suppress warning where a dependency is an expression, Added uglify-es and long as the dependencies couldn’t be found ([@paales](https://github.com/paales))
 
 ## 8.1.0-canary.7
 
@@ -196,8 +196,7 @@
 
 ### Patch Changes
 
-- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`bf5ae89`](https://github.com/graphcommerce-org/graphcommerce/commit/bf5ae8979b145e7a96303f839ef2b1238712531a) - Remove requirement of toplevelAwait for graphqlSsrClient and solve logging issue in cli
-  ([@paales](https://github.com/paales))
+- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`bf5ae89`](https://github.com/graphcommerce-org/graphcommerce/commit/bf5ae8979b145e7a96303f839ef2b1238712531a) - Remove requirement of toplevelAwait for graphqlSsrClient and solve logging issue in cli ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.100
 

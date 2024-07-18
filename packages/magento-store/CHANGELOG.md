@@ -1,5 +1,7 @@
 # Change Log
 
+## 9.0.0-canary.57
+
 ## 9.0.0-canary.56
 
 ## 9.0.0-canary.55
@@ -46,8 +48,7 @@
 
 ### Minor Changes
 
-- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`47bb47b`](https://github.com/graphcommerce-org/graphcommerce/commit/47bb47bac4b3689a6859afbc587274d813e0b072) - Implement confirm email functionality
-  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`47bb47b`](https://github.com/graphcommerce-org/graphcommerce/commit/47bb47bac4b3689a6859afbc587274d813e0b072) - Implement confirm email functionality ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ## 8.1.0-canary.34
 
@@ -179,8 +180,7 @@
 
 ### Patch Changes
 
-- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`61f90af`](https://github.com/graphcommerce-org/graphcommerce/commit/61f90afc8bc229b2cd4793f724509783af138deb) - redirectOrNotFound would log the incorrect request URL
-  ([@paales](https://github.com/paales))
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`61f90af`](https://github.com/graphcommerce-org/graphcommerce/commit/61f90afc8bc229b2cd4793f724509783af138deb) - redirectOrNotFound would log the incorrect request URL ([@paales](https://github.com/paales))
 
 ## 8.0.1-canary.4
 
@@ -194,18 +194,15 @@
 
 ### Patch Changes
 
-- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`61f90af`](https://github.com/graphcommerce-org/graphcommerce/commit/61f90afc8bc229b2cd4793f724509783af138deb) - redirectOrNotFound would log the incorrect request URL
-  ([@paales](https://github.com/paales))
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`61f90af`](https://github.com/graphcommerce-org/graphcommerce/commit/61f90afc8bc229b2cd4793f724509783af138deb) - redirectOrNotFound would log the incorrect request URL ([@paales](https://github.com/paales))
 
 ## 8.0.0
 
 ### Patch Changes
 
-- [#2067](https://github.com/graphcommerce-org/graphcommerce/pull/2067) [`3406794`](https://github.com/graphcommerce-org/graphcommerce/commit/340679434e0ff1033c8158ef03a091e06e20e6a9) - Prevent HandleRedirect errors by filtering out empty URL values from the candidates array.
-  ([@carlocarels90](https://github.com/carlocarels90))
+- [#2067](https://github.com/graphcommerce-org/graphcommerce/pull/2067) [`3406794`](https://github.com/graphcommerce-org/graphcommerce/commit/340679434e0ff1033c8158ef03a091e06e20e6a9) - Prevent HandleRedirect errors by filtering out empty URL values from the candidates array. ([@carlocarels90](https://github.com/carlocarels90))
 
-- [#2140](https://github.com/graphcommerce-org/graphcommerce/pull/2140) [`b34d85c`](https://github.com/graphcommerce-org/graphcommerce/commit/b34d85c8c5403c6f49b506b714ee314b8344fd99) - Solve incorrect redirect when locale has own domain
-  ([@hnsr](https://github.com/hnsr))
+- [#2140](https://github.com/graphcommerce-org/graphcommerce/pull/2140) [`b34d85c`](https://github.com/graphcommerce-org/graphcommerce/commit/b34d85c8c5403c6f49b506b714ee314b8344fd99) - Solve incorrect redirect when locale has own domain ([@hnsr](https://github.com/hnsr))
 
 ## 8.0.0-canary.100
 
@@ -249,8 +246,7 @@
 
 ### Patch Changes
 
-- [#2140](https://github.com/graphcommerce-org/graphcommerce/pull/2140) [`b34d85c`](https://github.com/graphcommerce-org/graphcommerce/commit/b34d85c8c5403c6f49b506b714ee314b8344fd99) - Fix incorrect redirect when locale has own domain
-  ([@hnsr](https://github.com/hnsr))
+- [#2140](https://github.com/graphcommerce-org/graphcommerce/pull/2140) [`b34d85c`](https://github.com/graphcommerce-org/graphcommerce/commit/b34d85c8c5403c6f49b506b714ee314b8344fd99) - Fix incorrect redirect when locale has own domain ([@hnsr](https://github.com/hnsr))
 
 ## 8.0.0-canary.80
 
@@ -1395,31 +1391,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 
@@ -1556,11 +1552,11 @@
       defaultProps: {
         round: true,
         formatOptions: {
-          style: "decimal",
+          style: 'decimal',
         },
       },
     },
-  });
+  })
   ```
 
 ### Patch Changes

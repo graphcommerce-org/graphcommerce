@@ -1,5 +1,7 @@
 # Change Log
 
+## 9.0.0-canary.57
+
 ## 9.0.0-canary.56
 
 ## 9.0.0-canary.55
@@ -80,8 +82,7 @@
 
 ### Patch Changes
 
-- [#2277](https://github.com/graphcommerce-org/graphcommerce/pull/2277) [`f9199f7`](https://github.com/graphcommerce-org/graphcommerce/commit/f9199f798583138a68dd641ea6637375c487f29b) - Solve issue where Braintree wouldn't place the order after successfully validating a Credit Card.
-  ([@paales](https://github.com/paales))
+- [#2277](https://github.com/graphcommerce-org/graphcommerce/pull/2277) [`f9199f7`](https://github.com/graphcommerce-org/graphcommerce/commit/f9199f798583138a68dd641ea6637375c487f29b) - Solve issue where Braintree wouldn't place the order after successfully validating a Credit Card. ([@paales](https://github.com/paales))
 
 ## 8.1.0-canary.17
 
@@ -117,8 +118,7 @@
 
 ### Patch Changes
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent BillingPage query from rerunning on each mutation
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent BillingPage query from rerunning on each mutation ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.6-canary.1
 
@@ -128,8 +128,7 @@
 
 ### Patch Changes
 
-- [#2188](https://github.com/graphcommerce-org/graphcommerce/pull/2188) [`eec7498`](https://github.com/graphcommerce-org/graphcommerce/commit/eec7498213f34f0f850123b577b77bf678e3c80b) - Braintree Credit Card: Hosted payment fields now have proper styling and all focus/blur and error states are correctly handled.
-  ([@paales](https://github.com/paales))
+- [#2188](https://github.com/graphcommerce-org/graphcommerce/pull/2188) [`eec7498`](https://github.com/graphcommerce-org/graphcommerce/commit/eec7498213f34f0f850123b577b77bf678e3c80b) - Braintree Credit Card: Hosted payment fields now have proper styling and all focus/blur and error states are correctly handled. ([@paales](https://github.com/paales))
 
 ## 8.0.5-canary.10
 
@@ -145,8 +144,7 @@
 
 ### Patch Changes
 
-- [#2188](https://github.com/graphcommerce-org/graphcommerce/pull/2188) [`eec7498`](https://github.com/graphcommerce-org/graphcommerce/commit/eec7498213f34f0f850123b577b77bf678e3c80b) - Braintree Credit Card: Hosted payment fields now have proper styling and all focus/blur and error states are correctly handled.
-  ([@paales](https://github.com/paales))
+- [#2188](https://github.com/graphcommerce-org/graphcommerce/pull/2188) [`eec7498`](https://github.com/graphcommerce-org/graphcommerce/commit/eec7498213f34f0f850123b577b77bf678e3c80b) - Braintree Credit Card: Hosted payment fields now have proper styling and all focus/blur and error states are correctly handled. ([@paales](https://github.com/paales))
 
 ## 8.0.5-canary.4
 
@@ -1510,31 +1508,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 

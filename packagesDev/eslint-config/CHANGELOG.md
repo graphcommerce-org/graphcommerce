@@ -1,5 +1,7 @@
 # Change Log
 
+## 9.0.0-canary.57
+
 ## 9.0.0-canary.56
 
 ## 9.0.0-canary.55
@@ -24,8 +26,7 @@
 
 ### Patch Changes
 
-- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`fe8fce7`](https://github.com/graphcommerce-org/graphcommerce/commit/fe8fce7f5a82e227ed4a1992415af73fa7d0bb79) - Importing \*.interceptor is NOT allowed
-  ([@paales](https://github.com/paales))
+- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`fe8fce7`](https://github.com/graphcommerce-org/graphcommerce/commit/fe8fce7f5a82e227ed4a1992415af73fa7d0bb79) - Importing \*.interceptor is NOT allowed ([@paales](https://github.com/paales))
 
 ## 8.1.0-canary.45
 
@@ -191,8 +192,7 @@
 
 ### Patch Changes
 
-- [#2035](https://github.com/graphcommerce-org/graphcommerce/pull/2035) [`08f1ae1`](https://github.com/graphcommerce-org/graphcommerce/commit/08f1ae18e2271cd690eca8518a723c3eb806c1f9) - Added an eslint warning to restrict the import of `useMediaQuery` because it causes more trouble than it solves
-  ([@paales](https://github.com/paales))
+- [#2035](https://github.com/graphcommerce-org/graphcommerce/pull/2035) [`08f1ae1`](https://github.com/graphcommerce-org/graphcommerce/commit/08f1ae18e2271cd690eca8518a723c3eb806c1f9) - Added an eslint warning to restrict the import of `useMediaQuery` because it causes more trouble than it solves ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.100
 

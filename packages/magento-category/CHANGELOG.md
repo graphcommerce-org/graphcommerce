@@ -1,5 +1,7 @@
 # Change Log
 
+## 9.0.0-canary.57
+
 ## 9.0.0-canary.56
 
 ## 9.0.0-canary.55
@@ -62,11 +64,9 @@
 
 ### Minor Changes
 
-- [#2273](https://github.com/graphcommerce-org/graphcommerce/pull/2273) [`77955c5`](https://github.com/graphcommerce-org/graphcommerce/commit/77955c56ac8633ab1c5e0f3ddb25e3a87236e2bb) - Improve Breadcrumbs on Category and Product pages
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2273](https://github.com/graphcommerce-org/graphcommerce/pull/2273) [`77955c5`](https://github.com/graphcommerce-org/graphcommerce/commit/77955c56ac8633ab1c5e0f3ddb25e3a87236e2bb) - Improve Breadcrumbs on Category and Product pages ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2273](https://github.com/graphcommerce-org/graphcommerce/pull/2273) [`aa56540`](https://github.com/graphcommerce-org/graphcommerce/commit/aa56540af91638c09e4c7a0a1648aaa6c5fa0afb) - If a category has no children, the sibling links will be shown on the category page.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2273](https://github.com/graphcommerce-org/graphcommerce/pull/2273) [`aa56540`](https://github.com/graphcommerce-org/graphcommerce/commit/aa56540af91638c09e4c7a0a1648aaa6c5fa0afb) - If a category has no children, the sibling links will be shown on the category page. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.1.0-canary.26
 
@@ -94,8 +94,7 @@
 
 ### Patch Changes
 
-- [#2267](https://github.com/graphcommerce-org/graphcommerce/pull/2267) [`9d5fd11`](https://github.com/graphcommerce-org/graphcommerce/commit/9d5fd11c7130612e80523608ab442976f3f5ddc5) - make the CategoryHeroNav fragment injectable and add image to the childeren
-  ([@carlocarels90](https://github.com/carlocarels90))
+- [#2267](https://github.com/graphcommerce-org/graphcommerce/pull/2267) [`9d5fd11`](https://github.com/graphcommerce-org/graphcommerce/commit/9d5fd11c7130612e80523608ab442976f3f5ddc5) - make the CategoryHeroNav fragment injectable and add image to the childeren ([@carlocarels90](https://github.com/carlocarels90))
 
 ## 8.1.0-canary.14
 
@@ -121,8 +120,7 @@
 
 ### Patch Changes
 
-- [#2227](https://github.com/graphcommerce-org/graphcommerce/pull/2227) [`d597719`](https://github.com/graphcommerce-org/graphcommerce/commit/d597719baaabbe079660ac063fd021d871831511) - Added option to change sort order (ASC / DESC) for sort options (Name, price, position etc) on catalog and search pages.
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2227](https://github.com/graphcommerce-org/graphcommerce/pull/2227) [`d597719`](https://github.com/graphcommerce-org/graphcommerce/commit/d597719baaabbe079660ac063fd021d871831511) - Added option to change sort order (ASC / DESC) for sort options (Name, price, position etc) on catalog and search pages. ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.6-canary.3
 
@@ -204,8 +202,7 @@
 
 ### Patch Changes
 
-- [#2145](https://github.com/graphcommerce-org/graphcommerce/pull/2145) [`4fc2fda`](https://github.com/graphcommerce-org/graphcommerce/commit/4fc2fda92519159631cfe9a8eafcef58197f9986) - Solved an issue where the currently paginated page would be included in URL for the subcategory, resulting in a 404 error for some pages.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2145](https://github.com/graphcommerce-org/graphcommerce/pull/2145) [`4fc2fda`](https://github.com/graphcommerce-org/graphcommerce/commit/4fc2fda92519159631cfe9a8eafcef58197f9986) - Solved an issue where the currently paginated page would be included in URL for the subcategory, resulting in a 404 error for some pages. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.100
 
@@ -1544,31 +1541,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 
