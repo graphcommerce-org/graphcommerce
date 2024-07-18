@@ -14,7 +14,7 @@ type PluginBaseConfig = {
   sourceModule: string
   targetExport: string
   enabled: boolean
-  ifConfig?: string | [string, string]
+  ifConfig?: string | [string, any]
 }
 
 export function isPluginBaseConfig(plugin: Partial<PluginBaseConfig>): plugin is PluginBaseConfig {
