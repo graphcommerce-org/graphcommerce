@@ -86,7 +86,7 @@ const customerErrorLink = (router: PushRouter) =>
     /** If the error we're dealing with is not an authorization error, we're done. */
     if (!authError) return undefined
 
-    if (!oldHeaders.authorization) {
+    if (!oldHeaders?.authorization) {
       // console.error(
       //   'No authorization header found in request, but an authorization error was returned, this is a bug. This is the operation:',
       //   operation,
