@@ -12,7 +12,7 @@
     }
   },
   "devDependencies": {
-    "@types/grecaptcha": "^3.0.7"
+    "@types/grecaptcha": "^3.0.9"
   },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.56",

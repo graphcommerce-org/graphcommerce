@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.resolveDocumentImports = void 0;
+exports.resolveDocumentImports = resolveDocumentImports;
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable import/no-cycle */
 const path_1 = require("path");
@@ -121,4 +121,3 @@ function resolveDocumentImports(presetOptions, schemaObject, importResolverOptio
     });
     return resDocuments.filter((result) => result.filename.startsWith((0, path_1.resolve)(baseDir, baseOutputDir).replace(/\\/g, '/')));
 }
-exports.resolveDocumentImports = resolveDocumentImports;

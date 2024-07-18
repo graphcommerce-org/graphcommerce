@@ -873,7 +873,7 @@ export class Visitor {
   }
 
   visitTsFnParameters(params: TsFnParameter[]): TsFnParameter[] {
-    return params.map(this.visitTsFnParameter.bind(this))
+    return params?.map(this.visitTsFnParameter.bind(this))
   }
 
   visitTsFnParameter(n: TsFnParameter): TsFnParameter {

@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findPlugins = void 0;
+exports.findPlugins = findPlugins;
 // eslint-disable-next-line import/no-extraneous-dependencies
 const core_1 = require("@swc/core");
 const chalk_1 = __importDefault(require("chalk"));
@@ -69,4 +69,3 @@ function findPlugins(config, cwd = process.cwd()) {
     }
     return [plugins, errors];
 }
-exports.findPlugins = findPlugins;

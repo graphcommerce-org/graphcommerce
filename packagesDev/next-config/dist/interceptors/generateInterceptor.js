@@ -3,7 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateInterceptor = exports.moveRelativeDown = exports.SOURCE_END = exports.SOURCE_START = exports.isPluginConfig = exports.isReplacePluginConfig = exports.isMethodPluginConfig = exports.isReactPluginConfig = exports.isPluginBaseConfig = void 0;
+exports.SOURCE_END = exports.SOURCE_START = void 0;
+exports.isPluginBaseConfig = isPluginBaseConfig;
+exports.isReactPluginConfig = isReactPluginConfig;
+exports.isMethodPluginConfig = isMethodPluginConfig;
+exports.isReplacePluginConfig = isReplacePluginConfig;
+exports.isPluginConfig = isPluginConfig;
+exports.moveRelativeDown = moveRelativeDown;
+exports.generateInterceptor = generateInterceptor;
 // eslint-disable-next-line import/no-extraneous-dependencies
 const prettier_config_pwa_1 = __importDefault(require("@graphcommerce/prettier-config-pwa"));
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -16,29 +23,24 @@ function isPluginBaseConfig(plugin) {
         typeof plugin.enabled === 'boolean' &&
         typeof plugin.targetExport === 'string');
 }
-exports.isPluginBaseConfig = isPluginBaseConfig;
 function isReactPluginConfig(plugin) {
     if (!isPluginBaseConfig(plugin))
         return false;
     return plugin.type === 'component';
 }
-exports.isReactPluginConfig = isReactPluginConfig;
 function isMethodPluginConfig(plugin) {
     if (!isPluginBaseConfig(plugin))
         return false;
     return plugin.type === 'function';
 }
-exports.isMethodPluginConfig = isMethodPluginConfig;
 function isReplacePluginConfig(plugin) {
     if (!isPluginBaseConfig(plugin))
         return false;
     return plugin.type === 'replace';
 }
-exports.isReplacePluginConfig = isReplacePluginConfig;
 function isPluginConfig(plugin) {
     return isPluginBaseConfig(plugin);
 }
-exports.isPluginConfig = isPluginConfig;
 exports.SOURCE_START = '/** Original source starts here (do not modify!): **/';
 exports.SOURCE_END = '/** Original source ends here (do not modify!) **/';
 const originalSuffix = 'Original';
@@ -61,7 +63,6 @@ function moveRelativeDown(plugins) {
         return 0;
     });
 }
-exports.moveRelativeDown = moveRelativeDown;
 const generateIdentifyer = (s) => Math.abs(s.split('').reduce((a, b) => {
     // eslint-disable-next-line no-param-reassign, no-bitwise
     a = (a << 5) - a + b.charCodeAt(0);
@@ -214,4 +215,3 @@ async function generateInterceptor(interceptor, config, oldInterceptorSource) {
     }
     return { ...interceptor, template: templateFormatted };
 }
-exports.generateInterceptor = generateInterceptor;

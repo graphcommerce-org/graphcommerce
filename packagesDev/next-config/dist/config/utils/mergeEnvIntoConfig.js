@@ -3,7 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.formatAppliedEnv = exports.mergeEnvIntoConfig = exports.filterEnv = exports.configToEnvSchema = exports.dotNotation = exports.toEnvStr = void 0;
+exports.filterEnv = exports.dotNotation = exports.toEnvStr = void 0;
+exports.configToEnvSchema = configToEnvSchema;
+exports.mergeEnvIntoConfig = mergeEnvIntoConfig;
+exports.formatAppliedEnv = formatAppliedEnv;
 /* eslint-disable import/no-extraneous-dependencies */
 const utilities_1 = require("@apollo/client/utilities");
 const chalk_1 = __importDefault(require("chalk"));
@@ -104,7 +107,6 @@ function configToEnvSchema(schema) {
     walk(schema);
     return [zod_1.z.object(envSchema), envToDot];
 }
-exports.configToEnvSchema = configToEnvSchema;
 const filterEnv = (env) => Object.fromEntries(Object.entries(env).filter(([key]) => key.startsWith('GC_')));
 exports.filterEnv = filterEnv;
 function mergeEnvIntoConfig(schema, config, env) {
@@ -137,7 +139,6 @@ function mergeEnvIntoConfig(schema, config, env) {
     });
     return [newConfig, applyResult];
 }
-exports.mergeEnvIntoConfig = mergeEnvIntoConfig;
 /**
  * Prints the applied env variables to the console
  *
@@ -183,4 +184,3 @@ function formatAppliedEnv(applyResult) {
     header += `   - Loaded GraphCommerce env variables`;
     return [header, ...lines].join('\n');
 }
-exports.formatAppliedEnv = formatAppliedEnv;

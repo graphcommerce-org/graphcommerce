@@ -58,6 +58,8 @@ const { withState } = extendableComponent<HoistedActionCardProps, typeof name, t
   parts,
 )
 
+const isNotFrag = <T extends React.ReactElement>(el: T): el is T => !isFragment(el)
+
 export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListProps>(
   (props, ref) => {
     const {
@@ -116,17 +118,15 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
       .filter(React.isValidElement)
       .filter(isActionCardLike)
       .filter((child) => {
+        const notFrag = isNotFrag(child)
         if (process.env.NODE_ENV !== 'production') {
-          if (isFragment(child))
+          if (!notFrag)
             console.error(
-              [
-                "@graphcommerce/next-ui: The ActionCardList component doesn't accept a Fragment as a child.",
-                'Consider providing an array instead',
-              ].join('\n'),
+              "@graphcommerce/next-ui: The ActionCardList component doesn't accept a Fragment as a child. Consider providing an array instead",
             )
         }
 
-        return !isFragment(child)
+        return notFrag
       })
 
     // Make sure the selected values is in the list of all possible values

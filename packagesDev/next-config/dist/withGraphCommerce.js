@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.withGraphCommerce = void 0;
+exports.withGraphCommerce = withGraphCommerce;
 const circular_dependency_plugin_1 = __importDefault(require("circular-dependency-plugin"));
 const plugin_1 = require("inspectpack/plugin");
 const webpack_1 = require("webpack");
@@ -160,4 +160,3 @@ function withGraphCommerce(nextConfig, cwd) {
         },
     };
 }
-exports.withGraphCommerce = withGraphCommerce;
