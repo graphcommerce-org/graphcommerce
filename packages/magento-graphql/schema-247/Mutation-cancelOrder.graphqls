@@ -41,9 +41,9 @@ type StoreConfig {
   """
   Indicates whether orders can be cancelled by customers or not.
   """
-  order_cancellation_enabled: Boolean!
+  order_cancellation_enabled: Boolean
   """
   An array containing available cancellation reasons.
   """
-  order_cancellation_reasons: [CancellationReason]!
+  order_cancellation_reasons: [CancellationReason]
 }

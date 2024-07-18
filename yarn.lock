@@ -3883,6 +3883,7 @@ __metadata:
     "@graphcommerce/image": ^8.1.0-canary.53
     "@graphcommerce/magento-cart": ^8.1.0-canary.53
     "@graphcommerce/magento-graphql": ^8.1.0-canary.53
+    "@graphcommerce/magento-product": ^8.1.0-canary.53
     "@graphcommerce/magento-store": ^8.1.0-canary.53
     "@graphcommerce/next-ui": ^8.1.0-canary.53
     "@graphcommerce/prettier-config-pwa": ^8.1.0-canary.53

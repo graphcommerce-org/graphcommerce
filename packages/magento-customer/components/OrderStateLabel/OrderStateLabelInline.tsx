@@ -4,13 +4,13 @@ import { OrderStateLabel, OrderStateLabelProps, OrderStateRenderer } from './Ord
 type OrderStateLabelInlineProps = OrderStateLabelProps
 
 const defaultRenderer: OrderStateRenderer = {
-  Ordered: () => <Trans id='Your order is being processed' />,
-  Processing: () => <Trans id='Your order has been invoiced' />,
-  Closed: () => <Trans id='Your order is on its way!' />,
-  Refunded: () => <Trans id='Your order has been refunded' />,
-  Canceled: () => <Trans id='Your order has been canceled' />,
-  Returned: () => <Trans id='Your order has been returned' />,
-  Pending: () => <Trans id='Your order has been partially processed' />,
+  Ordered: () => <Trans id='processed' />,
+  Processing: () => <Trans id='invoiced' />,
+  Closed: () => <Trans id='shipped' />,
+  Refunded: () => <Trans id='refunded' />,
+  Canceled: () => <Trans id='canceled' />,
+  Returned: () => <Trans id='returned' />,
+  Pending: () => <Trans id='partially processed' />,
 }
 
 export function OrderStateLabelInline(props: OrderStateLabelInlineProps) {
@@ -34,7 +34,7 @@ export function OrderStateLabelInline(props: OrderStateLabelInlineProps) {
             color: theme.palette.primary.main,
             background: `${theme.palette.primary.main}20`,
           },
-          '&.orderStateShipped': {
+          '&.orderStateClosed': {
             color: theme.palette.success.main,
             fontWeight: 'normal',
             background: `${theme.palette.success.main}20`,
