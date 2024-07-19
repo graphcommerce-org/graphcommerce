@@ -1,5 +1,11 @@
 # @graphcommerce/magento-payment-paypal
 
+## 9.0.0-canary.60
+
+### Patch Changes
+
+- [#2331](https://github.com/graphcommerce-org/graphcommerce/pull/2331) [`702bfc9`](https://github.com/graphcommerce-org/graphcommerce/commit/702bfc93566c9745546988e57988431d5d4d8cb0) - Moved plugins to new format ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.59
 
 ## 9.0.0-canary.58
