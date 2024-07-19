@@ -5,7 +5,7 @@ import { filterNonNullableKeys } from '@graphcommerce/next-ui/RenderType/filterN
 export type AttributeList = { label: string; code: string }[]
 
 export async function getAttributeList(context: MeshContext): Promise<AttributeList> {
-  if (import.meta.graphCommerce.magentoVersion >= 247 && typeof context.m2.Query.attributesList === 'function') {
+  if (import.meta.graphCommerce.magentoVersion >= 247 && 'attributesList' in context.m2.Query && typeof context.m2.Query.attributesList === 'function') {
     const items = await context.m2.Query.attributesList({
       args: {
         entityType: 'CATALOG_PRODUCT',
@@ -13,7 +13,7 @@ export async function getAttributeList(context: MeshContext): Promise<AttributeL
       },
       selectionSet: `{ items{ code label } }`,
       context,
-    }).then((res) => res?.items)
+    }).then((res) => res?.items) as { label?: string; code: string }[]
 
     return filterNonNullableKeys(items, ['label'])
   }
