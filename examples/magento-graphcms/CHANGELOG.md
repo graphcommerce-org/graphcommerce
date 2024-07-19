@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.61
+
+### Minor Changes
+
+- [#2327](https://github.com/graphcommerce-org/graphcommerce/pull/2327) [`be719fc`](https://github.com/graphcommerce-org/graphcommerce/commit/be719fc465c8804ddcb720a93813262e3a292b69) - Implement CancelOrder mutation, add cancel order overlay to account section ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.0-canary.60
 
 ## 9.0.0-canary.59

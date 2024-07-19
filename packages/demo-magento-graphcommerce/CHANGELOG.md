@@ -1,5 +1,7 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 9.0.0-canary.61
+
 ## 9.0.0-canary.60
 
 ### Patch Changes

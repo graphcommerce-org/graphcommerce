@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.61
+
+### Minor Changes
+
+- [#2327](https://github.com/graphcommerce-org/graphcommerce/pull/2327) [`0935c33`](https://github.com/graphcommerce-org/graphcommerce/commit/0935c33ad08c963b2a406c92739590ac6acce7d2) - Move render logic from AddProductsToCartSnackbar to AddProductsToCartSnackbarMessage so this can be reused outside of AddProductsToCartForm ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.0-canary.60
 
 ## 9.0.0-canary.59
