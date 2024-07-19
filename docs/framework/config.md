@@ -183,6 +183,12 @@ Enables company fields inside the checkout:
 
 Enable customer account deletion through the account section
 
+#### customerXMagentoCacheIdDisable: boolean
+
+X-Magento-Cache-Id allows Varnish to cache requests that are made in the browser while users are logged in. For example the products query can now be cached for logged in users.
+
+This can be disabled when Varnish is running out of available memory.
+
 #### dataLayer: [DatalayerConfig](#DatalayerConfig)
 
 Datalayer config

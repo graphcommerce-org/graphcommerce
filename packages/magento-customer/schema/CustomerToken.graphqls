@@ -5,4 +5,5 @@ extend type Query {
 extend type CustomerToken {
   createdAt: String @deprecated(reason: "Value is not used in GraphCommerce, but still filled in.")
   valid: Boolean
+  xMagentoCacheId: String
 }

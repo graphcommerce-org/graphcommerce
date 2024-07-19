@@ -17,6 +17,7 @@ import {
   CategorySearchQuery,
   ProductFiltersProSearchField,
   productListApplySearchDefaults,
+  searchDefaultsToProductListFilters,
   useProductList,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -95,7 +96,7 @@ export const getServerSideProps: GetPageStaticProps = async (context) => {
 
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
-  const filterTypes = getFilterTypes(client)
+  const filterTypes = getFilterTypes(client, true)
 
   const staticClient = graphqlSsrClient(context)
   const layout = staticClient.query({
@@ -112,14 +113,19 @@ export const getServerSideProps: GetPageStaticProps = async (context) => {
 
   if (!productListParams) return { notFound: true, revalidate: 60 * 20 }
 
-  const filters = staticClient.query({ query: ProductFiltersDocument, variables: { search } })
+  const filters = staticClient.query({
+    query: ProductFiltersDocument,
+    variables: searchDefaultsToProductListFilters(
+      productListApplySearchDefaults(productListParams, (await conf).data),
+    ),
+  })
 
   const products = staticClient.query({
     query: ProductListDocument,
     variables: productListApplySearchDefaults(productListParams, (await conf).data),
   })
 
-  const categories = search
+  const categories = false
     ? staticClient.query({ query: CategorySearchDocument, variables: { search } })
     : undefined
 

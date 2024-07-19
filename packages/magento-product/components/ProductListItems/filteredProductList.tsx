@@ -1,13 +1,13 @@
 import type {
   FilterEqualTypeInput,
-  FilterMatchTypeInput,
   FilterRangeTypeInput,
   SortEnum,
 } from '@graphcommerce/graphql-mesh'
-import { useRouter } from 'next/router'
-import { FilterTypes, ProductListParams } from './filterTypes'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { equal } from '@wry/equality'
+import { useRouter } from 'next/router'
+import { ProductListParams } from './filterTypes'
+import { FilterTypes } from './getFilterTypes'
 
 export function parseParams(
   url: string,
@@ -20,7 +20,7 @@ export function parseParams(
   const typeMap = filterTypes
 
   let error = false
-  query.reduce<string | undefined>((param, value) => {
+  query.map(decodeURI).reduce<string | undefined>((param, value) => {
     // We parse everything in pairs, every second loop we parse
     if (!param || param === 'q') return value
 
@@ -44,20 +44,20 @@ export function parseParams(
 
     const [from, to] = value.split('-')
     switch (typeMap[param]) {
-      case 'FilterMatchTypeInput':
-        categoryVariables.filters[param] = { match: value } as FilterMatchTypeInput
+      case 'BOOLEAN':
+      case 'SELECT':
+      case 'MULTISELECT':
+        categoryVariables.filters[param] = { in: value.split(',') } as FilterEqualTypeInput
         return undefined
-      case 'FilterRangeTypeInput':
+      case 'PRICE':
         categoryVariables.filters[param] = {
           ...(from !== '*' && { from }),
           ...(to !== '*' && { to }),
         } as FilterRangeTypeInput
         return undefined
-      case 'FilterEqualTypeInput':
-        categoryVariables.filters[param] = { in: value.split(',') } as FilterEqualTypeInput
-        return undefined
     }
 
+    // console.log('Filter not recognized', param, typeMap[param])
     error = true
     return undefined
   }, undefined)

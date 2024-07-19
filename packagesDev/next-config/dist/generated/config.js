@@ -87,6 +87,7 @@ function GraphCommerceConfigSchema() {
         customerAddressNoteEnable: _zod.z.boolean().nullish(),
         customerCompanyFieldsEnable: _zod.z.boolean().nullish(),
         customerDeleteEnabled: _zod.z.boolean().nullish(),
+        customerXMagentoCacheIdDisable: _zod.z.boolean().nullish(),
         dataLayer: DatalayerConfigSchema().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
         demoMode: _zod.z.boolean().default(true).nullish(),

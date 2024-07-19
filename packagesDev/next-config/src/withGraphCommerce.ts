@@ -1,4 +1,4 @@
-import CircularDependencyPlugin from 'circular-dependency-plugin'
+// import CircularDependencyPlugin from 'circular-dependency-plugin'
 import { DuplicatesPlugin } from 'inspectpack/plugin'
 import type { NextConfig } from 'next'
 import { DomainLocale } from 'next/dist/server/config'
@@ -135,13 +135,13 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
       config.plugins.push(new DefinePlugin({ 'globalThis.__DEV__': options.dev }))
 
       if (!options.isServer) {
-        if (graphcommerceConfig.debug?.webpackCircularDependencyPlugin) {
-          config.plugins.push(
-            new CircularDependencyPlugin({
-              exclude: /readable-stream|duplexer2|node_modules\/next/,
-            }),
-          )
-        }
+        // if (graphcommerceConfig.debug?.webpackCircularDependencyPlugin) {
+        //   config.plugins.push(
+        //     new CircularDependencyPlugin({
+        //       exclude: /readable-stream|duplexer2|node_modules\/next/,
+        //     }),
+        //   )
+        // }
         if (graphcommerceConfig.debug?.webpackDuplicatesPlugin) {
           config.plugins.push(
             new DuplicatesPlugin({

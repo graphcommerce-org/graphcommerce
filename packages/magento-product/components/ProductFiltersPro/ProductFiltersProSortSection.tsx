@@ -13,6 +13,8 @@ export function ProductFiltersProSortSection(props: ProductFiltersProSortSection
   const { form } = useProductFiltersPro()
   const { options, showReset, selected } = useProductFiltersProSort(props)
 
+  if ((options.length ?? 0) <= 1) return null
+
   return (
     <ActionCardAccordion
       sx={sx}

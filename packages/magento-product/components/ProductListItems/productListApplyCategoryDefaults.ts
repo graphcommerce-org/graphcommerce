@@ -1,8 +1,8 @@
 import { cloneDeep, useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument, StoreConfigQuery } from '@graphcommerce/magento-store'
+import { ProductListQueryVariables } from '../ProductList/ProductList.gql'
 import { CategoryDefaultFragment } from './CategoryDefault.gql'
 import { ProductListParams } from './filterTypes'
-import { ProductListQueryVariables } from '../ProductList/ProductList.gql'
 
 export function useProductListApplyCategoryDefaults(
   params: ProductListParams | undefined,
@@ -65,4 +65,10 @@ export async function productListApplyCategoryDefaults(
   }
 
   return newParams
+}
+
+export function categoryDefaultsToProductListFilters(
+  variables: ProductListQueryVariables | undefined,
+): ProductListQueryVariables {
+  return { ...variables, filters: { category_uid: variables?.filters?.category_uid } }
 }

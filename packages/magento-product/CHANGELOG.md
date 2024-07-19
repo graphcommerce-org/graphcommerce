@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.0.0-canary.59
+
+### Patch Changes
+
+- [#2309](https://github.com/graphcommerce-org/graphcommerce/pull/2309) [`1fe4090`](https://github.com/graphcommerce-org/graphcommerce/commit/1fe409029671b841e582406251e45a9555fc78f9) - Hide SortChip or SortSection when there is only a single filter option. ([@Renzovh](https://github.com/Renzovh))
+
+## 9.0.0-canary.58
+
+### Patch Changes
+
+- [#2328](https://github.com/graphcommerce-org/graphcommerce/pull/2328) [`ee04368`](https://github.com/graphcommerce-org/graphcommerce/commit/ee04368444f732e5541a595db6e2ef66d15add68) - Move to attributesList to get a list of filterable attributes instead of using an introspection query. `productFiltersProSectionRenderer` and `productFiltersProChipRenderer` keys now now one of `AttributeFrontendInputEnum`. ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.57
 
 ## 9.0.0-canary.56
