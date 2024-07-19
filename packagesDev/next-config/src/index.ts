@@ -23,7 +23,7 @@ export type FunctionPlugin<T extends (...args: any[]) => any> = (
 /**
  * @deprecated use FunctionPlugin instead
  */
-export type MethodPlugin<T extends (...args: any[]) => any> = (
+export type FunctionPlugin<T extends (...args: any[]) => any> = (
   prev: T,
   ...args: Parameters<T>
 ) => ReturnType<T>

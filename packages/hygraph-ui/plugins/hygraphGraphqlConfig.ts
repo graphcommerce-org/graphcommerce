@@ -1,8 +1,10 @@
-import { graphqlConfig, setContext } from '@graphcommerce/graphql'
-import type { FunctionPlugin } from '@graphcommerce/next-config'
+import { graphqlConfig as graphqlConfigType, setContext } from '@graphcommerce/graphql'
+import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 
-export const func = 'graphqlConfig'
-export const exported = '@graphcommerce/graphql'
+export const config: PluginConfig = {
+  type: 'function',
+  module: '@graphcommerce/graphql',
+}
 
 declare module '@graphcommerce/graphql/config' {
   interface PreviewData {
@@ -10,7 +12,7 @@ declare module '@graphcommerce/graphql/config' {
   }
 }
 
-const hygraphGraphqlConfig: FunctionPlugin<typeof graphqlConfig> = (prev, config) => {
+export const graphqlConfig: FunctionPlugin<typeof graphqlConfigType> = (prev, config) => {
   const results = prev(config)
 
   const locales = config.storefront.hygraphLocales
@@ -31,5 +33,3 @@ const hygraphGraphqlConfig: FunctionPlugin<typeof graphqlConfig> = (prev, config
 
   return { ...results, links: [...results.links, hygraphLink] }
 }
-
-export const plugin = hygraphGraphqlConfig

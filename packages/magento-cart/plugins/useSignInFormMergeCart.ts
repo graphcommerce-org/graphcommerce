@@ -1,14 +1,16 @@
 import { useApolloClient } from '@graphcommerce/graphql'
-import type { useSignInForm } from '@graphcommerce/magento-customer'
-import type { MethodPlugin } from '@graphcommerce/next-config'
+import type { useSignInForm as useSignInFormType } from '@graphcommerce/magento-customer'
+import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 import { cartLock, readCartId, useAssignCurrentCartId } from '../hooks'
 import { CustomerCartDocument } from '../hooks/CustomerCart.gql'
 import { MergeCartsDocument } from '../hooks/MergeCarts.gql'
 
-export const func = 'useSignInForm'
-export const exported = '@graphcommerce/magento-customer'
+export const config: PluginConfig = {
+  type: 'function',
+  module: '@graphcommerce/magento-customer',
+}
 
-const useSignInFormMergeCart: MethodPlugin<typeof useSignInForm> = (useSignInForm, options) => {
+export const useSignInForm: FunctionPlugin<typeof useSignInFormType> = (useSignInForm, options) => {
   const client = useApolloClient()
   const assignCurrentCartId = useAssignCurrentCartId()
 
@@ -47,5 +49,3 @@ const useSignInFormMergeCart: MethodPlugin<typeof useSignInForm> = (useSignInFor
     },
   })
 }
-
-export const plugin = useSignInFormMergeCart

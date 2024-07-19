@@ -1,15 +1,15 @@
-import type { ApolloErrorFullPageProps } from '@graphcommerce/ecommerce-ui'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { ApolloErrorAlertProps, ApolloErrorFullPageProps } from '@graphcommerce/ecommerce-ui'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useGoogleRecaptcha } from '../hooks/useGoogleRecaptcha'
 
-export const component = 'ApolloErrorFullPage'
-export const exported = '@graphcommerce/ecommerce-ui'
-export const ifConfig = 'googleRecaptchaKey'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/ecommerce-ui',
+  ifConfig: 'googleRecaptchaKey',
+}
 
-function GrecaptchaApolloErrorFullPage(props: PluginProps<ApolloErrorFullPageProps>) {
+export function ApolloErrorFullPage(props: PluginProps<ApolloErrorFullPageProps>) {
   const { Prev, ...rest } = props
   useGoogleRecaptcha()
   return <Prev {...rest} />
 }
-
-export const Plugin = GrecaptchaApolloErrorFullPage

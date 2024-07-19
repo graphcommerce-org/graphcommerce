@@ -1,12 +1,14 @@
 import type { WishlistItemActionCardProps } from '@graphcommerce/magento-wishlist'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { Box } from '@mui/material'
 import { ConfigurableWishlistItemAction } from '../components/WishlistItemActionCard/ConfigurableWishlistItemAction'
 
-export const component = 'WishlistItemActionCard'
-export const exported = '@graphcommerce/magento-wishlist'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/magento-wishlist',
+}
 
-const ConfigurableWishlistItemActionCard = (props: PluginProps<WishlistItemActionCardProps>) => {
+export const WishlistItemActionCard = (props: PluginProps<WishlistItemActionCardProps>) => {
   const { Prev, details, item } = props
   if (item.__typename !== 'ConfigurableWishlistItem') return <Prev {...props} />
   const { configurable_options } = item
@@ -29,5 +31,3 @@ const ConfigurableWishlistItemActionCard = (props: PluginProps<WishlistItemActio
     />
   )
 }
-
-export const Plugin = ConfigurableWishlistItemActionCard

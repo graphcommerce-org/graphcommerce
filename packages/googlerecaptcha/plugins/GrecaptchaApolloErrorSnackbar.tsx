@@ -1,15 +1,15 @@
-import type { ApolloErrorSnackbarProps } from '@graphcommerce/ecommerce-ui'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { ApolloErrorAlertProps, ApolloErrorFullPageProps } from '@graphcommerce/ecommerce-ui'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useGoogleRecaptcha } from '../hooks/useGoogleRecaptcha'
 
-export const component = 'ApolloErrorSnackbar'
-export const exported = '@graphcommerce/ecommerce-ui'
-export const ifConfig = 'googleRecaptchaKey'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/ecommerce-ui',
+  ifConfig: 'googleRecaptchaKey',
+}
 
-function GrecaptchaApolloErrorSnackbar(props: PluginProps<ApolloErrorSnackbarProps>) {
+export function ApolloErrorSnackbar(props: PluginProps<ApolloErrorSnackbarProps>) {
   const { Prev, ...rest } = props
   useGoogleRecaptcha()
   return <Prev {...rest} />
 }
-
-export const Plugin = GrecaptchaApolloErrorSnackbar

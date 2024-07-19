@@ -2,7 +2,7 @@ import {
   PaymentMethodContextProviderProps,
   PaymentModule,
 } from '@graphcommerce/magento-cart-payment-method'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { AdyenPaymentActionCard } from '../components/AdyenPaymentActionCard/AdyenPaymentActionCard'
 import { AdyenPaymentHandler } from '../components/AdyenPaymentHandler/AdyenPaymentHandler'
 import { HppOptions } from '../components/AdyenPaymentOptionsAndPlaceOrder/AdyenPaymentOptionsAndPlaceOrder'
@@ -16,12 +16,14 @@ export const adyen_hpp: PaymentModule = {
   expandMethods: adyenHppExpandMethods,
 }
 
-export const component = 'PaymentMethodContextProvider'
-export const exported = '@graphcommerce/magento-cart-payment-method'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/magento-cart-payment-method',
+}
 
-function AddAdyenMethods(props: PluginProps<PaymentMethodContextProviderProps>) {
+export function PaymentMethodContextProvider(
+  props: PluginProps<PaymentMethodContextProviderProps>,
+) {
   const { modules, Prev, ...rest } = props
   return <Prev {...rest} modules={{ ...modules, adyen_hpp }} />
 }
-
-export const Plugin = AddAdyenMethods
