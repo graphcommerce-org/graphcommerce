@@ -1,4 +1,4 @@
-import type { ApolloErrorAlertProps, ApolloErrorFullPageProps } from '@graphcommerce/ecommerce-ui'
+import type { ApolloErrorFullPageProps } from '@graphcommerce/ecommerce-ui'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useGoogleRecaptcha } from '../hooks/useGoogleRecaptcha'
 
