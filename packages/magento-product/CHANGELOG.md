@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.59
+
+### Patch Changes
+
+- [#2309](https://github.com/graphcommerce-org/graphcommerce/pull/2309) [`1fe4090`](https://github.com/graphcommerce-org/graphcommerce/commit/1fe409029671b841e582406251e45a9555fc78f9) - Hide SortChip or SortSection when there is only a single filter option. ([@Renzovh](https://github.com/Renzovh))
+
 ## 9.0.0-canary.58
 
 ### Patch Changes

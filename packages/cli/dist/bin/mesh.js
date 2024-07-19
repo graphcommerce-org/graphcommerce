@@ -1,5 +1,28 @@
 #!/usr/bin/env node
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -15,7 +38,9 @@ const utils_1 = require("@graphql-mesh/utils");
 const dotenv_1 = __importDefault(require("dotenv"));
 const yaml_1 = __importDefault(require("yaml"));
 const findConfig_1 = require("../utils/findConfig");
+// eslint-disable-next-line import/no-unresolved
 require("tsx/cjs"); // support importing typescript configs in CommonJS
+// eslint-disable-next-line import/no-unresolved
 require("tsx/esm"); // support importing typescript configs in ESM
 dotenv_1.default.config();
 function handleFatalError(e, logger = new utils_1.DefaultLogger('◈')) {
@@ -48,8 +73,12 @@ async function cleanup() {
     return undefined;
 }
 const main = async () => {
-    const conf = (await (0, findConfig_1.findConfig)({}));
+    const baseConf = (await (0, findConfig_1.findConfig)({}));
     const graphCommerce = (0, next_config_1.loadConfig)(root);
+    // eslint-disable-next-line global-require
+    // @ts-ignore Might not exist
+    const { meshConfig } = (await Promise.resolve().then(() => __importStar(require('@graphcommerce/graphql-mesh/meshConfig.interceptor'))));
+    const conf = meshConfig(baseConf, graphCommerce);
     // We're configuring a custom fetch function
     conf.customFetch = require.resolve('@graphcommerce/graphql-mesh/customFetch');
     conf.serve = { ...conf.serve, endpoint: '/api/graphql' };
@@ -61,6 +90,24 @@ const main = async () => {
         if (additionalResolver.startsWith('@'))
             return node_path_1.default.relative(root, require.resolve(additionalResolver));
         return additionalResolver;
+    });
+    conf.sources = conf.sources.map((source) => {
+        const definedHandlers = Object.entries(source.handler);
+        return {
+            ...source,
+            handler: Object.fromEntries(definedHandlers.map(([key, value]) => {
+                if (key === 'openapi' && value) {
+                    const openapi = value;
+                    if (openapi.source.startsWith('@')) {
+                        return [
+                            key,
+                            { ...openapi, source: node_path_1.default.relative(root, require.resolve(openapi.source)) },
+                        ];
+                    }
+                }
+                return [key, value];
+            })),
+        };
     });
     // Rewrite additionalTypeDefs so we can use module resolution more easily
     if (!conf.additionalTypeDefs)

@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.59
+
+### Minor Changes
+
+- [#2309](https://github.com/graphcommerce-org/graphcommerce/pull/2309) [`b46e17e`](https://github.com/graphcommerce-org/graphcommerce/commit/b46e17ebe390b4d0040639dfdac33c36a60576ac) - When generating the mesh the configuration is passed through `@graphcommerce/graphql-mesh/meshConfig` allowing plugins to modify the mesh configuration without having to change the `.meshrc.yaml` itself. ([@Renzovh](https://github.com/Renzovh))
+
 ## 9.0.0-canary.58
 
 ### Minor Changes

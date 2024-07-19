@@ -20,7 +20,7 @@ export function parseParams(
   const typeMap = filterTypes
 
   let error = false
-  query.reduce<string | undefined>((param, value) => {
+  query.map(decodeURI).reduce<string | undefined>((param, value) => {
     // We parse everything in pairs, every second loop we parse
     if (!param || param === 'q') return value
 

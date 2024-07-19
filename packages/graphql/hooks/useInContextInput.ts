@@ -1,8 +1,8 @@
 import { ApolloClient } from '@apollo/client'
 import type { InContextInput } from '@graphcommerce/graphql-mesh'
 
-export function getInContextInput(client: ApolloClient<any>): InContextInput | undefined {
-  return {}
+export function getInContextInput(client: ApolloClient<any>): InContextInput | null {
+  return null
 }
 
 /**
@@ -14,4 +14,4 @@ export function getInContextInput(client: ApolloClient<any>): InContextInput | u
  *
  * Note: ONLY return a value if the frontend should use the inContext directive.
  */
-export const useInContextInput = (): InContextInput | undefined => undefined
+export const useInContextInput = (): InContextInput | null => null

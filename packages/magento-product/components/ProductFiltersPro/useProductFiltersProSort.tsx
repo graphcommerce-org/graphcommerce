@@ -36,7 +36,9 @@ export function useProductFiltersProSort(props: ProductListActionSortProps) {
 
   const conf = useQuery(StoreConfigDocument).data?.storeConfig
   const defaultSortBy = (
-    category ? category.default_sort_by ?? conf?.catalog_default_sort_by ?? 'position' : 'relevance'
+    category
+      ? (category.default_sort_by ?? conf?.catalog_default_sort_by ?? 'position')
+      : 'relevance'
   ) as ProductFilterParams['sort']
 
   const formSort = useWatch({ control, name: 'sort' })

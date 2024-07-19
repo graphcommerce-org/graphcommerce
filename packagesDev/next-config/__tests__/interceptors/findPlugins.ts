@@ -189,6 +189,14 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "meshConfig",
+        "sourceModule": "@graphcommerce/graphql-mesh/plugins/meshConfigFake",
+        "targetExport": "meshConfig",
+        "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
+        "type": "function",
+      },
+      {
+        "enabled": true,
         "sourceExport": "hygraphPageContent",
         "sourceModule": "@graphcommerce/hygraph-dynamic-rows/plugins/hygraphDynamicRowsPageContent",
         "targetExport": "hygraphPageContent",

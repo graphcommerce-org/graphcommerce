@@ -39,3 +39,12 @@ export function productListApplySearchDefaults(
 
   return newParams
 }
+
+export function searchDefaultsToProductListFilters(
+  variables: ProductListQueryVariables | undefined,
+): ProductListQueryVariables {
+  return {
+    ...variables,
+    filters: {},
+  }
+}

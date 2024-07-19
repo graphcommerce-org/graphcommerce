@@ -19,6 +19,8 @@ export function ProductFiltersProSortChip(props: ProductListActionSortProps) {
   const { submit, form } = useProductFiltersPro()
   const { options, showReset, selected, selectedLabel } = useProductFiltersProSort(props)
 
+  if ((options.length ?? 0) <= 1) return null
+
   return (
     <ChipOverlayOrPopper
       {...rest}
