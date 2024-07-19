@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.58
+
+### Minor Changes
+
+- [#2330](https://github.com/graphcommerce-org/graphcommerce/pull/2330) [`8de9c13`](https://github.com/graphcommerce-org/graphcommerce/commit/8de9c13b977633104ab81ce04def1dd6d1d4411b) - Added support X-Magento-Cache-Id to allow Varnish to cache requests that are made in the browser while users are logged in. For example the products query can now be cached for logged in users. Functionality can be disabled by setting `customerXMagentoCacheIdDisable: true` in your configuration. ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.57
 
 ## 9.0.0-canary.56

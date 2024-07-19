@@ -1,5 +1,5 @@
 import { ChipMenuProps } from '@graphcommerce/next-ui'
-import { FilterTypes } from '../ProductListItems/filterTypes'
+import { FilterTypes } from '../ProductListItems/getFilterTypes'
 import { FilterCheckboxType } from './FilterCheckboxType'
 import { FilterEqualType } from './FilterEqualType'
 import { FilterRangeType } from './FilterRangeType'
@@ -23,22 +23,16 @@ export function ProductListFilters(props: ProductFiltersProps) {
           return null
 
         switch (filterTypes[aggregation.attribute_code]) {
-          case 'FilterEqualTypeInput':
-            if (
-              aggregation.options?.[0]?.label === '0' ||
-              aggregation.options?.[1]?.label === '0' ||
-              aggregation.options?.[0]?.label === '1' ||
-              aggregation.options?.[1]?.label === '1'
-            ) {
-              return (
-                <FilterCheckboxType
-                  key={aggregation.attribute_code}
-                  {...aggregation}
-                  {...chipMenuProps}
-                />
-              )
-            }
-
+          case 'BOOLEAN':
+            return (
+              <FilterCheckboxType
+                key={aggregation.attribute_code}
+                {...aggregation}
+                {...chipMenuProps}
+              />
+            )
+          case 'SELECT':
+          case 'MULTISELECT':
             return (
               <FilterEqualType
                 key={aggregation.attribute_code}
@@ -46,8 +40,7 @@ export function ProductListFilters(props: ProductFiltersProps) {
                 {...chipMenuProps}
               />
             )
-
-          case 'FilterRangeTypeInput':
+          case 'PRICE':
             return (
               <FilterRangeType
                 key={aggregation.attribute_code}
@@ -56,6 +49,7 @@ export function ProductListFilters(props: ProductFiltersProps) {
               />
             )
         }
+
         // console.log(
         //   'Filter not recognized',
         //   aggregation.attribute_code,

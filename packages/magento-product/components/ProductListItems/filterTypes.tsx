@@ -67,8 +67,6 @@ export function isFilterTypeRange(filter: AnyFilterType): filter is FilterRangeT
   )
 }
 
-export type FilterTypes = Partial<Record<string, string>>
-
 export function toProductListParams(params: ProductFilterParams): ProductListParams {
   const { sort, dir, filters, ...rest } = params
 
