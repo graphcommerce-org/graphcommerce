@@ -3,6 +3,10 @@
 Implementation of Algolia Instant Search inside Graphcommerce. Add client or
 server side product, category and pages search to your project!
 
+❗️❗️ Does not work with productFiltersPro and does not work with
+ProductListLayout/\* components. Further development has been halted. Please use
+algolia-mesh ❗️❗️
+
 ## Installation
 
 1. Find current version of your `@graphcommerce/next-ui` in your package.json.
