@@ -1,13 +1,13 @@
-import { graphqlConfig } from '@graphcommerce/graphql'
-import type { FunctionPlugin } from '@graphcommerce/next-config'
+import { graphqlConfig as graphqlConfigType } from '@graphcommerce/graphql'
+import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 import { magentoTypePolicies } from '../typePolicies'
 
-export const func = 'graphqlConfig'
-export const exported = '@graphcommerce/graphql/config'
+export const config: PluginConfig = {
+  type: 'function',
+  module: '@graphcommerce/graphql',
+}
 
-const magentoGraphqlConfig: FunctionPlugin<typeof graphqlConfig> = (prev, config) => {
+export const graphqlConfig: FunctionPlugin<typeof graphqlConfigType> = (prev, config) => {
   const results = prev(config)
   return { ...results, policies: [magentoTypePolicies, ...results.policies] }
 }
-
-export const plugin = magentoGraphqlConfig

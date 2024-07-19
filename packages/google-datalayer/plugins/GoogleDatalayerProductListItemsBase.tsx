@@ -1,11 +1,13 @@
 import type { ProductItemsGridProps } from '@graphcommerce/magento-product'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { DatalayerViewItemList } from '../components/DatalayerViewItemList'
 
-export const component = 'ProductListItemsBase'
-export const exported = '@graphcommerce/magento-product'
+export const config: PluginConfig = {
+  module: '@graphcommerce/magento-product',
+  type: 'component',
+}
 
-export function GoogleDatalayerProductListItemsBase(props: PluginProps<ProductItemsGridProps>) {
+export function ProductListItemsBase(props: PluginProps<ProductItemsGridProps>) {
   const { Prev, ...rest } = props
   return (
     <DatalayerViewItemList {...rest}>
@@ -13,5 +15,3 @@ export function GoogleDatalayerProductListItemsBase(props: PluginProps<ProductIt
     </DatalayerViewItemList>
   )
 }
-
-export const Plugin = GoogleDatalayerProductListItemsBase

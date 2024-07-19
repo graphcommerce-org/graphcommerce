@@ -1,12 +1,14 @@
 import { ShippingMethodFormProps } from '@graphcommerce/magento-cart-shipping-method'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { sendEvent } from '../api/sendEvent'
 import { cartToAddShippingInfo } from '../mapping/cartToAddShippingInfo/cartToAddShippingInfo'
 
-export const component = 'ShippingMethodForm'
-export const exported = '@graphcommerce/magento-cart-shipping-method'
+export const config: PluginConfig = {
+  module: '@graphcommerce/magento-cart-shipping-method',
+  type: 'component',
+}
 
-export function GoogleDatalayerShippingMethodForm(props: PluginProps<ShippingMethodFormProps>) {
+export function ShippingMethodForm(props: PluginProps<ShippingMethodFormProps>) {
   const { Prev, onComplete, ...rest } = props
   return (
     <Prev
@@ -24,5 +26,3 @@ export function GoogleDatalayerShippingMethodForm(props: PluginProps<ShippingMet
     />
   )
 }
-
-export const Plugin = GoogleDatalayerShippingMethodForm

@@ -1,12 +1,14 @@
 import { ProductListItemProps } from '@graphcommerce/magento-product'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useEventCallback } from '@mui/material'
 import { useViewItemList } from '../components/DatalayerViewItemList'
 
-export const component = 'ProductListItem'
-export const exported = '@graphcommerce/magento-product'
+export const config: PluginConfig = {
+  module: '@graphcommerce/magento-product',
+  type: 'component',
+}
 
-function GoogleDatalayerProductListItem(props: PluginProps<ProductListItemProps>) {
+export function ProductListItem(props: PluginProps<ProductListItemProps>) {
   const { Prev, onClick, ...rest } = props
   const selectItem = useViewItemList()
 
@@ -20,5 +22,3 @@ function GoogleDatalayerProductListItem(props: PluginProps<ProductListItemProps>
     />
   )
 }
-
-export const Plugin = GoogleDatalayerProductListItem

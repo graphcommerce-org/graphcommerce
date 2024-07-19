@@ -24,10 +24,10 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "ifConfig": "googleAnalyticsId",
-        "sourceExport": "plugin",
+        "sourceExport": "sendEvent",
         "sourceModule": "@graphcommerce/googleanalytics/plugins/gtagEvent",
         "targetExport": "sendEvent",
-        "targetModule": "@graphcommerce/google-datalayer/api/sendEvent",
+        "targetModule": "@graphcommerce/google-datalayer",
         "type": "function",
       },
       {
@@ -42,7 +42,7 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "ifConfig": "googleRecaptchaKey",
-        "sourceExport": "Plugin",
+        "sourceExport": "GraphQLProvider",
         "sourceModule": "@graphcommerce/googlerecaptcha/plugins/GrecaptchaGraphQLProvider",
         "targetExport": "GraphQLProvider",
         "targetModule": "@graphcommerce/graphql",
@@ -51,7 +51,7 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "ifConfig": "googleRecaptchaKey",
-        "sourceExport": "Plugin",
+        "sourceExport": "ApolloErrorSnackbar",
         "sourceModule": "@graphcommerce/googlerecaptcha/plugins/GrecaptchaApolloErrorSnackbar",
         "targetExport": "ApolloErrorSnackbar",
         "targetModule": "@graphcommerce/ecommerce-ui",
@@ -60,7 +60,7 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "ifConfig": "googleRecaptchaKey",
-        "sourceExport": "Plugin",
+        "sourceExport": "ApolloErrorFullPage",
         "sourceModule": "@graphcommerce/googlerecaptcha/plugins/GrecaptchaApolloErrorFullPage",
         "targetExport": "ApolloErrorFullPage",
         "targetModule": "@graphcommerce/ecommerce-ui",
@@ -69,7 +69,7 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "ifConfig": "googleRecaptchaKey",
-        "sourceExport": "Plugin",
+        "sourceExport": "ApolloErrorAlert",
         "sourceModule": "@graphcommerce/googlerecaptcha/plugins/GrecaptchaApolloErrorAlert",
         "targetExport": "ApolloErrorAlert",
         "targetModule": "@graphcommerce/ecommerce-ui",
@@ -77,7 +77,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "ProductPageMeta",
         "sourceModule": "@graphcommerce/google-datalayer/plugins/GoogleDatalayerViewItem",
         "targetExport": "ProductPageMeta",
         "targetModule": "@graphcommerce/magento-product",
@@ -85,15 +85,15 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "UpdateItemQuantity",
         "sourceModule": "@graphcommerce/google-datalayer/plugins/GoogleDatalayerUseRemoveItemFromCart",
         "targetExport": "UpdateItemQuantity",
-        "targetModule": "@graphcommerce/magento-cart-items/components/UpdateItemQuantity/UpdateItemQuantity",
+        "targetModule": "@graphcommerce/magento-cart-items",
         "type": "component",
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "ShippingMethodForm",
         "sourceModule": "@graphcommerce/google-datalayer/plugins/GoogleDatalayerShippingMethodForm",
         "targetExport": "ShippingMethodForm",
         "targetModule": "@graphcommerce/magento-cart-shipping-method",
@@ -109,7 +109,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "ProductListItemsBase",
         "sourceModule": "@graphcommerce/google-datalayer/plugins/GoogleDatalayerProductListItemsBase",
         "targetExport": "ProductListItemsBase",
         "targetModule": "@graphcommerce/magento-product",
@@ -117,7 +117,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "ProductListItem",
         "sourceModule": "@graphcommerce/google-datalayer/plugins/GoogleDatalayerProductListItem",
         "targetExport": "ProductListItem",
         "targetModule": "@graphcommerce/magento-product",
@@ -125,7 +125,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "PaymentMethodContextProvider",
         "sourceModule": "@graphcommerce/google-datalayer/plugins/GoogleDatalayerPaymentMethodContextProvider",
         "targetExport": "PaymentMethodContextProvider",
         "targetModule": "@graphcommerce/magento-cart-payment-method",
@@ -133,7 +133,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "PaymentMethodButton",
         "sourceModule": "@graphcommerce/google-datalayer/plugins/GoogleDatalayerPaymentMethodButton",
         "targetExport": "PaymentMethodButton",
         "targetModule": "@graphcommerce/magento-cart-payment-method",
@@ -141,7 +141,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "CartStartCheckoutLinkOrButton",
         "sourceModule": "@graphcommerce/google-datalayer/plugins/GoogleDatalayerCartStartCheckoutLinkOrButton",
         "targetExport": "CartStartCheckoutLinkOrButton",
         "targetModule": "@graphcommerce/magento-cart",
@@ -149,7 +149,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "CartStartCheckout",
         "sourceModule": "@graphcommerce/google-datalayer/plugins/GoogleDatalayerCartStartCheckout",
         "targetExport": "CartStartCheckout",
         "targetModule": "@graphcommerce/magento-cart",
@@ -157,7 +157,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "AddProductsToCartForm",
         "sourceModule": "@graphcommerce/google-datalayer/plugins/GoogleDatalayerAddProductsToCartForm",
         "targetExport": "AddProductsToCartForm",
         "targetModule": "@graphcommerce/magento-product",
@@ -173,7 +173,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "plugin",
+        "sourceExport": "graphqlConfig",
         "sourceModule": "@graphcommerce/graphcms-ui/plugins/hygraphGraphqlConfig",
         "targetExport": "graphqlConfig",
         "targetModule": "@graphcommerce/graphql",
@@ -197,7 +197,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "plugin",
+        "sourceExport": "hygraphPageContent",
         "sourceModule": "@graphcommerce/hygraph-dynamic-rows/plugins/hygraphDynamicRowsPageContent",
         "targetExport": "hygraphPageContent",
         "targetModule": "@graphcommerce/graphcms-ui",
@@ -205,7 +205,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "plugin",
+        "sourceExport": "useSignInForm",
         "sourceModule": "@graphcommerce/magento-cart/plugins/useSignInFormMergeCart",
         "targetExport": "useSignInForm",
         "targetModule": "@graphcommerce/magento-customer",
@@ -257,15 +257,15 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "plugin",
+        "sourceExport": "graphqlConfig",
         "sourceModule": "@graphcommerce/magento-graphql/plugins/magentoGraphqlConfig",
         "targetExport": "graphqlConfig",
-        "targetModule": "@graphcommerce/graphql/config",
+        "targetModule": "@graphcommerce/graphql",
         "type": "function",
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "PaymentMethodContextProvider",
         "sourceModule": "@graphcommerce/magento-payment-included/plugins/AddIncludedMethods",
         "targetExport": "PaymentMethodContextProvider",
         "targetModule": "@graphcommerce/magento-cart-payment-method",
@@ -289,7 +289,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "ProductPagePriceTiers",
         "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPagePriceTiers",
         "targetExport": "ProductPagePriceTiers",
         "targetModule": "@graphcommerce/magento-product",
@@ -297,7 +297,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "ProductPagePrice",
         "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPagePrice",
         "targetExport": "ProductPagePrice",
         "targetModule": "@graphcommerce/magento-product",
@@ -305,7 +305,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "ProductPageGallery",
         "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageGallery",
         "targetExport": "ProductPageGallery",
         "targetModule": "@graphcommerce/magento-product",
@@ -337,7 +337,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "AddProductsToCartForm",
         "sourceModule": "@graphcommerce/magento-wishlist/plugins/WishlistProductAddToCartFormPlugin",
         "targetExport": "AddProductsToCartForm",
         "targetModule": "@graphcommerce/magento-product",
@@ -345,7 +345,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "WishlistItemActionCard",
         "sourceModule": "@graphcommerce/magento-wishlist/plugins/ConfigurableWishlistItemActionCard",
         "targetExport": "WishlistItemActionCard",
         "targetModule": "@graphcommerce/magento-wishlist",
@@ -353,7 +353,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "WishlistItemActionCard",
         "sourceModule": "@graphcommerce/magento-wishlist/plugins/BundleWishlistItemActionCard",
         "targetExport": "WishlistItemActionCard",
         "targetModule": "@graphcommerce/magento-wishlist",
@@ -361,7 +361,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "ShippingMethodForm",
         "sourceModule": "@graphcommerce/magento-cart-pickup/plugins/AddPickupInStore",
         "targetExport": "ShippingMethodForm",
         "targetModule": "@graphcommerce/magento-cart-shipping-method",
@@ -369,7 +369,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "PaymentMethodContextProvider",
         "sourceModule": "@graphcommerce/magento-payment-braintree/plugins/AddBraintreeMethods",
         "targetExport": "PaymentMethodContextProvider",
         "targetModule": "@graphcommerce/magento-cart-payment-method",
@@ -377,7 +377,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "PaymentMethodContextProvider",
         "sourceModule": "@graphcommerce/mollie-magento-payment/plugins/AddMollieMethods",
         "targetExport": "PaymentMethodContextProvider",
         "targetModule": "@graphcommerce/magento-cart-payment-method",
@@ -385,7 +385,7 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "Plugin",
+        "sourceExport": "PaymentMethodContextProvider",
         "sourceModule": "@graphcommerce/magento-payment-paypal/plugins/AddPaypalMethods",
         "targetExport": "PaymentMethodContextProvider",
         "targetModule": "@graphcommerce/magento-cart-payment-method",
@@ -407,7 +407,7 @@ it('finds plugins', () => {
       {
         "enabled": false,
         "ifConfig": "demoMode",
-        "sourceExport": "Plugin",
+        "sourceExport": "RowLinks",
         "sourceModule": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoRowLinks",
         "targetExport": "RowLinks",
         "targetModule": "@graphcommerce/next-ui",
@@ -416,7 +416,7 @@ it('finds plugins', () => {
       {
         "enabled": false,
         "ifConfig": "demoMode",
-        "sourceExport": "Plugin",
+        "sourceExport": "RecentlyViewedProducts",
         "sourceModule": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoRecentlyViewedProducts",
         "targetExport": "RecentlyViewedProducts",
         "targetModule": "@graphcommerce/magento-recently-viewed-products",
@@ -425,7 +425,7 @@ it('finds plugins', () => {
       {
         "enabled": false,
         "ifConfig": "demoMode",
-        "sourceExport": "Plugin",
+        "sourceExport": "ProductListItemConfigurable",
         "sourceModule": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoProductListItemConfigurable",
         "targetExport": "ProductListItemConfigurable",
         "targetModule": "@graphcommerce/magento-product-configurable",
@@ -443,10 +443,10 @@ it('finds plugins', () => {
       {
         "enabled": false,
         "ifConfig": "googleTagmanagerId",
-        "sourceExport": "plugin",
+        "sourceExport": "sendEvent",
         "sourceModule": "@graphcommerce/googletagmanager/plugins/tagmanagerEvent",
         "targetExport": "sendEvent",
-        "targetModule": "@graphcommerce/google-datalayer/api/sendEvent",
+        "targetModule": "@graphcommerce/google-datalayer",
         "type": "function",
       },
       {
@@ -479,7 +479,7 @@ it('finds plugins', () => {
       {
         "enabled": false,
         "ifConfig": "compare",
-        "sourceExport": "Plugin",
+        "sourceExport": "ProductListItem",
         "sourceModule": "@graphcommerce/magento-compare/plugins/CompareAbleProductListItem",
         "targetExport": "ProductListItem",
         "targetModule": "@graphcommerce/magento-product",
@@ -497,7 +497,7 @@ it('finds plugins', () => {
       {
         "enabled": false,
         "ifConfig": "compare",
-        "sourceExport": "Plugin",
+        "sourceExport": "ProductPageAddToCartActionsRow",
         "sourceModule": "@graphcommerce/magento-compare/plugins/AddCompareToProductPage",
         "targetExport": "ProductPageAddToCartActionsRow",
         "targetModule": "@graphcommerce/magento-product",
@@ -506,7 +506,7 @@ it('finds plugins', () => {
       {
         "enabled": false,
         "ifConfig": "compare",
-        "sourceExport": "Plugin",
+        "sourceExport": "CartFab",
         "sourceModule": "@graphcommerce/magento-compare/plugins/AddCompareFabNextToCart",
         "targetExport": "CartFab",
         "targetModule": "@graphcommerce/magento-cart",
@@ -524,7 +524,7 @@ it('finds plugins', () => {
       {
         "enabled": false,
         "ifConfig": "configurableVariantValues.content",
-        "sourceExport": "Plugin",
+        "sourceExport": "ProductShortDescription",
         "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductShortDescription",
         "targetExport": "ProductShortDescription",
         "targetModule": "@graphcommerce/magento-product",
@@ -533,7 +533,7 @@ it('finds plugins', () => {
       {
         "enabled": false,
         "ifConfig": "configurableVariantValues.content",
-        "sourceExport": "Plugin",
+        "sourceExport": "ProductPageName",
         "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageName",
         "targetExport": "ProductPageName",
         "targetModule": "@graphcommerce/magento-product",
@@ -542,7 +542,7 @@ it('finds plugins', () => {
       {
         "enabled": false,
         "ifConfig": "configurableVariantValues.url",
-        "sourceExport": "Plugin",
+        "sourceExport": "ProductPageMeta",
         "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageMeta",
         "targetExport": "ProductPageMeta",
         "targetModule": "@graphcommerce/magento-product",
@@ -551,7 +551,7 @@ it('finds plugins', () => {
       {
         "enabled": false,
         "ifConfig": "configurableVariantValues.content",
-        "sourceExport": "Plugin",
+        "sourceExport": "ProductPageJsonLd",
         "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageJsonLd",
         "targetExport": "ProductPageJsonLd",
         "targetModule": "@graphcommerce/magento-product",
@@ -560,7 +560,7 @@ it('finds plugins', () => {
       {
         "enabled": false,
         "ifConfig": "configurableVariantValues.content",
-        "sourceExport": "Plugin",
+        "sourceExport": "ProductPageDescription",
         "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageDescription",
         "targetExport": "ProductPageDescription",
         "targetModule": "@graphcommerce/magento-product",
@@ -569,7 +569,7 @@ it('finds plugins', () => {
       {
         "enabled": false,
         "ifConfig": "recentlyViewedProducts.enabled",
-        "sourceExport": "Plugin",
+        "sourceExport": "ProductPageMeta",
         "sourceModule": "@graphcommerce/magento-recently-viewed-products/plugins/RegisterProductAsRecentlyViewed",
         "targetExport": "ProductPageMeta",
         "targetModule": "@graphcommerce/magento-product",
