@@ -44,3 +44,12 @@ Customise the code by creating plugins on the functions you want to adjust
 
 Sorting is defined by Algolia and can not be configured per category as each
 sorting option is a separate (virtual) index.
+
+## Todo
+
+- [] Customer group pricing
+- [] Search suggestions
+- [] Category search
+- [] Additional indexes
+- [] Analytics
+- [] Personalization
