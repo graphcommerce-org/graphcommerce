@@ -76,7 +76,8 @@
     "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "8.0.5",
     "@graphcommerce/next-config": "8.0.5",
     "@graphcommerce/prettier-config-pwa": "8.0.5",
-    "@graphcommerce/typescript-config-pwa": "8.0.5"
+    "@graphcommerce/typescript-config-pwa": "8.0.5",
+    "@graphcommerce/algolia-mesh": "8.1.0-canary.49"
   },
   "changesets": [
     "angry-jokes-lay",
@@ -85,6 +86,7 @@
     "chatty-goats-deliver",
     "chilly-readers-enjoy",
     "clean-poets-think",
+    "clever-cups-sort",
     "clever-eagles-lie",
     "clever-ears-change",
     "clever-shirts-invite",
@@ -100,6 +102,7 @@
     "eight-keys-allow",
     "empty-boats-kneel",
     "empty-glasses-rescue",
+    "empty-nails-battle",
     "fast-cows-rush",
     "fast-eels-help",
     "fifty-boats-complain",
@@ -115,6 +118,7 @@
     "gentle-gifts-float",
     "gorgeous-bobcats-think",
     "gorgeous-coins-poke",
+    "great-rules-pump",
     "happy-hats-train",
     "heavy-spiders-grow",
     "hip-pianos-sip",
@@ -144,6 +148,7 @@
     "nervous-bulldogs-relax",
     "nice-trainers-judge",
     "nine-poets-appear",
+    "ninety-countries-perform",
     "ninety-impalas-grab",
     "olive-days-brush",
     "olive-pumas-perform",
