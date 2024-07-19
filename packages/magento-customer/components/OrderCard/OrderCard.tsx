@@ -73,7 +73,7 @@ export function OrderCard(props: OrderCardProps) {
 
   return (
     <ListItemButton
-      href={`/account/orders/view?orderId=${number}`}
+      href={`/account/orders/view?orderNumber=${number}`}
       component={NextLink}
       className={classes.buttonRoot}
       sx={[
@@ -96,7 +96,7 @@ export function OrderCard(props: OrderCardProps) {
           <span>#{number}</span>
         </OrderRow>
         <OrderRow>
-          <OrderStateLabel items={items} />
+          <OrderStateLabel {...props} />
         </OrderRow>
         <Box className={classes.orderProducts}>
           <Box

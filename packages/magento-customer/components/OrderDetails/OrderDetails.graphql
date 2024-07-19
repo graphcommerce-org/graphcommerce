@@ -1,6 +1,8 @@
 fragment OrderDetails on CustomerOrder {
+  id
   number
   order_date
+  status
   invoices {
     id
     number
@@ -9,9 +11,7 @@ fragment OrderDetails on CustomerOrder {
   shipments {
     id
     tracking {
-      title
-      carrier
-      number
+      ...TrackingLink
     }
   }
   payment_methods {

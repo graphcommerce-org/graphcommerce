@@ -22,6 +22,10 @@ msgid "I understand that my account will be deleted and this can not be undone."
 msgstr "Capisco che il mio account verrà eliminato e che questa operazione non può essere annullata."
 
 #. js-lingui-generated-id
+msgid "Orders"
+msgstr ""
+
+#. js-lingui-generated-id
 msgid "Newletter"
 msgstr "Newletter"
 
@@ -36,6 +40,14 @@ msgstr "Non abbiamo trovato risultati"
 #. js-lingui-generated-id
 msgid "Name"
 msgstr "Nome"
+
+#. js-lingui-generated-id
+msgid "Shipping method"
+msgstr ""
+
+#. js-lingui-generated-id
+msgid "I understand that my order will be canceled and this can not be undone."
+msgstr ""
 
 #. js-lingui-generated-id
 msgid "<0>{name}</0> has been added to your shopping cart!"
@@ -288,6 +300,10 @@ msgid "Discover our collection and write your first review!"
 msgstr "Scopri la nostra collezione e scrivi la tua prima recensione!"
 
 #. js-lingui-generated-id
+msgid "Payment method"
+msgstr ""
+
+#. js-lingui-generated-id
 msgid "Did you mean: {list}"
 msgstr "Hai voluto dire: {list}"
 
@@ -351,6 +367,10 @@ msgstr "Hai dimenticato la password?"
 
 msgid "Free"
 msgstr "Gratis"
+
+#. js-lingui-generated-id
+msgid "Order #{orderNumber} not found"
+msgstr ""
 
 msgid "Grand total"
 msgstr "Totale"
@@ -431,6 +451,10 @@ msgstr "Sig."
 msgid "Mrs"
 msgstr "Sig.ra"
 
+#. js-lingui-generated-id
+msgid "Order has successfully been canceled"
+msgstr ""
+
 msgid "Name"
 msgstr "Nome"
 
@@ -464,9 +488,6 @@ msgstr "Non hai ancora un account?"
 msgid "No orders found"
 msgstr "Nessun ordine trovato"
 
-msgid "No payment information"
-msgstr "Nessuna informazione di pagamento"
-
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "Nessun problema! Inserisci il tuo indirizzo email e ti invieremo un'email con le istruzioni per reimpostare la tua password."
 
@@ -495,23 +516,11 @@ msgstr "Solo {amount_left_in_stock} pezzi disponibili."
 msgid "Or follow these links to get you back on track!"
 msgstr "O seguire questi link per riprendere il tuo percorso!"
 
-msgid "Order #{orderId}"
-msgstr "Ordine #{orderId}"
+msgid "Order #{orderNumber}"
+msgstr "Ordine #{orderNumber}"
 
 msgid "Order before 22:00"
 msgstr "Ordina prima delle 22:00"
-
-msgid "Order date"
-msgstr "data dell'ordine"
-
-msgid "Order details"
-msgstr "Dettagli dell'ordine"
-
-msgid "Order not found"
-msgstr "Ordine non trovato"
-
-msgid "Order number"
-msgstr "Numero ordine"
 
 msgid "Order summary"
 msgstr "Riepilogo ordine"
@@ -826,6 +835,10 @@ msgstr "Prova una ricerca differente"
 msgid "VAT Number"
 msgstr "Partita IVA"
 
+#. js-lingui-generated-id
+msgid "Reason"
+msgstr ""
+
 msgid "View Product"
 msgstr "Visualizza prodotto"
 
@@ -879,6 +892,10 @@ msgstr "Scritto da {nickname}"
 
 msgid "Written {0} reviews"
 msgstr "Scritto {0} recensioni"
+
+#. js-lingui-generated-id
+msgid "Are you sure you want to cancel your order? This action is not reversable."
+msgstr ""
 
 msgid "You are reviewing {0}"
 msgstr "Stai recensendo {0}"
@@ -979,6 +996,10 @@ msgid "canceled"
 msgstr "annullato"
 
 #. js-lingui-generated-id
+msgid "Shipping address"
+msgstr ""
+
+#. js-lingui-generated-id
 msgid "Shipping Note"
 msgstr "Nota di spedizione"
 
@@ -987,12 +1008,28 @@ msgid "Your message has been received, we will contact you as soon as we can"
 msgstr "Il vostro messaggio è stato ricevuto, vi contatteremo al più presto."
 
 #. js-lingui-generated-id
+msgid "Order #{orderNumber}"
+msgstr ""
+
+#. js-lingui-generated-id
 msgid "Invalid phone number"
 msgstr "Numero di telefono non valido"
 
 #. js-lingui-generated-id
 msgid "Submit"
 msgstr "Invia"
+
+#. js-lingui-generated-id
+msgid "Billing address"
+msgstr ""
+
+#. js-lingui-generated-id
+msgid "Order date"
+msgstr ""
+
+#. js-lingui-generated-id
+msgid "Back"
+msgstr ""
 
 msgid "invoiced"
 msgstr "fatturato"
@@ -1010,6 +1047,10 @@ msgid "All products"
 msgstr "Tutti i prodotti"
 
 #. js-lingui-generated-id
+msgid "No payment information"
+msgstr ""
+
+#. js-lingui-generated-id
 msgid "View shopping cart"
 msgstr "Visualizza carrello"
 
@@ -1023,11 +1064,19 @@ msgstr "Ottenere l'ordine"
 msgid "one product"
 msgstr "un prodotto"
 
+#. js-lingui-generated-id
+msgid "Cancel order #{orderNumber}"
+msgstr ""
+
 msgid "partially processed"
 msgstr "parzialmente elaborato"
 
 msgid "processed"
 msgstr "elaborato"
+
+#. js-lingui-generated-id
+msgid "Order #{orderNumber} can not be canceled"
+msgstr ""
 
 msgid "refunded"
 msgstr "rimborso"
@@ -1035,8 +1084,20 @@ msgstr "rimborso"
 msgid "returned"
 msgstr "restituito"
 
+#. js-lingui-generated-id
+msgid "Order not found"
+msgstr ""
+
 msgid "shipped"
 msgstr "spedito"
+
+#. js-lingui-generated-id
+msgid "Cancel order"
+msgstr ""
+
+#. js-lingui-generated-id
+msgid "Reorder"
+msgstr ""
 
 #. js-lingui-generated-id
 msgid "Customer Service"
@@ -1049,6 +1110,10 @@ msgstr "L'email fornita non corrisponde all'email dell'account"
 #. js-lingui-generated-id
 msgid "Message"
 msgstr "Messaggio"
+
+#. js-lingui-generated-id
+msgid "Order details"
+msgstr ""
 
 #. js-lingui-generated-id
 msgid "Clear current filters"

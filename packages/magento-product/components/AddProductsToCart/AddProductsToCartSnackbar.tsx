@@ -1,19 +1,7 @@
 import { useFormState } from '@graphcommerce/ecommerce-ui'
-import { ApolloCartErrorSnackbar } from '@graphcommerce/magento-cart'
-import {
-  Button,
-  ErrorSnackbar,
-  ErrorSnackbarProps,
-  iconChevronRight,
-  IconSvg,
-  ListFormat,
-  MessageSnackbar,
-  MessageSnackbarProps,
-  nonNullable,
-  useLocale,
-} from '@graphcommerce/next-ui'
-import { Plural, Trans } from '@lingui/macro'
+import { ErrorSnackbarProps, MessageSnackbarProps, nonNullable } from '@graphcommerce/next-ui'
 import { useMemo } from 'react'
+import { AddProductsToCartSnackbarMessage } from './AddProductsToCartSnackbarMessage'
 import { findAddedItems } from './findAddedItems'
 import { toUserErrors } from './toUserErrors'
 import { useFormAddProductsToCart } from './useFormAddProductsToCart'
@@ -27,9 +15,9 @@ export type AddProductsToCartSnackbarProps = {
 export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps) {
   const { errorSnackbar, successSnackbar, disableSuccessSnackbar } = props
   const { error, data, redirect, control, submittedVariables } = useFormAddProductsToCart()
+
   const formState = useFormState({ control })
 
-  const locale = useLocale()
   const userErrors = toUserErrors(data)
 
   const showSuccess =
@@ -45,60 +33,14 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
     [data, submittedVariables],
   )
 
-  const showErrorSnackbar = userErrors.length > 0
-
   return (
-    <>
-      {error && <ApolloCartErrorSnackbar error={error} />}
-
-      {showErrorSnackbar && (
-        <ErrorSnackbar variant='pill' severity='error' {...errorSnackbar} open={showErrorSnackbar}>
-          <>{data?.addProductsToCart?.user_errors?.map((e) => e?.message).join(', ')}</>
-        </ErrorSnackbar>
-      )}
-
-      {showSuccess && (
-        <MessageSnackbar
-          variant='pill'
-          severity='success'
-          {...successSnackbar}
-          open={showSuccess}
-          action={
-            <Button
-              href='/cart'
-              id='view-shopping-cart-button'
-              size='medium'
-              variant='pill'
-              color='secondary'
-              endIcon={<IconSvg src={iconChevronRight} />}
-              sx={{ display: 'flex' }}
-            >
-              <Trans>View shopping cart</Trans>
-            </Button>
-          }
-        >
-          <Plural
-            value={addedItems.length}
-            one={
-              <Trans>
-                <ListFormat listStyle='long' type='conjunction'>
-                  {addedItems.map((item) => item?.itemInCart?.product.name).filter(nonNullable)}
-                </ListFormat>{' '}
-                has been added to your shopping cart
-              </Trans>
-            }
-            two={
-              <Trans>
-                <ListFormat listStyle='long' type='conjunction'>
-                  {addedItems.map((item) => item?.itemInCart?.product.name).filter(nonNullable)}
-                </ListFormat>{' '}
-                have been added to your shopping cart!
-              </Trans>
-            }
-            other={<Trans># products have been added to your shopping cart!</Trans>}
-          />
-        </MessageSnackbar>
-      )}
-    </>
+    <AddProductsToCartSnackbarMessage
+      error={error}
+      showSuccess={showSuccess}
+      userErrors={data?.addProductsToCart?.user_errors.filter(nonNullable)}
+      addedItems={addedItems.map((item) => item.itemInCart?.product.name).filter(nonNullable)}
+      errorSnackbar={errorSnackbar}
+      successSnackbar={successSnackbar}
+    />
   )
 }
