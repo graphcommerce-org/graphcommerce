@@ -3,8 +3,9 @@ import type {
   AggregationOption,
   CategoryResult,
   CategoryTree,
+  MeshContext,
 } from '@graphcommerce/graphql-mesh'
-import { AttributeList } from './attributeList'
+import { AttributeList } from './getAttributeList'
 import { GetStoreConfigReturn } from './getStoreConfig'
 
 type AlgoliaFacets = { [facetName: string]: AlgoliaFacetOption }
@@ -160,10 +161,7 @@ export function algoliaFacetsToAggregations(
       aggregations.push({
         label,
         attribute_code: 'price',
-        options: algoliaPricesToPricesAggregations(
-          algoliaFacets[facetIndex],
-          storeConfig.default_display_currency_code,
-        ),
+        options: algoliaPricesToPricesAggregations(algoliaFacets[facetIndex]),
         position,
       })
     } else {
@@ -184,4 +182,21 @@ export function algoliaFacetsToAggregations(
   })
 
   return aggregations
+}
+
+export function getCategoryList(context: MeshContext) {
+  return context.m2.Query.categories({
+    args: { filters: {} },
+    selectionSet: /* GraphQL */ `
+      {
+        items {
+          uid
+          name
+          id
+          position
+        }
+      }
+    `,
+    context,
+  })
 }

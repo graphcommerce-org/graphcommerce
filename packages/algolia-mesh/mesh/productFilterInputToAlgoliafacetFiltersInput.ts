@@ -69,12 +69,12 @@ export function productFilterInputToAlgoliaNumericFiltersInput(
         filterArray.push(
           {
             numericFilters_Input: {
-              String: `price.${storeConfig.default_display_currency_code}.default >= ${value.from}`,
+              String: `${key}.${storeConfig.default_display_currency_code}.default >= ${value.from}`,
             },
           },
           {
             numericFilters_Input: {
-              String: `price.${storeConfig.default_display_currency_code}.default <= ${value.to}`,
+              String: `${key}.${storeConfig.default_display_currency_code}.default <= ${value.to}`,
             },
           },
         )
