@@ -1,0 +1,28 @@
+{
+  "name": "@graphcommerce/algolia-mesh",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "8.1.0-canary.49",
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "scripts": {
+    "generate": "tsx generate-spec.mts"
+  },
+  "peerDependencies": {
+    "@graphcommerce/graphql-mesh": "^8.1.0-canary.49",
+    "@graphcommerce/magento-product": "^8.1.0-canary.49",
+    "@graphcommerce/magento-search": "^8.1.0-canary.49",
+    "@graphcommerce/next-config": "^8.1.0-canary.49",
+    "@graphcommerce/next-ui": "^8.1.0-canary.49"
+  },
+  "devDependencies": {
+    "graphql": "^16.0.0",
+    "tsx": "^4.16.2"
+  }
+}

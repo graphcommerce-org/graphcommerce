@@ -1,6 +1,5 @@
 import { debounce } from '@graphcommerce/ecommerce-ui'
 import {
-  ApolloQueryResult,
   ApolloClient,
   useQuery,
   useInContextQuery,
@@ -9,7 +8,12 @@ import {
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { showPageLoadIndicator } from '@graphcommerce/next-ui'
 import { useEventCallback } from '@mui/material'
-import { FilterFormProviderProps, ProductFiltersDocument } from '../components'
+import {
+  FilterFormProviderProps,
+  ProductFiltersDocument,
+  ProductFiltersQuery,
+  ProductFiltersQueryVariables,
+} from '../components'
 import {
   ProductListDocument,
   ProductListQuery,
@@ -20,6 +24,7 @@ import { ProductListParams, toProductListParams } from '../components/ProductLis
 import { useRouterFilterParams } from '../components/ProductListItems/filteredProductList'
 import {
   productListApplyCategoryDefaults,
+  categoryDefaultsToProductListFilters,
   useProductListApplyCategoryDefaults,
 } from '../components/ProductListItems/productListApplyCategoryDefaults'
 
@@ -30,6 +35,7 @@ type Next = Parameters<NonNullable<FilterFormProviderProps['handleSubmit']>>[1]
 export const prefetchProductList = debounce(
   async (
     variables: ProductListQueryVariables,
+    filtersVariables: ProductFiltersQueryVariables,
     next: Next,
     client: ApolloClient<any>,
     shallow: boolean,
@@ -47,8 +53,7 @@ export const prefetchProductList = debounce(
     const productFilters = client.query({
       query: ProductFiltersDocument,
       variables: {
-        filters: { category_uid: variables.filters?.category_uid },
-        search: variables.search,
+        ...filtersVariables,
         context,
       },
     })
@@ -91,16 +96,23 @@ export const prefetchProductList = debounce(
  * - Handles customer specific product list queries
  */
 export function useProductList<
-  T extends ProductListQuery & {
-    params?: ProductListParams
-    category?: CategoryDefaultFragment | null | undefined
-  },
+  T extends ProductListQuery &
+    ProductFiltersQuery & {
+      params?: ProductListParams
+      category?: CategoryDefaultFragment | null | undefined
+    },
 >(props: T) {
   const { category } = props
   const { params, shallow } = useRouterFilterParams(props)
   const variables = useProductListApplyCategoryDefaults(params, category)
 
   const result = useInContextQuery(ProductListDocument, { variables, skip: !shallow }, props)
+  const filters = useInContextQuery(
+    ProductFiltersDocument,
+    { variables: categoryDefaultsToProductListFilters(variables), skip: !shallow },
+    props,
+  )
+
   const storeConfig = useQuery(StoreConfigDocument).data
 
   const handleSubmit: NonNullable<FilterFormProviderProps['handleSubmit']> = useEventCallback(
@@ -115,9 +127,22 @@ export function useProductList<
 
       const shallowNow =
         JSON.stringify(vars.filters?.category_uid) === JSON.stringify(params?.filters.category_uid)
-      await prefetchProductList(vars, next, result.client, shallowNow)
+      await prefetchProductList(
+        vars,
+        categoryDefaultsToProductListFilters(vars),
+        next,
+        result.client,
+        shallowNow,
+      )
     },
   )
 
-  return { ...props, ...result.data, params, mask: result.mask, handleSubmit }
+  return {
+    ...props,
+    filters: filters.data.filters,
+    ...result.data,
+    params,
+    mask: result.mask,
+    handleSubmit,
+  }
 }
