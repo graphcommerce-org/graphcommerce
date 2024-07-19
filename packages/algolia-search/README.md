@@ -1,11 +1,11 @@
 # Algolia Search
 
+❗️❗️ NOT SUPPORTED: Does not work with productFiltersPro and does not work with
+ProductListLayout/\* components. No further development will be done. Please use
+[@graphcommerce/algolia-mesh](../algolia-mesh/README.md) ❗️❗️
+
 Implementation of Algolia Instant Search inside Graphcommerce. Add client or
 server side product, category and pages search to your project!
-
-❗️❗️ Does not work with productFiltersPro and does not work with
-ProductListLayout/\* components. Further development has been halted. Please use
-algolia-mesh ❗️❗️
 
 ## Installation
 
