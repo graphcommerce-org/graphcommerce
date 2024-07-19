@@ -1,11 +1,6 @@
-import { AddProductsToCartSnackbarMessage } from '@graphcommerce/magento-product'
-import {
-  Button,
-  iconChevronRight,
-  IconSvg,
-  LinkOrButton,
-  nonNullable,
-} from '@graphcommerce/next-ui'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { AddProductsToCartSnackbarMessage } from '@graphcommerce/magento-product/components/AddProductsToCart/AddProductsToCartSnackbarMessage'
+import { iconChevronRight, IconSvg, LinkOrButton, nonNullable } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
 import { Box } from '@mui/material'
