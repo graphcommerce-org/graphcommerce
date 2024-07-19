@@ -1,5 +1,5 @@
-query GetAlgoliaSettings {
-  algolia_getSettings(indexName: "magento2_demoen_US_products") {
+query GetAlgoliaSettings($indexName: String!) {
+  algolia_getSettings(indexName: $indexName) {
     attributesForFaceting
     replicas
     paginationLimitedTo
