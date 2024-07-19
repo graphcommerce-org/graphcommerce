@@ -96,7 +96,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
             billingAddress: { same_as_shipping: true },
             shippingAddress: {
               customer_address_id,
-              customer_notes: vars.shippingAddress.customer_notes ?? '',
+              customer_notes: vars.shippingAddress?.customer_notes ?? '',
             },
           }
         case 'shipping':
@@ -104,7 +104,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
             ...vars,
             shippingAddress: {
               customer_address_id,
-              customer_notes: vars.shippingAddress.customer_notes ?? '',
+              customer_notes: vars.shippingAddress?.customer_notes ?? '',
             },
           }
         case 'billing':

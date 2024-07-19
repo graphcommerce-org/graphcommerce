@@ -8,7 +8,8 @@ import {
   OrderItems,
   OrderDetailPageDocument,
   OrderStateLabel,
-  OrderActionButtons,
+  ReorderItems,
+  CancelOrderForm,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -20,7 +21,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
-import { Container, Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -29,57 +30,56 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function OrderDetailPage() {
   const router = useRouter()
-  const { orderId } = router.query
+  const { orderNumber } = router.query
 
   const orders = useCustomerQuery(OrderDetailPageDocument, {
     fetchPolicy: 'cache-and-network',
-    variables: { orderNumber: orderId as string },
+    variables: { orderNumber: orderNumber as string },
   })
   const { data } = orders
   const images = useOrderCardItemImages(data?.customer?.orders)
   const order = data?.customer?.orders?.items?.[0]
 
   return (
-    <>
-      <LayoutOverlayHeader>
+    <WaitForCustomer waitFor={orders}>
+      <LayoutOverlayHeader primary={order && <ReorderItems order={order} />}>
         <LayoutTitle size='small' component='span' icon={iconBox}>
-          <Trans>Order #{orderId}</Trans>
+          <Trans>Order #{orderNumber}</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <WaitForCustomer waitFor={orders}>
-          {(!orderId || !order) && (
-            <IconHeader src={iconBox} size='large'>
-              <Trans>Order not found</Trans>
-            </IconHeader>
-          )}
+        {(!orderNumber || !order) && (
+          <IconHeader src={iconBox} size='large'>
+            <Trans>Order not found</Trans>
+          </IconHeader>
+        )}
 
-          <LayoutTitle
-            icon={iconBox}
-            gutterBottom={false}
-            sx={(theme) => ({ mb: theme.spacings.xxs })}
-          >
-            <Trans>Order #{orderId}</Trans>
-          </LayoutTitle>
+        <LayoutTitle
+          icon={iconBox}
+          gutterBottom={false}
+          sx={(theme) => ({ mb: theme.spacings.xxs })}
+        >
+          <Trans>Order #{orderNumber}</Trans>
+        </LayoutTitle>
 
-          {orderId && order && (
-            <>
-              <PageMeta
-                title={i18n._(/* i18n */ 'Order #{orderId}', { orderId })}
-                metaRobots={['noindex']}
-              />
-              <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
-                <OrderStateLabel {...order} />
-              </Typography>
-              <OrderActionButtons {...order} />
-              <OrderDetails {...order} />
-              <OrderItems {...order} images={images} />
-              <OrderTotals {...order} />
-            </>
-          )}
-        </WaitForCustomer>
+        {orderNumber && order && (
+          <>
+            <PageMeta
+              title={i18n._(/* i18n */ 'Order #{orderNumber}', { orderNumber })}
+              metaRobots={['noindex']}
+            />
+            <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
+              <OrderStateLabel {...order} />
+            </Typography>
+            <OrderDetails {...order} />
+            <OrderItems {...order} images={images} />
+            <OrderTotals {...order} />
+
+            <CancelOrderForm order={order} />
+          </>
+        )}
       </Container>
-    </>
+    </WaitForCustomer>
   )
 }
 

@@ -369,8 +369,8 @@ msgid "Free"
 msgstr "Gratis"
 
 #. js-lingui-generated-id
-msgid "Order #{orderId} not found"
-msgstr "Pedido #{orderId} no encontrado"
+msgid "Order #{orderNumber} not found"
+msgstr "Pedido #{orderNumber} no encontrado"
 
 msgid "Grand total"
 msgstr "Total"
@@ -516,8 +516,8 @@ msgstr "Solo quedan {amount_left_in_stock} en stock."
 msgid "Or follow these links to get you back on track!"
 msgstr "O siga estos enlaces para volver a la pista!"
 
-msgid "Order #{orderId}"
-msgstr "Pedido #{orderId}"
+msgid "Order #{orderNumber}"
+msgstr "Pedido #{orderNumber}"
 
 msgid "Order before 22:00"
 msgstr "Pedido antes de las 22:00"
@@ -1008,8 +1008,8 @@ msgid "Your message has been received, we will contact you as soon as we can"
 msgstr "Su mensaje ha sido recibido, nos pondremos en contacto con usted lo antes posible."
 
 #. js-lingui-generated-id
-msgid "Order #{orderId}"
-msgstr "Pedido #{orderId}"
+msgid "Order #{orderNumber}"
+msgstr "Pedido #{orderNumber}"
 
 #. js-lingui-generated-id
 msgid "Invalid phone number"
@@ -1065,8 +1065,8 @@ msgid "one product"
 msgstr "un producto"
 
 #. js-lingui-generated-id
-msgid "Cancel order #{orderId}"
-msgstr "Cancelar pedido #{orderId}"
+msgid "Cancel order #{orderNumber}"
+msgstr "Cancelar pedido #{orderNumber}"
 
 msgid "partially processed"
 msgstr "parcialmente procesado"
@@ -1075,8 +1075,8 @@ msgid "processed"
 msgstr "procesado"
 
 #. js-lingui-generated-id
-msgid "Order #{orderId} can not be canceled"
-msgstr "El pedido #{orderId} no se puede cancelar"
+msgid "Order #{orderNumber} can not be canceled"
+msgstr "El pedido #{orderNumber} no se puede cancelar"
 
 msgid "refunded"
 msgstr "reembolsado"

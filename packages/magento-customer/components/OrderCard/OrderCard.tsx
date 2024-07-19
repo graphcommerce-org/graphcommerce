@@ -73,7 +73,7 @@ export function OrderCard(props: OrderCardProps) {
 
   return (
     <ListItemButton
-      href={`/account/orders/view?orderId=${number}`}
+      href={`/account/orders/view?orderNumber=${number}`}
       component={NextLink}
       className={classes.buttonRoot}
       sx={[

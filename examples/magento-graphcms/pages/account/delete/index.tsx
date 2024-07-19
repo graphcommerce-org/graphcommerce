@@ -21,8 +21,6 @@ function AccountDeletePage() {
       </LayoutOverlayHeader>
 
       <Container maxWidth='md'>
-        <PageMeta title={t`Delete account`} metaRobots={['noindex']} />
-
         <LayoutTitle icon={iconBin}>
           <Trans>Delete account</Trans>
         </LayoutTitle>

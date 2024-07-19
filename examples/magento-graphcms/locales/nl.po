@@ -369,8 +369,8 @@ msgid "Free"
 msgstr "Gratis"
 
 #. js-lingui-generated-id
-msgid "Order #{orderId} not found"
-msgstr "Order #{orderId} niet gevonden"
+msgid "Order #{orderNumber} not found"
+msgstr "Order #{orderNumber} niet gevonden"
 
 msgid "Grand total"
 msgstr "Totaal"
@@ -516,8 +516,8 @@ msgstr "Nog maar {amount_left_in_stock} op voorraad."
 msgid "Or follow these links to get you back on track!"
 msgstr "Of klik op één van deze links om weer op het pad te komen!"
 
-msgid "Order #{orderId}"
-msgstr "Bestelling #{orderId}"
+msgid "Order #{orderNumber}"
+msgstr "Bestelling #{orderNumber}"
 
 msgid "Order before 22:00"
 msgstr "Bestel voor 22:00"
@@ -1008,8 +1008,8 @@ msgid "Your message has been received, we will contact you as soon as we can"
 msgstr "Uw bericht is ontvangen, we nemen zo snel mogelijk contact met u op."
 
 #. js-lingui-generated-id
-msgid "Order #{orderId}"
-msgstr "Bestelling #{orderId}"
+msgid "Order #{orderNumber}"
+msgstr "Bestelling #{orderNumber}"
 
 #. js-lingui-generated-id
 msgid "Invalid phone number"
@@ -1065,8 +1065,8 @@ msgid "one product"
 msgstr "één product"
 
 #. js-lingui-generated-id
-msgid "Cancel order #{orderId}"
-msgstr "Annuleer bestelling #{orderId}"
+msgid "Cancel order #{orderNumber}"
+msgstr "Annuleer bestelling #{orderNumber}"
 
 msgid "partially processed"
 msgstr "gedeeltelijk verwerkt"
@@ -1075,8 +1075,8 @@ msgid "processed"
 msgstr "verwerkt"
 
 #. js-lingui-generated-id
-msgid "Order #{orderId} can not be canceled"
-msgstr "Bestelling #{orderId} kan niet worden geannuleerd"
+msgid "Order #{orderNumber} can not be canceled"
+msgstr "Bestelling #{orderNumber} kan niet worden geannuleerd"
 
 msgid "refunded"
 msgstr "terug betaald"
@@ -1097,7 +1097,7 @@ msgstr "Bestelling annuleren"
 
 #. js-lingui-generated-id
 msgid "Reorder"
-msgstr "Nabestellen"
+msgstr "Opnieuw bestellen"
 
 #. js-lingui-generated-id
 msgid "Customer Service"

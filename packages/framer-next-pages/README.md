@@ -87,7 +87,7 @@ Example routes:
 
 - `pages/account.tsx`
 - `pages/account/orders.tsx`
-- `pages/account/orders/[orderId].tsx`
+- `pages/account/orders/[orderNumber].tsx`
 
 ```tsx
 import { PageOptions } from '@graphcommerce/framer-next-pages'

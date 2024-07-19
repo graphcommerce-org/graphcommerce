@@ -1,41 +1,48 @@
 import { AddProductsToCartSnackbarMessage } from '@graphcommerce/magento-product'
-import { Button, nonNullable } from '@graphcommerce/next-ui'
+import {
+  Button,
+  iconChevronRight,
+  IconSvg,
+  LinkOrButton,
+  nonNullable,
+} from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
 import { Box } from '@mui/material'
 import { OrderItemsFragment } from '../OrderItems/OrderItems.gql'
 import { ReorderItemsDocument } from './ReorderItems.gql'
 
-export type ReorderItemsProps = OrderItemsFragment & {
-  orderNumber: string
-}
+export type ReorderItemsProps = { order: OrderItemsFragment }
 
 export function ReorderItems(props: ReorderItemsProps) {
-  const { orderNumber, items } = props
+  const { order } = props
 
   const form = useFormGqlMutation(ReorderItemsDocument, {
-    defaultValues: {
-      orderNumber,
-    },
+    defaultValues: { orderNumber: order.number },
   })
-
   const { formState, handleSubmit, error, data: cartData } = form
-
   const submitHandler = handleSubmit(() => {})
 
   const errors = cartData?.reorderItems?.userInputErrors
   const cart = cartData?.reorderItems?.cart
 
-  if (!items) return null
+  if (!order.items) return null
 
   return (
     <Box component='form' onSubmit={submitHandler}>
-      <Button variant='contained' color='primary' type='submit' loading={formState.isSubmitting}>
+      <LinkOrButton
+        color='secondary'
+        button={{ variant: 'pill', sx: { whiteSpace: 'nowrap' } }}
+        link={{ whiteSpace: 'nowrap' }}
+        type='submit'
+        loading={formState.isSubmitting}
+        endIcon={<IconSvg src={iconChevronRight} />}
+      >
         <Trans>Reorder</Trans>
-      </Button>
+      </LinkOrButton>
 
       <AddProductsToCartSnackbarMessage
-        addedItems={items.map((item) => item?.product_name).filter(nonNullable)}
+        addedItems={order.items.map((item) => item?.product_name).filter(nonNullable)}
         error={error}
         userErrors={errors?.filter(nonNullable)}
         showSuccess={!!cart}
