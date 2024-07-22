@@ -1,6 +1,6 @@
+import { RichText } from '@graphcommerce/graphcms-ui'
 import { ColumnOne } from '@graphcommerce/next-ui'
 import { RowColumnOneFragment } from './RowColumnOne.gql'
-import { RichText } from '@graphcommerce/graphcms-ui'
 
 type RowColumnOneDoubleSpreadProps = RowColumnOneFragment
 
