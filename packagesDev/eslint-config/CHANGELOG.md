@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.63
+
+### Patch Changes
+
+- [`0acfda7`](https://github.com/graphcommerce-org/graphcommerce/commit/0acfda73760921d74412c8c8bc8e8de5732e1f39) - Move back to eslint 8 ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.62
 
 ## 9.0.0-canary.61
