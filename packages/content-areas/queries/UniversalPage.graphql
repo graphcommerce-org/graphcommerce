@@ -1,5 +1,7 @@
 query UniversalPage($input: UniversalPageInput!) {
-  pageContent(input: $input) {
-    ...UniversalPage_Data
+  common {
+    pageContent(input: $input) {
+      ...UniversalPage_Data
+    }
   }
 }

@@ -2933,6 +2933,28 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@graphcommerce/content-areas@workspace:packages/content-areas":
+  version: 0.0.0-use.local
+  resolution: "@graphcommerce/content-areas@workspace:packages/content-areas"
+  peerDependencies:
+    "@graphcommerce/eslint-config-pwa": ^8.0.0-canary.95
+    "@graphcommerce/graphql": ^8.0.0-canary.95
+    "@graphcommerce/magento-product": ^8.0.0-canary.95
+    "@graphcommerce/next-ui": ^8.0.0-canary.95
+    "@graphcommerce/prettier-config-pwa": ^8.0.0-canary.95
+    "@graphcommerce/react-hook-form": ^8.0.0-canary.95
+    "@graphcommerce/typescript-config-pwa": ^8.0.0-canary.95
+    "@lingui/core": ^4.2.1
+    "@lingui/macro": ^4.2.1
+    "@lingui/react": ^4.2.1
+    "@mui/material": ^5.10.16
+    framer-motion: ^10.0.0
+    next: "*"
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  languageName: unknown
+  linkType: soft
+
 "@graphcommerce/demo-magento-graphcommerce@npm:9.0.0-canary.62, @graphcommerce/demo-magento-graphcommerce@workspace:packages/demo-magento-graphcommerce":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/demo-magento-graphcommerce@workspace:packages/demo-magento-graphcommerce"

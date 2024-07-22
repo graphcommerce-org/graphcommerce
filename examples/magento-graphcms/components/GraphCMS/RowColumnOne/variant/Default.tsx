@@ -1,6 +1,6 @@
 import { ColumnOne } from '@graphcommerce/next-ui'
 import type { RowColumnOneFragment } from '../RowColumnOne.gql'
-import { RichTextProps, RichText } from '../../RichText'
+import { RichText, RichTextProps } from '@graphcommerce/graphcms-ui'
 
 type RowColumnOneProps = RowColumnOneFragment & {
   richTextOne?: Omit<RichTextProps, 'raw'>
