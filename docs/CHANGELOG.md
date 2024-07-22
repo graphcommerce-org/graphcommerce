@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.62
+
+### Patch Changes
+
+- [#2326](https://github.com/graphcommerce-org/graphcommerce/pull/2326) [`1faefa4`](https://github.com/graphcommerce-org/graphcommerce/commit/1faefa424df1f40e0f7d20def7192cf7752f761e) - Create a 'Third-Party Libraries' page that includes further details on tools such as Google Analytics and Google Tag Manager. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 9.0.0-canary.61
 
 ## 9.0.0-canary.60
