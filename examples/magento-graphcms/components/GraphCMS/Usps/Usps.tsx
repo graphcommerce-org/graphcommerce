@@ -1,6 +1,5 @@
+import { Asset, RichText } from '@graphcommerce/graphcms-ui'
 import { UspList, UspListItem, UspListProps } from '@graphcommerce/next-ui'
-import { Asset } from '../Asset/Asset'
-import { RichText } from '@graphcommerce/graphcms-ui'
 import { UspsQueryFragment } from './UspsQueryFragment.gql'
 
 export type ProductUspsProps = UspsQueryFragment & Pick<UspListProps, 'size'>

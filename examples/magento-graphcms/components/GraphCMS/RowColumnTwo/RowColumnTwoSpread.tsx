@@ -1,7 +1,6 @@
+import { getNodeLength, RichText } from '@graphcommerce/graphcms-ui'
+import { ElementOrTextNode } from '@graphcommerce/graphcms-ui/components/RichText/types'
 import { ColumnTwoSpread } from '@graphcommerce/next-ui'
-import { RichText } from '@graphcommerce/graphcms-ui'
-import { getNodeLength } from '../RichText/getNodeLength'
-import { ElementOrTextNode } from '../RichText/types'
 import { RowColumnTwoFragment } from './RowColumnTwo.gql'
 
 const getColumnCount = (props: RowColumnTwoFragment, columnId: number) => {

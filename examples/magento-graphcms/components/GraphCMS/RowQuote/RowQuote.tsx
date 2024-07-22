@@ -1,6 +1,5 @@
-import { Quote } from '@graphcommerce/next-ui'
-import React from 'react'
 import { RichText } from '@graphcommerce/graphcms-ui'
+import { Quote } from '@graphcommerce/next-ui'
 import { RowQuoteFragment } from './RowQuote.gql'
 
 type RowQuoteProps = RowQuoteFragment

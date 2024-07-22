@@ -1,6 +1,9 @@
-import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { InContextMaskProvider, useInContextQuery } from '@graphcommerce/graphql'
-import { ProductListDocument, ProductListItemsFragment } from '@graphcommerce/magento-product'
+import {
+  ProductListItemRenderer,
+  ProductListDocument,
+  ProductListItemsFragment,
+} from '@graphcommerce/magento-product'
 import { ProductSpecsFragment } from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.gql'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { RowProductFragment } from './RowProduct.gql'

@@ -1,6 +1,6 @@
+import { RichText, RichTextProps } from '@graphcommerce/graphcms-ui'
 import { VariantMessage } from '@graphcommerce/next-ui'
 import type { RowColumnOneFragment } from '../RowColumnOne.gql'
-import { RichText } from '@graphcommerce/graphcms-ui'
 
 type RowColumnOneProps = RowColumnOneFragment & {
   richTextOne?: Omit<RichTextProps, 'raw'>

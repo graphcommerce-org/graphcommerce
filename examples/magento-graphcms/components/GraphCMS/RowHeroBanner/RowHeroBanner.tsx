@@ -1,7 +1,7 @@
+import { RichText } from '@graphcommerce/graphcms-ui'
 import { breakpointVal, HeroBanner } from '@graphcommerce/next-ui'
 import { Button } from '@mui/material'
 import { RowHeroBannerFragment } from './RowHeroBanner.gql'
-import { RichText } from '@graphcommerce/graphcms-ui'
 
 export function RowHeroBanner(props: RowHeroBannerFragment) {
   const { copy, heroAsset, pageLinks } = props

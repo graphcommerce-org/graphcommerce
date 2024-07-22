@@ -1,3 +1,4 @@
+import { RichText } from '@graphcommerce/graphcms-ui'
 import {
   IconBlock,
   IconBlocks,
@@ -7,7 +8,6 @@ import {
   IconSvg,
 } from '@graphcommerce/next-ui'
 import { RowServiceOptionsFragment } from './RowServiceOptions.gql'
-import { RichText } from '@graphcommerce/graphcms-ui'
 
 type RowServiceOptionsProps = RowServiceOptionsFragment
 
