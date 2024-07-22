@@ -11,15 +11,15 @@ import {
 } from '@graphcommerce/next-ui'
 import {
   Controller,
+  FormPersist,
   useForm,
   useFormCompose,
   UseFormComposeOptions,
-  useFormPersist,
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Box, FormControl, FormHelperText, SxProps, Theme } from '@mui/material'
 import { useEffect } from 'react'
-import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
+import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 import { useCartLock } from '../hooks/useCartLock'
 
 export type PaymentMethodTogglesProps = Pick<UseFormComposeOptions, 'step'> & {
@@ -50,8 +50,6 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
   const form = useForm<{ code: string | null; paymentMethod?: string }>({
     defaultValues: { code: lockState.method },
   })
-
-  useFormPersist({ form, name: 'PaymentMethodToggle' })
 
   const { control, handleSubmit, watch, register, setValue, formState } = form
 
@@ -216,6 +214,7 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
           </Box>
         </ScrollerProvider>
       </FormRow>
+      <FormPersist form={form} name='PaymentMethodToggles' />
     </Form>
   )
 }

@@ -93,10 +93,7 @@ export function CartItem(props: CartItemProps) {
         color='default'
         badgeContent={
           <RemoveItemFromCartFab
-            uid={uid}
-            quantity={quantity}
-            prices={prices}
-            product={product}
+            {...props}
             fabProps={{ className: classes.badge }}
             sx={(theme) => ({
               '& > button': {

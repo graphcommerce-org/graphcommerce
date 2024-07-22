@@ -14,7 +14,7 @@ import { Box } from '@mui/material'
 import { useMemo } from 'react'
 import { isFilterTypeEqual } from '../ProductListItems/filterTypes'
 import { useProductFiltersPro } from './ProductFiltersPro'
-import { FilterProps } from './ProductFiltersProAggregations'
+import type { FilterProps } from './ProductFiltersProAggregations'
 
 export function ProductFilterEqualSection(props: FilterProps) {
   const { aggregation } = props
@@ -66,7 +66,7 @@ export function ProductFilterEqualSection(props: FilterProps) {
           multiple
           layout='list'
           variant='default'
-          size='medium'
+          size='responsive'
           items={items}
           showMoreAfter={4}
         />

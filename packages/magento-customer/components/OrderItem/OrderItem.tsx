@@ -1,9 +1,6 @@
 import { Image } from '@graphcommerce/image'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import {
-  useProductLink,
-  ProductLinkProps,
-} from '@graphcommerce/magento-product/hooks/useProductLink'
+import { useProductLink } from '@graphcommerce/magento-product/hooks/useProductLink'
 import { Money } from '@graphcommerce/magento-store'
 import { responsiveVal, extendableComponent, NextLink } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'

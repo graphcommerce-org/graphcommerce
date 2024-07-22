@@ -1,19 +1,13 @@
-/**
- * - Boven de product description zetten? in rowrenderer zetten
- * - Hoe gaan we dit optioneel maken?
- * - Hoe gaan we dit upgradebaar maken? management sdk
- */
-
 import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import { ApolloClient, NormalizedCacheObject, cacheFirst } from '@graphcommerce/graphql'
 import {
-  AllDynamicRowsDocument,
   ConditionTextFragment,
   ConditionNumberFragment,
   ConditionOrFragment,
   ConditionAndFragment,
   DynamicRowsDocument,
 } from '../graphql'
+import { getAllHygraphDynamicRows } from './getAllHygraphDynamicRows'
 
 /**
  * This generally works the same way as lodash get, however, when encountering an array it will
@@ -85,6 +79,8 @@ function matchCondition(
   return false
 }
 
+type Page = HygraphPagesQuery['pages'][number]
+
 /**
  * Fetch the page content for the given urls.
  *
@@ -98,20 +94,18 @@ export async function hygraphDynamicRows(
   cached: boolean,
   additionalProperties?: Promise<object> | object,
 ): Promise<{ data: HygraphPagesQuery }> {
-  const alwaysCache = process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined
-  const fetchPolicy = cached ? alwaysCache : undefined
+  const fetchPolicy = cached ? cacheFirst(client) : undefined
 
-  const allRoutes = await client.query({ query: AllDynamicRowsDocument, fetchPolicy: alwaysCache })
+  const allRoutes = await getAllHygraphDynamicRows(client)
 
   // Get the required rowIds from the conditions
   const properties = { ...(await additionalProperties), url }
 
-  const rowIds = allRoutes.data.dynamicRows
+  const rowIds = allRoutes
     .filter((availableDynamicRow) =>
       availableDynamicRow.conditions.some((condition) => matchCondition(condition, properties)),
     )
     .map((row) => row.id)
-
   const dynamicRows =
     rowIds.length !== 0
       ? client.query({ query: DynamicRowsDocument, variables: { rowIds }, fetchPolicy })
@@ -119,14 +113,17 @@ export async function hygraphDynamicRows(
 
   const [pageResult, dynamicResult] = await Promise.all([pageQuery, dynamicRows])
 
+  const page = pageResult.data.pages[0] as Page | undefined
+
   // Create a copy of the content array.
-  const content = pageResult.data.pages[0]?.content ?? []
+  const content = [...(page?.content ?? [])]
 
   dynamicResult?.data.dynamicRows.forEach((dynamicRow) => {
     const { placement, target, rows, row } = dynamicRow
     if (!rows && !row) return
 
-    const rowsToMerge = rows.length > 0 ? rows : [row]
+    const rowsToMerge = rows
+    if (row && rows.length === 0) rowsToMerge.push(row)
 
     if (!target) {
       if (placement === 'BEFORE') content.unshift(...rowsToMerge)
@@ -142,6 +139,22 @@ export async function hygraphDynamicRows(
 
   if (!content.length) return pageResult
 
+  const dynamicPage: Page = {
+    id: 'dynamic-page',
+    __typename: 'Page',
+    metaRobots: 'INDEX_FOLLOW',
+    metaTitle: '',
+    metaDescription: '',
+    url: '',
+    content: [],
+    relatedPages: [],
+  }
+
   // Return the merged page result.
-  return { data: { ...pageResult.data, pages: [{ ...pageResult.data.pages[0], content }] } }
+  return {
+    data: {
+      ...pageResult.data,
+      pages: [{ ...dynamicPage, ...page, content }],
+    },
+  }
 }

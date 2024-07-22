@@ -1,0 +1,21 @@
+import type { ProductPageMetaProps } from '@graphcommerce/magento-product'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import { useMemoObject } from '@graphcommerce/next-ui'
+import { useEffect } from 'react'
+import { sendEvent } from '../api/sendEvent'
+import { productToViewItem } from '../mapping/productToViewItem/productToViewItem'
+
+export const config: PluginConfig = {
+  module: '@graphcommerce/magento-product',
+  type: 'component',
+}
+
+/** When a product is added to the Cart, send a Google Analytics event */
+export function ProductPageMeta(props: PluginProps<ProductPageMetaProps>) {
+  const { Prev, product } = props
+
+  const viewItem = useMemoObject(productToViewItem(product))
+  useEffect(() => sendEvent('view_item', viewItem), [viewItem])
+
+  return <Prev {...props} />
+}

@@ -1,4 +1,4 @@
-import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { Controller, FormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { FormControl, FormControlLabel, FormHelperText, Switch } from '@mui/material'
@@ -26,13 +26,12 @@ export function UpdateDefaultAddressForm(props: UpdateDefaultAddressFormProps) {
   const form = useFormGqlMutation(
     UpdateDefaultAddressDocument,
     { mode: 'onChange', defaultValues },
-    { errorPolicy: 'all' },
+    { errorPolicy: 'all', refetchQueries: ['AccountDashboardAddresses'] },
   )
 
   const { handleSubmit, control, error, reset, formState } = form
 
   const submit = handleSubmit(() => {})
-  useFormAutoSubmit({ form, submit })
 
   useEffect(() => {
     reset(defaultValues)
@@ -40,6 +39,7 @@ export function UpdateDefaultAddressForm(props: UpdateDefaultAddressFormProps) {
 
   return (
     <form onSubmit={() => {}} noValidate>
+      <FormAutoSubmit control={control} submit={submit} />
       <Controller
         name='defaultShipping'
         control={control}

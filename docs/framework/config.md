@@ -1,4 +1,12 @@
 <!-- Automatically generated from Config.graphqls -->
+### DatalayerConfig
+
+GoogleDatalayerConfig to allow enabling certain aspects of the datalayer
+
+#### coreWebVitals: boolean
+
+Enable core web vitals tracking for GraphCommerce
+
 # GraphCommerce configuration system
 
 Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file
@@ -58,7 +66,7 @@ Examples:
 
 You can export configuration by running `yarn graphcommerce export-config`
 
-## Extending the configuration in your  project
+## Extending the configuration in your project
 
 Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceStorefrontConfig inputs to add configuration.
 
@@ -101,9 +109,19 @@ GraphQL Magento endpoint.
 Examples:
 - https://magento2.test/graphql
 
+#### magentoVersion: number (required)
+
+Version of the Magento backend.
+
+Values: 245, 246, 247 for Magento 2.4.5, 2.4.6, 2.4.7 respectively.
+
 #### storefront: [GraphCommerceStorefrontConfig](#GraphCommerceStorefrontConfig)[] (required)
 
 All storefront configuration for the project
+
+#### breadcrumbs: boolean = `false`
+
+Configuration for the SidebarGallery component
 
 #### cartDisplayPricesInclTax: boolean
 
@@ -115,12 +133,12 @@ When Magento's StoreConfig adds this value, this can be replaced.
 
 Use compare functionality
 
-#### compareVariant: 'CHECKBOX' | 'ICON' = 'ICON'
+#### compareVariant: CHECKBOX | ICON = `ICON`
 
 By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
 This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
 
-#### configurableVariantForSimple: boolean = false
+#### configurableVariantForSimple: boolean = `false`
 
 If a simple product is part of a Configurable product page, should the simple product be
 rendered as a configured option of the configurable product page?
@@ -133,37 +151,53 @@ Magento also returns the Simple product and the Configurable product the simple 
 If that is the case we render the configurable product page instead of the simple product page but
 the options to select the simple product are pre-selected.
 
-#### configurableVariantValues: [MagentoConfigurableVariantValues](#MagentoConfigurableVariantValues) = { content: true, url: true }
+#### configurableVariantValues: [MagentoConfigurableVariantValues](#MagentoConfigurableVariantValues) = `{ content: true, url: true }`
 
 When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant.
 
 Enabling options here will allow switching of those variants.
 
-#### crossSellsHideCartItems: boolean = false
+#### crossSellsHideCartItems: boolean = `false`
 
 Determines if cross sell items should be shown when the user already has the product in their cart. This will result in a product will popping off the screen when you add it to the cart.
 
 Default: 'false'
 
-#### crossSellsRedirectItems: boolean = false
+#### crossSellsRedirectItems: boolean = `false`
 
 Determines if, after adding a cross-sell item to the cart, the user should be redirected to the cross-sell items of the product they just added.
 
 Default: 'false'
 
-#### customerRequireEmailConfirmation: boolean
+#### customerAddressNoteEnable: boolean
 
-Due to a limitation in the GraphQL API of Magento 2, we need to know if the
-customer requires email confirmation.
+Enables the shipping notes field in the checkout
 
-This value should match Magento 2's configuration value for
-`customer/create_account/confirm` and should be removed once we can query
+#### customerCompanyFieldsEnable: boolean
+
+Enables company fields inside the checkout:
+- Company name
+- VAT ID
+
+#### customerDeleteEnabled: boolean
+
+Enable customer account deletion through the account section
+
+#### customerXMagentoCacheIdDisable: boolean
+
+X-Magento-Cache-Id allows Varnish to cache requests that are made in the browser while users are logged in. For example the products query can now be cached for logged in users.
+
+This can be disabled when Varnish is running out of available memory.
+
+#### dataLayer: [DatalayerConfig](#DatalayerConfig)
+
+Datalayer config
 
 #### debug: [GraphCommerceDebugConfig](#GraphCommerceDebugConfig)
 
 Debug configuration for GraphCommerce
 
-#### demoMode: boolean = true
+#### demoMode: boolean = `true`
 
 Enables some demo specific code that is probably not useful for a project:
 
@@ -263,7 +297,7 @@ By default GraphCommerce will statically generate all product and category pages
 
 To enable next.js' preview mode, configure the secret you'd like to use.
 
-#### productFiltersLayout: 'DEFAULT' | 'SIDEBAR' = 'DEFAULT'
+#### productFiltersLayout: DEFAULT | SIDEBAR = `DEFAULT`
 
 Layout how the filters are rendered.
 DEFAULT: Will be rendered as horzontal chips on desktop and mobile
@@ -272,6 +306,13 @@ SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
 #### productFiltersPro: boolean
 
 Product filters with better UI for mobile and desktop.
+
+#### productListPaginationVariant: COMPACT | EXTENDED = `COMPACT`
+
+Pagination variant for the product listings.
+
+COMPACT means: "< Page X of Y >"
+EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
 
 #### productRoute: string
 
@@ -334,7 +375,9 @@ All storefront configuration for the project
 
 #### locale: string (required)
 
-Must be a locale string https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers
+Must be a [locale string](https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers) for automatic redirects to work.
+
+This value can be used as a sub-path identifier only, make sure linguiLocale is configured for each URL.
 
 #### magentoStoreCode: string (required)
 
@@ -359,6 +402,12 @@ Examples:
 #### cartDisplayPricesInclTax: boolean
 
 Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.
+
+#### customerCompanyFieldsEnable: boolean
+
+Enables company fields inside the checkout:
+- Company name
+- VAT ID
 
 #### defaultLocale: boolean
 
@@ -390,7 +439,12 @@ Add a gcms-locales header to make sure queries return in a certain language, can
 
 #### linguiLocale: string
 
-Specify a custom locale for to load translations.
+Custom locale used to load the .po files. Must be a valid locale, also used for Intl functions.
+
+#### robotsAllow: boolean
+
+Allow the site to be indexed by search engines.
+If false, the robots.txt file will be set to disallow all.
 
 ### MagentoConfigurableVariantValues
 
@@ -427,6 +481,6 @@ Number of recently viewed products to be stored in localStorage
 
 SidebarGalleryConfig will contain all configuration values for the Sidebar Gallery component.
 
-#### paginationVariant: 'DOTS' | 'THUMBNAILS_BOTTOM'
+#### paginationVariant: DOTS | THUMBNAILS_BOTTOM
 
 Variant used for the pagination

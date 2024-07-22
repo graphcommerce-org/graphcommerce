@@ -1,0 +1,4 @@
+type SelectedShippingMethod {
+  price_excl_tax: Money @deprecated(reason: "Magento >= 2.4.6")
+  price_incl_tax: Money @deprecated(reason: "Magento >= 2.4.6")
+}

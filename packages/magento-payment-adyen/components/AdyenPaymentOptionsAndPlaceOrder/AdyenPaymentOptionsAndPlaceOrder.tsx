@@ -1,12 +1,10 @@
-import { useFormCompose, useFormPersist, useFormValidFields } from '@graphcommerce/ecommerce-ui'
+import { FormPersist, TextFieldElement, useFormCompose } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import {
   PaymentOptionsProps,
   usePaymentMethodContext,
 } from '@graphcommerce/magento-cart-payment-method'
-import { FormRow, InputCheckmark } from '@graphcommerce/next-ui'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { TextField } from '@mui/material'
+import { FormRow } from '@graphcommerce/next-ui'
 import { useRouter } from 'next/router'
 import { useAdyenCartLock } from '../../hooks/useAdyenCartLock'
 import { useAdyenPaymentMethod } from '../../hooks/useAdyenPaymentMethod'
@@ -54,14 +52,11 @@ export function HppOptions(props: PaymentOptionsProps) {
     },
   })
 
-  const { handleSubmit, muiRegister, formState, required } = form
+  const { handleSubmit, control, formState, required } = form
 
   const submit = handleSubmit(() => {})
 
   const key = `PaymentMethodOptions_${code}${brandCode}`
-  useFormPersist({ form, name: key, persist: ['issuer'], storage: 'localStorage' })
-
-  const valid = useFormValidFields(form, required)
 
   /** To use an external Pay button we register the current form to be handled there as well. */
   useFormCompose({ form, step, submit, key })
@@ -76,8 +71,13 @@ export function HppOptions(props: PaymentOptionsProps) {
     <form key={key} onSubmit={submit} noValidate>
       {conf?.issuers && (
         <FormRow>
-          <TextField
+          <TextFieldElement
+            control={control}
+            name='issuer'
             defaultValue=''
+            rules={{
+              required: { value: true, message: 'Please provide an issuer' },
+            }}
             variant='outlined'
             color='secondary'
             select
@@ -86,10 +86,6 @@ export function HppOptions(props: PaymentOptionsProps) {
             helperText={formState.isSubmitted && formState.errors.issuer?.message}
             label={brandCode === 'ideal' ? 'Select your bank' : conf?.name}
             required
-            {...muiRegister('issuer', {
-              required: { value: true, message: 'Please provide an issuer' },
-            })}
-            InputProps={{ endAdornment: <InputCheckmark show={valid.issuer} select /> }}
           >
             {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
             <option value='' />
@@ -102,9 +98,10 @@ export function HppOptions(props: PaymentOptionsProps) {
                 </option>
               )
             })}
-          </TextField>
+          </TextFieldElement>
         </FormRow>
       )}
+      <FormPersist form={form} name={key} persist={['issuer']} storage='localStorage' />
     </form>
   )
 }

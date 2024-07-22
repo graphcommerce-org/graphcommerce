@@ -1,6 +1,6 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
-import { Controller, useFormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { Controller, FormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import {
   Box,
   FormControl,
@@ -31,12 +31,12 @@ export function CustomerNewsletterToggle(props: CustomerNewsletterToggleProps) {
 
   const { handleSubmit, control, formState, error } = form
   const submit = handleSubmit(() => {})
-  useFormAutoSubmit({ form, submit })
 
   if (disabled || loading) return <Switch disabled color='primary' {...switchProps} />
 
   return (
     <Box component='form' onSubmit={submit} noValidate sx={sx}>
+      <FormAutoSubmit control={control} submit={submit} />
       <Controller
         name='isSubscribed'
         control={control}

@@ -1,17 +1,15 @@
-import type { AddToCartItemSelector, ProductPageName } from '@graphcommerce/magento-product'
-import type { IfConfig, ReactPlugin } from '@graphcommerce/next-config'
+import type { AddToCartItemSelector, ProductPageNameProps } from '@graphcommerce/magento-product'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useConfigurableSelectedVariant } from '../../hooks'
 
-export const component = 'ProductPageName'
-export const exported = '@graphcommerce/magento-product/components/ProductPageName/ProductPageName'
-export const ifConfig: IfConfig = 'configurableVariantValues.content'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/magento-product',
+  ifConfig: 'configurableVariantValues.content',
+}
 
-type PluginType = ReactPlugin<typeof ProductPageName, AddToCartItemSelector>
-
-const ConfigurableProductPageName: PluginType = (props) => {
+export function ProductPageName(props: PluginProps<ProductPageNameProps> & AddToCartItemSelector) {
   const { Prev, product, index, ...rest } = props
   const variant = useConfigurableSelectedVariant({ url_key: product.url_key, index })
   return <Prev product={variant ?? product} {...rest} />
 }
-
-export const Plugin = ConfigurableProductPageName

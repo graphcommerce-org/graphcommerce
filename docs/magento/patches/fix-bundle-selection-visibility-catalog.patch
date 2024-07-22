@@ -1,0 +1,17 @@
+Fix bundle product children not showing up on some products, see https://github.com/magento/magento2/issues/37774
+
+@package magento/module-catalog-graph-ql
+
+diff --git a/Model/Resolver/Products/DataProvider/Product.php b/Model/Resolver/Products/DataProvider/Product.php
+index 30be41072242b..3e955ae303453 100644
+--- a/Model/Resolver/Products/DataProvider/Product.php
++++ b/Model/Resolver/Products/DataProvider/Product.php
+@@ -89,7 +89,7 @@ public function getList(
+
+         $this->collectionPreProcessor->process($collection, $searchCriteria, $attributes, $context);
+
+-        if ($isChildSearch) {
++        if (!$isChildSearch) {
+             $visibilityIds = $isSearch
+                 ? $this->visibility->getVisibleInSearchIds()
+                 : $this->visibility->getVisibleInCatalogIds();

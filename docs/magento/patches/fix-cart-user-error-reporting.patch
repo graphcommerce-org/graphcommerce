@@ -1,0 +1,21 @@
+Fix add to cart `user_error` field containing inconsistent errors. See https://github.com/magento/magento2/pull/38014
+
+@package magento/module-quote
+
+--- a/Model/Cart/AddProductsToCart.php
++++ b/Model/Cart/AddProductsToCart.php	(date 1696845624268)
+@@ -80,14 +80,6 @@
+         $cartId = $this->maskedQuoteIdToQuoteId->execute($maskedCartId);
+         $cart = $this->cartRepository->get($cartId);
+         $allErrors = [];
+-        if ($cart->getData('has_error')) {
+-            $errors = $cart->getErrors();
+-
+-            /** @var MessageInterface $error */
+-            foreach ($errors as $error) {
+-                $allErrors[] = $this->error->create($error->getText());
+-            }
+-        }
+
+         $failedCartItems = $this->addItemsToCart($cart, $cartItems);
+         $saveCart = empty($failedCartItems);

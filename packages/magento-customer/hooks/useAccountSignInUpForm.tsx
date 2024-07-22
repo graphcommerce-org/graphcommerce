@@ -1,7 +1,7 @@
 import { usePageContext } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
+import { useUrlQuery } from '@graphcommerce/next-ui'
 import { useFormGqlQuery } from '@graphcommerce/react-hook-form'
-import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { CustomerDocument } from './Customer.gql'
 import {
@@ -22,6 +22,7 @@ export const isToggleMethod = !import.meta.graphCommerce.enableGuestCheckoutLogi
 export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {}) {
   const { onSubmitted } = props
   const { token, valid } = useCustomerSession()
+  const [queryState, setRouterQuery] = useUrlQuery<{ email?: string | null }>()
 
   const customerQuery = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
   const cachedEmail = customerQuery?.data?.customer?.email
@@ -39,19 +40,20 @@ export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {})
     },
     { fetchPolicy: 'cache-and-network' },
   )
-  const { formState, data, handleSubmit } = form
+  const { formState, data, handleSubmit, setValue, trigger } = form
   const { isSubmitSuccessful, isValid } = formState
 
-  const router = useRouter()
   useEffect(() => {
-    const emailFromParams = router.query.email as string
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    ;(async () => {
+      if (!cachedEmail && queryState.email) {
+        await setRouterQuery({ email: null })
 
-    if (!cachedEmail && emailFromParams) {
-      form.setValue('email', emailFromParams)
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      form.trigger('email')
-    }
-  }, [cachedEmail, router.query.email, form])
+        setValue('email', queryState.email)
+        await trigger('email')
+      }
+    })()
+  }, [cachedEmail, queryState.email, setRouterQuery, setValue, trigger])
 
   const submit = isToggleMethod
     ? async (e?: React.BaseSyntheticEvent) => {

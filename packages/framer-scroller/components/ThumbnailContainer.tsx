@@ -7,10 +7,11 @@ const MotionBox = styled(m.div)({})
 type ThumbnailContainerProps = {
   children: React.ReactNode
   sx?: SxProps<Theme>
+  layoutDependency: boolean
 }
 
 export function ThumbnailContainer(props: ThumbnailContainerProps) {
-  const { children, sx } = props
+  const { children, sx, layoutDependency } = props
   const containerRef = useRef<HTMLDivElement>(null)
   const onPan: PanHandlers['onPan'] = (_, info) => {
     containerRef.current?.scrollBy({ left: -info.delta.x })
@@ -20,7 +21,7 @@ export function ThumbnailContainer(props: ThumbnailContainerProps) {
     <MotionBox
       ref={containerRef}
       onPan={onPan}
-      layout
+      layoutDependency={layoutDependency}
       sx={[
         {
           padding: '4px',

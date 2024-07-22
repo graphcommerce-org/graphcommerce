@@ -2,13 +2,13 @@ import { CheckboxElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { extendableComponent, FormDiv } from '@graphcommerce/next-ui'
 import {
+  FormPersist,
   useForm,
   useFormCompose,
   UseFormComposeOptions,
-  useFormPersist,
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import { Box, Link, SxProps, Theme } from '@mui/material'
+import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import React from 'react'
 import { CartAgreementsDocument } from './CartAgreements.gql'
 
@@ -18,16 +18,27 @@ const componentName = 'CartAgreementsForm' as const
 const parts = ['form', 'formInner', 'formControlRoot', 'manualCheck'] as const
 const { classes } = extendableComponent(componentName, parts)
 
+/**
+ * Checks if a string contains an anchor tag (<a> ... </a>).
+ * @param {string} str - The string to check.
+ * @returns {boolean} - True if the string contains an anchor tag, otherwise false.
+ */
+const containsAnchorTag = (str: string): boolean => {
+  const anchorTagRegex = /<a\s+[^>]*>(.*?)<\/a>/i
+  return anchorTagRegex.test(str)
+}
+
 export function CartAgreementsForm(props: CartAgreementsFormProps) {
   const { step, sx = [] } = props
   const { data } = useQuery(CartAgreementsDocument)
 
   // sort conditions so checkboxes will be placed first
   const sortedAgreements = data?.checkoutAgreements
-    ? [...data.checkoutAgreements].sort((a, b) =>
-        // eslint-disable-next-line no-nested-ternary
-        a?.mode === 'MANUAL' ? -1 : b?.mode === 'MANUAL' ? 1 : 0,
-      )
+    ? [...data.checkoutAgreements]?.sort((a, b) => {
+        if (a?.mode === 'MANUAL') return -1
+        if (b?.mode === 'MANUAL') return 1
+        return 0
+      })
     : []
 
   const form = useForm()
@@ -38,8 +49,6 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
     // eslint-disable-next-line no-console
     console.log(values)
   })
-
-  useFormPersist({ form, name: 'PaymentAgreementsForm' })
 
   useFormCompose({ form, step, submit, key: 'PaymentAgreementsForm' })
 
@@ -57,6 +66,45 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
               if (!agreement) return null
               const href = `/checkout/terms/${agreement.name?.toLowerCase().replace(/\s+/g, '-')}`
               const agreementTextParts = agreement.checkbox_text.split(agreement.name)
+              // check if the agreement text contains an anchor tag
+              const containsLink = containsAnchorTag(agreement.checkbox_text)
+              let labelContent: React.ReactNode
+
+              if (containsLink) {
+                labelContent = (
+                  <Typography
+                    dangerouslySetInnerHTML={{ __html: agreement.checkbox_text }}
+                    sx={{
+                      '& a': {
+                        color: 'secondary.main',
+                        textDecoration: 'none',
+                        '&:hover, &:focus, &:active': {
+                          textDecoration: 'underline',
+                        },
+                      },
+                    }}
+                  />
+                )
+              } else if (
+                agreement.mode === 'MANUAL' &&
+                agreement.checkbox_text.includes(agreement.name)
+              ) {
+                labelContent = (
+                  <>
+                    {agreementTextParts[0]}
+                    <Link href={href} color='secondary' underline='hover'>
+                      {agreement.name}
+                    </Link>
+                    {agreementTextParts[1]}
+                  </>
+                )
+              } else {
+                labelContent = (
+                  <Link href={href} color='secondary' underline='hover'>
+                    {agreement.checkbox_text}
+                  </Link>
+                )
+              }
 
               return (
                 <React.Fragment key={agreement.agreement_id}>
@@ -73,27 +121,11 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                       rules={{
                         required: i18n._(/* i18n */ 'You have to agree in order to proceed'),
                       }}
-                      label={
-                        agreement.checkbox_text.includes(agreement.name) ? (
-                          <>
-                            {agreementTextParts[0]}
-                            <Link href={href} color='secondary' underline='hover'>
-                              {agreement.name}
-                            </Link>
-                            {agreementTextParts[1]}
-                          </>
-                        ) : (
-                          <Link href={href} color='secondary' underline='hover'>
-                            {agreement.checkbox_text}
-                          </Link>
-                        )
-                      }
+                      label={labelContent}
                     />
                   ) : (
                     <Box className={classes.manualCheck} sx={{ padding: `9px 0` }}>
-                      <Link href={href} color='secondary' underline='hover'>
-                        {agreement.checkbox_text}
-                      </Link>
+                      {labelContent}
                     </Box>
                   )}
                 </React.Fragment>
@@ -101,6 +133,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
             })}
         </Box>
       </form>
+      <FormPersist form={form} name='PaymentAgreementsForm' />
     </FormDiv>
   )
 }

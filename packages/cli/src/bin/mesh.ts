@@ -11,10 +11,17 @@ import {
 } from '@graphcommerce/next-config'
 import { graphqlMesh, DEFAULT_CLI_PARAMS, GraphQLMeshCLIParams } from '@graphql-mesh/cli'
 import { Logger, YamlConfig } from '@graphql-mesh/types'
+import { Handler } from '@graphql-mesh/types/typings/config'
 import { DefaultLogger } from '@graphql-mesh/utils'
 import dotenv from 'dotenv'
+import type { OmitIndexSignature, Entries } from 'type-fest'
 import yaml from 'yaml'
 import { findConfig } from '../utils/findConfig'
+import type { meshConfig as meshConfigBase } from '@graphcommerce/graphql-mesh/meshConfig'
+// eslint-disable-next-line import/no-unresolved
+import 'tsx/cjs' // support importing typescript configs in CommonJS
+// eslint-disable-next-line import/no-unresolved
+import 'tsx/esm' // support importing typescript configs in ESM
 
 dotenv.config()
 
@@ -50,7 +57,15 @@ async function cleanup() {
 }
 
 const main = async () => {
-  const conf = (await findConfig({})) as YamlConfig.Config
+  const baseConf = (await findConfig({})) as YamlConfig.Config
+  const graphCommerce = loadConfig(root)
+
+  // eslint-disable-next-line global-require
+  // @ts-ignore Might not exist
+  const { meshConfig } = (await import('@graphcommerce/graphql-mesh/meshConfig.interceptor')) as {
+    meshConfig: typeof meshConfigBase
+  }
+  const conf = meshConfig(baseConf, graphCommerce)
 
   // We're configuring a custom fetch function
   conf.customFetch = require.resolve('@graphcommerce/graphql-mesh/customFetch')
@@ -64,6 +79,30 @@ const main = async () => {
       return path.relative(root, require.resolve(additionalResolver))
 
     return additionalResolver
+  })
+
+  type DefinedHandler = OmitIndexSignature<Handler>
+
+  conf.sources = conf.sources.map((source) => {
+    const definedHandlers = Object.entries(source.handler) as Entries<DefinedHandler>
+    return {
+      ...source,
+      handler: Object.fromEntries(
+        definedHandlers.map(([key, value]) => {
+          if (key === 'openapi' && value) {
+            const openapi = value as NonNullable<DefinedHandler['openapi']>
+            if (openapi.source.startsWith('@')) {
+              return [
+                key,
+                { ...openapi, source: path.relative(root, require.resolve(openapi.source)) },
+              ]
+            }
+          }
+
+          return [key, value]
+        }),
+      ),
+    }
   })
 
   // Rewrite additionalTypeDefs so we can use module resolution more easily
@@ -86,8 +125,15 @@ const main = async () => {
 
   const deps = resolveDependenciesSync()
   const packages = [...deps.values()].filter((p) => p !== '.')
+
+  const mV = graphCommerce.magentoVersion ?? 246
   packageRoots(packages).forEach((r) => {
-    conf.additionalTypeDefs.push(`${r}/**/*.graphqls`)
+    const alsoScan = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254]
+      .filter((v) => v > mV)
+      .map((v) => `${r}/*/schema-${v}/**/*.graphqls`)
+
+    conf.additionalTypeDefs.push(`${r}/*/schema/**/*.graphqls`)
+    conf.additionalTypeDefs.push(...alsoScan)
   })
 
   const meshScan = [...deps.values()].map(async (r) => {
@@ -115,7 +161,7 @@ const main = async () => {
     },
   ]
 
-  const yamlString = replaceConfigInString(yaml.stringify(conf), loadConfig(root))
+  const yamlString = replaceConfigInString(yaml.stringify(conf), graphCommerce)
   await fs.writeFile(tmpMeshLocation, yamlString)
 
   // Reexport the mesh to is can be used by packages

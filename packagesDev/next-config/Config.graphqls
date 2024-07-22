@@ -58,7 +58,7 @@ Examples:
 
 You can export configuration by running `yarn graphcommerce export-config`
 
-## Extending the configuration in your  project
+## Extending the configuration in your project
 
 Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceStorefrontConfig inputs to add configuration.
 
@@ -132,15 +132,17 @@ input GraphCommerceStorefrontConfig {
   domain: String
 
   """
-  Must be a locale string https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers
+  Must be a [locale string](https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers) for automatic redirects to work.
+
+  This value can be used as a sub-path identifier only, make sure linguiLocale is configured for each URL.
   """
   locale: String!
 
-  # """
-  # Allow the site to be indexed by search engines.
-  # If false, the robots.txt file will be set to disallow all.
-  # """
-  # robotsAllow: Boolean
+  """
+  Allow the site to be indexed by search engines.
+  If false, the robots.txt file will be set to disallow all.
+  """
+  robotsAllow: Boolean
 
   """
   The canonical base URL is used for SEO purposes.

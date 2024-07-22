@@ -15,7 +15,6 @@ import {
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = UniversalPageQuery
-
 type RouteProps = { url: string }
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
@@ -38,9 +37,9 @@ CmsPage.pageOptions = {
 
 export default CmsPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
 
   const conf = client.query({ query: StoreConfigDocument })
   const page = client.query({
@@ -48,7 +47,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     variables: { input: { url: 'page/home' } },
   })
 
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   if (!(await page).data) return { notFound: true }
 

@@ -2,7 +2,7 @@ import { CheckboxElement, useFormCompose } from '@graphcommerce/ecommerce-ui'
 import { DocumentNode } from '@graphcommerce/graphql'
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import { useCustomerQuery, useCustomerSession } from '@graphcommerce/magento-customer'
-import { useFormGqlMutation, useFormPersist } from '@graphcommerce/react-hook-form'
+import { FormPersist, useFormGqlMutation, useFormPersist } from '@graphcommerce/react-hook-form'
 import { Box, SxProps, Theme } from '@mui/material'
 import { GetCustomerNewsletterToggleDocument } from '../CustomerNewsletterToggle/GetCustomerNewsLetterToggle.gql'
 import { GetCartEmailDocument } from '../SignupNewsletter/GetCartEmail.gql'
@@ -43,8 +43,6 @@ export function SubscribeToNewsletter(props: CheckoutNewsletterProps) {
   const { control, handleSubmit } = form
   const submit = handleSubmit(() => {})
 
-  useFormPersist({ form, name: 'NewsletterSubscribeForm' })
-
   useFormCompose({ form, step, submit, key: 'NewsletterSubscribeForm' })
 
   if (isCustomerSubscribed) return null
@@ -54,6 +52,7 @@ export function SubscribeToNewsletter(props: CheckoutNewsletterProps) {
       <form onSubmit={submit} noValidate>
         <CheckboxElement color='secondary' control={control} name='subscribe' label={label} />
       </form>
+      <FormPersist form={form} name='NewsletterSubscribeForm' />
     </Box>
   )
 }

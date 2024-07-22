@@ -1,0 +1,72 @@
+type CartItems {
+  """
+  An array of products that have been added to the cart.
+  """
+  items: [CartItemInterface]!
+  """
+  Metadata for pagination rendering.
+  """
+  page_info: SearchResultPageInfo
+  """
+  The number of returned cart items.
+  """
+  total_count: Int!
+}
+
+"""
+Specifies the field to use for sorting quote items
+"""
+enum SortQuoteItemsEnum {
+  ITEM_ID
+  CREATED_AT
+  UPDATED_AT
+  PRODUCT_ID
+  SKU
+  NAME
+  DESCRIPTION
+  WEIGHT
+  QTY
+  PRICE
+  BASE_PRICE
+  CUSTOM_PRICE
+  DISCOUNT_PERCENT
+  DISCOUNT_AMOUNT
+  BASE_DISCOUNT_AMOUNT
+  TAX_PERCENT
+  TAX_AMOUNT
+  BASE_TAX_AMOUNT
+  ROW_TOTAL
+  BASE_ROW_TOTAL
+  ROW_TOTAL_WITH_DISCOUNT
+  ROW_WEIGHT
+  PRODUCT_TYPE
+  BASE_TAX_BEFORE_DISCOUNT
+  TAX_BEFORE_DISCOUNT
+  ORIGINAL_CUSTOM_PRICE
+  PRICE_INC_TAX
+  BASE_PRICE_INC_TAX
+  ROW_TOTAL_INC_TAX
+  BASE_ROW_TOTAL_INC_TAX
+  DISCOUNT_TAX_COMPENSATION_AMOUNT
+  BASE_DISCOUNT_TAX_COMPENSATION_AMOUNT
+  FREE_SHIPPING
+}
+
+"""
+Specifies the field to use for sorting quote items
+"""
+input QuoteItemsSortInput {
+  """
+  Specifies the quote items field to sort by
+  """
+  field: SortQuoteItemsEnum!
+  """
+  Specifies the order of quote items' sorting
+  """
+  order: SortEnum!
+}
+
+type Cart {
+  itemsV2(pageSize: Int = 20, currentPage: Int = 1, sort: QuoteItemsSortInput): CartItems
+    @deprecated(reason: "Magento >= 2.4.7")
+}

@@ -1,21 +1,21 @@
 import { useApolloClient } from '@graphcommerce/graphql'
 import {
   type AddToCartItemSelector,
-  type ProductPageMeta,
   ProductPageMetaFragment,
+  ProductPageMetaProps,
 } from '@graphcommerce/magento-product'
 import { useConfigurableSelectedVariant } from '@graphcommerce/magento-product-configurable/hooks'
-import type { IfConfig, ReactPlugin } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useEventCallback } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { RecentlyViewedProductsDocument } from '../graphql/RecentlyViewedProducts.gql'
 
-export const component = 'ProductPageMeta'
-export const exported = '@graphcommerce/magento-product/components/ProductPageMeta/ProductPageMeta'
-export const ifConfig: IfConfig = 'recentlyViewedProducts.enabled'
-
-type PluginType = ReactPlugin<typeof ProductPageMeta, AddToCartItemSelector>
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/magento-product',
+  ifConfig: 'recentlyViewedProducts.enabled',
+}
 
 function ViewHandling(props: { product: ProductPageMetaFragment }) {
   const { product } = props
@@ -71,7 +71,7 @@ function ViewHandling(props: { product: ProductPageMetaFragment }) {
   return null
 }
 
-const RegisterProductAsRecentlyViewed: PluginType = (props) => {
+export function ProductPageMeta(props: PluginProps<ProductPageMetaProps> & AddToCartItemSelector) {
   const { Prev, product } = props
 
   return (
@@ -81,5 +81,3 @@ const RegisterProductAsRecentlyViewed: PluginType = (props) => {
     </>
   )
 }
-
-export const Plugin = RegisterProductAsRecentlyViewed

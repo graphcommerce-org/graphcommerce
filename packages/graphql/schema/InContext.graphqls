@@ -1,0 +1,16 @@
+"""
+By providing these values the Apollo Client cache will automatically scope the cache to these specific values.
+
+If a InContext is provided
+"""
+input InContextInput {
+  loggedIn: Boolean
+
+  # storeCode: String
+  # contentCurrency: String
+}
+
+"""
+Certain values are only available in the context of a session and need to have the cache scoped to these values.
+"""
+directive @inContext(context: InContextInput) on FIELD

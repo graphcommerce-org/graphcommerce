@@ -1,4 +1,4 @@
-import { TextFieldElement, WaitForQueries } from '@graphcommerce/ecommerce-ui'
+import { EmailElement, TextFieldElement, WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorAlert,
@@ -9,7 +9,7 @@ import { IsEmailAvailableDocument, useCustomerSession } from '@graphcommerce/mag
 import { extendableComponent, FormRow } from '@graphcommerce/next-ui'
 import {
   emailPattern,
-  useFormAutoSubmit,
+  FormAutoSubmit,
   useFormCompose,
   UseFormComposeOptions,
 } from '@graphcommerce/react-hook-form'
@@ -49,25 +49,17 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
   const submit = handleSubmit(() => {})
 
   useFormCompose({ form, step, submit, key: 'EmailForm' })
-  useFormAutoSubmit({ form, submit })
 
   return (
     <Box component='form' noValidate onSubmit={submit} sx={sx}>
+      <FormAutoSubmit control={form.control} submit={submit} />
       <FormRow className={classes.formRow} sx={{ py: 0 }}>
-        <TextFieldElement
+        <EmailElement
           control={form.control}
           name='email'
           variant='outlined'
-          type='email'
-          error={formState.isSubmitted && !!formState.errors.email}
-          helperText={formState.isSubmitted && formState.errors.email?.message}
-          label={<Trans id='Email' />}
           required={required.email}
           disabled={cartEmail.loading}
-          validation={{
-            required: required.email,
-            pattern: { value: emailPattern, message: '' },
-          }}
           InputProps={{
             autoComplete: 'email',
             endAdornment: (

@@ -2,20 +2,20 @@ import { mergeDeep } from '@graphcommerce/graphql'
 import {
   productLink,
   type AddToCartItemSelector,
-  type ProductPageMeta,
+  ProductPageMetaProps,
 } from '@graphcommerce/magento-product'
-import type { IfConfig, ReactPlugin } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useConfigurableSelectedVariant } from '../../hooks'
 
-export const component = 'ProductPageMeta'
-export const exported = '@graphcommerce/magento-product/components/ProductPageMeta/ProductPageMeta'
-export const ifConfig: IfConfig = 'configurableVariantValues.url'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/magento-product',
+  ifConfig: 'configurableVariantValues.url',
+}
 
-type PluginType = ReactPlugin<typeof ProductPageMeta, AddToCartItemSelector>
-
-const ConfigurableProductPageMetaUrls: PluginType = (props) => {
+export function ProductPageMeta(props: PluginProps<ProductPageMetaProps> & AddToCartItemSelector) {
   const { Prev, product, index, ...rest } = props
   const { replace, asPath } = useRouter()
 
@@ -37,5 +37,3 @@ const ConfigurableProductPageMetaUrls: PluginType = (props) => {
 
   return <Prev product={variant ? mergeDeep(product, variant) : product} {...rest} />
 }
-
-export const Plugin = ConfigurableProductPageMetaUrls

@@ -1,0 +1,12 @@
+mutation CancelOrder($orderId: ID!, $reason: String!) {
+  cancelOrder(input: { order_id: $orderId, reason: $reason }) {
+    error
+    order {
+      ...OrderDetails
+      ...OrderItems
+      shipments {
+        number
+      }
+    }
+  }
+}

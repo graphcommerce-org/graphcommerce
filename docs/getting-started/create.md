@@ -10,6 +10,7 @@ start building.
 
 ### Requirements
 
+- Lixux, MacOS or WSL2
 - Install and use node 16/18: `nvm install 16` or `nvm use 16`
 - Install yarn: `corepack enable`
 
@@ -63,7 +64,7 @@ Duplicate and rename the configuration example file to:
 ## Step 3: Start the app
 
 ```bash
-yarn
+touch yarn.lock && yarn
 # Install dependencies (may take a while)
 ```
 

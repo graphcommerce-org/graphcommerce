@@ -13,11 +13,56 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#. js-lingui-generated-id
+msgid "Doing so will remove all your data including order history and saved shipping / billing addresses."
+msgstr "Dit zal al uw gegevens verwijderen, inclusief bestelgeschiedenis en opgeslagen verzend-/factuuradressen."
+
+#. js-lingui-generated-id
+msgid "I understand that my account will be deleted and this can not be undone."
+msgstr "Ik begrijp dat mijn account zal worden verwijderd en dat dit niet ongedaan kan worden gemaakt."
+
+#. js-lingui-generated-id
+msgid "Orders"
+msgstr "Bestellingen"
+
+#. js-lingui-generated-id
+msgid "Newletter"
+msgstr "Nieuwsbrief"
+
+#. js-lingui-generated-id
+msgid "Search all products..."
+msgstr "Zoek alle producten..."
+
+#. js-lingui-generated-id
+msgid "We couldn't find any results"
+msgstr "We konden geen resultaten vinden"
+
+#. js-lingui-generated-id
+msgid "Name"
+msgstr "Naam"
+
+#. js-lingui-generated-id
+msgid "Shipping method"
+msgstr "Verzendmethode"
+
+#. js-lingui-generated-id
+msgid "I understand that my order will be canceled and this can not be undone."
+msgstr "Ik begrijp dat mijn bestelling wordt geannuleerd en dat dit niet ongedaan kan worden gemaakt."
+
+#. js-lingui-generated-id
+msgid "<0>{name}</0> has been added to your shopping cart!"
+msgstr "<0>{name}</0> is toegevoegd aan je winkelwagen!"
+
+#. js-lingui-generated-id
+msgid "Are you sure you want to delete your account?"
+msgstr "Weet u zeker dat u uw account wilt verwijderen?"
+
+#. js-lingui-generated-id
+msgid "Business"
+msgstr "Zakelijk"
+
 msgid "<0>{name}</0> has been added to your comparison!"
 msgstr "<0>{name}</0> is toegevoegd aan je vergelijking!"
-
-msgid "<0>{name}</0> has been added to your shopping cart!"
-msgstr "<0>{name}</0> is toegevoegd aan uw winkelwagen!"
 
 msgid "<0>{name}</0> has been added to your wishlist!"
 msgstr "<0>{name}</0> is toegevoegd aan je verlanglijst!"
@@ -28,6 +73,12 @@ msgstr "Boven <0/>"
 msgid "Account"
 msgstr "Account"
 
+msgid "Account confirmation"
+msgstr "Account bevestiging"
+
+msgid "Account confirmed. You can now proceed to sign in."
+msgstr "Account bevestigd. U kunt nu doorgaan met inloggen."
+
 msgid "Add address"
 msgstr "Adres toevoegen"
 
@@ -36,9 +87,6 @@ msgstr "Voeg nog een product toe om te vergelijken"
 
 msgid "Add new address"
 msgstr "Voeg nieuw adres toe"
-
-msgid "Add to Cart"
-msgstr "In winkelwagen"
 
 msgid "Add to cart quantity"
 msgstr "Voeg toe aan winkelwagen aantal"
@@ -60,9 +108,6 @@ msgstr "Adressen"
 
 msgid "All filters"
 msgstr "Alle filters"
-
-msgid "All products"
-msgstr "Alle producten"
 
 msgid "All {name}"
 msgstr "Alle {name}"
@@ -94,6 +139,10 @@ msgstr "Wees de eerste die een review schrijft!"
 msgid "Below <0/>"
 msgstr "Onder <0/>"
 
+#. js-lingui-generated-id
+msgid "Contact us"
+msgstr "Neem contact met ons op"
+
 msgid "Billing address"
 msgstr "Factuuradres"
 
@@ -109,8 +158,11 @@ msgstr "Winkelwagen"
 msgid "Cart ({0})"
 msgstr "Winkelwagen ({0})"
 
+msgid "Categories"
+msgstr "Categorieën"
+
 msgid "Change"
-msgstr "Verander"
+msgstr "Wijzig"
 
 msgid "Checkout summary"
 msgstr "Samenvatting"
@@ -133,6 +185,13 @@ msgstr "Alle filters wissen"
 msgid "Close"
 msgstr "Sluiten"
 
+#. js-lingui-generated-id
+msgid "Order status"
+msgstr "Bestelstatus"
+
+msgid "Company name"
+msgstr "Bedrijfsnaam"
+
 msgid "Compare"
 msgstr "Vergelijk"
 
@@ -145,9 +204,6 @@ msgstr "Vergelijk producten"
 msgid "Complete the payment on your bank’s website."
 msgstr "Voltooi de betaling op uw bank's website."
 
-msgid "Complete your purchase"
-msgstr "Maak uw bestelling compleet"
-
 msgid "Configure"
 msgstr "Configureer"
 
@@ -156,6 +212,9 @@ msgstr "Bevestig nieuwe email"
 
 msgid "Confirm password"
 msgstr "Bevestig wachtwoord"
+
+msgid "Confirm registration"
+msgstr "Registratie bevestigen"
 
 msgid "Confirmation + Track & trace"
 msgstr "Bevestiging + Track & trace"
@@ -202,14 +261,25 @@ msgstr "Huidige email"
 msgid "Customer Service"
 msgstr "Klantenservice"
 
+#. js-lingui-generated-id
+msgid "Account deletion successful"
+msgstr "Account verwijdering succesvol"
+
 msgid "Dark Mode"
 msgstr "Donkere modus"
 
 msgid "Decrease"
 msgstr "Verminderen"
 
+msgid "Delete account"
+msgstr "Verwijder account"
+
 msgid "Delete this address"
 msgstr "Verwijder dit adres"
+
+#. js-lingui-generated-id
+msgid "Complete your purchase"
+msgstr "Maak uw bestelling compleet"
 
 msgid "Discount code"
 msgstr "Kortingscode"
@@ -229,6 +299,14 @@ msgstr "Ontdek onze collectie en plaats uw eerste bestelling!"
 msgid "Discover our collection and write your first review!"
 msgstr "Ontdek onze collectie en schrijf uw eerste review!"
 
+#. js-lingui-generated-id
+msgid "Payment method"
+msgstr "Betaalmethode"
+
+#. js-lingui-generated-id
+msgid "Did you mean: {list}"
+msgstr "Bedoelde u: {list}"
+
 msgid "Edit"
 msgstr "Bewerk"
 
@@ -237,6 +315,12 @@ msgstr "Wijzig adres"
 
 msgid "Edit billing address"
 msgstr "Wijzig factuuradres"
+
+msgid "Edit options"
+msgstr "Opties bewerken"
+
+msgid "Editing product"
+msgstr "Product bewerken"
 
 msgid "Email"
 msgstr "E-mail"
@@ -250,8 +334,15 @@ msgstr "E-mailadressen komen niet overeen"
 msgid "Empty comparelist"
 msgstr "Wissen"
 
+#. js-lingui-generated-id
+msgid "{0, plural, one {<0>{1}</0> has been added to your shopping cart} two {<1>{2}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
+msgstr "{0, plural, one {<0>{1}</0> is toegevoegd aan je winkelwagen} two {<1>{2}</1> zijn toegevoegd aan je winkelwagen!} other {# producten zijn toegevoegd aan je winkelwagen!}}"
+
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Vul uw e-mailadres in om in te loggen of maak een account aan"
+
+msgid "Fill in your email to confirm registration"
+msgstr "Vul je e-mailadres in om de registratie te bevestigen"
 
 msgid "Fill in your new password, confirm it and click on the save button."
 msgstr "Vul uw nieuwe wachtwoord in, bevestig het en klik op de opslaan knop."
@@ -277,11 +368,12 @@ msgstr "Wachtwoord vergeten?"
 msgid "Free"
 msgstr "Gratis"
 
+#. js-lingui-generated-id
+msgid "Order #{orderNumber} not found"
+msgstr "Order #{orderNumber} niet gevonden"
+
 msgid "Grand total"
 msgstr "Totaal"
-
-msgid "Have an account?"
-msgstr "Heeft u al een account?"
 
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Hallo {firstname}! U bent nu ingelogd!"
@@ -294,6 +386,10 @@ msgstr "Huisnummer"
 
 msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
 msgstr "Als u uw bestelling succesvol heeft betaald, dan zal de bestelling <0>doorkomen</0>, maar er is een communicatiefout met de website."
+
+#. js-lingui-generated-id
+msgid "We couldn't find any results for {term}"
+msgstr "We konden geen resultaten vinden voor {term}"
 
 msgid "In comparelist"
 msgstr "In vergelijking"
@@ -309,9 +405,6 @@ msgstr "Ongeldige datum"
 
 msgid "Invalid email address"
 msgstr "Ongeldig e-mailadres"
-
-msgid "Invalid phone number"
-msgstr "Ongeldig telefoonnummer"
 
 msgid "It appears you are offline, please try again later."
 msgstr "Het lijkt erop dat u offline bent, probeer het later opnieuw."
@@ -358,6 +451,10 @@ msgstr "Dhr"
 msgid "Mrs"
 msgstr "Mvr"
 
+#. js-lingui-generated-id
+msgid "Order has successfully been canceled"
+msgstr "Bestelling is geannuleerd"
+
 msgid "Name"
 msgstr "Naam"
 
@@ -391,14 +488,15 @@ msgstr "Nog geen account?"
 msgid "No orders found"
 msgstr "Geen bestellingen gevonden"
 
-msgid "No payment information"
-msgstr "Geen betalingsinformatie"
-
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "Geen zorgen! Vul uw e-mailadres in en we sturen een email met instructies om het wachtwoord te resetten."
 
 msgid "Number"
 msgstr "Nummer"
+
+#. js-lingui-generated-id
+msgid "Postcode"
+msgstr "Postcode"
 
 msgid "Ok"
 msgstr "Ok"
@@ -418,23 +516,11 @@ msgstr "Nog maar {amount_left_in_stock} op voorraad."
 msgid "Or follow these links to get you back on track!"
 msgstr "Of klik op één van deze links om weer op het pad te komen!"
 
-msgid "Order #{orderId}"
-msgstr "Bestelling #{orderId}"
+msgid "Order #{orderNumber}"
+msgstr "Bestelling #{orderNumber}"
 
 msgid "Order before 22:00"
 msgstr "Bestel voor 22:00"
-
-msgid "Order date"
-msgstr "Besteldatum"
-
-msgid "Order details"
-msgstr "Besteldetails"
-
-msgid "Order not found"
-msgstr "Bestelling niet gevonden"
-
-msgid "Order number"
-msgstr "Bestelnummer"
 
 msgid "Order summary"
 msgstr "Besteloverzicht"
@@ -490,9 +576,6 @@ msgstr "Persoonlijke details"
 msgid "Place order"
 msgstr "Plaats bestelling"
 
-msgid "Please check your inbox to validate your email ({email})"
-msgstr "Controleer uw inbox om uw e-mailadres te valideren ({email})"
-
 msgid "Please enter a valid email address"
 msgstr "Vul een geldig e-mailadres in"
 
@@ -517,9 +600,6 @@ msgstr "Selecteer een verzendmethode a.u.b."
 msgid "Please select a value for ‘{label}’"
 msgstr "Selecteer een waarde voor {label}"
 
-msgid "Postcode"
-msgstr "Postcode"
-
 msgid "Prefix"
 msgstr "Voorvoegsel"
 
@@ -535,11 +615,25 @@ msgstr "Product niet beschikbaar in {allLabels}"
 msgid "Products"
 msgstr "Producten"
 
+#. js-lingui-generated-id
+msgid "Results for ‘{search}’"
+msgstr "Resultaten voor ‘{search}’"
+
+#. js-lingui-generated-id
+msgid "Telephone"
+msgstr "Telefoon"
+
 msgid "Recently viewed products"
 msgstr "Recent bekeken producten"
 
 msgid "Region"
 msgstr "Regio"
+
+msgid "Registration successful. Please check your inbox to confirm your email address ({email})"
+msgstr "Registratie succesvol. Controleer uw inbox om uw e-mailadres te bevestigen ({email})"
+
+msgid "Relevance"
+msgstr "Relevantie"
 
 msgid "Remove"
 msgstr "Verwijder"
@@ -590,7 +684,7 @@ msgid "Select your bank"
 msgstr "Kies uw bank"
 
 msgid "Send password reset email"
-msgstr "Stuur een wachtwoord reset e-email"
+msgstr "Stuur een wachtwoord reset e-mail"
 
 msgid "Set your new password"
 msgstr "Stel uw nieuwe wachtwoord in"
@@ -680,13 +774,10 @@ msgid "Summary"
 msgstr "Omschrijving"
 
 msgid "Switch stores"
-msgstr "Verander winkel"
+msgstr "Winkel wisselen"
 
 msgid "Tagged in: {title}"
 msgstr "Getagged in: {title}"
-
-msgid "Telephone"
-msgstr "Telefoon"
 
 msgid "Thank you for your order!"
 msgstr "Bedankt voor je bestelling!"
@@ -715,6 +806,9 @@ msgstr "Er is een maximum van ‘{maxLength}’ karakters"
 msgid "This cart is assigned to {email}. Please sign in to continue shopping."
 msgstr "Deze winkelwagen is toegewezen aan {email}. Log in om verder te winkelen."
 
+msgid "This field is invalid"
+msgstr "Dit veld is ongeldig"
+
 msgid "This field is required"
 msgstr "Dit veld is verplicht"
 
@@ -730,6 +824,21 @@ msgstr "Probeer een ander product"
 msgid "Try a different search"
 msgstr "Probeer een andere zoekopdracht"
 
+#. js-lingui-generated-id
+msgid "Try a different search or <0>clear current filters</0>"
+msgstr "Probeer een andere zoekopdracht of <0>verwijder huidige filters</0>"
+
+#. js-lingui-generated-id
+msgid "Try a different search"
+msgstr "Probeer een andere zoekopdracht"
+
+msgid "VAT Number"
+msgstr "BTW-nummer"
+
+#. js-lingui-generated-id
+msgid "Reason"
+msgstr "Reden"
+
 msgid "View Product"
 msgstr "Bekijk product"
 
@@ -741,9 +850,6 @@ msgstr "Bekijk vergelijking"
 
 msgid "View less items"
 msgstr "Bekijk minder items"
-
-msgid "View shopping cart"
-msgstr "Bekijk winkelwagen"
 
 msgid "View wishlist"
 msgstr "Bekijk verlanglijst"
@@ -760,8 +866,8 @@ msgstr "We zijn sorry, dit product is momenteel niet op voorraad."
 msgid "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
 msgstr "We kunnen uw betaling niet verwerken, we hebben een niet-ondersteunde status ontvangen \"<0>{resultCode}</0>\". Probeer het opnieuw of selecteer een andere betaalmethode."
 
-msgid "We couldn't find any results for {term}"
-msgstr "We konden geen resultaten vinden voor {term}"
+msgid "We couldn't find any products."
+msgstr "We konden geen producten vinden."
 
 msgid "We couldn't find the page you were looking for"
 msgstr "We kunnen de pagina niet vinden waar u naar op zoek bent."
@@ -771,9 +877,6 @@ msgstr "Uw betaling wordt verwerkt, dit duurt een paar seconden"
 
 msgid "We’ve send a password reset link to your email address!"
 msgstr "Een wachtwoord reset link naar uw e-mailadres gestuurd"
-
-msgid "Which size is right?"
-msgstr "Wat is de juiste maat?"
 
 msgid "Whoops our bad..."
 msgstr "Oeps.."
@@ -790,14 +893,18 @@ msgstr "Geschreven door {nickname}"
 msgid "Written {0} reviews"
 msgstr "{0} reviews geschreven"
 
+#. js-lingui-generated-id
+msgid "Are you sure you want to cancel your order? This action is not reversable."
+msgstr "Weet je zeker dat je je bestelling wilt annuleren? Deze actie kan niet ongedaan worden gemaakt."
+
 msgid "You are reviewing {0}"
 msgstr "U reviewt {0}"
 
-msgid "You can find your order history in your account!"
-msgstr "U kunt uw bestelgeschiedenis in uw account vinden!"
-
 msgid "You can now <0>sign in again</0>."
 msgstr "U kunt nu <0>opnieuw inloggen</0>"
+
+msgid "You can only confirm you account by clicking on the link in your email."
+msgstr "U kunt uw account alleen bevestigen door op de link in uw e-mail te klikken."
 
 msgid "You can track your order status and much more!"
 msgstr "U kunt uw bestelstatus bijhouden en veel meer!"
@@ -862,20 +969,104 @@ msgstr "Uw sessie is verlopen"
 msgid "Your wishlist is empty"
 msgstr "Uw verlanglijst is leeg"
 
+#. js-lingui-generated-id
+msgid "Delete account"
+msgstr "Verwijder account"
+
 msgid "Zip code or city"
 msgstr "Postcode of stad"
+
+#. js-lingui-generated-id
+msgid "Save in address book"
+msgstr "Opslaan in adresboek"
+
+#. js-lingui-generated-id
+msgid "Ok"
+msgstr "Ok"
+
+#. js-lingui-generated-id
+msgid "Return to home"
+msgstr "Terug naar home"
+
+#. js-lingui-generated-id
+msgid "Add to Cart"
+msgstr "In winkelwagen"
 
 msgid "canceled"
 msgstr "geannuleerd"
 
+#. js-lingui-generated-id
+msgid "Shipping address"
+msgstr "Verzendadres"
+
+#. js-lingui-generated-id
+msgid "Shipping Note"
+msgstr "Verzendnotitie"
+
+#. js-lingui-generated-id
+msgid "Your message has been received, we will contact you as soon as we can"
+msgstr "Uw bericht is ontvangen, we nemen zo snel mogelijk contact met u op."
+
+#. js-lingui-generated-id
+msgid "Order #{orderNumber}"
+msgstr "Bestelling #{orderNumber}"
+
+#. js-lingui-generated-id
+msgid "Invalid phone number"
+msgstr "Ongeldig telefoonnummer"
+
+#. js-lingui-generated-id
+msgid "Submit"
+msgstr "Verzenden"
+
+#. js-lingui-generated-id
+msgid "Billing address"
+msgstr "Factuuradres"
+
+#. js-lingui-generated-id
+msgid "Order date"
+msgstr "Besteldatum"
+
+#. js-lingui-generated-id
+msgid "Back"
+msgstr "Terug"
+
 msgid "invoiced"
 msgstr "gefactureerd"
+
+#. js-lingui-generated-id
+msgid "Contact"
+msgstr "Contact"
+
+#. js-lingui-generated-id
+msgid "Order number"
+msgstr "Bestelnummer"
+
+#. js-lingui-generated-id
+msgid "All products"
+msgstr "Alle producten"
+
+#. js-lingui-generated-id
+msgid "No payment information"
+msgstr "Geen betalingsinformatie"
+
+#. js-lingui-generated-id
+msgid "View shopping cart"
+msgstr "Bekijk winkelwagen"
 
 msgid "no products"
 msgstr "geen producten"
 
+#. js-lingui-generated-id
+msgid "Get order"
+msgstr "Bestelling belijken"
+
 msgid "one product"
 msgstr "één product"
+
+#. js-lingui-generated-id
+msgid "Cancel order #{orderNumber}"
+msgstr "Annuleer bestelling #{orderNumber}"
 
 msgid "partially processed"
 msgstr "gedeeltelijk verwerkt"
@@ -883,14 +1074,50 @@ msgstr "gedeeltelijk verwerkt"
 msgid "processed"
 msgstr "verwerkt"
 
+#. js-lingui-generated-id
+msgid "Order #{orderNumber} can not be canceled"
+msgstr "Bestelling #{orderNumber} kan niet worden geannuleerd"
+
 msgid "refunded"
 msgstr "terug betaald"
 
 msgid "returned"
 msgstr "terug gestuurd"
 
+#. js-lingui-generated-id
+msgid "Order not found"
+msgstr "Bestelling niet gevonden"
+
 msgid "shipped"
 msgstr "verzonden"
+
+#. js-lingui-generated-id
+msgid "Cancel order"
+msgstr "Bestelling annuleren"
+
+#. js-lingui-generated-id
+msgid "Reorder"
+msgstr "Opnieuw bestellen"
+
+#. js-lingui-generated-id
+msgid "Customer Service"
+msgstr "Klantenservice"
+
+#. js-lingui-generated-id
+msgid "The given email does not match the account email"
+msgstr "Het opgegeven e-mailadres komt niet overeen met het account e-mailadres"
+
+#. js-lingui-generated-id
+msgid "Message"
+msgstr "Bericht"
+
+#. js-lingui-generated-id
+msgid "Clear current filters"
+msgstr "Huidige filters wissen"
+
+#. js-lingui-generated-id
+msgid "Private"
+msgstr "Privé"
 
 msgid "{count} Per page"
 msgstr "{count} Per pagina"

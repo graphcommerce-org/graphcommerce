@@ -10,7 +10,7 @@ An overview of bugs and limitations you may run into with Magento's GraphQL API:
 
 Affected Magento versions:
 
-- `2.4.7`: only `2.4.7-beta1`
+- `2.4.7`: fixed after 2.4.7-beta1
 - `2.4.6`: all versions
 
 This is caused by a regression which results in some GraphQL errors no longer
@@ -23,6 +23,85 @@ As a workaround, you can apply
 
 See also
 https://github.com/magento/magento2/commit/49cbe774020d3dfa6ee2b8702376a947801c9971
+
+## After adding a product to cart with custom options, options are not saved and/or retrieving the cart results in an error
+
+Affected Magento versions:
+
+- `2.4.7`: unknown, see below
+- `2.4.6`: all versions
+
+When adding a product to cart, custom options are not processed and saved
+correctly, and can result in an error on the `Cart.items.errors.message` field
+when subsequently retrieving the cart, if the product had required custom
+options.
+
+The observed error happens because no value is given for the non-nullable
+`message` field, however the original error occurs due a required custom option
+not being present on the cart item, as the custom options we not saved correctly
+during the previous `addProductsToCart` call.
+
+Note that although the relevant PR for this fix was merged, the fix seems to
+have gotten reverted and is not present in 2.4-develop at the time of writing,
+and may not be included in the final release of 2.4.7.
+
+As a workaround, you can apply
+[fix-custom-option-processing.patch](./patches/fix-custom-option-processing.patch).
+
+See also:
+
+- Original PR: https://github.com/magento/magento2/issues/37599
+- PR regarding revert of fix: https://github.com/magento/magento2/issues/37928
+
+## Adding products to cart with pre-existing items that are out of stock always results in an error
+
+Affected Magento versions:
+
+- `2.4.7`: fixed after 2.4.7-beta2
+- `2.4.6`: all versions
+
+This is due to an inconsistency between errors that are reported through the
+`AddProductsToCartOutput.user_errors` field and those on the cart items, which
+make it impossible to differentiate between errors cause by the product that was
+being added, and those from pre-existing cart items.
+
+As a workaround you can apply
+[fix-cart-user-error-reporting.patch](./patches/fix-cart-user-error-reporting.patch).
+
+See also:
+
+- Issue: https://github.com/magento/magento2/issues/37908
+- PR with fix: https://github.com/magento/magento2/pull/38014/files
+
+## Bundle selection products are not shown due to their visibility setting
+
+Affected Magento versions:
+
+- `2.4.6`: all versions
+
+The `BundleItemOption.product` GraphQL field is returned as `null` if the
+product visibility is set to not be visible in the catalog (which you may not
+want).
+
+As a workaround you can apply the following patches:
+
+- [fix-bundle-selection-visibility-catalog.patch](./patches/fix-bundle-selection-visibility-catalog.patch)
+- [fix-bundle-selection-visibility-related.patch](./patches/fix-bundle-selection-visibility-related.patch)
+
+See also https://github.com/magento/magento2/issues/37774
+
+## Custom attributes return an error when they have a null value
+
+Affected Magento versions:
+- `2.4.7`: all versions
+
+In magento version 2.4.7 the custom_attributesV2 field was added to load custom attribute values for a product.
+If a requested attribute value is null then Magento will return an error, since the value is required.
+
+You can apply the following patch, which ensures that the attribute is filtered and no error is thrown.
+[fix-error-returning-null-attribute-values.patch](./patches/fix-error-returning-null-attribute-values.patch)
+
+See also: https://github.com/magento/magento2/issues/38884
 
 ## Next steps
 

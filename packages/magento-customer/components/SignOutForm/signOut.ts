@@ -1,9 +1,12 @@
 import { ApolloClient } from '@graphcommerce/graphql'
+import { removeCssFlag } from '@graphcommerce/next-ui'
 
 export function signOut(client: ApolloClient<object>) {
-  client.cache.evict({ fieldName: 'currentCartId', broadcast: true })
-  client.cache.evict({ fieldName: 'cart', broadcast: true })
-  client.cache.evict({ fieldName: 'customerToken', broadcast: true })
-  client.cache.evict({ fieldName: 'customer', broadcast: true })
-  client.cache.evict({ fieldName: 'customerCart', broadcast: true })
+  removeCssFlag('in-context')
+  client.cache.evict({ fieldName: 'currentCartId' })
+  client.cache.evict({ fieldName: 'cart' })
+  client.cache.evict({ fieldName: 'customerToken' })
+  client.cache.evict({ fieldName: 'customer' })
+  client.cache.evict({ fieldName: 'customerCart' })
+  client.cache.gc()
 }

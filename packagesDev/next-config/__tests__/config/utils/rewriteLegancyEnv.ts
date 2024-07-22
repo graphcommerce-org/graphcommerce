@@ -17,13 +17,13 @@ export const removeColor = (str: string) =>
 it('rewrites legacy env', () => {
   const configFile: GraphCommerceConfig = {
     storefront: [{ locale: 'en', hygraphLocales: ['en'], magentoStoreCode: 'en_us' }],
-    customerRequireEmailConfirmation: false,
     productFiltersPro: false,
     canonicalBaseUrl: 'https://example.com',
     hygraphEndpoint: 'https://example.com',
     magentoEndpoint: 'https://example.com',
     previewSecret: 'secret',
     robotsAllow: true,
+    magentoVersion: 246,
   }
 
   const legacyEnv = {

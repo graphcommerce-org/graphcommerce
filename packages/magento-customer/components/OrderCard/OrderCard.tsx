@@ -1,6 +1,5 @@
 import { Money } from '@graphcommerce/magento-store'
-import { extendableComponent, NextLink, useDateTimeFormat } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { DateTimeFormat, extendableComponent, NextLink } from '@graphcommerce/next-ui'
 import { Box, styled, SxProps, Theme, Skeleton, ListItemButton } from '@mui/material'
 import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import { OrderCardItemImage } from '../OrderCardItemImage/OrderCardItemImage'
@@ -45,8 +44,6 @@ const OrderRow = styled(Box, { name: componentName, target: classes.orderRow })(
 export function OrderCard(props: OrderCardProps) {
   const { number, shipments, total, items, order_date, images, loading, sx = [] } = props
 
-  const dateFormatter = useDateTimeFormat({ dateStyle: 'long' })
-
   const totalItems = items?.length ?? 0
   const maxItemsInRow = 5
 
@@ -76,7 +73,7 @@ export function OrderCard(props: OrderCardProps) {
 
   return (
     <ListItemButton
-      href={`/account/orders/view?orderId=${number}`}
+      href={`/account/orders/view?orderNumber=${number}`}
       component={NextLink}
       className={classes.buttonRoot}
       sx={[
@@ -95,11 +92,11 @@ export function OrderCard(props: OrderCardProps) {
           <Box component='span' className={classes.orderMoney} sx={{ fontWeight: 'bold' }}>
             <Money {...total?.grand_total} />
           </Box>
-          <span>{dateFormatter.format(new Date(order_date ?? ''))}</span>
+          <DateTimeFormat>{order_date}</DateTimeFormat>
           <span>#{number}</span>
         </OrderRow>
         <OrderRow>
-          <OrderStateLabel items={items} />
+          <OrderStateLabel {...props} />
         </OrderRow>
         <Box className={classes.orderProducts}>
           <Box

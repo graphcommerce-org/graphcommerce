@@ -10,7 +10,6 @@ type SelectedCustomizableOptionProps = CartItemFragment & {
 
 export function SelectedCustomizableOptions(props: SelectedCustomizableOptionProps) {
   const { customizable_options, product } = props
-
   const options = filterNonNullableKeys(customizable_options, [])
 
   if (!options.length) return null
@@ -20,29 +19,20 @@ export function SelectedCustomizableOptions(props: SelectedCustomizableOptionPro
   return (
     <>
       {options.map((option) => (
-        <Box>
-          <Box key={option.customizable_option_uid} sx={{ color: 'text.primary' }}>
-            {option.label}
-          </Box>
+        <Box key={option.customizable_option_uid}>
+          <Box sx={{ color: 'text.primary' }}>{option.label}</Box>
           {option.values.filter(nonNullable).map((value) => (
             <Box
-              key={option.customizable_option_uid}
+              key={value.customizable_option_value_uid}
               sx={(theme) => ({
                 display: 'flex',
                 gap: theme.spacings.xxs,
                 flexDirection: 'row',
               })}
             >
-              {value.label && (
-                <span key={`${value.customizable_option_value_uid}_${value.label}`}>
-                  {value.label}
-                </span>
-              )}
+              {value.label && <span>{value.label}</span>}
               {value.price.value > 0 && productPrice && (
-                <Box
-                  sx={(theme) => ({ position: 'absolute', right: theme.spacings.xs })}
-                  key={`${value.customizable_option_value_uid}_${value.price.value}`}
-                >
+                <Box sx={(theme) => ({ position: 'absolute', right: theme.spacings.xs })}>
                   <Money
                     value={
                       value.price.type === 'PERCENT'

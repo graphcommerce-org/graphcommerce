@@ -70,14 +70,14 @@ AccountReviewsPage.pageOptions = pageOptions
 
 export default AccountReviewsPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
-      up: { href: '/account', title: 'Account' },
+      up: { href: '/account', title: i18n._(/* i18n */ 'Account') },
     },
   }
 }

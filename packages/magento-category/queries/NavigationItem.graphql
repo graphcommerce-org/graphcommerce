@@ -1,7 +1,8 @@
-fragment NavigationItem on CategoryTree @injectable {
+fragment NavigationItem on CategoryTree {
   uid
   include_in_menu
   name
   url_path
   level
+  is_anchor
 }

@@ -1,10 +1,12 @@
 fragment OrderCard on CustomerOrder {
   number
   shipments {
+    id
     tracking {
       ...TrackingLink
     }
   }
+
   total {
     grand_total {
       ...Money
@@ -15,4 +17,13 @@ fragment OrderCard on CustomerOrder {
   }
   ...OrderStateLabel
   order_date
+  shipping_address {
+    city
+    postcode
+    firstname
+    lastname
+    street
+    country_code
+    region_id
+  }
 }

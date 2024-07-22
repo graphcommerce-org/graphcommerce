@@ -1,3 +1,4 @@
+# @deprecated, please use SignUp.graphql instead
 mutation SignUpConfirm(
   $email: String!
   $password: String!

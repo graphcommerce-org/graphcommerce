@@ -158,10 +158,8 @@ msgstr "Cart ({0})"
  */
 const config = {
   i18n: [
-    {
-      locale: 'sv-fi',
-      magentoStoreCode: 'sv_FI',
-    },
+    { locale: 'sv-fi', magentoStoreCode: 'sv_FI', linguiLocale: 'sv' },
+    { locale: 'fr-be', magentoStoreCode: 'sv_FI', linguiLocale: 'fr-be' },
   ],
 }
 ```
@@ -176,6 +174,7 @@ const config = {
 ├─────────────┼─────────────┼─────────┤
 │ en (source) │     208     │    -    │
 │ sv          │     208     │   208   │
+│ fr-be       │     208     │   208   │
 └─────────────┴─────────────┴─────────┘
 ```
 
@@ -214,6 +213,10 @@ msgstr ""
 > Tip: [Github copilot ↗](https://copilot.github.com/) provides very accurate
 > suggestions in VS Code with the
 > [Github copilot extention ↗](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot).
+
+## Use country specific locales like `en-us` and `en-gb`
+
+Configure `linguiLocale` in the storefront config.
 
 ## Next steps
 

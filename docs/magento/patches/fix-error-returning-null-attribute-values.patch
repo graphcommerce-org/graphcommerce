@@ -1,0 +1,19 @@
+Fix issue where custom attributes with a null value cause an error when they are returned in the GraphQL API.
+See: https://github.com/magento/magento2/issues/38884
+
+@package magento/module-catalog-graph-ql
+
+===================================================================
+diff --git a/Model/Resolver/Product/ProductCustomAttributes.php b/Model/Resolver/Product/ProductCustomAttributes.php
+--- a/Model/Resolver/Product/ProductCustomAttributes.php
++++ b/Model/Resolver/Product/ProductCustomAttributes.php	(date 1721216924752)
+@@ -110,6 +110,9 @@
+             if (is_array($attributeValue)) {
+                 $attributeValue = implode(',', $attributeValue);
+             }
++            if (!$attributeValue) {
++                continue;
++            }
+             $customAttributes[] = [
+                 'attribute_code' => $attributeCode,
+                 'value' => $attributeValue

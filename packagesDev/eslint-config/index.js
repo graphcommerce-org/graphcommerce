@@ -147,6 +147,12 @@ module.exports = {
             message: 'Import from @mui/material instead of @emotion/react.',
           },
         ],
+        patterns: [
+          {
+            group: ['*.interceptor'],
+            message: 'Importing *.interceptor is NOT allowed',
+          },
+        ],
       },
     ],
   },
@@ -160,7 +166,7 @@ module.exports = {
       rules: { 'import/no-default-export': 'off' },
     },
     {
-      files: ['**/*.interceptor.tsx'],
+      files: ['**/*.interceptor.tsx', '**/*.interceptor.ts'],
       rules: {
         'import/export': 'off',
         'import/first': 'off',

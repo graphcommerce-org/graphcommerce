@@ -1,12 +1,14 @@
-import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import type { RowLinksProps } from '@graphcommerce/next-ui'
 import { responsiveVal } from '@graphcommerce/next-ui'
 
-export const component = 'RowLinks'
-export const exported = '@graphcommerce/next-ui/Row/RowLinks/RowLinks'
-export const ifConfig: IfConfig = 'demoMode'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/next-ui',
+  ifConfig: 'demoMode',
+}
 
-function DemoRowLinks(props: PluginProps<RowLinksProps>) {
+export function RowLinks(props: PluginProps<RowLinksProps>) {
   const { Prev, children, title, maxWidth, sx, ...rest } = props
   if (title !== 'Hot & New' && title !== 'Heet & Nieuw')
     return (
@@ -85,4 +87,3 @@ function DemoRowLinks(props: PluginProps<RowLinksProps>) {
     </Prev>
   )
 }
-export const Plugin = DemoRowLinks

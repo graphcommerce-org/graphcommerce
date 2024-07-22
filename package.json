@@ -3,7 +3,7 @@
   "name": "root",
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "5.0.0",
-  "packageManager": "yarn@4.0.2",
+  "packageManager": "yarn@4.3.1",
   "private": true,
   "workspaces": [
     "docs",
@@ -33,7 +33,9 @@
     "packages:5": "yarn workspace @graphcommerce/cli dev",
     "packages:6": "yarn workspace @graphcommerce/changeset-changelog dev",
     "packages:7": "yarn workspace @graphcommerce/graphql-codegen-markdown-docs dev",
-    "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'"
+    "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'",
+    "jest-watch": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal\" NODE_OPTIONS=\"--experimental-vm-modules\" jest --watch",
+    "test": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal\" NODE_OPTIONS=\"--experimental-vm-modules\" jest"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -44,22 +46,26 @@
     }
   },
   "dependencies": {
-    "@changesets/cli": "2.27.1",
-    "@testing-library/jest-dom": "^6.2.0",
-    "@testing-library/react": "^14.1.2",
+    "@changesets/cli": "2.27.7",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^14.3.1",
+    "@unts/patch-package": "^8.0.0",
     "concurrently": "8.2.2",
-    "jest-environment-jsdom": "^29.7.0",
-    "patch-package": "8.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@playwright/test": "1.41.0",
+    "@graphql-codegen/testing": "3.0.3",
+    "@playwright/test": "1.45.1",
     "@types/event-stream": "^4.0.5",
-    "eslint": "8.56.0",
+    "@types/jest": "^29.5.12",
+    "eslint": "^9.7.0",
     "event-stream": "^4.0.1",
-    "prettier": "3.2.4",
-    "typescript": "5.3.3"
+    "jest": "next",
+    "jest-diff": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "prettier": "3.3.3",
+    "typescript": "5.5.3"
   },
   "resolutions": {
     "@changesets/assemble-release-plan": "5.2.4",

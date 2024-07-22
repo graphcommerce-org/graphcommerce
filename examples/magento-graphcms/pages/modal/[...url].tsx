@@ -11,6 +11,7 @@ import {
   productListRenderer,
 } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = { content: PageContent }
 type RouteProps = { url: string[] }
@@ -55,14 +56,18 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const { params } = context
   const urlKey = params?.url.join('/') ?? '??'
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
 
   const conf = client.query({ query: StoreConfigDocument })
   const content = pageContent(staticClient, `modal/${urlKey}`)
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   if ((await content).notFound) return { notFound: true }
 
@@ -72,7 +77,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      size: 'max',
     },
     revalidate: 60 * 20,
   }
