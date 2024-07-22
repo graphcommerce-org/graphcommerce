@@ -1,5 +1,5 @@
 import { BlogHeader as NextBlogHeader } from '@graphcommerce/next-ui'
-import { Asset, AssetFragment } from '../Asset/Asset'
+import { Asset, AssetFragment } from '@graphcommerce/graphcms-ui/components/Asset/Asset'
 
 export function BlogHeader(props: { asset?: AssetFragment }) {
   const { asset } = props
