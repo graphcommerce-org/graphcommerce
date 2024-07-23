@@ -1,8 +1,8 @@
+import { Asset } from '@graphcommerce/graphcms-ui'
 import { BlogListItem } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Typography, useTheme } from '@mui/material'
 import { BlogItemFragment } from './BlogItem.gql'
-import { Asset } from '@graphcommerce/graphcms-ui/components/Asset/Asset'
 
 type BlogItemProps = BlogItemFragment
 

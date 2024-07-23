@@ -8,7 +8,7 @@ export type BlogHeaderProps = {
   asset?: React.ReactNode
 }
 
-const name = 'BlogHeader' as const
+const name = 'BlogHeader'
 const parts = ['header', 'asset'] as const
 const { classes } = extendableComponent(name, parts)
 

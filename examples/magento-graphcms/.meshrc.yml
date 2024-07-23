@@ -18,14 +18,6 @@ sources:
             - '*.*.!{after,before,last,forceParentLocale,locales,stage}'
             # Remove type any input or type fields: `input MyInput {}` or `type MyType { anyfield }`
             - '*.!{localizations,scheduledIn,documentInStages*,createdAt*,updatedAt*,publishedAt*,createdBy,updatedBy,publishedBy,history,scheduledIn*}'
-      # - prefix:
-      #     includeRootOperations: true
-      #     includeTypes: false
-      #     value: 'hygraph_'
-      # - prefix:
-      #     includeRootOperations: false
-      #     includeTypes: true
-      #     value: 'Hygraph'
       - prune:
           skipPruning: []
   - name: m2
