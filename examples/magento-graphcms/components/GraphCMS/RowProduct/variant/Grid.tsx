@@ -1,12 +1,13 @@
-import { ProductListItemRenderer, ProductListItemsBase } from '@graphcommerce/magento-product'
+import { ProductListItemsBase } from '@graphcommerce/magento-product'
 import { ContainerWithHeader } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
+import { productListRenderer } from '../../../ProductListItems'
 import { RowProductFragment } from '../RowProduct.gql'
 
-type GridProps = RowProductFragment & { productListItemRenderer: ProductListItemRenderer }
+type GridProps = RowProductFragment
 
 export function Grid(props: GridProps) {
-  const { title, pageLinks, productListItemRenderer, category } = props
+  const { title, pageLinks, category } = props
 
   return (
     <ContainerWithHeader
@@ -18,7 +19,7 @@ export function Grid(props: GridProps) {
       ))}
     >
       <ProductListItemsBase
-        renderers={productListItemRenderer}
+        renderers={productListRenderer}
         title={title}
         items={category?.products?.items}
         size='small'

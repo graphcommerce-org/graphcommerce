@@ -1,11 +1,10 @@
 import { RichText } from '@graphcommerce/graphcms-ui'
 import { Image } from '@graphcommerce/image'
-import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { ImageText } from '@graphcommerce/next-ui'
 import { Typography, useTheme } from '@mui/material'
 import { RowProductFragment } from '../RowProduct.gql'
 
-type FeatureProps = RowProductFragment & { productListItemRenderer: ProductListItemRenderer }
+type FeatureProps = RowProductFragment
 
 export function Feature(props: FeatureProps) {
   const { productCopy, title, category } = props

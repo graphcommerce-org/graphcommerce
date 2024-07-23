@@ -1,13 +1,11 @@
+import { RichText } from '@graphcommerce/graphcms-ui'
 import { Image } from '@graphcommerce/image'
-import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { ImageTextBoxed, responsiveVal } from '@graphcommerce/next-ui'
 import { Typography, useTheme } from '@mui/material'
 import { RowProductFragment } from '../RowProduct.gql'
 import { ProductFeatureMediaBoxedFragment } from './ProductFeatureMediaBoxed.gql'
-import { RichText } from '@graphcommerce/graphcms-ui'
 
-type FeatureBoxedProps = RowProductFragment &
-  ProductFeatureMediaBoxedFragment & { productListItemRenderer: ProductListItemRenderer }
+type FeatureBoxedProps = RowProductFragment & ProductFeatureMediaBoxedFragment
 
 export function FeatureBoxed(props: FeatureBoxedProps) {
   const { productCopy, title, media_gallery } = props

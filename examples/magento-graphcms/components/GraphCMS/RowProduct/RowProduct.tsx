@@ -1,7 +1,5 @@
 import { InContextMaskProvider, useInContextQuery } from '@graphcommerce/graphql'
-import { ProductListItemRenderer, ProductListDocument } from '@graphcommerce/magento-product'
-import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { productListRenderer } from '../../ProductListItems'
+import { GetRowProductCategoryDocument } from './GetRowProductCategory.gql'
 import { RowProductFragment } from './RowProduct.gql'
 import {
   Backstory,
@@ -14,11 +12,10 @@ import {
   Swipeable,
   Upsells,
 } from './variant'
-import { GetRowProductCategoryDocument } from './GetRowProductCategory.gql'
 
 type VariantRenderer = Record<
   NonNullable<RowProductFragment['variant']>,
-  React.FC<RowProductFragment & { productListItemRenderer: ProductListItemRenderer }>
+  React.FC<RowProductFragment>
 >
 
 type RowProductProps = RowProductFragment & {
@@ -38,8 +35,7 @@ const defaultRenderer: Partial<VariantRenderer> = {
 }
 
 export function RowProduct(props: RowProductProps) {
-  const { renderer, category } = props
-  let { variant } = props
+  const { renderer, variant, category, ...rest } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as VariantRenderer
 
   const scoped = useInContextQuery(
@@ -48,7 +44,7 @@ export function RowProduct(props: RowProductProps) {
     { categories: { items: category ? [category] : [] } },
   )
 
-  if (!variant) variant = 'Related'
+  if (!variant) return null
 
   const RenderType =
     mergedRenderer?.[variant] ??
@@ -59,11 +55,7 @@ export function RowProduct(props: RowProductProps) {
 
   return (
     <InContextMaskProvider mask={scoped.mask}>
-      <RenderType
-        {...props}
-        productListItemRenderer={productListRenderer}
-        category={scoped.data.categories?.items?.[0]}
-      />
+      <RenderType {...rest} category={scoped.data.categories?.items?.[0]} />
     </InContextMaskProvider>
   )
 }

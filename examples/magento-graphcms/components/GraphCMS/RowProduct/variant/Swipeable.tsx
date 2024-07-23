@@ -1,4 +1,4 @@
-import { AddProductsToCartForm, ProductListItemRenderer } from '@graphcommerce/magento-product'
+import { AddProductsToCartForm } from '@graphcommerce/magento-product'
 import {
   filterNonNullableKeys,
   RenderType,
@@ -7,13 +7,13 @@ import {
   SidebarSliderProps,
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
+import { productListRenderer } from '../../../ProductListItems'
 import { RowProductFragment } from '../RowProduct.gql'
 
-type SwipeableProps = RowProductFragment &
-  Pick<SidebarSliderProps, 'sx'> & { productListItemRenderer: ProductListItemRenderer }
+type SwipeableProps = RowProductFragment & Pick<SidebarSliderProps, 'sx'>
 
 export function Swipeable(props: SwipeableProps) {
-  const { title, category, productListItemRenderer, sx = [] } = props
+  const { title, category, sx = [] } = props
 
   const items = filterNonNullableKeys(category?.products?.items)
   if (items.length === 0) return null
@@ -38,7 +38,7 @@ export function Swipeable(props: SwipeableProps) {
         {items.map((item) => (
           <RenderType
             key={item.uid ?? ''}
-            renderer={productListItemRenderer}
+            renderer={productListRenderer}
             {...item}
             imageOnly
             sizes={responsiveVal(180, 900)}
