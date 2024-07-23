@@ -1,0 +1,11 @@
+fragment RowProductCategory on CategoryTree {
+  uid
+  name
+  products(pageSize: 8) {
+    items {
+      __typename
+      uid
+      ...ProductListItem
+    }
+  }
+}

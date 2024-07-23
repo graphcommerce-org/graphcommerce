@@ -11,16 +11,7 @@ fragment RowProduct on RowProduct {
   pageLinks {
     ...PageLink
   }
-
   category {
-    uid
-    name
-    products {
-      items {
-        __typename
-        uid
-        ...ProductListItem
-      }
-    }
+    ...RowProductCategory
   }
 }

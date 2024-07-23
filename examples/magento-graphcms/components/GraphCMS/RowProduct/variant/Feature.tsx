@@ -8,16 +8,16 @@ import { RowProductFragment } from '../RowProduct.gql'
 type FeatureProps = RowProductFragment & { productListItemRenderer: ProductListItemRenderer }
 
 export function Feature(props: FeatureProps) {
-  const { productCopy, title, media_gallery } = props
+  const { productCopy, title, category } = props
   const theme = useTheme()
-  const item = media_gallery?.[2] ?? media_gallery?.[0]
+  const firstProduct = category?.products?.items?.[0]
+  const item = firstProduct?.small_image
 
   if (!item) return null
 
   return (
     <ImageText
       item={
-        item.__typename === 'ProductImage' &&
         item.url && (
           <Image
             alt={item.label || item.label === ' ' ? item.label : 'Product Image 2'}

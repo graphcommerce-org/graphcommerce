@@ -1,6 +1,7 @@
 import { InContextMaskProvider, useInContextQuery } from '@graphcommerce/graphql'
 import { ProductListItemRenderer, ProductListDocument } from '@graphcommerce/magento-product'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { productListRenderer } from '../../ProductListItems'
 import { RowProductFragment } from './RowProduct.gql'
 import {
   Backstory,
@@ -13,6 +14,7 @@ import {
   Swipeable,
   Upsells,
 } from './variant'
+import { GetRowProductCategoryDocument } from './GetRowProductCategory.gql'
 
 type VariantRenderer = Record<
   NonNullable<RowProductFragment['variant']>,
@@ -21,7 +23,6 @@ type VariantRenderer = Record<
 
 type RowProductProps = RowProductFragment & {
   renderer?: Partial<VariantRenderer>
-  productListItemRenderer: ProductListItemRenderer
 } & { sku?: string | null | undefined }
 
 const defaultRenderer: Partial<VariantRenderer> = {
@@ -37,18 +38,15 @@ const defaultRenderer: Partial<VariantRenderer> = {
 }
 
 export function RowProduct(props: RowProductProps) {
-  const { renderer, productListItemRenderer, category, ...rest } = props
+  const { renderer, category } = props
   let { variant } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as VariantRenderer
 
-  const urlKeys = filterNonNullableKeys(category?.products?.items).map((item) => item.url_key)
   const scoped = useInContextQuery(
-    ProductListDocument,
-    { variables: { onlyItems: true, filters: { url_key: { in: urlKeys } } } },
-    { products: { items: category?.products?.items } },
+    GetRowProductCategoryDocument,
+    { variables: { category_uid: category?.uid ?? '' }, skip: !category?.uid },
+    { categories: { items: category ? [category] : [] } },
   )
-
-  const { products } = scoped.data
 
   if (!variant) variant = 'Related'
 
@@ -61,7 +59,11 @@ export function RowProduct(props: RowProductProps) {
 
   return (
     <InContextMaskProvider mask={scoped.mask}>
-      <RenderType {...rest} {...products} productListItemRenderer={productListItemRenderer} />
+      <RenderType
+        {...props}
+        productListItemRenderer={productListRenderer}
+        category={scoped.data.categories?.items?.[0]}
+      />
     </InContextMaskProvider>
   )
 }

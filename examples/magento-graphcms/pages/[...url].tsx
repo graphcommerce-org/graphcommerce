@@ -1,7 +1,8 @@
 import {
   ContentAreaCategoryPage,
   ContentAreaCategoryPageBefore,
-  UniversalPage_DataFragment,
+  GCPage_DataFragment,
+  GcPageQuery,
 } from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst, flushMeasurePerf, InContextMaskProvider } from '@graphcommerce/graphql'
@@ -47,20 +48,21 @@ import {
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
-export type CategoryProps = CategoryPageQuery &
+export type CategoryProps = GcPageQuery &
+  CategoryPageQuery &
   ProductListQuery &
   ProductFiltersQuery & {
     filterTypes?: FilterTypes
     params?: ProductListParams
-    content: UniversalPage_DataFragment
   }
+
 export type CategoryRoute = { url: string[] }
 
 type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
 function CategoryPage(props: CategoryProps) {
-  const { content, categories, ...rest } = props
+  const { gcPage, categories, ...rest } = props
   const productList = useProductList({
     ...rest,
     category: categories?.items?.[0],

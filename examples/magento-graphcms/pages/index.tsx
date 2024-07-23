@@ -3,12 +3,7 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutHeader } from '@graphcommerce/next-ui'
-import {
-  LayoutDocument,
-  LayoutNavigation,
-  LayoutNavigationProps,
-  productListRenderer,
-} from '../components'
+import { LayoutDocument, LayoutNavigation, LayoutNavigationProps } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = GcPageQuery

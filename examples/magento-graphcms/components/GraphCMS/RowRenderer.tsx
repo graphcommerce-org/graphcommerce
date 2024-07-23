@@ -25,7 +25,7 @@ export const defaultRenderer: { [key: string]: (props) => React.ReactElement } =
   RowHeroBanner,
   RowSpecialBanner,
   RowQuote,
-  // RowBlogContent,
+  // // RowBlogContent,
   RowButtonLinkList,
   RowServiceOptions,
   RowContentLinks,
@@ -36,25 +36,17 @@ export const defaultRenderer: { [key: string]: (props) => React.ReactElement } =
 export type PageProps = RowRendererFragment & {
   renderer?: Partial<ContentTypeRenderer>
   loadingEager?: number
-  productListItemRenderer?: ProductListItemRenderer
 }
 
 export const RowRenderer = memo<PageProps>((props) => {
-  const { content, renderer, productListItemRenderer, loadingEager = 2 } = props
+  const { content, renderer, loadingEager = 2 } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as ContentTypeRenderer
 
   return (
     <>
       {content?.map((item, index) => (
         <LazyHydrate key={item.id} hydrated={index < loadingEager ? true : undefined} height={500}>
-          {item.__typename === 'RowProduct' && (
-            <RenderType
-              renderer={mergedRenderer}
-              productListItemRenderer={productListItemRenderer}
-              {...item}
-            />
-          )}
-          {item.__typename !== 'RowProduct' && <RenderType renderer={mergedRenderer} {...item} />}
+          <RenderType renderer={mergedRenderer} {...item} />
         </LazyHydrate>
       ))}
     </>
