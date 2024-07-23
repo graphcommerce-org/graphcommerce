@@ -3942,6 +3942,7 @@ __metadata:
     "@graphcommerce/magento-compare": "npm:9.0.0-canary.63"
     "@graphcommerce/magento-customer": "npm:9.0.0-canary.63"
     "@graphcommerce/magento-graphql": "npm:9.0.0-canary.63"
+    "@graphcommerce/magento-graphql-rest": "npm:9.0.0-canary.63"
     "@graphcommerce/magento-newsletter": "npm:9.0.0-canary.63"
     "@graphcommerce/magento-payment-included": "npm:9.0.0-canary.63"
     "@graphcommerce/magento-product": "npm:9.0.0-canary.63"
@@ -3993,6 +3994,21 @@ __metadata:
     type-fest: "npm:^4.22.0"
     typescript: "npm:5.5.3"
     webpack: "npm:~5.93.0"
+  languageName: unknown
+  linkType: soft
+
+"@graphcommerce/magento-graphql-rest@npm:9.0.0-canary.63, @graphcommerce/magento-graphql-rest@workspace:packages/magento-graphql-rest":
+  version: 0.0.0-use.local
+  resolution: "@graphcommerce/magento-graphql-rest@workspace:packages/magento-graphql-rest"
+  dependencies:
+    graphql: "npm:^16.0.0"
+    tsx: "npm:^4.16.2"
+  peerDependencies:
+    "@graphcommerce/graphql-mesh": ^9.0.0-canary.63
+    "@graphcommerce/magento-product": ^9.0.0-canary.63
+    "@graphcommerce/magento-search": ^9.0.0-canary.63
+    "@graphcommerce/next-config": ^9.0.0-canary.63
+    "@graphcommerce/next-ui": ^9.0.0-canary.63
   languageName: unknown
   linkType: soft
 
