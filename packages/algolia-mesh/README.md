@@ -50,7 +50,6 @@ sorting option is a separate (virtual) index.
 
 ## Todo
 
-- [] Customer group pricing
 - [] Search suggestions
 - [] Category search
 - [] Additional indexes
