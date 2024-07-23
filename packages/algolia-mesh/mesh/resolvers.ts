@@ -3,6 +3,7 @@ import { storefrontConfigDefault } from '@graphcommerce/next-ui/server'
 import { algoliaFacetsToAggregations, getCategoryList } from './algoliaFacetsToAggregations'
 import { algoliaHitToMagentoProduct } from './algoliaHitToMagentoProduct'
 import { getAttributeList } from './getAttributeList'
+import { getCustomerGroup } from './getCustomerGroup'
 import { getStoreConfig } from './getStoreConfig'
 import {
   productFilterInputToAlgoliaFacetFiltersInput,
@@ -21,12 +22,15 @@ export const resolvers: Resolvers = {
 
       const { engine, ...filters } = args.filter ?? {}
 
-      const [storeConfig, attributeList, categoryList, settings] = await Promise.all([
-        getStoreConfig(context),
-        getAttributeList(context),
-        getCategoryList(context),
-        getAlgoliaSettings(context),
-      ])
+      const [storeConfig, attributeList, categoryList, settings, customerGroup] = await Promise.all(
+        [
+          getStoreConfig(context),
+          getAttributeList(context),
+          getCategoryList(context),
+          getAlgoliaSettings(context),
+          getCustomerGroup(context),
+        ],
+      )
 
       const options = sortingOptions(settings, attributeList, context)
       const indexName = getSortedIndex(context, args.sort, options, settings)

@@ -32,6 +32,7 @@ const algoliaTypeToTypename = {
 function mapPriceRange(
   price: AlgoliaProductHitAdditionalProperties['price'],
   storeConfig: GetStoreConfigReturn,
+  customerGroup = 0,
 ): PriceRange {
   if (!storeConfig?.default_display_currency_code) throw new Error('Currency is required')
 
@@ -40,14 +41,14 @@ function mapPriceRange(
 
   return {
     maximum_price: {
-      regular_price: { currency, value: price?.[key]?.default_max },
-      final_price: { currency, value: price?.[key]?.default_max },
+      regular_price: { currency, value: price?.[key]?.[`group_${customerGroup}_max`] },
+      final_price: { currency, value: price?.[key]?.[`group_${customerGroup}_max`] },
       // discount,
       // fixed_product_taxes
     },
     minimum_price: {
-      regular_price: { currency, value: price?.[key]?.default },
-      final_price: { currency, value: price?.[key]?.default },
+      regular_price: { currency, value: price?.[key]?.[`group_${customerGroup}`] },
+      final_price: { currency, value: price?.[key]?.[`group_${customerGroup}`] },
       // discount,
       // fixed_product_taxes
     },
@@ -96,6 +97,7 @@ export type MagentoProductItemReturn = NonNullable<
 export function algoliaHitToMagentoProduct(
   hit: Algoliahit,
   storeConfig: GetStoreConfigReturn,
+  customerGroup = 0,
 ): MagentoProductItemReturn | null {
   const { objectID, additionalProperties } = hit
   if (!assertAdditional(additionalProperties)) return null
@@ -126,7 +128,7 @@ export function algoliaHitToMagentoProduct(
     __typename: algoliaTypeToTypename[type_id as keyof typeof algoliaTypeToTypename],
     uid: btoa(objectID),
     sku: Array.isArray(sku) ? sku[0] : `${sku}`,
-    price_range: mapPriceRange(price, storeConfig),
+    price_range: mapPriceRange(price, storeConfig, customerGroup),
     created_at: created_at ? new Date(created_at).toISOString() : null,
     stock_status: is_stock ? 'IN_STOCK' : 'OUT_OF_STOCK',
     review_count: 0,
