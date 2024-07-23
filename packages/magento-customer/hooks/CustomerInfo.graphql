@@ -1,4 +1,5 @@
 fragment CustomerInfo on Customer {
+  group_id
   default_billing
   default_shipping
   addresses {

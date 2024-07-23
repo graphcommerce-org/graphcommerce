@@ -1,17 +1,16 @@
-import type { MeshContext, Resolvers } from '@graphcommerce/graphql-mesh'
-import { storefrontConfigDefault } from '@graphcommerce/next-ui/server'
+import type { Resolvers } from '@graphcommerce/graphql-mesh'
 import { algoliaFacetsToAggregations, getCategoryList } from './algoliaFacetsToAggregations'
 import { algoliaHitToMagentoProduct } from './algoliaHitToMagentoProduct'
+import { getAlgoliaSettings } from './getAlgoliaSettings'
 import { getAttributeList } from './getAttributeList'
-import { getCustomerGroup } from './getCustomerGroup'
 import { getStoreConfig } from './getStoreConfig'
 import {
   productFilterInputToAlgoliaFacetFiltersInput,
   productFilterInputToAlgoliaNumericFiltersInput,
 } from './productFilterInputToAlgoliafacetFiltersInput'
-import { nonNullable } from './utils'
-import { getAlgoliaSettings } from './getAlgoliaSettings'
 import { getSortedIndex, sortingOptions } from './sortOptions'
+import { nonNullable } from './utils'
+import { getGroupId } from './getGroupId'
 
 export const resolvers: Resolvers = {
   Query: {
@@ -22,15 +21,12 @@ export const resolvers: Resolvers = {
 
       const { engine, ...filters } = args.filter ?? {}
 
-      const [storeConfig, attributeList, categoryList, settings, customerGroup] = await Promise.all(
-        [
-          getStoreConfig(context),
-          getAttributeList(context),
-          getCategoryList(context),
-          getAlgoliaSettings(context),
-          getCustomerGroup(context),
-        ],
-      )
+      const [storeConfig, attributeList, categoryList, settings] = await Promise.all([
+        getStoreConfig(context),
+        getAttributeList(context),
+        getCategoryList(context),
+        getAlgoliaSettings(context),
+      ])
 
       const options = sortingOptions(settings, attributeList, context)
       const indexName = getSortedIndex(context, args.sort, options, settings)
@@ -69,7 +65,7 @@ export const resolvers: Resolvers = {
       const hits = (searchResults?.hits ?? [])?.filter(nonNullable)
 
       return {
-        items: hits.map((hit) => algoliaHitToMagentoProduct(hit, storeConfig)),
+        items: hits.map((hit) => algoliaHitToMagentoProduct(hit, storeConfig, getGroupId(context))),
         aggregations: algoliaFacetsToAggregations(
           searchResults?.facets,
           attributeList,

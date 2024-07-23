@@ -34,21 +34,6 @@ sources:
           Content-Currency: "{context.headers['content-currency']}"
           X-Magento-Cache-Id: "{context.headers['x-magento-cache-id']}"
           X-Forwarded-For: "{context.headers['x-forwarded-for']}"
-  - name: m2rest
-    handler:
-      jsonSchema:
-        endpoint: 'https://configurator.reachdigital.dev/rest/nl_NL/'
-        operations:
-          - type: Query
-            field: getCustomer
-            path: /V1/customers/me
-            method: GET
-            headers:
-              Content-Type: 'application/json'
-              Authorization: '{context.headers.authorization}'
-            responseSample: lib/customer/json/responseSample.json
-            responseTypeName: GetCustomerSuccesfull
-            description: 'Get Current Customer data'
 serve:
   playground: true
 plugins:

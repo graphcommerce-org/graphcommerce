@@ -52,6 +52,7 @@
     "@graphcommerce/magento-compare": "9.0.0-canary.63",
     "@graphcommerce/magento-customer": "9.0.0-canary.63",
     "@graphcommerce/magento-graphql": "9.0.0-canary.63",
+    "@graphcommerce/magento-graphql-rest": "9.0.0-canary.63",
     "@graphcommerce/magento-newsletter": "9.0.0-canary.63",
     "@graphcommerce/magento-payment-included": "9.0.0-canary.63",
     "@graphcommerce/magento-product": "9.0.0-canary.63",
