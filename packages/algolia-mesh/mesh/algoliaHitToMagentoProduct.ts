@@ -41,14 +41,26 @@ function mapPriceRange(
 
   return {
     maximum_price: {
-      regular_price: { currency, value: price?.[key]?.[`group_${customerGroup}_max`] },
-      final_price: { currency, value: price?.[key]?.[`group_${customerGroup}_max`] },
+      regular_price: {
+        currency,
+        value: price?.[key]?.[`group_${customerGroup}_max`] ?? price?.[key]?.default_max,
+      },
+      final_price: {
+        currency,
+        value: price?.[key]?.[`group_${customerGroup}_max`] ?? price?.[key]?.default_max,
+      },
       // discount,
       // fixed_product_taxes
     },
     minimum_price: {
-      regular_price: { currency, value: price?.[key]?.[`group_${customerGroup}`] },
-      final_price: { currency, value: price?.[key]?.[`group_${customerGroup}`] },
+      regular_price: {
+        currency,
+        value: price?.[key]?.[`group_${customerGroup}`] ?? price?.[key]?.default,
+      },
+      final_price: {
+        currency,
+        value: price?.[key]?.[`group_${customerGroup}`] ?? price?.[key]?.default,
+      },
       // discount,
       // fixed_product_taxes
     },
