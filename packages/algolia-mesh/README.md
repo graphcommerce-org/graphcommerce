@@ -35,6 +35,9 @@ Make sure the Magento 2 module is correctly installed and working.
    `Stores > Products > Attributes`
 4. To configure sorting options, enable Virtual Replica's.
    `Stores > Configuration > Algolia Search > Instant Search Results Page > Use Virtual Replica`
+5. To enable custom pricing, make sure customers groups prices are mapped to
+   algolia
+   `Stores > Configuration > Algolia Search > Advanced > Enable Customer Groups`
 
 ### Customization
 
