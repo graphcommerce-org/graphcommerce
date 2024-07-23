@@ -1,4 +1,4 @@
-import { Asset, RichText } from '@graphcommerce/graphcms-ui'
+import { RichText, Asset } from '@graphcommerce/graphcms-ui'
 import { UspList, UspListItem, UspListProps } from '@graphcommerce/next-ui'
 import { UspsQueryFragment } from './UspsQueryFragment.gql'
 

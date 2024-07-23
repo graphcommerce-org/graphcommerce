@@ -12,7 +12,6 @@ import {
   ProductListCount,
   ProductListFilters,
   ProductListFiltersContainer,
-  ProductListItemsBase,
   ProductListPagination,
   ProductListParams,
   ProductListParamsProvider,
@@ -22,7 +21,6 @@ import {
 import { StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { ProductListItems } from './ProductListItems'
-import { productListRenderer } from './productListRenderer'
 
 export type ProductListFilterLayoutProps = ProductListQuery &
   ProductFiltersQuery & {
@@ -39,14 +37,7 @@ export function CategoryFilterLayout(props: ProductListFilterLayoutProps) {
 
   const { total_count, sort_fields, page_info } = products
 
-  const items = (
-    <ProductListItemsBase
-      renderers={productListRenderer}
-      items={products.items}
-      loadingEager={6}
-      title={title}
-    />
-  )
+  const items = <ProductListItems items={products.items} loadingEager={6} title={title} />
 
   if (import.meta.graphCommerce.productFiltersPro) {
     const horizontalFilters = (

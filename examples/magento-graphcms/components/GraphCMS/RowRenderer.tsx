@@ -1,5 +1,4 @@
 import { GCPage_DataFragment } from '@graphcommerce/content-areas'
-import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { LazyHydrate, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import { memo } from 'react'
 import { RowBlogContent } from '../Blog'
@@ -16,16 +15,16 @@ import { RowRendererFragment } from './RowRenderer.gql'
 import { RowServiceOptions } from './RowServiceOptions/RowServiceOptions'
 import { RowSpecialBanner } from './RowSpecialBanner/RowSpecialBanner'
 
-export type ContentTypeRenderer = TypeRenderer<GCPage_DataFragment['content'][0]>
+type ContentTypeRenderer = TypeRenderer<GCPage_DataFragment['content'][0]>
 
-export const defaultRenderer: { [key: string]: (props) => React.ReactElement } = {
+const defaultRenderer: Partial<ContentTypeRenderer> = {
   RowColumnOne,
   RowColumnTwo,
   RowColumnThree,
   RowHeroBanner,
   RowSpecialBanner,
   RowQuote,
-  // // RowBlogContent,
+  RowBlogContent,
   RowButtonLinkList,
   RowServiceOptions,
   RowContentLinks,

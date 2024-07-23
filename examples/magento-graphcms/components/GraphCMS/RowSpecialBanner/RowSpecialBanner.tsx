@@ -1,4 +1,4 @@
-import { Asset, RichText } from '@graphcommerce/graphcms-ui'
+import { RichText, Asset } from '@graphcommerce/graphcms-ui'
 import { breakpointVal, SpecialBanner } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
 import { RowSpecialBannerFragment } from './RowSpecialBanner.gql'
