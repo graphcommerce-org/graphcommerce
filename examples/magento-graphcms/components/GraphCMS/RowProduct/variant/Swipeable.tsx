@@ -15,8 +15,8 @@ type SwipeableProps = RowProductFragment & Pick<SidebarSliderProps, 'sx'>
 export function Swipeable(props: SwipeableProps) {
   const { title, category, sx = [] } = props
 
-  const items = filterNonNullableKeys(category?.products?.items)
-  if (items.length === 0) return null
+  const items = category?.products?.items
+  if (!items || items.length === 0) return null
 
   return (
     <AddProductsToCartForm>
@@ -35,15 +35,18 @@ export function Swipeable(props: SwipeableProps) {
           </Typography>
         }
       >
-        {items.map((item) => (
-          <RenderType
-            key={item.uid ?? ''}
-            renderer={productListRenderer}
-            {...item}
-            imageOnly
-            sizes={responsiveVal(180, 900)}
-          />
-        ))}
+        {items.map((item) => {
+          if (!item) return null
+          return (
+            <RenderType
+              key={item.uid ?? ''}
+              renderer={productListRenderer}
+              {...item}
+              imageOnly
+              sizes={responsiveVal(180, 900)}
+            />
+          )
+        })}
       </SidebarSlider>
     </AddProductsToCartForm>
   )

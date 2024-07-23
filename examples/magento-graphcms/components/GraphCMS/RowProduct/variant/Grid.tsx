@@ -1,7 +1,6 @@
-import { ProductListItemsBase } from '@graphcommerce/magento-product'
 import { ContainerWithHeader } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
-import { productListRenderer } from '../../../ProductListItems'
+import { ProductListItems } from '../../../ProductListItems'
 import { RowProductFragment } from '../RowProduct.gql'
 
 type GridProps = RowProductFragment
@@ -18,8 +17,7 @@ export function Grid(props: GridProps) {
         </Link>
       ))}
     >
-      <ProductListItemsBase
-        renderers={productListRenderer}
+      <ProductListItems
         title={title}
         items={category?.products?.items}
         size='small'
