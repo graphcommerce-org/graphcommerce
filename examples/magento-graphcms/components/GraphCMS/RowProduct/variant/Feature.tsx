@@ -1,10 +1,9 @@
+import { RichText } from '@graphcommerce/graphcms-ui'
 import { Image } from '@graphcommerce/image'
+import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { ImageText } from '@graphcommerce/next-ui'
 import { Typography, useTheme } from '@mui/material'
 import { RowProductFragment } from '../RowProduct.gql'
-import { ProductFeatureMediaFragment } from './ProductFeatureMedia.gql'
-import { RichText } from '../../RichText'
-import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 
 type FeatureProps = RowProductFragment & { productListItemRenderer: ProductListItemRenderer }
 

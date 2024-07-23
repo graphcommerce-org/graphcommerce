@@ -1,10 +1,10 @@
 import { Image } from '@graphcommerce/image'
+import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { ImageTextBoxed, responsiveVal } from '@graphcommerce/next-ui'
 import { Typography, useTheme } from '@mui/material'
 import { RowProductFragment } from '../RowProduct.gql'
 import { ProductFeatureMediaBoxedFragment } from './ProductFeatureMediaBoxed.gql'
-import { RichText } from '../../RichText'
-import { ProductListItemRenderer } from '@graphcommerce/magento-product'
+import { RichText } from '@graphcommerce/graphcms-ui'
 
 type FeatureBoxedProps = RowProductFragment &
   ProductFeatureMediaBoxedFragment & { productListItemRenderer: ProductListItemRenderer }

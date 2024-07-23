@@ -1,11 +1,8 @@
-import { ProductListItemRenderer } from '@graphcommerce/magento-product'
-import { UniversalPageQuery } from '../../queries/UniversalPage.gql'
+import { GcPageQuery } from '../../queries/GcPage.gql'
 
-type ContentAreaProps = UniversalPageQuery & {
-  productListRenderer: ProductListItemRenderer
-}
+export type ContentAreaProps = GcPageQuery
 
 export function ContentArea(props: ContentAreaProps) {
-  const { pageContent } = props
+  const { gcPage } = props
   return <div />
 }

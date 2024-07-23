@@ -1,7 +1,0 @@
-fragment UniversalPage_Data on UniversalPage @injectable {
-  title
-  meta {
-    title
-    description
-  }
-}

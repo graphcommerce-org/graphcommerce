@@ -2915,17 +2915,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/content-areas@workspace:packages/content-areas":
+"@graphcommerce/content-areas@npm:9.0.0-canary.62, @graphcommerce/content-areas@workspace:packages/content-areas":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/content-areas@workspace:packages/content-areas"
   peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^8.0.0-canary.95
-    "@graphcommerce/graphql": ^8.0.0-canary.95
-    "@graphcommerce/magento-product": ^8.0.0-canary.95
-    "@graphcommerce/next-ui": ^8.0.0-canary.95
-    "@graphcommerce/prettier-config-pwa": ^8.0.0-canary.95
-    "@graphcommerce/react-hook-form": ^8.0.0-canary.95
-    "@graphcommerce/typescript-config-pwa": ^8.0.0-canary.95
+    "@graphcommerce/eslint-config-pwa": ^9.0.0-canary.62
+    "@graphcommerce/graphql": ^9.0.0-canary.62
+    "@graphcommerce/graphql-mesh": ^9.0.0-canary.62
+    "@graphcommerce/magento-product": ^9.0.0-canary.62
+    "@graphcommerce/next-ui": ^9.0.0-canary.62
+    "@graphcommerce/prettier-config-pwa": ^9.0.0-canary.62
+    "@graphcommerce/react-hook-form": ^9.0.0-canary.62
+    "@graphcommerce/typescript-config-pwa": ^9.0.0-canary.62
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
@@ -3934,6 +3935,7 @@ __metadata:
     "@apollo/client": "npm:~3.10.8"
     "@ducanh2912/next-pwa": "npm:9.7.2"
     "@graphcommerce/cli": "npm:9.0.0-canary.62"
+    "@graphcommerce/content-areas": "npm:9.0.0-canary.62"
     "@graphcommerce/demo-magento-graphcommerce": "npm:9.0.0-canary.62"
     "@graphcommerce/ecommerce-ui": "npm:9.0.0-canary.62"
     "@graphcommerce/eslint-config-pwa": "npm:9.0.0-canary.62"

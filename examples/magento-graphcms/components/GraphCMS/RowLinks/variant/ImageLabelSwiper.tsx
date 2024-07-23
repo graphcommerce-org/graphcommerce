@@ -1,8 +1,7 @@
+import { Asset, RichText } from '@graphcommerce/graphcms-ui'
 import { responsiveVal, VariantImageLabelSwiper } from '@graphcommerce/next-ui'
 import { Box, ButtonBase, Typography } from '@mui/material'
 import { RowLinksFragment } from '../RowLinks.gql'
-import { Asset } from '../../Asset/Asset'
-import { RichText } from '../../RichText'
 
 export function ImageLabelSwiper(props: RowLinksFragment) {
   const { title, rowLinksCopy, pageLinks } = props

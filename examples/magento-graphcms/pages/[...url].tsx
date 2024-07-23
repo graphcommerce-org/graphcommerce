@@ -1,8 +1,7 @@
 import {
   ContentAreaCategoryPage,
   ContentAreaCategoryPageBefore,
-  pageContent,
-  PageContent,
+  UniversalPage_DataFragment,
 } from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst, flushMeasurePerf, InContextMaskProvider } from '@graphcommerce/graphql'
@@ -42,6 +41,8 @@ import {
   LayoutNavigation,
   LayoutNavigationProps,
   productListRenderer,
+  RowProduct,
+  RowRenderer,
 } from '../components'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
@@ -51,7 +52,7 @@ export type CategoryProps = CategoryPageQuery &
   ProductFiltersQuery & {
     filterTypes?: FilterTypes
     params?: ProductListParams
-    content: PageContent
+    content: UniversalPage_DataFragment
   }
 export type CategoryRoute = { url: string[] }
 
@@ -59,7 +60,7 @@ type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
 function CategoryPage(props: CategoryProps) {
-  const { content, categories, pages, ...rest } = props
+  const { content, categories, ...rest } = props
   const productList = useProductList({
     ...rest,
     category: categories?.items?.[0],
@@ -71,7 +72,7 @@ function CategoryPage(props: CategoryProps) {
 
   return (
     <InContextMaskProvider mask={productList.mask}>
-      <CategoryMeta metadata={content.metadata} params={params} category={category} />
+      <CategoryMeta metadata={content.meta} params={params} category={category} />
 
       <ContentAreaCategoryPageBefore content={content} productListRenderer={productListRenderer} />
 

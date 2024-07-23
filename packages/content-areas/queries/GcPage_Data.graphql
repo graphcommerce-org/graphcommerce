@@ -1,0 +1,9 @@
+fragment GCPage_Data on GCPageInterface {
+  id
+  title
+  metaTitle
+  metaDescription
+  metaRobots
+  canonicalUrl
+  someField
+}

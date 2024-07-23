@@ -1,9 +1,6 @@
-import {
-  ContentAreaHome,
-  UniversalPageDocument,
-  UniversalPageQuery,
-} from '@graphcommerce/content-areas'
+import { ContentAreaHome, GcPageDocument, GcPageQuery } from '@graphcommerce/content-areas'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { cacheFirst } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutHeader } from '@graphcommerce/next-ui'
 import {
@@ -14,19 +11,19 @@ import {
 } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
-type Props = UniversalPageQuery
+type Props = GcPageQuery
 type RouteProps = { url: string }
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function CmsPage(props: Props) {
-  const { pageContent } = props
+  const { gcPage } = props
 
   return (
     <>
       {/* <PageMeta metadata={content.metadata} canonical='/' /> */}
 
       <LayoutHeader floatingMd floatingSm />
-      <ContentAreaHome pageContent={pageContent} productListRenderer={productListRenderer} />
+      <ContentAreaHome gcPage={gcPage} />
     </>
   )
 }
@@ -42,10 +39,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const staticClient = graphqlSsrClient(context)
 
   const conf = client.query({ query: StoreConfigDocument })
-  const page = client.query({
-    query: UniversalPageDocument,
-    variables: { input: { url: 'page/home' } },
-  })
+  const page = client.query({ query: GcPageDocument, variables: { input: { url: 'page/home' } } })
 
   const layout = staticClient.query({
     query: LayoutDocument,

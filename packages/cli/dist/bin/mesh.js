@@ -119,8 +119,6 @@ const main = async () => {
     });
     // Scan the current working directory to also read all graphqls files.
     conf.additionalTypeDefs.push('**/*.graphqls');
-    conf.additionalResolvers = [];
-    // conf.additionalResolvers.push('**/resolvers/**/*.ts')
     const deps = (0, next_config_1.resolveDependenciesSync)();
     const packages = [...deps.values()].filter((p) => p !== '.');
     const mV = graphCommerce.magentoVersion ?? 246;
@@ -131,18 +129,6 @@ const main = async () => {
         conf.additionalTypeDefs.push(`${r}/*/schema/**/*.graphqls`);
         conf.additionalTypeDefs.push(...alsoScan);
     });
-    const meshScan = [...deps.values()].map(async (r) => {
-        const resolver = `${r}/mesh.ts`;
-        const hasResolver = await node_fs_1.promises
-            .stat(resolver)
-            .then(() => true)
-            .catch(() => false);
-        if (!conf.additionalResolvers)
-            conf.additionalResolvers = [];
-        if (hasResolver)
-            conf.additionalResolvers.push(resolver);
-    });
-    await Promise.all(meshScan);
     if (!conf.serve)
         conf.serve = {};
     if (!conf.serve.playgroundTitle)

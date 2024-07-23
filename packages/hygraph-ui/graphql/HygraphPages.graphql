@@ -1,7 +1,0 @@
-query HygraphPages($url: String!) {
-  pages(where: { url: $url }) {
-    id
-    __typename
-    ...HygraphPage
-  }
-}

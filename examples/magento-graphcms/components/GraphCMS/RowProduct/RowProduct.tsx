@@ -1,10 +1,5 @@
 import { InContextMaskProvider, useInContextQuery } from '@graphcommerce/graphql'
-import {
-  ProductListItemRenderer,
-  ProductListDocument,
-  ProductListItemsFragment,
-} from '@graphcommerce/magento-product'
-import { ProductSpecsFragment } from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.gql'
+import { ProductListItemRenderer, ProductListDocument } from '@graphcommerce/magento-product'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { RowProductFragment } from './RowProduct.gql'
 import {
@@ -21,16 +16,13 @@ import {
 
 type VariantRenderer = Record<
   NonNullable<RowProductFragment['variant']>,
-  React.FC<
-    RowProductFragment &
-      ProductListItemsFragment & { productListItemRenderer: ProductListItemRenderer }
-  >
+  React.FC<RowProductFragment & { productListItemRenderer: ProductListItemRenderer }>
 >
 
 type RowProductProps = RowProductFragment & {
   renderer?: Partial<VariantRenderer>
   productListItemRenderer: ProductListItemRenderer
-} & ProductSpecsFragment & { sku?: string | null | undefined } & ProductListItemsFragment
+} & { sku?: string | null | undefined }
 
 const defaultRenderer: Partial<VariantRenderer> = {
   Specs,
@@ -45,24 +37,17 @@ const defaultRenderer: Partial<VariantRenderer> = {
 }
 
 export function RowProduct(props: RowProductProps) {
-  const { renderer, productListItemRenderer, items, ...rest } = props
+  const { renderer, productListItemRenderer, category, ...rest } = props
   let { variant } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as VariantRenderer
 
-  const urlKeys = filterNonNullableKeys(items).map((item) => item.url_key)
+  const urlKeys = filterNonNullableKeys(category?.products?.items).map((item) => item.url_key)
   const scoped = useInContextQuery(
     ProductListDocument,
     { variables: { onlyItems: true, filters: { url_key: { in: urlKeys } } } },
-    { products: { items } },
+    { products: { items: category?.products?.items } },
   )
-  const { products } = scoped.data
 
-  const urlKeys = filterNonNullableKeys(items).map((item) => item.url_key)
-  const scoped = useInContextQuery(
-    ProductListDocument,
-    { variables: { onlyItems: true, filters: { url_key: { in: urlKeys } } } },
-    { products: { items } },
-  )
   const { products } = scoped.data
 
   if (!variant) variant = 'Related'

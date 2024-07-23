@@ -1,7 +1,0 @@
-query UniversalPage($input: UniversalPageInput!) {
-  common {
-    pageContent(input: $input) {
-      ...UniversalPage_Data
-    }
-  }
-}

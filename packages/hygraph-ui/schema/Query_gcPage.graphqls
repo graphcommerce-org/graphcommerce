@@ -1,0 +1,19 @@
+type Page implements GCPageInterface {
+  title: String
+  metaTitle: String
+  metaDescription: String
+  metaRobots: String
+  canonicalUrl: String
+  someField: String!
+}
+
+extend type Query {
+  gcPage(input: GCPageInput!): GCPageInterface
+    @resolveTo(
+      sourceName: "hygraph"
+      sourceTypeName: "Query"
+      sourceFieldName: "pagesConnection"
+      sourceArgs: { where: { url: "{args.input.url}" } }
+      result: "edges[0].node"
+    )
+}

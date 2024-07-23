@@ -1,8 +1,8 @@
+import { GCPage_DataFragment } from '@graphcommerce/content-areas'
 import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { LazyHydrate, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import { memo } from 'react'
 import { RowBlogContent } from '../Blog'
-import { PageContentQueryFragment } from './PageContentQueryFragment.gql'
 import { RowButtonLinkList } from './RowButtonLinkList/RowButtonLinkList'
 import { RowColumnOne } from './RowColumnOne/RowColumnOne'
 import { RowColumnThree } from './RowColumnThree/RowColumnThree'
@@ -16,7 +16,7 @@ import { RowRendererFragment } from './RowRenderer.gql'
 import { RowServiceOptions } from './RowServiceOptions/RowServiceOptions'
 import { RowSpecialBanner } from './RowSpecialBanner/RowSpecialBanner'
 
-export type ContentTypeRenderer = TypeRenderer<PageContentQueryFragment['pages'][0]['content'][0]>
+export type ContentTypeRenderer = TypeRenderer<GCPage_DataFragment['content'][0]>
 
 export const defaultRenderer: { [key: string]: (props) => React.ReactElement } = {
   RowColumnOne,
