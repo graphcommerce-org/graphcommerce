@@ -70,7 +70,7 @@ export const graphcommerce8to9: MigrationFunction = async (schema, client) => {
       values: [
         { displayName: 'Backstory', apiId: 'Backstory' },
         { displayName: 'Grid', apiId: 'Grid' },
-        { displayName: 'Equal to', apiId: 'EQUAL' },
+        { displayName: 'Swipeable', apiId: 'Swipeable' },
       ],
     } satisfies BatchMigrationCreateEnumerationInput)
 
