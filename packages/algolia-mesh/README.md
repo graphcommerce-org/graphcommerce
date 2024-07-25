@@ -36,7 +36,9 @@ Make sure the Magento 2 module is correctly installed and working.
 4. To configure sorting options, enable Virtual Replica's.
    `Stores > Configuration > Algolia Search > Instant Search Results Page > Use Virtual Replica`
 5. To enable custom pricing, make sure customers groups prices are mapped to
-   algolia
+   algolia. NOTE: Catalog price rules are not indexed by algolia. You can use,
+   in a product admin page, advanced pricing -> special price or advanced
+   pricing -> customer group pricing to set custom prices.
    `Stores > Configuration > Algolia Search > Advanced > Enable Customer Groups`
 
 ### Customization
