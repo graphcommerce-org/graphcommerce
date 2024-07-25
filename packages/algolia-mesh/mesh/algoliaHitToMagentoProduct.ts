@@ -43,7 +43,7 @@ function mapPriceRange(
     maximum_price: {
       regular_price: {
         currency,
-        value: price?.[key]?.[`group_${customerGroup}_max`] ?? price?.[key]?.default_max,
+        value: price?.[key]?.default_max,
       },
       final_price: {
         currency,
@@ -55,7 +55,7 @@ function mapPriceRange(
     minimum_price: {
       regular_price: {
         currency,
-        value: price?.[key]?.[`group_${customerGroup}`] ?? price?.[key]?.default,
+        value: price?.[key]?.default,
       },
       final_price: {
         currency,
