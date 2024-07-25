@@ -36,6 +36,7 @@ sources:
           X-Forwarded-For: "{context.headers['x-forwarded-for']}"
 serve:
   playground: true
+
 plugins:
   - '@graphcommerce/graphql-mesh/plugin/forward-headers':
       forwardHeaders:

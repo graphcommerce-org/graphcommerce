@@ -1,6 +1,6 @@
 import yaml from 'js-yaml'
 import { writeFile, readFile } from 'node:fs/promises'
-import type { OpenAPIV3 } from 'openapi-types'
+import { OpenAPIV3 } from 'openapi-types'
 import prettier from 'prettier'
 import conf from '@graphcommerce/prettier-config-pwa'
 
@@ -10,63 +10,59 @@ function isRef(value: any): value is OpenAPIV3.ReferenceObject {
 
 const response = await readFile('./scripts/m2rest-admin.json')
 
+const allMethods = [
+  OpenAPIV3.HttpMethods.TRACE,
+  OpenAPIV3.HttpMethods.POST,
+  OpenAPIV3.HttpMethods.PUT,
+  OpenAPIV3.HttpMethods.GET,
+  OpenAPIV3.HttpMethods.DELETE,
+  OpenAPIV3.HttpMethods.PATCH,
+  OpenAPIV3.HttpMethods.OPTIONS,
+  OpenAPIV3.HttpMethods.HEAD,
+]
+
 const openApiSchema = JSON.parse(response.toString()) as OpenAPIV3.Document
 
-const newSchema: OpenAPIV3.Document = {
-  ...openApiSchema,
-  components: {
-    ...openApiSchema.components,
-    schemas: Object.fromEntries(
-      Object.entries(openApiSchema.components?.schemas ?? {}).map(([schemaKey, schema]) => {
-        if (isRef(schema)) return [schemaKey, schema]
+const { info, openapi, components, tags, ...rest } = openApiSchema
 
-        return [
-          schemaKey,
-          {
-            ...schema,
-            default: undefined,
-            properties: schema.properties
-              ? Object.fromEntries(
-                  Object.entries(schema.properties).map(([propertyKey, property]) => {
-                    if (isRef(property)) return [propertyKey, property]
-                    return [propertyKey, { ...property, default: undefined }]
-                  }),
-                )
-              : undefined,
-          },
-        ]
-      }),
-    ),
-  },
-  paths: {
-    ...Object.fromEntries(
-      Object.entries(openApiSchema.paths)
-        .filter(([path, pathItem]) => {
-          if (!pathItem) return
-          if (path === '/V1/customers/me') return true
-          return false
-        })
-        .map(([path, pathItem]) => {
-          if (!pathItem) return [path, pathItem]
-          const newValue = pathItem
+function filterPaths(
+  paths: OpenAPIV3.PathsObject,
+  allow: Record<string, OpenAPIV3.HttpMethods[]>,
+): OpenAPIV3.PathsObject {
+  const allowedEntries = Object.entries(allow)
 
-          const removeMethod = [
-            'post',
-            // 'get',
-            'put',
-            'delete',
-            'patch',
-            'options',
-          ] as const
+  return Object.fromEntries(
+    Object.entries(paths)
+      .map(([path, pathItem]) => {
+        if (!pathItem) return [path, pathItem]
+        const newValue = pathItem
 
-          removeMethod.forEach((method) => {
+        const [allowedPath, allowedMethods] =
+          allowedEntries.find(([allowedPath]) => allowedPath === path) ?? []
+
+        if (!allowedPath || !allowedMethods) return [path, undefined]
+
+        allMethods
+          .filter((method) => !allowedMethods.includes(method))
+          .forEach((method) => {
             newValue[method] = undefined
           })
 
-          return [path, newValue]
-        }),
-    ),
-  },
+        return [path, newValue]
+      })
+      .filter(([path, pathItem]) => {
+        if (!pathItem) return false
+        if (allMethods.every((key) => !pathItem[key])) return false
+        return true
+      }),
+  )
+}
+
+const newSchema: OpenAPIV3.Document = {
+  openapi,
+  info,
+  paths: filterPaths(openApiSchema.paths, { '/V1/customers/me': [OpenAPIV3.HttpMethods.GET] }),
+  components,
 }
 
 await writeFile(
