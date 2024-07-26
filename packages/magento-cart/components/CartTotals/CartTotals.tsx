@@ -21,8 +21,10 @@ const parts = [
 const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 
 /**
- * ⚠️ WARNING: The current CartTotals rely heavily on how Magento is configured. It kinda works for
- * the demo, but we need additional fields from the API to get this working as expected:
+ * ⚠️ WARNING: The discount value of the cart will sometimes be when
+ * 1. Catalog Prices are set to Including Tax
+ * 2. Apply Discount Tax is set to: After discount
+ * 3. Price display settings is set to: Excluding tax       
  *
  * @see https://github.com/magento/magento2/issues/33848
  */
