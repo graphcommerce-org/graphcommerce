@@ -72,8 +72,9 @@ To get query suggestions/autocomplete enter your Algolia dashboard > Aearch >
 configure > Query Suggestions > new Query Suggestions Index. This will create a
 new index which will be used for suggestions
 
-Don't mind to use the suggestions setting in magento admin. It will create an
-suggestions index but it
+Don't mind to use the suggestions setting in magento admin. It will create a
+suggestions index but it will not record suggestions. This requires
+instantSearch
 
 ## Todo
 
