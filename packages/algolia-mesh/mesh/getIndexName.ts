@@ -9,3 +9,8 @@ export function getIndexName(context: MeshContext) {
   const storeCode = getStoreHeader(context) ?? storefrontConfigDefault().magentoStoreCode
   return `${import.meta.graphCommerce.algoliaIndexNamePrefix}${storeCode}_products`
 }
+
+export function getSuggestionsIndexName(context: MeshContext) {
+  const index = getIndexName(context)
+  return `${index}_query_suggestions`
+}

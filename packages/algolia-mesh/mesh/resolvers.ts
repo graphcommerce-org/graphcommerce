@@ -11,6 +11,8 @@ import {
 } from './productFilterInputToAlgoliafacetFiltersInput'
 import { getSortedIndex, sortingOptions } from './sortOptions'
 import { nonNullable } from './utils'
+import { getSuggestionsIndexName } from './getIndexName'
+import { algoliaHitsToSuggestions } from './algoliaHitsToSuggestions'
 
 export const resolvers: Resolvers = {
   Query: {
@@ -31,38 +33,69 @@ export const resolvers: Resolvers = {
       const options = sortingOptions(settings, attributeList, context)
       const indexName = getSortedIndex(context, args.sort, options, settings)
 
-      const searchResults = await context.algolia.Query.algolia_searchSingleIndex({
-        root,
-        args: {
-          indexName,
-          input: {
-            query: args.search ?? '',
-            facets: ['*'],
-            hitsPerPage: args.pageSize ? args.pageSize : 10,
-            page: args.currentPage ? args.currentPage - 1 : 0,
-            facetFilters: productFilterInputToAlgoliaFacetFiltersInput(filters),
-            numericFilters: productFilterInputToAlgoliaNumericFiltersInput(storeConfig, filters),
+      const [searchResults, suggestionResults] = await Promise.all([
+        await context.algolia.Query.algolia_searchSingleIndex({
+          root,
+          args: {
+            indexName,
+            input: {
+              query: args.search ?? '',
+              facets: ['*'],
+              hitsPerPage: args.pageSize ? args.pageSize : 10,
+              page: args.currentPage ? args.currentPage - 1 : 0,
+              facetFilters: productFilterInputToAlgoliaFacetFiltersInput(filters),
+              numericFilters: productFilterInputToAlgoliaNumericFiltersInput(storeConfig, filters),
+            },
           },
-        },
-        selectionSet: /* GraphQL */ `
-          {
-            nbPages
-            hitsPerPage
-            page
-            nbHits
-            hits {
-              __typename
-              objectID
-              additionalProperties
+          selectionSet: /* GraphQL */ `
+            {
+              nbPages
+              hitsPerPage
+              page
+              nbHits
+              hits {
+                __typename
+                objectID
+                additionalProperties
+              }
+              facets
             }
-            facets
-          }
-        `,
-        context,
-        info,
-      })
+          `,
+          context,
+          info,
+        }),
+        await context.algolia.Query.algolia_searchSingleIndex({
+          root,
+          args: {
+            indexName: getSuggestionsIndexName(context),
+            input: {
+              query: args.search ?? '',
+
+              hitsPerPage: 15,
+              page: 0,
+            },
+          },
+          selectionSet: /* GraphQL */ `
+            {
+              nbPages
+              hitsPerPage
+              page
+              nbHits
+              hits {
+                __typename
+                objectID
+                additionalProperties
+              }
+              facets
+            }
+          `,
+          context,
+          info,
+        }),
+      ])
 
       const hits = (searchResults?.hits ?? [])?.filter(nonNullable)
+      const sugestionsHits = (suggestionResults?.hits ?? [])?.filter(nonNullable)
 
       return {
         items: hits.map((hit) => algoliaHitToMagentoProduct(hit, storeConfig, getGroupId(context))),
@@ -77,7 +110,7 @@ export const resolvers: Resolvers = {
           page_size: searchResults?.hitsPerPage,
           total_pages: searchResults?.nbPages,
         },
-        suggestions: [],
+        suggestions: algoliaHitsToSuggestions(sugestionsHits),
         total_count: searchResults?.nbHits,
         sort_fields: { default: 'relevance', options: Object.values(options) },
       }
