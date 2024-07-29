@@ -21,7 +21,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
-import { Box, Container, Typography } from '@mui/material'
+import { Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -35,6 +35,7 @@ function OrderDetailPage() {
   const orders = useCustomerQuery(OrderDetailPageDocument, {
     fetchPolicy: 'cache-and-network',
     variables: { orderNumber: orderNumber as string },
+    skip: !orderNumber,
   })
   const { data } = orders
   const images = useOrderCardItemImages(data?.customer?.orders)

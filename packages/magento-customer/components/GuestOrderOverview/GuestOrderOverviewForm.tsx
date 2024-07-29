@@ -87,7 +87,7 @@ export function GuestOrderOverviewForm() {
       ) : (
         <>
           <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
-            <OrderStateLabel items={orderData?.guestOrder.items} />
+            <OrderStateLabel {...orderData.guestOrder} />
           </Typography>
           <OrderDetails {...orderData?.guestOrder} />
           <OrderItems {...orderData?.guestOrder} images={images} />
