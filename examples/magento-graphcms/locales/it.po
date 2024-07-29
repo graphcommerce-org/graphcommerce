@@ -969,7 +969,7 @@ msgstr "Indirizzo di spedizione"
 
 #. js-lingui-generated-id
 msgid "Order status: {status}"
-msgstr "Stato dell'ordine: {status}”"
+msgstr "Stato dell'ordine: {status}"
 
 #. js-lingui-generated-id
 msgid "Shipping Note"
