@@ -8,15 +8,18 @@ import {
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import { productListRenderer } from '../../../ProductListItems'
-import { RowProductFragment } from '../RowProduct.gql'
+import { RowCategoryFragment } from '../RowCategory.gql'
 
-type SwipeableProps = RowProductFragment & Pick<SidebarSliderProps, 'sx'>
+type SwipeableProps = RowCategoryFragment & Pick<SidebarSliderProps, 'sx'>
 
 export function Swipeable(props: SwipeableProps) {
-  const { title, category, sx = [] } = props
+  const { category, sx = [] } = props
 
-  const items = category?.products?.items
-  if (!items || items.length === 0) return null
+  // const items = category?.products?.items
+  if (!category || !category.products?.items) return null
+
+  const { name } = category
+  const items = filterNonNullableKeys(category.products.items)
 
   return (
     <AddProductsToCartForm>
@@ -31,22 +34,19 @@ export function Swipeable(props: SwipeableProps) {
         ]}
         sidebar={
           <Typography variant='h2' sx={{ textTransform: 'uppercase' }}>
-            {title}
+            {name}
           </Typography>
         }
       >
-        {items.map((item) => {
-          if (!item) return null
-          return (
-            <RenderType
-              key={item.uid ?? ''}
-              renderer={productListRenderer}
-              {...item}
-              imageOnly
-              sizes={responsiveVal(180, 900)}
-            />
-          )
-        })}
+        {items.map((item) => (
+          <RenderType
+            key={item.uid}
+            renderer={productListRenderer}
+            {...item}
+            imageOnly
+            sizes={responsiveVal(180, 900)}
+          />
+        ))}
       </SidebarSlider>
     </AddProductsToCartForm>
   )

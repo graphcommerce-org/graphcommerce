@@ -1,8 +1,9 @@
-import { GCPage_DataFragment } from '@graphcommerce/content-areas'
+import { GCPage_DataFragment } from '@graphcommerce/graphql-gc-api'
 import { LazyHydrate, RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import { memo } from 'react'
 import { RowBlogContent } from '../Blog'
 import { RowButtonLinkList } from './RowButtonLinkList/RowButtonLinkList'
+import { RowCategory } from './RowCategory/RowCategory'
 import { RowColumnOne } from './RowColumnOne/RowColumnOne'
 import { RowColumnThree } from './RowColumnThree/RowColumnThree'
 import { RowColumnTwo } from './RowColumnTwo/RowColumnTwo'
@@ -30,6 +31,7 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
   RowContentLinks,
   RowProduct,
   RowLinks,
+  RowCategory,
 }
 
 export type PageProps = RowRendererFragment & {

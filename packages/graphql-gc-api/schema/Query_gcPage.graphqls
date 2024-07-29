@@ -1,0 +1,7 @@
+input GCPageInput {
+  href: String!
+}
+
+extend type Query {
+  gcPage(input: GCPageInput!): GcPageInterface
+}

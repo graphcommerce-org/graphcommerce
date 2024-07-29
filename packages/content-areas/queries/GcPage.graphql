@@ -1,5 +1,0 @@
-query GcPage($input: GCPageInput!) {
-  gcPage(input: $input) {
-    ...GCPage_Data
-  }
-}

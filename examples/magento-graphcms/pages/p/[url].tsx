@@ -4,7 +4,7 @@ import {
   ContentAreaProductPageSidebar,
   PageContent,
   pageContent,
-} from '@graphcommerce/content-areas'
+} from '@graphcommerce/graphql-gc-api'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   cacheFirst,

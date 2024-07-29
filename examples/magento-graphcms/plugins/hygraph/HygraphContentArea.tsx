@@ -1,10 +1,10 @@
-import type { ContentAreaProps } from '@graphcommerce/content-areas'
+import type { ContentAreaProps } from '@graphcommerce/graphql-gc-api'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { RowRenderer } from '../../components/GraphCMS'
 
 export const config: PluginConfig = {
   type: 'component',
-  module: '@graphcommerce/content-areas',
+  module: '@graphcommerce/graphql-gc-api',
 }
 
 export const ContentArea = (props: PluginProps<ContentAreaProps>) => {

@@ -11,7 +11,8 @@ fragment RowProduct on RowProduct {
   pageLinks {
     ...PageLink
   }
-  category {
-    ...RowProductCategory
+  product {
+    ...ProductListItem
+    ...ProductFeatureMediaBoxed
   }
 }

@@ -1,7 +1,0 @@
-query GetRowProductCategory($category_uid: String!) {
-  categories(filters: { category_uid: { eq: $category_uid } }) {
-    items {
-      ...RowProductCategory
-    }
-  }
-}

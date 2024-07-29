@@ -1,13 +1,6 @@
 import { useQuery } from '@graphcommerce/graphql'
-import {
-  PageMetaProps as NextPageMetaProps,
-  PageMetaOld,
-  isPageMetaPropsNew,
-} from '@graphcommerce/next-ui'
-import { PageMetaNew } from '@graphcommerce/next-ui/PageMeta/PageMetaNew'
+import { PageMetaProps } from '@graphcommerce/next-ui'
 import { StoreConfigDocument } from './StoreConfig.gql'
-
-type PageMetaProps = NextPageMetaProps
 
 export function PageMeta(props: PageMetaProps) {
   const config = useQuery(StoreConfigDocument)
@@ -25,23 +18,6 @@ export function PageMeta(props: PageMetaProps) {
     return pageTitle
   }
 
-  if (isPageMetaPropsNew(props)) {
-    const { metadata } = props
-
-    return (
-      <PageMetaNew
-        {...props}
-        metadata={{
-          ...metadata,
-          title: {
-            absolute: addPrefix(metadata?.title?.absolute ?? ''),
-            template: null,
-          },
-        }}
-      />
-    )
-  }
-
   const { title, ...pageMetaProps } = props
-  return <PageMetaOld title={addPrefix(title ?? '')} {...pageMetaProps} />
+  return <PageMeta title={addPrefix(title ?? '')} {...pageMetaProps} />
 }

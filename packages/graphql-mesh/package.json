@@ -5,6 +5,7 @@
   "version": "9.0.0-canary.62",
   "main": "index.ts",
   "dependencies": {
+    "@envelop/response-cache": "^6.2.1",
     "@graphql-mesh/apollo-link": "latest",
     "@graphql-mesh/config": "latest",
     "@graphql-mesh/cross-helpers": "latest",

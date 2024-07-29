@@ -16,5 +16,6 @@ fragment RowRenderer on Page @inject(into: ["HygraphPage"]) {
     ...RowContentLinks
     ...RowProduct
     ...RowLinks
+    ...RowCategory
   }
 }

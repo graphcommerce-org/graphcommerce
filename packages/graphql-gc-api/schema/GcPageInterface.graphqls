@@ -1,0 +1,14 @@
+"""
+Defines an object to be able to be a fully valid HTML page.
+"""
+interface GcPageInterface {
+  """
+  The head of the page.
+  """
+  head: GcPageHead
+
+  """
+  When the redirect is defined the page should not be rendered and the user should be redirected to the specified URL.
+  """
+  redirect: GcLinkRelTag
+}

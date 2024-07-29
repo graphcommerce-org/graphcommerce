@@ -1,4 +1,4 @@
-import { ContentArea, PageContent, pageContent } from '@graphcommerce/content-areas'
+import { ContentArea, PageContent, pageContent } from '@graphcommerce/graphql-gc-api'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'

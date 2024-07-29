@@ -1,0 +1,11 @@
+extend type RowProduct {
+  product: ProductInterface
+    @resolveTo(
+      sourceName: "m2"
+      sourceTypeName: "Query"
+      sourceFieldName: "products"
+      requiredSelectionSet: "{ identity }"
+      sourceArgs: { filter: { url_key: { eq: "{root.identity}" } }, pageSize: 1 }
+      result: "items[0]"
+    )
+}

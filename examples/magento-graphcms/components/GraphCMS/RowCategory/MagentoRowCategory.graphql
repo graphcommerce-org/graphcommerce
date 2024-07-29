@@ -1,0 +1,15 @@
+fragment MagentoRowCategory on CategoryTree {
+  uid
+  name
+  url_path
+  include_in_menu
+  available_sort_by
+  ...CategoryDescription
+  products(pageSize: 8) {
+    items {
+      __typename
+      uid
+      ...ProductListItem
+    }
+  }
+}

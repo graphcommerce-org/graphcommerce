@@ -6,9 +6,12 @@ fragment ProductListItem on ProductInterface {
   small_image {
     ...ProductImage
   }
-  price_range {
-    minimum_price {
-      ...ProductListPrice
+
+  ... on ProductInterface @defer {
+    price_range {
+      minimum_price {
+        ...ProductListPrice
+      }
     }
   }
 }

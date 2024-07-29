@@ -1,0 +1,7 @@
+fragment RowCategory on RowCategory {
+  categoryUrl
+  rowCategoryVariant: variant
+  category {
+    ...MagentoRowCategory
+  }
+}

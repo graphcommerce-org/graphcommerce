@@ -1,0 +1,4 @@
+fragment GcPage_Data on GcPageInterface {
+  __typename
+  ...GcPageHead
+}

@@ -43,6 +43,7 @@ export const plugin: PluginFunction<RelayOptimizerPluginConfig> = (
     /* GraphQL */ `
       directive @connection(key: String!, filter: [String!]) on FIELD
       directive @client on FIELD
+      directive @defer(if: Boolean! = true, label: String) on FRAGMENT_SPREAD | INLINE_FRAGMENT
     `,
   ])
 

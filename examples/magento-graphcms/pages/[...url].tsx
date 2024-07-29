@@ -1,11 +1,10 @@
+import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { cacheFirst, flushMeasurePerf, InContextMaskProvider } from '@graphcommerce/graphql'
 import {
   ContentAreaCategoryPage,
   ContentAreaCategoryPageBefore,
-  GCPage_DataFragment,
   GcPageQuery,
-} from '@graphcommerce/content-areas'
-import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { cacheFirst, flushMeasurePerf, InContextMaskProvider } from '@graphcommerce/graphql'
+} from '@graphcommerce/graphql-gc-api'
 import {
   appendSiblingsAsChildren,
   CategoryBreadcrumbs,

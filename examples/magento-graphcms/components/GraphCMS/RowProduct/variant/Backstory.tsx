@@ -8,11 +8,9 @@ import { RowProductFragment } from '../RowProduct.gql'
 type BackstoryProps = RowProductFragment
 
 export function Backstory(props: BackstoryProps) {
-  const { productCopy, asset, category } = props
+  const { productCopy, asset, product } = props
   const theme = useTheme()
-  const singleItem = category?.products?.items?.[(category?.products?.items?.length ?? 1) - 1]
-
-  if (!singleItem) return null
+  if (!product) return null
 
   return (
     <AddProductsToCartForm>
@@ -25,7 +23,7 @@ export function Backstory(props: BackstoryProps) {
         slidingItems={
           <RenderType
             renderer={productListRenderer}
-            {...singleItem}
+            {...product}
             sizes={{ 0: '50vw', [theme.breakpoints.values.md]: '27vw' }}
           />
         }

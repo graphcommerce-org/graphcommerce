@@ -11,11 +11,14 @@ export const xMagentoCacheIdHeader = new ApolloLink((operation, forward) => {
   })
 
   return forward(operation).map((data) => {
-    const cache = operation.getContext().cache
+    const { cache } = operation.getContext()
     if (!cache) return data
 
-    const xMagentoCacheId = (data.extensions as { forwardedHeaders: Record<string, string> })
-      .forwardedHeaders['x-magento-cache-id']
+    type Extensions = { forwardedHeaders: Record<string, string> } | null
+    const xMagentoCacheId = (data?.extensions as Extensions)?.forwardedHeaders?.[
+      'x-magento-cache-id'
+    ]
+
     if (!xMagentoCacheId) return data
 
     const tokenResult = cache.readQuery({ query: CustomerTokenDocument })

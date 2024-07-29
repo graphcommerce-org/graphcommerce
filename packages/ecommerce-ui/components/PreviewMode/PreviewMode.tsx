@@ -96,7 +96,6 @@ function PreviewModeEnabled() {
         </Box>
       </MessageSnackbar>
       <FormPersist form={form} name='PreviewModePreviewData' />
-      <FormAutoSubmit control={form.control} submit={submit} />
     </FormProvider>
   )
 }

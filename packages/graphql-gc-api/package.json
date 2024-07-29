@@ -1,5 +1,5 @@
 {
-  "name": "@graphcommerce/content-areas",
+  "name": "@graphcommerce/graphql-gc-api",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "9.0.0-canary.62",

@@ -1,0 +1,14 @@
+type GcPagesListOutput {
+  canonicals: [GcLinkRelTag!]
+}
+
+input GcPagesListInput {
+  """
+  Provide a base path to filter the list of pages.
+  """
+  start_with: String
+}
+
+extend type Query {
+  gcPageCanonicals(input: GcPagesListInput): GcPagesListOutput
+}

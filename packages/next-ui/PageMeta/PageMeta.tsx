@@ -2,7 +2,6 @@ import { usePageContext } from '@graphcommerce/framer-next-pages'
 import Head from 'next/head'
 import type {} from '@graphcommerce/next-config'
 import { Canonical, useCanonical } from './canonicalize'
-import { PageMetaNew, PageMetaPropsNew } from './PageMetaNew'
 
 // https://developers.google.com/search/docs/advanced/robots/robots_meta_tag#directives
 export type MetaRobots =
@@ -18,7 +17,7 @@ export type MetaRobots =
   | `max-video-preview:${number}`
 type MetaRobotsAll = ['all' | 'none']
 
-export type PageMetaPropsOld = {
+export type PageMetaProps = {
   title: string
   canonical?: Canonical
   metaDescription?: string
@@ -29,13 +28,7 @@ export type PageMetaPropsOld = {
   ogType?: string | null
 }
 
-export function isPageMetaPropsNew(props: PageMetaProps): props is PageMetaPropsNew {
-  return 'metadata' in props
-}
-
-export type PageMetaProps = PageMetaPropsNew | PageMetaPropsOld
-
-export function PageMetaOld(props: PageMetaPropsOld) {
+export function PageMeta(props: PageMetaProps) {
   const { active } = usePageContext()
   const {
     children,
@@ -53,7 +46,7 @@ export function PageMetaOld(props: PageMetaPropsOld) {
   if (!active) return null
   return (
     <Head>
-      <title>{title}</title>
+      <title>{title.trim()}</title>
       {metaDescription && (
         <>
           <meta name='description' content={metaDescription.trim()} key='meta-description' />
@@ -72,8 +65,4 @@ export function PageMetaOld(props: PageMetaPropsOld) {
       {children}
     </Head>
   )
-}
-
-export function PageMeta(props: PageMetaProps) {
-  return isPageMetaPropsNew(props) ? <PageMetaNew {...props} /> : <PageMetaOld {...props} />
 }

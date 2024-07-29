@@ -2372,6 +2372,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@envelop/response-cache@npm:^6.2.1":
+  version: 6.2.1
+  resolution: "@envelop/response-cache@npm:6.2.1"
+  dependencies:
+    "@graphql-tools/utils": "npm:^10.0.3"
+    "@whatwg-node/fetch": "npm:^0.9.0"
+    fast-json-stable-stringify: "npm:^2.1.0"
+    lru-cache: "npm:^10.0.0"
+    tslib: "npm:^2.5.0"
+  peerDependencies:
+    "@envelop/core": ^5.0.0
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 10c0/2faaabd3da9fbae324c6fe916757ff9e314f9545808a17acedb9013e74f38fb5458f45bd8b9f540020607deaba22cd63e0075d1c9214a698be726ebb1e8e5ae7
+  languageName: node
+  linkType: hard
+
 "@envelop/types@npm:5.0.0":
   version: 5.0.0
   resolution: "@envelop/types@npm:5.0.0"
@@ -2915,29 +2931,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/content-areas@npm:9.0.0-canary.62, @graphcommerce/content-areas@workspace:packages/content-areas":
-  version: 0.0.0-use.local
-  resolution: "@graphcommerce/content-areas@workspace:packages/content-areas"
-  peerDependencies:
-    "@graphcommerce/eslint-config-pwa": ^9.0.0-canary.62
-    "@graphcommerce/graphql": ^9.0.0-canary.62
-    "@graphcommerce/graphql-mesh": ^9.0.0-canary.62
-    "@graphcommerce/magento-product": ^9.0.0-canary.62
-    "@graphcommerce/next-ui": ^9.0.0-canary.62
-    "@graphcommerce/prettier-config-pwa": ^9.0.0-canary.62
-    "@graphcommerce/react-hook-form": ^9.0.0-canary.62
-    "@graphcommerce/typescript-config-pwa": ^9.0.0-canary.62
-    "@lingui/core": ^4.2.1
-    "@lingui/macro": ^4.2.1
-    "@lingui/react": ^4.2.1
-    "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
-    next: "*"
-    react: ^18.2.0
-    react-dom: ^18.2.0
-  languageName: unknown
-  linkType: soft
-
 "@graphcommerce/demo-magento-graphcommerce@npm:9.0.0-canary.62, @graphcommerce/demo-magento-graphcommerce@workspace:packages/demo-magento-graphcommerce":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/demo-magento-graphcommerce@workspace:packages/demo-magento-graphcommerce"
@@ -3303,10 +3296,34 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@graphcommerce/graphql-gc-api@npm:9.0.0-canary.62, @graphcommerce/graphql-gc-api@workspace:packages/graphql-gc-api":
+  version: 0.0.0-use.local
+  resolution: "@graphcommerce/graphql-gc-api@workspace:packages/graphql-gc-api"
+  peerDependencies:
+    "@graphcommerce/eslint-config-pwa": ^9.0.0-canary.62
+    "@graphcommerce/graphql": ^9.0.0-canary.62
+    "@graphcommerce/graphql-mesh": ^9.0.0-canary.62
+    "@graphcommerce/magento-product": ^9.0.0-canary.62
+    "@graphcommerce/next-ui": ^9.0.0-canary.62
+    "@graphcommerce/prettier-config-pwa": ^9.0.0-canary.62
+    "@graphcommerce/react-hook-form": ^9.0.0-canary.62
+    "@graphcommerce/typescript-config-pwa": ^9.0.0-canary.62
+    "@lingui/core": ^4.2.1
+    "@lingui/macro": ^4.2.1
+    "@lingui/react": ^4.2.1
+    "@mui/material": ^5.10.16
+    framer-motion: ^10.0.0
+    next: "*"
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  languageName: unknown
+  linkType: soft
+
 "@graphcommerce/graphql-mesh@npm:9.0.0-canary.62, @graphcommerce/graphql-mesh@workspace:packages/graphql-mesh":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/graphql-mesh@workspace:packages/graphql-mesh"
   dependencies:
+    "@envelop/response-cache": "npm:^6.2.1"
     "@graphql-mesh/apollo-link": "npm:latest"
     "@graphql-mesh/config": "npm:latest"
     "@graphql-mesh/cross-helpers": "npm:latest"
@@ -3429,6 +3446,7 @@ __metadata:
     "@graphcommerce/eslint-config-pwa": ^9.0.0-canary.62
     "@graphcommerce/graphcms-ui": ^9.0.0-canary.62
     "@graphcommerce/graphql": ^9.0.0-canary.62
+    "@graphcommerce/graphql-mesh": ^9.0.0-canary.62
     "@graphcommerce/image": ^9.0.0-canary.62
     "@graphcommerce/next-ui": ^9.0.0-canary.62
     "@graphcommerce/prettier-config-pwa": ^9.0.0-canary.62
@@ -3935,7 +3953,6 @@ __metadata:
     "@apollo/client": "npm:~3.10.8"
     "@ducanh2912/next-pwa": "npm:9.7.2"
     "@graphcommerce/cli": "npm:9.0.0-canary.62"
-    "@graphcommerce/content-areas": "npm:9.0.0-canary.62"
     "@graphcommerce/demo-magento-graphcommerce": "npm:9.0.0-canary.62"
     "@graphcommerce/ecommerce-ui": "npm:9.0.0-canary.62"
     "@graphcommerce/eslint-config-pwa": "npm:9.0.0-canary.62"
@@ -3947,6 +3964,7 @@ __metadata:
     "@graphcommerce/googletagmanager": "npm:9.0.0-canary.62"
     "@graphcommerce/graphcms-ui": "npm:9.0.0-canary.62"
     "@graphcommerce/graphql": "npm:9.0.0-canary.62"
+    "@graphcommerce/graphql-gc-api": "npm:9.0.0-canary.62"
     "@graphcommerce/graphql-mesh": "npm:9.0.0-canary.62"
     "@graphcommerce/hygraph-cli": "npm:9.0.0-canary.62"
     "@graphcommerce/hygraph-dynamic-rows": "npm:9.0.0-canary.62"
@@ -6030,7 +6048,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/utils@npm:^10.0.0, @graphql-tools/utils@npm:^10.0.13, @graphql-tools/utils@npm:^10.1.0, @graphql-tools/utils@npm:^10.1.1, @graphql-tools/utils@npm:^10.2.1, @graphql-tools/utils@npm:^10.2.3, @graphql-tools/utils@npm:^10.3.0, @graphql-tools/utils@npm:^10.3.2":
+"@graphql-tools/utils@npm:^10.0.0, @graphql-tools/utils@npm:^10.0.13, @graphql-tools/utils@npm:^10.0.3, @graphql-tools/utils@npm:^10.1.0, @graphql-tools/utils@npm:^10.1.1, @graphql-tools/utils@npm:^10.2.1, @graphql-tools/utils@npm:^10.2.3, @graphql-tools/utils@npm:^10.3.0, @graphql-tools/utils@npm:^10.3.2":
   version: 10.3.2
   resolution: "@graphql-tools/utils@npm:10.3.2"
   dependencies:

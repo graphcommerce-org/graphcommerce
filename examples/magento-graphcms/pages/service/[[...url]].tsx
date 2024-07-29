@@ -1,4 +1,4 @@
-import { ContentArea, PageContent, pageContent } from '@graphcommerce/content-areas'
+import { ContentArea, PageContent, pageContent } from '@graphcommerce/graphql-gc-api'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PagesStaticPathsDocument } from '@graphcommerce/graphcms-ui'
 import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'

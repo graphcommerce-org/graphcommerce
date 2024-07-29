@@ -1,8 +1,5 @@
 fragment HygraphPage on Page {
   title
-  metaTitle
-  metaDescription
-  metaRobots
   url
   author
   date

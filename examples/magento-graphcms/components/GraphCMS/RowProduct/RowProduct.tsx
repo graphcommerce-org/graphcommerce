@@ -1,47 +1,49 @@
 import { InContextMaskProvider, useInContextQuery } from '@graphcommerce/graphql'
-import { GetRowProductCategoryDocument } from './GetRowProductCategory.gql'
+import { ProductListItemRenderer } from '@graphcommerce/magento-product'
+import { Box } from '@mui/material'
+import { productListRenderer } from '../../ProductListItems'
+import { GetMagentoRowProductDocument } from './GetMagentoRowProduct.gql'
 import { RowProductFragment } from './RowProduct.gql'
-import {
-  Backstory,
-  Feature,
-  FeatureBoxed,
-  Grid,
-  Related,
-  Reviews,
-  Specs,
-  Swipeable,
-  Upsells,
-} from './variant'
+import { Backstory, Feature, FeatureBoxed, Related, Reviews, Specs, Upsells } from './variant'
 
 type VariantRenderer = Record<
   NonNullable<RowProductFragment['variant']>,
-  React.FC<RowProductFragment>
+  React.FC<RowProductFragment & { productListItemRenderer: ProductListItemRenderer }>
 >
 
 type RowProductProps = RowProductFragment & {
   renderer?: Partial<VariantRenderer>
 } & { sku?: string | null | undefined }
 
+function Migrate(props: RowProductFragment) {
+  const { variant, identity } = props
+  return (
+    <Box sx={{ bgcolor: 'error.main', p: 3 }}>
+      NOT FOUND: Please migrate `{identity}` with variant {variant} to a RowCategory component
+    </Box>
+  )
+}
+
 const defaultRenderer: Partial<VariantRenderer> = {
   Specs,
   Backstory,
   Feature,
   FeatureBoxed,
-  Grid,
   Related,
   Reviews,
   Upsells,
-  Swipeable,
+  Grid: Migrate,
+  Swipeable: Migrate,
 }
 
 export function RowProduct(props: RowProductProps) {
-  const { renderer, variant, category, ...rest } = props
+  const { renderer, variant, product } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as VariantRenderer
 
   const scoped = useInContextQuery(
-    GetRowProductCategoryDocument,
-    { variables: { category_uid: category?.uid ?? '' }, skip: !category?.uid },
-    { categories: { items: category ? [category] : [] } },
+    GetMagentoRowProductDocument,
+    { variables: { urlKey: product?.url_key ?? '' }, skip: !product?.url_key },
+    { products: { items: [product!] } },
   )
 
   if (!variant) return null
@@ -55,7 +57,11 @@ export function RowProduct(props: RowProductProps) {
 
   return (
     <InContextMaskProvider mask={scoped.mask}>
-      <RenderType {...rest} category={scoped.data.categories?.items?.[0]} />
+      <RenderType
+        {...props}
+        productListItemRenderer={productListRenderer}
+        product={scoped.data.products?.items?.[0]}
+      />
     </InContextMaskProvider>
   )
 }

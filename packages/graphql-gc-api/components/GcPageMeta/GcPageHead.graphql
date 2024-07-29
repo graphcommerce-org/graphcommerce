@@ -1,0 +1,32 @@
+fragment GcLinkRelTag on GcLinkRelTag {
+  rel
+  hreflang
+  href
+}
+
+fragment GcMetaTag on GcMetaTag {
+  name
+  content
+}
+
+fragment GcPageHead on GcPageInterface {
+  head {
+    title
+    description
+    canonical {
+      ...GcLinkRelTag
+    }
+    alternate {
+      ...GcLinkRelTag
+    }
+    robots {
+      ...GcMetaTag
+    }
+    meta {
+      ...GcMetaTag
+    }
+    link {
+      ...GcLinkRelTag
+    }
+  }
+}

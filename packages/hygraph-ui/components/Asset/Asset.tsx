@@ -48,7 +48,7 @@ export const Asset = memo<AssetProps>((props) => {
         muted
         loop
         playsInline
-        disableRemotePlayback
+        // disableRemotePlayback
         sx={[...(Array.isArray(sx) ? sx : [sx])]}
       />
     )

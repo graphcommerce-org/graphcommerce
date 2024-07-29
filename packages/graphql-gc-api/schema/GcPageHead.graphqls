@@ -1,0 +1,70 @@
+"""
+A meta tag that can be added to the head of the page.
+"""
+type GcMetaTag {
+  """
+  Any meta tag name, see https://developers.google.com/search/docs/crawling-indexing/special-tags for documentation.
+  """
+  name: String!
+
+  """
+  https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag#directives
+  """
+  content: String!
+}
+
+type GcLinkRelTag {
+  """
+  The type of link relationship.
+
+  https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel
+
+  Examples:
+  - canonical
+  - alternate
+  """
+  rel: String!
+
+  """
+  Used to specify the language of the target URL. Usually used in conjunction with rel="alternate"
+
+  https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#hreflang
+  """
+  hreflang: String
+
+  """
+  A fully qualified URL
+
+  OR
+
+  The relative part of the canonical URL.
+  As defined by: [pathname](https://developer.mozilla.org/en-US/docs/Web/API/URL/pathname) + [search](https://developer.mozilla.org/en-US/docs/Web/API/URL/search)
+  """
+  href: String!
+}
+
+type GcPageHead {
+  """
+  <title> element of the page
+  """
+  title: String!
+
+  """
+  <meta type"description" content="">
+  """
+  description: String
+
+  canonical: GcLinkRelTag!
+  alternate: [GcLinkRelTag]
+
+  robots: [GcMetaTag!]
+
+  """
+  Additional link rel tags that can be added to the head of the page.
+  """
+  link: [GcLinkRelTag!]
+  """
+  Additional meta tags that can be added to the head of the page.
+  """
+  meta: [GcMetaTag!]
+}

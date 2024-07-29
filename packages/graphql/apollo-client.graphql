@@ -8,11 +8,6 @@ The @connection directive allows you to specify a custom cache key for paginated
 """
 directive @connection(key: String, filter: [String]) on FIELD
 
-"""
-This directive enables your queries to receive data for specific fields incrementally, instead of receiving all field data at the same time. This is helpful whenever some fields in a query take much longer to resolve than others.
-"""
-directive @defer(if: Boolean! = true, label: String) on FRAGMENT_SPREAD | INLINE_FRAGMENT
-
 # """
 # Directs the executor to stream plural fields when the `if` argument is true or undefined.
 # """

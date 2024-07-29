@@ -1,11 +1,11 @@
-extend type RowProduct {
+extend type RowCategory {
   category: CategoryTree
     @resolveTo(
       sourceName: "m2"
       sourceTypeName: "Query"
       sourceFieldName: "categories"
-      requiredSelectionSet: "{ identity }"
-      sourceArgs: { filters: { url_key: { eq: "{root.identity}" } } }
+      requiredSelectionSet: "{ categoryUrl }"
+      sourceArgs: { filters: { url_key: { eq: "{root.categoryUrl}" } } }
       result: "items[0]"
     )
 }

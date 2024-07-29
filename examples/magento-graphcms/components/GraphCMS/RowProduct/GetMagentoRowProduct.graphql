@@ -1,0 +1,8 @@
+query GetMagentoRowProduct($urlKey: String!) {
+  products(filter: { url_key: { eq: $urlKey } }, pageSize: 1) {
+    items {
+      ...ProductListItem
+      ...ProductFeatureMediaBoxed
+    }
+  }
+}
