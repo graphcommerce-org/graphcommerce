@@ -1,4 +1,5 @@
-import { writeFile } from 'node:fs/promises'
+import yaml from 'js-yaml'
+import { writeFile, readFile } from 'node:fs/promises'
 import { OpenAPIV3 } from 'openapi-types'
 import prettier from 'prettier'
 import conf from '@graphcommerce/prettier-config-pwa'
@@ -6,6 +7,8 @@ import conf from '@graphcommerce/prettier-config-pwa'
 const response = await fetch(
   'https://raw.githubusercontent.com/algolia/api-clients-automation/main/specs/bundled/insights.yml',
 )
+
+const openApiSchema = yaml.load(await response.text()) as OpenAPIV3.Document
 
 const allMethods = [
   OpenAPIV3.HttpMethods.TRACE,
@@ -17,8 +20,6 @@ const allMethods = [
   OpenAPIV3.HttpMethods.OPTIONS,
   OpenAPIV3.HttpMethods.HEAD,
 ]
-
-const openApiSchema = JSON.parse(response.toString()) as OpenAPIV3.Document
 
 const { info, openapi, components, tags, ...rest } = openApiSchema
 
