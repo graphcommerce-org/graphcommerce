@@ -77,7 +77,8 @@
     "@graphcommerce/next-config": "8.0.5",
     "@graphcommerce/prettier-config-pwa": "8.0.5",
     "@graphcommerce/typescript-config-pwa": "8.0.5",
-    "@graphcommerce/algolia-mesh": "8.1.0-canary.49"
+    "@graphcommerce/algolia-mesh": "8.1.0-canary.49",
+    "@graphcommerce/magento-graphql-rest": "9.0.0-canary.63"
   },
   "changesets": [
     "angry-jokes-lay",
@@ -161,8 +162,10 @@
     "poor-plants-look",
     "purple-bags-behave",
     "purple-crabs-tell",
+    "quiet-forks-punch",
     "rare-pumas-greet",
     "rare-shoes-carry",
+    "real-ties-run",
     "rotten-foxes-repeat",
     "rotten-steaks-yawn",
     "seven-humans-hide",
