@@ -13,7 +13,7 @@ type OrderCardProps = Partial<OrderCardFragment> & {
   sx?: SxProps<Theme>
 }
 
-const componentName = 'OrderCard' as const
+const componentName = 'OrderCard'
 const parts = [
   'orderContainer',
   'orderRow',
@@ -42,7 +42,17 @@ const OrderRow = styled(Box, { name: componentName, target: classes.orderRow })(
 }))
 
 export function OrderCard(props: OrderCardProps) {
-  const { number, shipments, total, items, order_date, images, loading, sx = [] } = props
+  const {
+    number,
+    shipments,
+    total,
+    items,
+    order_date,
+    images,
+    loading,
+    status = '',
+    sx = [],
+  } = props
 
   const totalItems = items?.length ?? 0
   const maxItemsInRow = 5
@@ -96,7 +106,7 @@ export function OrderCard(props: OrderCardProps) {
           <span>#{number}</span>
         </OrderRow>
         <OrderRow>
-          <OrderStateLabel {...props} />
+          <OrderStateLabel {...props} status={status} />
         </OrderRow>
         <Box className={classes.orderProducts}>
           <Box

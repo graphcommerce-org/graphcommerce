@@ -1,43 +1,51 @@
+import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { OrderDetailsFragment } from '../components/OrderDetails/OrderDetails.gql'
 import { OrderStateLabelFragment } from '../components/OrderStateLabel/OrderStateLabel.gql'
 
-export type OrderState =
-  | 'Ordered'
-  | 'Processing'
-  | 'Closed'
-  | 'Refunded'
-  | 'Canceled'
-  | 'Returned'
-  | 'Pending'
+export type OrderState = 'pending' | 'processing' | 'complete' | 'closed'
 
 export type OrderStateProps = Pick<OrderDetailsFragment, 'shipping_address' | 'shipments'> &
   OrderStateLabelFragment
 
-export function getOrderState(props: OrderStateProps) {
+export function getOrderState(props: OrderStateProps): OrderState {
   const { items, shipping_address } = props
 
-  let orderState: OrderState = 'Pending'
-  if (items?.every((item) => item?.quantity_ordered === item?.quantity_invoiced))
-    orderState = 'Processing'
-  if (items?.every((item) => item?.quantity_ordered === item?.quantity_shipped))
-    orderState = 'Closed'
-  if (items?.every((item) => item?.quantity_ordered === item?.quantity_refunded))
-    orderState = 'Refunded'
-  if (items?.every((item) => item?.quantity_ordered === item?.quantity_canceled))
-    orderState = 'Canceled'
-  if (items?.every((item) => item?.quantity_ordered === item?.quantity_returned))
-    orderState = 'Returned'
+  const itemss = filterNonNullableKeys(items, [
+    'quantity_ordered',
+    'quantity_canceled',
+    'quantity_invoiced',
+    'quantity_refunded',
+    'quantity_shipped',
+  ]).map((i) => ({
+    ordered: i.quantity_ordered,
+    canceled: i.quantity_canceled,
+    invoiced: i.quantity_invoiced,
+    refunded: i.quantity_refunded,
+    returned: i.quantity_returned ?? 0,
+    shipped: i.quantity_shipped,
+  }))
 
-  if (orderState === 'Processing' && !shipping_address) {
-    orderState = 'Closed'
-  }
+  const nothingInvoiced = itemss.every((i) => i.invoiced === 0)
+  const nothingShipped = itemss.every((i) => i.shipped === 0)
 
-  return orderState
+  const needsInvoicing = itemss.some((i) => i.ordered - i.canceled - i.invoiced)
+  const needsShipping = itemss.some((i) => {
+    if (!shipping_address) return 0
+    return i.ordered <= i.canceled - i.shipped - i.refunded
+  })
+
+  if (nothingInvoiced && nothingShipped && needsInvoicing && needsShipping) return 'pending'
+  if (needsShipping || needsInvoicing) return 'processing'
+
+  const canRefundOrReturn = itemss.some(
+    (i) => i.ordered - i.canceled - Math.max(i.refunded, i.returned),
+  )
+  return canRefundOrReturn ? 'complete' : 'closed'
 }
 
 export function canCancelOrder(props: OrderStateProps) {
   const state = getOrderState(props)
   const { shipments } = props
 
-  return (state === 'Pending' || state === 'Processing') && !shipments?.length
+  return (state === 'pending' || state === 'processing') && !shipments?.length
 }

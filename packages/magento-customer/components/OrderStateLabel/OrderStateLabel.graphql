@@ -1,4 +1,5 @@
 fragment OrderStateLabel on CustomerOrder {
+  status
   items {
     quantity_ordered
     quantity_shipped
