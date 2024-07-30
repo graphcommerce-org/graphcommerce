@@ -1,5 +1,5 @@
 {
   "exclude": ["**/node_modules", "**/.*/"],
-  "include": ["**/*.ts", "**/*.tsx", "../algolia-mesh/link/customerGroupIdLink.ts"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "extends": "@graphcommerce/typescript-config-pwa/nextjs.json"
 }
