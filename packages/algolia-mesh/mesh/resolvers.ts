@@ -1,7 +1,6 @@
 import { traverseSelectionSet, type Resolvers } from '@graphcommerce/graphql-mesh'
 import { algoliaFacetsToAggregations, getCategoryList } from './algoliaFacetsToAggregations'
 import { algoliaHitToMagentoProduct } from './algoliaHitToMagentoProduct'
-import { algoliaHitsToSuggestions } from './algoliaHitsToSuggestions'
 import { getAlgoliaSettings } from './getAlgoliaSettings'
 import { getAttributeList } from './getAttributeList'
 import { getGroupId } from './getGroupId'
