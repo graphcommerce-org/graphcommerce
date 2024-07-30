@@ -152,6 +152,9 @@ export function algoliaFacetsToAggregations(
         position,
       })
     } else if (facetIndex.startsWith('price')) {
+      if (facetIndex !== `price.${storeConfig.default_display_currency_code}.default`) {
+        return
+      }
       aggregations.push({
         label,
         attribute_code,
