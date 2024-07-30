@@ -84,6 +84,7 @@ export const resolvers: Resolvers = {
           attributeList,
           storeConfig,
           categoryList,
+          getGroupId(context),
         ),
         page_info: {
           current_page: (searchResults?.page ?? 0) + 1,
