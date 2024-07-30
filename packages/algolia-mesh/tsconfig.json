@@ -1,5 +1,5 @@
 {
   "exclude": ["**/node_modules", "**/.*/"],
-  "include": ["**/*.ts", "**/*.tsx"],
-  "extends": "@graphcommerce/typescript-config-pwa/nextjs.json",
+  "include": ["**/*.ts", "**/*.tsx", "../magento-customer/plugins/magentoCustomerGetInContext.ts"],
+  "extends": "@graphcommerce/typescript-config-pwa/nextjs.json"
 }

@@ -58,7 +58,8 @@ doing an additional REST API call to get the value. This means a somewhat slower
 
 ### Customization
 
-Customise the code by creating plugins on the functions you want to adjust
+By default algoliaFacetsToAggregations and algoliaHitToMagentoProduct can be
+plugged in.
 
 ## Algolia for Catalog
 

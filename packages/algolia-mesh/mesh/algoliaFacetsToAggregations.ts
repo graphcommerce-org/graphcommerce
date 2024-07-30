@@ -2,7 +2,6 @@ import type {
   Aggregation,
   AggregationOption,
   CategoryResult,
-  CategoryTree,
   MeshContext,
 } from '@graphcommerce/graphql-mesh'
 import { AttributeList } from './getAttributeList'
