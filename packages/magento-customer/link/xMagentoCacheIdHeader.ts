@@ -11,7 +11,7 @@ export const xMagentoCacheIdHeader = new ApolloLink((operation, forward) => {
   })
 
   return forward(operation).map((data) => {
-    const cache = operation.getContext().cache
+    const { cache } = operation.getContext()
     if (!cache) return data
 
     const xMagentoCacheId = (data.extensions as { forwardedHeaders: Record<string, string> })

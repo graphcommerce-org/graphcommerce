@@ -1,8 +1,10 @@
-import type { Resolvers } from '@graphcommerce/graphql-mesh'
+import { traverseSelectionSet, type Resolvers } from '@graphcommerce/graphql-mesh'
 import { algoliaFacetsToAggregations, getCategoryList } from './algoliaFacetsToAggregations'
 import { algoliaHitToMagentoProduct } from './algoliaHitToMagentoProduct'
 import { getAlgoliaSettings } from './getAlgoliaSettings'
 import { getAttributeList } from './getAttributeList'
+import { getGroupId } from './getGroupId'
+import { getSearchSuggestions } from './getSearchSuggestions'
 import { getStoreConfig } from './getStoreConfig'
 import {
   productFilterInputToAlgoliaFacetFiltersInput,
@@ -10,8 +12,6 @@ import {
 } from './productFilterInputToAlgoliafacetFiltersInput'
 import { getSortedIndex, sortingOptions } from './sortOptions'
 import { nonNullable } from './utils'
-import { getSuggestionsIndexName } from './getIndexName'
-import { algoliaHitsToSuggestions } from './algoliaHitsToSuggestions'
 
 export const resolvers: Resolvers = {
   Query: {
@@ -21,6 +21,15 @@ export const resolvers: Resolvers = {
       if (!isAgolia) return context.m2.Query.products({ root, args, context, info })
 
       const { engine, ...filters } = args.filter ?? {}
+
+      const onlySuggestions =
+        traverseSelectionSet(info.operation.selectionSet, 'products.!suggestions').selections
+          .length === 0
+
+      // We've got a early bailout here to avoid unnecessary Algolia queries
+      if (onlySuggestions) {
+        return { suggestions: await getSearchSuggestions(context, args.search ?? '') }
+      }
 
       const [storeConfig, attributeList, categoryList, settings] = await Promise.all([
         getStoreConfig(context),
@@ -32,7 +41,7 @@ export const resolvers: Resolvers = {
       const options = sortingOptions(settings, attributeList, context)
       const indexName = getSortedIndex(context, args.sort, options, settings)
 
-      const [searchResults, suggestionResults] = await Promise.all([
+      const [searchResults, suggestions] = await Promise.all([
         await context.algolia.Query.algolia_searchSingleIndex({
           root,
           args: {
@@ -63,41 +72,13 @@ export const resolvers: Resolvers = {
           context,
           info,
         }),
-        await context.algolia.Query.algolia_searchSingleIndex({
-          root,
-          args: {
-            indexName: getSuggestionsIndexName(context),
-            input: {
-              query: args.search ?? '',
-
-              hitsPerPage: 15,
-              page: 0,
-            },
-          },
-          selectionSet: /* GraphQL */ `
-            {
-              nbPages
-              hitsPerPage
-              page
-              nbHits
-              hits {
-                __typename
-                objectID
-                additionalProperties
-              }
-              facets
-            }
-          `,
-          context,
-          info,
-        }),
+        await getSearchSuggestions(context, args.search ?? ''),
       ])
 
-      const hits = (searchResults?.hits ?? [])?.filter(nonNullable)
-      const sugestionsHits = (suggestionResults?.hits ?? [])?.filter(nonNullable)
-
       return {
-        items: hits.map((hit) => algoliaHitToMagentoProduct(hit, storeConfig)),
+        items: (searchResults?.hits ?? [])
+          ?.filter(nonNullable)
+          .map((hit) => algoliaHitToMagentoProduct(hit, storeConfig, getGroupId(context))),
         aggregations: algoliaFacetsToAggregations(
           searchResults?.facets,
           attributeList,
@@ -109,7 +90,7 @@ export const resolvers: Resolvers = {
           page_size: searchResults?.hitsPerPage,
           total_pages: searchResults?.nbPages,
         },
-        suggestions: algoliaHitsToSuggestions(sugestionsHits),
+        suggestions,
         total_count: searchResults?.nbHits,
         sort_fields: { default: 'relevance', options: Object.values(options) },
       }
