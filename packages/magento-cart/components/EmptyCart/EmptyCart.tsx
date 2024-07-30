@@ -7,7 +7,7 @@ import {
 import { Trans } from '@lingui/react'
 import { Button, SxProps, Theme } from '@mui/material'
 import React from 'react'
-// pass SX to Emptycart component
+
 type EmptyCartProps = { children?: React.ReactNode; sx?: SxProps<Theme> } & Pick<
   FullPageMessageProps,
   'button'
