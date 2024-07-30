@@ -2,7 +2,7 @@
   "name": "@graphcommerce/googleanalytics",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.0-canary.64",
+  "version": "9.0.0-canary.65",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,19 +12,19 @@
     }
   },
   "dependencies": {
-    "@graphcommerce/google-datalayer": "9.0.0-canary.64"
+    "@graphcommerce/google-datalayer": "9.0.0-canary.65"
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.64",
-    "@graphcommerce/graphql-mesh": "^9.0.0-canary.64",
-    "@graphcommerce/magento-cart": "^9.0.0-canary.64",
-    "@graphcommerce/magento-cart-payment-method": "^9.0.0-canary.64",
-    "@graphcommerce/magento-cart-shipping-method": "^9.0.0-canary.64",
-    "@graphcommerce/magento-product": "^9.0.0-canary.64",
-    "@graphcommerce/next-config": "^9.0.0-canary.64",
-    "@graphcommerce/next-ui": "^9.0.0-canary.64",
-    "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.64",
-    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.64",
+    "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.65",
+    "@graphcommerce/graphql-mesh": "^9.0.0-canary.65",
+    "@graphcommerce/magento-cart": "^9.0.0-canary.65",
+    "@graphcommerce/magento-cart-payment-method": "^9.0.0-canary.65",
+    "@graphcommerce/magento-cart-shipping-method": "^9.0.0-canary.65",
+    "@graphcommerce/magento-product": "^9.0.0-canary.65",
+    "@graphcommerce/next-config": "^9.0.0-canary.65",
+    "@graphcommerce/next-ui": "^9.0.0-canary.65",
+    "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.65",
+    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.65",
     "@mui/material": "^5.10.16",
     "next": "*",
     "react": "^18.2.0",

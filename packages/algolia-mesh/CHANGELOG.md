@@ -1,5 +1,7 @@
 # @graphcommerce/algolia-mesh
 
+## 9.0.0-canary.65
+
 ## 9.0.0-canary.64
 
 ### Patch Changes

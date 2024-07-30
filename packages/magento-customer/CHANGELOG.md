@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.65
+
+### Patch Changes
+
+- [#2333](https://github.com/graphcommerce-org/graphcommerce/pull/2333) [`03c28ab`](https://github.com/graphcommerce-org/graphcommerce/commit/03c28ab342bca3179b7ce1650fa7c16df1119a86) - Avoid displaying 'undefined' for countryName or regionName ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 9.0.0-canary.64
 
 ## 9.0.0-canary.63
