@@ -1,9 +1,11 @@
-import { googleEventNames, sendEvent } from '@graphcommerce/google-datalayer'
-import type { IfConfig, MethodPlugin } from '@graphcommerce/next-config'
+import { googleEventNames, type sendEvent as sendEventType } from '@graphcommerce/google-datalayer'
+import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 
-export const func = 'sendEvent'
-export const exported = '@graphcommerce/google-datalayer/api/sendEvent'
-export const ifConfig: IfConfig = 'googleTagmanagerId'
+export const config: PluginConfig = {
+  type: 'function',
+  module: '@graphcommerce/google-datalayer',
+  ifConfig: 'googleTagmanagerId',
+}
 
 declare global {
   interface Window {
@@ -13,7 +15,7 @@ declare global {
 
 const ecommerceEvents = new RegExp(`${googleEventNames.join('|')}`, 'i')
 
-const tagmanagerEvent: MethodPlugin<typeof sendEvent> = (prev, eventName, eventData) => {
+export const sendEvent: FunctionPlugin<typeof sendEventType> = (prev, eventName, eventData) => {
   prev(eventName, eventData)
 
   if (ecommerceEvents.test(eventName)) {
@@ -24,5 +26,3 @@ const tagmanagerEvent: MethodPlugin<typeof sendEvent> = (prev, eventName, eventD
     window.dataLayer?.push({ event: eventName, ...eventData })
   }
 }
-
-export const plugin = tagmanagerEvent

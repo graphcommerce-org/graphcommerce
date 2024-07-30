@@ -1,18 +1,9 @@
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, SxProps, Theme } from '@mui/material'
-import { OrderStateLabelFragment } from './OrderStateLabel.gql'
+import { OrderStateProps, OrderState, getOrderState } from '../../utils'
 
-type OrderState =
-  | 'Ordered'
-  | 'Invoiced'
-  | 'Shipped'
-  | 'Refunded'
-  | 'Canceled'
-  | 'Returned'
-  | 'Partial'
-
-type OrderStateLabelPropsBase = OrderStateLabelFragment
+type OrderStateLabelPropsBase = OrderStateProps
 
 export type OrderStateRenderer = Record<
   OrderState,
@@ -36,12 +27,12 @@ const { withState } = extendableComponent<OwnerState, typeof componentName, type
 
 const defaultRenderer: OrderStateRenderer = {
   Ordered: () => <Trans id='Your order is being processed' />,
-  Invoiced: () => <Trans id='Your order has been invoiced' />,
-  Shipped: () => <Trans id='Your order is on its way!' />,
+  Processing: () => <Trans id='Your order has been invoiced' />,
+  Closed: () => <Trans id='Your order is on its way!' />,
   Refunded: () => <Trans id='Your order has been refunded' />,
   Canceled: () => <Trans id='Your order has been canceled' />,
   Returned: () => <Trans id='Your order has been returned' />,
-  Partial: () => <Trans id='Your order has been partially processed' />,
+  Pending: () => <Trans id='Your order has been partially processed' />,
 }
 
 export function OrderStateLabel(props: OrderStateLabelProps) {
@@ -49,17 +40,7 @@ export function OrderStateLabel(props: OrderStateLabelProps) {
 
   const renderer: OrderStateRenderer = { ...defaultRenderer, ...incomingRenderer }
 
-  let orderState: OrderState = 'Partial'
-  if (items?.every((item) => item?.quantity_ordered === item?.quantity_invoiced))
-    orderState = 'Invoiced'
-  if (items?.every((item) => item?.quantity_ordered === item?.quantity_shipped))
-    orderState = 'Shipped'
-  if (items?.every((item) => item?.quantity_ordered === item?.quantity_refunded))
-    orderState = 'Refunded'
-  if (items?.every((item) => item?.quantity_ordered === item?.quantity_canceled))
-    orderState = 'Canceled'
-  if (items?.every((item) => item?.quantity_ordered === item?.quantity_returned))
-    orderState = 'Returned'
+  const orderState = getOrderState(props)
 
   const StateLabel = renderer[orderState]
 
@@ -76,13 +57,13 @@ export function OrderStateLabel(props: OrderStateLabelProps) {
           '&.orderStateOrdered': {
             color: theme.palette.secondary.main,
           },
-          '&.orderStateInvoiced': {
+          '&.orderStateProcessing': {
             color: theme.palette.secondary.main,
           },
           '&.orderStateRefunded': {
             color: theme.palette.primary.main,
           },
-          '&.orderStateShipped': {
+          '&.orderStateClosed': {
             color: theme.palette.success.main,
             fontStyle: 'normal',
             fontWeight: 600,
@@ -93,7 +74,7 @@ export function OrderStateLabel(props: OrderStateLabelProps) {
           '&.orderStateReturned': {
             color: theme.palette.secondary.main,
           },
-          '&.orderStatePartial': {
+          '&.orderStatePending': {
             color: theme.palette.secondary.main,
           },
         }),

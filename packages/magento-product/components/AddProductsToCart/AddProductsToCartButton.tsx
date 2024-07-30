@@ -1,6 +1,7 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { Button, ButtonProps, useStorefrontConfig } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/macro'
 import { useRouter } from 'next/router'
 import {
   useAddProductsToCartAction,
@@ -19,6 +20,7 @@ export type AddProductsToCartButtonProps = UseAddProductsToCartActionProps &
     | 'onClick'
     | 'sx'
     | 'children'
+    | 'type'
   >
 
 export function AddProductsToCartButton(props: AddProductsToCartButtonProps) {
@@ -38,11 +40,11 @@ export function AddProductsToCartButton(props: AddProductsToCartButtonProps) {
       {...action}
       onClick={() => router.push('/account/signin')}
     >
-      {children || <Trans id='Sign in' />}
+      {children || <Trans>Sign in</Trans>}
     </Button>
   ) : (
     <Button type='submit' color='primary' variant='pill' size='large' {...rest} {...action}>
-      {children || <Trans id='Add to Cart' />}
+      {children || <Trans>Add to Cart</Trans>}
     </Button>
   )
 }

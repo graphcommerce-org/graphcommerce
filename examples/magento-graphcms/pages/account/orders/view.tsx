@@ -8,6 +8,8 @@ import {
   OrderItems,
   OrderDetailPageDocument,
   OrderStateLabel,
+  ReorderItems,
+  CancelOrderForm,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -18,8 +20,8 @@ import {
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
-import { Container, Typography } from '@mui/material'
+import { Trans } from '@lingui/macro'
+import { Box, Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -28,56 +30,56 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function OrderDetailPage() {
   const router = useRouter()
-  const { orderId } = router.query
+  const { orderNumber } = router.query
 
   const orders = useCustomerQuery(OrderDetailPageDocument, {
     fetchPolicy: 'cache-and-network',
-    variables: { orderNumber: orderId as string },
+    variables: { orderNumber: orderNumber as string },
   })
   const { data } = orders
   const images = useOrderCardItemImages(data?.customer?.orders)
   const order = data?.customer?.orders?.items?.[0]
 
   return (
-    <>
-      <LayoutOverlayHeader>
+    <WaitForCustomer waitFor={orders}>
+      <LayoutOverlayHeader primary={order && <ReorderItems order={order} />}>
         <LayoutTitle size='small' component='span' icon={iconBox}>
-          <Trans id='Order #{orderId}' values={{ orderId }} />
+          <Trans>Order #{orderNumber}</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <WaitForCustomer waitFor={orders}>
-          {(!orderId || !order) && (
-            <IconHeader src={iconBox} size='large'>
-              <Trans id='Order not found' />
-            </IconHeader>
-          )}
+        {(!orderNumber || !order) && (
+          <IconHeader src={iconBox} size='large'>
+            <Trans>Order not found</Trans>
+          </IconHeader>
+        )}
 
-          <LayoutTitle
-            icon={iconBox}
-            gutterBottom={false}
-            sx={(theme) => ({ mb: theme.spacings.xxs })}
-          >
-            <Trans id='Order #{orderId}' values={{ orderId }} />
-          </LayoutTitle>
+        <LayoutTitle
+          icon={iconBox}
+          gutterBottom={false}
+          sx={(theme) => ({ mb: theme.spacings.xxs })}
+        >
+          <Trans>Order #{orderNumber}</Trans>
+        </LayoutTitle>
 
-          {orderId && order && (
-            <>
-              <PageMeta
-                title={i18n._(/* i18n */ 'Order #{orderId}', { orderId })}
-                metaRobots={['noindex']}
-              />
-              <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
-                <OrderStateLabel items={order.items} />
-              </Typography>
-              <OrderDetails {...order} />
-              <OrderItems {...order} images={images} />
-              <OrderTotals {...order} />
-            </>
-          )}
-        </WaitForCustomer>
+        {orderNumber && order && (
+          <>
+            <PageMeta
+              title={i18n._(/* i18n */ 'Order #{orderNumber}', { orderNumber })}
+              metaRobots={['noindex']}
+            />
+            <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
+              <OrderStateLabel {...order} />
+            </Typography>
+            <OrderDetails {...order} />
+            <OrderItems {...order} images={images} />
+            <OrderTotals {...order} />
+
+            <CancelOrderForm order={order} />
+          </>
+        )}
       </Container>
-    </>
+    </WaitForCustomer>
   )
 }
 
@@ -90,9 +92,9 @@ OrderDetailPage.pageOptions = pageOptions
 
 export default OrderDetailPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
   const config = client.query({ query: StoreConfigDocument })
 
   const countryRegions = staticClient.query({
@@ -104,7 +106,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       ...(await countryRegions).data,
       apolloState: await config.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      size: 'max',
       up: { href: '/account/orders', title: i18n._(/* i18n */ 'Orders') },
     },
   }

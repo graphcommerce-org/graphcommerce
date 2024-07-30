@@ -1,0 +1,450 @@
+type Query {
+  """
+  Retrieve EAV attributes associated to a frontend form. Use countries query provided by DirectoryGraphQl module to retrieve region_id and country_id attribute options.
+  """
+  attributesForm(
+    """
+    Form code.
+    """
+    formCode: String!
+  ): AttributesFormOutput!
+  """
+  Returns a list of attributes metadata for a given entity type.
+  """
+  attributesList(
+    """
+    Entity type.
+    """
+    entityType: AttributeEntityTypeEnum!
+    """
+    Identifies which filter inputs to search for and return.
+    """
+    filters: AttributeFilterInput
+  ): AttributesMetadataOutput
+}
+
+"""
+Metadata of EAV attributes associated to form
+"""
+type AttributesFormOutput {
+  """
+  Errors of retrieving certain attributes metadata.
+  """
+  errors: [AttributeMetadataError]!
+  """
+  Requested attributes metadata.
+  """
+  items: [CustomAttributeMetadataInterface]!
+}
+
+"""
+Metadata of EAV attributes.
+"""
+type AttributesMetadataOutput {
+  """
+  Errors of retrieving certain attributes metadata.
+  """
+  errors: [AttributeMetadataError]!
+  """
+  Requested attributes metadata.
+  """
+  items: [CustomAttributeMetadataInterface]!
+}
+
+enum CatalogAttributeApplyToEnum {
+  SIMPLE
+  VIRTUAL
+  BUNDLE
+  DOWNLOADABLE
+  CONFIGURABLE
+  GROUPED
+  CATEGORY
+}
+
+"""
+List of all entity types. Populated by the modules introducing EAV entities.
+"""
+enum AttributeEntityTypeEnum {
+  CATALOG_PRODUCT
+  CATALOG_CATEGORY
+  CUSTOMER
+  CUSTOMER_ADDRESS
+}
+
+"""
+An interface containing fields that define the EAV attribute.
+"""
+interface CustomAttributeMetadataInterface {
+  """
+  The unique identifier for an attribute code. This value should be in lowercase letters without spaces.
+  """
+  code: ID!
+  """
+  Default attribute value.
+  """
+  default_value: String
+  """
+  The type of entity that defines the attribute.
+  """
+  entity_type: AttributeEntityTypeEnum!
+  """
+  The frontend class of the attribute.
+  """
+  frontend_class: String
+  """
+  The frontend input type of the attribute.
+  """
+  frontend_input: AttributeFrontendInputEnum
+  """
+  Whether the attribute value is required.
+  """
+  is_required: Boolean!
+  """
+  Whether the attribute value must be unique.
+  """
+  is_unique: Boolean!
+  """
+  The label assigned to the attribute.
+  """
+  label: String
+  """
+  Attribute options.
+  """
+  options: [CustomAttributeOptionInterface]!
+}
+
+"""
+Base EAV implementation of CustomAttributeMetadataInterface.
+"""
+type AttributeMetadata implements CustomAttributeMetadataInterface {
+  """
+  The unique identifier for an attribute code. This value should be in lowercase letters without spaces.
+  """
+  code: ID!
+  """
+  Default attribute value.
+  """
+  default_value: String
+  """
+  The type of entity that defines the attribute.
+  """
+  entity_type: AttributeEntityTypeEnum!
+  """
+  The frontend class of the attribute.
+  """
+  frontend_class: String
+  """
+  The frontend input type of the attribute.
+  """
+  frontend_input: AttributeFrontendInputEnum
+  """
+  Whether the attribute value is required.
+  """
+  is_required: Boolean!
+  """
+  Whether the attribute value must be unique.
+  """
+  is_unique: Boolean!
+  """
+  The label assigned to the attribute.
+  """
+  label: String
+  """
+  Attribute options.
+  """
+  options: [CustomAttributeOptionInterface]!
+}
+
+"""
+Swatch attribute metadata.
+"""
+type CatalogAttributeMetadata implements CustomAttributeMetadataInterface {
+  """
+  To which catalog types an attribute can be applied.
+  """
+  apply_to: [CatalogAttributeApplyToEnum]
+  """
+  The unique identifier for an attribute code. This value should be in lowercase letters without spaces.
+  """
+  code: ID!
+  """
+  Default attribute value.
+  """
+  default_value: String
+  """
+  The type of entity that defines the attribute.
+  """
+  entity_type: AttributeEntityTypeEnum!
+  """
+  The frontend class of the attribute.
+  """
+  frontend_class: String
+  """
+  The frontend input type of the attribute.
+  """
+  frontend_input: AttributeFrontendInputEnum
+  """
+  Whether a product or category attribute can be compared against another or not.
+  """
+  is_comparable: Boolean
+  """
+  Whether a product or category attribute can be filtered or not.
+  """
+  is_filterable: Boolean
+  """
+  Whether a product or category attribute can be filtered in search or not.
+  """
+  is_filterable_in_search: Boolean
+  """
+  Whether a product or category attribute can use HTML on front or not.
+  """
+  is_html_allowed_on_front: Boolean
+  """
+  Whether the attribute value is required.
+  """
+  is_required: Boolean!
+  """
+  Whether a product or category attribute can be searched or not.
+  """
+  is_searchable: Boolean
+  """
+  Whether the attribute value must be unique.
+  """
+  is_unique: Boolean!
+  """
+  Whether a product or category attribute can be used for price rules or not.
+  """
+  is_used_for_price_rules: Boolean
+  """
+  Whether a product or category attribute is used for promo rules or not.
+  """
+  is_used_for_promo_rules: Boolean
+  """
+  Whether a product or category attribute is visible in advanced search or not.
+  """
+  is_visible_in_advanced_search: Boolean
+  """
+  Whether a product or category attribute is visible on front or not.
+  """
+  is_visible_on_front: Boolean
+  """
+  Whether a product or category attribute has WYSIWYG enabled or not.
+  """
+  is_wysiwyg_enabled: Boolean
+  """
+  The label assigned to the attribute.
+  """
+  label: String
+  """
+  Attribute options.
+  """
+  options: [CustomAttributeOptionInterface]!
+  """
+  Input type of the swatch attribute option.
+  """
+  swatch_input_type: SwatchInputTypeEnum
+  """
+  Whether update product preview image or not.
+  """
+  update_product_preview_image: Boolean
+  """
+  Whether use product image for swatch or not.
+  """
+  use_product_image_for_swatch: Boolean
+  """
+  Whether a product or category attribute is used in product listing or not.
+  """
+  used_in_product_listing: Boolean
+}
+
+"""
+EAV attribute frontend input types.
+"""
+enum AttributeFrontendInputEnum {
+  BOOLEAN
+  DATE
+  DATETIME
+  FILE
+  GALLERY
+  HIDDEN
+  IMAGE
+  MEDIA_IMAGE
+  MULTILINE
+  MULTISELECT
+  PRICE
+  SELECT
+  TEXT
+  TEXTAREA
+  WEIGHT
+  UNDEFINED
+}
+
+"""
+Customer attribute metadata.
+"""
+type CustomerAttributeMetadata implements CustomAttributeMetadataInterface {
+  """
+  The unique identifier for an attribute code. This value should be in lowercase letters without spaces.
+  """
+  code: ID!
+  """
+  Default attribute value.
+  """
+  default_value: String
+  """
+  The type of entity that defines the attribute.
+  """
+  entity_type: AttributeEntityTypeEnum!
+  """
+  The frontend class of the attribute.
+  """
+  frontend_class: String
+  """
+  The frontend input type of the attribute.
+  """
+  frontend_input: AttributeFrontendInputEnum
+  """
+  The template used for the input of the attribute (e.g., 'date').
+  """
+  input_filter: InputFilterEnum
+  """
+  Whether the attribute value is required.
+  """
+  is_required: Boolean!
+  """
+  Whether the attribute value must be unique.
+  """
+  is_unique: Boolean!
+  """
+  The label assigned to the attribute.
+  """
+  label: String
+  """
+  The number of lines of the attribute value.
+  """
+  multiline_count: Int
+  """
+  Attribute options.
+  """
+  options: [CustomAttributeOptionInterface]!
+  """
+  The position of the attribute in the form.
+  """
+  sort_order: Int
+  """
+  The validation rules of the attribute value.
+  """
+  validate_rules: [ValidationRule]
+}
+
+"""
+Defines a customer attribute validation rule.
+"""
+type ValidationRule {
+  """
+  Validation rule name applied to a customer attribute.
+  """
+  name: ValidationRuleEnum
+  """
+  Validation rule value.
+  """
+  value: String
+}
+
+"""
+List of validation rule names applied to a customer attribute.
+"""
+enum ValidationRuleEnum {
+  DATE_RANGE_MAX
+  DATE_RANGE_MIN
+  FILE_EXTENSIONS
+  INPUT_VALIDATION
+  MAX_TEXT_LENGTH
+  MIN_TEXT_LENGTH
+  MAX_FILE_SIZE
+  MAX_IMAGE_HEIGHT
+  MAX_IMAGE_WIDTH
+}
+
+interface CustomAttributeOptionInterface {
+  """
+  Is the option value default.
+  """
+  is_default: Boolean!
+  """
+  The label assigned to the attribute option.
+  """
+  label: String!
+  """
+  The attribute option value.
+  """
+  value: String!
+}
+
+"""
+Base EAV implementation of CustomAttributeOptionInterface.
+"""
+type AttributeOptionMetadata implements CustomAttributeOptionInterface {
+  """
+  Is the option value default.
+  """
+  is_default: Boolean!
+  """
+  The label assigned to the attribute option.
+  """
+  label: String!
+  """
+  The attribute option value.
+  """
+  value: String!
+}
+
+"""
+Swatch attribute metadata input types.
+"""
+enum SwatchInputTypeEnum {
+  BOOLEAN
+  DATE
+  DATETIME
+  DROPDOWN
+  FILE
+  GALLERY
+  HIDDEN
+  IMAGE
+  MEDIA_IMAGE
+  MULTILINE
+  MULTISELECT
+  PRICE
+  SELECT
+  TEXT
+  TEXTAREA
+  UNDEFINED
+  VISUAL
+  WEIGHT
+}
+
+"""
+List of templates/filters applied to customer attribute input.
+"""
+enum InputFilterEnum {
+  """
+  There are no templates or filters to be applied.
+  """
+  NONE
+  """
+  Forces attribute input to follow the date format.
+  """
+  DATE
+  """
+  Strip whitespace (or other characters) from the beginning and end of the input.
+  """
+  TRIM
+  """
+  Strip HTML Tags.
+  """
+  STRIPTAGS
+  """
+  Escape HTML Entities.
+  """
+  ESCAPEHTML
+}

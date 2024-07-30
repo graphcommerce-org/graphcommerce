@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = diff;
 function isObject(val) {
     return typeof val === 'object' && val !== null;
 }
@@ -30,4 +31,3 @@ function diff(item1, item2) {
     }
     return item2 === item1 ? undefined : item2;
 }
-exports.default = diff;

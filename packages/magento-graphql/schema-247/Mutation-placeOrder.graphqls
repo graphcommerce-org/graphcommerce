@@ -1,0 +1,10 @@
+type PlaceOrderOutput {
+  """
+  The ID of the order.
+  """
+  order: Order
+  """
+  Full order information.
+  """
+  orderV2: CustomerOrder @deprecated(reason: "Magento >= 2.4.7")
+}

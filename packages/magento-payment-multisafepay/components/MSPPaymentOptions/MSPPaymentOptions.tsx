@@ -28,12 +28,7 @@ export function MSPPaymentOptions(props: PaymentOptionsProps) {
 
   return (
     <form onSubmit={submit} noValidate>
-      <FormPersist
-        form={form}
-        name={key}
-        persist={['paymentMethod.multisafepay_ideal.issuer_id']}
-        storage='localStorage'
-      />
+      
       <input type='hidden' value={code} {...register('paymentMethod.code')} />
 
       {code === 'multisafepay_ideal' && issuers.length && (
@@ -51,6 +46,12 @@ export function MSPPaymentOptions(props: PaymentOptionsProps) {
           />
         </FormRow>
       )}
+      <FormPersist
+        form={form}
+        name={key}
+        persist={['paymentMethod.multisafepay_ideal.issuer_id']}
+        storage='localStorage'
+      />
     </form>
   )
 }

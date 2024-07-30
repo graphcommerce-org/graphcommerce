@@ -7,5 +7,19 @@ const handler = createBuiltMeshHTTPHandler()
 export const createServer = async (endpoint: string) => {
   if (endpoint !== '/api/graphql')
     throw Error('Moving the GraphQL Endpoint is not supported at the moment')
-  return (req: NextApiRequest, res: NextApiResponse) => handler(req, res)
+  return (req: NextApiRequest, res: NextApiResponse) => {
+    res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*')
+    const requestedHeaders = req.headers['access-control-request-headers']
+    if (requestedHeaders) {
+      res.setHeader('Access-Control-Allow-Headers', requestedHeaders)
+    }
+
+    if (req.method === 'OPTIONS') {
+      res.status(200)
+      res.end()
+      return
+    }
+
+    handler(req, res)
+  }
 }

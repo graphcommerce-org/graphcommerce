@@ -8,6 +8,9 @@ import { ProductPageBreadcrumbFragment } from './ProductPageBreadcrumb.gql'
 type ProductPageBreadcrumbsProps = ProductPageBreadcrumbFragment &
   Omit<BreadcrumbsProps, 'children'>
 
+/**
+ * @deprecated Please use ProductPageBreadcrumbs
+ */
 export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
   const { categories, name, ...breadcrumbProps } = props
   const prev = usePrevPageRouter()

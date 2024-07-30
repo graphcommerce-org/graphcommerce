@@ -27,7 +27,7 @@ export function useProductFiltersProSort(props: ProductListActionSortProps) {
     () =>
       filterNonNullableKeys(sort_fields?.options).map((o) =>
         !category?.uid && o.value === 'position'
-          ? { value: 'relevance', label: i18n._('Relevance') }
+          ? { value: 'relevance', label: i18n._(/* i18n*/ 'Relevance') }
           : o,
       ),
     [category?.uid, sort_fields?.options],
@@ -36,12 +36,16 @@ export function useProductFiltersProSort(props: ProductListActionSortProps) {
 
   const conf = useQuery(StoreConfigDocument).data?.storeConfig
   const defaultSortBy = (
-    category ? category.default_sort_by ?? conf?.catalog_default_sort_by ?? 'position' : 'relevance'
+    category
+      ? (category.default_sort_by ?? conf?.catalog_default_sort_by ?? 'position')
+      : 'relevance'
   ) as ProductFilterParams['sort']
 
   const formSort = useWatch({ control, name: 'sort' })
   const formDirection = useWatch({ control, name: 'dir' })
-  const showReset = Boolean(formSort !== defaultSortBy || formDirection === 'DESC')
+  const showReset =
+    (formDirection !== null || formSort !== null) &&
+    Boolean(formSort !== defaultSortBy || formDirection === 'DESC')
   const selected = Boolean(params.sort && (params.sort !== defaultSortBy || params.dir === 'DESC'))
 
   const options = useMemo(

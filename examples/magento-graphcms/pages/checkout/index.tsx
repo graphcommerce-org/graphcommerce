@@ -43,6 +43,7 @@ import { CircularProgress, Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutDocument, LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
@@ -111,7 +112,7 @@ function ShippingPage() {
               <>
                 {(customerAddresses.data?.customer?.addresses?.length ?? 0) >= 1 ? (
                   <CustomerAddressForm step={2} sx={(theme) => ({ mt: theme.spacings.lg })}>
-                    <ShippingAddressForm ignoreCache step={3} />
+                    <ShippingAddressForm step={3} />
                   </CustomerAddressForm>
                 ) : (
                   <>
@@ -162,12 +163,15 @@ ShippingPage.pageOptions = pageOptions
 
 export default ShippingPage
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
-  const staticClient = graphqlSsrClient(locale)
+  const staticClient = graphqlSsrClient(context)
 
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   return {
     props: {

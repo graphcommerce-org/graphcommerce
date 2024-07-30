@@ -1,13 +1,15 @@
 import { AddToCartItemSelector, ProductPagePriceProps } from '@graphcommerce/magento-product'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useConfigurableSelectedVariant } from '../../hooks'
 
-export const component = 'ProductPagePrice'
-export const exported = '@graphcommerce/magento-product'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/magento-product',
+}
 
-const ConfigurableProductPagePrice = (
+export function ProductPagePrice(
   props: PluginProps<ProductPagePriceProps> & AddToCartItemSelector,
-) => {
+) {
   const { Prev, product, index, ...rest } = props
   const variant = useConfigurableSelectedVariant({ url_key: product.url_key, index })
 
@@ -21,5 +23,3 @@ const ConfigurableProductPagePrice = (
     />
   )
 }
-
-export const Plugin = ConfigurableProductPagePrice

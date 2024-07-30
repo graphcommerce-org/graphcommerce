@@ -90,6 +90,19 @@ As a workaround you can apply the following patches:
 
 See also https://github.com/magento/magento2/issues/37774
 
+## Custom attributes return an error when they have a null value
+
+Affected Magento versions:
+- `2.4.7`: all versions
+
+In magento version 2.4.7 the custom_attributesV2 field was added to load custom attribute values for a product.
+If a requested attribute value is null then Magento will return an error, since the value is required.
+
+You can apply the following patch, which ensures that the attribute is filtered and no error is thrown.
+[fix-error-returning-null-attribute-values.patch](./patches/fix-error-returning-null-attribute-values.patch)
+
+See also: https://github.com/magento/magento2/issues/38884
+
 ## Next steps
 
 - [Overview](./readme)

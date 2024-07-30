@@ -4,7 +4,7 @@ import {
   responsiveVal,
   StarRatingField,
   extendableComponent,
-  useDateTimeFormat,
+  DateTimeFormat,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Typography, Button, Box, SxProps, Theme, Link } from '@mui/material'
@@ -51,8 +51,6 @@ export function ProductReviews(props: ProductReviewsProps) {
   const myReviews = otherReviewsPage?.products?.items?.[0]?.reviews ?? reviews
 
   const { current_page, total_pages } = myReviews.page_info
-
-  const formatter = useDateTimeFormat({ dateStyle: 'long', timeStyle: 'short' })
 
   if (!reviews) {
     return null
@@ -233,8 +231,9 @@ export function ProductReviews(props: ProductReviewsProps) {
                 dateTime={review?.created_at}
                 sx={{ typography: 'body2' }}
               >
-                {review?.created_at &&
-                  formatter.format(new Date(review?.created_at.replace(/-/g, '/')))}
+                <DateTimeFormat dateStyle='long' timeStyle='short'>
+                  {review?.created_at.replace(/-/g, '/')}
+                </DateTimeFormat>
               </Box>
             </Box>
           </Box>

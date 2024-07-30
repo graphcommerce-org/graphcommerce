@@ -32,6 +32,21 @@ function parseAndFindExport(
           break
       }
     }
+
+    if (node.type === 'ExportNamedDeclaration') {
+      for (const specifier of node.specifiers) {
+        if (specifier.type === 'ExportSpecifier') {
+          if (specifier.exported?.value === findExport) return resolved
+        } else if (specifier.type === 'ExportDefaultSpecifier') {
+          // todo
+        } else if (specifier.type === 'ExportNamespaceSpecifier') {
+          // todo
+        }
+      }
+    }
+
+    // todo: if (node.type === 'ExportDefaultDeclaration') {}
+    // todo: if (node.type === 'ExportDefaultExpression') {}
   }
 
   const exports = ast.body
@@ -78,7 +93,7 @@ export function findOriginalSource(
   if (!resolved?.source)
     return {
       resolved: undefined,
-      error: new Error(`Could not resolve ${plug.targetModule}`),
+      error: new Error(`Plugin: Can not find module ${plug.targetModule} for ${plug.sourceModule}`),
     }
 
   // const cacheKey = `${plug.targetModule}#${plug.targetExport}`
@@ -95,7 +110,7 @@ export function findOriginalSource(
     return {
       resolved: undefined,
       error: new Error(
-        `Can not find ${plug.targetModule}#${plug.sourceExport} for plugin ${plug.sourceModule}`,
+        `Plugin target not found ${plug.targetModule}#${plug.sourceExport} for plugin ${plug.sourceModule}#${plug.sourceExport}`,
       ),
     }
   }

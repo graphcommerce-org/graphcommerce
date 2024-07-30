@@ -1,6 +1,6 @@
 import type { PagesProps } from '@graphcommerce/framer-next-pages'
 import { useApolloClient } from '@graphcommerce/graphql/apollo'
-import type { IfConfig, PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { Button } from '@mui/material'
 import { CustomerTokenDocument } from '../hooks/CustomerToken.gql'
 

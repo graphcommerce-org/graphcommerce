@@ -16,12 +16,13 @@ const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>
 type ScrollerThumbnailProps = {
   idx: number
   image: Pick<ImageProps, 'src' | 'height' | 'width'>
+  layoutDependency: boolean
 }
 
 const MotionBox = styled(m.div)({})
 
 export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
-  const { idx, image } = props
+  const { idx, image, layoutDependency } = props
   const { scrollerRef, scroll, getScrollSnapPositions, items } = useScrollerContext()
   const found = useMotionValueValue(items, (v) => v.find((_, index) => index === idx))
   // This ensures that the first item in the scroller is selected by default.
@@ -50,7 +51,7 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
   const classes = withState({ active })
 
   const scrollIntoView = () =>
-    ref.current?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'auto' })
+    ref.current?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'auto' })
 
   useEffect(() => {
     if (active && ref.current) {
@@ -75,6 +76,7 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
       }}
       layout='position'
       style={{ boxShadow }}
+      layoutDependency={layoutDependency}
       sx={{
         padding: '2px',
         mx: `calc(${theme.spacing(1)} / 2)`,

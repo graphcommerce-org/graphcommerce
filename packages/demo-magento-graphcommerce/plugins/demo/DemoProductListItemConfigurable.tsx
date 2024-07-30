@@ -1,12 +1,13 @@
 import type { ProdustListItemConfigurableProps } from '@graphcommerce/magento-product-configurable'
-import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 
-export const component = 'ProductListItemConfigurable'
-export const exported = '@graphcommerce/magento-product-configurable'
-export const ifConfig: IfConfig = 'demoMode'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/magento-product-configurable',
+  ifConfig: 'demoMode',
+}
 
-function DemoProductListItemConfigurable(props: PluginProps<ProdustListItemConfigurableProps>) {
+export function ProductListItemConfigurable(props: PluginProps<ProdustListItemConfigurableProps>) {
   const { Prev, ...rest } = props
   return <Prev {...rest} swatchLocations={{ bottomRight: ['dominant_color'] }} />
 }
-export const Plugin = DemoProductListItemConfigurable

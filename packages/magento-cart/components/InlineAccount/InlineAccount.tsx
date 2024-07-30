@@ -1,4 +1,3 @@
-import { useQuery } from '@graphcommerce/graphql'
 import {
   SignUpFormInline,
   IsEmailAvailableDocument,
@@ -7,7 +6,6 @@ import {
 } from '@graphcommerce/magento-customer'
 import { Button, FormRow, extendableComponent, useStorefrontConfig } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Box, SxProps, TextField, Theme, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useCartQuery } from '../../hooks/useCartQuery'
@@ -104,8 +102,7 @@ export function InlineAccount(props: InlineAccountProps) {
             <FormRow>
               <TextField
                 variant='outlined'
-                type='email'
-                label='Email'
+                label={<Trans id='Email address' />}
                 value={cart?.email}
                 InputProps={{
                   readOnly: true,

@@ -1,11 +1,13 @@
 import { ShippingMethodFormProps } from '@graphcommerce/magento-cart-shipping-method'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { PickupLocationSelector } from '../components/PickupLocationSelector'
 
-export const component = 'ShippingMethodForm'
-export const exported = '@graphcommerce/magento-cart-shipping-method'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/magento-cart-shipping-method',
+}
 
-function AddPickupInStore(props: PluginProps<ShippingMethodFormProps>) {
+export function ShippingMethodForm(props: PluginProps<ShippingMethodFormProps>) {
   const { Prev, children, step, ...rest } = props
   return (
     <Prev {...rest} step={step}>
@@ -14,5 +16,3 @@ function AddPickupInStore(props: PluginProps<ShippingMethodFormProps>) {
     </Prev>
   )
 }
-
-export const Plugin = AddPickupInStore

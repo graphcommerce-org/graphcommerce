@@ -1,5 +1,5 @@
 mutation UpdateNewsletterSubscription($isSubscribed: Boolean!) {
-  updateCustomer(input: { is_subscribed: $isSubscribed }) {
+  updateCustomerV2(input: { is_subscribed: $isSubscribed }) {
     customer {
       is_subscribed
     }

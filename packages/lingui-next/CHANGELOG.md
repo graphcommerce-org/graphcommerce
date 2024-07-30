@@ -1,5 +1,111 @@
 # Change Log
 
+## 9.0.0-canary.63
+
+## 9.0.0-canary.62
+
+## 9.0.0-canary.61
+
+## 9.0.0-canary.60
+
+## 9.0.0-canary.59
+
+## 9.0.0-canary.58
+
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+## 8.1.0-canary.46
+
+### Patch Changes
+
+- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`59874b5`](https://github.com/graphcommerce-org/graphcommerce/commit/59874b572bda17905dc836554f9a3e31f393eb3e) - Solve issue where the page would reload during development when the first call to /graphql was made. ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.45
+
+## 8.1.0-canary.44
+
+## 8.1.0-canary.43
+
+## 8.1.0-canary.42
+
+## 8.1.0-canary.41
+
+## 8.1.0-canary.40
+
+## 8.1.0-canary.39
+
+## 8.1.0-canary.38
+
+## 8.1.0-canary.37
+
+## 8.1.0-canary.36
+
+## 8.1.0-canary.35
+
+## 8.1.0-canary.34
+
+## 8.1.0-canary.33
+
+## 8.1.0-canary.32
+
+## 8.1.0-canary.31
+
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
+## 8.1.0-canary.28
+
+## 8.1.0-canary.27
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
+## 8.1.0-canary.20
+
+## 8.1.0-canary.19
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
 ## 8.1.0-canary.12
 
 ## 8.1.0-canary.11
@@ -12,8 +118,7 @@
 
 ### Patch Changes
 
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for linguiLocale
-  ([@paales](https://github.com/paales))
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for linguiLocale ([@paales](https://github.com/paales))
 
 ## 8.1.0-canary.7
 
@@ -33,8 +138,7 @@
 
 ### Patch Changes
 
-- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods.
-  ([@paales](https://github.com/paales))
+- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods. ([@paales](https://github.com/paales))
 
 ## 8.0.5
 
@@ -108,8 +212,7 @@
 
 ### Patch Changes
 
-- [#2137](https://github.com/graphcommerce-org/graphcommerce/pull/2137) [`df507b1`](https://github.com/graphcommerce-org/graphcommerce/commit/df507b194c67eef7b02df858c07938bb308b5397) - Don't render pseudo-locale in HTML lang attribute
-  ([@hnsr](https://github.com/hnsr))
+- [#2137](https://github.com/graphcommerce-org/graphcommerce/pull/2137) [`df507b1`](https://github.com/graphcommerce-org/graphcommerce/commit/df507b194c67eef7b02df858c07938bb308b5397) - Don't render pseudo-locale in HTML lang attribute ([@hnsr](https://github.com/hnsr))
 
 ## 8.0.0-canary.100
 
@@ -157,8 +260,7 @@
 
 ### Patch Changes
 
-- [#2137](https://github.com/graphcommerce-org/graphcommerce/pull/2137) [`df507b1`](https://github.com/graphcommerce-org/graphcommerce/commit/df507b194c67eef7b02df858c07938bb308b5397) - Don't render pseudo-locale in HTML lang attribute
-  ([@hnsr](https://github.com/hnsr))
+- [#2137](https://github.com/graphcommerce-org/graphcommerce/pull/2137) [`df507b1`](https://github.com/graphcommerce-org/graphcommerce/commit/df507b194c67eef7b02df858c07938bb308b5397) - Don't render pseudo-locale in HTML lang attribute ([@hnsr](https://github.com/hnsr))
 
 ## 8.0.0-canary.78
 
@@ -885,31 +987,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 

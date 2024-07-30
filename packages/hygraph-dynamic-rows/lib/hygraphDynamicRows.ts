@@ -1,5 +1,5 @@
 import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import { ApolloClient, NormalizedCacheObject, cacheFirst } from '@graphcommerce/graphql'
 import {
   ConditionTextFragment,
   ConditionNumberFragment,
@@ -94,8 +94,7 @@ export async function hygraphDynamicRows(
   cached: boolean,
   additionalProperties?: Promise<object> | object,
 ): Promise<{ data: HygraphPagesQuery }> {
-  const alwaysCache = process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined
-  const fetchPolicy = cached ? alwaysCache : undefined
+  const fetchPolicy = cached ? cacheFirst(client) : undefined
 
   const allRoutes = await getAllHygraphDynamicRows(client)
 
@@ -117,7 +116,7 @@ export async function hygraphDynamicRows(
   const page = pageResult.data.pages[0] as Page | undefined
 
   // Create a copy of the content array.
-  const content = page?.content ?? []
+  const content = [...(page?.content ?? [])]
 
   dynamicResult?.data.dynamicRows.forEach((dynamicRow) => {
     const { placement, target, rows, row } = dynamicRow

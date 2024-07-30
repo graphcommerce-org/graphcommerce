@@ -1,12 +1,14 @@
 import { CartFabProps } from '@graphcommerce/magento-cart'
-import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { CompareFab } from '../components'
 
-export const component = 'CartFab'
-export const exported = '@graphcommerce/magento-cart'
-export const ifConfig: IfConfig = 'compare'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/magento-cart',
+  ifConfig: 'compare',
+}
 
-function MagentoCompareListGraphqlProvider(props: PluginProps<CartFabProps>) {
+export function CartFab(props: PluginProps<CartFabProps>) {
   const { Prev, ...rest } = props
   return (
     <>
@@ -15,5 +17,3 @@ function MagentoCompareListGraphqlProvider(props: PluginProps<CartFabProps>) {
     </>
   )
 }
-
-export const Plugin = MagentoCompareListGraphqlProvider

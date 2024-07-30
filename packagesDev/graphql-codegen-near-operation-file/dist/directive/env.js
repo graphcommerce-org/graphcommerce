@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.envDirective = void 0;
+exports.envDirective = envDirective;
 const graphql_1 = require("graphql");
 /**
  * Implements the env directive:
@@ -24,4 +24,3 @@ function envDirective(documentFiles) {
         return keep;
     });
 }
-exports.envDirective = envDirective;

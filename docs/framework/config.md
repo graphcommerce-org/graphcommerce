@@ -109,9 +109,19 @@ GraphQL Magento endpoint.
 Examples:
 - https://magento2.test/graphql
 
+#### magentoVersion: number (required)
+
+Version of the Magento backend.
+
+Values: 245, 246, 247 for Magento 2.4.5, 2.4.6, 2.4.7 respectively.
+
 #### storefront: [GraphCommerceStorefrontConfig](#GraphCommerceStorefrontConfig)[] (required)
 
 All storefront configuration for the project
+
+#### breadcrumbs: boolean = `false`
+
+Configuration for the SidebarGallery component
 
 #### cartDisplayPricesInclTax: boolean
 
@@ -159,15 +169,29 @@ Determines if, after adding a cross-sell item to the cart, the user should be re
 
 Default: 'false'
 
-#### customerRequireEmailConfirmation: boolean
+#### customerAddressNoteEnable: boolean
 
-Due to a limitation in the GraphQL API of Magento 2, we need to know if the
-customer requires email confirmation.
+Enables the shipping notes field in the checkout
 
-This value should match Magento 2's configuration value for
-`customer/create_account/confirm` and should be removed once we can query
+#### customerCompanyFieldsEnable: boolean
+
+Enables company fields inside the checkout:
+- Company name
+- VAT ID
+
+#### customerDeleteEnabled: boolean
+
+Enable customer account deletion through the account section
+
+#### customerXMagentoCacheIdDisable: boolean
+
+X-Magento-Cache-Id allows Varnish to cache requests that are made in the browser while users are logged in. For example the products query can now be cached for logged in users.
+
+This can be disabled when Varnish is running out of available memory.
 
 #### dataLayer: [DatalayerConfig](#DatalayerConfig)
+
+Datalayer config
 
 #### debug: [GraphCommerceDebugConfig](#GraphCommerceDebugConfig)
 
@@ -283,6 +307,13 @@ SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
 
 Product filters with better UI for mobile and desktop.
 
+#### productListPaginationVariant: COMPACT | EXTENDED = `COMPACT`
+
+Pagination variant for the product listings.
+
+COMPACT means: "< Page X of Y >"
+EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
+
 #### productRoute: string
 
 By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
@@ -371,6 +402,12 @@ Examples:
 #### cartDisplayPricesInclTax: boolean
 
 Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.
+
+#### customerCompanyFieldsEnable: boolean
+
+Enables company fields inside the checkout:
+- Company name
+- VAT ID
 
 #### defaultLocale: boolean
 

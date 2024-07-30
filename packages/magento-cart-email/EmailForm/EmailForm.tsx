@@ -1,4 +1,4 @@
-import { TextFieldElement, WaitForQueries } from '@graphcommerce/ecommerce-ui'
+import { EmailElement, TextFieldElement, WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorAlert,
@@ -56,20 +56,12 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
     <Box component='form' noValidate onSubmit={submit} sx={sx}>
       <FormAutoSubmit control={form.control} submit={submit} />
       <FormRow className={classes.formRow} sx={{ py: 0 }}>
-        <TextFieldElement
+        <EmailElement
           control={form.control}
           name='email'
           variant='outlined'
-          type='email'
-          error={formState.isSubmitted && !!formState.errors.email}
-          helperText={formState.isSubmitted && formState.errors.email?.message}
-          label={<Trans id='Email' />}
           required={required.email}
           disabled={cartEmail.loading}
-          rules={{
-            required: required.email,
-            pattern: { value: emailPattern, message: '' },
-          }}
           InputProps={{
             autoComplete: 'email',
             endAdornment: signInMode !== 'GUEST_ONLY' && (

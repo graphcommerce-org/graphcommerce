@@ -12,13 +12,13 @@ import { ActionCardLayout } from './ActionCardLayout'
 type MultiSelect = {
   multiple: true
   collapse?: false
-  value: (string | number | null)[]
+  value: (string | boolean | number | null)[]
 
   onChange?: (event: React.MouseEvent<HTMLElement>, value: MultiSelect['value']) => void
 }
 type Select = {
   multiple?: boolean
-  value: string | number | null
+  value: string | boolean | number | null
   collapse?: boolean
 
   /** Value is null when deselected when not required */
@@ -44,6 +44,7 @@ function isValueSelected(
   candidate?: Select['value'] | MultiSelect['value'],
 ) {
   if (candidate === undefined) return false
+  if (typeof value === 'boolean') return value
   if (Array.isArray(candidate)) return candidate.indexOf(value) >= 0
   return value === candidate
 }
@@ -56,6 +57,8 @@ const { withState } = extendableComponent<HoistedActionCardProps, typeof name, t
   name,
   parts,
 )
+
+const isNotFrag = <T extends React.ReactElement>(el: T): el is T => !isFragment(el)
 
 export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListProps>(
   (props, ref) => {
@@ -115,17 +118,15 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
       .filter(React.isValidElement)
       .filter(isActionCardLike)
       .filter((child) => {
+        const notFrag = isNotFrag(child)
         if (process.env.NODE_ENV !== 'production') {
-          if (isFragment(child))
+          if (!notFrag)
             console.error(
-              [
-                "@graphcommerce/next-ui: The ActionCardList component doesn't accept a Fragment as a child.",
-                'Consider providing an array instead',
-              ].join('\n'),
+              "@graphcommerce/next-ui: The ActionCardList component doesn't accept a Fragment as a child. Consider providing an array instead",
             )
         }
 
-        return !isFragment(child)
+        return notFrag
       })
 
     // Make sure the selected values is in the list of all possible values

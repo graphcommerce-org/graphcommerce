@@ -1,9 +1,10 @@
 import {
+  CheckboxElement,
   FormAutoSubmit,
   FormPersist,
+  TelephoneElement,
   TextFieldElement,
   UseFormComposeOptions,
-  phonePattern,
   useFormCompose,
 } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
@@ -18,11 +19,11 @@ import {
   CustomerDocument,
   NameFields,
   useCustomerQuery,
+  CompanyFields,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Form, FormRow } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/macro'
 import { SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { isCartAddressACustomerAddress } from '../../utils/findCustomerAddressFromCartAddress'
@@ -83,7 +84,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
 
   const form = useFormGqlMutationCart(Mutation, {
     defaultValues: isCartAddressACustomerAddress(customerQuery?.customer?.addresses, currentAddress)
-      ? { saveInAddressBook: true }
+      ? { saveInAddressBook: true, isCompany: false }
       : {
           // todo(paales): change to something more sustainable
           firstname: currentAddress?.firstname ?? customerQuery?.customer?.firstname ?? '',
@@ -92,6 +93,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
             currentAddress?.telephone !== '000 - 000 0000' ? currentAddress?.telephone : '',
           city: currentAddress?.city ?? '',
           company: currentAddress?.company ?? '',
+          vatId: currentAddress?.vat_id ?? '',
           postcode: currentAddress?.postcode ?? '',
           street: currentAddress?.street?.[0] ?? '',
           houseNumber: currentAddress?.street?.[1] ?? '',
@@ -99,6 +101,8 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           regionId: currentAddress?.region?.region_id ?? null,
           countryCode: currentAddress?.country.code ?? shopCountry, // todo: replace by the default shipping country of the store + geoip,
           saveInAddressBook: true,
+          isCompany: Boolean(currentAddress?.company || currentAddress?.vat_id),
+          customerNote: '',
         },
     mode: 'onChange',
     experimental_useV2: true,
@@ -112,7 +116,6 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         telephone: variables.telephone || '000 - 000 0000',
         region: regionId ? variables.region : '',
         regionId,
-        customerNote: '',
         addition: variables.addition ?? '',
       }
     },
@@ -129,24 +132,43 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         control={form.control}
         name={['postcode', 'countryCode', 'regionId']}
       />
-      <FormPersist form={form} name='ShippingAddressForm' />
+
+      <CompanyFields form={form} />
       <NameFields form={form} />
       <AddressFields form={form} />
+
       <FormRow>
-        <TextFieldElement
+        <TelephoneElement
           control={form.control}
           name='telephone'
           variant='outlined'
-          type='text'
           required={required.telephone}
-          rules={{
-            pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-          }}
-          label={<Trans id='Telephone' />}
           showValid
         />
       </FormRow>
+      {customerQuery?.customer && (
+        <CheckboxElement
+          control={form.control}
+          name='saveInAddressBook'
+          label={<Trans>Save in address book</Trans>}
+        />
+      )}
+
+      {!isVirtual && import.meta.graphCommerce.customerAddressNoteEnable && (
+        <FormRow>
+          <TextFieldElement
+            control={form.control}
+            name='customerNote'
+            label={<Trans>Shipping Note</Trans>}
+            multiline
+            minRows={3}
+            required={required.customerNote}
+          />
+        </FormRow>
+      )}
+
       <ApolloCartErrorAlert error={error} />
+      <FormPersist form={form} name='ShippingAddressForm' />
     </Form>
   )
 })

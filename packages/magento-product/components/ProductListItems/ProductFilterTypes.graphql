@@ -1,0 +1,8 @@
+query ProductFilterTypes($filters: AttributeFilterInput!) {
+  attributesList(entityType: CATALOG_PRODUCT, filters: $filters) {
+    items {
+      code
+      frontend_input
+    }
+  }
+}

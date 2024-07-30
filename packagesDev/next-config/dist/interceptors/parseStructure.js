@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.parseStructure = void 0;
+exports.parseStructure = parseStructure;
 const get_1 = __importDefault(require("lodash/get"));
 const zod_1 = require("zod");
 const extractExports_1 = require("./extractExports");
@@ -11,7 +11,7 @@ const pluginConfigParsed = zod_1.z.object({
     type: zod_1.z.enum(['component', 'function', 'replace']),
     module: zod_1.z.string(),
     export: zod_1.z.string(),
-    ifConfig: zod_1.z.union([zod_1.z.string(), zod_1.z.tuple([zod_1.z.string(), zod_1.z.string()])]).optional(),
+    ifConfig: zod_1.z.union([zod_1.z.string(), zod_1.z.tuple([zod_1.z.string(), zod_1.z.unknown()])]).optional(),
 });
 function nonNullable(value) {
     return value !== null && value !== undefined;
@@ -27,7 +27,7 @@ function parseStructure(ast, gcConfig, sourceModule) {
         exportVals.push('Plugin');
     if (func && !moduleConfig)
         exportVals.push('plugin');
-    return exportVals
+    const pluginConfigs = exportVals
         .map((exportVal) => {
         let config = isObject(moduleConfig) ? moduleConfig : {};
         if (!moduleConfig && component) {
@@ -41,6 +41,7 @@ function parseStructure(ast, gcConfig, sourceModule) {
         }
         else {
             console.error(`Plugin configuration invalid! See ${sourceModule}`);
+            return null;
         }
         const parsed = pluginConfigParsed.safeParse(config);
         if (!parsed.success) {
@@ -50,9 +51,15 @@ function parseStructure(ast, gcConfig, sourceModule) {
         }
         let enabled = true;
         if (parsed.data.ifConfig) {
-            enabled = Array.isArray(parsed.data.ifConfig)
-                ? (0, get_1.default)(gcConfig, parsed.data.ifConfig[0]) === parsed.data.ifConfig[1]
-                : Boolean((0, get_1.default)(gcConfig, parsed.data.ifConfig));
+            if (Array.isArray(parsed.data.ifConfig)) {
+                const isBoolean = typeof parsed.data.ifConfig[1] === 'boolean';
+                let confValue = (0, get_1.default)(gcConfig, parsed.data.ifConfig[0]);
+                confValue = isBoolean ? Boolean(confValue) : confValue;
+                enabled = confValue === parsed.data.ifConfig[1];
+            }
+            else {
+                enabled = Boolean((0, get_1.default)(gcConfig, parsed.data.ifConfig));
+            }
         }
         const val = {
             targetExport: exports.component || exports.func || parsed.data.export,
@@ -67,5 +74,11 @@ function parseStructure(ast, gcConfig, sourceModule) {
         return val;
     })
         .filter(nonNullable);
+    const newPluginConfigs = pluginConfigs.reduce((acc, pluginConfig) => {
+        if (!acc.find((accPluginConfig) => accPluginConfig.sourceExport === pluginConfig.sourceExport)) {
+            acc.push(pluginConfig);
+        }
+        return acc;
+    }, []);
+    return newPluginConfigs;
 }
-exports.parseStructure = parseStructure;

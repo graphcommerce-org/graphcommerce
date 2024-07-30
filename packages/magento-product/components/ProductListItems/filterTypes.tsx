@@ -43,11 +43,6 @@ export function toFilterParams(params: ProductListParams): ProductFilterParams {
   }
 }
 
-export function toProductListParams(params: ProductFilterParams): ProductListParams {
-  const { sort, dir, ...rest } = params
-  return { sort: sort ? { [sort]: dir } : {}, ...rest }
-}
-
 export type AnyFilterType =
   | ProductAttributeFilterInput[keyof ProductAttributeFilterInput]
   | FilterEqualTypeInput
@@ -72,4 +67,16 @@ export function isFilterTypeRange(filter: AnyFilterType): filter is FilterRangeT
   )
 }
 
-export type FilterTypes = Partial<Record<string, string>>
+export function toProductListParams(params: ProductFilterParams): ProductListParams {
+  const { sort, dir, filters, ...rest } = params
+
+  const newFilers = Object.fromEntries(
+    Object.entries(filters).filter(([, value]) => {
+      if (isFilterTypeEqual(value)) return Boolean(value.in)
+      if (isFilterTypeMatch(value)) return Boolean(value.match)
+      if (isFilterTypeRange(value)) return Boolean(value.from || value.to)
+      return false
+    }),
+  )
+  return { sort: sort ? { [sort]: dir } : {}, filters: newFilers, ...rest }
+}

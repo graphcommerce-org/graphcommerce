@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { useCustomerSession } from '@graphcommerce/magento-customer'
 import {
   Fab,
@@ -7,6 +8,7 @@ import {
   useStorefrontConfig,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
+import { t } from '@lingui/macro'
 import { SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import {
@@ -49,7 +51,7 @@ export function AddProductsToCartFab(props: AddProductsToCartFabProps) {
       {...rest}
       {...action}
       icon={showSuccess && !action.loading ? iconCheckmark : icon}
-      aria-label={i18n._(/* i18n*/ `Add to Cart`)}
+      aria-label={t`Add to Cart`}
     />
   )
 }

@@ -1,19 +1,17 @@
-import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { TelephoneElement } from '@graphcommerce/ecommerce-ui'
 import { useHistoryGo } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { SetBillingAddressDocument } from '@graphcommerce/magento-cart-shipping-address/components/ShippingAddressForm/SetBillingAddress.gql'
+import { SetBillingAddressDocument } from '@graphcommerce/magento-cart-shipping-address'
 import {
   AddressFields,
   ApolloCustomerErrorAlert,
+  CompanyFields,
   NameFields,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import { Button, Form, FormActions, FormDivider, FormRow } from '@graphcommerce/next-ui'
-import { phonePattern } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { SxProps, Theme } from '@mui/material'
 import { GetBillingAddressDocument } from './GetBillingAddress.gql'
 
@@ -38,6 +36,9 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
       telephone: address?.telephone,
       houseNumber: address?.street?.[1] ?? '',
       addition: address?.street?.[2] ?? '',
+      company: address?.company ?? '',
+      vatId: address?.vat_id ?? '',
+      isCompany: Boolean(address?.company || !!address?.vat_id),
       saveInAddressBook: true,
     },
     onBeforeSubmit: (variables) => {
@@ -45,14 +46,19 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
         ?.find((country) => country?.two_letter_abbreviation === variables.countryCode)
         ?.available_regions?.find((region) => region?.id === variables.regionId)?.id
 
+      if (!variables.isCompany) {
+        variables.company = ''
+        variables.vatId = ''
+      }
+
       return {
         ...variables,
         telephone: variables.telephone || '000 - 000 0000',
         regionId,
       }
     },
-    onComplete: ({ errors }) => {
-      if (!errors) goToCheckout()
+    onComplete: async ({ errors }) => {
+      if (!errors) await goToCheckout()
     },
   })
 
@@ -62,23 +68,16 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
   return (
     <>
       <Form onSubmit={submitHandler} noValidate sx={sx}>
+        <CompanyFields form={form} />
         <NameFields form={form} prefix />
         <AddressFields form={form} />
 
         <FormRow>
-          <TextFieldElement
+          <TelephoneElement
+            variant='outlined'
+            required={required.telephone}
             control={control}
             name='telephone'
-            variant='outlined'
-            type='text'
-            error={!!formState.errors.telephone}
-            required={required.telephone}
-            label={<Trans id='Telephone' />}
-            rules={{
-              required: required.telephone,
-              pattern: { value: phonePattern, message: i18n._(/* i18n */ 'Invalid phone number') },
-            }}
-            helperText={formState.isSubmitted && formState.errors.telephone?.message}
             disabled={formState.isSubmitting}
             showValid
           />

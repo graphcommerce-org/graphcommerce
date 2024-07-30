@@ -85,8 +85,8 @@ export function ProductListItemReal(props: ProductProps) {
     onClick,
   } = props
 
-  const handleClick = useEventCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => onClick?.(e, props),
+  const handleClick = useEventCallback((e: React.MouseEvent<HTMLAnchorElement>) =>
+    onClick?.(e, props),
   )
 
   return (
@@ -140,7 +140,7 @@ export function ProductListItemReal(props: ProductProps) {
   )
 }
 
-export function ProductListItemSkeleton(props: SkeletonProps) {
+export function ProductListItemSkeleton(props: BaseProps) {
   const { children, imageOnly = false, aspectRatio, titleComponent = 'h2', sx = [] } = props
 
   return (

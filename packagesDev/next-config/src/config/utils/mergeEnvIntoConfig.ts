@@ -17,6 +17,7 @@ import {
   ZodEnum,
   ZodTypeAny,
   ZodAny,
+  ZodDefault,
 } from 'zod'
 import diff from './diff'
 
@@ -61,6 +62,7 @@ export function configToEnvSchema(schema: ZodNode) {
     if (node instanceof ZodEffects) node = node.innerType()
     if (node instanceof ZodOptional) node = node.unwrap()
     if (node instanceof ZodNullable) node = node.unwrap()
+    if (node instanceof ZodDefault) node = node.removeDefault()
 
     if (node instanceof ZodObject) {
       if (path.length > 0) {
@@ -99,7 +101,13 @@ export function configToEnvSchema(schema: ZodNode) {
       return
     }
 
-    if (node instanceof ZodString || node instanceof ZodNumber || node instanceof ZodEnum) {
+    if (node instanceof ZodNumber) {
+      envSchema[toEnvStr(path)] = z.coerce.number().optional()
+      envToDot[toEnvStr(path)] = dotNotation(path)
+      return
+    }
+
+    if (node instanceof ZodString || node instanceof ZodEnum) {
       envSchema[toEnvStr(path)] = node.optional()
       envToDot[toEnvStr(path)] = dotNotation(path)
       return

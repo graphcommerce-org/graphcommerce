@@ -9,7 +9,7 @@ const pluginConfigParsed = z.object({
   type: z.enum(['component', 'function', 'replace']),
   module: z.string(),
   export: z.string(),
-  ifConfig: z.union([z.string(), z.tuple([z.string(), z.string()])]).optional(),
+  ifConfig: z.union([z.string(), z.tuple([z.string(), z.unknown()])]).optional(),
 })
 
 function nonNullable<T>(value: T): value is NonNullable<T> {
@@ -34,10 +34,11 @@ export function parseStructure(ast: Module, gcConfig: GraphCommerceConfig, sourc
   } = exports
 
   const exportVals = Object.keys(rest)
+
   if (component && !moduleConfig) exportVals.push('Plugin')
   if (func && !moduleConfig) exportVals.push('plugin')
 
-  return exportVals
+  const pluginConfigs = exportVals
     .map((exportVal) => {
       let config = isObject(moduleConfig) ? moduleConfig : {}
 
@@ -49,6 +50,7 @@ export function parseStructure(ast: Module, gcConfig: GraphCommerceConfig, sourc
         config = { ...moduleConfig, export: exportVal }
       } else {
         console.error(`Plugin configuration invalid! See ${sourceModule}`)
+        return null
       }
 
       const parsed = pluginConfigParsed.safeParse(config)
@@ -60,10 +62,17 @@ export function parseStructure(ast: Module, gcConfig: GraphCommerceConfig, sourc
       }
 
       let enabled = true
+
       if (parsed.data.ifConfig) {
-        enabled = Array.isArray(parsed.data.ifConfig)
-          ? get(gcConfig, parsed.data.ifConfig[0]) === parsed.data.ifConfig[1]
-          : Boolean(get(gcConfig, parsed.data.ifConfig))
+        if (Array.isArray(parsed.data.ifConfig)) {
+          const isBoolean = typeof parsed.data.ifConfig[1] === 'boolean'
+          let confValue = get(gcConfig, parsed.data.ifConfig[0])
+          confValue = isBoolean ? Boolean(confValue) : confValue
+
+          enabled = confValue === parsed.data.ifConfig[1]
+        } else {
+          enabled = Boolean(get(gcConfig, parsed.data.ifConfig))
+        }
       }
 
       const val: PluginConfig = {
@@ -79,4 +88,15 @@ export function parseStructure(ast: Module, gcConfig: GraphCommerceConfig, sourc
       return val
     })
     .filter(nonNullable)
+
+  const newPluginConfigs = pluginConfigs.reduce<PluginConfig[]>((acc, pluginConfig) => {
+    if (
+      !acc.find((accPluginConfig) => accPluginConfig.sourceExport === pluginConfig.sourceExport)
+    ) {
+      acc.push(pluginConfig)
+    }
+    return acc
+  }, [])
+
+  return newPluginConfigs
 }

@@ -1,12 +1,14 @@
 import { CartStartCheckoutLinkOrButtonProps } from '@graphcommerce/magento-cart'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { sendEvent } from '../api/sendEvent'
 import { cartToBeginCheckout } from '../mapping/cartToBeginCheckout/cartToBeginCheckout'
 
-export const component = 'CartStartCheckoutLinkOrButton'
-export const exported = '@graphcommerce/magento-cart'
+export const config: PluginConfig = {
+  module: '@graphcommerce/magento-cart',
+  type: 'component',
+}
 
-export function GoogleDatalayerCartStartCheckoutLinkOrButton(
+export function CartStartCheckoutLinkOrButton(
   props: PluginProps<CartStartCheckoutLinkOrButtonProps>,
 ) {
   const { Prev, onStart, ...rest } = props
@@ -21,5 +23,3 @@ export function GoogleDatalayerCartStartCheckoutLinkOrButton(
     />
   )
 }
-
-export const Plugin = GoogleDatalayerCartStartCheckoutLinkOrButton

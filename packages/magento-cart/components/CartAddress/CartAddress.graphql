@@ -4,6 +4,7 @@ fragment CartAddress on CartAddressInterface {
   lastname
   city
   company
+  vat_id
   country {
     code
     label

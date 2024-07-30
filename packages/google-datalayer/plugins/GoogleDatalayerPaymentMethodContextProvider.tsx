@@ -1,12 +1,14 @@
 import type { PaymentMethodContextProviderProps } from '@graphcommerce/magento-cart-payment-method'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { sendEvent } from '../api/sendEvent'
 import { orderToPurchase } from '../mapping/orderToPurchase/orderToPurchase'
 
-export const component = 'PaymentMethodContextProvider'
-export const exported = '@graphcommerce/magento-cart-payment-method'
+export const config: PluginConfig = {
+  module: '@graphcommerce/magento-cart-payment-method',
+  type: 'component',
+}
 
-function GoogleDatalayerPaymentMethodContextProvider(
+export function PaymentMethodContextProvider(
   props: PluginProps<PaymentMethodContextProviderProps>,
 ) {
   const { Prev, onSuccess, ...rest } = props
@@ -20,4 +22,3 @@ function GoogleDatalayerPaymentMethodContextProvider(
     />
   )
 }
-export const Plugin = GoogleDatalayerPaymentMethodContextProvider

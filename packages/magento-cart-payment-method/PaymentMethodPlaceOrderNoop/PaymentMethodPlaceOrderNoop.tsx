@@ -10,9 +10,10 @@ export function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProps) {
 
   const form = useFormGqlMutationCart(PaymentMethodPlaceOrderNoopDocument, {
     onComplete: async (result) => {
-      if (!result.data?.placeOrder) return
+      if (!result.data?.placeOrder?.order) return
       await onSuccess(result.data.placeOrder.order.order_number)
     },
+    submitWhileLocked: true,
   })
 
   const { handleSubmit } = form

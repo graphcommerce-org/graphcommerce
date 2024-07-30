@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.injectableDirective = void 0;
+exports.injectableDirective = injectableDirective;
 const graphql_1 = require("graphql");
 function isFragment(document) {
     let is = false;
@@ -97,16 +97,15 @@ function injectInjectable(injectables, injector) {
             });
         });
         if (!found)
-            throwInjectError(injectVal, `fragment ${target} @injectable { ... } can not be found or isn't injectable`);
+            throwInjectError(injectVal, `fragment ${target} { ... } can not be found`);
     });
 }
 function injectableDirective(documentFiles) {
     const documents = documentFiles
         .map(({ document }) => document)
         .filter((doc) => doc);
-    const injectables = documents.filter((d) => isFragment(d) && hasInjectableDirective(d));
+    const injectables = documents.filter((d) => isFragment(d));
     const injectors = documents.filter((d) => isFragment(d) && hasInjectDirective(d));
     injectors.forEach((d) => injectInjectable(injectables, d));
     return documentFiles;
 }
-exports.injectableDirective = injectableDirective;

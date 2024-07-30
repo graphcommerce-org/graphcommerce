@@ -43,8 +43,10 @@ data needed to render the layout (header, footer, menu etc.)
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
  ...
-
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   return {
     props: {

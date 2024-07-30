@@ -3,7 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateInterceptor = exports.moveRelativeDown = exports.SOURCE_END = exports.SOURCE_START = exports.isPluginConfig = exports.isReplacePluginConfig = exports.isMethodPluginConfig = exports.isReactPluginConfig = exports.isPluginBaseConfig = void 0;
+exports.SOURCE_END = exports.SOURCE_START = void 0;
+exports.isPluginBaseConfig = isPluginBaseConfig;
+exports.isReactPluginConfig = isReactPluginConfig;
+exports.isMethodPluginConfig = isMethodPluginConfig;
+exports.isReplacePluginConfig = isReplacePluginConfig;
+exports.isPluginConfig = isPluginConfig;
+exports.moveRelativeDown = moveRelativeDown;
+exports.generateInterceptor = generateInterceptor;
 // eslint-disable-next-line import/no-extraneous-dependencies
 const prettier_config_pwa_1 = __importDefault(require("@graphcommerce/prettier-config-pwa"));
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -16,36 +23,31 @@ function isPluginBaseConfig(plugin) {
         typeof plugin.enabled === 'boolean' &&
         typeof plugin.targetExport === 'string');
 }
-exports.isPluginBaseConfig = isPluginBaseConfig;
 function isReactPluginConfig(plugin) {
     if (!isPluginBaseConfig(plugin))
         return false;
     return plugin.type === 'component';
 }
-exports.isReactPluginConfig = isReactPluginConfig;
 function isMethodPluginConfig(plugin) {
     if (!isPluginBaseConfig(plugin))
         return false;
     return plugin.type === 'function';
 }
-exports.isMethodPluginConfig = isMethodPluginConfig;
 function isReplacePluginConfig(plugin) {
     if (!isPluginBaseConfig(plugin))
         return false;
     return plugin.type === 'replace';
 }
-exports.isReplacePluginConfig = isReplacePluginConfig;
 function isPluginConfig(plugin) {
     return isPluginBaseConfig(plugin);
 }
-exports.isPluginConfig = isPluginConfig;
 exports.SOURCE_START = '/** Original source starts here (do not modify!): **/';
 exports.SOURCE_END = '/** Original source ends here (do not modify!) **/';
 const originalSuffix = 'Original';
 const sourceSuffix = 'Plugin';
 const interceptorSuffix = 'Interceptor';
 const disabledSuffix = 'Disabled';
-const name = (plugin) => `${plugin.sourceModule
+const name = (plugin) => `${plugin.sourceExport}${plugin.sourceModule
     .split('/')[plugin.sourceModule.split('/').length - 1].replace(/[^a-zA-Z0-9]/g, '')}`;
 const fileName = (plugin) => `${plugin.sourceModule}#${plugin.sourceExport}`;
 const originalName = (n) => `${n}${originalSuffix}`;
@@ -61,7 +63,6 @@ function moveRelativeDown(plugins) {
         return 0;
     });
 }
-exports.moveRelativeDown = moveRelativeDown;
 const generateIdentifyer = (s) => Math.abs(s.split('').reduce((a, b) => {
     // eslint-disable-next-line no-param-reassign, no-bitwise
     a = (a << 5) - a + b.charCodeAt(0);
@@ -121,8 +122,7 @@ async function generateInterceptor(interceptor, config, oldInterceptorSource) {
                 .join(' wrapping ');
             if (isReplacePluginConfig(p)) {
                 new RenameVisitor_1.RenameVisitor([originalName(p.targetExport)], (s) => s.replace(originalSuffix, disabledSuffix)).visitModule(ast);
-                carryProps.push(interceptorPropsName(name(p)));
-                result = `type ${interceptorPropsName(name(p))} = React.ComponentProps<typeof ${sourceName(name(p))}>`;
+                carryProps.push(`React.ComponentProps<typeof ${sourceName(name(p))}>`);
                 pluginSee.push(`@see {${sourceName(name(p))}} for replacement of the original source (original source not used)`);
             }
             if (isReactPluginConfig(p)) {
@@ -154,7 +154,7 @@ async function generateInterceptor(interceptor, config, oldInterceptorSource) {
         })
             .filter((v) => !!v)
             .join('\n');
-        const isComponent = plugins.every((p) => isReplacePluginConfig(p) || isReactPluginConfig(p));
+        const isComponent = plugins.every((p) => isReactPluginConfig(p));
         if (isComponent && plugins.some((p) => isMethodPluginConfig(p))) {
             throw new Error(`Cannot mix React and Method plugins for ${base} in ${dependency}.`);
         }
@@ -215,4 +215,3 @@ async function generateInterceptor(interceptor, config, oldInterceptorSource) {
     }
     return { ...interceptor, template: templateFormatted };
 }
-exports.generateInterceptor = generateInterceptor;

@@ -1,0 +1,30 @@
+type PlaceOrderOutput {
+  """
+  Full order information.
+  """
+  orderV2: CustomerOrder
+}
+
+type CustomerOrder {
+  """
+  The token that can be used to retrieve the order using order query.
+  """
+  token: String!
+}
+
+"""
+Input to retrieve an order based on token.
+"""
+input OrderTokenInput {
+  """
+  Order token.
+  """
+  token: String!
+}
+
+type Query {
+  """
+  Retrieve guest order details based on token.
+  """
+  guestOrderByToken(input: OrderTokenInput!): CustomerOrder! @deprecated(reason: "Magento >= 2.4.7")
+}
