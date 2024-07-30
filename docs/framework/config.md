@@ -85,6 +85,22 @@ Below is a list of all possible configurations that can be set by GraphCommerce.
 
 ### GraphCommerceConfig
 
+#### algoliaApplicationId: string (required)
+
+Configure your Algolia application ID.
+
+Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
+
+#### algoliaIndexNamePrefix: string (required)
+
+Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix
+
+#### algoliaSearchOnlyApiKey: string (required)
+
+Configure your Algolia Search Only API Key.
+
+Stores > Configuration > Algolia Search > Credentials and Basic Setup > Search-only (public) API key
+
 #### canonicalBaseUrl: string (required)
 
 The canonical base URL is used for SEO purposes.
@@ -118,6 +134,12 @@ Values: 245, 246, 247 for Magento 2.4.5, 2.4.6, 2.4.7 respectively.
 #### storefront: [GraphCommerceStorefrontConfig](#GraphCommerceStorefrontConfig)[] (required)
 
 All storefront configuration for the project
+
+#### algoliaCatalogEnabled: boolean
+
+By default the catalog will not use algolia. Set this to true to enable Algolia for the catalog.
+
+#### algoliaCustomerGroupPricingEnabled: boolean
 
 #### breadcrumbs: boolean = `false`
 
@@ -389,6 +411,10 @@ Examples:
 - default
 - en-us
 - b2b-us
+
+#### algoliaIndexNamePrefix: string
+
+Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix
 
 #### canonicalBaseUrl: string
 

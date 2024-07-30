@@ -92,11 +92,7 @@ function algoliaUrlToUrlKey(url?: string | null, base?: string | null): string |
  * @param url
  */
 function getOriginalImage(url?: string | undefined | null) {
-  if (!url) return url
-
-  if (!url.includes('media/catalog/product')) {
-    return url
-  }
+  if (!url || !url.includes('media/catalog/product')) return url
   return url.replace(/\/cache\/[a-z0-9]+/, '')
 }
 
@@ -123,7 +119,7 @@ export type MagentoProductItemReturn = NonNullable<
 export function algoliaHitToMagentoProduct(
   hit: Algoliahit,
   storeConfig: GetStoreConfigReturn,
-  customerGroup = 0,
+  customerGroup: number,
 ): MagentoProductItemReturn | null {
   const { objectID, additionalProperties } = hit
   if (!assertAdditional(additionalProperties)) return null

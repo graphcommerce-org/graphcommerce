@@ -16,6 +16,8 @@
   },
   "peerDependencies": {
     "@graphcommerce/graphql-mesh": "^9.0.0-canary.63",
+    "@graphcommerce/magento-customer": "^9.0.0-canary.63",
+    "@graphcommerce/graphql": "^9.0.0-canary.63",
     "@graphcommerce/magento-product": "^9.0.0-canary.63",
     "@graphcommerce/magento-search": "^9.0.0-canary.63",
     "@graphcommerce/next-config": "^9.0.0-canary.63",

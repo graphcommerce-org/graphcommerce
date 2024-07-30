@@ -1,5 +1,5 @@
 type Customer {
-  group_id: Int
+  algolia_group_id: Int
     @resolveTo(
       sourceName: "m2rest"
       sourceTypeName: "Query"

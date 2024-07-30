@@ -3,6 +3,7 @@ import { algoliaFacetsToAggregations, getCategoryList } from './algoliaFacetsToA
 import { algoliaHitToMagentoProduct } from './algoliaHitToMagentoProduct'
 import { getAlgoliaSettings } from './getAlgoliaSettings'
 import { getAttributeList } from './getAttributeList'
+import { getGroupId } from './getGroupId'
 import { getStoreConfig } from './getStoreConfig'
 import {
   productFilterInputToAlgoliaFacetFiltersInput,
@@ -10,7 +11,6 @@ import {
 } from './productFilterInputToAlgoliafacetFiltersInput'
 import { getSortedIndex, sortingOptions } from './sortOptions'
 import { nonNullable } from './utils'
-import { getGroupId } from './getGroupId'
 
 export const resolvers: Resolvers = {
   Query: {

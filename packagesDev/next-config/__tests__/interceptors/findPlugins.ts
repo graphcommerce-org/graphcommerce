@@ -265,6 +265,14 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "meshConfig",
+        "sourceModule": "@graphcommerce/magento-graphql-rest/plugins/meshConfigM2Rest",
+        "targetExport": "meshConfig",
+        "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
+        "type": "function",
+      },
+      {
+        "enabled": true,
         "sourceExport": "PaymentMethodContextProvider",
         "sourceModule": "@graphcommerce/magento-payment-included/plugins/AddIncludedMethods",
         "targetExport": "PaymentMethodContextProvider",
@@ -519,6 +527,15 @@ it('finds plugins', () => {
         "sourceModule": "@graphcommerce/magento-customer/plugins/SessionDebuggerPlugin",
         "targetExport": "FramerNextPages",
         "targetModule": "@graphcommerce/framer-next-pages",
+        "type": "component",
+      },
+      {
+        "enabled": false,
+        "ifConfig": "customerGroupIdEnable",
+        "sourceExport": "GraphQLProvider",
+        "sourceModule": "@graphcommerce/magento-customer/plugins/GraphQLProviderCustomerGroupId",
+        "targetExport": "GraphQLProvider",
+        "targetModule": "@graphcommerce/graphql",
         "type": "component",
       },
       {

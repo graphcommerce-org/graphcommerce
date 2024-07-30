@@ -23,7 +23,7 @@ Make sure the Magento 2 module is correctly installed and working.
    }
    ```
 
-### Configuration
+## Configuration
 
 1. Setup the fields that you want to index in algolia
    `Stores > configuration > Algolia Search > Products > Products`
@@ -35,11 +35,26 @@ Make sure the Magento 2 module is correctly installed and working.
    `Stores > Products > Attributes`
 4. To configure sorting options, enable Virtual Replica's.
    `Stores > Configuration > Algolia Search > Instant Search Results Page > Use Virtual Replica`
-5. To enable custom pricing, make sure customers groups prices are mapped to
-   algolia. NOTE: Catalog price rules are not indexed by algolia. You can use,
-   in a product admin page, advanced pricing -> special price or advanced
-   pricing -> customer group pricing to set custom prices.
-   `Stores > Configuration > Algolia Search > Advanced > Enable Customer Groups`
+
+### Customer Group Pricing
+
+```js
+const config = {
+  algoliaCustomerGroupPricingEnabled: true,
+}
+```
+
+To enable customer group pricing, make sure customers groups prices are mapped
+to algolia.
+`Stores > Configuration > Algolia Search > Advanced > Enable Customer Groups`.
+
+⚠️ Warning: Catalog price rules for a specific customer group do not seem to be
+indexed.It seems only: `[Product] > Advanced Pricing > Customer Group Price`
+gets indexed.
+
+Note: The GraphQL API does not expose the customer group_id by default. We're
+doing an additional REST API call to get the value. This means a somewhat slower
+(few hundred ms) when the Customer is loaded.
 
 ### Customization
 

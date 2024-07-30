@@ -29,4 +29,8 @@ extend input GraphCommerceConfig {
   By default the catalog will not use algolia. Set this to true to enable Algolia for the catalog.
   """
   algoliaCatalogEnabled: Boolean
+
+  """
+  """
+  algoliaCustomerGroupPricingEnabled: Boolean
 }
