@@ -11,8 +11,8 @@ import React from 'react'
 type EmptyCartProps = {
   children?: React.ReactNode
   sx?: SxProps<Theme>
-  disableMargin?: boolean
-} & Pick<FullPageMessageProps, 'button'>
+} & Pick<FullPageMessageProps, 'button' | 'disableMargin'>
+
 export function EmptyCart(props: EmptyCartProps) {
   const { children, button, ...rest } = props
 
