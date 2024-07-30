@@ -39,17 +39,27 @@ function mapPriceRange(
   const key = storeConfig.default_display_currency_code as keyof AlgoliaPrice
   const currency = storeConfig.default_display_currency_code as CurrencyEnum
 
+  const maxRegular = price?.[key]?.default_max ?? 0
+  const maxFinal = price?.[key]?.[`group_${customerGroup}_max`] ?? price?.[key]?.default_max ?? 0
+
+  const minRegular = price?.[key]?.default ?? 0
+  const minFinal = price?.[key]?.[`group_${customerGroup}`] ?? price?.[key]?.default
+
   return {
     maximum_price: {
       regular_price: {
         currency,
-        value: price?.[key]?.default_max,
+        value: maxRegular,
       },
       final_price: {
         currency,
-        value: price?.[key]?.[`group_${customerGroup}_max`] ?? price?.[key]?.default_max,
+        value: maxFinal,
       },
-      // discount,
+      discount: {
+        percent_off:
+          maxRegular !== maxFinal && maxRegular > 0 ? 1 - (maxFinal / maxRegular) * 100 : 0,
+        amount_off: maxRegular - maxFinal,
+      },
       // fixed_product_taxes
     },
     minimum_price: {
@@ -59,9 +69,13 @@ function mapPriceRange(
       },
       final_price: {
         currency,
-        value: price?.[key]?.[`group_${customerGroup}`] ?? price?.[key]?.default,
+        value: maxFinal,
       },
-      // discount,
+      discount: {
+        percent_off:
+          minRegular !== minFinal && minRegular > 0 ? 1 - (minFinal / minRegular) * 100 : 0,
+        amount_off: minRegular - minFinal,
+      },
       // fixed_product_taxes
     },
   }
