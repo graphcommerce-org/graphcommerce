@@ -12,6 +12,8 @@ import {
 } from './productFilterInputToAlgoliafacetFiltersInput'
 import { getSortedIndex, sortingOptions } from './sortOptions'
 import { nonNullable } from './utils'
+import { getSearchItems } from './getSearchItems'
+import { getIndexName } from './getIndexName'
 
 export const resolvers: Resolvers = {
   Query: {
@@ -26,9 +28,24 @@ export const resolvers: Resolvers = {
         traverseSelectionSet(info.operation.selectionSet, 'products.!suggestions').selections
           .length === 0
 
+      const onlySearch =
+        traverseSelectionSet(info.operation.selectionSet, 'products.!items').selections.length === 0
       // We've got a early bailout here to avoid unnecessary Algolia queries
       if (onlySuggestions) {
         return { suggestions: await getSearchSuggestions(context, args.search ?? '') }
+      }
+
+      if (onlySearch) {
+        return {
+          items: await getSearchItems(
+            context,
+            args.search ?? '',
+            args,
+            getIndexName(context),
+            storeConfig,
+            filters,
+          ),
+        }
       }
 
       const [storeConfig, attributeList, categoryList, settings] = await Promise.all([
