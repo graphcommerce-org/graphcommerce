@@ -104,23 +104,6 @@ export type DatalayerConfig = {
  * Below is a list of all possible configurations that can be set by GraphCommerce.
  */
 export type GraphCommerceConfig = {
-  /**
-   * Configure your Algolia application ID.
-   *
-   * Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
-   */
-  algoliaApplicationId: Scalars['String']['input'];
-  /** By default the catalog will not use algolia. Set this to true to enable Algolia for the catalog. */
-  algoliaCatalogEnabled?: InputMaybe<Scalars['Boolean']['input']>;
-  algoliaCustomerGroupPricingEnabled?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix */
-  algoliaIndexNamePrefix: Scalars['String']['input'];
-  /**
-   * Configure your Algolia Search Only API Key.
-   *
-   * Stores > Configuration > Algolia Search > Credentials and Basic Setup > Search-only (public) API key
-   */
-  algoliaSearchOnlyApiKey: Scalars['String']['input'];
   /** Configuration for the SidebarGallery component */
   breadcrumbs?: InputMaybe<Scalars['Boolean']['input']>;
   /**
@@ -375,8 +358,6 @@ export type GraphCommerceDebugConfig = {
 
 /** All storefront configuration for the project */
 export type GraphCommerceStorefrontConfig = {
-  /** Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix */
-  algoliaIndexNamePrefix?: InputMaybe<Scalars['String']['input']>;
   /**
    * The canonical base URL is used for SEO purposes.
    *
@@ -511,11 +492,6 @@ export function DatalayerConfigSchema(): z.ZodObject<Properties<DatalayerConfig>
 
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
-    algoliaApplicationId: z.string().min(1),
-    algoliaCatalogEnabled: z.boolean().nullish(),
-    algoliaCustomerGroupPricingEnabled: z.boolean().nullish(),
-    algoliaIndexNamePrefix: z.string().min(1),
-    algoliaSearchOnlyApiKey: z.string().min(1),
     breadcrumbs: z.boolean().default(false).nullish(),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
@@ -569,7 +545,6 @@ export function GraphCommerceDebugConfigSchema(): z.ZodObject<Properties<GraphCo
 
 export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<GraphCommerceStorefrontConfig>> {
   return z.object({
-    algoliaIndexNamePrefix: z.string().nullish(),
     canonicalBaseUrl: z.string().nullish(),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     customerCompanyFieldsEnable: z.boolean().nullish(),

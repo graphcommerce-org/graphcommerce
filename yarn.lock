@@ -2826,9 +2826,9 @@ __metadata:
     graphql: "npm:^16.0.0"
     tsx: "npm:^4.16.2"
   peerDependencies:
+    "@graphcommerce/graphql": ^9.0.0-canary.63
     "@graphcommerce/graphql-mesh": ^9.0.0-canary.63
     "@graphcommerce/magento-customer": ^9.0.0-canary.63
-    "@graphcommerce/magento-graphql": ^9.0.0-canary.63
     "@graphcommerce/magento-product": ^9.0.0-canary.63
     "@graphcommerce/magento-search": ^9.0.0-canary.63
     "@graphcommerce/next-config": ^9.0.0-canary.63

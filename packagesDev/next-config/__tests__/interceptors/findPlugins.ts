@@ -531,15 +531,6 @@ it('finds plugins', () => {
       },
       {
         "enabled": false,
-        "ifConfig": "customerGroupIdEnable",
-        "sourceExport": "GraphQLProvider",
-        "sourceModule": "@graphcommerce/magento-customer/plugins/GraphQLProviderCustomerGroupId",
-        "targetExport": "GraphQLProvider",
-        "targetModule": "@graphcommerce/graphql",
-        "type": "component",
-      },
-      {
-        "enabled": false,
         "ifConfig": "configurableVariantValues.content",
         "sourceExport": "ProductShortDescription",
         "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductShortDescription",
