@@ -1,16 +1,16 @@
-import type { MeshContext, Resolvers } from '@graphcommerce/graphql-mesh'
-import { storefrontConfigDefault } from '@graphcommerce/next-ui/server'
+import type { Resolvers } from '@graphcommerce/graphql-mesh'
 import { algoliaFacetsToAggregations, getCategoryList } from './algoliaFacetsToAggregations'
 import { algoliaHitToMagentoProduct } from './algoliaHitToMagentoProduct'
+import { getAlgoliaSettings } from './getAlgoliaSettings'
 import { getAttributeList } from './getAttributeList'
+import { getGroupId } from './getGroupId'
 import { getStoreConfig } from './getStoreConfig'
 import {
   productFilterInputToAlgoliaFacetFiltersInput,
   productFilterInputToAlgoliaNumericFiltersInput,
 } from './productFilterInputToAlgoliafacetFiltersInput'
-import { nonNullable } from './utils'
-import { getAlgoliaSettings } from './getAlgoliaSettings'
 import { getSortedIndex, sortingOptions } from './sortOptions'
+import { nonNullable } from './utils'
 
 export const resolvers: Resolvers = {
   Query: {
@@ -65,7 +65,7 @@ export const resolvers: Resolvers = {
       const hits = (searchResults?.hits ?? [])?.filter(nonNullable)
 
       return {
-        items: hits.map((hit) => algoliaHitToMagentoProduct(hit, storeConfig)),
+        items: hits.map((hit) => algoliaHitToMagentoProduct(hit, storeConfig, getGroupId(context))),
         aggregations: algoliaFacetsToAggregations(
           searchResults?.facets,
           attributeList,

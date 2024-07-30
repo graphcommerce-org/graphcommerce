@@ -1,14 +1,14 @@
 import { GraphQLProviderProps } from '@graphcommerce/graphql'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
-import { xMagentoCacheIdHeader } from '../link/xMagentoCacheIdHeader'
+import { customerGroupIdLink } from '../link/customerGroupIdLink'
 
 export const config: PluginConfig = {
   type: 'component',
   module: '@graphcommerce/graphql',
-  ifConfig: ['customerXMagentoCacheIdDisable', false],
+  ifConfig: 'algoliaCustomerGroupPricingEnabled',
 }
 
 export function GraphQLProvider(props: PluginProps<GraphQLProviderProps>) {
   const { Prev, links = [], ...rest } = props
-  return <Prev {...rest} links={[...links, xMagentoCacheIdHeader]} />
+  return <Prev {...rest} links={[...links, customerGroupIdLink]} />
 }

@@ -1,9 +1,10 @@
 {
-  "name": "@graphcommerce/algolia-mesh",
+  "name": "@graphcommerce/magento-graphql-rest",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "9.0.0-canary.63",
   "sideEffects": false,
+  "main": "index.ts",
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",
@@ -12,12 +13,10 @@
     }
   },
   "scripts": {
-    "generate": "tsx generate-spec.mts"
+    "generate": "tsx ./scripts/generate-spec.mts"
   },
   "peerDependencies": {
-    "@graphcommerce/graphql": "^9.0.0-canary.63",
     "@graphcommerce/graphql-mesh": "^9.0.0-canary.63",
-    "@graphcommerce/magento-customer": "^9.0.0-canary.63",
     "@graphcommerce/magento-product": "^9.0.0-canary.63",
     "@graphcommerce/magento-search": "^9.0.0-canary.63",
     "@graphcommerce/next-config": "^9.0.0-canary.63",

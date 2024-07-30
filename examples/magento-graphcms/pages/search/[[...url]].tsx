@@ -90,7 +90,7 @@ SearchResultPage.pageOptions = pageOptions
 export default SearchResultPage
 
 export const getServerSideProps: GetPageStaticProps = async (context) => {
-  const { locale, params } = context
+  const { params } = context
   const [searchShort = '', query = []] = extractUrlQuery(params)
   const search = searchShort.length >= 3 ? searchShort : ''
 
@@ -111,7 +111,7 @@ export const getServerSideProps: GetPageStaticProps = async (context) => {
     search,
   )
 
-  if (!productListParams) return { notFound: true, revalidate: 60 * 20 }
+  if (!productListParams) return { notFound: true }
 
   const filters = staticClient.query({
     query: ProductFiltersDocument,
