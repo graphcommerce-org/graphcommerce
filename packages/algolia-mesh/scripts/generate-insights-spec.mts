@@ -59,7 +59,7 @@ function filterPaths(
 const newSchema: OpenAPIV3.Document = {
   openapi,
   info,
-  paths: filterPaths(openApiSchema.paths, { '/1/events': [OpenAPIV3.HttpMethods.GET] }),
+  paths: filterPaths(openApiSchema.paths, { '/1/events': [OpenAPIV3.HttpMethods.POST] }),
   components,
 }
 

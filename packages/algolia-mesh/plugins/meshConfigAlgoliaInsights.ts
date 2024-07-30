@@ -22,12 +22,11 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
       sources: [
         ...baseConfig.sources,
         {
-          name: 'algolia',
+          name: 'algoliaInsights',
           handler: {
             openapi: {
               endpoint: `https://insights.algolia.io/`,
               source: '@graphcommerce/algolia-mesh/algolia-insights-spec.yaml',
-              ignoreErrorResponses: true,
               schemaHeaders: {
                 'X-Algolia-Application-Id': graphCommerceConfig.algoliaApplicationId,
                 'X-Algolia-API-Key': graphCommerceConfig.algoliaSearchOnlyApiKey,
@@ -45,7 +44,7 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
           transforms: [
             {
               prefix: {
-                value: 'algolia_',
+                value: 'algolia_insights_',
                 includeRootOperations: true,
                 includeTypes: false,
                 mode: 'bare',
@@ -53,7 +52,7 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
             },
             {
               prefix: {
-                value: 'Algolia',
+                value: 'AlgoliaInsights',
                 includeRootOperations: false,
                 includeTypes: true,
                 mode: 'bare',
@@ -62,10 +61,10 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
           ],
         },
       ],
-      additionalResolvers: [
-        ...(baseConfig.additionalResolvers ?? []),
-        '@graphcommerce/algolia-mesh/mesh/resolvers.ts',
-      ],
+      // additionalResolvers: [
+      //   ...(baseConfig.additionalResolvers ?? []),
+      //   '@graphcommerce/algolia-mesh/mesh/resolvers.ts',
+      // ],
     },
     graphCommerceConfig,
   )

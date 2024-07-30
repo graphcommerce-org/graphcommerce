@@ -12,7 +12,8 @@
     }
   },
   "scripts": {
-    "generate": "tsx generate-spec.mts"
+    "generate": "tsx generate-spec.mts",
+    "generate-insights": "tsx scripts/generate-insights-spec.mts"
   },
   "peerDependencies": {
     "@graphcommerce/graphql-mesh": "^9.0.0-canary.63",
