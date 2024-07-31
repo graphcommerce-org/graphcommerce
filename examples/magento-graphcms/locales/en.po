@@ -34,6 +34,10 @@ msgid "We couldn't find any results"
 msgstr "We couldn't find any results"
 
 #. js-lingui-generated-id
+msgid "Sign in"
+msgstr "Sign in"
+
+#. js-lingui-generated-id
 msgid "Shipping method"
 msgstr "Shipping method"
 
@@ -74,6 +78,9 @@ msgstr "Account confirmation"
 
 msgid "Account confirmed. You can now proceed to sign in."
 msgstr "Account confirmed. You can now proceed to sign in."
+
+msgid "Account connected to that email could not be found"
+msgstr "Account connected to that email could not be found"
 
 msgid "Add address"
 msgstr "Add address"
@@ -160,6 +167,10 @@ msgstr "Categories"
 #. js-lingui-generated-id
 msgid "Order #{orderNumber}"
 msgstr "Order #{orderNumber}"
+
+#. js-lingui-generated-id
+msgid "You must first login before you can continue"
+msgstr "You must first login before you can continue"
 
 msgid "Change"
 msgstr "Change"
@@ -370,9 +381,6 @@ msgstr "Free"
 
 msgid "Grand total"
 msgstr "Grand total"
-
-msgid "Guest checkout is disabled for this store please login to continue."
-msgstr "Guest checkout is disabled for this store please login to continue."
 
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Hi {firstname}! You’re now logged in!"
@@ -721,9 +729,6 @@ msgstr "Sign up for our newsletter and stay updated"
 msgid "Skip to main content"
 msgstr "Skip to main content"
 
-msgid "Some items in your cart contain errors, please update or remove them, then try again."
-msgstr "Some items in your cart contain errors, please update or remove them, then try again."
-
 msgid "Something went wrong"
 msgstr "Something went wrong"
 
@@ -735,9 +740,6 @@ msgstr "Sort"
 
 msgid "Sort By"
 msgstr "Sort By"
-
-msgid "Start Checkout"
-msgstr "Start Checkout"
 
 msgid "Store home"
 msgstr "Store home"
@@ -816,6 +818,9 @@ msgstr "This may take a second"
 
 msgid "Total <0/>"
 msgstr "Total <0/>"
+
+msgid "Try a different email or contact us to register an account"
+msgstr "Try a different email or contact us to register an account"
 
 msgid "Try a different product"
 msgstr "Try a different product"
@@ -1029,6 +1034,10 @@ msgid "one product"
 msgstr "one product"
 
 #. js-lingui-generated-id
+msgid "Start Checkout"
+msgstr "Start Checkout"
+
+#. js-lingui-generated-id
 msgid "Order not found"
 msgstr "Order not found"
 
@@ -1051,6 +1060,10 @@ msgstr "The given email does not match the account email"
 #. js-lingui-generated-id
 msgid "Message"
 msgstr "Message"
+
+#. js-lingui-generated-id
+msgid "Some items in your cart contain errors, please update or remove them, then try again."
+msgstr "Some items in your cart contain errors, please update or remove them, then try again."
 
 #. js-lingui-generated-id
 msgid "Order details"

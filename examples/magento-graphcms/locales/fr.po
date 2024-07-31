@@ -34,6 +34,10 @@ msgid "We couldn't find any results"
 msgstr "Nous n'avons trouvé aucun résultat"
 
 #. js-lingui-generated-id
+msgid "Sign in"
+msgstr "Identifiez-vous"
+
+#. js-lingui-generated-id
 msgid "Shipping method"
 msgstr "Méthode d'expédition"
 
@@ -74,6 +78,9 @@ msgstr "Confirmation du compte"
 
 msgid "Account confirmed. You can now proceed to sign in."
 msgstr "Compte confirmé. Vous pouvez maintenant vous connecter."
+
+msgid "Account connected to that email could not be found"
+msgstr "Le compte lié à cet e-mail n'a pas pu être trouvé"
 
 msgid "Add address"
 msgstr "Ajouter une adresse"
@@ -160,6 +167,10 @@ msgstr "Catégories"
 #. js-lingui-generated-id
 msgid "Order #{orderNumber}"
 msgstr "Commande #{orderNumber}"
+
+#. js-lingui-generated-id
+msgid "You must first login before you can continue"
+msgstr "Vous devez d'abord vous connecter avant de pouvoir continuer"
 
 msgid "Change"
 msgstr "Changer"
@@ -370,9 +381,6 @@ msgstr "Gratuit"
 
 msgid "Grand total"
 msgstr "Total"
-
-msgid "Guest checkout is disabled for this store please login to continue."
-msgstr "Le paiement des invités est désactivé pour ce magasin, veuillez vous connecter pour continuer."
 
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Bonjour {firstname}! Vous êtes maintenant connecté!"
@@ -721,9 +729,6 @@ msgstr "Inscrivez-vous à notre newsletter et restez à jour"
 msgid "Skip to main content"
 msgstr "Passer au contenu principal"
 
-msgid "Some items in your cart contain errors, please update or remove them, then try again."
-msgstr "Certains articles de votre panier contiennent des erreurs, veuillez les mettre à jour ou les supprimer, puis réessayer."
-
 msgid "Something went wrong"
 msgstr "Quelque chose s'est mal passé"
 
@@ -735,9 +740,6 @@ msgstr "Trier"
 
 msgid "Sort By"
 msgstr "Trier par"
-
-msgid "Start Checkout"
-msgstr "Commencer la commande"
 
 msgid "Store home"
 msgstr "Accueil de la boutique"
@@ -816,6 +818,9 @@ msgstr "Ceci peut prendre un instant"
 
 msgid "Total <0/>"
 msgstr "Total <0/>"
+
+msgid "Try a different email or contact us to register an account"
+msgstr "Essayez un autre courriel ou contactez-nous pour créer un compte"
 
 msgid "Try a different product"
 msgstr "Essayez un autre produit"
@@ -1029,6 +1034,10 @@ msgid "one product"
 msgstr "un produit"
 
 #. js-lingui-generated-id
+msgid "Start Checkout"
+msgstr "Commencer la commande"
+
+#. js-lingui-generated-id
 msgid "Order not found"
 msgstr "Ordre non trouvé"
 
@@ -1051,6 +1060,10 @@ msgstr "L'email donné ne correspond pas à l'email du compte"
 #. js-lingui-generated-id
 msgid "Message"
 msgstr "Message"
+
+#. js-lingui-generated-id
+msgid "Some items in your cart contain errors, please update or remove them, then try again."
+msgstr "Certains articles de votre panier contiennent des erreurs, veuillez les mettre à jour ou les supprimer, puis réessayer."
 
 #. js-lingui-generated-id
 msgid "Order details"

@@ -34,6 +34,10 @@ msgid "We couldn't find any results"
 msgstr "We konden geen resultaten vinden"
 
 #. js-lingui-generated-id
+msgid "Sign in"
+msgstr "Inloggen"
+
+#. js-lingui-generated-id
 msgid "Shipping method"
 msgstr "Verzendmethode"
 
@@ -74,6 +78,9 @@ msgstr "Account bevestiging"
 
 msgid "Account confirmed. You can now proceed to sign in."
 msgstr "Account bevestigd. U kunt nu doorgaan met inloggen."
+
+msgid "Account connected to that email could not be found"
+msgstr "Account gekoppeld aan die e-mail kon niet worden gevonden"
 
 msgid "Add address"
 msgstr "Adres toevoegen"
@@ -160,6 +167,10 @@ msgstr "Categorieën"
 #. js-lingui-generated-id
 msgid "Order #{orderNumber}"
 msgstr "Bestelling #{orderNumber}"
+
+#. js-lingui-generated-id
+msgid "You must first login before you can continue"
+msgstr "U moet eerst inloggen voordat u verder kunt gaan"
 
 msgid "Change"
 msgstr "Wijzig"
@@ -370,9 +381,6 @@ msgstr "Gratis"
 
 msgid "Grand total"
 msgstr "Totaal"
-
-msgid "Guest checkout is disabled for this store please login to continue."
-msgstr "Afrekenen als gast is uitgeschakeld voor deze winkel. Log in om door te gaan."
 
 msgid "Hi {firstname}! You’re now logged in!"
 msgstr "Hallo {firstname}! U bent nu ingelogd!"
@@ -721,9 +729,6 @@ msgstr "Abonneer u op onze nieuwsbrief en blijf op de hoogte"
 msgid "Skip to main content"
 msgstr "Ga naar hoofdinhoud"
 
-msgid "Some items in your cart contain errors, please update or remove them, then try again."
-msgstr "Sommige items in uw winkelwagen bevatten fouten, pas deze aan of verwijder ze en probeer het opnieuw."
-
 msgid "Something went wrong"
 msgstr "Er is iets misgegaan"
 
@@ -735,9 +740,6 @@ msgstr "Sorteer"
 
 msgid "Sort By"
 msgstr "Sorteer op"
-
-msgid "Start Checkout"
-msgstr "Afrekenen"
 
 msgid "Store home"
 msgstr "Winkel home"
@@ -816,6 +818,9 @@ msgstr "Dit kan een seconde duren"
 
 msgid "Total <0/>"
 msgstr "Totaal <0/>"
+
+msgid "Try a different email or contact us to register an account"
+msgstr "Probeer een ander e-mailadres of neem contact met ons op om een account te registreren"
 
 msgid "Try a different product"
 msgstr "Probeer een ander product"
@@ -1029,6 +1034,10 @@ msgid "one product"
 msgstr "één product"
 
 #. js-lingui-generated-id
+msgid "Start Checkout"
+msgstr "Afrekenen"
+
+#. js-lingui-generated-id
 msgid "Order not found"
 msgstr "Bestelling niet gevonden"
 
@@ -1051,6 +1060,10 @@ msgstr "Het opgegeven e-mailadres komt niet overeen met het account e-mailadres"
 #. js-lingui-generated-id
 msgid "Message"
 msgstr "Bericht"
+
+#. js-lingui-generated-id
+msgid "Some items in your cart contain errors, please update or remove them, then try again."
+msgstr "Sommige items in uw winkelwagen bevatten fouten, pas deze aan of verwijder ze en probeer het opnieuw."
 
 #. js-lingui-generated-id
 msgid "Order details"
