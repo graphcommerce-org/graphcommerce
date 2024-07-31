@@ -1,5 +1,15 @@
 # @graphcommerce/algolia-mesh
 
+## 9.0.0-canary.66
+
+## 9.0.0-canary.65
+
+## 9.0.0-canary.64
+
+### Patch Changes
+
+- [#2334](https://github.com/graphcommerce-org/graphcommerce/pull/2334) [`3140735`](https://github.com/graphcommerce-org/graphcommerce/commit/3140735a8a49f8bebcbfde4e581515884446e05d) - Added support for customer group pricing ([@Renzovh](https://github.com/Renzovh))
+
 ## 9.0.0-canary.63
 
 ## 9.0.0-canary.62

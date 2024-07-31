@@ -2,7 +2,6 @@ import type {
   Aggregation,
   AggregationOption,
   CategoryResult,
-  CategoryTree,
   MeshContext,
 } from '@graphcommerce/graphql-mesh'
 import { AttributeList } from './getAttributeList'
@@ -45,7 +44,7 @@ function compare(a, b) {
   return 0
 }
 
-function algoliaPricesToPricesAggregations(pricesList: {
+export function algoliaPricesToPricesAggregations(pricesList: {
   [key: string]: number
 }): AggregationOption[] {
   const priceArraylist: { value: number; count: number }[] = Object.entries(pricesList)
@@ -54,7 +53,8 @@ function algoliaPricesToPricesAggregations(pricesList: {
       const value: number = +price[0]
       return { value, count: price[1] }
     })
-  let interval = Math.round(
+
+  const interval = Math.round(
     (priceArraylist[priceArraylist.length - 1].value - priceArraylist[0].value) / 2,
   )
 
@@ -66,11 +66,11 @@ function algoliaPricesToPricesAggregations(pricesList: {
         pricesBucket[increasingInterval] = {
           count: price.count,
           value:
-            increasingInterval == interval
+            increasingInterval === interval
               ? `0_${interval}`
               : `${increasingInterval - interval}_${increasingInterval}`,
           label:
-            increasingInterval == interval
+            increasingInterval === interval
               ? `0_${interval}`
               : `${increasingInterval - interval}-${increasingInterval}`,
         }
@@ -82,11 +82,11 @@ function algoliaPricesToPricesAggregations(pricesList: {
       pricesBucket[increasingInterval] = {
         count: price.count,
         value:
-          increasingInterval == interval
+          increasingInterval === interval
             ? `0_${interval}`
             : `${increasingInterval - interval}_${increasingInterval}`,
         label:
-          increasingInterval == interval
+          increasingInterval === interval
             ? `0-${interval}`
             : `${increasingInterval - interval}-${increasingInterval}`,
       }
@@ -99,11 +99,11 @@ function algoliaPricesToPricesAggregations(pricesList: {
       pricesBucket[increasingInterval] = {
         count: price.count,
         value:
-          increasingInterval == interval
+          increasingInterval === interval
             ? `0_${interval}`
             : `${increasingInterval - interval}_${increasingInterval}`,
         label:
-          increasingInterval == interval
+          increasingInterval === interval
             ? `0_${interval}`
             : `${increasingInterval - interval}-${increasingInterval}`,
       }
@@ -134,15 +134,12 @@ export function algoliaFacetsToAggregations(
 
   Object.entries(algoliaFacets).forEach(([facetIndex, facet]) => {
     let attribute_code = facetIndex
-    let options = []
-    if (facetIndex.startsWith('categories.level')) return
 
-    // TODO select the correct price facet.
+    if (facetIndex.startsWith('categories.level')) return
     if (facetIndex.startsWith('price')) {
       attribute_code = 'price'
     }
 
-    //todo
     const position = 0
 
     const label =
@@ -155,27 +152,22 @@ export function algoliaFacetsToAggregations(
         position,
       })
     } else if (facetIndex.startsWith('price')) {
-      if (facetIndex !== `price.${storeConfig.default_display_currency_code}.default`) {
-        return
-      }
       aggregations.push({
         label,
-        attribute_code: 'price',
+        attribute_code,
         options: algoliaPricesToPricesAggregations(algoliaFacets[facetIndex]),
         position,
       })
     } else {
-      const options = Object.entries(facet).map(([filter, count]) => {
-        return {
-          label: filter,
-          count,
-          value: filter,
-        }
-      })
+      // Fallback to code if no label is found
       aggregations.push({
         label,
         attribute_code,
-        options,
+        options: Object.entries(facet).map(([filter, count]) => ({
+          label: filter,
+          count,
+          value: filter,
+        })),
         position,
       })
     }

@@ -15,7 +15,7 @@ export function parseParams(
   filterTypes: FilterTypes,
   search: string | null = null,
 ): ProductListParams | undefined {
-  const categoryVariables: ProductListParams = { url, filters: {}, sort: {}, search }
+  const productListParams: ProductListParams = { url, filters: {}, sort: {}, search }
 
   const typeMap = filterTypes
 
@@ -25,20 +25,24 @@ export function parseParams(
     if (!param || param === 'q') return value
 
     if (param === 'page') {
-      categoryVariables.currentPage = Number(value)
+      productListParams.currentPage = Number(value)
       return undefined
     }
     if (param === 'page-size') {
-      categoryVariables.pageSize = Number(value)
+      productListParams.pageSize = Number(value)
       return undefined
     }
     if (param === 'sort') {
-      categoryVariables.sort[value] = 'ASC'
+      productListParams.sort[value] = 'ASC'
       return undefined
     }
     if (param === 'dir') {
-      const [sortBy] = Object.keys(categoryVariables.sort)
-      if (sortBy) categoryVariables.sort[sortBy] = value?.toUpperCase() as SortEnum
+      const [sortBy] = Object.keys(productListParams.sort)
+      if (sortBy) productListParams.sort[sortBy] = value?.toUpperCase() as SortEnum
+      return undefined
+    }
+    if (param === 'category_uid') {
+      productListParams.filters.category_uid = { eq: value }
       return undefined
     }
 
@@ -47,10 +51,10 @@ export function parseParams(
       case 'BOOLEAN':
       case 'SELECT':
       case 'MULTISELECT':
-        categoryVariables.filters[param] = { in: value.split(',') } as FilterEqualTypeInput
+        productListParams.filters[param] = { in: value.split(',') } as FilterEqualTypeInput
         return undefined
       case 'PRICE':
-        categoryVariables.filters[param] = {
+        productListParams.filters[param] = {
           ...(from !== '*' && { from }),
           ...(to !== '*' && { to }),
         } as FilterRangeTypeInput
@@ -62,7 +66,7 @@ export function parseParams(
     return undefined
   }, undefined)
 
-  return error ? undefined : categoryVariables
+  return error ? undefined : productListParams
 }
 
 export function extractUrlQuery(params?: { url: string[] }) {

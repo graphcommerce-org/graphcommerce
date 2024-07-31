@@ -36,6 +36,7 @@ function OrderDetailPage() {
   const orders = useCustomerQuery(OrderDetailPageDocument, {
     fetchPolicy: 'cache-and-network',
     variables: { orderNumber: orderNumber as string },
+    skip: !orderNumber,
   })
   const { data } = orders
   const images = useOrderCardItemImages(data?.customer?.orders)
