@@ -9,9 +9,15 @@ input GraphCommercePermissions {
 }
 
 extend input GraphCommerceConfig {
+  """
+  Allows the option to require login or completely disable certain sections of the site, can be overriden per storeview with the storefrontConfig
+  """
   permissions: GraphCommercePermissions
 }
 
 extend input GraphCommerceStorefrontConfig {
+  """
+  Allows the option to require login or completely disable certain sections of the site on a per store basis
+  """
   permissions: GraphCommercePermissions
 }
