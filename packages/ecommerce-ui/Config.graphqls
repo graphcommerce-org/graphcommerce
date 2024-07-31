@@ -1,0 +1,17 @@
+enum WebsitePermissions {
+  ENABLED
+  # CUSTOMER_ONLY will be implemented later
+  # DISABLED will be implemented later
+}
+
+input GraphCommercePermissions {
+  website: WebsitePermissions
+}
+
+extend input GraphCommerceConfig {
+  permissions: GraphCommercePermissions
+}
+
+extend input GraphCommerceStorefrontConfig {
+  permissions: GraphCommercePermissions
+}

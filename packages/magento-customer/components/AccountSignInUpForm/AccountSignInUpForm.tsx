@@ -1,8 +1,7 @@
 import {
   EmailElement,
   FormAutoSubmit,
-  TextFieldElement,
-  emailPattern,
+  useCustomerAccountRegistrationDisabled,
 } from '@graphcommerce/ecommerce-ui'
 import { useApolloClient } from '@graphcommerce/graphql'
 import {
@@ -42,6 +41,8 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
 
   const client = useApolloClient()
 
+  const registrationDisabled = useCustomerAccountRegistrationDisabled()
+
   return (
     <FormDiv sx={sx} className={classes.root}>
       <Box
@@ -72,12 +73,25 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
 
         {mode === 'signup' && (
           <>
-            <LayoutTitle variant='h2' gutterBottom={false}>
-              <Trans id='Create account!' />
-            </LayoutTitle>
-            <Typography variant='h6' align='center'>
-              <Trans id='Create a password and tell us your name' />
-            </Typography>
+            {!registrationDisabled ? (
+              <>
+                <LayoutTitle variant='h2' gutterBottom={false}>
+                  <Trans id='Create account!' />
+                </LayoutTitle>
+                <Typography variant='h6' align='center'>
+                  <Trans id='Create a password and tell us your name' />
+                </Typography>
+              </>
+            ) : (
+              <>
+                <LayoutTitle variant='h2' gutterBottom={false}>
+                  <Trans id='Account connected to that email could not be found' />
+                </LayoutTitle>
+                <Typography variant='h6' align='center'>
+                  <Trans id='Try a different email or contact us to register an account' />
+                </Typography>
+              </>
+            )}
           </>
         )}
 
@@ -113,6 +127,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
       </Box>
 
       {!import.meta.graphCommerce.enableGuestCheckoutLogin &&
+        !registrationDisabled &&
         (mode === 'signin' || mode === 'signup' || mode === 'email') && (
           <FormRow>
             <ActionCardListForm
@@ -199,7 +214,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
         </Box>
       )}
 
-      {mode === 'signup' && (
+      {mode === 'signup' && !registrationDisabled && (
         <Box>
           <SignUpForm email={watch('email')} />
         </Box>

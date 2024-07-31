@@ -1,5 +1,11 @@
-import { ComposedForm, WaitForQueries } from '@graphcommerce/ecommerce-ui'
+import {
+  ComposedForm,
+  WaitForQueries,
+  getCheckoutIsDisabled,
+  useCheckoutIsAvailableForUser,
+} from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { cacheFirst } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorFullPage,
   CartAgreementsForm,
@@ -17,7 +23,6 @@ import {
   PaymentMethodActionCardListForm,
   PaymentMethodContextProvider,
 } from '@graphcommerce/magento-cart-payment-method'
-import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { UnauthenticatedFullPageMessage } from '@graphcommerce/magento-customer/components/WaitForCustomer/UnauthenticatedFullPageMessage'
 import { SubscribeToNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -31,14 +36,12 @@ import {
   Stepper,
   IconSvg,
   LayoutTitle,
-  useStorefrontConfig,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Container, Dialog, Typography } from '@mui/material'
 import { LayoutDocument, LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { cacheFirst } from '@graphcommerce/graphql'
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
@@ -49,13 +52,9 @@ function PaymentPage() {
   const cartExists =
     typeof billingPage.data?.cart !== 'undefined' && (billingPage.data.cart?.items?.length ?? 0) > 0
 
-  const { signInMode } = useStorefrontConfig()
-  const { loggedIn } = useCustomerSession()
-  const disableGuestCheckout =
-    (signInMode === 'DISABLE_GUEST_CHECKOUT' || signInMode === 'DISABLE_GUEST_ADD_TO_CART') &&
-    !loggedIn
+  const checkoutAvailable = useCheckoutIsAvailableForUser()
 
-  return disableGuestCheckout ? (
+  return !checkoutAvailable ? (
     <UnauthenticatedFullPageMessage />
   ) : (
     <ComposedForm>
@@ -166,6 +165,8 @@ PaymentPage.pageOptions = pageOptions
 export default PaymentPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCheckoutIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
 

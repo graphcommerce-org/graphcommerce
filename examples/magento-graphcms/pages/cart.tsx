@@ -1,4 +1,8 @@
-import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
+import {
+  WaitForQueries,
+  getCartIsDisabled,
+  useCartIsAvailableForUser,
+} from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   ApolloCartErrorAlert,
@@ -21,14 +25,12 @@ import {
   LayoutOverlayHeader,
   FullPageMessage,
   OverlayStickyBottom,
-  useStorefrontConfig,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
-import { useCustomerSession } from '@graphcommerce/magento-customer'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -43,10 +45,9 @@ function CartPage() {
   const hasItems =
     (data?.cart?.total_quantity ?? 0) > 0 &&
     typeof data?.cart?.prices?.grand_total?.value !== 'undefined'
-  const { loggedIn } = useCustomerSession()
 
-  const { signInMode } = useStorefrontConfig()
-  const loginRequiredForCart = signInMode === 'DISABLE_GUEST_ADD_TO_CART' && !loggedIn
+  const cartAvaialable = useCartIsAvailableForUser()
+
   return (
     <>
       <PageMeta
@@ -63,7 +64,7 @@ function CartPage() {
         }
       >
         <LayoutTitle size='small' component='span' icon={hasItems ? iconShoppingBag : undefined}>
-          {hasItems && !loginRequiredForCart ? (
+          {hasItems && cartAvaialable ? (
             <Trans
               id='Total <0/>'
               components={{ 0: <Money {...data?.cart?.prices?.grand_total} /> }}
@@ -73,7 +74,7 @@ function CartPage() {
           )}
         </LayoutTitle>
       </LayoutOverlayHeader>
-      {loginRequiredForCart ? (
+      {!cartAvaialable ? (
         <UnauthenticatedFullPageMessage disableMargin />
       ) : (
         <WaitForQueries
@@ -97,7 +98,7 @@ function CartPage() {
                 sx={(theme) => ({ mt: theme.spacings.md })}
               />
               <OverlayStickyBottom sx={{ py: 0.1 }}>
-                <CartStartCheckout {...data?.cart} disabled={hasError} />
+                <CartStartCheckout cart={data.cart} disabled={hasError} />
               </OverlayStickyBottom>
             </>
           ) : (
@@ -126,6 +127,8 @@ CartPage.pageOptions = pageOptions
 export default CartPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCartIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 

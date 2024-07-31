@@ -1,26 +1,21 @@
+import { useCustomerAccountIsDisabled } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { cacheFirst } from '@graphcommerce/graphql'
 import { SearchLink } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  GetStaticProps,
-  Separator,
-  icon404,
-  IconSvg,
-  useStorefrontConfig,
-} from '@graphcommerce/next-ui'
+import { GetStaticProps, Separator, icon404, IconSvg } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container, Typography, Link } from '@mui/material'
 import React from 'react'
 import { LayoutDocument, LayoutNavigation, LayoutNavigationProps } from '../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
-import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 
 function RouteNotFoundPage() {
-  const { signInMode } = useStorefrontConfig()
+  const customerAccountDisabled = useCustomerAccountIsDisabled()
 
   const links = [
     <Link key={0} href='/' color='primary' underline='hover'>
@@ -28,7 +23,7 @@ function RouteNotFoundPage() {
     </Link>,
   ]
 
-  if (signInMode !== 'GUEST_ONLY')
+  if (!customerAccountDisabled)
     links.push(
       <Link key={1} href='/account' color='primary' underline='hover'>
         <Trans id='Account' />

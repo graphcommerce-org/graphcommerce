@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { useCustomerSession } from '@graphcommerce/magento-customer'
-import { Button, ButtonProps, useStorefrontConfig } from '@graphcommerce/next-ui'
+import { useCartIsAvailableForUser, useCartIsDisabled } from '@graphcommerce/ecommerce-ui'
+import { Button, ButtonProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { useRouter } from 'next/router'
 import {
@@ -27,11 +27,12 @@ export function AddProductsToCartButton(props: AddProductsToCartButtonProps) {
   const { children, product, ...rest } = props
   const { showSuccess, ...action } = useAddProductsToCartAction(props)
   const router = useRouter()
-  const { loggedIn } = useCustomerSession()
-  const { signInMode } = useStorefrontConfig()
-  const loginRequiredForCart = signInMode === 'DISABLE_GUEST_ADD_TO_CART' && !loggedIn
+  const cartDisabled = useCartIsDisabled()
+  const cartAvailable = useCartIsAvailableForUser()
 
-  return loginRequiredForCart ? (
+  if (cartDisabled) return null
+
+  return !cartAvailable ? (
     <Button
       color='primary'
       variant='pill'

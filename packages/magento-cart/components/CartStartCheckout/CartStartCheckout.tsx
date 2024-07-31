@@ -1,15 +1,10 @@
+import { useCheckoutIsAvailableForUser } from '@graphcommerce/ecommerce-ui'
 import { Money } from '@graphcommerce/magento-store'
-import {
-  iconChevronRight,
-  IconSvg,
-  extendableComponent,
-  useStorefrontConfig,
-} from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
-import { Box, Button, ButtonProps, SxProps, Theme } from '@mui/material'
+import { iconChevronRight, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
+import { Box, Button, ButtonProps, Link, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
-import { useCustomerSession } from '@graphcommerce/magento-customer'
 
 export type CartStartCheckoutProps = {
   children?: React.ReactNode
@@ -23,12 +18,13 @@ export type CartStartCheckoutProps = {
   ) => void
 }
 
-const name = 'CartStartCheckout' as const
+const name = 'CartStartCheckout'
 const parts = [
   'checkoutButtonContainer',
   'checkoutButton',
   'checkoutButtonTotal',
   'checkoutMoney',
+  'loginContainer',
 ] as const
 const { classes } = extendableComponent(name, parts)
 
@@ -42,9 +38,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
     cart,
   } = props
 
-  const { signInMode } = useStorefrontConfig()
-  const { loggedIn } = useCustomerSession()
-  const disableGuestCheckout = signInMode === 'DISABLE_GUEST_CHECKOUT' && !loggedIn
+  const checkoutAvailable = useCheckoutIsAvailableForUser()
 
   const hasTotals = (cart?.prices?.grand_total?.value ?? 0) > 0
   const hasErrors = cart?.items?.some((item) => (item?.errors?.length ?? 0) > 0)
@@ -53,12 +47,22 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
     <Box
       className={classes.checkoutButtonContainer}
       sx={[
-        (theme) => ({ textAlign: 'center', my: theme.spacings.md }),
+        (theme) => ({
+          textAlign: 'center',
+          my: theme.spacings.md,
+        }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
+      {!checkoutAvailable && (
+        <Box sx={{ mb: 1 }} className={classes.loginContainer}>
+          <Link href='/account/signin'>
+            <Trans>You must first login before you can continue</Trans>
+          </Link>
+        </Box>
+      )}
       <Button
-        href={disableGuestCheckout ? '/account/signin' : '/checkout'}
+        href='/checkout'
         id='cart-start-checkout'
         variant='pill'
         color='secondary'
@@ -70,7 +74,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
           onStart?.(e, cart)
           return onClick?.(e)
         }}
-        disabled={disabled || !hasTotals || hasErrors}
+        disabled={disabled || !hasTotals || hasErrors || !checkoutAvailable}
         {...buttonProps}
       >
         <Box
@@ -81,7 +85,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
             '& ~ span.MuiButton-endIcon': { marginLeft: '6px' },
           })}
         >
-          <Trans id='Start Checkout' />
+          <Trans>Start Checkout</Trans>
         </Box>{' '}
         {hasTotals && (
           <span className={classes.checkoutMoney}>
@@ -94,7 +98,9 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
 
       {hasErrors && (
         <Box sx={(theme) => ({ color: 'error.main', mt: theme.spacings.xs })}>
-          <Trans id='Some items in your cart contain errors, please update or remove them, then try again.' />
+          <Trans>
+            Some items in your cart contain errors, please update or remove them, then try again.
+          </Trans>
         </Box>
       )}
     </Box>

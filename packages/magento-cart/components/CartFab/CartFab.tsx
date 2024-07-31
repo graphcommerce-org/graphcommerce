@@ -1,4 +1,4 @@
-import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
+import { WaitForQueries, useCartIsDisabled } from '@graphcommerce/ecommerce-ui'
 import {
   extendableComponent,
   iconShoppingBag,
@@ -101,6 +101,9 @@ function CartFabContent(props: CartFabContentProps) {
 
 export function CartFab(props: CartFabProps) {
   const cartQuery = useCartQuery(CartFabDocument)
+  const cartDisabled = useCartIsDisabled()
+
+  if (cartDisabled) return null
 
   return (
     <WaitForQueries waitFor={cartQuery} fallback={<CartFabContent {...props} total_quantity={0} />}>

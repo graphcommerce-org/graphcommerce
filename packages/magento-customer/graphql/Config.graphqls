@@ -1,16 +1,12 @@
-enum SignInModes {
-  GUEST_ONLY
-  DISABLE_GUEST_CHECKOUT
-  DISABLE_GUEST_ADD_TO_CART
-  DEFAULT
+enum CustomerAccountPermissions {
+  ENABLED
+  DISABLE_REGISTRATION
+  DISABLED
 }
 
-extend input GraphCommerceStorefrontConfig {
+extend input GraphCommercePermissions {
   """
-  GUEST_ONLY disables all login functionalities
-  DISABLE_GUEST_CHECKOUT disables guest checkout. Products can still be added to the cart if not logged in.
-  DISABLE_GUEST_ADD_TO_CART disables disables guest checkout. Products CAN NOT be added to the cart if not logged in.
-  DEFAULT allows all functionalities
+  Enables / disabled the account section of the website. DISABLE_REGISTRATION will only disable the registration page.
   """
-  signInMode: SignInModes = DEFAULT
+  customerAccount: CustomerAccountPermissions
 }

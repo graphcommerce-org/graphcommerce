@@ -16,9 +16,19 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type CartPermissions =
+  | 'CUSTOMER_ONLY'
+  | 'DISABLED'
+  | 'ENABLED';
+
 export type CompareVariant =
   | 'CHECKBOX'
   | 'ICON';
+
+export type CustomerAccountPermissions =
+  | 'DISABLED'
+  | 'DISABLE_REGISTRATION'
+  | 'ENABLED';
 
 /** GoogleDatalayerConfig to allow enabling certain aspects of the datalayer */
 export type DatalayerConfig = {
@@ -292,6 +302,7 @@ export type GraphCommerceConfig = {
    * Values: 245, 246, 247 for Magento 2.4.5, 2.4.6, 2.4.7 respectively.
    */
   magentoVersion: Scalars['Int']['input'];
+  permissions?: InputMaybe<GraphCommercePermissions>;
   /** To enable next.js' preview mode, configure the secret you'd like to use. */
   previewSecret?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -356,6 +367,19 @@ export type GraphCommerceDebugConfig = {
   webpackDuplicatesPlugin?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type GraphCommercePermissions = {
+  /**
+   * Changes the availability of the add to cart buttons and the cart page to either customer only or completely disables it.
+   * Note: Any value here will automatically be passed to `checkout`. For example: setting `cart` to `DISABLED` and `checkout` to `ENABLED` will result in the checkout being disabled.
+   */
+  cart?: InputMaybe<CartPermissions>;
+  /** Changes the availability of the checkout to either customer only or completely disables it. */
+  checkout?: InputMaybe<CartPermissions>;
+  /** Enables / disabled the account section of the website. DISABLE_REGISTRATION will only disable the registration page. */
+  customerAccount?: InputMaybe<CustomerAccountPermissions>;
+  website?: InputMaybe<WebsitePermissions>;
+};
+
 /** All storefront configuration for the project */
 export type GraphCommerceStorefrontConfig = {
   /**
@@ -414,18 +438,12 @@ export type GraphCommerceStorefrontConfig = {
    * - b2b-us
    */
   magentoStoreCode: Scalars['String']['input'];
+  permissions?: InputMaybe<GraphCommercePermissions>;
   /**
    * Allow the site to be indexed by search engines.
    * If false, the robots.txt file will be set to disallow all.
    */
   robotsAllow?: InputMaybe<Scalars['Boolean']['input']>;
-  /**
-   * GUEST_ONLY disables all login functionalities
-   * DISABLE_GUEST_CHECKOUT disables guest checkout. Products can still be added to the cart if not logged in.
-   * DISABLE_GUEST_ADD_TO_CART disables disables guest checkout. Products CAN NOT be added to the cart if not logged in.
-   * DEFAULT allows all functionalities
-   */
-  signInMode?: InputMaybe<SignInModes>;
 };
 
 /** Options to configure which values will be replaced when a variant is selected on the product page. */
@@ -472,11 +490,8 @@ export type SidebarGalleryPaginationVariant =
   | 'DOTS'
   | 'THUMBNAILS_BOTTOM';
 
-export type SignInModes =
-  | 'DEFAULT'
-  | 'DISABLE_GUEST_ADD_TO_CART'
-  | 'DISABLE_GUEST_CHECKOUT'
-  | 'GUEST_ONLY';
+export type WebsitePermissions =
+  | 'ENABLED';
 
 
 type Properties<T> = Required<{
@@ -489,7 +504,11 @@ export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== und
 
 export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v));
 
+export const CartPermissionsSchema = z.enum(['CUSTOMER_ONLY', 'DISABLED', 'ENABLED']);
+
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
+
+export const CustomerAccountPermissionsSchema = z.enum(['DISABLED', 'DISABLE_REGISTRATION', 'ENABLED']);
 
 export const PaginationVariantSchema = z.enum(['COMPACT', 'EXTENDED']);
 
@@ -497,7 +516,7 @@ export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
 export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM']);
 
-export const SignInModesSchema = z.enum(['DEFAULT', 'DISABLE_GUEST_ADD_TO_CART', 'DISABLE_GUEST_CHECKOUT', 'GUEST_ONLY']);
+export const WebsitePermissionsSchema = z.enum(['ENABLED']);
 
 export function DatalayerConfigSchema(): z.ZodObject<Properties<DatalayerConfig>> {
   return z.object({
@@ -535,6 +554,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     magentoVersion: z.number(),
+    permissions: GraphCommercePermissionsSchema().nullish(),
     previewSecret: z.string().nullish(),
     productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
     productFiltersPro: z.boolean().nullish(),
@@ -558,6 +578,15 @@ export function GraphCommerceDebugConfigSchema(): z.ZodObject<Properties<GraphCo
   })
 }
 
+export function GraphCommercePermissionsSchema(): z.ZodObject<Properties<GraphCommercePermissions>> {
+  return z.object({
+    cart: CartPermissionsSchema.nullish(),
+    checkout: CartPermissionsSchema.nullish(),
+    customerAccount: CustomerAccountPermissionsSchema.default("ENABLED").nullish(),
+    website: WebsitePermissionsSchema.nullish()
+  })
+}
+
 export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<GraphCommerceStorefrontConfig>> {
   return z.object({
     canonicalBaseUrl: z.string().nullish(),
@@ -572,8 +601,8 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
     linguiLocale: z.string().nullish(),
     locale: z.string().min(1),
     magentoStoreCode: z.string().min(1),
-    robotsAllow: z.boolean().nullish(),
-    signInMode: SignInModesSchema.nullish()
+    permissions: GraphCommercePermissionsSchema().nullish(),
+    robotsAllow: z.boolean().nullish()
   })
 }
 

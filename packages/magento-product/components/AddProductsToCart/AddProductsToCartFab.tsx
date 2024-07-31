@@ -1,12 +1,5 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { useCustomerSession } from '@graphcommerce/magento-customer'
-import {
-  Fab,
-  FabProps,
-  iconShoppingBag,
-  iconCheckmark,
-  useStorefrontConfig,
-} from '@graphcommerce/next-ui'
+import { useCartIsAvailableForUser, useCartIsDisabled } from '@graphcommerce/ecommerce-ui'
+import { Fab, FabProps, iconShoppingBag, iconCheckmark } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { t } from '@lingui/macro'
 import { SxProps, Theme } from '@mui/material'
@@ -27,11 +20,12 @@ export function AddProductsToCartFab(props: AddProductsToCartFabProps) {
   const { showSuccess, ...action } = useAddProductsToCartAction(props)
 
   const router = useRouter()
-  const { loggedIn } = useCustomerSession()
-  const { signInMode } = useStorefrontConfig()
-  const loginRequiredForCart = signInMode === 'DISABLE_GUEST_ADD_TO_CART' && !loggedIn
+  const cartDisabled = useCartIsDisabled()
+  const cartAvailable = useCartIsAvailableForUser()
 
-  return loginRequiredForCart ? (
+  if (cartDisabled) return null
+
+  return !cartAvailable ? (
     <Fab
       icon={showSuccess && !action.loading ? iconCheckmark : icon}
       aria-label={i18n._(/* i18n*/ `Add to Cart`)}

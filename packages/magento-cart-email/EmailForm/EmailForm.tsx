@@ -1,4 +1,8 @@
-import { EmailElement, TextFieldElement, WaitForQueries } from '@graphcommerce/ecommerce-ui'
+import {
+  EmailElement,
+  WaitForQueries,
+  useCustomerAccountIsEnabled,
+} from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorAlert,
@@ -6,9 +10,8 @@ import {
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { IsEmailAvailableDocument, useCustomerSession } from '@graphcommerce/magento-customer'
-import { extendableComponent, FormRow, useStorefrontConfig } from '@graphcommerce/next-ui'
+import { extendableComponent, FormRow } from '@graphcommerce/next-ui'
 import {
-  emailPattern,
   FormAutoSubmit,
   useFormCompose,
   UseFormComposeOptions,
@@ -25,14 +28,14 @@ export type EmailFormProps = Pick<UseFormComposeOptions, 'step'> & {
   sx?: SxProps<Theme>
 }
 
-const name = 'EmailForm' as const
+const name = 'EmailForm'
 const parts = ['root', 'formRow'] as const
 const { classes } = extendableComponent(name, parts)
 
 const EmailFormBase = React.memo<EmailFormProps>((props) => {
   const { step, sx } = props
 
-  const { signInMode } = useStorefrontConfig()
+  const customerAccountEnabled = useCustomerAccountIsEnabled()
 
   const cartEmail = useCartQuery(CartEmailDocument)
 
@@ -44,10 +47,11 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
 
   const isEmailAvailable = useQuery(IsEmailAvailableDocument, {
     variables: { email },
-    skip: !import.meta.graphCommerce.enableGuestCheckoutLogin || !email,
+    skip:
+      (!import.meta.graphCommerce.enableGuestCheckoutLogin && !customerAccountEnabled) || !email,
   })
 
-  const { formState, required, error, handleSubmit } = form
+  const { required, error, handleSubmit } = form
   const submit = handleSubmit(() => {})
 
   useFormCompose({ form, step, submit, key: 'EmailForm' })
@@ -64,7 +68,7 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
           disabled={cartEmail.loading}
           InputProps={{
             autoComplete: 'email',
-            endAdornment: signInMode !== 'GUEST_ONLY' && (
+            endAdornment: customerAccountEnabled && (
               <WaitForQueries waitFor={isEmailAvailable}>
                 {(isEmailAvailable.data?.isEmailAvailable ||
                   !import.meta.graphCommerce.enableGuestCheckoutLogin) && (

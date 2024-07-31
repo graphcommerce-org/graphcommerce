@@ -1,9 +1,9 @@
+import { useCustomerAccountIsDisabled } from '@graphcommerce/ecommerce-ui'
 import {
   iconPerson,
   DesktopHeaderBadge,
   IconSvg,
   extendableComponent,
-  useStorefrontConfig,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
@@ -54,9 +54,9 @@ export type CustomerFabProps = Omit<CustomerFabContentProps, 'session'>
 export function CustomerFab(props: CustomerFabProps) {
   const session = useCustomerSession()
 
-  const { signInMode } = useStorefrontConfig()
+  const customerAccountDisabled = useCustomerAccountIsDisabled()
 
-  if (signInMode === 'GUEST_ONLY') return null
+  if (customerAccountDisabled) return null
 
   return (
     <NoSsr fallback={<CustomerFabContent {...props} />}>

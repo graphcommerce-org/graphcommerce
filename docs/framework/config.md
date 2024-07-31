@@ -293,6 +293,8 @@ Limit the static generation of SSG when building.
 
 By default GraphCommerce will statically generate all product and category pages during build. This can take quite a long time, to skip this step set this value to true.
 
+#### permissions: [GraphCommercePermissions](#GraphCommercePermissions)
+
 #### previewSecret: string
 
 To enable next.js' preview mode, configure the secret you'd like to use.
@@ -369,6 +371,23 @@ Issues that this can cause are:
 - The same package is included multiple times in the bundle, increasing the bundle size.
 - The Typescript types of the package are not compatible with each other, causing Typescript errors.
 
+### GraphCommercePermissions
+
+#### cart: CUSTOMER_ONLY | DISABLED | ENABLED
+
+Changes the availability of the add to cart buttons and the cart page to either customer only or completely disables it.
+Note: Any value here will automatically be passed to `checkout`. For example: setting `cart` to `DISABLED` and `checkout` to `ENABLED` will result in the checkout being disabled.
+
+#### checkout: CUSTOMER_ONLY | DISABLED | ENABLED
+
+Changes the availability of the checkout to either customer only or completely disables it.
+
+#### customerAccount: DISABLED | DISABLE_REGISTRATION | ENABLED = `ENABLED`
+
+Enables / disabled the account section of the website. DISABLE_REGISTRATION will only disable the registration page.
+
+#### website: ENABLED
+
 ### GraphCommerceStorefrontConfig
 
 All storefront configuration for the project
@@ -441,17 +460,12 @@ Add a gcms-locales header to make sure queries return in a certain language, can
 
 Custom locale used to load the .po files. Must be a valid locale, also used for Intl functions.
 
+#### permissions: [GraphCommercePermissions](#GraphCommercePermissions)
+
 #### robotsAllow: boolean
 
 Allow the site to be indexed by search engines.
 If false, the robots.txt file will be set to disallow all.
-
-#### signInMode: DEFAULT | DISABLE_GUEST_ADD_TO_CART | DISABLE_GUEST_CHECKOUT | GUEST_ONLY = `DEFAULT`
-
-GUEST_ONLY disables all login functionalities
-DISABLE_GUEST_CHECKOUT disables guest checkout. Products can still be added to the cart if not logged in.
-DISABLE_GUEST_ADD_TO_CART disables disables guest checkout. Products CAN NOT be added to the cart if not logged in.
-DEFAULT allows all functionalities
 
 ### MagentoConfigurableVariantValues
 

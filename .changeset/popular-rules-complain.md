@@ -1,7 +1,9 @@
 ---
-"@graphcommerce/magento-cart-email": patch
-"@graphcommerce/magento-customer": patch
-"@graphcommerce/magento-cart": patch
+'@graphcommerce/ecommerce-ui': minor
+'@graphcommerce/magento-cart-email': minor
+'@graphcommerce/magento-customer': minor
+'@graphcommerce/magento-cart': minor
+'@graphcommerce/magento-graphcms': minor
 ---
 
-Created guestOnly-mode
+Add `permissions` config so the website or store can be configurated to run in different modes.

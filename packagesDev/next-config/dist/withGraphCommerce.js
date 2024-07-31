@@ -81,22 +81,6 @@ function withGraphCommerce(nextConfig, cwd) {
             if (Array.isArray(rewrites)) {
                 rewrites = { beforeFiles: rewrites, afterFiles: [], fallback: [] };
             }
-            for (let i = 0; i < storefront.length; i++) {
-                if (storefront?.[i].signInMode === 'GUEST_ONLY') {
-                    rewrites.beforeFiles.push(...[
-                        {
-                            source: `/${storefront?.[i].locale}/account/:path*`,
-                            destination: '/404',
-                            locale: false,
-                        },
-                        {
-                            source: `/${storefront?.[i].locale}/checkout/customer/:path*`,
-                            destination: '/404',
-                            locale: false,
-                        },
-                    ]);
-                }
-            }
             if (graphcommerceConfig.productRoute && graphcommerceConfig.productRoute !== '/p/') {
                 rewrites.beforeFiles.push({
                     source: `${graphcommerceConfig.productRoute ?? '/p/'}:path*`,

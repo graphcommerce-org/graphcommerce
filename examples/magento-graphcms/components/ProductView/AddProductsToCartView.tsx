@@ -1,3 +1,4 @@
+import { useCartIsDisabled } from '@graphcommerce/ecommerce-ui'
 import {
   AddProductsToCartError,
   AddProductsToCartQuantity,
@@ -22,6 +23,8 @@ export type AddProductsToCartViewProps = {
 export function AddProductsToCartView(props: AddProductsToCartViewProps) {
   const { product } = props
 
+  const cartDisabled = useCartIsDisabled()
+
   return (
     <>
       {isTypename(product, ['ConfigurableProduct']) && (
@@ -38,21 +41,30 @@ export function AddProductsToCartView(props: AddProductsToCartViewProps) {
       {!isTypename(product, ['GroupedProduct']) && (
         <>
           <ProductCustomizable product={product} />
-          <Divider />
 
-          <ProductPageAddToCartQuantityRow product={product}>
-            <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
+          {!cartDisabled ? (
+            <>
+              <Divider />
 
-            <AddProductsToCartError>
-              <Typography component='div' variant='h3' lineHeight='1'>
-                <ProductPagePrice product={product} />
-              </Typography>
-            </AddProductsToCartError>
-          </ProductPageAddToCartQuantityRow>
+              <ProductPageAddToCartQuantityRow product={product}>
+                <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
 
-          <ProductPagePriceTiers product={product} />
+                <AddProductsToCartError>
+                  <Typography component='div' variant='h3' lineHeight='1'>
+                    <ProductPagePrice product={product} />
+                  </Typography>
+                </AddProductsToCartError>
+              </ProductPageAddToCartQuantityRow>
 
-          <ProductSidebarDelivery product={product} />
+              <ProductPagePriceTiers product={product} />
+
+              <ProductSidebarDelivery product={product} />
+            </>
+          ) : (
+            <Typography component='div' variant='h3' lineHeight='1'>
+              <ProductPagePrice product={product} />
+            </Typography>
+          )}
         </>
       )}
     </>
