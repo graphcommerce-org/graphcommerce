@@ -159,7 +159,6 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
     }
   >(BraintreePaymentMethodOptionsDocument, {
     defaultValues: { code },
-    experimental_useV2: true,
     onBeforeSubmit: async (variables) => {
       if (!hostedFields) throw new Error('Hosted fields not available')
       if (!threeDSecure) throw new Error('3D Secure not available')

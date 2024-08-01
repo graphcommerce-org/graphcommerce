@@ -79,7 +79,6 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
     ShippingMethodFormMutationVariables & { carrierMethod?: string }
   >(ShippingMethodFormDocument, {
     defaultValues: { carrierMethod },
-    experimental_useV2: true,
     onBeforeSubmit: (variables) => {
       const [carrier, method] = (variables.carrierMethod ?? '').split('-')
       return onBeforeSubmit({ ...variables, carrier, method })

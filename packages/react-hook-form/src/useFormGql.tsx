@@ -22,6 +22,7 @@ type UseFormGraphQLCallbacks<Q, V> = {
   onComplete?: OnCompleteFn<Q, V>
 
   /**
+   * @deprecated Not used anymore, please use deprecated_useV1 instead
    * Changes:
    * - Restores `defaultValues` functionality to original functionality, use `values` instead.
    * - Does not reset the form after submission, use `values` instead.
@@ -44,6 +45,7 @@ type UseFormGraphQLCallbacks<Q, V> = {
    * ```
    */
   experimental_useV2?: boolean
+  deprecated_useV1?: boolean
 }
 
 export type UseFormGraphQlOptions<Q, V extends FieldValues> = UseFormProps<V> &
@@ -82,7 +84,7 @@ export function useFormGql<Q, V extends FieldValues>(
     form,
     tuple,
     defaultValues,
-    experimental_useV2 = false,
+    deprecated_useV1 = false,
   } = options
   const { encode, type, ...gqlDocumentHandler } = useGqlDocumentHandler<Q, V>(document)
   const [execute, { data, error, loading }] = tuple
@@ -94,7 +96,7 @@ export function useFormGql<Q, V extends FieldValues>(
   const controllerRef = useRef<AbortController | undefined>()
   const valuesString = JSON.stringify(defaultValues)
   useEffect(() => {
-    if (experimental_useV2) return
+    if (!deprecated_useV1) return
 
     if (initital.current) {
       initital.current = false
@@ -114,7 +116,7 @@ export function useFormGql<Q, V extends FieldValues>(
     form.handleSubmit(async (formValues, event) => {
       // Combine defaults with the formValues and encode
       submittedVariables.current = undefined
-      let variables = experimental_useV2 ? formValues : encode({ ...defaultValues, ...formValues })
+      let variables = !deprecated_useV1 ? formValues : encode({ ...defaultValues, ...formValues })
 
       // Wait for the onBeforeSubmit to complete
       const res = await beforeSubmit(variables)
@@ -124,7 +126,7 @@ export function useFormGql<Q, V extends FieldValues>(
       // if (variables === false) onInvalid?.(formValues, event)
 
       submittedVariables.current = variables
-      if (loading && experimental_useV2) controllerRef.current?.abort()
+      if (loading && !deprecated_useV1) controllerRef.current?.abort()
       controllerRef.current = new window.AbortController()
       const result = await execute({
         variables,
@@ -134,7 +136,7 @@ export function useFormGql<Q, V extends FieldValues>(
       if (result.data) await complete(result, variables)
 
       // Reset the state of the form if it is unmodified afterwards
-      if (typeof diff(form.getValues(), formValues) === 'undefined' && !experimental_useV2)
+      if (typeof diff(form.getValues(), formValues) === 'undefined' && deprecated_useV1)
         form.reset(formValues)
 
       await onValid(formValues, event)

@@ -83,7 +83,6 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
       customer_address_id: number | null
     }
   >(Mutation, {
-    experimental_useV2: true,
     defaultValues: { customer_address_id: cartAddressId },
     onBeforeSubmit: (vars) => {
       const { customer_address_id } = vars
