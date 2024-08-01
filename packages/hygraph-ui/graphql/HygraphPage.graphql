@@ -1,6 +1,4 @@
-fragment HygraphPage on Page {
-  title
-  url
+fragment HygraphPage on GcPage @inject(into: ["GcPage_Rows"]) {
   author
   date
   relatedPages {

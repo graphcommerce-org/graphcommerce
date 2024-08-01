@@ -115,6 +115,8 @@ export function applyDynamicRows(
  *
  * - Uses an early bailout to check to reduce hygraph calls.
  * - Implements an alias sytem to merge the content of multiple pages.
+ *
+ * @deprecated Please use the resolver instead.
  */
 export async function hygraphDynamicRows(
   client: ApolloClient<NormalizedCacheObject>,

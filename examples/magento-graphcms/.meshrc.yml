@@ -17,7 +17,14 @@ sources:
             # Remove field arguments: `query { anyfield(after,before,last,forceParentLocale,locales) { ... } }`
             - '*.*.!{after,before,last,forceParentLocale,locales,stage}'
             # Remove type any input or type fields: `input MyInput {}` or `type MyType { anyfield }`
-            - '*.!{localizations,scheduledIn,documentInStages*,createdAt*,updatedAt*,publishedAt*,createdBy,updatedBy,publishedBy,history,scheduledIn*}'
+            - '*.!{scheduledIn,documentInStages*,createdAt*,updatedAt*,publishedAt*,createdBy,updatedBy,publishedBy,history,scheduledIn*}'
+      - rename:
+          mode: wrap
+          renames:
+            - from:
+                type: Page
+              to:
+                type: GcPage
       - prune:
           skipPruning: []
   - name: m2
@@ -36,7 +43,6 @@ sources:
           X-Forwarded-For: "{context.headers['x-forwarded-for']}"
 serve:
   playground: true
-
 plugins:
   - '@graphcommerce/graphql-mesh/plugin/forward-headers':
       forwardHeaders:

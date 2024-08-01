@@ -1,5 +1,5 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { PageMetaProps } from '@graphcommerce/next-ui'
+import { PageMetaProps, PageMeta as PageMetaBase } from '@graphcommerce/next-ui'
 import { StoreConfigDocument } from './StoreConfig.gql'
 
 export function PageMeta(props: PageMetaProps) {
@@ -19,5 +19,5 @@ export function PageMeta(props: PageMetaProps) {
   }
 
   const { title, ...pageMetaProps } = props
-  return <PageMeta title={addPrefix(title ?? '')} {...pageMetaProps} />
+  return <PageMetaBase title={addPrefix(title ?? '')} {...pageMetaProps} />
 }

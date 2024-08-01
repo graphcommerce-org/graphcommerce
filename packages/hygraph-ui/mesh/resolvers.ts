@@ -1,51 +1,114 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import type { Resolvers } from '@graphcommerce/graphql-mesh'
-import { Kind, FieldNode, SelectionSetNode } from 'graphql'
+import {
+  GcMetaTag,
+  MetaRobots,
+  type Resolvers,
+  delegateToSchemaSdk,
+} from '@graphcommerce/graphql-mesh'
+import { Kind } from 'graphql'
 
-function selectionSetFromPath(path: string[], selectionSet?: SelectionSetNode) {
-  const [fieldName, ...rest] = path
-
-  const selection = selectionSet?.selections.find(
-    (s) => s.kind === Kind.FIELD && s.name.value === fieldName,
-  ) as FieldNode
-
-  if (!selection?.selectionSet) return undefined
-  if (rest.length === 0) return selection.selectionSet
-
-  return selectionSetFromPath(rest, selection.selectionSet)
+const normalizeUrl = (href: string) => {
+  const cleanedhref = href.replaceAll(/^\/|\/$/g, '')
+  return `/${cleanedhref === 'page/home' ? '' : cleanedhref}`
 }
-
-function mergeSelectionSetNodes(
-  node1: SelectionSetNode | undefined,
-  node2: SelectionSetNode | undefined,
-): SelectionSetNode {
-  const selections = [...(node1?.selections ?? []), ...(node2?.selections ?? [])]
-
-  return {
-    kind: Kind.SELECTION_SET,
-    selections,
-  }
+const denormalizeUrl = (href: string) => {
+  const cleanedhref = href.replaceAll(/^\/|\/$/g, '')
+  return cleanedhref === '' ? 'page/home' : cleanedhref
 }
 
 export const resolvers: Resolvers = {
-  // Query: {
-  //   gcPage: async (root, { input }, context, info) => {
-  //     const pages = await context.hygraph.Query.pages({
-  //       root,
-  //       args: { where: input },
-  //       context,
-  //       info,
-  //     })
+  GcPage: {
+    rows: {
+      // Rewrite the rows field to the content field.
+      // Strip out product and category as they will be resolved by Magento.
+      selectionSet: (root) => ({
+        kind: Kind.SELECTION_SET,
+        selections: [
+          {
+            kind: Kind.FIELD,
+            name: { kind: Kind.NAME, value: 'content' },
+            selectionSet: {
+              kind: Kind.SELECTION_SET,
+              selections:
+                root.selectionSet?.selections?.filter(
+                  (selection) =>
+                    selection.kind !== Kind.FIELD ||
+                    !['product', 'category'].includes(selection.name.value),
+                ) ?? [],
+            },
+          },
+        ],
+      }),
+      resolve: (root) => root.rows ?? root.content,
+    },
+    head: {
+      selectionSet: `{
+        id
+        url
+        locale
+        metaTitle
+        metaDescription
+        metaRobots
+        localizations(includeCurrent: false) {
+          locale
+          url
+          metaRobots
+        }
+      }`,
+      resolve: ({ head, url, locale, metaRobots, metaDescription, metaTitle, localizations }) => {
+        function formatRobots(bots?: MetaRobots, name: string = 'robots'): GcMetaTag {
+          const robots: string[] = []
+          if (bots?.includes('NOINDEX')) robots.push('noindex')
+          if (bots?.includes('NOFOLLOW')) robots.push('nofollow')
+          return { name, content: robots.length > 0 ? robots.join(', ') : 'all' }
+        }
 
-  //     const page = pages[0]
-  //     return { id: page.id }
-  //   },
-  // },
+        return (
+          head ?? {
+            canonical: { rel: 'canonical', href: normalizeUrl(url), hreflang: locale },
+            robots: [formatRobots(metaRobots)],
+            alternate: localizations
+              ?.filter((v) => !formatRobots(v.metaRobots).content.includes('noindex'))
+              ?.map((loc) => ({
+                rel: 'alternate',
+                href: normalizeUrl(loc.url),
+                hreflang: loc.locale,
+              })),
+            title: metaTitle,
+            description: metaDescription,
+          }
+        )
+      },
+    },
+  },
+  Query: {
+    gcPage: {
+      /**
+       * We are using delegateToSchema, because we've encountered limitations with
+       * `context.hygraph.Query.pages({...})`:
+       *
+       * - The above resolver are not called as we are directly resolving the
+       *   source/subgraph/directly and these resolvers are on the final schema / supergraph.
+       * - Somehwere inside the resulting types inside pages we've got a few @resolveTo directives
+       *   defined and those are not called either.
+       */
+      resolve: async (_, args, context, info) => {
+        /**
+         * This is a wrapper around delegateToSchema, does some inferring of the return type and the arguments.
+         *
+         * Might it be an idea to have a @delegateTo directive that can be used in the schema?
+         */
+        const result = await delegateToSchemaSdk({
+          context,
+          info,
+          sourceName: 'hygraph',
+          sourceTypeName: 'Query',
+          sourceFieldName: 'pages',
+          sourceArgs: { where: { url: denormalizeUrl(args.input.href) } },
+        })
 
-  Page: {
-    someField: {
-      selectionSet: '{ id }',
-      resolve: (root) => root.id,
+        return result?.[0]
+      },
     },
   },
 }

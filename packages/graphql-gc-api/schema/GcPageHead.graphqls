@@ -13,6 +13,25 @@ type GcMetaTag {
   content: String!
 }
 
+type GcLinkRelAlternateTag {
+  """
+  Used to specify the language of the target URL. Usually used in conjunction with rel="alternate"
+
+  https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#hreflang
+  """
+  hreflang: String
+
+  """
+  A fully qualified URL
+
+  OR
+
+  The relative part of the canonical URL.
+  As defined by: [pathname](https://developer.mozilla.org/en-US/docs/Web/API/URL/pathname) + [search](https://developer.mozilla.org/en-US/docs/Web/API/URL/search)
+  """
+  href: String!
+}
+
 type GcLinkRelTag {
   """
   The type of link relationship.
@@ -54,8 +73,8 @@ type GcPageHead {
   """
   description: String
 
-  canonical: GcLinkRelTag!
-  alternate: [GcLinkRelTag]
+  canonical: GcLinkRelAlternateTag!
+  alternate: [GcLinkRelAlternateTag!]
 
   robots: [GcMetaTag!]
 

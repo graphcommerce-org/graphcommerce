@@ -1,0 +1,9 @@
+fragment GcPage_Rows on GcPage {
+  __typename
+  rows {
+    __typename
+    ... on GcRowFake {
+      id
+    }
+  }
+}

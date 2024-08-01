@@ -10,6 +10,7 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutHeader } from '@graphcommerce/next-ui'
 import { LayoutDocument, LayoutNavigation, LayoutNavigationProps } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
+import { print, stripIgnoredCharacters } from 'graphql'
 
 type Props = GcPageQuery
 type RouteProps = { url: string }
@@ -39,11 +40,12 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
 
   const conf = client.query({ query: StoreConfigDocument })
   const page = client.query({ query: GcPageDocument, variables: { input: { href: 'page/home' } } })
-
   const layout = staticClient.query({
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
+
+  console.log(stripIgnoredCharacters(print(GcPageDocument)))
 
   if (!(await page).data.page?.head) return { notFound: true }
 

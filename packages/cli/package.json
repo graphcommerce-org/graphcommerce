@@ -24,6 +24,7 @@
   "dependencies": {
     "@graphql-codegen/cli": "5.0.2",
     "@graphql-mesh/cli": "latest",
+    "@graphql-mesh/compose-cli": "latest",
     "@graphql-mesh/cross-helpers": "latest",
     "@graphql-mesh/runtime": "latest",
     "@graphql-mesh/store": "latest",

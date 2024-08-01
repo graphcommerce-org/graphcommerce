@@ -1,0 +1,6 @@
+fragment GcPage_Redirect on GcPage {
+  redirect {
+    href
+    permanent
+  }
+}

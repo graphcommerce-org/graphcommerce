@@ -2,9 +2,13 @@ import { usePageContext } from '@graphcommerce/framer-next-pages'
 import { canonicalize } from '@graphcommerce/next-ui'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { GcPageHeadFragment, GcLinkRelTagFragment, GcMetaTagFragment } from './GcPageHead.gql'
+import {
+  GcPage_HeadFragment,
+  GcMetaTagFragment,
+  GcLinkRelTagFragment,
+} from '../../queries/GcPage_Head.gql'
 
-type GcPageMetaProps = GcPageHeadFragment & {
+type GcPageMetaProps = GcPage_HeadFragment & {
   children?: React.ReactNode
 }
 
@@ -37,20 +41,17 @@ export function GcPageMeta(props: GcPageMetaProps) {
   return (
     <Head>
       <title>{head.title.trim()}</title>
-
       {[...allLinkRel.values()].map((link) => (
         <link
-          key={`${JSON.stringify(link)}`}
+          key={`${link.rel}${link.href}${link.hreflang}}`}
           rel={link.rel}
           href={link.href}
           hrefLang={link.hreflang ?? undefined}
         />
       ))}
-
       {[...allMeta.values()].map((meta) => (
-        <meta key={`${JSON.stringify(meta)}`} name={meta.name} content={meta.content.trim()} />
+        <meta key={`${meta.name}|${meta.content}`} name={meta.name} content={meta.content.trim()} />
       ))}
-
       {children}
     </Head>
   )

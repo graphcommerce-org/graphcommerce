@@ -4,7 +4,6 @@ import type { MeshContext } from '@graphcommerce/graphql-mesh'
 import { InContextSdkMethod } from '@graphql-mesh/types'
 import {
   Kind,
-  SelectionSetNode,
   OperationTypeNode,
   OperationDefinitionNode,
   FieldNode,
@@ -13,35 +12,7 @@ import {
 } from 'graphql'
 import type { Path } from 'react-hook-form'
 import { meshCache, MeshCacheOptions } from './meshCache'
-
-function isNumeric(n: string) {
-  return !Number.isNaN(parseFloat(n))
-}
-
-function traverseSelectionSet<Q>(incomingSelectionSet: SelectionSetNode, path: Path<Q>) {
-  const pathArray = path.split(/[,[\].]+?/)
-  let selectionSet = incomingSelectionSet
-  let pathIndex = 0
-
-  while (pathIndex < pathArray.length) {
-    const currentValue = pathArray[pathIndex]
-    if (!isNumeric(currentValue)) {
-      for (const selection of selectionSet.selections) {
-        if (selection.kind === Kind.FIELD && selection.name.value === currentValue) {
-          selectionSet = {
-            kind: Kind.SELECTION_SET,
-            selections: selection.selectionSet?.selections ?? [],
-          }
-          break
-        }
-      }
-    }
-
-    pathIndex++
-  }
-
-  return selectionSet
-}
+import { selectionSetByPath } from './traverseSelectionSet'
 
 type OperationType = 'Query' | 'Mutation' | 'Subscription'
 function getOperationType(def: OperationDefinitionNode) {
@@ -106,7 +77,7 @@ function maybeExecutor(context: MeshContext, operationType: OperationType, opera
   return found
 }
 
-export async function executeMesh<Q, V extends Record<string, unknown>>(
+async function executeMesh<Q, V extends Record<string, unknown>>(
   document: TypedDocumentNode<Q, V>,
   options: { variables: V },
   context: MeshContext,
@@ -126,7 +97,7 @@ export async function executeMesh<Q, V extends Record<string, unknown>>(
               field.name.value,
             )?.({
               context,
-              selectionSet: traverseSelectionSet<Q>(def.selectionSet, field.name.value as Path<Q>),
+              selectionSet: selectionSetByPath<Q>(def.selectionSet, field.name.value as Path<Q>),
               args: collectArguments<V>(field, options.variables),
             }),
           ] as const,

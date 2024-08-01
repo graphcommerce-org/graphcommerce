@@ -1,5 +1,5 @@
-fragment RowRenderer on Page @inject(into: ["HygraphPage"]) {
-  content {
+fragment GcPage_Rows_Hygraph on GcPage @inject(into: ["GcPage_Rows"]) {
+  rows {
     __typename
     ... on Node {
       id

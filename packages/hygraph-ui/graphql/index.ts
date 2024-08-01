@@ -1,5 +1,4 @@
 export * from './HygraphAllPages.gql'
 export * from './HygraphPage.gql'
-export * from './GCPage_Hygraph.gql'
 export * from './PageLink.gql'
 export * from './PagesStaticPaths.gql'

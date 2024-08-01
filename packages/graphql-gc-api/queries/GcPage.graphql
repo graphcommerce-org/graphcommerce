@@ -1,5 +1,7 @@
 query GcPage($input: GCPageInput!) {
   page: gcPage(input: $input) {
-    ...GcPage_Data
+    ...GcPage_Head
+    ...GcPage_Redirect
+    ...GcPage_Rows
   }
 }

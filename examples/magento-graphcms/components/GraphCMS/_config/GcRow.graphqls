@@ -1,0 +1,14 @@
+union GcRow =
+  | RowBlogContent
+  | RowButtonLinkList
+  | RowCategory
+  | RowColumnOne
+  | RowColumnThree
+  | RowColumnTwo
+  | RowContentLinks
+  | RowHeroBanner
+  | RowLinks
+  | RowProduct
+  | RowQuote
+  | RowServiceOptions
+  | RowSpecialBanner

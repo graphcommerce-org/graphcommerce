@@ -1,6 +1,6 @@
 import type { ContentAreaProps } from '@graphcommerce/graphql-gc-api'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
-import { RowRenderer } from '../../components/GraphCMS'
+import { gcRowHygraphRenderer } from '../../components/GraphCMS/_config/gcRowHygraphRenderer'
 
 export const config: PluginConfig = {
   type: 'component',
@@ -9,12 +9,5 @@ export const config: PluginConfig = {
 
 export const ContentArea = (props: PluginProps<ContentAreaProps>) => {
   const { Prev, ...rest } = props
-  const { gcPage } = rest
-
-  return (
-    <>
-      <Prev {...rest} />
-      {gcPage && <RowRenderer {...gcPage} />}
-    </>
-  )
+  return <Prev {...rest} renderer={gcRowHygraphRenderer} />
 }

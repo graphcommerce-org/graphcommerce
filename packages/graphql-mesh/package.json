@@ -17,6 +17,7 @@
     "@graphql-mesh/runtime": "latest",
     "@graphql-mesh/store": "latest",
     "@graphql-mesh/transform-encapsulate": "latest",
+    "@graphql-mesh/transform-federation": "latest",
     "@graphql-mesh/transform-filter-schema": "latest",
     "@graphql-mesh/transform-hoist-field": "latest",
     "@graphql-mesh/transform-naming-convention": "latest",

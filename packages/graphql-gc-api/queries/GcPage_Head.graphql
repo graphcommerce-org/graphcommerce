@@ -1,7 +1,7 @@
 fragment GcLinkRelTag on GcLinkRelTag {
   rel
-  hreflang
   href
+  hreflang
 }
 
 fragment GcMetaTag on GcMetaTag {
@@ -9,18 +9,21 @@ fragment GcMetaTag on GcMetaTag {
   content
 }
 
-fragment GcPageHead on GcPageInterface {
+fragment GcPage_Head on GcPage {
   head {
     title
     description
     canonical {
-      ...GcLinkRelTag
+      hreflang
+      href
     }
     alternate {
-      ...GcLinkRelTag
+      hreflang
+      href
     }
     robots {
-      ...GcMetaTag
+      name
+      content
     }
     meta {
       ...GcMetaTag

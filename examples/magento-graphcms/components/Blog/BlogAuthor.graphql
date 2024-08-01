@@ -1,4 +1,4 @@
-fragment BlogAuthor on Page {
+fragment BlogAuthor on GcPage {
   date
   author
 }

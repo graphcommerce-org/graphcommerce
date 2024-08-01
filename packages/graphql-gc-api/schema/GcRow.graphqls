@@ -1,0 +1,8 @@
+"""
+This type only exists to make the GcRow union not fail.
+"""
+type GcRowFake {
+  id: ID!
+}
+
+union GcRow = GcRowFake

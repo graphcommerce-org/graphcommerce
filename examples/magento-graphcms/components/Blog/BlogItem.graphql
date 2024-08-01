@@ -1,4 +1,4 @@
-fragment BlogItem on Page {
+fragment BlogItem on GcPage {
   title
   url
   date

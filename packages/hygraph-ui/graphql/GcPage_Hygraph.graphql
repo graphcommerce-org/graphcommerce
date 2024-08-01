@@ -1,3 +1,0 @@
-fragment GCPage_Hygraph on GcPageInterface @inject(into: ["GcPage_Data"]) {
-  ...HygraphPage
-}
