@@ -157,4 +157,4 @@ const customerErrorLink = (router: PushRouter) =>
 //   })
 
 export const customerLink = (router: PushRouter) =>
-  ApolloLink.from([addTokenHeader, customerErrorLink(router), customerMaybelinkan(router)])
+  ApolloLink.from([addTokenHeader, customerErrorLink(router)])
