@@ -126,6 +126,7 @@ export function algoliaFacetsToAggregations(
   attributes: AttributeList,
   storeConfig: GetStoreConfigReturn,
   categoryList?: null | CategoryResult,
+  groupId?: number,
 ): Aggregation[] {
   if (!storeConfig?.default_display_currency_code) throw new Error('Currency is required')
   const aggregations: Aggregation[] = []
@@ -152,6 +153,15 @@ export function algoliaFacetsToAggregations(
         position,
       })
     } else if (facetIndex.startsWith('price')) {
+      if (!groupId && facetIndex !== `price.${storeConfig.default_display_currency_code}.default`) {
+        return
+      }
+      if (
+        groupId &&
+        facetIndex !== `price.${storeConfig.default_display_currency_code}.group_${groupId}`
+      ) {
+        return
+      }
       aggregations.push({
         label,
         attribute_code,

@@ -66,6 +66,16 @@ plugged in.
 Sorting is defined by Algolia and can not be configured per category as each
 sorting option is a separate (virtual) index.
 
+## Suggestions
+
+To get query suggestions/autocomplete enter your Algolia dashboard > search >
+configure > Query Suggestions > new Query Suggestions Index. This will create a
+new index which will be used for suggestions
+
+Don't mind to use the suggestions setting in magento admin. It will create a
+suggestions index but it will not record suggestions. This requires
+instantSearch
+
 ## Todo
 
 - [] Search suggestions
