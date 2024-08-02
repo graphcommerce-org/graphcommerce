@@ -44,6 +44,7 @@ export const resolvers: Resolvers = {
               page: args.currentPage ? args.currentPage - 1 : 0,
               facetFilters: productFilterInputToAlgoliaFacetFiltersInput(filters),
               numericFilters: productFilterInputToAlgoliaNumericFiltersInput(storeConfig, filters),
+              clickAnalytics: true,
             },
           },
           selectionSet: /* GraphQL */ `
