@@ -104,7 +104,6 @@ export const resolvers: Resolvers = {
       const hits = (searchResults?.hits ?? [])?.filter(nonNullable)
       const sugestionsHits = (suggestionResults?.hits ?? [])?.filter(nonNullable)
 
-      console.log(searchResults)
       return {
         items: hits.map((hit) => algoliaHitToMagentoProduct(hit, storeConfig)),
         aggregations: algoliaFacetsToAggregations(
