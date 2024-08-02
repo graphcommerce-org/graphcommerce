@@ -8,12 +8,16 @@ import {
   GcLinkRelTagFragment,
 } from '../../queries/GcPage_Head.gql'
 
-type GcPageMetaProps = GcPage_HeadFragment & {
+type GcPageMetaProps = {
+  page: GcPage_HeadFragment
   children?: React.ReactNode
 }
 
 export function GcPageMeta(props: GcPageMetaProps) {
-  const { head, children } = props
+  const {
+    page: { head },
+    children,
+  } = props
 
   const { active } = usePageContext()
   const router = useRouter()

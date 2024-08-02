@@ -7,7 +7,7 @@ type GcPageRedirect {
   The relative part of the canonical URL.
   As defined by: [pathname](https://developer.mozilla.org/en-US/docs/Web/API/URL/pathname) + [search](https://developer.mozilla.org/en-US/docs/Web/API/URL/search)
   """
-  href: String!
+  destination: String!
 
   """
   Defines if the redirect is permanent or temporary.

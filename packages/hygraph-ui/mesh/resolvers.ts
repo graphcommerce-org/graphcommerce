@@ -1,16 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {
-  GcMetaTag,
-  MetaRobots,
-  type Resolvers,
-  delegateToSchemaSdk,
-} from '@graphcommerce/graphql-mesh'
+import { GcMetaTag, MetaRobots, type Resolvers } from '@graphcommerce/graphql-mesh'
 import { Kind } from 'graphql'
 
 const normalizeUrl = (href: string) => {
   const cleanedhref = href.replaceAll(/^\/|\/$/g, '')
   return `/${cleanedhref === 'page/home' ? '' : cleanedhref}`
 }
+
 const denormalizeUrl = (href: string) => {
   const cleanedhref = href.replaceAll(/^\/|\/$/g, '')
   return cleanedhref === '' ? 'page/home' : cleanedhref
@@ -19,8 +15,6 @@ const denormalizeUrl = (href: string) => {
 export const resolvers: Resolvers = {
   GcPage: {
     rows: {
-      // Rewrite the rows field to the content field.
-      // Strip out product and category as they will be resolved by Magento.
       selectionSet: (root) => ({
         kind: Kind.SELECTION_SET,
         selections: [
@@ -39,7 +33,7 @@ export const resolvers: Resolvers = {
           },
         ],
       }),
-      resolve: (root) => root.rows ?? root.content,
+      resolve: (root) => root.content,
     },
     head: {
       selectionSet: `{
@@ -83,32 +77,13 @@ export const resolvers: Resolvers = {
   },
   Query: {
     gcPage: {
-      /**
-       * We are using delegateToSchema, because we've encountered limitations with
-       * `context.hygraph.Query.pages({...})`:
-       *
-       * - The above resolver are not called as we are directly resolving the
-       *   source/subgraph/directly and these resolvers are on the final schema / supergraph.
-       * - Somehwere inside the resulting types inside pages we've got a few @resolveTo directives
-       *   defined and those are not called either.
-       */
-      resolve: async (_, args, context, info) => {
-        /**
-         * This is a wrapper around delegateToSchema, does some inferring of the return type and the arguments.
-         *
-         * Might it be an idea to have a @delegateTo directive that can be used in the schema?
-         */
-        const result = await delegateToSchemaSdk({
-          context,
+      resolve: async (root, args, context, info) =>
+        context.hygraph.Query.pages({
+          root,
           info,
-          sourceName: 'hygraph',
-          sourceTypeName: 'Query',
-          sourceFieldName: 'pages',
-          sourceArgs: { where: { url: denormalizeUrl(args.input.href) } },
-        })
-
-        return result?.[0]
-      },
+          context,
+          args: { where: { url: denormalizeUrl(args.input.href) } },
+        }).then((r) => r[0]),
     },
   },
 }

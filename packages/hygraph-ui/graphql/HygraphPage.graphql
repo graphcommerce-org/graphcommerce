@@ -1,4 +1,4 @@
-fragment HygraphPage on GcPage @inject(into: ["GcPage_Rows"]) {
+fragment HygraphPage on GcPage @inject(into: ["GcPage_Head"]) {
   author
   date
   relatedPages {
@@ -7,5 +7,8 @@ fragment HygraphPage on GcPage @inject(into: ["GcPage_Rows"]) {
   }
   asset {
     ...Asset
+  }
+  content {
+    __typename
   }
 }

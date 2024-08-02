@@ -12,5 +12,5 @@ type GcPage {
   """
   Rows of the content
   """
-  rows: [GcRow!]
+  rows: [GcRow]
 }
