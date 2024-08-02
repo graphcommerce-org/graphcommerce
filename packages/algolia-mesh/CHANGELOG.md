@@ -1,5 +1,11 @@
 # @graphcommerce/algolia-mesh
 
+## 9.0.0-canary.67
+
+### Patch Changes
+
+- [#2336](https://github.com/graphcommerce-org/graphcommerce/pull/2336) [`95ce63c`](https://github.com/graphcommerce-org/graphcommerce/commit/95ce63cd32463835239ba959734cdaf1aa7f3f7b) - Added algolia search suggestions ([@Renzovh](https://github.com/Renzovh))
+
 ## 9.0.0-canary.66
 
 ## 9.0.0-canary.65
