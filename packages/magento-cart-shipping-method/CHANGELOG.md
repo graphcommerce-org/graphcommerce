@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.68
+
+### Patch Changes
+
+- [#2340](https://github.com/graphcommerce-org/graphcommerce/pull/2340) [`18691c7`](https://github.com/graphcommerce-org/graphcommerce/commit/18691c71e6940e8baa8f93c3b798be4d6e5a8a9a) - Select the only available shipping method as the current cart shipping method when there is only one shipping method available. ([@LaurensFranken](https://github.com/LaurensFranken))
+
 ## 9.0.0-canary.67
 
 ## 9.0.0-canary.66
