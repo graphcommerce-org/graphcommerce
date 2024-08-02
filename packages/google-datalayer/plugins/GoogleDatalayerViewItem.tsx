@@ -2,7 +2,7 @@ import type { ProductPageMetaProps } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useMemoObject } from '@graphcommerce/next-ui'
 import { useEffect } from 'react'
-import { sendEvent } from '../api/sendEvent'
+import { useSendEvent } from '../api/sendEvent'
 import { productToViewItem } from '../mapping/productToViewItem/productToViewItem'
 
 export const config: PluginConfig = {
@@ -14,8 +14,9 @@ export const config: PluginConfig = {
 export function ProductPageMeta(props: PluginProps<ProductPageMetaProps>) {
   const { Prev, product } = props
 
+  const sendEvent = useSendEvent()
   const viewItem = useMemoObject(productToViewItem(product))
-  useEffect(() => sendEvent('view_item', viewItem), [viewItem])
+  useEffect(() => sendEvent('view_item', viewItem), [sendEvent, viewItem])
 
   return <Prev {...props} />
 }

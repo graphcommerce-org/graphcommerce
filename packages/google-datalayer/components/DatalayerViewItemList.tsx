@@ -2,7 +2,7 @@ import { ProductItemsGridProps } from '@graphcommerce/magento-product'
 import { useMemoObject } from '@graphcommerce/next-ui'
 import { useEventCallback } from '@mui/material'
 import React, { useContext, useEffect } from 'react'
-import { sendEvent } from '../api/sendEvent'
+import { useSendEvent } from '../api/sendEvent'
 import {
   productItemsToViewItemList,
   viewItemListToSelectItem,
@@ -28,6 +28,7 @@ export function DatalayerViewItemList(
   const { title: item_list_name, items, children } = props
   const item_list_id = item_list_name.toLowerCase().replace(/\s/g, '_')
 
+  const sendEvent = useSendEvent()
   const viewItemList = useMemoObject(
     productItemsToViewItemList(item_list_id, item_list_name, items),
   )
