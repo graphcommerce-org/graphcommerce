@@ -302,6 +302,7 @@ export type GraphCommerceConfig = {
    * Values: 245, 246, 247 for Magento 2.4.5, 2.4.6, 2.4.7 respectively.
    */
   magentoVersion: Scalars['Int']['input'];
+  /** Allows the option to require login or completely disable certain sections of the site, can be overriden per storeview with the storefrontConfig */
   permissions?: InputMaybe<GraphCommercePermissions>;
   /** To enable next.js' preview mode, configure the secret you'd like to use. */
   previewSecret?: InputMaybe<Scalars['String']['input']>;
@@ -368,10 +369,7 @@ export type GraphCommerceDebugConfig = {
 };
 
 export type GraphCommercePermissions = {
-  /**
-   * Changes the availability of the add to cart buttons and the cart page to either customer only or completely disables it.
-   * Note: Any value here will automatically be passed to `checkout`. For example: setting `cart` to `DISABLED` and `checkout` to `ENABLED` will result in the checkout being disabled.
-   */
+  /** Changes the availability of the add to cart buttons and the cart page to either customer only or completely disables it. */
   cart?: InputMaybe<CartPermissions>;
   /** Changes the availability of the checkout to either customer only or completely disables it. */
   checkout?: InputMaybe<CartPermissions>;
@@ -438,6 +436,7 @@ export type GraphCommerceStorefrontConfig = {
    * - b2b-us
    */
   magentoStoreCode: Scalars['String']['input'];
+  /** Allows the option to require login or completely disable certain sections of the site on a per store basis */
   permissions?: InputMaybe<GraphCommercePermissions>;
   /**
    * Allow the site to be indexed by search engines.
@@ -582,7 +581,7 @@ export function GraphCommercePermissionsSchema(): z.ZodObject<Properties<GraphCo
   return z.object({
     cart: CartPermissionsSchema.nullish(),
     checkout: CartPermissionsSchema.nullish(),
-    customerAccount: CustomerAccountPermissionsSchema.default("ENABLED").nullish(),
+    customerAccount: CustomerAccountPermissionsSchema.nullish(),
     website: WebsitePermissionsSchema.nullish()
   })
 }

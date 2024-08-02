@@ -1,4 +1,4 @@
-import { useCustomerAccountIsDisabled } from '@graphcommerce/ecommerce-ui'
+import { useCustomerAccountCanSignIn } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import { SearchLink } from '@graphcommerce/magento-search'
@@ -15,7 +15,7 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 
 function RouteNotFoundPage() {
-  const customerAccountDisabled = useCustomerAccountIsDisabled()
+  const canSignIn = useCustomerAccountCanSignIn()
 
   const links = [
     <Link key={0} href='/' color='primary' underline='hover'>
@@ -23,12 +23,13 @@ function RouteNotFoundPage() {
     </Link>,
   ]
 
-  if (!customerAccountDisabled)
+  if (canSignIn) {
     links.push(
       <Link key={1} href='/account' color='primary' underline='hover'>
         <Trans id='Account' />
       </Link>,
     )
+  }
 
   return (
     <>

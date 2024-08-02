@@ -930,8 +930,8 @@ msgstr "U moet akkoord gaan met de voorwaarden om verder te gaan"
 msgid "You haven't placed any reviews yet"
 msgstr "Je hebt nog geen reviews geplaatst"
 
-msgid "You must sign in to continue"
-msgstr "U moet inloggen om verder te gaan"
+msgid "You must be signed in to continue"
+msgstr "U moet ingelogd zijn om verder te gaan"
 
 msgid "Your address has been added"
 msgstr "Uw adres is toegevoegd"

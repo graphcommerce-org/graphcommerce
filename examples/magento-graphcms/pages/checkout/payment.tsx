@@ -2,7 +2,7 @@ import {
   ComposedForm,
   WaitForQueries,
   getCheckoutIsDisabled,
-  useCheckoutIsAvailableForUser,
+  useCheckoutShouldLoginToContinue,
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
@@ -52,11 +52,9 @@ function PaymentPage() {
   const cartExists =
     typeof billingPage.data?.cart !== 'undefined' && (billingPage.data.cart?.items?.length ?? 0) > 0
 
-  const checkoutAvailable = useCheckoutIsAvailableForUser()
+  if (useCheckoutShouldLoginToContinue()) return <UnauthenticatedFullPageMessage />
 
-  return !checkoutAvailable ? (
-    <UnauthenticatedFullPageMessage />
-  ) : (
+  return (
     <ComposedForm>
       <PageMeta title={i18n._(/* i18n */ 'Payment')} metaRobots={['noindex']} />
 

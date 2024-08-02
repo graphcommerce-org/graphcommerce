@@ -1,4 +1,4 @@
-import { useCheckoutIsAvailableForUser } from '@graphcommerce/ecommerce-ui'
+import { useCheckoutShouldLoginToContinue } from '@graphcommerce/ecommerce-ui'
 import { Money } from '@graphcommerce/magento-store'
 import { iconChevronRight, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
@@ -38,8 +38,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
     cart,
   } = props
 
-  const checkoutAvailable = useCheckoutIsAvailableForUser()
-
+  const shouldLoginToContinue = useCheckoutShouldLoginToContinue()
   const hasTotals = (cart?.prices?.grand_total?.value ?? 0) > 0
   const hasErrors = cart?.items?.some((item) => (item?.errors?.length ?? 0) > 0)
 
@@ -54,13 +53,14 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      {!checkoutAvailable && (
+      {shouldLoginToContinue && (
         <Box sx={{ mb: 1 }} className={classes.loginContainer}>
           <Link href='/account/signin'>
             <Trans>You must first login before you can continue</Trans>
           </Link>
         </Box>
       )}
+
       <Button
         href='/checkout'
         id='cart-start-checkout'
@@ -74,7 +74,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
           onStart?.(e, cart)
           return onClick?.(e)
         }}
-        disabled={disabled || !hasTotals || hasErrors || !checkoutAvailable}
+        disabled={disabled || !hasTotals || hasErrors || shouldLoginToContinue}
         {...buttonProps}
       >
         <Box

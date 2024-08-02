@@ -1,4 +1,4 @@
-import { useCartIsDisabled } from '@graphcommerce/ecommerce-ui'
+import { useCartEnabled } from '@graphcommerce/ecommerce-ui'
 import {
   AddProductsToCartError,
   AddProductsToCartQuantity,
@@ -22,8 +22,7 @@ export type AddProductsToCartViewProps = {
 
 export function AddProductsToCartView(props: AddProductsToCartViewProps) {
   const { product } = props
-
-  const cartDisabled = useCartIsDisabled()
+  const cartEnabled = useCartEnabled()
 
   return (
     <>
@@ -41,30 +40,18 @@ export function AddProductsToCartView(props: AddProductsToCartViewProps) {
       {!isTypename(product, ['GroupedProduct']) && (
         <>
           <ProductCustomizable product={product} />
+          <Divider />
+          <ProductPageAddToCartQuantityRow product={product}>
+            {cartEnabled && <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />}
 
-          {!cartDisabled ? (
-            <>
-              <Divider />
-
-              <ProductPageAddToCartQuantityRow product={product}>
-                <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
-
-                <AddProductsToCartError>
-                  <Typography component='div' variant='h3' lineHeight='1'>
-                    <ProductPagePrice product={product} />
-                  </Typography>
-                </AddProductsToCartError>
-              </ProductPageAddToCartQuantityRow>
-
-              <ProductPagePriceTiers product={product} />
-
-              <ProductSidebarDelivery product={product} />
-            </>
-          ) : (
-            <Typography component='div' variant='h3' lineHeight='1'>
-              <ProductPagePrice product={product} />
-            </Typography>
-          )}
+            <AddProductsToCartError>
+              <Typography component='div' variant='h3' lineHeight='1'>
+                <ProductPagePrice product={product} />
+              </Typography>
+            </AddProductsToCartError>
+          </ProductPageAddToCartQuantityRow>
+          <ProductPagePriceTiers product={product} />
+          {cartEnabled && <ProductSidebarDelivery product={product} />}
         </>
       )}
     </>

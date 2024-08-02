@@ -1,4 +1,4 @@
-import { useCartIsAvailableForUser, useCartIsDisabled } from '@graphcommerce/ecommerce-ui'
+import { useCartEnabled, useCartShouldLoginToContinue } from '@graphcommerce/ecommerce-ui'
 import { Fab, FabProps, iconShoppingBag, iconCheckmark } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { t } from '@lingui/macro'
@@ -20,12 +20,12 @@ export function AddProductsToCartFab(props: AddProductsToCartFabProps) {
   const { showSuccess, ...action } = useAddProductsToCartAction(props)
 
   const router = useRouter()
-  const cartDisabled = useCartIsDisabled()
-  const cartAvailable = useCartIsAvailableForUser()
+  const cartEnabled = useCartEnabled()
+  const shouldLoginToContinue = useCartShouldLoginToContinue()
 
-  if (cartDisabled) return null
+  if (!cartEnabled) return null
 
-  return !cartAvailable ? (
+  return shouldLoginToContinue ? (
     <Fab
       icon={showSuccess && !action.loading ? iconCheckmark : icon}
       aria-label={i18n._(/* i18n*/ `Add to Cart`)}

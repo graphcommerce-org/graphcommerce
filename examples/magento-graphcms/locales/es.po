@@ -930,7 +930,7 @@ msgstr "Debe aceptar para proceder"
 msgid "You haven't placed any reviews yet"
 msgstr "Aún no ha escrito ningún comentario"
 
-msgid "You must sign in to continue"
+msgid "You must be signed in to continue"
 msgstr "Debe iniciar sesión para continuar"
 
 msgid "Your address has been added"

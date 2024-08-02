@@ -1,4 +1,4 @@
-import { useCustomerAccountRegistrationDisabled } from '@graphcommerce/ecommerce-ui'
+import { useCustomerAccountCanSignUp } from '@graphcommerce/ecommerce-ui'
 import { usePageContext } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { useUrlQuery } from '@graphcommerce/next-ui'
@@ -21,6 +21,10 @@ export type AccountSignInUpState = 'email' | 'signin' | 'signup' | 'signedin' | 
 export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {}) {
   const { onSubmitted } = props
   const { token, valid } = useCustomerSession()
+
+  const canSignUp = useCustomerAccountCanSignUp()
+  const isToggleMethod = !import.meta.graphCommerce.enableGuestCheckoutLogin || !canSignUp
+
   const [queryState, setRouterQuery] = useUrlQuery<{ email?: string | null }>()
 
   const customerQuery = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
@@ -41,11 +45,6 @@ export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {})
   )
   const { formState, data, handleSubmit, setValue, trigger } = form
   const { isSubmitSuccessful, isValid } = formState
-
-  const registrationDisabled = useCustomerAccountRegistrationDisabled()
-
-  const isToggleMethod =
-    !import.meta.graphCommerce.enableGuestCheckoutLogin && !registrationDisabled
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -75,7 +74,7 @@ export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {})
     mode = form.watch('requestedMode') ?? 'signin'
   } else {
     // 1. Nothing is entered
-    mode = registrationDisabled ? 'signin' : 'email'
+    mode = 'email'
 
     if (isValid && isSubmitSuccessful) mode = hasAccount ? 'signin' : 'signup'
   }

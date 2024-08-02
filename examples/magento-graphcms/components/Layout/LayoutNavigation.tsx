@@ -1,4 +1,4 @@
-import { useCartIsDisabled } from '@graphcommerce/ecommerce-ui'
+import { useCartEnabled } from '@graphcommerce/ecommerce-ui'
 import { CartFab } from '@graphcommerce/magento-cart'
 import { magentoMenuToNavigation } from '@graphcommerce/magento-category'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
@@ -40,7 +40,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
   const selection = useNavigationSelection()
   const router = useRouter()
 
-  const cartDisabled = useCartIsDisabled()
+  const cartEnabled = useCartEnabled()
 
   return (
     <>
@@ -160,7 +160,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               <WishlistFab icon={<IconSvg src={iconHeart} size='large' />} />
               <CustomerFab guestHref='/account/signin' authHref='/account' />
               {/* The placeholder exists because the CartFab is sticky but we want to reserve the space for the <CartFab /> */}
-              {!cartDisabled && <PlaceholderFab />}
+              {cartEnabled && <PlaceholderFab />}
             </DesktopNavActions>
           </>
         }

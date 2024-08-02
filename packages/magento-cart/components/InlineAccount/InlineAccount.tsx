@@ -1,4 +1,4 @@
-import { useCustomerAccountIsEnabled } from '@graphcommerce/ecommerce-ui'
+import { useCustomerAccountCanSignIn } from '@graphcommerce/ecommerce-ui'
 import {
   SignUpFormInline,
   IsEmailAvailableDocument,
@@ -29,7 +29,7 @@ const { classes } = extendableComponent(name, parts)
 export function InlineAccount(props: InlineAccountProps) {
   const { title, description, sx = [] } = props
 
-  const customerAccountEnabled = useCustomerAccountIsEnabled()
+  const canLogin = useCustomerAccountCanSignIn()
 
   const [toggled, setToggled] = useState<boolean>(false)
 
@@ -45,7 +45,7 @@ export function InlineAccount(props: InlineAccountProps) {
   const { firstname, lastname } = cart?.shipping_addresses?.[0] ?? {}
   const canSignUp = isEmailAvailableData?.isEmailAvailable?.is_email_available === true
 
-  if (loggedIn || !canSignUp || !customerAccountEnabled) return null
+  if (loggedIn || !canSignUp || !canLogin) return null
 
   return (
     <div>

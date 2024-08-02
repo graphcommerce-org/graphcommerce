@@ -1,8 +1,4 @@
-import {
-  EmailElement,
-  WaitForQueries,
-  useCustomerAccountIsEnabled,
-} from '@graphcommerce/ecommerce-ui'
+import { EmailElement, useCustomerAccountCanSignIn } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorAlert,
@@ -35,7 +31,7 @@ const { classes } = extendableComponent(name, parts)
 const EmailFormBase = React.memo<EmailFormProps>((props) => {
   const { step, sx } = props
 
-  const customerAccountEnabled = useCustomerAccountIsEnabled()
+  const canLogin = useCustomerAccountCanSignIn()
 
   const cartEmail = useCartQuery(CartEmailDocument)
 
@@ -47,14 +43,18 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
 
   const isEmailAvailable = useQuery(IsEmailAvailableDocument, {
     variables: { email },
-    skip:
-      (!import.meta.graphCommerce.enableGuestCheckoutLogin && !customerAccountEnabled) || !email,
+    skip: !import.meta.graphCommerce.enableGuestCheckoutLogin || !email,
   })
 
   const { required, error, handleSubmit } = form
   const submit = handleSubmit(() => {})
 
   useFormCompose({ form, step, submit, key: 'EmailForm' })
+
+  const showLogin =
+    import.meta.graphCommerce.enableGuestCheckoutLogin &&
+    canLogin &&
+    isEmailAvailable.data?.isEmailAvailable
 
   return (
     <Box component='form' noValidate onSubmit={submit} sx={sx}>
@@ -68,19 +68,14 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
           disabled={cartEmail.loading}
           InputProps={{
             autoComplete: 'email',
-            endAdornment: customerAccountEnabled && (
-              <WaitForQueries waitFor={isEmailAvailable}>
-                {(isEmailAvailable.data?.isEmailAvailable ||
-                  !import.meta.graphCommerce.enableGuestCheckoutLogin) && (
-                  <Button
-                    href={`/account/signin?email=${email}`}
-                    color='secondary'
-                    style={{ whiteSpace: 'nowrap' }}
-                  >
-                    <Trans id='Sign in' />
-                  </Button>
-                )}
-              </WaitForQueries>
+            endAdornment: showLogin && (
+              <Button
+                href={`/account/signin?email=${email}`}
+                color='secondary'
+                style={{ whiteSpace: 'nowrap' }}
+              >
+                <Trans id='Sign in' />
+              </Button>
             ),
           }}
         />

@@ -930,8 +930,8 @@ msgstr "You have to agree in order to proceed"
 msgid "You haven't placed any reviews yet"
 msgstr "You haven't placed any reviews yet"
 
-msgid "You must sign in to continue"
-msgstr "You must sign in to continue"
+msgid "You must be signed in to continue"
+msgstr "You must be signed in to continue"
 
 msgid "Your address has been added"
 msgstr "Your address has been added"

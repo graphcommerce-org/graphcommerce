@@ -5,7 +5,7 @@ import {
   ComposedSubmit,
   WaitForQueries,
   getCheckoutIsDisabled,
-  useCheckoutIsAvailableForUser,
+  useCheckoutShouldLoginToContinue,
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
@@ -50,13 +50,11 @@ function ShippingPage() {
   const shippingPage = useCartQuery(ShippingPageDocument, { fetchPolicy: 'cache-and-network' })
   const customerAddresses = useCustomerQuery(CustomerDocument, { fetchPolicy: 'cache-and-network' })
 
-  const checkoutAvailable = useCheckoutIsAvailableForUser()
-
   const cartExists =
     typeof shippingPage.data?.cart !== 'undefined' &&
     (shippingPage.data.cart?.items?.length ?? 0) > 0
 
-  if (!checkoutAvailable) return <UnauthenticatedFullPageMessage />
+  if (useCheckoutShouldLoginToContinue()) return <UnauthenticatedFullPageMessage />
 
   return (
     <>
