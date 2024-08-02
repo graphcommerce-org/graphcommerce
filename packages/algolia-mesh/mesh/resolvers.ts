@@ -38,13 +38,18 @@ export const resolvers: Resolvers = {
           args: {
             indexName,
             input: {
+              clickAnalytics: true,
               query: args.search ?? '',
               facets: ['*'],
               hitsPerPage: args.pageSize ? args.pageSize : 10,
               page: args.currentPage ? args.currentPage - 1 : 0,
               facetFilters: productFilterInputToAlgoliaFacetFiltersInput(filters),
               numericFilters: productFilterInputToAlgoliaNumericFiltersInput(storeConfig, filters),
-              clickAnalytics: true,
+
+              // userToken,
+              // analytics: true,
+              // enablePersonalization: true,
+              // personalizationImpact:
             },
           },
           selectionSet: /* GraphQL */ `
@@ -52,6 +57,7 @@ export const resolvers: Resolvers = {
               nbPages
               hitsPerPage
               page
+              queryID
               nbHits
               hits {
                 __typename
@@ -81,6 +87,7 @@ export const resolvers: Resolvers = {
               hitsPerPage
               page
               nbHits
+              queryId
               hits {
                 __typename
                 objectID
@@ -97,6 +104,7 @@ export const resolvers: Resolvers = {
       const hits = (searchResults?.hits ?? [])?.filter(nonNullable)
       const sugestionsHits = (suggestionResults?.hits ?? [])?.filter(nonNullable)
 
+      console.log(searchResults)
       return {
         items: hits.map((hit) => algoliaHitToMagentoProduct(hit, storeConfig)),
         aggregations: algoliaFacetsToAggregations(
@@ -113,6 +121,7 @@ export const resolvers: Resolvers = {
         suggestions: algoliaHitsToSuggestions(sugestionsHits),
         total_count: searchResults?.nbHits,
         sort_fields: { default: 'relevance', options: Object.values(options) },
+        algolia_queryID: searchResults?.queryID,
       }
     },
   },

@@ -124,7 +124,7 @@ export function algoliaHitToMagentoProduct(
   return {
     redirect_code: 0,
     __typename: algoliaTypeToTypename[type_id as keyof typeof algoliaTypeToTypename],
-    uid: objectID,
+    uid: btoa(objectID),
     sku: Array.isArray(sku) ? sku[0] : `${sku}`,
     price_range: mapPriceRange(price, storeConfig),
     created_at: created_at ? new Date(created_at).toISOString() : null,

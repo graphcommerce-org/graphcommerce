@@ -1,6 +1,6 @@
 # Algolia Magento 2
 
-An implementation of Algolia personalisation through the GraphQL Mesh.
+An implementation of Algolia personalization through the GraphQL Mesh.
 
 ## Prerequisites
 

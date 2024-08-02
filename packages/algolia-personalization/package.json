@@ -1,5 +1,5 @@
 {
-  "name": "@graphcommerce/algolia-personalisation",
+  "name": "@graphcommerce/algolia-personalization",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "9.0.0-canary.63",
@@ -15,10 +15,14 @@
     "generate-insights": "tsx scripts/generate-insights-spec.mts"
   },
   "peerDependencies": {
+    "@graphcommerce/algolia-mesh": "^9.0.0-canary.63",
     "@graphcommerce/google-datalayer": "^9.0.0-canary.63",
+    "@graphcommerce/graphql": "^9.0.0-canary.63",
     "@graphcommerce/graphql-mesh": "^9.0.0-canary.63",
+    "@graphcommerce/magento-customer": "^9.0.0-canary.63",
     "@graphcommerce/next-config": "^9.0.0-canary.63",
-    "@graphcommerce/next-ui": "^9.0.0-canary.63"
+    "@graphcommerce/next-ui": "^9.0.0-canary.63",
+    "react": "^18.2.0"
   },
   "devDependencies": {
     "graphql": "^16.0.0",

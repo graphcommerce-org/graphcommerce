@@ -32,7 +32,7 @@ function resolveRecursivePackageJson(
         ...Object.keys(packageJson.dependencies ?? []),
         ...Object.keys(packageJson.devDependencies ?? []),
         ...additionalDependencies,
-        // ...Object.keys(packageJson.peerDependencies ?? {}),
+        ...Object.keys(packageJson.peerDependencies ?? {}),
       ].filter((name) => name.includes('graphcommerce')),
     ),
   ]

@@ -2831,19 +2831,25 @@ __metadata:
     "@graphcommerce/magento-search": ^9.0.0-canary.63
     "@graphcommerce/next-config": ^9.0.0-canary.63
     "@graphcommerce/next-ui": ^9.0.0-canary.63
+    react: ^18.2.0
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/algolia-personalisation@workspace:packages/algolia-personalisation":
+"@graphcommerce/algolia-personalization@workspace:packages/algolia-personalization":
   version: 0.0.0-use.local
-  resolution: "@graphcommerce/algolia-personalisation@workspace:packages/algolia-personalisation"
+  resolution: "@graphcommerce/algolia-personalization@workspace:packages/algolia-personalization"
   dependencies:
     graphql: "npm:^16.0.0"
     tsx: "npm:^4.16.2"
   peerDependencies:
+    "@graphcommerce/algolia-mesh": ^9.0.0-canary.63
+    "@graphcommerce/google-datalayer": ^9.0.0-canary.63
+    "@graphcommerce/graphql": ^9.0.0-canary.63
     "@graphcommerce/graphql-mesh": ^9.0.0-canary.63
+    "@graphcommerce/magento-customer": ^9.0.0-canary.63
     "@graphcommerce/next-config": ^9.0.0-canary.63
     "@graphcommerce/next-ui": ^9.0.0-canary.63
+    react: ^18.2.0
   languageName: unknown
   linkType: soft
 
@@ -5643,9 +5649,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/delegate@npm:^10.0.11, @graphql-tools/delegate@npm:^10.0.12, @graphql-tools/delegate@npm:^10.0.14, @graphql-tools/delegate@npm:^10.0.4":
-  version: 10.0.14
-  resolution: "@graphql-tools/delegate@npm:10.0.14"
+"@graphql-tools/delegate@npm:10.0.13":
+  version: 10.0.13
+  resolution: "@graphql-tools/delegate@npm:10.0.13"
   dependencies:
     "@graphql-tools/batch-execute": "npm:^9.0.4"
     "@graphql-tools/executor": "npm:^1.2.8"
@@ -5655,7 +5661,7 @@ __metadata:
     tslib: "npm:^2.5.0"
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: 10c0/266931e142a74af12e687a5da05a16125896d6d909fb231bf6addd0fb9e05dbecbaa0a453a637e94ebec68d96a4c4568538046dd5b0e0d3d8e4fb232d5dc164a
+  checksum: 10c0/defa99544290f0e5126f5c795470878de9ca4f8c1a9aec370031439625fab06c6135d15a0c6bc079c971a5210a23f01b7cb90f2c1d67f8f8c077e2f14bca4f92
   languageName: node
   linkType: hard
 

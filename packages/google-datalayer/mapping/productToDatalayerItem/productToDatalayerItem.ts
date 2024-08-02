@@ -4,6 +4,7 @@ import { Product_DatalayerItemFragment } from './Product_DatalayerItem.gql'
 
 export type GoogleDatalayerItem = {
   item_id: string
+  item_uid: string
   item_name: string
   affiliation?: string
   coupon?: string
@@ -36,6 +37,7 @@ export function productToDatalayerItem<P extends Product_DatalayerItemFragment>(
 
   return {
     item_id: item.sku ?? '',
+    item_uid: item.uid,
     item_name: item.name ?? '',
     price: item.price_range?.minimum_price.final_price.value ?? undefined,
     currency: item.price_range?.minimum_price.final_price.currency ?? undefined,

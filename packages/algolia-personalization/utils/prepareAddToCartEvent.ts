@@ -1,4 +1,5 @@
 export default function prepareAddToCartEvent(eventData) {
+  console.log('event', eventData)
   return {
     eventType: 'conversion',
     eventSubtype: 'addToCart',
