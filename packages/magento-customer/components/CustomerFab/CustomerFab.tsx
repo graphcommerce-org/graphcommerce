@@ -1,3 +1,4 @@
+import { useCustomerAccountCanSignIn } from '@graphcommerce/ecommerce-ui'
 import {
   iconPerson,
   DesktopHeaderBadge,
@@ -52,6 +53,9 @@ export type CustomerFabProps = Omit<CustomerFabContentProps, 'session'>
 
 export function CustomerFab(props: CustomerFabProps) {
   const session = useCustomerSession()
+  const canSignIn = useCustomerAccountCanSignIn()
+
+  if (!canSignIn) return null
 
   return (
     <NoSsr fallback={<CustomerFabContent {...props} />}>

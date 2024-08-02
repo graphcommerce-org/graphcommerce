@@ -1,5 +1,8 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useCartEnabled, useCartShouldLoginToContinue } from '@graphcommerce/ecommerce-ui'
 import { Button, ButtonProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
+import { useRouter } from 'next/router'
 import {
   useAddProductsToCartAction,
   UseAddProductsToCartActionProps,
@@ -21,11 +24,22 @@ export type AddProductsToCartButtonProps = UseAddProductsToCartActionProps &
   >
 
 export function AddProductsToCartButton(props: AddProductsToCartButtonProps) {
-  const { children, product, ...rest } = props
+  const { children, product, disabled, ...rest } = props
   const { showSuccess, ...action } = useAddProductsToCartAction(props)
+  const cartEnabled = useCartEnabled()
+
+  if (!cartEnabled) return null
 
   return (
-    <Button type='submit' color='primary' variant='pill' size='large' {...rest} {...action}>
+    <Button
+      type='submit'
+      color='primary'
+      variant='pill'
+      size='large'
+      {...rest}
+      {...action}
+      disabled={disabled}
+    >
       {children || <Trans>Add to Cart</Trans>}
     </Button>
   )

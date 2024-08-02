@@ -1,4 +1,8 @@
-import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
+import {
+  WaitForQueries,
+  getCartIsDisabled,
+  useCartIsAvailableForUser,
+} from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   ApolloCartErrorAlert,
@@ -11,6 +15,7 @@ import {
 import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
 import { CartItemsActionCards, CartCrosssellsScroller } from '@graphcommerce/magento-cart-items'
+import { UnauthenticatedFullPageMessage } from '@graphcommerce/magento-customer/components/WaitForCustomer/UnauthenticatedFullPageMessage'
 import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
@@ -41,6 +46,8 @@ function CartPage() {
     (data?.cart?.total_quantity ?? 0) > 0 &&
     typeof data?.cart?.prices?.grand_total?.value !== 'undefined'
 
+  const cartAvaialable = useCartIsAvailableForUser()
+
   return (
     <>
       <PageMeta
@@ -57,7 +64,7 @@ function CartPage() {
         }
       >
         <LayoutTitle size='small' component='span' icon={hasItems ? iconShoppingBag : undefined}>
-          {hasItems ? (
+          {hasItems && cartAvaialable ? (
             <Trans
               id='Total <0/>'
               components={{ 0: <Money {...data?.cart?.prices?.grand_total} /> }}
@@ -67,34 +74,38 @@ function CartPage() {
           )}
         </LayoutTitle>
       </LayoutOverlayHeader>
-      <WaitForQueries
-        waitFor={cart}
-        fallback={
-          <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />}>
-            <Trans id='This may take a second' />
-          </FullPageMessage>
-        }
-      >
-        {hasItems ? (
-          <>
-            <Container maxWidth='md'>
-              <CartItemsActionCards cart={data.cart} sx={{ position: 'relative', zIndex: 1 }} />
-              <CouponAccordion key='couponform' sx={(theme) => ({ mt: theme.spacings.md })} />
-              <CartTotals containerMargin sx={{ typography: 'body1' }} />
-              <ApolloCartErrorAlert error={error} />
-            </Container>
-            <CartCrosssellsScroller
-              renderer={productListRenderer}
-              sx={(theme) => ({ mt: theme.spacings.md })}
-            />
-            <OverlayStickyBottom sx={{ py: 0.1 }}>
-              <CartStartCheckout cart={data?.cart} disabled={hasError} />
-            </OverlayStickyBottom>
-          </>
-        ) : (
-          <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
-        )}
-      </WaitForQueries>
+      {!cartAvaialable ? (
+        <UnauthenticatedFullPageMessage disableMargin />
+      ) : (
+        <WaitForQueries
+          waitFor={cart}
+          fallback={
+            <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />}>
+              <Trans id='This may take a second' />
+            </FullPageMessage>
+          }
+        >
+          {hasItems ? (
+            <>
+              <Container maxWidth='md'>
+                <CartItemsActionCards cart={data.cart} sx={{ position: 'relative', zIndex: 1 }} />
+                <CouponAccordion key='couponform' sx={(theme) => ({ mt: theme.spacings.md })} />
+                <CartTotals containerMargin sx={{ typography: 'body1' }} />
+                <ApolloCartErrorAlert error={error} />
+              </Container>
+              <CartCrosssellsScroller
+                renderer={productListRenderer}
+                sx={(theme) => ({ mt: theme.spacings.md })}
+              />
+              <OverlayStickyBottom sx={{ py: 0.1 }}>
+                <CartStartCheckout cart={data.cart} disabled={hasError} />
+              </OverlayStickyBottom>
+            </>
+          ) : (
+            <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
+          )}
+        </WaitForQueries>
+      )}
     </>
   )
 }
@@ -116,6 +127,8 @@ CartPage.pageOptions = pageOptions
 export default CartPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCartIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 

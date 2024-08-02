@@ -1,3 +1,4 @@
+import { getCheckoutIsDisabled } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { CartAgreementsDocument, CartAgreementsQuery } from '@graphcommerce/magento-cart'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -68,6 +69,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCheckoutIsDisabled(context.locale)) return { notFound: true }
+
   const { params } = context
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)

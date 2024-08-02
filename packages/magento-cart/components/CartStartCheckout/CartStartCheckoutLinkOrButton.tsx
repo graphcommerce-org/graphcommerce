@@ -1,3 +1,4 @@
+import { useCheckoutShouldLoginToContinue } from '@graphcommerce/ecommerce-ui'
 import { iconChevronRight, IconSvg, LinkOrButton, LinkOrButtonProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
@@ -18,12 +19,13 @@ export type CartStartCheckoutLinkOrButtonProps = {
 
 export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButtonProps) {
   const {
-    children,
     onStart,
     disabled,
     linkOrButtonProps: { onClick, button, ...linkOrButtonProps } = {},
     cart,
   } = props
+
+  const shouldLoginToContinue = useCheckoutShouldLoginToContinue()
 
   const hasTotals = (cart?.prices?.grand_total?.value ?? 0) > 0
   const hasErrors = cart?.items?.some((item) => (item?.errors?.length ?? 0) > 0)
@@ -38,7 +40,7 @@ export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButt
         onStart?.(e, cart)
       }}
       button={{ variant: 'pill', ...button }}
-      disabled={disabled || !hasTotals || hasErrors}
+      disabled={disabled || !hasTotals || hasErrors || shouldLoginToContinue}
       color='secondary'
       endIcon={<IconSvg src={iconChevronRight} />}
       {...linkOrButtonProps}

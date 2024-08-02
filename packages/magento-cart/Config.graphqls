@@ -1,3 +1,20 @@
+enum CartPermissions {
+  ENABLED
+  CUSTOMER_ONLY
+  DISABLED
+}
+
+extend input GraphCommercePermissions {
+  """
+  Changes the availability of the add to cart buttons and the cart page to either customer only or completely disables it.
+  """
+  cart: CartPermissions
+  """
+  Changes the availability of the checkout to either customer only or completely disables it.
+  """
+  checkout: CartPermissions
+}
+
 extend input GraphCommerceStorefrontConfig {
   """
   Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.

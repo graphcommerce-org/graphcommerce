@@ -4,8 +4,11 @@ import {
   ComposedForm,
   ComposedSubmit,
   WaitForQueries,
+  getCheckoutIsDisabled,
+  useCheckoutShouldLoginToContinue,
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { cacheFirst } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorAlert,
   ApolloCartErrorFullPage,
@@ -20,6 +23,7 @@ import {
 } from '@graphcommerce/magento-cart-shipping-address'
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
 import { CustomerDocument, useCustomerQuery } from '@graphcommerce/magento-customer'
+import { UnauthenticatedFullPageMessage } from '@graphcommerce/magento-customer/components/WaitForCustomer/UnauthenticatedFullPageMessage'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   FormActions,
@@ -37,7 +41,6 @@ import { CircularProgress, Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutDocument, LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
@@ -50,6 +53,8 @@ function ShippingPage() {
   const cartExists =
     typeof shippingPage.data?.cart !== 'undefined' &&
     (shippingPage.data.cart?.items?.length ?? 0) > 0
+
+  if (useCheckoutShouldLoginToContinue()) return <UnauthenticatedFullPageMessage />
 
   return (
     <>
@@ -150,6 +155,8 @@ ShippingPage.pageOptions = pageOptions
 export default ShippingPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCheckoutIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
   const staticClient = graphqlSsrClient(context)

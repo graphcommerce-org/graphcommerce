@@ -3,14 +3,24 @@ import {
   ApolloCache,
   ApolloLink,
   fromPromise,
+  GraphQLRequest,
   onError,
   setContext,
+  Observable,
+  FetchResult,
 } from '@graphcommerce/graphql/apollo'
 import { ErrorCategory } from '@graphcommerce/magento-graphql'
-import type { GraphQLError } from 'graphql'
+import { GraphQLError } from 'graphql'
 import { NextRouter } from 'next/router'
 import { signOut } from '../components/SignOutForm/signOut'
 import { CustomerTokenDocument } from '../hooks'
+
+const isMutation = (operation: GraphQLRequest) =>
+  operation.query.definitions.some(
+    (definition) =>
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
+      definition.kind === 'OperationDefinition' && definition.operation === 'mutation',
+  )
 
 export type PushRouter = Pick<NextRouter, 'push' | 'events'>
 
@@ -127,6 +137,24 @@ const customerErrorLink = (router: PushRouter) =>
       return forward(operation)
     })
   })
+
+// const customerMaybelinkan = (router: PushRouter) =>
+//   new ApolloLink((operation, forward) => {
+//     const { cache } = operation.getContext()
+
+//     if (!isMutation(operation)) return forward(operation)
+
+//     const loggedIn = cache?.readQuery({ query: CustomerTokenDocument })
+
+//     // sdnasdffasd
+//     if (loggedIn) forward(operation)
+
+//     // forward(operation).map((result) => {})
+//     // return forward(operation)
+//     const signInAgainPromise = pushWithPromise(router, '/account/signin')
+
+//     fromPromise(signInAgainPromise)
+//   })
 
 export const customerLink = (router: PushRouter) =>
   ApolloLink.from([addTokenHeader, customerErrorLink(router)])

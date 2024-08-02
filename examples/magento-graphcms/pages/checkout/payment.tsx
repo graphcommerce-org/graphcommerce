@@ -1,5 +1,11 @@
-import { ComposedForm, WaitForQueries } from '@graphcommerce/ecommerce-ui'
+import {
+  ComposedForm,
+  WaitForQueries,
+  getCheckoutIsDisabled,
+  useCheckoutShouldLoginToContinue,
+} from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { cacheFirst } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorFullPage,
   CartAgreementsForm,
@@ -17,6 +23,7 @@ import {
   PaymentMethodActionCardListForm,
   PaymentMethodContextProvider,
 } from '@graphcommerce/magento-cart-payment-method'
+import { UnauthenticatedFullPageMessage } from '@graphcommerce/magento-customer/components/WaitForCustomer/UnauthenticatedFullPageMessage'
 import { SubscribeToNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -35,7 +42,6 @@ import { Trans } from '@lingui/react'
 import { CircularProgress, Container, Dialog, Typography } from '@mui/material'
 import { LayoutDocument, LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { cacheFirst } from '@graphcommerce/graphql'
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
@@ -45,6 +51,8 @@ function PaymentPage() {
 
   const cartExists =
     typeof billingPage.data?.cart !== 'undefined' && (billingPage.data.cart?.items?.length ?? 0) > 0
+
+  if (useCheckoutShouldLoginToContinue()) return <UnauthenticatedFullPageMessage />
 
   return (
     <ComposedForm>
@@ -155,6 +163,8 @@ PaymentPage.pageOptions = pageOptions
 export default PaymentPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCheckoutIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
 

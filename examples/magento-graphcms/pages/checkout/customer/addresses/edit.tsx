@@ -1,3 +1,4 @@
+import { getCustomerAccountIsDisabled, getCartIsDisabled } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   ApolloCustomerErrorFullPage,
@@ -90,6 +91,8 @@ CheckoutCustomerAddressesEdit.pageOptions = pageOptions
 export default CheckoutCustomerAddressesEdit
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCartIsDisabled(context.locale) || getCustomerAccountIsDisabled(context.locale))
+    return { notFound: true }
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
