@@ -13,16 +13,16 @@ export const graphcommerce8to9: MigrationFunction = async (schema, client) => {
   const { migrationAction } = migrationActionFactory(schema, client)
 
   // Removes the deprecated 'Row' field which was deprecated in GC@7.1
-  // const hasRow = schema.models
-  //   .find((m) => m.apiId === 'DynamicRow')
-  //   ?.fields.some((f) => f.apiId === 'row')
+  const hasRow = schema.models
+    .find((m) => m.apiId === 'DynamicRow')
+    ?.fields.some((f) => f.apiId === 'row')
 
-  // if (hasRow) {
-  //   migrationAction(schema, 'simpleField', 'delete', {
-  //     apiId: 'row',
-  //     parentApiId: 'DynamicRow',
-  //   })
-  // }
+  if (hasRow) {
+    migrationAction(schema, 'simpleField', 'delete', {
+      apiId: 'row',
+      parentApiId: 'DynamicRow',
+    })
+  }
 
   const hasRowCategory = schema.models.some((m) => m.apiId === 'RowCategory')
 
