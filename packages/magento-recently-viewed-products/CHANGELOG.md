@@ -1,5 +1,7 @@
 # @graphcommerce/magento-recently-viewed-products
 
+## 8.0.7
+
 ## 8.0.6
 
 ## 8.0.5
@@ -74,8 +76,7 @@
 
 ### Minor Changes
 
-- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`e661106`](https://github.com/graphcommerce-org/graphcommerce/commit/e661106d45e51c617533f19b397a812e22b6fc82) - Created a new `<RecentlyViewedProducts/>` component and render it on product pages.
-  ([@bramvanderholst](https://github.com/bramvanderholst))
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`e661106`](https://github.com/graphcommerce-org/graphcommerce/commit/e661106d45e51c617533f19b397a812e22b6fc82) - Created a new `<RecentlyViewedProducts/>` component and render it on product pages. ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 8.0.0-canary.100
 
@@ -99,8 +100,7 @@
 
 ### Patch Changes
 
-- [#2172](https://github.com/graphcommerce-org/graphcommerce/pull/2172) [`871e07a`](https://github.com/graphcommerce-org/graphcommerce/commit/871e07ac8bbb7e6c392a740a8244f69992b42b76) - Recently viewed products would show skeleton items even after loading succeeded
-  ([@paales](https://github.com/paales))
+- [#2172](https://github.com/graphcommerce-org/graphcommerce/pull/2172) [`871e07a`](https://github.com/graphcommerce-org/graphcommerce/commit/871e07ac8bbb7e6c392a740a8244f69992b42b76) - Recently viewed products would show skeleton items even after loading succeeded ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.90
 
@@ -152,11 +152,9 @@
 
 ### Patch Changes
 
-- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`c4a64d8`](https://github.com/graphcommerce-org/graphcommerce/commit/c4a64d8c5e38232d31f84b68acdf0032af5eeffd) - When multiple variations of a single configurable product were viewed the RecentlyViewedProducts component it would keep showing a loading state.
-  ([@StefanAngenent](https://github.com/StefanAngenent))
+- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`c4a64d8`](https://github.com/graphcommerce-org/graphcommerce/commit/c4a64d8c5e38232d31f84b68acdf0032af5eeffd) - When multiple variations of a single configurable product were viewed the RecentlyViewedProducts component it would keep showing a loading state. ([@StefanAngenent](https://github.com/StefanAngenent))
 
-- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`6f214fb`](https://github.com/graphcommerce-org/graphcommerce/commit/6f214fbfd8ef24cc6dcba72f403bdcb1d8a5ed8a) - Remove marginBottom from ProductScroller by default and let implementor set the margin
-  ([@StefanAngenent](https://github.com/StefanAngenent))
+- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`6f214fb`](https://github.com/graphcommerce-org/graphcommerce/commit/6f214fbfd8ef24cc6dcba72f403bdcb1d8a5ed8a) - Remove marginBottom from ProductScroller by default and let implementor set the margin ([@StefanAngenent](https://github.com/StefanAngenent))
 
 ## 7.1.0-canary.66
 

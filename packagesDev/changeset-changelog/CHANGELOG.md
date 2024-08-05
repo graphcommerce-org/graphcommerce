@@ -1,5 +1,7 @@
 # @graphcommerce/changeset-changelog
 
+## 8.0.7
+
 ## 8.0.6
 
 ## 8.0.5

@@ -1,5 +1,7 @@
 # @graphcommerce/hygraph-cli
 
+## 8.0.7
+
 ## 8.0.6
 
 ## 8.0.5
@@ -74,11 +76,9 @@
 
 ### Patch Changes
 
-- [#2095](https://github.com/graphcommerce-org/graphcommerce/pull/2095) [`519531e`](https://github.com/graphcommerce-org/graphcommerce/commit/519531eb48bf6c5b68703509d2bd64c8dfe5b92c) - Fix Hygraph CLI (Management SDK) | Add support for updating and deleting enumerations
-  ([@JoshuaS98](https://github.com/JoshuaS98))
+- [#2095](https://github.com/graphcommerce-org/graphcommerce/pull/2095) [`519531e`](https://github.com/graphcommerce-org/graphcommerce/commit/519531eb48bf6c5b68703509d2bd64c8dfe5b92c) - Fix Hygraph CLI (Management SDK) | Add support for updating and deleting enumerations ([@JoshuaS98](https://github.com/JoshuaS98))
 
-- [#2169](https://github.com/graphcommerce-org/graphcommerce/pull/2169) [`eab3f0b`](https://github.com/graphcommerce-org/graphcommerce/commit/eab3f0b0b459f5b6cc4e50d787ac1e8ae545b708) - Solve issue where a Hygraph DynamicRow conditions were missing fields in the OrCondition
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2169](https://github.com/graphcommerce-org/graphcommerce/pull/2169) [`eab3f0b`](https://github.com/graphcommerce-org/graphcommerce/commit/eab3f0b0b459f5b6cc4e50d787ac1e8ae545b708) - Solve issue where a Hygraph DynamicRow conditions were missing fields in the OrCondition ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.100
 
@@ -96,8 +96,7 @@
 
 ### Patch Changes
 
-- [#2169](https://github.com/graphcommerce-org/graphcommerce/pull/2169) [`eab3f0b`](https://github.com/graphcommerce-org/graphcommerce/commit/eab3f0b0b459f5b6cc4e50d787ac1e8ae545b708) - Solve issue where a Hygraph DynamicRow conditions were missing fields in the OrCondition
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2169](https://github.com/graphcommerce-org/graphcommerce/pull/2169) [`eab3f0b`](https://github.com/graphcommerce-org/graphcommerce/commit/eab3f0b0b459f5b6cc4e50d787ac1e8ae545b708) - Solve issue where a Hygraph DynamicRow conditions were missing fields in the OrCondition ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.93
 

@@ -1,5 +1,7 @@
 # Change Log
 
+## 8.0.7
+
 ## 8.0.6
 
 ## 8.0.5
@@ -74,14 +76,11 @@
 
 ### Patch Changes
 
-- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`9091dbb`](https://github.com/graphcommerce-org/graphcommerce/commit/9091dbb01a47aa6ba40932a66ed055b7f07c1cec) - Make sure the search link in the header is a soft navigation instead of a hard browser navigation.
-  ([@paales](https://github.com/paales))
+- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`9091dbb`](https://github.com/graphcommerce-org/graphcommerce/commit/9091dbb01a47aa6ba40932a66ed055b7f07c1cec) - Make sure the search link in the header is a soft navigation instead of a hard browser navigation. ([@paales](https://github.com/paales))
 
-- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - Accessibility improvements for the frontend: Added skip content link. Removed empty buttons from tab flow. Gave focus to elements (such as the menu) that appear when after clicking a button. Improved aria labels where needed
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - Accessibility improvements for the frontend: Added skip content link. Removed empty buttons from tab flow. Gave focus to elements (such as the menu) that appear when after clicking a button. Improved aria labels where needed ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`fe37229`](https://github.com/graphcommerce-org/graphcommerce/commit/fe372294d6a42b1108e0fcef306b297baed5eb71) - Take the `per_page` configuration in account for the search results
-  ([@paales](https://github.com/paales))
+- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`fe37229`](https://github.com/graphcommerce-org/graphcommerce/commit/fe372294d6a42b1108e0fcef306b297baed5eb71) - Take the `per_page` configuration in account for the search results ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.100
 
@@ -133,8 +132,7 @@
 
 ### Patch Changes
 
-- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - a11y improvements (see https://github.com/graphcommerce-org/graphcommerce/issues/1995 for more info)
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - a11y improvements (see https://github.com/graphcommerce-org/graphcommerce/issues/1995 for more info) ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.0-canary.76
 
@@ -142,11 +140,9 @@
 
 ### Patch Changes
 
-- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`9091dbb`](https://github.com/graphcommerce-org/graphcommerce/commit/9091dbb01a47aa6ba40932a66ed055b7f07c1cec) - Make sure the search link in the header is a nextjs navigation
-  ([@paales](https://github.com/paales))
+- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`9091dbb`](https://github.com/graphcommerce-org/graphcommerce/commit/9091dbb01a47aa6ba40932a66ed055b7f07c1cec) - Make sure the search link in the header is a nextjs navigation ([@paales](https://github.com/paales))
 
-- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`fe37229`](https://github.com/graphcommerce-org/graphcommerce/commit/fe372294d6a42b1108e0fcef306b297baed5eb71) - Take the per_page configuration in account for the search results
-  ([@paales](https://github.com/paales))
+- [#2160](https://github.com/graphcommerce-org/graphcommerce/pull/2160) [`fe37229`](https://github.com/graphcommerce-org/graphcommerce/commit/fe372294d6a42b1108e0fcef306b297baed5eb71) - Take the per_page configuration in account for the search results ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.74
 
@@ -1199,31 +1195,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 

@@ -1,5 +1,7 @@
 # @graphcommerce/magento-compare
 
+## 8.0.7
+
 ## 8.0.6
 
 ## 8.0.5
@@ -74,8 +76,7 @@
 
 ### Patch Changes
 
-- [#2132](https://github.com/graphcommerce-org/graphcommerce/pull/2132) [`993f655`](https://github.com/graphcommerce-org/graphcommerce/commit/993f6559226f0ce2b63f372ccfc1409805b06a8d) - Compare button didn't have a proper hover state on the product page.
-  ([@action-simon](https://github.com/action-simon))
+- [#2132](https://github.com/graphcommerce-org/graphcommerce/pull/2132) [`993f655`](https://github.com/graphcommerce-org/graphcommerce/commit/993f6559226f0ce2b63f372ccfc1409805b06a8d) - Compare button didn't have a proper hover state on the product page. ([@action-simon](https://github.com/action-simon))
 
 ## 8.0.0-canary.100
 
@@ -135,8 +136,7 @@
 
 ### Patch Changes
 
-- [#2132](https://github.com/graphcommerce-org/graphcommerce/pull/2132) [`993f655`](https://github.com/graphcommerce-org/graphcommerce/commit/993f6559226f0ce2b63f372ccfc1409805b06a8d) - Fix compare button hover state on product page
-  ([@action-simon](https://github.com/action-simon))
+- [#2132](https://github.com/graphcommerce-org/graphcommerce/pull/2132) [`993f655`](https://github.com/graphcommerce-org/graphcommerce/commit/993f6559226f0ce2b63f372ccfc1409805b06a8d) - Fix compare button hover state on product page ([@action-simon](https://github.com/action-simon))
 
 ## 8.0.0-canary.72
 

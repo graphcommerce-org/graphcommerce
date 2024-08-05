@@ -3,7 +3,7 @@
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
   "private": true,
-  "version": "8.0.6",
+  "version": "8.0.7",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -30,9 +30,9 @@
     "webpack": "5.93.0"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "8.0.6",
-    "@graphcommerce/prettier-config-pwa": "8.0.6",
-    "@graphcommerce/typescript-config-pwa": "8.0.6",
+    "@graphcommerce/eslint-config-pwa": "8.0.7",
+    "@graphcommerce/prettier-config-pwa": "8.0.7",
+    "@graphcommerce/typescript-config-pwa": "8.0.7",
     "@lingui/cli": "4.7.0",
     "@playwright/test": "1.41.0",
     "@types/node": "^18",

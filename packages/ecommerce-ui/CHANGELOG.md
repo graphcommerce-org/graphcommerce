@@ -1,5 +1,7 @@
 # @graphcommerce/ecommerce-ui
 
+## 8.0.7
+
 ## 8.0.6
 
 ## 8.0.5
@@ -36,14 +38,11 @@
 
 ### Patch Changes
 
-- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`e12d1dc`](https://github.com/graphcommerce-org/graphcommerce/commit/e12d1dc201bf7b23a996bd58a256a117b91a9334) - Rename validation to rules for all Form field components and deprecate validation
-  ([@paales](https://github.com/paales))
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`e12d1dc`](https://github.com/graphcommerce-org/graphcommerce/commit/e12d1dc201bf7b23a996bd58a256a117b91a9334) - Rename validation to rules for all Form field components and deprecate validation ([@paales](https://github.com/paales))
 
-- [#2203](https://github.com/graphcommerce-org/graphcommerce/pull/2203) [`7ef7dc7`](https://github.com/graphcommerce-org/graphcommerce/commit/7ef7dc7631f61a2feba67a531a210df9c22fed4b) - CheckboxElement, MultiSelectElement, NumberFieldElement, SelectElement, SliderElement and TextFieldElement have their inputRef passed, allowing focus to be set by the form.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2203](https://github.com/graphcommerce-org/graphcommerce/pull/2203) [`7ef7dc7`](https://github.com/graphcommerce-org/graphcommerce/commit/7ef7dc7631f61a2feba67a531a210df9c22fed4b) - CheckboxElement, MultiSelectElement, NumberFieldElement, SelectElement, SliderElement and TextFieldElement have their inputRef passed, allowing focus to be set by the form. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`eb14696`](https://github.com/graphcommerce-org/graphcommerce/commit/eb14696fc65e084a06790c88a8218fb3003f7c2c) - `<WaitForQueries/>` will default to loading, restoring the previous behavior. This might introduce , this might introduce an additional spinner but prevents a flash where it is shown that there is no cart
-  ([@paales](https://github.com/paales))
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`eb14696`](https://github.com/graphcommerce-org/graphcommerce/commit/eb14696fc65e084a06790c88a8218fb3003f7c2c) - `<WaitForQueries/>` will default to loading, restoring the previous behavior. This might introduce , this might introduce an additional spinner but prevents a flash where it is shown that there is no cart ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.6
 
@@ -51,15 +50,13 @@
 
 ### Patch Changes
 
-- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`e12d1dc`](https://github.com/graphcommerce-org/graphcommerce/commit/e12d1dc201bf7b23a996bd58a256a117b91a9334) - Rename validation to rules for all Form field components and deprecate validation
-  ([@paales](https://github.com/paales))
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`e12d1dc`](https://github.com/graphcommerce-org/graphcommerce/commit/e12d1dc201bf7b23a996bd58a256a117b91a9334) - Rename validation to rules for all Form field components and deprecate validation ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.4
 
 ### Patch Changes
 
-- [#2203](https://github.com/graphcommerce-org/graphcommerce/pull/2203) [`7ef7dc7`](https://github.com/graphcommerce-org/graphcommerce/commit/7ef7dc7631f61a2feba67a531a210df9c22fed4b) - CheckboxElement, MultiSelectElement, NumberFieldElement, SelectElement, SliderElement and TextFieldElement have their inputRef passed, allowing focus to be set by the form.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2203](https://github.com/graphcommerce-org/graphcommerce/pull/2203) [`7ef7dc7`](https://github.com/graphcommerce-org/graphcommerce/commit/7ef7dc7631f61a2feba67a531a210df9c22fed4b) - CheckboxElement, MultiSelectElement, NumberFieldElement, SelectElement, SliderElement and TextFieldElement have their inputRef passed, allowing focus to be set by the form. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.3-canary.3
 
@@ -67,8 +64,7 @@
 
 ### Patch Changes
 
-- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`eb14696`](https://github.com/graphcommerce-org/graphcommerce/commit/eb14696fc65e084a06790c88a8218fb3003f7c2c) - `<WaitForQueries/>` will default to loading, restoring the previous behavior. This might introduce , this might introduce an additional spinner but prevents a flash where it is shown that there is no cart
-  ([@paales](https://github.com/paales))
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`eb14696`](https://github.com/graphcommerce-org/graphcommerce/commit/eb14696fc65e084a06790c88a8218fb3003f7c2c) - `<WaitForQueries/>` will default to loading, restoring the previous behavior. This might introduce , this might introduce an additional spinner but prevents a flash where it is shown that there is no cart ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.1
 
@@ -100,19 +96,15 @@
 
 ### Minor Changes
 
-- [#2111](https://github.com/graphcommerce-org/graphcommerce/pull/2111) [`35f3d3e`](https://github.com/graphcommerce-org/graphcommerce/commit/35f3d3eaf46f4b782bb1149e0efb0ec3819442d6) - Only show network errors in development mode.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2111](https://github.com/graphcommerce-org/graphcommerce/pull/2111) [`35f3d3e`](https://github.com/graphcommerce-org/graphcommerce/commit/35f3d3eaf46f4b782bb1149e0efb0ec3819442d6) - Only show network errors in development mode. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`13e23e4`](https://github.com/graphcommerce-org/graphcommerce/commit/13e23e4265bac70fb4d0830e4661019e71ce299f) - Wishlist will now support configurable products and uses the `<ActionCardLayout/>`
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`13e23e4`](https://github.com/graphcommerce-org/graphcommerce/commit/13e23e4265bac70fb4d0830e4661019e71ce299f) - Wishlist will now support configurable products and uses the `<ActionCardLayout/>` ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2018](https://github.com/graphcommerce-org/graphcommerce/pull/2018) [`750aa6a`](https://github.com/graphcommerce-org/graphcommerce/commit/750aa6a72710869d54244467253212e551d335e0) - Changed the layout of the succes page. We are using ActionCards right now to match the design of the cart.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2018](https://github.com/graphcommerce-org/graphcommerce/pull/2018) [`750aa6a`](https://github.com/graphcommerce-org/graphcommerce/commit/750aa6a72710869d54244467253212e551d335e0) - Changed the layout of the succes page. We are using ActionCards right now to match the design of the cart. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ### Patch Changes
 
-- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - Accessibility improvements for the frontend: Added skip content link. Removed empty buttons from tab flow. Gave focus to elements (such as the menu) that appear when after clicking a button. Improved aria labels where needed
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - Accessibility improvements for the frontend: Added skip content link. Removed empty buttons from tab flow. Gave focus to elements (such as the menu) that appear when after clicking a button. Improved aria labels where needed ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.0-canary.100
 
@@ -164,8 +156,7 @@
 
 ### Patch Changes
 
-- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - a11y improvements (see https://github.com/graphcommerce-org/graphcommerce/issues/1995 for more info)
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - a11y improvements (see https://github.com/graphcommerce-org/graphcommerce/issues/1995 for more info) ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.0-canary.76
 
@@ -1257,31 +1248,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 

@@ -1,5 +1,7 @@
 # @graphcommerce/magento-wishlist
 
+## 8.0.7
+
 ## 8.0.6
 
 ## 8.0.5
@@ -36,8 +38,7 @@
 
 ### Patch Changes
 
-- [#2208](https://github.com/graphcommerce-org/graphcommerce/pull/2208) [`3228ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/3228ba893a8f1b70b99f05492c53d6a0feda80c3) - Images are not spread anymore but instead are contained within the borders of the image container.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2208](https://github.com/graphcommerce-org/graphcommerce/pull/2208) [`3228ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/3228ba893a8f1b70b99f05492c53d6a0feda80c3) - Images are not spread anymore but instead are contained within the borders of the image container. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.3-canary.6
 
@@ -55,8 +56,7 @@
 
 ### Patch Changes
 
-- [#2208](https://github.com/graphcommerce-org/graphcommerce/pull/2208) [`3228ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/3228ba893a8f1b70b99f05492c53d6a0feda80c3) - Images are not spread anymore but instead are contained within the borders of the image container.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2208](https://github.com/graphcommerce-org/graphcommerce/pull/2208) [`3228ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/3228ba893a8f1b70b99f05492c53d6a0feda80c3) - Images are not spread anymore but instead are contained within the borders of the image container. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.2
 
@@ -84,8 +84,7 @@
 
 ### Minor Changes
 
-- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`13e23e4`](https://github.com/graphcommerce-org/graphcommerce/commit/13e23e4265bac70fb4d0830e4661019e71ce299f) - Wishlist will now support configurable products and uses the `<ActionCardLayout/>`
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`13e23e4`](https://github.com/graphcommerce-org/graphcommerce/commit/13e23e4265bac70fb4d0830e4661019e71ce299f) - Wishlist will now support configurable products and uses the `<ActionCardLayout/>` ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.100
 
@@ -1574,31 +1573,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 
