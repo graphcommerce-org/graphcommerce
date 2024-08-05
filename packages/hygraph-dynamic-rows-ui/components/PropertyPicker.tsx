@@ -90,6 +90,7 @@ export function PropertyPicker() {
     >
       {fieldPaths.length > 0 ? (
         <>
+          <option value='url'>url</option>
           {fieldPaths.map((fp) => (
             <option key={fp} value={fp}>
               {fp}
