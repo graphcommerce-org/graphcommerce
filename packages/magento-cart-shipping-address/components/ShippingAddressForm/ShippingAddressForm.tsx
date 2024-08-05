@@ -105,7 +105,6 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           customerNote: '',
         },
     mode: 'onChange',
-    experimental_useV2: true,
     onBeforeSubmit: (variables) => {
       const regionId = countries
         ?.find((country) => country?.two_letter_abbreviation === variables.countryCode)

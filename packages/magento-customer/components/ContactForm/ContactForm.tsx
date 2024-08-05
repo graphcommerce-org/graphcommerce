@@ -38,7 +38,6 @@ function findTelephone(data: CustomerQuery): string | undefined {
 
 export function ContactForm() {
   const form = useFormGqlMutation(ContactUsDocument, {
-    experimental_useV2: true,
     onComplete: (result) => {
       if (result.errors) return
       form.resetField('input.comment')
