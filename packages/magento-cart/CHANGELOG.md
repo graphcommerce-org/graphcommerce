@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.69
+
+### Patch Changes
+
+- [#2338](https://github.com/graphcommerce-org/graphcommerce/pull/2338) [`6984f8c`](https://github.com/graphcommerce-org/graphcommerce/commit/6984f8ce94433963d7bab0e1949c1737767e17ba) - Pass sx props to EmptyCart component ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 9.0.0-canary.68
 
 ## 9.0.0-canary.67
