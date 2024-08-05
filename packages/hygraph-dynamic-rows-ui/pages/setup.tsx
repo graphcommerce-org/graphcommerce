@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Page } from '..'
 
 export default function Setup() {
@@ -8,7 +8,7 @@ export default function Setup() {
    * This is a hack to fix the height of the iframe, which was malfunctioning because of a conflict
    * with FramerNextPages
    */
-  React.useEffect(() => {
+  useEffect(() => {
     const framerParent = appContainer?.current?.parentElement
     if (framerParent) {
       framerParent.style.position = 'static'
