@@ -1,4 +1,5 @@
 fragment RowCategory on RowCategory {
+  id
   categoryUrl
   rowCategoryVariant: variant
   category {

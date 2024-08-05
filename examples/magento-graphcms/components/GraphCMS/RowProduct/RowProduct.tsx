@@ -1,6 +1,7 @@
 import { InContextMaskProvider, useInContextQuery } from '@graphcommerce/graphql'
 import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { Box } from '@mui/material'
+import { useRouter } from 'next/router'
 import { productListRenderer } from '../../ProductListItems'
 import { GetMagentoRowProductDocument } from './GetMagentoRowProduct.gql'
 import { RowProductFragment } from './RowProduct.gql'
@@ -13,13 +14,39 @@ type VariantRenderer = Record<
 
 type RowProductProps = RowProductFragment & {
   renderer?: Partial<VariantRenderer>
-} & { sku?: string | null | undefined }
+}
 
-function Migrate(props: RowProductFragment) {
-  const { variant, identity } = props
+function RowProductPreview(props: RowProductFragment) {
+  const { variant, identity, product } = props
+
+  const router = useRouter()
+  const canShow = router.isPreview || process.env.NODE_ENV !== 'production'
+  const isWrongVariant = variant === 'Grid' || variant === 'Swipeable'
+  const noProduct = !product
+  if (!canShow) return null
+  if (!(noProduct || isWrongVariant)) return null
+
   return (
-    <Box sx={{ bgcolor: 'error.main', p: 3 }}>
-      NOT FOUND: Please migrate `{identity}` with variant {variant} to a RowCategory component
+    <Box
+      sx={(theme) => ({
+        p: 2,
+        m: 3,
+        border: `3px dashed ${theme.palette.error.light}`,
+        borderRadius: 2,
+      })}
+    >
+      {isWrongVariant && (
+        <>
+          RowProduct with identity ‘{identity}’ and variant ‘{variant}’, should be migrated in
+          Hygraph to a RowCategory component.
+        </>
+      )}
+      {!isWrongVariant && noProduct && (
+        <>
+          RowProduct ({identity}) was configured with Product URL &quot;
+          <code>{identity}</code>&quot;, However Magento didn&apos;t return any results.
+        </>
+      )}
     </Box>
   )
 }
@@ -32,8 +59,6 @@ const defaultRenderer: Partial<VariantRenderer> = {
   Related,
   Reviews,
   Upsells,
-  Grid: Migrate,
-  Swipeable: Migrate,
 }
 
 export function RowProduct(props: RowProductProps) {
@@ -48,20 +73,18 @@ export function RowProduct(props: RowProductProps) {
 
   if (!variant) return null
 
-  const RenderType =
-    mergedRenderer?.[variant] ??
-    (() => {
-      if (process.env.NODE_ENV !== 'production') return <>renderer for {variant} not found</>
-      return null
-    })
+  const RenderType = mergedRenderer?.[variant]
 
   return (
     <InContextMaskProvider mask={scoped.mask}>
-      <RenderType
-        {...props}
-        productListItemRenderer={productListRenderer}
-        product={scoped.data.products?.items?.[0]}
-      />
+      <RowProductPreview {...props} />
+      {RenderType && (
+        <RenderType
+          {...props}
+          productListItemRenderer={productListRenderer}
+          product={scoped.data.products?.items?.[0]}
+        />
+      )}
     </InContextMaskProvider>
   )
 }

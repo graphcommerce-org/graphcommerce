@@ -40,7 +40,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const staticClient = graphqlSsrClient(context)
 
   const conf = client.query({ query: StoreConfigDocument })
-  const gcPageQuery = client.query({ query: GcPageDocument, variables: { input: { href: '' } } })
+  const gcPageQuery = client.query({ query: GcPageDocument, variables: { input: { href: '/' } } })
   const layout = staticClient.query({
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),

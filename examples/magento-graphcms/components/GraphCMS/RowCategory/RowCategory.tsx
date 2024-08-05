@@ -1,4 +1,6 @@
 import { InContextMaskProvider, useInContextQuery } from '@graphcommerce/graphql'
+import { Box } from '@mui/material'
+import { useRouter } from 'next/router'
 import { GetMagentoRowCategoryDocument } from './GetMagentoRowCategory.gql'
 import { RowCategoryFragment } from './RowCategory.gql'
 import { Grid } from './variant/Grid'
@@ -11,11 +13,32 @@ type VariantRenderer = Record<
 
 type RowCategoryProps = RowCategoryFragment & {
   renderer?: Partial<VariantRenderer>
-} & { sku?: string | null | undefined }
+}
 
 const defaultRenderer: Partial<VariantRenderer> = {
   Grid,
   Swipeable,
+}
+
+function RowCategoryPreview(props: RowCategoryProps) {
+  const { category, categoryUrl, rowCategoryVariant, renderer } = props
+  const router = useRouter()
+  const canShow = router.isPreview || process.env.NODE_ENV !== 'production'
+  if (category || !canShow) return null
+
+  return (
+    <Box
+      sx={(theme) => ({
+        p: 2,
+        border: `3px dashed ${theme.palette.error.light}`,
+        m: 2,
+        borderRadius: 2,
+      })}
+    >
+      Hygraph RowCategory ({rowCategoryVariant}) was configured with Category URL &quot;
+      <code>{categoryUrl}</code>&quot;, However Magento didn&apos;t return any results.
+    </Box>
+  )
 }
 
 export function RowCategory(props: RowCategoryProps) {
@@ -40,6 +63,7 @@ export function RowCategory(props: RowCategoryProps) {
 
   return (
     <InContextMaskProvider mask={scoped.mask}>
+      <RowCategoryPreview {...props} />
       <RenderType
         {...rest}
         rowCategoryVariant={rowCategoryVariant}
