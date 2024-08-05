@@ -87,7 +87,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.2",
     "sharp": "0.33.2",
-    "webpack": "5.89.0"
+    "webpack": "5.93.0"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "8.0.6",
