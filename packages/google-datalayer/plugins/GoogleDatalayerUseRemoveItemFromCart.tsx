@@ -34,7 +34,7 @@ export function UpdateItemQuantity(props: PluginProps<UpdateItemQuantityProps>) 
 
           if (!itemInCart?.quantity || diffQuantity === 0) return original
 
-          const items = [{ ...cartItemToDatalayerItem(itemInCart), quantity: absQuantity }]
+          const items = [{ ...cartItemToDatalayerItem(itemInCart, 0), quantity: absQuantity }]
           sendEvent(diffQuantity < 0 ? 'remove_from_cart' : 'add_to_cart', {
             ...datalayerItemsToCurrencyValue(items),
             items,

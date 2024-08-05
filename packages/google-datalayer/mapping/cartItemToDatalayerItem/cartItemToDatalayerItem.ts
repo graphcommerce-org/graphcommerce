@@ -6,6 +6,7 @@ import { CartItem_DatalayerItemFragment } from './CartItem_DatalayerItem.gql'
 
 export function cartItemToDatalayerItem<P extends CartItem_DatalayerItemFragment>(
   item: P,
+  index: number,
 ): GoogleDatalayerItem {
   const discount = item.prices?.total_item_discount?.value
     ? item.prices.total_item_discount.value / item.quantity
@@ -14,14 +15,15 @@ export function cartItemToDatalayerItem<P extends CartItem_DatalayerItemFragment
   const price = (item?.prices?.price_including_tax?.value ?? 0) - discount
 
   return {
-    ...productToDatalayerItem(item.product),
+    ...productToDatalayerItem(item.product, 0),
     currency: item.prices?.price.currency as string,
     discount,
     price,
+    index,
     quantity: item.quantity,
     item_variant:
       item.__typename === 'ConfigurableCartItem'
-        ? item.configured_variant.sku ?? undefined
+        ? (item.configured_variant.sku ?? undefined)
         : undefined,
   }
 }

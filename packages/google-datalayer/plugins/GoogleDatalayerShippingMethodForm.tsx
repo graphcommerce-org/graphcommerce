@@ -19,7 +19,7 @@ export function ShippingMethodForm(props: PluginProps<ShippingMethodFormProps>) 
         if (result.data?.setShippingMethodsOnCart?.cart) {
           sendEvent(
             'add_shipping_info',
-            cartToAddShippingInfo(result.data?.setShippingMethodsOnCart?.cart),
+            cartToAddShippingInfo(result.data.setShippingMethodsOnCart.cart),
           )
         }
 

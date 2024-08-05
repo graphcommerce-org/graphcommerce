@@ -22,7 +22,7 @@ export function CartStartCheckout(props: PluginProps<CartStartCheckoutProps>) {
       sendEvent('view_cart', viewCart)
       send.current = true
     }
-  }, [viewCart])
+  }, [sendEvent, viewCart])
 
   return (
     <Prev

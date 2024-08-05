@@ -27,9 +27,12 @@ export function AddProductsToCartForm(props: PluginProps<AddProductsToCartFormPr
         const addedItems = findAddedItems(data, variables)
 
         const items = addedItems
-          .map(({ itemVariable, itemInCart }) => {
+          .map(({ itemVariable, itemInCart }, index) => {
             if (!itemInCart) return null
-            return { ...cartItemToDatalayerItem(itemInCart), quantity: itemVariable.quantity }
+            return {
+              ...cartItemToDatalayerItem(itemInCart, index),
+              quantity: itemVariable.quantity,
+            }
           })
           .filter(nonNullable)
 

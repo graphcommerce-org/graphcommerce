@@ -32,7 +32,7 @@ export function DatalayerViewItemList(
   const viewItemList = useMemoObject(
     productItemsToViewItemList(item_list_id, item_list_name, items),
   )
-  useEffect(() => sendEvent('view_item_list', viewItemList), [viewItemList])
+  useEffect(() => sendEvent('view_item_list', viewItemList), [sendEvent, viewItemList])
 
   const selectItem = useEventCallback((itemId: string) => {
     sendEvent('select_item', viewItemListToSelectItem(viewItemList, itemId))
