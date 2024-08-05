@@ -81,6 +81,7 @@
     "@graphcommerce/magento-graphql-rest": "9.0.0-canary.63"
   },
   "changesets": [
+    "afraid-rockets-rule",
     "angry-jokes-lay",
     "brave-seahorses-count",
     "breezy-badgers-divide",
