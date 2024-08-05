@@ -6,15 +6,15 @@ const migrationActionFactory_1 = require("../migrationActionFactory");
 const graphcommerce8to9 = async (schema, client) => {
     const { migrationAction } = (0, migrationActionFactory_1.migrationActionFactory)(schema, client);
     // Removes the deprecated 'Row' field which was deprecated in GC@7.1
-    // const hasRow = schema.models
-    //   .find((m) => m.apiId === 'DynamicRow')
-    //   ?.fields.some((f) => f.apiId === 'row')
-    // if (hasRow) {
-    //   migrationAction(schema, 'simpleField', 'delete', {
-    //     apiId: 'row',
-    //     parentApiId: 'DynamicRow',
-    //   })
-    // }
+    const hasRow = schema.models
+        .find((m) => m.apiId === 'DynamicRow')
+        ?.fields.some((f) => f.apiId === 'row');
+    if (hasRow) {
+        migrationAction(schema, 'simpleField', 'delete', {
+            apiId: 'row',
+            parentApiId: 'DynamicRow',
+        });
+    }
     const hasRowCategory = schema.models.some((m) => m.apiId === 'RowCategory');
     //
     if (!hasRowCategory) {
@@ -51,7 +51,7 @@ const graphcommerce8to9 = async (schema, client) => {
             values: [
                 { displayName: 'Backstory', apiId: 'Backstory' },
                 { displayName: 'Grid', apiId: 'Grid' },
-                { displayName: 'Equal to', apiId: 'EQUAL' },
+                { displayName: 'Swipeable', apiId: 'Swipeable' },
             ],
         });
         migrationAction(schema, 'enumerableField', 'create', {
