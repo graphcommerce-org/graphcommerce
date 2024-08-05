@@ -19,5 +19,10 @@ export function viewItemListToSelectItem(
   viewItemList: ReturnType<typeof productItemsToViewItemList>,
   itemId: string,
 ): SelectItem {
-  return { ...viewItemList, items: viewItemList.items.filter((i) => i.item_id === itemId) }
+  return {
+    ...viewItemList,
+    items: viewItemList.items
+      .map((it, i) => ({ ...it, index: i }))
+      .filter((i) => i.item_id === itemId),
+  }
 }

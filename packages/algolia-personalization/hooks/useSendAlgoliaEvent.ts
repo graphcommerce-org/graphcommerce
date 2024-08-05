@@ -23,6 +23,7 @@ export function useSendAlgoliaEvent() {
   const client = useApolloClient()
   const index = useAlgoliaIndexName()
   const algoliaQuery = useAlgoliaQuery()
+  // const currency = useStorefrontConfig().magentoStoreCode
 
   return useEventCallback<SendEvent>(async (eventN, eventD) => {
     const email = client.cache.readQuery({ query: CustomerDocument })?.customer?.email
@@ -47,7 +48,7 @@ export function useSendAlgoliaEvent() {
                 eventName,
                 eventType: 'click',
                 objectIDs: eventData.items?.map((item) => atob(item.item_uid)),
-                positions: [],
+                positions: eventData.items?.map((item) => item.index),
                 queryID: algoliaQuery.queryID,
                 ...common,
               },
@@ -57,26 +58,50 @@ export function useSendAlgoliaEvent() {
                 eventName,
                 eventType: 'click',
                 objectIDs: eventData.items?.map((item) => atob(item.item_uid)),
-                positions: [],
+                positions: eventData.items?.map((item) => item.index),
                 ...common,
               },
             },
-      // view_item_list: (eventName: string, eventData: ViewItemList) => ({
-      //   Viewed_object_IDs_Input: {
-      //     eventName,
-      //     eventType: 'view',
-      //     objectIDs: eventData.items?.map((item) => atob(item.item_uid)),
-      //     ...common,
-      //   },
-      // }),
-      // view_item: (eventName: string, eventData: ViewItem) => ({
-      //   Viewed_object_IDs_Input: {
-      //     eventName,
-      //     eventType: 'view',
-      //     objectIDs: eventData.items?.map((item) => atob(item.item_uid)),
-      //     ...common,
-      //   },
-      // }),
+      add_to_cart: (eventName: string, eventData: SelectItem) =>
+        algoliaQuery.queryID
+          ? {
+              Added_to_cart_object_IDs_after_search_Input: {
+                eventName,
+                objectIDs: eventData.items?.map((item) => atob(item.item_uid)),
+                queryID: algoliaQuery.queryID,
+                ...common,
+              },
+            }
+          : {
+              Added_to_cart_object_IDs_Input: {
+                eventName,
+                objectIDs: eventData.items?.map((item) => atob(item.item_uid)),
+                ...common,
+              },
+            },
+      // purchase: (eventName: string, eventData: SelectItem) =>
+      //   algoliaQuery.queryID
+      //     ? {
+      //         Purchased_object_IDs_after_search_Input: {
+      //           eventName,
+      //           objectIDs: eventData.items?.map((item) => atob(item.item_uid)),
+
+      //           value: eventData.items?.map((item) => item.price),
+      //           currency,
+      //           queryID: algoliaQuery.queryID,
+      //           ...common,
+      //         },
+      //       }
+      //     : {
+      //         Purchased_object_IDs_Input: {
+      //           eventName,
+      //           value: eventData.items?.map((item) => item.price),
+      //           currency,
+      //           objectIDs: eventData.items?.map((item) => atob(item.item_uid)),
+
+      //           ...common,
+      //         },
+      //       },
     }
 
     const eventMapping = dataLayerToAlgolia[eventN]
