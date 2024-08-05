@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/no-var-requires */
-const fetchRetry = require('fetch-retry')
+import fetchRetry from 'fetch-retry'
 
 /** @type {fetchRetry.default} */
 const fetcher = fetchRetry(
@@ -12,7 +12,7 @@ const fetcher = fetchRetry(
  * @param {import('fetch-retry').RequestInitWithRetry | undefined} options
  * @returns {Promise<Response>}
  */
-module.exports = (url, options) => {
+export default (url, options) => {
   /** @type {RequestInit['headers']} */
   const headers = Object.fromEntries(
     Object.entries(options?.headers ?? {}).filter(([_, value]) => value !== ''),
