@@ -1,5 +1,7 @@
 # Change Log
 
+## 8.0.7
+
 ## 8.0.6
 
 ## 8.0.5
@@ -30,8 +32,7 @@
 
 ### Patch Changes
 
-- [#2221](https://github.com/graphcommerce-org/graphcommerce/pull/2221) [`0ba1fdc`](https://github.com/graphcommerce-org/graphcommerce/commit/0ba1fdc9a2d005f47cd1725fe723e77da4cc5b9d) - After a user just logged in the checkout, the useFormGqlMutationCart would still run even though the cart was locked.
-  ([@paales](https://github.com/paales))
+- [#2221](https://github.com/graphcommerce-org/graphcommerce/pull/2221) [`0ba1fdc`](https://github.com/graphcommerce-org/graphcommerce/commit/0ba1fdc9a2d005f47cd1725fe723e77da4cc5b9d) - After a user just logged in the checkout, the useFormGqlMutationCart would still run even though the cart was locked. ([@paales](https://github.com/paales))
 
 ## 8.0.4-canary.1
 
@@ -39,21 +40,17 @@
 
 ### Patch Changes
 
-- [#2221](https://github.com/graphcommerce-org/graphcommerce/pull/2221) [`0ba1fdc`](https://github.com/graphcommerce-org/graphcommerce/commit/0ba1fdc9a2d005f47cd1725fe723e77da4cc5b9d) - After a user just logged in the checkout, the useFormGqlMutationCart would still run even though the cart was locked.
-  ([@paales](https://github.com/paales))
+- [#2221](https://github.com/graphcommerce-org/graphcommerce/pull/2221) [`0ba1fdc`](https://github.com/graphcommerce-org/graphcommerce/commit/0ba1fdc9a2d005f47cd1725fe723e77da4cc5b9d) - After a user just logged in the checkout, the useFormGqlMutationCart would still run even though the cart was locked. ([@paales](https://github.com/paales))
 
 ## 8.0.3
 
 ### Patch Changes
 
-- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`d67c89d`](https://github.com/graphcommerce-org/graphcommerce/commit/d67c89d464a60f0e2618dab670b63a39f6291341) - Deprecate the allowUrl option for useCartQuery, it was already enabled by default and should never be set to false.
-  ([@paales](https://github.com/paales))
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`d67c89d`](https://github.com/graphcommerce-org/graphcommerce/commit/d67c89d464a60f0e2618dab670b63a39f6291341) - Deprecate the allowUrl option for useCartQuery, it was already enabled by default and should never be set to false. ([@paales](https://github.com/paales))
 
-- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`3fbf3da`](https://github.com/graphcommerce-org/graphcommerce/commit/3fbf3da8a67f2fbaa7fa974a37cbbf34613844e4) - Solve an issue where the user would be presented with the Session expired dialog when the user would be logging in during the checkout process.
-  ([@paales](https://github.com/paales))
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`3fbf3da`](https://github.com/graphcommerce-org/graphcommerce/commit/3fbf3da8a67f2fbaa7fa974a37cbbf34613844e4) - Solve an issue where the user would be presented with the Session expired dialog when the user would be logging in during the checkout process. ([@paales](https://github.com/paales))
 
-- [#2207](https://github.com/graphcommerce-org/graphcommerce/pull/2207) [`9876b13`](https://github.com/graphcommerce-org/graphcommerce/commit/9876b139b2c12c860a16af97eddea761d1059110) - Remove redundant query on the success page for logged in customers
-  ([@paales](https://github.com/paales))
+- [#2207](https://github.com/graphcommerce-org/graphcommerce/pull/2207) [`9876b13`](https://github.com/graphcommerce-org/graphcommerce/commit/9876b139b2c12c860a16af97eddea761d1059110) - Remove redundant query on the success page for logged in customers ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.6
 
@@ -67,18 +64,15 @@
 
 ### Patch Changes
 
-- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`d67c89d`](https://github.com/graphcommerce-org/graphcommerce/commit/d67c89d464a60f0e2618dab670b63a39f6291341) - Deprecate the allowUrl option for useCartQuery, it was already enabled by default and should never be set to false.
-  ([@paales](https://github.com/paales))
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`d67c89d`](https://github.com/graphcommerce-org/graphcommerce/commit/d67c89d464a60f0e2618dab670b63a39f6291341) - Deprecate the allowUrl option for useCartQuery, it was already enabled by default and should never be set to false. ([@paales](https://github.com/paales))
 
-- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`3fbf3da`](https://github.com/graphcommerce-org/graphcommerce/commit/3fbf3da8a67f2fbaa7fa974a37cbbf34613844e4) - Solve an issue where the user would be presented with the Session expired dialog when the user would be logging in during the checkout process.
-  ([@paales](https://github.com/paales))
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`3fbf3da`](https://github.com/graphcommerce-org/graphcommerce/commit/3fbf3da8a67f2fbaa7fa974a37cbbf34613844e4) - Solve an issue where the user would be presented with the Session expired dialog when the user would be logging in during the checkout process. ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.1
 
 ### Patch Changes
 
-- [#2207](https://github.com/graphcommerce-org/graphcommerce/pull/2207) [`9876b13`](https://github.com/graphcommerce-org/graphcommerce/commit/9876b139b2c12c860a16af97eddea761d1059110) - Remove redundant query on the success page for logged in customers
-  ([@paales](https://github.com/paales))
+- [#2207](https://github.com/graphcommerce-org/graphcommerce/pull/2207) [`9876b13`](https://github.com/graphcommerce-org/graphcommerce/commit/9876b139b2c12c860a16af97eddea761d1059110) - Remove redundant query on the success page for logged in customers ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.0
 
@@ -108,38 +102,29 @@
 
 ### Minor Changes
 
-- [#2075](https://github.com/graphcommerce-org/graphcommerce/pull/2075) [`34dee45`](https://github.com/graphcommerce-org/graphcommerce/commit/34dee456ef686174b62e604911a0ba84cbd3d002) - Added the customers order number to succes page.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2075](https://github.com/graphcommerce-org/graphcommerce/pull/2075) [`34dee45`](https://github.com/graphcommerce-org/graphcommerce/commit/34dee456ef686174b62e604911a0ba84cbd3d002) - Added the customers order number to succes page. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2018](https://github.com/graphcommerce-org/graphcommerce/pull/2018) [`750aa6a`](https://github.com/graphcommerce-org/graphcommerce/commit/750aa6a72710869d54244467253212e551d335e0) - Changed the layout of the succes page. We are using ActionCards right now to match the design of the cart.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2018](https://github.com/graphcommerce-org/graphcommerce/pull/2018) [`750aa6a`](https://github.com/graphcommerce-org/graphcommerce/commit/750aa6a72710869d54244467253212e551d335e0) - Changed the layout of the succes page. We are using ActionCards right now to match the design of the cart. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ### Patch Changes
 
-- [#2184](https://github.com/graphcommerce-org/graphcommerce/pull/2184) [`28b7e6e`](https://github.com/graphcommerce-org/graphcommerce/commit/28b7e6ef3e3f698751c6e82431fd14fb35463dd6) - When a customer would return from a payment gateway and it would erroneously query the cart GraphCommerce would immediately create a new empty cart while it shouldn't.
-  ([@paales](https://github.com/paales))
+- [#2184](https://github.com/graphcommerce-org/graphcommerce/pull/2184) [`28b7e6e`](https://github.com/graphcommerce-org/graphcommerce/commit/28b7e6ef3e3f698751c6e82431fd14fb35463dd6) - When a customer would return from a payment gateway and it would erroneously query the cart GraphCommerce would immediately create a new empty cart while it shouldn't. ([@paales](https://github.com/paales))
 
-- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`6d7ed0a`](https://github.com/graphcommerce-org/graphcommerce/commit/6d7ed0a2a3d9b3c6193f86bce6889ff24adf3e83) - After signing in the `<CartFab/>` would not always properly reflect if there are items in the customers cart.
-  ([@paales](https://github.com/paales))
+- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`6d7ed0a`](https://github.com/graphcommerce-org/graphcommerce/commit/6d7ed0a2a3d9b3c6193f86bce6889ff24adf3e83) - After signing in the `<CartFab/>` would not always properly reflect if there are items in the customers cart. ([@paales](https://github.com/paales))
 
-- [#2089](https://github.com/graphcommerce-org/graphcommerce/pull/2089) [`4b6bbf0`](https://github.com/graphcommerce-org/graphcommerce/commit/4b6bbf06572c71e266cc2407e4533833712898e2) - The `<CartFab/>` wouldn't reflect that there are items in the cart when a customer refreshes the page after adding a product to the cart, without viewing the cart.
-  ([@carlocarels90](https://github.com/carlocarels90))
+- [#2089](https://github.com/graphcommerce-org/graphcommerce/pull/2089) [`4b6bbf0`](https://github.com/graphcommerce-org/graphcommerce/commit/4b6bbf06572c71e266cc2407e4533833712898e2) - The `<CartFab/>` wouldn't reflect that there are items in the cart when a customer refreshes the page after adding a product to the cart, without viewing the cart. ([@carlocarels90](https://github.com/carlocarels90))
 
-- [#2170](https://github.com/graphcommerce-org/graphcommerce/pull/2170) [`f3e906f`](https://github.com/graphcommerce-org/graphcommerce/commit/f3e906f7e374ce22d36af29c0f3c8153e18300e6) - Solved an issue where the inactive cart would set as the current cart when the customer had signed in, checked out their cart, session expired and tried to log in again.
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2170](https://github.com/graphcommerce-org/graphcommerce/pull/2170) [`f3e906f`](https://github.com/graphcommerce-org/graphcommerce/commit/f3e906f7e374ce22d36af29c0f3c8153e18300e6) - Solved an issue where the inactive cart would set as the current cart when the customer had signed in, checked out their cart, session expired and tried to log in again. ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2107](https://github.com/graphcommerce-org/graphcommerce/pull/2107) [`2f51504`](https://github.com/graphcommerce-org/graphcommerce/commit/2f5150456eabcce410ad8a0f1cbebeedabb6564c) - Remember email adress when going from checkout to signin/up form
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2107](https://github.com/graphcommerce-org/graphcommerce/pull/2107) [`2f51504`](https://github.com/graphcommerce-org/graphcommerce/commit/2f5150456eabcce410ad8a0f1cbebeedabb6564c) - Remember email adress when going from checkout to signin/up form ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`ab834fb`](https://github.com/graphcommerce-org/graphcommerce/commit/ab834fbfe057fb507c371a6d22af282cc1b195d4) - Added a new 'Session expired' dialog that is shown when a GraphQL query or mutation returns a `graphql-authorization` error. This error is returned when the user's session has expired. The dialog allows the user to sign in again and then the query or mutation is re-executed.
-  ([@paales](https://github.com/paales))
+- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`ab834fb`](https://github.com/graphcommerce-org/graphcommerce/commit/ab834fbfe057fb507c371a6d22af282cc1b195d4) - Added a new 'Session expired' dialog that is shown when a GraphQL query or mutation returns a `graphql-authorization` error. This error is returned when the user's session has expired. The dialog allows the user to sign in again and then the query or mutation is re-executed. ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.100
 
 ### Patch Changes
 
-- [#2184](https://github.com/graphcommerce-org/graphcommerce/pull/2184) [`28b7e6e`](https://github.com/graphcommerce-org/graphcommerce/commit/28b7e6ef3e3f698751c6e82431fd14fb35463dd6) - When a customer would return from a payment gateway and it would erroneously query the cart GraphCommerce would immediately create a new empty cart while it shouldn't.
-  ([@paales](https://github.com/paales))
+- [#2184](https://github.com/graphcommerce-org/graphcommerce/pull/2184) [`28b7e6e`](https://github.com/graphcommerce-org/graphcommerce/commit/28b7e6ef3e3f698751c6e82431fd14fb35463dd6) - When a customer would return from a payment gateway and it would erroneously query the cart GraphCommerce would immediately create a new empty cart while it shouldn't. ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.99
 
@@ -163,8 +148,7 @@
 
 ### Patch Changes
 
-- [#2170](https://github.com/graphcommerce-org/graphcommerce/pull/2170) [`f3e906f`](https://github.com/graphcommerce-org/graphcommerce/commit/f3e906f7e374ce22d36af29c0f3c8153e18300e6) - fix(GCOM-1317): fix bug where inactive cached cart could be set as currentCartId
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2170](https://github.com/graphcommerce-org/graphcommerce/pull/2170) [`f3e906f`](https://github.com/graphcommerce-org/graphcommerce/commit/f3e906f7e374ce22d36af29c0f3c8153e18300e6) - fix(GCOM-1317): fix bug where inactive cached cart could be set as currentCartId ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.0-canary.89
 
@@ -212,11 +196,9 @@
 
 ### Patch Changes
 
-- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`6d7ed0a`](https://github.com/graphcommerce-org/graphcommerce/commit/6d7ed0a2a3d9b3c6193f86bce6889ff24adf3e83) - When signing in the cartFab would not always properly reflect the current items in the cart
-  ([@paales](https://github.com/paales))
+- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`6d7ed0a`](https://github.com/graphcommerce-org/graphcommerce/commit/6d7ed0a2a3d9b3c6193f86bce6889ff24adf3e83) - When signing in the cartFab would not always properly reflect the current items in the cart ([@paales](https://github.com/paales))
 
-- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`ab834fb`](https://github.com/graphcommerce-org/graphcommerce/commit/ab834fbfe057fb507c371a6d22af282cc1b195d4) - Added user session reevaluation after unathenticated call. Queries will be paused untill user has signed in again
-  ([@paales](https://github.com/paales))
+- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`ab834fb`](https://github.com/graphcommerce-org/graphcommerce/commit/ab834fbfe057fb507c371a6d22af282cc1b195d4) - Added user session reevaluation after unathenticated call. Queries will be paused untill user has signed in again ([@paales](https://github.com/paales))
 
 ## 7.1.0-canary.67
 
@@ -1660,31 +1642,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 

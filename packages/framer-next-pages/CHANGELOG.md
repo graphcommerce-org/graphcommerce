@@ -1,13 +1,14 @@
 # Change Log
 
+## 8.0.7
+
 ## 8.0.6
 
 ## 8.0.5
 
 ### Patch Changes
 
-- [#2236](https://github.com/graphcommerce-org/graphcommerce/pull/2236) [`85fb916`](https://github.com/graphcommerce-org/graphcommerce/commit/85fb916e5ec2a1456a93a59bf92a5f414fee8595) - Solve issue where the inert prop wouldnt be properly forwarded
-  ([@paales](https://github.com/paales))
+- [#2236](https://github.com/graphcommerce-org/graphcommerce/pull/2236) [`85fb916`](https://github.com/graphcommerce-org/graphcommerce/commit/85fb916e5ec2a1456a93a59bf92a5f414fee8595) - Solve issue where the inert prop wouldnt be properly forwarded ([@paales](https://github.com/paales))
 
 ## 8.0.5-canary.10
 
@@ -27,8 +28,7 @@
 
 ### Patch Changes
 
-- [#2236](https://github.com/graphcommerce-org/graphcommerce/pull/2236) [`85fb916`](https://github.com/graphcommerce-org/graphcommerce/commit/85fb916e5ec2a1456a93a59bf92a5f414fee8595) - Solve issue where the inert prop wouldnt be properly forwarded
-  ([@paales](https://github.com/paales))
+- [#2236](https://github.com/graphcommerce-org/graphcommerce/pull/2236) [`85fb916`](https://github.com/graphcommerce-org/graphcommerce/commit/85fb916e5ec2a1456a93a59bf92a5f414fee8595) - Solve issue where the inert prop wouldnt be properly forwarded ([@paales](https://github.com/paales))
 
 ## 8.0.5-canary.2
 
@@ -40,8 +40,7 @@
 
 ### Patch Changes
 
-- [#2228](https://github.com/graphcommerce-org/graphcommerce/pull/2228) [`0c0cacb`](https://github.com/graphcommerce-org/graphcommerce/commit/0c0cacb8725f0a626ea5d3acf154d83c433c3eb7) - apply correct type for the inert property
-  ([@carlocarels90](https://github.com/carlocarels90))
+- [#2228](https://github.com/graphcommerce-org/graphcommerce/pull/2228) [`0c0cacb`](https://github.com/graphcommerce-org/graphcommerce/commit/0c0cacb8725f0a626ea5d3acf154d83c433c3eb7) - apply correct type for the inert property ([@carlocarels90](https://github.com/carlocarels90))
 
 ## 8.0.4-canary.1
 
@@ -49,8 +48,7 @@
 
 ### Patch Changes
 
-- [#2228](https://github.com/graphcommerce-org/graphcommerce/pull/2228) [`0c0cacb`](https://github.com/graphcommerce-org/graphcommerce/commit/0c0cacb8725f0a626ea5d3acf154d83c433c3eb7) - apply correct type for the inert property
-  ([@carlocarels90](https://github.com/carlocarels90))
+- [#2228](https://github.com/graphcommerce-org/graphcommerce/pull/2228) [`0c0cacb`](https://github.com/graphcommerce-org/graphcommerce/commit/0c0cacb8725f0a626ea5d3acf154d83c433c3eb7) - apply correct type for the inert property ([@carlocarels90](https://github.com/carlocarels90))
 
 ## 8.0.3
 

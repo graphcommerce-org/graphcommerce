@@ -2,7 +2,7 @@
   "name": "@graphcommerce/ecommerce-ui",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "8.0.6",
+  "version": "8.0.7",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,12 +12,12 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^8.0.6",
-    "@graphcommerce/graphql": "^8.0.6",
-    "@graphcommerce/next-ui": "^8.0.6",
-    "@graphcommerce/prettier-config-pwa": "^8.0.6",
-    "@graphcommerce/react-hook-form": "^8.0.6",
-    "@graphcommerce/typescript-config-pwa": "^8.0.6",
+    "@graphcommerce/eslint-config-pwa": "^8.0.7",
+    "@graphcommerce/graphql": "^8.0.7",
+    "@graphcommerce/next-ui": "^8.0.7",
+    "@graphcommerce/prettier-config-pwa": "^8.0.7",
+    "@graphcommerce/react-hook-form": "^8.0.7",
+    "@graphcommerce/typescript-config-pwa": "^8.0.7",
     "@lingui/core": "^4.2.1",
     "@lingui/macro": "^4.2.1",
     "@lingui/react": "^4.2.1",

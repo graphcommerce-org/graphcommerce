@@ -1,13 +1,14 @@
 # Change Log
 
+## 8.0.7
+
 ## 8.0.6
 
 ## 8.0.5
 
 ### Patch Changes
 
-- [#2233](https://github.com/graphcommerce-org/graphcommerce/pull/2233) [`cabeadc`](https://github.com/graphcommerce-org/graphcommerce/commit/cabeadce2b73ce072a2fa8b8ab1ab49907cda13b) - Added core web vitals measurements to the datalayer.
-  ([@paales](https://github.com/paales))
+- [#2233](https://github.com/graphcommerce-org/graphcommerce/pull/2233) [`cabeadc`](https://github.com/graphcommerce-org/graphcommerce/commit/cabeadce2b73ce072a2fa8b8ab1ab49907cda13b) - Added core web vitals measurements to the datalayer. ([@paales](https://github.com/paales))
 
 ## 8.0.5-canary.10
 
@@ -31,8 +32,7 @@
 
 ### Patch Changes
 
-- [#2233](https://github.com/graphcommerce-org/graphcommerce/pull/2233) [`cabeadc`](https://github.com/graphcommerce-org/graphcommerce/commit/cabeadce2b73ce072a2fa8b8ab1ab49907cda13b) - Added core web vitals measurements to the datalayer.
-  ([@paales](https://github.com/paales))
+- [#2233](https://github.com/graphcommerce-org/graphcommerce/pull/2233) [`cabeadc`](https://github.com/graphcommerce-org/graphcommerce/commit/cabeadce2b73ce072a2fa8b8ab1ab49907cda13b) - Added core web vitals measurements to the datalayer. ([@paales](https://github.com/paales))
 
 ## 8.0.5-canary.0
 
@@ -40,15 +40,13 @@
 
 ### Patch Changes
 
-- [#2158](https://github.com/graphcommerce-org/graphcommerce/pull/2158) [`34de808`](https://github.com/graphcommerce-org/graphcommerce/commit/34de8085e9352d1f3b20b26746685370ea10ab90) - Extracted the datalayer from the googleanalytics package and moved to google-datalayer package. Make sure Google Analytics and Google Tagmanager both can send events individually. Be able to configure the datalayer will send as GA4 or legacy GA3 events.
-  ([@mikekeehnen](https://github.com/mikekeehnen))
+- [#2158](https://github.com/graphcommerce-org/graphcommerce/pull/2158) [`34de808`](https://github.com/graphcommerce-org/graphcommerce/commit/34de8085e9352d1f3b20b26746685370ea10ab90) - Extracted the datalayer from the googleanalytics package and moved to google-datalayer package. Make sure Google Analytics and Google Tagmanager both can send events individually. Be able to configure the datalayer will send as GA4 or legacy GA3 events. ([@mikekeehnen](https://github.com/mikekeehnen))
 
 ## 8.0.4-canary.1
 
 ### Patch Changes
 
-- [#2158](https://github.com/graphcommerce-org/graphcommerce/pull/2158) [`34de808`](https://github.com/graphcommerce-org/graphcommerce/commit/34de8085e9352d1f3b20b26746685370ea10ab90) - Extracted the datalayer from the googleanalytics package and moved to google-datalayer package. Make sure Google Analytics and Google Tagmanager both can send events individually. Be able to configure the datalayer will send as GA4 or legacy GA3 events.
-  ([@mikekeehnen](https://github.com/mikekeehnen))
+- [#2158](https://github.com/graphcommerce-org/graphcommerce/pull/2158) [`34de808`](https://github.com/graphcommerce-org/graphcommerce/commit/34de8085e9352d1f3b20b26746685370ea10ab90) - Extracted the datalayer from the googleanalytics package and moved to google-datalayer package. Make sure Google Analytics and Google Tagmanager both can send events individually. Be able to configure the datalayer will send as GA4 or legacy GA3 events. ([@mikekeehnen](https://github.com/mikekeehnen))
 
 ## 8.0.4-canary.0
 
@@ -94,8 +92,7 @@
 
 ### Minor Changes
 
-- [#2127](https://github.com/graphcommerce-org/graphcommerce/pull/2127) [`124e6c9`](https://github.com/graphcommerce-org/graphcommerce/commit/124e6c92aa3b4b77f54235f0682c38438fd619b6) - Made all Magento dependencies optional in the `googleanalytics` and `googletagmanager` packages, allowing it to be installed in any project.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2127](https://github.com/graphcommerce-org/graphcommerce/pull/2127) [`124e6c9`](https://github.com/graphcommerce-org/graphcommerce/commit/124e6c92aa3b4b77f54235f0682c38438fd619b6) - Made all Magento dependencies optional in the `googleanalytics` and `googletagmanager` packages, allowing it to be installed in any project. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.100
 

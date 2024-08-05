@@ -1,5 +1,7 @@
 # Change Log
 
+## 8.0.7
+
 ## 8.0.6
 
 ## 8.0.5
@@ -62,8 +64,7 @@
 
 ### Patch Changes
 
-- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`6c4cee8`](https://github.com/graphcommerce-org/graphcommerce/commit/6c4cee8469ee4934281bda53ac96aeb5af2f9479) - Make sure the config page can be properly rendered in the docs
-  ([@paales](https://github.com/paales))
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`6c4cee8`](https://github.com/graphcommerce-org/graphcommerce/commit/6c4cee8469ee4934281bda53ac96aeb5af2f9479) - Make sure the config page can be properly rendered in the docs ([@paales](https://github.com/paales))
 
 ## 8.0.1-canary.4
 
@@ -77,15 +78,13 @@
 
 ### Patch Changes
 
-- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`6c4cee8`](https://github.com/graphcommerce-org/graphcommerce/commit/6c4cee8469ee4934281bda53ac96aeb5af2f9479) - Make sure the config page can be properly rendered in the docs
-  ([@paales](https://github.com/paales))
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`6c4cee8`](https://github.com/graphcommerce-org/graphcommerce/commit/6c4cee8469ee4934281bda53ac96aeb5af2f9479) - Make sure the config page can be properly rendered in the docs ([@paales](https://github.com/paales))
 
 ## 8.0.0
 
 ### Patch Changes
 
-- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`2e46389`](https://github.com/graphcommerce-org/graphcommerce/commit/2e46389edcd506c490cd7273be384e5c42df4a9e) - Render `framework/config.md` more nicely, so that we follow a more typescript-esque style and inline the enums.
-  ([@bramvanderholst](https://github.com/bramvanderholst))
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`2e46389`](https://github.com/graphcommerce-org/graphcommerce/commit/2e46389edcd506c490cd7273be384e5c42df4a9e) - Render `framework/config.md` more nicely, so that we follow a more typescript-esque style and inline the enums. ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 8.0.0-canary.100
 

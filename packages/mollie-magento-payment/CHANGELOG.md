@@ -1,5 +1,7 @@
 # Change Log
 
+## 8.0.7
+
 ## 8.0.6
 
 ## 8.0.5
@@ -74,11 +76,9 @@
 
 ### Patch Changes
 
-- [#2092](https://github.com/graphcommerce-org/graphcommerce/pull/2092) [`1edd198`](https://github.com/graphcommerce-org/graphcommerce/commit/1edd198dc6b102be423a5285d9fe4437b69ca165) - An error message would be shown when a payment was sucessfull instead of when an error occured.
-  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2092](https://github.com/graphcommerce-org/graphcommerce/pull/2092) [`1edd198`](https://github.com/graphcommerce-org/graphcommerce/commit/1edd198dc6b102be423a5285d9fe4437b69ca165) - An error message would be shown when a payment was sucessfull instead of when an error occured. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-- [#2124](https://github.com/graphcommerce-org/graphcommerce/pull/2124) [`3bd80b8`](https://github.com/graphcommerce-org/graphcommerce/commit/3bd80b88351963ae95aaa97b2cfa25f8e526a128) - Fixed the issue where a guest returned to a empty cart after a canceled payment with Mollie
-  ([@mikekeehnen](https://github.com/mikekeehnen))
+- [#2124](https://github.com/graphcommerce-org/graphcommerce/pull/2124) [`3bd80b8`](https://github.com/graphcommerce-org/graphcommerce/commit/3bd80b88351963ae95aaa97b2cfa25f8e526a128) - Fixed the issue where a guest returned to a empty cart after a canceled payment with Mollie ([@mikekeehnen](https://github.com/mikekeehnen))
 
 ## 8.0.0-canary.100
 
@@ -1427,31 +1427,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 

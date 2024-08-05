@@ -1,11 +1,12 @@
 # Change Log
 
+## 8.0.7
+
 ## 8.0.6
 
 ### Patch Changes
 
-- [#2248](https://github.com/graphcommerce-org/graphcommerce/pull/2248) [`0289bfb`](https://github.com/graphcommerce-org/graphcommerce/commit/0289bfb5ed611c55212d530cb0bf6a27995e74bd) - Suppress warning where a dependency is an expression, Added uglify-es and long as the dependencies couldn’t be found
-  ([@paales](https://github.com/paales))
+- [#2248](https://github.com/graphcommerce-org/graphcommerce/pull/2248) [`0289bfb`](https://github.com/graphcommerce-org/graphcommerce/commit/0289bfb5ed611c55212d530cb0bf6a27995e74bd) - Suppress warning where a dependency is an expression, Added uglify-es and long as the dependencies couldn’t be found ([@paales](https://github.com/paales))
 
 ## 8.0.5
 
@@ -79,8 +80,7 @@
 
 ### Patch Changes
 
-- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`bf5ae89`](https://github.com/graphcommerce-org/graphcommerce/commit/bf5ae8979b145e7a96303f839ef2b1238712531a) - Remove requirement of toplevelAwait for graphqlSsrClient and solve logging issue in cli
-  ([@paales](https://github.com/paales))
+- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`bf5ae89`](https://github.com/graphcommerce-org/graphcommerce/commit/bf5ae8979b145e7a96303f839ef2b1238712531a) - Remove requirement of toplevelAwait for graphqlSsrClient and solve logging issue in cli ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.100
 

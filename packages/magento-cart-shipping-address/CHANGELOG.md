@@ -1,13 +1,20 @@
 # Change Log
 
+## 8.0.7
+
+### Patch Changes
+
+- [#2343](https://github.com/graphcommerce-org/graphcommerce/pull/2343) [`c527bb7`](https://github.com/graphcommerce-org/graphcommerce/commit/c527bb7e8d0f15f546bcc347969f365657410baa) - Fixed shipping address not getting set for logged-in customers with default address ([@paales](https://github.com/paales))
+
+- [#2343](https://github.com/graphcommerce-org/graphcommerce/pull/2343) [`c527bb7`](https://github.com/graphcommerce-org/graphcommerce/commit/c527bb7e8d0f15f546bcc347969f365657410baa) - Fixed CustomerAddressForm resetting to a saved address when trying to use a new address ([@paales](https://github.com/paales))
+
 ## 8.0.6
 
 ## 8.0.5
 
 ### Patch Changes
 
-- [#2237](https://github.com/graphcommerce-org/graphcommerce/pull/2237) [`8d385fb`](https://github.com/graphcommerce-org/graphcommerce/commit/8d385fb83751c97ea62621a163989eddfd1a2f22) - When the checkout address is saved, the billing address would diverge from the shipping address in some cases. In other cases it wouldn't be set at all or would be set to the shipping address.
-  ([@bramvanderholst](https://github.com/bramvanderholst))
+- [#2237](https://github.com/graphcommerce-org/graphcommerce/pull/2237) [`8d385fb`](https://github.com/graphcommerce-org/graphcommerce/commit/8d385fb83751c97ea62621a163989eddfd1a2f22) - When the checkout address is saved, the billing address would diverge from the shipping address in some cases. In other cases it wouldn't be set at all or would be set to the shipping address. ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 8.0.5-canary.10
 
@@ -25,8 +32,7 @@
 
 ### Patch Changes
 
-- [#2237](https://github.com/graphcommerce-org/graphcommerce/pull/2237) [`8d385fb`](https://github.com/graphcommerce-org/graphcommerce/commit/8d385fb83751c97ea62621a163989eddfd1a2f22) - When the checkout address is saved, the billing address would diverge from the shipping address in some cases. In other cases it wouldn't be set at all or would be set to the shipping address.
-  ([@bramvanderholst](https://github.com/bramvanderholst))
+- [#2237](https://github.com/graphcommerce-org/graphcommerce/pull/2237) [`8d385fb`](https://github.com/graphcommerce-org/graphcommerce/commit/8d385fb83751c97ea62621a163989eddfd1a2f22) - When the checkout address is saved, the billing address would diverge from the shipping address in some cases. In other cases it wouldn't be set at all or would be set to the shipping address. ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 8.0.5-canary.3
 
@@ -46,11 +52,9 @@
 
 ### Patch Changes
 
-- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`d67c89d`](https://github.com/graphcommerce-org/graphcommerce/commit/d67c89d464a60f0e2618dab670b63a39f6291341) - Deprecate the allowUrl option for useCartQuery, it was already enabled by default and should never be set to false.
-  ([@paales](https://github.com/paales))
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`d67c89d`](https://github.com/graphcommerce-org/graphcommerce/commit/d67c89d464a60f0e2618dab670b63a39f6291341) - Deprecate the allowUrl option for useCartQuery, it was already enabled by default and should never be set to false. ([@paales](https://github.com/paales))
 
-- [#2206](https://github.com/graphcommerce-org/graphcommerce/pull/2206) [`646db64`](https://github.com/graphcommerce-org/graphcommerce/commit/646db640ec09c1c82584f5543ab487a44ab8d260) - Solves an issue where the billing address of a logged in customer would not set set when a shipping address was already set
-  ([@paales](https://github.com/paales))
+- [#2206](https://github.com/graphcommerce-org/graphcommerce/pull/2206) [`646db64`](https://github.com/graphcommerce-org/graphcommerce/commit/646db640ec09c1c82584f5543ab487a44ab8d260) - Solves an issue where the billing address of a logged in customer would not set set when a shipping address was already set ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.6
 
@@ -62,15 +66,13 @@
 
 ### Patch Changes
 
-- [#2206](https://github.com/graphcommerce-org/graphcommerce/pull/2206) [`646db64`](https://github.com/graphcommerce-org/graphcommerce/commit/646db640ec09c1c82584f5543ab487a44ab8d260) - Solves an issue where the billing address of a logged in customer would not set set when a shipping address was already set
-  ([@paales](https://github.com/paales))
+- [#2206](https://github.com/graphcommerce-org/graphcommerce/pull/2206) [`646db64`](https://github.com/graphcommerce-org/graphcommerce/commit/646db640ec09c1c82584f5543ab487a44ab8d260) - Solves an issue where the billing address of a logged in customer would not set set when a shipping address was already set ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.2
 
 ### Patch Changes
 
-- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`d67c89d`](https://github.com/graphcommerce-org/graphcommerce/commit/d67c89d464a60f0e2618dab670b63a39f6291341) - Deprecate the allowUrl option for useCartQuery, it was already enabled by default and should never be set to false.
-  ([@paales](https://github.com/paales))
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`d67c89d`](https://github.com/graphcommerce-org/graphcommerce/commit/d67c89d464a60f0e2618dab670b63a39f6291341) - Deprecate the allowUrl option for useCartQuery, it was already enabled by default and should never be set to false. ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.1
 
@@ -102,11 +104,9 @@
 
 ### Patch Changes
 
-- [#2115](https://github.com/graphcommerce-org/graphcommerce/pull/2115) [`105a1af`](https://github.com/graphcommerce-org/graphcommerce/commit/105a1af8b820de8873e430ae398f1922d39a9110) - Disabled ripple animations on all ActionCard ‘Select’ and ‘Change’ so the rendering is more subtle during checkout.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2115](https://github.com/graphcommerce-org/graphcommerce/pull/2115) [`105a1af`](https://github.com/graphcommerce-org/graphcommerce/commit/105a1af8b820de8873e430ae398f1922d39a9110) - Disabled ripple animations on all ActionCard ‘Select’ and ‘Change’ so the rendering is more subtle during checkout. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2118](https://github.com/graphcommerce-org/graphcommerce/pull/2118) [`0cdaad2`](https://github.com/graphcommerce-org/graphcommerce/commit/0cdaad28fb9a20fb5b0b1d339f197b938aa3595a) - Fixed bug where if the customer created a new address during checkout it would not be persisted when navigating back from the payment step.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2118](https://github.com/graphcommerce-org/graphcommerce/pull/2118) [`0cdaad2`](https://github.com/graphcommerce-org/graphcommerce/commit/0cdaad28fb9a20fb5b0b1d339f197b938aa3595a) - Fixed bug where if the customer created a new address during checkout it would not be persisted when navigating back from the payment step. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.100
 
@@ -1422,31 +1422,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 

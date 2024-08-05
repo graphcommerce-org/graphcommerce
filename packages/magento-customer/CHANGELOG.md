@@ -1,13 +1,14 @@
 # Change Log
 
+## 8.0.7
+
 ## 8.0.6
 
 ## 8.0.5
 
 ### Patch Changes
 
-- [#2243](https://github.com/graphcommerce-org/graphcommerce/pull/2243) [`c2ddb9e`](https://github.com/graphcommerce-org/graphcommerce/commit/c2ddb9e1e9d08b4363cc1ffa31e23d715ab1bdb6) - Solve an issue where the cart wouldn't be merged after the customer created a new account.
-  ([@paales](https://github.com/paales))
+- [#2243](https://github.com/graphcommerce-org/graphcommerce/pull/2243) [`c2ddb9e`](https://github.com/graphcommerce-org/graphcommerce/commit/c2ddb9e1e9d08b4363cc1ffa31e23d715ab1bdb6) - Solve an issue where the cart wouldn't be merged after the customer created a new account. ([@paales](https://github.com/paales))
 
 ## 8.0.5-canary.10
 
@@ -21,8 +22,7 @@
 
 ### Patch Changes
 
-- [#2243](https://github.com/graphcommerce-org/graphcommerce/pull/2243) [`c2ddb9e`](https://github.com/graphcommerce-org/graphcommerce/commit/c2ddb9e1e9d08b4363cc1ffa31e23d715ab1bdb6) - Solve an issue where the cart wouldn't be merged after the customer created a new account.
-  ([@paales](https://github.com/paales))
+- [#2243](https://github.com/graphcommerce-org/graphcommerce/pull/2243) [`c2ddb9e`](https://github.com/graphcommerce-org/graphcommerce/commit/c2ddb9e1e9d08b4363cc1ffa31e23d715ab1bdb6) - Solve an issue where the cart wouldn't be merged after the customer created a new account. ([@paales](https://github.com/paales))
 
 ## 8.0.5-canary.5
 
@@ -46,17 +46,13 @@
 
 ### Patch Changes
 
-- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`6b61a93`](https://github.com/graphcommerce-org/graphcommerce/commit/6b61a93476505e66a3135844b9bce62ccdd1bdcf) - Solve an issue where the customer could not save their region in the customer account section.
-  ([@paales](https://github.com/paales))
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`6b61a93`](https://github.com/graphcommerce-org/graphcommerce/commit/6b61a93476505e66a3135844b9bce62ccdd1bdcf) - Solve an issue where the customer could not save their region in the customer account section. ([@paales](https://github.com/paales))
 
-- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`3fbf3da`](https://github.com/graphcommerce-org/graphcommerce/commit/3fbf3da8a67f2fbaa7fa974a37cbbf34613844e4) - Solve an issue where the user would be presented with the Session expired dialog when the user would be logging in during the checkout process.
-  ([@paales](https://github.com/paales))
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`3fbf3da`](https://github.com/graphcommerce-org/graphcommerce/commit/3fbf3da8a67f2fbaa7fa974a37cbbf34613844e4) - Solve an issue where the user would be presented with the Session expired dialog when the user would be logging in during the checkout process. ([@paales](https://github.com/paales))
 
-- [#2207](https://github.com/graphcommerce-org/graphcommerce/pull/2207) [`4d7594c`](https://github.com/graphcommerce-org/graphcommerce/commit/4d7594ca2174f74bfa9f66a464b77b3fd04f3560) - After changing the default shipping or billing address in the account section other address would not properly update
-  ([@paales](https://github.com/paales))
+- [#2207](https://github.com/graphcommerce-org/graphcommerce/pull/2207) [`4d7594c`](https://github.com/graphcommerce-org/graphcommerce/commit/4d7594ca2174f74bfa9f66a464b77b3fd04f3560) - After changing the default shipping or billing address in the account section other address would not properly update ([@paales](https://github.com/paales))
 
-- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`dbd943d`](https://github.com/graphcommerce-org/graphcommerce/commit/dbd943d9f588f24d5c73bdf35f2d3bbc5e0e3406) - Split out AddressFields into separate components and allow renaming fields.
-  ([@paales](https://github.com/paales))
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`dbd943d`](https://github.com/graphcommerce-org/graphcommerce/commit/dbd943d9f588f24d5c73bdf35f2d3bbc5e0e3406) - Split out AddressFields into separate components and allow renaming fields. ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.6
 
@@ -64,11 +60,9 @@
 
 ### Patch Changes
 
-- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`6b61a93`](https://github.com/graphcommerce-org/graphcommerce/commit/6b61a93476505e66a3135844b9bce62ccdd1bdcf) - Solve an issue where the customer could not save their region in the customer account section.
-  ([@paales](https://github.com/paales))
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`6b61a93`](https://github.com/graphcommerce-org/graphcommerce/commit/6b61a93476505e66a3135844b9bce62ccdd1bdcf) - Solve an issue where the customer could not save their region in the customer account section. ([@paales](https://github.com/paales))
 
-- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`dbd943d`](https://github.com/graphcommerce-org/graphcommerce/commit/dbd943d9f588f24d5c73bdf35f2d3bbc5e0e3406) - Split out AddressFields into separate components and allow renaming fields.
-  ([@paales](https://github.com/paales))
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`dbd943d`](https://github.com/graphcommerce-org/graphcommerce/commit/dbd943d9f588f24d5c73bdf35f2d3bbc5e0e3406) - Split out AddressFields into separate components and allow renaming fields. ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.4
 
@@ -78,15 +72,13 @@
 
 ### Patch Changes
 
-- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`3fbf3da`](https://github.com/graphcommerce-org/graphcommerce/commit/3fbf3da8a67f2fbaa7fa974a37cbbf34613844e4) - Solve an issue where the user would be presented with the Session expired dialog when the user would be logging in during the checkout process.
-  ([@paales](https://github.com/paales))
+- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`3fbf3da`](https://github.com/graphcommerce-org/graphcommerce/commit/3fbf3da8a67f2fbaa7fa974a37cbbf34613844e4) - Solve an issue where the user would be presented with the Session expired dialog when the user would be logging in during the checkout process. ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.1
 
 ### Patch Changes
 
-- [#2207](https://github.com/graphcommerce-org/graphcommerce/pull/2207) [`4d7594c`](https://github.com/graphcommerce-org/graphcommerce/commit/4d7594ca2174f74bfa9f66a464b77b3fd04f3560) - After changing the default shipping or billing address in the account section other address would not properly update
-  ([@paales](https://github.com/paales))
+- [#2207](https://github.com/graphcommerce-org/graphcommerce/pull/2207) [`4d7594c`](https://github.com/graphcommerce-org/graphcommerce/commit/4d7594ca2174f74bfa9f66a464b77b3fd04f3560) - After changing the default shipping or billing address in the account section other address would not properly update ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.0
 
@@ -94,8 +86,7 @@
 
 ### Patch Changes
 
-- [#2197](https://github.com/graphcommerce-org/graphcommerce/pull/2197) [`044331c`](https://github.com/graphcommerce-org/graphcommerce/commit/044331cf1ea3a6040cfe8e0f79fb62025d5a9d90) - Revert: Change sorting for customer orders in Descending Created at order
-  ([@paales](https://github.com/paales))
+- [#2197](https://github.com/graphcommerce-org/graphcommerce/pull/2197) [`044331c`](https://github.com/graphcommerce-org/graphcommerce/commit/044331cf1ea3a6040cfe8e0f79fb62025d5a9d90) - Revert: Change sorting for customer orders in Descending Created at order ([@paales](https://github.com/paales))
 
 ## 8.0.2-canary.3
 
@@ -103,8 +94,7 @@
 
 ### Patch Changes
 
-- [#2197](https://github.com/graphcommerce-org/graphcommerce/pull/2197) [`044331c`](https://github.com/graphcommerce-org/graphcommerce/commit/044331cf1ea3a6040cfe8e0f79fb62025d5a9d90) - Revert: Change sorting for customer orders in Descending Created at order
-  ([@paales](https://github.com/paales))
+- [#2197](https://github.com/graphcommerce-org/graphcommerce/pull/2197) [`044331c`](https://github.com/graphcommerce-org/graphcommerce/commit/044331cf1ea3a6040cfe8e0f79fb62025d5a9d90) - Revert: Change sorting for customer orders in Descending Created at order ([@paales](https://github.com/paales))
 
 ## 8.0.2-canary.1
 
@@ -114,24 +104,19 @@
 
 ### Patch Changes
 
-- [#2177](https://github.com/graphcommerce-org/graphcommerce/pull/2177) [`816d789`](https://github.com/graphcommerce-org/graphcommerce/commit/816d7893159528bbe4ffc51c3958c806b81b58b0) - Change sorting for customer orders in Descending Created at order
-  ([@LaurensFranken](https://github.com/LaurensFranken))
+- [#2177](https://github.com/graphcommerce-org/graphcommerce/pull/2177) [`816d789`](https://github.com/graphcommerce-org/graphcommerce/commit/816d7893159528bbe4ffc51c3958c806b81b58b0) - Change sorting for customer orders in Descending Created at order ([@LaurensFranken](https://github.com/LaurensFranken))
 
-- [#2191](https://github.com/graphcommerce-org/graphcommerce/pull/2191) [`13ffa6b`](https://github.com/graphcommerce-org/graphcommerce/commit/13ffa6b945f1c72bf1fdc9298e4ce5dd76b48d73) - When a user was logging in from the checkout react would be caught in an infinite loop and thus the page would hang
-  ([@JoshuaS98](https://github.com/JoshuaS98))
+- [#2191](https://github.com/graphcommerce-org/graphcommerce/pull/2191) [`13ffa6b`](https://github.com/graphcommerce-org/graphcommerce/commit/13ffa6b945f1c72bf1fdc9298e4ce5dd76b48d73) - When a user was logging in from the checkout react would be caught in an infinite loop and thus the page would hang ([@JoshuaS98](https://github.com/JoshuaS98))
 
-- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`09a2cc3`](https://github.com/graphcommerce-org/graphcommerce/commit/09a2cc35ceb5e714ffd02e573eebe7de842ae327) - Do not try to automatically invalidate the current token and fully rely on the Session Expired dialog
-  ([@paales](https://github.com/paales))
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`09a2cc3`](https://github.com/graphcommerce-org/graphcommerce/commit/09a2cc35ceb5e714ffd02e573eebe7de842ae327) - Do not try to automatically invalidate the current token and fully rely on the Session Expired dialog ([@paales](https://github.com/paales))
 
-- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`ee969bf`](https://github.com/graphcommerce-org/graphcommerce/commit/ee969bfc5415392747b04e0484685f5c611a2559) - After signing out the currentCartId was still returning a value causing the cart to be shown after signing out
-  ([@paales](https://github.com/paales))
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`ee969bf`](https://github.com/graphcommerce-org/graphcommerce/commit/ee969bfc5415392747b04e0484685f5c611a2559) - After signing out the currentCartId was still returning a value causing the cart to be shown after signing out ([@paales](https://github.com/paales))
 
 ## 8.0.1-canary.4
 
 ### Patch Changes
 
-- [#2191](https://github.com/graphcommerce-org/graphcommerce/pull/2191) [`13ffa6b`](https://github.com/graphcommerce-org/graphcommerce/commit/13ffa6b945f1c72bf1fdc9298e4ce5dd76b48d73) - When a user was logging in from the checkout react would be caught in an infinite loop and thus the page would hang
-  ([@JoshuaS98](https://github.com/JoshuaS98))
+- [#2191](https://github.com/graphcommerce-org/graphcommerce/pull/2191) [`13ffa6b`](https://github.com/graphcommerce-org/graphcommerce/commit/13ffa6b945f1c72bf1fdc9298e4ce5dd76b48d73) - When a user was logging in from the checkout react would be caught in an infinite loop and thus the page would hang ([@JoshuaS98](https://github.com/JoshuaS98))
 
 ## 8.0.1-canary.3
 
@@ -139,8 +124,7 @@
 
 ### Patch Changes
 
-- [#2177](https://github.com/graphcommerce-org/graphcommerce/pull/2177) [`816d789`](https://github.com/graphcommerce-org/graphcommerce/commit/816d7893159528bbe4ffc51c3958c806b81b58b0) - Change sorting for customer orders in Descending Created at order
-  ([@LaurensFranken](https://github.com/LaurensFranken))
+- [#2177](https://github.com/graphcommerce-org/graphcommerce/pull/2177) [`816d789`](https://github.com/graphcommerce-org/graphcommerce/commit/816d7893159528bbe4ffc51c3958c806b81b58b0) - Change sorting for customer orders in Descending Created at order ([@LaurensFranken](https://github.com/LaurensFranken))
 
 ## 8.0.1-canary.1
 
@@ -148,18 +132,15 @@
 
 ### Patch Changes
 
-- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`09a2cc3`](https://github.com/graphcommerce-org/graphcommerce/commit/09a2cc35ceb5e714ffd02e573eebe7de842ae327) - Do not try to automatically invalidate the current token and fully rely on the Session Expired dialog
-  ([@paales](https://github.com/paales))
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`09a2cc3`](https://github.com/graphcommerce-org/graphcommerce/commit/09a2cc35ceb5e714ffd02e573eebe7de842ae327) - Do not try to automatically invalidate the current token and fully rely on the Session Expired dialog ([@paales](https://github.com/paales))
 
-- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`ee969bf`](https://github.com/graphcommerce-org/graphcommerce/commit/ee969bfc5415392747b04e0484685f5c611a2559) - After signing out the currentCartId was still returning a value causing the cart to be shown after signing out
-  ([@paales](https://github.com/paales))
+- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`ee969bf`](https://github.com/graphcommerce-org/graphcommerce/commit/ee969bfc5415392747b04e0484685f5c611a2559) - After signing out the currentCartId was still returning a value causing the cart to be shown after signing out ([@paales](https://github.com/paales))
 
 ## 8.0.0
 
 ### Minor Changes
 
-- [#2175](https://github.com/graphcommerce-org/graphcommerce/pull/2175) [`a6bcb87`](https://github.com/graphcommerce-org/graphcommerce/commit/a6bcb8785d54ef735d82154a775822d84f2b2b80) - Autofill country dropdown in CreateCustomerAddressForm so AddPostcodeNLAddressFields plugin works by default
-  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2175](https://github.com/graphcommerce-org/graphcommerce/pull/2175) [`a6bcb87`](https://github.com/graphcommerce-org/graphcommerce/commit/a6bcb8785d54ef735d82154a775822d84f2b2b80) - Autofill country dropdown in CreateCustomerAddressForm so AddPostcodeNLAddressFields plugin works by default ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 - [#2110](https://github.com/graphcommerce-org/graphcommerce/pull/2110) [`d2e716d`](https://github.com/graphcommerce-org/graphcommerce/commit/d2e716d437fcfed13388ef536a8e73513744027b) - ---
 
@@ -173,38 +154,27 @@
 
 ### Patch Changes
 
-- [#2091](https://github.com/graphcommerce-org/graphcommerce/pull/2091) [`5b865d3`](https://github.com/graphcommerce-org/graphcommerce/commit/5b865d376fe3b830a03af15b56986a0448af4987) - Order details page in the customer account section is completely redesigned to be more in line with other areas.
-  ([@StefanAngenent](https://github.com/StefanAngenent))
+- [#2091](https://github.com/graphcommerce-org/graphcommerce/pull/2091) [`5b865d3`](https://github.com/graphcommerce-org/graphcommerce/commit/5b865d376fe3b830a03af15b56986a0448af4987) - Order details page in the customer account section is completely redesigned to be more in line with other areas. ([@StefanAngenent](https://github.com/StefanAngenent))
 
-- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`a5c6550`](https://github.com/graphcommerce-org/graphcommerce/commit/a5c65506a7e72bd9ea101f665ce201e82396c63c) - Allow passing skip to useCustomerQuery and useGuestQuery
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`a5c6550`](https://github.com/graphcommerce-org/graphcommerce/commit/a5c65506a7e72bd9ea101f665ce201e82396c63c) - Allow passing skip to useCustomerQuery and useGuestQuery ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2170](https://github.com/graphcommerce-org/graphcommerce/pull/2170) [`f3e906f`](https://github.com/graphcommerce-org/graphcommerce/commit/f3e906f7e374ce22d36af29c0f3c8153e18300e6) - Solved an issue where the inactive cart would set as the current cart when the customer had signed in, checked out their cart, session expired and tried to log in again.
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2170](https://github.com/graphcommerce-org/graphcommerce/pull/2170) [`f3e906f`](https://github.com/graphcommerce-org/graphcommerce/commit/f3e906f7e374ce22d36af29c0f3c8153e18300e6) - Solved an issue where the inactive cart would set as the current cart when the customer had signed in, checked out their cart, session expired and tried to log in again. ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2107](https://github.com/graphcommerce-org/graphcommerce/pull/2107) [`2f51504`](https://github.com/graphcommerce-org/graphcommerce/commit/2f5150456eabcce410ad8a0f1cbebeedabb6564c) - Remember email adress when going from checkout to signin/up form
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2107](https://github.com/graphcommerce-org/graphcommerce/pull/2107) [`2f51504`](https://github.com/graphcommerce-org/graphcommerce/commit/2f5150456eabcce410ad8a0f1cbebeedabb6564c) - Remember email adress when going from checkout to signin/up form ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2128](https://github.com/graphcommerce-org/graphcommerce/pull/2128) [`2320f8f`](https://github.com/graphcommerce-org/graphcommerce/commit/2320f8fa28713f45f0a9ecfc7d8623120add2a9a) - Fixed bug which caused region to not be set properly if user swapped countries in the checkout process.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2128](https://github.com/graphcommerce-org/graphcommerce/pull/2128) [`2320f8f`](https://github.com/graphcommerce-org/graphcommerce/commit/2320f8fa28713f45f0a9ecfc7d8623120add2a9a) - Fixed bug which caused region to not be set properly if user swapped countries in the checkout process. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`ab834fb`](https://github.com/graphcommerce-org/graphcommerce/commit/ab834fbfe057fb507c371a6d22af282cc1b195d4) - Added a new 'Session expired' dialog that is shown when a GraphQL query or mutation returns a `graphql-authorization` error. This error is returned when the user's session has expired. The dialog allows the user to sign in again and then the query or mutation is re-executed.
-  ([@paales](https://github.com/paales))
+- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`ab834fb`](https://github.com/graphcommerce-org/graphcommerce/commit/ab834fbfe057fb507c371a6d22af282cc1b195d4) - Added a new 'Session expired' dialog that is shown when a GraphQL query or mutation returns a `graphql-authorization` error. This error is returned when the user's session has expired. The dialog allows the user to sign in again and then the query or mutation is re-executed. ([@paales](https://github.com/paales))
 
-- [#2166](https://github.com/graphcommerce-org/graphcommerce/pull/2166) [`304b816`](https://github.com/graphcommerce-org/graphcommerce/commit/304b81659caf82d9f500401d21da4110dd40db61) - When a user is logged in the modal is dismissed immediately without showing a succes page. This speeds up the interaction with the site.
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2166](https://github.com/graphcommerce-org/graphcommerce/pull/2166) [`304b816`](https://github.com/graphcommerce-org/graphcommerce/commit/304b81659caf82d9f500401d21da4110dd40db61) - When a user is logged in the modal is dismissed immediately without showing a succes page. This speeds up the interaction with the site. ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`c11f3b8`](https://github.com/graphcommerce-org/graphcommerce/commit/c11f3b88f187bb8e0059a6940b9835a076e5faf8) - Created a `debug.sessions` config that allows debugging sessions. Enable with `GC_DEBUG_SESSIONS=1` in your env or modify your graphcommerce.config.js
-  ([@paales](https://github.com/paales))
+- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`c11f3b8`](https://github.com/graphcommerce-org/graphcommerce/commit/c11f3b88f187bb8e0059a6940b9835a076e5faf8) - Created a `debug.sessions` config that allows debugging sessions. Enable with `GC_DEBUG_SESSIONS=1` in your env or modify your graphcommerce.config.js ([@paales](https://github.com/paales))
 
-- [#2087](https://github.com/graphcommerce-org/graphcommerce/pull/2087) [`42c33c6`](https://github.com/graphcommerce-org/graphcommerce/commit/42c33c6e3adceee400bc9f10ec416731db9279c0) - The message when the email was updated was unstyled.
-  ([@StefanAngenent](https://github.com/StefanAngenent))
+- [#2087](https://github.com/graphcommerce-org/graphcommerce/pull/2087) [`42c33c6`](https://github.com/graphcommerce-org/graphcommerce/commit/42c33c6e3adceee400bc9f10ec416731db9279c0) - The message when the email was updated was unstyled. ([@StefanAngenent](https://github.com/StefanAngenent))
 
-- [#2082](https://github.com/graphcommerce-org/graphcommerce/pull/2082) [`2e8d19c`](https://github.com/graphcommerce-org/graphcommerce/commit/2e8d19cccd305f0e8eb4c29d05161af6cfdb9d84) - Add 'Current email' translation
-  ([@StefanAngenent](https://github.com/StefanAngenent))
+- [#2082](https://github.com/graphcommerce-org/graphcommerce/pull/2082) [`2e8d19c`](https://github.com/graphcommerce-org/graphcommerce/commit/2e8d19cccd305f0e8eb4c29d05161af6cfdb9d84) - Add 'Current email' translation ([@StefanAngenent](https://github.com/StefanAngenent))
 
-- [#2098](https://github.com/graphcommerce-org/graphcommerce/pull/2098) [`ca45472`](https://github.com/graphcommerce-org/graphcommerce/commit/ca45472246e084f4b88f91bc700351e29c63e0e2) - Fix `<EditAddressForm />` when addition field is null or undefined
-  ([@JoshuaS98](https://github.com/JoshuaS98))
+- [#2098](https://github.com/graphcommerce-org/graphcommerce/pull/2098) [`ca45472`](https://github.com/graphcommerce-org/graphcommerce/commit/ca45472246e084f4b88f91bc700351e29c63e0e2) - Fix `<EditAddressForm />` when addition field is null or undefined ([@JoshuaS98](https://github.com/JoshuaS98))
 
 ## 8.0.0-canary.100
 
@@ -216,8 +186,7 @@
 
 ### Minor Changes
 
-- [#2175](https://github.com/graphcommerce-org/graphcommerce/pull/2175) [`a6bcb87`](https://github.com/graphcommerce-org/graphcommerce/commit/a6bcb8785d54ef735d82154a775822d84f2b2b80) - Autofill country dropdown in CreateCustomerAddressForm so AddPostcodeNLAddressFields plugin works by default
-  ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2175](https://github.com/graphcommerce-org/graphcommerce/pull/2175) [`a6bcb87`](https://github.com/graphcommerce-org/graphcommerce/commit/a6bcb8785d54ef735d82154a775822d84f2b2b80) - Autofill country dropdown in CreateCustomerAddressForm so AddPostcodeNLAddressFields plugin works by default ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ## 8.0.0-canary.96
 
@@ -235,8 +204,7 @@
 
 ### Patch Changes
 
-- [#2170](https://github.com/graphcommerce-org/graphcommerce/pull/2170) [`f3e906f`](https://github.com/graphcommerce-org/graphcommerce/commit/f3e906f7e374ce22d36af29c0f3c8153e18300e6) - fix(GCOM-1317): fix bug where inactive cached cart could be set as currentCartId
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2170](https://github.com/graphcommerce-org/graphcommerce/pull/2170) [`f3e906f`](https://github.com/graphcommerce-org/graphcommerce/commit/f3e906f7e374ce22d36af29c0f3c8153e18300e6) - fix(GCOM-1317): fix bug where inactive cached cart could be set as currentCartId ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.0-canary.89
 
@@ -244,8 +212,7 @@
 
 ### Patch Changes
 
-- [#2166](https://github.com/graphcommerce-org/graphcommerce/pull/2166) [`304b816`](https://github.com/graphcommerce-org/graphcommerce/commit/304b81659caf82d9f500401d21da4110dd40db61) - Dismiss login page and go back to previous page asap when logging in
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2166](https://github.com/graphcommerce-org/graphcommerce/pull/2166) [`304b816`](https://github.com/graphcommerce-org/graphcommerce/commit/304b81659caf82d9f500401d21da4110dd40db61) - Dismiss login page and go back to previous page asap when logging in ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.0-canary.87
 
@@ -285,8 +252,7 @@
 
 ### Patch Changes
 
-- [#2128](https://github.com/graphcommerce-org/graphcommerce/pull/2128) [`2320f8f`](https://github.com/graphcommerce-org/graphcommerce/commit/2320f8fa28713f45f0a9ecfc7d8623120add2a9a) - Fixed bug which caused region to not be set properly if user swapped countries in the checkout process.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2128](https://github.com/graphcommerce-org/graphcommerce/pull/2128) [`2320f8f`](https://github.com/graphcommerce-org/graphcommerce/commit/2320f8fa28713f45f0a9ecfc7d8623120add2a9a) - Fixed bug which caused region to not be set properly if user swapped countries in the checkout process. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.69
 
@@ -294,11 +260,9 @@
 
 ### Patch Changes
 
-- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`ab834fb`](https://github.com/graphcommerce-org/graphcommerce/commit/ab834fbfe057fb507c371a6d22af282cc1b195d4) - Added user session reevaluation after unathenticated call. Queries will be paused untill user has signed in again
-  ([@paales](https://github.com/paales))
+- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`ab834fb`](https://github.com/graphcommerce-org/graphcommerce/commit/ab834fbfe057fb507c371a6d22af282cc1b195d4) - Added user session reevaluation after unathenticated call. Queries will be paused untill user has signed in again ([@paales](https://github.com/paales))
 
-- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`c11f3b8`](https://github.com/graphcommerce-org/graphcommerce/commit/c11f3b88f187bb8e0059a6940b9835a076e5faf8) - Created a debug.sessions config that allows debugging sessions. Enable with GC_DEBUG_SESSIONS=1 in your env or modify your graphcommerce.config.js
-  ([@paales](https://github.com/paales))
+- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`c11f3b8`](https://github.com/graphcommerce-org/graphcommerce/commit/c11f3b88f187bb8e0059a6940b9835a076e5faf8) - Created a debug.sessions config that allows debugging sessions. Enable with GC_DEBUG_SESSIONS=1 in your env or modify your graphcommerce.config.js ([@paales](https://github.com/paales))
 
 ## 7.1.0-canary.67
 
@@ -1733,31 +1697,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 
