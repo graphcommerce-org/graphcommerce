@@ -15,12 +15,12 @@
     "generate": "tsx scripts/generate-spec.mts"
   },
   "peerDependencies": {
+    "@graphcommerce/google-datalayer": "^9.0.0-canary.63",
     "@graphcommerce/graphql-mesh": "^9.0.0-canary.63",
     "@graphcommerce/magento-product": "^9.0.0-canary.63",
     "@graphcommerce/magento-search": "^9.0.0-canary.63",
     "@graphcommerce/next-config": "^9.0.0-canary.63",
     "@graphcommerce/next-ui": "^9.0.0-canary.63",
-    "@graphcommerce/google-datalayer": "^9.0.0-canary.63",
     "react": "^18.2.0"
   },
   "devDependencies": {

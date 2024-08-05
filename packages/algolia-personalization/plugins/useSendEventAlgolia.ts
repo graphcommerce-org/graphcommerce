@@ -1,5 +1,5 @@
 import type {
-  SendEvent,
+  sendEvent,
   useSendEvent as useSendEventBase,
 } from '@graphcommerce/google-datalayer/api/sendEvent'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
@@ -16,7 +16,7 @@ export const useSendEvent: FunctionPlugin<typeof useSendEventBase> = (prev) => {
 
   const sendAlgoliaEvent = useSendAlgoliaEvent()
 
-  return useCallback<SendEvent>(
+  return useCallback<typeof sendEvent>(
     (eventName, eventData) => {
       originalSendEvent(eventName, eventData)
       sendAlgoliaEvent(eventName, eventData)

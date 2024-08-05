@@ -2826,6 +2826,7 @@ __metadata:
     graphql: "npm:^16.0.0"
     tsx: "npm:^4.16.2"
   peerDependencies:
+    "@graphcommerce/google-datalayer": ^9.0.0-canary.63
     "@graphcommerce/graphql-mesh": ^9.0.0-canary.63
     "@graphcommerce/magento-product": ^9.0.0-canary.63
     "@graphcommerce/magento-search": ^9.0.0-canary.63
@@ -3158,6 +3159,8 @@ __metadata:
     "@graphcommerce/magento-cart-shipping-method":
       optional: true
     "@graphcommerce/magento-product":
+      optional: true
+    "@graphcommerce/magento-product-configurable":
       optional: true
   languageName: unknown
   linkType: soft
@@ -4407,7 +4410,6 @@ __metadata:
     "@graphcommerce/graphql-mesh": ^9.0.0-canary.63
     "@graphcommerce/image": ^9.0.0-canary.63
     "@graphcommerce/magento-cart": ^9.0.0-canary.63
-    "@graphcommerce/magento-category": ^9.0.0-canary.63
     "@graphcommerce/magento-store": ^9.0.0-canary.63
     "@graphcommerce/next-ui": ^9.0.0-canary.63
     "@graphcommerce/prettier-config-pwa": ^9.0.0-canary.63
