@@ -97,7 +97,7 @@ const dataLayerToAlgoliaMap: {
               eventName,
               eventType: 'click',
               objectIDs,
-              positions: eventData.items.map((item) => item.index),
+              positions: eventData.items.map((item) => item.index + 1),
               queryID,
               ...common,
             },
