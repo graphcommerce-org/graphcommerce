@@ -56,22 +56,20 @@ export const googleEventNames = [
  * @see https://developers.google.com/tag-platform/gtagjs/reference/events
  */
 export type GoogleEventTypes = {
+  exception: { description?: string; fatal?: boolean }
+  share: { method?: string; content_type?: string; item_id?: string }
+
   add_payment_info: AddPaymentInfo
   add_shipping_info: AddShippingInfo
   add_to_cart: ViewCart
   add_to_wishlist: DataLayerCurrencyValue & { items: GoogleDatalayerItem[] }
   begin_checkout: BeginCheckout
-  close_convert_lead: DataLayerCurrencyValue
-  close_unconvert_lead: DataLayerCurrencyValue & { unconvert_lead_reason?: string }
-  disqualify_lead: DataLayerCurrencyValue & { disqualified_lead_reason?: string }
-  earn_virtual_currency: { value?: string; virtual_currency_name?: string }
-  exception: { description?: string; fatal?: boolean }
-  generate_lead: DataLayerCurrencyValue & { lead_source?: string }
-  join_group: { group_id?: string }
-  level_end: { level_name?: string; success?: boolean }
-  level_start: { level_name?: string }
-  level_up: { level?: number; character?: string }
+
   login: { method?: string }
+  sign_up: {
+    method?: string
+  }
+
   page_view: {
     page_location?: string
     client_id?: string
@@ -80,43 +78,24 @@ export type GoogleEventTypes = {
     page_title?: string
     user_agent?: string
   }
-  post_score: { score?: number; level?: number; character?: string }
+
   purchase: PurchaseOrRefund
-  qualify_lead: DataLayerCurrencyValue
   refund: PurchaseOrRefund
   remove_from_cart: ViewCart
-  search: { search_term?: string }
+
   select_content: {
     content_type?: string
     content_id?: string
   }
   select_item: SelectItem
-  select_promotion: {
-    creative_name?: string
-    creative_slot?: string
-    promotion_id?: string
-    promotion_name?: string
-    items?: GoogleDatalayerItem[]
-  }
-  share: {
-    method?: string
-    content_type?: string
-    item_id?: string
-  }
-  sign_up: {
-    method?: string
-  }
-  spend_virtual_currency: {
-    value?: string
-    virtual_currency_name?: string
-    item_name?: string
-  }
-  tutorial_begin: object
-  tutorial_complete: object
-  unlock_achievement: { achievement_id: string }
+
   view_cart: ViewCart
   view_item: ViewItem
   view_item_list: ViewItemList
+
+  search: { search_term?: string }
+  view_search_results: { search_term?: string }
+
   view_promotion: {
     creative_name?: string
     creative_slot?: string
@@ -124,7 +103,38 @@ export type GoogleEventTypes = {
     promotion_name?: string
     items?: GoogleDatalayerItem[]
   }
-  view_search_results: { search_term?: string }
+  select_promotion: {
+    creative_name?: string
+    creative_slot?: string
+    promotion_id?: string
+    promotion_name?: string
+    items?: GoogleDatalayerItem[]
+  }
+
+  // Tutorial
+  tutorial_begin: object
+  tutorial_complete: object
+
+  // Gaming
+  earn_virtual_currency: { value?: string; virtual_currency_name?: string }
+  join_group: { group_id?: string }
+  level_end: { level_name?: string; success?: boolean }
+  level_start: { level_name?: string }
+  level_up: { level?: number; character?: string }
+  post_score: { score?: number; level?: number; character?: string }
+  spend_virtual_currency: {
+    value?: string
+    virtual_currency_name?: string
+    item_name?: string
+  }
+  unlock_achievement: { achievement_id: string }
+
+  // Leads
+  close_convert_lead: DataLayerCurrencyValue
+  close_unconvert_lead: DataLayerCurrencyValue & { unconvert_lead_reason?: string }
+  disqualify_lead: DataLayerCurrencyValue & { disqualified_lead_reason?: string }
+  generate_lead: DataLayerCurrencyValue & { lead_source?: string }
+  qualify_lead: DataLayerCurrencyValue
   working_lead: DataLayerCurrencyValue & { lead_status?: string }
 
   // Custom events

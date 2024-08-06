@@ -27,6 +27,7 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
             openapi: {
               endpoint: `https://insights.algolia.io/`,
               source: '@graphcommerce/algolia-personalization/algolia-insights-spec.yaml',
+              ignoreErrorResponses: true,
               schemaHeaders: {
                 'X-Algolia-Application-Id': graphCommerceConfig.algoliaApplicationId,
                 'X-Algolia-API-Key': graphCommerceConfig.algoliaSearchOnlyApiKey,

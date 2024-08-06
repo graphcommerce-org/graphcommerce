@@ -1,12 +1,6 @@
 mutation AlgoliaSendEvent($events: [AlgoliaEventsItems_Input]!) {
   algolia_pushEvents(input: { events: $events }) {
-    __typename
-    ... on AlgoliaEventsResponse {
-      message
-      status
-    }
-    ... on AlgoliaString_container {
-      String
-    }
+    message
+    status
   }
 }

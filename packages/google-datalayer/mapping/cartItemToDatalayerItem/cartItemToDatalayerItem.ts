@@ -15,11 +15,10 @@ export function cartItemToDatalayerItem<P extends CartItem_DatalayerItemFragment
   const price = (item?.prices?.price_including_tax?.value ?? 0) - discount
 
   return {
-    ...productToDatalayerItem(item.product, 0),
+    ...productToDatalayerItem(item.product, index),
     currency: item.prices?.price.currency as string,
     discount,
     price,
-    index,
     quantity: item.quantity,
     item_variant:
       item.__typename === 'ConfigurableCartItem'
