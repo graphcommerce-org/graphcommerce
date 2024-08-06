@@ -10,7 +10,7 @@ export const config: PluginConfig = {
   type: 'component',
 }
 
-/** When a product is added to the Cart, send a Google Analytics event */
+/** When a product detail page is viewed, send a Google Analytics event */
 export function ProductPageMeta(props: PluginProps<ProductPageMetaProps>) {
   const { Prev, product } = props
 
