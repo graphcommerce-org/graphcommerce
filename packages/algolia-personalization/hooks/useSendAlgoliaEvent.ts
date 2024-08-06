@@ -88,7 +88,7 @@ const dataLayerToAlgoliaMap: {
 
   select_item: (eventName, eventData, { queryID, ...common }) => {
     const objectIDs = eventData.items.map((item) => atob(item.item_uid))
-    if (queryID) saveAlgoliaIdToQuery(eventData.item_list_name, objectIDs)
+    if (queryID) saveAlgoliaIdToQuery(queryID, objectIDs)
 
     return queryID
       ? [
@@ -125,13 +125,13 @@ const dataLayerToAlgoliaMap: {
 
     return queryID
       ? [
-          {
-            // todo
-            Converted_filters_Input: {
-              eventName,
-              eventType: 'conversion',
-            },
-          },
+          // {
+          //   // todo
+          //   Converted_filters_Input: {
+          //     eventName,
+          //     eventType: 'conversion',
+          //   },
+          // },
           {
             Added_to_cart_object_IDs_after_search_Input: {
               queryID,
@@ -268,7 +268,6 @@ export function useSendAlgoliaEvent() {
   return useEventCallback<typeof sendEvent>(async (eventName, eventData) => {
     const email = client.cache.readQuery({ query: CustomerDocument })?.customer?.email
     const authenticatedUserToken = email ? await getSHA256Hash(email) : undefined
-
     let userToken = cookie('_algolia_userToken')
     if (!userToken) {
       userToken = (Math.random() + 1).toString(36).substring(2)
