@@ -1,0 +1,7 @@
+interface CategoryInterface {
+  gcPage: GcPage
+}
+
+type CategoryTree {
+  gcPage: GcPage
+}

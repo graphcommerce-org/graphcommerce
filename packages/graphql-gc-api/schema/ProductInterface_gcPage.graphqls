@@ -1,0 +1,31 @@
+interface ProductInterface {
+  gcPage: GcPage
+}
+
+type BundleProduct {
+  gcPage: GcPage
+}
+
+type SimpleProduct {
+  gcPage: GcPage
+}
+
+type VirtualProduct {
+  gcPage: GcPage
+}
+
+type DownloadableProduct {
+  gcPage: GcPage
+}
+
+type GiftCardProduct {
+  gcPage: GcPage
+}
+
+type ConfigurableProduct {
+  gcPage: GcPage
+}
+
+type GroupedProduct {
+  gcPage: GcPage
+}

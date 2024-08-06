@@ -16,6 +16,11 @@ query ProductPage2(
       ...DownloadableProductOptions
       ...BundleProductOptions
       ...GroupedProduct
+      page: gcPage {
+        ...GcPage_Head
+        ...GcPage_Redirect
+        ...GcPage_Rows
+      }
     }
   }
   # Workaround for https://github.com/magento/magento2/issues/32427

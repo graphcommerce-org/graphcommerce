@@ -1,4 +1,11 @@
-import { createExecutor, type MeshContext, type Resolvers } from '@graphcommerce/graphql-mesh'
+/* eslint-disable @typescript-eslint/require-await */
+import { getProduct } from '@graphcommerce/graphcms-ui/mesh/resolvers'
+import {
+  createDocumentExecutor,
+  type MeshContext,
+  type Resolvers,
+} from '@graphcommerce/graphql-mesh'
+import type { GraphQLResolveInfo } from 'graphql'
 import { AllDynamicRowsDocument, AllDynamicRowsQuery } from '../graphql/AllDynamicRows.gql'
 import { DynamicRowsDocument } from '../graphql/DynamicRows.gql'
 import { applyDynamicRows, matchCondition } from '../lib/hygraphDynamicRows'
@@ -6,12 +13,18 @@ import { applyDynamicRows, matchCondition } from '../lib/hygraphDynamicRows'
 async function getAllHygraphDynamicRows(
   context: MeshContext,
   options: { pageSize?: number; ttl: number },
+  parent: object,
+  info: GraphQLResolveInfo,
 ) {
   const { pageSize = 100, ttl } = options
 
-  const execute = createExecutor(context)
+  const execute = createDocumentExecutor(context, parent, info)
 
-  const query = execute(AllDynamicRowsDocument, { variables: { first: 100, skip: 0 }, ttl })
+  const query = execute(AllDynamicRowsDocument, {
+    variables: { first: 100, skip: 0 },
+    ttl,
+    headers: ['gcms-stage', 'gcms-locale'],
+  })
 
   const pages: Promise<AllDynamicRowsQuery>[] = [query]
   const data = await query
@@ -22,6 +35,7 @@ async function getAllHygraphDynamicRows(
         execute(AllDynamicRowsDocument, {
           variables: { first: pageSize, skip: pageSize * (i - 1) },
           ttl,
+          headers: ['gcms-stage', 'gcms-locale'],
         }),
       )
     }
@@ -34,27 +48,36 @@ async function getAllHygraphDynamicRows(
 }
 
 export const resolvers: Resolvers = {
-  Page: {
-    content: async (parent, args, context, info) => {
-      const execute = createExecutor(context)
-      const allRoutes = await getAllHygraphDynamicRows(context, { ttl: 60 * 60 })
+  GcPage: {
+    rows: {
+      resolve: async (parent, args, context, info) => {
+        const execute = createDocumentExecutor(context, parent, info)
+        const allRoutes = await getAllHygraphDynamicRows(context, { ttl: 60 * 60 }, parent, info)
 
-      const rowIds = allRoutes
-        .filter((availableDynamicRow) =>
-          availableDynamicRow.conditions.some((condition) =>
-            matchCondition(condition, { ...parent, ...args }),
-          ),
-        )
-        .map((row) => row.id)
+        const rowIds = allRoutes
+          .filter((availableDynamicRow) =>
+            availableDynamicRow.conditions.some((condition) =>
+              matchCondition(condition, {
+                ...parent,
+                // ...args,
+                ...getProduct(context, parent.url.slice(2)),
+              }),
+            ),
+          )
+          .map((row) => row.id)
 
-      const dynamicRows =
-        rowIds.length !== 0
-          ? await execute(DynamicRowsDocument, { variables: { rowIds }, ttl: 60 * 60 })
-          : undefined
+        if (rowIds.length === 0) return parent.content
+        const dynamicRows = await execute(DynamicRowsDocument, {
+          variables: { rowIds },
+          ttl: 60 * 60,
+          headers: ['gcms-stage', 'gcms-locale'],
+        })
 
-      if (!dynamicRows?.dynamicRows) return parent.content
+        const rows = dynamicRows.dynamicRows.filter((row) => rowIds.includes(row.id))
 
-      return applyDynamicRows(dynamicRows.dynamicRows, parent.content)
+        if (rows.length === 0) return parent.content
+        return applyDynamicRows(rows, parent.content)
+      },
     },
   },
 }

@@ -1,9 +1,16 @@
-import { LazyHydrate, RenderType, type TypeRenderer } from '@graphcommerce/next-ui'
+import {
+  filterNonNullableKeys,
+  LazyHydrate,
+  RenderType,
+  type TypeRenderer,
+} from '@graphcommerce/next-ui'
 import React from 'react'
 import { GcPageQuery } from '../../queries/GcPage.gql'
 import { GcPage_RowsFragment } from '../../queries/GcPage_Rows.gql'
 
-export type GcRowTypeRenderer = TypeRenderer<NonNullable<GcPage_RowsFragment['rows']>[number]>
+export type GcRowTypeRenderer = TypeRenderer<
+  NonNullable<NonNullable<NonNullable<GcPage_RowsFragment['rows']>>[number]>
+>
 
 export type ContentAreaProps = GcPageQuery & {
   renderer?: Partial<GcRowTypeRenderer>
@@ -19,7 +26,7 @@ export const ContentArea = React.memo<ContentAreaProps>((props) => {
 
   return (
     <>
-      {rows?.map((item, index) => (
+      {filterNonNullableKeys(rows)?.map((item, index) => (
         <LazyHydrate key={item.id} hydrated={index < loadingEager ? true : undefined} height={500}>
           <RenderType renderer={mergedRenderer} {...item} />
         </LazyHydrate>

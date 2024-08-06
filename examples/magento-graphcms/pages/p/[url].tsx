@@ -1,10 +1,3 @@
-import {
-  ContentAreaProductPage,
-  ContentAreaProductPageBefore,
-  ContentAreaProductPageSidebar,
-  PageContent,
-  pageContent,
-} from '@graphcommerce/graphql-gc-api'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   cacheFirst,
@@ -12,6 +5,13 @@ import {
   mergeDeep,
   useInContextQuery,
 } from '@graphcommerce/graphql'
+import {
+  ContentAreaProductPage,
+  ContentAreaProductPageBefore,
+  ContentAreaProductPageSidebar,
+  PageContent,
+  pageContent,
+} from '@graphcommerce/graphql-gc-api'
 import {
   AddProductsToCartForm,
   AddProductsToCartFormProps,
