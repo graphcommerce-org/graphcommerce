@@ -1,4 +1,4 @@
-fragment FooterQueryFragment on Query {
+fragment FooterQueryFragment on Query @inject(into: ["LayoutFragment"]) {
   footer(where: { identity: "footer" }) {
     id
     socialLinks {

@@ -2,7 +2,7 @@
   "name": "@graphcommerce/graphql-gc-api",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.0-canary.62",
+  "version": "9.0.0-canary.70",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {

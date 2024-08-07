@@ -1,14 +1,15 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { ProductReviews, ProductReviewsProps } from '@graphcommerce/magento-review'
+import { ProductReviews } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Row } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
-import { RowProductFragment } from '../RowProduct.gql'
+import { RowProductPageFragment } from '../RowProductPage.gql'
 
-type ReviewsProps = RowProductFragment
+type ReviewsProps = RowProductPageFragment
 
 export function Reviews(props: ReviewsProps) {
-  const { title, reviews, url_key, review_count, sku } = props
+  const { title, product, sx } = props
+  const { reviews, review_count, url_key, sku } = product ?? {}
 
   const { data, loading } = useQuery(StoreConfigDocument)
 

@@ -1,2 +1,2 @@
 export * from './Areas'
-export * from './ContentArea'
+export * from './GcPageRows'

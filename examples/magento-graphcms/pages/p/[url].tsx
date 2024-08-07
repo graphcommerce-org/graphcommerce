@@ -6,11 +6,9 @@ import {
   useInContextQuery,
 } from '@graphcommerce/graphql'
 import {
-  ContentAreaProductPage,
-  ContentAreaProductPageBefore,
-  ContentAreaProductPageSidebar,
-  PageContent,
-  pageContent,
+  GcPageRowsProduct,
+  GcPageRowsProductBefore,
+  GcPageRowsProductSidebar,
 } from '@graphcommerce/graphql-gc-api'
 import {
   AddProductsToCartForm,
@@ -32,7 +30,7 @@ import {
 import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-product-configurable'
 import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-products'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
-import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import { GetStaticProps, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -46,21 +44,20 @@ import {
   productListRenderer,
 } from '../../components'
 import { AddProductsToCartView } from '../../components/ProductView/AddProductsToCartView'
+import { UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 export type Props = UspsQuery &
   ProductPage2Query &
-  Pick<AddProductsToCartFormProps, 'defaultValues'> & {
-    content: PageContent
-  } & { urlKey: string }
+  Pick<AddProductsToCartFormProps, 'defaultValues'> & { urlKey: string }
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductPage(props: Props) {
-  const { content, usps, sidebarUsps, defaultValues, urlKey } = props
+  const { usps, sidebarUsps, defaultValues, urlKey } = props
 
   const scopedQuery = useInContextQuery(ProductPage2Document, { variables: { urlKey } }, props)
   const { products, relatedUpsells } = scopedQuery.data
@@ -73,7 +70,7 @@ function ProductPage(props: Props) {
   if (!product?.sku || !product.url_key) return null
 
   return (
-    <InContextMaskProvider mask={scopedQuery.mask}>
+    <>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
         <LayoutHeader floatingMd>
           <LayoutTitle size='small' component='span'>
@@ -93,7 +90,7 @@ function ProductPage(props: Props) {
 
         <ProductPageMeta product={product} />
 
-        <ContentAreaProductPageBefore content={content} productListRenderer={productListRenderer} />
+        {/* <GcPageRowsProductBefore page={product.page} /> */}
 
         {import.meta.graphCommerce.breadcrumbs && (
           <ProductPageBreadcrumbs
@@ -142,22 +139,20 @@ function ProductPage(props: Props) {
             <ProductWishlistChipDetail {...product} />
           </ProductPageAddToCartActionsRow>
 
-          <Usps usps={sidebarUsps} size='small' />
-        </ProductPageGallery>
+          {/* <Usps usps={sidebarUsps} size='small' /> */}
 
-        <ContentAreaProductPageSidebar
-          content={content}
-          productListRenderer={productListRenderer}
-        />
+          {/* <GcPageRowsProductSidebar page={product.page} /> */}
+        </ProductPageGallery>
 
         <ProductPageDescription
           product={product}
-          right={<Usps usps={usps} />}
+          right={<>hoi</>}
+          // right={<Usps usps={usps} />}
           fontSize='responsive'
         />
       </AddProductsToCartForm>
 
-      <ContentAreaProductPage content={content} productListRenderer={productListRenderer} />
+      <GcPageRowsProduct page={product.page} />
 
       {/* <RowRenderer
           loadingEager={0}
@@ -179,7 +174,7 @@ function ProductPage(props: Props) {
         productListRenderer={productListRenderer}
         sx={(theme) => ({ mb: theme.spacings.xxl })}
       />
-    </InContextMaskProvider>
+    </>
   )
 }
 
@@ -206,33 +201,31 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const urlKey = params?.url ?? '??'
 
   const conf = client.query({ query: StoreConfigDocument })
-  const productPage = staticClient.query({ query: ProductPage2Document, variables: { urlKey } })
   const layout = staticClient.query({
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
 
-  const product = productPage.then((pp) =>
-    pp.data.products?.items?.find((p) => p?.url_key === urlKey),
-  )
+  const productQuery = await staticClient.query({
+    query: ProductPage2Document,
+    variables: { urlKey },
+  })
+  const product = productQuery.data.products?.items?.find((p) => p?.url_key === urlKey)
 
-  const content = pageContent(staticClient, 'product/global', product, true)
-  if (!(await product)) return redirectOrNotFound(staticClient, conf, params, locale)
+  if (!product) return { notFound: true }
+  //return redirectOrNotFound(staticClient, conf, params, locale)
 
-  const category = productPageCategory(await product)
+  const category = productPageCategory(product)
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
       : { href: `/`, title: i18n._(/* i18n */ 'Home') }
-  const usps = staticClient.query({ query: UspsDocument, fetchPolicy: cacheFirst(staticClient) })
 
   return {
     props: {
-      content: await content,
       urlKey,
-      ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),
+      ...defaultConfigurableOptionsSelection(urlKey, client, productQuery.data),
       ...(await layout).data,
-      ...(await usps).data,
       apolloState: await conf.then(() => client.cache.extract()),
       up,
     },

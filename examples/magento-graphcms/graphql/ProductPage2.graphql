@@ -5,7 +5,6 @@ query ProductPage2(
   $context: InContextInput
 ) {
   products(filter: { url_key: { eq: $urlKey } }) @inContext(context: $context) {
-    ...ProductSpecs
     items {
       __typename
       uid

@@ -12,23 +12,19 @@ export type GcRowTypeRenderer = TypeRenderer<
   NonNullable<NonNullable<NonNullable<GcPage_RowsFragment['rows']>>[number]>
 >
 
-export type ContentAreaProps = GcPageQuery & {
-  renderer?: Partial<GcRowTypeRenderer>
+export type GcPageRowsProps = GcPageQuery & {
+  rowRenderer?: Partial<GcRowTypeRenderer>
   loadingEager?: number
 }
 
-export const ContentArea = React.memo<ContentAreaProps>((props) => {
-  const { renderer, page, loadingEager = 2 } = props
-  const mergedRenderer = { ...renderer } as GcRowTypeRenderer
-
-  const rows = page?.rows
-  if (!rows) return null
+export const GcPageRows = React.memo<GcPageRowsProps>((props) => {
+  const { rowRenderer, page, loadingEager = 2 } = props
 
   return (
     <>
-      {filterNonNullableKeys(rows)?.map((item, index) => (
+      {filterNonNullableKeys(page?.rows)?.map((item, index) => (
         <LazyHydrate key={item.id} hydrated={index < loadingEager ? true : undefined} height={500}>
-          <RenderType renderer={mergedRenderer} {...item} />
+          <RenderType renderer={rowRenderer as GcRowTypeRenderer} {...item} />
         </LazyHydrate>
       ))}
     </>

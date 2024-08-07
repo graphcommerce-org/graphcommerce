@@ -1,8 +1,8 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst, flushMeasurePerf, InContextMaskProvider } from '@graphcommerce/graphql'
 import {
-  ContentAreaCategoryPage,
-  ContentAreaCategoryPageBefore,
+  GcPageRowsCategory,
+  GcPageRowsCategoryBefore,
   GcPageQuery,
 } from '@graphcommerce/graphql-gc-api'
 import {
@@ -75,7 +75,7 @@ function CategoryPage(props: CategoryProps) {
     <InContextMaskProvider mask={productList.mask}>
       <CategoryMeta metadata={content.meta} params={params} category={category} />
 
-      <ContentAreaCategoryPageBefore content={content} productListRenderer={productListRenderer} />
+      <GcPageRowsCategoryBefore content={content} productListRenderer={productListRenderer} />
 
       <LayoutHeader floatingMd>
         <LayoutTitle size='small' component='span'>
@@ -144,7 +144,7 @@ function CategoryPage(props: CategoryProps) {
         </>
       )}
 
-      <ContentAreaCategoryPage content={content} productListRenderer={productListRenderer} />
+      <GcPageRowsCategory content={content} productListRenderer={productListRenderer} />
 
       {page && (
         <RowRenderer

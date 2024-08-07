@@ -1,4 +1,4 @@
-import { AddProductsToCartForm, RelatedProductsFragment } from '@graphcommerce/magento-product'
+import { AddProductsToCartForm } from '@graphcommerce/magento-product'
 import {
   SidebarSlider,
   RenderType,
@@ -6,20 +6,21 @@ import {
   SidebarSliderProps,
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
-import { productListRenderer } from '../../../ProductListItems'
-import { RowProductFragment } from '../RowProduct.gql'
+import { productListRenderer } from '../../../ProductListItems/productListRenderer'
+import { RowProductPageFragment } from '../RowProductPage.gql'
 
-type RelatedProps = RowProductFragment & Pick<SidebarSliderProps, 'sx'>
+type UpsellsProps = RowProductPageFragment & Pick<SidebarSliderProps, 'sx'>
 
-export function Related(props: RelatedProps) {
-  const { title, related_products, sx } = props
+export function Upsells(props: UpsellsProps) {
+  const { title, product, sx } = props
+  const { upsell_products } = product ?? {}
 
-  if (!related_products || related_products.length === 0) return null
+  if (!upsell_products || upsell_products.length === 0) return null
 
   return (
     <AddProductsToCartForm>
       <SidebarSlider sx={sx} sidebar={<Typography variant='h2'>{title}</Typography>}>
-        {related_products?.map((item) =>
+        {upsell_products?.map((item) =>
           item ? (
             <RenderType
               key={item.uid ?? ''}

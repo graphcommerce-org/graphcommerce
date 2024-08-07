@@ -83,7 +83,7 @@ export const resolvers: Resolvers = {
   // Resolve the query `gcPage` to a page with the given URL
   Query: {
     gcPage: {
-      resolve: async (root, args, context, info) =>
+      resolve: (root, args, context, info) =>
         context.hygraph.Query.pages({
           root,
           info,
@@ -197,12 +197,15 @@ export const resolvers: Resolvers = {
     category: {
       selectionSet: `{ categoryUrl }`,
       resolve: async (root, args, context, info) => {
+        console.log(root.categoryUrl)
         const result = await context.m2.Query.categories({
           root,
           info,
           context,
           args: { filters: { url_path: { eq: root.categoryUrl } }, pageSize: 1 },
         })
+
+        console.log(result)
         const category = result?.items?.[0] ?? null
         return category as ResolversTypes['CategoryTree']
       },

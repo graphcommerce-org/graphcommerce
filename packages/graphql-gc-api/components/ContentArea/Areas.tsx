@@ -1,8 +1,8 @@
-import { ContentArea } from './ContentArea'
+import { GcPageRows } from './GcPageRows'
 
-export const ContentAreaHome = ContentArea
-export const ContentAreaProductPageBefore = ContentArea
-export const ContentAreaProductPageSidebar = ContentArea
-export const ContentAreaProductPage = ContentArea
-export const ContentAreaCategoryPageBefore = ContentArea
-export const ContentAreaCategoryPage = ContentArea
+export const ContentAreaHome = GcPageRows
+export const GcPageRowsProduct = GcPageRows
+export const GcPageRowsProductBefore = GcPageRows
+export const GcPageRowsProductSidebar = GcPageRows
+export const GcPageRowsCategory = GcPageRows
+export const GcPageRowsCategoryBefore = GcPageRows

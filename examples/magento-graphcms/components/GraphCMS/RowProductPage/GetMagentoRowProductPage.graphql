@@ -1,0 +1,14 @@
+query GetMagentoRowProductPage(
+  $urlKey: String!
+  $reviewPageSize: Int = 3
+  $reviewPage: Int = 1
+  $context: InContextInput
+) {
+  products(filter: { url_key: { eq: $urlKey } }, pageSize: 1) @inContext(context: $context) {
+    items {
+      ...UpsellProducts
+      ...RelatedProducts
+      ...ProductReviews
+    }
+  }
+}

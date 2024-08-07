@@ -1,14 +1,11 @@
 import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { ApolloClient, NormalizedCacheObject, cacheFirst } from '@graphcommerce/graphql'
 import {
   ConditionTextFragment,
   ConditionNumberFragment,
   ConditionOrFragment,
   ConditionAndFragment,
-  DynamicRowsDocument,
   DynamicRowsQuery,
 } from '../graphql'
-import { getAllHygraphDynamicRows } from './getAllHygraphDynamicRows'
 
 /**
  * This generally works the same way as lodash get, however, when encountering an array it will
@@ -108,66 +105,4 @@ export function applyDynamicRows(
   })
 
   return content
-}
-
-/**
- * Fetch the page content for the given urls.
- *
- * - Uses an early bailout to check to reduce hygraph calls.
- * - Implements an alias sytem to merge the content of multiple pages.
- *
- * @deprecated Please use the resolver instead.
- */
-export async function hygraphDynamicRows(
-  client: ApolloClient<NormalizedCacheObject>,
-  pageQuery: Promise<{ data: HygraphPagesQuery }>,
-  url: string,
-  cached: boolean,
-  additionalProperties?: Promise<object> | object,
-): Promise<{ data: HygraphPagesQuery }> {
-  const fetchPolicy = cached ? cacheFirst(client) : undefined
-  const allRoutes = await getAllHygraphDynamicRows(client)
-
-  // Get the required rowIds from the conditions
-  const properties = { ...(await additionalProperties), url }
-
-  const rowIds = allRoutes
-    .filter((availableDynamicRow) =>
-      availableDynamicRow.conditions.some((condition) => matchCondition(condition, properties)),
-    )
-    .map((row) => row.id)
-  const dynamicRows =
-    rowIds.length !== 0
-      ? client.query({ query: DynamicRowsDocument, variables: { rowIds }, fetchPolicy })
-      : undefined
-
-  const [pageResult, dynamicResult] = await Promise.all([pageQuery, dynamicRows])
-
-  const page = pageResult.data.pages[0] as Page | undefined
-
-  if (!dynamicResult?.data.dynamicRows) return pageResult
-
-  // Create a copy of the content array.
-  const content = applyDynamicRows(dynamicResult?.data.dynamicRows, page.content)
-
-  if (!content.length) return pageResult
-
-  const dynamicPage: Page = {
-    id: 'dynamic-page',
-    __typename: 'Page',
-    metaRobots: 'INDEX_FOLLOW',
-    metaTitle: '',
-    metaDescription: '',
-    url: '',
-    content: [],
-    relatedPages: [],
-  }
-
-  // Return the merged page result.
-  return {
-    data: {
-      ...pageResult.data,
-      pages: [{ ...dynamicPage, ...page, content }],
-    },
-  }
 }
