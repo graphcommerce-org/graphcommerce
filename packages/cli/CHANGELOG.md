@@ -1,5 +1,7 @@
 # @graphcommerce/cli
 
+## 9.0.0-canary.72
+
 ## 9.0.0-canary.71
 
 ### Patch Changes
