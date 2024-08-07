@@ -1,0 +1,8 @@
+query ProductSpecsTypes {
+  attributesList(entityType: CATALOG_PRODUCT, filters: { is_visible_on_front: true }) {
+    items {
+      code
+      label
+    }
+  }
+}

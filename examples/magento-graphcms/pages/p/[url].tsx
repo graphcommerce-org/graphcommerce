@@ -59,7 +59,11 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 function ProductPage(props: Props) {
   const { usps, sidebarUsps, defaultValues, urlKey } = props
 
-  const scopedQuery = useInContextQuery(ProductPage2Document, { variables: { urlKey } }, props)
+  const scopedQuery = useInContextQuery(
+    ProductPage2Document,
+    { variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 } },
+    props,
+  )
   const { products, relatedUpsells } = scopedQuery.data
 
   const product = mergeDeep(
