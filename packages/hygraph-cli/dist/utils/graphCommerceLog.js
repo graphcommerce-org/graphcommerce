@@ -10,6 +10,6 @@ const graphcommerceLog = (message, type) => {
         info: '\x1b[36m\x1b[1m%s\x1b[0m',
     };
     // eslint-disable-next-line no-console
-    console.log(type ? color[type] : '', `[GraphCommerce]: ${message}`);
+    console.log(type ? color[type] : '', `${message}`);
 };
 exports.graphcommerceLog = graphcommerceLog;

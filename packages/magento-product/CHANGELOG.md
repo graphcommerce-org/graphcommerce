@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.72
+
+### Minor Changes
+
+- [#2332](https://github.com/graphcommerce-org/graphcommerce/pull/2332) [`73e897a`](https://github.com/graphcommerce-org/graphcommerce/commit/73e897a5a5f266d9ec274807720c71eb1a639074) - Use custom_attributesV2 for product specs when running on magento 247 or higher ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.0-canary.71
 
 ## 9.0.0-canary.70

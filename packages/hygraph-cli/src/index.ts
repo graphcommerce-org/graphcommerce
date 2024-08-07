@@ -1,1 +1,1 @@
-export { migrateHygraph } from './migrateHygraph'
+export { migrateHygraphCli as migrateHygraph } from './migrateHygraphCli'
