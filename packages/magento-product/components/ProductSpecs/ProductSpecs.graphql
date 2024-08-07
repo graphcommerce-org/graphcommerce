@@ -1,5 +1,5 @@
 fragment ProductSpecs on Products {
-  aggregations {
+  aggregations @skip(if: $useCustomAttributes) {
     attribute_code
     count
     label
@@ -7,6 +7,26 @@ fragment ProductSpecs on Products {
       count
       label
       value
+    }
+  }
+  items {
+    __typename
+    uid
+    ...ProductListItem
+    custom_attributesV2(filters: { is_visible_on_front: true }) @include(if: $useCustomAttributes) {
+      items {
+        code
+        __typename
+        ... on AttributeValue {
+          value
+        }
+        ... on AttributeSelectedOptions {
+          selected_options {
+            label
+            value
+          }
+        }
+      }
     }
   }
 }
