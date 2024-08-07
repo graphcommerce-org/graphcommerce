@@ -2,4 +2,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-add onClose prop to LayoutHeaderClose component
+Added a new OverlayHeader component to be used in combination with the Overlay component.
