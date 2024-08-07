@@ -1,10 +1,4 @@
-query ProductPage2(
-  $urlKey: String!
-  $reviewPageSize: Int = 3
-  $reviewPage: Int = 1
-  $context: InContextInput
-  $useCustomAttributes: Boolean = false
-) {
+query ProductPage2($urlKey: String!, $context: InContextInput) {
   products(filter: { url_key: { eq: $urlKey } }) @inContext(context: $context) {
     items {
       __typename
@@ -21,15 +15,6 @@ query ProductPage2(
         ...GcPage_Redirect
         ...GcPage_Rows
       }
-    }
-  }
-  # Workaround for https://github.com/magento/magento2/issues/32427
-  relatedUpsells: products(filter: { url_key: { eq: $urlKey } }) @inContext(context: $context) {
-    items {
-      uid
-      ...UpsellProducts
-      ...RelatedProducts
-      ...ProductReviews
     }
   }
 }

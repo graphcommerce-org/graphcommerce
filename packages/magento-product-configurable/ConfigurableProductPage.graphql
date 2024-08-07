@@ -1,3 +1,0 @@
-query ConfigurableProductPage($urlKey: String, $useCustomAttributes: Boolean = false) {
-  ...ProductPageConfigurableQueryFragment
-}

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { productListRenderer } from '../../ProductListItems'
 import { GetMagentoRowProductDocument } from './GetMagentoRowProduct.gql'
 import { RowProductFragment } from './RowProduct.gql'
-import { Backstory, Feature, FeatureBoxed, Related, Reviews, Specs, Upsells } from './variant'
+import { Backstory, Feature, FeatureBoxed } from './variant'
 
 type VariantRenderer = Record<
   NonNullable<RowProductFragment['variant']>,
@@ -21,10 +21,12 @@ function RowProductPreview(props: RowProductFragment) {
 
   const router = useRouter()
   const canShow = router.isPreview || process.env.NODE_ENV !== 'production'
-  const isWrongVariant = variant === 'Grid' || variant === 'Swipeable'
+  const shouldBeRowCategory = variant === 'Grid' || variant === 'Swipeable'
+  const shouldBeRowProductPage =
+    variant === 'Reviews' || variant === 'Upsells' || variant === 'Related' || variant === 'Specs'
   const noProduct = !product
   if (!canShow) return null
-  if (!(noProduct || isWrongVariant)) return null
+  if (!(noProduct || shouldBeRowCategory || shouldBeRowProductPage)) return null
 
   return (
     <Box
@@ -35,13 +37,19 @@ function RowProductPreview(props: RowProductFragment) {
         borderRadius: 2,
       })}
     >
-      {isWrongVariant && (
+      {shouldBeRowCategory && (
         <>
           RowProduct with identity ‘{identity}’ and variant ‘{variant}’, should be migrated in
           Hygraph to a RowCategory component.
         </>
       )}
-      {!isWrongVariant && noProduct && (
+      {shouldBeRowProductPage && (
+        <>
+          RowProduct with identity ‘{identity}’ and variant ‘{variant}’, should be migrated in
+          Hygraph to a RowProductPage component.
+        </>
+      )}
+      {!(shouldBeRowCategory || shouldBeRowProductPage) && noProduct && (
         <>
           RowProduct ({identity}) was configured with Product URL &quot;
           <code>{identity}</code>&quot;, However Magento didn&apos;t return any results.
@@ -52,13 +60,9 @@ function RowProductPreview(props: RowProductFragment) {
 }
 
 const defaultRenderer: Partial<VariantRenderer> = {
-  Specs,
   Backstory,
   Feature,
   FeatureBoxed,
-  Related,
-  Reviews,
-  Upsells,
 }
 
 export function RowProduct(props: RowProductProps) {

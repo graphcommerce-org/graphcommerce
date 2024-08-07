@@ -1,30 +1,15 @@
-fragment ProductSpecs on Products {
-  aggregations @skip(if: $useCustomAttributes) {
-    attribute_code
-    count
-    label
-    options {
-      count
-      label
-      value
-    }
-  }
-  items {
-    __typename
-    uid
-    ...ProductListItem
-    custom_attributesV2(filters: { is_visible_on_front: true }) @include(if: $useCustomAttributes) {
-      items {
-        code
-        __typename
-        ... on AttributeValue {
+fragment ProductSpecs on ProductInterface {
+  custom_attributesV2(filters: { is_visible_on_front: true }) @include(if: $useCustomAttributes) {
+    items {
+      code
+      __typename
+      ... on AttributeValue {
+        value
+      }
+      ... on AttributeSelectedOptions {
+        selected_options {
+          label
           value
-        }
-        ... on AttributeSelectedOptions {
-          selected_options {
-            label
-            value
-          }
         }
       }
     }

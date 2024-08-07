@@ -9,7 +9,7 @@ import {
   RowProduct,
   type Resolvers,
 } from '@graphcommerce/graphql-mesh'
-import { Kind } from 'graphql'
+import { Kind, print } from 'graphql'
 
 const normalizeUrl = (href: string) => {
   const cleanedhref = href.replaceAll(/^\/|\/$/g, '')
@@ -43,10 +43,6 @@ export function getProduct(context: MeshContext, key: string): ProductInterface 
   return value[key]
 }
 
-function isRowProduct(row: PageContent): row is RowProduct {
-  return '__typename' in row && row.__typename === 'RowProduct'
-}
-
 const gcPageProductResolver: GCPageResolver = {
   selectionSet: `{url_key}`,
   resolve: async (root, args, context, info) => {
@@ -68,12 +64,6 @@ const gcPageProductResolver: GCPageResolver = {
           ]),
       })
     )?.[0]
-
-    // Since the RowProduct is a child of the current product, we replace the identity with the current product's URL key.
-    if (page?.content)
-      page.content = page.content.map((row) =>
-        isRowProduct(row) ? { ...row, identity: root.url_key ?? row.identity } : row,
-      )
 
     return page
   },
@@ -171,24 +161,33 @@ export const resolvers: Resolvers = {
     product: {
       selectionSet: `{ identity }`,
       resolve: async (root, args, context, info) => {
-        const storedProduct = getProduct(context, root.identity)
-        if (storedProduct) return storedProduct as ResolversTypes['ProductInterface']
-
         const result = await context.m2.Query.products({
           root,
           info,
           context,
-          key: root.identity,
-          argsFromKeys: (keys) => ({
-            filter: { url_key: { in: keys } },
+          selectionSet: (subtree) => ({
+            kind: Kind.SELECTION_SET,
+            selections: [
+              {
+                kind: Kind.FIELD,
+                name: { kind: Kind.NAME, value: 'items' },
+                selectionSet: {
+                  kind: Kind.SELECTION_SET,
+                  selections: [
+                    { kind: Kind.FIELD, name: { kind: Kind.NAME, value: 'url_key' } },
+                    ...subtree.selections,
+                  ],
+                },
+              },
+            ],
           }),
+          key: root.identity,
+          argsFromKeys: (keys) => ({ filter: { url_key: { in: keys } } }),
           valuesFromResults: (results, keys) =>
             keys.map((key) => results?.items?.find((r) => r?.url_key === key) ?? null),
         })
 
-        const product = (result ?? null) as ResolversTypes['ProductInterface']
-
-        return product
+        return (result ?? null) as ResolversTypes['ProductInterface'] | null
       },
     },
   },
@@ -197,17 +196,32 @@ export const resolvers: Resolvers = {
     category: {
       selectionSet: `{ categoryUrl }`,
       resolve: async (root, args, context, info) => {
-        console.log(root.categoryUrl)
         const result = await context.m2.Query.categories({
           root,
           info,
           context,
-          args: { filters: { url_path: { eq: root.categoryUrl } }, pageSize: 1 },
+          key: root.categoryUrl,
+          selectionSet: (subtree) => ({
+            kind: Kind.SELECTION_SET,
+            selections: [
+              {
+                kind: Kind.FIELD,
+                name: { kind: Kind.NAME, value: 'items' },
+                selectionSet: {
+                  kind: Kind.SELECTION_SET,
+                  selections: [
+                    { kind: Kind.FIELD, name: { kind: Kind.NAME, value: 'url_path' } },
+                    ...subtree.selections,
+                  ],
+                },
+              },
+            ],
+          }),
+          argsFromKeys: (keys) => ({ filters: { url_path: { in: keys } } }),
+          valuesFromResults: (results, keys) =>
+            results?.items?.find((r) => r?.url_path === keys[0]) ?? null,
         })
-
-        console.log(result)
-        const category = result?.items?.[0] ?? null
-        return category as ResolversTypes['CategoryTree']
+        return (result ?? null) as ResolversTypes['CategoryTree'] | null
       },
     },
   },

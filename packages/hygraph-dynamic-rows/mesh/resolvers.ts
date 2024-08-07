@@ -48,36 +48,32 @@ async function getAllHygraphDynamicRows(
 }
 
 export const resolvers: Resolvers = {
-  GcPage: {
-    rows: {
-      resolve: async (parent, args, context, info) => {
-        const execute = createDocumentExecutor(context, parent, info)
-        const allRoutes = await getAllHygraphDynamicRows(context, { ttl: 60 * 60 }, parent, info)
-
-        const rowIds = allRoutes
-          .filter((availableDynamicRow) =>
-            availableDynamicRow.conditions.some((condition) =>
-              matchCondition(condition, {
-                ...parent,
-                // ...args,
-                ...getProduct(context, parent.url.slice(2)),
-              }),
-            ),
-          )
-          .map((row) => row.id)
-
-        if (rowIds.length === 0) return parent.content
-        const dynamicRows = await execute(DynamicRowsDocument, {
-          variables: { rowIds },
-          ttl: 60 * 60,
-          headers: ['gcms-stage', 'gcms-locale'],
-        })
-
-        const rows = dynamicRows.dynamicRows.filter((row) => rowIds.includes(row.id))
-
-        if (rows.length === 0) return parent.content
-        return applyDynamicRows(rows, parent.content)
-      },
-    },
-  },
+  // GcPage: {
+  //   rows: {
+  //     resolve: async (parent, args, context, info) => {
+  //       const execute = createDocumentExecutor(context, parent, info)
+  //       const allRoutes = await getAllHygraphDynamicRows(context, { ttl: 60 * 60 }, parent, info)
+  //       const rowIds = allRoutes
+  //         .filter((availableDynamicRow) =>
+  //           availableDynamicRow.conditions.some((condition) =>
+  //             matchCondition(condition, {
+  //               ...parent,
+  //               // ...args,
+  //               ...getProduct(context, parent.url?.slice(2)),
+  //             }),
+  //           ),
+  //         )
+  //         .map((row) => row.id)
+  //       if (rowIds.length === 0) return parent.content
+  //       const dynamicRows = await execute(DynamicRowsDocument, {
+  //         variables: { rowIds },
+  //         ttl: 60 * 60,
+  //         headers: ['gcms-stage', 'gcms-locale'],
+  //       })
+  //       const rows = dynamicRows.dynamicRows.filter((row) => rowIds.includes(row.id))
+  //       if (rows.length === 0) return parent.content
+  //       return applyDynamicRows(rows, parent.content)
+  //     },
+  //   },
+  // },
 }

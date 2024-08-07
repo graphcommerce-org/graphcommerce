@@ -15,5 +15,6 @@ fragment RowProductPage on RowProduct {
     ...UpsellProducts
     ...RelatedProducts
     ...ProductReviews
+    ...ProductSpecs
   }
 }

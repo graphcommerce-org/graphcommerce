@@ -59,17 +59,10 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 function ProductPage(props: Props) {
   const { usps, sidebarUsps, defaultValues, urlKey } = props
 
-  const scopedQuery = useInContextQuery(
-    ProductPage2Document,
-    { variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 } },
-    props,
-  )
-  const { products, relatedUpsells } = scopedQuery.data
+  const scopedQuery = useInContextQuery(ProductPage2Document, { variables: { urlKey } }, props)
+  const { products } = scopedQuery.data
 
-  const product = mergeDeep(
-    products?.items?.[0],
-    relatedUpsells?.items?.find((item) => item?.uid === products?.items?.[0]?.uid),
-  )
+  const product = products?.items?.[0]
 
   if (!product?.sku || !product.url_key) return null
 
@@ -157,20 +150,6 @@ function ProductPage(props: Props) {
       </AddProductsToCartForm>
 
       <GcPageRowsProduct page={product.page} />
-
-      {/* <RowRenderer
-          loadingEager={0}
-          renderer={{
-            RowProduct: (rowProps) => (
-              <RowProduct
-                {...rowProps}
-                {...product}
-                items={products?.items}
-                aggregations={products?.aggregations}
-              />
-            ),
-          }}
-        /> */}
 
       <RecentlyViewedProducts
         title={<Trans id='Recently viewed products' />}
