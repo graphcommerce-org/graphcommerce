@@ -38,12 +38,4 @@ extend input GraphCommerceConfig {
   API', this field is not required.
   """
   hygraphProjectId: String
-
-  """
-  Hygraph Management API. **Only used for migrations.**
-
-  Optional: If the hygraphEndpoint is configured with the 'High Performance Content
-  API', this field is not required.
-  """
-  hygraphManagementApi: String
 }

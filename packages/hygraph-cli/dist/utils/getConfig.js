@@ -7,7 +7,7 @@ function getConfig(config) {
         throw new Error('Please provide GC_HYGRAPH_WRITE_ACCESS_TOKEN in your env file.');
     }
     if (!projectId) {
-        projectId = new URL(hygraphEndpoint).pathname.split('/')?.[1];
+        throw new Error('Please provide GC_HYGRAPH_PROJECT_ID in your env file.');
     }
     if (!uri) {
         const endpoint = new URL(hygraphEndpoint);

@@ -26,12 +26,11 @@ export const graphcommerce8to9: MigrationFunction = async (schema, client) => {
 
   const hasRowCategory = schema.models.some((m) => m.apiId === 'RowCategory')
 
-  //
   if (!hasRowCategory) {
     migrationAction(schema, 'model', 'create', {
       apiId: 'RowCategory',
       displayName: 'Row Category',
-      apiIdPlural: 'RowProductLists',
+      apiIdPlural: 'RowCategories',
       description: 'A model that displays a category',
     } satisfies BatchMigrationCreateModelInput)
 
@@ -87,6 +86,77 @@ export const graphcommerce8to9: MigrationFunction = async (schema, client) => {
         isRequired: true,
       } satisfies BatchMigrationCreateEnumerableFieldInput,
       'RowCategory',
+      'model',
+    )
+  }
+
+  const hasRowProductPage = schema.models.some((m) => m.apiId === 'RowProductPage')
+  if (!hasRowProductPage) {
+    migrationAction(schema, 'model', 'create', {
+      apiId: 'RowProductPage',
+      apiIdPlural: 'RowProductPageItems',
+      displayName: 'Row Product Page',
+      description: 'A model to display related product information on the product page',
+    } satisfies BatchMigrationCreateModelInput)
+
+    migrationAction(schema, 'enumeration', 'create', {
+      displayName: 'Row Product Page Variant',
+      apiId: 'RowProductPageVariant',
+      values: [
+        { displayName: 'Reviews', apiId: 'Reviews' },
+        { displayName: 'Upsells', apiId: 'Upsells' },
+        { displayName: 'Related', apiId: 'Related' },
+        { displayName: 'Specs', apiId: 'Specs' },
+        { displayName: 'Usps', apiId: 'Usps' },
+      ],
+    } satisfies BatchMigrationCreateEnumerationInput)
+
+    migrationAction(
+      schema,
+      'enumerableField',
+      'create',
+      {
+        displayName: 'Variant',
+        apiId: 'variant',
+        parentApiId: 'RowProductPage',
+        enumerationApiId: 'RowProductPageVariant',
+        description: 'As what variant wil the RowProductPage be displayed',
+        isRequired: true,
+      } satisfies BatchMigrationCreateEnumerableFieldInput,
+      'RowProductPage',
+      'model',
+    )
+
+    migrationAction(
+      schema,
+      'unionField',
+      'update',
+      {
+        apiId: 'content',
+        displayName: 'Content',
+        modelApiId: 'Page',
+        reverseField: {
+          modelApiIds: [
+            'RowLinks',
+            'RowServiceOptions',
+            'RowSpecialBanner',
+            'RowQuote',
+            'RowProduct',
+            'RowColumnOne',
+            'RowColumnTwo',
+            'RowColumnThree',
+            'RowHeroBanner',
+            'RowBlogContent',
+            'RowButtonList',
+            'RowContentLinks',
+            'RowButtonLinkList',
+            'RowCategory',
+            'RowProductPage',
+          ],
+          // visibility: VisibilityTypes.Hidden, => Currently not supported for updateUnionField | https://github.com/hygraph/management-sdk/issues/34
+        },
+      },
+      'Page',
       'model',
     )
   }

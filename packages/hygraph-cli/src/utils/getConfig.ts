@@ -19,7 +19,7 @@ export function getConfig(config: GraphCommerceConfig) {
   }
 
   if (!projectId) {
-    projectId = new URL(hygraphEndpoint).pathname.split('/')?.[1]
+    throw new Error('Please provide GC_HYGRAPH_PROJECT_ID in your env file.')
   }
 
   if (!uri) {
