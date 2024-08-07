@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.0.0
+
+### Patch Changes
+
+- [#2246](https://github.com/graphcommerce-org/graphcommerce/pull/2246) [`13524f9`](https://github.com/graphcommerce-org/graphcommerce/commit/13524f991a810c1679db49b3b8b4f04f90d0d6c1) - SidebarGallery now supports two more props disableSticky and variantMd default|oneColumn ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2275](https://github.com/graphcommerce-org/graphcommerce/pull/2275) [`29e496c`](https://github.com/graphcommerce-org/graphcommerce/commit/29e496ca815d102ac7952dc81c6c4ab9e164d031) - Prevent ScrollerThumbnail from scrolling the page horizontally ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2297](https://github.com/graphcommerce-org/graphcommerce/pull/2297) [`e41cb6f`](https://github.com/graphcommerce-org/graphcommerce/commit/e41cb6fcdde95629d29c03b1a700c6097f00c901) - Prevent gallery thunbnails from scrolling when opening or closing a layout overlay ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.0-canary.72
 
 ## 9.0.0-canary.71
