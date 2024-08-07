@@ -265,6 +265,14 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "meshConfig",
+        "sourceModule": "@graphcommerce/magento-graphql-rest/plugins/meshConfigM2Rest",
+        "targetExport": "meshConfig",
+        "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
+        "type": "function",
+      },
+      {
+        "enabled": true,
         "sourceExport": "PaymentMethodContextProvider",
         "sourceModule": "@graphcommerce/magento-payment-included/plugins/AddIncludedMethods",
         "targetExport": "PaymentMethodContextProvider",

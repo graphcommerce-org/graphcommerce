@@ -1,5 +1,29 @@
 # Change Log
 
+## 9.0.0-canary.70
+
+## 9.0.0-canary.69
+
+## 9.0.0-canary.68
+
+## 9.0.0-canary.67
+
+## 9.0.0-canary.66
+
+### Minor Changes
+
+- [#2339](https://github.com/graphcommerce-org/graphcommerce/pull/2339) [`df942e5`](https://github.com/graphcommerce-org/graphcommerce/commit/df942e5726ddb4d7c7d4b583aa474c7c0f0dea7d) - Show actual order status from the backend, improve order state logic ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 9.0.0-canary.65
+
+### Patch Changes
+
+- [#2333](https://github.com/graphcommerce-org/graphcommerce/pull/2333) [`03c28ab`](https://github.com/graphcommerce-org/graphcommerce/commit/03c28ab342bca3179b7ce1650fa7c16df1119a86) - Avoid displaying 'undefined' for countryName or regionName ([@carlocarels90](https://github.com/carlocarels90))
+
+## 9.0.0-canary.64
+
+## 9.0.0-canary.63
+
 ## 9.0.0-canary.62
 
 ## 9.0.0-canary.61

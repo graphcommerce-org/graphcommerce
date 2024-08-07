@@ -23,7 +23,7 @@ Make sure the Magento 2 module is correctly installed and working.
    }
    ```
 
-### Configuration
+## Configuration
 
 1. Setup the fields that you want to index in algolia
    `Stores > configuration > Algolia Search > Products > Products`
@@ -36,18 +36,48 @@ Make sure the Magento 2 module is correctly installed and working.
 4. To configure sorting options, enable Virtual Replica's.
    `Stores > Configuration > Algolia Search > Instant Search Results Page > Use Virtual Replica`
 
+### Customer Group Pricing
+
+```js
+const config = {
+  algoliaCustomerGroupPricingEnabled: true,
+}
+```
+
+To enable customer group pricing, make sure customers groups prices are mapped
+to algolia.
+`Stores > Configuration > Algolia Search > Advanced > Enable Customer Groups`.
+
+⚠️ Warning: Catalog price rules for a specific customer group do not seem to be
+indexed.It seems only: `[Product] > Advanced Pricing > Customer Group Price`
+gets indexed.
+
+Note: The GraphQL API does not expose the customer group_id by default. We're
+doing an additional REST API call to get the value. This means a somewhat slower
+(few hundred ms) when the Customer is loaded.
+
 ### Customization
 
-Customise the code by creating plugins on the functions you want to adjust
+By default algoliaFacetsToAggregations and algoliaHitToMagentoProduct can be
+plugged in.
 
 ## Algolia for Catalog
 
 Sorting is defined by Algolia and can not be configured per category as each
 sorting option is a separate (virtual) index.
 
+## Suggestions
+
+To get query suggestions/autocomplete enter your Algolia dashboard > search >
+configure > Query Suggestions > new Query Suggestions Index. This will create a
+new index which will be used for suggestions
+
+Don't mind to use the suggestions setting in magento admin. It will create a
+suggestions index but it will not record suggestions. This requires
+instantSearch
+
 ## Todo
 
-- [] Customer group pricing
 - [] Search suggestions
 - [] Category search
 - [] Additional indexes

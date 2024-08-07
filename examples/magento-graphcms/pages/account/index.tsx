@@ -98,12 +98,7 @@ function AccountIndexPage() {
                       <TimeAgo date={latestOrderDate} locale={locale} />
                     </time>
                     {', '}
-                    {latestOrder?.items && (
-                      <OrderStateLabelInline
-                        shipping_address={latestOrder.shipping_address}
-                        items={latestOrder?.items}
-                      />
-                    )}
+                    {latestOrder?.items && <OrderStateLabelInline {...latestOrder} />}
                   </>
                 ) : undefined
               }

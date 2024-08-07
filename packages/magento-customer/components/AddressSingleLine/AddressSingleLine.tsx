@@ -15,8 +15,8 @@ export function AddressSingleLine(props: CustomerAddressFragment) {
     postcode,
     country_code,
   } = props
-  const countryName = useFindCountry(country_code)?.full_name_locale
-  const regionName = typeof region === 'string' ? region : region?.region
+  const countryName = useFindCountry(country_code)?.full_name_locale ?? ''
+  const regionName = typeof region === 'string' ? region : region?.region || ''
 
   // todo: detect correct format by locale
   // for now, US format will be returned by default

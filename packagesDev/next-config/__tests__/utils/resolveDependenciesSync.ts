@@ -41,6 +41,7 @@ it('resolves dependences', () => {
       "@graphcommerce/magento-compare" => "packages/magento-compare",
       "@graphcommerce/magento-customer" => "packages/magento-customer",
       "@graphcommerce/magento-graphql" => "packages/magento-graphql",
+      "@graphcommerce/magento-graphql-rest" => "packages/magento-graphql-rest",
       "@graphcommerce/magento-newsletter" => "packages/magento-newsletter",
       "@graphcommerce/magento-payment-included" => "packages/magento-payment-included",
       "@graphcommerce/magento-product" => "packages/magento-product",

@@ -1,5 +1,25 @@
 # Change Log
 
+## 9.0.0-canary.70
+
+## 9.0.0-canary.69
+
+## 9.0.0-canary.68
+
+## 9.0.0-canary.67
+
+### Patch Changes
+
+- [#2336](https://github.com/graphcommerce-org/graphcommerce/pull/2336) [`214bc56`](https://github.com/graphcommerce-org/graphcommerce/commit/214bc56950f397727d2c5417741dc62419080dfa) - Added traverseSelectionSet utility function to extract a child selection set from the parent. ([@Renzovh](https://github.com/Renzovh))
+
+## 9.0.0-canary.66
+
+## 9.0.0-canary.65
+
+## 9.0.0-canary.64
+
+## 9.0.0-canary.63
+
 ## 9.0.0-canary.62
 
 ## 9.0.0-canary.61
