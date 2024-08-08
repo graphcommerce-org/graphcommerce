@@ -119,22 +119,19 @@ export async function hygraphDynamicRows(
   const content = [...(page?.content ?? [])]
 
   dynamicResult?.data.dynamicRows.forEach((dynamicRow) => {
-    const { placement, target, rows, row } = dynamicRow
-    if (!rows && !row) return
-
-    const rowsToMerge = rows
-    if (row && rows.length === 0) rowsToMerge.push(row)
+    const { placement, target, rows } = dynamicRow
+    if (!rows) return
 
     if (!target) {
-      if (placement === 'BEFORE') content.unshift(...rowsToMerge)
-      else content.push(...rowsToMerge)
+      if (placement === 'BEFORE') content.unshift(...rows)
+      else content.push(...rows)
       return
     }
 
     const targetIdx = content.findIndex((c) => c.id === target.id)
-    if (placement === 'BEFORE') content.splice(targetIdx, 0, ...rowsToMerge)
-    if (placement === 'AFTER') content.splice(targetIdx + 1, 0, ...rowsToMerge)
-    if (placement === 'REPLACE') content.splice(targetIdx, 1, ...rowsToMerge)
+    if (placement === 'BEFORE') content.splice(targetIdx, 0, ...rows)
+    if (placement === 'AFTER') content.splice(targetIdx + 1, 0, ...rows)
+    if (placement === 'REPLACE') content.splice(targetIdx, 1, ...rows)
   })
 
   if (!content.length) return pageResult
