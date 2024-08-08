@@ -47,7 +47,7 @@ sorting option is a separate (virtual) index.
 
 ## Suggestions
 
-To get query suggestions/autocomplete enter your Algolia dashboard > Aearch >
+To get query suggestions/autocomplete enter your Algolia dashboard > Search >
 configure > Query Suggestions > new Query Suggestions Index. This will create a
 new index which will be used for suggestions
 
