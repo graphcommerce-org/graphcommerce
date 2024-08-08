@@ -1,5 +1,35 @@
 # Change Log
 
+## 9.0.0-canary.72
+
+### Minor Changes
+
+- [#2332](https://github.com/graphcommerce-org/graphcommerce/pull/2332) [`73e897a`](https://github.com/graphcommerce-org/graphcommerce/commit/73e897a5a5f266d9ec274807720c71eb1a639074) - Use custom_attributesV2 for product specs when running on magento 247 or higher ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 9.0.0-canary.71
+
+### Patch Changes
+
+- [#2345](https://github.com/graphcommerce-org/graphcommerce/pull/2345) [`d4ae30b`](https://github.com/graphcommerce-org/graphcommerce/commit/d4ae30ba28815ccb9d3a0478da995b7c609618e5) - Solve issue where customFetch coudn’t be loaded correctly ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.70
+
+## 9.0.0-canary.69
+
+## 9.0.0-canary.68
+
+## 9.0.0-canary.67
+
+## 9.0.0-canary.66
+
+### Minor Changes
+
+- [#2339](https://github.com/graphcommerce-org/graphcommerce/pull/2339) [`df942e5`](https://github.com/graphcommerce-org/graphcommerce/commit/df942e5726ddb4d7c7d4b583aa474c7c0f0dea7d) - Show actual order status from the backend, improve order state logic ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 9.0.0-canary.65
+
+## 9.0.0-canary.64
+
 ## 9.0.0-canary.63
 
 ## 9.0.0-canary.62

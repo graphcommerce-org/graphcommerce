@@ -2,13 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.graphcommerce5to6 = void 0;
 const management_sdk_1 = require("@hygraph/management-sdk");
-const migrationAction_1 = require("../migrationAction");
-const graphcommerce5to6 = async (schema) => {
-    if (!migrationAction_1.client) {
-        return 0;
-    }
+const migrationActionFactory_1 = require("../migrationActionFactory");
+const graphcommerce5to6 = async (schema, client) => {
+    const { migrationAction } = (0, migrationActionFactory_1.migrationActionFactory)(schema, client);
     // ? ENUMERATIONS
-    (0, migrationAction_1.migrationAction)(schema, 'enumeration', 'create', {
+    migrationAction(schema, 'enumeration', 'create', {
         displayName: 'Row Links Variants',
         apiId: 'RowLinksVariants',
         values: [
@@ -19,13 +17,13 @@ const graphcommerce5to6 = async (schema) => {
         ],
     });
     // ? MODEL
-    (0, migrationAction_1.migrationAction)(schema, 'model', 'create', {
+    migrationAction(schema, 'model', 'create', {
         apiId: 'RowLinks',
         apiIdPlural: 'RowLinksMultiple',
         displayName: 'Row Links',
         description: 'Row Links is a Row of PageLinks with different variants',
     });
-    (0, migrationAction_1.migrationAction)(schema, 'simpleField', 'create', {
+    migrationAction(schema, 'simpleField', 'create', {
         displayName: 'Identity',
         apiId: 'identity',
         description: 'Only used for internal reference',
@@ -35,14 +33,14 @@ const graphcommerce5to6 = async (schema) => {
         isUnique: true,
         modelApiId: 'RowLinks',
     }, 'RowLinks', 'model');
-    (0, migrationAction_1.migrationAction)(schema, 'enumerableField', 'create', {
+    migrationAction(schema, 'enumerableField', 'create', {
         displayName: 'Variant',
         apiId: 'linksVariant',
         parentApiId: 'RowLinks',
         enumerationApiId: 'RowLinksVariants',
         description: 'Different variants for Row Links',
     }, 'RowLinks', 'model');
-    (0, migrationAction_1.migrationAction)(schema, 'simpleField', 'create', {
+    migrationAction(schema, 'simpleField', 'create', {
         displayName: 'Title',
         apiId: 'title',
         type: management_sdk_1.SimpleFieldType.String,
@@ -50,14 +48,14 @@ const graphcommerce5to6 = async (schema) => {
         modelApiId: 'RowLinks',
         isLocalized: true,
     }, 'RowLinks', 'model');
-    (0, migrationAction_1.migrationAction)(schema, 'simpleField', 'create', {
+    migrationAction(schema, 'simpleField', 'create', {
         displayName: 'Copy',
         apiId: 'rowLinksCopy',
         type: management_sdk_1.SimpleFieldType.Richtext,
         isLocalized: true,
         modelApiId: 'RowLinks',
     }, 'RowLinks', 'model');
-    (0, migrationAction_1.migrationAction)(schema, 'relationalField', 'create', {
+    migrationAction(schema, 'relationalField', 'create', {
         displayName: 'Links',
         apiId: 'pageLinks',
         modelApiId: 'RowLinks',
@@ -72,7 +70,7 @@ const graphcommerce5to6 = async (schema) => {
         visibility: management_sdk_1.VisibilityTypes.ReadWrite,
         isList: true,
     }, 'RowLinks', 'model');
-    (0, migrationAction_1.migrationAction)(schema, 'unionField', 'update', {
+    migrationAction(schema, 'unionField', 'update', {
         apiId: 'content',
         displayName: 'Content',
         modelApiId: 'Page',
@@ -95,6 +93,6 @@ const graphcommerce5to6 = async (schema) => {
             // visibility: VisibilityTypes.Hidden, => Currently not supported for updateUnionField | https://github.com/hygraph/management-sdk/issues/34
         },
     }, 'Page', 'model');
-    return migrationAction_1.client.run(true);
+    return client.run(true);
 };
 exports.graphcommerce5to6 = graphcommerce5to6;

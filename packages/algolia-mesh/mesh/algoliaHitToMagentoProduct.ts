@@ -32,23 +32,50 @@ const algoliaTypeToTypename = {
 function mapPriceRange(
   price: AlgoliaProductHitAdditionalProperties['price'],
   storeConfig: GetStoreConfigReturn,
+  customerGroup = 0,
 ): PriceRange {
   if (!storeConfig?.default_display_currency_code) throw new Error('Currency is required')
 
   const key = storeConfig.default_display_currency_code as keyof AlgoliaPrice
   const currency = storeConfig.default_display_currency_code as CurrencyEnum
 
+  const maxRegular = price?.[key]?.default_max ?? 0
+  const maxFinal = price?.[key]?.[`group_${customerGroup}_max`] ?? price?.[key]?.default_max ?? 0
+
+  const minRegular = price?.[key]?.default ?? 0
+  const minFinal = price?.[key]?.[`group_${customerGroup}`] ?? price?.[key]?.default
+
   return {
     maximum_price: {
-      regular_price: { currency, value: price?.[key]?.default_max },
-      final_price: { currency, value: price?.[key]?.default_max },
-      // discount,
+      regular_price: {
+        currency,
+        value: maxRegular,
+      },
+      final_price: {
+        currency,
+        value: maxFinal,
+      },
+      discount: {
+        percent_off:
+          maxRegular !== maxFinal && maxRegular > 0 ? 1 - (maxFinal / maxRegular) * 100 : 0,
+        amount_off: maxRegular - maxFinal,
+      },
       // fixed_product_taxes
     },
     minimum_price: {
-      regular_price: { currency, value: price?.[key]?.default },
-      final_price: { currency, value: price?.[key]?.default },
-      // discount,
+      regular_price: {
+        currency,
+        value: price?.[key]?.default,
+      },
+      final_price: {
+        currency,
+        value: maxFinal,
+      },
+      discount: {
+        percent_off:
+          minRegular !== minFinal && minRegular > 0 ? 1 - (minFinal / minRegular) * 100 : 0,
+        amount_off: minRegular - minFinal,
+      },
       // fixed_product_taxes
     },
   }
@@ -65,11 +92,7 @@ function algoliaUrlToUrlKey(url?: string | null, base?: string | null): string |
  * @param url
  */
 function getOriginalImage(url?: string | undefined | null) {
-  if (!url) return url
-
-  if (!url.includes('media/catalog/product')) {
-    return url
-  }
+  if (!url || !url.includes('media/catalog/product')) return url
   return url.replace(/\/cache\/[a-z0-9]+/, '')
 }
 
@@ -96,6 +119,7 @@ export type MagentoProductItemReturn = NonNullable<
 export function algoliaHitToMagentoProduct(
   hit: Algoliahit,
   storeConfig: GetStoreConfigReturn,
+  customerGroup: number,
 ): MagentoProductItemReturn | null {
   const { objectID, additionalProperties } = hit
   if (!assertAdditional(additionalProperties)) return null
@@ -126,7 +150,7 @@ export function algoliaHitToMagentoProduct(
     __typename: algoliaTypeToTypename[type_id as keyof typeof algoliaTypeToTypename],
     uid: btoa(objectID),
     sku: Array.isArray(sku) ? sku[0] : `${sku}`,
-    price_range: mapPriceRange(price, storeConfig),
+    price_range: mapPriceRange(price, storeConfig, customerGroup),
     created_at: created_at ? new Date(created_at).toISOString() : null,
     stock_status: is_stock ? 'IN_STOCK' : 'OUT_OF_STOCK',
     review_count: 0,

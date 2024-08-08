@@ -245,18 +245,20 @@ export type GraphCommerceConfig = {
    * Project settings -> API Access -> High Performance Read-only Content API
    */
   hygraphEndpoint: Scalars['String']['input'];
-  /** Hygraph Management API. **Only used for migrations.** */
-  hygraphManagementApi?: InputMaybe<Scalars['String']['input']>;
-  /** Hygraph Project ID. **Only used for migrations.** */
-  hygraphProjectId?: InputMaybe<Scalars['String']['input']>;
   /**
-   * Content API. **Only used for migrations.**
+   * Hygraph Management API. **Only used for migrations.**
    *
-   * > Regular read & write endpoint that allows querying and mutating data in your project.
-   *
-   * Project settings -> API Access -> Content API
+   * Optional: If the hygraphEndpoint is configured with the 'High Performance Content
+   * API', this field is not required.
    */
-  hygraphWriteAccessEndpoint?: InputMaybe<Scalars['String']['input']>;
+  hygraphManagementApi?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Hygraph Project ID. **Only used for migrations.**
+   *
+   * Optional: If the hygraphEndpoint is configured with the 'High Performance Content
+   * API', this field is not required.
+   */
+  hygraphProjectId?: InputMaybe<Scalars['String']['input']>;
   /**
    * Hygraph Management SDK Authorization Token. **Only used for migrations.**
    *
@@ -283,7 +285,6 @@ export type GraphCommerceConfig = {
    *   - Can see schema view
    *
    * ```
-   * GC_HYGRAPH_WRITE_ACCESS_ENDPOINT="https://...hygraph.com/v2/..."
    * GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
    * yarn graphcommerce hygraph-migrate
    * ```
@@ -537,7 +538,6 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     hygraphEndpoint: z.string().min(1),
     hygraphManagementApi: z.string().nullish(),
     hygraphProjectId: z.string().nullish(),
-    hygraphWriteAccessEndpoint: z.string().nullish(),
     hygraphWriteAccessToken: z.string().nullish(),
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),

@@ -60,7 +60,9 @@ function CartItemEdit(props: Props) {
         }
       >
         {!cartItem && (
-          <EmptyCart>{cart.error && <ApolloCartErrorAlert error={cart.error} />}</EmptyCart>
+          <EmptyCart disableMargin>
+            {cart.error && <ApolloCartErrorAlert error={cart.error} />}
+          </EmptyCart>
         )}
         {cartItem && (
           <EditCartItemForm

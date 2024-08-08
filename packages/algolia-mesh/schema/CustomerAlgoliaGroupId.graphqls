@@ -1,0 +1,9 @@
+type Customer {
+  group_id: Int
+    @resolveTo(
+      sourceName: "m2rest"
+      sourceTypeName: "Query"
+      sourceFieldName: "m2rest_GetV1CustomersMe"
+      result: "group_id"
+    )
+}

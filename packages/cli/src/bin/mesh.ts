@@ -68,7 +68,7 @@ const main = async () => {
   const conf = meshConfig(baseConf, graphCommerce)
 
   // We're configuring a custom fetch function
-  conf.customFetch = require.resolve('@graphcommerce/graphql-mesh/customFetch')
+  conf.customFetch = '@graphcommerce/graphql-mesh/customFetch'
   conf.serve = { ...conf.serve, endpoint: '/api/graphql' }
 
   // Rewrite additionalResolvers so we can use module resolution more easily

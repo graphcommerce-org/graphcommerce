@@ -22,10 +22,6 @@ msgid "I understand that my account will be deleted and this can not be undone."
 msgstr "I understand that my account will be deleted and this can not be undone."
 
 #. js-lingui-generated-id
-msgid "Orders"
-msgstr "Orders"
-
-#. js-lingui-generated-id
 msgid "Newletter"
 msgstr "Newletter"
 
@@ -38,12 +34,12 @@ msgid "We couldn't find any results"
 msgstr "We couldn't find any results"
 
 #. js-lingui-generated-id
-msgid "Name"
-msgstr "Name"
-
-#. js-lingui-generated-id
 msgid "Shipping method"
 msgstr "Shipping method"
+
+#. js-lingui-generated-id
+msgid "Name"
+msgstr "Name"
 
 #. js-lingui-generated-id
 msgid "I understand that my order will be canceled and this can not be undone."
@@ -160,6 +156,10 @@ msgstr "Cart ({0})"
 
 msgid "Categories"
 msgstr "Categories"
+
+#. js-lingui-generated-id
+msgid "Order #{orderNumber}"
+msgstr "Order #{orderNumber}"
 
 msgid "Change"
 msgstr "Change"
@@ -367,10 +367,6 @@ msgstr "Forgot your password?"
 
 msgid "Free"
 msgstr "Free"
-
-#. js-lingui-generated-id
-msgid "Order #{orderNumber} not found"
-msgstr "Order #{orderNumber} not found"
 
 msgid "Grand total"
 msgstr "Grand total"
@@ -893,10 +889,6 @@ msgstr "Written by {nickname}"
 msgid "Written {0} reviews"
 msgstr "Written {0} reviews"
 
-#. js-lingui-generated-id
-msgid "Are you sure you want to cancel your order? This action is not reversable."
-msgstr "Are you sure you want to cancel your order? This action is not reversable."
-
 msgid "You are reviewing {0}"
 msgstr "You are reviewing {0}"
 
@@ -942,27 +934,6 @@ msgstr "Your cart is empty"
 msgid "Your comparelist is empty"
 msgstr "Your comparelist is empty"
 
-msgid "Your order has been canceled"
-msgstr "Your order has been canceled"
-
-msgid "Your order has been invoiced"
-msgstr "Your order has been invoiced"
-
-msgid "Your order has been partially processed"
-msgstr "Your order has been partially processed"
-
-msgid "Your order has been refunded"
-msgstr "Your order has been refunded"
-
-msgid "Your order has been returned"
-msgstr "Your order has been returned"
-
-msgid "Your order is being processed"
-msgstr "Your order is being processed"
-
-msgid "Your order is on its way!"
-msgstr "Your order is on its way!"
-
 msgid "Your session is expired"
 msgstr "Your session is expired"
 
@@ -992,12 +963,13 @@ msgstr "Return to home"
 msgid "Add to Cart"
 msgstr "Add to Cart"
 
-msgid "canceled"
-msgstr "canceled"
-
 #. js-lingui-generated-id
 msgid "Shipping address"
 msgstr "Shipping address"
+
+#. js-lingui-generated-id
+msgid "Order status: {status}"
+msgstr "Order status: {status}"
 
 #. js-lingui-generated-id
 msgid "Shipping Note"
@@ -1008,31 +980,20 @@ msgid "Your message has been received, we will contact you as soon as we can"
 msgstr "Your message has been received, we will contact you as soon as we can"
 
 #. js-lingui-generated-id
-msgid "Order #{orderNumber}"
-msgstr "Order #{orderNumber}"
-
-#. js-lingui-generated-id
 msgid "Invalid phone number"
 msgstr "Invalid phone number"
-
-#. js-lingui-generated-id
-msgid "Submit"
-msgstr "Submit"
 
 #. js-lingui-generated-id
 msgid "Billing address"
 msgstr "Billing address"
 
 #. js-lingui-generated-id
-msgid "Order date"
-msgstr "Order date"
+msgid "Submit"
+msgstr "Submit"
 
 #. js-lingui-generated-id
-msgid "Back"
-msgstr "Back"
-
-msgid "invoiced"
-msgstr "invoiced"
+msgid "Order date"
+msgstr "Order date"
 
 #. js-lingui-generated-id
 msgid "Contact"
@@ -1065,31 +1026,8 @@ msgid "one product"
 msgstr "one product"
 
 #. js-lingui-generated-id
-msgid "Cancel order #{orderNumber}"
-msgstr "Cancel order #{orderNumber}"
-
-msgid "partially processed"
-msgstr "partially processed"
-
-msgid "processed"
-msgstr "processed"
-
-#. js-lingui-generated-id
-msgid "Order #{orderNumber} can not be canceled"
-msgstr "Order #{orderNumber} can not be canceled"
-
-msgid "refunded"
-msgstr "refunded"
-
-msgid "returned"
-msgstr "returned"
-
-#. js-lingui-generated-id
 msgid "Order not found"
 msgstr "Order not found"
-
-msgid "shipped"
-msgstr "shipped"
 
 #. js-lingui-generated-id
 msgid "Cancel order"

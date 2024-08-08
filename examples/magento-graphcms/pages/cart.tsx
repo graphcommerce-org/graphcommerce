@@ -92,7 +92,7 @@ function CartPage() {
             </OverlayStickyBottom>
           </>
         ) : (
-          <EmptyCart>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
+          <EmptyCart disableMargin>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
         )}
       </WaitForQueries>
     </>

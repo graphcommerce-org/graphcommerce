@@ -63,7 +63,7 @@ function ShippingPage() {
         }
       >
         {shippingPage.error && <ApolloCartErrorFullPage error={shippingPage.error} />}
-        {!shippingPage.error && !cartExists && <EmptyCart />}
+        {!shippingPage.error && !cartExists && <EmptyCart disableMargin />}
         {!shippingPage.error && cartExists && (
           <ComposedForm>
             <LayoutHeader

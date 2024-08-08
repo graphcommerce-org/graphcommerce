@@ -1,6 +1,6 @@
-import { PluginConfig, PluginProps } from '@graphcommerce/next-config'
-import { xMagentoCacheIdHeader } from '../link/xMagentoCacheIdHeader'
 import { GraphQLProviderProps } from '@graphcommerce/graphql'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import { xMagentoCacheIdHeader } from '../link/xMagentoCacheIdHeader'
 
 export const config: PluginConfig = {
   type: 'component',
