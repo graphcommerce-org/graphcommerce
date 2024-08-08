@@ -86,6 +86,7 @@ export type GoogleEventTypes = {
   select_content: {
     content_type?: string
     content_id?: string
+    data?: object
   }
   select_item: SelectItem
 
