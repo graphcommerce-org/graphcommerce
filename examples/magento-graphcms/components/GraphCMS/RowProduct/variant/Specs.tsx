@@ -1,7 +1,7 @@
 import { ProductSpecs } from '@graphcommerce/magento-product'
-import { RowProductPageFragment } from '../RowProductPage.gql'
+import type { RowProductPageProps } from '../RowProductPage'
 
-type SpecsProps = RowProductPageFragment
+type SpecsProps = Omit<RowProductPageProps, 'productPageVariant'>
 
 export function Specs(props: SpecsProps) {
   const { title, product } = props

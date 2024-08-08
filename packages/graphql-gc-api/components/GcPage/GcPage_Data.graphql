@@ -1,4 +1,5 @@
-fragment GcPage_Rows on GcPage {
+fragment GcPage_Data on GcPage {
+  ...GcPage_Head
   rows {
     __typename
     ... on GcRowFake {

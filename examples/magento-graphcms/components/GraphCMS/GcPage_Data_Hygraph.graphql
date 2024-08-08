@@ -1,4 +1,4 @@
-fragment GcPage_Rows_Hygraph on GcPage @inject(into: ["GcPage_Rows"]) {
+fragment GcPage_Data_Hygraph on GcPage @inject(into: ["GcPage_Data"]) {
   rows {
     __typename
     ... on Node {
@@ -14,7 +14,6 @@ fragment GcPage_Rows_Hygraph on GcPage @inject(into: ["GcPage_Rows"]) {
     ...RowButtonLinkList
     ...RowServiceOptions
     ...RowContentLinks
-    ...RowProduct
     ...RowLinks
     ...RowCategory
   }

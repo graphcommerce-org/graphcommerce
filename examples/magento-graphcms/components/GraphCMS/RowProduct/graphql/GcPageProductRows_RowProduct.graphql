@@ -1,0 +1,7 @@
+fragment GcPageProductRows_RowProduct on ProductInterface
+@inject(into: ["GcPageProduct_Product_Data"]) {
+  ...UpsellProducts
+  ...RelatedProducts
+  ...ProductReviews
+  ...ProductSpecs
+}

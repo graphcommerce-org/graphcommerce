@@ -101,7 +101,14 @@ function PreviewModeEnabled() {
 }
 
 function PreviewModeDisabled() {
-  const form = useForm<{ secret: string }>({})
+  const form = useForm<{ secret: string }>({
+    defaultValues: {
+      secret:
+        process.env.NODE_ENV !== 'production' && import.meta.graphCommerce.previewSecret
+          ? import.meta.graphCommerce.previewSecret
+          : '',
+    },
+  })
 
   const submit = form.handleSubmit((formValues) => {
     const url = getPreviewUrl()

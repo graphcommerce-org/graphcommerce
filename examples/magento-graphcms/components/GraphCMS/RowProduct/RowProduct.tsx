@@ -4,7 +4,7 @@ import { Box } from '@mui/material'
 import { useRouter } from 'next/router'
 import { productListRenderer } from '../../ProductListItems'
 import { GetMagentoRowProductDocument } from './GetMagentoRowProduct.gql'
-import { RowProductFragment } from './RowProduct.gql'
+import { RowProductFragment } from './graphql/RowProduct.gql'
 import { Backstory, Feature, FeatureBoxed } from './variant'
 
 type VariantRenderer = Record<
@@ -16,17 +16,15 @@ type RowProductProps = RowProductFragment & {
   renderer?: Partial<VariantRenderer>
 }
 
-function RowProductPreview(props: RowProductFragment) {
+function RowProductPreview(props: RowProductProps) {
   const { variant, identity, product } = props
 
   const router = useRouter()
   const canShow = router.isPreview || process.env.NODE_ENV !== 'production'
   const shouldBeRowCategory = variant === 'Grid' || variant === 'Swipeable'
-  const shouldBeRowProductPage =
-    variant === 'Reviews' || variant === 'Upsells' || variant === 'Related' || variant === 'Specs'
   const noProduct = !product
   if (!canShow) return null
-  if (!(noProduct || shouldBeRowCategory || shouldBeRowProductPage)) return null
+  if (!(noProduct || shouldBeRowCategory)) return null
 
   return (
     <Box
@@ -43,13 +41,7 @@ function RowProductPreview(props: RowProductFragment) {
           Hygraph to a RowCategory component.
         </>
       )}
-      {shouldBeRowProductPage && (
-        <>
-          RowProduct with identity ‘{identity}’ and variant ‘{variant}’, should be migrated in
-          Hygraph to a RowProductPage component.
-        </>
-      )}
-      {!(shouldBeRowCategory || shouldBeRowProductPage) && noProduct && (
+      {!shouldBeRowCategory && noProduct && (
         <>
           RowProduct ({identity}) was configured with Product URL &quot;
           <code>{identity}</code>&quot;, However Magento didn&apos;t return any results.
@@ -63,6 +55,10 @@ const defaultRenderer: Partial<VariantRenderer> = {
   Backstory,
   Feature,
   FeatureBoxed,
+  Related: () => <>Only available on the product page</>,
+  Reviews: () => <>Only available on the product page</>,
+  Specs: () => <>Only available on the product page</>,
+  Upsells: () => <>Only available on the product page</>,
 }
 
 export function RowProduct(props: RowProductProps) {

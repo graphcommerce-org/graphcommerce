@@ -3,12 +3,12 @@ import { ProductReviews } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Row } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
-import { RowProductPageFragment } from '../RowProductPage.gql'
+import type { RowProductPageProps } from '../RowProductPage'
 
-type ReviewsProps = RowProductPageFragment
+type ReviewsProps = Omit<RowProductPageProps, 'productPageVariant'>
 
 export function Reviews(props: ReviewsProps) {
-  const { title, product, sx } = props
+  const { title, product } = props
   const { reviews, review_count, url_key, sku } = product ?? {}
 
   const { data, loading } = useQuery(StoreConfigDocument)

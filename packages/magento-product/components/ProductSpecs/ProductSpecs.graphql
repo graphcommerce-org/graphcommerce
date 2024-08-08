@@ -1,5 +1,5 @@
 fragment ProductSpecs on ProductInterface {
-  custom_attributesV2(filters: { is_visible_on_front: true }) @include(if: $useCustomAttributes) {
+  custom_attributesV2(filters: { is_visible_on_front: true }) {
     items {
       code
       __typename

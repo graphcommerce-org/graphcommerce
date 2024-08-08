@@ -9,7 +9,7 @@ import {
   RowProduct,
   type Resolvers,
 } from '@graphcommerce/graphql-mesh'
-import { Kind, print } from 'graphql'
+import { Kind, responsePathAsArray } from 'graphql'
 
 const normalizeUrl = (href: string) => {
   const cleanedhref = href.replaceAll(/^\/|\/$/g, '')
@@ -43,29 +43,40 @@ export function getProduct(context: MeshContext, key: string): ProductInterface 
   return value[key]
 }
 
+function isRowProduct(row: PageContent): row is RowProduct {
+  return '__typename' in row && row.__typename === 'RowProduct'
+}
+
 const gcPageProductResolver: GCPageResolver = {
   selectionSet: `{url_key}`,
   resolve: async (root, args, context, info) => {
-    setProduct(context, root.url_key!, root)
-    const page = (
-      await context.hygraph.Query.pages({
-        context,
-        info,
-        root,
-        key: root.url_key,
-        argsFromKeys: (keys) => ({
-          where: { url_in: ['product/global', ...keys.map((key) => `p/${key}`)] },
-        }),
-        valuesFromResults: (results, keys) =>
-          keys.map((key) => [
-            results.find((r) => r.url === `p/${key}`) ??
-              results.find((r) => r.url === 'product/global') ??
-              null,
-          ]),
-      })
-    )?.[0]
+    if (!root.url_key) return null
 
-    return page
+    setProduct(context, root.url_key, root)
+
+    // console.log(root)
+    return context.hygraph.Query.pages({
+      context,
+      info,
+      root,
+      key: root.url_key,
+      argsFromKeys: (keys) => ({
+        where: { url_in: ['product/global', ...keys.map((key) => `p/${key}`)] },
+      }),
+      valuesFromResults: (results, keys) =>
+        keys.map((key) => {
+          const page =
+            results.find((r) => r.url === `p/${key}`) ??
+            results.find((r) => r.url === 'product/global')
+          if (!page) return null
+
+          page.content.forEach((row) => {
+            if (isRowProduct(row)) row.identity = key
+          })
+
+          return page
+        }),
+    })
   },
 }
 
@@ -161,6 +172,10 @@ export const resolvers: Resolvers = {
     product: {
       selectionSet: `{ identity }`,
       resolve: async (root, args, context, info) => {
+        // When the RowProduct is request as part of a product query, we expect the product to be
+        // already resolved and available in the context
+        if (responsePathAsArray(info.path)[0] === 'products') return null
+
         const result = await context.m2.Query.products({
           root,
           info,

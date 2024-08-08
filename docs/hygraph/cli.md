@@ -50,24 +50,10 @@ The following steps are needed to utilize this tool:
       - Can see schema view
    5. Add this new token to your env file:
       `GC_HYGRAPH_WRITE_ACCESS_TOKEN="{YOUR_WRITE_ACCESS_TOKEN}"`
-2. Run `yarn graphcommerce hygraph-migrate`
-3. Select the migration you want to run and press enter.
-4. The migrations should now be applied, check your Hygraph Schema if changes
+2. Add your hygraphProjectId to your env file like this:
+   1. Settings > Project > Id
+   2. `GC_HYGRAPH_PROJECT_ID="{YOUR_PROJECT_ID}"`
+3. Run `yarn graphcommerce hygraph-migrate`
+4. Select the migration you want to run and press enter.
+5. The migrations should now be applied, check your Hygraph Schema if changes
    are made.
-
-### Addtional config
-
-These configurations should not be necessary and can be deduced from the
-hygraphEndpoint URL. This allows you to override them in case something goes
-wrong.
-
-Before adding these make sure you've configure the 'High Performance Content
-API' als your hygraphEndpoint.
-
-- Add your hygraphProjectId to your env file like this:
-  1.  Settings > Project > Id
-  2.  Add the project ID to your env file:
-      `GC_HYGRAPH_PROJECT_ID="{YOUR_PROJECT_ID}"`
-- Add your hygraphManagementApi to your env file like this:
-  1.  Copy the Management API URL and add to your env file:
-      `GC_HYGRAPH_MANAGEMENT_API="{YOUR_MANAGEMENT_API}"`

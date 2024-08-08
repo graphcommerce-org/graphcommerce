@@ -239,13 +239,6 @@ The Google Tagmanager ID to be used on the site.
 
 This value is required even if you are configuring different values for each locale.
 
-#### hygraphManagementApi: string
-
-Hygraph Management API. **Only used for migrations.**
-
-Optional: If the hygraphEndpoint is configured with the 'High Performance Content
-API', this field is not required.
-
 #### hygraphProjectId: string
 
 Hygraph Project ID. **Only used for migrations.**

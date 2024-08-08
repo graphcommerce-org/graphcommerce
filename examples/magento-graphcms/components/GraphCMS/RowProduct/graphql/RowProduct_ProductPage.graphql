@@ -1,0 +1,6 @@
+fragment RowProduct_ProductPage on RowProduct {
+  ...RowProduct
+  product {
+    ...GcPageProductRows_RowProduct
+  }
+}

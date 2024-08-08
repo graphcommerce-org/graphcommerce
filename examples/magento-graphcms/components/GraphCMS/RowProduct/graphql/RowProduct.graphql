@@ -1,4 +1,4 @@
-fragment RowProductPage on RowProduct {
+fragment RowProduct on RowProduct {
   variant
   identity
   asset {
@@ -12,9 +12,6 @@ fragment RowProductPage on RowProduct {
     ...PageLink
   }
   product {
-    ...UpsellProducts
-    ...RelatedProducts
-    ...ProductReviews
-    ...ProductSpecs
+    ...GcPage_Product_Data
   }
 }

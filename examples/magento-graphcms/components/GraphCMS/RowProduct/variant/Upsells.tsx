@@ -7,9 +7,9 @@ import {
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import { productListRenderer } from '../../../ProductListItems/productListRenderer'
-import { RowProductPageFragment } from '../RowProductPage.gql'
+import type { RowProductPageProps } from '../RowProductPage'
 
-type UpsellsProps = RowProductPageFragment & Pick<SidebarSliderProps, 'sx'>
+type UpsellsProps = Omit<RowProductPageProps, 'productPageVariant'> & Pick<SidebarSliderProps, 'sx'>
 
 export function Upsells(props: UpsellsProps) {
   const { title, product, sx } = props

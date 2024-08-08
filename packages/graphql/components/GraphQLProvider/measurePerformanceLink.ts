@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 import { ApolloLink } from '@apollo/client'
-import type { MeshFetchHTTPInformation } from '@graphql-mesh/plugin-http-details-extensions'
 import { print } from '@apollo/client/utilities'
+import type { MeshFetchHTTPInformation } from '@graphql-mesh/plugin-http-details-extensions'
 import { cliHyperlink } from '../../lib/hyperlinker'
-
+import { responsePathAsArray, stripIgnoredCharacters } from 'graphql'
 const running = new Map<
   string,
   {
@@ -109,12 +109,9 @@ export const flushMeasurePerf = () => {
   // padd the items to the max length
   items.forEach((item) => {
     item.forEach((_, index) => {
-      const [str] = (Array.isArray(item[index]) ? item[index] : [item[index], item[index]]) as [
-        string,
-        string,
-      ]
+      const [str] = Array.isArray(item[index]) ? item[index] : [item[index], item[index]]
 
-      const val = (Array.isArray(item[index]) ? item[index][1] : item[index]) as string
+      const val = Array.isArray(item[index]) ? item[index][1] : item[index]
 
       const padLength = colWidths[index] + (val.length - str.length)
 
@@ -123,8 +120,16 @@ export const flushMeasurePerf = () => {
   })
 
   // render the items to a string
+
+  const jajajaj = [[''], ...items].map((item) => item.join(' '))
+  // console.log(jajajaj)
+
+  jajajaj.forEach((item) => {
+    console.log(item)
+  })
+
   const output = [[''], ...items].map((item) => item.join(' ')).join('\n')
-  console.log(output)
+  // console.log(output)
 
   running.clear()
 }
@@ -157,42 +162,54 @@ export const measurePerformanceLink = new ApolloLink((operation, forward) => {
       const httpDetails: MeshFetchHTTPInformation[] | undefined = data.extensions?.httpDetails
 
       let additional = [``, ``] as [string, string]
-      if (httpDetails) {
-        httpDetails.forEach((d) => {
-          const requestUrl = new URL(d.request.url)
-          requestUrl.searchParams.delete('extensions')
-          const title = `${d.sourceName} ${d.responseTime}ms`
-          additional = [
-            `${additional[0]} ${title}`,
-            `${additional[1]} ${cliHyperlink(title, requestUrl.toString().replace(/\+/g, '%20'))}`,
-          ]
-        })
-      }
 
       // Called after server responds
       const query = [
         `# Variables: ${JSON.stringify(operation.variables)}`,
         `# Headers: ${JSON.stringify(operation.getContext().headers)}`,
-        print(operation.query),
+        stripIgnoredCharacters(print(operation.query)),
       ].join('\n')
 
-      const meshUrl = new URL(`${import.meta.graphCommerce.canonicalBaseUrl}/api/graphql`)
+      const meshUrl = new URL(
+        process.env.NODE_ENV === 'production'
+          ? `${import.meta.graphCommerce.canonicalBaseUrl}/api/graphql`
+          : 'http://localhost:3000/api/graphql',
+      )
+
       meshUrl.searchParams.set('query', query)
 
       running.set(operationString, {
         start: operation.getContext().measurePerformanceLinkStart as Date,
         end: new Date(),
-        operationName: [operation.operationName, operation.operationName],
+        operationName: [
+          operation.operationName,
+          operation.operationName,
+          // cliHyperlink(operation.operationName, meshUrl.toString()),
+        ],
         additional,
-        // [
-        //   operation.operationName,
-        //   cliHyperlink(operation.operationName, meshUrl.toString()),
-        // ],
-        // additional: [
-        //   `🔗 ${additional[0]}`,
-        //   `${cliHyperlink('🔗', meshUrl.toString())} ${additional[1]}`,
-        // ],
       })
+
+      if (httpDetails) {
+        // running.delete(operationString)
+
+        httpDetails.forEach((d) => {
+          const requestUrl = new URL(d.request.url)
+          requestUrl.searchParams.delete('extensions')
+          const title = `${d.sourceName} ${d.responseTime}ms`
+
+          const key = `${operationString}.${responsePathAsArray(d.path).join('.')}`
+          const name = `${operation.operationName}.${responsePathAsArray(d.path).join('.')}`
+          running.set(key, {
+            start: new Date(d.request.timestamp),
+            end: new Date(d.response.timestamp),
+            operationName: [name, name],
+            additional: [
+              `${title}`,
+              `${cliHyperlink(d.sourceName, requestUrl.toString().replace(/\+/g, '%20'))}`,
+            ],
+          })
+        })
+      }
 
       markTimeout()
 

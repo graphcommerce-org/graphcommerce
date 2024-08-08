@@ -1,5 +1,5 @@
 import type { SimplifyDeep, SetRequired } from 'type-fest'
-import type { GcPageQuery } from '../queries/GcPage.gql'
+import type { GcPageQuery } from '../components/GcPage/GcPage.gql'
 import { Redirect } from 'next'
 
 type FoundPage = NonNullable<GcPageQuery['page']>

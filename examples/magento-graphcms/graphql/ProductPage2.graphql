@@ -1,4 +1,9 @@
-query ProductPage2($urlKey: String!, $context: InContextInput) {
+query ProductPage2(
+  $urlKey: String!
+  $reviewPageSize: Int = 5
+  $reviewPage: Int = 1
+  $context: InContextInput
+) {
   products(filter: { url_key: { eq: $urlKey } }) @inContext(context: $context) {
     items {
       __typename
@@ -10,11 +15,7 @@ query ProductPage2($urlKey: String!, $context: InContextInput) {
       ...DownloadableProductOptions
       ...BundleProductOptions
       ...GroupedProduct
-      page: gcPage {
-        ...GcPage_Head
-        ...GcPage_Redirect
-        ...GcPage_Rows
-      }
+      ...GcPageProduct
     }
   }
 }

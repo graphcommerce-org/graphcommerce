@@ -1,15 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import {
-  cacheFirst,
-  InContextMaskProvider,
-  mergeDeep,
-  useInContextQuery,
-} from '@graphcommerce/graphql'
-import {
-  GcPageRowsProduct,
-  GcPageRowsProductBefore,
-  GcPageRowsProductSidebar,
-} from '@graphcommerce/graphql-gc-api'
+import { cacheFirst, InContextMaskProvider, useInContextQuery } from '@graphcommerce/graphql'
+import { GcPageProductRows } from '@graphcommerce/graphql-gc-api'
 import {
   AddProductsToCartForm,
   AddProductsToCartFormProps,
@@ -67,7 +58,7 @@ function ProductPage(props: Props) {
   if (!product?.sku || !product.url_key) return null
 
   return (
-    <>
+    <InContextMaskProvider mask={scopedQuery.mask}>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
         <LayoutHeader floatingMd>
           <LayoutTitle size='small' component='span'>
@@ -86,8 +77,6 @@ function ProductPage(props: Props) {
         />
 
         <ProductPageMeta product={product} />
-
-        {/* <GcPageRowsProductBefore page={product.page} /> */}
 
         {import.meta.graphCommerce.breadcrumbs && (
           <ProductPageBreadcrumbs
@@ -138,7 +127,7 @@ function ProductPage(props: Props) {
 
           {/* <Usps usps={sidebarUsps} size='small' /> */}
 
-          {/* <GcPageRowsProductSidebar page={product.page} /> */}
+          {/* <GcPageProductRowsSidebar page={product.page} /> */}
         </ProductPageGallery>
 
         <ProductPageDescription
@@ -149,7 +138,7 @@ function ProductPage(props: Props) {
         />
       </AddProductsToCartForm>
 
-      <GcPageRowsProduct page={product.page} />
+      <GcPageProductRows page={product.page} product={product} />
 
       <RecentlyViewedProducts
         title={<Trans id='Recently viewed products' />}
@@ -157,7 +146,7 @@ function ProductPage(props: Props) {
         productListRenderer={productListRenderer}
         sx={(theme) => ({ mb: theme.spacings.xxl })}
       />
-    </>
+    </InContextMaskProvider>
   )
 }
 

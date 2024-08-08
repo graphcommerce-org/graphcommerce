@@ -1,0 +1,4 @@
+fragment GcPage_Product_RowProduct on ProductInterface @inject(into: ["GcPage_Product_Data"]) {
+  ...ProductListItem
+  ...ProductFeatureMediaBoxed
+}

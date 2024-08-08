@@ -1,0 +1,4 @@
+fragment GcPageProduct_Data on GcPage {
+  ...GcPage_Head
+  ...GcPage_Data
+}

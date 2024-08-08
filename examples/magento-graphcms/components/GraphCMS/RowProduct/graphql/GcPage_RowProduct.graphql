@@ -1,0 +1,6 @@
+fragment GcPage_RowProduct on GcPage @inject(into: ["GcPage_Data"]) {
+  rows {
+    __typename
+    ...RowProduct
+  }
+}

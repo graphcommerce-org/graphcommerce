@@ -1,4 +1,9 @@
-import type { GcPageRowsProps, GcRowTypeRenderer } from '@graphcommerce/graphql-gc-api'
+import type {
+  GcPageProduct_Product_DataFragment,
+  GcPageProductRowsProps,
+  GcPage_Product_DataFragment,
+  GcPageRowsProps,
+} from '@graphcommerce/graphql-gc-api'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { RowBlogContent } from '../../components'
 import { RowButtonLinkList } from '../../components/GraphCMS/RowButtonLinkList/RowButtonLinkList'
@@ -10,6 +15,7 @@ import { RowContentLinks } from '../../components/GraphCMS/RowContentLinks/RowCo
 import { RowHeroBanner } from '../../components/GraphCMS/RowHeroBanner/RowHeroBanner'
 import { RowLinks } from '../../components/GraphCMS/RowLinks/RowLinks'
 import { RowProduct } from '../../components/GraphCMS/RowProduct/RowProduct'
+import { RowProductPage } from '../../components/GraphCMS/RowProduct/RowProductPage'
 import { RowQuote } from '../../components/GraphCMS/RowQuote/RowQuote'
 import { RowServiceOptions } from '../../components/GraphCMS/RowServiceOptions/RowServiceOptions'
 import { RowSpecialBanner } from '../../components/GraphCMS/RowSpecialBanner/RowSpecialBanner'
@@ -19,7 +25,8 @@ export const config: PluginConfig = {
   module: '@graphcommerce/graphql-gc-api',
 }
 
-const gcRowHygraphRenderer: Partial<GcRowTypeRenderer> = {
+const renderers = {
+  GcRowFake: () => null,
   RowColumnOne,
   RowColumnTwo,
   RowColumnThree,
@@ -35,7 +42,37 @@ const gcRowHygraphRenderer: Partial<GcRowTypeRenderer> = {
   RowCategory,
 }
 
-export const GcPageRows = (props: PluginProps<GcPageRowsProps>) => {
+export const GcPageRows = (
+  props: PluginProps<GcPageRowsProps> & {
+    rowRenderer?: Partial<GcPageRowsProps['rowRenderer']>
+  },
+) => {
   const { Prev, ...rest } = props
-  return <Prev {...rest} rowRenderer={gcRowHygraphRenderer} />
+  return <Prev {...rest} rowRenderer={renderers} />
+}
+
+export function GcPageProductRows<
+  P extends GcPageProduct_Product_DataFragment & GcPage_Product_DataFragment,
+>(
+  props: PluginProps<GcPageProductRowsProps<P>> & {
+    rowRenderer?: Partial<GcPageProductRowsProps<P>['rowRenderer']>
+  },
+) {
+  const { Prev, page, product, ...rest } = props
+
+  const newPage = page && {
+    ...page,
+    rows: page?.rows?.map((row) =>
+      row?.__typename === 'RowProduct' && !row.product ? { ...row, product } : row,
+    ),
+  }
+
+  return (
+    <Prev
+      {...rest}
+      page={newPage}
+      product={product}
+      rowRenderer={{ ...renderers, RowProduct: RowProductPage }}
+    />
+  )
 }
