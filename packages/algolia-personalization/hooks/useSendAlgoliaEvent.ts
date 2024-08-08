@@ -274,6 +274,10 @@ export function useSendAlgoliaEvent() {
       cookie('_algolia_userToken', userToken, { sameSite: true })
     }
 
+    if (authenticatedUserToken) {
+      userToken = authenticatedUserToken
+    }
+
     const events = dataLayerToAlgoliaMap[eventName]?.(eventName, eventData, {
       index,
       userToken,
