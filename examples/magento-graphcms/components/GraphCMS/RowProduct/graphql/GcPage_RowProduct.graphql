@@ -1,8 +1,0 @@
-# When we're requesting a **non-product page** also request the RowProduct fragments.
-# For data specifc to the product page, see GcPageProduct_RowProduct.graphql
-fragment GcPage_RowProduct on GcPage @inject(into: ["GcPage_Data"]) {
-  rows {
-    __typename
-    ...RowProduct
-  }
-}

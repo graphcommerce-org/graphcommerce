@@ -12,6 +12,6 @@ fragment RowProduct on RowProduct {
     ...PageLink
   }
   product {
-    ...GcPage_Product_Data
+    ...Page_Product_Data
   }
 }

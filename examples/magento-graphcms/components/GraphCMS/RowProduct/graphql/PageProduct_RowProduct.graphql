@@ -1,5 +1,5 @@
 # When we're requesting a **product page** also request the RowProduct_ProductPage fragment
-fragment GcPageProduct_RowProduct on GcPage @inject(into: ["GcPageProduct_Data"]) {
+fragment PageProduct_RowProduct on Page @inject(into: ["PageProduct_Data"]) {
   rows {
     __typename
     ...RowProduct_ProductPage

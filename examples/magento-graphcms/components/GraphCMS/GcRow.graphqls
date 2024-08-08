@@ -1,4 +1,4 @@
-union GcRow =
+union PageRow =
   | RowBlogContent
   | RowButtonLinkList
   | RowCategory

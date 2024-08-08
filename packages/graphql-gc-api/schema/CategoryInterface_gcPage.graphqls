@@ -1,7 +1,7 @@
 interface CategoryInterface {
-  gcPage: GcPage
+  page: Page
 }
 
 type CategoryTree {
-  gcPage: GcPage
+  page: Page
 }

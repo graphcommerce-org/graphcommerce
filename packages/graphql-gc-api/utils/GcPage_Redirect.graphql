@@ -1,4 +1,4 @@
-fragment GcPage_Redirect on GcPage {
+fragment Page_Redirect on Page {
   redirect {
     destination
     permanent

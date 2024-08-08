@@ -1,16 +1,25 @@
-type GcPage {
+"""
+This type only exists to make the PageRow union not fail.
+"""
+type PageRowFake {
+  id: ID!
+}
+
+union PageRow = PageRowFake
+
+type Page {
   """
   The head of the page.
   """
-  head: GcPageHead
+  head: PageHead
 
   """
   When the redirect is defined the page should not be rendered and the user should be redirected to the specified URL.
   """
-  redirect: GcPageRedirect
+  redirect: PageRedirect
 
   """
   Rows of the content
   """
-  rows: [GcRow]
+  rows: [PageRow]
 }

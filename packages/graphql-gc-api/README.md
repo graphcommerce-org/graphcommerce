@@ -19,32 +19,31 @@ This package offers the following new queries
 
 ```graphql
 extend type Query {
-  gcPage(input: GCPageInput!): GcPage
+  page(input: GCPageInput!): Page
 }
 
-type GcPage {
+type Page {
   """
   The head of the page.
   """
-  head: GcPageHead
+  head: PageHead
 
   """
   When the redirect is defined the page should not be rendered and the user should be redirected to the specified URL.
   """
-  redirect: GcPageRedirect
+  redirect: PageRedirect
 }
 ```
 
-- [Query { gcPage }](./schema/Query_gcPage.graphqls)
-- [GcPage](./schema/GcPage.graphqls)
-- [GcPageHead](./schema/GcPageHead.graphqls)
-- [GcPageRedirect](./schema/GCPageRedirect.graphqls)
+- [Query { page }](./schema/Query_page.graphqls)
+- [Page](./schema/Page.graphqls)
+- [PageHead](./schema/PageHead.graphqls)
+- [PageRedirect](./schema/GCPageRedirect.graphqls)
 
 ### Creating the GraphQL schema integration
 
 There are a few important steps to integrate with the GraphQL schema. First we
-need to make your type compatible with GcPage. We take Hygraph as an example
-here.
+need to make your type compatible with Page. We take Hygraph as an example here.
 
 For example we would normally execute the following query:
 
@@ -78,7 +77,7 @@ query Pages {
       node {
         url
       }
-      # This part is the GcPageHead
+      # This part is the PageHead
       head {
         title
         description
@@ -99,14 +98,14 @@ query Pages {
 
 ### Extend your type
 
-RENAME your type to GcPage.
+RENAME your type to Page.
 
 Note: After making changines to the schema or .meshrc.yaml you always need to
 run `yarn codegen` to see your changes.
 
 If you now run `yarn codegen` you'll in the GraphiQL interface that your Page
-implements `GcPage`. When running the query you will see an empty `head` and
-empty redirect.
+implements `Page`. When running the query you will see an empty `head` and empty
+redirect.
 
 ### Implement the `head`/`redirect` fields for your type
 
@@ -121,13 +120,13 @@ every change, only when you change the schema or the mesh configuration.
 You should now see the `head` and `redirect` fields populated with data in your
 original query.
 
-### Resolve the gcPage query to your created type.
+### Resolve the page query to your created type.
 
 Now we want to be able to resolve this query.
 
 ```graphql
 query GCPage {
-  gcPage(input: { href: "page/home" }) {
+  page(input: { href: "page/home" }) {
     head {
       title
       canonical {
@@ -156,18 +155,18 @@ query GCPage {
 }
 ```
 
-### Resolve the gcPage query to your own query
+### Resolve the page query to your own query
 
-We define a `@resolveTo` for the gcPage query in the mesh configuration.
+We define a `@resolveTo` for the page query in the mesh configuration.
 
 So in this case we want to run the earlier pagesConnection query (as mentioned
-above) when the gcPage query is called.
+above) when the page query is called.
 
 The pagesConnection (sourceName) Query (sourceTypeName) should be calling
 hygraph (sourceName).
 
-We want to take the href argument (args.input.href) from the gcPage query and
-pass it to the `url` input field of the pagesConnection. (sourceArgs).
+We want to take the href argument (args.input.href) from the page query and pass
+it to the `url` input field of the pagesConnection. (sourceArgs).
 
 Finally when the pagesConnection has ran, we want to get the first edge and
 return the node as the result. (result).
@@ -176,7 +175,7 @@ Resulting in the following code:
 
 ```graphql
 extend type Query {
-  gcPage(input: GCPageInput!): GcPage
+  page(input: GCPageInput!): Page
     @resolveTo(
       sourceName: "hygraph"
       sourceTypeName: "Query"
@@ -193,8 +192,8 @@ Learn more about
 Note: Because we change the schema, we need to run `yarn codegen` again. Note:
 The resolveTo directive can doesn't really give warnings configured wrongly.
 
-After everything is set up you should be able to run the gcPage query and get
-the data from the pagesConnection query.
+After everything is set up you should be able to run the page query and get the
+data from the pagesConnection query.
 
 ## Frontend integration
 

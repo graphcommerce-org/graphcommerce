@@ -1,0 +1,3 @@
+fragment PageProduct_Product_Data on ProductInterface {
+  ...Page_Product_Data
+}

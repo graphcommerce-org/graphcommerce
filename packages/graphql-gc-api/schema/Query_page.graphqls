@@ -3,5 +3,5 @@ input GCPageInput {
 }
 
 extend type Query {
-  gcPage(input: GCPageInput!): GcPage
+  page(input: GCPageInput!): Page
 }

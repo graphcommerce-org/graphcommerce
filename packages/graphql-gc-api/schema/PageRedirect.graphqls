@@ -1,4 +1,4 @@
-type GcPageRedirect {
+type PageRedirect {
   """
   A fully qualified URL
 

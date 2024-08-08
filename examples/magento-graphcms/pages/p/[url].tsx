@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst, InContextMaskProvider, useInContextQuery } from '@graphcommerce/graphql'
-import { GcPageProductRows } from '@graphcommerce/graphql-gc-api'
+import { PageProductRows } from '@graphcommerce/graphql-gc-api'
 import {
   AddProductsToCartForm,
   AddProductsToCartFormProps,
@@ -127,7 +127,7 @@ function ProductPage(props: Props) {
 
           {/* <Usps usps={sidebarUsps} size='small' /> */}
 
-          {/* <GcPageProductRowsSidebar page={product.page} /> */}
+          {/* <PageProductRowsSidebar page={product.page} /> */}
         </ProductPageGallery>
 
         <ProductPageDescription
@@ -138,7 +138,7 @@ function ProductPage(props: Props) {
         />
       </AddProductsToCartForm>
 
-      <GcPageProductRows page={product.page} product={product} />
+      <PageProductRows page={product.page} product={product} />
 
       <RecentlyViewedProducts
         title={<Trans id='Recently viewed products' />}

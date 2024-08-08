@@ -21,7 +21,7 @@ const denormalizeUrl = (href: string) => {
   return cleanedhref === '' ? 'page/home' : cleanedhref
 }
 
-type GCPageResolver = NonNullable<Resolvers['SimpleProduct']>['gcPage']
+type GCPageResolver = NonNullable<Resolvers['SimpleProduct']>['page']
 
 export const contextData = new WeakMap<MeshContext, Record<string, ProductInterface>>()
 
@@ -47,7 +47,7 @@ function isRowProduct(row: PageContent): row is RowProduct {
   return '__typename' in row && row.__typename === 'RowProduct'
 }
 
-const gcPageProductResolver: GCPageResolver = {
+const pageProductResolver: GCPageResolver = {
   selectionSet: `{url_key}`,
   resolve: async (root, args, context, info) => {
     if (!root.url_key) return null
@@ -81,9 +81,9 @@ const gcPageProductResolver: GCPageResolver = {
 }
 
 export const resolvers: Resolvers = {
-  // Resolve the query `gcPage` to a page with the given URL
+  // Resolve the query `page` to a page with the given URL
   Query: {
-    gcPage: {
+    page: {
       resolve: (root, args, context, info) =>
         context.hygraph.Query.pages({
           root,
@@ -94,7 +94,7 @@ export const resolvers: Resolvers = {
     },
   },
 
-  GcPage: {
+  Page: {
     rows: {
       selectionSet: (root) => ({
         kind: Kind.SELECTION_SET,
@@ -157,16 +157,16 @@ export const resolvers: Resolvers = {
     },
   },
 
-  SimpleProduct: { gcPage: gcPageProductResolver },
-  ConfigurableProduct: { gcPage: gcPageProductResolver },
-  BundleProduct: { gcPage: gcPageProductResolver },
-  VirtualProduct: { gcPage: gcPageProductResolver },
-  DownloadableProduct: { gcPage: gcPageProductResolver },
-  GroupedProduct: { gcPage: gcPageProductResolver },
+  SimpleProduct: { page: pageProductResolver },
+  ConfigurableProduct: { page: pageProductResolver },
+  BundleProduct: { page: pageProductResolver },
+  VirtualProduct: { page: pageProductResolver },
+  DownloadableProduct: { page: pageProductResolver },
+  GroupedProduct: { page: pageProductResolver },
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore GiftCardProduct is only available in Commerce
-  GiftCardProduct: { gcPage: gcPageProductResolver },
+  GiftCardProduct: { page: pageProductResolver },
 
   RowProduct: {
     product: {

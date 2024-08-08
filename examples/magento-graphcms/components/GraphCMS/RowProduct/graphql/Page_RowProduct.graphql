@@ -1,0 +1,8 @@
+# When we're requesting a **non-product page** also request the RowProduct fragments.
+# For data specifc to the product page, see PageProduct_RowProduct.graphql
+fragment Page_RowProduct on Page @inject(into: ["Page_Data"]) {
+  rows {
+    __typename
+    ...RowProduct
+  }
+}

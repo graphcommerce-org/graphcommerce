@@ -1,4 +1,4 @@
-fragment BlogTags on GcPage {
+fragment BlogTags on Page {
   relatedPages {
     title
     url

@@ -5,19 +5,19 @@ import {
   type TypeRenderer,
 } from '@graphcommerce/next-ui'
 import React from 'react'
-import { GcPage_DataFragment } from './GcPage_Data.gql'
+import { Page_DataFragment } from './Page_Data.gql'
 
-type GcRowTypeRenderer = TypeRenderer<
-  NonNullable<NonNullable<NonNullable<GcPage_DataFragment['rows']>>[number]>
+type PageRowTypeRenderer = TypeRenderer<
+  NonNullable<NonNullable<NonNullable<Page_DataFragment['rows']>>[number]>
 >
 
-export type GcPageRowsProps = {
-  page: GcPage_DataFragment | null | undefined
-  renderer?: GcRowTypeRenderer
+export type PageRowsProps = {
+  page: Page_DataFragment | null | undefined
+  renderer?: PageRowTypeRenderer
   loadingEager?: number
 }
 
-export const GcPageRows = React.memo((props: GcPageRowsProps) => {
+export const PageRows = React.memo((props: PageRowsProps) => {
   const { renderer, page, loadingEager = 2 } = props
 
   if (!renderer || !page) return null

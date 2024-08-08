@@ -1,3 +1,0 @@
-fragment GcPageProduct_Product_Data on ProductInterface {
-  ...GcPage_Product_Data
-}

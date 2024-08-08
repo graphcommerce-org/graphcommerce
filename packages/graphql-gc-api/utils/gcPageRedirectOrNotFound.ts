@@ -1,44 +1,44 @@
 import type { SimplifyDeep, SetRequired } from 'type-fest'
-import type { GcPageQuery } from '../components/GcPage/GcPage.gql'
+import type { PageQuery } from '../components/Page/Page.gql'
 import { Redirect } from 'next'
 
-type FoundPage = NonNullable<GcPageQuery['page']>
+type FoundPage = NonNullable<PageQuery['page']>
 
-export type GcPage = {
+export type Page = {
   page: Omit<FoundPage, 'redirect'>
 }
 
-export type GcPageRedirect = {
+export type PageRedirect = {
   page: { redirect: NonNullable<FoundPage['redirect']> }
 }
 
-export type GcPageNotFound = { page?: null | undefined }
+export type PageNotFound = { page?: null | undefined }
 
-export function isGcPageNotFound(
-  query: GcPage | GcPageRedirect | GcPageNotFound | null | undefined,
-): query is GcPageNotFound {
+export function isPageNotFound(
+  query: Page | PageRedirect | PageNotFound | null | undefined,
+): query is PageNotFound {
   return !query?.page
 }
 
-export function isGcPageRedirect(
-  query: GcPage | GcPageRedirect | GcPageNotFound | null | undefined,
-): query is GcPageRedirect {
+export function isPageRedirect(
+  query: Page | PageRedirect | PageNotFound | null | undefined,
+): query is PageRedirect {
   return Boolean(query?.page && 'redirect' in query.page && query.page.redirect)
 }
 
-export function isGcPageFound(
-  query: GcPage | GcPageRedirect | GcPageNotFound | null | undefined,
-): query is GcPage {
-  return !isGcPageNotFound(query) && !isGcPageRedirect(query)
+export function isPageFound(
+  query: Page | PageRedirect | PageNotFound | null | undefined,
+): query is Page {
+  return !isPageNotFound(query) && !isPageRedirect(query)
 }
 
-export function gcPageRedirectOrNotFound(
-  query: GcPageQuery | null | undefined,
+export function pageRedirectOrNotFound(
+  query: PageQuery | null | undefined,
 ): { redirect: Redirect; revalidate?: number | boolean } | { notFound: true } {
-  if (isGcPageRedirect(query)) return { redirect: query.page.redirect }
-  if (isGcPageNotFound(query)) return { notFound: true }
+  if (isPageRedirect(query)) return { redirect: query.page.redirect }
+  if (isPageNotFound(query)) return { notFound: true }
 
   throw Error(
-    'gcPageRedirectOrNotFound should only be called when it isGcPageFound(query) returns false',
+    'pageRedirectOrNotFound should only be called when it isPageFound(query) returns false',
   )
 }

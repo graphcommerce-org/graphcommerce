@@ -62,7 +62,7 @@ type GcLinkRelTag {
   href: String!
 }
 
-type GcPageHead {
+type PageHead {
   """
   <title> element of the page
   """

@@ -1,0 +1,4 @@
+fragment Page_Product_RowProduct on ProductInterface @inject(into: ["Page_Product_Data"]) {
+  ...ProductListItem
+  ...ProductFeatureMediaBoxed
+}

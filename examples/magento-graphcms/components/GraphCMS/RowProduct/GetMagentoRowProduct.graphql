@@ -2,7 +2,7 @@ query GetMagentoRowProduct($urlKey: String!) {
   products(filter: { url_key: { eq: $urlKey } }, pageSize: 1) {
     items {
       uid
-      ...GcPage_Product_Data
+      ...Page_Product_Data
     }
   }
 }

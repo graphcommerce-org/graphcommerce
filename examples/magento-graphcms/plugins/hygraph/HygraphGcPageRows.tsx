@@ -1,8 +1,8 @@
 import type {
-  GcPageProduct_Product_DataFragment,
-  GcPageProductRowsProps,
-  GcPage_Product_DataFragment,
-  GcPageRowsProps,
+  PageProduct_Product_DataFragment,
+  PageProductRowsProps,
+  Page_Product_DataFragment,
+  PageRowsProps,
 } from '@graphcommerce/graphql-gc-api'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { RowBlogContent } from '../../components'
@@ -26,7 +26,7 @@ export const config: PluginConfig = {
 }
 
 const renderer = {
-  GcRowFake: () => null,
+  PageRowFake: () => null,
   RowColumnOne,
   RowColumnTwo,
   RowColumnThree,
@@ -42,9 +42,9 @@ const renderer = {
   RowCategory,
 }
 
-export const GcPageRows = (
-  props: PluginProps<GcPageRowsProps> & {
-    renderer?: Partial<GcPageRowsProps['renderer']>
+export const PageRows = (
+  props: PluginProps<PageRowsProps> & {
+    renderer?: Partial<PageRowsProps['renderer']>
   },
 ) => {
   const { Prev, ...rest } = props
@@ -53,11 +53,11 @@ export const GcPageRows = (
 
 const rendererProduct = { ...renderer, RowProduct: RowProductPage }
 
-export function GcPageProductRows<
-  P extends GcPageProduct_Product_DataFragment & GcPage_Product_DataFragment,
+export function PageProductRows<
+  P extends PageProduct_Product_DataFragment & Page_Product_DataFragment,
 >(
-  props: PluginProps<GcPageProductRowsProps<P>> & {
-    renderer?: Partial<GcPageProductRowsProps<P>['renderer']>
+  props: PluginProps<PageProductRowsProps<P>> & {
+    renderer?: Partial<PageProductRowsProps<P>['renderer']>
   },
 ) {
   const { Prev, page, product, ...rest } = props

@@ -1,0 +1,7 @@
+fragment PageProductRows_RowProduct on ProductInterface
+@inject(into: ["PageProduct_Product_Data"]) {
+  ...UpsellProducts
+  ...RelatedProducts
+  ...ProductReviews
+  ...ProductSpecs
+}

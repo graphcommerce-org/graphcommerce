@@ -1,4 +1,4 @@
-fragment GcPage_Data_Hygraph on GcPage @inject(into: ["GcPage_Data"]) {
+fragment Page_Data_Hygraph on Page @inject(into: ["Page_Data"]) {
   rows {
     __typename
     ... on Node {

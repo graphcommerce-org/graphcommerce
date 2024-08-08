@@ -1,0 +1,4 @@
+fragment Page_Product_Data on ProductInterface {
+  uid
+  __typename
+}

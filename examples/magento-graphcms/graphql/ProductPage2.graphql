@@ -15,7 +15,7 @@ query ProductPage2(
       ...DownloadableProductOptions
       ...BundleProductOptions
       ...GroupedProduct
-      ...GcPageProduct
+      ...PageProduct
     }
   }
 }

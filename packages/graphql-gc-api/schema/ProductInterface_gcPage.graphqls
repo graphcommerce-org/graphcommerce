@@ -1,31 +1,31 @@
 interface ProductInterface {
-  gcPage: GcPage
+  page: Page
 }
 
 type BundleProduct {
-  gcPage: GcPage
+  page: Page
 }
 
 type SimpleProduct {
-  gcPage: GcPage
+  page: Page
 }
 
 type VirtualProduct {
-  gcPage: GcPage
+  page: Page
 }
 
 type DownloadableProduct {
-  gcPage: GcPage
+  page: Page
 }
 
 type GiftCardProduct {
-  gcPage: GcPage
+  page: Page
 }
 
 type ConfigurableProduct {
-  gcPage: GcPage
+  page: Page
 }
 
 type GroupedProduct {
-  gcPage: GcPage
+  page: Page
 }

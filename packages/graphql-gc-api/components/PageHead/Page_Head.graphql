@@ -9,7 +9,7 @@ fragment GcMetaTag on GcMetaTag {
   content
 }
 
-fragment GcPage_Head on GcPage {
+fragment Page_Head on Page {
   head {
     title
     description

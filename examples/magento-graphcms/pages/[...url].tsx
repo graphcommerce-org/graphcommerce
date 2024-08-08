@@ -1,10 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst, flushMeasurePerf, InContextMaskProvider } from '@graphcommerce/graphql'
-import {
-  GcPageRowsCategory,
-  GcPageRowsCategoryBefore,
-  GcPageQuery,
-} from '@graphcommerce/graphql-gc-api'
+import { PageRowsCategory, PageRowsCategoryBefore, PageQuery } from '@graphcommerce/graphql-gc-api'
 import {
   appendSiblingsAsChildren,
   CategoryBreadcrumbs,
@@ -47,7 +43,7 @@ import {
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
-export type CategoryProps = GcPageQuery &
+export type CategoryProps = PageQuery &
   CategoryPageQuery &
   ProductListQuery &
   ProductFiltersQuery & {
@@ -61,7 +57,7 @@ type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
 function CategoryPage(props: CategoryProps) {
-  const { gcPage, categories, ...rest } = props
+  const { page, categories, ...rest } = props
   const productList = useProductList({
     ...rest,
     category: categories?.items?.[0],
@@ -75,7 +71,7 @@ function CategoryPage(props: CategoryProps) {
     <InContextMaskProvider mask={productList.mask}>
       <CategoryMeta metadata={content.meta} params={params} category={category} />
 
-      <GcPageRowsCategoryBefore content={content} productListRenderer={productListRenderer} />
+      <PageRowsCategoryBefore content={content} productListRenderer={productListRenderer} />
 
       <LayoutHeader floatingMd>
         <LayoutTitle size='small' component='span'>
@@ -144,7 +140,7 @@ function CategoryPage(props: CategoryProps) {
         </>
       )}
 
-      <GcPageRowsCategory content={content} productListRenderer={productListRenderer} />
+      <PageRowsCategory content={content} productListRenderer={productListRenderer} />
 
       {page && (
         <RowRenderer

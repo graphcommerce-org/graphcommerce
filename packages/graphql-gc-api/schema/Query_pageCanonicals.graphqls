@@ -1,8 +1,8 @@
-type GcPagesListOutput {
+type PagesListOutput {
   canonicals: [GcLinkRelTag!]
 }
 
-input GcPagesListInput {
+input PagesListInput {
   """
   Provide a base path to filter the list of pages.
   """
@@ -10,5 +10,5 @@ input GcPagesListInput {
 }
 
 extend type Query {
-  gcPageCanonicals(input: GcPagesListInput): GcPagesListOutput
+  pageCanonicals(input: PagesListInput): PagesListOutput
 }

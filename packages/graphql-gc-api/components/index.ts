@@ -1,3 +1,3 @@
-export * from './GcPage'
-export * from './GcPageProduct'
-export * from './GcPageMeta'
+export * from './Page'
+export * from './PageProduct'
+export * from './PageHead'

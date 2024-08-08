@@ -48,7 +48,7 @@ async function getAllHygraphDynamicRows(
 }
 
 export const resolvers: Resolvers = {
-  // GcPage: {
+  // Page: {
   //   rows: {
   //     resolve: async (parent, args, context, info) => {
   //       const execute = createDocumentExecutor(context, parent, info)
