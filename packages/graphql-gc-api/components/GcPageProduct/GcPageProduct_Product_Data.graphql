@@ -1,4 +1,3 @@
 fragment GcPageProduct_Product_Data on ProductInterface {
-  uid
-  __typename
+  ...GcPage_Product_Data
 }

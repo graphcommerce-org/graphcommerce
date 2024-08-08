@@ -1,19 +1,14 @@
 import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { productListRenderer } from '../../ProductListItems'
-import { GcPageProduct_RowProductFragment } from './graphql/GcPageProduct_RowProduct.gql'
+import { RowProduct_ProductPageFragment } from './graphql/RowProduct_ProductPage.gql'
 import { Backstory, Feature, FeatureBoxed, Related, Reviews, Specs, Upsells } from './variant'
 
-type RowProductPageType = Extract<
-  NonNullable<NonNullable<GcPageProduct_RowProductFragment['rows']>>[number],
-  { __typename: 'RowProduct' }
->
-
 type VariantRenderer = Record<
-  NonNullable<RowProductPageType['variant']>,
-  React.FC<RowProductPageType & { productListItemRenderer: ProductListItemRenderer }>
+  NonNullable<RowProduct_ProductPageFragment['variant']>,
+  React.FC<RowProduct_ProductPageFragment & { productListItemRenderer: ProductListItemRenderer }>
 >
 
-export type RowProductPageProps = RowProductPageType & {
+export type RowProductPageProps = RowProduct_ProductPageFragment & {
   renderer?: Partial<VariantRenderer>
 }
 

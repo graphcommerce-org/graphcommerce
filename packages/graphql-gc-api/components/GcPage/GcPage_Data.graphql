@@ -1,3 +1,4 @@
+# This fragment is used in the GcPage query to retrieve the data for a page.
 fragment GcPage_Data on GcPage {
   ...GcPage_Head
   rows {

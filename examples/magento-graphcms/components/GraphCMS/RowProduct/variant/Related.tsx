@@ -9,7 +9,7 @@ import { Typography } from '@mui/material'
 import { productListRenderer } from '../../../ProductListItems'
 import type { RowProductPageProps } from '../RowProductPage'
 
-type RelatedProps = Omit<RowProductPageProps, 'productPageVariant'> & Pick<SidebarSliderProps, 'sx'>
+type RelatedProps = RowProductPageProps & Pick<SidebarSliderProps, 'sx'>
 
 export function Related(props: RelatedProps) {
   const { title, product, sx } = props

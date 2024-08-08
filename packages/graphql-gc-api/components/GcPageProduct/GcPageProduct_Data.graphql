@@ -1,3 +1,4 @@
+# This fragment is added to the ProductPage2 query when the product page is loaded.
 fragment GcPageProduct_Data on GcPage {
   ...GcPage_Head
   ...GcPage_Data

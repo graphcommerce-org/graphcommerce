@@ -25,7 +25,7 @@ export const config: PluginConfig = {
   module: '@graphcommerce/graphql-gc-api',
 }
 
-const renderers = {
+const renderer = {
   GcRowFake: () => null,
   RowColumnOne,
   RowColumnTwo,
@@ -44,18 +44,20 @@ const renderers = {
 
 export const GcPageRows = (
   props: PluginProps<GcPageRowsProps> & {
-    rowRenderer?: Partial<GcPageRowsProps['rowRenderer']>
+    renderer?: Partial<GcPageRowsProps['renderer']>
   },
 ) => {
   const { Prev, ...rest } = props
-  return <Prev {...rest} rowRenderer={renderers} />
+  return <Prev {...rest} renderer={renderer} />
 }
+
+const rendererProduct = { ...renderer, RowProduct: RowProductPage }
 
 export function GcPageProductRows<
   P extends GcPageProduct_Product_DataFragment & GcPage_Product_DataFragment,
 >(
   props: PluginProps<GcPageProductRowsProps<P>> & {
-    rowRenderer?: Partial<GcPageProductRowsProps<P>['rowRenderer']>
+    renderer?: Partial<GcPageProductRowsProps<P>['renderer']>
   },
 ) {
   const { Prev, page, product, ...rest } = props
@@ -67,12 +69,5 @@ export function GcPageProductRows<
     ),
   }
 
-  return (
-    <Prev
-      {...rest}
-      page={newPage}
-      product={product}
-      rowRenderer={{ ...renderers, RowProduct: RowProductPage }}
-    />
-  )
+  return <Prev {...rest} page={newPage} product={product} renderer={rendererProduct} />
 }

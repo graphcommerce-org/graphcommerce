@@ -14,7 +14,7 @@ type GcRowTypeRenderer = TypeRenderer<
 
 export type GcPageProductRowsProps<P extends GcPageProduct_Product_DataFragment> = {
   page: GcPageProduct_DataFragment | null | undefined
-  rowRenderer?: GcRowTypeRenderer
+  renderer?: GcRowTypeRenderer
   loadingEager?: number
   product: P
 }
@@ -22,15 +22,15 @@ export type GcPageProductRowsProps<P extends GcPageProduct_Product_DataFragment>
 export function GcPageProductRows<
   P extends GcPageProduct_Product_DataFragment & GcPage_Product_DataFragment,
 >(props: GcPageProductRowsProps<P>) {
-  const { rowRenderer, page, loadingEager = 2 } = props
+  const { renderer, page, loadingEager = 2 } = props
 
-  if (!rowRenderer || !page) return null
+  if (!renderer || !page) return null
 
   return (
     <>
       {filterNonNullableKeys(page?.rows)?.map((item, index) => (
         <LazyHydrate key={item.id} hydrated={index < loadingEager ? true : undefined} height={500}>
-          <RenderType renderer={rowRenderer} {...item} />
+          <RenderType renderer={renderer} {...item} />
         </LazyHydrate>
       ))}
     </>

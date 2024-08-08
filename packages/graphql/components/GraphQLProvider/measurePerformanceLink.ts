@@ -178,6 +178,7 @@ export const measurePerformanceLink = new ApolloLink((operation, forward) => {
 
       meshUrl.searchParams.set('query', query)
 
+      running.delete(operationString)
       running.set(operationString, {
         start: operation.getContext().measurePerformanceLinkStart as Date,
         end: new Date(),
@@ -190,23 +191,18 @@ export const measurePerformanceLink = new ApolloLink((operation, forward) => {
       })
 
       if (httpDetails) {
-        // running.delete(operationString)
+        running.delete(operationString)
 
         httpDetails.forEach((d) => {
           const requestUrl = new URL(d.request.url)
           requestUrl.searchParams.delete('extensions')
-          const title = `${d.sourceName} ${d.responseTime}ms`
 
           const key = `${operationString}.${responsePathAsArray(d.path).join('.')}`
-          const name = `${operation.operationName}.${responsePathAsArray(d.path).join('.')}`
+          const name = `${operation.operationName}.${responsePathAsArray(d.path).join('.')} (${d.sourceName})`
           running.set(key, {
             start: new Date(d.request.timestamp),
             end: new Date(d.response.timestamp),
             operationName: [name, name],
-            additional: [
-              `${title}`,
-              `${cliHyperlink(d.sourceName, requestUrl.toString().replace(/\+/g, '%20'))}`,
-            ],
           })
         })
       }

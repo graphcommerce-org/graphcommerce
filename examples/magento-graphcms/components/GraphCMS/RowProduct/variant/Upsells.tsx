@@ -9,7 +9,7 @@ import { Typography } from '@mui/material'
 import { productListRenderer } from '../../../ProductListItems/productListRenderer'
 import type { RowProductPageProps } from '../RowProductPage'
 
-type UpsellsProps = Omit<RowProductPageProps, 'productPageVariant'> & Pick<SidebarSliderProps, 'sx'>
+type UpsellsProps = RowProductPageProps & Pick<SidebarSliderProps, 'sx'>
 
 export function Upsells(props: UpsellsProps) {
   const { title, product, sx } = props

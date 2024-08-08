@@ -1,3 +1,4 @@
+# When we're requesting a **product page** also request the RowProduct_ProductPage fragment
 fragment GcPageProduct_RowProduct on GcPage @inject(into: ["GcPageProduct_Data"]) {
   rows {
     __typename

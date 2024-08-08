@@ -5,7 +5,7 @@ import { Row } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
 import type { RowProductPageProps } from '../RowProductPage'
 
-type ReviewsProps = Omit<RowProductPageProps, 'productPageVariant'>
+type ReviewsProps = RowProductPageProps
 
 export function Reviews(props: ReviewsProps) {
   const { title, product } = props
