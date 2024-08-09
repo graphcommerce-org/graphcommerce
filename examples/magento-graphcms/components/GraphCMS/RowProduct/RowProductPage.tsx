@@ -1,5 +1,6 @@
 import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { productListRenderer } from '../../ProductListItems'
+import { RowProductDeprecated } from './RowProductDeprecated'
 import { RowProduct_ProductPageFragment } from './graphql/RowProduct_ProductPage.gql'
 import { Backstory, Feature, FeatureBoxed, Related, Reviews, Specs, Upsells } from './variant'
 
@@ -20,6 +21,8 @@ const defaultRenderer: Partial<VariantRenderer> = {
   Related,
   Reviews,
   Upsells,
+  Grid: RowProductDeprecated,
+  Swipeable: RowProductDeprecated,
 }
 
 export function RowProductPage(props: RowProductPageProps) {

@@ -6,6 +6,7 @@ import {
   PageContent,
   ProductInterface,
   ResolversTypes,
+  RowCategory,
   RowProduct,
   type Resolvers,
 } from '@graphcommerce/graphql-mesh'
@@ -61,12 +62,17 @@ const pageProductResolver: GCPageResolver = {
       root,
       key: root.url_key,
       argsFromKeys: (keys) => ({
-        where: { url_in: ['product/global', ...keys.map((key) => `p/${key}`)] },
+        where: {
+          url_in: [
+            'product/global',
+            // ...keys.map((key) => `p/${key}`)
+          ],
+        },
       }),
       valuesFromResults: (results, keys) =>
         keys.map((key) => {
           const page =
-            results.find((r) => r.url === `p/${key}`) ??
+            // results.find((r) => r.url === `p/${key}`) ??
             results.find((r) => r.url === 'product/global')
           if (!page) return null
 
@@ -84,17 +90,48 @@ export const resolvers: Resolvers = {
   // Resolve the query `page` to a page with the given URL
   Query: {
     page: {
-      resolve: (root, args, context, info) =>
-        context.hygraph.Query.pages({
+      resolve: async (root, args, context, info) => {
+        const page = await context.hygraph.Query.pages({
           root,
           info,
           context,
           args: { where: { url: denormalizeUrl(args.input.href) } },
-        }).then((r) => r[0]),
+        }).then((r) => r[0])
+
+        console.log('oage')
+
+        function mapRowProduct(row: RowProduct): RowCategory & { __typename: 'RowCategory' } {
+          const newRow: Partial<RowCategory & { __typename: 'RowCategory' }> = {
+            __typename: 'RowCategory',
+          }
+          if (row.id) newRow.id = row.id
+          if (row.locale) newRow.locale = row.locale
+          if (row.stage) newRow.stage = row.stage
+          if (row.localizations) newRow.localizations = row.localizations.map(mapRowProduct)
+          if (row.identity) newRow.categoryUrl = row.identity
+          if (row.pages) newRow.pages = row.pages
+          if (row.variant) newRow.variant = row.variant as 'Swipeable' | 'Grid'
+          return newRow as RowCategory & { __typename: 'RowCategory' }
+        }
+
+        page.content = page.content.map((row) =>
+          isRowProduct(row) && row.variant && ['Swipeable', 'Grid'].includes(row.variant)
+            ? mapRowProduct(row)
+            : row,
+        )
+
+        return page
+      },
     },
   },
 
   Page: {
+    content: {
+      resolve: (root) => {
+        console.log('content')
+        return root.content
+      },
+    },
     rows: {
       selectionSet: (root) => ({
         kind: Kind.SELECTION_SET,
@@ -114,7 +151,10 @@ export const resolvers: Resolvers = {
           },
         ],
       }),
-      resolve: (root) => root.content,
+      resolve: (root) => {
+        console.log('rows')
+        return root.content
+      },
     },
     head: {
       selectionSet: `{
@@ -176,6 +216,8 @@ export const resolvers: Resolvers = {
         // already resolved and available in the context
         if (responsePathAsArray(info.path)[0] === 'products') return null
 
+        console.log('RowProduct', root.identity, responsePathAsArray(info.path))
+
         const result = await context.m2.Query.products({
           root,
           info,
@@ -211,6 +253,9 @@ export const resolvers: Resolvers = {
     category: {
       selectionSet: `{ categoryUrl }`,
       resolve: async (root, args, context, info) => {
+        if (responsePathAsArray(info.path)[0] === 'products') return null
+        console.log('RowCategory', root.categoryUrl, responsePathAsArray(info.path))
+
         const result = await context.m2.Query.categories({
           root,
           info,

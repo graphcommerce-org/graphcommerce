@@ -5,14 +5,14 @@ import {
   type TypeRenderer,
 } from '@graphcommerce/next-ui'
 import React from 'react'
-import { Page_DataFragment } from './Page_Data.gql'
+import { PageRowsFragment } from '../Page/PageRows.gql'
 
 type PageRowTypeRenderer = TypeRenderer<
-  NonNullable<NonNullable<NonNullable<Page_DataFragment['rows']>>[number]>
+  NonNullable<NonNullable<NonNullable<PageRowsFragment['rows']>>[number]>
 >
 
 export type PageRowsProps = {
-  page: Page_DataFragment | null | undefined
+  page: PageRowsFragment | null | undefined
   renderer?: PageRowTypeRenderer
   loadingEager?: number
 }

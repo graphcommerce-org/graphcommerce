@@ -1,2 +1,2 @@
-export * from './PageProductRows'
-export * from './PageProduct_Product_Data.gql'
+export * from './ProductPageRows'
+export * from './ProductPageRows_ProductData.gql'

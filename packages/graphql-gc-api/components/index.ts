@@ -1,3 +1,4 @@
 export * from './Page'
-export * from './PageProduct'
 export * from './PageHead'
+export * from './PageProduct'
+export * from './PageRows'

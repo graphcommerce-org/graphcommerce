@@ -9,7 +9,8 @@ fragment GcMetaTag on GcMetaTag {
   content
 }
 
-fragment Page_Head on Page {
+# Data fragment used for the PageHead component.
+fragment PageHead on Page {
   head {
     title
     description

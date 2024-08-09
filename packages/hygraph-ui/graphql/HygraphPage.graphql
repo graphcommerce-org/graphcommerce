@@ -1,4 +1,4 @@
-fragment HygraphPage on Page @inject(into: ["Page_Head"]) {
+fragment HygraphPage on Page @inject(into: ["PageHead"]) {
   author
   date
   relatedPages {

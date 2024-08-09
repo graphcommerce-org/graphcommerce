@@ -1,7 +1,8 @@
-# When we're requesting a **product page** also request the RowProduct_ProductPage fragment
-fragment PageProduct_RowProduct on Page @inject(into: ["PageProduct_Data"]) {
-  rows {
-    __typename
-    ...RowProduct_ProductPage
+fragment PageProduct_RowProduct on ProductInterface @inject(into: ["ProductPageRows"]) {
+  page {
+    rows {
+      __typename
+      ...RowProduct_ProductPage
+    }
   }
 }

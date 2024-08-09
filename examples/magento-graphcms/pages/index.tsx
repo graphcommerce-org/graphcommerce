@@ -1,12 +1,12 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import {
-  ContentAreaHome,
   PageDocument,
   Page,
   PageMeta,
   pageRedirectOrNotFound,
   isPageFound,
+  PageRows,
 } from '@graphcommerce/graphql-gc-api'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutHeader } from '@graphcommerce/next-ui'
@@ -24,7 +24,7 @@ function CmsPage(props: Props) {
     <>
       <PageMeta page={page} />
       <LayoutHeader floatingMd floatingSm />
-      <ContentAreaHome page={page} />
+      <PageRows page={page} />
     </>
   )
 }
@@ -40,18 +40,17 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const staticClient = graphqlSsrClient(context)
 
   const conf = client.query({ query: StoreConfigDocument })
-  const page = client.query({ query: PageDocument, variables: { input: { href: '/' } } })
   const layout = staticClient.query({
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
 
-  const page = (await page).data
-  if (!isPageFound(page)) return pageRedirectOrNotFound(page)
+  const page = client.query({ query: PageDocument, variables: { input: { href: '/' } } })
+  if (!isPageFound((await page).data)) return pageRedirectOrNotFound((await page).data)
 
   return {
     props: {
-      ...page,
+      ...(await page).data,
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },

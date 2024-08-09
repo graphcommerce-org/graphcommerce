@@ -1,0 +1,6 @@
+fragment PageCategory on CategoryTree {
+  page {
+    ...PageCategory_Data
+  }
+  ...PageRows_CategoryData
+}

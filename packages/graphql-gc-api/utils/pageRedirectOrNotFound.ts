@@ -32,6 +32,14 @@ export function isPageFound(
   return !isPageNotFound(query) && !isPageRedirect(query)
 }
 
+export function pageRedirect(query: PageQuery | null | undefined): {
+  redirect: Redirect
+  revalidate?: number | boolean
+} {
+  if (isPageRedirect(query)) return { redirect: query.page.redirect }
+  throw Error('pageRedirect should only be called when it isPageRedirect(query) returns true')
+}
+
 export function pageRedirectOrNotFound(
   query: PageQuery | null | undefined,
 ): { redirect: Redirect; revalidate?: number | boolean } | { notFound: true } {

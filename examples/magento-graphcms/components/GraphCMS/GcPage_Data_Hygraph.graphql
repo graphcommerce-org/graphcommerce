@@ -1,4 +1,4 @@
-fragment Page_Data_Hygraph on Page @inject(into: ["Page_Data"]) {
+fragment PageRows_Hygraph on Page @inject(into: ["PageRows"]) {
   rows {
     __typename
     ... on Node {

@@ -1,9 +1,8 @@
 import { InContextMaskProvider, useInContextQuery } from '@graphcommerce/graphql'
 import { ProductListItemRenderer } from '@graphcommerce/magento-product'
-import { Box } from '@mui/material'
-import { useRouter } from 'next/router'
 import { productListRenderer } from '../../ProductListItems'
 import { GetMagentoRowProductDocument } from './GetMagentoRowProduct.gql'
+import { RowProductDeprecated } from './RowProductDeprecated'
 import { RowProductFragment } from './graphql/RowProduct.gql'
 import { Backstory, Feature, FeatureBoxed } from './variant'
 
@@ -16,41 +15,6 @@ type RowProductProps = RowProductFragment & {
   renderer?: Partial<VariantRenderer>
 }
 
-function RowProductPreview(props: RowProductProps) {
-  const { variant, identity, product } = props
-
-  const router = useRouter()
-  const canShow = router.isPreview || process.env.NODE_ENV !== 'production'
-  const shouldBeRowCategory = variant === 'Grid' || variant === 'Swipeable'
-  const noProduct = !product
-  if (!canShow) return null
-  if (!(noProduct || shouldBeRowCategory)) return null
-
-  return (
-    <Box
-      sx={(theme) => ({
-        p: 2,
-        m: 3,
-        border: `3px dashed ${theme.palette.error.light}`,
-        borderRadius: 2,
-      })}
-    >
-      {shouldBeRowCategory && (
-        <>
-          RowProduct with identity ‘{identity}’ and variant ‘{variant}’, should be migrated in
-          Hygraph to a RowCategory component.
-        </>
-      )}
-      {!shouldBeRowCategory && noProduct && (
-        <>
-          RowProduct ({identity}) was configured with Product URL &quot;
-          <code>{identity}</code>&quot;, However Magento didn&apos;t return any results.
-        </>
-      )}
-    </Box>
-  )
-}
-
 const defaultRenderer: Partial<VariantRenderer> = {
   Backstory,
   Feature,
@@ -59,6 +23,8 @@ const defaultRenderer: Partial<VariantRenderer> = {
   Reviews: () => <>Only available on the product page</>,
   Specs: () => <>Only available on the product page</>,
   Upsells: () => <>Only available on the product page</>,
+  Grid: RowProductDeprecated,
+  Swipeable: RowProductDeprecated,
 }
 
 export function RowProduct(props: RowProductProps) {
@@ -77,7 +43,7 @@ export function RowProduct(props: RowProductProps) {
 
   return (
     <InContextMaskProvider mask={scoped.mask}>
-      <RowProductPreview {...props} />
+      {/* <RowProductDeprecated {...props} /> */}
       {RenderType && (
         <RenderType
           {...props}

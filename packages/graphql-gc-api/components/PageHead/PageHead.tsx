@@ -2,10 +2,10 @@ import { usePageContext } from '@graphcommerce/framer-next-pages'
 import { canonicalize } from '@graphcommerce/next-ui'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { Page_HeadFragment, GcMetaTagFragment, GcLinkRelTagFragment } from './Page_Head.gql'
+import { PageHeadFragment, GcMetaTagFragment, GcLinkRelTagFragment } from './PageHead.gql'
 
 type PageMetaProps = {
-  page: Page_HeadFragment
+  page: PageHeadFragment
   children?: React.ReactNode
 }
 

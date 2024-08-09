@@ -1,6 +1,7 @@
 query Page($input: GCPageInput!) {
   page(input: $input) {
     ...Page_Redirect
-    ...Page_Data
+    ...PageHead
+    ...PageRows
   }
 }

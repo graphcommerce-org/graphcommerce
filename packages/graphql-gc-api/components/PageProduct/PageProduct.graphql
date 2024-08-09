@@ -1,6 +1,0 @@
-fragment PageProduct on ProductInterface {
-  page {
-    ...PageProduct_Data
-  }
-  ...PageProduct_Product_Data
-}

@@ -1,5 +1,5 @@
 fragment PageProductRows_RowProduct on ProductInterface
-@inject(into: ["PageProduct_Product_Data"]) {
+@inject(into: ["ProductPageRows_ProductData"]) {
   ...UpsellProducts
   ...RelatedProducts
   ...ProductReviews

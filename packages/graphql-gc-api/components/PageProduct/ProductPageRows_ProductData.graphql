@@ -1,0 +1,3 @@
+fragment ProductPageRows_ProductData on ProductInterface {
+  ...PageRows_CategoryData
+}

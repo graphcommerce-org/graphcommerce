@@ -4,24 +4,23 @@ import {
   LazyHydrate,
   RenderType,
 } from '@graphcommerce/next-ui'
-import { Page_Product_DataFragment } from '../Page/Page_Product_Data.gql'
-import { PageProduct_DataFragment } from './PageProduct_Data'
-import { PageProduct_Product_DataFragment } from './PageProduct_Product_Data'
+import { PageCategory_DataFragment } from './PageCategory_Data.gql'
+import { PageRows_CategoryDataFragment } from './PageRows_CategoryData.gql'
 
 type PageRowTypeRenderer = TypeRenderer<
-  NonNullable<NonNullable<NonNullable<PageProduct_DataFragment['rows']>>[number]>
+  NonNullable<NonNullable<NonNullable<PageCategory_DataFragment['rows']>>[number]>
 >
 
-export type PageProductRowsProps<P extends PageProduct_Product_DataFragment> = {
-  page: PageProduct_DataFragment | null | undefined
+export type PageProductRowsProps<P extends PageRows_CategoryDataFragment> = {
+  page: PageCategory_DataFragment | null | undefined
   renderer?: PageRowTypeRenderer
   loadingEager?: number
-  product: P
+  category: P
 }
 
-export function PageProductRows<
-  P extends PageProduct_Product_DataFragment & Page_Product_DataFragment,
->(props: PageProductRowsProps<P>) {
+export function PageCategoryRows<P extends PageRows_CategoryDataFragment>(
+  props: PageProductRowsProps<P>,
+) {
   const { renderer, page, loadingEager = 2 } = props
 
   if (!renderer || !page) return null
