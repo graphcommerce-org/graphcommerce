@@ -9,6 +9,7 @@ import { useDebounce } from '@graphcommerce/react-hook-form'
 import { useEventCallback } from '@mui/material'
 import { useRef } from 'react'
 import { AlgoliaSendEventDocument } from '../mutations/AlgoliaSendEvent.gql'
+import { formatError } from 'graphql'
 
 const getSHA256Hash = async (input: string) => {
   const textAsBuffer = new TextEncoder().encode(input)
@@ -16,6 +17,28 @@ const getSHA256Hash = async (input: string) => {
   const hashArray = Array.from(new Uint8Array(hashBuffer))
   const hash = hashArray.map((item) => item.toString(16).padStart(2, '0')).join('')
   return hash
+}
+
+function mapSelectedFiltersToAlgoliaEvent(eventData) {
+  if (!eventData) {
+    return []
+  }
+  const filterArray = []
+  Object.entries(eventData).forEach((key) => {
+    if (key[1]?.eq) {
+      if (key[0] === 'category_uid') {
+        filterArray.push(`categories:${atob(key[1].eq)}`)
+      } else {
+        filterArray.push(`${key[0]}:${atob(key[1].eq)}`)
+      }
+    } else if (key[1]?.in) {
+      key[1]?.in.forEach((item) => {
+        filterArray.push(`${key[0]}:${item}`)
+      })
+    }
+  })
+
+  return filterArray
 }
 
 function getAlgoliaIdToQuery(): Record<string, string> {
@@ -215,11 +238,25 @@ const dataLayerToAlgoliaMap: {
           } satisfies AlgoliaEventsItems_Input,
         ]
   },
+  select_content: (eventName, eventData, common) => {
+    const filters = mapSelectedFiltersToAlgoliaEvent(eventData.data?.filters)
+    const events: AlgoliaEventsItems_Input[] = []
+    for (let i = 0; i < filters.length; i += 10) {
+      events.push({
+        Clicked_filters_Input: {
+          eventType: 'click',
+          eventName: 'click filters',
+          filters: filters.slice(i, i + 10),
+          ...common,
+        },
+      })
+    }
+    return events
+  },
 
   // Todo: Implement the following events
 
   // ???
-  // - Clicked_filters_Input
   // - Converted_filters_Input
   // - Viewed_filters_Input
 }
