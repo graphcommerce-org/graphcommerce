@@ -9,6 +9,7 @@ import { useDebounce } from '@graphcommerce/react-hook-form'
 import { useEventCallback } from '@mui/material'
 import { useRef } from 'react'
 import { AlgoliaSendEventDocument } from '../mutations/AlgoliaSendEvent.gql'
+import { isFilterTypeEqual, ProductFilterParams } from '@graphcommerce/magento-product'
 
 const getSHA256Hash = async (input: string) => {
   const textAsBuffer = new TextEncoder().encode(input)
@@ -18,47 +19,50 @@ const getSHA256Hash = async (input: string) => {
   return hash
 }
 
-function mapSelectedFiltersToAlgoliaEvent(eventData) {
-  if (!eventData) {
-    return []
-  }
-  const filterArray = []
-  Object.entries(eventData).forEach((key) => {
-    if (key[1]?.eq) {
-      if (key[0] === 'category_uid') {
-        filterArray.push(`categories:${atob(key[1].eq)}`)
-      } else {
-        filterArray.push(`${key[0]}:${atob(key[1].eq)}`)
-      }
-    } else if (key[1]?.in) {
-      key[1]?.in.forEach((item) => {
-        filterArray.push(`${key[0]}:${item}`)
+function mapSelectedFiltersToAlgoliaEvent(filters: ProductFilterParams['filters']) {
+  const flattenedFilters: string[] = []
+
+  Object.entries(filters).forEach(([key, filter]) => {
+    if (isFilterTypeEqual(filter)) {
+      const valueArray = (filter.eq ? [filter.eq] : (filter.in ?? [])) as string[]
+      valueArray.forEach((value) => {
+        if (key === 'category_uid') {
+          flattenedFilters.push(`categoryIds:${atob(value)}`)
+        } else {
+          flattenedFilters.push(`${key}:${encodeURIComponent(value)}`)
+        }
       })
     }
+
+    // if (isFilterTypeMatch(value)) return null
+    // if (isFilterTypeRange(value)) return null
   })
 
-  return filterArray
+  return flattenedFilters
 }
 
-function getAlgoliaIdToQuery(): Record<string, string> {
-  return JSON.parse(localStorage.getItem('_algolia_id_to_query') || 'null') ?? {}
+const LOCAL_STORAGE_KEY = '_algolia_conversion'
+function getObjectIDToQuery(): Record<string, { queryID: string; filters: string[] }> {
+  return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || 'null') ?? {}
 }
 
 function clearAlgoliaIdToQuery() {
-  window.localStorage.removeItem(`_algolia_id_to_query`)
+  window.localStorage.removeItem(LOCAL_STORAGE_KEY)
 }
 
-function saveAlgoliaIdToQuery(queryID: string, objectIDs: string[]) {
-  const current = getAlgoliaIdToQuery()
+function saveAlgoliaIdToQuery(
+  objectIDs: string[],
+  queryID: string,
+  incomingFilters: ProductFilterParams['filters'],
+) {
+  const current = getObjectIDToQuery()
+  const filters = mapSelectedFiltersToAlgoliaEvent(incomingFilters)
 
-  if (queryID) {
-    // current.view_item_list[item_list_name] = queryID
-    objectIDs.forEach((objectID) => {
-      current[objectID] = queryID
-    })
-  }
+  objectIDs.forEach((objectID) => {
+    current[objectID] = { queryID, filters }
+  })
 
-  window.localStorage.setItem(`_algolia_id_to_query`, JSON.stringify(current))
+  window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(current))
 }
 
 type AlgoliaEventCommon = {
@@ -68,6 +72,8 @@ type AlgoliaEventCommon = {
   // timestamp: bigint
   queryID?: string
 }
+
+let prevFilters: string[] = []
 
 const dataLayerToAlgoliaMap: {
   [K in keyof Partial<GoogleEventTypes>]: (
@@ -80,9 +86,47 @@ const dataLayerToAlgoliaMap: {
   view_item_list: (eventName, eventData, { queryID, ...common }) => {
     const objectIDs = eventData.items.map((item) => atob(item.item_uid))
 
+    const events: AlgoliaEventsItems_Input[] = []
+
+    console.log(queryID)
+    if (
+      // Values of filters are different when using Algolia vs Magento, thus it does not make sense to send the filters
+      queryID &&
+      eventData.filter_params?.filters &&
+      Object.keys(eventData.filter_params?.filters).length > 0
+    ) {
+      const filters = mapSelectedFiltersToAlgoliaEvent(eventData.filter_params.filters)
+
+      const newlyAppliedFilters = filters.filter((filter) => !prevFilters.includes(filter))
+      prevFilters = filters
+
+      if (newlyAppliedFilters) {
+        events.push({
+          Clicked_filters_Input: {
+            eventName: `${eventName}_filter_diff`,
+            eventType: 'click',
+            filters: newlyAppliedFilters,
+            ...common,
+          },
+        })
+      }
+
+      // There is a max of 10 filters per event, if there are more than 10 items
+      // we need to split the event into multiple events
+      for (let i = 0; i < filters.length; i += 10) {
+        events.push({
+          Viewed_filters_Input: {
+            eventName: `${eventName}_filters`,
+            eventType: 'view',
+            filters: filters.slice(i, i + 10),
+            ...common,
+          },
+        })
+      }
+    }
+
     // There is a max of 20 ObjectIDs per event, if there are more than 20 items
     // we need to split the event into multiple events
-    const events: AlgoliaEventsItems_Input[] = []
     for (let i = 0; i < objectIDs.length; i += 20) {
       events.push({
         Viewed_object_IDs_Input: {
@@ -97,20 +141,9 @@ const dataLayerToAlgoliaMap: {
     return events
   },
 
-  // view_item: (eventName, eventData, { queryID, ...common }) => [
-  //   {
-  //     Viewed_object_IDs_Input: {
-  //       objectIDs: eventData.items.map((item) => atob(item.item_uid)),
-  //       eventName,
-  //       eventType: 'view',
-  //       ...common,
-  //     },
-  //   },
-  // ],
-
   select_item: (eventName, eventData, { queryID, ...common }) => {
     const objectIDs = eventData.items.map((item) => atob(item.item_uid))
-    if (queryID) saveAlgoliaIdToQuery(queryID, objectIDs)
+    if (queryID) saveAlgoliaIdToQuery(objectIDs, queryID, eventData.filter_params?.filters ?? {})
 
     return queryID
       ? [
@@ -141,129 +174,142 @@ const dataLayerToAlgoliaMap: {
     // - Converted_object_IDs_after_search_Input
     // - Converted_object_IDs_Input
 
-    const mapping = getAlgoliaIdToQuery()
-    const objectIDs = eventData.items.map((item) => atob(item.item_uid))
-    const queryID = objectIDs.map((objectID) => mapping[objectID])?.[0]
-
-    return queryID
-      ? [
-          // {
-          //   // todo
-          //   Converted_filters_Input: {
-          //     eventName,
-          //     eventType: 'conversion',
-          //   },
-          // },
-          {
-            Added_to_cart_object_IDs_after_search_Input: {
-              queryID,
-              eventName,
-              eventType: 'conversion',
-              eventSubtype: 'addToCart',
-              objectIDs: eventData.items.map((item) => atob(item.item_uid)),
-              objectData: eventData.items.map((item) => ({
-                discount: { Float: item.discount ?? 0 },
-                price: { Float: Number(item.price.toFixed(15)) },
-                quantity: item.quantity,
-                queryID: mapping[atob(item.item_uid)],
-              })),
-              currency: eventData.currency,
-              value: { Float: Number(eventData.value.toFixed(15)) },
-              ...common,
-            },
-          } satisfies AlgoliaEventsItems_Input,
-        ]
-      : [
-          {
-            Added_to_cart_object_IDs_Input: {
-              eventName,
-              eventType: 'conversion',
-              eventSubtype: 'addToCart',
-              objectIDs: eventData.items.map((item) => atob(item.item_uid)),
-              objectData: eventData.items.map((item) => ({
-                discount: { Float: item.discount ?? 0 },
-                price: { Float: Number(item.price.toFixed(15)) },
-                quantity: item.quantity,
-              })),
-              currency: eventData.currency,
-              value: { Float: Number(eventData.value.toFixed(15)) },
-              ...common,
-            },
-          } satisfies AlgoliaEventsItems_Input,
-        ]
-  },
-
-  purchase: (eventName, eventData, common) => {
-    const mapping = getAlgoliaIdToQuery()
-    const isAfterSearch = !!eventData.items.find((item) => mapping[atob(item.item_uid)])
-    clearAlgoliaIdToQuery()
-
-    return isAfterSearch
-      ? [
-          {
-            Purchased_object_IDs_after_search_Input: {
-              eventName,
-              eventType: 'conversion',
-              eventSubtype: 'purchase',
-              objectIDs: eventData.items.map((item) => atob(item.item_uid)),
-              objectData: eventData.items.map((item) => ({
-                discount: { Float: item.discount ?? 0 },
-                price: { Float: Number(item.price.toFixed(15)) },
-                quantity: item.quantity,
-                queryID: mapping[atob(item.item_uid)],
-              })),
-              currency: eventData.currency,
-              value: { Float: Number(eventData.value.toFixed(15)) },
-              ...common,
-            },
-          } satisfies AlgoliaEventsItems_Input,
-        ]
-      : [
-          {
-            Purchased_object_IDs_Input: {
-              eventName,
-              eventType: 'conversion',
-              eventSubtype: 'purchase',
-              objectIDs: eventData.items.map((item) => atob(item.item_uid)),
-              objectData: eventData.items.map((item) => ({
-                discount: { Float: item.discount ?? 0 },
-                price: { Float: Number(item.price.toFixed(15)) },
-                quantity: item.quantity,
-              })),
-              currency: eventData.currency,
-              value: { Float: Number(eventData.value.toFixed(15)) },
-              ...common,
-            },
-          } satisfies AlgoliaEventsItems_Input,
-        ]
-  },
-  select_content: (eventName, eventData, common) => {
-    const filters = mapSelectedFiltersToAlgoliaEvent(eventData.data?.filters)
     const events: AlgoliaEventsItems_Input[] = []
-    for (let i = 0; i < filters.length; i += 10) {
+
+    const mapping = getObjectIDToQuery()
+    const objectIDs = eventData.items.map((item) => atob(item.item_uid))
+
+    const relevant = objectIDs.map((objectID) => mapping[objectID])
+    const queryID = relevant?.[0]?.queryID
+    const filters = [...new Set(...relevant.map((item) => item.filters))]
+
+    if (filters.length) {
+      // There is a max of 10 filters per event, if there are more than 10 items
+      // we need to split the event into multiple events
+      for (let i = 0; i < filters.length; i += 10) {
+        events.push({
+          Converted_filters_Input: {
+            eventName: `${eventName}_filters`,
+            eventType: 'conversion',
+            filters: filters.slice(i, i + 10),
+            ...common,
+          },
+        })
+      }
+    }
+
+    if (queryID) {
       events.push({
-        Clicked_filters_Input: {
-          eventType: 'click',
-          eventName: 'click filters',
-          filters: filters.slice(i, i + 10),
+        Added_to_cart_object_IDs_after_search_Input: {
+          queryID,
+          eventName,
+          eventType: 'conversion',
+          eventSubtype: 'addToCart',
+          objectIDs: eventData.items.map((item) => atob(item.item_uid)),
+          objectData: eventData.items.map((item) => ({
+            discount: { Float: item.discount ?? 0 },
+            price: { Float: Number(item.price.toFixed(15)) },
+            quantity: item.quantity,
+          })),
+          currency: eventData.currency,
+          value: { Float: Number(eventData.value.toFixed(15)) },
           ...common,
         },
-      })
+      } satisfies AlgoliaEventsItems_Input)
+    } else {
+      events.push({
+        Added_to_cart_object_IDs_Input: {
+          eventName,
+          eventType: 'conversion',
+          eventSubtype: 'addToCart',
+          objectIDs: eventData.items.map((item) => atob(item.item_uid)),
+          objectData: eventData.items.map((item) => ({
+            discount: { Float: item.discount ?? 0 },
+            price: { Float: Number(item.price.toFixed(15)) },
+            quantity: item.quantity,
+          })),
+          currency: eventData.currency,
+          value: { Float: Number(eventData.value.toFixed(15)) },
+          ...common,
+        },
+      } satisfies AlgoliaEventsItems_Input)
     }
+
     return events
   },
 
-  // Todo: Implement the following events
+  purchase: (eventName, eventData, common) => {
+    const mapping = getObjectIDToQuery()
+    const isAfterSearch = !!eventData.items.find((item) => mapping[atob(item.item_uid)]?.queryID)
 
-  // ???
-  // - Converted_filters_Input
-  // - Viewed_filters_Input
+    const events: AlgoliaEventsItems_Input[] = []
+
+    const objectIDs = eventData.items.map((item) => atob(item.item_uid))
+    const relevant = objectIDs.map((objectID) => mapping[objectID])
+    const filters = [...new Set(...relevant.map((item) => item.filters))]
+
+    if (filters.length) {
+      // There is a max of 10 filters per event, if there are more than 10 items
+      // we need to split the event into multiple events
+      for (let i = 0; i < filters.length; i += 10) {
+        events.push({
+          Converted_filters_Input: {
+            eventName: `${eventName}_filters`,
+            eventType: 'conversion',
+            filters: filters.slice(i, i + 10),
+            ...common,
+          },
+        })
+      }
+    }
+
+    if (isAfterSearch) {
+      events.push({
+        Purchased_object_IDs_after_search_Input: {
+          eventName,
+          eventType: 'conversion',
+          eventSubtype: 'purchase',
+          objectIDs: eventData.items.map((item) => atob(item.item_uid)),
+          objectData: eventData.items.map((item) => ({
+            discount: { Float: item.discount ?? 0 },
+            price: { Float: Number(item.price.toFixed(15)) },
+            quantity: item.quantity,
+            queryID: mapping[atob(item.item_uid)]?.queryID,
+          })),
+          currency: eventData.currency,
+          value: { Float: Number(eventData.value.toFixed(15)) },
+          ...common,
+        },
+      } satisfies AlgoliaEventsItems_Input)
+    } else {
+      events.push({
+        Purchased_object_IDs_Input: {
+          eventName,
+          eventType: 'conversion',
+          eventSubtype: 'purchase',
+          objectIDs: eventData.items.map((item) => atob(item.item_uid)),
+          objectData: eventData.items.map((item) => ({
+            discount: { Float: item.discount ?? 0 },
+            price: { Float: Number(item.price.toFixed(15)) },
+            quantity: item.quantity,
+          })),
+          currency: eventData.currency,
+          value: { Float: Number(eventData.value.toFixed(15)) },
+          ...common,
+        },
+      } satisfies AlgoliaEventsItems_Input)
+    }
+
+    clearAlgoliaIdToQuery()
+    return events
+  },
 }
 
 export function useSendAlgoliaEvent() {
   const client = useApolloClient()
   const index = useAlgoliaIndexName()
   const algoliaQuery = useAlgoliaQuery()
+  console.log(algoliaQuery)
 
   const eventsBuffer = useRef<AlgoliaEventsItems_Input[]>([])
   const submit = useDebounce(
@@ -310,6 +356,7 @@ export function useSendAlgoliaEvent() {
       cookie('_algolia_userToken', userToken, { sameSite: true })
     }
 
+    // todo check if valid
     if (authenticatedUserToken) {
       userToken = authenticatedUserToken
     }

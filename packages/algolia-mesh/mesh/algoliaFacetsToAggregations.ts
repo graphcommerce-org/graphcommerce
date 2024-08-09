@@ -23,11 +23,7 @@ function categoryMapping(
       const count = category?.id ? facetList[category?.id] : 0
       return { label: category?.name, value: category?.uid ?? '', count }
     })
-    .filter((category) => {
-      if (category.count > 0) {
-        return category
-      }
-    })
+    .filter((category) => category.count > 0)
 }
 
 function compare(a, b) {
