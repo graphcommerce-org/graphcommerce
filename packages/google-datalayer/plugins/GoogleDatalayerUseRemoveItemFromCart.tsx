@@ -1,6 +1,6 @@
 import type { UpdateItemQuantityProps } from '@graphcommerce/magento-cart-items'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
-import { sendEvent } from '../api/sendEvent'
+import { useSendEvent } from '../api/sendEvent'
 import { cartItemToDatalayerItem } from '../mapping/cartItemToDatalayerItem/cartItemToDatalayerItem'
 import { datalayerItemsToCurrencyValue } from '../mapping/datalayerItemsToCurrencyValue/datalayerItemsToCurrencyValue'
 
@@ -16,6 +16,7 @@ export const config: PluginConfig = {
 export function UpdateItemQuantity(props: PluginProps<UpdateItemQuantityProps>) {
   const { Prev, formOptions, quantity, ...rest } = props
 
+  const sendEvent = useSendEvent()
   return (
     <Prev
       {...rest}
@@ -33,7 +34,7 @@ export function UpdateItemQuantity(props: PluginProps<UpdateItemQuantityProps>) 
 
           if (!itemInCart?.quantity || diffQuantity === 0) return original
 
-          const items = [{ ...cartItemToDatalayerItem(itemInCart), quantity: absQuantity }]
+          const items = [{ ...cartItemToDatalayerItem(itemInCart, 0), quantity: absQuantity }]
           sendEvent(diffQuantity < 0 ? 'remove_from_cart' : 'add_to_cart', {
             ...datalayerItemsToCurrencyValue(items),
             items,

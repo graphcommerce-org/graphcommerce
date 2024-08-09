@@ -5,9 +5,6 @@ import { CartItem_RemoveFromCartFragment } from './CartItem_RemoveFromCart.gql'
 export const cartItemToRemoveFromCart = <C extends CartItem_RemoveFromCartFragment>(
   cartItem: C,
 ) => {
-  const items = [cartItemToDatalayerItem(cartItem)]
-  return {
-    ...datalayerItemsToCurrencyValue(items),
-    items,
-  }
+  const items = [cartItemToDatalayerItem(cartItem, 0)]
+  return { ...datalayerItemsToCurrencyValue(items), items }
 }

@@ -1,6 +1,6 @@
 import type { useRemoveItemFromCart as useRemoveItemFromCartBase } from '@graphcommerce/magento-cart-items'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
-import { sendEvent } from '../api/sendEvent'
+import { useSendEvent } from '../api/sendEvent'
 import { cartItemToRemoveFromCart } from '../mapping/cartItemToRemoveFromCart/cartToRemoveFromCart'
 
 export const config: PluginConfig = {
@@ -11,8 +11,9 @@ export const config: PluginConfig = {
 export const useRemoveItemFromCart: FunctionPlugin<typeof useRemoveItemFromCartBase> = (
   usePrev,
   props,
-) =>
-  usePrev({
+) => {
+  const sendEvent = useSendEvent()
+  return usePrev({
     ...props,
     onComplete: (result, variables) => {
       if (!result.errors) {
@@ -24,3 +25,4 @@ export const useRemoveItemFromCart: FunctionPlugin<typeof useRemoveItemFromCartB
       return props.onComplete?.(result, variables)
     },
   })
+}

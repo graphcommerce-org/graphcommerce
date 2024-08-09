@@ -52,7 +52,7 @@ export type AnyFilterType =
 export function isFilterTypeEqual(filter?: unknown): filter is FilterEqualTypeInput {
   return Boolean(
     filter &&
-      ('in' in (filter as FilterEqualTypeInput) || 'from' in (filter as FilterEqualTypeInput)),
+      ('in' in (filter as FilterEqualTypeInput) || 'eq' in (filter as FilterEqualTypeInput)),
   )
 }
 
@@ -72,7 +72,7 @@ export function toProductListParams(params: ProductFilterParams): ProductListPar
 
   const newFilers = Object.fromEntries(
     Object.entries(filters).filter(([, value]) => {
-      if (isFilterTypeEqual(value)) return Boolean(value.in)
+      if (isFilterTypeEqual(value)) return Boolean(value.in || value.eq)
       if (isFilterTypeMatch(value)) return Boolean(value.match)
       if (isFilterTypeRange(value)) return Boolean(value.from || value.to)
       return false

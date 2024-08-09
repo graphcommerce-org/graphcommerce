@@ -45,3 +45,7 @@ input ProductAttributeFilterInput {
   """
   engine: FilterEqualTypeInput
 }
+
+type Products {
+  algolia_queryID: String
+}

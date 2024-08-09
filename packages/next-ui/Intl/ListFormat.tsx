@@ -22,8 +22,9 @@ export function ListFormat(props: ListFormatProps) {
 
   return (
     <>
-      {parts.map((part) => (
-        <React.Fragment key={part.value}>
+      {parts.map((part, index) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <React.Fragment key={index}>
           {part.type === 'literal' ? part.value : childArray[part.value]}
         </React.Fragment>
       ))}

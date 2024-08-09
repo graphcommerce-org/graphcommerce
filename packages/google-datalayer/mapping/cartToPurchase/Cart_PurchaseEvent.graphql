@@ -1,0 +1,18 @@
+fragment Cart_PurchaseEvent on Cart
+@inject(into: ["PaymentMethodContext", "PaymentMethodUpdated"]) {
+  ...Cart_AddPaymentInfo
+  shipping_addresses {
+    selected_shipping_method {
+      price_excl_tax {
+        ...Money
+      }
+    }
+  }
+  prices {
+    applied_taxes {
+      amount {
+        ...Money
+      }
+    }
+  }
+}
