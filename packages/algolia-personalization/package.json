@@ -1,0 +1,31 @@
+{
+  "name": "@graphcommerce/algolia-personalization",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "9.0.0-canary.63",
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "scripts": {
+    "generate-insights": "tsx scripts/generate-insights-spec.mts"
+  },
+  "peerDependencies": {
+    "@graphcommerce/algolia-mesh": "^9.0.0-canary.63",
+    "@graphcommerce/google-datalayer": "^9.0.0-canary.63",
+    "@graphcommerce/graphql": "^9.0.0-canary.63",
+    "@graphcommerce/graphql-mesh": "^9.0.0-canary.63",
+    "@graphcommerce/magento-customer": "^9.0.0-canary.63",
+    "@graphcommerce/next-config": "^9.0.0-canary.63",
+    "@graphcommerce/next-ui": "^9.0.0-canary.63",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "graphql": "^16.0.0",
+    "tsx": "^4.16.2"
+  }
+}

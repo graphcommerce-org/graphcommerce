@@ -1,0 +1,3 @@
+fragment ProductListItems_Algolia on Products @inject(into: ["ProductListItems"]) {
+  algolia_queryID
+}

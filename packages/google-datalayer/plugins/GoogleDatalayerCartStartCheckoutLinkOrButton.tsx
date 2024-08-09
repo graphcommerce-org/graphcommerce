@@ -1,6 +1,6 @@
 import { CartStartCheckoutLinkOrButtonProps } from '@graphcommerce/magento-cart'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
-import { sendEvent } from '../api/sendEvent'
+import { useSendEvent } from '../api/sendEvent'
 import { cartToBeginCheckout } from '../mapping/cartToBeginCheckout/cartToBeginCheckout'
 
 export const config: PluginConfig = {
@@ -13,6 +13,7 @@ export function CartStartCheckoutLinkOrButton(
 ) {
   const { Prev, onStart, ...rest } = props
 
+  const sendEvent = useSendEvent()
   return (
     <Prev
       {...rest}

@@ -1,8 +1,8 @@
 import { LazyHydrate, RenderType, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
 import { Box, BoxProps, Breakpoint, Theme, useTheme } from '@mui/material'
-import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { AddProductsToCartForm } from '../AddProductsToCart'
 import { ProductListItemProps } from '../ProductListItem/ProductListItem'
+import { ProductListItemsFragment } from './ProductListItems.gql'
 import { ProductListItemRenderer } from './renderer'
 
 type ComponentState = {
@@ -30,11 +30,7 @@ type ColumnConfig = {
 
 type ColumnsConfig = Partial<Record<Breakpoint, ColumnConfig>>
 
-export type ProductItemsGridProps = {
-  items?:
-    | Array<(ProductListItemFragment & ProductListItemProps) | null | undefined>
-    | null
-    | undefined
+export type ProductItemsGridProps = ProductListItemsFragment & {
   renderers: ProductListItemRenderer
   loadingEager?: number
   title: string
@@ -44,7 +40,7 @@ export type ProductItemsGridProps = {
   ComponentState
 
 const slots = ['root'] as const
-const name = 'ProductListItemsBase' as const
+const name = 'ProductListItemsBase'
 
 const { withState } = extendableComponent<ComponentState, typeof name, typeof slots>(name, slots)
 

@@ -8,5 +8,5 @@ fragment Cart_AddShippingInfo on Cart @inject(into: ["ShippingMethodSelected"]) 
       method_code
     }
   }
-  ...Cart_DatalayerItems
+  ...Cart_ViewCart
 }

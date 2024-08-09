@@ -47,12 +47,19 @@ export const resolvers: Resolvers = {
           args: {
             indexName,
             input: {
+              clickAnalytics: true,
               query: args.search ?? '',
               facets: ['*'],
               hitsPerPage: args.pageSize ? args.pageSize : 10,
               page: args.currentPage ? args.currentPage - 1 : 0,
               facetFilters: productFilterInputToAlgoliaFacetFiltersInput(filters),
               numericFilters: productFilterInputToAlgoliaNumericFiltersInput(storeConfig, filters),
+              analytics: true,
+
+              // userToken,
+              // analytics: true,
+              // enablePersonalization: true,
+              // personalizationImpact:
             },
           },
           selectionSet: /* GraphQL */ `
@@ -60,6 +67,7 @@ export const resolvers: Resolvers = {
               nbPages
               hitsPerPage
               page
+              queryID
               nbHits
               hits {
                 __typename
@@ -94,6 +102,7 @@ export const resolvers: Resolvers = {
         suggestions,
         total_count: searchResults?.nbHits,
         sort_fields: { default: 'relevance', options: Object.values(options) },
+        algolia_queryID: searchResults?.queryID,
       }
     },
   },
