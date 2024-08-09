@@ -69,7 +69,7 @@ function mapPriceRange(
       },
       final_price: {
         currency,
-        value: maxFinal,
+        value: minFinal,
       },
       discount: {
         percent_off:
