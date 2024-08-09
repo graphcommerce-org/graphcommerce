@@ -1,4 +1,4 @@
-import { ProductItemsGridProps } from '@graphcommerce/magento-product'
+import { ProductItemsGridProps, useProductFiltersPro } from '@graphcommerce/magento-product'
 import { useMemoObject } from '@graphcommerce/next-ui'
 import { useEventCallback } from '@mui/material'
 import React, { useContext, useEffect } from 'react'
@@ -28,9 +28,11 @@ export function DatalayerViewItemList(
   const { title: item_list_name, items, children } = props
   const item_list_id = item_list_name.toLowerCase().replace(/\s/g, '_')
 
+  const params = useProductFiltersPro(true)?.params
+
   const sendEvent = useSendEvent()
   const viewItemList = useMemoObject(
-    productItemsToViewItemList(item_list_id, item_list_name, items),
+    productItemsToViewItemList(item_list_id, item_list_name, items, params),
   )
   useEffect(() => sendEvent('view_item_list', viewItemList), [sendEvent, viewItemList])
 

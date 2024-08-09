@@ -139,6 +139,8 @@ All storefront configuration for the project
 
 By default the catalog will not use algolia. Set this to true to enable Algolia for the catalog.
 
+#### algoliaCustomerGroupPricingEnabled: boolean
+
 #### breadcrumbs: boolean = `false`
 
 Configuration for the SidebarGallery component

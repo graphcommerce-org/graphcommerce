@@ -42,7 +42,7 @@ export function ProductFiltersProAggregations(props: ProductFiltersProAggregatio
         (aggregation) => {
           const filterType = filterTypes[aggregation.attribute_code]
           if (!filterType) {
-            console.log('Filter not recognized', aggregation.attribute_code, filterTypes)
+            // console.log('Filter not recognized', aggregation.attribute_code, filterTypes)
             return null
           }
 
