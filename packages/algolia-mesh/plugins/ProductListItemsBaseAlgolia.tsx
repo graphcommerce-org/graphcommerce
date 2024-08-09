@@ -11,7 +11,6 @@ export const config: PluginConfig = {
 export function ProductListItemsBase(props: PluginProps<ProductItemsGridProps>) {
   const { Prev, ...rest } = props
 
-  console.log('hallo', rest.algolia_queryID)
   return (
     <AlgoliaQueryContext.Provider
       value={useMemo(() => ({ queryID: rest.algolia_queryID }), [rest.algolia_queryID])}
