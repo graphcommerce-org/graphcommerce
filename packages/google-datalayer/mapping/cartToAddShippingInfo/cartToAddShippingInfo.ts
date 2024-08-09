@@ -1,15 +1,23 @@
-import { cartToDatalayerItems } from '../cartToDatalayerItems/cartToDatalayerItems'
+import { filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { cartToViewCart, ViewCart } from '../cartToViewCart/cartToViewCart'
 import { Cart_AddShippingInfoFragment } from './Cart_AddShippingInfo.gql'
 
-export function cartToAddShippingInfo<C extends Cart_AddShippingInfoFragment>(cart: C) {
+export type AddShippingInfo = ViewCart & {
+  coupon?: string
+  shipping_tier?: string
+}
+
+export function cartToAddShippingInfo<C extends Cart_AddShippingInfoFragment>(
+  cart: C,
+): AddShippingInfo {
   return {
     coupon: cart?.applied_coupons?.map((coupon) => coupon?.code).join(' '),
-    shipping_tier: cart?.shipping_addresses
+    shipping_tier: filterNonNullableKeys(cart?.shipping_addresses, ['selected_shipping_method'])
       .map(
-        (address) =>
-          `${address?.selected_shipping_method?.carrier_code}_${address?.selected_shipping_method?.method_code}`,
+        ({ selected_shipping_method: { carrier_code, method_code } }) =>
+          `${carrier_code}_${method_code}`,
       )
       .join(' '),
-    ...cartToDatalayerItems(cart),
+    ...cartToViewCart(cart),
   }
 }

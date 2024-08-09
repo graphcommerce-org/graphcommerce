@@ -76,7 +76,7 @@ export function ProductListLayoutClassic(props: ProductListLayoutProps) {
       <Container maxWidth={false}>
         <ProductListCount total_count={total_count} />
         <ProductListItems
-          items={products.items}
+          {...products}
           loadingEager={6}
           title={(params.search ? `Search ${params.search}` : title) ?? ''}
         />

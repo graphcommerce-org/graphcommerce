@@ -131,7 +131,7 @@ export function ProductListLayoutDefault(props: ProductListLayoutProps) {
           <ProductFiltersProNoResults />
         ) : (
           <ProductListItems
-            items={products.items}
+            {...products}
             loadingEager={6}
             title={(params.search ? `Search ${params.search}` : title) ?? ''}
             columns={{ xs: { count: 2 }, md: { count: 3 }, lg: { count: 4 }, xl: { count: 5 } }}

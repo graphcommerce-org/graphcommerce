@@ -37,6 +37,9 @@
     },
     "@graphcommerce/magento-product": {
       "optional": true
+    },
+    "@graphcommerce/magento-product-configurable": {
+      "optional": true
     }
   },
   "dependencies": {

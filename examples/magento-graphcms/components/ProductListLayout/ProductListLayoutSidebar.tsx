@@ -125,7 +125,7 @@ export function ProductListLayoutSidebar(props: ProductListLayoutProps) {
             <ProductFiltersProNoResults search={params.search} />
           ) : (
             <ProductListItems
-              items={products.items}
+              {...products}
               loadingEager={6}
               title={(params.search ? `Search ${params.search}` : title) ?? ''}
               columns={(theme) => {
