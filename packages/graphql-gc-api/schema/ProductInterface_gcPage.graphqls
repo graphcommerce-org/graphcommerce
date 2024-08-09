@@ -1,0 +1,31 @@
+interface ProductInterface {
+  page: Page
+}
+
+type BundleProduct {
+  page: Page
+}
+
+type SimpleProduct {
+  page: Page
+}
+
+type VirtualProduct {
+  page: Page
+}
+
+type DownloadableProduct {
+  page: Page
+}
+
+type GiftCardProduct {
+  page: Page
+}
+
+type ConfigurableProduct {
+  page: Page
+}
+
+type GroupedProduct {
+  page: Page
+}

@@ -1,16 +1,8 @@
 import { useQuery } from '@graphcommerce/graphql'
-import {
-  PageMeta as NextPageMeta,
-  PageMetaProps as NextPageMetaProps,
-} from '@graphcommerce/next-ui'
+import { PageMetaProps, PageMeta as PageMetaBase } from '@graphcommerce/next-ui'
 import { StoreConfigDocument } from './StoreConfig.gql'
 
-type PageMetaProps = Omit<NextPageMetaProps, 'canonical'> & {
-  canonical?: string
-}
-
 export function PageMeta(props: PageMetaProps) {
-  const { children, title, ...pageMetaProps } = props
   const config = useQuery(StoreConfigDocument)
 
   const prefix = config.data?.storeConfig?.title_prefix ?? ''
@@ -18,14 +10,14 @@ export function PageMeta(props: PageMetaProps) {
   const defaultTitle = config.data?.storeConfig?.default_title ?? ''
   const suffix = config.data?.storeConfig?.title_suffix ?? ''
 
-  let pageTitle = prefix ?? ''
-  if (title ?? defaultTitle) pageTitle += ` ${title ?? defaultTitle}`
-  if (separator && suffix) pageTitle += ` ${separator}`
-  if (suffix) pageTitle += ` ${suffix}`
+  function addPrefix(title: string) {
+    let pageTitle = prefix ?? ''
+    if (title ?? defaultTitle) pageTitle += ` ${title ?? defaultTitle}`
+    if (separator && suffix) pageTitle += ` ${separator}`
+    if (suffix) pageTitle += ` ${suffix}`
+    return pageTitle
+  }
 
-  return (
-    <NextPageMeta title={pageTitle ?? ''} {...pageMetaProps}>
-      {children}
-    </NextPageMeta>
-  )
+  const { title, ...pageMetaProps } = props
+  return <PageMetaBase title={addPrefix(title ?? '')} {...pageMetaProps} />
 }

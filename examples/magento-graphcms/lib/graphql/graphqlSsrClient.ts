@@ -37,7 +37,7 @@ function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-c
     name: 'ssr',
     defaultOptions: {
       preview: context as PreviewConfig,
-      query: { errorPolicy: 'all', fetchPolicy },
+      query: { fetchPolicy },
     } as DefaultOptions,
   })
 }

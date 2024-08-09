@@ -2,15 +2,14 @@ import { RichText } from '@graphcommerce/graphcms-ui'
 import { Image } from '@graphcommerce/image'
 import { ImageText } from '@graphcommerce/next-ui'
 import { Typography, useTheme } from '@mui/material'
-import { RowProductFragment } from '../RowProduct.gql'
-import { ProductFeatureMediaFragment } from './ProductFeatureMedia.gql'
+import { RowProductFragment } from '../graphql/RowProduct.gql'
 
-type FeatureProps = RowProductFragment & ProductFeatureMediaFragment
+type FeatureProps = RowProductFragment
 
 export function Feature(props: FeatureProps) {
-  const { productCopy, title, media_gallery } = props
+  const { productCopy, title, product } = props
   const theme = useTheme()
-  const item = media_gallery?.[2] ?? media_gallery?.[0]
+  const item = product?.media_gallery?.[2] ?? product?.media_gallery?.[0]
 
   if (!item) return null
 

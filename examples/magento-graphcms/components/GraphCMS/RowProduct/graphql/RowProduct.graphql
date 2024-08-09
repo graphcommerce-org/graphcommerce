@@ -1,0 +1,17 @@
+fragment RowProduct on RowProduct {
+  variant
+  identity
+  asset {
+    ...Asset
+  }
+  title
+  productCopy {
+    raw
+  }
+  pageLinks {
+    ...PageLink
+  }
+  product {
+    ...PageRows_CategoryData
+  }
+}

@@ -1,0 +1,7 @@
+interface CategoryInterface {
+  page: Page
+}
+
+type CategoryTree {
+  page: Page
+}

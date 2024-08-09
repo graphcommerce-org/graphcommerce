@@ -1,0 +1,7 @@
+fragment ProductPageRows on ProductInterface {
+  page {
+    ...PageHead
+    ...PageRows
+  }
+  ...ProductPageRows_ProductData
+}

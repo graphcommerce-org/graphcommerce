@@ -1,4 +1,4 @@
-import { AddProductsToCartForm, UpsellProductsFragment } from '@graphcommerce/magento-product'
+import { AddProductsToCartForm } from '@graphcommerce/magento-product'
 import {
   SidebarSlider,
   RenderType,
@@ -7,12 +7,13 @@ import {
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import { productListRenderer } from '../../../ProductListItems/productListRenderer'
-import { RowProductFragment } from '../RowProduct.gql'
+import type { RowProductPageProps } from '../RowProductPage'
 
-type UpsellsProps = RowProductFragment & UpsellProductsFragment & Pick<SidebarSliderProps, 'sx'>
+type UpsellsProps = RowProductPageProps & Pick<SidebarSliderProps, 'sx'>
 
 export function Upsells(props: UpsellsProps) {
-  const { title, upsell_products, sx } = props
+  const { title, product, sx } = props
+  const { upsell_products } = product ?? {}
 
   if (!upsell_products || upsell_products.length === 0) return null
 

@@ -1,0 +1,36 @@
+fragment GcLinkRelTag on GcLinkRelTag {
+  rel
+  href
+  hreflang
+}
+
+fragment GcMetaTag on GcMetaTag {
+  name
+  content
+}
+
+# Data fragment used for the PageHead component.
+fragment PageHead on Page {
+  head {
+    title
+    description
+    canonical {
+      hreflang
+      href
+    }
+    alternate {
+      hreflang
+      href
+    }
+    robots {
+      name
+      content
+    }
+    meta {
+      ...GcMetaTag
+    }
+    link {
+      ...GcLinkRelTag
+    }
+  }
+}

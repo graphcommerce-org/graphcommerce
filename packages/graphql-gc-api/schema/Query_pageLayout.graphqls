@@ -1,0 +1,11 @@
+input PageLayoutInput {
+  scope: String!
+}
+
+type PageLayout {
+  menu: GcMenu
+}
+
+extend type Query {
+  pageLayout(input: PageLayoutInput!): PageLayout
+}

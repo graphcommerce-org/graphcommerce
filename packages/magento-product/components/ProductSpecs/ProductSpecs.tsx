@@ -1,27 +1,25 @@
+import { useQuery } from '@graphcommerce/graphql'
 import { responsiveVal, Row, SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { ProductSpecsFragment } from './ProductSpecs.gql'
-import { ProductSpecsAggregations } from './ProductSpecsAggregations'
-import { ProductSpecsCustomAttributes } from './ProductSpecsCustomAttributes'
+import { ProductSpecsTypesDocument } from './ProductSpecsTypes.gql'
 
-export type ProductSpecsProps = ProductSpecsFragment & {
+export type ProductSpecsProps = {
   title?: string
   sx?: SxProps<Theme>
   children?: React.ReactNode
+  product: ProductSpecsFragment
 }
 
-const name = 'ProductSpecs' as const
+const name = 'ProductSpecs'
 const parts = ['root', 'specs', 'options'] as const
 const { classes } = extendableComponent(name, parts)
 
 export function ProductSpecs(props: ProductSpecsProps) {
-  const { aggregations, items, title, children, sx = [] } = props
-  const filter = ['price', 'category_id', 'size', 'new', 'sale', 'color']
-  const specs = aggregations?.filter(
-    (attr) => !filter.includes(attr?.attribute_code ?? '') && attr?.options?.[0]?.value !== '0',
-  )
+  const { title, children, sx = [], product } = props
 
-  if (specs?.length === 0) return null
+  const specs = product.custom_attributesV2?.items
+  const productSpecsTypes = useQuery(ProductSpecsTypesDocument)
 
   return (
     <Row
@@ -48,8 +46,31 @@ export function ProductSpecs(props: ProductSpecsProps) {
             },
           })}
         >
-          {aggregations && <ProductSpecsAggregations aggregations={aggregations} />}
-          {items && <ProductSpecsCustomAttributes items={items} />}
+          {specs?.map((item) => (
+            <li key={item?.code}>
+              <div>
+                {
+                  productSpecsTypes?.data?.attributesList?.items?.find(
+                    (type) => type?.code === item?.code,
+                  )?.label
+                }
+              </div>
+              <Box className={classes.options} sx={{ display: 'grid', gridAutoFlow: 'row' }}>
+                {item?.__typename === 'AttributeSelectedOptions' && (
+                  <>
+                    {item?.selected_options?.map((option) => (
+                      <span key={option?.value}>
+                        {option?.label === '1' ? 'Yes' : option?.label}
+                      </span>
+                    ))}
+                  </>
+                )}
+                {item?.__typename === 'AttributeValue' && (
+                  <span key={item?.value}>{item.value}</span>
+                )}
+              </Box>
+            </li>
+          ))}
         </Box>
         {children}
       </SectionContainer>

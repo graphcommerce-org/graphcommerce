@@ -1,0 +1,5 @@
+# This fragment is added to the CategoryPAge query when the product page is loaded.
+fragment PageCategory_Data on Page {
+  ...PageHead
+  ...PageRows
+}

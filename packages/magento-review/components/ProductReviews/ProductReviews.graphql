@@ -1,5 +1,5 @@
 fragment ProductReviews on ProductInterface {
-  reviews(pageSize: $reviewPageSize, currentPage: $reviewPage) {
+  reviews(pageSize: 3, currentPage: 1) {
     page_info {
       total_pages
       current_page

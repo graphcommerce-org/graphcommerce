@@ -1,9 +1,6 @@
+import { ContentArea, PageContent, pageContent } from '@graphcommerce/graphql-gc-api'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import {
-  PagesStaticPathsDocument,
-  hygraphPageContent,
-  HygraphPagesQuery,
-} from '@graphcommerce/graphcms-ui'
+import { PagesStaticPathsDocument } from '@graphcommerce/graphcms-ui'
 import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -14,36 +11,33 @@ import {
   LayoutOverlay,
   LayoutOverlayProps,
   LayoutNavigationProps,
-  RowRenderer,
+  productListRenderer,
 } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 import { cacheFirst } from '@graphcommerce/graphql'
 
-type Props = HygraphPagesQuery
+type Props = { content: PageContent }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
-function ServicePage({ pages }: Props) {
-  const title = pages?.[0].title ?? ''
+function ServicePage(props: Props) {
+  const { content } = props
 
   return (
     <>
-      <PageMeta
-        title={title}
-        metaDescription={title}
-        canonical={pages?.[0]?.url ? `/${pages[0].url}` : undefined}
-      />
+      <PageMeta metadata={content.metadata} />
       <LayoutOverlayHeader>
         <LayoutTitle component='span' size='small'>
-          {title}
+          {content.title}
         </LayoutTitle>
       </LayoutOverlayHeader>
 
       <Container maxWidth='md'>
-        <LayoutTitle>{title}</LayoutTitle>
+        <LayoutTitle>{content.title}</LayoutTitle>
       </Container>
-      <RowRenderer {...pages[0]} />
+
+      <ContentArea content={content} productListRenderer={productListRenderer} />
     </>
   )
 }
@@ -82,19 +76,19 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })
-  const page = hygraphPageContent(staticClient, url)
+  const content = pageContent(staticClient, url)
   const layout = staticClient.query({
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
 
-  if (!(await page).data.pages?.[0]) return redirectOrNotFound(staticClient, conf, { url }, locale)
+  if ((await content).notFound) return redirectOrNotFound(staticClient, conf, { url }, locale)
 
   const isRoot = url === 'service'
 
   return {
     props: {
-      ...(await page).data,
+      content: await content,
       ...(await layout).data,
       up: isRoot ? null : { href: '/service', title: i18n._(/* i18n */ 'Customer Service') },
       apolloState: await conf.then(() => client.cache.extract()),

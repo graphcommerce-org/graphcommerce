@@ -1,4 +1,4 @@
-import { AddProductsToCartForm, RelatedProductsFragment } from '@graphcommerce/magento-product'
+import { AddProductsToCartForm } from '@graphcommerce/magento-product'
 import {
   SidebarSlider,
   RenderType,
@@ -6,13 +6,14 @@ import {
   SidebarSliderProps,
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
-import { productListRenderer } from '../../../ProductListItems/productListRenderer'
-import { RowProductFragment } from '../RowProduct.gql'
+import { productListRenderer } from '../../../ProductListItems'
+import type { RowProductPageProps } from '../RowProductPage'
 
-type RelatedProps = RowProductFragment & RelatedProductsFragment & Pick<SidebarSliderProps, 'sx'>
+type RelatedProps = RowProductPageProps & Pick<SidebarSliderProps, 'sx'>
 
 export function Related(props: RelatedProps) {
-  const { title, related_products, sx } = props
+  const { title, product, sx } = props
+  const { related_products } = product ?? {}
 
   if (!related_products || related_products.length === 0) return null
 

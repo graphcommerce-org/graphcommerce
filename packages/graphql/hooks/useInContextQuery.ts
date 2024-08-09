@@ -41,7 +41,7 @@ export function useInContextQuery<
   const clientQuery = useQuery<Q, V>(document, {
     ...options,
     variables: { ...options.variables, context } as V,
-    skip: skip && !context,
+    skip: skip || !context,
   })
 
   let { data } = clientQuery

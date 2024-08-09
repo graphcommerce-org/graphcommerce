@@ -38,6 +38,7 @@ _config) => {
         /* GraphQL */ `
       directive @connection(key: String!, filter: [String!]) on FIELD
       directive @client on FIELD
+      directive @defer(if: Boolean! = true, label: String) on FRAGMENT_SPREAD | INLINE_FRAGMENT
     `,
     ]);
     const documentAsts = documents.reduce((prev, v) => [...prev, ...(v.document?.definitions ?? [])], []);

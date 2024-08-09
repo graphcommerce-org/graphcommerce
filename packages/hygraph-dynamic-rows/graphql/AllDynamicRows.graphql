@@ -1,17 +1,18 @@
 query AllDynamicRows($first: Int = 100, $skip: Int) {
-  dynamicRows(first: $first, skip: $skip) {
-    id
-    conditions {
-      __typename
-      ...ConditionNumber
-      ...ConditionText
-      ...ConditionAnd
-    }
-  }
-
-  pagesConnection {
+  dynamicRowsConnection(first: $first, skip: $skip) {
     aggregate {
       count
+    }
+    edges {
+      node {
+        id
+        conditions {
+          __typename
+          ...ConditionNumber
+          ...ConditionText
+          ...ConditionAnd
+        }
+      }
     }
   }
 }

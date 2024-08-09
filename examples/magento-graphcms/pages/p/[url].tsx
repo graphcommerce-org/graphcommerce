@@ -1,11 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import {
-  cacheFirst,
-  InContextMaskProvider,
-  mergeDeep,
-  useInContextQuery,
-} from '@graphcommerce/graphql'
+import { cacheFirst, InContextMaskProvider, useInContextQuery } from '@graphcommerce/graphql'
+import { PageProductRows } from '@graphcommerce/graphql-gc-api'
 import {
   AddProductsToCartForm,
   AddProductsToCartFormProps,
@@ -26,7 +21,7 @@ import {
 import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-product-configurable'
 import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-products'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
-import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import { GetStaticProps, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -38,17 +33,13 @@ import {
   LayoutNavigation,
   LayoutNavigationProps,
   productListRenderer,
-  RowProduct,
-  RowRenderer,
-  Usps,
 } from '../../components'
 import { AddProductsToCartView } from '../../components/ProductView/AddProductsToCartView'
-import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
+import { UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-export type Props = HygraphPagesQuery &
-  UspsQuery &
+export type Props = UspsQuery &
   ProductPage2Query &
   Pick<AddProductsToCartFormProps, 'defaultValues'> & { urlKey: string }
 
@@ -57,19 +48,12 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductPage(props: Props) {
-  const { usps, sidebarUsps, pages, defaultValues, urlKey } = props
+  const { usps, sidebarUsps, defaultValues, urlKey } = props
 
-  const scopedQuery = useInContextQuery(
-    ProductPage2Document,
-    { variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 } },
-    props,
-  )
-  const { products, relatedUpsells } = scopedQuery.data
+  const scopedQuery = useInContextQuery(ProductPage2Document, { variables: { urlKey } }, props)
+  const { products } = scopedQuery.data
 
-  const product = mergeDeep(
-    products?.items?.[0],
-    relatedUpsells?.items?.find((item) => item?.uid === products?.items?.[0]?.uid),
-  )
+  const product = products?.items?.[0]
 
   if (!product?.sku || !product.url_key) return null
 
@@ -141,32 +125,20 @@ function ProductPage(props: Props) {
             <ProductWishlistChipDetail {...product} />
           </ProductPageAddToCartActionsRow>
 
-          <Usps usps={sidebarUsps} size='small' />
+          {/* <Usps usps={sidebarUsps} size='small' /> */}
+
+          {/* <PageProductRowsSidebar page={product.page} /> */}
         </ProductPageGallery>
 
         <ProductPageDescription
           product={product}
-          right={<Usps usps={usps} />}
+          right={<>hoi</>}
+          // right={<Usps usps={usps} />}
           fontSize='responsive'
         />
       </AddProductsToCartForm>
 
-      {pages?.[0] && (
-        <RowRenderer
-          loadingEager={0}
-          content={pages?.[0].content}
-          renderer={{
-            RowProduct: (rowProps) => (
-              <RowProduct
-                {...rowProps}
-                {...product}
-                items={products?.items}
-                aggregations={products?.aggregations}
-              />
-            ),
-          }}
-        />
-      )}
+      <PageProductRows page={product.page} product={product} />
 
       <RecentlyViewedProducts
         title={<Trans id='Recently viewed products' />}
@@ -201,36 +173,31 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const urlKey = params?.url ?? '??'
 
   const conf = client.query({ query: StoreConfigDocument })
-  const productPage = staticClient.query({
-    query: ProductPage2Document,
-    variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 },
-  })
   const layout = staticClient.query({
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
 
-  const product = productPage.then((pp) =>
-    pp.data.products?.items?.find((p) => p?.url_key === urlKey),
-  )
+  const productQuery = await staticClient.query({
+    query: ProductPage2Document,
+    variables: { urlKey },
+  })
+  const product = productQuery.data.products?.items?.find((p) => p?.url_key === urlKey)
 
-  const pages = hygraphPageContent(staticClient, 'product/global', product, true)
-  if (!(await product)) return redirectOrNotFound(staticClient, conf, params, locale)
+  if (!product) return { notFound: true }
+  //return redirectOrNotFound(staticClient, conf, params, locale)
 
-  const category = productPageCategory(await product)
+  const category = productPageCategory(product)
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
       : { href: `/`, title: i18n._(/* i18n */ 'Home') }
-  const usps = staticClient.query({ query: UspsDocument, fetchPolicy: cacheFirst(staticClient) })
 
   return {
     props: {
       urlKey,
-      ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),
+      ...defaultConfigurableOptionsSelection(urlKey, client, productQuery.data),
       ...(await layout).data,
-      ...(await pages).data,
-      ...(await usps).data,
       apolloState: await conf.then(() => client.cache.extract()),
       up,
     },

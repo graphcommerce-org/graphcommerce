@@ -1,19 +1,17 @@
 import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { ApolloClient, NormalizedCacheObject, cacheFirst } from '@graphcommerce/graphql'
 import {
   ConditionTextFragment,
   ConditionNumberFragment,
   ConditionOrFragment,
   ConditionAndFragment,
-  DynamicRowsDocument,
+  DynamicRowsQuery,
 } from '../graphql'
-import { getAllHygraphDynamicRows } from './getAllHygraphDynamicRows'
 
 /**
  * This generally works the same way as lodash get, however, when encountering an array it will
  * return all values.
  */
-function getByPath(
+export function getByPath(
   value: unknown,
   query: string | Array<string | number>,
 ): (undefined | string | number | bigint)[] {
@@ -47,7 +45,7 @@ function getByPath(
 }
 
 /** A recursive match function that is able to match a condition against the requested conditions. */
-function matchCondition(
+export function matchCondition(
   condition:
     | ConditionTextFragment
     | ConditionNumberFragment
@@ -81,44 +79,13 @@ function matchCondition(
 
 type Page = HygraphPagesQuery['pages'][number]
 
-/**
- * Fetch the page content for the given urls.
- *
- * - Uses an early bailout to check to reduce hygraph calls.
- * - Implements an alias sytem to merge the content of multiple pages.
- */
-export async function hygraphDynamicRows(
-  client: ApolloClient<NormalizedCacheObject>,
-  pageQuery: Promise<{ data: HygraphPagesQuery }>,
-  url: string,
-  cached: boolean,
-  additionalProperties?: Promise<object> | object,
-): Promise<{ data: HygraphPagesQuery }> {
-  const fetchPolicy = cached ? cacheFirst(client) : undefined
-
-  const allRoutes = await getAllHygraphDynamicRows(client)
-
-  // Get the required rowIds from the conditions
-  const properties = { ...(await additionalProperties), url }
-
-  const rowIds = allRoutes
-    .filter((availableDynamicRow) =>
-      availableDynamicRow.conditions.some((condition) => matchCondition(condition, properties)),
-    )
-    .map((row) => row.id)
-  const dynamicRows =
-    rowIds.length !== 0
-      ? client.query({ query: DynamicRowsDocument, variables: { rowIds }, fetchPolicy })
-      : undefined
-
-  const [pageResult, dynamicResult] = await Promise.all([pageQuery, dynamicRows])
-
-  const page = pageResult.data.pages[0] as Page | undefined
-
+export function applyDynamicRows(
+  dynamicRows: DynamicRowsQuery['dynamicRows'],
+  incomingContent: Page['content'] = [],
+) {
   // Create a copy of the content array.
-  const content = [...(page?.content ?? [])]
-
-  dynamicResult?.data.dynamicRows.forEach((dynamicRow) => {
+  const content = [...incomingContent]
+  dynamicRows.forEach((dynamicRow) => {
     const { placement, target, rows, row } = dynamicRow
     if (!rows && !row) return
 
@@ -137,24 +104,5 @@ export async function hygraphDynamicRows(
     if (placement === 'REPLACE') content.splice(targetIdx, 1, ...rowsToMerge)
   })
 
-  if (!content.length) return pageResult
-
-  const dynamicPage: Page = {
-    id: 'dynamic-page',
-    __typename: 'Page',
-    metaRobots: 'INDEX_FOLLOW',
-    metaTitle: '',
-    metaDescription: '',
-    url: '',
-    content: [],
-    relatedPages: [],
-  }
-
-  // Return the merged page result.
-  return {
-    data: {
-      ...pageResult.data,
-      pages: [{ ...dynamicPage, ...page, content }],
-    },
-  }
+  return content
 }

@@ -1,2 +1,2 @@
-export * from './RichText'
+export * from './RichText/index'
 export * from './Asset/Asset'

@@ -17,6 +17,7 @@ module.exports = {
         'packages/graphql/apollo-client.graphql',
         'packagesDev/graphql-codegen-near-operation-file/src/directive/env.graphqls',
         'packagesDev/graphql-codegen-near-operation-file/src/directive/injectable.graphqls',
+        'packages/graphql-mesh/directive/mesh.graphqls',
       ],
       documents: [
         'examples/magento-graphcms/components/**/*.graphql',

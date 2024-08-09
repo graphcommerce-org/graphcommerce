@@ -1,9 +1,4 @@
-fragment HygraphPage on Page {
-  title
-  metaTitle
-  metaDescription
-  metaRobots
-  url
+fragment HygraphPage on Page @inject(into: ["PageHead"]) {
   author
   date
   relatedPages {
@@ -12,5 +7,8 @@ fragment HygraphPage on Page {
   }
   asset {
     ...Asset
+  }
+  content {
+    __typename
   }
 }

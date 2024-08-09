@@ -1,0 +1,6 @@
+fragment Page_Redirect on Page {
+  redirect {
+    destination
+    permanent
+  }
+}

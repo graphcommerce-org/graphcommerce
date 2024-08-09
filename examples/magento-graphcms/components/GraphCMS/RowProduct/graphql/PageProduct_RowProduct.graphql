@@ -1,0 +1,8 @@
+fragment PageProduct_RowProduct on ProductInterface @inject(into: ["ProductPageRows"]) {
+  page {
+    rows {
+      __typename
+      ...RowProduct_ProductPage
+    }
+  }
+}

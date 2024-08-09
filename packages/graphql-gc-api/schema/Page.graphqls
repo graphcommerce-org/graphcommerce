@@ -1,0 +1,25 @@
+"""
+This type only exists to make the PageRow union not fail.
+"""
+type PageRowFake {
+  id: ID!
+}
+
+union PageRow = PageRowFake
+
+type Page {
+  """
+  The head of the page.
+  """
+  head: PageHead
+
+  """
+  When the redirect is defined the page should not be rendered and the user should be redirected to the specified URL.
+  """
+  redirect: PageRedirect
+
+  """
+  Rows of the content
+  """
+  rows: [PageRow]
+}

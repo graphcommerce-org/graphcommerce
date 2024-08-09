@@ -1,65 +1,56 @@
 import { InContextMaskProvider, useInContextQuery } from '@graphcommerce/graphql'
-import { ProductListDocument, ProductListItemsFragment } from '@graphcommerce/magento-product'
-import { ProductSpecsFragment } from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.gql'
-import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { RowProductFragment } from './RowProduct.gql'
-import {
-  Backstory,
-  Feature,
-  FeatureBoxed,
-  Grid,
-  Related,
-  Reviews,
-  Specs,
-  Swipeable,
-  Upsells,
-} from './variant'
+import { ProductListItemRenderer } from '@graphcommerce/magento-product'
+import { productListRenderer } from '../../ProductListItems'
+import { GetMagentoRowProductDocument } from './GetMagentoRowProduct.gql'
+import { RowProductDeprecated } from './RowProductDeprecated'
+import { RowProductFragment } from './graphql/RowProduct.gql'
+import { Backstory, Feature, FeatureBoxed } from './variant'
 
 type VariantRenderer = Record<
   NonNullable<RowProductFragment['variant']>,
-  React.FC<RowProductFragment & ProductListItemsFragment>
+  React.FC<RowProductFragment & { productListItemRenderer: ProductListItemRenderer }>
 >
 
 type RowProductProps = RowProductFragment & {
   renderer?: Partial<VariantRenderer>
-} & ProductSpecsFragment & { sku?: string | null | undefined } & ProductListItemsFragment
+}
 
 const defaultRenderer: Partial<VariantRenderer> = {
-  Specs,
   Backstory,
   Feature,
   FeatureBoxed,
-  Grid,
-  Related,
-  Reviews,
-  Upsells,
-  Swipeable,
+  Related: () => <>Only available on the product page</>,
+  Reviews: () => <>Only available on the product page</>,
+  Specs: () => <>Only available on the product page</>,
+  Upsells: () => <>Only available on the product page</>,
+  Grid: RowProductDeprecated,
+  Swipeable: RowProductDeprecated,
 }
 
 export function RowProduct(props: RowProductProps) {
-  const { renderer, variant, items, ...rest } = props
+  const { renderer, variant, product } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as VariantRenderer
 
-  const urlKeys = filterNonNullableKeys(items).map((item) => item.url_key)
   const scoped = useInContextQuery(
-    ProductListDocument,
-    { variables: { onlyItems: true, filters: { url_key: { in: urlKeys } } } },
-    { products: { items } },
+    GetMagentoRowProductDocument,
+    { variables: { urlKey: product?.url_key ?? '' }, skip: !product?.url_key },
+    { products: { items: [product!] } },
   )
-  const { products } = scoped.data
 
   if (!variant) return null
 
-  const RenderType =
-    mergedRenderer?.[variant] ??
-    (() => {
-      if (process.env.NODE_ENV !== 'production') return <>renderer for {variant} not found</>
-      return null
-    })
+  const RenderType = mergedRenderer?.[variant]
 
   return (
     <InContextMaskProvider mask={scoped.mask}>
-      <RenderType {...rest} {...products} />
+      {/* <RowProductDeprecated {...props} /> */}
+      {RenderType && (
+        <RenderType
+          {...props}
+          productListItemRenderer={productListRenderer}
+          product={scoped.data.products?.items?.[0]}
+        />
+      )}
     </InContextMaskProvider>
   )
 }

@@ -1,6 +1,7 @@
 import { isAsyncIterable } from '@envelop/core'
 import { MeshPlugin, MeshPluginOptions } from '@graphql-mesh/types'
 import type { MeshContext } from '../.mesh'
+import { GraphQLSchema } from 'graphql'
 
 interface ForwardHeaderConfig {
   forwardHeaders?: string[]

@@ -65,7 +65,7 @@ const HygraphConfig = React.memo(() => {
         }
       />
     ),
-    [contentStages.data?.__type.enumValues, contentStages.loading, control],
+    [contentStages.data?.__type.enumValues, contentStages.loading, control, defaultValue],
   )
 })
 

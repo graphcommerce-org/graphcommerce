@@ -1,13 +1,10 @@
 import { ProductSpecs } from '@graphcommerce/magento-product'
-import { ProductSpecsFragment } from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.gql'
-import { RowProductFragment } from '../RowProduct.gql'
+import type { RowProductPageProps } from '../RowProductPage'
 
-type SpecsProps = RowProductFragment & ProductSpecsFragment
+type SpecsProps = RowProductPageProps
 
 export function Specs(props: SpecsProps) {
-  const { title, aggregations, items } = props
-
-  if (!aggregations && !items) return null
-
-  return <ProductSpecs title={title} aggregations={aggregations} items={items} />
+  const { title, product } = props
+  if (!product) return null
+  return <ProductSpecs title={title} product={product} />
 }

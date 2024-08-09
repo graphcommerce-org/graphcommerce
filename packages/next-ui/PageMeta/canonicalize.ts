@@ -12,6 +12,11 @@ type PartialNextRouter = Pick<
   'pathname' | 'locale' | 'locales' | 'isLocaleDomain' | 'domainLocales' | 'defaultLocale'
 >
 
+export function canonicalize(router: PartialNextRouter, incoming: Canonical): string
+export function canonicalize(
+  router: PartialNextRouter,
+  incoming: Canonical | undefined,
+): string | undefined
 export function canonicalize(router: PartialNextRouter, incoming?: Canonical) {
   let canonical = incoming
 

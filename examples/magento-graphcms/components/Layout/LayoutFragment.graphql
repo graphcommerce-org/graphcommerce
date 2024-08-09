@@ -1,0 +1,6 @@
+fragment LayoutFragment on Query {
+  menu: categories {
+    __typename
+  }
+  ...MenuQueryFragment
+}

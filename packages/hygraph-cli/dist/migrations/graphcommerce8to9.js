@@ -16,12 +16,11 @@ const graphcommerce8to9 = async (schema, client) => {
         });
     }
     const hasRowCategory = schema.models.some((m) => m.apiId === 'RowCategory');
-    //
     if (!hasRowCategory) {
         migrationAction(schema, 'model', 'create', {
             apiId: 'RowCategory',
             displayName: 'Row Category',
-            apiIdPlural: 'RowProductLists',
+            apiIdPlural: 'RowCategories',
             description: 'A model that displays a category',
         });
         migrationAction(schema, 'simpleField', 'create', {

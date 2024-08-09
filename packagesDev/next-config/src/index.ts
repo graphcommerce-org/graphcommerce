@@ -11,7 +11,7 @@ export * from './config'
 export * from './runtimeCachingOptimizations'
 export * from './interceptors/commands/codegenInterceptors'
 
-export type PluginProps<P extends Record<string, unknown> = Record<string, unknown>> = P & {
+export type PluginProps<P = Record<string, unknown>> = P & {
   Prev: React.FC<P>
 }
 

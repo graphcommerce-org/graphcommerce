@@ -1,0 +1,5 @@
+# When a category related component
+fragment PageRows_CategoryData on CategoryTree {
+  uid
+  __typename
+}
