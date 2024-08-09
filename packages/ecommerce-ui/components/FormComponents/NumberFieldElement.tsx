@@ -116,7 +116,7 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
             size='smaller'
             onClick={() => {
               if (
-                (valueAsNumber || Infinity) <= inputProps.min ||
+                (valueAsNumber ?? Infinity) <= inputProps.min ||
                 (inputProps.min === 0 && valueAsNumber <= inputProps.min)
               )
                 return
