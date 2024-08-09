@@ -9,7 +9,6 @@ import { useDebounce } from '@graphcommerce/react-hook-form'
 import { useEventCallback } from '@mui/material'
 import { useRef } from 'react'
 import { AlgoliaSendEventDocument } from '../mutations/AlgoliaSendEvent.gql'
-import { formatError } from 'graphql'
 
 const getSHA256Hash = async (input: string) => {
   const textAsBuffer = new TextEncoder().encode(input)
