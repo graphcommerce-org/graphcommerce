@@ -1,6 +1,7 @@
 import type {
   Aggregation,
   AggregationOption,
+  AlgoliasearchResponse,
   CategoryResult,
   MeshContext,
 } from '@graphcommerce/graphql-mesh'
@@ -118,7 +119,7 @@ function assertAlgoliaFacets(facets: any): facets is AlgoliaFacets {
  * TODO: Make sure the aggregations are sorted correctly: https://magento-247-git-canary-graphcommerce.vercel.app/men/photography, through position
  */
 export function algoliaFacetsToAggregations(
-  algoliaFacets: any,
+  algoliaFacets: AlgoliasearchResponse['facets'],
   attributes: AttributeList,
   storeConfig: GetStoreConfigReturn,
   categoryList?: null | CategoryResult,
@@ -182,8 +183,12 @@ export function algoliaFacetsToAggregations(
   return aggregations
 }
 
-export function getCategoryList(context: MeshContext) {
-  return context.m2.Query.categories({
+let categoryListCache: CategoryResult | null = null
+
+export async function getCategoryList(context: MeshContext) {
+  if (categoryListCache) return categoryListCache
+
+  categoryListCache = await context.m2.Query.categories({
     args: { filters: {} },
     selectionSet: /* GraphQL */ `
       {
@@ -197,4 +202,6 @@ export function getCategoryList(context: MeshContext) {
     `,
     context,
   })
+
+  return categoryListCache!
 }
