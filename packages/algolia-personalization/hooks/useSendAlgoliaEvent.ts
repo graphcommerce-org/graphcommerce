@@ -88,7 +88,6 @@ const dataLayerToAlgoliaMap: {
 
     const events: AlgoliaEventsItems_Input[] = []
 
-    console.log(queryID)
     if (
       // Values of filters are different when using Algolia vs Magento, thus it does not make sense to send the filters
       queryID &&
@@ -309,7 +308,6 @@ export function useSendAlgoliaEvent() {
   const client = useApolloClient()
   const index = useAlgoliaIndexName()
   const algoliaQuery = useAlgoliaQuery()
-  console.log(algoliaQuery)
 
   const eventsBuffer = useRef<AlgoliaEventsItems_Input[]>([])
   const submit = useDebounce(
