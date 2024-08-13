@@ -40,3 +40,7 @@ export function traverseSelectionSet<Q>(incomingSelectionSet: SelectionSetNode, 
 
   return selectionSet
 }
+
+export function hasSelectionSetPath<Q>(selectionSet: SelectionSetNode, path: Path<Q>): boolean {
+  return traverseSelectionSet<Q>(selectionSet, path).selections.length > 0
+}

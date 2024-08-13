@@ -19,6 +19,8 @@ const getSHA256Hash = async (input: string) => {
   return hash
 }
 
+export const ALGOLIA_USER_TOKEN_COOKIE_NAME = '_algolia_userToken'
+
 function mapSelectedFiltersToAlgoliaEvent(filters: ProductFilterParams['filters']) {
   const flattenedFilters: string[] = []
 
@@ -348,16 +350,16 @@ export function useSendAlgoliaEvent() {
   return useEventCallback<typeof sendEvent>(async (eventName, eventData) => {
     const email = client.cache.readQuery({ query: CustomerDocument })?.customer?.email
     const authenticatedUserToken = email ? await getSHA256Hash(email) : undefined
-    let userToken = cookie('_algolia_userToken')
+    let userToken = cookie(ALGOLIA_USER_TOKEN_COOKIE_NAME)
     if (!userToken) {
       userToken = (Math.random() + 1).toString(36).substring(2)
-      cookie('_algolia_userToken', userToken, { sameSite: true })
+      cookie(ALGOLIA_USER_TOKEN_COOKIE_NAME, userToken, { sameSite: true })
     }
 
     // todo check if valid
-    if (authenticatedUserToken) {
-      userToken = authenticatedUserToken
-    }
+    // if (authenticatedUserToken) {
+    //   userToken = authenticatedUserToken
+    // }
 
     const events = dataLayerToAlgoliaMap[eventName]?.(eventName, eventData, {
       index,

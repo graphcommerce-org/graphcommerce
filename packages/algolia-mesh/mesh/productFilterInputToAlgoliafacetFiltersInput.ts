@@ -68,49 +68,31 @@ export function productFilterInputToAlgoliaFacetFiltersInput(
  *
  * https://www.algolia.com/doc/api-reference/api-parameters/numericFilters/#examples
  */
-export function productFilterInputToAlgoliaNumericFiltersInput(
-  storeConfig: GetStoreConfigReturn,
+export async function productFilterInputToAlgoliaNumericFiltersInput(
+  storeConfig: Promise<GetStoreConfigReturn>,
   filters?: InputMaybe<ProductAttributeFilterInput>,
 ) {
-  const filterArray: AlgolianumericFilters_Input[] = []
-  if (!storeConfig) {
-    throw Error('StoreConfig is missing')
-  }
-  if (!filters) {
-    return []
-  }
+  if (!filters) return []
 
-  Object.entries(filters).forEach(([key, value]) => {
+  const filterArray: AlgolianumericFilters_Input[] = []
+
+  for (const [key, value] of Object.entries(filters)) {
     if (isFilterTypeRange(value)) {
       if (key === 'price') {
+        // eslint-disable-next-line no-await-in-loop
+        const currencyCode = (await storeConfig)?.default_display_currency_code
         filterArray.push(
-          {
-            numericFilters_Input: {
-              String: `${key}.${storeConfig.default_display_currency_code}.default >= ${value.from}`,
-            },
-          },
-          {
-            numericFilters_Input: {
-              String: `${key}.${storeConfig.default_display_currency_code}.default <= ${value.to}`,
-            },
-          },
+          { numericFilters_Input: { String: `${key}.${currencyCode}.default >= ${value.from}` } },
+          { numericFilters_Input: { String: `${key}.${currencyCode}.default <= ${value.to}` } },
         )
       } else {
         filterArray.push(
-          {
-            numericFilters_Input: {
-              String: `${key} >= ${value.from}`,
-            },
-          },
-          {
-            numericFilters_Input: {
-              String: `${key} <= ${value.to}`,
-            },
-          },
+          { numericFilters_Input: { String: `${key} >= ${value.from}` } },
+          { numericFilters_Input: { String: `${key} <= ${value.to}` } },
         )
       }
     }
-  })
+  }
 
   return filterArray
 }

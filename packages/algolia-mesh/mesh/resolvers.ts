@@ -1,108 +1,114 @@
-import { traverseSelectionSet, type Resolvers } from '@graphcommerce/graphql-mesh'
+import {
+  AlgoliasearchResponse,
+  hasSelectionSetPath,
+  type Resolvers,
+} from '@graphcommerce/graphql-mesh'
+import type { GraphQLResolveInfo } from 'graphql'
 import { algoliaFacetsToAggregations, getCategoryList } from './algoliaFacetsToAggregations'
-import { algoliaHitToMagentoProduct } from './algoliaHitToMagentoProduct'
+import { algoliaHitToMagentoProduct, ProductsItemsItem } from './algoliaHitToMagentoProduct'
 import { getAlgoliaSettings } from './getAlgoliaSettings'
 import { getAttributeList } from './getAttributeList'
 import { getGroupId } from './getGroupId'
+import { getSearchResults } from './getSearchResults'
 import { getSearchSuggestions } from './getSearchSuggestions'
 import { getStoreConfig } from './getStoreConfig'
-import {
-  productFilterInputToAlgoliaFacetFiltersInput,
-  productFilterInputToAlgoliaNumericFiltersInput,
-} from './productFilterInputToAlgoliafacetFiltersInput'
-import { getSortedIndex, sortingOptions } from './sortOptions'
-import { nonNullable } from './utils'
+import { sortingOptions } from './sortOptions'
+
+function isAlgoliaResponse<T extends object>(
+  root: T,
+): root is T & { algoliaSearchResults: AlgoliasearchResponse } {
+  return 'algoliaSearchResults' in root
+}
+
+function hasSearchRequest(info: GraphQLResolveInfo) {
+  const hasItems = hasSelectionSetPath(info.operation.selectionSet, 'products.items')
+  const hasAggregations = hasSelectionSetPath(info.operation.selectionSet, 'products.aggregations')
+  const hasPageInfo = hasSelectionSetPath(info.operation.selectionSet, 'products.page_info')
+  const hasTotalCount = hasSelectionSetPath(info.operation.selectionSet, 'products.total_count')
+  const hasSortFields = hasSelectionSetPath(info.operation.selectionSet, 'products.sort_fields')
+
+  return Boolean(hasItems || hasAggregations || hasPageInfo || hasTotalCount || hasSortFields)
+}
+
+function hasSuggestionsRequest(info: GraphQLResolveInfo) {
+  return hasSelectionSetPath(info.operation.selectionSet, 'products.suggestions')
+}
 
 export const resolvers: Resolvers = {
+  Products: {
+    aggregations: async (root, _args, context) => {
+      if (!isAlgoliaResponse(root)) return root.aggregations ?? null
+
+      return algoliaFacetsToAggregations(
+        root.algoliaSearchResults?.facets,
+        await getAttributeList(context),
+        await getStoreConfig(context),
+        await getCategoryList(context),
+        getGroupId(context),
+      )
+    },
+
+    sort_fields: async (root, _args, context) => {
+      if (isAlgoliaResponse(root)) {
+        return {
+          default: 'relevance',
+          options: Object.values(
+            sortingOptions(
+              await getAlgoliaSettings(context),
+              await getAttributeList(context),
+              context,
+            ),
+          ),
+        }
+      }
+      return root.sort_fields ?? null
+    },
+
+    total_count: (root) => {
+      if (!isAlgoliaResponse(root)) return root.total_count ?? null
+      return root.algoliaSearchResults?.nbHits
+    },
+
+    page_info: (root) => {
+      if (!isAlgoliaResponse(root)) return root.page_info ?? null
+      return {
+        current_page: root.algoliaSearchResults.page + 1,
+        page_size: root.algoliaSearchResults.hitsPerPage,
+        total_pages: root.algoliaSearchResults.nbPages,
+      }
+    },
+
+    items: async (root, args, context) => {
+      if (!isAlgoliaResponse(root)) return root.items ?? null
+
+      const items: (ProductsItemsItem | null)[] = []
+
+      const config = await getStoreConfig(context)
+      for (const hit of root.algoliaSearchResults.hits) {
+        if (hit?.objectID) {
+          const product = algoliaHitToMagentoProduct(hit, config, getGroupId(context))
+          items.push(product)
+        }
+      }
+
+      return items
+    },
+  },
   Query: {
     products: async (root, args, context, info) => {
       const isAgolia = (args.filter?.engine?.in ?? [args.filter?.engine?.eq])[0] === 'algolia'
 
       if (!isAgolia) return context.m2.Query.products({ root, args, context, info })
 
-      const { engine, ...filters } = args.filter ?? {}
+      const searchSuggestsions =
+        hasSuggestionsRequest(info) && args.search && getSearchSuggestions(args.search, context)
 
-      const onlySuggestions =
-        traverseSelectionSet(info.operation.selectionSet, 'products.!suggestions').selections
-          .length === 0
-
-      // We've got a early bailout here to avoid unnecessary Algolia queries
-      if (onlySuggestions) {
-        return { suggestions: await getSearchSuggestions(context, args.search ?? '') }
-      }
-
-      const [storeConfig, attributeList, categoryList, settings] = await Promise.all([
-        getStoreConfig(context),
-        getAttributeList(context),
-        getCategoryList(context),
-        getAlgoliaSettings(context),
-      ])
-
-      const options = sortingOptions(settings, attributeList, context)
-      const indexName = getSortedIndex(context, args.sort, options, settings)
-
-      const [searchResults, suggestions] = await Promise.all([
-        await context.algolia.Query.algolia_searchSingleIndex({
-          root,
-          args: {
-            indexName,
-            input: {
-              clickAnalytics: true,
-              query: args.search ?? '',
-              facets: ['*'],
-              hitsPerPage: args.pageSize ? args.pageSize : 10,
-              page: args.currentPage ? args.currentPage - 1 : 0,
-              facetFilters: productFilterInputToAlgoliaFacetFiltersInput(filters),
-              numericFilters: productFilterInputToAlgoliaNumericFiltersInput(storeConfig, filters),
-              analytics: true,
-
-              // userToken,
-              // analytics: true,
-              // enablePersonalization: true,
-              // personalizationImpact:
-            },
-          },
-          selectionSet: /* GraphQL */ `
-            {
-              nbPages
-              hitsPerPage
-              page
-              queryID
-              nbHits
-              hits {
-                __typename
-                objectID
-                additionalProperties
-              }
-              facets
-            }
-          `,
-          context,
-          info,
-        }),
-        await getSearchSuggestions(context, args.search ?? ''),
-      ])
+      const searchResults = hasSearchRequest(info) ? getSearchResults(args, context, info) : null
 
       return {
-        items: (searchResults?.hits ?? [])
-          ?.filter(nonNullable)
-          .map((hit) => algoliaHitToMagentoProduct(hit, storeConfig, getGroupId(context))),
-        aggregations: algoliaFacetsToAggregations(
-          searchResults?.facets,
-          attributeList,
-          storeConfig,
-          categoryList,
-          getGroupId(context),
-        ),
-        page_info: {
-          current_page: (searchResults?.page ?? 0) + 1,
-          page_size: searchResults?.hitsPerPage,
-          total_pages: searchResults?.nbPages,
-        },
-        suggestions,
-        total_count: searchResults?.nbHits,
-        sort_fields: { default: 'relevance', options: Object.values(options) },
-        algolia_queryID: searchResults?.queryID,
+        algoliaSearchResults: await searchResults,
+        suggestions: (await searchSuggestsions) || null,
+        algolia_queryID: (await searchResults)?.queryID,
       }
     },
   },

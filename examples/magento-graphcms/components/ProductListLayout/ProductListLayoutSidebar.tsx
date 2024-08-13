@@ -1,8 +1,4 @@
-import {
-  CategoryDescription,
-  CategoryChildren,
-  CategoryBreadcrumbs,
-} from '@graphcommerce/magento-category'
+import { CategoryDescription, CategoryBreadcrumbs } from '@graphcommerce/magento-category'
 import {
   ProductFiltersPro,
   ProductListSuggestions,
@@ -25,13 +21,13 @@ import {
   ProductFiltersProSearchTerm,
   ProductFiltersProCategorySectionSearch,
 } from '@graphcommerce/magento-search'
-import { responsiveVal, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { memoDeep, responsiveVal, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Box, Container, Typography } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'
 import { ProductListLayoutProps } from './types'
 
-export function ProductListLayoutSidebar(props: ProductListLayoutProps) {
+export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps) => {
   const { filters, filterTypes, params, products, handleSubmit, category, title, menu } = props
 
   if (!params || !products?.items || !filterTypes) return null
@@ -47,21 +43,17 @@ export function ProductListLayoutSidebar(props: ProductListLayoutProps) {
       autoSubmitMd
       handleSubmit={handleSubmit}
     >
-      {import.meta.graphCommerce.breadcrumbs && (
-        <>
-          {category && (
-            <CategoryBreadcrumbs
-              category={category}
-              sx={(theme) => ({
-                mb: theme.spacings.sm,
-                mx: theme.page.horizontal,
-                [theme.breakpoints.down('md')]: {
-                  '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-                },
-              })}
-            />
-          )}
-        </>
+      {import.meta.graphCommerce.breadcrumbs && category && (
+        <CategoryBreadcrumbs
+          category={category}
+          sx={(theme) => ({
+            mb: theme.spacings.sm,
+            mx: theme.page.horizontal,
+            [theme.breakpoints.down('md')]: {
+              '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+            },
+          })}
+        />
       )}
 
       <Container
@@ -210,4 +202,4 @@ export function ProductListLayoutSidebar(props: ProductListLayoutProps) {
       </Container>
     </ProductFiltersPro>
   )
-}
+})

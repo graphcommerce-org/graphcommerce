@@ -1,4 +1,6 @@
 export * from './mesh/algoliaFacetsToAggregations'
 export * from './mesh/algoliaHitToMagentoProduct'
+export * from './mesh/getSearchResults'
+export * from './mesh/getSearchSuggestions'
 export * from './hooks/useAlgoliaIndexName'
 export * from './hooks/useAlgoliaQueryContext'
