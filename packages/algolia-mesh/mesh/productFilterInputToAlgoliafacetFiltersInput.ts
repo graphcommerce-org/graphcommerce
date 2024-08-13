@@ -33,19 +33,15 @@ export function productFilterInputToAlgoliaFacetFiltersInput(
       let orString = false
       valueArray.forEach((v, i) => {
         if (key === 'category_uid') {
-          if (i === 0) {
-            keyArray.push(`categoryIds:${atob(v)}`)
-          } else {
-            keyArray.push(`categoryIds:${atob(v)}`)
+          if (i !== 0) {
             orString = true
           }
+          keyArray.push(`categoryIds:${atob(v)}`)
         } else {
-          if (i === 0) {
-            keyArray.push(`${key}:${v}`)
-          } else {
-            keyArray.push(`${key}:${v}`)
+          if (i !== 0) {
             orString = true
           }
+          keyArray.push(`${key}:${v}`)
         }
       })
       if (orString) {
