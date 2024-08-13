@@ -10,7 +10,7 @@ import { ALGOLIA_USER_TOKEN_COOKIE_NAME } from '../hooks/useSendAlgoliaEvent'
 export const config: PluginConfig = {
   type: 'function',
   module: '@graphcommerce/graphql',
-  ifConfig: 'algoliaPersonalizationEnabled',
+  ifConfig: 'algolia.personalizationEnabled',
 }
 
 export const getInContextInput: FunctionPlugin<typeof getInContextInputType> = (

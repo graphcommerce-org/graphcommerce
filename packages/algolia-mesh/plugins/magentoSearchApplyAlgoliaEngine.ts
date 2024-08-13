@@ -9,7 +9,6 @@ import { applyEngineVariables } from '../utils/applyEngineVariable'
 export const config: PluginConfig = {
   module: '@graphcommerce/magento-search',
   type: 'function',
-  ifConfig: 'algoliaApplicationId',
 }
 
 export const useProductListApplySearchDefaults: FunctionPlugin<

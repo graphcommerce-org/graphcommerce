@@ -1,5 +1,6 @@
 import type { getSearchResultsInput as getSearchResultsInputType } from '@graphcommerce/algolia-mesh'
 import { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
+import { getUserToken } from '../mesh/getUserToken'
 
 export const config: PluginConfig = {
   type: 'function',
@@ -13,6 +14,7 @@ export const getSearchResultsInput: FunctionPlugin<typeof getSearchResultsInputT
   context,
 ) => ({
   ...(await prev(args, context)),
-  // enablePersonalization: true,
-  // personalizationImpact: 50,
+  clickAnalytics: true,
+  analytics: true,
+  userToken: getUserToken(context),
 })

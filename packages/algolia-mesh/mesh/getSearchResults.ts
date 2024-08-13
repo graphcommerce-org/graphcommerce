@@ -1,35 +1,8 @@
-import {
-  MeshContext,
-  Queryalgolia_searchSingleIndexArgs,
-  QueryproductsArgs,
-} from '@graphcommerce/graphql-mesh'
+import { MeshContext, QueryproductsArgs } from '@graphcommerce/graphql-mesh'
 import type { GraphQLResolveInfo } from 'graphql'
 import { getAlgoliaSettings } from './getAlgoliaSettings'
-import { getStoreConfig } from './getStoreConfig'
-import {
-  productFilterInputToAlgoliaFacetFiltersInput,
-  productFilterInputToAlgoliaNumericFiltersInput,
-} from './productFilterInputToAlgoliafacetFiltersInput'
+import { getSearchResultsInput } from './getSearchResultsInput'
 import { getSortedIndex } from './sortOptions'
-
-export async function getSearchResultsInput(
-  args: QueryproductsArgs,
-  context: MeshContext,
-): Promise<Queryalgolia_searchSingleIndexArgs['input']> {
-  const { engine, ...filters } = args.filter ?? {}
-
-  return {
-    query: args.search ?? '',
-    facets: ['*'],
-    hitsPerPage: args.pageSize ? args.pageSize : 10,
-    page: args.currentPage ? args.currentPage - 1 : 0,
-    facetFilters: productFilterInputToAlgoliaFacetFiltersInput(filters),
-    numericFilters: await productFilterInputToAlgoliaNumericFiltersInput(
-      getStoreConfig(context),
-      filters,
-    ),
-  }
-}
 
 export async function getSearchResults(
   args: QueryproductsArgs,

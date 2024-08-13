@@ -188,6 +188,8 @@ let categoryListCache: CategoryResult | null = null
 export async function getCategoryList(context: MeshContext) {
   if (categoryListCache) return categoryListCache
 
+  // context.cache.get('algolia_getCategoryList')
+
   categoryListCache = await context.m2.Query.categories({
     args: { filters: {} },
     selectionSet: /* GraphQL */ `
