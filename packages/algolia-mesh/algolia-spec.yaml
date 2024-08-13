@@ -619,7 +619,7 @@ components:
         - - category:Book
           - category:-Movie
         - author:John Doe
-      oneOf:
+      anyOf:
         - type: array
           items:
             $ref: '#/components/schemas/facetFilters'
