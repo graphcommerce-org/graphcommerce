@@ -80,5 +80,5 @@ instantSearch
 
 ## Todo
 
-- [] Category search
-- [] Additional indexes
+- [] Category search / Additional indexes
+- [] Highlighting

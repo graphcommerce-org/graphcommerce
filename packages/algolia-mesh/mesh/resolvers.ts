@@ -13,6 +13,7 @@ import { getSearchResults } from './getSearchResults'
 import { getSearchSuggestions } from './getSearchSuggestions'
 import { getStoreConfig } from './getStoreConfig'
 import { sortingOptions } from './sortOptions'
+import { isSuggestionsEnabled } from './getSearchSuggestionsInput'
 
 function isAlgoliaResponse<T extends object>(
   root: T,
@@ -101,7 +102,10 @@ export const resolvers: Resolvers = {
       if (!isAgolia) return context.m2.Query.products({ root, args, context, info })
 
       const searchSuggestsions =
-        hasSuggestionsRequest(info) && args.search && getSearchSuggestions(args.search, context)
+        isSuggestionsEnabled() &&
+        hasSuggestionsRequest(info) &&
+        args.search &&
+        getSearchSuggestions(args.search, context)
 
       const searchResults = hasSearchRequest(info) ? getSearchResults(args, context, info) : null
 

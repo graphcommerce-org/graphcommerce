@@ -27,6 +27,16 @@ input GraphCommerceAlgoliaConfig {
   Enable Algolia customer group pricing.
   """
   customerGroupPricingEnabled: Boolean
+
+  """
+  To enable Algolia suggestions, please provide the Suffix that is used for your suggestions index.
+
+  The pattern is `${indexNamePrefix}_{storeCode}_{suggestionsSuffix}`.
+  Something like `_suggestions` or `_query_suggestions`
+
+  For the index `magento2_demo_en_US_suggestions` this would be `_suggestions`
+  """
+  suggestionsSuffix: String
 }
 
 extend input GraphCommerceConfig {
