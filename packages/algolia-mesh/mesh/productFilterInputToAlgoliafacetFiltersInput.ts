@@ -27,27 +27,15 @@ export function productFilterInputToAlgoliaFacetFiltersInput(
 
   Object.entries(filters).forEach(([key, value]) => {
     if (isFilterTypeEqual(value)) {
-      const valueArray = ((value?.in ? value?.in : [value?.eq]) ?? []).filter(nonNullable)
+      if (value.in) {
+        const values = value.in.filter(nonNullable)
+        if (key === 'category_uid') filterArray.push(values.map((v) => `categoryIds:${atob(v)}`))
+        else filterArray.push(values.map((v) => `${key}:${v}`))
+      }
 
-      const keyArray: string[] = []
-      let orArray = false
-      valueArray.forEach((v, i) => {
-        if (key === 'category_uid') {
-          if (i !== 0) {
-            orArray = true
-          }
-          keyArray.push(`categoryIds:${atob(v)}`)
-        } else {
-          if (i !== 0) {
-            orArray = true
-          }
-          keyArray.push(`${key}:${v}`)
-        }
-      })
-      if (orArray) {
-        filterArray.push(keyArray)
-      } else {
-        filterArray.push(...keyArray)
+      if (value.eq) {
+        if (key === 'category_uid') filterArray.push(`categoryIds:${atob(value.eq)}`)
+        else filterArray.push(`${key}:${value.eq}`)
       }
     }
 

@@ -32,6 +32,10 @@ const newSchema: OpenAPIV3.Document = {
           return [schemaKey, { $ref: '#/components/schemas/searchParamsObject' }]
         }
 
+        if (schemaKey === 'facetFilters') {
+          return [schemaKey, { ...schema, example: undefined, oneOf: undefined, type: 'object' }]
+        }
+
         return [
           schemaKey,
           {
