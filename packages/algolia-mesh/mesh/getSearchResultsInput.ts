@@ -25,5 +25,6 @@ export async function getSearchResultsInput(
       getStoreConfig(context),
       filters,
     ),
+    analytics: true,
   }
 }

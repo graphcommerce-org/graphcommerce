@@ -13,5 +13,6 @@ export async function getSearchSuggestionsInput(
   return {
     query: search,
     hitsPerPage: 5,
+    analytics: true,
   }
 }
