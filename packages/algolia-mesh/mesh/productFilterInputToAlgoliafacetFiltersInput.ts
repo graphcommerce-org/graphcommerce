@@ -1,6 +1,5 @@
 import {
   ProductAttributeFilterInput,
-  AlgoliafacetFilters_Input,
   AlgolianumericFilters_Input,
 } from '@graphcommerce/graphql-mesh'
 import {
@@ -20,7 +19,7 @@ import { nonNullable } from './utils'
 export function productFilterInputToAlgoliaFacetFiltersInput(
   filters?: InputMaybe<ProductAttributeFilterInput>,
 ) {
-  const filterArray: AlgoliafacetFilters_Input[] = []
+  const filterArray: (string | string[])[] = []
   if (!filters) {
     return []
   }

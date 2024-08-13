@@ -1,5 +1,5 @@
 import {
-  AlgoliaindexSettings,
+  AlgoliasettingsResponse,
   MeshContext,
   ProductAttributeSortInput,
   SortEnum,
@@ -12,7 +12,7 @@ import { getIndexName } from './getIndexName'
 export type SortingOptions = Record<string, SortField & { dirs: SortEnum[] }>
 
 export async function sortingOptions(
-  settings: AlgoliaindexSettings,
+  settings: AlgoliasettingsResponse,
   attributeList: AttributeList,
   context: MeshContext,
 ): Promise<SortingOptions> {
@@ -58,7 +58,7 @@ export async function sortingOptions(
 
 export async function getSortedIndex(
   context: MeshContext,
-  settings: Promise<AlgoliaindexSettings>,
+  settings: Promise<AlgoliasettingsResponse>,
   sortInput: ProductAttributeSortInput | null = {},
 ): Promise<string> {
   const baseIndex = getIndexName(context)
