@@ -76,7 +76,7 @@ it('correctly validates if a value is JSON', () => {
 })
 
 it('converts an env schema to a config schema', () => {
-  const configFile: GraphCommerceConfig = {
+  const configFile = {
     storefront: [{ locale: 'en', hygraphLocales: ['en'], magentoStoreCode: 'en_us' }],
     productFiltersPro: false,
     canonicalBaseUrl: 'https://example.com',
@@ -84,10 +84,7 @@ it('converts an env schema to a config schema', () => {
     magentoEndpoint: 'https://example.com',
     previewSecret: 'secret',
     magentoVersion: 247,
-    algoliaApplicationId: 'a',
-    algoliaIndexNamePrefix: 'a',
-    algoliaSearchOnlyApiKey: 'a',
-  }
+  } as GraphCommerceConfig
 
   const environmentVariables = {
     GC_PRODUCT_FILTERS_PRO: '1',

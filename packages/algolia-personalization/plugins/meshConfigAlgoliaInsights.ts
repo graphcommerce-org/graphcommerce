@@ -10,13 +10,8 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
   prev,
   baseConfig,
   graphCommerceConfig,
-) => {
-  if (!graphCommerceConfig.algoliaApplicationId || !graphCommerceConfig.algoliaSearchOnlyApiKey) {
-    console.log('Algolia credentials not provided, skipping Algolia plugin')
-    return prev(baseConfig, graphCommerceConfig)
-  }
-
-  return prev(
+) =>
+  prev(
     {
       ...baseConfig,
       sources: [
@@ -29,12 +24,12 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
               source: '@graphcommerce/algolia-personalization/algolia-insights-spec.yaml',
               ignoreErrorResponses: true,
               schemaHeaders: {
-                'X-Algolia-Application-Id': graphCommerceConfig.algoliaApplicationId,
-                'X-Algolia-API-Key': graphCommerceConfig.algoliaSearchOnlyApiKey,
+                'X-Algolia-Application-Id': graphCommerceConfig.algolia.applicationId,
+                'X-Algolia-API-Key': graphCommerceConfig.algolia.searchOnlyApiKey,
               },
               operationHeaders: {
-                'X-Algolia-Application-Id': graphCommerceConfig.algoliaApplicationId,
-                'X-Algolia-API-Key': graphCommerceConfig.algoliaSearchOnlyApiKey,
+                'X-Algolia-Application-Id': graphCommerceConfig.algolia.applicationId,
+                'X-Algolia-API-Key': graphCommerceConfig.algolia.searchOnlyApiKey,
               },
               selectQueryOrMutationField: [
                 { type: 'Query', fieldName: 'searchSingleIndex' },
@@ -69,4 +64,3 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
     },
     graphCommerceConfig,
   )
-}
