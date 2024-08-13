@@ -41,6 +41,7 @@ it('resolves dependences', () => {
       "@graphcommerce/magento-cart-items" => "packages/magento-cart-items",
       "@graphcommerce/lingui-next" => "packages/lingui-next",
       "@graphcommerce/magento-payment-paypal" => "packages/magento-payment-paypal",
+      "@graphcommerce/algolia-personalization" => "packages/algolia-personalization",
       "@graphcommerce/algolia-mesh" => "packages/algolia-mesh",
       "@graphcommerce/next-config" => "packagesDev/next-config",
       "@graphcommerce/magento-search" => "packages/magento-search",

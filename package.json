@@ -35,7 +35,7 @@
     "packages:7": "yarn workspace @graphcommerce/graphql-codegen-markdown-docs dev",
     "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'",
     "jest-watch": "yarn test --watch",
-    "test": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal,@graphcommerce/algolia-mesh\" NODE_OPTIONS=\"--experimental-vm-modules\" jest"
+    "test": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal,@graphcommerce/algolia-mesh,@graphcommerce/algolia-personalization\" NODE_OPTIONS=\"--experimental-vm-modules\" jest"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
