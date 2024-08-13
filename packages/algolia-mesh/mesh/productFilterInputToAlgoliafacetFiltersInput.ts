@@ -29,13 +29,30 @@ export function productFilterInputToAlgoliaFacetFiltersInput(
     if (isFilterTypeEqual(value)) {
       const valueArray = ((value?.in ? value?.in : [value?.eq]) ?? []).filter(nonNullable)
 
-      valueArray.forEach((v) => {
+      const keyArray: string[] = []
+      let orString = false
+      valueArray.forEach((v, i) => {
         if (key === 'category_uid') {
-          filterArray.push({ facetFilters_Input: { String: `categoryIds:${atob(v)}` } })
+          if (i === 0) {
+            keyArray.push(`categoryIds:${atob(v)}`)
+          } else {
+            keyArray.push(`categoryIds:${atob(v)}`)
+            orString = true
+          }
         } else {
-          filterArray.push({ facetFilters_Input: { String: `${key}:${v}` } })
+          if (i === 0) {
+            keyArray.push(`${key}:${v}`)
+          } else {
+            keyArray.push(`${key}:${v}`)
+            orString = true
+          }
         }
       })
+      if (orString) {
+        filterArray.push(keyArray)
+      } else {
+        filterArray.push(...keyArray)
+      }
     }
 
     if (isFilterTypeMatch(value)) {
