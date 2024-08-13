@@ -36,6 +36,7 @@ export type ProductItemsGridProps = ProductListItemsFragment & {
   title: string
   sx?: BoxProps['sx']
   columns?: ((theme: Theme) => ColumnsConfig) | ColumnsConfig
+  containerRef?: React.Ref<HTMLDivElement>
 } & Pick<ProductListItemProps, 'onClick' | 'titleComponent'> &
   ComponentState
 
@@ -47,6 +48,7 @@ const { withState } = extendableComponent<ComponentState, typeof name, typeof sl
 export function ProductListItemsBase(props: ProductItemsGridProps) {
   const {
     items,
+    containerRef,
     sx = [],
     renderers,
     loadingEager = 0,
@@ -80,6 +82,7 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
   return (
     <AddProductsToCartForm>
       <Box
+        ref={containerRef}
         className={classes.root}
         sx={[
           ...Object.entries(columnConfig).map(([key, column]) => ({
