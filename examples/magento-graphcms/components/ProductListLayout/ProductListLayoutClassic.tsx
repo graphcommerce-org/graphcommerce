@@ -11,12 +11,12 @@ import {
   ProductListCount,
   ProductListPagination,
 } from '@graphcommerce/magento-product'
-import { LayoutTitle, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'
 import { ProductListLayoutProps } from './types'
 
-export function ProductListLayoutClassic(props: ProductListLayoutProps) {
+export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps) => {
   const { filters, filterTypes, params, products, title, category } = props
 
   if (!(params && products?.items && filterTypes)) return null
@@ -24,15 +24,11 @@ export function ProductListLayoutClassic(props: ProductListLayoutProps) {
 
   return (
     <>
-      {import.meta.graphCommerce.breadcrumbs && (
-        <>
-          {category && (
-            <CategoryBreadcrumbs
-              category={category}
-              sx={(theme) => ({ mx: theme.page.horizontal, mb: theme.spacings.md })}
-            />
-          )}
-        </>
+      {import.meta.graphCommerce.breadcrumbs && category && (
+        <CategoryBreadcrumbs
+          category={category}
+          sx={(theme) => ({ mx: theme.page.horizontal, mb: theme.spacings.md })}
+        />
       )}
 
       {category ? (
@@ -84,4 +80,4 @@ export function ProductListLayoutClassic(props: ProductListLayoutProps) {
       </Container>
     </>
   )
-}
+})
