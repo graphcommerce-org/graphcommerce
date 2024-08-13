@@ -1,8 +1,32 @@
-extend input GraphCommerceStorefrontConfig {
+input GraphCommerceAlgoliaConfig {
+  """
+  Configure your Algolia application ID.
+
+  Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
+  """
+  applicationId: String!
+
+  """
+  Configure your Algolia Search Only API Key.
+
+  Stores > Configuration > Algolia Search > Credentials and Basic Setup > Search-only (public) API key
+  """
+  searchOnlyApiKey: String!
+
   """
   Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix
   """
-  algoliaIndexNamePrefix: String
+  indexNamePrefix: String!
+
+  """
+  By default the catalog will not use algolia. Set this to true to enable Algolia for the catalog.
+  """
+  catalogEnabled: Boolean
+
+  """
+  Enable Algolia customer group pricing.
+  """
+  customerGroupPricingEnabled: Boolean
 }
 
 extend input GraphCommerceConfig {
@@ -11,26 +35,5 @@ extend input GraphCommerceConfig {
 
   Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
   """
-  algoliaApplicationId: String!
-
-  """
-  Configure your Algolia Search Only API Key.
-
-  Stores > Configuration > Algolia Search > Credentials and Basic Setup > Search-only (public) API key
-  """
-  algoliaSearchOnlyApiKey: String!
-
-  """
-  Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix
-  """
-  algoliaIndexNamePrefix: String!
-
-  """
-  By default the catalog will not use algolia. Set this to true to enable Algolia for the catalog.
-  """
-  algoliaCatalogEnabled: Boolean
-
-  """
-  """
-  algoliaCustomerGroupPricingEnabled: Boolean
+  algolia: GraphCommerceAlgoliaConfig!
 }

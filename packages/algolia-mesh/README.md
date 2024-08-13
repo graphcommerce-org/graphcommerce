@@ -16,10 +16,12 @@ Make sure the Magento 2 module is correctly installed and working.
 
    ```js
    const config = {
-     algoliaApplicationId: 'your-algolia-application-id', // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
-     algoliaIndexNamePrefix: 'default_', // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix
-     algoliaSearchOnlyApiKey: 'blabla', // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Search-only (public) API key
-     algoliaCatalogEnabled: false, // start with search and if everything works as expected, you can move on to the catalog.
+     algolia: {
+       applicationId: 'your-algolia-application-id', // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
+       indexNamePrefix: 'default_', // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix
+       searchOnlyApiKey: 'blabla', // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Search-only (public) API key
+       catalogEnabled: false, // start with search and if everything works as expected, you can move on to the catalog.
+     },
    }
    ```
 
