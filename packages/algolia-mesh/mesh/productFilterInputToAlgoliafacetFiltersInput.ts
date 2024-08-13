@@ -30,21 +30,21 @@ export function productFilterInputToAlgoliaFacetFiltersInput(
       const valueArray = ((value?.in ? value?.in : [value?.eq]) ?? []).filter(nonNullable)
 
       const keyArray: string[] = []
-      let orString = false
+      let orArray = false
       valueArray.forEach((v, i) => {
         if (key === 'category_uid') {
           if (i !== 0) {
-            orString = true
+            orArray = true
           }
           keyArray.push(`categoryIds:${atob(v)}`)
         } else {
           if (i !== 0) {
-            orString = true
+            orArray = true
           }
           keyArray.push(`${key}:${v}`)
         }
       })
-      if (orString) {
+      if (orArray) {
         filterArray.push(keyArray)
       } else {
         filterArray.push(...keyArray)
