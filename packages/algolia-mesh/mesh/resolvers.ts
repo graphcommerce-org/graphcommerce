@@ -101,7 +101,7 @@ export const resolvers: Resolvers = {
       if (!isAgolia) return context.m2.Query.products({ root, args, context, info })
 
       const searchSuggestsions =
-        hasSuggestionsRequest(info) && args.search && getSearchSuggestions(context, args.search)
+        hasSuggestionsRequest(info) && args.search && getSearchSuggestions(args.search, context)
 
       const searchResults = hasSearchRequest(info) ? getSearchResults(args, context, info) : null
 

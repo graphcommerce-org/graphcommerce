@@ -16,10 +16,21 @@ An implementation of Algolia personalization/Analytics through the GraphQL Mesh.
 
 ## Configuration
 
-1. In your algolia dashboard make sure, you have personalization enabled.
-2. Continue to browse the site, and make sure your events are logged in de event
+1. See [Config](./Config.graphqls) for the configuration values. Add the
+   following to your graphcommerce.config.js:
+
+   ```js
+   const config = {
+     // Even if you do not use personalization, enabling analytics still allows you to track events in Algolia.
+     algoliaEnableAnalytics: true,
+     algoliaPersonalizationEnabled: true,
+   }
+   ```
+
+2. In your algolia dashboard make sure, you have personalization enabled.
+3. Continue to browse the site, and make sure your events are logged in de event
    debugger in your algolia dashboard. In the under left corner.
    `Data Sources > Events > Debugger`. Once you've collected several events, you
    can start configuring personalization
-3. in `Enchance > personalization` setup the strategies. Note: if you can't find
+4. in `Enchance > personalization` setup the strategies. Note: if you can't find
    some events, make sure you have send several.
