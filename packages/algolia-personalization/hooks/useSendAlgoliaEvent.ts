@@ -99,7 +99,7 @@ const dataLayerToAlgoliaMap: {
       const newlyAppliedFilters = filters.filter((filter) => !prevFilters.includes(filter))
       prevFilters = filters
 
-      if (newlyAppliedFilters) {
+      if (newlyAppliedFilters.length > 0) {
         events.push({
           Clicked_filters_Input: {
             eventName: `${eventName}_filter_diff`,
