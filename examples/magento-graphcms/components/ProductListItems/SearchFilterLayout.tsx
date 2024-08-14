@@ -30,7 +30,7 @@ export function SearchFilterLayout(props: ProductListFilterLayoutProps) {
   const items = (
     <ProductListItemsBase
       renderers={productListRenderer}
-      items={products.items}
+      {...products}
       loadingEager={6}
       title={title}
     />

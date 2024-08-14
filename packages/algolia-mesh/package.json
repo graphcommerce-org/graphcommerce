@@ -12,7 +12,7 @@
     }
   },
   "scripts": {
-    "generate": "tsx generate-spec.mts"
+    "generate": "tsx scripts/generate-spec.mts"
   },
   "peerDependencies": {
     "@graphcommerce/graphql": "^9.0.0-canary.72",

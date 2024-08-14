@@ -84,6 +84,9 @@ it('converts an env schema to a config schema', () => {
     magentoEndpoint: 'https://example.com',
     previewSecret: 'secret',
     magentoVersion: 247,
+    algoliaApplicationId: 'a',
+    algoliaIndexNamePrefix: 'a',
+    algoliaSearchOnlyApiKey: 'a',
   }
 
   const environmentVariables = {
