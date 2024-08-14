@@ -43,17 +43,21 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
       autoSubmitMd
       handleSubmit={handleSubmit}
     >
-      {import.meta.graphCommerce.breadcrumbs && category && (
-        <CategoryBreadcrumbs
-          category={category}
-          sx={(theme) => ({
-            mb: theme.spacings.sm,
-            mx: theme.page.horizontal,
-            [theme.breakpoints.down('md')]: {
-              '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-            },
-          })}
-        />
+      {import.meta.graphCommerce.breadcrumbs && (
+        <>
+          {category && (
+            <CategoryBreadcrumbs
+              category={category}
+              sx={(theme) => ({
+                mb: theme.spacings.sm,
+                mx: theme.page.horizontal,
+                [theme.breakpoints.down('md')]: {
+                  '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+                },
+              })}
+            />
+          )}
+        </>
       )}
 
       <Container
