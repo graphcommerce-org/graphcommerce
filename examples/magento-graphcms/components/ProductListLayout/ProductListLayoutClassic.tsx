@@ -24,15 +24,11 @@ export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps)
 
   return (
     <>
-      {import.meta.graphCommerce.breadcrumbs && (
-        <>
-          {category && (
-            <CategoryBreadcrumbs
-              category={category}
-              sx={(theme) => ({ mx: theme.page.horizontal, mb: theme.spacings.md })}
-            />
-          )}
-        </>
+      {import.meta.graphCommerce.breadcrumbs && category && (
+        <CategoryBreadcrumbs
+          category={category}
+          sx={(theme) => ({ mx: theme.page.horizontal, mb: theme.spacings.md })}
+        />
       )}
 
       {category ? (

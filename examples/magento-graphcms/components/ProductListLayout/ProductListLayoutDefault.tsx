@@ -38,23 +38,18 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
       filterTypes={filterTypes}
       handleSubmit={handleSubmit}
     >
-      {import.meta.graphCommerce.breadcrumbs && (
-        <>
-          {category && (
-            <CategoryBreadcrumbs
-              category={category}
-              sx={(theme) => ({
-                height: 0,
-                mx: theme.page.horizontal,
-                [theme.breakpoints.down('md')]: {
-                  '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-                },
-              })}
-            />
-          )}
-        </>
+      {import.meta.graphCommerce.breadcrumbs && category && (
+        <CategoryBreadcrumbs
+          category={category}
+          sx={(theme) => ({
+            height: 0,
+            mx: theme.page.horizontal,
+            [theme.breakpoints.down('md')]: {
+              '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+            },
+          })}
+        />
       )}
-
       <Container
         maxWidth={false}
         sx={(theme) => ({
