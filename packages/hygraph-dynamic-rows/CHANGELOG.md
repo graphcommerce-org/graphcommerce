@@ -1,5 +1,11 @@
 # @graphcommerce/hygraph-dynamic-rows
 
+## 9.0.0-canary.76
+
+### Minor Changes
+
+- [#2318](https://github.com/graphcommerce-org/graphcommerce/pull/2318) [`886837f`](https://github.com/graphcommerce-org/graphcommerce/commit/886837ff44d95404512716dbb9b2272c38b9ad27) - Terminate row field on DynamicRows model ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 9.0.0-canary.75
 
 ## 9.0.0-canary.74

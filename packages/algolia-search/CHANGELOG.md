@@ -1,5 +1,7 @@
 # @graphcommerce/algolia-search
 
+## 9.0.0-canary.76
+
 ## 9.0.0-canary.75
 
 ## 9.0.0-canary.74
