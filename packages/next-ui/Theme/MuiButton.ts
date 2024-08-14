@@ -1,4 +1,4 @@
-import { ComponentsVariants, Theme, alpha } from '@mui/material'
+import { ComponentsVariants, Theme, alpha, darken, lighten } from '@mui/material'
 import { responsiveVal } from '../Styles/responsiveVal'
 
 declare module '@mui/material/Button/Button' {
@@ -126,7 +126,15 @@ export const MuiButtonPill: ButtonVariants = [
   },
   {
     props: { variant: 'pill', color: 'inherit' },
-    style: ({ theme }) => ({ backgroundColor: theme.palette.background.paper }),
+    style: ({ theme }) => ({
+      backgroundColor: theme.palette.background.paper,
+      '&:hover:not(.Mui-disabled)': {
+        backgroundColor:
+          theme.palette.mode === 'light'
+            ? darken(theme.palette.background.default, 0.05)
+            : lighten(theme.palette.background.default, 0.2),
+      },
+    }),
   },
   {
     props: { variant: 'pill', disabled: true },
