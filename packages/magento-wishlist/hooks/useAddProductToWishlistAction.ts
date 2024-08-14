@@ -133,6 +133,7 @@ export function useAddProductToWishlistAction(
     }),
     toggleItem: useEventCallback(toggleItem),
     cancelBubble: useEventCallback((e) => {
+      e.stopPropagation()
       e.preventDefault()
     }),
     showSuccess,
