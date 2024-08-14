@@ -1,5 +1,11 @@
 # @graphcommerce/google-datalayer
 
+## 9.0.0-canary.73
+
+### Minor Changes
+
+- [#2337](https://github.com/graphcommerce-org/graphcommerce/pull/2337) [`18898df`](https://github.com/graphcommerce-org/graphcommerce/commit/18898df44b786dd68d8e6fec538e3db947c157e4) - All sendEvent calls are now the return type of useSendEvent, to allow plugins to use hooks themselves ([@Renzovh](https://github.com/Renzovh))
+
 ## 9.0.0-canary.72
 
 ## 9.0.0-canary.71

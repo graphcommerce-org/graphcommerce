@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.73
+
+### Patch Changes
+
+- [`4c24225`](https://github.com/graphcommerce-org/graphcommerce/commit/4c24225f9f998cd40e71da06528eb9323e9b6752) - Created a new `memoDeep` function that is a deep compare variant of `React.memo`. Performance seems to be pretty good, but should only be used as a result of a profiling session. ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.72
 
 ## 9.0.0-canary.71
