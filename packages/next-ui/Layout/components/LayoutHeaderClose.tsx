@@ -6,18 +6,24 @@ import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { useFabSize } from '../../Theme'
 import { iconClose } from '../../icons'
 
+type LayoutHeaderCloseProps = {
+  onClose?: () => void
+}
+
 export function useShowClose() {
   const { overlayGroup } = usePageContext()
   return !!overlayGroup
 }
 
-export function LayoutHeaderClose() {
+export function LayoutHeaderClose(props: LayoutHeaderCloseProps) {
+  const { onClose } = props
   const { closeSteps } = usePageContext()
   const [disabled, setDisabled] = useState(false)
   const go = useGo(closeSteps * -1)
   const onClick = () => {
     setDisabled(true)
-    go()
+
+    return onClose ? onClose() : go()
   }
 
   const fabSize = useFabSize('responsive')
