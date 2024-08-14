@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.75
+
+### Patch Changes
+
+- [#2352](https://github.com/graphcommerce-org/graphcommerce/pull/2352) [`8ace660`](https://github.com/graphcommerce-org/graphcommerce/commit/8ace660addf25eacb49376eceb5e3bfc351a2c57) - Add disableMargin prop to WaitForCustomer component ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 9.0.0-canary.74
 
 ## 9.0.0-canary.73

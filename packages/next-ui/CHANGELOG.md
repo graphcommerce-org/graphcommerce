@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.75
+
+### Patch Changes
+
+- [#2348](https://github.com/graphcommerce-org/graphcommerce/pull/2348) [`61b66ef`](https://github.com/graphcommerce-org/graphcommerce/commit/61b66efeab9b377c8daa322015d4b55cdf3db4c1) - Added a new OverlayHeader component to be used in combination with the Overlay component. ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 9.0.0-canary.74
 
 ## 9.0.0-canary.73
