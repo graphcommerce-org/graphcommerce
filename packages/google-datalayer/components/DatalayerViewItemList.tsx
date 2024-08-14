@@ -46,7 +46,6 @@ export function DatalayerViewItemList(
 
     const viewItems = viewItemList.items.filter((item) => toSend.includes(item.item_uid))
 
-    console.log('Sending view_item_list', { ...viewItemList, items: viewItems })
     sendEvent('view_item_list', { ...viewItemList, items: viewItems })
 
     // Mark as send.
