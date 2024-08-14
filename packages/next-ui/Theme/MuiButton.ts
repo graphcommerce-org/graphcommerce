@@ -1,4 +1,4 @@
-import { ComponentsVariants, Theme } from '@mui/material'
+import { ComponentsVariants, Theme, alpha } from '@mui/material'
 import { responsiveVal } from '../Styles/responsiveVal'
 
 declare module '@mui/material/Button/Button' {
@@ -142,7 +142,7 @@ export const MuiButtonInline: ButtonVariants = [
     props: { variant: 'inline', color: 'primary' },
     style: ({ theme }) => ({
       color: theme.palette.primary.main,
-      '&:hover:not(.Mui-disabled)': { backgroundColor: `${theme.palette.primary.main}30` },
+      '&:hover:not(.Mui-disabled)': { backgroundColor: alpha(theme.palette.primary.main, 0.19) },
     }),
   },
   {
