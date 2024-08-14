@@ -1,5 +1,11 @@
 # @graphcommerce/ecommerce-ui
 
+## 9.0.0-canary.74
+
+### Patch Changes
+
+- [#2349](https://github.com/graphcommerce-org/graphcommerce/pull/2349) [`7c8529e`](https://github.com/graphcommerce-org/graphcommerce/commit/7c8529ea54c0e91f6b0e72129611cd6bf4f85d87) - Fix NumberFieldElement when min = 0 ([@JoshuaS98](https://github.com/JoshuaS98))
+
 ## 9.0.0-canary.73
 
 ## 9.0.0-canary.72
