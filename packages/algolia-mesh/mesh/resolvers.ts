@@ -8,12 +8,13 @@ import { algoliaFacetsToAggregations, getCategoryList } from './algoliaFacetsToA
 import { algoliaHitToMagentoProduct, ProductsItemsItem } from './algoliaHitToMagentoProduct'
 import { getAlgoliaSettings } from './getAlgoliaSettings'
 import { getAttributeList } from './getAttributeList'
+import { getCategoryResults } from './getCategoryResults'
 import { getGroupId } from './getGroupId'
 import { getSearchResults } from './getSearchResults'
 import { getSearchSuggestions } from './getSearchSuggestions'
+import { isSuggestionsEnabled } from './getSearchSuggestionsInput'
 import { getStoreConfig } from './getStoreConfig'
 import { sortingOptions } from './sortOptions'
-import { isSuggestionsEnabled } from './getSearchSuggestionsInput'
 
 function isAlgoliaResponse<T extends object>(
   root: T,
@@ -113,6 +114,20 @@ export const resolvers: Resolvers = {
         algoliaSearchResults: await searchResults,
         suggestions: (await searchSuggestsions) || null,
         algolia_queryID: (await searchResults)?.queryID,
+      }
+    },
+    categories: async (root, args, context, info) => {
+      const todo = { algoliaCategories: false }
+      if (!todo.algoliaCategories) return context.m2.Query.categories({ root, args, context, info })
+      const items = await getCategoryResults(args, context, info)
+      return {
+        items: [],
+        page_info: {
+          current_page: 1,
+          page_size: 20,
+          total_pages: 1,
+        },
+        total_count: 0,
       }
     },
   },
