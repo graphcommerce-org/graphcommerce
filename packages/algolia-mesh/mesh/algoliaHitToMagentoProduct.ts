@@ -13,7 +13,7 @@ import {
 } from '@graphcommerce/graphql-mesh'
 import { GetStoreConfigReturn } from './getStoreConfig'
 
-function assertAdditional(
+export function assertAdditional(
   additional: unknown,
 ): additional is AlgoliaProductHitAdditionalProperties {
   return true

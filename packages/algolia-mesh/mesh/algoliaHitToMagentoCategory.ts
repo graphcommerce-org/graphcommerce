@@ -7,6 +7,7 @@ import {
   QuerycategoriesArgs,
   Algoliahit,
 } from '@graphcommerce/graphql-mesh'
+import { assertAdditional } from './algoliaHitToMagentoProduct'
 
 export type CategoriesItemsItem = NonNullable<
   Awaited<
@@ -19,8 +20,16 @@ export type CategoriesItemsItem = NonNullable<
       >
     >
   >['items']
->[]
+>[number]
 
-export function algoliaHitToMagentoCategory(algoliaHit: Algoliahit): CategoriesItemsItem | null {
-  return {}
+export function algoliaHitToMagentoCategory(hit: Algoliahit): CategoriesItemsItem {
+  const { objectID, additionalProperties } = hit
+
+  return {
+    name: additionalProperties?.name,
+    children: null,
+    products: null,
+    uid: objectID,
+    redirect_code: 0,
+  }
 }
