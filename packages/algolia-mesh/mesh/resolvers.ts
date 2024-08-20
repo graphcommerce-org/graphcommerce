@@ -141,7 +141,7 @@ export const resolvers: Resolvers = {
       }
 
       return {
-        items: [],
+        items,
         page_info: {
           current_page: 1,
           page_size: 20,
