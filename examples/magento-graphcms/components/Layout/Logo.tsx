@@ -4,15 +4,18 @@ import svgLogo from './graphcommerce.svg'
 export function Logo() {
   return (
     <LogoBase
-      sx={{
+      sx={(theme) => ({
         '& .GcLogo-logo': {
           width: 'auto',
           height: { xs: '16px', md: '27px' },
           paddingLeft: { xs: '10px', md: 0 },
           marginTop: { xs: 0, md: '-5px' },
-          filter: (theme) => (theme.palette.mode === 'dark' ? 'invert(100%)' : 'none'),
+          filter: 'none',
+          ...theme.applyStyles('dark', {
+            filter: 'invert(100%)',
+          }),
         },
-      }}
+      })}
       image={{ alt: 'GraphCommerce Logo', src: svgLogo, unoptimized: true }}
     />
   )

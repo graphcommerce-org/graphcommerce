@@ -129,10 +129,10 @@ export const MuiButtonPill: ButtonVariants = [
     style: ({ theme }) => ({
       backgroundColor: theme.palette.background.paper,
       '&:hover:not(.Mui-disabled)': {
-        backgroundColor:
-          theme.palette.mode === 'light'
-            ? darken(theme.palette.background.default, 0.05)
-            : lighten(theme.palette.background.default, 0.2),
+        backgroundColor: darken(theme.palette.background.default, 0.05),
+        ...theme.applyStyles('dark', {
+          backgroundColor: lighten(theme.palette.background.default, 0.2),
+        }),
       },
     }),
   },

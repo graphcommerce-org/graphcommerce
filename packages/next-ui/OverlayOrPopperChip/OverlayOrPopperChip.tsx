@@ -61,7 +61,7 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
     )
   }
 
-  selectedLabel = Array.isArray(selectedLabel) ? selectedLabel[0] : selectedLabel ?? '·'
+  selectedLabel = Array.isArray(selectedLabel) ? selectedLabel[0] : (selectedLabel ?? '·')
 
   const chipSx = chipProps?.sx ?? []
   return (
@@ -89,25 +89,28 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
             },
             ...(selected
               ? {
-                  background:
-                    theme.palette.mode === 'light'
-                      ? lighten(theme.palette.primary.main, 1 - theme.palette.action.hoverOpacity)
-                      : lighten(
-                          theme.palette.background.default,
-                          theme.palette.action.hoverOpacity,
-                        ),
+                  background: lighten(
+                    theme.palette.primary.main,
+                    1 - theme.palette.action.hoverOpacity,
+                  ),
+                  ...theme.applyStyles('dark', {
+                    background: lighten(
+                      theme.palette.background.default,
+                      theme.palette.action.hoverOpacity,
+                    ),
+                  }),
                   border: '1px solid transparent',
                   '&.MuiChip-clickable:hover': {
-                    background:
-                      theme.palette.mode === 'light'
-                        ? lighten(
-                            theme.palette.primary.main,
-                            1 - theme.palette.action.hoverOpacity * 2,
-                          )
-                        : lighten(
-                            theme.palette.background.default,
-                            theme.palette.action.hoverOpacity * 2,
-                          ),
+                    background: lighten(
+                      theme.palette.primary.main,
+                      1 - theme.palette.action.hoverOpacity * 2,
+                    ),
+                    ...theme.applyStyles('dark', {
+                      background: lighten(
+                        theme.palette.background.default,
+                        theme.palette.action.hoverOpacity * 2,
+                      ),
+                    }),
                     border: '1px solid transparent',
                   },
                 }

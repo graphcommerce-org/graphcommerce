@@ -165,11 +165,10 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   } * 2)`,
                 },
               },
-              background:
-                theme.palette.mode === 'light'
-                  ? theme.palette.background.image
-                  : theme.palette.background.paper,
-
+              background: theme.palette.background.image,
+              ...theme.applyStyles('dark', {
+                background: theme.palette.background.paper,
+              }),
               '&:not(.variantMdOneColumn)': {
                 paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
               },

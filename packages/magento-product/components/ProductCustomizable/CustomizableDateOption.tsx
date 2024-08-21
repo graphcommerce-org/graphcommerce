@@ -84,13 +84,16 @@ export function CustomizableDateOption(props: CustomizableDateOptionProps) {
       <TextFieldElement
         control={control}
         name={`cartItems.${index}.entered_options.${optionIndex}.value`}
-        sx={{
+        sx={(theme) => ({
           width: '100%',
           '& input[type="datetime-local"]::-webkit-calendar-picker-indicator': {
-            filter: (theme) => (theme.palette.mode === 'dark' ? 'invert(100%)' : 'none'),
+            filter: 'none',
+            ...theme.applyStyles('dark', {
+              filter: 'invert(100%)',
+            }),
             mr: '10px',
           },
-        }}
+        })}
         defaultValue=''
         required={!!required}
         error={invalid}

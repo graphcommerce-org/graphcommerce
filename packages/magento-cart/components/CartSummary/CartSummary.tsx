@@ -70,10 +70,11 @@ export function CartSummary(props: CartSummaryProps) {
             theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
+          background: theme.palette.background.default,
+          ...theme.applyStyles('dark', {
+            background: lighten(theme.palette.background.default, 0.15),
+          }),
+
           padding: theme.spacings.sm,
           gridColumnGap: theme.spacings.xxl,
           gridRowGap: theme.spacings.sm,

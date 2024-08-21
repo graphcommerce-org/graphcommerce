@@ -63,10 +63,10 @@ export function CartTotals(props: CartTotalsProps) {
             theme.shape.borderRadius * 5,
             theme.breakpoints.values,
           ),
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
+          background: theme.palette.background.default,
+          ...theme.applyStyles('dark', {
+            background: lighten(theme.palette.background.default, 0.15),
+          }),
           padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
 
           '&.containerMargin': {

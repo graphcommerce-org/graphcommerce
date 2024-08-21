@@ -23,7 +23,10 @@ export function Footer(props: FooterProps) {
               unoptimized
               alt={link.title}
               sx={(theme) => ({
-                filter: theme.palette.mode === 'dark' ? 'invert(100%)' : 'invert(0%)',
+                filter: 'invert(0%)',
+                ...theme.applyStyles('dark', {
+                  filter: 'invert(100%)',
+                }),
               })}
             />
           ) : (

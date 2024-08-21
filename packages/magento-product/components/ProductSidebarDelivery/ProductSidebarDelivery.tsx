@@ -41,10 +41,10 @@ export function ProductSidebarDelivery(props: ProductSidebarDeliveryProps) {
         `,
         gridTemplateColumns: `min-content auto`,
         columnGap: theme.spacings.xxs,
-        background:
-          theme.palette.mode === 'light'
-            ? darken(theme.palette.background.default, 0.01)
-            : lighten(theme.palette.background.default, 0.2),
+        background: darken(theme.palette.background.default, 0.01),
+        ...theme.applyStyles('dark', {
+          background: lighten(theme.palette.background.default, 0.2),
+        }),
         padding: theme.spacings.xxs,
         ...breakpointVal(
           'borderRadius',

@@ -46,10 +46,10 @@ export function OrderDetails(props: OrderDetailsProps) {
         (theme) => ({
           padding: theme.spacings.sm,
           marginBottom: theme.spacings.md,
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
+          background: theme.palette.background.default,
+          ...theme.applyStyles('dark', {
+            background: lighten(theme.palette.background.default, 0.15),
+          }),
           ...breakpointVal(
             'borderRadius',
             theme.shape.borderRadius * 2,

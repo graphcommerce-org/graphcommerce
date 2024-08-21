@@ -23,10 +23,10 @@ export function ImageText(props: ImageTextProps) {
         className={classes.wrapper}
         sx={(theme) => ({
           display: 'grid',
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.image
-              : theme.palette.background.paper,
+          background: theme.palette.background.image,
+          ...theme.applyStyles('dark', {
+            background: theme.palette.background.paper,
+          }),
           justifyItems: 'center',
           columnGap: theme.spacings.lg,
           marginTop: theme.spacings.lg,

@@ -25,7 +25,7 @@ export function LogoSwiper(props: RowLinksFragment) {
           {pageLink?.asset && (
             <Asset
               asset={pageLink.asset}
-              sx={{
+              sx={(theme) => ({
                 width: () => {
                   const widthBase = 60
                   const scaleFactor = 0.525
@@ -35,8 +35,11 @@ export function LogoSwiper(props: RowLinksFragment) {
                   const width = imageRatio ** scaleFactor * widthBase
                   return { xs: width * 0.65, sm: width * 0.8, md: width * 0.9, lg: width }
                 },
-                filter: (theme) => (theme.palette.mode === 'dark' ? 'invert(100%)' : 'none'),
-              }}
+                filter: 'none',
+                ...theme.applyStyles('dark', {
+                  filter: 'invert(100%)',
+                }),
+              })}
               sizes={{ 0: '120px', 960: '240px' }}
             />
           )}
