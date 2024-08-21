@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.78
+
+### Patch Changes
+
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`7cd5c1c`](https://github.com/graphcommerce-org/graphcommerce/commit/7cd5c1cadf8dac43de9e5bb19038383be64aa08f) - Fix issues when using non-hex colors in theme ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 9.0.0-canary.77
 
 ## 9.0.0-canary.76
