@@ -1,4 +1,4 @@
-import { ComponentsVariants, Theme } from '@mui/material'
+import { ComponentsVariants, Theme, alpha, darken, lighten } from '@mui/material'
 import { responsiveVal } from '../Styles/responsiveVal'
 
 declare module '@mui/material/Button/Button' {
@@ -126,7 +126,15 @@ export const MuiButtonPill: ButtonVariants = [
   },
   {
     props: { variant: 'pill', color: 'inherit' },
-    style: ({ theme }) => ({ backgroundColor: theme.palette.background.paper }),
+    style: ({ theme }) => ({
+      backgroundColor: theme.palette.background.paper,
+      '&:hover:not(.Mui-disabled)': {
+        backgroundColor:
+          theme.palette.mode === 'light'
+            ? darken(theme.palette.background.default, 0.05)
+            : lighten(theme.palette.background.default, 0.2),
+      },
+    }),
   },
   {
     props: { variant: 'pill', disabled: true },
@@ -142,7 +150,7 @@ export const MuiButtonInline: ButtonVariants = [
     props: { variant: 'inline', color: 'primary' },
     style: ({ theme }) => ({
       color: theme.palette.primary.main,
-      '&:hover:not(.Mui-disabled)': { backgroundColor: `${theme.palette.primary.main}30` },
+      '&:hover:not(.Mui-disabled)': { backgroundColor: alpha(theme.palette.primary.main, 0.19) },
     }),
   },
   {
