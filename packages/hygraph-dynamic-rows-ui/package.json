@@ -22,7 +22,7 @@
     "@lingui/core": "^4.11.2",
     "@lingui/macro": "^4.11.2",
     "@lingui/react": "^4.11.2",
-    "@mui/material": "5.16.4",
+    "@mui/material": "next",
     "cross-env": "^7.0.3",
     "dotenv": "16.4.5",
     "graphql": "^16.9.0",
