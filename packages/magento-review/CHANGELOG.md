@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.77
+
+### Patch Changes
+
+- [#2355](https://github.com/graphcommerce-org/graphcommerce/pull/2355) [`82b4ed9`](https://github.com/graphcommerce-org/graphcommerce/commit/82b4ed9bf86b57f3c0bab75ee7c190777badf37e) - Add early return when there are no reviews to prevent invalid enhanced results. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 9.0.0-canary.76
 
 ## 9.0.0-canary.75
