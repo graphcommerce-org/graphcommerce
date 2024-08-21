@@ -1,5 +1,5 @@
 import {
-  AlgoliaindexSettings,
+  AlgoliasettingsResponse,
   MeshContext,
   ProductAttributeSortInput,
   SortEnum,
@@ -11,11 +11,11 @@ import { getIndexName } from './getIndexName'
 
 export type SortingOptions = Record<string, SortField & { dirs: SortEnum[] }>
 
-export function sortingOptions(
-  settings: AlgoliaindexSettings,
+export async function sortingOptions(
+  settings: AlgoliasettingsResponse,
   attributeList: AttributeList,
   context: MeshContext,
-): SortingOptions {
+): Promise<SortingOptions> {
   const sortRecord: SortingOptions = {
     relevance: { label: 'Relevance', value: 'relevance', dirs: ['DESC'] },
   }
@@ -56,39 +56,21 @@ export function sortingOptions(
   return sortRecord
 }
 
-export function getSortedIndex(
+export async function getSortedIndex(
   context: MeshContext,
+  settings: Promise<AlgoliasettingsResponse>,
   sortInput: ProductAttributeSortInput | null = {},
-  sortOptions: SortingOptions,
-  settings: AlgoliaindexSettings,
-): string {
+): Promise<string> {
   const baseIndex = getIndexName(context)
-  const availableSorting = Object.values(sortOptions)
-  const requestedSort = Object.entries(sortInput ?? {}).filter(nonNullable)
-  if (!requestedSort.length) return baseIndex
+  // const availableSorting = Object.values(sortOptions)
+  const [attr, dir] = Object.entries(sortInput ?? {}).filter(nonNullable)?.[0] ?? []
+  if (!attr || !dir) return baseIndex
 
-  const foundSort = requestedSort.find(([sortAttr, sortValue]) => {
-    return availableSorting.some(
-      (sorting) => sorting.value === sortAttr && sorting.dirs.includes(sortValue ?? 'ASC'),
-    )
-  })
-
-  if (!foundSort) {
-    console.log(
-      'Requested sort not found in available sorting options, falling back to relevance',
-      { requestedSort },
-    )
-    return baseIndex
-  }
-
-  const [attr, dir] = foundSort
-
-  const found = settings.replicas?.find((replica) => {
-    return (
+  const found = (await settings).replicas?.find(
+    (replica) =>
       replica?.startsWith(`virtual(${baseIndex}_${attr}`) &&
-      replica?.endsWith(`${dir?.toLowerCase()})`)
-    )
-  })
+      replica?.endsWith(`${dir?.toLowerCase()})`),
+  )
 
   return found ? found?.slice(8, -1) : baseIndex
 }

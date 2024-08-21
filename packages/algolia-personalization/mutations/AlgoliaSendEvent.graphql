@@ -1,0 +1,6 @@
+mutation AlgoliaSendEvent($events: [AlgoliaEventsItems_Input]!) {
+  algolia_pushEvents(input: { events: $events }) {
+    message
+    status
+  }
+}

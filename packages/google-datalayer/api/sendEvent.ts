@@ -1,12 +1,20 @@
-import { googleEventNames } from './googleEventNames'
+import { GoogleEventTypes } from './googleEventNames'
 
-export type EventMapFunctionType = (
-  eventName: (typeof googleEventNames)[number] | (string & Record<never, never>),
-  eventData: {
-    [key: string]: unknown
-  },
+export type SendEvent = (
+  eventName: Event | (string & Record<never, never>),
+  eventData: { [key: string]: unknown },
 ) => void
 
-export const sendEvent: EventMapFunctionType = (eventName, eventData) => {
+export function sendEvent<Event extends keyof GoogleEventTypes>(
+  eventName: Event,
+  eventData: GoogleEventTypes[Event],
+) {
   // This is a generic event handler and is plugins from google-analytics and google datalayer
+}
+
+export function useSendEvent() {
+  return <Event extends keyof GoogleEventTypes>(
+    eventName: Event,
+    eventData: GoogleEventTypes[Event],
+  ) => sendEvent<Event>(eventName, eventData)
 }

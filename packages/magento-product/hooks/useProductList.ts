@@ -50,15 +50,15 @@ export const prefetchProductList = debounce(
       variables: { ...variables, context },
     })
 
-    const productFilters = client.query({
-      query: ProductFiltersDocument,
-      variables: {
-        ...filtersVariables,
-        context,
-      },
-    })
+    // const productFilters = client.query({
+    //   query: ProductFiltersDocument,
+    //   variables: {
+    //     ...filtersVariables,
+    //     context,
+    //   },
+    // })
 
-    const both = Promise.all([productList, productFilters])
+    const both = Promise.all([productList])
 
     // Push the query to the queue array.
     productListQueries.push(both)

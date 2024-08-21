@@ -9,17 +9,19 @@ Make sure the Magento 2 module is correctly installed and working.
 ## Installation
 
 1. Find current version of your `@graphcommerce/next-ui` in your package.json.
-2. `yarn add @graphcommerce/address-fields-nl@9.0.0` (replace 9.0.0 with the
-   version of the step above)
+2. `yarn add @graphcommerce/algolia-mesh@9.0.0` (replace 9.0.0 with the version
+   of the step above)
 3. Configure the following ([configuration values](./Config.graphqls)) in your
    graphcommerce.config.js:
 
    ```js
    const config = {
-     algoliaApplicationId: 'your-algolia-application-id', // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
-     algoliaIndexNamePrefix: 'default_', // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix
-     algoliaSearchOnlyApiKey: 'blabla', // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Search-only (public) API key
-     algoliaCatalogEnabled: false, // start with search and if everything works as expected, you can move on to the catalog.
+     algolia: {
+       applicationId: 'your-algolia-application-id', // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
+       indexNamePrefix: 'default_', // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix
+       searchOnlyApiKey: 'blabla', // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Search-only (public) API key
+       catalogEnabled: false, // start with search and if everything works as expected, you can move on to the catalog.
+     },
    }
    ```
 
@@ -66,10 +68,17 @@ plugged in.
 Sorting is defined by Algolia and can not be configured per category as each
 sorting option is a separate (virtual) index.
 
+## Suggestions
+
+To get query suggestions/autocomplete enter your Algolia dashboard > Search >
+configure > Query Suggestions > new Query Suggestions Index. This will create a
+new index which will be used for suggestions
+
+Don't mind to use the suggestions setting in magento admin. It will create a
+suggestions index but it will not record suggestions. This requires
+instantSearch
+
 ## Todo
 
-- [] Search suggestions
-- [] Category search
-- [] Additional indexes
-- [] Analytics
-- [] Personalization
+- [] Category search / Additional indexes
+- [] Highlighting

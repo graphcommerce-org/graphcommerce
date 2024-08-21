@@ -5,7 +5,7 @@ import { customerGroupIdLink } from '../link/customerGroupIdLink'
 export const config: PluginConfig = {
   type: 'component',
   module: '@graphcommerce/graphql',
-  ifConfig: 'algoliaCustomerGroupPricingEnabled',
+  ifConfig: 'algolia.customerGroupPricingEnabled',
 }
 
 export function GraphQLProvider(props: PluginProps<GraphQLProviderProps>) {

@@ -1,5 +1,37 @@
 # Change Log
 
+## 9.0.0-canary.78
+
+### Patch Changes
+
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`7cd5c1c`](https://github.com/graphcommerce-org/graphcommerce/commit/7cd5c1cadf8dac43de9e5bb19038383be64aa08f) - Fix issues when using non-hex colors in theme ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 9.0.0-canary.77
+
+## 9.0.0-canary.76
+
+## 9.0.0-canary.75
+
+### Patch Changes
+
+- [#2352](https://github.com/graphcommerce-org/graphcommerce/pull/2352) [`8ace660`](https://github.com/graphcommerce-org/graphcommerce/commit/8ace660addf25eacb49376eceb5e3bfc351a2c57) - Add disableMargin prop to WaitForCustomer component ([@JoshuaS98](https://github.com/JoshuaS98))
+
+## 9.0.0-canary.74
+
+## 9.0.0-canary.73
+
+## 9.0.0-canary.72
+
+## 9.0.0-canary.71
+
+## 9.0.0-canary.70
+
+## 9.0.0-canary.69
+
+## 9.0.0-canary.68
+
+## 9.0.0-canary.67
+
 ## 9.0.0-canary.66
 
 ### Minor Changes

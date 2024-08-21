@@ -18,7 +18,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { CircularProgress, Typography } from '@mui/material'
+import { CircularProgress, Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutNavigationProps, AddProductsToCartView } from '../../../components'
 import { Props, getStaticProps } from '../../p/[url]'
@@ -60,38 +60,42 @@ function CartItemEdit(props: Props) {
         }
       >
         {!cartItem && (
-          <EmptyCart>{cart.error && <ApolloCartErrorAlert error={cart.error} />}</EmptyCart>
+          <EmptyCart disableMargin>
+            {cart.error && <ApolloCartErrorAlert error={cart.error} />}
+          </EmptyCart>
         )}
         {cartItem && (
-          <EditCartItemForm
-            key={cartItemId}
-            href='/cart'
-            product={product}
-            cartItem={cartItem}
-            defaultValues={defaultValues}
-            redirect={false}
-            disableSuccessSnackbar
-          >
-            <ProductPageGallery
+          <Container>
+            <EditCartItemForm
+              key={cartItemId}
+              href='/cart'
               product={product}
-              disableZoom
-              disableSticky
-              variantMd='oneColumn'
-              sx={(theme) => ({
-                maxWidth: '500px',
-                mb: 0,
-                '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
-              })}
+              cartItem={cartItem}
+              defaultValues={defaultValues}
+              redirect={false}
+              disableSuccessSnackbar
             >
-              <Typography variant='h3' component='div' gutterBottom>
-                <ProductPageName product={product} />
-              </Typography>
-              <AddProductsToCartView product={product} />
-            </ProductPageGallery>
-            <OverlayStickyBottom sx={{ display: 'flex', justifyContent: 'center' }}>
-              <EditCartItemButton product={product} sx={(theme) => ({ my: theme.spacings.sm })} />
-            </OverlayStickyBottom>
-          </EditCartItemForm>
+              <ProductPageGallery
+                product={product}
+                disableZoom
+                disableSticky
+                variantMd='oneColumn'
+                sx={(theme) => ({
+                  maxWidth: '500px',
+                  mb: 0,
+                  '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
+                })}
+              >
+                <Typography variant='h3' component='div' gutterBottom>
+                  <ProductPageName product={product} />
+                </Typography>
+                <AddProductsToCartView product={product} />
+              </ProductPageGallery>
+              <OverlayStickyBottom sx={{ display: 'flex', justifyContent: 'center' }}>
+                <EditCartItemButton product={product} sx={(theme) => ({ my: theme.spacings.sm })} />
+              </OverlayStickyBottom>
+            </EditCartItemForm>
+          </Container>
         )}
       </WaitForQueries>
     </>

@@ -1,10 +1,10 @@
 fragment Cart_AddPaymentInfo on Cart
 @inject(into: ["PaymentMethodContext", "PaymentMethodUpdated"]) {
+  ...Cart_ViewCart
   applied_coupons {
     code
   }
   selected_payment_method {
     code
   }
-  ...Cart_DatalayerItems
 }

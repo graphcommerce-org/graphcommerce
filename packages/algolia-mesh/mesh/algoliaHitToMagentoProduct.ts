@@ -69,7 +69,7 @@ function mapPriceRange(
       },
       final_price: {
         currency,
-        value: maxFinal,
+        value: minFinal,
       },
       discount: {
         percent_off:
@@ -96,7 +96,7 @@ function getOriginalImage(url?: string | undefined | null) {
   return url.replace(/\/cache\/[a-z0-9]+/, '')
 }
 
-export type MagentoProductItemReturn = NonNullable<
+export type ProductsItemsItem = NonNullable<
   Awaited<
     ReturnType<
       ResolverFn<
@@ -120,7 +120,7 @@ export function algoliaHitToMagentoProduct(
   hit: Algoliahit,
   storeConfig: GetStoreConfigReturn,
   customerGroup: number,
-): MagentoProductItemReturn | null {
+): ProductsItemsItem | null {
   const { objectID, additionalProperties } = hit
   if (!assertAdditional(additionalProperties)) return null
 

@@ -1,8 +1,8 @@
 import { LazyHydrate, RenderType, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
 import { Box, BoxProps, Breakpoint, Theme, useTheme } from '@mui/material'
-import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { AddProductsToCartForm } from '../AddProductsToCart'
 import { ProductListItemProps } from '../ProductListItem/ProductListItem'
+import { ProductListItemsFragment } from './ProductListItems.gql'
 import { ProductListItemRenderer } from './renderer'
 
 type ComponentState = {
@@ -30,27 +30,25 @@ type ColumnConfig = {
 
 type ColumnsConfig = Partial<Record<Breakpoint, ColumnConfig>>
 
-export type ProductItemsGridProps = {
-  items?:
-    | Array<(ProductListItemFragment & ProductListItemProps) | null | undefined>
-    | null
-    | undefined
+export type ProductItemsGridProps = ProductListItemsFragment & {
   renderers: ProductListItemRenderer
   loadingEager?: number
   title: string
   sx?: BoxProps['sx']
   columns?: ((theme: Theme) => ColumnsConfig) | ColumnsConfig
+  containerRef?: React.Ref<HTMLDivElement>
 } & Pick<ProductListItemProps, 'onClick' | 'titleComponent'> &
   ComponentState
 
 const slots = ['root'] as const
-const name = 'ProductListItemsBase' as const
+const name = 'ProductListItemsBase'
 
 const { withState } = extendableComponent<ComponentState, typeof name, typeof slots>(name, slots)
 
 export function ProductListItemsBase(props: ProductItemsGridProps) {
   const {
     items,
+    containerRef,
     sx = [],
     renderers,
     loadingEager = 0,
@@ -84,6 +82,7 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
   return (
     <AddProductsToCartForm>
       <Box
+        ref={containerRef}
         className={classes.root}
         sx={[
           ...Object.entries(columnConfig).map(([key, column]) => ({

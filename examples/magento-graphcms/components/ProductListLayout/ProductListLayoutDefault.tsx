@@ -16,14 +16,14 @@ import {
   ProductListPagination,
   ProductListSuggestions,
 } from '@graphcommerce/magento-product'
-import { LayoutTitle, StickyBelowHeader } from '@graphcommerce/next-ui'
-import { Box, Container, Typography } from '@mui/material'
+import { ProductFiltersProSearchTerm } from '@graphcommerce/magento-search'
+import { LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
+import { Container, Typography } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'
 import { ProductListLayoutProps } from './types'
-import { ProductFiltersProSearchTerm } from '@graphcommerce/magento-search'
-import { Trans } from '@lingui/macro'
 
-export function ProductListLayoutDefault(props: ProductListLayoutProps) {
+export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps) => {
   const { id, filters, filterTypes, params, products, title, category, handleSubmit } = props
 
   if (!(params && products?.items && filterTypes)) return null
@@ -38,21 +38,17 @@ export function ProductListLayoutDefault(props: ProductListLayoutProps) {
       filterTypes={filterTypes}
       handleSubmit={handleSubmit}
     >
-      {import.meta.graphCommerce.breadcrumbs && (
-        <>
-          {category && (
-            <CategoryBreadcrumbs
-              category={category}
-              sx={(theme) => ({
-                height: 0,
-                mx: theme.page.horizontal,
-                [theme.breakpoints.down('md')]: {
-                  '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-                },
-              })}
-            />
-          )}
-        </>
+      {import.meta.graphCommerce.breadcrumbs && category && (
+        <CategoryBreadcrumbs
+          category={category}
+          sx={(theme) => ({
+            height: 0,
+            mx: theme.page.horizontal,
+            [theme.breakpoints.down('md')]: {
+              '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+            },
+          })}
+        />
       )}
       <Container
         maxWidth={false}
@@ -131,7 +127,7 @@ export function ProductListLayoutDefault(props: ProductListLayoutProps) {
           <ProductFiltersProNoResults />
         ) : (
           <ProductListItems
-            items={products.items}
+            {...products}
             loadingEager={6}
             title={(params.search ? `Search ${params.search}` : title) ?? ''}
             columns={{ xs: { count: 2 }, md: { count: 3 }, lg: { count: 4 }, xl: { count: 5 } }}
@@ -141,4 +137,4 @@ export function ProductListLayoutDefault(props: ProductListLayoutProps) {
       </Container>
     </ProductFiltersPro>
   )
-}
+})

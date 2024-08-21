@@ -26,8 +26,17 @@ export function useProductFiltersProSearchInput<
 
   const internalRef = useRef<HTMLInputElement>(null)
   const ref = useForkRef(inputRef, internalRef)
+  const initial = useRef(true)
 
   useEffect(() => {
+    // When page initially loads, fill in the search field with the search param.
+    if (internalRef.current && initial.current && searchParam) {
+      initial.current = false
+      internalRef.current.selectionStart = searchParam.length
+      internalRef.current.selectionEnd = searchParam.length
+      return
+    }
+
     // When the user is not focussed on the search field and the value gets updated, update the form.
     if (internalRef.current && internalRef.current !== document.activeElement && searchParam)
       internalRef.current.value = searchParam
@@ -39,6 +48,7 @@ export function useProductFiltersProSearchInput<
     placeholder: t`Search all products...`,
     name: 'search',
     type: 'text',
+    defaultValue: searchParam,
     onKeyDown: (e) => {
       if (e.key === 'Enter') {
         const context = globalFormContextRef.current
@@ -49,7 +59,7 @@ export function useProductFiltersProSearchInput<
         context.form.setValue('search', e.currentTarget.value)
         return context.submit()
       }
-      props?.onKeyDown?.(e)
+      return props?.onKeyDown?.(e)
     },
     onChange: async (e) => {
       const context = globalFormContextRef.current

@@ -5,7 +5,7 @@ import {
 } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { nonNullable } from '@graphcommerce/next-ui'
-import { sendEvent } from '../api/sendEvent'
+import { useSendEvent } from '../api/sendEvent'
 import { cartItemToDatalayerItem } from '../mapping/cartItemToDatalayerItem/cartItemToDatalayerItem'
 import { datalayerItemsToCurrencyValue } from '../mapping/datalayerItemsToCurrencyValue/datalayerItemsToCurrencyValue'
 
@@ -18,6 +18,7 @@ export const config: PluginConfig = {
 export function AddProductsToCartForm(props: PluginProps<AddProductsToCartFormProps>) {
   const { Prev, onComplete, ...rest } = props
 
+  const sendEvent = useSendEvent()
   return (
     <Prev
       {...rest}
@@ -26,9 +27,12 @@ export function AddProductsToCartForm(props: PluginProps<AddProductsToCartFormPr
         const addedItems = findAddedItems(data, variables)
 
         const items = addedItems
-          .map(({ itemVariable, itemInCart }) => {
+          .map(({ itemVariable, itemInCart }, index) => {
             if (!itemInCart) return null
-            return { ...cartItemToDatalayerItem(itemInCart), quantity: itemVariable.quantity }
+            return {
+              ...cartItemToDatalayerItem(itemInCart, index),
+              quantity: itemVariable.quantity,
+            }
           })
           .filter(nonNullable)
 
