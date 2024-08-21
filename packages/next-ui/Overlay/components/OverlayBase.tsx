@@ -1,3 +1,4 @@
+import { Direction } from '@graphcommerce/framer-next-pages'
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
 import {
   dvh,
@@ -46,7 +47,7 @@ export type LayoutOverlayBaseProps = {
   sx?: SxProps<Theme>
   sxBackdrop?: SxProps<Theme>
   active: boolean
-  direction?: 1 | -1
+  direction?: Direction
   onClosed: () => void
   offsetPageY?: number
   isPresent: boolean
@@ -123,7 +124,8 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     props.smSpacingTop ?? ((theme) => `calc(${theme.appShell.headerHeightSm} * 0.5)`)
   )(th)
 
-  const { scrollerRef, snap, scroll, getScrollSnapPositions, disableSnap } = useScrollerContext()
+  const { scrollerRef, snap, scroll, getScrollSnapPositions, disableSnap, enableSnap } =
+    useScrollerContext()
   const scrollTo = useScrollTo()
 
   const beforeRef = useRef<HTMLDivElement>(null)
@@ -137,7 +139,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
   const match = useMatchMedia()
   const positions = useConstant(() => ({
-    open: { x: motionValue(0), y: motionValue(0), visible: motionValue(0) },
+    open: { x: motionValue(0), y: motionValue(0), visible: motionValue(direction === 0 ? 1 : 0) },
     closed: { x: motionValue(0), y: motionValue(0) },
   }))
 
@@ -277,17 +279,40 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   useIsomorphicLayoutEffect(() => {
     const scroller = scrollerRef.current
 
-    if (!scroller || !isPresent) return
+    if (!scroller || !isPresent || position.get() === OverlayPosition.OPENED) return
 
     if (variant() === 'right') document.body.style.overflow = 'hidden'
 
-    if (position.get() !== OverlayPosition.OPENED && !scroll.animating.get()) {
+    if (direction === 0) {
+      disableSnap()
+      scroller.scrollTop = positions.open.y.get()
+      scroller.scrollLeft = positions.open.x.get()
+      scroll.y.set(positions.open.y.get())
+      scroll.x.set(positions.open.x.get())
+      position.set(OverlayPosition.OPENED)
+      enableSnap()
+    } else if (!scroll.animating.get()) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       scrollTo(openClosePositions().open, { stopAnimationOnScroll: false }).then(() =>
         position.set(OverlayPosition.OPENED),
       )
     }
-  }, [isPresent, openClosePositions, position, scroll.animating, scrollTo, scrollerRef, variant])
+  }, [
+    direction,
+    disableSnap,
+    enableSnap,
+    isPresent,
+    openClosePositions,
+    position,
+    positions.open.x,
+    positions.open.y,
+    scroll.animating,
+    scroll.x,
+    scroll.y,
+    scrollTo,
+    scrollerRef,
+    variant,
+  ])
 
   // When the overlay is closed by navigating away, we're closing the overlay.
   useEffect(() => {
