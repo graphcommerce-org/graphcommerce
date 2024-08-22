@@ -1,0 +1,16 @@
+fragment MenuQueryCategoryItem on CategoryTree {
+  uid
+  ...NavigationItem
+  children {
+    uid
+    ...NavigationItem
+    children {
+      uid
+      ...NavigationItem
+      children {
+        uid
+        ...NavigationItem
+      }
+    }
+  }
+}

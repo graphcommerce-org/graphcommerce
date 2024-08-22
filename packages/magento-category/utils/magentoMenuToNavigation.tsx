@@ -6,15 +6,14 @@ import {
   nonNullable,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
+import { MenuQueryCategoryItemFragment } from '../queries/MenuQueryCategoryItem.gql'
 import { MenuQueryFragment } from '../queries/MenuQueryFragment.gql'
 import { NavigationItemFragment } from '../queries/NavigationItem.gql'
-
-type Item = NonNullable<NonNullable<NonNullable<MenuQueryFragment['menu']>['items']>[0]>
 
 export type MagentoNavigationItemProps = NavigationItemFragment
 
 function categoryToNav(
-  props: Item | null | undefined,
+  props: MenuQueryCategoryItemFragment | null | undefined,
   Component?: React.ComponentType<MagentoNavigationItemProps>,
 ): NavigationNode | undefined {
   if (!props) return undefined
