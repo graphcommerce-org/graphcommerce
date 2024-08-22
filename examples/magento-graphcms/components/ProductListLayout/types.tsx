@@ -1,4 +1,4 @@
-import { MenuQueryFragment } from '@graphcommerce/magento-category'
+import { MenuQueryFragment, CategoryItemFragment } from '@graphcommerce/magento-category'
 import {
   CategoryDefaultFragment,
   FilterTypes,
@@ -25,8 +25,7 @@ type SearchLayoutProps = {
 type CategoryLayoutProps = {
   id: string
   title: string
-  category: CategoryDefaultFragment &
-    NonNullable<NonNullable<CategoryPageQuery['categories']>['items']>[number]
+  category: CategoryDefaultFragment & CategoryItemFragment
 }
 
 type ProductListProps = ReturnType<typeof useProductList<BaseProps>>
