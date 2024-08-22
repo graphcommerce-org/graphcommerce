@@ -1,0 +1,6 @@
+fragment ProductListAggregation on AggregationOption {
+  __typename
+  label
+  value
+  count
+}

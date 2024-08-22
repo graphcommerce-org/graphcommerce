@@ -5,10 +5,7 @@ fragment ProductListFilters on Products {
     attribute_code
     count
     options {
-      __typename
-      label
-      value
-      count
+      ...ProductListAggregation
     }
   }
 }
