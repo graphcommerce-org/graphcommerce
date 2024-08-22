@@ -1,11 +1,9 @@
 import { ActionCard, ActionCardItemRenderProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Button } from '@mui/material'
-import { GetPickupLocationsForProductsQuery } from '../graphql/GetPickupLocationsForProducts.gql'
+import { PickupLocationItemFragment } from '../graphql/PickupLocationItem.gql'
 
-export type Location = NonNullable<
-  NonNullable<NonNullable<GetPickupLocationsForProductsQuery['pickupLocations']>['items']>[number]
->
+export type Location = PickupLocationItemFragment
 
 export function PickupLocationActionCard(props: ActionCardItemRenderProps<Location>) {
   const { onReset, name, contact_name, street, postcode, city, description, ...cardProps } = props

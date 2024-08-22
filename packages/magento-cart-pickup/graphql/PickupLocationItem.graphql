@@ -1,0 +1,17 @@
+fragment PickupLocationItem on PickupLocation {
+  city
+  pickup_location_code
+  contact_name
+  country_id
+  description
+  email
+  fax
+  latitude
+  longitude
+  name
+  phone
+  postcode
+  region
+  region_id
+  street
+}
