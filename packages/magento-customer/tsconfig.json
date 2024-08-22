@@ -1,5 +1,5 @@
 {
   "exclude": ["**/node_modules", "**/.*/"],
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "../magento-cart/link/isProtectedCartOperation.ts"],
   "extends": "@graphcommerce/typescript-config-pwa/nextjs.json"
 }

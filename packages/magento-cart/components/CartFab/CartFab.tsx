@@ -1,4 +1,4 @@
-import { WaitForQueries, useCartEnabled } from '@graphcommerce/ecommerce-ui'
+import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import {
   extendableComponent,
   iconShoppingBag,
@@ -11,6 +11,7 @@ import { i18n } from '@lingui/core'
 import { alpha, Fab, FabProps, styled, useTheme, Box, SxProps, Theme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
+import { useCartEnabled } from '../../hooks'
 import { useCartQuery } from '../../hooks/useCartQuery'
 import { CartFabDocument } from './CartFab.gql'
 import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'

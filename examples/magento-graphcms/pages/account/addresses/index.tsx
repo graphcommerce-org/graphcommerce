@@ -1,10 +1,10 @@
-import { getCustomerAccountIsDisabled } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   AccountAddresses,
   useCustomerQuery,
   WaitForCustomer,
   AccountDashboardAddressesDocument,
+  getCustomerAccountIsDisabled,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {

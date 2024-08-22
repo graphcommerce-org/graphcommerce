@@ -1,9 +1,9 @@
-import { useCustomerAccountCanSignIn } from '@graphcommerce/ecommerce-ui'
 import {
   SignUpFormInline,
   IsEmailAvailableDocument,
   useCustomerSession,
   useGuestQuery,
+  useCustomerAccountCanSignIn,
 } from '@graphcommerce/magento-customer'
 import { Button, FormRow, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'

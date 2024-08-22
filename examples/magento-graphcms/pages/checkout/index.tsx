@@ -4,8 +4,6 @@ import {
   ComposedForm,
   ComposedSubmit,
   WaitForQueries,
-  getCheckoutIsDisabled,
-  useCheckoutShouldLoginToContinue,
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
@@ -13,7 +11,9 @@ import {
   ApolloCartErrorAlert,
   ApolloCartErrorFullPage,
   EmptyCart,
+  getCheckoutIsDisabled,
   useCartQuery,
+  useCheckoutShouldLoginToContinue,
 } from '@graphcommerce/magento-cart'
 import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { EmailForm } from '@graphcommerce/magento-cart-email'

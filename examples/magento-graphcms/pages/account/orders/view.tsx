@@ -1,4 +1,3 @@
-import { getCustomerAccountIsDisabled } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   useCustomerQuery,
@@ -11,6 +10,7 @@ import {
   OrderStateLabel,
   ReorderItems,
   CancelOrderForm,
+  getCustomerAccountIsDisabled,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {

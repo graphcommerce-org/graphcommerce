@@ -1,11 +1,15 @@
-import { EmailElement, useCustomerAccountCanSignIn } from '@graphcommerce/ecommerce-ui'
+import { EmailElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorAlert,
   useCartQuery,
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
-import { IsEmailAvailableDocument, useCustomerSession } from '@graphcommerce/magento-customer'
+import {
+  IsEmailAvailableDocument,
+  useCustomerAccountCanSignIn,
+  useCustomerSession,
+} from '@graphcommerce/magento-customer'
 import { extendableComponent, FormRow } from '@graphcommerce/next-ui'
 import {
   FormAutoSubmit,

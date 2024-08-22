@@ -1,4 +1,4 @@
-import { useCartEnabled, useCartShouldLoginToContinue } from '@graphcommerce/ecommerce-ui'
+import { useCartEnabled, useCartShouldLoginToContinue } from '@graphcommerce/magento-cart'
 import { Fab, FabProps, iconShoppingBag, iconCheckmark } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { t } from '@lingui/macro'

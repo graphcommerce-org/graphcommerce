@@ -1,7 +1,7 @@
-import { useCustomerAccountCanSignIn } from '@graphcommerce/ecommerce-ui'
 import { MenuFabSecondaryItem, iconPerson, IconSvg } from '@graphcommerce/next-ui'
 import { Badge, NoSsr, SxProps, Theme } from '@mui/material'
 import React, { MouseEventHandler } from 'react'
+import { useCustomerAccountCanSignIn } from '../../hooks'
 import { useCustomerSession, UseCustomerSessionReturn } from '../../hooks/useCustomerSession'
 
 type CustomerMenuFabItemProps = {

@@ -15,9 +15,10 @@ export function GraphQLProvider(props: PluginProps<GraphQLProviderProps>) {
   const { Prev, links = [], policies = [], migrations = [], router, ...rest } = props
 
   const push = useEventCallback<NextRouter['push']>((...args) => router.push(...args))
+
   const customerLinkMemo = useMemo(
-    () => customerLink({ push, events: router.events }),
-    [push, router.events],
+    () => customerLink({ push, events: router.events, locale: router.locale }),
+    [push, router.events, router.locale],
   )
 
   return (

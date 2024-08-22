@@ -1,7 +1,11 @@
-import { getCheckoutIsDisabled } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
-import { CartItemSummary, CartSummary, InlineAccount } from '@graphcommerce/magento-cart'
+import {
+  CartItemSummary,
+  CartSummary,
+  InlineAccount,
+  getCheckoutIsDisabled,
+} from '@graphcommerce/magento-cart'
 import { SignupNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {

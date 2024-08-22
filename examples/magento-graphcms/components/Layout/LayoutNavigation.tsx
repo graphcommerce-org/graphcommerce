@@ -1,5 +1,4 @@
-import { useCartEnabled } from '@graphcommerce/ecommerce-ui'
-import { CartFab } from '@graphcommerce/magento-cart'
+import { CartFab, useCartEnabled } from '@graphcommerce/magento-cart'
 import { magentoMenuToNavigation } from '@graphcommerce/magento-category'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { ProductFiltersProSearchField, SearchLink } from '@graphcommerce/magento-search'

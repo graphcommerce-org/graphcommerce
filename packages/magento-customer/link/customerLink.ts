@@ -3,11 +3,8 @@ import {
   ApolloCache,
   ApolloLink,
   fromPromise,
-  GraphQLRequest,
   onError,
   setContext,
-  Observable,
-  FetchResult,
 } from '@graphcommerce/graphql/apollo'
 import { ErrorCategory } from '@graphcommerce/magento-graphql'
 import { GraphQLError } from 'graphql'
@@ -15,14 +12,7 @@ import { NextRouter } from 'next/router'
 import { signOut } from '../components/SignOutForm/signOut'
 import { CustomerTokenDocument } from '../hooks'
 
-const isMutation = (operation: GraphQLRequest) =>
-  operation.query.definitions.some(
-    (definition) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
-      definition.kind === 'OperationDefinition' && definition.operation === 'mutation',
-  )
-
-export type PushRouter = Pick<NextRouter, 'push' | 'events'>
+export type PushRouter = Pick<NextRouter, 'push' | 'events' | 'locale'>
 
 declare module '@apollo/client' {
   interface DefaultContext {
@@ -31,7 +21,7 @@ declare module '@apollo/client' {
   }
 }
 
-async function pushWithPromise(router: Pick<NextRouter, 'push' | 'events'>, url: string) {
+export async function pushWithPromise(router: Pick<NextRouter, 'push' | 'events'>, url: string) {
   try {
     await router.push(url)
   } catch {
@@ -138,23 +128,8 @@ const customerErrorLink = (router: PushRouter) =>
     })
   })
 
-// const customerMaybelinkan = (router: PushRouter) =>
-//   new ApolloLink((operation, forward) => {
-//     const { cache } = operation.getContext()
+export const customerLink = (router: PushRouter) => {
+  const links = [addTokenHeader, customerErrorLink(router)]
 
-//     if (!isMutation(operation)) return forward(operation)
-
-//     const loggedIn = cache?.readQuery({ query: CustomerTokenDocument })
-
-//     // sdnasdffasd
-//     if (loggedIn) forward(operation)
-
-//     // forward(operation).map((result) => {})
-//     // return forward(operation)
-//     const signInAgainPromise = pushWithPromise(router, '/account/signin')
-
-//     fromPromise(signInAgainPromise)
-//   })
-
-export const customerLink = (router: PushRouter) =>
-  ApolloLink.from([addTokenHeader, customerErrorLink(router)])
+  return ApolloLink.from(links)
+}

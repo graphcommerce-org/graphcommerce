@@ -1,6 +1,9 @@
-import { getCustomerAccountIsDisabled } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { ChangePasswordForm, WaitForCustomer } from '@graphcommerce/magento-customer'
+import {
+  ChangePasswordForm,
+  WaitForCustomer,
+  getCustomerAccountIsDisabled,
+} from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,

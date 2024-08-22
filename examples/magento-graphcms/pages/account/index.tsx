@@ -1,4 +1,3 @@
-import { getCustomerAccountIsDisabled } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst, useQuery } from '@graphcommerce/graphql'
 import {
@@ -6,6 +5,7 @@ import {
   AccountMenu,
   AccountMenuItem,
   AddressSingleLine,
+  getCustomerAccountIsDisabled,
   OrderStateLabelInline,
   SignOutForm,
   useCustomerQuery,

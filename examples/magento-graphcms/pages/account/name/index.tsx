@@ -1,8 +1,8 @@
-import { getCustomerAccountIsDisabled } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   ChangeNameForm,
   CustomerDocument,
+  getCustomerAccountIsDisabled,
   useCustomerQuery,
   WaitForCustomer,
 } from '@graphcommerce/magento-customer'

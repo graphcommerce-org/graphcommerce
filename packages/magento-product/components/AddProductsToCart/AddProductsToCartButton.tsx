@@ -1,8 +1,6 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { useCartEnabled, useCartShouldLoginToContinue } from '@graphcommerce/ecommerce-ui'
+import { useCartEnabled } from '@graphcommerce/magento-cart'
 import { Button, ButtonProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { useRouter } from 'next/router'
 import {
   useAddProductsToCartAction,
   UseAddProductsToCartActionProps,

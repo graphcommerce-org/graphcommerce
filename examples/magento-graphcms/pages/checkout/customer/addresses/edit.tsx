@@ -1,10 +1,11 @@
-import { getCustomerAccountIsDisabled, getCartIsDisabled } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { getCartDisabled } from '@graphcommerce/magento-cart'
 import {
   ApolloCustomerErrorFullPage,
   EditAddressForm,
   useCustomerQuery,
   AccountDashboardAddressesDocument,
+  getCustomerAccountIsDisabled,
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -91,7 +92,7 @@ CheckoutCustomerAddressesEdit.pageOptions = pageOptions
 export default CheckoutCustomerAddressesEdit
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
-  if (getCartIsDisabled(context.locale) || getCustomerAccountIsDisabled(context.locale))
+  if (getCartDisabled(context.locale) || getCustomerAccountIsDisabled(context.locale))
     return { notFound: true }
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })

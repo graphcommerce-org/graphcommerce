@@ -1,4 +1,3 @@
-import { useCustomerAccountCanSignUp } from '@graphcommerce/ecommerce-ui'
 import { usePageContext } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { useUrlQuery } from '@graphcommerce/next-ui'
@@ -10,6 +9,7 @@ import {
   IsEmailAvailableQuery,
   IsEmailAvailableQueryVariables,
 } from './IsEmailAvailable.gql'
+import { useCustomerAccountCanSignUp } from './useCustomerPermissions'
 import { useCustomerSession } from './useCustomerSession'
 
 export type UseFormIsEmailAvailableProps = {

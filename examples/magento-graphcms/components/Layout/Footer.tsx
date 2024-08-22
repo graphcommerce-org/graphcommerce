@@ -1,5 +1,5 @@
-import { useCheckoutGuestEnabled } from '@graphcommerce/ecommerce-ui'
 import { Image } from '@graphcommerce/image'
+import { useCheckoutGuestEnabled } from '@graphcommerce/magento-cart'
 import { StoreSwitcherButton } from '@graphcommerce/magento-store'
 import { Footer as FooterBase } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'

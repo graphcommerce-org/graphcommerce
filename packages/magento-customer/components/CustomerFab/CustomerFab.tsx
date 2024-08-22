@@ -1,4 +1,3 @@
-import { useCustomerAccountCanSignIn } from '@graphcommerce/ecommerce-ui'
 import {
   iconPerson,
   DesktopHeaderBadge,
@@ -8,7 +7,11 @@ import {
 import { i18n } from '@lingui/core'
 import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
 import React from 'react'
-import { useCustomerSession, UseCustomerSessionReturn } from '../../hooks'
+import {
+  useCustomerAccountCanSignIn,
+  useCustomerSession,
+  UseCustomerSessionReturn,
+} from '../../hooks'
 
 type CustomerFabContentProps = {
   icon?: React.ReactNode

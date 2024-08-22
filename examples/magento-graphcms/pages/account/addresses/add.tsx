@@ -1,4 +1,3 @@
-import { getCustomerAccountIsDisabled } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   CreateCustomerAddressForm,
@@ -6,6 +5,7 @@ import {
   useCustomerQuery,
   WaitForCustomer,
   AccountDashboardAddressesQuery,
+  getCustomerAccountIsDisabled,
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {

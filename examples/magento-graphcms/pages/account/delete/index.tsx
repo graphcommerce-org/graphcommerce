@@ -1,6 +1,5 @@
-import { getCustomerAccountIsDisabled } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { AccountDeleteForm } from '@graphcommerce/magento-customer'
+import { AccountDeleteForm, getCustomerAccountIsDisabled } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle, iconBin } from '@graphcommerce/next-ui'
 import { Trans, t } from '@lingui/macro'

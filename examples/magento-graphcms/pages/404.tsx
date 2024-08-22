@@ -1,6 +1,6 @@
-import { useCustomerAccountCanSignIn } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
+import { useCustomerAccountCanSignIn } from '@graphcommerce/magento-customer'
 import { SearchLink } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, Separator, icon404, IconSvg } from '@graphcommerce/next-ui'

@@ -1,6 +1,9 @@
-import { getCustomerAccountIsDisabled } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { useCustomerQuery, WaitForCustomer } from '@graphcommerce/magento-customer'
+import {
+  getCustomerAccountIsDisabled,
+  useCustomerQuery,
+  WaitForCustomer,
+} from '@graphcommerce/magento-customer'
 import { AccountDashboardReviewsDocument, AccountReviews } from '@graphcommerce/magento-review'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {

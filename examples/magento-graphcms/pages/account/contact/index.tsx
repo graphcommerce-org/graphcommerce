@@ -1,7 +1,7 @@
-import { getCustomerAccountIsDisabled } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   CustomerDocument,
+  getCustomerAccountIsDisabled,
   UpdateCustomerEmailForm,
   useCustomerQuery,
   WaitForCustomer,

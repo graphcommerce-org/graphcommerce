@@ -1,8 +1,4 @@
-import {
-  EmailElement,
-  FormAutoSubmit,
-  useCustomerAccountCanSignUp,
-} from '@graphcommerce/ecommerce-ui'
+import { EmailElement, FormAutoSubmit } from '@graphcommerce/ecommerce-ui'
 import { useApolloClient } from '@graphcommerce/graphql'
 import {
   ActionCard,
@@ -17,7 +13,7 @@ import {
 import { Trans } from '@lingui/react'
 import { Alert, Box, CircularProgress, Link, SxProps, Theme, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import { CustomerDocument, useAccountSignInUpForm } from '../../hooks'
+import { CustomerDocument, useAccountSignInUpForm, useCustomerAccountCanSignUp } from '../../hooks'
 import { useCustomerQuery } from '../../hooks/useCustomerQuery'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError'
 import { SignInForm } from '../SignInForm/SignInForm'

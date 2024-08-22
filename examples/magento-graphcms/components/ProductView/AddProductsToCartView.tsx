@@ -1,4 +1,4 @@
-import { useCartEnabled } from '@graphcommerce/ecommerce-ui'
+import { useCartEnabled } from '@graphcommerce/magento-cart'
 import {
   AddProductsToCartError,
   AddProductsToCartQuantity,

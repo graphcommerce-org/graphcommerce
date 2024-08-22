@@ -1,6 +1,5 @@
-import { getCustomerAccountIsDisabled } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { ConfirmCustomerForm } from '@graphcommerce/magento-customer'
+import { ConfirmCustomerForm, getCustomerAccountIsDisabled } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'

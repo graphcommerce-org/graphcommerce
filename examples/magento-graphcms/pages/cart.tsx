@@ -1,8 +1,4 @@
-import {
-  WaitForQueries,
-  getCartIsDisabled,
-  useCartIsAvailableForUser,
-} from '@graphcommerce/ecommerce-ui'
+import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   ApolloCartErrorAlert,
@@ -10,7 +6,9 @@ import {
   CartStartCheckoutLinkOrButton,
   CartTotals,
   EmptyCart,
+  getCartDisabled,
   useCartQuery,
+  useCartShouldLoginToContinue,
 } from '@graphcommerce/magento-cart'
 import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
@@ -46,7 +44,7 @@ function CartPage() {
     (data?.cart?.total_quantity ?? 0) > 0 &&
     typeof data?.cart?.prices?.grand_total?.value !== 'undefined'
 
-  const cartAvaialable = useCartIsAvailableForUser()
+  const cartAvaialable = useCartShouldLoginToContinue()
 
   return (
     <>
@@ -127,7 +125,7 @@ CartPage.pageOptions = pageOptions
 export default CartPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
-  if (getCartIsDisabled(context.locale)) return { notFound: true }
+  if (getCartDisabled(context.locale)) return { notFound: true }
 
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })

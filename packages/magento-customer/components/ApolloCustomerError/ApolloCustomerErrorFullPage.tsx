@@ -1,12 +1,9 @@
-import {
-  ApolloErrorFullPage,
-  ApolloErrorFullPageProps,
-  useCustomerAccountCanSignUp,
-} from '@graphcommerce/ecommerce-ui'
+import { ApolloErrorFullPage, ApolloErrorFullPageProps } from '@graphcommerce/ecommerce-ui'
 import { iconPerson, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 import type { SetOptional } from 'type-fest'
+import { useCustomerAccountCanSignUp } from '../../hooks'
 import { useAuthorizationErrorMasked } from './useAuthorizationErrorMasked'
 
 export type ApolloCustomerErrorFullPageProps = {

@@ -1,8 +1,8 @@
-import { useCheckoutShouldLoginToContinue } from '@graphcommerce/ecommerce-ui'
 import { iconChevronRight, IconSvg, LinkOrButton, LinkOrButtonProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
 import React from 'react'
+import { useCheckoutShouldLoginToContinue } from '../../hooks'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 
 export type CartStartCheckoutLinkOrButtonProps = {

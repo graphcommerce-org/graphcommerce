@@ -1,8 +1,8 @@
-import { useCustomerAccountCanSignUp } from '@graphcommerce/ecommerce-ui'
 import { FullPageMessage, FullPageMessageProps, IconSvg, iconPerson } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 import React from 'react'
+import { useCustomerAccountCanSignUp } from '../../hooks'
 
 type UnauthenticatedFullPageMessageProps = Omit<FullPageMessageProps, 'icon' | 'title'> & {
   icon?: React.ReactNode

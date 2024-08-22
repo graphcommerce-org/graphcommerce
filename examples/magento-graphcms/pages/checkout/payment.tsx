@@ -1,9 +1,4 @@
-import {
-  ComposedForm,
-  WaitForQueries,
-  getCheckoutIsDisabled,
-  useCheckoutShouldLoginToContinue,
-} from '@graphcommerce/ecommerce-ui'
+import { ComposedForm, WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import {
@@ -12,7 +7,9 @@ import {
   CartSummary,
   CartTotals,
   EmptyCart,
+  getCheckoutIsDisabled,
   useCartQuery,
+  useCheckoutShouldLoginToContinue,
 } from '@graphcommerce/magento-cart'
 import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
