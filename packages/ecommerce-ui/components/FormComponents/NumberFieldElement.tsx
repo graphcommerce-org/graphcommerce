@@ -44,6 +44,8 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
     required,
     defaultValue,
     variant = 'outlined',
+    disabled,
+    shouldUnregister,
     ...textFieldProps
   } = props
 
@@ -61,6 +63,8 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
     control,
     rules,
     defaultValue,
+    disabled,
+    shouldUnregister,
   })
 
   const valueAsNumber = value ? parseFloat(value) : 0

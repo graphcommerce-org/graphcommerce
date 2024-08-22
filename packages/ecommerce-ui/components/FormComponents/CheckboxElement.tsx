@@ -1,9 +1,4 @@
-import {
-  Controller,
-  ControllerProps,
-  FieldError,
-  FieldValues,
-} from '@graphcommerce/react-hook-form'
+import { ControllerProps, FieldValues, useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import {
   Checkbox,
@@ -19,8 +14,6 @@ import {
 } from '@mui/material'
 
 export type CheckboxElementProps<T extends FieldValues> = Omit<CheckboxProps, 'name'> & {
-  /** @deprecated Form value parsing should happen in the handleSubmit function of the form */
-  parseError?: (error: FieldError) => string
   label?: FormControlLabelProps['label']
   helperText?: string
   sx?: SxProps<Theme>
@@ -31,58 +24,57 @@ export function CheckboxElement<TFieldValues extends FieldValues>({
   name,
   rules = {},
   required,
-  parseError,
   label,
   control,
   helperText,
   sx,
   formControl,
+  defaultValue,
+  disabled,
+  shouldUnregister,
   ...rest
 }: CheckboxElementProps<TFieldValues>): JSX.Element {
   if (required && !rules.required) {
     rules.required = i18n._(/* i18n */ 'This field is required')
   }
 
+  const {
+    field: { value, onChange, ref, ...field },
+    fieldState: { invalid, error },
+  } = useController({
+    name,
+    rules,
+    control,
+    defaultValue,
+    disabled,
+    shouldUnregister,
+  })
+
+  const parsedHelperText = error ? error.message : helperText
+
   return (
-    <Controller
-      name={name}
-      rules={rules}
-      control={control}
-      render={({ field: { value, onChange, ref, ...field }, fieldState: { invalid, error } }) => {
-        // eslint-disable-next-line no-nested-ternary
-        const parsedHelperText = error
-          ? typeof parseError === 'function'
-            ? parseError(error)
-            : error.message
-          : helperText
-        return (
-          <FormControl required={required} error={invalid} {...formControl}>
-            <FormGroup row>
-              <FormControlLabel
-                label={label || ''}
-                control={
-                  <Checkbox
-                    {...rest}
-                    {...field}
-                    inputRef={ref}
-                    color={rest.color || 'primary'}
-                    sx={{
-                      ...(Array.isArray(sx) ? sx : [sx]),
-                      color: invalid ? 'error.main' : undefined,
-                    }}
-                    value={value}
-                    checked={!!value}
-                    onChange={() => onChange(!value)}
-                  />
-                }
-              />
-            </FormGroup>
-            {parsedHelperText && (
-              <FormHelperText error={invalid}>{parsedHelperText}</FormHelperText>
-            )}
-          </FormControl>
-        )
-      }}
-    />
+    <FormControl required={required} error={invalid} {...formControl}>
+      <FormGroup row>
+        <FormControlLabel
+          label={label || ''}
+          control={
+            <Checkbox
+              {...rest}
+              {...field}
+              inputRef={ref}
+              color={rest.color || 'primary'}
+              sx={{
+                ...(Array.isArray(sx) ? sx : [sx]),
+                color: invalid ? 'error.main' : undefined,
+              }}
+              value={value}
+              checked={!!value}
+              onChange={() => onChange(!value)}
+            />
+          }
+        />
+      </FormGroup>
+      {parsedHelperText && <FormHelperText error={invalid}>{parsedHelperText}</FormHelperText>}
+    </FormControl>
   )
 }
