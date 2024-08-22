@@ -1,6 +1,12 @@
-fragment ProductListAggregation on AggregationOption {
+fragment ProductListAggregation on Aggregation {
   __typename
   label
-  value
+  attribute_code
   count
+  options {
+    __typename
+    label
+    value
+    count
+  }
 }
