@@ -1,15 +1,5 @@
 fragment ProductCustomizable on CustomizableProductInterface {
   options {
-    uid
-    __typename
     ...CustomizableOption
-    ...CustomizableAreaOption
-    ...CustomizableCheckboxOption
-    ...CustomizableDateOption
-    ...CustomizableDropDownOption
-    ...CustomizableMultipleOption
-    ...CustomizableFieldOption
-    ...CustomizableFileOption
-    ...CustomizableRadioOption
   }
 }

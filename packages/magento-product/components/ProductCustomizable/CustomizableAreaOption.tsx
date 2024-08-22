@@ -6,10 +6,10 @@ import { i18n } from '@lingui/core'
 import { Box } from '@mui/material'
 import React from 'react'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
-import { ProductCustomizableFragment } from './ProductCustomizable.gql'
+import { CustomizableOptionFragment } from './CustomizableOption.gql'
 
 export type OptionTypeRenderer = TypeRenderer<
-  NonNullable<NonNullable<ProductCustomizableFragment['options']>[number]> & {
+  CustomizableOptionFragment & {
     optionIndex: number
     index: number
     currency: CurrencyEnum
