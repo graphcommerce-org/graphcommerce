@@ -90,21 +90,29 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
        * We're executing these steps all in sequence, since certain forms can depend on other forms
        * in the backend.
        */
-      for (const [, { submit, key }] of formsToProcess) {
-        try {
-          // eslint-disable-next-line no-console
-          console.log(`[ComposedForm] Submitting ${key}`)
-          // eslint-disable-next-line no-await-in-loop
-          await submit?.()
-        } catch (e) {
-          if (process.env.NODE_ENV !== 'production') {
-            console.error(
-              `[ComposedForm] The form ${key} has thrown an Error during submission, halting submissions`,
-              e,
+      for (const [, { submit, key, form }] of formsToProcess) {
+        const hasDirtyFields =
+          Object.entries(form?.formState.dirtyFields ?? []).filter(([key, value]) => value).length >
+          0
+
+        if (hasDirtyFields) {
+          try {
+            // eslint-disable-next-line no-console
+            console.log(
+              `[ComposedForm] Submitting ${key} (dirty fields: ${Object.keys(form?.formState.dirtyFields ?? {}).join(', ')})`,
             )
+            // eslint-disable-next-line no-await-in-loop
+            await submit?.()
+          } catch (e) {
+            if (process.env.NODE_ENV !== 'production') {
+              console.error(
+                `[ComposedForm] The form ${key} has thrown an Error during submission, halting submissions`,
+                e,
+              )
+            }
+            throw e
           }
-          throw e
-        }
+        } else console.log(`[ComposedForm] Skipped ${key}, no dirty fields`)
       }
 
       if (invalidKeys.length === 0) {
