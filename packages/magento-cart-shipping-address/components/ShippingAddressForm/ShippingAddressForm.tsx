@@ -110,6 +110,11 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         ?.find((country) => country?.two_letter_abbreviation === variables.countryCode)
         ?.available_regions?.find((region) => region?.id === variables.regionId)?.id
 
+      if (!variables.isCompany) {
+        variables.company = ''
+        variables.vatId = ''
+      }
+
       return {
         ...variables,
         telephone: variables.telephone || '000 - 000 0000',
