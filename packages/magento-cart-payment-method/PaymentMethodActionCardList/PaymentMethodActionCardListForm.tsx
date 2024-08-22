@@ -1,11 +1,5 @@
-import {
-  ActionCard,
-  Button,
-  FormDiv,
-  ActionCardItemRenderProps,
-  ActionCardListForm,
-  ActionCardProps,
-} from '@graphcommerce/next-ui'
+import { ActionCardItemRenderProps, ActionCardListForm } from '@graphcommerce/ecommerce-ui'
+import { ActionCard, ActionCardProps, Button, FormDiv } from '@graphcommerce/next-ui'
 import {
   FormPersist,
   useForm,

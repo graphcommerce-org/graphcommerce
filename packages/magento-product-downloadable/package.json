@@ -12,6 +12,7 @@
     }
   },
   "peerDependencies": {
+    "@graphcommerce/ecommerce-ui": "^9.0.0-canary.79",
     "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.79",
     "@graphcommerce/graphql": "^9.0.0-canary.79",
     "@graphcommerce/magento-cart": "^9.0.0-canary.79",

@@ -1,13 +1,7 @@
-import { useWatch } from '@graphcommerce/ecommerce-ui'
+import { ActionCardItemBase, ActionCardListForm, useWatch } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  ActionCard,
-  ActionCardItemBase,
-  ActionCardListForm,
-  ChipOverlayOrPopper,
-  ChipOverlayOrPopperProps,
-} from '@graphcommerce/next-ui'
+import { ActionCard, ChipOverlayOrPopper, ChipOverlayOrPopperProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { useMemo } from 'react'
 import { useProductFiltersPro } from './ProductFiltersPro'

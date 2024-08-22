@@ -1,4 +1,5 @@
 import {
+  ActionCardListForm,
   FormAutoSubmit,
   FormPersist,
   TextFieldElement,
@@ -12,7 +13,7 @@ import {
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { CustomerDocument } from '@graphcommerce/magento-customer'
-import { ActionCardListForm, FormRow, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { FormRow, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
 import { Box, SxProps, Theme } from '@mui/material'

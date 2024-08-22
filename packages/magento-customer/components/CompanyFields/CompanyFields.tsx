@@ -1,11 +1,5 @@
-import { FieldPath, FieldValues, useWatch } from '@graphcommerce/ecommerce-ui'
-import {
-  ActionCard,
-  ActionCardListForm,
-  ActionCardProps,
-  FormRow,
-  useStorefrontConfig,
-} from '@graphcommerce/next-ui'
+import { ActionCardListForm, FieldPath, FieldValues, useWatch } from '@graphcommerce/ecommerce-ui'
+import { ActionCard, ActionCardProps, FormRow, useStorefrontConfig } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { CompanyName } from './CompanyName'
 import { CompanyVAT } from './CompanyVAT'

@@ -1,18 +1,22 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import {
-  Controller,
-  ControllerProps,
-  FieldValues,
-  useController,
-} from '@graphcommerce/react-hook-form'
+import { ActionCardProps, ActionCardList, ActionCardListProps } from '@graphcommerce/next-ui'
+import { ControllerProps, FieldValues, useController } from '@graphcommerce/react-hook-form'
 import React, { MouseEventHandler } from 'react'
-import { ActionCardProps } from './ActionCard'
-import { ActionCardList, ActionCardListProps } from './ActionCardList'
+
+export {
+  ActionCard,
+  ActionCardAccordion,
+  ActionCardLayout,
+  type ActionCardLayoutProps,
+  type ActionCardAccordionProps,
+  type ActionCardProps,
+  ActionCardList,
+  type ActionCardListProps,
+} from '@graphcommerce/next-ui'
 
 export type ActionCardItemBase = Pick<ActionCardProps, 'value'>
 
 export type ActionCardItemRenderProps<T> = ActionCardProps & {
-  onReset: MouseEventHandler<HTMLAnchorElement> & MouseEventHandler<HTMLSpanElement>
+  onReset: MouseEventHandler<HTMLAnchorElement & HTMLSpanElement>
 } & T
 
 export type ActionCardListFormProps<A, F extends FieldValues = FieldValues> = Omit<
@@ -38,6 +42,8 @@ export function ActionCardListForm<
     errorMessage,
     defaultValue,
     multiple,
+    disabled,
+    shouldUnregister,
     ...other
   } = props
   const RenderItem = render as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>
@@ -57,7 +63,9 @@ export function ActionCardListForm<
     control,
     name,
     defaultValue,
-    rules: { required: errorMessage || required, ...rules },
+    rules: { required, ...rules },
+    disabled,
+    shouldUnregister,
   })
 
   return (
