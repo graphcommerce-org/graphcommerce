@@ -21,9 +21,11 @@ An implementation of Algolia personalization/Analytics through the GraphQL Mesh.
 
    ```js
    const config = {
-     // Even if you do not use personalization, enabling analytics still allows you to track events in Algolia.
-     algoliaEnableAnalytics: true,
-     algoliaPersonalizationEnabled: true,
+     algolia: {
+       // Even if you do not use personalization, enabling analytics still allows you to track events in Algolia.
+       algoliaEnableAnalytics: true,
+       algoliaPersonalizationEnabled: true,
+     },
    }
    ```
 

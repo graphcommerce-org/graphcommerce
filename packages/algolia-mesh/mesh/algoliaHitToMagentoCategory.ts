@@ -29,6 +29,7 @@ export function algoliaHitToMagentoCategory(hit: Algoliahit): CategoriesItemsIte
     name: additionalProperties?.name,
     children: null,
     products: null,
+    image: additionalProperties?.image_url,
     uid: objectID,
     redirect_code: 0,
   }
