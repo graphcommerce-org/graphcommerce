@@ -1,28 +1,38 @@
 import {
-  FetchResult,
-  TypedDocumentNode,
-  MutationTuple,
   ApolloError,
+  FetchResult,
   LazyQueryResultTuple,
+  MutationTuple,
+  TypedDocumentNode,
 } from '@apollo/client'
 import useEventCallback from '@mui/utils/useEventCallback'
 import { useEffect, useRef } from 'react'
 import { DefaultValues, FieldValues, UseFormProps, UseFormReturn } from 'react-hook-form'
 import diff from './diff'
 import { useGqlDocumentHandler, UseGqlDocumentHandler } from './useGqlDocumentHandler'
+import { maybe } from './utils/tryTuple'
 
 export type OnCompleteFn<Q, V> = (data: FetchResult<Q>, variables: V) => void | Promise<void>
 
 type UseFormGraphQLCallbacks<Q, V> = {
   /**
    * Allows you to modify the variablels computed by the form to make it compatible with the GraphQL
-   * Mutation. Also allows you to send false to skip submission.
+   * Mutation.
+   *
+   * When returning false, it will silently stop the submission.
+   * When an error is thrown, it will be set as a generic error with `setError('root.thrown', { message: error.message })`
    */
   onBeforeSubmit?: (variables: V) => V | false | Promise<V | false>
+  /**
+   * Called after the mutation has been executed. Allows you to handle the result of the mutation.
+   *
+   * When an error is thrown, it will be set as a generic error with `setError('root.thrown', { message: error.message })`
+   */
   onComplete?: OnCompleteFn<Q, V>
 
   /**
-   * @deprecated Not used anymore, please use deprecated_useV1 instead
+   * @deprecated Not used anymore, is now the default
+   *
    * Changes:
    * - Restores `defaultValues` functionality to original functionality, use `values` instead.
    * - Does not reset the form after submission, use `values` instead.
@@ -45,6 +55,11 @@ type UseFormGraphQLCallbacks<Q, V> = {
    * ```
    */
   experimental_useV2?: boolean
+  /**
+   * To restore the previous functionality of the useFormGqlMutation, set this to true.
+   *
+   * @deprecated Will be removed in the next version.
+   */
   deprecated_useV1?: boolean
 }
 
@@ -107,10 +122,12 @@ export function useFormGql<Q, V extends FieldValues>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [valuesString, form])
 
-  const beforeSubmit: NonNullable<typeof onBeforeSubmit> = useEventCallback(
-    onBeforeSubmit ?? ((v) => v),
+  const beforeSubmit = useEventCallback(
+    maybe((onBeforeSubmit ?? ((v) => v)) satisfies NonNullable<typeof onBeforeSubmit>),
   )
-  const complete: NonNullable<typeof onComplete> = useEventCallback(onComplete ?? (() => undefined))
+  const complete = useEventCallback(
+    maybe((onComplete ?? (() => undefined)) satisfies NonNullable<typeof onComplete>),
+  )
 
   const handleSubmit: UseFormReturn<V>['handleSubmit'] = (onValid, onInvalid) =>
     form.handleSubmit(async (formValues, event) => {
@@ -119,24 +136,30 @@ export function useFormGql<Q, V extends FieldValues>(
       let variables = !deprecated_useV1 ? formValues : encode({ ...defaultValues, ...formValues })
 
       // Wait for the onBeforeSubmit to complete
-      const res = await beforeSubmit(variables)
-      if (res === false) return
-      variables = res
-
-      // if (variables === false) onInvalid?.(formValues, event)
+      const [onBeforeSubmitResult, onBeforeSubmitError] = await beforeSubmit(variables)
+      if (onBeforeSubmitError) {
+        form.setError('root', { message: onBeforeSubmitError.message })
+        return
+      }
+      if (onBeforeSubmitResult === false) return
+      variables = onBeforeSubmitResult
 
       submittedVariables.current = variables
-      if (loading && !deprecated_useV1) controllerRef.current?.abort()
+      if (!deprecated_useV1 && loading) controllerRef.current?.abort()
       controllerRef.current = new window.AbortController()
       const result = await execute({
         variables,
         context: { fetchOptions: { signal: controllerRef.current.signal } },
       })
 
-      if (result.data) await complete(result, variables)
+      const [, onCompleteError] = await complete(result, variables)
+      if (onCompleteError) {
+        form.setError('root', { message: onCompleteError.message })
+        return
+      }
 
-      // Reset the state of the form if it is unmodified afterwards
-      if (typeof diff(form.getValues(), formValues) === 'undefined' && deprecated_useV1)
+      if (deprecated_useV1 && typeof diff(form.getValues(), formValues) === 'undefined')
+        // Reset the state of the form if it is unmodified afterwards
         form.reset(formValues)
 
       await onValid(formValues, event)
