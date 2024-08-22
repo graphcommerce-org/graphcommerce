@@ -8,7 +8,6 @@ import { useFormCompose } from '@graphcommerce/react-hook-form'
 import type { FlowType, Intent } from 'paypal-checkout-components'
 import { useEffect } from 'react'
 import { BraintreePaymentMethodOptionsDocument } from '../../BraintreePaymentMethodOptions.gql'
-import { StartPaymentOptions } from '../../hooks/useBraintree'
 import { useBraintreeCartLock } from '../../hooks/useBraintreeCartLock'
 import { useBraintreePaypal } from '../../hooks/useBraintreePaypal'
 import { isBraintreeError } from '../../utils/isBraintreeError'
@@ -43,8 +42,6 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
       await lock({ payment_id: null, method: selectedMethod?.code })
 
       const address = cartData.cart.shipping_addresses?.[0]
-
-      console.log('hoi')
 
       const nonce = await paypal.createPayment({
         flow: 'checkout' as FlowType, // Required
