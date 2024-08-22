@@ -8,9 +8,11 @@ export function FlagAvatar(props: FlagAvatarProps) {
   return (
     <Avatar
       {...avatarProps}
-      imgProps={{ loading: 'lazy' }}
       alt={country}
       src={`https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/${country}.svg`}
+      slotProps={{
+        img: { loading: 'lazy' },
+      }}
     >
       {country.toLocaleUpperCase()}
     </Avatar>
