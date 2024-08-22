@@ -1,9 +1,17 @@
 import { createContext } from 'react'
 
-export type Direction = 1 | -1
+/**
+ * - `-1` -> Navigated back
+ * - `0` -> Loaded the page
+ * - `1` -> Navigated forward
+ */
+export type Direction = -1 | 0 | 1
 
 export type PageContext = {
-  /** Number of steps we need to navigate back to go to the last non-overlay page and thus close the overlay */
+  /**
+   * Number of steps we need to navigate back to go to the last non-overlay page and thus close the
+   * overlay
+   */
   closeSteps: number
 
   /** Number of steps we can go back inside the the current overlay */
