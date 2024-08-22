@@ -1,5 +1,35 @@
 # Change Log
 
+## 9.0.0-canary.79
+
+### Patch Changes
+
+- [#2356](https://github.com/graphcommerce-org/graphcommerce/pull/2356) [`d283901`](https://github.com/graphcommerce-org/graphcommerce/commit/d283901cb537c3e7bf6f5500e9f52f47f452cf10) - Loading an overlay page directly would animate in the overlay instead of directly showing it. ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.78
+
+## 9.0.0-canary.77
+
+## 9.0.0-canary.76
+
+## 9.0.0-canary.75
+
+## 9.0.0-canary.74
+
+## 9.0.0-canary.73
+
+## 9.0.0-canary.72
+
+## 9.0.0-canary.71
+
+## 9.0.0-canary.70
+
+## 9.0.0-canary.69
+
+## 9.0.0-canary.68
+
+## 9.0.0-canary.67
+
 ## 9.0.0-canary.66
 
 ## 9.0.0-canary.65

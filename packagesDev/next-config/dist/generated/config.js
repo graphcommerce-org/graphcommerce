@@ -123,7 +123,6 @@ function GraphCommerceConfigSchema() {
         hygraphEndpoint: _zod.z.string().min(1),
         hygraphManagementApi: _zod.z.string().nullish(),
         hygraphProjectId: _zod.z.string().nullish(),
-        hygraphWriteAccessEndpoint: _zod.z.string().nullish(),
         hygraphWriteAccessToken: _zod.z.string().nullish(),
         limitSsg: _zod.z.boolean().nullish(),
         magentoEndpoint: _zod.z.string().min(1),

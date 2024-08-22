@@ -3,6 +3,7 @@ query ProductPage2(
   $reviewPageSize: Int = 3
   $reviewPage: Int = 1
   $context: InContextInput
+  $useCustomAttributes: Boolean = false
 ) {
   products(filter: { url_key: { eq: $urlKey } }) @inContext(context: $context) {
     ...ProductSpecs

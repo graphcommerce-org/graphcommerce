@@ -64,7 +64,7 @@ function PaymentPage() {
         }
       >
         {billingPage.error && <ApolloCartErrorFullPage error={billingPage.error} />}
-        {!billingPage.error && !cartExists && <EmptyCart />}
+        {!billingPage.error && !cartExists && <EmptyCart disableMargin />}
         {cartExists && !billingPage.error && (
           <>
             <LayoutHeader

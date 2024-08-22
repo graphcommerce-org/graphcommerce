@@ -5,24 +5,11 @@ fragment DynamicRow on DynamicRow {
       id
     }
   }
-
-  row {
-    __typename
-    ... on Node {
-      id
-    }
-
-    ...RowColumnOne
-    ...RowQuote
-    ...RowLinks
-  }
-
   rows {
     __typename
     ... on Node {
       id
     }
-
     ...RowColumnOne
     ...RowQuote
     ...RowLinks

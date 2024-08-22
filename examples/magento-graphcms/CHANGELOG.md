@@ -1,5 +1,43 @@
 # Change Log
 
+## 9.0.0-canary.79
+
+## 9.0.0-canary.78
+
+### Patch Changes
+
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`688b4d7`](https://github.com/graphcommerce-org/graphcommerce/commit/688b4d73cdb4baf38d91f7d98d81964b8fc17e85) - Add missing gutter to /checkout/item page ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 9.0.0-canary.77
+
+## 9.0.0-canary.76
+
+## 9.0.0-canary.75
+
+## 9.0.0-canary.74
+
+## 9.0.0-canary.73
+
+## 9.0.0-canary.72
+
+### Minor Changes
+
+- [#2332](https://github.com/graphcommerce-org/graphcommerce/pull/2332) [`73e897a`](https://github.com/graphcommerce-org/graphcommerce/commit/73e897a5a5f266d9ec274807720c71eb1a639074) - Use custom_attributesV2 for product specs when running on magento 247 or higher ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 9.0.0-canary.71
+
+### Patch Changes
+
+- [#2345](https://github.com/graphcommerce-org/graphcommerce/pull/2345) [`d4ae30b`](https://github.com/graphcommerce-org/graphcommerce/commit/d4ae30ba28815ccb9d3a0478da995b7c609618e5) - Solve issue where customFetch coudn’t be loaded correctly ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.70
+
+## 9.0.0-canary.69
+
+## 9.0.0-canary.68
+
+## 9.0.0-canary.67
+
 ## 9.0.0-canary.66
 
 ### Minor Changes

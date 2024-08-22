@@ -10,13 +10,8 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
   prev,
   baseConfig,
   graphCommerceConfig,
-) => {
-  if (!graphCommerceConfig.algoliaApplicationId || !graphCommerceConfig.algoliaSearchOnlyApiKey) {
-    console.log('Algolia credentials not provided, skipping Algolia plugin')
-    return prev(baseConfig, graphCommerceConfig)
-  }
-
-  return prev(
+) =>
+  prev(
     {
       ...baseConfig,
       sources: [
@@ -25,16 +20,16 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
           name: 'algolia',
           handler: {
             openapi: {
-              endpoint: `https://${graphCommerceConfig.algoliaApplicationId}.algolia.net/`,
+              endpoint: `https://${graphCommerceConfig.algolia.applicationId}.algolia.net/`,
               source: '@graphcommerce/algolia-mesh/algolia-spec.yaml',
               ignoreErrorResponses: true,
               schemaHeaders: {
-                'X-Algolia-Application-Id': graphCommerceConfig.algoliaApplicationId,
-                'X-Algolia-API-Key': graphCommerceConfig.algoliaSearchOnlyApiKey,
+                'X-Algolia-Application-Id': graphCommerceConfig.algolia.applicationId,
+                'X-Algolia-API-Key': graphCommerceConfig.algolia.searchOnlyApiKey,
               },
               operationHeaders: {
-                'X-Algolia-Application-Id': graphCommerceConfig.algoliaApplicationId,
-                'X-Algolia-API-Key': graphCommerceConfig.algoliaSearchOnlyApiKey,
+                'X-Algolia-Application-Id': graphCommerceConfig.algolia.applicationId,
+                'X-Algolia-API-Key': graphCommerceConfig.algolia.searchOnlyApiKey,
               },
               selectQueryOrMutationField: [
                 { type: 'Query', fieldName: 'searchSingleIndex' },
@@ -69,4 +64,3 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
     },
     graphCommerceConfig,
   )
-}

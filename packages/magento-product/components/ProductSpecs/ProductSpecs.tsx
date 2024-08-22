@@ -1,6 +1,8 @@
 import { responsiveVal, Row, SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
 import { Box, SxProps, Theme } from '@mui/material'
 import { ProductSpecsFragment } from './ProductSpecs.gql'
+import { ProductSpecsAggregations } from './ProductSpecsAggregations'
+import { ProductSpecsCustomAttributes } from './ProductSpecsCustomAttributes'
 
 export type ProductSpecsProps = ProductSpecsFragment & {
   title?: string
@@ -13,7 +15,7 @@ const parts = ['root', 'specs', 'options'] as const
 const { classes } = extendableComponent(name, parts)
 
 export function ProductSpecs(props: ProductSpecsProps) {
-  const { aggregations, title, children, sx = [] } = props
+  const { aggregations, items, title, children, sx = [] } = props
   const filter = ['price', 'category_id', 'size', 'new', 'sale', 'color']
   const specs = aggregations?.filter(
     (attr) => !filter.includes(attr?.attribute_code ?? '') && attr?.options?.[0]?.value !== '0',
@@ -46,16 +48,8 @@ export function ProductSpecs(props: ProductSpecsProps) {
             },
           })}
         >
-          {specs?.map((aggregation) => (
-            <li key={aggregation?.attribute_code}>
-              <div>{aggregation?.label}</div>
-              <Box className={classes.options} sx={{ display: 'grid', gridAutoFlow: 'row' }}>
-                {aggregation?.options?.map((option) => (
-                  <span key={option?.value}>{option?.label === '1' ? 'Yes' : option?.label}</span>
-                ))}
-              </Box>
-            </li>
-          ))}
+          {aggregations && <ProductSpecsAggregations aggregations={aggregations} />}
+          {items && <ProductSpecsCustomAttributes items={items} />}
         </Box>
         {children}
       </SectionContainer>

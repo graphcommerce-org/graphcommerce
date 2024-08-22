@@ -1,0 +1,3 @@
+input InContextInput {
+  algoliaUserToken: String
+}

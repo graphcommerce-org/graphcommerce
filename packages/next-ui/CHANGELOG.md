@@ -1,5 +1,51 @@
 # Change Log
 
+## 9.0.0-canary.79
+
+### Patch Changes
+
+- [#2356](https://github.com/graphcommerce-org/graphcommerce/pull/2356) [`d283901`](https://github.com/graphcommerce-org/graphcommerce/commit/d283901cb537c3e7bf6f5500e9f52f47f452cf10) - Loading an overlay page directly would animate in the overlay instead of directly showing it. ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.78
+
+### Patch Changes
+
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`7cd5c1c`](https://github.com/graphcommerce-org/graphcommerce/commit/7cd5c1cadf8dac43de9e5bb19038383be64aa08f) - Fix issues when using non-hex colors in theme ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`7c10458`](https://github.com/graphcommerce-org/graphcommerce/commit/7c104588ef96b9066b8f91835c29f957b08e4831) - Fix back button transparency on hover ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`1de9582`](https://github.com/graphcommerce-org/graphcommerce/commit/1de9582967f2a09cc7167a38ada4e50fe0d1b29a) - Properly align cart loading state (and other FullPageMessage usages) ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 9.0.0-canary.77
+
+## 9.0.0-canary.76
+
+## 9.0.0-canary.75
+
+### Patch Changes
+
+- [#2348](https://github.com/graphcommerce-org/graphcommerce/pull/2348) [`61b66ef`](https://github.com/graphcommerce-org/graphcommerce/commit/61b66efeab9b377c8daa322015d4b55cdf3db4c1) - Added a new OverlayHeader component to be used in combination with the Overlay component. ([@JoshuaS98](https://github.com/JoshuaS98))
+
+## 9.0.0-canary.74
+
+## 9.0.0-canary.73
+
+### Patch Changes
+
+- [`4c24225`](https://github.com/graphcommerce-org/graphcommerce/commit/4c24225f9f998cd40e71da06528eb9323e9b6752) - Created a new `memoDeep` function that is a deep compare variant of `React.memo`. Performance seems to be pretty good, but should only be used as a result of a profiling session. ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.72
+
+## 9.0.0-canary.71
+
+## 9.0.0-canary.70
+
+## 9.0.0-canary.69
+
+## 9.0.0-canary.68
+
+## 9.0.0-canary.67
+
 ## 9.0.0-canary.66
 
 ## 9.0.0-canary.65

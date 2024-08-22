@@ -1,15 +1,14 @@
 import { Wrapper } from '@hygraph/app-sdk-react'
-import React from 'react'
-import { PropertyPicker } from '..'
+import React, { useEffect } from 'react'
+import { PropertyPicker } from '../components/PropertyPicker'
 
 export default function DRPropertyPicker() {
   const fieldContainer = React.useRef<HTMLDivElement | null>(null)
 
-  React.useEffect(() => {
+  useEffect(() => {
     /**
      * Some styling is being undone here to resolve conflicts between Hygraph App SDK and CssAndFramerMotionProvider.
      */
-
     const frameBox1 = fieldContainer?.current?.parentElement
     if (frameBox1) {
       frameBox1.style.position = 'static'

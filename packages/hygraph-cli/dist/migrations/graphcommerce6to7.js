@@ -2,13 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.graphcommerce6to7 = void 0;
 const management_sdk_1 = require("@hygraph/management-sdk");
-const migrationAction_1 = require("../migrationAction");
-const graphcommerce6to7 = async (schema) => {
-    if (!migrationAction_1.client) {
-        return 0;
-    }
+const migrationActionFactory_1 = require("../migrationActionFactory");
+const graphcommerce6to7 = async (schema, client) => {
+    const { migrationAction } = (0, migrationActionFactory_1.migrationActionFactory)(schema, client);
     // ? ENUMERATIONS
-    (0, migrationAction_1.migrationAction)(schema, 'enumeration', 'create', {
+    migrationAction(schema, 'enumeration', 'create', {
         displayName: 'Row Column One Variants',
         apiId: 'RowColumnOneVariants',
         values: [
@@ -16,7 +14,7 @@ const graphcommerce6to7 = async (schema) => {
             { displayName: 'Message', apiId: 'Message' },
         ],
     });
-    (0, migrationAction_1.migrationAction)(schema, 'enumeration', 'create', {
+    migrationAction(schema, 'enumeration', 'create', {
         displayName: 'Dynamic Row Condition Number Operator',
         apiId: 'DynamicRowConditionNumberOperator',
         values: [
@@ -25,7 +23,7 @@ const graphcommerce6to7 = async (schema) => {
             { displayName: 'Equal to', apiId: 'EQUAL' },
         ],
     });
-    (0, migrationAction_1.migrationAction)(schema, 'enumeration', 'create', {
+    migrationAction(schema, 'enumeration', 'create', {
         displayName: 'Dynamic Row Placement',
         apiId: 'DynamicRowPlacement',
         values: [
@@ -35,36 +33,36 @@ const graphcommerce6to7 = async (schema) => {
         ],
     });
     // ? COMPONENTS
-    (0, migrationAction_1.migrationAction)(schema, 'component', 'create', {
+    migrationAction(schema, 'component', 'create', {
         displayName: 'Text',
         apiId: 'ConditionText',
         apiIdPlural: 'ConditionTexts',
     });
-    (0, migrationAction_1.migrationAction)(schema, 'component', 'create', {
+    migrationAction(schema, 'component', 'create', {
         displayName: 'Number',
         apiId: 'ConditionNumber',
         apiIdPlural: 'ConditionNumbers',
     });
-    (0, migrationAction_1.migrationAction)(schema, 'component', 'create', {
+    migrationAction(schema, 'component', 'create', {
         displayName: 'AND',
         apiId: 'ConditionAnd',
         apiIdPlural: 'ConditionAnds',
         description: 'All of these conditions must match',
     });
-    (0, migrationAction_1.migrationAction)(schema, 'component', 'create', {
+    migrationAction(schema, 'component', 'create', {
         displayName: 'OR',
         apiId: 'ConditionOr',
         apiIdPlural: 'ConditionOrs',
         description: 'One of these conditions must match',
     });
-    (0, migrationAction_1.migrationAction)(schema, 'componentUnionField', 'create', {
+    migrationAction(schema, 'componentUnionField', 'create', {
         displayName: 'Conditions',
         apiId: 'conditions',
         parentApiId: 'ConditionAnd',
         componentApiIds: ['ConditionOr', 'ConditionText', 'ConditionNumber'],
         isList: true,
     }, 'ConditionAnd', 'component');
-    (0, migrationAction_1.migrationAction)(schema, 'simpleField', 'create', {
+    migrationAction(schema, 'simpleField', 'create', {
         displayName: 'Property',
         apiId: 'property',
         type: management_sdk_1.SimpleFieldType.String,
@@ -81,14 +79,14 @@ const graphcommerce6to7 = async (schema) => {
             },
         },
     }, 'ConditionText', 'component');
-    (0, migrationAction_1.migrationAction)(schema, 'simpleField', 'create', {
+    migrationAction(schema, 'simpleField', 'create', {
         displayName: 'Value',
         apiId: 'value',
         type: management_sdk_1.SimpleFieldType.String,
         parentApiId: 'ConditionText',
         isRequired: true,
     }, 'ConditionText', 'component');
-    (0, migrationAction_1.migrationAction)(schema, 'simpleField', 'create', {
+    migrationAction(schema, 'simpleField', 'create', {
         displayName: 'Property',
         apiId: 'property',
         type: management_sdk_1.SimpleFieldType.String,
@@ -104,14 +102,14 @@ const graphcommerce6to7 = async (schema) => {
             },
         },
     }, 'ConditionNumber', 'component');
-    (0, migrationAction_1.migrationAction)(schema, 'enumerableField', 'create', {
+    migrationAction(schema, 'enumerableField', 'create', {
         displayName: 'Operator',
         apiId: 'operator',
         parentApiId: 'ConditionNumber',
         enumerationApiId: 'DynamicRowConditionNumberOperator',
         isRequired: true,
     }, 'ConditionNumber', 'component');
-    (0, migrationAction_1.migrationAction)(schema, 'simpleField', 'create', {
+    migrationAction(schema, 'simpleField', 'create', {
         displayName: 'Value',
         apiId: 'value',
         type: management_sdk_1.SimpleFieldType.Float,
@@ -119,13 +117,13 @@ const graphcommerce6to7 = async (schema) => {
         isRequired: true,
     }, 'ConditionNumber', 'component');
     // ? MODEL
-    (0, migrationAction_1.migrationAction)(schema, 'model', 'create', {
+    migrationAction(schema, 'model', 'create', {
         displayName: 'Dynamic Row',
         apiId: 'DynamicRow',
         apiIdPlural: 'DynamicRows',
         description: 'Dynamic rows allow you to add specific Row models to pages based on the properties of the page',
     });
-    (0, migrationAction_1.migrationAction)(schema, 'simpleField', 'create', {
+    migrationAction(schema, 'simpleField', 'create', {
         displayName: 'Internal name',
         apiId: 'internalName',
         description: 'Only used for internal reference',
@@ -135,7 +133,7 @@ const graphcommerce6to7 = async (schema) => {
         isUnique: true,
         modelApiId: 'DynamicRow',
     }, 'DynamicRow', 'model');
-    (0, migrationAction_1.migrationAction)(schema, 'unionField', 'create', {
+    migrationAction(schema, 'unionField', 'create', {
         displayName: 'Row',
         apiId: 'row',
         reverseField: {
@@ -147,7 +145,7 @@ const graphcommerce6to7 = async (schema) => {
         },
         parentApiId: 'DynamicRow',
     }, 'DynamicRow', 'model');
-    (0, migrationAction_1.migrationAction)(schema, 'enumerableField', 'create', {
+    migrationAction(schema, 'enumerableField', 'create', {
         displayName: 'Placement',
         apiId: 'placement',
         parentApiId: 'DynamicRow',
@@ -155,7 +153,7 @@ const graphcommerce6to7 = async (schema) => {
         description: 'Where will the row be placed relative to the target',
         isRequired: true,
     }, 'DynamicRow', 'model');
-    (0, migrationAction_1.migrationAction)(schema, 'unionField', 'create', {
+    migrationAction(schema, 'unionField', 'create', {
         displayName: 'Placement target',
         apiId: 'target',
         description: 'Optional: When the target is left blank it will place the Dynamic Row on the start or end.',
@@ -181,7 +179,7 @@ const graphcommerce6to7 = async (schema) => {
         },
         parentApiId: 'DynamicRow',
     }, 'DynamicRow', 'model');
-    (0, migrationAction_1.migrationAction)(schema, 'componentUnionField', 'create', {
+    migrationAction(schema, 'componentUnionField', 'create', {
         displayName: 'Conditions (OR)',
         apiId: 'conditions',
         parentApiId: 'DynamicRow',
@@ -190,19 +188,19 @@ const graphcommerce6to7 = async (schema) => {
         isList: true,
     }, 'DynamicRow', 'model');
     // ? Row Column One
-    (0, migrationAction_1.migrationAction)(schema, 'enumerableField', 'create', {
+    migrationAction(schema, 'enumerableField', 'create', {
         displayName: 'Variant',
         apiId: 'rowColumnOneVariant',
         enumerationApiId: 'RowColumnOneVariants',
         parentApiId: 'RowColumnOne',
     }, 'RowColumnOne', 'model');
-    (0, migrationAction_1.migrationAction)(schema, 'componentUnionField', 'create', {
+    migrationAction(schema, 'componentUnionField', 'create', {
         displayName: 'Conditions',
         apiId: 'conditions',
         parentApiId: 'ConditionOr',
         componentApiIds: ['ConditionText', 'ConditionNumber'],
         isList: true,
     }, 'ConditionOr', 'component');
-    return migrationAction_1.client.run(true);
+    return client.run(true);
 };
 exports.graphcommerce6to7 = graphcommerce6to7;

@@ -1,5 +1,35 @@
 # @graphcommerce/hygraph-dynamic-rows-ui
 
+## 9.0.0-canary.79
+
+## 9.0.0-canary.78
+
+## 9.0.0-canary.77
+
+## 9.0.0-canary.76
+
+## 9.0.0-canary.75
+
+## 9.0.0-canary.74
+
+## 9.0.0-canary.73
+
+## 9.0.0-canary.72
+
+## 9.0.0-canary.71
+
+## 9.0.0-canary.70
+
+### Patch Changes
+
+- [#2347](https://github.com/graphcommerce-org/graphcommerce/pull/2347) [`7fa50a2`](https://github.com/graphcommerce-org/graphcommerce/commit/7fa50a2f21ee9edbc67d06d7694316f101f9415f) - Resolve issue where the dynamic rows UI wouldn’t load any definitions ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.69
+
+## 9.0.0-canary.68
+
+## 9.0.0-canary.67
+
 ## 9.0.0-canary.66
 
 ## 9.0.0-canary.65

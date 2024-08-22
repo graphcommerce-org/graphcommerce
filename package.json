@@ -34,8 +34,8 @@
     "packages:6": "yarn workspace @graphcommerce/changeset-changelog dev",
     "packages:7": "yarn workspace @graphcommerce/graphql-codegen-markdown-docs dev",
     "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'",
-    "jest-watch": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal\" NODE_OPTIONS=\"--experimental-vm-modules\" jest --watch",
-    "test": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal\" NODE_OPTIONS=\"--experimental-vm-modules\" jest"
+    "jest-watch": "yarn test --watch",
+    "test": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal,@graphcommerce/algolia-mesh,@graphcommerce/algolia-personalization\" NODE_OPTIONS=\"--experimental-vm-modules\" jest"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -69,6 +69,7 @@
   },
   "resolutions": {
     "@changesets/assemble-release-plan": "5.2.4",
-    "@changesets/config": "2.3.1"
+    "@changesets/config": "2.3.1",
+    "@graphql-tools/delegate": "10.0.13"
   }
 }
