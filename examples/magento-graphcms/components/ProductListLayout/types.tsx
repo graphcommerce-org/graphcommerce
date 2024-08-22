@@ -7,7 +7,6 @@ import {
   ProductListQuery,
   useProductList,
 } from '@graphcommerce/magento-product'
-import { CategoryPageQuery } from '../../graphql/CategoryPage.gql'
 
 type BaseProps = MenuQueryFragment &
   ProductListQuery &
