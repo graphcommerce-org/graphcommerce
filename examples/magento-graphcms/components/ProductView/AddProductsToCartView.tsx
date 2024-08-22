@@ -13,10 +13,10 @@ import { DownloadableProductOptions } from '@graphcommerce/magento-product-downl
 import { GroupedProducts } from '@graphcommerce/magento-product-grouped'
 import { isTypename } from '@graphcommerce/next-ui'
 import { Divider, Typography } from '@mui/material'
-import { ProductPage2Query } from '../../graphql/ProductPage2.gql'
+import { ProductPage2ItemFragment } from '../../graphql/ProductPage2Item.gql'
 
 export type AddProductsToCartViewProps = {
-  product: NonNullable<NonNullable<NonNullable<ProductPage2Query['products']>['items']>[number]>
+  product: ProductPage2ItemFragment
 }
 
 export function AddProductsToCartView(props: AddProductsToCartViewProps) {

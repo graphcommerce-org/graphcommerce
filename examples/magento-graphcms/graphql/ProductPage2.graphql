@@ -8,15 +8,7 @@ query ProductPage2(
   products(filter: { url_key: { eq: $urlKey } }) @inContext(context: $context) {
     ...ProductSpecs
     items {
-      __typename
-      uid
-      ...ProductCustomizable
-      ...ProductWeight
-      ...ProductPageItem
-      ...ConfigurableOptions
-      ...DownloadableProductOptions
-      ...BundleProductOptions
-      ...GroupedProduct
+      ...ProductPage2Item
     }
   }
   # Workaround for https://github.com/magento/magento2/issues/32427

@@ -1,0 +1,11 @@
+fragment ProductPage2Item on ProductInterface {
+  __typename
+  uid
+  ...ProductPageItem
+  ...ProductCustomizable
+  ...ProductWeight
+  ...ConfigurableOptions
+  ...DownloadableProductOptions
+  ...BundleProductOptions
+  ...GroupedProduct
+}
