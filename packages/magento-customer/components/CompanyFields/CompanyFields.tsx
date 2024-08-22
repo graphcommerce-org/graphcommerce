@@ -37,7 +37,7 @@ export function CompanyFields<
           layout='inline'
           variant='outlined'
           color='secondary'
-          required
+          rules={{ validate: (value) => value !== null }}
           items={[
             { value: false, title: t`Private` },
             { value: true, title: t`Business` },
