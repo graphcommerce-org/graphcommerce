@@ -1,8 +1,9 @@
 import { RenderType, TypeRenderer } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
+import { CartItemFragment } from '../../Api/CartItem.gql'
 import { CartItemsFragment } from '../../Api/CartItems.gql'
 
-export type CartItemRenderer = TypeRenderer<NonNullable<NonNullable<CartItemsFragment['items']>[0]>>
+export type CartItemRenderer = TypeRenderer<CartItemFragment>
 
 export type CartProps = { renderer: CartItemRenderer } & CartItemsFragment
 
