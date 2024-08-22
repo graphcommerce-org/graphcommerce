@@ -24,10 +24,10 @@ export function GraphQLProvider(props: PluginProps<GraphQLProviderProps>) {
   return (
     <Prev
       {...rest}
+      router={router}
       links={[...links, cartLinkMemo]}
       policies={[...policies, cartTypePolicies]}
       migrations={[...migrations, migrateCart]}
-      router={router}
     />
   )
 }

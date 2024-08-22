@@ -78,7 +78,7 @@ const cartPermissionLink = (router: PushRouter) =>
     const { locale } = router
     const { cache } = operation.getContext()
 
-    if (!isProtectedCartOperation(operation)) return forward(operation)
+    if (!isProtectedCartOperation(operation.operationName)) return forward(operation)
 
     const check = () => Boolean(cache?.readQuery({ query: CustomerTokenDocument }))
     if (getCartEnabledForUser(locale, check)) return forward(operation)

@@ -1,7 +1,5 @@
-import { Operation } from '@graphcommerce/graphql'
-
-// todo move to magento-cart
-export function isProtectedCartOperation(operation: Operation): boolean {
-  const mutations = ['AddProductsToCart'] /* Todo: Determine what operations should be put here */
-  return mutations.includes(operation.operationName)
+export function isProtectedCartOperation(name: string): boolean {
+  /* Todo: Determine what operations should be added here */
+  const mutations = ['AddProductsToCart', 'CreateEmptyCart']
+  return mutations.includes(name)
 }

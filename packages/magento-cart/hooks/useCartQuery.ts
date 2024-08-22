@@ -1,5 +1,7 @@
-import { useQuery, TypedDocumentNode, QueryHookOptions } from '@graphcommerce/graphql'
+import { useQuery, TypedDocumentNode, QueryHookOptions, ApolloError } from '@graphcommerce/graphql'
+import { GraphQLError } from 'graphql'
 import { useRouter } from 'next/router'
+import { useCartShouldLoginToContinue } from './useCartPermissions'
 import { useCurrentCartId } from './useCurrentCartId'
 
 /**
@@ -22,12 +24,14 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
   } = {},
 ) {
   const { allowUrl, ...queryOptions } = options
+
   const router = useRouter()
   const { currentCartId, locked } = useCurrentCartId()
 
   const urlCartId = router.query.cart_id
   const usingUrl = typeof urlCartId === 'string'
   const cartId = usingUrl ? urlCartId : currentCartId
+  const shouldLoginToContinue = useCartShouldLoginToContinue()
 
   if (usingUrl || locked) queryOptions.fetchPolicy = 'cache-only'
 
@@ -35,7 +39,26 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
     queryOptions.returnPartialData = true
 
   queryOptions.variables = { cartId, ...options?.variables } as V
-  queryOptions.skip = queryOptions?.skip || !cartId
 
-  return useQuery(document, queryOptions as QueryHookOptions<Q, V>)
+  const query = useQuery(document, {
+    ...(queryOptions as QueryHookOptions<Q, V>),
+    skip: queryOptions.skip || !cartId || shouldLoginToContinue,
+  })
+
+  // Heeft dit voorkeur over het openen van de login overlay?
+  if (shouldLoginToContinue && !queryOptions?.skip) {
+    console.log(document)
+    return {
+      ...query,
+      error: new ApolloError({
+        graphQLErrors: [
+          new GraphQLError('oepsie', {
+            extensions: { category: 'graphql-authorization' },
+          }),
+        ],
+      }),
+    }
+  }
+
+  return query
 }

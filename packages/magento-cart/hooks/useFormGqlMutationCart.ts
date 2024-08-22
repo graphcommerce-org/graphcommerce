@@ -1,11 +1,19 @@
-import { MutationHookOptions, TypedDocumentNode, useApolloClient } from '@graphcommerce/graphql'
+import {
+  ApolloError,
+  MutationHookOptions,
+  TypedDocumentNode,
+  useApolloClient,
+} from '@graphcommerce/graphql'
 import {
   useFormGqlMutation,
   UseFormGqlMutationReturn,
   UseFormGraphQlOptions,
 } from '@graphcommerce/react-hook-form'
+import { GraphQLError, Kind } from 'graphql'
 import { CurrentCartIdDocument } from './CurrentCartId.gql'
 import { useCartIdCreate } from './useCartIdCreate'
+import { useCartShouldLoginToContinue } from './useCartPermissions'
+import { isProtectedCartOperation } from '../link/isProtectedCartOperation'
 
 export function useFormGqlMutationCart<
   Q extends Record<string, unknown>,
@@ -17,12 +25,23 @@ export function useFormGqlMutationCart<
 ): UseFormGqlMutationReturn<Q, V> {
   const cartId = useCartIdCreate()
   const client = useApolloClient()
+  const shouldLoginToContinue = useCartShouldLoginToContinue()
+
+  let shouldBlockOperation = false
+  document.definitions.forEach((defenition) => {
+    if (defenition.kind === Kind.OPERATION_DEFINITION) {
+      shouldBlockOperation = !isProtectedCartOperation(defenition.name?.value ?? '')
+    }
+  })
 
   const result = useFormGqlMutation<Q, V>(
     document,
     {
       ...options,
       onBeforeSubmit: async (variables) => {
+        if (shouldLoginToContinue && shouldBlockOperation) {
+          return false
+        }
         const vars = { ...variables, cartId: await cartId() }
 
         const res = client.cache.readQuery({ query: CurrentCartIdDocument })
@@ -36,6 +55,20 @@ export function useFormGqlMutationCart<
     },
     { errorPolicy: 'all', ...operationOptions },
   )
+
+  if (shouldLoginToContinue && result.formState.isSubmitted && shouldBlockOperation) {
+    console.log(document)
+    return {
+      ...result,
+      error: new ApolloError({
+        graphQLErrors: [
+          new GraphQLError('oepsie', {
+            extensions: { category: 'graphql-authorization' },
+          }),
+        ],
+      }),
+    }
+  }
 
   return result
 }
