@@ -2,7 +2,10 @@
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": { "source.fixAll.eslint": "never" },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "never",
+    "source.organizeImports": "always"
+  },
   "editor.snippetSuggestions": "none",
   "emmet.showExpandedAbbreviation": "never",
   "editor.wordBasedSuggestions": "off",
