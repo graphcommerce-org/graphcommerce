@@ -12,7 +12,7 @@ import { NextRouter } from 'next/router'
 import { signOut } from '../components/SignOutForm/signOut'
 import { CustomerTokenDocument } from '../hooks'
 
-export type PushRouter = Pick<NextRouter, 'push' | 'events'>
+export type PushRouter = Pick<NextRouter, 'push' | 'events' | 'locale'>
 
 declare module '@apollo/client' {
   interface DefaultContext {
