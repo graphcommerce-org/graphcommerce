@@ -4,12 +4,12 @@ import { GoogleEventTypes, sendEvent } from '@graphcommerce/google-datalayer'
 import { useApolloClient } from '@graphcommerce/graphql'
 import type { AlgoliaEventsItems_Input } from '@graphcommerce/graphql-mesh'
 import { CustomerDocument } from '@graphcommerce/magento-customer/hooks/Customer.gql'
+import { isFilterTypeEqual, ProductFilterParams } from '@graphcommerce/magento-product'
 import { cookie } from '@graphcommerce/next-ui'
 import { useDebounce } from '@graphcommerce/react-hook-form'
 import { useEventCallback } from '@mui/material'
 import { useRef } from 'react'
 import { AlgoliaSendEventDocument } from '../mutations/AlgoliaSendEvent.gql'
-import { isFilterTypeEqual, ProductFilterParams } from '@graphcommerce/magento-product'
 
 const getSHA256Hash = async (input: string) => {
   const textAsBuffer = new TextEncoder().encode(input)
@@ -184,7 +184,7 @@ const dataLayerToAlgoliaMap: {
     const queryID = relevant?.[0]?.queryID
     const filters = [...new Set(...relevant.map((item) => item.filters))]
 
-    if (filters.length) {
+    if (filters.length > 0) {
       // There is a max of 10 filters per event, if there are more than 10 items
       // we need to split the event into multiple events
       for (let i = 0; i < filters.length; i += 10) {
@@ -249,7 +249,7 @@ const dataLayerToAlgoliaMap: {
     const relevant = objectIDs.map((objectID) => mapping[objectID])
     const filters = [...new Set(...relevant.map((item) => item.filters))]
 
-    if (filters.length) {
+    if (filters.length > 0) {
       // There is a max of 10 filters per event, if there are more than 10 items
       // we need to split the event into multiple events
       for (let i = 0; i < filters.length; i += 10) {
