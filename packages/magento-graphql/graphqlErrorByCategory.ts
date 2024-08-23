@@ -36,6 +36,7 @@ export function graphqlErrorByCategory(
   props: GraphQLErrorByCategoryProps | GraphQLErrorByCategoryPropsNoExtract,
 ): [ApolloError | undefined, GraphQLError | undefined] {
   const { category, error, extract = true, mask } = props
+
   if (!error) return [error, undefined]
 
   const newError = new ApolloError({
@@ -47,7 +48,6 @@ export function graphqlErrorByCategory(
 
   const graphqlError = error.graphQLErrors.find((err) => err?.extensions?.category === category)
   if (mask && graphqlError) {
-    if (graphqlError.extensions?.category) graphqlError.extensions.category = 'masked'
     graphqlError.message = mask
   }
 

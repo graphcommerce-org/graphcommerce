@@ -9,7 +9,6 @@ import {
   EmptyCart,
   getCheckoutIsDisabled,
   useCartQuery,
-  useCheckoutShouldLoginToContinue,
 } from '@graphcommerce/magento-cart'
 import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
@@ -20,7 +19,6 @@ import {
   PaymentMethodActionCardListForm,
   PaymentMethodContextProvider,
 } from '@graphcommerce/magento-cart-payment-method'
-import { UnauthenticatedFullPageMessage } from '@graphcommerce/magento-customer/components/WaitForCustomer/UnauthenticatedFullPageMessage'
 import { SubscribeToNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -48,8 +46,6 @@ function PaymentPage() {
 
   const cartExists =
     typeof billingPage.data?.cart !== 'undefined' && (billingPage.data.cart?.items?.length ?? 0) > 0
-
-  if (useCheckoutShouldLoginToContinue()) return <UnauthenticatedFullPageMessage />
 
   return (
     <ComposedForm>

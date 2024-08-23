@@ -13,7 +13,6 @@ import {
   EmptyCart,
   getCheckoutIsDisabled,
   useCartQuery,
-  useCheckoutShouldLoginToContinue,
 } from '@graphcommerce/magento-cart'
 import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { EmailForm } from '@graphcommerce/magento-cart-email'
@@ -23,7 +22,6 @@ import {
 } from '@graphcommerce/magento-cart-shipping-address'
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
 import { CustomerDocument, useCustomerQuery } from '@graphcommerce/magento-customer'
-import { UnauthenticatedFullPageMessage } from '@graphcommerce/magento-customer/components/WaitForCustomer/UnauthenticatedFullPageMessage'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   FormActions,
@@ -53,8 +51,6 @@ function ShippingPage() {
   const cartExists =
     typeof shippingPage.data?.cart !== 'undefined' &&
     (shippingPage.data.cart?.items?.length ?? 0) > 0
-
-  if (useCheckoutShouldLoginToContinue()) return <UnauthenticatedFullPageMessage />
 
   return (
     <>

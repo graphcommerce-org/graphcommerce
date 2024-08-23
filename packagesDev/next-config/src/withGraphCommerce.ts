@@ -42,7 +42,6 @@ function domains(config: GraphCommerceConfig): DomainLocale[] {
  */
 export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConfig {
   graphcommerceConfig ??= loadConfig(cwd)
-
   const importMetaPaths = configToImportMeta(graphcommerceConfig)
 
   const { storefront } = graphcommerceConfig

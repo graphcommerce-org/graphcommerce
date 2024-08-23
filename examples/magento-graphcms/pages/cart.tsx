@@ -68,7 +68,6 @@ function CartPage() {
           )}
         </LayoutTitle>
       </LayoutOverlayHeader>
-
       <WaitForQueries
         waitFor={cart}
         fallback={

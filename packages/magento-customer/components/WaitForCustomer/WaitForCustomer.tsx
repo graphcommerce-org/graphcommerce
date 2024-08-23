@@ -1,11 +1,10 @@
 import { mergeErrors, WaitForQueries, WaitForQueriesProps } from '@graphcommerce/ecommerce-ui'
-import { FullPageMessage, FullPageMessageProps } from '@graphcommerce/next-ui'
+import { FullPageMessage, FullPageMessageProps, iconPerson, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { CircularProgress } from '@mui/material'
+import { Button, CircularProgress } from '@mui/material'
 import React from 'react'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
 import { ApolloCustomerErrorFullPage } from '../ApolloCustomerError/ApolloCustomerErrorFullPage'
-import { UnauthenticatedFullPageMessage } from './UnauthenticatedFullPageMessage'
 
 type WaitForCustomerProps = Omit<WaitForQueriesProps, 'fallback' | 'waitFor'> &
   Pick<FullPageMessageProps, 'disableMargin'> & {
@@ -65,7 +64,22 @@ export function WaitForCustomer(props: WaitForCustomerProps) {
       }
     >
       {!session.loggedIn &&
-        (unauthenticated ?? <UnauthenticatedFullPageMessage disableMargin={disableMargin} />)}
+        (unauthenticated ?? (
+          <FullPageMessage
+            icon={<IconSvg src={iconPerson} size='xxl' />}
+            title={<Trans id='You must sign in to continue' />}
+            button={
+              <Button href='/account/signin' variant='pill' color='secondary' size='large'>
+                {!session.valid ? (
+                  <Trans id='Sign in' />
+                ) : (
+                  <Trans id='Sign in or create an account!' />
+                )}
+              </Button>
+            }
+            disableMargin={disableMargin}
+          />
+        ))}
       {session.loggedIn && error && <ApolloCustomerErrorFullPage error={error} />}
       {session.loggedIn && !error && children}
     </WaitForQueries>

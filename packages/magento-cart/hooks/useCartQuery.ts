@@ -45,14 +45,12 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
     skip: queryOptions.skip || !cartId || shouldLoginToContinue,
   })
 
-  // Heeft dit voorkeur over het openen van de login overlay?
   if (shouldLoginToContinue && !queryOptions?.skip) {
-    console.log(document)
     return {
       ...query,
       error: new ApolloError({
         graphQLErrors: [
-          new GraphQLError('oepsie', {
+          new GraphQLError('Action can not be performed by the current user', {
             extensions: { category: 'graphql-authorization' },
           }),
         ],

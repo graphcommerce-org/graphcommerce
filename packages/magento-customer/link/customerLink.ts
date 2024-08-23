@@ -12,7 +12,7 @@ import { NextRouter } from 'next/router'
 import { signOut } from '../components/SignOutForm/signOut'
 import { CustomerTokenDocument } from '../hooks'
 
-export type PushRouter = Pick<NextRouter, 'push' | 'events' | 'locale'>
+export type PushRouter = Pick<NextRouter, 'push' | 'events'>
 
 declare module '@apollo/client' {
   interface DefaultContext {
@@ -128,8 +128,5 @@ const customerErrorLink = (router: PushRouter) =>
     })
   })
 
-export const customerLink = (router: PushRouter) => {
-  const links = [addTokenHeader, customerErrorLink(router)]
-
-  return ApolloLink.from(links)
-}
+export const customerLink = (router: PushRouter) =>
+  ApolloLink.from([addTokenHeader, customerErrorLink(router)])

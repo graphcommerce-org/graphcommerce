@@ -10,10 +10,10 @@ import {
   UseFormGraphQlOptions,
 } from '@graphcommerce/react-hook-form'
 import { GraphQLError, Kind } from 'graphql'
+import { isProtectedCartOperation } from '../link/isProtectedCartOperation'
 import { CurrentCartIdDocument } from './CurrentCartId.gql'
 import { useCartIdCreate } from './useCartIdCreate'
 import { useCartShouldLoginToContinue } from './useCartPermissions'
-import { isProtectedCartOperation } from '../link/isProtectedCartOperation'
 
 export function useFormGqlMutationCart<
   Q extends Record<string, unknown>,
@@ -57,12 +57,11 @@ export function useFormGqlMutationCart<
   )
 
   if (shouldLoginToContinue && result.formState.isSubmitted && shouldBlockOperation) {
-    console.log(document)
     return {
       ...result,
       error: new ApolloError({
         graphQLErrors: [
-          new GraphQLError('oepsie', {
+          new GraphQLError('Action can not be performed by the current user', {
             extensions: { category: 'graphql-authorization' },
           }),
         ],

@@ -10,7 +10,7 @@ export type FooterProps = FooterQueryFragment
 
 export function Footer(props: FooterProps) {
   const { footer } = props
-  const enabled = useCheckoutGuestEnabled()
+  const cartEnabled = useCheckoutGuestEnabled()
 
   return (
     <FooterBase
@@ -48,7 +48,7 @@ export function Footer(props: FooterProps) {
               {link.title}
             </Link>
           ))}
-          {import.meta.graphCommerce.magentoVersion >= 247 && enabled && (
+          {import.meta.graphCommerce.magentoVersion >= 247 && cartEnabled && (
             <Link href='/guest/orderstatus' color='textPrimary' underline='always'>
               <Trans>Order status</Trans>
             </Link>
