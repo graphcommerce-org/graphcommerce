@@ -126,7 +126,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
                   padding: `0 ${theme.spacings.xxs} 0`,
                   display: 'block',
                   '&:not(:nth-last-of-type(-n+2)) > div': {
-                    borderBottom: `1px solid ${theme.palette.divider}`,
+                    borderBottom: `1px solid ${theme.vars.palette.divider}`,
                   },
                 })}
               >
@@ -154,7 +154,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
                         whiteSpace: 'break-spaces',
                       },
                       [`& .${listItemTextClasses.secondary}`]: {
-                        color: theme.palette.grey[500],
+                        color: theme.vars.palette.grey[500],
                         marginLeft: `4px`,
                         fontSize: theme.typography.pxToRem(11),
                         display: 'inline',
@@ -186,8 +186,8 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
                         },
                         isActive &&
                           ((theme) => ({
-                            border: `1px solid ${theme.palette.primary.main}`,
-                            boxShadow: `inset 0 0 0 4px ${theme.palette.background.paper}`,
+                            border: `1px solid ${theme.vars.palette.primary.main}`,
+                            boxShadow: `inset 0 0 0 4px ${theme.vars.palette.background.paper}`,
                           })),
                       ]}
                       style={

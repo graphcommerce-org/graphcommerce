@@ -63,7 +63,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
           display: 'grid',
           gridTemplateRows: `auto auto 1fr auto`,
           gridTemplateColumns: '100%',
-          background: theme.palette.background.default,
+          background: theme.vars.palette.background.default,
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

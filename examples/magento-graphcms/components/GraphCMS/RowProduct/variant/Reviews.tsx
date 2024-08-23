@@ -31,7 +31,7 @@ export function Reviews(props: ReviewsProps) {
             marginTop: theme.spacings.sm,
             marginBottom: theme.spacings.xxs,
             paddingBottom: theme.spacings.xxs,
-            borderBottom: `1px solid ${theme.palette.divider}`,
+            borderBottom: `1px solid ${theme.vars.palette.divider}`,
           }),
         ]}
       >

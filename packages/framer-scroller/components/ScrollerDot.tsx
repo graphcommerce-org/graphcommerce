@@ -53,7 +53,7 @@ export function ScrollerDot(props: ScrollerDotProps) {
           borderRadius: '99em',
           width: { xs: 6, sm: 8, md: 10 },
           height: { xs: 6, sm: 8, md: 10 },
-          background: theme.palette.text.primary,
+          background: theme.vars.palette.text.primary,
         })}
         style={{ opacity }}
       />

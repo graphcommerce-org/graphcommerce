@@ -20,7 +20,7 @@ export function OrderTotals(props: OrderTotalsProps) {
       className={classes.totalsContainer}
       sx={[
         (theme) => ({
-          border: `1px solid ${theme.palette.divider}`,
+          border: `1px solid ${theme.vars.palette.divider}`,
           marginBottom: theme.spacings.md,
           p: theme.spacings.sm,
           ...breakpointVal(
@@ -67,7 +67,7 @@ export function OrderTotals(props: OrderTotalsProps) {
         sx={(theme) => ({
           display: 'flex',
           justifyContent: 'space-between',
-          color: theme.palette.primary.main,
+          color: theme.vars.palette.primary.main,
         })}
       >
         <Typography>
@@ -81,7 +81,7 @@ export function OrderTotals(props: OrderTotalsProps) {
           sx={(theme) => ({
             display: 'flex',
             justifyContent: 'space-between',
-            color: theme.palette.text.disabled,
+            color: theme.vars.palette.text.disabled,
           })}
         >
           <Typography>

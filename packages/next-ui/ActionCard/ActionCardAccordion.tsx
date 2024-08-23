@@ -29,8 +29,8 @@ export function ActionCardAccordion(props: ActionCardAccordionProps) {
           '&.Mui-expanded': { my: 0 },
           '::before': { display: 'none' },
           border: 'none',
-          borderBottom: `1px solid ${theme.palette.divider}`,
-          '&:not(.Mui-expanded)': { borderBottom: `1px solid ${theme.palette.divider}` },
+          borderBottom: `1px solid ${theme.vars.palette.divider}`,
+          '&:not(.Mui-expanded)': { borderBottom: `1px solid ${theme.vars.palette.divider}` },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

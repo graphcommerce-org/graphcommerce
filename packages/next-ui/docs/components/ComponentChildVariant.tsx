@@ -22,7 +22,7 @@ const Root = styled('div', {
 })<MyComponentStyleProps>(({ theme }) => ({
   // Styles are added
   display: 'flex',
-  color: theme.palette.text.primary,
+  color: theme.vars.palette.text.primary,
 }))
 
 // ---- Child component ----
@@ -31,7 +31,7 @@ const Child = styled('div', {
   name: componentName,
   target: classes.child, // Mandatory for children, adds a class name `MyComponent-child` so it can be styled from the outside.
 })<MyComponentStyleProps>(({ theme, variant }) => ({
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: theme.vars.palette.primary.main,
   width: 100,
   height: 100,
   fontSize: variant === 'supercool' ? 'large' : 'normal',

@@ -5,9 +5,10 @@ import {
   extendableComponent,
   breakpointVal,
   DateTimeFormat,
+  lighten,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Box, SxProps, Theme, Typography, lighten } from '@mui/material'
+import { Box, SxProps, Theme, Typography } from '@mui/material'
 import { AddressMultiLine } from '../AddressMultiLine/AddressMultiLine'
 import { TrackingLink } from '../TrackingLink/TrackingLink'
 import { OrderDetailsFragment } from './OrderDetails.gql'
@@ -46,9 +47,9 @@ export function OrderDetails(props: OrderDetailsProps) {
         (theme) => ({
           padding: theme.spacings.sm,
           marginBottom: theme.spacings.md,
-          background: theme.palette.background.default,
+          background: theme.vars.palette.background.default,
           ...theme.applyStyles('dark', {
-            background: lighten(theme.palette.background.default, 0.15),
+            ...lighten('background', theme.vars.palette.background.default, 0.15),
           }),
           ...breakpointVal(
             'borderRadius',

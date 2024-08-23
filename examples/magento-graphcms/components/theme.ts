@@ -13,8 +13,9 @@ import {
   MuiButtonInline,
   NextLink,
 } from '@graphcommerce/next-ui'
-import { createTheme, Theme, alpha, LinkProps } from '@mui/material'
-import { Components, PaletteOptions } from '@mui/material/styles'
+import { Theme, LinkProps } from '@mui/material'
+import { Components, PaletteOptions, createTheme } from '@mui/material/styles'
+import type {} from '@mui/material/themeCssVarsAugmentation'
 
 const lightPalette: PaletteOptions = {
   mode: 'light',
@@ -82,9 +83,33 @@ const fontSize = (from: number, to: number) =>
   breakpointVal('fontSize', from, to, themeBaseDefaults.breakpoints.values)
 
 // Create a theme instance.
-const createThemeWithPalette = (palette: PaletteOptions) =>
+const createThemeWithPalette = ({
+  light,
+  dark,
+}: {
+  light?: PaletteOptions
+  dark?: PaletteOptions
+}) =>
   createTheme({
-    palette,
+    cssVariables: {
+      colorSchemeSelector: 'class',
+    },
+    colorSchemes: {
+      ...(light
+        ? {
+            light: {
+              palette: light,
+            },
+          }
+        : undefined),
+      ...(dark
+        ? {
+            dark: {
+              palette: dark,
+            },
+          }
+        : undefined),
+    },
     ...themeBaseDefaults,
     shape: { borderRadius: 3 },
     typography: {
@@ -190,8 +215,8 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
       body: {
         overflowY: 'scroll',
       },
-      '::selection': { background: alpha(theme.palette.primary.main, 0.6) },
-      '::-moz-selection': { background: alpha(theme.palette.primary.main, 0.6) },
+      '::selection': { background: `rgb(${theme.vars.palette.primary.mainChannel}/ 0.6)` },
+      '::-moz-selection': { background: `rgb(${theme.vars.palette.primary.mainChannel}/ 0.6)` },
       '#__next': {
         position: 'relative',
       },
@@ -239,7 +264,7 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
       ...MuiButtonInline,
       {
         props: { variant: 'contained', color: 'inherit' },
-        style: { backgroundColor: theme.palette.background.paper },
+        style: { backgroundColor: theme.vars.palette.background.paper },
       },
       {
         props: { variant: 'outlined' },
@@ -283,11 +308,11 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
     styleOverrides: {
       root: {
         '&.MuiFab-default': {
-          backgroundColor: theme.palette.background.paper,
+          backgroundColor: theme.vars.palette.background.paper,
           '&:hover': {
-            backgroundColor: theme.palette.background.paper,
+            backgroundColor: theme.vars.palette.background.paper,
           },
-          color: theme.palette.text.primary,
+          color: theme.vars.palette.text.primary,
         },
       },
       colorInherit: {
@@ -325,7 +350,7 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
   MuiListItemIcon: {
     styleOverrides: {
       root: {
-        color: theme.palette.text.primary,
+        color: theme.vars.palette.text.primary,
       },
     },
   },
@@ -337,15 +362,15 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
   MuiCheckbox: {
     styleOverrides: {
       colorPrimary: {
-        color: theme.palette.text.disabled,
+        color: theme.vars.palette.text.disabled,
         '&.Mui-checked': {
-          color: theme.palette.primary.main,
+          color: theme.vars.palette.primary.main,
         },
       },
       colorSecondary: {
-        color: theme.palette.text.disabled,
+        color: theme.vars.palette.text.disabled,
         '&.Mui-checked': {
-          color: theme.palette.secondary.main,
+          color: theme.vars.palette.secondary.main,
         },
       },
     },
@@ -373,7 +398,7 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
   MuiAvatar: {
     styleOverrides: {
       colorDefault: {
-        backgroundColor: theme.palette.text.disabled,
+        backgroundColor: theme.vars.palette.text.disabled,
       },
     },
   },
@@ -387,8 +412,5 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
   },
 })
 
-export const lightTheme = createThemeWithPalette(lightPalette)
-lightTheme.components = createOverrides(lightTheme) as Components
-
-export const darkTheme = createThemeWithPalette(darkPalette)
-darkTheme.components = createOverrides(darkTheme) as Components
+export const theme = createThemeWithPalette({ light: lightPalette, dark: darkPalette })
+theme.components = createOverrides(theme) as Components

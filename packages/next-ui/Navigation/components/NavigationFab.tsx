@@ -72,11 +72,11 @@ export function NavigationFab(props: NavigationFabProps) {
             boxShadow: 'none',
             '&:hover, &:focus': {
               boxShadow: 'none',
-              background: theme.palette.text.primary,
+              background: theme.vars.palette.text.primary,
             },
-            background: theme.palette.text.primary,
+            background: theme.vars.palette.text.primary,
             pointerEvents: 'all',
-            color: theme.palette.background.paper,
+            color: theme.vars.palette.background.paper,
           }}
           className={classes.fab}
           {...fabProps}

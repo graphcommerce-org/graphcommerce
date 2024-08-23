@@ -1,4 +1,4 @@
-export * from './DarkLightModeThemeProvider'
+export * from './DarkLightMode'
 export * from './MuiButton'
 export * from './MuiChip'
 export * from './MuiFab'

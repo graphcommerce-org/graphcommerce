@@ -97,9 +97,9 @@ export function CartItem(props: CartItemProps) {
             fabProps={{ className: classes.badge }}
             sx={(theme) => ({
               '& > button': {
-                background: theme.palette.background.paper,
+                background: theme.vars.palette.background.paper,
                 '&:hover, &:active, &:visited': {
-                  background: theme.palette.background.paper,
+                  background: theme.vars.palette.background.paper,
                 },
                 [theme.breakpoints.down('md')]: {
                   width: 30,
@@ -122,7 +122,7 @@ export function CartItem(props: CartItemProps) {
           width: rowImageSize,
           height: rowImageSize,
           padding: responsiveVal(5, 10),
-          border: `1px solid ${theme.palette.divider}`,
+          border: `1px solid ${theme.vars.palette.divider}`,
           borderRadius: '50%',
           alignSelf: 'center',
         })}
@@ -142,7 +142,7 @@ export function CartItem(props: CartItemProps) {
               className={classes.image}
               sx={(theme) => ({
                 gridColumn: 1,
-                backgroundColor: theme.palette.background.image,
+                backgroundColor: theme.vars.palette.background.image,
                 objectFit: 'cover',
                 display: 'block',
                 width: '110% !important',
@@ -164,7 +164,7 @@ export function CartItem(props: CartItemProps) {
           sx={(theme) => ({
             typgrapht: 'subtitle1',
             fontWeight: theme.typography.fontWeightBold,
-            color: theme.palette.text.primary,
+            color: theme.vars.palette.text.primary,
             textDecoration: 'none',
             flexWrap: 'nowrap',
             maxWidth: 'max-content',
@@ -188,7 +188,7 @@ export function CartItem(props: CartItemProps) {
         sx={(theme) => ({
           gridArea: 'itemPrice',
           textAlign: 'left',
-          color: theme.palette.text.secondary,
+          color: theme.vars.palette.text.secondary,
           alignSelf: 'center',
           [theme.breakpoints.up('sm')]: {
             alignSelf: 'flex-start',

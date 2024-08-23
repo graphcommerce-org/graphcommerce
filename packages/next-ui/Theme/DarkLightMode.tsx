@@ -9,6 +9,7 @@ import {
   ListItemIcon,
   ListItemText,
   ListItemButtonProps,
+  useColorScheme,
 } from '@mui/material'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
@@ -97,16 +98,30 @@ export function useColorMode() {
   return useContext(colorModeContext)
 }
 
-export function DarkLightModeToggleFab(props: Omit<FabProps, 'onClick'>) {
-  const { currentMode, isSingleMode, toggle } = useColorMode()
+const toggle = (
+  mode: ReturnType<typeof useColorScheme>['mode'],
+  setMode: ReturnType<typeof useColorScheme>['setMode'],
+) => {
+  setMode(mode === 'light' ? 'dark' : 'light')
+}
 
-  if (isSingleMode) {
+export function DarkLightModeToggleFab(props: Omit<FabProps, 'onClick'>) {
+  const { mode, setMode, allColorSchemes } = useColorScheme()
+
+  if (allColorSchemes.length < 2) {
     return null
   }
 
   return (
-    <Fab size='large' color='inherit' onClick={toggle} {...props}>
-      <IconSvg src={currentMode === 'light' ? iconMoon : iconSun} size='large' />
+    <Fab
+      size='large'
+      color='inherit'
+      onClick={() => {
+        toggle(mode, setMode)
+      }}
+      {...props}
+    >
+      <IconSvg src={mode === 'light' ? iconMoon : iconSun} size='large' />
     </Fab>
   )
 }
@@ -118,19 +133,26 @@ export function DarkLightModeToggleFab(props: Omit<FabProps, 'onClick'>) {
  */
 export function DarkLightModeMenuSecondaryItem(props: ListItemButtonProps) {
   const { sx = [] } = props
-  const { currentMode, isSingleMode, toggle } = useColorMode()
+  const { mode, setMode, allColorSchemes } = useColorScheme()
 
-  if (isSingleMode) {
+  if (allColorSchemes.length < 2) {
     return null
   }
 
   return (
-    <ListItemButton {...props} sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]} dense onClick={toggle}>
+    <ListItemButton
+      {...props}
+      sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]}
+      dense
+      onClick={() => {
+        toggle(mode, setMode)
+      }}
+    >
       <ListItemIcon sx={{ minWidth: 'unset', paddingRight: '8px' }}>
-        <IconSvg src={currentMode === 'light' ? iconMoon : iconSun} size='medium' />
+        <IconSvg src={mode === 'light' ? iconMoon : iconSun} size='medium' />
       </ListItemIcon>
       <ListItemText>
-        {currentMode === 'light' ? <Trans id='Dark Mode' /> : <Trans id='Light Mode' />}
+        {mode === 'light' ? <Trans id='Dark Mode' /> : <Trans id='Light Mode' />}
       </ListItemText>
     </ListItemButton>
   )

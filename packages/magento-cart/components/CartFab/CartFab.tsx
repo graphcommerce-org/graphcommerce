@@ -8,9 +8,9 @@ import {
   useFabSize,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { alpha, Fab, FabProps, styled, useTheme, Box, SxProps, Theme } from '@mui/material'
+import { Fab, FabProps, styled, Box, SxProps, Theme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import { useCartQuery } from '../../hooks/useCartQuery'
 import { CartFabDocument } from './CartFab.gql'
 import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
@@ -36,13 +36,9 @@ const { classes } = extendableComponent('CartFab', ['root', 'cart', 'shadow'] as
 function CartFabContent(props: CartFabContentProps) {
   const { total_quantity, icon, sx = [], ...fabProps } = props
 
-  const theme2 = useTheme()
   const scrollY = useScrollY()
   const opacity = useTransform(scrollY, [50, 60], [0, 1])
-
-  const paper0 = alpha(theme2.palette.background.paper, 0)
-  const paper1 = alpha(theme2.palette.background.paper, 1)
-  const backgroundColor = useTransform(scrollY, [0, 10], [paper0, paper1])
+  const backgroundOpacity = useTransform(scrollY, [0, 10], [0, 1])
 
   const cartIcon = icon ?? <IconSvg src={iconShoppingBag} size='large' />
   const fabIconSize = useFabSize('responsive')
@@ -61,10 +57,14 @@ function CartFabContent(props: CartFabContentProps) {
         aria-label={i18n._(/* i18n */ 'Cart')}
         color='inherit'
         size='responsive'
-        style={{ backgroundColor }}
+        style={
+          // Motion types don't understand css vars are valid keys. Force type as CSSProperties to make ts shut up
+          { '--background-opacity': backgroundOpacity } as CSSProperties
+        }
         sx={(theme) => ({
+          backgroundColor: `rgb(${theme.vars.palette.background.paperChannel} / var(--background-opacity, 0)) !important`,
           [theme.breakpoints.down('md')]: {
-            backgroundColor: `${theme.palette.background.paper} !important`,
+            backgroundColor: `${theme.vars.palette.background.paper} !important`,
           },
         })}
         {...fabProps}

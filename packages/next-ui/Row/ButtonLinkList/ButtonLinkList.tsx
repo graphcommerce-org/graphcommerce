@@ -44,7 +44,7 @@ export function ButtonLinkList(props: ButtonLinkListProps) {
             marginTop: theme.spacings.sm,
             marginBottom: theme.spacings.xxs,
             paddingBottom: theme.spacings.xxs,
-            borderBottom: `1px solid ${theme.palette.divider}`,
+            borderBottom: `1px solid ${theme.vars.palette.divider}`,
           }),
         ]}
       >

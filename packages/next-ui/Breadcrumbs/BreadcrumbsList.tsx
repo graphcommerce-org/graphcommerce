@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/react'
-import { Box, Link, alpha, useTheme } from '@mui/material'
+import { Box, Link, useTheme } from '@mui/material'
 import { useEffect, useRef, KeyboardEvent } from 'react'
 import type { BreadcrumbsType } from './types'
 
@@ -69,7 +69,7 @@ export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
           flex: 1,
           padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
           '&:hover': {
-            backgroundColor: alpha(theme.palette.action.hover, 0.025),
+            backgroundColor: theme.vars.palette.action.hover,
           },
         }}
       >
@@ -89,7 +89,7 @@ export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
             flex: 1,
             padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
             '&:hover': {
-              backgroundColor: alpha(theme.palette.action.hover, 0.025),
+              backgroundColor: theme.vars.palette.action.hover,
             },
           }}
         >

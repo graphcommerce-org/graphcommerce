@@ -1,16 +1,7 @@
-import {
-  lighten,
-  Badge,
-  Chip,
-  ChipProps,
-  SxProps,
-  Typography,
-  useEventCallback,
-  Theme,
-} from '@mui/material'
+import { Badge, Chip, ChipProps, SxProps, Typography, useEventCallback, Theme } from '@mui/material'
 import React, { useState } from 'react'
 import { IconSvg } from '../IconSvg'
-import { responsiveVal } from '../Styles'
+import { lighten, responsiveVal } from '../Styles'
 import { iconChevronDown, iconChevronUp } from '../icons'
 import { OverlayOrPopperPanel, OverlayOrPopperPanelProps } from './OverlayOrPopperPanel'
 
@@ -89,26 +80,32 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
             },
             ...(selected
               ? {
-                  background: lighten(
-                    theme.palette.primary.main,
-                    1 - theme.palette.action.hoverOpacity,
+                  ...lighten(
+                    'background',
+                    theme.vars.palette.primary.main,
+                    `1 - ${theme.vars.palette.action.hoverOpacity}`,
                   ),
+
                   ...theme.applyStyles('dark', {
-                    background: lighten(
-                      theme.palette.background.default,
-                      theme.palette.action.hoverOpacity,
+                    ...lighten(
+                      'background',
+                      theme.vars.palette.background.default,
+                      theme.vars.palette.action.hoverOpacity,
                     ),
                   }),
                   border: '1px solid transparent',
                   '&.MuiChip-clickable:hover': {
-                    background: lighten(
-                      theme.palette.primary.main,
-                      1 - theme.palette.action.hoverOpacity * 2,
+                    ...lighten(
+                      'background',
+                      theme.vars.palette.primary.main,
+                      `1 - ${theme.vars.palette.action.hoverOpacity} * 2`,
                     ),
+
                     ...theme.applyStyles('dark', {
-                      background: lighten(
-                        theme.palette.background.default,
-                        theme.palette.action.hoverOpacity * 2,
+                      ...lighten(
+                        'background',
+                        theme.vars.palette.background.default,
+                        `${theme.vars.palette.action.hoverOpacity} * 2`,
                       ),
                     }),
                     border: '1px solid transparent',

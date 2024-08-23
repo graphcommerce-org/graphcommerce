@@ -67,7 +67,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             position: 'absolute',
             left: 0,
             width: '100%',
-            backgroundColor: theme.palette.background[bgColor],
+            backgroundColor: theme.vars.palette.background[bgColor],
             boxShadow: theme.shadows[1],
 
             height: theme.appShell.headerHeightSm,

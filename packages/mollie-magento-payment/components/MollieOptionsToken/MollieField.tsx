@@ -121,9 +121,9 @@ export function MollieField(props: MollieFieldProps) {
         }}
         InputLabelProps={{
           sx: (theme) => ({
-            background: theme.palette.secondary.light,
+            background: theme.vars.palette.secondary.light,
             ...theme.applyStyles('dark', {
-              background: theme.palette.background.paper,
+              background: theme.vars.palette.background.paper,
             }),
           }),
           shrink: true,

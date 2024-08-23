@@ -38,7 +38,7 @@ export function SearchButton(props: SearchButtonProps) {
           marginRight: theme.spacings.xxs,
           width: responsiveVal(64, 172),
           '& fieldset': {
-            border: `1px solid ${theme.palette.divider}`,
+            border: `1px solid ${theme.vars.palette.divider}`,
           },
           [theme.breakpoints.down('md')]: {
             width: '100%',

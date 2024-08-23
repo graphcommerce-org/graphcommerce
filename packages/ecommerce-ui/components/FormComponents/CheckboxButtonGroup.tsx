@@ -105,7 +105,7 @@ export function CheckboxButtonGroup<TFieldValues extends FieldValues>({
               control={
                 <Checkbox
                   sx={{
-                    color: invalid ? theme.palette.error.main : undefined,
+                    color: invalid ? theme.vars.palette.error.main : undefined,
                   }}
                   color={checkboxColor || 'primary'}
                   value={optionKey}

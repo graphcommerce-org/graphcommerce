@@ -55,7 +55,7 @@ export function OrderItem(props: OrderItemProps) {
     <Box
       className={classes.root}
       sx={(theme) => ({
-        borderBottom: `1px solid ${theme.palette.divider}`,
+        borderBottom: `1px solid ${theme.vars.palette.divider}`,
         display: 'grid',
         gridTemplate: `
           "picture itemName itemName itemName"
@@ -102,7 +102,7 @@ export function OrderItem(props: OrderItemProps) {
                 src={thumbnail?.url ?? ''}
                 className={classes.image}
                 sx={(theme) => ({
-                  backgroundColor: theme.palette.background.image,
+                  backgroundColor: theme.vars.palette.background.image,
                 })}
               />
             )}
@@ -118,7 +118,7 @@ export function OrderItem(props: OrderItemProps) {
           typography: 'h5',
           fontWeight: 500,
           gridArea: 'itemName',
-          color: theme.palette.text.primary,
+          color: theme.vars.palette.text.primary,
           textDecoration: 'none',
           flexWrap: 'nowrap',
           maxWidth: 'max-content',
@@ -135,7 +135,7 @@ export function OrderItem(props: OrderItemProps) {
         sx={(theme) => ({
           gridArea: 'itemPrice',
           textAlign: 'left',
-          color: theme.palette.text.secondary,
+          color: theme.vars.palette.text.secondary,
         })}
       >
         <Money {...product_sale_price} />
@@ -160,7 +160,7 @@ export function OrderItem(props: OrderItemProps) {
               key={option?.label}
               className={classes.option}
               sx={(theme) => ({
-                color: theme.palette.grey['500'],
+                color: theme.vars.palette.grey['500'],
                 marginRight: theme.spacings.xs,
                 paddingBottom: '1px',
                 display: 'inline',

@@ -1,15 +1,6 @@
-import {
-  alpha,
-  Box,
-  BoxProps,
-  ButtonBase,
-  ButtonProps,
-  lighten,
-  SxProps,
-  Theme,
-} from '@mui/material'
+import { Box, BoxProps, ButtonBase, ButtonProps, SxProps, Theme } from '@mui/material'
 import React from 'react'
-import { extendableComponent, responsiveVal } from '../Styles'
+import { extendableComponent, lighten, responsiveVal } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
 
 type Variants = 'outlined' | 'default'
@@ -163,23 +154,21 @@ export function ActionCard(props: ActionCardProps) {
             //   width: '100%',
             //   left: 0,
             //   bottom: '-1px',
-            //   borderBottom: `1px solid ${theme.palette.divider}`,
+            //   borderBottom: `1px solid ${theme.vars.palette.divider}`,
             //   display: 'block',
             // },
             '&.selected': {
-              backgroundColor: alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+              backgroundColor: `rgb(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`,
               ...theme.applyStyles('dark', {
-                backgroundColor: lighten(
-                  theme.palette.background.default,
-                  theme.palette.action.hoverOpacity,
+                ...lighten(
+                  'backgroundColor',
+                  theme.vars.palette.background.default,
+                  theme.vars.palette.action.hoverOpacity,
                 ),
               }),
             },
             '&.error': {
-              backgroundColor: `${alpha(
-                theme.palette.error.main,
-                theme.palette.action.hoverOpacity,
-              )}`,
+              backgroundColor: `rgb(${theme.vars.palette.error.mainChannel} / ${theme.vars.palette.action.hoverOpacity})`,
             },
 
             // '&.sizeSmall': {
@@ -213,8 +202,8 @@ export function ActionCard(props: ActionCardProps) {
           },
 
           '&.variantOutlined': {
-            backgroundColor: theme.palette.background.paper,
-            boxShadow: `inset 0 0 0 1px ${theme.palette.divider}`,
+            backgroundColor: theme.vars.palette.background.paper,
+            boxShadow: `inset 0 0 0 1px ${theme.vars.palette.divider}`,
             '&:not(:last-of-type)': {
               marginBottom: '-1px',
             },
@@ -252,33 +241,27 @@ export function ActionCard(props: ActionCardProps) {
 
             '&.selected': {
               borderColor: 'transparent',
-              boxShadow: `inset 0 0 0 2px ${theme.palette[color].main}`,
+              boxShadow: `inset 0 0 0 2px ${theme.vars.palette[color].main}`,
             },
             '&.selected:focus': {
               borderColor: 'transparent',
-              boxShadow: `inset 0 0 0 2px ${theme.palette[color].main}, 0 0 0 4px ${alpha(
-                theme.palette[color].main,
-                theme.palette.action.hoverOpacity,
-              )}`,
+              boxShadow: `inset 0 0 0 2px ${theme.vars.palette[color].main}, 0 0 0 4px rgb(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`,
             },
             '&:focus': {
-              boxShadow: `inset 0 0 0 1px ${theme.palette.divider},0 0 0 4px ${alpha(
-                theme.palette[color].main,
-                theme.palette.action.hoverOpacity,
-              )}`,
+              boxShadow: `inset 0 0 0 1px ${theme.vars.palette.divider},0 0 0 4px rgb(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`,
             },
 
             '&.error': {
-              boxShadow: `0 0 0 2px ${theme.palette.error.main}`,
+              boxShadow: `0 0 0 2px ${theme.vars.palette.error.main}`,
             },
           },
           '&.selected': {
             zIndex: 1,
           },
           '&.disabled': {
-            background: theme.palette.action.disabledBackground,
-            opacity: theme.palette.action.disabledOpacity,
-            color: theme.palette.action.disabled,
+            background: theme.vars.palette.action.disabledBackground,
+            opacity: theme.vars.palette.action.disabledOpacity,
+            color: theme.vars.palette.action.disabled,
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
@@ -355,7 +338,7 @@ export function ActionCard(props: ActionCardProps) {
           {action && (
             <Box
               className={classes.action}
-              sx={(theme) => ({ marginBottom: '5px', color: theme.palette[color].main })}
+              sx={(theme) => ({ marginBottom: '5px', color: theme.vars.palette[color].main })}
             >
               {!selected ? action : reset}
             </Box>

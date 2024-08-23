@@ -33,7 +33,7 @@ export function SearchBox(props: SearchBoxProps) {
     <Box
       sx={(theme) => ({
         minWidth: 'max-content',
-        color: theme.palette.text.disabled,
+        color: theme.vars.palette.text.disabled,
         paddingRight: '7px',
       })}
     >

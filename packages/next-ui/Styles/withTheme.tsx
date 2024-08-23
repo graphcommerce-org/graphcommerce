@@ -49,8 +49,8 @@ export function withTheme<T>(
           sx={[
             {
               typography: 'body1',
-              color: theme.palette.text.primary,
-              backgroundColor: theme.palette.background.default,
+              color: theme.vars.palette.text.primary,
+              backgroundColor: theme.vars.palette.background.default,
             },
             ...(Array.isArray(sx) ? sx : [sx]),
           ]}

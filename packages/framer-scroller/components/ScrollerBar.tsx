@@ -70,15 +70,15 @@ export function ScrollerBar(props: ScrollerBarProps) {
       className={classes.track}
       sx={sx}
       whileHover={{
-        backgroundColor: theme.palette.action.selected,
-        // borderTop: `1px solid ${theme.palette.action.active}`,
+        backgroundColor: theme.vars.palette.action.selected,
+        // borderTop: `1px solid ${theme.vars.palette.action.active}`,
       }}
     >
       <Scroll
         className={classes.thumb}
         aria-label='Scroll'
         sx={{
-          backgroundColor: theme.palette.action.active,
+          backgroundColor: theme.vars.palette.action.active,
           borderRadius: '50px',
         }}
         style={{ [direction]: thumbX, [size]: thumbSize }}

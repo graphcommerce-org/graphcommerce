@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { alpha, Button, ButtonProps } from '@mui/material'
+import { Button, ButtonProps } from '@mui/material'
 import React, { FormEvent } from 'react'
 import { extendableComponent } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
@@ -69,13 +69,10 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
           },
 
           '&.selected': {
-            border: `1px solid ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
+            border: `1px solid ${theme.vars.palette[color]?.main ?? theme.vars.palette.primary.main}`,
             boxShadow: `inset 0 0 0 1px ${
-              theme.palette[color]?.main ?? theme.palette.primary.main
-            },0 0 0 4px ${alpha(
-              theme.palette.primary.main,
-              theme.palette.action.hoverOpacity,
-            )} !important`,
+              theme.vars.palette[color]?.main ?? theme.vars.palette.primary.main
+            },0 0 0 4px rgb(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.hoverOpacity}) !important`,
           },
           ':not(&.sizeSmall)': {
             ...breakpointVal(

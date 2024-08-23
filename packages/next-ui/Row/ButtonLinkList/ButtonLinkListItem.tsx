@@ -23,7 +23,7 @@ export function ButtonLinkListItem(props: ButtonLinkListItemProps) {
       href={url}
       sx={(theme) => ({
         padding: `${theme.spacings.xxs} 0`,
-        borderBottom: `1px solid ${theme.palette.divider}`,
+        borderBottom: `1px solid ${theme.vars.palette.divider}`,
         justifyContent: 'space-between',
       })}
       {...listItemButtonProps}

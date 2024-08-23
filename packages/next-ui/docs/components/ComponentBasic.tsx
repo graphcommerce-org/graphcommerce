@@ -7,7 +7,7 @@ import React from 'react'
 const Root = styled('div')(({ theme }) => ({
   padding: '3px',
   display: 'flex',
-  color: theme.palette.text.primary,
+  color: theme.vars.palette.text.primary,
 }))
 
 // ---- MyComponent component ----

@@ -29,7 +29,7 @@ export const CategoryHeroNav = React.memo<CategoryHeroNavProps>(
             "placeholder"
           `,
           gridTemplateRows: 'auto auto 1fr',
-          borderBottom: `1px solid ${theme.palette.divider}`,
+          borderBottom: `1px solid ${theme.vars.palette.divider}`,
           marginBottom: theme.spacings.xxl,
           paddingBottom: theme.page.vertical,
           [theme.breakpoints.up('md')]: {

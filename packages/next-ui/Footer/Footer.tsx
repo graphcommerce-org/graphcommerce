@@ -36,7 +36,7 @@ export function Footer(props: FooterProps) {
         sx={[
           (theme) => ({
             gridTemplateColumns: '5fr 3fr',
-            borderTop: `1px solid ${theme.palette.divider}`,
+            borderTop: `1px solid ${theme.vars.palette.divider}`,
             display: 'grid',
             alignItems: 'center',
             padding: `${theme.spacings.lg} ${theme.page.horizontal} ${theme.page.vertical}`,

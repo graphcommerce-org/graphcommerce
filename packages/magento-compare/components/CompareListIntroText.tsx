@@ -11,7 +11,7 @@ export function CompareListIntroText({ children }: CompareListIntroTextProps) {
         position: 'relative',
         textAlign: 'center',
         paddingBottom: 2,
-        background: theme.palette.background.paper,
+        background: theme.vars.palette.background.paper,
         zIndex: 11,
       })}
     >

@@ -64,7 +64,7 @@ export function CategoryChildren(props: CategoryChildrenProps) {
                   content: '""',
                   width: 40,
                   height: 2,
-                  background: theme.palette.primary.main,
+                  background: theme.vars.palette.primary.main,
                   position: 'absolute',
                   left: 0,
                   right: 0,

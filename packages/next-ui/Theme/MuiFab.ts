@@ -95,10 +95,10 @@ export const MuiFabSizes: FabVariants = sizes.map((size) => ({
 //     style: ({ theme }) => ({
 //       boxShadow: 'none',
 //       '&:hover, &:focus': {
-//         background: theme.palette.text.primary,
+//         background: theme.vars.palette.text.primary,
 //       },
-//       background: theme.palette.text.primary,
-//       color: theme.palette.background.paper,
+//       background: theme.vars.palette.text.primary,
+//       color: theme.vars.palette.background.paper,
 //     }),
 //   },
 // ]

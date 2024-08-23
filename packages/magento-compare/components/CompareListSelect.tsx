@@ -37,7 +37,7 @@ export function CompareListSelect(props: CompareListSelectProps) {
         (theme) => ({
           pt: 1,
           pb: theme.spacings.xxs,
-          background: theme.palette.background[bgColor],
+          background: theme.vars.palette.background[bgColor],
           position: 'sticky',
           zIndex: 10,
           top: {

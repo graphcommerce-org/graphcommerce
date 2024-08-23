@@ -91,7 +91,7 @@ export function OrderCard(props: OrderCardProps) {
           width: '100%',
           boxShadow: 'none',
           marginTop: theme.spacings.xxs,
-          borderBottom: `1px solid ${theme.palette.divider}`,
+          borderBottom: `1px solid ${theme.vars.palette.divider}`,
           '&:hover': { background: 'none' },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

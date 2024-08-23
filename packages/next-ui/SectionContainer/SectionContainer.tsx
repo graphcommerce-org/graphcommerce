@@ -20,7 +20,7 @@ export function SectionContainer(props: SectionContainerProps) {
       sx={[
         (theme) => ({
           '&.borderBottom': {
-            borderBottom: `1px solid ${theme.palette.divider}`,
+            borderBottom: `1px solid ${theme.vars.palette.divider}`,
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
@@ -29,7 +29,7 @@ export function SectionContainer(props: SectionContainerProps) {
       <SectionHeader
         {...sectionHeaderProps}
         sx={(theme) => ({
-          borderBottom: `1px solid ${theme.palette.divider}`,
+          borderBottom: `1px solid ${theme.vars.palette.divider}`,
           paddingBottom: theme.spacings.xxs,
           marginBottom: theme.spacings.xxs,
         })}
