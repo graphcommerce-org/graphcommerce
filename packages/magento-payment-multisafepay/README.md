@@ -37,25 +37,20 @@
      magentoBaseUrl: String!
    }
    ```
-6. Update `graphcommerce.config.js`:
-   ```js
-   const config = {
-     magentoBaseUrl: 'https://magento-prod.domain.nl',
-   }
-   ```
-7. Update `next.config.js` to handle rewrites for the Return-URL:
+6. Update `next.config.js` to handle rewrites for the Return-URL:
 
    ```js
    const { loadConfig } = require('@graphcommerce/next-config')
 
    const config = loadConfig()
+   const baseUrl = config.magentoEndpoint.replace('/graphql', '') // result: 'https://magento-prod.domain.nl'
 
    const nextConfig = {
      async rewrites() {
        return [
          {
            source: '/multisafepay/connect/:slug*',
-           destination: `${config.magentoBaseUrl}/multisafepay/connect/:slug*`,
+           destination: `${baseUrl}/multisafepay/connect/:slug*`,
          },
        ]
      },
