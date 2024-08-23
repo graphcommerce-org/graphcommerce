@@ -27,17 +27,7 @@
        ```
        https://$domain/$locale/checkout/payment?locked=1&success=1&cart_id={{quote.masked_id}}&method={{payment.code}}&order_number={{order.increment_id}}
        ```
-5. Add the `magentoBaseUrl` configuration to `graphql/Config.graphqls`:
-   ```graphql
-   extend input GraphCommerceConfig {
-     """
-     @private
-     Base URL for Magento installation
-     """
-     magentoBaseUrl: String!
-   }
-   ```
-6. Update `next.config.js` to handle rewrites for the Return-URL:
+5. Update `next.config.js` to handle rewrites for the Return-URL:
 
    ```js
    const { loadConfig } = require('@graphcommerce/next-config')
