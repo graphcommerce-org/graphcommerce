@@ -1,6 +1,7 @@
 mutation SetShippingBillingAddress(
   $cartId: String!
   $company: String
+  $vatId: String
   $firstname: String!
   $lastname: String!
   $postcode: String!
@@ -14,6 +15,7 @@ mutation SetShippingBillingAddress(
   $telephone: String = "000 - 000 0000"
   $saveInAddressBook: Boolean!
   $customerNote: String
+  $isCompany: Boolean = false
 ) {
   setShippingAddressesOnCart(
     input: {
@@ -22,6 +24,7 @@ mutation SetShippingBillingAddress(
         {
           address: {
             company: $company
+            vat_id: $vatId
             firstname: $firstname
             lastname: $lastname
             postcode: $postcode
@@ -39,6 +42,7 @@ mutation SetShippingBillingAddress(
     }
   ) {
     cart {
+      isCompany: id @include(if: $isCompany)
       id
       __typename
       ...ShippingAddress
@@ -51,6 +55,7 @@ mutation SetShippingBillingAddress(
       billing_address: {
         address: {
           company: $company
+          vat_id: $vatId
           firstname: $firstname
           lastname: $lastname
           postcode: $postcode
@@ -67,6 +72,7 @@ mutation SetShippingBillingAddress(
     }
   ) {
     cart {
+      isCompany: id @include(if: $isCompany)
       id
       __typename
       ...BillingAddress

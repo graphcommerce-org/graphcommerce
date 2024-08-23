@@ -1,7 +1,8 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { GetStaticPaths } from 'next'
 import {
@@ -19,6 +20,7 @@ import {
   RowRenderer,
 } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = HygraphPagesQuery & BlogListTaggedQuery
 type RouteProps = { url: string }
@@ -62,7 +64,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (import.meta.graphCommerce.limitSsg) return { paths: [], fallback: 'blocking' }
 
   const responses = locales.map(async (locale) => {
-    const staticClient = graphqlSsrClient(locale)
+    const staticClient = graphqlSsrClient({ locale })
     const BlogPostPaths = staticClient.query({ query: BlogPostTaggedPathsDocument })
     const { pages } = (await BlogPostPaths).data
     return (
@@ -76,27 +78,33 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const { locale, params } = context
   const urlKey = params?.url ?? '??'
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
   const limit = 99
   const conf = client.query({ query: StoreConfigDocument })
   const page = hygraphPageContent(staticClient, `blog/tagged/${urlKey}`)
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   const blogPosts = staticClient.query({
     query: BlogListTaggedDocument,
     variables: { currentUrl: [`blog/tagged/${urlKey}`], first: limit, tagged: params?.url },
   })
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+
+  if (!(await page).data.pages?.[0])
+    return redirectOrNotFound(staticClient, conf, { url: `blog/${urlKey}` }, locale)
 
   return {
     props: {
       ...(await page).data,
       ...(await blogPosts).data,
       ...(await layout).data,
-      up: { href: '/blog', title: 'Blog' },
+      up: { href: '/blog', title: i18n._(/* i18n */ 'Blog') },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

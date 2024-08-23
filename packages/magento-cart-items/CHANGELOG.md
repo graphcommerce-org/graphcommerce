@@ -1,5 +1,171 @@
 # Change Log
 
+## 9.0.0-canary.79
+
+## 9.0.0-canary.78
+
+## 9.0.0-canary.77
+
+## 9.0.0-canary.76
+
+## 9.0.0-canary.75
+
+## 9.0.0-canary.74
+
+## 9.0.0-canary.73
+
+## 9.0.0-canary.72
+
+## 9.0.0-canary.71
+
+## 9.0.0-canary.70
+
+## 9.0.0-canary.69
+
+## 9.0.0-canary.68
+
+## 9.0.0-canary.67
+
+## 9.0.0-canary.66
+
+## 9.0.0-canary.65
+
+## 9.0.0-canary.64
+
+## 9.0.0-canary.63
+
+## 9.0.0-canary.62
+
+## 9.0.0-canary.61
+
+## 9.0.0-canary.60
+
+## 9.0.0-canary.59
+
+## 9.0.0-canary.58
+
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+### Minor Changes
+
+- [#2322](https://github.com/graphcommerce-org/graphcommerce/pull/2322) [`4d08a2b`](https://github.com/graphcommerce-org/graphcommerce/commit/4d08a2bd8c1919bd85b18e8e856775d18fb67e00) - Rename configurable_customizable back to customizable_options ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+## 8.1.0-canary.46
+
+## 8.1.0-canary.45
+
+### Patch Changes
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`c30ac07`](https://github.com/graphcommerce-org/graphcommerce/commit/c30ac07d1e9aee5fb3df483404d8a8ca853c93ce) - Make sure the edit cart item isn't shown for an order ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.44
+
+## 8.1.0-canary.43
+
+## 8.1.0-canary.42
+
+## 8.1.0-canary.41
+
+## 8.1.0-canary.40
+
+## 8.1.0-canary.39
+
+## 8.1.0-canary.38
+
+## 8.1.0-canary.37
+
+## 8.1.0-canary.36
+
+## 8.1.0-canary.35
+
+## 8.1.0-canary.34
+
+## 8.1.0-canary.33
+
+## 8.1.0-canary.32
+
+## 8.1.0-canary.31
+
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
+## 8.1.0-canary.28
+
+## 8.1.0-canary.27
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
+## 8.1.0-canary.20
+
+### Minor Changes
+
+- [#2246](https://github.com/graphcommerce-org/graphcommerce/pull/2246) [`13524f9`](https://github.com/graphcommerce-org/graphcommerce/commit/13524f991a810c1679db49b3b8b4f04f90d0d6c1) - Added the ability to edit cart items with full support for all product types and custom options ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+### Patch Changes
+
+- [#2246](https://github.com/graphcommerce-org/graphcommerce/pull/2246) [`fc5c04d`](https://github.com/graphcommerce-org/graphcommerce/commit/fc5c04d4a2c0301be7d3cc983d9b31f6fcaf6fe6) - Create useRemoveItemFromCart hook to allow for reuse while keeping compatibility with plugins. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.1.0-canary.19
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+### Minor Changes
+
+- [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed useMediaQuery from the wishlist and cart ItemActionCard and replaced it with a new responsive size prop. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+## 8.1.0-canary.8
+
+## 8.1.0-canary.7
+
 ## 8.1.0-canary.6
 
 ## 8.1.0-canary.5
@@ -74,8 +240,7 @@
 
 ### Patch Changes
 
-- [#2190](https://github.com/graphcommerce-org/graphcommerce/pull/2190) [`770a309`](https://github.com/graphcommerce-org/graphcommerce/commit/770a309cdf0586aaaed5defd345e451dee8d89c8) - Fixed a bug concerning customizable options. Customizable options of configurable products are shown again in the cart.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2190](https://github.com/graphcommerce-org/graphcommerce/pull/2190) [`770a309`](https://github.com/graphcommerce-org/graphcommerce/commit/770a309cdf0586aaaed5defd345e451dee8d89c8) - Fixed a bug concerning customizable options. Customizable options of configurable products are shown again in the cart. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.1-canary.4
 
@@ -83,8 +248,7 @@
 
 ### Patch Changes
 
-- [#2190](https://github.com/graphcommerce-org/graphcommerce/pull/2190) [`770a309`](https://github.com/graphcommerce-org/graphcommerce/commit/770a309cdf0586aaaed5defd345e451dee8d89c8) - Fixed a bug concerning customizable options. Customizable options of configurable products are shown again in the cart.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2190](https://github.com/graphcommerce-org/graphcommerce/pull/2190) [`770a309`](https://github.com/graphcommerce-org/graphcommerce/commit/770a309cdf0586aaaed5defd345e451dee8d89c8) - Fixed a bug concerning customizable options. Customizable options of configurable products are shown again in the cart. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.1-canary.2
 
@@ -96,25 +260,19 @@
 
 ### Minor Changes
 
-- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`b9ab035`](https://github.com/graphcommerce-org/graphcommerce/commit/b9ab035893fd0fbbe747333973d0bb1948e5d846) - Added a new `<CartCrosssellsScroller />` component to render crosssells in a horizontal scroller in the cart.
-  ([@StefanAngenent](https://github.com/StefanAngenent))
+- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`b9ab035`](https://github.com/graphcommerce-org/graphcommerce/commit/b9ab035893fd0fbbe747333973d0bb1948e5d846) - Added a new `<CartCrosssellsScroller />` component to render crosssells in a horizontal scroller in the cart. ([@StefanAngenent](https://github.com/StefanAngenent))
 
-- [#2099](https://github.com/graphcommerce-org/graphcommerce/pull/2099) [`ff796b8`](https://github.com/graphcommerce-org/graphcommerce/commit/ff796b838fae6cb5e35b101500133b0235a8677d) - Support for all customizable product options (except file upload) on the product pages and in the cart.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2099](https://github.com/graphcommerce-org/graphcommerce/pull/2099) [`ff796b8`](https://github.com/graphcommerce-org/graphcommerce/commit/ff796b838fae6cb5e35b101500133b0235a8677d) - Support for all customizable product options (except file upload) on the product pages and in the cart. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2018](https://github.com/graphcommerce-org/graphcommerce/pull/2018) [`750aa6a`](https://github.com/graphcommerce-org/graphcommerce/commit/750aa6a72710869d54244467253212e551d335e0) - Changed the layout of the succes page. We are using ActionCards right now to match the design of the cart.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2018](https://github.com/graphcommerce-org/graphcommerce/pull/2018) [`750aa6a`](https://github.com/graphcommerce-org/graphcommerce/commit/750aa6a72710869d54244467253212e551d335e0) - Changed the layout of the succes page. We are using ActionCards right now to match the design of the cart. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ### Patch Changes
 
-- [#2179](https://github.com/graphcommerce-org/graphcommerce/pull/2179) [`2e6afd9`](https://github.com/graphcommerce-org/graphcommerce/commit/2e6afd945a41f94facfc0379ca6416de8552341f) - The `<UpdateItemQuantity />` component now accepts `textInputProps` to be passed to the `<TextInputNumber/>`.
-  ([@paales](https://github.com/paales))
+- [#2179](https://github.com/graphcommerce-org/graphcommerce/pull/2179) [`2e6afd9`](https://github.com/graphcommerce-org/graphcommerce/commit/2e6afd945a41f94facfc0379ca6416de8552341f) - The `<UpdateItemQuantity />` component now accepts `textInputProps` to be passed to the `<TextInputNumber/>`. ([@paales](https://github.com/paales))
 
-- [#2183](https://github.com/graphcommerce-org/graphcommerce/pull/2183) [`afc8810`](https://github.com/graphcommerce-org/graphcommerce/commit/afc8810d89f409f1ea2f6e82a01b3120ded208f9) - When updating the quantity of the product in the cart it could happen that the form would become out of sync with the actual data.
-  ([@paales](https://github.com/paales))
+- [#2183](https://github.com/graphcommerce-org/graphcommerce/pull/2183) [`afc8810`](https://github.com/graphcommerce-org/graphcommerce/commit/afc8810d89f409f1ea2f6e82a01b3120ded208f9) - When updating the quantity of the product in the cart it could happen that the form would become out of sync with the actual data. ([@paales](https://github.com/paales))
 
-- [#2079](https://github.com/graphcommerce-org/graphcommerce/pull/2079) [`98799e0`](https://github.com/graphcommerce-org/graphcommerce/commit/98799e0892d430f32b7599a351cf49a37cfc072c) - Updated styling `<SelectedCustomizableOptions />`, so items get more spacing and elements accessable via sx prop
-  ([@mikekeehnen](https://github.com/mikekeehnen))
+- [#2079](https://github.com/graphcommerce-org/graphcommerce/pull/2079) [`98799e0`](https://github.com/graphcommerce-org/graphcommerce/commit/98799e0892d430f32b7599a351cf49a37cfc072c) - Updated styling `<SelectedCustomizableOptions />`, so items get more spacing and elements accessable via sx prop ([@mikekeehnen](https://github.com/mikekeehnen))
 
 ## 8.0.0-canary.100
 
@@ -122,8 +280,7 @@
 
 ### Patch Changes
 
-- [#2183](https://github.com/graphcommerce-org/graphcommerce/pull/2183) [`afc8810`](https://github.com/graphcommerce-org/graphcommerce/commit/afc8810d89f409f1ea2f6e82a01b3120ded208f9) - When updating the quantity of the product in the cart it could happen that the form would become out of sync with the actual data.
-  ([@paales](https://github.com/paales))
+- [#2183](https://github.com/graphcommerce-org/graphcommerce/pull/2183) [`afc8810`](https://github.com/graphcommerce-org/graphcommerce/commit/afc8810d89f409f1ea2f6e82a01b3120ded208f9) - When updating the quantity of the product in the cart it could happen that the form would become out of sync with the actual data. ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.98
 
@@ -133,8 +290,7 @@
 
 ### Patch Changes
 
-- [#2179](https://github.com/graphcommerce-org/graphcommerce/pull/2179) [`2e6afd9`](https://github.com/graphcommerce-org/graphcommerce/commit/2e6afd945a41f94facfc0379ca6416de8552341f) - The `<UpdateItemQuantity />` component now accepts `textInputProps` to be passed to the `<TextInputNumber/>`.
-  ([@paales](https://github.com/paales))
+- [#2179](https://github.com/graphcommerce-org/graphcommerce/pull/2179) [`2e6afd9`](https://github.com/graphcommerce-org/graphcommerce/commit/2e6afd945a41f94facfc0379ca6416de8552341f) - The `<UpdateItemQuantity />` component now accepts `textInputProps` to be passed to the `<TextInputNumber/>`. ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.95
 
@@ -188,8 +344,7 @@
 
 ### Minor Changes
 
-- [#2099](https://github.com/graphcommerce-org/graphcommerce/pull/2099) [`ff796b8`](https://github.com/graphcommerce-org/graphcommerce/commit/ff796b838fae6cb5e35b101500133b0235a8677d) - Created UI for all customizable options except for the file upload customizable option
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2099](https://github.com/graphcommerce-org/graphcommerce/pull/2099) [`ff796b8`](https://github.com/graphcommerce-org/graphcommerce/commit/ff796b838fae6cb5e35b101500133b0235a8677d) - Created UI for all customizable options except for the file upload customizable option ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.70
 
@@ -201,8 +356,7 @@
 
 ### Minor Changes
 
-- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`b9ab035`](https://github.com/graphcommerce-org/graphcommerce/commit/b9ab035893fd0fbbe747333973d0bb1948e5d846) - Add crosssells to cart
-  ([@StefanAngenent](https://github.com/StefanAngenent))
+- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`b9ab035`](https://github.com/graphcommerce-org/graphcommerce/commit/b9ab035893fd0fbbe747333973d0bb1948e5d846) - Add crosssells to cart ([@StefanAngenent](https://github.com/StefanAngenent))
 
 ## 7.1.0-canary.66
 
@@ -1481,31 +1635,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 

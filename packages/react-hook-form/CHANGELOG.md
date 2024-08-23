@@ -1,5 +1,163 @@
 # Change Log
 
+## 9.0.0-canary.79
+
+## 9.0.0-canary.78
+
+## 9.0.0-canary.77
+
+## 9.0.0-canary.76
+
+## 9.0.0-canary.75
+
+## 9.0.0-canary.74
+
+## 9.0.0-canary.73
+
+## 9.0.0-canary.72
+
+## 9.0.0-canary.71
+
+## 9.0.0-canary.70
+
+## 9.0.0-canary.69
+
+## 9.0.0-canary.68
+
+## 9.0.0-canary.67
+
+## 9.0.0-canary.66
+
+## 9.0.0-canary.65
+
+## 9.0.0-canary.64
+
+## 9.0.0-canary.63
+
+## 9.0.0-canary.62
+
+## 9.0.0-canary.61
+
+## 9.0.0-canary.60
+
+## 9.0.0-canary.59
+
+## 9.0.0-canary.58
+
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
+### Minor Changes
+
+- [#2325](https://github.com/graphcommerce-org/graphcommerce/pull/2325) [`058fb17`](https://github.com/graphcommerce-org/graphcommerce/commit/058fb1777bdaa51ded6d37529e59a3cc5f0eac06) - Solve an issue where onBeforeSubmit and onComplete would become an 'stale closure' where variables inside wouldn't be updated. By wrapping onBeforeSubmit and onComplete in useEventCallback these functions are updated when outside values get changed. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+## 8.1.0-canary.46
+
+### Patch Changes
+
+- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`490bbfb`](https://github.com/graphcommerce-org/graphcommerce/commit/490bbfb5d88a7f58e83fa9c8b7f475c277a0eda3) - Added missing dependencies of lodash and @types/lodash ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.45
+
+## 8.1.0-canary.44
+
+## 8.1.0-canary.43
+
+## 8.1.0-canary.42
+
+## 8.1.0-canary.41
+
+## 8.1.0-canary.40
+
+## 8.1.0-canary.39
+
+## 8.1.0-canary.38
+
+### Patch Changes
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving <FromPersist/> below the form components ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.37
+
+## 8.1.0-canary.36
+
+## 8.1.0-canary.35
+
+## 8.1.0-canary.34
+
+## 8.1.0-canary.33
+
+## 8.1.0-canary.32
+
+## 8.1.0-canary.31
+
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
+## 8.1.0-canary.28
+
+## 8.1.0-canary.27
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
+## 8.1.0-canary.20
+
+## 8.1.0-canary.19
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+## 8.1.0-canary.8
+
+## 8.1.0-canary.7
+
 ## 8.1.0-canary.6
 
 ## 8.1.0-canary.5
@@ -12,20 +170,15 @@
 
 ### Patch Changes
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Add deprecation warnings for useFormMuiRegister. Refactor useFormPersist to useWatch and add a separate `<FormPersist/>` component to prevent rerenders.
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Add deprecation warnings for useFormMuiRegister. Refactor useFormPersist to useWatch and add a separate `<FormPersist/>` component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`02da217`](https://github.com/graphcommerce-org/graphcommerce/commit/02da2172ef702133510f6923190efae2801032c5) - Migrate most usages of useFormAutoSubmit to <FormAutoSubmit/> and deprecated useFormAutoSubmit
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`02da217`](https://github.com/graphcommerce-org/graphcommerce/commit/02da2172ef702133510f6923190efae2801032c5) - Migrate most usages of useFormAutoSubmit to <FormAutoSubmit/> and deprecated useFormAutoSubmit ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders.
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`1a6d0c4`](https://github.com/graphcommerce-org/graphcommerce/commit/1a6d0c4a3584b1e404b444f1ca44c68eaad56cb7) - Mark useFormValidFields as deprecated: Please use TextInputElement, SelectElement, etc. with the showValid prop
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`1a6d0c4`](https://github.com/graphcommerce-org/graphcommerce/commit/1a6d0c4a3584b1e404b444f1ca44c68eaad56cb7) - Mark useFormValidFields as deprecated: Please use TextInputElement, SelectElement, etc. with the showValid prop ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.6-canary.1
 
@@ -35,8 +188,7 @@
 
 ### Patch Changes
 
-- [#2237](https://github.com/graphcommerce-org/graphcommerce/pull/2237) [`60f387d`](https://github.com/graphcommerce-org/graphcommerce/commit/60f387d4a037736aa8105fa45728ee481bdaf887) - Solve an issue where the checkout address form wouldn't be automatically submitted on change.
-  ([@bramvanderholst](https://github.com/bramvanderholst))
+- [#2237](https://github.com/graphcommerce-org/graphcommerce/pull/2237) [`60f387d`](https://github.com/graphcommerce-org/graphcommerce/commit/60f387d4a037736aa8105fa45728ee481bdaf887) - Solve an issue where the checkout address form wouldn't be automatically submitted on change. ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 8.0.5-canary.10
 
@@ -54,8 +206,7 @@
 
 ### Patch Changes
 
-- [#2237](https://github.com/graphcommerce-org/graphcommerce/pull/2237) [`60f387d`](https://github.com/graphcommerce-org/graphcommerce/commit/60f387d4a037736aa8105fa45728ee481bdaf887) - Solve an issue where the checkout address form wouldn't be automatically submitted on change.
-  ([@bramvanderholst](https://github.com/bramvanderholst))
+- [#2237](https://github.com/graphcommerce-org/graphcommerce/pull/2237) [`60f387d`](https://github.com/graphcommerce-org/graphcommerce/commit/60f387d4a037736aa8105fa45728ee481bdaf887) - Solve an issue where the checkout address form wouldn't be automatically submitted on change. ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 8.0.5-canary.3
 
@@ -75,11 +226,9 @@
 
 ### Patch Changes
 
-- [#2206](https://github.com/graphcommerce-org/graphcommerce/pull/2206) [`855ab09`](https://github.com/graphcommerce-org/graphcommerce/commit/855ab097b9ea204a7c73c6550b7a5e9e2290f378) - Cleanup `<FormAutoSubmit/>` and remove internal hook.
-  ([@paales](https://github.com/paales))
+- [#2206](https://github.com/graphcommerce-org/graphcommerce/pull/2206) [`855ab09`](https://github.com/graphcommerce-org/graphcommerce/commit/855ab097b9ea204a7c73c6550b7a5e9e2290f378) - Cleanup `<FormAutoSubmit/>` and remove internal hook. ([@paales](https://github.com/paales))
 
-- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`7c9f5da`](https://github.com/graphcommerce-org/graphcommerce/commit/7c9f5da1d458a19b0316c556c75415ff28bc5b2d) - Added noValidate prop so we can use the FormAutoSubmit component to submit partial forms
-  ([@paales](https://github.com/paales))
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`7c9f5da`](https://github.com/graphcommerce-org/graphcommerce/commit/7c9f5da1d458a19b0316c556c75415ff28bc5b2d) - Added noValidate prop so we can use the FormAutoSubmit component to submit partial forms ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.6
 
@@ -87,8 +236,7 @@
 
 ### Patch Changes
 
-- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`7c9f5da`](https://github.com/graphcommerce-org/graphcommerce/commit/7c9f5da1d458a19b0316c556c75415ff28bc5b2d) - Added noValidate prop so we can use the FormAutoSubmit component to submit partial forms
-  ([@paales](https://github.com/paales))
+- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`7c9f5da`](https://github.com/graphcommerce-org/graphcommerce/commit/7c9f5da1d458a19b0316c556c75415ff28bc5b2d) - Added noValidate prop so we can use the FormAutoSubmit component to submit partial forms ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.4
 
@@ -96,8 +244,7 @@
 
 ### Patch Changes
 
-- [#2206](https://github.com/graphcommerce-org/graphcommerce/pull/2206) [`855ab09`](https://github.com/graphcommerce-org/graphcommerce/commit/855ab097b9ea204a7c73c6550b7a5e9e2290f378) - Cleanup `<FormAutoSubmit/>` and remove internal hook.
-  ([@paales](https://github.com/paales))
+- [#2206](https://github.com/graphcommerce-org/graphcommerce/pull/2206) [`855ab09`](https://github.com/graphcommerce-org/graphcommerce/commit/855ab097b9ea204a7c73c6550b7a5e9e2290f378) - Cleanup `<FormAutoSubmit/>` and remove internal hook. ([@paales](https://github.com/paales))
 
 ## 8.0.3-canary.2
 
@@ -131,11 +278,9 @@
 
 ### Patch Changes
 
-- [#2093](https://github.com/graphcommerce-org/graphcommerce/pull/2093) [`112b041`](https://github.com/graphcommerce-org/graphcommerce/commit/112b041f01a33fbd521ce3eb3955844f96b29917) - Created a new experimental mutation abort feature inside `useFormGql`. This will allow redundant mutations to be canceled. This is enabled when the `experimental_useV2` prop on the `useFormGql` hook is used.
-  ([@mikekeehnen](https://github.com/mikekeehnen))
+- [#2093](https://github.com/graphcommerce-org/graphcommerce/pull/2093) [`112b041`](https://github.com/graphcommerce-org/graphcommerce/commit/112b041f01a33fbd521ce3eb3955844f96b29917) - Created a new experimental mutation abort feature inside `useFormGql`. This will allow redundant mutations to be canceled. This is enabled when the `experimental_useV2` prop on the `useFormGql` hook is used. ([@mikekeehnen](https://github.com/mikekeehnen))
 
-- [#2007](https://github.com/graphcommerce-org/graphcommerce/pull/2007) [`f59c276`](https://github.com/graphcommerce-org/graphcommerce/commit/f59c276605f9ed649d1197a9ba0e3f12d7c6d026) - Crosssell behavior now properly shows for the latest added product. Added latest submitted variables to be retrieved when using the useFormGql hook.
-  ([@JoshuaS98](https://github.com/JoshuaS98))
+- [#2007](https://github.com/graphcommerce-org/graphcommerce/pull/2007) [`f59c276`](https://github.com/graphcommerce-org/graphcommerce/commit/f59c276605f9ed649d1197a9ba0e3f12d7c6d026) - Crosssell behavior now properly shows for the latest added product. Added latest submitted variables to be retrieved when using the useFormGql hook. ([@JoshuaS98](https://github.com/JoshuaS98))
 
 ## 8.0.0-canary.100
 

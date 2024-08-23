@@ -1,4 +1,6 @@
 fragment OrderItems on CustomerOrder {
+  id
+  number
   items {
     ...OrderItem
   }

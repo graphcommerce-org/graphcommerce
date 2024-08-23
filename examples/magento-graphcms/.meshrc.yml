@@ -6,6 +6,7 @@ sources:
         endpoint: '{graphCommerce.hygraphEndpoint}'
         operationHeaders:
           gcms-locales: "{context.headers['gcms-locales']}"
+          gcms-stage: "{context.headers['gcms-stage']}"
     transforms:
       - filterSchema:
           filters:
@@ -14,7 +15,7 @@ sources:
             # Remove queries: `query { node, row*, asset*, scheduled*, *Version, user* }`
             - 'Query.!{node,asset*,scheduled*,*Version,user*}'
             # Remove field arguments: `query { anyfield(after,before,last,forceParentLocale,locales) { ... } }`
-            - '*.*.!{after,before,last,forceParentLocale,locales}'
+            - '*.*.!{after,before,last,forceParentLocale,locales,stage}'
             # Remove type any input or type fields: `input MyInput {}` or `type MyType { anyfield }`
             - '*.!{localizations,scheduledIn,documentInStages*,createdAt*,updatedAt*,publishedAt*,createdBy,updatedBy,publishedBy,history,scheduledIn*}'
       - prune:
@@ -31,5 +32,12 @@ sources:
           X-ReCaptcha: "{context.headers['x-recaptcha']}"
           Preview-Version: "{context.headers['preview-version']}"
           Content-Currency: "{context.headers['content-currency']}"
+          X-Magento-Cache-Id: "{context.headers['x-magento-cache-id']}"
+          X-Forwarded-For: "{context.headers['x-forwarded-for']}"
 serve:
   playground: true
+
+plugins:
+  - '@graphcommerce/graphql-mesh/plugin/forward-headers':
+      forwardHeaders:
+        - X-Magento-Cache-Id

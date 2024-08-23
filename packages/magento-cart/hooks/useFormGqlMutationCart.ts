@@ -12,7 +12,7 @@ export function useFormGqlMutationCart<
   V extends { cartId: string; [index: string]: unknown },
 >(
   document: TypedDocumentNode<Q, V>,
-  options: UseFormGraphQlOptions<Q, V> = {},
+  options: UseFormGraphQlOptions<Q, V> & { submitWhileLocked?: boolean } = {},
   operationOptions?: MutationHookOptions<Q, V>,
 ): UseFormGqlMutationReturn<Q, V> {
   const cartId = useCartIdCreate()
@@ -26,7 +26,11 @@ export function useFormGqlMutationCart<
         const vars = { ...variables, cartId: await cartId() }
 
         const res = client.cache.readQuery({ query: CurrentCartIdDocument })
-        if (res?.currentCartId?.locked) return false
+        if (!options.submitWhileLocked && res?.currentCartId?.locked) {
+          console.log('Could not submit form, cart is locked', res.currentCartId.locked)
+          return false
+        }
+
         return options.onBeforeSubmit ? options.onBeforeSubmit(vars) : vars
       },
     },

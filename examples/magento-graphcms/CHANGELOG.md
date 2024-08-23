@@ -1,5 +1,221 @@
 # Change Log
 
+## 9.0.0-canary.79
+
+## 9.0.0-canary.78
+
+### Patch Changes
+
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`688b4d7`](https://github.com/graphcommerce-org/graphcommerce/commit/688b4d73cdb4baf38d91f7d98d81964b8fc17e85) - Add missing gutter to /checkout/item page ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 9.0.0-canary.77
+
+## 9.0.0-canary.76
+
+## 9.0.0-canary.75
+
+## 9.0.0-canary.74
+
+## 9.0.0-canary.73
+
+## 9.0.0-canary.72
+
+### Minor Changes
+
+- [#2332](https://github.com/graphcommerce-org/graphcommerce/pull/2332) [`73e897a`](https://github.com/graphcommerce-org/graphcommerce/commit/73e897a5a5f266d9ec274807720c71eb1a639074) - Use custom_attributesV2 for product specs when running on magento 247 or higher ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 9.0.0-canary.71
+
+### Patch Changes
+
+- [#2345](https://github.com/graphcommerce-org/graphcommerce/pull/2345) [`d4ae30b`](https://github.com/graphcommerce-org/graphcommerce/commit/d4ae30ba28815ccb9d3a0478da995b7c609618e5) - Solve issue where customFetch coudn’t be loaded correctly ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.70
+
+## 9.0.0-canary.69
+
+## 9.0.0-canary.68
+
+## 9.0.0-canary.67
+
+## 9.0.0-canary.66
+
+### Minor Changes
+
+- [#2339](https://github.com/graphcommerce-org/graphcommerce/pull/2339) [`df942e5`](https://github.com/graphcommerce-org/graphcommerce/commit/df942e5726ddb4d7c7d4b583aa474c7c0f0dea7d) - Show actual order status from the backend, improve order state logic ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 9.0.0-canary.65
+
+## 9.0.0-canary.64
+
+## 9.0.0-canary.63
+
+## 9.0.0-canary.62
+
+## 9.0.0-canary.61
+
+### Minor Changes
+
+- [#2327](https://github.com/graphcommerce-org/graphcommerce/pull/2327) [`be719fc`](https://github.com/graphcommerce-org/graphcommerce/commit/be719fc465c8804ddcb720a93813262e3a292b69) - Implement CancelOrder mutation, add cancel order overlay to account section ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 9.0.0-canary.60
+
+## 9.0.0-canary.59
+
+## 9.0.0-canary.58
+
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+### Minor Changes
+
+- [#2324](https://github.com/graphcommerce-org/graphcommerce/pull/2324) [`1c8b1e4`](https://github.com/graphcommerce-org/graphcommerce/commit/1c8b1e441ac44935bfd2215d62a71c02b3ba7e6f) - Implement the contactUs mutation, add contact us overlay ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 9.0.0-canary.54
+
+### Major Changes
+
+- [#2204](https://github.com/graphcommerce-org/graphcommerce/pull/2204) [`42843eb`](https://github.com/graphcommerce-org/graphcommerce/commit/42843eb760f8301eb7901bb0d888c95792ff0b4b) - add X-Forwarded-For header to mesh ([@SumVur](https://github.com/SumVur))
+
+## 8.1.0-canary.53
+
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+### Minor Changes
+
+- [#2315](https://github.com/graphcommerce-org/graphcommerce/pull/2315) [`fb9118e`](https://github.com/graphcommerce-org/graphcommerce/commit/fb9118ec819d1b507d4fbde04f2ca34ec01ecf49) - Add guestOrder functionality, remove `size: 'max'` from getStaticProps ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.46
+
+## 8.1.0-canary.45
+
+## 8.1.0-canary.44
+
+## 8.1.0-canary.43
+
+## 8.1.0-canary.42
+
+## 8.1.0-canary.41
+
+## 8.1.0-canary.40
+
+### Minor Changes
+
+- [#2306](https://github.com/graphcommerce-org/graphcommerce/pull/2306) [`5e188e8`](https://github.com/graphcommerce-org/graphcommerce/commit/5e188e830dca4730c73830858f59a94e9d41ed12) - Add delete account functionality to the account section. Disabled by default and can be enabled through the config. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.39
+
+### Minor Changes
+
+- [#2307](https://github.com/graphcommerce-org/graphcommerce/pull/2307) [`20cb571`](https://github.com/graphcommerce-org/graphcommerce/commit/20cb57171ae5bff0b86a341ea4db59ea3f4f639a) - Add save in address book checkbox to shipping address form ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.38
+
+### Minor Changes
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Add company and vat fields to shipping and billing forms ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.37
+
+## 8.1.0-canary.36
+
+## 8.1.0-canary.35
+
+### Minor Changes
+
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`47bb47b`](https://github.com/graphcommerce-org/graphcommerce/commit/47bb47bac4b3689a6859afbc587274d813e0b072) - Implement confirm email functionality ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.34
+
+## 8.1.0-canary.33
+
+## 8.1.0-canary.32
+
+## 8.1.0-canary.31
+
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
+## 8.1.0-canary.28
+
+## 8.1.0-canary.27
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
+### Patch Changes
+
+- [#2285](https://github.com/graphcommerce-org/graphcommerce/pull/2285) [`d5e7371`](https://github.com/graphcommerce-org/graphcommerce/commit/d5e73716990bf1d5a5ee40d88f9cd8266750ec66) - Resolve overlay issue by using the correct sharedKey + correct typo ([@carlocarels90](https://github.com/carlocarels90))
+
+## 8.1.0-canary.20
+
+## 8.1.0-canary.19
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+### Minor Changes
+
+- [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed useMediaQuery from the wishlist and cart ItemActionCard and replaced it with a new responsive size prop. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+### Patch Changes
+
+- [#2250](https://github.com/graphcommerce-org/graphcommerce/pull/2250) [`e56e836`](https://github.com/graphcommerce-org/graphcommerce/commit/e56e836f1fc463bf286c62668a4b65f320d5dc4a) - Make the back/up buttons translatable ([@carlocarels90](https://github.com/carlocarels90))
+
+## 8.1.0-canary.11
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+### Minor Changes
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`4ef6765`](https://github.com/graphcommerce-org/graphcommerce/commit/4ef6765d52fa56cfbe12b7e4e81aa183cc590a87) - Move products sitemap to sitemap folder ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`7652234`](https://github.com/graphcommerce-org/graphcommerce/commit/7652234e222c3f4d8de3817fe907b5b6925a5493) - Replaced next-sitemap with page router based robots.txt & sitemaps ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`4543c8d`](https://github.com/graphcommerce-org/graphcommerce/commit/4543c8d3af455b709a4cb3cad2e9d5d70cffb969) - Added separate sitemap for categories ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`0ccec63`](https://github.com/graphcommerce-org/graphcommerce/commit/0ccec630825d5fad398366beae90b3c90b2f84b8) - Added separate sitemap for Hygraph pages ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 8.1.0-canary.8
+
+## 8.1.0-canary.7
+
 ## 8.1.0-canary.6
 
 ## 8.1.0-canary.5
@@ -8,8 +224,7 @@
 
 ### Patch Changes
 
-- [#2227](https://github.com/graphcommerce-org/graphcommerce/pull/2227) [`d597719`](https://github.com/graphcommerce-org/graphcommerce/commit/d597719baaabbe079660ac063fd021d871831511) - Added option to change sort order (ASC / DESC) for sort options (Name, price, position etc) on catalog and search pages.
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2227](https://github.com/graphcommerce-org/graphcommerce/pull/2227) [`d597719`](https://github.com/graphcommerce-org/graphcommerce/commit/d597719baaabbe079660ac063fd021d871831511) - Added option to change sort order (ASC / DESC) for sort options (Name, price, position etc) on catalog and search pages. ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.6-canary.3
 
@@ -17,8 +232,7 @@
 
 ### Patch Changes
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.6-canary.1
 
@@ -96,26 +310,19 @@
 
 ### Patch Changes
 
-- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`7664e45`](https://github.com/graphcommerce-org/graphcommerce/commit/7664e45873142078eb6681fd1bb268db8035cb2e) - New `<ProductScroller />` component for easy horizontal product scrollers.
-  ([@bramvanderholst](https://github.com/bramvanderholst))
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`7664e45`](https://github.com/graphcommerce-org/graphcommerce/commit/7664e45873142078eb6681fd1bb268db8035cb2e) - New `<ProductScroller />` component for easy horizontal product scrollers. ([@bramvanderholst](https://github.com/bramvanderholst))
 
-- [#2112](https://github.com/graphcommerce-org/graphcommerce/pull/2112) [`15a2037`](https://github.com/graphcommerce-org/graphcommerce/commit/15a2037372cd615602d3e2f3deedba9766fc172c) - Make the "Search" string translatable and fix typo.
-  ([@carlocarels90](https://github.com/carlocarels90))
+- [#2112](https://github.com/graphcommerce-org/graphcommerce/pull/2112) [`15a2037`](https://github.com/graphcommerce-org/graphcommerce/commit/15a2037372cd615602d3e2f3deedba9766fc172c) - Make the "Search" string translatable and fix typo. ([@carlocarels90](https://github.com/carlocarels90))
 
-- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`eb29cbe`](https://github.com/graphcommerce-org/graphcommerce/commit/eb29cbef56f8f7275ffe6760ef5e9f8d2598c7c4) - Added the `<RecentlyViewedProducts/>` feature to product pages.
-  ([@bramvanderholst](https://github.com/bramvanderholst))
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`eb29cbe`](https://github.com/graphcommerce-org/graphcommerce/commit/eb29cbef56f8f7275ffe6760ef5e9f8d2598c7c4) - Added the `<RecentlyViewedProducts/>` feature to product pages. ([@bramvanderholst](https://github.com/bramvanderholst))
 
-- [#2122](https://github.com/graphcommerce-org/graphcommerce/pull/2122) [`7750f72`](https://github.com/graphcommerce-org/graphcommerce/commit/7750f7253ded34acb4cd8b75598bf0ad1bca6d5c) - Added `.graphqlrc.yml` for graphql file autocompletion in projects using VSCode.
-  ([@bramvanderholst](https://github.com/bramvanderholst))
+- [#2122](https://github.com/graphcommerce-org/graphcommerce/pull/2122) [`7750f72`](https://github.com/graphcommerce-org/graphcommerce/commit/7750f7253ded34acb4cd8b75598bf0ad1bca6d5c) - Added `.graphqlrc.yml` for graphql file autocompletion in projects using VSCode. ([@bramvanderholst](https://github.com/bramvanderholst))
 
-- [#2103](https://github.com/graphcommerce-org/graphcommerce/pull/2103) [`23392ba`](https://github.com/graphcommerce-org/graphcommerce/commit/23392babb89ce3e77dc98713ee897f72ab66d6a1) - Prevent + / - qty buttons from being render over the “Start Checkout” button
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2103](https://github.com/graphcommerce-org/graphcommerce/pull/2103) [`23392ba`](https://github.com/graphcommerce-org/graphcommerce/commit/23392babb89ce3e77dc98713ee897f72ab66d6a1) - Prevent + / - qty buttons from being render over the “Start Checkout” button ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`5f4455b`](https://github.com/graphcommerce-org/graphcommerce/commit/5f4455b1cccddf1501f0279e5ca2d9277a07ff07) - New `<ProductListItemSkeleton />` component and added support to the productListRenderer. Used for the new Recently Viewed Products feature.
-  ([@bramvanderholst](https://github.com/bramvanderholst))
+- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`5f4455b`](https://github.com/graphcommerce-org/graphcommerce/commit/5f4455b1cccddf1501f0279e5ca2d9277a07ff07) - New `<ProductListItemSkeleton />` component and added support to the productListRenderer. Used for the new Recently Viewed Products feature. ([@bramvanderholst](https://github.com/bramvanderholst))
 
-- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`53947d3`](https://github.com/graphcommerce-org/graphcommerce/commit/53947d39f2f3ee578c14903c96a2b356d99d9475) - Implemented 'Message' variant for `<RowColumnOne/>` to show an important message which, after dismissing, will not show again
-  ([@bramvanderholst](https://github.com/bramvanderholst))
+- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`53947d3`](https://github.com/graphcommerce-org/graphcommerce/commit/53947d39f2f3ee578c14903c96a2b356d99d9475) - Implemented 'Message' variant for `<RowColumnOne/>` to show an important message which, after dismissing, will not show again ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 8.0.0-canary.100
 
@@ -3783,31 +3990,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 

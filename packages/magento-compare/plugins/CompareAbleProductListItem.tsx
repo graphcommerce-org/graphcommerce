@@ -1,14 +1,16 @@
 import { ProductListItemProps } from '@graphcommerce/magento-product'
-import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { Box } from '@mui/material'
 import { CompareProductToggle } from '../components'
 import { CompareProductIdInternalFragment } from '../graphql'
 
-export const component = 'ProductListItem'
-export const exported = '@graphcommerce/magento-product'
-export const ifConfig: IfConfig = 'compare'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/magento-product',
+  ifConfig: 'compare',
+}
 
-function CompareAbleProductListItem(props: PluginProps<ProductListItemProps>) {
+export function ProductListItem(props: PluginProps<ProductListItemProps>) {
   const { Prev, ...rest } = props
   const { children, topRight } = props
   if (import.meta.graphCommerce.compareVariant === 'CHECKBOX')
@@ -39,5 +41,3 @@ function CompareAbleProductListItem(props: PluginProps<ProductListItemProps>) {
       </Prev>
     )
 }
-
-export const Plugin = CompareAbleProductListItem

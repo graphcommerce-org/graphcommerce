@@ -1,4 +1,4 @@
-import CircularDependencyPlugin from 'circular-dependency-plugin'
+// import CircularDependencyPlugin from 'circular-dependency-plugin'
 import { DuplicatesPlugin } from 'inspectpack/plugin'
 import type { NextConfig } from 'next'
 import { DomainLocale } from 'next/dist/server/config'
@@ -112,8 +112,19 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
     },
     transpilePackages,
     webpack: (config: Configuration, options) => {
-      // Allow importing yml/yaml files for graphql-mesh
-      config.module?.rules?.push({ test: /\.ya?ml$/, use: 'js-yaml-loader' })
+      if (!config.module) config.module = { rules: [] }
+
+      config.module = {
+        ...config.module,
+        rules: [
+          ...(config.module.rules ?? []),
+          // Allow importing yml/yaml files for graphql-mesh
+          { test: /\.ya?ml$/, use: 'js-yaml-loader' },
+          // @lingui .po file support
+          { test: /\.po/, use: '@lingui/loader' },
+        ],
+        exprContextCritical: false,
+      }
 
       if (!config.plugins) config.plugins = []
 
@@ -121,15 +132,16 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
       config.plugins.push(new DefinePlugin(importMetaPaths))
 
       // To properly properly treeshake @apollo/client we need to define the __DEV__ property
+      config.plugins.push(new DefinePlugin({ 'globalThis.__DEV__': options.dev }))
+
       if (!options.isServer) {
-        config.plugins.push(new DefinePlugin({ __DEV__: options.dev }))
-        if (graphcommerceConfig.debug?.webpackCircularDependencyPlugin) {
-          config.plugins.push(
-            new CircularDependencyPlugin({
-              exclude: /readable-stream|duplexer2|node_modules\/next/,
-            }),
-          )
-        }
+        // if (graphcommerceConfig.debug?.webpackCircularDependencyPlugin) {
+        //   config.plugins.push(
+        //     new CircularDependencyPlugin({
+        //       exclude: /readable-stream|duplexer2|node_modules\/next/,
+        //     }),
+        //   )
+        // }
         if (graphcommerceConfig.debug?.webpackDuplicatesPlugin) {
           config.plugins.push(
             new DuplicatesPlugin({
@@ -146,9 +158,6 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
           )
         }
       }
-
-      // @lingui .po file support
-      config.module?.rules?.push({ test: /\.po/, use: '@lingui/loader' })
 
       config.snapshot = {
         ...(config.snapshot ?? {}),

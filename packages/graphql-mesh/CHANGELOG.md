@@ -1,5 +1,175 @@
 # Change Log
 
+## 9.0.0-canary.79
+
+## 9.0.0-canary.78
+
+## 9.0.0-canary.77
+
+## 9.0.0-canary.76
+
+## 9.0.0-canary.75
+
+## 9.0.0-canary.74
+
+## 9.0.0-canary.73
+
+## 9.0.0-canary.72
+
+## 9.0.0-canary.71
+
+### Patch Changes
+
+- [#2345](https://github.com/graphcommerce-org/graphcommerce/pull/2345) [`d4ae30b`](https://github.com/graphcommerce-org/graphcommerce/commit/d4ae30ba28815ccb9d3a0478da995b7c609618e5) - Solve issue where customFetch coudn’t be loaded correctly ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.70
+
+## 9.0.0-canary.69
+
+## 9.0.0-canary.68
+
+## 9.0.0-canary.67
+
+### Patch Changes
+
+- [#2336](https://github.com/graphcommerce-org/graphcommerce/pull/2336) [`214bc56`](https://github.com/graphcommerce-org/graphcommerce/commit/214bc56950f397727d2c5417741dc62419080dfa) - Added traverseSelectionSet utility function to extract a child selection set from the parent. ([@Renzovh](https://github.com/Renzovh))
+
+## 9.0.0-canary.66
+
+## 9.0.0-canary.65
+
+## 9.0.0-canary.64
+
+## 9.0.0-canary.63
+
+## 9.0.0-canary.62
+
+## 9.0.0-canary.61
+
+## 9.0.0-canary.60
+
+## 9.0.0-canary.59
+
+### Minor Changes
+
+- [#2309](https://github.com/graphcommerce-org/graphcommerce/pull/2309) [`b46e17e`](https://github.com/graphcommerce-org/graphcommerce/commit/b46e17ebe390b4d0040639dfdac33c36a60576ac) - When generating the mesh the configuration is passed through `@graphcommerce/graphql-mesh/meshConfig` allowing plugins to modify the mesh configuration without having to change the `.meshrc.yaml` itself. ([@Renzovh](https://github.com/Renzovh))
+
+## 9.0.0-canary.58
+
+### Minor Changes
+
+- [#2330](https://github.com/graphcommerce-org/graphcommerce/pull/2330) [`bc3ec5e`](https://github.com/graphcommerce-org/graphcommerce/commit/bc3ec5e439b97cea4a2cef23e4008c7e0cfd6797) - Created a new @graphql-mesh plugin to forward headers from backends as forwardedHeaders in extensions ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+## 8.1.0-canary.46
+
+## 8.1.0-canary.45
+
+## 8.1.0-canary.44
+
+## 8.1.0-canary.43
+
+## 8.1.0-canary.42
+
+## 8.1.0-canary.41
+
+## 8.1.0-canary.40
+
+## 8.1.0-canary.39
+
+## 8.1.0-canary.38
+
+## 8.1.0-canary.37
+
+## 8.1.0-canary.36
+
+## 8.1.0-canary.35
+
+## 8.1.0-canary.34
+
+## 8.1.0-canary.33
+
+## 8.1.0-canary.32
+
+## 8.1.0-canary.31
+
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
+### Patch Changes
+
+- [#2290](https://github.com/graphcommerce-org/graphcommerce/pull/2290) [`21f2ac0`](https://github.com/graphcommerce-org/graphcommerce/commit/21f2ac06b95cfc9b51febe19e6859cbba2b578b4) - Fix cors issues with Dynamic Row Property Picker App ([@JoshuaS98](https://github.com/JoshuaS98))
+
+## 8.1.0-canary.28
+
+## 8.1.0-canary.27
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
+## 8.1.0-canary.20
+
+## 8.1.0-canary.19
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+## 8.1.0-canary.8
+
+### Patch Changes
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`6831040`](https://github.com/graphcommerce-org/graphcommerce/commit/68310401448b7b42b53757db4a84de4a01e35aa2) - Suppress warning where a dependency is an expression, Added uglify-es and long as the dependencies couldn’t be found ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.7
+
 ## 8.1.0-canary.6
 
 ## 8.1.0-canary.5
@@ -86,8 +256,7 @@
 
 ### Patch Changes
 
-- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`bf5ae89`](https://github.com/graphcommerce-org/graphcommerce/commit/bf5ae8979b145e7a96303f839ef2b1238712531a) - Remove requirement of toplevelAwait for graphqlSsrClient and solve logging issue in cli
-  ([@paales](https://github.com/paales))
+- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`bf5ae89`](https://github.com/graphcommerce-org/graphcommerce/commit/bf5ae8979b145e7a96303f839ef2b1238712531a) - Remove requirement of toplevelAwait for graphqlSsrClient and solve logging issue in cli ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.100
 

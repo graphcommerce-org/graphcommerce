@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findOriginalSource = void 0;
+exports.findOriginalSource = findOriginalSource;
 const path_1 = __importDefault(require("path"));
 const swc_1 = require("./swc");
 function parseAndFindExport(resolved, findExport, resolve) {
@@ -33,6 +33,22 @@ function parseAndFindExport(resolved, findExport, resolve) {
                     break;
             }
         }
+        if (node.type === 'ExportNamedDeclaration') {
+            for (const specifier of node.specifiers) {
+                if (specifier.type === 'ExportSpecifier') {
+                    if (specifier.exported?.value === findExport)
+                        return resolved;
+                }
+                else if (specifier.type === 'ExportDefaultSpecifier') {
+                    // todo
+                }
+                else if (specifier.type === 'ExportNamespaceSpecifier') {
+                    // todo
+                }
+            }
+        }
+        // todo: if (node.type === 'ExportDefaultDeclaration') {}
+        // todo: if (node.type === 'ExportDefaultExpression') {}
     }
     const exports = ast.body
         .filter((node) => node.type === 'ExportAllDeclaration')
@@ -65,7 +81,7 @@ function findOriginalSource(plug, resolved, resolve) {
     if (!resolved?.source)
         return {
             resolved: undefined,
-            error: new Error(`Could not resolve ${plug.targetModule}`),
+            error: new Error(`Plugin: Can not find module ${plug.targetModule} for ${plug.sourceModule}`),
         };
     // const cacheKey = `${plug.targetModule}#${plug.targetExport}`
     // if (cachedResults.has(cacheKey)) {
@@ -78,10 +94,9 @@ function findOriginalSource(plug, resolved, resolve) {
     if (!newResolved) {
         return {
             resolved: undefined,
-            error: new Error(`Can not find ${plug.targetModule}#${plug.sourceExport} for plugin ${plug.sourceModule}`),
+            error: new Error(`Plugin target not found ${plug.targetModule}#${plug.sourceExport} for plugin ${plug.sourceModule}#${plug.sourceExport}`),
         };
     }
     // cachedResults.set(cacheKey, newResolved)
     return { resolved: newResolved, error: undefined };
 }
-exports.findOriginalSource = findOriginalSource;

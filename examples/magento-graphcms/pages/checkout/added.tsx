@@ -12,7 +12,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/LayoutHeaderClose'
 import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/macro'
 import { Box, Container, Divider, Typography } from '@mui/material'
 import { useEffect, useRef } from 'react'
 import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../../components'
@@ -29,6 +29,8 @@ function CheckoutAdded() {
     a11yFocusRef.current?.focus()
   }, [])
 
+  const name = addedItem?.product.name ?? ''
+
   return (
     <>
       <PageMeta title={i18n._(/* i18n */ 'Cart')} metaRobots={['noindex']} />
@@ -42,7 +44,7 @@ function CheckoutAdded() {
           gap: theme.spacings.xxs,
           gridTemplate: {
             xs: `"icon children close"
-               "action action   action"`,
+       "action action   action"`,
             md: '"icon children action close"',
           },
           gridTemplateColumns: {
@@ -84,15 +86,13 @@ function CheckoutAdded() {
 
         <Box gridArea='children'>
           <Box sx={{ typography: 'h6' }} tabIndex={-1} ref={a11yFocusRef}>
-            <Trans
-              id='<0>{name}</0> has been added to your shopping cart!'
-              components={{ 0: <strong /> }}
-              values={{ name: addedItem?.product.name }}
-            />
+            <Trans>
+              <strong>{name}</strong> has been added to your shopping cart!
+            </Trans>
           </Box>
           {crossSellItems.length > 0 && (
             <Box sx={{ typography: 'body1', display: { xs: 'none', md: 'block' } }} tabIndex={0}>
-              <Trans id='Complete your purchase' />
+              <Trans>Complete your purchase</Trans>
             </Box>
           )}
         </Box>
@@ -106,7 +106,7 @@ function CheckoutAdded() {
             endIcon={<IconSvg src={iconChevronRight} />}
             sx={{ display: 'flex' }}
           >
-            <Trans id='View shopping cart' />
+            <Trans>View shopping cart</Trans>
           </Button>
         </Box>
         <LayoutHeaderClose />
@@ -125,7 +125,7 @@ function CheckoutAdded() {
                 textAlign: 'center',
               })}
             >
-              <Trans id='Complete your purchase' />
+              <Trans>Complete your purchase</Trans>
             </Typography>
           </Container>
           <AddProductsToCartForm
@@ -161,8 +161,8 @@ CheckoutAdded.pageOptions = pageOptions
 
 export default CheckoutAdded
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
   return {

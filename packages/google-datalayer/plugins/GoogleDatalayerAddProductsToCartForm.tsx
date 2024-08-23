@@ -3,19 +3,22 @@ import {
   findAddedItems,
   toUserErrors,
 } from '@graphcommerce/magento-product'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { nonNullable } from '@graphcommerce/next-ui'
-import { sendEvent } from '../api/sendEvent'
+import { useSendEvent } from '../api/sendEvent'
 import { cartItemToDatalayerItem } from '../mapping/cartItemToDatalayerItem/cartItemToDatalayerItem'
 import { datalayerItemsToCurrencyValue } from '../mapping/datalayerItemsToCurrencyValue/datalayerItemsToCurrencyValue'
 
-export const component = 'AddProductsToCartForm'
-export const exported = '@graphcommerce/magento-product'
+export const config: PluginConfig = {
+  module: '@graphcommerce/magento-product',
+  type: 'component',
+}
 
 /** When a product is added to the Cart, send a Google Analytics event */
-function GoogleDatalayerAddProductsToCartForm(props: PluginProps<AddProductsToCartFormProps>) {
+export function AddProductsToCartForm(props: PluginProps<AddProductsToCartFormProps>) {
   const { Prev, onComplete, ...rest } = props
 
+  const sendEvent = useSendEvent()
   return (
     <Prev
       {...rest}
@@ -24,9 +27,12 @@ function GoogleDatalayerAddProductsToCartForm(props: PluginProps<AddProductsToCa
         const addedItems = findAddedItems(data, variables)
 
         const items = addedItems
-          .map(({ itemVariable, itemInCart }) => {
+          .map(({ itemVariable, itemInCart }, index) => {
             if (!itemInCart) return null
-            return { ...cartItemToDatalayerItem(itemInCart), quantity: itemVariable.quantity }
+            return {
+              ...cartItemToDatalayerItem(itemInCart, index),
+              quantity: itemVariable.quantity,
+            }
           })
           .filter(nonNullable)
 
@@ -48,5 +54,3 @@ function GoogleDatalayerAddProductsToCartForm(props: PluginProps<AddProductsToCa
     />
   )
 }
-
-export const Plugin = GoogleDatalayerAddProductsToCartForm

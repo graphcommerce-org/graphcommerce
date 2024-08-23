@@ -1,5 +1,5 @@
 import { GraphQLProviderProps } from '@graphcommerce/graphql'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { GlobalStyles } from '@mui/material'
 import Script from 'next/script'
 import { useState, useMemo } from 'react'
@@ -7,11 +7,13 @@ import { recaptchaContext, RecaptchaContext } from '../context/recaptchaContext'
 import { useGoogleRecaptchaSiteKey } from '../hooks/useGoogleRecaptchaSiteKey'
 import { recaptchaLink } from '../link/recaptchaLink'
 
-export const component = 'GraphQLProvider'
-export const exported = '@graphcommerce/graphql'
-export const ifConfig = 'googleRecaptchaKey'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/graphql',
+  ifConfig: 'googleRecaptchaKey',
+}
 
-function GrecaptchaGraphQLProvider(props: PluginProps<GraphQLProviderProps>) {
+export function GraphQLProvider(props: PluginProps<GraphQLProviderProps>) {
   const { Prev, links = [], ...prev } = props
 
   const [enabled, setEnabled] = useState(false)
@@ -42,5 +44,3 @@ function GrecaptchaGraphQLProvider(props: PluginProps<GraphQLProviderProps>) {
     </recaptchaContext.Provider>
   )
 }
-
-export const Plugin = GrecaptchaGraphQLProvider

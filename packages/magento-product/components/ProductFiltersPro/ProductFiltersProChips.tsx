@@ -1,16 +1,18 @@
-import { ProductFilterEqualChip } from './ProductFilterEqualChip'
-import { ProductFilterRangeChip } from './ProductFilterRangeChip'
 import {
   ProductFiltersProAggregations,
   ProductFiltersProAggregationsProps,
+  productFiltersProChipRenderer,
 } from './ProductFiltersProAggregations'
 
-const defaultRenderer = {
-  FilterEqualTypeInput: ProductFilterEqualChip,
-  FilterRangeTypeInput: ProductFilterRangeChip,
-}
-
+/**
+ * @deprecated Not used anymore, use `<ProductFiltersProAggregations renderer={productFiltersProChipRenderer}/>`
+ */
 export function ProductFiltersProFilterChips(props: ProductFiltersProAggregationsProps) {
   const { renderer } = props
-  return <ProductFiltersProAggregations {...props} renderer={{ ...defaultRenderer, ...renderer }} />
+  return (
+    <ProductFiltersProAggregations
+      {...props}
+      renderer={{ ...productFiltersProChipRenderer, ...renderer }}
+    />
+  )
 }

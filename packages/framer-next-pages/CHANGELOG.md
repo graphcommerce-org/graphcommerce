@@ -1,5 +1,159 @@
 # Change Log
 
+## 9.0.0-canary.79
+
+### Patch Changes
+
+- [#2356](https://github.com/graphcommerce-org/graphcommerce/pull/2356) [`d283901`](https://github.com/graphcommerce-org/graphcommerce/commit/d283901cb537c3e7bf6f5500e9f52f47f452cf10) - Loading an overlay page directly would animate in the overlay instead of directly showing it. ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.78
+
+## 9.0.0-canary.77
+
+## 9.0.0-canary.76
+
+## 9.0.0-canary.75
+
+## 9.0.0-canary.74
+
+## 9.0.0-canary.73
+
+## 9.0.0-canary.72
+
+## 9.0.0-canary.71
+
+## 9.0.0-canary.70
+
+## 9.0.0-canary.69
+
+## 9.0.0-canary.68
+
+## 9.0.0-canary.67
+
+## 9.0.0-canary.66
+
+## 9.0.0-canary.65
+
+## 9.0.0-canary.64
+
+## 9.0.0-canary.63
+
+## 9.0.0-canary.62
+
+## 9.0.0-canary.61
+
+## 9.0.0-canary.60
+
+## 9.0.0-canary.59
+
+## 9.0.0-canary.58
+
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+## 8.1.0-canary.46
+
+## 8.1.0-canary.45
+
+## 8.1.0-canary.44
+
+## 8.1.0-canary.43
+
+## 8.1.0-canary.42
+
+## 8.1.0-canary.41
+
+## 8.1.0-canary.40
+
+## 8.1.0-canary.39
+
+## 8.1.0-canary.38
+
+## 8.1.0-canary.37
+
+## 8.1.0-canary.36
+
+### Minor Changes
+
+- [#2284](https://github.com/graphcommerce-org/graphcommerce/pull/2284) [`5ee712c`](https://github.com/graphcommerce-org/graphcommerce/commit/5ee712c962c6b0dda903172660d70cf433321b7e) - Prevent checkout on looping back and forth with the cart overlay when navigating directly to the checkout. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 8.1.0-canary.35
+
+## 8.1.0-canary.34
+
+## 8.1.0-canary.33
+
+## 8.1.0-canary.32
+
+## 8.1.0-canary.31
+
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
+## 8.1.0-canary.28
+
+## 8.1.0-canary.27
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
+## 8.1.0-canary.20
+
+## 8.1.0-canary.19
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+## 8.1.0-canary.8
+
+## 8.1.0-canary.7
+
 ## 8.1.0-canary.6
 
 ## 8.1.0-canary.5
@@ -18,8 +172,7 @@
 
 ### Patch Changes
 
-- [#2236](https://github.com/graphcommerce-org/graphcommerce/pull/2236) [`85fb916`](https://github.com/graphcommerce-org/graphcommerce/commit/85fb916e5ec2a1456a93a59bf92a5f414fee8595) - Solve issue where the inert prop wouldnt be properly forwarded
-  ([@paales](https://github.com/paales))
+- [#2236](https://github.com/graphcommerce-org/graphcommerce/pull/2236) [`85fb916`](https://github.com/graphcommerce-org/graphcommerce/commit/85fb916e5ec2a1456a93a59bf92a5f414fee8595) - Solve issue where the inert prop wouldnt be properly forwarded ([@paales](https://github.com/paales))
 
 ## 8.0.5-canary.10
 
@@ -39,8 +192,7 @@
 
 ### Patch Changes
 
-- [#2236](https://github.com/graphcommerce-org/graphcommerce/pull/2236) [`85fb916`](https://github.com/graphcommerce-org/graphcommerce/commit/85fb916e5ec2a1456a93a59bf92a5f414fee8595) - Solve issue where the inert prop wouldnt be properly forwarded
-  ([@paales](https://github.com/paales))
+- [#2236](https://github.com/graphcommerce-org/graphcommerce/pull/2236) [`85fb916`](https://github.com/graphcommerce-org/graphcommerce/commit/85fb916e5ec2a1456a93a59bf92a5f414fee8595) - Solve issue where the inert prop wouldnt be properly forwarded ([@paales](https://github.com/paales))
 
 ## 8.0.5-canary.2
 
@@ -52,8 +204,7 @@
 
 ### Patch Changes
 
-- [#2228](https://github.com/graphcommerce-org/graphcommerce/pull/2228) [`0c0cacb`](https://github.com/graphcommerce-org/graphcommerce/commit/0c0cacb8725f0a626ea5d3acf154d83c433c3eb7) - apply correct type for the inert property
-  ([@carlocarels90](https://github.com/carlocarels90))
+- [#2228](https://github.com/graphcommerce-org/graphcommerce/pull/2228) [`0c0cacb`](https://github.com/graphcommerce-org/graphcommerce/commit/0c0cacb8725f0a626ea5d3acf154d83c433c3eb7) - apply correct type for the inert property ([@carlocarels90](https://github.com/carlocarels90))
 
 ## 8.0.4-canary.1
 
@@ -61,8 +212,7 @@
 
 ### Patch Changes
 
-- [#2228](https://github.com/graphcommerce-org/graphcommerce/pull/2228) [`0c0cacb`](https://github.com/graphcommerce-org/graphcommerce/commit/0c0cacb8725f0a626ea5d3acf154d83c433c3eb7) - apply correct type for the inert property
-  ([@carlocarels90](https://github.com/carlocarels90))
+- [#2228](https://github.com/graphcommerce-org/graphcommerce/pull/2228) [`0c0cacb`](https://github.com/graphcommerce-org/graphcommerce/commit/0c0cacb8725f0a626ea5d3acf154d83c433c3eb7) - apply correct type for the inert property ([@carlocarels90](https://github.com/carlocarels90))
 
 ## 8.0.3
 

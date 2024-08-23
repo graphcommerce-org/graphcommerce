@@ -1,6 +1,7 @@
 mutation SetShippingAddress(
   $cartId: String!
   $company: String
+  $vatId: String
   $firstname: String!
   $lastname: String!
   $postcode: String!
@@ -13,6 +14,7 @@ mutation SetShippingAddress(
   $telephone: String = "000 - 000 0000"
   $saveInAddressBook: Boolean!
   $customerNote: String
+  $isCompany: Boolean = false
 ) {
   setShippingAddressesOnCart(
     input: {
@@ -21,6 +23,7 @@ mutation SetShippingAddress(
         {
           address: {
             company: $company
+            vat_id: $vatId
             firstname: $firstname
             lastname: $lastname
             postcode: $postcode
@@ -37,6 +40,7 @@ mutation SetShippingAddress(
     }
   ) {
     cart {
+      isCompany: id @include(if: $isCompany)
       id
       __typename
       ...ShippingAddress

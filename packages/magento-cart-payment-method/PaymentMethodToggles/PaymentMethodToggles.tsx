@@ -19,7 +19,7 @@ import {
 import { i18n } from '@lingui/core'
 import { Box, FormControl, FormHelperText, SxProps, Theme } from '@mui/material'
 import { useEffect } from 'react'
-import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
+import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 import { useCartLock } from '../hooks/useCartLock'
 
 export type PaymentMethodTogglesProps = Pick<UseFormComposeOptions, 'step'> & {
@@ -90,7 +90,6 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <FormPersist form={form} name='PaymentMethodToggles' />
       <input type='hidden' {...register('code', { required: true })} required />
       <FormRow className={classes.root} sx={{ position: 'relative', padding: 0 }}>
         <ScrollerProvider scrollSnapAlign='center'>
@@ -215,6 +214,7 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
           </Box>
         </ScrollerProvider>
       </FormRow>
+      <FormPersist form={form} name='PaymentMethodToggles' />
     </Form>
   )
 }

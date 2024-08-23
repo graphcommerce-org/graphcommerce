@@ -1,15 +1,17 @@
 import { GraphQLProviderProps } from '@graphcommerce/graphql'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useEventCallback } from '@mui/material'
 import { NextRouter } from 'next/router'
 import { useMemo } from 'react'
 import { customerLink } from '../link/customerLink'
 import { customerTypePolicies, migrateCustomer } from '../typePolicies'
 
-export const component = 'GraphQLProvider'
-export const exported = '@graphcommerce/graphql'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/graphql',
+}
 
-function MagentoCustomerGraphqlProvider(props: PluginProps<GraphQLProviderProps>) {
+export function GraphQLProvider(props: PluginProps<GraphQLProviderProps>) {
   const { Prev, links = [], policies = [], migrations = [], router, ...rest } = props
 
   const push = useEventCallback<NextRouter['push']>((...args) => router.push(...args))
@@ -28,5 +30,3 @@ function MagentoCustomerGraphqlProvider(props: PluginProps<GraphQLProviderProps>
     />
   )
 }
-
-export const Plugin = MagentoCustomerGraphqlProvider

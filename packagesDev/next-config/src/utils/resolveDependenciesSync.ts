@@ -12,6 +12,7 @@ function resolveRecursivePackageJson(
   dependencyPath: string,
   dependencyStructure: DependencyStructure,
   root: string,
+  additionalDependencies: string[] = [],
 ) {
   const isRoot = dependencyPath === root
   const fileName = require.resolve(path.join(dependencyPath, 'package.json'))
@@ -28,9 +29,10 @@ function resolveRecursivePackageJson(
   const dependencies = [
     ...new Set(
       [
-        ...Object.keys(packageJson.dependencies ?? {}),
-        ...Object.keys(packageJson.devDependencies ?? {}),
-        // ...Object.keys(packageJson.peerDependencies ?? {}),
+        ...Object.keys(packageJson.dependencies ?? []),
+        ...Object.keys(packageJson.devDependencies ?? []),
+        ...additionalDependencies,
+        ...Object.keys(packageJson.peerDependencies ?? {}),
       ].filter((name) => name.includes('graphcommerce')),
     ),
   ]
@@ -77,7 +79,13 @@ export function sortDependencies(dependencyStructure: DependencyStructure): Pack
 export function resolveDependenciesSync(root = process.cwd()) {
   const cached = resolveCache.get(root)
   if (cached) return cached
-  const dependencyStructure = resolveRecursivePackageJson(root, {}, root)
+
+  const dependencyStructure = resolveRecursivePackageJson(
+    root,
+    {},
+    root,
+    process.env.PRIVATE_ADDITIONAL_DEPENDENCIES?.split(',') ?? [],
+  )
 
   const sorted = sortDependencies(dependencyStructure)
   resolveCache.set(root, sorted)

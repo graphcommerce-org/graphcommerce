@@ -4,7 +4,7 @@ import {
   useRecentlyViewedSkus,
   type RecentlyViewedProductsProps,
 } from '@graphcommerce/magento-recently-viewed-products'
-import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import {
   SidebarSlider,
   filterNonNullableKeys,
@@ -15,11 +15,13 @@ import { Box, Typography } from '@mui/material'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 
-export const component = 'RecentlyViewedProducts'
-export const exported = '@graphcommerce/magento-recently-viewed-products'
-export const ifConfig: IfConfig = 'demoMode'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/magento-recently-viewed-products',
+  ifConfig: 'demoMode',
+}
 
-function DemoRecentlyViewedProducts(props: PluginProps<RecentlyViewedProductsProps>) {
+export function RecentlyViewedProducts(props: PluginProps<RecentlyViewedProductsProps>) {
   const { Prev, exclude, title, productListRenderer, loading = 'lazy', ...scrollerProps } = props
 
   const ref = useRef<HTMLDivElement>(null)
@@ -62,4 +64,3 @@ function DemoRecentlyViewedProducts(props: PluginProps<RecentlyViewedProductsPro
     </>
   )
 }
-export const Plugin = DemoRecentlyViewedProducts

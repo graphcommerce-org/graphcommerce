@@ -27,6 +27,9 @@ _export(exports, {
     MagentoConfigurableVariantValuesSchema: function() {
         return MagentoConfigurableVariantValuesSchema;
     },
+    PaginationVariantSchema: function() {
+        return PaginationVariantSchema;
+    },
     ProductFiltersLayoutSchema: function() {
         return ProductFiltersLayoutSchema;
     },
@@ -50,16 +53,20 @@ const _zod = require("zod");
 const isDefinedNonNullAny = (v)=>v !== undefined && v !== null;
 const definedNonNullAnySchema = _zod.z.any().refine((v)=>isDefinedNonNullAny(v));
 const CompareVariantSchema = _zod.z.enum([
-    "CHECKBOX",
-    "ICON"
+    'CHECKBOX',
+    'ICON'
+]);
+const PaginationVariantSchema = _zod.z.enum([
+    'COMPACT',
+    'EXTENDED'
 ]);
 const ProductFiltersLayoutSchema = _zod.z.enum([
-    "DEFAULT",
-    "SIDEBAR"
+    'DEFAULT',
+    'SIDEBAR'
 ]);
 const SidebarGalleryPaginationVariantSchema = _zod.z.enum([
-    "DOTS",
-    "THUMBNAILS_BOTTOM"
+    'DOTS',
+    'THUMBNAILS_BOTTOM'
 ]);
 function DatalayerConfigSchema() {
     return _zod.z.object({
@@ -68,18 +75,22 @@ function DatalayerConfigSchema() {
 }
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
+        breadcrumbs: _zod.z.boolean().default(false).nullish(),
         canonicalBaseUrl: _zod.z.string().min(1),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
         compare: _zod.z.boolean().nullish(),
-        compareVariant: CompareVariantSchema.nullish(),
-        configurableVariantForSimple: _zod.z.boolean().nullish(),
+        compareVariant: CompareVariantSchema.default("ICON").nullish(),
+        configurableVariantForSimple: _zod.z.boolean().default(false).nullish(),
         configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
-        crossSellsHideCartItems: _zod.z.boolean().nullish(),
-        crossSellsRedirectItems: _zod.z.boolean().nullish(),
-        customerRequireEmailConfirmation: _zod.z.boolean().nullish(),
+        crossSellsHideCartItems: _zod.z.boolean().default(false).nullish(),
+        crossSellsRedirectItems: _zod.z.boolean().default(false).nullish(),
+        customerAddressNoteEnable: _zod.z.boolean().nullish(),
+        customerCompanyFieldsEnable: _zod.z.boolean().nullish(),
+        customerDeleteEnabled: _zod.z.boolean().nullish(),
+        customerXMagentoCacheIdDisable: _zod.z.boolean().nullish(),
         dataLayer: DatalayerConfigSchema().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
-        demoMode: _zod.z.boolean().nullish(),
+        demoMode: _zod.z.boolean().default(true).nullish(),
         enableGuestCheckoutLogin: _zod.z.boolean().nullish(),
         googleAnalyticsId: _zod.z.string().nullish(),
         googleRecaptchaKey: _zod.z.string().nullish(),
@@ -87,13 +98,14 @@ function GraphCommerceConfigSchema() {
         hygraphEndpoint: _zod.z.string().min(1),
         hygraphManagementApi: _zod.z.string().nullish(),
         hygraphProjectId: _zod.z.string().nullish(),
-        hygraphWriteAccessEndpoint: _zod.z.string().nullish(),
         hygraphWriteAccessToken: _zod.z.string().nullish(),
         limitSsg: _zod.z.boolean().nullish(),
         magentoEndpoint: _zod.z.string().min(1),
+        magentoVersion: _zod.z.number(),
         previewSecret: _zod.z.string().nullish(),
-        productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
+        productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),
+        productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
         productRoute: _zod.z.string().nullish(),
         recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
@@ -115,6 +127,7 @@ function GraphCommerceStorefrontConfigSchema() {
     return _zod.z.object({
         canonicalBaseUrl: _zod.z.string().nullish(),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
+        customerCompanyFieldsEnable: _zod.z.boolean().nullish(),
         defaultLocale: _zod.z.boolean().nullish(),
         domain: _zod.z.string().nullish(),
         googleAnalyticsId: _zod.z.string().nullish(),
@@ -123,7 +136,8 @@ function GraphCommerceStorefrontConfigSchema() {
         hygraphLocales: _zod.z.array(_zod.z.string().min(1)).nullish(),
         linguiLocale: _zod.z.string().nullish(),
         locale: _zod.z.string().min(1),
-        magentoStoreCode: _zod.z.string().min(1)
+        magentoStoreCode: _zod.z.string().min(1),
+        robotsAllow: _zod.z.boolean().nullish()
     });
 }
 function MagentoConfigurableVariantValuesSchema() {

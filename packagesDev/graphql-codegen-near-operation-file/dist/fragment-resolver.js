@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.buildFragmentRegistry = void 0;
+exports.buildFragmentRegistry = buildFragmentRegistry;
+exports.default = buildFragmentResolver;
 const visitor_plugin_common_1 = require("@graphql-codegen/visitor-plugin-common");
 const graphql_1 = require("graphql");
 const utils_1 = require("./utils");
@@ -77,7 +78,6 @@ ${duplicateFragmentNames.join('\n')}\n\n`);
     }
     return registry;
 }
-exports.buildFragmentRegistry = buildFragmentRegistry;
 /** Builds a fragment "resolver" that collects `externalFragments` definitions and `fragmentImportStatements` */
 function buildFragmentResolver(collectorOptions, presetOptions, schemaObject) {
     const fragmentRegistry = buildFragmentRegistry(collectorOptions, presetOptions, schemaObject);
@@ -128,4 +128,3 @@ function buildFragmentResolver(collectorOptions, presetOptions, schemaObject) {
     }
     return resolveFragments;
 }
-exports.default = buildFragmentResolver;

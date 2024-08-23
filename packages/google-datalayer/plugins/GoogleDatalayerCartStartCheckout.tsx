@@ -1,25 +1,28 @@
 import { CartStartCheckoutProps } from '@graphcommerce/magento-cart'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useMemoObject } from '@graphcommerce/next-ui'
 import { useEffect, useRef } from 'react'
-import { sendEvent } from '../api/sendEvent'
+import { useSendEvent } from '../api/sendEvent'
 import { cartToBeginCheckout } from '../mapping/cartToBeginCheckout/cartToBeginCheckout'
 import { cartToViewCart } from '../mapping/cartToViewCart/cartToViewCart'
 
-export const component = 'CartStartCheckout'
-export const exported = '@graphcommerce/magento-cart'
+export const config: PluginConfig = {
+  module: '@graphcommerce/magento-cart',
+  type: 'component',
+}
 
-export function GoogleDatalayerCartStartCheckout(props: PluginProps<CartStartCheckoutProps>) {
+export function CartStartCheckout(props: PluginProps<CartStartCheckoutProps>) {
   const { Prev, onStart, ...rest } = props
 
   const send = useRef(false)
+  const sendEvent = useSendEvent()
   const viewCart = useMemoObject(cartToViewCart({ __typename: 'Cart', ...props }))
   useEffect(() => {
     if (!send.current) {
       sendEvent('view_cart', viewCart)
       send.current = true
     }
-  }, [viewCart])
+  }, [sendEvent, viewCart])
 
   return (
     <Prev
@@ -31,5 +34,3 @@ export function GoogleDatalayerCartStartCheckout(props: PluginProps<CartStartChe
     />
   )
 }
-
-export const Plugin = GoogleDatalayerCartStartCheckout

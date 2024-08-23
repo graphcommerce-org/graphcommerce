@@ -36,6 +36,7 @@ export function FullPageMessage(props: FullPageMessageProps) {
         }),
         !disableMargin && {
           marginTop: responsiveVal(50, 250),
+          marginBottom: responsiveVal(50, 250),
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

@@ -30,5 +30,8 @@
     "revealOn": "run",
     "revealWithFocus": "none",
     "clearOnRun": "none"
+  },
+  "workbench.editor.customLabels.patterns": {
+    "**/*.interceptor.ts*": "${filename}.${extname} (auto generated)"
   }
 }

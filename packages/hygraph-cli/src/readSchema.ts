@@ -1,38 +1,25 @@
-import { ApolloClient, InMemoryCache, gql, HttpLink } from '@apollo/client'
-import { GraphCommerceConfig } from '@graphcommerce/next-config'
-import { fetch } from '@whatwg-node/fetch'
+import { ApolloClient, gql, NormalizedCacheObject } from '@apollo/client'
+import { Schema } from './types'
 
-export const readSchema = async (config: GraphCommerceConfig) => {
-  if (!config.hygraphProjectId) {
-    throw new Error('Please provide GC_HYGRAPH_PROJECT_ID in your env file.')
-  }
-
-  if (!config.hygraphWriteAccessToken) {
-    throw new Error('Please provide GC_HYGRAPH_WRITE_ACCESS_TOKEN in your env file.')
-  }
-
-  const projectId = config.hygraphProjectId
-
-  if (!config.hygraphManagementApi) {
-    throw new Error('Please provide GC_HYGRAPH_MANAGEMENT_API in your env file.')
-  }
-
-  const hygraphClient = new ApolloClient({
-    link: new HttpLink({
-      uri: config.hygraphManagementApi,
-      fetch,
-      headers: { Authorization: `Bearer ${config.hygraphWriteAccessToken}` },
-    }),
-    cache: new InMemoryCache(),
-  })
-
-  const { data } = await hygraphClient.query({
+export const readSchema = async (
+  managementClient: ApolloClient<NormalizedCacheObject>,
+  projectId: string,
+) => {
+  const { data } = await managementClient.query({
     query: gql`
       query getSchema($projectId: ID!) {
         viewer {
           project(id: $projectId) {
             environment(name: "master") {
               contentModel {
+                locales {
+                  id
+                  apiId
+                }
+                stages {
+                  id
+                  apiId
+                }
                 models {
                   apiId
                   apiIdPlural
@@ -61,5 +48,13 @@ export const readSchema = async (config: GraphCommerceConfig) => {
     },
   })
 
-  return data
+  return data as {
+    viewer: {
+      project: {
+        environment: {
+          contentModel: Schema
+        }
+      }
+    }
+  }
 }

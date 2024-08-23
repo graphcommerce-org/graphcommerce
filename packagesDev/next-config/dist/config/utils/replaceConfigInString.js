@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.replaceConfigInString = void 0;
+exports.replaceConfigInString = replaceConfigInString;
 const configToImportMeta_1 = require("./configToImportMeta");
 function replaceConfigInString(str, config) {
     let result = str;
@@ -10,4 +10,3 @@ function replaceConfigInString(str, config) {
     });
     return result;
 }
-exports.replaceConfigInString = replaceConfigInString;

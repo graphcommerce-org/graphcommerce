@@ -1,26 +1,15 @@
-import { Trans } from '@lingui/react'
-import { OrderStateLabel, OrderStateLabelProps, OrderStateRenderer } from './OrderStateLabel'
+import { alpha } from '@mui/material'
+import { OrderStateLabel, OrderStateLabelProps } from './OrderStateLabel'
 
 type OrderStateLabelInlineProps = OrderStateLabelProps
 
-const defaultRenderer: OrderStateRenderer = {
-  Ordered: () => <Trans id='processed' />,
-  Invoiced: () => <Trans id='invoiced' />,
-  Shipped: () => <Trans id='shipped' />,
-  Refunded: () => <Trans id='refunded' />,
-  Canceled: () => <Trans id='canceled' />,
-  Returned: () => <Trans id='returned' />,
-  Partial: () => <Trans id='partially processed' />,
-}
-
 export function OrderStateLabelInline(props: OrderStateLabelInlineProps) {
-  const { sx = [], renderer: incomingRenderer } = props
-  const renderer: OrderStateRenderer = { ...defaultRenderer, ...incomingRenderer }
+  const { sx = [] } = props
 
   return (
     <OrderStateLabel
       {...props}
-      renderer={renderer}
+      short
       sx={[
         (theme) => ({
           fontStyle: 'normal',
@@ -28,20 +17,22 @@ export function OrderStateLabelInline(props: OrderStateLabelInlineProps) {
           padding: `0 6px`,
           borderRadius: '3px',
           fontWeight: 'normal',
-          background: `${theme.palette.secondary.main}20`,
+          background: alpha(theme.palette.secondary.main, 0.125),
 
-          '&.orderStateRefunded': {
-            color: theme.palette.primary.main,
-            background: `${theme.palette.primary.main}20`,
+          '&.orderStatePending': {
+            color: theme.palette.text.disabled,
           },
-          '&.orderStateShipped': {
+          '&.orderStateProcessing': {
+            color: theme.palette.info.main,
+            background: alpha(theme.palette.info.main, 0.125),
+          },
+          '&.orderStateComplete': {
             color: theme.palette.success.main,
-            fontWeight: 'normal',
-            background: `${theme.palette.success.main}20`,
+            background: alpha(theme.palette.success.main, 0.125),
           },
-          '&.orderStateCanceled': {
-            color: theme.palette.primary.main,
-            background: `${theme.palette.primary.main}20`,
+          '&.orderStateClosed': {
+            color: theme.palette.text.disabled,
+            background: alpha(theme.palette.text.disabled, 0.125),
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

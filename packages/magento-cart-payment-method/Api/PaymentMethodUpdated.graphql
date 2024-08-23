@@ -1,4 +1,4 @@
-fragment PaymentMethodUpdated on Cart @injectable {
+fragment PaymentMethodUpdated on Cart {
   id
   selected_payment_method {
     ...SelectedPaymentMethod

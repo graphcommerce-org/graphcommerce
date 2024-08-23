@@ -54,7 +54,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
   /** Call apolloClient to fetch locale specific agreements from Magento. */
   const path = async (locale: string) => {
-    const client = graphqlSsrClient(locale)
+    const client = graphqlSsrClient({ locale })
     const { data } = await client.query({ query: CartAgreementsDocument })
     return (data.checkoutAgreements ?? []).map((agreement) => ({
       locale,
@@ -67,9 +67,10 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const { params } = context
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
   const agreements = await staticClient.query({ query: CartAgreementsDocument })

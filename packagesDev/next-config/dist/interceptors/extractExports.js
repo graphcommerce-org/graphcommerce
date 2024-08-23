@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.extractExports = exports.RUNTIME_VALUE = exports.UnsupportedValueError = exports.NoSuchDeclarationError = void 0;
+exports.RUNTIME_VALUE = exports.UnsupportedValueError = exports.NoSuchDeclarationError = void 0;
+exports.extractExports = extractExports;
 class NoSuchDeclarationError extends Error {
 }
 exports.NoSuchDeclarationError = NoSuchDeclarationError;
@@ -87,9 +88,8 @@ function extractValue(node, path, optional = false) {
             case 'undefined':
                 return undefined;
             default:
-                if (optional)
-                    return exports.RUNTIME_VALUE;
-                throw new UnsupportedValueError(`Unknown identifier "${node.value}"`, path);
+                return exports.RUNTIME_VALUE;
+            // throw new UnsupportedValueError(`Unknown identifier "${node.value}"`, path)
         }
     }
     else if (isArrayExpression(node)) {
@@ -100,9 +100,11 @@ function extractValue(node, path, optional = false) {
             if (elem) {
                 if (elem.spread) {
                     // e.g. [ ...a ]
-                    if (optional)
-                        return exports.RUNTIME_VALUE;
-                    throw new UnsupportedValueError('Unsupported spread operator in the Array Expression', path);
+                    return exports.RUNTIME_VALUE;
+                    // throw new UnsupportedValueError(
+                    //   'Unsupported spread operator in the Array Expression',
+                    //   path,
+                    // )
                 }
                 arr.push(extractValue(elem.expression, path && [...path, `[${i}]`], optional));
             }
@@ -120,9 +122,11 @@ function extractValue(node, path, optional = false) {
         for (const prop of node.properties) {
             if (!isKeyValueProperty(prop)) {
                 // e.g. { ...a }
-                if (optional)
-                    return exports.RUNTIME_VALUE;
-                throw new UnsupportedValueError('Unsupported spread operator in the Object Expression', path);
+                return exports.RUNTIME_VALUE;
+                // throw new UnsupportedValueError(
+                //   'Unsupported spread operator in the Object Expression',
+                //   path,
+                // )
             }
             let key;
             if (isIdentifier(prop.key)) {
@@ -134,9 +138,11 @@ function extractValue(node, path, optional = false) {
                 key = prop.key.value;
             }
             else {
-                if (optional)
-                    return exports.RUNTIME_VALUE;
-                throw new UnsupportedValueError(`Unsupported key type "${prop.key.type}" in the Object Expression`, path);
+                return exports.RUNTIME_VALUE;
+                // throw new UnsupportedValueError(
+                //   `Unsupported key type "${prop.key.type}" in the Object Expression`,
+                //   path,
+                // )
             }
             obj[key] = extractValue(prop.value, path && [...path, key]);
         }
@@ -146,9 +152,8 @@ function extractValue(node, path, optional = false) {
         // e.g. `abc`
         if (node.expressions.length !== 0) {
             // TODO: should we add support for `${'e'}d${'g'}'e'`?
-            if (optional)
-                return exports.RUNTIME_VALUE;
-            throw new UnsupportedValueError('Unsupported template literal with expressions', path);
+            return exports.RUNTIME_VALUE;
+            // throw new UnsupportedValueError('Unsupported template literal with expressions', path)
         }
         // When TemplateLiteral has 0 expressions, the length of quasis is always 1.
         // Because when parsing TemplateLiteral, the parser yields the first quasi,
@@ -163,9 +168,8 @@ function extractValue(node, path, optional = false) {
         return cooked ?? raw;
     }
     else {
-        if (optional)
-            return exports.RUNTIME_VALUE;
-        throw new UnsupportedValueError(`Unsupported node type "${node.type}"`, path);
+        return exports.RUNTIME_VALUE;
+        // throw new UnsupportedValueError(`Unsupported node type "${node.type}"`, path)
     }
 }
 function extractExports(module) {
@@ -198,4 +202,3 @@ function extractExports(module) {
     }
     return [exports, errors];
 }
-exports.extractExports = extractExports;

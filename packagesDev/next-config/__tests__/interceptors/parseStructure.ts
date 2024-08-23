@@ -77,12 +77,12 @@ export const Plugin = DemoProductListItemConfigurable
 it('correctly parses the classic function plugin config', () => {
   const src = `
 import { graphqlConfig, setContext } from '@graphcommerce/graphql'
-import type { MethodPlugin } from '@graphcommerce/next-config'
+import type { FunctionPlugin } from '@graphcommerce/next-config'
 
 export const func = 'graphqlConfig'
 export const exported = '@graphcommerce/graphql'
 
-const hygraphGraphqlConfig: MethodPlugin<typeof graphqlConfig> = (prev, config) => {
+const hygraphGraphqlConfig: FunctionPlugin<typeof graphqlConfig> = (prev, config) => {
   const results = prev(config)
 
   const locales = config.storefront.hygraphLocales
@@ -155,4 +155,134 @@ export const AddProductsToCartForm = EnableCrossselsPlugin
       "type": "component",
     }
   `)
+})
+
+it('parses', () => {
+  const src = `
+  import {
+  PaymentMethodContextProviderProps,
+  PaymentModule,
+} from '@graphcommerce/magento-cart-payment-method'
+import type { PluginProps } from '@graphcommerce/next-config'
+import { AdyenPaymentActionCard } from '../components/AdyenPaymentActionCard/AdyenPaymentActionCard'
+import { AdyenPaymentHandler } from '../components/AdyenPaymentHandler/AdyenPaymentHandler'
+import { HppOptions } from '../components/AdyenPaymentOptionsAndPlaceOrder/AdyenPaymentOptionsAndPlaceOrder'
+import { adyenHppExpandMethods } from '../hooks/adyenHppExpandMethods'
+
+export const adyen_hpp: PaymentModule = {
+  PaymentOptions: HppOptions,
+  PaymentPlaceOrder: () => null,
+  PaymentHandler: AdyenPaymentHandler,
+  PaymentActionCard: AdyenPaymentActionCard,
+  expandMethods: adyenHppExpandMethods,
+}
+
+export const component = 'PaymentMethodContextProvider'
+export const exported = '@graphcommerce/magento-cart-payment-method'
+
+function AddAdyenMethods(props: PluginProps<PaymentMethodContextProviderProps>) {
+  const { modules, Prev, ...rest } = props
+  return <Prev {...rest} modules={{ ...modules, adyen_hpp }} />
+}
+
+export const Plugin = AddAdyenMethods
+`
+
+  const plugins = parseStructure(
+    parseSync(src),
+    fakeconfig,
+    '@graphcommerce/magento-payment-adyen/plugins/AddAdyenMethods.tsx',
+  )
+  expect(plugins).toHaveLength(1)
+  expect(plugins[0]).toMatchInlineSnapshot(`
+    {
+      "enabled": true,
+      "sourceExport": "Plugin",
+      "sourceModule": "@graphcommerce/magento-payment-adyen/plugins/AddAdyenMethods.tsx",
+      "targetExport": "PaymentMethodContextProvider",
+      "targetModule": "@graphcommerce/magento-cart-payment-method",
+      "type": "component",
+    }
+  `)
+  expect(plugins[1]).toMatchInlineSnapshot(`undefined`)
+})
+
+it('correctly allows false value in the ifConfig', () => {
+  const src = `
+import { PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import { xMagentoCacheIdHeader } from '../link/xMagentoCacheIdHeader'
+import { GraphQLProviderProps } from '@graphcommerce/graphql'
+
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/graphql',
+  ifConfig: ['customerXMagentoCacheIdDisable', false],
+}
+
+export function GraphQLProvider(props: PluginProps<GraphQLProviderProps>) {
+  const { Prev, links = [], ...rest } = props
+  return <Prev {...rest} links={[...links, xMagentoCacheIdHeader]} />
+}
+`
+  const ast = parseSync(src)
+
+  expect(
+    parseStructure(ast, {} as GraphCommerceConfig, './plugins/MyReplace')[0].enabled,
+  ).toBeTruthy()
+
+  expect(
+    parseStructure(
+      ast,
+      { customerXMagentoCacheIdDisable: true } as GraphCommerceConfig,
+      './plugins/MyReplace',
+    )[0].enabled,
+  ).toBeFalsy()
+
+  expect(
+    parseStructure(
+      ast,
+      { customerXMagentoCacheIdDisable: false } as GraphCommerceConfig,
+      './plugins/MyReplace',
+    )[0].enabled,
+  ).toBeTruthy()
+})
+
+it('correctly allows true value in the ifConfig', () => {
+  const src = `
+import { PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import { xMagentoCacheIdHeader } from '../link/xMagentoCacheIdHeader'
+import { GraphQLProviderProps } from '@graphcommerce/graphql'
+
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/graphql',
+  ifConfig: ['customerXMagentoCacheIdDisable', true],
+}
+
+export function GraphQLProvider(props: PluginProps<GraphQLProviderProps>) {
+  const { Prev, links = [], ...rest } = props
+  return <Prev {...rest} links={[...links, xMagentoCacheIdHeader]} />
+}
+`
+  const ast = parseSync(src)
+
+  expect(
+    parseStructure(ast, {} as GraphCommerceConfig, './plugins/MyReplace')[0].enabled,
+  ).toBeFalsy()
+
+  expect(
+    parseStructure(
+      ast,
+      { customerXMagentoCacheIdDisable: true } as GraphCommerceConfig,
+      './plugins/MyReplace',
+    )[0].enabled,
+  ).toBeTruthy()
+
+  expect(
+    parseStructure(
+      ast,
+      { customerXMagentoCacheIdDisable: false } as GraphCommerceConfig,
+      './plugins/MyReplace',
+    )[0].enabled,
+  ).toBeFalsy()
 })

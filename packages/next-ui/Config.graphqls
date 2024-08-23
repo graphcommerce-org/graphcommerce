@@ -3,6 +3,11 @@ extend input GraphCommerceConfig {
   Configuration for the SidebarGallery component
   """
   sidebarGallery: SidebarGalleryConfig
+
+  """
+  Configuration for the SidebarGallery component
+  """
+  breadcrumbs: Boolean = false
 }
 
 """

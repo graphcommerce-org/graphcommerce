@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.exportConfigToEnv = void 0;
+exports.exportConfigToEnv = exportConfigToEnv;
 const mergeEnvIntoConfig_1 = require("./mergeEnvIntoConfig");
 const fmt = (value) => {
     let formattedValue = value;
@@ -29,4 +29,3 @@ function exportConfigToEnv(config) {
     });
     return env;
 }
-exports.exportConfigToEnv = exportConfigToEnv;

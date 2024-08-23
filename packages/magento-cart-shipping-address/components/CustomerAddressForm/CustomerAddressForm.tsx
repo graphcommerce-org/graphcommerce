@@ -1,6 +1,7 @@
 import {
   FormAutoSubmit,
   FormPersist,
+  TextFieldElement,
   UseFormComposeOptions,
   useFormCompose,
 } from '@graphcommerce/ecommerce-ui'
@@ -11,10 +12,11 @@ import {
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { CustomerDocument } from '@graphcommerce/magento-customer'
-import { ActionCardListForm, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { ActionCardListForm, FormRow, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
+import { Trans } from '@lingui/macro'
 import { Box, SxProps, Theme } from '@mui/material'
-import React, { useMemo } from 'react'
+import React, { useEffect } from 'react'
 import { findCustomerAddressFromCartAddress } from '../../utils/findCustomerAddressFromCartAddress'
 import { GetAddressesDocument } from '../ShippingAddressForm/GetAddresses.gql'
 import { CustomerAddressActionCard } from './CustomerAddressActionCard'
@@ -37,6 +39,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
   const customer = useQuery(CustomerDocument)
   const cartQuery = useCartQuery(GetAddressesDocument)
   const cart = cartQuery.data?.cart
+  const isVirtual = cart?.is_virtual ?? false
 
   const customerAddresses = filterNonNullableKeys(customer.data?.customer?.addresses, ['id'])
 
@@ -91,10 +94,19 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
           return {
             ...vars,
             billingAddress: { same_as_shipping: true },
-            shippingAddress: { customer_address_id },
+            shippingAddress: {
+              customer_address_id,
+              customer_notes: vars.shippingAddress?.customer_notes ?? '',
+            },
           }
         case 'shipping':
-          return { ...vars, shippingAddress: { customer_address_id } }
+          return {
+            ...vars,
+            shippingAddress: {
+              customer_address_id,
+              customer_notes: vars.shippingAddress?.customer_notes ?? '',
+            },
+          }
         case 'billing':
         default:
           return { ...vars, billingAddress: { customer_address_id } }
@@ -105,20 +117,26 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
   const { handleSubmit, error, control, setValue, watch } = form
   const formAddressId = watch('customer_address_id')
 
-  useMemo(() => {
+  useEffect(() => {
     if (mode === 'both' || mode === 'shipping') {
-      if (!cartAddressId && defaultShippingId) {
-        // console.log('shippingAddress.customer_address_id', defaultShippingId)
+      if (!cartAddressId && !cartShipping && defaultShippingId) {
         setValue('customer_address_id', defaultShippingId, { shouldValidate: true })
       }
     }
     if (mode === 'billing') {
-      if (!cartAddressId && defaultBillingId) {
-        // console.log('billingAddress.customer_address_id', defaultBillingId)
+      if (!cartAddressId && !cartBilling && defaultBillingId) {
         setValue('customer_address_id', defaultBillingId, { shouldValidate: true })
       }
     }
-  }, [cartAddressId, defaultBillingId, defaultShippingId, mode, setValue])
+  }, [
+    cartAddressId,
+    cartBilling,
+    cartShipping,
+    defaultBillingId,
+    defaultShippingId,
+    mode,
+    setValue,
+  ])
 
   const submit = handleSubmit(() => {})
 
@@ -129,7 +147,6 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
 
   return (
     <>
-      <FormPersist form={form} name='CustomerAddressForm' />
       <FormAutoSubmit control={form.control} submit={submit} wait={0} />
       <Box component='form' onSubmit={submit} noValidate sx={sx}>
         <ActionCardListForm
@@ -145,9 +162,24 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
           ]}
           render={CustomerAddressActionCard}
         />
+        {!isVirtual &&
+          formAddressId !== -1 &&
+          import.meta.graphCommerce.customerAddressNoteEnable && (
+            <FormRow>
+              <TextFieldElement
+                control={form.control}
+                name='shippingAddress.customer_notes'
+                label={<Trans>Shipping Note</Trans>}
+                multiline
+                minRows={3}
+              />
+            </FormRow>
+          )}
         <ApolloCartErrorAlert error={error} />
       </Box>
       {formAddressId === -1 && children}
+
+      <FormPersist form={form} name='CustomerAddressForm' />
     </>
   )
 }

@@ -1,0 +1,10 @@
+extend input GraphCommerceAlgoliaConfig {
+  """
+  Send algolia analytics events.
+  """
+  analyticsEnabled: Boolean
+  """
+  Enable personalized queries.
+  """
+  personalizationEnabled: Boolean
+}

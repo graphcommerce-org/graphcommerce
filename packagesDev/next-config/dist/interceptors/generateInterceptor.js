@@ -3,7 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateInterceptor = exports.moveRelativeDown = exports.SOURCE_END = exports.SOURCE_START = exports.isPluginConfig = exports.isReplacePluginConfig = exports.isMethodPluginConfig = exports.isReactPluginConfig = exports.isPluginBaseConfig = void 0;
+exports.SOURCE_END = exports.SOURCE_START = void 0;
+exports.isPluginBaseConfig = isPluginBaseConfig;
+exports.isReactPluginConfig = isReactPluginConfig;
+exports.isMethodPluginConfig = isMethodPluginConfig;
+exports.isReplacePluginConfig = isReplacePluginConfig;
+exports.isPluginConfig = isPluginConfig;
+exports.moveRelativeDown = moveRelativeDown;
+exports.generateInterceptor = generateInterceptor;
 // eslint-disable-next-line import/no-extraneous-dependencies
 const prettier_config_pwa_1 = __importDefault(require("@graphcommerce/prettier-config-pwa"));
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -16,42 +23,37 @@ function isPluginBaseConfig(plugin) {
         typeof plugin.enabled === 'boolean' &&
         typeof plugin.targetExport === 'string');
 }
-exports.isPluginBaseConfig = isPluginBaseConfig;
 function isReactPluginConfig(plugin) {
     if (!isPluginBaseConfig(plugin))
         return false;
     return plugin.type === 'component';
 }
-exports.isReactPluginConfig = isReactPluginConfig;
 function isMethodPluginConfig(plugin) {
     if (!isPluginBaseConfig(plugin))
         return false;
     return plugin.type === 'function';
 }
-exports.isMethodPluginConfig = isMethodPluginConfig;
 function isReplacePluginConfig(plugin) {
     if (!isPluginBaseConfig(plugin))
         return false;
     return plugin.type === 'replace';
 }
-exports.isReplacePluginConfig = isReplacePluginConfig;
 function isPluginConfig(plugin) {
     return isPluginBaseConfig(plugin);
 }
-exports.isPluginConfig = isPluginConfig;
-exports.SOURCE_START = '/** ❗️ Original (modified) source starts here **/';
-exports.SOURCE_END = '/** ❗️ Original (modified) source ends here **/';
+exports.SOURCE_START = '/** Original source starts here (do not modify!): **/';
+exports.SOURCE_END = '/** Original source ends here (do not modify!) **/';
 const originalSuffix = 'Original';
-const sourceSuffix = 'Source';
+const sourceSuffix = 'Plugin';
 const interceptorSuffix = 'Interceptor';
 const disabledSuffix = 'Disabled';
 const name = (plugin) => `${plugin.sourceExport}${plugin.sourceModule
     .split('/')[plugin.sourceModule.split('/').length - 1].replace(/[^a-zA-Z0-9]/g, '')}`;
 const fileName = (plugin) => `${plugin.sourceModule}#${plugin.sourceExport}`;
 const originalName = (n) => `${n}${originalSuffix}`;
-const sourceName = (n) => `${n}${sourceSuffix}`;
+const sourceName = (n) => `${n}`;
 const interceptorName = (n) => `${n}${interceptorSuffix}`;
-const interceptorPropsName = (n) => `${interceptorName(n)}Props`;
+const interceptorPropsName = (n) => `${n}Props`;
 function moveRelativeDown(plugins) {
     return [...plugins].sort((a, b) => {
         if (a.sourceModule.startsWith('.') && !b.sourceModule.startsWith('.'))
@@ -61,7 +63,6 @@ function moveRelativeDown(plugins) {
         return 0;
     });
 }
-exports.moveRelativeDown = moveRelativeDown;
 const generateIdentifyer = (s) => Math.abs(s.split('').reduce((a, b) => {
     // eslint-disable-next-line no-param-reassign, no-bitwise
     a = (a << 5) - a + b.charCodeAt(0);
@@ -102,7 +103,9 @@ async function generateInterceptor(interceptor, config, oldInterceptorSource) {
         .map(([base, plugins]) => {
         const duplicateInterceptors = new Set();
         let carry = originalName(base);
-        const carryProps = [];
+        let carryProps = [];
+        const pluginSee = [];
+        pluginSee.push(`@see {@link file://${interceptor.sourcePathRelative}} for original source file`);
         const pluginStr = plugins
             .reverse()
             .filter((p) => {
@@ -119,46 +122,60 @@ async function generateInterceptor(interceptor, config, oldInterceptorSource) {
                 .join(' wrapping ');
             if (isReplacePluginConfig(p)) {
                 new RenameVisitor_1.RenameVisitor([originalName(p.targetExport)], (s) => s.replace(originalSuffix, disabledSuffix)).visitModule(ast);
-                carryProps.push(interceptorPropsName(name(p)));
-                result = `type ${interceptorPropsName(name(p))} = React.ComponentProps<typeof ${sourceName(name(p))}>`;
+                carryProps.push(`React.ComponentProps<typeof ${sourceName(name(p))}>`);
+                pluginSee.push(`@see {${sourceName(name(p))}} for replacement of the original source (original source not used)`);
             }
             if (isReactPluginConfig(p)) {
-                carryProps.push(interceptorPropsName(name(p)));
+                const withBraces = config.pluginStatus || process.env.NODE_ENV === 'development';
                 result = `
-              type ${interceptorPropsName(name(p))} = DistributedOmit<React.ComponentProps<typeof ${sourceName(name(p))}>, 'Prev'>
-              const ${interceptorName(name(p))} = (props: ${carryProps.join(' & ')}) => {
+              type ${interceptorPropsName(name(p))} = ${carryProps.join(' & ')} & OmitPrev<React.ComponentProps<typeof ${sourceName(name(p))}>, 'Prev'>
+              
+              const ${interceptorName(name(p))} = (props: ${interceptorPropsName(name(p))}) => ${withBraces ? `{` : '('}
                 ${config.pluginStatus ? `logOnce(\`🔌 Rendering ${base} with plugin(s): ${wrapChain} wrapping <${base}/>\`)` : ''}
 
                 ${process.env.NODE_ENV === 'development'
                     ? `if(!props['data-plugin'])
                   logOnce('${fileName(p)} does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.')`
                     : ''}
-                return <${sourceName(name(p))} {...props} Prev={${carry} as React.FC} />
-              }`;
+                ${withBraces ? `return` : ''} <${sourceName(name(p))} {...props} Prev={${carry}} />
+              ${withBraces ? `}` : ')'}`;
+                carryProps = [interceptorPropsName(name(p))];
+                pluginSee.push(`@see {${sourceName(name(p))}} for source of applied plugin`);
             }
             if (isMethodPluginConfig(p)) {
                 result = `const ${interceptorName(name(p))}: typeof ${carry} = (...args) => {
                 ${config.pluginStatus ? `logOnce(\`🔌 Calling ${base} with plugin(s): ${wrapChain} wrapping ${base}()\`)` : ''}
                 return ${sourceName(name(p))}(${carry}, ...args)
               }`;
+                pluginSee.push(`@see {${sourceName(name(p))}} for source of applied plugin`);
             }
             carry = p.type === 'replace' ? sourceName(name(p)) : interceptorName(name(p));
             return result;
         })
             .filter((v) => !!v)
             .join('\n');
-        const isComponent = plugins.every((p) => isReplacePluginConfig(p) || isReactPluginConfig(p));
+        const isComponent = plugins.every((p) => isReactPluginConfig(p));
         if (isComponent && plugins.some((p) => isMethodPluginConfig(p))) {
             throw new Error(`Cannot mix React and Method plugins for ${base} in ${dependency}.`);
         }
+        const seeString = `
+      /**
+       * Here you see the 'interceptor' that is applying all the configured plugins.
+       *
+       * This file is NOT meant to be modified directly and is auto-generated if the plugins or the original source changes.
+       * 
+       ${pluginSee.map((s) => `* ${s}`).join('\n')}
+       */`;
         if (process.env.NODE_ENV === 'development' && isComponent) {
             return `${pluginStr}
+          ${seeString}
           export const ${base}: typeof ${carry} = (props) => {
             return <${carry} {...props} data-plugin />
           }`;
         }
         return `
         ${pluginStr}
+        ${seeString}
         export const ${base} = ${carry}
       `;
     })
@@ -177,11 +194,12 @@ async function generateInterceptor(interceptor, config, oldInterceptorSource) {
     /* eslint-disable */
     /* This file is automatically generated for ${dependency} */
     ${Object.values(targetExports).some((t) => t.some((p) => p.type === 'component'))
-        ? `import type { DistributedOmit } from 'type-fest'`
+        ? `import type { DistributedOmit as OmitPrev } from 'type-fest'`
         : ''}
 
     ${pluginImports}
 
+    /** @see {@link file://${interceptor.sourcePathRelative}} for source of original */
     ${exports.SOURCE_START}
     ${(0, swc_1.printSync)(ast).code}
     ${exports.SOURCE_END}
@@ -197,4 +215,3 @@ async function generateInterceptor(interceptor, config, oldInterceptorSource) {
     }
     return { ...interceptor, template: templateFormatted };
 }
-exports.generateInterceptor = generateInterceptor;

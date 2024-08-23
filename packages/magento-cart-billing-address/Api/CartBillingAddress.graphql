@@ -1,4 +1,4 @@
-fragment CartBillingAddress on Cart @injectable {
+fragment CartBillingAddress on Cart {
   id
   __typename
   billing_address {

@@ -1,5 +1,159 @@
 # Change Log
 
+## 9.0.0-canary.79
+
+## 9.0.0-canary.78
+
+## 9.0.0-canary.77
+
+## 9.0.0-canary.76
+
+## 9.0.0-canary.75
+
+## 9.0.0-canary.74
+
+## 9.0.0-canary.73
+
+## 9.0.0-canary.72
+
+## 9.0.0-canary.71
+
+## 9.0.0-canary.70
+
+## 9.0.0-canary.69
+
+## 9.0.0-canary.68
+
+## 9.0.0-canary.67
+
+## 9.0.0-canary.66
+
+## 9.0.0-canary.65
+
+## 9.0.0-canary.64
+
+## 9.0.0-canary.63
+
+### Patch Changes
+
+- [`0acfda7`](https://github.com/graphcommerce-org/graphcommerce/commit/0acfda73760921d74412c8c8bc8e8de5732e1f39) - Move back to eslint 8 ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.62
+
+## 9.0.0-canary.61
+
+## 9.0.0-canary.60
+
+## 9.0.0-canary.59
+
+## 9.0.0-canary.58
+
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+## 8.1.0-canary.46
+
+### Patch Changes
+
+- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`fe8fce7`](https://github.com/graphcommerce-org/graphcommerce/commit/fe8fce7f5a82e227ed4a1992415af73fa7d0bb79) - Importing \*.interceptor is NOT allowed ([@paales](https://github.com/paales))
+
+## 8.1.0-canary.45
+
+## 8.1.0-canary.44
+
+## 8.1.0-canary.43
+
+## 8.1.0-canary.42
+
+## 8.1.0-canary.41
+
+## 8.1.0-canary.40
+
+## 8.1.0-canary.39
+
+## 8.1.0-canary.38
+
+## 8.1.0-canary.37
+
+## 8.1.0-canary.36
+
+## 8.1.0-canary.35
+
+## 8.1.0-canary.34
+
+## 8.1.0-canary.33
+
+## 8.1.0-canary.32
+
+## 8.1.0-canary.31
+
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
+## 8.1.0-canary.28
+
+## 8.1.0-canary.27
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
+## 8.1.0-canary.20
+
+## 8.1.0-canary.19
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+## 8.1.0-canary.8
+
+## 8.1.0-canary.7
+
 ## 8.1.0-canary.6
 
 ## 8.1.0-canary.5
@@ -86,8 +240,7 @@
 
 ### Patch Changes
 
-- [#2035](https://github.com/graphcommerce-org/graphcommerce/pull/2035) [`08f1ae1`](https://github.com/graphcommerce-org/graphcommerce/commit/08f1ae18e2271cd690eca8518a723c3eb806c1f9) - Added an eslint warning to restrict the import of `useMediaQuery` because it causes more trouble than it solves
-  ([@paales](https://github.com/paales))
+- [#2035](https://github.com/graphcommerce-org/graphcommerce/pull/2035) [`08f1ae1`](https://github.com/graphcommerce-org/graphcommerce/commit/08f1ae18e2271cd690eca8518a723c3eb806c1f9) - Added an eslint warning to restrict the import of `useMediaQuery` because it causes more trouble than it solves ([@paales](https://github.com/paales))
 
 ## 8.0.0-canary.100
 

@@ -104,6 +104,8 @@ export type DatalayerConfig = {
  * Below is a list of all possible configurations that can be set by GraphCommerce.
  */
 export type GraphCommerceConfig = {
+  /** Configuration for the SidebarGallery component */
+  breadcrumbs?: InputMaybe<Scalars['Boolean']['input']>;
   /**
    * The canonical base URL is used for SEO purposes.
    *
@@ -157,14 +159,23 @@ export type GraphCommerceConfig = {
    * Default: 'false'
    */
   crossSellsRedirectItems?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Enables the shipping notes field in the checkout */
+  customerAddressNoteEnable?: InputMaybe<Scalars['Boolean']['input']>;
   /**
-   * Due to a limitation in the GraphQL API of Magento 2, we need to know if the
-   * customer requires email confirmation.
-   *
-   * This value should match Magento 2's configuration value for
-   * `customer/create_account/confirm` and should be removed once we can query
+   * Enables company fields inside the checkout:
+   * - Company name
+   * - VAT ID
    */
-  customerRequireEmailConfirmation?: InputMaybe<Scalars['Boolean']['input']>;
+  customerCompanyFieldsEnable?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Enable customer account deletion through the account section */
+  customerDeleteEnabled?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
+   * X-Magento-Cache-Id allows Varnish to cache requests that are made in the browser while users are logged in. For example the products query can now be cached for logged in users.
+   *
+   * This can be disabled when Varnish is running out of available memory.
+   */
+  customerXMagentoCacheIdDisable?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Datalayer config */
   dataLayer?: InputMaybe<DatalayerConfig>;
   /** Debug configuration for GraphCommerce */
   debug?: InputMaybe<GraphCommerceDebugConfig>;
@@ -218,18 +229,20 @@ export type GraphCommerceConfig = {
    * Project settings -> API Access -> High Performance Read-only Content API
    */
   hygraphEndpoint: Scalars['String']['input'];
-  /** Hygraph Management API. **Only used for migrations.** */
-  hygraphManagementApi?: InputMaybe<Scalars['String']['input']>;
-  /** Hygraph Project ID. **Only used for migrations.** */
-  hygraphProjectId?: InputMaybe<Scalars['String']['input']>;
   /**
-   * Content API. **Only used for migrations.**
+   * Hygraph Management API. **Only used for migrations.**
    *
-   * > Regular read & write endpoint that allows querying and mutating data in your project.
-   *
-   * Project settings -> API Access -> Content API
+   * Optional: If the hygraphEndpoint is configured with the 'High Performance Content
+   * API', this field is not required.
    */
-  hygraphWriteAccessEndpoint?: InputMaybe<Scalars['String']['input']>;
+  hygraphManagementApi?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Hygraph Project ID. **Only used for migrations.**
+   *
+   * Optional: If the hygraphEndpoint is configured with the 'High Performance Content
+   * API', this field is not required.
+   */
+  hygraphProjectId?: InputMaybe<Scalars['String']['input']>;
   /**
    * Hygraph Management SDK Authorization Token. **Only used for migrations.**
    *
@@ -256,7 +269,6 @@ export type GraphCommerceConfig = {
    *   - Can see schema view
    *
    * ```
-   * GC_HYGRAPH_WRITE_ACCESS_ENDPOINT="https://...hygraph.com/v2/..."
    * GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
    * yarn graphcommerce hygraph-migrate
    * ```
@@ -275,6 +287,12 @@ export type GraphCommerceConfig = {
    * - https://magento2.test/graphql
    */
   magentoEndpoint: Scalars['String']['input'];
+  /**
+   * Version of the Magento backend.
+   *
+   * Values: 245, 246, 247 for Magento 2.4.5, 2.4.6, 2.4.7 respectively.
+   */
+  magentoVersion: Scalars['Int']['input'];
   /** To enable next.js' preview mode, configure the secret you'd like to use. */
   previewSecret?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -285,6 +303,13 @@ export type GraphCommerceConfig = {
   productFiltersLayout?: InputMaybe<ProductFiltersLayout>;
   /** Product filters with better UI for mobile and desktop. */
   productFiltersPro?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
+   * Pagination variant for the product listings.
+   *
+   * COMPACT means: "< Page X of Y >"
+   * EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
+   */
+  productListPaginationVariant?: InputMaybe<PaginationVariant>;
   /**
    * By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
    *
@@ -346,6 +371,12 @@ export type GraphCommerceStorefrontConfig = {
   /** Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax. */
   cartDisplayPricesInclTax?: InputMaybe<Scalars['Boolean']['input']>;
   /**
+   * Enables company fields inside the checkout:
+   * - Company name
+   * - VAT ID
+   */
+  customerCompanyFieldsEnable?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
    * There can only be one entry with defaultLocale set to true.
    * - If there are more, the first one is used.
    * - If there is none, the first entry is used.
@@ -365,11 +396,7 @@ export type GraphCommerceStorefrontConfig = {
   googleTagmanagerId?: InputMaybe<Scalars['String']['input']>;
   /** Add a gcms-locales header to make sure queries return in a certain language, can be an array to define fallbacks. */
   hygraphLocales?: InputMaybe<Array<Scalars['String']['input']>>;
-  /**
-   * Specify a custom locale for to load translations. Must be lowercase valid locale.
-   *
-   * This value is also used for the Intl.
-   */
+  /** Custom locale used to load the .po files. Must be a valid locale, also used for Intl functions. */
   linguiLocale?: InputMaybe<Scalars['String']['input']>;
   /**
    * Must be a [locale string](https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers) for automatic redirects to work.
@@ -388,6 +415,11 @@ export type GraphCommerceStorefrontConfig = {
    * - b2b-us
    */
   magentoStoreCode: Scalars['String']['input'];
+  /**
+   * Allow the site to be indexed by search engines.
+   * If false, the robots.txt file will be set to disallow all.
+   */
+  robotsAllow?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Options to configure which values will be replaced when a variant is selected on the product page. */
@@ -406,6 +438,10 @@ export type MagentoConfigurableVariantValues = {
    */
   url?: InputMaybe<Scalars['Boolean']['input']>;
 };
+
+export type PaginationVariant =
+  | 'COMPACT'
+  | 'EXTENDED';
 
 export type ProductFiltersLayout =
   | 'DEFAULT'
@@ -443,6 +479,8 @@ export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny
 
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
+export const PaginationVariantSchema = z.enum(['COMPACT', 'EXTENDED']);
+
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
 export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM']);
@@ -455,18 +493,22 @@ export function DatalayerConfigSchema(): z.ZodObject<Properties<DatalayerConfig>
 
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
+    breadcrumbs: z.boolean().default(false).nullish(),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     compare: z.boolean().nullish(),
-    compareVariant: CompareVariantSchema.nullish(),
-    configurableVariantForSimple: z.boolean().nullish(),
+    compareVariant: CompareVariantSchema.default("ICON").nullish(),
+    configurableVariantForSimple: z.boolean().default(false).nullish(),
     configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
-    crossSellsHideCartItems: z.boolean().nullish(),
-    crossSellsRedirectItems: z.boolean().nullish(),
-    customerRequireEmailConfirmation: z.boolean().nullish(),
+    crossSellsHideCartItems: z.boolean().default(false).nullish(),
+    crossSellsRedirectItems: z.boolean().default(false).nullish(),
+    customerAddressNoteEnable: z.boolean().nullish(),
+    customerCompanyFieldsEnable: z.boolean().nullish(),
+    customerDeleteEnabled: z.boolean().nullish(),
+    customerXMagentoCacheIdDisable: z.boolean().nullish(),
     dataLayer: DatalayerConfigSchema().nullish(),
     debug: GraphCommerceDebugConfigSchema().nullish(),
-    demoMode: z.boolean().nullish(),
+    demoMode: z.boolean().default(true).nullish(),
     enableGuestCheckoutLogin: z.boolean().nullish(),
     googleAnalyticsId: z.string().nullish(),
     googleRecaptchaKey: z.string().nullish(),
@@ -474,13 +516,14 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     hygraphEndpoint: z.string().min(1),
     hygraphManagementApi: z.string().nullish(),
     hygraphProjectId: z.string().nullish(),
-    hygraphWriteAccessEndpoint: z.string().nullish(),
     hygraphWriteAccessToken: z.string().nullish(),
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
+    magentoVersion: z.number(),
     previewSecret: z.string().nullish(),
-    productFiltersLayout: ProductFiltersLayoutSchema.nullish(),
+    productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
     productFiltersPro: z.boolean().nullish(),
+    productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
     productRoute: z.string().nullish(),
     recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
     robotsAllow: z.boolean().nullish(),
@@ -504,6 +547,7 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
   return z.object({
     canonicalBaseUrl: z.string().nullish(),
     cartDisplayPricesInclTax: z.boolean().nullish(),
+    customerCompanyFieldsEnable: z.boolean().nullish(),
     defaultLocale: z.boolean().nullish(),
     domain: z.string().nullish(),
     googleAnalyticsId: z.string().nullish(),
@@ -512,7 +556,8 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
     hygraphLocales: z.array(z.string().min(1)).nullish(),
     linguiLocale: z.string().nullish(),
     locale: z.string().min(1),
-    magentoStoreCode: z.string().min(1)
+    magentoStoreCode: z.string().min(1),
+    robotsAllow: z.boolean().nullish()
   })
 }
 

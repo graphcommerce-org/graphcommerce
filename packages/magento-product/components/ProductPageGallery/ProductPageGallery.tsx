@@ -22,15 +22,21 @@ export function ProductPageGallery(props: ProductPageGalleryProps) {
   const images =
     media_gallery
       ?.filter(nonNullable)
+      .filter((p) => p.disabled !== true)
       .sort((a, b) => (a.position ?? 0) - (b.position ?? 0))
-      .map((item) => {
-        if (item.__typename === 'ProductImage')
-          return { src: item.url ?? '', alt: item.label || undefined, width, height }
-        return {
-          src: '',
-          alt: `{${item.__typename} not yet supported}`,
-        }
-      }) ?? []
+      .map((item) =>
+        item.__typename === 'ProductImage'
+          ? {
+              src: item.url ?? '',
+              alt: item.label || undefined,
+              width,
+              height,
+            }
+          : {
+              src: '',
+              alt: `{${item.__typename} not yet supported}`,
+            },
+      ) ?? []
 
   return (
     <SidebarGallery

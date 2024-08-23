@@ -1,11 +1,10 @@
 import { ChipOverlayOrPopper, ChipOverlayOrPopperProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { ProductFilterEqualSection } from './ProductFilterEqualSection'
-import { ProductFilterRangeSection } from './ProductFilterRangeSection'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import {
   ProductFiltersProAggregations,
   ProductFiltersProAggregationsProps,
+  productFiltersProSectionRenderer,
 } from './ProductFiltersProAggregations'
 import { ProductFiltersProLimitSection } from './ProductFiltersProLimitSection'
 import {
@@ -14,7 +13,7 @@ import {
 } from './ProductFiltersProSortSection'
 import { activeAggregations } from './activeAggregations'
 import { applyAggregationCount } from './applyAggregationCount'
-import { useClearAllFiltersAction } from './useClearAllFiltersHandler'
+import { useProductFiltersProClearAllAction } from './useProductFiltersProClearAllAction'
 
 export type ProductFiltersProAllFiltersChipProps = ProductFiltersProAggregationsProps &
   ProductFiltersProSortSectionProps &
@@ -22,11 +21,6 @@ export type ProductFiltersProAllFiltersChipProps = ProductFiltersProAggregations
     ChipOverlayOrPopperProps,
     'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
   >
-
-const defaultRenderer = {
-  FilterRangeTypeInput: ProductFilterRangeSection,
-  FilterEqualTypeInput: ProductFilterEqualSection,
-}
 
 export function ProductFiltersProAllFiltersChip(props: ProductFiltersProAllFiltersChipProps) {
   const { sort_fields, total_count, renderer, category, ...rest } = props
@@ -42,7 +36,7 @@ export function ProductFiltersProAllFiltersChip(props: ProductFiltersProAllFilte
   const allFilters = [...activeFilters, sort].filter(Boolean)
   const hasFilters = allFilters.length > 0
 
-  const clearAll = useClearAllFiltersAction()
+  const clearAll = useProductFiltersProClearAllAction()
 
   return (
     <ChipOverlayOrPopper
@@ -65,7 +59,9 @@ export function ProductFiltersProAllFiltersChip(props: ProductFiltersProAllFilte
             category={category}
           />
           <ProductFiltersProLimitSection />
-          <ProductFiltersProAggregations renderer={{ ...defaultRenderer, ...renderer }} />
+          <ProductFiltersProAggregations
+            renderer={{ ...productFiltersProSectionRenderer, ...renderer }}
+          />
         </>
       )}
     </ChipOverlayOrPopper>

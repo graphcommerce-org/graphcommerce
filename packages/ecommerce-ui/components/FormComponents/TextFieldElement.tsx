@@ -1,6 +1,11 @@
 /* eslint-disable no-nested-ternary */
 import { InputCheckmark } from '@graphcommerce/next-ui'
-import { FieldValues, UseControllerProps, useController } from '@graphcommerce/react-hook-form'
+import {
+  FieldValues,
+  UseControllerProps,
+  emailPattern,
+  useController,
+} from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { TextField, TextFieldProps } from '@mui/material'
 
@@ -31,9 +36,7 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
 
   if (type === 'email' && !rules.pattern) {
     rules.pattern = {
-      // eslint-disable-next-line no-useless-escape
-      value:
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      value: emailPattern,
       message: i18n._(/* i18n */ 'Please enter a valid email address'),
     }
   }

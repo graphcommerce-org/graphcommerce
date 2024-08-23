@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findPlugins = void 0;
+exports.findPlugins = findPlugins;
 // eslint-disable-next-line import/no-extraneous-dependencies
 const core_1 = require("@swc/core");
 const chalk_1 = __importDefault(require("chalk"));
@@ -17,10 +17,14 @@ function findPlugins(config, cwd = process.cwd()) {
     const debug = Boolean(config.debug?.pluginStatus);
     const errors = [];
     const plugins = [];
-    dependencies.forEach((dependency, path) => {
-        const files = (0, glob_1.sync)(`${dependency}/plugins/**/*.{ts,tsx}`, { dotRelative: true });
+    dependencies.forEach((filePath, packageName) => {
+        const files = (0, glob_1.sync)(`${filePath}/plugins/**/*.{ts,tsx}`);
         files.forEach((file) => {
-            const sourceModule = file.replace(dependency, path).replace('.tsx', '').replace('.ts', '');
+            let sourceModule = file.replace('.tsx', '').replace('.ts', '');
+            if (file.startsWith(filePath))
+                sourceModule = `${packageName}/${sourceModule.slice(filePath.length + 1)}`;
+            if (packageName === '.' && !sourceModule.startsWith('.'))
+                sourceModule = `./${sourceModule}`;
             try {
                 const ast = (0, core_1.parseFileSync)(file, { syntax: 'typescript', tsx: true });
                 (0, parseStructure_1.parseStructure)(ast, config, sourceModule).forEach((result) => {
@@ -65,4 +69,3 @@ function findPlugins(config, cwd = process.cwd()) {
     }
     return [plugins, errors];
 }
-exports.findPlugins = findPlugins;

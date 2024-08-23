@@ -5,7 +5,7 @@ import { PrivateRouteInfo } from 'next/dist/shared/lib/router/router'
 import { AppPropsType } from 'next/dist/shared/lib/utils'
 import { NextRouter, Router } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
-import { pageContext } from '../context/pageContext'
+import { Direction, pageContext } from '../context/pageContext'
 import type { PageComponent, PageItem, UpPage } from '../types'
 import { Page } from './Page'
 import { PageRenderer } from './PageRenderer'
@@ -56,7 +56,8 @@ export function FramerNextPages(props: PagesProps) {
   const idx = routerKeys.indexOf(key)
 
   const prevHistory = useRef<number>(-1)
-  const direction = idx >= prevHistory.current ? 1 : -1
+  let direction: Direction = idx >= prevHistory.current ? 1 : -1
+  if (prevHistory.current === -1) direction = 0
 
   prevHistory.current = idx
 
@@ -102,8 +103,21 @@ export function FramerNextPages(props: PagesProps) {
 
   let renderItems = [...items.current]
 
+  /**  Removes the page if the up path equls the path of a overlay and there is no history present **/
+  const upPath = (renderItems.at(0)?.pageProps?.up as { href: string; title: string })?.href
+  const overlayPath = renderItems.at(-1)?.routerContext.pageInfo.asPath
+  if (
+    renderItems.length === 2 &&
+    upPath &&
+    overlayPath &&
+    upPath === overlayPath &&
+    renderItems.at(-1)?.overlayGroup
+  ) {
+    renderItems = renderItems.slice(1)
+  }
+
   /** We need to render back to the last item that isn't an overlay. */
-  const plainIdx = findPlainIdx(items.current)
+  const plainIdx = findPlainIdx(renderItems)
 
   const shouldLoadFb = plainIdx === -1 && typeof window !== 'undefined' && !fb
 

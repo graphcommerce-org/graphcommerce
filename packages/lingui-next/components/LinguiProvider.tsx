@@ -3,22 +3,13 @@ import { i18n, Messages } from '@lingui/core'
 import { I18nProvider, I18nProviderProps } from '@lingui/react'
 import React, { useMemo } from 'react'
 import { MessageLoader, SyncMessageLoader } from '../types'
-import { normalizeLocale } from '../lib/normalizeLocale'
 
 export type LinguiProviderProps = Omit<I18nProviderProps, 'i18n'> & {
   children: React.ReactNode
   loader: MessageLoader
   ssrLoader: SyncMessageLoader
-  /**
-   * @deprecated not necessary anumore
-   */
   locale?: string
 }
-
-/**
- * @deprecated use normalizeLocale
- */
-export const localeConfig = normalizeLocale
 
 export function LinguiProvider(props: LinguiProviderProps) {
   const { loader, ssrLoader, locale, ...i18nProviderProps } = props
@@ -28,7 +19,7 @@ export function LinguiProvider(props: LinguiProviderProps) {
   useMemo(() => {
     const data = globalThis.document?.getElementById('lingui')
 
-    if (data?.lang === localeOnly && data.textContent) {
+    if (data?.lang === localeOnly && data?.textContent) {
       // @todo: We're not loading the plurals dynamically, but we can't because it will load the complete module.
       i18n.load(localeOnly, JSON.parse(data.textContent) as Messages)
       i18n.activate(localeOnly)

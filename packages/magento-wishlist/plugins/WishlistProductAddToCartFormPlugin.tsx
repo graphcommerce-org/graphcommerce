@@ -3,13 +3,15 @@ import {
   useFormAddProductsToCart,
   AddProductsToCartFormProps,
 } from '@graphcommerce/magento-product'
-import { InputMaybe, PluginProps } from '@graphcommerce/next-config'
+import { InputMaybe, PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useWishlistItems } from '../hooks'
 
-export const component = 'AddProductsToCartForm'
-export const exported = '@graphcommerce/magento-product'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/magento-product',
+}
 
 function WishlistUrlHandler() {
   const { setValue } = useFormAddProductsToCart()
@@ -57,7 +59,7 @@ function WishlistUrlHandler() {
   return null
 }
 
-export const Plugin = (props: PluginProps<AddProductsToCartFormProps>) => {
+export function AddProductsToCartForm(props: PluginProps<AddProductsToCartFormProps>) {
   const { Prev, children, ...rest } = props
 
   // @todo: Do we also want to remove the item from the wishlist?

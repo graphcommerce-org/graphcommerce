@@ -1,6 +1,14 @@
 import { ApolloLink, TypePolicies } from '@apollo/client'
 import type { GraphCommerceStorefrontConfig } from '@graphcommerce/next-config'
+import type { SetRequired } from 'type-fest'
 import { MigrateCache } from './components/GraphQLProvider/migrateCache'
+
+export interface PreviewData {}
+
+export type PreviewConfig = {
+  preview?: boolean
+  previewData?: PreviewData & Record<string, unknown>
+}
 
 export type ApolloClientConfigInput = {
   storefront: GraphCommerceStorefrontConfig
@@ -17,11 +25,14 @@ export type ApolloClientConfigInput = {
    * yet, we run these migrations.
    */
   migrations?: MigrateCache[]
-}
+} & PreviewConfig
 
-export type ApolloClientConfig = Required<ApolloClientConfigInput>
+export type ApolloClientConfig = SetRequired<
+  ApolloClientConfigInput,
+  'links' | 'policies' | 'migrations'
+>
 
 export function graphqlConfig(config: ApolloClientConfigInput): ApolloClientConfig {
-  const { storefront, links = [], policies = [], migrations = [] } = config
-  return { storefront, links, policies, migrations }
+  const { storefront, links = [], policies = [], migrations = [], ...rest } = config
+  return { storefront, links, policies, migrations, ...rest }
 }

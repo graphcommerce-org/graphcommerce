@@ -2,6 +2,8 @@
 
 const commands = {
   'codegen-config': () => import('@graphcommerce/next-config').then((m) => m.generateConfig),
+  'codegen-interceptors': () =>
+    import('@graphcommerce/next-config').then((m) => m.codegenInterceptors),
   'export-config': () => import('@graphcommerce/next-config').then((m) => m.exportConfig),
   'hygraph-migrate': () => import('@graphcommerce/hygraph-cli').then((m) => m.migrateHygraph),
 }

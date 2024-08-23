@@ -1,6 +1,6 @@
 import { Avatar, Box, Chip, SxProps, Theme } from '@mui/material'
 import { responsiveVal } from '../../Styles/responsiveVal'
-import { useDateTimeFormat } from '../../hooks'
+import { DateFormat } from '../../Intl/DateTimeFormat'
 
 export type BlogAuthorProps = {
   author: string
@@ -10,8 +10,6 @@ export type BlogAuthorProps = {
 
 export function BlogAuthor(props: BlogAuthorProps) {
   const { author, date, sx = [] } = props
-
-  const formatter = useDateTimeFormat({ month: 'long', day: 'numeric' })
 
   return (
     <Box
@@ -48,7 +46,7 @@ export function BlogAuthor(props: BlogAuthorProps) {
               {author}
             </Box>
             <Box sx={(theme) => ({ lineHeight: 1.4, color: theme.palette.text.disabled })}>
-              {formatter.format(new Date(date))}
+              <DateFormat dateStyle='long'>{date}</DateFormat>
             </Box>
           </section>
         }

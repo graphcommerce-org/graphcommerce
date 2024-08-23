@@ -25,6 +25,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 const commands = {
     'codegen-config': () => Promise.resolve().then(() => __importStar(require('@graphcommerce/next-config'))).then((m) => m.generateConfig),
+    'codegen-interceptors': () => Promise.resolve().then(() => __importStar(require('@graphcommerce/next-config'))).then((m) => m.codegenInterceptors),
     'export-config': () => Promise.resolve().then(() => __importStar(require('@graphcommerce/next-config'))).then((m) => m.exportConfig),
     'hygraph-migrate': () => Promise.resolve().then(() => __importStar(require('@graphcommerce/hygraph-cli'))).then((m) => m.migrateHygraph),
 };

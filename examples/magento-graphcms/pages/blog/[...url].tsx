@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   PageMeta,
   BlogTitle,
@@ -8,7 +8,10 @@ import {
   Row,
   LayoutTitle,
   LayoutHeader,
+  Breadcrumbs,
 } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
+import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   BlogAuthor,
@@ -24,6 +27,7 @@ import {
   RowRenderer,
 } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = HygraphPagesQuery & BlogListQuery
 type RouteProps = { url: string[] }
@@ -43,6 +47,21 @@ function BlogPage(props: Props) {
           {title}
         </LayoutTitle>
       </LayoutHeader>
+      <Container maxWidth={false}>
+        <Breadcrumbs
+          sx={(theme) => ({
+            mx: theme.page.horizontal,
+            mb: theme.spacings.sm,
+            [theme.breakpoints.down('md')]: {
+              '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+            },
+          })}
+          breadcrumbs={[
+            { href: '/blog', name: i18n._(/* i18n*/ `Blog`) },
+            { href: `/${page.url}`, name: title },
+          ]}
+        />
+      </Container>
       <Row>
         <PageMeta title={title} metaDescription={title} canonical={`/${page.url}`} />
 
@@ -68,7 +87,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (import.meta.graphCommerce.limitSsg) return { paths: [], fallback: 'blocking' }
 
   const responses = locales.map(async (locale) => {
-    const staticClient = graphqlSsrClient(locale)
+    const staticClient = graphqlSsrClient({ locale })
     const BlogPostPaths = staticClient.query({ query: BlogPostPathsDocument })
     const { pages } = (await BlogPostPaths).data
     return pages.map((page) => ({ params: { url: page.url.split('/').slice(1) }, locale })) ?? []
@@ -77,29 +96,35 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const { locale, params } = context
   const urlKey = params?.url.join('/') ?? ''
 
-  const client = graphqlSharedClient(locale)
-  const staticClient = graphqlSsrClient(locale)
+  const client = graphqlSharedClient(context)
+  const staticClient = graphqlSsrClient(context)
   const limit = 4
   const conf = client.query({ query: StoreConfigDocument })
 
   const page = hygraphPageContent(staticClient, `blog/${urlKey}`)
-  const layout = staticClient.query({ query: LayoutDocument, fetchPolicy: 'cache-first' })
+  const layout = staticClient.query({
+    query: LayoutDocument,
+    fetchPolicy: cacheFirst(staticClient),
+  })
 
   const blogPosts = staticClient.query({
     query: BlogListDocument,
     variables: { currentUrl: [`blog/${urlKey}`], first: limit },
   })
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+
+  if (!(await page).data.pages?.[0])
+    return redirectOrNotFound(staticClient, conf, { url: `blog/${urlKey}` }, locale)
 
   return {
     props: {
       ...(await page).data,
       ...(await blogPosts).data,
       ...(await layout).data,
-      up: { href: '/', title: 'Home' },
+      up: { href: '/blog', title: i18n._(/* i18n */ 'Blog') },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

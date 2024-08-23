@@ -1,12 +1,16 @@
 import type { PaymentMethodContextProviderProps } from '@graphcommerce/magento-cart-payment-method'
-import type { PluginProps } from '@graphcommerce/next-config'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { purchaseorder } from '../PurchaseOrder'
 import { banktransfer, checkmo, free, cashondelivery } from '../methods'
 
-export const component = 'PaymentMethodContextProvider'
-export const exported = '@graphcommerce/magento-cart-payment-method'
+export const config: PluginConfig = {
+  type: 'component',
+  module: '@graphcommerce/magento-cart-payment-method',
+}
 
-function AddIncludedMethods(props: PluginProps<PaymentMethodContextProviderProps>) {
+export function PaymentMethodContextProvider(
+  props: PluginProps<PaymentMethodContextProviderProps>,
+) {
   const { Prev, modules, ...rest } = props
   return (
     <Prev
@@ -15,5 +19,3 @@ function AddIncludedMethods(props: PluginProps<PaymentMethodContextProviderProps
     />
   )
 }
-
-export const Plugin = AddIncludedMethods

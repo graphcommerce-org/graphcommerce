@@ -1,13 +1,13 @@
 import { LayoutTitle } from '@graphcommerce/next-ui'
 import { SxProps, Theme } from '@mui/material'
-import React from 'react'
+import { memo } from 'react'
 
 type CategoryHeroNavTitleProps = {
   children: React.ReactNode
   sx?: SxProps<Theme>
 }
 
-export function CategoryHeroNavTitle(props: CategoryHeroNavTitleProps) {
+export const CategoryHeroNavTitle = memo<CategoryHeroNavTitleProps>((props) => {
   const { children, sx = [] } = props
 
   return (
@@ -15,11 +15,9 @@ export function CategoryHeroNavTitle(props: CategoryHeroNavTitleProps) {
       variant='h1'
       sx={[
         (theme) => ({
-          justifyContent: 'center',
           [theme.breakpoints.up('md')]: {
-            margin: 0,
-            alignItems: 'start',
-            justifyContent: 'end',
+            m: 0,
+            justifyContent: 'start',
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
@@ -28,4 +26,4 @@ export function CategoryHeroNavTitle(props: CategoryHeroNavTitleProps) {
       {children}
     </LayoutTitle>
   )
-}
+})

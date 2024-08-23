@@ -14,7 +14,7 @@ type PluginBaseConfig = {
   sourceModule: string
   targetExport: string
   enabled: boolean
-  ifConfig?: string | [string, string]
+  ifConfig?: string | [string, any]
 }
 
 export function isPluginBaseConfig(plugin: Partial<PluginBaseConfig>): plugin is PluginBaseConfig {
@@ -66,11 +66,11 @@ export type Interceptor = ResolveDependencyReturn & {
 
 export type MaterializedPlugin = Interceptor & { template: string }
 
-export const SOURCE_START = '/** ❗️ Original (modified) source starts here **/'
-export const SOURCE_END = '/** ❗️ Original (modified) source ends here **/'
+export const SOURCE_START = '/** Original source starts here (do not modify!): **/'
+export const SOURCE_END = '/** Original source ends here (do not modify!) **/'
 
 const originalSuffix = 'Original'
-const sourceSuffix = 'Source'
+const sourceSuffix = 'Plugin'
 const interceptorSuffix = 'Interceptor'
 const disabledSuffix = 'Disabled'
 const name = (plugin: PluginConfig) =>
@@ -81,9 +81,9 @@ const name = (plugin: PluginConfig) =>
 const fileName = (plugin: PluginConfig) => `${plugin.sourceModule}#${plugin.sourceExport}`
 
 const originalName = (n: string) => `${n}${originalSuffix}`
-const sourceName = (n: string) => `${n}${sourceSuffix}`
+const sourceName = (n: string) => `${n}`
 const interceptorName = (n: string) => `${n}${interceptorSuffix}`
-const interceptorPropsName = (n: string) => `${interceptorName(n)}Props`
+const interceptorPropsName = (n: string) => `${n}Props`
 
 export function moveRelativeDown(plugins: PluginConfig[]) {
   return [...plugins].sort((a, b) => {
@@ -153,7 +153,12 @@ export async function generateInterceptor(
       const duplicateInterceptors = new Set()
 
       let carry = originalName(base)
-      const carryProps: string[] = []
+      let carryProps: string[] = []
+      const pluginSee: string[] = []
+
+      pluginSee.push(
+        `@see {@link file://${interceptor.sourcePathRelative}} for original source file`,
+      )
 
       const pluginStr = plugins
         .reverse()
@@ -175,17 +180,20 @@ export async function generateInterceptor(
               s.replace(originalSuffix, disabledSuffix),
             ).visitModule(ast)
 
-            carryProps.push(interceptorPropsName(name(p)))
+            carryProps.push(`React.ComponentProps<typeof ${sourceName(name(p))}>`)
 
-            result = `type ${interceptorPropsName(name(p))} = React.ComponentProps<typeof ${sourceName(name(p))}>`
+            pluginSee.push(
+              `@see {${sourceName(name(p))}} for replacement of the original source (original source not used)`,
+            )
           }
 
           if (isReactPluginConfig(p)) {
-            carryProps.push(interceptorPropsName(name(p)))
+            const withBraces = config.pluginStatus || process.env.NODE_ENV === 'development'
 
             result = `
-              type ${interceptorPropsName(name(p))} = DistributedOmit<React.ComponentProps<typeof ${sourceName(name(p))}>, 'Prev'>
-              const ${interceptorName(name(p))} = (props: ${carryProps.join(' & ')}) => {
+              type ${interceptorPropsName(name(p))} = ${carryProps.join(' & ')} & OmitPrev<React.ComponentProps<typeof ${sourceName(name(p))}>, 'Prev'>
+              
+              const ${interceptorName(name(p))} = (props: ${interceptorPropsName(name(p))}) => ${withBraces ? `{` : '('}
                 ${config.pluginStatus ? `logOnce(\`🔌 Rendering ${base} with plugin(s): ${wrapChain} wrapping <${base}/>\`)` : ''}
 
                 ${
@@ -194,8 +202,11 @@ export async function generateInterceptor(
                   logOnce('${fileName(p)} does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.')`
                     : ''
                 }
-                return <${sourceName(name(p))} {...props} Prev={${carry} as React.FC} />
-              }`
+                ${withBraces ? `return` : ''} <${sourceName(name(p))} {...props} Prev={${carry}} />
+              ${withBraces ? `}` : ')'}`
+
+            carryProps = [interceptorPropsName(name(p))]
+            pluginSee.push(`@see {${sourceName(name(p))}} for source of applied plugin`)
           }
 
           if (isMethodPluginConfig(p)) {
@@ -203,6 +214,7 @@ export async function generateInterceptor(
                 ${config.pluginStatus ? `logOnce(\`🔌 Calling ${base} with plugin(s): ${wrapChain} wrapping ${base}()\`)` : ''}
                 return ${sourceName(name(p))}(${carry}, ...args)
               }`
+            pluginSee.push(`@see {${sourceName(name(p))}} for source of applied plugin`)
           }
 
           carry = p.type === 'replace' ? sourceName(name(p)) : interceptorName(name(p))
@@ -211,13 +223,23 @@ export async function generateInterceptor(
         .filter((v) => !!v)
         .join('\n')
 
-      const isComponent = plugins.every((p) => isReplacePluginConfig(p) || isReactPluginConfig(p))
+      const isComponent = plugins.every((p) => isReactPluginConfig(p))
       if (isComponent && plugins.some((p) => isMethodPluginConfig(p))) {
         throw new Error(`Cannot mix React and Method plugins for ${base} in ${dependency}.`)
       }
 
+      const seeString = `
+      /**
+       * Here you see the 'interceptor' that is applying all the configured plugins.
+       *
+       * This file is NOT meant to be modified directly and is auto-generated if the plugins or the original source changes.
+       * 
+       ${pluginSee.map((s) => `* ${s}`).join('\n')}
+       */`
+
       if (process.env.NODE_ENV === 'development' && isComponent) {
         return `${pluginStr}
+          ${seeString}
           export const ${base}: typeof ${carry} = (props) => {
             return <${carry} {...props} data-plugin />
           }`
@@ -225,6 +247,7 @@ export async function generateInterceptor(
 
       return `
         ${pluginStr}
+        ${seeString}
         export const ${base} = ${carry}
       `
     })
@@ -247,12 +270,13 @@ export async function generateInterceptor(
     /* This file is automatically generated for ${dependency} */
     ${
       Object.values(targetExports).some((t) => t.some((p) => p.type === 'component'))
-        ? `import type { DistributedOmit } from 'type-fest'`
+        ? `import type { DistributedOmit as OmitPrev } from 'type-fest'`
         : ''
     }
 
     ${pluginImports}
 
+    /** @see {@link file://${interceptor.sourcePathRelative}} for source of original */
     ${SOURCE_START}
     ${printSync(ast).code}
     ${SOURCE_END}

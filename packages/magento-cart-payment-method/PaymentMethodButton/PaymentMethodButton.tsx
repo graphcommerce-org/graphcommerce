@@ -5,7 +5,7 @@ import {
   ComposedSubmitProps,
   ComposedSubmitRenderComponentProps,
 } from '@graphcommerce/react-hook-form'
-import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
+import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 
 export type PaymentMethodButtonProps = LinkOrButtonProps & { display?: 'inline' | 'block' } & Pick<
     ComposedSubmitProps,

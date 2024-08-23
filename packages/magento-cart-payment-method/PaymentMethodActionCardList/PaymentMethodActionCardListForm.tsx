@@ -17,7 +17,7 @@ import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
 import { useEffect } from 'react'
 import { PaymentOptionsProps } from '../Api/PaymentMethod'
-import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
+import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 import { useCartLock } from '../hooks'
 
 function PaymentMethodActionCard(
@@ -109,7 +109,6 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
 
   return (
     <>
-      <FormPersist form={form} name='PaymentMethodActionCardList' />
       <ActionCardListForm<PaymentOptionsProps & ActionCardProps, FormFields>
         control={control}
         name='paymentMethod'
@@ -126,6 +125,7 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
         }))}
         render={PaymentMethodActionCard}
       />
+      <FormPersist form={form} name='PaymentMethodActionCardList' />
     </>
   )
 }

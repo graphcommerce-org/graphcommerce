@@ -1,11 +1,9 @@
 import { RelationalFieldType, SimpleFieldType, VisibilityTypes } from '@hygraph/management-sdk'
-import { migrationAction, client } from '../migrationAction'
-import { Schema } from '../types'
+import { migrationActionFactory } from '../migrationActionFactory'
+import { MigrationFunction } from '../types'
 
-export const graphcommerce5to6 = async (schema: Schema) => {
-  if (!client) {
-    return 0
-  }
+export const graphcommerce5to6: MigrationFunction = async (schema, client) => {
+  const { migrationAction } = migrationActionFactory(schema, client)
 
   // ? ENUMERATIONS
   migrationAction(schema, 'enumeration', 'create', {

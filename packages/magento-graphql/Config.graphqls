@@ -6,6 +6,13 @@ extend input GraphCommerceConfig {
   - https://magento2.test/graphql
   """
   magentoEndpoint: String!
+
+  """
+  Version of the Magento backend.
+
+  Values: 245, 246, 247 for Magento 2.4.5, 2.4.6, 2.4.7 respectively.
+  """
+  magentoVersion: Int!
 }
 
 extend input GraphCommerceStorefrontConfig {

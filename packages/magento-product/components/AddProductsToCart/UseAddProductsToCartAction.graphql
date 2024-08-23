@@ -1,4 +1,4 @@
-fragment UseAddProductsToCartAction on ProductInterface @injectable {
+fragment UseAddProductsToCartAction on ProductInterface {
   uid
   sku
   only_x_left_in_stock

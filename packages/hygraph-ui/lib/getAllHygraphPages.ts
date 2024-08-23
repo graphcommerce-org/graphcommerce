@@ -1,4 +1,5 @@
 import type { ApolloClient, NormalizedCacheObject, ApolloQueryResult } from '@apollo/client'
+import { cacheFirst } from '@graphcommerce/graphql'
 import { HygraphAllPagesDocument, HygraphAllPagesQuery } from '../graphql'
 
 type Urls = { url: string }
@@ -8,10 +9,11 @@ export async function getAllHygraphPages(
   options: { pageSize?: number } = {},
 ) {
   const { pageSize = 100 } = options
+
   const query = client.query({
     query: HygraphAllPagesDocument,
     variables: { first: pageSize },
-    fetchPolicy: process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined,
+    fetchPolicy: cacheFirst(client),
   })
   const pages: Promise<ApolloQueryResult<HygraphAllPagesQuery>>[] = [query]
 
@@ -24,7 +26,7 @@ export async function getAllHygraphPages(
         client.query({
           query: HygraphAllPagesDocument,
           variables: { first: pageSize, skip: pageSize * (i - 1) },
-          fetchPolicy: process.env.NODE_ENV !== 'development' ? 'cache-first' : undefined,
+          fetchPolicy: cacheFirst(client),
         }),
       )
     }

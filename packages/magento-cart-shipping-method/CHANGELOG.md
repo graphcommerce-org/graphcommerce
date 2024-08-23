@@ -1,5 +1,159 @@
 # Change Log
 
+## 9.0.0-canary.79
+
+## 9.0.0-canary.78
+
+## 9.0.0-canary.77
+
+## 9.0.0-canary.76
+
+## 9.0.0-canary.75
+
+## 9.0.0-canary.74
+
+## 9.0.0-canary.73
+
+## 9.0.0-canary.72
+
+## 9.0.0-canary.71
+
+## 9.0.0-canary.70
+
+## 9.0.0-canary.69
+
+## 9.0.0-canary.68
+
+### Patch Changes
+
+- [#2340](https://github.com/graphcommerce-org/graphcommerce/pull/2340) [`18691c7`](https://github.com/graphcommerce-org/graphcommerce/commit/18691c71e6940e8baa8f93c3b798be4d6e5a8a9a) - Select the only available shipping method as the current cart shipping method when there is only one shipping method available. ([@LaurensFranken](https://github.com/LaurensFranken))
+
+## 9.0.0-canary.67
+
+## 9.0.0-canary.66
+
+## 9.0.0-canary.65
+
+## 9.0.0-canary.64
+
+## 9.0.0-canary.63
+
+## 9.0.0-canary.62
+
+## 9.0.0-canary.61
+
+## 9.0.0-canary.60
+
+## 9.0.0-canary.59
+
+## 9.0.0-canary.58
+
+## 9.0.0-canary.57
+
+## 9.0.0-canary.56
+
+## 9.0.0-canary.55
+
+## 9.0.0-canary.54
+
+## 8.1.0-canary.53
+
+## 8.1.0-canary.52
+
+## 8.1.0-canary.51
+
+## 8.1.0-canary.50
+
+## 8.1.0-canary.49
+
+## 8.1.0-canary.48
+
+## 8.1.0-canary.47
+
+## 8.1.0-canary.46
+
+## 8.1.0-canary.45
+
+## 8.1.0-canary.44
+
+## 8.1.0-canary.43
+
+## 8.1.0-canary.42
+
+## 8.1.0-canary.41
+
+## 8.1.0-canary.40
+
+## 8.1.0-canary.39
+
+## 8.1.0-canary.38
+
+## 8.1.0-canary.37
+
+## 8.1.0-canary.36
+
+## 8.1.0-canary.35
+
+## 8.1.0-canary.34
+
+## 8.1.0-canary.33
+
+## 8.1.0-canary.32
+
+## 8.1.0-canary.31
+
+## 8.1.0-canary.30
+
+## 8.1.0-canary.29
+
+## 8.1.0-canary.28
+
+## 8.1.0-canary.27
+
+## 8.1.0-canary.26
+
+## 8.1.0-canary.25
+
+## 8.1.0-canary.24
+
+## 8.1.0-canary.23
+
+## 8.1.0-canary.22
+
+## 8.1.0-canary.21
+
+## 8.1.0-canary.20
+
+## 8.1.0-canary.19
+
+### Patch Changes
+
+- [#2264](https://github.com/graphcommerce-org/graphcommerce/pull/2264) [`e5291a4`](https://github.com/graphcommerce-org/graphcommerce/commit/e5291a426c57635f69fb9ec44f4abe150f04c9ed) - prevent rendering 'null' when method_title is not provided ([@carlocarels90](https://github.com/carlocarels90))
+
+## 8.1.0-canary.18
+
+## 8.1.0-canary.17
+
+## 8.1.0-canary.16
+
+## 8.1.0-canary.15
+
+## 8.1.0-canary.14
+
+## 8.1.0-canary.13
+
+## 8.1.0-canary.12
+
+## 8.1.0-canary.11
+
+## 8.1.0-canary.10
+
+## 8.1.0-canary.9
+
+## 8.1.0-canary.8
+
+## 8.1.0-canary.7
+
 ## 8.1.0-canary.6
 
 ## 8.1.0-canary.5
@@ -12,8 +166,7 @@
 
 ### Patch Changes
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders.
-  ([@FrankHarland](https://github.com/FrankHarland))
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.6-canary.1
 
@@ -91,11 +244,9 @@
 
 ### Patch Changes
 
-- [#2093](https://github.com/graphcommerce-org/graphcommerce/pull/2093) [`112b041`](https://github.com/graphcommerce-org/graphcommerce/commit/112b041f01a33fbd521ce3eb3955844f96b29917) - Created a new experimental mutation abort feature inside `useFormGql`. This will allow redundant mutations to be canceled. This is enabled when the `experimental_useV2` prop on the `useFormGql` hook is used.
-  ([@mikekeehnen](https://github.com/mikekeehnen))
+- [#2093](https://github.com/graphcommerce-org/graphcommerce/pull/2093) [`112b041`](https://github.com/graphcommerce-org/graphcommerce/commit/112b041f01a33fbd521ce3eb3955844f96b29917) - Created a new experimental mutation abort feature inside `useFormGql`. This will allow redundant mutations to be canceled. This is enabled when the `experimental_useV2` prop on the `useFormGql` hook is used. ([@mikekeehnen](https://github.com/mikekeehnen))
 
-- [#2115](https://github.com/graphcommerce-org/graphcommerce/pull/2115) [`105a1af`](https://github.com/graphcommerce-org/graphcommerce/commit/105a1af8b820de8873e430ae398f1922d39a9110) - Disabled ripple animations on all ActionCard ‘Select’ and ‘Change’ so the rendering is more subtle during checkout.
-  ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2115](https://github.com/graphcommerce-org/graphcommerce/pull/2115) [`105a1af`](https://github.com/graphcommerce-org/graphcommerce/commit/105a1af8b820de8873e430ae398f1922d39a9110) - Disabled ripple animations on all ActionCard ‘Select’ and ‘Change’ so the rendering is more subtle during checkout. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.0-canary.100
 
@@ -1427,31 +1578,31 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from "@lingui/macro";
+  import { Trans, t } from '@lingui/macro'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={t`Account ${foo}`}>
         <Trans>My Translation {foo}</Trans>
       </div>
-    );
+    )
   }
   ```
 
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from "@lingui/react";
-  import { i18n } from "@lingui/core";
+  import { Trans } from '@lingui/react'
+  import { i18n } from '@lingui/core'
 
   function MyComponent() {
-    const foo = "bar";
+    const foo = 'bar'
     return (
       <div aria-label={i18n._(/* i18n */ `Account {foo}`, { foo })}>
-        <Trans key="My Translation {foo}" values={{ foo }}></Trans>
+        <Trans key='My Translation {foo}' values={{ foo }}></Trans>
       </div>
-    );
+    )
   }
   ```
 

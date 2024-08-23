@@ -11,6 +11,7 @@ export type ResolveDependencyReturn =
       fromModule: string
       source: string
       sourcePath: string
+      sourcePathRelative: string
     }
 
 export type ResolveDependency = (
@@ -31,6 +32,7 @@ export const resolveDependency = (cwd: string = process.cwd()) => {
       root: '.',
       source: '',
       sourcePath: '',
+      sourcePathRelative: '',
       dependency,
       fromRoot: dependency,
       fromModule: dependency,
@@ -73,6 +75,10 @@ export const resolveDependency = (cwd: string = process.cwd()) => {
           ? '.'
           : `./${relative.split('/')[relative.split('/').length - 1]}`
 
+        const sourcePathRelative = !sourcePath
+          ? '.'
+          : `./${sourcePath.split('/')[sourcePath.split('/').length - 1]}`
+
         if (dependency.startsWith('./')) fromModule = `.${relative}`
 
         dependencyPaths = {
@@ -83,6 +89,7 @@ export const resolveDependency = (cwd: string = process.cwd()) => {
           fromModule,
           source,
           sourcePath,
+          sourcePathRelative,
         }
       }
     })

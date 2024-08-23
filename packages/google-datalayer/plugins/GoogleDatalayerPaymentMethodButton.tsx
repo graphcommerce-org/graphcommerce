@@ -1,17 +1,20 @@
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import { PaymentMethodButtonProps } from '@graphcommerce/magento-cart-payment-method'
 import { GetPaymentMethodContextDocument } from '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/GetPaymentMethodContext.gql'
-import type { PluginProps } from '@graphcommerce/next-config'
-import { sendEvent } from '../api/sendEvent'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import { useSendEvent } from '../api/sendEvent'
 import { cartToAddPaymentInfo } from '../mapping/cartToAddPaymentInfo/cartToAddPaymentInfo'
 
-export const component = 'PaymentMethodButton'
-export const exported = '@graphcommerce/magento-cart-payment-method'
+export const config: PluginConfig = {
+  module: '@graphcommerce/magento-cart-payment-method',
+  type: 'component',
+}
 
-function GoogleDatalayerPaymentMethodButton(props: PluginProps<PaymentMethodButtonProps>) {
+export function PaymentMethodButton(props: PluginProps<PaymentMethodButtonProps>) {
   const { Prev, onSubmitSuccessful, ...rest } = props
   const methodContext = useCartQuery(GetPaymentMethodContextDocument)
 
+  const sendEvent = useSendEvent()
   return (
     <Prev
       {...rest}
@@ -24,5 +27,3 @@ function GoogleDatalayerPaymentMethodButton(props: PluginProps<PaymentMethodButt
     />
   )
 }
-
-export const Plugin = GoogleDatalayerPaymentMethodButton
