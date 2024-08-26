@@ -1,6 +1,4 @@
 import { QueryResult, useQuery } from '@graphcommerce/graphql'
-import { removeCssFlag, setCssFlag } from '@graphcommerce/next-ui'
-import { useEffect } from 'react'
 import {
   CustomerTokenDocument,
   CustomerTokenQuery,

@@ -1,5 +1,5 @@
 import { ApolloError } from '@apollo/client'
-import type { FieldValues, FormState, UseFormReturn } from 'react-hook-form'
+import type { FieldValues, FormState, GlobalError, UseFormReturn } from 'react-hook-form'
 import type { SetOptional } from 'type-fest'
 
 export type UseFormComposeOptions<V extends FieldValues = FieldValues> = {
@@ -36,6 +36,7 @@ export type ComposedSubmitRenderComponentProps = {
   submit: () => Promise<void>
   buttonState: ButtonState
   error?: ApolloError
+  rootThrown?: GlobalError
 }
 
 export type ComposedFormState = {

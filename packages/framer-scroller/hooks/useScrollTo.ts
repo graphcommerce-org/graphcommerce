@@ -33,7 +33,12 @@ export function useScrollTo() {
         to = incoming
       }
 
-      if (process.env.NODE_ENV === 'development' && scroll.animating.get() && __retrigger === 0) {
+      if (
+        process.env.NODE_ENV === 'development' &&
+        scroll.animating.get() &&
+        __retrigger === 0 &&
+        (Math.round(ref.scrollLeft) !== to.x || Math.round(ref.scrollTop) !== to.y)
+      ) {
         console.warn(
           `scrollTo triggered while another animation is in progress. This cancels the current animation and creates a new one.`,
         )
@@ -55,7 +60,7 @@ export function useScrollTo() {
       const stop: { stop: () => void }[] = []
 
       const xDone = new Promise<void>((onComplete) => {
-        if (ref.scrollLeft !== to.x) {
+        if (Math.round(ref.scrollLeft) !== to.x) {
           disableSnap(stopAnimationOnScroll)
           if (!stopAnimationOnScroll) ref.style.overflow = 'hidden'
 
@@ -77,7 +82,7 @@ export function useScrollTo() {
       })
 
       const yDone = new Promise<void>((onComplete) => {
-        if (ref.scrollTop !== to.y) {
+        if (Math.round(ref.scrollTop) !== to.y) {
           disableSnap(stopAnimationOnScroll)
           if (!stopAnimationOnScroll) ref.style.overflow = 'hidden'
 

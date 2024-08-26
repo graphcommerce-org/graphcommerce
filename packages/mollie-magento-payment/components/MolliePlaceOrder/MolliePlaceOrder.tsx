@@ -1,6 +1,7 @@
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
+import { t } from '@lingui/macro'
 import { useRouter } from 'next/router'
 import { useCartLockWithToken } from '../../hooks/useCartLockWithToken'
 import { MolliePlaceOrderDocument } from './MolliePlaceOrder.gql'
@@ -37,12 +38,9 @@ export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
 
         await push(mollie_redirect_url)
       } else {
-        console.error(`incomplete mollie response, cannot redirect`, data.placeOrder)
-
-        form.setError('root', {
-          message:
-            'An error occurred while processing your payment. Please contact the store owner',
-        })
+        throw Error(
+          t`An error occurred while processing your payment. Please contact the store owner`,
+        )
       }
     },
   })

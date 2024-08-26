@@ -1,4 +1,5 @@
-import { ActionCard, ActionCardAccordion, ActionCardListForm, Button } from '@graphcommerce/next-ui'
+import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
+import { ActionCard, ActionCardAccordion, Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { SxProps, Theme } from '@mui/material'
 import { useProductFiltersPro } from './ProductFiltersPro'

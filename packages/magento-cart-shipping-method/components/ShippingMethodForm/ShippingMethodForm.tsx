@@ -1,15 +1,14 @@
 import {
+  ActionCardItemBase,
+  ActionCardItemRenderProps,
+  ActionCardListForm,
+} from '@graphcommerce/ecommerce-ui'
+import {
   ApolloCartErrorAlert,
   useCartQuery,
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
-import {
-  Form,
-  FormHeader,
-  ActionCardItemBase,
-  ActionCardItemRenderProps,
-  ActionCardListForm,
-} from '@graphcommerce/next-ui'
+import { Form, FormHeader } from '@graphcommerce/next-ui'
 import {
   FormAutoSubmit,
   FormProvider,
@@ -76,8 +75,8 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
     ShippingMethodFormMutation,
     ShippingMethodFormMutationVariables & { carrierMethod?: string }
   >(ShippingMethodFormDocument, {
+    skipUnchanged: true,
     defaultValues: { carrierMethod },
-    experimental_useV2: true,
     onBeforeSubmit: (variables) => {
       const [carrier, method] = (variables.carrierMethod ?? '').split('-')
       return onBeforeSubmit({ ...variables, carrier, method })

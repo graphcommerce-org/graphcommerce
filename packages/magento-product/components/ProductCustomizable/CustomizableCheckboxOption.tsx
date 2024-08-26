@@ -1,14 +1,13 @@
+import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import { Money } from '@graphcommerce/magento-store'
 import {
-  ActionCardListForm,
   ActionCard,
-  filterNonNullableKeys,
   ActionCardProps,
+  filterNonNullableKeys,
   SectionHeader,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { Checkbox, Box } from '@mui/material'
+import { Box, Checkbox } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import { OptionTypeRenderer } from './CustomizableAreaOption'
 

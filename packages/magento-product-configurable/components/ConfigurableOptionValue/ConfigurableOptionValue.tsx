@@ -1,4 +1,5 @@
-import { ActionCardItemRenderProps, RenderType } from '@graphcommerce/next-ui'
+import { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
+import { RenderType } from '@graphcommerce/next-ui'
 import { ConfigurableOptionValueColor } from '../ConfigurableOptionValueColor'
 import { ConfigurableOptionValueImage } from '../ConfigurableOptionValueImage/ConfigurableOptionValueImage'
 import { ConfigurableOptionValueText } from '../ConfigurableOptionValueText/ConfigurableOptionValueText'
