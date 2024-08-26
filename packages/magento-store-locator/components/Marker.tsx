@@ -11,19 +11,38 @@ export function Marker(props: MarkerProps) {
   const { store, markerConfig } = props
   const { setValue, control } = useStoreLocatorForm()
   const { map } = useStoreLocatorMap()
-  const selected = useWatch({ control, name: 'selected' })
-  const isSelected = selected === store.pickup_location_code
+  const focused = useWatch({ control, name: 'focusedStore' })
+  const preferredStore = useWatch({ control, name: 'preferredStore' })
+  const isFocused = focused === store.pickup_location_code
+  const isPreferredStore = preferredStore?.pickup_location_code === store.pickup_location_code
+
+  // console.log('====')
+  // console.log('rendering marker: ', store.pickup_location_code)
+  // console.log('preferredStore', preferredStore?.pickup_location_code)
+  // console.log('isPreferredStore', isPreferredStore)
+  // console.log('====')
 
   useEffect(() => {
-    const { activeMarkerImageSrc, markerImageSrc, onMarkerClick, imageHeight, imageWidth } =
-      markerConfig
+    const {
+      activeMarkerImageSrc,
+      markerImageSrc,
+      onMarkerClick,
+      imageHeight,
+      imageWidth,
+      preferredStoreMarkerImageSrc,
+    } = markerConfig
     const code = store.pickup_location_code
     if (!store.lat || !store.lng || !code || !map) return () => {}
 
     const icon = document.createElement('img')
-    icon.src = isSelected
-      ? markerImageSrc ?? 'icons/marker.svg'
-      : activeMarkerImageSrc ?? 'icons/marker.svg'
+    icon.src = markerImageSrc ?? 'icons/marker.svg'
+    if (isFocused) {
+      icon.src = activeMarkerImageSrc ?? 'icons/marker.svg'
+    }
+    if (isPreferredStore) {
+      icon.src = preferredStoreMarkerImageSrc ?? 'icons/marker.svg'
+    }
+
     icon.width = imageWidth ?? 25
     icon.height = imageHeight ?? 25
 
@@ -34,11 +53,11 @@ export function Marker(props: MarkerProps) {
     })
 
     marker.addListener('click', () => {
-      setValue('selected', code)
+      setValue('focusedStore', code)
       if (onMarkerClick) onMarkerClick(store)
     })
 
-    if (isSelected) {
+    if (isFocused) {
       const newPosition: google.maps.LatLngLiteral = {
         lat: Number(store.lat),
         lng: Number(store.lng),
@@ -52,7 +71,7 @@ export function Marker(props: MarkerProps) {
       // @ts-expect-error not in typescript, but does work
       marker.setMap(null)
     }
-  }, [isSelected, map, markerConfig, setValue, store])
+  }, [isFocused, isPreferredStore, map, markerConfig, setValue, store])
 
   return null
 }

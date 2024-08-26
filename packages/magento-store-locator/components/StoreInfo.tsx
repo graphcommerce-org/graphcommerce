@@ -17,12 +17,12 @@ export function StoreInfo(props: InfoWindowProps) {
   const { content } = props
   const { pickup_location_code, description } = content
   const { setValue, control } = useStoreLocatorForm()
-  const selectedStore = useWatch({ control, name: 'selectedStore' })
-  const isSelectedStore = selectedStore?.pickup_location_code === pickup_location_code
+  const preferredStore = useWatch({ control, name: 'preferredStore' })
+  const isPreferredStore = preferredStore?.pickup_location_code === pickup_location_code
 
-  const setSelectedStore = useEventCallback(() => {
+  const setPreferredStore = useEventCallback(() => {
     if (!content) return
-    setValue('selectedStore', content)
+    setValue('preferredStore', content)
   })
 
   if (!content) return null
@@ -43,7 +43,7 @@ export function StoreInfo(props: InfoWindowProps) {
       <Box>
         <Button
           color='primary'
-          onClick={!isSelectedStore ? setSelectedStore : undefined}
+          onClick={!isPreferredStore ? setPreferredStore : undefined}
           variant='pill'
           sx={{ display: 'flex', gap: '7px' }}
         >

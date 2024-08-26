@@ -56,8 +56,11 @@ function Stores({ stores }: { stores: StoreFragment[] }) {
           <StoreLocator
             stores={stores}
             markerConfig={{
-              markerImageSrc: '/icons/download-solid.svg',
-              activeMarkerImageSrc: '/icons/cloud-solid.svg',
+              markerImageSrc: '/icons/marker.svg',
+              activeMarkerImageSrc: '/icons/marker-active.svg',
+              preferredStoreMarkerImageSrc: '/icons/marker-my-store.svg',
+              imageHeight: 45,
+              imageWidth: 45,
               onMarkerClick: (store: StoreFragment) =>
                 console.log('hello from', store.pickup_location_code),
             }}
@@ -84,6 +87,12 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
       '& .LayoutOverlayBase-overlayPane': {
         maxWidth: 1980,
         width: '100%',
+        minHeight: '80vh',
+      },
+      '& .LayoutOverlayBase-background': {
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
       },
     },
   },

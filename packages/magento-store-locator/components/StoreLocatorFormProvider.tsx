@@ -4,8 +4,8 @@ import { StoreFragment } from '../Store.gql'
 
 type FormValues = {
   search: string
-  selectedStore?: StoreFragment
-  selected?: string
+  preferredStore?: StoreFragment
+  focusedStore?: string
 }
 
 type StoreLocatorFormContextType = UseFormReturn<FormValues>

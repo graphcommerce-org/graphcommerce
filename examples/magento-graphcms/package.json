@@ -22,6 +22,7 @@
   "dependencies": {
     "@apollo/client": "~3.10.8",
     "@ducanh2912/next-pwa": "9.7.2",
+    "@googlemaps/js-api-loader": "^1.16.8",
     "@graphcommerce/cli": "9.0.0-canary.79",
     "@graphcommerce/demo-magento-graphcommerce": "9.0.0-canary.79",
     "@graphcommerce/ecommerce-ui": "9.0.0-canary.79",

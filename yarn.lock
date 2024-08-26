@@ -2785,6 +2785,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@googlemaps/js-api-loader@npm:^1.16.8":
+  version: 1.16.8
+  resolution: "@googlemaps/js-api-loader@npm:1.16.8"
+  checksum: 10c0/c4159411f784253ef36c8a674756716637fcf50f7bf0600e7a5298c20229f3962f5fb73d8011dc478b60baea369c0d730db6ad13baa4e43cfc5444379a1ee75d
+  languageName: node
+  linkType: hard
+
 "@graphcms/zoid@npm:^9.0.64-alpha.3":
   version: 9.0.64-alpha.3
   resolution: "@graphcms/zoid@npm:9.0.64-alpha.3"
@@ -3935,6 +3942,7 @@ __metadata:
   dependencies:
     "@apollo/client": "npm:~3.10.8"
     "@ducanh2912/next-pwa": "npm:9.7.2"
+    "@googlemaps/js-api-loader": "npm:^1.16.8"
     "@graphcommerce/cli": "npm:9.0.0-canary.79"
     "@graphcommerce/demo-magento-graphcommerce": "npm:9.0.0-canary.79"
     "@graphcommerce/ecommerce-ui": "npm:9.0.0-canary.79"
@@ -4508,6 +4516,30 @@ __metadata:
     "@graphcommerce/prettier-config-pwa": ^9.0.0-canary.79
     "@graphcommerce/react-hook-form": ^9.0.0-canary.79
     "@graphcommerce/typescript-config-pwa": ^9.0.0-canary.79
+    "@lingui/core": ^4.2.1
+    "@lingui/macro": ^4.2.1
+    "@lingui/react": ^4.2.1
+    "@mui/material": ^5.10.16
+    next: "*"
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  languageName: unknown
+  linkType: soft
+
+"@graphcommerce/magento-store-locator@workspace:packages/magento-store-locator":
+  version: 0.0.0-use.local
+  resolution: "@graphcommerce/magento-store-locator@workspace:packages/magento-store-locator"
+  peerDependencies:
+    "@googlemaps/js-api-loader": ^1.16.6
+    "@googlemaps/markerclusterer": ^2.5.3
+    "@graphcommerce/ecommerce-ui": ^8.1.0-canary.6
+    "@graphcommerce/eslint-config-pwa": ^8.1.0-canary.6
+    "@graphcommerce/graphql": ^8.1.0-canary.6
+    "@graphcommerce/magento-store": ^8.1.0-canary.6
+    "@graphcommerce/next-ui": 8.1.0-canary.6
+    "@graphcommerce/prettier-config-pwa": ^8.1.0-canary.6
+    "@graphcommerce/react-hook-form": ^8.1.0-canary.6
+    "@graphcommerce/typescript-config-pwa": ^8.1.0-canary.6
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1

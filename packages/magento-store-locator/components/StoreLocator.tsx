@@ -1,17 +1,18 @@
-import { Box } from '@mui/material'
+import { Box, SxProps } from '@mui/material'
 import { StoreFragment } from '../Store.gql'
 import { usePosition } from '../helpers/usePosition'
 import { useStores } from '../helpers/useStores'
 import { useCurrentPositionMarker } from './CurrentPositionMarker'
 
+import { Marker } from './Marker'
 import { StoreFilters } from './StoreFilters'
 import { StoreList } from './StoreList'
 import { useStoreLocatorMap } from './StoreLocatorMapLoader'
-import { Marker } from './Marker'
 
 export type MarkerConfig = {
   markerImageSrc?: string
   activeMarkerImageSrc?: string
+  preferredStoreMarkerImageSrc?: string
   imageWidth?: number
   imageHeight?: number
   onMarkerClick?: (store: StoreFragment) => void
@@ -19,7 +20,7 @@ export type MarkerConfig = {
 
 type StoreLocatorProps = {
   stores: StoreFragment[]
-  markerConfig?: MarkerConfig
+  markerConfig: MarkerConfig
 }
 
 export function StoreLocator({ stores, markerConfig }: StoreLocatorProps) {
@@ -61,7 +62,6 @@ export function StoreLocator({ stores, markerConfig }: StoreLocatorProps) {
           display: 'flex',
           flexDirection: 'column',
           position: 'relative',
-          maxHeight: { md: 'calc(100vh - 80px)' }, // 80px is the height of the header @todo
           overflowY: { md: 'scroll' },
           scrollbarWidth: 'none',
         })}

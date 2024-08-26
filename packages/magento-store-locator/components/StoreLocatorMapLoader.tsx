@@ -24,7 +24,7 @@ type StoreLocatorMapLoaderProps = {
 
 export function StoreLocatorMapLoader(props: StoreLocatorMapLoaderProps) {
   const apiKey =
-    import.meta.graphCommerce.googleMapsApi ?? 'AIzaSyD5g-gFYTuvqhrD4XxiMemuLpiKlnnmDn0' // @todo
+    import.meta.graphCommerce.googleMapsApiKey ?? 'AIzaSyD5g-gFYTuvqhrD4XxiMemuLpiKlnnmDn0' // @todo
   const { mapOptions, children } = props
   const mapsRef = useRef<HTMLDivElement>(null)
   const [map, setMap] = useState<google.maps.Map>()
