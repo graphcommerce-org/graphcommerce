@@ -16,10 +16,10 @@ import {
 import { CartAddressFragment } from '@graphcommerce/magento-cart/components/CartAddress/CartAddress.gql'
 import {
   AddressFields,
+  CompanyFields,
   CustomerDocument,
   NameFields,
   useCustomerQuery,
-  CompanyFields,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Form, FormRow } from '@graphcommerce/next-ui'
@@ -104,7 +104,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           isCompany: Boolean(currentAddress?.company || currentAddress?.vat_id),
           customerNote: '',
         },
-    mode: 'onChange',
+    skipUnchanged: true,
     onBeforeSubmit: (variables) => {
       const regionId = countries
         ?.find((country) => country?.two_letter_abbreviation === variables.countryCode)

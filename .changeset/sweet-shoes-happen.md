@@ -2,4 +2,4 @@
 '@graphcommerce/react-hook-form': minor
 ---
 
-When a ComposedSubmit is triggered it will now only submit forms that are dirty and skip all forms without dirty fields. This greatly reduces the amount of queries ran in the checkout.
+useFormGql and it's derived hooks now have a new `skipUnchanged` prop. The form will only be submitted when there are fields dirty in a form. This reduces the amount of queries ran in the checkout greatly.

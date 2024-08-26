@@ -5,12 +5,13 @@ import {
   MutationTuple,
   TypedDocumentNode,
 } from '@apollo/client'
+import { getOperationName } from '@apollo/client/utilities'
 import useEventCallback from '@mui/utils/useEventCallback'
 import { useEffect, useRef } from 'react'
 import { DefaultValues, FieldValues, UseFormProps, UseFormReturn } from 'react-hook-form'
 import diff from './diff'
 import { useGqlDocumentHandler, UseGqlDocumentHandler } from './useGqlDocumentHandler'
-import { maybe } from './utils/tryTuple'
+import { tryAsync } from './utils/tryTuple'
 
 export type OnCompleteFn<Q, V> = (data: FetchResult<Q>, variables: V) => void | Promise<void>
 
@@ -61,6 +62,13 @@ type UseFormGraphQLCallbacks<Q, V> = {
    * @deprecated Will be removed in the next version.
    */
   deprecated_useV1?: boolean
+
+  /**
+   * Only submit the form when there are dirty fields. If all fields are clean, we skip the submission.
+   *
+   * Form is still set to isSubmitted and isSubmitSuccessful.
+   */
+  skipUnchanged?: boolean
 }
 
 export type UseFormGraphQlOptions<Q, V extends FieldValues> = UseFormProps<V> &
@@ -90,6 +98,7 @@ export function useFormGql<Q, V extends FieldValues>(
     form: UseFormReturn<V>
     tuple: MutationTuple<Q, V> | LazyQueryResultTuple<Q, V>
     defaultValues?: UseFormProps<V>['defaultValues']
+    skipUnchanged?: boolean
   } & UseFormGraphQLCallbacks<Q, V>,
 ): UseFormGqlMethods<Q, V> {
   const {
@@ -98,6 +107,7 @@ export function useFormGql<Q, V extends FieldValues>(
     document,
     form,
     tuple,
+    skipUnchanged,
     defaultValues,
     deprecated_useV1 = false,
   } = options
@@ -123,14 +133,26 @@ export function useFormGql<Q, V extends FieldValues>(
   }, [valuesString, form])
 
   const beforeSubmit = useEventCallback(
-    maybe((onBeforeSubmit ?? ((v) => v)) satisfies NonNullable<typeof onBeforeSubmit>),
+    tryAsync((onBeforeSubmit ?? ((v) => v)) satisfies NonNullable<typeof onBeforeSubmit>),
   )
   const complete = useEventCallback(
-    maybe((onComplete ?? (() => undefined)) satisfies NonNullable<typeof onComplete>),
+    tryAsync((onComplete ?? (() => undefined)) satisfies NonNullable<typeof onComplete>),
   )
 
   const handleSubmit: UseFormReturn<V>['handleSubmit'] = (onValid, onInvalid) =>
     form.handleSubmit(async (formValues, event) => {
+      const hasDirtyFields = skipUnchanged
+        ? Object.values(form?.formState.dirtyFields ?? []).filter(Boolean).length > 0
+        : true
+
+      if (skipUnchanged && !hasDirtyFields) {
+        console.log(
+          `[useFormGql ${getOperationName(document)}] skipped submission, no dirty fields`,
+        )
+        await onValid(formValues, event)
+        return
+      }
+
       // Combine defaults with the formValues and encode
       submittedVariables.current = undefined
       let variables = !deprecated_useV1 ? formValues : encode({ ...defaultValues, ...formValues })
