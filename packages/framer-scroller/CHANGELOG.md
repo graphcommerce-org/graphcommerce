@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.80
+
+### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`e01fd4a`](https://github.com/graphcommerce-org/graphcommerce/commit/e01fd4a933aa852e97ccfbee15378d8479e2b49f) - Prevent retriggering a scrollTo animation when the current scrollLeft/scrollTop is a float ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.0-canary.79
 
 ## 9.0.0-canary.78

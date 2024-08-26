@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.0.0-canary.80
+
+### Minor Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`16e2980`](https://github.com/graphcommerce-org/graphcommerce/commit/16e2980da4b72330642e59e8c82d1acde387e4fc) - useFormGql and it's derived hooks now have a new `skipUnchanged` prop. The form will only be submitted when there are fields dirty in a form. This reduces the amount of queries ran in the checkout greatly. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename experimental_useV2 prop to deprecated_useV1 in useFromGql and enable it by default ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`af45239`](https://github.com/graphcommerce-org/graphcommerce/commit/af452399eaab59ee4e13484fdc9cb0a7660da531) - When a useFormGql throws an error in the onBeforeSubmit method or onComplete method it will setError('root.thrown') with the message, allowing it to be displayed somewhere. PaymentMethodButton will now render this as an ErrorSnackbar. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.0-canary.79
 
 ## 9.0.0-canary.78
