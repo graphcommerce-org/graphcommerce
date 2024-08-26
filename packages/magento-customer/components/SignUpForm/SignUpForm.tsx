@@ -27,7 +27,6 @@ export function SignUpForm(props: SignUpFormProps) {
     {
       defaultValues: { email },
       onBeforeSubmit: (values) => ({ ...values, email }),
-      experimental_useV2: true,
       onComplete: async (result, variables) => {
         if (!result.errors && !storeConfig.data?.storeConfig?.create_account_confirmation) {
           signIn.setValue('email', variables.email)

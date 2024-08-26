@@ -1,19 +1,14 @@
+import { ActionCardItemBase, ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import {
-  useFormAddProductsToCart,
   AddProductsToCartFields,
+  useFormAddProductsToCart,
 } from '@graphcommerce/magento-product/components'
-import {
-  nonNullable,
-  filterNonNullableKeys,
-  SectionHeader,
-  ActionCardListForm,
-  ActionCardItemBase,
-} from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, nonNullable, SectionHeader } from '@graphcommerce/next-ui'
 import { useWatch } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Box, SxProps, Theme } from '@mui/material'
 import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
-import { UseConfigurableOptionsSelection, useConfigurableOptionsForSelection } from '../../hooks'
+import { useConfigurableOptionsForSelection, UseConfigurableOptionsSelection } from '../../hooks'
 import {
   ConfigurableOptionValue,
   ConfigurableOptionValueFragment,

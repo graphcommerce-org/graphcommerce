@@ -1,5 +1,11 @@
 # @graphcommerce/google-datalayer
 
+## 9.0.0-canary.80
+
+### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`e3fe4f7`](https://github.com/graphcommerce-org/graphcommerce/commit/e3fe4f73c8c3e3c6a5ec68cdc7a32820e8f69e07) - Solve an issue where the BillingPage query would be re-queried after setting the payment method. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.0-canary.79
 
 ## 9.0.0-canary.78

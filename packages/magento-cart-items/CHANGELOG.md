@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.0.0-canary.80
+
+### Minor Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename experimental_useV2 prop to deprecated_useV1 in useFromGql and enable it by default ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`97522bd`](https://github.com/graphcommerce-org/graphcommerce/commit/97522bdb2505e6b57de98ea02ca252341ac69443) - Solve issue where the CartEditForm would temporarily show an empty cart after saving. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.0-canary.79
 
 ## 9.0.0-canary.78

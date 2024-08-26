@@ -1,4 +1,4 @@
-import { Controller, FieldValues, ControllerProps } from '@graphcommerce/react-hook-form'
+import { FieldValues, ControllerProps, useController } from '@graphcommerce/react-hook-form'
 import { FormControlLabel, FormControlLabelProps, Switch } from '@mui/material'
 
 type IProps = Omit<FormControlLabelProps, 'control'>
@@ -8,18 +8,20 @@ export type SwitchElementProps<T extends FieldValues> = IProps & Omit<Controller
 export function SwitchElement<TFieldValues extends FieldValues>({
   name,
   control,
+  defaultValue,
+  disabled,
+  shouldUnregister,
+  rules,
   ...other
 }: SwitchElementProps<TFieldValues>) {
-  return (
-    <FormControlLabel
-      control={
-        <Controller
-          name={name}
-          control={control}
-          render={({ field }) => <Switch {...field} checked={!!field.value} />}
-        />
-      }
-      {...other}
-    />
-  )
+  const { field } = useController({
+    name,
+    control,
+    defaultValue,
+    disabled,
+    shouldUnregister,
+    rules,
+  })
+
+  return <FormControlLabel control={<Switch {...field} checked={!!field.value} />} {...other} />
 }

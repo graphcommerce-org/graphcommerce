@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.0.0-canary.80
+
+### Minor Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename experimental_useV2 prop to deprecated_useV1 in useFromGql and enable it by default ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`3043f94`](https://github.com/graphcommerce-org/graphcommerce/commit/3043f945c4caa2931c46f1f9ad940fd80b07e999) - In the shipping step show errors with a ApolloCartErrorSnackbar instead of a ApolloCartErrorAlert ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`3101681`](https://github.com/graphcommerce-org/graphcommerce/commit/3101681180e1a5a0cfba1bb89d72deb02cafdbbf) - When saving a shipping address it would always save the company after it was once saved. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.0-canary.79
 
 ## 9.0.0-canary.78

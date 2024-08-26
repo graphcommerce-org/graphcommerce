@@ -1,4 +1,5 @@
-import { cssFlag, cssNotFlag } from '@graphcommerce/next-ui'
+/* eslint-disable import/no-extraneous-dependencies */
+import { cssFlag, cssNotFlag, useIsSSR } from '@graphcommerce/next-ui'
 import { Box, Skeleton, SkeletonOwnProps, SkeletonProps, SxProps, Theme } from '@mui/material'
 import type { OverrideProps } from '@mui/material/OverridableComponent'
 import React, { createContext, useContext, useMemo } from 'react'
@@ -26,10 +27,16 @@ const InContextMaskContext = createContext<InContextMaskContextType | null>(null
 
 export function useInContextInputMask() {
   const context = useContext(InContextMaskContext)
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const isSSR = process.env.NODE_ENV === 'development' ? useIsSSR() : false
+
   if (!context) {
-    console.warn(
-      "useInContextInputMask was used without a InContextMaskProvider, this means that customer specific pricing probably isn't working.",
-    )
+    if (isSSR)
+      console.warn(
+        "useInContextInputMask was used without a InContextMaskProvider, this means that customer specific pricing probably isn't working.",
+      )
+
     return { mask: false }
   }
   return context

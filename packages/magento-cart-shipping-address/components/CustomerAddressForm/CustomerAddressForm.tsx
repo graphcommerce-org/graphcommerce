@@ -1,4 +1,5 @@
 import {
+  ActionCardListForm,
   FormAutoSubmit,
   FormPersist,
   TextFieldElement,
@@ -12,7 +13,7 @@ import {
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { CustomerDocument } from '@graphcommerce/magento-customer'
-import { ActionCardListForm, FormRow, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { FormRow, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
 import { Box, SxProps, Theme } from '@mui/material'
@@ -83,8 +84,8 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
       customer_address_id: number | null
     }
   >(Mutation, {
-    experimental_useV2: true,
     defaultValues: { customer_address_id: cartAddressId },
+    skipUnchanged: true,
     onBeforeSubmit: (vars) => {
       const { customer_address_id } = vars
       if (customer_address_id === -1) return false

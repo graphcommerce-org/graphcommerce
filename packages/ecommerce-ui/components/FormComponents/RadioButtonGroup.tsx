@@ -1,9 +1,4 @@
-import {
-  FieldError,
-  useController,
-  FieldValues,
-  UseControllerProps,
-} from '@graphcommerce/react-hook-form'
+import { useController, FieldValues, UseControllerProps } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import {
   FormControl,
@@ -20,8 +15,6 @@ export type RadioButtonGroupProps<T extends FieldValues> = {
   options: { label: string; id: string | number }[] | any[]
   helperText?: string
   required?: boolean
-  /** @deprecated Form value parsing should happen in the handleSubmit function of the form */
-  parseError?: (error: FieldError) => string
   label?: string
   labelKey?: string
   valueKey?: string
@@ -32,21 +25,27 @@ export type RadioButtonGroupProps<T extends FieldValues> = {
   row?: boolean
 } & UseControllerProps<T>
 
-export function RadioButtonGroup<TFieldValues extends FieldValues>({
-  helperText,
-  options,
-  label,
-  name,
-  parseError,
-  labelKey = 'label',
-  valueKey = 'id',
-  required,
-  emptyOptionLabel,
-  returnObject,
-  row,
-  control,
-  ...rest
-}: RadioButtonGroupProps<TFieldValues>): JSX.Element {
+export function RadioButtonGroup<TFieldValues extends FieldValues>(
+  props: RadioButtonGroupProps<TFieldValues>,
+): JSX.Element {
+  const {
+    helperText,
+    options,
+    label,
+    name,
+    labelKey = 'label',
+    valueKey = 'id',
+    required,
+    emptyOptionLabel,
+    returnObject,
+    row,
+    control,
+    defaultValue,
+    disabled,
+    shouldUnregister,
+    ...rest
+  } = props
+
   const theme = useTheme()
   const {
     field: { value, onChange },
@@ -55,13 +54,12 @@ export function RadioButtonGroup<TFieldValues extends FieldValues>({
     name,
     rules: required ? { required: i18n._(/* i18n */ 'This field is required') } : undefined,
     control,
+    defaultValue,
+    disabled,
+    shouldUnregister,
   })
 
-  helperText = error
-    ? typeof parseError === 'function'
-      ? parseError(error)
-      : error.message
-    : helperText
+  const parsedHelperText = error ? error.message : helperText
 
   const onRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
     const radioValue = (event.target as HTMLInputElement).value
@@ -125,7 +123,7 @@ export function RadioButtonGroup<TFieldValues extends FieldValues>({
           )
         })}
       </RadioGroup>
-      {helperText && <FormHelperText>{helperText}</FormHelperText>}
+      {parsedHelperText && <FormHelperText>{parsedHelperText}</FormHelperText>}
     </FormControl>
   )
 }
