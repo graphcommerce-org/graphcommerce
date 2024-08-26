@@ -6,9 +6,10 @@ import {
   WaitForQueries,
 } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { cacheFirst } from '@graphcommerce/graphql'
 import {
-  ApolloCartErrorAlert,
   ApolloCartErrorFullPage,
+  ApolloCartErrorSnackbar,
   EmptyCart,
   useCartQuery,
 } from '@graphcommerce/magento-cart'
@@ -37,7 +38,6 @@ import { CircularProgress, Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutDocument, LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
@@ -127,7 +127,7 @@ function ShippingPage() {
                           <Trans id='Next' />
                         </ComposedSubmitButton>
                       </FormActions>
-                      <ApolloCartErrorAlert
+                      <ApolloCartErrorSnackbar
                         error={renderProps.buttonState.isSubmitting ? undefined : renderProps.error}
                       />
                     </>
