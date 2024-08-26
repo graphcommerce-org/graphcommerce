@@ -1,4 +1,3 @@
-import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { LazyHydrate } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress } from '@mui/material'

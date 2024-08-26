@@ -1,5 +1,5 @@
 import { useWatch } from '@graphcommerce/react-hook-form'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { StoreFragment } from '../Store.gql'
 import type { MarkerConfig } from './StoreLocator'
 import { useStoreLocatorForm } from './StoreLocatorFormProvider'
@@ -7,20 +7,12 @@ import { useStoreLocatorMap } from './StoreLocatorMapLoader'
 
 type MarkerProps = { store: StoreFragment; markerConfig: MarkerConfig }
 
-export function Marker(props: MarkerProps) {
-  const { store, markerConfig } = props
-  const { setValue, control } = useStoreLocatorForm()
+const MarkerRender = React.memo<
+  MarkerProps & { isPreferredStore: boolean; isFocusedStore: boolean }
+>((props) => {
+  const { store, markerConfig, isFocusedStore, isPreferredStore } = props
+  const { setValue } = useStoreLocatorForm()
   const { map } = useStoreLocatorMap()
-  const focused = useWatch({ control, name: 'focusedStore' })
-  const preferredStore = useWatch({ control, name: 'preferredStore' })
-  const isFocused = focused === store.pickup_location_code
-  const isPreferredStore = preferredStore?.pickup_location_code === store.pickup_location_code
-
-  // console.log('====')
-  // console.log('rendering marker: ', store.pickup_location_code)
-  // console.log('preferredStore', preferredStore?.pickup_location_code)
-  // console.log('isPreferredStore', isPreferredStore)
-  // console.log('====')
 
   useEffect(() => {
     const {
@@ -36,7 +28,7 @@ export function Marker(props: MarkerProps) {
 
     const icon = document.createElement('img')
     icon.src = markerImageSrc ?? 'icons/marker.svg'
-    if (isFocused) {
+    if (isFocusedStore) {
       icon.src = activeMarkerImageSrc ?? 'icons/marker.svg'
     }
     if (isPreferredStore) {
@@ -57,21 +49,38 @@ export function Marker(props: MarkerProps) {
       if (onMarkerClick) onMarkerClick(store)
     })
 
-    if (isFocused) {
+    if (isFocusedStore) {
       const newPosition: google.maps.LatLngLiteral = {
         lat: Number(store.lat),
         lng: Number(store.lng),
       }
 
-      map.setZoom(11)
-      map.setCenter(newPosition)
+      // map.setZoom(11) @todo re-enable
+      // map.setCenter(newPosition) @todo re-enable
     }
 
     return () => {
       // @ts-expect-error not in typescript, but does work
       marker.setMap(null)
     }
-  }, [isFocused, isPreferredStore, map, markerConfig, setValue, store])
+  }, [isFocusedStore, isPreferredStore, map, markerConfig, setValue, store])
 
   return null
+})
+
+export const Marker = (props: MarkerProps) => {
+  const { store } = props
+  const { control } = useStoreLocatorForm()
+
+  const [preferredStore, focusedStore] = useWatch({
+    control,
+    name: ['preferredStore', 'focusedStore'],
+  })
+
+  const isPreferredStore = preferredStore?.pickup_location_code === store.pickup_location_code
+  const isFocusedStore = focusedStore === store.pickup_location_code
+
+  return (
+    <MarkerRender {...props} isFocusedStore={isFocusedStore} isPreferredStore={isPreferredStore} />
+  )
 }
