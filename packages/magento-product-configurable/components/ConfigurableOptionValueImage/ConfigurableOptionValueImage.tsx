@@ -1,8 +1,9 @@
+import { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
 import { Image } from '@graphcommerce/image'
-import { ActionCardItemRenderProps, ActionCard, responsiveVal } from '@graphcommerce/next-ui'
-import { ConfigurableOptionValueImageFragment } from './ConfigurableOptionValueImage.gql'
-import { Box, Button } from '@mui/material'
+import { ActionCard, responsiveVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
+import { Button } from '@mui/material'
+import { ConfigurableOptionValueImageFragment } from './ConfigurableOptionValueImage.gql'
 
 export type ConfigurableOptionValueImageProps =
   ActionCardItemRenderProps<ConfigurableOptionValueImageFragment>

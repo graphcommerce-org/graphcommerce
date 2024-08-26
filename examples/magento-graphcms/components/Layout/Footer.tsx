@@ -59,7 +59,7 @@ export function Footer(props: FooterProps) {
               <Trans>Contact</Trans>
             </Link>
           )}
-          <Link href='/newsletter' color='textPrimary' underline='always'>
+          <Link href='/service/newsletter' color='textPrimary' underline='always'>
             <Trans>Newletter</Trans>
           </Link>
         </>

@@ -138,8 +138,8 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
     const classes = withState({ size, color, variant, layout })
 
     return (
-      <div ref={ref}>
-        <ActionCardLayout sx={sx} className={classes.root} layout={layout}>
+      <div>
+        <ActionCardLayout sx={sx} className={classes.root} layout={layout} ref={ref} tabIndex={0}>
           {childActionCards.map((child, index) => {
             if (collapse && Boolean(value) && !isValueSelected(child.props.value, value))
               return null

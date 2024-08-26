@@ -1,11 +1,5 @@
-import {
-  ActionCard,
-  Button,
-  FormDiv,
-  ActionCardItemRenderProps,
-  ActionCardListForm,
-  ActionCardProps,
-} from '@graphcommerce/next-ui'
+import { ActionCardItemRenderProps, ActionCardListForm } from '@graphcommerce/ecommerce-ui'
+import { ActionCard, ActionCardProps, Button, FormDiv } from '@graphcommerce/next-ui'
 import {
   FormPersist,
   useForm,
@@ -75,14 +69,16 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
   const [lockState] = useCartLock()
 
   type FormFields = { code: string | null; paymentMethod?: string }
-  const form = useForm<FormFields>({
-    defaultValues: { code: lockState.method },
-  })
+  const form = useForm<FormFields>({})
 
   const { control, handleSubmit, watch, setValue } = form
   const submit = handleSubmit(() => {})
 
   const paymentMethod = watch('paymentMethod')
+
+  useEffect(() => {
+    if (lockState.method) setValue('code', lockState.method)
+  }, [lockState.method, setValue])
 
   useFormCompose({ form, step: 1, submit, key: 'PaymentMethodActionCardList' })
 
@@ -116,6 +112,7 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
         collapse
         size='large'
         color='secondary'
+        required
         items={methods.map((method) => ({
           ...method,
           value: `${method.code}___${method.child}`,

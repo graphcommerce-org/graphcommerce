@@ -205,7 +205,7 @@ export function ActionCard(props: ActionCardProps) {
             backgroundColor: theme.vars.palette.background.paper,
             boxShadow: `inset 0 0 0 1px ${theme.vars.palette.divider}`,
             '&:not(:last-of-type)': {
-              marginBottom: '-1px',
+              marginBottom: '-2px',
             },
             '&.layoutList': {
               borderRadius: 0,
@@ -243,7 +243,7 @@ export function ActionCard(props: ActionCardProps) {
               borderColor: 'transparent',
               boxShadow: `inset 0 0 0 2px ${theme.vars.palette[color].main}`,
             },
-            '&.selected:focus': {
+            '&.selected:focus, &.error:focus': {
               borderColor: 'transparent',
               boxShadow: `inset 0 0 0 2px ${theme.vars.palette[color].main}, 0 0 0 4px rgb(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`,
             },
@@ -252,11 +252,14 @@ export function ActionCard(props: ActionCardProps) {
             },
 
             '&.error': {
-              boxShadow: `0 0 0 2px ${theme.vars.palette.error.main}`,
+              boxShadow: `inset 0 0 0 2px ${theme.vars.palette.error.main}`,
             },
           },
           '&.selected': {
             zIndex: 1,
+          },
+          '&:focus, &.selected:focus, &.error:focus': {
+            zIndex: 2,
           },
           '&.disabled': {
             background: theme.vars.palette.action.disabledBackground,

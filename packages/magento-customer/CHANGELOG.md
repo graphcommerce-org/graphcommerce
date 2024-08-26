@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.0.0-canary.80
+
+### Minor Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename experimental_useV2 prop to deprecated_useV1 in useFromGql and enable it by default ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`cc1c6e8`](https://github.com/graphcommerce-org/graphcommerce/commit/cc1c6e8c857c12f2d38d7283a250e3b77bd885f4) - The AddressCountryRegion select would show a warning if the countries weren't loaded yet. It will now show a readonly field with the country code. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`b8b621a`](https://github.com/graphcommerce-org/graphcommerce/commit/b8b621a4a7549cae4ac56fee76773443a0d55504) - The CompanyFields toggle wouldn't be valid when Private was selected and would only validate if Business was selected. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.0-canary.79
 
 ## 9.0.0-canary.78

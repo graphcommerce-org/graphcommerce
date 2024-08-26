@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.80
+
+### Minor Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename experimental_useV2 prop to deprecated_useV1 in useFromGql and enable it by default ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.0-canary.79
 
 ## 9.0.0-canary.78

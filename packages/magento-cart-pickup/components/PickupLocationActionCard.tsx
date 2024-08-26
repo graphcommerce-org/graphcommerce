@@ -1,4 +1,5 @@
-import { ActionCard, ActionCardItemRenderProps } from '@graphcommerce/next-ui'
+import { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
+import { ActionCard } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Button } from '@mui/material'
 import { GetPickupLocationsForProductsQuery } from '../graphql/GetPickupLocationsForProducts.gql'

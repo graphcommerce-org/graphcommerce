@@ -1,4 +1,4 @@
-import { EmailElement, TextFieldElement, WaitForQueries } from '@graphcommerce/ecommerce-ui'
+import { EmailElement, WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorAlert,
@@ -8,14 +8,13 @@ import {
 import { IsEmailAvailableDocument, useCustomerSession } from '@graphcommerce/magento-customer'
 import { extendableComponent, FormRow } from '@graphcommerce/next-ui'
 import {
-  emailPattern,
   FormAutoSubmit,
   useFormCompose,
   UseFormComposeOptions,
 } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { Button, SxProps, Box, Theme } from '@mui/material'
+import { Box, Button, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { CartEmailDocument } from './CartEmail.gql'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
@@ -35,7 +34,7 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
   const cartEmail = useCartQuery(CartEmailDocument)
 
   const form = useFormGqlMutationCart(SetGuestEmailOnCartDocument, {
-    mode: 'onChange',
+    skipUnchanged: true,
     defaultValues: { email: cartEmail.data?.cart?.email ?? '' },
   })
   const email = form.watch('email')

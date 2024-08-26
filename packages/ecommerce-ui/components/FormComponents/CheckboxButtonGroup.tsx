@@ -1,10 +1,4 @@
-/* eslint-disable @typescript-eslint/no-restricted-imports */
-import {
-  FieldError,
-  useController,
-  FieldValues,
-  UseControllerProps,
-} from '@graphcommerce/react-hook-form'
+import { useController, FieldValues, UseControllerProps } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import {
   Checkbox,
@@ -21,8 +15,6 @@ export type CheckboxButtonGroupProps<T extends FieldValues> = {
   options: { id: string | number; label: string }[] | any[]
   helperText?: string
   required?: boolean
-  /** @deprecated Form value parsing should happen in the handleSubmit function of the form */
-  parseError?: (error: FieldError) => string
   label?: string
   labelKey?: string
   valueKey?: string
@@ -33,22 +25,27 @@ export type CheckboxButtonGroupProps<T extends FieldValues> = {
   checkboxColor?: CheckboxProps['color']
 } & UseControllerProps<T>
 
-export function CheckboxButtonGroup<TFieldValues extends FieldValues>({
-  helperText,
-  options,
-  label,
-  name,
-  parseError,
-  required,
-  labelKey = 'label',
-  valueKey = 'id',
-  returnObject,
-  disabled,
-  row,
-  control,
-  checkboxColor,
-  ...rest
-}: CheckboxButtonGroupProps<TFieldValues>): JSX.Element {
+export function CheckboxButtonGroup<TFieldValues extends FieldValues>(
+  props: CheckboxButtonGroupProps<TFieldValues>,
+): JSX.Element {
+  const {
+    helperText,
+    options,
+    label,
+    name,
+    required,
+    labelKey = 'label',
+    valueKey = 'id',
+    returnObject,
+    disabled,
+    row,
+    control,
+    checkboxColor,
+    defaultValue,
+    shouldUnregister,
+    ...rest
+  } = props
+
   const theme = useTheme()
   const {
     field: { value = [], onChange },
@@ -57,13 +54,12 @@ export function CheckboxButtonGroup<TFieldValues extends FieldValues>({
     name,
     rules: required ? { required: i18n._(/* i18n */ 'This field is required') } : undefined,
     control,
+    defaultValue,
+    disabled,
+    shouldUnregister,
   })
 
-  helperText = error
-    ? typeof parseError === 'function'
-      ? parseError(error)
-      : error.message
-    : helperText
+  const parsedHelperText = error ? error.message : helperText
 
   const handleChange = (index: number | string) => {
     const newArray: (string | number)[] | any[] = [...value]
@@ -120,7 +116,7 @@ export function CheckboxButtonGroup<TFieldValues extends FieldValues>({
           )
         })}
       </FormGroup>
-      {helperText && <FormHelperText>{helperText}</FormHelperText>}
+      {parsedHelperText && <FormHelperText>{parsedHelperText}</FormHelperText>}
     </FormControl>
   )
 }

@@ -5,13 +5,14 @@ import {
   usePaymentMethodContext,
 } from '@graphcommerce/magento-cart-payment-method'
 import { FormRow } from '@graphcommerce/next-ui'
+import { t } from '@lingui/macro'
 import { useRouter } from 'next/router'
 import { useAdyenCartLock } from '../../hooks/useAdyenCartLock'
 import { useAdyenPaymentMethod } from '../../hooks/useAdyenPaymentMethod'
 import {
+  AdyenPaymentOptionsAndPlaceOrderDocument,
   AdyenPaymentOptionsAndPlaceOrderMutation,
   AdyenPaymentOptionsAndPlaceOrderMutationVariables,
-  AdyenPaymentOptionsAndPlaceOrderDocument,
 } from './AdyenPaymentOptionsAndPlaceOrder.gql'
 
 /** It sets the selected payment method on the cart. */
@@ -44,7 +45,13 @@ export function HppOptions(props: PaymentOptionsProps) {
       const merchantReference = result.data?.placeOrder?.order.order_number
       const action = result?.data?.placeOrder?.order.adyen_payment_status?.action
 
-      if (result.errors || !merchantReference || !selectedMethod?.code || !action) return
+      if (result.errors) return
+
+      if (!merchantReference || !selectedMethod?.code || !action) {
+        throw Error(
+          t`An error occurred while processing your payment. Please contact the store owner`,
+        )
+      }
 
       const url = JSON.parse(action).url as string
       await lock({ method: selectedMethod.code, adyen: '1', merchantReference })

@@ -27,7 +27,9 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
   control,
   defaultValue,
   rules = validation,
+  shouldUnregister,
   showValid,
+  disabled,
   ...rest
 }: TextFieldElementProps<TFieldValues>): JSX.Element {
   if (required && !rules.required) {
@@ -44,7 +46,7 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
   const {
     field: { onChange, ref, value = '', ...field },
     fieldState: { error },
-  } = useController({ name, control, rules, defaultValue })
+  } = useController({ name, control, rules, defaultValue, shouldUnregister, disabled })
 
   return (
     <TextField
