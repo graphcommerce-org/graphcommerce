@@ -5,7 +5,7 @@ import React, { MouseEventHandler } from 'react'
 export type ActionCardItemBase = Pick<ActionCardProps, 'value'>
 
 export type ActionCardItemRenderProps<T> = ActionCardProps & {
-  onReset: MouseEventHandler<HTMLAnchorElement & HTMLSpanElement>
+  onReset: MouseEventHandler<HTMLAnchorElement & HTMLSpanElement & HTMLButtonElement>
 } & T
 
 export type ActionCardListFormProps<A, F extends FieldValues = FieldValues> = Omit<

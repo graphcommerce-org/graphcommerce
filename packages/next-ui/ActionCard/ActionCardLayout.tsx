@@ -6,7 +6,7 @@ import { ActionCardProps } from './ActionCard'
 export type ActionCardLayoutProps = {
   children?: React.ReactNode
 } & Pick<ActionCardProps, 'layout'> &
-  Pick<BoxProps, 'sx' | 'className'>
+  Pick<BoxProps, 'sx' | 'className' | 'tabIndex'>
 
 const parts = ['root'] as const
 const name = 'ActionCardLayout'
