@@ -19,18 +19,18 @@ export function OrderStateLabelInline(props: OrderStateLabelInlineProps) {
           background: `rgb(${theme.vars.palette.secondary.mainChannel}, 0.125)`,
 
           '&.orderStatePending': {
-            color: theme.palette.text.disabled,
+            color: theme.vars.palette.text.disabled,
           },
           '&.orderStateProcessing': {
-            color: theme.palette.info.main,
+            color: theme.vars.palette.info.main,
             background: `rgb(${theme.vars.palette.info.mainChannel}, 0.125)`,
           },
           '&.orderStateComplete': {
-            color: theme.palette.success.main,
+            color: theme.vars.palette.success.main,
             background: `rgb(${theme.vars.palette.success.mainChannel}, 0.125)`,
           },
           '&.orderStateClosed': {
-            color: theme.palette.text.disabled,
+            color: theme.vars.palette.text.disabled,
             background: theme.vars.palette.text.disabled,
             '@supports (color: hsl(from white h s l))': {
               background: `rgb(from ${theme.vars.palette.text.disabled} r g b / 0.125 )`,
