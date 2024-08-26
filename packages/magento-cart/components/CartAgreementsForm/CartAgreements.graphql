@@ -1,11 +1,5 @@
 query CartAgreements {
   checkoutAgreements {
-    agreement_id
-    checkbox_text
-    content
-    content_height
-    is_html
-    mode
-    name
+    ...CartAgreement
   }
 }

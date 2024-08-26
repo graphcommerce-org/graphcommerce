@@ -1,14 +1,5 @@
 fragment ProductListFilters on Products {
   aggregations(filter: { category: { includeDirectChildrenOnly: true } }) {
-    __typename
-    label
-    attribute_code
-    count
-    options {
-      __typename
-      label
-      value
-      count
-    }
+    ...ProductListAggregation
   }
 }

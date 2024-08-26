@@ -1,6 +1,15 @@
 fragment CustomizableOption on CustomizableOptionInterface {
+  __typename
   uid
   required
   sort_order
   title
+  ...CustomizableAreaOption
+  ...CustomizableCheckboxOption
+  ...CustomizableDateOption
+  ...CustomizableDropDownOption
+  ...CustomizableMultipleOption
+  ...CustomizableFieldOption
+  ...CustomizableFileOption
+  ...CustomizableRadioOption
 }

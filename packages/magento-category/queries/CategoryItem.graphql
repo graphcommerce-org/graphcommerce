@@ -1,0 +1,9 @@
+fragment CategoryItem on CategoryTree {
+  uid
+  ...CategoryDefault
+  ...CategoryBreadcrumb
+  ...CategoryDescription
+  ...CategoryChildren
+  ...CategoryMeta
+  ...CategoryHeroNav
+}

@@ -1,10 +1,10 @@
 import { ActionCardLayout, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { useMemo } from 'react'
-import { ProductPageGroupedQueryFragment } from '../ProductPageGroupedQueryFragment.gql'
+import { GroupedProductFragment } from '../GroupedProduct.gql'
 import { GroupedProductActionCard } from './GroupedProductActionCard'
 
 type GroupedProductsProps = {
-  product: NonNullable<NonNullable<ProductPageGroupedQueryFragment['typeProducts']>['items']>[0]
+  product: GroupedProductFragment
 }
 
 export function GroupedProducts(props: GroupedProductsProps) {

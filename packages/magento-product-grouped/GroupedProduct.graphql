@@ -1,4 +1,6 @@
 fragment GroupedProduct on GroupedProduct {
+  __typename
+  uid
   items {
     position
     qty
