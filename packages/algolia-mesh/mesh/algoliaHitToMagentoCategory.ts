@@ -6,7 +6,18 @@ import {
   MeshContext,
   QuerycategoriesArgs,
   Algoliahit,
+  AlgoliaProductHitAdditionalProperties,
 } from '@graphcommerce/graphql-mesh'
+
+export type AlgoliaCategoryHitAddiotonalProperties = AlgoliaProductHitAdditionalProperties & {
+  path: string
+}
+
+export function assertAdditional(
+  additional: unknown,
+): additional is AlgoliaCategoryHitAddiotonalProperties {
+  return true
+}
 
 export type CategoriesItemsItem = NonNullable<
   Awaited<
@@ -28,6 +39,8 @@ function mapBreadcrumbs(algoliaPath) {
 
 export function algoliaHitToMagentoCategory(hit: Algoliahit): CategoriesItemsItem {
   const { objectID, additionalProperties } = hit
+
+  if (!assertAdditional(additionalProperties)) return null
 
   return {
     name: additionalProperties?.name,
