@@ -208,12 +208,12 @@ const dataLayerToAlgoliaMap: {
           eventSubtype: 'addToCart',
           objectIDs: eventData.items.map((item) => atob(item.item_uid)),
           objectData: eventData.items.map((item) => ({
-            discount: { Float: item.discount ?? 0 },
-            price: { Float: Number(item.price.toFixed(15)) },
+            discount: { Float: Number(item.discount?.toFixed(14)) ?? 0 },
+            price: { Float: Number(item.price.toFixed(14)) },
             quantity: item.quantity,
           })),
           currency: eventData.currency,
-          value: { Float: Number(eventData.value.toFixed(15)) },
+          value: { Float: Number(eventData.value.toFixed(14)) },
           ...common,
         },
       } satisfies AlgoliaEventsItems_Input)
@@ -226,11 +226,11 @@ const dataLayerToAlgoliaMap: {
           objectIDs: eventData.items.map((item) => atob(item.item_uid)),
           objectData: eventData.items.map((item) => ({
             discount: { Float: item.discount ?? 0 },
-            price: { Float: Number(item.price.toFixed(15)) },
+            price: { Float: Number(item.price.toFixed(14)) },
             quantity: item.quantity,
           })),
           currency: eventData.currency,
-          value: { Float: Number(eventData.value.toFixed(15)) },
+          value: { Float: Number(eventData.value.toFixed(14)) },
           ...common,
         },
       } satisfies AlgoliaEventsItems_Input)
@@ -272,13 +272,13 @@ const dataLayerToAlgoliaMap: {
           eventSubtype: 'purchase',
           objectIDs: eventData.items.map((item) => atob(item.item_uid)),
           objectData: eventData.items.map((item) => ({
-            discount: { Float: item.discount ?? 0 },
-            price: { Float: Number(item.price.toFixed(15)) },
+            discount: { Float: Number(item.discount?.toFixed(14)) ?? 0 },
+            price: { Float: Number(item.price.toFixed(14)) },
             quantity: item.quantity,
             queryID: mapping[atob(item.item_uid)]?.queryID,
           })),
           currency: eventData.currency,
-          value: { Float: Number(eventData.value.toFixed(15)) },
+          value: { Float: Number(eventData.value.toFixed(13)) },
           ...common,
         },
       } satisfies AlgoliaEventsItems_Input)
@@ -290,12 +290,12 @@ const dataLayerToAlgoliaMap: {
           eventSubtype: 'purchase',
           objectIDs: eventData.items.map((item) => atob(item.item_uid)),
           objectData: eventData.items.map((item) => ({
-            discount: { Float: item.discount ?? 0 },
-            price: { Float: Number(item.price.toFixed(15)) },
+            discount: { Float: Number(item.discount?.toFixed(14)) ?? 0 },
+            price: { Float: Number(item.price.toFixed(14)) },
             quantity: item.quantity,
           })),
           currency: eventData.currency,
-          value: { Float: Number(eventData.value.toFixed(15)) },
+          value: { Float: Number(eventData.value.toFixed(13)) },
           ...common,
         },
       } satisfies AlgoliaEventsItems_Input)
@@ -356,7 +356,6 @@ export function useSendAlgoliaEvent() {
       cookie(ALGOLIA_USER_TOKEN_COOKIE_NAME, userToken, { sameSite: true })
     }
 
-    // todo check if valid
     // if (authenticatedUserToken) {
     //   userToken = authenticatedUserToken
     // }
