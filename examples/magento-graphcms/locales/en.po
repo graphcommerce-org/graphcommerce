@@ -34,10 +34,6 @@ msgid "We couldn't find any results"
 msgstr "We couldn't find any results"
 
 #. js-lingui-generated-id
-msgid "Sign in"
-msgstr "Sign in"
-
-#. js-lingui-generated-id
 msgid "Shipping method"
 msgstr "Shipping method"
 
@@ -78,9 +74,6 @@ msgstr "Account confirmation"
 
 msgid "Account confirmed. You can now proceed to sign in."
 msgstr "Account confirmed. You can now proceed to sign in."
-
-msgid "Account connected to that email could not be found"
-msgstr "Account connected to that email could not be found"
 
 msgid "Add address"
 msgstr "Add address"
@@ -630,6 +623,10 @@ msgstr "Results for ‘{search}’"
 msgid "Telephone"
 msgstr "Telephone"
 
+#. js-lingui-generated-id
+msgid "Please login to add products to your cart"
+msgstr "Please login to add products to your cart"
+
 msgid "Recently viewed products"
 msgstr "Recently viewed products"
 
@@ -726,6 +723,9 @@ msgstr "Sign out"
 msgid "Sign up for our newsletter and stay updated"
 msgstr "Sign up for our newsletter and stay updated"
 
+msgid "Sign up is disabled, please contact us for more information."
+msgstr "Sign up is disabled, please contact us for more information."
+
 msgid "Skip to main content"
 msgstr "Skip to main content"
 
@@ -818,9 +818,6 @@ msgstr "This may take a second"
 
 msgid "Total <0/>"
 msgstr "Total <0/>"
-
-msgid "Try a different email or contact us to register an account"
-msgstr "Try a different email or contact us to register an account"
 
 msgid "Try a different product"
 msgstr "Try a different product"
@@ -932,6 +929,9 @@ msgstr "You haven't placed any reviews yet"
 
 msgid "You must be signed in to continue"
 msgstr "You must be signed in to continue"
+
+msgid "You must sign in to continue"
+msgstr "You must sign in to continue"
 
 msgid "Your address has been added"
 msgstr "Your address has been added"

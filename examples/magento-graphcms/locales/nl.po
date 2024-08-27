@@ -34,10 +34,6 @@ msgid "We couldn't find any results"
 msgstr "We konden geen resultaten vinden"
 
 #. js-lingui-generated-id
-msgid "Sign in"
-msgstr "Inloggen"
-
-#. js-lingui-generated-id
 msgid "Shipping method"
 msgstr "Verzendmethode"
 
@@ -78,9 +74,6 @@ msgstr "Account bevestiging"
 
 msgid "Account confirmed. You can now proceed to sign in."
 msgstr "Account bevestigd. U kunt nu doorgaan met inloggen."
-
-msgid "Account connected to that email could not be found"
-msgstr "Account gekoppeld aan die e-mail kon niet worden gevonden"
 
 msgid "Add address"
 msgstr "Adres toevoegen"
@@ -630,6 +623,10 @@ msgstr "Resultaten voor ‘{search}’"
 msgid "Telephone"
 msgstr "Telefoon"
 
+#. js-lingui-generated-id
+msgid "Please login to add products to your cart"
+msgstr "Log in om producten aan uw winkelwagen toe te voegen"
+
 msgid "Recently viewed products"
 msgstr "Recent bekeken producten"
 
@@ -726,6 +723,9 @@ msgstr "Uitloggen"
 msgid "Sign up for our newsletter and stay updated"
 msgstr "Abonneer u op onze nieuwsbrief en blijf op de hoogte"
 
+msgid "Sign up is disabled, please contact us for more information."
+msgstr "Inschrijven is niet mogelijk, neem contact met ons op voor meer informatie."
+
 msgid "Skip to main content"
 msgstr "Ga naar hoofdinhoud"
 
@@ -818,9 +818,6 @@ msgstr "Dit kan een seconde duren"
 
 msgid "Total <0/>"
 msgstr "Totaal <0/>"
-
-msgid "Try a different email or contact us to register an account"
-msgstr "Probeer een ander e-mailadres of neem contact met ons op om een account te registreren"
 
 msgid "Try a different product"
 msgstr "Probeer een ander product"
@@ -932,6 +929,9 @@ msgstr "Je hebt nog geen reviews geplaatst"
 
 msgid "You must be signed in to continue"
 msgstr "U moet ingelogd zijn om verder te gaan"
+
+msgid "You must sign in to continue"
+msgstr "U moet zich aanmelden om verder te gaan"
 
 msgid "Your address has been added"
 msgstr "Uw adres is toegevoegd"

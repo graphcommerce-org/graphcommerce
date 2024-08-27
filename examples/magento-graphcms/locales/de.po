@@ -34,10 +34,6 @@ msgid "We couldn't find any results"
 msgstr "Wir konnten keine Ergebnisse finden"
 
 #. js-lingui-generated-id
-msgid "Sign in"
-msgstr "Eintragen"
-
-#. js-lingui-generated-id
 msgid "Shipping method"
 msgstr "Versandart"
 
@@ -78,9 +74,6 @@ msgstr "Bestätigung des Kontos"
 
 msgid "Account confirmed. You can now proceed to sign in."
 msgstr "Konto bestätigt. Sie können sich jetzt anmelden."
-
-msgid "Account connected to that email could not be found"
-msgstr "Das mit dieser E-Mail verbundene Konto konnte nicht gefunden werden"
 
 msgid "Add address"
 msgstr "Adresse hinzufügen"
@@ -630,6 +623,10 @@ msgstr "Ergebnisse für ‘{search}’"
 msgid "Telephone"
 msgstr "Telefon"
 
+#. js-lingui-generated-id
+msgid "Please login to add products to your cart"
+msgstr "Bitte loggen Sie sich ein, um Produkte zu Ihrem Warenkorb hinzuzufügen"
+
 msgid "Recently viewed products"
 msgstr "Kürzlich angesehene Produkte"
 
@@ -726,6 +723,9 @@ msgstr "Abmelden"
 msgid "Sign up for our newsletter and stay updated"
 msgstr "Abonnieren Sie unseren Newsletter und bleiben Sie auf dem Laufenden"
 
+msgid "Sign up is disabled, please contact us for more information."
+msgstr "Die Anmeldung ist deaktiviert, bitte kontaktieren Sie uns für weitere Informationen."
+
 msgid "Skip to main content"
 msgstr "Zum Hauptinhalt springen"
 
@@ -818,9 +818,6 @@ msgstr "Das kann einen Moment dauern"
 
 msgid "Total <0/>"
 msgstr "Gesamt <0/>"
-
-msgid "Try a different email or contact us to register an account"
-msgstr "Versuchen Sie eine andere E-Mail-Adresse oder kontaktieren Sie uns, um ein Konto zu registrieren."
 
 msgid "Try a different product"
 msgstr "Versuchen Sie ein anderes Produkt"
@@ -931,6 +928,9 @@ msgid "You haven't placed any reviews yet"
 msgstr "Sie haben noch keine Bewertungen abgegeben"
 
 msgid "You must be signed in to continue"
+msgstr "Sie müssen sich anmelden, um fortzufahren"
+
+msgid "You must sign in to continue"
 msgstr "Sie müssen sich anmelden, um fortzufahren"
 
 msgid "Your address has been added"
