@@ -7,7 +7,6 @@ import {
   QuerycategoriesArgs,
   Algoliahit,
 } from '@graphcommerce/graphql-mesh'
-import { assertAdditional } from './algoliaHitToMagentoProduct'
 
 export type CategoriesItemsItem = NonNullable<
   Awaited<
@@ -22,6 +21,11 @@ export type CategoriesItemsItem = NonNullable<
   >['items']
 >[number]
 
+function mapBreadcrumbs(algoliaPath) {
+  const pathArray = algoliaPath.split('/')
+  return pathArray.map((item) => ({ category_name: item }))
+}
+
 export function algoliaHitToMagentoCategory(hit: Algoliahit): CategoriesItemsItem {
   const { objectID, additionalProperties } = hit
 
@@ -32,5 +36,6 @@ export function algoliaHitToMagentoCategory(hit: Algoliahit): CategoriesItemsIte
     image: additionalProperties?.image_url,
     uid: objectID,
     redirect_code: 0,
+    breadcrumbs: mapBreadcrumbs(additionalProperties?.path),
   }
 }
