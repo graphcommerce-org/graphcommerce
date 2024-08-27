@@ -122,6 +122,7 @@ export const resolvers: Resolvers = {
       if (!todo.algoliaCategories) return context.m2.Query.categories({ root, args, context, info })
       const algoliaResponse = await getCategoryResults(args, context, info)
       const items: (CategoriesItemsItem | null)[] = []
+      const storeConfig = await getStoreConfig(context)
       if (!algoliaResponse?.hits) {
         return {
           items: [],
@@ -135,7 +136,7 @@ export const resolvers: Resolvers = {
       }
       for (const hit of algoliaResponse.hits) {
         if (hit?.objectID) {
-          const category = algoliaHitToMagentoCategory(hit)
+          const category = algoliaHitToMagentoCategory(hit, storeConfig)
           items.push(category)
         }
       }

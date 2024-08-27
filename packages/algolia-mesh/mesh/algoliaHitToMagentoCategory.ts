@@ -8,9 +8,12 @@ import {
   Algoliahit,
   AlgoliaProductHitAdditionalProperties,
 } from '@graphcommerce/graphql-mesh'
+import { algoliaUrlToUrlKey } from './algoliaHitToMagentoProduct'
+import { GetStoreConfigReturn } from './getStoreConfig'
 
 export type AlgoliaCategoryHitAddiotonalProperties = AlgoliaProductHitAdditionalProperties & {
   path: string
+  url: string
 }
 
 export function assertAdditional(
@@ -33,15 +36,20 @@ export type CategoriesItemsItem = NonNullable<
 >[number]
 
 function mapBreadcrumbs(algoliaPath) {
-  const pathArray = algoliaPath.split('/')
-  return pathArray.map((item) => ({ category_name: item }))
+  const pathArray = algoliaPath.split(' / ')
+  return pathArray.map((item) => ({
+    category_name: item,
+    category_uid: 0,
+  }))
 }
 
-export function algoliaHitToMagentoCategory(hit: Algoliahit): CategoriesItemsItem {
+export function algoliaHitToMagentoCategory(
+  hit: Algoliahit,
+  storeConfig: GetStoreConfigReturn,
+): CategoriesItemsItem {
   const { objectID, additionalProperties } = hit
 
   if (!assertAdditional(additionalProperties)) return null
-
   return {
     name: additionalProperties?.name,
     children: null,
@@ -49,6 +57,8 @@ export function algoliaHitToMagentoCategory(hit: Algoliahit): CategoriesItemsIte
     image: additionalProperties?.image_url,
     uid: objectID,
     redirect_code: 0,
+    url_key: '',
+    url_path: algoliaUrlToUrlKey(additionalProperties.url, storeConfig?.base_link_url),
     breadcrumbs: mapBreadcrumbs(additionalProperties?.path),
   }
 }
