@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.80
+
+### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`c57614d`](https://github.com/graphcommerce-org/graphcommerce/commit/c57614d47675cec2a0bf290371f11441495e10fe) - ActionCardList can now recieve focus, allowing form submissions to scroll to the field. Focussed fields now are now highlighted even when there is an error. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.0-canary.79
 
 ### Patch Changes

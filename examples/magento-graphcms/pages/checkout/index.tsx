@@ -8,8 +8,8 @@ import {
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import {
-  ApolloCartErrorAlert,
   ApolloCartErrorFullPage,
+  ApolloCartErrorSnackbar,
   EmptyCart,
   getCheckoutIsDisabled,
   useCartQuery,
@@ -128,7 +128,7 @@ function ShippingPage() {
                           <Trans id='Next' />
                         </ComposedSubmitButton>
                       </FormActions>
-                      <ApolloCartErrorAlert
+                      <ApolloCartErrorSnackbar
                         error={renderProps.buttonState.isSubmitting ? undefined : renderProps.error}
                       />
                     </>

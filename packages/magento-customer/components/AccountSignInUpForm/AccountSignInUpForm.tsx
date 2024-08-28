@@ -1,8 +1,7 @@
-import { EmailElement, FormAutoSubmit } from '@graphcommerce/ecommerce-ui'
+import { ActionCardListForm, EmailElement, FormAutoSubmit } from '@graphcommerce/ecommerce-ui'
 import { useApolloClient } from '@graphcommerce/graphql'
 import {
   ActionCard,
-  ActionCardListForm,
   Button,
   FormActions,
   FormDiv,

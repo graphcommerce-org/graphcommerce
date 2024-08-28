@@ -8,7 +8,11 @@ import {
   useCartQuery,
 } from '@graphcommerce/magento-cart'
 import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
-import { EditCartItemButton, EditCartItemForm } from '@graphcommerce/magento-cart-items'
+import {
+  EditCartItemButton,
+  EditCartItemForm,
+  useEditItem,
+} from '@graphcommerce/magento-cart-items'
 import { ProductPageGallery, ProductPageName } from '@graphcommerce/magento-product'
 import {
   FullPageMessage,
@@ -24,7 +28,6 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Container, Typography } from '@mui/material'
-import { useRouter } from 'next/router'
 import { LayoutNavigationProps, AddProductsToCartView } from '../../../components'
 import { Props, getStaticProps } from '../../p/[url]'
 
@@ -35,9 +38,8 @@ function CartItemEdit(props: Props) {
   const { products, defaultValues } = props
   const product = products?.items?.[0]
 
-  const cartItemId = useRouter().query.cartItemId as string
   const cart = useCartQuery(CartPageDocument)
-  const cartItem = cart.data?.cart?.items?.find((item) => item?.uid === cartItemId)
+  const cartItem = useEditItem(cart.data?.cart)
 
   if (!product?.sku || !product.url_key) return null
 
@@ -72,7 +74,7 @@ function CartItemEdit(props: Props) {
         {cartItem && (
           <Container>
             <EditCartItemForm
-              key={cartItemId}
+              key={cartItem.uid}
               href='/cart'
               product={product}
               cartItem={cartItem}

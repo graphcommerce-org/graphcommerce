@@ -8,7 +8,7 @@ import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
 
 export type ApplyCouponFormProps = { sx?: SxProps<Theme> }
 
-const name = 'ApplyCouponForm' as const
+const name = 'ApplyCouponForm'
 const parts = ['couponForm', 'button'] as const
 const { classes } = extendableComponent(name, parts)
 

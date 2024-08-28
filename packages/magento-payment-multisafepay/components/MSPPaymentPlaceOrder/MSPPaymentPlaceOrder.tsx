@@ -1,4 +1,4 @@
-import { useFormCompose, ApolloErrorSnackbar } from '@graphcommerce/ecommerce-ui'
+import { ApolloErrorSnackbar, useFormCompose } from '@graphcommerce/ecommerce-ui'
 import { useMutation } from '@graphcommerce/graphql'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
@@ -7,6 +7,7 @@ import {
   usePaymentMethodContext,
 } from '@graphcommerce/magento-cart-payment-method'
 import { ErrorSnackbar } from '@graphcommerce/next-ui'
+import { t } from '@lingui/macro'
 import { useRouter } from 'next/router'
 import { useMSPCartLock } from '../../hooks/useMSPCartLock'
 import { MSPPaymentHandlerDocument } from '../MSPPaymentHandler/MSPPaymentHandler.gql'
@@ -30,14 +31,12 @@ export function MSPPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
     onComplete: async (result, variables) => {
       const url = result.data?.placeOrder?.order.multisafepay_payment_url
 
-      if (result.errors) {
-        console.error('<MSPPaymentOptionsAndPlaceOrder/>', result.errors)
-        return
-      }
+      if (result.errors) return
 
       if (!selectedMethod?.code) {
-        console.error('<MSPPaymentOptionsAndPlaceOrder/> not selectedMethod.code')
-        return
+        throw Error(
+          t`An error occurred while processing your payment. Please contact the store owner`,
+        )
       }
 
       if (url?.error || !url?.payment_url) {
