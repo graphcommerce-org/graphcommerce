@@ -46,8 +46,9 @@ export function useFormGqlMutationCart<
 
         const res = client.cache.readQuery({ query: CurrentCartIdDocument })
         if (!options.submitWhileLocked && res?.currentCartId?.locked) {
-          console.log('Could not submit form, cart is locked', res.currentCartId.locked)
-          return false
+          throw Error('Could not submit form, cart is locked')
+          // console.log('Could not submit form, cart is locked', res.currentCartId.locked)
+          // return false
         }
 
         return options.onBeforeSubmit ? options.onBeforeSubmit(vars) : vars

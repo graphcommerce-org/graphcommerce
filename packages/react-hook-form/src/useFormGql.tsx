@@ -115,6 +115,7 @@ export function useFormGql<Q, V extends FieldValues>(
   const [execute, { data, error, loading }] = tuple
 
   const submittedVariables = useRef<V>()
+  const returnedError = useRef<ApolloError>()
 
   // automatically updates the default values
   const initital = useRef(true)
@@ -153,6 +154,8 @@ export function useFormGql<Q, V extends FieldValues>(
         return
       }
 
+      returnedError.current = error
+
       // Combine defaults with the formValues and encode
       submittedVariables.current = undefined
       let variables = !deprecated_useV1 ? formValues : encode({ ...defaultValues, ...formValues })
@@ -160,7 +163,8 @@ export function useFormGql<Q, V extends FieldValues>(
       // Wait for the onBeforeSubmit to complete
       const [onBeforeSubmitResult, onBeforeSubmitError] = await beforeSubmit(variables)
       if (onBeforeSubmitError) {
-        form.setError('root', { message: onBeforeSubmitError.message })
+        returnedError.current = onBeforeSubmitError as ApolloError
+        form.setError('root.thrown', onBeforeSubmitError)
         return
       }
       if (onBeforeSubmitResult === false) return
@@ -176,7 +180,8 @@ export function useFormGql<Q, V extends FieldValues>(
 
       const [, onCompleteError] = await complete(result, variables)
       if (onCompleteError) {
-        form.setError('root', { message: onCompleteError.message })
+        returnedError.current = onCompleteError as ApolloError
+        form.setError('root.thrown', onCompleteError)
         return
       }
 
@@ -191,7 +196,7 @@ export function useFormGql<Q, V extends FieldValues>(
     ...gqlDocumentHandler,
     handleSubmit,
     data,
-    error,
+    error: returnedError.current,
     submittedVariables: submittedVariables.current,
   }
 }
