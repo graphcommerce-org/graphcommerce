@@ -6,6 +6,7 @@ import {
   ProductListDocument,
   ProductListParams,
   ProductListQuery,
+  ProductListQueryVariables,
   prefetchProductList,
   toProductListParams,
   useRouterFilterParams,
@@ -27,14 +28,25 @@ export function useProductList<
   T extends ProductListQuery &
     ProductFiltersQuery & {
       params?: ProductListParams
+      skipOnLoad?: boolean
+      quickSearch?: boolean
     },
 >(props: T) {
+  const { skipOnLoad = true, quickSearch } = props
   const { params, shallow } = useRouterFilterParams(props)
   const variables = useProductListApplySearchDefaults(params)
-  const result = useInContextQuery(ProductListDocument, { variables, skip: !shallow }, props)
+  const result = useInContextQuery(
+    ProductListDocument,
+    { variables: { ...variables, quickSearch }, skip: !shallow && skipOnLoad },
+    props,
+  )
+
   const filters = useInContextQuery(
     ProductFiltersDocument,
-    { variables: searchDefaultsToProductListFilters(variables), skip: !shallow },
+    {
+      variables: searchDefaultsToProductListFilters(variables),
+      skip: quickSearch || (!shallow && skipOnLoad),
+    },
     props,
   )
 
@@ -46,7 +58,7 @@ export function useProductList<
 
       const vars = productListApplySearchDefaults(toProductListParams(formValues), storeConfig)
       await prefetchProductList(
-        vars,
+        { ...vars, quickSearch },
         searchDefaultsToProductListFilters(vars),
         next,
         result.client,

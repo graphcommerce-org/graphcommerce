@@ -7,6 +7,7 @@ import { useSearchPageAndParam } from './useSearchPageAndParam'
 
 type ProductFiltersProSearchFieldProps = ProductFiltersProSearchInputProps & {
   fab?: FabProps
+  visible?: boolean
 }
 
 const ProductFiltersProSearchInputLazy = dynamic(
@@ -14,7 +15,7 @@ const ProductFiltersProSearchInputLazy = dynamic(
 )
 
 export function ProductFiltersProSearchField(props: ProductFiltersProSearchFieldProps) {
-  const { fab, formControl } = props
+  const { fab, formControl, visible: incomingVisible } = props
 
   const [searchPage] = useSearchPageAndParam()
   const [expanded, setExpanded] = useState(searchPage)
@@ -22,7 +23,7 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
     if (!searchPage) setExpanded(searchPage)
   }, [searchPage])
 
-  const visible = expanded || searchPage
+  const visible = incomingVisible || expanded || searchPage
 
   return (
     <>

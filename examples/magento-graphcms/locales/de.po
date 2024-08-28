@@ -388,8 +388,8 @@ msgid "If you’ve successfully paid your order, the order <0>will</0> come thro
 msgstr "Wenn Sie Ihre Bestellung erfolgreich bezahlt haben, <0>wird</0> die Bestellung durchgeführt, aber es liegt ein Kommunikationsfehler mit der Website vor."
 
 #. js-lingui-generated-id
-msgid "We couldn't find any results for {term}"
-msgstr "Wir konnten keine Ergebnisse für {term} finden"
+msgid "We couldn’t find any results for ‘{term}’"
+msgstr "Wir konnten keine Ergebnisse für ‘{term}’ finden"
 
 msgid "In comparelist"
 msgstr "In der Vergleichsliste"
