@@ -13,7 +13,7 @@ export const OverlayHeader = (props: OverlayHeaderProps) => {
       noAlign
       sx={[{ '&.noAlign': { mb: 0 } }, ...(Array.isArray(sx) ? sx : [sx])]}
       switchPoint={-10000}
-      size='small'
+      size='responsive'
       hideBackButton
       primary={primary ?? <LayoutHeaderClose onClose={onClose} />}
       secondary={primary ? <LayoutHeaderClose onClose={onClose} /> : secondary}

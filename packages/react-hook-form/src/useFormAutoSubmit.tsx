@@ -4,7 +4,7 @@ import { cloneDeep } from '@apollo/client/utilities'
 import { useMemoObject } from '@graphcommerce/next-ui/hooks/useMemoObject'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { debounce } from '@mui/material'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { startTransition, useCallback, useEffect, useRef, useState } from 'react'
 import {
   DeepPartialSkipArrayKey,
   FieldPath,
@@ -152,8 +152,10 @@ export function useAutoSubmitBase<TFieldValues extends FieldValues = FieldValues
   const submitDebounced = useDebounce(
     async () => {
       try {
-        oldValues.current = values
-        await submit()
+        await new Promise((resolve) => {
+          oldValues.current = values
+          resolve(null)
+        }).then(() => submit())
       } catch (e) {
         // We're not interested if the submission actually succeeds, that should be handled by the form itself.
       }

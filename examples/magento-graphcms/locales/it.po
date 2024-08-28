@@ -388,8 +388,8 @@ msgid "If you’ve successfully paid your order, the order <0>will</0> come thro
 msgstr "Se hai pagato con successo l'ordine, l'ordine <0>verrà</0> inviato, ma c'è un errore di comunicazione con il sito."
 
 #. js-lingui-generated-id
-msgid "We couldn't find any results for {term}"
-msgstr "Non abbiamo trovato risultati per {term}"
+msgid "We couldn’t find any results for ‘{term}’"
+msgstr "Non abbiamo trovato risultati per ‘{term}’"
 
 msgid "In comparelist"
 msgstr "Nella lista di confronto"

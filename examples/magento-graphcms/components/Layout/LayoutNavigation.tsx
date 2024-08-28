@@ -1,7 +1,11 @@
 import { CartFab, useCartEnabled } from '@graphcommerce/magento-cart'
 import { magentoMenuToNavigation } from '@graphcommerce/magento-category'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
-import { ProductFiltersProSearchField, SearchLink } from '@graphcommerce/magento-search'
+import {
+  ProductFiltersProSearchField,
+  SearchLink,
+  SearchOverlay,
+} from '@graphcommerce/magento-search'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import {
   DesktopNavActions,
@@ -161,6 +165,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               {/* The placeholder exists because the CartFab is sticky but we want to reserve the space for the <CartFab /> */}
               {cartEnabled && <PlaceholderFab />}
             </DesktopNavActions>
+            <SearchOverlay />
           </>
         }
         footer={<Footer footer={footer} />}
