@@ -2,6 +2,7 @@
 import { FieldValues, UseControllerProps, useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { InputBase, InputBaseProps } from '@mui/material'
+import React from 'react'
 
 export type InputBaseElementProps<T extends FieldValues = FieldValues> = Omit<
   InputBaseProps,
@@ -10,9 +11,14 @@ export type InputBaseElementProps<T extends FieldValues = FieldValues> = Omit<
   showValid?: boolean
 } & UseControllerProps<T>
 
-export function InputBaseElement<TFieldValues extends FieldValues>(
-  props: InputBaseElementProps<TFieldValues>,
-): JSX.Element {
+type InputBaseElementComponent = <TFieldValues extends FieldValues>(
+  props: InputBaseElementProps<TFieldValues> & { ref?: React.Ref<HTMLInputElement> },
+) => JSX.Element
+
+export const InputBaseElement = React.forwardRef<
+  HTMLInputElement,
+  InputBaseElementProps<FieldValues>
+>((props: InputBaseElementProps<FieldValues>, ref: React.Ref<HTMLInputElement>): JSX.Element => {
   const {
     type,
     required,
@@ -39,9 +45,10 @@ export function InputBaseElement<TFieldValues extends FieldValues>(
     <InputBase
       {...rest}
       {...field}
+      ref={ref}
       required={required}
       type={type}
       error={Boolean(error) || rest.error}
     />
   )
-}
+}) as InputBaseElementComponent
