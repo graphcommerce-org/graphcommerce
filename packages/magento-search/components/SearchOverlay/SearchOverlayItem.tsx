@@ -7,7 +7,7 @@ type SearchOverlayItemProps<C extends ElementType = 'li'> = ListItemButtonProps<
   { component?: C }
 >
 
-const SearchOverlayItem = forwardRef(
+export const SearchOverlayItem = forwardRef(
   <C extends ElementType = 'li'>(
     props: SearchOverlayItemProps<C>,
     rootRef: React.Ref<C extends 'li' ? HTMLLIElement : HTMLAnchorElement>,
@@ -35,11 +35,3 @@ const SearchOverlayItem = forwardRef(
     ref?: React.Ref<C extends 'li' ? HTMLLIElement : HTMLAnchorElement>
   },
 ) => JSX.Element
-
-const SearchOverlayItemWithRef = SearchOverlayItem as typeof SearchOverlayItem & {
-  displayName?: string
-}
-
-SearchOverlayItemWithRef.displayName = 'SearchOverlayItem'
-
-export { SearchOverlayItemWithRef as SearchOverlayItem }
