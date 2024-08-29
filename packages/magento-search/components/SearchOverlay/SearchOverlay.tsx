@@ -7,6 +7,7 @@ import { SearchInput } from './SearchOverlayInput'
 import { SearchOverlayProducts } from './SearchOverlayProducts'
 import { useSearchOverlay, SearchOverlayProvider } from './SearchOverlayProvider'
 import { SearchOverlaySuggestions } from './SearchOverlaySuggestions'
+import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 
 function SearchOverlayHeader() {
   const { params } = useSearchOverlay()
@@ -34,6 +35,7 @@ function SearchOverlayHeader() {
           typography: 'h4',
           p: 0,
         }}
+        autoFocus
         sx={(theme) => ({
           width: '100%',
           height: '100%',
@@ -65,7 +67,12 @@ const SearchOverlayBodyBase = styled('div')(({ theme }) => ({
   '&:empty': { display: 'none' },
 }))
 
-export function SearchOverlay() {
+type SearchOverlayProps = {
+  productListRenderer: ProductListItemRenderer
+}
+
+export function SearchOverlay(props: SearchOverlayProps) {
+  const { productListRenderer } = props
   const [open, setOpen] = useState(true)
 
   return (
@@ -74,7 +81,7 @@ export function SearchOverlay() {
       <SearchOverlayBodyBase>
         <SearchOverlaySuggestions />
         <SearchOverlayCategories />
-        <SearchOverlayProducts />
+        <SearchOverlayProducts productListRenderer={productListRenderer} />
       </SearchOverlayBodyBase>
     </SearchOverlayProvider>
   )
