@@ -24,7 +24,7 @@ function PlaceHolderContainer(props: BoxProps) {
 
 export type ProductListItemImageProps = {
   aspectRatio?: [number, number]
-  classes: {
+  classes?: {
     image?: string
     placeholder?: string
   }
@@ -33,7 +33,7 @@ export type ProductListItemImageProps = {
 export function ProductListItemImageSkeleton(props: ProductListItemImageProps) {
   const { aspectRatio = [4, 3], classes } = props
   return (
-    <PlaceHolderContainer className={`${classes.placeholder} ${classes.image}`}>
+    <PlaceHolderContainer className={`${classes?.placeholder} ${classes?.image}`}>
       <Skeleton
         animation='wave'
         sx={{
@@ -64,7 +64,7 @@ export function ProductListItemImage(props: ImageOrPlaceholderProps) {
         src={src}
         alt={alt ?? ''}
         {...image}
-        className={classes.image}
+        className={classes?.image}
         sx={[
           {
             objectFit: 'contain',
@@ -78,7 +78,7 @@ export function ProductListItemImage(props: ImageOrPlaceholderProps) {
   }
 
   return (
-    <PlaceHolderContainer className={`${classes.placeholder} ${classes.image}`}>
+    <PlaceHolderContainer className={`${classes?.placeholder} ${classes?.image}`}>
       <Box
         sx={[
           {

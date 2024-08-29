@@ -15,6 +15,7 @@ type SearchOverlayContextType = {
   setParams: React.Dispatch<React.SetStateAction<ProductListParams>>
   products: ProductListQuery['products']
   setClosed: () => void
+  resetFocus: () => void
 }
 
 const SearchOverlayContext = createContext<SearchOverlayContextType | undefined>(undefined)
@@ -40,11 +41,11 @@ export function SearchOverlayProvider({ children, open, setOpen }: SearchOverlay
     url: 'search',
     pageSize: 6,
     currentPage: 1,
-    search: '',
+    search: 'cute',
   })
 
   const { getListboxProps, contextValue, dispatch } = useMenu({
-    autoFocus: true,
+    autoFocus: false,
     componentName: 'SearchOverlay',
     onItemsChange(items) {
       // dispatch({ type: })
@@ -52,6 +53,10 @@ export function SearchOverlayProvider({ children, open, setOpen }: SearchOverlay
       console.log(items)
     },
   })
+
+  const resetFocus = useCallback(() => {
+    dispatch({ type: 'list:clearSelection' })
+  }, [dispatch])
 
   const { handleSubmit, products } = useProductList({
     skipOnLoad: false,
@@ -62,8 +67,8 @@ export function SearchOverlayProvider({ children, open, setOpen }: SearchOverlay
   const setClosed = useCallback(() => setOpen(false), [setOpen])
 
   const searchOverlayContext = useMemo(
-    () => ({ params, setParams, products, setClosed }),
-    [params, setParams, products, setClosed],
+    () => ({ params, setParams, products, setClosed, resetFocus }),
+    [params, setParams, products, setClosed, resetFocus],
   )
 
   return (
