@@ -17,11 +17,11 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
       sources: [
         ...baseConfig.sources,
         {
-          name: 'algoliaInsights',
+          name: 'algoliaRecommend',
           handler: {
             openapi: {
-              endpoint: `https://insights.algolia.io/`,
-              source: '@graphcommerce/algolia-personalization/algolia-insights-spec.yaml',
+              endpoint: `https://${graphCommerceConfig.algolia.applicationId}.algolia.net/`,
+              source: '@graphcommerce/algolia-recommend/algolia-recommend-spec.yaml',
               ignoreErrorResponses: true,
               schemaHeaders: {
                 'X-Algolia-Application-Id': graphCommerceConfig.algolia.applicationId,
@@ -31,7 +31,7 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
                 'X-Algolia-Application-Id': graphCommerceConfig.algolia.applicationId,
                 'X-Algolia-API-Key': graphCommerceConfig.algolia.searchOnlyApiKey,
               },
-              selectQueryOrMutationField: [{ type: 'Query', fieldName: 'sendEvent' }],
+              selectQueryOrMutationField: [{ type: 'Mutation', fieldName: 'getRecommendations' }],
             },
           },
           transforms: [
@@ -54,10 +54,6 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
           ],
         },
       ],
-      // additionalResolvers: [
-      //   ...(baseConfig.additionalResolvers ?? []),
-      //   '@graphcommerce/algolia-mesh/mesh/resolvers.ts',
-      // ],
     },
     graphCommerceConfig,
   )
