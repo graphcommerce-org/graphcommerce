@@ -1,0 +1,7 @@
+type Recommendations {
+  items: [ProductInterface]
+}
+
+extend type Query {
+  recommendations: Recommendations
+}
