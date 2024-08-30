@@ -3,5 +3,5 @@ type Recommendations {
 }
 
 extend type Query {
-  recommendations: Recommendations
+  recommendations(recommendType: String): Recommendations
 }
