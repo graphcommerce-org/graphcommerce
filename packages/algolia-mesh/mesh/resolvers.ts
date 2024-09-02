@@ -105,9 +105,9 @@ export const resolvers: Resolvers = {
 
       if (!isAgolia) return context.m2.Query.products({ root, args, context, info })
 
-      const searchResults = hasSearchRequest(info) ? getSearchResults(args, context, info) : null
-
-      if (isGraphQLError(await searchResults)) {
+      const searchResponse = hasSearchRequest(info) ? getSearchResults(args, context, info) : null
+      const searchResults = await searchResponse
+      if (isGraphQLError(searchResults)) {
         return context.m2.Query.products({ root, args, context, info })
       }
 
@@ -118,9 +118,9 @@ export const resolvers: Resolvers = {
         getSearchSuggestions(args.search, context)
 
       return {
-        algoliaSearchResults: await searchResults,
+        algoliaSearchResults: searchResults,
         suggestions: (await searchSuggestsions) || null,
-        algolia_queryID: (await searchResults)?.queryID,
+        algolia_queryID: searchResults?.queryID,
       }
     },
   },
