@@ -35,6 +35,10 @@ function hasSuggestionsRequest(info: GraphQLResolveInfo) {
   return hasSelectionSetPath(info.operation.selectionSet, 'products.suggestions')
 }
 
+function isGraphQLError(err: unknown): err is GraphQLError {
+  return !!(err as GraphQLError)?.message
+}
+
 export const resolvers: Resolvers = {
   Products: {
     aggregations: async (root, _args, context) => {
@@ -101,13 +105,17 @@ export const resolvers: Resolvers = {
 
       if (!isAgolia) return context.m2.Query.products({ root, args, context, info })
 
+      const searchResults = hasSearchRequest(info) ? getSearchResults(args, context, info) : null
+
+      if (isGraphQLError(await searchResults)) {
+        return context.m2.Query.products({ root, args, context, info })
+      }
+
       const searchSuggestsions =
         isSuggestionsEnabled() &&
         hasSuggestionsRequest(info) &&
         args.search &&
         getSearchSuggestions(args.search, context)
-
-      const searchResults = hasSearchRequest(info) ? getSearchResults(args, context, info) : null
 
       return {
         algoliaSearchResults: await searchResults,
