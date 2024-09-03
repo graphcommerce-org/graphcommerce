@@ -120,9 +120,9 @@ export const resolvers: Resolvers = {
         return context.m2.Query.products({ root, args, context, info })
       }
       return {
-        algoliaSearchResults: checkResponse(searchResults, context, root, args, info),
+        algoliaSearchResults: searchResults,
         suggestions: (await searchSuggestsions) || null,
-        algolia_queryID: await searchResults?.queryID,
+        algolia_queryID: searchResults?.queryID,
       }
     },
   },
