@@ -3,7 +3,7 @@ import {
   hasSelectionSetPath,
   type Resolvers,
 } from '@graphcommerce/graphql-mesh'
-import type { GraphQLResolveInfo } from 'graphql'
+import type { GraphQLError, GraphQLResolveInfo } from 'graphql'
 import { algoliaFacetsToAggregations, getCategoryList } from './algoliaFacetsToAggregations'
 import { algoliaHitToMagentoProduct, ProductsItemsItem } from './algoliaHitToMagentoProduct'
 import { getAlgoliaSettings } from './getAlgoliaSettings'
