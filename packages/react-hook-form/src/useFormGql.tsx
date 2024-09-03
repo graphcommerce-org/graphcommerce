@@ -4,6 +4,7 @@ import {
   LazyQueryResultTuple,
   MutationTuple,
   TypedDocumentNode,
+  isApolloError,
 } from '@apollo/client'
 import { getOperationName } from '@apollo/client/utilities'
 import useEventCallback from '@mui/utils/useEventCallback'
@@ -21,13 +22,13 @@ type UseFormGraphQLCallbacks<Q, V> = {
    * Mutation.
    *
    * When returning false, it will silently stop the submission.
-   * When an error is thrown, it will be set as a generic error with `setError('root.thrown', { message: error.message })`
+   * When an error is thrown, it will be set as an ApolloError
    */
   onBeforeSubmit?: (variables: V) => V | false | Promise<V | false>
   /**
    * Called after the mutation has been executed. Allows you to handle the result of the mutation.
    *
-   * When an error is thrown, it will be set as a generic error with `setError('root.thrown', { message: error.message })`
+   * When an error is thrown, it will be set as an ApolloError
    */
   onComplete?: OnCompleteFn<Q, V>
 
@@ -154,17 +155,24 @@ export function useFormGql<Q, V extends FieldValues>(
         return
       }
 
-      returnedError.current = error
+      returnedError.current = undefined
+      submittedVariables.current = undefined
 
       // Combine defaults with the formValues and encode
-      submittedVariables.current = undefined
       let variables = !deprecated_useV1 ? formValues : encode({ ...defaultValues, ...formValues })
 
       // Wait for the onBeforeSubmit to complete
       const [onBeforeSubmitResult, onBeforeSubmitError] = await beforeSubmit(variables)
       if (onBeforeSubmitError) {
-        returnedError.current = onBeforeSubmitError as ApolloError
-        form.setError('root.thrown', onBeforeSubmitError)
+        if (isApolloError(onBeforeSubmitError)) {
+          returnedError.current = onBeforeSubmitError
+        } else {
+          console.log(
+            'A non ApolloError was thrown during the onBeforeSubmit handler.',
+            onBeforeSubmitError,
+          )
+        }
+
         return
       }
       if (onBeforeSubmitResult === false) return
@@ -181,7 +189,18 @@ export function useFormGql<Q, V extends FieldValues>(
       const [, onCompleteError] = await complete(result, variables)
       if (onCompleteError) {
         returnedError.current = onCompleteError as ApolloError
-        form.setError('root.thrown', onCompleteError)
+        return
+      }
+      if (onCompleteError) {
+        if (isApolloError(onCompleteError)) {
+          returnedError.current = onCompleteError
+        } else {
+          console.log(
+            'A non ApolloError was thrown during the onComplete handler.',
+            onCompleteError,
+          )
+        }
+
         return
       }
 
@@ -196,7 +215,7 @@ export function useFormGql<Q, V extends FieldValues>(
     ...gqlDocumentHandler,
     handleSubmit,
     data,
-    error: returnedError.current,
+    error: error ?? returnedError.current,
     submittedVariables: submittedVariables.current,
   }
 }

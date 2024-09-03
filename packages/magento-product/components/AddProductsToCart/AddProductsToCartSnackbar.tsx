@@ -35,7 +35,7 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
 
   return (
     <AddProductsToCartSnackbarMessage
-      error={error}
+      error={!formState.isSubmitting ? error : undefined}
       showSuccess={showSuccess}
       userErrors={data?.addProductsToCart?.user_errors.filter(nonNullable)}
       addedItems={addedItems.map((item) => item.itemInCart?.product.name).filter(nonNullable)}
