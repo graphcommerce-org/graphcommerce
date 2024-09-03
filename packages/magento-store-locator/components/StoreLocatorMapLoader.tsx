@@ -1,14 +1,5 @@
 import { Loader } from '@googlemaps/js-api-loader'
-import {
-  ReactNode,
-  RefObject,
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import { RefObject, createContext, useContext, useEffect, useMemo, useRef, useState } from 'react'
 
 type StoreLocatorMapContextType = {
   ref: RefObject<HTMLDivElement>

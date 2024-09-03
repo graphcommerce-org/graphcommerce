@@ -20,7 +20,6 @@ export function usePosition() {
       }
       updatePosition(markerPosition)
       map.setCenter(markerPosition)
-      console.log('setting using usePosition')
       map.setZoom(11)
     })
   }, [map])

@@ -52,7 +52,8 @@ export const StoreListResults = React.memo<{ stores: StoreFragment[]; first?: st
   )
 })
 
-export function StoreListNoResults() {
+export function StoreListNoResults(props: { updatePosition: (pos: PositionProps) => void }) {
+  const { updatePosition } = props
   return (
     <Box
       sx={(theme) => ({
@@ -64,7 +65,7 @@ export function StoreListNoResults() {
       })}
     >
       <Trans id='No results found' />
-      <FindLocation />
+      <FindLocation updatePosition={updatePosition} />
     </Box>
   )
 }
@@ -92,10 +93,14 @@ export function StoreListLoader() {
   )
 }
 
-export type StoreListProps = { position: PositionProps; stores: StoreFragment[] }
+export type StoreListProps = {
+  position: PositionProps
+  stores: StoreFragment[]
+  updatePosition: (pos: PositionProps) => void
+}
 
 export function StoreList(props: StoreListProps) {
-  const { position, stores } = props
+  const { position, stores, updatePosition } = props
   const { sortedStores } = useStores(position, stores)
   const filteredStores = useFilteredStores(sortedStores)
   const first = sortedStores?.[0]?.pickup_location_code
@@ -109,7 +114,7 @@ export function StoreList(props: StoreListProps) {
           stores={filteredStores || sortedStores}
         />
       ) : (
-        <StoreListNoResults />
+        <StoreListNoResults updatePosition={updatePosition} />
       )}
     </>
   )

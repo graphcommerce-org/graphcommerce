@@ -1,18 +1,19 @@
 import { useWatch } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import Button from '@mui/material/Button'
-import { usePosition } from '../helpers/usePosition'
+import { PositionProps, usePosition } from '../helpers/usePosition'
 import { useStoreLocatorForm } from './StoreLocatorFormProvider'
+import { useEffect } from 'react'
 
-export function FindLocation() {
+export function FindLocation(props: { updatePosition: (pos: PositionProps) => void }) {
+  const { updatePosition } = props
   const { reset, control } = useStoreLocatorForm()
   const search = useWatch({ control, name: 'search' })
-  const { updatePosition } = usePosition()
 
   const handleSearch = async () => {
     try {
       const geocoder = new globalThis.google.maps.Geocoder()
-      const { results } = await geocoder.geocode({ address: `${search}, Nederland` })
+      const { results } = await geocoder.geocode({ address: `${search}, Nederland` }) // @todo additional search query configurable via st
 
       if (results.length > 0) {
         const { location } = results[0].geometry
@@ -26,6 +27,22 @@ export function FindLocation() {
       console.error('Error while geocoding:', error)
     }
   }
+
+  useEffect(() => {
+    const handleEnter = (ev) => {
+      if (ev.key === 'Enter') {
+        console.log('hoi bram!')
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        handleSearch()
+      }
+    }
+
+    document.getElementById('StoreFilters_Input')?.addEventListener('keyup', handleEnter)
+
+    return () => {
+      document.getElementById('StoreFilters_Input')?.removeEventListener('keyup', handleEnter)
+    }
+  })
 
   if (search?.length < 1) return null
 

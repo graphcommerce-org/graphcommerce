@@ -19,7 +19,6 @@ export function useStoreLocatorForm() {
 
 export function StoreLocatorFormProvider(props: { children: ReactNode }) {
   const { children } = props
-
   const form = useForm<FormValues>()
 
   globalThis.aaa = form

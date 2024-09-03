@@ -8,6 +8,7 @@ import { Marker } from './Marker'
 import { StoreFilters } from './StoreFilters'
 import { StoreList } from './StoreList'
 import { useStoreLocatorMap } from './StoreLocatorMapLoader'
+import { useRef } from 'react'
 
 export type MarkerConfig = {
   markerImageSrc?: string
@@ -25,12 +26,12 @@ type StoreLocatorProps = {
 
 export function StoreLocator({ stores, markerConfig }: StoreLocatorProps) {
   const { ref } = useStoreLocatorMap()
-  const { position } = usePosition()
+  const { position, updatePosition } = usePosition()
   const { sortedStores } = useStores(position, stores)
 
   useCurrentPositionMarker(position)
 
-  console.log('rendering storelocator')
+  console.log('rendering storelocator', position)
 
   return (
     <Box
@@ -67,7 +68,7 @@ export function StoreLocator({ stores, markerConfig }: StoreLocatorProps) {
         })}
       >
         <StoreFilters />
-        <StoreList position={position} stores={sortedStores} />
+        <StoreList position={position} stores={sortedStores} updatePosition={updatePosition} />
       </Box>
 
       <Box sx={{ height: '100%', gridArea: 'map' }} className='Scroller-root'>

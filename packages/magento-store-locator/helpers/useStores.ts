@@ -44,10 +44,12 @@ function sortStores(position: google.maps.LatLngLiteral | null, stores: StoreFra
   return stores
 }
 
+// Return an array of sortedStores based on the proximity to position
 export function useStores(
   position: ReturnType<typeof usePosition>['position'],
   stores: StoreFragment[],
 ) {
+  console.log('Sorting stores using position: ', position)
   return {
     sortedStores: sortStores(position, stores),
     position,
