@@ -138,7 +138,6 @@ export function SearchOverlayProvider({ children, open, setOpen }: SearchOverlay
     <SearchOverlayContext.Provider value={searchOverlayContext}>
       <SearchOverlaySelectionContext.Provider value={searchOverlaySelectionContext}>
         <Overlay
-          direction={0}
           active={open}
           onClosed={setClosed}
           variantMd='top'
@@ -146,6 +145,8 @@ export function SearchOverlayProvider({ children, open, setOpen }: SearchOverlay
           sizeMd='floating'
           sizeSm='full'
           justifyMd='center'
+          disableAnimation
+          disableDrag
           widthMd={`min(${theme2.breakpoints.values.lg}px, 100vw - ${theme2.page.horizontal} * 2)`}
           sx={(theme) => ({
             '& .LayoutOverlayBase-background': {

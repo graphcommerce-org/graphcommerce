@@ -60,6 +60,9 @@ export type LayoutOverlayBaseProps = {
 
   /* For `variantMd='left|right' */
   widthMd?: string | false
+
+  disableAnimation?: boolean
+  disableDrag?: boolean
 } & StyleProps &
   OverridableProps
 
@@ -69,7 +72,7 @@ enum OverlayPosition {
   CLOSED = 0,
 }
 
-const name = 'LayoutOverlayBase' as const
+const name = 'LayoutOverlayBase'
 const parts = [
   'scroller',
   'backdrop',
@@ -114,6 +117,8 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     disableInert,
     widthMd = 'max(800px, 50vw)',
     widthSm = 'max(300px, 80vw)',
+    disableAnimation = false,
+    disableDrag = false,
   } = props
 
   const th = useTheme()
@@ -139,7 +144,11 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
   const match = useMatchMedia()
   const positions = useConstant(() => ({
-    open: { x: motionValue(0), y: motionValue(0), visible: motionValue(direction === 0 ? 1 : 0) },
+    open: {
+      x: motionValue(0),
+      y: motionValue(0),
+      visible: motionValue(direction === 0 || disableDrag ? 1 : 0),
+    },
     closed: { x: motionValue(0), y: motionValue(0) },
   }))
 
@@ -294,7 +303,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
 
     if (variant() === 'right') document.body.style.overflow = 'hidden'
 
-    if (direction === 0) {
+    if (direction === 0 || disableAnimation) {
       disableSnap()
       scroller.scrollTop = positions.open.y.get()
       scroller.scrollLeft = positions.open.x.get()
@@ -310,6 +319,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     }
   }, [
     direction,
+    disableAnimation,
     disableSnap,
     enableSnap,
     isPresent,
@@ -330,12 +340,15 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     const scroller = scrollerRef.current
     if (isPresent || !scroller) return
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    scrollTo(openClosePositions().closed, { stopAnimationOnScroll: false }).then(() => {
+    const doAfter = () => {
       safeToRemove?.()
       document.body.style.overflow = ''
-    })
-  }, [isPresent, openClosePositions, position, positions, safeToRemove, scrollTo, scrollerRef])
+    }
+
+    if (disableAnimation) doAfter()
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    else scrollTo(openClosePositions().closed, { stopAnimationOnScroll: false }).then(doAfter)
+  }, [disableAnimation, isPresent, openClosePositions, safeToRemove, scrollTo, scrollerRef])
 
   // Only go back to a previous page if the overlay isn't closed.
   const closeOverlay = useCallback(() => {
@@ -427,6 +440,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         className={`${classes.scroller} ${className ?? ''}`}
         grid={false}
         onClick={onClickAway}
+        disableDrag={disableDrag}
         hideScrollbar
         sx={[
           (theme) => ({

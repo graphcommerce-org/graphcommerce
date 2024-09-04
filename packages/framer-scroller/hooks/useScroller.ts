@@ -23,6 +23,7 @@ export type ScrollableProps<TagName extends keyof ReactHTML = 'div'> = Omit<
   hideScrollbar?: boolean
   grid?: boolean
   children: React.ReactNode
+  disableDrag?: boolean
 }
 
 type OwnerProps = {
@@ -36,7 +37,8 @@ type OwnerProps = {
   canGrab: boolean
   grid: boolean
 }
-const name = 'Scroller' as const
+
+const name = 'Scroller'
 const parts = ['root'] as const
 const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 
@@ -45,7 +47,7 @@ export function useScroller<
   TagName extends keyof ReactHTML = 'div',
   E extends HTMLElement = HTMLElement,
 >(props: ScrollableProps<TagName>, forwardedRef: React.ForwardedRef<E>) {
-  const { hideScrollbar = false, children, grid = false, ...divProps } = props
+  const { hideScrollbar = false, children, grid = false, disableDrag, ...divProps } = props
 
   const { scrollSnap, scrollerRef, disableSnap, snap, registerChildren, scroll } =
     useScrollerContext()
@@ -55,10 +57,7 @@ export function useScroller<
   }, [children, registerChildren])
 
   const canGrab = useMotionValueValue(
-    useTransform(
-      [scroll.xMax, scroll.yMax] as MotionValue<string | number>[],
-      ([xMax, yMax]: number[]) => xMax || yMax,
-    ),
+    useTransform(() => !disableDrag && (scroll.xMax.get() || scroll.yMax.get())),
     (v) => !!v,
   )
 
@@ -70,6 +69,8 @@ export function useScroller<
 
   const scrollStart = useConstant(() => ({ x: motionValue(0), y: motionValue(0) }))
   const onPanStart: PanHandlers['onPanStart'] = (event) => {
+    if (disableDrag) return
+
     // If we're not dealing with the mouse we don't need to do anything
     if (!isHTMLMousePointerEvent(event)) return
 
@@ -98,6 +99,8 @@ export function useScroller<
   }
 
   const onPan: PanHandlers['onPan'] = (event, info: PanInfo) => {
+    if (disableDrag) return
+
     if (!scrollerRef.current) return
 
     // If we're not dealing with the mouse we don't need to do anything
@@ -111,6 +114,8 @@ export function useScroller<
   }
 
   const onPanEnd: PanHandlers['onPanEnd'] = (event, info) => {
+    if (disableDrag) return
+
     // If we're not dealing with the mouse we don't need to do anything
     if (!isHTMLMousePointerEvent(event)) return
     if (!isPanning) return
