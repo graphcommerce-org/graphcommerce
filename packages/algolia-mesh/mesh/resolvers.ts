@@ -105,24 +105,21 @@ export const resolvers: Resolvers = {
 
       if (!isAgolia) return context.m2.Query.products({ root, args, context, info })
 
-      const searchResultsResponse = hasSearchRequest(info)
-        ? getSearchResults(args, context, info)
-        : null
-
       const searchSuggestsions =
         isSuggestionsEnabled() &&
         hasSuggestionsRequest(info) &&
         args.search &&
         getSearchSuggestions(args.search, context)
 
-      const searchResults = await searchResultsResponse
-      if (isGraphQLError(searchResults)) {
+      const searchResults = hasSearchRequest(info) ? getSearchResults(args, context, info) : null
+
+      if (isGraphQLError(await searchResults))
         return context.m2.Query.products({ root, args, context, info })
-      }
+
       return {
-        algoliaSearchResults: searchResults,
+        algoliaSearchResults: await searchResults,
         suggestions: (await searchSuggestsions) || null,
-        algolia_queryID: searchResults?.queryID,
+        algolia_queryID: (await searchResults)?.queryID,
       }
     },
   },
