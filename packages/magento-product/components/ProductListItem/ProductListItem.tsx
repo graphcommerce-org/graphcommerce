@@ -97,9 +97,12 @@ export function ProductListItemReal(props: ProductProps) {
     <ProductListItemLinkOrDiv
       href={productLink(props)}
       className={classes.root}
-      sx={sx}
       onClick={(e: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>) => onClick?.(e, props)}
       {...slotProps.root}
+      sx={[
+        ...(Array.isArray(sx) ? sx : [sx]),
+        ...(Array.isArray(slotProps.root?.sx) ? slotProps.root.sx : [slotProps.root?.sx]),
+      ]}
       ref={slotProps.root?.ref as React.Ref<HTMLAnchorElement | HTMLDivElement>}
     >
       <ProductImageContainer className={classes.imageContainer}>

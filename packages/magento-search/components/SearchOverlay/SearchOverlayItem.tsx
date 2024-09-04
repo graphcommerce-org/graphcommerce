@@ -1,6 +1,6 @@
-import { useMenuItem } from '@mui/base'
-import { ListItemButton, ListItemButtonProps } from '@mui/material'
+import { alpha, ListItemButton, ListItemButtonProps } from '@mui/material'
 import { forwardRef, ElementType } from 'react'
+import { useSearchItem } from './SearchOverlayProvider'
 
 type SearchOverlayItemProps<C extends ElementType = 'li'> = ListItemButtonProps<
   C,
@@ -13,7 +13,8 @@ export const SearchOverlayItem = forwardRef(
     rootRef: React.Ref<C extends 'li' ? HTMLLIElement : HTMLAnchorElement>,
   ) => {
     const { sx, component, ...rest } = props
-    const { getRootProps } = useMenuItem({ rootRef })
+
+    const { getRootProps } = useSearchItem({ rootRef })
 
     return (
       <ListItemButton
@@ -23,6 +24,13 @@ export const SearchOverlayItem = forwardRef(
           (theme) => ({
             px: theme.page.horizontal,
             mx: `calc(${theme.page.horizontal} * -1)`,
+            '&.Mui-selected': {
+              boxShadow: `inset 0 0 0 2px ${theme.palette.secondary.main}`,
+              backgroundColor: alpha(
+                theme.palette.background.paper,
+                theme.palette.action.selectedOpacity,
+              ),
+            },
           }),
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}

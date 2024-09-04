@@ -5,11 +5,10 @@ import {
 } from '@graphcommerce/magento-product'
 import { SectionContainer } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { useMenuItem } from '@mui/base/useMenuItem'
-import { Link } from '@mui/material'
+import { Link, SxProps, Theme } from '@mui/material'
 import { ComponentProps, useMemo, useRef } from 'react'
 import type { Entries } from 'type-fest'
-import { useSearchOverlay } from './SearchOverlayProvider'
+import { useSearchItem, useSearchOverlay } from './SearchOverlayProvider'
 
 type SearchOverlayProductsProps = {
   productListRenderer: ProductListItemRenderer
@@ -20,12 +19,21 @@ function withUseMenu<T extends keyof ProductListItemRenderer>(
 ) {
   return (props: ComponentProps<ProductListItemRenderer[T]>) => {
     const rootRef = useRef<HTMLDivElement>(null)
-    const { getRootProps } = useMenuItem({ rootRef })
+    const { getRootProps } = useSearchItem({ rootRef })
 
     const Component = renderer as React.ComponentType<
       ComponentProps<ProductListItemRenderer[keyof ProductListItemRenderer]>
     >
-    return <Component {...props} slotProps={{ root: getRootProps() }} />
+
+    const root = getRootProps()
+    const sx: SxProps<Theme> = [
+      root.selected &&
+        ((theme) => ({
+          outline: `2px solid ${theme.palette.secondary.main}`,
+        })),
+    ]
+
+    return <Component {...props} slotProps={{ root: { ...root, sx } }} />
   }
 }
 
@@ -50,7 +58,7 @@ export function SearchOverlayProducts({ productListRenderer }: SearchOverlayProd
     <>
       {noResult && (
         <SectionContainer labelLeft={<>Products</>}>
-          <Trans>We couldn&apos;t find any results for &apos;{term}&apos;</Trans>
+          <Trans>We couldn’t find any results for ‘{term}’</Trans>
         </SectionContainer>
       )}
 

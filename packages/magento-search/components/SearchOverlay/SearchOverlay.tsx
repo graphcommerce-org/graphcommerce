@@ -1,3 +1,4 @@
+import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { breakpointVal } from '@graphcommerce/next-ui'
 import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/LayoutHeaderClose'
 import { Box, styled } from '@mui/material'
@@ -7,7 +8,6 @@ import { SearchInput } from './SearchOverlayInput'
 import { SearchOverlayProducts } from './SearchOverlayProducts'
 import { useSearchOverlay, SearchOverlayProvider } from './SearchOverlayProvider'
 import { SearchOverlaySuggestions } from './SearchOverlaySuggestions'
-import { ProductListItemRenderer } from '@graphcommerce/magento-product'
 
 function SearchOverlayHeader() {
   const { params } = useSearchOverlay()
@@ -47,9 +47,6 @@ function SearchOverlayHeader() {
             theme.shape.borderRadius * 4,
             theme.breakpoints.values,
           ),
-          '&:focus-within': {
-            boxShadow: `inset 0 0 0 2px ${theme.palette.secondary.main}`,
-          },
         })}
         params={params}
         size='medium'
@@ -60,10 +57,8 @@ function SearchOverlayHeader() {
   )
 }
 
-const SearchOverlayBodyBase = styled('div')(({ theme }) => ({
-  paddingLeft: theme.page.horizontal,
-  paddingRight: theme.page.horizontal,
-  pb: theme.page.vertical,
+const SearchOverlayBodyBase = styled('div', { name: 'SearchOverlayBodyBase' })(({ theme }) => ({
+  padding: `0 ${theme.page.horizontal} ${theme.page.vertical}`,
   '&:empty': { display: 'none' },
 }))
 

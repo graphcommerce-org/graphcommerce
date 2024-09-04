@@ -89,7 +89,7 @@ export function SearchOverlayCategories(props: SearchOverlayCategoriesProps) {
     categories.data?.categories?.items ?? categories.previousData?.categories?.items,
   ).filter((c) => c.include_in_menu)
 
-  if (categories.error || categoryItems.length === 0) return null
+  if (categories.error || categoryItems.length === 0 || !search) return null
 
   return (
     <SectionContainer labelLeft={<Trans>Categories</Trans>} {...sectionContainerProps}>

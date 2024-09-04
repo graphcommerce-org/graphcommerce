@@ -2,10 +2,10 @@ import { InputBaseElement } from '@graphcommerce/ecommerce-ui'
 import { ProductListParams, useProductFiltersPro } from '@graphcommerce/magento-product'
 import { FormAutoSubmit } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/macro'
-import { useMenuItem } from '@mui/base/useMenuItem'
 import { BoxProps, SxProps, Theme, Box, InputBaseProps } from '@mui/material'
 import React from 'react'
 import { useSearchResultRemaining } from '../ProductFiltersPro/ProductFiltersProSearchHeader'
+import { useSearchInput, useSearchItem } from './SearchOverlayProvider'
 
 function SearchInputShadow(
   props: BoxProps<'div'> & { params: ProductListParams; inputSx?: SxProps<Theme> },
@@ -64,13 +64,12 @@ type SearchInputProps = Omit<InputBaseProps, 'name' | 'defaultValue' | 'ref'> & 
 }
 
 export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
-  (props, forwardedRef) => {
+  (props, rootRef) => {
     const { params, sx, inputSx, inputRef, ...rest } = props
     const { form, submit } = useProductFiltersPro()
 
-    const { getRootProps } = useMenuItem({ rootRef: inputRef ?? forwardedRef })
-
-    const { ref, ...rootProps } = getRootProps()
+    const { getRootProps } = useSearchInput({ rootRef })
+    const { ref, selected, ...rootProps } = getRootProps()
 
     return (
       <Box sx={{ display: 'grid', '& > *': { gridArea: '1 / 1' }, height: '100%' }}>
@@ -80,14 +79,18 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
           color='primary'
           size='medium'
           fullWidth
+          autoFocus
           placeholder={t`Search...`}
           type='text'
           spellCheck='false'
           autoComplete='off'
           sx={[
-            {
+            (theme) => ({
               '& .MuiInputBase-input': { ...inputSx },
-            },
+              ...(selected && {
+                boxShadow: `inset 0 0 0 2px ${theme.palette.secondary.main}`,
+              }),
+            }),
             ...(Array.isArray(sx) ? sx : [sx]),
           ]}
           {...rest}

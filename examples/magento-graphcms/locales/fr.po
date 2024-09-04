@@ -30,6 +30,10 @@ msgid "Search all products..."
 msgstr "Rechercher tous les produits..."
 
 #. js-lingui-generated-id
+msgid "Did you mean?"
+msgstr "Vouliez-vous dire?"
+
+#. js-lingui-generated-id
 msgid "We couldn't find any results"
 msgstr "Nous n'avons trouvé aucun résultat"
 
@@ -365,6 +369,10 @@ msgstr "Mot de passe oublié?"
 msgid "Forgot your password?"
 msgstr "Mot de passe oublié?"
 
+#. js-lingui-generated-id
+msgid "We couldn’t find any results for ‘{term}’"
+msgstr "Nous n'avons trouvé aucun résultat pour ‘{term}’"
+
 msgid "Free"
 msgstr "Gratuit"
 
@@ -382,10 +390,6 @@ msgstr "Numéro de rue"
 
 msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
 msgstr "Si vous avez réalisé votre paiement, la commande <0>va</0> arriver, mais il y a un problème de communication avec le site."
-
-#. js-lingui-generated-id
-msgid "We couldn’t find any results for ‘{term}’"
-msgstr "Nous n'avons trouvé aucun résultat pour ‘{term}’"
 
 msgid "In comparelist"
 msgstr "Dans la liste de comparaison"
@@ -450,6 +454,10 @@ msgstr "Mme"
 #. js-lingui-generated-id
 msgid "Order has successfully been canceled"
 msgstr "La commande a été annulée avec succès"
+
+#. js-lingui-generated-id
+msgid "Categories"
+msgstr "Catégories"
 
 msgid "Name"
 msgstr "Nom"
@@ -610,6 +618,10 @@ msgstr "Produit non disponible dans {allLabels}"
 
 msgid "Products"
 msgstr "Produits"
+
+#. js-lingui-generated-id
+msgid "An error occurred while processing your payment. Please contact the store owner"
+msgstr "Une erreur est survenue lors du traitement de votre paiement. Veuillez contacter le propriétaire de la boutique"
 
 #. js-lingui-generated-id
 msgid "Results for ‘{search}’"
@@ -888,6 +900,10 @@ msgstr "Écrit par {nickname}"
 
 msgid "Written {0} reviews"
 msgstr "Évaluations écrites {0}"
+
+#. js-lingui-generated-id
+msgid "Search..."
+msgstr "Rechercher..."
 
 msgid "You are reviewing {0}"
 msgstr "Vous évaluez {0}"
