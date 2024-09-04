@@ -82,7 +82,7 @@ export function SearchOverlayProducts({ productListRenderer }: SearchOverlayProd
             title={params.search ? `Search ${params.search}` : ''}
             columns={(theme) => ({
               xs: { count: 2 },
-              md: { count: 3, totalWidth: theme.breakpoints.values.md.toString() },
+              md: { count: 4, totalWidth: theme.breakpoints.values.md.toString() },
               lg: { count: 4, totalWidth: theme.breakpoints.values.lg.toString() },
             })}
             items={products.items}
