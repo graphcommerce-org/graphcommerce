@@ -26,6 +26,8 @@ export const persistenceMapper = (data: string): Promise<string> => {
 
   pruneCache(parsedCache, [
     'ROOT_MUTATION',
+    'ROOT_QUERY.attributesList',
+    'ROOT_QUERY.categories*',
     'ROOT_QUERY.products*',
     'ROOT_QUERY.countries',
     'ROOT_QUERY.checkoutAgreements',
