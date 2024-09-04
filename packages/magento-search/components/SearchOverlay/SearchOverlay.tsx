@@ -17,6 +17,7 @@ function SearchOverlayHeader() {
       sx={(theme) => ({
         position: 'sticky',
         display: 'grid',
+        top: 0,
         zIndex: 1,
         background: 'transparent',
         boxShadow: theme.shadows[4],
