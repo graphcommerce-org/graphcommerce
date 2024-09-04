@@ -30,6 +30,10 @@ msgid "Search all products..."
 msgstr "Buscar todos los productos..."
 
 #. js-lingui-generated-id
+msgid "Did you mean?"
+msgstr "¿Quiso decir?"
+
+#. js-lingui-generated-id
 msgid "We couldn't find any results"
 msgstr "No pudimos encontrar ningún resultado"
 
@@ -369,6 +373,10 @@ msgstr "¿Olvidó su contraseña?"
 msgid "Forgot your password?"
 msgstr "¿Olvidó su contraseña?"
 
+#. js-lingui-generated-id
+msgid "We couldn’t find any results for ‘{term}’"
+msgstr "No pudimos encontrar ningún resultado para ‘{term}’"
+
 msgid "Free"
 msgstr "Gratis"
 
@@ -386,10 +394,6 @@ msgstr "Número de casa"
 
 msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
 msgstr "Si ha pagado correctamente su pedido, el pedido <0>llegará</0> a su destino, pero hay un error de comunicación con el sitio web."
-
-#. js-lingui-generated-id
-msgid "We couldn’t find any results for ‘{term}’"
-msgstr "No pudimos encontrar ningún resultado para ‘{term}’"
 
 msgid "In comparelist"
 msgstr "En la lista de comparación"
@@ -454,6 +458,10 @@ msgstr "Sra."
 #. js-lingui-generated-id
 msgid "Order has successfully been canceled"
 msgstr "El pedido se ha cancelado correctamente"
+
+#. js-lingui-generated-id
+msgid "Categories"
+msgstr "Categorías"
 
 msgid "Name"
 msgstr "Nombre"
@@ -900,6 +908,10 @@ msgstr "Escrito por {nickname}"
 
 msgid "Written {0} reviews"
 msgstr "Escribir {0} comentarios"
+
+#. js-lingui-generated-id
+msgid "Search..."
+msgstr "Buscar..."
 
 msgid "You are reviewing {0}"
 msgstr "Está revisando {0}"

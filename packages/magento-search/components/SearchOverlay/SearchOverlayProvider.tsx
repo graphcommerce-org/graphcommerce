@@ -5,17 +5,31 @@ import {
   toProductListParams,
 } from '@graphcommerce/magento-product'
 import { Overlay } from '@graphcommerce/next-ui'
-import { useMenu, MenuProvider } from '@mui/base/useMenu'
-import { alpha, Box } from '@mui/material'
-import React, { createContext, useContext, ReactNode, useState, useMemo, useCallback } from 'react'
+import { useList } from '@mui/base/useList'
+import { alpha, Box, useForkRef } from '@mui/material'
+import React, {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useMemo,
+  useCallback,
+  useRef,
+  useEffect,
+} from 'react'
 import { useProductList } from '../../hooks/useProductList'
 
 type SearchOverlayContextType = {
   params: ProductListParams
   setParams: React.Dispatch<React.SetStateAction<ProductListParams>>
   products: ProductListQuery['products']
+  selectedIndex: number
+  items: React.RefObject<HTMLElement>[]
+  inputs: React.RefObject<HTMLElement>[]
   setClosed: () => void
   resetFocus: () => void
+  registerItem: <T extends HTMLElement>(ref: React.RefObject<T>) => () => void
+  registerInput: <T extends HTMLElement>(ref: React.RefObject<T>) => () => void
 }
 
 const SearchOverlayContext = createContext<SearchOverlayContextType | undefined>(undefined)
@@ -44,19 +58,7 @@ export function SearchOverlayProvider({ children, open, setOpen }: SearchOverlay
     search: 'cute',
   })
 
-  const { getListboxProps, contextValue, dispatch } = useMenu({
-    autoFocus: false,
-    componentName: 'SearchOverlay',
-    onItemsChange(items) {
-      // dispatch({ type: })
-      // focus on first item
-      console.log(items)
-    },
-  })
-
-  const resetFocus = useCallback(() => {
-    dispatch({ type: 'list:clearSelection' })
-  }, [dispatch])
+  const resetFocus = useCallback(() => {}, [])
 
   const { handleSubmit, products } = useProductList({
     skipOnLoad: false,
@@ -65,10 +67,67 @@ export function SearchOverlayProvider({ children, open, setOpen }: SearchOverlay
   })
 
   const setClosed = useCallback(() => setOpen(false), [setOpen])
+  const items = useRef<React.RefObject<HTMLElement>[]>([])
+  const inputs = useRef<React.RefObject<HTMLElement>[]>([])
+  const [selectedIndex, setSelectedIndex] = useState(-1)
 
-  const searchOverlayContext = useMemo(
-    () => ({ params, setParams, products, setClosed, resetFocus }),
-    [params, setParams, products, setClosed, resetFocus],
+  const searchOverlayContext: SearchOverlayContextType = useMemo(
+    () => ({
+      params,
+      setParams,
+      products,
+      setClosed,
+      resetFocus,
+      selectedIndex,
+      items: items.current,
+      inputs: inputs.current,
+      registerItem: (item) => {
+        if (item.current instanceof HTMLElement) {
+          items.current.push(item)
+        }
+        return () => {
+          items.current = items.current.filter((i) => i !== item)
+        }
+      },
+      registerInput: (input) => {
+        const controller = new AbortController()
+        if (input.current instanceof HTMLElement) {
+          inputs.current.push(input)
+
+          input.current.addEventListener(
+            'keydown',
+            (event) => {
+              if (event.key === 'ArrowDown') {
+                event.preventDefault()
+                // Cycle between -1 and items.current.length
+                setSelectedIndex((prevIndex) => {
+                  if (prevIndex === items.current.length - 1) return -1
+                  return (prevIndex + 1) % items.current.length
+                })
+              } else if (event.key === 'ArrowUp') {
+                event.preventDefault()
+                // Cycle between -1 and items.current.length
+                setSelectedIndex((prevIndex) => {
+                  if (prevIndex === -1) return items.current.length - 1
+                  return (prevIndex - 1) % items.current.length
+                })
+              } else if (event.key === 'Enter') {
+                const element = items.current[selectedIndex].current
+                element?.click()
+              } else {
+                setSelectedIndex(-1)
+              }
+            },
+            { signal: controller.signal },
+          )
+        }
+        return () => {
+          inputs.current = inputs.current.filter((i) => i !== input)
+          controller.abort()
+        }
+      },
+    }),
+    [params, setParams, products, setClosed, resetFocus, selectedIndex],
   )
 
   return (
@@ -100,13 +159,43 @@ export function SearchOverlayProvider({ children, open, setOpen }: SearchOverlay
             })
           }
         >
-          <MenuProvider value={contextValue}>
-            <Box component='ul' {...getListboxProps()} sx={{ listStyle: 'none', p: 0, m: 0 }}>
-              {children}
-            </Box>
-          </MenuProvider>
+          {children}
         </ProductFiltersPro>
       </Overlay>
     </SearchOverlayContext.Provider>
   )
+}
+
+export function useSearchItem({ rootRef }: { rootRef?: React.Ref<Element> }) {
+  const searchOverlay = useSearchOverlay()
+
+  const internalRef = useRef<HTMLElement>(null)
+  const forkedRef = useForkRef(rootRef, internalRef)
+  const register = searchOverlay.registerItem
+  useEffect(() => register(internalRef), [register, rootRef])
+
+  return {
+    getRootProps: () => ({
+      ref: forkedRef,
+      selected:
+        searchOverlay.selectedIndex > -1 &&
+        searchOverlay.selectedIndex === searchOverlay.items.indexOf(internalRef),
+    }),
+  }
+}
+
+export function useSearchInput({ rootRef }: { rootRef?: React.Ref<Element> }) {
+  const searchOverlay = useSearchOverlay()
+
+  const internalRef = useRef<HTMLElement>(null)
+  const forkedRef = useForkRef(rootRef, internalRef)
+  const register = searchOverlay.registerInput
+  useEffect(() => register(internalRef), [register, rootRef])
+
+  return {
+    getRootProps: () => ({
+      selected: searchOverlay.selectedIndex === -1,
+      ref: forkedRef,
+    }),
+  }
 }
