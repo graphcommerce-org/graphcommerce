@@ -57,7 +57,7 @@ export function SearchOverlayProvider({ children, open, setOpen }: SearchOverlay
     filters: {},
     sort: {},
     url: 'search',
-    pageSize: 6,
+    pageSize: 8,
     currentPage: 1,
     search: '',
   })
