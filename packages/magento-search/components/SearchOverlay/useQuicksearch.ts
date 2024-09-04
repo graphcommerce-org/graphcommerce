@@ -28,7 +28,7 @@ export function useQuicksearch<
   const variables = useProductListApplySearchDefaults(params)
   const result = useInContextQuery(
     ProductListDocument,
-    { variables: { ...variables, quickSearch: true }, skip: false },
+    { variables: { ...variables, quickSearch: true }, skip: false || !params?.search },
     props,
   )
 
