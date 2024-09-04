@@ -1,45 +1,34 @@
 import { useInContextQuery, useQuery } from '@graphcommerce/graphql'
 import {
-  FilterFormProviderProps,
-  ProductFiltersDocument,
-  ProductFiltersQuery,
-  ProductListDocument,
-  ProductListParams,
   ProductListQuery,
-  prefetchProductList,
+  ProductFiltersQuery,
+  ProductListParams,
+  ProductListDocument,
+  FilterFormProviderProps,
   toProductListParams,
-  useRouterFilterParams,
+  prefetchProductList,
 } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { useEventCallback } from '@mui/material'
 import {
+  useProductListApplySearchDefaults,
   productListApplySearchDefaults,
   searchDefaultsToProductListFilters,
-  useProductListApplySearchDefaults,
-} from '../utils/productListApplySearchDefaults'
+} from '../../utils/productListApplySearchDefaults'
 
 /**
  * - Handles shallow routing requests
  * - Handles customer specific product list queries
  * - Creates a prefetch function to preload the product list
  */
-export function useProductList<
+export function useQuicksearch<
   T extends ProductListQuery & ProductFiltersQuery & { params?: ProductListParams },
 >(props: T) {
-  const { params, shallow } = useRouterFilterParams(props)
+  const { params } = props
   const variables = useProductListApplySearchDefaults(params)
   const result = useInContextQuery(
     ProductListDocument,
-    { variables: { ...variables }, skip: !shallow },
-    props,
-  )
-
-  const filters = useInContextQuery(
-    ProductFiltersDocument,
-    {
-      variables: searchDefaultsToProductListFilters(variables),
-      skip: !shallow,
-    },
+    { variables: { ...variables, quickSearch: true }, skip: false },
     props,
   )
 
@@ -51,7 +40,7 @@ export function useProductList<
 
       const vars = productListApplySearchDefaults(toProductListParams(formValues), storeConfig)
       await prefetchProductList(
-        vars,
+        { ...vars, quickSearch: true },
         searchDefaultsToProductListFilters(vars),
         next,
         result.client,
@@ -60,12 +49,5 @@ export function useProductList<
     },
   )
 
-  return {
-    ...props,
-    filters: filters.data.filters,
-    ...result.data,
-    params,
-    mask: result.mask,
-    handleSubmit,
-  }
+  return { ...props, ...result.data, params, mask: result.mask, handleSubmit }
 }

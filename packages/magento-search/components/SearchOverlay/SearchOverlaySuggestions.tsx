@@ -14,16 +14,9 @@ export const SearchOverlaySuggestion = forwardRef<
 >((props, ref) => {
   const { search } = props
   const { form } = useProductFiltersPro()
-  const { resetFocus } = useSearchOverlay()
 
   return (
-    <SearchOverlayItem
-      ref={ref}
-      onClick={() => {
-        form.setValue('search', search)
-        resetFocus()
-      }}
-    >
+    <SearchOverlayItem ref={ref} onClick={() => form.setValue('search', search)}>
       {search}
     </SearchOverlayItem>
   )

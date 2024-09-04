@@ -10,7 +10,7 @@ import { useSearchOverlay, SearchOverlayProvider } from './SearchOverlayProvider
 import { SearchOverlaySuggestions } from './SearchOverlaySuggestions'
 
 function SearchOverlayHeader() {
-  const { params } = useSearchOverlay()
+  const { params, setClosed } = useSearchOverlay()
 
   return (
     <Box
@@ -52,7 +52,7 @@ function SearchOverlayHeader() {
         size='medium'
       />
 
-      <LayoutHeaderClose onClose={() => {}} />
+      <LayoutHeaderClose onClose={setClosed} />
     </Box>
   )
 }
