@@ -12,6 +12,8 @@ export type LayoutOverlayState = Omit<
   | 'disableInert'
   | 'widthMd'
   | 'widthSm'
+  | 'disableAnimation'
+  | 'disableDrag'
 >
 
 export function useLayoutState() {
