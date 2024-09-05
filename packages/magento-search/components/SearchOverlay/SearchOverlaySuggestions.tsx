@@ -5,7 +5,6 @@ import {
 import {
   filterNonNullableKeys,
   SectionContainer,
-  memoDeep,
   SectionContainerProps,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
@@ -16,8 +15,8 @@ import { useSearchOverlay } from './SearchOverlayProvider'
 type SearchOverlaySuggestionProps = ProductListSearchSuggestionFragment &
   React.ComponentPropsWithoutRef<typeof SearchOverlayItem>
 
-export const SearchOverlaySuggestion = memoDeep(
-  forwardRef<HTMLLIElement, SearchOverlaySuggestionProps>((props, ref) => {
+export const SearchOverlaySuggestion = forwardRef<HTMLLIElement, SearchOverlaySuggestionProps>(
+  (props, ref) => {
     const { search, ...rest } = props
     const { form } = useProductFiltersPro()
 
@@ -26,7 +25,7 @@ export const SearchOverlaySuggestion = memoDeep(
         {search}
       </SearchOverlayItem>
     )
-  }),
+  },
 )
 
 SearchOverlaySuggestion.displayName = 'SearchOverlaySuggestion'
