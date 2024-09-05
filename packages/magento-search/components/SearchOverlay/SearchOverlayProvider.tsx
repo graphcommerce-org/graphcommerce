@@ -17,6 +17,7 @@ import React, {
   useEffect,
 } from 'react'
 import { useQuicksearch } from './useQuicksearch'
+import { OverlayProps } from '@graphcommerce/next-ui/Overlay/components/OverlaySsr'
 
 type SearchOverlayContextType = {
   params: ProductListParams
@@ -52,7 +53,8 @@ type SearchOverlayProviderProps = {
   setOpen: (open: boolean) => void
 }
 
-export function SearchOverlayProvider({ children, open, setOpen }: SearchOverlayProviderProps) {
+export function SearchOverlayProvider(props: SearchOverlayProviderProps) {
+  const { children, open, setOpen, ...overlayProps } = props
   const [params, setParams] = useState<ProductListParams>({
     filters: {},
     sort: {},
@@ -132,44 +134,22 @@ export function SearchOverlayProvider({ children, open, setOpen }: SearchOverlay
     [selectedIndex],
   )
 
-  const theme2 = useTheme()
-
   return (
     <SearchOverlayContext.Provider value={searchOverlayContext}>
       <SearchOverlaySelectionContext.Provider value={searchOverlaySelectionContext}>
-        <Overlay
-          active={open}
-          onClosed={setClosed}
-          variantMd='top'
-          variantSm='bottom'
-          sizeMd='floating'
-          sizeSm='full'
-          justifyMd='center'
-          disableAnimation
-          disableDrag
-          widthMd={`min(${theme2.breakpoints.values.lg}px, 100vw - ${theme2.page.horizontal} * 2)`}
-          sx={(theme) => ({
-            '& .LayoutOverlayBase-background': {
-              backdropFilter: 'blur(16px)',
-              backgroundColor: alpha(theme.palette.background.paper, 0.8),
-            },
-          })}
-          bgColor='paper'
+        <ProductFiltersPro
+          params={params}
+          filterTypes={{}}
+          autoSubmitMd
+          handleSubmit={(formValues) =>
+            // eslint-disable-next-line @typescript-eslint/require-await
+            handleSubmit(formValues, async () => {
+              setParams(toProductListParams(formValues))
+            })
+          }
         >
-          <ProductFiltersPro
-            params={params}
-            filterTypes={{}}
-            autoSubmitMd
-            handleSubmit={(formValues) =>
-              // eslint-disable-next-line @typescript-eslint/require-await
-              handleSubmit(formValues, async () => {
-                setParams(toProductListParams(formValues))
-              })
-            }
-          >
-            {children}
-          </ProductFiltersPro>
-        </Overlay>
+          {children}
+        </ProductFiltersPro>
       </SearchOverlaySelectionContext.Provider>
     </SearchOverlayContext.Provider>
   )

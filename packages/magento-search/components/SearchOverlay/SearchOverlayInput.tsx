@@ -3,9 +3,9 @@ import { ProductListParams, useProductFiltersPro } from '@graphcommerce/magento-
 import { FormAutoSubmit } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/macro'
 import { BoxProps, SxProps, Theme, Box, InputBaseProps } from '@mui/material'
-import React from 'react'
+import React, { forwardRef, memo } from 'react'
 import { useSearchResultRemaining } from '../ProductFiltersPro/ProductFiltersProSearchHeader'
-import { useSearchInput, useSearchItem } from './SearchOverlayProvider'
+import { useSearchInput } from './SearchOverlayProvider'
 
 function SearchInputShadow(
   props: BoxProps<'div'> & { params: ProductListParams; inputSx?: SxProps<Theme> },
@@ -28,12 +28,7 @@ function SearchInputShadow(
         <>
           <Box
             component='span'
-            sx={[
-              {
-                color: 'transparent',
-              },
-              ...(Array.isArray(inputSx) ? inputSx : [inputSx]),
-            ]}
+            sx={[{ color: 'transparent' }, ...(Array.isArray(inputSx) ? inputSx : [inputSx])]}
           >
             {resultSearch}
           </Box>
