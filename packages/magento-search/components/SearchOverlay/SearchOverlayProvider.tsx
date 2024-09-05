@@ -4,8 +4,7 @@ import {
   ProductFiltersPro,
   toProductListParams,
 } from '@graphcommerce/magento-product'
-import { Overlay } from '@graphcommerce/next-ui'
-import { alpha, useForkRef, useTheme } from '@mui/material'
+import { useForkRef } from '@mui/material'
 import React, {
   createContext,
   useContext,
@@ -17,7 +16,6 @@ import React, {
   useEffect,
 } from 'react'
 import { useQuicksearch } from './useQuicksearch'
-import { OverlayProps } from '@graphcommerce/next-ui/Overlay/components/OverlaySsr'
 
 type SearchOverlayContextType = {
   params: ProductListParams
@@ -105,15 +103,31 @@ export function SearchOverlayProvider(props: SearchOverlayProviderProps) {
             (event) => {
               if (event.key === 'ArrowDown') {
                 event.preventDefault()
-                setSelectedIndex((prevIndex) => {
+
+                const newIndex = ((prevIndex) => {
                   if (prevIndex === items.current.length - 1) return -1
                   return (prevIndex + 1) % items.current.length
+                })(selectedIndex)
+
+                setSelectedIndex(newIndex)
+
+                items.current[newIndex]?.current?.scrollIntoView({
+                  behavior: 'auto',
+                  block: 'center',
                 })
               } else if (event.key === 'ArrowUp') {
                 event.preventDefault()
-                setSelectedIndex((prevIndex) => {
+
+                const newIndex = ((prevIndex) => {
                   if (prevIndex === -1) return items.current.length - 1
                   return (prevIndex - 1) % items.current.length
+                })(selectedIndex)
+
+                setSelectedIndex(newIndex)
+
+                items.current[newIndex]?.current?.scrollIntoView({
+                  behavior: 'auto',
+                  block: 'center',
                 })
               } else if (event.key === 'Enter') {
                 const element = items.current[selectedIndex]?.current

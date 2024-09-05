@@ -1,3 +1,4 @@
+import React from 'react'
 import { LayoutHeaderProps, LayoutTitle, TitleProps } from '../../Layout'
 import { LayoutHeaderClose } from '../../Layout/components/LayoutHeaderClose'
 import { LayoutOverlayHeader } from '../../LayoutOverlay/components/LayoutOverlayHeader'
