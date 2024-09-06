@@ -13,35 +13,30 @@ import {
   ConfigurableOptionValue,
   ConfigurableOptionValueFragment,
 } from '../ConfigurableOptionValue'
+import { ConfigurableProductOptionDropdown } from './ConfigurableProductOptionDropdown'
 
-type Props = NonNullable<
+type ConfigurableOption = NonNullable<
   NonNullable<ConfigurableOptionsFragment['configurable_options']>[number]
-> & {
+>
+
+type UseConfigurableProductOptionValuesProps = {
   index: number
   optionIndex: number
+  attribute_code: string
+} & UseConfigurableOptionsSelection &
+  ConfigurableOption
+
+export type ConfigurableProductOptionProps = {
   optionEndLabels?: Record<string, React.ReactNode>
   sx?: SxProps<Theme>
-  attribute_code: string
   render: typeof ConfigurableOptionValue
-} & UseConfigurableOptionsSelection
+} & UseConfigurableProductOptionValuesProps
 
-export function ConfigurableProductOption(props: Props) {
-  const {
-    values,
-    label,
-    index,
-    optionIndex,
-    optionEndLabels,
-    sx,
-    attribute_code,
-    url_key,
-    render,
-    ...other
-  } = props
+export function useConfigurableProductOptionValues(props: UseConfigurableProductOptionValuesProps) {
+  const { index, optionIndex, url_key, attribute_code, values } = props
   const fieldName = `cartItems.${index}.selected_options.${optionIndex}` as const
 
   const { control } = useFormAddProductsToCart()
-
   const selectedOption = useWatch({ control, name: fieldName })
 
   const selectedOptions = (useWatch({ control, name: `cartItems.${index}.selected_options` }) ?? [])
@@ -65,7 +60,25 @@ export function ConfigurableProductOption(props: Props) {
     disabled: !(!available || available.includes(ov.uid)),
   }))
 
-  if (!values) return null
+  return { items, control, fieldName }
+}
+
+export function ConfigurableProductOption(props: ConfigurableProductOptionProps) {
+  const {
+    values,
+    label,
+    index,
+    optionIndex,
+    optionEndLabels,
+    sx,
+    attribute_code,
+    url_key,
+    render,
+    ...other
+  } = props
+  const { items, fieldName, control } = useConfigurableProductOptionValues(props)
+
+  if (items.length === 0) return null
 
   return (
     <Box key={fieldName} sx={[...(Array.isArray(sx) ? sx : [sx])]}>
@@ -75,21 +88,25 @@ export function ConfigurableProductOption(props: Props) {
         sx={{ mt: 0 }}
       />
 
-      <ActionCardListForm<
-        ActionCardItemBase & ConfigurableOptionValueFragment,
-        AddProductsToCartFields
-      >
-        layout='grid'
-        {...other}
-        name={fieldName}
-        control={control}
-        required
-        items={items}
-        render={render}
-        rules={{
-          required: i18n._(/* i18n*/ 'Please select a value for ‘{label}’', { label }),
-        }}
-      />
+      {!values?.[0]?.swatch_data ? (
+        <ConfigurableProductOptionDropdown items={items} fieldName={fieldName} control={control} />
+      ) : (
+        <ActionCardListForm<
+          ActionCardItemBase & ConfigurableOptionValueFragment,
+          AddProductsToCartFields
+        >
+          layout='grid'
+          {...other}
+          name={fieldName}
+          control={control}
+          required
+          items={items}
+          render={render}
+          rules={{
+            required: i18n._(/* i18n*/ 'Please select a value for ‘{label}’', { label }),
+          }}
+        />
+      )}
     </Box>
   )
 }
