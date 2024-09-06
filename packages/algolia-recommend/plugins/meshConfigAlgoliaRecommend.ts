@@ -31,7 +31,7 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
                 'X-Algolia-Application-Id': graphCommerceConfig.algolia.applicationId,
                 'X-Algolia-API-Key': graphCommerceConfig.algolia.searchOnlyApiKey,
               },
-              selectQueryOrMutationField: [{ type: 'Mutation', fieldName: 'getRecommendations' }],
+              selectQueryOrMutationField: [{ type: 'Query', fieldName: 'getRecommendations' }],
             },
           },
           transforms: [
