@@ -27,7 +27,6 @@ function getRequest(model, objectId, indexName) {
   return returnObject[model] ? returnObject[model] : {}
 }
 export function getRecommendationsInput(
-  // args: QueryproductsArgs,
   context: MeshContext,
   objectId: string,
   model: string,

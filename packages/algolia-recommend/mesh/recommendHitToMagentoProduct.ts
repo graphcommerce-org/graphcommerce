@@ -1,3 +1,4 @@
+import { GetStoreConfigReturn } from '@graphcommerce/algolia-mesh/mesh/getStoreConfig'
 import {
   AlgoliaPrice,
   AlgoliaProductHitAdditionalProperties,
@@ -11,10 +12,6 @@ import {
   ResolversParentTypes,
   ResolversTypes,
 } from '@graphcommerce/graphql-mesh'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { GraphQLResolveInfo } from 'graphql'
-import { GetStoreConfigReturn } from './getStoreConfig'
-
 function assertAdditional(
   additional: unknown,
 ): additional is AlgoliaProductHitAdditionalProperties {
@@ -118,16 +115,10 @@ export type ProductsItemsItem = NonNullable<
  *
  * You can create a FunctionPlugin to modify the behavior of this function or implement brand specific code.
  */
-export function algoliaHitToMagentoProduct(
+export function recommendHitToMagentoProduct(
   hit: Algoliahit,
   storeConfig: GetStoreConfigReturn,
   customerGroup: number,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  context: MeshContext,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  info: GraphQLResolveInfo,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  nested: boolean = false,
 ): ProductsItemsItem | null {
   const { objectID, additionalProperties } = hit
   if (!assertAdditional(additionalProperties)) return null

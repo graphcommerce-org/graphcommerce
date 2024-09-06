@@ -79,7 +79,7 @@ export const resolvers: Resolvers = {
       }
     },
 
-    items: async (root, args, context) => {
+    items: async (root, args, context, info) => {
       if (!isAlgoliaResponse(root)) return root.items ?? null
 
       const items: (ProductsItemsItem | null)[] = []
@@ -87,7 +87,13 @@ export const resolvers: Resolvers = {
       const config = await getStoreConfig(context)
       for (const hit of root.algoliaSearchResults.hits) {
         if (hit?.objectID) {
-          const product = algoliaHitToMagentoProduct(hit, config, getGroupId(context))
+          const product = algoliaHitToMagentoProduct(
+            hit,
+            config,
+            getGroupId(context),
+            context,
+            info,
+          )
           items.push(product)
         }
       }
