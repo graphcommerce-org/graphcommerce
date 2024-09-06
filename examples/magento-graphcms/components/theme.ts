@@ -385,6 +385,14 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
       thickness: 2,
     },
   },
+
+  MuiAutocomplete: {
+    styleOverrides: {
+      popper: {
+        boxShadow: theme.shadows[3],
+      },
+    },
+  },
 })
 
 export const lightTheme = createThemeWithPalette(lightPalette)
