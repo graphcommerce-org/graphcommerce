@@ -1,4 +1,4 @@
-import { MeshContext, Queryalgolia_searchSingleIndexArgs } from '@graphcommerce/graphql-mesh'
+import type { MeshContext, Queryalgolia_searchSingleIndexArgs } from '@graphcommerce/graphql-mesh'
 import { getIndexName } from './getIndexName'
 
 export function isSuggestionsEnabled() {

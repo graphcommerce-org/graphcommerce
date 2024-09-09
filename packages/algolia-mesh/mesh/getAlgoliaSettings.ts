@@ -1,4 +1,4 @@
-import { AlgoliasettingsResponse, MeshContext } from '@graphcommerce/graphql-mesh'
+import type { AlgoliasettingsResponse, MeshContext } from '@graphcommerce/graphql-mesh'
 import { getIndexName } from './getIndexName'
 
 let settingsCache: AlgoliasettingsResponse | null = null

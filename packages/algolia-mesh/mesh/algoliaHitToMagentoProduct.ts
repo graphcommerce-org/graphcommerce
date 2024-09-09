@@ -1,4 +1,4 @@
-import {
+import type {
   AlgoliaPrice,
   AlgoliaProductHitAdditionalProperties,
   Algoliahit,
@@ -122,12 +122,6 @@ export function algoliaHitToMagentoProduct(
   hit: Algoliahit,
   storeConfig: GetStoreConfigReturn,
   customerGroup: number,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  context: MeshContext,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  info: GraphQLResolveInfo,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  nested: boolean = false,
 ): ProductsItemsItem | null {
   const { objectID, additionalProperties } = hit
   if (!assertAdditional(additionalProperties)) return null

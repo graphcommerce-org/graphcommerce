@@ -1,4 +1,4 @@
-import {
+import type {
   ProductAttributeFilterInput,
   AlgolianumericFilters_Input,
 } from '@graphcommerce/graphql-mesh'

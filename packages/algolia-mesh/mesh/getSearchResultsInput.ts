@@ -1,4 +1,4 @@
-import {
+import type {
   MeshContext,
   Queryalgolia_searchSingleIndexArgs,
   QueryproductsArgs,
