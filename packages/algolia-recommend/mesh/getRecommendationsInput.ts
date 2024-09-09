@@ -5,13 +5,6 @@ import {
   // AlgoliarelatedModel,
 } from '@graphcommerce/graphql-mesh'
 
-// function returnAlgoliaModelString(model: string): AlgoliarelatedModel {
-//   const returnObject = {
-//     related: 'related_products',
-//   }
-//   return model
-// }
-
 function getRequest(model, objectId, indexName) {
   const returnObject = {
     related: {

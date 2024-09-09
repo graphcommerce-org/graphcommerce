@@ -141,8 +141,6 @@ function createAlgoliaRecommendationRequest<K extends keyof Algoliarecommendatio
         info,
       })) ?? null
 
-    console.log(keyInput, root.uid, results)
-
     return results
   }
 }
