@@ -616,6 +616,10 @@ msgid "Products"
 msgstr "Products"
 
 #. js-lingui-generated-id
+msgid "An error occurred while processing your payment. Please contact the store owner"
+msgstr "An error occurred while processing your payment. Please contact the store owner"
+
+#. js-lingui-generated-id
 msgid "Results for ‘{search}’"
 msgstr "Results for ‘{search}’"
 
@@ -729,6 +733,9 @@ msgstr "Sign up is disabled, please contact us for more information."
 msgid "Skip to main content"
 msgstr "Skip to main content"
 
+msgid "Some items in your cart contain errors, please update or remove them, then try again."
+msgstr "Some items in your cart contain errors, please update or remove them, then try again."
+
 msgid "Something went wrong"
 msgstr "Something went wrong"
 
@@ -740,6 +747,9 @@ msgstr "Sort"
 
 msgid "Sort By"
 msgstr "Sort By"
+
+msgid "Start Checkout"
+msgstr "Start Checkout"
 
 msgid "Store home"
 msgstr "Store home"
@@ -803,9 +813,6 @@ msgstr "The payment is refused, please try again or select a different payment m
 
 msgid "There is a maximum of ‘{maxLength}’ characters"
 msgstr "There is a maximum of ‘{maxLength}’ characters"
-
-msgid "This cart is assigned to {email}. Please sign in to continue shopping."
-msgstr "This cart is assigned to {email}. Please sign in to continue shopping."
 
 msgid "This field is invalid"
 msgstr "This field is invalid"

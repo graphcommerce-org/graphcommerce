@@ -616,6 +616,10 @@ msgid "Products"
 msgstr "Prodotti"
 
 #. js-lingui-generated-id
+msgid "An error occurred while processing your payment. Please contact the store owner"
+msgstr "Si è verificato un errore durante il processo di pagamento. Si prega di contattare il proprietario del negozio"
+
+#. js-lingui-generated-id
 msgid "Results for ‘{search}’"
 msgstr "Risultati per ‘{search}’"
 
@@ -729,6 +733,9 @@ msgstr "L'iscrizione è disabilitata, contattateci per maggiori informazioni."
 msgid "Skip to main content"
 msgstr "Passa al contenuto principale"
 
+msgid "Some items in your cart contain errors, please update or remove them, then try again."
+msgstr "Alcuni articoli nel tuo carrello contengono errori, per favore aggiorna o rimuovi, poi riprova."
+
 msgid "Something went wrong"
 msgstr "Qualcosa è andato storto"
 
@@ -740,6 +747,9 @@ msgstr "Ordinare"
 
 msgid "Sort By"
 msgstr "Ordina per"
+
+msgid "Start Checkout"
+msgstr "Inizia la checkout"
 
 msgid "Store home"
 msgstr "Home del negozio"
@@ -803,9 +813,6 @@ msgstr "Il pagamento è stato rifiutato, riprova o seleziona un metodo di pagame
 
 msgid "There is a maximum of ‘{maxLength}’ characters"
 msgstr "È consentito un massimo di caratteri \"{maxLength}\"."
-
-msgid "This cart is assigned to {email}. Please sign in to continue shopping."
-msgstr "Questo carrello è assegnato a {email}. Accedi per continuare gli acquisti."
 
 msgid "This field is invalid"
 msgstr "Questo campo non è valido"

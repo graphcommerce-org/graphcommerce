@@ -7,8 +7,8 @@
  */
 const config = {
   hygraphEndpoint: 'https://eu-central-1.cdn.hygraph.com/content/ckhx7xadya6xs01yxdujt8i80/master',
-  magentoEndpoint: 'https://configurator.reachdigital.dev/graphql',
-  magentoVersion: 247,
+  magentoEndpoint: 'https://backend.reachdigital.dev/graphql',
+  magentoVersion: 246,
   canonicalBaseUrl: 'https://graphcommerce.vercel.app',
   storefront: [
     { locale: 'en', magentoStoreCode: 'en_US', defaultLocale: true },

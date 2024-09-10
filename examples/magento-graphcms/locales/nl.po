@@ -616,6 +616,10 @@ msgid "Products"
 msgstr "Producten"
 
 #. js-lingui-generated-id
+msgid "An error occurred while processing your payment. Please contact the store owner"
+msgstr "Er is een fout opgetreden bij het verwerken van uw betaling. Neem contact op met de eigenaar van de winkel"
+
+#. js-lingui-generated-id
 msgid "Results for ‘{search}’"
 msgstr "Resultaten voor ‘{search}’"
 
@@ -729,6 +733,9 @@ msgstr "Inschrijven is niet mogelijk, neem contact met ons op voor meer informat
 msgid "Skip to main content"
 msgstr "Ga naar hoofdinhoud"
 
+msgid "Some items in your cart contain errors, please update or remove them, then try again."
+msgstr "Sommige artikelen in uw winkelwagen bevatten fouten, update of verwijder ze, en probeer het opnieuw."
+
 msgid "Something went wrong"
 msgstr "Er is iets misgegaan"
 
@@ -740,6 +747,9 @@ msgstr "Sorteer"
 
 msgid "Sort By"
 msgstr "Sorteer op"
+
+msgid "Start Checkout"
+msgstr "Start afrekenen"
 
 msgid "Store home"
 msgstr "Winkel home"
@@ -803,9 +813,6 @@ msgstr "De betaling is geweigerd, probeer het opnieuw of selecteer een andere be
 
 msgid "There is a maximum of ‘{maxLength}’ characters"
 msgstr "Er is een maximum van ‘{maxLength}’ karakters"
-
-msgid "This cart is assigned to {email}. Please sign in to continue shopping."
-msgstr "Deze winkelwagen is toegewezen aan {email}. Log in om verder te winkelen."
 
 msgid "This field is invalid"
 msgstr "Dit veld is ongeldig"
