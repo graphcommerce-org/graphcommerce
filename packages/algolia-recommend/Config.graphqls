@@ -1,3 +1,44 @@
+"""
+Location where the recommendation model should be shown. This replaces the related_products, upsell_products and crosssell_products fields on products.
+"""
+enum GraphCommerceAlgoliaRecommendationLocation {
+  DISABLED
+  RELATED_PRODUCTS
+  UPSELL_PRODUCTS
+  CROSSSELL_PRODUCTS
+}
+
 extend input GraphCommerceAlgoliaConfig {
-  recommendEnabled: Boolean
+  """
+  https://www.algolia.com/doc/guides/algolia-recommend/overview/#related-products-and-related-content
+
+  Set the location where the related products model should be shown.
+  Good default is RELATED_PRODUCTS, which is shown on the Product page by default.
+
+  Before enabling, make sure the model is trained in Algolia.
+  Do not assign multiple recommendation models to the same location.
+  """
+  relatedProducts: GraphCommerceAlgoliaRecommendationLocation
+
+  """
+  https://www.algolia.com/doc/guides/algolia-recommend/overview/#looking-similar
+
+  Set the location where the looking similar model should be shown.
+  Good default is UPSELL_PRODUCTS, which is shown on the Product page by default.
+
+  Before enabling, make sure the model is trained in Algolia.
+  Do not assign multiple recommendation models to the same location.
+  """
+  lookingSimilar: GraphCommerceAlgoliaRecommendationLocation
+
+  """
+  https://www.algolia.com/doc/guides/algolia-recommend/overview/#frequently-bought-together
+
+  Set the location where the frequently bought together model should be shown.
+  Good default is CROSSSELL_PRODUCTS, which is shown on the Cart page.
+
+  Before enabling, make sure the model is trained in Algolia.
+  Do not assign multiple recommendation models to the same location.
+  """
+  frequentlyBoughtTogether: GraphCommerceAlgoliaRecommendationLocation
 }

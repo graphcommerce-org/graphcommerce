@@ -1,0 +1,44 @@
+input TrendingProductsInput {
+  maxRecommendations: Int = 10
+
+  """
+  Minimum score a recommendation must have to be included in the response.
+  """
+  threshold: NonNegativeFloat! = 75
+
+  """
+  Facet attribute. To be used in combination with `facetValue`.
+  If specified, only recommendations matching the facet filter will be returned.
+  """
+  facetName: String
+
+  """
+  Facet value. To be used in combination with `facetName`.
+  If specified, only recommendations matching the facet filter will be returned.
+  """
+  facetValue: String
+}
+
+input TrendingFacetValuesInput {
+  maxRecommendations: Int = 10
+
+  """
+  Minimum score a recommendation must have to be included in the response.
+  """
+  threshold: NonNegativeFloat! = 75
+  """
+  Facet attribute for which to retrieve trending facet values.
+  """
+  facetName: String!
+}
+
+type TrendingFacet {
+  facetName: String!
+  facetValue: String!
+}
+
+extend type Query {
+  trendingProducts(input: TrendingProductsInput!): [ProductInterface]
+
+  trendingFacetValues(input: TrendingFacetValuesInput!): [TrendingFacet]
+}

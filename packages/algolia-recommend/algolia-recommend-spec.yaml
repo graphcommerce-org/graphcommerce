@@ -534,6 +534,7 @@
         ],
         "x-categories": ["Typos"]
       },
+      "booleanString": { "type": "string", "enum": ["true", "false"] },
       "ignorePlurals": {
         "description": "Treat singular, plurals, and other forms of declensions as equivalent.\nYou should only use this feature for the languages used in your index.\n",
         "example": ["ca", "es"],
@@ -543,6 +544,7 @@
             "description": "ISO code for languages for which this feature should be active.\nThis overrides languages you set with `queryLanguages`.\n",
             "items": { "$ref": "#/components/schemas/supportedLanguage" }
           },
+          { "$ref": "#/components/schemas/booleanString" },
           {
             "type": "boolean",
             "description": "If true, `ignorePlurals` is active for all languages included in `queryLanguages`, or for all supported languages, if `queryLanguges` is empty.\nIf false, singulars, plurals, and other declensions won't be considered equivalent.\n",

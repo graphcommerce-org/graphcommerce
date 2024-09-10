@@ -1,154 +1,122 @@
 /* eslint-disable @typescript-eslint/require-await */
-import { algoliaHitToMagentoProduct } from '@graphcommerce/algolia-mesh'
-import { getGroupId } from '@graphcommerce/algolia-mesh/mesh/getGroupId'
-import { getIndexName } from '@graphcommerce/algolia-mesh/mesh/getIndexName'
-import { getStoreConfig } from '@graphcommerce/algolia-mesh/mesh/getStoreConfig'
-import { nonNullable } from '@graphcommerce/algolia-mesh/mesh/utils'
+import fragments from '@graphcommerce/graphql/generated/fragments.json'
 import type {
-  Algoliahit,
-  AlgoliarecommendationsRequest_Input,
-  AlgoliarecommendHit,
-  AlgoliatrendingFacetHit,
   MeshContext,
+  ProductInterfaceResolvers,
+  ResolverFn,
   Resolvers,
+  ResolversParentTypes,
+  ResolversTypes,
 } from '@graphcommerce/graphql-mesh'
-import type { GraphQLResolveInfo } from 'graphql'
+import {
+  GraphCommerceAlgoliaRecommendationLocation,
+  InputMaybe,
+  Maybe,
+} from '@graphcommerce/next-config'
+import { createProductMapper } from './createProductMapper'
+import { createFacetValueMapper } from './createValueFacetMapper'
+import { getRecommendations } from './getRecommendations'
 
-function isAlgoliaRecommendHit(
-  hit: AlgoliarecommendHit | AlgoliatrendingFacetHit | Algoliahit | null,
-): hit is Algoliahit {
-  return !!hit && '__typename' in hit && hit.__typename === 'AlgoliarecommendHit'
-}
+type ProductTypes = NonNullable<Awaited<ReturnType<ProductInterfaceResolvers['__resolveType']>>>
+const productTypes = fragments.possibleTypes.ProductInterface as ProductTypes[]
 
-function createAlgoliaRecommendationRequest<K extends keyof AlgoliarecommendationsRequest_Input>(
-  keyInput: K,
-  additionalArgs?: AlgoliarecommendationsRequest_Input[K],
-) {
-  return async (
-    root: { uid: string },
-    args: unknown,
-    context: MeshContext,
-    info: GraphQLResolveInfo,
-  ) => {
-    const storeConfig = await getStoreConfig(context)
-    const groupId = getGroupId(context)
-
-    const results =
-      (await context.algoliaRecommend.Query.algolia_getRecommendations({
-        key: keyInput,
-        argsFromKeys: (keys) => ({
-          input: {
-            requests: keys
-              .map((key): AlgoliarecommendationsRequest_Input | null => {
-                const baseTypes: Omit<
-                  NonNullable<
-                    AlgoliarecommendationsRequest_Input[keyof AlgoliarecommendationsRequest_Input]
-                  >,
-                  'model'
-                > = {
-                  indexName: getIndexName(context),
-                  threshold: 60,
-                  maxRecommendations: 8,
-                  ...additionalArgs,
-                  // queryParameters: {},
-                }
-
-                if (key === 'Trending_items_Input')
-                  return {
-                    Trending_items_Input: {
-                      ...baseTypes,
-                      model: 'trending_items',
-                      facetName: '',
-                      facetValue: '',
-                    },
-                  }
-
-                if (key === 'Trending_facet_values_Input')
-                  return {
-                    Trending_facet_values_Input: {
-                      ...baseTypes,
-                      model: 'trending_facets',
-                      facetName: '',
-                    },
-                  }
-
-                if (key === 'Frequently_bought_together_Input')
-                  return {
-                    Frequently_bought_together_Input: {
-                      ...baseTypes,
-                      model: 'bought_together',
-                      objectID: atob(root.uid),
-                    },
-                  }
-
-                if (key === 'Looking_similar_Input')
-                  return {
-                    Looking_similar_Input: {
-                      ...baseTypes,
-                      model: 'looking_similar',
-                      objectID: atob(root.uid),
-                    },
-                  }
-
-                if (key === 'Recommended_for_you_Input')
-                  return {
-                    Recommended_for_you_Input: {
-                      ...baseTypes,
-                      model: 'recommended_for_you',
-                    },
-                  }
-
-                if (key === 'Related_products_Input')
-                  return {
-                    Related_products_Input: {
-                      ...baseTypes,
-                      model: 'related_products',
-                      objectID: atob(root.uid),
-                    },
-                  }
-
-                return null
-              })
-              .filter(nonNullable),
-          },
-        }),
-        valuesFromResults: (res, keys) =>
-          keys
-            .map((_key, index) => res?.results[index])
-            .map((r) =>
-              r?.hits
-                .map((hit) =>
-                  hit && isAlgoliaRecommendHit(hit)
-                    ? algoliaHitToMagentoProduct(hit, storeConfig, groupId)
-                    : null,
-                )
-                .filter(nonNullable),
-            ) ?? null,
-        selectionSet: /* GraphQL */ `
-          {
-            results {
-              nbHits
-              hits {
-                ... on AlgoliarecommendHit {
-                  objectID
-                  additionalProperties
-                }
-              }
-            }
-          }
-        `,
+const resolvers: Resolvers = {
+  Query: {
+    trendingProducts: async (root, args, context, info) =>
+      getRecommendations(
+        'Trending_items_Input',
+        { threshold: 75, ...args.input },
         context,
         info,
-      })) ?? null
-
-    return results
-  }
-}
-
-export const resolvers: Resolvers = {
-  ConfigurableProduct: {
-    // upsell_products: () => [],
-    related_products: createAlgoliaRecommendationRequest('Related_products_Input'),
-    // crosssell_products: createAlgoliaRecommendationRequest('Frequently_bought_together_Input'),
+        await createProductMapper(context),
+      ),
+    trendingFacetValues: (root, args, context, info) =>
+      getRecommendations(
+        'Trending_facet_values_Input',
+        { threshold: 75, ...args.input },
+        context,
+        info,
+        createFacetValueMapper(),
+      ),
   },
 }
+
+function isEnabled(location: InputMaybe<GraphCommerceAlgoliaRecommendationLocation> | undefined) {
+  return location && location !== 'DISABLED'
+}
+
+function enumToLocation(
+  location: InputMaybe<GraphCommerceAlgoliaRecommendationLocation> | undefined,
+) {
+  if (!isEnabled(location)) throw Error('Check for isEnabled before calling this function')
+  if (location === 'CROSSSELL_PRODUCTS') return 'crosssell_products' as const
+  if (location === 'UPSELL_PRODUCTS') return 'upsell_products' as const
+  return 'related_products' as const
+}
+
+type ProductResolver = ResolverFn<
+  Maybe<Array<Maybe<ResolversTypes['ProductInterface']>>>,
+  ResolversParentTypes['ProductInterface'],
+  MeshContext,
+  Record<string, never>
+>
+
+if (isEnabled(import.meta.graphCommerce.algolia.relatedProducts)) {
+  const resolver: ProductResolver = async (root, args, context, info) => {
+    if (!root.uid) return null
+    return getRecommendations(
+      'Related_products_Input',
+      { objectID: atob(root.uid), threshold: 75 },
+      context,
+      info,
+      await createProductMapper(context),
+    )
+  }
+
+  productTypes.forEach((productType) => {
+    if (!resolvers[productType]) resolvers[productType] = {}
+    resolvers[productType][enumToLocation(import.meta.graphCommerce.algolia.relatedProducts)] =
+      resolver
+  })
+}
+
+if (isEnabled(import.meta.graphCommerce.algolia.lookingSimilar)) {
+  const resolver: ProductResolver = async (root, args, context, info) => {
+    if (!root.uid) return null
+    return getRecommendations(
+      'Looking_similar_Input',
+      { objectID: atob(root.uid), threshold: 75 },
+      context,
+      info,
+      await createProductMapper(context),
+    )
+  }
+
+  productTypes.forEach((productType) => {
+    if (!resolvers[productType]) resolvers[productType] = {}
+    resolvers[productType][enumToLocation(import.meta.graphCommerce.algolia.lookingSimilar)] =
+      resolver
+  })
+}
+
+if (isEnabled(import.meta.graphCommerce.algolia.frequentlyBoughtTogether)) {
+  const resolver: ProductResolver = async (root, args, context, info) => {
+    if (!root.uid) return null
+    return getRecommendations(
+      'Frequently_bought_together_Input',
+      { objectID: atob(root.uid), threshold: 75 },
+      context,
+      info,
+      await createProductMapper(context),
+    )
+  }
+
+  productTypes.forEach((productType) => {
+    if (!resolvers[productType]) resolvers[productType] = {}
+    resolvers[productType][
+      enumToLocation(import.meta.graphCommerce.algolia.frequentlyBoughtTogether)
+    ] = resolver
+  })
+}
+
+export default resolvers

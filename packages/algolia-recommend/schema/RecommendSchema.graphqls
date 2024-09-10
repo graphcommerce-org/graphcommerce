@@ -1,7 +1,0 @@
-type Recommendations {
-  items: [ProductInterface]
-}
-
-extend type Query {
-  recommendations(recommendType: String): Recommendations
-}

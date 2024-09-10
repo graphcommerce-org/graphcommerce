@@ -56,13 +56,34 @@ function filterPaths(
   )
 }
 
+function isRef(value: any): value is OpenAPIV3.ReferenceObject {
+  return typeof value === 'object' && '$ref' in value
+}
+
 const newSchema: OpenAPIV3.Document = {
   openapi,
   info,
   paths: filterPaths(openApiSchema.paths, {
     '/1/indexes/*/recommendations': [OpenAPIV3.HttpMethods.POST],
   }),
-  components,
+  components: {
+    ...openApiSchema.components,
+    schemas: Object.fromEntries(
+      Object.entries(openApiSchema.components?.schemas ?? {}).map(([schemaKey, schema]) => {
+        if (isRef(schema) || schemaKey !== 'recommendedForYouQuery') return [schemaKey, schema]
+
+        return [
+          schemaKey,
+          {
+            ...schema,
+            oneOf: schema.oneOf?.filter(
+              (item) => !isRef(item) || item.$ref !== '#/components/schemas/recommendedForYouQuery',
+            ),
+          },
+        ]
+      }),
+    ),
+  },
 }
 
 await writeFile(
