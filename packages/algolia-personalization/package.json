@@ -12,7 +12,7 @@
     }
   },
   "scripts": {
-    "generate-insights": "tsx scripts/generate-insights-spec.mts"
+    "generate": "tsx scripts/generate-insights-spec.mts"
   },
   "peerDependencies": {
     "@graphcommerce/algolia-mesh": "^9.0.0-canary.76",
