@@ -1984,7 +1984,6 @@ components:
 
       allOf:
         - $ref: '#/components/schemas/baseSearchParams'
-        - $ref: '#/components/schemas/indexSettingsAsSearchParams'
     searchParams:
       $ref: '#/components/schemas/searchParamsObject'
     processingTimeMS:

@@ -3,10 +3,7 @@ import { writeFile } from 'node:fs/promises'
 import type { OpenAPIV3 } from 'openapi-types'
 import prettier from 'prettier'
 import conf from '@graphcommerce/prettier-config-pwa'
-
-function isRef(value: any): value is OpenAPIV3.ReferenceObject {
-  return typeof value === 'object' && '$ref' in value
-}
+import { algoliaSchemaBaseFilter } from './base-schema-filter.mjs'
 
 const response = await fetch(
   'https://raw.githubusercontent.com/algolia/api-clients-automation/main/specs/bundled/search.yml',
@@ -22,47 +19,13 @@ const newSchema: OpenAPIV3.Document = {
     ...openApiSchema.components,
     schemas: Object.fromEntries(
       Object.entries(openApiSchema.components?.schemas ?? {}).map(([schemaKey, schema]) => {
-        if (isRef(schema)) return [schemaKey, schema]
-
-        if (
-          schema.oneOf &&
-          schema.oneOf[0]?.['$ref'] === '#/components/schemas/searchParamsString' &&
-          schema.oneOf[1]?.['$ref'] === '#/components/schemas/searchParamsObject'
-        ) {
-          return [schemaKey, { $ref: '#/components/schemas/searchParamsObject' }]
-        }
-
-        if (schemaKey === 'facetFilters') {
-          return [schemaKey, { ...schema, example: undefined, oneOf: undefined, type: 'object' }]
-        }
-
-        return [
-          schemaKey,
-          {
-            ...schema,
-            default: undefined,
-            properties: schema.properties
-              ? Object.fromEntries(
-                  Object.entries(schema.properties).map(([propertyKey, property]) => {
-                    if (isRef(property)) return [propertyKey, property]
-
-                    if (propertyKey === 'customNormalization' || propertyKey === 'facets') {
-                      return [propertyKey, { ...property, example: undefined }]
-                    }
-
-                    return [propertyKey, { ...property, default: undefined }]
-                  }),
-                )
-              : undefined,
-          },
-        ]
+        return algoliaSchemaBaseFilter(schemaKey, schema)
       }),
     ),
   },
   paths: {
     ...Object.fromEntries(
       Object.entries(openApiSchema.paths)
-
         .map(([path, pathItem]) => {
           if (!pathItem) return [path, pathItem]
           const newValue = pathItem
