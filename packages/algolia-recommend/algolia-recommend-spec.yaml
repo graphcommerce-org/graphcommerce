@@ -226,7 +226,6 @@ components:
     query:
       type: string
       description: Search query.
-      default: ''
       x-categories:
         - Search
     searchParamsQuery:
@@ -294,17 +293,9 @@ components:
         
         `facet:\-value`.
 
-      example:
-        - - category:Book
-          - category:-Movie
-        - author:John Doe
-      oneOf:
-        - type: array
-          items:
-            $ref: '#/components/schemas/facetFilters'
-        - type: string
       x-categories:
         - Filtering
+      type: object
     optionalFilters:
       description: >
         Filters to promote or demote records in the search results.
@@ -386,7 +377,6 @@ components:
     page:
       type: integer
       description: Page of search results to retrieve.
-      default: 0
       minimum: 0
       x-categories:
         - Pagination
@@ -403,13 +393,11 @@ components:
         This parameter is ignored if you also specify `insidePolygon` or `insideBoundingBox`.
 
       example: 40.71,-74.01
-      default: ''
       x-categories:
         - Geo-Search
     aroundLatLngViaIP:
       type: boolean
       description: Whether to obtain the coordinates from the request's IP address.
-      default: false
       x-categories:
         - Geo-Search
     aroundRadiusAll:
@@ -659,7 +647,6 @@ components:
             
             Combine it with `filters` to narrow down the list of results.
 
-          default: ''
           example: comedy drama crime Macy Buscemi
           x-categories:
             - Search
@@ -685,7 +672,6 @@ components:
             
             For more information, see [filter scores](https://www.algolia.com/doc/guides/managing-results/refine-results/filtering/in-depth/filter-scoring/#accumulating-scores-with-sumorfiltersscores).
 
-          default: false
           x-categories:
             - Filtering
         restrictSearchableAttributes:
@@ -698,7 +684,6 @@ components:
           description: |
             Restricts a search to a subset of your searchable attributes.
             Attribute names are case-sensitive.
-          default: []
           x-categories:
             - Filtering
         facets:
@@ -714,8 +699,6 @@ components:
             For more information, see [facets](https://www.algolia.com/doc/guides/managing-results/refine-results/faceting/#contextual-facet-values-and-counts).
 
           default: []
-          example:
-            - '*'
           x-categories:
             - Faceting
         facetingAfterDistinct:
@@ -730,7 +713,6 @@ components:
             
             as `facetingAfterDistinct` only computes correct facet counts if all records have the same facet values for the `attributeForDistinct`.
 
-          default: false
           x-categories:
             - Faceting
         page:
@@ -781,7 +763,6 @@ components:
             
             - Adds a `natural_language` attribute to `ruleContexts` and `analyticsTags`.
 
-          default: []
           x-categories:
             - Languages
         ruleContexts:
@@ -794,7 +775,6 @@ components:
             
             [Rule contexts](https://www.algolia.com/doc/guides/managing-results/rules/rules-overview/how-to/customize-search-results-by-platform/#whats-a-context) are strings that you can use to trigger matching rules.
 
-          default: []
           example:
             - mobile
           x-categories:
@@ -809,7 +789,6 @@ components:
             
             For more information, see [Understanding Personalization impact](https://www.algolia.com/doc/guides/personalization/personalizing-results/in-depth/configuring-personalization/#understanding-personalization-impact).
 
-          default: 100
           minimum: 0
           maximum: 100
           x-categories:
@@ -821,13 +800,11 @@ components:
           description: >-
             Whether the search response should include detailed ranking information.
 
-          default: false
           x-categories:
             - Advanced
         synonyms:
           type: boolean
           description: Whether to take into account an index's synonyms for this search.
-          default: true
           x-categories:
             - Advanced
         clickAnalytics:
@@ -838,13 +815,11 @@ components:
             
             The query ID is a unique identifier for a search query and is required for tracking [click and conversion events](https://www.algolia.com/guides/sending-events/getting-started/).
 
-          default: false
           x-categories:
             - Analytics
         analytics:
           type: boolean
           description: Whether this search will be included in Analytics.
-          default: true
           x-categories:
             - Analytics
         analyticsTags:
@@ -854,7 +829,6 @@ components:
           description: >-
             Tags to apply to the query for [segmenting analytics data](https://www.algolia.com/doc/guides/search-analytics/guides/segments/).
 
-          default: []
           x-categories:
             - Analytics
         percentileComputation:
@@ -862,13 +836,11 @@ components:
           description: >-
             Whether to include this search when calculating processing-time percentiles.
 
-          default: true
           x-categories:
             - Advanced
         enableABTest:
           type: boolean
           description: Whether to enable A/B testing for this search.
-          default: true
           x-categories:
             - Advanced
     baseSearchParams:
@@ -878,7 +850,6 @@ components:
     hitsPerPage:
       type: integer
       description: Number of hits per page.
-      default: 20
       minimum: 1
       maximum: 1000
       x-categories:
@@ -992,7 +963,6 @@ components:
         
         For more information, see [Prefix searching](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/override-search-engine-defaults/in-depth/prefix-searching/).
 
-      default: prefixLast
       x-categories:
         - Query strategy
     removeWordsIfNoResults:
@@ -1025,7 +995,6 @@ components:
         
         For more information, see [Remove words to improve results](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/empty-or-insufficient-results/in-depth/why-use-remove-words-if-no-results/).
 
-      default: none
       x-categories:
         - Query strategy
     mode:
@@ -1039,7 +1008,6 @@ components:
         
         This setting only applies to indices, for which Algolia enabled NeuralSearch for you.
 
-      default: keywordSearch
       x-categories:
         - Query strategy
     semanticSearch:
@@ -1081,7 +1049,6 @@ components:
           Only exact matches will be highlighted,
           partial and prefix matches won't.
 
-      default: attribute
       x-categories:
         - Query strategy
     alternativesAsExact:
@@ -1141,7 +1108,6 @@ components:
         Maximum number of facet values to return when [searching for facet values](https://www.algolia.com/doc/guides/managing-results/refine-results/faceting/#search-for-facet-values).
 
       maximum: 100
-      default: 10
       x-categories:
         - Advanced
     order:
@@ -1274,8 +1240,6 @@ components:
             
             - The `objectID` attribute is always included.
 
-          default:
-            - '*'
           x-categories:
             - Attributes
         ranking:
@@ -1309,15 +1273,6 @@ components:
             
             and by [A/B testing](https://www.algolia.com/doc/guides/ab-testing/what-is-ab-testing/).
 
-          default:
-            - typo
-            - geo
-            - words
-            - filters
-            - proximity
-            - attribute
-            - exact
-            - custom
           x-categories:
             - Ranking
         customRanking:
@@ -1356,7 +1311,6 @@ components:
             
             or the other attributes will never be applied.
 
-          default: []
           x-categories:
             - Ranking
         relevancyStrictness:
@@ -1370,7 +1324,6 @@ components:
             
             Use this setting to strike a balance between the relevance and number of returned results.
 
-          default: 100
           x-categories:
             - Ranking
         attributesToHighlight:
@@ -1425,7 +1378,6 @@ components:
             
             where `NUMBER` is the number of words to be extracted.
 
-          default: []
           x-categories:
             - Highlighting and Snippeting
         highlightPreTag:
@@ -1433,7 +1385,6 @@ components:
           description: >-
             HTML tag to insert before the highlighted parts in all highlighted results and snippets.
 
-          default: <em>
           x-categories:
             - Highlighting and Snippeting
         highlightPostTag:
@@ -1441,13 +1392,11 @@ components:
           description: >-
             HTML tag to insert after the highlighted parts in all highlighted results and snippets.
 
-          default: </em>
           x-categories:
             - Highlighting and Snippeting
         snippetEllipsisText:
           type: string
           description: String used as an ellipsis indicator when a snippet is truncated.
-          default: …
           x-categories:
             - Highlighting and Snippeting
         restrictHighlightAndSnippetArrays:
@@ -1457,7 +1406,6 @@ components:
             
             By default, all items are highlighted and snippeted.
 
-          default: false
           x-categories:
             - Highlighting and Snippeting
         hitsPerPage:
@@ -1467,7 +1415,6 @@ components:
           description: >-
             Minimum number of characters a word in the search query must contain to accept matches with [one typo](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/in-depth/configuring-typo-tolerance/#configuring-word-length-for-typos).
 
-          default: 4
           x-categories:
             - Typos
         minWordSizefor2Typos:
@@ -1475,7 +1422,6 @@ components:
           description: >-
             Minimum number of characters a word in the search query must contain to accept matches with [two typos](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/in-depth/configuring-typo-tolerance/#configuring-word-length-for-typos).
 
-          default: 8
           x-categories:
             - Typos
         typoTolerance:
@@ -1487,7 +1433,6 @@ components:
 
             Turn off this setting to reduce the number of irrelevant matches
             when searching in large sets of similar numbers.
-          default: true
           x-categories:
             - Typos
         disableTypoToleranceOnAttributes:
@@ -1512,7 +1457,6 @@ components:
             
             Consider alternatives such as `disableTypoToleranceOnWords` or adding synonyms if your attributes have intentional unusual spellings that might look like typos.
 
-          default: []
           x-categories:
             - Typos
         ignorePlurals:
@@ -1528,7 +1472,6 @@ components:
             By default, Algolia removes diacritics from letters.
             For example, `é` becomes `e`. If this causes issues in your search,
             you can specify characters that should keep their diacritics.
-          default: ''
           x-categories:
             - Languages
         queryLanguages:
@@ -1558,7 +1501,6 @@ components:
             
             For more information, see [Language-specific configuration](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/language-specific-configurations/).
 
-          default: []
           x-categories:
             - Languages
         decompoundQuery:
@@ -1575,19 +1517,16 @@ components:
             
             For example, `Gartenstühle` won't be decompounded if the `ü` consists of `u` (U+0075) and `◌̈` (U+0308).
 
-          default: true
           x-categories:
             - Languages
         enableRules:
           type: boolean
           description: Whether to enable rules.
-          default: true
           x-categories:
             - Rules
         enablePersonalization:
           type: boolean
           description: Whether to enable Personalization.
-          default: false
           x-categories:
             - Personalization
         queryType:
@@ -1606,7 +1545,6 @@ components:
             
             Use the `advancedSyntaxFeatures` parameter to control which feature is supported.
 
-          default: false
           x-categories:
             - Query strategy
         optionalWords:
@@ -1643,7 +1581,6 @@ components:
             
             For more information, see [Optional words](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/empty-or-insufficient-results/#creating-a-list-of-optional-words).
 
-          default: []
           x-categories:
             - Query strategy
         disableExactOnAttributes:
@@ -1666,7 +1603,6 @@ components:
             
             This reduces the impact of individual attributes with a lot of content on ranking.
 
-          default: []
           x-categories:
             - Query strategy
         exactOnSingleWordQuery:
@@ -1688,9 +1624,6 @@ components:
             - `multiWordsSynonym`.
               Multi-word synonyms, such as "NY/New York" are considered exact matches.
 
-          default:
-            - ignorePlurals
-            - singleWordSynonym
           x-categories:
             - Query strategy
         advancedSyntaxFeatures:
@@ -1709,9 +1642,6 @@ components:
               For example, `search -engine` matches records that contain "search" but not "engine".
 
             This setting only has an effect if `advancedSyntax` is true.
-          default:
-            - exactPhrase
-            - excludeWords
           x-categories:
             - Query strategy
         distinct:
@@ -1735,7 +1665,6 @@ components:
             
             but all occurences of "house" are replaced by "home" in the highlighted response.
 
-          default: false
           x-categories:
             - Highlighting and Snippeting
         minProximity:
@@ -1753,7 +1682,6 @@ components:
             
             For example, if `minProximity` is 2, neighboring matches and matches with one word between them would have the same score.
 
-          default: 1
           x-categories:
             - Advanced
         responseFields:
@@ -1778,8 +1706,6 @@ components:
             
             Don't exclude properties that you might need in your search UI.
 
-          default:
-            - '*'
           x-categories:
             - Advanced
         maxFacetHits:
@@ -1787,7 +1713,6 @@ components:
         maxValuesPerFacet:
           type: integer
           description: Maximum number of facet values to return for each facet.
-          default: 100
           maximum: 1000
           x-categories:
             - Faceting
@@ -1808,7 +1733,6 @@ components:
             
             For more information, see [facet value display](https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/facet-display/js/).
 
-          default: count
           x-categories:
             - Faceting
         attributeCriteriaComputedByMinProximity:
@@ -1823,7 +1747,6 @@ components:
             
             Otherwise, the best matching attribute is determined by the order in the `searchableAttributes` setting.
 
-          default: false
           x-categories:
             - Advanced
         renderingContent:
@@ -1836,7 +1759,6 @@ components:
             
             This setting only has an effect if you activated Dynamic Re-Ranking for this index in the Algolia dashboard.
 
-          default: true
           x-categories:
             - Filtering
         reRankingApplyFilter:
@@ -1850,13 +1772,10 @@ components:
 
       allOf:
         - $ref: '#/components/schemas/baseSearchParams'
-        - $ref: '#/components/schemas/indexSettingsAsSearchParams'
     searchParams:
       title: queryParameters
       allOf:
         - $ref: '#/components/schemas/searchParamsObject'
-        - type: object
-          description: Search parameters for filtering the recommendations.
     baseRecommendRequest:
       type: object
       additionalProperties: false
@@ -1875,7 +1794,6 @@ components:
           type: integer
           minimum: 1
           maximum: 1000
-          default: 30
           description: >
             Maximum number of recommendations to retrieve.
             
@@ -1886,7 +1804,7 @@ components:
             the actual number of recommendations may be lower than this value.
 
         queryParameters:
-          $ref: '#/components/schemas/searchParams'
+          $ref: '#/components/schemas/searchParamsObject'
       required:
         - indexName
         - threshold
@@ -1935,10 +1853,6 @@ components:
       title: fallbackParameters
       allOf:
         - $ref: '#/components/schemas/searchParamsObject'
-        - type: object
-          description: >-
-            Search parameters to use for a fallback request if there aren't enough recommendations.
-
     relatedProducts:
       type: object
       properties:
@@ -1947,7 +1861,7 @@ components:
         objectID:
           $ref: '#/components/schemas/objectID'
         fallbackParameters:
-          $ref: '#/components/schemas/fallbackParams'
+          $ref: '#/components/schemas/searchParamsObject'
       required:
         - model
         - objectID
@@ -2016,7 +1930,7 @@ components:
         model:
           $ref: '#/components/schemas/trendingFacetsModel'
         fallbackParameters:
-          $ref: '#/components/schemas/fallbackParams'
+          $ref: '#/components/schemas/searchParamsObject'
       required:
         - facetName
         - model
@@ -2043,7 +1957,7 @@ components:
         objectID:
           $ref: '#/components/schemas/objectID'
         fallbackParameters:
-          $ref: '#/components/schemas/fallbackParams'
+          $ref: '#/components/schemas/searchParamsObject'
       required:
         - model
         - objectID
@@ -2064,7 +1978,7 @@ components:
         model:
           $ref: '#/components/schemas/recommendedForYouModel'
         fallbackParameters:
-          $ref: '#/components/schemas/fallbackParams'
+          $ref: '#/components/schemas/searchParamsObject'
       required:
         - model
     recommendedForYouQuery:
@@ -2123,7 +2037,6 @@ components:
         An object with custom data.
 
         You can store up to 32kB as custom data.
-      default: {}
       x-categories:
         - Advanced
     baseSearchResponse:
@@ -2210,10 +2123,6 @@ components:
               x-additionalPropertiesName: facet count
               type: integer
           description: Facet counts.
-          example:
-            category:
-              food: 1
-              tech: 42
         facets_stats:
           type: object
           description: Statistics for numerical facets.
@@ -2729,7 +2638,6 @@ components:
           example: Display a promotional banner
         enabled:
           type: boolean
-          default: true
           description: >-
             Indicates whether to enable the rule. If it isn't enabled, it isn't applied at query time.
 
@@ -2758,14 +2666,12 @@ components:
     parameters_query:
       type: string
       description: Search query.
-      default: ''
     parameters_page:
       type: integer
       minimum: 0
       description: Requested page of the API response.
     parameters_hitsPerPage:
       type: integer
-      default: 20
       minimum: 1
       maximum: 1000
       description: Maximum number of hits per page.

@@ -3,6 +3,7 @@ import { writeFile, readFile } from 'node:fs/promises'
 import { OpenAPIV3 } from 'openapi-types'
 import prettier from 'prettier'
 import conf from '@graphcommerce/prettier-config-pwa'
+import { algoliaSchemaBaseFilter } from '@graphcommerce/algolia-mesh/scripts/base-schema-filter.mjs'
 
 const response = await fetch(
   'https://raw.githubusercontent.com/algolia/api-clients-automation/main/specs/bundled/recommend.yml',
@@ -69,27 +70,62 @@ const newSchema: OpenAPIV3.Document = {
   components: {
     ...openApiSchema.components,
     schemas: Object.fromEntries(
-      Object.entries(openApiSchema.components?.schemas ?? {}).map(([schemaKey, schema]) => {
-        if (isRef(schema) || schemaKey !== 'recommendedForYouQuery') return [schemaKey, schema]
+      Object.entries(openApiSchema.components?.schemas ?? {}).map(
+        ([incomingKey, incomingSchema]) => {
+          const [schemaKey, schema] = algoliaSchemaBaseFilter(incomingKey, incomingSchema)
+          if (isRef(schema)) return [schemaKey, schema]
 
-        return [
-          schemaKey,
-          {
-            ...schema,
-            oneOf: schema.oneOf?.filter(
-              (item) => !isRef(item) || item.$ref !== '#/components/schemas/recommendedForYouQuery',
-            ),
-          },
-        ]
-      }),
+          // Some object have an addition type 'object' which removes all types of the object, we only add known properties here.
+          const ref = schema.allOf?.find((item) => isRef(item))
+          const obj = schema.allOf?.find((item) => !isRef(item) && item.type === 'object')
+          if (ref && obj) {
+            return [schemaKey, { ...schema, allOf: [ref satisfies OpenAPIV3.ReferenceObject] }]
+          }
+
+          if (schemaKey === 'recommendedForYouQuery') {
+            return [
+              schemaKey,
+              {
+                ...schema,
+                oneOf: schema.oneOf?.filter(
+                  (item) =>
+                    !isRef(item) || item.$ref !== '#/components/schemas/recommendedForYouQuery',
+                ),
+              },
+            ]
+          }
+
+          if (schemaKey === 'fallbackParams') {
+            return [schemaKey, undefined]
+          }
+
+          return [
+            schemaKey,
+            {
+              ...schema,
+              properties: schema.properties
+                ? {
+                    ...schema.properties,
+                    ...(schema?.properties?.fallbackParameters
+                      ? { fallbackParameters: { $ref: '#/components/schemas/searchParamsObject' } }
+                      : {}),
+                    ...(schema?.properties?.queryParameters
+                      ? { queryParameters: { $ref: '#/components/schemas/searchParamsObject' } }
+                      : {}),
+                  }
+                : undefined,
+            },
+          ]
+        },
+      ),
     ),
   },
 }
 
 await writeFile(
   './algolia-recommend-spec.yaml',
-  await prettier.format(JSON.stringify(newSchema), {
-    parser: 'json',
+  await prettier.format(yaml.dump(newSchema), {
+    parser: 'yaml',
     ...conf,
   }),
 )
