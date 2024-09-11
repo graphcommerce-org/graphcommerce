@@ -18,19 +18,6 @@ export function algoliaSchemaBaseFilter(
     return [schemaKey, { $ref: '#/components/schemas/searchParamsObject' }]
   }
 
-  if (schemaKey === 'searchParamsObject') {
-    return [
-      schemaKey,
-      {
-        ...schema,
-        allOf: schema.allOf?.filter(
-          (item) =>
-            !isRef(item) || item.$ref !== '#/components/schemas/indexSettingsAsSearchParams',
-        ),
-      },
-    ]
-  }
-
   if (schemaKey === 'facetFilters') {
     return [schemaKey, { ...schema, example: undefined, oneOf: undefined, type: 'object' }]
   }
