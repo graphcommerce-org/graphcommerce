@@ -405,128 +405,17 @@ components:
         
         The required ACL to make a request is listed in each endpoint's reference.
 
-  parameters:
-    PathInPath:
-      name: path
-      in: path
-      description: Path of the endpoint, anything after "/1" must be specified.
-      required: true
-      schema:
-        type: string
-        example: /keys
-    Parameters:
-      name: parameters
-      in: query
-      description: Query parameters to apply to the current query.
-      schema:
-        type: object
-        additionalProperties: true
-    IndexName:
-      name: indexName
-      in: path
-      description: Name of the index on which to perform the operation.
-      required: true
-      schema:
-        type: string
-        example: YourIndexName
-    ObjectID:
-      name: objectID
-      in: path
-      description: Unique record identifier.
-      required: true
-      schema:
-        $ref: '#/components/schemas/objectID'
-    ForwardToReplicas:
-      in: query
-      name: forwardToReplicas
-      required: false
-      description: Whether changes are applied to replica indices.
-      schema:
-        type: boolean
-    parameters_ObjectID:
-      name: objectID
-      in: path
-      description: Unique identifier of a synonym object.
-      required: true
-      schema:
-        type: string
-        example: synonymID
-    ReplaceExistingSynonyms:
-      in: query
-      name: replaceExistingSynonyms
-      schema:
-        type: boolean
-      description: >-
-        Whether to replace all synonyms in the index with the ones sent with this request.
-
-    KeyString:
-      in: path
-      name: key
-      required: true
-      schema:
-        type: string
-        example: YourAPIKey
-      description: API key.
-    ObjectIDRule:
-      in: path
-      name: objectID
-      description: Unique identifier of a rule object.
-      required: true
-      schema:
-        $ref: '#/components/schemas/ruleID'
-    ClearExistingRules:
-      in: query
-      name: clearExistingRules
-      required: false
-      schema:
-        type: boolean
-      description: Whether existing rules should be deleted before adding this batch.
-    DictionaryName:
-      in: path
-      name: dictionaryName
-      description: Dictionary type in which to search.
-      required: true
-      schema:
-        $ref: '#/components/schemas/dictionaryType'
-    Page:
-      in: query
-      name: page
-      description: |
-        Requested page of the API response.
-        If `null`, the API response is not paginated.
-      required: false
-      schema:
-        oneOf:
-          - type: integer
-            minimum: 0
-          - type: 'null'
-        default: null
-    HitsPerPage:
-      in: query
-      name: hitsPerPage
-      description: Number of hits per page.
-      required: false
-      schema:
-        type: integer
-        default: 100
-    UserIDInHeader:
-      name: X-Algolia-User-ID
-      description: Unique identifier of the user who makes the search request.
-      in: header
-      required: true
-      schema:
-        $ref: '#/components/schemas/userID'
-    UserIDInPath:
-      name: userID
-      description: Unique identifier of the user who makes the search request.
-      in: path
-      required: true
-      schema:
-        $ref: '#/components/schemas/userID'
   schemas:
+    attributeToUpdate:
+      x-keep-model: true
+      deprecated: true
+      oneOf:
+        - type: string
+        - $ref: '#/components/schemas/builtInOperation'
     ErrorBase:
       description: Error.
       type: object
+      x-keep-model: true
       additionalProperties: true
       properties:
         message:
@@ -538,6 +427,7 @@ components:
       type: string
     searchParamsString:
       type: object
+      title: Search parameters as query string.
       description: Search parameters as query string.
       additionalProperties: false
       x-discriminator-fields:
@@ -1047,7 +937,7 @@ components:
         length:
           type: integer
           description: Number of hits to retrieve (used in combination with `offset`).
-          minimum: 1
+          minimum: 0
           maximum: 1000
           x-categories:
             - Pagination
@@ -1204,6 +1094,11 @@ components:
         - $ref: '#/components/schemas/typoToleranceEnum'
       x-categories:
         - Typos
+    booleanString:
+      type: string
+      enum:
+        - 'true'
+        - 'false'
     ignorePlurals:
       description: |
         Treat singular, plurals, and other forms of declensions as equivalent.
@@ -1218,6 +1113,7 @@ components:
             This overrides languages you set with `queryLanguages`.
           items:
             $ref: '#/components/schemas/supportedLanguage'
+        - $ref: '#/components/schemas/booleanString'
         - type: boolean
           description: >
             If true, `ignorePlurals` is active for all languages included in `queryLanguages`, or for all supported languages, if `queryLanguges` is empty.
@@ -2221,7 +2117,6 @@ components:
               type: integer
           description: Facet counts.
         facets_stats:
-          title: facetsStats
           type: object
           description: Statistics for numerical facets.
           additionalProperties:
@@ -2308,6 +2203,9 @@ components:
             Unique identifier for the query. This is used for [click analytics](https://www.algolia.com/doc/guides/analytics/click-analytics/).
 
           example: a00dbc80a8d13c4565a442e7e2dca80a
+        _automaticInsights:
+          type: boolean
+          description: Whether automatic events collection is enabled for the application.
     nbHits:
       type: integer
       description: Number of results (hits).
@@ -2377,6 +2275,9 @@ components:
         - value
         - matchLevel
         - matchedWords
+      x-discriminator-fields:
+        - matchLevel
+        - matchedWords
     highlightResultOptionMap:
       type: object
       description: Surround words that match the query with HTML tags for highlighting.
@@ -2411,6 +2312,8 @@ components:
           $ref: '#/components/schemas/matchLevel'
       required:
         - value
+        - matchLevel
+      x-discriminator-fields:
         - matchLevel
     snippetResultOptionMap:
       type: object
@@ -2798,44 +2701,6 @@ components:
           $ref: '#/components/schemas/taskID'
         updatedAt:
           $ref: '#/components/schemas/updatedAt'
-    attribute:
-      type: string
-      description: Value of the attribute to update.
-    builtInOperationType:
-      type: string
-      enum:
-        - Increment
-        - Decrement
-        - Add
-        - Remove
-        - AddUnique
-        - IncrementFrom
-        - IncrementSet
-      description: How to change the attribute.
-    builtInOperationValue:
-      oneOf:
-        - type: string
-          description: >-
-            A string to append or remove for the `Add`, `Remove`, and `AddUnique` operations.
-
-        - type: integer
-          description: A number to add, remove, or append, depending on the operation.
-    builtInOperation:
-      type: object
-      description: Update to perform on the attribute.
-      additionalProperties: false
-      properties:
-        _operation:
-          $ref: '#/components/schemas/builtInOperationType'
-        value:
-          $ref: '#/components/schemas/builtInOperationValue'
-      required:
-        - _operation
-        - value
-    attributeToUpdate:
-      oneOf:
-        - $ref: '#/components/schemas/attribute'
-        - $ref: '#/components/schemas/builtInOperation'
     action:
       type: string
       enum:
@@ -3730,6 +3595,8 @@ components:
       required:
         - position
         - objectIDs
+      x-discriminator-fields:
+        - objectIDs
     promoteObjectID:
       title: objectID
       description: Record to promote.
@@ -3742,6 +3609,8 @@ components:
           $ref: '#/components/schemas/promotePosition'
       required:
         - position
+        - objectID
+      x-discriminator-fields:
         - objectID
     promote:
       oneOf:
@@ -4094,6 +3963,15 @@ components:
       description: >-
         Task status, `published` if the task is completed, `notPublished` otherwise.
 
+    GetTaskResponse:
+      title: getTaskResponse
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          $ref: '#/components/schemas/taskStatus'
+      required:
+        - status
     operationType:
       type: string
       enum:
@@ -4289,6 +4167,155 @@ components:
         - copyOperationResponse
         - batchResponses
         - moveOperationResponse
+    builtInOperationType:
+      type: string
+      enum:
+        - Increment
+        - Decrement
+        - Add
+        - Remove
+        - AddUnique
+        - IncrementFrom
+        - IncrementSet
+      description: How to change the attribute.
+    builtInOperationValue:
+      oneOf:
+        - type: string
+          description: >-
+            A string to append or remove for the `Add`, `Remove`, and `AddUnique` operations.
+
+        - type: integer
+          description: A number to add, remove, or append, depending on the operation.
+    builtInOperation:
+      type: object
+      description: Update to perform on the attribute.
+      additionalProperties: false
+      properties:
+        _operation:
+          $ref: '#/components/schemas/builtInOperationType'
+        value:
+          $ref: '#/components/schemas/builtInOperationValue'
+      required:
+        - _operation
+        - value
+  parameters:
+    PathInPath:
+      name: path
+      in: path
+      description: Path of the endpoint, anything after "/1" must be specified.
+      required: true
+      schema:
+        type: string
+        example: /keys
+    Parameters:
+      name: parameters
+      in: query
+      description: Query parameters to apply to the current query.
+      schema:
+        type: object
+        additionalProperties: true
+    IndexName:
+      name: indexName
+      in: path
+      description: Name of the index on which to perform the operation.
+      required: true
+      schema:
+        type: string
+        example: YourIndexName
+    ObjectID:
+      name: objectID
+      in: path
+      description: Unique record identifier.
+      required: true
+      schema:
+        $ref: '#/components/schemas/objectID'
+    ForwardToReplicas:
+      in: query
+      name: forwardToReplicas
+      required: false
+      description: Whether changes are applied to replica indices.
+      schema:
+        type: boolean
+    parameters_ObjectID:
+      name: objectID
+      in: path
+      description: Unique identifier of a synonym object.
+      required: true
+      schema:
+        type: string
+        example: synonymID
+    ReplaceExistingSynonyms:
+      in: query
+      name: replaceExistingSynonyms
+      schema:
+        type: boolean
+      description: >-
+        Whether to replace all synonyms in the index with the ones sent with this request.
+
+    KeyString:
+      in: path
+      name: key
+      required: true
+      schema:
+        type: string
+        example: YourAPIKey
+      description: API key.
+    ObjectIDRule:
+      in: path
+      name: objectID
+      description: Unique identifier of a rule object.
+      required: true
+      schema:
+        $ref: '#/components/schemas/ruleID'
+    ClearExistingRules:
+      in: query
+      name: clearExistingRules
+      required: false
+      schema:
+        type: boolean
+      description: Whether existing rules should be deleted before adding this batch.
+    DictionaryName:
+      in: path
+      name: dictionaryName
+      description: Dictionary type in which to search.
+      required: true
+      schema:
+        $ref: '#/components/schemas/dictionaryType'
+    Page:
+      in: query
+      name: page
+      description: |
+        Requested page of the API response.
+        If `null`, the API response is not paginated.
+      required: false
+      schema:
+        oneOf:
+          - type: integer
+            minimum: 0
+          - type: 'null'
+        default: null
+    HitsPerPage:
+      in: query
+      name: hitsPerPage
+      description: Number of hits per page.
+      required: false
+      schema:
+        type: integer
+        default: 100
+    UserIDInHeader:
+      name: X-Algolia-User-ID
+      description: Unique identifier of the user who makes the search request.
+      in: header
+      required: true
+      schema:
+        $ref: '#/components/schemas/userID'
+    UserIDInPath:
+      name: userID
+      description: Unique identifier of the user who makes the search request.
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/userID'
   responses:
     BadRequest:
       description: Bad request or request arguments.
