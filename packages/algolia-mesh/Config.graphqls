@@ -1,3 +1,6 @@
+"""
+Algolia configuration for GraphCommerce.
+"""
 input GraphCommerceAlgoliaConfig {
   """
   Configure your Algolia application ID.

@@ -1,10 +1,10 @@
 input TrendingProductsInput {
-  maxRecommendations: Int = 10
+  maxRecommendations: Int = 8
 
   """
   Minimum score a recommendation must have to be included in the response.
   """
-  threshold: NonNegativeFloat! = 75
+  threshold: Float! = 75
 
   """
   Facet attribute. To be used in combination with `facetValue`.
@@ -20,19 +20,19 @@ input TrendingProductsInput {
 }
 
 input TrendingFacetValuesInput {
-  maxRecommendations: Int = 10
+  maxRecommendations: Int = 8
 
   """
   Minimum score a recommendation must have to be included in the response.
   """
-  threshold: NonNegativeFloat! = 75
+  threshold: Float! = 75
   """
   Facet attribute for which to retrieve trending facet values.
   """
   facetName: String!
 }
 
-type TrendingFacet {
+type TrendingFacetValue {
   facetName: String!
   facetValue: String!
 }
@@ -40,5 +40,88 @@ type TrendingFacet {
 extend type Query {
   trendingProducts(input: TrendingProductsInput!): [ProductInterface]
 
-  trendingFacetValues(input: TrendingFacetValuesInput!): [TrendingFacet]
+  trendingFacetValues(input: TrendingFacetValuesInput!): [TrendingFacetValue]
+}
+
+input AlgoliaLookingSimilarInput {
+  maxRecommendations: Int = 8
+
+  """
+  Minimum score a recommendation must have to be included in the response.
+  """
+  threshold: Float! = 75
+}
+
+input AlgoliaFrequentlyBoughtTogetherInput {
+  maxRecommendations: Int = 8
+
+  """
+  Minimum score a recommendation must have to be included in the response.
+  """
+  threshold: Float! = 75
+}
+
+input AlgoliaRelatedProductsInput {
+  maxRecommendations: Int = 8
+
+  """
+  Minimum score a recommendation must have to be included in the response.
+  """
+  threshold: Float! = 75
+}
+
+interface ProductInterface {
+  algolia_looking_similar(input: AlgoliaLookingSimilarInput): [ProductInterface]
+  algolia_frequently_bought_together(
+    input: AlgoliaFrequentlyBoughtTogetherInput
+  ): [ProductInterface]
+  algolia_related_products(input: AlgoliaRelatedProductsInput): [ProductInterface]
+}
+
+type SimpleProduct implements ProductInterface {
+  algolia_looking_similar(input: AlgoliaLookingSimilarInput): [ProductInterface]
+  algolia_frequently_bought_together(
+    input: AlgoliaFrequentlyBoughtTogetherInput
+  ): [ProductInterface]
+  algolia_related_products(input: AlgoliaRelatedProductsInput): [ProductInterface]
+}
+
+type VirtualProduct implements ProductInterface {
+  algolia_looking_similar(input: AlgoliaLookingSimilarInput): [ProductInterface]
+  algolia_frequently_bought_together(
+    input: AlgoliaFrequentlyBoughtTogetherInput
+  ): [ProductInterface]
+  algolia_related_products(input: AlgoliaRelatedProductsInput): [ProductInterface]
+}
+
+type ConfigurableProduct implements ProductInterface {
+  algolia_looking_similar(input: AlgoliaLookingSimilarInput): [ProductInterface]
+  algolia_frequently_bought_together(
+    input: AlgoliaFrequentlyBoughtTogetherInput
+  ): [ProductInterface]
+  algolia_related_products(input: AlgoliaRelatedProductsInput): [ProductInterface]
+}
+
+type BundleProduct implements ProductInterface {
+  algolia_looking_similar(input: AlgoliaLookingSimilarInput): [ProductInterface]
+  algolia_frequently_bought_together(
+    input: AlgoliaFrequentlyBoughtTogetherInput
+  ): [ProductInterface]
+  algolia_related_products(input: AlgoliaRelatedProductsInput): [ProductInterface]
+}
+
+type DownloadableProduct implements ProductInterface {
+  algolia_looking_similar(input: AlgoliaLookingSimilarInput): [ProductInterface]
+  algolia_frequently_bought_together(
+    input: AlgoliaFrequentlyBoughtTogetherInput
+  ): [ProductInterface]
+  algolia_related_products(input: AlgoliaRelatedProductsInput): [ProductInterface]
+}
+
+type GroupedProduct implements ProductInterface {
+  algolia_looking_similar(input: AlgoliaLookingSimilarInput): [ProductInterface]
+  algolia_frequently_bought_together(
+    input: AlgoliaFrequentlyBoughtTogetherInput
+  ): [ProductInterface]
+  algolia_related_products(input: AlgoliaRelatedProductsInput): [ProductInterface]
 }
