@@ -2,15 +2,13 @@
 import fragments from '@graphcommerce/graphql/generated/fragments.json'
 import type {
   AlgoliaLookingSimilarInput,
+  AlgoliaRelatedProductsInput,
   MeshContext,
   ProductInterfaceResolvers,
-  RequireFields,
   ResolverFn,
   Resolvers,
   ResolversParentTypes,
   ResolversTypes,
-  SimpleProductalgolia_looking_similarArgs,
-  VirtualProductalgolia_looking_similarArgs,
 } from '@graphcommerce/graphql-mesh'
 import {
   GraphCommerceAlgoliaRecommendationLocation,
@@ -19,6 +17,7 @@ import {
 } from '@graphcommerce/next-config'
 import { createProductMapper } from './createProductMapper'
 import { createFacetValueMapper } from './createValueFacetMapper'
+import { getRecommendationsArgs } from './getRecommendationArgs'
 import { getRecommendations } from './getRecommendations'
 
 type ProductTypes = NonNullable<Awaited<ReturnType<ProductInterfaceResolvers['__resolveType']>>>
@@ -26,22 +25,42 @@ const productInterfaceTypes = fragments.possibleTypes.ProductInterface as Produc
 
 const resolvers: Resolvers = {
   Query: {
-    trendingProducts: async (root, args, context, info) =>
-      getRecommendations(
+    trendingProducts: async (root, args, context, info) => {
+      const { facetName, facetValue } = args.input
+      const { threshold, fallbackParameters, maxRecommendations, queryParameters } =
+        await getRecommendationsArgs(root, args, context)
+      return getRecommendations(
         'Trending_items_Input',
-        { threshold: 75, ...args.input },
+        {
+          threshold,
+          facetName,
+          facetValue,
+          fallbackParameters,
+          maxRecommendations,
+          queryParameters,
+        },
         context,
         info,
         await createProductMapper(context),
-      ),
-    trendingFacetValues: (root, args, context, info) =>
-      getRecommendations(
+      )
+    },
+    trendingFacetValues: async (root, args, context, info) => {
+      const { threshold, fallbackParameters, maxRecommendations, queryParameters } =
+        await getRecommendationsArgs(root, args, context)
+      return getRecommendations(
         'Trending_facet_values_Input',
-        { threshold: 75, ...args.input },
+        {
+          facetName: args.input.facetName,
+          threshold,
+          fallbackParameters,
+          maxRecommendations,
+          queryParameters,
+        },
         context,
         info,
         createFacetValueMapper(),
-      ),
+      )
+    },
   },
 }
 
@@ -66,14 +85,18 @@ type ProductResolver = ResolverFn<
 >
 
 if (isEnabled(import.meta.graphCommerce.algolia.relatedProducts)) {
-  const resolve: ProductResolver = async (root, args, context, info) =>
-    getRecommendations(
+  const resolve: ProductResolver = async (root, args, context, info) => {
+    const { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters } =
+      await getRecommendationsArgs(root, args, context)
+
+    return getRecommendations(
       'Related_products_Input',
-      { objectID: atob(root.uid), threshold: 75 },
+      { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters },
       context,
       info,
       await createProductMapper(context),
     )
+  }
 
   productInterfaceTypes.forEach((productType) => {
     if (!resolvers[productType]) resolvers[productType] = {}
@@ -85,14 +108,17 @@ if (isEnabled(import.meta.graphCommerce.algolia.relatedProducts)) {
 }
 
 if (isEnabled(import.meta.graphCommerce.algolia.lookingSimilar)) {
-  const resolve: ProductResolver = async (root, args, context, info) =>
-    getRecommendations(
+  const resolve: ProductResolver = async (root, args, context, info) => {
+    const { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters } =
+      await getRecommendationsArgs(root, args, context)
+    return getRecommendations(
       'Looking_similar_Input',
-      { objectID: atob(root.uid), threshold: 75 },
+      { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters },
       context,
       info,
       await createProductMapper(context),
     )
+  }
 
   productInterfaceTypes.forEach((productType) => {
     if (!resolvers[productType]) resolvers[productType] = {}
@@ -104,14 +130,18 @@ if (isEnabled(import.meta.graphCommerce.algolia.lookingSimilar)) {
 }
 
 if (isEnabled(import.meta.graphCommerce.algolia.frequentlyBoughtTogether)) {
-  const resolver: ProductResolver = async (root, args, context, info) =>
-    getRecommendations(
+  const resolver: ProductResolver = async (root, args, context, info) => {
+    const { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters } =
+      await getRecommendationsArgs(root, args, context)
+
+    return getRecommendations(
       'Frequently_bought_together_Input',
-      { objectID: atob(root.uid), threshold: 75 },
+      { objectID, threshold, maxRecommendations, queryParameters },
       context,
       info,
       await createProductMapper(context),
     )
+  }
 
   productInterfaceTypes.forEach((productType) => {
     if (!resolvers[productType]) resolvers[productType] = {}
@@ -121,39 +151,66 @@ if (isEnabled(import.meta.graphCommerce.algolia.frequentlyBoughtTogether)) {
   })
 }
 
-type AlgoliaRecommendationResolver = ResolverFn<
+const similar: ResolverFn<
   Maybe<Array<Maybe<ResolversTypes['ProductInterface']>>>,
   ResolversParentTypes['ProductInterface'],
   MeshContext,
   { input?: AlgoliaLookingSimilarInput | null }
->
+> = async (root, args, context, info) => {
+  const { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters } =
+    await getRecommendationsArgs(root, args, context)
 
-const similar: AlgoliaRecommendationResolver = async (root, args, context, info) =>
-  getRecommendations(
+  return getRecommendations(
     'Looking_similar_Input',
-    { objectID: atob(root.uid), threshold: 75, maxRecommendations: 8, ...args.input },
+    { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters },
     context,
     info,
     await createProductMapper(context),
   )
+}
 
-const related: AlgoliaRecommendationResolver = async (root, args, context, info) =>
-  getRecommendations(
+const related: ResolverFn<
+  Maybe<Array<Maybe<ResolversTypes['ProductInterface']>>>,
+  ResolversParentTypes['ProductInterface'],
+  MeshContext,
+  { input?: AlgoliaRelatedProductsInput | null }
+> = async (root, args, context, info) => {
+  const { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters } =
+    await getRecommendationsArgs(root, args, context)
+
+  console.log(queryParameters)
+
+  return getRecommendations(
     'Related_products_Input',
-    { objectID: atob(root.uid), threshold: 75, maxRecommendations: 8, ...args.input },
+    {
+      objectID,
+      threshold,
+      // fallbackParameters,
+      maxRecommendations,
+      queryParameters,
+    },
     context,
     info,
     await createProductMapper(context),
   )
+}
 
-const together: AlgoliaRecommendationResolver = async (root, args, context, info) =>
-  getRecommendations(
+const together: ResolverFn<
+  Maybe<Array<Maybe<ResolversTypes['ProductInterface']>>>,
+  ResolversParentTypes['ProductInterface'],
+  MeshContext,
+  { input?: AlgoliaRelatedProductsInput | null }
+> = async (root, args, context, info) => {
+  const { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters } =
+    await getRecommendationsArgs(root, args, context)
+  return getRecommendations(
     'Frequently_bought_together_Input',
-    { objectID: atob(root.uid), threshold: 75, maxRecommendations: 8, ...args.input },
+    { objectID, threshold, maxRecommendations, queryParameters },
     context,
     info,
     await createProductMapper(context),
   )
+}
 
 productInterfaceTypes.forEach((productType) => {
   if (!resolvers[productType]) resolvers[productType] = {}

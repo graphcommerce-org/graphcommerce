@@ -1,46 +1,16 @@
-input TrendingProductsInput {
-  maxRecommendations: Int = 8
-
+input AlgoliaFallbackParams {
   """
-  Minimum score a recommendation must have to be included in the response.
+  One or more keywords to use in a full-text search.
   """
-  threshold: Float! = 75
-
+  search: String
   """
-  Facet attribute. To be used in combination with `facetValue`.
-  If specified, only recommendations matching the facet filter will be returned.
+  The product attributes to search for and return.
   """
-  facetName: String
-
+  filter: ProductAttributeFilterInput
   """
-  Facet value. To be used in combination with `facetName`.
-  If specified, only recommendations matching the facet filter will be returned.
+  Specifies which attributes to sort on, and whether to return the results in ascending or descending order.
   """
-  facetValue: String
-}
-
-input TrendingFacetValuesInput {
-  maxRecommendations: Int = 8
-
-  """
-  Minimum score a recommendation must have to be included in the response.
-  """
-  threshold: Float! = 75
-  """
-  Facet attribute for which to retrieve trending facet values.
-  """
-  facetName: String!
-}
-
-type TrendingFacetValue {
-  facetName: String!
-  facetValue: String!
-}
-
-extend type Query {
-  trendingProducts(input: TrendingProductsInput!): [ProductInterface]
-
-  trendingFacetValues(input: TrendingFacetValuesInput!): [TrendingFacetValue]
+  sort: ProductAttributeSortInput
 }
 
 input AlgoliaLookingSimilarInput {
@@ -50,6 +20,21 @@ input AlgoliaLookingSimilarInput {
   Minimum score a recommendation must have to be included in the response.
   """
   threshold: Float! = 75
+
+  """
+  One or more keywords to use in a full-text search.
+  """
+  search: String
+
+  """
+  The product attributes to search for and return.
+  """
+  filter: ProductAttributeFilterInput
+
+  """
+  When there are no related products, use this fallback query
+  """
+  fallback: AlgoliaFallbackParams
 }
 
 input AlgoliaFrequentlyBoughtTogetherInput {
@@ -59,6 +44,16 @@ input AlgoliaFrequentlyBoughtTogetherInput {
   Minimum score a recommendation must have to be included in the response.
   """
   threshold: Float! = 75
+
+  """
+  One or more keywords to use in a full-text search.
+  """
+  search: String
+
+  """
+  The product attributes to search for and return.
+  """
+  filter: ProductAttributeFilterInput
 }
 
 input AlgoliaRelatedProductsInput {
@@ -68,6 +63,21 @@ input AlgoliaRelatedProductsInput {
   Minimum score a recommendation must have to be included in the response.
   """
   threshold: Float! = 75
+
+  """
+  One or more keywords to use in a full-text search.
+  """
+  search: String
+
+  """
+  The product attributes to search for and return.
+  """
+  filter: ProductAttributeFilterInput
+
+  """
+  When there are no related products, use this fallback query
+  """
+  fallback: AlgoliaFallbackParams
 }
 
 interface ProductInterface {
