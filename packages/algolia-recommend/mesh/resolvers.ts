@@ -178,8 +178,6 @@ const related: ResolverFn<
   const { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters } =
     await getRecommendationsArgs(root, args, context)
 
-  console.log(queryParameters)
-
   return getRecommendations(
     'Related_products_Input',
     {

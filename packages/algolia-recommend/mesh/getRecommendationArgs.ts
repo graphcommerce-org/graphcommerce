@@ -15,11 +15,9 @@ export async function getRecommendationQueryInput(
   if (queryParameters?.facets) delete queryParameters.facets
   if (queryParameters?.hitsPerPage) delete queryParameters.hitsPerPage
   if (queryParameters?.page) {
-    console.log('jajaja')
     delete queryParameters.page
   }
 
-  console.log('balbla', queryParameters)
   return queryParameters
 }
 
