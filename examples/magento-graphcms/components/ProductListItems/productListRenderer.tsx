@@ -76,9 +76,7 @@ export const productListRenderer: ProductListItemRenderer = {
       topRight={<ProductWishlistChip {...props} />}
     />
   ),
-  // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // // @ts-ignore GiftCardProduct is only available in Commerce
-  // GiftCardProduct: (props) => (
-  //   <ProductListItem {...props} aspectRatio={[1, 1]} />
-  // ),
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore GiftCardProduct is only available in Commerce
+  GiftCardProduct: (props) => <ProductListItem {...props} aspectRatio={[1, 1]} />,
 }
