@@ -32,8 +32,8 @@ export function ProductFiltersProNoResults(props: ProductFitlersProNoResultProps
     >
       {term ? (
         <>
-          <Typography variant='h5' align='center'>
-            <Trans>We couldn&apos;t find any results for {term}</Trans>
+          <Typography variant='h5'>
+            <Trans>We couldn’t find any results for ‘{term}’</Trans>
           </Typography>
           <p>
             {hasFilters ? (

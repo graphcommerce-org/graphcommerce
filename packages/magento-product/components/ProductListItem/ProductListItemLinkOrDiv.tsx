@@ -1,14 +1,18 @@
 import { NextLink, breakpointVal } from '@graphcommerce/next-ui'
 import { Box, BoxProps, ButtonBase, ButtonBaseProps, SxProps, Theme } from '@mui/material'
+import React from 'react'
 
 type ProductListItemLinkProps = ButtonBaseProps<typeof NextLink>
-type ProductListItemLinkOrDivProps = ProductListItemLinkProps | BoxProps
+export type ProductListItemLinkOrDivProps = ProductListItemLinkProps | BoxProps
 
 function isLink(props: ProductListItemLinkOrDivProps): props is ProductListItemLinkProps {
   return 'href' in props
 }
 
-export function ProductListItemLinkOrDiv(props: ProductListItemLinkOrDivProps) {
+export const ProductListItemLinkOrDiv = React.forwardRef<
+  HTMLDivElement | HTMLAnchorElement,
+  ProductListItemLinkOrDivProps
+>((props, ref) => {
   const { sx = [] } = props
 
   const sxProps: SxProps<Theme> = [
@@ -27,8 +31,8 @@ export function ProductListItemLinkOrDiv(props: ProductListItemLinkOrDivProps) {
   ]
 
   return isLink(props) ? (
-    <ButtonBase component={NextLink} {...props} sx={sxProps} />
+    <ButtonBase ref={ref} component={NextLink} {...props} sx={sxProps} focusRipple />
   ) : (
-    <Box {...props} sx={sxProps} />
+    <Box ref={ref} {...props} sx={sxProps} />
   )
-}
+})

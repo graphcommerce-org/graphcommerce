@@ -1,3 +1,4 @@
+import React from 'react'
 import { LayoutHeaderProps, LayoutTitle, TitleProps } from '../../Layout'
 import { LayoutHeaderClose } from '../../Layout/components/LayoutHeaderClose'
 import { LayoutOverlayHeader } from '../../LayoutOverlay/components/LayoutOverlayHeader'
@@ -13,7 +14,7 @@ export const OverlayHeader = (props: OverlayHeaderProps) => {
       noAlign
       sx={[{ '&.noAlign': { mb: 0 } }, ...(Array.isArray(sx) ? sx : [sx])]}
       switchPoint={-10000}
-      size='small'
+      size='responsive'
       hideBackButton
       primary={primary ?? <LayoutHeaderClose onClose={onClose} />}
       secondary={primary ? <LayoutHeaderClose onClose={onClose} /> : secondary}
