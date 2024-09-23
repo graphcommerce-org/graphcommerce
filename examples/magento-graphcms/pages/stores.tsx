@@ -4,6 +4,7 @@ import {
   StoreLocatorMapLoader,
   StoreLocator,
   StoreLocatorFormProvider,
+  PositionProvider,
 } from '@graphcommerce/magento-store-locator'
 import { StoreFragment } from '@graphcommerce/magento-store-locator/Store.gql'
 import { StoresDocument } from '@graphcommerce/magento-store-locator/Stores.gql'
@@ -53,18 +54,20 @@ function Stores({ stores }: { stores: StoreFragment[] }) {
             streetViewControl: true,
           }}
         >
-          <StoreLocator
-            stores={stores}
-            markerConfig={{
-              markerImageSrc: '/icons/marker.svg',
-              activeMarkerImageSrc: '/icons/marker-active.svg',
-              preferredStoreMarkerImageSrc: '/icons/marker-my-store.svg',
-              imageHeight: 45,
-              imageWidth: 45,
-              onMarkerClick: (store: StoreFragment) =>
-                console.log('hello from', store.pickup_location_code),
-            }}
-          />
+          <PositionProvider>
+            <StoreLocator
+              stores={stores}
+              markerConfig={{
+                markerImageSrc: '/icons/marker.svg',
+                activeMarkerImageSrc: '/icons/marker-active.svg',
+                preferredStoreMarkerImageSrc: '/icons/marker-my-store.svg',
+                imageHeight: 45,
+                imageWidth: 45,
+                onMarkerClick: (store: StoreFragment) =>
+                  console.log('hello from', store.pickup_location_code),
+              }}
+            />
+          </PositionProvider>
         </StoreLocatorMapLoader>
       </StoreLocatorFormProvider>
     </>

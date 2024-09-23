@@ -4,9 +4,9 @@ import { Box, CircularProgress } from '@mui/material'
 import React from 'react'
 import { StoreFragment } from '../Store.gql'
 import { useFilteredStores } from '../helpers/useFilteredStores'
-import { PositionProps } from '../helpers/usePosition'
 import { useStores } from '../helpers/useStores'
 import { FindLocation } from './FindLocation'
+import { PositionProps } from './PositionProvider'
 import { StoreListItem } from './StoreListItem'
 
 export const StoreListResults = React.memo<{ stores: StoreFragment[]; first?: string }>((props) => {
@@ -52,8 +52,7 @@ export const StoreListResults = React.memo<{ stores: StoreFragment[]; first?: st
   )
 })
 
-export function StoreListNoResults(props: { updatePosition: (pos: PositionProps) => void }) {
-  const { updatePosition } = props
+export function StoreListNoResults() {
   return (
     <Box
       sx={(theme) => ({
@@ -65,7 +64,7 @@ export function StoreListNoResults(props: { updatePosition: (pos: PositionProps)
       })}
     >
       <Trans id='No results found' />
-      <FindLocation updatePosition={updatePosition} />
+      <FindLocation />
     </Box>
   )
 }
@@ -96,11 +95,10 @@ export function StoreListLoader() {
 export type StoreListProps = {
   position: PositionProps
   stores: StoreFragment[]
-  updatePosition: (pos: PositionProps) => void
 }
 
 export function StoreList(props: StoreListProps) {
-  const { position, stores, updatePosition } = props
+  const { position, stores } = props
   const { sortedStores } = useStores(position, stores)
   const filteredStores = useFilteredStores(sortedStores)
   const first = sortedStores?.[0]?.pickup_location_code
@@ -114,7 +112,7 @@ export function StoreList(props: StoreListProps) {
           stores={filteredStores || sortedStores}
         />
       ) : (
-        <StoreListNoResults updatePosition={updatePosition} />
+        <StoreListNoResults />
       )}
     </>
   )

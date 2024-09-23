@@ -1,11 +1,9 @@
 import { i18n } from '@lingui/core'
 import { useEffect, useRef } from 'react'
-import { usePosition } from '../helpers/usePosition'
+import { PositionProps } from './PositionProvider'
 import { useStoreLocatorMap } from './StoreLocatorMapLoader'
 
-type useCurrentPositionMarkerProps = ReturnType<typeof usePosition>['position']
-
-export function useCurrentPositionMarker(position: useCurrentPositionMarkerProps) {
+export function useCurrentPositionMarker(position: PositionProps) {
   const { map } = useStoreLocatorMap()
   const markerRef = useRef<google.maps.marker.AdvancedMarkerElement | null>(null)
 

@@ -1,14 +1,12 @@
-import { Box, SxProps } from '@mui/material'
+import { Box } from '@mui/material'
 import { StoreFragment } from '../Store.gql'
-import { usePosition } from '../helpers/usePosition'
 import { useStores } from '../helpers/useStores'
 import { useCurrentPositionMarker } from './CurrentPositionMarker'
-
 import { Marker } from './Marker'
+import { usePositionContext } from './PositionProvider'
 import { StoreFilters } from './StoreFilters'
 import { StoreList } from './StoreList'
 import { useStoreLocatorMap } from './StoreLocatorMapLoader'
-import { useRef } from 'react'
 
 export type MarkerConfig = {
   markerImageSrc?: string
@@ -26,7 +24,7 @@ type StoreLocatorProps = {
 
 export function StoreLocator({ stores, markerConfig }: StoreLocatorProps) {
   const { ref } = useStoreLocatorMap()
-  const { position, updatePosition } = usePosition()
+  const { position } = usePositionContext()
   const { sortedStores } = useStores(position, stores)
 
   useCurrentPositionMarker(position)
@@ -68,7 +66,7 @@ export function StoreLocator({ stores, markerConfig }: StoreLocatorProps) {
         })}
       >
         <StoreFilters />
-        <StoreList position={position} stores={sortedStores} updatePosition={updatePosition} />
+        <StoreList position={position} stores={sortedStores} />
       </Box>
 
       <Box sx={{ height: '100%', gridArea: 'map' }} className='Scroller-root'>
