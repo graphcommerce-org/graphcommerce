@@ -290,6 +290,10 @@ Limit the static generation of SSG when building.
 
 By default GraphCommerce will statically generate all product and category pages during build. This can take quite a long time, to skip this step set this value to true.
 
+#### permissions: [GraphCommercePermissions](#GraphCommercePermissions)
+
+Allows the option to require login or completely disable certain sections of the site, can be overriden per storeview with the storefrontConfig
+
 #### previewSecret: string
 
 To enable next.js' preview mode, configure the secret you'd like to use.
@@ -366,6 +370,22 @@ Issues that this can cause are:
 - The same package is included multiple times in the bundle, increasing the bundle size.
 - The Typescript types of the package are not compatible with each other, causing Typescript errors.
 
+### GraphCommercePermissions
+
+#### cart: CUSTOMER_ONLY | DISABLED | ENABLED
+
+Changes the availability of the add to cart buttons and the cart page to either customer only or completely disables it.
+
+#### checkout: CUSTOMER_ONLY | DISABLED | ENABLED
+
+Changes the availability of the checkout to either customer only or completely disables it.
+
+#### customerAccount: DISABLED | DISABLE_REGISTRATION | ENABLED
+
+Enables / disabled the account section of the website. DISABLE_REGISTRATION will only disable the registration page.
+
+#### website: ENABLED
+
 ### GraphCommerceStorefrontConfig
 
 All storefront configuration for the project
@@ -437,6 +457,10 @@ Add a gcms-locales header to make sure queries return in a certain language, can
 #### linguiLocale: string
 
 Custom locale used to load the .po files. Must be a valid locale, also used for Intl functions.
+
+#### permissions: [GraphCommercePermissions](#GraphCommercePermissions)
+
+Allows the option to require login or completely disable certain sections of the site on a per store basis
 
 #### robotsAllow: boolean
 

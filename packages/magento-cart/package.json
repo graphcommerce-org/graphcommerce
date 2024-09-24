@@ -31,6 +31,7 @@
     "@lingui/react": "^4.2.1",
     "@mui/material": "^5.10.16",
     "framer-motion": "^10.0.0",
+    "graphql": "^16.0.0",
     "next": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

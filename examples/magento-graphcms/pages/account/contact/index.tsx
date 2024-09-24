@@ -1,6 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   CustomerDocument,
+  getCustomerAccountIsDisabled,
   UpdateCustomerEmailForm,
   useCustomerQuery,
   WaitForCustomer,
@@ -60,6 +61,8 @@ AccountContactPage.pageOptions = pageOptions
 export default AccountContactPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 

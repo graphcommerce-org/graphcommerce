@@ -5,6 +5,7 @@ import {
   AccountMenu,
   AccountMenuItem,
   AddressSingleLine,
+  getCustomerAccountIsDisabled,
   OrderStateLabelInline,
   SignOutForm,
   useCustomerQuery,
@@ -168,6 +169,8 @@ AccountIndexPage.pageOptions = pageOptions
 export default AccountIndexPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
+
   const staticClient = graphqlSsrClient(context)
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })

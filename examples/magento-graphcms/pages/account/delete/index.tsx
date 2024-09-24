@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { AccountDeleteForm } from '@graphcommerce/magento-customer'
+import { AccountDeleteForm, getCustomerAccountIsDisabled } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle, iconBin } from '@graphcommerce/next-ui'
 import { Trans, t } from '@lingui/macro'
@@ -39,13 +39,15 @@ AccountDeletePage.pageOptions = pageOptions
 export default AccountDeletePage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
-  const client = graphqlSharedClient(context)
-  const conf = client.query({ query: StoreConfigDocument })
   if (
     import.meta.graphCommerce.magentoVersion < 246 ||
-    !import.meta.graphCommerce.customerDeleteEnabled
+    !import.meta.graphCommerce.customerDeleteEnabled ||
+    getCustomerAccountIsDisabled(context.locale)
   )
     return { notFound: true }
+
+  const client = graphqlSharedClient(context)
+  const conf = client.query({ query: StoreConfigDocument })
 
   return {
     props: {
