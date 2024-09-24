@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.82
+
+### Minor Changes
+
+- [#2366](https://github.com/graphcommerce-org/graphcommerce/pull/2366) [`3612c99`](https://github.com/graphcommerce-org/graphcommerce/commit/3612c994b80bb3b1bc02de10668f69a332402dc4) - Add `permissions` config so the website or store can be configurated to run in different modes. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.0-canary.81
 
 ## 9.0.0-canary.80
