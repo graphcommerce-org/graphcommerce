@@ -90,7 +90,7 @@
     "react-hook-form": "^7.52.1",
     "sharp": "0.33.4",
     "ts-node": "^10.9.2",
-    "webpack": "~5.93.0"
+    "webpack": "~5.94.0"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "9.0.0-canary.82",
