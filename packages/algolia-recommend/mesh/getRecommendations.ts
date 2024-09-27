@@ -40,7 +40,7 @@ export async function getRecommendations<
   Input extends AlgoliarecommendationsRequest_Input[K],
   R,
 >(
-  root,
+  root: { uid: string },
   keyInput: K,
   args: Simplify<Omit<NonNullable<Input>, 'indexName' | 'model'>>,
   context: MeshContext,
