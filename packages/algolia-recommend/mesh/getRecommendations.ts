@@ -1,4 +1,3 @@
-import { ProductsItemsItem } from '@graphcommerce/algolia-mesh'
 import { getIndexName } from '@graphcommerce/algolia-mesh/mesh/getIndexName'
 import type {
   AlgoliarecommendationsRequest_Input,
@@ -44,7 +43,7 @@ export async function getRecommendations<
   Input extends AlgoliarecommendationsRequest_Input[K],
   R,
 >(
-  root: ProductsItemsItem,
+  root: object,
   keyInput: K,
   args: Simplify<Omit<NonNullable<Input>, 'indexName' | 'model'>>,
   context: MeshContext,
