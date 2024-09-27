@@ -1,3 +1,4 @@
+import { ProductsItemsItem } from '@graphcommerce/algolia-mesh'
 import { getIndexName } from '@graphcommerce/algolia-mesh/mesh/getIndexName'
 import type {
   AlgoliarecommendationsRequest_Input,
@@ -14,6 +15,9 @@ const inputToModel = {
   Frequently_bought_together_Input: 'bought_together' as const,
   Looking_similar_Input: 'looking_similar' as const,
   Related_products_Input: 'related_products' as const,
+}
+function isAlgoliaResponse<T extends object>(root: T): root is T & { uid: string } {
+  return 'uid' in root
 }
 function argsFromKeysInput(keys, args, context) {
   const body = keys
@@ -40,13 +44,16 @@ export async function getRecommendations<
   Input extends AlgoliarecommendationsRequest_Input[K],
   R,
 >(
-  root: { uid: string },
+  root: ProductsItemsItem,
   keyInput: K,
   args: Simplify<Omit<NonNullable<Input>, 'indexName' | 'model'>>,
   context: MeshContext,
   info: GraphQLResolveInfo,
   mapper: (hit: AlgoliarecommendationsHit) => R,
 ) {
+  if (!isAlgoliaResponse(root)) {
+    return []
+  }
   return (
     (await context.algoliaRecommend.Query.algolia_getRecommendations({
       key: { keyInput, objectId: atob(root.uid) },
