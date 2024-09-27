@@ -15,12 +15,32 @@ const inputToModel = {
   Looking_similar_Input: 'looking_similar' as const,
   Related_products_Input: 'related_products' as const,
 }
+function argsFromKeysInput(keys, args, context) {
+  const body = keys
+    .map(
+      (key) =>
+        ({
+          [key.keyInput]: {
+            model: inputToModel[key.keyInput as string],
+            indexName: getIndexName(context),
 
+            ...args,
+            objectID: key.objectId,
+          },
+        }) as unknown as AlgoliarecommendationsRequest_Input,
+    )
+    .filter(nonNullable)
+
+  const returnObject = { input: { requests: body } }
+
+  return returnObject
+}
 export async function getRecommendations<
   K extends keyof AlgoliarecommendationsRequest_Input,
   Input extends AlgoliarecommendationsRequest_Input[K],
   R,
 >(
+  root,
   keyInput: K,
   args: Simplify<Omit<NonNullable<Input>, 'indexName' | 'model'>>,
   context: MeshContext,
@@ -29,23 +49,8 @@ export async function getRecommendations<
 ) {
   return (
     (await context.algoliaRecommend.Query.algolia_getRecommendations({
-      key: keyInput,
-      argsFromKeys: (keys) => ({
-        input: {
-          requests: keys
-            .map(
-              (key) =>
-                ({
-                  [key]: {
-                    model: inputToModel[key as string],
-                    indexName: getIndexName(context),
-                    ...args,
-                  },
-                }) as unknown as AlgoliarecommendationsRequest_Input,
-            )
-            .filter(nonNullable),
-        },
-      }),
+      key: { keyInput, objectId: atob(root.uid) },
+      argsFromKeys: (keys) => argsFromKeysInput(keys, args, context),
       valuesFromResults: (res, keys) =>
         keys
           .map((_key, index) => res?.results[index])

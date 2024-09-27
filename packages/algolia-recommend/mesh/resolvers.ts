@@ -30,6 +30,7 @@ const resolvers: Resolvers = {
       const { threshold, fallbackParameters, maxRecommendations, queryParameters } =
         await getRecommendationsArgs(root, args, context)
       return getRecommendations(
+        root,
         'Trending_items_Input',
         {
           threshold,
@@ -48,6 +49,7 @@ const resolvers: Resolvers = {
       const { threshold, fallbackParameters, maxRecommendations, queryParameters } =
         await getRecommendationsArgs(root, args, context)
       return getRecommendations(
+        root,
         'Trending_facet_values_Input',
         {
           facetName: args.input.facetName,
@@ -90,6 +92,7 @@ if (isEnabled(import.meta.graphCommerce.algolia.relatedProducts)) {
       await getRecommendationsArgs(root, args, context)
 
     return getRecommendations(
+      root,
       'Related_products_Input',
       { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters },
       context,
@@ -112,6 +115,7 @@ if (isEnabled(import.meta.graphCommerce.algolia.lookingSimilar)) {
     const { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters } =
       await getRecommendationsArgs(root, args, context)
     return getRecommendations(
+      root,
       'Looking_similar_Input',
       { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters },
       context,
@@ -131,10 +135,11 @@ if (isEnabled(import.meta.graphCommerce.algolia.lookingSimilar)) {
 
 if (isEnabled(import.meta.graphCommerce.algolia.frequentlyBoughtTogether)) {
   const resolver: ProductResolver = async (root, args, context, info) => {
-    const { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters } =
+    const { objectID, threshold, maxRecommendations, queryParameters } =
       await getRecommendationsArgs(root, args, context)
 
     return getRecommendations(
+      root,
       'Frequently_bought_together_Input',
       { objectID, threshold, maxRecommendations, queryParameters },
       context,
@@ -161,6 +166,7 @@ const similar: ResolverFn<
     await getRecommendationsArgs(root, args, context)
 
   return getRecommendations(
+    root,
     'Looking_similar_Input',
     { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters },
     context,
@@ -175,10 +181,13 @@ const related: ResolverFn<
   MeshContext,
   { input?: AlgoliaRelatedProductsInput | null }
 > = async (root, args, context, info) => {
-  const { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters } =
-    await getRecommendationsArgs(root, args, context)
-
+  const { objectID, threshold, maxRecommendations, queryParameters } = await getRecommendationsArgs(
+    root,
+    args,
+    context,
+  )
   return getRecommendations(
+    root,
     'Related_products_Input',
     {
       objectID,
@@ -199,9 +208,13 @@ const together: ResolverFn<
   MeshContext,
   { input?: AlgoliaRelatedProductsInput | null }
 > = async (root, args, context, info) => {
-  const { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters } =
-    await getRecommendationsArgs(root, args, context)
+  const { objectID, threshold, maxRecommendations, queryParameters } = await getRecommendationsArgs(
+    root,
+    args,
+    context,
+  )
   return getRecommendations(
+    root,
     'Frequently_bought_together_Input',
     { objectID, threshold, maxRecommendations, queryParameters },
     context,
