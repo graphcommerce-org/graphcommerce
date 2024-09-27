@@ -14,9 +14,9 @@ export type GetStoreConfigReturn =
 
 let configCache: Promise<StoreConfig> | undefined
 
-export async function getStoreConfig(context: MeshContext): Promise<StoreConfig> {
+export function getStoreConfig(context: MeshContext): Promise<StoreConfig> | undefined {
   if (!configCache) {
-    configCache = await context.m2.Query.storeConfig({
+    configCache = context.m2.Query.storeConfig({
       context,
       selectionSet: /* GraphQL */ `
         {
