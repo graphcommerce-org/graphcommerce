@@ -6,8 +6,11 @@ import { getCategoryResults } from './getCategoryResults'
 export const resolvers: Resolvers = {
   Query: {
     categories: async (root, args, context, info) => {
-      const todo = { algoliaCategories: true }
-      if (!todo.algoliaCategories) return context.m2.Query.categories({ root, args, context, info })
+      const isAgolia =
+        (args.filters?.categories_engine?.in ?? [args.filters?.categories_engine?.eq])[0] ===
+        'algolia'
+
+      if (!isAgolia) return context.m2.Query.categories({ root, args, context, info })
       const algoliaResponse = await getCategoryResults(args, context, info)
       const items: (CategoriesItemsItem | null)[] = []
       const storeConfig = await getStoreConfig(context)
