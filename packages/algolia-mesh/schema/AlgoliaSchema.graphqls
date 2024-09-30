@@ -44,6 +44,22 @@ input ProductAttributeFilterInput {
   This is faster, but is only recommended for search and category pages as the data could be out of date and many fields of a product aren't supported.
   """
   engine: FilterEqualTypeInput
+
+  """
+  When set to true, the categories query is passed to Algolia
+
+  This is faster, but is only recommended for search and category pages as the data could be out of date and many fields of a product aren't supported.
+  """
+  categories_engine: FilterEqualTypeInput
+}
+
+input CategoryFilterInput {
+  """
+  When set to true, the categories query is passed to Algolia
+
+  This is faster, but is only recommended for search and category pages as the data could be out of date and many fields of a product aren't supported.
+  """
+  categories_engine: FilterEqualTypeInput
 }
 
 type Products {

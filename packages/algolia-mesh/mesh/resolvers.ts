@@ -5,11 +5,9 @@ import {
 } from '@graphcommerce/graphql-mesh'
 import type { GraphQLResolveInfo } from 'graphql'
 import { algoliaFacetsToAggregations, getCategoryList } from './algoliaFacetsToAggregations'
-import { algoliaHitToMagentoCategory, CategoriesItemsItem } from './algoliaHitToMagentoCategory'
 import { algoliaHitToMagentoProduct, ProductsItemsItem } from './algoliaHitToMagentoProduct'
 import { getAlgoliaSettings } from './getAlgoliaSettings'
 import { getAttributeList } from './getAttributeList'
-import { getCategoryResults } from './getCategoryResults'
 import { getGroupId } from './getGroupId'
 import { getSearchResults } from './getSearchResults'
 import { getSearchSuggestions } from './getSearchSuggestions'
@@ -115,40 +113,6 @@ export const resolvers: Resolvers = {
         algoliaSearchResults: await searchResults,
         suggestions: (await searchSuggestsions) || null,
         algolia_queryID: (await searchResults)?.queryID,
-      }
-    },
-    categories: async (root, args, context, info) => {
-      const todo = { algoliaCategories: true }
-      if (!todo.algoliaCategories) return context.m2.Query.categories({ root, args, context, info })
-      const algoliaResponse = await getCategoryResults(args, context, info)
-      const items: (CategoriesItemsItem | null)[] = []
-      const storeConfig = await getStoreConfig(context)
-      if (!algoliaResponse?.hits) {
-        return {
-          items: [],
-          page_info: {
-            current_page: 1,
-            page_size: 20,
-            total_pages: 1,
-          },
-          total_count: 0,
-        }
-      }
-      for (const hit of algoliaResponse.hits) {
-        if (hit?.objectID) {
-          const category = algoliaHitToMagentoCategory(hit, storeConfig)
-          items.push(category)
-        }
-      }
-
-      return {
-        items,
-        page_info: {
-          current_page: 1,
-          page_size: 20,
-          total_pages: 1,
-        },
-        total_count: 0,
       }
     },
   },

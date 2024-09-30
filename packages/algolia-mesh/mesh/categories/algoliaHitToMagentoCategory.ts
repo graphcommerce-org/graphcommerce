@@ -8,8 +8,8 @@ import {
   Algoliahit,
   AlgoliaProductHitAdditionalProperties,
 } from '@graphcommerce/graphql-mesh'
-import { algoliaUrlToUrlKey } from './algoliaHitToMagentoProduct'
-import { GetStoreConfigReturn } from './getStoreConfig'
+import { algoliaUrlToUrlKey } from '../algoliaHitToMagentoProduct'
+import { GetStoreConfigReturn } from '../getStoreConfig'
 
 export type AlgoliaCategoryHitAddiotonalProperties = AlgoliaProductHitAdditionalProperties & {
   path: string

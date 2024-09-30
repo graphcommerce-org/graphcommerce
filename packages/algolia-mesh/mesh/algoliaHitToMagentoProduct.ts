@@ -81,7 +81,7 @@ function mapPriceRange(
   }
 }
 
-function algoliaUrlToUrlKey(url?: string | null, base?: string | null): string | null {
+export function algoliaUrlToUrlKey(url?: string | null, base?: string | null): string | null {
   if (!url || !base) return null
   return url.replace(base, '')
 }
