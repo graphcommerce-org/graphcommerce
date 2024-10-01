@@ -1,4 +1,4 @@
-# @graphcommerce/algolia-mesh
+# @graphcommerce/algolia-products
 
 ## 9.0.0-canary.82
 

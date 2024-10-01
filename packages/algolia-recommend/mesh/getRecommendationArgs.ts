@@ -1,4 +1,4 @@
-import { getSearchResultsInput } from '@graphcommerce/algolia-mesh'
+import { getSearchResultsInput } from '@graphcommerce/algolia-products'
 import {
   QueryproductsArgs,
   MeshContext,

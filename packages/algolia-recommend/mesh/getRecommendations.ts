@@ -1,4 +1,4 @@
-import { getIndexName } from '@graphcommerce/algolia-mesh/mesh/getIndexName'
+import { getIndexName } from '@graphcommerce/algolia-products/mesh/getIndexName'
 import type {
   AlgoliarecommendationsRequest_Input,
   MeshContext,

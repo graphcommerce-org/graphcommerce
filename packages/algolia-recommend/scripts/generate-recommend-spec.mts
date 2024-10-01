@@ -3,7 +3,7 @@ import { writeFile, readFile } from 'node:fs/promises'
 import { OpenAPIV3 } from 'openapi-types'
 import prettier from 'prettier'
 import conf from '@graphcommerce/prettier-config-pwa'
-import { algoliaSchemaBaseFilter } from '@graphcommerce/algolia-mesh/scripts/base-schema-filter.mjs'
+import { algoliaSchemaBaseFilter } from '@graphcommerce/algolia-products/scripts/base-schema-filter.mjs'
 
 const response = await fetch(
   'https://raw.githubusercontent.com/algolia/api-clients-automation/main/specs/bundled/recommend.yml',

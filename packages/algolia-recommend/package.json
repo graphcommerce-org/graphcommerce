@@ -15,7 +15,7 @@
     "generate": "tsx scripts/generate-recommend-spec.mts"
   },
   "peerDependencies": {
-    "@graphcommerce/algolia-mesh": "^9.0.0-canary.76",
+    "@graphcommerce/algolia-products": "^9.0.0-canary.76",
     "@graphcommerce/graphql": "^9.0.0-canary.76",
     "@graphcommerce/graphql-mesh": "^9.0.0-canary.76",
     "@graphcommerce/next-config": "^9.0.0-canary.76",
