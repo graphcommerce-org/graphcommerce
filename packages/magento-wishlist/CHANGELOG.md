@@ -1,5 +1,17 @@
 # @graphcommerce/magento-wishlist
 
+## 9.0.0-canary.80
+
+## 9.0.0-canary.79
+
+## 9.0.0-canary.78
+
+### Patch Changes
+
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`811d5e6`](https://github.com/graphcommerce-org/graphcommerce/commit/811d5e60ebafea6c4a0a968fdc366e5e316bc64e) - Contain ripple to wishlist button instead of propagating to product list item ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 9.0.0-canary.77
+
 ## 9.0.0-canary.76
 
 ## 9.0.0-canary.75

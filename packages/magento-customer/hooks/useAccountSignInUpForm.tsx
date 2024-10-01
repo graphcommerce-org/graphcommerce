@@ -33,7 +33,6 @@ export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {})
   >(
     IsEmailAvailableDocument,
     {
-      experimental_useV2: true,
       mode: 'onBlur',
       values: { email: cachedEmail ?? '' },
       defaultValues: { requestedMode: 'signin' },

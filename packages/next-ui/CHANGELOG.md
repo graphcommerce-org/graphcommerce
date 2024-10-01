@@ -1,5 +1,29 @@
 # Change Log
 
+## 9.0.0-canary.80
+
+### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`c57614d`](https://github.com/graphcommerce-org/graphcommerce/commit/c57614d47675cec2a0bf290371f11441495e10fe) - ActionCardList can now recieve focus, allowing form submissions to scroll to the field. Focussed fields now are now highlighted even when there is an error. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 9.0.0-canary.79
+
+### Patch Changes
+
+- [#2356](https://github.com/graphcommerce-org/graphcommerce/pull/2356) [`d283901`](https://github.com/graphcommerce-org/graphcommerce/commit/d283901cb537c3e7bf6f5500e9f52f47f452cf10) - Loading an overlay page directly would animate in the overlay instead of directly showing it. ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.78
+
+### Patch Changes
+
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`7cd5c1c`](https://github.com/graphcommerce-org/graphcommerce/commit/7cd5c1cadf8dac43de9e5bb19038383be64aa08f) - Fix issues when using non-hex colors in theme ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`7c10458`](https://github.com/graphcommerce-org/graphcommerce/commit/7c104588ef96b9066b8f91835c29f957b08e4831) - Fix back button transparency on hover ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`1de9582`](https://github.com/graphcommerce-org/graphcommerce/commit/1de9582967f2a09cc7167a38ada4e50fe0d1b29a) - Properly align cart loading state (and other FullPageMessage usages) ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 9.0.0-canary.77
+
 ## 9.0.0-canary.76
 
 ## 9.0.0-canary.75

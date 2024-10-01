@@ -1,5 +1,19 @@
 # @graphcommerce/ecommerce-ui
 
+## 9.0.0-canary.80
+
+### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`7085b4a`](https://github.com/graphcommerce-org/graphcommerce/commit/7085b4a86088328fe54dc4e82ccd296d6459cae7) - Updated all form FieldElements to also accept defaultValue, shouldUnregister and disabled. Moved AutoCompleteElement, CheckboxElement, MultiSelectElement, SliderElement, SwitchElement, ToggleButtonGroup to useController. Removed all parseError props ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`022cbd6`](https://github.com/graphcommerce-org/graphcommerce/commit/022cbd664ea4e8a82997c5edf4451b9182558429) - Moved ActionCardListForm to @graphcommerce/ecommerce-ui to resolve issue with circular dependencies. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 9.0.0-canary.79
+
+## 9.0.0-canary.78
+
+## 9.0.0-canary.77
+
 ## 9.0.0-canary.76
 
 ## 9.0.0-canary.75

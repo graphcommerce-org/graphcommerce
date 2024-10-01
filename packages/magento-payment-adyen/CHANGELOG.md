@@ -1,5 +1,17 @@
 # @graphcommerce/magento-payment-adyen
 
+## 9.0.0-canary.80
+
+### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`86ecf9a`](https://github.com/graphcommerce-org/graphcommerce/commit/86ecf9a1bb4c48ceabd4944d81483bcd5b990350) - Payment method will now throw an error in onComplete to handle obscure errors ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 9.0.0-canary.79
+
+## 9.0.0-canary.78
+
+## 9.0.0-canary.77
+
 ## 9.0.0-canary.76
 
 ## 9.0.0-canary.75

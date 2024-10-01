@@ -6,6 +6,8 @@ export function jsonLdProductReview(
 ): Pick<Product, 'aggregateRating' | 'review'> {
   const { reviews, review_count, rating_summary } = props
 
+  if (!review_count) return {}
+
   return {
     aggregateRating: {
       '@type': 'AggregateRating',

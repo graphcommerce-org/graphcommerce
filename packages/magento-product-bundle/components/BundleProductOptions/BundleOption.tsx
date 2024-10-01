@@ -1,10 +1,6 @@
+import { ActionCardItemBase, ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import { AddProductsToCartFields, useFormAddProductsToCart } from '@graphcommerce/magento-product'
-import {
-  SectionHeader,
-  ActionCardListForm,
-  ActionCardItemBase,
-  filterNonNullableKeys,
-} from '@graphcommerce/next-ui'
+import { SectionHeader, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import React, { useMemo } from 'react'
 import { BundleOptionValue } from './BundleOptionValue'

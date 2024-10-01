@@ -2,7 +2,7 @@
   "name": "@graphcommerce/hygraph-dynamic-rows-ui",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.0-canary.76",
+  "version": "9.0.0-canary.80",
   "sideEffects": false,
   "type": "commonjs",
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@apollo/client": "~3.10.8",
-    "@graphcommerce/next-config": "9.0.0-canary.76",
+    "@graphcommerce/next-config": "9.0.0-canary.80",
     "@hygraph/app-sdk-react": "^0.0.4",
     "@lingui/core": "^4.11.2",
     "@lingui/macro": "^4.11.2",
@@ -32,9 +32,9 @@
     "webpack": "~5.93.0"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "9.0.0-canary.76",
-    "@graphcommerce/prettier-config-pwa": "9.0.0-canary.76",
-    "@graphcommerce/typescript-config-pwa": "9.0.0-canary.76",
+    "@graphcommerce/eslint-config-pwa": "9.0.0-canary.80",
+    "@graphcommerce/prettier-config-pwa": "9.0.0-canary.80",
+    "@graphcommerce/typescript-config-pwa": "9.0.0-canary.80",
     "@types/react-is": "^18.3.0",
     "babel-plugin-macros": "^3.1.0",
     "eslint": "^8",

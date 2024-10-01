@@ -3,7 +3,7 @@ import {
   hasSelectionSetPath,
   type Resolvers,
 } from '@graphcommerce/graphql-mesh'
-import type { GraphQLResolveInfo } from 'graphql'
+import type { GraphQLError, GraphQLResolveInfo } from 'graphql'
 import { algoliaFacetsToAggregations, getCategoryList } from './algoliaFacetsToAggregations'
 import { algoliaHitToMagentoProduct, ProductsItemsItem } from './algoliaHitToMagentoProduct'
 import { getAlgoliaSettings } from './getAlgoliaSettings'
@@ -33,6 +33,10 @@ function hasSearchRequest(info: GraphQLResolveInfo) {
 
 function hasSuggestionsRequest(info: GraphQLResolveInfo) {
   return hasSelectionSetPath(info.operation.selectionSet, 'products.suggestions')
+}
+
+function isGraphQLError(err: unknown): err is GraphQLError {
+  return !!(err as GraphQLError)?.message
 }
 
 export const resolvers: Resolvers = {
@@ -108,6 +112,9 @@ export const resolvers: Resolvers = {
         getSearchSuggestions(args.search, context)
 
       const searchResults = hasSearchRequest(info) ? getSearchResults(args, context, info) : null
+
+      if (isGraphQLError(await searchResults))
+        return context.m2.Query.products({ root, args, context, info })
 
       return {
         algoliaSearchResults: await searchResults,

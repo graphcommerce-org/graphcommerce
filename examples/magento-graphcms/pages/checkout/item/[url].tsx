@@ -3,7 +3,11 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
 import { ApolloCartErrorAlert, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
 import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
-import { EditCartItemButton, EditCartItemForm } from '@graphcommerce/magento-cart-items'
+import {
+  EditCartItemButton,
+  EditCartItemForm,
+  useEditItem,
+} from '@graphcommerce/magento-cart-items'
 import { ProductPageGallery, ProductPageName } from '@graphcommerce/magento-product'
 import {
   FullPageMessage,
@@ -18,8 +22,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { CircularProgress, Typography } from '@mui/material'
-import { useRouter } from 'next/router'
+import { CircularProgress, Container, Typography } from '@mui/material'
 import { LayoutNavigationProps, AddProductsToCartView } from '../../../components'
 import { Props, getStaticProps } from '../../p/[url]'
 
@@ -30,9 +33,8 @@ function CartItemEdit(props: Props) {
   const { products, defaultValues } = props
   const product = products?.items?.[0]
 
-  const cartItemId = useRouter().query.cartItemId as string
   const cart = useCartQuery(CartPageDocument)
-  const cartItem = cart.data?.cart?.items?.find((item) => item?.uid === cartItemId)
+  const cartItem = useEditItem(cart.data?.cart)
 
   if (!product?.sku || !product.url_key) return null
 
@@ -65,35 +67,37 @@ function CartItemEdit(props: Props) {
           </EmptyCart>
         )}
         {cartItem && (
-          <EditCartItemForm
-            key={cartItemId}
-            href='/cart'
-            product={product}
-            cartItem={cartItem}
-            defaultValues={defaultValues}
-            redirect={false}
-            disableSuccessSnackbar
-          >
-            <ProductPageGallery
+          <Container>
+            <EditCartItemForm
+              key={cartItem.uid}
+              href='/cart'
               product={product}
-              disableZoom
-              disableSticky
-              variantMd='oneColumn'
-              sx={(theme) => ({
-                maxWidth: '500px',
-                mb: 0,
-                '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
-              })}
+              cartItem={cartItem}
+              defaultValues={defaultValues}
+              redirect={false}
+              disableSuccessSnackbar
             >
-              <Typography variant='h3' component='div' gutterBottom>
-                <ProductPageName product={product} />
-              </Typography>
-              <AddProductsToCartView product={product} />
-            </ProductPageGallery>
-            <OverlayStickyBottom sx={{ display: 'flex', justifyContent: 'center' }}>
-              <EditCartItemButton product={product} sx={(theme) => ({ my: theme.spacings.sm })} />
-            </OverlayStickyBottom>
-          </EditCartItemForm>
+              <ProductPageGallery
+                product={product}
+                disableZoom
+                disableSticky
+                variantMd='oneColumn'
+                sx={(theme) => ({
+                  maxWidth: '500px',
+                  mb: 0,
+                  '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
+                })}
+              >
+                <Typography variant='h3' component='div' gutterBottom>
+                  <ProductPageName product={product} />
+                </Typography>
+                <AddProductsToCartView product={product} />
+              </ProductPageGallery>
+              <OverlayStickyBottom sx={{ display: 'flex', justifyContent: 'center' }}>
+                <EditCartItemButton product={product} sx={(theme) => ({ my: theme.spacings.sm })} />
+              </OverlayStickyBottom>
+            </EditCartItemForm>
+          </Container>
         )}
       </WaitForQueries>
     </>

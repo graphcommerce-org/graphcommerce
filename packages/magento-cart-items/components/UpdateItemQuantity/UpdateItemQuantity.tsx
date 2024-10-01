@@ -1,6 +1,5 @@
 import { NumberFieldElement, NumberFieldElementProps } from '@graphcommerce/ecommerce-ui'
 import { ApolloCartErrorSnackbar, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { TextInputNumberProps } from '@graphcommerce/next-ui'
 import { FormAutoSubmit, UseFormGraphQlOptions } from '@graphcommerce/react-hook-form'
 import { SxProps, Theme } from '@mui/material'
 import React from 'react'
@@ -27,7 +26,6 @@ export type UpdateItemQuantityProps = Omit<UpdateItemQuantityMutationVariables, 
 export function UpdateItemQuantity(props: UpdateItemQuantityProps) {
   const { uid, quantity, sx, textInputProps, formOptions } = props
   const form = useFormGqlMutationCart(UpdateItemQuantityDocument, {
-    experimental_useV2: true,
     defaultValues: { uid, quantity },
     mode: 'onChange',
     ...formOptions,

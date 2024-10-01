@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.0.0-canary.80
+
+### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`7a2f715`](https://github.com/graphcommerce-org/graphcommerce/commit/7a2f7153fa9157be17575abb6d77821a2ec99f30) - Make sure the InContextMask only warns when a block is renderer during the initial ssr render. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 9.0.0-canary.79
+
+## 9.0.0-canary.78
+
+## 9.0.0-canary.77
+
 ## 9.0.0-canary.76
 
 ## 9.0.0-canary.75

@@ -45,10 +45,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
 
   const { handleSubmit, control } = form
 
-  const submit = handleSubmit((values) => {
-    // eslint-disable-next-line no-console
-    console.log(values)
-  })
+  const submit = handleSubmit(() => {})
 
   useFormCompose({ form, step, submit, key: 'PaymentAgreementsForm' })
 
@@ -112,11 +109,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                     <CheckboxElement
                       control={control}
                       color='secondary'
-                      formControl={{
-                        sx: {
-                          display: 'block',
-                        },
-                      }}
+                      formControl={{ sx: { display: 'block' } }}
                       name={`agreement${agreement.agreement_id}`}
                       rules={{
                         required: i18n._(/* i18n */ 'You have to agree in order to proceed'),

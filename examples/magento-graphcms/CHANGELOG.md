@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.0.0-canary.80
+
+## 9.0.0-canary.79
+
+## 9.0.0-canary.78
+
+### Patch Changes
+
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`688b4d7`](https://github.com/graphcommerce-org/graphcommerce/commit/688b4d73cdb4baf38d91f7d98d81964b8fc17e85) - Add missing gutter to /checkout/item page ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 9.0.0-canary.77
+
 ## 9.0.0-canary.76
 
 ## 9.0.0-canary.75

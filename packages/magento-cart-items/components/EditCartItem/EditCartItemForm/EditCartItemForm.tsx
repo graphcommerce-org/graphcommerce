@@ -5,7 +5,9 @@ import {
   AddToCartItemSelector,
   AddProductsToCartForm,
 } from '@graphcommerce/magento-product'
-import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { useEffect, useRef } from 'react'
+import { CartItemsFragment } from '../../../Api/CartItems.gql'
 import {
   UseRemoveItemFromCartProps,
   useRemoveItemFromCart,
@@ -56,4 +58,13 @@ export function EditCartItemForm(props: EditCartItemFormProps) {
       <EditInit product={product} cartItem={cartItem} index={index} />
     </AddProductsToCartForm>
   )
+}
+
+export function useEditItem(cart: CartItemsFragment | null | undefined) {
+  const cartItemId = useRouter().query.cartItemId as string
+  const cartItem = cart?.items?.find((item) => item?.uid === cartItemId)
+  const cartItemRef = useRef(cartItem)
+  if (cartItem) cartItemRef.current = cartItem
+
+  return cartItemRef.current
 }
