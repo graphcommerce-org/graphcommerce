@@ -1,7 +1,7 @@
 import { MeshContext, QuerycategoryListArgs } from '@graphcommerce/graphql-mesh'
 import type { GraphQLResolveInfo } from 'graphql'
-import { getIndexName } from '../getIndexName'
 import { getCategoryResultsInput } from './getCategoryResultsInput'
+import { getIndexName } from './getIndexName'
 
 export async function getCategoryResults(
   args: QuerycategoryListArgs,
@@ -10,7 +10,7 @@ export async function getCategoryResults(
 ) {
   return context.algolia.Query.algolia_searchSingleIndex({
     args: {
-      indexName: getIndexName(context, 'categories'),
+      indexName: getIndexName(context),
       input: await getCategoryResultsInput(args),
     },
     selectionSet: /* GraphQL */ `

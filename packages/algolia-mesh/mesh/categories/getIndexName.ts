@@ -7,5 +7,5 @@ function getStoreHeader(context: MeshContext) {
 
 export function getIndexName(context: MeshContext) {
   const storeCode = getStoreHeader(context) ?? storefrontConfigDefault().magentoStoreCode
-  return `${import.meta.graphCommerce.algolia.indexNamePrefix}${storeCode}_products`
+  return `${import.meta.graphCommerce.algolia.indexNamePrefix}${storeCode}_categories`
 }
