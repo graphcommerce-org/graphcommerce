@@ -77,8 +77,3 @@ new index which will be used for suggestions
 Don't mind to use the suggestions setting in magento admin. It will create a
 suggestions index but it will not record suggestions. This requires
 instantSearch
-
-## Todo
-
-- [] Category search / Additional indexes
-- [] Highlighting
