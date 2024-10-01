@@ -13,8 +13,8 @@ export const resolvers: Resolvers = {
       const items: (CategoriesItemsItem | null)[] = []
 
       const [algoliaResponse, storeConfig] = await Promise.all([
-        await getCategoryResults(args, context, info),
-        await getStoreConfig(context),
+        getCategoryResults(args, context, info),
+        getStoreConfig(context),
       ])
 
       if (!algoliaResponse?.hits) return context.m2.Query.categories({ root, args, context, info })
