@@ -129,19 +129,21 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             })}
           >
             {menuFab}
-            <Box
-              sx={(theme) => ({
-                display: 'flex',
-                flexDirection: 'row-reverse',
-                gap: theme.spacings.sm,
-                [theme.breakpoints.up('md')]: {
-                  flexDirection: 'column',
-                  alignItems: 'flex-end',
-                },
-              })}
-            >
-              {cartFab}
-            </Box>
+            {cartFab && (
+              <Box
+                sx={(theme) => ({
+                  display: 'flex',
+                  flexDirection: 'row-reverse',
+                  gap: theme.spacings.sm,
+                  [theme.breakpoints.up('md')]: {
+                    flexDirection: 'column',
+                    alignItems: 'flex-end',
+                  },
+                })}
+              >
+                {cartFab}
+              </Box>
+            )}
           </Box>
         ) : (
           <div />

@@ -11,6 +11,7 @@ import { i18n } from '@lingui/core'
 import { alpha, Fab, FabProps, styled, useTheme, Box, SxProps, Theme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
+import { useCartEnabled, useCartShouldLoginToContinue } from '../../hooks'
 import { useCartQuery } from '../../hooks/useCartQuery'
 import { CartFabDocument } from './CartFab.gql'
 import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
@@ -100,7 +101,12 @@ function CartFabContent(props: CartFabContentProps) {
 }
 
 export function CartFab(props: CartFabProps) {
-  const cartQuery = useCartQuery(CartFabDocument)
+  const cartEnabled = useCartEnabled()
+  const shouldLoginToContinue = useCartShouldLoginToContinue()
+  const cartQuery = useCartQuery(CartFabDocument, {
+    skip: shouldLoginToContinue,
+  })
+  if (!cartEnabled) return null
 
   return (
     <WaitForQueries waitFor={cartQuery} fallback={<CartFabContent {...props} total_quantity={0} />}>

@@ -4,6 +4,7 @@ import {
   useCustomerQuery,
   WaitForCustomer,
   AccountDashboardAddressesDocument,
+  getCustomerAccountIsDisabled,
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -75,6 +76,8 @@ EditAddressPage.pageOptions = pageOptions
 export default EditAddressPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 

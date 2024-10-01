@@ -9,6 +9,7 @@ import {
   IsEmailAvailableQuery,
   IsEmailAvailableQueryVariables,
 } from './IsEmailAvailable.gql'
+import { useCustomerAccountCanSignUp } from './useCustomerPermissions'
 import { useCustomerSession } from './useCustomerSession'
 
 export type UseFormIsEmailAvailableProps = {
@@ -17,11 +18,13 @@ export type UseFormIsEmailAvailableProps = {
 
 export type AccountSignInUpState = 'email' | 'signin' | 'signup' | 'signedin' | 'session-expired'
 
-export const isToggleMethod = !import.meta.graphCommerce.enableGuestCheckoutLogin
-
 export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {}) {
   const { onSubmitted } = props
   const { token, valid } = useCustomerSession()
+
+  const canSignUp = useCustomerAccountCanSignUp()
+  const isToggleMethod = !import.meta.graphCommerce.enableGuestCheckoutLogin || !canSignUp
+
   const [queryState, setRouterQuery] = useUrlQuery<{ email?: string | null }>()
 
   const customerQuery = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })

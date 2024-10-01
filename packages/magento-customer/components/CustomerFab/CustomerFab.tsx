@@ -7,7 +7,11 @@ import {
 import { i18n } from '@lingui/core'
 import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
 import React from 'react'
-import { useCustomerSession, UseCustomerSessionReturn } from '../../hooks'
+import {
+  useCustomerAccountCanSignIn,
+  useCustomerSession,
+  UseCustomerSessionReturn,
+} from '../../hooks'
 
 type CustomerFabContentProps = {
   icon?: React.ReactNode
@@ -52,6 +56,9 @@ export type CustomerFabProps = Omit<CustomerFabContentProps, 'session'>
 
 export function CustomerFab(props: CustomerFabProps) {
   const session = useCustomerSession()
+  const canSignIn = useCustomerAccountCanSignIn()
+
+  if (!canSignIn) return null
 
   return (
     <NoSsr fallback={<CustomerFabContent {...props} />}>

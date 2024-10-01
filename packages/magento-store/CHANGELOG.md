@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.0.0-canary.82
+
+## 9.0.0-canary.81
+
+### Minor Changes
+
+- [#2373](https://github.com/graphcommerce-org/graphcommerce/pull/2373) [`53ffc91`](https://github.com/graphcommerce-org/graphcommerce/commit/53ffc91f9bfbe1183c002c62b1fe0c3f415d7b94) - Handle the case where one switches from using the default .html URL suffix, to not using one ([@hnsr](https://github.com/hnsr))
+
 ## 9.0.0-canary.80
 
 ## 9.0.0-canary.79

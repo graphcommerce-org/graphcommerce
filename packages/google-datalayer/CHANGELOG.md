@@ -1,5 +1,9 @@
 # @graphcommerce/google-datalayer
 
+## 9.0.0-canary.82
+
+## 9.0.0-canary.81
+
 ## 9.0.0-canary.80
 
 ### Patch Changes

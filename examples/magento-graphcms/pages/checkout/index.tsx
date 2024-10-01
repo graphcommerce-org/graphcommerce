@@ -11,6 +11,7 @@ import {
   ApolloCartErrorFullPage,
   ApolloCartErrorSnackbar,
   EmptyCart,
+  getCheckoutIsDisabled,
   useCartQuery,
 } from '@graphcommerce/magento-cart'
 import { ShippingPageDocument } from '@graphcommerce/magento-cart-checkout'
@@ -150,6 +151,8 @@ ShippingPage.pageOptions = pageOptions
 export default ShippingPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCheckoutIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
   const staticClient = graphqlSsrClient(context)

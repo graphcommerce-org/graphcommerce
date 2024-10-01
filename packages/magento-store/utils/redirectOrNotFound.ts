@@ -68,6 +68,11 @@ export async function redirectOrNotFound(
       candidates.add(from.endsWith(suffix) ? from.slice(0, -suffix.length) : `${from}${suffix}`)
     })
 
+    // Handle the case where we transition from using the default .html suffix, to not using one
+    if (from.endsWith('.html')) {
+      candidates.add(from.slice(0, -('.html'.length)))
+    }
+
     const routePromises = [...candidates].filter(Boolean).map(
       async (url) =>
         (

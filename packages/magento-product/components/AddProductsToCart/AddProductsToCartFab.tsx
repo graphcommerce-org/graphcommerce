@@ -1,3 +1,4 @@
+import { useCartEnabled } from '@graphcommerce/magento-cart'
 import { Fab, FabProps, iconShoppingBag, iconCheckmark } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { SxProps, Theme } from '@mui/material'
@@ -15,6 +16,10 @@ export type AddProductsToCartFabProps = {
 export function AddProductsToCartFab(props: AddProductsToCartFabProps) {
   const { icon = iconShoppingBag, product, sku, ...rest } = props
   const { showSuccess, ...action } = useAddProductsToCartAction(props)
+
+  const cartEnabled = useCartEnabled()
+
+  if (!cartEnabled) return null
 
   return (
     <Fab
