@@ -28,7 +28,7 @@ An implementation of Algolia personalization/Analytics through the GraphQL Mesh.
    }
    ```
 
-2. In your algolia dashboard make sure, you have personalization enabled.
+2. In your algolia dashboard make sure, you have (ai)-personalization enabled.
 3. Continue to browse the site, and make sure your events are logged in de event
    debugger in your algolia dashboard. In the under left corner.
    `Data Sources > Events > Debugger`. Once you've collected several events, you
