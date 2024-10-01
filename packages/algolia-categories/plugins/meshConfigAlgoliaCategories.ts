@@ -13,6 +13,7 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
 ) =>
   prev(
     {
+      sources: [...baseConfig.sources],
       additionalResolvers: [
         ...(baseConfig.additionalResolvers ?? []),
         '@graphcommerce/algolia-categories/mesh/resolvers.ts',
