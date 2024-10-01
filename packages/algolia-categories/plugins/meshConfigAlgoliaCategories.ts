@@ -15,7 +15,7 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
     {
       additionalResolvers: [
         ...(baseConfig.additionalResolvers ?? []),
-        '@graphcommerce/algolia-categories/mesh/categories/resolvers.ts',
+        '@graphcommerce/algolia-categories/mesh/resolvers.ts',
       ],
     },
     graphCommerceConfig,

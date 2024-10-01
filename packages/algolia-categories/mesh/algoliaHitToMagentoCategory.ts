@@ -1,3 +1,5 @@
+import { algoliaUrlToUrlKey } from '@graphcommerce/algolia-products/mesh/algoliaHitToMagentoProduct'
+import { GetStoreConfigReturn } from '@graphcommerce/algolia-products/mesh/getStoreConfig'
 import {
   RequireFields,
   ResolverFn,
@@ -8,8 +10,6 @@ import {
   Algoliahit,
   AlgoliaProductHitAdditionalProperties,
 } from '@graphcommerce/graphql-mesh'
-import { algoliaUrlToUrlKey } from '../algoliaHitToMagentoProduct'
-import { GetStoreConfigReturn } from '../getStoreConfig'
 
 export type AlgoliaCategoryHitAddiotonalProperties = AlgoliaProductHitAdditionalProperties & {
   path: string
