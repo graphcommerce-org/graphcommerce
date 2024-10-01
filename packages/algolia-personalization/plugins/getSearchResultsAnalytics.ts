@@ -5,7 +5,7 @@ import { getUserToken } from '../mesh/getUserToken'
 export const config: PluginConfig = {
   type: 'function',
   module: '@graphcommerce/algolia-mesh',
-  ifConfig: 'algolia.personalizationEnabled',
+  ifConfig: 'algolia.analyticsEnabled',
 }
 
 export const getSearchResultsInput: FunctionPlugin<typeof getSearchResultsInputType> = async (
