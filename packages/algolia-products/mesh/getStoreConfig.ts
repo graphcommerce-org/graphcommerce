@@ -12,9 +12,10 @@ export type GetStoreConfigReturn =
     >
   | undefined
 
-let configCache: Promise<StoreConfig> | undefined
+let configCache: Promise<StoreConfig>
 
 export function getStoreConfig(context: MeshContext): Promise<StoreConfig> {
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   if (!configCache) {
     configCache = context.m2.Query.storeConfig({
       context,

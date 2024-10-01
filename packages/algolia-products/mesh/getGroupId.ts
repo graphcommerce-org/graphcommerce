@@ -1,4 +1,4 @@
-import { MeshContext } from '@graphcommerce/graphql-mesh'
+import type { MeshContext } from '@graphcommerce/graphql-mesh'
 
 export function getGroupId(context: MeshContext): number {
   const { headers } = context as MeshContext & { headers?: Record<string, string | undefined> }

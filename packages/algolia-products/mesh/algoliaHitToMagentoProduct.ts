@@ -1,4 +1,4 @@
-import {
+import type {
   AlgoliaPrice,
   AlgoliaProductHitAdditionalProperties,
   Algoliahit,
@@ -11,6 +11,8 @@ import {
   ResolversParentTypes,
   ResolversTypes,
 } from '@graphcommerce/graphql-mesh'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { GraphQLResolveInfo } from 'graphql'
 import { GetStoreConfigReturn } from './getStoreConfig'
 
 export function assertAdditional(
@@ -173,7 +175,7 @@ export function algoliaHitToMagentoProduct(
     // options_container: null,
     // price_tiers: [],
     // product_links: [],
-    // related_products: [],
+    // related_products: getRecommendations(),
     // short_description: null,
     // small_image: null,
     // special_price: null,

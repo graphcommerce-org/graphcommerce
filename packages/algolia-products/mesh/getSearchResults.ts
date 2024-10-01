@@ -1,4 +1,4 @@
-import { MeshContext, QueryproductsArgs } from '@graphcommerce/graphql-mesh'
+import type { MeshContext, QueryproductsArgs } from '@graphcommerce/graphql-mesh'
 import type { GraphQLResolveInfo } from 'graphql'
 import { getAlgoliaSettings } from './getAlgoliaSettings'
 import { getSearchResultsInput } from './getSearchResultsInput'

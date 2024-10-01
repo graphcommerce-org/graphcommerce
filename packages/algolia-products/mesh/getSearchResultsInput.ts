@@ -1,6 +1,6 @@
-import {
+import type {
+  AlgoliasearchParamsObject_Input,
   MeshContext,
-  Queryalgolia_searchSingleIndexArgs,
   QueryproductsArgs,
 } from '@graphcommerce/graphql-mesh'
 import { getStoreConfig } from './getStoreConfig'
@@ -12,7 +12,7 @@ import {
 export async function getSearchResultsInput(
   args: QueryproductsArgs,
   context: MeshContext,
-): Promise<Queryalgolia_searchSingleIndexArgs['input']> {
+): Promise<AlgoliasearchParamsObject_Input> {
   const { engine, ...filters } = args.filter ?? {}
 
   return {

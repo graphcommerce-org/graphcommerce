@@ -1,0 +1,137 @@
+input AlgoliaFallbackParams {
+  """
+  One or more keywords to use in a full-text search.
+  """
+  search: String
+  """
+  The product attributes to search for and return.
+  """
+  filter: ProductAttributeFilterInput
+  """
+  Specifies which attributes to sort on, and whether to return the results in ascending or descending order.
+  """
+  sort: ProductAttributeSortInput
+}
+
+input AlgoliaLookingSimilarInput {
+  maxRecommendations: Int = 8
+
+  """
+  Minimum score a recommendation must have to be included in the response.
+  """
+  threshold: Float! = 75
+
+  """
+  One or more keywords to use in a full-text search.
+  """
+  search: String
+
+  """
+  The product attributes to search for and return.
+  """
+  filter: ProductAttributeFilterInput
+
+  """
+  When there are no related products, use this fallback query
+  """
+  fallback: AlgoliaFallbackParams
+}
+
+input AlgoliaFrequentlyBoughtTogetherInput {
+  maxRecommendations: Int = 8
+
+  """
+  Minimum score a recommendation must have to be included in the response.
+  """
+  threshold: Float! = 75
+
+  """
+  One or more keywords to use in a full-text search.
+  """
+  search: String
+
+  """
+  The product attributes to search for and return.
+  """
+  filter: ProductAttributeFilterInput
+}
+
+input AlgoliaRelatedProductsInput {
+  maxRecommendations: Int = 8
+
+  """
+  Minimum score a recommendation must have to be included in the response.
+  """
+  threshold: Float! = 75
+
+  """
+  One or more keywords to use in a full-text search.
+  """
+  search: String
+
+  """
+  The product attributes to search for and return.
+  """
+  filter: ProductAttributeFilterInput
+
+  """
+  When there are no related products, use this fallback query
+  """
+  fallback: AlgoliaFallbackParams
+}
+
+interface ProductInterface {
+  algolia_looking_similar(input: AlgoliaLookingSimilarInput): [ProductInterface]
+  algolia_frequently_bought_together(
+    input: AlgoliaFrequentlyBoughtTogetherInput
+  ): [ProductInterface]
+  algolia_related_products(input: AlgoliaRelatedProductsInput): [ProductInterface]
+}
+
+type SimpleProduct implements ProductInterface {
+  algolia_looking_similar(input: AlgoliaLookingSimilarInput): [ProductInterface]
+  algolia_frequently_bought_together(
+    input: AlgoliaFrequentlyBoughtTogetherInput
+  ): [ProductInterface]
+  algolia_related_products(input: AlgoliaRelatedProductsInput): [ProductInterface]
+}
+
+type VirtualProduct implements ProductInterface {
+  algolia_looking_similar(input: AlgoliaLookingSimilarInput): [ProductInterface]
+  algolia_frequently_bought_together(
+    input: AlgoliaFrequentlyBoughtTogetherInput
+  ): [ProductInterface]
+  algolia_related_products(input: AlgoliaRelatedProductsInput): [ProductInterface]
+}
+
+type ConfigurableProduct implements ProductInterface {
+  algolia_looking_similar(input: AlgoliaLookingSimilarInput): [ProductInterface]
+  algolia_frequently_bought_together(
+    input: AlgoliaFrequentlyBoughtTogetherInput
+  ): [ProductInterface]
+  algolia_related_products(input: AlgoliaRelatedProductsInput): [ProductInterface]
+}
+
+type BundleProduct implements ProductInterface {
+  algolia_looking_similar(input: AlgoliaLookingSimilarInput): [ProductInterface]
+  algolia_frequently_bought_together(
+    input: AlgoliaFrequentlyBoughtTogetherInput
+  ): [ProductInterface]
+  algolia_related_products(input: AlgoliaRelatedProductsInput): [ProductInterface]
+}
+
+type DownloadableProduct implements ProductInterface {
+  algolia_looking_similar(input: AlgoliaLookingSimilarInput): [ProductInterface]
+  algolia_frequently_bought_together(
+    input: AlgoliaFrequentlyBoughtTogetherInput
+  ): [ProductInterface]
+  algolia_related_products(input: AlgoliaRelatedProductsInput): [ProductInterface]
+}
+
+type GroupedProduct implements ProductInterface {
+  algolia_looking_similar(input: AlgoliaLookingSimilarInput): [ProductInterface]
+  algolia_frequently_bought_together(
+    input: AlgoliaFrequentlyBoughtTogetherInput
+  ): [ProductInterface]
+  algolia_related_products(input: AlgoliaRelatedProductsInput): [ProductInterface]
+}

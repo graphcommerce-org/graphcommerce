@@ -1,8 +1,8 @@
 openapi: 3.0.2
 info:
-  title: Search API
+  title: Recommend API
   description: >
-    The Algolia Search API lets you search, configure, and mange your indices and records.
+    The Recommend API lets you retrieve recommendations from one of Algolia's AI recommendation models that you previously trained on your data.
     
     
     ## Client libraries
@@ -19,7 +19,7 @@ info:
     ## Base URLs
     
     
-    The base URLs for requests to the Search API are:
+    The base URLs for requests to the Recommend API are:
     
     
     - `https://{APPLICATION_ID}.algolia.net`
@@ -72,35 +72,13 @@ info:
     ## Request format
     
     
-    Depending on the endpoint, request bodies are either JSON objects or arrays of JSON objects,
-    
-    
-    ## Parameters
-    
-    
-    Parameters are passed as query parameters for GET and DELETE requests,
-    
-    and in the request body for POST and PUT requests.
-    
-    
-    Query parameters must be [URL-encoded](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding).
-    
-    Non-ASCII characters must be UTF-8 encoded.
-    
-    Plus characters (`+`) are interpreted as spaces.
-    
-    Arrays as query parameters must be one of:
-    
-    
-    - A comma-separated string: `attributesToRetrieve=title,description`
-    
-    - A URL-encoded JSON array: `attributesToRetrieve=%5B%22title%22,%22description%22%D`
+    Request bodies must be JSON objects.
     
     
     ## Response status and errors
     
     
-    The Search API returns JSON responses.
+    The Recommend API returns JSON responses.
     
     Since JSON doesn't guarantee any specific ordering, don't rely on the order of attributes in the API response.
     
@@ -113,272 +91,58 @@ info:
     ## Version
     
     
-    The current version of the Search API is version 1, as indicated by the `/1/` in each endpoint's URL.
+    The current version of the Recommend API is version 1, as indicated by the `/1/` in each endpoint's URL.
 
   version: 1.0.0
-servers:
-  - url: https://{appId}.algolia.net
-    variables:
-      appId:
-        default: myAppId
-  - url: https://{appId}-1.algolianet.com
-    variables:
-      appId:
-        default: myAppId
-  - url: https://{appId}-2.algolianet.com
-    variables:
-      appId:
-        default: myAppId
-  - url: https://{appId}-3.algolianet.com
-    variables:
-      appId:
-        default: myAppId
-  - url: https://{appId}-dsn.algolia.net
-    variables:
-      appId:
-        default: myAppId
-security:
-  - appId: []
-    apiKey: []
-tags:
-  - name: Advanced
-    description: Query your logs.
-  - name: Api Keys
-    x-displayName: API keys
-    description: >
-      Manage your API keys.
-      
-      
-      API requests must be authenticated with an API key.
-      
-      API keys can have permissions (access control lists, ACL) and restrictions.
-
-    externalDocs:
-      url: https://www.algolia.com/doc/guides/security/api-keys/
-      description: |
-        Related guide: API keys.
-  - name: Clusters
-    description: |
-      Multi-cluster operations.
-
-      Algolia no longer offers multi-cluster management.
-    externalDocs:
-      url: >-
-        https://www.algolia.com/doc/guides/scaling/managing-multiple-clusters-mcm/
-
-      description: |
-        Related guide: Multi-cluster management.
-  - name: Dictionaries
-    description: >
-      Manage your dictionaries.
-      
-      
-      Customize language-specific settings, such as stop words, plurals, or word segmentation.
-      
-      
-      Dictionaries are application-wide.
-
-    externalDocs:
-      url: >-
-        https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/
-
-      description: |
-        Related guide: Natural languages.
-  - name: Indices
-    description: >
-      Manage your indices and index settings.
-      
-      
-      Indices are copies of your data that are stored on Algolia's servers.
-      
-      They're optimal data structures for fast search and are made up of records and settings.
-
-    externalDocs:
-      url: >-
-        https://www.algolia.com/doc/guides/sending-and-managing-data/manage-indices-and-apps/manage-indices/
-
-      description: |
-        Related guide: Manage your indices.
-  - name: Records
-    description: >
-      Add, update, and delete records from your indices.
-      
-      
-      Records are individual items in your index.
-      
-      When they match a search query, they're returned as search results, in the order determined by your ranking.
-      
-      Records are schemaless JSON objects.
-
-    externalDocs:
-      url: >-
-        https://www.algolia.com/doc/guides/sending-and-managing-data/prepare-your-data/
-
-      description: |
-        Related guide: Prepare your records.
-  - name: Rules
-    description: >
-      Create, update, delete, and search for rules.
-      
-      
-      Rules are _if-then_ statements that you can use to curate search results.
-      
-      Rules have _conditions_ which can trigger _consequences_.
-      
-      Consequences are changes to the search results, such as changing the order of search results, or boosting a facet.
-      
-      This can be useful for tuning specific queries or for merchandising.
-
-    externalDocs:
-      url: >-
-        https://www.algolia.com/doc/guides/managing-results/rules/rules-overview/
-
-      description: |
-        Related guide: Rules.
-  - name: Search
-    description: Search one or more indices for matching records or facet values.
-  - name: Synonyms
-    description: |
-      Create, update, delete, and search for synonyms.
-
-      Synonyms are terms that the search engine should consider equal.
-    externalDocs:
-      url: >-
-        https://www.algolia.com/doc/guides/managing-results/optimize-search-results/adding-synonyms/
-
-      description: |
-        Related guide: Synonyms.
-  - name: Vaults
-    description: >-
-      Algolia Vault lets you restrict access to your clusters to specific IP addresses and provides disk-level encryption at rest.
-
-    externalDocs:
-      url: https://www.algolia.com/doc/guides/security/algolia-vault/
-      description: |
-        Related guide: Algolia Vault.
-  - name: _model_index_settings
-    x-displayName: Index settings
-    description: |
-      <SchemaDefinition schemaRef="#/components/schemas/indexSettings" />.
 paths:
-  /1/indexes/{indexName}/query:
+  /1/indexes/*/recommendations:
     post:
       tags:
-        - search
-      operationId: searchSingleIndex
+        - recommend
+      operationId: getRecommendations
       x-use-read-transporter: true
       x-cacheable: true
       x-acl:
         - search
-      summary: Search an index
-      description: >
-        Searches a single index and return matching search results (_hits_).
-        
-        
-        This method lets you retrieve up to 1,000 hits.
-        
-        If you need more, use the [`browse` operation](#tag/Search/operation/browse) or increase the `paginatedLimitedTo` index setting.
-
-      parameters:
-        - $ref: '#/components/parameters/IndexName'
+      x-legacy-signature-recommend: true
+      summary: Retrieve recommendations
+      description: |
+        Retrieves recommendations from selected AI models.
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/searchParams'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/searchResponse'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '402':
-          $ref: '#/components/responses/FeatureNotEnabled'
-        '403':
-          $ref: '#/components/responses/MethodNotAllowed'
-        '404':
-          $ref: '#/components/responses/IndexNotFound'
-  /1/indexes/{indexName}/facets/{facetName}/query:
-    post:
-      tags:
-        - search
-      operationId: searchForFacetValues
-      x-use-read-transporter: true
-      x-cacheable: true
-      x-acl:
-        - search
-      summary: Search for facet values
-      description: >
-        Searches for values of a specified facet attribute.
-        
-        
-        - By default, facet values are sorted by decreasing count.
-          You can adjust this with the `sortFacetValueBy` parameter.
-        - Searching for facet values doesn't work if you have **more than 65 searchable facets and searchable attributes combined**.
-
-      parameters:
-        - $ref: '#/components/parameters/IndexName'
-        - name: facetName
-          description: >
-            Facet attribute in which to search for values.
-            
-            
-            This attribute must be included in the `attributesForFaceting` index setting with the `searchable()` modifier.
-
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              title: searchForFacetValuesRequest
+              title: getRecommendationsParams
+              description: Recommend request body.
               type: object
               additionalProperties: false
               properties:
-                params:
-                  $ref: '#/components/schemas/paramsAsString'
-                facetQuery:
-                  $ref: '#/components/schemas/facetQuery'
-                maxFacetHits:
-                  $ref: '#/components/schemas/maxFacetHits'
+                requests:
+                  type: array
+                  description: >-
+                    Recommendation request with parameters depending on the requested model.
+
+                  items:
+                    $ref: '#/components/schemas/recommendationsRequest'
+              required:
+                - requests
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/searchForFacetValuesResponse'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '402':
-          $ref: '#/components/responses/FeatureNotEnabled'
-        '403':
-          $ref: '#/components/responses/MethodNotAllowed'
-        '404':
-          $ref: '#/components/responses/IndexNotFound'
-  /1/indexes/{indexName}/settings:
-    get:
-      tags:
-        - search
-      operationId: getSettings
-      x-acl:
-        - search
-      description: Retrieves an object with non-null index settings.
-      summary: Retrieve index settings
-      parameters:
-        - $ref: '#/components/parameters/IndexName'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/settingsResponse'
+                title: getRecommendationsResponse
+                type: object
+                additionalProperties: false
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/recommendationsResults'
+                required:
+                  - results
         '400':
           $ref: '#/components/responses/BadRequest'
         '402':
@@ -405,13 +169,47 @@ components:
         
         The required ACL to make a request is listed in each endpoint's reference.
 
+  parameters:
+    PathInPath:
+      name: path
+      in: path
+      description: Path of the endpoint, anything after "/1" must be specified.
+      required: true
+      schema:
+        type: string
+        example: /keys
+    Parameters:
+      name: parameters
+      in: query
+      description: Query parameters to apply to the current query.
+      schema:
+        type: object
+        additionalProperties: true
+    IndexName:
+      name: indexName
+      in: path
+      description: Name of the index on which to perform the operation.
+      required: true
+      schema:
+        type: string
+        example: YourIndexName
+    Models:
+      in: path
+      name: model
+      required: true
+      description: >
+        [Recommend model](https://www.algolia.com/doc/guides/algolia-recommend/overview/#recommend-models).
+
+      schema:
+        $ref: '#/components/schemas/recommendModels'
+    ObjectID:
+      name: objectID
+      in: path
+      description: Unique record identifier.
+      required: true
+      schema:
+        $ref: '#/components/schemas/objectID'
   schemas:
-    attributeToUpdate:
-      x-keep-model: true
-      deprecated: true
-      oneOf:
-        - type: string
-        - $ref: '#/components/schemas/builtInOperation'
     ErrorBase:
       description: Error.
       type: object
@@ -421,20 +219,10 @@ components:
         message:
           type: string
           example: Invalid Application-Id or API-Key
-    paramsAsString:
-      description: Search parameters as a URL-encoded query string.
-      example: hitsPerPage=2&getRankingInfo=1
+    indexName:
       type: string
-    searchParamsString:
-      type: object
-      title: Search parameters as query string.
-      description: Search parameters as query string.
-      additionalProperties: false
-      x-discriminator-fields:
-        - params
-      properties:
-        params:
-          $ref: '#/components/schemas/paramsAsString'
+      example: products
+      description: Index name (case-sensitive).
     query:
       type: string
       description: Search query.
@@ -1986,7 +1774,227 @@ components:
         - $ref: '#/components/schemas/baseSearchParams'
         - $ref: '#/components/schemas/indexSettingsAsSearchParams'
     searchParams:
-      $ref: '#/components/schemas/searchParamsObject'
+      title: queryParameters
+      allOf:
+        - $ref: '#/components/schemas/searchParamsObject'
+    baseRecommendRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        indexName:
+          $ref: '#/components/schemas/indexName'
+        threshold:
+          type: number
+          format: double
+          minimum: 0
+          maximum: 100
+          description: >-
+            Minimum score a recommendation must have to be included in the response.
+
+        maxRecommendations:
+          type: integer
+          minimum: 1
+          maximum: 1000
+          description: >
+            Maximum number of recommendations to retrieve.
+            
+            By default, all recommendations are returned and no fallback request is made.
+            
+            Depending on the available recommendations and the other request parameters,
+            
+            the actual number of recommendations may be lower than this value.
+
+        queryParameters:
+          $ref: '#/components/schemas/searchParamsObject'
+      required:
+        - indexName
+        - threshold
+    fbtModel:
+      type: string
+      description: >
+        Frequently bought together model.
+        
+        
+        This model recommends items that have been purchased within 1 day with the item with the ID `objectID`.
+
+      enum:
+        - bought-together
+    objectID:
+      type: string
+      description: Unique record identifier.
+      example: test-record-123
+    frequentlyBoughtTogether:
+      type: object
+      properties:
+        model:
+          $ref: '#/components/schemas/fbtModel'
+        objectID:
+          $ref: '#/components/schemas/objectID'
+      required:
+        - model
+        - objectID
+    boughtTogetherQuery:
+      title: Frequently bought together
+      allOf:
+        - $ref: '#/components/schemas/baseRecommendRequest'
+        - $ref: '#/components/schemas/frequentlyBoughtTogether'
+    relatedModel:
+      type: string
+      description: >
+        Related products or similar content model.
+        
+        
+        This model recommends items that are similar to the item with the ID `objectID`.
+        
+        Similarity is determined from the user interactions and attributes.
+
+      enum:
+        - related-products
+    fallbackParams:
+      title: fallbackParameters
+      allOf:
+        - $ref: '#/components/schemas/searchParamsObject'
+    relatedProducts:
+      type: object
+      properties:
+        model:
+          $ref: '#/components/schemas/relatedModel'
+        objectID:
+          $ref: '#/components/schemas/objectID'
+        fallbackParameters:
+          $ref: '#/components/schemas/searchParamsObject'
+      required:
+        - model
+        - objectID
+    relatedQuery:
+      title: Related products
+      allOf:
+        - $ref: '#/components/schemas/baseRecommendRequest'
+        - $ref: '#/components/schemas/relatedProducts'
+    facetName:
+      type: string
+      description: >
+        Facet attribute. To be used in combination with `facetValue`.
+        
+        If specified, only recommendations matching the facet filter will be returned.
+
+    facetValue:
+      type: string
+      description: >
+        Facet value. To be used in combination with `facetName`.
+        
+        If specified, only recommendations matching the facet filter will be returned.
+
+    trendingItemsModel:
+      description: >
+        Trending items model.
+        
+        
+        Trending items are determined from the number of conversion events collected on them.
+
+      type: string
+      enum:
+        - trending-items
+    trendingItems:
+      type: object
+      properties:
+        facetName:
+          $ref: '#/components/schemas/facetName'
+        facetValue:
+          $ref: '#/components/schemas/facetValue'
+        model:
+          $ref: '#/components/schemas/trendingItemsModel'
+        fallbackParameters:
+          $ref: '#/components/schemas/searchParamsObject'
+      required:
+        - model
+    trendingItemsQuery:
+      title: Trending items
+      allOf:
+        - $ref: '#/components/schemas/baseRecommendRequest'
+        - $ref: '#/components/schemas/trendingItems'
+    trendingFacetsModel:
+      type: string
+      description: >
+        Trending facet values model.
+        
+        
+        This model recommends trending facet values for the specified facet attribute.
+
+      enum:
+        - trending-facets
+    trendingFacets:
+      type: object
+      properties:
+        facetName:
+          description: Facet attribute for which to retrieve trending facet values.
+        model:
+          $ref: '#/components/schemas/trendingFacetsModel'
+        fallbackParameters:
+          $ref: '#/components/schemas/searchParamsObject'
+      required:
+        - facetName
+        - model
+    trendingFacetsQuery:
+      title: Trending facet values
+      allOf:
+        - $ref: '#/components/schemas/baseRecommendRequest'
+        - $ref: '#/components/schemas/trendingFacets'
+    lookingSimilarModel:
+      type: string
+      description: >
+        Looking similar model.
+        
+        
+        This model recommends items that look similar to the item with the ID `objectID` based on image attributes in your index.
+
+      enum:
+        - looking-similar
+    lookingSimilar:
+      type: object
+      properties:
+        model:
+          $ref: '#/components/schemas/lookingSimilarModel'
+        objectID:
+          $ref: '#/components/schemas/objectID'
+        fallbackParameters:
+          $ref: '#/components/schemas/searchParamsObject'
+      required:
+        - model
+        - objectID
+    lookingSimilarQuery:
+      title: Looking similar
+      allOf:
+        - $ref: '#/components/schemas/baseRecommendRequest'
+        - $ref: '#/components/schemas/lookingSimilar'
+    recommendedForYouModel:
+      type: string
+      description: |
+        "Recommened for you" model.
+      enum:
+        - recommended-for-you
+    recommendedForYou:
+      type: object
+      properties:
+        model:
+          $ref: '#/components/schemas/recommendedForYouModel'
+        fallbackParameters:
+          $ref: '#/components/schemas/searchParamsObject'
+      required:
+        - model
+    recommendedForYouQuery:
+      title: Recommended for you
+      allOf:
+        - $ref: '#/components/schemas/baseRecommendRequest'
+        - $ref: '#/components/schemas/recommendedForYou'
+    recommendationsRequest:
+      oneOf:
+        - $ref: '#/components/schemas/boughtTogetherQuery'
+        - $ref: '#/components/schemas/relatedQuery'
+        - $ref: '#/components/schemas/trendingItemsQuery'
+        - $ref: '#/components/schemas/trendingFacetsQuery'
+        - $ref: '#/components/schemas/lookingSimilarQuery'
+        - $ref: '#/components/schemas/recommendedForYouQuery'
     processingTimeMS:
       type: integer
       description: Time the server took to process the request, in milliseconds.
@@ -2231,10 +2239,6 @@ components:
         - nbHits
         - nbPages
         - hitsPerPage
-    objectID:
-      type: string
-      description: Unique record identifier.
-      example: test-record-123
     highlightResultMap:
       type: object
       description: Surround words that match the query with HTML tags for highlighting.
@@ -2426,18 +2430,19 @@ components:
         - userScore
     distinctSeqID:
       type: integer
-    hit:
+    recommendScore:
+      type: number
+      format: double
+      minimum: 0
+      maximum: 100
+      description: Recommendation score.
+    recommendHit:
       type: object
-      description: >
-        Search result.
-        
-        
-        A hit is a record from your index, augmented with special attributes for highlighting, snippeting, and ranking.
-
-      x-is-generic: true
+      description: Recommend hit.
       additionalProperties: true
       required:
         - objectID
+        - _score
       properties:
         objectID:
           $ref: '#/components/schemas/objectID'
@@ -2449,208 +2454,194 @@ components:
           $ref: '#/components/schemas/rankingInfo'
         _distinctSeqID:
           $ref: '#/components/schemas/distinctSeqID'
-    searchHits:
+        _score:
+          $ref: '#/components/schemas/recommendScore'
+    trendingFacetHit:
       type: object
-      additionalProperties: true
+      description: Trending facet hit.
+      required:
+        - _score
+        - facetName
+        - facetValue
+      properties:
+        _score:
+          $ref: '#/components/schemas/recommendScore'
+        facetName:
+          $ref: '#/components/schemas/facetName'
+        facetValue:
+          $ref: '#/components/schemas/facetValue'
+    recommendationsHit:
+      oneOf:
+        - $ref: '#/components/schemas/recommendHit'
+        - $ref: '#/components/schemas/trendingFacetHit'
+    recommendationsHits:
+      type: object
+      additionalProperties: false
       properties:
         hits:
           type: array
-          description: >
-            Search results (hits).
-            
-            
-            Hits are records from your index that match the search criteria, augmented with additional attributes, such as, for highlighting.
-
           items:
-            $ref: '#/components/schemas/hit'
-        query:
-          $ref: '#/components/schemas/query'
-        params:
-          type: string
-          description: URL-encoded string of all search parameters.
-          example: query=a&hitsPerPage=20
+            $ref: '#/components/schemas/recommendationsHit'
       required:
         - hits
-        - query
-        - params
-    searchResponse:
-      additionalProperties: true
+    recommendationsResults:
       allOf:
         - $ref: '#/components/schemas/baseSearchResponse'
         - $ref: '#/components/schemas/SearchPagination'
-        - $ref: '#/components/schemas/searchHits'
-    indexName:
-      type: string
-      example: products
-      description: Index name (case-sensitive).
-    searchTypeDefault:
+        - $ref: '#/components/schemas/recommendationsHits'
+    recommendModels:
       type: string
       enum:
-        - default
+        - related-products
+        - bought-together
+        - trending-facets
+        - trending-items
+    updatedAt:
+      type: string
+      example: '2023-07-04T12:49:15Z'
+      description: Date and time when the object was updated, in RFC 3339 format.
+    ruleID:
+      title: objectID
+      type: string
+      description: Unique identifier of a rule object.
+    context:
+      type: string
+      pattern: '[A-Za-z0-9_-]+'
       description: >
-        - `default`: perform a search query
+        An additional restriction that only triggers the rule, when the search has the same value as `ruleContexts` parameter.
         
-        - `facet` [searches for facet values](https://www.algolia.com/doc/guides/managing-results/refine-results/faceting/#search-for-facet-values).
+        For example, if `context: mobile`, the rule is only triggered when the search request has a matching `ruleContexts: mobile`.
+        
+        A rule context must only contain alphanumeric characters.
 
-    searchForHitsOptions:
-      x-is-SearchForHitsOptions: true
+      example: mobile
+    Condition:
       type: object
+      description: |
+        Condition that triggers the rule.
+        If not specified, the rule is triggered for all recommendations.
       properties:
-        indexName:
-          $ref: '#/components/schemas/indexName'
-        type:
-          $ref: '#/components/schemas/searchTypeDefault'
-      required:
-        - indexName
-    SearchForHits:
-      allOf:
-        - $ref: '#/components/schemas/searchParams'
-        - $ref: '#/components/schemas/searchForHitsOptions'
-    facetQuery:
-      type: string
-      description: Text to search inside the facet's values.
-      example: george
-    searchTypeFacet:
-      type: string
-      enum:
-        - facet
-      description: >
-        - `default`: perform a search query
-        
-        - `facet` [searches for facet values](https://www.algolia.com/doc/guides/managing-results/refine-results/faceting/#search-for-facet-values).
-
-    searchForFacetsOptions:
+        filters:
+          $ref: '#/components/schemas/filters'
+        context:
+          $ref: '#/components/schemas/context'
+    HideConsequenceObject:
       type: object
+      description: Object ID of the recommendation you want to exclude.
+      properties:
+        objectID:
+          $ref: '#/components/schemas/objectID'
+    HideConsequence:
+      type: array
+      description: Exclude items from recommendations.
+      minItems: 1
+      items:
+        $ref: '#/components/schemas/HideConsequenceObject'
+    PromoteConsequenceObject:
+      type: object
+      description: Object ID and position of the recommendation you want to pin.
+      properties:
+        objectID:
+          $ref: '#/components/schemas/objectID'
+        position:
+          type: integer
+          description: Index in the list of recommendations where to place this item.
+          minimum: 0
+    PromoteConsequence:
+      type: array
+      description: Place items at specific positions in the list of recommendations.
+      minItems: 1
+      items:
+        $ref: '#/components/schemas/PromoteConsequenceObject'
+    AutoFacetFilter:
+      type: object
+      description: >-
+        Facet attribute. Only recommendations with the same value (or only recommendations with a different value) as the original viewed item are included.
+
       properties:
         facet:
           type: string
-          description: Facet name.
-        indexName:
-          $ref: '#/components/schemas/indexName'
-        facetQuery:
-          $ref: '#/components/schemas/facetQuery'
-        maxFacetHits:
-          $ref: '#/components/schemas/maxFacetHits'
-        type:
-          $ref: '#/components/schemas/searchTypeFacet'
-      required:
-        - indexName
-        - type
-        - facet
-    SearchForFacets:
-      allOf:
-        - $ref: '#/components/schemas/searchParams'
-        - $ref: '#/components/schemas/searchForFacetsOptions'
-      x-discriminator-fields:
-        - facet
-        - type
-    SearchQuery:
-      oneOf:
-        - $ref: '#/components/schemas/SearchForHits'
-        - $ref: '#/components/schemas/SearchForFacets'
-    searchStrategy:
-      type: string
-      enum:
-        - none
-        - stopIfEnoughMatches
-      description: >
-        Strategy for multiple search queries:
-        
-        
-        - `none`. Run all queries.
-        
-        - `stopIfEnoughMatches`. Run the queries one by one, stopping as soon as a query matches at least the `hitsPerPage` number of results.
-
-    searchForFacetValuesResponse:
-      type: object
-      additionalProperties: false
-      required:
-        - facetHits
-        - exhaustiveFacetsCount
-      x-discriminator-fields:
-        - facetHits
-      properties:
-        facetHits:
-          type: array
-          description: Matching facet values.
-          items:
-            title: facetHits
-            type: object
-            additionalProperties: false
-            required:
-              - value
-              - highlighted
-              - count
-            properties:
-              value:
-                description: Facet value.
-                example: Mobile phone
-                type: string
-              highlighted:
-                $ref: '#/components/schemas/highlightedValue'
-              count:
-                description: >-
-                  Number of records with this facet value. [The count may be approximated](https://support.algolia.com/hc/en-us/articles/4406975248145-Why-are-my-facet-and-hit-counts-not-accurate-).
-
-                type: integer
-        exhaustiveFacetsCount:
+          description: Facet attribute.
+        negative:
           type: boolean
           description: >
-            Whether the facet count is exhaustive (true) or approximate (false).
+            Whether the filter is negative.
             
-            For more information, see [Why are my facet and hit counts not accurate](https://support.algolia.com/hc/en-us/articles/4406975248145-Why-are-my-facet-and-hit-counts-not-accurate-).
+            If true, recommendations must not have the same value for the `facet` attribute.
+            
+            If false, recommendations must have the same value for the `facet` attribute.
 
-        processingTimeMS:
-          $ref: '#/components/schemas/processingTimeMS'
-    searchResult:
-      oneOf:
-        - $ref: '#/components/schemas/searchResponse'
-        - $ref: '#/components/schemas/searchForFacetValuesResponse'
-    cursor:
+    ParamsConsequence:
       type: object
-      additionalProperties: false
+      description: Filter or boost recommendations matching a facet filter.
       properties:
-        cursor:
-          type: string
+        automaticFacetFilters:
+          type: array
+          description: >-
+            Filter recommendations that match or don't match the same `facet:facet_value` combination as the viewed item.
+
+          items:
+            $ref: '#/components/schemas/AutoFacetFilter'
+        filters:
+          $ref: '#/components/schemas/filters'
+        optionalFilters:
+          type: array
           description: >
-            Cursor to get the next page of the response.
+            Filters to promote or demote records in the search results.
             
             
-            The parameter must match the value returned in the response of a previous request.
+            Optional filters work like facet filters, but they don't exclude records from the search results.
             
-            The last page of the response does not return a `cursor` attribute.
+            Records that match the optional filter rank before records that don't match.
+            
+            Matches with higher weights (`<score=N>`) rank before matches with lower weights.
+            
+            If you're using a negative filter `facet:-value`, matching records rank after records that don't match.
 
-          example: jMDY3M2MwM2QwMWUxMmQwYWI0ZTN
-    browseParamsObject:
-      allOf:
-        - $ref: '#/components/schemas/searchParamsObject'
-        - $ref: '#/components/schemas/cursor'
-    browseParams:
-      oneOf:
-        - $ref: '#/components/schemas/searchParamsString'
-        - $ref: '#/components/schemas/browseParamsObject'
-    BrowsePagination:
+          items:
+            type: string
+          example:
+            - category:books<score=1>
+            - category:-movies<score=1>
+    Consequence:
       type: object
+      description: Effect of the rule.
+      properties:
+        hide:
+          $ref: '#/components/schemas/HideConsequence'
+        promote:
+          $ref: '#/components/schemas/PromoteConsequence'
+        params:
+          $ref: '#/components/schemas/ParamsConsequence'
+    RecommendRule:
+      type: object
+      description: Recommend rule.
       additionalProperties: false
       properties:
-        page:
-          $ref: '#/components/schemas/page'
-        nbHits:
-          $ref: '#/components/schemas/nbHits'
-        nbPages:
-          $ref: '#/components/schemas/nbPages'
-        hitsPerPage:
-          $ref: '#/components/schemas/hitsPerPage'
-    browseResponse:
-      allOf:
-        - $ref: '#/components/schemas/baseSearchResponse'
-        - $ref: '#/components/schemas/BrowsePagination'
-        - $ref: '#/components/schemas/searchHits'
-        - $ref: '#/components/schemas/cursor'
-    createdAt:
-      type: string
-      example: '2023-07-04T12:49:15Z'
-      description: Date and time when the object was created, in RFC 3339 format.
+        _metadata:
+          title: ruleMetadata
+          type: object
+          description: Rule metadata.
+          properties:
+            lastUpdate:
+              $ref: '#/components/schemas/updatedAt'
+        objectID:
+          $ref: '#/components/schemas/ruleID'
+        condition:
+          $ref: '#/components/schemas/Condition'
+        consequence:
+          $ref: '#/components/schemas/Consequence'
+        description:
+          type: string
+          description: >-
+            Description of the rule's purpose. This can be helpful for display in the Algolia dashboard.
+
+          example: Display a promotional banner
+        enabled:
+          type: boolean
+          description: >-
+            Indicates whether to enable the rule. If it isn't enabled, it isn't applied at query time.
+
     taskID:
       type: integer
       format: int64
@@ -2665,1084 +2656,17 @@ components:
       type: string
       example: '2023-06-27T14:42:38.831Z'
       description: Date and time when the object was deleted, in RFC 3339 format.
-    updatedAt:
-      type: string
-      example: '2023-07-04T12:49:15Z'
-      description: Date and time when the object was updated, in RFC 3339 format.
-    deleteByParams:
-      type: object
-      additionalProperties: false
-      properties:
-        facetFilters:
-          $ref: '#/components/schemas/facetFilters'
-        filters:
-          $ref: '#/components/schemas/filters'
-        numericFilters:
-          $ref: '#/components/schemas/numericFilters'
-        tagFilters:
-          $ref: '#/components/schemas/tagFilters'
-        aroundLatLng:
-          $ref: '#/components/schemas/aroundLatLng'
-        aroundRadius:
-          $ref: '#/components/schemas/aroundRadius'
-        insideBoundingBox:
-          $ref: '#/components/schemas/insideBoundingBox'
-        insidePolygon:
-          $ref: '#/components/schemas/insidePolygon'
-    updatedAtResponse:
-      type: object
-      description: Response, taskID, and update timestamp.
-      additionalProperties: false
-      required:
-        - taskID
-        - updatedAt
-      properties:
-        taskID:
-          $ref: '#/components/schemas/taskID'
-        updatedAt:
-          $ref: '#/components/schemas/updatedAt'
-    action:
+    taskStatus:
       type: string
       enum:
-        - addObject
-        - updateObject
-        - partialUpdateObject
-        - partialUpdateObjectNoCreate
-        - deleteObject
-        - delete
-        - clear
-      description: Type of indexing operation.
-    batchWriteParams:
-      title: batchWriteParams
-      description: Batch parameters.
-      type: object
-      additionalProperties: false
-      properties:
-        requests:
-          type: array
-          items:
-            title: batchRequest
-            type: object
-            additionalProperties: false
-            properties:
-              action:
-                $ref: '#/components/schemas/action'
-              body:
-                type: object
-                description: Operation arguments (varies with specified `action`).
-                example:
-                  name: Betty Jane McCamey
-                  company: Vita Foods Inc.
-                  email: betty@mccamey.com
-            required:
-              - action
-              - body
-      required:
-        - requests
-      example:
-        batch:
-          summary: Batch indexing request
-          value:
-            requests:
-              - action: addObject
-                body:
-                  name: Betty Jane McCamey
-                  company: Vita Foods Inc.
-                  email: betty@mccamey.com
-              - action: addObject
-                body:
-                  name: Gayla geimer
-                  company: Ortman McCain Co.
-                  email: gayla@geimer.com
-    objectIDs:
-      type: array
-      items:
-        type: string
-      example:
-        - record-1
-        - record-2
-      description: Unique record identifiers.
-    batchResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        taskID:
-          $ref: '#/components/schemas/taskID'
-        objectIDs:
-          $ref: '#/components/schemas/objectIDs'
-      required:
-        - taskID
-        - objectIDs
-    baseIndexSettings:
-      type: object
-      additionalProperties: false
-      properties:
-        attributesForFaceting:
-          type: array
-          items:
-            type: string
-          example:
-            - author
-            - filterOnly(isbn)
-            - searchable(edition)
-            - afterDistinct(category)
-            - afterDistinct(searchable(publisher))
-          description: >
-            Attributes used for [faceting](https://www.algolia.com/doc/guides/managing-results/refine-results/faceting/).
-            
-            
-            Facets are attributes that let you categorize search results.
-            
-            They can be used for filtering search results.
-            
-            By default, no attribute is used for faceting.
-            
-            Attribute names are case-sensitive.
-            
-            
-            **Modifiers**
-            
-            
-            - `filterOnly("ATTRIBUTE")`.
-              Allows using this attribute as a filter, but doesn't evalue the facet values.
-            
-            - `searchable("ATTRIBUTE")`.
-              Allows searching for facet values.
-            
-            - `afterDistinct("ATTRIBUTE")`.
-              Evaluates the facet count _after_ deduplication with `distinct`.
-              This ensures accurate facet counts.
-              You can apply this modifier to searchable facets: `afterDistinct(searchable(ATTRIBUTE))`.
-
-          x-categories:
-            - Faceting
-        replicas:
-          type: array
-          items:
-            type: string
-          example:
-            - virtual(prod_products_price_asc)
-            - dev_products_replica
-          description: >
-            Creates [replica indices](https://www.algolia.com/doc/guides/managing-results/refine-results/sorting/in-depth/replicas/).
-            
-            
-            Replicas are copies of a primary index with the same records but different settings, synonyms, or rules.
-            
-            If you want to offer a different ranking or sorting of your search results, you'll use replica indices.
-            
-            All index operations on a primary index are automatically forwarded to its replicas.
-            
-            To add a replica index, you must provide the complete set of replicas to this parameter.
-            
-            If you omit a replica from this list, the replica turns into a regular, standalone index that will no longer by synced with the primary index.
-            
-            
-            **Modifier**
-            
-            
-            - `virtual("REPLICA")`.
-              Create a virtual replica,
-              Virtual replicas don't increase the number of records and are optimized for [Relevant sorting](https://www.algolia.com/doc/guides/managing-results/refine-results/sorting/in-depth/relevant-sort/).
-
-          x-categories:
-            - Ranking
-        paginationLimitedTo:
-          type: integer
-          example: 100
-          description: >
-            Maximum number of search results that can be obtained through pagination.
-            
-            
-            Higher pagination limits might slow down your search.
-            
-            For pagination limits above 1,000, the sorting of results beyond the 1,000th hit can't be guaranteed.
-
-          maximum: 20000
-        unretrievableAttributes:
-          type: array
-          items:
-            type: string
-          example:
-            - total_sales
-          description: >
-            Attributes that can't be retrieved at query time.
-            
-            
-            This can be useful if you want to use an attribute for ranking or to [restrict access](https://www.algolia.com/doc/guides/security/api-keys/how-to/user-restricted-access-to-data/),
-            
-            but don't want to include it in the search results.
-            
-            Attribute names are case-sensitive.
-
-          x-categories:
-            - Attributes
-        disableTypoToleranceOnWords:
-          type: array
-          items:
-            type: string
-          example:
-            - wheel
-            - 1X2BCD
-          description: >
-            Words for which you want to turn off [typo tolerance](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/).
-            
-            This also turns off [word splitting and concatenation](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/splitting-and-concatenation/) for the specified words.
-
-          x-categories:
-            - Typos
-        attributesToTransliterate:
-          description: >
-            Attributes, for which you want to support [Japanese transliteration](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/language-specific-configurations/#japanese-transliteration-and-type-ahead).
-            
-            
-            Transliteration supports searching in any of the Japanese writing systems.
-            
-            To support transliteration, you must set the indexing language to Japanese.
-            
-            Attribute names are case-sensitive.
-
-          type: array
-          items:
-            type: string
-          example:
-            - name
-            - description
-          x-categories:
-            - Languages
-        camelCaseAttributes:
-          type: array
-          items:
-            type: string
-          example:
-            - description
-          description: >
-            Attributes for which to split [camel case](https://wikipedia.org/wiki/Camel_case) words.
-            
-            Attribute names are case-sensitive.
-
-          x-categories:
-            - Languages
-        decompoundedAttributes:
-          type: object
-          example:
-            de:
-              - name
-          description: >
-            Searchable attributes to which Algolia should apply [word segmentation](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/how-to/customize-segmentation/) (decompounding).
-            
-            Attribute names are case-sensitive.
-            
-            
-            Compound words are formed by combining two or more individual words,
-            
-            and are particularly prevalent in Germanic languages—for example, "firefighter".
-            
-            With decompounding, the individual components are indexed separately.
-            
-            
-            You can specify different lists for different languages.
-            
-            Decompounding is supported for these languages:
-            
-            Dutch (`nl`), German (`de`), Finnish (`fi`), Danish (`da`), Swedish (`sv`), and Norwegian (`no`).
-            
-            Decompounding doesn't work for words with [non-spacing mark Unicode characters](https://www.charactercodes.net/category/non-spacing_mark).
-            
-            For example, `Gartenstühle` won't be decompounded if the `ü` consists of `u` (U+0075) and `◌̈` (U+0308).
-
-          x-categories:
-            - Languages
-        indexLanguages:
-          type: array
-          items:
-            $ref: '#/components/schemas/supportedLanguage'
-          example:
-            - ja
-          description: >
-            Languages for language-specific processing steps, such as word detection and dictionary settings.
-            
-            
-            **You should always specify an indexing language.**
-            
-            If you don't specify an indexing language, the search engine uses all [supported languages](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/supported-languages/),
-            
-            or the languages you specified with the `ignorePlurals` or `removeStopWords` parameters.
-            
-            This can lead to unexpected search results.
-            
-            For more information, see [Language-specific configuration](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/language-specific-configurations/).
-
-          x-categories:
-            - Languages
-        disablePrefixOnAttributes:
-          type: array
-          items:
-            type: string
-          example:
-            - sku
-          description: >
-            Searchable attributes for which you want to turn off [prefix matching](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/override-search-engine-defaults/#adjusting-prefix-search).
-            
-            Attribute names are case-sensitive.
-
-          x-categories:
-            - Query strategy
-        allowCompressionOfIntegerArray:
-          type: boolean
-          description: >
-            Whether arrays with exclusively non-negative integers should be compressed for better performance.
-            
-            If true, the compressed arrays may be reordered.
-
-          x-categories:
-            - Performance
-        numericAttributesForFiltering:
-          type: array
-          items:
-            type: string
-          description: >
-            Numeric attributes that can be used as [numerical filters](https://www.algolia.com/doc/guides/managing-results/rules/detecting-intent/how-to/applying-a-custom-filter-for-a-specific-query/#numerical-filters).
-            
-            Attribute names are case-sensitive.
-            
-            
-            By default, all numeric attributes are available as numerical filters.
-            
-            For faster indexing, reduce the number of numeric attributes.
-            
-            
-            If you want to turn off filtering for all numeric attributes, specifiy an attribute that doesn't exist in your index, such as `NO_NUMERIC_FILTERING`.
-            
-            
-            **Modifier**
-            
-            
-            - `equalOnly("ATTRIBUTE")`.
-              Support only filtering based on equality comparisons `=` and `!=`.
-
-          example:
-            - equalOnly(quantity)
-            - popularity
-          x-categories:
-            - Performance
-        separatorsToIndex:
-          type: string
-          example: +#
-          description: >
-            Controls which separators are indexed.
-            
-            
-            Separators are all non-letter characters except spaces and currency characters, such as $€£¥.
-            
-            By default, separator characters aren't indexed.
-            
-            With `separatorsToIndex`, Algolia treats separator characters as separate words.
-            
-            For example, a search for `C#` would report two matches.
-
-          x-categories:
-            - Typos
-        searchableAttributes:
-          type: array
-          items:
-            type: string
-          example:
-            - title,alternative_title
-            - author
-            - unordered(text)
-            - emails.personal
-          description: >
-            Attributes used for searching. Attribute names are case-sensitive.
-            
-            
-            By default, all attributes are searchable and the [Attribute](https://www.algolia.com/doc/guides/managing-results/relevance-overview/in-depth/ranking-criteria/#attribute) ranking criterion is turned off.
-            
-            With a non-empty list, Algolia only returns results with matches in the selected attributes.
-            
-            In addition, the Attribute ranking criterion is turned on: matches in attributes that are higher in the list of `searchableAttributes` rank first.
-            
-            To make matches in two attributes rank equally, include them in a comma-separated string, such as `"title,alternate_title"`.
-            
-            Attributes with the same priority are always unordered.
-            
-            
-            For more information, see [Searchable attributes](https://www.algolia.com/doc/guides/sending-and-managing-data/prepare-your-data/how-to/setting-searchable-attributes/).
-            
-            
-            **Modifier**
-            
-            
-            - `unordered("ATTRIBUTE")`.
-              Ignore the position of a match within the attribute.
-            
-            Without modifier, matches at the beginning of an attribute rank higer than matches at the end.
-
-          x-categories:
-            - Attributes
-        userData:
-          $ref: '#/components/schemas/userData'
-        customNormalization:
-          description: >
-            Characters and their normalized replacements.
-            
-            This overrides Algolia's default [normalization](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/normalization/).
-
-          type: object
-          additionalProperties:
-            type: object
-            additionalProperties:
-              type: string
-          x-categories:
-            - Languages
-        attributeForDistinct:
-          description: >
-            Attribute that should be used to establish groups of results.
-            
-            Attribute names are case-sensitive.
-            
-            
-            All records with the same value for this attribute are considered a group.
-            
-            You can combine `attributeForDistinct` with the `distinct` search parameter to control
-            
-            how many items per group are included in the search results.
-            
-            
-            If you want to use the same attribute also for faceting, use the `afterDistinct` modifier of the `attributesForFaceting` setting.
-            
-            This applies faceting _after_ deduplication, which will result in accurate facet counts.
-
-          example: url
-          type: string
-    indexSettings:
-      description: Index settings.
-      allOf:
-        - $ref: '#/components/schemas/baseIndexSettings'
-        - $ref: '#/components/schemas/indexSettingsAsSearchParams'
-    WithPrimary:
-      type: object
-      additionalProperties: false
-      properties:
-        primary:
-          type: string
-          description: >
-            Replica indices only: the name of the primary index for this replica.
-
-    settingsResponse:
-      allOf:
-        - $ref: '#/components/schemas/indexSettings'
-        - $ref: '#/components/schemas/WithPrimary'
-    SynonymType:
-      type: string
-      description: Synonym type.
-      example: onewaysynonym
-      enum:
-        - synonym
-        - onewaysynonym
-        - altcorrection1
-        - altcorrection2
-        - placeholder
-    synonymHit:
-      type: object
-      description: Synonym object.
-      additionalProperties: false
-      properties:
-        objectID:
-          type: string
-          description: Unique identifier of a synonym object.
-          example: synonymID
-        type:
-          $ref: '#/components/schemas/SynonymType'
-        synonyms:
-          type: array
-          items:
-            type: string
-          description: Words or phrases considered equivalent.
-          example:
-            - vehicle
-            - auto
-        input:
-          type: string
-          description: >-
-            Word or phrase to appear in query strings (for [`onewaysynonym`s](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/adding-synonyms/in-depth/one-way-synonyms/)).
-
-          example: car
-        word:
-          type: string
-          description: >-
-            Word or phrase to appear in query strings (for [`altcorrection1` and `altcorrection2`](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/adding-synonyms/in-depth/synonyms-alternative-corrections/)).
-
-          example: car
-        corrections:
-          type: array
-          items:
-            type: string
-          description: Words to be matched in records.
-          example:
-            - vehicle
-            - auto
-        placeholder:
-          type: string
-          description: >
-            [Placeholder token](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/adding-synonyms/in-depth/synonyms-placeholders/) to be put inside records.
-
-          example: <Street>
-        replacements:
-          type: array
-          items:
-            type: string
-          description: >-
-            Query words that will match the [placeholder token](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/adding-synonyms/in-depth/synonyms-placeholders/).
-
-          example:
-            - street
-            - st
-      required:
-        - objectID
-        - type
-    id:
-      type: string
-      example: '12'
-      description: Unique identifier of a synonym object.
-    synonymHits:
-      type: array
-      description: Matching synonyms.
-      items:
-        $ref: '#/components/schemas/synonymHit'
-    searchSynonymsResponse:
-      type: object
-      additionalProperties: true
-      properties:
-        hits:
-          $ref: '#/components/schemas/synonymHits'
-        nbHits:
-          $ref: '#/components/schemas/nbHits'
-      required:
-        - hits
-        - nbHits
-    keyString:
-      type: string
-      description: API key.
-      example: 13ad45b4d0a2f6ea65ecbddf6aa260f2
-    createdAtTimestamp:
-      type: integer
-      format: int64
-      example: 1656345570000
+        - published
+        - notPublished
       description: >-
-        Timestamp when the object was created, in milliseconds since the Unix epoch.
+        Task status, `published` if the task is completed, `notPublished` otherwise.
 
-    baseGetApiKeyResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        value:
-          $ref: '#/components/schemas/keyString'
-        createdAt:
-          $ref: '#/components/schemas/createdAtTimestamp'
-      required:
-        - key
-        - createdAt
-    acl:
-      description: Access control list permissions.
-      type: string
-      enum:
-        - addObject
-        - analytics
-        - browse
-        - deleteObject
-        - deleteIndex
-        - editSettings
-        - inference
-        - listIndexes
-        - logs
-        - personalization
-        - recommendation
-        - search
-        - seeUnretrievableAttributes
-        - settings
-        - usage
-    apiKey:
-      type: object
-      description: API key object.
-      additionalProperties: false
-      properties:
-        acl:
-          type: array
-          description: >
-            Permissions that determine the type of API requests this key can make.
-            
-            The required ACL is listed in each endpoint's reference.
-            
-            For more information, see [access control list](https://www.algolia.com/doc/guides/security/api-keys/#access-control-list-acl).
-
-          example:
-            - search
-            - addObject
-          items:
-            $ref: '#/components/schemas/acl'
-        description:
-          type: string
-          description: Description of an API key to help you identify this API key.
-          example: Used for indexing by the CLI
-        indexes:
-          type: array
-          description: >
-            Index names or patterns that this API key can access.
-            
-            By default, an API key can access all indices in the same application.
-            
-            
-            You can use leading and trailing wildcard characters (`*`):
-            
-            
-            - `dev_*` matches all indices starting with "dev_".
-            
-            - `*_dev` matches all indices ending with "_dev".
-            
-            - `*_products_*` matches all indices containing "_products_".
-
-          example:
-            - dev_*
-            - prod_en_products
-          items:
-            type: string
-        maxHitsPerQuery:
-          type: integer
-          description: |
-            Maximum number of results this API key can retrieve in one query.
-            By default, there's no limit.
-        maxQueriesPerIPPerHour:
-          type: integer
-          description: >
-            Maximum number of API requests allowed per IP address or [user token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken/) per hour.
-            
-            
-            If this limit is reached, the API returns an error with status code `429`.
-            
-            By default, there's no limit.
-
-        queryParameters:
-          type: string
-          description: >
-            Query parameters to add when making API requests with this API key.
-            
-            
-            To restrict this API key to specific IP addresses, add the `restrictSources` parameter.
-            
-            You can only add a single source, but you can provide a range of IP addresses.
-            
-            
-            Creating an API key fails if the request is made from an IP address that's outside the restricted range.
-
-          example: typoTolerance=strict&restrictSources=192.168.1.0/24
-        referers:
-          type: array
-          description: >
-            Allowed HTTP referrers for this API key.
-            
-            
-            By default, all referrers are allowed.
-            
-            You can use leading and trailing wildcard characters (`*`):
-            
-            
-            - `https://algolia.com/*` allows all referrers starting with "https://algolia.com/"
-            
-            - `*.algolia.com` allows all referrers ending with ".algolia.com"
-            
-            - `*algolia.com*` allows all referrers in the domain "algolia.com".
-            
-            
-            Like all HTTP headers, referrers can be spoofed. Don't rely on them to secure your data.
-            
-            For more information, see [HTTP referrer restrictions](https://www.algolia.com/doc/guides/security/security-best-practices/#http-referrers-restrictions).
-
-          example:
-            - '*algolia.com*'
-          items:
-            type: string
-        validity:
-          type: integer
-          description: |
-            Duration (in seconds) after which the API key expires.
-            By default, API keys don't expire.
-          example: 86400
-      required:
-        - acl
-    getApiKeyResponse:
-      allOf:
-        - $ref: '#/components/schemas/baseGetApiKeyResponse'
-        - $ref: '#/components/schemas/apiKey'
-    addApiKeyResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        key:
-          $ref: '#/components/schemas/keyString'
-        createdAt:
-          $ref: '#/components/schemas/createdAt'
-      required:
-        - key
-        - createdAt
-    ruleID:
-      title: objectID
-      type: string
-      description: Unique identifier of a rule object.
-    anchoring:
-      type: string
-      description: |
-        Which part of the search query the pattern should match:
-
-        - `startsWith`. The pattern must match the begginning of the query.
-        - `endsWith`. The pattern must match the end of the query.
-        - `is`. The pattern must match the query exactly.
-        - `contains`. The pattern must match anywhere in the query.
-
-        Empty queries are only allowed as pattern with `anchoring: is`.
-      enum:
-        - is
-        - startsWith
-        - endsWith
-        - contains
-    context:
-      type: string
-      pattern: '[A-Za-z0-9_-]+'
-      description: >
-        An additional restriction that only triggers the rule, when the search has the same value as `ruleContexts` parameter.
-        
-        For example, if `context: mobile`, the rule is only triggered when the search request has a matching `ruleContexts: mobile`.
-        
-        A rule context must only contain alphanumeric characters.
-
-      example: mobile
-    condition:
-      type: object
-      additionalProperties: false
-      properties:
-        pattern:
-          type: string
-          description: >
-            Query pattern that triggers the rule.
-            
-            
-            You can use either a literal string, or a special pattern `{facet:ATTRIBUTE}`, where `ATTRIBUTE` is a facet name.
-            
-            The rule is triggered if the query matches the literal string or a value of the specified facet.
-            
-            For example, with `pattern: {facet:genre}`, the rule is triggered when users search for a genre, such as "comedy".
-
-          example: '{facet:genre}'
-        anchoring:
-          $ref: '#/components/schemas/anchoring'
-        alternatives:
-          type: boolean
-          description: Whether the pattern should match plurals, synonyms, and typos.
-        context:
-          $ref: '#/components/schemas/context'
-        filters:
-          type: string
-          description: >
-            Filters that trigger the rule.
-            
-            
-            You can add add filters using the syntax `facet:value` so that the rule is triggered, when the specific filter is selected.
-            
-            You can use `filters` on its own or combine it with the `pattern` parameter.
-
-          example: genre:comedy
-    editType:
-      description: Type of edit.
-      type: string
-      enum:
-        - remove
-        - replace
-    edit:
-      type: object
-      additionalProperties: false
-      properties:
-        type:
-          $ref: '#/components/schemas/editType'
-        delete:
-          description: Text or patterns to remove from the query string.
-          type: string
-        insert:
-          description: >-
-            Text to be added in place of the deleted text inside the query string.
-
-          type: string
-    consequenceQueryObject:
-      type: object
-      additionalProperties: false
-      properties:
-        remove:
-          description: Words to remove from the search query.
-          type: array
-          items:
-            type: string
-        edits:
-          description: Changes to make to the search query.
-          type: array
-          items:
-            $ref: '#/components/schemas/edit'
-    consequenceQuery:
-      description: >
-        Replace or edit the search query.
-        
-        
-        If `consequenceQuery` is a string, the entire search query is replaced with that string.
-        
-        If `consequenceQuery` is an object, it describes incremental edits made to the query.
-
-      oneOf:
-        - $ref: '#/components/schemas/consequenceQueryObject'
-        - type: string
-    automaticFacetFilter:
-      type: object
-      description: Filter or optional filter to be applied to the search.
-      additionalProperties: false
-      properties:
-        facet:
-          type: string
-          description: >
-            Facet name to be applied as filter.
-            
-            The name must match placeholders in the `pattern` parameter.
-            
-            For example, with `pattern: {facet:genre}`, `automaticFacetFilters` must be `genre`.
-
-        score:
-          type: integer
-          description: Filter scores to give different weights to individual filters.
-        disjunctive:
-          type: boolean
-          description: >
-            Whether the filter is disjunctive or conjunctive.
-            
-            
-            If true the filter has multiple matches, multiple occurences are combined with the logical `OR` operation.
-            
-            If false, multiple occurences are combined with the logical `AND` operation.
-
-      required:
-        - facet
-    automaticFacetFilters:
-      description: >
-        Filter to be applied to the search.
-        
-        
-        You can use this to respond to search queries that match a facet value.
-        
-        For example, if users search for "comedy", which matches a facet value of the "genre" facet,
-        
-        you can filter the results to show the top-ranked comedy movies.
-
-      oneOf:
-        - type: array
-          items:
-            $ref: '#/components/schemas/automaticFacetFilter'
-        - type: array
-          items:
-            type: string
-    params:
-      type: object
-      description: >
-        Parameters to apply to this search.
-        
-        
-        You can use all search parameters, plus special `automaticFacetFilters`, `automaticOptionalFacetFilters`, and `query`.
-
-      additionalProperties: false
-      properties:
-        query:
-          $ref: '#/components/schemas/consequenceQuery'
-        automaticFacetFilters:
-          $ref: '#/components/schemas/automaticFacetFilters'
-        automaticOptionalFacetFilters:
-          $ref: '#/components/schemas/automaticFacetFilters'
-        renderingContent:
-          $ref: '#/components/schemas/renderingContent'
-    consequenceParams:
-      allOf:
-        - $ref: '#/components/schemas/baseSearchParamsWithoutQuery'
-        - $ref: '#/components/schemas/indexSettingsAsSearchParams'
-        - $ref: '#/components/schemas/params'
-    promotePosition:
-      type: integer
-      description: >-
-        Position in the search results where you want to show the promoted records.
-
-      example: 0
-    promoteObjectIDs:
-      title: objectIDs
-      description: Records to promote.
-      type: object
-      additionalProperties: false
-      properties:
-        objectIDs:
-          type: array
-          maxItems: 100
-          description: |
-            Object IDs of the records you want to promote.
-
-            The records are placed as a group at the `position`.
-            For example, if you want to promote four records to position `0`,
-            they will be the first four search results.
-          items:
-            $ref: '#/components/schemas/objectID'
-        position:
-          $ref: '#/components/schemas/promotePosition'
-      required:
-        - position
-        - objectIDs
-      x-discriminator-fields:
-        - objectIDs
-    promoteObjectID:
-      title: objectID
-      description: Record to promote.
-      type: object
-      additionalProperties: false
-      properties:
-        objectID:
-          $ref: '#/components/schemas/objectID'
-        position:
-          $ref: '#/components/schemas/promotePosition'
-      required:
-        - position
-        - objectID
-      x-discriminator-fields:
-        - objectID
-    promote:
-      oneOf:
-        - $ref: '#/components/schemas/promoteObjectIDs'
-        - $ref: '#/components/schemas/promoteObjectID'
-    consequence:
-      type: object
-      description: >
-        Effect of the rule.
-        
-        
-        For more information, see [Consequences](https://www.algolia.com/doc/guides/managing-results/rules/rules-overview/#consequences).
-
-      additionalProperties: false
-      properties:
-        params:
-          $ref: '#/components/schemas/consequenceParams'
-        promote:
-          type: array
-          maxItems: 300
-          description: >
-            Records you want to pin to a specific position in the search results.
-            
-            
-            You can promote up to 300 records, either individually, or as groups of up to 100 records each.
-
-          items:
-            $ref: '#/components/schemas/promote'
-        filterPromotes:
-          type: boolean
-          description: >
-            Whether promoted records must match an active filter for the consequence to be applied.
-            
-            
-            This ensures that user actions (filtering the search) are given a higher precendence.
-            
-            For example, if you promote a record with the `color: red` attribute, and the user filters the search for `color: blue`,
-            
-            the "red" record won't be shown.
-
-        hide:
-          type: array
-          maxItems: 50
-          description: Records you want to hide from the search results.
-          items:
-            title: consequenceHide
-            type: object
-            description: Object ID of the record to hide.
-            additionalProperties: false
-            properties:
-              objectID:
-                $ref: '#/components/schemas/objectID'
-            required:
-              - objectID
-        userData:
-          description: >
-            A JSON object with custom data that will be appended to the `userData` array in the response.
-            
-            This object isn't interpreted by the API and is limited to 1&nbsp;kB of minified JSON.
-
-          example:
-            settingID: f2a7b51e3503acc6a39b3784ffb84300
-            pluginVersion: 1.6.0
-    timeRange:
-      type: object
-      additionalProperties: false
-      properties:
-        from:
-          type: integer
-          description: When the rule should start to be active, in Unix epoch time.
-        until:
-          type: integer
-          description: When the rule should stop to be active, in Unix epoch time.
-      required:
-        - from
-        - until
-    rule:
-      type: object
-      description: Rule object.
-      additionalProperties: false
-      properties:
-        objectID:
-          $ref: '#/components/schemas/ruleID'
-        conditions:
-          type: array
-          minItems: 0
-          maxItems: 25
-          description: >
-            Conditions that trigger a rule.
-            
-            
-            Some consequences require specific conditions or don't require any condition.
-            
-            For more information, see [Conditions](https://www.algolia.com/doc/guides/managing-results/rules/rules-overview/#conditions).
-
-          items:
-            $ref: '#/components/schemas/condition'
-        consequence:
-          $ref: '#/components/schemas/consequence'
-        description:
-          type: string
-          description: >-
-            Description of the rule's purpose to help you distinguish between different rules.
-
-          example: Display a promotional banner
-        enabled:
-          type: boolean
-          description: Whether the rule is active.
-        validity:
-          type: array
-          description: Time periods when the rule is active.
-          items:
-            $ref: '#/components/schemas/timeRange'
-      required:
-        - objectID
-    updatedRuleResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        objectID:
-          $ref: '#/components/schemas/ruleID'
-        updatedAt:
-          $ref: '#/components/schemas/updatedAt'
-        taskID:
-          $ref: '#/components/schemas/taskID'
-      required:
-        - objectID
-        - updatedAt
-        - taskID
     parameters_query:
       type: string
-      description: Search query for rules.
+      description: Search query.
     parameters_page:
       type: integer
       minimum: 0
@@ -3752,570 +2676,6 @@ components:
       minimum: 1
       maximum: 1000
       description: Maximum number of hits per page.
-    dictionaryType:
-      type: string
-      enum:
-        - plurals
-        - stopwords
-        - compounds
-    dictionaryAction:
-      type: string
-      enum:
-        - addEntry
-        - deleteEntry
-      description: Actions to perform.
-    dictionaryEntryState:
-      type: string
-      enum:
-        - enabled
-        - disabled
-      description: Whether a dictionary entry is active.
-    dictionaryEntryType:
-      type: string
-      enum:
-        - custom
-        - standard
-      description: >-
-        Whether a dictionary entry is provided by Algolia (standard), or has been added by you (custom).
-
-    dictionaryEntry:
-      type: object
-      description: Dictionary entry.
-      additionalProperties: true
-      required:
-        - objectID
-      properties:
-        objectID:
-          type: string
-          description: Unique identifier for the dictionary entry.
-          example: 828afd405e1f4fe950b6b98c2c43c032
-        language:
-          $ref: '#/components/schemas/supportedLanguage'
-        word:
-          type: string
-          description: >-
-            Matching dictionary word for `stopwords` and `compounds` dictionaries.
-
-          example: the
-        words:
-          type: array
-          description: Matching words in the `plurals` dictionary including declensions.
-          example:
-            - cheval
-            - cheveaux
-          items:
-            type: string
-        decomposition:
-          type: array
-          description: >-
-            Invividual components of a compound word in the `compounds` dictionary.
-
-          example:
-            - kopf
-            - schmerz
-            - tablette
-          items:
-            type: string
-        state:
-          $ref: '#/components/schemas/dictionaryEntryState'
-        type:
-          $ref: '#/components/schemas/dictionaryEntryType'
-    searchDictionaryEntriesResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        hits:
-          type: array
-          description: Dictionary entries matching the search criteria.
-          items:
-            $ref: '#/components/schemas/dictionaryEntry'
-        page:
-          $ref: '#/components/schemas/parameters_page'
-        nbHits:
-          $ref: '#/components/schemas/nbHits'
-        nbPages:
-          $ref: '#/components/schemas/nbPages'
-      required:
-        - hits
-        - page
-        - nbHits
-        - nbPages
-    standardEntry:
-      oneOf:
-        - type: object
-          description: Key-value pair of a language ISO code and a boolean value.
-          example:
-            fr: false
-          additionalProperties:
-            x-additionalPropertiesName: language
-            type: boolean
-        - type: 'null'
-    standardEntries:
-      description: >
-        Key-value pairs of [supported language ISO codes](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/supported-languages/) and boolean values.
-
-      additionalProperties: false
-      properties:
-        plurals:
-          $ref: '#/components/schemas/standardEntry'
-        stopwords:
-          $ref: '#/components/schemas/standardEntry'
-        compounds:
-          $ref: '#/components/schemas/standardEntry'
-    dictionaryLanguage:
-      oneOf:
-        - type: object
-          additionalProperties: false
-          description: >-
-            Dictionary type. If `null`, this dictionary type isn't supported for the language.
-
-          properties:
-            nbCustomEntries:
-              description: Number of custom dictionary entries.
-              type: integer
-        - type: 'null'
-    languages:
-      type: object
-      description: Dictionary language.
-      additionalProperties: false
-      required:
-        - plurals
-        - stopwords
-        - compounds
-      properties:
-        plurals:
-          $ref: '#/components/schemas/dictionaryLanguage'
-        stopwords:
-          $ref: '#/components/schemas/dictionaryLanguage'
-        compounds:
-          $ref: '#/components/schemas/dictionaryLanguage'
-    userID:
-      type: string
-      pattern: ^[a-zA-Z0-9 \-*.]+$
-      description: Unique identifier of the user who makes the search request.
-      example: user1
-    userId:
-      title: userID
-      type: object
-      description: Unique user ID.
-      properties:
-        userID:
-          $ref: '#/components/schemas/userID'
-        clusterName:
-          type: string
-          description: Cluster to which the user is assigned.
-          example: c1-test
-        nbRecords:
-          type: integer
-          description: Number of records belonging to the user.
-          example: 42
-        dataSize:
-          type: integer
-          description: Data size used by the user.
-          example: 0
-      required:
-        - userID
-        - clusterName
-        - nbRecords
-        - dataSize
-    clusterName:
-      type: string
-      description: Cluster name.
-      example: c11-test
-    nbRecords:
-      type: integer
-      description: Number of records in the cluster.
-      example: 3
-    dataSize:
-      type: integer
-      description: Data size taken by all the users assigned to the cluster.
-      example: 481
-    source:
-      description: Source.
-      required:
-        - source
-      properties:
-        source:
-          description: IP address range of the source.
-          type: string
-          example: 10.0.0.1/32
-        description:
-          description: Source description.
-          type: string
-          example: Server subnet
-    sources:
-      description: Sources.
-      type: array
-      items:
-        $ref: '#/components/schemas/source'
-    logType:
-      type: string
-      enum:
-        - all
-        - query
-        - build
-        - error
-    taskStatus:
-      type: string
-      enum:
-        - published
-        - notPublished
-      description: >-
-        Task status, `published` if the task is completed, `notPublished` otherwise.
-
-    GetTaskResponse:
-      title: getTaskResponse
-      type: object
-      additionalProperties: false
-      properties:
-        status:
-          $ref: '#/components/schemas/taskStatus'
-      required:
-        - status
-    operationType:
-      type: string
-      enum:
-        - move
-        - copy
-      example: copy
-      description: Operation to perform on the index.
-    scopeType:
-      type: string
-      enum:
-        - settings
-        - synonyms
-        - rules
-    fetchedIndex:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type: string
-          description: Index name.
-          example: movies
-        createdAt:
-          type: string
-          description: >-
-            Index creation date. An empty string means that the index has no records.
-
-          example: '2022-09-19T16:36:44.471Z'
-        updatedAt:
-          $ref: '#/components/schemas/updatedAt'
-        entries:
-          type: integer
-          description: Number of records contained in the index.
-          example: 100
-        dataSize:
-          type: integer
-          description: Number of bytes of the index in minified format.
-          example: 48450
-        fileSize:
-          type: integer
-          description: Number of bytes of the index binary file.
-          example: 112927
-        lastBuildTimeS:
-          type: integer
-          description: Last build time.
-          example: 3
-        numberOfPendingTasks:
-          type: integer
-          description: >-
-            Number of pending indexing operations. This value is deprecated and should not be used.
-
-        pendingTask:
-          type: boolean
-          description: >-
-            A boolean which says whether the index has pending tasks. This value is deprecated and should not be used.
-
-        primary:
-          type: string
-          description: >-
-            Only present if the index is a replica. Contains the name of the related primary index.
-
-          example: T02
-        replicas:
-          type: array
-          items:
-            type: string
-          description: >-
-            Only present if the index is a primary index with replicas. Contains the names of all linked replicas.
-
-          example:
-            - T02_push
-            - T2replica
-        virtual:
-          type: boolean
-          description: >-
-            Only present if the index is a [virtual replica](https://www.algolia.com/doc/guides/managing-results/refine-results/sorting/how-to/sort-an-index-alphabetically/#virtual-replicas).
-
-          x-categories:
-            - Ranking
-      required:
-        - name
-        - createdAt
-        - updatedAt
-        - entries
-        - dataSize
-        - fileSize
-        - lastBuildTimeS
-        - pendingTask
-        - numberOfPendingTasks
-    listIndicesResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        items:
-          type: array
-          description: All indices in your Algolia application.
-          items:
-            $ref: '#/components/schemas/fetchedIndex'
-        nbPages:
-          type: integer
-          description: Number of pages.
-          example: 100
-      required:
-        - items
-    apiKeyOperation:
-      type: string
-      enum:
-        - add
-        - delete
-        - update
-    securedApiKeyRestrictions:
-      type: object
-      additionalProperties: false
-      properties:
-        searchParams:
-          $ref: '#/components/schemas/searchParamsObject'
-        filters:
-          type: string
-          description: >
-            Filters that apply to every search made with the secured API key.
-            
-            Extra filters added at search time will be combined with `AND`.
-            
-            For example, if you set `group:admin` as fixed filter on your generated API key,
-            
-            and add `groups:visitors` to the search query, the complete set of filters will be `group:admin AND groups:visitors`.
-
-        validUntil:
-          type: integer
-          format: int64
-          description: >-
-            Timestamp when the secured API key expires, measured in seconds since the Unix epoch.
-
-        restrictIndices:
-          type: array
-          items:
-            type: string
-          description: >
-            Index names or patterns that this API key can access.
-            
-            By default, an API key can access all indices in the same application.
-            
-            
-            You can use leading and trailing wildcard characters (`*`):
-            
-            
-            - `dev_*` matches all indices starting with "dev_".
-            
-            - `*_dev` matches all indices ending with "_dev".
-            
-            - `*_products_*` matches all indices containing "_products_".
-
-        restrictSources:
-          type: string
-          description: >
-            IP network that are allowed to use this key.
-            
-            
-            You can only add a single source, but you can provide a range of IP addresses.
-            
-            Use this to protect against API key leaking and reuse.
-
-          example: 192.168.1.0/24
-        userToken:
-          type: string
-          description: >
-            Pseudonymous user identifier to restrict usage of this API key to specific users.
-            
-            
-            By default, rate limits are set based on IP addresses. This can be an issue if many users search from the same IP address.
-            
-            To avoid this, add a user token to each generated API key.
-
-    replaceAllObjectsResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        copyOperationResponse:
-          description: >-
-            The response of the `operationIndex` request for the `copy` operation.
-
-          $ref: '#/components/schemas/updatedAtResponse'
-        batchResponses:
-          type: array
-          description: The response of the `batch` request(s).
-          items:
-            $ref: '#/components/schemas/batchResponse'
-        moveOperationResponse:
-          description: >-
-            The response of the `operationIndex` request for the `move` operation.
-
-          $ref: '#/components/schemas/updatedAtResponse'
-      required:
-        - copyOperationResponse
-        - batchResponses
-        - moveOperationResponse
-    builtInOperationType:
-      type: string
-      enum:
-        - Increment
-        - Decrement
-        - Add
-        - Remove
-        - AddUnique
-        - IncrementFrom
-        - IncrementSet
-      description: How to change the attribute.
-    builtInOperationValue:
-      oneOf:
-        - type: string
-          description: >-
-            A string to append or remove for the `Add`, `Remove`, and `AddUnique` operations.
-
-        - type: integer
-          description: A number to add, remove, or append, depending on the operation.
-    builtInOperation:
-      type: object
-      description: Update to perform on the attribute.
-      additionalProperties: false
-      properties:
-        _operation:
-          $ref: '#/components/schemas/builtInOperationType'
-        value:
-          $ref: '#/components/schemas/builtInOperationValue'
-      required:
-        - _operation
-        - value
-  parameters:
-    PathInPath:
-      name: path
-      in: path
-      description: Path of the endpoint, anything after "/1" must be specified.
-      required: true
-      schema:
-        type: string
-        example: /keys
-    Parameters:
-      name: parameters
-      in: query
-      description: Query parameters to apply to the current query.
-      schema:
-        type: object
-        additionalProperties: true
-    IndexName:
-      name: indexName
-      in: path
-      description: Name of the index on which to perform the operation.
-      required: true
-      schema:
-        type: string
-        example: YourIndexName
-    ObjectID:
-      name: objectID
-      in: path
-      description: Unique record identifier.
-      required: true
-      schema:
-        $ref: '#/components/schemas/objectID'
-    ForwardToReplicas:
-      in: query
-      name: forwardToReplicas
-      required: false
-      description: Whether changes are applied to replica indices.
-      schema:
-        type: boolean
-    parameters_ObjectID:
-      name: objectID
-      in: path
-      description: Unique identifier of a synonym object.
-      required: true
-      schema:
-        type: string
-        example: synonymID
-    ReplaceExistingSynonyms:
-      in: query
-      name: replaceExistingSynonyms
-      schema:
-        type: boolean
-      description: >-
-        Whether to replace all synonyms in the index with the ones sent with this request.
-
-    KeyString:
-      in: path
-      name: key
-      required: true
-      schema:
-        type: string
-        example: YourAPIKey
-      description: API key.
-    ObjectIDRule:
-      in: path
-      name: objectID
-      description: Unique identifier of a rule object.
-      required: true
-      schema:
-        $ref: '#/components/schemas/ruleID'
-    ClearExistingRules:
-      in: query
-      name: clearExistingRules
-      required: false
-      schema:
-        type: boolean
-      description: Whether existing rules should be deleted before adding this batch.
-    DictionaryName:
-      in: path
-      name: dictionaryName
-      description: Dictionary type in which to search.
-      required: true
-      schema:
-        $ref: '#/components/schemas/dictionaryType'
-    Page:
-      in: query
-      name: page
-      description: |
-        Requested page of the API response.
-        If `null`, the API response is not paginated.
-      required: false
-      schema:
-        oneOf:
-          - type: integer
-            minimum: 0
-          - type: 'null'
-        default: null
-    HitsPerPage:
-      in: query
-      name: hitsPerPage
-      description: Number of hits per page.
-      required: false
-      schema:
-        type: integer
-        default: 100
-    UserIDInHeader:
-      name: X-Algolia-User-ID
-      description: Unique identifier of the user who makes the search request.
-      in: header
-      required: true
-      schema:
-        $ref: '#/components/schemas/userID'
-    UserIDInPath:
-      name: userID
-      description: Unique identifier of the user who makes the search request.
-      in: path
-      required: true
-      schema:
-        $ref: '#/components/schemas/userID'
   responses:
     BadRequest:
       description: Bad request or request arguments.
@@ -4358,61 +2718,3 @@ components:
                 $ref: '#/components/schemas/taskID'
               deletedAt:
                 $ref: '#/components/schemas/deletedAt'
-    UpdatedAtWithObjectId:
-      description: OK
-      content:
-        application/json:
-          schema:
-            title: updatedAtWithObjectIdResponse
-            description: >-
-              Response, taskID, unique object identifier, and an update timestamp.
-
-            additionalProperties: false
-            type: object
-            properties:
-              taskID:
-                $ref: '#/components/schemas/taskID'
-              updatedAt:
-                $ref: '#/components/schemas/updatedAt'
-              objectID:
-                $ref: '#/components/schemas/objectID'
-    UpdatedAt:
-      description: OK
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/updatedAtResponse'
-    CreatedAt:
-      description: OK
-      content:
-        application/json:
-          schema:
-            title: createdAtResponse
-            description: Response and creation timestamp.
-            additionalProperties: false
-            type: object
-            required:
-              - createdAt
-            properties:
-              createdAt:
-                $ref: '#/components/schemas/createdAt'
-x-tagGroups:
-  - name: Search and indexing
-    tags:
-      - Indices
-      - Records
-      - Search
-  - name: Relevance
-    tags:
-      - Rules
-      - Synonyms
-      - Dictionaries
-  - name: Others
-    tags:
-      - Api Keys
-      - Clusters
-      - Vaults
-      - Advanced
-  - name: Models
-    tags:
-      - _model_index_settings

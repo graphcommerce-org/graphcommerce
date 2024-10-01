@@ -1,4 +1,4 @@
-import { MeshContext, SearchSuggestion } from '@graphcommerce/graphql-mesh'
+import type { MeshContext, SearchSuggestion } from '@graphcommerce/graphql-mesh'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { getSearchSuggestionsInput, getSuggestionsIndexName } from './getSearchSuggestionsInput'
 
