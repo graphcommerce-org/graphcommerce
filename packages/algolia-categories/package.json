@@ -1,5 +1,5 @@
 {
-  "name": "@graphcommerce/algolia-mesh",
+  "name": "@graphcommerce/algolia-categories",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "9.0.0-canary.76",
@@ -15,6 +15,7 @@
     "generate": "tsx scripts/generate-spec.mts"
   },
   "peerDependencies": {
+    "@graphcommerce/algolia-products": "9.0.0-canary.82",
     "@graphcommerce/google-datalayer": "^9.0.0-canary.76",
     "@graphcommerce/graphql": "^9.0.0-canary.76",
     "@graphcommerce/graphql-mesh": "^9.0.0-canary.76",

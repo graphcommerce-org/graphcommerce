@@ -1,5 +1,5 @@
 /* eslint-disable arrow-body-style */
-import { useAlgoliaIndexName, useAlgoliaQuery } from '@graphcommerce/algolia-mesh'
+import { useAlgoliaIndexName, useAlgoliaQuery } from '@graphcommerce/algolia-products'
 import { GoogleEventTypes, sendEvent } from '@graphcommerce/google-datalayer'
 import { useApolloClient } from '@graphcommerce/graphql'
 import type { AlgoliaEventsItems_Input } from '@graphcommerce/graphql-mesh'

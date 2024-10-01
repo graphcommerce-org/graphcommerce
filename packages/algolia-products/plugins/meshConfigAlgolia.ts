@@ -21,7 +21,7 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
           handler: {
             openapi: {
               endpoint: `https://${graphCommerceConfig.algolia.applicationId}.algolia.net/`,
-              source: '@graphcommerce/algolia-mesh/algolia-spec.yaml',
+              source: '@graphcommerce/algolia-products/algolia-spec.yaml',
               ignoreErrorResponses: true,
               schemaHeaders: {
                 'X-Algolia-Application-Id': graphCommerceConfig.algolia.applicationId,
@@ -59,8 +59,7 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
       ],
       additionalResolvers: [
         ...(baseConfig.additionalResolvers ?? []),
-        '@graphcommerce/algolia-mesh/mesh/resolvers.ts',
-        '@graphcommerce/algolia-mesh/mesh/categories/resolvers.ts',
+        '@graphcommerce/algolia-products/mesh/resolvers.ts',
       ],
     },
     graphCommerceConfig,
