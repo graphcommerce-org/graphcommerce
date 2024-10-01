@@ -1,10 +1,10 @@
-import { MeshContext, QueryproductsArgs } from '@graphcommerce/graphql-mesh'
+import { MeshContext, QuerycategoryListArgs } from '@graphcommerce/graphql-mesh'
 import type { GraphQLResolveInfo } from 'graphql'
 import { getIndexName } from '../getIndexName'
 import { getCategoryResultsInput } from './getCategoryResultsInput'
 
 export async function getCategoryResults(
-  args: QueryproductsArgs,
+  args: QuerycategoryListArgs,
   context: MeshContext,
   info: GraphQLResolveInfo,
 ) {

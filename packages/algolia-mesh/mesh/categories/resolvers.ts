@@ -6,9 +6,7 @@ import { getCategoryResults } from './getCategoryResults'
 export const resolvers: Resolvers = {
   Query: {
     categories: async (root, args, context, info) => {
-      const isAgolia =
-        (args.filters?.categories_engine?.in ?? [args.filters?.categories_engine?.eq])[0] ===
-        'algolia'
+      const isAgolia = (args.filters?.engine?.in ?? [args.filters?.engine?.eq])[0] === 'algolia'
 
       if (!isAgolia) return context.m2.Query.categories({ root, args, context, info })
       const algoliaResponse = await getCategoryResults(args, context, info)

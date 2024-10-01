@@ -14,6 +14,10 @@ import { GetStoreConfigReturn } from '../getStoreConfig'
 export type AlgoliaCategoryHitAddiotonalProperties = AlgoliaProductHitAdditionalProperties & {
   path: string
   url: string
+  product_count: number
+  meta_description: string
+  meta_title: string
+  level: number
 }
 
 export function assertAdditional(
@@ -60,5 +64,9 @@ export function algoliaHitToMagentoCategory(
     url_key: '',
     url_path: algoliaUrlToUrlKey(additionalProperties.url, storeConfig?.base_link_url),
     breadcrumbs: mapBreadcrumbs(additionalProperties?.path),
+    product_count: additionalProperties?.product_count,
+    meta_description: additionalProperties?.meta_description,
+    meta_title: additionalProperties?.meta_title,
+    level: additionalProperties?.level,
   }
 }
