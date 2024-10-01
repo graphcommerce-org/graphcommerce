@@ -4,7 +4,7 @@ An implementation of Algolia personalization/Analytics through the GraphQL Mesh.
 
 ## Prerequisites
 
-1. Make sure you have configured @graphcommerce/algolia-mesh.
+1. Make sure you have configured @graphcommerce/algolia-products.
 2. As this is an extension of the google-datalayer. Make sure you have installed
    @graphcommerce/google-datalayer
 
