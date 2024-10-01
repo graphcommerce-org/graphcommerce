@@ -9,20 +9,15 @@ export const resolvers: Resolvers = {
       const isAgolia = (args.filters?.engine?.in ?? [args.filters?.engine?.eq])[0] === 'algolia'
 
       if (!isAgolia) return context.m2.Query.categories({ root, args, context, info })
-      const algoliaResponse = await getCategoryResults(args, context, info)
+
       const items: (CategoriesItemsItem | null)[] = []
-      const storeConfig = await getStoreConfig(context)
-      if (!algoliaResponse?.hits) {
-        return {
-          items: [],
-          page_info: {
-            current_page: 1,
-            page_size: 20,
-            total_pages: 1,
-          },
-          total_count: 0,
-        }
-      }
+
+      const [algoliaResponse, storeConfig] = await Promise.all([
+        await getCategoryResults(args, context, info),
+        await getStoreConfig(context),
+      ])
+
+      if (!algoliaResponse?.hits) return context.m2.Query.categories({ root, args, context, info })
       for (const hit of algoliaResponse.hits) {
         if (hit?.objectID) {
           const category = algoliaHitToMagentoCategory(hit, storeConfig)
@@ -33,11 +28,11 @@ export const resolvers: Resolvers = {
       return {
         items,
         page_info: {
-          current_page: 1,
-          page_size: 20,
-          total_pages: 1,
+          current_page: algoliaResponse.page + 1,
+          page_size: algoliaResponse.hitsPerPage,
+          total_pages: algoliaResponse.nbPages,
         },
-        total_count: 0,
+        total_count: algoliaResponse.nbHits,
       }
     },
   },
