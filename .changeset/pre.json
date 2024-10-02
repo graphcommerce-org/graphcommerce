@@ -79,7 +79,11 @@
     "@graphcommerce/typescript-config-pwa": "8.0.5",
     "@graphcommerce/algolia-mesh": "8.1.0-canary.49",
     "@graphcommerce/magento-graphql-rest": "9.0.0-canary.63",
-    "@graphcommerce/algolia-personalization": "9.0.0-canary.63"
+    "@graphcommerce/algolia-personalization": "9.0.0-canary.63",
+    "@graphcommerce/algolia-categories": "9.0.0-canary.76",
+    "@graphcommerce/algolia-insights": "9.0.0-canary.83",
+    "@graphcommerce/algolia-products": "9.0.0-canary.83",
+    "@graphcommerce/algolia-recommend": "9.0.0-canary.76"
   },
   "changesets": [
     "afraid-islands-remain",
@@ -121,6 +125,7 @@
     "empty-windows-behave",
     "fast-cows-rush",
     "fast-eels-help",
+    "fast-eyes-fail",
     "fifty-boats-complain",
     "fifty-bulldogs-lie",
     "five-comics-bow",
@@ -212,6 +217,7 @@
     "silent-dragons-dance",
     "silly-wasps-rhyme",
     "six-carrots-hang",
+    "six-geese-look",
     "six-turkeys-wonder",
     "six-weeks-glow",
     "sixty-rockets-fix",
@@ -223,6 +229,7 @@
     "spotty-ads-live",
     "stale-coins-explode",
     "stale-dogs-prove",
+    "strange-tools-kiss",
     "strong-pumpkins-attack",
     "sweet-shoes-happen",
     "sweet-tips-listen",
@@ -243,6 +250,7 @@
     "unlucky-items-clap",
     "violet-cherries-jog",
     "weak-falcons-repair",
+    "wild-news-notice",
     "witty-carpets-flow",
     "witty-geckos-flash",
     "yellow-ladybugs-exist"
