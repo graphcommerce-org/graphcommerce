@@ -1,6 +1,5 @@
 import type { MeshContext, Queryalgolia_searchSingleIndexArgs } from '@graphcommerce/graphql-mesh'
 import { getIndexName } from './getIndexName'
-import { getUserToken } from '@graphcommerce/algolia-personalization/mesh/getUserToken'
 
 export function isSuggestionsEnabled() {
   return Boolean(import.meta.graphCommerce.algolia.suggestionsSuffix)
@@ -18,7 +17,5 @@ export async function getSearchSuggestionsInput(
   return {
     query: search,
     hitsPerPage: 5,
-    analytics: true,
-    userToken: getUserToken(context),
   }
 }

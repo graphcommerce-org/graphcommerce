@@ -9,7 +9,6 @@ import { useSendAlgoliaEvent } from '../hooks/useSendAlgoliaEvent'
 export const config: PluginConfig = {
   module: '@graphcommerce/google-datalayer',
   type: 'function',
-  ifConfig: 'algolia.analyticsEnabled',
 }
 
 export const useSendEvent: FunctionPlugin<typeof useSendEventBase> = (prev) => {

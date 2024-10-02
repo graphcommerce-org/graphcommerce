@@ -43,6 +43,7 @@ it('resolves dependences', () => {
       "@graphcommerce/magento-payment-paypal" => "packages/magento-payment-paypal",
       "@graphcommerce/algolia-categories" => "packages/algolia-categories",
       "@graphcommerce/algolia-personalization" => "packages/algolia-personalization",
+      "@graphcommerce/algolia-insights" => "packages/algolia-insights",
       "@graphcommerce/algolia-recommend" => "packages/algolia-recommend",
       "@graphcommerce/algolia-products" => "packages/algolia-products",
       "@graphcommerce/next-config" => "packagesDev/next-config",

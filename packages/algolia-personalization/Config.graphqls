@@ -1,6 +1,0 @@
-extend input GraphCommerceAlgoliaConfig {
-  """
-  Send algolia analytics events.
-  """
-  analyticsEnabled: Boolean
-}

@@ -27,12 +27,9 @@ input GraphCommerceAlgoliaConfig {
   catalogEnabled: Boolean
 
   """
-  By default fetching categories will not use algolia. Set this to true to enable Algolia for categories.
-  """
-  categoryEnabled: Boolean
-
-  """
   Enable Algolia customer group pricing.
+
+  Please be aware that personalization needs to be enabled to make this work.
   """
   customerGroupPricingEnabled: Boolean
 

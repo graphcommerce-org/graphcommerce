@@ -9,7 +9,7 @@ import { cookie } from '@graphcommerce/next-ui'
 import { useDebounce } from '@graphcommerce/react-hook-form'
 import { useEventCallback } from '@mui/material'
 import { useRef } from 'react'
-import { AlgoliaSendEventDocument } from '../mutations/AlgoliaSendEvent.gql'
+import { AlgoliaSendEventDocument } from '../graphql/AlgoliaSendEvent.gql'
 
 const getSHA256Hash = async (input: string) => {
   const textAsBuffer = new TextEncoder().encode(input)
@@ -75,7 +75,7 @@ type AlgoliaEventCommon = {
   queryID?: string
 }
 
-let prevFilters: string[] = []
+const prevFilters: Record<string, string[]> = {}
 
 const dataLayerToAlgoliaMap: {
   [K in keyof Partial<GoogleEventTypes>]: (
@@ -98,8 +98,10 @@ const dataLayerToAlgoliaMap: {
     ) {
       const filters = mapSelectedFiltersToAlgoliaEvent(eventData.filter_params.filters)
 
-      const newlyAppliedFilters = filters.filter((filter) => !prevFilters.includes(filter))
-      prevFilters = filters
+      const newlyAppliedFilters = filters.filter(
+        (filter) => !prevFilters[eventData.item_list_name]?.includes(filter),
+      )
+      prevFilters[eventData.item_list_name] = filters
 
       if (newlyAppliedFilters.length > 0) {
         events.push({
