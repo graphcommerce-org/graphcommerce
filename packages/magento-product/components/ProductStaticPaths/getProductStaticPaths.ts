@@ -22,7 +22,7 @@ export async function getProductStaticPaths(
   const { data } = await query
   const totalPages = data.products?.page_info?.total_pages ?? 1
 
-  if (totalPages > 1 && import.meta.graphCommerce.limitSsg !== true) {
+  if (totalPages > 1 && options.limit !== true) {
     for (let i = 2; i <= totalPages; i++) {
       pages.push(
         client.query({
