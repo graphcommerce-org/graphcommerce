@@ -105,8 +105,8 @@ export async function redirectOrNotFound(
         ? routeData.route.relative_url
         : undefined
 
-    // There is a URL, so we need to check if it can be found in the database.
-    const permanent = routeData.route?.redirect_code === 301
+    // For implicit redirects, always use permanent, otherwise use the given redirect type
+    const permanent = !routeData.route?.redirect_code || routeData.route?.redirect_code === 301
 
     if (
       isTypename(routeData.route, [
