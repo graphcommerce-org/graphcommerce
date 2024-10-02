@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.83
+
+### Patch Changes
+
+- [#2374](https://github.com/graphcommerce-org/graphcommerce/pull/2374) [`e61e1f4`](https://github.com/graphcommerce-org/graphcommerce/commit/e61e1f4fb1086f7a6341b42502135abf1839e43d) - Default to permanent redirects unless specified ([@hnsr](https://github.com/hnsr))
+
 ## 9.0.0-canary.82
 
 ## 9.0.0-canary.81
