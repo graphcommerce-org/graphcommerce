@@ -1,5 +1,33 @@
 # Change Log
 
+## 9.0.0
+
+### Minor Changes
+
+- [#2325](https://github.com/graphcommerce-org/graphcommerce/pull/2325) [`058fb17`](https://github.com/graphcommerce-org/graphcommerce/commit/058fb1777bdaa51ded6d37529e59a3cc5f0eac06) - Solve an issue where onBeforeSubmit and onComplete would become an 'stale closure' where variables inside wouldn't be updated. By wrapping onBeforeSubmit and onComplete in useEventCallback these functions are updated when outside values get changed. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`16e2980`](https://github.com/graphcommerce-org/graphcommerce/commit/16e2980da4b72330642e59e8c82d1acde387e4fc) - useFormGql and it's derived hooks now have a new `skipUnchanged` prop. The form will only be submitted when there are fields dirty in a form. This reduces the amount of queries ran in the checkout greatly. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename experimental_useV2 prop to deprecated_useV1 in useFromGql and enable it by default ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Add deprecation warnings for useFormMuiRegister. Refactor useFormPersist to useWatch and add a separate `<FormPersist/>` component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`af45239`](https://github.com/graphcommerce-org/graphcommerce/commit/af452399eaab59ee4e13484fdc9cb0a7660da531) - When a useFormGql throws an error in the onBeforeSubmit method or onComplete method it will be set as an ApolloError with the message, allowing it to be displayed somewhere. PaymentMethodButton will now render this as an ErrorSnackbar. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`02da217`](https://github.com/graphcommerce-org/graphcommerce/commit/02da2172ef702133510f6923190efae2801032c5) - Migrate most usages of useFormAutoSubmit to <FormAutoSubmit/> and deprecated useFormAutoSubmit ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`490bbfb`](https://github.com/graphcommerce-org/graphcommerce/commit/490bbfb5d88a7f58e83fa9c8b7f475c277a0eda3) - Added missing dependencies of lodash and @types/lodash ([@paales](https://github.com/paales))
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving <FromPersist/> below the form components ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`1a6d0c4`](https://github.com/graphcommerce-org/graphcommerce/commit/1a6d0c4a3584b1e404b444f1ca44c68eaad56cb7) - Mark useFormValidFields as deprecated: Please use TextInputElement, SelectElement, etc. with the showValid prop ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 9.0.0-canary.83
 
 ## 9.0.0-canary.82

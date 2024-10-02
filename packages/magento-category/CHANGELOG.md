@@ -1,5 +1,19 @@
 # Change Log
 
+## 9.0.0
+
+### Minor Changes
+
+- [#2273](https://github.com/graphcommerce-org/graphcommerce/pull/2273) [`77955c5`](https://github.com/graphcommerce-org/graphcommerce/commit/77955c56ac8633ab1c5e0f3ddb25e3a87236e2bb) - Improve Breadcrumbs on Category and Product pages ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2273](https://github.com/graphcommerce-org/graphcommerce/pull/2273) [`aa56540`](https://github.com/graphcommerce-org/graphcommerce/commit/aa56540af91638c09e4c7a0a1648aaa6c5fa0afb) - If a category has no children, the sibling links will be shown on the category page. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+### Patch Changes
+
+- [#2267](https://github.com/graphcommerce-org/graphcommerce/pull/2267) [`9d5fd11`](https://github.com/graphcommerce-org/graphcommerce/commit/9d5fd11c7130612e80523608ab442976f3f5ddc5) - make the CategoryHeroNav fragment injectable and add image to the childeren ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2227](https://github.com/graphcommerce-org/graphcommerce/pull/2227) [`d597719`](https://github.com/graphcommerce-org/graphcommerce/commit/d597719baaabbe079660ac063fd021d871831511) - Added option to change sort order (ASC / DESC) for sort options (Name, price, position etc) on catalog and search pages. ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 9.0.0-canary.83
 
 ## 9.0.0-canary.82

@@ -1,5 +1,67 @@
 # Change Log
 
+## 9.0.0
+
+### Minor Changes
+
+- [#2306](https://github.com/graphcommerce-org/graphcommerce/pull/2306) [`5e188e8`](https://github.com/graphcommerce-org/graphcommerce/commit/5e188e830dca4730c73830858f59a94e9d41ed12) - Add delete account functionality to the account section. Disabled by default and can be enabled through the config. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed useMediaQuery from the wishlist and cart ItemActionCard and replaced it with a new responsive size prop. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2273](https://github.com/graphcommerce-org/graphcommerce/pull/2273) [`77955c5`](https://github.com/graphcommerce-org/graphcommerce/commit/77955c56ac8633ab1c5e0f3ddb25e3a87236e2bb) - Improve Breadcrumbs on Category and Product pages ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2274](https://github.com/graphcommerce-org/graphcommerce/pull/2274) [`4a24813`](https://github.com/graphcommerce-org/graphcommerce/commit/4a248130041484833768fe6018f91d05a59522de) - Add props to DarkLightModeThemeProvider to disable dark/light mode or to change the default ssr mode. Save user chosen mode in localStorage ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2315](https://github.com/graphcommerce-org/graphcommerce/pull/2315) [`fb9118e`](https://github.com/graphcommerce-org/graphcommerce/commit/fb9118ec819d1b507d4fbde04f2ca34ec01ecf49) - Add guestOrder functionality, remove `size: 'max'` from getStaticProps ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`7cd5c1c`](https://github.com/graphcommerce-org/graphcommerce/commit/7cd5c1cadf8dac43de9e5bb19038383be64aa08f) - Fix issues when using non-hex colors in theme ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`7c10458`](https://github.com/graphcommerce-org/graphcommerce/commit/7c104588ef96b9066b8f91835c29f957b08e4831) - Fix back button transparency on hover ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Added useIsSSR hook that will properly resolve when the page is rendered on the server and on first render, but will return false when a component is rendered on the client directly. ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`1895176`](https://github.com/graphcommerce-org/graphcommerce/commit/1895176b5776adcf588999ceab7edd6f53cff294) - USPS would be loaded after other pages, causing uneceesasry slowdown ([@paales](https://github.com/paales))
+
+- [#2321](https://github.com/graphcommerce-org/graphcommerce/pull/2321) [`fa261d4`](https://github.com/graphcommerce-org/graphcommerce/commit/fa261d4ae600b46ae08c5ca7514163f2da54eead) - Add the possibility to place content before or after the scroller. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`74eb239`](https://github.com/graphcommerce-org/graphcommerce/commit/74eb2393a64988649178d59f53b33d41fecdd769) - Added Intl components and replaced usage sites ([@paales](https://github.com/paales))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2312](https://github.com/graphcommerce-org/graphcommerce/pull/2312) [`e6a3776`](https://github.com/graphcommerce-org/graphcommerce/commit/e6a377637f1aaafe5b1db7a3123b8caad28d00f5) - Updated all package versions ([@paales](https://github.com/paales))
+
+- [#2348](https://github.com/graphcommerce-org/graphcommerce/pull/2348) [`61b66ef`](https://github.com/graphcommerce-org/graphcommerce/commit/61b66efeab9b377c8daa322015d4b55cdf3db4c1) - Added a new OverlayHeader component to be used in combination with the Overlay component. ([@JoshuaS98](https://github.com/JoshuaS98))
+
+- [#2356](https://github.com/graphcommerce-org/graphcommerce/pull/2356) [`d283901`](https://github.com/graphcommerce-org/graphcommerce/commit/d283901cb537c3e7bf6f5500e9f52f47f452cf10) - Loading an overlay page directly would animate in the overlay instead of directly showing it. ([@paales](https://github.com/paales))
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`012b865`](https://github.com/graphcommerce-org/graphcommerce/commit/012b86560d93e35dd7ca4a9469ed65e6fb83ead0) - Move arguments of responsiveVal around so the minBreakpoint can be given as third argument ([@paales](https://github.com/paales))
+
+- [#2274](https://github.com/graphcommerce-org/graphcommerce/pull/2274) [`57131cf`](https://github.com/graphcommerce-org/graphcommerce/commit/57131cfcc43695cc3e22f28912feb2a8439620a7) - Created a cssFlags functionality to allow for conditional rendering based on stored flags in the localStorage ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`d7459fe`](https://github.com/graphcommerce-org/graphcommerce/commit/d7459feb6e6902af09ab9ff766c0b3b1a74fb723) - Updated canonicalize helper for better multi domain support ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`59874b5`](https://github.com/graphcommerce-org/graphcommerce/commit/59874b572bda17905dc836554f9a3e31f393eb3e) - Solve issue where the page would reload during development when the first call to /graphql was made. ([@paales](https://github.com/paales))
+
+- [#2242](https://github.com/graphcommerce-org/graphcommerce/pull/2242) [`a4cce76`](https://github.com/graphcommerce-org/graphcommerce/commit/a4cce76ca37af2bec604e953ada4bb11bd91f55d) - Add option to show an extended version of the pagination component. Configurable via the "productListPaginationVariant" key in your graphcommerce.config.js COMPACT means: "< Page X of Y >" EXTENDED means: "< 1 2 ... [5] ... 10 11 >" ([@FrankHarland](https://github.com/FrankHarland))
+
+- [`4c24225`](https://github.com/graphcommerce-org/graphcommerce/commit/4c24225f9f998cd40e71da06528eb9323e9b6752) - Created a new `memoDeep` function that is a deep compare variant of `React.memo`. Performance seems to be pretty good, but should only be used as a result of a profiling session. ([@paales](https://github.com/paales))
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`c57614d`](https://github.com/graphcommerce-org/graphcommerce/commit/c57614d47675cec2a0bf290371f11441495e10fe) - ActionCardList can now recieve focus, allowing form submissions to scroll to the field. Focussed fields now are now highlighted even when there is an error. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2297](https://github.com/graphcommerce-org/graphcommerce/pull/2297) [`e41cb6f`](https://github.com/graphcommerce-org/graphcommerce/commit/e41cb6fcdde95629d29c03b1a700c6097f00c901) - Prevent gallery thunbnails from scrolling when opening or closing a layout overlay ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`1de9582`](https://github.com/graphcommerce-org/graphcommerce/commit/1de9582967f2a09cc7167a38ada4e50fe0d1b29a) - Properly align cart loading state (and other FullPageMessage usages) ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`223f16a`](https://github.com/graphcommerce-org/graphcommerce/commit/223f16a0e9a7718e52e81a4e2902471a8b78d35c) - LazyHydrate component now accepts a height prop that allows deferring of rendering of the child component when initially rendered on the client. This improves performance. ([@paales](https://github.com/paales))
+
+- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods. ([@paales](https://github.com/paales))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for linguiLocale ([@paales](https://github.com/paales))
+
+- [#2317](https://github.com/graphcommerce-org/graphcommerce/pull/2317) [`6c173c7`](https://github.com/graphcommerce-org/graphcommerce/commit/6c173c7bba601413cc5e1c9cf0595b8ec262fb92) - Added new plugin insertion points: `<DocumentHeadStart/>`, `<DocumentHeadEnd/>`, `<DocumentBodyEnd/>`, `<DocumentBodyStart/>` for the \_document.app to allow creating plugins for those locations to insert scripts etc. ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.83
 
 ## 9.0.0-canary.82

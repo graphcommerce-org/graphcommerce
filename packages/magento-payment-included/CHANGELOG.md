@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.0.0
+
+### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`86ecf9a`](https://github.com/graphcommerce-org/graphcommerce/commit/86ecf9a1bb4c48ceabd4944d81483bcd5b990350) - Payment method will now throw an error in onComplete to handle obscure errors ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2331](https://github.com/graphcommerce-org/graphcommerce/pull/2331) [`702bfc9`](https://github.com/graphcommerce-org/graphcommerce/commit/702bfc93566c9745546988e57988431d5d4d8cb0) - Moved plugins to new format ([@paales](https://github.com/paales))
+
+- [#2296](https://github.com/graphcommerce-org/graphcommerce/pull/2296) [`e7aab8f`](https://github.com/graphcommerce-org/graphcommerce/commit/e7aab8f51f6c5e4d5133b025e7e6ea6301818f23) - Fixed Place order button not working (in dev mode) for certain payment methods ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 9.0.0-canary.83
 
 ## 9.0.0-canary.82

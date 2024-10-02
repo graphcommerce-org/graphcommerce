@@ -1,5 +1,19 @@
 # Change Log
 
+## 9.0.0
+
+### Minor Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename experimental_useV2 prop to deprecated_useV1 in useFromGql and enable it by default ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2340](https://github.com/graphcommerce-org/graphcommerce/pull/2340) [`18691c7`](https://github.com/graphcommerce-org/graphcommerce/commit/18691c71e6940e8baa8f93c3b798be4d6e5a8a9a) - Select the only available shipping method as the current cart shipping method when there is only one shipping method available. ([@LaurensFranken](https://github.com/LaurensFranken))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2264](https://github.com/graphcommerce-org/graphcommerce/pull/2264) [`e5291a4`](https://github.com/graphcommerce-org/graphcommerce/commit/e5291a426c57635f69fb9ec44f4abe150f04c9ed) - prevent rendering 'null' when method_title is not provided ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 9.0.0-canary.83
 
 ## 9.0.0-canary.82

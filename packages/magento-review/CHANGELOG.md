@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.0.0
+
+### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2355](https://github.com/graphcommerce-org/graphcommerce/pull/2355) [`82b4ed9`](https://github.com/graphcommerce-org/graphcommerce/commit/82b4ed9bf86b57f3c0bab75ee7c190777badf37e) - Add early return when there are no reviews to prevent invalid enhanced results. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2213](https://github.com/graphcommerce-org/graphcommerce/pull/2213) [`a0d952e`](https://github.com/graphcommerce-org/graphcommerce/commit/a0d952e6b8a71a7451bfdb2bdb5150fc218169e2) - Moved product reviews to the relatedUpsells query so we do not pass the queryComplexity limit ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.83
 
 ## 9.0.0-canary.82

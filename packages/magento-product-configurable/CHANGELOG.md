@@ -1,5 +1,25 @@
 # Change Log
 
+## 9.0.0
+
+### Minor Changes
+
+- [#2322](https://github.com/graphcommerce-org/graphcommerce/pull/2322) [`4d08a2b`](https://github.com/graphcommerce-org/graphcommerce/commit/4d08a2bd8c1919bd85b18e8e856775d18fb67e00) - Rename configurable_customizable back to customizable_options ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2282](https://github.com/graphcommerce-org/graphcommerce/pull/2282) [`e048f61`](https://github.com/graphcommerce-org/graphcommerce/commit/e048f6165ae5a15be99fba0c3d3529c700477d3e) - Disable configurable product options that are unavailable for selection. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2302](https://github.com/graphcommerce-org/graphcommerce/pull/2302) [`6b7f908`](https://github.com/graphcommerce-org/graphcommerce/commit/6b7f908b7a2561e9d7f6ec3eaf2a6aca8d77b72f) - Fixed tier prices not working for non-configurable products ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods. ([@paales](https://github.com/paales))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for linguiLocale ([@paales](https://github.com/paales))
+
+- [#2213](https://github.com/graphcommerce-org/graphcommerce/pull/2213) [`a0d952e`](https://github.com/graphcommerce-org/graphcommerce/commit/a0d952e6b8a71a7451bfdb2bdb5150fc218169e2) - Moved product reviews to the relatedUpsells query so we do not pass the queryComplexity limit ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.83
 
 ## 9.0.0-canary.82

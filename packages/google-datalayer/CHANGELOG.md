@@ -1,5 +1,21 @@
 # @graphcommerce/google-datalayer
 
+## 9.0.0
+
+### Minor Changes
+
+- [#2337](https://github.com/graphcommerce-org/graphcommerce/pull/2337) [`18898df`](https://github.com/graphcommerce-org/graphcommerce/commit/18898df44b786dd68d8e6fec538e3db947c157e4) - All sendEvent calls are now the return type of useSendEvent, to allow plugins to use hooks themselves ([@Renzovh](https://github.com/Renzovh))
+
+### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`e3fe4f7`](https://github.com/graphcommerce-org/graphcommerce/commit/e3fe4f73c8c3e3c6a5ec68cdc7a32820e8f69e07) - Solve an issue where the BillingPage query would be re-queried after setting the payment method. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2331](https://github.com/graphcommerce-org/graphcommerce/pull/2331) [`702bfc9`](https://github.com/graphcommerce-org/graphcommerce/commit/702bfc93566c9745546988e57988431d5d4d8cb0) - Moved plugins to new format ([@paales](https://github.com/paales))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent BillingPage query from rerunning on each mutation ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2246](https://github.com/graphcommerce-org/graphcommerce/pull/2246) [`fc5c04d`](https://github.com/graphcommerce-org/graphcommerce/commit/fc5c04d4a2c0301be7d3cc983d9b31f6fcaf6fe6) - Create useRemoveItemFromCart hook to allow for reuse while keeping compatibility with plugins. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
 ## 9.0.0-canary.83
 
 ## 9.0.0-canary.82

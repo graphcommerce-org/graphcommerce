@@ -1,5 +1,23 @@
 # Change Log
 
+## 9.0.0
+
+### Minor Changes
+
+- [#2309](https://github.com/graphcommerce-org/graphcommerce/pull/2309) [`b46e17e`](https://github.com/graphcommerce-org/graphcommerce/commit/b46e17ebe390b4d0040639dfdac33c36a60576ac) - When generating the mesh the configuration is passed through `@graphcommerce/graphql-mesh/meshConfig` allowing plugins to modify the mesh configuration without having to change the `.meshrc.yaml` itself. ([@Renzovh](https://github.com/Renzovh))
+
+- [#2330](https://github.com/graphcommerce-org/graphcommerce/pull/2330) [`bc3ec5e`](https://github.com/graphcommerce-org/graphcommerce/commit/bc3ec5e439b97cea4a2cef23e4008c7e0cfd6797) - Created a new @graphql-mesh plugin to forward headers from backends as forwardedHeaders in extensions ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2345](https://github.com/graphcommerce-org/graphcommerce/pull/2345) [`d4ae30b`](https://github.com/graphcommerce-org/graphcommerce/commit/d4ae30ba28815ccb9d3a0478da995b7c609618e5) - Solve issue where customFetch coudn’t be loaded correctly ([@paales](https://github.com/paales))
+
+- [#2336](https://github.com/graphcommerce-org/graphcommerce/pull/2336) [`214bc56`](https://github.com/graphcommerce-org/graphcommerce/commit/214bc56950f397727d2c5417741dc62419080dfa) - Added traverseSelectionSet utility function to extract a child selection set from the parent. ([@Renzovh](https://github.com/Renzovh))
+
+- [#2290](https://github.com/graphcommerce-org/graphcommerce/pull/2290) [`21f2ac0`](https://github.com/graphcommerce-org/graphcommerce/commit/21f2ac06b95cfc9b51febe19e6859cbba2b578b4) - Fix cors issues with Dynamic Row Property Picker App ([@JoshuaS98](https://github.com/JoshuaS98))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`6831040`](https://github.com/graphcommerce-org/graphcommerce/commit/68310401448b7b42b53757db4a84de4a01e35aa2) - Suppress warning where a dependency is an expression, Added uglify-es and long as the dependencies couldn’t be found ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.83
 
 ## 9.0.0-canary.82

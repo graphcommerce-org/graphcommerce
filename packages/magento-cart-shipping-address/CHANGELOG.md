@@ -1,5 +1,37 @@
 # Change Log
 
+## 9.0.0
+
+### Minor Changes
+
+- [#2319](https://github.com/graphcommerce-org/graphcommerce/pull/2319) [`a3409e8`](https://github.com/graphcommerce-org/graphcommerce/commit/a3409e8a629ee95413da6547cbdcf48aa2502c23) - Created a new TelephoneElement component to make re-use easier ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Add company and vat fields to shipping and billing forms ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2307](https://github.com/graphcommerce-org/graphcommerce/pull/2307) [`20cb571`](https://github.com/graphcommerce-org/graphcommerce/commit/20cb57171ae5bff0b86a341ea4db59ea3f4f639a) - Add save in address book checkbox to shipping address form ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2313](https://github.com/graphcommerce-org/graphcommerce/pull/2313) [`511e75c`](https://github.com/graphcommerce-org/graphcommerce/commit/511e75c3f8c077e617ed17e5042796e2411f312f) - Add the customerNote field to the shipping and customer address forms ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename experimental_useV2 prop to deprecated_useV1 in useFromGql and enable it by default ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`3043f94`](https://github.com/graphcommerce-org/graphcommerce/commit/3043f945c4caa2931c46f1f9ad940fd80b07e999) - In the shipping step show errors with a ApolloCartErrorSnackbar instead of a ApolloCartErrorAlert ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`3101681`](https://github.com/graphcommerce-org/graphcommerce/commit/3101681180e1a5a0cfba1bb89d72deb02cafdbbf) - When saving a shipping address it would always save the company after it was once saved. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2295](https://github.com/graphcommerce-org/graphcommerce/pull/2295) [`0ca6827`](https://github.com/graphcommerce-org/graphcommerce/commit/0ca682793bf7feb0cae2bd776a4eaa2899d980a0) - Fixed shipping address not getting set for logged-in customers with default address ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2300](https://github.com/graphcommerce-org/graphcommerce/pull/2300) [`19adebe`](https://github.com/graphcommerce-org/graphcommerce/commit/19adebe2ff896c65d21543fc9243a36393747e06) - Fixed CustomerAddressForm resetting to a saved address when trying to use a new address ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - The billing and shipping address of a customer would not be recognized as the same address although they would effectively be the same ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving <FromPersist/> below the form components ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.0-canary.83
 
 ## 9.0.0-canary.82

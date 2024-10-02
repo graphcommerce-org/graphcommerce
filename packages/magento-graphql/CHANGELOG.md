@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.0.0
+
+### Minor Changes
+
+- [#2204](https://github.com/graphcommerce-org/graphcommerce/pull/2204) [`42843eb`](https://github.com/graphcommerce-org/graphcommerce/commit/42843eb760f8301eb7901bb0d888c95792ff0b4b) - add X-Forwarded-For header to mesh ([@SumVur](https://github.com/SumVur))
+
+### Patch Changes
+
+- [#2299](https://github.com/graphcommerce-org/graphcommerce/pull/2299) [`c6ac45b`](https://github.com/graphcommerce-org/graphcommerce/commit/c6ac45b8ff41dcaa47f1e5d40d04e120990870aa) - Added a magentoVersion configuration value to be able to differentiate features based on the Magento version ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.83
 
 ## 9.0.0-canary.82

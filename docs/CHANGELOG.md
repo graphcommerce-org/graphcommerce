@@ -1,5 +1,23 @@
 # Change Log
 
+## 9.0.0
+
+### Patch Changes
+
+- [#1984](https://github.com/graphcommerce-org/graphcommerce/pull/1984) [`e05534f`](https://github.com/graphcommerce-org/graphcommerce/commit/e05534fff4990fd584fe401b55b6d9a33934e048) - Added docs about caching ([@paales](https://github.com/paales))
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`7652234`](https://github.com/graphcommerce-org/graphcommerce/commit/7652234e222c3f4d8de3817fe907b5b6925a5493) - Replaced next-sitemap with page router based robots.txt & sitemaps ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2242](https://github.com/graphcommerce-org/graphcommerce/pull/2242) [`a4cce76`](https://github.com/graphcommerce-org/graphcommerce/commit/a4cce76ca37af2bec604e953ada4bb11bd91f55d) - Add option to show an extended version of the pagination component. Configurable via the "productListPaginationVariant" key in your graphcommerce.config.js COMPACT means: "< Page X of Y >" EXTENDED means: "< 1 2 ... [5] ... 10 11 >" ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2329](https://github.com/graphcommerce-org/graphcommerce/pull/2329) [`6301fe3`](https://github.com/graphcommerce-org/graphcommerce/commit/6301fe33e73be1a151d0f8290e83418b4b87a738) - Document patch custom_attributesV2 for null attribute values issue ([@SimonPrins](https://github.com/SimonPrins))
+
+- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods. ([@paales](https://github.com/paales))
+
+- [#2326](https://github.com/graphcommerce-org/graphcommerce/pull/2326) [`1faefa4`](https://github.com/graphcommerce-org/graphcommerce/commit/1faefa424df1f40e0f7d20def7192cf7752f761e) - Create a 'Third-Party Libraries' page that includes further details on tools such as Google Analytics and Google Tag Manager. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for linguiLocale ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.83
 
 ## 9.0.0-canary.82

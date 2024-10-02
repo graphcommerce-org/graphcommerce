@@ -1,5 +1,17 @@
 # @graphcommerce/magento-wishlist
 
+## 9.0.0
+
+### Minor Changes
+
+- [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed useMediaQuery from the wishlist and cart ItemActionCard and replaced it with a new responsive size prop. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+### Patch Changes
+
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`811d5e6`](https://github.com/graphcommerce-org/graphcommerce/commit/811d5e60ebafea6c4a0a968fdc366e5e316bc64e) - Contain ripple to wishlist button instead of propagating to product list item ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`02c98e2`](https://github.com/graphcommerce-org/graphcommerce/commit/02c98e217a42fe2258acfad40be577e4a9109345) - Add to wishlist message missed the product name ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.83
 
 ## 9.0.0-canary.82

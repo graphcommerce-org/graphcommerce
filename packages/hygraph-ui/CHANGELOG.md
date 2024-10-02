@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.0.0
+
+### Patch Changes
+
+- [#2219](https://github.com/graphcommerce-org/graphcommerce/pull/2219) [`2ed2055`](https://github.com/graphcommerce-org/graphcommerce/commit/2ed20550324c104265d72f22339fbedb26fb433b) - Allow blog pages to be nested ([@Jessevdpoel](https://github.com/Jessevdpoel))
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`0ccec63`](https://github.com/graphcommerce-org/graphcommerce/commit/0ccec630825d5fad398366beae90b3c90b2f84b8) - Added helper method to get Hygraph paths ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2331](https://github.com/graphcommerce-org/graphcommerce/pull/2331) [`702bfc9`](https://github.com/graphcommerce-org/graphcommerce/commit/702bfc93566c9745546988e57988431d5d4d8cb0) - Moved plugins to new format ([@paales](https://github.com/paales))
+
+- [#2308](https://github.com/graphcommerce-org/graphcommerce/pull/2308) [`8faa5ac`](https://github.com/graphcommerce-org/graphcommerce/commit/8faa5ac618ecfdacd6d5eb751b4110c423aef97f) - Added Draft Mode support. When enabled it will be shown. ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.83
 
 ## 9.0.0-canary.82

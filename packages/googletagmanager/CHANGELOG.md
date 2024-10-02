@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.0.0
+
+### Patch Changes
+
+- [#2317](https://github.com/graphcommerce-org/graphcommerce/pull/2317) [`2f4a61d`](https://github.com/graphcommerce-org/graphcommerce/commit/2f4a61dfee853579c96fceb5351e459aa9524a60) - Moved import locations of Google Analytics and Google Tagmanager scripts to their recommended locations ([@paales](https://github.com/paales))
+
+- [#2331](https://github.com/graphcommerce-org/graphcommerce/pull/2331) [`702bfc9`](https://github.com/graphcommerce-org/graphcommerce/commit/702bfc93566c9745546988e57988431d5d4d8cb0) - Moved plugins to new format ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.83
 
 ## 9.0.0-canary.82

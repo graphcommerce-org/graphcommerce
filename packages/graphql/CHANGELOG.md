@@ -1,5 +1,21 @@
 # Change Log
 
+## 9.0.0
+
+### Minor Changes
+
+- [#2315](https://github.com/graphcommerce-org/graphcommerce/pull/2315) [`fb9118e`](https://github.com/graphcommerce-org/graphcommerce/commit/fb9118ec819d1b507d4fbde04f2ca34ec01ecf49) - Add guestOrder functionality, remove `size: 'max'` from getStaticProps ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`7a2f715`](https://github.com/graphcommerce-org/graphcommerce/commit/7a2f7153fa9157be17575abb6d77821a2ec99f30) - Make sure the InContextMask only warns when a block is renderer during the initial ssr render. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`d066e6f`](https://github.com/graphcommerce-org/graphcommerce/commit/d066e6f904ca68a8771ab73ce30aa06d11fc71b6) - When loading a page, always create a new graphql client, so that cache isn't shared for each request, causing an unnecessary large page size. ([@paales](https://github.com/paales))
+
+- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`fe8fce7`](https://github.com/graphcommerce-org/graphcommerce/commit/fe8fce7f5a82e227ed4a1992415af73fa7d0bb79) - Importing \*.interceptor is NOT allowed ([@paales](https://github.com/paales))
+
+- [#2308](https://github.com/graphcommerce-org/graphcommerce/pull/2308) [`8faa5ac`](https://github.com/graphcommerce-org/graphcommerce/commit/8faa5ac618ecfdacd6d5eb751b4110c423aef97f) - Added Draft Mode support. When enabled it will be shown. ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.83
 
 ## 9.0.0-canary.82

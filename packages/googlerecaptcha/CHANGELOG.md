@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.0.0
+
+### Patch Changes
+
+- [#2245](https://github.com/graphcommerce-org/graphcommerce/pull/2245) [`898224c`](https://github.com/graphcommerce-org/graphcommerce/commit/898224c0343dd195ab2574218475834469182315) - Solve an issue where the grecaptcha.execute method would throw ‘null’ causing the checkout to break in unexpected ways. ([@paales](https://github.com/paales))
+
+- [#2331](https://github.com/graphcommerce-org/graphcommerce/pull/2331) [`702bfc9`](https://github.com/graphcommerce-org/graphcommerce/commit/702bfc93566c9745546988e57988431d5d4d8cb0) - Moved plugins to new format ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.83
 
 ## 9.0.0-canary.82

@@ -1,5 +1,21 @@
 # @graphcommerce/cli
 
+## 9.0.0
+
+### Minor Changes
+
+- [#2309](https://github.com/graphcommerce-org/graphcommerce/pull/2309) [`b46e17e`](https://github.com/graphcommerce-org/graphcommerce/commit/b46e17ebe390b4d0040639dfdac33c36a60576ac) - When generating the mesh the configuration is passed through `@graphcommerce/graphql-mesh/meshConfig` allowing plugins to modify the mesh configuration without having to change the `.meshrc.yaml` itself. ([@Renzovh](https://github.com/Renzovh))
+
+### Patch Changes
+
+- [`44ea147`](https://github.com/graphcommerce-org/graphcommerce/commit/44ea1474d1429d05f535df903beb1fb2c0ca7754) - Added missing tsx package ([@paales](https://github.com/paales))
+
+- [#2345](https://github.com/graphcommerce-org/graphcommerce/pull/2345) [`d4ae30b`](https://github.com/graphcommerce-org/graphcommerce/commit/d4ae30ba28815ccb9d3a0478da995b7c609618e5) - Solve issue where customFetch coudn’t be loaded correctly ([@paales](https://github.com/paales))
+
+- [`6184a28`](https://github.com/graphcommerce-org/graphcommerce/commit/6184a28b2ba2dc70189a9b881887696dc0a346c8) - Fixed issue where codegen would throw an error: SyntaxError: Cannot use import statement outside a module. ([@paales](https://github.com/paales))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`cfc0f4e`](https://github.com/graphcommerce-org/graphcommerce/commit/cfc0f4e015f3b3a7348b882eb7440222b3e26a07) - Make sure the interceptors are generated before the typecheck is ran. ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.83
 
 ## 9.0.0-canary.82
