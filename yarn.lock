@@ -2819,9 +2819,48 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/algolia-mesh@workspace:packages/algolia-mesh":
+"@graphcommerce/algolia-categories@workspace:packages/algolia-categories":
   version: 0.0.0-use.local
-  resolution: "@graphcommerce/algolia-mesh@workspace:packages/algolia-mesh"
+  resolution: "@graphcommerce/algolia-categories@workspace:packages/algolia-categories"
+  dependencies:
+    graphql: "npm:^16.0.0"
+    tsx: "npm:^4.16.2"
+  peerDependencies:
+    "@graphcommerce/algolia-products": ^9.0.0-canary.82
+    "@graphcommerce/google-datalayer": ^9.0.0-canary.82
+    "@graphcommerce/graphql": ^9.0.0-canary.82
+    "@graphcommerce/graphql-mesh": ^9.0.0-canary.82
+    "@graphcommerce/magento-customer": ^9.0.0-canary.82
+    "@graphcommerce/magento-product": ^9.0.0-canary.82
+    "@graphcommerce/magento-search": ^9.0.0-canary.82
+    "@graphcommerce/next-config": ^9.0.0-canary.82
+    "@graphcommerce/next-ui": ^9.0.0-canary.82
+    react: ^18.2.0
+  languageName: unknown
+  linkType: soft
+
+"@graphcommerce/algolia-personalization@workspace:packages/algolia-personalization":
+  version: 0.0.0-use.local
+  resolution: "@graphcommerce/algolia-personalization@workspace:packages/algolia-personalization"
+  dependencies:
+    graphql: "npm:^16.0.0"
+    tsx: "npm:^4.16.2"
+  peerDependencies:
+    "@graphcommerce/algolia-products": ^9.0.0-canary.83
+    "@graphcommerce/google-datalayer": ^9.0.0-canary.83
+    "@graphcommerce/graphql": ^9.0.0-canary.83
+    "@graphcommerce/graphql-mesh": ^9.0.0-canary.83
+    "@graphcommerce/magento-customer": ^9.0.0-canary.83
+    "@graphcommerce/magento-product": ^9.0.0-canary.83
+    "@graphcommerce/next-config": ^9.0.0-canary.83
+    "@graphcommerce/next-ui": ^9.0.0-canary.83
+    react: ^18.2.0
+  languageName: unknown
+  linkType: soft
+
+"@graphcommerce/algolia-products@workspace:packages/algolia-products":
+  version: 0.0.0-use.local
+  resolution: "@graphcommerce/algolia-products@workspace:packages/algolia-products"
   dependencies:
     graphql: "npm:^16.0.0"
     tsx: "npm:^4.16.2"
@@ -2838,21 +2877,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/algolia-personalization@workspace:packages/algolia-personalization":
+"@graphcommerce/algolia-recommend@workspace:packages/algolia-recommend":
   version: 0.0.0-use.local
-  resolution: "@graphcommerce/algolia-personalization@workspace:packages/algolia-personalization"
+  resolution: "@graphcommerce/algolia-recommend@workspace:packages/algolia-recommend"
   dependencies:
     graphql: "npm:^16.0.0"
     tsx: "npm:^4.16.2"
   peerDependencies:
-    "@graphcommerce/algolia-mesh": ^9.0.0-canary.83
-    "@graphcommerce/google-datalayer": ^9.0.0-canary.83
-    "@graphcommerce/graphql": ^9.0.0-canary.83
-    "@graphcommerce/graphql-mesh": ^9.0.0-canary.83
-    "@graphcommerce/magento-customer": ^9.0.0-canary.83
-    "@graphcommerce/magento-product": ^9.0.0-canary.83
-    "@graphcommerce/next-config": ^9.0.0-canary.83
-    "@graphcommerce/next-ui": ^9.0.0-canary.83
+    "@graphcommerce/algolia-products": ^9.0.0-canary.76
+    "@graphcommerce/graphql": ^9.0.0-canary.76
+    "@graphcommerce/graphql-mesh": ^9.0.0-canary.76
+    "@graphcommerce/next-config": ^9.0.0-canary.76
+    "@graphcommerce/next-ui": ^9.0.0-canary.76
     react: ^18.2.0
   languageName: unknown
   linkType: soft
