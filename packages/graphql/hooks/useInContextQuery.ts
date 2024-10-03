@@ -5,8 +5,8 @@ import { useIsSSR } from '@graphcommerce/next-ui/hooks/useIsSsr'
 import { getCssFlag, removeCssFlag, setCssFlag } from '@graphcommerce/next-ui/utils/cssFlags'
 import { useContext, useEffect } from 'react'
 import { QueryHookOptions, QueryResult, TypedDocumentNode, useQuery } from '../apollo'
-import { useInContextInput } from './useInContextInput'
 import { InContextMaskContext } from '../components/InContextMask/InContextMask'
+import { useInContextInput } from './useInContextInput'
 
 /**
  * Creates a query that allows fetching data for logged in customers, but have
@@ -33,7 +33,7 @@ export function useInContextQuery<
   const context = useInContextInput()
   const isSsr = useIsSSR()
 
-  const alreadyInContext = Boolean(useContext(InContextMaskContext))
+  const inContext = useContext(InContextMaskContext)
 
   useEffect(() => {
     if (isSsr) return
@@ -44,7 +44,7 @@ export function useInContextQuery<
   const clientQuery = useQuery<Q, V>(document, {
     ...options,
     variables: { ...options.variables, context } as V,
-    skip: alreadyInContext || (skip && !context),
+    skip: !!inContext || (skip && !context),
   })
 
   let { data } = clientQuery
@@ -54,6 +54,11 @@ export function useInContextQuery<
   let mask = isSsr
   if (!isSsr && context) {
     mask = !skip ? !clientQuery.data && !clientQuery.previousData : !clientQuery.data
+  }
+
+  // If this method is called within an InContextMask, we skip this complete functionality so we show the parent mask.
+  if (inContext) {
+    mask = inContext.mask
   }
 
   return { ...clientQuery, data: data ?? unscopedResult, mask }
