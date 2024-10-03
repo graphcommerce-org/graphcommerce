@@ -3,9 +3,10 @@ import type { InputMaybe, InContextInput } from '@graphcommerce/graphql-mesh'
 import { useIsSSR } from '@graphcommerce/next-ui/hooks/useIsSsr'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { getCssFlag, removeCssFlag, setCssFlag } from '@graphcommerce/next-ui/utils/cssFlags'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { QueryHookOptions, QueryResult, TypedDocumentNode, useQuery } from '../apollo'
 import { useInContextInput } from './useInContextInput'
+import { InContextMaskContext } from '../components/InContextMask/InContextMask'
 
 /**
  * Creates a query that allows fetching data for logged in customers, but have
@@ -32,6 +33,8 @@ export function useInContextQuery<
   const context = useInContextInput()
   const isSsr = useIsSSR()
 
+  const alreadyInContext = Boolean(useContext(InContextMaskContext))
+
   useEffect(() => {
     if (isSsr) return
     if (context && !getCssFlag('in-context')) setCssFlag('in-context', true)
@@ -41,7 +44,7 @@ export function useInContextQuery<
   const clientQuery = useQuery<Q, V>(document, {
     ...options,
     variables: { ...options.variables, context } as V,
-    skip: skip && !context,
+    skip: alreadyInContext || (skip && !context),
   })
 
   let { data } = clientQuery
