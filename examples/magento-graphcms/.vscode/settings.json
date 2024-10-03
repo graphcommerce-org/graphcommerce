@@ -22,5 +22,9 @@
     ".yarn": true,
     "yarn.lock": true
   },
+  "files.readonlyInclude": {
+    "**/*.interceptor.tsx": true,
+    "**/*.interceptor.ts": true
+  },
   "typescript.enablePromptUseWorkspaceTsdk": true
 }
