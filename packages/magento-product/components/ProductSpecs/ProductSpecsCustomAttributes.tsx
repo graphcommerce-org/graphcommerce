@@ -19,7 +19,6 @@ export function ProductSpecsCustomAttributes(props: ProductSpecsCustomAttributes
 
   if (items?.length === 0) return null
 
-  console.log(specs)
   return (
     <>
       {specs?.map((item) => (
