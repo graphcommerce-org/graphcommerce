@@ -16,7 +16,10 @@ export function RecentlyViewedProducts(props: RecentlyViewedProductsProps) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { margin: '300px', once: true })
   const { skus } = useRecentlyViewedSkus({ exclude })
-  const productList = useRecentlyViewedProducts({ exclude, skip: !isInView && loading === 'lazy' })
+  const productList = useRecentlyViewedProducts({
+    exclude,
+    skip: skus.length === 0 || (!isInView && loading === 'lazy'),
+  })
 
   if (
     !import.meta.graphCommerce.recentlyViewedProducts?.enabled ||

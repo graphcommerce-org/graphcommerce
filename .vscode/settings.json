@@ -18,6 +18,10 @@
     "yarn.lock": true,
     "**/*.tsbuildinfo": true
   },
+  "files.readonlyInclude": {
+    "**/*.interceptor.tsx": true,
+    "**/*.interceptor.ts": true
+  },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },

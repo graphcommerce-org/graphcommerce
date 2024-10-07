@@ -87,11 +87,12 @@ type ProductResolver = ResolverFn<
 >
 
 if (isEnabled(import.meta.graphCommerce.algolia.relatedProducts)) {
+  const fieldName = enumToLocation(import.meta.graphCommerce.algolia.relatedProducts)
   const resolve: ProductResolver = async (root, args, context, info) => {
     const { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters } =
       await getRecommendationsArgs(root, args, context)
 
-    return getRecommendations(
+    const recommendations = await getRecommendations(
       root,
       'Related_products_Input',
       { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters },
@@ -99,11 +100,12 @@ if (isEnabled(import.meta.graphCommerce.algolia.relatedProducts)) {
       info,
       await createProductMapper(context),
     )
+    return recommendations ?? root[fieldName] ?? null
   }
 
   productInterfaceTypes.forEach((productType) => {
     if (!resolvers[productType]) resolvers[productType] = {}
-    resolvers[productType][enumToLocation(import.meta.graphCommerce.algolia.relatedProducts)] = {
+    resolvers[productType][fieldName] = {
       selectionSet: `{ uid }`,
       resolve,
     }
@@ -111,10 +113,11 @@ if (isEnabled(import.meta.graphCommerce.algolia.relatedProducts)) {
 }
 
 if (isEnabled(import.meta.graphCommerce.algolia.lookingSimilar)) {
+  const fieldName = enumToLocation(import.meta.graphCommerce.algolia.lookingSimilar)
   const resolve: ProductResolver = async (root, args, context, info) => {
     const { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters } =
       await getRecommendationsArgs(root, args, context)
-    return getRecommendations(
+    const recommendations = await getRecommendations(
       root,
       'Looking_similar_Input',
       { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters },
@@ -122,11 +125,12 @@ if (isEnabled(import.meta.graphCommerce.algolia.lookingSimilar)) {
       info,
       await createProductMapper(context),
     )
+    return recommendations ?? root[fieldName] ?? null
   }
 
   productInterfaceTypes.forEach((productType) => {
     if (!resolvers[productType]) resolvers[productType] = {}
-    resolvers[productType][enumToLocation(import.meta.graphCommerce.algolia.lookingSimilar)] = {
+    resolvers[productType][fieldName] = {
       selectionSet: `{ uid }`,
       resolve,
     }
@@ -134,11 +138,12 @@ if (isEnabled(import.meta.graphCommerce.algolia.lookingSimilar)) {
 }
 
 if (isEnabled(import.meta.graphCommerce.algolia.frequentlyBoughtTogether)) {
-  const resolver: ProductResolver = async (root, args, context, info) => {
+  const fieldName = enumToLocation(import.meta.graphCommerce.algolia.frequentlyBoughtTogether)
+
+  const resolve: ProductResolver = async (root, args, context, info) => {
     const { objectID, threshold, maxRecommendations, queryParameters } =
       await getRecommendationsArgs(root, args, context)
-
-    return getRecommendations(
+    const recommendations = await getRecommendations(
       root,
       'Frequently_bought_together_Input',
       { objectID, threshold, maxRecommendations, queryParameters },
@@ -146,13 +151,12 @@ if (isEnabled(import.meta.graphCommerce.algolia.frequentlyBoughtTogether)) {
       info,
       await createProductMapper(context),
     )
+    return recommendations ?? root[fieldName] ?? null
   }
 
   productInterfaceTypes.forEach((productType) => {
     if (!resolvers[productType]) resolvers[productType] = {}
-    resolvers[productType][
-      enumToLocation(import.meta.graphCommerce.algolia.frequentlyBoughtTogether)
-    ] = resolver
+    resolvers[productType][fieldName] = { selectionSet: `{ uid }`, resolve }
   })
 }
 
