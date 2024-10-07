@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import useEventCallback from '@mui/utils/useEventCallback'
 import { useMemo } from 'react'
 import debounce, { DebounceOptions } from './debounce'

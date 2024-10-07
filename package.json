@@ -46,8 +46,8 @@
     }
   },
   "dependencies": {
-    "@changesets/cli": "2.27.7",
-    "@testing-library/jest-dom": "^6.4.6",
+    "@changesets/cli": "2.27.9",
+    "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^14.3.1",
     "@unts/patch-package": "^8.0.0",
     "concurrently": "8.2.2",
@@ -56,20 +56,21 @@
   },
   "devDependencies": {
     "@graphql-codegen/testing": "3.0.3",
-    "@playwright/test": "1.45.1",
+    "@playwright/test": "1.47.2",
     "@types/event-stream": "^4.0.5",
-    "@types/jest": "^29.5.12",
+    "@types/jest": "^29.5.13",
     "eslint": "^8",
     "event-stream": "^4.0.1",
     "jest": "next",
     "jest-diff": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "prettier": "3.3.3",
-    "typescript": "5.5.3"
+    "typescript": "5.6.2"
   },
   "resolutions": {
     "@changesets/assemble-release-plan": "5.2.4",
     "@changesets/config": "2.3.1",
-    "@graphql-tools/delegate": "10.0.13"
+    "@graphql-tools/delegate": "10.0.13",
+    "@emotion/react": "11.12.0"
   }
 }

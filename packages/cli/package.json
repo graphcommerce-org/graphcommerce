@@ -32,11 +32,11 @@
     "@graphql-tools/utils": "^10.3.2",
     "cosmiconfig": "^8.3.6",
     "detect-package-manager": "^3.0.2",
-    "graphql-codegen-typescript-validation-schema": "^0.15.0",
+    "graphql-codegen-typescript-validation-schema": "^0.16.0",
     "graphql-tag": "^2.12.6",
-    "rimraf": "^5.0.9",
-    "tslib": "^2.6.3",
-    "tsx": "^4.16.2"
+    "rimraf": "^5.0.10",
+    "tslib": "^2.7.0",
+    "tsx": "^4.19.1"
   },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.100",
