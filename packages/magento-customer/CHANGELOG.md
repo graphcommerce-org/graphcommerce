@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.86
+
+### Patch Changes
+
+- [#2379](https://github.com/graphcommerce-org/graphcommerce/pull/2379) [`6202fc7`](https://github.com/graphcommerce-org/graphcommerce/commit/6202fc7d2f36d5d1f2fedb74b2f2d93b308d5885) - In some cases the xMagentoCacheId wasn't defined in the returned query, make sure the application doesn't crash ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.85
 
 ## 9.0.0-canary.84

@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.86
+
+### Patch Changes
+
+- [#2379](https://github.com/graphcommerce-org/graphcommerce/pull/2379) [`959e0dd`](https://github.com/graphcommerce-org/graphcommerce/commit/959e0dd81a7943648250be6a2bf8f1bc27be8a3b) - Render multiple items in the RowSpecs table as a list ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.85
 
 ### Patch Changes
