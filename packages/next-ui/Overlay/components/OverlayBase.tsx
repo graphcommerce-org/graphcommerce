@@ -197,8 +197,8 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         scroll.y.set(positions.closed.y.get())
       } else {
         disableSnap()
-        scroller.scrollLeft = scroll.x.getPrevious()
-        scroller.scrollTop = scroll.y.getPrevious()
+        scroller.scrollLeft = scroll.x.getPrevious() ?? 0
+        scroller.scrollTop = scroll.y.getPrevious() ?? 0
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         scrollTo(openClosePositions().open, { stopAnimationOnScroll: false })
       }

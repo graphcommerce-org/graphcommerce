@@ -7,7 +7,7 @@ import {
   setContext,
 } from '@graphcommerce/graphql/apollo'
 import { ErrorCategory } from '@graphcommerce/magento-graphql'
-import { GraphQLError } from 'graphql'
+import { GraphQLFormattedError } from 'graphql'
 import { NextRouter } from 'next/router'
 import { signOut } from '../components/SignOutForm/signOut'
 import { CustomerTokenDocument } from '../hooks'
@@ -50,7 +50,7 @@ export async function pushWithPromise(router: Pick<NextRouter, 'push' | 'events'
   })
 }
 
-function isErrorCategory(err: GraphQLError, category: ErrorCategory) {
+function isErrorCategory(err: GraphQLFormattedError, category: ErrorCategory) {
   return err.extensions?.category === category
 }
 

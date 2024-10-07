@@ -43,6 +43,6 @@
     }
   },
   "dependencies": {
-    "web-vitals": "^3.5.2"
+    "web-vitals": "^4.2.3"
   }
 }

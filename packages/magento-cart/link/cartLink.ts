@@ -4,7 +4,7 @@ import { CustomerTokenDocument, getCustomerAccountCanSignIn } from '@graphcommer
 import { PushRouter, pushWithPromise } from '@graphcommerce/magento-customer/link/customerLink'
 import { ErrorCategory } from '@graphcommerce/magento-graphql'
 import { t } from '@lingui/macro'
-import { GraphQLError } from 'graphql'
+import { GraphQLError, GraphQLFormattedError } from 'graphql'
 import { writeCartId } from '../hooks'
 import { CreateEmptyCartDocument } from '../hooks/CreateEmptyCart.gql'
 import { getCartEnabledForUser } from '../utils'
@@ -28,10 +28,10 @@ const cartErrorLink = onError(({ graphQLErrors, operation, forward }) => {
 
   if (!isCartOperation(operation) || !graphQLErrors) return undefined
 
-  const isErrorCategory = (err: GraphQLError, category: ErrorCategory) =>
+  const isErrorCategory = (err: GraphQLFormattedError, category: ErrorCategory) =>
     err.extensions?.category === category
 
-  const isNoSuchEntityError = (err: GraphQLError) =>
+  const isNoSuchEntityError = (err: GraphQLFormattedError) =>
     isErrorCategory(err, 'graphql-no-such-entity') &&
     errorIsIncluded(err.path, [
       'cart',

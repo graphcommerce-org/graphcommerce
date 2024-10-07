@@ -34,6 +34,6 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "type-fest": "^4.22.0"
+    "type-fest": "^4.26.1"
   }
 }
