@@ -42,7 +42,11 @@ export function DesktopNavItem(props: DesktopNavItemLinkProps | DesktopNavItemBu
 
   const { href, children, sx = [], ...linkProps } = props
 
-  const active = router.asPath.startsWith((href ?? '').toString())
+  // Determine if the current path's first segment matches the href's first segment,
+  // indicating that the parent menu item should be considered active.
+  const hasActiveParent = router.asPath.split('/')[1] === href?.split('/')[1]
+
+  const active = router.asPath.startsWith((href ?? '').toString()) || hasActiveParent
 
   return (
     <Link
