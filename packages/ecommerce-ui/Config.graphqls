@@ -4,7 +4,13 @@ enum WebsitePermissions {
   # DISABLED will be implemented later
 }
 
+"""
+Permissions input
+"""
 input GraphCommercePermissions {
+  """
+  Allows the option to require login or completely disable the site.
+  """
   website: WebsitePermissions
 }
 

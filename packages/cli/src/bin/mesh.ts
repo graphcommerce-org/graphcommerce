@@ -1,8 +1,8 @@
-#!/usr/bin/env node
 /* eslint-disable import/no-extraneous-dependencies */
 import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { exit } from 'node:process'
+import type { meshConfig as meshConfigBase } from '@graphcommerce/graphql-mesh/meshConfig'
 import {
   loadConfig,
   packageRoots,
@@ -11,19 +11,19 @@ import {
 } from '@graphcommerce/next-config'
 import { graphqlMesh, DEFAULT_CLI_PARAMS, GraphQLMeshCLIParams } from '@graphql-mesh/cli'
 import { Logger, YamlConfig } from '@graphql-mesh/types'
-import { Handler } from '@graphql-mesh/types/typings/config'
-import { DefaultLogger } from '@graphql-mesh/utils'
+import { DefaultLogger, fileURLToPath } from '@graphql-mesh/utils'
 import dotenv from 'dotenv'
 import type { OmitIndexSignature, Entries } from 'type-fest'
 import yaml from 'yaml'
 import { findConfig } from '../utils/findConfig'
-import type { meshConfig as meshConfigBase } from '@graphcommerce/graphql-mesh/meshConfig'
-// eslint-disable-next-line import/no-unresolved
-import 'tsx/cjs' // support importing typescript configs in CommonJS
-// eslint-disable-next-line import/no-unresolved
-import 'tsx/esm' // support importing typescript configs in ESM
+import 'tsx/cjs'
+import 'tsx/esm'
 
 dotenv.config()
+
+function resolvePath(pathStr: string) {
+  return fileURLToPath(import.meta.resolve(pathStr))
+}
 
 export function handleFatalError(e: Error, logger: Logger = new DefaultLogger('â—ˆ')) {
   logger.error(e.stack || e.message)
@@ -33,7 +33,7 @@ export function handleFatalError(e: Error, logger: Logger = new DefaultLogger('â
 }
 
 const root = process.cwd()
-const meshDir = path.dirname(require.resolve('@graphcommerce/graphql-mesh'))
+const meshDir = path.dirname(resolvePath('@graphcommerce/graphql-mesh'))
 const relativePath = path.join(path.relative(meshDir, root), '/')
 
 const cliParams: GraphQLMeshCLIParams = {
@@ -60,12 +60,14 @@ const main = async () => {
   const baseConf = (await findConfig({})) as YamlConfig.Config
   const graphCommerce = loadConfig(root)
 
-  // eslint-disable-next-line global-require
-  // @ts-ignore Might not exist
-  const { meshConfig } = (await import('@graphcommerce/graphql-mesh/meshConfig.interceptor')) as {
-    meshConfig: typeof meshConfigBase
+  const meshConfigf = (await import(
+    '@graphcommerce/graphql-mesh/meshConfig.interceptor'
+  )) as unknown as {
+    default: {
+      meshConfig: typeof meshConfigBase
+    }
   }
-  const conf = meshConfig(baseConf, graphCommerce)
+  const conf = meshConfigf.default.meshConfig(baseConf, graphCommerce)
 
   // We're configuring a custom fetch function
   conf.customFetch = '@graphcommerce/graphql-mesh/customFetch'
@@ -76,12 +78,12 @@ const main = async () => {
   conf.additionalResolvers = conf.additionalResolvers?.map((additionalResolver) => {
     if (typeof additionalResolver !== 'string') return additionalResolver
     if (additionalResolver.startsWith('@'))
-      return path.relative(root, require.resolve(additionalResolver))
+      return path.relative(root, resolvePath(additionalResolver))
 
     return additionalResolver
   })
 
-  type DefinedHandler = OmitIndexSignature<Handler>
+  type DefinedHandler = OmitIndexSignature<YamlConfig.Handler>
 
   conf.sources = conf.sources.map((source) => {
     const definedHandlers = Object.entries(source.handler) as Entries<DefinedHandler>
@@ -92,10 +94,7 @@ const main = async () => {
           if (key === 'openapi' && value) {
             const openapi = value as NonNullable<DefinedHandler['openapi']>
             if (openapi.source.startsWith('@')) {
-              return [
-                key,
-                { ...openapi, source: path.relative(root, require.resolve(openapi.source)) },
-              ]
+              return [key, { ...openapi, source: path.relative(root, resolvePath(openapi.source)) }]
             }
           }
 
@@ -111,7 +110,7 @@ const main = async () => {
     Array.isArray(conf.additionalTypeDefs) ? conf.additionalTypeDefs : [conf.additionalTypeDefs]
   ).map((additionalTypeDef) => {
     if (typeof additionalTypeDef === 'string' && additionalTypeDef.startsWith('@'))
-      return path.relative(root, require.resolve(additionalTypeDef))
+      return path.relative(root, resolvePath(additionalTypeDef))
 
     return additionalTypeDef
   })

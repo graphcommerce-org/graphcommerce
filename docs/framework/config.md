@@ -372,6 +372,8 @@ Issues that this can cause are:
 
 ### GraphCommercePermissions
 
+Permissions input
+
 #### cart: CUSTOMER_ONLY | DISABLED | ENABLED
 
 Changes the availability of the add to cart buttons and the cart page to either customer only or completely disables it.
@@ -385,6 +387,8 @@ Changes the availability of the checkout to either customer only or completely d
 Enables / disabled the account section of the website. DISABLE_REGISTRATION will only disable the registration page.
 
 #### website: ENABLED
+
+Allows the option to require login or completely disable the site.
 
 ### GraphCommerceStorefrontConfig
 

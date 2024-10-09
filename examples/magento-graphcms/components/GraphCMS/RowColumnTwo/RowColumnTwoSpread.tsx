@@ -22,7 +22,7 @@ export function RowColumnTwoSpread(props: RowColumnTwoFragment) {
       {...props}
       nodeLength={
         getNodeLength(colOne.raw as ElementOrTextNode) >=
-          getNodeLength(colTwo.raw as ElementOrTextNode) ?? false
+        getNodeLength(colTwo.raw as ElementOrTextNode)
       }
       colOneContent={
         <RichText

@@ -15,7 +15,7 @@ export type ScrollerButtonProps = {
   showButtons?: 'auto' | 'desktopAuto' | 'always' | 'desktopAlways' | 'never'
 } & FabProps
 
-export const ScrollerButton = m(
+export const ScrollerButton = m.create(
   React.forwardRef<HTMLDivElement, ScrollerButtonProps>((props, ref) => {
     const {
       direction,
