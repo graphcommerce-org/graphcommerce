@@ -70,7 +70,6 @@
   "resolutions": {
     "@changesets/assemble-release-plan": "5.2.4",
     "@changesets/config": "2.3.1",
-    "@graphql-tools/delegate": "10.0.13",
     "@emotion/react": "11.12.0"
   }
 }

@@ -25,7 +25,7 @@ type CartFabContentProps = CartFabProps & CartTotalQuantityFragment
 
 const MotionDiv = styled(m.div)({})
 
-const MotionFab = m(
+const MotionFab = m.create(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   React.forwardRef<any, Omit<FabProps, 'style' | 'onDrag'>>((props, ref) => (
     <Fab {...props} ref={ref} />
