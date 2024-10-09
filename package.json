@@ -14,7 +14,7 @@
     "examples/*"
   ],
   "engines": {
-    "node": "16.x.x||18.x.x||20.x.x"
+    "node": ">=18.19.0 <23.0.0"
   },
   "scripts": {
     "eslint:lint": "eslint --ignore-path .gitignore '**/{*.ts,*.tsx}'",
