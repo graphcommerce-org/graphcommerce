@@ -369,6 +369,7 @@ export type GraphCommerceDebugConfig = {
   webpackDuplicatesPlugin?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+/** Permissions input */
 export type GraphCommercePermissions = {
   /** Changes the availability of the add to cart buttons and the cart page to either customer only or completely disables it. */
   cart?: InputMaybe<CartPermissions>;
@@ -376,6 +377,7 @@ export type GraphCommercePermissions = {
   checkout?: InputMaybe<CartPermissions>;
   /** Enables / disabled the account section of the website. DISABLE_REGISTRATION will only disable the registration page. */
   customerAccount?: InputMaybe<CustomerAccountPermissions>;
+  /** Allows the option to require login or completely disable the site. */
   website?: InputMaybe<WebsitePermissions>;
 };
 
