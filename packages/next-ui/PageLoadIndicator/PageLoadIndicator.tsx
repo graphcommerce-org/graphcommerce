@@ -5,7 +5,7 @@ import { forwardRef, useEffect, useState } from 'react'
 
 export const showPageLoadIndicator = motionValue(false)
 
-const MLinearProgress = m(
+const MLinearProgress = m.create(
   forwardRef((props: Omit<LinearProgressProps, 'style'>, ref: LinearProgressProps['ref']) => (
     <LinearProgress ref={ref} {...props} />
   )),

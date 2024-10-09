@@ -32,7 +32,7 @@ export function FramerNextPages(props: PluginProps<PagesProps>) {
     const opts = { reportAllChanges: true }
     onCLS((m) => sendCoreWebVitals(m, m.attribution.largestShiftTarget))
     onFCP((m) => sendCoreWebVitals(m), opts)
-    onINP((m) => sendCoreWebVitals(m, m.attribution.eventTarget), opts)
+    onINP((m) => sendCoreWebVitals(m, m.attribution.interactionTarget), opts)
     onLCP((m) => sendCoreWebVitals(m, m.attribution.element), opts)
     onTTFB((m) => sendCoreWebVitals(m), opts)
   }, [sendCoreWebVitals])

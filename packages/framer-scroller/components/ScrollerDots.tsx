@@ -15,7 +15,7 @@ export type DotsProps = {
 const componentName = 'ScrollerDots'
 const { classes } = extendableComponent(componentName, ['root', 'dot', 'circle'] as const)
 
-export const ScrollerDots = m(
+export const ScrollerDots = m.create(
   React.forwardRef<HTMLDivElement, DotsProps>((props, ref) => {
     const { fabProps, sx = [], ...containerProps } = props
 
