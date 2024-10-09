@@ -4,13 +4,11 @@
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "9.0.0-canary.100",
   "scripts": {
-    "dev": "tsc --preserveWatchOutput --watch",
-    "build": "tsc",
-    "prepack": "tsc"
+    "dev": "pkgroll --watch",
+    "build": "pkgroll",
+    "prepack": "pkgroll"
   },
-  "type": "commonjs",
-  "main": "dist/index.js",
-  "types": "src/index.ts",
+  "type": "module",
   "bin": {
     "gql-gen": "dist/bin/codegen.js",
     "gql-mesh": "dist/bin/mesh.js",
@@ -22,6 +20,7 @@
     "mesh": "dist/bin/mesh.js"
   },
   "dependencies": {
+    "@graphcommerce/graphql-mesh": "^9.0.0-canary.86",
     "@graphql-codegen/cli": "5.0.2",
     "@graphql-mesh/cli": "latest",
     "@graphql-mesh/cross-helpers": "latest",
@@ -32,11 +31,13 @@
     "@graphql-tools/utils": "^10.3.2",
     "cosmiconfig": "^8.3.6",
     "detect-package-manager": "^3.0.2",
+    "dotenv": "16.4.5",
     "graphql-codegen-typescript-validation-schema": "^0.16.0",
     "graphql-tag": "^2.12.6",
     "rimraf": "^5.0.10",
     "tslib": "^2.7.0",
-    "tsx": "^4.19.1"
+    "tsx": "^4.19.1",
+    "yaml": "2.5.1"
   },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.100",
@@ -57,5 +58,8 @@
     "parserOptions": {
       "project": "./tsconfig.json"
     }
+  },
+  "devDependencies": {
+    "pkgroll": "^2.5.0"
   }
 }
