@@ -28,7 +28,6 @@ export function MSPPaymentOptions(props: PaymentOptionsProps) {
 
   return (
     <form onSubmit={submit} noValidate>
-      
       <input type='hidden' value={code} {...register('paymentMethod.code')} />
 
       {code === 'multisafepay_ideal' && issuers.length && (

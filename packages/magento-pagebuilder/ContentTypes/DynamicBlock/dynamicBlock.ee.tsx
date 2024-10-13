@@ -1,13 +1,12 @@
-
-import { useStyle } from '@magento/venia-ui/lib/classify';
+import { useStyle } from '@magento/venia-ui/lib/classify'
 import CmsDynamicBlockGroup, {
-    DISPLAY_MODE_FIXED_TYPE,
-    DISPLAY_MODE_SALES_RULE_TYPE,
-    DISPLAY_MODE_CATALOG_RULE_TYPE
-} from '@magento/venia-ui/lib/components/CmsDynamicBlock';
-import { arrayOf, bool, oneOf, shape, string } from 'prop-types';
-import React from 'react';
-import defaultClasses from './dynamicBlock.module.css';
+  DISPLAY_MODE_FIXED_TYPE,
+  DISPLAY_MODE_SALES_RULE_TYPE,
+  DISPLAY_MODE_CATALOG_RULE_TYPE,
+} from '@magento/venia-ui/lib/components/CmsDynamicBlock'
+import { arrayOf, bool, oneOf, shape, string } from 'prop-types'
+import React from 'react'
+import defaultClasses from './dynamicBlock.module.css'
 
 /**
  * Page Builder Dynamic Block component.
@@ -21,64 +20,64 @@ import defaultClasses from './dynamicBlock.module.css';
  *
  * @returns {React.Element} A React component that displays a Dynamic Block.
  */
-const DynamicBlock = props => {
-    const classes = useStyle(defaultClasses, props.classes);
-    const {
-        displayInline,
-        displayMode,
-        uids = '',
-        textAlign,
-        border,
-        borderColor,
-        borderWidth,
-        borderRadius,
-        marginTop,
-        marginRight,
-        marginBottom,
-        marginLeft,
-        minHeight,
-        paddingTop,
-        paddingRight,
-        paddingBottom,
-        paddingLeft,
-        cssClasses = []
-    } = props;
+const DynamicBlock = (props) => {
+  const classes = useStyle(defaultClasses, props.classes)
+  const {
+    displayInline,
+    displayMode,
+    uids = '',
+    textAlign,
+    border,
+    borderColor,
+    borderWidth,
+    borderRadius,
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    minHeight,
+    paddingTop,
+    paddingRight,
+    paddingBottom,
+    paddingLeft,
+    cssClasses = [],
+  } = props
 
-    const dynamicStyles = {
-        textAlign,
-        border,
-        borderColor,
-        borderWidth,
-        borderRadius,
-        marginTop,
-        marginRight,
-        marginBottom,
-        marginLeft,
-        minHeight,
-        paddingTop,
-        paddingRight,
-        paddingBottom,
-        paddingLeft
-    };
+  const dynamicStyles = {
+    textAlign,
+    border,
+    borderColor,
+    borderWidth,
+    borderRadius,
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    minHeight,
+    paddingTop,
+    paddingRight,
+    paddingBottom,
+    paddingLeft,
+  }
 
-    const RootTag = displayInline ? 'span' : 'div';
+  const RootTag = displayInline ? 'span' : 'div'
 
-    // If no uids are found, do not render
-    if (!uids || (uids && uids.length === 0)) {
-        return null;
-    }
+  // If no uids are found, do not render
+  if (!uids || (uids && uids.length === 0)) {
+    return null
+  }
 
-    return (
-        <RootTag
-            style={dynamicStyles}
-            className={[classes.root, ...cssClasses].join(' ')}
-            aria-live="polite"
-            aria-busy="false"
-        >
-            <CmsDynamicBlockGroup displayMode={displayMode} uids={uids} />
-        </RootTag>
-    );
-};
+  return (
+    <RootTag
+      style={dynamicStyles}
+      className={[classes.root, ...cssClasses].join(' ')}
+      aria-live='polite'
+      aria-busy='false'
+    >
+      <CmsDynamicBlockGroup displayMode={displayMode} uids={uids} />
+    </RootTag>
+  )
+}
 
 /**
  * Props for {@link DynamicBlock}
@@ -106,29 +105,29 @@ const DynamicBlock = props => {
  * @property {Array} cssClasses List of CSS classes to be applied to the component
  */
 DynamicBlock.propTypes = {
-    classes: shape({
-        root: string
-    }),
-    displayInline: bool,
-    displayMode: oneOf([
-        DISPLAY_MODE_FIXED_TYPE,
-        DISPLAY_MODE_SALES_RULE_TYPE,
-        DISPLAY_MODE_CATALOG_RULE_TYPE
-    ]),
-    uids: string,
-    textAlign: string,
-    border: string,
-    borderColor: string,
-    borderWidth: string,
-    borderRadius: string,
-    marginTop: string,
-    marginRight: string,
-    marginBottom: string,
-    marginLeft: string,
-    paddingTop: string,
-    paddingRight: string,
-    paddingBottom: string,
-    cssClasses: arrayOf(string)
-};
+  classes: shape({
+    root: string,
+  }),
+  displayInline: bool,
+  displayMode: oneOf([
+    DISPLAY_MODE_FIXED_TYPE,
+    DISPLAY_MODE_SALES_RULE_TYPE,
+    DISPLAY_MODE_CATALOG_RULE_TYPE,
+  ]),
+  uids: string,
+  textAlign: string,
+  border: string,
+  borderColor: string,
+  borderWidth: string,
+  borderRadius: string,
+  marginTop: string,
+  marginRight: string,
+  marginBottom: string,
+  marginLeft: string,
+  paddingTop: string,
+  paddingRight: string,
+  paddingBottom: string,
+  cssClasses: arrayOf(string),
+}
 
-export default DynamicBlock;
+export default DynamicBlock

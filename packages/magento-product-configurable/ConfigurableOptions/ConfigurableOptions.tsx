@@ -76,7 +76,7 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
                   exclusive
                   onChange={(_, val: string | number) => {
                     onChange(val)
-                    select((prev) => ({ ...prev, [attribute_code]: val } as Selected))
+                    select((prev) => ({ ...prev, [attribute_code]: val }) as Selected)
                   }}
                   ref={ref}
                   onBlur={onBlur}
