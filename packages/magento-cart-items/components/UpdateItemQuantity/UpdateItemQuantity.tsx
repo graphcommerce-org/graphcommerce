@@ -42,8 +42,10 @@ export function UpdateItemQuantity(props: UpdateItemQuantityProps) {
         name='quantity'
         size='small'
         variant='standard'
-        inputProps={{ min: 1 }}
-        InputProps={{ disableUnderline: true }}
+        min={1}
+        slotProps={{
+          input: { disableUnderline: true },
+        }}
         error={!!formState.errors.quantity}
         helperText={formState.errors.quantity?.message}
         sx={sx}

@@ -20,7 +20,8 @@ export function AddProductsToCartQuantity(props: AddToCartQuantityProps) {
       color='primary'
       {...props}
       required
-      inputProps={{ min: 1, 'aria-label': i18n._(/* i18n */ 'Add to cart quantity') }}
+      min={1}
+      slotProps={{ htmlInput: { 'aria-label': i18n._(/* i18n */ 'Add to cart quantity') } }}
       defaultValue={1}
       control={control}
       aria-label={i18n._(/* i18n */ 'Add to cart quantity')}

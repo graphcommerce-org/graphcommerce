@@ -5,12 +5,7 @@ import {
   IconSvg,
   responsiveVal,
 } from '@graphcommerce/next-ui'
-import {
-  Controller,
-  ControllerProps,
-  FieldValues,
-  useController,
-} from '@graphcommerce/react-hook-form'
+import { ControllerProps, FieldValues, useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { IconButtonProps, SxProps, Theme, TextField, TextFieldProps, Fab } from '@mui/material'
 
@@ -21,10 +16,13 @@ export type NumberFieldElementProps<T extends FieldValues = FieldValues> = Omit<
   DownProps?: IconButtonProps
   UpProps?: IconButtonProps
   sx?: SxProps<Theme>
+  min?: number
+  max?: number
+  step?: number
 } & Omit<ControllerProps<T>, 'render'>
 
 type OwnerState = { size?: 'small' | 'medium' }
-const componentName = 'TextInputNumber' as const
+const componentName = 'TextInputNumber'
 const parts = ['quantity', 'quantityInput', 'button'] as const
 const { withState } = extendableComponent<OwnerState, typeof componentName, typeof parts>(
   componentName,
@@ -46,6 +44,9 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
     variant = 'outlined',
     disabled,
     shouldUnregister,
+    min,
+    max,
+    step,
     ...textFieldProps
   } = props
 
@@ -90,8 +91,6 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
       sx={[
         {
           width: responsiveVal(90, 120),
-        },
-        {
           '& input[type=number]': {
             MozAppearance: 'textfield',
           },
@@ -112,64 +111,69 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       autoComplete='off'
-      InputProps={{
-        ...textFieldProps.InputProps,
-        startAdornment: (
-          <Fab
-            aria-label={i18n._(/* i18n */ 'Decrease')}
-            size='smaller'
-            onClick={() => {
-              if (
-                (valueAsNumber ?? Infinity) <= inputProps.min ||
-                (inputProps.min === 0 && valueAsNumber <= inputProps.min)
-              )
-                return
-              onChange(value - 1)
-            }}
-            sx={{
-              boxShadow: variant === 'standard' ? 4 : 0,
-              minHeight: '30px',
-              minWidth: '30px',
-            }}
-            tabIndex={-1}
-            color='inherit'
-            {...DownProps}
-            className={`${classes.button} ${DownProps.className ?? ''}`}
-          >
-            {DownProps.children ?? <IconSvg src={iconMin} size='small' />}
-          </Fab>
-        ),
-        endAdornment: (
-          <Fab
-            aria-label={i18n._(/* i18n */ 'Increase')}
-            size='smaller'
-            onClick={() => {
-              if (valueAsNumber >= (inputProps.max ?? Infinity)) return
-              onChange(valueAsNumber + 1)
-            }}
-            sx={{
-              boxShadow: variant === 'standard' ? 4 : 0,
-              minHeight: '30px',
-              minWidth: '30px',
-            }}
-            tabIndex={-1}
-            color='inherit'
-            {...UpProps}
-            className={`${classes.button} ${UpProps.className ?? ''}`}
-          >
-            {UpProps.children ?? <IconSvg src={iconPlus} size='small' />}
-          </Fab>
-        ),
-      }}
-      inputProps={{
-        'aria-label': i18n._(/* i18n */ 'Number'),
-        ...inputProps,
-        className: `${inputProps?.className ?? ''} ${classes.quantityInput}`,
-        sx: {
-          typography: 'body1',
-          textAlign: 'center',
-          '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
-            appearance: 'none',
+      slotProps={{
+        input: {
+          ...textFieldProps.slotProps?.input,
+          startAdornment: (
+            <Fab
+              aria-label={i18n._(/* i18n */ 'Decrease')}
+              size='smaller'
+              onClick={() => {
+                const minVal = -Infinity
+                if (
+                  (valueAsNumber ?? Infinity) <= minVal ||
+                  (minVal === 0 && valueAsNumber <= minVal)
+                )
+                  return
+                onChange(value - 1)
+              }}
+              sx={{
+                boxShadow: variant === 'standard' ? 4 : 0,
+                minHeight: '30px',
+                minWidth: '30px',
+              }}
+              tabIndex={-1}
+              color='inherit'
+              {...DownProps}
+              className={`${classes.button} ${DownProps.className ?? ''}`}
+            >
+              {DownProps.children ?? <IconSvg src={iconMin} size='small' />}
+            </Fab>
+          ),
+          endAdornment: (
+            <Fab
+              aria-label={i18n._(/* i18n */ 'Increase')}
+              size='smaller'
+              onClick={() => {
+                const maxVal = max ?? Infinity
+                if (valueAsNumber >= maxVal) return
+                onChange(valueAsNumber + 1)
+              }}
+              sx={{
+                boxShadow: variant === 'standard' ? 4 : 0,
+                minHeight: '30px',
+                minWidth: '30px',
+              }}
+              tabIndex={-1}
+              color='inherit'
+              {...UpProps}
+              className={`${classes.button} ${UpProps.className ?? ''}`}
+            >
+              {UpProps.children ?? <IconSvg src={iconPlus} size='small' />}
+            </Fab>
+          ),
+        },
+
+        htmlInput: {
+          'aria-label': i18n._(/* i18n */ 'Number'),
+          ...inputProps,
+          className: `${inputProps?.className ?? ''} ${classes.quantityInput}`,
+          sx: {
+            typography: 'body1',
+            textAlign: 'center',
+            '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
+              appearance: 'none',
+            },
           },
         },
       }}

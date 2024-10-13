@@ -50,7 +50,7 @@ function TypographyOverview() {
           Headline 3 {useRenderedSize()}
         </Typography>
 
-        <Typography variant='h4' paragraph gutterBottom sx={{ display: 'block' }}>
+        <Typography variant='h4' gutterBottom sx={{ display: 'block' }}>
           Headline 4 — Maecenas efficitur velit a metus.
           {useRenderedSize()}
         </Typography>
@@ -63,11 +63,11 @@ function TypographyOverview() {
           Headline 6 — Ut luctus mi ante {useRenderedSize()}
         </Typography>
 
-        <Typography variant='subtitle1' paragraph gutterBottom sx={{ display: 'block' }}>
+        <Typography variant='subtitle1' gutterBottom sx={{ display: 'block' }}>
           Subtitle 1 — In dictum velit quis lorem dignissim volutpat. {useRenderedSize()}
         </Typography>
 
-        <Typography variant='body1' paragraph gutterBottom sx={{ display: 'block' }}>
+        <Typography variant='body1' gutterBottom sx={{ display: 'block' }}>
           Body1 — Maecenas efficitur velit a metus feugiat egestas. Donec sit amet maximus sapien,
           in malesuada mi. Duis eget finibus urna, vitae suscipit felis. Duis aliquet tortor a
           turpis euismod gravida. Nunc eu hendrerit leo. Integer dapibus dapibus augue, sit amet
@@ -81,7 +81,7 @@ function TypographyOverview() {
           Subtitle 2 — Nunc eu hendrerit leo {useRenderedSize()}
         </Typography>
 
-        <Typography variant='body2' paragraph gutterBottom sx={{ display: 'block' }}>
+        <Typography variant='body2' gutterBottom sx={{ display: 'block' }}>
           Body2 — Suspendisse nec consectetur massa. Proin mollis ante lorem, a lacinia orci
           pellentesque ut. Donec porta fringilla commodo. In hac habitasse platea dictumst. Donec
           quis elementum mauris. Cras rutrum lectus et magna convallis, vitae dignissim elit

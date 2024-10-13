@@ -125,7 +125,7 @@ export function GroupedProductActionCard(props: GroupedProductActionCardProps) {
         secondaryAction={
           <NumberFieldElement
             size='small'
-            inputProps={{ min: 0 }}
+            min={0}
             defaultValue={1}
             control={control}
             sx={{

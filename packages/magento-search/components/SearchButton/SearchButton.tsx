@@ -25,14 +25,17 @@ export function SearchButton(props: SearchButtonProps) {
       className={classes.root}
       label={label ?? <Trans id='Search...' />}
       id='search-input'
-      InputLabelProps={{ shrink: false }}
-      InputProps={{
-        readOnly: true,
-        endAdornment: <IconSvg src={iconSearch} size='medium' />,
-        classes: { root: classes.inputRoot },
-        ...InputProps,
-      }}
       {...textFieldProps}
+      slotProps={{
+        input: {
+          readOnly: true,
+          endAdornment: <IconSvg src={iconSearch} size='medium' />,
+          classes: { root: classes.inputRoot },
+          ...InputProps,
+        },
+
+        inputLabel: { shrink: false },
+      }}
       sx={[
         (theme) => ({
           marginRight: theme.spacings.xxs,

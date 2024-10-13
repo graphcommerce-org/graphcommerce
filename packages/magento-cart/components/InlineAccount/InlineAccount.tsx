@@ -101,8 +101,10 @@ export function InlineAccount(props: InlineAccountProps) {
                 variant='outlined'
                 label={<Trans id='Email address' />}
                 value={cart?.email}
-                InputProps={{
-                  readOnly: true,
+                slotProps={{
+                  input: {
+                    readOnly: true,
+                  },
                 }}
               />
             </FormRow>

@@ -79,7 +79,6 @@ export function CustomizableDateOption(props: CustomizableDateOptionProps) {
         {...register(`cartItems.${index}.entered_options.${optionIndex}.uid`)}
         value={uid}
       />
-
       <SectionHeader labelLeft={title} sx={{ mt: 0 }} />
       <TextFieldElement
         control={control}

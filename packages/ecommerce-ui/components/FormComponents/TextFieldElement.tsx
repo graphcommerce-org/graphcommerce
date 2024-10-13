@@ -62,14 +62,16 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
       type={type}
       error={Boolean(error) || rest.error}
       helperText={error ? error.message : rest.helperText}
-      InputProps={{
-        ...rest.InputProps,
-        endAdornment:
-          showValid && value && !error ? (
-            <InputCheckmark show={!error} />
-          ) : (
-            rest.InputProps?.endAdornment
-          ),
+      slotProps={{
+        input: {
+          ...rest.InputProps,
+          endAdornment:
+            showValid && value && !error ? (
+              <InputCheckmark show={!error} />
+            ) : (
+              rest.InputProps?.endAdornment
+            ),
+        },
       }}
     />
   )

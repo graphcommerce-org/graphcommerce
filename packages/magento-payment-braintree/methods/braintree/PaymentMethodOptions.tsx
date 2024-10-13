@@ -116,9 +116,11 @@ export function BraintreeField<T extends FieldValues>(
       error={invalid}
       helperText={error?.message}
       focused={focused}
-      InputProps={{ slots: { input: Field } }}
-      InputLabelProps={{ shrink }}
       {...field}
+      slotProps={{
+        input: { slots: { input: Field } },
+        inputLabel: { shrink },
+      }}
     />
   )
 }
