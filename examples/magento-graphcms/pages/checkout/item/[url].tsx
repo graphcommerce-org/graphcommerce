@@ -1,7 +1,12 @@
 import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
-import { ApolloCartErrorAlert, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
+import {
+  ApolloCartErrorAlert,
+  EmptyCart,
+  getCartDisabled,
+  useCartQuery,
+} from '@graphcommerce/magento-cart'
 import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
 import {
   EditCartItemButton,
@@ -121,6 +126,7 @@ CartItemEdit.pageOptions = {
 export default CartItemEdit
 
 export const getServerSideProps: GetSSP = async (context) => {
+  if (getCartDisabled(context.locale)) return { notFound: true }
   const result = await getStaticProps(context)
   delete result.revalidate
 

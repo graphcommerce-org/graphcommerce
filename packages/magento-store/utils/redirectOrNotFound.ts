@@ -68,6 +68,11 @@ export async function redirectOrNotFound(
       candidates.add(from.endsWith(suffix) ? from.slice(0, -suffix.length) : `${from}${suffix}`)
     })
 
+    // Handle the case where we transition from using the default .html suffix, to not using one
+    if (from.endsWith('.html')) {
+      candidates.add(from.slice(0, -('.html'.length)))
+    }
+
     const routePromises = [...candidates].filter(Boolean).map(
       async (url) =>
         (
@@ -100,8 +105,8 @@ export async function redirectOrNotFound(
         ? routeData.route.relative_url
         : undefined
 
-    // There is a URL, so we need to check if it can be found in the database.
-    const permanent = routeData.route?.redirect_code === 301
+    // For implicit redirects, always use permanent, otherwise use the given redirect type
+    const permanent = !routeData.route?.redirect_code || routeData.route?.redirect_code === 301
 
     if (
       isTypename(routeData.route, [

@@ -1,4 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { cacheFirst } from '@graphcommerce/graphql'
+import { useCustomerAccountCanSignIn } from '@graphcommerce/magento-customer'
 import { SearchLink } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, Separator, icon404, IconSvg } from '@graphcommerce/next-ui'
@@ -8,20 +10,26 @@ import { Box, Container, Typography, Link } from '@mui/material'
 import React from 'react'
 import { LayoutDocument, LayoutNavigation, LayoutNavigationProps } from '../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
-import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 
 function RouteNotFoundPage() {
+  const canSignIn = useCustomerAccountCanSignIn()
+
   const links = [
     <Link key={0} href='/' underline='hover' sx={{ color: 'primary' }}>
       <Trans id='Store home' />
     </Link>,
-    <Link key={1} href='/account' underline='hover' sx={{ color: 'primary' }}>
-      <Trans id='Account' />
-    </Link>,
   ]
+
+  if (canSignIn) {
+    links.push(
+      <Link key={1} href='/account' underline='hover' sx={{ color: 'primary' }}>
+        <Trans id='Account' />
+      </Link>,
+    )
+  }
 
   return (
     <>

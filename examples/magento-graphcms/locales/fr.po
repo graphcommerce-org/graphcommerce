@@ -161,6 +161,10 @@ msgstr "Catégories"
 msgid "Order #{orderNumber}"
 msgstr "Commande #{orderNumber}"
 
+#. js-lingui-generated-id
+msgid "You must first login before you can continue"
+msgstr "Vous devez d'abord vous connecter avant de pouvoir continuer"
+
 msgid "Change"
 msgstr "Changer"
 
@@ -612,12 +616,20 @@ msgid "Products"
 msgstr "Produits"
 
 #. js-lingui-generated-id
+msgid "An error occurred while processing your payment. Please contact the store owner"
+msgstr "Se ha producido un error al procesar su pago. Póngase en contacto con el propietario de la tienda"
+
+#. js-lingui-generated-id
 msgid "Results for ‘{search}’"
 msgstr "Résultats pour ‘{search}’"
 
 #. js-lingui-generated-id
 msgid "Telephone"
 msgstr "Téléphone"
+
+#. js-lingui-generated-id
+msgid "Please login to add products to your cart"
+msgstr "Veuillez vous connecter pour ajouter des produits à votre panier"
 
 msgid "Recently viewed products"
 msgstr "Derniers produits consultés"
@@ -715,6 +727,9 @@ msgstr "Déconnexion"
 msgid "Sign up for our newsletter and stay updated"
 msgstr "Inscrivez-vous à notre newsletter et restez à jour"
 
+msgid "Sign up is disabled, please contact us for more information."
+msgstr "L'inscription est désactivée, veuillez nous contacter pour plus d'informations."
+
 msgid "Skip to main content"
 msgstr "Passer au contenu principal"
 
@@ -798,9 +813,6 @@ msgstr "Le paiement est refusé, veuillez réessayer ou sélectionner une autre 
 
 msgid "There is a maximum of ‘{maxLength}’ characters"
 msgstr "Il y a un maximum de caractères '{maxLength}'"
-
-msgid "This cart is assigned to {email}. Please sign in to continue shopping."
-msgstr "Ce panier est assigné à {email}. Veuillez vous connecter pour continuer vos achats."
 
 msgid "This field is invalid"
 msgstr "Ce champ est invalide"
@@ -922,6 +934,9 @@ msgstr "Vous devez accepter pour continuer"
 msgid "You haven't placed any reviews yet"
 msgstr "Vous n'avez pas encore écrit d'évaluation"
 
+msgid "You must be signed in to continue"
+msgstr "Vous devez vous connecter pour continuer"
+
 msgid "You must sign in to continue"
 msgstr "Vous devez vous connecter pour continuer"
 
@@ -1026,6 +1041,10 @@ msgid "one product"
 msgstr "un produit"
 
 #. js-lingui-generated-id
+msgid "Start Checkout"
+msgstr "Commencer la commande"
+
+#. js-lingui-generated-id
 msgid "Order not found"
 msgstr "Ordre non trouvé"
 
@@ -1048,6 +1067,10 @@ msgstr "L'email donné ne correspond pas à l'email du compte"
 #. js-lingui-generated-id
 msgid "Message"
 msgstr "Message"
+
+#. js-lingui-generated-id
+msgid "Some items in your cart contain errors, please update or remove them, then try again."
+msgstr "Certains articles de votre panier contiennent des erreurs, veuillez les mettre à jour ou les supprimer, puis réessayer."
 
 #. js-lingui-generated-id
 msgid "Order details"

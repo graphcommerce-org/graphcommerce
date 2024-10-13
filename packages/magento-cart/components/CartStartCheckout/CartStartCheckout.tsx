@@ -1,8 +1,9 @@
 import { Money } from '@graphcommerce/magento-store'
 import { iconChevronRight, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
-import { Box, Button, ButtonProps, SxProps, Theme } from '@mui/material'
+import { Trans } from '@lingui/macro'
+import { Box, Button, ButtonProps, Link, SxProps, Theme } from '@mui/material'
 import React from 'react'
+import { useCheckoutShouldLoginToContinue } from '../../hooks'
 import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 
 export type CartStartCheckoutProps = {
@@ -17,12 +18,13 @@ export type CartStartCheckoutProps = {
   ) => void
 }
 
-const name = 'CartStartCheckout' as const
+const name = 'CartStartCheckout'
 const parts = [
   'checkoutButtonContainer',
   'checkoutButton',
   'checkoutButtonTotal',
   'checkoutMoney',
+  'loginContainer',
 ] as const
 const { classes } = extendableComponent(name, parts)
 
@@ -36,6 +38,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
     cart,
   } = props
 
+  const shouldLoginToContinue = useCheckoutShouldLoginToContinue()
   const hasTotals = (cart?.prices?.grand_total?.value ?? 0) > 0
   const hasErrors = cart?.items?.some((item) => (item?.errors?.length ?? 0) > 0)
 
@@ -43,10 +46,21 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
     <Box
       className={classes.checkoutButtonContainer}
       sx={[
-        (theme) => ({ textAlign: 'center', my: theme.spacings.md }),
+        (theme) => ({
+          textAlign: 'center',
+          my: theme.spacings.md,
+        }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
+      {shouldLoginToContinue && (
+        <Box sx={{ mb: 1 }} className={classes.loginContainer}>
+          <Link href='/account/signin'>
+            <Trans>You must first login before you can continue</Trans>
+          </Link>
+        </Box>
+      )}
+
       <Button
         href='/checkout'
         id='cart-start-checkout'
@@ -60,7 +74,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
           onStart?.(e, cart)
           return onClick?.(e)
         }}
-        disabled={disabled || !hasTotals || hasErrors}
+        disabled={disabled || !hasTotals || hasErrors || shouldLoginToContinue}
         {...buttonProps}
       >
         <Box
@@ -71,7 +85,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
             '& ~ span.MuiButton-endIcon': { marginLeft: '6px' },
           })}
         >
-          <Trans id='Start Checkout' />
+          <Trans>Start Checkout</Trans>
         </Box>{' '}
         {hasTotals && (
           <span className={classes.checkoutMoney}>
@@ -84,7 +98,9 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
 
       {hasErrors && (
         <Box sx={(theme) => ({ color: 'error.main', mt: theme.spacings.xs })}>
-          <Trans id='Some items in your cart contain errors, please update or remove them, then try again.' />
+          <Trans>
+            Some items in your cart contain errors, please update or remove them, then try again.
+          </Trans>
         </Box>
       )}
     </Box>

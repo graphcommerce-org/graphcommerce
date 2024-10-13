@@ -3,8 +3,9 @@ import type { InputMaybe, InContextInput } from '@graphcommerce/graphql-mesh'
 import { useIsSSR } from '@graphcommerce/next-ui/hooks/useIsSsr'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { getCssFlag, removeCssFlag, setCssFlag } from '@graphcommerce/next-ui/utils/cssFlags'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { QueryHookOptions, QueryResult, TypedDocumentNode, useQuery } from '../apollo'
+import { InContextMaskContext } from '../components/InContextMask/InContextMask'
 import { useInContextInput } from './useInContextInput'
 
 /**
@@ -32,6 +33,8 @@ export function useInContextQuery<
   const context = useInContextInput()
   const isSsr = useIsSSR()
 
+  const inContext = useContext(InContextMaskContext)
+
   useEffect(() => {
     if (isSsr) return
     if (context && !getCssFlag('in-context')) setCssFlag('in-context', true)
@@ -41,7 +44,7 @@ export function useInContextQuery<
   const clientQuery = useQuery<Q, V>(document, {
     ...options,
     variables: { ...options.variables, context } as V,
-    skip: skip && !context,
+    skip: !!inContext || (skip && !context),
   })
 
   let { data } = clientQuery
@@ -51,6 +54,11 @@ export function useInContextQuery<
   let mask = isSsr
   if (!isSsr && context) {
     mask = !skip ? !clientQuery.data && !clientQuery.previousData : !clientQuery.data
+  }
+
+  // If this method is called within an InContextMask, we skip this complete functionality so we show the parent mask.
+  if (inContext) {
+    mask = inContext.mask
   }
 
   return { ...clientQuery, data: data ?? unscopedResult, mask }

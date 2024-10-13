@@ -9,8 +9,14 @@ function _export(target, all) {
     });
 }
 _export(exports, {
+    CartPermissionsSchema: function() {
+        return CartPermissionsSchema;
+    },
     CompareVariantSchema: function() {
         return CompareVariantSchema;
+    },
+    CustomerAccountPermissionsSchema: function() {
+        return CustomerAccountPermissionsSchema;
     },
     DatalayerConfigSchema: function() {
         return DatalayerConfigSchema;
@@ -20,6 +26,9 @@ _export(exports, {
     },
     GraphCommerceDebugConfigSchema: function() {
         return GraphCommerceDebugConfigSchema;
+    },
+    GraphCommercePermissionsSchema: function() {
+        return GraphCommercePermissionsSchema;
     },
     GraphCommerceStorefrontConfigSchema: function() {
         return GraphCommerceStorefrontConfigSchema;
@@ -42,6 +51,9 @@ _export(exports, {
     SidebarGalleryPaginationVariantSchema: function() {
         return SidebarGalleryPaginationVariantSchema;
     },
+    WebsitePermissionsSchema: function() {
+        return WebsitePermissionsSchema;
+    },
     definedNonNullAnySchema: function() {
         return definedNonNullAnySchema;
     },
@@ -52,9 +64,19 @@ _export(exports, {
 const _zod = require("zod");
 const isDefinedNonNullAny = (v)=>v !== undefined && v !== null;
 const definedNonNullAnySchema = _zod.z.any().refine((v)=>isDefinedNonNullAny(v));
+const CartPermissionsSchema = _zod.z.enum([
+    'CUSTOMER_ONLY',
+    'DISABLED',
+    'ENABLED'
+]);
 const CompareVariantSchema = _zod.z.enum([
     'CHECKBOX',
     'ICON'
+]);
+const CustomerAccountPermissionsSchema = _zod.z.enum([
+    'DISABLED',
+    'DISABLE_REGISTRATION',
+    'ENABLED'
 ]);
 const PaginationVariantSchema = _zod.z.enum([
     'COMPACT',
@@ -67,6 +89,9 @@ const ProductFiltersLayoutSchema = _zod.z.enum([
 const SidebarGalleryPaginationVariantSchema = _zod.z.enum([
     'DOTS',
     'THUMBNAILS_BOTTOM'
+]);
+const WebsitePermissionsSchema = _zod.z.enum([
+    'ENABLED'
 ]);
 function DatalayerConfigSchema() {
     return _zod.z.object({
@@ -102,6 +127,7 @@ function GraphCommerceConfigSchema() {
         limitSsg: _zod.z.boolean().nullish(),
         magentoEndpoint: _zod.z.string().min(1),
         magentoVersion: _zod.z.number(),
+        permissions: GraphCommercePermissionsSchema().nullish(),
         previewSecret: _zod.z.string().nullish(),
         productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),
@@ -123,6 +149,14 @@ function GraphCommerceDebugConfigSchema() {
         webpackDuplicatesPlugin: _zod.z.boolean().nullish()
     });
 }
+function GraphCommercePermissionsSchema() {
+    return _zod.z.object({
+        cart: CartPermissionsSchema.nullish(),
+        checkout: CartPermissionsSchema.nullish(),
+        customerAccount: CustomerAccountPermissionsSchema.nullish(),
+        website: WebsitePermissionsSchema.nullish()
+    });
+}
 function GraphCommerceStorefrontConfigSchema() {
     return _zod.z.object({
         canonicalBaseUrl: _zod.z.string().nullish(),
@@ -137,6 +171,7 @@ function GraphCommerceStorefrontConfigSchema() {
         linguiLocale: _zod.z.string().nullish(),
         locale: _zod.z.string().min(1),
         magentoStoreCode: _zod.z.string().min(1),
+        permissions: GraphCommercePermissionsSchema().nullish(),
         robotsAllow: _zod.z.boolean().nullish()
     });
 }

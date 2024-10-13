@@ -36,7 +36,6 @@ export type ComposedSubmitRenderComponentProps = {
   submit: () => Promise<void>
   buttonState: ButtonState
   error?: ApolloError
-  rootThrown?: GlobalError
 }
 
 export type ComposedFormState = {

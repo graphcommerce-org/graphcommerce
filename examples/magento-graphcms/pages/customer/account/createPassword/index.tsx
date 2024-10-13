@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { ResetPasswordForm } from '@graphcommerce/magento-customer'
+import { ResetPasswordForm, getCustomerAccountIsDisabled } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -79,6 +79,8 @@ CustomerAccountCreatePasswordPage.pageOptions = pageOptions
 export default CustomerAccountCreatePasswordPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 

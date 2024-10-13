@@ -1,5 +1,25 @@
 # Change Log
 
+## 9.0.0-canary.86
+
+### Patch Changes
+
+- [#2379](https://github.com/graphcommerce-org/graphcommerce/pull/2379) [`6202fc7`](https://github.com/graphcommerce-org/graphcommerce/commit/6202fc7d2f36d5d1f2fedb74b2f2d93b308d5885) - In some cases the xMagentoCacheId wasn't defined in the returned query, make sure the application doesn't crash ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.85
+
+## 9.0.0-canary.84
+
+## 9.0.0-canary.83
+
+## 9.0.0-canary.82
+
+### Minor Changes
+
+- [#2366](https://github.com/graphcommerce-org/graphcommerce/pull/2366) [`3612c99`](https://github.com/graphcommerce-org/graphcommerce/commit/3612c994b80bb3b1bc02de10668f69a332402dc4) - Add `permissions` config so the website or store can be configurated to run in different modes. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 9.0.0-canary.81
+
 ## 9.0.0-canary.80
 
 ### Minor Changes

@@ -1,5 +1,21 @@
 # Change Log
 
+## 9.0.0-canary.86
+
+### Patch Changes
+
+- [#2379](https://github.com/graphcommerce-org/graphcommerce/pull/2379) [`c4ff06d`](https://github.com/graphcommerce-org/graphcommerce/commit/c4ff06da58e01de47c48aa55f4f822223202570c) - When a useInContextQuery is called, only execute when there is no InContextMaskContext defined above ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.85
+
+## 9.0.0-canary.84
+
+## 9.0.0-canary.83
+
+## 9.0.0-canary.82
+
+## 9.0.0-canary.81
+
 ## 9.0.0-canary.80
 
 ### Patch Changes

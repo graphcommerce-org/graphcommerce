@@ -1,4 +1,5 @@
 import { Image } from '@graphcommerce/image'
+import { useCheckoutGuestEnabled } from '@graphcommerce/magento-cart'
 import { StoreSwitcherButton } from '@graphcommerce/magento-store'
 import { Footer as FooterBase } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
@@ -9,6 +10,7 @@ export type FooterProps = FooterQueryFragment
 
 export function Footer(props: FooterProps) {
   const { footer } = props
+  const cartEnabled = useCheckoutGuestEnabled()
 
   return (
     <FooterBase
@@ -49,7 +51,7 @@ export function Footer(props: FooterProps) {
               {link.title}
             </Link>
           ))}
-          {import.meta.graphCommerce.magentoVersion >= 247 && (
+          {import.meta.graphCommerce.magentoVersion >= 247 && cartEnabled && (
             <Link href='/guest/orderstatus' underline='always' sx={{ color: 'textPrimary' }}>
               <Trans>Order status</Trans>
             </Link>

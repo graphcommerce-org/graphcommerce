@@ -1,11 +1,15 @@
-import { EmailElement, WaitForQueries } from '@graphcommerce/ecommerce-ui'
+import { EmailElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorAlert,
   useCartQuery,
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
-import { IsEmailAvailableDocument, useCustomerSession } from '@graphcommerce/magento-customer'
+import {
+  IsEmailAvailableDocument,
+  useCustomerAccountCanSignIn,
+  useCustomerSession,
+} from '@graphcommerce/magento-customer'
 import { extendableComponent, FormRow } from '@graphcommerce/next-ui'
 import {
   FormAutoSubmit,
@@ -24,12 +28,14 @@ export type EmailFormProps = Pick<UseFormComposeOptions, 'step'> & {
   sx?: SxProps<Theme>
 }
 
-const name = 'EmailForm' as const
+const name = 'EmailForm'
 const parts = ['root', 'formRow'] as const
 const { classes } = extendableComponent(name, parts)
 
 const EmailFormBase = React.memo<EmailFormProps>((props) => {
   const { step, sx } = props
+
+  const canLogin = useCustomerAccountCanSignIn()
 
   const cartEmail = useCartQuery(CartEmailDocument)
 
@@ -44,10 +50,15 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
     skip: !import.meta.graphCommerce.enableGuestCheckoutLogin || !email,
   })
 
-  const { formState, required, error, handleSubmit } = form
+  const { required, error, handleSubmit } = form
   const submit = handleSubmit(() => {})
 
   useFormCompose({ form, step, submit, key: 'EmailForm' })
+
+  const showLogin =
+    import.meta.graphCommerce.enableGuestCheckoutLogin &&
+    canLogin &&
+    isEmailAvailable.data?.isEmailAvailable
 
   return (
     <Box component='form' noValidate onSubmit={submit} sx={sx}>
@@ -61,19 +72,14 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
           disabled={cartEmail.loading}
           InputProps={{
             autoComplete: 'email',
-            endAdornment: (
-              <WaitForQueries waitFor={isEmailAvailable}>
-                {(isEmailAvailable.data?.isEmailAvailable ||
-                  !import.meta.graphCommerce.enableGuestCheckoutLogin) && (
-                  <Button
-                    href={`/account/signin?email=${email}`}
-                    color='secondary'
-                    style={{ whiteSpace: 'nowrap' }}
-                  >
-                    <Trans id='Sign in' />
-                  </Button>
-                )}
-              </WaitForQueries>
+            endAdornment: showLogin && (
+              <Button
+                href={`/account/signin?email=${email}`}
+                color='secondary'
+                style={{ whiteSpace: 'nowrap' }}
+              >
+                <Trans id='Sign in' />
+              </Button>
             ),
           }}
         />

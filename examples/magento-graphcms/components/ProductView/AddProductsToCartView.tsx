@@ -1,3 +1,4 @@
+import { useCartEnabled } from '@graphcommerce/magento-cart'
 import {
   AddProductsToCartError,
   AddProductsToCartQuantity,
@@ -21,6 +22,7 @@ export type AddProductsToCartViewProps = {
 
 export function AddProductsToCartView(props: AddProductsToCartViewProps) {
   const { product } = props
+  const cartEnabled = useCartEnabled()
 
   return (
     <>
@@ -38,9 +40,8 @@ export function AddProductsToCartView(props: AddProductsToCartViewProps) {
         <>
           <ProductCustomizable product={product} />
           <Divider />
-
           <ProductPageAddToCartQuantityRow product={product}>
-            <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />
+            {cartEnabled && <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />}
 
             <AddProductsToCartError>
               <Typography component='div' variant='h3' sx={{ lineHeight: '1' }}>
@@ -48,10 +49,8 @@ export function AddProductsToCartView(props: AddProductsToCartViewProps) {
               </Typography>
             </AddProductsToCartError>
           </ProductPageAddToCartQuantityRow>
-
           <ProductPagePriceTiers product={product} />
-
-          <ProductSidebarDelivery product={product} />
+          {cartEnabled && <ProductSidebarDelivery product={product} />}
         </>
       )}
     </>

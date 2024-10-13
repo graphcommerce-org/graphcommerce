@@ -1,5 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { useCustomerQuery, WaitForCustomer } from '@graphcommerce/magento-customer'
+import {
+  getCustomerAccountIsDisabled,
+  useCustomerQuery,
+  WaitForCustomer,
+} from '@graphcommerce/magento-customer'
 import { AccountDashboardReviewsDocument, AccountReviews } from '@graphcommerce/magento-review'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -71,6 +75,8 @@ AccountReviewsPage.pageOptions = pageOptions
 export default AccountReviewsPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 

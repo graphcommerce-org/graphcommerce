@@ -23,9 +23,9 @@ export type InContextMaskProps<
 
 type InContextMaskContextType = { mask: boolean }
 
-const InContextMaskContext = createContext<InContextMaskContextType | null>(null)
+export const InContextMaskContext = createContext<InContextMaskContextType | undefined>(undefined)
 
-export function useInContextInputMask() {
+export function useInContextInputMask(): InContextMaskContextType {
   const context = useContext(InContextMaskContext)
 
   // eslint-disable-next-line react-hooks/rules-of-hooks

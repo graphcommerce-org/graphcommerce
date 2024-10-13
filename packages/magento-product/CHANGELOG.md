@@ -1,5 +1,25 @@
 # Change Log
 
+## 9.0.0-canary.86
+
+### Patch Changes
+
+- [#2379](https://github.com/graphcommerce-org/graphcommerce/pull/2379) [`959e0dd`](https://github.com/graphcommerce-org/graphcommerce/commit/959e0dd81a7943648250be6a2bf8f1bc27be8a3b) - Render multiple items in the RowSpecs table as a list ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.85
+
+### Patch Changes
+
+- [#2378](https://github.com/graphcommerce-org/graphcommerce/pull/2378) [`c8237dc`](https://github.com/graphcommerce-org/graphcommerce/commit/c8237dc8f496a0ffddcf8fd4fc697941e257ed00) - Fixed the products sitemap not containing more than 100 products when limit SSG is enabled ([@rustmaestro](https://github.com/rustmaestro))
+
+## 9.0.0-canary.84
+
+## 9.0.0-canary.83
+
+## 9.0.0-canary.82
+
+## 9.0.0-canary.81
+
 ## 9.0.0-canary.80
 
 ### Minor Changes

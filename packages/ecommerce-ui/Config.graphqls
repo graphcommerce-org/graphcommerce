@@ -1,0 +1,23 @@
+enum WebsitePermissions {
+  ENABLED
+  # CUSTOMER_ONLY will be implemented later
+  # DISABLED will be implemented later
+}
+
+input GraphCommercePermissions {
+  website: WebsitePermissions
+}
+
+extend input GraphCommerceConfig {
+  """
+  Allows the option to require login or completely disable certain sections of the site, can be overriden per storeview with the storefrontConfig
+  """
+  permissions: GraphCommercePermissions
+}
+
+extend input GraphCommerceStorefrontConfig {
+  """
+  Allows the option to require login or completely disable certain sections of the site on a per store basis
+  """
+  permissions: GraphCommercePermissions
+}

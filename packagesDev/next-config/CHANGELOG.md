@@ -1,5 +1,21 @@
 # Change Log
 
+## 9.0.0-canary.86
+
+### Patch Changes
+
+- [#2379](https://github.com/graphcommerce-org/graphcommerce/pull/2379) [`9828754`](https://github.com/graphcommerce-org/graphcommerce/commit/9828754192348b966fb9736d7b0e1c78c4a909fa) - All automatically generated interceptor files are now read-only in vscode to prevent accedental changes. ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.85
+
+## 9.0.0-canary.84
+
+## 9.0.0-canary.83
+
+## 9.0.0-canary.82
+
+## 9.0.0-canary.81
+
 ## 9.0.0-canary.80
 
 ## 9.0.0-canary.79

@@ -120,19 +120,10 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
   }
 
   const errors: ApolloError[] = []
-  let rootThrown: GlobalError | undefined
 
   formEntries.forEach(([, { form }]) => {
     if (form && isFormGqlOperation(form) && form.error) errors.push(form.error)
-    if (form && form.formState.errors.root?.thrown) rootThrown = form.formState.errors.root.thrown
   })
 
-  return (
-    <Render
-      buttonState={buttonState}
-      submit={submitAll}
-      error={mergeErrors(errors)}
-      rootThrown={rootThrown}
-    />
-  )
+  return <Render buttonState={buttonState} submit={submitAll} error={mergeErrors(errors)} />
 }

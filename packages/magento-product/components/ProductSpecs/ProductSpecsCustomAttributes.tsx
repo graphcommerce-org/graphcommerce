@@ -1,5 +1,5 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent, ListFormat } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import { ProductSpecsFragment } from './ProductSpecs.gql'
 import { ProductSpecsTypesDocument } from './ProductSpecsTypes.gql'
@@ -24,19 +24,17 @@ export function ProductSpecsCustomAttributes(props: ProductSpecsCustomAttributes
       {specs?.map((item) => (
         <li key={item?.code}>
           <div>
-            {
-              productSpecsTypes?.data?.attributesList?.items?.find(
-                (type) => type?.code === item?.code,
-              )?.label
-            }
+            {productSpecsTypes?.data?.attributesList?.items?.find(
+              (type) => type?.code === item?.code,
+            )?.label ?? item?.code}
           </div>
-          <Box className={classes.options} sx={{ display: 'grid', gridAutoFlow: 'row' }}>
+          <Box className={classes.options}>
             {item?.__typename === 'AttributeSelectedOptions' && (
-              <>
+              <ListFormat listStyle='long' type='unit'>
                 {item?.selected_options?.map((option) => (
                   <span key={option?.value}>{option?.label === '1' ? 'Yes' : option?.label}</span>
                 ))}
-              </>
+              </ListFormat>
             )}
             {item?.__typename === 'AttributeValue' && <span key={item?.value}>{item.value}</span>}
           </Box>

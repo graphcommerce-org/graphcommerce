@@ -1,5 +1,25 @@
 # Change Log
 
+## 9.0.0-canary.86
+
+## 9.0.0-canary.85
+
+## 9.0.0-canary.84
+
+## 9.0.0-canary.83
+
+### Patch Changes
+
+- [#2374](https://github.com/graphcommerce-org/graphcommerce/pull/2374) [`e61e1f4`](https://github.com/graphcommerce-org/graphcommerce/commit/e61e1f4fb1086f7a6341b42502135abf1839e43d) - Default to permanent redirects unless specified ([@hnsr](https://github.com/hnsr))
+
+## 9.0.0-canary.82
+
+## 9.0.0-canary.81
+
+### Minor Changes
+
+- [#2373](https://github.com/graphcommerce-org/graphcommerce/pull/2373) [`53ffc91`](https://github.com/graphcommerce-org/graphcommerce/commit/53ffc91f9bfbe1183c002c62b1fe0c3f415d7b94) - Handle the case where one switches from using the default .html URL suffix, to not using one ([@hnsr](https://github.com/hnsr))
+
 ## 9.0.0-canary.80
 
 ## 9.0.0-canary.79

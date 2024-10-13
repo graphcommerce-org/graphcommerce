@@ -1,6 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
-import { CartItemSummary, CartSummary, InlineAccount } from '@graphcommerce/magento-cart'
+import {
+  CartItemSummary,
+  CartSummary,
+  InlineAccount,
+  getCheckoutIsDisabled,
+} from '@graphcommerce/magento-cart'
 import { SignupNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -91,6 +96,8 @@ OrderSuccessPage.pageOptions = pageOptions
 export default OrderSuccessPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCheckoutIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })

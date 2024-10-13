@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Image } from '@graphcommerce/image'
-import { useCrosssellItems } from '@graphcommerce/magento-cart'
+import { getCartDisabled, useCrosssellItems } from '@graphcommerce/magento-cart'
 import { AddProductsToCartForm, ProductScroller } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -162,6 +162,8 @@ CheckoutAdded.pageOptions = pageOptions
 export default CheckoutAdded
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCartDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
