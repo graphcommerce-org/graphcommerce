@@ -91,24 +91,10 @@ const createThemeWithPalette = ({
   dark?: PaletteOptions
 }) =>
   createTheme({
-    cssVariables: {
-      colorSchemeSelector: 'class',
-    },
+    cssVariables: { colorSchemeSelector: 'class' },
     colorSchemes: {
-      ...(light
-        ? {
-            light: {
-              palette: light,
-            },
-          }
-        : undefined),
-      ...(dark
-        ? {
-            dark: {
-              palette: dark,
-            },
-          }
-        : undefined),
+      ...(light ? { light: { palette: light } } : undefined),
+      ...(dark ? { dark: { palette: dark } } : undefined),
     },
     ...themeBaseDefaults,
     shape: { borderRadius: 3 },
@@ -233,19 +219,23 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
   MuiButtonBase: { defaultProps: { LinkComponent: NextLink } },
 
   MuiContainer: {
-    variants: [
-      {
-        props: { disableGutters: false },
-        style: {
-          paddingLeft: theme.page.horizontal,
-          paddingRight: theme.page.horizontal,
-          [theme.breakpoints.up('sm')]: {
-            paddingLeft: theme.page.horizontal,
-            paddingRight: theme.page.horizontal,
+    styleOverrides: {
+      root: {
+        variants: [
+          {
+            props: { disableGutters: false },
+            style: {
+              paddingLeft: theme.page.horizontal,
+              paddingRight: theme.page.horizontal,
+              [theme.breakpoints.up('sm')]: {
+                paddingLeft: theme.page.horizontal,
+                paddingRight: theme.page.horizontal,
+              },
+            },
           },
-        },
+        ],
       },
-    ],
+    },
   },
 
   MuiInputBase: {
@@ -258,50 +248,54 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
 
   MuiButton: {
     defaultProps: { color: 'inherit' },
-    variants: [
-      ...MuiButtonResponsive,
-      ...MuiButtonPill,
-      ...MuiButtonInline,
-      {
-        props: { variant: 'contained', color: 'inherit' },
-        style: { backgroundColor: theme.vars.palette.background.paper },
-      },
-      {
-        props: { variant: 'outlined' },
-        style: {
-          ...breakpointVal(
-            'borderRadius',
-            theme.shape.borderRadius * 2,
-            theme.shape.borderRadius * 3,
-            theme.breakpoints.values,
-          ),
-        },
-      },
-      {
-        props: { variant: 'text' },
-        style: { borderRadius: '99em' },
-      },
-      {
-        props: { variant: 'inline' },
-        style: { borderRadius: '99em' },
-      },
-      {
-        props: { color: 'primary' },
-        style: {
-          '&:not(.Mui-disabled)': {
-            boxShadow: 'none',
+    styleOverrides: {
+      root: {
+        variants: [
+          ...MuiButtonResponsive,
+          ...MuiButtonPill,
+          ...MuiButtonInline,
+          {
+            props: { variant: 'contained', color: 'inherit' },
+            style: { backgroundColor: theme.vars.palette.background.paper },
           },
-        },
-      },
-      {
-        props: { color: 'secondary' },
-        style: {
-          '&:not(.Mui-disabled)': {
-            boxShadow: 'none',
+          {
+            props: { variant: 'outlined' },
+            style: {
+              ...breakpointVal(
+                'borderRadius',
+                theme.shape.borderRadius * 2,
+                theme.shape.borderRadius * 3,
+                theme.breakpoints.values,
+              ),
+            },
           },
-        },
+          {
+            props: { variant: 'text' },
+            style: { borderRadius: '99em' },
+          },
+          {
+            props: { variant: 'inline' },
+            style: { borderRadius: '99em' },
+          },
+          {
+            props: { color: 'primary' },
+            style: {
+              '&:not(.Mui-disabled)': {
+                boxShadow: 'none',
+              },
+            },
+          },
+          {
+            props: { color: 'secondary' },
+            style: {
+              '&:not(.Mui-disabled)': {
+                boxShadow: 'none',
+              },
+            },
+          },
+        ],
       },
-    ],
+    },
   },
 
   MuiFab: {
@@ -356,7 +350,11 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
   },
 
   MuiChip: {
-    variants: [...MuiChip],
+    styleOverrides: {
+      root: {
+        variants: [...MuiChip],
+      },
+    },
   },
 
   MuiCheckbox: {
@@ -393,7 +391,11 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
     },
   },
 
-  MuiSnackbar: { variants: [...MuiSnackbar] },
+  MuiSnackbar: {
+    styleOverrides: {
+      root: { variants: [...MuiSnackbar] },
+    },
+  },
 
   MuiAvatar: {
     styleOverrides: {
@@ -403,7 +405,11 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
     },
   },
 
-  MuiSlider: { variants: [...MuiSlider] },
+  MuiSlider: {
+    styleOverrides: {
+      root: { variants: [...MuiSlider] },
+    },
+  },
 
   MuiCircularProgress: {
     defaultProps: {
