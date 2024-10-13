@@ -17,7 +17,7 @@ export type InlineAccountProps = {
   /**
    * @deprecated This is not used anymore.
    */
-  accountHref: string
+  accountHref?: string
   sx?: SxProps<Theme>
 }
 

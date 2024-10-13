@@ -46,9 +46,7 @@ export function ProductFiltersProLayoutSidebar(props: ProductFiltersProLayoutSid
   return (
     <>
       {headerPosition === 'before' ? header : null}
-
       <FormAutoSubmit control={form.control} disabled={autoSubmitDisabled} submit={submit} />
-
       <Container
         maxWidth={false}
         className={classes.content}
@@ -56,20 +54,20 @@ export function ProductFiltersProLayoutSidebar(props: ProductFiltersProLayoutSid
           display: 'grid',
           gridTemplate: {
             xs: `
-              "content"           auto
-              "horizontalFilters" auto
-              "beforeContent"     auto
-              "items"             auto
-              "afterContent"      auto
-            `,
+            "content"           auto
+            "horizontalFilters" auto
+            "beforeContent"     auto
+            "items"             auto
+            "afterContent"      auto
+          `,
             md: ` 
-              "topleft content"   auto
-              "sidebar content"   auto
-              "sidebar beforeContent" auto
-              "sidebar items"         min-content
-              "sidebar afterContent"  1fr
-              /300px   auto
-            `,
+            "topleft content"   auto
+            "sidebar content"   auto
+            "sidebar beforeContent" auto
+            "sidebar items"         min-content
+            "sidebar afterContent"  1fr
+            /300px   auto
+          `,
           },
 
           columnGap: { md: theme.spacings.md, xl: theme.spacings.xxl },
@@ -83,25 +81,25 @@ export function ProductFiltersProLayoutSidebar(props: ProductFiltersProLayoutSid
           },
         })}
       >
-        <Box gridArea='topleft' sx={{ display: { xs: 'none', md: 'block' }, alignSelf: 'center' }}>
+        <Box
+          sx={{ gridArea: 'topleft', display: { xs: 'none', md: 'block' }, alignSelf: 'center' }}
+        >
           {clearAll}
         </Box>
         {sidebarFilters && (
-          <Box gridArea='sidebar' sx={{ display: { xs: 'none', md: 'block' } }}>
+          <Box sx={{ gridArea: 'sidebar', display: { xs: 'none', md: 'block' } }}>
             {sidebarFilters}
           </Box>
         )}
-        {children && <Box gridArea='content'>{children}</Box>}
+        {children && <Box sx={{ gridArea: 'content' }}>{children}</Box>}
         <StickyBelowHeader sx={{ display: { md: 'none', gridArea: 'horizontalFilters' } }}>
           {horizontalFilters}
         </StickyBelowHeader>
 
-        <Box gridArea='beforeContent' sx={{ mt: { md: 0 } }}>
-          {count}
-        </Box>
-        <Box gridArea='items'>{items}</Box>
+        <Box sx={{ gridArea: 'beforeContent', mt: { md: 0 } }}>{count}</Box>
+        <Box sx={{ gridArea: 'items' }}>{items}</Box>
 
-        {pagination && <Box gridArea='afterContent'>{pagination}</Box>}
+        {pagination && <Box sx={{ gridArea: 'afterContent' }}>{pagination}</Box>}
       </Container>
     </>
   )

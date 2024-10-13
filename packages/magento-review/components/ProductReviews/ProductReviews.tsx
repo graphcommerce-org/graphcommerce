@@ -90,7 +90,7 @@ export function ProductReviews(props: ProductReviewsProps) {
             margin: `0 -16px 0`,
           }}
           renderLink={(p: number, icon: React.ReactNode) => (
-            <Link color='inherit' underline='hover' onClick={() => setPage(p)}>
+            <Link underline='hover' onClick={() => setPage(p)} sx={{ color: 'inherit' }}>
               {icon}
             </Link>
           )}

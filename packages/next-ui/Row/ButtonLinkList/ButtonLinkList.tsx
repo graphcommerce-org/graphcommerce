@@ -48,7 +48,7 @@ export function ButtonLinkList(props: ButtonLinkListProps) {
           }),
         ]}
       >
-        <Typography variant='overline' color='textSecondary' component={component}>
+        <Typography variant='overline' component={component} sx={{ color: 'textSecondary' }}>
           {title}
         </Typography>
       </Box>

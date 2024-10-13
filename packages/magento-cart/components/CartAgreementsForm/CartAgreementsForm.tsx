@@ -89,7 +89,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                 labelContent = (
                   <>
                     {agreementTextParts[0]}
-                    <Link href={href} color='secondary' underline='hover'>
+                    <Link href={href} underline='hover' sx={{ color: 'secondary' }}>
                       {agreement.name}
                     </Link>
                     {agreementTextParts[1]}
@@ -97,7 +97,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                 )
               } else {
                 labelContent = (
-                  <Link href={href} color='secondary' underline='hover'>
+                  <Link href={href} underline='hover' sx={{ color: 'secondary' }}>
                     {agreement.checkbox_text}
                   </Link>
                 )

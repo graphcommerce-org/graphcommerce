@@ -25,7 +25,7 @@ export function Separator(props: DividedLinksProps) {
       ]}
     >
       {icon ?? (
-        <Typography component='span' variant='body1' color={color}>
+        <Typography component='span' variant='body1' sx={{ color }}>
           |
         </Typography>
       )}

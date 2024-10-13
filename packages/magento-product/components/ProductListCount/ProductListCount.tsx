@@ -38,9 +38,8 @@ export function ProductListCount(props: ProductCountProps) {
       <Divider component='div' className={classes.line} />
       <Typography
         variant='body2'
-        color='text.disabled'
         className={classes.count}
-        sx={{ lineHeight: 0 }}
+        sx={{ color: 'text.disabled', lineHeight: 0 }}
       >
         {children ? <> {children} </> : null}
         {total_count === 0 && <Trans id='no products' />}

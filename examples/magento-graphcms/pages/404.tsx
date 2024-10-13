@@ -15,10 +15,10 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 
 function RouteNotFoundPage() {
   const links = [
-    <Link key={0} href='/' color='primary' underline='hover'>
+    <Link key={0} href='/' underline='hover' sx={{ color: 'primary' }}>
       <Trans id='Store home' />
     </Link>,
-    <Link key={1} href='/account' color='primary' underline='hover'>
+    <Link key={1} href='/account' underline='hover' sx={{ color: 'primary' }}>
       <Trans id='Account' />
     </Link>,
   ]
@@ -27,7 +27,7 @@ function RouteNotFoundPage() {
     <>
       <PageMeta title='Page not found' metaRobots={['noindex']} />
       <Container maxWidth='sm'>
-        <Box textAlign='center' mt={16} mb={16}>
+        <Box sx={{ textAlign: 'center', mt: 16, mb: 16 }}>
           <IconSvg src={icon404} size='xxl' />
           <Typography variant='h3' component='h1' gutterBottom>
             <Trans id='Whoops our bad...' />
@@ -35,13 +35,13 @@ function RouteNotFoundPage() {
           <Typography variant='body1'>
             <Trans id="We couldn't find the page you were looking for" />
           </Typography>
-          <Box mt={4} mb={2}>
+          <Box sx={{ mt: 4, mb: 2 }}>
             <SearchLink href='/search' sx={{ width: '100%', py: 2, typography: 'body1' }}>
               <Trans id='Search...' />
             </SearchLink>
           </Box>
           <Trans id='Or follow these links to get you back on track!' />
-          <Box mb={8}>
+          <Box sx={{ mb: 8 }}>
             {links.map((link, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <React.Fragment key={index}>

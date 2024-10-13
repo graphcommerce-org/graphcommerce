@@ -35,13 +35,13 @@ export function ColumnTwoWithTop(props: ColumnTwoWithTopProps) {
       ]}
       {...containerProps}
     >
-      <Box className={classes.colOne} gridArea='top'>
+      <Box className={classes.colOne} sx={{ gridArea: 'top' }}>
         {top}
       </Box>
-      <Box className={classes.colOne} gridArea='left'>
+      <Box className={classes.colOne} sx={{ gridArea: 'left' }}>
         {left}
       </Box>
-      <Box className={classes.colTwo} gridArea='right'>
+      <Box className={classes.colTwo} sx={{ gridArea: 'right' }}>
         {right}
       </Box>
     </Row>

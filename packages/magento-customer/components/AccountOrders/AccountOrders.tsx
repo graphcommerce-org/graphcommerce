@@ -77,8 +77,8 @@ export function AccountOrders(props: AccountOrdersProps) {
         renderLink={(p: number, icon: React.ReactNode) => (
           <Link
             href={p === 1 ? '/account/orders' : `/account/orders?page=${p}`}
-            color='primary'
             underline='hover'
+            sx={{ color: 'primary' }}
           >
             {icon}
           </Link>

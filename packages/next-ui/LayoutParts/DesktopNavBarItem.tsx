@@ -26,12 +26,11 @@ export function DesktopNavItem(props: DesktopNavItemLinkProps | DesktopNavItemBu
         className={classes.root}
         component='div'
         variant='h6'
-        color='text.primary'
         underline='none'
         {...linkProps}
         onClick={onClick}
         sx={[
-          { whiteSpace: 'nowrap', paddingTop: '6px', cursor: 'pointer' },
+          { color: 'text.primary', whiteSpace: 'nowrap', paddingTop: '6px', cursor: 'pointer' },
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       >
@@ -49,10 +48,12 @@ export function DesktopNavItem(props: DesktopNavItemLinkProps | DesktopNavItemBu
       href={href}
       className={classes.root}
       variant='h6'
-      color='text.primary'
       underline='none'
       {...linkProps}
-      sx={[{ whiteSpace: 'nowrap', paddingTop: '6px' }, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={[
+        { color: 'text.primary', whiteSpace: 'nowrap', paddingTop: '6px' },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>{children}</Box>
       <Box

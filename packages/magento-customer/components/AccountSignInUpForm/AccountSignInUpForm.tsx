@@ -81,7 +81,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
               <Trans id='Hi {firstname}! You’re now logged in!' values={{ firstname }} />
             </LayoutTitle>
             <Typography variant='h6' align='center'>
-              <Link href='/account' underline='hover' color='secondary'>
+              <Link href='/account' underline='hover' sx={{ color: 'secondary' }}>
                 <Trans id='View your account' />
               </Link>
             </Typography>

@@ -117,7 +117,7 @@ function ProductPage(props: Props) {
         >
           <div>
             {isTypename(product, ['ConfigurableProduct', 'BundleProduct']) && (
-              <Typography component='div' variant='body1' color='text.disabled'>
+              <Typography component='div' variant='body1' sx={{ color: 'text.disabled' }}>
                 <Trans
                   id='As low as <0/>'
                   components={{ 0: <Money {...product.price_range.minimum_price.final_price} /> }}

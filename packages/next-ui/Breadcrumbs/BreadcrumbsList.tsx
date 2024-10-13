@@ -60,12 +60,12 @@ export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
       <Link
         href='/'
         underline='none'
-        color='text.primary'
         variant='body1'
         noWrap
         onClick={onClose}
         tabIndex={0}
         sx={{
+          color: 'text.primary',
           flex: 1,
           padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
           '&:hover': {
@@ -80,18 +80,21 @@ export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
           {...breadcrumb}
           key={breadcrumb.href}
           underline='none'
-          color='text.primary'
           variant='body1'
           noWrap
           onClick={onClose}
           tabIndex={0}
-          sx={{
-            flex: 1,
-            padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
-            '&:hover': {
-              backgroundColor: theme.vars.palette.action.hover,
+          sx={[
+            {
+              color: 'text.primary',
+              flex: 1,
+              padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
+              '&:hover': {
+                backgroundColor: theme.vars.palette.action.hover,
+              },
             },
-          }}
+            ...(Array.isArray(breadcrumb.sx) ? breadcrumb.sx : [breadcrumb.sx]),
+          ]}
         >
           {breadcrumb.name}
         </Link>

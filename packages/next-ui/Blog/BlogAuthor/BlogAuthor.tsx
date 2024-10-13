@@ -1,6 +1,6 @@
 import { Avatar, Box, Chip, SxProps, Theme } from '@mui/material'
-import { responsiveVal } from '../../Styles/responsiveVal'
 import { DateFormat } from '../../Intl/DateTimeFormat'
+import { responsiveVal } from '../../Styles/responsiveVal'
 
 export type BlogAuthorProps = {
   author: string
@@ -13,9 +13,9 @@ export function BlogAuthor(props: BlogAuthorProps) {
 
   return (
     <Box
-      maxWidth='md'
       sx={[
         {
+          maxWidth: 'md',
           display: 'flex',
           justifyContent: 'left',
           margin: `0 auto`,

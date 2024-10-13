@@ -35,11 +35,10 @@ export function Reviews(props: ReviewsProps) {
           }),
         ]}
       >
-        <Typography variant='overline' color='textSecondary' component='h2'>
+        <Typography variant='overline' component='h2' sx={{ color: 'textSecondary' }}>
           {title} ({review_count})
         </Typography>
       </Box>
-
       <ProductReviews
         reviews={reviews}
         url_key={url_key ?? ''}

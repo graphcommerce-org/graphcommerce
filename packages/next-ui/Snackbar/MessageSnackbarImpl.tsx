@@ -189,10 +189,14 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
           message={
             <>
               {!disableIcon && <IconSvg src={icon2} size='large' />}
-              <Box gridArea='children'>{children}</Box>
+              <Box sx={{ gridArea: 'children' }}>{children}</Box>
               {/* </Box> */}
               {action && (
-                <Box className={classes.actionButton} onClick={hideSnackbar} gridArea='action'>
+                <Box
+                  className={classes.actionButton}
+                  onClick={hideSnackbar}
+                  sx={{ gridArea: 'action' }}
+                >
                   {action}
                 </Box>
               )}

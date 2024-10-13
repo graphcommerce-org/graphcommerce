@@ -33,7 +33,7 @@ export function FeatureBoxed(props: FeatureBoxedProps) {
       }
     >
       {title && (
-        <Typography variant='overline' color='textSecondary'>
+        <Typography variant='overline' sx={{ color: 'textSecondary' }}>
           {title}
         </Typography>
       )}

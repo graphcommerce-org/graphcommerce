@@ -18,8 +18,8 @@ export function BlogHeader(props: BlogHeaderProps) {
   return (
     <Box
       className={classes.header}
-      maxWidth='md'
       sx={[
+        { maxWidth: 'md' },
         (theme) => ({
           margin: `0 auto`,
           marginBottom: theme.spacings.md,

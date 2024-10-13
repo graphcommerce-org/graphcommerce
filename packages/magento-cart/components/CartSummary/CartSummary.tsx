@@ -121,10 +121,10 @@ export function CartSummary(props: CartSummaryProps) {
                 editable ? (
                   <Link
                     href={historyHref}
-                    color='secondary'
                     variant='body2'
                     onClick={historyOnClick}
                     underline='hover'
+                    sx={{ color: 'secondary' }}
                   >
                     <Trans id='Edit' />
                   </Link>
@@ -143,9 +143,11 @@ export function CartSummary(props: CartSummaryProps) {
               editable ? (
                 <Link
                   href='/checkout/edit/billing-address'
-                  color='secondary'
                   variant='body2'
                   underline='hover'
+                  sx={{
+                    color: 'secondary',
+                  }}
                 >
                   <Trans id='Edit' />
                 </Link>

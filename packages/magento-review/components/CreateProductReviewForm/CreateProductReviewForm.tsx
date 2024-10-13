@@ -80,7 +80,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
         <Alert severity='success' variant='standard'>
           <Trans id='Thank you! Your review was successfully submitted for approval' />
         </Alert>
-        <Box mt={6}>
+        <Box sx={{ mt: 6 }}>
           <Button variant='pill' color='secondary' size='large' onClick={() => router.back()}>
             <Trans id='Continue shopping' />
           </Button>

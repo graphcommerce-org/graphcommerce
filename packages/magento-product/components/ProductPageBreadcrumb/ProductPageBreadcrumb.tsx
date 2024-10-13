@@ -20,7 +20,7 @@ export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
 
   return (
     <Breadcrumbs {...breadcrumbProps}>
-      <Link href='/' underline='hover' color='inherit'>
+      <Link href='/' underline='hover' sx={{ color: 'inherit' }}>
         <Trans id='Home' />
       </Link>
       {filterNonNullableKeys(category?.breadcrumbs, ['category_level'])
@@ -29,18 +29,18 @@ export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
           <Link
             underline='hover'
             key={breadcrumb.category_uid}
-            color='inherit'
             href={`/${breadcrumb.category_url_path}`}
+            sx={{ color: 'inherit' }}
           >
             {breadcrumb.category_name}
           </Link>
         ))}
       {category && (
-        <Link href={`/${category?.url_path}`} underline='hover' color='inherit'>
+        <Link href={`/${category?.url_path}`} underline='hover' sx={{ color: 'inherit' }}>
           {category?.name}
         </Link>
       )}
-      <Typography color='text.primary'>{name}</Typography>
+      <Typography sx={{ color: 'text.primary' }}>{name}</Typography>
     </Breadcrumbs>
   )
 }

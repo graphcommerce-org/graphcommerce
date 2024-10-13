@@ -70,17 +70,16 @@ export const LinkOrButton = React.forwardRef<
       >
         {children}
       </Button>
-
       <Link
         ref={linkRef}
         underline='none'
         variant='body2'
         {...sharedProps}
         {...link}
-        color={loading || disabled ? 'action.disabled' : color}
         aria-disabled={loading || disabled}
         sx={[
           {
+            color: loading || disabled ? 'action.disabled' : color,
             display: { xs: 'inline-flex', [breakpoint]: 'none' },
             alignItems: 'center',
           },

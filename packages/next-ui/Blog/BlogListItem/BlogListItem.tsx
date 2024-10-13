@@ -34,7 +34,7 @@ export function BlogListItem(props: BlogListItemProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <Link href={`/${url}`} color='inherit' underline='hover'>
+      <Link href={`/${url}`} underline='hover' sx={{ color: 'inherit' }}>
         <Box
           className={classes.asset}
           sx={(theme) => ({
@@ -53,7 +53,6 @@ export function BlogListItem(props: BlogListItemProps) {
           {asset}
         </Box>
       </Link>
-
       {date && (
         <Box
           component='time'
@@ -68,8 +67,7 @@ export function BlogListItem(props: BlogListItemProps) {
           <DateFormat dateStyle='long'>{date}</DateFormat>
         </Box>
       )}
-
-      <Link href={`/${url}`} className={classes.title} color='inherit' underline='hover'>
+      <Link href={`/${url}`} className={classes.title} underline='hover' sx={{ color: 'inherit' }}>
         <Typography component='h2' variant='h4'>
           {title}
         </Typography>

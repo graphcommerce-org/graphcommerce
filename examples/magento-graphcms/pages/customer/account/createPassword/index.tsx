@@ -28,14 +28,13 @@ function CustomerAccountCreatePasswordPage() {
           )}
         </LayoutTitle>
       </LayoutOverlayHeader>
-
       {!success && (
         <Container maxWidth='sm'>
           <LayoutTitle gutterBottom={false}>
             <Trans id='Set your new password' />
           </LayoutTitle>
 
-          <Box textAlign='center'>
+          <Box sx={{ textAlign: 'center' }}>
             <p>
               <Trans id='Fill in your new password, confirm it and click on the save button.' />
             </p>
@@ -44,19 +43,18 @@ function CustomerAccountCreatePasswordPage() {
           <ResetPasswordForm token={(token as string) ?? ''} />
         </Container>
       )}
-
       {success && (
         <Container>
           <LayoutTitle gutterBottom={false}>
             <Trans id='You have now successfully reset your password' />
           </LayoutTitle>
 
-          <Box textAlign='center'>
+          <Box sx={{ textAlign: 'center' }}>
             <p>
               <Trans
                 id='You can now <0>sign in again</0>.'
                 components={{
-                  0: <Link color='primary' href='/account/signin' underline='hover' />,
+                  0: <Link href='/account/signin' underline='hover' sx={{ color: 'primary' }} />,
                 }}
               />
             </p>

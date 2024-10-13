@@ -154,38 +154,42 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
           </Box>
         </ClickAwayListener>
       )}
-
       <Link
         href='/'
-        color='inherit'
         underline='hover'
         {...linkProps}
-        sx={[...(Array.isArray(itemSx) ? itemSx : [itemSx])]}
+        sx={[
+          { color: 'inherit' },
+          ...(Array.isArray(itemSx) ? itemSx : [itemSx]),
+          ...(Array.isArray(linkProps?.sx) ? linkProps.sx : [linkProps?.sx]),
+        ]}
       >
         <Trans id='Home' />
       </Link>
       {breadcrumbLinks.map((breadcrumb) => (
         <Link
           key={breadcrumb.href}
-          color='inherit'
           underline='hover'
           {...breadcrumb}
           {...linkProps}
           sx={[
+            { color: 'inherit' },
             ...(Array.isArray(breadcrumb.sx) ? breadcrumb.sx : [breadcrumb.sx]),
             ...(Array.isArray(itemSx) ? itemSx : [itemSx]),
+            ...(Array.isArray(linkProps?.sx) ? linkProps.sx : [linkProps?.sx]),
           ]}
         >
           {breadcrumb.name}
         </Link>
       ))}
-
       {last && (
         <Typography
           component='span'
           noWrap
-          color='inherit'
-          sx={[{ fontWeight: '600' }, ...(Array.isArray(itemSx) ? itemSx : [itemSx])]}
+          sx={[
+            { color: 'inherit', fontWeight: '600' },
+            ...(Array.isArray(itemSx) ? itemSx : [itemSx]),
+          ]}
         >
           {last.name}
         </Typography>

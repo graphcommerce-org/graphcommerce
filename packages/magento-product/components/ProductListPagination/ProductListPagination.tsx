@@ -29,7 +29,7 @@ export function ProductListPagination({
               href={`${productListLink({ ...params, currentPage: btnProps.page })}${suffix}`}
               component={NextLink}
               shallow
-              color='inherit'
+              sx={{ color: 'inherit' }}
             >
               {icon}
             </Link>

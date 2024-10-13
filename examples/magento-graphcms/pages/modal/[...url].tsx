@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { cacheFirst } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
@@ -12,7 +13,6 @@ import { Box, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutDocument, LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
@@ -39,7 +39,7 @@ function ModalPage(props: Props) {
         metaDescription={page.metaDescription}
         metaRobots={metaRobots ?? ['noindex']}
       />
-      <Box pt={4}>
+      <Box sx={{ pt: 4 }}>
         <LayoutTitle>{page.title}</LayoutTitle>
         <Typography variant='body1' align='center'>
           {page.metaDescription ?? ''}

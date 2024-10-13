@@ -44,7 +44,11 @@ export function AccountAddress(props: AccountAddressProps) {
           textAlign: 'right',
         }}
       >
-        <Link href={`/account/addresses/edit?addressId=${id}`} color='primary' underline='hover'>
+        <Link
+          href={`/account/addresses/edit?addressId=${id}`}
+          underline='hover'
+          sx={{ color: 'primary' }}
+        >
           <Trans id='Edit' />
         </Link>
         <DeleteCustomerAddressForm addressId={id ?? undefined} />

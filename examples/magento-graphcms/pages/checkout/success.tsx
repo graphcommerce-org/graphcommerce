@@ -1,4 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { cacheFirst } from '@graphcommerce/graphql'
 import { CartItemSummary, CartSummary, InlineAccount } from '@graphcommerce/magento-cart'
 import { SignupNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -22,7 +23,6 @@ import {
   LayoutMinimalProps,
 } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
@@ -69,9 +69,9 @@ function OrderSuccessPage() {
 
             <SignupNewsletter />
 
-            <InlineAccount accountHref='/account' />
+            <InlineAccount />
 
-            <Box textAlign='center' m={8}>
+            <Box sx={{ textAlign: 'center', m: 8 }}>
               <Button href='/' color='primary' variant='pill' size='large' id='back-to-home'>
                 <Trans id='Back to home' />
               </Button>

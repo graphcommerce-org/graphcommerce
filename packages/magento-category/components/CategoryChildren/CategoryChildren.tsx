@@ -51,35 +51,37 @@ export function CategoryChildren(props: CategoryChildrenProps) {
             <Link
               key={category.href}
               underline='none'
-              color='inherit'
               href={category.href}
               className={classes.link}
-              sx={(theme) => ({
-                whiteSpace: 'nowrap',
-                display: 'block',
-                typography: 'h6',
-                position: 'relative',
-                paddingBottom: '8px',
-                '&:before': {
-                  content: '""',
-                  width: 40,
-                  height: 2,
-                  background: theme.vars.palette.primary.main,
-                  position: 'absolute',
-                  left: 0,
-                  right: 0,
-                  margin: '0 auto',
-                  opacity: category.active ? 1 : 0,
-                  transition: 'opacity .2s ease, bottom .2s ease',
-                  bottom: category.active ? 5 : 0,
-                },
-                '&:hover': {
+              sx={[
+                { color: 'inherit' },
+                (theme) => ({
+                  whiteSpace: 'nowrap',
+                  display: 'block',
+                  typography: 'h6',
+                  position: 'relative',
+                  paddingBottom: '8px',
                   '&:before': {
-                    opacity: 1,
-                    bottom: 5,
+                    content: '""',
+                    width: 40,
+                    height: 2,
+                    background: theme.vars.palette.primary.main,
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    margin: '0 auto',
+                    opacity: category.active ? 1 : 0,
+                    transition: 'opacity .2s ease, bottom .2s ease',
+                    bottom: category.active ? 5 : 0,
                   },
-                },
-              })}
+                  '&:hover': {
+                    '&:before': {
+                      opacity: 1,
+                      bottom: 5,
+                    },
+                  },
+                }),
+              ]}
             >
               {category.name}
             </Link>
