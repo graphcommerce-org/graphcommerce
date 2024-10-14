@@ -13,6 +13,7 @@ const next_config_1 = require("@graphcommerce/next-config");
 const cli_1 = require("@graphql-mesh/cli");
 const utils_1 = require("@graphql-mesh/utils");
 const dotenv_1 = __importDefault(require("dotenv"));
+const replace_in_file_1 = require("replace-in-file");
 const yaml_1 = __importDefault(require("yaml"));
 const findConfig_1 = require("../utils/findConfig");
 dotenv_1.default.config();
@@ -92,6 +93,11 @@ const main = async () => {
     // Reexport the mesh to is can be used by packages
     await node_fs_1.promises.writeFile(`${meshDir}/.mesh.ts`, `export * from '${relativePath.split(node_path_1.default.sep).join('/')}.mesh'`, { encoding: 'utf8' });
     await (0, cli_1.graphqlMesh)({ ...cliParams, configName: tmpMesh });
+    const result = await (0, replace_in_file_1.replaceInFile)({
+        files: node_path_1.default.join(root, '.mesh', 'index.ts'),
+        from: "require('node:url').pathToFileURL(__filename)",
+        to: 'import.meta.url',
+    });
     await cleanup();
 };
 process.on('SIGINT', cleanup);

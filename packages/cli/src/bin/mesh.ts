@@ -4,7 +4,6 @@ import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { exit } from 'node:process'
 import {
-  isMonorepo,
   loadConfig,
   packageRoots,
   replaceConfigInString,
@@ -14,6 +13,7 @@ import { graphqlMesh, DEFAULT_CLI_PARAMS, GraphQLMeshCLIParams } from '@graphql-
 import { Logger, YamlConfig } from '@graphql-mesh/types'
 import { DefaultLogger } from '@graphql-mesh/utils'
 import dotenv from 'dotenv'
+import { replaceInFile } from 'replace-in-file'
 import yaml from 'yaml'
 import { findConfig } from '../utils/findConfig'
 
@@ -110,6 +110,12 @@ const main = async () => {
   )
 
   await graphqlMesh({ ...cliParams, configName: tmpMesh })
+
+  const result = await replaceInFile({
+    files: path.join(root, '.mesh', 'index.ts'),
+    from: "require('node:url').pathToFileURL(__filename)",
+    to: 'import.meta.url',
+  })
 
   await cleanup()
 }
