@@ -109,6 +109,9 @@
     "> 1% in alt-EU",
     "not IE 11"
   ],
+  "resolutions": {
+    "@emotion/react": "11.12.0"
+  },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",
