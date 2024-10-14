@@ -6,4 +6,4 @@
 '@graphcommerce/image-example': patch
 ---
 
-Loosen webpack dependency constraint so that it doesn't interfere with transient dependencies.
+When installing GraphCommerce it would install multiple versions of webpack, causing build errors: Loosen webpack dependency constraint so it installs a single version.
