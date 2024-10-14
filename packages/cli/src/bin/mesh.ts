@@ -127,12 +127,20 @@ const main = async () => {
 
   const mV = graphCommerce.magentoVersion ?? 246
   packageRoots(packages).forEach((r) => {
-    const alsoScan = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254]
+    conf.additionalTypeDefs.push(`${r}/*/schema/**/*.graphqls`)
+
+    const scanVersions = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254]
       .filter((v) => v > mV)
       .map((v) => `${r}/*/schema-${v}/**/*.graphqls`)
 
-    conf.additionalTypeDefs.push(`${r}/*/schema/**/*.graphqls`)
-    conf.additionalTypeDefs.push(...alsoScan)
+    conf.additionalTypeDefs.push(...scanVersions)
+
+    const scanVersionAC = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254]
+      .filter((v) => v > mV)
+      .map((v) => `${r}/*/schema-ac-${v}/**/*.graphqls`)
+    conf.additionalTypeDefs.push(...scanVersionAC)
+
+    conf.additionalTypeDefs.push(`${r}/*/schema-ac/**/*.graphqls`)
   })
 
   if (!conf.serve) conf.serve = {}
