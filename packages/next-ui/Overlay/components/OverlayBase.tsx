@@ -457,7 +457,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                   height: '1px',
                   top: 'calc(100% - 1px)',
                   left: '0',
-                  background: theme.palette.background[bgColor],
+                  background: theme.vars.palette.background[bgColor],
                 },
               },
             },
@@ -649,7 +649,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             <Box
               className={classes.background}
               sx={(theme) => ({
-                backgroundColor: theme.palette.background[bgColor],
+                backgroundColor: theme.vars.palette.background[bgColor],
                 paddingBottom: '0.1px',
                 [theme.breakpoints.down('md')]: {
                   minHeight: '100%',

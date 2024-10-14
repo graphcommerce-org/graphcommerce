@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { cacheFirst } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   PageMeta,
@@ -26,7 +27,6 @@ import {
   RowRenderer,
 } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
-import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = HygraphPagesQuery & BlogListQuery & BlogPathsQuery
 type RouteProps = { page: string }
@@ -61,12 +61,15 @@ function BlogPage(props: Props) {
         count={Math.ceil(pagesConnection.aggregate.count / pageSize)}
         page={Number(router.query.page ? router.query.page : 1)}
         renderLink={(p: number, icon: React.ReactNode) => (
-          <Link href={p === 1 ? '/blog' : `/blog/page/${p}`} color='primary' underline='hover'>
+          <Link
+            href={p === 1 ? '/blog' : `/blog/page/${p}`}
+            underline='hover'
+            sx={{ color: 'primary' }}
+          >
             {icon}
           </Link>
         )}
       />
-
       <RowRenderer content={page.content} />
     </>
   )

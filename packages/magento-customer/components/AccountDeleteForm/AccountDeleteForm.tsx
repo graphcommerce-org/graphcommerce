@@ -39,10 +39,10 @@ export function AccountDeleteForm() {
       {!called || error || loading ? (
         <WaitForCustomer waitFor={dashboard}>
           <Box component='form' onSubmit={submitHandler} noValidate>
-            <Typography variant='h6' textAlign='center'>
+            <Typography variant='h6' sx={{ textAlign: 'center' }}>
               <Trans>Are you sure you want to delete your account?</Trans>
             </Typography>
-            <Typography variant='body1' textAlign='center'>
+            <Typography variant='body1' sx={{ textAlign: 'center' }}>
               <Trans>
                 Doing so will remove all your data including order history and saved shipping /
                 billing addresses.
@@ -80,7 +80,7 @@ export function AccountDeleteForm() {
         </WaitForCustomer>
       ) : (
         <>
-          <Typography variant='h6' textAlign='center'>
+          <Typography variant='h6' sx={{ textAlign: 'center' }}>
             <Trans>Account deletion successful</Trans>
           </Typography>
           <FormActions>

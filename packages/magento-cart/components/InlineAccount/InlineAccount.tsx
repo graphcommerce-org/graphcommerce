@@ -18,7 +18,7 @@ export type InlineAccountProps = {
   /**
    * @deprecated This is not used anymore.
    */
-  accountHref: string
+  accountHref?: string
   sx?: SxProps<Theme>
 }
 
@@ -54,7 +54,7 @@ export function InlineAccount(props: InlineAccountProps) {
         sx={[
           (theme) => ({
             borderRadius: '4px',
-            border: `1px solid ${theme.palette.divider}`,
+            border: `1px solid ${theme.vars.palette.divider}`,
             padding: theme.spacings.md,
             marginTop: theme.spacings.sm,
           }),
@@ -104,8 +104,10 @@ export function InlineAccount(props: InlineAccountProps) {
                 variant='outlined'
                 label={<Trans id='Email address' />}
                 value={cart?.email}
-                InputProps={{
-                  readOnly: true,
+                slotProps={{
+                  input: {
+                    readOnly: true,
+                  },
                 }}
               />
             </FormRow>

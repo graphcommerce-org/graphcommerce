@@ -98,11 +98,11 @@ export function MenuFab(props: MenuFabProps) {
             boxShadow: 'none',
             '&:hover, &:focus': {
               boxShadow: 'none',
-              background: theme.palette.text.primary,
+              background: theme.vars.palette.text.primary,
             },
-            background: theme.palette.text.primary,
+            background: theme.vars.palette.text.primary,
             pointerEvents: 'all',
-            color: theme.palette.background.paper,
+            color: theme.vars.palette.background.paper,
           })}
           className={classes.fab}
           {...fabProps}
@@ -138,9 +138,9 @@ export function MenuFab(props: MenuFabProps) {
           transitionDuration={{ appear: 175, enter: 175, exit: 175 }}
           PaperProps={{
             sx: (theme) => ({
-              backgroundColor: theme.palette.background.paper,
+              backgroundColor: theme.vars.palette.background.paper,
               backgroundImage: 'unset',
-              color: theme.palette.text.primary,
+              color: theme.vars.palette.text.primary,
               minWidth: responsiveVal(200, 280),
               marginTop: '12px',
               [theme.breakpoints.down('md')]: {

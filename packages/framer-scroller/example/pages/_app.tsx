@@ -8,6 +8,7 @@ import { Router } from 'next/router'
 import React from 'react'
 
 const theme = createTheme({
+  cssVariables: true,
   shape: {
     borderRadius: 4,
   },

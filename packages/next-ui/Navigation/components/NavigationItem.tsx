@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { alpha, Box, ListItemButton, styled, useEventCallback } from '@mui/material'
+import { Box, ListItemButton, styled, useEventCallback } from '@mui/material'
 import React from 'react'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles/extendableComponent'
@@ -97,7 +97,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
               display: hideItem ? 'none' : 'flex',
               '&.Mui-disabled': {
                 opacity: 1,
-                background: alpha(theme.palette.action.hover, 0.025),
+                background: theme.vars.palette.action.hover,
               },
             }),
             mouseEvent === 'hover'

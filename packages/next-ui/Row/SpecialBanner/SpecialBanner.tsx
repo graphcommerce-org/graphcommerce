@@ -26,7 +26,7 @@ export function SpecialBanner(props: SpecialBannerProps) {
         disableGutters
         sx={(theme) => ({
           display: 'grid',
-          background: theme.palette.background.paper,
+          background: theme.vars.palette.background.paper,
           justifyItems: 'center',
           columnGap: `${theme.spacings.lg}`,
           paddingTop: theme.spacings.lg,
@@ -86,7 +86,7 @@ export function SpecialBanner(props: SpecialBannerProps) {
         <Box
           className={classes.copy}
           sx={(theme) => ({
-            color: theme.palette.text.primary,
+            color: theme.vars.palette.text.primary,
             maxWidth: '70%',
             display: 'grid',
             alignContent: 'center',

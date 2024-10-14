@@ -58,7 +58,7 @@ export function ParagraphWithSidebarSlide(props: ParagraphWithSidebarSlideProps)
           <Box
             className={classes.copy}
             sx={(theme) => ({
-              color: theme.palette.secondary.contrastText,
+              color: theme.vars.palette.secondary.contrastText,
               display: 'grid',
               zIndex: 1,
               justifyItems: 'start',

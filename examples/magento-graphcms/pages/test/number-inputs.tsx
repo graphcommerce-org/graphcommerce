@@ -126,10 +126,10 @@ export default function NumberInputsPage(props: TextInputNumberProps) {
                         size={size}
                         color={color}
                         {...props}
-                        inputProps={{ min: 1 }}
+                        min={1}
                         defaultValue={1}
                         control={control}
-                        InputProps={{ disableUnderline: true }}
+                        slotProps={{ input: { disableUnderline: true } }}
                         name='test'
                         sx={{
                           marginBottom: '10px',

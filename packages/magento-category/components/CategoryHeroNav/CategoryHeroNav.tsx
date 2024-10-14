@@ -29,7 +29,7 @@ export const CategoryHeroNav = React.memo<CategoryHeroNavProps>(
             "placeholder"
           `,
           gridTemplateRows: 'auto auto 1fr',
-          borderBottom: `1px solid ${theme.palette.divider}`,
+          borderBottom: `1px solid ${theme.vars.palette.divider}`,
           marginBottom: theme.spacings.xxl,
           paddingBottom: theme.page.vertical,
           [theme.breakpoints.up('md')]: {
@@ -90,13 +90,13 @@ export const CategoryHeroNav = React.memo<CategoryHeroNavProps>(
           return (
             <Link
               underline='none'
-              color='textPrimary'
               href={productListLink({
                 url: category.url_path,
                 filters: { category_uid: { eq: category.uid } },
                 sort: {},
               })}
               key={category.uid}
+              sx={{ color: 'textPrimary' }}
             >
               <Typography variant='h4' component='span'>
                 {category.name}

@@ -52,9 +52,7 @@ export function PropertyPicker() {
       select={!!fieldPaths.length}
       variant='outlined'
       size='small'
-      SelectProps={{
-        native: true,
-      }}
+      slotProps={{ select: { native: true } }}
       value={localValue}
       onChange={(v) => {
         const val = v.target.value

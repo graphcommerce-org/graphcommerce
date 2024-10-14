@@ -47,12 +47,12 @@ export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
       </form>
       {children}
       <FormPersist
-          // Since the issuer isn't retrievable from Magento we persist this value.
-          form={form}
-          name={`PaymentMethodOptions_${code}`}
-          persist={['issuer']}
-          storage='localStorage'
-        />
+        // Since the issuer isn't retrievable from Magento we persist this value.
+        form={form}
+        name={`PaymentMethodOptions_${code}`}
+        persist={['issuer']}
+        storage='localStorage'
+      />
     </>
   )
 }

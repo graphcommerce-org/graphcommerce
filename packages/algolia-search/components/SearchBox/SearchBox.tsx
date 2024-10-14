@@ -33,7 +33,7 @@ export function SearchBox(props: SearchBoxProps) {
     <Box
       sx={(theme) => ({
         minWidth: 'max-content',
-        color: theme.palette.text.disabled,
+        color: theme.vars.palette.text.disabled,
         paddingRight: '7px',
       })}
     >
@@ -48,7 +48,7 @@ export function SearchBox(props: SearchBoxProps) {
       variant='outlined'
       type='text'
       name='search'
-      InputProps={{ endAdornment }}
+      slotProps={{ input: { endAdornment } }}
       inputRef={searchInputElement}
       onChange={debounceSearch}
       fullWidth

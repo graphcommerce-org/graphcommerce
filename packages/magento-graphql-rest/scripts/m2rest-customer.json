@@ -289,9 +289,7 @@
   "paths": {
     "/V1/applepay/auth": {
       "get": {
-        "tags": [
-          "applepay/auth"
-        ],
+        "tags": ["applepay/auth"],
         "description": "Returns details required to be able to submit a payment with apple pay.",
         "operationId": "GetV1ApplepayAuth",
         "responses": {
@@ -331,18 +329,14 @@
     },
     "/V1/braintree/mine/payment/vault": {
       "post": {
-        "tags": [
-          "braintree/mine/payment/vault"
-        ],
+        "tags": ["braintree/mine/payment/vault"],
         "description": "Vault a Payment nonce for a customer. Billing address is optional but advised for Card vaulting.",
         "operationId": "PostV1BraintreeMinePaymentVault",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "payment"
-                ],
+                "required": ["payment"],
                 "properties": {
                   "payment": {
                     "$ref": "#/components/schemas/pay-pal-braintree-data-payment-interface"
@@ -359,9 +353,7 @@
             },
             "application/xml": {
               "schema": {
-                "required": [
-                  "payment"
-                ],
+                "required": ["payment"],
                 "properties": {
                   "payment": {
                     "$ref": "#/components/schemas/pay-pal-braintree-data-payment-interface"
@@ -445,9 +437,7 @@
     },
     "/V1/carts/guest-carts/{cartId}/checkGiftCard/{giftCardCode}": {
       "get": {
-        "tags": [
-          "carts/guest-carts/{cartId}/checkGiftCard/{giftCardCode}"
-        ],
+        "tags": ["carts/guest-carts/{cartId}/checkGiftCard/{giftCardCode}"],
         "description": "Check gift card balance if added to the cart.",
         "operationId": "GetV1CartsGuestcartsCartIdCheckGiftCardGiftCardCode",
         "parameters": [
@@ -535,9 +525,7 @@
     },
     "/V1/carts/guest-carts/{cartId}/giftCards": {
       "post": {
-        "tags": [
-          "carts/guest-carts/{cartId}/giftCards"
-        ],
+        "tags": ["carts/guest-carts/{cartId}/giftCards"],
         "description": "Add gift card to the cart.",
         "operationId": "PostV1CartsGuestcartsCartIdGiftCards",
         "parameters": [
@@ -605,9 +593,7 @@
     },
     "/V1/carts/guest-carts/{cartId}/giftCards/{giftCardCode}": {
       "delete": {
-        "tags": [
-          "carts/guest-carts/{cartId}/giftCards/{giftCardCode}"
-        ],
+        "tags": ["carts/guest-carts/{cartId}/giftCards/{giftCardCode}"],
         "description": "Remove GiftCard Account entity.",
         "operationId": "DeleteV1CartsGuestcartsCartIdGiftCardsGiftCardCode",
         "parameters": [
@@ -665,18 +651,14 @@
     },
     "/V1/carts/mine": {
       "put": {
-        "tags": [
-          "carts/mine"
-        ],
+        "tags": ["carts/mine"],
         "description": "Save quote",
         "operationId": "PutV1CartsMine",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "quote"
-                ],
+                "required": ["quote"],
                 "properties": {
                   "quote": {
                     "$ref": "#/components/schemas/quote-data-cart-interface"
@@ -690,9 +672,7 @@
             },
             "application/xml": {
               "schema": {
-                "required": [
-                  "quote"
-                ],
+                "required": ["quote"],
                 "properties": {
                   "quote": {
                     "$ref": "#/components/schemas/quote-data-cart-interface"
@@ -741,9 +721,7 @@
         "summary": "carts/mine"
       },
       "get": {
-        "tags": [
-          "carts/mine"
-        ],
+        "tags": ["carts/mine"],
         "description": "Returns information for the cart for a specified customer.",
         "operationId": "GetV1CartsMine",
         "responses": {
@@ -813,9 +791,7 @@
     },
     "/V1/carts/mine/balance/apply": {
       "post": {
-        "tags": [
-          "carts/mine/balance/apply"
-        ],
+        "tags": ["carts/mine/balance/apply"],
         "description": "Apply store credit",
         "operationId": "PostV1CartsMineBalanceApply",
         "responses": {
@@ -870,9 +846,7 @@
     },
     "/V1/carts/mine/checkGiftCard/{giftCardCode}": {
       "get": {
-        "tags": [
-          "carts/mine/checkGiftCard/{giftCardCode}"
-        ],
+        "tags": ["carts/mine/checkGiftCard/{giftCardCode}"],
         "description": "Check gift card balance if applied to given cart.",
         "operationId": "GetV1CartsMineCheckGiftCardGiftCardCode",
         "parameters": [
@@ -952,9 +926,7 @@
     },
     "/V1/carts/mine/collect-totals": {
       "put": {
-        "tags": [
-          "carts/mine/collect-totals"
-        ],
+        "tags": ["carts/mine/collect-totals"],
         "description": "Set shipping/billing methods and additional data for cart and collect totals.",
         "operationId": "PutV1CartsMineCollecttotals",
         "requestBody": {
@@ -1012,9 +984,7 @@
     },
     "/V1/carts/mine/payment-information": {
       "post": {
-        "tags": [
-          "carts/mine/payment-information"
-        ],
+        "tags": ["carts/mine/payment-information"],
         "description": "Set payment information and place order for a specified cart.",
         "operationId": "PostV1CartsMinePaymentinformation",
         "requestBody": {
@@ -1087,9 +1057,7 @@
         "summary": "carts/mine/payment-information"
       },
       "get": {
-        "tags": [
-          "carts/mine/payment-information"
-        ],
+        "tags": ["carts/mine/payment-information"],
         "description": "Get payment information",
         "operationId": "GetV1CartsMinePaymentinformation",
         "responses": {
@@ -1144,9 +1112,7 @@
     },
     "/V1/carts/mine/payment-order": {
       "post": {
-        "tags": [
-          "carts/mine/payment-order"
-        ],
+        "tags": ["carts/mine/payment-order"],
         "description": "Create a payment order for logged in customer",
         "operationId": "PostV1CartsMinePaymentorder",
         "requestBody": {
@@ -1219,9 +1185,7 @@
     },
     "/V1/carts/mine/payment-order/{id}": {
       "get": {
-        "tags": [
-          "carts/mine/payment-order/{id}"
-        ],
+        "tags": ["carts/mine/payment-order/{id}"],
         "description": "Get payment order for logged in customer",
         "operationId": "GetV1CartsMinePaymentorderId",
         "parameters": [
@@ -1299,9 +1263,7 @@
         "summary": "carts/mine/payment-order/{id}"
       },
       "post": {
-        "tags": [
-          "carts/mine/payment-order/{id}"
-        ],
+        "tags": ["carts/mine/payment-order/{id}"],
         "description": "Sync payment order for logged in customer",
         "operationId": "PostV1CartsMinePaymentorderId",
         "parameters": [
@@ -1381,9 +1343,7 @@
     },
     "/V1/carts/mine/po-payment-information": {
       "post": {
-        "tags": [
-          "carts/mine/po-payment-information"
-        ],
+        "tags": ["carts/mine/po-payment-information"],
         "description": "Set payment information and place purchase order for a specified cart.",
         "operationId": "PostV1CartsMinePopaymentinformation",
         "requestBody": {
@@ -1458,9 +1418,7 @@
     },
     "/V1/carts/mine/set-payment-information": {
       "post": {
-        "tags": [
-          "carts/mine/set-payment-information"
-        ],
+        "tags": ["carts/mine/set-payment-information"],
         "description": "Set payment information for a specified cart.",
         "operationId": "PostV1CartsMineSetpaymentinformation",
         "requestBody": {
@@ -1535,18 +1493,14 @@
     },
     "/V1/customers": {
       "post": {
-        "tags": [
-          "customers"
-        ],
+        "tags": ["customers"],
         "description": "Create customer account. Perform necessary business operations like sending email.",
         "operationId": "PostV1Customers",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "customer"
-                ],
+                "required": ["customer"],
                 "properties": {
                   "customer": {
                     "$ref": "#/components/schemas/customer-data-customer-interface"
@@ -1566,9 +1520,7 @@
             },
             "application/xml": {
               "schema": {
-                "required": [
-                  "customer"
-                ],
+                "required": ["customer"],
                 "properties": {
                   "customer": {
                     "$ref": "#/components/schemas/customer-data-customer-interface"
@@ -1640,18 +1592,14 @@
     },
     "/V1/customers/isEmailAvailable": {
       "post": {
-        "tags": [
-          "customers/isEmailAvailable"
-        ],
+        "tags": ["customers/isEmailAvailable"],
         "description": "Check if given email is associated with a customer account in given website.",
         "operationId": "PostV1CustomersIsEmailAvailable",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "customerEmail"
-                ],
+                "required": ["customerEmail"],
                 "properties": {
                   "customerEmail": {
                     "type": "string"
@@ -1669,9 +1617,7 @@
             },
             "application/xml": {
               "schema": {
-                "required": [
-                  "customerEmail"
-                ],
+                "required": ["customerEmail"],
                 "properties": {
                   "customerEmail": {
                     "type": "string"
@@ -1741,18 +1687,14 @@
     },
     "/V1/customers/me/activate": {
       "put": {
-        "tags": [
-          "customers/me/activate"
-        ],
+        "tags": ["customers/me/activate"],
         "description": "Activate a customer account using a key that was sent in a confirmation email.",
         "operationId": "PutV1CustomersMeActivate",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "confirmationKey"
-                ],
+                "required": ["confirmationKey"],
                 "properties": {
                   "confirmationKey": {
                     "type": "string"
@@ -1766,9 +1708,7 @@
             },
             "application/xml": {
               "schema": {
-                "required": [
-                  "confirmationKey"
-                ],
+                "required": ["confirmationKey"],
                 "properties": {
                   "confirmationKey": {
                     "type": "string"
@@ -1849,19 +1789,14 @@
     },
     "/V1/customers/me/password": {
       "put": {
-        "tags": [
-          "customers/me/password"
-        ],
+        "tags": ["customers/me/password"],
         "description": "Change customer password.",
         "operationId": "PutV1CustomersMePassword",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "currentPassword",
-                  "newPassword"
-                ],
+                "required": ["currentPassword", "newPassword"],
                 "properties": {
                   "currentPassword": {
                     "type": "string"
@@ -1878,10 +1813,7 @@
             },
             "application/xml": {
               "schema": {
-                "required": [
-                  "currentPassword",
-                  "newPassword"
-                ],
+                "required": ["currentPassword", "newPassword"],
                 "properties": {
                   "currentPassword": {
                     "type": "string"
@@ -1967,19 +1899,14 @@
     },
     "/V1/customers/password": {
       "put": {
-        "tags": [
-          "customers/password"
-        ],
+        "tags": ["customers/password"],
         "description": "Send an email to the customer with a password reset link.",
         "operationId": "PutV1CustomersPassword",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "email",
-                  "template"
-                ],
+                "required": ["email", "template"],
                 "properties": {
                   "email": {
                     "type": "string"
@@ -1999,10 +1926,7 @@
             },
             "application/xml": {
               "schema": {
-                "required": [
-                  "email",
-                  "template"
-                ],
+                "required": ["email", "template"],
                 "properties": {
                   "email": {
                     "type": "string"
@@ -2076,20 +2000,14 @@
     },
     "/V1/customers/resetPassword": {
       "post": {
-        "tags": [
-          "customers/resetPassword"
-        ],
+        "tags": ["customers/resetPassword"],
         "description": "Reset customer password.",
         "operationId": "PostV1CustomersResetPassword",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "email",
-                  "resetToken",
-                  "newPassword"
-                ],
+                "required": ["email", "resetToken", "newPassword"],
                 "properties": {
                   "email": {
                     "type": "string",
@@ -2110,11 +2028,7 @@
             },
             "application/xml": {
               "schema": {
-                "required": [
-                  "email",
-                  "resetToken",
-                  "newPassword"
-                ],
+                "required": ["email", "resetToken", "newPassword"],
                 "properties": {
                   "email": {
                     "type": "string",
@@ -2189,9 +2103,7 @@
     },
     "/V1/customers/{customerId}/password/resetLinkToken/{resetPasswordLinkToken}": {
       "get": {
-        "tags": [
-          "customers/{customerId}/password/resetLinkToken/{resetPasswordLinkToken}"
-        ],
+        "tags": ["customers/{customerId}/password/resetLinkToken/{resetPasswordLinkToken}"],
         "description": "Check if password reset token is valid.",
         "operationId": "GetV1CustomersCustomerIdPasswordResetLinkTokenResetPasswordLinkToken",
         "parameters": [
@@ -2282,9 +2194,7 @@
     },
     "/V1/directory/countries": {
       "get": {
-        "tags": [
-          "directory/countries"
-        ],
+        "tags": ["directory/countries"],
         "description": "Get all countries and regions information for the store.",
         "operationId": "GetV1DirectoryCountries",
         "responses": {
@@ -2330,9 +2240,7 @@
     },
     "/V1/directory/countries/{countryId}": {
       "get": {
-        "tags": [
-          "directory/countries/{countryId}"
-        ],
+        "tags": ["directory/countries/{countryId}"],
         "description": "Get country and region information for the store.",
         "operationId": "GetV1DirectoryCountriesCountryId",
         "parameters": [
@@ -2397,9 +2305,7 @@
     },
     "/V1/directory/currency": {
       "get": {
-        "tags": [
-          "directory/currency"
-        ],
+        "tags": ["directory/currency"],
         "description": "Get currency information for the store.",
         "operationId": "GetV1DirectoryCurrency",
         "responses": {
@@ -2439,9 +2345,7 @@
     },
     "/V1/giftregistry/mine/estimate-shipping-methods": {
       "post": {
-        "tags": [
-          "giftregistry/mine/estimate-shipping-methods"
-        ],
+        "tags": ["giftregistry/mine/estimate-shipping-methods"],
         "description": "Estimate shipping",
         "operationId": "PostV1GiftregistryMineEstimateshippingmethods",
         "requestBody": {
@@ -2522,9 +2426,7 @@
     },
     "/V1/guest-carts": {
       "post": {
-        "tags": [
-          "guest-carts"
-        ],
+        "tags": ["guest-carts"],
         "description": "Enable an customer or guest user to create an empty cart and quote for an anonymous customer.",
         "operationId": "PostV1Guestcarts",
         "responses": {
@@ -2581,9 +2483,7 @@
     },
     "/V1/guest-carts/{cartId}": {
       "get": {
-        "tags": [
-          "guest-carts/{cartId}"
-        ],
+        "tags": ["guest-carts/{cartId}"],
         "description": "Enable a guest user to return information for a specified cart.",
         "operationId": "GetV1GuestcartsCartId",
         "parameters": [
@@ -2646,9 +2546,7 @@
         "summary": "guest-carts/{cartId}"
       },
       "put": {
-        "tags": [
-          "guest-carts/{cartId}"
-        ],
+        "tags": ["guest-carts/{cartId}"],
         "description": "Assign a specified customer to a specified shopping cart.",
         "operationId": "PutV1GuestcartsCartId",
         "parameters": [
@@ -2666,10 +2564,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "customerId",
-                  "storeId"
-                ],
+                "required": ["customerId", "storeId"],
                 "properties": {
                   "customerId": {
                     "type": "integer",
@@ -2687,10 +2582,7 @@
             },
             "application/xml": {
               "schema": {
-                "required": [
-                  "customerId",
-                  "storeId"
-                ],
+                "required": ["customerId", "storeId"],
                 "properties": {
                   "customerId": {
                     "type": "integer",
@@ -2760,9 +2652,7 @@
     },
     "/V1/guest-carts/{cartId}/billing-address": {
       "get": {
-        "tags": [
-          "guest-carts/{cartId}/billing-address"
-        ],
+        "tags": ["guest-carts/{cartId}/billing-address"],
         "description": "Return the billing address for a specified quote.",
         "operationId": "GetV1GuestcartsCartIdBillingaddress",
         "parameters": [
@@ -2826,9 +2716,7 @@
         "summary": "guest-carts/{cartId}/billing-address"
       },
       "post": {
-        "tags": [
-          "guest-carts/{cartId}/billing-address"
-        ],
+        "tags": ["guest-carts/{cartId}/billing-address"],
         "description": "Assign a specified billing address to a specified cart.",
         "operationId": "PostV1GuestcartsCartIdBillingaddress",
         "parameters": [
@@ -2899,9 +2787,7 @@
     },
     "/V1/guest-carts/{cartId}/collect-totals": {
       "put": {
-        "tags": [
-          "guest-carts/{cartId}/collect-totals"
-        ],
+        "tags": ["guest-carts/{cartId}/collect-totals"],
         "description": "Set shipping/billing methods and additional data for cart and collect totals for guest.",
         "operationId": "PutV1GuestcartsCartIdCollecttotals",
         "parameters": [
@@ -2955,9 +2841,7 @@
     },
     "/V1/guest-carts/{cartId}/coupons": {
       "get": {
-        "tags": [
-          "guest-carts/{cartId}/coupons"
-        ],
+        "tags": ["guest-carts/{cartId}/coupons"],
         "description": "Return information for a coupon in a specified cart.",
         "operationId": "GetV1GuestcartsCartIdCoupons",
         "parameters": [
@@ -3023,9 +2907,7 @@
         "summary": "guest-carts/{cartId}/coupons"
       },
       "delete": {
-        "tags": [
-          "guest-carts/{cartId}/coupons"
-        ],
+        "tags": ["guest-carts/{cartId}/coupons"],
         "description": "Delete a coupon from a specified cart.",
         "operationId": "DeleteV1GuestcartsCartIdCoupons",
         "parameters": [
@@ -3091,9 +2973,7 @@
     },
     "/V1/guest-carts/{cartId}/coupons/{couponCode}": {
       "put": {
-        "tags": [
-          "guest-carts/{cartId}/coupons/{couponCode}"
-        ],
+        "tags": ["guest-carts/{cartId}/coupons/{couponCode}"],
         "description": "Add a coupon by code to a specified cart.",
         "operationId": "PutV1GuestcartsCartIdCouponsCouponCode",
         "parameters": [
@@ -3168,9 +3048,7 @@
     },
     "/V1/guest-carts/{cartId}/estimate-shipping-methods": {
       "post": {
-        "tags": [
-          "guest-carts/{cartId}/estimate-shipping-methods"
-        ],
+        "tags": ["guest-carts/{cartId}/estimate-shipping-methods"],
         "description": "Estimate shipping by address and return list of available shipping methods",
         "operationId": "PostV1GuestcartsCartIdEstimateshippingmethods",
         "parameters": [
@@ -3246,9 +3124,7 @@
     },
     "/V1/guest-carts/{cartId}/gift-message": {
       "get": {
-        "tags": [
-          "guest-carts/{cartId}/gift-message"
-        ],
+        "tags": ["guest-carts/{cartId}/gift-message"],
         "description": "Return the gift message for a specified order.",
         "operationId": "GetV1GuestcartsCartIdGiftmessage",
         "parameters": [
@@ -3297,9 +3173,7 @@
         "summary": "guest-carts/{cartId}/gift-message"
       },
       "post": {
-        "tags": [
-          "guest-carts/{cartId}/gift-message"
-        ],
+        "tags": ["guest-carts/{cartId}/gift-message"],
         "description": "Set the gift message for an entire order.",
         "operationId": "PostV1GuestcartsCartIdGiftmessage",
         "parameters": [
@@ -3368,9 +3242,7 @@
     },
     "/V1/guest-carts/{cartId}/gift-message/{itemId}": {
       "get": {
-        "tags": [
-          "guest-carts/{cartId}/gift-message/{itemId}"
-        ],
+        "tags": ["guest-carts/{cartId}/gift-message/{itemId}"],
         "description": "Return the gift message for a specified item in a specified shopping cart.",
         "operationId": "GetV1GuestcartsCartIdGiftmessageItemId",
         "parameters": [
@@ -3443,9 +3315,7 @@
         "summary": "guest-carts/{cartId}/gift-message/{itemId}"
       },
       "post": {
-        "tags": [
-          "guest-carts/{cartId}/gift-message/{itemId}"
-        ],
+        "tags": ["guest-carts/{cartId}/gift-message/{itemId}"],
         "description": "Set the gift message for a specified item in a specified shopping cart.",
         "operationId": "PostV1GuestcartsCartIdGiftmessageItemId",
         "parameters": [
@@ -3523,9 +3393,7 @@
     },
     "/V1/guest-carts/{cartId}/items": {
       "get": {
-        "tags": [
-          "guest-carts/{cartId}/items"
-        ],
+        "tags": ["guest-carts/{cartId}/items"],
         "description": "List items that are assigned to a specified cart.",
         "operationId": "GetV1GuestcartsCartIdItems",
         "parameters": [
@@ -3597,9 +3465,7 @@
         "summary": "guest-carts/{cartId}/items"
       },
       "post": {
-        "tags": [
-          "guest-carts/{cartId}/items"
-        ],
+        "tags": ["guest-carts/{cartId}/items"],
         "description": "Add/update the specified cart item.",
         "operationId": "PostV1GuestcartsCartIdItems",
         "parameters": [
@@ -3667,9 +3533,7 @@
     },
     "/V1/guest-carts/{cartId}/items/{itemId}": {
       "put": {
-        "tags": [
-          "guest-carts/{cartId}/items/{itemId}"
-        ],
+        "tags": ["guest-carts/{cartId}/items/{itemId}"],
         "description": "Add/update the specified cart item.",
         "operationId": "PutV1GuestcartsCartIdItemsItemId",
         "parameters": [
@@ -3743,9 +3607,7 @@
         "summary": "guest-carts/{cartId}/items/{itemId}"
       },
       "delete": {
-        "tags": [
-          "guest-carts/{cartId}/items/{itemId}"
-        ],
+        "tags": ["guest-carts/{cartId}/items/{itemId}"],
         "description": "Remove the specified item from the specified cart.",
         "operationId": "DeleteV1GuestcartsCartIdItemsItemId",
         "parameters": [
@@ -3820,9 +3682,7 @@
     },
     "/V1/guest-carts/{cartId}/order": {
       "put": {
-        "tags": [
-          "guest-carts/{cartId}/order"
-        ],
+        "tags": ["guest-carts/{cartId}/order"],
         "description": "Place an order for a specified cart.",
         "operationId": "PutV1GuestcartsCartIdOrder",
         "parameters": [
@@ -3920,9 +3780,7 @@
     },
     "/V1/guest-carts/{cartId}/payment-information": {
       "post": {
-        "tags": [
-          "guest-carts/{cartId}/payment-information"
-        ],
+        "tags": ["guest-carts/{cartId}/payment-information"],
         "description": "Set payment information and place order for a specified cart.",
         "operationId": "PostV1GuestcartsCartIdPaymentinformation",
         "parameters": [
@@ -3990,9 +3848,7 @@
         "summary": "guest-carts/{cartId}/payment-information"
       },
       "get": {
-        "tags": [
-          "guest-carts/{cartId}/payment-information"
-        ],
+        "tags": ["guest-carts/{cartId}/payment-information"],
         "description": "Get payment information",
         "operationId": "GetV1GuestcartsCartIdPaymentinformation",
         "parameters": [
@@ -4042,9 +3898,7 @@
     },
     "/V1/guest-carts/{cartId}/payment-methods": {
       "get": {
-        "tags": [
-          "guest-carts/{cartId}/payment-methods"
-        ],
+        "tags": ["guest-carts/{cartId}/payment-methods"],
         "description": "List available payment methods for a specified shopping cart. This call returns an array of objects, but detailed information about each object’s attributes might not be included.  See https://developer.adobe.com/commerce/webapi/rest/attributes#GuestPaymentMethodManagementInterface to determine which call to use to get detailed information about all attributes for an object.",
         "operationId": "GetV1GuestcartsCartIdPaymentmethods",
         "parameters": [
@@ -4118,9 +3972,7 @@
     },
     "/V1/guest-carts/{cartId}/payment-order": {
       "post": {
-        "tags": [
-          "guest-carts/{cartId}/payment-order"
-        ],
+        "tags": ["guest-carts/{cartId}/payment-order"],
         "description": "Create a payment order for guest customer",
         "operationId": "PostV1GuestcartsCartIdPaymentorder",
         "parameters": [
@@ -4188,9 +4040,7 @@
     },
     "/V1/guest-carts/{cartId}/payment-order/{id}": {
       "get": {
-        "tags": [
-          "guest-carts/{cartId}/payment-order/{id}"
-        ],
+        "tags": ["guest-carts/{cartId}/payment-order/{id}"],
         "description": "Get payment order for guest customer",
         "operationId": "GetV1GuestcartsCartIdPaymentorderId",
         "parameters": [
@@ -4261,9 +4111,7 @@
         "summary": "guest-carts/{cartId}/payment-order/{id}"
       },
       "post": {
-        "tags": [
-          "guest-carts/{cartId}/payment-order/{id}"
-        ],
+        "tags": ["guest-carts/{cartId}/payment-order/{id}"],
         "description": "Sync payment order for guest customer",
         "operationId": "PostV1GuestcartsCartIdPaymentorderId",
         "parameters": [
@@ -4336,9 +4184,7 @@
     },
     "/V1/guest-carts/{cartId}/selected-payment-method": {
       "get": {
-        "tags": [
-          "guest-carts/{cartId}/selected-payment-method"
-        ],
+        "tags": ["guest-carts/{cartId}/selected-payment-method"],
         "description": "Return the payment method for a specified shopping cart.",
         "operationId": "GetV1GuestcartsCartIdSelectedpaymentmethod",
         "parameters": [
@@ -4402,9 +4248,7 @@
         "summary": "guest-carts/{cartId}/selected-payment-method"
       },
       "put": {
-        "tags": [
-          "guest-carts/{cartId}/selected-payment-method"
-        ],
+        "tags": ["guest-carts/{cartId}/selected-payment-method"],
         "description": "Add a specified payment method to a specified shopping cart.",
         "operationId": "PutV1GuestcartsCartIdSelectedpaymentmethod",
         "parameters": [
@@ -4422,9 +4266,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "method"
-                ],
+                "required": ["method"],
                 "properties": {
                   "method": {
                     "$ref": "#/components/schemas/quote-data-payment-interface"
@@ -4438,9 +4280,7 @@
             },
             "application/xml": {
               "schema": {
-                "required": [
-                  "method"
-                ],
+                "required": ["method"],
                 "properties": {
                   "method": {
                     "$ref": "#/components/schemas/quote-data-payment-interface"
@@ -4508,9 +4348,7 @@
     },
     "/V1/guest-carts/{cartId}/set-payment-information": {
       "post": {
-        "tags": [
-          "guest-carts/{cartId}/set-payment-information"
-        ],
+        "tags": ["guest-carts/{cartId}/set-payment-information"],
         "description": "Set payment information for a specified cart.",
         "operationId": "PostV1GuestcartsCartIdSetpaymentinformation",
         "parameters": [
@@ -4580,9 +4418,7 @@
     },
     "/V1/guest-carts/{cartId}/shipping-information": {
       "post": {
-        "tags": [
-          "guest-carts/{cartId}/shipping-information"
-        ],
+        "tags": ["guest-carts/{cartId}/shipping-information"],
         "description": "",
         "operationId": "PostV1GuestcartsCartIdShippinginformation",
         "parameters": [
@@ -4635,9 +4471,7 @@
     },
     "/V1/guest-carts/{cartId}/shipping-methods": {
       "get": {
-        "tags": [
-          "guest-carts/{cartId}/shipping-methods"
-        ],
+        "tags": ["guest-carts/{cartId}/shipping-methods"],
         "description": "List applicable shipping methods for a specified quote.",
         "operationId": "GetV1GuestcartsCartIdShippingmethods",
         "parameters": [
@@ -4711,9 +4545,7 @@
     },
     "/V1/guest-carts/{cartId}/totals": {
       "get": {
-        "tags": [
-          "guest-carts/{cartId}/totals"
-        ],
+        "tags": ["guest-carts/{cartId}/totals"],
         "description": "Return quote totals data for a specified cart.",
         "operationId": "GetV1GuestcartsCartIdTotals",
         "parameters": [
@@ -4779,9 +4611,7 @@
     },
     "/V1/guest-carts/{cartId}/totals-information": {
       "post": {
-        "tags": [
-          "guest-carts/{cartId}/totals-information"
-        ],
+        "tags": ["guest-carts/{cartId}/totals-information"],
         "description": "Calculate quote totals based on address and shipping method.",
         "operationId": "PostV1GuestcartsCartIdTotalsinformation",
         "parameters": [
@@ -4798,9 +4628,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "addressInformation"
-                ],
+                "required": ["addressInformation"],
                 "properties": {
                   "addressInformation": {
                     "$ref": "#/components/schemas/checkout-data-totals-information-interface"
@@ -4814,9 +4642,7 @@
             },
             "application/xml": {
               "schema": {
-                "required": [
-                  "addressInformation"
-                ],
+                "required": ["addressInformation"],
                 "properties": {
                   "addressInformation": {
                     "$ref": "#/components/schemas/checkout-data-totals-information-interface"
@@ -4867,9 +4693,7 @@
     },
     "/V1/guest-giftregistry/{cartId}/estimate-shipping-methods": {
       "post": {
-        "tags": [
-          "guest-giftregistry/{cartId}/estimate-shipping-methods"
-        ],
+        "tags": ["guest-giftregistry/{cartId}/estimate-shipping-methods"],
         "description": "Estimate shipping",
         "operationId": "PostV1GuestgiftregistryCartIdEstimateshippingmethods",
         "parameters": [
@@ -4946,9 +4770,7 @@
     },
     "/V1/integration/admin/token": {
       "post": {
-        "tags": [
-          "integration/admin/token"
-        ],
+        "tags": ["integration/admin/token"],
         "description": "Create access token for admin given the admin credentials.",
         "operationId": "PostV1IntegrationAdminToken",
         "requestBody": {
@@ -5023,9 +4845,7 @@
     },
     "/V1/integration/customer/revoke-customer-token": {
       "post": {
-        "tags": [
-          "integration/customer/revoke-customer-token"
-        ],
+        "tags": ["integration/customer/revoke-customer-token"],
         "description": "Revoke token by customer id.",
         "operationId": "PostV1IntegrationCustomerRevokecustomertoken",
         "responses": {
@@ -5095,9 +4915,7 @@
     },
     "/V1/integration/customer/token": {
       "post": {
-        "tags": [
-          "integration/customer/token"
-        ],
+        "tags": ["integration/customer/token"],
         "description": "Create access token for admin given the customer credentials.",
         "operationId": "PostV1IntegrationCustomerToken",
         "requestBody": {
@@ -5157,9 +4975,7 @@
     },
     "/V1/inventory/in-store-pickup/pickup-locations/": {
       "get": {
-        "tags": [
-          "inventory/in-store-pickup/pickup-locations/"
-        ],
+        "tags": ["inventory/in-store-pickup/pickup-locations/"],
         "description": "Get Pickup Locations according to the results of filtration by Search Request.",
         "operationId": "GetV1InventoryInstorepickupPickuplocations",
         "parameters": [
@@ -5401,9 +5217,7 @@
     },
     "/V1/negotiable-carts/{cartId}/billing-address": {
       "get": {
-        "tags": [
-          "negotiable-carts/{cartId}/billing-address"
-        ],
+        "tags": ["negotiable-carts/{cartId}/billing-address"],
         "description": "Returns the billing address for a specified quote.",
         "operationId": "GetV1NegotiablecartsCartIdBillingaddress",
         "parameters": [
@@ -5482,9 +5296,7 @@
         "summary": "negotiable-carts/{cartId}/billing-address"
       },
       "post": {
-        "tags": [
-          "negotiable-carts/{cartId}/billing-address"
-        ],
+        "tags": ["negotiable-carts/{cartId}/billing-address"],
         "description": "Assigns a specified billing address to a specified cart.",
         "operationId": "PostV1NegotiablecartsCartIdBillingaddress",
         "parameters": [
@@ -5570,9 +5382,7 @@
     },
     "/V1/negotiable-carts/{cartId}/coupons": {
       "delete": {
-        "tags": [
-          "negotiable-carts/{cartId}/coupons"
-        ],
+        "tags": ["negotiable-carts/{cartId}/coupons"],
         "description": "Deletes a coupon from a specified cart.",
         "operationId": "DeleteV1NegotiablecartsCartIdCoupons",
         "parameters": [
@@ -5653,9 +5463,7 @@
     },
     "/V1/negotiable-carts/{cartId}/coupons/{couponCode}": {
       "put": {
-        "tags": [
-          "negotiable-carts/{cartId}/coupons/{couponCode}"
-        ],
+        "tags": ["negotiable-carts/{cartId}/coupons/{couponCode}"],
         "description": "Adds a coupon by code to a specified cart.",
         "operationId": "PutV1NegotiablecartsCartIdCouponsCouponCode",
         "parameters": [
@@ -5745,9 +5553,7 @@
     },
     "/V1/negotiable-carts/{cartId}/estimate-shipping-methods": {
       "post": {
-        "tags": [
-          "negotiable-carts/{cartId}/estimate-shipping-methods"
-        ],
+        "tags": ["negotiable-carts/{cartId}/estimate-shipping-methods"],
         "description": "Estimate shipping by address and return list of available shipping methods",
         "operationId": "PostV1NegotiablecartsCartIdEstimateshippingmethods",
         "parameters": [
@@ -5823,9 +5629,7 @@
     },
     "/V1/negotiable-carts/{cartId}/estimate-shipping-methods-by-address-id": {
       "post": {
-        "tags": [
-          "negotiable-carts/{cartId}/estimate-shipping-methods-by-address-id"
-        ],
+        "tags": ["negotiable-carts/{cartId}/estimate-shipping-methods-by-address-id"],
         "description": "Estimate shipping",
         "operationId": "PostV1NegotiablecartsCartIdEstimateshippingmethodsbyaddressid",
         "parameters": [
@@ -5843,9 +5647,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "addressId"
-                ],
+                "required": ["addressId"],
                 "properties": {
                   "addressId": {
                     "type": "integer",
@@ -5860,9 +5662,7 @@
             },
             "application/xml": {
               "schema": {
-                "required": [
-                  "addressId"
-                ],
+                "required": ["addressId"],
                 "properties": {
                   "addressId": {
                     "type": "integer",
@@ -5937,9 +5737,7 @@
     },
     "/V1/negotiable-carts/{cartId}/giftCards": {
       "post": {
-        "tags": [
-          "negotiable-carts/{cartId}/giftCards"
-        ],
+        "tags": ["negotiable-carts/{cartId}/giftCards"],
         "description": "",
         "operationId": "PostV1NegotiablecartsCartIdGiftCards",
         "parameters": [
@@ -6007,9 +5805,7 @@
     },
     "/V1/negotiable-carts/{cartId}/giftCards/{giftCardCode}": {
       "delete": {
-        "tags": [
-          "negotiable-carts/{cartId}/giftCards/{giftCardCode}"
-        ],
+        "tags": ["negotiable-carts/{cartId}/giftCards/{giftCardCode}"],
         "description": "Remove GiftCard Account entity",
         "operationId": "DeleteV1NegotiablecartsCartIdGiftCardsGiftCardCode",
         "parameters": [
@@ -6082,9 +5878,7 @@
     },
     "/V1/negotiable-carts/{cartId}/payment-information": {
       "post": {
-        "tags": [
-          "negotiable-carts/{cartId}/payment-information"
-        ],
+        "tags": ["negotiable-carts/{cartId}/payment-information"],
         "description": "Set payment information and place order for a specified cart.",
         "operationId": "PostV1NegotiablecartsCartIdPaymentinformation",
         "parameters": [
@@ -6167,9 +5961,7 @@
         "summary": "negotiable-carts/{cartId}/payment-information"
       },
       "get": {
-        "tags": [
-          "negotiable-carts/{cartId}/payment-information"
-        ],
+        "tags": ["negotiable-carts/{cartId}/payment-information"],
         "description": "Get payment information",
         "operationId": "GetV1NegotiablecartsCartIdPaymentinformation",
         "parameters": [
@@ -6234,9 +6026,7 @@
     },
     "/V1/negotiable-carts/{cartId}/set-payment-information": {
       "post": {
-        "tags": [
-          "negotiable-carts/{cartId}/set-payment-information"
-        ],
+        "tags": ["negotiable-carts/{cartId}/set-payment-information"],
         "description": "Set payment information for a specified cart.",
         "operationId": "PostV1NegotiablecartsCartIdSetpaymentinformation",
         "parameters": [
@@ -6321,9 +6111,7 @@
     },
     "/V1/negotiable-carts/{cartId}/shipping-information": {
       "post": {
-        "tags": [
-          "negotiable-carts/{cartId}/shipping-information"
-        ],
+        "tags": ["negotiable-carts/{cartId}/shipping-information"],
         "description": "",
         "operationId": "PostV1NegotiablecartsCartIdShippinginformation",
         "parameters": [
@@ -6391,9 +6179,7 @@
     },
     "/V1/negotiable-carts/{cartId}/totals": {
       "get": {
-        "tags": [
-          "negotiable-carts/{cartId}/totals"
-        ],
+        "tags": ["negotiable-carts/{cartId}/totals"],
         "description": "Returns quote totals data for a specified cart.",
         "operationId": "GetV1NegotiablecartsCartIdTotals",
         "parameters": [
@@ -6474,9 +6260,7 @@
     },
     "/V1/payments-config/apple-pay/{location}": {
       "get": {
-        "tags": [
-          "payments-config/apple-pay/{location}"
-        ],
+        "tags": ["payments-config/apple-pay/{location}"],
         "description": "Get Apple Pay Config.",
         "operationId": "GetV1PaymentsconfigApplepayLocation",
         "parameters": [
@@ -6542,9 +6326,7 @@
     },
     "/V1/payments-config/hosted-fields/{location}": {
       "get": {
-        "tags": [
-          "payments-config/hosted-fields/{location}"
-        ],
+        "tags": ["payments-config/hosted-fields/{location}"],
         "description": "Get Hosted Fields Config.",
         "operationId": "GetV1PaymentsconfigHostedfieldsLocation",
         "parameters": [
@@ -6610,9 +6392,7 @@
     },
     "/V1/payments-config/smart-buttons/{location}": {
       "get": {
-        "tags": [
-          "payments-config/smart-buttons/{location}"
-        ],
+        "tags": ["payments-config/smart-buttons/{location}"],
         "description": "Get Smart Buttons Config.",
         "operationId": "GetV1PaymentsconfigSmartbuttonsLocation",
         "parameters": [
@@ -6678,9 +6458,7 @@
     },
     "/V1/payments-config/{location}": {
       "get": {
-        "tags": [
-          "payments-config/{location}"
-        ],
+        "tags": ["payments-config/{location}"],
         "description": "Get Config.",
         "operationId": "GetV1PaymentsconfigLocation",
         "parameters": [
@@ -6746,9 +6524,7 @@
     },
     "/V1/payments-sdk/{location}": {
       "get": {
-        "tags": [
-          "payments-sdk/{location}"
-        ],
+        "tags": ["payments-sdk/{location}"],
         "description": "Get payment sdk url by location",
         "operationId": "GetV1PaymentssdkLocation",
         "parameters": [
@@ -6804,9 +6580,7 @@
     },
     "/V1/payments-sdk/{location}/{methodCode}": {
       "get": {
-        "tags": [
-          "payments-sdk/{location}/{methodCode}"
-        ],
+        "tags": ["payments-sdk/{location}/{methodCode}"],
         "description": "Get payment sdk url by location and methodCode",
         "operationId": "GetV1PaymentssdkLocationMethodCode",
         "parameters": [
@@ -6864,9 +6638,7 @@
     },
     "/V1/products-render-info": {
       "get": {
-        "tags": [
-          "products-render-info"
-        ],
+        "tags": ["products-render-info"],
         "description": "Collect and retrieve the list of product render info. This info contains raw prices and formatted prices, product name, stock status, store_id, etc.",
         "operationId": "GetV1Productsrenderinfo",
         "parameters": [
@@ -6980,9 +6752,7 @@
     },
     "/V1/purchase-order-carts/{cartId}/payment-information": {
       "post": {
-        "tags": [
-          "purchase-order-carts/{cartId}/payment-information"
-        ],
+        "tags": ["purchase-order-carts/{cartId}/payment-information"],
         "description": "Set payment information and place order for a specified cart.",
         "operationId": "PostV1PurchaseordercartsCartIdPaymentinformation",
         "parameters": [
@@ -7065,9 +6835,7 @@
         "summary": "purchase-order-carts/{cartId}/payment-information"
       },
       "get": {
-        "tags": [
-          "purchase-order-carts/{cartId}/payment-information"
-        ],
+        "tags": ["purchase-order-carts/{cartId}/payment-information"],
         "description": "Get payment information",
         "operationId": "GetV1PurchaseordercartsCartIdPaymentinformation",
         "parameters": [
@@ -7132,9 +6900,7 @@
     },
     "/V1/purchase-order-carts/{cartId}/set-payment-information": {
       "post": {
-        "tags": [
-          "purchase-order-carts/{cartId}/set-payment-information"
-        ],
+        "tags": ["purchase-order-carts/{cartId}/set-payment-information"],
         "description": "Set payment information for a specified cart.",
         "operationId": "PostV1PurchaseordercartsCartIdSetpaymentinformation",
         "parameters": [
@@ -7219,18 +6985,14 @@
     },
     "/V1/requisition_lists": {
       "post": {
-        "tags": [
-          "requisition_lists"
-        ],
+        "tags": ["requisition_lists"],
         "description": "Save Requisition List",
         "operationId": "PostV1Requisition_lists",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "requisitionList"
-                ],
+                "required": ["requisitionList"],
                 "properties": {
                   "requisitionList": {
                     "$ref": "#/components/schemas/requisition-list-data-requisition-list-interface"
@@ -7244,9 +7006,7 @@
             },
             "application/xml": {
               "schema": {
-                "required": [
-                  "requisitionList"
-                ],
+                "required": ["requisitionList"],
                 "properties": {
                   "requisitionList": {
                     "$ref": "#/components/schemas/requisition-list-data-requisition-list-interface"
@@ -7327,9 +7087,7 @@
     },
     "/V1/reward/mine/use-reward": {
       "post": {
-        "tags": [
-          "reward/mine/use-reward"
-        ],
+        "tags": ["reward/mine/use-reward"],
         "description": "Set reward points to quote",
         "operationId": "PostV1RewardMineUsereward",
         "responses": {
@@ -7384,9 +7142,7 @@
     },
     "/V1/search": {
       "get": {
-        "tags": [
-          "search"
-        ],
+        "tags": ["search"],
         "description": "Make Full Text Search and return found Documents",
         "operationId": "GetV1Search",
         "parameters": [
@@ -7491,9 +7247,7 @@
     },
     "/V1/tfa/provider/authy/activate": {
       "post": {
-        "tags": [
-          "tfa/provider/authy/activate"
-        ],
+        "tags": ["tfa/provider/authy/activate"],
         "description": "Activate the provider and get an admin token",
         "operationId": "PostV1TfaProviderAuthyActivate",
         "requestBody": {
@@ -7521,9 +7275,7 @@
     },
     "/V1/tfa/provider/authy/authenticate": {
       "post": {
-        "tags": [
-          "tfa/provider/authy/authenticate"
-        ],
+        "tags": ["tfa/provider/authy/authenticate"],
         "description": "Get an admin token using authy 2fa",
         "operationId": "PostV1TfaProviderAuthyAuthenticate",
         "requestBody": {
@@ -7568,9 +7320,7 @@
     },
     "/V1/tfa/provider/authy/authenticate-onetouch": {
       "post": {
-        "tags": [
-          "tfa/provider/authy/authenticate-onetouch"
-        ],
+        "tags": ["tfa/provider/authy/authenticate-onetouch"],
         "description": "Authenticate using the present one touch response and get an admin token",
         "operationId": "PostV1TfaProviderAuthyAuthenticateonetouch",
         "requestBody": {
@@ -7613,19 +7363,14 @@
     },
     "/V1/tfa/provider/authy/configure": {
       "post": {
-        "tags": [
-          "tfa/provider/authy/configure"
-        ],
+        "tags": ["tfa/provider/authy/configure"],
         "description": "Get the information required to configure google",
         "operationId": "PostV1TfaProviderAuthyConfigure",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "tfaToken",
-                  "deviceData"
-                ],
+                "required": ["tfaToken", "deviceData"],
                 "properties": {
                   "tfaToken": {
                     "type": "string"
@@ -7642,10 +7387,7 @@
             },
             "application/xml": {
               "schema": {
-                "required": [
-                  "tfaToken",
-                  "deviceData"
-                ],
+                "required": ["tfaToken", "deviceData"],
                 "properties": {
                   "tfaToken": {
                     "type": "string"
@@ -7699,9 +7441,7 @@
     },
     "/V1/tfa/provider/authy/send-token/{via}": {
       "post": {
-        "tags": [
-          "tfa/provider/authy/send-token/{via}"
-        ],
+        "tags": ["tfa/provider/authy/send-token/{via}"],
         "description": "Send a one time password to a device using authy",
         "operationId": "PostV1TfaProviderAuthySendtokenVia",
         "parameters": [
@@ -7739,19 +7479,14 @@
     },
     "/V1/tfa/provider/duo_security/activate": {
       "post": {
-        "tags": [
-          "tfa/provider/duo_security/activate"
-        ],
+        "tags": ["tfa/provider/duo_security/activate"],
         "description": "Activate the provider and get an admin token",
         "operationId": "PostV1TfaProviderDuo_securityActivate",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "tfaToken",
-                  "signatureResponse"
-                ],
+                "required": ["tfaToken", "signatureResponse"],
                 "properties": {
                   "tfaToken": {
                     "type": "string"
@@ -7768,10 +7503,7 @@
             },
             "application/xml": {
               "schema": {
-                "required": [
-                  "tfaToken",
-                  "signatureResponse"
-                ],
+                "required": ["tfaToken", "signatureResponse"],
                 "properties": {
                   "tfaToken": {
                     "type": "string"
@@ -7810,20 +7542,14 @@
     },
     "/V1/tfa/provider/duo_security/authenticate": {
       "post": {
-        "tags": [
-          "tfa/provider/duo_security/authenticate"
-        ],
+        "tags": ["tfa/provider/duo_security/authenticate"],
         "description": "Authenticate and get an admin token",
         "operationId": "PostV1TfaProviderDuo_securityAuthenticate",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "username",
-                  "password",
-                  "signatureResponse"
-                ],
+                "required": ["username", "password", "signatureResponse"],
                 "properties": {
                   "username": {
                     "type": "string"
@@ -7843,11 +7569,7 @@
             },
             "application/xml": {
               "schema": {
-                "required": [
-                  "username",
-                  "password",
-                  "signatureResponse"
-                ],
+                "required": ["username", "password", "signatureResponse"],
                 "properties": {
                   "username": {
                     "type": "string"
@@ -7904,9 +7626,7 @@
     },
     "/V1/tfa/provider/duo_security/configure": {
       "post": {
-        "tags": [
-          "tfa/provider/duo_security/configure"
-        ],
+        "tags": ["tfa/provider/duo_security/configure"],
         "description": "Get the information required to configure duo",
         "operationId": "PostV1TfaProviderDuo_securityConfigure",
         "requestBody": {
@@ -7949,9 +7669,7 @@
     },
     "/V1/tfa/provider/duo_security/get-authentication-data": {
       "post": {
-        "tags": [
-          "tfa/provider/duo_security/get-authentication-data"
-        ],
+        "tags": ["tfa/provider/duo_security/get-authentication-data"],
         "description": "Get the information required to configure duo",
         "operationId": "PostV1TfaProviderDuo_securityGetauthenticationdata",
         "requestBody": {
@@ -7994,9 +7712,7 @@
     },
     "/V1/tfa/provider/google/activate": {
       "post": {
-        "tags": [
-          "tfa/provider/google/activate"
-        ],
+        "tags": ["tfa/provider/google/activate"],
         "description": "Activate the provider and get an admin token",
         "operationId": "PostV1TfaProviderGoogleActivate",
         "requestBody": {
@@ -8024,9 +7740,7 @@
     },
     "/V1/tfa/provider/google/authenticate": {
       "post": {
-        "tags": [
-          "tfa/provider/google/authenticate"
-        ],
+        "tags": ["tfa/provider/google/authenticate"],
         "description": "Get an admin token by authenticating using google",
         "operationId": "PostV1TfaProviderGoogleAuthenticate",
         "requestBody": {
@@ -8069,9 +7783,7 @@
     },
     "/V1/tfa/provider/google/configure": {
       "post": {
-        "tags": [
-          "tfa/provider/google/configure"
-        ],
+        "tags": ["tfa/provider/google/configure"],
         "description": "Get the information required to configure google",
         "operationId": "PostV1TfaProviderGoogleConfigure",
         "requestBody": {
@@ -8114,19 +7826,14 @@
     },
     "/V1/tfa/provider/u2fkey/activate": {
       "post": {
-        "tags": [
-          "tfa/provider/u2fkey/activate"
-        ],
+        "tags": ["tfa/provider/u2fkey/activate"],
         "description": "Activate the provider and get a token",
         "operationId": "PostV1TfaProviderU2fkeyActivate",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "tfaToken",
-                  "publicKeyCredentialJson"
-                ],
+                "required": ["tfaToken", "publicKeyCredentialJson"],
                 "properties": {
                   "tfaToken": {
                     "type": "string"
@@ -8143,10 +7850,7 @@
             },
             "application/xml": {
               "schema": {
-                "required": [
-                  "tfaToken",
-                  "publicKeyCredentialJson"
-                ],
+                "required": ["tfaToken", "publicKeyCredentialJson"],
                 "properties": {
                   "tfaToken": {
                     "type": "string"
@@ -8185,9 +7889,7 @@
     },
     "/V1/tfa/provider/u2fkey/authentication-challenge": {
       "post": {
-        "tags": [
-          "tfa/provider/u2fkey/authentication-challenge"
-        ],
+        "tags": ["tfa/provider/u2fkey/authentication-challenge"],
         "description": "Get the information to initiate a WebAuthn registration ceremony",
         "operationId": "PostV1TfaProviderU2fkeyAuthenticationchallenge",
         "requestBody": {
@@ -8230,9 +7932,7 @@
     },
     "/V1/tfa/provider/u2fkey/configure": {
       "post": {
-        "tags": [
-          "tfa/provider/u2fkey/configure"
-        ],
+        "tags": ["tfa/provider/u2fkey/configure"],
         "description": "Get the information to initiate a WebAuthn registration ceremony",
         "operationId": "PostV1TfaProviderU2fkeyConfigure",
         "requestBody": {
@@ -8275,20 +7975,14 @@
     },
     "/V1/tfa/provider/u2fkey/verify": {
       "post": {
-        "tags": [
-          "tfa/provider/u2fkey/verify"
-        ],
+        "tags": ["tfa/provider/u2fkey/verify"],
         "description": "Authenticate with the provider and get a token",
         "operationId": "PostV1TfaProviderU2fkeyVerify",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "username",
-                  "password",
-                  "publicKeyCredentialJson"
-                ],
+                "required": ["username", "password", "publicKeyCredentialJson"],
                 "properties": {
                   "username": {
                     "type": "string"
@@ -8308,11 +8002,7 @@
             },
             "application/xml": {
               "schema": {
-                "required": [
-                  "username",
-                  "password",
-                  "publicKeyCredentialJson"
-                ],
+                "required": ["username", "password", "publicKeyCredentialJson"],
                 "properties": {
                   "username": {
                     "type": "string"
@@ -8369,9 +8059,7 @@
     },
     "/V1/tfa/tfat-providers-to-activate": {
       "get": {
-        "tags": [
-          "tfa/tfat-providers-to-activate"
-        ],
+        "tags": ["tfa/tfat-providers-to-activate"],
         "description": "Get the providers that the user still needs to configure",
         "operationId": "GetV1TfaTfatproviderstoactivate",
         "parameters": [
@@ -8427,9 +8115,7 @@
     },
     "/V1/tfa/tfat-user-providers": {
       "get": {
-        "tags": [
-          "tfa/tfat-user-providers"
-        ],
+        "tags": ["tfa/tfat-user-providers"],
         "description": "Get the providers that the user is able to use for 2fa",
         "operationId": "GetV1TfaTfatuserproviders",
         "parameters": [
@@ -8487,15 +8173,11 @@
   "x-tagGroups": [
     {
       "name": "applepay",
-      "tags": [
-        "applepay/auth"
-      ]
+      "tags": ["applepay/auth"]
     },
     {
       "name": "braintree",
-      "tags": [
-        "braintree/mine/payment/vault"
-      ]
+      "tags": ["braintree/mine/payment/vault"]
     },
     {
       "name": "carts",
@@ -8528,17 +8210,11 @@
     },
     {
       "name": "directory",
-      "tags": [
-        "directory/countries",
-        "directory/countries/{countryId}",
-        "directory/currency"
-      ]
+      "tags": ["directory/countries", "directory/countries/{countryId}", "directory/currency"]
     },
     {
       "name": "giftregistry",
-      "tags": [
-        "giftregistry/mine/estimate-shipping-methods"
-      ]
+      "tags": ["giftregistry/mine/estimate-shipping-methods"]
     },
     {
       "name": "guest carts",
@@ -8569,9 +8245,7 @@
     },
     {
       "name": "guest giftregistry",
-      "tags": [
-        "guest-giftregistry/{cartId}/estimate-shipping-methods"
-      ]
+      "tags": ["guest-giftregistry/{cartId}/estimate-shipping-methods"]
     },
     {
       "name": "integration",
@@ -8583,9 +8257,7 @@
     },
     {
       "name": "inventory",
-      "tags": [
-        "inventory/in-store-pickup/pickup-locations/"
-      ]
+      "tags": ["inventory/in-store-pickup/pickup-locations/"]
     },
     {
       "name": "negotiable carts",
@@ -8614,16 +8286,11 @@
     },
     {
       "name": "payments sdk",
-      "tags": [
-        "payments-sdk/{location}",
-        "payments-sdk/{location}/{methodCode}"
-      ]
+      "tags": ["payments-sdk/{location}", "payments-sdk/{location}/{methodCode}"]
     },
     {
       "name": "products render info",
-      "tags": [
-        "products-render-info"
-      ]
+      "tags": ["products-render-info"]
     },
     {
       "name": "purchase order carts",
@@ -8634,21 +8301,15 @@
     },
     {
       "name": "requisition_lists",
-      "tags": [
-        "requisition_lists"
-      ]
+      "tags": ["requisition_lists"]
     },
     {
       "name": "reward",
-      "tags": [
-        "reward/mine/use-reward"
-      ]
+      "tags": ["reward/mine/use-reward"]
     },
     {
       "name": "search",
-      "tags": [
-        "search"
-      ]
+      "tags": ["search"]
     },
     {
       "name": "tfa",
@@ -8685,9 +8346,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "address"
-              ],
+              "required": ["address"],
               "properties": {
                 "address": {
                   "$ref": "#/components/schemas/quote-data-address-interface"
@@ -8704,9 +8363,7 @@
           },
           "application/xml": {
             "schema": {
-              "required": [
-                "address"
-              ],
+              "required": ["address"],
               "properties": {
                 "address": {
                   "$ref": "#/components/schemas/quote-data-address-interface"
@@ -8727,9 +8384,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "addressInformation"
-              ],
+              "required": ["addressInformation"],
               "properties": {
                 "addressInformation": {
                   "$ref": "#/components/schemas/checkout-data-shipping-information-interface"
@@ -8743,9 +8398,7 @@
           },
           "application/xml": {
             "schema": {
-              "required": [
-                "addressInformation"
-              ],
+              "required": ["addressInformation"],
               "properties": {
                 "addressInformation": {
                   "$ref": "#/components/schemas/checkout-data-shipping-information-interface"
@@ -8763,9 +8416,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "registryId"
-              ],
+              "required": ["registryId"],
               "properties": {
                 "registryId": {
                   "type": "integer",
@@ -8780,9 +8431,7 @@
           },
           "application/xml": {
             "schema": {
-              "required": [
-                "registryId"
-              ],
+              "required": ["registryId"],
               "properties": {
                 "registryId": {
                   "type": "integer",
@@ -8801,9 +8450,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "address"
-              ],
+              "required": ["address"],
               "properties": {
                 "address": {
                   "$ref": "#/components/schemas/quote-data-address-interface"
@@ -8817,9 +8464,7 @@
           },
           "application/xml": {
             "schema": {
-              "required": [
-                "address"
-              ],
+              "required": ["address"],
               "properties": {
                 "address": {
                   "$ref": "#/components/schemas/quote-data-address-interface"
@@ -8837,9 +8482,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "cartItem"
-              ],
+              "required": ["cartItem"],
               "properties": {
                 "cartItem": {
                   "$ref": "#/components/schemas/quote-data-cart-item-interface"
@@ -8853,9 +8496,7 @@
           },
           "application/xml": {
             "schema": {
-              "required": [
-                "cartItem"
-              ],
+              "required": ["cartItem"],
               "properties": {
                 "cartItem": {
                   "$ref": "#/components/schemas/quote-data-cart-item-interface"
@@ -8873,9 +8514,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "tfaToken"
-              ],
+              "required": ["tfaToken"],
               "properties": {
                 "tfaToken": {
                   "type": "string"
@@ -8889,9 +8528,7 @@
           },
           "application/xml": {
             "schema": {
-              "required": [
-                "tfaToken"
-              ],
+              "required": ["tfaToken"],
               "properties": {
                 "tfaToken": {
                   "type": "string"
@@ -8909,10 +8546,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "username",
-                "password"
-              ],
+              "required": ["username", "password"],
               "properties": {
                 "username": {
                   "type": "string"
@@ -8929,10 +8563,7 @@
           },
           "application/xml": {
             "schema": {
-              "required": [
-                "username",
-                "password"
-              ],
+              "required": ["username", "password"],
               "properties": {
                 "username": {
                   "type": "string"
@@ -8953,9 +8584,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "giftCardAccountData"
-              ],
+              "required": ["giftCardAccountData"],
               "properties": {
                 "giftCardAccountData": {
                   "$ref": "#/components/schemas/gift-card-account-data-gift-card-account-interface"
@@ -8969,9 +8598,7 @@
           },
           "application/xml": {
             "schema": {
-              "required": [
-                "giftCardAccountData"
-              ],
+              "required": ["giftCardAccountData"],
               "properties": {
                 "giftCardAccountData": {
                   "$ref": "#/components/schemas/gift-card-account-data-gift-card-account-interface"
@@ -8989,9 +8616,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "paymentMethod"
-              ],
+              "required": ["paymentMethod"],
               "properties": {
                 "paymentMethod": {
                   "$ref": "#/components/schemas/quote-data-payment-interface"
@@ -9016,9 +8641,7 @@
           },
           "application/xml": {
             "schema": {
-              "required": [
-                "paymentMethod"
-              ],
+              "required": ["paymentMethod"],
               "properties": {
                 "paymentMethod": {
                   "$ref": "#/components/schemas/quote-data-payment-interface"
@@ -9047,9 +8670,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "paymentMethod"
-              ],
+              "required": ["paymentMethod"],
               "properties": {
                 "paymentMethod": {
                   "$ref": "#/components/schemas/quote-data-payment-interface"
@@ -9066,9 +8687,7 @@
           },
           "application/xml": {
             "schema": {
-              "required": [
-                "paymentMethod"
-              ],
+              "required": ["paymentMethod"],
               "properties": {
                 "paymentMethod": {
                   "$ref": "#/components/schemas/quote-data-payment-interface"
@@ -9089,11 +8708,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "methodCode",
-                "paymentSource",
-                "location"
-              ],
+              "required": ["methodCode", "paymentSource", "location"],
               "properties": {
                 "methodCode": {
                   "type": "string"
@@ -9116,11 +8731,7 @@
           },
           "application/xml": {
             "schema": {
-              "required": [
-                "methodCode",
-                "paymentSource",
-                "location"
-              ],
+              "required": ["methodCode", "paymentSource", "location"],
               "properties": {
                 "methodCode": {
                   "type": "string"
@@ -9147,9 +8758,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "giftMessage"
-              ],
+              "required": ["giftMessage"],
               "properties": {
                 "giftMessage": {
                   "$ref": "#/components/schemas/gift-message-data-message-interface"
@@ -9163,9 +8772,7 @@
           },
           "application/xml": {
             "schema": {
-              "required": [
-                "giftMessage"
-              ],
+              "required": ["giftMessage"],
               "properties": {
                 "giftMessage": {
                   "$ref": "#/components/schemas/gift-message-data-message-interface"
@@ -9183,10 +8790,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "email",
-                "paymentMethod"
-              ],
+              "required": ["email", "paymentMethod"],
               "properties": {
                 "email": {
                   "type": "string"
@@ -9206,10 +8810,7 @@
           },
           "application/xml": {
             "schema": {
-              "required": [
-                "email",
-                "paymentMethod"
-              ],
+              "required": ["email", "paymentMethod"],
               "properties": {
                 "email": {
                   "type": "string"
@@ -9233,10 +8834,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "tfaToken",
-                "otp"
-              ],
+              "required": ["tfaToken", "otp"],
               "properties": {
                 "tfaToken": {
                   "type": "string"
@@ -9253,10 +8851,7 @@
           },
           "application/xml": {
             "schema": {
-              "required": [
-                "tfaToken",
-                "otp"
-              ],
+              "required": ["tfaToken", "otp"],
               "properties": {
                 "tfaToken": {
                   "type": "string"
@@ -9277,11 +8872,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "username",
-                "password",
-                "otp"
-              ],
+              "required": ["username", "password", "otp"],
               "properties": {
                 "username": {
                   "type": "string"
@@ -9301,11 +8892,7 @@
           },
           "application/xml": {
             "schema": {
-              "required": [
-                "username",
-                "password",
-                "otp"
-              ],
+              "required": ["username", "password", "otp"],
               "properties": {
                 "username": {
                   "type": "string"
@@ -9356,9 +8943,7 @@
             "description": "Stack trace"
           }
         },
-        "required": [
-          "message"
-        ]
+        "required": ["message"]
       },
       "error-errors": {
         "type": "array",
@@ -9468,10 +9053,7 @@
             "$ref": "#/components/schemas/directory-data-exchange-rate-extension-interface"
           }
         },
-        "required": [
-          "currency_to",
-          "rate"
-        ]
+        "required": ["currency_to", "rate"]
       },
       "directory-data-exchange-rate-extension-interface": {
         "type": "object",
@@ -9544,11 +9126,7 @@
             "$ref": "#/components/schemas/directory-data-region-information-extension-interface"
           }
         },
-        "required": [
-          "id",
-          "code",
-          "name"
-        ]
+        "required": ["id", "code", "name"]
       },
       "directory-data-region-information-extension-interface": {
         "type": "object",
@@ -9660,11 +9238,7 @@
             }
           }
         },
-        "required": [
-          "email",
-          "firstname",
-          "lastname"
-        ]
+        "required": ["email", "firstname", "lastname"]
       },
       "customer-data-address-interface": {
         "type": "object",
@@ -9780,11 +9354,7 @@
             "$ref": "#/components/schemas/customer-data-region-extension-interface"
           }
         },
-        "required": [
-          "region_code",
-          "region",
-          "region_id"
-        ]
+        "required": ["region_code", "region", "region_id"]
       },
       "customer-data-region-extension-interface": {
         "type": "object",
@@ -9807,10 +9377,7 @@
             "description": "Attribute value"
           }
         },
-        "required": [
-          "attribute_code",
-          "value"
-        ]
+        "required": ["attribute_code", "value"]
       },
       "customer-data-customer-extension-interface": {
         "type": "object",
@@ -9881,12 +9448,7 @@
             "description": "Total count."
           }
         },
-        "required": [
-          "items",
-          "aggregations",
-          "search_criteria",
-          "total_count"
-        ]
+        "required": ["items", "aggregations", "search_criteria", "total_count"]
       },
       "framework-search-document-interface": {
         "type": "object",
@@ -9903,9 +9465,7 @@
             }
           }
         },
-        "required": [
-          "id"
-        ]
+        "required": ["id"]
       },
       "framework-search-aggregation-interface": {
         "type": "object",
@@ -9926,10 +9486,7 @@
             }
           }
         },
-        "required": [
-          "buckets",
-          "bucket_names"
-        ]
+        "required": ["buckets", "bucket_names"]
       },
       "framework-search-bucket-interface": {
         "type": "object",
@@ -9947,10 +9504,7 @@
             }
           }
         },
-        "required": [
-          "name",
-          "values"
-        ]
+        "required": ["name", "values"]
       },
       "framework-search-aggregation-value-interface": {
         "type": "object",
@@ -9968,10 +9522,7 @@
             }
           }
         },
-        "required": [
-          "value",
-          "metrics"
-        ]
+        "required": ["value", "metrics"]
       },
       "framework-search-search-criteria-interface": {
         "type": "object",
@@ -10003,10 +9554,7 @@
             "description": "Current page."
           }
         },
-        "required": [
-          "request_name",
-          "filter_groups"
-        ]
+        "required": ["request_name", "filter_groups"]
       },
       "framework-search-filter-group": {
         "type": "object",
@@ -10038,10 +9586,7 @@
             "description": "Condition type"
           }
         },
-        "required": [
-          "field",
-          "value"
-        ]
+        "required": ["field", "value"]
       },
       "framework-sort-order": {
         "type": "object",
@@ -10056,10 +9601,7 @@
             "description": "Sorting direction."
           }
         },
-        "required": [
-          "field",
-          "direction"
-        ]
+        "required": ["field", "direction"]
       },
       "catalog-data-product-render-search-results-interface": {
         "type": "object",
@@ -10073,9 +9615,7 @@
             }
           }
         },
-        "required": [
-          "items"
-        ]
+        "required": ["items"]
       },
       "catalog-data-product-render-interface": {
         "type": "object",
@@ -10164,11 +9704,7 @@
             "$ref": "#/components/schemas/catalog-data-product-render-button-extension-interface"
           }
         },
-        "required": [
-          "post_data",
-          "url",
-          "required_options"
-        ]
+        "required": ["post_data", "url", "required_options"]
       },
       "catalog-data-product-render-button-extension-interface": {
         "type": "object",
@@ -10407,15 +9943,7 @@
             "$ref": "#/components/schemas/catalog-data-product-render-image-extension-interface"
           }
         },
-        "required": [
-          "url",
-          "code",
-          "height",
-          "width",
-          "label",
-          "resized_width",
-          "resized_height"
-        ]
+        "required": ["url", "code", "height", "width", "label", "resized_width", "resized_height"]
       },
       "catalog-data-product-render-image-extension-interface": {
         "type": "object",
@@ -10517,11 +10045,7 @@
             "$ref": "#/components/schemas/quote-data-cart-extension-interface"
           }
         },
-        "required": [
-          "id",
-          "customer",
-          "store_id"
-        ]
+        "required": ["id", "customer", "store_id"]
       },
       "quote-data-cart-item-interface": {
         "type": "object",
@@ -10562,10 +10086,7 @@
             "$ref": "#/components/schemas/quote-data-cart-item-extension-interface"
           }
         },
-        "required": [
-          "qty",
-          "quote_id"
-        ]
+        "required": ["qty", "quote_id"]
       },
       "quote-data-product-option-interface": {
         "type": "object",
@@ -10628,10 +10149,7 @@
             "$ref": "#/components/schemas/catalog-data-custom-option-extension-interface"
           }
         },
-        "required": [
-          "option_id",
-          "option_value"
-        ]
+        "required": ["option_id", "option_value"]
       },
       "catalog-data-custom-option-extension-interface": {
         "type": "object",
@@ -10659,11 +10177,7 @@
             "description": "Image name"
           }
         },
-        "required": [
-          "base64_encoded_data",
-          "type",
-          "name"
-        ]
+        "required": ["base64_encoded_data", "type", "name"]
       },
       "bundle-data-bundle-option-interface": {
         "type": "object",
@@ -10688,11 +10202,7 @@
             "$ref": "#/components/schemas/bundle-data-bundle-option-extension-interface"
           }
         },
-        "required": [
-          "option_id",
-          "option_qty",
-          "option_selections"
-        ]
+        "required": ["option_id", "option_qty", "option_selections"]
       },
       "bundle-data-bundle-option-extension-interface": {
         "type": "object",
@@ -10710,9 +10220,7 @@
             }
           }
         },
-        "required": [
-          "downloadable_links"
-        ]
+        "required": ["downloadable_links"]
       },
       "gift-card-data-gift-card-option-interface": {
         "type": "object",
@@ -10786,9 +10294,7 @@
             "$ref": "#/components/schemas/configurable-product-data-configurable-item-option-value-extension-interface"
           }
         },
-        "required": [
-          "option_id"
-        ]
+        "required": ["option_id"]
       },
       "configurable-product-data-configurable-item-option-value-extension-interface": {
         "type": "object",
@@ -10846,11 +10352,7 @@
             "description": "Rule ID"
           }
         },
-        "required": [
-          "discount_data",
-          "rule_label",
-          "rule_i_d"
-        ]
+        "required": ["discount_data", "rule_label", "rule_i_d"]
       },
       "sales-rule-data-discount-data-interface": {
         "type": "object",
@@ -10873,12 +10375,7 @@
             "description": "Base Original Amount"
           }
         },
-        "required": [
-          "amount",
-          "base_amount",
-          "original_amount",
-          "base_original_amount"
-        ]
+        "required": ["amount", "base_amount", "original_amount", "base_original_amount"]
       },
       "negotiable-quote-data-negotiable-quote-item-interface": {
         "type": "object",
@@ -10904,12 +10401,7 @@
             "$ref": "#/components/schemas/negotiable-quote-data-negotiable-quote-item-extension-interface"
           }
         },
-        "required": [
-          "item_id",
-          "original_price",
-          "original_tax_amount",
-          "original_discount_amount"
-        ]
+        "required": ["item_id", "original_price", "original_tax_amount", "original_discount_amount"]
       },
       "negotiable-quote-data-negotiable-quote-item-extension-interface": {
         "type": "object",
@@ -10961,12 +10453,7 @@
             "$ref": "#/components/schemas/negotiable-quote-data-item-note-extension-interface"
           }
         },
-        "required": [
-          "negotiable_quote_item_id",
-          "creator_type",
-          "creator_id",
-          "note"
-        ]
+        "required": ["negotiable_quote_item_id", "creator_type", "creator_id", "note"]
       },
       "negotiable-quote-data-item-note-extension-interface": {
         "type": "object",
@@ -11193,10 +10680,7 @@
             "$ref": "#/components/schemas/quote-data-shipping-assignment-extension-interface"
           }
         },
-        "required": [
-          "shipping",
-          "items"
-        ]
+        "required": ["shipping", "items"]
       },
       "quote-data-shipping-interface": {
         "type": "object",
@@ -11213,10 +10697,7 @@
             "$ref": "#/components/schemas/quote-data-shipping-extension-interface"
           }
         },
-        "required": [
-          "address",
-          "method"
-        ]
+        "required": ["address", "method"]
       },
       "quote-data-shipping-extension-interface": {
         "type": "object",
@@ -11370,9 +10851,7 @@
             "$ref": "#/components/schemas/quote-data-payment-extension-interface"
           }
         },
-        "required": [
-          "method"
-        ]
+        "required": ["method"]
       },
       "quote-data-payment-extension-interface": {
         "type": "object",
@@ -11462,10 +10941,7 @@
             "description": "Payment method title"
           }
         },
-        "required": [
-          "code",
-          "title"
-        ]
+        "required": ["code", "title"]
       },
       "quote-data-totals-additional-data-interface": {
         "type": "object",
@@ -11523,11 +10999,7 @@
             "$ref": "#/components/schemas/gift-message-data-message-extension-interface"
           }
         },
-        "required": [
-          "sender",
-          "recipient",
-          "message"
-        ]
+        "required": ["sender", "recipient", "message"]
       },
       "gift-message-data-message-extension-interface": {
         "type": "object",
@@ -11672,10 +11144,7 @@
             "$ref": "#/components/schemas/quote-data-totals-extension-interface"
           }
         },
-        "required": [
-          "weee_tax_applied_amount",
-          "total_segments"
-        ]
+        "required": ["weee_tax_applied_amount", "total_segments"]
       },
       "quote-data-totals-item-interface": {
         "type": "object",
@@ -11884,10 +11353,7 @@
             "$ref": "#/components/schemas/quote-data-total-segment-extension-interface"
           }
         },
-        "required": [
-          "code",
-          "value"
-        ]
+        "required": ["code", "value"]
       },
       "quote-data-total-segment-extension-interface": {
         "type": "object",
@@ -11993,11 +11459,7 @@
             "description": "Group identifier"
           }
         },
-        "required": [
-          "amount",
-          "rates",
-          "group_id"
-        ]
+        "required": ["amount", "rates", "group_id"]
       },
       "tax-data-grand-total-rates-interface": {
         "type": "object",
@@ -12012,10 +11474,7 @@
             "description": "Rate title"
           }
         },
-        "required": [
-          "percent",
-          "title"
-        ]
+        "required": ["percent", "title"]
       },
       "quote-data-totals-extension-interface": {
         "type": "object",
@@ -12179,14 +11638,7 @@
             "$ref": "#/components/schemas/requisition-list-data-requisition-list-extension-interface"
           }
         },
-        "required": [
-          "id",
-          "customer_id",
-          "name",
-          "updated_at",
-          "description",
-          "items"
-        ]
+        "required": ["id", "customer_id", "name", "updated_at", "description", "items"]
       },
       "requisition-list-data-requisition-list-item-interface": {
         "type": "object",
@@ -12227,15 +11679,7 @@
             "$ref": "#/components/schemas/requisition-list-data-requisition-list-item-extension-interface"
           }
         },
-        "required": [
-          "id",
-          "sku",
-          "requisition_list_id",
-          "qty",
-          "options",
-          "store_id",
-          "added_at"
-        ]
+        "required": ["id", "sku", "requisition_list_id", "qty", "options", "store_id", "added_at"]
       },
       "requisition-list-data-requisition-list-item-extension-interface": {
         "type": "object",
@@ -12274,11 +11718,7 @@
             }
           }
         },
-        "required": [
-          "shipping_address",
-          "shipping_method_code",
-          "shipping_carrier_code"
-        ]
+        "required": ["shipping_address", "shipping_method_code", "shipping_carrier_code"]
       },
       "checkout-data-shipping-information-extension-interface": {
         "type": "object",
@@ -12301,10 +11741,7 @@
             "$ref": "#/components/schemas/checkout-data-payment-details-extension-interface"
           }
         },
-        "required": [
-          "payment_methods",
-          "totals"
-        ]
+        "required": ["payment_methods", "totals"]
       },
       "checkout-data-payment-details-extension-interface": {
         "type": "object",
@@ -12336,9 +11773,7 @@
             }
           }
         },
-        "required": [
-          "address"
-        ]
+        "required": ["address"]
       },
       "checkout-data-totals-information-extension-interface": {
         "type": "object",
@@ -12408,9 +11843,7 @@
             "description": "True if this provider has been enabled by admin"
           }
         },
-        "required": [
-          "enabled"
-        ]
+        "required": ["enabled"]
       },
       "two-factor-auth-data-google-configure-interface": {
         "type": "object",
@@ -12428,10 +11861,7 @@
             "$ref": "#/components/schemas/two-factor-auth-data-google-configure-extension-interface"
           }
         },
-        "required": [
-          "qr_code_base64",
-          "secret_code"
-        ]
+        "required": ["qr_code_base64", "secret_code"]
       },
       "two-factor-auth-data-google-configure-extension-interface": {
         "type": "object",
@@ -12457,11 +11887,7 @@
             "$ref": "#/components/schemas/two-factor-auth-data-authy-device-extension-interface"
           }
         },
-        "required": [
-          "country",
-          "phone_number",
-          "method"
-        ]
+        "required": ["country", "phone_number", "method"]
       },
       "two-factor-auth-data-authy-device-extension-interface": {
         "type": "object",
@@ -12483,10 +11909,7 @@
             "$ref": "#/components/schemas/two-factor-auth-data-authy-registration-prompt-response-extension-interface"
           }
         },
-        "required": [
-          "message",
-          "expiration_seconds"
-        ]
+        "required": ["message", "expiration_seconds"]
       },
       "two-factor-auth-data-authy-registration-prompt-response-extension-interface": {
         "type": "object",
@@ -12504,9 +11927,7 @@
             "$ref": "#/components/schemas/two-factor-auth-data-u2f-web-authn-request-extension-interface"
           }
         },
-        "required": [
-          "credential_request_options_json"
-        ]
+        "required": ["credential_request_options_json"]
       },
       "two-factor-auth-data-u2f-web-authn-request-extension-interface": {
         "type": "object",
@@ -12528,10 +11949,7 @@
             "$ref": "#/components/schemas/two-factor-auth-data-duo-data-extension-interface"
           }
         },
-        "required": [
-          "signature",
-          "api_hostname"
-        ]
+        "required": ["signature", "api_hostname"]
       },
       "two-factor-auth-data-duo-data-extension-interface": {
         "type": "object",
@@ -12598,11 +12016,7 @@
             "description": "Total count."
           }
         },
-        "required": [
-          "items",
-          "search_request",
-          "total_count"
-        ]
+        "required": ["items", "search_request", "total_count"]
       },
       "inventory-in-store-pickup-api-data-pickup-location-interface": {
         "type": "object",
@@ -12672,9 +12086,7 @@
             "$ref": "#/components/schemas/inventory-in-store-pickup-api-data-pickup-location-extension-interface"
           }
         },
-        "required": [
-          "pickup_location_code"
-        ]
+        "required": ["pickup_location_code"]
       },
       "inventory-in-store-pickup-api-data-pickup-location-extension-interface": {
         "type": "object",
@@ -12717,11 +12129,7 @@
             "$ref": "#/components/schemas/inventory-in-store-pickup-api-data-search-request-extension-interface"
           }
         },
-        "required": [
-          "current_page",
-          "scope_type",
-          "scope_code"
-        ]
+        "required": ["current_page", "scope_type", "scope_code"]
       },
       "inventory-in-store-pickup-api-data-search-request-area-interface": {
         "type": "object",
@@ -12736,10 +12144,7 @@
             "description": "Search term string."
           }
         },
-        "required": [
-          "radius",
-          "search_term"
-        ]
+        "required": ["radius", "search_term"]
       },
       "inventory-in-store-pickup-api-data-search-request-filters-interface": {
         "type": "object",
@@ -12784,10 +12189,7 @@
             "description": "Condition Type."
           }
         },
-        "required": [
-          "value",
-          "condition_type"
-        ]
+        "required": ["value", "condition_type"]
       },
       "inventory-in-store-pickup-api-data-search-request-extension-interface": {
         "type": "object",
@@ -12813,9 +12215,7 @@
             "$ref": "#/components/schemas/inventory-in-store-pickup-api-data-search-request-product-info-extension-interface"
           }
         },
-        "required": [
-          "sku"
-        ]
+        "required": ["sku"]
       },
       "inventory-in-store-pickup-api-data-search-request-product-info-extension-interface": {
         "type": "object",
@@ -12835,11 +12235,7 @@
             "$ref": "#/components/schemas/payment-services-paypal-data-payment-config-smart-buttons-interface"
           }
         },
-        "required": [
-          "apple_pay",
-          "hosted_fields",
-          "smart_buttons"
-        ]
+        "required": ["apple_pay", "hosted_fields", "smart_buttons"]
       },
       "payment-services-paypal-data-payment-config-apple-pay-interface": {
         "type": "object",
@@ -12924,15 +12320,7 @@
             "description": "Height"
           }
         },
-        "required": [
-          "layout",
-          "color",
-          "shape",
-          "label",
-          "tagline",
-          "height",
-          "use_default_height"
-        ]
+        "required": ["layout", "color", "shape", "label", "tagline", "height", "use_default_height"]
       },
       "payment-services-paypal-data-payment-config-sdk-params-interface": {
         "type": "object",
@@ -12947,10 +12335,7 @@
             "description": "Config"
           }
         },
-        "required": [
-          "name",
-          "value"
-        ]
+        "required": ["name", "value"]
       },
       "payment-services-paypal-data-payment-config-hosted-fields-interface": {
         "type": "object",
@@ -13089,10 +12474,7 @@
             "$ref": "#/components/schemas/payment-services-paypal-data-payment-config-smart-buttons-logo-interface"
           }
         },
-        "required": [
-          "layout",
-          "logo"
-        ]
+        "required": ["layout", "logo"]
       },
       "payment-services-paypal-data-payment-config-smart-buttons-logo-interface": {
         "type": "object",
@@ -13103,9 +12485,7 @@
             "description": "CanDisplayMessage"
           }
         },
-        "required": [
-          "type"
-        ]
+        "required": ["type"]
       },
       "payment-services-paypal-data-payment-order-interface": {
         "type": "object",
@@ -13124,11 +12504,7 @@
             "description": "Payment order status"
           }
         },
-        "required": [
-          "id",
-          "mp_order_id",
-          "status"
-        ]
+        "required": ["id", "mp_order_id", "status"]
       },
       "payment-services-paypal-data-payment-order-details-interface": {
         "type": "object",
@@ -13150,12 +12526,7 @@
             "description": "Payment order status"
           }
         },
-        "required": [
-          "payment_source_details",
-          "id",
-          "mp_order_id",
-          "status"
-        ]
+        "required": ["payment_source_details", "id", "mp_order_id", "status"]
       },
       "payment-services-paypal-data-payment-source-details-interface": {
         "type": "object",
@@ -13165,9 +12536,7 @@
             "$ref": "#/components/schemas/payment-services-paypal-data-payment-card-details-interface"
           }
         },
-        "required": [
-          "card"
-        ]
+        "required": ["card"]
       },
       "payment-services-paypal-data-payment-card-details-interface": {
         "type": "object",
@@ -13193,13 +12562,7 @@
             "$ref": "#/components/schemas/payment-services-paypal-data-payment-card-bin-details-interface"
           }
         },
-        "required": [
-          "name",
-          "last_digits",
-          "card_expiry_month",
-          "card_expiry_year",
-          "bin_details"
-        ]
+        "required": ["name", "last_digits", "card_expiry_month", "card_expiry_year", "bin_details"]
       },
       "payment-services-paypal-data-payment-card-bin-details-interface": {
         "type": "object",
@@ -13210,9 +12573,7 @@
             "description": "Bin"
           }
         },
-        "required": [
-          "bin"
-        ]
+        "required": ["bin"]
       },
       "payment-services-paypal-data-payment-sdk-params-interface": {
         "type": "object",
@@ -13230,10 +12591,7 @@
             }
           }
         },
-        "required": [
-          "code",
-          "params"
-        ]
+        "required": ["code", "params"]
       },
       "pay-pal-braintree-data-auth-data-interface": {
         "type": "object",
@@ -13259,12 +12617,7 @@
             "description": "Current store code"
           }
         },
-        "required": [
-          "display_name",
-          "action_success",
-          "logged_in",
-          "store_code"
-        ]
+        "required": ["display_name", "action_success", "logged_in", "store_code"]
       },
       "pay-pal-braintree-data-payment-interface": {
         "type": "object",

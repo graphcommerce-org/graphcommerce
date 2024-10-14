@@ -90,7 +90,7 @@ export function ProductReviews(props: ProductReviewsProps) {
             margin: `0 -16px 0`,
           }}
           renderLink={(p: number, icon: React.ReactNode) => (
-            <Link color='inherit' underline='hover' onClick={() => setPage(p)}>
+            <Link underline='hover' onClick={() => setPage(p)} sx={{ color: 'inherit' }}>
               {icon}
             </Link>
           )}
@@ -113,7 +113,7 @@ export function ProductReviews(props: ProductReviewsProps) {
           sx={(theme) => ({
             display: 'grid',
             gap: theme.spacings.sm,
-            borderBottom: `1px solid ${theme.palette.divider}`,
+            borderBottom: `1px solid ${theme.vars.palette.divider}`,
             padding: `${theme.spacings.md} 0`,
             typography: 'body1',
           })}
@@ -154,7 +154,7 @@ export function ProductReviews(props: ProductReviewsProps) {
             sx={(theme) => ({
               display: 'grid',
               gap: theme.spacings.sm,
-              borderBottom: `1px solid ${theme.palette.divider}`,
+              borderBottom: `1px solid ${theme.vars.palette.divider}`,
               padding: `${theme.spacings.md} 0`,
               typography: 'body1',
             })}
@@ -183,7 +183,7 @@ export function ProductReviews(props: ProductReviewsProps) {
                   display: 'flex',
                   flexWrap: 'wrap',
                   gap: theme.spacings.sm,
-                  color: theme.palette.text.disabled,
+                  color: theme.vars.palette.text.disabled,
                   typography: 'body2',
                 })}
               >
@@ -216,7 +216,7 @@ export function ProductReviews(props: ProductReviewsProps) {
             <Box
               className={classes.meta}
               sx={(theme) => ({
-                color: theme.palette.text.disabled,
+                color: theme.vars.palette.text.disabled,
                 display: 'grid',
                 gridAutoFlow: 'column',
                 justifyContent: 'space-between',

@@ -74,7 +74,9 @@ export function PaymentMethodContextProvider(props: PaymentMethodContextProvider
     ;(async () => {
       const promises = availableMethods.map(async (method) =>
         method
-          ? modules[method.code]?.expandMethods?.(method, cartContext) ?? [{ ...method, child: '' }]
+          ? (modules[method.code]?.expandMethods?.(method, cartContext) ?? [
+              { ...method, child: '' },
+            ])
           : Promise.resolve([]),
       )
       const loaded = (await Promise.all(promises)).flat(1).sort((a) => (a.preferred ? 1 : 0))

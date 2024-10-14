@@ -35,16 +35,16 @@ export function OrderStateLabel(props: OrderStateLabelProps) {
           fontStyle: 'italic',
           fontWeight: 'normal',
           '&.orderStatePending': {
-            color: theme.palette.text.disabled,
+            color: theme.vars.palette.text.disabled,
           },
           '&.orderStateProcessing': {
-            color: theme.palette.info.main,
+            color: theme.vars.palette.info.main,
           },
           '&.orderStateComplete': {
-            color: theme.palette.success.main,
+            color: theme.vars.palette.success.main,
           },
           '&.orderStateClosed': {
-            color: theme.palette.text.disabled,
+            color: theme.vars.palette.text.disabled,
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

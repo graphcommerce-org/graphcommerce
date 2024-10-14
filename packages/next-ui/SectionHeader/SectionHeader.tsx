@@ -54,8 +54,8 @@ export function SectionHeader(props: SectionHeaderProps) {
       <Typography
         className={classes.left}
         variant={variantLeft}
-        color='textSecondary'
         component='div'
+        sx={{ color: 'textSecondary' }}
       >
         {labelLeft}
       </Typography>
@@ -63,7 +63,6 @@ export function SectionHeader(props: SectionHeaderProps) {
         <Typography
           className={classes.right}
           variant={variantRight}
-          color='textSecondary'
           component='div'
           sx={{ color: 'text.primary', lineHeight: 1 }}
         >

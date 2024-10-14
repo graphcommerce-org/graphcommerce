@@ -34,7 +34,7 @@ export function Feature(props: FeatureProps) {
       }
     >
       {title && (
-        <Typography variant='overline' color='textSecondary'>
+        <Typography variant='overline' sx={{ color: 'textSecondary' }}>
           {title}
         </Typography>
       )}

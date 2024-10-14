@@ -58,7 +58,7 @@ export function ConfirmCustomerForm() {
       )}
       {key && (
         <>
-          <Typography variant='h6' textAlign='center'>
+          <Typography variant='h6' sx={{ textAlign: 'center' }}>
             <Trans id='Fill in your email to confirm registration' />
           </Typography>
 

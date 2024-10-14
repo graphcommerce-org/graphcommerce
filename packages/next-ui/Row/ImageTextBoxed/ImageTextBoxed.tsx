@@ -24,7 +24,7 @@ export function ImageTextBoxed(props: ImageTextBoxedProps) {
         className={classes.wrapper}
         sx={(theme) => ({
           display: 'grid',
-          border: `1px solid ${theme.palette.divider}`,
+          border: `1px solid ${theme.vars.palette.divider}`,
           justifyItems: 'center',
           columnGap: `${theme.spacings.lg}`,
           padding: 0,
@@ -46,7 +46,7 @@ export function ImageTextBoxed(props: ImageTextBoxedProps) {
           className={classes.copy}
           sx={(theme) => ({
             padding: `${theme.spacings.lg} 0`,
-            color: theme.palette.text.primary,
+            color: theme.vars.palette.text.primary,
             maxWidth: '80%',
             display: 'grid',
             alignContent: 'center',

@@ -165,11 +165,10 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   } * 2)`,
                 },
               },
-              background:
-                theme.palette.mode === 'light'
-                  ? theme.palette.background.image
-                  : theme.palette.background.paper,
-
+              background: theme.vars.palette.background.image,
+              ...theme.applyStyles('dark', {
+                background: theme.vars.palette.background.paper,
+              }),
               '&:not(.variantMdOneColumn)': {
                 paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
               },
@@ -197,7 +196,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   gridArea: 'left',
                   willChange: 'transform',
                   height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
-                  backgroundColor: theme.palette.background.image,
+                  backgroundColor: theme.vars.palette.background.image,
                   position: 'relative',
                   paddingTop: `min(${ratio}, ${maxHeight})`,
                   [theme.breakpoints.down('md')]: {

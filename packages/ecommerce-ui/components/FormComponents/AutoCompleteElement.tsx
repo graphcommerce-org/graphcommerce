@@ -111,14 +111,14 @@ export function AutocompleteElement<TFieldValues extends FieldValues>({
           ? autocompleteProps.getOptionLabel
           : (option) => `${option?.label || option}`
       }
-      onChange={(event, value, reason, details) => {
-        let changedVal = value
+      onChange={(event, val, reason, details) => {
+        let changedVal = val
         if (matchId) {
-          changedVal = Array.isArray(value) ? value.map((i: any) => i?.id || i) : value?.id || value
+          changedVal = Array.isArray(val) ? val.map((i: any) => i?.id || i) : val?.id || val
         }
         onChange(changedVal)
         if (autocompleteProps?.onChange) {
-          autocompleteProps.onChange(event, value, reason, details)
+          autocompleteProps.onChange(event, val, reason, details)
         }
       }}
       renderOption={
@@ -146,21 +146,22 @@ export function AutocompleteElement<TFieldValues extends FieldValues>({
           {...textFieldProps}
           {...params}
           error={!!error}
-          InputProps={{
-            ...params.InputProps,
-            endAdornment: (
-              <>
-                {loading ? <CircularProgress color='inherit' size={20} /> : null}
-                {params.InputProps.endAdornment}
-              </>
-            ),
-            ...textFieldProps?.InputProps,
-          }}
-          inputProps={{
-            ...params.inputProps,
-            ...textFieldProps?.inputProps,
-          }}
           helperText={error ? error.message : textFieldProps?.helperText}
+          slotProps={{
+            input: {
+              ...params.InputProps,
+              endAdornment: (
+                <>
+                  {loading ? <CircularProgress color='inherit' size={20} /> : null}
+                  {params.InputProps.endAdornment}
+                </>
+              ),
+            },
+            htmlInput: {
+              ...textFieldProps?.slotProps?.htmlInput,
+              ...params.inputProps,
+            },
+          }}
         />
       )}
       {...fieldRest}

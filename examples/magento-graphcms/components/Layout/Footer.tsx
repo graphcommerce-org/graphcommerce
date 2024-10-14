@@ -25,7 +25,10 @@ export function Footer(props: FooterProps) {
               unoptimized
               alt={link.title}
               sx={(theme) => ({
-                filter: theme.palette.mode === 'dark' ? 'invert(100%)' : 'invert(0%)',
+                filter: 'invert(0%)',
+                ...theme.applyStyles('dark', {
+                  filter: 'invert(100%)',
+                }),
               })}
             />
           ) : (
@@ -44,21 +47,21 @@ export function Footer(props: FooterProps) {
           <span>{footer?.copyright}</span>
 
           {footer?.legalLinks?.map((link) => (
-            <Link key={link.title} href={link.url} color='textPrimary' underline='always'>
+            <Link key={link.title} href={link.url} underline='always' sx={{ color: 'textPrimary' }}>
               {link.title}
             </Link>
           ))}
           {import.meta.graphCommerce.magentoVersion >= 247 && cartEnabled && (
-            <Link href='/guest/orderstatus' color='textPrimary' underline='always'>
+            <Link href='/guest/orderstatus' underline='always' sx={{ color: 'textPrimary' }}>
               <Trans>Order status</Trans>
             </Link>
           )}
           {import.meta.graphCommerce.magentoVersion >= 247 && (
-            <Link href='/service/contact-us' color='textPrimary' underline='always'>
+            <Link href='/service/contact-us' underline='always' sx={{ color: 'textPrimary' }}>
               <Trans>Contact</Trans>
             </Link>
           )}
-          <Link href='/service/newsletter' color='textPrimary' underline='always'>
+          <Link href='/service/newsletter' underline='always' sx={{ color: 'textPrimary' }}>
             <Trans>Newletter</Trans>
           </Link>
         </>

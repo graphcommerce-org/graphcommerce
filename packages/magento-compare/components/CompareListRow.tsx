@@ -28,7 +28,7 @@ export function CompareListRow(props: CompareRowProps) {
             pb: 0,
             '& > .MuiTypography-root': {
               pb: theme.spacings.xxs,
-              borderBottom: `1px solid ${theme.palette.divider}`,
+              borderBottom: `1px solid ${theme.vars.palette.divider}`,
               width: `calc(calc(calc(100% / 3) * ${columnCount}) + ${
                 columnCount > 1 ? theme.spacings.md : '0px'
               })`,

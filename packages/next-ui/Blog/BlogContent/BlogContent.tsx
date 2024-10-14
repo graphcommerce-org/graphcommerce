@@ -10,9 +10,9 @@ export function BlogContent(props: BlogContentProps) {
 
   return (
     <Box
-      maxWidth='md'
       sx={[
         (theme) => ({
+          maxWidth: 'md',
           margin: '0 auto',
           marginBottom: theme.spacings.sm,
         }),

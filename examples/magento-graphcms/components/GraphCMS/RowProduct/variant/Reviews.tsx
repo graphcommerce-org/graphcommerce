@@ -31,15 +31,14 @@ export function Reviews(props: ReviewsProps) {
             marginTop: theme.spacings.sm,
             marginBottom: theme.spacings.xxs,
             paddingBottom: theme.spacings.xxs,
-            borderBottom: `1px solid ${theme.palette.divider}`,
+            borderBottom: `1px solid ${theme.vars.palette.divider}`,
           }),
         ]}
       >
-        <Typography variant='overline' color='textSecondary' component='h2'>
+        <Typography variant='overline' component='h2' sx={{ color: 'textSecondary' }}>
           {title} ({review_count})
         </Typography>
       </Box>
-
       <ProductReviews
         reviews={reviews}
         url_key={url_key ?? ''}

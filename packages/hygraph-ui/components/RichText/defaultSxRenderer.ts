@@ -87,7 +87,7 @@ export const defaultSxRenderer: SxRenderer = {
       borderColor: 'inherit',
       '& tr': {
         '&:nth-of-type(odd)': {
-          background: theme.palette.background.paper,
+          background: theme.vars.palette.background.paper,
         },
       },
       '& td': {

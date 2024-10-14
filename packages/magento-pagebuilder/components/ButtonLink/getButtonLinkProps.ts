@@ -33,7 +33,7 @@ export function getButtonLinkProps(node: HTMLElement): ButtonLinkProps {
     buttonType,
     link: isLink ? linkElement.getAttribute('href') : null,
     linkType: isLink
-      ? (linkElement.getAttribute('data-link-type') as ButtonLinkType) ?? 'default'
+      ? ((linkElement.getAttribute('data-link-type') as ButtonLinkType) ?? 'default')
       : 'default',
   })
 }

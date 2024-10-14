@@ -13,7 +13,7 @@ export function RowSpecialBanner(props: RowSpecialBannerProps) {
       topic={topic}
       asset={asset && <Asset asset={asset} sizes='50vw' />}
       pageLinks={pageLinks.map(({ url, title }) => (
-        <Link underline='always' href={url} key={url} title={title} color='inherit'>
+        <Link underline='always' href={url} key={url} title={title} sx={{ color: 'inherit' }}>
           {title}
         </Link>
       ))}
@@ -29,7 +29,7 @@ export function RowSpecialBanner(props: RowSpecialBannerProps) {
             '& strong': {
               // https://github.com/rsms/inter/issues/292#issuecomment-674993644
               color: 'background.default',
-              textShadow: `1.2px 0 0 ${theme.palette.text.primary},0 1.2px 0 ${theme.palette.text.primary},-1.2px 0 0 ${theme.palette.text.primary},0 -1.2px 0 ${theme.palette.text.primary}`,
+              textShadow: `1.2px 0 0 ${theme.vars.palette.text.primary},0 1.2px 0 ${theme.vars.palette.text.primary},-1.2px 0 0 ${theme.vars.palette.text.primary},0 -1.2px 0 ${theme.vars.palette.text.primary}`,
             },
           }),
         }}

@@ -12,7 +12,7 @@ export function Grid(props: GridProps) {
     <ContainerWithHeader
       title={title}
       rightArea={pageLinks.map((pageLink) => (
-        <Link color='inherit' href={pageLink.url} key={pageLink.url} underline='always'>
+        <Link href={pageLink.url} key={pageLink.url} underline='always' sx={{ color: 'inherit' }}>
           {pageLink.title}
         </Link>
       ))}

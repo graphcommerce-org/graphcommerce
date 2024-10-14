@@ -9,6 +9,7 @@ import {
   normalizeLocale,
   withEmotionCache,
 } from '@graphcommerce/next-ui/server'
+import InitColorSchemeScript from '@mui/material/InitColorSchemeScript'
 import NextDocument, { Head, Html, Main, NextScript } from 'next/document'
 
 class Document extends NextDocument<EmotionCacheProps & LinguiDocumentProps> {
@@ -26,6 +27,7 @@ class Document extends NextDocument<EmotionCacheProps & LinguiDocumentProps> {
         </Head>
         <body>
           <DocumentBodyStart key='body-start' {...this.props} />
+          <InitColorSchemeScript attribute='class' />
           <Main />
           <NextScript />
           <DocumentBodyEnd key='body-start' {...this.props} />

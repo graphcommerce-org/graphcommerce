@@ -41,7 +41,7 @@ export function CustomerReview(props: CustomerReviewProps) {
           gridRowGap: theme.spacings.sm,
           alignItems: 'start',
           typography: 'body1',
-          borderBottom: `1px solid ${theme.palette.divider}`,
+          borderBottom: `1px solid ${theme.vars.palette.divider}`,
           [theme.breakpoints.up('sm')]: {
             gridRowGap: theme.spacings.xxs,
           },
@@ -88,7 +88,7 @@ export function CustomerReview(props: CustomerReviewProps) {
         sx={(theme) => ({
           gridArea: 'date',
           fontStyle: 'italic',
-          color: theme.palette.text.disabled,
+          color: theme.vars.palette.text.disabled,
         })}
       >
         <DateTimeFormat>{created_at}</DateTimeFormat>

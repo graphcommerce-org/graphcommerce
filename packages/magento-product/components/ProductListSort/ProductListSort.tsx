@@ -2,7 +2,7 @@ import { useQuery, cloneDeep } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { ListItem, ListItemText, SxProps, Theme } from '@mui/material'
+import { ListItemButton, ListItemText, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
@@ -46,7 +46,7 @@ export function ProductListSort(props: ProductListSortProps) {
       selected={selected}
       label={label}
       {...filterMenuProps}
-      selectedLabel={selected ? currentOption?.label ?? '' : label}
+      selectedLabel={selected ? (currentOption?.label ?? '') : label}
       onDelete={selected ? removeFilter : undefined}
       sx={Array.isArray(sx) ? sx : [sx]}
     >
@@ -57,9 +57,8 @@ export function ProductListSort(props: ProductListSortProps) {
         delete linkParams.currentPage
 
         return (
-          <ListItem
+          <ListItemButton
             className={classes.item}
-            button
             key={option?.value ?? ''}
             dense
             selected={option?.value === currentSort}
@@ -79,7 +78,7 @@ export function ProductListSort(props: ProductListSortProps) {
             )}
           >
             <ListItemText>{option?.label}</ListItemText>
-          </ListItem>
+          </ListItemButton>
         )
       })}
     </ChipMenu>

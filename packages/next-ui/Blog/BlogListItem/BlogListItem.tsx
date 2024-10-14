@@ -27,14 +27,14 @@ export function BlogListItem(props: BlogListItemProps) {
           display: 'grid',
           gridTemplateRows: `auto auto auto`,
           alignContent: 'start',
-          color: theme.palette.text.primary,
+          color: theme.vars.palette.text.primary,
           gap: theme.spacings.xxs,
           marginBottom: theme.spacings.sm,
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <Link href={`/${url}`} color='inherit' underline='hover'>
+      <Link href={`/${url}`} underline='hover' sx={{ color: 'inherit' }}>
         <Box
           className={classes.asset}
           sx={(theme) => ({
@@ -53,7 +53,6 @@ export function BlogListItem(props: BlogListItemProps) {
           {asset}
         </Box>
       </Link>
-
       {date && (
         <Box
           component='time'
@@ -62,14 +61,13 @@ export function BlogListItem(props: BlogListItemProps) {
           sx={(theme) => ({
             display: 'inline-block',
             textDecoration: 'none',
-            color: theme.palette.text.secondary,
+            color: theme.vars.palette.text.secondary,
           })}
         >
           <DateFormat dateStyle='long'>{date}</DateFormat>
         </Box>
       )}
-
-      <Link href={`/${url}`} className={classes.title} color='inherit' underline='hover'>
+      <Link href={`/${url}`} className={classes.title} underline='hover' sx={{ color: 'inherit' }}>
         <Typography component='h2' variant='h4'>
           {title}
         </Typography>

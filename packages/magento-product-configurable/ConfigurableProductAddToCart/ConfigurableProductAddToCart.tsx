@@ -95,7 +95,7 @@ export function ConfigurableProductAddToCart(props: ConfigurableProductAddToCart
         variant='outlined'
         error={formState.isSubmitted && !!formState.errors.quantity}
         required={required.quantity}
-        inputProps={{ min: 1 }}
+        min={1}
         name='quantity'
         rules={{ required: required.quantity }}
         control={control}

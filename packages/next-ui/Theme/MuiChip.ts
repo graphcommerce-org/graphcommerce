@@ -1,5 +1,5 @@
-import { ComponentsVariants, Theme, darken } from '@mui/material'
-import { responsiveVal } from '../Styles'
+import { ComponentsVariants, Theme } from '@mui/material'
+import { responsiveVal, darken } from '../Styles'
 
 declare module '@mui/material/Chip/Chip' {
   interface ChipPropsSizeOverrides {
@@ -53,36 +53,36 @@ export const MuiChip: ChipVariants = [
   {
     props: { variant: 'outlined' },
     style: ({ theme }) => ({
-      borderColor: theme.palette.divider,
-      backgroundColor: theme.palette.background.default,
+      borderColor: theme.vars.palette.divider,
+      backgroundColor: theme.vars.palette.background.default,
       '&:active': {
         boxShadow: 'none',
       },
       '& .MuiChip-deleteIcon': {
-        color: theme.palette.text.primary,
+        color: theme.vars.palette.text.primary,
       },
       '&.MuiChip-clickable:hover': {
-        backgroundColor: darken(theme.palette.background.default, 0.05),
+        ...darken('backgroundColor', theme.vars.palette.background.default, 0.05),
       },
       '& .MuiChip-deleteIcon:hover': {
-        color: theme.palette.text.primary,
+        color: theme.vars.palette.text.primary,
       },
     }),
   },
   {
     props: { color: 'primary' },
     style: ({ theme }) => ({
-      borderColor: theme.palette.text.primary,
-      color: theme.palette.text.primary,
+      borderColor: theme.vars.palette.text.primary,
+      color: theme.vars.palette.text.primary,
       '&:hover': {
-        background: `${theme.palette.background.default} !important`,
-        borderColor: `${theme.palette.divider} !important`,
+        background: `${theme.vars.palette.background.default} !important`,
+        borderColor: `${theme.vars.palette.divider} !important`,
       },
       '&:focus': {
-        background: `${theme.palette.background.paper} !important`,
+        background: `${theme.vars.palette.background.paper} !important`,
       },
       '& .MuiChip-deleteIcon:hover': {
-        color: theme.palette.text.primary,
+        color: theme.vars.palette.text.primary,
       },
     }),
   },

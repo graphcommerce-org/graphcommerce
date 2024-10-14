@@ -51,7 +51,7 @@ export const ProductWishlistIconButton = React.memo<ProductWishlistChipProps>((p
             src={iconHeart}
             size='medium'
             className={classes.wishlistIconActive}
-            sx={(theme) => ({ color: theme.palette.primary.main, fill: 'currentcolor' })}
+            sx={(theme) => ({ color: theme.vars.palette.primary.main, fill: 'currentcolor' })}
           />
         ) : (
           <IconSvg
@@ -59,16 +59,16 @@ export const ProductWishlistIconButton = React.memo<ProductWishlistChipProps>((p
             size='medium'
             className={classes.wishlistIcon}
             sx={(theme) => ({
-              color:
-                theme.palette.mode === 'light'
-                  ? theme.palette.text.secondary
-                  : theme.palette.background.paper,
+              color: theme.vars.palette.text.secondary,
+              ...theme.applyStyles('dark', {
+                color: theme.vars.palette.background.paper,
+              }),
               '.SidebarGallery-root &': {
                 // todo
-                color:
-                  theme.palette.mode === 'light'
-                    ? theme.palette.text.secondary
-                    : theme.palette.primary.contrastText,
+                color: theme.vars.palette.text.secondary,
+                ...theme.applyStyles('dark', {
+                  color: theme.vars.palette.primary.contrastText,
+                }),
               },
             })}
           />

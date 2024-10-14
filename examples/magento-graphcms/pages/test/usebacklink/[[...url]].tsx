@@ -9,12 +9,12 @@ function BackLinkDemo() {
   return (
     <>
       <div>
-        <Link href={href} onClick={onClick} color='primary' underline='hover'>
+        <Link href={href} onClick={onClick} underline='hover' sx={{ color: 'primary' }}>
           Cart
         </Link>
       </div>
       <div>
-        <Link href={hrefb} color='primary' onClick={onClickB} underline='hover'>
+        <Link href={hrefb} onClick={onClickB} underline='hover' sx={{ color: 'primary' }}>
           Shipping
         </Link>
       </div>

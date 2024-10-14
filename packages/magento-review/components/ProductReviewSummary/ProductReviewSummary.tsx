@@ -18,7 +18,7 @@ export function ProductReviewSummary(props: ProductReviewSummaryProps) {
       src={iconStar}
       size='xs'
       className={classes.iconStarDisabled}
-      sx={(theme) => ({ stroke: 'none', fill: theme.palette.grey[300] })}
+      sx={(theme) => ({ stroke: 'none', fill: theme.vars.palette.grey[300] })}
     />
   )
 

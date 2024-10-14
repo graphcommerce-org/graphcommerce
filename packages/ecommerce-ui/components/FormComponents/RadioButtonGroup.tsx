@@ -86,7 +86,7 @@ export function RadioButtonGroup<TFieldValues extends FieldValues>(
             control={
               <Radio
                 sx={{
-                  color: invalid ? theme.palette.error.main : undefined,
+                  color: invalid ? theme.vars.palette.error.main : undefined,
                 }}
                 checked={!value}
               />
@@ -111,7 +111,7 @@ export function RadioButtonGroup<TFieldValues extends FieldValues>(
               control={
                 <Radio
                   sx={{
-                    color: invalid ? theme.palette.error.main : undefined,
+                    color: invalid ? theme.vars.palette.error.main : undefined,
                   }}
                   checked={isChecked}
                 />

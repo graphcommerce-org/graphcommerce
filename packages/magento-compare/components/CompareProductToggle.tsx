@@ -3,7 +3,7 @@ import { iconCompare, Button, Fab, FabProps } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { alpha, Checkbox, NoSsr, SxProps, Theme, useTheme } from '@mui/material'
+import { Checkbox, NoSsr, SxProps, Theme, useTheme } from '@mui/material'
 import { useState } from 'react'
 import { CompareProductIdInternalFragment } from '../graphql'
 import { AddProductsToCompareListDocument } from '../graphql/AddProductsToCompareList.gql'
@@ -106,17 +106,16 @@ function CompareProductToggleBase(
           color='inherit'
           sx={[
             (theme) => ({
-              backgroundColor:
-                theme.palette.mode === 'light' ? theme.palette.background.paper : 'transparent',
+              backgroundColor: theme.vars.palette.background.paper,
+              ...theme.applyStyles('dark', {
+                backgroundColor: 'transparent',
+              }),
               flex: `0 0 auto`,
               '& svg': {
                 stroke: strokeColorPlp,
               },
               '&:hover': {
-                backgroundColor: alpha(
-                  theme.palette.text.primary,
-                  theme.palette.action.hoverOpacity,
-                ),
+                backgroundColor: `rgb(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`,
               },
               '.SidebarGallery-root & svg': {
                 stroke: strokeColorPdp,

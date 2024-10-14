@@ -100,7 +100,7 @@ function ProductPage(props: Props) {
             sx={(theme) => ({
               py: `calc(${theme.spacings.xxs} / 2)`,
               pl: theme.page.horizontal,
-              background: theme.palette.background.paper,
+              background: theme.vars.palette.background.paper,
               [theme.breakpoints.down('md')]: {
                 '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
               },
@@ -117,7 +117,7 @@ function ProductPage(props: Props) {
         >
           <div>
             {isTypename(product, ['ConfigurableProduct', 'BundleProduct']) && (
-              <Typography component='div' variant='body1' color='text.disabled'>
+              <Typography component='div' variant='body1' sx={{ color: 'text.disabled' }}>
                 <Trans
                   id='As low as <0/>'
                   components={{ 0: <Money {...product.price_range.minimum_price.final_price} /> }}

@@ -50,7 +50,7 @@ export function CartItemSummary(props: OrderSummaryProps) {
       sx={[
         (theme) => ({
           padding: `${theme.spacings.sm} ${theme.spacings.sm}`,
-          border: `1px ${theme.palette.divider} solid`,
+          border: `1px ${theme.vars.palette.divider} solid`,
           ...breakpointVal(
             'borderRadius',
             theme.shape.borderRadius * 2,

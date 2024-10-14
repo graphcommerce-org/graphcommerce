@@ -1,7 +1,12 @@
 import { useHistoryLink } from '@graphcommerce/framer-next-pages'
-import { SectionContainer, extendableComponent, breakpointVal } from '@graphcommerce/next-ui'
+import {
+  SectionContainer,
+  extendableComponent,
+  breakpointVal,
+  lighten,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Link, SxProps, Theme, Typography, lighten } from '@mui/material'
+import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
 import { CartAddressMultiLine } from '../CartAddressMultiLine/CartAddressMultiLine'
@@ -70,10 +75,11 @@ export function CartSummary(props: CartSummaryProps) {
             theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
+          background: theme.vars.palette.background.default,
+          ...theme.applyStyles('dark', {
+            ...lighten('background', theme.vars.palette.background.default, 0.15),
+          }),
+
           padding: theme.spacings.sm,
           gridColumnGap: theme.spacings.xxl,
           gridRowGap: theme.spacings.sm,
@@ -115,10 +121,10 @@ export function CartSummary(props: CartSummaryProps) {
                 editable ? (
                   <Link
                     href={historyHref}
-                    color='secondary'
                     variant='body2'
                     onClick={historyOnClick}
                     underline='hover'
+                    sx={{ color: 'secondary' }}
                   >
                     <Trans id='Edit' />
                   </Link>
@@ -137,9 +143,11 @@ export function CartSummary(props: CartSummaryProps) {
               editable ? (
                 <Link
                   href='/checkout/edit/billing-address'
-                  color='secondary'
                   variant='body2'
                   underline='hover'
+                  sx={{
+                    color: 'secondary',
+                  }}
                 >
                   <Trans id='Edit' />
                 </Link>

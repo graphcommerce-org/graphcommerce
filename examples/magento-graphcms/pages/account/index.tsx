@@ -128,7 +128,7 @@ function AccountIndexPage() {
               endIcon={<CustomerNewsletterToggle color='primary' />}
               sx={(theme) => ({
                 cursor: 'default',
-                '&:hover': { background: theme.palette.background.paper },
+                '&:hover': { background: theme.vars.palette.background.paper },
               })}
             />
             {import.meta.graphCommerce.magentoVersion >= 246 &&

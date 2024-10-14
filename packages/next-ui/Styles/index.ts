@@ -1,4 +1,5 @@
 export * from './breakpointVal'
+export * from './colorManipulator'
 export * from './EmotionProvider'
 export * from './extendableComponent'
 export * from './responsiveVal'

@@ -1,7 +1,7 @@
 import { Money } from '@graphcommerce/magento-store'
-import { extendableComponent, breakpointVal } from '@graphcommerce/next-ui'
+import { extendableComponent, breakpointVal, lighten } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Divider, lighten, SxProps, Theme } from '@mui/material'
+import { Box, Divider, SxProps, Theme } from '@mui/material'
 import { useCartQuery, useDisplayInclTax } from '../../hooks'
 import { GetCartTotalsDocument } from './GetCartTotals.gql'
 
@@ -63,10 +63,10 @@ export function CartTotals(props: CartTotalsProps) {
             theme.shape.borderRadius * 5,
             theme.breakpoints.values,
           ),
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
+          background: theme.vars.palette.background.default,
+          ...theme.applyStyles('dark', {
+            ...lighten('background', theme.vars.palette.background.default, 0.15),
+          }),
           padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
 
           '&.containerMargin': {
@@ -166,7 +166,7 @@ export function CartTotals(props: CartTotalsProps) {
           sx={(theme) => ({
             display: 'flex',
             justifyContent: 'space-between',
-            color: theme.palette.primary.main,
+            color: theme.vars.palette.primary.main,
           })}
         >
           <Box>

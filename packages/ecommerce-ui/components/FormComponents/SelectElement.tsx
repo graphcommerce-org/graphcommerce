@@ -77,14 +77,16 @@ export function SelectElement<TFieldValues extends FieldValues, O extends Option
       required={required}
       error={invalid}
       helperText={error ? error.message : rest.helperText}
-      InputProps={{
-        ...rest.InputProps,
-        endAdornment:
-          showValid && value && !error ? (
-            <InputCheckmark show={!error} />
-          ) : (
-            rest.InputProps?.endAdornment
-          ),
+      slotProps={{
+        input: {
+          ...rest.InputProps,
+          endAdornment:
+            showValid && value && !error ? (
+              <InputCheckmark show={!error} />
+            ) : (
+              rest.InputProps?.endAdornment
+            ),
+        },
       }}
     >
       {isNativeSelect && <option />}

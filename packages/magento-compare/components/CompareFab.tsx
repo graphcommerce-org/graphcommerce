@@ -59,7 +59,7 @@ function CompareFabContent(props: CompareFabContentProps) {
           color='inherit'
           sx={(theme) => ({
             width: 'unset',
-            backgroundColor: `${theme.palette.background.paper} !important`,
+            backgroundColor: `${theme.vars.palette.background.paper} !important`,
             [theme.breakpoints.down('md')]: {},
           })}
           {...rest}

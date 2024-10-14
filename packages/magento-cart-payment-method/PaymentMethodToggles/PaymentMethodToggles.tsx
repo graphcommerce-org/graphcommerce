@@ -101,12 +101,12 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
               direction='left'
               className={(classes.buttonRoot, classes.leftButtonRoot)}
               sx={(theme) => ({
-                background: theme.palette.background.paper,
+                background: theme.vars.palette.background.paper,
                 borderRadius: 0,
                 width: 30,
                 height: responsiveVal(60, 85),
                 boxShadow: 'none',
-                border: `1px solid ${theme.palette.divider}`,
+                border: `1px solid ${theme.vars.palette.divider}`,
                 '&:focus': {
                   boxShadow: 'none',
                 },
@@ -159,16 +159,16 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                         selected={value === buttonValue}
                         sx={(theme) => ({
                           typography: 'h6',
-                          border: `1px solid ${theme.palette.divider}`,
+                          border: `1px solid ${theme.vars.palette.divider}`,
                           boxShadow: 'none',
                           transition: 'color .15s ease',
                           whiteSpace: 'nowrap',
                           '&.selected': {
-                            border: `1px solid ${theme.palette.secondary.main}`,
-                            background: `${theme.palette.secondary.main}`,
-                            color: `${theme.palette.secondary.contrastText}`,
+                            border: `1px solid ${theme.vars.palette.secondary.main}`,
+                            background: `${theme.vars.palette.secondary.main}`,
+                            color: `${theme.vars.palette.secondary.contrastText}`,
                             '&:hover': {
-                              background: `${theme.palette.secondary.main}`,
+                              background: `${theme.vars.palette.secondary.main}`,
                             },
                           },
                         })}
@@ -196,12 +196,12 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
               direction='right'
               className={`${classes.buttonRoot} ${classes.rightButtonRoot}`}
               sx={(theme) => ({
-                background: theme.palette.background.paper,
+                background: theme.vars.palette.background.paper,
                 borderRadius: 0,
                 width: 30,
                 height: responsiveVal(60, 85),
                 boxShadow: 'none',
-                border: `1px solid ${theme.palette.divider}`,
+                border: `1px solid ${theme.vars.palette.divider}`,
                 '&:focus': {
                   boxShadow: 'none',
                 },

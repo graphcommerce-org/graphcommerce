@@ -125,7 +125,7 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
             paddingLeft: 0,
             paddingRight: 0,
             [theme.breakpoints.up('md')]: {
-              background: theme.palette.background.default,
+              background: theme.vars.palette.background.default,
               borderRadius: '99em',
             },
             display: 'grid',

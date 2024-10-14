@@ -9,7 +9,7 @@ export function Inline(props: RowLinksFragment) {
   return (
     <VariantInline title={title} maxWidth={false} sx={(theme) => ({ my: theme.spacings.md })}>
       {pageLinks.map((pageLink) => (
-        <Link href={pageLink.url} key={pageLink.id} color='inherit' underline='hover'>
+        <Link href={pageLink.url} key={pageLink.id} underline='hover' sx={{ color: 'inherit' }}>
           {pageLink.title}
         </Link>
       ))}

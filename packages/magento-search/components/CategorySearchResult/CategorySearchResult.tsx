@@ -24,7 +24,7 @@ export function CategorySearchResult(props: CategorySearchResultProps) {
       endIcon={<IconSvg src={iconChevronRight} size='small' />}
       sx={[
         (theme) => ({
-          background: theme.palette.background.default,
+          background: theme.vars.palette.background.default,
           padding: `${theme.spacings.xs} 18px ${theme.spacings.xs} 14px`,
           display: 'flex',
           justifyContent: 'space-between',
@@ -32,13 +32,13 @@ export function CategorySearchResult(props: CategorySearchResultProps) {
           maxWidth: 'unset',
           borderRadius: '0',
           '&:not(&:last-of-type)': {
-            borderBottom: `1px solid ${theme.palette.divider}`,
+            borderBottom: `1px solid ${theme.vars.palette.divider}`,
           },
           '&:focus': {
             boxShadow: 'none',
           },
           '&:hover': {
-            background: theme.palette.background.paper,
+            background: theme.vars.palette.background.paper,
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

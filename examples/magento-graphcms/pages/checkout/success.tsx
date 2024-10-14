@@ -74,9 +74,9 @@ function OrderSuccessPage() {
 
             <SignupNewsletter />
 
-            <InlineAccount accountHref='/account' />
+            <InlineAccount />
 
-            <Box textAlign='center' m={8}>
+            <Box sx={{ textAlign: 'center', m: 8 }}>
               <Button href='/' color='primary' variant='pill' size='large' id='back-to-home'>
                 <Trans id='Back to home' />
               </Button>
