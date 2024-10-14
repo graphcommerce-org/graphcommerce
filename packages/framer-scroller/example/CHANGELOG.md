@@ -1,5 +1,11 @@
 # Change Log
 
+## 8.0.8
+
+### Patch Changes
+
+- [#2382](https://github.com/graphcommerce-org/graphcommerce/pull/2382) [`4aaf3a0`](https://github.com/graphcommerce-org/graphcommerce/commit/4aaf3a0eef629a8019ad90c674709b1458c067f4) - When installing GraphCommerce it would install multiple versions of webpack, causing build errors: Loosen webpack dependency constraint so it installs a single version. ([@paales](https://github.com/paales))
+
 ## 8.0.7
 
 ## 8.0.6
