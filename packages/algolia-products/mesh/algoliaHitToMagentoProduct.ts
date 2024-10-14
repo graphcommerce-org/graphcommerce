@@ -155,6 +155,7 @@ export function algoliaHitToMagentoProduct(
   }
 
   return {
+    staged: false,
     redirect_code: 0,
     __typename: algoliaTypeToTypename[type_id as keyof typeof algoliaTypeToTypename],
     uid: btoa(objectID),
