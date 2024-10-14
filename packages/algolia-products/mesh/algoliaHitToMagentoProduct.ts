@@ -120,7 +120,7 @@ export function algoliaHitToMagentoProduct(
   hit: Algoliahit,
   storeConfig: GetStoreConfigReturn,
   customerGroup: number,
-): ProductsItemsItem | null {
+): (ProductsItemsItem & { staged: boolean }) | null {
   const { objectID, additionalProperties } = hit
   if (!assertAdditional(additionalProperties)) return null
 
