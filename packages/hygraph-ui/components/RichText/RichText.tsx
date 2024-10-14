@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { SxProps, Theme } from '@mui/material'
+import React from 'react'
 import { defaultRenderers } from './defaultRenderers'
 import { defaultSxRenderer } from './defaultSxRenderer'
 import {
@@ -33,6 +34,20 @@ function useRenderProps(
   ]
 }
 
+function LineBreakToBr(props: { text: string }) {
+  const { text } = props
+
+  const textA = text.split('\n')
+  const textArray: React.ReactNode[] = []
+  textA.forEach((val, index) => {
+    textArray.push(val)
+    if (index < textA.length - 1) textArray.push(<br />)
+  })
+
+  // eslint-disable-next-line react/no-array-index-key
+  return textArray.map((val, idx) => <React.Fragment key={idx}>{val}</React.Fragment>)
+}
+
 function RenderText({
   text,
   renderers,
@@ -49,11 +64,13 @@ function RenderText({
 
   const sx = useRenderProps({ first, last, sxRenderer }, type)
 
-  if (!type) return <>{text}</>
-
+  if (!type) return <LineBreakToBr text={text} />
   const Component: Renderer<SimpleElement> = renderers[type]
-
-  return <Component sx={sx}>{text}</Component>
+  return (
+    <Component sx={sx}>
+      <LineBreakToBr text={text} />
+    </Component>
+  )
 }
 
 export function isTextNode(node: ElementOrTextNode): node is TextNode {
