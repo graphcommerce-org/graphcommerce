@@ -1,5 +1,7 @@
 # @graphcommerce/ecommerce-ui
 
+## 8.0.8
+
 ## 8.0.7
 
 ## 8.0.6

@@ -1,5 +1,11 @@
 # @graphcommerce/cli
 
+## 8.0.8
+
+### Patch Changes
+
+- [#2382](https://github.com/graphcommerce-org/graphcommerce/pull/2382) [`3cdf3a6`](https://github.com/graphcommerce-org/graphcommerce/commit/3cdf3a60cf2a95aadc0c4ef782edbe5ebb77818d) - Solve TypeError: url?.startsWith is not a function ([@paales](https://github.com/paales))
+
 ## 8.0.7
 
 ## 8.0.6

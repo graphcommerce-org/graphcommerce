@@ -1,5 +1,15 @@
 # Change Log
 
+## 8.0.8
+
+### Patch Changes
+
+- [#2382](https://github.com/graphcommerce-org/graphcommerce/pull/2382) [`77161b3`](https://github.com/graphcommerce-org/graphcommerce/commit/77161b358facc6e13073a0e8f82dd0984c85fef0) - Solve TypeScript error in @graphcommerce/next-ui/RenderType/RenderType.tsx:39:11. Downgrade @emotion/react to the last working version. ([@paales](https://github.com/paales))
+
+- [#2382](https://github.com/graphcommerce-org/graphcommerce/pull/2382) [`01587a9`](https://github.com/graphcommerce-org/graphcommerce/commit/01587a9ef0df7bdfdef258d12cc56ec257c6a311) - Added missing @swc/types package, causing build errors. ([@paales](https://github.com/paales))
+
+- [#2382](https://github.com/graphcommerce-org/graphcommerce/pull/2382) [`a0680bc`](https://github.com/graphcommerce-org/graphcommerce/commit/a0680bc4a9010ee191b6b70e9da91e3f2c19aa7b) - Remove @graphql-tools/delegate patch as it is no longer necessary. ([@paales](https://github.com/paales))
+
 ## 8.0.7
 
 ## 8.0.6
