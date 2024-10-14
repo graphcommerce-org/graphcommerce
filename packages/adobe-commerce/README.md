@@ -1,1 +1,0 @@
-# Adobe Commerce compatibility package

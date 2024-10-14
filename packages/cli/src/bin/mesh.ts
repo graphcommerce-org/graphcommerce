@@ -1,19 +1,20 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import { promises as fs } from 'node:fs'
+import path from 'node:path'
+import { exit } from 'node:process'
 import type { meshConfig as meshConfigBase } from '@graphcommerce/graphql-mesh/meshConfig'
 import {
   loadConfig,
   packageRoots,
   replaceConfigInString,
   resolveDependenciesSync,
+  sig,
 } from '@graphcommerce/next-config'
 import type { GraphQLMeshCLIParams } from '@graphql-mesh/cli'
 import { DEFAULT_CLI_PARAMS, graphqlMesh } from '@graphql-mesh/cli'
 import type { Logger, YamlConfig } from '@graphql-mesh/types'
 import { DefaultLogger, fileURLToPath } from '@graphql-mesh/utils'
 import dotenv from 'dotenv'
-import { promises as fs } from 'node:fs'
-import path from 'node:path'
-import { exit } from 'node:process'
 import 'tsx/cjs'
 import 'tsx/esm'
 import type { Entries, OmitIndexSignature } from 'type-fest'
@@ -126,6 +127,8 @@ const main = async () => {
   const packages = [...deps.values()].filter((p) => p !== '.')
 
   const mV = graphCommerce.magentoVersion ?? 246
+  sig()
+
   packageRoots(packages).forEach((r) => {
     conf.additionalTypeDefs.push(`${r}/*/schema/**/*.graphqls`)
 
@@ -135,12 +138,13 @@ const main = async () => {
 
     conf.additionalTypeDefs.push(...scanVersions)
 
-    const scanVersionAC = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254]
-      .filter((v) => v > mV)
-      .map((v) => `${r}/*/schema-ac-${v}/**/*.graphqls`)
-    conf.additionalTypeDefs.push(...scanVersionAC)
-
-    conf.additionalTypeDefs.push(`${r}/*/schema-ac/**/*.graphqls`)
+    if (globalThis.gcl?.includes(atob('QGdyYXBoY29tbWVyY2UvYWRvYmUtY29tbWVyY2U='))) {
+      conf.additionalTypeDefs.push(`${r}/*/schema-ac/**/*.graphqls`)
+      const scanVersionAC = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254]
+        .filter((v) => v > mV)
+        .map((v) => `${r}/*/schema-ac-${v}/**/*.graphqls`)
+      conf.additionalTypeDefs.push(...scanVersionAC)
+    }
   })
 
   if (!conf.serve) conf.serve = {}

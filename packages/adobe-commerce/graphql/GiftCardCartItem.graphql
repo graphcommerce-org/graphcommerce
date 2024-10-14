@@ -1,5 +1,0 @@
-fragment GiftCardCartItem on GiftCardCartItem @inject(into: ["CartItem"]) {
-  customizable_options {
-    ...SelectedCustomizableOption
-  }
-}
