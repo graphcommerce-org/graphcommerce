@@ -114,12 +114,15 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
       slotProps={{
         input: {
           ...textFieldProps.slotProps?.input,
+          min,
+          max,
+          step,
           startAdornment: (
             <Fab
               aria-label={i18n._(/* i18n */ 'Decrease')}
               size='smaller'
               onClick={() => {
-                const minVal = -Infinity
+                const minVal = min ?? -Infinity
                 if (
                   (valueAsNumber ?? Infinity) <= minVal ||
                   (minVal === 0 && valueAsNumber <= minVal)
