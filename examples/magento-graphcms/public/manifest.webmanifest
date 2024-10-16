@@ -24,29 +24,6 @@
       "purpose": "any"
     }
   ],
-  "screenshots": [
-    {
-      "src": "/manifest/screenshots/home.png",
-      "sizes": "720x1280",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Homepage"
-    },
-    {
-      "src": "/manifest/screenshots/nav.png",
-      "sizes": "720x1280",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Navigation"
-    },
-    {
-      "src": "/manifest/screenshots/upsell.png",
-      "sizes": "720x1280",
-      "type": "image/png",
-      "form_factor": "Upsell",
-      "label": "Navigation"
-    }
-  ],
   "dir": "ltr",
   "categories": ["shopping", "business"],
   "lang": "nl",
