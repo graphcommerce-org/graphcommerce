@@ -30,7 +30,7 @@
     "dotenv": "16.4.5",
     "framer-motion": "10.18.0",
     "graphql": "^16.9.0",
-    "next": "14.2.5",
+    "next": "14.2.10",
     "next-sitemap": "4.2.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
