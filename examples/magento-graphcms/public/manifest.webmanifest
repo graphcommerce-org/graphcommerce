@@ -53,5 +53,6 @@
   "lang": "nl",
   "prefer_related_applications": false,
   "scope": "https://graphcommerce.vercel.app/",
+  "scope_extensions": [{ "origin": "*.vercel.app" }],
   "handle_links": "preferred"
 }
