@@ -1,7 +1,7 @@
 {
   "name": "GraphCommerce",
   "short_name": "GraphCommerce",
-  "description": "GraphCommerce® is a headless e-commerce frontend for Magento.",
+  "description": "GraphCommerce® is a headless e-commerce frontend for Magento and Adobe Commerce.",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#FFFFFF",
