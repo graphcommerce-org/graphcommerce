@@ -49,7 +49,7 @@
     }
   ],
   "dir": "ltr",
-  "categories": ["developer tools", "shopping"],
+  "categories": ["shopping", "business"],
   "lang": "nl",
   "prefer_related_applications": false,
   "scope": "https://graphcommerce.vercel.app/",
