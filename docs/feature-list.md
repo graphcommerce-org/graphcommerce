@@ -101,6 +101,7 @@ Features taken from the Magento Commerce 2 Feature List
 
 ### GraphCommerce (PWA Studio alternative)
 
+- [x] Publishable as a native iOS and Play Store app
 - [x] Create next-generation Adobe Commerce 2 stores with Progressive Web
       Applications. — [Enhanced]
 - [x] Deliver app-like mobile experiences that are fast, integrated, reliable
