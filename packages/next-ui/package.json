@@ -16,7 +16,7 @@
     "@emotion/react": "^11.11.4",
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.5",
-    "cookie": "^0.6.0",
+    "cookie": "^0.7.0",
     "next-sitemap": "4.2.3",
     "react-is": "^18.3.1"
   },
