@@ -1,0 +1,7 @@
+type GiftCardProduct implements ProductInterface {
+  algolia_looking_similar(input: AlgoliaLookingSimilarInput): [ProductInterface]
+  algolia_frequently_bought_together(
+    input: AlgoliaFrequentlyBoughtTogetherInput
+  ): [ProductInterface]
+  algolia_related_products(input: AlgoliaRelatedProductsInput): [ProductInterface]
+}

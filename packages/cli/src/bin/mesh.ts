@@ -3,21 +3,22 @@
 import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { exit } from 'node:process'
+import type { meshConfig as meshConfigBase } from '@graphcommerce/graphql-mesh/meshConfig'
 import {
   loadConfig,
   packageRoots,
   replaceConfigInString,
   resolveDependenciesSync,
+  sig,
 } from '@graphcommerce/next-config'
-import { graphqlMesh, DEFAULT_CLI_PARAMS, GraphQLMeshCLIParams } from '@graphql-mesh/cli'
+import { DEFAULT_CLI_PARAMS, graphqlMesh, GraphQLMeshCLIParams } from '@graphql-mesh/cli'
 import { Logger, YamlConfig } from '@graphql-mesh/types'
 import { Handler } from '@graphql-mesh/types/typings/config'
 import { DefaultLogger } from '@graphql-mesh/utils'
 import dotenv from 'dotenv'
-import type { OmitIndexSignature, Entries } from 'type-fest'
+import type { Entries, OmitIndexSignature } from 'type-fest'
 import yaml from 'yaml'
 import { findConfig } from '../utils/findConfig'
-import type { meshConfig as meshConfigBase } from '@graphcommerce/graphql-mesh/meshConfig'
 // eslint-disable-next-line import/no-unresolved
 import 'tsx/cjs' // support importing typescript configs in CommonJS
 // eslint-disable-next-line import/no-unresolved
@@ -123,13 +124,24 @@ const main = async () => {
   const packages = [...deps.values()].filter((p) => p !== '.')
 
   const mV = graphCommerce.magentoVersion ?? 246
+  sig()
+
   packageRoots(packages).forEach((r) => {
-    const alsoScan = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254]
+    conf.additionalTypeDefs.push(`${r}/*/schema/**/*.graphqls`)
+
+    const scanVersions = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254]
       .filter((v) => v > mV)
       .map((v) => `${r}/*/schema-${v}/**/*.graphqls`)
 
-    conf.additionalTypeDefs.push(`${r}/*/schema/**/*.graphqls`)
-    conf.additionalTypeDefs.push(...alsoScan)
+    conf.additionalTypeDefs.push(...scanVersions)
+
+    if (globalThis.gcl?.includes(atob('QGdyYXBoY29tbWVyY2UvYWRvYmUtY29tbWVyY2U='))) {
+      conf.additionalTypeDefs.push(`${r}/*/schema-ac/**/*.graphqls`)
+      const scanVersionAC = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254]
+        .filter((v) => v > mV)
+        .map((v) => `${r}/*/schema-ac-${v}/**/*.graphqls`)
+      conf.additionalTypeDefs.push(...scanVersionAC)
+    }
   })
 
   if (!conf.serve) conf.serve = {}
