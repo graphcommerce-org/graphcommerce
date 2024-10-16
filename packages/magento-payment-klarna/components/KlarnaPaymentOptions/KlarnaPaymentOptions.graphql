@@ -1,4 +1,4 @@
-mutation KlarnaPaymentSession($cartId: String!) {
+mutation KlarnaPaymentOptions($cartId: String!) {
   createKlarnaPaymentsSession(input: { cart_id: $cartId }) {
     client_token
     payment_method_categories {

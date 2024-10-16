@@ -1,0 +1,6 @@
+mutation AfterpayPaymentPlaceOrder($cartId: String!, $redirect_path: AfterpayRedirectPathInput!) {
+  createAfterpayCheckout(input: { cart_id: $cartId, redirect_path: $redirect_path }) {
+    afterpay_redirectCheckoutUrl
+    afterpay_token
+  }
+}
