@@ -23,8 +23,9 @@ import {
   ProductListQuery,
   categoryDefaultsToProductListFilters,
   useProductList,
+  productListLink,
 } from '@graphcommerce/magento-product'
-import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { redirectOrNotFound, redirectTo, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutHeader, LayoutTitle, MetaRobots } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Container } from '@mui/material'
@@ -230,7 +231,15 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
   if (!hasCategory && !hasPage) return redirectOrNotFound(staticClient, conf, params, locale)
 
-  if ((await products)?.errors) return { notFound: true }
+  if ((await products)?.errors) {
+    const totalPages = (await filters)?.data.filters?.page_info?.total_pages ?? 0
+    if (productListParams?.currentPage && productListParams.currentPage > totalPages) {
+      const to = productListLink({ ...productListParams, currentPage: totalPages })
+      return redirectTo(to, false, locale)
+    }
+
+    return { notFound: true }
+  }
 
   const { category_url_path, category_name } = findParentBreadcrumbItem(await category) ?? {}
 
