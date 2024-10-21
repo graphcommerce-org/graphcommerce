@@ -45,7 +45,7 @@ export function useFormGqlMutation<Q extends Record<string, unknown>, V extends 
 ): UseFormGqlMutationReturn<Q, V> {
   const form = useForm<V>(options)
   const tuple = useMutation(document, operationOptions)
-  const operation = useFormGql({ document, form, tuple, ...options })
+  const operation = useFormGql({ document, form, tuple, operationOptions, ...options })
   const muiRegister = useFormMuiRegister(form)
   return { ...form, ...operation, muiRegister, valid: {} }
 }
