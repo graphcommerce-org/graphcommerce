@@ -5,7 +5,7 @@ import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container, Link, Button } from '@mui/material'
-import router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
 import { graphqlSharedClient } from '../../../../lib/graphql/graphqlSsrClient'
 
@@ -61,7 +61,7 @@ function CustomerAccountCreatePasswordPage() {
               />
             </p>
 
-            <Button onClick={() => router.back()} variant='pill' color='secondary' size='large'>
+            <Button href='/' variant='pill' color='secondary' size='large'>
               <Trans id='Continue shopping' />
             </Button>
           </Box>
