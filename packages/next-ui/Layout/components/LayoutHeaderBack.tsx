@@ -12,7 +12,9 @@ import { IconSvg } from '../../IconSvg'
 import { responsiveVal } from '../../Styles'
 import { iconChevronLeft } from '../../icons'
 
-export type BackProps = Omit<LinkOrButtonProps, 'onClick' | 'children'>
+export type BackProps = Omit<LinkOrButtonProps, 'onClick' | 'children'> & {
+  preventClickBack?: boolean
+}
 
 export function useShowBack() {
   const path = useRouter().asPath.split('?')[0]
@@ -21,10 +23,7 @@ export function useShowBack() {
   const { backSteps } = usePageContext()
 
   const canClickBack = backSteps > 0 && path !== prevUp?.href
-
-  if (canClickBack) return true
-  if (up?.href && up.href !== path) return true
-  return false
+  return canClickBack || (up?.href && up.href !== path)
 }
 
 const buttonSx: SxProps<Theme> = (theme) => ({
@@ -41,6 +40,7 @@ const buttonSx: SxProps<Theme> = (theme) => ({
 })
 
 export function LayoutHeaderBack(props: BackProps) {
+  const { preventClickBack = false } = props
   const router = useRouter()
   const path = router.asPath.split('?')[0]
   const up = useUp()
@@ -49,7 +49,7 @@ export function LayoutHeaderBack(props: BackProps) {
   const prevPageRouter = usePrevPageRouter()
 
   const backIcon = <IconSvg src={iconChevronLeft} size='medium' />
-  const canClickBack = backSteps > 0 && path !== prevUp?.href
+  const canClickBack = backSteps > 0 && path !== prevUp?.href && !preventClickBack
 
   let label = i18n._(/* i18n */ 'Back')
   if (up?.href === path && up?.title) label = up.title
