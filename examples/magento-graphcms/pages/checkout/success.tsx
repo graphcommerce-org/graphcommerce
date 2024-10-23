@@ -63,7 +63,7 @@ function OrderSuccessPage() {
         )}
         {hasCartId && (
           <>
-            <LayoutTitle icon={iconParty}>
+            <LayoutTitle icon={iconParty} sx={{ flexDirection: { md: 'column' } }}>
               <Box sx={{ display: 'grid', columns: 1, justifyItems: 'center' }}>
                 <Trans id='Thank you for your order!' />
                 {orderNumber && <Typography variant='subtitle1'>#{orderNumber}</Typography>}
