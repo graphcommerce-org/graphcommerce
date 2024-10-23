@@ -40,7 +40,7 @@ function OrderSuccessPage() {
   return (
     <>
       <PageMeta title={i18n._(/* i18n */ 'Checkout summary')} metaRobots={['noindex']} />
-      <LayoutHeader floatingMd>
+      <LayoutHeader floatingMd preventClickBack>
         {hasCartId && (
           <LayoutTitle size='small' icon={iconParty}>
             <Trans id='Thank you for your order!' />

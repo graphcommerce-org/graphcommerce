@@ -1,13 +1,14 @@
 import { Box, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
-import { LayoutHeaderBack, useShowBack } from './LayoutHeaderBack'
+import { BackProps, LayoutHeaderBack, useShowBack } from './LayoutHeaderBack'
 import { LayoutHeaderClose, useShowClose } from './LayoutHeaderClose'
 import { LayoutHeaderContent, LayoutHeaderContentProps } from './LayoutHeaderContent'
 import { FloatingProps } from './LayoutHeadertypes'
 
 export type LayoutHeaderProps = FloatingProps &
-  Omit<LayoutHeaderContentProps, 'left' | 'right'> & {
+  Omit<LayoutHeaderContentProps, 'left' | 'right'> &
+  Pick<BackProps, 'preventClickBack'> & {
     /**
      * Button to display on the left side of the title
      *
@@ -62,6 +63,7 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
     bgColor,
     hideSm = false,
     hideMd = false,
+    preventClickBack,
   } = props
   const showBack = useShowBack() && !hideBackButton
   const showClose = useShowClose()
@@ -75,7 +77,12 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
   if (divider || primary || secondary) floatingSm = false
 
   const close = showClose && <LayoutHeaderClose />
-  const back = showBack && <LayoutHeaderBack breakpoint={floatingSm ? 'xs' : undefined} />
+  const back = showBack && (
+    <LayoutHeaderBack
+      breakpoint={floatingSm ? 'xs' : undefined}
+      preventClickBack={preventClickBack}
+    />
+  )
 
   let left = secondary
   let right = primary
