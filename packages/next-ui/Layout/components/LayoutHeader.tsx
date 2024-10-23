@@ -44,10 +44,9 @@ type ComponentStyleProps = {
   size: 'small' | 'responsive'
 }
 
-const { selectors, withState } = extendableComponent<ComponentStyleProps, 'LayoutHeader'>(
-  'LayoutHeader',
-  ['root'] as const,
-)
+const { withState } = extendableComponent<ComponentStyleProps, 'LayoutHeader'>('LayoutHeader', [
+  'root',
+] as const)
 
 export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
   const {
