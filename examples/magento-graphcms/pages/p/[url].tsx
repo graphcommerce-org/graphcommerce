@@ -10,22 +10,19 @@ import {
   AddProductsToCartForm,
   AddProductsToCartFormProps,
   getProductStaticPaths,
-  jsonLdProduct,
-  jsonLdProductOffer,
   ProductPageName,
   ProductPageAddToCartActionsRow,
   ProductPageBreadcrumbs,
   productPageCategory,
   ProductPageDescription,
   ProductPageGallery,
-  ProductPageJsonLd,
   ProductPageMeta,
   ProductShortDescription,
   AddProductsToCartButton,
 } from '@graphcommerce/magento-product'
 import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-product-configurable'
 import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-products'
-import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
+import { ProductReviewChip } from '@graphcommerce/magento-review'
 import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import { GetStaticProps, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
@@ -42,6 +39,7 @@ import {
   RowRenderer,
   Usps,
 } from '../../components'
+import { ConfigurableProductPageJsonLd } from '../../components/ProductPage/ConfigurableProductPageJsonLd'
 import { AddProductsToCartView } from '../../components/ProductView/AddProductsToCartView'
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
@@ -82,15 +80,7 @@ function ProductPage(props: Props) {
           </LayoutTitle>
         </LayoutHeader>
 
-        <ProductPageJsonLd
-          product={product}
-          render={(p) => ({
-            '@context': 'https://schema.org',
-            ...jsonLdProduct(p),
-            ...jsonLdProductOffer(p),
-            ...jsonLdProductReview(p),
-          })}
-        />
+        <ConfigurableProductPageJsonLd product={product} />
 
         <ProductPageMeta product={product} />
 
