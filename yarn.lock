@@ -4070,6 +4070,7 @@ __metadata:
     framer-motion: "npm:10.18.0"
     graphql: "npm:^16.9.0"
     next: "npm:14.2.5"
+    next-assetlinks: "npm:^1.0.0"
     prettier: "npm:3.3.3"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
@@ -16108,6 +16109,15 @@ __metadata:
   version: 2.6.2
   resolution: "neo-async@npm:2.6.2"
   checksum: 10c0/c2f5a604a54a8ec5438a342e1f356dff4bc33ccccdb6dc668d94fe8e5eccfc9d2c2eea6064b0967a767ba63b33763f51ccf2cd2441b461a7322656c1f06b3f5d
+  languageName: node
+  linkType: hard
+
+"next-assetlinks@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "next-assetlinks@npm:1.0.0"
+  bin:
+    generate-assetlinks: cli.js
+  checksum: 10c0/4d7ca45ae56bb69b877c496c3c51c4107e1800c16ed6022830de9bbbbbebd40aef6970e20e558729513307a069e0a42687aae42fe2e26f87a8cc039799cec61b
   languageName: node
   linkType: hard
 

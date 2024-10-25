@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "concurrently -k -n codegen,next 'graphql-codegen -w' 'next dev'",
     "codegen": "graphcommerce codegen-config && graphcommerce codegen-interceptors && mesh build && graphql-codegen",
-    "build": "graphcommerce codegen-config && graphcommerce codegen-interceptors && mesh build && graphql-codegen && next build",
+    "build": "graphcommerce codegen-config && graphcommerce codegen-interceptors && mesh build && graphql-codegen && next build && generate-assetlinks",
     "start": "next start",
     "tsc:lint": "tsc --noEmit -p .",
     "lingui": "cross-env NODE_ENV=development lingui extract --clean",
@@ -85,6 +85,7 @@
     "framer-motion": "10.18.0",
     "graphql": "^16.9.0",
     "next": "14.2.5",
+    "next-assetlinks": "^1.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.1",
