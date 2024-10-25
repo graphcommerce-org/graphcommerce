@@ -85,6 +85,7 @@
     "framer-motion": "10.18.0",
     "graphql": "^16.9.0",
     "next": "14.2.5",
+    "next-assetlinks": "^1.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.1",
