@@ -4,6 +4,8 @@ import React, { MouseEventHandler } from 'react'
 
 export type ActionCardItemBase = Pick<ActionCardProps, 'value'>
 
+export type ActionCardForceSelection = { forceSelection?: boolean }
+
 export type ActionCardItemRenderProps<T> = ActionCardProps & {
   onReset: MouseEventHandler<HTMLElement>
 } & T
@@ -15,7 +17,7 @@ export type ActionCardListFormProps<A, F extends FieldValues = FieldValues> = Om
   Omit<ControllerProps<F>, 'render'> & {
     items: A[]
     render: React.FC<ActionCardItemRenderProps<A>>
-  }
+  } & ActionCardForceSelection
 
 export function ActionCardListForm<
   T extends ActionCardItemBase,
@@ -33,6 +35,7 @@ export function ActionCardListForm<
     multiple,
     disabled,
     shouldUnregister,
+    forceSelection,
     ...other
   } = props
   const RenderItem = render as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>
@@ -76,7 +79,7 @@ export function ActionCardListForm<
           selected={onSelect(item.value, value)}
           onReset={(e) => {
             e.preventDefault()
-            onChange(null)
+            if (!forceSelection) onChange(null)
           }}
         />
       ))}

@@ -1,3 +1,4 @@
+import { ActionCardForceSelection } from '@graphcommerce/ecommerce-ui'
 import { AddToCartItemSelector, useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { filterNonNullableKeys, ActionCardListProps, useLocale } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -13,7 +14,8 @@ export type ConfigurableProductOptionsProps = AddToCartItemSelector & {
   sx?: SxProps<Theme>
   render?: typeof ConfigurableOptionValue
   product: ConfigurableOptionsFragment
-} & Pick<ActionCardListProps, 'color' | 'variant' | 'size' | 'layout' | 'collapse'>
+} & Pick<ActionCardListProps, 'color' | 'variant' | 'size' | 'layout' | 'collapse'> &
+  ActionCardForceSelection
 
 export function ConfigurableProductOptions(props: ConfigurableProductOptionsProps) {
   const {
