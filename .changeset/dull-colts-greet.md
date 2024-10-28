@@ -3,4 +3,4 @@
 '@graphcommerce/ecommerce-ui': patch
 ---
 
-Add disableDeselectOption boolean to prevent users from deselecting configurable options
+Add requireOptionSelection boolean to prevent users from deselecting configurable options

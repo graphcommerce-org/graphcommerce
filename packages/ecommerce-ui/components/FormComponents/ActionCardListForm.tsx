@@ -4,7 +4,7 @@ import React, { MouseEventHandler } from 'react'
 
 export type ActionCardItemBase = Pick<ActionCardProps, 'value'>
 
-export type ActionCardDisableDeselectOption = { disableDeselectOption?: boolean }
+export type ActionCardRequireOptionSelection = { requireOptionSelection?: boolean }
 
 export type ActionCardItemRenderProps<T> = ActionCardProps & {
   onReset: MouseEventHandler<HTMLElement>
@@ -17,7 +17,7 @@ export type ActionCardListFormProps<A, F extends FieldValues = FieldValues> = Om
   Omit<ControllerProps<F>, 'render'> & {
     items: A[]
     render: React.FC<ActionCardItemRenderProps<A>>
-  } & ActionCardDisableDeselectOption
+  } & ActionCardRequireOptionSelection
 
 export function ActionCardListForm<
   T extends ActionCardItemBase,
@@ -35,7 +35,7 @@ export function ActionCardListForm<
     multiple,
     disabled,
     shouldUnregister,
-    disableDeselectOption,
+    requireOptionSelection,
     ...other
   } = props
   const RenderItem = render as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>
@@ -79,7 +79,7 @@ export function ActionCardListForm<
           selected={onSelect(item.value, value)}
           onReset={(e) => {
             e.preventDefault()
-            if (!disableDeselectOption) onChange(null)
+            if (!requireOptionSelection) onChange(null)
           }}
         />
       ))}

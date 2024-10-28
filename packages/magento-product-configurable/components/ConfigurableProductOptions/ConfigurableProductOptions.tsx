@@ -1,4 +1,4 @@
-import { ActionCardDisableDeselectOption } from '@graphcommerce/ecommerce-ui'
+import { ActionCardRequireOptionSelection } from '@graphcommerce/ecommerce-ui'
 import { AddToCartItemSelector, useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { filterNonNullableKeys, ActionCardListProps, useLocale } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -15,7 +15,7 @@ export type ConfigurableProductOptionsProps = AddToCartItemSelector & {
   render?: typeof ConfigurableOptionValue
   product: ConfigurableOptionsFragment
 } & Pick<ActionCardListProps, 'color' | 'variant' | 'size' | 'layout' | 'collapse'> &
-  ActionCardDisableDeselectOption
+  ActionCardRequireOptionSelection
 
 export function ConfigurableProductOptions(props: ConfigurableProductOptionsProps) {
   const {
