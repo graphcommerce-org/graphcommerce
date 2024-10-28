@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.88
+
+### Patch Changes
+
+- [#2392](https://github.com/graphcommerce-org/graphcommerce/pull/2392) [`1c0bde3`](https://github.com/graphcommerce-org/graphcommerce/commit/1c0bde328035de75b165c40e4a0fe80c7de2267b) - Redirect users to homepage after password reset as `router.back()` often returns an empty or invalid history state. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 9.0.0-canary.87
 
 ### Patch Changes
