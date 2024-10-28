@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.89
+
+### Patch Changes
+
+- [#2393](https://github.com/graphcommerce-org/graphcommerce/pull/2393) [`8946991`](https://github.com/graphcommerce-org/graphcommerce/commit/894699122c2748724acf439ce3ff14fa56a1e68c) - Solve an issue where the success page would show a back button which would go back to the payment page (which would be empty) ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 9.0.0-canary.88
 
 ### Patch Changes

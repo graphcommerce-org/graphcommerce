@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-customer-account",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.0-canary.88",
+  "version": "9.0.0-canary.89",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,9 +12,9 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.88",
-    "@graphcommerce/magento-customer": "^9.0.0-canary.88",
-    "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.88",
-    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.88"
+    "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.89",
+    "@graphcommerce/magento-customer": "^9.0.0-canary.89",
+    "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.89",
+    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.89"
   }
 }
