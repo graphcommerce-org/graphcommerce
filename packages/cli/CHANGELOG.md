@@ -1,5 +1,11 @@
 # @graphcommerce/cli
 
+## 9.0.0-canary.92
+
+### Patch Changes
+
+- [#2365](https://github.com/graphcommerce-org/graphcommerce/pull/2365) [`ee32793`](https://github.com/graphcommerce-org/graphcommerce/commit/ee32793c5e8e7233b4452219e148ebb85600a652) - The mesh would always include all graphqls files even though they aren't necessary for Magento 2.4.7 ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.0-canary.91
 
 ## 9.0.0-canary.90
