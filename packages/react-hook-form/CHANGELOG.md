@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.90
+
+### Minor Changes
+
+- [#2391](https://github.com/graphcommerce-org/graphcommerce/pull/2391) [`c1fa10f`](https://github.com/graphcommerce-org/graphcommerce/commit/c1fa10f995f562741b7574d465580e5405982a70) - Prevent overwriting custom context in useFormGqlMutation by merging operationOptions before execution. ([@wimvdputten](https://github.com/wimvdputten))
+
 ## 9.0.0-canary.89
 
 ## 9.0.0-canary.88

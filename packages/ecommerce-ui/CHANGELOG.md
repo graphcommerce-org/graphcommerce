@@ -1,5 +1,11 @@
 # @graphcommerce/ecommerce-ui
 
+## 9.0.0-canary.90
+
+### Patch Changes
+
+- [#2397](https://github.com/graphcommerce-org/graphcommerce/pull/2397) [`d4d5a98`](https://github.com/graphcommerce-org/graphcommerce/commit/d4d5a983dea6d034dcbdeed9cf30fb33133dde39) - Add requireOptionSelection boolean to prevent users from deselecting configurable options ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 9.0.0-canary.89
 
 ## 9.0.0-canary.88
