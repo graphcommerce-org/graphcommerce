@@ -189,8 +189,8 @@ export function useFormGql<Q, V extends FieldValues>(
       controllerRef.current = new window.AbortController()
 
       const result = await execute({
-        variables,
         ...operationOptions,
+        variables,
         context: {
           ...operationOptions?.context,
           fetchOptions: {
