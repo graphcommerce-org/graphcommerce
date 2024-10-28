@@ -5,6 +5,8 @@ import {
   MutationTuple,
   TypedDocumentNode,
   isApolloError,
+  MutationHookOptions,
+  LazyQueryHookOptions,
 } from '@apollo/client'
 import { getOperationName } from '@apollo/client/utilities'
 import useEventCallback from '@mui/utils/useEventCallback'
@@ -98,6 +100,9 @@ export function useFormGql<Q, V extends FieldValues>(
     document: TypedDocumentNode<Q, V>
     form: UseFormReturn<V>
     tuple: MutationTuple<Q, V> | LazyQueryResultTuple<Q, V>
+    operationOptions?:
+      | Omit<MutationHookOptions<Q, V>, 'fetchPolicy' | 'variables'>
+      | Omit<LazyQueryHookOptions<Q, V>, 'fetchPolicy' | 'variables'>
     defaultValues?: UseFormProps<V>['defaultValues']
     skipUnchanged?: boolean
   } & UseFormGraphQLCallbacks<Q, V>,
@@ -108,6 +113,7 @@ export function useFormGql<Q, V extends FieldValues>(
     document,
     form,
     tuple,
+    operationOptions,
     skipUnchanged,
     defaultValues,
     deprecated_useV1 = false,
@@ -181,9 +187,17 @@ export function useFormGql<Q, V extends FieldValues>(
       submittedVariables.current = variables
       if (!deprecated_useV1 && loading) controllerRef.current?.abort()
       controllerRef.current = new window.AbortController()
+
       const result = await execute({
+        ...operationOptions,
         variables,
-        context: { fetchOptions: { signal: controllerRef.current.signal } },
+        context: {
+          ...operationOptions?.context,
+          fetchOptions: {
+            ...operationOptions?.context?.fetchOptions,
+            signal: controllerRef.current.signal,
+          },
+        },
       })
 
       const [, onCompleteError] = await complete(result, variables)
