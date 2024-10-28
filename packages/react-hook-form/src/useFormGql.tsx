@@ -6,6 +6,7 @@ import {
   TypedDocumentNode,
   isApolloError,
   MutationHookOptions,
+  LazyQueryHookOptions,
 } from '@apollo/client'
 import { getOperationName } from '@apollo/client/utilities'
 import useEventCallback from '@mui/utils/useEventCallback'
@@ -99,7 +100,9 @@ export function useFormGql<Q, V extends FieldValues>(
     document: TypedDocumentNode<Q, V>
     form: UseFormReturn<V>
     tuple: MutationTuple<Q, V> | LazyQueryResultTuple<Q, V>
-    operationOptions?: MutationHookOptions<Q, V>
+    operationOptions?:
+      | Omit<MutationHookOptions<Q, V>, 'fetchPolicy' | 'variables'>
+      | Omit<LazyQueryHookOptions<Q, V>, 'fetchPolicy' | 'variables'>
     defaultValues?: UseFormProps<V>['defaultValues']
     skipUnchanged?: boolean
   } & UseFormGraphQLCallbacks<Q, V>,

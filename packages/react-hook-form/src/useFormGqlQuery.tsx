@@ -16,7 +16,7 @@ export function useFormGqlQuery<Q extends Record<string, unknown>, V extends Fie
 ): UseFormGqlQueryReturn<Q, V> {
   const form = useForm<V>(options)
   const tuple = useLazyQuery(document, operationOptions)
-  const operation = useFormGql({ document, form, tuple, ...options })
+  const operation = useFormGql({ document, form, tuple, operationOptions, ...options })
   const muiRegister = useFormMuiRegister(form)
 
   return { ...form, ...operation, valid: {}, muiRegister }
