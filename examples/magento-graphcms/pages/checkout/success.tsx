@@ -40,7 +40,7 @@ function OrderSuccessPage() {
   return (
     <>
       <PageMeta title={i18n._(/* i18n */ 'Checkout summary')} metaRobots={['noindex']} />
-      <LayoutHeader floatingMd>
+      <LayoutHeader floatingMd disableBackNavigation>
         {hasCartId && (
           <LayoutTitle size='small' icon={iconParty}>
             <Trans id='Thank you for your order!' />
@@ -63,7 +63,7 @@ function OrderSuccessPage() {
         )}
         {hasCartId && (
           <>
-            <LayoutTitle icon={iconParty}>
+            <LayoutTitle icon={iconParty} sx={{ flexDirection: { md: 'column' } }}>
               <Box sx={{ display: 'grid', columns: 1, justifyItems: 'center' }}>
                 <Trans id='Thank you for your order!' />
                 {orderNumber && <Typography variant='subtitle1'>#{orderNumber}</Typography>}
