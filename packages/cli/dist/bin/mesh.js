@@ -118,7 +118,10 @@ const main = async () => {
         return additionalTypeDef;
     });
     // Scan the current working directory to also read all graphqls files.
-    conf.additionalTypeDefs.push('**/*.graphqls');
+    conf.additionalTypeDefs.push('graphql/**/*.graphqls');
+    conf.additionalTypeDefs.push('components/**/*.graphqls');
+    conf.additionalTypeDefs.push('lib/**/*.graphqls');
+    conf.additionalTypeDefs.push('app/**/*.graphqls');
     const deps = (0, next_config_1.resolveDependenciesSync)();
     const packages = [...deps.values()].filter((p) => p !== '.');
     const mV = graphCommerce.magentoVersion ?? 246;
