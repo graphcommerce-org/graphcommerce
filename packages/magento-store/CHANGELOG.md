@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.91
+
+### Patch Changes
+
+- [#2367](https://github.com/graphcommerce-org/graphcommerce/pull/2367) [`71d412d`](https://github.com/graphcommerce-org/graphcommerce/commit/71d412d202bc94a0e676745547de5d809a7a850b) - When a user access a category page which is beyond the available total_pages, the user will be redirected to the last available page. ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.90
 
 ## 9.0.0-canary.89

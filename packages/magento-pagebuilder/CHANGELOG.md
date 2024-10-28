@@ -1,5 +1,7 @@
 # @graphcommerce/magento-pagebuilder
 
+## 9.0.0-canary.91
+
 ## 9.0.0-canary.90
 
 ## 9.0.0-canary.89

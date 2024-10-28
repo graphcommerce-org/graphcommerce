@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.91
+
+### Patch Changes
+
+- [#2384](https://github.com/graphcommerce-org/graphcommerce/pull/2384) [`d7c293a`](https://github.com/graphcommerce-org/graphcommerce/commit/d7c293aa49be39f499b46ea57bfda4dbdf67ebe6) - feat(GCOM-1494: Add support for linebreaks in Hygraph content ) ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 9.0.0-canary.90
 
 ## 9.0.0-canary.89
