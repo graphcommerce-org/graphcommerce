@@ -23,6 +23,25 @@ const notFound = (from: string, reason: string) => {
   return { notFound: true, revalidate: 60 * 20 } as const
 }
 
+const urlPrefix = (locale?: string) => {
+  const localeHasDomain = Boolean(storefrontConfig(locale)?.domain)
+  return localeHasDomain || locale === defaultLocale() ? '' : `/${locale}`
+}
+
+export const redirectTo = (
+  to: string,
+  permanent: boolean,
+  locale?: string,
+): { redirect: Redirect; revalidate?: number | boolean } => {
+  console.log(
+    `[redirectTo]: ${permanent ? 'Permanent' : 'Temporary'} redirect to ${urlPrefix(locale)}${to}`,
+  )
+  return {
+    redirect: { destination: `${urlPrefix(locale)}${to}`, permanent },
+    revalidate: 60 * 20,
+  }
+}
+
 const redirect = (from: string, to: string, permanent: boolean, locale?: string) => {
   const localeHasDomain = Boolean(storefrontConfig(locale)?.domain)
   const prefix = localeHasDomain || locale === defaultLocale() ? '' : `/${locale}`
