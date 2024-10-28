@@ -99,7 +99,7 @@ export function useFormGql<Q, V extends FieldValues>(
     document: TypedDocumentNode<Q, V>
     form: UseFormReturn<V>
     tuple: MutationTuple<Q, V> | LazyQueryResultTuple<Q, V>
-    operationOptions?: MutationHookOptions<Q, V>,
+    operationOptions?: MutationHookOptions<Q, V>
     defaultValues?: UseFormProps<V>['defaultValues']
     skipUnchanged?: boolean
   } & UseFormGraphQLCallbacks<Q, V>,
@@ -184,9 +184,17 @@ export function useFormGql<Q, V extends FieldValues>(
       submittedVariables.current = variables
       if (!deprecated_useV1 && loading) controllerRef.current?.abort()
       controllerRef.current = new window.AbortController()
+
       const result = await execute({
         variables,
-        context: { fetchOptions: { signal: controllerRef.current.signal }, ...operationOptions?.context},
+        ...operationOptions,
+        context: {
+          ...operationOptions?.context,
+          fetchOptions: {
+            ...operationOptions?.context?.fetchOptions,
+            signal: controllerRef.current.signal,
+          },
+        },
       })
 
       const [, onCompleteError] = await complete(result, variables)
