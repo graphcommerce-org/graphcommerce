@@ -3,4 +3,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-Add ‘preventClickBack’ boolean to optionally disable back navigation.
+Solve an issue where the success page would show a back button which would go back to the payment page (which would be empty)

@@ -8,7 +8,7 @@ import { FloatingProps } from './LayoutHeadertypes'
 
 export type LayoutHeaderProps = FloatingProps &
   Omit<LayoutHeaderContentProps, 'left' | 'right'> &
-  Pick<BackProps, 'preventClickBack'> & {
+  Pick<BackProps, 'disableBackNavigation'> & {
     /**
      * Button to display on the left side of the title
      *
@@ -63,7 +63,7 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
     bgColor,
     hideSm = false,
     hideMd = false,
-    preventClickBack,
+    disableBackNavigation,
   } = props
   const showBack = useShowBack() && !hideBackButton
   const showClose = useShowClose()
@@ -80,7 +80,7 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
   const back = showBack && (
     <LayoutHeaderBack
       breakpoint={floatingSm ? 'xs' : undefined}
-      preventClickBack={preventClickBack}
+      disableBackNavigation={disableBackNavigation}
     />
   )
 

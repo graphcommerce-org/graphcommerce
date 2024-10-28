@@ -13,7 +13,10 @@ import { responsiveVal } from '../../Styles'
 import { iconChevronLeft } from '../../icons'
 
 export type BackProps = Omit<LinkOrButtonProps, 'onClick' | 'children'> & {
-  preventClickBack?: boolean
+  /**
+   * Will not use `router.back()` if available, and will always use the `up.href`
+   */
+  disableBackNavigation?: boolean
 }
 
 export function useShowBack() {
@@ -40,7 +43,7 @@ const buttonSx: SxProps<Theme> = (theme) => ({
 })
 
 export function LayoutHeaderBack(props: BackProps) {
-  const { preventClickBack = false } = props
+  const { disableBackNavigation = false } = props
   const router = useRouter()
   const path = router.asPath.split('?')[0]
   const up = useUp()
@@ -49,7 +52,7 @@ export function LayoutHeaderBack(props: BackProps) {
   const prevPageRouter = usePrevPageRouter()
 
   const backIcon = <IconSvg src={iconChevronLeft} size='medium' />
-  const canClickBack = backSteps > 0 && path !== prevUp?.href && !preventClickBack
+  const canClickBack = backSteps > 0 && path !== prevUp?.href && !disableBackNavigation
 
   let label = i18n._(/* i18n */ 'Back')
   if (up?.href === path && up?.title) label = up.title
