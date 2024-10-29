@@ -5,4 +5,4 @@
 '@graphcommerce/ecommerce-ui': minor
 ---
 
-Created a new TelephoneElement component to make re-use easier
+Created a new `<TelephoneElement />` component to make re-use easier.

@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/magento-product": patch
+'@graphcommerce/magento-product': patch
 ---
 
-When applying a filter it would not always scroll to the #products.
+When applying a filter it would not always scroll to the `#products`.

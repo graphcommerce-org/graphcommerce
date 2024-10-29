@@ -3,4 +3,4 @@
 '@graphcommerce/magento-graphcms': minor
 ---
 
-Add save in address book checkbox to shipping address form
+Add a 'save in address book' checkbox to the shipping address form.

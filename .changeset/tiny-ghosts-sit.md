@@ -2,4 +2,4 @@
 '@graphcommerce/ecommerce-ui': patch
 ---
 
-Fix NumberFieldElement when min = 0
+Solve issue where `<NumberFieldElement />` would allow numbers below zero when `min = 0`.

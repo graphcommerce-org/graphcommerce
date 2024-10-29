@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/react-hook-form": patch
+'@graphcommerce/react-hook-form': patch
 ---
 
-Added missing dependencies of lodash and @types/lodash
+Added missing dependencies of `lodash` and `@types/lodash`.

@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/magento-category": patch
+'@graphcommerce/magento-category': patch
 ---
 
-make the CategoryHeroNav fragment injectable and add image to the childeren
+Made the `CategoryHeroNav` fragment injectable and added an image to the children.

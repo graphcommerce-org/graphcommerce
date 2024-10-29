@@ -5,4 +5,4 @@
 '@graphcommerce/magento-payment-adyen': patch
 ---
 
-Payment method will now throw an error in onComplete to handle obscure errors
+Payment method will now throw an error in `onComplete` to handle obscure errors.

@@ -2,4 +2,4 @@
 '@graphcommerce/graphql': patch
 ---
 
-Make sure the InContextMask only warns when a block is renderer during the initial ssr render.
+The `<InContextMask />` component now only warns when a block is rendered during the initial SSR render.

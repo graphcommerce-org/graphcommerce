@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/framer-scroller": patch
+'@graphcommerce/framer-scroller': patch
 ---
 
-Prevent ScrollerThumbnail from scrolling the page horizontally
+Prevent `<ScrollerThumbnail />` from scrolling the page horizontally.

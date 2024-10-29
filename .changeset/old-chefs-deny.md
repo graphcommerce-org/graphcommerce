@@ -2,4 +2,4 @@
 '@graphcommerce/magento-cart': patch
 ---
 
-Pass sx props to EmptyCart component
+Pass `sx` props to `<EmptyCart/>` component.

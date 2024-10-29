@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/hygraph-dynamic-rows-ui": patch
+'@graphcommerce/hygraph-dynamic-rows-ui': patch
 ---
 
-fix hygraph studio bugs in Dynamic Row UI module. Style config screen DR UI app.
+Solve bugs in the Dynamic Row UI module and styled the config screen.

@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/graphcms-ui": patch
+'@graphcommerce/graphcms-ui': patch
 ---
 
-Allow blog pages to be nested
+Allow blog pages to be nested.

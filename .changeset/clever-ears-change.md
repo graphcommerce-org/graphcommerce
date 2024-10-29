@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/magento-cart": patch
+'@graphcommerce/magento-cart': patch
 ---
 
-When signing in make sure the cart isn't merged if the login is unsuccesful
+When signing in make sure the cart isn't merged if the login is unsuccesful.

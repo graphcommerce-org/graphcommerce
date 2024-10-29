@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/react-hook-form": patch
+'@graphcommerce/react-hook-form': patch
 ---
 
-Migrate most usages of useFormAutoSubmit to <FormAutoSubmit/> and deprecated useFormAutoSubmit
+Migrate most usages of `useFormAutoSubmit` to `<FormAutoSubmit/>` and deprecated `useFormAutoSubmit`.

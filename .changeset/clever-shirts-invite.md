@@ -2,4 +2,4 @@
 '@graphcommerce/docs': patch
 ---
 
-Added docs about caching
+Added docs about caching.

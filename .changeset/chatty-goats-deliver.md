@@ -2,4 +2,4 @@
 '@graphcommerce/next-ui': patch
 ---
 
-USPS would be loaded after other pages, causing uneceesasry slowdown
+USPS would be loaded after other queries, causing unnecessary slowdown.

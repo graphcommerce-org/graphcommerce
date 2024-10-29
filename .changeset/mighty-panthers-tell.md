@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/magento-cart": minor
+'@graphcommerce/magento-cart': minor
 ---
 
-Get shippingMethodPrices from selected shipping method if supported on the magento version
+Get `shippingMethodPrices` from selected shipping method if supported on the magento version

@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/magento-graphcms": minor
+'@graphcommerce/magento-graphcms': minor
 ---
 
-Move products sitemap to sitemap folder
+Move products sitemap to the sitemap folder.
