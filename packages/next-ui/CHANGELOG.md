@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.93
+
+### Patch Changes
+
+- [#2398](https://github.com/graphcommerce-org/graphcommerce/pull/2398) [`557171b`](https://github.com/graphcommerce-org/graphcommerce/commit/557171b7f5e9aa3d16205e53670082a90550ef1d) - Exclude ‘disableBackNavigation’ prop from LinkOrButton in LayoutHeaderBack. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 9.0.0-canary.92
 
 ## 9.0.0-canary.91
