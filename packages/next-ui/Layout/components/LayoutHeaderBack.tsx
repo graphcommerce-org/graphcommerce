@@ -43,7 +43,7 @@ const buttonSx: SxProps<Theme> = (theme) => ({
 })
 
 export function LayoutHeaderBack(props: BackProps) {
-  const { disableBackNavigation = false } = props
+  const { disableBackNavigation = false, ...rest } = props
   const router = useRouter()
   const path = router.asPath.split('?')[0]
   const up = useUp()
@@ -68,7 +68,7 @@ export function LayoutHeaderBack(props: BackProps) {
         color='inherit'
         startIcon={backIcon}
         aria-label={label}
-        {...props}
+        {...rest}
       >
         <Box component='span' sx={{ display: { xs: 'none', md: 'inline' } }}>
           {label}
@@ -85,7 +85,7 @@ export function LayoutHeaderBack(props: BackProps) {
         startIcon={backIcon}
         aria-label={up.title}
         color='inherit'
-        {...props}
+        {...rest}
       >
         <Box component='span' sx={{ display: { xs: 'none', md: 'inline' } }}>
           {up.title}
