@@ -223,6 +223,10 @@ Provide a value to enable Google Analytics for your store.
 
 To override the value for a specific locale, configure in i18n config.
 
+#### googleMapsApiKey: string
+
+Configure your Google Maps api key
+
 #### googleRecaptchaKey: string
 
 Google reCAPTCHA site key.
@@ -330,6 +334,8 @@ If false, the robots.txt file will be set to disallow all.
 #### sidebarGallery: [SidebarGalleryConfig](#SidebarGalleryConfig)
 
 Configuration for the SidebarGallery component
+
+#### storeLocator: [StoreLocatorConfig](#StoreLocatorConfig)
 
 #### wishlistHideForGuests: boolean
 
@@ -481,3 +487,11 @@ SidebarGalleryConfig will contain all configuration values for the Sidebar Galle
 #### paginationVariant: DOTS | THUMBNAILS_BOTTOM
 
 Variant used for the pagination
+
+### StoreLocatorConfig
+
+Settings for StoreLocator
+
+#### enablePreferredStoreSelection: boolean
+
+Enable/disable preferred store selection

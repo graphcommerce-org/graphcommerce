@@ -9,9 +9,17 @@ import { ProductInfoInput } from '@graphcommerce/graphql-mesh'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { useShippingMethod } from '@graphcommerce/magento-cart-shipping-method'
 import { GetShippingMethodsDocument } from '@graphcommerce/magento-cart-shipping-method/components/ShippingMethodForm/GetShippingMethods.gql'
-import { ActionCardItemBase, ActionCardListForm, FormRow } from '@graphcommerce/next-ui'
+import {
+  ActionCardItemBase,
+  ActionCardListForm,
+  FormRow,
+  iconMap,
+  IconSvg,
+} from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { useMemo, useDeferredValue } from 'react'
+import { Fab } from '@mui/material'
+import { useMemo, useDeferredValue, useEffect, useCallback } from 'react'
 import { GetPickupLocationsForProductsDocument } from '../graphql/GetPickupLocationsForProducts.gql'
 import {
   SetPickupLocationOnCartDocument,
@@ -42,7 +50,7 @@ export function PickupLocationForm(props: PickupLocationFormProps) {
 
   const defaultSearchTerm = shippingAddress?.pickup_location_code
     ? undefined
-    : shippingAddress?.postcode ?? undefined
+    : (shippingAddress?.postcode ?? undefined)
 
   const form = useFormGqlMutationCart<
     SetPickupLocationOnCartMutation,
@@ -73,6 +81,36 @@ export function PickupLocationForm(props: PickupLocationFormProps) {
 
   useFormCompose({ form, step, submit, key: 'PickupLocationForm' })
 
+  const updatePickupLocation = useCallback(
+    (pickup_location_code: string) => {
+      form.setValue('pickupLocationCode', pickup_location_code)
+      form.setValue('searchTerm', pickup_location_code)
+    },
+    [form],
+  )
+
+  useEffect(() => {
+    if (!import.meta.graphCommerce.storeLocator?.enablePreferredStoreSelection) return
+    // Initally select the preferred store if it was previously set
+    if (
+      !form.getValues('pickupLocationCode') &&
+      !form.getFieldState('pickupLocationCode').isDirty
+    ) {
+      const storedValue = window.localStorage.getItem('pickup_location_code')
+      const pickup_location_code = storedValue ? JSON.parse(storedValue) : null
+      if (pickup_location_code && typeof pickup_location_code === 'string') {
+        updatePickupLocation(pickup_location_code)
+      }
+    }
+    // Listen for changes in preferred store via StoreLocator
+    global.document.addEventListener('set-preferred-store', ((event: CustomEvent) => {
+      const pickup_location_code = event.detail.pickup_location_code as string | null
+      if (pickup_location_code) {
+        updatePickupLocation(pickup_location_code)
+      }
+    }) as EventListener)
+  }, [form, updatePickupLocation])
+
   const searchTerm = useDeferredValue((form.watch('searchTerm') || defaultSearchTerm) ?? '')
   const locationsQuery = useQuery(GetPickupLocationsForProductsDocument, {
     variables: {
@@ -90,20 +128,26 @@ export function PickupLocationForm(props: PickupLocationFormProps) {
 
   const selected = form.watch('pickupLocationCode')
 
-  // What to do when shippingForm is pickup but there aren't any available pickup locations?
   if (!isAvailable) return null
 
   return (
     <form onSubmit={submit} noValidate>
       {!selected && (
-        <FormRow>
+        <FormRow sx={(theme) => ({ display: 'flex', gap: `calc(${theme.spacings.xxs} * 2)` })}>
           <TextFieldElement
             name='searchTerm'
             control={control}
             rules={{ required: false, minLength: 4 }}
             label={<Trans id='Zip code or city' />}
             type='text'
+            sx={{ flexGrow: 1 }}
           />
+          {import.meta.graphCommerce.storeLocator?.enablePreferredStoreSelection}
+          {import.meta.graphCommerce.storeLocator?.enablePreferredStoreSelection && (
+            <Fab aria-label={i18n._(/* i18n */ `Blog`)} href='/stores'>
+              <IconSvg src={iconMap} />
+            </Fab>
+          )}
         </FormRow>
       )}
 

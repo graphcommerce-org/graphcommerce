@@ -3696,7 +3696,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-cart-pickup@workspace:packages/magento-cart-pickup":
+"@graphcommerce/magento-cart-pickup@npm:9.0.0-canary.79, @graphcommerce/magento-cart-pickup@workspace:packages/magento-cart-pickup":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-cart-pickup@workspace:packages/magento-cart-pickup"
   peerDependencies:
@@ -3967,6 +3967,7 @@ __metadata:
     "@graphcommerce/magento-cart-email": "npm:9.0.0-canary.79"
     "@graphcommerce/magento-cart-items": "npm:9.0.0-canary.79"
     "@graphcommerce/magento-cart-payment-method": "npm:9.0.0-canary.79"
+    "@graphcommerce/magento-cart-pickup": "npm:9.0.0-canary.79"
     "@graphcommerce/magento-cart-shipping-address": "npm:9.0.0-canary.79"
     "@graphcommerce/magento-cart-shipping-method": "npm:9.0.0-canary.79"
     "@graphcommerce/magento-category": "npm:9.0.0-canary.79"
@@ -3988,6 +3989,7 @@ __metadata:
     "@graphcommerce/magento-review": "npm:9.0.0-canary.79"
     "@graphcommerce/magento-search": "npm:9.0.0-canary.79"
     "@graphcommerce/magento-store": "npm:9.0.0-canary.79"
+    "@graphcommerce/magento-store-locator": "npm:9.0.0-canary.79"
     "@graphcommerce/magento-wishlist": "npm:9.0.0-canary.79"
     "@graphcommerce/next-config": "npm:9.0.0-canary.79"
     "@graphcommerce/next-ui": "npm:9.0.0-canary.79"
@@ -4526,20 +4528,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/magento-store-locator@workspace:packages/magento-store-locator":
+"@graphcommerce/magento-store-locator@npm:9.0.0-canary.79, @graphcommerce/magento-store-locator@workspace:packages/magento-store-locator":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/magento-store-locator@workspace:packages/magento-store-locator"
   peerDependencies:
     "@googlemaps/js-api-loader": ^1.16.6
     "@googlemaps/markerclusterer": ^2.5.3
-    "@graphcommerce/ecommerce-ui": ^8.1.0-canary.6
-    "@graphcommerce/eslint-config-pwa": ^8.1.0-canary.6
-    "@graphcommerce/graphql": ^8.1.0-canary.6
-    "@graphcommerce/magento-store": ^8.1.0-canary.6
-    "@graphcommerce/next-ui": 8.1.0-canary.6
-    "@graphcommerce/prettier-config-pwa": ^8.1.0-canary.6
-    "@graphcommerce/react-hook-form": ^8.1.0-canary.6
-    "@graphcommerce/typescript-config-pwa": ^8.1.0-canary.6
+    "@graphcommerce/ecommerce-ui": ^9.0.0-canary.79
+    "@graphcommerce/eslint-config-pwa": ^9.0.0-canary.79
+    "@graphcommerce/graphql": ^9.0.0-canary.79
+    "@graphcommerce/magento-store": ^9.0.0-canary.79
+    "@graphcommerce/next-ui": 9.0.0-canary.79
+    "@graphcommerce/prettier-config-pwa": ^9.0.0-canary.79
+    "@graphcommerce/react-hook-form": ^9.0.0-canary.79
+    "@graphcommerce/typescript-config-pwa": ^9.0.0-canary.79
     "@lingui/core": ^4.2.1
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1

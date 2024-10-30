@@ -29,48 +29,56 @@ export function StoreLocator({ stores, markerConfig }: StoreLocatorProps) {
 
   useCurrentPositionMarker(position)
 
-  console.log('rendering storelocator', position)
-
   return (
     <Box
       sx={{
-        display: { xs: 'flex', md: 'grid' },
-        flexDirection: { xs: 'column' },
-        gridTemplateAreas: {
-          md: '"filters map" "filters map"',
-        },
-        gridTemplateColumns: {
-          md: 'minmax(375px, 700px) 1fr',
-        },
-        maxWidth: {
-          md: '98vw',
-        },
+        display: 'flex',
+        flexDirection: { xs: 'column', md: 'row' },
         height: '100%',
+        paddingTop: (theme) => ({
+          xs: theme.appShell.headerHeightSm,
+          md: theme.appShell.appBarHeightMd,
+        }),
+        maxWidth: '100vw',
         '& .gm-style .gm-style-iw-c': {
           maxWidth: { xs: '90vw !important' },
         },
       }}
     >
       <Box
-        sx={(theme) => ({
-          gridArea: 'filters',
-          padding: theme.spacings.xs,
-          backgroundColor: theme.palette.background.default,
-          height: { md: '100%' },
-          gridTemplateAreas: { xs: 'none' },
+        sx={{
+          width: { xs: '100%', md: '30%' },
+          minWidth: { md: '300px' },
           display: 'flex',
           flexDirection: 'column',
-          position: 'relative',
-          overflowY: { md: 'scroll' },
-          scrollbarWidth: 'none',
-        })}
+          flexGrow: {
+            xs: 1,
+            md: 0,
+          },
+          borderRight: { md: '1px solid' },
+          borderColor: 'divider',
+          background: (theme) => theme.palette.background.default,
+          order: { xs: 2, md: 1 },
+          height: { xs: 'auto', md: '100%' },
+          overflowY: 'auto',
+        }}
       >
         <StoreFilters />
-        <StoreList position={position} stores={sortedStores} />
+        <Box sx={{ flexGrow: 1, overflowY: 'auto', scrollbarWidth: 'none' }}>
+          <StoreList position={position} stores={sortedStores} />
+        </Box>
       </Box>
 
-      <Box sx={{ height: '100%', gridArea: 'map' }} className='Scroller-root'>
-        <Box sx={{ height: '100%' }} ref={ref} id='map' />
+      <Box
+        sx={{
+          flexGrow: 1,
+          position: 'relative',
+          order: { xs: 1, md: 2 },
+          minHeight: { xs: '35vh', md: '100%' },
+          maxHeight: { xs: '35vh', md: '100%' },
+        }}
+      >
+        <Box ref={ref} id='map' sx={{ width: '100%', height: '100%' }} className='Scroller-root' />
         {sortedStores.map((store) => (
           <Marker key={store.pickup_location_code} store={store} markerConfig={markerConfig} />
         ))}

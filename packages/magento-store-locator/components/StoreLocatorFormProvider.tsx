@@ -21,8 +21,6 @@ export function StoreLocatorFormProvider(props: { children: ReactNode }) {
   const { children } = props
   const form = useForm<FormValues>()
 
-  globalThis.aaa = form
-
   return (
     <StoreLocatorFormContext.Provider value={form}>
       <FormPersist form={form} name='StoreLocatorForm' />

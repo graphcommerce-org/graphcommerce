@@ -4,23 +4,31 @@ import { RefObject, createContext, useContext, useEffect, useMemo, useRef, useSt
 type StoreLocatorMapContextType = {
   ref: RefObject<HTMLDivElement>
   map?: google.maps.Map
+  additionalOptions: {
+    searchQuerySuffix?: string
+  }
 }
 
 const StoreLocatorMapContext = createContext<StoreLocatorMapContextType | undefined>(undefined)
 
 type StoreLocatorMapLoaderProps = {
   mapOptions: google.maps.MapOptions
+  additionalOptions: {
+    searchQuerySuffix?: string
+  }
   children: React.ReactNode
 }
 
 export function StoreLocatorMapLoader(props: StoreLocatorMapLoaderProps) {
-  const apiKey =
-    import.meta.graphCommerce.googleMapsApiKey ?? 'AIzaSyD5g-gFYTuvqhrD4XxiMemuLpiKlnnmDn0' // @todo
-  const { mapOptions, children } = props
+  const apiKey = import.meta.graphCommerce.googleMapsApiKey
+  const { mapOptions, additionalOptions, children } = props
   const mapsRef = useRef<HTMLDivElement>(null)
   const [map, setMap] = useState<google.maps.Map>()
 
-  const value: StoreLocatorMapContextType = useMemo(() => ({ ref: mapsRef, map }), [map, mapsRef])
+  const value: StoreLocatorMapContextType = useMemo(
+    () => ({ ref: mapsRef, map, additionalOptions }),
+    [additionalOptions, map],
+  )
 
   useEffect(() => {
     if (!apiKey || !mapsRef.current)

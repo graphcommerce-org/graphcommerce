@@ -1,6 +1,5 @@
 export * from './CurrentPositionMarker'
 export * from './FindLocation'
-export * from './StoreInfoWindow'
 export * from './StoreList'
 export * from './StoreListItem'
 export * from './StoreLocator'

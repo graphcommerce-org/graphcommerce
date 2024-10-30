@@ -55,7 +55,7 @@ const MarkerRender = React.memo<
         lng: Number(store.lng),
       }
 
-      // map.setZoom(11) @todo re-enable
+      map.setZoom(11)
       map.setCenter(newPosition)
     }
 

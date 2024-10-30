@@ -32,6 +32,7 @@ function Stores({ stores }: { stores: StoreFragment[] }) {
       </LayoutOverlayHeader>
       <StoreLocatorFormProvider>
         <StoreLocatorMapLoader
+          // See https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions for full options
           mapOptions={{
             center: {
               lat: 52.21305320395243,
@@ -53,6 +54,9 @@ function Stores({ stores }: { stores: StoreFragment[] }) {
             mapTypeControl: false,
             streetViewControl: true,
           }}
+          additionalOptions={{
+            searchQuerySuffix: 'The Netherlands', // gets appended to every search query to improve results accuracy
+          }}
         >
           <PositionProvider>
             <StoreLocator
@@ -64,7 +68,7 @@ function Stores({ stores }: { stores: StoreFragment[] }) {
                 imageHeight: 45,
                 imageWidth: 45,
                 onMarkerClick: (store: StoreFragment) =>
-                  console.log('hello from', store.pickup_location_code),
+                  console.log('Hello from', store.pickup_location_code),
               }}
             />
           </PositionProvider>
@@ -77,22 +81,26 @@ function Stores({ stores }: { stores: StoreFragment[] }) {
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'stores',
   Layout: LayoutOverlay,
+
   layoutProps: {
     variantSm: 'bottom',
     justifyMd: 'stretch',
     variantMd: 'bottom',
     sizeMd: 'floating',
-    sizeSm: 'floating',
+    sizeSm: 'full',
     sx: {
-      '& .LayoutOverlayBase-overlay': {
+      '.LayoutHeader-root': {
+        height: '0!important',
+      },
+      '.LayoutOverlayBase-overlay': {
         justifyItems: 'center',
       },
-      '& .LayoutOverlayBase-overlayPane': {
+      '.LayoutOverlayBase-overlayPane': {
         maxWidth: 1980,
         width: '100%',
-        minHeight: '80vh',
+        minHeight: '85vh',
       },
-      '& .LayoutOverlayBase-background': {
+      '.LayoutOverlayBase-background': {
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
@@ -104,8 +112,8 @@ Stores.pageOptions = pageOptions
 
 export default Stores
 
-export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = graphqlSharedClient(locale)
+export const getStaticProps: GetPageStaticProps = async (context) => {
+  const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
   const stores = client.query({ query: StoresDocument })
 

@@ -1,0 +1,17 @@
+extend input GraphCommerceConfig {
+  """
+  Configure your Google Maps api key
+  """
+  googleMapsApiKey: String
+  storeLocator: StoreLocatorConfig
+}
+
+"""
+Settings for StoreLocator
+"""
+input StoreLocatorConfig {
+  """
+  Enable/disable preferred store selection
+  """
+  enablePreferredStoreSelection: Boolean
+}

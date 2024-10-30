@@ -1,7 +1,7 @@
 import { useWatch } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { ButtonBase, Typography, Box } from '@mui/material'
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { StoreFragment } from '../Store.gql'
 import { StoreChip } from './StoreChip'
 import { StoreInfo } from './StoreInfo'
@@ -14,11 +14,16 @@ const StoreListItemRender = React.memo<
 >((props) => {
   const { store, isPreferredStore, isClosestStore, isFocusedStore } = props
   const { setValue } = useStoreLocatorForm()
+  const storeRef = useRef<HTMLDivElement>(null)
 
-  console.log('Rendering listitem', store.pickup_location_code)
+  useEffect(() => {
+    if (isFocusedStore && storeRef.current) {
+      storeRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    }
+  }, [isFocusedStore])
 
   return (
-    <Box sx={{ order: isFocusedStore ? -1 : 0 }}>
+    <Box ref={storeRef}>
       <ButtonBase
         component='div'
         onClick={() => {
@@ -37,7 +42,6 @@ const StoreListItemRender = React.memo<
             borderRadius: '10px',
             marginBottom: { xs: theme.spacings.xxs, md: theme.spacings.xs },
             typography: theme.typography.body1,
-            // lineHeight: { xs: '22px', md: '1.7em' },
             border: isFocusedStore
               ? `2px solid ${theme.palette.secondary.main}`
               : `1px solid ${theme.palette.divider}`,

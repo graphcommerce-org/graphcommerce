@@ -42,6 +42,9 @@ _export(exports, {
     SidebarGalleryPaginationVariantSchema: function() {
         return SidebarGalleryPaginationVariantSchema;
     },
+    StoreLocatorConfigSchema: function() {
+        return StoreLocatorConfigSchema;
+    },
     definedNonNullAnySchema: function() {
         return definedNonNullAnySchema;
     },
@@ -93,6 +96,7 @@ function GraphCommerceConfigSchema() {
         demoMode: _zod.z.boolean().default(true).nullish(),
         enableGuestCheckoutLogin: _zod.z.boolean().nullish(),
         googleAnalyticsId: _zod.z.string().nullish(),
+        googleMapsApiKey: _zod.z.string().nullish(),
         googleRecaptchaKey: _zod.z.string().nullish(),
         googleTagmanagerId: _zod.z.string().nullish(),
         hygraphEndpoint: _zod.z.string().min(1),
@@ -110,6 +114,7 @@ function GraphCommerceConfigSchema() {
         recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
         sidebarGallery: SidebarGalleryConfigSchema().nullish(),
+        storeLocator: StoreLocatorConfigSchema().nullish(),
         storefront: _zod.z.array(GraphCommerceStorefrontConfigSchema()),
         wishlistHideForGuests: _zod.z.boolean().nullish(),
         wishlistShowFeedbackMessage: _zod.z.boolean().nullish()
@@ -156,5 +161,10 @@ function RecentlyViewedProductsConfigSchema() {
 function SidebarGalleryConfigSchema() {
     return _zod.z.object({
         paginationVariant: SidebarGalleryPaginationVariantSchema.nullish()
+    });
+}
+function StoreLocatorConfigSchema() {
+    return _zod.z.object({
+        enablePreferredStoreSelection: _zod.z.boolean().nullish()
     });
 }

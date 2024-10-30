@@ -1,4 +1,3 @@
-import { LazyHydrate } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress } from '@mui/material'
 import React from 'react'
@@ -18,10 +17,10 @@ export const StoreListResults = React.memo<{ stores: StoreFragment[]; first?: st
       sx={(theme) => ({
         display: 'flex',
         flexDirection: 'column',
-        maxHeight: { xs: '30vh', md: 'unset' },
         overflowY: 'auto',
-        marginTop: { xs: theme.spacings.xs, md: 0 },
-        scrollbarWidth: 'none',
+        scrollbarWidth: '100px',
+        padding: theme.spacings.xs,
+        pt: 0,
 
         '&::-webkit-scrollbar': {
           display: 'none',
@@ -32,20 +31,15 @@ export const StoreListResults = React.memo<{ stores: StoreFragment[]; first?: st
         },
       })}
     >
-      {locations?.map((store, index) => {
+      {locations?.map((store) => {
         if (!store) return null
 
         return (
-          <LazyHydrate
-            hydrated={index < 8 ? true : undefined}
+          <StoreListItem
             key={`${store.pickup_location_code}`}
-          >
-            <StoreListItem
-              key={`${store.pickup_location_code}`}
-              isClosestStore={first === store.pickup_location_code}
-              store={store}
-            />
-          </LazyHydrate>
+            isClosestStore={first === store.pickup_location_code}
+            store={store}
+          />
         )
       })}
     </Box>
@@ -82,7 +76,6 @@ export function StoreListLoader() {
         height: '100%',
         rowGap: theme.spacings.xs,
         borderRadius: '10px',
-        marginTop: { xs: theme.spacings.xs, md: 0 },
         border: `1px solid ${theme.palette.divider}`,
       })}
     >

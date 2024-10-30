@@ -1,6 +1,0 @@
-extend input GraphCommerceConfig {
-  """
-  Configure your Google Maps api key
-  """
-  googleMapsApiKey: String
-}

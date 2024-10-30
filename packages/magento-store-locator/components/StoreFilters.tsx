@@ -29,11 +29,11 @@ export const StoreFilters = React.forwardRef<typeof TextFieldElement>((_, ref) =
           ),
         }}
         sx={(theme) => ({
-          mb: theme.spacings.xs,
-
           fieldset: {
             borderWidth: '2px',
           },
+
+          padding: theme.spacings.xs,
 
           '&:hover .MuiOutlinedInput-notchedOutline': {
             borderColor: theme.palette.primary.main,

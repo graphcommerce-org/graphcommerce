@@ -1,5 +1,5 @@
 import { StoreFragment } from '../Store.gql'
-import { usePosition } from './usePosition'
+import type { PositionProps } from '../components'
 
 // Converts numeric degrees to radians
 function toRad(Value: number) {
@@ -45,11 +45,7 @@ function sortStores(position: google.maps.LatLngLiteral | null, stores: StoreFra
 }
 
 // Return an array of sortedStores based on the proximity to position
-export function useStores(
-  position: ReturnType<typeof usePosition>['position'],
-  stores: StoreFragment[],
-) {
-  console.log('Sorting stores using position: ', position)
+export function useStores(position: PositionProps, stores: StoreFragment[]) {
   return {
     sortedStores: sortStores(position, stores),
     position,

@@ -23,6 +23,17 @@ export function StoreInfo(props: InfoWindowProps) {
   const setPreferredStore = useEventCallback(() => {
     if (!content) return
     setValue('preferredStore', content)
+    global.localStorage.setItem(
+      'pickup_location_code',
+      JSON.stringify(content.pickup_location_code),
+    )
+    global.document.dispatchEvent(
+      new CustomEvent('set-preferred-store', {
+        detail: {
+          pickup_location_code: content.pickup_location_code,
+        },
+      }),
+    )
   })
 
   if (!content) return null
@@ -40,17 +51,19 @@ export function StoreInfo(props: InfoWindowProps) {
         dangerouslySetInnerHTML={{ __html: description ?? '' }}
       />
 
-      <Box>
-        <Button
-          color='primary'
-          onClick={!isPreferredStore ? setPreferredStore : undefined}
-          variant='pill'
-          sx={{ display: 'flex', gap: '7px' }}
-        >
-          <IconSvg src={LocationIcon} size='large' />
-          <Trans id='Select as your store' />
-        </Button>
-      </Box>
+      {import.meta.graphCommerce.storeLocator?.enablePreferredStoreSelection && (
+        <Box>
+          <Button
+            color='primary'
+            onClick={!isPreferredStore ? setPreferredStore : undefined}
+            variant='pill'
+            sx={{ display: 'flex', gap: '7px' }}
+          >
+            <IconSvg src={LocationIcon} size='large' />
+            <Trans id='Select as your store' />
+          </Button>
+        </Box>
+      )}
     </>
   )
 }

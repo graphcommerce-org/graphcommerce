@@ -1,7 +1,0 @@
-fragment StoreInfoWindow on PickupLocation {
-  name
-  street
-  city
-  phone
-  pickup_location_code
-}

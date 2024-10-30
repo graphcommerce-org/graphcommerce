@@ -36,6 +36,7 @@ export { default as iconAddresses, default as iconHome } from './icons/home-alt.
 export { default as iconLanguage } from './icons/language.svg'
 export { default as iconLocation } from './icons/location.svg'
 export { default as iconLock } from './icons/lock.svg'
+export { default as iconMap } from './icons/map.svg'
 export { default as iconFullscreen } from './icons/maximise.svg'
 export { default as iconFullscreenExit } from './icons/minimise.svg'
 export { default as iconMin } from './icons/minus.svg'

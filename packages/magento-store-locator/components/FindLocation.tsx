@@ -4,16 +4,22 @@ import Button from '@mui/material/Button'
 import { useEffect } from 'react'
 import { usePositionContext } from './PositionProvider'
 import { useStoreLocatorForm } from './StoreLocatorFormProvider'
+import { useStoreLocatorMap } from './StoreLocatorMapLoader'
 
 export function FindLocation() {
   const { reset, control } = useStoreLocatorForm()
+  const { additionalOptions } = useStoreLocatorMap()
   const search = useWatch({ control, name: 'search' })
   const { setPosition } = usePositionContext()
+
+  const additionalSearchQuery = additionalOptions.searchQuerySuffix
+    ? `, ${additionalOptions.searchQuerySuffix}`
+    : ''
 
   const handleSearch = async () => {
     try {
       const geocoder = new globalThis.google.maps.Geocoder()
-      const { results } = await geocoder.geocode({ address: `${search}, Nederland` }) // @todo additional search query configurable via st
+      const { results } = await geocoder.geocode({ address: `${search}, ${additionalSearchQuery}` })
 
       if (results.length > 0) {
         const { location } = results[0].geometry
@@ -29,18 +35,17 @@ export function FindLocation() {
   }
 
   useEffect(() => {
-    const handleEnter = (ev) => {
+    const handleEnterKey = (ev) => {
       if (ev.key === 'Enter') {
-        console.log('hoi bram!')
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         handleSearch()
       }
     }
 
-    document.getElementById('StoreFilters_Input')?.addEventListener('keyup', handleEnter)
+    document.getElementById('StoreFilters_Input')?.addEventListener('keyup', handleEnterKey)
 
     return () => {
-      document.getElementById('StoreFilters_Input')?.removeEventListener('keyup', handleEnter)
+      document.getElementById('StoreFilters_Input')?.removeEventListener('keyup', handleEnterKey)
     }
   })
 

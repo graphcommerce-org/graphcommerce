@@ -205,6 +205,8 @@ export type GraphCommerceConfig = {
    * To override the value for a specific locale, configure in i18n config.
    */
   googleAnalyticsId?: InputMaybe<Scalars['String']['input']>;
+  /** Configure your Google Maps api key */
+  googleMapsApiKey?: InputMaybe<Scalars['String']['input']>;
   /**
    * Google reCAPTCHA site key.
    * When using reCAPTCHA, this value is required, even if you are configuring different values for each locale.
@@ -326,6 +328,7 @@ export type GraphCommerceConfig = {
   robotsAllow?: InputMaybe<Scalars['Boolean']['input']>;
   /** Configuration for the SidebarGallery component */
   sidebarGallery?: InputMaybe<SidebarGalleryConfig>;
+  storeLocator?: InputMaybe<StoreLocatorConfig>;
   /** All storefront configuration for the project */
   storefront: Array<GraphCommerceStorefrontConfig>;
   /** Hide the wishlist functionality for guests. */
@@ -466,6 +469,12 @@ export type SidebarGalleryPaginationVariant =
   | 'DOTS'
   | 'THUMBNAILS_BOTTOM';
 
+/** Settings for StoreLocator */
+export type StoreLocatorConfig = {
+  /** Enable/disable preferred store selection */
+  enablePreferredStoreSelection?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 
 type Properties<T> = Required<{
   [K in keyof T]: z.ZodType<T[K], any, T[K]>;
@@ -511,6 +520,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     demoMode: z.boolean().default(true).nullish(),
     enableGuestCheckoutLogin: z.boolean().nullish(),
     googleAnalyticsId: z.string().nullish(),
+    googleMapsApiKey: z.string().nullish(),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
     hygraphEndpoint: z.string().min(1),
@@ -528,6 +538,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
     robotsAllow: z.boolean().nullish(),
     sidebarGallery: SidebarGalleryConfigSchema().nullish(),
+    storeLocator: StoreLocatorConfigSchema().nullish(),
     storefront: z.array(GraphCommerceStorefrontConfigSchema()),
     wishlistHideForGuests: z.boolean().nullish(),
     wishlistShowFeedbackMessage: z.boolean().nullish()
@@ -579,5 +590,11 @@ export function RecentlyViewedProductsConfigSchema(): z.ZodObject<Properties<Rec
 export function SidebarGalleryConfigSchema(): z.ZodObject<Properties<SidebarGalleryConfig>> {
   return z.object({
     paginationVariant: SidebarGalleryPaginationVariantSchema.nullish()
+  })
+}
+
+export function StoreLocatorConfigSchema(): z.ZodObject<Properties<StoreLocatorConfig>> {
+  return z.object({
+    enablePreferredStoreSelection: z.boolean().nullish()
   })
 }
