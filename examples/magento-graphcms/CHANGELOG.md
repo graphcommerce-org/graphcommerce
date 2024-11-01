@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.94
+
+### Patch Changes
+
+- [#2400](https://github.com/graphcommerce-org/graphcommerce/pull/2400) [`f9f7276`](https://github.com/graphcommerce-org/graphcommerce/commit/f9f7276501127ba8dbb31b6a9670d7f62647573a) - Remove ‘up’ data from the blogoverview page. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 9.0.0-canary.93
 
 ## 9.0.0-canary.92
