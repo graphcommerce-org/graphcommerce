@@ -30,8 +30,8 @@ export type LayoutHeaderProps = FloatingProps &
 
     hideBackButton?: boolean
 
-    hideSm?: boolean
-    hideMd?: boolean
+    hideSm?: boolean | null
+    hideMd?: boolean | null
   }
 
 type ComponentStyleProps = {
