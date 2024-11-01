@@ -6,9 +6,9 @@ import { jsonLdBreadcrumb } from '@graphcommerce/next-ui/Breadcrumbs/jsonLdBread
 import { BreadcrumbsProps } from '@mui/material'
 import { useRouter } from 'next/router'
 import { BreadcrumbList } from 'schema-dts'
+import { productLink } from '../../hooks/useProductLink'
 import { productPageCategory } from '../ProductPageCategory/productPageCategory'
 import { ProductPageBreadcrumbFragment } from './ProductPageBreadcrumb.gql'
-import { productLink } from '../../hooks/useProductLink'
 
 export type ProductPageBreadcrumbsProps = Omit<BreadcrumbsProps, 'children'> & {
   breadcrumbsAmount?: number
