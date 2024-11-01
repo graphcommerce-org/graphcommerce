@@ -3,4 +3,4 @@
 '@graphcommerce/graphcms-ui': patch
 ---
 
-use correct ‘up’ data on the blogoverview page.
+Remove ‘up’ data from the blogoverview page.
