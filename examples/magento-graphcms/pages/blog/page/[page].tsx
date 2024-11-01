@@ -126,7 +126,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await blogPaths).data,
       ...(await layout).data,
       urlEntity: { relative_url: `blog` },
-      // up: { href: '/', title: i18n._(/* i18n */ 'Back') },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
