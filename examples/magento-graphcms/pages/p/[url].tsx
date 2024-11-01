@@ -70,13 +70,14 @@ function ProductPage(props: Props) {
     products?.items?.[0],
     relatedUpsells?.items?.find((item) => item?.uid === products?.items?.[0]?.uid),
   )
+  const isBreadcrumbsEnabled = import.meta.graphCommerce.breadcrumbs
 
   if (!product?.sku || !product.url_key) return null
 
   return (
     <InContextMaskProvider mask={scopedQuery.mask}>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
-        <LayoutHeader floatingMd>
+        <LayoutHeader floatingMd hideMd={isBreadcrumbsEnabled}>
           <LayoutTitle size='small' component='span'>
             <ProductPageName product={product} />
           </LayoutTitle>
@@ -94,7 +95,7 @@ function ProductPage(props: Props) {
 
         <ProductPageMeta product={product} />
 
-        {import.meta.graphCommerce.breadcrumbs && (
+        {isBreadcrumbsEnabled && (
           <ProductPageBreadcrumbs
             product={product}
             sx={(theme) => ({
