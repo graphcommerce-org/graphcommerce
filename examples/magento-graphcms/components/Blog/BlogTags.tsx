@@ -9,7 +9,7 @@ export function BlogTags(props: BlogTagsProps) {
     <NextBlogTags>
       {relatedPages.map(({ url, title }) => {
         if (!title) return null
-        return <BlogTag key={url} url={url} title={title} sx={{ cursor: 'pointer' }} />
+        return <BlogTag key={url} url={url} title={title} />
       })}
     </NextBlogTags>
   )

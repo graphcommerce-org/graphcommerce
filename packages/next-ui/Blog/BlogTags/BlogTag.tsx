@@ -14,7 +14,10 @@ export function BlogTag(props: BlogTagsProps) {
       href={`/${url}`}
       component={NextLink}
       label={title}
-      sx={[{ marginRight: 3, borderRadius: 2 }, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={[
+        { marginRight: 3, borderRadius: 2, cursor: 'pointer' },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     />
   )
 }
