@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.95
+
+### Patch Changes
+
+- [#2399](https://github.com/graphcommerce-org/graphcommerce/pull/2399) [`f028b4f`](https://github.com/graphcommerce-org/graphcommerce/commit/f028b4f28e5d84c20353495e74bf3a549c183538) - Hide the back button on desktop pages where breadcrumbs are displayed. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 9.0.0-canary.94
 
 ### Patch Changes
