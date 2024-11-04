@@ -31,11 +31,10 @@ function BlogPage(props: Props) {
   const { pages, blogPosts } = props
   const page = pages[0]
   const title = page.title ?? ''
-  const isBreadcrumbsEnabled = import.meta.graphCommerce.breadcrumbs
 
   return (
     <>
-      <LayoutHeader floatingMd hideMd={isBreadcrumbsEnabled}>
+      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
         <LayoutTitle size='small'>{title}</LayoutTitle>
       </LayoutHeader>
       <Row>

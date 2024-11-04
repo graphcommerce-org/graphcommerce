@@ -40,13 +40,12 @@ function BlogPage(props: Props) {
   const router = useRouter()
   const page = pages[0]
   const title = page.title ?? ''
-  const isBreadcrumbsEnabled = import.meta.graphCommerce.breadcrumbs
 
   return (
     <>
       <PageMeta title={title} metaDescription={title} canonical={`/${page.url}`} />
 
-      <LayoutHeader floatingMd hideMd={isBreadcrumbsEnabled}>
+      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
         <LayoutTitle size='small' component='span'>
           {title}
         </LayoutTitle>

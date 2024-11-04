@@ -63,7 +63,6 @@ function CategoryPage(props: CategoryProps) {
   const isLanding = category?.display_mode === 'PAGE'
   const page = pages?.[0]
   const isCategory = params && category && products?.items
-  const isBreadcrumbsEnabled = import.meta.graphCommerce.breadcrumbs
 
   return (
     <InContextMaskProvider mask={productList.mask}>
@@ -75,7 +74,7 @@ function CategoryPage(props: CategoryProps) {
         canonical={page?.url ? `/${page.url}` : undefined}
         {...category}
       />
-      <LayoutHeader floatingMd hideMd={isBreadcrumbsEnabled}>
+      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
         <LayoutTitle size='small' component='span'>
           {category?.name ?? page.title}
         </LayoutTitle>
@@ -89,7 +88,7 @@ function CategoryPage(props: CategoryProps) {
       )}
       {isCategory && isLanding && (
         <>
-          {isBreadcrumbsEnabled && (
+          {import.meta.graphCommerce.breadcrumbs && (
             <CategoryBreadcrumbs
               category={category}
               sx={(theme) => ({
