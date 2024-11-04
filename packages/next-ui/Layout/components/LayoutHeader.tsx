@@ -101,8 +101,8 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
     children: !!children,
     divider: !!divider,
     size,
-    hideSm,
-    hideMd,
+    hideSm: !!hideSm,
+    hideMd: !!hideMd,
   })
 
   return (
