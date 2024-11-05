@@ -24,7 +24,17 @@ import { ProductListItems } from '../ProductListItems'
 import { ProductListLayoutProps } from './types'
 
 export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps) => {
-  const { id, filters, filterTypes, params, products, title, category, handleSubmit } = props
+  const {
+    id,
+    filters,
+    filterTypes,
+    params,
+    products,
+    title,
+    category,
+    maxWidth = false,
+    handleSubmit,
+  } = props
 
   if (!(params && products?.items && filterTypes)) return null
   const { total_count, sort_fields, page_info } = products
@@ -51,7 +61,7 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
         />
       )}
       <Container
-        maxWidth={false}
+        maxWidth={maxWidth}
         sx={(theme) => ({
           display: 'grid',
           rowGap: theme.spacings.sm,
@@ -121,7 +131,7 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
         </ProductListFiltersContainer>
       </StickyBelowHeader>
 
-      <Container maxWidth={false}>
+      <Container maxWidth={maxWidth}>
         <ProductListCount total_count={total_count} />
         {products.items.length <= 0 ? (
           <ProductFiltersProNoResults />
