@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.96
+
+### Patch Changes
+
+- [#2404](https://github.com/graphcommerce-org/graphcommerce/pull/2404) [`a5c52ac`](https://github.com/graphcommerce-org/graphcommerce/commit/a5c52ac6e56ca34819f86708c00b0e8dec39d95c) - fix: formData.region can be undefined when creating new address ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 9.0.0-canary.95
 
 ## 9.0.0-canary.94

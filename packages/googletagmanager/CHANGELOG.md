@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.96
+
+### Patch Changes
+
+- [#2403](https://github.com/graphcommerce-org/graphcommerce/pull/2403) [`9f01825`](https://github.com/graphcommerce-org/graphcommerce/commit/9f01825f9f4101ed009515735b75182673d942b5) - fix: Google tag manager noscript tag would output escaped html causing hydration errors ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 9.0.0-canary.95
 
 ## 9.0.0-canary.94
