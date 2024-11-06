@@ -23,15 +23,11 @@ export function DocumentBodyStart(props: PluginProps<DocumentProps>) {
 
   return (
     <>
-      <noscript>
-        {/* eslint-disable-next-line jsx-a11y/iframe-has-title */}
-        <iframe
-          src={`https://www.googletagmanager.com/ns.html?id=${id}`}
-          height='0'
-          width='0'
-          style={{ display: 'none', visibility: 'hidden' }}
-        />
-      </noscript>
+      <noscript
+        dangerouslySetInnerHTML={{
+          __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=${id}" height='0' width='0' style="display: none; visibility: hidden;"></iframe>`,
+        }}
+      />
       <Prev {...rest} />
     </>
   )
