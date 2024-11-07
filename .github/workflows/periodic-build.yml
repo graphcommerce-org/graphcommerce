@@ -20,9 +20,13 @@ jobs:
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
+      - name: create graphcommerce folder
+        run: |
+          git clone -b main --depth 1 https://github.com/graphcommerce-org/graphcommerce.git && mkdir graphcommerce-build
+      - name: copy gc main to new folder
+        run:  cp -R graphcommerce/examples/magento-graphcms/. graphcommerce-build && rm -rf graphcommerce && cd graphcommerce-build
       - name: yarn && yarn build
         run: |
-          cd examples/magento-graphcms
           yarn && yarn codegen && yarn build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
