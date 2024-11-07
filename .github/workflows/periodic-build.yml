@@ -51,7 +51,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   notify-end:
-    if: always()
+    if: ${{ needs.publish.result == 'failure' }}
     name: Notify release end
     needs: [notify-start, publish]
     uses: ho-nl/release-slack-action/.github/workflows/notify-slack-end.yml@main
@@ -62,4 +62,4 @@ jobs:
       result: ${{ needs.publish.result }}
       channel: slack-test-messages
       message: Periodic build
-      notifyOnlyOnFailure: true
+      notifyOnlyOnFailure: false
