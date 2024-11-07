@@ -36,10 +36,10 @@ jobs:
         run: |
           git clone -b main --depth 1 https://github.com/graphcommerce-org/graphcommerce.git && mkdir -p  /tmp/graphcommerce-build
       - name: copy gc main to new folder
-        run:  cp -R graphcommerce/examples/magento-graphcms/. /tmp/graphcommerce-build && rm -rf graphcommerce && cd /tmp/graphcommerce-build
+        run:  cp -R graphcommerce/examples/magento-graphcms/. /tmp/graphcommerce-build && rm -rf graphcommerce
       - name: yarn && yarn build
         run: |
-          yarn && yarn codegen && yarn build
+          cd /tmp/graphcommerce-build && yarn && yarn codegen && yarn build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
