@@ -5,6 +5,15 @@ on:
 concurrency:
   group: release-main
 jobs:
+  notify-start:
+    name: Notify release start
+    uses: ho-nl/release-slack-action/.github/workflows/notify-slack-start.yml@main
+    secrets:
+      slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN}}
+    with:
+      channel: graphcommerce
+      message: Graphcommerce start building
+      notifyOnlyOnFailure: true
   publish:
     runs-on: ubuntu-latest
     outputs:
@@ -35,13 +44,13 @@ jobs:
   notify-end:
     if: always()
     name: Notify release end
-    needs: [notify-start, activate-pm2]
+    needs: [notify-start, publish]
     uses: ho-nl/release-slack-action/.github/workflows/notify-slack-end.yml@main
     secrets:
       slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN}}
     with:
       time: ${{ needs.notify-start.outputs.time }}
-      result: ${{ needs.activate-pm2.result }}
+      result: ${{ needs.publish.result }}
       channel: graphcommerce
       message: Periodic build
       notifyOnlyOnFailure: true
