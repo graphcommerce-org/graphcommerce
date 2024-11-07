@@ -54,7 +54,7 @@ jobs:
         if: failure()
         run: echo "failed=true" >> $GITHUB_ENV
   notify-end:
-    if: ${{ needs.publish.result == 'failure' }}
+    if: ${{ env.failed == 'true' }}
     name: Notify release end
     needs: [notify-start, publish]
     uses: ho-nl/release-slack-action/.github/workflows/notify-slack-end.yml@main
