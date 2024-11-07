@@ -2,6 +2,9 @@ name: Periodic build
 on:
   schedule:
     - cron: 0 0 * * *
+  push:
+    branches:
+      - 'feature/periodic-release'
 concurrency:
   group: release-main
 jobs:
