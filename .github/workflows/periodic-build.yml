@@ -1,0 +1,39 @@
+name: release
+on:
+  schedule:
+    - cron: 0 0 * * *
+concurrency:
+  group: release-main
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    outputs:
+      published: ${{ steps.changesets.outputs.published }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          cache: yarn
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@graphcommerce'
+      - name: yarn && yarn build
+        run: |
+          cd examples/magento-graphcms
+          yarn && yarn codegen && yarn dev
+  notify-end:
+    if: always()
+    name: Notify release end
+    needs: [notify-start, activate-pm2]
+    uses: ho-nl/release-slack-action/.github/workflows/notify-slack-end.yml@main
+    secrets:
+      slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN}}
+    with:
+      time: ${{ needs.notify-start.outputs.time }}
+      result: ${{ needs.activate-pm2.result }}
+      channel: graphcommerce
+      message: Periodic build
+      notifyOnlyOnFailure: true
