@@ -24,6 +24,10 @@ jobs:
         run: |
           cd examples/magento-graphcms
           yarn && yarn codegen && yarn build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   notify-end:
     if: always()
     name: Notify release end
