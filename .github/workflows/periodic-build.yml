@@ -23,7 +23,7 @@ jobs:
       - name: yarn && yarn build
         run: |
           cd examples/magento-graphcms
-          yarn && yarn codegen && yarn dev
+          yarn && yarn codegen && yarn build
   notify-end:
     if: always()
     name: Notify release end
