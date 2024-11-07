@@ -28,9 +28,12 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
-          node-version: 20
+          cache: yarn
+          node-version: 18
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
+      - name: yarn install && yarn postinstall
+        run: yarn install && yarn postinstall
       - name: create graphcommerce folder
         run: |
           git clone -b main --depth 1 https://github.com/graphcommerce-org/graphcommerce.git && mkdir -p  /tmp/graphcommerce-build
