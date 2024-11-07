@@ -11,7 +11,7 @@ jobs:
     secrets:
       slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN}}
     with:
-      channel: graphcommerce
+      channel: slack-test-messages
       message: Graphcommerce start building
       notifyOnlyOnFailure: true
   publish:
@@ -51,6 +51,6 @@ jobs:
     with:
       time: ${{ needs.notify-start.outputs.time }}
       result: ${{ needs.publish.result }}
-      channel: graphcommerce
+      channel: slack-test-messages
       message: Periodic build
       notifyOnlyOnFailure: true
