@@ -22,7 +22,6 @@ jobs:
           scope: '@graphcommerce'
       - name: create graphcommerce folder
         run: |
-          cd ${{ runner.temp }}
           git clone -b main --depth 1 https://github.com/graphcommerce-org/graphcommerce.git && mkdir -p  /tmp/graphcommerce-build
       - name: copy gc main to new folder
         run:  cp -R graphcommerce/examples/magento-graphcms/. tmp/graphcommerce-build && rm -rf graphcommerce && cd /tmp/graphcommerce-build
