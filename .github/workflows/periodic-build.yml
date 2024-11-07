@@ -18,6 +18,9 @@ jobs:
       message: Graphcommerce start building
       notifyOnlyOnFailure: true
   publish:
+    strategy:
+      matrix:
+        version: [18, 20, 22]
     runs-on: ubuntu-latest
     outputs:
       published: ${{ steps.changesets.outputs.published }}
@@ -29,7 +32,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           cache: yarn
-          node-version: 20
+          node-version: ${{ matrix.version }}
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
       - name: yarn install && yarn postinstall
