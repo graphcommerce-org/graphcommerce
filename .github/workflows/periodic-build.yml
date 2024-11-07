@@ -65,7 +65,13 @@ jobs:
         run: |
           echo "::set-output name=publish_failed::${{ env.publish_failed }}"
         if: ${{ env.publish_failed == 'true' }}
-
+  nieuwe-job:
+    needs: [publish]
+    runs-on: ubuntu-latest
+    steps:
+      - name: test a new job
+        uses: actions/checkout@v4
+      - run: echo "${{toJSON(needs.publish)}}"
   # notify-end will run only if any publish job failed
   notify-end:
     if: needs.publish.outputs.publish_failed == 'true'
