@@ -12,57 +12,71 @@ jobs:
     name: Notify release start
     uses: ho-nl/release-slack-action/.github/workflows/notify-slack-start.yml@main
     secrets:
-      slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN}}
+      slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN }}
     with:
       channel: slack-test-messages
       message: Graphcommerce start building
       notifyOnlyOnFailure: true
+
   publish:
-    continue-on-error: true
     strategy:
       matrix:
         version: [18, 20, 22]
     runs-on: ubuntu-latest
+    continue-on-error: true
     outputs:
-      published: ${{ steps.changesets.outputs.published }}
+      publish_failed: ${{ steps.set-failure-flag.outputs.publish_failed }}
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          cache: yarn
           node-version: ${{ matrix.version }}
+          cache: yarn
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
-      - name: yarn install && yarn postinstall
+
+      - name: Install dependencies
         run: yarn install && yarn postinstall
-      - name: create graphcommerce folder
+
+      - name: Prepare and build graphcommerce
         run: |
-          git clone -b main --depth 1 https://github.com/graphcommerce-org/graphcommerce.git && mkdir -p  /tmp/graphcommerce-build
-      - name: copy gc main to new folder
-        run:  cp -R graphcommerce/examples/magento-graphcms/. /tmp/graphcommerce-build && rm -rf graphcommerce
-      - name: yarn && yarn build
-        run: |
+          git clone -b main --depth 1 https://github.com/graphcommerce-org/graphcommerce.git && mkdir -p /tmp/graphcommerce-build
+          cp -R graphcommerce/examples/magento-graphcms/. /tmp/graphcommerce-build && rm -rf graphcommerce
           cd /tmp/graphcommerce-build && yarn && yarn codegen && yarn build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Set a failure flag if this specific matrix job fails
       - name: Set failure flag
+        id: set-failure-flag
+        run: echo "publish_failed=true" >> $GITHUB_ENV
         if: failure()
-        run: echo "failed=true" >> $GITHUB_ENV
+
+      # Aggregate the result into a job output
+      - name: Aggregate failure status
+        id: set-failure-flag
+        run: |
+          echo "::set-output name=publish_failed::${{ env.publish_failed }}"
+        if: ${{ env.publish_failed == 'true' }}
+
+  # notify-end will run only if any publish job failed
   notify-end:
-    if: ${{ env.failed == 'true' }}
-    name: Notify release end
+    if: needs.publish.outputs.publish_failed == 'true'
     needs: [notify-start, publish]
+    name: Notify release end
     uses: ho-nl/release-slack-action/.github/workflows/notify-slack-end.yml@main
     secrets:
-      slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN}}
+      slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN }}
     with:
       time: ${{ needs.notify-start.outputs.time }}
-      result: ${{ needs.publish.result }}
+      result: "failure"
       channel: slack-test-messages
-      message: Periodic build
-      notifyOnlyOnFailure: false
+      message: "One or more Node.js versions failed in the periodic build"
+      notifyOnlyOnFailure: true
