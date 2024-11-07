@@ -18,6 +18,7 @@ jobs:
       message: Graphcommerce start building
       notifyOnlyOnFailure: true
   publish:
+    continue-on-error: true
     strategy:
       matrix:
         version: [18, 20, 22]
