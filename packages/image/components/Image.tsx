@@ -457,7 +457,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       quality,
       sizes,
       width,
-      scale: 1.5,
+      scale: 2,
     })
     const srcSet2x = generateSrcSet({
       config,
@@ -467,7 +467,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       quality,
       sizes,
       width,
-      scale: 1,
+      scale: 1.333,
     })
     const srcSet1x = generateSrcSet({
       config,
