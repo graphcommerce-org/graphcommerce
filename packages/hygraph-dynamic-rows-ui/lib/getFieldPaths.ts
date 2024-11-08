@@ -46,7 +46,7 @@ export function getFieldPaths(
     type.fields.forEach((field) => {
       const t = getType(field.type)
 
-      if (!types.includes(t.name) && !field.deprecationReason) {
+      if (!types.includes(t.name)) {
         const newTypes = [...types, t.name]
 
         const newPath = new FieldPath(field, prevPath)
