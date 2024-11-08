@@ -4,7 +4,7 @@ on:
     - cron: 0 0 * * *
   push:
     branches:
-      - 'feature/periodic-release'
+      - 'canary'
 concurrency:
   group: release-main
 jobs:
