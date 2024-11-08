@@ -23,9 +23,7 @@ jobs:
       matrix:
         version: [18, 20, 22]
     runs-on: ubuntu-latest
-    continue-on-error: true
-    outputs:
-      publish_failed: ${{ steps.set-failure-flag.outputs.publish_failed }}
+    continue-on-error: true  # Continue other jobs even if one fails
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -53,36 +51,46 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # Set a failure flag if this specific matrix job fails
-      - name: Set failure flag
-        id: set-failure-flag
-        run: echo "publish_failed=true" >> $GITHUB_ENV
-        if: failure()
+      # Upload success or failure artifact based on the outcome
+      - name: Upload success artifact
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: success-${{ matrix.version }}
+          path: /tmp/graphcommerce-build
 
-      # Aggregate the result into a job output
-      - name: Aggregate failure status
-        id: set-failure-flag
-        run: |
-          echo "::set-output name=publish_failed::${{ env.publish_failed }}"
-        if: ${{ env.publish_failed == 'true' }}
-  nieuwe-job:
-    needs: [publish]
-    runs-on: ubuntu-latest
-    steps:
-      - name: test a new job
-        uses: actions/checkout@v4
-      - run: echo "${{toJSON(needs.publish)}}"
-  # notify-end will run only if any publish job failed
+      - name: Upload failure artifact
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: failure-${{ matrix.version }}
+          path: /tmp/graphcommerce-build
+
   notify-end:
-    if: needs.publish.outputs.publish_failed == 'true'
     needs: [notify-start, publish]
+    runs-on: ubuntu-latest
     name: Notify release end
-    uses: ho-nl/release-slack-action/.github/workflows/notify-slack-end.yml@main
-    secrets:
-      slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN }}
-    with:
-      time: ${{ needs.notify-start.outputs.time }}
-      result: "failure"
-      channel: slack-test-messages
-      message: "One or more Node.js versions failed in the periodic build"
-      notifyOnlyOnFailure: true
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: artifacts
+
+      - name: Check for any failure artifacts
+        id: check-failure
+        run: |
+          if ls artifacts/failure-* 1> /dev/null 2>&1; then
+            echo "failure_detected=true" >> $GITHUB_ENV
+          else
+            echo "failure_detected=false" >> $GITHUB_ENV
+          fi
+
+      - name: Notify if any failures
+        if: env.failure_detected == 'true'
+        uses: ho-nl/release-slack-action/.github/workflows/notify-slack-end.yml@main
+        secrets:
+          slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN }}
+        with:
+          channel: slack-test-messages
+          message: "One or more Node.js versions failed in the periodic build"
+          notifyOnlyOnFailure: true
