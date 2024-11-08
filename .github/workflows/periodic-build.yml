@@ -21,14 +21,16 @@ jobs:
   publish:
     strategy:
       matrix:
-        version: [18, 20, 22]
+        version: [18, 20]
     runs-on: ubuntu-latest
-    continue-on-error: true  # Continue other jobs even if one fails
+    outputs:
+      publish_failed: ${{ steps.set-failure-flag.outputs.publish_failed }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          path: graphcommerce
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -38,59 +40,28 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
 
-      - name: Install dependencies
-        run: yarn install && yarn postinstall
-
       - name: Prepare and build graphcommerce
         run: |
-          git clone -b main --depth 1 https://github.com/graphcommerce-org/graphcommerce.git && mkdir -p /tmp/graphcommerce-build
-          cp -R graphcommerce/examples/magento-graphcms/. /tmp/graphcommerce-build && rm -rf graphcommerce
-          cd /tmp/graphcommerce-build && yarn && yarn codegen && yarn build
+          cp -R graphcommerce/examples/magento-graphcms/. graphcommerce-build 
+          cd graphcommerce-build 
+          yarn
+          yarn codegen
+          yarn build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      # Upload success or failure artifact based on the outcome
-      - name: Upload success artifact
-        if: success()
-        uses: actions/upload-artifact@v3
-        with:
-          name: success-${{ matrix.version }}
-          path: /tmp/graphcommerce-build
-
-      - name: Upload failure artifact
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: failure-${{ matrix.version }}
-          path: /tmp/graphcommerce-build
-
+  # notify-end will run only if any publish job failed
   notify-end:
+    if: always()
     needs: [notify-start, publish]
-    runs-on: ubuntu-latest
     name: Notify release end
-    steps:
-      - name: Download all artifacts
-        uses: actions/download-artifact@v3
-        with:
-          path: artifacts
-
-      - name: Check for any failure artifacts
-        id: check-failure
-        run: |
-          if ls artifacts/failure-* 1> /dev/null 2>&1; then
-            echo "failure_detected=true" >> $GITHUB_ENV
-          else
-            echo "failure_detected=false" >> $GITHUB_ENV
-          fi
-
-      - name: Notify if any failures
-        if: env.failure_detected == 'true'
-        uses: ho-nl/release-slack-action/.github/workflows/notify-slack-end.yml@main
-        secrets:
-          slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN }}
-        with:
-          channel: slack-test-messages
-          message: "One or more Node.js versions failed in the periodic build"
-          notifyOnlyOnFailure: true
+    uses: ho-nl/release-slack-action/.github/workflows/notify-slack-end.yml@main
+    secrets:
+      slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN }}
+    with:
+      time: ${{ needs.notify-start.outputs.time }}
+      result: ${{ needs.publish.result }}
+      channel: slack-test-messages
+      message: "One or more Node.js versions failed in the periodic build"
+      notifyOnlyOnFailure: true
