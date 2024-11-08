@@ -4,7 +4,7 @@ on:
     - cron: 0 0 * * *
   push:
     branches:
-      - 'canary'
+      - 'feature/periodic-build-canary'
 concurrency:
   group: release-canary
 jobs:
