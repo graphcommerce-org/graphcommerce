@@ -14,7 +14,7 @@ jobs:
     secrets:
       slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN }}
     with:
-      channel: slack-test-messages
+      channel: graphcommerce
       message: Graphcommerce start building
       notifyOnlyOnFailure: true
 
@@ -59,6 +59,6 @@ jobs:
     with:
       time: ${{ needs.notify-start.outputs.time }}
       result: ${{ needs.publish.result }}
-      channel: slack-test-messages
+      channel: graphcommerce
       message: "One or more Node.js versions failed in the periodic build"
       notifyOnlyOnFailure: true
