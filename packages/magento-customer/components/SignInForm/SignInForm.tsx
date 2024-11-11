@@ -35,6 +35,7 @@ export function SignInForm(props: SignInFormProps) {
           required={required.password}
           disabled={formState.isSubmitting}
           helperText={!!formState.errors.password || authError?.message}
+          InputLabelProps={{ shrink: true }}
           InputProps={{
             endAdornment: (
               <Link href='/account/forgot-password' underline='hover' sx={{ whiteSpace: 'nowrap' }}>

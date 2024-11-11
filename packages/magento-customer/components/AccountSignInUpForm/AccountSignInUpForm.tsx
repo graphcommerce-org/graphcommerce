@@ -153,6 +153,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
                 control={control}
                 name='email'
                 required
+                InputLabelProps={{ shrink: true }}
                 InputProps={{
                   endAdornment:
                     mode === 'session-expired' ? (
