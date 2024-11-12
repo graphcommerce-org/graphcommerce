@@ -4,6 +4,11 @@ Integrates GraphCommerce with the Magento Klarna module.
 
 Note: Not yet working
 
+## Prerequisites
+
+1. You have installed and setup the Magento Klarna magento module(this includes
+   making an account)
+
 ## Installation
 
 1. Find current version of your `@graphcommerce/magento-cart-payment-method` in
