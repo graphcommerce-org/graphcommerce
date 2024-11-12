@@ -1,7 +1,13 @@
-mutation KlarnaPaymentOptions($cartId: String!, $paymentMethod: PaymentMethodInput!) {
-  setPaymentMethodOnCart(input: { cart_id: $cartId, payment_method: $paymentMethod }) {
-    cart {
-      ...PaymentMethodUpdated
+mutation KlarnaPaymentOptions($cartId: String!) {
+  createKlarnaPaymentsSession(input: { cart_id: $cartId }) {
+    client_token
+    payment_method_categories {
+      asset_urls {
+        descriptive
+        standard
+      }
+      identifier
+      name
     }
   }
 }
