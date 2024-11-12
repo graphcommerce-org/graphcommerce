@@ -15,11 +15,15 @@ export function DateTimeFormat(props: DateTimeFormatPropsType) {
   const { children } = props
   const formatter = useDateTimeFormatter({ dateStyle: 'medium', timeStyle: 'short', ...props })
 
-  return (
-    <span suppressHydrationWarning>
-      {children
-        ? formatter.format(typeof children === 'string' ? new Date(children) : children)
-        : null}
-    </span>
-  )
+  const dateObj = useMemo(() => {
+    if (!children) return null
+    if (typeof children === 'string') {
+      return new Date(children.replace(/-/g, '/'))
+    }
+    return children instanceof Date ? children : new Date(children)
+  }, [children])
+
+  if (!dateObj || isNaN(dateObj.getTime())) return null
+
+  return <span suppressHydrationWarning>{formatter.format(dateObj)}</span>
 }

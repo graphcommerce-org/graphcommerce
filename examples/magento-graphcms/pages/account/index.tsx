@@ -51,7 +51,9 @@ function AccountIndexPage() {
   const orders = customer?.orders
   const latestOrder = orders?.items?.[(orders?.items?.length ?? 1) - 1]
 
-  const latestOrderDate = new Date(latestOrder?.order_date ?? new Date())
+  const latestOrderDate = new Date(
+    latestOrder?.order_date ? latestOrder.order_date.replace(/-/g, '/') : new Date(),
+  )
 
   return (
     <>
