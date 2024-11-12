@@ -27,8 +27,8 @@ export function KlarnaPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
   const { onSuccess } = usePaymentMethodContext()
   const cart = useCartQuery(BillingPageDocument)
 
-  const klarnaPaymentsAuthorize = () => {
-    return new Promise<KlarnaResponse>((resolve, reject) => {
+  const klarnaPaymentsAuthorize = () =>
+    new Promise<KlarnaResponse>((resolve, reject) => {
       try {
         Klarna.Payments.authorize(
           {
@@ -69,7 +69,6 @@ export function KlarnaPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
         reject(error)
       }
     })
-  }
 
   const form = useFormGqlMutationCart(KlarnaPaymentPlaceOrderDocument, {
     onBeforeSubmit: async (variabless) => {

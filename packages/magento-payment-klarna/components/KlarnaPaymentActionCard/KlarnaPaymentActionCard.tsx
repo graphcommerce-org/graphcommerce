@@ -9,7 +9,7 @@ export function KlarnaPaymentActionCard(props: PaymentMethodActionCardProps) {
 
   return (
     <>
-      <Script src='https://x.klarnacdn.net/kp/lib/v1/api.js' strategy='lazyOnload' />
+      <Script src='https://x.klarnacdn.net/kp/lib/v1/api.js' strategy='afterInteractive' />
       <ActionCard
         {...props}
         image={

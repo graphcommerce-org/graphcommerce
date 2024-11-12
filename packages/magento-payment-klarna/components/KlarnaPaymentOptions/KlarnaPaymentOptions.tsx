@@ -24,7 +24,7 @@ export function KlarnaPaymentOptions(props: PaymentOptionsProps) {
             container: '#klarna-payments-container',
           },
           {},
-          function (res) {
+          (res) => {
             console.debug(res)
           },
         )
