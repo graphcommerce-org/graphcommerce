@@ -28,62 +28,19 @@ function parseTagsFromHeader(tagsHeader: string | string[] | undefined): string[
   return parsedTags
 }
 
-async function invalidateProductById(
-  client: ApolloClient<NormalizedCacheObject>,
-  locale: string,
-  id: number,
-  res: NextApiResponse,
-) {
-  const internalUrl = `catalog/product/view/id/${id}`
-
-  const routeData = await client.query({
-    query: PurgeGetProductPathsDocument,
-    variables: {
-      internalUrl,
-    },
-  })
-
-  if (!routeData.data.route) {
-    console.warn(`varnish-purge: no URL found for product ID ${id}`)
-    return
-  }
-
+async function invalidateByUrl(locale: string, url: string, res: NextApiResponse) {
   // Determine locale prefix, this is needed unless we're the default locale, or we have our own domain.
   const prefix =
     storefrontConfig(locale)?.defaultLocale || storefrontConfig(locale)?.domain ? '' : `/${locale}`
 
-  // Invalidate product URL
-  let urlPath = routeData.data.route?.relative_url
-  if (urlPath) {
-    // Construct product URL based on Magento path. We can safely (and must)
-    // strip off the .html suffix, as we already redirect to URLs without this
-    // suffix
+  let urlPath = `${prefix}/${url}`
 
-    urlPath = urlPath.replace(/\.html$/, '')
-    urlPath = `${prefix}/p/${urlPath}`
-
-    console.info(`varnish-purge: invalidating URL ${urlPath} for product ID ${id}`)
-    try {
-      await res.revalidate(urlPath)
-    } catch (err) {
-      console.warn(`varnish-purge: failed to revalidate ${urlPath}: ${err}`)
-    }
-  } else {
-    console.warn(`varnish-purge: no URL found for product ID ${id}`)
+  console.info(`varnish-purge: invalidating URL ${urlPath}`)
+  try {
+    await res.revalidate(urlPath)
+  } catch (err) {
+    console.warn(`varnish-purge: failed to revalidate ${urlPath}: ${err}`)
   }
-
-  // Invalidate category URLs for the categories the product is in
-  const categoryPromises: Promise<void>[] = []
-
-  if ('categories' in routeData.data.route) {
-    routeData.data.route.categories?.forEach((category) => {
-      const categoryUrl = `${prefix}/${category?.url_path}`
-      console.info(`varnish-purge: invalidating URL ${categoryUrl} for product ID ${id}`)
-      categoryPromises.push(res.revalidate(categoryUrl))
-    })
-  }
-
-  await Promise.allSettled(categoryPromises)
 }
 
 async function doFullPurge(locale: string) {
@@ -105,28 +62,17 @@ function checkAllowList(req: NextApiRequest): boolean {
   return false
 }
 
-async function handleForLocale(
-  client: ApolloClient<NormalizedCacheObject>,
-  locale: string,
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
-  const rawTags = req.headers['x-magento-tags-pattern']
+async function handleForLocale(locale: string, req: NextApiRequest, res: NextApiResponse) {
+  let tagInfo = req.body
+  console.log(typeof req.body)
+  console.log(req.body)
 
-  if (rawTags === '.*') {
-    await doFullPurge(locale)
-  } else {
-    const productTagPattern = /^cat_p_([0-9]+)$/
-    const tags = parseTagsFromHeader(rawTags)
-
-    tags.forEach(async (tag) => {
-      const match = tag.match(productTagPattern)
-
-      if (match) {
-        await invalidateProductById(client, locale, +match[1], res)
-      }
-    })
+  if (!tagInfo || !Array.isArray(tagInfo)) {
+    return
   }
+  tagInfo.forEach(async (tag) => {
+    await invalidateByUrl(locale, tag.url, res)
+  })
 }
 
 export async function handlePurgeRequest(
@@ -143,13 +89,13 @@ export async function handlePurgeRequest(
   }
 
   console.info(
-    `varnish-purge: purge request from ${req.socket.remoteAddress} for tag pattern ${req.headers['x-magento-tags-pattern']}`,
+    `varnish-purge: purge request from ${req.socket.remoteAddress} for tag pattern ${req.headers['x-magento-tags-pattern']} request body: ${JSON.stringify(req.body)}`,
   )
 
   const promises: Promise<void>[] = []
 
   storefrontAll.forEach((store) => {
-    promises.push(handleForLocale(client(store.locale), store.locale, req, res))
+    promises.push(handleForLocale(store.locale, req, res))
   })
 
   await Promise.all(promises)
