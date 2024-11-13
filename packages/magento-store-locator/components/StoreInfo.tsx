@@ -58,6 +58,9 @@ export function StoreInfo(props: InfoWindowProps) {
             onClick={!isPreferredStore ? setPreferredStore : undefined}
             variant='pill'
             sx={{ display: 'flex', gap: '7px' }}
+            onMouseDown={(e) => {
+              e.stopPropagation()
+            }}
           >
             <IconSvg src={LocationIcon} size='large' />
             <Trans id='Select as your store' />

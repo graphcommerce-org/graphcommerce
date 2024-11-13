@@ -185,6 +185,9 @@ msgstr "Alle filters wissen"
 msgid "Close"
 msgstr "Sluiten"
 
+msgid "Closest store"
+msgstr ""
+
 #. js-lingui-generated-id
 msgid "Order status"
 msgstr "Bestelstatus"
@@ -254,6 +257,9 @@ msgstr "Maak een nieuw wachtwoord"
 
 msgid "Current Password"
 msgstr "Huidige wachtwoord"
+
+msgid "Current Position"
+msgstr ""
 
 msgid "Current email"
 msgstr "Huidige email"
@@ -420,6 +426,9 @@ msgstr "Lichte modus"
 msgid "Loading"
 msgstr "Laden"
 
+msgid "Loading stores..."
+msgstr ""
+
 msgid "Loading your account"
 msgstr "Uw account laden"
 
@@ -483,6 +492,9 @@ msgstr "Nog geen account?"
 
 msgid "No orders found"
 msgstr "Geen bestellingen gevonden"
+
+msgid "No results found"
+msgstr ""
 
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "Geen zorgen! Vul uw e-mailadres in en we sturen een email met instructies om het wachtwoord te resetten."
@@ -670,11 +682,20 @@ msgstr "Sla nieuw wachtwoord op"
 msgid "Search"
 msgstr "Zoeken"
 
+msgid "Search near \"{search}\""
+msgstr ""
+
+msgid "Search your store by city, zip code or name"
+msgstr ""
+
 msgid "Search..."
 msgstr "Zoeken..."
 
 msgid "Select"
 msgstr "Selecteer"
+
+msgid "Select as your store"
+msgstr ""
 
 msgid "Select your bank"
 msgstr "Kies uw bank"
@@ -738,6 +759,9 @@ msgstr "Afrekenen"
 
 msgid "Store home"
 msgstr "Winkel home"
+
+msgid "Stores"
+msgstr ""
 
 msgid "Street"
 msgstr "Straat"
@@ -936,6 +960,9 @@ msgstr "Jouw vergelijking is leeg"
 
 msgid "Your session is expired"
 msgstr "Uw sessie is verlopen"
+
+msgid "Your store"
+msgstr ""
 
 msgid "Your wishlist is empty"
 msgstr "Uw verlanglijst is leeg"

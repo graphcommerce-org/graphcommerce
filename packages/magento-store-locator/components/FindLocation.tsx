@@ -7,7 +7,7 @@ import { useStoreLocatorForm } from './StoreLocatorFormProvider'
 import { useStoreLocatorMap } from './StoreLocatorMapLoader'
 
 export function FindLocation() {
-  const { reset, control } = useStoreLocatorForm()
+  const { setValue, control } = useStoreLocatorForm()
   const { additionalOptions } = useStoreLocatorMap()
   const search = useWatch({ control, name: 'search' })
   const { setPosition } = usePositionContext()
@@ -27,7 +27,7 @@ export function FindLocation() {
         const lng = location.lng()
 
         setPosition({ lat, lng })
-        reset({ search: '' })
+        setValue('search', '')
       }
     } catch (error) {
       console.error('Error while geocoding:', error)
@@ -69,7 +69,7 @@ export function FindLocation() {
         })}
         onClick={handleSearch}
       >
-        <Trans id='Search near "{placeName}"' values={{ placeName: search }} />
+        <Trans id='Search near "{search}"' values={{ search }} />
       </Button>
     </div>
   )

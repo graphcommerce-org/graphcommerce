@@ -185,6 +185,9 @@ msgstr "Effacer tous les filtres"
 msgid "Close"
 msgstr "Fermer"
 
+msgid "Closest store"
+msgstr ""
+
 #. js-lingui-generated-id
 msgid "Order status"
 msgstr "Statut de la commande"
@@ -254,6 +257,9 @@ msgstr "Créer un nouveau mot de passe"
 
 msgid "Current Password"
 msgstr "Mot de passe actuel"
+
+msgid "Current Position"
+msgstr ""
 
 msgid "Current email"
 msgstr "Email actuel"
@@ -420,6 +426,9 @@ msgstr "Mode clair"
 msgid "Loading"
 msgstr "Chargement"
 
+msgid "Loading stores..."
+msgstr ""
+
 msgid "Loading your account"
 msgstr "Chargement de votre compte"
 
@@ -483,6 +492,9 @@ msgstr "Pas encore de compte?"
 
 msgid "No orders found"
 msgstr "Aucune commande trouvée"
+
+msgid "No results found"
+msgstr ""
 
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "Pas de soucis! Entrez votre adresse email et nous vous enverrons un email avec les instructions pour réinitialiser votre mot de passe."
@@ -670,11 +682,20 @@ msgstr "Sauvegarder le nouveau mot de passe"
 msgid "Search"
 msgstr "Rechercher"
 
+msgid "Search near \"{search}\""
+msgstr ""
+
+msgid "Search your store by city, zip code or name"
+msgstr ""
+
 msgid "Search..."
 msgstr "Rechercher..."
 
 msgid "Select"
 msgstr "Sélectionner"
+
+msgid "Select as your store"
+msgstr ""
 
 msgid "Select your bank"
 msgstr "Sélectionnez votre banque"
@@ -738,6 +759,9 @@ msgstr "Commencer la commande"
 
 msgid "Store home"
 msgstr "Accueil de la boutique"
+
+msgid "Stores"
+msgstr ""
 
 msgid "Street"
 msgstr "Rue"
@@ -936,6 +960,9 @@ msgstr "Votre comparateur est vide"
 
 msgid "Your session is expired"
 msgstr "Votre session a expiré"
+
+msgid "Your store"
+msgstr ""
 
 msgid "Your wishlist is empty"
 msgstr "Votre liste de souhaits est vide"

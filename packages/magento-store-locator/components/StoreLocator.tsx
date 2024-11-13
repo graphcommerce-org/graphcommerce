@@ -46,7 +46,7 @@ export function StoreLocator({ stores, markerConfig }: StoreLocatorProps) {
       }}
     >
       <Box
-        sx={{
+        sx={(theme) => ({
           width: { xs: '100%', md: '30%' },
           minWidth: { md: '300px' },
           display: 'flex',
@@ -55,13 +55,13 @@ export function StoreLocator({ stores, markerConfig }: StoreLocatorProps) {
             xs: 1,
             md: 0,
           },
-          borderRight: { md: '1px solid' },
+          borderRight: { md: `1px solid ${theme.palette.divider}` },
           borderColor: 'divider',
-          background: (theme) => theme.palette.background.default,
+          background: theme.palette.background.default,
           order: { xs: 2, md: 1 },
           height: { xs: 'auto', md: '100%' },
           overflowY: 'auto',
-        }}
+        })}
       >
         <StoreFilters />
         <Box sx={{ flexGrow: 1, overflowY: 'auto', scrollbarWidth: 'none' }}>

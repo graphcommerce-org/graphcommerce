@@ -67,8 +67,7 @@ function Stores({ stores }: { stores: StoreFragment[] }) {
                 preferredStoreMarkerImageSrc: '/icons/marker-my-store.svg',
                 imageHeight: 45,
                 imageWidth: 45,
-                onMarkerClick: (store: StoreFragment) =>
-                  console.log('Hello from', store.pickup_location_code),
+                // onMarkerClick: (store: StoreFragment) => console.log('Hello from', store.pickup_location_code),
               }}
             />
           </PositionProvider>
