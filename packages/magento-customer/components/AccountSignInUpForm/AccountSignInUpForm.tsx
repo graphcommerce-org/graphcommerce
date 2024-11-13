@@ -154,8 +154,8 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
                 name='email'
                 required
                 // Fixes an issue where the label doesn't shrink as expected when the field is autofilled by the browser.
-                // Using shrink based on the presence of 'email' forces the label to behave correctly even with autofill.
-                InputLabelProps={{ shrink: !!watch('email') }}
+                // Using shrink forces the label to behave correctly even with autofill.
+                InputLabelProps={{ shrink: true }}
                 InputProps={{
                   endAdornment:
                     mode === 'session-expired' ? (
