@@ -49,7 +49,7 @@ function useRendererWithMenu(productListRenderer: ProductListItemRenderer) {
 export function SearchOverlayProducts({ productListRenderer }: SearchOverlayProductsProps) {
   const rendererWithMenu = useRendererWithMenu(productListRenderer)
 
-  const { params, products } = useSearchOverlay()
+  const { params, products, setClosed } = useSearchOverlay()
 
   const term = params.search
   const noResult = products?.total_count === 0
@@ -57,7 +57,7 @@ export function SearchOverlayProducts({ productListRenderer }: SearchOverlayProd
   return (
     <>
       {noResult && (
-        <SectionContainer labelLeft={<>Products</>}>
+        <SectionContainer labelLeft={<Trans>Products</Trans>}>
           <Trans>We couldn’t find any results for ‘{term}’</Trans>
         </SectionContainer>
       )}
@@ -70,8 +70,9 @@ export function SearchOverlayProducts({ productListRenderer }: SearchOverlayProd
               color='secondary'
               underline='hover'
               href={productListLink({ ...params, pageSize: null })}
+              onClick={() => setClosed()}
             >
-              View all ({products.total_count})
+              <Trans>View all</Trans> ({products.total_count})
             </Link>
           }
           sx={(theme) => ({ pb: theme.spacing(2) })}
