@@ -8,6 +8,7 @@ import { SearchOverlayHeader } from './SearchOverlayHeader'
 import { SearchOverlayProducts } from './SearchOverlayProducts'
 import { SearchOverlayProvider } from './SearchOverlayProvider'
 import { SearchOverlaySuggestions } from './SearchOverlaySuggestions'
+import { useOpenWithShortKey } from './useOpenWithShortKey'
 
 type SearchOverlayProps = {
   productListRenderer: ProductListItemRenderer
@@ -23,8 +24,9 @@ type SearchOverlayProps = {
 
 export function SearchOverlay(props: SearchOverlayProps) {
   const { productListRenderer, slotProps } = props
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   const theme = useTheme()
+  useOpenWithShortKey(setOpen)
 
   return (
     <Overlay
