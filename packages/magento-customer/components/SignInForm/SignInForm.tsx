@@ -35,9 +35,6 @@ export function SignInForm(props: SignInFormProps) {
           required={required.password}
           disabled={formState.isSubmitting}
           helperText={!!formState.errors.password || authError?.message}
-          // Fixes an issue where the label doesn't shrink as expected when the field is autofilled by the browser.
-          // Using shrink forces the label to behave correctly even with autofill.
-          InputLabelProps={{ shrink: true }}
           InputProps={{
             endAdornment: (
               <Link href='/account/forgot-password' underline='hover' sx={{ whiteSpace: 'nowrap' }}>

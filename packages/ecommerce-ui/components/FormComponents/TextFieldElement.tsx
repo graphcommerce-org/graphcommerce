@@ -8,6 +8,7 @@ import {
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { TextField, TextFieldProps } from '@mui/material'
+import React from 'react'
 
 export type TextFieldElementProps<T extends FieldValues = FieldValues> = Omit<
   TextFieldProps,
@@ -48,11 +49,24 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
     fieldState: { error },
   } = useController({ name, control, rules, defaultValue, shouldUnregister, disabled })
 
+  // https://stackoverflow.com/questions/76830737/chrome-autofill-causes-textbox-collision-for-textfield-label-and-value
+  const [hasAutofill, setHasAutofill] = React.useState(false)
+  const shrink = hasAutofill || rest.InputLabelProps?.shrink || Boolean(value)
+  const onAnimationStart = (e: React.AnimationEvent) => {
+    if (e.target instanceof HTMLElement) {
+      const autofilled = !!e.target.matches('*:-webkit-autofill')
+      if (e.animationName === 'mui-auto-fill') setHasAutofill(autofilled)
+      if (e.animationName === 'mui-auto-fill-cancel') setHasAutofill(autofilled)
+    }
+    return rest.inputProps?.onAnimationStart?.(e)
+  }
+
   return (
     <TextField
       {...rest}
       {...field}
       value={value}
+      inputProps={{ ...rest.inputProps, onAnimationStart }}
       onChange={(ev) => {
         onChange(type === 'number' && ev.target.value ? Number(ev.target.value) : ev.target.value)
         rest.onChange?.(ev)
@@ -62,6 +76,7 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
       type={type}
       error={Boolean(error) || rest.error}
       helperText={error ? error.message : rest.helperText}
+      InputLabelProps={{ ...rest.InputLabelProps, shrink }}
       InputProps={{
         ...rest.InputProps,
         endAdornment:
