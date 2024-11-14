@@ -24,10 +24,10 @@ import {
   iconPerson,
   iconShutdown,
   iconStar,
-  TimeAgo,
   LayoutTitle,
   LayoutHeader,
   iconBin,
+  RelativeToTimeFormat,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -50,10 +50,6 @@ function AccountIndexPage() {
     customer?.addresses?.filter((a) => a?.default_shipping)?.[0] || customer?.addresses?.[0]
   const orders = customer?.orders
   const latestOrder = orders?.items?.[(orders?.items?.length ?? 1) - 1]
-
-  const latestOrderDate = new Date(
-    latestOrder?.order_date ? latestOrder.order_date.replace(/-/g, '/') : new Date(),
-  )
 
   return (
     <>
@@ -97,9 +93,9 @@ function AccountIndexPage() {
               subtitle={
                 latestOrder ? (
                   <>
-                    <time dateTime={latestOrderDate.toDateString()}>
-                      <TimeAgo date={latestOrderDate} locale={locale} />
-                    </time>
+                    <RelativeToTimeFormat styleFormat='short'>
+                      {latestOrder?.order_date}
+                    </RelativeToTimeFormat>
                     {', '}
                     {latestOrder?.items && <OrderStateLabelInline {...latestOrder} />}
                   </>
