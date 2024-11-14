@@ -16,5 +16,5 @@ export function DateTimeFormat(props: DateTimeFormatPropsType) {
   const formatter = useDateTimeFormatter({ dateStyle: 'medium', timeStyle: 'short', ...props })
 
   const dateValue = useMemo(() => toDate(children), [children])
-  return <span suppressHydrationWarning>{children ? formatter.format(dateValue) : null}</span>
+  return <span suppressHydrationWarning>{dateValue ? formatter.format(dateValue) : null}</span>
 }

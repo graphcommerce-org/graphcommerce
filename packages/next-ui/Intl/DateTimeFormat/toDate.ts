@@ -12,5 +12,5 @@ export function toDate(value: DateValue): Date | undefined {
   }
 
   if (date && Number.isNaN(date.getTime())) return undefined
-  return undefined
+  return date
 }
