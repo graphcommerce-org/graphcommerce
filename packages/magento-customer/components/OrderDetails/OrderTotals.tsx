@@ -77,6 +77,7 @@ export function OrderTotals(props: OrderTotalsProps) {
       </Box>
       {total?.taxes?.map((tax) => (
         <Box
+          key={tax?.title}
           className={classes.totalsVat}
           sx={(theme) => ({
             display: 'flex',

@@ -1,4 +1,6 @@
 import { ApolloErrorSnackbar, CheckboxElement, SelectElement } from '@graphcommerce/ecommerce-ui'
+import { useQuery } from '@graphcommerce/graphql'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   breakpointVal,
   Button,
@@ -17,15 +19,13 @@ import {
   Alert,
   Box,
 } from '@mui/material'
+import { canCancelOrder } from '../../utils'
+import { OrderDetailsFragment } from '../OrderDetails/OrderDetails.gql'
 import {
   CancelOrderDocument,
   CancelOrderMutation,
   CancelOrderMutationVariables,
 } from './CancelOrder.gql'
-import { OrderDetailsFragment } from '../OrderDetails/OrderDetails.gql'
-import { useQuery } from '@graphcommerce/graphql'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { canCancelOrder } from '../../utils'
 
 type CancelOrderFormProps = {
   order: OrderDetailsFragment
@@ -33,14 +33,16 @@ type CancelOrderFormProps = {
 
 export function CancelOrderForm(props: CancelOrderFormProps) {
   const { order, sx, ...rest } = props
-  const { id: orderId, number: orderNumber } = order
+  const { id: orderId } = order
 
   const form = useFormGqlMutation<
     CancelOrderMutation,
     CancelOrderMutationVariables & { confirm: boolean }
   >(CancelOrderDocument, { defaultValues: { orderId: atob(orderId) } })
 
-  const options = useQuery(StoreConfigDocument).data?.storeConfig?.order_cancellation_reasons
+  const config = useQuery(StoreConfigDocument).data?.storeConfig
+  const options = config?.order_cancellation_reasons
+  const enabled = config?.order_cancellation_enabled
 
   const { control, formState, required, handleSubmit, error, data: cancelOrderData } = form
 
@@ -49,7 +51,7 @@ export function CancelOrderForm(props: CancelOrderFormProps) {
   const submittedWithoutErrors =
     formState.isSubmitSuccessful && !error && !cancelOrderData?.cancelOrder?.error
 
-  const visible = canCancelOrder(order) || submittedWithoutErrors
+  const visible = enabled && (canCancelOrder(order) || submittedWithoutErrors)
 
   if (!visible) return null
 
