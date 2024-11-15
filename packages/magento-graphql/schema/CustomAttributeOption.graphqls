@@ -1,0 +1,37 @@
+type CustomAttributeOptionOutput {
+  raw: String!
+  """
+  Errors of retrieving certain attributes metadata.
+  """
+  errors: [AttributeMetadataError]!
+  """
+  Attribute options.
+  """
+  options: [CustomAttributeOptionInterface]
+  """
+  Requested attribute metadata.
+  """
+  attribute: CustomAttributeMetadataInterface
+}
+
+extend interface ProductInterface {
+  custom_attribute_option(attribute_code: String!): CustomAttributeOptionOutput
+}
+extend type SimpleProduct {
+  custom_attribute_option(attribute_code: String!): CustomAttributeOptionOutput
+}
+extend type ConfigurableProduct {
+  custom_attribute_option(attribute_code: String!): CustomAttributeOptionOutput
+}
+extend type BundleProduct {
+  custom_attribute_option(attribute_code: String!): CustomAttributeOptionOutput
+}
+extend type DownloadableProduct {
+  custom_attribute_option(attribute_code: String!): CustomAttributeOptionOutput
+}
+extend type VirtualProduct {
+  custom_attribute_option(attribute_code: String!): CustomAttributeOptionOutput
+}
+extend type GroupedProduct {
+  custom_attribute_option(attribute_code: String!): CustomAttributeOptionOutput
+}
