@@ -20,10 +20,10 @@
     "@graphcommerce/magento-product": "^9.0.0-canary.98",
     "@graphcommerce/magento-search": "^9.0.0-canary.98",
     "@graphcommerce/next-config": "^9.0.0-canary.98",
-    "@graphcommerce/next-ui": "^9.0.0-canary.98"
+    "@graphcommerce/next-ui": "^9.0.0-canary.98",
+    "graphql": "^16.0.0"
   },
   "devDependencies": {
-    "graphql": "^16.0.0",
     "tsx": "^4.16.2"
   }
 }

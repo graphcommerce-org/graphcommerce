@@ -1,18 +1,19 @@
 import fragments from '@graphcommerce/graphql/generated/fragments.json'
 import type {
-  AttributeInput,
-  CustomAttributeOptionOutput,
+  CustomAttributeMetadataInterface,
   MeshContext,
   ProductInterfaceResolvers,
   Resolvers,
   ResolversTypes,
 } from '@graphcommerce/graphql-mesh'
-import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { print, Kind, SelectionSetNode, StringValueNode } from 'graphql'
+import { Kind } from 'graphql'
 
 type CustomAttributeInput = { attribute_code: string; entity_type: 'catalog_product' }
 
-async function customAttributeMetadataV2(input: CustomAttributeInput, context: MeshContext) {
+async function customAttributeMetadataV2(
+  input: CustomAttributeInput,
+  context: MeshContext,
+): Promise<CustomAttributeMetadataInterface | undefined | null> {
   const cacheKey = `customAttributeMetadata-${input.entity_type}-${input.attribute_code}`
   const cached = await context.cache.get(cacheKey)
   if (cached) return cached
@@ -59,10 +60,10 @@ async function customAttributeMetadataV2(input: CustomAttributeInput, context: M
         }
       }
     `,
-    valuesFromResults: (values, attributes) => {
-      const all = filterNonNullableKeys(values.items)
-      return attributes.map((attribute) => all.find((v) => v.code === attribute.attribute_code))
-    },
+    valuesFromResults: (values, attributes) =>
+      attributes.map((attribute) =>
+        values.items?.find((v) => v?.code === attribute.attribute_code),
+      ),
   })
 
   // Cache for 1 hour
@@ -74,45 +75,48 @@ type ProductResolver = Pick<ProductInterfaceResolvers<MeshContext>, 'custom_attr
 
 const productResolver: ProductResolver = {
   custom_attribute_option: {
-    selectionSet: (fieldNode) => {
-      return {
-        kind: Kind.SELECTION_SET,
-        selections: (fieldNode.arguments ?? [])
-          .map((arg) => arg.value)
-          .filter((value) => value.kind === Kind.STRING)
-          .map((value) => ({ kind: Kind.FIELD, name: { kind: Kind.NAME, value: value.value } })),
-      }
-    },
-    resolve: async (root, args, context) => {
+    selectionSet: (fieldNode) => ({
+      kind: Kind.SELECTION_SET,
+      selections: (fieldNode.arguments ?? [])
+        .map((arg) => arg.value)
+        .filter((value) => value.kind === Kind.STRING)
+        .map((value) => ({ kind: Kind.FIELD, name: { kind: Kind.NAME, value: value.value } })),
+    }),
+    resolve: async (root, { attribute_code }, context) => {
       if (import.meta.graphCommerce.magentoVersion <= 246) {
         throw Error('This field is only available in Magento 2.4.7 and up')
       }
 
       type Result = ResolversTypes['CustomAttributeOptionOutput']
-      const result: Result = { raw: `${root[args.code]}`, options: [], attribute: null, errors: [] }
+      const result: Result = {
+        raw: `${root[attribute_code]}`,
+        options: [],
+        attribute: null,
+        errors: [],
+      }
 
       const values = result.raw.includes(',')
         ? [result.raw, ...result.raw.split(',')]
         : [result.raw]
       const attribute = await customAttributeMetadataV2(
-        { attribute_code: args.code, entity_type: 'catalog_product' },
+        { attribute_code, entity_type: 'catalog_product' },
         context,
       )
 
       result.attribute = attribute
 
       if (!attribute) {
-        const message = `Attribute '${args.code}' found, but option ${values.join(', ')} not found`
+        const message = `Attribute '${attribute_code}' found, but option ${values.join(', ')} not found`
         result.errors.push({ message, type: 'ATTRIBUTE_NOT_FOUND' })
         return result
       }
 
       values.forEach((v) => {
-        const found = attribute.options?.find((o) => o?.value === v)
+        const found = attribute.options?.find((o) => o?.value === v || o?.label === v)
         if (found) {
           result.options?.push(found)
         } else {
-          const message = `Option '${v}' not found for attribute '${args.code}'`
+          const message = `Option '${v}' not found for attribute '${attribute_code}'`
           result.errors.push({ message, type: 'ATTRIBUTE_NOT_FOUND' })
         }
       })
