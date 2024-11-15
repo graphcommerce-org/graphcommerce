@@ -4,7 +4,7 @@ on:
     - cron: 0 0 * * *
   push:
     branches:
-      - 'feature/periodic-build-canary'
+      - 'canary'
 concurrency:
   group: release-canary
 jobs:
@@ -14,10 +14,9 @@ jobs:
     secrets:
       slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN }}
     with:
-      channel: slack-test-messages
+      channel: graphcommerce-build
       message: Graphcommerce start building
       notifyOnlyOnFailure: true
-
   publish:
     strategy:
       matrix:
@@ -60,6 +59,6 @@ jobs:
     with:
       time: ${{ needs.notify-start.outputs.time }}
       result: ${{ needs.publish.result }}
-      channel: slack-test-messages
-      message: "One or more Node.js versions failed in the periodic canary build"
+      channel: graphcommerce-build
+      message: "One or more Node.js versions failed in the periodic build"
       notifyOnlyOnFailure: true
