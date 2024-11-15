@@ -21,7 +21,9 @@ const nextConfig = {
     pagesBufferLength: 10,
   },
   optimizeFonts: false,
+
   images: {
+    domains: ['configurator.reachdigital.dev'],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   eslint: {

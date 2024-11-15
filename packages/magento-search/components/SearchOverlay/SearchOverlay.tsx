@@ -9,6 +9,7 @@ import { SearchOverlayProducts } from './SearchOverlayProducts'
 import { SearchOverlayProvider } from './SearchOverlayProvider'
 import { SearchOverlaySuggestions } from './SearchOverlaySuggestions'
 import { useOpenWithShortKey } from './useOpenWithShortKey'
+import { SearchOverlayFab } from './SearchOverlayFab'
 
 type SearchOverlayProps = {
   productListRenderer: ProductListItemRenderer
@@ -29,32 +30,35 @@ export function SearchOverlay(props: SearchOverlayProps) {
   useOpenWithShortKey(setOpen)
 
   return (
-    <Overlay
-      active={open}
-      onClosed={() => setOpen(false)}
-      variantMd='top'
-      variantSm='bottom'
-      sizeMd='floating'
-      sizeSm='full'
-      justifyMd='center'
-      disableAnimation
-      disableDrag
-      smSpacingTop={() => `6px`}
-      widthMd={`min(${theme.breakpoints.values.lg}px, 100vw - ${theme.page.horizontal} * 2)`}
-      bgColor='paper'
-      {...slotProps?.overlay}
-    >
-      <SearchOverlayProvider open={open} setOpen={setOpen}>
-        <SearchOverlayHeader {...slotProps?.header} />
-        <SearchOverlayBodyBase {...slotProps?.body}>
-          <SearchOverlaySuggestions {...slotProps?.suggestions} />
-          <SearchOverlayCategories {...slotProps?.categories} />
-          <SearchOverlayProducts
-            productListRenderer={productListRenderer}
-            {...slotProps?.products}
-          />
-        </SearchOverlayBodyBase>
-      </SearchOverlayProvider>
-    </Overlay>
+    <>
+      <SearchOverlayFab setOpen={setOpen} />
+      <Overlay
+        active={open}
+        onClosed={() => setOpen(false)}
+        variantMd='top'
+        variantSm='bottom'
+        sizeMd='floating'
+        sizeSm='full'
+        justifyMd='center'
+        disableAnimation
+        disableDrag
+        smSpacingTop={() => `6px`}
+        widthMd={`min(${theme.breakpoints.values.lg}px, 100vw - ${theme.page.horizontal} * 2)`}
+        bgColor='paper'
+        {...slotProps?.overlay}
+      >
+        <SearchOverlayProvider open={open} setOpen={setOpen}>
+          <SearchOverlayHeader {...slotProps?.header} />
+          <SearchOverlayBodyBase {...slotProps?.body}>
+            <SearchOverlaySuggestions {...slotProps?.suggestions} />
+            <SearchOverlayCategories {...slotProps?.categories} />
+            <SearchOverlayProducts
+              productListRenderer={productListRenderer}
+              {...slotProps?.products}
+            />
+          </SearchOverlayBodyBase>
+        </SearchOverlayProvider>
+      </Overlay>
+    </>
   )
 }

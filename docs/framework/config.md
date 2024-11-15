@@ -7,6 +7,75 @@ GoogleDatalayerConfig to allow enabling certain aspects of the datalayer
 
 Enable core web vitals tracking for GraphCommerce
 
+### GraphCommerceAlgoliaConfig
+
+Algolia configuration for GraphCommerce.
+
+#### applicationId: string (required)
+
+Configure your Algolia application ID.
+
+Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
+
+#### indexNamePrefix: string (required)
+
+Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix
+
+#### searchOnlyApiKey: string (required)
+
+Configure your Algolia Search Only API Key.
+
+Stores > Configuration > Algolia Search > Credentials and Basic Setup > Search-only (public) API key
+
+#### catalogEnabled: boolean
+
+By default the catalog will not use algolia. Set this to true to enable Algolia for the catalog.
+
+#### customerGroupPricingEnabled: boolean
+
+Enable Algolia customer group pricing.
+
+Please be aware that personalization needs to be enabled to make this work.
+
+#### frequentlyBoughtTogether: CROSSSELL_PRODUCTS | DISABLED | RELATED_PRODUCTS | UPSELL_PRODUCTS
+
+https://www.algolia.com/doc/guides/algolia-recommend/overview/#frequently-bought-together
+
+Set the location where the frequently bought together model should be shown.
+Good default is CROSSSELL_PRODUCTS, which is shown on the Cart page.
+
+Before enabling, make sure the model is trained in Algolia.
+Do not assign multiple recommendation models to the same location.
+
+#### lookingSimilar: CROSSSELL_PRODUCTS | DISABLED | RELATED_PRODUCTS | UPSELL_PRODUCTS
+
+https://www.algolia.com/doc/guides/algolia-recommend/overview/#looking-similar
+
+Set the location where the looking similar model should be shown.
+Good default is UPSELL_PRODUCTS, which is shown on the Product page by default.
+
+Before enabling, make sure the model is trained in Algolia.
+Do not assign multiple recommendation models to the same location.
+
+#### relatedProducts: CROSSSELL_PRODUCTS | DISABLED | RELATED_PRODUCTS | UPSELL_PRODUCTS
+
+https://www.algolia.com/doc/guides/algolia-recommend/overview/#related-products-and-related-content
+
+Set the location where the related products model should be shown.
+Good default is RELATED_PRODUCTS, which is shown on the Product page by default.
+
+Before enabling, make sure the model is trained in Algolia.
+Do not assign multiple recommendation models to the same location.
+
+#### suggestionsSuffix: string
+
+To enable Algolia suggestions, please provide the Suffix that is used for your suggestions index.
+
+The pattern is `${indexNamePrefix}_{storeCode}_{suggestionsSuffix}`.
+Something like `_suggestions` or `_query_suggestions`
+
+For the index `magento2_demo_en_US_suggestions` this would be `_suggestions`
+
 # GraphCommerce configuration system
 
 Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file
@@ -84,6 +153,12 @@ extend input GraphCommerceStorefrontConfig {
 Below is a list of all possible configurations that can be set by GraphCommerce.
 
 ### GraphCommerceConfig
+
+#### algolia: [GraphCommerceAlgoliaConfig](#GraphCommerceAlgoliaConfig) (required)
+
+Configure your Algolia application ID.
+
+Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
 
 #### canonicalBaseUrl: string (required)
 
@@ -321,6 +396,10 @@ By default we route products to /p/[url] but you can change this to /product/[ur
 
 Default: '/p/'
 Example: '/product/'
+
+#### quickSearch: boolean = `false`
+
+Enabled / disable quick search functionality
 
 #### recentlyViewedProducts: [RecentlyViewedProductsConfig](#RecentlyViewedProductsConfig)
 

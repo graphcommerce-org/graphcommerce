@@ -11,4 +11,6 @@ fragment ProductListItem on ProductInterface {
       ...ProductListPrice
     }
   }
+  colors
+  print_type
 }

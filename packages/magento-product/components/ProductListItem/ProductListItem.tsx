@@ -1,6 +1,6 @@
 import { ImageProps } from '@graphcommerce/image'
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { SxProps, Theme, useEventCallback, Skeleton } from '@mui/material'
+import { SxProps, Theme, Skeleton, Chip } from '@mui/material'
 import React from 'react'
 import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { productLink } from '../../hooks/useProductLink'
@@ -90,6 +90,8 @@ export function ProductListItemReal(props: ProductProps) {
     titleComponent = 'h2',
     sx = [],
     onClick,
+    colors,
+    print_type,
     slotProps = {},
   } = props
 
@@ -145,6 +147,13 @@ export function ProductListItemReal(props: ProductProps) {
           >
             <ProductListPrice {...price_range.minimum_price} />
           </ProductListItemTitleAndPrice>
+          {colors && <Chip label={`Colors: ${colors.split(',').slice(0, 3).join(', ')}`} />} <br />
+          {print_type && (
+            <Chip
+              label={`Print type: ${print_type.split(',').slice(0, 2).join(', ')}`}
+              color='info'
+            />
+          )}
           {children}
         </>
       )}

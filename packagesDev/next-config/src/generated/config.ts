@@ -36,6 +36,78 @@ export type DatalayerConfig = {
   coreWebVitals?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+/** Algolia configuration for GraphCommerce. */
+export type GraphCommerceAlgoliaConfig = {
+  /**
+   * Configure your Algolia application ID.
+   *
+   * Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
+   */
+  applicationId: Scalars['String']['input'];
+  /** By default the catalog will not use algolia. Set this to true to enable Algolia for the catalog. */
+  catalogEnabled?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
+   * Enable Algolia customer group pricing.
+   *
+   * Please be aware that personalization needs to be enabled to make this work.
+   */
+  customerGroupPricingEnabled?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
+   * https://www.algolia.com/doc/guides/algolia-recommend/overview/#frequently-bought-together
+   *
+   * Set the location where the frequently bought together model should be shown.
+   * Good default is CROSSSELL_PRODUCTS, which is shown on the Cart page.
+   *
+   * Before enabling, make sure the model is trained in Algolia.
+   * Do not assign multiple recommendation models to the same location.
+   */
+  frequentlyBoughtTogether?: InputMaybe<GraphCommerceAlgoliaRecommendationLocation>;
+  /** Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix */
+  indexNamePrefix: Scalars['String']['input'];
+  /**
+   * https://www.algolia.com/doc/guides/algolia-recommend/overview/#looking-similar
+   *
+   * Set the location where the looking similar model should be shown.
+   * Good default is UPSELL_PRODUCTS, which is shown on the Product page by default.
+   *
+   * Before enabling, make sure the model is trained in Algolia.
+   * Do not assign multiple recommendation models to the same location.
+   */
+  lookingSimilar?: InputMaybe<GraphCommerceAlgoliaRecommendationLocation>;
+  /**
+   * https://www.algolia.com/doc/guides/algolia-recommend/overview/#related-products-and-related-content
+   *
+   * Set the location where the related products model should be shown.
+   * Good default is RELATED_PRODUCTS, which is shown on the Product page by default.
+   *
+   * Before enabling, make sure the model is trained in Algolia.
+   * Do not assign multiple recommendation models to the same location.
+   */
+  relatedProducts?: InputMaybe<GraphCommerceAlgoliaRecommendationLocation>;
+  /**
+   * Configure your Algolia Search Only API Key.
+   *
+   * Stores > Configuration > Algolia Search > Credentials and Basic Setup > Search-only (public) API key
+   */
+  searchOnlyApiKey: Scalars['String']['input'];
+  /**
+   * To enable Algolia suggestions, please provide the Suffix that is used for your suggestions index.
+   *
+   * The pattern is `${indexNamePrefix}_{storeCode}_{suggestionsSuffix}`.
+   * Something like `_suggestions` or `_query_suggestions`
+   *
+   * For the index `magento2_demo_en_US_suggestions` this would be `_suggestions`
+   */
+  suggestionsSuffix?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Location where the recommendation model should be shown. This replaces the related_products, upsell_products and crosssell_products fields on products. */
+export type GraphCommerceAlgoliaRecommendationLocation =
+  | 'CROSSSELL_PRODUCTS'
+  | 'DISABLED'
+  | 'RELATED_PRODUCTS'
+  | 'UPSELL_PRODUCTS';
+
 /**
  * # GraphCommerce configuration system
  *
@@ -114,6 +186,12 @@ export type DatalayerConfig = {
  * Below is a list of all possible configurations that can be set by GraphCommerce.
  */
 export type GraphCommerceConfig = {
+  /**
+   * Configure your Algolia application ID.
+   *
+   * Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
+   */
+  algolia: GraphCommerceAlgoliaConfig;
   /** Configuration for the SidebarGallery component */
   breadcrumbs?: InputMaybe<Scalars['Boolean']['input']>;
   /**
@@ -329,6 +407,8 @@ export type GraphCommerceConfig = {
    * Example: '/product/'
    */
   productRoute?: InputMaybe<Scalars['String']['input']>;
+  /** Enabled / disable quick search functionality */
+  quickSearch?: InputMaybe<Scalars['Boolean']['input']>;
   /** Settings for recently viewed products */
   recentlyViewedProducts?: InputMaybe<RecentlyViewedProductsConfig>;
   /**
@@ -510,6 +590,8 @@ export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
 export const CustomerAccountPermissionsSchema = z.enum(['DISABLED', 'DISABLE_REGISTRATION', 'ENABLED']);
 
+export const GraphCommerceAlgoliaRecommendationLocationSchema = z.enum(['CROSSSELL_PRODUCTS', 'DISABLED', 'RELATED_PRODUCTS', 'UPSELL_PRODUCTS']);
+
 export const PaginationVariantSchema = z.enum(['COMPACT', 'EXTENDED']);
 
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
@@ -524,8 +606,23 @@ export function DatalayerConfigSchema(): z.ZodObject<Properties<DatalayerConfig>
   })
 }
 
+export function GraphCommerceAlgoliaConfigSchema(): z.ZodObject<Properties<GraphCommerceAlgoliaConfig>> {
+  return z.object({
+    applicationId: z.string().min(1),
+    catalogEnabled: z.boolean().nullish(),
+    customerGroupPricingEnabled: z.boolean().nullish(),
+    frequentlyBoughtTogether: GraphCommerceAlgoliaRecommendationLocationSchema.nullish(),
+    indexNamePrefix: z.string().min(1),
+    lookingSimilar: GraphCommerceAlgoliaRecommendationLocationSchema.nullish(),
+    relatedProducts: GraphCommerceAlgoliaRecommendationLocationSchema.nullish(),
+    searchOnlyApiKey: z.string().min(1),
+    suggestionsSuffix: z.string().nullish()
+  })
+}
+
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
+    algolia: GraphCommerceAlgoliaConfigSchema(),
     breadcrumbs: z.boolean().default(false).nullish(),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
@@ -559,6 +656,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     productFiltersPro: z.boolean().nullish(),
     productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
     productRoute: z.string().nullish(),
+    quickSearch: z.boolean().default(false).nullish(),
     recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
     robotsAllow: z.boolean().nullish(),
     sidebarGallery: SidebarGalleryConfigSchema().nullish(),

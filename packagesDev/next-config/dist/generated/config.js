@@ -21,6 +21,12 @@ _export(exports, {
     DatalayerConfigSchema: function() {
         return DatalayerConfigSchema;
     },
+    GraphCommerceAlgoliaConfigSchema: function() {
+        return GraphCommerceAlgoliaConfigSchema;
+    },
+    GraphCommerceAlgoliaRecommendationLocationSchema: function() {
+        return GraphCommerceAlgoliaRecommendationLocationSchema;
+    },
     GraphCommerceConfigSchema: function() {
         return GraphCommerceConfigSchema;
     },
@@ -78,6 +84,12 @@ const CustomerAccountPermissionsSchema = _zod.z.enum([
     'DISABLE_REGISTRATION',
     'ENABLED'
 ]);
+const GraphCommerceAlgoliaRecommendationLocationSchema = _zod.z.enum([
+    'CROSSSELL_PRODUCTS',
+    'DISABLED',
+    'RELATED_PRODUCTS',
+    'UPSELL_PRODUCTS'
+]);
 const PaginationVariantSchema = _zod.z.enum([
     'COMPACT',
     'EXTENDED'
@@ -98,8 +110,22 @@ function DatalayerConfigSchema() {
         coreWebVitals: _zod.z.boolean().nullish()
     });
 }
+function GraphCommerceAlgoliaConfigSchema() {
+    return _zod.z.object({
+        applicationId: _zod.z.string().min(1),
+        catalogEnabled: _zod.z.boolean().nullish(),
+        customerGroupPricingEnabled: _zod.z.boolean().nullish(),
+        frequentlyBoughtTogether: GraphCommerceAlgoliaRecommendationLocationSchema.nullish(),
+        indexNamePrefix: _zod.z.string().min(1),
+        lookingSimilar: GraphCommerceAlgoliaRecommendationLocationSchema.nullish(),
+        relatedProducts: GraphCommerceAlgoliaRecommendationLocationSchema.nullish(),
+        searchOnlyApiKey: _zod.z.string().min(1),
+        suggestionsSuffix: _zod.z.string().nullish()
+    });
+}
 function GraphCommerceConfigSchema() {
     return _zod.z.object({
+        algolia: GraphCommerceAlgoliaConfigSchema(),
         breadcrumbs: _zod.z.boolean().default(false).nullish(),
         canonicalBaseUrl: _zod.z.string().min(1),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
@@ -133,6 +159,7 @@ function GraphCommerceConfigSchema() {
         productFiltersPro: _zod.z.boolean().nullish(),
         productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
         productRoute: _zod.z.string().nullish(),
+        quickSearch: _zod.z.boolean().default(false).nullish(),
         recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
         sidebarGallery: SidebarGalleryConfigSchema().nullish(),
