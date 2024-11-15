@@ -1,0 +1,64 @@
+name: Periodic build
+on:
+  schedule:
+    - cron: 0 0 * * *
+  push:
+    branches:
+      - 'canary'
+concurrency:
+  group: release-main
+jobs:
+  notify-start:
+    name: Notify release start
+    uses: ho-nl/release-slack-action/.github/workflows/notify-slack-start.yml@main
+    secrets:
+      slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN }}
+    with:
+      channel: graphcommerce-build
+      message: Graphcommerce start building
+      notifyOnlyOnFailure: true
+
+  publish:
+    strategy:
+      matrix:
+        version: [18, 20]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          path: graphcommerce
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.version }}
+          registry-url: 'https://registry.npmjs.org'
+          scope: 'graphcommerce'
+
+      - name: Prepare and build graphcommerce
+        run: |
+          cp -R graphcommerce/examples/magento-graphcms/. graphcommerce-build 
+          cd graphcommerce-build 
+          yarn
+          yarn codegen
+          yarn build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  # notify-end will run only if any publish job failed
+  notify-end:
+    if: always()
+    needs: [notify-start, publish]
+    name: Notify release end
+    uses: ho-nl/release-slack-action/.github/workflows/notify-slack-end.yml@main
+    secrets:
+      slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN }}
+    with:
+      time: ${{ needs.notify-start.outputs.time }}
+      result: ${{ needs.publish.result }}
+      channel: graphcommerce-build
+      message: "One or more Node.js versions failed in the periodic build"
+      notifyOnlyOnFailure: true
