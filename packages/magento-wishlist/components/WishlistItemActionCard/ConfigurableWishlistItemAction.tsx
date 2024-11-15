@@ -5,7 +5,10 @@ import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 import { AddWishlistItemToCart } from '../WishlistItem/AddWishlistItemToCart'
 
-type ConfigurableWishlistItemActionProps = Omit<WishlistItemActionCardProps, 'selectedOptions'>
+export type ConfigurableWishlistItemActionProps = Omit<
+  WishlistItemActionCardProps,
+  'selectedOptions'
+>
 
 export function ConfigurableWishlistItemAction(props: ConfigurableWishlistItemActionProps) {
   const { item } = props

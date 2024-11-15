@@ -3,7 +3,7 @@ import { Box, styled } from '@mui/material'
 import { YoutubeVideo } from './YoutubeVideo'
 import type { VideoBackgroundProps } from './getVideoBackgroundProps'
 
-type VideoBackgroundComponentProps = VideoBackgroundProps & {
+export type VideoBackgroundComponentProps = VideoBackgroundProps & {
   sx?: SxProps<Theme>
 }
 

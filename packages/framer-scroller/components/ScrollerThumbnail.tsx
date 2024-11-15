@@ -14,7 +14,7 @@ type OwnerProps = { active: boolean }
 
 const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 
-type ScrollerThumbnailProps = {
+export type ScrollerThumbnailProps = {
   idx: number
   image: Pick<ImageProps, 'src' | 'height' | 'width'>
   layoutDependency: boolean

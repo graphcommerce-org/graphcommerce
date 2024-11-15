@@ -8,7 +8,7 @@ import React from 'react'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
 import { ApolloCustomerErrorFullPage } from '../ApolloCustomerError/ApolloCustomerErrorFullPage'
 
-type WaitForCustomerProps = Omit<WaitForQueriesProps, 'fallback' | 'waitFor'> &
+export type WaitForCustomerProps = Omit<WaitForQueriesProps, 'fallback' | 'waitFor'> &
   Pick<FullPageMessageProps, 'disableMargin'> & {
     waitFor?: WaitForQueriesProps['waitFor']
     fallback?: React.ReactNode

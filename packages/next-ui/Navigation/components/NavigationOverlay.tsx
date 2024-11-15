@@ -23,7 +23,7 @@ type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
 type LayoutOverlayAlign = 'start' | 'end' | 'center' | 'stretch'
 type ItemPadding = LiteralUnion<keyof Theme['spacings'], string | number>
 
-type NavigationOverlayProps = {
+export type NavigationOverlayProps = {
   sx?: SxProps<Theme>
   stretchColumns?: boolean
   variantSm: LayoutOverlayVariant

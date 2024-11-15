@@ -5,7 +5,7 @@ import type { AddProductsToCartMutationVariables } from './AddProductsToCart.gql
 import type { AddToCartItemSelector } from './useFormAddProductsToCart'
 import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
-type AddToCartQuantityProps = Omit<
+export type AddToCartQuantityProps = Omit<
   NumberFieldElementProps<AddProductsToCartMutationVariables>,
   'error' | 'required' | 'inputProps' | 'helperText' | 'name' | 'control'
 > &

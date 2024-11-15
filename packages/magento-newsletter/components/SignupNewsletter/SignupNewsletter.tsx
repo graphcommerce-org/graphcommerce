@@ -8,7 +8,7 @@ import { CustomerNewsletterToggle } from '../CustomerNewsletterToggle/CustomerNe
 import { GuestNewsletterToggle } from '../GuestNewsletterToggle/GuestNewsletterToggle'
 import { GetCartEmailDocument } from './GetCartEmail.gql'
 
-type SignupNewsletterProps = { sx?: SxProps<Theme> }
+export type SignupNewsletterProps = { sx?: SxProps<Theme> }
 
 const name = 'SignupNewsletter'
 

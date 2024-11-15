@@ -15,7 +15,7 @@ import type {
   ConfigurableOptionValueFragment,
 } from '../ConfigurableOptionValue'
 
-type Props = NonNullable<
+export type ConfigurableProductOptionProps = NonNullable<
   NonNullable<ConfigurableOptionsFragment['configurable_options']>[number]
 > & {
   index: number
@@ -26,7 +26,7 @@ type Props = NonNullable<
   render: typeof ConfigurableOptionValue
 } & UseConfigurableOptionsSelection
 
-export function ConfigurableProductOption(props: Props) {
+export function ConfigurableProductOption(props: ConfigurableProductOptionProps) {
   const {
     values,
     label,

@@ -23,7 +23,7 @@ export type CartFabProps = {
   BadgeProps?: BadgeProps
 } & Pick<FabProps, 'color' | 'size' | 'variant'>
 
-type CartFabContentProps = CartFabProps & CartTotalQuantityFragment
+export type CartFabContentProps = CartFabProps & CartTotalQuantityFragment
 
 const MotionDiv = styled(m.div)({})
 

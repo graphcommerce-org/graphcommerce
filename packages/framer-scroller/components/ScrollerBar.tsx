@@ -11,7 +11,7 @@ type OwnerProps = {
   direction: 'x' | 'y'
 }
 
-type ScrollerBarProps = OwnerProps & {
+export type ScrollerBarProps = OwnerProps & {
   sx?: SxProps<Theme>
 }
 

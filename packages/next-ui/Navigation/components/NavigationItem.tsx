@@ -24,7 +24,7 @@ type OwnerState = {
   column: number
 }
 
-type NavigationItemProps = NavigationNode & {
+export type NavigationItemProps = NavigationNode & {
   parentPath: string
   idx: number
   NavigationList: typeof NavigationList

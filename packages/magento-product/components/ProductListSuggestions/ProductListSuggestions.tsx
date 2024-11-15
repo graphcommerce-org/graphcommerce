@@ -5,7 +5,7 @@ import { productListLinkFromFilter } from '../../hooks/useProductListLink'
 import { useProductFiltersPro } from '../ProductFiltersPro'
 import type { ProductListSuggestionsFragment } from './ProductListSuggestions.gql'
 
-type ProductListSuggestionsProps = {
+export type ProductListSuggestionsProps = {
   products: ProductListSuggestionsFragment
 }
 

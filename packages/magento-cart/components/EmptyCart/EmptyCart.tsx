@@ -5,7 +5,7 @@ import type { SxProps, Theme } from '@mui/material'
 import { Button } from '@mui/material'
 import React from 'react'
 
-type EmptyCartProps = {
+export type EmptyCartProps = {
   children?: React.ReactNode
   sx?: SxProps<Theme>
 } & Pick<FullPageMessageProps, 'button' | 'disableMargin'>

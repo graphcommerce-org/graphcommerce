@@ -13,7 +13,7 @@ import type { CustomerAddressFragment } from '../CreateCustomerAddressForm/Custo
 // 	return exports.getEuMembers().indexOf(code.toUpperCase()) != -1;
 // };
 
-type AddressMultiLineProps = CustomerAddressFragment & { sx?: SxProps<Theme> }
+export type AddressMultiLineProps = CustomerAddressFragment & { sx?: SxProps<Theme> }
 
 const name = 'AddressMultiLine'
 const parts = ['root', 'title'] as const

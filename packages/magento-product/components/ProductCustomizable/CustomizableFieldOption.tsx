@@ -6,7 +6,7 @@ import { Box } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import type { OptionTypeRenderer } from './CustomizableAreaOption'
 
-type CustomizableFieldOptionProps = React.ComponentProps<
+export type CustomizableFieldOptionProps = React.ComponentProps<
   OptionTypeRenderer['CustomizableFieldOption']
 >
 

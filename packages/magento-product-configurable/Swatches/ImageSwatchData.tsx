@@ -5,7 +5,8 @@ import { Box } from '@mui/material'
 import type { ImageSwatchDataFragment } from './ImageSwatchData.gql'
 import type { SwatchDataProps } from './types'
 
-type ImageSwatchDataProps = ImageSwatchDataFragment & SwatchDataProps & { sx?: SxProps<Theme> }
+export type ImageSwatchDataProps = ImageSwatchDataFragment &
+  SwatchDataProps & { sx?: SxProps<Theme> }
 
 type OwnerState = Pick<SwatchDataProps, 'size'>
 const name = 'ColorSwatchData'

@@ -6,7 +6,7 @@ import { Trans } from '@lingui/react'
 import { Button, Chip } from '@mui/material'
 import type { AvailableShippingMethodFragment } from '../../AvailableShippingMethod/AvailableShippingMethod.gql'
 
-type ShippingMethodActionCardProps = ActionCardItemRenderProps<
+export type ShippingMethodActionCardProps = ActionCardItemRenderProps<
   AvailableShippingMethodFragment | null | undefined
 >
 

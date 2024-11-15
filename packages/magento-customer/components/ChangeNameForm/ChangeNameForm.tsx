@@ -5,7 +5,7 @@ import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerE
 import { NameFields } from '../NameFields/NameFields'
 import { UpdateCustomerNameDocument } from './UpdateCustomerName.gql'
 
-type ChangeNameFormProps = {
+export type ChangeNameFormProps = {
   prefix?: string
   firstname: string
   lastname: string

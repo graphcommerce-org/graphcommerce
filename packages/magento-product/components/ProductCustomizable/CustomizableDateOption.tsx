@@ -6,7 +6,7 @@ import { Box } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import type { OptionTypeRenderer } from './CustomizableAreaOption'
 
-type CustomizableDateOptionProps = React.ComponentProps<
+export type CustomizableDateOptionProps = React.ComponentProps<
   OptionTypeRenderer['CustomizableDateOption']
 > & {
   minDate?: Date

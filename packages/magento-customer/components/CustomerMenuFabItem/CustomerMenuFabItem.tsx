@@ -7,7 +7,7 @@ import { useCustomerAccountCanSignIn } from '../../hooks'
 import type { UseCustomerSessionReturn } from '../../hooks/useCustomerSession'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
 
-type CustomerMenuFabItemProps = {
+export type CustomerMenuFabItemProps = {
   icon?: React.ReactNode
   children: React.ReactNode
   authHref: string

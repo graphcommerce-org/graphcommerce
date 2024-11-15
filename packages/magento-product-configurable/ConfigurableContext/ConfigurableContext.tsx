@@ -3,7 +3,7 @@ import { createContext, useCallback, useContext, useMemo, useState } from 'react
 import type { ConfigurableProductFormFragment } from './ConfigurableProductForm.gql'
 import cheapestVariant from './cheapestVariant'
 
-type ConfigurableProductFormProps = ConfigurableProductFormFragment & {
+export type ConfigurableProductFormProps = ConfigurableProductFormFragment & {
   sku: string
   children?: React.ReactNode
 }

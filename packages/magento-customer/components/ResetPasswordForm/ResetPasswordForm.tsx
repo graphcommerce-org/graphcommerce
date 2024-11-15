@@ -8,7 +8,7 @@ import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedP
 import type { ResetPasswordMutation, ResetPasswordMutationVariables } from './ResetPassword.gql'
 import { ResetPasswordDocument } from './ResetPassword.gql'
 
-type ResetPasswordFormProps = {
+export type ResetPasswordFormProps = {
   token: string
 }
 

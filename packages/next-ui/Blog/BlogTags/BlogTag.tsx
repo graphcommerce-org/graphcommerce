@@ -2,7 +2,7 @@ import type { SxProps, Theme } from '@mui/material'
 import { Chip } from '@mui/material'
 import { NextLink } from '../../Theme'
 
-type BlogTagsProps = {
+export type BlogTagsProps = {
   url: string
   title: string
   sx?: SxProps<Theme>

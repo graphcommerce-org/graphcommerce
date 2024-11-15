@@ -3,7 +3,7 @@ import type { SxProps, Theme } from '@mui/material'
 import { extractImageBackgroundProps } from './extractImageBackgroundProps'
 import type { ImageBackgroundProps } from './getImageBackgroundProps'
 
-type ImageBackgroundComponentProps = ImageBackgroundProps & {
+export type ImageBackgroundComponentProps = ImageBackgroundProps & {
   sx?: SxProps<Theme>
 }
 

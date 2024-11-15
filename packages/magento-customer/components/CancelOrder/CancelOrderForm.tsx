@@ -18,7 +18,7 @@ import type { OrderDetailsFragment } from '../OrderDetails/OrderDetails.gql'
 import type { CancelOrderMutation, CancelOrderMutationVariables } from './CancelOrder.gql'
 import { CancelOrderDocument } from './CancelOrder.gql'
 
-type CancelOrderFormProps = {
+export type CancelOrderFormProps = {
   order: OrderDetailsFragment
 } & Omit<AccordionProps, 'children'>
 

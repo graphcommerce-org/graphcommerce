@@ -7,7 +7,7 @@ import { TextSwatchData } from './Swatches/TextSwatchData'
 import type { SwatchSize, SwatchTypeRenderer } from './Swatches/types'
 import type { ProductListItemConfigurableFragment } from './components/ProductListItemConfigurable/ProductListItemConfigurable.gql'
 
-type SwatchListProps = {
+export type SwatchListProps = {
   attributes?: string[]
   configurable_options?: Maybe<ProductListItemConfigurableFragment['configurable_options']>
 }

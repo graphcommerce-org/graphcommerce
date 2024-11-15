@@ -30,7 +30,7 @@ const parts = [
 ] as const
 const { classes } = extendableComponent(name, parts)
 
-type OrderSummaryProps = ActionCardLayoutProps & {
+export type OrderSummaryProps = ActionCardLayoutProps & {
   sx?: SxProps<Theme>
   itemProps?: Omit<
     CartItemActionCardProps,

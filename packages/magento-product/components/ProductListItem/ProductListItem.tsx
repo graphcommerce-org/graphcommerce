@@ -40,7 +40,7 @@ type StyleProps = {
   imageOnly?: boolean
 }
 
-type BaseProps = {
+export type BaseProps = {
   imageOnly?: boolean
   children?: React.ReactNode
   sx?: SxProps<Theme>
@@ -53,9 +53,9 @@ type BaseProps = {
   Pick<ImageProps, 'loading' | 'sizes' | 'dontReportWronglySizedImages'>
 
 // eslint-disable-next-line react/no-unused-prop-types
-type SkeletonProps = BaseProps & { __typename: 'Skeleton' }
+export type SkeletonProps = BaseProps & { __typename: 'Skeleton' }
 
-type ProductProps = BaseProps & ProductListItemFragment
+export type ProductProps = BaseProps & ProductListItemFragment
 
 export type ProductListItemProps = ProductProps | SkeletonProps
 

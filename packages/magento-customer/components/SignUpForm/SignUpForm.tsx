@@ -13,7 +13,7 @@ import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedP
 import type { SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import { SignUpDocument } from './SignUp.gql'
 
-type SignUpFormProps = { email: string }
+export type SignUpFormProps = { email: string }
 
 export function SignUpForm(props: SignUpFormProps) {
   const { email } = props

@@ -6,7 +6,7 @@ import React, { useRef } from 'react'
 
 const MotionBox = styled(m.div)({})
 
-type ThumbnailContainerProps = {
+export type ThumbnailContainerProps = {
   children: React.ReactNode
   sx?: SxProps<Theme>
   layoutDependency: boolean
