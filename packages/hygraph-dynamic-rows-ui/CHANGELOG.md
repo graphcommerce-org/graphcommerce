@@ -1,5 +1,17 @@
 # @graphcommerce/hygraph-dynamic-rows-ui
 
+## 9.0.0-canary.100
+
+## 9.0.0-canary.99
+
+## 9.0.0-canary.98
+
+## 9.0.0-canary.97
+
+### Patch Changes
+
+- [#2410](https://github.com/graphcommerce-org/graphcommerce/pull/2410) [`2a425b3`](https://github.com/graphcommerce-org/graphcommerce/commit/2a425b323ddaf0918c549e93b598888db7328d66) - Allow attributes with deprecationReasons (e.g. custom attributes) as PropertyPicker value ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 9.0.0-canary.96
 
 ## 9.0.0-canary.95

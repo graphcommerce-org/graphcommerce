@@ -2,7 +2,7 @@
   "name": "@graphcommerce/typescript-config-pwa",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.0-canary.96",
+  "version": "9.0.0-canary.100",
   "sideEffects": false,
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4"

@@ -8,6 +8,9 @@ export type TimeAgoProps = {
   locale?: string
 }
 
+/**
+ * @deprecated Use <RelativeToTimeFormat /> instead.
+ */
 export function TimeAgo(props: TimeAgoProps) {
   const { date } = props
   const msPerMinute = 60 * 1000

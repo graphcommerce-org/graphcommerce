@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.0.0-canary.100
+
+## 9.0.0-canary.99
+
+## 9.0.0-canary.98
+
+### Patch Changes
+
+- [#2414](https://github.com/graphcommerce-org/graphcommerce/pull/2414) [`8b1a5a6`](https://github.com/graphcommerce-org/graphcommerce/commit/8b1a5a62a580cc8d08746cb19c4e5a4f52bd270c) - Date strings (12-12-2012) are not supported by older Safari browser versions. must be converted (12/12/2012) in order for it to function; otherwise, it will return NaN if we attempt to access the getTime() on an object. ([@Vignesh-M21](https://github.com/Vignesh-M21))
+
+## 9.0.0-canary.97
+
 ## 9.0.0-canary.96
 
 ## 9.0.0-canary.95

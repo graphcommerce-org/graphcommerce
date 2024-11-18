@@ -1,5 +1,19 @@
 # Change Log
 
+## 9.0.0-canary.100
+
+## 9.0.0-canary.99
+
+### Minor Changes
+
+- [#2416](https://github.com/graphcommerce-org/graphcommerce/pull/2416) [`651eea0`](https://github.com/graphcommerce-org/graphcommerce/commit/651eea0bdda1ed0f46f4c73d7edf52c8c1da5b54) - Created a new field for products: `custom_attribute(attribute_code: "attribute_code")` to retrieve attribute option value labels. This field is only available in Magento 2.4.7 and up. ([@paales](https://github.com/paales))
+
+- [#2416](https://github.com/graphcommerce-org/graphcommerce/pull/2416) [`53af256`](https://github.com/graphcommerce-org/graphcommerce/commit/53af25671d3aca7f3daa2dd45ccd2237697e9254) - Added an `attribute`-field to `AttributeValueInterface` to be able to retrieve attribute metadata from the value of an attribute. ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.98
+
+## 9.0.0-canary.97
+
 ## 9.0.0-canary.96
 
 ## 9.0.0-canary.95
