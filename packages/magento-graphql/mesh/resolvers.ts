@@ -1,5 +1,6 @@
 import fragments from '@graphcommerce/graphql/generated/fragments.json'
 import type {
+  AttributeValueInterfaceResolvers,
   CustomAttributeMetadataInterface,
   MeshContext,
   ProductInterfaceResolvers,
@@ -12,7 +13,7 @@ type CustomAttributeInput = { attribute_code: string; entity_type: 'catalog_prod
 async function customAttributeMetadataV2(
   input: CustomAttributeInput,
   context: MeshContext,
-): Promise<CustomAttributeMetadataInterface | undefined | null> {
+): Promise<CustomAttributeMetadataInterface | null> {
   const cacheKey = `customAttributeMetadata-${input.entity_type}-${input.attribute_code}`
   const cached = await context.cache.get(cacheKey)
   if (cached) return cached
@@ -26,7 +27,7 @@ async function customAttributeMetadataV2(
   )
     throw Error('This field is only available in Magento 2.4.7 and up')
 
-  const attribute = context.m2.Query.customAttributeMetadataV2({
+  const attribute = await context.m2.Query.customAttributeMetadataV2({
     context,
     key: input,
     argsFromKeys: (attributes) => ({ attributes }),
@@ -71,12 +72,12 @@ async function customAttributeMetadataV2(
 
   // Cache for 1 hour
   await context.cache.set(cacheKey, attribute, { ttl: 60 * 60 })
-  return attribute
+  return attribute ?? null
 }
 
-type ProductResolver = Pick<ProductInterfaceResolvers<MeshContext>, 'custom_attributeV2'>
+type CustomAttributeV2Resolver = Pick<ProductInterfaceResolvers<MeshContext>, 'custom_attributeV2'>
 
-const productResolver: ProductResolver = {
+const customAttributeV2Resolver: CustomAttributeV2Resolver = {
   custom_attributeV2: {
     selectionSet: (fieldNode) => ({
       kind: Kind.SELECTION_SET,
@@ -115,7 +116,29 @@ type ProductTypes = NonNullable<Awaited<ReturnType<ProductInterfaceResolvers['__
 const productInterfaceTypes = fragments.possibleTypes.ProductInterface as ProductTypes[]
 
 productInterfaceTypes.forEach((productType) => {
-  if (!resolvers[productType]) resolvers[productType] = productResolver
+  if (!resolvers[productType]) resolvers[productType] = customAttributeV2Resolver
+})
+
+const attributeValueResolver: AttributeValueResolver = {
+  attribute: {
+    selectionSet: `{ code }`,
+    resolve: async (root, _, context) =>
+      root.attribute ??
+      (await customAttributeMetadataV2(
+        { attribute_code: root.code, entity_type: 'catalog_product' },
+        context,
+      )),
+  },
+}
+
+type AttributeValueResolver = Pick<AttributeValueInterfaceResolvers<MeshContext>, 'attribute'>
+type AttributeValueTypes = NonNullable<
+  Awaited<ReturnType<AttributeValueInterfaceResolvers['__resolveType']>>
+>
+const attributeValueTypes = fragments.possibleTypes.AttributeValueInterface as AttributeValueTypes[]
+
+attributeValueTypes.forEach((attributeValueType) => {
+  if (!resolvers[attributeValueType]) resolvers[attributeValueType] = attributeValueResolver
 })
 
 export default resolvers
