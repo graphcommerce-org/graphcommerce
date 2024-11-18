@@ -2,7 +2,7 @@ import type { PagesProps } from '@graphcommerce/framer-next-pages'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useEventCallback } from '@mui/material'
 import { useEffect } from 'react'
-import { onCLS, onFCP, onFID, onINP, onLCP, onTTFB, Metric } from 'web-vitals/attribution'
+import { onCLS, onFCP, onINP, onLCP, onTTFB, Metric } from 'web-vitals/attribution'
 import { useSendEvent } from '../api/sendEvent'
 
 export const config: PluginConfig = {
@@ -32,8 +32,7 @@ export function FramerNextPages(props: PluginProps<PagesProps>) {
     const opts = { reportAllChanges: true }
     onCLS((m) => sendCoreWebVitals(m, m.attribution.largestShiftTarget))
     onFCP((m) => sendCoreWebVitals(m), opts)
-    onFID((m) => sendCoreWebVitals(m, m.attribution.eventTarget), opts)
-    onINP((m) => sendCoreWebVitals(m, m.attribution.eventTarget), opts)
+    onINP((m) => sendCoreWebVitals(m, m.attribution.interactionTarget), opts)
     onLCP((m) => sendCoreWebVitals(m, m.attribution.element), opts)
     onTTFB((m) => sendCoreWebVitals(m), opts)
   }, [sendCoreWebVitals])

@@ -1,162 +1,181 @@
 #!/usr/bin/env node
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
+import { promises } from 'node:fs';
+import path$1 from 'node:path';
+import { exit } from 'node:process';
+import { loadConfig, resolveDependenciesSync, packageRoots, replaceConfigInString } from '@graphcommerce/next-config';
+import { DEFAULT_CLI_PARAMS, graphqlMesh } from '@graphql-mesh/cli';
+import { DefaultLogger, defaultImportFn, loadYaml, fileURLToPath } from '@graphql-mesh/utils';
+import dotenv from 'dotenv';
+import yaml from 'yaml';
+import path from 'path';
+import { cosmiconfig, defaultLoaders } from 'cosmiconfig';
+import 'tsx/cjs';
+import 'tsx/esm';
+
+function customLoader(ext, importFn = defaultImportFn, initialLoggerPrefix = "\u{1F578}\uFE0F  Mesh") {
+  const logger = new DefaultLogger(initialLoggerPrefix).child("config");
+  function loader(filepath, content) {
+    if (process.env) {
+      content = content.replace(/\$\{(.*?)\}/g, (_, variable) => {
+        let varName = variable;
+        let defaultValue = "";
+        if (variable.includes(":")) {
+          const spl = variable.split(":");
+          varName = spl.shift();
+          defaultValue = spl.join(":");
+        }
+        return process.env[varName] || defaultValue;
+      });
     }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.handleFatalError = handleFatalError;
-/* eslint-disable import/no-extraneous-dependencies */
-const node_fs_1 = require("node:fs");
-const node_path_1 = __importDefault(require("node:path"));
-const node_process_1 = require("node:process");
-const next_config_1 = require("@graphcommerce/next-config");
-const cli_1 = require("@graphql-mesh/cli");
-const utils_1 = require("@graphql-mesh/utils");
-const dotenv_1 = __importDefault(require("dotenv"));
-const yaml_1 = __importDefault(require("yaml"));
-const findConfig_1 = require("../utils/findConfig");
-// eslint-disable-next-line import/no-unresolved
-require("tsx/cjs"); // support importing typescript configs in CommonJS
-// eslint-disable-next-line import/no-unresolved
-require("tsx/esm"); // support importing typescript configs in ESM
-dotenv_1.default.config();
-function handleFatalError(e, logger = new utils_1.DefaultLogger('◈')) {
-    logger.error(e.stack || e.message);
-    // eslint-disable-next-line no-console
-    console.log(e);
-    if (process.env.JEST == null)
-        (0, node_process_1.exit)(1);
+    if (ext === "json") {
+      return defaultLoaders[".json"](filepath, content);
+    }
+    if (ext === "yaml") {
+      return loadYaml(filepath, content, logger);
+    }
+    if (ext === "js") {
+      return importFn(filepath);
+    }
+  }
+  return loader;
+}
+async function findConfig(options) {
+  const { configName = "mesh", dir: configDir = "", initialLoggerPrefix } = options || {};
+  const dir = path.isAbsolute(configDir) ? configDir : path.join(process.cwd(), configDir);
+  const explorer = cosmiconfig(configName, {
+    searchPlaces: [
+      "package.json",
+      `.${configName}rc`,
+      `.${configName}rc.json`,
+      `.${configName}rc.yaml`,
+      `.${configName}rc.yml`,
+      `.${configName}rc.js`,
+      `.${configName}rc.ts`,
+      `.${configName}rc.cjs`,
+      `${configName}.config.js`,
+      `${configName}.config.cjs`
+    ],
+    loaders: {
+      ".json": customLoader("json", options?.importFn, initialLoggerPrefix),
+      ".yaml": customLoader("yaml", options?.importFn, initialLoggerPrefix),
+      ".yml": customLoader("yaml", options?.importFn, initialLoggerPrefix),
+      ".js": customLoader("js", options?.importFn, initialLoggerPrefix),
+      ".ts": customLoader("js", options?.importFn, initialLoggerPrefix),
+      noExt: customLoader("yaml", options?.importFn, initialLoggerPrefix)
+    }
+  });
+  const results = await explorer.search(dir);
+  if (!results) {
+    throw new Error(`No ${configName} config file found in "${dir}"!`);
+  }
+  const { config } = results;
+  return config;
+}
+
+dotenv.config();
+function resolvePath(pathStr) {
+  return fileURLToPath(import.meta.resolve(pathStr));
+}
+function handleFatalError(e, logger = new DefaultLogger("\u25C8")) {
+  logger.error(e.stack || e.message);
+  console.log(e);
+  if (process.env.JEST == null) exit(1);
 }
 const root = process.cwd();
-const meshDir = node_path_1.default.dirname(require.resolve('@graphcommerce/graphql-mesh'));
-const relativePath = node_path_1.default.join(node_path_1.default.relative(meshDir, root), '/');
+const meshDir = path$1.dirname(resolvePath("@graphcommerce/graphql-mesh"));
+const relativePath = path$1.join(path$1.relative(meshDir, root), "/");
 const cliParams = {
-    ...cli_1.DEFAULT_CLI_PARAMS,
-    playgroundTitle: 'GraphCommerce® Mesh',
+  ...DEFAULT_CLI_PARAMS,
+  playgroundTitle: "GraphCommerce\xAE Mesh"
 };
 const tmpMesh = `_tmp_mesh`;
-const tmpMeshLocation = node_path_1.default.join(root, `.${tmpMesh}rc.yml`);
+const tmpMeshLocation = path$1.join(root, `.${tmpMesh}rc.yml`);
 async function cleanup() {
-    try {
-        await node_fs_1.promises.stat(tmpMeshLocation).then((r) => {
-            if (r.isFile())
-                return node_fs_1.promises.unlink(tmpMeshLocation);
-            return undefined;
-        });
-    }
-    catch (e) {
-        // ignore
-    }
-    return undefined;
+  try {
+    await promises.stat(tmpMeshLocation).then((r) => {
+      if (r.isFile()) return promises.unlink(tmpMeshLocation);
+      return void 0;
+    });
+  } catch (e) {
+  }
+  return void 0;
 }
 const main = async () => {
-    const baseConf = (await (0, findConfig_1.findConfig)({}));
-    const graphCommerce = (0, next_config_1.loadConfig)(root);
-    // eslint-disable-next-line global-require
-    // @ts-ignore Might not exist
-    const { meshConfig } = (await Promise.resolve().then(() => __importStar(require('@graphcommerce/graphql-mesh/meshConfig.interceptor'))));
-    const conf = meshConfig(baseConf, graphCommerce);
-    // We're configuring a custom fetch function
-    conf.customFetch = '@graphcommerce/graphql-mesh/customFetch';
-    conf.serve = { ...conf.serve, endpoint: '/api/graphql' };
-    // Rewrite additionalResolvers so we can use module resolution more easily
-    conf.additionalResolvers = conf.additionalResolvers ?? [];
-    conf.additionalResolvers = conf.additionalResolvers?.map((additionalResolver) => {
-        if (typeof additionalResolver !== 'string')
-            return additionalResolver;
-        if (additionalResolver.startsWith('@'))
-            return node_path_1.default.relative(root, require.resolve(additionalResolver));
-        return additionalResolver;
-    });
-    conf.sources = conf.sources.map((source) => {
-        const definedHandlers = Object.entries(source.handler);
-        return {
-            ...source,
-            handler: Object.fromEntries(definedHandlers.map(([key, value]) => {
-                if (key === 'openapi' && value) {
-                    const openapi = value;
-                    if (openapi.source.startsWith('@')) {
-                        return [
-                            key,
-                            { ...openapi, source: node_path_1.default.relative(root, require.resolve(openapi.source)) },
-                        ];
-                    }
-                }
-                return [key, value];
-            })),
-        };
-    });
-    // Rewrite additionalTypeDefs so we can use module resolution more easily
-    if (!conf.additionalTypeDefs)
-        conf.additionalTypeDefs = [];
-    conf.additionalTypeDefs = (Array.isArray(conf.additionalTypeDefs) ? conf.additionalTypeDefs : [conf.additionalTypeDefs]).map((additionalTypeDef) => {
-        if (typeof additionalTypeDef === 'string' && additionalTypeDef.startsWith('@'))
-            return node_path_1.default.relative(root, require.resolve(additionalTypeDef));
-        return additionalTypeDef;
-    });
-    // Scan the current working directory to also read all graphqls files.
-    conf.additionalTypeDefs.push('graphql/**/*.graphqls');
-    conf.additionalTypeDefs.push('components/**/*.graphqls');
-    conf.additionalTypeDefs.push('lib/**/*.graphqls');
-    conf.additionalTypeDefs.push('app/**/*.graphqls');
-    const deps = (0, next_config_1.resolveDependenciesSync)();
-    const packages = [...deps.values()].filter((p) => p !== '.');
-    const mV = graphCommerce.magentoVersion ?? 246;
-    (0, next_config_1.packageRoots)(packages).forEach((r) => {
-        const alsoScan = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254]
-            .filter((v) => v > mV)
-            .map((v) => `${r}/*/schema-${v}/**/*.graphqls`);
-        conf.additionalTypeDefs.push(`${r}/*/schema/**/*.graphqls`);
-        conf.additionalTypeDefs.push(...alsoScan);
-    });
-    if (!conf.serve)
-        conf.serve = {};
-    if (!conf.serve.playgroundTitle)
-        conf.serve.playgroundTitle = 'GraphCommerce® Mesh';
-    conf.plugins = [
-        ...(conf.plugins ?? []),
-        {
-            httpDetailsExtensions: {
-                if: "env.NODE_ENV === 'development'",
-            },
-        },
-    ];
-    const yamlString = (0, next_config_1.replaceConfigInString)(yaml_1.default.stringify(conf), graphCommerce);
-    await node_fs_1.promises.writeFile(tmpMeshLocation, yamlString);
-    // Reexport the mesh to is can be used by packages
-    await node_fs_1.promises.writeFile(`${meshDir}/.mesh.ts`, `export * from '${relativePath.split(node_path_1.default.sep).join('/')}.mesh'`, { encoding: 'utf8' });
-    await (0, cli_1.graphqlMesh)({ ...cliParams, configName: tmpMesh });
-    await cleanup();
-};
-process.on('SIGINT', cleanup);
-process.on('SIGTERM', cleanup);
-main().catch((e) => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    cleanup();
-    if (e instanceof Error) {
-        handleFatalError(e, new utils_1.DefaultLogger(cli_1.DEFAULT_CLI_PARAMS.initialLoggerPrefix));
+  const baseConf = await findConfig({});
+  const graphCommerce = loadConfig(root);
+  const meshConfigf = await import('@graphcommerce/graphql-mesh/meshConfig.interceptor');
+  const conf = meshConfigf.default.meshConfig(baseConf, graphCommerce);
+  conf.customFetch = "@graphcommerce/graphql-mesh/customFetch";
+  conf.serve = { ...conf.serve, endpoint: "/api/graphql" };
+  conf.additionalResolvers = conf.additionalResolvers ?? [];
+  conf.additionalResolvers = conf.additionalResolvers?.map((additionalResolver) => {
+    if (typeof additionalResolver !== "string") return additionalResolver;
+    if (additionalResolver.startsWith("@"))
+      return path$1.relative(root, resolvePath(additionalResolver));
+    return additionalResolver;
+  });
+  conf.sources = conf.sources.map((source) => {
+    const definedHandlers = Object.entries(source.handler);
+    return {
+      ...source,
+      handler: Object.fromEntries(
+        definedHandlers.map(([key, value]) => {
+          if (key === "openapi" && value) {
+            const openapi = value;
+            if (openapi.source.startsWith("@")) {
+              return [key, { ...openapi, source: path$1.relative(root, resolvePath(openapi.source)) }];
+            }
+          }
+          return [key, value];
+        })
+      )
+    };
+  });
+  if (!conf.additionalTypeDefs) conf.additionalTypeDefs = [];
+  conf.additionalTypeDefs = (Array.isArray(conf.additionalTypeDefs) ? conf.additionalTypeDefs : [conf.additionalTypeDefs]).map((additionalTypeDef) => {
+    if (typeof additionalTypeDef === "string" && additionalTypeDef.startsWith("@"))
+      return path$1.relative(root, resolvePath(additionalTypeDef));
+    return additionalTypeDef;
+  });
+  conf.additionalTypeDefs.push("graphql/**/*.graphqls");
+  conf.additionalTypeDefs.push("components/**/*.graphqls");
+  conf.additionalTypeDefs.push("lib/**/*.graphqls");
+  conf.additionalTypeDefs.push("app/**/*.graphqls");
+  const deps = resolveDependenciesSync();
+  const packages = [...deps.values()].filter((p) => p !== ".");
+  const mV = graphCommerce.magentoVersion ?? 246;
+  packageRoots(packages).forEach((r) => {
+    const alsoScan = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254].filter((v) => v > mV).map((v) => `${r}/*/schema-${v}/**/*.graphqls`);
+    conf.additionalTypeDefs.push(`${r}/*/schema/**/*.graphqls`);
+    conf.additionalTypeDefs.push(...alsoScan);
+  });
+  if (!conf.serve) conf.serve = {};
+  if (!conf.serve.playgroundTitle) conf.serve.playgroundTitle = "GraphCommerce\xAE Mesh";
+  conf.plugins = [
+    ...conf.plugins ?? [],
+    {
+      httpDetailsExtensions: {
+        if: "env.NODE_ENV === 'development'"
+      }
     }
+  ];
+  const yamlString = replaceConfigInString(yaml.stringify(conf), graphCommerce);
+  await promises.writeFile(tmpMeshLocation, yamlString);
+  await promises.writeFile(
+    `${meshDir}/.mesh.ts`,
+    `export * from '${relativePath.split(path$1.sep).join("/")}.mesh'`,
+    { encoding: "utf8" }
+  );
+  await graphqlMesh({ ...cliParams, configName: tmpMesh });
+  await cleanup();
+};
+process.on("SIGINT", cleanup);
+process.on("SIGTERM", cleanup);
+main().catch((e) => {
+  cleanup();
+  if (e instanceof Error) {
+    handleFatalError(e, new DefaultLogger(DEFAULT_CLI_PARAMS.initialLoggerPrefix));
+  }
 });
+
+export { handleFatalError };

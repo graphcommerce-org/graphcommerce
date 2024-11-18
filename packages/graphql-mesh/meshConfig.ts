@@ -1,8 +1,11 @@
 import type { GraphCommerceConfig } from '@graphcommerce/next-config'
-import type { Config } from '@graphql-mesh/types/typings/config'
+import type { YamlConfig } from '@graphql-mesh/types'
 
 export type MeshConfigFunction = typeof meshConfig
 
-export function meshConfig(config: Config, graphCommerceConfig: GraphCommerceConfig): Config {
+export function meshConfig(
+  config: YamlConfig.Config,
+  graphCommerceConfig: GraphCommerceConfig,
+): YamlConfig.Config {
   return config
 }

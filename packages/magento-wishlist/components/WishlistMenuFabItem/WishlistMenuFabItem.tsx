@@ -42,7 +42,7 @@ export function WishlistMenuFabItem(props: WishlistMenuFabItemProps) {
 
   if (!wishlist.enabled) return null
 
-  const activeWishlist = wishlist.items.length > 0 ?? false
+  const activeWishlist = wishlist.items.length > 0
 
   return (
     <NoSsr fallback={<WishlistMenuFabItemContent {...props} activeWishlist={false} />}>

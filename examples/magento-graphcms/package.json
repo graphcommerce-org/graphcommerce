@@ -7,7 +7,7 @@
   "sideEffects": false,
   "packageManager": "yarn@4.1.1",
   "engines": {
-    "node": "16.x.x||18.x.x||20.x.x"
+    "node": ">=18.19.0 <22.0.0"
   },
   "scripts": {
     "dev": "concurrently -k -n codegen,next 'graphql-codegen -w' 'next dev'",
@@ -20,7 +20,7 @@
     "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'"
   },
   "dependencies": {
-    "@apollo/client": "~3.10.8",
+    "@apollo/client": "~3.11.8",
     "@ducanh2912/next-pwa": "9.7.2",
     "@graphcommerce/cli": "9.0.0-canary.100",
     "@graphcommerce/demo-magento-graphcommerce": "9.0.0-canary.100",
@@ -70,26 +70,27 @@
     "@graphcommerce/next-config": "9.0.0-canary.100",
     "@graphcommerce/next-ui": "9.0.0-canary.100",
     "@graphcommerce/react-hook-form": "9.0.0-canary.100",
-    "@lingui/conf": "4.11.2",
-    "@lingui/core": "4.11.2",
-    "@lingui/macro": "4.11.2",
-    "@lingui/react": "4.11.2",
-    "@mui/lab": "5.0.0-alpha.171",
-    "@mui/material": "5.16.4",
-    "@next/env": "14.2.5",
+    "@lingui/conf": "4.11.4",
+    "@lingui/core": "4.11.4",
+    "@lingui/macro": "4.11.4",
+    "@lingui/react": "4.11.4",
+    "@mui/lab": "5.0.0-alpha.173",
+    "@mui/material": "5.16.7",
+    "@mui/utils": "^5.16.6",
+    "@next/env": "14.2.14",
     "@parcel/watcher": "^2.4.1",
     "@unts/patch-package": "^8.0.0",
     "concurrently": "8.2.2",
     "cross-env": "^7.0.3",
     "dotenv": "16.4.5",
-    "framer-motion": "10.18.0",
+    "framer-motion": "11.11.1",
     "graphql": "^16.9.0",
-    "next": "14.2.5",
+    "next": "14.2.14",
     "next-assetlinks": "^1.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-hook-form": "^7.52.1",
-    "sharp": "0.33.4",
+    "react-hook-form": "^7.53.0",
+    "sharp": "0.33.5",
     "ts-node": "^10.9.2",
     "webpack": "~5.93.0"
   },
@@ -97,22 +98,25 @@
     "@graphcommerce/eslint-config-pwa": "9.0.0-canary.100",
     "@graphcommerce/prettier-config-pwa": "9.0.0-canary.100",
     "@graphcommerce/typescript-config-pwa": "9.0.0-canary.100",
-    "@lingui/cli": "4.11.2",
-    "@playwright/test": "1.45.1",
-    "@types/node": "^18.19.40",
-    "@types/react": "^18.3.3",
+    "@lingui/cli": "4.11.4",
+    "@playwright/test": "1.47.2",
+    "@types/node": "^18.19.54",
+    "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
     "@types/react-is": "^18.3.0",
     "babel-plugin-macros": "^3.1.0",
     "eslint": "^8",
     "prettier": "3.3.3",
-    "type-fest": "^4.22.0",
-    "typescript": "5.5.3"
+    "type-fest": "^4.26.1",
+    "typescript": "5.6.2"
   },
   "browserslist": [
     "> 1% in alt-EU",
     "not IE 11"
   ],
+  "resolutions": {
+    "@emotion/react": "11.12.0"
+  },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",

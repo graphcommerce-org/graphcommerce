@@ -148,9 +148,9 @@ export function ProductFiltersProCategorySectionSearch(
     })
       .slice(1)
       .filter((c) => c.visible)
-  }, [appliedAggregations, currentFilter, menu?.items])
+  }, [aggregations, currentFilter, menu?.items])
 
-  if (!categoryTree) return null
+  if (!categoryTree.length) return null
 
   return (
     <ProductFiltersProCategoryAccordion

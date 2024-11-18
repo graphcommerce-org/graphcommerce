@@ -21,7 +21,7 @@ type CompareFabContentProps = CompareFabProps & { total_quantity: number }
 
 const MotionDiv = styled(m.div)({})
 
-const MotionFab = m(
+const MotionFab = m.create(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   React.forwardRef<any, Omit<ButtonProps, 'style' | 'onDrag'>>((props, ref) => (
     <Button variant='pill' {...props} ref={ref} />

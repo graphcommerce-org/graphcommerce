@@ -13,10 +13,10 @@
   },
   "dependencies": {
     "@graphql-mesh/cli": "latest",
-    "@lingui/loader": "4.11.2",
+    "@lingui/loader": "4.11.4",
     "@lingui/swc-plugin": "4.0.8",
-    "@swc/core": "1.6.13",
-    "@swc/wasm-web": "^1.6.7",
+    "@swc/core": "1.7.26",
+    "@swc/wasm-web": "^1.7.28",
     "circular-dependency-plugin": "^5.2.2",
     "glob": "^10.4.5",
     "inspectpack": "^4.7.1",
@@ -27,8 +27,8 @@
   },
   "devDependencies": {
     "@types/circular-dependency-plugin": "^5.0.8",
-    "@types/lodash": "^4.17.7",
-    "typescript": "5.5.3"
+    "@types/lodash": "^4.17.10",
+    "typescript": "5.6.2"
   },
   "peerDependencies": {
     "@lingui/macro": "^4.2.1",
