@@ -782,7 +782,6 @@ export class Visitor {
   }
 
   visitTsPropertySignature(n: TsPropertySignature): TsPropertySignature {
-    n.params = this.visitTsFnParameters(n.params)
     n.typeAnnotation = this.visitTsTypeAnnotation(n.typeAnnotation)
     return n
   }
