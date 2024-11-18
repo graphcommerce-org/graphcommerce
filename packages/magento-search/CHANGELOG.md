@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.101
+
+### Patch Changes
+
+- [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`c17e5f1`](https://github.com/graphcommerce-org/graphcommerce/commit/c17e5f1cf9fb291b9bbf1fca0620c2721dceb331) - Solve issue: Warning: Cannot update a component (`FormAutoSubmitBase`) while rendering a different component (`ActionCardListForm`). ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.100
 
 ## 9.0.0-canary.99

@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.101
+
+### Patch Changes
+
+- [#2409](https://github.com/graphcommerce-org/graphcommerce/pull/2409) [`7e7c4bc`](https://github.com/graphcommerce-org/graphcommerce/commit/7e7c4bc24c8e3a2e6ed34667db8cf3fd67b557cf) - Solve an issue where image sizes are served in higher resolution than expected. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 9.0.0-canary.100
 
 ## 9.0.0-canary.99

@@ -1,5 +1,28 @@
 # Change Log
 
+## 9.0.0-canary.101
+
+### Patch Changes
+
+- [#2405](https://github.com/graphcommerce-org/graphcommerce/pull/2405) [`39a2df4`](https://github.com/graphcommerce-org/graphcommerce/commit/39a2df46c26be390cd8d65200ab347e12b217f9e) - Added MediaQuery Component: Render (and hydrate) a Component based on a media query given.
+
+  ```tsx
+  <MediaQuery query={(theme) => theme.breakpoints.up('md')}>
+    <MyExpensiveDesktopComponent>
+      Only visisble on desktop
+    </MyExpensiveDesktopComponent>
+  </MediaQuery>
+  ```
+
+  When to use, replacement for:
+
+  1. useMediaQuery: When you are now using useMediaQuery to conditionally render content for mobile or desktop. a. Is very slow as it has to wait for the JS to initialize on pageload. b. Can cause CLS problems if the useMediaQuery is used to render elements in the viewport. c. Can cause LCP issues if useMediaQuery is used to render the LCP element. d. Causes TBT problems as a component always needs to be rerendered. (And bad TBT can cause INP problems) e. HTML isn't present in the DOM, which can cause SEO issues.
+  2. CSS Media query: When you are using CSS to show or hide content based on media queries. a. Causes TBT problems as both code paths need to be rendered. (And bad TBT can cause INP problems)
+
+  It wraps the component in a div that has 'display: contents;' when shown and 'display: none;' when hidden so it should not interfere with other styling. It conditionally hydrates the component if the query matches. If it doesn't match, it will NOT hydrate the component (and thus not execute the JS). ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`0ca65f1`](https://github.com/graphcommerce-org/graphcommerce/commit/0ca65f11fbe288a221f2c5aa618abecf5b4b7bc9) - Solve an issue where internal full URL's would cause prefetching errors and would use a hard navigation. ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.100
 
 ## 9.0.0-canary.99

@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.0.0-canary.101
+
+### Patch Changes
+
+- [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`d601222`](https://github.com/graphcommerce-org/graphcommerce/commit/d601222c2ca538969023e9d42fdfee2a91cfa0d4) - Solve issue where persisted Form-data would remain in the sessionStorage after logging out. ([@paales](https://github.com/paales))
+
+- [#2411](https://github.com/graphcommerce-org/graphcommerce/pull/2411) [`7831a40`](https://github.com/graphcommerce-org/graphcommerce/commit/7831a404e27cf743dc25989e6155233ad1368aef) - Prevent overlap between autofilled data and input label for all TextFieldElements and its derivatives. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`355a9ac`](https://github.com/graphcommerce-org/graphcommerce/commit/355a9ac21e4a6741320d7dcb42327392be83786e) - Remove the inContext directive from the query before sending to the server ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.100
 
 ## 9.0.0-canary.99

@@ -1,5 +1,7 @@
 # @graphcommerce/algolia-personalization
 
+## 9.0.0-canary.101
+
 ## 9.0.0-canary.100
 
 ## 9.0.0-canary.99

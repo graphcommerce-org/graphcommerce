@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.101
+
+### Patch Changes
+
+- [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`2457ca2`](https://github.com/graphcommerce-org/graphcommerce/commit/2457ca25a737a1fdc8b1d0e1b4b6ddb69c5f420e) - measurePerformanceLink now reports queries made in the subgraph and is only included during development and not in production. ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.100
 
 ## 9.0.0-canary.99
