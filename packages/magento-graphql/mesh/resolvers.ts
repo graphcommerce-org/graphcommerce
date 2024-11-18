@@ -4,7 +4,6 @@ import type {
   MeshContext,
   ProductInterfaceResolvers,
   Resolvers,
-  ResolversTypes,
 } from '@graphcommerce/graphql-mesh'
 import { Kind } from 'graphql'
 
@@ -27,7 +26,7 @@ async function customAttributeMetadataV2(
   )
     throw Error('This field is only available in Magento 2.4.7 and up')
 
-  const response = context.m2.Query.customAttributeMetadataV2({
+  const attribute = context.m2.Query.customAttributeMetadataV2({
     context,
     key: input,
     argsFromKeys: (attributes) => ({ attributes }),
@@ -66,21 +65,19 @@ async function customAttributeMetadataV2(
         }
       }
     `,
-    valuesFromResults: (values, attributes) =>
-      attributes.map((attribute) =>
-        values.items?.find((v) => v?.code === attribute.attribute_code),
-      ),
+    valuesFromResults: (res, attributes) =>
+      attributes.map((attr) => res.items?.find((v) => v?.code === attr.attribute_code)),
   })
 
   // Cache for 1 hour
-  await context.cache.set(cacheKey, response, { ttl: 60 * 60 })
-  return response
+  await context.cache.set(cacheKey, attribute, { ttl: 60 * 60 })
+  return attribute
 }
 
-type ProductResolver = Pick<ProductInterfaceResolvers<MeshContext>, 'custom_attribute_option'>
+type ProductResolver = Pick<ProductInterfaceResolvers<MeshContext>, 'custom_attributeV2'>
 
 const productResolver: ProductResolver = {
-  custom_attribute_option: {
+  custom_attributeV2: {
     selectionSet: (fieldNode) => ({
       kind: Kind.SELECTION_SET,
       selections: (fieldNode.arguments ?? [])
@@ -88,41 +85,26 @@ const productResolver: ProductResolver = {
         .filter((value) => value.kind === Kind.STRING)
         .map((value) => ({ kind: Kind.FIELD, name: { kind: Kind.NAME, value: value.value } })),
     }),
-    resolve: async (root, { attribute_code }, context) => {
-      type Result = ResolversTypes['CustomAttributeOptionOutput']
-      const result: Result = {
-        raw: `${root[attribute_code]}`,
-        options: [],
-        attribute: null,
-        errors: [],
+    resolve: async (root, { attribute_code: code }, context) => {
+      const value = String(root[code] ?? '')
+      const input: CustomAttributeInput = { attribute_code: code, entity_type: 'catalog_product' }
+      const attribute = await customAttributeMetadataV2(input, context)
+
+      if (!attribute || !value) return null
+
+      if (
+        attribute?.frontend_input &&
+        ['SELECT', 'MULTISELECT'].includes(attribute.frontend_input)
+      ) {
+        const values = attribute.frontend_input === 'SELECT' ? [value] : value.split(',')
+        const selected_options = values.map((v) => {
+          const found = attribute.options?.find((o) => o?.value === v || o?.label === v)
+          if (!found) return null
+          return { ...found, __typename: 'AttributeSelectedOption' }
+        })
+        return { __typename: 'AttributeSelectedOptions', code, selected_options, attribute }
       }
-
-      const values = result.raw.includes(',')
-        ? [result.raw, ...result.raw.split(',')]
-        : [result.raw]
-      const attribute = await customAttributeMetadataV2(
-        { attribute_code, entity_type: 'catalog_product' },
-        context,
-      )
-
-      result.attribute = attribute
-
-      if (!attribute) {
-        const message = `Attribute '${attribute_code}' found, but option ${values.join(', ')} not found`
-        result.errors.push({ message, type: 'ATTRIBUTE_NOT_FOUND' })
-        return result
-      }
-
-      values.forEach((v) => {
-        const found = attribute.options?.find((o) => o?.value === v || o?.label === v)
-        if (found) {
-          result.options?.push(found)
-        } else {
-          const message = `Option '${v}' not found for attribute '${attribute_code}'`
-          result.errors.push({ message, type: 'ATTRIBUTE_NOT_FOUND' })
-        }
-      })
-      return result
+      return { __typename: 'AttributeValue', code, value, attribute }
     },
   },
 }
