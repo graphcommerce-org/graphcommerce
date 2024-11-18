@@ -21,6 +21,12 @@ async function customAttributeMetadataV2(
   if (input.entity_type !== 'catalog_product')
     throw Error('Only catalog_product is supported at this moment')
 
+  if (
+    !('customAttributeMetadataV2' in context.m2.Query) ||
+    typeof context.m2.Query.customAttributeMetadataV2 !== 'function'
+  )
+    throw Error('This field is only available in Magento 2.4.7 and up')
+
   const response = context.m2.Query.customAttributeMetadataV2({
     context,
     key: input,
@@ -83,10 +89,6 @@ const productResolver: ProductResolver = {
         .map((value) => ({ kind: Kind.FIELD, name: { kind: Kind.NAME, value: value.value } })),
     }),
     resolve: async (root, { attribute_code }, context) => {
-      if (import.meta.graphCommerce.magentoVersion <= 246) {
-        throw Error('This field is only available in Magento 2.4.7 and up')
-      }
-
       type Result = ResolversTypes['CustomAttributeOptionOutput']
       const result: Result = {
         raw: `${root[attribute_code]}`,
