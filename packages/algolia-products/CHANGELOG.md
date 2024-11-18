@@ -1,5 +1,11 @@
 # @graphcommerce/algolia-products
 
+## 9.0.0-canary.100
+
+### Patch Changes
+
+- [#2417](https://github.com/graphcommerce-org/graphcommerce/pull/2417) [`743e7e2`](https://github.com/graphcommerce-org/graphcommerce/commit/743e7e275c8f0bfe32a5240c08eed92120085cc0) - Prevent errors by returning string instead of array ([@Renzovh](https://github.com/Renzovh))
+
 ## 9.0.0-canary.99
 
 ## 9.0.0-canary.98
