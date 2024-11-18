@@ -505,6 +505,14 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "meshConfig",
+        "sourceModule": "@graphcommerce/magento-graphql/plugins/meshConfigAttrValue",
+        "targetExport": "meshConfig",
+        "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
+        "type": "function",
+      },
+      {
+        "enabled": true,
         "sourceExport": "graphqlConfig",
         "sourceModule": "@graphcommerce/magento-graphql/plugins/magentoGraphqlConfig",
         "targetExport": "graphqlConfig",
