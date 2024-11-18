@@ -16,7 +16,8 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
       ...baseConfig,
       additionalResolvers: [
         ...(baseConfig.additionalResolvers ?? []),
-        '@graphcommerce/magento-graphql/mesh/resolvers.ts',
+        '@graphcommerce/magento-graphql/mesh/customAttributeV2Resolver.ts',
+        '@graphcommerce/magento-graphql/mesh/attributeValueResolver.ts',
       ],
     },
     graphCommerceConfig,

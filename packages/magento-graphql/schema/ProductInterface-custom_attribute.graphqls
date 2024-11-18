@@ -1,13 +1,3 @@
-extend interface AttributeValueInterface {
-  attribute: CustomAttributeMetadataInterface
-}
-extend type AttributeValue {
-  attribute: CustomAttributeMetadataInterface
-}
-extend type AttributeSelectedOptions {
-  attribute: CustomAttributeMetadataInterface
-}
-
 extend interface ProductInterface {
   """
   This is the singular version of the custom_attributesV2 and allows selecting a single attribute option value.
