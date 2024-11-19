@@ -135,6 +135,7 @@ function GraphCommerceConfigSchema() {
         productRoute: _zod.z.string().nullish(),
         recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
+        searchOverlay: _zod.z.boolean().nullish(),
         sidebarGallery: SidebarGalleryConfigSchema().nullish(),
         storefront: _zod.z.array(GraphCommerceStorefrontConfigSchema()),
         wishlistHideForGuests: _zod.z.boolean().nullish(),

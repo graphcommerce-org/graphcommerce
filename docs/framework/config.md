@@ -331,6 +331,10 @@ Settings for recently viewed products
 Allow the site to be indexed by search engines.
 If false, the robots.txt file will be set to disallow all.
 
+#### searchOverlay: boolean
+
+Enable / disable quick search overlay
+
 #### sidebarGallery: [SidebarGalleryConfig](#SidebarGalleryConfig)
 
 Configuration for the SidebarGallery component

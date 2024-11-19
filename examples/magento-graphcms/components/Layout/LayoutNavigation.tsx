@@ -152,7 +152,11 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </DesktopNavBar>
 
             <DesktopNavActions>
-              <ProductFiltersProSearchField formControl={{ sx: { width: '400px' } }} />
+              {import.meta.graphCommerce.searchOverlay ? (
+                <SearchOverlay productListRenderer={productListRenderer} />
+              ) : (
+                <ProductFiltersProSearchField formControl={{ sx: { width: '400px' } }} />
+              )}
               <Fab
                 href='/service'
                 aria-label={i18n._(/* i18n */ 'Customer Service')}
@@ -166,7 +170,6 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               {/* The placeholder exists because the CartFab is sticky but we want to reserve the space for the <CartFab /> */}
               {cartEnabled && <PlaceholderFab />}
             </DesktopNavActions>
-            <SearchOverlay productListRenderer={productListRenderer} />
           </>
         }
         footer={<Footer footer={footer} />}
