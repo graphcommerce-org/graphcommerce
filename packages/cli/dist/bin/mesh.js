@@ -4,7 +4,7 @@ import path$1 from 'node:path';
 import { exit } from 'node:process';
 import { loadConfig, resolveDependenciesSync, packageRoots, replaceConfigInString } from '@graphcommerce/next-config';
 import { DEFAULT_CLI_PARAMS, graphqlMesh } from '@graphql-mesh/cli';
-import { DefaultLogger, defaultImportFn, loadYaml, fileURLToPath } from '@graphql-mesh/utils';
+import { DefaultLogger, loadYaml, defaultImportFn, fileURLToPath } from '@graphql-mesh/utils';
 import dotenv from 'dotenv';
 import yaml from 'yaml';
 import path from 'path';
