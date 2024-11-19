@@ -1,8 +1,22 @@
 import { Box, BoxProps, Theme, useTheme } from '@mui/material'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, CSSProperties } from 'react'
 
-type MediaQueryProps = BoxProps<'div'> & {
+type MediaQueryProps<C extends React.ElementType = 'div'> = BoxProps<C> & {
+  /**
+   * The media query to match.
+   */
   query: string | ((theme: Theme) => string)
+  /**
+   * The display style to apply when the media query matches.
+   *
+   * @default 'contents'
+   */
+  display?: CSSProperties['display']
+  /**
+   * The content to render when the media query matches.
+   *
+   * It doesn't matter if the children are actual compontents or if they are forwarded from some other location.
+   */
   children: React.ReactNode
 }
 
@@ -15,6 +29,15 @@ type MediaQueryProps = BoxProps<'div'> & {
  * <MediaQuery query={(theme) => theme.breakpoints.up('md')}>
  *   <MyExpensiveDesktopComponent>Only visisble on desktop</MyExpensiveDesktopComponent>
  * </MediaQuery>
+ * ```
+ *
+ * Forwarded props also work:
+ *
+ * ```tsx
+ * function MyComponent(props: { children: React.ReactNode }) {
+ *   const { children } = props
+ *   return <MediaQuery query={(theme) => theme.breakpoints.up('md')}>{children}</MediaQuery>
+ * }
  * ```
  *
  * When to use:
@@ -33,8 +56,10 @@ type MediaQueryProps = BoxProps<'div'> & {
  * It wraps the component in a div that has 'display: contents;' when shown and 'display: none;' when hidden so it should not interfere with other styling.
  * It conditionally hydrates the component if the query matches. If it doesn't match, it will NOT render the component (and thus not execute the JS).
  */
-export function MediaQuery(props: MediaQueryProps) {
-  const { query, sx, children, ...elementProps } = props
+export function MediaQuery<Component extends React.ElementType = 'div'>(
+  props: MediaQueryProps<Component>,
+) {
+  const { query, sx, children, display = 'contents', ...elementProps } = props
 
   const theme = useTheme()
   const queryString = typeof query === 'function' ? query(theme) : query
@@ -61,14 +86,13 @@ export function MediaQuery(props: MediaQueryProps) {
   }, [matchMedia])
 
   const sxVal = [
-    { display: 'none' },
-    { [queryString]: { display: 'contents' } },
+    { display: 'none', [queryString]: { display } },
     ...(Array.isArray(sx) ? sx : [sx]),
   ]
 
   if (typeof window === 'undefined' || matches) {
     return (
-      <Box data-media-query {...elementProps} sx={sxVal}>
+      <Box {...elementProps} sx={sxVal}>
         {children}
       </Box>
     )
@@ -76,7 +100,6 @@ export function MediaQuery(props: MediaQueryProps) {
 
   return (
     <Box
-      data-media-query
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: '' }}
       suppressHydrationWarning

@@ -1,7 +1,8 @@
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
-import { Box, BoxProps } from '@mui/material'
+import { BoxProps } from '@mui/material'
 import React from 'react'
 import { IconSvg, IconSvgProps } from '../IconSvg'
+import { MediaQuery } from '../MediaQuery'
 import { extendableComponent } from '../Styles/extendableComponent'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 
@@ -23,21 +24,23 @@ export function DesktopNavBar(props: MenuTabsProps) {
   const { children, iconLeft, iconRight, sx = [] } = props
 
   return (
-    <ScrollerProvider scrollSnapAlign='none'>
-      <Box
-        className={classes.root}
-        sx={[
-          {
-            width: '100%',
-            display: { xs: 'none', md: 'grid' },
-            alignItems: 'center',
-            position: 'relative',
-            pointerEvents: 'all',
-            gridTemplateColumns: `auto 1fr auto`,
-          },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
-      >
+    <MediaQuery
+      component='span'
+      query={(theme) => theme.breakpoints.up('md')}
+      display='grid'
+      className={classes.root}
+      sx={[
+        {
+          width: '100%',
+          alignItems: 'center',
+          position: 'relative',
+          pointerEvents: 'all',
+          gridTemplateColumns: `auto 1fr auto`,
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      <ScrollerProvider scrollSnapAlign='none'>
         <Scroller
           hideScrollbar
           sx={(theme) => ({
@@ -100,8 +103,8 @@ export function DesktopNavBar(props: MenuTabsProps) {
         >
           <IconSvg src={iconRight ?? iconChevronRight} />
         </ScrollerButton>
-      </Box>
-    </ScrollerProvider>
+      </ScrollerProvider>
+    </MediaQuery>
   )
 }
 DesktopNavBar.selectors = selectors
