@@ -1,4 +1,4 @@
-import { NumberFormat, NumberFormatPropsType } from './NumberFormat'
+import { NumberFormat, NumberFormatProps } from './NumberFormat'
 
 // https://en.wikipedia.org/wiki/ISO_4217#List_of_ISO_4217_currency_codes
 type Currency =
@@ -182,7 +182,7 @@ type Currency =
   | 'ZMW'
   | 'ZWL'
 
-export type CurrencyFormatProps = Omit<NumberFormatPropsType, 'numberStyle'> & {
+export type CurrencyFormatProps = Omit<NumberFormatProps, 'numberStyle'> & {
   currency: Currency | (string & Record<never, never>)
 }
 

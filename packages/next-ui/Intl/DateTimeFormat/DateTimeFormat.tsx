@@ -1,17 +1,10 @@
 import { useMemo } from 'react'
-import { useLocale } from '../../hooks/useLocale'
-import { useMemoObject } from '../../hooks/useMemoObject'
 import { DateValue, toDate } from './toDate'
+import { UseDateTimeFormatterOptions, useDateTimeFormatter } from './useDateTimeFormat'
 
-export function useDateTimeFormatter(props: Intl.DateTimeFormatOptions) {
-  const locale = useLocale()
-  const memoOptions = useMemoObject(props)
-  return useMemo(() => new Intl.DateTimeFormat(locale, memoOptions), [locale, memoOptions])
-}
+export type DateTimeFormatProps = UseDateTimeFormatterOptions & { children: DateValue }
 
-export type DateTimeFormatPropsType = { children: DateValue } & Intl.DateTimeFormatOptions
-
-export function DateTimeFormat(props: DateTimeFormatPropsType) {
+export function DateTimeFormat(props: DateTimeFormatProps) {
   const { children } = props
   const formatter = useDateTimeFormatter({ dateStyle: 'medium', timeStyle: 'short', ...props })
 
