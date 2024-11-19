@@ -1,9 +1,9 @@
 import React from 'react'
-import { useListFormat } from './useListFormat'
+import { useListFormat, UseListFormatOptions } from './useListFormat'
 
 export type ListFormatProps = {
   children: React.ReactNode[]
-} & Omit<Intl.ListFormatOptions, 'style'>
+} & UseListFormatOptions
 
 export function ListFormat(props: ListFormatProps) {
   const { children, ...options } = props
