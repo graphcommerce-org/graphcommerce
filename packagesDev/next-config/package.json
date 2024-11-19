@@ -34,6 +34,6 @@
     "@lingui/macro": "^4.2.1",
     "graphql": "^16",
     "next": "*",
-    "webpack": "~5.92.1"
+    "webpack": "~5.93.0"
   }
 }

@@ -2924,7 +2924,7 @@ __metadata:
     "@graphcommerce/prettier-config-pwa": ^9.0.0-canary.101
     "@graphcommerce/typescript-config-pwa": ^9.0.0-canary.101
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -2953,7 +2953,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -3026,7 +3026,7 @@ __metadata:
     "@graphcommerce/framer-utils": ^9.0.0-canary.101
     "@graphcommerce/prettier-config-pwa": ^9.0.0-canary.101
     "@graphcommerce/typescript-config-pwa": ^9.0.0-canary.101
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -3087,7 +3087,7 @@ __metadata:
     "@lingui/core": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -3103,7 +3103,7 @@ __metadata:
     "@graphcommerce/eslint-config-pwa": ^9.0.0-canary.101
     "@graphcommerce/prettier-config-pwa": ^9.0.0-canary.101
     "@graphcommerce/typescript-config-pwa": ^9.0.0-canary.101
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     react: ^18.2.0
     react-dom: ^18.2.0
   languageName: unknown
@@ -3521,7 +3521,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -3548,7 +3548,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -3573,7 +3573,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -3600,7 +3600,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -3629,7 +3629,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -3656,7 +3656,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -3683,7 +3683,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -3709,7 +3709,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -3736,7 +3736,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -3765,7 +3765,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     graphql: ^16.0.0
     next: "*"
     react: ^18.2.0
@@ -3832,7 +3832,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     graphql: ^16.0.0
     next: "*"
     react: ^18.2.0
@@ -3869,7 +3869,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -3897,7 +3897,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     graphql: ^16.0.0
     next: "*"
     react: ^18.2.0
@@ -4047,7 +4047,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -4074,7 +4074,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -4131,7 +4131,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -4160,7 +4160,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -4183,7 +4183,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -4238,7 +4238,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -4297,7 +4297,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -4417,7 +4417,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -4439,7 +4439,7 @@ __metadata:
     "@graphcommerce/prettier-config-pwa": ^9.0.0-canary.101
     "@graphcommerce/typescript-config-pwa": ^9.0.0-canary.101
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -4542,7 +4542,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     "@lingui/react": ^4.2.1
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -4601,7 +4601,7 @@ __metadata:
     "@lingui/macro": ^4.2.1
     graphql: ^16
     next: "*"
-    webpack: ~5.92.1
+    webpack: ~5.93.0
   languageName: unknown
   linkType: soft
 
@@ -4632,7 +4632,7 @@ __metadata:
     "@lingui/react": ^4.2.1
     "@mui/lab": ^5.0.0-alpha.68
     "@mui/material": ^5.10.16
-    framer-motion: ^10.0.0
+    framer-motion: ^11.0.0
     next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
