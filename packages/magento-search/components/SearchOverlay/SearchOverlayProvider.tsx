@@ -5,23 +5,24 @@ import {
   toProductListParams,
 } from '@graphcommerce/magento-product'
 import { useForkRef } from '@mui/material'
+import { motionValue } from 'framer-motion'
 import React, {
   createContext,
   useContext,
   ReactNode,
   useState,
   useMemo,
-  useCallback,
   useRef,
   useEffect,
 } from 'react'
 import { useQuicksearch } from './useQuicksearch'
 
+export const searchOverlayIsOpen = motionValue(false)
+
 type SearchOverlayContextType = {
   params: ProductListParams
   setParams: React.Dispatch<React.SetStateAction<ProductListParams>>
   products: ProductListQuery['products']
-  setClosed: () => void
 }
 
 type SearchOverlaySelectionContextType = {
@@ -48,11 +49,10 @@ export function useSearchOverlay() {
 type SearchOverlayProviderProps = {
   children: ReactNode
   open: boolean
-  setOpen: (open: boolean) => void
 }
 
 export function SearchOverlayProvider(props: SearchOverlayProviderProps) {
-  const { children, open, setOpen, ...overlayProps } = props
+  const { children, open, ...overlayProps } = props
   const [params, setParams] = useState<ProductListParams>({
     filters: {},
     sort: {},
@@ -64,7 +64,6 @@ export function SearchOverlayProvider(props: SearchOverlayProviderProps) {
 
   const { handleSubmit, products } = useQuicksearch({ params })
 
-  const setClosed = useCallback(() => setOpen(false), [setOpen])
   const items = useRef<React.RefObject<HTMLElement>[]>([])
   const inputs = useRef<React.RefObject<HTMLElement>[]>([])
   const [selectedIndex, setSelectedIndex] = useState(-1)
@@ -74,9 +73,8 @@ export function SearchOverlayProvider(props: SearchOverlayProviderProps) {
       params,
       setParams,
       products,
-      setClosed,
     }),
-    [params, setParams, products, setClosed],
+    [params, setParams, products],
   )
 
   const searchOverlaySelectionContext: SearchOverlaySelectionContextType = useMemo(

@@ -2,7 +2,7 @@ import { breakpointVal } from '@graphcommerce/next-ui'
 import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/LayoutHeaderClose'
 import { styled, Box } from '@mui/material'
 import { SearchInput } from './SearchOverlayInput'
-import { useSearchOverlay } from './SearchOverlayProvider'
+import { searchOverlayIsOpen, useSearchOverlay } from './SearchOverlayProvider'
 
 const SearchOverlayHeaderRoot = styled(Box, { name: 'SearchOverlayHeader', slot: 'Root' })(
   ({ theme }) => ({
@@ -31,7 +31,7 @@ type SearchOverlayHeaderProps = React.ComponentProps<typeof SearchOverlayHeaderR
 }
 
 export function SearchOverlayHeader(props: SearchOverlayHeaderProps) {
-  const { params, setClosed } = useSearchOverlay()
+  const { params } = useSearchOverlay()
   const { slotProps, ...rest } = props
 
   return (
@@ -58,7 +58,7 @@ export function SearchOverlayHeader(props: SearchOverlayHeaderProps) {
           ...(Array.isArray(slotProps?.input?.sx) ? slotProps.input.sx : [slotProps?.input?.sx]),
         ]}
       />
-      <LayoutHeaderClose onClose={setClosed} {...slotProps?.close} />
+      <LayoutHeaderClose onClose={() => searchOverlayIsOpen.set(false)} {...slotProps?.close} />
     </SearchOverlayHeaderRoot>
   )
 }

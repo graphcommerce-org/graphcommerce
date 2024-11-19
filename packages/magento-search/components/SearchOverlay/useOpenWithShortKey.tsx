@@ -1,6 +1,7 @@
-import { Dispatch, SetStateAction, useEffect } from 'react'
+import { useEffect } from 'react'
+import { searchOverlayIsOpen } from './SearchOverlayProvider'
 
-export function useOpenWithShortKey(setOpen: Dispatch<SetStateAction<boolean>>) {
+export function useOpenWithShortKey() {
   useEffect(() => {
     const handleKeyPress = (ev: KeyboardEvent) => {
       const { activeElement } = globalThis.document
@@ -11,11 +12,11 @@ export function useOpenWithShortKey(setOpen: Dispatch<SetStateAction<boolean>>) 
 
       if (ev.code === 'Slash' && !isInputFocused) {
         ev.preventDefault()
-        setOpen(true)
+        searchOverlayIsOpen.set(true)
       }
     }
 
     globalThis.document.addEventListener('keypress', handleKeyPress)
     return () => globalThis.document.removeEventListener('keypress', handleKeyPress)
-  }, [setOpen])
+  }, [])
 }

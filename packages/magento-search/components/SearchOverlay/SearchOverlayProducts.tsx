@@ -8,7 +8,7 @@ import { Trans } from '@lingui/macro'
 import { Link, SxProps, Theme } from '@mui/material'
 import { ComponentProps, useMemo, useRef } from 'react'
 import type { Entries } from 'type-fest'
-import { useSearchItem, useSearchOverlay } from './SearchOverlayProvider'
+import { searchOverlayIsOpen, useSearchItem, useSearchOverlay } from './SearchOverlayProvider'
 
 type SearchOverlayProductsProps = {
   productListRenderer: ProductListItemRenderer
@@ -49,7 +49,7 @@ function useRendererWithMenu(productListRenderer: ProductListItemRenderer) {
 export function SearchOverlayProducts({ productListRenderer }: SearchOverlayProductsProps) {
   const rendererWithMenu = useRendererWithMenu(productListRenderer)
 
-  const { params, products, setClosed } = useSearchOverlay()
+  const { params, products } = useSearchOverlay()
 
   const term = params.search
   const noResult = products?.total_count === 0
@@ -70,7 +70,7 @@ export function SearchOverlayProducts({ productListRenderer }: SearchOverlayProd
               color='secondary'
               underline='hover'
               href={productListLink({ ...params, pageSize: null })}
-              onClick={() => setClosed()}
+              onClick={() => searchOverlayIsOpen.set(false)}
             >
               <Trans>View all</Trans> ({products.total_count})
             </Link>

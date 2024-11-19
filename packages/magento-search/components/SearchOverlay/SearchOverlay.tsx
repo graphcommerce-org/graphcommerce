@@ -1,13 +1,12 @@
+import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { ProductListItemRenderer } from '@graphcommerce/magento-product'
-import { Overlay } from '@graphcommerce/next-ui'
-import { useTheme } from '@mui/material'
-import { useState } from 'react'
+import { iconSearch, IconSvg, Overlay } from '@graphcommerce/next-ui'
+import { Fab, useTheme } from '@mui/material'
 import { SearchOverlayBodyBase } from './SearchOverlayBodyBase'
 import { SearchOverlayCategories } from './SearchOverlayCategories'
-import { SearchOverlayFab } from './SearchOverlayFab'
 import { SearchOverlayHeader } from './SearchOverlayHeader'
 import { SearchOverlayProducts } from './SearchOverlayProducts'
-import { SearchOverlayProvider } from './SearchOverlayProvider'
+import { searchOverlayIsOpen, SearchOverlayProvider } from './SearchOverlayProvider'
 import { SearchOverlaySuggestions } from './SearchOverlaySuggestions'
 import { useOpenWithShortKey } from './useOpenWithShortKey'
 
@@ -25,16 +24,19 @@ type SearchOverlayProps = {
 
 export function SearchOverlay(props: SearchOverlayProps) {
   const { productListRenderer, slotProps } = props
-  const [open, setOpen] = useState(false)
+  const open = useMotionValueValue(searchOverlayIsOpen, (v) => v)
+
   const theme = useTheme()
-  useOpenWithShortKey(setOpen)
+  useOpenWithShortKey()
 
   return (
     <>
-      <SearchOverlayFab setOpen={setOpen} />
+      <Fab onClick={() => searchOverlayIsOpen.set(true)} color='inherit' size='large'>
+        <IconSvg src={iconSearch} size='large' />
+      </Fab>
       <Overlay
         active={open}
-        onClosed={() => setOpen(false)}
+        onClosed={() => searchOverlayIsOpen.set(false)}
         variantMd='top'
         variantSm='bottom'
         sizeMd='floating'
@@ -47,7 +49,7 @@ export function SearchOverlay(props: SearchOverlayProps) {
         bgColor='paper'
         {...slotProps?.overlay}
       >
-        <SearchOverlayProvider open={open} setOpen={setOpen}>
+        <SearchOverlayProvider open={open}>
           <SearchOverlayHeader {...slotProps?.header} />
           <SearchOverlayBodyBase {...slotProps?.body}>
             <SearchOverlaySuggestions {...slotProps?.suggestions} />
