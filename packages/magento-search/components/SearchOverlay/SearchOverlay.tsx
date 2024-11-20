@@ -44,7 +44,6 @@ export function SearchOverlay(props: SearchOverlayProps) {
         justifyMd='center'
         disableAnimation
         disableDrag
-        smSpacingTop={() => `6px`}
         widthMd={`min(${theme.breakpoints.values.lg}px, 100vw - ${theme.page.horizontal} * 2)`}
         bgColor='paper'
         {...slotProps?.overlay}

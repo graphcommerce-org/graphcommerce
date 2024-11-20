@@ -14,7 +14,6 @@ const SearchOverlayHeaderRoot = styled(Box, { name: 'SearchOverlayHeader', slot:
     boxShadow: theme.shadows[4],
     height: theme.appShell.headerHeightSm,
     gap: theme.page.horizontal,
-    paddingRight: theme.page.horizontal,
     alignItems: 'center',
     gridTemplateColumns: '1fr auto auto',
     [theme.breakpoints.up('md')]: {
