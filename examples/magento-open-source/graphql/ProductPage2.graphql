@@ -1,0 +1,31 @@
+query ProductPage2(
+  $urlKey: String!
+  $reviewPageSize: Int = 3
+  $reviewPage: Int = 1
+  $context: InContextInput
+  $useCustomAttributes: Boolean = false
+) {
+  products(filter: { url_key: { eq: $urlKey } }) @inContext(context: $context) {
+    ...ProductSpecs
+    items {
+      __typename
+      uid
+      ...ProductCustomizable
+      ...ProductWeight
+      ...ProductPageItem
+      ...ConfigurableOptions
+      ...DownloadableProductOptions
+      ...BundleProductOptions
+      ...GroupedProduct
+    }
+  }
+  # Workaround for https://github.com/magento/magento2/issues/32427
+  relatedUpsells: products(filter: { url_key: { eq: $urlKey } }) @inContext(context: $context) {
+    items {
+      uid
+      ...UpsellProducts
+      ...RelatedProducts
+      ...ProductReviews
+    }
+  }
+}
