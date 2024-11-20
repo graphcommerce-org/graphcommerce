@@ -1,0 +1,1090 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2021-10-11 16:14+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: nl\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#. js-lingui-generated-id
+msgid "Doing so will remove all your data including order history and saved shipping / billing addresses."
+msgstr "Dit zal al uw gegevens verwijderen, inclusief bestelgeschiedenis en opgeslagen verzend-/factuuradressen."
+
+#. js-lingui-generated-id
+msgid "I understand that my account will be deleted and this can not be undone."
+msgstr "Ik begrijp dat mijn account zal worden verwijderd en dat dit niet ongedaan kan worden gemaakt."
+
+#. js-lingui-generated-id
+msgid "Newletter"
+msgstr "Nieuwsbrief"
+
+#. js-lingui-generated-id
+msgid "Search all products..."
+msgstr "Zoek alle producten..."
+
+#. js-lingui-generated-id
+msgid "We couldn't find any results"
+msgstr "We konden geen resultaten vinden"
+
+#. js-lingui-generated-id
+msgid "Shipping method"
+msgstr "Verzendmethode"
+
+#. js-lingui-generated-id
+msgid "Name"
+msgstr "Naam"
+
+#. js-lingui-generated-id
+msgid "I understand that my order will be canceled and this can not be undone."
+msgstr "Ik begrijp dat mijn bestelling wordt geannuleerd en dat dit niet ongedaan kan worden gemaakt."
+
+#. js-lingui-generated-id
+msgid "<0>{name}</0> has been added to your shopping cart!"
+msgstr "<0>{name}</0> is toegevoegd aan je winkelwagen!"
+
+#. js-lingui-generated-id
+msgid "Are you sure you want to delete your account?"
+msgstr "Weet u zeker dat u uw account wilt verwijderen?"
+
+#. js-lingui-generated-id
+msgid "Business"
+msgstr "Zakelijk"
+
+msgid "<0>{name}</0> has been added to your comparison!"
+msgstr "<0>{name}</0> is toegevoegd aan je vergelijking!"
+
+msgid "<0>{name}</0> has been added to your wishlist!"
+msgstr "<0>{name}</0> is toegevoegd aan je verlanglijst!"
+
+msgid "Above <0/>"
+msgstr "Boven <0/>"
+
+msgid "Account"
+msgstr "Account"
+
+msgid "Account confirmation"
+msgstr "Account bevestiging"
+
+msgid "Account confirmed. You can now proceed to sign in."
+msgstr "Account bevestigd. U kunt nu doorgaan met inloggen."
+
+msgid "Add address"
+msgstr "Adres toevoegen"
+
+msgid "Add another product to start comparing."
+msgstr "Voeg nog een product toe om te vergelijken"
+
+msgid "Add new address"
+msgstr "Voeg nieuw adres toe"
+
+msgid "Add to cart quantity"
+msgstr "Voeg toe aan winkelwagen aantal"
+
+msgid "Add to comparison"
+msgstr "Toevoegen aan vergelijking"
+
+msgid "Add to wishlist"
+msgstr "In verlanglijst"
+
+msgid "Addition"
+msgstr "Toevoeging"
+
+msgid "Address not found"
+msgstr "Adres niet gevonden"
+
+msgid "Addresses"
+msgstr "Adressen"
+
+msgid "All filters"
+msgstr "Alle filters"
+
+msgid "All {name}"
+msgstr "Alle {name}"
+
+msgid "Apply"
+msgstr "Toepassen"
+
+msgid "As low as <0/>"
+msgstr "Vanaf <0/>"
+
+msgid "As soon as the payment is completed, you will automatically return to the webshop."
+msgstr "Als de betaling is voltooid, keert u automatisch terug naar de webshop."
+
+msgid "Authentication"
+msgstr "Authenticatie"
+
+msgid "Back"
+msgstr "Terug"
+
+msgid "Back to home"
+msgstr "Terug naar home"
+
+msgid "Be the first to know about everything new!"
+msgstr "Wees de eerste die op de hoogte is van alles wat er nieuw is!"
+
+msgid "Be the first to write a review!"
+msgstr "Wees de eerste die een review schrijft!"
+
+msgid "Below <0/>"
+msgstr "Onder <0/>"
+
+msgid "Billing address"
+msgstr "Factuuradres"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "Buy {quantity} for <0/> and save {percent}%"
+msgstr "Koop {quantity} voor <0/> en bespaar {percent}%"
+
+msgid "Cart"
+msgstr "Winkelwagen"
+
+msgid "Cart ({0})"
+msgstr "Winkelwagen ({0})"
+
+msgid "Categories"
+msgstr "Categorieën"
+
+#. js-lingui-generated-id
+msgid "Order #{orderNumber}"
+msgstr "Bestelling #{orderNumber}"
+
+#. js-lingui-generated-id
+msgid "You must first login before you can continue"
+msgstr "U moet eerst inloggen voordat u verder kunt gaan"
+
+msgid "Change"
+msgstr "Wijzig"
+
+msgid "Checkout summary"
+msgstr "Samenvatting"
+
+msgid "Choose your bank"
+msgstr "Kies uw bank"
+
+msgid "Choose your bank, and place your order."
+msgstr "Kies uw bank en plaats uw bestelling."
+
+msgid "City"
+msgstr "Plaats"
+
+msgid "Clear"
+msgstr "Wissen"
+
+msgid "Clear all filters"
+msgstr "Alle filters wissen"
+
+msgid "Close"
+msgstr "Sluiten"
+
+#. js-lingui-generated-id
+msgid "Order status"
+msgstr "Bestelstatus"
+
+msgid "Company name"
+msgstr "Bedrijfsnaam"
+
+msgid "Compare"
+msgstr "Vergelijk"
+
+msgid "Compare ({0})"
+msgstr "Vergelijk ({0})"
+
+msgid "Compare products"
+msgstr "Vergelijk producten"
+
+msgid "Complete the payment on your bank’s website."
+msgstr "Voltooi de betaling op uw bank's website."
+
+msgid "Configure"
+msgstr "Configureer"
+
+msgid "Confirm new email"
+msgstr "Bevestig nieuwe email"
+
+msgid "Confirm password"
+msgstr "Bevestig wachtwoord"
+
+msgid "Confirm registration"
+msgstr "Registratie bevestigen"
+
+msgid "Confirmation + Track & trace"
+msgstr "Bevestiging + Track & trace"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Continue"
+msgstr "Doorgaan"
+
+msgid "Continue shopping"
+msgstr "Verder winkelen"
+
+msgid "Could not create a new compare list"
+msgstr "Kon geen nieuwe vergelijkingslijst maken"
+
+msgid "Could not create an empty cart"
+msgstr "Kon geen lege winkelwagen aanmaken"
+
+msgid "Country"
+msgstr "Land"
+
+msgid "Create Account"
+msgstr "Maak account"
+
+msgid "Create a password and tell us your name"
+msgstr "Maak een wachtwoord en vertel ons uw naam"
+
+msgid "Create account!"
+msgstr "Maak account!"
+
+msgid "Create an account"
+msgstr "Maak een account"
+
+msgid "Create new password"
+msgstr "Maak een nieuw wachtwoord"
+
+msgid "Current Password"
+msgstr "Huidige wachtwoord"
+
+msgid "Current email"
+msgstr "Huidige email"
+
+msgid "Customer Service"
+msgstr "Klantenservice"
+
+#. js-lingui-generated-id
+msgid "Account deletion successful"
+msgstr "Account verwijdering succesvol"
+
+msgid "Dark Mode"
+msgstr "Donkere modus"
+
+msgid "Decrease"
+msgstr "Verminderen"
+
+msgid "Delete account"
+msgstr "Verwijder account"
+
+msgid "Delete this address"
+msgstr "Verwijder dit adres"
+
+#. js-lingui-generated-id
+msgid "Complete your purchase"
+msgstr "Maak uw bestelling compleet"
+
+msgid "Discount code"
+msgstr "Kortingscode"
+
+msgid "Discover our collection and add items to your cart!"
+msgstr "Ontdek onze collectie en voeg producten toe aan uw winkelwagen!"
+
+msgid "Discover our collection and add items to your comparelist!"
+msgstr "Ontdek onze collectie en voeg producten toe aan je vergelijklijst!"
+
+msgid "Discover our collection and add items to your wishlist!"
+msgstr "Ontdek onze collectie en voeg producten toe aan uw verlanglijst!"
+
+msgid "Discover our collection and place your first order!"
+msgstr "Ontdek onze collectie en plaats uw eerste bestelling!"
+
+msgid "Discover our collection and write your first review!"
+msgstr "Ontdek onze collectie en schrijf uw eerste review!"
+
+#. js-lingui-generated-id
+msgid "Payment method"
+msgstr "Betaalmethode"
+
+#. js-lingui-generated-id
+msgid "Did you mean: {list}"
+msgstr "Bedoelde u: {list}"
+
+msgid "Edit"
+msgstr "Bewerk"
+
+msgid "Edit address"
+msgstr "Wijzig adres"
+
+msgid "Edit billing address"
+msgstr "Wijzig factuuradres"
+
+msgid "Edit options"
+msgstr "Opties bewerken"
+
+msgid "Editing product"
+msgstr "Product bewerken"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Email address"
+msgstr "E-mailadres"
+
+msgid "Emails don't match"
+msgstr "E-mailadressen komen niet overeen"
+
+msgid "Empty comparelist"
+msgstr "Wissen"
+
+#. js-lingui-generated-id
+msgid "{0, plural, one {<0>{1}</0> has been added to your shopping cart} two {<1>{2}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
+msgstr "{0, plural, one {<0>{1}</0> is toegevoegd aan je winkelwagen} two {<1>{2}</1> zijn toegevoegd aan je winkelwagen!} other {# producten zijn toegevoegd aan je winkelwagen!}}"
+
+msgid "Fill in your e-mail to login or create an account"
+msgstr "Vul uw e-mailadres in om in te loggen of maak een account aan"
+
+msgid "Fill in your email to confirm registration"
+msgstr "Vul je e-mailadres in om de registratie te bevestigen"
+
+msgid "Fill in your new password, confirm it and click on the save button."
+msgstr "Vul uw nieuwe wachtwoord in, bevestig het en klik op de opslaan knop."
+
+msgid "Fill in your password"
+msgstr "Vul uw wachtwoord in"
+
+msgid "First Name"
+msgstr "Voornaam"
+
+msgid "Follow order"
+msgstr "Volg bestelling"
+
+msgid "Forgot Password"
+msgstr "Wachtwoord vergeten"
+
+msgid "Forgot password?"
+msgstr "Wachtwoord vergeten?"
+
+msgid "Forgot your password?"
+msgstr "Wachtwoord vergeten?"
+
+msgid "Free"
+msgstr "Gratis"
+
+msgid "Grand total"
+msgstr "Totaal"
+
+msgid "Hi {firstname}! You’re now logged in!"
+msgstr "Hallo {firstname}! U bent nu ingelogd!"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Housenumber"
+msgstr "Huisnummer"
+
+msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
+msgstr "Als u uw bestelling succesvol heeft betaald, dan zal de bestelling <0>doorkomen</0>, maar er is een communicatiefout met de website."
+
+#. js-lingui-generated-id
+msgid "We couldn't find any results for {term}"
+msgstr "We konden geen resultaten vinden voor {term}"
+
+msgid "In comparelist"
+msgstr "In vergelijking"
+
+msgid "Including {0}"
+msgstr "Inclusief {0}"
+
+msgid "Increase"
+msgstr "Verhogen"
+
+msgid "Invalid date"
+msgstr "Ongeldige datum"
+
+msgid "Invalid email address"
+msgstr "Ongeldig e-mailadres"
+
+msgid "It appears you are offline, please try again later."
+msgstr "Het lijkt erop dat u offline bent, probeer het later opnieuw."
+
+msgid "Last Name"
+msgstr "Achternaam"
+
+msgid "Latest orders"
+msgstr "Laatste bestellingen"
+
+msgid "Less options"
+msgstr "Minder opties"
+
+msgid "Light Mode"
+msgstr "Lichte modus"
+
+msgid "Loading"
+msgstr "Laden"
+
+msgid "Loading your account"
+msgstr "Uw account laden"
+
+msgid "Loading your data"
+msgstr "Uw gegevens laden"
+
+msgid "Log in to continue shopping"
+msgstr "Log in om verder te winkelen"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Minimum of different classes of characters in password is {passwordMinCharacterSets}. Classes of characters: Lower Case, Upper Case, Digits, Special Characters."
+msgstr "Het minimumaantal verschillende klassen van tekens in het wachtwoord is {passwordMinCharacterSets}. Klassen van tekens: Kleine letters, Hoofdletters, Cijfers, Speciale tekens."
+
+msgid "More information"
+msgstr "Meer informatie"
+
+msgid "More options"
+msgstr "Meer opties"
+
+msgid "Mr"
+msgstr "Dhr"
+
+msgid "Mrs"
+msgstr "Mvr"
+
+#. js-lingui-generated-id
+msgid "Order has successfully been canceled"
+msgstr "Bestelling is geannuleerd"
+
+msgid "Name"
+msgstr "Naam"
+
+msgid "Navigate to item {0}"
+msgstr "Navigeer naar item {0}"
+
+msgid "New address"
+msgstr "Nieuw adres"
+
+msgid "New email"
+msgstr "Nieuwe email"
+
+msgid "New password"
+msgstr "Nieuw wachtwoord"
+
+msgid "Newsletter"
+msgstr "Nieuwsbrief"
+
+msgid "Next"
+msgstr "Volgende"
+
+msgid "Next day delivery - Shipping free"
+msgstr "Volgende dag levering - Verzending gratis"
+
+msgid "No Image"
+msgstr "Geen afbeelding"
+
+msgid "No account yet?"
+msgstr "Nog geen account?"
+
+msgid "No orders found"
+msgstr "Geen bestellingen gevonden"
+
+msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
+msgstr "Geen zorgen! Vul uw e-mailadres in en we sturen een email met instructies om het wachtwoord te resetten."
+
+msgid "Number"
+msgstr "Nummer"
+
+#. js-lingui-generated-id
+msgid "Postcode"
+msgstr "Postcode"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Older"
+msgstr "Ouder"
+
+msgid "Only 1 left in stock."
+msgstr "Nog maar 1 op voorraad."
+
+msgid "Only a few left"
+msgstr "Nog maar een paar op voorraad."
+
+msgid "Only {amount_left_in_stock} left in stock."
+msgstr "Nog maar {amount_left_in_stock} op voorraad."
+
+msgid "Or follow these links to get you back on track!"
+msgstr "Of klik op één van deze links om weer op het pad te komen!"
+
+msgid "Order #{orderNumber}"
+msgstr "Bestelling #{orderNumber}"
+
+msgid "Order before 22:00"
+msgstr "Bestel voor 22:00"
+
+msgid "Order summary"
+msgstr "Besteloverzicht"
+
+msgid "Ordered items"
+msgstr "Bestelde items"
+
+msgid "Orders"
+msgstr "Bestellingen"
+
+msgid "Other"
+msgstr "Overige"
+
+msgid "Out of stock"
+msgstr "Niet op voorraad"
+
+msgid "Page {page} of {count}"
+msgstr "Pagina {page} van {count}"
+
+msgid "Password"
+msgstr "Wachtwoord"
+
+msgid "Password must have at least {minPasswordLength} characters"
+msgstr "Wachtwoord moet minimaal {minPasswordLength} tekens bevatten"
+
+msgid "Passwords don't match"
+msgstr "Wachtwoorden komen niet overeen"
+
+msgid "Pay"
+msgstr "Betaal"
+
+msgid "Pay with iDEAL"
+msgstr "Betaal met iDEAL"
+
+msgid "Payment"
+msgstr "Betaling"
+
+msgid "Payment failed with status: {paymentStatus}"
+msgstr "Betaling mislukt met status: {paymentStatus}"
+
+msgid "Payment has not completed succesfully, please try again."
+msgstr "Betaling is niet succesvol afgerond, probeer het opnieuw."
+
+msgid "Payment method"
+msgstr "Betaalmethode"
+
+msgid "Per page"
+msgstr "Per pagina"
+
+msgid "Personal details"
+msgstr "Persoonlijke details"
+
+msgid "Place order"
+msgstr "Plaats bestelling"
+
+msgid "Please enter a valid email address"
+msgstr "Vul een geldig e-mailadres in"
+
+msgid "Please fill out an address to be able to select a shipping method"
+msgstr "Vul een adres in om een verzendmethode te kunnen selecteren"
+
+msgid "Please provide a valid house number"
+msgstr "Vul een geldig huisnummer in"
+
+msgid "Please reauthenticate and try again"
+msgstr "U bent niet meer ingelogd, log in om verder te gaan"
+
+msgid "Please select a payment method"
+msgstr "Selecteer een betaalmethode a.u.b."
+
+msgid "Please select a shipping address"
+msgstr "Selecteer a.u.b. een verzendadres"
+
+msgid "Please select a shipping method"
+msgstr "Selecteer een verzendmethode a.u.b."
+
+msgid "Please select a value for ‘{label}’"
+msgstr "Selecteer een waarde voor {label}"
+
+msgid "Prefix"
+msgstr "Voorvoegsel"
+
+msgid "Processing your payment"
+msgstr "Uw betaling aan het verwerken"
+
+msgid "Product could not be found"
+msgstr "Product kan niet worden gevonden"
+
+msgid "Product not available in {allLabels}"
+msgstr "Product niet beschikbaar in {allLabels}"
+
+msgid "Products"
+msgstr "Producten"
+
+#. js-lingui-generated-id
+msgid "An error occurred while processing your payment. Please contact the store owner"
+msgstr "Er is een fout opgetreden bij het verwerken van uw betaling. Neem contact op met de eigenaar van de winkel"
+
+#. js-lingui-generated-id
+msgid "Results for ‘{search}’"
+msgstr "Resultaten voor ‘{search}’"
+
+#. js-lingui-generated-id
+msgid "Telephone"
+msgstr "Telefoon"
+
+#. js-lingui-generated-id
+msgid "Please login to add products to your cart"
+msgstr "Log in om producten aan uw winkelwagen toe te voegen"
+
+msgid "Recently viewed products"
+msgstr "Recent bekeken producten"
+
+msgid "Region"
+msgstr "Regio"
+
+msgid "Registration successful. Please check your inbox to confirm your email address ({email})"
+msgstr "Registratie succesvol. Controleer uw inbox om uw e-mailadres te bevestigen ({email})"
+
+msgid "Relevance"
+msgstr "Relevantie"
+
+msgid "Remove"
+msgstr "Verwijder"
+
+msgid "Remove Product"
+msgstr "Verwijder product"
+
+msgid "Remove from comparison"
+msgstr "Uit vergelijking verwijderen"
+
+msgid "Remove from wishlist"
+msgstr "Verwijder van verlanglijst"
+
+msgid "Reset"
+msgstr "Resetten"
+
+msgid "Reset Cart and Return to home"
+msgstr "Reset winkelwagen en ga terug naar home"
+
+msgid "Results for ‘{search}’"
+msgstr "Resultaten voor ‘{search}’"
+
+msgid "Review"
+msgstr "Review"
+
+msgid "Review score"
+msgstr "Review score"
+
+msgid "Reviews"
+msgstr "Reviews"
+
+msgid "Save changes"
+msgstr "Wijzigingen opslaan"
+
+msgid "Save new password"
+msgstr "Sla nieuw wachtwoord op"
+
+msgid "Search"
+msgstr "Zoeken"
+
+msgid "Search..."
+msgstr "Zoeken..."
+
+msgid "Select"
+msgstr "Selecteer"
+
+msgid "Select your bank"
+msgstr "Kies uw bank"
+
+msgid "Send password reset email"
+msgstr "Stuur een wachtwoord reset e-mail"
+
+msgid "Set your new password"
+msgstr "Stel uw nieuwe wachtwoord in"
+
+msgid "Several errors occured"
+msgstr "Er zijn verschillende fouten opgetreden"
+
+msgid "Shipping"
+msgstr "Verzending"
+
+msgid "Shipping ({0} {1})"
+msgstr "Verzending ({0} {1})"
+
+msgid "Shipping address"
+msgstr "Verzendadres"
+
+msgid "Shipping addresses"
+msgstr "Verzendadressen"
+
+msgid "Shipping method"
+msgstr "Verzendmethode"
+
+msgid "Sign in"
+msgstr "Inloggen"
+
+msgid "Sign in or create an account!"
+msgstr "Log in of maak een account aan!"
+
+msgid "Sign out"
+msgstr "Uitloggen"
+
+msgid "Sign up for our newsletter and stay updated"
+msgstr "Abonneer u op onze nieuwsbrief en blijf op de hoogte"
+
+msgid "Sign up is disabled, please contact us for more information."
+msgstr "Inschrijven is niet mogelijk, neem contact met ons op voor meer informatie."
+
+msgid "Skip to main content"
+msgstr "Ga naar hoofdinhoud"
+
+msgid "Something went wrong"
+msgstr "Er is iets misgegaan"
+
+msgid "Something went wrong on the server, please try again later."
+msgstr "Er is iets misgegaan op de server, probeer het later opnieuw."
+
+msgid "Sort"
+msgstr "Sorteer"
+
+msgid "Sort By"
+msgstr "Sorteer op"
+
+msgid "Store home"
+msgstr "Winkel home"
+
+msgid "Street"
+msgstr "Straat"
+
+msgid "Submit review"
+msgstr "Verstuur review"
+
+msgid "Subscribe"
+msgstr "Abonneren"
+
+msgid "Subscribe to newsletter"
+msgstr "Abonneer op de nieuwsbrief"
+
+msgid "Subscribe to our newsletter to stay informed about our new products!"
+msgstr "Schrijf u in voor onze nieuwsbrief om op de hoogte te blijven van onze nieuwe producten! "
+
+msgid "Subscribed"
+msgstr "Geabonneerd"
+
+msgid "Successfully changed password"
+msgstr "Wachtwoord aangepast"
+
+msgid "Successfully saved changes"
+msgstr "Wijzigingen succesvol opgeslagen"
+
+msgid "Successfully updated email"
+msgstr "Email succesvol bijgewerkt"
+
+msgid "Summary"
+msgstr "Omschrijving"
+
+msgid "Switch stores"
+msgstr "Winkel wisselen"
+
+msgid "Thank you for your order!"
+msgstr "Bedankt voor je bestelling!"
+
+msgid "Thank you! Your review was successfully submitted for approval"
+msgstr "Bedankt! Uw review is succesvol verstuurd voor goedkeuring"
+
+msgid "The payment has been canceled, please try again."
+msgstr "De betaling is geannuleerd, probeer het opnieuw."
+
+msgid "The payment has expired, please try again."
+msgstr "De betaling is verlopen, probeer het opnieuw."
+
+msgid "The payment hasn't been completed yet, please try again."
+msgstr "De betaling is nog niet voltooid, probeer het opnieuw."
+
+msgid "The payment hasn't completed, please try again or select a different payment method."
+msgstr "De betaling is niet voltooid, probeer het opnieuw of selecteer een andere betaalmethode."
+
+msgid "The payment is refused, please try again or select a different payment method."
+msgstr "De betaling is geweigerd, probeer het opnieuw of selecteer een andere betaalmethode."
+
+msgid "There is a maximum of ‘{maxLength}’ characters"
+msgstr "Er is een maximum van ‘{maxLength}’ karakters"
+
+msgid "This field is invalid"
+msgstr "Dit veld is ongeldig"
+
+msgid "This field is required"
+msgstr "Dit veld is verplicht"
+
+msgid "This may take a second"
+msgstr "Dit kan een seconde duren"
+
+msgid "Total <0/>"
+msgstr "Totaal <0/>"
+
+msgid "Try a different product"
+msgstr "Probeer een ander product"
+
+msgid "Try a different search"
+msgstr "Probeer een andere zoekopdracht"
+
+#. js-lingui-generated-id
+msgid "Try a different search or <0>clear current filters</0>"
+msgstr "Probeer een andere zoekopdracht of <0>verwijder huidige filters</0>"
+
+#. js-lingui-generated-id
+msgid "Try a different search"
+msgstr "Probeer een andere zoekopdracht"
+
+msgid "VAT Number"
+msgstr "BTW-nummer"
+
+#. js-lingui-generated-id
+msgid "Reason"
+msgstr "Reden"
+
+msgid "View Product"
+msgstr "Bekijk product"
+
+msgid "View all items"
+msgstr "Bekijk alle items"
+
+msgid "View comparison"
+msgstr "Bekijk vergelijking"
+
+msgid "View less items"
+msgstr "Bekijk minder items"
+
+msgid "View wishlist"
+msgstr "Bekijk verlanglijst"
+
+msgid "View your account"
+msgstr "Bekijk uw account"
+
+msgid "We are fetching your favorite products, one moment please!"
+msgstr "Je favoriete artikelen worden momenteel ingeladen!"
+
+msgid "We are sorry, this product is currently out of stock."
+msgstr "We zijn sorry, dit product is momenteel niet op voorraad."
+
+msgid "We can not process your payment, we received an unsupported status \"<0>{resultCode}</0>\". Please try again or select a different payment method."
+msgstr "We kunnen uw betaling niet verwerken, we hebben een niet-ondersteunde status ontvangen \"<0>{resultCode}</0>\". Probeer het opnieuw of selecteer een andere betaalmethode."
+
+msgid "We couldn't find any products."
+msgstr "We konden geen producten vinden."
+
+msgid "We couldn't find the page you were looking for"
+msgstr "We kunnen de pagina niet vinden waar u naar op zoek bent."
+
+msgid "We’re processing your payment, this will take a few seconds."
+msgstr "Uw betaling wordt verwerkt, dit duurt een paar seconden"
+
+msgid "We’ve send a password reset link to your email address!"
+msgstr "Een wachtwoord reset link naar uw e-mailadres gestuurd"
+
+msgid "Whoops our bad..."
+msgstr "Oeps.."
+
+msgid "Wishlist"
+msgstr "Verlanglijst"
+
+msgid "Write a review"
+msgstr "Schrijf een review"
+
+msgid "Written by {nickname}"
+msgstr "Geschreven door {nickname}"
+
+msgid "Written {0} reviews"
+msgstr "{0} reviews geschreven"
+
+msgid "You are reviewing {0}"
+msgstr "U reviewt {0}"
+
+msgid "You can now <0>sign in again</0>."
+msgstr "U kunt nu <0>opnieuw inloggen</0>"
+
+msgid "You can only confirm you account by clicking on the link in your email."
+msgstr "U kunt uw account alleen bevestigen door op de link in uw e-mail te klikken."
+
+msgid "You can track your order status and much more!"
+msgstr "U kunt uw bestelstatus bijhouden en veel meer!"
+
+msgid "You have been successfully subscribed to our newsletter."
+msgstr "U bent succesvol aangemeld voor onze nieuwsbrief."
+
+msgid "You have no addresses saved yet"
+msgstr "U heeft nog geen adressen opgeslagen"
+
+msgid "You have no orders yet"
+msgstr "Je hebt nog geen bestellingen"
+
+msgid "You have not placed an order"
+msgstr "Je hebt nog geen bestelling geplaatst"
+
+msgid "You have now successfully reset your password"
+msgstr "Je hebt je wachtwoord gereset"
+
+msgid "You have to agree in order to proceed"
+msgstr "U moet akkoord gaan met de voorwaarden om verder te gaan"
+
+msgid "You haven't placed any reviews yet"
+msgstr "Je hebt nog geen reviews geplaatst"
+
+msgid "You must be signed in to continue"
+msgstr "U moet ingelogd zijn om verder te gaan"
+
+msgid "You must sign in to continue"
+msgstr "U moet zich aanmelden om verder te gaan"
+
+msgid "Your address has been added"
+msgstr "Uw adres is toegevoegd"
+
+msgid "Your cart is empty"
+msgstr "Je winkelwagen is leeg"
+
+msgid "Your comparelist is empty"
+msgstr "Jouw vergelijking is leeg"
+
+msgid "Your session is expired"
+msgstr "Uw sessie is verlopen"
+
+msgid "Your wishlist is empty"
+msgstr "Uw verlanglijst is leeg"
+
+#. js-lingui-generated-id
+msgid "Delete account"
+msgstr "Verwijder account"
+
+msgid "Zip code or city"
+msgstr "Postcode of stad"
+
+#. js-lingui-generated-id
+msgid "Save in address book"
+msgstr "Opslaan in adresboek"
+
+#. js-lingui-generated-id
+msgid "Ok"
+msgstr "Ok"
+
+#. js-lingui-generated-id
+msgid "Return to home"
+msgstr "Terug naar home"
+
+#. js-lingui-generated-id
+msgid "Add to Cart"
+msgstr "In winkelwagen"
+
+#. js-lingui-generated-id
+msgid "Shipping address"
+msgstr "Verzendadres"
+
+#. js-lingui-generated-id
+msgid "Order status: {status}"
+msgstr "Status bestelling: {status}"
+
+#. js-lingui-generated-id
+msgid "Shipping Note"
+msgstr "Verzendnotitie"
+
+#. js-lingui-generated-id
+msgid "Your message has been received, we will contact you as soon as we can"
+msgstr "Uw bericht is ontvangen, we nemen zo snel mogelijk contact met u op."
+
+#. js-lingui-generated-id
+msgid "Invalid phone number"
+msgstr "Ongeldig telefoonnummer"
+
+#. js-lingui-generated-id
+msgid "Billing address"
+msgstr "Factuuradres"
+
+#. js-lingui-generated-id
+msgid "Submit"
+msgstr "Verzenden"
+
+#. js-lingui-generated-id
+msgid "Order date"
+msgstr "Besteldatum"
+
+#. js-lingui-generated-id
+msgid "Contact"
+msgstr "Contact"
+
+#. js-lingui-generated-id
+msgid "Order number"
+msgstr "Bestelnummer"
+
+#. js-lingui-generated-id
+msgid "All products"
+msgstr "Alle producten"
+
+#. js-lingui-generated-id
+msgid "No payment information"
+msgstr "Geen betalingsinformatie"
+
+#. js-lingui-generated-id
+msgid "View shopping cart"
+msgstr "Bekijk winkelwagen"
+
+msgid "no products"
+msgstr "geen producten"
+
+#. js-lingui-generated-id
+msgid "Get order"
+msgstr "Bestelling belijken"
+
+msgid "one product"
+msgstr "één product"
+
+#. js-lingui-generated-id
+msgid "Start Checkout"
+msgstr "Afrekenen"
+
+#. js-lingui-generated-id
+msgid "Order not found"
+msgstr "Bestelling niet gevonden"
+
+#. js-lingui-generated-id
+msgid "Cancel order"
+msgstr "Bestelling annuleren"
+
+#. js-lingui-generated-id
+msgid "Reorder"
+msgstr "Opnieuw bestellen"
+
+#. js-lingui-generated-id
+msgid "Customer Service"
+msgstr "Klantenservice"
+
+#. js-lingui-generated-id
+msgid "The given email does not match the account email"
+msgstr "Het opgegeven e-mailadres komt niet overeen met het account e-mailadres"
+
+#. js-lingui-generated-id
+msgid "Message"
+msgstr "Bericht"
+
+#. js-lingui-generated-id
+msgid "Some items in your cart contain errors, please update or remove them, then try again."
+msgstr "Sommige items in uw winkelwagen bevatten fouten, pas deze aan of verwijder ze en probeer het opnieuw."
+
+#. js-lingui-generated-id
+msgid "Order details"
+msgstr "Bestelgegevens"
+
+#. js-lingui-generated-id
+msgid "Clear current filters"
+msgstr "Huidige filters wissen"
+
+#. js-lingui-generated-id
+msgid "Private"
+msgstr "Privé"
+
+msgid "{count} Per page"
+msgstr "{count} Per pagina"
+
+msgid "{metaDescription} - Page {currentPage}"
+msgstr "{metaDescription} - Pagina {currentPage}"
+
+msgid "{title} - Page {currentPage}"
+msgstr "{title} - Pagina {currentPage}"
+
+msgid "{totalResults} result"
+msgstr "{totalResults} resultaat"
+
+msgid "{totalResults} results"
+msgstr "{totalResults} resultaten"
+
+msgid "{total_count} products"
+msgstr "{total_count} producten"
