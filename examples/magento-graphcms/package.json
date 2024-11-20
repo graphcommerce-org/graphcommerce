@@ -128,6 +128,9 @@
     "extends": "@graphcommerce/eslint-config-pwa",
     "parserOptions": {
       "project": "./tsconfig.json"
+    },
+    "rules": {
+      "@typescript-eslint/consistent-type-imports": "off"
     }
   }
 }
