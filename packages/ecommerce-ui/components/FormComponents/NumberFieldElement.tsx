@@ -36,6 +36,7 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
     DownProps = {},
     UpProps = {},
     inputProps = {},
+    InputProps = {},
     sx = [],
     size = 'medium',
     control,
@@ -113,7 +114,7 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
       ]}
       autoComplete='off'
       InputProps={{
-        ...textFieldProps.InputProps,
+        ...InputProps,
         startAdornment: (
           <Fab
             aria-label={i18n._(/* i18n */ 'Decrease')}
