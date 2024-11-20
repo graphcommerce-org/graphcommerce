@@ -5,7 +5,6 @@
   "version": "9.0.0-canary.102",
   "main": "index.ts",
   "dependencies": {
-    "@graphql-mesh/apollo-link": "latest",
     "@graphql-mesh/config": "latest",
     "@graphql-mesh/cross-helpers": "latest",
     "@graphql-mesh/graphql": "latest",
@@ -29,6 +28,7 @@
     "@graphql-tools/utils": "^10.3.2",
     "@whatwg-node/fetch": "^0.9.21",
     "fetch-retry": "^5.0.6",
+    "graphql": "^16.7.1",
     "long": "^5.2.3",
     "tslib": "^2.7.0",
     "uglify-es": "3.3.10"
@@ -37,8 +37,7 @@
     "@apollo/client": "^3",
     "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.102",
     "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.102",
-    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.102",
-    "graphql": "^16.7.1"
+    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.102"
   },
   "devDependencies": {
     "@types/uglify-es": "^3.0.3",

@@ -26,12 +26,12 @@
     "@graphql-codegen/visitor-plugin-common": "5.3.1",
     "@graphql-tools/utils": "^10.3.2",
     "@types/parse-filepath": "^1.0.2",
+    "graphql": "^16.7.1",
     "parse-filepath": "^1.0.2"
   },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.102",
     "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.102",
-    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.102",
-    "graphql": "^16.7.1"
+    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.102"
   }
 }

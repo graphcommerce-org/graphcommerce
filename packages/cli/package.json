@@ -20,7 +20,6 @@
     "mesh": "dist/bin/mesh.js"
   },
   "dependencies": {
-    "@graphcommerce/graphql-mesh": "^9.0.0-canary.102",
     "@graphql-codegen/cli": "5.0.2",
     "@graphql-mesh/cli": "latest",
     "@graphql-mesh/cross-helpers": "latest",
@@ -32,6 +31,7 @@
     "cosmiconfig": "^8.3.6",
     "detect-package-manager": "^3.0.2",
     "dotenv": "16.4.5",
+    "graphql": "^16.7.1",
     "graphql-codegen-typescript-validation-schema": "^0.16.0",
     "graphql-tag": "^2.12.6",
     "rimraf": "^5.0.10",
@@ -41,11 +41,11 @@
   },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.102",
+    "@graphcommerce/graphql-mesh": "^9.0.0-canary.102",
     "@graphcommerce/hygraph-cli": "^9.0.0-canary.102",
     "@graphcommerce/next-config": "^9.0.0-canary.102",
     "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.102",
     "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.102",
-    "graphql": "^16.7.1",
     "react": "^18.2.0"
   },
   "sideEffects": false,

@@ -14,6 +14,7 @@
   "dependencies": {
     "@hygraph/management-sdk": "1.2.5",
     "@whatwg-node/fetch": "^0.9.21",
+    "graphql": "^16.7.1",
     "graphql-tag": "^2.12.6",
     "prompts": "^2.4.2"
   },
@@ -23,8 +24,7 @@
     "@graphcommerce/next-config": "^9.0.0-canary.102",
     "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.102",
     "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.102",
-    "dotenv": "^16.1.4",
-    "graphql": "^16.7.1"
+    "dotenv": "^16.1.4"
   },
   "devDependencies": {
     "@types/prompts": "^2.4.9",
