@@ -8,7 +8,17 @@ import {
   useFabSize,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { alpha, Fab, FabProps, styled, useTheme, Box, SxProps, Theme } from '@mui/material'
+import {
+  BadgeProps,
+  alpha,
+  Fab,
+  FabProps,
+  styled,
+  useTheme,
+  Box,
+  SxProps,
+  Theme,
+} from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useCartEnabled, useCartShouldLoginToContinue } from '../../hooks'
@@ -19,6 +29,7 @@ import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
 export type CartFabProps = {
   icon?: React.ReactNode
   sx?: SxProps<Theme>
+  BadgeProps?: BadgeProps
 } & Pick<FabProps, 'color' | 'size' | 'variant'>
 
 type CartFabContentProps = CartFabProps & CartTotalQuantityFragment
@@ -35,7 +46,7 @@ const MotionFab = m.create(
 const { classes } = extendableComponent('CartFab', ['root', 'cart', 'shadow'] as const)
 
 function CartFabContent(props: CartFabContentProps) {
-  const { total_quantity, icon, sx = [], ...fabProps } = props
+  const { total_quantity, icon, sx = [], BadgeProps, ...fabProps } = props
 
   const theme2 = useTheme()
   const scrollY = useScrollY()
@@ -75,6 +86,7 @@ function CartFabContent(props: CartFabContentProps) {
           variant='dot'
           overlap='circular'
           badgeContent={total_quantity}
+          {...BadgeProps}
         >
           {cartIcon}
         </DesktopHeaderBadge>
