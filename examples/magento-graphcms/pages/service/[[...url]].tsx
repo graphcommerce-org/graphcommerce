@@ -3,7 +3,7 @@ import {
   PagesStaticPathsDocument,
   hygraphPageContent,
   HygraphPagesQuery,
-} from '@graphcommerce/graphcms-ui'
+} from '@graphcommerce/hygraph-ui'
 import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'

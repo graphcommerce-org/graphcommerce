@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { cacheFirst, flushMeasurePerf, InContextMaskProvider } from '@graphcommerce/graphql'
 import {
   appendSiblingsAsChildren,

@@ -1,4 +1,4 @@
-import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { ApolloClient, NormalizedCacheObject, cacheFirst } from '@graphcommerce/graphql'
 import {
   ConditionTextFragment,

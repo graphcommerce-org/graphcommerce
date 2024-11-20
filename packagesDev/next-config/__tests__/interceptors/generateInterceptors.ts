@@ -345,7 +345,7 @@ it('generates method interceptors alognside component interceptors', async () =>
         enabled: true,
         sourceExport: 'Plugin',
         targetModule: '@graphcommerce/graphql',
-        sourceModule: '@graphcommerce/magento-hygraph/plugins/hygraphInitMemoryCache',
+        sourceModule: '@graphcommerce/magento-graphcms/plugins/hygraphInitMemoryCache',
       },
     ],
     resolve,
@@ -390,7 +390,7 @@ it('adds debug logging to interceptors for components', async () => {
         enabled: true,
         sourceExport: 'plugin',
         targetModule: '@graphcommerce/graphql',
-        sourceModule: '@graphcommerce/magento-hygraph/plugins/hygraphInitMemoryCache',
+        sourceModule: '@graphcommerce/magento-graphcms/plugins/hygraphInitMemoryCache',
       },
     ],
     resolve,
@@ -398,8 +398,8 @@ it('adds debug logging to interceptors for components', async () => {
   )
 
   expectImport(interceptors['packages/graphql/config']?.template).toMatchInlineSnapshot(`
-    "import { plugin as pluginmagentoInitMemoryCache } from '@graphcommerce/magento-graphql/plugins/magentoInitMemoryCache'
-    import { plugin as pluginhygraphInitMemoryCache } from '@graphcommerce/magento-hygraph/plugins/hygraphInitMemoryCache'"
+    "import { plugin as pluginhygraphInitMemoryCache } from '@graphcommerce/magento-graphcms/plugins/hygraphInitMemoryCache'
+    import { plugin as pluginmagentoInitMemoryCache } from '@graphcommerce/magento-graphql/plugins/magentoInitMemoryCache'"
   `)
 
   expectOriginal(interceptors['packages/graphql/config']?.template).toMatchInlineSnapshot(`

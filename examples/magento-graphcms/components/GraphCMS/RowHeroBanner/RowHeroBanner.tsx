@@ -1,4 +1,4 @@
-import { RichText } from '@graphcommerce/graphcms-ui'
+import { RichText } from '@graphcommerce/hygraph-ui'
 import { breakpointVal, HeroBanner } from '@graphcommerce/next-ui'
 import { Button } from '@mui/material'
 import { RowHeroBannerFragment } from './RowHeroBanner.gql'

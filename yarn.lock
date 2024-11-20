@@ -3184,21 +3184,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graphcommerce/graphcms-ui@npm:9.0.0-canary.102, @graphcommerce/graphcms-ui@workspace:packages/hygraph-ui":
+"@graphcommerce/graphcms-ui@workspace:packages/graphcms-ui":
   version: 0.0.0-use.local
-  resolution: "@graphcommerce/graphcms-ui@workspace:packages/hygraph-ui"
+  resolution: "@graphcommerce/graphcms-ui@workspace:packages/graphcms-ui"
   peerDependencies:
-    "@graphcommerce/ecommerce-ui": ^9.0.0-canary.102
-    "@graphcommerce/eslint-config-pwa": ^9.0.0-canary.102
-    "@graphcommerce/graphql": ^9.0.0-canary.102
-    "@graphcommerce/image": ^9.0.0-canary.102
-    "@graphcommerce/next-ui": ^9.0.0-canary.102
-    "@graphcommerce/prettier-config-pwa": ^9.0.0-canary.102
-    "@graphcommerce/typescript-config-pwa": ^9.0.0-canary.102
-    "@mui/material": ^5.10.16
-    next: "*"
-    react: ^18.2.0
-    react-dom: ^18.2.0
+    "@graphcommerce/hygraph-ui": ^9.0.0-canary.102
   languageName: unknown
   linkType: soft
 
@@ -3376,7 +3366,25 @@ __metadata:
   resolution: "@graphcommerce/hygraph-dynamic-rows@workspace:packages/hygraph-dynamic-rows"
   peerDependencies:
     "@graphcommerce/eslint-config-pwa": ^9.0.0-canary.102
-    "@graphcommerce/graphcms-ui": ^9.0.0-canary.102
+    "@graphcommerce/graphql": ^9.0.0-canary.102
+    "@graphcommerce/hygraph-ui": ^9.0.0-canary.102
+    "@graphcommerce/image": ^9.0.0-canary.102
+    "@graphcommerce/next-ui": ^9.0.0-canary.102
+    "@graphcommerce/prettier-config-pwa": ^9.0.0-canary.102
+    "@graphcommerce/typescript-config-pwa": ^9.0.0-canary.102
+    "@mui/material": ^5.10.16
+    next: "*"
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  languageName: unknown
+  linkType: soft
+
+"@graphcommerce/hygraph-ui@npm:9.0.0-canary.102, @graphcommerce/hygraph-ui@workspace:packages/hygraph-ui":
+  version: 0.0.0-use.local
+  resolution: "@graphcommerce/hygraph-ui@workspace:packages/hygraph-ui"
+  peerDependencies:
+    "@graphcommerce/ecommerce-ui": ^9.0.0-canary.102
+    "@graphcommerce/eslint-config-pwa": ^9.0.0-canary.102
     "@graphcommerce/graphql": ^9.0.0-canary.102
     "@graphcommerce/image": ^9.0.0-canary.102
     "@graphcommerce/next-ui": ^9.0.0-canary.102
@@ -3900,13 +3908,13 @@ __metadata:
     "@graphcommerce/googleanalytics": "npm:9.0.0-canary.102"
     "@graphcommerce/googlerecaptcha": "npm:9.0.0-canary.102"
     "@graphcommerce/googletagmanager": "npm:9.0.0-canary.102"
-    "@graphcommerce/graphcms-ui": "npm:9.0.0-canary.102"
     "@graphcommerce/graphql": "npm:9.0.0-canary.102"
     "@graphcommerce/graphql-codegen-near-operation-file": "npm:9.0.0-canary.102"
     "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "npm:9.0.0-canary.102"
     "@graphcommerce/graphql-mesh": "npm:9.0.0-canary.102"
     "@graphcommerce/hygraph-cli": "npm:9.0.0-canary.102"
     "@graphcommerce/hygraph-dynamic-rows": "npm:9.0.0-canary.102"
+    "@graphcommerce/hygraph-ui": "npm:9.0.0-canary.102"
     "@graphcommerce/image": "npm:9.0.0-canary.102"
     "@graphcommerce/lingui-next": "npm:9.0.0-canary.102"
     "@graphcommerce/magento-cart": "npm:9.0.0-canary.102"
