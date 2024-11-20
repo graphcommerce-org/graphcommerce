@@ -403,10 +403,10 @@ it('adds debug logging to interceptors for components', async () => {
   `)
 
   expectOriginal(interceptors['packages/graphql/config']?.template).toMatchInlineSnapshot(`
-    "import { ApolloLink, TypePolicies } from '@apollo/client'
+    "import type { ApolloLink, TypePolicies } from '@apollo/client'
     import type { GraphCommerceStorefrontConfig } from '@graphcommerce/next-config'
     import type { SetRequired } from 'type-fest'
-    import { MigrateCache } from './components/GraphQLProvider/migrateCache'
+    import type { MigrateCache } from './components/GraphQLProvider/migrateCache'
     export interface PreviewData {}
     export type PreviewConfig = {
       preview?: boolean
@@ -668,11 +668,11 @@ export const Plugin = ConfigurableProductPageName
   `)
 
   expectOriginal(result).toMatchInlineSnapshot(`
-    "import { ProductPageNameFragment } from './ProductPageName.gql'
+    "import type { ProductPageNameFragment } from './ProductPageName.gql'
     export type ProductPageNameProps = {
       product: ProductPageNameFragment
     }
-    export const ProductPageNameDisabled = (props: ProductPageNameProps) => {
+    export function ProductPageNameDisabled(props: ProductPageNameProps) {
       const { product } = props
       return <>{product.name}</>
     }"
