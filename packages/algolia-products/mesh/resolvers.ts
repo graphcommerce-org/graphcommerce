@@ -1,8 +1,5 @@
-import type {
-  AlgoliasearchResponse,
-  hasSelectionSetPath,
-  type Resolvers,
-} from '@graphcommerce/graphql-mesh'
+import type { AlgoliasearchResponse, Resolvers } from '@graphcommerce/graphql-mesh'
+import { hasSelectionSetPath } from '@graphcommerce/graphql-mesh'
 import type { GraphQLError, GraphQLResolveInfo } from 'graphql'
 import { algoliaFacetsToAggregations, getCategoryList } from './algoliaFacetsToAggregations'
 import type { ProductsItemsItem } from './algoliaHitToMagentoProduct'
