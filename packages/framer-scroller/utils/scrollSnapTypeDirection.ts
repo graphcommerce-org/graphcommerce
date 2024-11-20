@@ -1,4 +1,4 @@
-import { ScrollSnapType } from '../types'
+import type { ScrollSnapType } from '../types'
 
 export type SnapTypeDirection = 'block' | 'inline' | 'both'
 export function scrollSnapTypeDirection(scrollSnapType: ScrollSnapType): SnapTypeDirection {

@@ -1,4 +1,4 @@
-import { GraphCommerceConfig } from '../../src/generated/config'
+import type { GraphCommerceConfig } from '../../src/generated/config'
 import { findOriginalSource } from '../../src/interceptors/findOriginalSource'
 import { SOURCE_START, SOURCE_END } from '../../src/interceptors/generateInterceptor'
 import { generateInterceptors } from '../../src/interceptors/generateInterceptors'
@@ -11,7 +11,7 @@ const projectRoot = `${process.cwd()}/examples/magento-graphcms`
 const startLocation = '/** @see {@link file://'
 
 const expectImport = (value: string | undefined): jest.JestMatchers<string> =>
-  expect(value?.slice(value.indexOf(`import`) - 1, value.indexOf(startLocation) - 1).trim())
+  expect(value?.slice(value.indexOf('import') - 1, value.indexOf(startLocation) - 1).trim())
 
 const expectInterceptor = (value: string | undefined): jest.JestMatchers<string> => {
   const val = value?.slice(value.indexOf(SOURCE_END) + SOURCE_END.length).trim()
@@ -28,7 +28,7 @@ const expectOriginal = (value: string | undefined): jest.JestMatchers<string> =>
 it('it replaces paths and creates a relative path', () => {
   const resolver = resolveDependency(projectRoot)
   const resolved = resolver('@graphcommerce/magento-cart-payment-method')
-  expect(resolved?.fromRoot).toMatchInlineSnapshot(`"packages/magento-cart-payment-method/index"`)
+  expect(resolved?.fromRoot).toMatchInlineSnapshot('"packages/magento-cart-payment-method/index"')
   expect(resolved?.fromModule).toBe('.')
   expect(resolved?.root).toBe('packages/magento-cart-payment-method')
 
@@ -36,7 +36,7 @@ it('it replaces paths and creates a relative path', () => {
     '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext',
   )
   expect(resolved2?.fromRoot).toMatchInlineSnapshot(
-    `"packages/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext"`,
+    '"packages/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext"',
   )
   expect(resolved2?.fromModule).toBe('./PaymentMethodContext')
   expect(resolved2?.root).toBe('packages/magento-cart-payment-method')
@@ -119,7 +119,7 @@ it("resolves a 'root plugin' to be relative to the interceptor", async () => {
   )
 
   expect(Object.keys(interceptors)[0]).toMatchInlineSnapshot(
-    `"packages/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext"`,
+    '"packages/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext"',
   )
   expectImport(
     interceptors['packages/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext']
@@ -262,7 +262,7 @@ it('correctly renames all variable usages', async () => {
   )
 
   expect(Object.keys(interceptors)[0]).toMatchInlineSnapshot(
-    `"packages/magento-product/components/ProductListItem/ProductListItem"`,
+    '"packages/magento-product/components/ProductListItem/ProductListItem"',
   )
 
   const template =
@@ -288,7 +288,7 @@ it('it handles root plugins', async () => {
   )
 
   expect(interceptors['packages/magento-product/index']?.template).toMatchInlineSnapshot(
-    `undefined`,
+    'undefined',
   )
 })
 
@@ -310,13 +310,13 @@ it('it handles root plugins and creates a relative path', async () => {
   )
 
   expect(Object.keys(interceptors)[0]).toMatchInlineSnapshot(
-    `"packages/next-ui/Overlay/components/OverlayBase"`,
+    '"packages/next-ui/Overlay/components/OverlayBase"',
   )
 
   expect(
     interceptors['packages/next-ui/Overlay/components/OverlayBase'].targetExports.OverlayBase[0]
       .sourceModule,
-  ).toMatchInlineSnapshot(`"../../../../examples/magento-graphcms/plugins/EnableCrosssellsPlugin"`)
+  ).toMatchInlineSnapshot('"../../../../examples/magento-graphcms/plugins/EnableCrosssellsPlugin"')
 })
 
 it('generates method interceptors alognside component interceptors', async () => {
@@ -488,7 +488,7 @@ it('correctly resolves when a source can not be parsed', async () => {
   )
 
   expect(Object.keys(interceptors)[0]).toMatchInlineSnapshot(
-    `"packages/next-ui/Row/RowLinks/RowLinks"`,
+    '"packages/next-ui/Row/RowLinks/RowLinks"',
   )
 })
 
@@ -508,7 +508,7 @@ it('can correctly find the source for deeper chained exports', () => {
   )
   expect(originalSource.error).toBeUndefined()
   expect(originalSource.resolved?.dependency).toMatchInlineSnapshot(
-    `"@graphcommerce/next-ui/Blog/BlogTags/BlogTag"`,
+    '"@graphcommerce/next-ui/Blog/BlogTags/BlogTag"',
   )
 })
 
@@ -529,17 +529,17 @@ it('Should apply overrides to the correct file', async () => {
   )
 
   expect(Object.keys(interceptors)[0]).toMatchInlineSnapshot(
-    `"packages/magento-product/components/ProductStaticPaths/getProductStaticPaths"`,
+    '"packages/magento-product/components/ProductStaticPaths/getProductStaticPaths"',
   )
 
   const result =
     interceptors['packages/magento-product/components/ProductStaticPaths/getProductStaticPaths']
       ?.template
   expectImport(result).toMatchInlineSnapshot(
-    `"import { getProductStaticPaths as getProductStaticPathsreplaceGetProductStaticPaths } from '../../../../plugins/replaceGetProductStaticPaths'"`,
+    '"import { getProductStaticPaths as getProductStaticPathsreplaceGetProductStaticPaths } from \'../../../../plugins/replaceGetProductStaticPaths\'"',
   )
 
-  expectOriginal(result).toContain(`getProductStaticPathsDisabled`)
+  expectOriginal(result).toContain('getProductStaticPathsDisabled')
 })
 
 it('correctly reports an error for an incorrect export', async () => {
@@ -568,13 +568,13 @@ export const plugin: FunctionPlugin<typeof getSitemapPathsType> = (prev, ...args
 
   // @ts-expect-error mock not typed
   expect(console.error.mock.calls[0][0]).toMatchInlineSnapshot(
-    `"Plugin configuration invalid! See ./plugins/MyPlugin.tsx"`,
+    '"Plugin configuration invalid! See ./plugins/MyPlugin.tsx"',
   )
 
-  expect(plugins).toMatchInlineSnapshot(`[]`)
+  expect(plugins).toMatchInlineSnapshot('[]')
   const result = await generateInterceptors(plugins, resolveDependency(projectRoot))
 
-  expect(Object.keys(result)).toMatchInlineSnapshot(`[]`)
+  expect(Object.keys(result)).toMatchInlineSnapshot('[]')
 })
 
 it('generated a correct file if a replacement and a plugin is applied to the same export', async () => {
@@ -654,7 +654,7 @@ export const Plugin = ConfigurableProductPageName
   const interceptors = await generateInterceptors(plugins, resolveDependency(projectRoot))
 
   expect(Object.keys(interceptors)[0]).toMatchInlineSnapshot(
-    `"packages/magento-product/components/ProductPageName/ProductPageName"`,
+    '"packages/magento-product/components/ProductPageName/ProductPageName"',
   )
 
   const result =
@@ -715,9 +715,9 @@ it('generates to a .ts file when the target file is a .ts as well', async () => 
     resolve,
   )
 
-  expect(Object.keys(interceptors)[0]).toMatchInlineSnapshot(`"packages/graphql/config"`)
+  expect(Object.keys(interceptors)[0]).toMatchInlineSnapshot('"packages/graphql/config"')
   const interceptor = interceptors['packages/graphql/config']
-  expect(interceptor.sourcePath).toBe(`packages/graphql/config.ts`)
+  expect(interceptor.sourcePath).toBe('packages/graphql/config.ts')
 })
 
 it.todo('Should report an error when multiple files are overriding the same export')
@@ -747,7 +747,7 @@ it('Can correctly find exports that are default exports', async () => {
   const plugins = parseStructure(parseSync(pluginSource), config, './plugins/MyProjectIcon')
 
   const interceptors = await generateInterceptors(plugins, resolveDependency(projectRoot))
-  expect(Object.keys(interceptors)[0]).toMatchInlineSnapshot(`"packages/next-ui/icons"`)
+  expect(Object.keys(interceptors)[0]).toMatchInlineSnapshot('"packages/next-ui/icons"')
 
   const result = interceptors['packages/next-ui/icons']?.template
 

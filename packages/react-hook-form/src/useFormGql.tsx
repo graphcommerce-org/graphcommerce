@@ -1,19 +1,20 @@
-import {
+import type {
   ApolloError,
   FetchResult,
   LazyQueryResultTuple,
   MutationTuple,
   TypedDocumentNode,
-  isApolloError,
   MutationHookOptions,
   LazyQueryHookOptions,
 } from '@apollo/client'
+import { isApolloError } from '@apollo/client'
 import { getOperationName } from '@apollo/client/utilities'
 import useEventCallback from '@mui/utils/useEventCallback'
 import { useEffect, useRef } from 'react'
-import { DefaultValues, FieldValues, UseFormProps, UseFormReturn } from 'react-hook-form'
+import type { DefaultValues, FieldValues, UseFormProps, UseFormReturn } from 'react-hook-form'
 import diff from './diff'
-import { useGqlDocumentHandler, UseGqlDocumentHandler } from './useGqlDocumentHandler'
+import type { UseGqlDocumentHandler } from './useGqlDocumentHandler'
+import { useGqlDocumentHandler } from './useGqlDocumentHandler'
 import { tryAsync } from './utils/tryTuple'
 
 export type OnCompleteFn<Q, V> = (data: FetchResult<Q>, variables: V) => void | Promise<void>

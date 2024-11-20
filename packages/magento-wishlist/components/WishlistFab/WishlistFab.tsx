@@ -1,6 +1,7 @@
 import { iconHeart, DesktopHeaderBadge, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { BadgeProps, Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
+import type { BadgeProps, FabProps as FabPropsType, SxProps, Theme } from '@mui/material'
+import { Fab, NoSsr } from '@mui/material'
 import React from 'react'
 import { useWishlistEnabled, useWishlistItems } from '../../hooks'
 

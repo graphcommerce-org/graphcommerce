@@ -1,7 +1,9 @@
 import { ApolloClient, gql, InMemoryCache, useQuery } from '@apollo/client'
-import { FieldExtensionProps, useFieldExtension } from '@hygraph/app-sdk-react'
+import type { FieldExtensionProps } from '@hygraph/app-sdk-react'
+import { useFieldExtension } from '@hygraph/app-sdk-react'
 import { TextField } from '@mui/material'
-import { getIntrospectionQuery, IntrospectionQuery } from 'graphql'
+import type { IntrospectionQuery } from 'graphql'
+import { getIntrospectionQuery } from 'graphql'
 import { useEffect, useMemo, useState } from 'react'
 import { getFieldPaths } from '../lib/getFieldPaths'
 

@@ -1,18 +1,21 @@
 /* eslint-disable import/no-cycle */
-import { Types } from '@graphql-codegen/plugin-helpers'
-import {
-  BaseVisitor,
+import type { Types } from '@graphql-codegen/plugin-helpers'
+import type {
   FragmentImport,
-  getConfigValue,
-  getPossibleTypes,
   LoadedFragment,
   ParsedConfig,
   RawConfig,
   ImportDeclaration,
+} from '@graphql-codegen/visitor-plugin-common'
+import {
+  BaseVisitor,
+  getConfigValue,
+  getPossibleTypes,
   buildScalarsFromConfig,
 } from '@graphql-codegen/visitor-plugin-common'
-import { DocumentNode, FragmentDefinitionNode, GraphQLSchema, Kind, print } from 'graphql'
-import { DocumentImportResolverOptions } from './resolve-document-imports'
+import type { DocumentNode, FragmentDefinitionNode, GraphQLSchema } from 'graphql'
+import { Kind, print } from 'graphql'
+import type { DocumentImportResolverOptions } from './resolve-document-imports'
 import { extractExternalFragmentsInUse } from './utils'
 
 export interface NearOperationFileParsedConfig extends ParsedConfig {
@@ -83,7 +86,7 @@ export function buildFragmentRegistry<T>(
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const fragments: FragmentDefinitionNode[] = documentRecord.document!.definitions.filter(
       (d) => d.kind === Kind.FRAGMENT_DEFINITION,
-    ) as FragmentDefinitionNode[]
+    )
 
     if (fragments.length > 0) {
       for (const fragment of fragments) {

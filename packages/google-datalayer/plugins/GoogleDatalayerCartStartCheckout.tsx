@@ -1,4 +1,4 @@
-import { CartStartCheckoutProps } from '@graphcommerce/magento-cart'
+import type { CartStartCheckoutProps } from '@graphcommerce/magento-cart'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useMemoObject } from '@graphcommerce/next-ui'
 import { useEffect, useRef } from 'react'

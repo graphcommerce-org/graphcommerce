@@ -1,20 +1,7 @@
-import {
-  EmailElement,
-  TextFieldElement,
-  emailPattern,
-  useFormGqlMutation,
-} from '@graphcommerce/ecommerce-ui'
-import {
-  FormActions,
-  FormRow,
-  LayoutTitle,
-  Button,
-  FullPageMessage,
-  IconSvg,
-  iconPerson,
-} from '@graphcommerce/next-ui'
+import { EmailElement, useFormGqlMutation } from '@graphcommerce/ecommerce-ui'
+import { FormRow, LayoutTitle, Button, iconPerson } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Alert, Box, Container, Divider, FormControl, Typography } from '@mui/material'
+import { Alert, Box, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError'
 import { ConfirmCustomerDocument } from './ConfirmCustomer.gql'

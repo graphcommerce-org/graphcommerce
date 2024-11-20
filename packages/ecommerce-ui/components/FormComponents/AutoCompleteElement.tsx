@@ -1,19 +1,9 @@
 /* eslint-disable @typescript-eslint/no-restricted-imports */
-import {
-  Controller,
-  ControllerProps,
-  FieldValues,
-  useController,
-} from '@graphcommerce/react-hook-form'
+import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
+import { Controller, useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import {
-  Autocomplete,
-  AutocompleteProps,
-  Checkbox,
-  TextField,
-  TextFieldProps,
-  CircularProgress,
-} from '@mui/material'
+import type { AutocompleteProps, TextFieldProps } from '@mui/material'
+import { Autocomplete, Checkbox, TextField, CircularProgress } from '@mui/material'
 
 export type AutocompleteElementProps<
   F extends FieldValues,

@@ -1,20 +1,22 @@
 import { useQuery, cloneDeep } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
+import type { ChipMenuProps } from '@graphcommerce/next-ui'
+import { ChipMenu, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { ListItem, ListItemText, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { ListItem, ListItemText } from '@mui/material'
 import React from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import { ProductListLink } from '../ProductListLink/ProductListLink'
-import { ProductListSortFragment } from './ProductListSort.gql'
+import type { ProductListSortFragment } from './ProductListSort.gql'
 
 export type ProductListSortProps = ProductListSortFragment &
   Omit<ChipMenuProps, 'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete'> & {
     sx?: SxProps<Theme>
   }
 
-const name = 'ProductListSort' as const
+const name = 'ProductListSort'
 const parts = ['menu', 'item', 'link'] as const
 const { classes } = extendableComponent(name, parts)
 
@@ -46,7 +48,7 @@ export function ProductListSort(props: ProductListSortProps) {
       selected={selected}
       label={label}
       {...filterMenuProps}
-      selectedLabel={selected ? currentOption?.label ?? '' : label}
+      selectedLabel={selected ? (currentOption?.label ?? '') : label}
       onDelete={selected ? removeFilter : undefined}
       sx={Array.isArray(sx) ? sx : [sx]}
     >

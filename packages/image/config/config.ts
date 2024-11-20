@@ -1,7 +1,8 @@
 import { normalizePathTrailingSlash } from 'next/dist/client/normalize-trailing-slash'
-import { ImageConfigComplete, imageConfigDefault } from 'next/dist/shared/lib/image-config'
+import type { ImageConfigComplete } from 'next/dist/shared/lib/image-config'
+import { imageConfigDefault } from 'next/dist/shared/lib/image-config'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { ImageLoaderProps } from 'next/image'
+import type { ImageLoaderProps } from 'next/image'
 
 export type DefaultImageLoaderProps = ImageLoaderProps & { root: string }
 
@@ -103,7 +104,7 @@ export function defaultLoader({ config, src, width, quality }: ImageLoaderPropsW
           if (!hasMatch(config.domains, config.remotePatterns, parsedSrc)) {
             throw new Error(
               `Invalid src prop (${src}) on \`next/image\`, hostname "${parsedSrc.hostname}" is not configured under images in your \`next.config.js\`\n` +
-                `See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host`,
+                'See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host',
             )
           }
         })
@@ -125,6 +126,6 @@ export function defaultLoader({ config, src, width, quality }: ImageLoaderPropsW
 export function customLoader({ src }: ImageLoaderProps): string {
   throw new Error(
     `Image with src "${src}" is missing "loader" prop.` +
-      `\nRead more: https://nextjs.org/docs/messages/next-image-missing-loader`,
+      '\nRead more: https://nextjs.org/docs/messages/next-image-missing-loader',
   )
 }

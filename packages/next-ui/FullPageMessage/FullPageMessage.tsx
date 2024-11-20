@@ -1,4 +1,5 @@
-import { Box, Container, SxProps, Theme, Typography } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'

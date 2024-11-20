@@ -1,6 +1,7 @@
 import type { ApolloClient, NormalizedCacheObject, ApolloQueryResult } from '@apollo/client'
 import { cacheFirst } from '@graphcommerce/graphql'
-import { AllDynamicRowsDocument, AllDynamicRowsQuery } from '../graphql'
+import type { AllDynamicRowsQuery } from '../graphql'
+import { AllDynamicRowsDocument } from '../graphql'
 
 type DynamicRows = AllDynamicRowsQuery['dynamicRows']
 

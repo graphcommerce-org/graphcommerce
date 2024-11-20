@@ -27,7 +27,7 @@ function nullIfPagebuilder(html: string | null | undefined): string | null {
 export const resolvers: Resolvers = {
   CmsPage: {
     pagebuilder: {
-      selectionSet: `{ content }`,
+      selectionSet: '{ content }',
       resolve: ({ content }, _, ctx) => {
         warnNoContent(content, 'content', 'CmsPage', ctx)
         return parser(content)
@@ -37,7 +37,7 @@ export const resolvers: Resolvers = {
   },
   CmsBlock: {
     pagebuilder: {
-      selectionSet: `{ content }`,
+      selectionSet: '{ content }',
       resolve: ({ content }, _, ctx) => {
         warnNoContent(content, 'content', 'CmsBlock', ctx)
         return parser(content)
@@ -47,7 +47,7 @@ export const resolvers: Resolvers = {
   },
   CategoryTree: {
     pagebuilder: {
-      selectionSet: `{ description }`,
+      selectionSet: '{ description }',
       resolve: ({ description }, _, ctx) => {
         warnNoContent(description, 'description', 'CategoryTree', ctx)
         return parser(description)
@@ -57,7 +57,7 @@ export const resolvers: Resolvers = {
   },
   ComplexTextValue: {
     pagebuilder: {
-      selectionSet: `{ html }`,
+      selectionSet: '{ html }',
       resolve: ({ html }, _, ctx) => {
         warnNoContent(html, 'html', 'ComplexTextValue', ctx)
         return parser(html)

@@ -8,8 +8,9 @@ import { transform as applyFragmentArgumentTransform } from '@ardatan/relay-comp
 import { transformWithOptions as flattenTransformWithOptions } from '@ardatan/relay-compiler/lib/transforms/FlattenTransform'
 import { transform as inlineFragmentsTransform } from '@ardatan/relay-compiler/lib/transforms/InlineFragmentsTransform'
 import { transform as skipRedundantNodesTransform } from '@ardatan/relay-compiler/lib/transforms/SkipRedundantNodesTransform'
-import { Types, PluginFunction } from '@graphql-codegen/plugin-helpers'
-import { GraphQLSchema, parse, printSchema, DefinitionNode, visit } from 'graphql'
+import type { Types, PluginFunction } from '@graphql-codegen/plugin-helpers'
+import type { GraphQLSchema, DefinitionNode } from 'graphql'
+import { parse, printSchema, visit } from 'graphql'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface RelayOptimizerPluginConfig {}

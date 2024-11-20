@@ -1,4 +1,5 @@
-import { NumberFormat, NumberFormatProps } from './NumberFormat'
+import type { NumberFormatProps } from './NumberFormat'
+import { NumberFormat } from './NumberFormat'
 
 export type PercentFormatProps = Omit<NumberFormatProps, 'numberStyle'>
 

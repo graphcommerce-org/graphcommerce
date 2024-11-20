@@ -1,4 +1,4 @@
-import { SortEnum } from '@graphcommerce/graphql-mesh'
+import type { SortEnum } from '@graphcommerce/graphql-mesh'
 import { IconSvg, iconArrowDown, iconArrowUp } from '@graphcommerce/next-ui'
 
 type Props = {

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { ProductListParams } from '../components/ProductListItems/filterTypes'
+import type { ProductListParams } from '../components/ProductListItems/filterTypes'
 import { productListLink } from './useProductListLink'
 import { useProductListParamsContext } from './useProductListParamsContext'
 

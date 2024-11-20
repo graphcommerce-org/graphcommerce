@@ -1,4 +1,4 @@
-import { GoogleEventTypes } from './googleEventNames'
+import type { GoogleEventTypes } from './googleEventNames'
 
 export type SendEvent = (
   eventName: Event | (string & Record<never, never>),

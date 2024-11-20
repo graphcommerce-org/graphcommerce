@@ -1,6 +1,7 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { dvh } from '@graphcommerce/framer-utils'
-import { Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import { useTransform, useScroll } from 'framer-motion'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { SkipLink } from '../../SkipLink/SkipLink'
@@ -61,7 +62,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             minHeight: '-webkit-fill-available',
           },
           display: 'grid',
-          gridTemplateRows: `auto auto 1fr auto`,
+          gridTemplateRows: 'auto auto 1fr auto',
           gridTemplateColumns: '100%',
           background: theme.palette.background.default,
         }),
@@ -121,7 +122,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
                 position: 'fixed',
                 top: 'unset',
                 bottom: `calc(20px + ${fabIconSize})`,
-                padding: `0 20px`,
+                padding: '0 20px',
                 '@media (max-height: 530px) and (orientation: portrait)': {
                   display: 'none',
                 },

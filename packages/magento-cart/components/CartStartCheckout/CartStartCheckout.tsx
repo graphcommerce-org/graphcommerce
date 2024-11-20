@@ -1,10 +1,11 @@
 import { Money } from '@graphcommerce/magento-store'
 import { iconChevronRight, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Box, Button, ButtonProps, Link, SxProps, Theme } from '@mui/material'
+import type { ButtonProps, SxProps, Theme } from '@mui/material'
+import { Box, Button, Link } from '@mui/material'
 import React from 'react'
 import { useCheckoutShouldLoginToContinue } from '../../hooks'
-import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
+import type { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 
 export type CartStartCheckoutProps = {
   children?: React.ReactNode

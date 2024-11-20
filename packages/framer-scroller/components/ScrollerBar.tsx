@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
-import { styled, SxProps, Theme, useTheme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { styled, useTheme } from '@mui/material'
 import { m, transform, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { useScrollerContext } from '../hooks/useScrollerContext'

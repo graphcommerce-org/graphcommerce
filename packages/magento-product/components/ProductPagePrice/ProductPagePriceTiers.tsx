@@ -2,8 +2,8 @@ import { InContextMask } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme } from '@mui/material'
-import { ProductPagePriceFragment } from './ProductPagePrice.gql'
+import type { SxProps, Theme } from '@mui/material'
+import type { ProductPagePriceFragment } from './ProductPagePrice.gql'
 
 export type ProductPagePriceTiersProps = {
   sx?: SxProps<Theme>

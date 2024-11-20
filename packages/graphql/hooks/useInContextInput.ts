@@ -1,4 +1,4 @@
-import { ApolloClient } from '@apollo/client'
+import type { ApolloClient } from '@apollo/client'
 import type { InContextInput } from '@graphcommerce/graphql-mesh'
 
 export function getInContextInput(client: ApolloClient<any>): InContextInput | null {

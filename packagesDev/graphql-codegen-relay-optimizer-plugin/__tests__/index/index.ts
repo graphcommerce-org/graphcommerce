@@ -1,6 +1,7 @@
 import '@graphql-codegen/testing'
-import { Types } from '@graphql-codegen/plugin-helpers'
-import { buildSchema, parse, print, ASTNode } from 'graphql'
+import type { Types } from '@graphql-codegen/plugin-helpers'
+import type { ASTNode } from 'graphql'
+import { buildSchema, parse, print } from 'graphql'
 import { plugin } from '../../src'
 
 const testSchema = buildSchema(/* GraphQL */ `

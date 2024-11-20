@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useRef } from 'react'
 import { GlobalError } from 'react-hook-form'
 import { isFormGqlOperation } from '../useFormGqlMutation'
 import { composedFormContext } from './context'
-import { ComposedSubmitRenderComponentProps } from './types'
+import type { ComposedSubmitRenderComponentProps } from './types'
 
 export type ComposedSubmitProps = {
   onSubmitSuccessful?: () => void

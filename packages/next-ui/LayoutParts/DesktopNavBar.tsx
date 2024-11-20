@@ -1,7 +1,8 @@
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
-import { BoxProps } from '@mui/material'
+import type { BoxProps } from '@mui/material'
 import React from 'react'
-import { IconSvg, IconSvgProps } from '../IconSvg'
+import type { IconSvgProps } from '../IconSvg'
+import { IconSvg } from '../IconSvg'
 import { MediaQuery } from '../MediaQuery'
 import { extendableComponent } from '../Styles/extendableComponent'
 import { iconChevronLeft, iconChevronRight } from '../icons'
@@ -35,7 +36,7 @@ export function DesktopNavBar(props: MenuTabsProps) {
           alignItems: 'center',
           position: 'relative',
           pointerEvents: 'all',
-          gridTemplateColumns: `auto 1fr auto`,
+          gridTemplateColumns: 'auto 1fr auto',
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -44,7 +45,7 @@ export function DesktopNavBar(props: MenuTabsProps) {
         <Scroller
           hideScrollbar
           sx={(theme) => ({
-            gridArea: `1 / 1 / 1 / 4`,
+            gridArea: '1 / 1 / 1 / 4',
             columnGap: theme.spacings.md,
             padding: `0 ${theme.spacings.md}`,
             gridAutoColumns: 'min-content',
@@ -56,7 +57,7 @@ export function DesktopNavBar(props: MenuTabsProps) {
 
         <ScrollerButton
           sxContainer={{
-            gridArea: `1 / 1 / 1 / 2`,
+            gridArea: '1 / 1 / 1 / 2',
             pointerEvents: 'none',
             '& > *': { pointerEvents: 'all' },
           }}
@@ -80,7 +81,7 @@ export function DesktopNavBar(props: MenuTabsProps) {
 
         <ScrollerButton
           sxContainer={{
-            gridArea: `1 / 3 / 1 / 4`,
+            gridArea: '1 / 3 / 1 / 4',
             pointerEvents: 'none',
             '& > *': {
               pointerEvents: 'all',

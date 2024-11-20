@@ -8,23 +8,14 @@ import {
   useFabSize,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import {
-  BadgeProps,
-  alpha,
-  Fab,
-  FabProps,
-  styled,
-  useTheme,
-  Box,
-  SxProps,
-  Theme,
-} from '@mui/material'
+import type { BadgeProps, FabProps, SxProps, Theme } from '@mui/material'
+import { alpha, Fab, styled, useTheme, Box } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useCartEnabled, useCartShouldLoginToContinue } from '../../hooks'
 import { useCartQuery } from '../../hooks/useCartQuery'
 import { CartFabDocument } from './CartFab.gql'
-import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
+import type { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
 
 export type CartFabProps = {
   icon?: React.ReactNode

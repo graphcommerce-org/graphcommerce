@@ -1,7 +1,7 @@
-import { ButtonLinkProps } from '../../components/ButtonLink/getButtonLinkProps'
-import { MediaBackgroundProps } from '../../components/MediaBackground/getMediaBackgroundProps'
-import { ContentType, ContentTypeConfig } from '../../types'
-import { AdvancedProps } from '../../utils'
+import type { ButtonLinkProps } from '../../components/ButtonLink/getButtonLinkProps'
+import type { MediaBackgroundProps } from '../../components/MediaBackground/getMediaBackgroundProps'
+import type { ContentType, ContentTypeConfig } from '../../types'
+import type { AdvancedProps } from '../../utils'
 
 type BannerConfig = ContentTypeConfig<'column-group'> & {
   appearance: 'collage-right' | 'collage-left' | 'collage-center' | 'poster'

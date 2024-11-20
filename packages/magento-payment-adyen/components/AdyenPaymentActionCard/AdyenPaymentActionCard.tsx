@@ -1,5 +1,5 @@
 import { Image } from '@graphcommerce/image'
-import { PaymentMethodActionCardProps } from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentMethodActionCardProps } from '@graphcommerce/magento-cart-payment-method'
 import { ActionCard, useIconSvgSize } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { useAdyenPaymentMethod } from '../../hooks/useAdyenPaymentMethod'

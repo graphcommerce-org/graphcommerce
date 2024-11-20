@@ -7,8 +7,8 @@ import {
   isFilterTypeRange,
   isFilterTypeMatch,
 } from '@graphcommerce/magento-product'
-import { InputMaybe } from '@graphcommerce/next-config'
-import { GetStoreConfigReturn } from './getStoreConfig'
+import type { InputMaybe } from '@graphcommerce/next-config'
+import type { GetStoreConfigReturn } from './getStoreConfig'
 import { nonNullable } from './utils'
 
 /**

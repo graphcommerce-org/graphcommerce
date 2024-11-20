@@ -1,4 +1,4 @@
-import { QueryResult } from '@graphcommerce/graphql'
+import type { QueryResult } from '@graphcommerce/graphql'
 import { useIsSSR } from '@graphcommerce/next-ui'
 import React from 'react'
 
@@ -13,7 +13,7 @@ export type WaitForQueriesProps = {
 }
 
 /** Shows the fallback during: SSR, Hydration and Query Loading. */
-export const WaitForQueries = (props: WaitForQueriesProps) => {
+export function WaitForQueries(props: WaitForQueriesProps) {
   const { waitFor, fallback, children } = props
 
   const mounted = !useIsSSR()

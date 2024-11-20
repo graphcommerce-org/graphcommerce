@@ -1,6 +1,6 @@
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
-import { ProductFilterParams } from '../ProductListItems/filterTypes'
+import type { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
+import type { ProductFilterParams } from '../ProductListItems/filterTypes'
 
 /**
  * Apply aggregation count to aggregation options:

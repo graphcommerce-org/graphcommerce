@@ -1,9 +1,10 @@
-import { ActionCardItemBase, ActionCardListForm, useWatch } from '@graphcommerce/ecommerce-ui'
+import type { ActionCardItemBase } from '@graphcommerce/ecommerce-ui'
+import { ActionCardListForm, useWatch } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ActionCard, ActionCardAccordion, Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import { useMemo } from 'react'
 import { useProductFiltersPro } from './ProductFiltersPro'
 

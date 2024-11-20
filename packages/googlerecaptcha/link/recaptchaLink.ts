@@ -1,4 +1,4 @@
-import { GraphQLRequest } from '@graphcommerce/graphql'
+import type { GraphQLRequest } from '@graphcommerce/graphql'
 import { setContext } from '@graphcommerce/graphql/apollo'
 
 const isMutation = (operation: GraphQLRequest) =>

@@ -2,23 +2,21 @@ import { useCartQuery } from '@graphcommerce/magento-cart'
 import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
 import { Form } from '@graphcommerce/next-ui'
 import { Controller, FormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import type { SwitchProps, SxProps, Theme } from '@mui/material'
 import {
   FormControl,
   FormControlLabel,
   FormHelperText,
   // eslint-disable-next-line @typescript-eslint/no-restricted-imports
   Switch,
-  SwitchProps,
-  SxProps,
-  Theme,
 } from '@mui/material'
 import React from 'react'
 import { GetCartEmailDocument } from '../SignupNewsletter/GetCartEmail.gql'
-import {
-  GuestNewsletterToggleDocument,
+import type {
   GuestNewsletterToggleMutation,
   GuestNewsletterToggleMutationVariables,
 } from './GuestNewsletterToggle.gql'
+import { GuestNewsletterToggleDocument } from './GuestNewsletterToggle.gql'
 
 export type GuestNewsletterToggleProps = SwitchProps & { sx?: SxProps<Theme> }
 

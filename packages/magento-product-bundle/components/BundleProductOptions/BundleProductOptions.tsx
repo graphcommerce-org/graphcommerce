@@ -1,9 +1,10 @@
-import { AddToCartItemSelector } from '@graphcommerce/magento-product'
-import { ActionCardListProps, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import type { AddToCartItemSelector } from '@graphcommerce/magento-product'
+import type { ActionCardListProps } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { BundleOption } from './BundleOption'
 import { BundleOptionValue } from './BundleOptionValue'
-import { BundleProductOptionsFragment } from './BundleProductOptions.gql'
-import { BundleOptionValueProps } from './types'
+import type { BundleProductOptionsFragment } from './BundleProductOptions.gql'
+import type { BundleOptionValueProps } from './types'
 
 type BundelProductOptionsProps = Pick<
   ActionCardListProps,

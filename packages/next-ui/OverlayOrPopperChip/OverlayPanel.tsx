@@ -1,7 +1,7 @@
 import { Overlay } from '../Overlay/components/Overlay'
-import { OverlayProps } from '../Overlay/components/OverlaySsr'
+import type { OverlayProps } from '../Overlay/components/OverlaySsr'
 import { OverlayPanelActions } from './OverlayPanelActions'
-import { PanelProps } from './types'
+import type { PanelProps } from './types'
 
 export type OverlayPanelProps = PanelProps & {
   overlayProps?: Omit<OverlayProps, 'active' | 'onClosed' | 'children'>

@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { cacheFirst } from '@graphcommerce/graphql'
+import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   PageMeta,
@@ -10,7 +10,6 @@ import {
   LayoutHeader,
   Breadcrumbs,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
 import { Container, Link } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
@@ -125,7 +124,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await blogPosts).data,
       ...(await blogPaths).data,
       ...(await layout).data,
-      urlEntity: { relative_url: `blog` },
+      urlEntity: { relative_url: 'blog' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

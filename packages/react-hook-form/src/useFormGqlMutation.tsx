@@ -1,8 +1,12 @@
-import { MutationHookOptions, TypedDocumentNode, useMutation } from '@apollo/client'
-import { FieldValues, useForm, UseFormReturn } from 'react-hook-form'
-import { useFormGql, UseFormGqlMethods, UseFormGraphQlOptions } from './useFormGql'
-import { useFormMuiRegister, UseMuiFormRegister } from './useFormMuiRegister'
-import { UseFormValidReturn } from './useFormValidFields'
+import type { MutationHookOptions, TypedDocumentNode } from '@apollo/client'
+import { useMutation } from '@apollo/client'
+import type { FieldValues, UseFormReturn } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
+import type { UseFormGqlMethods, UseFormGraphQlOptions } from './useFormGql'
+import { useFormGql } from './useFormGql'
+import type { UseMuiFormRegister } from './useFormMuiRegister'
+import { useFormMuiRegister } from './useFormMuiRegister'
+import type { UseFormValidReturn } from './useFormValidFields'
 
 export type UseFormGqlMutationReturn<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -33,7 +37,7 @@ export function assertFormGqlOperation<
   Q extends Record<string, unknown> = Record<string, unknown>,
 >(form: UseFormReturn<V>): asserts form is UseFormGqlMutationReturn<Q, V> {
   if (typeof (form as UseFormGqlMutationReturn<Q, V>).muiRegister !== 'function') {
-    throw Error(`form must be one of 'useFromGqlMutation' or 'useFormGqlQuery'`)
+    throw Error("form must be one of 'useFromGqlMutation' or 'useFormGqlQuery'")
   }
 }
 

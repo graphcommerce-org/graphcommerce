@@ -9,8 +9,9 @@ import {
   replaceConfigInString,
   resolveDependenciesSync,
 } from '@graphcommerce/next-config'
-import { graphqlMesh, DEFAULT_CLI_PARAMS, GraphQLMeshCLIParams } from '@graphql-mesh/cli'
-import { Logger, YamlConfig } from '@graphql-mesh/types'
+import type { GraphQLMeshCLIParams } from '@graphql-mesh/cli'
+import { graphqlMesh, DEFAULT_CLI_PARAMS } from '@graphql-mesh/cli'
+import type { Logger, YamlConfig } from '@graphql-mesh/types'
 import { DefaultLogger, fileURLToPath } from '@graphql-mesh/utils'
 import dotenv from 'dotenv'
 import type { OmitIndexSignature, Entries } from 'type-fest'
@@ -41,7 +42,7 @@ const cliParams: GraphQLMeshCLIParams = {
   playgroundTitle: 'GraphCommerce® Mesh',
 }
 
-const tmpMesh = `_tmp_mesh`
+const tmpMesh = '_tmp_mesh'
 const tmpMeshLocation = path.join(root, `.${tmpMesh}rc.yml`)
 
 async function cleanup() {

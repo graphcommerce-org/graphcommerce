@@ -50,7 +50,7 @@ export default function debounce<T extends (...args: unknown[]) => unknown>({
       console.warn(`debounce: ${invalidParams.join(', ')} should not be negative.`)
 
     if (maxWait < wait)
-      console.warn(`debounce: maxWait should not be less than wait. This does nothing`)
+      console.warn('debounce: maxWait should not be less than wait. This does nothing')
   }
 
   const clear = () => {

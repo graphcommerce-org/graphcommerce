@@ -1,5 +1,6 @@
-import { ApolloError } from '@graphcommerce/graphql'
-import { ErrorSnackbar, ErrorSnackbarProps } from '@graphcommerce/next-ui'
+import type { ApolloError } from '@graphcommerce/graphql'
+import type { ErrorSnackbarProps } from '@graphcommerce/next-ui'
+import { ErrorSnackbar } from '@graphcommerce/next-ui'
 import { maskNetworkError } from './maskNetworkError'
 
 export type ApolloErrorSnackbarProps = {

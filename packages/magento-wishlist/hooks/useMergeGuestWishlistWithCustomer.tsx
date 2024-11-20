@@ -2,8 +2,8 @@ import { useApolloClient } from '@graphcommerce/graphql'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import { useEffect } from 'react'
-import { UseWishlistCustomerDocument } from './useWishlistitems/UseWishlistCustomer.gql'
 import { useAddProductsToWishlist } from './useAddProductsToWishlist/useAddProductsToWishlist'
+import { UseWishlistCustomerDocument } from './useWishlistitems/UseWishlistCustomer.gql'
 
 /** Merge guest wishlist items to customer session upon login */
 export function useMergeGuestWishlistWithCustomer() {

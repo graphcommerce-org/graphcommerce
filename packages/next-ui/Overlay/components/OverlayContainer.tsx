@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import { LayoutOverlayBaseProps } from './OverlayBase'
+import type { LayoutOverlayBaseProps } from './OverlayBase'
 
 type OverlayContainerProps = Pick<LayoutOverlayBaseProps, 'active'> & {
   hidden?: boolean

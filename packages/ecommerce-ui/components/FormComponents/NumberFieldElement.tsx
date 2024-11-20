@@ -5,14 +5,11 @@ import {
   IconSvg,
   responsiveVal,
 } from '@graphcommerce/next-ui'
-import {
-  Controller,
-  ControllerProps,
-  FieldValues,
-  useController,
-} from '@graphcommerce/react-hook-form'
+import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
+import { Controller, useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import { IconButtonProps, SxProps, Theme, TextField, TextFieldProps, Fab } from '@mui/material'
+import type { IconButtonProps, SxProps, Theme, TextFieldProps } from '@mui/material'
+import { TextField, Fab } from '@mui/material'
 
 export type NumberFieldElementProps<T extends FieldValues = FieldValues> = Omit<
   TextFieldProps,
@@ -24,7 +21,7 @@ export type NumberFieldElementProps<T extends FieldValues = FieldValues> = Omit<
 } & Omit<ControllerProps<T>, 'render'>
 
 type OwnerState = { size?: 'small' | 'medium' }
-const componentName = 'TextInputNumber' as const
+const componentName = 'TextInputNumber'
 const parts = ['quantity', 'quantityInput', 'button'] as const
 const { withState } = extendableComponent<OwnerState, typeof componentName, typeof parts>(
   componentName,

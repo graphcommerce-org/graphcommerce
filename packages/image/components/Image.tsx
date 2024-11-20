@@ -3,19 +3,16 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
-import { useForkRef, styled, SxProps, Theme } from '@mui/material'
-import {
-  LoaderValue,
-  VALID_LOADERS,
-  ImageConfigComplete,
-  imageConfigDefault,
-} from 'next/dist/shared/lib/image-config'
+import type { SxProps, Theme } from '@mui/material'
+import { useForkRef, styled } from '@mui/material'
+import type { LoaderValue, ImageConfigComplete } from 'next/dist/shared/lib/image-config'
+import { VALID_LOADERS, imageConfigDefault } from 'next/dist/shared/lib/image-config'
 import { ImageConfigContext } from 'next/dist/shared/lib/image-config-context.shared-runtime'
 import Head from 'next/head'
 import type { ImageLoaderProps, ImageLoader } from 'next/image'
 import React, { useContext, useEffect, useMemo, useRef } from 'react'
+import type { ImageLoaderPropsWithConfig } from '../config/config'
 import {
-  ImageLoaderPropsWithConfig,
   akamaiLoader,
   cloudinaryLoader,
   configDeviceSizes,

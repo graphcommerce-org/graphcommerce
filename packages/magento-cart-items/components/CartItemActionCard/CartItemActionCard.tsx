@@ -1,16 +1,12 @@
 import { Image } from '@graphcommerce/image'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart/hooks'
-import { ProductLinkProps } from '@graphcommerce/magento-product'
+import type { ProductLinkProps } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
-import {
-  ActionCard,
-  ActionCardProps,
-  filterNonNullableKeys,
-  actionCardImageSizes,
-} from '@graphcommerce/next-ui'
+import type { ActionCardProps } from '@graphcommerce/next-ui'
+import { ActionCard, filterNonNullableKeys, actionCardImageSizes } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Button, Link } from '@mui/material'
-import { CartItemFragment } from '../../Api/CartItem.gql'
+import type { CartItemFragment } from '../../Api/CartItem.gql'
 import { RemoveItemFromCart } from '../RemoveItemFromCart/RemoveItemFromCart'
 import { UpdateItemQuantity } from '../UpdateItemQuantity/UpdateItemQuantity'
 

@@ -1,16 +1,12 @@
-import {
-  SelectElement,
-  FieldValues,
-  FieldPath,
-  useWatch,
-  TextFieldElement,
-} from '@graphcommerce/ecommerce-ui'
+import type { FieldValues, FieldPath } from '@graphcommerce/ecommerce-ui'
+import { SelectElement, useWatch, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import { FormRow, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { useMemo } from 'react'
-import { AddressFieldsOptions, useAddressFieldsForm } from './useAddressFieldsForm'
+import type { AddressFieldsOptions } from './useAddressFieldsForm'
+import { useAddressFieldsForm } from './useAddressFieldsForm'
 
 export function useAddressCountryRegion<
   TFieldValues extends FieldValues = FieldValues,

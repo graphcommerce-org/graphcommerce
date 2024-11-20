@@ -10,7 +10,7 @@ type AttributeValueResolver = Pick<AttributeValueInterfaceResolvers<MeshContext>
 
 const attributeValueResolver: AttributeValueResolver = {
   attribute: {
-    selectionSet: `{ code }`,
+    selectionSet: '{ code }',
     resolve: async (root, _, context) =>
       root.attribute ??
       (await customAttributeMetadataV2(

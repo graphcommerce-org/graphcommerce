@@ -5,9 +5,11 @@ import {
   usePrevPageRouter,
 } from '@graphcommerce/framer-next-pages'
 import { i18n } from '@lingui/core'
-import { Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import { useRouter } from 'next/router'
-import { LinkOrButton, LinkOrButtonProps } from '../../Button/LinkOrButton'
+import type { LinkOrButtonProps } from '../../Button/LinkOrButton'
+import { LinkOrButton } from '../../Button/LinkOrButton'
 import { IconSvg } from '../../IconSvg'
 import { responsiveVal } from '../../Styles'
 import { iconChevronLeft } from '../../icons'

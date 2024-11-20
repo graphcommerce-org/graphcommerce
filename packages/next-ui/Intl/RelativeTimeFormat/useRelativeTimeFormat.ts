@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { useMemoObject } from '../../hooks/useMemoObject'
-import { useLocalesArgument, UseLocalesArgumentOptions } from '../useLocalesArgument'
+import type { UseLocalesArgumentOptions } from '../useLocalesArgument'
+import { useLocalesArgument } from '../useLocalesArgument'
 
 export type UseRelativeTimeFormatterProps = {
   styleFormat?: Intl.RelativeTimeFormatStyle

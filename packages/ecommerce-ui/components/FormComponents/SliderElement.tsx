@@ -1,18 +1,8 @@
-import {
-  ControllerProps,
-  FieldError,
-  FieldValues,
-  useController,
-} from '@graphcommerce/react-hook-form'
+import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
+import { FieldError, useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import {
-  FormControl,
-  FormControlProps,
-  FormHelperText,
-  FormLabel,
-  Slider,
-  SliderProps,
-} from '@mui/material'
+import type { FormControlProps, SliderProps } from '@mui/material'
+import { FormControl, FormHelperText, FormLabel, Slider } from '@mui/material'
 
 export type SliderElementProps<T extends FieldValues> = Omit<SliderProps, 'control'> & {
   label?: string

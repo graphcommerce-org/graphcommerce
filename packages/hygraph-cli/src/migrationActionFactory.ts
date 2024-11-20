@@ -1,5 +1,5 @@
 import { loadConfig } from '@graphcommerce/next-config'
-import {
+import type {
   BatchMigrationCreateModelInput,
   BatchMigrationCreateComponentInput,
   BatchMigrationCreateEnumerationInput,
@@ -25,7 +25,7 @@ import {
   Client,
 } from '@hygraph/management-sdk'
 import dotenv from 'dotenv'
-import { Schema } from './types'
+import type { Schema } from './types'
 import { graphcommerceLog, capitalize } from './utils/graphCommerceLog'
 
 dotenv.config()

@@ -1,18 +1,11 @@
-import { ItemScroller, ItemScrollerProps, RenderType, responsiveVal } from '@graphcommerce/next-ui'
-import {
-  Box,
-  Container,
-  ContainerProps,
-  SxProps,
-  Theme,
-  Typography,
-  TypographyProps,
-  useTheme,
-} from '@mui/material'
+import type { ItemScrollerProps } from '@graphcommerce/next-ui'
+import { ItemScroller, RenderType, responsiveVal } from '@graphcommerce/next-ui'
+import type { ContainerProps, SxProps, Theme, TypographyProps } from '@mui/material'
+import { Box, Container, Typography, useTheme } from '@mui/material'
 import React, { forwardRef, useContext } from 'react'
 import { AddProductsToCartContext, AddProductsToCartForm } from '../AddProductsToCart'
-import { ProductListItemProps } from '../ProductListItem/ProductListItem'
-import { ProductListItemRenderer, ProductListItemType } from '../ProductListItems/renderer'
+import type { ProductListItemProps } from '../ProductListItem/ProductListItem'
+import type { ProductListItemRenderer, ProductListItemType } from '../ProductListItems/renderer'
 
 export type ProductScrollerProps = {
   title?: React.ReactNode

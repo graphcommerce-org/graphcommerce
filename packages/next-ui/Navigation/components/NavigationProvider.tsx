@@ -1,17 +1,16 @@
+import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { MotionConfig, useMotionValue, useTransform } from 'framer-motion'
 import React, { useMemo } from 'react'
 import { isElement } from 'react-is'
 import { LazyHydrate } from '../../LazyHydrate'
 import { nonNullable } from '../../RenderType/nonNullable'
-import {
+import type {
   NavigationNode,
   NavigationContextType,
-  NavigationContext,
   UseNavigationSelection,
-  NavigationNodeType,
   NavigationNodeComponent,
 } from '../hooks/useNavigation'
-import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { NavigationContext, NavigationNodeType } from '../hooks/useNavigation'
 
 export type NavigationProviderBaseProps = {
   items: (NavigationNode | React.ReactElement)[]

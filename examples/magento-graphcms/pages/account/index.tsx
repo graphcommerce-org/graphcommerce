@@ -42,9 +42,6 @@ function AccountIndexPage() {
     fetchPolicy: 'cache-and-network',
   })
 
-  const { data: config } = useQuery(StoreConfigDocument)
-  const locale = config?.storeConfig?.locale?.replace('_', '-')
-
   const customer = dashboard.data?.customer
   const address =
     customer?.addresses?.filter((a) => a?.default_shipping)?.[0] || customer?.addresses?.[0]

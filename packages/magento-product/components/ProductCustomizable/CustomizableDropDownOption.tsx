@@ -1,9 +1,9 @@
 import { SelectElement, useController } from '@graphcommerce/ecommerce-ui'
+import { Money } from '@graphcommerce/magento-store'
 import { SectionHeader, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Box, ListItemText, MenuItem, TextField, Typography } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
-import { OptionTypeRenderer } from './CustomizableAreaOption'
-import { Money } from '@graphcommerce/magento-store'
+import type { OptionTypeRenderer } from './CustomizableAreaOption'
 
 type CustomizableDropDownOptionProps = React.ComponentProps<
   OptionTypeRenderer['CustomizableDropDownOption']

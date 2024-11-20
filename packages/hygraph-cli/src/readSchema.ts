@@ -1,5 +1,6 @@
-import { ApolloClient, gql, NormalizedCacheObject } from '@apollo/client'
-import { Schema } from './types'
+import type { ApolloClient, NormalizedCacheObject } from '@apollo/client'
+import { gql } from '@apollo/client'
+import type { Schema } from './types'
 
 export const readSchema = async (
   managementClient: ApolloClient<NormalizedCacheObject>,

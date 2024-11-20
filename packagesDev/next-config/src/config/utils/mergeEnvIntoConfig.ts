@@ -3,6 +3,7 @@ import { mergeDeep, cloneDeep } from '@apollo/client/utilities'
 import chalk from 'chalk'
 import { get, set } from 'lodash'
 import snakeCase from 'lodash/snakeCase'
+import type { ZodRawShape, ZodTypeAny, ZodAny } from 'zod'
 import {
   z,
   ZodObject,
@@ -13,10 +14,7 @@ import {
   ZodNullable,
   ZodOptional,
   ZodEffects,
-  ZodRawShape,
   ZodEnum,
-  ZodTypeAny,
-  ZodAny,
   ZodDefault,
 } from 'zod'
 import diff from './diff'
@@ -69,7 +67,7 @@ export function configToEnvSchema(schema: ZodNode) {
         envSchema[toEnvStr(path)] = z
           .string()
           .optional()
-          .refine(isJSON, { message: `Invalid JSON` })
+          .refine(isJSON, { message: 'Invalid JSON' })
           .transform((val) => (val ? JSON.parse(val) : val))
         envToDot[toEnvStr(path)] = dotNotation(path)
       }
@@ -89,7 +87,7 @@ export function configToEnvSchema(schema: ZodNode) {
         envSchema[toEnvStr(path)] = z
           .string()
           .optional()
-          .refine(isJSON, { message: `Invalid JSON` })
+          .refine(isJSON, { message: 'Invalid JSON' })
           .transform((val) => (val ? JSON.parse(val) : val))
         envToDot[toEnvStr(path)] = dotNotation(path)
       }
@@ -232,11 +230,11 @@ export function formatAppliedEnv(applyResult: ApplyResult) {
     return ` ${chalk.yellowBright('~')} ${baseLog}: ${fromFmt} => ${toFmt}`
   })
 
-  let header = chalk.blueBright(`info`)
-  if (hasWarning) header = chalk.yellowBright(`warning`)
-  if (hasError) header = chalk.yellowBright(`error`)
+  let header = chalk.blueBright('info')
+  if (hasWarning) header = chalk.yellowBright('warning')
+  if (hasError) header = chalk.yellowBright('error')
 
-  header += `   - Loaded GraphCommerce env variables`
+  header += '   - Loaded GraphCommerce env variables'
 
   return [header, ...lines].join('\n')
 }

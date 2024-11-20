@@ -1,27 +1,22 @@
-import { ImageProps } from '@graphcommerce/image'
+import type { ImageProps } from '@graphcommerce/image'
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { SxProps, Theme, useEventCallback, Skeleton } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { useEventCallback, Skeleton } from '@mui/material'
 import React from 'react'
-import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
+import type { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { productLink } from '../../hooks/useProductLink'
 import { ProductListPrice } from '../ProductListPrice/ProductListPrice'
 import { ProductDiscountLabel } from './ProductDiscountLabel'
-import {
-  ProductListItemImageProps,
-  ProductListItemImage,
-  ProductListItemImageSkeleton,
-} from './ProductListItemImage'
-import {
+import type { ProductListItemImageProps } from './ProductListItemImage'
+import { ProductListItemImage, ProductListItemImageSkeleton } from './ProductListItemImage'
+import type {
   ProductListItemImageAreaKeys,
   ProductListsItemImageAreaProps,
-  ProductListItemImageAreas,
-  ProductImageContainer,
 } from './ProductListItemImageContainer'
+import { ProductListItemImageAreas, ProductImageContainer } from './ProductListItemImageContainer'
 import { ProductListItemLinkOrDiv } from './ProductListItemLinkOrDiv'
-import {
-  ProductListItemTitleAndPrice,
-  ProductListItemTitleAndPriceProps,
-} from './ProductListItemTitleAndPrice'
+import type { ProductListItemTitleAndPriceProps } from './ProductListItemTitleAndPrice'
+import { ProductListItemTitleAndPrice } from './ProductListItemTitleAndPrice'
 
 const { classes, selectors } = extendableComponent('ProductListItem', [
   'root',

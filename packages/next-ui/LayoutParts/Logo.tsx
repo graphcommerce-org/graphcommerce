@@ -1,9 +1,9 @@
-import { Image, ImageProps } from '@graphcommerce/image'
+import type { ImageProps } from '@graphcommerce/image'
+import { Image } from '@graphcommerce/image'
+import type { SxProps, Theme } from '@mui/material'
 import {
   generateUtilityClass,
   styled,
-  SxProps,
-  Theme,
   unstable_composeClasses as composeClasses,
   Box,
 } from '@mui/material'

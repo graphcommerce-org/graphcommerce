@@ -1,5 +1,5 @@
 import type { getSearchSuggestionsInput as getSearchSuggestionsInputType } from '@graphcommerce/algolia-products'
-import { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
+import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 import { getUserToken } from '../mesh/getUserToken'
 
 export const config: PluginConfig = {

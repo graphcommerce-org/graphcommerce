@@ -1,4 +1,5 @@
-import { AddProductsToCartForm, ProductListItemType } from '@graphcommerce/magento-product'
+import type { ProductListItemType } from '@graphcommerce/magento-product'
+import { AddProductsToCartForm } from '@graphcommerce/magento-product'
 import {
   useRecentlyViewedProducts,
   useRecentlyViewedSkus,

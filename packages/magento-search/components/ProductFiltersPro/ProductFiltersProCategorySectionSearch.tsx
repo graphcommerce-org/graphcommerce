@@ -3,9 +3,9 @@ import type {
   CategoryTreeItem,
   NavigationItemFragment,
 } from '@graphcommerce/magento-category'
+import type { ProductFiltersProCategoryAccordionProps } from '@graphcommerce/magento-product'
 import {
   ProductFiltersProCategoryAccordion,
-  ProductFiltersProCategoryAccordionProps,
   useProductFiltersPro,
 } from '@graphcommerce/magento-product'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'

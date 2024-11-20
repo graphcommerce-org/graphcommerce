@@ -5,8 +5,8 @@ import type {
   CategoryResult,
   MeshContext,
 } from '@graphcommerce/graphql-mesh'
-import { AttributeList } from './getAttributeList'
-import { GetStoreConfigReturn } from './getStoreConfig'
+import type { AttributeList } from './getAttributeList'
+import type { GetStoreConfigReturn } from './getStoreConfig'
 
 type AlgoliaFacets = { [facetName: string]: AlgoliaFacetOption }
 type AlgoliaFacetOption = { [facetOption: string]: number }

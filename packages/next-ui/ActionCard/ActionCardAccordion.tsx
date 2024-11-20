@@ -1,5 +1,7 @@
-import { Accordion, AccordionSummary, AccordionDetails, SxProps, Theme } from '@mui/material'
-import { useState, ReactNode } from 'react'
+import type { SxProps, Theme } from '@mui/material'
+import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material'
+import type { ReactNode } from 'react'
+import { useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { iconChevronDown } from '../icons'
 

@@ -1,23 +1,21 @@
-import { QueryResult, useApolloClient, useQuery } from '@graphcommerce/graphql'
+import type { QueryResult } from '@graphcommerce/graphql'
+import { useApolloClient, useQuery } from '@graphcommerce/graphql'
 import {
   useCustomerQuery,
   useCustomerSession,
   useGuestQuery,
 } from '@graphcommerce/magento-customer'
+import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import type { Get } from 'type-fest'
+import type { WishlistItemFragment } from '../../queries/WishlistItem.gql'
 import { useWishlistEnabled } from '../useWishlistEnabled/useWishlistEnabled'
-import {
-  UseWishlistCustomerDocument,
+import type {
   UseWishlistCustomerQuery,
   UseWishlistCustomerQueryVariables,
 } from './UseWishlistCustomer.gql'
-import {
-  UseWishlistGuestDocument,
-  UseWishlistGuestQuery,
-  UseWishlistGuestQueryVariables,
-} from './UseWishlistGuest.gql'
-import { WishlistItemFragment } from '../../queries/WishlistItem.gql'
-import { filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { UseWishlistCustomerDocument } from './UseWishlistCustomer.gql'
+import type { UseWishlistGuestQuery, UseWishlistGuestQueryVariables } from './UseWishlistGuest.gql'
+import { UseWishlistGuestDocument } from './UseWishlistGuest.gql'
 
 export type UseWishlistItemsGuestReturn = {
   enabled: boolean

@@ -1,18 +1,15 @@
 import { Image } from '@graphcommerce/image'
 import { AddProductsToCartForm, useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
-import { InputMaybe } from '@graphcommerce/next-config'
-import {
-  extendableComponent,
-  ActionCard,
-  ActionCardProps,
-  actionCardImageSizes,
-} from '@graphcommerce/next-ui'
+import type { InputMaybe } from '@graphcommerce/next-config'
+import type { ActionCardProps } from '@graphcommerce/next-ui'
+import { extendableComponent, ActionCard, actionCardImageSizes } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Button, Link, SxProps, Theme } from '@mui/material'
-import { ReactNode } from 'react'
+import type { SxProps, Theme } from '@mui/material'
+import { Button, Link } from '@mui/material'
+import type { ReactNode } from 'react'
 import { useRemoveProductsFromWishlist } from '../../hooks'
-import { WishlistItemFragment } from '../../queries/WishlistItem.gql'
+import type { WishlistItemFragment } from '../../queries/WishlistItem.gql'
 import { AddWishlistItemToCart } from '../WishlistItem/AddWishlistItemToCart'
 
 export type WishlistItemActionCardProps = {
@@ -24,7 +21,7 @@ export type WishlistItemActionCardProps = {
 } & OwnerState &
   Omit<ActionCardProps, 'value' | 'image' | 'price' | 'title' | 'action'>
 type OwnerState = { withOptions?: boolean }
-const compName = 'WishlistItemActionCard' as const
+const compName = 'WishlistItemActionCard'
 const parts = [
   'item',
   'picture',

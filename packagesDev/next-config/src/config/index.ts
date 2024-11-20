@@ -1,5 +1,5 @@
 import type { Path, PathValue } from 'react-hook-form'
-import { GraphCommerceConfig } from '../generated/config'
+import type { GraphCommerceConfig } from '../generated/config'
 
 export * from './commands/generateConfig'
 export * from './commands/exportConfig'

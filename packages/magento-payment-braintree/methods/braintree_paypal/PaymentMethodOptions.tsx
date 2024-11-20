@@ -1,8 +1,6 @@
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import {
-  PaymentOptionsProps,
-  usePaymentMethodContext,
-} from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
+import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
 // import { PayPalCheckoutCreatePaymentOptions } from 'braintree-web/paypal-checkout'
 import type { FlowType, Intent } from 'paypal-checkout-components'

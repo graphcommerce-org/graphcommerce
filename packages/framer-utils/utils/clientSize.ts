@@ -1,4 +1,5 @@
-import { motionValue, MotionValue } from 'framer-motion'
+import type { MotionValue } from 'framer-motion'
+import { motionValue } from 'framer-motion'
 import sync from 'framesync'
 
 export type ClientSize = {

@@ -1,4 +1,5 @@
-import { Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import { extendableComponent } from '../Styles'
 
 export type StepperProps = {
@@ -7,7 +8,7 @@ export type StepperProps = {
   sx?: SxProps<Theme>
 }
 
-const name = 'Stepper' as const
+const name = 'Stepper'
 const parts = ['root', 'step', 'activeStep'] as const
 const { classes } = extendableComponent(name, parts)
 

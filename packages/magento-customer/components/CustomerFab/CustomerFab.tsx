@@ -5,13 +5,11 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { BadgeProps, Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
+import type { BadgeProps, FabProps as FabPropsType, SxProps, Theme } from '@mui/material'
+import { Fab, NoSsr } from '@mui/material'
 import React from 'react'
-import {
-  useCustomerAccountCanSignIn,
-  useCustomerSession,
-  UseCustomerSessionReturn,
-} from '../../hooks'
+import type { UseCustomerSessionReturn } from '../../hooks'
+import { useCustomerAccountCanSignIn, useCustomerSession } from '../../hooks'
 
 type CustomerFabContentProps = {
   icon?: React.ReactNode

@@ -1,4 +1,5 @@
-import { Box, ContainerProps, Typography } from '@mui/material'
+import type { ContainerProps } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { extendableComponent } from '../../Styles'
 import { breakpointVal } from '../../Styles/breakpointVal'
 import { responsiveVal } from '../../Styles/responsiveVal'
@@ -11,7 +12,7 @@ export type SpecialBannerProps = ContainerProps & {
   children: React.ReactNode
 }
 
-const name = 'SpecialBanner' as const
+const name = 'SpecialBanner'
 const parts = ['root', 'wrapper', 'copy', 'asset', 'topic', 'links', 'textContainer'] as const
 const { classes } = extendableComponent(name, parts)
 

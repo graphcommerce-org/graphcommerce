@@ -1,6 +1,7 @@
 import useEventCallback from '@mui/utils/useEventCallback'
 import { useMemo } from 'react'
-import debounce, { DebounceOptions } from './debounce'
+import type { DebounceOptions } from './debounce'
+import debounce from './debounce'
 
 export function useDebouncedCallback<T extends (...args: any[]) => unknown>(
   callback: T,

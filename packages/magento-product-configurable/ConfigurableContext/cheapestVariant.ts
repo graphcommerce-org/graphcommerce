@@ -1,4 +1,4 @@
-import { ConfigurableProductFormFragment } from './ConfigurableProductForm.gql'
+import type { ConfigurableProductFormFragment } from './ConfigurableProductForm.gql'
 
 type Variants = NonNullable<ConfigurableProductFormFragment['variants']>
 

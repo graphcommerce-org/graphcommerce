@@ -1,4 +1,4 @@
-import { MeshContext } from '@graphcommerce/graphql-mesh'
+import type { MeshContext } from '@graphcommerce/graphql-mesh'
 import { storefrontConfigDefault } from '@graphcommerce/next-ui'
 
 function getStoreHeader(context: MeshContext) {

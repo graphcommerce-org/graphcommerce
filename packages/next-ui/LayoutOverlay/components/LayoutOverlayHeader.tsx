@@ -1,4 +1,5 @@
-import { LayoutHeaderProps, LayoutHeader } from '../../Layout'
+import type { LayoutHeaderProps } from '../../Layout'
+import { LayoutHeader } from '../../Layout'
 
 export function LayoutOverlayHeader(props: LayoutHeaderProps) {
   const { sx, switchPoint } = props

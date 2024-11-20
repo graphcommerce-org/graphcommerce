@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { alpha, Button, ButtonProps } from '@mui/material'
-import React, { FormEvent } from 'react'
+import type { ButtonProps } from '@mui/material'
+import { alpha, Button } from '@mui/material'
+import type { FormEvent } from 'react'
+import React from 'react'
 import { extendableComponent } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
 
@@ -12,7 +14,7 @@ export type ToggleButtonProps = Omit<ButtonProps, 'onClick' | 'onChange'> & {
 
 type OwnerState = Pick<ButtonProps, 'size' | 'disabled'> & { selected?: boolean }
 
-const compName = 'ToggleButton' as const
+const compName = 'ToggleButton'
 const parts = ['root', 'button', 'helperText'] as const
 const { withState } = extendableComponent<OwnerState, typeof compName, typeof parts>(
   compName,
@@ -93,7 +95,7 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
               theme.shape.borderRadius * 1.5,
               theme.breakpoints.values,
             ),
-            padding: `8px 12px`,
+            padding: '8px 12px',
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

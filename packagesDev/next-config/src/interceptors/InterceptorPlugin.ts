@@ -1,9 +1,11 @@
 import path from 'path'
-import { Compiler } from 'webpack'
-import { GraphCommerceConfig } from '../generated/config'
-import { ResolveDependency, resolveDependency } from '../utils/resolveDependency'
+import type { Compiler } from 'webpack'
+import type { GraphCommerceConfig } from '../generated/config'
+import type { ResolveDependency } from '../utils/resolveDependency'
+import { resolveDependency } from '../utils/resolveDependency'
 import { findPlugins } from './findPlugins'
-import { generateInterceptors, GenerateInterceptorsReturn } from './generateInterceptors'
+import type { GenerateInterceptorsReturn } from './generateInterceptors'
+import { generateInterceptors } from './generateInterceptors'
 import { writeInterceptors } from './writeInterceptors'
 
 let interceptors: GenerateInterceptorsReturn | undefined

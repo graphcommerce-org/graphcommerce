@@ -1,14 +1,15 @@
 import { Highlight, iconChevronRight, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
-import { Button, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Button } from '@mui/material'
 import React from 'react'
-import { CategorySearchResultFragment } from './CategorySearchResult.gql'
+import type { CategorySearchResultFragment } from './CategorySearchResult.gql'
 
 export type CategorySearchResultProps = Omit<CategorySearchResultFragment, 'uid'> & {
   search?: string
   sx?: SxProps<Theme>
 }
 
-const name = 'CategorySearchResult' as const
+const name = 'CategorySearchResult'
 const parts = ['root'] as const
 const { classes } = extendableComponent(name, parts)
 

@@ -1,6 +1,6 @@
-import { TypographyProps } from '@mui/material'
+import type { TypographyProps } from '@mui/material'
 import { getAdvanced } from '../../utils'
-import { HeadingContentType } from './types'
+import type { HeadingContentType } from './types'
 
 export const headingAggregator: HeadingContentType['configAggregator'] = (node) => ({
   text: node.textContent,

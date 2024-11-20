@@ -1,32 +1,22 @@
-import {
+import type {
   DeepPartial,
-  FormAutoSubmit,
-  useForm,
   UseFormProps,
   UseFormReturn,
   WatchObserver,
 } from '@graphcommerce/ecommerce-ui'
+import { FormAutoSubmit, useForm } from '@graphcommerce/ecommerce-ui'
 import { useMatchMediaMotionValue, useMemoObject } from '@graphcommerce/next-ui'
-import { Theme, useEventCallback, useMediaQuery, useTheme } from '@mui/material'
+import type { Theme } from '@mui/material'
+import { useEventCallback, useMediaQuery, useTheme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, {
-  BaseSyntheticEvent,
-  createContext,
-  MutableRefObject,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-} from 'react'
+import type { BaseSyntheticEvent, MutableRefObject } from 'react'
+import React, { createContext, useContext, useEffect, useMemo, useRef } from 'react'
 import type { Subscription } from 'react-hook-form/dist/utils/createSubject'
 import { productListLinkFromFilter } from '../../hooks/useProductListLink'
-import { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
-import {
-  ProductFilterParams,
-  ProductListParams,
-  toFilterParams,
-} from '../ProductListItems/filterTypes'
+import type { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
+import type { ProductFilterParams, ProductListParams } from '../ProductListItems/filterTypes'
+import { toFilterParams } from '../ProductListItems/filterTypes'
 
 type DataProps = {
   filterTypes: Record<string, string | undefined>

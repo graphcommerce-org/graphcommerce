@@ -1,5 +1,6 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { styled, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { styled } from '@mui/material'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'
 import { useScrollerContext } from '../hooks/useScrollerContext'

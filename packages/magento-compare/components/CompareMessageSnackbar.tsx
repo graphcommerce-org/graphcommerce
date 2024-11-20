@@ -1,6 +1,6 @@
 import { Button, iconChevronRight, IconSvg, MessageSnackbar } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { SetStateAction } from 'react'
+import type { SetStateAction } from 'react'
 
 type CompareMessageSnackbarProps = {
   count: number | undefined

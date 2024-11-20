@@ -2,7 +2,8 @@ import type { PagesProps } from '@graphcommerce/framer-next-pages'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useEventCallback } from '@mui/material'
 import { useEffect } from 'react'
-import { onCLS, onFCP, onINP, onLCP, onTTFB, Metric } from 'web-vitals/attribution'
+import type { Metric } from 'web-vitals/attribution'
+import { onCLS, onFCP, onINP, onLCP, onTTFB } from 'web-vitals/attribution'
 import { useSendEvent } from '../api/sendEvent'
 
 export const config: PluginConfig = {

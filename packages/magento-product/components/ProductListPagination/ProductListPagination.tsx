@@ -1,8 +1,9 @@
 import { NextLink, PaginationExtended, Pagination } from '@graphcommerce/next-ui'
-import { Link, PaginationProps } from '@mui/material'
+import type { PaginationProps } from '@mui/material'
+import { Link } from '@mui/material'
 import { productListLink } from '../../hooks/useProductListLink'
-import { ProductListParams } from '../ProductListItems/filterTypes'
-import { ProductListPaginationFragment } from './ProductListPagination.gql'
+import type { ProductListParams } from '../ProductListItems/filterTypes'
+import type { ProductListPaginationFragment } from './ProductListPagination.gql'
 
 export type ProductPaginationProps = ProductListPaginationFragment &
   Omit<PaginationProps, 'count' | 'defaultPage' | 'page' | 'renderItem'> & {
@@ -22,7 +23,7 @@ export function ProductListPagination({
         count={page_info?.total_pages}
         page={page_info?.current_page ?? 1}
         renderLink={(_, icon, btnProps) => {
-          const suffix = btnProps.page === 1 ? '' : `#products`
+          const suffix = btnProps.page === 1 ? '' : '#products'
           return (
             <Link
               {...btnProps}

@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { cacheFirst } from '@graphcommerce/graphql'
+import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   PageMeta,
@@ -57,7 +57,7 @@ function BlogPage(props: Props) {
             },
           })}
           breadcrumbs={[
-            { href: '/blog', name: i18n._(/* i18n*/ `Blog`) },
+            { href: '/blog', name: i18n._(/* i18n*/ 'Blog') },
             { href: `/${page.url}`, name: title },
           ]}
         />

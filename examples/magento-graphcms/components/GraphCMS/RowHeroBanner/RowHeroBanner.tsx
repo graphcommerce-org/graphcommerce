@@ -40,7 +40,7 @@ export function RowHeroBanner(props: RowHeroBannerFragment) {
             ...breakpointVal('fontSize', 36, 82, theme.breakpoints.values),
             '& strong': {
               WebkitTextFillColor: 'transparent',
-              WebkitTextStroke: `1.2px #fff`,
+              WebkitTextStroke: '1.2px #fff',
             },
           }),
         }}

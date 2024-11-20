@@ -1,8 +1,9 @@
-import { useController, FieldValues, UseControllerProps } from '@graphcommerce/react-hook-form'
+import type { FieldValues, UseControllerProps } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
+import type { CheckboxProps } from '@mui/material'
 import {
   Checkbox,
-  CheckboxProps,
   FormControl,
   FormControlLabel,
   FormGroup,

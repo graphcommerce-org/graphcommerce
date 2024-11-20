@@ -1,25 +1,28 @@
+import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
+import type {
+  BreadcrumbsProps as MuiBreadcrumbProps,
+  SxProps,
+  Theme,
+  LinkProps,
+} from '@mui/material'
 import {
   Box,
   Breadcrumbs as MuiBreadcrumbs,
-  BreadcrumbsProps as MuiBreadcrumbProps,
   ClickAwayListener,
   IconButton,
   Link,
   Typography,
   useEventCallback,
   useTheme,
-  SxProps,
-  Theme,
-  LinkProps,
 } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { useState, MouseEvent } from 'react'
+import type { MouseEvent } from 'react'
+import { useState } from 'react'
+import { Button } from '../Button'
 import { IconSvg } from '../IconSvg'
 import { iconClose, iconEllypsis } from '../icons'
 import type { BreadcrumbsType } from './types'
-import { i18n } from '@lingui/core'
-import { Button } from '../Button'
 
 const BreadcrumbsPopper = dynamic(
   async () => (await import('./BreadcrumbsPopper')).BreadcrumbsPopper,
@@ -67,7 +70,7 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
   return (
     <MuiBreadcrumbs
       {...rest}
-      aria-label={i18n._(/* i18n*/ `Breadcrumbs`)}
+      aria-label={i18n._(/* i18n*/ 'Breadcrumbs')}
       maxItems={maxItems}
       color='inherit'
       sx={[

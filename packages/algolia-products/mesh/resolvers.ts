@@ -1,11 +1,12 @@
-import {
+import type {
   AlgoliasearchResponse,
   hasSelectionSetPath,
   type Resolvers,
 } from '@graphcommerce/graphql-mesh'
 import type { GraphQLError, GraphQLResolveInfo } from 'graphql'
 import { algoliaFacetsToAggregations, getCategoryList } from './algoliaFacetsToAggregations'
-import { algoliaHitToMagentoProduct, ProductsItemsItem } from './algoliaHitToMagentoProduct'
+import type { ProductsItemsItem } from './algoliaHitToMagentoProduct'
+import { algoliaHitToMagentoProduct } from './algoliaHitToMagentoProduct'
 import { getAlgoliaSettings } from './getAlgoliaSettings'
 import { getAttributeList } from './getAttributeList'
 import { getGroupId } from './getGroupId'

@@ -1,4 +1,5 @@
-import { useController, FieldValues, UseControllerProps } from '@graphcommerce/react-hook-form'
+import type { FieldValues, UseControllerProps } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import {
   FormControl,
@@ -9,7 +10,7 @@ import {
   RadioGroup,
   useTheme,
 } from '@mui/material'
-import { ChangeEvent } from 'react'
+import type { ChangeEvent } from 'react'
 
 export type RadioButtonGroupProps<T extends FieldValues> = {
   options: { label: string; id: string | number }[] | any[]

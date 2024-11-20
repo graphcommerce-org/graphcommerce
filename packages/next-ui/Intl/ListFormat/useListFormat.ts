@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { useMemoObject } from '../../hooks'
-import { useLocalesArgument, UseLocalesArgumentOptions } from '../useLocalesArgument'
+import type { UseLocalesArgumentOptions } from '../useLocalesArgument'
+import { useLocalesArgument } from '../useLocalesArgument'
 
 export type UseListFormatOptions = {
   listStyle?: Intl.ListFormatOptions['style']

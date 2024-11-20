@@ -1,11 +1,13 @@
 import { useMutation } from '@graphcommerce/graphql'
-import { iconCompare, Button, Fab, FabProps } from '@graphcommerce/next-ui'
+import type { FabProps } from '@graphcommerce/next-ui'
+import { iconCompare, Button, Fab } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { alpha, Checkbox, NoSsr, SxProps, Theme, useTheme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { alpha, Checkbox, NoSsr, useTheme } from '@mui/material'
 import { useState } from 'react'
-import { CompareProductIdInternalFragment } from '../graphql'
+import type { CompareProductIdInternalFragment } from '../graphql'
 import { AddProductsToCompareListDocument } from '../graphql/AddProductsToCompareList.gql'
 import { RemoveProductsFromCompareListDocument } from '../graphql/RemoveProductsFromCompareList.gql'
 import { useCompareSummary } from '../hooks'
@@ -108,7 +110,7 @@ function CompareProductToggleBase(
             (theme) => ({
               backgroundColor:
                 theme.palette.mode === 'light' ? theme.palette.background.paper : 'transparent',
-              flex: `0 0 auto`,
+              flex: '0 0 auto',
               '& svg': {
                 stroke: strokeColorPlp,
               },

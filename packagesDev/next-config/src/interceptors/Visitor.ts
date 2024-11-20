@@ -11,7 +11,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable consistent-return */
 // eslint-disable-next-line import/no-extraneous-dependencies
-import {
+import type {
   Accessibility,
   Argument,
   ArrayExpression,

@@ -1,18 +1,18 @@
 /* eslint-disable no-nested-ternary */
 import { IconSvg, iconClose } from '@graphcommerce/next-ui'
-import { FieldValues, ControllerProps, useController } from '@graphcommerce/react-hook-form'
+import type { FieldValues, ControllerProps } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
+import type { FormControlProps, SelectProps } from '@mui/material'
 import {
   Checkbox,
   Chip,
   FormControl,
-  FormControlProps,
   FormHelperText,
   InputLabel,
   ListItemText,
   MenuItem,
   Select,
-  SelectProps,
 } from '@mui/material'
 
 export type MultiSelectElementProps<T extends FieldValues> = Omit<SelectProps, 'value'> & {

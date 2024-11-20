@@ -2,11 +2,12 @@ import { useMotionValueValue } from '@graphcommerce/framer-utils'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
 import { i18n } from '@lingui/core'
-import { Fab, FabProps, styled } from '@mui/material'
+import type { FabProps } from '@mui/material'
+import { Fab, styled } from '@mui/material'
 import { m } from 'framer-motion'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
-import { ItemState } from '../types'
+import type { ItemState } from '../types'
 
 const name = 'ScrollerDot'
 const parts = ['dot', 'circle'] as const

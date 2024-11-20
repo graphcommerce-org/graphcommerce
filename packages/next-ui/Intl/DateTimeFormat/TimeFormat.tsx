@@ -1,4 +1,5 @@
-import { DateTimeFormat, DateTimeFormatProps } from './DateTimeFormat'
+import type { DateTimeFormatProps } from './DateTimeFormat'
+import { DateTimeFormat } from './DateTimeFormat'
 
 export type TimeFormatProps = Omit<
   DateTimeFormatProps,

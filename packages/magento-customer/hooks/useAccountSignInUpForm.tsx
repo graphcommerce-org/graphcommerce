@@ -4,11 +4,8 @@ import { useUrlQuery } from '@graphcommerce/next-ui'
 import { useFormGqlQuery } from '@graphcommerce/react-hook-form'
 import { useEffect } from 'react'
 import { CustomerDocument } from './Customer.gql'
-import {
-  IsEmailAvailableDocument,
-  IsEmailAvailableQuery,
-  IsEmailAvailableQueryVariables,
-} from './IsEmailAvailable.gql'
+import type { IsEmailAvailableQuery, IsEmailAvailableQueryVariables } from './IsEmailAvailable.gql'
+import { IsEmailAvailableDocument } from './IsEmailAvailable.gql'
 import { useCustomerAccountCanSignUp } from './useCustomerPermissions'
 import { useCustomerSession } from './useCustomerSession'
 

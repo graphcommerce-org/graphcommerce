@@ -3,7 +3,8 @@ import {
   formatAppliedEnv,
   mergeEnvIntoConfig,
 } from '../../../src/config/utils/mergeEnvIntoConfig'
-import { GraphCommerceConfig, GraphCommerceConfigSchema } from '../../../src/generated/config'
+import type { GraphCommerceConfig } from '../../../src/generated/config'
+import { GraphCommerceConfigSchema } from '../../../src/generated/config'
 import { removeColor } from './rewriteLegancyEnv'
 
 const env = {
@@ -17,7 +18,8 @@ const env = {
   GC_STOREFRONT_1_LOCALE: 'de',
   GC_STOREFRONT_1_HYGRAPH_LOCALES_0: 'de',
   GC_STOREFRONT_1_MAGENTO_STORE_CODE: 'de_de',
-  GC_STOREFRONT: `[{"locale": "en", "defaultLocale": true, "hygraphLocales": ["en"], "magentoStoreCode": "en_us"}]`,
+  GC_STOREFRONT:
+    '[{"locale": "en", "defaultLocale": true, "hygraphLocales": ["en"], "magentoStoreCode": "en_us"}]',
 }
 
 it('traverses a schema and returns a list of env variables that match', () => {
@@ -93,7 +95,7 @@ it('converts an env schema to a config schema', () => {
 
   const environmentVariables = {
     GC_PRODUCT_FILTERS_PRO: '1',
-    GC_STOREFRONT: `[{"defaultLocale": true }]`,
+    GC_STOREFRONT: '[{"defaultLocale": true }]',
     GC_STOREFRONT_0_LOCALE: 'de',
   }
 

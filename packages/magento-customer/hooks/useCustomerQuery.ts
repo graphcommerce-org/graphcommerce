@@ -1,10 +1,10 @@
-import {
-  useQuery,
+import type {
   TypedDocumentNode,
   QueryHookOptions,
   QueryResult,
   OperationVariables,
 } from '@graphcommerce/graphql'
+import { useQuery } from '@graphcommerce/graphql'
 import { useCustomerSession } from './useCustomerSession'
 
 /** Will only execute when the customer is signed in. */

@@ -1,10 +1,11 @@
 import { ApolloCartErrorSnackbar } from '@graphcommerce/magento-cart'
-import { LinkOrButton, LinkOrButtonProps } from '@graphcommerce/next-ui'
-import {
-  ComposedSubmit,
+import type { LinkOrButtonProps } from '@graphcommerce/next-ui'
+import { LinkOrButton } from '@graphcommerce/next-ui'
+import type {
   ComposedSubmitProps,
   ComposedSubmitRenderComponentProps,
 } from '@graphcommerce/react-hook-form'
+import { ComposedSubmit } from '@graphcommerce/react-hook-form'
 import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 
 export type PaymentMethodButtonProps = LinkOrButtonProps & { display?: 'inline' | 'block' } & Pick<

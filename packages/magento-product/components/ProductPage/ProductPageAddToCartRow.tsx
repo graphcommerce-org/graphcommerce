@@ -1,5 +1,6 @@
-import { Box, SxProps, Theme } from '@mui/material'
-import { UseAddProductsToCartActionFragment } from '../AddProductsToCart/UseAddProductsToCartAction.gql'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
+import type { UseAddProductsToCartActionFragment } from '../AddProductsToCart/UseAddProductsToCartAction.gql'
 
 export type ProductPageAddToCartRowProps = {
   sx?: SxProps<Theme>

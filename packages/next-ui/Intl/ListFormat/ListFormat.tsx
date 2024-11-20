@@ -1,5 +1,6 @@
 import React from 'react'
-import { useListFormat, UseListFormatOptions } from './useListFormat'
+import type { UseListFormatOptions } from './useListFormat'
+import { useListFormat } from './useListFormat'
 
 export type ListFormatProps = {
   children: React.ReactNode[]

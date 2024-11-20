@@ -1,5 +1,5 @@
 import { useConstant } from '@graphcommerce/framer-utils'
-import { PanInfo, Point } from 'framer-motion'
+import type { PanInfo, Point } from 'framer-motion'
 import { useScrollerContext } from './useScrollerContext'
 import { useVelocitySnapTo } from './useVelocitySnapTo'
 

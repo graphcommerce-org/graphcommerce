@@ -1,4 +1,4 @@
-import { GraphCommerceConfig } from '../../src/generated/config'
+import type { GraphCommerceConfig } from '../../src/generated/config'
 import { findPlugins } from '../../src/interceptors/findPlugins'
 
 const projectRoot = `${process.cwd()}/examples/magento-graphcms`
@@ -17,7 +17,7 @@ it('finds plugins', () => {
   const disabled = plugins.filter((p) => !p.enabled)
   const enabled = plugins.filter((p) => p.enabled)
 
-  expect(errors).toMatchInlineSnapshot(`[]`)
+  expect(errors).toMatchInlineSnapshot('[]')
 
   expect(enabled).toMatchInlineSnapshot(`
     [
