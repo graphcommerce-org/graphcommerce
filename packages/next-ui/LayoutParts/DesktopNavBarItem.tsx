@@ -4,9 +4,12 @@ import { extendableComponent } from '../Styles/extendableComponent'
 
 const { classes, selectors } = extendableComponent('DesktopNavItem', ['root', 'line'] as const)
 
-export type DesktopNavItemLinkProps = LinkProps<'a'>
+export type DesktopNavItemLinkProps = LinkProps<'a'> & {
+  active?: boolean
+}
 export type DesktopNavItemButtonProps = LinkProps<'div'> & {
   onClick: LinkProps<'button'>['onClick']
+  active?: boolean
 }
 
 function isLinkProps(
@@ -19,7 +22,7 @@ export function DesktopNavItem(props: DesktopNavItemLinkProps | DesktopNavItemBu
   const router = useRouter()
 
   if (!isLinkProps(props)) {
-    const { onClick, children, sx = [], ...linkProps } = props
+    const { onClick, children, sx = [], active, ...linkProps } = props
 
     return (
       <Link
@@ -40,9 +43,9 @@ export function DesktopNavItem(props: DesktopNavItemLinkProps | DesktopNavItemBu
     )
   }
 
-  const { href, children, sx = [], ...linkProps } = props
-
-  const active = router.asPath.startsWith((href ?? '').toString())
+  const { href, children, sx = [], active, ...linkProps } = props
+  const activeValue =
+    typeof active === 'undefined' ? router.asPath.startsWith((href ?? '').toString()) : active
 
   return (
     <Link
@@ -67,7 +70,7 @@ export function DesktopNavItem(props: DesktopNavItemLinkProps | DesktopNavItemBu
           background: (theme) => theme.palette.primary.main,
           margin: '0 auto',
           marginTop: '6px',
-          opacity: active ? 1 : 0,
+          opacity: activeValue ? 1 : 0,
         }}
       />
     </Link>
