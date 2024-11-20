@@ -5,6 +5,7 @@ import {
   ProductFiltersProSearchField,
   SearchLink,
   SearchOverlay,
+  SearchOverlayFab,
 } from '@graphcommerce/magento-search'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import {
@@ -126,6 +127,8 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
         header={
           <>
             <Logo />
+            {import.meta.graphCommerce.searchOverlay && <SearchOverlayFab />}
+
             <DesktopNavBar>
               {menu?.items?.[0]?.children?.slice(0, 2).map((item) => (
                 <DesktopNavItem key={item?.uid} href={`/${item?.url_path}`}>
