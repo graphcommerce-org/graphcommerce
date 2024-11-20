@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.0.0-canary.102
+
+### Patch Changes
+
+- [#2418](https://github.com/graphcommerce-org/graphcommerce/pull/2418) [`2d65c0b`](https://github.com/graphcommerce-org/graphcommerce/commit/2d65c0b2625d5aeb82b34207e5addbff613e40f7) - Added locale prop support for all Intl components and exposed all functionality as hooks. ([@paales](https://github.com/paales))
+
+- [#2418](https://github.com/graphcommerce-org/graphcommerce/pull/2418) [`f35505c`](https://github.com/graphcommerce-org/graphcommerce/commit/f35505c618283c9de6a0db5b3080655c6825da17) - MediaQuery component now accepts a display prop to not always render with display contents. Implement the MediaQuery component for the DesktopNavBar and filter page for StickyBelowHeader and ProductFiltersPro sidebar ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.101
 
 ### Patch Changes
