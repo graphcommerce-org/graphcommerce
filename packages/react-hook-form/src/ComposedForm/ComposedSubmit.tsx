@@ -1,6 +1,5 @@
 import { ApolloError } from '@apollo/client'
 import React, { useContext, useEffect, useRef } from 'react'
-import { GlobalError } from 'react-hook-form'
 import { isFormGqlOperation } from '../useFormGqlMutation'
 import { composedFormContext } from './context'
 import type { ComposedSubmitRenderComponentProps } from './types'

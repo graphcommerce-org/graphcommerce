@@ -1,10 +1,12 @@
 import type { GraphQLRequest } from '@graphcommerce/graphql'
 import { setContext } from '@graphcommerce/graphql/apollo'
+import { Kind, OperationTypeNode } from 'graphql'
 
 const isMutation = (operation: GraphQLRequest) =>
   operation.query.definitions.some(
     (definition) =>
-      definition.kind === 'OperationDefinition' && definition.operation === 'mutation',
+      definition.kind === Kind.OPERATION_DEFINITION &&
+      definition.operation === OperationTypeNode.MUTATION,
   )
 
 /** Apollo link that adds the Google reCAPTCHA token to the request context. */

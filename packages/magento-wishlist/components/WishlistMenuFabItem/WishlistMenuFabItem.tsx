@@ -3,7 +3,7 @@ import type { SxProps, Theme } from '@mui/material'
 import { Badge, NoSsr } from '@mui/material'
 import type { MouseEventHandler } from 'react'
 import React from 'react'
-import { useWishlistEnabled, useWishlistItems } from '../../hooks'
+import { useWishlistItems } from '../../hooks'
 
 type WishlistMenuFabItemContentProps = {
   icon?: React.ReactNode

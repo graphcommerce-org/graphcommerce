@@ -23,7 +23,7 @@ export const config: PluginConfig = {
 }
 
 export function RecentlyViewedProducts(props: PluginProps<RecentlyViewedProductsProps>) {
-  const { Prev, exclude, title, productListRenderer, loading = 'lazy', ...scrollerProps } = props
+  const { exclude, title, productListRenderer, loading = 'lazy' } = props
 
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { margin: '300px' })

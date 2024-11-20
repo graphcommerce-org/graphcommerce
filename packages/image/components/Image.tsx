@@ -22,7 +22,7 @@ import {
 } from '../config/config'
 
 if (typeof window === 'undefined') {
-  // eslint-disable-next-line no-underscore-dangle
+  // eslint-disable-next-line no-underscore-dangle, @typescript-eslint/no-explicit-any, @typescript-eslint/no-extra-semi
   ;(global as any).__NEXT_IMAGE_IMPORTED = true
 }
 

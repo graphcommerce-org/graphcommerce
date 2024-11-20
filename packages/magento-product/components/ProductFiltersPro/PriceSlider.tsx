@@ -8,6 +8,7 @@ import type { FilterProps } from './ProductFiltersProAggregations'
 
 export type PriceSliderProps = {
   value: FilterRangeTypeInput | null | undefined
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange: (...event: any[]) => void
   sx?: SxProps<Theme>
   options: FilterProps['aggregation']['options']

@@ -1,4 +1,3 @@
-import { loadConfig } from '@graphcommerce/next-config'
 import type {
   BatchMigrationCreateModelInput,
   BatchMigrationCreateComponentInput,

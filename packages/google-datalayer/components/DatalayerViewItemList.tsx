@@ -18,7 +18,7 @@ export function useViewItemList() {
   const context = useContext(DatalayerSelectItemContext)
   if (!context) {
     return (itemId: string) => {
-      console.log(`No DatalayerSelectItemContext provider found, trying to select item ${itemId}`)
+      console.warn(`No DatalayerSelectItemContext provider found, trying to select item ${itemId}`)
     }
   }
   return context

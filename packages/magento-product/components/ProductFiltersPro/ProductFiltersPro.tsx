@@ -7,6 +7,7 @@ import type {
 import { FormAutoSubmit, useForm } from '@graphcommerce/ecommerce-ui'
 import { useMatchMediaMotionValue, useMemoObject } from '@graphcommerce/next-ui'
 import type { Theme } from '@mui/material'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { useEventCallback, useMediaQuery, useTheme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import { useRouter } from 'next/router'

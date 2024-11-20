@@ -1,6 +1,6 @@
 import { i18n } from '@lingui/core'
 import type { SnackbarProps, SxProps, Theme } from '@mui/material'
-import { Fab, Snackbar, SnackbarContent, lighten, Box, Portal, SvgIconProps } from '@mui/material'
+import { Fab, Snackbar, SnackbarContent, lighten, Box, Portal } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import type { IconSvgProps } from '../IconSvg'
 import { IconSvg } from '../IconSvg'

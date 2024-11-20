@@ -1,5 +1,5 @@
 import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
-import { FieldError, useController } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import type { FormControlProps, SliderProps } from '@mui/material'
 import { FormControl, FormHelperText, FormLabel, Slider } from '@mui/material'

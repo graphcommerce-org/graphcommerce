@@ -11,7 +11,7 @@ dotenv.config()
 export async function codegenInterceptors() {
   const conf = loadConfig(process.cwd())
 
-  const [plugins, errors] = findPlugins(conf)
+  const [plugins] = findPlugins(conf)
 
   const generatedInterceptors = await generateInterceptors(
     plugins,

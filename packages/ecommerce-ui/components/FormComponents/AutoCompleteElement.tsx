@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-restricted-imports */
 import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
-import { Controller, useController } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import type { AutocompleteProps, TextFieldProps } from '@mui/material'
 import { Autocomplete, Checkbox, TextField, CircularProgress } from '@mui/material'
@@ -19,6 +19,7 @@ export type AutocompleteElementProps<
   label?: TextFieldProps['label']
   showCheckbox?: boolean
   autocompleteProps?: Omit<
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     AutocompleteProps<T, M, D, any>,
     'name' | 'options' | 'loading' | 'renderInput'
   >
@@ -48,6 +49,7 @@ export function AutocompleteElement<TFieldValues extends FieldValues>({
   shouldUnregister,
 }: AutocompleteElementProps<
   TFieldValues,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   AutoDefault | string | any,
   boolean | undefined,
   boolean | undefined
@@ -75,7 +77,8 @@ export function AutocompleteElement<TFieldValues extends FieldValues>({
   let currentValue = multiple ? value || [] : value || null
   if (matchId) {
     currentValue = multiple
-      ? values.map((i: any) => options.find((j) => (j.id || j) === i))
+      ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        values.map((i: any) => options.find((j) => (j.id || j) === i))
       : options.find((i) => (i.id || i) === value) || null
   }
 

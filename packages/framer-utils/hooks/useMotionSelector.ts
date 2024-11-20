@@ -3,10 +3,12 @@ import { startTransition, useState } from 'react'
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 
 type UnwrapMotionValue<T> = T extends MotionValue<infer U> ? U : T
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type UnwrapMotionValues<T extends [...any[]]> = T extends [infer Head, ...infer Tail]
   ? [UnwrapMotionValue<Head>, ...UnwrapMotionValues<Tail>]
   : []
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useMotionSelector<T extends [...any[]], R>(
   motionValues: readonly [...T],
   effect: (v: UnwrapMotionValues<T>) => R,

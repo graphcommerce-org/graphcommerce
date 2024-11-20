@@ -3,11 +3,8 @@ import { useIsSSR } from '@graphcommerce/next-ui'
 import React from 'react'
 
 export type WaitForQueriesProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   waitFor: QueryResult<any, any> | boolean | (QueryResult<any, any> | boolean)[] | undefined
-  /**
-   * @deprecated Will be automatically correct.
-   */
-  noSsr?: boolean
   children: React.ReactNode
   fallback?: React.ReactNode
 }

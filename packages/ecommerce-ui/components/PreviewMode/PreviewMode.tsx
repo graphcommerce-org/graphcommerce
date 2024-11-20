@@ -47,6 +47,7 @@ function PreviewModeEnabled() {
   const revalidateHandler = form.handleSubmit((formValues) => {
     const url = getPreviewUrl()
     Object.entries(formValues).forEach(([key, value]) => {
+      // eslint-disable-next-line @typescript-eslint/no-base-to-string
       url.searchParams.append(key, `${value}`)
     })
     url.searchParams.append('action', 'revalidate')

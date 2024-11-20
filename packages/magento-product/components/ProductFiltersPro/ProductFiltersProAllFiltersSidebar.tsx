@@ -1,7 +1,5 @@
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
-import { ProductFilterEqualSection } from './ProductFilterEqualSection'
-import { ProductFilterRangeSection } from './ProductFilterRangeSection'
 import type { ProductFiltersProAggregationsProps } from './ProductFiltersProAggregations'
 import {
   ProductFiltersProAggregations,

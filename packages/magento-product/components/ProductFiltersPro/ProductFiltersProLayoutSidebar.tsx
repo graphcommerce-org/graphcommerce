@@ -1,6 +1,7 @@
 import { FormAutoSubmit } from '@graphcommerce/ecommerce-ui'
 import { extendableComponent, StickyBelowHeader } from '@graphcommerce/next-ui'
 import type { Theme } from '@mui/material'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Box, Container, useMediaQuery } from '@mui/material'
 import React from 'react'
 import { useProductFiltersPro } from './ProductFiltersPro'

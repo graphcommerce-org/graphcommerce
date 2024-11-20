@@ -1,12 +1,10 @@
 import type { QueryResult } from '@graphcommerce/graphql'
-import { useApolloClient, useQuery } from '@graphcommerce/graphql'
 import {
   useCustomerQuery,
   useCustomerSession,
   useGuestQuery,
 } from '@graphcommerce/magento-customer'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import type { Get } from 'type-fest'
 import type { WishlistItemFragment } from '../../queries/WishlistItem.gql'
 import { useWishlistEnabled } from '../useWishlistEnabled/useWishlistEnabled'
 import type {

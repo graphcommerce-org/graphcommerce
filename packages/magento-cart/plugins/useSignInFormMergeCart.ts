@@ -10,11 +10,11 @@ export const config: PluginConfig = {
   module: '@graphcommerce/magento-customer',
 }
 
-export const useSignInForm: FunctionPlugin<typeof useSignInFormType> = (useSignInForm, options) => {
+export const useSignInForm: FunctionPlugin<typeof useSignInFormType> = (useSignIn, options) => {
   const client = useApolloClient()
   const assignCurrentCartId = useAssignCurrentCartId()
 
-  return useSignInForm({
+  return useSignIn({
     ...options,
     onComplete: async (data, variables) => {
       await options.onComplete?.(data, variables)

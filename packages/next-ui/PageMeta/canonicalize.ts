@@ -5,6 +5,7 @@ import { resolveHref } from 'next/dist/client/resolve-href'
 import type { NextRouter } from 'next/dist/shared/lib/router/router'
 import type {} from '@graphcommerce/next-config'
 import { useRouter } from 'next/router'
+import type { LiteralUnion } from 'type-fest'
 import { storefrontConfig } from '../utils/storefrontConfig'
 
 type PartialNextRouter = Pick<
@@ -70,7 +71,10 @@ export function canonicalize(router: PartialNextRouter, incoming?: Canonical) {
   return canonical
 }
 
-export type Canonical = `http://${string}` | `https://${string}` | `/${string}` | string
+export type Canonical = LiteralUnion<
+  `http://${string}` | `https://${string}` | `/${string}`,
+  string
+>
 
 export function useCanonical(incoming?: Canonical) {
   const router = useRouter()

@@ -9,7 +9,7 @@ import type { TextProps } from './types'
  * This component is part of the Page Builder / PWA integration. It can be consumed without Page Builder.
  */
 export function Text(props: TextProps) {
-  const [cssProps, cssClasses, additional] = extractAdvancedProps(props)
+  const [cssProps, additional] = extractAdvancedProps(props)
   const { textContent } = additional
 
   return <TextRenderer textContent={textContent} sx={cssProps} />

@@ -24,7 +24,7 @@ export function memoDeep<P extends object>(
 
           if (ms < 0.2) return result
 
-          console.log('memoDeep took more than 0.2ms', {
+          console.warn('memoDeep took more than 0.2ms', {
             result,
             ms,
             Component,

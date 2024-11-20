@@ -25,6 +25,7 @@ export function useMergeGuestWishlistWithCustomer() {
       return
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     add(
       wishlist
         ?.map((item) => {
@@ -42,5 +43,5 @@ export function useMergeGuestWishlistWithCustomer() {
         })
         .filter(nonNullable),
     ).then(clearGuestList)
-  }, [client, loggedIn])
+  }, [add, client, loggedIn])
 }

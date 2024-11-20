@@ -109,6 +109,7 @@ export function algoliaPricesToPricesAggregations(pricesList: {
   return Object.values(pricesBucket)
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function assertAlgoliaFacets(facets: any): facets is AlgoliaFacets {
   return true
 }

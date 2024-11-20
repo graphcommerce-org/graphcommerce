@@ -1,5 +1,5 @@
 import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
-import { FieldError, useController } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import type { FormLabelProps, ToggleButtonGroupProps, ToggleButtonProps } from '@mui/material'
 import {
@@ -81,9 +81,9 @@ export function ToggleButtonGroupElement<TFieldValues extends FieldValues = Fiel
           }
         }}
       >
-        {options.map(({ label, id, ...toggleProps }) => (
+        {options.map(({ label: labelVal, id, ...toggleProps }) => (
           <ToggleButton value={id} {...toggleProps} key={id}>
-            {label}
+            {labelVal}
           </ToggleButton>
         ))}
       </ToggleButtonGroup>

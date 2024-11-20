@@ -15,8 +15,7 @@ export type RedirectOr404Return = Promise<
 
 const notFound = (from: string, reason: string) => {
   flushMeasurePerf()
-  // eslint-disable-next-line no-console
-  console.log(`[redirectOrNotFound: /${from}] ${reason}`)
+  console.info(`[redirectOrNotFound: /${from}] ${reason}`)
   return { notFound: true, revalidate: 60 * 20 } as const
 }
 
@@ -30,7 +29,7 @@ export const redirectTo = (
   permanent: boolean,
   locale?: string,
 ): { redirect: Redirect; revalidate?: number | boolean } => {
-  console.log(
+  console.info(
     `[redirectTo]: ${permanent ? 'Permanent' : 'Temporary'} redirect to ${urlPrefix(locale)}${to}`,
   )
   return {
@@ -46,8 +45,7 @@ const redirect = (from: string, to: string, permanent: boolean, locale?: string)
 
   flushMeasurePerf()
 
-  // eslint-disable-next-line no-console
-  console.log(
+  console.info(
     `[redirectOrNotFound: ${prefix ? `/${prefix}` : ''}/${from}] ${
       permanent ? 'Permanent' : 'Temporary'
     } redirect to ${destination}`,
@@ -152,8 +150,7 @@ export async function redirectOrNotFound(
     if (e instanceof Error) {
       return notFound(from, `Error while redirecting: ${e.message}`)
     }
-    // eslint-disable-next-line no-console
-    console.log(e)
+    console.info(e)
     return notFound(from, 'Error while redirecting')
   }
 }

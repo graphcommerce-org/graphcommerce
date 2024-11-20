@@ -10,6 +10,18 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emotion/cache": "^11.13.1",
+    "@emotion/react": "11.12.0",
+    "@emotion/server": "^11.11.0",
+    "@emotion/styled": "^11.13.0",
+    "@graphcommerce/framer-next-pages": "9.0.0-canary.102",
+    "@graphcommerce/framer-scroller": "9.0.0-canary.102",
+    "@graphcommerce/framer-utils": "9.0.0-canary.102",
+    "@graphcommerce/image": "9.0.0-canary.102",
+    "@graphcommerce/lingui-next": "9.0.0-canary.102",
+    "@graphcommerce/next-config": "9.0.0-canary.102",
+    "@graphcommerce/next-ui": "9.0.0-canary.102",
+    "@lingui/conf": "4.11.4",
     "@lingui/core": "4.11.4",
     "@lingui/macro": "4.11.4",
     "@lingui/react": "4.11.4",

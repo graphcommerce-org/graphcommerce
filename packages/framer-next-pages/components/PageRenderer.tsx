@@ -6,7 +6,9 @@ import React, { useMemo } from 'react'
 import { pageRouterContext } from '../context/pageRouterContext'
 import type { PageItem } from '../types'
 
-const NoLayout: React.FC<{ children?: React.ReactNode }> = ({ children }) => <>{children}</>
+function NoLayout({ children }: { children?: React.ReactNode }) {
+  return <>{children}</>
+}
 
 export type PageRendererProps = Omit<AppPropsType, 'router'> & {
   Layout: React.ComponentType<AppPropsType>

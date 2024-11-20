@@ -90,7 +90,7 @@ export function ProductFiltersProCategorySectionSearch(
   props: ProductFiltersProCategorySectionSearchProps,
 ) {
   const { menu } = props
-  const { form, submit, params, aggregations, appliedAggregations } = useProductFiltersPro()
+  const { form, submit, params, aggregations } = useProductFiltersPro()
   const currentFilter = params.filters.category_uid?.in
 
   const categoryTree = useMemo(() => {

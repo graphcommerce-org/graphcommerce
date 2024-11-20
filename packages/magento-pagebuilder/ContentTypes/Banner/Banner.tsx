@@ -9,7 +9,7 @@ import type { BannerContentType } from './types'
  *
  * This component is part of the Page Builder / PWA integration. It can be consumed without Page Builder.
  */
-export const Banner: BannerContentType['component'] = (props) => {
+export function Banner(props: React.ComponentProps<BannerContentType['component']>) {
   const { minHeight, content, overlayColor } = props
 
   return (

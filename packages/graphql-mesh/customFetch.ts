@@ -1,4 +1,5 @@
 import fetchRetry from 'fetch-retry'
+import type { RequestInitWithRetry } from 'fetch-retry'
 
 const fetcher = fetchRetry(
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, no-underscore-dangle, @typescript-eslint/no-var-requires
@@ -12,10 +13,10 @@ const fetcher = fetchRetry(
  */
 export default (
   url: RequestInfo | URL,
-  options: import('fetch-retry').RequestInitWithRetry | undefined,
+  options: RequestInitWithRetry | undefined,
 ): Promise<Response> => {
   const headers = Object.fromEntries(
-    Object.entries(options?.headers ?? {}).filter(([_, value]) => value !== ''),
+    Object.entries(options?.headers ?? {}).filter(([, value]) => value !== ''),
   )
 
   return fetcher(url, {

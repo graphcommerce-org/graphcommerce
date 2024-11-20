@@ -3,6 +3,7 @@
 import '../demo.css'
 import type { PageComponent } from '@graphcommerce/framer-next-pages'
 import { FramerNextPages } from '@graphcommerce/framer-next-pages'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { LinguiProvider } from '@graphcommerce/lingui-next'
 import { responsiveVal } from '@graphcommerce/next-ui'
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'

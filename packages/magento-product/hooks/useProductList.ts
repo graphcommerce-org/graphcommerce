@@ -34,7 +34,7 @@ export const prefetchProductList = debounce(
     variables: ProductListQueryVariables,
     filtersVariables: ProductFiltersQueryVariables,
     next: Next,
-    client: ApolloClient<any>,
+    client: ApolloClient<unknown>,
     shallow: boolean,
   ) => {
     if (!shallow) return next(shallow)

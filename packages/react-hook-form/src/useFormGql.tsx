@@ -155,7 +155,7 @@ export function useFormGql<Q, V extends FieldValues>(
         : true
 
       if (skipUnchanged && !hasDirtyFields) {
-        console.log(
+        console.info(
           `[useFormGql ${getOperationName(document)}] skipped submission, no dirty fields`,
         )
         await onValid(formValues, event)
@@ -174,7 +174,7 @@ export function useFormGql<Q, V extends FieldValues>(
         if (isApolloError(onBeforeSubmitError)) {
           returnedError.current = onBeforeSubmitError
         } else {
-          console.log(
+          console.info(
             'A non ApolloError was thrown during the onBeforeSubmit handler.',
             onBeforeSubmitError,
           )
@@ -210,7 +210,7 @@ export function useFormGql<Q, V extends FieldValues>(
         if (isApolloError(onCompleteError)) {
           returnedError.current = onCompleteError
         } else {
-          console.log(
+          console.info(
             'A non ApolloError was thrown during the onComplete handler.',
             onCompleteError,
           )

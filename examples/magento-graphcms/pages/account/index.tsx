@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { cacheFirst, useQuery } from '@graphcommerce/graphql'
+import { cacheFirst } from '@graphcommerce/graphql'
 import {
   AccountDashboardDocument,
   AccountMenu,

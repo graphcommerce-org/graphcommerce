@@ -111,7 +111,7 @@ export function buildFragmentRegistry<T>(
           print(fragment) !== print(prev[fragment.name.value].node)
         ) {
           duplicateFragmentNames.push(
-            `${prev[fragment.name.value]} ${prev[fragment.name.value].filePath}`,
+            `${prev[fragment.name.value].node.name.value} ${prev[fragment.name.value].filePath}`,
           )
           duplicateFragmentNames.push(`${fragment.name.value} ${fragment.loc?.source.name}`)
         }

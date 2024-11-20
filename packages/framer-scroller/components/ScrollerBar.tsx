@@ -53,7 +53,7 @@ export function ScrollerBar(props: ScrollerBarProps) {
 
   const scrollProgress = scroll[`${direction}Progress`]
 
-  const thumbSize = useTransform(scrollProgress, (directionProgress) => {
+  const thumbSize = useTransform(scrollProgress, () => {
     if (!scrollerRef.current) return 0
     const trackWidth = scrollerRef.current[offsetSize]
     return trackWidth * (trackWidth / scrollerRef.current[scrollSize])

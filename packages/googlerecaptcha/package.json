@@ -21,6 +21,7 @@
     "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.102",
     "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.102",
     "@mui/material": "^5.10.16",
+    "graphql": "^16.9.0",
     "next": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

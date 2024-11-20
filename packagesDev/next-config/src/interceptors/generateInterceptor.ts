@@ -14,6 +14,7 @@ type PluginBaseConfig = {
   sourceModule: string
   targetExport: string
   enabled: boolean
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ifConfig?: string | [string, any]
 }
 
@@ -286,6 +287,7 @@ export async function generateInterceptor(
   try {
     templateFormatted = await prettier.format(template, { ...prettierConf, parser: 'typescript' })
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.log('Error formatting interceptor: ', e, 'using raw template.')
     templateFormatted = template
   }

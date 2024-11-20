@@ -16,10 +16,6 @@ import { InlineAccountDocument } from './InlineAccount.gql'
 export type InlineAccountProps = {
   title?: React.ReactNode
   description?: React.ReactNode
-  /**
-   * @deprecated This is not used anymore.
-   */
-  accountHref: string
   sx?: SxProps<Theme>
 }
 
