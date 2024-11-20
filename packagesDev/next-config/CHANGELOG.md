@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.0.0-canary.102
+
+### Minor Changes
+
+- [#2418](https://github.com/graphcommerce-org/graphcommerce/pull/2418) [`e0a5b98`](https://github.com/graphcommerce-org/graphcommerce/commit/e0a5b9858a3b675ce749609ffa122d293c6e2a62) - To have additional namespaces be considered as a graphcommerce package, set PRIVATE_PACKAGE_NAMESPACES ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2418](https://github.com/graphcommerce-org/graphcommerce/pull/2418) [`22a0ef2`](https://github.com/graphcommerce-org/graphcommerce/commit/22a0ef2ffd2841d050a413a885ff54331e1e7ebf) - Solve peer dependency issues for webpack and framer-motion ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.101
 
 ### Minor Changes
