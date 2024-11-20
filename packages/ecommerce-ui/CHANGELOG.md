@@ -1,5 +1,11 @@
 # @graphcommerce/ecommerce-ui
 
+## 9.0.0-canary.103
+
+### Patch Changes
+
+- [#2419](https://github.com/graphcommerce-org/graphcommerce/pull/2419) [`ccd952e`](https://github.com/graphcommerce-org/graphcommerce/commit/ccd952e60904e91d62819d5abaea1798e4d4d95d) - Destructure InputProps to ensure they are passed only to relevant components. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 9.0.0-canary.101
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.0.0-canary.103
+
+### Patch Changes
+
+- [#2369](https://github.com/graphcommerce-org/graphcommerce/pull/2369) [`8f1b806`](https://github.com/graphcommerce-org/graphcommerce/commit/8f1b806624c96f3151cda81e0553d3df7f1936dd) - Mark the menu item as active if router.asPath matches the href, or if the first URL segment matches, indicating it's the parent item. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.102
 
 ### Patch Changes

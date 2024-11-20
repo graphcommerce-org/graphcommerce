@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.103
+
+### Patch Changes
+
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`8aaca29`](https://github.com/graphcommerce-org/graphcommerce/commit/8aaca29147da4d4a508fb1a00c088d30e2a304cf) - Forward BadgeProps to WishlistFab, CartFab and CustomerFab ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.101
 
 ### Patch Changes

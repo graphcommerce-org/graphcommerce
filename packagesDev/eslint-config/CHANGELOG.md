@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.0.0-canary.103
+
+### Patch Changes
+
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`ef925eb`](https://github.com/graphcommerce-org/graphcommerce/commit/ef925eb3d2c2cb2f03f9797892023015acf18dec) - Let eslint also work for js/mjs files ([@paales](https://github.com/paales))
+
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.63
 
 ### Patch Changes

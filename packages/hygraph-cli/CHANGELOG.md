@@ -1,5 +1,11 @@
 # @graphcommerce/hygraph-cli
 
+## 9.0.0-canary.103
+
+### Patch Changes
+
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
+
 ## 8.0.0
 
 ### Patch Changes
