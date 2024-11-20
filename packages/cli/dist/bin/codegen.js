@@ -2,7 +2,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { resolveDependenciesSync, packageRoots } from '@graphcommerce/next-config';
-import { cliError, loadCodegenConfig, runCli } from '@graphql-codegen/cli';
+import { loadCodegenConfig, runCli, cliError } from '@graphql-codegen/cli';
 import dotenv from 'dotenv';
 import { rimraf } from 'rimraf';
 import yaml from 'yaml';

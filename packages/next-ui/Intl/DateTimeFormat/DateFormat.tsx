@@ -1,10 +1,10 @@
-import { DateTimeFormat, DateTimeFormatPropsType } from './DateTimeFormat'
+import { DateTimeFormat, DateTimeFormatProps } from './DateTimeFormat'
 
-type DateFormatOptions = Omit<
-  DateTimeFormatPropsType,
+export type DateFormatProps = Omit<
+  DateTimeFormatProps,
   'timeStyle' | 'hour' | 'minute' | 'second' | 'timeZoneName'
 >
 
-export function DateFormat(props: DateFormatOptions) {
+export function DateFormat(props: DateFormatProps) {
   return <DateTimeFormat timeStyle={undefined} {...props} />
 }

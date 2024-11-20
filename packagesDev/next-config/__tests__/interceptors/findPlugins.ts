@@ -461,6 +461,14 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "graphqlConfig",
+        "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerRemoveInContextDirective",
+        "targetExport": "graphqlConfig",
+        "targetModule": "@graphcommerce/graphql",
+        "type": "function",
+      },
+      {
+        "enabled": true,
         "sourceExport": "getInContextInput",
         "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerGetInContext",
         "targetExport": "getInContextInput",
