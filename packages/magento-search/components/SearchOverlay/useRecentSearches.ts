@@ -18,6 +18,7 @@ export function useRecentSearches() {
       const updatedSearches = new Set([formattedSearchTerm, ...recentSearches].slice(0, 5))
       const newSearches = Array.from(updatedSearches)
       localStorage.setItem('recentSearches', JSON.stringify(newSearches))
+      setRecentSearches(newSearches)
     },
   }
 }
