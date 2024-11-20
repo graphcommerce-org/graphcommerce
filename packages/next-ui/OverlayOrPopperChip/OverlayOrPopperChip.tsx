@@ -1,18 +1,11 @@
-import {
-  lighten,
-  Badge,
-  Chip,
-  ChipProps,
-  SxProps,
-  Typography,
-  useEventCallback,
-  Theme,
-} from '@mui/material'
+import type { ChipProps, SxProps, Theme } from '@mui/material'
+import { lighten, Badge, Chip, Typography, useEventCallback } from '@mui/material'
 import React, { useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { responsiveVal } from '../Styles'
 import { iconChevronDown, iconChevronUp } from '../icons'
-import { OverlayOrPopperPanel, OverlayOrPopperPanelProps } from './OverlayOrPopperPanel'
+import type { OverlayOrPopperPanelProps } from './OverlayOrPopperPanel'
+import { OverlayOrPopperPanel } from './OverlayOrPopperPanel'
 
 function isMulti(
   selectedLabel: React.ReactNode | React.ReactNode[],
@@ -61,7 +54,7 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
     )
   }
 
-  selectedLabel = Array.isArray(selectedLabel) ? selectedLabel[0] : selectedLabel ?? '·'
+  selectedLabel = Array.isArray(selectedLabel) ? selectedLabel[0] : (selectedLabel ?? '·')
 
   const chipSx = chipProps?.sx ?? []
   return (

@@ -1,14 +1,13 @@
 import { Trans } from '@lingui/react'
+import type { Theme, FabProps, ListItemButtonProps } from '@mui/material'
 import {
-  Theme,
   ThemeProvider,
+  // eslint-disable-next-line @typescript-eslint/no-restricted-imports
   useMediaQuery,
   Fab,
-  FabProps,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  ListItemButtonProps,
 } from '@mui/material'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'

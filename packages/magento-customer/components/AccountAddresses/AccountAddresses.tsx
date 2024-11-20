@@ -6,16 +6,17 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Skeleton, Button, Box, Theme, SxProps } from '@mui/material'
+import type { Theme, SxProps } from '@mui/material'
+import { Skeleton, Button, Box } from '@mui/material'
 import { AccountAddress } from '../AccountAddress/AccountAddress'
-import { AccountAddressesFragment } from './AccountAddresses.gql'
+import type { AccountAddressesFragment } from './AccountAddresses.gql'
 
 export type AccountAddressesProps = AccountAddressesFragment & {
   loading: boolean
   sx?: SxProps<Theme>
 }
 
-const name = 'AccountAddresses' as const
+const name = 'AccountAddresses'
 const parts = ['root', 'addresses', 'button', 'link'] as const
 const { classes } = extendableComponent(name, parts)
 
@@ -75,9 +76,7 @@ export function AccountAddresses(props: AccountAddressesProps) {
             className={classes.addresses}
             sx={(theme) => ({ '& > div': { borderBottom: `1px solid ${theme.palette.divider}` } })}
           >
-            {addresses?.map((address) => (
-              <AccountAddress key={address?.id} {...address} />
-            ))}
+            {addresses?.map((address) => <AccountAddress key={address?.id} {...address} />)}
           </Box>
 
           <Button

@@ -1,10 +1,10 @@
-import { Money } from '@graphcommerce/magento-store'
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { Money } from '@graphcommerce/magento-store'
 import { SectionHeader } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Box } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
-import { OptionTypeRenderer } from './CustomizableAreaOption'
+import type { OptionTypeRenderer } from './CustomizableAreaOption'
 
 type CustomizableFieldOptionProps = React.ComponentProps<
   OptionTypeRenderer['CustomizableFieldOption']

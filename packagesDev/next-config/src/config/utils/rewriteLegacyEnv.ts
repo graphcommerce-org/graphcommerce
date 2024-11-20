@@ -1,6 +1,7 @@
 import cloneDeep from 'lodash/cloneDeep'
-import { GraphCommerceConfig } from '../../generated/config'
-import { ApplyResult, mergeEnvIntoConfig, ZodNode } from './mergeEnvIntoConfig'
+import type { GraphCommerceConfig } from '../../generated/config'
+import type { ApplyResult, ZodNode } from './mergeEnvIntoConfig'
+import { mergeEnvIntoConfig } from './mergeEnvIntoConfig'
 
 export function rewriteLegacyEnv(
   schema: ZodNode,
@@ -24,7 +25,7 @@ export function rewriteLegacyEnv(
   function notUsed() {
     return (envVar: string, envValue: string) => {
       applied.push({
-        warning: [`should be removed`],
+        warning: ['should be removed'],
         envVar,
         envValue,
       })
@@ -38,7 +39,7 @@ export function rewriteLegacyEnv(
     IMAGE_DOMAINS: (envVar: string, envValue: string) => {
       applied.push({
         warning: [
-          `should be removed: will automatically add the Magento/Hygraph URL. For more advanced configurations, see: https://nextjs.org/docs/api-reference/next/image#configuration-options`,
+          'should be removed: will automatically add the Magento/Hygraph URL. For more advanced configurations, see: https://nextjs.org/docs/api-reference/next/image#configuration-options',
         ],
         envVar,
         envValue,

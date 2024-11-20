@@ -5,7 +5,7 @@ import {
   FormPersist,
 } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { filterNonNullableKeys, FormRow } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { MSPPaymentOptionsDocument } from './MSPPaymentOptions.gql'
@@ -28,7 +28,6 @@ export function MSPPaymentOptions(props: PaymentOptionsProps) {
 
   return (
     <form onSubmit={submit} noValidate>
-      
       <input type='hidden' value={code} {...register('paymentMethod.code')} />
 
       {code === 'multisafepay_ideal' && issuers.length && (

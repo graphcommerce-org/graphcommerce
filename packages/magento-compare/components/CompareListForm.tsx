@@ -1,4 +1,5 @@
-import { FormPersist, useForm, UseFormReturn, useWatch } from '@graphcommerce/ecommerce-ui'
+import type { UseFormReturn } from '@graphcommerce/ecommerce-ui'
+import { FormPersist, useForm, useWatch } from '@graphcommerce/ecommerce-ui'
 import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import React, { createContext, useContext, useEffect, useMemo, useRef } from 'react'
 import { useCompareList } from '../hooks'
@@ -48,12 +49,12 @@ export function CompareListForm(props: CompareListFormProps) {
 
       // if there are less items in the compare list than in our selectedState
       if (compareListCount < selectedState.length) {
-        form.setValue(`selected`, [...Array(compareListCount).keys()])
+        form.setValue('selected', [...Array(compareListCount).keys()])
       }
 
       // if there are less items in our selectedState than we have columns
       if (selectedState.length < gridColumns) {
-        form.setValue(`selected`, [...Array(gridColumns).keys()])
+        form.setValue('selected', [...Array(gridColumns).keys()])
       }
     }
   }, [compareAbleItems?.length, compareListCount, form, gridColumns, selectedState])

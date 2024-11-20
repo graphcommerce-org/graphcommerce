@@ -3,6 +3,7 @@ import { ApolloLink } from '@apollo/client'
 import { print } from '@apollo/client/utilities'
 import type { MeshFetchHTTPInformation } from '@graphql-mesh/plugin-http-details-extensions'
 import { responsePathAsArray, stripIgnoredCharacters } from 'graphql'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { cliHyperlink } from '../../lib/hyperlinker'
 
 const running = new Map<
@@ -95,7 +96,7 @@ export const flushMeasurePerf = () => {
       serverStart: 0,
       requestStart: 0,
       requestEnd: end,
-      additional: [`Total time`, `${end}ms`, ''],
+      additional: ['Total time', `${end}ms`, ''],
       colDivider,
     }),
   ]
@@ -113,11 +114,11 @@ export const flushMeasurePerf = () => {
     item.forEach((_, index) => {
       const [str] = Array.isArray(item[index]) ? item[index] : [item[index], item[index]]
 
-      const val = Array.isArray(item[index]) ? item[index][1] : (item[index] as string)
+      const val = Array.isArray(item[index]) ? item[index][1] : item[index]
 
       const padLength = colWidths[index] + (val.length - str.length)
 
-      item[index] = `${val.padEnd(padLength, ' ')}${index !== item.length - 1 ? `` : ''}`
+      item[index] = `${val.padEnd(padLength, ' ')}${index !== item.length - 1 ? '' : ''}`
     })
   })
   ;[[''], ...items]
@@ -156,7 +157,7 @@ export const measurePerformanceLink = new ApolloLink((operation, forward) => {
     return forward(operation).map((data) => {
       const httpDetails: MeshFetchHTTPInformation[] | undefined = data.extensions?.httpDetails
 
-      let additional = [``, ``] as [string, string]
+      const additional = ['', ''] as [string, string]
 
       // Called after server responds
       const query = [

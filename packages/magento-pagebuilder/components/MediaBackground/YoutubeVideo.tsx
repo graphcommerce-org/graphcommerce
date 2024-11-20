@@ -1,5 +1,6 @@
-import { styled, SxProps, Theme } from '@mui/material'
-import { VideoBackgroundProps } from './getVideoBackgroundProps'
+import type { SxProps, Theme } from '@mui/material'
+import { styled } from '@mui/material'
+import type { VideoBackgroundProps } from './getVideoBackgroundProps'
 
 type YoutubeVideoProps = {
   youtubeId: string
@@ -11,7 +12,7 @@ const YoutubeIframe = styled('iframe')({})
 export function YoutubeVideo(props: YoutubeVideoProps) {
   const { youtubeId, videoLoop, videoLazyLoading, sx = [] } = props
 
-  const youtubeUrl = new URL(`https://www.youtube.com/embed`)
+  const youtubeUrl = new URL('https://www.youtube.com/embed')
   const { searchParams } = youtubeUrl
   searchParams.set('controls', '0')
   searchParams.set('autoplay', '1')

@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { ProductItemsGridProps } from '@graphcommerce/magento-product'
-import { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import type { ProductItemsGridProps } from '@graphcommerce/magento-product'
+import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { Index } from 'react-instantsearch-hooks-web'
 import { useAlgoliaProductResults } from '../hooks/useAlgoliaProductResults'
 import { useAlgoliaSearchIndexConfig } from '../hooks/useAlgoliaSearchIndexConfig'

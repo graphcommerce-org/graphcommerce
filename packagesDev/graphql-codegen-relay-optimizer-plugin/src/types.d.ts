@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
+
 declare module '@ardatan/relay-compiler/lib/core/Schema' {
   export function create(schema: string): import('relay-compiler').Schema
 }

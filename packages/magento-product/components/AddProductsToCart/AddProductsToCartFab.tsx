@@ -1,11 +1,10 @@
 import { useCartEnabled } from '@graphcommerce/magento-cart'
-import { Fab, FabProps, iconShoppingBag, iconCheckmark } from '@graphcommerce/next-ui'
+import type { FabProps } from '@graphcommerce/next-ui'
+import { Fab, iconShoppingBag, iconCheckmark } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
-import { SxProps, Theme } from '@mui/material'
-import {
-  useAddProductsToCartAction,
-  UseAddProductsToCartActionProps,
-} from './useAddProductsToCartAction'
+import type { SxProps, Theme } from '@mui/material'
+import type { UseAddProductsToCartActionProps } from './useAddProductsToCartAction'
+import { useAddProductsToCartAction } from './useAddProductsToCartAction'
 
 export type AddProductsToCartFabProps = {
   sx?: SxProps<Theme>

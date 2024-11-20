@@ -1,4 +1,4 @@
-import { GraphCommerceConfig } from '../../generated/config'
+import type { GraphCommerceConfig } from '../../generated/config'
 import { configToImportMeta } from './configToImportMeta'
 
 export function replaceConfigInString(str: string, config: Partial<GraphCommerceConfig>) {

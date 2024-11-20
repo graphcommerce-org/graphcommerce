@@ -1,8 +1,8 @@
 import { useContext, useEffect } from 'react'
-import { FieldValues, UseFormReturn } from 'react-hook-form'
+import type { FieldValues, UseFormReturn } from 'react-hook-form'
 import { isFormGqlOperation } from '../useFormGqlMutation'
 import { composedFormContext } from './context'
-import { UseFormComposeOptions } from './types'
+import type { UseFormComposeOptions } from './types'
 
 export function useFormCompose<V extends Record<string, unknown>>(
   fields: UseFormComposeOptions<V>,

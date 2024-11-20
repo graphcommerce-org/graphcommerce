@@ -1,5 +1,5 @@
-import { AttributeFrontendInputEnum } from '@graphcommerce/graphql-mesh'
-import { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
+import type { AttributeFrontendInputEnum } from '@graphcommerce/graphql-mesh'
+import type { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
 import { ProductFilterEqualChip } from './ProductFilterEqualChip'
 import { ProductFilterEqualSection } from './ProductFilterEqualSection'
 import { ProductFilterRangeChip } from './ProductFilterRangeChip'

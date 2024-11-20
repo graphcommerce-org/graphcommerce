@@ -1,19 +1,20 @@
-import {
+import type {
   ApolloError,
   FetchResult,
   LazyQueryResultTuple,
   MutationTuple,
   TypedDocumentNode,
-  isApolloError,
   MutationHookOptions,
   LazyQueryHookOptions,
 } from '@apollo/client'
+import { isApolloError } from '@apollo/client'
 import { getOperationName } from '@apollo/client/utilities'
 import useEventCallback from '@mui/utils/useEventCallback'
 import { useEffect, useRef } from 'react'
-import { DefaultValues, FieldValues, UseFormProps, UseFormReturn } from 'react-hook-form'
+import type { DefaultValues, FieldValues, UseFormProps, UseFormReturn } from 'react-hook-form'
 import diff from './diff'
-import { useGqlDocumentHandler, UseGqlDocumentHandler } from './useGqlDocumentHandler'
+import type { UseGqlDocumentHandler } from './useGqlDocumentHandler'
+import { useGqlDocumentHandler } from './useGqlDocumentHandler'
 import { tryAsync } from './utils/tryTuple'
 
 export type OnCompleteFn<Q, V> = (data: FetchResult<Q>, variables: V) => void | Promise<void>
@@ -154,7 +155,7 @@ export function useFormGql<Q, V extends FieldValues>(
         : true
 
       if (skipUnchanged && !hasDirtyFields) {
-        console.log(
+        console.info(
           `[useFormGql ${getOperationName(document)}] skipped submission, no dirty fields`,
         )
         await onValid(formValues, event)
@@ -173,7 +174,7 @@ export function useFormGql<Q, V extends FieldValues>(
         if (isApolloError(onBeforeSubmitError)) {
           returnedError.current = onBeforeSubmitError
         } else {
-          console.log(
+          console.info(
             'A non ApolloError was thrown during the onBeforeSubmit handler.',
             onBeforeSubmitError,
           )
@@ -209,7 +210,7 @@ export function useFormGql<Q, V extends FieldValues>(
         if (isApolloError(onCompleteError)) {
           returnedError.current = onCompleteError
         } else {
-          console.log(
+          console.info(
             'A non ApolloError was thrown during the onComplete handler.',
             onCompleteError,
           )

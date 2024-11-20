@@ -1,16 +1,14 @@
 import { i18n } from '@lingui/core'
+import type { IconButtonProps, SxProps, TextFieldProps, Theme } from '@mui/material'
 import {
-  IconButtonProps,
-  SxProps,
   Box,
   // eslint-disable-next-line @typescript-eslint/no-restricted-imports
   TextField,
-  TextFieldProps,
   useForkRef,
-  Theme,
   Fab,
 } from '@mui/material'
-import { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
+import type { ChangeEvent, Ref } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
@@ -28,7 +26,7 @@ export type TextInputNumberProps = Omit<TextFieldProps, 'type'> & {
 }
 
 type OwnerState = { size?: 'small' | 'medium' }
-const name = 'TextInputNumber' as const
+const name = 'TextInputNumber'
 const parts = ['quantity', 'quantityInput', 'button'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 

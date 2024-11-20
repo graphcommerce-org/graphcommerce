@@ -1,4 +1,4 @@
-import { RichText } from '@graphcommerce/graphcms-ui'
+import { RichText } from '@graphcommerce/hygraph-ui'
 import { breakpointVal, HeroBanner } from '@graphcommerce/next-ui'
 import { Button } from '@mui/material'
 import { RowHeroBannerFragment } from './RowHeroBanner.gql'
@@ -40,7 +40,7 @@ export function RowHeroBanner(props: RowHeroBannerFragment) {
             ...breakpointVal('fontSize', 36, 82, theme.breakpoints.values),
             '& strong': {
               WebkitTextFillColor: 'transparent',
-              WebkitTextStroke: `1.2px #fff`,
+              WebkitTextStroke: '1.2px #fff',
             },
           }),
         }}

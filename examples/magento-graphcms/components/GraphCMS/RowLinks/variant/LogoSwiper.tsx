@@ -1,4 +1,4 @@
-import { Asset } from '@graphcommerce/graphcms-ui'
+import { Asset } from '@graphcommerce/hygraph-ui'
 import { VariantLogoSwiper } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
 import { RowLinksFragment } from '../RowLinks.gql'

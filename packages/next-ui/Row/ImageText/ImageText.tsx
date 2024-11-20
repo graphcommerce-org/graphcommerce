@@ -1,4 +1,5 @@
-import { Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
 import { breakpointVal } from '../../Styles/breakpointVal'
@@ -10,7 +11,7 @@ export type ImageTextProps = {
   sx?: SxProps<Theme>
 }
 
-const name = 'ImageText' as const
+const name = 'ImageText'
 const parts = ['root', 'wrapper', 'asset', 'copy'] as const
 const { classes } = extendableComponent(name, parts)
 

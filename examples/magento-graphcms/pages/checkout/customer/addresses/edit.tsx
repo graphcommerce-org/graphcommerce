@@ -76,7 +76,7 @@ function CheckoutCustomerAddressesEdit() {
             </div>
           )}
 
-          {address && !loading && <EditAddressForm onCompleteRoute='/checkout' address={address} />}
+          {address && !loading && <EditAddressForm address={address} />}
         </SectionContainer>
       </Container>
     </>

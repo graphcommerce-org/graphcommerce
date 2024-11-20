@@ -1,4 +1,5 @@
-import Link, { LinkProps as NextLinkProps } from 'next/link'
+import type { LinkProps as NextLinkProps } from 'next/link'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { forwardRef } from 'react'
 import { useStorefrontConfig } from '../hooks/useStorefrontConfig'

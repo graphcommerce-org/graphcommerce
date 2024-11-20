@@ -4,7 +4,8 @@ import { useIsSSR } from '@graphcommerce/next-ui/hooks/useIsSsr'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { getCssFlag, removeCssFlag, setCssFlag } from '@graphcommerce/next-ui/utils/cssFlags'
 import { useContext, useEffect } from 'react'
-import { QueryHookOptions, QueryResult, TypedDocumentNode, useQuery } from '../apollo'
+import type { QueryHookOptions, QueryResult, TypedDocumentNode } from '../apollo'
+import { useQuery } from '../apollo'
 import { InContextMaskContext } from '../components/InContextMask/InContextMask'
 import { useInContextInput } from './useInContextInput'
 

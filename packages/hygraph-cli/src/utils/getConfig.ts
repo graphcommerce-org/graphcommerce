@@ -1,4 +1,4 @@
-import { GraphCommerceConfig } from '@graphcommerce/next-config'
+import type { GraphCommerceConfig } from '@graphcommerce/next-config'
 
 export type HygraphConfig = {
   projectId: string

@@ -1,12 +1,13 @@
 import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/magento-cart'
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme, Chip } from '@mui/material'
-import { CouponFragment } from '../Api/Coupon.gql'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Chip } from '@mui/material'
+import type { CouponFragment } from '../Api/Coupon.gql'
 import { RemoveCouponFormDocument } from './RemoveCouponForm.gql'
 
 export type RemoveCouponFormProps = CouponFragment & { sx?: SxProps<Theme> }
 
-const name = 'RemoveCouponForm' as const
+const name = 'RemoveCouponForm'
 const parts = ['root', 'button'] as const
 const { classes } = extendableComponent(name, parts)
 

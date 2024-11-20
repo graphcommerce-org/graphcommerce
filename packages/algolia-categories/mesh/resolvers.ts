@@ -1,6 +1,7 @@
 import { getStoreConfig } from '@graphcommerce/algolia-products/mesh/getStoreConfig'
 import { type Resolvers } from '@graphcommerce/graphql-mesh'
-import { algoliaHitToMagentoCategory, CategoriesItemsItem } from './algoliaHitToMagentoCategory'
+import type { CategoriesItemsItem } from './algoliaHitToMagentoCategory'
+import { algoliaHitToMagentoCategory } from './algoliaHitToMagentoCategory'
 import { getCategoryResults } from './getCategoryResults'
 
 export const resolvers: Resolvers = {

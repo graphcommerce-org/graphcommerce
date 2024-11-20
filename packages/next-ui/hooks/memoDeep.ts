@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { equal } from '@wry/equality'
-import { FunctionComponent, memo, NamedExoticComponent } from 'react'
+import type { FunctionComponent, NamedExoticComponent } from 'react'
+import { memo } from 'react'
 
 /**
  * This is a deep comparison version of React's `memo` function.
@@ -23,7 +24,7 @@ export function memoDeep<P extends object>(
 
           if (ms < 0.2) return result
 
-          console.log(`memoDeep took more than 0.2ms`, {
+          console.warn('memoDeep took more than 0.2ms', {
             result,
             ms,
             Component,

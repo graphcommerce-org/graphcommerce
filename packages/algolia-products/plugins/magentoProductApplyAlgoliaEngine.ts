@@ -3,7 +3,7 @@ import type {
   productListApplyCategoryDefaults as productListApplyDefaults,
   categoryDefaultsToProductListFilters as defaultsToProductListFilters,
 } from '@graphcommerce/magento-product'
-import { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
+import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 import { applyEngineVariables } from '../utils/applyEngineVariable'
 
 export const config: PluginConfig = {

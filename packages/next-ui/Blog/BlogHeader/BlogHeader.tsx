@@ -1,4 +1,5 @@
-import { Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
 import { breakpointVal } from '../../Styles/breakpointVal'
@@ -8,7 +9,7 @@ export type BlogHeaderProps = {
   asset?: React.ReactNode
 }
 
-const name = 'BlogHeader' as const
+const name = 'BlogHeader'
 const parts = ['header', 'asset'] as const
 const { classes } = extendableComponent(name, parts)
 
@@ -21,7 +22,7 @@ export function BlogHeader(props: BlogHeaderProps) {
       maxWidth='md'
       sx={[
         (theme) => ({
-          margin: `0 auto`,
+          margin: '0 auto',
           marginBottom: theme.spacings.md,
           '& img': {
             objectFit: 'cover',

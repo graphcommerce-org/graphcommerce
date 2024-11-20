@@ -1,4 +1,4 @@
-import { RichText } from '@graphcommerce/graphcms-ui'
+import { RichText } from '@graphcommerce/hygraph-ui'
 import { Image } from '@graphcommerce/image'
 import { ImageTextBoxed, responsiveVal } from '@graphcommerce/next-ui'
 import { Typography, useTheme } from '@mui/material'

@@ -1,13 +1,14 @@
 import { Money } from '@graphcommerce/magento-store'
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme } from '@mui/material'
-import { TextSwatchDataFragment } from './TextSwatchData.gql'
-import { SwatchDataProps } from './types'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
+import type { TextSwatchDataFragment } from './TextSwatchData.gql'
+import type { SwatchDataProps } from './types'
 
 type TextSwatchDataProps = TextSwatchDataFragment & SwatchDataProps & { sx?: SxProps<Theme> }
 
 type OwnerState = Pick<SwatchDataProps, 'size'>
-const name = 'TextSwatchData' as const
+const name = 'TextSwatchData'
 const parts = ['root', 'value', 'price', 'label', 'storeLabel', 'content'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 

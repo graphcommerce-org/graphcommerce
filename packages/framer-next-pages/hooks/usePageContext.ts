@@ -1,5 +1,6 @@
 import { useContext } from 'react'
-import { PageContext, pageContext } from '../context/pageContext'
+import type { PageContext } from '../context/pageContext'
+import { pageContext } from '../context/pageContext'
 
 export function usePageContext(): PageContext {
   return useContext(pageContext)

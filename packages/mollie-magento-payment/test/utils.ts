@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { waitForGraphQlResponse } from '@graphcommerce/graphql/test/apolloClient.fixture'
-import { Page, expect } from '@playwright/test'
+import type { Page } from '@playwright/test'
+import { expect } from '@playwright/test'
 import { MolliePaymentHandlerDocument } from '../components/MolliePaymentHandler/MolliePaymentHandler.gql'
 
 type Statuses = 'paid' | 'failed' | 'canceled' | 'open' | 'expired'

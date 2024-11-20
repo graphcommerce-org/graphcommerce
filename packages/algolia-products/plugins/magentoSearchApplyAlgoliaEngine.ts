@@ -3,7 +3,7 @@ import type {
   productListApplySearchDefaults as productListApplyDefaults,
   searchDefaultsToProductListFilters as defaultsToProductListFilters,
 } from '@graphcommerce/magento-search'
-import { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
+import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 import { applyEngineVariables } from '../utils/applyEngineVariable'
 
 export const config: PluginConfig = {

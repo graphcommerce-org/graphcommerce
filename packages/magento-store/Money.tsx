@@ -1,6 +1,7 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { CurrencyFormat, CurrencyFormatProps } from '@graphcommerce/next-ui'
-import { MoneyFragment } from './Money.gql'
+import type { CurrencyFormatProps } from '@graphcommerce/next-ui'
+import { CurrencyFormat } from '@graphcommerce/next-ui'
+import type { MoneyFragment } from './Money.gql'
 import { StoreConfigDocument } from './StoreConfig.gql'
 
 type OverridableProps = {

@@ -1,11 +1,7 @@
 import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  useWishlistItems,
-  WishlistItemActionCard,
-  WishlistItemActionCardProps,
-} from '@graphcommerce/magento-wishlist'
+import { useWishlistItems, WishlistItemActionCard } from '@graphcommerce/magento-wishlist'
 import {
   GetStaticProps,
   iconHeart,

@@ -7,16 +7,17 @@ import {
   DateTimeFormat,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Box, SxProps, Theme, Typography, lighten } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Typography, lighten } from '@mui/material'
 import { AddressMultiLine } from '../AddressMultiLine/AddressMultiLine'
 import { TrackingLink } from '../TrackingLink/TrackingLink'
-import { OrderDetailsFragment } from './OrderDetails.gql'
+import type { OrderDetailsFragment } from './OrderDetails.gql'
 
 export type OrderDetailsProps = Partial<OrderDetailsFragment> & {
   sx?: SxProps<Theme>
 }
 
-const componentName = 'OrderDetails' as const
+const componentName = 'OrderDetails'
 const parts = [
   'sectionContainer',
   'orderDetailTitle',
@@ -70,9 +71,9 @@ export function OrderDetails(props: OrderDetailsProps) {
           (theme) => ({
             gridColumnGap: theme.spacings.xxl,
             gridRowGap: theme.spacings.md,
-            display: `grid`,
+            display: 'grid',
             [theme.breakpoints.up('sm')]: {
-              gridTemplateColumns: `1fr 1fr`,
+              gridTemplateColumns: '1fr 1fr',
               marginTop: theme.spacings.xxs,
             },
           }),

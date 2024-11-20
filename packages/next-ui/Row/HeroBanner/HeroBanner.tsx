@@ -1,5 +1,6 @@
 import { clientSize } from '@graphcommerce/framer-utils'
-import { ContainerProps, Box, styled, Theme, SxProps } from '@mui/material'
+import type { ContainerProps, Theme, SxProps } from '@mui/material'
+import { Box, styled } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useScrollY } from '../../Layout/hooks/useScrollY'
@@ -13,7 +14,7 @@ export type HeroBannerProps = ContainerProps & {
   sx?: SxProps<Theme>
 }
 
-const compName = 'HeroBanner' as const
+const compName = 'HeroBanner'
 const parts = ['root', 'wrapper', 'copy', 'asset', 'animated', 'video'] as const
 const { classes } = extendableComponent(compName, parts)
 

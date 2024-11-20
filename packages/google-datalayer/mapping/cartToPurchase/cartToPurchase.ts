@@ -1,5 +1,6 @@
-import { cartToViewCart, ViewCart } from '../cartToViewCart/cartToViewCart'
-import { Cart_PurchaseEventFragment } from './Cart_PurchaseEvent.gql'
+import type { ViewCart } from '../cartToViewCart/cartToViewCart'
+import { cartToViewCart } from '../cartToViewCart/cartToViewCart'
+import type { Cart_PurchaseEventFragment } from './Cart_PurchaseEvent.gql'
 
 export type PurchaseOrRefund = ViewCart & {
   transaction_id: string

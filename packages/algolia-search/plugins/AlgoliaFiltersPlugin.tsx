@@ -1,5 +1,5 @@
-import { ProductFiltersProps } from '@graphcommerce/magento-product'
-import { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import type { ProductFiltersProps } from '@graphcommerce/magento-product'
+import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { AlgoliaFilters } from '../components/Filters/AlgoliaFilters'
 
 export const component = 'ProductListFilters'

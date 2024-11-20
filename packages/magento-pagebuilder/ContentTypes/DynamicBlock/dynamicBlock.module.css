@@ -1,8 +1,8 @@
 .root:empty {
-    display: none;
+  display: none;
 }
 
 .root_inline {
-    composes: root;
-    display: inline-block;
+  composes: root;
+  display: inline-block;
 }

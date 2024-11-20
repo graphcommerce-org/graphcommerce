@@ -3,12 +3,12 @@ import { categoryToBreadcrumbs } from '@graphcommerce/magento-category'
 import { Breadcrumbs } from '@graphcommerce/next-ui'
 import { BreadcrumbsJsonLd } from '@graphcommerce/next-ui/Breadcrumbs/BreadcrumbsJsonLd'
 import { jsonLdBreadcrumb } from '@graphcommerce/next-ui/Breadcrumbs/jsonLdBreadcrumb'
-import { BreadcrumbsProps } from '@mui/material'
+import type { BreadcrumbsProps } from '@mui/material'
 import { useRouter } from 'next/router'
-import { BreadcrumbList } from 'schema-dts'
+import type { BreadcrumbList } from 'schema-dts'
 import { productLink } from '../../hooks/useProductLink'
 import { productPageCategory } from '../ProductPageCategory/productPageCategory'
-import { ProductPageBreadcrumbFragment } from './ProductPageBreadcrumb.gql'
+import type { ProductPageBreadcrumbFragment } from './ProductPageBreadcrumb.gql'
 
 export type ProductPageBreadcrumbsProps = Omit<BreadcrumbsProps, 'children'> & {
   breadcrumbsAmount?: number

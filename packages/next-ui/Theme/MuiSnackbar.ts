@@ -1,4 +1,4 @@
-import { ComponentsVariants, Theme } from '@mui/material'
+import type { ComponentsVariants, Theme } from '@mui/material'
 
 type SnackbarVariants = NonNullable<ComponentsVariants<Theme>['MuiSnackbar']>
 

@@ -1,4 +1,5 @@
-import { ApolloCache, useApolloClient } from '@graphcommerce/graphql'
+import type { ApolloCache } from '@graphcommerce/graphql'
+import { useApolloClient } from '@graphcommerce/graphql'
 import { useCallback } from 'react'
 import { CurrentCompareUidDocument } from '../graphql'
 

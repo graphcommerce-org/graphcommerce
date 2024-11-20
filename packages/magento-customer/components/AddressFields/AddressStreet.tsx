@@ -1,7 +1,8 @@
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
-import { FieldValues, FieldPath } from '@graphcommerce/react-hook-form'
+import type { FieldValues, FieldPath } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { AddressFieldsOptions, useAddressFieldsForm } from './useAddressFieldsForm'
+import type { AddressFieldsOptions } from './useAddressFieldsForm'
+import { useAddressFieldsForm } from './useAddressFieldsForm'
 
 export function AddressStreet<
   TFieldValues extends FieldValues = FieldValues,

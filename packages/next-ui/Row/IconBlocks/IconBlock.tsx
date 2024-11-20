@@ -1,4 +1,5 @@
-import { Typography, Button, SxProps, Theme, Box, ButtonProps } from '@mui/material'
+import type { SxProps, Theme, ButtonProps } from '@mui/material'
+import { Typography, Button, Box } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
 
@@ -10,7 +11,7 @@ export type IconBlockProps = {
   sx?: SxProps<Theme>
 } & ButtonProps
 
-const name = 'IconBlock' as const
+const name = 'IconBlock'
 const parts = ['block', 'link', 'title'] as const
 const { classes } = extendableComponent(name, parts)
 

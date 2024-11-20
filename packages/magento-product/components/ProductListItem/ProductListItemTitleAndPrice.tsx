@@ -1,4 +1,5 @@
-import { Box, SxProps, Theme, Typography } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { productListPrice } from '../ProductListPrice'
 
 export type ProductListItemTitleAndPriceProps = {
@@ -23,8 +24,8 @@ export function ProductListItemTitleAndPrice(props: ProductListItemTitleAndPrice
           marginTop: theme.spacings.xs,
           columnGap: 1,
           gridTemplateAreas: {
-            xs: `"title title" "subtitle price"`,
-            md: `"title subtitle price"`,
+            xs: '"title title" "subtitle price"',
+            md: '"title subtitle price"',
           },
           gridTemplateColumns: { xs: 'unset', md: 'auto auto 1fr' },
           justifyContent: 'space-between',

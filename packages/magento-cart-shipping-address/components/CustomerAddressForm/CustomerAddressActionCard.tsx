@@ -1,5 +1,5 @@
-import { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
-import { CustomerAddressFragment } from '@graphcommerce/magento-customer/components/CreateCustomerAddressForm/CustomerAddress.gql'
+import type { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
+import type { CustomerAddressFragment } from '@graphcommerce/magento-customer/components/CreateCustomerAddressForm/CustomerAddress.gql'
 import { useFindCountry } from '@graphcommerce/magento-store'
 import { ActionCard, IconSvg, iconHome } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'

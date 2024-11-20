@@ -1,4 +1,4 @@
-import { GraphQLProviderProps } from '@graphcommerce/graphql'
+import type { GraphQLProviderProps } from '@graphcommerce/graphql'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { compareTypePolicies } from '../typePolicies'
 

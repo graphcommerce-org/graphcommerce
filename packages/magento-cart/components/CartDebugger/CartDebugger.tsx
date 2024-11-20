@@ -18,7 +18,7 @@ export function CartDebugger() {
             console.log('No customerToken available, nothing to break')
           } else {
             // eslint-disable-next-line no-console
-            console.log(`Changing current token to a random one`)
+            console.log('Changing current token to a random one')
             writeCartId(client.cache, `${Math.random().toString(36).slice(2)}random-cardId`)
           }
         }}

@@ -1,14 +1,7 @@
-import { useMemoObject } from '@graphcommerce/next-ui/hooks/useMemoObject'
+/* eslint-disable react/no-unused-prop-types */
 import { useEffect } from 'react'
-import {
-  FieldValues,
-  UseFormReturn,
-  Path,
-  FieldPath,
-  PathValue,
-  useWatch,
-  useFormState,
-} from 'react-hook-form'
+import type { FieldValues, UseFormReturn, Path, FieldPath, PathValue } from 'react-hook-form'
+import { useWatch, useFormState } from 'react-hook-form'
 
 export type UseFormPersistOptions<
   TFieldValues extends FieldValues = FieldValues,

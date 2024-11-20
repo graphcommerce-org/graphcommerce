@@ -1,7 +1,8 @@
 import { SelectElement } from '@graphcommerce/ecommerce-ui'
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { useScrollY } from '@graphcommerce/next-ui'
-import { Box, Container, FormControl, SxProps, Theme, useTheme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Container, FormControl, useTheme } from '@mui/material'
 import { useCompareList, useCompareListStyles } from '../hooks'
 import { useCompareForm } from './CompareListForm'
 

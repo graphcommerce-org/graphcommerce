@@ -1,4 +1,5 @@
-import { NumberFormat, NumberFormatProps } from './NumberFormat'
+import type { NumberFormatProps } from './NumberFormat'
+import { NumberFormat } from './NumberFormat'
 
 /**
  * https://tc39.es/ecma402/#table-sanctioned-single-unit-identifiers

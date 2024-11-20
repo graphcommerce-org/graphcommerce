@@ -1,9 +1,11 @@
-import { SearchFormProps } from '@graphcommerce/magento-search'
+import type { SearchFormProps } from '@graphcommerce/magento-search'
 import { Trans } from '@lingui/react'
 import { Box, debounce } from '@mui/material'
 import TextField from '@mui/material/TextField'
-import { ChangeEvent, useCallback, useEffect, useRef } from 'react'
-import { useHits, useSearchBox, UseSearchBoxProps } from 'react-instantsearch-hooks-web'
+import type { ChangeEvent } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
+import type { UseSearchBoxProps } from 'react-instantsearch-hooks-web'
+import { useHits, useSearchBox } from 'react-instantsearch-hooks-web'
 
 type SearchBoxProps = UseSearchBoxProps & SearchFormProps
 

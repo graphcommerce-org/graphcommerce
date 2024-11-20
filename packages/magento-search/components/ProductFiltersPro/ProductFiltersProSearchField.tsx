@@ -1,8 +1,9 @@
 import { IconSvg, iconSearch, showPageLoadIndicator } from '@graphcommerce/next-ui'
-import { Fab, FabProps } from '@mui/material'
+import type { FabProps } from '@mui/material'
+import { Fab } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { useMemo, useState } from 'react'
-import { ProductFiltersProSearchInputProps } from './ProductFiltersProSearchInput'
+import type { ProductFiltersProSearchInputProps } from './ProductFiltersProSearchInput'
 import { useSearchPageAndParam } from './useSearchPageAndParam'
 
 type ProductFiltersProSearchFieldProps = ProductFiltersProSearchInputProps & {

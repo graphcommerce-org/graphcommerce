@@ -1,14 +1,9 @@
 import { globalApolloClient } from '@graphcommerce/graphql'
-import {
-  ApolloCache,
-  ApolloLink,
-  fromPromise,
-  onError,
-  setContext,
-} from '@graphcommerce/graphql/apollo'
-import { ErrorCategory } from '@graphcommerce/magento-graphql'
-import { GraphQLFormattedError } from 'graphql'
-import { NextRouter } from 'next/router'
+import type { ApolloCache } from '@graphcommerce/graphql/apollo'
+import { ApolloLink, fromPromise, onError, setContext } from '@graphcommerce/graphql/apollo'
+import type { ErrorCategory } from '@graphcommerce/magento-graphql'
+import type { GraphQLFormattedError } from 'graphql'
+import type { NextRouter } from 'next/router'
 import { signOut } from '../components/SignOutForm/signOut'
 import { CustomerTokenDocument } from '../hooks'
 

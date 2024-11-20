@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "@ardatan/relay-compiler": "12.0.0",
-    "@graphql-codegen/plugin-helpers": "5.0.4"
+    "@graphql-codegen/plugin-helpers": "5.0.4",
+    "graphql": "^16.7.1"
   },
   "devDependencies": {
     "@types/relay-compiler": "8.0.4",
@@ -22,8 +23,7 @@
   },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.102",
-    "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.102",
-    "graphql": "^16.7.1"
+    "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.102"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslint": {

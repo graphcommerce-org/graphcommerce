@@ -1,6 +1,7 @@
 import { Box } from '@mui/material'
 import { forwardRef } from 'react'
-import { useNumberFormat, UseNumberFormatProps } from './useNumberFormat'
+import type { UseNumberFormatProps } from './useNumberFormat'
+import { useNumberFormat } from './useNumberFormat'
 
 export type NumberFormatProps = UseNumberFormatProps & {
   children: number | bigint | Intl.StringNumericLiteral

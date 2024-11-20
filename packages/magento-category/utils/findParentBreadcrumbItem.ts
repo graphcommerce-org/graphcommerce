@@ -1,5 +1,5 @@
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { CategoryBreadcrumbFragment } from '../components/CategoryBreadcrumb'
+import type { CategoryBreadcrumbFragment } from '../components/CategoryBreadcrumb'
 
 export function findParentBreadcrumbItem(
   category: CategoryBreadcrumbFragment | null | undefined,

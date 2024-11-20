@@ -1,6 +1,7 @@
 import { forwardRef } from 'react'
 import { relativeTimeFormatUnitAuto } from './relativeTimeFormatAutoUnit'
-import { UseRelativeTimeFormatterProps, useRelativeTimeFormat } from './useRelativeTimeFormat'
+import type { UseRelativeTimeFormatterProps } from './useRelativeTimeFormat'
+import { useRelativeTimeFormat } from './useRelativeTimeFormat'
 
 export type RelativeTimeFormatProps = {
   children: number

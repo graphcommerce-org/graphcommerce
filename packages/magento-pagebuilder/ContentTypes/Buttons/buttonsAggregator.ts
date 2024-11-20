@@ -1,5 +1,5 @@
 import { getAdvanced } from '../../utils'
-import { ButtonsContentType } from './types'
+import type { ButtonsContentType } from './types'
 
 export const buttonsAggregator: ButtonsContentType['configAggregator'] = (node) => ({
   isSameWidth: node.getAttribute('data-same-width') === 'true',

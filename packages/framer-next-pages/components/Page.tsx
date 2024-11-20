@@ -1,6 +1,6 @@
 import { dvh } from '@graphcommerce/framer-utils'
 import { m, useIsPresent } from 'framer-motion'
-import React, { HTMLAttributes } from 'react'
+import React from 'react'
 import type { PageItem } from '../types'
 
 export type PageProps = Pick<PageItem, 'routerKey'> & {

@@ -8,8 +8,9 @@ import {
   filterNonNullableKeys,
   NextLink,
 } from '@graphcommerce/next-ui'
-import { Badge, Box, Link, SxProps, Theme } from '@mui/material'
-import { CartItemFragment } from '../../Api/CartItem.gql'
+import type { SxProps, Theme } from '@mui/material'
+import { Badge, Box, Link } from '@mui/material'
+import type { CartItemFragment } from '../../Api/CartItem.gql'
 import { RemoveItemFromCartFab } from '../RemoveItemFromCart/RemoveItemFromCartFab'
 import { UpdateItemQuantity } from '../UpdateItemQuantity/UpdateItemQuantity'
 
@@ -21,7 +22,7 @@ export type CartItemProps = CartItemFragment & {
 } & OwnerState
 
 type OwnerState = { withOptions?: boolean }
-const compName = 'CartItem' as const
+const compName = 'CartItem'
 const parts = [
   'item',
   'picture',

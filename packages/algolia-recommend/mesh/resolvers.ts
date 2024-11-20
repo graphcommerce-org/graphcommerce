@@ -10,7 +10,7 @@ import type {
   ResolversParentTypes,
   ResolversTypes,
 } from '@graphcommerce/graphql-mesh'
-import {
+import type {
   GraphCommerceAlgoliaRecommendationLocation,
   InputMaybe,
   Maybe,
@@ -106,7 +106,7 @@ if (isEnabled(import.meta.graphCommerce.algolia.relatedProducts)) {
   productInterfaceTypes.forEach((productType) => {
     if (!resolvers[productType]) resolvers[productType] = {}
     resolvers[productType][fieldName] = {
-      selectionSet: `{ uid }`,
+      selectionSet: '{ uid }',
       resolve,
     }
   })
@@ -131,7 +131,7 @@ if (isEnabled(import.meta.graphCommerce.algolia.lookingSimilar)) {
   productInterfaceTypes.forEach((productType) => {
     if (!resolvers[productType]) resolvers[productType] = {}
     resolvers[productType][fieldName] = {
-      selectionSet: `{ uid }`,
+      selectionSet: '{ uid }',
       resolve,
     }
   })
@@ -156,7 +156,7 @@ if (isEnabled(import.meta.graphCommerce.algolia.frequentlyBoughtTogether)) {
 
   productInterfaceTypes.forEach((productType) => {
     if (!resolvers[productType]) resolvers[productType] = {}
-    resolvers[productType][fieldName] = { selectionSet: `{ uid }`, resolve }
+    resolvers[productType][fieldName] = { selectionSet: '{ uid }', resolve }
   })
 }
 
@@ -230,12 +230,12 @@ const together: ResolverFn<
 productInterfaceTypes.forEach((productType) => {
   if (!resolvers[productType]) resolvers[productType] = {}
 
-  resolvers[productType].algolia_looking_similar = { selectionSet: `{ uid }`, resolve: similar }
+  resolvers[productType].algolia_looking_similar = { selectionSet: '{ uid }', resolve: similar }
 
-  resolvers[productType].algolia_related_products = { selectionSet: `{ uid }`, resolve: related }
+  resolvers[productType].algolia_related_products = { selectionSet: '{ uid }', resolve: related }
 
   resolvers[productType].algolia_frequently_bought_together = {
-    selectionSet: `{ uid }`,
+    selectionSet: '{ uid }',
     resolve: together,
   }
 })

@@ -1,6 +1,7 @@
 import { SelectElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { FormRow } from '@graphcommerce/next-ui'
-import { assertFormGqlOperation, UseFormReturn } from '@graphcommerce/react-hook-form'
+import type { UseFormReturn } from '@graphcommerce/react-hook-form'
+import { assertFormGqlOperation } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports

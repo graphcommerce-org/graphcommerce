@@ -65,7 +65,7 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
           columnGap: { xs: theme.spacings.md, xl: theme.spacings.xxl },
           mb: theme.spacings.xl,
           gridTemplate: {
-            xs: `"title" "horizontalFilters" "count" "items" "pagination"`,
+            xs: '"title" "horizontalFilters" "count" "items" "pagination"',
             md: `
               "sidebar title"      auto
               "sidebar count"      auto

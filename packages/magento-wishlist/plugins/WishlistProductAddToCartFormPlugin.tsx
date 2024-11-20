@@ -1,9 +1,7 @@
 import { useCustomerSession } from '@graphcommerce/magento-customer'
-import {
-  useFormAddProductsToCart,
-  AddProductsToCartFormProps,
-} from '@graphcommerce/magento-product'
-import { InputMaybe, PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import type { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
+import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
+import type { InputMaybe, PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useWishlistItems } from '../hooks'
@@ -42,7 +40,7 @@ function WishlistUrlHandler() {
           ) || []
         : []
 
-    setValue(`cartItems.0.selected_options`, wishlistItemOptions)
+    setValue('cartItems.0.selected_options', wishlistItemOptions)
     setWishlistItemId(router.query.wishlistItemId as string)
     setIsInitialLoad(false)
   }, [

@@ -1,4 +1,5 @@
-import { LinearProgress, LinearProgressProps } from '@mui/material'
+import type { LinearProgressProps } from '@mui/material'
+import { LinearProgress } from '@mui/material'
 import { m, motionValue, useTransform } from 'framer-motion'
 import { useRouter } from 'next/router'
 import { forwardRef, useEffect, useState } from 'react'

@@ -6,8 +6,8 @@ import type {
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { equal } from '@wry/equality'
 import { useRouter } from 'next/router'
-import { ProductListParams } from './filterTypes'
-import { FilterTypes } from './getFilterTypes'
+import type { ProductListParams } from './filterTypes'
+import type { FilterTypes } from './getFilterTypes'
 
 export function parseParams(
   url: string,

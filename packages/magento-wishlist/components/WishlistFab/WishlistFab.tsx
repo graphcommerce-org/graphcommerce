@@ -1,13 +1,14 @@
-import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { iconHeart, DesktopHeaderBadge, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
+import type { BadgeProps, FabProps as FabPropsType, SxProps, Theme } from '@mui/material'
+import { Fab, NoSsr } from '@mui/material'
 import React from 'react'
 import { useWishlistEnabled, useWishlistItems } from '../../hooks'
 
 type WishlistFabContentProps = {
   icon?: React.ReactNode
   FabProps?: Omit<FabPropsType, 'children'>
+  BadgeProps?: BadgeProps
   sx?: SxProps<Theme>
   activeWishlist: boolean
 }
@@ -17,7 +18,7 @@ const parts = ['root'] as const
 const { classes } = extendableComponent(name, parts)
 
 function WishlistFabContent(props: WishlistFabContentProps) {
-  const { icon, FabProps, sx, activeWishlist } = props
+  const { icon, FabProps, BadgeProps, sx, activeWishlist } = props
 
   const wishlistIcon = icon ?? <IconSvg src={iconHeart} size='large' />
 
@@ -34,7 +35,7 @@ function WishlistFabContent(props: WishlistFabContentProps) {
     >
       <NoSsr fallback={wishlistIcon}>
         {activeWishlist ? (
-          <DesktopHeaderBadge color='primary' variant='dot' overlap='circular'>
+          <DesktopHeaderBadge color='primary' variant='dot' overlap='circular' {...BadgeProps}>
             {wishlistIcon}
           </DesktopHeaderBadge>
         ) : (

@@ -1,5 +1,5 @@
 import { isFormGqlOperation } from '../useFormGqlMutation'
-import { ComposedFormReducer, ComposedFormState } from './types'
+import type { ComposedFormReducer, ComposedFormState } from './types'
 
 function updateFormStateIfNecessary(state: ComposedFormState): ComposedFormState {
   const formEntries = Object.entries(state.forms)

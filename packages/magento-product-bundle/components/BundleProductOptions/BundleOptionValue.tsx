@@ -1,10 +1,11 @@
-import { ActionCardItemRenderProps, NumberFieldElement } from '@graphcommerce/ecommerce-ui'
+import type { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
+import { NumberFieldElement } from '@graphcommerce/ecommerce-ui'
 import { Image } from '@graphcommerce/image'
 import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import { responsiveVal, ActionCard, Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { BundleOptionValueProps } from './types'
+import type { BundleOptionValueProps } from './types'
 
 const swatchSizes = {
   small: responsiveVal(30, 40),
@@ -12,7 +13,7 @@ const swatchSizes = {
   large: responsiveVal(50, 80),
 }
 
-export const BundleOptionValue = (props: ActionCardItemRenderProps<BundleOptionValueProps>) => {
+export function BundleOptionValue(props: ActionCardItemRenderProps<BundleOptionValueProps>) {
   const {
     selected,
     idx,

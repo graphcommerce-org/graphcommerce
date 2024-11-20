@@ -1,8 +1,8 @@
-import { ProductListItemProps } from '@graphcommerce/magento-product'
+import type { ProductListItemProps } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { Box } from '@mui/material'
 import { CompareProductToggle } from '../components'
-import { CompareProductIdInternalFragment } from '../graphql'
+import type { CompareProductIdInternalFragment } from '../graphql'
 
 export const config: PluginConfig = {
   type: 'component',

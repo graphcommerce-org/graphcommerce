@@ -1,4 +1,4 @@
-import { GraphCommerceConfig } from '../../src/generated/config'
+import type { GraphCommerceConfig } from '../../src/generated/config'
 import { findPlugins } from '../../src/interceptors/findPlugins'
 
 const projectRoot = `${process.cwd()}/examples/magento-graphcms`
@@ -17,7 +17,7 @@ it('finds plugins', () => {
   const disabled = plugins.filter((p) => !p.enabled)
   const enabled = plugins.filter((p) => p.enabled)
 
-  expect(errors).toMatchInlineSnapshot(`[]`)
+  expect(errors).toMatchInlineSnapshot('[]')
 
   expect(enabled).toMatchInlineSnapshot(`
     [
@@ -80,13 +80,13 @@ it('finds plugins', () => {
         "sourceExport": "hygraphPageContent",
         "sourceModule": "@graphcommerce/hygraph-dynamic-rows/plugins/hygraphDynamicRowsPageContent",
         "targetExport": "hygraphPageContent",
-        "targetModule": "@graphcommerce/graphcms-ui",
+        "targetModule": "@graphcommerce/hygraph-ui",
         "type": "function",
       },
       {
         "enabled": true,
         "sourceExport": "previewModeDefaults",
-        "sourceModule": "@graphcommerce/graphcms-ui/plugins/hygraphPreviewModeDefaults",
+        "sourceModule": "@graphcommerce/hygraph-ui/plugins/hygraphPreviewModeDefaults",
         "targetExport": "previewModeDefaults",
         "targetModule": "@graphcommerce/ecommerce-ui",
         "type": "function",
@@ -94,7 +94,7 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "sourceExport": "graphqlConfig",
-        "sourceModule": "@graphcommerce/graphcms-ui/plugins/hygraphGraphqlConfig",
+        "sourceModule": "@graphcommerce/hygraph-ui/plugins/hygraphGraphqlConfig",
         "targetExport": "graphqlConfig",
         "targetModule": "@graphcommerce/graphql",
         "type": "function",
@@ -102,7 +102,7 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "sourceExport": "PreviewModeToolbar",
-        "sourceModule": "@graphcommerce/graphcms-ui/plugins/HygraphPreviewModeToolbar",
+        "sourceModule": "@graphcommerce/hygraph-ui/plugins/HygraphPreviewModeToolbar",
         "targetExport": "PreviewModeToolbar",
         "targetModule": "@graphcommerce/ecommerce-ui",
         "type": "component",

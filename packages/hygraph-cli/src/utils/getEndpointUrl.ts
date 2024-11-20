@@ -1,6 +1,6 @@
-import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
+import type { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import gql from 'graphql-tag'
-import { HygraphConfig } from './getConfig'
+import type { HygraphConfig } from './getConfig'
 
 export async function getEnvironment(
   client: ApolloClient<NormalizedCacheObject>,

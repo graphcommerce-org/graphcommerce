@@ -1,10 +1,10 @@
-import { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
+import type { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart/hooks'
 import { Money } from '@graphcommerce/magento-store'
 import { ActionCard } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button, Chip } from '@mui/material'
-import { AvailableShippingMethodFragment } from '../../AvailableShippingMethod/AvailableShippingMethod.gql'
+import type { AvailableShippingMethodFragment } from '../../AvailableShippingMethod/AvailableShippingMethod.gql'
 
 type ShippingMethodActionCardProps = ActionCardItemRenderProps<
   AvailableShippingMethodFragment | null | undefined

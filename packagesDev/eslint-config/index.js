@@ -4,22 +4,11 @@ module.exports = {
     es2022: true,
     node: true,
   },
-  extends: [
-    'airbnb',
-    'airbnb-typescript',
-    'airbnb/hooks',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    'plugin:@next/eslint-plugin-next/recommended',
-    'plugin:import/recommended',
-    'plugin:import/typescript',
-    'prettier',
-  ],
+  extends: ['airbnb', 'plugin:import/recommended', 'prettier'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
   },
-  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -27,7 +16,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', '@next/eslint-plugin-next'],
+  plugins: ['react', '@next/eslint-plugin-next'],
   rules: {
     // eslint
     'default-case': 'off',
@@ -94,69 +83,93 @@ module.exports = {
     ],
     'react/self-closing-comp': ['warn'],
     'react/jsx-no-duplicate-props': ['error', { ignoreCase: false }],
-    'react/function-component-definition': 'off',
-
-    // typescript
-    // '@typescript-eslint/consistent-type-imports': 'error',
-    '@typescript-eslint/indent': 'off',
-    '@typescript-eslint/semi': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-unsafe-assignment': 'off',
-    '@typescript-eslint/no-unsafe-call': 'off',
-    '@typescript-eslint/no-unsafe-member-access': 'off',
-    '@typescript-eslint/no-unsafe-return': 'off',
-    '@typescript-eslint/restrict-template-expressions': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/naming-convention': 'off',
-    '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
-    '@typescript-eslint/no-unbound-method': 'off',
-    '@typescript-eslint/no-restricted-imports': [
-      'warn',
+    'react/function-component-definition': [
+      'error',
       {
-        paths: [
-          {
-            name: 'next/image',
-            message: "Please use `import { Image } from '@graphcommerce/image'` instead.",
-          },
-          {
-            name: '@mui/system',
-            message: "Please use `@mui/material'` instead.",
-          },
-          {
-            name: '@mui/material',
-            importNames: [
-              'Autocomplete',
-              'Checkbox',
-              'Radio',
-              'Select',
-              'Slider',
-              'Switch',
-              'TextField',
-              'ToggleButtonGroup',
-            ],
-            message: `Please use \`import { SelectElement, TextFieldElement, etc } from '@graphcommerce/ecommerce-ui'\` for usage in forms. https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/ecommerce-ui/components/FormComponents You can add '// eslint-disable-next-line @typescript-eslint/no-restricted-imports' comment if you're sure you want to use it.`,
-          },
-          {
-            name: '@mui/material',
-            importNames: ['useMediaQuery'],
-            message: `useMediaQuery can cause large CLS/LCP issues when used to render a specific UI on a breakpoint. See https://mui.com/system/display/#hiding-elements for alternatives. You can add '// eslint-disable-next-line @typescript-eslint/no-restricted-imports' comment if you're sure you want to use it.`,
-          },
-          {
-            name: '@emotion/react',
-            importNames: ['Theme', 'GlobalProps', 'ThemeContext'],
-            message: 'Import from @mui/material instead of @emotion/react.',
-          },
-        ],
-        patterns: [
-          {
-            group: ['*.interceptor'],
-            message: 'Importing *.interceptor is NOT allowed',
-          },
-        ],
+        namedComponents: 'function-declaration',
+        unnamedComponents: 'arrow-function',
       },
     ],
   },
   overrides: [
+    // TypeScript files
+    {
+      files: ['*.ts', '*.tsx'],
+      extends: [
+        'airbnb-typescript',
+        'airbnb/hooks',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'plugin:import/typescript',
+      ],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: ['./tsconfig.json'],
+      },
+      plugins: ['@typescript-eslint'],
+      rules: {
+        '@typescript-eslint/indent': 'off',
+        '@typescript-eslint/semi': 'off',
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/no-unsafe-assignment': 'off',
+        '@typescript-eslint/no-unsafe-call': 'off',
+        '@typescript-eslint/no-unsafe-member-access': 'off',
+        '@typescript-eslint/no-unsafe-return': 'off',
+        '@typescript-eslint/restrict-template-expressions': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        '@typescript-eslint/naming-convention': 'off',
+        '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
+        '@typescript-eslint/no-unbound-method': 'off',
+        '@typescript-eslint/no-restricted-imports': [
+          'warn',
+          {
+            paths: [
+              {
+                name: 'next/image',
+                message: "Please use `import { Image } from '@graphcommerce/image'` instead.",
+              },
+              {
+                name: '@mui/system',
+                message: "Please use `@mui/material'` instead.",
+              },
+              {
+                name: '@mui/material',
+                importNames: [
+                  'Autocomplete',
+                  'Checkbox',
+                  'Radio',
+                  'Select',
+                  'Slider',
+                  'Switch',
+                  'TextField',
+                  'ToggleButtonGroup',
+                ],
+                message: `Please use \`import { SelectElement, TextFieldElement, etc } from '@graphcommerce/ecommerce-ui'\` for usage in forms. https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/ecommerce-ui/components/FormComponents You can add '// eslint-disable-next-line @typescript-eslint/no-restricted-imports' comment if you're sure you want to use it.`,
+              },
+              {
+                name: '@mui/material',
+                importNames: ['useMediaQuery'],
+                message: `useMediaQuery can cause large CLS/LCP issues when used to render a specific UI on a breakpoint. See https://mui.com/system/display/#hiding-elements for alternatives. You can add '// eslint-disable-next-line @typescript-eslint/no-restricted-imports' comment if you're sure you want to use it.`,
+              },
+              {
+                name: '@emotion/react',
+                importNames: ['Theme', 'GlobalProps', 'ThemeContext'],
+                message: 'Import from @mui/material instead of @emotion/react.',
+              },
+            ],
+            patterns: [
+              {
+                group: ['*.interceptor'],
+                message: 'Importing *.interceptor is NOT allowed',
+              },
+            ],
+          },
+        ],
+        '@typescript-eslint/consistent-type-imports': 'error',
+        'import/no-duplicates': 'off',
+        '@typescript-eslint/no-duplicate-imports': ['error'],
+      },
+    },
     {
       files: ['*.tsx'],
       rules: { 'import/no-default-export': ['error'] },
@@ -183,6 +196,14 @@ module.exports = {
       files: ['**/*.spec.ts', '**/*.spec.tsx'],
       env: {
         jest: true,
+      },
+    },
+    // JavaScript files override
+    {
+      files: ['*.js', '*.jsx', '*.mjs'],
+      extends: ['airbnb', 'airbnb/hooks', 'plugin:import/recommended', 'prettier'],
+      rules: {
+        semi: 'off',
       },
     },
   ],

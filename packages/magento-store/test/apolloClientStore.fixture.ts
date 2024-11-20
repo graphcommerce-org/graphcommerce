@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-empty-pattern */
-import { ApolloClient, NormalizedCacheObject, InMemoryCache } from '@graphcommerce/graphql'
+import type { NormalizedCacheObject } from '@graphcommerce/graphql'
+import { ApolloClient, InMemoryCache } from '@graphcommerce/graphql'
 import { test as base } from '@playwright/test'
 import { localeToStore } from '../localeToStore'
 

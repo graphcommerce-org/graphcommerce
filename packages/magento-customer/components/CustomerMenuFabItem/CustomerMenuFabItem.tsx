@@ -1,8 +1,11 @@
 import { MenuFabSecondaryItem, iconPerson, IconSvg } from '@graphcommerce/next-ui'
-import { Badge, NoSsr, SxProps, Theme } from '@mui/material'
-import React, { MouseEventHandler } from 'react'
+import type { SxProps, Theme } from '@mui/material'
+import { Badge, NoSsr } from '@mui/material'
+import type { MouseEventHandler } from 'react'
+import React from 'react'
 import { useCustomerAccountCanSignIn } from '../../hooks'
-import { useCustomerSession, UseCustomerSessionReturn } from '../../hooks/useCustomerSession'
+import type { UseCustomerSessionReturn } from '../../hooks/useCustomerSession'
+import { useCustomerSession } from '../../hooks/useCustomerSession'
 
 type CustomerMenuFabItemProps = {
   icon?: React.ReactNode

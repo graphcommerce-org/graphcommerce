@@ -1,8 +1,9 @@
-import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Link, Typography } from '@mui/material'
 import React from 'react'
+import { DateFormat } from '../../Intl'
 import { extendableComponent } from '../../Styles'
 import { breakpointVal } from '../../Styles/breakpointVal'
-import { DateFormat } from '../../Intl'
 
 export type BlogListItemProps = {
   asset: React.ReactNode
@@ -12,7 +13,7 @@ export type BlogListItemProps = {
   sx?: SxProps<Theme>
 }
 
-const name = 'BlogListItem' as const
+const name = 'BlogListItem'
 const parts = ['item', 'date', 'asset', 'title'] as const
 const { classes } = extendableComponent(name, parts)
 
@@ -25,7 +26,7 @@ export function BlogListItem(props: BlogListItemProps) {
       sx={[
         (theme) => ({
           display: 'grid',
-          gridTemplateRows: `auto auto auto`,
+          gridTemplateRows: 'auto auto auto',
           alignContent: 'start',
           color: theme.palette.text.primary,
           gap: theme.spacings.xxs,

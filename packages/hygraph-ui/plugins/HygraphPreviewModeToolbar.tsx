@@ -5,7 +5,8 @@ import {
   previewModeDefaults,
   useWatch,
 } from '@graphcommerce/ecommerce-ui'
-import { TypedDocumentNode, gql, useQuery } from '@graphcommerce/graphql'
+import type { TypedDocumentNode } from '@graphcommerce/graphql'
+import { gql, useQuery } from '@graphcommerce/graphql'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import React, { useMemo } from 'react'
@@ -72,7 +73,7 @@ const HygraphConfig = React.memo(() => {
   )
 })
 
-export const PreviewModeToolbar = (props: PluginProps<PreviewModeToolbarProps>) => {
+export function PreviewModeToolbar(props: PluginProps<PreviewModeToolbarProps>) {
   const { Prev, ...rest } = props
   return (
     <>

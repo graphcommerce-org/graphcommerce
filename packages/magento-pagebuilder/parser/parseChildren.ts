@@ -1,5 +1,5 @@
 import { JSDOM } from 'jsdom'
-import { ContentTypeConfigChildren } from '../types'
+import type { ContentTypeConfigChildren } from '../types'
 import { isHTMLElement } from '../utils'
 import { convertToInlineStyles, createContentTypeObject, walk } from './parser'
 

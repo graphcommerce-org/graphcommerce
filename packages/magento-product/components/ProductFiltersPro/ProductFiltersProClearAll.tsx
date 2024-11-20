@@ -1,7 +1,7 @@
 import { Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme } from '@mui/material'
-import { ProductFiltersProAggregationsProps } from './ProductFiltersProAggregations'
+import type { SxProps, Theme } from '@mui/material'
+import type { ProductFiltersProAggregationsProps } from './ProductFiltersProAggregations'
 import { useProductFiltersProClearAllAction } from './useProductFiltersProClearAllAction'
 import { useProductFilterProHasFiltersApplied } from './useProductFiltersProHasFiltersApplied'
 

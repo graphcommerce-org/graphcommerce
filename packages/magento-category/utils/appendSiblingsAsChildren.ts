@@ -1,6 +1,6 @@
-import { ApolloClient } from '@graphcommerce/graphql'
-import { CategoryBreadcrumbFragment } from '../components/CategoryBreadcrumb'
-import { CategoryChildrenFragment } from '../components/CategoryChildren/CategoryChildren.gql'
+import type { ApolloClient } from '@graphcommerce/graphql'
+import type { CategoryBreadcrumbFragment } from '../components/CategoryBreadcrumb'
+import type { CategoryChildrenFragment } from '../components/CategoryChildren/CategoryChildren.gql'
 import { CategorySiblingsDocument } from '../components/CategoryChildren/CategorySiblings.gql'
 import { findParentBreadcrumbItem } from './findParentBreadcrumbItem'
 

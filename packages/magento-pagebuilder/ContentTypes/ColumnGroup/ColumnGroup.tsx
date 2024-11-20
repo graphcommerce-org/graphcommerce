@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import { ColumnGroupContentType } from './types'
+import type { ColumnGroupContentType } from './types'
 
 /**
  * Page Builder ColumnGroup component.

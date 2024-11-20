@@ -1,4 +1,5 @@
-import { Container, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Container } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../Styles'
 

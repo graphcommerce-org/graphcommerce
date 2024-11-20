@@ -1,4 +1,4 @@
-import { PaymentModule } from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentModule } from '@graphcommerce/magento-cart-payment-method'
 import { MSPPaymentActionCard } from './components/MSPPaymentActionCard/MSPPaymentActionCard'
 import { MSPPaymentHandler } from './components/MSPPaymentHandler/MSPPaymentHandler'
 import { MSPPaymentOptions } from './components/MSPPaymentOptions/MSPPaymentOptions'

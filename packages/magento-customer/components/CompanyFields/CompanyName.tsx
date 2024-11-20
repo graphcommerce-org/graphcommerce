@@ -1,6 +1,8 @@
-import { TextFieldElement, FieldValues, FieldPath } from '@graphcommerce/ecommerce-ui'
+import type { FieldValues, FieldPath } from '@graphcommerce/ecommerce-ui'
+import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { Trans } from '@lingui/react'
-import { CompanyFieldsOptions, useCompanyFieldsForm } from './useCompanyFieldsForm'
+import type { CompanyFieldsOptions } from './useCompanyFieldsForm'
+import { useCompanyFieldsForm } from './useCompanyFieldsForm'
 
 export function CompanyName<
   TFieldValues extends FieldValues = FieldValues,

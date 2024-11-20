@@ -1,7 +1,8 @@
 import { usePageContext } from '@graphcommerce/framer-next-pages'
 import Head from 'next/head'
 import type {} from '@graphcommerce/next-config'
-import { Canonical, useCanonical } from './canonicalize'
+import type { Canonical } from './canonicalize'
+import { useCanonical } from './canonicalize'
 
 // https://developers.google.com/search/docs/advanced/robots/robots_meta_tag#directives
 export type MetaRobots =

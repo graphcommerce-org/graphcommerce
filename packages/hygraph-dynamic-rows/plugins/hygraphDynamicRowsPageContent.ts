@@ -1,10 +1,10 @@
-import type { hygraphPageContent as hygraphPageContentType } from '@graphcommerce/graphcms-ui'
+import type { hygraphPageContent as hygraphPageContentType } from '@graphcommerce/hygraph-ui'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 import { hygraphDynamicRows } from '../lib/hygraphDynamicRows'
 
 export const config: PluginConfig = {
   type: 'function',
-  module: '@graphcommerce/graphcms-ui',
+  module: '@graphcommerce/hygraph-ui',
 }
 
 export const hygraphPageContent: FunctionPlugin<typeof hygraphPageContentType> = (

@@ -1,6 +1,6 @@
 import { algoliaUrlToUrlKey } from '@graphcommerce/algolia-products/mesh/algoliaHitToMagentoProduct'
-import { GetStoreConfigReturn } from '@graphcommerce/algolia-products/mesh/getStoreConfig'
-import {
+import type { GetStoreConfigReturn } from '@graphcommerce/algolia-products/mesh/getStoreConfig'
+import type {
   RequireFields,
   ResolverFn,
   ResolversParentTypes,

@@ -1,4 +1,5 @@
-import { Controller, FieldErrors, UseControllerProps } from '@graphcommerce/ecommerce-ui'
+import type { FieldErrors, UseControllerProps } from '@graphcommerce/ecommerce-ui'
+import { Controller } from '@graphcommerce/ecommerce-ui'
 import {
   RenderType,
   SectionHeader,
@@ -6,13 +7,15 @@ import {
   ToggleButtonGroup,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { BaseTextFieldProps, FormHelperText, SxProps } from '@mui/material'
+import type { BaseTextFieldProps, SxProps } from '@mui/material'
+import { FormHelperText } from '@mui/material'
 import React from 'react'
-import { Selected, useConfigurableContext } from '../ConfigurableContext/ConfigurableContext'
+import type { Selected } from '../ConfigurableContext/ConfigurableContext'
+import { useConfigurableContext } from '../ConfigurableContext/ConfigurableContext'
 import { ColorSwatchData } from '../Swatches/ColorSwatchData'
 import { ImageSwatchData } from '../Swatches/ImageSwatchData'
 import { TextSwatchData } from '../Swatches/TextSwatchData'
-import { SwatchTypeRenderer, SwatchSize } from '../Swatches/types'
+import type { SwatchTypeRenderer, SwatchSize } from '../Swatches/types'
 
 export type ConfigurableOptionsInputProps = {
   sku: string
@@ -27,7 +30,7 @@ export type ConfigurableOptionsInputProps = {
 
 const renderer: SwatchTypeRenderer = { TextSwatchData, ImageSwatchData, ColorSwatchData }
 
-const compName = 'ConfigurableOptionsInput' as const
+const compName = 'ConfigurableOptionsInput'
 const parts = ['buttonGroup', 'button', 'helperText'] as const
 const { classes } = extendableComponent(compName, parts)
 
@@ -76,7 +79,7 @@ export function ConfigurableOptionsInput(props: ConfigurableOptionsInputProps) {
                   exclusive
                   onChange={(_, val: string | number) => {
                     onChange(val)
-                    select((prev) => ({ ...prev, [attribute_code]: val } as Selected))
+                    select((prev) => ({ ...prev, [attribute_code]: val }) as Selected)
                   }}
                   ref={ref}
                   onBlur={onBlur}

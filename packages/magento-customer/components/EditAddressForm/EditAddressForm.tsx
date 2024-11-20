@@ -4,9 +4,9 @@ import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
-import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
+import type { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import { AddressFields } from '../AddressFields/AddressFields'
 import { CompanyFields } from '../CompanyFields'
 import { NameFields } from '../NameFields/NameFields'
@@ -15,10 +15,6 @@ import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
 type EditAddressFormProps = {
   address?: AccountAddressFragment
   sx?: SxProps<Theme>
-  /**
-   * @deprecated not used, can be safely removed.
-   */
-  onCompleteRoute?: string
 }
 
 export function EditAddressForm(props: EditAddressFormProps) {

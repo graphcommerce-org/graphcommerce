@@ -1,7 +1,8 @@
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import { useMemo } from 'react'
 import { useMemoObject } from '../../hooks/useMemoObject'
-import { useLocalesArgument, UseLocalesArgumentOptions } from '../useLocalesArgument'
+import type { UseLocalesArgumentOptions } from '../useLocalesArgument'
+import { useLocalesArgument } from '../useLocalesArgument'
 
 export type UseNumberFormatProps = {
   numberStyle: Intl.NumberFormatOptions['style']

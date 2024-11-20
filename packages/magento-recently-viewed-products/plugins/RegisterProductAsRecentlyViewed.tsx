@@ -1,8 +1,8 @@
 import { useApolloClient } from '@graphcommerce/graphql'
-import {
-  type AddToCartItemSelector,
+import type {
   ProductPageMetaFragment,
   ProductPageMetaProps,
+  AddToCartItemSelector,
 } from '@graphcommerce/magento-product'
 import { useConfigurableSelectedVariant } from '@graphcommerce/magento-product-configurable/hooks'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'

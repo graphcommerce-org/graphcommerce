@@ -1,4 +1,4 @@
-import { ProductLinkFragment } from './ProductLink.gql'
+import type { ProductLinkFragment } from './ProductLink.gql'
 
 export type ProductLinkProps = Omit<ProductLinkFragment, 'uid'>
 

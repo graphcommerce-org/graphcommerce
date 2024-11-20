@@ -1,9 +1,10 @@
-import { Box, ContainerProps } from '@mui/material'
+import type { ContainerProps } from '@mui/material'
+import { Box } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
 import { Row } from '../Row'
 
-const compName = 'ColumnThree' as const
+const compName = 'ColumnThree'
 const parts = ['root', 'colOne', 'colTwo', 'colThree'] as const
 const { classes } = extendableComponent(compName, parts)
 
@@ -25,7 +26,7 @@ export function ColumnThree(props: ColumnThreeProps) {
           display: 'grid',
           gridColumnGap: theme.spacings.md,
           gridRowGap: theme.spacings.lg,
-          gridTemplateColumns: `1fr`,
+          gridTemplateColumns: '1fr',
           gridTemplateAreas: `
           "one"
           "two"
@@ -43,14 +44,14 @@ export function ColumnThree(props: ColumnThreeProps) {
             },
           },
           [theme.breakpoints.up('sm')]: {
-            gridTemplateColumns: `1fr 1fr`,
+            gridTemplateColumns: '1fr 1fr',
             gridTemplateAreas: `
             "one two"
             "three three"
           `,
           },
           [theme.breakpoints.up('md')]: {
-            gridTemplateColumns: `1fr 1fr 1fr`,
+            gridTemplateColumns: '1fr 1fr 1fr',
             gridTemplateAreas: '"one two three"',
           },
         }),

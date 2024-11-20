@@ -1,13 +1,14 @@
 import { Image } from '@graphcommerce/image'
 import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme } from '@mui/material'
-import { ImageSwatchDataFragment } from './ImageSwatchData.gql'
-import { SwatchDataProps } from './types'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
+import type { ImageSwatchDataFragment } from './ImageSwatchData.gql'
+import type { SwatchDataProps } from './types'
 
 type ImageSwatchDataProps = ImageSwatchDataFragment & SwatchDataProps & { sx?: SxProps<Theme> }
 
 type OwnerState = Pick<SwatchDataProps, 'size'>
-const name = 'ColorSwatchData' as const
+const name = 'ColorSwatchData'
 const parts = ['root', 'image', 'label'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 

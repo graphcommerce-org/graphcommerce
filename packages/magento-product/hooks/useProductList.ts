@@ -1,26 +1,23 @@
 import { debounce } from '@graphcommerce/ecommerce-ui'
-import {
-  ApolloClient,
-  useQuery,
-  useInContextQuery,
-  getInContextInput,
-} from '@graphcommerce/graphql'
+import type { ApolloClient } from '@graphcommerce/graphql'
+import { useQuery, useInContextQuery, getInContextInput } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { showPageLoadIndicator } from '@graphcommerce/next-ui'
 import { useEventCallback } from '@mui/material'
-import {
+import type {
   FilterFormProviderProps,
-  ProductFiltersDocument,
   ProductFiltersQuery,
   ProductFiltersQueryVariables,
 } from '../components'
-import {
-  ProductListDocument,
+import { ProductFiltersDocument } from '../components'
+import type {
   ProductListQuery,
   ProductListQueryVariables,
 } from '../components/ProductList/ProductList.gql'
-import { CategoryDefaultFragment } from '../components/ProductListItems/CategoryDefault.gql'
-import { ProductListParams, toProductListParams } from '../components/ProductListItems/filterTypes'
+import { ProductListDocument } from '../components/ProductList/ProductList.gql'
+import type { CategoryDefaultFragment } from '../components/ProductListItems/CategoryDefault.gql'
+import type { ProductListParams } from '../components/ProductListItems/filterTypes'
+import { toProductListParams } from '../components/ProductListItems/filterTypes'
 import { useRouterFilterParams } from '../components/ProductListItems/filteredProductList'
 import {
   productListApplyCategoryDefaults,
@@ -37,7 +34,7 @@ export const prefetchProductList = debounce(
     variables: ProductListQueryVariables,
     filtersVariables: ProductFiltersQueryVariables,
     next: Next,
-    client: ApolloClient<any>,
+    client: ApolloClient<unknown>,
     shallow: boolean,
   ) => {
     if (!shallow) return next(shallow)

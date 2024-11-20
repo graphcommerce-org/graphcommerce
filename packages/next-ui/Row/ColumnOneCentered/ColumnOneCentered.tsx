@@ -1,4 +1,5 @@
-import { ContainerProps, styled } from '@mui/material'
+import type { ContainerProps } from '@mui/material'
+import { styled } from '@mui/material'
 import { ColumnOne } from '../ColumnOne/ColumnOne'
 
 const Wrapper = styled('div')(({ theme }) => ({
@@ -6,7 +7,7 @@ const Wrapper = styled('div')(({ theme }) => ({
   marginTop: theme.spacings.lg,
   textAlign: 'center',
   maxWidth: `calc(1050px + calc(${theme.spacings.md} * 2))`,
-  margin: `0 auto`,
+  margin: '0 auto',
   position: 'relative',
 }))
 

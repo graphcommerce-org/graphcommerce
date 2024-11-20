@@ -10,7 +10,8 @@ import { useSignInForm } from '../../hooks/useSignInForm'
 import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError/ApolloCustomerErrorSnackbar'
 import { NameFields } from '../NameFields/NameFields'
 import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
-import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
+import type { SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
+import { SignUpDocument } from './SignUp.gql'
 
 type SignUpFormProps = { email: string }
 

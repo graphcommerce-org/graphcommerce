@@ -1,4 +1,4 @@
-import { ProductListItemFragment } from '@graphcommerce/magento-product'
+import type { ProductListItemFragment } from '@graphcommerce/magento-product'
 import {
   IconSvg,
   iconHeart,
@@ -8,7 +8,8 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme, IconButton, Box, IconButtonProps, Button } from '@mui/material'
+import type { SxProps, Theme, IconButtonProps } from '@mui/material'
+import { IconButton, Box, Button } from '@mui/material'
 import React from 'react'
 import { useWishlistEnabled, useAddProductToWishlistAction } from '../../hooks'
 
@@ -17,7 +18,7 @@ export type ProductWishlistChipProps = ProductListItemFragment & {
   buttonProps?: IconButtonProps
 }
 
-const compName = 'ProductWishlistChipBase' as const
+const compName = 'ProductWishlistChipBase'
 const parts = ['root', 'wishlistIcon', 'wishlistIconActive', 'wishlistButton'] as const
 const { classes } = extendableComponent(compName, parts)
 

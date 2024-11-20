@@ -1,6 +1,6 @@
 import { verifyWebhookSignature } from '@hygraph/utils'
 import algoliasearch from 'algoliasearch'
-import { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 const algolia = algoliasearch(
   import.meta.graphCommerce.algoliaApplicationId,

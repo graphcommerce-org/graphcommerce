@@ -1,4 +1,5 @@
-import { ApolloErrorAlert, ApolloErrorAlertProps } from '@graphcommerce/ecommerce-ui'
+import type { ApolloErrorAlertProps } from '@graphcommerce/ecommerce-ui'
+import { ApolloErrorAlert } from '@graphcommerce/ecommerce-ui'
 import { Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { useAuthorizationErrorMasked } from './useAuthorizationErrorMasked'

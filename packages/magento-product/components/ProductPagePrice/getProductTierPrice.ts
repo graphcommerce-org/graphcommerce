@@ -1,5 +1,5 @@
-import { MoneyFragment } from '@graphcommerce/magento-store'
-import { ProductPagePriceFragment } from './ProductPagePrice.gql'
+import type { MoneyFragment } from '@graphcommerce/magento-store'
+import type { ProductPagePriceFragment } from './ProductPagePrice.gql'
 
 export function getProductTierPrice(
   price: Pick<ProductPagePriceFragment, 'price_tiers'>,

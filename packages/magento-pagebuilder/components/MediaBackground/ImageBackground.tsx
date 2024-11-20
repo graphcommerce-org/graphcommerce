@@ -1,7 +1,7 @@
 import { Image } from '@graphcommerce/image'
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import { extractImageBackgroundProps } from './extractImageBackgroundProps'
-import { ImageBackgroundProps } from './getImageBackgroundProps'
+import type { ImageBackgroundProps } from './getImageBackgroundProps'
 
 type ImageBackgroundComponentProps = ImageBackgroundProps & {
   sx?: SxProps<Theme>

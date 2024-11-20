@@ -1,14 +1,8 @@
-import { InputBaseComponentProps, TextField, TextFieldProps } from '@mui/material'
-import React, {
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
-import { ComponentEventHandler, ComponentFieldState, MollieFieldName } from '../../Mollie'
+import type { InputBaseComponentProps, TextFieldProps } from '@mui/material'
+import { TextField } from '@mui/material'
+import type { Dispatch, SetStateAction } from 'react'
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
+import type { ComponentEventHandler, ComponentFieldState, MollieFieldName } from '../../Mollie'
 import { useMollieContext } from './mollieContext'
 
 type MollieFieldContext = [ComponentFieldState, Dispatch<SetStateAction<ComponentFieldState>>]
