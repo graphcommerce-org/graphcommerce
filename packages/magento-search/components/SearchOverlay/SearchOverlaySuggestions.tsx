@@ -11,6 +11,7 @@ import { Trans } from '@lingui/macro'
 import { forwardRef } from 'react'
 import { SearchOverlayItem } from './SearchOverlayItem'
 import { useSearchOverlay } from './SearchOverlayProvider'
+import { useRecentSearches } from './useRecentSearches'
 
 type SearchOverlaySuggestionProps = ProductListSearchSuggestionFragment &
   React.ComponentPropsWithoutRef<typeof SearchOverlayItem>
@@ -19,9 +20,17 @@ export const SearchOverlaySuggestion = forwardRef<HTMLLIElement, SearchOverlaySu
   (props, ref) => {
     const { search, ...rest } = props
     const { form } = useProductFiltersPro()
+    const { updateRecentSearches } = useRecentSearches()
 
     return (
-      <SearchOverlayItem ref={ref} onClick={() => form.setValue('search', search)} {...rest}>
+      <SearchOverlayItem
+        ref={ref}
+        onClick={() => {
+          form.setValue('search', search)
+          updateRecentSearches(search)
+        }}
+        {...rest}
+      >
         {search}
       </SearchOverlayItem>
     )

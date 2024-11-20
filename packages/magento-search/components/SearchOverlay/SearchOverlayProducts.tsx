@@ -9,6 +9,7 @@ import { Link, SxProps, Theme } from '@mui/material'
 import { ComponentProps, useMemo, useRef } from 'react'
 import type { Entries } from 'type-fest'
 import { searchOverlayIsOpen, useSearchItem, useSearchOverlay } from './SearchOverlayProvider'
+import { SearchPlaceholder } from './SearchPlaceholder'
 
 type SearchOverlayProductsProps = {
   productListRenderer: ProductListItemRenderer
@@ -56,6 +57,7 @@ export function SearchOverlayProducts({ productListRenderer }: SearchOverlayProd
 
   return (
     <>
+      {!params.search && <SearchPlaceholder />}
       {noResult && (
         <SectionContainer labelLeft={<Trans>Products</Trans>}>
           <Trans>We couldn’t find any results for ‘{term}’</Trans>

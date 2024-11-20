@@ -2,10 +2,11 @@ import { InputBaseElement } from '@graphcommerce/ecommerce-ui'
 import { ProductListParams, useProductFiltersPro } from '@graphcommerce/magento-product'
 import { FormAutoSubmit } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/macro'
-import { BoxProps, SxProps, Theme, Box, InputBaseProps } from '@mui/material'
+import { BoxProps, SxProps, Theme, Box, InputBaseProps, debounce } from '@mui/material'
 import React, { forwardRef, memo } from 'react'
 import { useSearchResultRemaining } from '../ProductFiltersPro/ProductFiltersProSearchHeader'
 import { useSearchInput } from './SearchOverlayProvider'
+import { useRecentSearches } from './useRecentSearches'
 
 function SearchInputShadow(
   props: BoxProps<'div'> & { params: ProductListParams; inputSx?: SxProps<Theme> },
@@ -65,6 +66,7 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
 
     const { getRootProps } = useSearchInput({ rootRef })
     const { ref, selected, ...rootProps } = getRootProps()
+    const { updateRecentSearches } = useRecentSearches()
 
     return (
       <Box sx={{ display: 'grid', '& > *': { gridArea: '1 / 1' }, height: '100%' }}>
@@ -91,6 +93,9 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
           {...rest}
           {...rootProps}
           inputRef={ref}
+          onKeyUp={debounce(() => {
+            updateRecentSearches(form.getValues('search') ?? '')
+          }, 1000)}
         />
         <SearchInputShadow params={params} sx={sx} inputSx={inputSx} />
         <FormAutoSubmit control={form.control} name={['search']} submit={submit} leading />
