@@ -10,7 +10,7 @@ export function layoutMaxWidths(theme: Theme) {
           breakpoint: appLayoutMaxWidth,
           value: appLayoutMaxWidth && `${theme.breakpoints.values[appLayoutMaxWidth]}px`,
         }
-      : false
+      : undefined
 
   const contentMaxWidth =
     maxWidthSetting === 'CONTENT_ONLY' || maxWidthSetting === 'CONTAINED'
@@ -18,7 +18,7 @@ export function layoutMaxWidths(theme: Theme) {
           breakpoint: appContentMaxWidth,
           value: appContentMaxWidth && `${theme.breakpoints.values[appContentMaxWidth]}px`,
         }
-      : false
+      : undefined
 
   return { layoutMaxWidth, contentMaxWidth }
 }
