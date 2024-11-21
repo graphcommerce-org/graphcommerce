@@ -1,6 +1,7 @@
 import { RichText } from '@graphcommerce/graphcms-ui'
 import { Image } from '@graphcommerce/image'
 import { ImageText } from '@graphcommerce/next-ui'
+import { useLayoutMaxWidths } from '@graphcommerce/next-ui/LayoutDefault/components/layoutWidths'
 import { Typography, useTheme } from '@mui/material'
 import { RowProductFragment } from '../RowProduct.gql'
 import { ProductFeatureMediaFragment } from './ProductFeatureMedia.gql'
@@ -11,6 +12,7 @@ export function Feature(props: FeatureProps) {
   const { productCopy, title, media_gallery } = props
   const theme = useTheme()
   const item = media_gallery?.[2] ?? media_gallery?.[0]
+  const { contentMaxWidth } = useLayoutMaxWidths()
 
   if (!item) return null
 
@@ -24,10 +26,11 @@ export function Feature(props: FeatureProps) {
             width={1532}
             height={1678}
             src={item.url}
-            layout='fill'
             sizes={{
               0: '100vw',
-              [theme.breakpoints.values.md]: '50vw',
+              [theme.breakpoints.values.md]: contentMaxWidth
+                ? `calc(${contentMaxWidth.value} / 2)`
+                : '50vw',
             }}
           />
         )

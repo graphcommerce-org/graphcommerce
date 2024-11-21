@@ -27,6 +27,9 @@ _export(exports, {
     GraphCommerceDebugConfigSchema: function() {
         return GraphCommerceDebugConfigSchema;
     },
+    GraphCommerceLayoutConfigSchema: function() {
+        return GraphCommerceLayoutConfigSchema;
+    },
     GraphCommercePermissionsSchema: function() {
         return GraphCommercePermissionsSchema;
     },
@@ -35,6 +38,9 @@ _export(exports, {
     },
     MagentoConfigurableVariantValuesSchema: function() {
         return MagentoConfigurableVariantValuesSchema;
+    },
+    MaxWidthOptionsSchema: function() {
+        return MaxWidthOptionsSchema;
     },
     PaginationVariantSchema: function() {
         return PaginationVariantSchema;
@@ -78,6 +84,11 @@ const CustomerAccountPermissionsSchema = _zod.z.enum([
     'DISABLE_REGISTRATION',
     'ENABLED'
 ]);
+const MaxWidthOptionsSchema = _zod.z.enum([
+    'CONTAINED',
+    'CONTENT_ONLY',
+    'DEFAULT'
+]);
 const PaginationVariantSchema = _zod.z.enum([
     'COMPACT',
     'EXTENDED'
@@ -104,7 +115,6 @@ function GraphCommerceConfigSchema() {
         canonicalBaseUrl: _zod.z.string().min(1),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
         compare: _zod.z.boolean().nullish(),
-        compareVariant: CompareVariantSchema.default("ICON").nullish(),
         configurableVariantForSimple: _zod.z.boolean().default(false).nullish(),
         configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
         crossSellsHideCartItems: _zod.z.boolean().default(false).nullish(),
@@ -124,18 +134,16 @@ function GraphCommerceConfigSchema() {
         hygraphManagementApi: _zod.z.string().nullish(),
         hygraphProjectId: _zod.z.string().nullish(),
         hygraphWriteAccessToken: _zod.z.string().nullish(),
+        layout: GraphCommerceLayoutConfigSchema().nullish(),
         limitSsg: _zod.z.boolean().nullish(),
         magentoEndpoint: _zod.z.string().min(1),
         magentoVersion: _zod.z.number(),
         permissions: GraphCommercePermissionsSchema().nullish(),
         previewSecret: _zod.z.string().nullish(),
-        productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),
-        productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
         productRoute: _zod.z.string().nullish(),
         recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
-        sidebarGallery: SidebarGalleryConfigSchema().nullish(),
         storefront: _zod.z.array(GraphCommerceStorefrontConfigSchema()),
         wishlistHideForGuests: _zod.z.boolean().nullish(),
         wishlistShowFeedbackMessage: _zod.z.boolean().nullish()
@@ -147,6 +155,15 @@ function GraphCommerceDebugConfigSchema() {
         sessions: _zod.z.boolean().nullish(),
         webpackCircularDependencyPlugin: _zod.z.boolean().nullish(),
         webpackDuplicatesPlugin: _zod.z.boolean().nullish()
+    });
+}
+function GraphCommerceLayoutConfigSchema() {
+    return _zod.z.object({
+        compareVariant: CompareVariantSchema.default("ICON").nullish(),
+        maxWidth: MaxWidthOptionsSchema.default("DEFAULT").nullish(),
+        productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
+        productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
+        sidebarGallery: SidebarGalleryConfigSchema().nullish()
     });
 }
 function GraphCommercePermissionsSchema() {

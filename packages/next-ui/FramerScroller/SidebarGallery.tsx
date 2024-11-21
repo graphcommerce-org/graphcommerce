@@ -24,6 +24,7 @@ import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
 import { IconSvg } from '../IconSvg'
+import { useLayoutMaxWidths } from '../LayoutDefault/components/layoutWidths'
 import { Row } from '../Row/Row'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
@@ -39,7 +40,7 @@ type OwnerState = {
   sticky: boolean
   variantMd: SidebarGalleryVariant
 }
-const name = 'SidebarGallery' as const
+const name = 'SidebarGallery'
 const parts = [
   'row',
   'root',
@@ -140,6 +141,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   const headerHeight = `${theme.appShell.headerHeightSm} - ${theme.spacings.sm} * 2`
   const galleryMargin = theme.spacings.lg
+  const { contentMaxWidth } = useLayoutMaxWidths()
 
   const maxHeight = `calc(100vh - ${headerHeight} - ${galleryMargin})`
   const ratio = `calc(${height} / ${width} * 100%)`
@@ -148,7 +150,12 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   return (
     <ScrollerProvider scrollSnapAlign='center'>
-      <Row maxWidth={false} disableGutters className={classes.row} sx={sx}>
+      <Row
+        maxWidth={false}
+        disableGutters
+        className={classes.row}
+        sx={[{ maxWidth: 'unset' }, ...(Array.isArray(sx) ? sx : [sx])]}
+      >
         <MotionBox
           layout
           layoutDependency={zoomed}
@@ -172,6 +179,9 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
               '&:not(.variantMdOneColumn)': {
                 paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
+                paddingLeft: contentMaxWidth
+                  ? `calc((100% - ${contentMaxWidth.value}) / 2)`
+                  : 'unset',
               },
 
               '&.zoomed': {
@@ -182,7 +192,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
                   gridTemplateColumns: '1fr auto',
                 },
-                paddingRight: 0,
+                px: 0,
               },
             },
           ]}
@@ -356,7 +366,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   },
                 }}
               >
-                {import.meta.graphCommerce.sidebarGallery?.paginationVariant ===
+                {import.meta.graphCommerce.layout?.sidebarGallery?.paginationVariant ===
                 'THUMBNAILS_BOTTOM' ? (
                   <ScrollerThumbnails layoutDependency={zoomed} images={images} />
                 ) : (

@@ -19,6 +19,7 @@ import {
 } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
+import { layoutMaxWidths, useLayoutMaxWidths } from '../../LayoutDefault/components/layoutWidths'
 import { ExtendableComponent, extendableComponent } from '../../Styles'
 import { useMatchMedia } from '../../hooks/useMatchMedia'
 
@@ -136,6 +137,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   const overlayPaneScroll = useElementScroll(overlayPaneRef)
 
   const classes = withState({ variantSm, variantMd, sizeSm, sizeMd, justifySm, justifyMd })
+  const { layoutMaxWidth } = useLayoutMaxWidths()
 
   const match = useMatchMedia()
   const positions = useConstant(() => ({
@@ -543,6 +545,8 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
               },
               '&.sizeMdFloating.variantMdBottom': {
                 marginTop: `calc(${theme.page.vertical} * -1)`,
+                maxWidth: layoutMaxWidth?.value ?? 'unset',
+                mx: 'auto',
               },
             },
           })}

@@ -1,9 +1,11 @@
-extend input GraphCommerceConfig {
+extend input GraphCommerceLayoutConfig {
   """
   Configuration for the SidebarGallery component
   """
   sidebarGallery: SidebarGalleryConfig
+}
 
+extend input GraphCommerceConfig {
   """
   Configuration for the SidebarGallery component
   """

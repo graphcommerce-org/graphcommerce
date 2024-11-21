@@ -22,27 +22,24 @@ import {
   ProductFiltersProCategorySectionSearch,
 } from '@graphcommerce/magento-search'
 import { memoDeep, responsiveVal, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { useLayoutMaxWidths } from '@graphcommerce/next-ui/LayoutDefault/components/layoutWidths'
 import { Trans } from '@lingui/macro'
 import { Box, Container, Typography } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'
 import { ProductListLayoutProps } from './types'
 
 export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps) => {
-  const {
-    filters,
-    filterTypes,
-    params,
-    products,
-    handleSubmit,
-    category,
-    title,
-    menu,
-    maxWidth = false,
-  } = props
+  const { filters, filterTypes, params, products, handleSubmit, category, title, menu, maxWidth } =
+    props
 
   if (!params || !products?.items || !filterTypes) return null
   const { total_count, sort_fields, page_info } = products
-  const sidebarWidth = responsiveVal(200, 350, 960, 1920)
+
+  const { contentMaxWidth } = useLayoutMaxWidths()
+
+  const sidebarWidth = contentMaxWidth
+    ? responsiveVal(200, 300, 960, 1920)
+    : responsiveVal(200, 350, 960, 1920)
 
   return (
     <ProductFiltersPro
@@ -67,12 +64,15 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
       )}
 
       <Container
-        maxWidth={maxWidth}
+        maxWidth={maxWidth ?? contentMaxWidth?.breakpoint}
         sx={(theme) => ({
           display: 'grid',
           alignItems: 'start',
           rowGap: theme.spacings.md,
-          columnGap: { xs: theme.spacings.md, xl: theme.spacings.xxl },
+          columnGap: {
+            xs: theme.spacings.md,
+            xl: contentMaxWidth ? theme.spacings.xl : theme.spacings.xxl,
+          },
           mb: theme.spacings.xl,
           gridTemplate: {
             xs: `"title" "horizontalFilters" "count" "items" "pagination"`,
@@ -132,7 +132,7 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
               title={(params.search ? `Search ${params.search}` : title) ?? ''}
               columns={(theme) => {
                 const totalWidth = (spacing: string) =>
-                  `calc(100vw - (${theme.page.horizontal} * 2 + ${sidebarWidth} + ${theme.spacings[spacing]}))`
+                  `calc(${contentMaxWidth?.value ?? '100vw'} - ((${theme.page.horizontal} * 2) + ${sidebarWidth} + ${theme.spacings[spacing]}))`
                 return {
                   xs: { count: 2 },
                   md: { totalWidth: totalWidth('md'), count: 3 },

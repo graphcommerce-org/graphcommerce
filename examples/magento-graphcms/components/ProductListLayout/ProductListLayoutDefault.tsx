@@ -18,26 +18,19 @@ import {
 } from '@graphcommerce/magento-product'
 import { ProductFiltersProSearchTerm } from '@graphcommerce/magento-search'
 import { LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { useLayoutMaxWidths } from '@graphcommerce/next-ui/LayoutDefault/components/layoutWidths'
 import { Trans } from '@lingui/macro'
 import { Container, Typography } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'
 import { ProductListLayoutProps } from './types'
 
 export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps) => {
-  const {
-    id,
-    filters,
-    filterTypes,
-    params,
-    products,
-    title,
-    category,
-    maxWidth = false,
-    handleSubmit,
-  } = props
+  const { id, filters, filterTypes, params, products, title, category, maxWidth, handleSubmit } =
+    props
 
   if (!(params && products?.items && filterTypes)) return null
   const { total_count, sort_fields, page_info } = products
+  const { contentMaxWidth } = useLayoutMaxWidths()
 
   return (
     <ProductFiltersPro
@@ -61,7 +54,7 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
         />
       )}
       <Container
-        maxWidth={maxWidth}
+        maxWidth={maxWidth ?? contentMaxWidth?.breakpoint}
         sx={(theme) => ({
           display: 'grid',
           rowGap: theme.spacings.sm,
@@ -131,7 +124,7 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
         </ProductListFiltersContainer>
       </StickyBelowHeader>
 
-      <Container maxWidth={maxWidth}>
+      <Container maxWidth={maxWidth ?? contentMaxWidth?.breakpoint}>
         <ProductListCount total_count={total_count} />
         {products.items.length <= 0 ? (
           <ProductFiltersProNoResults />

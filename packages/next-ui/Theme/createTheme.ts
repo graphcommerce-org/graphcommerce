@@ -1,3 +1,5 @@
+import { Breakpoint } from '@mui/material'
+
 export {}
 
 declare module '@mui/material/styles/createPalette' {
@@ -26,6 +28,8 @@ declare module '@mui/material/styles/createTheme' {
       headerHeightMd: string
       appBarHeightMd: string
       appBarInnerHeightMd: string
+      layoutMaxWidth: false | Breakpoint | undefined
+      contentMaxWidth: false | Breakpoint | undefined
     }
 
     // todo: should be cleaned up to be compatible with the default mui-styles
@@ -50,6 +54,8 @@ declare module '@mui/material/styles/createTheme' {
       headerHeightMd: string
       appBarHeightMd: string
       appBarInnerHeightMd: string
+      layoutMaxWidth: false | Breakpoint | undefined
+      contentMaxWidth: false | Breakpoint | undefined
     }
 
     // todo: should be cleaned up to be compatible with the default mui-styles

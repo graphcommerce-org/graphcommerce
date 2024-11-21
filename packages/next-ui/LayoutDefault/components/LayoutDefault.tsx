@@ -1,6 +1,6 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { dvh } from '@graphcommerce/framer-utils'
-import { Box, SxProps, Theme } from '@mui/material'
+import { Box, Container, SxProps, Theme } from '@mui/material'
 import { useTransform, useScroll } from 'framer-motion'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { SkipLink } from '../../SkipLink/SkipLink'
@@ -48,7 +48,6 @@ export function LayoutDefault(props: LayoutDefaultProps) {
   )
 
   const classes = withState({ noSticky })
-
   const fabIconSize = useFabSize('responsive')
 
   return (
@@ -71,7 +70,8 @@ export function LayoutDefault(props: LayoutDefaultProps) {
       <SkipLink />
       <LayoutProvider scroll={scrollYOffset}>
         {beforeHeader}
-        <Box
+        <Container
+          maxWidth={false}
           component='header'
           className={classes.header}
           sx={(theme) => ({
@@ -86,7 +86,6 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             },
             [theme.breakpoints.up('md')]: {
               height: theme.appShell.headerHeightMd,
-              padding: `0 ${theme.page.horizontal} 0`,
               top: 0,
               display: 'flex',
               justifyContent: 'left',
@@ -101,9 +100,10 @@ export function LayoutDefault(props: LayoutDefaultProps) {
           })}
         >
           {header}
-        </Box>
+        </Container>
         {menuFab || cartFab ? (
-          <Box
+          <Container
+            maxWidth={false}
             className={classes.fabs}
             sx={(theme) => ({
               display: 'flex',
@@ -112,7 +112,6 @@ export function LayoutDefault(props: LayoutDefaultProps) {
               height: 0,
               zIndex: 'speedDial',
               [theme.breakpoints.up('sm')]: {
-                padding: `0 ${theme.page.horizontal}`,
                 position: 'sticky',
                 marginTop: `calc(${theme.appShell.headerHeightMd} * -1 - calc(${fabIconSize} / 2))`,
                 top: `calc(${theme.appShell.headerHeightMd} / 2 - (${fabIconSize} / 2))`,
@@ -144,7 +143,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
                 {cartFab}
               </Box>
             )}
-          </Box>
+          </Container>
         ) : (
           <div />
         )}

@@ -8,24 +8,58 @@ enum PaginationVariant {
   EXTENDED
 }
 
-extend input GraphCommerceConfig {
-  """
-  Product filters with better UI for mobile and desktop.
-  """
-  productFiltersPro: Boolean
+enum MaxWidthOptions {
+  DEFAULT
+  CONTENT_ONLY
+  CONTAINED
+}
 
+input GraphCommerceLayoutConfig {
   """
-  Layout how the filters are rendered.
-  DEFAULT: Will be rendered as horzontal chips on desktop and mobile
-  SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
+  Specifies the layout for product filters.
+
+  DEFAULT: Horizontal chips on desktop and mobile
+  SIDEBAR: Sidebar on desktop, horizontal chips on mobile
+  Default: DEFAULT
   """
   productFiltersLayout: ProductFiltersLayout = DEFAULT
 
   """
+  Sets the maximum width for the layout. You can set the max width breakpoint in the theme.ts file
+  Tip: if you want to use pixels instead of breakpoints, change the width of the breakpoint.
+
+  DEFAULT: Page is full width
+  CONTENT_ONLY: Only content is contained
+  CONTAINED: Page is contained
+  Default: DEFAULT
+  """
+  maxWidth: MaxWidthOptions = DEFAULT
+
+  """
+  Pagination variant for the product listings.
+
+  COMPACT means: "< Page X of Y >"
+  EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
+  """
+  productListPaginationVariant: PaginationVariant = COMPACT
+}
+
+extend input GraphCommerceConfig {
+  """
+  Configures the layout settings.
+  """
+  layout: GraphCommerceLayoutConfig
+
+  """
+  Enables an improved UI for product filters on mobile and desktop.
+  """
+  productFiltersPro: Boolean
+
+  """
   By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
 
-  Default: '/p/'
-  Example: '/product/'
+    Default: '/p/'
+    Example: '/product/'
   """
   productRoute: String
 
@@ -42,12 +76,4 @@ extend input GraphCommerceConfig {
   Default: 'false'
   """
   crossSellsHideCartItems: Boolean = false
-
-  """
-  Pagination variant for the product listings.
-
-  COMPACT means: "< Page X of Y >"
-  EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
-  """
-  productListPaginationVariant: PaginationVariant = COMPACT
 }

@@ -133,11 +133,6 @@ When Magento's StoreConfig adds this value, this can be replaced.
 
 Use compare functionality
 
-#### compareVariant: CHECKBOX | ICON = `ICON`
-
-By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
-This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
-
 #### configurableVariantForSimple: boolean = `false`
 
 If a simple product is part of a Configurable product page, should the simple product be
@@ -284,6 +279,10 @@ GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
 yarn graphcommerce hygraph-migrate
 ```
 
+#### layout: [GraphCommerceLayoutConfig](#GraphCommerceLayoutConfig)
+
+Configures the layout settings.
+
 #### limitSsg: boolean
 
 Limit the static generation of SSG when building.
@@ -298,29 +297,16 @@ Allows the option to require login or completely disable certain sections of the
 
 To enable next.js' preview mode, configure the secret you'd like to use.
 
-#### productFiltersLayout: DEFAULT | SIDEBAR = `DEFAULT`
-
-Layout how the filters are rendered.
-DEFAULT: Will be rendered as horzontal chips on desktop and mobile
-SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
-
 #### productFiltersPro: boolean
 
-Product filters with better UI for mobile and desktop.
-
-#### productListPaginationVariant: COMPACT | EXTENDED = `COMPACT`
-
-Pagination variant for the product listings.
-
-COMPACT means: "< Page X of Y >"
-EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
+Enables an improved UI for product filters on mobile and desktop.
 
 #### productRoute: string
 
 By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
 
-Default: '/p/'
-Example: '/product/'
+  Default: '/p/'
+  Example: '/product/'
 
 #### recentlyViewedProducts: [RecentlyViewedProductsConfig](#RecentlyViewedProductsConfig)
 
@@ -330,10 +316,6 @@ Settings for recently viewed products
 
 Allow the site to be indexed by search engines.
 If false, the robots.txt file will be set to disallow all.
-
-#### sidebarGallery: [SidebarGalleryConfig](#SidebarGalleryConfig)
-
-Configuration for the SidebarGallery component
 
 #### wishlistHideForGuests: boolean
 
@@ -369,6 +351,42 @@ When updating packages it can happen that the same package is included with diff
 Issues that this can cause are:
 - The same package is included multiple times in the bundle, increasing the bundle size.
 - The Typescript types of the package are not compatible with each other, causing Typescript errors.
+
+### GraphCommerceLayoutConfig
+
+#### compareVariant: CHECKBOX | ICON = `ICON`
+
+By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
+This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
+
+#### maxWidth: CONTAINED | CONTENT_ONLY | DEFAULT = `DEFAULT`
+
+Sets the maximum width for the layout. You can set the max width breakpoint in the theme.ts file
+Tip: if you want to use pixels instead of breakpoints, change the width of the breakpoint.
+
+DEFAULT: Page is full width
+CONTENT_ONLY: Only content is contained
+CONTAINED: Page is contained
+Default: DEFAULT
+
+#### productFiltersLayout: DEFAULT | SIDEBAR = `DEFAULT`
+
+Specifies the layout for product filters.
+
+DEFAULT: Horizontal chips on desktop and mobile
+SIDEBAR: Sidebar on desktop, horizontal chips on mobile
+Default: DEFAULT
+
+#### productListPaginationVariant: COMPACT | EXTENDED = `COMPACT`
+
+Pagination variant for the product listings.
+
+COMPACT means: "< Page X of Y >"
+EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
+
+#### sidebarGallery: [SidebarGalleryConfig](#SidebarGalleryConfig)
+
+Configuration for the SidebarGallery component
 
 ### GraphCommercePermissions
 

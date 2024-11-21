@@ -17,7 +17,7 @@ import { ProductListItems } from '../ProductListItems'
 import { ProductListLayoutProps } from './types'
 
 export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps) => {
-  const { filters, filterTypes, params, products, title, category, maxWidth = false } = props
+  const { filters, filterTypes, params, products, title, category, maxWidth } = props
 
   if (!(params && products?.items && filterTypes)) return null
   const { total_count, sort_fields, page_info } = products

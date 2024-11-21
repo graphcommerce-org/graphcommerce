@@ -180,6 +180,12 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       headerHeightMd: '100px',
       appBarHeightMd: '80px',
       appBarInnerHeightMd: '46px',
+      layoutMaxWidth: import.meta.graphCommerce.layout?.maxWidth === 'CONTAINED' ? 'lg' : false,
+      contentMaxWidth:
+        import.meta.graphCommerce.layout?.maxWidth === 'CONTENT_ONLY' ||
+        import.meta.graphCommerce.layout?.maxWidth === 'CONTAINED'
+          ? 'lg'
+          : false,
     },
   })
 
@@ -209,6 +215,15 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
 
   MuiContainer: {
     variants: [
+      {
+        props: { maxWidth: false },
+        style: {
+          // When the site is using a maxWidth, we automatically limit all Containers to that maxWidth.
+          maxWidth: theme.appShell.contentMaxWidth
+            ? theme.breakpoints.values[theme.appShell.contentMaxWidth]
+            : undefined,
+        },
+      },
       {
         props: { disableGutters: false },
         style: {

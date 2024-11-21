@@ -1,5 +1,5 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Box, styled, SxProps, Theme } from '@mui/material'
+import { Box, Container, styled, SxProps, Theme } from '@mui/material'
 import { LayoutProps, m } from 'framer-motion'
 import React, { useRef } from 'react'
 import { extendableComponent } from '../../Styles'
@@ -104,20 +104,20 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
           ...(Array.isArray(sxBg) ? sxBg : [sxBg]),
         ]}
       />
-      <Box
+      <Container
+        maxWidth={false}
         className={classes.content}
         ref={ref}
         sx={[
           (theme) => ({
             position: 'absolute',
-            left: 0,
+            inset: 0,
             width: '100%',
             display: 'grid',
             gridTemplateAreas: `"left center right"`,
             gridTemplateColumns: '1fr auto 1fr',
             alignItems: 'center',
             gap: theme.page.horizontal,
-
             height: theme.appShell.headerHeightSm,
             px: theme.page.horizontal,
             [theme.breakpoints.up('md')]: {
@@ -133,14 +133,12 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
 
             '&.floatingSm': {
               [theme.breakpoints.down('md')]: {
-                px: theme.page.horizontal,
                 background: 'none',
                 pointerEvents: 'none',
               },
             },
             '&.floatingMd': {
               [theme.breakpoints.up('md')]: {
-                px: theme.page.horizontal,
                 background: 'none',
                 pointerEvents: 'none',
               },
@@ -243,7 +241,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             {divider}
           </Box>
         )}
-      </Box>
+      </Container>
     </>
   )
 }

@@ -66,11 +66,11 @@ function SearchResultPage(props: SearchResultProps) {
 
       <InContextMaskProvider mask={productList.mask}>
         {import.meta.graphCommerce.productFiltersPro &&
-          import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
+          import.meta.graphCommerce.layout?.productFiltersLayout === 'SIDEBAR' && (
             <ProductListLayoutSidebar {...productList} menu={menu} />
           )}
         {import.meta.graphCommerce.productFiltersPro &&
-          import.meta.graphCommerce.productFiltersLayout !== 'SIDEBAR' && (
+          import.meta.graphCommerce.layout?.productFiltersLayout !== 'SIDEBAR' && (
             <ProductListLayoutDefault {...productList} menu={menu} />
           )}
         {!import.meta.graphCommerce.productFiltersPro && (

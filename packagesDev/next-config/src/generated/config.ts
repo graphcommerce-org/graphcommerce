@@ -134,11 +134,6 @@ export type GraphCommerceConfig = {
   /** Use compare functionality */
   compare?: InputMaybe<Scalars['Boolean']['input']>;
   /**
-   * By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
-   * This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
-   */
-  compareVariant?: InputMaybe<CompareVariant>;
-  /**
    * If a simple product is part of a Configurable product page, should the simple product be
    * rendered as a configured option of the configurable product page?
    *
@@ -284,6 +279,8 @@ export type GraphCommerceConfig = {
    * ```
    */
   hygraphWriteAccessToken?: InputMaybe<Scalars['String']['input']>;
+  /** Configures the layout settings. */
+  layout?: InputMaybe<GraphCommerceLayoutConfig>;
   /**
    * Limit the static generation of SSG when building.
    *
@@ -307,26 +304,13 @@ export type GraphCommerceConfig = {
   permissions?: InputMaybe<GraphCommercePermissions>;
   /** To enable next.js' preview mode, configure the secret you'd like to use. */
   previewSecret?: InputMaybe<Scalars['String']['input']>;
-  /**
-   * Layout how the filters are rendered.
-   * DEFAULT: Will be rendered as horzontal chips on desktop and mobile
-   * SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
-   */
-  productFiltersLayout?: InputMaybe<ProductFiltersLayout>;
-  /** Product filters with better UI for mobile and desktop. */
+  /** Enables an improved UI for product filters on mobile and desktop. */
   productFiltersPro?: InputMaybe<Scalars['Boolean']['input']>;
-  /**
-   * Pagination variant for the product listings.
-   *
-   * COMPACT means: "< Page X of Y >"
-   * EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
-   */
-  productListPaginationVariant?: InputMaybe<PaginationVariant>;
   /**
    * By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
    *
-   * Default: '/p/'
-   * Example: '/product/'
+   *   Default: '/p/'
+   *   Example: '/product/'
    */
   productRoute?: InputMaybe<Scalars['String']['input']>;
   /** Settings for recently viewed products */
@@ -336,8 +320,6 @@ export type GraphCommerceConfig = {
    * If false, the robots.txt file will be set to disallow all.
    */
   robotsAllow?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Configuration for the SidebarGallery component */
-  sidebarGallery?: InputMaybe<SidebarGalleryConfig>;
   /** All storefront configuration for the project */
   storefront: Array<GraphCommerceStorefrontConfig>;
   /** Hide the wishlist functionality for guests. */
@@ -367,6 +349,41 @@ export type GraphCommerceDebugConfig = {
    * - The Typescript types of the package are not compatible with each other, causing Typescript errors.
    */
   webpackDuplicatesPlugin?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type GraphCommerceLayoutConfig = {
+  /**
+   * By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
+   * This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
+   */
+  compareVariant?: InputMaybe<CompareVariant>;
+  /**
+   * Sets the maximum width for the layout. You can set the max width breakpoint in the theme.ts file
+   * Tip: if you want to use pixels instead of breakpoints, change the width of the breakpoint.
+   *
+   * DEFAULT: Page is full width
+   * CONTENT_ONLY: Only content is contained
+   * CONTAINED: Page is contained
+   * Default: DEFAULT
+   */
+  maxWidth?: InputMaybe<MaxWidthOptions>;
+  /**
+   * Specifies the layout for product filters.
+   *
+   * DEFAULT: Horizontal chips on desktop and mobile
+   * SIDEBAR: Sidebar on desktop, horizontal chips on mobile
+   * Default: DEFAULT
+   */
+  productFiltersLayout?: InputMaybe<ProductFiltersLayout>;
+  /**
+   * Pagination variant for the product listings.
+   *
+   * COMPACT means: "< Page X of Y >"
+   * EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
+   */
+  productListPaginationVariant?: InputMaybe<PaginationVariant>;
+  /** Configuration for the SidebarGallery component */
+  sidebarGallery?: InputMaybe<SidebarGalleryConfig>;
 };
 
 export type GraphCommercePermissions = {
@@ -463,6 +480,11 @@ export type MagentoConfigurableVariantValues = {
   url?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type MaxWidthOptions =
+  | 'CONTAINED'
+  | 'CONTENT_ONLY'
+  | 'DEFAULT';
+
 export type PaginationVariant =
   | 'COMPACT'
   | 'EXTENDED';
@@ -510,6 +532,8 @@ export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
 export const CustomerAccountPermissionsSchema = z.enum(['DISABLED', 'DISABLE_REGISTRATION', 'ENABLED']);
 
+export const MaxWidthOptionsSchema = z.enum(['CONTAINED', 'CONTENT_ONLY', 'DEFAULT']);
+
 export const PaginationVariantSchema = z.enum(['COMPACT', 'EXTENDED']);
 
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
@@ -530,7 +554,6 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     compare: z.boolean().nullish(),
-    compareVariant: CompareVariantSchema.default("ICON").nullish(),
     configurableVariantForSimple: z.boolean().default(false).nullish(),
     configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
     crossSellsHideCartItems: z.boolean().default(false).nullish(),
@@ -550,18 +573,16 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     hygraphManagementApi: z.string().nullish(),
     hygraphProjectId: z.string().nullish(),
     hygraphWriteAccessToken: z.string().nullish(),
+    layout: GraphCommerceLayoutConfigSchema().nullish(),
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     magentoVersion: z.number(),
     permissions: GraphCommercePermissionsSchema().nullish(),
     previewSecret: z.string().nullish(),
-    productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
     productFiltersPro: z.boolean().nullish(),
-    productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
     productRoute: z.string().nullish(),
     recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
     robotsAllow: z.boolean().nullish(),
-    sidebarGallery: SidebarGalleryConfigSchema().nullish(),
     storefront: z.array(GraphCommerceStorefrontConfigSchema()),
     wishlistHideForGuests: z.boolean().nullish(),
     wishlistShowFeedbackMessage: z.boolean().nullish()
@@ -574,6 +595,16 @@ export function GraphCommerceDebugConfigSchema(): z.ZodObject<Properties<GraphCo
     sessions: z.boolean().nullish(),
     webpackCircularDependencyPlugin: z.boolean().nullish(),
     webpackDuplicatesPlugin: z.boolean().nullish()
+  })
+}
+
+export function GraphCommerceLayoutConfigSchema(): z.ZodObject<Properties<GraphCommerceLayoutConfig>> {
+  return z.object({
+    compareVariant: CompareVariantSchema.default("ICON").nullish(),
+    maxWidth: MaxWidthOptionsSchema.default("DEFAULT").nullish(),
+    productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
+    productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
+    sidebarGallery: SidebarGalleryConfigSchema().nullish()
   })
 }
 
