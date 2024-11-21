@@ -1,7 +1,7 @@
 import { RichText } from '@graphcommerce/graphcms-ui'
 import { Image } from '@graphcommerce/image'
 import { ImageText } from '@graphcommerce/next-ui'
-import { useLayoutMaxWidths } from '@graphcommerce/next-ui/LayoutDefault/components/layoutWidths'
+import { useLayoutMaxWidths } from '@graphcommerce/next-ui/Theme/layoutMaxWidths'
 import { Typography, useTheme } from '@mui/material'
 import { RowProductFragment } from '../RowProduct.gql'
 import { ProductFeatureMediaFragment } from './ProductFeatureMedia.gql'

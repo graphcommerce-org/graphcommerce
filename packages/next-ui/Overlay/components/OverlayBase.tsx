@@ -19,8 +19,8 @@ import {
 } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
-import { useLayoutMaxWidths } from '../../LayoutDefault/components/layoutWidths'
 import { ExtendableComponent, extendableComponent } from '../../Styles'
+import { useLayoutMaxWidths } from '../../Theme/layoutMaxWidths'
 import { useMatchMedia } from '../../hooks/useMatchMedia'
 
 export type LayoutOverlayVariant = 'left' | 'bottom' | 'right'

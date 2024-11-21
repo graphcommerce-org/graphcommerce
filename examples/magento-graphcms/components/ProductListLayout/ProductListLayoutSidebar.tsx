@@ -22,7 +22,7 @@ import {
   ProductFiltersProCategorySectionSearch,
 } from '@graphcommerce/magento-search'
 import { memoDeep, responsiveVal, StickyBelowHeader } from '@graphcommerce/next-ui'
-import { useLayoutMaxWidths } from '@graphcommerce/next-ui/LayoutDefault/components/layoutWidths'
+import { useLayoutMaxWidths } from '@graphcommerce/next-ui/Theme/layoutMaxWidths'
 import { Trans } from '@lingui/macro'
 import { Box, Container, Typography } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'

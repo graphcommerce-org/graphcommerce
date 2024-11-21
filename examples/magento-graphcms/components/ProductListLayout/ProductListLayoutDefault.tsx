@@ -18,7 +18,7 @@ import {
 } from '@graphcommerce/magento-product'
 import { ProductFiltersProSearchTerm } from '@graphcommerce/magento-search'
 import { LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
-import { useLayoutMaxWidths } from '@graphcommerce/next-ui/LayoutDefault/components/layoutWidths'
+import { useLayoutMaxWidths } from '@graphcommerce/next-ui/Theme/layoutMaxWidths'
 import { Trans } from '@lingui/macro'
 import { Container, Typography } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'
