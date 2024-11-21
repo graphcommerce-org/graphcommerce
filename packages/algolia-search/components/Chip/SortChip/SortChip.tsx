@@ -4,14 +4,14 @@ import {
   responsiveVal,
   useStorefrontConfig,
 } from '@graphcommerce/next-ui'
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import Box from '@mui/material/Box'
 import Checkbox from '@mui/material/Checkbox'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import { useSortBy } from 'react-instantsearch-hooks-web'
 
-const name = 'SortChip' as const
+const name = 'SortChip'
 const parts = ['menu', 'item'] as const
 const { classes } = extendableComponent(name, parts)
 

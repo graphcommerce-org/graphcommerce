@@ -1,9 +1,7 @@
-import { QueryHookOptions, useQuery } from '@graphcommerce/graphql'
-import {
-  CurrentCartIdDocument,
-  CurrentCartIdQuery,
-  CurrentCartIdQueryVariables,
-} from './CurrentCartId.gql'
+import type { QueryHookOptions } from '@graphcommerce/graphql'
+import { useQuery } from '@graphcommerce/graphql'
+import type { CurrentCartIdQuery, CurrentCartIdQueryVariables } from './CurrentCartId.gql'
+import { CurrentCartIdDocument } from './CurrentCartId.gql'
 
 export function useCurrentCartId<
   Q extends CurrentCartIdQuery,

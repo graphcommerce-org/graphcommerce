@@ -5,8 +5,8 @@ import type {
   CategoryResult,
   MeshContext,
 } from '@graphcommerce/graphql-mesh'
-import { AttributeList } from './getAttributeList'
-import { GetStoreConfigReturn } from './getStoreConfig'
+import type { AttributeList } from './getAttributeList'
+import type { GetStoreConfigReturn } from './getStoreConfig'
 
 type AlgoliaFacets = { [facetName: string]: AlgoliaFacetOption }
 type AlgoliaFacetOption = { [facetOption: string]: number }
@@ -109,6 +109,7 @@ export function algoliaPricesToPricesAggregations(pricesList: {
   return Object.values(pricesBucket)
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function assertAlgoliaFacets(facets: any): facets is AlgoliaFacets {
   return true
 }

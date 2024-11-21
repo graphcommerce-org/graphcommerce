@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import { extractImageBackgroundProps } from '../../components/MediaBackground/extractImageBackgroundProps'
 import { extractAdvancedProps, verticalAlignmentToFlex } from '../../utils'
-import { TabItemContentType } from './types'
+import type { TabItemContentType } from './types'
 
 /**
  * Page Builder TabItem component.

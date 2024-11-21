@@ -1,11 +1,12 @@
 import { dvh, useMeasureDynamicViewportSize } from '@graphcommerce/framer-utils'
 import { AnimatePresence, m } from 'framer-motion'
 import { requestIdleCallback, cancelIdleCallback } from 'next/dist/client/request-idle-callback'
-import { PrivateRouteInfo } from 'next/dist/shared/lib/router/router'
-import { AppPropsType } from 'next/dist/shared/lib/utils'
-import { NextRouter, Router } from 'next/router'
+import type { PrivateRouteInfo } from 'next/dist/shared/lib/router/router'
+import type { AppPropsType } from 'next/dist/shared/lib/utils'
+import type { NextRouter, Router } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
-import { Direction, pageContext } from '../context/pageContext'
+import type { Direction } from '../context/pageContext'
+import { pageContext } from '../context/pageContext'
 import type { PageComponent, PageItem, UpPage } from '../types'
 import { Page } from './Page'
 import { PageRenderer } from './PageRenderer'
@@ -172,7 +173,7 @@ export function FramerNextPages(props: PagesProps) {
         if (process.env.NODE_ENV !== 'production') {
           // eslint-disable-next-line no-console
           console.log(
-            `%cTurn on "Preseve log on navigation" to see the error`,
+            '%cTurn on "Preseve log on navigation" to see the error',
             'color: blue; font-family:sans-serif; font-size: 20px',
           )
 

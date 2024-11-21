@@ -4,7 +4,7 @@ import { iconChevronRight, IconSvg, LinkOrButton, nonNullable } from '@graphcomm
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
 import { Box } from '@mui/material'
-import { OrderItemsFragment } from '../OrderItems/OrderItems.gql'
+import type { OrderItemsFragment } from '../OrderItems/OrderItems.gql'
 import { ReorderItemsDocument } from './ReorderItems.gql'
 
 export type ReorderItemsProps = { order: OrderItemsFragment }

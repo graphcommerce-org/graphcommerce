@@ -30,7 +30,7 @@ const resolvers: Resolvers = {
         return true
       })
 
-      if (!found?.woonplaatsnaam || !found.straatnaam) throw Error(`Can't find matching address`)
+      if (!found?.woonplaatsnaam || !found.straatnaam) throw Error("Can't find matching address")
 
       return { city: found.woonplaatsnaam, street: found.straatnaam }
     },

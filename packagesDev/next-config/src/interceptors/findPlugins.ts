@@ -1,14 +1,15 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { parseFileSync } from '@swc/core'
-import chalk from 'chalk'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { sync as globSync } from 'glob'
-import { GraphCommerceConfig } from '../generated/config'
+import type { GraphCommerceConfig } from '../generated/config'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
-import { PluginConfig } from './generateInterceptor'
+import type { PluginConfig } from './generateInterceptor'
 import { parseStructure } from './parseStructure'
 
 const pluginLogs: Record<string, string> = {}
+
+// ANSI escape codes for console colors
+const GREEN = '\x1b[32m'
+const RESET = '\x1b[0m'
 
 export function findPlugins(config: GraphCommerceConfig, cwd: string = process.cwd()) {
   const dependencies = resolveDependenciesSync(cwd)
@@ -40,9 +41,7 @@ export function findPlugins(config: GraphCommerceConfig, cwd: string = process.c
   if (process.env.NODE_ENV === 'development' && debug) {
     const byExported = plugins.reduce(
       (acc, plugin) => {
-        const key = `🔌 ${chalk.greenBright(
-          `Plugins loaded for ${plugin.targetModule}#${plugin.targetExport}`,
-        )}`
+        const key = `🔌 ${GREEN}Plugins loaded for ${plugin.targetModule}#${plugin.targetExport}${RESET}`
         if (!acc[key]) acc[key] = []
         acc[key].push(plugin)
         return acc
@@ -65,7 +64,7 @@ export function findPlugins(config: GraphCommerceConfig, cwd: string = process.c
               : `${c.ifConfig}`
             : ''
 
-          return `${c.enabled ? `🟢` : `⚪️`} ${c.sourceModule} ${ifConfigStr}`
+          return `${c.enabled ? '🟢' : '⚪️'} ${c.sourceModule} ${ifConfigStr}`
         })
         .join('\n')
 

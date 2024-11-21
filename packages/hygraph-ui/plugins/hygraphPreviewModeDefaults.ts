@@ -1,4 +1,4 @@
-import { previewModeDefaults as base } from '@graphcommerce/ecommerce-ui'
+import type { previewModeDefaults as base } from '@graphcommerce/ecommerce-ui'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 
 export const config: PluginConfig = {

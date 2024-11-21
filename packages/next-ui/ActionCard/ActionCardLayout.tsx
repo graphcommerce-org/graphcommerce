@@ -1,7 +1,8 @@
-import { Box, BoxProps } from '@mui/material'
+import type { BoxProps } from '@mui/material'
+import { Box } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../Styles'
-import { ActionCardProps } from './ActionCard'
+import type { ActionCardProps } from './ActionCard'
 
 export type ActionCardLayoutProps = {
   children?: React.ReactNode

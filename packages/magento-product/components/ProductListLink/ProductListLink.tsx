@@ -1,9 +1,11 @@
-import { Link, LinkProps } from '@mui/material'
-import PageLink, { LinkProps as PageLinkProps } from 'next/link'
+import type { LinkProps } from '@mui/material'
+import { Link } from '@mui/material'
+import type { LinkProps as PageLinkProps } from 'next/link'
+import PageLink from 'next/link'
 import React from 'react'
 import { useProductListLink } from '../../hooks/useProductListLink'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
-import { ProductListParams } from '../ProductListItems/filterTypes'
+import type { ProductListParams } from '../ProductListItems/filterTypes'
 
 export type ProductListLinkProps = LinkProps &
   ProductListParams & {

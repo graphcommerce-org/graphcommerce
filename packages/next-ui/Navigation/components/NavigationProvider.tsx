@@ -1,21 +1,23 @@
-import { MotionConfig, useMotionValue, useTransform } from 'framer-motion'
+import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { MotionConfig, useMotionValue } from 'framer-motion'
 import React, { useMemo } from 'react'
 import { isElement } from 'react-is'
 import { LazyHydrate } from '../../LazyHydrate'
 import { nonNullable } from '../../RenderType/nonNullable'
-import {
+import type {
   NavigationNode,
   NavigationContextType,
-  NavigationContext,
   UseNavigationSelection,
-  NavigationNodeType,
   NavigationNodeComponent,
 } from '../hooks/useNavigation'
-import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { NavigationContext, NavigationNodeType } from '../hooks/useNavigation'
 
 export type NavigationProviderBaseProps = {
   items: (NavigationNode | React.ReactElement)[]
   hideRootOnNavigate?: boolean
+  /**
+   * @deprecated No longer used
+   */
   closeAfterNavigate?: boolean
   children?: React.ReactNode
   animationDuration?: number
@@ -29,7 +31,6 @@ const NavigationProviderBase = React.memo<NavigationProviderBaseProps>((props) =
   const {
     items,
     hideRootOnNavigate = true,
-    closeAfterNavigate = false,
     animationDuration = 0.225,
     children,
     selection,

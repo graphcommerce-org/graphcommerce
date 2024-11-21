@@ -6,7 +6,8 @@ import {
   useScrollY,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { Box, styled, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, styled } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React, { useEffect, useRef, useState } from 'react'
 
@@ -17,7 +18,7 @@ export type ProductListFiltersContainerProps = { children: React.ReactNode; sx?:
 type OwnerState = {
   isSticky: boolean
 }
-const name = 'ProductListFiltersContainer' as const
+const name = 'ProductListFiltersContainer'
 const parts = [
   'wrapper',
   'container',

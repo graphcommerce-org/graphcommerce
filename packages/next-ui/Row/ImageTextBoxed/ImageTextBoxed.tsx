@@ -1,4 +1,5 @@
-import { Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
 import { breakpointVal } from '../../Styles/breakpointVal'
@@ -11,7 +12,7 @@ export type ImageTextBoxedProps = {
   sx?: SxProps<Theme>
 }
 
-const name = 'ImageTextBoxed' as const
+const name = 'ImageTextBoxed'
 const parts = ['root', 'wrapper', 'asset', 'copy'] as const
 const { classes } = extendableComponent(name, parts)
 
@@ -72,7 +73,7 @@ export function ImageTextBoxed(props: ImageTextBoxedProps) {
             '& img': {
               height: '100% !important',
               width: '100% !important',
-              objectFit: `cover`,
+              objectFit: 'cover',
             },
           })}
         >

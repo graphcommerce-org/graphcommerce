@@ -1,15 +1,16 @@
 import type { TypedDocumentNode } from '@apollo/client'
-import type {
-  DefinitionNode,
-  OperationDefinitionNode,
-  ValueNode,
-  NullValueNode,
-  ObjectValueNode,
-  ListValueNode,
-  VariableNode,
-  VariableDefinitionNode,
-  TypeNode,
-  OperationTypeNode,
+import {
+  type DefinitionNode,
+  type OperationDefinitionNode,
+  type ValueNode,
+  type NullValueNode,
+  type ObjectValueNode,
+  type ListValueNode,
+  type VariableNode,
+  type VariableDefinitionNode,
+  type TypeNode,
+  type OperationTypeNode,
+  Kind,
 } from 'graphql'
 import { useMemo } from 'react'
 import type { FieldValues } from 'react-hook-form'
@@ -64,10 +65,10 @@ type DeepStringify<V> = {
 type FieldTypes = LiteralUnion<keyof Scalars, string> | FieldTypes[]
 
 function variableType<T extends TypeNode>(type: T): FieldTypes {
-  if (type.kind === 'ListType') {
+  if (type.kind === Kind.LIST_TYPE) {
     return [variableType(type.type)]
   }
-  if (type.kind === 'NonNullType') {
+  if (type.kind === Kind.NON_NULL_TYPE) {
     return variableType(type.type)
   }
 
@@ -103,7 +104,7 @@ export function handlerFactory<Q, V extends FieldValues>(
     definition.variableDefinitions.forEach((variable: VariableDefinitionNode) => {
       const name = variable.variable.name.value as keyof V
 
-      requiredPartial = { ...requiredPartial, [name]: variable.type.kind === 'NonNullType' }
+      requiredPartial = { ...requiredPartial, [name]: variable.type.kind === Kind.NON_NULL_TYPE }
       encodingPartial = { ...encodingPartial, [name]: variableType(variable.type) }
 
       if (variable.defaultValue && isWithValueNode(variable.defaultValue)) {

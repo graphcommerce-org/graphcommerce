@@ -1,5 +1,6 @@
-import { ApolloLink, FetchResult, Observable, Operation, RequestHandler } from '@apollo/client/core'
-import { ExecuteMeshFn, MeshInstance, SubscribeMeshFn } from '@graphql-mesh/runtime'
+import type { FetchResult, Operation, RequestHandler } from '@apollo/client/core'
+import { ApolloLink, Observable } from '@apollo/client/core'
+import type { ExecuteMeshFn, MeshInstance, SubscribeMeshFn } from '@graphql-mesh/runtime'
 import { isAsyncIterable } from '@graphql-tools/utils'
 
 const ROOT_VALUE = {}

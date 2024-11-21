@@ -1,4 +1,4 @@
-import { SxRenderer } from './types'
+import type { SxRenderer } from './types'
 
 export const defaultSxRenderer: SxRenderer = {
   all: {

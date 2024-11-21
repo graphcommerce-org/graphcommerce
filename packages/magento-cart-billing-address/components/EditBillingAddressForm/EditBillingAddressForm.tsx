@@ -12,7 +12,7 @@ import {
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import { Button, Form, FormActions, FormDivider, FormRow } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import { GetBillingAddressDocument } from './GetBillingAddress.gql'
 
 export type EditBillingAddressFormProps = { sx?: SxProps<Theme> }

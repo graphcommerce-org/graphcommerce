@@ -22,7 +22,7 @@ const Grid = styled('div')(() => ({
   marginTop: `${5 * 8}px`,
   marginBottom: `${5 * 8}px`,
   display: 'grid',
-  gridTemplateColumns: `repeat(4, minmax(180px, 1fr))`,
+  gridTemplateColumns: 'repeat(4, minmax(180px, 1fr))',
   gap: responsiveVal(20, 40),
 }))
 

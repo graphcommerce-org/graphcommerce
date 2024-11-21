@@ -1,16 +1,7 @@
-import { useMemo } from 'react'
-import { useLocale } from '../../hooks/useLocale'
-import { useMemoObject } from '../../hooks/useMemoObject'
+import type { UseDisplayNamesOptions } from './useDisplayNames'
+import { useDisplayNames } from './useDisplayNames'
 
-export type UseDisplayNamesProps = Intl.DisplayNamesOptions
-
-export function useDisplayNames(props: UseDisplayNamesProps) {
-  const locale = useLocale()
-  const memoOptions = useMemoObject(props)
-  return useMemo(() => new Intl.DisplayNames(locale, memoOptions), [locale, memoOptions])
-}
-
-type DisplayNamesProps = UseDisplayNamesProps & {
+type DisplayNamesProps = UseDisplayNamesOptions & {
   code: string
 }
 

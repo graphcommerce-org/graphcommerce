@@ -1,6 +1,7 @@
 import { Trans } from '@lingui/react'
 import { Box, Link, alpha, useTheme } from '@mui/material'
-import { useEffect, useRef, KeyboardEvent } from 'react'
+import type { KeyboardEvent } from 'react'
+import { useEffect, useRef } from 'react'
 import type { BreadcrumbsType } from './types'
 
 type PopperBreadcrumbsListProps = {

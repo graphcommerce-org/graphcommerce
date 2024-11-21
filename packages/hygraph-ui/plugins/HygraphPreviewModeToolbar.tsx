@@ -3,8 +3,10 @@ import {
   type PreviewModeToolbarProps,
   SelectElement,
   previewModeDefaults,
+  useWatch,
 } from '@graphcommerce/ecommerce-ui'
-import { TypedDocumentNode, gql, useQuery } from '@graphcommerce/graphql'
+import type { TypedDocumentNode } from '@graphcommerce/graphql'
+import { gql, useQuery } from '@graphcommerce/graphql'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import React, { useMemo } from 'react'
@@ -40,16 +42,18 @@ const HygraphConfig = React.memo(() => {
 
   const contentStages = useQuery(ContentStages)
 
-  const defaultValue = previewModeDefaults().hygraphStage ?? 'PUBLISHED'
+  const defaultValue =
+    useWatch({ control, name: 'previewData.hygraphStage' }) ??
+    previewModeDefaults().hygraphStage ??
+    'PUBLISHED'
 
   return useMemo(
     () => (
       <SelectElement
         control={control}
         name='previewData.hygraphStage'
-        defaultValue={defaultValue}
         color='secondary'
-        select
+        defaultValue={defaultValue}
         label='Hygraph Stage'
         size='small'
         sx={{ width: '150px' }}
@@ -65,11 +69,11 @@ const HygraphConfig = React.memo(() => {
         }
       />
     ),
-    [contentStages.data?.__type.enumValues, contentStages.loading, control],
+    [contentStages.data?.__type.enumValues, contentStages.loading, control, defaultValue],
   )
 })
 
-export const PreviewModeToolbar = (props: PluginProps<PreviewModeToolbarProps>) => {
+export function PreviewModeToolbar(props: PluginProps<PreviewModeToolbarProps>) {
   const { Prev, ...rest } = props
   return (
     <>

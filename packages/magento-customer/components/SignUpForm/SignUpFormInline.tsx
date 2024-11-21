@@ -9,7 +9,8 @@ import { Alert, Box } from '@mui/material'
 import React from 'react'
 import { useSignInForm } from '../../hooks/useSignInForm'
 import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
-import { SignUpMutationVariables, SignUpMutation, SignUpDocument } from './SignUp.gql'
+import type { SignUpMutationVariables, SignUpMutation } from './SignUp.gql'
+import { SignUpDocument } from './SignUp.gql'
 
 type SignUpFormInlineProps = Pick<SignUpMutationVariables, 'email'> & {
   children?: React.ReactNode

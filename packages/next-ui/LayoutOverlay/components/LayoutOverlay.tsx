@@ -4,7 +4,8 @@ import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { useEventCallback } from '@mui/material'
 import { usePresence } from 'framer-motion'
 import type { SetOptional } from 'type-fest'
-import { OverlayBase, LayoutOverlayBaseProps } from '../../Overlay/components/OverlayBase'
+import type { LayoutOverlayBaseProps } from '../../Overlay/components/OverlayBase'
+import { OverlayBase } from '../../Overlay/components/OverlayBase'
 import { variantsToScrollSnapType } from '../../Overlay/utils/variantsToScrollSnapType'
 
 export type LayoutOverlayProps = Omit<

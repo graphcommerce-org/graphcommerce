@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-import { ChildProcess, spawn } from 'node:child_process'
+import type { ChildProcess } from 'node:child_process'
+import { spawn } from 'node:child_process'
 import { isMonorepo } from '@graphcommerce/next-config'
 import { detect } from 'detect-package-manager'
 
@@ -19,7 +20,7 @@ async function main() {
 
   let packageManager = 'yarn'
   try {
-    packageManager = await detect({ cwd: isMono ? `../..` : `.` })
+    packageManager = await detect({ cwd: isMono ? '../..' : '.' })
   } catch {
     console.error('Could not detect package manager, defaulting to yarn')
   }

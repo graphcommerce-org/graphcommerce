@@ -52,3 +52,7 @@ const config = {
   ],
 }
 ```
+
+3. `@graphcommerce/graphcms-ui` is now `@graphcommerce/hygraph-ui`
+
+Replace all `@graphcommerce/graphcms-ui` with `@graphcommerce/hygraph-ui`.

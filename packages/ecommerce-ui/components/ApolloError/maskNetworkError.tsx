@@ -1,4 +1,4 @@
-import { ServerError, ServerParseError } from '@graphcommerce/graphql'
+import type { ServerError, ServerParseError } from '@graphcommerce/graphql'
 import { Trans } from '@lingui/react'
 
 function isServerError(error: Error | ServerParseError | ServerError | null): error is ServerError {

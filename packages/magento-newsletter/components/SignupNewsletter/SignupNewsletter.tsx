@@ -2,14 +2,15 @@ import { useCartQuery } from '@graphcommerce/magento-cart'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, SxProps, Theme, Typography } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { CustomerNewsletterToggle } from '../CustomerNewsletterToggle/CustomerNewsletterToggle'
 import { GuestNewsletterToggle } from '../GuestNewsletterToggle/GuestNewsletterToggle'
 import { GetCartEmailDocument } from './GetCartEmail.gql'
 
 type SignupNewsletterProps = { sx?: SxProps<Theme> }
 
-const name = 'SignupNewsletter' as const
+const name = 'SignupNewsletter'
 
 type OwnerState = { loggedIn: boolean }
 const parts = ['signup', 'text', 'signupForm'] as const
@@ -37,10 +38,10 @@ export function SignupNewsletter(props: SignupNewsletterProps) {
           marginTop: theme.spacings.sm,
           borderRadius: '4px',
           gridTemplateColumns: '1fr',
-          gridTemplateAreas: `"a" "b"`,
+          gridTemplateAreas: '"a" "b"',
           justifyItems: 'start',
           [theme.breakpoints.up('sm')]: {
-            gridTemplateAreas: `"a b c"`,
+            gridTemplateAreas: '"a b c"',
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

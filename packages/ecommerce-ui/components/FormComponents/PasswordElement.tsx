@@ -1,8 +1,11 @@
 import { iconEye, iconEyeCrossed, IconSvg } from '@graphcommerce/next-ui'
-import { FieldValues } from '@graphcommerce/react-hook-form'
-import { IconButton, IconButtonProps, InputAdornment } from '@mui/material'
-import { MouseEvent, useState } from 'react'
-import { TextFieldElement, TextFieldElementProps } from './TextFieldElement'
+import type { FieldValues } from '@graphcommerce/react-hook-form'
+import type { IconButtonProps } from '@mui/material'
+import { IconButton, InputAdornment } from '@mui/material'
+import type { MouseEvent } from 'react'
+import { useState } from 'react'
+import type { TextFieldElementProps } from './TextFieldElement'
+import { TextFieldElement } from './TextFieldElement'
 
 export type PasswordElementProps<T extends FieldValues> = TextFieldElementProps<T> & {
   iconColor?: IconButtonProps['color']

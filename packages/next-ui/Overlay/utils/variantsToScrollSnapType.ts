@@ -1,5 +1,5 @@
-import { ScrollerProviderProps } from '@graphcommerce/framer-scroller'
-import { LayoutOverlayBaseProps } from '../components/OverlayBase'
+import type { ScrollerProviderProps } from '@graphcommerce/framer-scroller'
+import type { LayoutOverlayBaseProps } from '../components/OverlayBase'
 
 type Variants = Partial<Pick<LayoutOverlayBaseProps, 'variantSm' | 'variantMd'>>
 

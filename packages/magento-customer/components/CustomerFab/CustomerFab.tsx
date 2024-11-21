@@ -5,13 +5,11 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
+import type { BadgeProps, FabProps as FabPropsType, SxProps, Theme } from '@mui/material'
+import { Fab, NoSsr } from '@mui/material'
 import React from 'react'
-import {
-  useCustomerAccountCanSignIn,
-  useCustomerSession,
-  UseCustomerSessionReturn,
-} from '../../hooks'
+import type { UseCustomerSessionReturn } from '../../hooks'
+import { useCustomerAccountCanSignIn, useCustomerSession } from '../../hooks'
 
 type CustomerFabContentProps = {
   icon?: React.ReactNode
@@ -20,6 +18,7 @@ type CustomerFabContentProps = {
   FabProps?: Omit<FabPropsType, 'children'>
   sx?: SxProps<Theme>
   session?: UseCustomerSessionReturn
+  BadgeProps?: BadgeProps
 }
 
 const name = 'CustomerFab'
@@ -27,7 +26,7 @@ const parts = ['root'] as const
 const { classes } = extendableComponent(name, parts)
 
 function CustomerFabContent(props: CustomerFabContentProps) {
-  const { session, icon, guestHref, authHref, FabProps, sx } = props
+  const { session, icon, guestHref, authHref, FabProps, sx, BadgeProps } = props
 
   return (
     <Fab
@@ -45,6 +44,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
         color={session?.valid ? 'primary' : 'error'}
         variant='dot'
         overlap='circular'
+        {...BadgeProps}
       >
         {icon ?? <IconSvg src={iconPerson} size='large' />}
       </DesktopHeaderBadge>

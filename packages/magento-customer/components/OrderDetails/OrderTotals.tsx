@@ -1,14 +1,15 @@
 import { Money } from '@graphcommerce/magento-store'
 import { extendableComponent, breakpointVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Divider, SxProps, Theme, Typography } from '@mui/material'
-import { OrderDetailsFragment } from './OrderDetails.gql'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Divider, Typography } from '@mui/material'
+import type { OrderDetailsFragment } from './OrderDetails.gql'
 
 export type OrderTotalsProps = Partial<OrderDetailsFragment> & {
   sx?: SxProps<Theme>
 }
 
-const componentName = 'OrderTotals' as const
+const componentName = 'OrderTotals'
 const parts = ['totalsContainer', 'totalsRow', 'totalsDivider', 'totalsVat'] as const
 const { classes } = extendableComponent(componentName, parts)
 
@@ -77,6 +78,7 @@ export function OrderTotals(props: OrderTotalsProps) {
       </Box>
       {total?.taxes?.map((tax) => (
         <Box
+          key={tax?.title}
           className={classes.totalsVat}
           sx={(theme) => ({
             display: 'flex',

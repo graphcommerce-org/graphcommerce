@@ -1,6 +1,6 @@
 import { SelectElement } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { FormRow, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { FormPersist, useFormCompose } from '@graphcommerce/react-hook-form'
 import { SetMolliePaymentMethodIssuerOnCartDocument } from './SetMolliePaymentMethodIssuerOnCart.gql'
@@ -47,12 +47,12 @@ export function MollieIssuerOptions(props: MollieIssuerOptionsProps) {
       </form>
       {children}
       <FormPersist
-          // Since the issuer isn't retrievable from Magento we persist this value.
-          form={form}
-          name={`PaymentMethodOptions_${code}`}
-          persist={['issuer']}
-          storage='localStorage'
-        />
+        // Since the issuer isn't retrievable from Magento we persist this value.
+        form={form}
+        name={`PaymentMethodOptions_${code}`}
+        persist={['issuer']}
+        storage='localStorage'
+      />
     </>
   )
 }

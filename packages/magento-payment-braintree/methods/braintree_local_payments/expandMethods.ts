@@ -1,4 +1,7 @@
-import { ExpandPaymentMethods, PaymentMethod } from '@graphcommerce/magento-cart-payment-method'
+import type {
+  ExpandPaymentMethods,
+  PaymentMethod,
+} from '@graphcommerce/magento-cart-payment-method'
 
 /**
  * Local payment methods can be expanded to multiple separate methods logic taken from

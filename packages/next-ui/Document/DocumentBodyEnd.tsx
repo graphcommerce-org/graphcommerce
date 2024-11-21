@@ -1,5 +1,5 @@
 // eslint-disable-next-line @next/next/no-document-import-in-page
-import { DocumentProps } from 'next/document'
+import type { DocumentProps } from 'next/document'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function DocumentBodyEnd(props: DocumentProps) {

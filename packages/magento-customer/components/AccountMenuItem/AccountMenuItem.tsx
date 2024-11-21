@@ -1,13 +1,14 @@
-import { ImageProps } from '@graphcommerce/image'
+import type { ImageProps } from '@graphcommerce/image'
+import type { ButtonProps } from '@graphcommerce/next-ui'
 import {
   responsiveVal,
   iconChevronRight,
   IconSvg,
   Button,
-  ButtonProps,
   extendableComponent,
 } from '@graphcommerce/next-ui'
-import { ListItem, ListItemIcon, ListItemText, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import React from 'react'
 
 export type AccountMenuItemProps = {

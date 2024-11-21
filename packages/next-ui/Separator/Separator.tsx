@@ -1,4 +1,5 @@
-import { Box, Typography, TypographyProps } from '@mui/material'
+import type { TypographyProps } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../Styles'
 
@@ -6,7 +7,7 @@ export type DividedLinksProps = {
   icon?: React.ReactNode
 } & Pick<TypographyProps, 'color' | 'sx'>
 
-const name = 'Separator' as const
+const name = 'Separator'
 const parts = ['root'] as const
 const { classes } = extendableComponent(name, parts)
 

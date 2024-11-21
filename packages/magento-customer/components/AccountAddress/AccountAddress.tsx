@@ -1,10 +1,11 @@
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Link, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Link } from '@mui/material'
 import { AddressMultiLine } from '../AddressMultiLine/AddressMultiLine'
 import { DeleteCustomerAddressForm } from '../DeleteCustomerAddressForm/DeleteCustomerAddressForm'
 import { UpdateDefaultAddressForm } from '../UpdateDefaultAddressForm/UpdateDefaultAddressForm'
-import { AccountAddressFragment } from './AccountAddress.gql'
+import type { AccountAddressFragment } from './AccountAddress.gql'
 
 export type AccountAddressProps = AccountAddressFragment & { sx?: SxProps<Theme> }
 

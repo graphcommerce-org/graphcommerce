@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { GetRenderComponent } from '../../types'
+import type { GetRenderComponent } from '../../types'
 
 type PagebuilderContext = {
   getComponentByType: GetRenderComponent

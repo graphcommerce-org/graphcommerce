@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import React from 'react'
 import { extractAdvancedProps } from '../../utils'
-import { ButtonsContentType } from './types'
+import type { ButtonsContentType } from './types'
 
 /**
  * Page Builder Buttons component.

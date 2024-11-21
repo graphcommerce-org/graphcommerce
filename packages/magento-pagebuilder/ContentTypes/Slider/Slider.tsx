@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 import { useState } from 'react'
 import { extractAdvancedProps } from '../../utils'
 import { AutoScroll } from './AutoScroll'
-import { SliderContentType } from './types'
+import type { SliderContentType } from './types'
 
 /**
  * Page Builder Slider component.

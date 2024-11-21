@@ -1,5 +1,6 @@
 import { useApolloClient } from '@graphcommerce/graphql'
-import { FormState, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import type { FormState } from '@graphcommerce/react-hook-form'
+import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'

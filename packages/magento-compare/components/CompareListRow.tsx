@@ -1,6 +1,6 @@
 import { SectionContainer } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
-import { ComparableItemFragment } from '../graphql'
+import type { ComparableItemFragment } from '../graphql'
 import { useCompareListStyles } from '../hooks/useCompareListStyles'
 
 export type CompareRowProps = {

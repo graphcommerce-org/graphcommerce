@@ -1,14 +1,14 @@
-import {
+import type {
   AddProductsToCartFields,
   AnyOption,
   CustomizableProductOptionBase,
   OptionValueSelector,
   SelectorsProp,
-  productCustomizableSelectors,
 } from '@graphcommerce/magento-product'
+import { productCustomizableSelectors } from '@graphcommerce/magento-product'
 import { isTypename, filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
-import { CartItemFragment } from '../Api/CartItem.gql'
-import { EditCartItemFormFragment } from '../components/EditCartItem/EditCartItemForm/EditCartItemForm.gql'
+import type { CartItemFragment } from '../Api/CartItem.gql'
+import type { EditCartItemFormFragment } from '../components/EditCartItem/EditCartItemForm/EditCartItemForm.gql'
 
 type CartItemInput = AddProductsToCartFields['cartItems'][number]
 

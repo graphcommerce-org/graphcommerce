@@ -1,17 +1,14 @@
 import { globalFormContextRef } from '@graphcommerce/magento-product'
 import { IconSvg, iconClose } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
-import {
+import type {
   ButtonBaseProps,
-  FormControl,
   FormControlProps,
-  IconButton,
   IconButtonProps,
   InputBaseProps,
-  OutlinedInput,
   OutlinedInputProps,
-  useForkRef,
 } from '@mui/material'
+import { FormControl, IconButton, OutlinedInput, useForkRef } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import { useSearchPageAndParam } from './useSearchPageAndParam'

@@ -1,6 +1,7 @@
-import { Box, styled, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, styled } from '@mui/material'
 import { YoutubeVideo } from './YoutubeVideo'
-import { VideoBackgroundProps } from './getVideoBackgroundProps'
+import type { VideoBackgroundProps } from './getVideoBackgroundProps'
 
 type VideoBackgroundComponentProps = VideoBackgroundProps & {
   sx?: SxProps<Theme>

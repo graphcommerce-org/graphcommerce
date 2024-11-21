@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { productListParamsContext } from '../../context/productListParamsContext'
-import { ProductListParams } from './filterTypes'
+import type { ProductListParams } from './filterTypes'
 
 export function ProductListParamsProvider({
   children,

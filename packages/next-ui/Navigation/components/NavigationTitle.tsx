@@ -1,11 +1,11 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Trans } from '@lingui/react'
-import {
+import type {
   NavigationPath,
   NavigationNodeHref,
   NavigationNodeButton,
-  useNavigation,
 } from '../hooks/useNavigation'
+import { useNavigation } from '../hooks/useNavigation'
 
 function findCurrent(
   items,
@@ -32,7 +32,7 @@ function findCurrent(
   return result
 }
 
-export const NavigationTitle = () => {
+export function NavigationTitle() {
   const { selection, items } = useNavigation()
   return (
     <>{useMotionValueValue(selection, (v) => findCurrent(items, v))?.name ?? <Trans id='Menu' />}</>

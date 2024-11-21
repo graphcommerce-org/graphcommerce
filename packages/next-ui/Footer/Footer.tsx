@@ -1,4 +1,5 @@
-import { ContainerProps, Container, Box } from '@mui/material'
+import type { ContainerProps } from '@mui/material'
+import { Container, Box } from '@mui/material'
 import React from 'react'
 import { LazyHydrate } from '../LazyHydrate'
 import { extendableComponent } from '../Styles'
@@ -126,7 +127,7 @@ export function Footer(props: FooterProps) {
               [theme.breakpoints.down('md')]: {
                 gridAutoFlow: 'row',
                 textAlign: 'center',
-                gap: `8px`,
+                gap: '8px',
               },
             })}
             className={classes.copyright}

@@ -1,4 +1,4 @@
-import { RichTextProps } from '@graphcommerce/graphcms-ui'
+import { RichTextProps } from '@graphcommerce/hygraph-ui'
 import type { RowColumnOneFragment } from './RowColumnOne.gql'
 import { Default, Message } from './variant'
 

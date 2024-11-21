@@ -1,17 +1,15 @@
 import { CheckboxElement, useFormCompose } from '@graphcommerce/ecommerce-ui'
-import { DocumentNode } from '@graphcommerce/graphql'
+import type { DocumentNode } from '@graphcommerce/graphql'
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import { useCustomerQuery, useCustomerSession } from '@graphcommerce/magento-customer'
-import { FormPersist, useFormGqlMutation, useFormPersist } from '@graphcommerce/react-hook-form'
-import { Box, SxProps, Theme } from '@mui/material'
+import { FormPersist, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import { GetCustomerNewsletterToggleDocument } from '../CustomerNewsletterToggle/GetCustomerNewsLetterToggle.gql'
 import { GetCartEmailDocument } from '../SignupNewsletter/GetCartEmail.gql'
 import { SubscribeCustomerDocument } from './SubscribeCustomer.gql'
-import {
-  SubscribeGuestDocument,
-  SubscribeGuestMutation,
-  SubscribeGuestMutationVariables,
-} from './SubscribeGuest.gql'
+import type { SubscribeGuestMutation, SubscribeGuestMutationVariables } from './SubscribeGuest.gql'
+import { SubscribeGuestDocument } from './SubscribeGuest.gql'
 
 type CheckoutNewsletterProps = {
   step: number

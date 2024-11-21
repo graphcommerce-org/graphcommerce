@@ -1,12 +1,7 @@
-import { Box, BoxProps } from '@mui/material'
-import React, {
-  useState,
-  useRef,
-  startTransition,
-  useLayoutEffect,
-  useEffect,
-  CSSProperties,
-} from 'react'
+import type { BoxProps } from '@mui/material'
+import { Box } from '@mui/material'
+import type { CSSProperties } from 'react'
+import React, { useState, useRef, startTransition, useLayoutEffect, useEffect } from 'react'
 
 // Make sure the server doesn't choke on the useLayoutEffect
 export const useLayoutEffect2 = typeof window !== 'undefined' ? useLayoutEffect : useEffect

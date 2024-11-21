@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import path from 'path'
-import { ConfigProcessOptions } from '@graphql-mesh/config'
+import type { ConfigProcessOptions } from '@graphql-mesh/config'
 import { defaultImportFn, loadYaml, DefaultLogger } from '@graphql-mesh/utils'
 import { cosmiconfig, defaultLoaders } from 'cosmiconfig'
 

@@ -1,13 +1,7 @@
-import {
-  ApolloErrorSnackbar,
-  EmailElement,
-  TextFieldElement,
-  useFormGqlMutation,
-} from '@graphcommerce/ecommerce-ui'
+import { ApolloErrorSnackbar, EmailElement, useFormGqlMutation } from '@graphcommerce/ecommerce-ui'
 import { Form, MessageSnackbar, Button } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import { GuestNewsletterToggleDocument } from '../GuestNewsletterToggle/GuestNewsletterToggle.gql'
 
 type GuestNewsletterProps = {

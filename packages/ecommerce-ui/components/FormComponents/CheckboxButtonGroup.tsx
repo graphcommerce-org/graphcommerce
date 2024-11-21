@@ -1,8 +1,9 @@
-import { useController, FieldValues, UseControllerProps } from '@graphcommerce/react-hook-form'
+import type { FieldValues, UseControllerProps } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
+import type { CheckboxProps } from '@mui/material'
 import {
   Checkbox,
-  CheckboxProps,
   FormControl,
   FormControlLabel,
   FormGroup,
@@ -12,12 +13,14 @@ import {
 } from '@mui/material'
 
 export type CheckboxButtonGroupProps<T extends FieldValues> = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   options: { id: string | number; label: string }[] | any[]
   helperText?: string
   required?: boolean
   label?: string
   labelKey?: string
   valueKey?: string
+  // eslint-disable-next-line @typescript-eslint/ban-types
   onChange?: Function
   returnObject?: boolean
   disabled?: boolean
@@ -62,13 +65,17 @@ export function CheckboxButtonGroup<TFieldValues extends FieldValues>(
   const parsedHelperText = error ? error.message : helperText
 
   const handleChange = (index: number | string) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const newArray: (string | number)[] | any[] = [...value]
     const exists =
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       value.findIndex((i: any) => (returnObject ? i[valueKey] === index : i === index)) === -1
     if (exists) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       newArray.push(returnObject ? options.find((i) => i[valueKey] === index) : index)
     } else {
       newArray.splice(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         value.findIndex((i: any) => (returnObject ? i[valueKey] === index : i === index)),
         1,
       )
@@ -93,7 +100,7 @@ export function CheckboxButtonGroup<TFieldValues extends FieldValues>(
             )
           }
           const isChecked =
-            value.findIndex((item: any) =>
+            value.findIndex((item) =>
               returnObject ? item[valueKey] === optionKey : item === optionKey,
             ) !== -1
           return (
@@ -107,6 +114,7 @@ export function CheckboxButtonGroup<TFieldValues extends FieldValues>(
                   value={optionKey}
                   checked={isChecked}
                   disabled={disabled}
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                   onChange={() => handleChange(optionKey)}
                 />
               }

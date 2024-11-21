@@ -1,7 +1,7 @@
 import { Box, Tab, Tabs as MuiTabs } from '@mui/material'
 import React from 'react'
 import { extractAdvancedProps } from '../../utils'
-import { TabsContentType } from './types'
+import type { TabsContentType } from './types'
 
 /**
  * Page Builder Tabs component.

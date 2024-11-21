@@ -1,6 +1,7 @@
 import { PercentFormat } from '@graphcommerce/next-ui'
-import { Box, BoxProps } from '@mui/material'
-import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
+import type { BoxProps } from '@mui/material'
+import { Box } from '@mui/material'
+import type { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 
 export type ProductDiscountLabelProps = Pick<ProductListItemFragment, 'price_range'> &
   Omit<BoxProps, 'children'>

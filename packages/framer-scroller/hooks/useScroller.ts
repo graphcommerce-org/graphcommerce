@@ -1,18 +1,15 @@
 import { useConstant, useMotionValueValue } from '@graphcommerce/framer-utils'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
-import { SxProps, Theme } from '@mui/material'
-import {
-  HTMLMotionProps,
-  motionValue,
-  MotionValue,
-  PanHandlers,
-  PanInfo,
-  useTransform,
-} from 'framer-motion'
-import React, { MouseEventHandler, ReactHTML, useEffect, useState } from 'react'
+import type { SxProps, Theme } from '@mui/material'
+import type { HTMLMotionProps, MotionValue, PanHandlers, PanInfo } from 'framer-motion'
+import { motionValue, useTransform } from 'framer-motion'
+import type { MouseEventHandler, ReactHTML } from 'react'
+import type React from 'react'
+import { useEffect, useState } from 'react'
 import { isHTMLMousePointerEvent } from '../utils/isHTMLMousePointerEvent'
-import { scrollSnapTypeDirection, SnapTypeDirection } from '../utils/scrollSnapTypeDirection'
+import type { SnapTypeDirection } from '../utils/scrollSnapTypeDirection'
+import { scrollSnapTypeDirection } from '../utils/scrollSnapTypeDirection'
 import { useScrollerContext } from './useScrollerContext'
 import { useVelocitySnapTo } from './useVelocitySnapTo'
 
@@ -36,7 +33,7 @@ type OwnerProps = {
   canGrab: boolean
   grid: boolean
 }
-const name = 'Scroller' as const
+const name = 'Scroller'
 const parts = ['root'] as const
 const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 
@@ -208,7 +205,7 @@ export function useScroller<
       [theme.breakpoints.down('md')]: {
         display: 'grid',
         gridAutoFlow: 'row',
-        gridAutoColumns: `40%`,
+        gridAutoColumns: '40%',
         '& > *': {
           scrollSnapAlign: scrollSnap.scrollSnapAlign,
           scrollSnapStop: scrollSnap.scrollSnapStop,
@@ -219,7 +216,7 @@ export function useScroller<
       [theme.breakpoints.down('md')]: {
         display: 'grid',
         gridAutoFlow: 'column',
-        gridAutoRows: `40%`,
+        gridAutoRows: '40%',
         gridTemplateRows: 'auto',
         '& > *': {
           scrollSnapAlign: scrollSnap.scrollSnapAlign,
@@ -232,7 +229,7 @@ export function useScroller<
       [theme.breakpoints.up('md')]: {
         display: 'grid',
         gridAutoFlow: 'row',
-        gridAutoColumns: `40%`,
+        gridAutoColumns: '40%',
         '& > *': {
           scrollSnapAlign: scrollSnap.scrollSnapAlign,
           scrollSnapStop: scrollSnap.scrollSnapStop,
@@ -243,7 +240,7 @@ export function useScroller<
       [theme.breakpoints.up('md')]: {
         display: 'grid',
         gridAutoFlow: 'column',
-        gridAutoRows: `40%`,
+        gridAutoRows: '40%',
         gridTemplateRows: 'auto',
         '& > *': {
           scrollSnapAlign: scrollSnap.scrollSnapAlign,

@@ -1,4 +1,4 @@
-import { CartStartCheckoutLinkOrButtonProps } from '@graphcommerce/magento-cart'
+import type { CartStartCheckoutLinkOrButtonProps } from '@graphcommerce/magento-cart'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useSendEvent } from '../api/sendEvent'
 import { cartToBeginCheckout } from '../mapping/cartToBeginCheckout/cartToBeginCheckout'

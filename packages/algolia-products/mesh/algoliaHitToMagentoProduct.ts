@@ -11,9 +11,7 @@ import type {
   ResolversParentTypes,
   ResolversTypes,
 } from '@graphcommerce/graphql-mesh'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { GraphQLResolveInfo } from 'graphql'
-import { GetStoreConfigReturn } from './getStoreConfig'
+import type { GetStoreConfigReturn } from './getStoreConfig'
 
 export function assertAdditional(
   additional: unknown,

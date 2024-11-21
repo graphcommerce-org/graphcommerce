@@ -1,15 +1,17 @@
 import { Scroller, ScrollerProvider } from '@graphcommerce/framer-scroller'
-import { ProductListParams, productListLink } from '@graphcommerce/magento-product'
+import type { ProductListParams } from '@graphcommerce/magento-product'
+import { productListLink } from '@graphcommerce/magento-product'
 import { extendableComponent, filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { Box, Link, SxProps, Theme } from '@mui/material'
-import { CategoryChildrenFragment } from './CategoryChildren.gql'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Link } from '@mui/material'
+import type { CategoryChildrenFragment } from './CategoryChildren.gql'
 
 type CategoryChildrenProps = Omit<CategoryChildrenFragment, 'uid'> & {
   params: ProductListParams
   sx?: SxProps<Theme>
 }
 
-const name = 'CategoryChildren' as const
+const name = 'CategoryChildren'
 const parts = ['container', 'scroller', 'link'] as const
 const { classes } = extendableComponent(name, parts)
 
@@ -42,7 +44,7 @@ export function CategoryChildren(props: CategoryChildrenProps) {
           className={classes.scroller}
           hideScrollbar
           sx={(theme) => ({
-            gridAutoColumns: `max-content`,
+            gridAutoColumns: 'max-content',
             columnGap: theme.spacings.sm,
             marginBottom: '-8px',
           })}

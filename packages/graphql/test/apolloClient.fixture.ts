@@ -1,14 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-empty-pattern */
-import { test as base, Page } from '@playwright/test'
-import {
-  ApolloClient,
-  FetchResult,
-  getOperationName,
-  InMemoryCache,
-  NormalizedCacheObject,
-  TypedDocumentNode,
-} from '../apollo'
+import type { Page } from '@playwright/test'
+import { test as base } from '@playwright/test'
+import type { FetchResult, NormalizedCacheObject, TypedDocumentNode } from '../apollo'
+import { ApolloClient, getOperationName, InMemoryCache } from '../apollo'
 
 type ApolloClientTest = {
   apolloClient: ApolloClient<NormalizedCacheObject>

@@ -1,6 +1,9 @@
-import { ActionCardList, ActionCardListProps, ActionCardProps } from '@graphcommerce/next-ui'
-import { ControllerProps, FieldValues, useController } from '@graphcommerce/react-hook-form'
-import React, { MouseEventHandler } from 'react'
+import type { ActionCardListProps, ActionCardProps } from '@graphcommerce/next-ui'
+import { ActionCardList } from '@graphcommerce/next-ui'
+import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
+import type { MouseEventHandler } from 'react'
+import React, { useCallback } from 'react'
 
 export type ActionCardItemBase = Pick<ActionCardProps, 'value'>
 
@@ -40,11 +43,14 @@ export function ActionCardListForm<
   } = props
   const RenderItem = render as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>
 
-  function onSelect(itemValue: unknown, selectValues: unknown) {
-    return multiple
-      ? Array.isArray(selectValues) && selectValues.some((selectValue) => selectValue === itemValue)
-      : selectValues === itemValue
-  }
+  const onSelect = useCallback(
+    (itemValue: unknown, selectValues: unknown) =>
+      multiple
+        ? Array.isArray(selectValues) &&
+          selectValues.some((selectValue) => selectValue === itemValue)
+        : selectValues === itemValue,
+    [multiple],
+  )
 
   const {
     field: { onChange, value, ref },
@@ -60,6 +66,14 @@ export function ActionCardListForm<
     shouldUnregister,
   })
 
+  const handleReset = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      e.preventDefault()
+      if (!requireOptionSelection) onChange(null)
+    },
+    [onChange, requireOptionSelection],
+  )
+
   return (
     <ActionCardList
       {...other}
@@ -67,7 +81,7 @@ export function ActionCardListForm<
       required={required}
       value={value}
       ref={ref}
-      onChange={(_, incomming) => onChange(incomming)}
+      onChange={(_, incoming) => onChange(incoming)}
       error={formState.isSubmitted && !!fieldState.error}
       errorMessage={fieldState.error?.message}
     >
@@ -77,10 +91,7 @@ export function ActionCardListForm<
           key={`${item.value}`}
           value={item.value}
           selected={onSelect(item.value, value)}
-          onReset={(e) => {
-            e.preventDefault()
-            if (!requireOptionSelection) onChange(null)
-          }}
+          onReset={handleReset}
         />
       ))}
     </ActionCardList>

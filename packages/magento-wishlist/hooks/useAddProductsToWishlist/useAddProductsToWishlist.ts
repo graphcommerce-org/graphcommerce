@@ -1,12 +1,10 @@
 import { useApolloClient } from '@graphcommerce/graphql'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
-import {
-  AddProductToWishlistDocument,
-  AddProductToWishlistMutationVariables,
-} from './AddProductToWishlist.gql'
-import { UseWishlistGuestDocument } from '../useWishlistitems'
-import { WishlistItemFragment } from '../../queries/WishlistItem.gql'
 import { useEventCallback } from '@mui/material'
+import type { WishlistItemFragment } from '../../queries/WishlistItem.gql'
+import { UseWishlistGuestDocument } from '../useWishlistitems'
+import type { AddProductToWishlistMutationVariables } from './AddProductToWishlist.gql'
+import { AddProductToWishlistDocument } from './AddProductToWishlist.gql'
 
 function isMutationVariableInput(
   input: AddProductToWishlistMutationVariables['input'] | WishlistItemFragment[],

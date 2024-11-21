@@ -1,17 +1,14 @@
-import { ControllerProps, FieldValues, useController } from '@graphcommerce/react-hook-form'
+import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import {
-  Checkbox,
+import type {
   CheckboxProps,
-  FormControl,
-  FormControlLabel,
   FormControlLabelProps,
   FormControlProps,
-  FormGroup,
-  FormHelperText,
   SxProps,
   Theme,
 } from '@mui/material'
+import { Checkbox, FormControl, FormControlLabel, FormGroup, FormHelperText } from '@mui/material'
 
 export type CheckboxElementProps<T extends FieldValues> = Omit<CheckboxProps, 'name'> & {
   label?: FormControlLabelProps['label']

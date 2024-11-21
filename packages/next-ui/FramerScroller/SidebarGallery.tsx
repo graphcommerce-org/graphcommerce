@@ -1,25 +1,17 @@
 import { usePrevPageRouter } from '@graphcommerce/framer-next-pages/hooks/usePrevPageRouter'
+import type { MotionImageAspectProps, ScrollerButtonProps } from '@graphcommerce/framer-scroller'
 import {
   MotionImageAspect,
-  MotionImageAspectProps,
   Scroller,
   ScrollerDots,
   ScrollerButton,
   ScrollerProvider,
   unstable_usePreventScroll as usePreventScroll,
-  ScrollerButtonProps,
   ScrollerThumbnails,
 } from '@graphcommerce/framer-scroller'
 import { dvh } from '@graphcommerce/framer-utils'
-import {
-  Fab,
-  useTheme,
-  Box,
-  styled,
-  SxProps,
-  Theme,
-  Unstable_TrapFocus as TrapFocus,
-} from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Fab, useTheme, Box, styled, Unstable_TrapFocus as TrapFocus } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
@@ -39,7 +31,7 @@ type OwnerState = {
   sticky: boolean
   variantMd: SidebarGalleryVariant
 }
-const name = 'SidebarGallery' as const
+const name = 'SidebarGallery'
 const parts = [
   'row',
   'root',
@@ -237,12 +229,12 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                     top: 0,
                     width: '100%',
                     height: '100%',
-                    gridAutoColumns: `100%`,
-                    gridTemplateRows: `100%`,
+                    gridAutoColumns: '100%',
+                    gridTemplateRows: '100%',
                     cursor: disableZoom ? 'auto' : 'zoom-in',
                   },
                   zoomed && {
-                    height: `var(--client-size-y)`,
+                    height: 'var(--client-size-y)',
                     cursor: 'inherit',
                   },
                 ]}
@@ -305,7 +297,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   gap: theme.spacings.xxs,
                   position: 'absolute',
                   left: theme.spacings.sm,
-                  top: `calc(50% - 28px)`,
+                  top: 'calc(50% - 28px)',
                 }}
               >
                 <ScrollerButton
@@ -326,7 +318,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   gap: theme.spacings.xxs,
                   position: 'absolute',
                   right: theme.spacings.sm,
-                  top: `calc(50% - 28px)`,
+                  top: 'calc(50% - 28px)',
                 }}
               >
                 <ScrollerButton

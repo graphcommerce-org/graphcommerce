@@ -1,5 +1,7 @@
-import { styled, SxProps, Theme } from '@mui/material'
-import { m, PanHandlers } from 'framer-motion'
+import type { SxProps, Theme } from '@mui/material'
+import { styled } from '@mui/material'
+import type { PanHandlers } from 'framer-motion'
+import { m } from 'framer-motion'
 import React, { useRef } from 'react'
 
 const MotionBox = styled(m.div)({})

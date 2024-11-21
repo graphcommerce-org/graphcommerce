@@ -1,5 +1,6 @@
 import { responsiveVal, breakpointVal } from '@graphcommerce/next-ui'
-import { Box, BoxProps } from '@mui/material'
+import type { BoxProps } from '@mui/material'
+import { Box } from '@mui/material'
 
 type ProductImageContainerProps = BoxProps
 
@@ -22,7 +23,7 @@ export function ProductImageContainer(props: ProductImageContainerProps) {
           overflow: 'hidden',
           padding: responsiveVal(8, 12),
           '& > picture, & > .ProductListItem-placeholder': {
-            gridArea: `1 / 1 / 3 / 3`,
+            gridArea: '1 / 1 / 3 / 3',
             margin: `calc(${responsiveVal(8, 12)} * -1)`,
             height: 'auto',
           },
@@ -52,7 +53,7 @@ export function ProductListItemImageAreas(props: ProductListsItemImageAreaProps)
     <>
       <Box
         sx={{
-          gridArea: `1 / 1 / 2 / 2`,
+          gridArea: '1 / 1 / 2 / 2',
           zIndex: 1,
         }}
         className={classes.topLeft}
@@ -63,7 +64,7 @@ export function ProductListItemImageAreas(props: ProductListsItemImageAreaProps)
         sx={{
           justifySelf: 'end',
           textAlign: 'right',
-          gridArea: `1 / 2 / 2 / 3`,
+          gridArea: '1 / 2 / 2 / 3',
           zIndex: 1,
         }}
         className={classes.topRight}
@@ -73,7 +74,7 @@ export function ProductListItemImageAreas(props: ProductListsItemImageAreaProps)
       <Box
         sx={{
           alignSelf: 'flex-end',
-          gridArea: `2 / 1 / 3 / 2`,
+          gridArea: '2 / 1 / 3 / 2',
           zIndex: 1,
         }}
         className={classes.bottomLeft}
@@ -84,7 +85,7 @@ export function ProductListItemImageAreas(props: ProductListsItemImageAreaProps)
         sx={{
           textAlign: 'right',
           alignSelf: 'flex-end',
-          gridArea: `2 / 2 / 3 / 3`,
+          gridArea: '2 / 2 / 3 / 3',
           zIndex: 1,
           justifySelf: 'end',
         }}

@@ -1,10 +1,11 @@
-import { FieldPath, FieldValues, useWatch } from '@graphcommerce/ecommerce-ui'
+import type { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
+import { useWatch } from '@graphcommerce/ecommerce-ui'
+import type { AddressFieldsProps } from '@graphcommerce/magento-customer'
 import {
   useAddressFieldsForm,
   AddressAddition,
   AddressCity,
   AddressCountryRegion,
-  AddressFieldsProps,
   AddressHousenumber,
   AddressPostcode,
   AddressStreet,

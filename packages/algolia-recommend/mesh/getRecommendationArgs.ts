@@ -1,5 +1,5 @@
 import { getSearchResultsInput } from '@graphcommerce/algolia-products'
-import {
+import type {
   QueryproductsArgs,
   MeshContext,
   AlgoliasearchParamsObject_Input,

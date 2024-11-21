@@ -1,7 +1,8 @@
-import { ApolloError } from '@graphcommerce/graphql'
-import { FullPageMessage, FullPageMessageProps } from '@graphcommerce/next-ui'
+import type { ApolloError } from '@graphcommerce/graphql'
+import type { FullPageMessageProps } from '@graphcommerce/next-ui'
+import { FullPageMessage } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { AlertProps } from '@mui/material'
+import type { AlertProps } from '@mui/material'
 import { ApolloErrorAlert } from './ApolloErrorAlert'
 import { maskNetworkError } from './maskNetworkError'
 

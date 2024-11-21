@@ -1,6 +1,8 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import '@graphql-codegen/testing'
-import { Types } from '@graphql-codegen/plugin-helpers'
-import { buildSchema, parse, print, ASTNode } from 'graphql'
+import type { Types } from '@graphql-codegen/plugin-helpers'
+import type { ASTNode } from 'graphql'
+import { buildSchema, Kind, parse, print } from 'graphql'
 import { plugin } from '../../src'
 
 const testSchema = buildSchema(/* GraphQL */ `
@@ -67,7 +69,9 @@ it('can inline @argumentDefinitions/@arguments annotated fragments', async () =>
   `)
   const input: Types.DocumentFile[] = [{ document: fragmentDocument }, { document: queryDocument }]
   await plugin(testSchema, input, {})
-  const queryDoc = input.find((doc) => doc.document?.definitions[0].kind === 'OperationDefinition')
+  const queryDoc = input.find(
+    (doc) => doc.document?.definitions[0].kind === Kind.OPERATION_DEFINITION,
+  )
 
   expect(queryDoc).toBeDefined()
   expect(print(queryDoc?.document as ASTNode)).toBeSimilarStringTo(/* GraphQL */ `
@@ -126,7 +130,9 @@ it('handles unions with interfaces the correct way', async () => {
 
   const input: Types.DocumentFile[] = [{ document: queryDocument }]
   await plugin(schema, input, {})
-  const queryDoc = input.find((doc) => doc.document?.definitions[0].kind === 'OperationDefinition')
+  const queryDoc = input.find(
+    (doc) => doc.document?.definitions[0].kind === Kind.OPERATION_DEFINITION,
+  )
 
   expect(queryDoc).toBeDefined()
   expect(print(queryDoc?.document as ASTNode)).toBeSimilarStringTo(/* GraphQL */ `

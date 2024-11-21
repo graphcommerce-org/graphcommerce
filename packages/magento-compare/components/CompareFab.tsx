@@ -7,7 +7,8 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { styled, Box, SxProps, Theme, NoSsr, Badge, Button, ButtonProps } from '@mui/material'
+import type { SxProps, Theme, ButtonProps } from '@mui/material'
+import { styled, Box, NoSsr, Badge, Button } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useCompareSummary } from '../hooks'
@@ -21,7 +22,7 @@ type CompareFabContentProps = CompareFabProps & { total_quantity: number }
 
 const MotionDiv = styled(m.div)({})
 
-const MotionFab = m(
+const MotionFab = m.create(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   React.forwardRef<any, Omit<ButtonProps, 'style' | 'onDrag'>>((props, ref) => (
     <Button variant='pill' {...props} ref={ref} />

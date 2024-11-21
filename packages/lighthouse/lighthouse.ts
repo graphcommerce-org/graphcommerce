@@ -1,5 +1,5 @@
 import { promises as fs } from 'fs'
-import { PrerenderManifest } from 'next/dist/build'
+import type { PrerenderManifest } from 'next/dist/build'
 import lighthouse from './lighthouserc.json'
 
 async function main() {

@@ -1,5 +1,5 @@
 import { useHits } from 'react-instantsearch-hooks-web'
-import { AlgoliaPageHit } from '../lib/types'
+import type { AlgoliaPageHit } from '../lib/types'
 
 function hitToPage(hits: AlgoliaPageHit[]) {
   return hits.map((h) => {

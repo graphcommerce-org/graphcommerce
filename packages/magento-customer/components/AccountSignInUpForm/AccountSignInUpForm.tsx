@@ -10,7 +10,8 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Alert, Box, CircularProgress, Link, SxProps, Theme, Typography } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Alert, Box, CircularProgress, Link, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { CustomerDocument, useAccountSignInUpForm, useCustomerAccountCanSignUp } from '../../hooks'
 import { useCustomerQuery } from '../../hooks/useCustomerQuery'

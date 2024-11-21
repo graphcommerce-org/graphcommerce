@@ -4,10 +4,8 @@ import {
   useAssignCurrentCartId,
   useClearCurrentCartId,
 } from '@graphcommerce/magento-cart'
-import {
-  PaymentHandlerProps,
-  usePaymentMethodContext,
-} from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentHandlerProps } from '@graphcommerce/magento-cart-payment-method'
+import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
 import { ErrorSnackbar } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button, Dialog } from '@mui/material'

@@ -1,15 +1,16 @@
 import { useWatch } from '@graphcommerce/ecommerce-ui'
-import { MoneyFragment } from '@graphcommerce/magento-store'
+import type { MoneyFragment } from '@graphcommerce/magento-store'
 import { filterNonNullableKeys, isTypename, nonNullable } from '@graphcommerce/next-ui'
-import { AddToCartItemSelector, useFormAddProductsToCart } from '../AddProductsToCart'
-import {
-  productCustomizableSelectors,
+import type { AddToCartItemSelector } from '../AddProductsToCart'
+import { useFormAddProductsToCart } from '../AddProductsToCart'
+import type {
   CustomizableProductOptionBase,
   OptionValueSelector,
   AnyOption,
   SelectorsProp,
 } from '../ProductCustomizable/productCustomizableSelectors'
-import { ProductPagePriceFragment } from './ProductPagePrice.gql'
+import { productCustomizableSelectors } from '../ProductCustomizable/productCustomizableSelectors'
+import type { ProductPagePriceFragment } from './ProductPagePrice.gql'
 import { getProductTierPrice } from './getProductTierPrice'
 
 export type UseCustomizableOptionPriceProps = {

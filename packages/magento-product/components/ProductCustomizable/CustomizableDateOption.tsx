@@ -1,10 +1,10 @@
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { Money } from '@graphcommerce/magento-store'
 import { SectionHeader } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
-import { OptionTypeRenderer } from './CustomizableAreaOption'
-import { Money } from '@graphcommerce/magento-store'
+import type { OptionTypeRenderer } from './CustomizableAreaOption'
 
 type CustomizableDateOptionProps = React.ComponentProps<
   OptionTypeRenderer['CustomizableDateOption']

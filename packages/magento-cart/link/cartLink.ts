@@ -1,9 +1,12 @@
-import { fromPromise, globalApolloClient, Operation } from '@graphcommerce/graphql'
+import type { Operation } from '@graphcommerce/graphql'
+import { fromPromise, globalApolloClient } from '@graphcommerce/graphql'
 import { ApolloLink, Observable, onError } from '@graphcommerce/graphql/apollo'
 import { CustomerTokenDocument, getCustomerAccountCanSignIn } from '@graphcommerce/magento-customer'
-import { PushRouter, pushWithPromise } from '@graphcommerce/magento-customer/link/customerLink'
-import { ErrorCategory } from '@graphcommerce/magento-graphql'
+import type { PushRouter } from '@graphcommerce/magento-customer/link/customerLink'
+import { pushWithPromise } from '@graphcommerce/magento-customer/link/customerLink'
+import type { ErrorCategory } from '@graphcommerce/magento-graphql'
 import { t } from '@lingui/macro'
+import type { GraphQLFormattedError } from 'graphql'
 import { GraphQLError } from 'graphql'
 import { writeCartId } from '../hooks'
 import { CreateEmptyCartDocument } from '../hooks/CreateEmptyCart.gql'
@@ -28,10 +31,10 @@ const cartErrorLink = onError(({ graphQLErrors, operation, forward }) => {
 
   if (!isCartOperation(operation) || !graphQLErrors) return undefined
 
-  const isErrorCategory = (err: GraphQLError, category: ErrorCategory) =>
+  const isErrorCategory = (err: GraphQLFormattedError, category: ErrorCategory) =>
     err.extensions?.category === category
 
-  const isNoSuchEntityError = (err: GraphQLError) =>
+  const isNoSuchEntityError = (err: GraphQLFormattedError) =>
     isErrorCategory(err, 'graphql-no-such-entity') &&
     errorIsIncluded(err.path, [
       'cart',

@@ -1,5 +1,5 @@
 import { getAdvanced, getMediaQuery } from '../../utils'
-import { SliderContentType } from './types'
+import type { SliderContentType } from './types'
 
 export const sliderAggregator: SliderContentType['configAggregator'] = (node) => ({
   minHeight: node.style.minHeight,

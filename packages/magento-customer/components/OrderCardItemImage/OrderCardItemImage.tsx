@@ -1,13 +1,14 @@
 import { Image } from '@graphcommerce/image'
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme } from '@mui/material'
-import { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
+import type { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
 
 export type OrderCardItemImageProps = Omit<OrderCardItemImageFragment, 'uid'> & {
   sx?: SxProps<Theme>
 }
 
-const componentName = 'OrderCardItemImage' as const
+const componentName = 'OrderCardItemImage'
 const parts = ['image', 'placeholder'] as const
 const { classes } = extendableComponent(componentName, parts)
 

@@ -1,10 +1,6 @@
-import {
-  nonNullable,
-  SidebarGallery,
-  SidebarGalleryProps,
-  TypeRenderer,
-} from '@graphcommerce/next-ui'
-import { ProductPageGalleryFragment } from './ProductPageGallery.gql'
+import type { SidebarGalleryProps, TypeRenderer } from '@graphcommerce/next-ui'
+import { nonNullable, SidebarGallery } from '@graphcommerce/next-ui'
+import type { ProductPageGalleryFragment } from './ProductPageGallery.gql'
 
 export type ProductPageGalleryRenderers = TypeRenderer<
   NonNullable<NonNullable<ProductPageGalleryFragment['media_gallery']>[0]>

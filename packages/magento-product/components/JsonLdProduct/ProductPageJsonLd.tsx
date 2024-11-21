@@ -1,5 +1,5 @@
 import { JsonLd } from '@graphcommerce/next-ui'
-import { JsonLdProductFragment } from './JsonLdProduct.gql'
+import type { JsonLdProductFragment } from './JsonLdProduct.gql'
 
 export type ProductPageJsonLdProps<
   T extends { '@type': string },

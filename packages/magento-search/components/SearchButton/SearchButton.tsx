@@ -1,12 +1,13 @@
 import { iconSearch, responsiveVal, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { TextField, TextFieldProps } from '@mui/material'
+import type { TextFieldProps } from '@mui/material'
+import { TextField } from '@mui/material'
 
 export type SearchButtonProps = TextFieldProps
 
 type OwnerState = { fullWidth?: boolean }
-const name = 'SearchButton' as const
+const name = 'SearchButton'
 const parts = ['root', 'inputRoot'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 

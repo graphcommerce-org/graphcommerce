@@ -1,14 +1,15 @@
 import { filterNonNullableKeys, RenderType } from '@graphcommerce/next-ui'
-import { AddToCartItemSelector } from '../AddProductsToCart'
-import { ProductPagePriceFragment } from '../ProductPagePrice'
-import { CustomizableAreaOption, OptionTypeRenderer } from './CustomizableAreaOption'
+import type { AddToCartItemSelector } from '../AddProductsToCart'
+import type { ProductPagePriceFragment } from '../ProductPagePrice'
+import type { OptionTypeRenderer } from './CustomizableAreaOption'
+import { CustomizableAreaOption } from './CustomizableAreaOption'
 import { CustomizableCheckboxOption } from './CustomizableCheckboxOption'
 import { CustomizableDateOption } from './CustomizableDateOption'
 import { CustomizableDropDownOption } from './CustomizableDropDownOption'
 import { CustomizableFieldOption } from './CustomizableFieldOption'
 import { CustomizableMultipleOption } from './CustomizableMultipleOption'
 import { CustomizableRadioOption } from './CustomizableRadioOption'
-import { ProductCustomizableFragment } from './ProductCustomizable.gql'
+import type { ProductCustomizableFragment } from './ProductCustomizable.gql'
 
 const defaultRenderer = {
   CustomizableAreaOption,

@@ -1,6 +1,8 @@
 import { FormAutoSubmit } from '@graphcommerce/ecommerce-ui'
 import { extendableComponent, StickyBelowHeader } from '@graphcommerce/next-ui'
-import { Box, Container, Theme, useMediaQuery } from '@mui/material'
+import type { Theme } from '@mui/material'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
+import { Box, Container, useMediaQuery } from '@mui/material'
 import React from 'react'
 import { useProductFiltersPro } from './ProductFiltersPro'
 
@@ -19,7 +21,7 @@ type OwnerProps = {
   headerPosition: 'before'
 }
 
-const name = 'ProductFiltersProLayoutSidebar' as const
+const name = 'ProductFiltersProLayoutSidebar'
 const parts = ['root', 'content'] as const
 const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 

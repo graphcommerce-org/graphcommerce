@@ -1,17 +1,10 @@
 /* eslint-disable spaced-comment */
 import { extendableComponent, FlagAvatar, NextLink } from '@graphcommerce/next-ui'
-import {
-  List,
-  ListItemText,
-  Collapse,
-  ListItemAvatar,
-  SxProps,
-  Theme,
-  ListItemButton,
-} from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { List, ListItemText, Collapse, ListItemAvatar, ListItemButton } from '@mui/material'
 import React from 'react'
 import { localeToStore, storeToLocale } from '../../localeToStore'
-import { StoreSwitcherListQuery } from './StoreSwitcherList.gql'
+import type { StoreSwitcherListQuery } from './StoreSwitcherList.gql'
 
 type Store = NonNullable<NonNullable<StoreSwitcherListQuery['availableStores']>[0]>
 
@@ -20,7 +13,7 @@ export type StoreSwitcherListProps = {
   sx?: SxProps<Theme>
 } & StoreSwitcherListQuery
 
-const name = 'StoreSwitcherList' as const
+const name = 'StoreSwitcherList'
 const parts = ['list', 'listItem', 'listItemIndented', 'avatar'] as const
 const { classes } = extendableComponent(name, parts)
 

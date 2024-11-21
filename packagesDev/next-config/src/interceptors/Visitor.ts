@@ -11,7 +11,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable consistent-return */
 // eslint-disable-next-line import/no-extraneous-dependencies
-import {
+import type {
   Accessibility,
   Argument,
   ArrayExpression,
@@ -782,7 +782,6 @@ export class Visitor {
   }
 
   visitTsPropertySignature(n: TsPropertySignature): TsPropertySignature {
-    n.params = this.visitTsFnParameters(n.params)
     n.typeAnnotation = this.visitTsTypeAnnotation(n.typeAnnotation)
     return n
   }

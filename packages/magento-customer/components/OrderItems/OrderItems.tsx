@@ -1,17 +1,18 @@
 import { SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Button, Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Button, Box } from '@mui/material'
 import { useState } from 'react'
-import { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
+import type { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import { OrderItem } from '../OrderItem/OrderItem'
-import { OrderItemsFragment } from './OrderItems.gql'
+import type { OrderItemsFragment } from './OrderItems.gql'
 
 export type OrderItemsProps = OrderItemsFragment & {
   images?: UseOrderCardItemImages
   sx?: SxProps<Theme>
 }
 
-const componentName = 'OrderItems' as const
+const componentName = 'OrderItems'
 const parts = ['root', 'orderItemsInnerContainer', 'skeletonOrderItem', 'viewAllButton'] as const
 const { classes } = extendableComponent(componentName, parts)
 

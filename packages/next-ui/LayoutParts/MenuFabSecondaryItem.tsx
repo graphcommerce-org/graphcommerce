@@ -1,6 +1,8 @@
-import { ListItemButton, ListItemIcon, ListItemText, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import { useRouter } from 'next/router'
-import React, { MouseEventHandler } from 'react'
+import type { MouseEventHandler } from 'react'
+import React from 'react'
 import { extendableComponent } from '../Styles'
 import { NextLink } from '../Theme'
 
@@ -12,7 +14,7 @@ export type FabMenuSecondaryItemProps = {
   onClick?: MouseEventHandler<HTMLElement>
 }
 
-const compName = 'MenuFabSecondaryItem' as const
+const compName = 'MenuFabSecondaryItem'
 const parts = ['root', 'icon', 'text'] as const
 const { classes } = extendableComponent(compName, parts)
 

@@ -1,7 +1,7 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { OrderCardItemImageFragment } from './OrderCardItemImage.gql'
+import type { OrderCardItemImageFragment } from './OrderCardItemImage.gql'
 import { OrderCardItemImagesDocument } from './OrderCardItemImages.gql'
-import { UseOrderCardItemImagesFragment } from './UseOrderCardItemImages.gql'
+import type { UseOrderCardItemImagesFragment } from './UseOrderCardItemImages.gql'
 
 type UseOrderCardItemImagesProps = UseOrderCardItemImagesFragment | null
 

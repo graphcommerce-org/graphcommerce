@@ -1,4 +1,5 @@
-import { Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 
 type BlogContentProps = {
   children: React.ReactNode

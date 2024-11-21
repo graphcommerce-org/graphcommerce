@@ -1,7 +1,8 @@
 import fragments from '@graphcommerce/graphql/generated/fragments.json'
 import type { MeshContext, ProductInterfaceResolvers, Resolvers } from '@graphcommerce/graphql-mesh'
 import { Kind } from 'graphql'
-import { CustomAttributeInput, customAttributeMetadataV2 } from './customAttributeMetadataV2'
+import type { CustomAttributeInput } from './customAttributeMetadataV2'
+import { customAttributeMetadataV2 } from './customAttributeMetadataV2'
 
 type CustomAttributeV2Resolver = Pick<ProductInterfaceResolvers<MeshContext>, 'custom_attributeV2'>
 

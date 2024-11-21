@@ -1,18 +1,17 @@
 /* eslint-disable @typescript-eslint/require-await */
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { LayoutOverlayProps, LayoutOverlayVariant } from '@graphcommerce/next-ui'
 import {
   LayoutHeader,
   iconChevronRight,
   LayoutOverlay,
-  LayoutOverlayProps,
-  LayoutOverlayVariant,
   IconSvg,
   LayoutTitle,
   LinkOrButton,
 } from '@graphcommerce/next-ui'
 import { Container, Link } from '@mui/material'
 import { m } from 'framer-motion'
-import { GetStaticPathsResult, GetStaticProps } from 'next'
+import type { GetStaticPathsResult, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { Grid } from '../../components/Grid'

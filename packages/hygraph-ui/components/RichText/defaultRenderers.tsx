@@ -1,6 +1,6 @@
 import { Box, Typography, Link } from '@mui/material'
 import { Asset } from '../Asset/Asset'
-import { Renderers } from './types'
+import type { Renderers } from './types'
 
 export const defaultRenderers: Renderers = {
   'heading-one': (props) => <Typography variant='h1' {...props} />,

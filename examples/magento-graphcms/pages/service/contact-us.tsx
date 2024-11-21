@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { cacheFirst } from '@graphcommerce/graphql'
+import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { ContactForm } from '@graphcommerce/magento-customer'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
@@ -60,7 +60,7 @@ ContactUs.pageOptions = pageOptions
 export default ContactUs
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
-  const url = `service/contact-us`
+  const url = 'service/contact-us'
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })

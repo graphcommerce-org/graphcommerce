@@ -1,6 +1,6 @@
 import { Divider as DividerBase } from '@mui/material'
 import { extractAdvancedProps } from '../../utils'
-import { DividerContentType } from './types'
+import type { DividerContentType } from './types'
 
 /**
  * Page Builder Divider component.

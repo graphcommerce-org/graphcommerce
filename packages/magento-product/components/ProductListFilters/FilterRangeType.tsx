@@ -1,14 +1,15 @@
 import { cloneDeep } from '@graphcommerce/graphql'
 import type { FilterRangeTypeInput } from '@graphcommerce/graphql-mesh'
 import { Money } from '@graphcommerce/magento-store'
-import { ChipMenu, ChipMenuProps, extendableComponent } from '@graphcommerce/next-ui'
+import type { ChipMenuProps } from '@graphcommerce/next-ui'
+import { ChipMenu, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Box, Slider } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
-import { ProductListFiltersFragment } from './ProductListFilters.gql'
+import type { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 type FilterRangeTypeProps = NonNullable<
   NonNullable<ProductListFiltersFragment['aggregations']>[0]

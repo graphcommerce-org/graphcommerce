@@ -1,4 +1,4 @@
-import { ShippingMethodFormProps } from '@graphcommerce/magento-cart-shipping-method'
+import type { ShippingMethodFormProps } from '@graphcommerce/magento-cart-shipping-method'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { PickupLocationSelector } from '../components/PickupLocationSelector'
 

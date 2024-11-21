@@ -1,5 +1,5 @@
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/macro'
 import { useRouter } from 'next/router'

@@ -1,6 +1,7 @@
 import { responsiveVal, Row, SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme } from '@mui/material'
-import { ProductSpecsFragment } from './ProductSpecs.gql'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
+import type { ProductSpecsFragment } from './ProductSpecs.gql'
 import { ProductSpecsAggregations } from './ProductSpecsAggregations'
 import { ProductSpecsCustomAttributes } from './ProductSpecsCustomAttributes'
 
@@ -10,7 +11,7 @@ export type ProductSpecsProps = ProductSpecsFragment & {
   children?: React.ReactNode
 }
 
-const name = 'ProductSpecs' as const
+const name = 'ProductSpecs'
 const parts = ['root', 'specs', 'options'] as const
 const { classes } = extendableComponent(name, parts)
 

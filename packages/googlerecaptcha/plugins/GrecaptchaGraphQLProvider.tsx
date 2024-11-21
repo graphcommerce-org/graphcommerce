@@ -1,9 +1,10 @@
-import { GraphQLProviderProps } from '@graphcommerce/graphql'
+import type { GraphQLProviderProps } from '@graphcommerce/graphql'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { GlobalStyles } from '@mui/material'
 import Script from 'next/script'
 import { useState, useMemo } from 'react'
-import { recaptchaContext, RecaptchaContext } from '../context/recaptchaContext'
+import type { RecaptchaContext } from '../context/recaptchaContext'
+import { recaptchaContext } from '../context/recaptchaContext'
 import { useGoogleRecaptchaSiteKey } from '../hooks/useGoogleRecaptchaSiteKey'
 import { recaptchaLink } from '../link/recaptchaLink'
 

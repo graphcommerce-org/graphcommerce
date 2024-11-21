@@ -1,12 +1,9 @@
 import { InputCheckmark } from '@graphcommerce/next-ui'
-import {
-  Controller,
-  ControllerProps,
-  FieldValues,
-  useController,
-} from '@graphcommerce/react-hook-form'
+import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import { MenuItem, TextField, TextFieldProps } from '@mui/material'
+import type { TextFieldProps } from '@mui/material'
+import { MenuItem, TextField } from '@mui/material'
 
 type OptionBase = { id: string | number; label: string | number }
 
@@ -87,6 +84,7 @@ export function SelectElement<TFieldValues extends FieldValues, O extends Option
           ),
       }}
     >
+      {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
       {isNativeSelect && <option />}
       {options.map((item) => (
         <ChildComponent key={item.id} value={item.id}>

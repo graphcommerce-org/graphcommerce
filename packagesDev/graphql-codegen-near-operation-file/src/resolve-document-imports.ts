@@ -1,17 +1,21 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable import/no-cycle */
 import { resolve } from 'path'
-import { isUsingTypes, Types } from '@graphql-codegen/plugin-helpers'
-import {
-  generateImportStatement,
+import type { Types } from '@graphql-codegen/plugin-helpers'
+import { isUsingTypes } from '@graphql-codegen/plugin-helpers'
+import type {
   ImportSource,
-  resolveImportSource,
   FragmentImport,
   ImportDeclaration,
   LoadedFragment,
 } from '@graphql-codegen/visitor-plugin-common'
-import { Source } from '@graphql-tools/utils'
-import { DocumentNode, FragmentDefinitionNode, GraphQLSchema, visit } from 'graphql'
+import {
+  generateImportStatement,
+  resolveImportSource,
+} from '@graphql-codegen/visitor-plugin-common'
+import type { Source } from '@graphql-tools/utils'
+import type { DocumentNode, FragmentDefinitionNode, GraphQLSchema } from 'graphql'
+import { visit } from 'graphql'
 import buildFragmentResolver, { buildFragmentRegistry } from './fragment-resolver'
 import { extractExternalFragmentsInUse } from './utils'
 

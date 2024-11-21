@@ -1,7 +1,8 @@
 import { NumberFieldElement } from '@graphcommerce/ecommerce-ui'
 import type { ProductInterface } from '@graphcommerce/graphql-mesh'
 import { ApolloCartErrorAlert, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { Money, MoneyProps } from '@graphcommerce/magento-store'
+import type { MoneyProps } from '@graphcommerce/magento-store'
+import { Money } from '@graphcommerce/magento-store'
 import {
   Button,
   MessageSnackbar,
@@ -10,9 +11,11 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Divider, Typography, ButtonProps, Box, Alert } from '@mui/material'
+import type { ButtonProps } from '@mui/material'
+import { Divider, Typography, Box, Alert } from '@mui/material'
 import React from 'react'
-import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
+import type { ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
+import { ProductAddToCartDocument } from './ProductAddToCart.gql'
 
 const { classes, selectors } = extendableComponent('ProductAddToCart', [
   'root',
