@@ -4083,7 +4083,6 @@ __metadata:
     "@emotion/server": "npm:^11.11.0"
     "@emotion/styled": "npm:^11.13.0"
     "@graphcommerce/cli": "npm:9.0.0-canary.103"
-    "@graphcommerce/demo-magento-graphcommerce": "npm:9.0.0-canary.103"
     "@graphcommerce/ecommerce-ui": "npm:9.0.0-canary.103"
     "@graphcommerce/eslint-config-pwa": "npm:9.0.0-canary.103"
     "@graphcommerce/framer-next-pages": "npm:9.0.0-canary.103"

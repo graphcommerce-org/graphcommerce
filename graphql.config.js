@@ -35,5 +35,29 @@ module.exports = {
       },
       exclude: 'packages/hygraph-cli/readSchema.ts',
     },
+    MagentoOpenSource: {
+      schema: [
+        'examples/magento-open-source/.mesh/schema.graphql',
+        'packages/graphql/apollo-client.graphql',
+        'packagesDev/graphql-codegen-near-operation-file/src/directive/env.graphqls',
+        'packagesDev/graphql-codegen-near-operation-file/src/directive/injectable.graphqls',
+      ],
+      documents: [
+        'examples/magento-open-source/components/**/*.graphql',
+        'examples/magento-open-source/graphql/**/*.graphql',
+        'packages/**/*.graphql',
+      ],
+      extensions: {
+        languageService: {
+          useSchemaFileDefinitions: true,
+        },
+        endpoints: {
+          default: {
+            url: 'http://localhost:3000/api/graphql/',
+          },
+        },
+      },
+      exclude: 'packages/hygraph-cli/readSchema.ts',
+    },
   },
 }
