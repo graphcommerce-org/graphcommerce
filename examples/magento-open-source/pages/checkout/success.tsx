@@ -1,4 +1,4 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import {
   CartItemSummary,
@@ -8,9 +8,9 @@ import {
 } from '@graphcommerce/magento-cart'
 import { SignupNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   FullPageMessage,
-  GetStaticProps,
   iconParty,
   iconSadFace,
   LayoutHeader,
@@ -21,12 +21,8 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Button, Box, Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import {
-  LayoutDocument,
-  LayoutMinimal,
-  LayoutNavigationProps,
-  LayoutMinimalProps,
-} from '../../components'
+import type { LayoutNavigationProps, LayoutMinimalProps } from '../../components'
+import { LayoutDocument, LayoutMinimal } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>

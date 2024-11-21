@@ -1,15 +1,15 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { AccountDashboardAddressesQuery } from '@graphcommerce/magento-customer'
 import {
   CreateCustomerAddressForm,
   CustomerDocument,
   useCustomerQuery,
   WaitForCustomer,
-  AccountDashboardAddressesQuery,
   getCustomerAccountIsDisabled,
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
-  GetStaticProps,
   SectionContainer,
   iconAddresses,
   LayoutOverlayHeader,
@@ -18,7 +18,8 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import type { LayoutOverlayProps } from '../../../components'
+import { LayoutOverlay } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = AccountDashboardAddressesQuery

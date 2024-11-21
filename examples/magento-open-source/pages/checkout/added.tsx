@@ -1,21 +1,17 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Image } from '@graphcommerce/image'
 import { getCartDisabled, useCrosssellItems } from '@graphcommerce/magento-cart'
 import { AddProductsToCartForm, ProductScroller } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  Button,
-  GetStaticProps,
-  iconChevronRight,
-  IconSvg,
-  responsiveVal,
-} from '@graphcommerce/next-ui'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { Button, iconChevronRight, IconSvg, responsiveVal } from '@graphcommerce/next-ui'
 import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/LayoutHeaderClose'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
 import { Box, Container, Divider, Typography } from '@mui/material'
 import { useEffect, useRef } from 'react'
-import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../../components'
+import type { LayoutOverlayProps } from '../../components'
+import { LayoutOverlay, productListRenderer } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>

@@ -3,11 +3,11 @@ import { magentoMenuToNavigation } from '@graphcommerce/magento-category'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { ProductFiltersProSearchField, SearchLink } from '@graphcommerce/magento-search'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
+import type { LayoutDefaultProps } from '@graphcommerce/next-ui'
 import {
   DesktopNavActions,
   DesktopNavBar,
   LayoutDefault,
-  LayoutDefaultProps,
   iconCustomerService,
   iconHeart,
   NavigationFab,
@@ -27,7 +27,7 @@ import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
 import { useRouter } from 'next/router'
 import { Footer } from './Footer'
-import { LayoutQuery } from './Layout.gql'
+import type { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
 
 export type LayoutNavigationProps = LayoutQuery &

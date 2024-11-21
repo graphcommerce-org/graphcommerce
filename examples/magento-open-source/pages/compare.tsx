@@ -1,5 +1,5 @@
 import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   useCompareList,
   EmptyCompareListButton,
@@ -11,10 +11,9 @@ import {
   CompareListIntroText,
 } from '@graphcommerce/magento-compare'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import type { GetStaticProps, LayoutOverlayProps } from '@graphcommerce/next-ui'
 import {
-  GetStaticProps,
   LayoutOverlay,
-  LayoutOverlayProps,
   iconCompare,
   FullPageMessage,
   LayoutOverlayHeader,

@@ -1,16 +1,13 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import { GuestNewsletter } from '@graphcommerce/magento-newsletter'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { t, Trans } from '@lingui/macro'
 import { Container, Typography } from '@mui/material'
-import {
-  LayoutDocument,
-  LayoutOverlay,
-  LayoutOverlayProps,
-  LayoutNavigationProps,
-} from '../../components'
+import type { LayoutOverlayProps, LayoutNavigationProps } from '../../components'
+import { LayoutDocument, LayoutOverlay } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>

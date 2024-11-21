@@ -1,22 +1,19 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { StoreSwitcherListQuery } from '@graphcommerce/magento-store'
 import {
   PageMeta,
   StoreConfigDocument,
   StoreSwitcherList,
   StoreSwitcherListDocument,
-  StoreSwitcherListQuery,
 } from '@graphcommerce/magento-store'
-import {
-  GetStaticProps,
-  iconLanguage,
-  LayoutOverlayHeader,
-  LayoutTitle,
-} from '@graphcommerce/next-ui'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { iconLanguage, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
-import { LayoutOverlay, LayoutOverlayProps } from '../components'
+import type { LayoutOverlayProps } from '../components'
+import { LayoutOverlay } from '../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 type RouteProps = { country?: string[] }

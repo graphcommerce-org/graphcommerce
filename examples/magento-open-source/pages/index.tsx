@@ -1,9 +1,11 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutHeader, MetaRobots, PageMeta } from '@graphcommerce/next-ui'
-import { LayoutDocument, LayoutNavigation, LayoutNavigationProps } from '../components'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { LayoutHeader, MetaRobots, PageMeta } from '@graphcommerce/next-ui'
+import type { LayoutNavigationProps } from '../components'
+import { LayoutDocument, LayoutNavigation } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = {}

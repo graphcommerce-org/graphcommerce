@@ -1,5 +1,5 @@
 import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   ApolloCartErrorAlert,
   CartStartCheckout,
@@ -13,8 +13,8 @@ import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
 import { CartItemsActionCards, CartCrosssellsScroller } from '@graphcommerce/magento-cart-items'
 import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
-  GetStaticProps,
   iconShoppingBag,
   Stepper,
   LayoutTitle,
@@ -25,7 +25,8 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Container } from '@mui/material'
-import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../components'
+import type { LayoutOverlayProps } from '../components'
+import { LayoutOverlay, productListRenderer } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>

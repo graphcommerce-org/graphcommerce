@@ -5,7 +5,7 @@ import {
   storefrontAll,
   storefrontConfig,
 } from '@graphcommerce/next-ui'
-import { GetServerSideProps } from 'next'
+import type { GetServerSideProps } from 'next'
 
 const sitemapRoutes = ['/sitemap/content.xml', '/sitemap/categories.xml', '/sitemap/products.xml']
 
@@ -43,8 +43,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     .join('\n')
 
   const robots = robotsTxt`
-    ${!robotsAllow && `User-agent: *`}
-    ${!robotsAllow && `Disallow: /`}
+    ${!robotsAllow && 'User-agent: *'}
+    ${!robotsAllow && 'Disallow: /'}
 
     User-agent: *
     Disallow: /switch-stores

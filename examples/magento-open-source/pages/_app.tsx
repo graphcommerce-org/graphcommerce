@@ -7,7 +7,7 @@ import {
   PageLoadIndicator,
 } from '@graphcommerce/next-ui'
 import { CssBaseline } from '@mui/material'
-import { AppProps } from 'next/app'
+import type { AppProps } from 'next/app'
 import { lightTheme, darkTheme } from '../components/theme'
 import { I18nProvider } from '../lib/i18n/I18nProvider'
 

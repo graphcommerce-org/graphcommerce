@@ -1,14 +1,13 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
-import {
-  CartAgreementsDocument,
-  CartAgreementsQuery,
-  getCheckoutIsDisabled,
-} from '@graphcommerce/magento-cart'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { CartAgreementsQuery } from '@graphcommerce/magento-cart'
+import { CartAgreementsDocument, getCheckoutIsDisabled } from '@graphcommerce/magento-cart'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { Container, Typography } from '@mui/material'
-import { GetStaticPaths } from 'next'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import type { GetStaticPaths } from 'next'
+import type { LayoutOverlayProps } from '../../../components'
+import { LayoutOverlay } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type Props = { agreement: NonNullable<NonNullable<CartAgreementsQuery['checkoutAgreements']>[0]> }

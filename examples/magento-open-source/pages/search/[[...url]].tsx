@@ -1,35 +1,38 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { InContextMaskProvider, cacheFirst, flushMeasurePerf } from '@graphcommerce/graphql'
-import { MenuQueryFragment } from '@graphcommerce/magento-category'
-import {
-  ProductListDocument,
-  extractUrlQuery,
-  parseParams,
+import type { MenuQueryFragment } from '@graphcommerce/magento-category'
+import type {
   FilterTypes,
   ProductListParams,
-  getFilterTypes,
-  ProductFiltersDocument,
   ProductListQuery,
   ProductFiltersQuery,
 } from '@graphcommerce/magento-product'
 import {
+  ProductListDocument,
+  extractUrlQuery,
+  parseParams,
+  getFilterTypes,
+  ProductFiltersDocument,
+} from '@graphcommerce/magento-product'
+import type { CategorySearchQuery } from '@graphcommerce/magento-search'
+import {
   CategorySearchDocument,
-  CategorySearchQuery,
   ProductFiltersProSearchField,
   productListApplySearchDefaults,
   searchDefaultsToProductListFilters,
   useProductList,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutHeader } from '@graphcommerce/next-ui'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { LayoutHeader } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
+import type { LayoutNavigationProps } from '../../components'
 import {
   ProductListLayoutClassic,
   ProductListLayoutDefault,
   ProductListLayoutSidebar,
   LayoutDocument,
   LayoutNavigation,
-  LayoutNavigationProps,
 } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 

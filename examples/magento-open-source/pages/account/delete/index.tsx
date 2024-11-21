@@ -1,10 +1,12 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { AccountDeleteForm, getCustomerAccountIsDisabled } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutOverlayHeader, LayoutTitle, iconBin } from '@graphcommerce/next-ui'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { LayoutOverlayHeader, LayoutTitle, iconBin } from '@graphcommerce/next-ui'
 import { Trans, t } from '@lingui/macro'
 import { Container } from '@mui/material'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import type { LayoutOverlayProps } from '../../../components'
+import { LayoutOverlay } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>

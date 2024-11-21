@@ -1,5 +1,5 @@
-import { MenuQueryFragment } from '@graphcommerce/magento-category'
-import {
+import type { MenuQueryFragment } from '@graphcommerce/magento-category'
+import type {
   CategoryDefaultFragment,
   FilterTypes,
   ProductFiltersQuery,
@@ -7,7 +7,7 @@ import {
   ProductListQuery,
   useProductList,
 } from '@graphcommerce/magento-product'
-import { CategoryPageQuery } from '../../graphql/CategoryPage.gql'
+import type { CategoryPageQuery } from '../../graphql/CategoryPage.gql'
 
 type BaseProps = MenuQueryFragment &
   ProductListQuery &

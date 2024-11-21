@@ -1,13 +1,13 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   cacheFirst,
   InContextMaskProvider,
   mergeDeep,
   useInContextQuery,
 } from '@graphcommerce/graphql'
+import type { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
 import {
   AddProductsToCartForm,
-  AddProductsToCartFormProps,
   getProductStaticPaths,
   jsonLdProduct,
   jsonLdProductOffer,
@@ -27,19 +27,17 @@ import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-p
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
-import { GetStaticProps, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Typography } from '@mui/material'
-import { GetStaticPaths } from 'next'
-import {
-  LayoutDocument,
-  LayoutNavigation,
-  LayoutNavigationProps,
-  productListRenderer,
-} from '../../components'
+import type { GetStaticPaths } from 'next'
+import type { LayoutNavigationProps } from '../../components'
+import { LayoutDocument, LayoutNavigation, productListRenderer } from '../../components'
 import { AddProductsToCartView } from '../../components/ProductView/AddProductsToCartView'
-import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
+import type { ProductPage2Query } from '../../graphql/ProductPage2.gql'
+import { ProductPage2Document } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 export type Props = ProductPage2Query &
@@ -190,7 +188,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
-      : { href: `/`, title: i18n._(/* i18n */ 'Home') }
+      : { href: '/', title: i18n._(/* i18n */ 'Home') }
 
   return {
     props: {

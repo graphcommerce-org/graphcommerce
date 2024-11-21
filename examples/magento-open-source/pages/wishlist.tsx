@@ -1,9 +1,9 @@
 import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { useWishlistItems, WishlistItemActionCard } from '@graphcommerce/magento-wishlist'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
-  GetStaticProps,
   iconHeart,
   FullPageMessage,
   Button,
@@ -14,7 +14,8 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Container } from '@mui/material'
-import { LayoutOverlay, LayoutOverlayProps } from '../components'
+import type { LayoutOverlayProps } from '../components'
+import { LayoutOverlay } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>

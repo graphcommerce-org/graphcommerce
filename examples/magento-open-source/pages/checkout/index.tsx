@@ -5,7 +5,7 @@ import {
   ComposedSubmit,
   WaitForQueries,
 } from '@graphcommerce/ecommerce-ui'
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorFullPage,
@@ -23,9 +23,9 @@ import {
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
 import { CustomerDocument, useCustomerQuery } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   FormActions,
-  GetStaticProps,
   iconBox,
   LayoutHeader,
   Stepper,
@@ -37,7 +37,8 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import { LayoutDocument, LayoutMinimal, LayoutMinimalProps } from '../../components'
+import type { LayoutMinimalProps } from '../../components'
+import { LayoutDocument, LayoutMinimal } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>

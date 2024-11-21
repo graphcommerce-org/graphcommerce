@@ -21,7 +21,7 @@ import { LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui
 import { Trans } from '@lingui/macro'
 import { Container, Typography } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'
-import { ProductListLayoutProps } from './types'
+import type { ProductListLayoutProps } from './types'
 
 export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps) => {
   const { id, filters, filterTypes, params, products, title, category, handleSubmit } = props

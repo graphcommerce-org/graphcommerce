@@ -1,10 +1,11 @@
-import { LinguiDocumentProps, withLingui } from '@graphcommerce/lingui-next/server'
+import type { LinguiDocumentProps } from '@graphcommerce/lingui-next/server'
+import { withLingui } from '@graphcommerce/lingui-next/server'
+import type { EmotionCacheProps } from '@graphcommerce/next-ui/server'
 import {
   DocumentBodyEnd,
   DocumentBodyStart,
   DocumentHeadEnd,
   DocumentHeadStart,
-  EmotionCacheProps,
   getCssFlagsInitScript,
   normalizeLocale,
   withEmotionCache,

@@ -1,5 +1,5 @@
-import { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
-import { PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import type { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
+import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 
 export const config: PluginConfig = {
   type: 'component',

@@ -1,6 +1,7 @@
-import { LayoutDefault, LayoutDefaultProps } from '@graphcommerce/next-ui'
+import type { LayoutDefaultProps } from '@graphcommerce/next-ui'
+import { LayoutDefault } from '@graphcommerce/next-ui'
 import { Footer } from './Footer'
-import { LayoutQuery } from './Layout.gql'
+import type { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
 
 export type LayoutMinimalProps = LayoutQuery &

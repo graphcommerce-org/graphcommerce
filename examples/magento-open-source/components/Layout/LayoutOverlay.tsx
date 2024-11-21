@@ -1,4 +1,4 @@
-import { LayoutOverlayProps as LayoutOverlayBaseProps } from '@graphcommerce/next-ui'
+import type { LayoutOverlayProps as LayoutOverlayBaseProps } from '@graphcommerce/next-ui'
 
 export { LayoutOverlay } from '@graphcommerce/next-ui'
 

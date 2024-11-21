@@ -1,5 +1,5 @@
 import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorAlert,
@@ -14,12 +14,11 @@ import {
   useEditItem,
 } from '@graphcommerce/magento-cart-items'
 import { ProductPageGallery, ProductPageName } from '@graphcommerce/magento-product'
+import type { GetServerSideProps, LayoutOverlayProps } from '@graphcommerce/next-ui'
 import {
   FullPageMessage,
-  GetServerSideProps,
   LayoutOverlay,
   LayoutOverlayHeader,
-  LayoutOverlayProps,
   LayoutTitle,
   OverlayStickyBottom,
   PageMeta,
@@ -28,8 +27,10 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Container, Typography } from '@mui/material'
-import { LayoutNavigationProps, AddProductsToCartView } from '../../../components'
-import { Props, getStaticProps } from '../../p/[url]'
+import type { LayoutNavigationProps } from '../../../components'
+import { AddProductsToCartView } from '../../../components'
+import type { Props } from '../../p/[url]'
+import { getStaticProps } from '../../p/[url]'
 
 type RouteProps = { url: string }
 type GetSSP = GetServerSideProps<LayoutNavigationProps, Props, RouteProps>

@@ -1,4 +1,5 @@
-import { LinguiProvider, LinguiProviderProps, SyncMessageLoader } from '@graphcommerce/lingui-next'
+import type { LinguiProviderProps, SyncMessageLoader } from '@graphcommerce/lingui-next'
+import { LinguiProvider } from '@graphcommerce/lingui-next'
 import { normalizeLocale } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 

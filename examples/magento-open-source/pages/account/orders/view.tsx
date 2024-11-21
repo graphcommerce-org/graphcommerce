@@ -1,4 +1,4 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   useCustomerQuery,
   WaitForCustomer,
@@ -13,18 +13,14 @@ import {
   getCustomerAccountIsDisabled,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  IconHeader,
-  GetStaticProps,
-  iconBox,
-  LayoutOverlayHeader,
-  LayoutTitle,
-} from '@graphcommerce/next-ui'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { IconHeader, iconBox, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
 import { Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
+import type { LayoutOverlayProps } from '../../../components'
+import { LayoutOverlay } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>

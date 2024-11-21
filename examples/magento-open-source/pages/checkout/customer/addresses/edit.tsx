@@ -1,4 +1,4 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { getCartDisabled } from '@graphcommerce/magento-cart'
 import {
   ApolloCustomerErrorFullPage,
@@ -8,8 +8,8 @@ import {
   getCustomerAccountIsDisabled,
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
-  GetStaticProps,
   iconAddresses,
   IconHeader,
   SectionContainer,
@@ -21,7 +21,8 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Container, Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
-import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
+import type { LayoutOverlayProps } from '../../../../components'
+import { LayoutOverlay } from '../../../../components'
 import { graphqlSharedClient } from '../../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>

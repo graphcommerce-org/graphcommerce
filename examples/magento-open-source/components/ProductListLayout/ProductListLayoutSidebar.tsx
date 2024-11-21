@@ -25,7 +25,7 @@ import { MediaQuery, memoDeep, responsiveVal, StickyBelowHeader } from '@graphco
 import { Trans } from '@lingui/macro'
 import { Box, Container, Typography } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'
-import { ProductListLayoutProps } from './types'
+import type { ProductListLayoutProps } from './types'
 
 export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps) => {
   const { filters, filterTypes, params, products, handleSubmit, category, title, menu } = props
@@ -65,7 +65,7 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
           columnGap: { xs: theme.spacings.md, xl: theme.spacings.xxl },
           mb: theme.spacings.xl,
           gridTemplate: {
-            xs: `"title" "horizontalFilters" "count" "items" "pagination"`,
+            xs: '"title" "horizontalFilters" "count" "items" "pagination"',
             md: `
               "sidebar title"      auto
               "sidebar count"      auto

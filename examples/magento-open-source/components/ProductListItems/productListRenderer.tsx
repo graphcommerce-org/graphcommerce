@@ -1,8 +1,5 @@
-import {
-  AddProductsToCartFab,
-  ProductListItem,
-  ProductListItemRenderer,
-} from '@graphcommerce/magento-product'
+import type { ProductListItemRenderer } from '@graphcommerce/magento-product'
+import { AddProductsToCartFab, ProductListItem } from '@graphcommerce/magento-product'
 import { ProductListItemBundle } from '@graphcommerce/magento-product-bundle'
 import { ProductListItemConfigurable } from '@graphcommerce/magento-product-configurable'
 import { ProductListItemDownloadable } from '@graphcommerce/magento-product-downloadable'

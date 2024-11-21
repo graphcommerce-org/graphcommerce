@@ -1,14 +1,8 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { GuestOrderOverviewForm, useCustomerSession } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  GetStaticProps,
-  iconBox,
-  LayoutOverlayHeader,
-  LayoutTitle,
-  LayoutOverlayProps,
-  LayoutOverlay,
-} from '@graphcommerce/next-ui'
+import type { GetStaticProps, LayoutOverlayProps } from '@graphcommerce/next-ui'
+import { iconBox, LayoutOverlayHeader, LayoutTitle, LayoutOverlay } from '@graphcommerce/next-ui'
 import { Trans, t } from '@lingui/macro'
 import { Alert, Button, Container } from '@mui/material'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'

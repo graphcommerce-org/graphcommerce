@@ -1,7 +1,8 @@
 import { flushMeasurePerf } from '@graphcommerce/graphql'
-import { GetServerSideProps } from '@graphcommerce/next-ui'
-import { LayoutNavigationProps } from '../../components'
-import CategoryPage, { getStaticProps, CategoryProps, CategoryRoute } from '../[...url]'
+import type { GetServerSideProps } from '@graphcommerce/next-ui'
+import type { LayoutNavigationProps } from '../../components'
+import type { CategoryProps, CategoryRoute } from '../[...url]'
+import CategoryPage, { getStaticProps } from '../[...url]'
 
 export default CategoryPage
 

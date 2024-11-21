@@ -1,4 +1,4 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst, flushMeasurePerf, InContextMaskProvider } from '@graphcommerce/graphql'
 import {
   appendSiblingsAsChildren,
@@ -9,35 +9,39 @@ import {
   findParentBreadcrumbItem,
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
+import type {
+  FilterTypes,
+  ProductFiltersQuery,
+  ProductListParams,
+  ProductListQuery,
+} from '@graphcommerce/magento-product'
 import {
   extractUrlQuery,
-  FilterTypes,
   getFilterTypes,
   parseParams,
   ProductFiltersDocument,
-  ProductFiltersQuery,
   productListApplyCategoryDefaults,
   ProductListDocument,
-  ProductListParams,
-  ProductListQuery,
   categoryDefaultsToProductListFilters,
   useProductList,
   productListLink,
 } from '@graphcommerce/magento-product'
 import { redirectOrNotFound, redirectTo, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutHeader, LayoutTitle, MetaRobots } from '@graphcommerce/next-ui'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { LayoutHeader, LayoutTitle, MetaRobots } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Container } from '@mui/material'
-import { GetStaticPaths } from 'next'
+import type { GetStaticPaths } from 'next'
+import type { LayoutNavigationProps } from '../components'
 import {
   ProductListLayoutClassic,
   ProductListLayoutDefault,
   ProductListLayoutSidebar,
   LayoutDocument,
   LayoutNavigation,
-  LayoutNavigationProps,
 } from '../components'
-import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
+import type { CategoryPageQuery } from '../graphql/CategoryPage.gql'
+import { CategoryPageDocument } from '../graphql/CategoryPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 export type CategoryProps = CategoryPageQuery &
@@ -210,7 +214,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const up =
     category_url_path && category_name
       ? { href: `/${category_url_path}`, title: category_name }
-      : { href: `/`, title: i18n._(/* i18n */ 'Home') }
+      : { href: '/', title: i18n._(/* i18n */ 'Home') }
 
   await waitForSiblings
   const result = {
