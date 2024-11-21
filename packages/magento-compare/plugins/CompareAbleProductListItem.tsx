@@ -13,7 +13,7 @@ export const config: PluginConfig = {
 export function ProductListItem(props: PluginProps<ProductListItemProps>) {
   const { Prev, ...rest } = props
   const { children, topRight } = props
-  if (import.meta.graphCommerce.compareVariant === 'CHECKBOX')
+  if (import.meta.graphCommerce.layout?.compareVariant === 'CHECKBOX')
     return (
       <Prev topRight={topRight} {...rest}>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -24,8 +24,8 @@ export function ProductListItem(props: PluginProps<ProductListItemProps>) {
     )
 
   if (
-    import.meta.graphCommerce.compareVariant === 'ICON' ||
-    !import.meta.graphCommerce.compareVariant
+    import.meta.graphCommerce.layout?.compareVariant === 'ICON' ||
+    !import.meta.graphCommerce.layout?.compareVariant
   )
     return (
       <Prev

@@ -77,7 +77,7 @@ function CompareProductToggleBase(
 
   return (
     <>
-      {import.meta.graphCommerce.compareVariant === 'CHECKBOX' ? (
+      {import.meta.graphCommerce.layout?.compareVariant === 'CHECKBOX' ? (
         <Button
           variant='text'
           size='small'

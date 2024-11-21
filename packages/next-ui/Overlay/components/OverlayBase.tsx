@@ -19,7 +19,7 @@ import {
 } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
-import { layoutMaxWidths, useLayoutMaxWidths } from '../../LayoutDefault/components/layoutWidths'
+import { useLayoutMaxWidths } from '../../LayoutDefault/components/layoutWidths'
 import { ExtendableComponent, extendableComponent } from '../../Styles'
 import { useMatchMedia } from '../../hooks/useMatchMedia'
 
