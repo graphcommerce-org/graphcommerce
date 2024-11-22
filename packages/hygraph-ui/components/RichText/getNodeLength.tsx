@@ -1,5 +1,5 @@
 import { isElementNode, isTextNode } from './RichText'
-import { ElementOrTextNode } from './types'
+import type { ElementOrTextNode } from './types'
 
 export function getNodeLength(node: ElementOrTextNode): number {
   if (isElementNode(node))

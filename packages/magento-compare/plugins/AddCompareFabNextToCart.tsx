@@ -1,4 +1,4 @@
-import { CartFabProps } from '@graphcommerce/magento-cart'
+import type { CartFabProps } from '@graphcommerce/magento-cart'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { CompareFab } from '../components'
 

@@ -1,4 +1,5 @@
-import { Output, Program, parseSync as parseSyncCore, printSync as printSyncCode } from '@swc/core'
+import type { Output, Program } from '@swc/core'
+import { parseSync as parseSyncCore, printSync as printSyncCode } from '@swc/core'
 
 export function parseSync(src: string) {
   return parseSyncCore(src, {

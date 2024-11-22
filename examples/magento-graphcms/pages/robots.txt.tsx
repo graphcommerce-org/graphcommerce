@@ -43,8 +43,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     .join('\n')
 
   const robots = robotsTxt`
-    ${!robotsAllow && `User-agent: *`}
-    ${!robotsAllow && `Disallow: /`}
+    ${!robotsAllow && 'User-agent: *'}
+    ${!robotsAllow && 'Disallow: /'}
 
     User-agent: *
     Disallow: /switch-stores

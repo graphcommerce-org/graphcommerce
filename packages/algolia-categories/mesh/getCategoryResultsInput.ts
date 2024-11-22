@@ -1,4 +1,4 @@
-import {
+import type {
   Queryalgolia_searchSingleIndexArgs,
   QuerycategoryListArgs,
 } from '@graphcommerce/graphql-mesh'

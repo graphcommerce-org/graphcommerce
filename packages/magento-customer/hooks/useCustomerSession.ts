@@ -1,9 +1,7 @@
-import { QueryResult, useQuery } from '@graphcommerce/graphql'
-import {
-  CustomerTokenDocument,
-  CustomerTokenQuery,
-  CustomerTokenQueryVariables,
-} from './CustomerToken.gql'
+import type { QueryResult } from '@graphcommerce/graphql'
+import { useQuery } from '@graphcommerce/graphql'
+import type { CustomerTokenQuery, CustomerTokenQueryVariables } from './CustomerToken.gql'
+import { CustomerTokenDocument } from './CustomerToken.gql'
 
 export type UseCustomerSessionOptions = Record<string, unknown>
 

@@ -1,17 +1,16 @@
 import { ChipMenu, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import Box from '@mui/material/Box'
 import Checkbox from '@mui/material/Checkbox'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
-import {
-  useClearRefinements,
+import type {
   UseClearRefinementsProps,
-  useRefinementList,
   UseRefinementListProps,
 } from 'react-instantsearch-hooks-web'
+import { useClearRefinements, useRefinementList } from 'react-instantsearch-hooks-web'
 
-const name = 'RefinementFilterChip' as const
+const name = 'RefinementFilterChip'
 const parts = ['menu', 'item'] as const
 const { classes } = extendableComponent(name, parts)
 

@@ -1,10 +1,7 @@
-import {
-  ProductListItem,
-  OverlayAreaKeys,
-  ProductListItemProps,
-} from '@graphcommerce/magento-product'
+import type { OverlayAreaKeys, ProductListItemProps } from '@graphcommerce/magento-product'
+import { ProductListItem } from '@graphcommerce/magento-product'
 import { SwatchList } from '../../SwatchList'
-import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
+import type { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
 
 export type ProdustListItemConfigurableProps = ProductListItemConfigurableFragment &
   ProductListItemProps & {

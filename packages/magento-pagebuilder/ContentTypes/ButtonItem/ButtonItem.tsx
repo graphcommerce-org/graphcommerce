@@ -1,13 +1,15 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { useApolloClient, useQuery } from '@graphcommerce/graphql'
-import { productLink, ProductLinkProps } from '@graphcommerce/magento-product'
+import type { ProductLinkProps } from '@graphcommerce/magento-product'
+import { productLink } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Button, ButtonProps } from '@mui/material'
+import type { ButtonProps } from '@mui/material'
+import { Button } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { RouteDocument } from '../../Route.gql'
 import { extractAdvancedProps } from '../../utils'
-import { ButtonItemContentType } from './types'
+import type { ButtonItemContentType } from './types'
 
 /**
  * Page Builder ButtonItem component.

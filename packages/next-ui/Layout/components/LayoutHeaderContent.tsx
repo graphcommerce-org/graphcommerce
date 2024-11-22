@@ -4,7 +4,7 @@ import { LayoutProps, m } from 'framer-motion'
 import React, { useRef } from 'react'
 import { extendableComponent } from '../../Styles'
 import { useScrollY } from '../hooks/useScrollY'
-import { FloatingProps } from './LayoutHeadertypes'
+import type { FloatingProps } from './LayoutHeadertypes'
 
 const MotionDiv = styled(m.div)({})
 
@@ -30,7 +30,7 @@ type OwnerState = {
   bgColor?: 'paper' | 'default'
 }
 
-const name = 'LayoutHeaderContent' as const
+const name = 'LayoutHeaderContent'
 const parts = ['bg', 'content', 'left', 'center', 'right', 'divider'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
@@ -92,7 +92,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             },
 
             opacity: 0,
-            transition: `opacity 150ms`,
+            transition: 'opacity 150ms',
             '&.scrolled': {
               opacity: 1,
             },
@@ -114,7 +114,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             inset: 0,
             width: '100%',
             display: 'grid',
-            gridTemplateAreas: `"left center right"`,
+            gridTemplateAreas: '"left center right"',
             gridTemplateColumns: '1fr auto 1fr',
             alignItems: 'center',
             gap: theme.page.horizontal,
@@ -175,7 +175,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             overflow: 'hidden',
             justifySelf: 'center',
 
-            transition: `opacity 150ms`,
+            transition: 'opacity 150ms',
             opacity: 0,
             '&.scrolled': {
               opacity: 1,

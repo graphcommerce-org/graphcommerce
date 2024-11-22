@@ -1,4 +1,4 @@
-import { GetStaticProps } from 'next'
+import type { GetStaticProps } from 'next'
 import { Grid } from '../components/Grid'
 import { StackDebug } from '../components/StackedDebugger'
 

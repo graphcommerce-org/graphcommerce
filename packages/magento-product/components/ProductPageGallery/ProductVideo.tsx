@@ -1,4 +1,4 @@
-import { ProductVideoFragment } from './ProductVideo.gql'
+import type { ProductVideoFragment } from './ProductVideo.gql'
 
 export function ProductVideo(props: ProductVideoFragment) {
   const { video_content } = props

@@ -1,5 +1,5 @@
 import { Image } from '@graphcommerce/image'
-import { PaymentMethodActionCardProps } from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentMethodActionCardProps } from '@graphcommerce/magento-cart-payment-method'
 import { ActionCard } from '@graphcommerce/next-ui'
 
 type MollieActionCardProps = PaymentMethodActionCardProps

@@ -1,7 +1,7 @@
-import { ScrollMotionValues } from '@graphcommerce/framer-utils'
-import { MotionValue, Point } from 'framer-motion'
-import { PlaybackControls } from 'popmotion'
-import React from 'react'
+import type { ScrollMotionValues } from '@graphcommerce/framer-utils'
+import type { MotionValue, Point } from 'framer-motion'
+import type { PlaybackControls } from 'popmotion'
+import type React from 'react'
 
 export type ItemState = {
   el?: HTMLElement

@@ -1,4 +1,5 @@
-import { Box, ContainerProps } from '@mui/material'
+import type { ContainerProps } from '@mui/material'
+import { Box } from '@mui/material'
 import { extendableComponent } from '../../Styles'
 import { breakpointVal } from '../../Styles/breakpointVal'
 import { Row } from '../Row'
@@ -9,7 +10,7 @@ export type ParagraphWithSidebarSlideProps = ContainerProps & {
   children: React.ReactNode
 }
 
-const name = 'ParagraphWithSidebarSlide' as const
+const name = 'ParagraphWithSidebarSlide'
 const parts = ['root', 'wrapper', 'backstory', 'copy', 'slidingItems'] as const
 const { classes } = extendableComponent(name, parts)
 

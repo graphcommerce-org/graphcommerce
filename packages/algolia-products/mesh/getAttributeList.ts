@@ -19,7 +19,7 @@ export async function getAttributeList(context: MeshContext): Promise<AttributeL
         entityType: 'CATALOG_PRODUCT',
         filters: {},
       },
-      selectionSet: `{ items{ code label } }`,
+      selectionSet: '{ items{ code label } }',
       context,
     }).then((res) => res?.items)) as { label?: string; code: string }[]
     attributeListCache = filterNonNullableKeys(items, ['label'])

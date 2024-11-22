@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { cacheFirst, useQuery } from '@graphcommerce/graphql'
+import { cacheFirst } from '@graphcommerce/graphql'
 import {
   AccountDashboardDocument,
   AccountMenu,
@@ -24,10 +24,10 @@ import {
   iconPerson,
   iconShutdown,
   iconStar,
-  TimeAgo,
   LayoutTitle,
   LayoutHeader,
   iconBin,
+  RelativeToTimeFormat,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -42,16 +42,11 @@ function AccountIndexPage() {
     fetchPolicy: 'cache-and-network',
   })
 
-  const { data: config } = useQuery(StoreConfigDocument)
-  const locale = config?.storeConfig?.locale?.replace('_', '-')
-
   const customer = dashboard.data?.customer
   const address =
     customer?.addresses?.filter((a) => a?.default_shipping)?.[0] || customer?.addresses?.[0]
   const orders = customer?.orders
   const latestOrder = orders?.items?.[(orders?.items?.length ?? 1) - 1]
-
-  const latestOrderDate = new Date(latestOrder?.order_date ?? new Date())
 
   return (
     <>
@@ -95,9 +90,9 @@ function AccountIndexPage() {
               subtitle={
                 latestOrder ? (
                   <>
-                    <time dateTime={latestOrderDate.toDateString()}>
-                      <TimeAgo date={latestOrderDate} locale={locale} />
-                    </time>
+                    <RelativeToTimeFormat styleFormat='short'>
+                      {latestOrder?.order_date}
+                    </RelativeToTimeFormat>
                     {', '}
                     {latestOrder?.items && <OrderStateLabelInline {...latestOrder} />}
                   </>

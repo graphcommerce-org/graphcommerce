@@ -1,7 +1,5 @@
-import {
-  PaymentMethodPlaceOrderNoop,
-  PaymentModule,
-} from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentModule } from '@graphcommerce/magento-cart-payment-method'
+import { PaymentMethodPlaceOrderNoop } from '@graphcommerce/magento-cart-payment-method'
 import { PaymentHandler } from './PaymentHandler'
 import { PaymentMethodOptions } from './PaymentMethodOptions'
 import { expandMethods } from './expandMethods'

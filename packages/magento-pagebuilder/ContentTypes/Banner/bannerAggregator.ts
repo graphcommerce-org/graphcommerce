@@ -9,7 +9,7 @@ import {
   getMediaQuery,
   stripEmpty,
 } from '../../utils'
-import { BannerContentType, ShowButton, ShowOverlay } from './types'
+import type { BannerContentType, ShowButton, ShowOverlay } from './types'
 
 export const bannerAggregator: BannerContentType['configAggregator'] = (node, props) => {
   const wrapperElement = node.querySelector<HTMLElement>('[data-element="wrapper"]')

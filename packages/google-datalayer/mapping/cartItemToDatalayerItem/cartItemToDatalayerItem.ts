@@ -1,8 +1,6 @@
-import {
-  GoogleDatalayerItem,
-  productToDatalayerItem,
-} from '../productToDatalayerItem/productToDatalayerItem'
-import { CartItem_DatalayerItemFragment } from './CartItem_DatalayerItem.gql'
+import type { GoogleDatalayerItem } from '../productToDatalayerItem/productToDatalayerItem'
+import { productToDatalayerItem } from '../productToDatalayerItem/productToDatalayerItem'
+import type { CartItem_DatalayerItemFragment } from './CartItem_DatalayerItem.gql'
 
 export function cartItemToDatalayerItem<P extends CartItem_DatalayerItemFragment>(
   item: P,

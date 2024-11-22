@@ -1,7 +1,9 @@
-import { Image, ImageProps } from '@graphcommerce/image'
-import { styled, SxProps, Theme } from '@mui/material'
+import type { ImageProps } from '@graphcommerce/image'
+import { Image } from '@graphcommerce/image'
+import type { SxProps, Theme } from '@mui/material'
+import { styled } from '@mui/material'
 import { memo } from 'react'
-import { AssetFragment } from './Asset.gql'
+import type { AssetFragment } from './Asset.gql'
 
 export type { AssetFragment } from './Asset.gql'
 

@@ -1,4 +1,4 @@
-import { GraphCommerceConfig } from '../../generated/config'
+import type { GraphCommerceConfig } from '../../generated/config'
 import { toEnvStr } from './mergeEnvIntoConfig'
 
 const fmt = (value: string | number | boolean | object | null) => {

@@ -1,5 +1,5 @@
 import { getAdvanced } from '../../utils'
-import { VideoContentType } from './types'
+import type { VideoContentType } from './types'
 
 export const videoAggregator: VideoContentType['configAggregator'] = (node: HTMLElement) => {
   const iframe = node.querySelector('iframe')

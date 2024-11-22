@@ -1,9 +1,11 @@
 import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
-import { AddToCartItemSelector, useFormAddProductsToCart } from '@graphcommerce/magento-product'
+import type { AddToCartItemSelector } from '@graphcommerce/magento-product'
+import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
-import { ActionCard, ActionCardProps, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import type { ActionCardProps } from '@graphcommerce/next-ui'
+import { ActionCard, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { useMemo } from 'react'
-import { DownloadableProductOptionsFragment } from './DownloadableProductOptions.gql'
+import type { DownloadableProductOptionsFragment } from './DownloadableProductOptions.gql'
 
 type DownloadableProductOptionsProps = AddToCartItemSelector & {
   product: DownloadableProductOptionsFragment

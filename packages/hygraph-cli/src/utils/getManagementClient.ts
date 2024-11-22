@@ -1,5 +1,5 @@
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
-import { HygraphConfig } from './getConfig'
+import type { HygraphConfig } from './getConfig'
 
 export function getManagementClient(config: HygraphConfig) {
   const { authToken: accessToken, uri } = config

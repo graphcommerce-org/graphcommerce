@@ -1,6 +1,7 @@
 import { usePageContext, useGo } from '@graphcommerce/framer-next-pages'
 import { useMutation } from '@graphcommerce/graphql'
-import { LinkOrButton, LinkOrButtonProps } from '@graphcommerce/next-ui'
+import type { LinkOrButtonProps } from '@graphcommerce/next-ui'
+import { LinkOrButton } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { DeleteCompareListDocument } from '../graphql/DeleteCompareList.gql'
 import { useCompareList } from '../hooks'

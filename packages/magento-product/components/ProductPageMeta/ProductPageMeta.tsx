@@ -1,7 +1,7 @@
 import { PageMeta } from '@graphcommerce/magento-store'
-import { PageMetaProps } from '@graphcommerce/next-ui'
+import type { PageMetaProps } from '@graphcommerce/next-ui'
 import { productLink } from '../../hooks/useProductLink'
-import { ProductPageMetaFragment } from './ProductPageMeta.gql'
+import type { ProductPageMetaFragment } from './ProductPageMeta.gql'
 
 export type ProductPageMetaProps = { product: ProductPageMetaFragment } & Pick<
   PageMetaProps,

@@ -1,12 +1,13 @@
-import { HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { ApolloClient, NormalizedCacheObject, cacheFirst } from '@graphcommerce/graphql'
-import {
+import type { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import { cacheFirst } from '@graphcommerce/graphql'
+import type { HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
+import type {
   ConditionTextFragment,
   ConditionNumberFragment,
   ConditionOrFragment,
   ConditionAndFragment,
-  DynamicRowsDocument,
 } from '../graphql'
+import { DynamicRowsDocument } from '../graphql'
 import { getAllHygraphDynamicRows } from './getAllHygraphDynamicRows'
 
 /**

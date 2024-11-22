@@ -8,8 +8,8 @@ export function useCompareListStyles() {
     gap: theme.spacings.md,
     '& > *': {
       width: {
-        md: `calc(100% / 3)`,
-        xs: `calc(100% / 2)`,
+        md: 'calc(100% / 3)',
+        xs: 'calc(100% / 2)',
       },
     },
     [theme.breakpoints.down('md')]: {

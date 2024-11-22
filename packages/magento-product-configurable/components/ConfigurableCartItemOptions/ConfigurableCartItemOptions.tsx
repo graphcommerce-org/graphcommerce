@@ -1,6 +1,7 @@
-import { CartItemFragment, SelectedCustomizableOptions } from '@graphcommerce/magento-cart-items'
+import type { CartItemFragment } from '@graphcommerce/magento-cart-items'
+import { SelectedCustomizableOptions } from '@graphcommerce/magento-cart-items'
 import { Box } from '@mui/material'
-import { ConfigurableCartItemFragment } from '../../ConfigurableCartItem/ConfigurableCartItem.gql'
+import type { ConfigurableCartItemFragment } from '../../ConfigurableCartItem/ConfigurableCartItem.gql'
 
 type ConfigurableActionCartItemProps = ConfigurableCartItemFragment & CartItemFragment
 

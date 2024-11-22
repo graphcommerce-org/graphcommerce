@@ -3,7 +3,7 @@ import { Button, iconChevronRight, IconSvg, SectionContainer } from '@graphcomme
 import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
 import { useCompareListStyles } from '../hooks/useCompareListStyles'
-import { CompareRowProps } from './CompareListRow'
+import type { CompareRowProps } from './CompareListRow'
 
 export type CompareListRowMoreInformationProps = Pick<CompareRowProps, 'compareAbleItems'>
 

@@ -1,4 +1,5 @@
-import { ApolloCache, useApolloClient } from '@graphcommerce/graphql'
+import type { ApolloCache } from '@graphcommerce/graphql'
+import { useApolloClient } from '@graphcommerce/graphql'
 import { cookie } from '@graphcommerce/next-ui'
 import { useCallback } from 'react'
 import { CurrentCartIdDocument } from './CurrentCartId.gql'

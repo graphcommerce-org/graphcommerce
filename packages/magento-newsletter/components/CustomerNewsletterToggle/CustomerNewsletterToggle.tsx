@@ -1,6 +1,7 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
 import { Controller, FormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import type { SwitchProps, SxProps, Theme } from '@mui/material'
 import {
   Box,
   FormControl,
@@ -8,9 +9,6 @@ import {
   FormHelperText,
   // eslint-disable-next-line @typescript-eslint/no-restricted-imports
   Switch,
-  SwitchProps,
-  SxProps,
-  Theme,
 } from '@mui/material'
 import React from 'react'
 import { GetCustomerNewsletterToggleDocument } from './GetCustomerNewsLetterToggle.gql'

@@ -1,13 +1,5 @@
-import {
-  alpha,
-  Box,
-  BoxProps,
-  ButtonBase,
-  ButtonProps,
-  lighten,
-  SxProps,
-  Theme,
-} from '@mui/material'
+import type { BoxProps, ButtonProps, SxProps, Theme } from '@mui/material'
+import { alpha, Box, ButtonBase, lighten } from '@mui/material'
 import React from 'react'
 import { extendableComponent, responsiveVal } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
@@ -21,8 +13,9 @@ function isButtonProps(props: ButtonProps<'div'> | BoxProps<'div'>): props is Bu
   return props.onClick !== undefined
 }
 
-const ButtonOrBox = (props: ButtonProps<'div'> | BoxProps<'div'>) =>
-  isButtonProps(props) ? <ButtonBase component='div' {...props} /> : <Box {...props} />
+function ButtonOrBox(props: ButtonProps<'div'> | BoxProps<'div'>) {
+  return isButtonProps(props) ? <ButtonBase component='div' {...props} /> : <Box {...props} />
+}
 
 export type ActionCardProps = {
   variant?: Variants

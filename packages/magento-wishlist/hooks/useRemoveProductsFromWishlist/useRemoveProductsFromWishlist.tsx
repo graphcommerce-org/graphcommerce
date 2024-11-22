@@ -2,11 +2,9 @@ import { useApolloClient } from '@graphcommerce/graphql'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { useEventCallback } from '@mui/material'
-import {
-  UseRemoveProductsFromWishlistDocument,
-  UseRemoveProductsFromWishlistMutationVariables,
-} from './UseRemoveProductsFromWishlist.gql'
 import { UseWishlistGuestDocument } from '../useWishlistitems'
+import type { UseRemoveProductsFromWishlistMutationVariables } from './UseRemoveProductsFromWishlist.gql'
+import { UseRemoveProductsFromWishlistDocument } from './UseRemoveProductsFromWishlist.gql'
 
 export function useRemoveProductsFromWishlist() {
   const client = useApolloClient()

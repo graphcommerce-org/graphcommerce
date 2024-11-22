@@ -1,9 +1,10 @@
 import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import { ActionCard, ActionCardAccordion, Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import { useProductFiltersPro } from './ProductFiltersPro'
-import { UseProductFiltersProSortProps, useProductFiltersProSort } from './useProductFiltersProSort'
+import type { UseProductFiltersProSortProps } from './useProductFiltersProSort'
+import { useProductFiltersProSort } from './useProductFiltersProSort'
 
 export type ProductFiltersProSortSectionProps = UseProductFiltersProSortProps & {
   sx?: SxProps<Theme>

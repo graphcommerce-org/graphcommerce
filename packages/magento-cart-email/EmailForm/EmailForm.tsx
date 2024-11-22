@@ -11,14 +11,12 @@ import {
   useCustomerSession,
 } from '@graphcommerce/magento-customer'
 import { extendableComponent, FormRow } from '@graphcommerce/next-ui'
-import {
-  FormAutoSubmit,
-  useFormCompose,
-  UseFormComposeOptions,
-} from '@graphcommerce/react-hook-form'
+import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
+import { FormAutoSubmit, useFormCompose } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { Box, Button, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import React from 'react'
 import { CartEmailDocument } from './CartEmail.gql'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'

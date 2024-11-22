@@ -1,10 +1,10 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { extendableComponent, ListFormat } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
-import { ProductSpecsFragment } from './ProductSpecs.gql'
+import type { ProductSpecsFragment } from './ProductSpecs.gql'
 import { ProductSpecsTypesDocument } from './ProductSpecsTypes.gql'
 
-const name = 'ProductSpecs' as const
+const name = 'ProductSpecs'
 const parts = ['root', 'specs', 'options'] as const
 const { classes } = extendableComponent(name, parts)
 

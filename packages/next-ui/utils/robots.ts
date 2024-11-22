@@ -1,4 +1,4 @@
-import { GetServerSidePropsContext } from 'next'
+import type { GetServerSidePropsContext } from 'next'
 
 type Stringifyable = boolean | string | number | null | undefined
 

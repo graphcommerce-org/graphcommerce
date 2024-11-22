@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Box, ToggleButtonGroupProps as ToggleButtonGroupPropsBase } from '@mui/material'
+import type { ToggleButtonGroupProps as ToggleButtonGroupPropsBase } from '@mui/material'
+import { Box } from '@mui/material'
 import React from 'react'
 import { isFragment } from 'react-is'
 import { extendableComponent } from '../Styles'
@@ -12,7 +13,7 @@ function isValueSelected(value: string, candidate: string | string[]) {
 
 type OwnerState = Pick<ToggleButtonGroupPropsBase, 'orientation' | 'size'>
 
-const name = 'ToggleButtonGroup' as const
+const name = 'ToggleButtonGroup'
 const parts = ['root', 'button'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 

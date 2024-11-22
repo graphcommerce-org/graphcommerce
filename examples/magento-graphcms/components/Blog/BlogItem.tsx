@@ -1,4 +1,4 @@
-import { Asset } from '@graphcommerce/graphcms-ui'
+import { Asset } from '@graphcommerce/hygraph-ui'
 import { BlogListItem } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Typography, useTheme } from '@mui/material'

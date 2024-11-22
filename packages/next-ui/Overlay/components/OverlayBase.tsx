@@ -1,4 +1,4 @@
-import { Direction } from '@graphcommerce/framer-next-pages'
+import type { Direction } from '@graphcommerce/framer-next-pages'
 import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
 import {
   dvh,
@@ -7,10 +7,11 @@ import {
   useElementScroll,
   useIsomorphicLayoutEffect,
 } from '@graphcommerce/framer-utils'
-import { Box, styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, styled, useTheme, useThemeProps } from '@mui/material'
+import type { MotionProps } from 'framer-motion'
 import {
   m,
-  MotionProps,
   motionValue,
   useDomEvent,
   useMotionValue,
@@ -70,7 +71,7 @@ enum OverlayPosition {
   CLOSED = 0,
 }
 
-const name = 'LayoutOverlayBase' as const
+const name = 'LayoutOverlayBase'
 const parts = [
   'scroller',
   'backdrop',
@@ -199,8 +200,8 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         scroll.y.set(positions.closed.y.get())
       } else {
         disableSnap()
-        scroller.scrollLeft = scroll.x.getPrevious()
-        scroller.scrollTop = scroll.y.getPrevious()
+        scroller.scrollLeft = scroll.x.getPrevious() ?? 0
+        scroller.scrollTop = scroll.y.getPrevious() ?? 0
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         scrollTo(openClosePositions().open, { stopAnimationOnScroll: false })
       }
@@ -437,22 +438,22 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 overscrollBehaviorX: 'none',
               },
               '&.variantSmLeft': {
-                gridTemplate: `"overlay beforeOverlay"`,
+                gridTemplate: '"overlay beforeOverlay"',
                 borderTopRightRadius: theme.shape.borderRadius * 3,
                 borderBottomRightRadius: theme.shape.borderRadius * 3,
               },
               '&.variantSmRight': {
-                gridTemplate: `"beforeOverlay overlay"`,
+                gridTemplate: '"beforeOverlay overlay"',
                 borderTopLeftRadius: theme.shape.borderRadius * 3,
                 borderBottomLeftRadius: theme.shape.borderRadius * 3,
               },
               '&.variantSmBottom': {
                 overscrollBehaviorY: 'none',
-                gridTemplate: `"beforeOverlay" "overlay"`,
+                gridTemplate: '"beforeOverlay" "overlay"',
                 height: `calc(${dvh(100)} - 1px)`,
 
                 '&::after': {
-                  content: `""`,
+                  content: '""',
                   display: 'block',
                   position: 'absolute',
                   width: '100%',
@@ -465,18 +466,18 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             },
             [theme.breakpoints.up('md')]: {
               '&.variantMdLeft': {
-                gridTemplate: `"overlay beforeOverlay"`,
+                gridTemplate: '"overlay beforeOverlay"',
                 borderTopRightRadius: theme.shape.borderRadius * 4,
                 borderBottomRightRadius: theme.shape.borderRadius * 4,
               },
               '&.variantMdRight': {
-                gridTemplate: `"beforeOverlay overlay"`,
+                gridTemplate: '"beforeOverlay overlay"',
                 borderTopLeftRadius: theme.shape.borderRadius * 4,
                 borderBottomLeftRadius: theme.shape.borderRadius * 4,
               },
               '&.variantMdBottom': {
                 [theme.breakpoints.up('md')]: {
-                  gridTemplate: `"beforeOverlay" "overlay"`,
+                  gridTemplate: '"beforeOverlay" "overlay"',
                   height: dvh(100),
                 },
               },

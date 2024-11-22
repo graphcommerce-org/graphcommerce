@@ -6,7 +6,7 @@ import { LayoutHeader } from '../Layout'
 import { OverlayStickyBottom } from '../Overlay/components/OverlayStickyBottom'
 import { useFabSize } from '../Theme'
 import { iconClose } from '../icons'
-import { PanelActionsProps } from './types'
+import type { PanelActionsProps } from './types'
 
 export function PopperPanelActions(props: PanelActionsProps) {
   const { title, children, onReset, onClose, onApply, sx = [] } = props

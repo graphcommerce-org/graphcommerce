@@ -1,8 +1,9 @@
-import { DateTimeFormat, DateTimeFormatPropsType } from './DateTimeFormat'
+import type { DateTimeFormatProps } from './DateTimeFormat'
+import { DateTimeFormat } from './DateTimeFormat'
 
-type TimeFormatProps = Omit<
-  DateTimeFormatPropsType,
-  'dateStyle' | 'month' | 'day' | 'era' | 'month' | 'weekday' | 'year'
+export type TimeFormatProps = Omit<
+  DateTimeFormatProps,
+  'dateStyle' | 'month' | 'day' | 'era' | 'weekday' | 'year'
 >
 
 export function TimeFormat(props: TimeFormatProps) {

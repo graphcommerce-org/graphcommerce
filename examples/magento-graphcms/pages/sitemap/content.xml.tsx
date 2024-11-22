@@ -1,4 +1,4 @@
-import { getHygraphStaticPaths } from '@graphcommerce/graphcms-ui'
+import { getHygraphStaticPaths } from '@graphcommerce/hygraph-ui'
 import { getCategoryStaticPaths } from '@graphcommerce/magento-category/queries/getCategoryStaticPaths'
 import {
   excludeSitemap,

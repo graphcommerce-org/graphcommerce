@@ -1,7 +1,7 @@
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/macro'
-import { PaymentPlaceOrderProps } from '../Api/PaymentMethod'
+import type { PaymentPlaceOrderProps } from '../Api/PaymentMethod'
 import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 import { PaymentMethodPlaceOrderNoopDocument } from './PaymentMethodPlaceOrderNoop.gql'
 

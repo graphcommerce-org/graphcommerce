@@ -1,4 +1,4 @@
-import { PaymentMethodContextProviderProps } from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentMethodContextProviderProps } from '@graphcommerce/magento-cart-payment-method'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { multisafepay } from '../methods'
 

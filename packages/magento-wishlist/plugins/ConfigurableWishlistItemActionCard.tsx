@@ -8,7 +8,7 @@ export const config: PluginConfig = {
   module: '@graphcommerce/magento-wishlist',
 }
 
-export const WishlistItemActionCard = (props: PluginProps<WishlistItemActionCardProps>) => {
+export function WishlistItemActionCard(props: PluginProps<WishlistItemActionCardProps>) {
   const { Prev, details, item } = props
   if (item.__typename !== 'ConfigurableWishlistItem') return <Prev {...props} />
   const { configurable_options } = item

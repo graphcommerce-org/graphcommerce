@@ -1,16 +1,15 @@
-import { ChipOverlayOrPopper, ChipOverlayOrPopperProps } from '@graphcommerce/next-ui'
+import type { ChipOverlayOrPopperProps } from '@graphcommerce/next-ui'
+import { ChipOverlayOrPopper } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { useProductFiltersPro } from './ProductFiltersPro'
+import type { ProductFiltersProAggregationsProps } from './ProductFiltersProAggregations'
 import {
   ProductFiltersProAggregations,
-  ProductFiltersProAggregationsProps,
   productFiltersProSectionRenderer,
 } from './ProductFiltersProAggregations'
 import { ProductFiltersProLimitSection } from './ProductFiltersProLimitSection'
-import {
-  ProductFiltersProSortSection,
-  ProductFiltersProSortSectionProps,
-} from './ProductFiltersProSortSection'
+import type { ProductFiltersProSortSectionProps } from './ProductFiltersProSortSection'
+import { ProductFiltersProSortSection } from './ProductFiltersProSortSection'
 import { activeAggregations } from './activeAggregations'
 import { applyAggregationCount } from './applyAggregationCount'
 import { useProductFiltersProClearAllAction } from './useProductFiltersProClearAllAction'

@@ -1,13 +1,11 @@
 import { useMutation } from '@graphcommerce/graphql'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { Badge, Box, Button, Checkbox, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Badge, Box, Button, Checkbox } from '@mui/material'
 import { useState } from 'react'
-import {
-  AddProductsToCompareListDocument,
-  CompareProductIdInternalFragment,
-  RemoveProductsFromCompareListDocument,
-} from '../graphql'
+import type { CompareProductIdInternalFragment } from '../graphql'
+import { AddProductsToCompareListDocument, RemoveProductsFromCompareListDocument } from '../graphql'
 import { useCompareSummary } from '../hooks'
 import { useCompareListUidCreate } from '../hooks/useCompareListUidCreate'
 import { CompareMessageSnackbar } from './CompareMessageSnackbar'

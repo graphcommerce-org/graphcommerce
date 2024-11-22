@@ -1,20 +1,14 @@
-import React, { useMemo } from 'react'
-import { useLocale } from '../hooks'
+import React from 'react'
+import type { UseListFormatOptions } from './useListFormat'
+import { useListFormat } from './useListFormat'
 
-type ListFormatProps = {
+export type ListFormatProps = {
   children: React.ReactNode[]
-  listStyle?: Intl.ListFormatOptions['style']
-} & Omit<Intl.ListFormatOptions, 'style'>
+} & UseListFormatOptions
 
 export function ListFormat(props: ListFormatProps) {
-  const { children, localeMatcher, listStyle: style, type } = props
-
-  const locale = useLocale()
-
-  const formatter = useMemo(
-    () => new Intl.ListFormat(locale, { localeMatcher, style, type }),
-    [locale, localeMatcher, style, type],
-  )
+  const { children, ...options } = props
+  const formatter = useListFormat(options)
 
   const childArray = React.Children.toArray(children)
   const fauxChildren = childArray.map((child, index) => `${index}`) ?? []

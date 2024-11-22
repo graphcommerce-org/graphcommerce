@@ -1,17 +1,11 @@
-import path from 'node:path'
 import fs from 'node:fs/promises'
+import path from 'node:path'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { GraphCommerceDebugConfig } from '../generated/config'
-import { ResolveDependency } from '../utils/resolveDependency'
+import type { GraphCommerceDebugConfig } from '../generated/config'
+import type { ResolveDependency } from '../utils/resolveDependency'
 import { findOriginalSource } from './findOriginalSource'
-import {
-  Interceptor,
-  MaterializedPlugin,
-  PluginConfig,
-  generateInterceptor,
-  isPluginConfig,
-  moveRelativeDown,
-} from './generateInterceptor'
+import type { Interceptor, MaterializedPlugin, PluginConfig } from './generateInterceptor'
+import { generateInterceptor, isPluginConfig, moveRelativeDown } from './generateInterceptor'
 
 export type GenerateInterceptorsReturn = Record<string, MaterializedPlugin>
 
@@ -30,7 +24,7 @@ export async function generateInterceptors(
       const { error, resolved } = findOriginalSource(plug, result, resolve)
 
       if (error) {
-        console.log(error.message)
+        console.error(error.message)
         return acc
       }
 

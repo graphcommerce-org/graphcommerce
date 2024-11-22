@@ -1,7 +1,9 @@
-import { TextFieldElement, FieldValues, FieldPath, useWatch } from '@graphcommerce/ecommerce-ui'
-import { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
+import type { FieldValues, FieldPath } from '@graphcommerce/ecommerce-ui'
+import { TextFieldElement, useWatch } from '@graphcommerce/ecommerce-ui'
+import type { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
 import { Trans } from '@lingui/react'
-import { CompanyFieldsOptions, useCompanyFieldsForm } from './useCompanyFieldsForm'
+import type { CompanyFieldsOptions } from './useCompanyFieldsForm'
+import { useCompanyFieldsForm } from './useCompanyFieldsForm'
 
 export function CompanyVAT<
   TFieldValues extends FieldValues = FieldValues,

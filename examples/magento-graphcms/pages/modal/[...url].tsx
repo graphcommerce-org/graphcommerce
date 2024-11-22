@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { cacheFirst } from '@graphcommerce/graphql'
+import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
@@ -12,7 +13,6 @@ import { Box, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutDocument, LayoutOverlay, LayoutOverlayProps, RowRenderer } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }

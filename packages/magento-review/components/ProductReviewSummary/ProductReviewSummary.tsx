@@ -1,10 +1,11 @@
 import { IconSvg, iconStar, extendableComponent } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme } from '@mui/material'
-import { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
+import type { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'
 
 export type ProductReviewSummaryProps = ProductReviewSummaryFragment & { sx?: SxProps<Theme> }
 
-const name = 'ProductReviewSummary' as const
+const name = 'ProductReviewSummary'
 const parts = ['root', 'rating', 'iconStar', 'iconStarDisabled'] as const
 const { classes } = extendableComponent(name, parts)
 

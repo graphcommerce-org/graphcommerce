@@ -1,9 +1,6 @@
 import { mergeDeep } from '@graphcommerce/graphql'
-import {
-  productLink,
-  type AddToCartItemSelector,
-  ProductPageMetaProps,
-} from '@graphcommerce/magento-product'
+import type { ProductPageMetaProps } from '@graphcommerce/magento-product'
+import { productLink, type AddToCartItemSelector } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'

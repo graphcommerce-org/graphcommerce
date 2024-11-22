@@ -1,15 +1,12 @@
-import { ParsedUrlQuery } from 'querystring'
-import {
-  ApolloClient,
-  ApolloQueryResult,
-  flushMeasurePerf,
-  NormalizedCacheObject,
-} from '@graphcommerce/graphql'
+import type { ParsedUrlQuery } from 'querystring'
+import type { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@graphcommerce/graphql'
+import { flushMeasurePerf } from '@graphcommerce/graphql'
 import { nonNullable, isTypename, storefrontConfig } from '@graphcommerce/next-ui'
-import { Redirect } from 'next'
-import { StoreConfigQuery } from '../StoreConfig.gql'
+import type { Redirect } from 'next'
+import type { StoreConfigQuery } from '../StoreConfig.gql'
 import { defaultLocale } from '../localeToStore'
-import { HandleRedirectDocument, HandleRedirectQuery } from './HandleRedirect.gql'
+import type { HandleRedirectQuery } from './HandleRedirect.gql'
+import { HandleRedirectDocument } from './HandleRedirect.gql'
 
 export type RedirectOr404Return = Promise<
   | { redirect: Redirect; revalidate?: number | boolean }
@@ -18,8 +15,7 @@ export type RedirectOr404Return = Promise<
 
 const notFound = (from: string, reason: string) => {
   flushMeasurePerf()
-  // eslint-disable-next-line no-console
-  console.log(`[redirectOrNotFound: /${from}] ${reason}`)
+  console.info(`[redirectOrNotFound: /${from}] ${reason}`)
   return { notFound: true, revalidate: 60 * 20 } as const
 }
 
@@ -33,7 +29,7 @@ export const redirectTo = (
   permanent: boolean,
   locale?: string,
 ): { redirect: Redirect; revalidate?: number | boolean } => {
-  console.log(
+  console.info(
     `[redirectTo]: ${permanent ? 'Permanent' : 'Temporary'} redirect to ${urlPrefix(locale)}${to}`,
   )
   return {
@@ -49,8 +45,7 @@ const redirect = (from: string, to: string, permanent: boolean, locale?: string)
 
   flushMeasurePerf()
 
-  // eslint-disable-next-line no-console
-  console.log(
+  console.info(
     `[redirectOrNotFound: ${prefix ? `/${prefix}` : ''}/${from}] ${
       permanent ? 'Permanent' : 'Temporary'
     } redirect to ${destination}`,
@@ -89,7 +84,7 @@ export async function redirectOrNotFound(
 
     // Handle the case where we transition from using the default .html suffix, to not using one
     if (from.endsWith('.html')) {
-      candidates.add(from.slice(0, -('.html'.length)))
+      candidates.add(from.slice(0, -'.html'.length))
     }
 
     const routePromises = [...candidates].filter(Boolean).map(
@@ -143,20 +138,19 @@ export async function redirectOrNotFound(
 
       const url_key = routeData.route?.url_key
       if (!routeData.products?.items?.find((i) => i?.url_key === url_key))
-        return notFound(from, `Route found, but product isn't returned from products query`)
+        return notFound(from, "Route found, but product isn't returned from products query")
 
       return redirect(from, `${productRoute}${url_key}`, true, locale)
     }
 
     if (redirectUrl) return redirect(from, `/${redirectUrl}`, permanent, locale)
 
-    return notFound(from, `Route found, but no redirect URL`)
+    return notFound(from, 'Route found, but no redirect URL')
   } catch (e) {
     if (e instanceof Error) {
       return notFound(from, `Error while redirecting: ${e.message}`)
     }
-    // eslint-disable-next-line no-console
-    console.log(e)
-    return notFound(from, `Error while redirecting`)
+    console.info(e)
+    return notFound(from, 'Error while redirecting')
   }
 }

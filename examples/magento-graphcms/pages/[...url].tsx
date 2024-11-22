@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { cacheFirst, flushMeasurePerf, InContextMaskProvider } from '@graphcommerce/graphql'
+import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import {
   appendSiblingsAsChildren,
   CategoryBreadcrumbs,
@@ -246,7 +246,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const up =
     category_url_path && category_name
       ? { href: `/${category_url_path}`, title: category_name }
-      : { href: `/`, title: i18n._(/* i18n */ 'Home') }
+      : { href: '/', title: i18n._(/* i18n */ 'Home') }
 
   await waitForSiblings
   const result = {

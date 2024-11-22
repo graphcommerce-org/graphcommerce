@@ -1,10 +1,7 @@
-import {
-  ScrollerProvider,
-  Scroller,
-  ScrollerButton,
-  ScrollerButtonProps,
-} from '@graphcommerce/framer-scroller'
-import { Box, SxProps, Theme } from '@mui/material'
+import type { ScrollerButtonProps } from '@graphcommerce/framer-scroller'
+import { ScrollerProvider, Scroller, ScrollerButton } from '@graphcommerce/framer-scroller'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import { IconSvg } from '../IconSvg'
 import { extendableComponent, responsiveVal } from '../Styles'
 import { useFabSize } from '../Theme'
@@ -59,7 +56,7 @@ export function ItemScroller(props: ItemScrollerProps) {
               gap: theme.spacings.xxs,
               position: 'absolute',
               left: theme.spacings.sm,
-              top: `calc(50% - 28px)`,
+              top: 'calc(50% - 28px)',
             })}
           >
             <ScrollerButton direction='left' showButtons={showButtons} size='responsive'>

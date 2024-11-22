@@ -1,5 +1,6 @@
-import { CategorySearchResult, CategorySearchResultsProps } from '@graphcommerce/magento-search'
-import { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import type { CategorySearchResultsProps } from '@graphcommerce/magento-search'
+import { CategorySearchResult } from '@graphcommerce/magento-search'
+import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { Index } from 'react-instantsearch-hooks-web'
 import { useAlgoliaCategoryResults } from '../hooks/useAlgoliaCategoryResults'
 import { useAlgoliaSearchIndexConfig } from '../hooks/useAlgoliaSearchIndexConfig'

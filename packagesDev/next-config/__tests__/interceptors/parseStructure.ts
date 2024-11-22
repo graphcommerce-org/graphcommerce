@@ -1,4 +1,4 @@
-import { GraphCommerceConfig } from '../../src/generated/config'
+import type { GraphCommerceConfig } from '../../src/generated/config'
 import { parseStructure } from '../../src/interceptors/parseStructure'
 import { parseSync } from '../../src/interceptors/swc'
 
@@ -204,7 +204,7 @@ export const Plugin = AddAdyenMethods
       "type": "component",
     }
   `)
-  expect(plugins[1]).toMatchInlineSnapshot(`undefined`)
+  expect(plugins[1]).toMatchInlineSnapshot('undefined')
 })
 
 it('correctly allows false value in the ifConfig', () => {

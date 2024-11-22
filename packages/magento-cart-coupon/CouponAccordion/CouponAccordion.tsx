@@ -6,7 +6,8 @@ import {
   breakpointVal,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme, Accordion, AccordionSummary, AccordionDetails } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material'
 import { useState } from 'react'
 import { ApplyCouponForm } from '../ApplyCouponForm/ApplyCouponForm'
 import { RemoveCouponForm } from '../RemoveCouponForm/RemoveCouponForm'
@@ -15,7 +16,7 @@ import { GetCouponDocument } from './GetCoupon.gql'
 export type CouponAccordionProps = { sx?: SxProps<Theme> }
 
 type OwnerState = { open: boolean; disabled: boolean }
-const name = 'CouponAccordion' as const
+const name = 'CouponAccordion'
 const parts = ['accordion', 'button', 'couponFormWrap'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 

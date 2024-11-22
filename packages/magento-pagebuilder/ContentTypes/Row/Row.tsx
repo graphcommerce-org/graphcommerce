@@ -1,13 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Image } from '@graphcommerce/image'
-import { Box, Container, SxProps, Theme, useMediaQuery } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Container, useMediaQuery } from '@mui/material'
 import React, { useEffect, useRef, useState, CSSProperties } from 'react'
 import { MediaBackground } from '../../components/MediaBackground/MediaBackground'
 import { extractImageBackgroundProps } from '../../components/MediaBackground/extractImageBackgroundProps'
 import { extractVideoBackgroundProps } from '../../components/MediaBackground/extractVideoBackgroundProps'
 import { extractAdvancedProps, verticalAlignmentToFlex } from '../../utils'
 import defaultClasses from './row.module.css'
-import { RowContentType } from './types'
+import type { RowContentType } from './types'
 
 const { matchMedia } = globalThis
 

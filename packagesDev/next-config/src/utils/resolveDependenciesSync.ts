@@ -24,7 +24,10 @@ function resolveRecursivePackageJson(
   // Previously processed
   if (dependencyStructure[packageJson.name]) return dependencyStructure
 
-  if (!isRoot && !packageJson.name.includes('graphcommerce')) return dependencyStructure
+  // To have additional namespaces be considered as a graphcommerce package, set PRIVATE_PACKAGE_NAMESPACES
+  const namespaces = process.env.PRIVATE_PACKAGE_NAMESPACES?.split(',') ?? ['graphcommerce']
+  if (!isRoot && !namespaces.some((namespace) => packageJson.name?.includes(namespace)))
+    return dependencyStructure
 
   const dependencies = [
     ...new Set(

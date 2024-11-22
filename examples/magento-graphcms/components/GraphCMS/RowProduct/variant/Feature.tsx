@@ -1,4 +1,4 @@
-import { RichText } from '@graphcommerce/graphcms-ui'
+import { RichText } from '@graphcommerce/hygraph-ui'
 import { Image } from '@graphcommerce/image'
 import { ImageText } from '@graphcommerce/next-ui'
 import { useLayoutMaxWidths } from '@graphcommerce/next-ui/Theme/layoutMaxWidths'

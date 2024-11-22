@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 import { ApolloLink } from '@apollo/client'
-import type { MeshFetchHTTPInformation } from '@graphql-mesh/plugin-http-details-extensions'
 import { print } from '@apollo/client/utilities'
+import type { MeshFetchHTTPInformation } from '@graphql-mesh/plugin-http-details-extensions'
+import { responsePathAsArray, stripIgnoredCharacters } from 'graphql'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { cliHyperlink } from '../../lib/hyperlinker'
 
 const running = new Map<
@@ -12,6 +14,7 @@ const running = new Map<
     internalStart?: Date
     operationName: [string, string]
     additional?: [string, string]
+    idx?: number
   }
 >()
 
@@ -87,13 +90,13 @@ export const flushMeasurePerf = () => {
   })
 
   const items = [
-    ['Operation', 'Mesh', ' Source', 'Timeline'],
+    ['Operation', 'Mesh', '', 'Timeline'],
     ...lines,
     renderLine({
       serverStart: 0,
       requestStart: 0,
       requestEnd: end,
-      additional: [`Total time`, `${end}ms`, ''],
+      additional: ['Total time', `${end}ms`, ''],
       colDivider,
     }),
   ]
@@ -109,22 +112,20 @@ export const flushMeasurePerf = () => {
   // padd the items to the max length
   items.forEach((item) => {
     item.forEach((_, index) => {
-      const [str] = (Array.isArray(item[index]) ? item[index] : [item[index], item[index]]) as [
-        string,
-        string,
-      ]
+      const [str] = Array.isArray(item[index]) ? item[index] : [item[index], item[index]]
 
-      const val = (Array.isArray(item[index]) ? item[index][1] : item[index]) as string
+      const val = Array.isArray(item[index]) ? item[index][1] : item[index]
 
       const padLength = colWidths[index] + (val.length - str.length)
 
-      item[index] = `${val.padEnd(padLength, ' ')}${index !== item.length - 1 ? `` : ''}`
+      item[index] = `${val.padEnd(padLength, ' ')}${index !== item.length - 1 ? '' : ''}`
     })
   })
-
-  // render the items to a string
-  const output = [[''], ...items].map((item) => item.join(' ')).join('\n')
-  console.log(output)
+  ;[[''], ...items]
+    .map((item) => item.join(' '))
+    .forEach((item) => {
+      console.log(item)
+    })
 
   running.clear()
 }
@@ -156,43 +157,72 @@ export const measurePerformanceLink = new ApolloLink((operation, forward) => {
     return forward(operation).map((data) => {
       const httpDetails: MeshFetchHTTPInformation[] | undefined = data.extensions?.httpDetails
 
-      let additional = [``, ``] as [string, string]
-      if (httpDetails) {
-        httpDetails.forEach((d) => {
-          const requestUrl = new URL(d.request.url)
-          requestUrl.searchParams.delete('extensions')
-          const title = `${d.sourceName} ${d.responseTime}ms`
-          additional = [
-            `${additional[0]} ${title}`,
-            `${additional[1]} ${cliHyperlink(title, requestUrl.toString().replace(/\+/g, '%20'))}`,
-          ]
-        })
-      }
+      const additional = ['', ''] as [string, string]
 
       // Called after server responds
       const query = [
         `# Variables: ${JSON.stringify(operation.variables)}`,
         `# Headers: ${JSON.stringify(operation.getContext().headers)}`,
-        print(operation.query),
+        stripIgnoredCharacters(print(operation.query)),
       ].join('\n')
 
-      const meshUrl = new URL(`${import.meta.graphCommerce.canonicalBaseUrl}/api/graphql`)
+      const meshUrl = new URL(
+        process.env.NODE_ENV === 'production'
+          ? `${import.meta.graphCommerce.canonicalBaseUrl}/api/graphql`
+          : 'http://localhost:3000/api/graphql',
+      )
+
       meshUrl.searchParams.set('query', query)
 
+      running.delete(operationString)
       running.set(operationString, {
         start: operation.getContext().measurePerformanceLinkStart as Date,
         end: new Date(),
-        operationName: [operation.operationName, operation.operationName],
+        operationName: [
+          operation.operationName,
+          operation.operationName,
+          // cliHyperlink(operation.operationName, meshUrl.toString()),
+        ],
         additional,
-        // [
-        //   operation.operationName,
-        //   cliHyperlink(operation.operationName, meshUrl.toString()),
-        // ],
-        // additional: [
-        //   `🔗 ${additional[0]}`,
-        //   `${cliHyperlink('🔗', meshUrl.toString())} ${additional[1]}`,
-        // ],
+        idx: 0,
       })
+
+      if (httpDetails) {
+        running.forEach((_, key) => {
+          if (key.startsWith(operationString)) running.delete(key)
+        })
+
+        httpDetails.forEach((d) => {
+          const requestUrl = new URL(d.request.url)
+          requestUrl.searchParams.delete('extensions')
+
+          const sourceName =
+            !d.sourceName && URL.canParse(d.request.url)
+              ? new URL(d.request.url).hostname
+              : d.sourceName
+
+          const key = `${operationString}.${responsePathAsArray(d.path).join('.')}`
+          const name = `${operation.operationName}.${responsePathAsArray(d.path).join('.')} (${sourceName})`
+
+          let start = new Date(d.request.timestamp)
+          let end = new Date(d.response.timestamp)
+          let operationName: [string, string] = [name, name]
+          let idx = 0
+
+          if (running.has(key)) {
+            // Get the earliest start time and latest end time.
+            const existing = running.get(key)
+            if (existing) {
+              idx = (existing.idx ?? 0) + 1
+              start = existing.start < start ? existing.start : start
+              end = existing?.end ? (existing.end > end ? existing.end : end) : end
+              operationName = [`${name} ⨉ ${idx}`, `${name} ⨉ ${idx}`]
+            }
+          }
+
+          running.set(key, { start, end, operationName, idx })
+        })
+      }
 
       markTimeout()
 

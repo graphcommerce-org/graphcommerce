@@ -1,4 +1,5 @@
-import { useController, FieldValues, UseControllerProps } from '@graphcommerce/react-hook-form'
+import type { FieldValues, UseControllerProps } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import {
   FormControl,
@@ -9,9 +10,10 @@ import {
   RadioGroup,
   useTheme,
 } from '@mui/material'
-import { ChangeEvent } from 'react'
+import type { ChangeEvent } from 'react'
 
 export type RadioButtonGroupProps<T extends FieldValues> = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   options: { label: string; id: string | number }[] | any[]
   helperText?: string
   required?: boolean
@@ -20,6 +22,7 @@ export type RadioButtonGroupProps<T extends FieldValues> = {
   valueKey?: string
   type?: 'number' | 'string'
   emptyOptionLabel?: 'string'
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange?: (value: any) => void
   returnObject?: boolean
   row?: boolean
@@ -95,7 +98,7 @@ export function RadioButtonGroup<TFieldValues extends FieldValues>(
             value=''
           />
         )}
-        {options.map((option: any) => {
+        {options.map((option) => {
           const optionKey = option[valueKey]
           if (!optionKey) {
             console.error(

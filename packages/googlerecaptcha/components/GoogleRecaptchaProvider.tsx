@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react'
-import { RecaptchaContext, recaptchaContext } from '../context/recaptchaContext'
+import type { RecaptchaContext } from '../context/recaptchaContext'
+import { recaptchaContext } from '../context/recaptchaContext'
 import { GoogleRecaptchaV3Script } from './GoogleRecaptchaV3Script'
 
 export function GoogleRecaptchaProvider(props: { children: React.ReactNode }) {

@@ -3,7 +3,7 @@ import { Trans } from '@lingui/macro'
 import { Box, Link } from '@mui/material'
 import { productListLinkFromFilter } from '../../hooks/useProductListLink'
 import { useProductFiltersPro } from '../ProductFiltersPro'
-import { ProductListSuggestionsFragment } from './ProductListSuggestions.gql'
+import type { ProductListSuggestionsFragment } from './ProductListSuggestions.gql'
 
 type ProductListSuggestionsProps = {
   products: ProductListSuggestionsFragment

@@ -1,9 +1,9 @@
-import { ChipMenuProps } from '@graphcommerce/next-ui'
-import { FilterTypes } from '../ProductListItems/getFilterTypes'
+import type { ChipMenuProps } from '@graphcommerce/next-ui'
+import type { FilterTypes } from '../ProductListItems/getFilterTypes'
 import { FilterCheckboxType } from './FilterCheckboxType'
 import { FilterEqualType } from './FilterEqualType'
 import { FilterRangeType } from './FilterRangeType'
-import { ProductListFiltersFragment } from './ProductListFilters.gql'
+import type { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 export type ProductFiltersProps = ProductListFiltersFragment & {
   filterTypes: FilterTypes

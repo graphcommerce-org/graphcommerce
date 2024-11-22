@@ -2,8 +2,9 @@
 // import { getContentTypeConfig } from './config'
 
 import { JSDOM } from 'jsdom'
-import { ContentTypeKeys, getContentType } from '../parserTypes'
-import { ContentTypeConfig } from '../types'
+import type { ContentTypeKeys } from '../parserTypes'
+import { getContentType } from '../parserTypes'
+import type { ContentTypeConfig } from '../types'
 // eslint-disable-next-line import/no-cycle
 import { getIsHidden, isHTMLElement } from '../utils'
 import { detectPageBuilder } from './detectPageBuilder'

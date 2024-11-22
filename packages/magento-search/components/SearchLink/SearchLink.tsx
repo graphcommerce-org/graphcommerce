@@ -6,9 +6,10 @@ import {
   useFabSize,
   useIconSvgSize,
 } from '@graphcommerce/next-ui'
-import { Breakpoint, Fab, FabProps, Link, LinkProps } from '@mui/material'
+import type { Breakpoint, FabProps, LinkProps } from '@mui/material'
+import { Fab, Link } from '@mui/material'
 import { useRouter } from 'next/router'
-import { KeyboardEventHandler, MouseEventHandler } from 'react'
+import type { KeyboardEventHandler, MouseEventHandler } from 'react'
 import type { SetRequired } from 'type-fest'
 
 export type SearchLinkProps = {
@@ -16,7 +17,7 @@ export type SearchLinkProps = {
   fab?: FabProps
 } & SetRequired<Pick<LinkProps<'a'>, 'href' | 'sx' | 'children' | 'onClick'>, 'href'>
 
-const name = 'SearchLink' as const
+const name = 'SearchLink'
 const parts = ['root', 'text', 'svg'] as const
 const { classes } = extendableComponent(name, parts)
 

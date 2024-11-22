@@ -3,7 +3,8 @@ import { useFormGqlMutationCart, ApolloCartErrorAlert } from '@graphcommerce/mag
 import { responsiveVal, Button, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { Box, FormControl, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, FormControl } from '@mui/material'
 import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
 
 export type ApplyCouponFormProps = { sx?: SxProps<Theme> }

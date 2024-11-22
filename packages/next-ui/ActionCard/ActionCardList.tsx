@@ -1,12 +1,13 @@
 import { Trans } from '@lingui/react'
-import { Alert, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Alert } from '@mui/material'
 import React from 'react'
 import { isFragment } from 'react-is'
 import { Button } from '../Button'
 import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
 import { iconChevronDown } from '../icons'
-import { ActionCardProps } from './ActionCard'
+import type { ActionCardProps } from './ActionCard'
 import { ActionCardLayout } from './ActionCardLayout'
 
 type MultiSelect = {
@@ -100,7 +101,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
         }
 
     type ActionCardLike = React.ReactElement<
-      Pick<ActionCardProps, 'value' | 'selected' | 'disabled' | 'onClick' | 'error' | 'onClick'> &
+      Pick<ActionCardProps, 'value' | 'selected' | 'disabled' | 'onClick' | 'error'> &
         HoistedActionCardProps
     >
 
@@ -108,7 +109,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
       const hasValue = (el as ActionCardLike).props.value
 
       if (process.env.NODE_ENV !== 'production') {
-        if (hasValue === undefined) console.error(el, `must be an instance of ActionCard`)
+        if (hasValue === undefined) console.error(el, 'must be an instance of ActionCard')
       }
       return (el as ActionCardLike).props.value !== undefined
     }

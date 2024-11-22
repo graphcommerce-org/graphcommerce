@@ -24,7 +24,7 @@ function Index() {
         <ScrollerProvider>
           <Scroller
             sx={{
-              gridTemplateRows: `100%`,
+              gridTemplateRows: '100%',
               marginBottom: '20px',
               rowGap: 20,
               columnGap: 20,
@@ -99,8 +99,8 @@ function Index() {
             sx={{
               width: '100%',
               height: '100%',
-              gridAutoColumns: `100%`,
-              gridTemplateRows: `100%`,
+              gridAutoColumns: '100%',
+              gridTemplateRows: '100%',
               '& *': {
                 userSelect: 'none',
                 userDrag: 'none',

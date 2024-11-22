@@ -21,7 +21,7 @@ import {
   ProductFiltersProSearchTerm,
   ProductFiltersProCategorySectionSearch,
 } from '@graphcommerce/magento-search'
-import { memoDeep, responsiveVal, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { MediaQuery, memoDeep, responsiveVal, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { useLayoutMaxWidths } from '@graphcommerce/next-ui/Theme/layoutMaxWidths'
 import { Trans } from '@lingui/macro'
 import { Box, Container, Typography } from '@mui/material'
@@ -75,7 +75,7 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
           },
           mb: theme.spacings.xl,
           gridTemplate: {
-            xs: `"title" "horizontalFilters" "count" "items" "pagination"`,
+            xs: '"title" "horizontalFilters" "count" "items" "pagination"',
             md: `
               "sidebar title"      auto
               "sidebar count"      auto
@@ -149,45 +149,46 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
           sx={{ gridArea: 'pagination', my: 0 }}
         />
 
-        <StickyBelowHeader sx={{ gridArea: 'horizontalFilters', display: { md: 'none' } }}>
-          <ProductListFiltersContainer
-            sx={(theme) => ({
-              '& .ProductListFiltersContainer-scroller': {
-                px: theme.page.horizontal,
-                mx: `calc(${theme.page.horizontal} * -1)`,
-              },
-            })}
-          >
-            <ProductFiltersProAggregations renderer={productFiltersProChipRenderer} />
-            {products.items.length > 0 && (
-              <>
-                <ProductFiltersProSortChip
-                  total_count={total_count}
-                  sort_fields={sort_fields}
-                  category={category}
-                />
-                <ProductFiltersProLimitChip />
-              </>
-            )}
+        <MediaQuery query={(theme) => theme.breakpoints.down('md')}>
+          <StickyBelowHeader sx={{ gridArea: 'horizontalFilters' }}>
+            <ProductListFiltersContainer
+              sx={(theme) => ({
+                '& .ProductListFiltersContainer-scroller': {
+                  px: theme.page.horizontal,
+                  mx: `calc(${theme.page.horizontal} * -1)`,
+                },
+              })}
+            >
+              <ProductFiltersProAggregations renderer={productFiltersProChipRenderer} />
+              {products.items.length > 0 && (
+                <>
+                  <ProductFiltersProSortChip
+                    total_count={total_count}
+                    sort_fields={sort_fields}
+                    category={category}
+                  />
+                  <ProductFiltersProLimitChip />
+                </>
+              )}
 
-            <ProductFiltersProAllFiltersChip
-              total_count={total_count}
-              sort_fields={sort_fields}
-              category={category}
-            />
-          </ProductListFiltersContainer>
-        </StickyBelowHeader>
+              <ProductFiltersProAllFiltersChip
+                total_count={total_count}
+                sort_fields={sort_fields}
+                category={category}
+              />
+            </ProductListFiltersContainer>
+          </StickyBelowHeader>
+        </MediaQuery>
 
-        <Box
+        <MediaQuery
+          query={(theme) => theme.breakpoints.up('md')}
+          display='block'
           sx={(theme) => ({
             gridArea: 'sidebar',
-            display: { xs: 'none', md: 'block' },
             mt: import.meta.graphCommerce.breadcrumbs === true ? 0 : theme.spacings.lg,
           })}
         >
-          <ProductFiltersProClearAll
-            sx={{ display: { xs: 'none', md: 'block' }, alignSelf: 'center' }}
-          />
+          <ProductFiltersProClearAll sx={{ alignSelf: 'center' }} />
           <>
             {category ? (
               <ProductFiltersProCategorySection
@@ -208,7 +209,7 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
           <ProductFiltersProLimitSection />
 
           <ProductFiltersProAggregations renderer={productFiltersProSectionRenderer} />
-        </Box>
+        </MediaQuery>
       </Container>
     </ProductFiltersPro>
   )

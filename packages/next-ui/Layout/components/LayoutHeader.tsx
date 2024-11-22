@@ -1,10 +1,13 @@
-import { Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
-import { BackProps, LayoutHeaderBack, useShowBack } from './LayoutHeaderBack'
+import type { BackProps } from './LayoutHeaderBack'
+import { LayoutHeaderBack, useShowBack } from './LayoutHeaderBack'
 import { LayoutHeaderClose, useShowClose } from './LayoutHeaderClose'
-import { LayoutHeaderContent, LayoutHeaderContentProps } from './LayoutHeaderContent'
-import { FloatingProps } from './LayoutHeadertypes'
+import type { LayoutHeaderContentProps } from './LayoutHeaderContent'
+import { LayoutHeaderContent } from './LayoutHeaderContent'
+import type { FloatingProps } from './LayoutHeadertypes'
 
 export type LayoutHeaderProps = FloatingProps &
   Omit<LayoutHeaderContentProps, 'left' | 'right'> &

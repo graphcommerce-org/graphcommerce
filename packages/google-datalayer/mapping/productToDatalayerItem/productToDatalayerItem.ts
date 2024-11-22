@@ -1,6 +1,6 @@
 import { productPageCategory } from '@graphcommerce/magento-product'
 import { nonNullable } from '@graphcommerce/next-ui'
-import { Product_DatalayerItemFragment } from './Product_DatalayerItem.gql'
+import type { Product_DatalayerItemFragment } from './Product_DatalayerItem.gql'
 
 /**
  * https://developers.google.com/tag-platform/gtagjs/reference/events#add_to_cart_item

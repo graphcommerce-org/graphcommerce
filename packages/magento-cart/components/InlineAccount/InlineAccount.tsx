@@ -7,7 +7,8 @@ import {
 } from '@graphcommerce/magento-customer'
 import { Button, FormRow, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, SxProps, TextField, Theme, Typography } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useCartQuery } from '../../hooks/useCartQuery'
 import { InlineAccountDocument } from './InlineAccount.gql'
@@ -15,10 +16,6 @@ import { InlineAccountDocument } from './InlineAccount.gql'
 export type InlineAccountProps = {
   title?: React.ReactNode
   description?: React.ReactNode
-  /**
-   * @deprecated This is not used anymore.
-   */
-  accountHref: string
   sx?: SxProps<Theme>
 }
 

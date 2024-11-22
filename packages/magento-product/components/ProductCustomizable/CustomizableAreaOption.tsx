@@ -1,12 +1,13 @@
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
-import { CurrencyEnum } from '@graphcommerce/graphql-mesh'
+import type { CurrencyEnum } from '@graphcommerce/graphql-mesh'
 import { Money } from '@graphcommerce/magento-store'
-import { SectionHeader, TypeRenderer } from '@graphcommerce/next-ui'
+import type { TypeRenderer } from '@graphcommerce/next-ui'
+import { SectionHeader } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Box } from '@mui/material'
 import React from 'react'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
-import { ProductCustomizableFragment } from './ProductCustomizable.gql'
+import type { ProductCustomizableFragment } from './ProductCustomizable.gql'
 
 export type OptionTypeRenderer = TypeRenderer<
   NonNullable<NonNullable<ProductCustomizableFragment['options']>[number]> & {

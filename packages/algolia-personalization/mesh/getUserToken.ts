@@ -1,4 +1,4 @@
-import { MeshContext } from '@graphcommerce/graphql-mesh'
+import type { MeshContext } from '@graphcommerce/graphql-mesh'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { parse } from 'cookie'
 

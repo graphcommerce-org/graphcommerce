@@ -1,4 +1,4 @@
-import { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
+import type { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
 import { FormRow } from '@graphcommerce/next-ui'
 import { AddressAddition } from './AddressAddition'
 import { AddressCity } from './AddressCity'
@@ -6,7 +6,7 @@ import { AddressCountryRegion } from './AddressCountryRegion'
 import { AddressHousenumber } from './AddressHouseNumber'
 import { AddressPostcode } from './AddressPostcode'
 import { AddressStreet } from './AddressStreet'
-import { AddressFieldsOptions } from './useAddressFieldsForm'
+import type { AddressFieldsOptions } from './useAddressFieldsForm'
 
 export type AddressFieldsProps<
   TFieldValues extends FieldValues = FieldValues,

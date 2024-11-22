@@ -1,7 +1,8 @@
-import { PasswordElement, PasswordElementProps } from '@graphcommerce/ecommerce-ui'
+import type { PasswordElementProps } from '@graphcommerce/ecommerce-ui'
+import { PasswordElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { FieldValues } from '@graphcommerce/react-hook-form'
+import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 
 export type ValidatedPasswordElementProps<T extends FieldValues> = PasswordElementProps<T>

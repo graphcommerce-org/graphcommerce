@@ -38,7 +38,7 @@ const Grid = styled('div')(({ theme }) => ({
   display: 'grid',
   gridAutoFlow: 'columns',
   [theme.breakpoints.up('md')]: {
-    gridTemplateColumns: `repeat(3, minmax(180px, 1fr))`,
+    gridTemplateColumns: 'repeat(3, minmax(180px, 1fr))',
   },
   gap: responsiveVal(20, 40),
 }))

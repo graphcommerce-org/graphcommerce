@@ -1,8 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import type { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import { fillCartAgreementsForm } from '@graphcommerce/magento-cart/test/fillCartAgreementsForm'
 import { fillShippingAddressForm } from '@graphcommerce/magento-cart-shipping-address/test/fillShippingAddressForm'
-import { Page } from '@playwright/test'
+import type { Page } from '@playwright/test'
 
 export const goToPayment = async (
   page: Page,

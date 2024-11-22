@@ -1,6 +1,7 @@
-import { Avatar, Box, Chip, SxProps, Theme } from '@mui/material'
-import { responsiveVal } from '../../Styles/responsiveVal'
+import type { SxProps, Theme } from '@mui/material'
+import { Avatar, Box, Chip } from '@mui/material'
 import { DateFormat } from '../../Intl/DateTimeFormat'
+import { responsiveVal } from '../../Styles/responsiveVal'
 
 export type BlogAuthorProps = {
   author: string
@@ -18,7 +19,7 @@ export function BlogAuthor(props: BlogAuthorProps) {
         {
           display: 'flex',
           justifyContent: 'left',
-          margin: `0 auto`,
+          margin: '0 auto',
           marginBottom: (theme) => theme.spacings.md,
         },
         ...(Array.isArray(sx) ? sx : [sx]),

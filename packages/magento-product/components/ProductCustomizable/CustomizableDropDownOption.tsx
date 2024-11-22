@@ -1,9 +1,9 @@
-import { SelectElement, useController } from '@graphcommerce/ecommerce-ui'
-import { SectionHeader, filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { Box, ListItemText, MenuItem, TextField, Typography } from '@mui/material'
-import { useFormAddProductsToCart } from '../AddProductsToCart'
-import { OptionTypeRenderer } from './CustomizableAreaOption'
+import { useController } from '@graphcommerce/ecommerce-ui'
 import { Money } from '@graphcommerce/magento-store'
+import { SectionHeader, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { Box, MenuItem, TextField } from '@mui/material'
+import { useFormAddProductsToCart } from '../AddProductsToCart'
+import type { OptionTypeRenderer } from './CustomizableAreaOption'
 
 type CustomizableDropDownOptionProps = React.ComponentProps<
   OptionTypeRenderer['CustomizableDropDownOption']
@@ -11,7 +11,7 @@ type CustomizableDropDownOptionProps = React.ComponentProps<
 
 export function CustomizableDropDownOption(props: CustomizableDropDownOptionProps) {
   const { uid, required, index, title, dropdownValue, productPrice, currency } = props
-  const { control, getValues } = useFormAddProductsToCart()
+  const { control } = useFormAddProductsToCart()
 
   const {
     field: { onChange, value, ref, ...field },

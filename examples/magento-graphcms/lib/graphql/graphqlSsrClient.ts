@@ -24,7 +24,7 @@ function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-c
 
   return new ApolloClient({
     link: ApolloLink.from([
-      measurePerformanceLink,
+      ...(process.env.NODE_ENV === 'production' ? [measurePerformanceLink] : []),
       errorLink,
       ...config.links,
       new MeshApolloLink(getBuiltMesh()),

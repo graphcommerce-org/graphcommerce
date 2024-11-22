@@ -2,20 +2,22 @@
   "name": "@graphcommerce/eslint-config-pwa",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.0-canary.95",
+  "version": "9.0.0-canary.103",
   "main": "index.js",
   "dependencies": {
-    "@graphcommerce/typescript-config-pwa": "9.0.0-canary.95",
-    "@next/eslint-plugin-next": "14.2.5",
-    "@typescript-eslint/eslint-plugin": "^7.16.1",
-    "@typescript-eslint/parser": "^7.16.1",
+    "@graphcommerce/typescript-config-pwa": "9.0.0-canary.103",
+    "@next/eslint-plugin-next": "14.2.14",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "18.0.0",
     "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-import": "2.29.1",
-    "eslint-plugin-jsx-a11y": "6.9.0",
-    "eslint-plugin-react": "^7.34.4",
-    "eslint-plugin-react-hooks": "4.6.2"
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-jsx-a11y": "6.10.0",
+    "eslint-plugin-react": "^7.37.1",
+    "eslint-plugin-react-hooks": "4.6.2",
+    "typescript": "5.6.2"
   },
   "sideEffects": false
 }

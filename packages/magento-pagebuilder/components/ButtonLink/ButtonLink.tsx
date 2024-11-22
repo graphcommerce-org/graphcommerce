@@ -1,12 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { useApolloClient, useQuery } from '@graphcommerce/graphql'
-import { productLink, ProductLinkProps } from '@graphcommerce/magento-product'
+import type { ProductLinkProps } from '@graphcommerce/magento-product'
+import { productLink } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Button, ButtonProps, SxProps, Theme } from '@mui/material'
+import type { ButtonProps, SxProps, Theme } from '@mui/material'
+import { Button } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { RouteDocument } from '../../Route.gql'
-import { ButtonLinkProps } from './getButtonLinkProps'
+import type { ButtonLinkProps } from './getButtonLinkProps'
 
 type ButtonLinkComponentProps = ButtonLinkProps & {
   sx?: SxProps<Theme>

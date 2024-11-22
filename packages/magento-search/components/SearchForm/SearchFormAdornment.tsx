@@ -1,5 +1,6 @@
 import { IconSvg, iconSearch, iconClose } from '@graphcommerce/next-ui'
-import { Control, FieldPath, FieldValues, useWatch } from '@graphcommerce/react-hook-form'
+import type { Control, FieldPath, FieldValues } from '@graphcommerce/react-hook-form'
+import { useWatch } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { IconButton } from '@mui/material'
 

@@ -4,13 +4,11 @@ import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { Alert, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Alert } from '@mui/material'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
-import {
-  ForgotPasswordDocument,
-  ForgotPasswordMutation,
-  ForgotPasswordMutationVariables,
-} from './ForgotPassword.gql'
+import type { ForgotPasswordMutation, ForgotPasswordMutationVariables } from './ForgotPassword.gql'
+import { ForgotPasswordDocument } from './ForgotPassword.gql'
 
 export function ForgotPasswordForm(props: { sx?: SxProps<Theme> }) {
   const { sx = [] } = props

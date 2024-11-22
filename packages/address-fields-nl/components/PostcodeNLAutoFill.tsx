@@ -1,6 +1,8 @@
-import { FieldPath, FieldValues, FormAutoSubmit, PathValue } from '@graphcommerce/ecommerce-ui'
+import type { FieldPath, FieldValues, PathValue } from '@graphcommerce/ecommerce-ui'
+import { FormAutoSubmit } from '@graphcommerce/ecommerce-ui'
 import { useApolloClient } from '@graphcommerce/graphql'
-import { AddressFieldsOptions, useAddressFieldsForm } from '@graphcommerce/magento-customer'
+import type { AddressFieldsOptions } from '@graphcommerce/magento-customer'
+import { useAddressFieldsForm } from '@graphcommerce/magento-customer'
 import { useEventCallback } from '@mui/material'
 import { PostCodeNLDocument } from '../graphql/PostcodeNL.gql'
 

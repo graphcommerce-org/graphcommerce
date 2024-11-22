@@ -1,5 +1,5 @@
-import { PreviewData } from '@graphcommerce/graphql'
-import { NextApiRequest, NextApiResponse } from 'next'
+import type { PreviewData } from '@graphcommerce/graphql'
+import type { NextApiRequest, NextApiResponse } from 'next'
 import { previewModeDefaults } from '../components/PreviewMode/previewModeDefaults'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

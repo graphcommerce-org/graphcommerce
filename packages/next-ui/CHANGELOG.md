@@ -1,12 +1,57 @@
 # Change Log
 
+## 9.0.0-canary.103
+
+### Patch Changes
+
+- [#2369](https://github.com/graphcommerce-org/graphcommerce/pull/2369) [`8f1b806`](https://github.com/graphcommerce-org/graphcommerce/commit/8f1b806624c96f3151cda81e0553d3df7f1936dd) - Mark the menu item as active if router.asPath matches the href, or if the first URL segment matches, indicating it's the parent item. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.102
+
+### Patch Changes
+
+- [#2418](https://github.com/graphcommerce-org/graphcommerce/pull/2418) [`2d65c0b`](https://github.com/graphcommerce-org/graphcommerce/commit/2d65c0b2625d5aeb82b34207e5addbff613e40f7) - Added locale prop support for all Intl components and exposed all functionality as hooks. ([@paales](https://github.com/paales))
+
+- [#2418](https://github.com/graphcommerce-org/graphcommerce/pull/2418) [`f35505c`](https://github.com/graphcommerce-org/graphcommerce/commit/f35505c618283c9de6a0db5b3080655c6825da17) - MediaQuery component now accepts a display prop to not always render with display contents. Implement the MediaQuery component for the DesktopNavBar and filter page for StickyBelowHeader and ProductFiltersPro sidebar ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.101
+
+### Patch Changes
+
+- [#2405](https://github.com/graphcommerce-org/graphcommerce/pull/2405) [`39a2df4`](https://github.com/graphcommerce-org/graphcommerce/commit/39a2df46c26be390cd8d65200ab347e12b217f9e) - Added MediaQuery Component: Render (and hydrate) a Component based on a media query given.
+
+  ```tsx
+  <MediaQuery query={(theme) => theme.breakpoints.up('md')}>
+    <MyExpensiveDesktopComponent>
+      Only visisble on desktop
+    </MyExpensiveDesktopComponent>
+  </MediaQuery>
+  ```
+
+  When to use, replacement for:
+
+  1. useMediaQuery: When you are now using useMediaQuery to conditionally render content for mobile or desktop. a. Is very slow as it has to wait for the JS to initialize on pageload. b. Can cause CLS problems if the useMediaQuery is used to render elements in the viewport. c. Can cause LCP issues if useMediaQuery is used to render the LCP element. d. Causes TBT problems as a component always needs to be rerendered. (And bad TBT can cause INP problems) e. HTML isn't present in the DOM, which can cause SEO issues.
+  2. CSS Media query: When you are using CSS to show or hide content based on media queries. a. Causes TBT problems as both code paths need to be rendered. (And bad TBT can cause INP problems)
+
+  It wraps the component in a div that has 'display: contents;' when shown and 'display: none;' when hidden so it should not interfere with other styling. It conditionally hydrates the component if the query matches. If it doesn't match, it will NOT hydrate the component (and thus not execute the JS). ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`0ca65f1`](https://github.com/graphcommerce-org/graphcommerce/commit/0ca65f11fbe288a221f2c5aa618abecf5b4b7bc9) - Solve an issue where internal full URL's would cause prefetching errors and would use a hard navigation. ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.98
+
+### Patch Changes
+
+- [#2414](https://github.com/graphcommerce-org/graphcommerce/pull/2414) [`cd8e35b`](https://github.com/graphcommerce-org/graphcommerce/commit/cd8e35ba3dfafd34221b0875bf4f83c802955d66) - Added RelativeTimeFormat and RelativeToTimeFormat components to display relative dates in all locales. ([@Vignesh-M21](https://github.com/Vignesh-M21))
+
+- [#2414](https://github.com/graphcommerce-org/graphcommerce/pull/2414) [`8b1a5a6`](https://github.com/graphcommerce-org/graphcommerce/commit/8b1a5a62a580cc8d08746cb19c4e5a4f52bd270c) - Date strings (12-12-2012) are not supported by older Safari browser versions. must be converted (12/12/2012) in order for it to function; otherwise, it will return NaN if we attempt to access the getTime() on an object. ([@Vignesh-M21](https://github.com/Vignesh-M21))
+
 ## 9.0.0-canary.95
 
 ### Patch Changes
 
 - [#2399](https://github.com/graphcommerce-org/graphcommerce/pull/2399) [`f028b4f`](https://github.com/graphcommerce-org/graphcommerce/commit/f028b4f28e5d84c20353495e74bf3a549c183538) - Hide the back button on desktop pages where breadcrumbs are displayed. ([@carlocarels90](https://github.com/carlocarels90))
-
-## 9.0.0-canary.94
 
 ## 9.0.0-canary.93
 
@@ -14,33 +59,11 @@
 
 - [#2398](https://github.com/graphcommerce-org/graphcommerce/pull/2398) [`557171b`](https://github.com/graphcommerce-org/graphcommerce/commit/557171b7f5e9aa3d16205e53670082a90550ef1d) - Exclude ‘disableBackNavigation’ prop from LinkOrButton in LayoutHeaderBack. ([@carlocarels90](https://github.com/carlocarels90))
 
-## 9.0.0-canary.92
-
-## 9.0.0-canary.91
-
-## 9.0.0-canary.90
-
 ## 9.0.0-canary.89
 
 ### Patch Changes
 
 - [#2393](https://github.com/graphcommerce-org/graphcommerce/pull/2393) [`8946991`](https://github.com/graphcommerce-org/graphcommerce/commit/894699122c2748724acf439ce3ff14fa56a1e68c) - Solve an issue where the success page would show a back button which would go back to the payment page (which would be empty) ([@carlocarels90](https://github.com/carlocarels90))
-
-## 9.0.0-canary.88
-
-## 9.0.0-canary.87
-
-## 9.0.0-canary.86
-
-## 9.0.0-canary.85
-
-## 9.0.0-canary.84
-
-## 9.0.0-canary.83
-
-## 9.0.0-canary.82
-
-## 9.0.0-canary.81
 
 ## 9.0.0-canary.80
 
@@ -64,17 +87,11 @@
 
 - [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`1de9582`](https://github.com/graphcommerce-org/graphcommerce/commit/1de9582967f2a09cc7167a38ada4e50fe0d1b29a) - Properly align cart loading state (and other FullPageMessage usages) ([@bramvanderholst](https://github.com/bramvanderholst))
 
-## 9.0.0-canary.77
-
-## 9.0.0-canary.76
-
 ## 9.0.0-canary.75
 
 ### Patch Changes
 
 - [#2348](https://github.com/graphcommerce-org/graphcommerce/pull/2348) [`61b66ef`](https://github.com/graphcommerce-org/graphcommerce/commit/61b66efeab9b377c8daa322015d4b55cdf3db4c1) - Added a new OverlayHeader component to be used in combination with the Overlay component. ([@JoshuaS98](https://github.com/JoshuaS98))
-
-## 9.0.0-canary.74
 
 ## 9.0.0-canary.73
 
@@ -82,53 +99,11 @@
 
 - [`4c24225`](https://github.com/graphcommerce-org/graphcommerce/commit/4c24225f9f998cd40e71da06528eb9323e9b6752) - Created a new `memoDeep` function that is a deep compare variant of `React.memo`. Performance seems to be pretty good, but should only be used as a result of a profiling session. ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.72
-
-## 9.0.0-canary.71
-
-## 9.0.0-canary.70
-
-## 9.0.0-canary.69
-
-## 9.0.0-canary.68
-
-## 9.0.0-canary.67
-
-## 9.0.0-canary.66
-
-## 9.0.0-canary.65
-
-## 9.0.0-canary.64
-
-## 9.0.0-canary.63
-
-## 9.0.0-canary.62
-
-## 9.0.0-canary.61
-
-## 9.0.0-canary.60
-
-## 9.0.0-canary.59
-
-## 9.0.0-canary.58
-
 ## 9.0.0-canary.57
 
 ### Patch Changes
 
 - [#2312](https://github.com/graphcommerce-org/graphcommerce/pull/2312) [`e6a3776`](https://github.com/graphcommerce-org/graphcommerce/commit/e6a377637f1aaafe5b1db7a3123b8caad28d00f5) - Updated all package versions ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.56
-
-## 9.0.0-canary.55
-
-## 9.0.0-canary.54
-
-## 8.1.0-canary.53
-
-## 8.1.0-canary.52
-
-## 8.1.0-canary.51
 
 ## 8.1.0-canary.50
 
@@ -141,8 +116,6 @@
 ### Patch Changes
 
 - [#2317](https://github.com/graphcommerce-org/graphcommerce/pull/2317) [`6c173c7`](https://github.com/graphcommerce-org/graphcommerce/commit/6c173c7bba601413cc5e1c9cf0595b8ec262fb92) - Added new plugin insertion points: `<DocumentHeadStart/>`, `<DocumentHeadEnd/>`, `<DocumentBodyEnd/>`, `<DocumentBodyStart/>` for the \_document.app to allow creating plugins for those locations to insert scripts etc. ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.48
 
 ## 8.1.0-canary.47
 
@@ -168,12 +141,6 @@
 
 - [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`223f16a`](https://github.com/graphcommerce-org/graphcommerce/commit/223f16a0e9a7718e52e81a4e2902471a8b78d35c) - LazyHydrate component now accepts a height prop that allows deferring of rendering of the child component when initially rendered on the client. This improves performance. ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.44
-
-## 8.1.0-canary.43
-
-## 8.1.0-canary.42
-
 ## 8.1.0-canary.41
 
 ### Patch Changes
@@ -186,33 +153,11 @@
 
 - [#2306](https://github.com/graphcommerce-org/graphcommerce/pull/2306) [`5e188e8`](https://github.com/graphcommerce-org/graphcommerce/commit/5e188e830dca4730c73830858f59a94e9d41ed12) - Add delete account functionality to the account section. Disabled by default and can be enabled through the config. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 8.1.0-canary.39
-
-## 8.1.0-canary.38
-
-## 8.1.0-canary.37
-
-## 8.1.0-canary.36
-
-## 8.1.0-canary.35
-
-## 8.1.0-canary.34
-
-## 8.1.0-canary.33
-
-## 8.1.0-canary.32
-
 ## 8.1.0-canary.31
 
 ### Patch Changes
 
 - [#2297](https://github.com/graphcommerce-org/graphcommerce/pull/2297) [`e41cb6f`](https://github.com/graphcommerce-org/graphcommerce/commit/e41cb6fcdde95629d29c03b1a700c6097f00c901) - Prevent gallery thunbnails from scrolling when opening or closing a layout overlay ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.30
-
-## 8.1.0-canary.29
-
-## 8.1.0-canary.28
 
 ## 8.1.0-canary.27
 
@@ -230,41 +175,11 @@
 
 - [#2274](https://github.com/graphcommerce-org/graphcommerce/pull/2274) [`57131cf`](https://github.com/graphcommerce-org/graphcommerce/commit/57131cfcc43695cc3e22f28912feb2a8439620a7) - Created a cssFlags functionality to allow for conditional rendering based on stored flags in the localStorage ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 8.1.0-canary.25
-
-## 8.1.0-canary.24
-
-## 8.1.0-canary.23
-
-## 8.1.0-canary.22
-
-## 8.1.0-canary.21
-
-## 8.1.0-canary.20
-
-## 8.1.0-canary.19
-
-## 8.1.0-canary.18
-
 ## 8.1.0-canary.17
 
 ### Minor Changes
 
 - [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed useMediaQuery from the wishlist and cart ItemActionCard and replaced it with a new responsive size prop. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 8.1.0-canary.16
-
-## 8.1.0-canary.15
-
-## 8.1.0-canary.14
-
-## 8.1.0-canary.13
-
-## 8.1.0-canary.12
-
-## 8.1.0-canary.11
-
-## 8.1.0-canary.10
 
 ## 8.1.0-canary.9
 
@@ -278,16 +193,6 @@
 
 - [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for linguiLocale ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.7
-
-## 8.1.0-canary.6
-
-## 8.1.0-canary.5
-
-## 8.0.6-canary.4
-
-## 8.0.6-canary.3
-
 ## 8.0.6-canary.2
 
 ### Patch Changes
@@ -295,8 +200,6 @@
 - [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Added useIsSSR hook that will properly resolve when the page is rendered on the server and on first render, but will return false when a component is rendered on the client directly. ([@FrankHarland](https://github.com/FrankHarland))
 
 - [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
-
-## 8.0.6-canary.1
 
 ## 8.0.6-canary.0
 
@@ -322,109 +225,17 @@
 
 - [#2230](https://github.com/graphcommerce-org/graphcommerce/pull/2230) [`1da6b82`](https://github.com/graphcommerce-org/graphcommerce/commit/1da6b82dbb7e1543542d809ea625a8867643ea68) - Fix menu item visibility in accessability tree ([@JoshuaS98](https://github.com/JoshuaS98))
 
-## 8.0.5-canary.10
-
-## 8.0.5-canary.9
-
-## 8.0.5-canary.8
-
-## 8.0.5-canary.7
-
-### Patch Changes
-
-- [#2241](https://github.com/graphcommerce-org/graphcommerce/pull/2241) [`6f3fe60`](https://github.com/graphcommerce-org/graphcommerce/commit/6f3fe60441762d55cb46d587279121e8fe469cdd) - Decreased layout shift on product pages by reserving space for sidebar ([@bramvanderholst](https://github.com/bramvanderholst))
-
-- [#2241](https://github.com/graphcommerce-org/graphcommerce/pull/2241) [`cde3c31`](https://github.com/graphcommerce-org/graphcommerce/commit/cde3c310abf2ac3c82d1062d5fb0a4c00ba50cff) - Removed unnecessary vendor prefixes ([@bramvanderholst](https://github.com/bramvanderholst))
-
-- [#2241](https://github.com/graphcommerce-org/graphcommerce/pull/2241) [`4c83636`](https://github.com/graphcommerce-org/graphcommerce/commit/4c836366c324881ee5121c645c5f94fc60e3ebb3) - Prevent horizontal scrollbar on small screens when using SidebarGallery ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 8.0.5-canary.6
-
-## 8.0.5-canary.5
-
-## 8.0.5-canary.4
-
-## 8.0.5-canary.3
-
-### Patch Changes
-
-- [#2236](https://github.com/graphcommerce-org/graphcommerce/pull/2236) [`85fb916`](https://github.com/graphcommerce-org/graphcommerce/commit/85fb916e5ec2a1456a93a59bf92a5f414fee8595) - Solve issue where the inert prop wouldnt be properly forwarded ([@paales](https://github.com/paales))
-
-## 8.0.5-canary.2
-
-### Patch Changes
-
-- [#2235](https://github.com/graphcommerce-org/graphcommerce/pull/2235) [`de99691`](https://github.com/graphcommerce-org/graphcommerce/commit/de9969155e271cc2535147479b80b602a1b9c335) - The Lazyhydrate component to accepts any BoxProps. Replaced `<section>` with a `<Box>` so it doesn't hold symantic meaning.
-
-  Please note: If you've used child selectors to style the section, please make sure you update your styles. ([@carlocarels90](https://github.com/carlocarels90))
-
-## 8.0.5-canary.1
-
-## 8.0.5-canary.0
-
-### Patch Changes
-
-- [#2230](https://github.com/graphcommerce-org/graphcommerce/pull/2230) [`1da6b82`](https://github.com/graphcommerce-org/graphcommerce/commit/1da6b82dbb7e1543542d809ea625a8867643ea68) - Fix menu item visibility in accessability tree ([@JoshuaS98](https://github.com/JoshuaS98))
-
 ## 8.0.4
 
 ### Patch Changes
 
 - [#2228](https://github.com/graphcommerce-org/graphcommerce/pull/2228) [`0c0cacb`](https://github.com/graphcommerce-org/graphcommerce/commit/0c0cacb8725f0a626ea5d3acf154d83c433c3eb7) - apply correct type for the inert property ([@carlocarels90](https://github.com/carlocarels90))
 
-## 8.0.4-canary.1
-
-## 8.0.4-canary.0
-
-### Patch Changes
-
-- [#2228](https://github.com/graphcommerce-org/graphcommerce/pull/2228) [`0c0cacb`](https://github.com/graphcommerce-org/graphcommerce/commit/0c0cacb8725f0a626ea5d3acf154d83c433c3eb7) - apply correct type for the inert property ([@carlocarels90](https://github.com/carlocarels90))
-
-## 8.0.3
-
-## 8.0.3-canary.6
-
-## 8.0.3-canary.5
-
-## 8.0.3-canary.4
-
-## 8.0.3-canary.3
-
-## 8.0.3-canary.2
-
-## 8.0.3-canary.1
-
-## 8.0.3-canary.0
-
-## 8.0.2
-
-## 8.0.2-canary.3
-
-## 8.0.2-canary.2
-
-## 8.0.2-canary.1
-
-## 8.0.2-canary.0
-
 ## 8.0.1
 
 ### Patch Changes
 
 - [#2191](https://github.com/graphcommerce-org/graphcommerce/pull/2191) [`13ffa6b`](https://github.com/graphcommerce-org/graphcommerce/commit/13ffa6b945f1c72bf1fdc9298e4ce5dd76b48d73) - When a user was logging in from the checkout react would be caught in an infinite loop and thus the page would hang ([@JoshuaS98](https://github.com/JoshuaS98))
-
-## 8.0.1-canary.4
-
-### Patch Changes
-
-- [#2191](https://github.com/graphcommerce-org/graphcommerce/pull/2191) [`13ffa6b`](https://github.com/graphcommerce-org/graphcommerce/commit/13ffa6b945f1c72bf1fdc9298e4ce5dd76b48d73) - When a user was logging in from the checkout react would be caught in an infinite loop and thus the page would hang ([@JoshuaS98](https://github.com/JoshuaS98))
-
-## 8.0.1-canary.3
-
-## 8.0.1-canary.2
-
-## 8.0.1-canary.1
-
-## 8.0.1-canary.0
 
 ## 8.0.0
 
@@ -472,264 +283,6 @@
 
 - [#2121](https://github.com/graphcommerce-org/graphcommerce/pull/2121) [`a5da6ff`](https://github.com/graphcommerce-org/graphcommerce/commit/a5da6ffc8be359e93c7bde986134f7162aae13b9) - Change the critical css injection location to be in the head instead of `<style>` tags in the body. It had a number of negative consequences, such as the famous "flash of unstyled content" (FOUC) and the re-paint and re-layout required. ([@paales](https://github.com/paales))
 
-## 8.0.0-canary.100
-
-## 8.0.0-canary.99
-
-## 8.0.0-canary.98
-
-## 8.0.0-canary.97
-
-## 8.0.0-canary.96
-
-## 8.0.0-canary.95
-
-## 8.0.0-canary.94
-
-## 8.0.0-canary.93
-
-## 8.0.0-canary.92
-
-## 8.0.0-canary.91
-
-## 8.0.0-canary.90
-
-## 8.0.0-canary.89
-
-## 8.0.0-canary.88
-
-## 8.0.0-canary.87
-
-## 8.0.0-canary.86
-
-## 8.0.0-canary.85
-
-## 8.0.0-canary.84
-
-### Patch Changes
-
-- [#2161](https://github.com/graphcommerce-org/graphcommerce/pull/2161) [`cc5c636`](https://github.com/graphcommerce-org/graphcommerce/commit/cc5c636f9f2b3d9fa33384b9a02d6ad3631aa414) - Removed whitespace on top of the zoomed in image on the PDP. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 8.0.0-canary.83
-
-## 8.0.0-canary.82
-
-## 8.0.0-canary.81
-
-## 8.0.0-canary.80
-
-### Patch Changes
-
-- [#2138](https://github.com/graphcommerce-org/graphcommerce/pull/2138) [`a057d62`](https://github.com/graphcommerce-org/graphcommerce/commit/a057d6274e1d427e631ab3fad7a16078315103b8) - Wrap the logo in a div on the homepage to prevent redirection. ([@carlocarels90](https://github.com/carlocarels90))
-
-## 8.0.0-canary.79
-
-### Patch Changes
-
-- [#2137](https://github.com/graphcommerce-org/graphcommerce/pull/2137) [`df507b1`](https://github.com/graphcommerce-org/graphcommerce/commit/df507b194c67eef7b02df858c07938bb308b5397) - Don't render pseudo-locale in HTML lang attribute ([@hnsr](https://github.com/hnsr))
-
-## 8.0.0-canary.78
-
-### Patch Changes
-
-- [#2135](https://github.com/graphcommerce-org/graphcommerce/pull/2135) [`7b017f5`](https://github.com/graphcommerce-org/graphcommerce/commit/7b017f58ba3be587d20a7f52c84b2907d52fe201) - Fix incorrect canonical URLs when i18n domain routing is used ([@hnsr](https://github.com/hnsr))
-
-## 8.0.0-canary.77
-
-### Patch Changes
-
-- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - a11y improvements (see https://github.com/graphcommerce-org/graphcommerce/issues/1995 for more info) ([@FrankHarland](https://github.com/FrankHarland))
-
-## 8.0.0-canary.76
-
-## 8.0.0-canary.75
-
-## 8.0.0-canary.74
-
-### Minor Changes
-
-- [#2133](https://github.com/graphcommerce-org/graphcommerce/pull/2133) [`133f908`](https://github.com/graphcommerce-org/graphcommerce/commit/133f908200a79589036420f2925835724522cab8) - Added lazy hydration to improve total blocking time. Added LazyHydrate component which can be wrapped around other components you want to lazy hydrate. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 8.0.0-canary.73
-
-## 8.0.0-canary.72
-
-## 8.0.0-canary.71
-
-## 8.0.0-canary.70
-
-## 8.0.0-canary.69
-
-## 7.1.0-canary.68
-
-## 7.1.0-canary.67
-
-### Patch Changes
-
-- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`7fc4bb9`](https://github.com/graphcommerce-org/graphcommerce/commit/7fc4bb925c59da46961c9656a2a67b37a9c2d652) - Removed the 'NoSSR' functionality from `<WaitForQueries/>` component as it slows down rendering. The 'feature' was necessary for the following use case: When hydrating a component that was server rendered and was living inside a `<Suspense />` component. It would cause an hydration error and this was the workaround. With useSuspenseQuery and React 18, this problem will not occur. ([@StefanAngenent](https://github.com/StefanAngenent))
-
-## 7.1.0-canary.66
-
-## 7.1.0-canary.65
-
-## 7.1.0-canary.64
-
-## 7.1.0-canary.63
-
-## 7.1.0-canary.62
-
-## 7.1.0-canary.61
-
-### Patch Changes
-
-- [#2125](https://github.com/graphcommerce-org/graphcommerce/pull/2125) [`5224ee500`](https://github.com/graphcommerce-org/graphcommerce/commit/5224ee5001c94a19f226fa36106e76739319297c) - If there is an open menu in an overlay, pressing the escape button now closes the menu instead of the overlay. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 7.1.0-canary.60
-
-## 7.1.0-canary.59
-
-## 7.1.0-canary.58
-
-### Patch Changes
-
-- [#2121](https://github.com/graphcommerce-org/graphcommerce/pull/2121) [`a5da6ffc8`](https://github.com/graphcommerce-org/graphcommerce/commit/a5da6ffc8be359e93c7bde986134f7162aae13b9) - Change the critical css injection location to be in the head instead of `<style>` tags in the body. It has a number of negative consequences, such as the famous "flash of unstyled content" (FOUC) and the re-paint and re-layout required. ([@paales](https://github.com/paales))
-
-## 7.1.0-canary.57
-
-## 7.1.0-canary.56
-
-### Patch Changes
-
-- [#2123](https://github.com/graphcommerce-org/graphcommerce/pull/2123) [`8ad60f255`](https://github.com/graphcommerce-org/graphcommerce/commit/8ad60f255b747858c35dd6b6cf5c90147d960082) - Fixed schema-dts dependency issue ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 7.1.0-canary.55
-
-### Patch Changes
-
-- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`da2135744`](https://github.com/graphcommerce-org/graphcommerce/commit/da2135744dddfa0d211c59589090ebb1977c38c9) - Added info icon for Snackbar when severity is set to info ([@bramvanderholst](https://github.com/bramvanderholst))
-
-- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`d608830ce`](https://github.com/graphcommerce-org/graphcommerce/commit/d608830ce77f85ff725cc106b9fc55a22012c74c) - Added ‘disableBackdropClick’ prop to MessageSnackbar to allow page interaction without closing the snackbar ([@bramvanderholst](https://github.com/bramvanderholst))
-
-- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`94e1ae811`](https://github.com/graphcommerce-org/graphcommerce/commit/94e1ae811fe9eb0051863e8be91c6399ddcdf22f) - Added DismissibleSnackbar component to allow messages to be shown only once ([@bramvanderholst](https://github.com/bramvanderholst))
-
-- [#2004](https://github.com/graphcommerce-org/graphcommerce/pull/2004) [`53947d39f`](https://github.com/graphcommerce-org/graphcommerce/commit/53947d39f2f3ee578c14903c96a2b356d99d9475) - Implemented Message variant for RowColumnOne to show an important message which, after dismissing, will not show again ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 7.1.0-canary.54
-
-## 7.1.0-canary.53
-
-## 7.1.0-canary.52
-
-## 7.1.0-canary.51
-
-## 7.1.0-canary.50
-
-## 7.1.0-canary.49
-
-## 7.1.0-canary.48
-
-## 7.1.0-canary.47
-
-## 7.1.0-canary.46
-
-## 7.1.0-canary.45
-
-### Patch Changes
-
-- [#2077](https://github.com/graphcommerce-org/graphcommerce/pull/2077) [`727d1004d`](https://github.com/graphcommerce-org/graphcommerce/commit/727d1004dfcb7dddf6e35b6b157a34491bb05cc6) - Fixed ItemScroller component className. Changed from SidebarSlider to ItemScroller ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 7.1.0-canary.38
-
-### Patch Changes
-
-- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`695f40cf2`](https://github.com/graphcommerce-org/graphcommerce/commit/695f40cf220636d17f04bc9b0ce86c549c740386) - filterNonNullable keys simplified the types which caused unions to be collapsed ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 7.1.0-canary.37
-
-## 7.1.0-canary.36
-
-## 7.1.0-canary.35
-
-## 7.1.0-canary.34
-
-## 7.1.0-canary.33
-
-## 7.1.0-canary.32
-
-## 7.1.0-canary.31
-
-## 7.1.0-canary.30
-
-### Patch Changes
-
-- [#2105](https://github.com/graphcommerce-org/graphcommerce/pull/2105) [`185f9ddeb`](https://github.com/graphcommerce-org/graphcommerce/commit/185f9ddebff0eaf1f388faebe88a5d400294512a) - Fixed bug where the mobile menu wouldn't open after the first selected level ([@mikekeehnen](https://github.com/mikekeehnen))
-
-## 7.1.0-canary.29
-
-## 7.1.0-canary.28
-
-### Minor Changes
-
-- [#2018](https://github.com/graphcommerce-org/graphcommerce/pull/2018) [`750aa6a72`](https://github.com/graphcommerce-org/graphcommerce/commit/750aa6a72710869d54244467253212e551d335e0) - Changed the layout of the succes page. We are using ActionCards right now to match the design of the cart. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 7.1.0-canary.27
-
-## 7.1.0-canary.26
-
-## 7.1.0-canary.25
-
-## 7.1.0-canary.24
-
-## 7.1.0-canary.23
-
-## 7.1.0-canary.22
-
-## 7.1.0-canary.21
-
-## 7.1.0-canary.20
-
-## 7.1.0-canary.19
-
-## 7.1.0-canary.18
-
-## 7.1.0-canary.17
-
-## 7.1.0-canary.16
-
-## 7.1.0-canary.15
-
-## 7.1.0-canary.14
-
-### Patch Changes
-
-- [#2045](https://github.com/graphcommerce-org/graphcommerce/pull/2045) [`1ac1e0989`](https://github.com/graphcommerce-org/graphcommerce/commit/1ac1e09897daadd646200cb3ddc2aa75a51e182e) - Make sure the product image gallery traps focus and scrollbar doesn't disappear suddenly ([@JoshuaS98](https://github.com/JoshuaS98))
-
-## 7.1.0-canary.13
-
-## 7.1.0-canary.12
-
-## 7.1.0-canary.11
-
-## 7.1.0-canary.10
-
-## 7.1.0-canary.9
-
-## 7.1.0-canary.8
-
-### Minor Changes
-
-- [#2073](https://github.com/graphcommerce-org/graphcommerce/pull/2073) [`05ce5665b`](https://github.com/graphcommerce-org/graphcommerce/commit/05ce5665b3c63b0620266c8ac35e8b555e2029e8) - It is now allowed to use children inside the footer component ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 7.0.2-canary.7
-
-## 7.0.2-canary.6
-
-### Patch Changes
-
-- [#2066](https://github.com/graphcommerce-org/graphcommerce/pull/2066) [`3b1f58515`](https://github.com/graphcommerce-org/graphcommerce/commit/3b1f585153672a644a613411134e5ad36aa4c266) - Add showButtons prop to scrollerButton ([@StefanAngenent](https://github.com/StefanAngenent))
-
-## 7.0.2-canary.5
-
 ## 7.0.1
 
 ### Patch Changes
@@ -737,46 +290,6 @@
 - [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`136580b39`](https://github.com/graphcommerce-org/graphcommerce/commit/136580b39e3cffdd07e3fa087e049bd532c3e8f1) - Updated all dependencies to the latest version where possible. ([@paales](https://github.com/paales))
 
 - [#2064](https://github.com/graphcommerce-org/graphcommerce/pull/2064) [`a550fa039`](https://github.com/graphcommerce-org/graphcommerce/commit/a550fa039a104b661ffd3fd3e32d99eaf782bc88) - Allow setting all RowLinks props on its variants, instead of a limited predefined set ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 7.0.1-canary.15
-
-### Patch Changes
-
-- [#2064](https://github.com/graphcommerce-org/graphcommerce/pull/2064) [`a550fa039`](https://github.com/graphcommerce-org/graphcommerce/commit/a550fa039a104b661ffd3fd3e32d99eaf782bc88) - Allow setting all RowLinks props on its variants, instead of a limited predefined set ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 7.0.1-canary.14
-
-## 7.0.1-canary.13
-
-## 7.0.1-canary.12
-
-## 7.0.1-canary.11
-
-## 7.0.1-canary.10
-
-## 7.0.1-canary.9
-
-## 7.0.1-canary.8
-
-## 7.0.1-canary.7
-
-## 7.0.1-canary.6
-
-## 7.0.1-canary.5
-
-## 7.0.1-canary.4
-
-## 7.0.1-canary.3
-
-## 7.0.1-canary.2
-
-## 7.0.1-canary.1
-
-## 7.0.1-canary.0
-
-### Patch Changes
-
-- [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`136580b39`](https://github.com/graphcommerce-org/graphcommerce/commit/136580b39e3cffdd07e3fa087e049bd532c3e8f1) - Updated all dependencies to the latest version where possible. ([@paales](https://github.com/paales))
 
 ## 7.0.0
 
@@ -824,284 +337,6 @@
 
 - [#2005](https://github.com/graphcommerce-org/graphcommerce/pull/2005) [`950521b4d`](https://github.com/graphcommerce-org/graphcommerce/commit/950521b4d46a1b980636c05d68a8f6aba289e85c) - Footer's grid-area's will only be rendered when the props are passed. ([@LeanderMatse](https://github.com/LeanderMatse))
 
-## 6.2.0-canary.98
-
-## 6.2.0-canary.97
-
-### Patch Changes
-
-- [#2042](https://github.com/graphcommerce-org/graphcommerce/pull/2042) [`587fd2fe5`](https://github.com/graphcommerce-org/graphcommerce/commit/587fd2fe50c843acd9ffae869372df1df57e0a4b) - Updated german translations ([@action-simon](https://github.com/action-simon))
-
-## 6.2.0-canary.96
-
-## 6.2.0-canary.95
-
-## 6.2.0-canary.94
-
-## 6.2.0-canary.93
-
-## 6.2.0-canary.92
-
-## 6.2.0-canary.91
-
-## 6.2.0-canary.90
-
-## 6.2.0-canary.89
-
-## 6.2.0-canary.88
-
-## 6.2.0-canary.87
-
-## 6.2.0-canary.86
-
-### Minor Changes
-
-- [#2023](https://github.com/graphcommerce-org/graphcommerce/pull/2023) [`7cd53fb2a`](https://github.com/graphcommerce-org/graphcommerce/commit/7cd53fb2aca18ae4a56025b2a015fecbda2e47b7) - Added links to test components on the test page. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 6.2.0-canary.85
-
-## 6.2.0-canary.84
-
-## 6.2.0-canary.83
-
-## 6.2.0-canary.82
-
-## 6.2.0-canary.81
-
-### Minor Changes
-
-- [#2003](https://github.com/graphcommerce-org/graphcommerce/pull/2003) [`609b384de`](https://github.com/graphcommerce-org/graphcommerce/commit/609b384de8cded7a9dd2f29bd516ded810ab970a) - Created a new version of the cart using ActionCards for each CartItem. Different types of CartItems can have different ActionCards. These ActionCards will be overridden with the use of Plugins. An example can be found in the @graphcommerce/magento-product-configurable package. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-### Patch Changes
-
-- [#2003](https://github.com/graphcommerce-org/graphcommerce/pull/2003) [`e9041802b`](https://github.com/graphcommerce-org/graphcommerce/commit/e9041802b27d6610cc93715ca61acff7f59792e6) - When the switchPoint is zero, make sure the header doesn’t flash when scrolling up on iOS ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-- [#2003](https://github.com/graphcommerce-org/graphcommerce/pull/2003) [`e81a9722b`](https://github.com/graphcommerce-org/graphcommerce/commit/e81a9722b5f581dacb624246c14d74aafbf55893) - Make sure the className is forwarded for ActionCardLayout ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 6.2.0-canary.80
-
-## 6.2.0-canary.79
-
-### Patch Changes
-
-- [#2013](https://github.com/graphcommerce-org/graphcommerce/pull/2013) [`c57bdf8a4`](https://github.com/graphcommerce-org/graphcommerce/commit/c57bdf8a4ce936c3eedc4dfada3a464a113ac68a) - Updated @mui and framer-motion packages to latest versions ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.78
-
-## 6.2.0-canary.77
-
-## 6.2.0-canary.76
-
-### Patch Changes
-
-- [#2005](https://github.com/graphcommerce-org/graphcommerce/pull/2005) [`950521b4d`](https://github.com/graphcommerce-org/graphcommerce/commit/950521b4d46a1b980636c05d68a8f6aba289e85c) - Footer's grid-area's will only be rendered when the props are passed. ([@LeanderMatse](https://github.com/LeanderMatse))
-
-## 6.2.0-canary.75
-
-## 6.2.0-canary.74
-
-## 6.2.0-canary.73
-
-## 6.2.0-canary.72
-
-## 6.2.0-canary.71
-
-### Patch Changes
-
-- [#1980](https://github.com/graphcommerce-org/graphcommerce/pull/1980) [`275aaaba3`](https://github.com/graphcommerce-org/graphcommerce/commit/275aaaba34c9db1705183393c4327e8f16b09386) - Fixed overlays closing while still dragging - overlays should only close after releasing pointer ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 6.2.0-canary.70
-
-## 6.2.0-canary.69
-
-## 6.2.0-canary.68
-
-## 6.2.0-canary.67
-
-## 6.2.0-canary.66
-
-## 6.2.0-canary.65
-
-## 6.2.0-canary.64
-
-### Patch Changes
-
-- [#1998](https://github.com/graphcommerce-org/graphcommerce/pull/1998) [`fdbdcb76f`](https://github.com/graphcommerce-org/graphcommerce/commit/fdbdcb76f918cf74b22253bd641a04c490ceb140) - Fixed users accidentally being able to scroll overlays out of view during open animation ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 6.2.0-canary.63
-
-## 6.2.0-canary.62
-
-## 6.2.0-canary.61
-
-## 6.2.0-canary.60
-
-## 6.2.0-canary.59
-
-## 6.2.0-canary.58
-
-## 6.2.0-canary.57
-
-## 6.2.0-canary.56
-
-## 6.2.0-canary.55
-
-## 6.2.0-canary.54
-
-## 6.2.0-canary.53
-
-## 6.2.0-canary.52
-
-## 6.2.0-canary.51
-
-## 6.2.0-canary.50
-
-### Minor Changes
-
-- [`e55d8c390`](https://github.com/graphcommerce-org/graphcommerce/commit/e55d8c390d90b4bb7bab11c6a99027ac72bd7e3e) - Created a new sidebar layout system, can be configured with productFiltersLayout in the graphcommerce.config.js ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.49
-
-## 6.2.0-canary.48
-
-### Minor Changes
-
-- [#1961](https://github.com/graphcommerce-org/graphcommerce/pull/1961) [`4a759c662`](https://github.com/graphcommerce-org/graphcommerce/commit/4a759c66215eaa69edc342b898e05e8f92c3ba9a) - Add Open Graph meta tags to all pages ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 6.2.0-canary.47
-
-## 6.2.0-canary.46
-
-## 6.2.0-canary.45
-
-## 6.2.0-canary.44
-
-## 6.2.0-canary.43
-
-### Patch Changes
-
-- [#1965](https://github.com/graphcommerce-org/graphcommerce/pull/1965) [`44b2911d7`](https://github.com/graphcommerce-org/graphcommerce/commit/44b2911d73fb6c6c7188f16d5890ca93877e9aa7) - Added prop to LayoutHeader to be able to hide the back button ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 6.2.0-canary.42
-
-## 6.2.0-canary.41
-
-### Patch Changes
-
-- [#1960](https://github.com/graphcommerce-org/graphcommerce/pull/1960) [`f78caf5a8`](https://github.com/graphcommerce-org/graphcommerce/commit/f78caf5a83683f1ae4b901fb94bd22d50943fa2f) - Updated packages @apollo/client, react-hook-form, @emotion/\*, @lingui/\*, @mui/\* and various others. ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.40
-
-## 6.2.0-canary.39
-
-## 6.2.0-canary.38
-
-### Patch Changes
-
-- [#1958](https://github.com/graphcommerce-org/graphcommerce/pull/1958) [`0a311b6eb`](https://github.com/graphcommerce-org/graphcommerce/commit/0a311b6ebb5a52e2a7f1d2e6a0fe113904fa2d34) - Left overlays wouldn't properly snap when the overlay gets wider than the viewport ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.37
-
-## 6.2.0-canary.36
-
-## 6.2.0-canary.35
-
-## 6.2.0-canary.34
-
-## 6.2.0-canary.33
-
-## 6.2.0-canary.32
-
-## 6.2.0-canary.31
-
-## 6.2.0-canary.30
-
-## 6.2.0-canary.29
-
-### Patch Changes
-
-- [#1946](https://github.com/graphcommerce-org/graphcommerce/pull/1946) [`87260618b`](https://github.com/graphcommerce-org/graphcommerce/commit/87260618b8abaebd727ff4435abb1aea6ed33730) - Firefox: scroll snap overlays would snap to 0 when the scroll snap targets wouldn’t exactly match the possible targets. ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.28
-
-## 6.2.0-canary.27
-
-## 6.2.0-canary.26
-
-## 6.2.0-canary.25
-
-## 6.2.0-canary.24
-
-## 6.2.0-canary.23
-
-## 6.2.0-canary.22
-
-### Patch Changes
-
-- [#1939](https://github.com/graphcommerce-org/graphcommerce/pull/1939) [`0cdccf681`](https://github.com/graphcommerce-org/graphcommerce/commit/0cdccf6817d6a769f59cccb68b1b1b8b4405cbd0) - Make blogListItem date prop optional ([@JoshuaS98](https://github.com/JoshuaS98))
-
-## 6.2.0-canary.21
-
-## 6.2.0-canary.20
-
-## 6.2.0-canary.19
-
-## 6.2.0-canary.18
-
-## 6.2.0-canary.17
-
-### Patch Changes
-
-- [#1934](https://github.com/graphcommerce-org/graphcommerce/pull/1934) [`96ac0320a`](https://github.com/graphcommerce-org/graphcommerce/commit/96ac0320a30bc55a6db5d46663d28b552fda4db6) - Fixed floating overlays not closing when clicking beside the overlay ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 6.2.0-canary.16
-
-### Patch Changes
-
-- [#1930](https://github.com/graphcommerce-org/graphcommerce/pull/1930) [`c8d023e9e`](https://github.com/graphcommerce-org/graphcommerce/commit/c8d023e9e874131cd9f8fe192b1fca5fe1a26ee3) - Fix the close menu on search and add the option to secondary menu items ([@StefanAngenent](https://github.com/StefanAngenent))
-
-## 6.2.0-canary.15
-
-## 6.2.0-canary.14
-
-## 6.2.0-canary.13
-
-## 6.2.0-canary.12
-
-## 6.2.0-canary.11
-
-## 6.2.0-canary.10
-
-## 6.2.0-canary.9
-
-### Patch Changes
-
-- [#1897](https://github.com/graphcommerce-org/graphcommerce/pull/1897) [`f44d7cec6`](https://github.com/graphcommerce-org/graphcommerce/commit/f44d7cec61766f4768c30d29b211a12f2846e9f6) - Overlays can now be configured to get a bgColor ([@FrankHarland](https://github.com/FrankHarland))
-
-## 6.2.0-canary.8
-
-## 6.2.0-canary.7
-
-## 6.2.0-canary.6
-
-## 6.1.1-canary.5
-
-### Patch Changes
-
-- [#1913](https://github.com/graphcommerce-org/graphcommerce/pull/1913) [`17eac116d`](https://github.com/graphcommerce-org/graphcommerce/commit/17eac116dbf2b811a67bfefd735d5a5a3e2b20dc) - Fixed zIndex issue with CartFab and ScrollerButton ([@bramvanderholst](https://github.com/bramvanderholst))
-
-- [#1913](https://github.com/graphcommerce-org/graphcommerce/pull/1913) [`61b1987eb`](https://github.com/graphcommerce-org/graphcommerce/commit/61b1987eb8d37566cb4675f0ae962925aef2fc6d) - Fixed RowLinks ScrollerButton alignment when content is shown beside the Scroller ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 6.1.1-canary.4
-
-## 6.1.1-canary.3
-
-## 6.1.1-canary.2
-
-## 6.1.1-canary.1
-
-## 6.1.1-canary.0
-
 ## 6.1.0
 
 ### Patch Changes
@@ -1112,89 +347,7 @@
 
 - [#1867](https://github.com/graphcommerce-org/graphcommerce/pull/1867) [`9b7e4414c`](https://github.com/graphcommerce-org/graphcommerce/commit/9b7e4414c537e775c1f2d5de65ffde6fc39b7f3b) - Disallow overscrolling on overlays on mobile ([@bramvanderholst](https://github.com/bramvanderholst))
 
-## 6.0.2-canary.22
-
-## 6.0.2-canary.21
-
-## 6.0.2-canary.20
-
-## 6.0.2-canary.19
-
-## 6.0.2-canary.18
-
-## 6.0.2-canary.17
-
-### Patch Changes
-
-- [#1895](https://github.com/graphcommerce-org/graphcommerce/pull/1895) [`49d34bda4`](https://github.com/graphcommerce-org/graphcommerce/commit/49d34bda4b4426ad97272ce0a28e17f52e9f4e06) - When opening the overlay while darkmode was enabled, it would close immediately ([@paales](https://github.com/paales))
-
-## 6.0.2-canary.16
-
-## 6.0.2-canary.15
-
-## 6.0.2-canary.14
-
-## 6.0.2-canary.13
-
-## 6.0.2-canary.12
-
-## 6.0.2-canary.11
-
-## 6.0.2-canary.10
-
-## 6.0.2-canary.9
-
-## 6.0.2-canary.8
-
-## 6.0.2-canary.7
-
-## 6.0.2-canary.6
-
-## 6.0.2-canary.5
-
-## 6.0.2-canary.4
-
-## 6.0.2-canary.3
-
-## 6.0.2-canary.2
-
-### Patch Changes
-
-- [#1867](https://github.com/graphcommerce-org/graphcommerce/pull/1867) [`8e4bf4ca7`](https://github.com/graphcommerce-org/graphcommerce/commit/8e4bf4ca7d0c32525df50df4a350ab19a2fbf620) - Fix incorrect box-shadow on bottom overlays ([@bramvanderholst](https://github.com/bramvanderholst))
-
-- [#1867](https://github.com/graphcommerce-org/graphcommerce/pull/1867) [`5cf7c8c9e`](https://github.com/graphcommerce-org/graphcommerce/commit/5cf7c8c9ee95d28be0a7f476ea3f06f482c4fd5d) - Fix MdBottom class affecting Sm overlay ([@bramvanderholst](https://github.com/bramvanderholst))
-
-- [#1867](https://github.com/graphcommerce-org/graphcommerce/pull/1867) [`9b7e4414c`](https://github.com/graphcommerce-org/graphcommerce/commit/9b7e4414c537e775c1f2d5de65ffde6fc39b7f3b) - Disallow overscrolling on overlays on mobile ([@bramvanderholst](https://github.com/bramvanderholst))
-
-- [#1867](https://github.com/graphcommerce-org/graphcommerce/pull/1867) [`197b71711`](https://github.com/graphcommerce-org/graphcommerce/commit/197b717119da2a1876d36931c0063ad6d32a675c) - Overlay fixess ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 6.0.2-canary.1
-
-## 6.0.2-canary.0
-
 ## 6.0.1
-
-### Patch Changes
-
-- [#1854](https://github.com/graphcommerce-org/graphcommerce/pull/1854) [`f4df162c5`](https://github.com/graphcommerce-org/graphcommerce/commit/f4df162c59d90298f305f51d409974592ab8e680) - Overlay desktop bottom didn't have a box-shadow ([@paales](https://github.com/paales))
-
-- [#1854](https://github.com/graphcommerce-org/graphcommerce/pull/1854) [`ba92b3ebe`](https://github.com/graphcommerce-org/graphcommerce/commit/ba92b3ebe9dae16f156f6c0d62bdf25a7df1a2a7) - Allow bottom overlays to resize and animate in position ([@paales](https://github.com/paales))
-
-## 6.0.1-canary.7
-
-## 6.0.1-canary.6
-
-## 6.0.1-canary.5
-
-## 6.0.1-canary.4
-
-## 6.0.1-canary.3
-
-## 6.0.1-canary.2
-
-## 6.0.1-canary.1
-
-## 6.0.1-canary.0
 
 ### Patch Changes
 
@@ -1276,234 +429,6 @@
 
 - [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`ff0c70e31`](https://github.com/graphcommerce-org/graphcommerce/commit/ff0c70e3165c64ea4f236a15a5820428dbf36e6a) - Overlays now have vertical visible scrollbars when the content is higher than the viewport. ([@paales](https://github.com/paales))
 
-## 6.0.0-canary.54
-
-## 6.0.0-canary.53
-
-## 6.0.0-canary.52
-
-### Patch Changes
-
-- [#1809](https://github.com/graphcommerce-org/graphcommerce/pull/1809) [`2da3c9214`](https://github.com/graphcommerce-org/graphcommerce/commit/2da3c92148aef08813b95e404a25796acf0eefd2) - Added useMemoObject and implement in GaViewItem, GoogleAnalyticsItemList and GaCartStartCheckoutLinkOrButton ([@mikekeehnen](https://github.com/mikekeehnen))
-
-## 6.0.0-canary.51
-
-## 6.0.0-canary.50
-
-## 6.0.0-canary.49
-
-## 6.0.0-canary.48
-
-## 6.0.0-canary.47
-
-### Minor Changes
-
-- [#1832](https://github.com/graphcommerce-org/graphcommerce/pull/1832) [`26d4243d5`](https://github.com/graphcommerce-org/graphcommerce/commit/26d4243d5b63d604e5a36386d9b01914db5f2918) - - Introduce RowLink component with variants (inline, logoswiper etc.)
-  - Add new ImageLabelSwiper component to homepage
-  - Multiple darkmode fixes (layered navition, logo invert filter) ([@ErwinOtten](https://github.com/ErwinOtten))
-
-## 6.0.0-canary.46
-
-## 6.0.0-canary.45
-
-### Patch Changes
-
-- [#1836](https://github.com/graphcommerce-org/graphcommerce/pull/1836) [`2857229c4`](https://github.com/graphcommerce-org/graphcommerce/commit/2857229c4d1c776540218f5e4cab3be524161502) - Allow scrolling bottom overlay to top instead of keeping spacing above overlay ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 6.0.0-canary.44
-
-### Patch Changes
-
-- [#1842](https://github.com/graphcommerce-org/graphcommerce/pull/1842) [`7b67d84bd`](https://github.com/graphcommerce-org/graphcommerce/commit/7b67d84bd269c3fc91afbd69f6683c5d12808d36) - Renamed i18n to storefront in configuration ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.43
-
-## 6.0.0-canary.42
-
-## 6.0.0-canary.41
-
-## 6.0.0-canary.40
-
-## 6.0.0-canary.39
-
-### Patch Changes
-
-- [`bcaf428a3`](https://github.com/graphcommerce-org/graphcommerce/commit/bcaf428a31f2b480d442d347d09c0131a8569155) - Overlay timing issue where the resizeObserver was later than the scroll event ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.38
-
-## 6.0.0-canary.37
-
-### Patch Changes
-
-- [#1834](https://github.com/graphcommerce-org/graphcommerce/pull/1834) [`58f7a63a4`](https://github.com/graphcommerce-org/graphcommerce/commit/58f7a63a4a4ef3bfcaeea75e393902b97138ba54) - Allow overlays to be larger than 100% height/width of the viewport ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.36
-
-## 6.0.0-canary.35
-
-### Minor Changes
-
-- [#1822](https://github.com/graphcommerce-org/graphcommerce/pull/1822) [`cc02c46e3`](https://github.com/graphcommerce-org/graphcommerce/commit/cc02c46e32c9a44a90789591f43d91ae234dac84) - Added basic meta og:tags to the product page. ([@KMalkowski](https://github.com/KMalkowski))
-
-## 6.0.0-canary.34
-
-### Patch Changes
-
-- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`dbc2ae0d3`](https://github.com/graphcommerce-org/graphcommerce/commit/dbc2ae0d360f645c3eab2a8f38b3d1431eab7d80) - Hide body scrollbar only for right overlays ([@paales](https://github.com/paales))
-
-- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`fafa76ba9`](https://github.com/graphcommerce-org/graphcommerce/commit/fafa76ba9e655739171abc553d309795c9d8e5c2) - Overlays now use an additional scroll container to handle vertical scroll, fixing:
-
-  - Scrolling on desktop will not close the overlay when there is content to be scrolled
-  - Scrolling will not snap to bottom / top when the content is barely scrollable
-  - Dragging will only open or close the drawer, not something inbetween
-  - Swiping up on mobile will not close the overlay, first you need to scroll to the top of the overlay.
-  - Floating overlays will now scroll inside the floating overlay. ([@paales](https://github.com/paales))
-
-- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`0bac3bdd8`](https://github.com/graphcommerce-org/graphcommerce/commit/0bac3bdd8505ccad8036d13e19559f2b3523fd92) - Navigation layout animation should only trigger when the active menu item changes ([@paales](https://github.com/paales))
-
-- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`6bffd680b`](https://github.com/graphcommerce-org/graphcommerce/commit/6bffd680b9d6a370048d06842cd3ce73130471dd) - Overlay shouldn't be closed when dragging beyond the pane ([@paales](https://github.com/paales))
-
-- [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`ff0c70e31`](https://github.com/graphcommerce-org/graphcommerce/commit/ff0c70e3165c64ea4f236a15a5820428dbf36e6a) - Allow scrollbar to left and right full overlay variants. ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.33
-
-### Patch Changes
-
-- [#1831](https://github.com/graphcommerce-org/graphcommerce/pull/1831) [`f4008bae3`](https://github.com/graphcommerce-org/graphcommerce/commit/f4008bae3e3ac8288c731b1dd87e6c6aef8e81fc) - Added a linting rule that disallows `import { Theme } from '@emotion/react'` because that causes huge performance issues. Added tsc:trace to the root project to debug typescript performance issues. ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.32
-
-### Minor Changes
-
-- [#1814](https://github.com/graphcommerce-org/graphcommerce/pull/1814) [`15aa59049`](https://github.com/graphcommerce-org/graphcommerce/commit/15aa590493bf7639231f3bb3dd623c234ebad7cf) - - Show filter label, instead of value
-  - Actioncard default styling
-  - Active filter styling ([@ErwinOtten](https://github.com/ErwinOtten))
-
-## 6.0.0-canary.31
-
-### Patch Changes
-
-- [#1825](https://github.com/graphcommerce-org/graphcommerce/pull/1825) [`27302739e`](https://github.com/graphcommerce-org/graphcommerce/commit/27302739e5dcd8791e7a3df06855f6450b0a6d10) - Show mobile footer on tablet to prevent cart fab overlapping footer content ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 6.0.0-canary.30
-
-### Patch Changes
-
-- [#1829](https://github.com/graphcommerce-org/graphcommerce/pull/1829) [`5f5f0dd1e`](https://github.com/graphcommerce-org/graphcommerce/commit/5f5f0dd1e0960b4cad694c5aaddffc7ccfc2bb1a) - Fix overlay right variant closing automatically in Firefox ([@bramvanderholst](https://github.com/bramvanderholst))
-
-- [#1829](https://github.com/graphcommerce-org/graphcommerce/pull/1829) [`52ecfc2ad`](https://github.com/graphcommerce-org/graphcommerce/commit/52ecfc2ad25fc6ef92465862fb94c1829bdd7c52) - Dynamic viewport height when supported ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 6.0.0-canary.29
-
-## 6.0.0-canary.28
-
-## 6.0.0-canary.27
-
-## 6.0.0-canary.26
-
-## 6.0.0-canary.25
-
-## 6.0.0-canary.24
-
-## 6.0.0-canary.23
-
-## 6.0.0-canary.22
-
-## 6.0.0-canary.21
-
-### Minor Changes
-
-- [#1806](https://github.com/graphcommerce-org/graphcommerce/pull/1806) [`597396766`](https://github.com/graphcommerce-org/graphcommerce/commit/597396766940de8c4ab5d8c84a0c6637ed72dba2) - - Put navigation HTML permanently in the DOM
-  - Fix issue where Navigation can't be reopened after closing, dragging or navigating
-  - Fix overlay visibility when browser is resized, or exactly 864px width ([@ErwinOtten](https://github.com/ErwinOtten))
-
-## 6.0.0-canary.20
-
-## 5.2.0-canary.19
-
-## 5.2.0-canary.18
-
-## 5.2.0-canary.17
-
-## 5.2.0-canary.16
-
-## 5.2.0-canary.15
-
-### Minor Changes
-
-- [#1798](https://github.com/graphcommerce-org/graphcommerce/pull/1798) [`3cee17a51`](https://github.com/graphcommerce-org/graphcommerce/commit/3cee17a51ff961f4363d95c9decb8c7d1f9ca319) - Added filterByTypename function to filter types based on \_\_typename ([@mikekeehnen](https://github.com/mikekeehnen))
-
-## 5.2.0-canary.14
-
-## 5.2.0-canary.13
-
-### Minor Changes
-
-- [#1795](https://github.com/graphcommerce-org/graphcommerce/pull/1795) [`236d698b2`](https://github.com/graphcommerce-org/graphcommerce/commit/236d698b2aac55598fc45a6a58574a538f23e160) - Navigation link fix, homepage and category style fixes ([@ErwinOtten](https://github.com/ErwinOtten))
-
-## 5.2.0-canary.12
-
-## 5.2.0-canary.11
-
-### Patch Changes
-
-- [#1794](https://github.com/graphcommerce-org/graphcommerce/pull/1794) [`29e15cf63`](https://github.com/graphcommerce-org/graphcommerce/commit/29e15cf63251cf98cf42325322fcf09fb7a6c0b7) - Fix scroll issue with bottom overlay on Android ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 5.2.0-canary.10
-
-### Minor Changes
-
-- [#1793](https://github.com/graphcommerce-org/graphcommerce/pull/1793) [`5562fa69b`](https://github.com/graphcommerce-org/graphcommerce/commit/5562fa69b1bc260f68555dcfaf30153eda489bed) - Add newsletter subscribe form ([@ErwinOtten](https://github.com/ErwinOtten))
-
-## 5.2.0-canary.9
-
-### Patch Changes
-
-- [`b0b8348b0`](https://github.com/graphcommerce-org/graphcommerce/commit/b0b8348b0d294f98140c2605691d47011add5b01) - Fix ellipsis for long titles on mobile ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 5.2.0-canary.8
-
-## 5.2.0-canary.7
-
-### Minor Changes
-
-- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`0cc472915`](https://github.com/graphcommerce-org/graphcommerce/commit/0cc4729154d316227a41712b5f0adf514768e91f) - Added new filter UI and behaviour. Filters will appear as a popper on the md and up breakpoints and as an overlay on sm and below breakpoints. Filters now have an Apply button instead of applying directly. ([@paales](https://github.com/paales))
-
-### Patch Changes
-
-- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`16e91da42`](https://github.com/graphcommerce-org/graphcommerce/commit/16e91da42dcb454ea4761d1780b9338c88ef1463) - Fix spelling error incomming to incoming ([@paales](https://github.com/paales))
-
-## 5.2.0-canary.6
-
-## 5.2.0-canary.5
-
-### Patch Changes
-
-- [#1776](https://github.com/graphcommerce-org/graphcommerce/pull/1776) [`09f7312ae`](https://github.com/graphcommerce-org/graphcommerce/commit/09f7312ae44fae531947f9ce64711b7ac5983fc1) - add media query guard to category menu behaviour. ([@FrankHarland](https://github.com/FrankHarland))
-
-## 5.2.0-canary.4
-
-## 5.2.0-canary.3
-
-## 5.2.0-canary.2
-
-### Patch Changes
-
-- [#1771](https://github.com/graphcommerce-org/graphcommerce/pull/1771) [`aec07f567`](https://github.com/graphcommerce-org/graphcommerce/commit/aec07f5679472281b8eb71cf6967a1ff775d2a7f) - Navigation shouldn't become visible when resizing the viewport ([@paales](https://github.com/paales))
-
-- [#1771](https://github.com/graphcommerce-org/graphcommerce/pull/1771) [`55d267ba0`](https://github.com/graphcommerce-org/graphcommerce/commit/55d267ba039f64af2b0248c68a1e1478970c9b31) - Solve issue where overlays would close durting opening when they got rerendered. ([@paales](https://github.com/paales))
-
-## 5.2.0-canary.1
-
-## 5.2.0-canary.0
-
-## 5.1.1
-
-## 5.1.1-canary.1
-
-## 5.1.1-canary.0
-
 ## 5.1.0
 
 ### Patch Changes
@@ -1535,67 +460,6 @@
 
 - [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`9de7c6960`](https://github.com/graphcommerce-org/graphcommerce/commit/9de7c6960c7ec7d6d28a670f71ac678c5d3c838f) - The scrollbar was hidden for bottom sheets, while that wasn't necessary ([@paales](https://github.com/paales))
 
-## 5.1.0-canary.11
-
-## 5.1.0-canary.10
-
-### Patch Changes
-
-- [#1760](https://github.com/graphcommerce-org/graphcommerce/pull/1760) [`06a81e661`](https://github.com/graphcommerce-org/graphcommerce/commit/06a81e66144b4d94a1e318c2e26cac8d13aa0eb7) - When you navigate back to an overlay (cart, etc.), it can no longer be closed by dragging or clicking on the backdrop. ([@paales](https://github.com/paales))
-
-- [#1760](https://github.com/graphcommerce-org/graphcommerce/pull/1760) [`f1ebaa2ae`](https://github.com/graphcommerce-org/graphcommerce/commit/f1ebaa2aea68fe395fddb1b7dd91624251b1d501) - Navigation received focus making the menu visible while it shouldn't ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.9
-
-## 5.1.0-canary.8
-
-## 5.1.0-canary.7
-
-## 5.1.0-canary.6
-
-## 5.1.0-canary.5
-
-### Patch Changes
-
-- [`b1444b933`](https://github.com/graphcommerce-org/graphcommerce/commit/b1444b9336107d3ac111563f9b62a884f1b26a8d) - Bring password reset page more in line with standard forms, add missing translations. ([@paales](https://github.com/paales))
-
-- [`c7dc855af`](https://github.com/graphcommerce-org/graphcommerce/commit/c7dc855af5e096a53e17f3b2980b210642270fd5) - Added a spreadVal utility to replace responsiveVal and breakpointVal ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.4
-
-### Patch Changes
-
-- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`0025ad80f`](https://github.com/graphcommerce-org/graphcommerce/commit/0025ad80fb82d5d1e6c786bb8b5f39b2456c0932) - Renamed clientSizeCssVar.y/x to dvh(100) and dvw(100) ([@paales](https://github.com/paales))
-
-- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`3fcb03b79`](https://github.com/graphcommerce-org/graphcommerce/commit/3fcb03b79ce634650fd982dc36a112dccd37282f) - New props added to LayoutOverlay and Overlay components: `widthSm` and `widthMd` to control the width of the overlay.
-
-  Defaults to `widthSm = 'max(300px, 80vw)', widthMd = 'max(800px, 50vw)'` ([@paales](https://github.com/paales))
-
-- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`f44a05a6c`](https://github.com/graphcommerce-org/graphcommerce/commit/f44a05a6cedadc17e44c87f53cad5f462bc52aba) - Use a singlular useElementScroll and provide ther scroll from the useScrollerContext ([@paales](https://github.com/paales))
-
-- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`9de7c6960`](https://github.com/graphcommerce-org/graphcommerce/commit/9de7c6960c7ec7d6d28a670f71ac678c5d3c838f) - The scrollbar was hidden for bottom sheets, while that wasn't necessary ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.3
-
-### Patch Changes
-
-- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
-  - Updated the @mui/material package
-  - Removed dependencies on react-hook-form-mui and @playwright/test
-  - Upgraded dependencies including type-fest and graphql-mesh
-  - Solved peer dependency issues ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.2
-
-### Patch Changes
-
-- [#1750](https://github.com/graphcommerce-org/graphcommerce/pull/1750) [`3479bc1e2`](https://github.com/graphcommerce-org/graphcommerce/commit/3479bc1e24da0e8a751ee301c59fa5f9755c8559) - show globe icon instead of shopping bag icon for store/language-switcher ([@FrankHarland](https://github.com/FrankHarland))
-
-## 5.1.0-canary.1
-
-## 5.1.0-canary.0
-
 ## 5.0.0
 
 ### Major Changes
@@ -1618,71 +482,11 @@
 
 - [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`0623f8ce7`](https://github.com/graphcommerce-org/graphcommerce/commit/0623f8ce738ace69aa44e55cf6a6ddb33cf0617a) - When clicking on a navigationlink it would animate on mobile ([@github-actions](https://github.com/apps/github-actions))
 
-## 5.0.0-canary.14
-
-## 5.0.0-canary.9
-
-### Major Changes
-
-- [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@paales](https://github.com/paales))
-
-## 4.31.0-canary.8
-
-## 4.31.0-canary.7
-
-### Patch Changes
-
-- [`d1c2f9901`](https://github.com/graphcommerce-org/graphcommerce/commit/d1c2f9901dbe76d4ca23c48614b05990aeb59161) - useTheme() was imported from the wrong file ([@paales](https://github.com/paales))
-
-## 4.31.0-canary.6
-
-### Patch Changes
-
-- [`243d0dad2`](https://github.com/graphcommerce-org/graphcommerce/commit/243d0dad263f7b886a3d68e82729818c7df265bc) - Solve issue where the gallery of the product page would scroll obsessively ([@paales](https://github.com/paales))
-
-- [`0623f8ce7`](https://github.com/graphcommerce-org/graphcommerce/commit/0623f8ce738ace69aa44e55cf6a6ddb33cf0617a) - When clicking on a navigationlink it would animate on mobile ([@paales](https://github.com/paales))
-
-## 4.31.0-canary.5
-
-## 4.31.0-canary.4
-
-### Minor Changes
-
-- [#1732](https://github.com/graphcommerce-org/graphcommerce/pull/1732) [`4bf1f606f`](https://github.com/graphcommerce-org/graphcommerce/commit/4bf1f606f3281a2664d6e2a70202a22af4d2c849) - fix customer service scrollSnapAlign ([@StefanAngenent](https://github.com/StefanAngenent))
-
-## 4.31.0-canary.3
-
-### Patch Changes
-
-- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`a0eefa762`](https://github.com/graphcommerce-org/graphcommerce/commit/a0eefa762f93f817f506b87753dfe0b92e3318f8) - Added better disabled state for an ActionCard ([@paales](https://github.com/paales))
-
-## 4.31.0-canary.2
-
-## 4.31.0-canary.1
-
-### Patch Changes
-
-- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`37e86cdc8`](https://github.com/graphcommerce-org/graphcommerce/commit/37e86cdc86ccca3db77d6c59b1e14c8112bb7893) - Remove usage of PropsWithChildren ([@paales](https://github.com/paales))
-
-## 4.31.0-canary.0
-
-## 4.30.2
-
-## 4.30.1
-
 ## 4.30.0
 
 ### Patch Changes
 
 - [#1702](https://github.com/graphcommerce-org/graphcommerce/pull/1702) [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
-
-## 4.30.0-canary.1
-
-### Patch Changes
-
-- [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
-
-## 4.30.0-canary.0
 
 ## 4.29.3
 
@@ -3539,8 +2343,6 @@ All notable changes to this project will be documented in this file. See [Conven
 ### Bug Fixes
 
 - **chip-menu:** layout shift on open ([c65cf5b](https://github.com/ho-nl/m2-pwa/commit/c65cf5bc18864b5180aba3f2361399bd85967952))
-
-## [2.112.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@2.112.2...@graphcommerce/next-ui@2.112.3) (2021-09-23)
 
 ## [2.112.3](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/next-ui@2.112.2...@graphcommerce/next-ui@2.112.3) (2021-09-23)
 

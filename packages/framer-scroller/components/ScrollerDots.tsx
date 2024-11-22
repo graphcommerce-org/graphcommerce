@@ -1,7 +1,8 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
-import { Box, FabProps, SxProps, Theme } from '@mui/material'
+import type { FabProps, SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import { m } from 'framer-motion'
 import React from 'react'
 import { useScrollerContext } from '../hooks/useScrollerContext'
@@ -15,7 +16,7 @@ export type DotsProps = {
 const componentName = 'ScrollerDots'
 const { classes } = extendableComponent(componentName, ['root', 'dot', 'circle'] as const)
 
-export const ScrollerDots = m(
+export const ScrollerDots = m.create(
   React.forwardRef<HTMLDivElement, DotsProps>((props, ref) => {
     const { fabProps, sx = [], ...containerProps } = props
 

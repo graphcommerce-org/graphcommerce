@@ -1,4 +1,4 @@
-import { GoogleDatalayerItem } from '../productToDatalayerItem/productToDatalayerItem'
+import type { GoogleDatalayerItem } from '../productToDatalayerItem/productToDatalayerItem'
 
 export type DataLayerCurrencyValue = {
   currency: string

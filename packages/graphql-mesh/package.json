@@ -2,10 +2,9 @@
   "name": "@graphcommerce/graphql-mesh",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.0-canary.95",
+  "version": "9.0.0-canary.103",
   "main": "index.ts",
   "dependencies": {
-    "@graphql-mesh/apollo-link": "latest",
     "@graphql-mesh/config": "latest",
     "@graphql-mesh/cross-helpers": "latest",
     "@graphql-mesh/graphql": "latest",
@@ -27,22 +26,22 @@
     "@graphql-mesh/types": "latest",
     "@graphql-mesh/utils": "latest",
     "@graphql-tools/utils": "^10.3.2",
-    "@whatwg-node/fetch": "^0.9.18",
+    "@whatwg-node/fetch": "^0.9.21",
     "fetch-retry": "^5.0.6",
+    "graphql": "^16.7.1",
     "long": "^5.2.3",
-    "tslib": "^2.6.3",
+    "tslib": "^2.7.0",
     "uglify-es": "3.3.10"
   },
   "peerDependencies": {
     "@apollo/client": "^3",
-    "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.95",
-    "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.95",
-    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.95",
-    "graphql": "^16.7.1"
+    "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.103",
+    "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.103",
+    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.103"
   },
   "devDependencies": {
     "@types/uglify-es": "^3.0.3",
-    "typescript": "5.5.3"
+    "typescript": "5.6.2"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",

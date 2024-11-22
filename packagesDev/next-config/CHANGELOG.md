@@ -1,22 +1,31 @@
 # Change Log
 
-## 9.0.0-canary.95
+## 9.0.0-canary.103
 
-## 9.0.0-canary.94
+### Patch Changes
 
-## 9.0.0-canary.93
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.92
+## 9.0.0-canary.102
 
-## 9.0.0-canary.91
+### Minor Changes
 
-## 9.0.0-canary.90
+- [#2418](https://github.com/graphcommerce-org/graphcommerce/pull/2418) [`e0a5b98`](https://github.com/graphcommerce-org/graphcommerce/commit/e0a5b9858a3b675ce749609ffa122d293c6e2a62) - To have additional namespaces be considered as a graphcommerce package, set PRIVATE_PACKAGE_NAMESPACES ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.89
+### Patch Changes
 
-## 9.0.0-canary.88
+- [#2418](https://github.com/graphcommerce-org/graphcommerce/pull/2418) [`22a0ef2`](https://github.com/graphcommerce-org/graphcommerce/commit/22a0ef2ffd2841d050a413a885ff54331e1e7ebf) - Solve peer dependency issues for webpack and framer-motion ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.87
+## 9.0.0-canary.101
+
+### Minor Changes
+
+- [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`3710d8b`](https://github.com/graphcommerce-org/graphcommerce/commit/3710d8bf1cceb5a991e5cfdfc15d42e462704c6d) - Solves the issue `TypeError: url?.startsWith is not a function`. The generated `.mesh/index.ts` would be generated as a requirejs module while next.js expects an esm module. In the end we properly generated the mesh correctly and now there is an `import.meta.url` instead of using `require('node:url')`. To solve this we needed to solve a chain of issues:
+
+  1. The generation of the mesh is based on the version of the mesh that is imported (esm or commonjs). See [source](https://github.com/ardatan/graphql-mesh/blob/bf588d372c0078378aaa24beea2da794af7949e6/scripts/replace-import-meta-url-in-cjs.ts#L9-L10) for the lines that need to be different. This meant that we needed to change the @graphcommerce/cli package to be of type:module instead of a commonjs module.
+
+  2) To properly convert the module to an esm module we've migrated the build of the cli package to use 'pkgroll' instead of tsc, because tsc is limited in what it outputs and can't really convert classic imports to esm.
+  3) To load possible mesh plugins we require additional .ts files to be loaded with [tsx](https://tsx.is/). To get the tsx loader to work properly in combination with esm modules, we need at least [node 18.19.0](https://nodejs.org/en/blog/release/v18.19.0#new-nodemodule-api-register-for-module-customization-hooks-new-initialize-hook). Minimal Node version upped to 18.19.0 and add support for node 22. ([@paales](https://github.com/paales))
 
 ## 9.0.0-canary.86
 
@@ -24,87 +33,11 @@
 
 - [#2379](https://github.com/graphcommerce-org/graphcommerce/pull/2379) [`9828754`](https://github.com/graphcommerce-org/graphcommerce/commit/9828754192348b966fb9736d7b0e1c78c4a909fa) - All automatically generated interceptor files are now read-only in vscode to prevent accedental changes. ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.85
-
-## 9.0.0-canary.84
-
-## 9.0.0-canary.83
-
-## 9.0.0-canary.82
-
-## 9.0.0-canary.81
-
-## 9.0.0-canary.80
-
-## 9.0.0-canary.79
-
-## 9.0.0-canary.78
-
-## 9.0.0-canary.77
-
-## 9.0.0-canary.76
-
-## 9.0.0-canary.75
-
-## 9.0.0-canary.74
-
-## 9.0.0-canary.73
-
-## 9.0.0-canary.72
-
-## 9.0.0-canary.71
-
-## 9.0.0-canary.70
-
-## 9.0.0-canary.69
-
-## 9.0.0-canary.68
-
-## 9.0.0-canary.67
-
-## 9.0.0-canary.66
-
-## 9.0.0-canary.65
-
-## 9.0.0-canary.64
-
-## 9.0.0-canary.63
-
-## 9.0.0-canary.62
-
-## 9.0.0-canary.61
-
-## 9.0.0-canary.60
-
-## 9.0.0-canary.59
-
 ## 9.0.0-canary.58
 
 ### Minor Changes
 
 - [#2330](https://github.com/graphcommerce-org/graphcommerce/pull/2330) [`5701e71`](https://github.com/graphcommerce-org/graphcommerce/commit/5701e71454ffb52880cd15c3341826d9502284d0) - Added support for boolean `ifConfig: ['customerXMagentoCacheIdDisable', true]` values in plugin configurations ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.57
-
-## 9.0.0-canary.56
-
-## 9.0.0-canary.55
-
-## 9.0.0-canary.54
-
-## 8.1.0-canary.53
-
-## 8.1.0-canary.52
-
-## 8.1.0-canary.51
-
-## 8.1.0-canary.50
-
-## 8.1.0-canary.49
-
-## 8.1.0-canary.48
-
-## 8.1.0-canary.47
 
 ## 8.1.0-canary.46
 
@@ -115,14 +48,6 @@
 ### Patch Changes
 
 - [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`ccd218c`](https://github.com/graphcommerce-org/graphcommerce/commit/ccd218c827d8ba7e632fa40ed75ad63a38620275) - Solve an issue where interceptors were immediately deleted after generating ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.45
-
-## 8.1.0-canary.44
-
-## 8.1.0-canary.43
-
-## 8.1.0-canary.42
 
 ## 8.1.0-canary.41
 
@@ -136,23 +61,11 @@
 
 - [#2306](https://github.com/graphcommerce-org/graphcommerce/pull/2306) [`5e188e8`](https://github.com/graphcommerce-org/graphcommerce/commit/5e188e830dca4730c73830858f59a94e9d41ed12) - Add delete account functionality to the account section. Disabled by default and can be enabled through the config. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 8.1.0-canary.39
-
 ## 8.1.0-canary.38
 
 ### Minor Changes
 
 - [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Add company and vat fields to shipping and billing forms ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.37
-
-## 8.1.0-canary.36
-
-## 8.1.0-canary.35
-
-## 8.1.0-canary.34
-
-## 8.1.0-canary.33
 
 ## 8.1.0-canary.32
 
@@ -160,51 +73,11 @@
 
 - [#2299](https://github.com/graphcommerce-org/graphcommerce/pull/2299) [`85d258a`](https://github.com/graphcommerce-org/graphcommerce/commit/85d258a0d1a48bb1b502cccba30a9844f2257814) - Solve an issue where an env variable wouldn't be coerced to a Number if a Config.graphqls value is defined as an Int/Float ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.31
-
-## 8.1.0-canary.30
-
-## 8.1.0-canary.29
-
 ## 8.1.0-canary.28
 
 ### Patch Changes
 
 - [#2292](https://github.com/graphcommerce-org/graphcommerce/pull/2292) [`6258adb`](https://github.com/graphcommerce-org/graphcommerce/commit/6258adbe294590ba52d3aaf65712cdc561f32c4c) - Be able to handle plugin runtime values values when parsing the source. Also, make sure parsed plugin sources do not return duplicate plugins. ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.27
-
-## 8.1.0-canary.26
-
-## 8.1.0-canary.25
-
-## 8.1.0-canary.24
-
-## 8.1.0-canary.23
-
-## 8.1.0-canary.22
-
-## 8.1.0-canary.21
-
-## 8.1.0-canary.20
-
-## 8.1.0-canary.19
-
-## 8.1.0-canary.18
-
-## 8.1.0-canary.17
-
-## 8.1.0-canary.16
-
-## 8.1.0-canary.15
-
-## 8.1.0-canary.14
-
-## 8.1.0-canary.13
-
-## 8.1.0-canary.12
-
-## 8.1.0-canary.11
 
 ## 8.1.0-canary.10
 
@@ -235,10 +108,6 @@
 - [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for linguiLocale ([@paales](https://github.com/paales))
 
 - [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`3f9d8f5`](https://github.com/graphcommerce-org/graphcommerce/commit/3f9d8f5ee9437fa90589ebd8ba8d1e790006b6ae) - Added better interceptor comments and link to original files ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.7
-
-## 8.1.0-canary.6
 
 ## 8.1.0-canary.5
 
@@ -298,8 +167,6 @@
 
 - [#2227](https://github.com/graphcommerce-org/graphcommerce/pull/2227) [`d597719`](https://github.com/graphcommerce-org/graphcommerce/commit/d597719baaabbe079660ac063fd021d871831511) - Added option to change sort order (ASC / DESC) for sort options (Name, price, position etc) on catalog and search pages. ([@FrankHarland](https://github.com/FrankHarland))
 
-## 8.0.6-canary.3
-
 ## 8.0.6-canary.2
 
 ### Patch Changes
@@ -323,76 +190,6 @@
 ### Patch Changes
 
 - [#2236](https://github.com/graphcommerce-org/graphcommerce/pull/2236) [`1a20a34`](https://github.com/graphcommerce-org/graphcommerce/commit/1a20a34a8b55781ee3e88731b5e2623a85c64ccd) - Enable bundlePagesExternals for Vercel environments ([@paales](https://github.com/paales))
-
-## 8.0.5-canary.10
-
-## 8.0.5-canary.9
-
-## 8.0.5-canary.8
-
-## 8.0.5-canary.7
-
-## 8.0.5-canary.6
-
-## 8.0.5-canary.5
-
-## 8.0.5-canary.4
-
-## 8.0.5-canary.3
-
-### Patch Changes
-
-- [#2236](https://github.com/graphcommerce-org/graphcommerce/pull/2236) [`1a20a34`](https://github.com/graphcommerce-org/graphcommerce/commit/1a20a34a8b55781ee3e88731b5e2623a85c64ccd) - Enable bundlePagesExternals for Vercel environments ([@paales](https://github.com/paales))
-
-## 8.0.5-canary.2
-
-## 8.0.5-canary.1
-
-## 8.0.5-canary.0
-
-## 8.0.4
-
-## 8.0.4-canary.1
-
-## 8.0.4-canary.0
-
-## 8.0.3
-
-## 8.0.3-canary.6
-
-## 8.0.3-canary.5
-
-## 8.0.3-canary.4
-
-## 8.0.3-canary.3
-
-## 8.0.3-canary.2
-
-## 8.0.3-canary.1
-
-## 8.0.3-canary.0
-
-## 8.0.2
-
-## 8.0.2-canary.3
-
-## 8.0.2-canary.2
-
-## 8.0.2-canary.1
-
-## 8.0.2-canary.0
-
-## 8.0.1
-
-## 8.0.1-canary.4
-
-## 8.0.1-canary.3
-
-## 8.0.1-canary.2
-
-## 8.0.1-canary.1
-
-## 8.0.1-canary.0
 
 ## 8.0.0
 
@@ -420,236 +217,6 @@
 
 - [#2169](https://github.com/graphcommerce-org/graphcommerce/pull/2169) [`eab3f0b`](https://github.com/graphcommerce-org/graphcommerce/commit/eab3f0b0b459f5b6cc4e50d787ac1e8ae545b708) - Solve issue where a Hygraph DynamicRow conditions were missing fields in the OrCondition ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-## 8.0.0-canary.100
-
-## 8.0.0-canary.99
-
-## 8.0.0-canary.98
-
-## 8.0.0-canary.97
-
-## 8.0.0-canary.96
-
-## 8.0.0-canary.95
-
-## 8.0.0-canary.94
-
-### Patch Changes
-
-- [#2169](https://github.com/graphcommerce-org/graphcommerce/pull/2169) [`eab3f0b`](https://github.com/graphcommerce-org/graphcommerce/commit/eab3f0b0b459f5b6cc4e50d787ac1e8ae545b708) - Solve issue where a Hygraph DynamicRow conditions were missing fields in the OrCondition ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 8.0.0-canary.93
-
-### Patch Changes
-
-- [`d267f19`](https://github.com/graphcommerce-org/graphcommerce/commit/d267f19d6ab85f7dc1088974b3fee6148a537c20) - Disable the pagination thumbnails ([@paales](https://github.com/paales))
-
-## 8.0.0-canary.92
-
-## 8.0.0-canary.91
-
-### Patch Changes
-
-- [#2172](https://github.com/graphcommerce-org/graphcommerce/pull/2172) [`279599e`](https://github.com/graphcommerce-org/graphcommerce/commit/279599e7a86bd96ea9e36065af3c367df9e02a63) - Updated documentation to reflect recent code changes ([@paales](https://github.com/paales))
-
-## 8.0.0-canary.90
-
-## 8.0.0-canary.89
-
-## 8.0.0-canary.88
-
-## 8.0.0-canary.87
-
-## 8.0.0-canary.86
-
-## 8.0.0-canary.85
-
-## 8.0.0-canary.84
-
-## 8.0.0-canary.83
-
-## 8.0.0-canary.82
-
-## 8.0.0-canary.81
-
-## 8.0.0-canary.80
-
-## 8.0.0-canary.79
-
-## 8.0.0-canary.78
-
-## 8.0.0-canary.77
-
-## 8.0.0-canary.76
-
-## 8.0.0-canary.75
-
-## 8.0.0-canary.74
-
-## 8.0.0-canary.73
-
-## 8.0.0-canary.72
-
-## 8.0.0-canary.71
-
-## 8.0.0-canary.70
-
-## 8.0.0-canary.69
-
-## 7.1.0-canary.68
-
-## 7.1.0-canary.67
-
-## 7.1.0-canary.66
-
-### Patch Changes
-
-- [#2156](https://github.com/graphcommerce-org/graphcommerce/pull/2156) [`69b816c`](https://github.com/graphcommerce-org/graphcommerce/commit/69b816cd739af2999ec2a5053f09b9bb10379c52) - Updated dependencies. Fixed trace-to-tree.mjs to debug build perf and added trace-to-event-format.mjs for compatibility with about://tracing. ([@paales](https://github.com/paales))
-
-## 7.1.0-canary.65
-
-## 7.1.0-canary.64
-
-### Patch Changes
-
-- [#2129](https://github.com/graphcommerce-org/graphcommerce/pull/2129) [`dca4490b9`](https://github.com/graphcommerce-org/graphcommerce/commit/dca4490b97319e9d4117277719adef395ed1e7b4) - Created ./devcontainer/devcontainer.json to automatically run Graphcommerce after opening Codespaces ([@action-simon](https://github.com/action-simon))
-
-## 7.1.0-canary.63
-
-## 7.1.0-canary.62
-
-## 7.1.0-canary.61
-
-## 7.1.0-canary.60
-
-## 7.1.0-canary.59
-
-## 7.1.0-canary.58
-
-## 7.1.0-canary.57
-
-## 7.1.0-canary.56
-
-## 7.1.0-canary.55
-
-## 7.1.0-canary.54
-
-## 7.1.0-canary.53
-
-## 7.1.0-canary.52
-
-## 7.1.0-canary.51
-
-### Patch Changes
-
-- [#2116](https://github.com/graphcommerce-org/graphcommerce/pull/2116) [`e0e5e82af`](https://github.com/graphcommerce-org/graphcommerce/commit/e0e5e82af36ca38a78fc031e0c680daaab5909ad) - Node.js version of gitpod updated to node 18 ([@action-simon](https://github.com/action-simon))
-
-## 7.1.0-canary.50
-
-## 7.1.0-canary.49
-
-## 7.1.0-canary.48
-
-## 7.1.0-canary.47
-
-## 7.1.0-canary.46
-
-### Patch Changes
-
-- [`0d4a5a776`](https://github.com/graphcommerce-org/graphcommerce/commit/0d4a5a776e67c7cab39d964f2f47364f167c1951) - When releasing there will be changes to the yarn.lock file, but those weren't committed. ([@paales](https://github.com/paales))
-
-## 7.1.0-canary.45
-
-### Minor Changes
-
-- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`437f467ce`](https://github.com/graphcommerce-org/graphcommerce/commit/437f467ce1bd9182954be753f1ce17056ab62e85) - Upgraded to yarn 4 package manager ([@paales](https://github.com/paales))
-
-### Patch Changes
-
-- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`630618219`](https://github.com/graphcommerce-org/graphcommerce/commit/6306182196321bdab509a8dcfe09eb00da10303a) - Moved all internal @graphcommerce/\* dependencies to peerDependencies and resolve remaining peerDependency issues ([@paales](https://github.com/paales))
-
-- [#2113](https://github.com/graphcommerce-org/graphcommerce/pull/2113) [`77b1bac4d`](https://github.com/graphcommerce-org/graphcommerce/commit/77b1bac4db9c903a29c3969823da663875408be0) - Upgraded to nextjs 14.0.2, and updated other related dependencies. Removed @mui/material/modern alias as that doesnt work in combination with nextjs 14.0.2. ([@paales](https://github.com/paales))
-
-## 7.1.0-canary.38
-
-## 7.1.0-canary.37
-
-## 7.1.0-canary.36
-
-## 7.1.0-canary.35
-
-## 7.1.0-canary.34
-
-### Patch Changes
-
-- [#2078](https://github.com/graphcommerce-org/graphcommerce/pull/2078) [`5f409e617`](https://github.com/graphcommerce-org/graphcommerce/commit/5f409e617afae36d5c6224f3c6eb8d085fc2e84c) - Added @graphcommerce packages in node_modules to nextjs watch options ([@KMalkowski](https://github.com/KMalkowski))
-
-## 7.1.0-canary.33
-
-## 7.1.0-canary.32
-
-## 7.1.0-canary.31
-
-## 7.1.0-canary.30
-
-## 7.1.0-canary.29
-
-## 7.1.0-canary.28
-
-## 7.1.0-canary.27
-
-## 7.1.0-canary.26
-
-## 7.1.0-canary.25
-
-## 7.1.0-canary.24
-
-## 7.1.0-canary.23
-
-## 7.1.0-canary.22
-
-## 7.1.0-canary.21
-
-## 7.1.0-canary.20
-
-## 7.1.0-canary.19
-
-## 7.1.0-canary.18
-
-## 7.1.0-canary.17
-
-## 7.1.0-canary.16
-
-## 7.1.0-canary.15
-
-## 7.1.0-canary.14
-
-## 7.1.0-canary.13
-
-## 7.1.0-canary.12
-
-## 7.1.0-canary.11
-
-## 7.1.0-canary.10
-
-## 7.1.0-canary.9
-
-## 7.1.0-canary.8
-
-## 7.0.2-canary.7
-
-## 7.0.2-canary.6
-
-### Patch Changes
-
-- [#2068](https://github.com/graphcommerce-org/graphcommerce/pull/2068) [`4c04ac40e`](https://github.com/graphcommerce-org/graphcommerce/commit/4c04ac40e993c872fc0a302fd4216e6c89e05028) - Removed old yarn version ([@paales](https://github.com/paales))
-
-## 7.0.2-canary.5
-
-### Patch Changes
-
-- [`3e4092db1`](https://github.com/graphcommerce-org/graphcommerce/commit/3e4092db1f74b693b14b43f49a11938b7bc8fb2f) - Try and fix gihtub releases ([@paales](https://github.com/paales))
-
 ## 7.0.1
 
 ### Patch Changes
@@ -663,60 +230,6 @@
 - [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`ca9ce846c`](https://github.com/graphcommerce-org/graphcommerce/commit/ca9ce846cb24a2ab0e365df6e60a962187151030) - Solved an issue where any dynamic route like product pages or search pages would give a 404 during development. ([@paales](https://github.com/paales))
 
 - [#2063](https://github.com/graphcommerce-org/graphcommerce/pull/2063) [`12842a28e`](https://github.com/graphcommerce-org/graphcommerce/commit/12842a28e226ef970f250fad4100e46eebc53118) - Update graphql dependency to 16.8.1 and loosen constraint so that it doesn’t fail during installation ([@paales](https://github.com/paales))
-
-- [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`136580b39`](https://github.com/graphcommerce-org/graphcommerce/commit/136580b39e3cffdd07e3fa087e049bd532c3e8f1) - Updated all dependencies to the latest version where possible. ([@paales](https://github.com/paales))
-
-## 7.0.1-canary.15
-
-## 7.0.1-canary.14
-
-### Patch Changes
-
-- [`5652342e1`](https://github.com/graphcommerce-org/graphcommerce/commit/5652342e10754cc0b4fa0596e55125539b69c442) - Add missing dependency @types/react-is as it would cause build errors. ([@paales](https://github.com/paales))
-
-## 7.0.1-canary.13
-
-## 7.0.1-canary.12
-
-### Patch Changes
-
-- [`2e3b9d64e`](https://github.com/graphcommerce-org/graphcommerce/commit/2e3b9d64e0cf610d27c05a067a3c5a25e2681dde) - Pin version of graphql-jit to 0.8.2 to prevent error: `Got unexpected PRIMITIVES type: RichTextAST` ([@paales](https://github.com/paales))
-
-## 7.0.1-canary.11
-
-## 7.0.1-canary.10
-
-### Patch Changes
-
-- [#2063](https://github.com/graphcommerce-org/graphcommerce/pull/2063) [`12842a28e`](https://github.com/graphcommerce-org/graphcommerce/commit/12842a28e226ef970f250fad4100e46eebc53118) - Update graphql dependency to 16.8.1 and loosen constraint so that it doesn’t fail during installation ([@paales](https://github.com/paales))
-
-## 7.0.1-canary.9
-
-## 7.0.1-canary.8
-
-## 7.0.1-canary.7
-
-## 7.0.1-canary.6
-
-## 7.0.1-canary.5
-
-## 7.0.1-canary.4
-
-## 7.0.1-canary.3
-
-## 7.0.1-canary.2
-
-### Patch Changes
-
-- [#2043](https://github.com/graphcommerce-org/graphcommerce/pull/2043) [`b5584f689`](https://github.com/graphcommerce-org/graphcommerce/commit/b5584f689d22a3d2c043ecf5eb4ef02920fc5bdd) - Support for node 20 ([@paales](https://github.com/paales))
-
-## 7.0.1-canary.1
-
-## 7.0.1-canary.0
-
-### Patch Changes
-
-- [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`ca9ce846c`](https://github.com/graphcommerce-org/graphcommerce/commit/ca9ce846cb24a2ab0e365df6e60a962187151030) - Solved an issue where any dynamic route like product pages or search pages would give a 404 during development. ([@paales](https://github.com/paales))
 
 - [#2047](https://github.com/graphcommerce-org/graphcommerce/pull/2047) [`136580b39`](https://github.com/graphcommerce-org/graphcommerce/commit/136580b39e3cffdd07e3fa087e049bd532c3e8f1) - Updated all dependencies to the latest version where possible. ([@paales](https://github.com/paales))
 
@@ -750,264 +263,6 @@
 
 - [#1959](https://github.com/graphcommerce-org/graphcommerce/pull/1959) [`d0809b132`](https://github.com/graphcommerce-org/graphcommerce/commit/d0809b132a0e4cbdfeb86164f6c16a89ebecd987) - Added support for default values in the Config.graphqls files for the documentation ([@JoshuaS98](https://github.com/JoshuaS98))
 
-## 6.2.0-canary.98
-
-## 6.2.0-canary.97
-
-## 6.2.0-canary.96
-
-## 6.2.0-canary.95
-
-### Patch Changes
-
-- [#2030](https://github.com/graphcommerce-org/graphcommerce/pull/2030) [`15939ca62`](https://github.com/graphcommerce-org/graphcommerce/commit/15939ca62021c28f7d60382c65927aed15c1ac84) - next-pwa dependency change and next-image caching optimalization ([@mikekeehnen](https://github.com/mikekeehnen))
-
-## 6.2.0-canary.94
-
-## 6.2.0-canary.93
-
-### Patch Changes
-
-- [#2038](https://github.com/graphcommerce-org/graphcommerce/pull/2038) [`9b872e6f1`](https://github.com/graphcommerce-org/graphcommerce/commit/9b872e6f11a83cd13f8bbe00ad911c410bcd5b65) - Updated dependencies ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.92
-
-## 6.2.0-canary.91
-
-## 6.2.0-canary.90
-
-### Patch Changes
-
-- [#2034](https://github.com/graphcommerce-org/graphcommerce/pull/2034) [`6fca47484`](https://github.com/graphcommerce-org/graphcommerce/commit/6fca474847fe52f004a6ac0abbd88492512b46ad) - Pre-resolve the customFetch in mesh config ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.89
-
-## 6.2.0-canary.88
-
-## 6.2.0-canary.87
-
-### Patch Changes
-
-- [#2022](https://github.com/graphcommerce-org/graphcommerce/pull/2022) [`0495db84d`](https://github.com/graphcommerce-org/graphcommerce/commit/0495db84d1d450750bd74b94a379b4e7764a5753) - add documentation for the GraphCommerceStorefrontConfig gallery option. ([@carlocarels90](https://github.com/carlocarels90))
-
-## 6.2.0-canary.86
-
-## 6.2.0-canary.85
-
-## 6.2.0-canary.84
-
-### Patch Changes
-
-- [#2024](https://github.com/graphcommerce-org/graphcommerce/pull/2024) [`1ae747e85`](https://github.com/graphcommerce-org/graphcommerce/commit/1ae747e85faab75168718cb5ea930111d3223cc4) - Hot reloading didn't work because of a broken lingui version ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.83
-
-## 6.2.0-canary.82
-
-## 6.2.0-canary.81
-
-## 6.2.0-canary.80
-
-## 6.2.0-canary.79
-
-## 6.2.0-canary.78
-
-### Minor Changes
-
-- [#1988](https://github.com/graphcommerce-org/graphcommerce/pull/1988) [`af8e0d176`](https://github.com/graphcommerce-org/graphcommerce/commit/af8e0d176af8197a0c13b9a29b438cb54cc29ce4) - Multi website with multiple duplicates locales support. Use `en-us-website1`, `en-us-website2` as the locale declaration. ([@hnsr](https://github.com/hnsr))
-
-## 6.2.0-canary.77
-
-## 6.2.0-canary.76
-
-## 6.2.0-canary.75
-
-## 6.2.0-canary.74
-
-## 6.2.0-canary.73
-
-## 6.2.0-canary.72
-
-## 6.2.0-canary.71
-
-## 6.2.0-canary.70
-
-## 6.2.0-canary.69
-
-## 6.2.0-canary.68
-
-## 6.2.0-canary.67
-
-### Patch Changes
-
-- [#2002](https://github.com/graphcommerce-org/graphcommerce/pull/2002) [`1234bb61f`](https://github.com/graphcommerce-org/graphcommerce/commit/1234bb61f8332da8a9e4dd7262b0c70beaed8c91) - Updated next and apollo/client ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.66
-
-## 6.2.0-canary.65
-
-## 6.2.0-canary.64
-
-## 6.2.0-canary.63
-
-## 6.2.0-canary.62
-
-## 6.2.0-canary.61
-
-## 6.2.0-canary.60
-
-## 6.2.0-canary.59
-
-## 6.2.0-canary.58
-
-## 6.2.0-canary.57
-
-### Patch Changes
-
-- [#1982](https://github.com/graphcommerce-org/graphcommerce/pull/1982) [`e1fab2f6d`](https://github.com/graphcommerce-org/graphcommerce/commit/e1fab2f6d8f57d0488d8a915596d5c19cb7718e6) - Better detection what the package roots are when a custom node_modules directory is used ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.56
-
-## 6.2.0-canary.55
-
-## 6.2.0-canary.54
-
-## 6.2.0-canary.53
-
-## 6.2.0-canary.52
-
-## 6.2.0-canary.51
-
-## 6.2.0-canary.50
-
-### Minor Changes
-
-- [`e55d8c390`](https://github.com/graphcommerce-org/graphcommerce/commit/e55d8c390d90b4bb7bab11c6a99027ac72bd7e3e) - Created a new sidebar layout system, can be configured with productFiltersLayout in the graphcommerce.config.js ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.49
-
-### Patch Changes
-
-- [#1959](https://github.com/graphcommerce-org/graphcommerce/pull/1959) [`d0809b132`](https://github.com/graphcommerce-org/graphcommerce/commit/d0809b132a0e4cbdfeb86164f6c16a89ebecd987) - Added support for default values in the Config.graphqls files for the documentation ([@JoshuaS98](https://github.com/JoshuaS98))
-
-## 6.2.0-canary.48
-
-## 6.2.0-canary.47
-
-## 6.2.0-canary.46
-
-## 6.2.0-canary.45
-
-## 6.2.0-canary.44
-
-## 6.2.0-canary.43
-
-## 6.2.0-canary.42
-
-## 6.2.0-canary.41
-
-### Patch Changes
-
-- [#1960](https://github.com/graphcommerce-org/graphcommerce/pull/1960) [`86e14569b`](https://github.com/graphcommerce-org/graphcommerce/commit/86e14569b1f68f73be7f93b614e36b382c5debff) - Updated to the latest release of GraphQL codegen and solve compatibility issues with our own generator ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.40
-
-## 6.2.0-canary.39
-
-## 6.2.0-canary.38
-
-## 6.2.0-canary.37
-
-## 6.2.0-canary.36
-
-## 6.2.0-canary.35
-
-## 6.2.0-canary.34
-
-## 6.2.0-canary.33
-
-## 6.2.0-canary.32
-
-## 6.2.0-canary.31
-
-## 6.2.0-canary.30
-
-## 6.2.0-canary.29
-
-## 6.2.0-canary.28
-
-## 6.2.0-canary.27
-
-## 6.2.0-canary.26
-
-## 6.2.0-canary.25
-
-## 6.2.0-canary.24
-
-## 6.2.0-canary.23
-
-## 6.2.0-canary.22
-
-## 6.2.0-canary.21
-
-## 6.2.0-canary.20
-
-### Patch Changes
-
-- [#1928](https://github.com/graphcommerce-org/graphcommerce/pull/1928) [`09d6a7abd`](https://github.com/graphcommerce-org/graphcommerce/commit/09d6a7abdf44c04a37f59432e9fc0c0722e6df76) - Added number to config value formatter, so Graphcommerce config accepts number values. ([@mikekeehnen](https://github.com/mikekeehnen))
-
-## 6.2.0-canary.19
-
-## 6.2.0-canary.18
-
-## 6.2.0-canary.17
-
-## 6.2.0-canary.16
-
-## 6.2.0-canary.15
-
-## 6.2.0-canary.14
-
-### Patch Changes
-
-- [#1925](https://github.com/graphcommerce-org/graphcommerce/pull/1925) [`2b595bf13`](https://github.com/graphcommerce-org/graphcommerce/commit/2b595bf13f3725a77661586cce021ce8d4791558) - Fixed bug for type error in `demoConfig.ts`. All storefront config values in the demo config are now optional. ([@mikekeehnen](https://github.com/mikekeehnen))
-
-## 6.2.0-canary.13
-
-### Patch Changes
-
-- [#1924](https://github.com/graphcommerce-org/graphcommerce/pull/1924) [`04581f619`](https://github.com/graphcommerce-org/graphcommerce/commit/04581f619c609f2f6ca5268ee5effb6a1db3f0eb) - Use the latest branch from graphql-mesh so that all versions are in sync ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.12
-
-## 6.2.0-canary.11
-
-## 6.2.0-canary.10
-
-## 6.2.0-canary.9
-
-## 6.2.0-canary.8
-
-## 6.2.0-canary.7
-
-## 6.2.0-canary.6
-
-### Minor Changes
-
-- [#1915](https://github.com/graphcommerce-org/graphcommerce/pull/1915) [`f4a8c3881`](https://github.com/graphcommerce-org/graphcommerce/commit/f4a8c388183e17c52e7f66536c5448749f494d7f) - Added the ability to create functional plugins for usage in non-component areas and hooks ([@paales](https://github.com/paales))
-
-## 6.1.1-canary.5
-
-## 6.1.1-canary.4
-
-## 6.1.1-canary.3
-
-## 6.1.1-canary.2
-
-## 6.1.1-canary.1
-
-## 6.1.1-canary.0
-
 ## 6.1.0
 
 ### Minor Changes
@@ -1020,89 +275,11 @@
 
 - [#1872](https://github.com/graphcommerce-org/graphcommerce/pull/1872) [`05522796f`](https://github.com/graphcommerce-org/graphcommerce/commit/05522796f3f132db50e7b4c26089740a12a9153a) - Fix issue where a deeper plugin from the root of the project doesn't have a correct relative path ([@paales](https://github.com/paales))
 
-## 6.0.2-canary.22
-
-## 6.0.2-canary.21
-
-## 6.0.2-canary.20
-
-## 6.0.2-canary.19
-
-## 6.0.2-canary.18
-
-## 6.0.2-canary.17
-
-## 6.0.2-canary.16
-
-## 6.0.2-canary.15
-
-## 6.0.2-canary.14
-
-## 6.0.2-canary.13
-
-## 6.0.2-canary.12
-
-## 6.0.2-canary.11
-
-## 6.0.2-canary.10
-
-## 6.0.2-canary.9
-
-## 6.0.2-canary.8
-
-## 6.0.2-canary.7
-
-### Patch Changes
-
-- [#1876](https://github.com/graphcommerce-org/graphcommerce/pull/1876) [`8dffc59c0`](https://github.com/graphcommerce-org/graphcommerce/commit/8dffc59c04bf6f2a6000b73db13592e10afd936c) - Added an configuration to the wishlist: `wishlistShowFeedbackMessage` to show a feedback message when a product is added to the wishlist. ([@paales](https://github.com/paales))
-
-## 6.0.2-canary.6
-
-## 6.0.2-canary.5
-
-## 6.0.2-canary.4
-
-### Patch Changes
-
-- [#1874](https://github.com/graphcommerce-org/graphcommerce/pull/1874) [`2a60491c2`](https://github.com/graphcommerce-org/graphcommerce/commit/2a60491c23a9cd0bfd79296d29f6c9ee31faada5) - Magento couldn't respond with any cached Varnish responses because there was an empty authorization header sent with each request. ([@paales](https://github.com/paales))
-
-## 6.0.2-canary.3
-
-### Patch Changes
-
-- [#1872](https://github.com/graphcommerce-org/graphcommerce/pull/1872) [`05522796f`](https://github.com/graphcommerce-org/graphcommerce/commit/05522796f3f132db50e7b4c26089740a12a9153a) - Fix issue where a deeper plugin from the root of the project doesn't have a correct relative path ([@paales](https://github.com/paales))
-
-## 6.0.2-canary.2
-
-## 6.0.2-canary.1
-
-## 6.0.2-canary.0
-
 ## 6.0.1
 
 ### Patch Changes
 
 - [#1863](https://github.com/graphcommerce-org/graphcommerce/pull/1863) [`ce6c990b2`](https://github.com/graphcommerce-org/graphcommerce/commit/ce6c990b25286bed393470a818f8daab2bb51457) - Solve issue where intercepters coudn’t be properly deleted because it was already deleted, fixe ([@paales](https://github.com/paales))
-
-## 6.0.1-canary.7
-
-## 6.0.1-canary.6
-
-## 6.0.1-canary.5
-
-### Patch Changes
-
-- [#1863](https://github.com/graphcommerce-org/graphcommerce/pull/1863) [`ce6c990b2`](https://github.com/graphcommerce-org/graphcommerce/commit/ce6c990b25286bed393470a818f8daab2bb51457) - Solve issue where intercepters coudn’t be properly deleted because it was already deleted, fixe ([@paales](https://github.com/paales))
-
-## 6.0.1-canary.4
-
-## 6.0.1-canary.3
-
-## 6.0.1-canary.2
-
-## 6.0.1-canary.1
-
-## 6.0.1-canary.0
 
 ## 6.0.0
 
@@ -1136,174 +313,6 @@
 
 - [#1831](https://github.com/graphcommerce-org/graphcommerce/pull/1831) [`4d4a3464c`](https://github.com/graphcommerce-org/graphcommerce/commit/4d4a3464c807e34a36952d01e63a5c556176b0b6) - Removed of next-transpile-modules and use transpilePackages option of nextjs. ([@paales](https://github.com/paales))
 
-## 6.0.0-canary.54
-
-## 6.0.0-canary.53
-
-## 6.0.0-canary.52
-
-## 6.0.0-canary.51
-
-## 6.0.0-canary.50
-
-## 6.0.0-canary.49
-
-## 6.0.0-canary.48
-
-## 6.0.0-canary.47
-
-## 6.0.0-canary.46
-
-### Patch Changes
-
-- [#1844](https://github.com/graphcommerce-org/graphcommerce/pull/1844) [`929cffafb`](https://github.com/graphcommerce-org/graphcommerce/commit/929cffafbc8b2e57433b6448c95234fb057880b1) - Plugins were incorrectly sorted and local plugins didn't get preference ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.45
-
-## 6.0.0-canary.44
-
-### Patch Changes
-
-- [#1842](https://github.com/graphcommerce-org/graphcommerce/pull/1842) [`7b67d84bd`](https://github.com/graphcommerce-org/graphcommerce/commit/7b67d84bd269c3fc91afbd69f6683c5d12808d36) - Renamed i18n to storefront in configuration ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.43
-
-## 6.0.0-canary.42
-
-## 6.0.0-canary.41
-
-### Patch Changes
-
-- [#1839](https://github.com/graphcommerce-org/graphcommerce/pull/1839) [`e4a3f5e98`](https://github.com/graphcommerce-org/graphcommerce/commit/e4a3f5e986287b78c3e048d8a33611c61070b79e) - Make sure the configuration is validated before executing ([@paales](https://github.com/paales))
-
-- [#1839](https://github.com/graphcommerce-org/graphcommerce/pull/1839) [`8eb310409`](https://github.com/graphcommerce-org/graphcommerce/commit/8eb3104098749a6b08d2affb6cdc8a7e6698866f) - Use graphCommerce._ instead of import.meta.graphCommerce._ in .meshrc.yml ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.40
-
-## 6.0.0-canary.39
-
-## 6.0.0-canary.38
-
-## 6.0.0-canary.37
-
-## 6.0.0-canary.36
-
-### Minor Changes
-
-- [#1833](https://github.com/graphcommerce-org/graphcommerce/pull/1833) [`7dc3e036c`](https://github.com/graphcommerce-org/graphcommerce/commit/7dc3e036c776224aa184e03cc957dcb8d3faa55c) - Added ability to have local plugins and added example plugin in the plugins directory ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.35
-
-## 6.0.0-canary.34
-
-## 6.0.0-canary.33
-
-### Patch Changes
-
-- [#1831](https://github.com/graphcommerce-org/graphcommerce/pull/1831) [`4d4a3464c`](https://github.com/graphcommerce-org/graphcommerce/commit/4d4a3464c807e34a36952d01e63a5c556176b0b6) - Make sure packages are transpiled in node_modules with nextjs’ transpilePackages option ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.32
-
-## 6.0.0-canary.31
-
-## 6.0.0-canary.30
-
-## 6.0.0-canary.29
-
-### Minor Changes
-
-- [#1828](https://github.com/graphcommerce-org/graphcommerce/pull/1828) [`3df85faf1`](https://github.com/graphcommerce-org/graphcommerce/commit/3df85faf189b95e2c7d9c3fc756474fcafb1c8b4) - Added new `productRoute` configuration to create freedom in the actual product route used (default: /p/). Simplified redirects from legacy product routes to new routes by creating redirects. ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.28
-
-## 6.0.0-canary.27
-
-## 6.0.0-canary.26
-
-## 6.0.0-canary.25
-
-## 6.0.0-canary.24
-
-## 6.0.0-canary.23
-
-### Minor Changes
-
-- [#1810](https://github.com/graphcommerce-org/graphcommerce/pull/1810) [`543c5d5b2`](https://github.com/graphcommerce-org/graphcommerce/commit/543c5d5b2b6f29c1f6a0a405524d4cc86f399596) - Added `limitSsg: Boolean` configuration option to limit the getStaticPaths generation during build. This is useful to make quick deployments on preview environments. ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.22
-
-## 6.0.0-canary.21
-
-## 6.0.0-canary.20
-
-### Minor Changes
-
-- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`b76679204`](https://github.com/graphcommerce-org/graphcommerce/commit/b766792049e1e6ebe45671c0b36e78746ef159e2) - Added a new graphcommerce.config.ts which can be accessed with import.mete.graphCommerce.myConfig ([@paales](https://github.com/paales))
-
-### Patch Changes
-
-- [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`fff2420c6`](https://github.com/graphcommerce-org/graphcommerce/commit/fff2420c62472edfd2c3d6eba1012dbf48efa3db) - Added configuration for webpackDuplicatesPlugin ([@paales](https://github.com/paales))
-
-## 5.2.0-canary.19
-
-## 5.2.0-canary.18
-
-## 5.2.0-canary.17
-
-## 5.2.0-canary.16
-
-## 5.2.0-canary.15
-
-## 5.2.0-canary.14
-
-## 5.2.0-canary.13
-
-## 5.2.0-canary.12
-
-## 5.2.0-canary.11
-
-## 5.2.0-canary.10
-
-## 5.2.0-canary.9
-
-## 5.2.0-canary.8
-
-## 5.2.0-canary.7
-
-## 5.2.0-canary.6
-
-## 5.2.0-canary.5
-
-## 5.2.0-canary.4
-
-## 5.2.0-canary.3
-
-### Minor Changes
-
-- [#1766](https://github.com/graphcommerce-org/graphcommerce/pull/1766) [`e34169ee2`](https://github.com/graphcommerce-org/graphcommerce/commit/e34169ee2e0fdc052ff589ceca0bc67557584c1f) - Upgraded to Next.js 13
-
-  - NextLink integrates the next/link functionality with @mui/material's Link and ButtonBase (and all it's derivatives) components.
-  - NextLink automatically adds `target="_blank"` when the href is external.
-  - NextLink makes all relative href absolute. `href="my-page"` will be rendered as `href="/my-page"`.
-
-  Upgrade instructions: https://www.graphcommerce.org/docs/framework/links#upgrading-from-nextjs-12 ([@paales](https://github.com/paales))
-
-## 5.2.0-canary.2
-
-## 5.2.0-canary.1
-
-## 5.2.0-canary.0
-
-## 5.1.1
-
-## 5.1.1-canary.1
-
-## 5.1.1-canary.0
-
-### Patch Changes
-
-- [#1762](https://github.com/graphcommerce-org/graphcommerce/pull/1762) [`0aab0bcc2`](https://github.com/graphcommerce-org/graphcommerce/commit/0aab0bcc2048793f43a76bf981ca18d9f3ccaf16) - yarn can not completele successfully when runnin in a monorepo setup if codegen hasn’t ran ([@paales](https://github.com/paales))
-
 ## 5.1.0
 
 ### Patch Changes
@@ -1322,53 +331,6 @@
 - [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`4759c1781`](https://github.com/graphcommerce-org/graphcommerce/commit/4759c1781ebe94c18f557e2ba189000580a05692) - Interceptors are regenerated when a plugin contains a faulty configuration (happens a lot when building a plugin). ([@paales](https://github.com/paales))
 
 - [#1745](https://github.com/graphcommerce-org/graphcommerce/pull/1745) [`2a859970d`](https://github.com/graphcommerce-org/graphcommerce/commit/2a859970de34ad768a0ba54f50d53ad17823cc15) - Make sure the interceptors aren't cleaned up constantly ([@github-actions](https://github.com/apps/github-actions))
-
-## 5.1.0-canary.11
-
-## 5.1.0-canary.10
-
-### Patch Changes
-
-- [#1760](https://github.com/graphcommerce-org/graphcommerce/pull/1760) [`8badc8550`](https://github.com/graphcommerce-org/graphcommerce/commit/8badc8550c402ac7b80c8d3238d313550c28a055) - Updated dependencies ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.9
-
-## 5.1.0-canary.8
-
-## 5.1.0-canary.7
-
-## 5.1.0-canary.6
-
-## 5.1.0-canary.5
-
-### Patch Changes
-
-- [`2a859970d`](https://github.com/graphcommerce-org/graphcommerce/commit/2a859970de34ad768a0ba54f50d53ad17823cc15) - Make sure the interceptors aren't cleaned up constantly ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.4
-
-### Patch Changes
-
-- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`225a69dc9`](https://github.com/graphcommerce-org/graphcommerce/commit/225a69dc9eb76d85adee1c6ea8c4eff16a5fed63) - When a plugin doesn't target a file anymore, it will now cleanup the existing interceptor file. ([@paales](https://github.com/paales))
-
-- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`4759c1781`](https://github.com/graphcommerce-org/graphcommerce/commit/4759c1781ebe94c18f557e2ba189000580a05692) - Interceptors are regenerated when a plugin contains a faulty configuration (happens a lot when building a plugin). ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.3
-
-### Patch Changes
-
-- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
-  - Updated the @mui/material package
-  - Removed dependencies on react-hook-form-mui and @playwright/test
-  - Upgraded dependencies including type-fest and graphql-mesh
-  - Solved peer dependency issues ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.2
-
-## 5.1.0-canary.1
-
-## 5.1.0-canary.0
 
 ## 5.0.0
 
@@ -1392,56 +354,6 @@
 
 - [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`fdb33b4e6`](https://github.com/graphcommerce-org/graphcommerce/commit/fdb33b4e6cace84a370aa000bf86c9c3c377aaae) - Make sure the root package is always included even if it doesn't include graphcommerce in the name ([@github-actions](https://github.com/apps/github-actions))
 
-## 5.0.0-canary.14
-
-## 5.0.0-canary.9
-
-### Major Changes
-
-- [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@paales](https://github.com/paales))
-
-## 4.31.0-canary.8
-
-## 4.31.0-canary.7
-
-### Patch Changes
-
-- [`fdb33b4e6`](https://github.com/graphcommerce-org/graphcommerce/commit/fdb33b4e6cace84a370aa000bf86c9c3c377aaae) - Make sure the root package is always included even if it doesn't include graphcommerce in the name ([@paales](https://github.com/paales))
-
-## 4.31.0-canary.6
-
-## 4.31.0-canary.5
-
-### Minor Changes
-
-- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`6171ad02c`](https://github.com/graphcommerce-org/graphcommerce/commit/6171ad02c19782b1e1f0eb00ea25ea6b764250b5) - Added topological sorting to plugins and added ifEnv export to plugins to conditionally load plugins ([@paales](https://github.com/paales))
-
-## 4.31.0-canary.4
-
-## 4.31.0-canary.3
-
-### Patch Changes
-
-- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`b2d73c726`](https://github.com/graphcommerce-org/graphcommerce/commit/b2d73c726fa123435fa6c54b4e0fd0db2df7c4ab) - Move to <Prev/> instead of <Component/> to call the plugin component ([@paales](https://github.com/paales))
-
-- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`d6abe2646`](https://github.com/graphcommerce-org/graphcommerce/commit/d6abe26461d92e6f6c39da1cb7e6ac896bb9475f) - Added comments to generated interceptor ([@paales](https://github.com/paales))
-
-## 4.31.0-canary.2
-
-### Minor Changes
-
-- [#1729](https://github.com/graphcommerce-org/graphcommerce/pull/1729) [`4f85e4878`](https://github.com/graphcommerce-org/graphcommerce/commit/4f85e4878e4ad0dd528d60ad35826da0677059a9) - Add the ability to specificy plugins on the package name (e.g. `@graphcommerce/magento-cart-payment-method`) ([@paales](https://github.com/paales))
-
-## 4.31.0-canary.1
-
-### Minor Changes
-
-- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`16abc9995`](https://github.com/graphcommerce-org/graphcommerce/commit/16abc9995377f5c00032674de0a1ea3ebad88c4c) - Introducing a new **Plugin system for GraphCommerce** which allows you to extend GraphCommerce in a plug-and-play manner. [Read the documentation to learn more](https://github.com/graphcommerce-org/graphcommerce/blob/main/docs/framework/plugins.md) ([@paales](https://github.com/paales))
-
-## 4.31.0-canary.0
-
-## 4.30.2
-
 ## 4.30.1
 
 ### Patch Changes
@@ -1457,18 +369,6 @@
 ### Patch Changes
 
 - [#1702](https://github.com/graphcommerce-org/graphcommerce/pull/1702) [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
-
-## 4.30.0-canary.1
-
-### Patch Changes
-
-- [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
-
-## 4.30.0-canary.0
-
-### Minor Changes
-
-- [#1613](https://github.com/graphcommerce-org/graphcommerce/pull/1613) [`6c1c69ca4`](https://github.com/graphcommerce-org/graphcommerce/commit/6c1c69ca45ea1c8737cc7dcdc341fe5d825ed380) Thanks [@paales](https://github.com/paales)! - Refactor next-config to also use the new resolveDependenciesSync by exposing withGraphCommerce
 
 ## 3.2.0
 

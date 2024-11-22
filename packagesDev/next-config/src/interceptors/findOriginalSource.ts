@@ -1,8 +1,8 @@
 import path from 'path'
-import { ResolveDependency, ResolveDependencyReturn } from '../utils/resolveDependency'
-import { PluginConfig } from './generateInterceptor'
+import type { ExportAllDeclaration } from '@swc/core'
+import type { ResolveDependency, ResolveDependencyReturn } from '../utils/resolveDependency'
+import type { PluginConfig } from './generateInterceptor'
 import { parseSync } from './swc'
-import { ExportAllDeclaration } from '@swc/core'
 
 function parseAndFindExport(
   resolved: ResolveDependencyReturn,
@@ -25,6 +25,7 @@ function parseAndFindExport(
               if (declaration.id.type === 'Identifier') {
                 if (declaration.id.value === findExport) return resolved
               } else {
+                // eslint-disable-next-line no-console
                 console.log(declaration)
               }
             }
@@ -81,7 +82,7 @@ function parseAndFindExport(
   return undefined
 }
 
-const cachedResults = new Map<string, ResolveDependencyReturn>()
+// const cachedResults = new Map<string, ResolveDependencyReturn>()
 
 export function findOriginalSource(
   plug: PluginConfig,

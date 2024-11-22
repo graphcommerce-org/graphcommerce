@@ -1,7 +1,8 @@
 import { Money } from '@graphcommerce/magento-store'
 import { extendableComponent, breakpointVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Divider, lighten, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Divider, lighten } from '@mui/material'
 import { useCartQuery, useDisplayInclTax } from '../../hooks'
 import { GetCartTotalsDocument } from './GetCartTotals.gql'
 
@@ -12,7 +13,7 @@ export type CartTotalsProps = OwnerProps & {
 }
 
 type OwnerProps = { containerMargin?: boolean }
-const name = 'CartTotals' as const
+const name = 'CartTotals'
 const parts = [
   'root',
   'costsDivider',
@@ -156,7 +157,7 @@ export function CartTotals(props: CartTotalsProps) {
       {additionalSubtotals}
 
       <Box key='divider'>
-        <Divider className={classes.costsDivider} sx={{ margin: `1em 0` }} />
+        <Divider className={classes.costsDivider} sx={{ margin: '1em 0' }} />
       </Box>
 
       {prices?.grand_total && (

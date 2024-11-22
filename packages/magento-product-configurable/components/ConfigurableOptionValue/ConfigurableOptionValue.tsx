@@ -1,9 +1,9 @@
-import { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
+import type { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
 import { RenderType } from '@graphcommerce/next-ui'
 import { ConfigurableOptionValueColor } from '../ConfigurableOptionValueColor'
 import { ConfigurableOptionValueImage } from '../ConfigurableOptionValueImage/ConfigurableOptionValueImage'
 import { ConfigurableOptionValueText } from '../ConfigurableOptionValueText/ConfigurableOptionValueText'
-import { ConfigurableOptionValueFragment } from './ConfigurableOptionValue.gql'
+import type { ConfigurableOptionValueFragment } from './ConfigurableOptionValue.gql'
 
 export type ConfigurabeOptionValueProps = ActionCardItemRenderProps<ConfigurableOptionValueFragment>
 

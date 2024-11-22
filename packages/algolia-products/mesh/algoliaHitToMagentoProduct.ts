@@ -11,9 +11,7 @@ import type {
   ResolversParentTypes,
   ResolversTypes,
 } from '@graphcommerce/graphql-mesh'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { GraphQLResolveInfo } from 'graphql'
-import { GetStoreConfigReturn } from './getStoreConfig'
+import type { GetStoreConfigReturn } from './getStoreConfig'
 
 export function assertAdditional(
   additional: unknown,
@@ -147,6 +145,15 @@ export function algoliaHitToMagentoProduct(
     ...rest
   } = additionalProperties
 
+  // Some custom attributes are returned as array while they need to be a string. Flatten those arrays
+  const flattenedCustomAttributes = {}
+  for (const [key, value] of Object.entries(rest)) {
+    if (value !== null && Array.isArray(value) && value?.length > 0) {
+      flattenedCustomAttributes[key] = value.toString()
+      delete rest[key]
+    }
+  }
+
   return {
     redirect_code: 0,
     __typename: algoliaTypeToTypename[type_id as keyof typeof algoliaTypeToTypename],
@@ -187,5 +194,6 @@ export function algoliaHitToMagentoProduct(
     url_key: algoliaUrlToUrlKey(url, storeConfig?.base_link_url),
     url_suffix: storeConfig?.product_url_suffix,
     ...rest,
+    ...flattenedCustomAttributes,
   }
 }

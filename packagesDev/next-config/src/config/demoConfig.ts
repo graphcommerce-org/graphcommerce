@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { PartialDeep } from 'type-fest'
-import { GraphCommerceConfig } from '../generated/config'
+import type { PartialDeep } from 'type-fest'
+import type { GraphCommerceConfig } from '../generated/config'
 
 export const demoConfig: PartialDeep<GraphCommerceConfig, { recurseIntoArrays: true }> &
   Record<string, unknown> = {

@@ -1,7 +1,7 @@
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import { ImageBackground } from './ImageBackground'
 import { VideoBackground } from './VideoBackground'
-import { MediaBackgroundProps } from './getMediaBackgroundProps'
+import type { MediaBackgroundProps } from './getMediaBackgroundProps'
 
 type MediaBackgroundComponentProps = MediaBackgroundProps & {
   sx?: SxProps<Theme>

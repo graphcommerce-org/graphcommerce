@@ -1,6 +1,6 @@
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { useFormAutoSubmit, useFormCompose } from '@graphcommerce/react-hook-form'
-import { PaymentOptionsProps } from '../Api/PaymentMethod'
+import type { PaymentOptionsProps } from '../Api/PaymentMethod'
 import { GetPaymentMethodContextDocument } from '../PaymentMethodContext/GetPaymentMethodContext.gql'
 import { PaymentMethodOptionsNoopDocument } from './PaymentMethodOptionsNoop.gql'
 

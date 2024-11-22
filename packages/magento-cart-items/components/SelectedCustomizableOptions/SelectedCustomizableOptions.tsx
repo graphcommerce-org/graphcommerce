@@ -1,8 +1,8 @@
 import { Money } from '@graphcommerce/magento-store'
 import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
-import { CartItemFragment } from '../../Api/CartItem.gql'
-import { SelectedCustomizableOptionFragment } from './SelectedCustomizableOption.gql'
+import type { CartItemFragment } from '../../Api/CartItem.gql'
+import type { SelectedCustomizableOptionFragment } from './SelectedCustomizableOption.gql'
 
 type SelectedCustomizableOptionProps = CartItemFragment & {
   customizable_options?: (SelectedCustomizableOptionFragment | null | undefined)[] | null

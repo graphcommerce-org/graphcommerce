@@ -13,8 +13,6 @@ import {
   ProductFiltersQuery,
 } from '@graphcommerce/magento-product'
 import {
-  CategorySearchDocument,
-  CategorySearchQuery,
   ProductFiltersProSearchField,
   productListApplySearchDefaults,
   searchDefaultsToProductListFilters,
@@ -35,8 +33,7 @@ import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphql
 
 type SearchResultProps = MenuQueryFragment &
   ProductListQuery &
-  ProductFiltersQuery &
-  CategorySearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
+  ProductFiltersQuery & { filterTypes: FilterTypes; params: ProductListParams }
 type RouteProps = { url: string[] }
 export type GetPageStaticProps = GetStaticProps<
   LayoutNavigationProps,
@@ -125,15 +122,10 @@ export const getServerSideProps: GetPageStaticProps = async (context) => {
     variables: productListApplySearchDefaults(productListParams, (await conf).data),
   })
 
-  const categories = false
-    ? staticClient.query({ query: CategorySearchDocument, variables: { search } })
-    : undefined
-
   const result = {
     props: {
       ...(await products).data,
       ...(await filters).data,
-      ...(await categories)?.data,
       ...(await layout)?.data,
       filterTypes: await filterTypes,
       params: productListParams,

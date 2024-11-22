@@ -7,11 +7,11 @@ import { extendableComponent } from '../../Styles/extendableComponent'
 import { NextLink } from '../../Theme'
 import { useMatchMedia } from '../../hooks'
 import { iconChevronRight } from '../../icons'
+import type { NavigationNode } from '../hooks/useNavigation'
 import {
   isNavigationButton,
   isNavigationComponent,
   isNavigationHref,
-  NavigationNode,
   useNavigation,
 } from '../hooks/useNavigation'
 import type { NavigationList } from './NavigationList'

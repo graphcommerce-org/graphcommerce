@@ -1,9 +1,9 @@
-import { Breakpoint } from '@mui/material'
+import type { Breakpoint } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { startTransition, useEffect, useState } from 'react'
 import { useMatchMedia } from '../hooks'
-import { OverlayPanelProps } from './OverlayPanel'
-import { PopperPanelProps } from './PopperPanel'
+import type { OverlayPanelProps } from './OverlayPanel'
+import type { PopperPanelProps } from './PopperPanel'
 
 const OverlayPanel = dynamic(async () => (await import('./OverlayPanel')).OverlayPanel)
 

@@ -1,6 +1,6 @@
 import { ApolloErrorSnackbar, TelephoneElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
-import { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
+import type { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Form, FormActions, FormRow, Button, MessageSnackbar } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
@@ -28,7 +28,7 @@ export function CreateCustomerAddressForm() {
       onBeforeSubmit: (formData) => {
         const region = countries
           ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)
-          ?.available_regions?.find((r) => r?.id === formData.region.region_id)
+          ?.available_regions?.find((r) => r?.id === formData.region?.region_id)
 
         if (!formData.isCompany) {
           formData.company = ''

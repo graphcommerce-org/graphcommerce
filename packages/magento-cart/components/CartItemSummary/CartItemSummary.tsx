@@ -1,19 +1,21 @@
-import { CartItemActionCard, CartItemActionCardProps } from '@graphcommerce/magento-cart-items'
+import type { CartItemActionCardProps } from '@graphcommerce/magento-cart-items'
+import { CartItemActionCard } from '@graphcommerce/magento-cart-items'
+import type { ActionCardLayoutProps } from '@graphcommerce/next-ui'
 import {
   SectionContainer,
   extendableComponent,
   breakpointVal,
   nonNullable,
-  ActionCardLayoutProps,
   ActionCardLayout,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Divider, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Divider } from '@mui/material'
 import { useCartQuery } from '../../hooks'
 import { CartTotals } from '../CartTotals/CartTotals'
 import { CartItemSummaryDocument } from './GetCartItemSummary.gql'
 
-const name = 'CartItemSummary' as const
+const name = 'CartItemSummary'
 const parts = [
   'root',
   'imageScrollerContainer',

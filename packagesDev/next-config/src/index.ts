@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type React from 'react'
 import type { Path, PathValue } from 'react-hook-form'
-import { GraphCommerceConfig } from './generated/config'
+import type { GraphCommerceConfig } from './generated/config'
+
 export * from './utils/isMonorepo'
 export * from './utils/resolveDependenciesSync'
 export * from './utils/packageRoots'

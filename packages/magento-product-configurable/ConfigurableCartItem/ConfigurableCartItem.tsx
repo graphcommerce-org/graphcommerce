@@ -1,5 +1,6 @@
-import { CartItem, CartItemProps } from '@graphcommerce/magento-cart-items'
-import { ConfigurableCartItemFragment } from './ConfigurableCartItem.gql'
+import type { CartItemProps } from '@graphcommerce/magento-cart-items'
+import { CartItem } from '@graphcommerce/magento-cart-items'
+import type { ConfigurableCartItemFragment } from './ConfigurableCartItem.gql'
 import { OptionsList } from './OptionsList'
 
 export function ConfigurableCartItem(props: ConfigurableCartItemFragment & CartItemProps) {

@@ -1,10 +1,10 @@
-import { ProductPageNameFragment } from './ProductPageName.gql'
+import type { ProductPageNameFragment } from './ProductPageName.gql'
 
 export type ProductPageNameProps = {
   product: ProductPageNameFragment
 }
 
-export const ProductPageName = (props: ProductPageNameProps) => {
+export function ProductPageName(props: ProductPageNameProps) {
   const { product } = props
   return <>{product.name}</>
 }

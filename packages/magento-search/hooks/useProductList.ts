@@ -1,11 +1,13 @@
 import { useInContextQuery, useQuery } from '@graphcommerce/graphql'
-import {
+import type {
   FilterFormProviderProps,
-  ProductFiltersDocument,
   ProductFiltersQuery,
-  ProductListDocument,
   ProductListParams,
   ProductListQuery,
+} from '@graphcommerce/magento-product'
+import {
+  ProductFiltersDocument,
+  ProductListDocument,
   prefetchProductList,
   toProductListParams,
   useRouterFilterParams,

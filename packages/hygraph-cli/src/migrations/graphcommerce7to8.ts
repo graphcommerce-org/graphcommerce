@@ -1,6 +1,6 @@
 import { VisibilityTypes } from '@hygraph/management-sdk'
 import { migrationActionFactory } from '../migrationActionFactory'
-import { MigrationFunction } from '../types'
+import type { MigrationFunction } from '../types'
 
 export const graphcommerce7to8: MigrationFunction = async (schema, client) => {
   const { migrationAction } = migrationActionFactory(schema, client)

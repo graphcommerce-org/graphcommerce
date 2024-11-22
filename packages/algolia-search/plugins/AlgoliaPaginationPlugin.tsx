@@ -1,5 +1,5 @@
-import { ProductPaginationProps } from '@graphcommerce/magento-product'
-import { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import type { ProductPaginationProps } from '@graphcommerce/magento-product'
+import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { useRouter } from 'next/router'
 import { AlgoliaPagination } from '../components/Pagination/AlgoliaPagination'
 

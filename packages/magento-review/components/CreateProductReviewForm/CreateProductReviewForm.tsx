@@ -1,6 +1,6 @@
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
-import { ProductReviewRatingInput } from '@graphcommerce/graphql-mesh'
+import type { ProductReviewRatingInput } from '@graphcommerce/graphql-mesh'
 import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
 import {
   Form,
@@ -13,7 +13,8 @@ import {
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { Box, Typography, Alert, Button, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Typography, Alert, Button } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { CreateProductReviewDocument } from './CreateProductReview.gql'
@@ -25,7 +26,7 @@ type CreateProductReviewFormProps = {
   sx?: SxProps<Theme>
 }
 
-const name = 'CreateProductReviewForm' as const
+const name = 'CreateProductReviewForm'
 const parts = [
   'root',
   'ratingContainer',

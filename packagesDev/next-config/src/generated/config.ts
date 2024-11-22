@@ -393,6 +393,7 @@ export type GraphCommercePermissions = {
   checkout?: InputMaybe<CartPermissions>;
   /** Enables / disabled the account section of the website. DISABLE_REGISTRATION will only disable the registration page. */
   customerAccount?: InputMaybe<CustomerAccountPermissions>;
+  /** Allows the option to require login or completely disable the site. */
   website?: InputMaybe<WebsitePermissions>;
 };
 

@@ -1,4 +1,4 @@
-import { ContainerProps } from '@mui/material'
+import type { ContainerProps } from '@mui/material'
 import { Row } from '../../Row/Row'
 
 type BlogItemGridProps = ContainerProps
@@ -12,7 +12,7 @@ export function BlogItemGrid(props: BlogItemGridProps) {
         (theme) => ({
           display: 'grid',
           gap: theme.spacings.md,
-          gridTemplateColumns: { xs: `repeat(2, 1fr)`, md: `repeat(3, 1fr)`, lg: `repeat(4, 1fr)` },
+          gridTemplateColumns: { xs: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

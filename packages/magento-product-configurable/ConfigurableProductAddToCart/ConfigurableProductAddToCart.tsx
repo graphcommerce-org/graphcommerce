@@ -9,18 +9,15 @@ import {
   IconSvg,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Divider, Typography, Alert, Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Divider, Typography, Alert, Box } from '@mui/material'
 import React from 'react'
 import { useConfigurableContext } from '../ConfigurableContext/ConfigurableContext'
 import cheapestVariant from '../ConfigurableContext/cheapestVariant'
-import {
-  ConfigurableOptionsInput,
-  ConfigurableOptionsInputProps,
-} from '../ConfigurableOptions/ConfigurableOptions'
-import {
-  ConfigurableProductAddToCartDocument,
-  ConfigurableProductAddToCartMutationVariables,
-} from '../graphql/ConfigurableProductAddToCart.gql'
+import type { ConfigurableOptionsInputProps } from '../ConfigurableOptions/ConfigurableOptions'
+import { ConfigurableOptionsInput } from '../ConfigurableOptions/ConfigurableOptions'
+import type { ConfigurableProductAddToCartMutationVariables } from '../graphql/ConfigurableProductAddToCart.gql'
+import { ConfigurableProductAddToCartDocument } from '../graphql/ConfigurableProductAddToCart.gql'
 
 type ConfigurableProductAddToCartProps = {
   variables: Omit<ConfigurableProductAddToCartMutationVariables, 'cartId' | 'selectedOptions'>
@@ -35,7 +32,7 @@ type ConfigurableProductAddToCartProps = {
   >
 }
 
-const compName = 'ConfigurableOptionsInput' as const
+const compName = 'ConfigurableOptionsInput'
 const parts = ['form', 'button', 'finalPrice', 'quantity', 'divider', 'buttonWrapper'] as const
 const { classes } = extendableComponent(compName, parts)
 

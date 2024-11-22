@@ -1,6 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
-import { Types } from '@graphql-codegen/plugin-helpers'
-import { visit, DocumentNode, FragmentSpreadNode, FragmentDefinitionNode, Kind } from 'graphql'
+import type { Types } from '@graphql-codegen/plugin-helpers'
+import type { DocumentNode, FragmentSpreadNode, FragmentDefinitionNode } from 'graphql'
+import { visit, Kind } from 'graphql'
 
 function isFragment(document: DocumentNode) {
   let is = false
@@ -10,16 +11,6 @@ function isFragment(document: DocumentNode) {
     },
   })
   return is
-}
-
-function hasInjectableDirective(document: DocumentNode) {
-  let is = false
-  visit(document, {
-    Directive: (node) => {
-      if (!is && node.name.value === 'injectable') is = true
-    },
-  })
-  return is && isFragment
 }
 
 function hasInjectDirective(document: DocumentNode) {

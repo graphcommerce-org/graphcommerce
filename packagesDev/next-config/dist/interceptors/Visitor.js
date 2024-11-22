@@ -517,7 +517,6 @@ class Visitor {
         return n;
     }
     visitTsPropertySignature(n) {
-        n.params = this.visitTsFnParameters(n.params);
         n.typeAnnotation = this.visitTsTypeAnnotation(n.typeAnnotation);
         return n;
     }

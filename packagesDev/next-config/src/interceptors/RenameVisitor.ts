@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import { Identifier } from '@swc/core'
+import type { Identifier } from '@swc/core'
 import { Visitor } from './Visitor'
 
 export class RenameVisitor extends Visitor {

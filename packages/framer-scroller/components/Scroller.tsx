@@ -1,7 +1,9 @@
-import { styled, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { styled } from '@mui/material'
 import { m } from 'framer-motion'
 import { forwardRef } from 'react'
-import { ScrollableProps, useScroller } from '../hooks/useScroller'
+import type { ScrollableProps } from '../hooks/useScroller'
+import { useScroller } from '../hooks/useScroller'
 
 const ScrollerDiv = styled(m.div)({})
 
