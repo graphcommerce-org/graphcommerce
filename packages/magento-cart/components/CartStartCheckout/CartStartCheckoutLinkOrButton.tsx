@@ -1,5 +1,5 @@
 import type { LinkOrButtonProps } from '@graphcommerce/next-ui'
-import { iconChevronRight, IconSvg, LinkOrButton } from '@graphcommerce/next-ui'
+import { IconSvg, LinkOrButton, iconChevronRight } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
 import React from 'react'

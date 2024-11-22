@@ -1,15 +1,19 @@
 /* eslint-disable @typescript-eslint/no-restricted-imports */
+
 /* eslint-disable prefer-const */
+
 /* eslint-disable no-param-reassign */
+
 /* eslint-disable @next/next/no-img-element */
+
 /* eslint-disable jsx-a11y/alt-text */
 import type { SxProps, Theme } from '@mui/material'
-import { useForkRef, styled } from '@mui/material'
-import type { LoaderValue, ImageConfigComplete } from 'next/dist/shared/lib/image-config'
+import { styled, useForkRef } from '@mui/material'
+import type { ImageConfigComplete, LoaderValue } from 'next/dist/shared/lib/image-config'
 import { VALID_LOADERS, imageConfigDefault } from 'next/dist/shared/lib/image-config'
 import { ImageConfigContext } from 'next/dist/shared/lib/image-config-context.shared-runtime'
 import Head from 'next/head'
-import type { ImageLoaderProps, ImageLoader } from 'next/image'
+import type { ImageLoader, ImageLoaderProps } from 'next/image'
 import React, { useContext, useEffect, useMemo, useRef } from 'react'
 import type { ImageLoaderPropsWithConfig } from '../config/config'
 import {

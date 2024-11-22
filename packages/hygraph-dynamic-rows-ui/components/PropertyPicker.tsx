@@ -1,4 +1,4 @@
-import { ApolloClient, gql, InMemoryCache, useQuery } from '@apollo/client'
+import { ApolloClient, InMemoryCache, gql, useQuery } from '@apollo/client'
 import type { FieldExtensionProps } from '@hygraph/app-sdk-react'
 import { useFieldExtension } from '@hygraph/app-sdk-react'
 import { TextField } from '@mui/material'

@@ -1,23 +1,23 @@
 import {
   CategoryBreadcrumbs,
-  CategoryDescription,
   CategoryChildren,
+  CategoryDescription,
 } from '@graphcommerce/magento-category'
 import {
   ProductFiltersPro,
-  ProductListFiltersContainer,
   ProductFiltersProAggregations,
-  productFiltersProChipRenderer,
-  ProductFiltersProSortChip,
-  ProductFiltersProLimitChip,
   ProductFiltersProAllFiltersChip,
-  ProductListCount,
+  ProductFiltersProLimitChip,
   ProductFiltersProNoResults,
+  ProductFiltersProSortChip,
+  ProductListCount,
+  ProductListFiltersContainer,
   ProductListPagination,
   ProductListSuggestions,
+  productFiltersProChipRenderer,
 } from '@graphcommerce/magento-product'
 import { ProductFiltersProSearchTerm } from '@graphcommerce/magento-search'
-import { LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { LayoutTitle, StickyBelowHeader, memoDeep } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Container, Typography } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'

@@ -1,6 +1,6 @@
-import type { Types } from '@adyen/api-library'
 import { makeVar, useReactiveVar } from '@graphcommerce/graphql'
 import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
+import type { Types } from '@adyen/api-library'
 import { useEventCallback } from '@mui/material'
 import type { AdyenPaymentResponseFragment } from './AdyenPaymentResponse.gql'
 import { useAdyenCartLock } from './useAdyenCartLock'

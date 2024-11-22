@@ -1,8 +1,8 @@
 import { getCategoryStaticPaths } from '@graphcommerce/magento-category'
 import {
   excludeSitemap,
-  staticPathsToString,
   getServerSidePropsSitemap,
+  staticPathsToString,
   toSitemapFields,
 } from '@graphcommerce/next-ui'
 import type { GetServerSideProps } from 'next'

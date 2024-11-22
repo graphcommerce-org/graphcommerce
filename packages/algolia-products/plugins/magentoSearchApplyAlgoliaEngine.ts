@@ -1,7 +1,7 @@
 import type {
-  useProductListApplySearchDefaults as useProductListApplyDefaults,
-  productListApplySearchDefaults as productListApplyDefaults,
   searchDefaultsToProductListFilters as defaultsToProductListFilters,
+  productListApplySearchDefaults as productListApplyDefaults,
+  useProductListApplySearchDefaults as useProductListApplyDefaults,
 } from '@graphcommerce/magento-search'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 import { applyEngineVariables } from '../utils/applyEngineVariable'

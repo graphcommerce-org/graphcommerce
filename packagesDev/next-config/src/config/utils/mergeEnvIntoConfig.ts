@@ -1,21 +1,21 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { mergeDeep, cloneDeep } from '@apollo/client/utilities'
+import { cloneDeep, mergeDeep } from '@apollo/client/utilities'
 import chalk from 'chalk'
 import { get, set } from 'lodash'
 import snakeCase from 'lodash/snakeCase'
-import type { ZodRawShape, ZodTypeAny, ZodAny } from 'zod'
+import type { ZodAny, ZodRawShape, ZodTypeAny } from 'zod'
 import {
-  z,
-  ZodObject,
-  ZodBoolean,
   ZodArray,
-  ZodString,
-  ZodNumber,
-  ZodNullable,
-  ZodOptional,
+  ZodBoolean,
+  ZodDefault,
   ZodEffects,
   ZodEnum,
-  ZodDefault,
+  ZodNullable,
+  ZodNumber,
+  ZodObject,
+  ZodOptional,
+  ZodString,
+  z,
 } from 'zod'
 import diff from './diff'
 

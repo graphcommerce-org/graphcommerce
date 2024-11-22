@@ -1,31 +1,31 @@
 import type {
-  BatchMigrationCreateModelInput,
-  BatchMigrationCreateComponentInput,
-  BatchMigrationCreateEnumerationInput,
-  BatchMigrationCreateSimpleFieldInput,
-  BatchMigrationCreateEnumerableFieldInput,
-  BatchMigrationCreateRelationalFieldInput,
-  BatchMigrationCreateUnionFieldInput,
   BatchMigrationCreateComponentFieldInput,
+  BatchMigrationCreateComponentInput,
+  BatchMigrationCreateComponentUnionFieldInput,
+  BatchMigrationCreateEnumerableFieldInput,
+  BatchMigrationCreateEnumerationInput,
+  BatchMigrationCreateModelInput,
+  BatchMigrationCreateRelationalFieldInput,
+  BatchMigrationCreateSimpleFieldInput,
+  BatchMigrationCreateUnionFieldInput,
   BatchMigrationDeleteComponentInput,
   BatchMigrationDeleteEnumerationInput,
+  BatchMigrationDeleteFieldInput,
   BatchMigrationDeleteModelInput,
   BatchMigrationUpdateComponentFieldInput,
   BatchMigrationUpdateComponentInput,
+  BatchMigrationUpdateComponentUnionFieldInput,
   BatchMigrationUpdateEnumerableFieldInput,
   BatchMigrationUpdateEnumerationInput,
   BatchMigrationUpdateModelInput,
   BatchMigrationUpdateRelationalFieldInput,
   BatchMigrationUpdateSimpleFieldInput,
   BatchMigrationUpdateUnionFieldInput,
-  BatchMigrationDeleteFieldInput,
-  BatchMigrationCreateComponentUnionFieldInput,
-  BatchMigrationUpdateComponentUnionFieldInput,
   Client,
 } from '@hygraph/management-sdk'
 import dotenv from 'dotenv'
 import type { Schema } from './types'
-import { graphcommerceLog, capitalize } from './utils/graphCommerceLog'
+import { capitalize, graphcommerceLog } from './utils/graphCommerceLog'
 
 dotenv.config()
 

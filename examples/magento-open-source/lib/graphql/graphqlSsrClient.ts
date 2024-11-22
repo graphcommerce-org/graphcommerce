@@ -1,17 +1,17 @@
 import type {
-  FetchPolicy,
   DefaultOptions,
-  PreviewConfig,
+  FetchPolicy,
   NormalizedCacheObject,
+  PreviewConfig,
 } from '@graphcommerce/graphql'
 import {
   ApolloClient,
   ApolloLink,
-  errorLink,
-  measurePerformanceLink,
   InMemoryCache,
+  errorLink,
   fragments,
   graphqlConfig,
+  measurePerformanceLink,
   mergeTypePolicies,
 } from '@graphcommerce/graphql'
 import { MeshApolloLink, getBuiltMesh } from '@graphcommerce/graphql-mesh'

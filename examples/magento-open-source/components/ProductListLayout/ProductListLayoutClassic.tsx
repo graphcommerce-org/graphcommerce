@@ -1,17 +1,17 @@
 import {
   CategoryBreadcrumbs,
-  CategoryDescription,
   CategoryChildren,
+  CategoryDescription,
 } from '@graphcommerce/magento-category'
 import {
-  ProductListParamsProvider,
-  ProductListFiltersContainer,
-  ProductListSort,
-  ProductListFilters,
   ProductListCount,
+  ProductListFilters,
+  ProductListFiltersContainer,
   ProductListPagination,
+  ProductListParamsProvider,
+  ProductListSort,
 } from '@graphcommerce/magento-product'
-import { LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { LayoutTitle, StickyBelowHeader, memoDeep } from '@graphcommerce/next-ui'
 import { Container } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'
 import type { ProductListLayoutProps } from './types'

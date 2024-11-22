@@ -1,6 +1,6 @@
 import type { GraphCommerceConfig } from '../../src/generated/config'
 import { findOriginalSource } from '../../src/interceptors/findOriginalSource'
-import { SOURCE_START, SOURCE_END } from '../../src/interceptors/generateInterceptor'
+import { SOURCE_END, SOURCE_START } from '../../src/interceptors/generateInterceptor'
 import { generateInterceptors } from '../../src/interceptors/generateInterceptors'
 import { parseStructure } from '../../src/interceptors/parseStructure'
 import { parseSync } from '../../src/interceptors/swc'

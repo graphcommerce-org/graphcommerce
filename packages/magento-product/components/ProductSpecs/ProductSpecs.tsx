@@ -1,4 +1,4 @@
-import { responsiveVal, Row, SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
+import { Row, SectionContainer, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { ProductSpecsFragment } from './ProductSpecs.gql'

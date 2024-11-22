@@ -1,5 +1,5 @@
 import { useHistoryLink } from '@graphcommerce/framer-next-pages'
-import { SectionContainer, extendableComponent, breakpointVal } from '@graphcommerce/next-ui'
+import { SectionContainer, breakpointVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Link, Typography, lighten } from '@mui/material'

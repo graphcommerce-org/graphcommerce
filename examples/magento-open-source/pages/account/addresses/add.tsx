@@ -3,17 +3,17 @@ import type { AccountDashboardAddressesQuery } from '@graphcommerce/magento-cust
 import {
   CreateCustomerAddressForm,
   CustomerDocument,
-  useCustomerQuery,
   WaitForCustomer,
   getCustomerAccountIsDisabled,
+  useCustomerQuery,
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
-  SectionContainer,
-  iconAddresses,
   LayoutOverlayHeader,
   LayoutTitle,
+  SectionContainer,
+  iconAddresses,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'

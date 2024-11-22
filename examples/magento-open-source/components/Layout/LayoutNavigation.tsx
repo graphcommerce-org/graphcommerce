@@ -5,22 +5,22 @@ import { ProductFiltersProSearchField, SearchLink } from '@graphcommerce/magento
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import type { LayoutDefaultProps } from '@graphcommerce/next-ui'
 import {
+  DarkLightModeMenuSecondaryItem,
   DesktopNavActions,
   DesktopNavBar,
+  DesktopNavItem,
+  IconSvg,
   LayoutDefault,
+  MenuFabSecondaryItem,
+  NavigationFab,
+  NavigationOverlay,
+  NavigationProvider,
+  PlaceholderFab,
+  iconChevronDown,
   iconCustomerService,
   iconHeart,
-  NavigationFab,
-  MenuFabSecondaryItem,
-  PlaceholderFab,
-  IconSvg,
-  DesktopNavItem,
-  DarkLightModeMenuSecondaryItem,
-  iconChevronDown,
-  NavigationProvider,
-  NavigationOverlay,
-  useNavigationSelection,
   useMemoDeep,
+  useNavigationSelection,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -34,7 +34,7 @@ export type LayoutNavigationProps = LayoutQuery &
   Omit<LayoutDefaultProps, 'footer' | 'header' | 'cartFab' | 'menuFab'>
 
 export function LayoutNavigation(props: LayoutNavigationProps) {
-  const { footer, menu, children, ...uiProps } = props
+  const { menu, children, ...uiProps } = props
 
   const selection = useNavigationSelection()
   const router = useRouter()
@@ -170,7 +170,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </DesktopNavActions>
           </>
         }
-        footer={<Footer footer={footer} />}
+        footer={<Footer />}
         cartFab={<CartFab BadgeProps={{ color: 'secondary' }} />}
         menuFab={<NavigationFab onClick={() => selection.set([])} />}
       >

@@ -1,11 +1,11 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
-import { cacheFirst, flushMeasurePerf, InContextMaskProvider } from '@graphcommerce/graphql'
+import { InContextMaskProvider, cacheFirst, flushMeasurePerf } from '@graphcommerce/graphql'
 import {
-  appendSiblingsAsChildren,
   CategoryBreadcrumbs,
   CategoryHeroNav,
   CategoryHeroNavTitle,
   CategoryMeta,
+  appendSiblingsAsChildren,
   findParentBreadcrumbItem,
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
@@ -16,29 +16,28 @@ import type {
   ProductListQuery,
 } from '@graphcommerce/magento-product'
 import {
+  ProductFiltersDocument,
+  ProductListDocument,
+  categoryDefaultsToProductListFilters,
   extractUrlQuery,
   getFilterTypes,
   parseParams,
-  ProductFiltersDocument,
   productListApplyCategoryDefaults,
-  ProductListDocument,
-  categoryDefaultsToProductListFilters,
-  useProductList,
   productListLink,
+  useProductList,
 } from '@graphcommerce/magento-product'
-import { redirectOrNotFound, redirectTo, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { StoreConfigDocument, redirectOrNotFound, redirectTo } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { LayoutHeader, LayoutTitle, MetaRobots } from '@graphcommerce/next-ui'
+import { LayoutHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Container } from '@mui/material'
 import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../components'
 import {
+  LayoutDocument,
+  LayoutNavigation,
   ProductListLayoutClassic,
   ProductListLayoutDefault,
   ProductListLayoutSidebar,
-  LayoutDocument,
-  LayoutNavigation,
 } from '../components'
 import type { CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { CategoryPageDocument } from '../graphql/CategoryPage.gql'

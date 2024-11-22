@@ -13,11 +13,11 @@ import {
 import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
 import {
+  PaymentMethodActionCardListForm,
   PaymentMethodButton,
+  PaymentMethodContextProvider,
   PaymentMethodPlaceOrder,
   useCartLock,
-  PaymentMethodActionCardListForm,
-  PaymentMethodContextProvider,
 } from '@graphcommerce/magento-cart-payment-method'
 import { SubscribeToNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -25,19 +25,19 @@ import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   FormActions,
   FullPageMessage,
+  IconSvg,
+  LayoutHeader,
+  LayoutTitle,
+  Stepper,
   iconChevronRight,
   iconId,
-  LayoutHeader,
-  Stepper,
-  IconSvg,
-  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Container, Dialog, Typography } from '@mui/material'
 import type { LayoutMinimalProps } from '../../components'
 import { LayoutDocument, LayoutMinimal } from '../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 

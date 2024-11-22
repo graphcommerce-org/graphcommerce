@@ -1,4 +1,4 @@
-import type { MeshContext, CustomAttributeMetadataInterface } from '@graphcommerce/graphql-mesh'
+import type { CustomAttributeMetadataInterface, MeshContext } from '@graphcommerce/graphql-mesh'
 
 export type CustomAttributeInput = { attribute_code: string; entity_type: 'catalog_product' }
 

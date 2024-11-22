@@ -1,11 +1,11 @@
 import { useMutation } from '@graphcommerce/graphql'
 import type { FabProps } from '@graphcommerce/next-ui'
-import { iconCompare, Button, Fab } from '@graphcommerce/next-ui'
+import { Button, Fab, iconCompare } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { SxProps, Theme } from '@mui/material'
-import { alpha, Checkbox, NoSsr, useTheme } from '@mui/material'
+import { Checkbox, NoSsr, alpha, useTheme } from '@mui/material'
 import { useState } from 'react'
 import type { CompareProductIdInternalFragment } from '../graphql'
 import { AddProductsToCompareListDocument } from '../graphql/AddProductsToCompareList.gql'

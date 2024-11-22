@@ -3,12 +3,12 @@ import { cacheFirst } from '@graphcommerce/graphql'
 import { GuestNewsletter } from '@graphcommerce/magento-newsletter'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { LayoutOverlayHeader, LayoutTitle, PageMeta } from '@graphcommerce/next-ui'
+import { Trans, t } from '@lingui/macro'
 import { Container, Typography } from '@mui/material'
-import type { LayoutOverlayProps, LayoutNavigationProps } from '../../components'
+import type { LayoutNavigationProps, LayoutOverlayProps } from '../../components'
 import { LayoutDocument, LayoutOverlay } from '../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type RouteProps = { url: string[] }

@@ -1,19 +1,19 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
-  EditAddressForm,
-  useCustomerQuery,
-  WaitForCustomer,
   AccountDashboardAddressesDocument,
+  EditAddressForm,
+  WaitForCustomer,
   getCustomerAccountIsDisabled,
+  useCustomerQuery,
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
-  iconAddresses,
   IconHeader,
-  SectionContainer,
   LayoutOverlayHeader,
   LayoutTitle,
+  SectionContainer,
+  iconAddresses,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'

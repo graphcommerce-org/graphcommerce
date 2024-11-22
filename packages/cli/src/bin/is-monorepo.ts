@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-
-import type { ChildProcess } from 'node:child_process'
-import { spawn } from 'node:child_process'
 import { isMonorepo } from '@graphcommerce/next-config'
 import { detect } from 'detect-package-manager'
+import type { ChildProcess } from 'node:child_process'
+import { spawn } from 'node:child_process'
 
 /**
  * Executes a command dependening if we're running in a monorepo or not Usage:

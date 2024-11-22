@@ -15,7 +15,7 @@ import { useConfigurableContext } from '../ConfigurableContext/ConfigurableConte
 import { ColorSwatchData } from '../Swatches/ColorSwatchData'
 import { ImageSwatchData } from '../Swatches/ImageSwatchData'
 import { TextSwatchData } from '../Swatches/TextSwatchData'
-import type { SwatchTypeRenderer, SwatchSize } from '../Swatches/types'
+import type { SwatchSize, SwatchTypeRenderer } from '../Swatches/types'
 
 export type ConfigurableOptionsInputProps = {
   sku: string

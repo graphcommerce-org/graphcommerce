@@ -1,4 +1,4 @@
-import { useQuery, cloneDeep } from '@graphcommerce/graphql'
+import { cloneDeep, useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { ChipMenuProps } from '@graphcommerce/next-ui'
 import { ChipMenu, extendableComponent } from '@graphcommerce/next-ui'

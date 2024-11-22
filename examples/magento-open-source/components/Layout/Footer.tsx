@@ -1,50 +1,32 @@
-import { Image } from '@graphcommerce/image'
+import { useQuery } from '@graphcommerce/graphql'
 import { useCheckoutGuestEnabled } from '@graphcommerce/magento-cart'
-import { StoreSwitcherButton } from '@graphcommerce/magento-store'
-import { Footer as FooterBase } from '@graphcommerce/next-ui'
+import { StoreConfigDocument, StoreSwitcherButton } from '@graphcommerce/magento-store'
+import { DateFormat, Footer as FooterBase } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Button, IconButton, Link } from '@mui/material'
+import { Button, Link } from '@mui/material'
 
-export function Footer(props: FooterProps) {
-  const { footer } = props
+export function Footer() {
   const cartEnabled = useCheckoutGuestEnabled()
+  const config = useQuery(StoreConfigDocument)
 
   return (
     <FooterBase
-      socialLinks={footer?.socialLinks?.map((link) => (
-        <IconButton key={link.title} href={link.url} color='inherit' size='medium' edge='start'>
-          {link.asset ? (
-            <Image
-              layout='fill'
-              src={link.asset.url}
-              width={24}
-              height={24}
-              unoptimized
-              alt={link.title}
-              sx={(theme) => ({
-                filter: theme.palette.mode === 'dark' ? 'invert(100%)' : 'invert(0%)',
-              })}
-            />
-          ) : (
-            link.title
-          )}
-        </IconButton>
-      ))}
+      socialLinks={[]}
       storeSwitcher={<StoreSwitcherButton />}
       customerService={
-        <Button href='#' variant='pill'>
+        <Button href='/service' variant='pill'>
           <Trans>Customer Service</Trans>
         </Button>
       }
       copyright={
         <>
-          <span>{footer?.copyright}</span>
+          <span>
+            <Trans>
+              Copyright© {<DateFormat dateStyle={undefined} year='numeric' date={new Date()} />}{' '}
+              {config.data?.storeConfig?.website_name}
+            </Trans>
+          </span>
 
-          {footer?.legalLinks?.map((link) => (
-            <Link key={link.title} href={link.url} color='textPrimary' underline='always'>
-              {link.title}
-            </Link>
-          ))}
           {import.meta.graphCommerce.magentoVersion >= 247 && cartEnabled && (
             <Link href='/guest/orderstatus' color='textPrimary' underline='always'>
               <Trans>Order status</Trans>

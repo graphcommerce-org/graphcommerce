@@ -1,5 +1,5 @@
 import type { CookieSerializeOptions } from 'cookie'
-import { serialize, parse } from 'cookie'
+import { parse, serialize } from 'cookie'
 
 /** Read a cookie */
 export function cookie(name: string): string | undefined

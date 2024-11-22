@@ -1,18 +1,18 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   CustomerDocument,
-  getCustomerAccountIsDisabled,
   UpdateCustomerEmailForm,
-  useCustomerQuery,
   WaitForCustomer,
+  getCustomerAccountIsDisabled,
+  useCustomerQuery,
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
-  iconEmailOutline,
-  SectionContainer,
   LayoutOverlayHeader,
   LayoutTitle,
+  SectionContainer,
+  iconEmailOutline,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'

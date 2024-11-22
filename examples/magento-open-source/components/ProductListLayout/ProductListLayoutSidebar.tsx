@@ -1,27 +1,27 @@
-import { CategoryDescription, CategoryBreadcrumbs } from '@graphcommerce/magento-category'
+import { CategoryBreadcrumbs, CategoryDescription } from '@graphcommerce/magento-category'
 import {
   ProductFiltersPro,
-  ProductListSuggestions,
-  ProductListCount,
-  ProductFiltersProNoResults,
-  ProductListPagination,
-  ProductListFiltersContainer,
   ProductFiltersProAggregations,
-  productFiltersProChipRenderer,
-  ProductFiltersProSortChip,
-  ProductFiltersProLimitChip,
   ProductFiltersProAllFiltersChip,
-  ProductFiltersProClearAll,
   ProductFiltersProCategorySection,
-  ProductFiltersProSortSection,
+  ProductFiltersProClearAll,
+  ProductFiltersProLimitChip,
   ProductFiltersProLimitSection,
+  ProductFiltersProNoResults,
+  ProductFiltersProSortChip,
+  ProductFiltersProSortSection,
+  ProductListCount,
+  ProductListFiltersContainer,
+  ProductListPagination,
+  ProductListSuggestions,
+  productFiltersProChipRenderer,
   productFiltersProSectionRenderer,
 } from '@graphcommerce/magento-product'
 import {
-  ProductFiltersProSearchTerm,
   ProductFiltersProCategorySectionSearch,
+  ProductFiltersProSearchTerm,
 } from '@graphcommerce/magento-search'
-import { MediaQuery, memoDeep, responsiveVal, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { MediaQuery, StickyBelowHeader, memoDeep, responsiveVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Box, Container, Typography } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'

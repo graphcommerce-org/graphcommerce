@@ -1,15 +1,15 @@
 import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import {
-  extendableComponent,
-  iconShoppingBag,
   DesktopHeaderBadge,
   IconSvg,
-  useScrollY,
+  extendableComponent,
+  iconShoppingBag,
   useFabSize,
+  useScrollY,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import type { BadgeProps, FabProps, SxProps, Theme } from '@mui/material'
-import { alpha, Fab, styled, useTheme, Box } from '@mui/material'
+import { Box, Fab, alpha, styled, useTheme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useCartEnabled, useCartShouldLoginToContinue } from '../../hooks'

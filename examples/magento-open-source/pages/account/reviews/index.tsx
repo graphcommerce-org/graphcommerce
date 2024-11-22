@@ -1,18 +1,18 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
+  WaitForCustomer,
   getCustomerAccountIsDisabled,
   useCustomerQuery,
-  WaitForCustomer,
 } from '@graphcommerce/magento-customer'
 import { AccountDashboardReviewsDocument, AccountReviews } from '@graphcommerce/magento-review'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   FullPageMessage,
-  iconStar,
+  IconSvg,
   LayoutOverlayHeader,
   LayoutTitle,
-  IconSvg,
+  iconStar,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'

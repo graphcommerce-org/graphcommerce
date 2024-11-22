@@ -1,27 +1,27 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
-  useCustomerQuery,
-  WaitForCustomer,
-  useOrderCardItemImages,
-  OrderDetails,
-  OrderTotals,
-  OrderItems,
-  OrderDetailPageDocument,
-  OrderStateLabel,
-  ReorderItems,
   CancelOrderForm,
+  OrderDetailPageDocument,
+  OrderDetails,
+  OrderItems,
+  OrderStateLabel,
+  OrderTotals,
+  ReorderItems,
+  WaitForCustomer,
   getCustomerAccountIsDisabled,
+  useCustomerQuery,
+  useOrderCardItemImages,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { IconHeader, iconBox, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { IconHeader, LayoutOverlayHeader, LayoutTitle, iconBox } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
 import { Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { LayoutOverlayProps } from '../../../components'
 import { LayoutOverlay } from '../../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 

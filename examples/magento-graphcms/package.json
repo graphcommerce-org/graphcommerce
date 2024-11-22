@@ -123,7 +123,7 @@
     "> 1% in alt-EU",
     "not IE 11"
   ],
-  "prettier": "@graphcommerce/prettier-config-pwa",
+  "prettier": "@graphcommerce/prettier-config-pwa/classic.js",
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",
     "parserOptions": {

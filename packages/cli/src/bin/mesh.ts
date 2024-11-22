@@ -1,7 +1,4 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { promises as fs } from 'node:fs'
-import path from 'node:path'
-import { exit } from 'node:process'
 import type { meshConfig as meshConfigBase } from '@graphcommerce/graphql-mesh/meshConfig'
 import {
   loadConfig,
@@ -10,15 +7,18 @@ import {
   resolveDependenciesSync,
 } from '@graphcommerce/next-config'
 import type { GraphQLMeshCLIParams } from '@graphql-mesh/cli'
-import { graphqlMesh, DEFAULT_CLI_PARAMS } from '@graphql-mesh/cli'
+import { DEFAULT_CLI_PARAMS, graphqlMesh } from '@graphql-mesh/cli'
 import type { Logger, YamlConfig } from '@graphql-mesh/types'
 import { DefaultLogger, fileURLToPath } from '@graphql-mesh/utils'
 import dotenv from 'dotenv'
-import type { OmitIndexSignature, Entries } from 'type-fest'
-import yaml from 'yaml'
-import { findConfig } from '../utils/findConfig'
+import { promises as fs } from 'node:fs'
+import path from 'node:path'
+import { exit } from 'node:process'
 import 'tsx/cjs'
 import 'tsx/esm'
+import type { Entries, OmitIndexSignature } from 'type-fest'
+import yaml from 'yaml'
+import { findConfig } from '../utils/findConfig'
 
 dotenv.config()
 

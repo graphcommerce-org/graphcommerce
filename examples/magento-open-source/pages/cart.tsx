@@ -11,16 +11,16 @@ import {
 } from '@graphcommerce/magento-cart'
 import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
-import { CartItemsActionCards, CartCrosssellsScroller } from '@graphcommerce/magento-cart-items'
+import { CartCrosssellsScroller, CartItemsActionCards } from '@graphcommerce/magento-cart-items'
 import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
-  iconShoppingBag,
-  Stepper,
-  LayoutTitle,
-  LayoutOverlayHeader,
   FullPageMessage,
+  LayoutOverlayHeader,
+  LayoutTitle,
   OverlayStickyBottom,
+  Stepper,
+  iconShoppingBag,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'

@@ -1,31 +1,32 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
-  cacheFirst,
   InContextMaskProvider,
+  cacheFirst,
   mergeDeep,
   useInContextQuery,
 } from '@graphcommerce/graphql'
 import type { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
 import {
+  AddProductsToCartButton,
   AddProductsToCartForm,
-  getProductStaticPaths,
-  jsonLdProduct,
-  jsonLdProductOffer,
-  ProductPageName,
   ProductPageAddToCartActionsRow,
   ProductPageBreadcrumbs,
-  productPageCategory,
   ProductPageDescription,
   ProductPageGallery,
   ProductPageJsonLd,
   ProductPageMeta,
+  ProductPageName,
   ProductShortDescription,
-  AddProductsToCartButton,
+  ProductSpecs,
+  getProductStaticPaths,
+  jsonLdProduct,
+  jsonLdProductOffer,
+  productPageCategory,
 } from '@graphcommerce/magento-product'
 import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-product-configurable'
 import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-products'
-import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
-import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { ProductReviewChip, jsonLdProductReview } from '@graphcommerce/magento-review'
+import { Money, StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
@@ -133,13 +134,54 @@ function ProductPage(props: Props) {
           </ProductPageAddToCartActionsRow>
         </ProductPageGallery>
 
-        <ProductPageDescription product={product} fontSize='responsive' />
+        <ProductPageDescription product={product} fontSize='responsive' right='' />
       </AddProductsToCartForm>
+
+      <ProductSpecs title='Specs' {...products} />
+
+      <Reviews title='Reviews' {...product} />
+
+      {product.related_products && product.related_products.length > 0 && (
+        <ProductScroller
+          title='Looking Similar'
+          items={product.related_products.filter(nonNullable)}
+          productListRenderer={productListRenderer}
+          sizes={responsiveVal(200, 400)}
+          itemScrollerProps={{
+            sx: (theme) => ({
+              mb: theme.spacings.xxl,
+              '& .ItemScroller-scroller': { gridAutoColumns: responsiveVal(200, 400) },
+            }),
+          }}
+        />
+      )}
+
+      {product.upsell_products && product.upsell_products.length > 0 && (
+        <ProductScroller
+          title='You may also like'
+          items={product.upsell_products.filter(nonNullable)}
+          productListRenderer={productListRenderer}
+          sizes={responsiveVal(200, 400)}
+          itemScrollerProps={{
+            sx: (theme) => ({
+              mb: theme.spacings.xxl,
+              '& .ItemScroller-scroller': { gridAutoColumns: responsiveVal(200, 400) },
+            }),
+          }}
+        />
+      )}
 
       <RecentlyViewedProducts
         title={<Trans id='Recently viewed products' />}
         exclude={[product.sku]}
         productListRenderer={productListRenderer}
+        sizes={responsiveVal(200, 400)}
+        itemScrollerProps={{
+          sx: (theme) => ({
+            mb: theme.spacings.xxl,
+            '& .ItemScroller-scroller': { gridAutoColumns: responsiveVal(200, 400) },
+          }),
+        }}
         sx={(theme) => ({ mb: theme.spacings.xxl })}
       />
     </InContextMaskProvider>

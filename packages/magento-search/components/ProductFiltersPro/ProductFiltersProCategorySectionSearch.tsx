@@ -1,6 +1,6 @@
 import type {
-  MenuQueryFragment,
   CategoryTreeItem,
+  MenuQueryFragment,
   NavigationItemFragment,
 } from '@graphcommerce/magento-category'
 import type { ProductFiltersProCategoryAccordionProps } from '@graphcommerce/magento-product'

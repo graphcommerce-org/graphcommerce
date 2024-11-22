@@ -11,19 +11,19 @@ import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   FullPageMessage,
+  IconSvg,
+  LayoutHeader,
+  LayoutTitle,
   iconParty,
   iconSadFace,
-  LayoutHeader,
-  IconSvg,
-  LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Button, Box, Container, Typography } from '@mui/material'
+import { Box, Button, Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import type { LayoutNavigationProps, LayoutMinimalProps } from '../../components'
+import type { LayoutMinimalProps, LayoutNavigationProps } from '../../components'
 import { LayoutDocument, LayoutMinimal } from '../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
@@ -70,7 +70,7 @@ function OrderSuccessPage() {
 
             <SignupNewsletter />
 
-            <InlineAccount accountHref='/account' />
+            <InlineAccount />
 
             <Box textAlign='center' m={8}>
               <Button href='/' color='primary' variant='pill' size='large' id='back-to-home'>

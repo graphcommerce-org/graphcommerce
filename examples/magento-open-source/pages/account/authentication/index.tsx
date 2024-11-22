@@ -7,10 +7,10 @@ import {
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
-  SectionContainer,
-  iconLock,
   LayoutOverlayHeader,
   LayoutTitle,
+  SectionContainer,
+  iconLock,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'

@@ -2,14 +2,14 @@ import { ApolloErrorAlert, PasswordRepeatElement } from '@graphcommerce/ecommerc
 import { useQuery } from '@graphcommerce/graphql'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Button, extendableComponent, Form, FormRow } from '@graphcommerce/next-ui'
+import { Button, Form, FormRow, extendableComponent } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { Alert, Box } from '@mui/material'
 import React from 'react'
 import { useSignInForm } from '../../hooks/useSignInForm'
 import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
-import type { SignUpMutationVariables, SignUpMutation } from './SignUp.gql'
+import type { SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import { SignUpDocument } from './SignUp.gql'
 
 type SignUpFormInlineProps = Pick<SignUpMutationVariables, 'email'> & {

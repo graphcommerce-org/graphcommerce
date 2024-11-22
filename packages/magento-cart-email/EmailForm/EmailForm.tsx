@@ -10,7 +10,7 @@ import {
   useCustomerAccountCanSignIn,
   useCustomerSession,
 } from '@graphcommerce/magento-customer'
-import { extendableComponent, FormRow } from '@graphcommerce/next-ui'
+import { FormRow, extendableComponent } from '@graphcommerce/next-ui'
 import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { FormAutoSubmit, useFormCompose } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'

@@ -1,5 +1,5 @@
 import type { SidebarGalleryProps, TypeRenderer } from '@graphcommerce/next-ui'
-import { nonNullable, SidebarGallery } from '@graphcommerce/next-ui'
+import { SidebarGallery, nonNullable } from '@graphcommerce/next-ui'
 import type { ProductPageGalleryFragment } from './ProductPageGallery.gql'
 
 export type ProductPageGalleryRenderers = TypeRenderer<

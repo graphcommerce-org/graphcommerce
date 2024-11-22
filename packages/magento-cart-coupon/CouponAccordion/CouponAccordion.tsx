@@ -1,13 +1,13 @@
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import {
-  iconChevronDown,
   IconSvg,
-  extendableComponent,
   breakpointVal,
+  extendableComponent,
+  iconChevronDown,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
-import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
 import { useState } from 'react'
 import { ApplyCouponForm } from '../ApplyCouponForm/ApplyCouponForm'
 import { RemoveCouponForm } from '../RemoveCouponForm/RemoveCouponForm'

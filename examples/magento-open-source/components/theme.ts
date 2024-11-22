@@ -1,20 +1,19 @@
 /// <reference types="@graphcommerce/next-ui/types" />
-
 import {
-  responsiveVal,
-  breakpointVal,
+  MuiButtonInline,
   MuiButtonPill,
   MuiButtonResponsive,
-  themeBaseDefaults,
-  MuiSnackbar,
+  MuiChip,
   MuiFabSizes,
   MuiSlider,
-  MuiChip,
-  MuiButtonInline,
+  MuiSnackbar,
   NextLink,
+  breakpointVal,
+  responsiveVal,
+  themeBaseDefaults,
 } from '@graphcommerce/next-ui'
-import type { Theme, LinkProps } from '@mui/material'
-import { createTheme, alpha } from '@mui/material'
+import type { LinkProps, Theme } from '@mui/material'
+import { alpha, createTheme } from '@mui/material'
 import type { Components, PaletteOptions } from '@mui/material/styles'
 
 const lightPalette: PaletteOptions = {

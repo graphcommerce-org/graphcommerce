@@ -1,15 +1,15 @@
 import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { useWishlistItems, WishlistItemActionCard } from '@graphcommerce/magento-wishlist'
+import { WishlistItemActionCard, useWishlistItems } from '@graphcommerce/magento-wishlist'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
-  iconHeart,
-  FullPageMessage,
   Button,
-  LayoutTitle,
+  FullPageMessage,
   IconSvg,
   LayoutOverlayHeader,
+  LayoutTitle,
+  iconHeart,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'

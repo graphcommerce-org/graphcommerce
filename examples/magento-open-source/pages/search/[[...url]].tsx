@@ -3,16 +3,16 @@ import { InContextMaskProvider, cacheFirst, flushMeasurePerf } from '@graphcomme
 import type { MenuQueryFragment } from '@graphcommerce/magento-category'
 import type {
   FilterTypes,
+  ProductFiltersQuery,
   ProductListParams,
   ProductListQuery,
-  ProductFiltersQuery,
 } from '@graphcommerce/magento-product'
 import {
+  ProductFiltersDocument,
   ProductListDocument,
   extractUrlQuery,
-  parseParams,
   getFilterTypes,
-  ProductFiltersDocument,
+  parseParams,
 } from '@graphcommerce/magento-product'
 import type { CategorySearchQuery } from '@graphcommerce/magento-search'
 import {
@@ -28,11 +28,11 @@ import { LayoutHeader } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import type { LayoutNavigationProps } from '../../components'
 import {
+  LayoutDocument,
+  LayoutNavigation,
   ProductListLayoutClassic,
   ProductListLayoutDefault,
   ProductListLayoutSidebar,
-  LayoutDocument,
-  LayoutNavigation,
 } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 

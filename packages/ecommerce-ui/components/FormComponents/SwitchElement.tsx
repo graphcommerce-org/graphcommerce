@@ -1,4 +1,4 @@
-import type { FieldValues, ControllerProps } from '@graphcommerce/react-hook-form'
+import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
 import type { FormControlLabelProps } from '@mui/material'
 import { FormControlLabel, Switch } from '@mui/material'

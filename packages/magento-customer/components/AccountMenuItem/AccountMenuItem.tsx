@@ -1,11 +1,11 @@
 import type { ImageProps } from '@graphcommerce/image'
 import type { ButtonProps } from '@graphcommerce/next-ui'
 import {
-  responsiveVal,
-  iconChevronRight,
-  IconSvg,
   Button,
+  IconSvg,
   extendableComponent,
+  iconChevronRight,
+  responsiveVal,
 } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material'

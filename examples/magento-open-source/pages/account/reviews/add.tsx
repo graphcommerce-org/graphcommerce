@@ -6,17 +6,17 @@ import {
   getCustomerAccountIsDisabled,
 } from '@graphcommerce/magento-customer'
 import {
-  ProductReviewProductNameDocument,
   CreateProductReviewForm,
+  ProductReviewProductNameDocument,
 } from '@graphcommerce/magento-review'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   FullPageMessage,
-  iconBox,
+  IconSvg,
   LayoutOverlayHeader,
   LayoutTitle,
-  IconSvg,
+  iconBox,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'

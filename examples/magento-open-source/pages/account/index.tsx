@@ -5,16 +5,20 @@ import {
   AccountMenu,
   AccountMenuItem,
   AddressSingleLine,
-  getCustomerAccountIsDisabled,
   OrderStateLabelInline,
   SignOutForm,
-  useCustomerQuery,
   WaitForCustomer,
+  getCustomerAccountIsDisabled,
+  useCustomerQuery,
 } from '@graphcommerce/magento-customer'
 import { CustomerNewsletterToggle } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
+  LayoutHeader,
+  LayoutTitle,
+  RelativeToTimeFormat,
+  iconBin,
   iconBox,
   iconEmailOutline,
   iconHome,
@@ -24,17 +28,13 @@ import {
   iconPerson,
   iconShutdown,
   iconStar,
-  LayoutTitle,
-  LayoutHeader,
-  iconBin,
-  RelativeToTimeFormat,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import type { LayoutMinimalProps } from '../../components'
 import { LayoutDocument, LayoutMinimal } from '../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 

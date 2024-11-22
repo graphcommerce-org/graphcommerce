@@ -1,5 +1,5 @@
 import type { ContainerProps } from '@mui/material'
-import { Container, Box } from '@mui/material'
+import { Box, Container } from '@mui/material'
 import React from 'react'
 import { LazyHydrate } from '../LazyHydrate'
 import { extendableComponent } from '../Styles'

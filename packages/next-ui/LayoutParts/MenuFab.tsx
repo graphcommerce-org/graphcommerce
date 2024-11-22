@@ -1,6 +1,6 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import type { SxProps, Theme, FabProps, MenuProps as MenuPropsType } from '@mui/material'
-import { Divider, Fab, ListItem, Menu, styled, Box } from '@mui/material'
+import type { FabProps, MenuProps as MenuPropsType, SxProps, Theme } from '@mui/material'
+import { Box, Divider, Fab, ListItem, Menu, styled } from '@mui/material'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
@@ -9,7 +9,7 @@ import { useScrollY } from '../Layout/hooks/useScrollY'
 import { extendableComponent } from '../Styles/extendableComponent'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { useFabSize } from '../Theme'
-import { iconMenu, iconClose } from '../icons'
+import { iconClose, iconMenu } from '../icons'
 import { useFabAnimation } from './useFabAnimation'
 
 const MotionDiv = styled(m.div)({})

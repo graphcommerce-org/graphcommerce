@@ -1,21 +1,21 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { getCartDisabled } from '@graphcommerce/magento-cart'
 import {
+  AccountDashboardAddressesDocument,
   ApolloCustomerErrorFullPage,
   EditAddressForm,
-  useCustomerQuery,
-  AccountDashboardAddressesDocument,
   getCustomerAccountIsDisabled,
+  useCustomerQuery,
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
-  iconAddresses,
+  FullPageMessage,
   IconHeader,
-  SectionContainer,
   LayoutOverlayHeader,
   LayoutTitle,
-  FullPageMessage,
+  SectionContainer,
+  iconAddresses,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -77,7 +77,7 @@ function CheckoutCustomerAddressesEdit() {
             </div>
           )}
 
-          {address && !loading && <EditAddressForm onCompleteRoute='/checkout' address={address} />}
+          {address && !loading && <EditAddressForm address={address} />}
         </SectionContainer>
       </Container>
     </>

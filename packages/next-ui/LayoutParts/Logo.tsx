@@ -2,10 +2,10 @@ import type { ImageProps } from '@graphcommerce/image'
 import { Image } from '@graphcommerce/image'
 import type { SxProps, Theme } from '@mui/material'
 import {
+  Box,
+  unstable_composeClasses as composeClasses,
   generateUtilityClass,
   styled,
-  unstable_composeClasses as composeClasses,
-  Box,
 } from '@mui/material'
 import { useRouter } from 'next/router'
 import { forwardRef } from 'react'

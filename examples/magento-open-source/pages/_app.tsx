@@ -8,7 +8,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { CssBaseline } from '@mui/material'
 import type { AppProps } from 'next/app'
-import { lightTheme, darkTheme } from '../components/theme'
+import { darkTheme, lightTheme } from '../components/theme'
 import { I18nProvider } from '../lib/i18n/I18nProvider'
 
 export default function ThemedApp(props: AppProps) {

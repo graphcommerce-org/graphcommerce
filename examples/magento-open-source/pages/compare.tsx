@@ -1,24 +1,24 @@
 import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
-  useCompareList,
-  EmptyCompareListButton,
-  EmptyCompareList,
-  CompareListForm,
-  CompareListSelect,
-  CompareListItems,
   CompareListAttributes,
+  CompareListForm,
   CompareListIntroText,
+  CompareListItems,
+  CompareListSelect,
+  EmptyCompareList,
+  EmptyCompareListButton,
+  useCompareList,
 } from '@graphcommerce/magento-compare'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps, LayoutOverlayProps } from '@graphcommerce/next-ui'
 import {
-  LayoutOverlay,
-  iconCompare,
   FullPageMessage,
+  LayoutOverlay,
   LayoutOverlayHeader,
   LayoutTitle,
   PageMeta,
+  iconCompare,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'

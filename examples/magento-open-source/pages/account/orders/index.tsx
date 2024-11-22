@@ -1,19 +1,19 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
-  useCustomerQuery,
-  WaitForCustomer,
   AccountDashboardOrdersDocument,
   AccountOrders,
+  WaitForCustomer,
   getCustomerAccountIsDisabled,
+  useCustomerQuery,
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   FullPageMessage,
-  iconBox,
-  LayoutOverlayHeader,
   IconSvg,
+  LayoutOverlayHeader,
   LayoutTitle,
+  iconBox,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'

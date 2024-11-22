@@ -3,7 +3,7 @@ import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-for
 import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import type { AutocompleteProps, TextFieldProps } from '@mui/material'
-import { Autocomplete, Checkbox, TextField, CircularProgress } from '@mui/material'
+import { Autocomplete, Checkbox, CircularProgress, TextField } from '@mui/material'
 
 export type AutocompleteElementProps<
   F extends FieldValues,

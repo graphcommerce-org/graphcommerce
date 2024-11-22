@@ -1,5 +1,5 @@
 import type { SxProps, Theme } from '@mui/material'
-import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
 import type { ReactNode } from 'react'
 import { useState } from 'react'
 import { IconSvg } from '../IconSvg'

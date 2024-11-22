@@ -3,10 +3,10 @@ import { useDisplayInclTax } from '@graphcommerce/magento-cart'
 import { useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import {
-  responsiveVal,
+  NextLink,
   extendableComponent,
   filterNonNullableKeys,
-  NextLink,
+  responsiveVal,
 } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Badge, Box, Link } from '@mui/material'

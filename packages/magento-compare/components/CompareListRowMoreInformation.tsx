@@ -1,5 +1,5 @@
 import { productLink } from '@graphcommerce/magento-product'
-import { Button, iconChevronRight, IconSvg, SectionContainer } from '@graphcommerce/next-ui'
+import { Button, IconSvg, SectionContainer, iconChevronRight } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
 import { useCompareListStyles } from '../hooks/useCompareListStyles'

@@ -1,7 +1,7 @@
 import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import { Money } from '@graphcommerce/magento-store'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
-import { ActionCard, filterNonNullableKeys, SectionHeader } from '@graphcommerce/next-ui'
+import { ActionCard, SectionHeader, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Box, Checkbox } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
