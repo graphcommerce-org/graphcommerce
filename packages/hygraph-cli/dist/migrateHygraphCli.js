@@ -27,9 +27,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.migrateHygraphCli = migrateHygraphCli;
-const fs_1 = __importDefault(require("fs"));
 const next_config_1 = require("@graphcommerce/next-config");
 const dotenv_1 = __importDefault(require("dotenv"));
+const fs_1 = __importDefault(require("fs"));
 const prompts_1 = __importDefault(require("prompts"));
 const UpsertClient_1 = require("./UpsertClient");
 const availableMigrations = __importStar(require("./migrations"));

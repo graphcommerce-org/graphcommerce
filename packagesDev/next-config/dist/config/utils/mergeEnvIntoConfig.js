@@ -53,7 +53,7 @@ function configToEnvSchema(schema) {
                 envSchema[(0, exports.toEnvStr)(path)] = zod_1.z
                     .string()
                     .optional()
-                    .refine(isJSON, { message: `Invalid JSON` })
+                    .refine(isJSON, { message: 'Invalid JSON' })
                     .transform((val) => (val ? JSON.parse(val) : val));
                 envToDot[(0, exports.toEnvStr)(path)] = (0, exports.dotNotation)(path);
             }
@@ -69,7 +69,7 @@ function configToEnvSchema(schema) {
                 envSchema[(0, exports.toEnvStr)(path)] = zod_1.z
                     .string()
                     .optional()
-                    .refine(isJSON, { message: `Invalid JSON` })
+                    .refine(isJSON, { message: 'Invalid JSON' })
                     .transform((val) => (val ? JSON.parse(val) : val));
                 envToDot[(0, exports.toEnvStr)(path)] = (0, exports.dotNotation)(path);
             }
@@ -176,11 +176,11 @@ function formatAppliedEnv(applyResult) {
             return ` ${chalk_1.default.red('-')} ${baseLog}: ${fromFmt}`;
         return ` ${chalk_1.default.yellowBright('~')} ${baseLog}: ${fromFmt} => ${toFmt}`;
     });
-    let header = chalk_1.default.blueBright(`info`);
+    let header = chalk_1.default.blueBright('info');
     if (hasWarning)
-        header = chalk_1.default.yellowBright(`warning`);
+        header = chalk_1.default.yellowBright('warning');
     if (hasError)
-        header = chalk_1.default.yellowBright(`error`);
-    header += `   - Loaded GraphCommerce env variables`;
+        header = chalk_1.default.yellowBright('error');
+    header += '   - Loaded GraphCommerce env variables';
     return [header, ...lines].join('\n');
 }

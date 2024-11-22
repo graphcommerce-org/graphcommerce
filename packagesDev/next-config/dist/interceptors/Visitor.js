@@ -1,12 +1,9 @@
 "use strict";
-/**
- * This is an implementation of
- * https://github.com/swc-project/swc/blob/main/node-swc/src/Visitor.ts
- *
- * The JS API is deprecated, but there doesn't seem to be a valid alternative at this point.
- */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Visitor = void 0;
+/* eslint-disable no-param-reassign */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable consistent-return */
 /**
  * @deprecated JavaScript API is deprecated. Please use Wasm plugin instead.
  */
@@ -594,7 +591,7 @@ class Visitor {
         return n;
     }
     visitTsFnParameters(params) {
-        return params?.map(this.visitTsFnParameter.bind(this));
+        return params.map(this.visitTsFnParameter.bind(this));
     }
     visitTsFnParameter(n) {
         n.typeAnnotation = this.visitTsTypeAnnotation(n.typeAnnotation);

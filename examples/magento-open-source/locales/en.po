@@ -18,6 +18,10 @@ msgid "Doing so will remove all your data including order history and saved ship
 msgstr "Doing so will remove all your data including order history and saved shipping / billing addresses."
 
 #. js-lingui-generated-id
+msgid "{0, plural, one {<0>{addedItems}</0> has been added to your shopping cart} two {<1>{addedItems}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
+msgstr "{0, plural, one {<0>{addedItems}</0> has been added to your shopping cart} two {<1>{addedItems}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
+
+#. js-lingui-generated-id
 msgid "I understand that my account will be deleted and this can not be undone."
 msgstr "I understand that my account will be deleted and this can not be undone."
 
@@ -32,6 +36,10 @@ msgstr "Search all products..."
 #. js-lingui-generated-id
 msgid "We couldn't find any results"
 msgstr "We couldn't find any results"
+
+#. js-lingui-generated-id
+msgid "Newsletter"
+msgstr "Newsletter"
 
 #. js-lingui-generated-id
 msgid "Shipping method"
@@ -135,11 +143,18 @@ msgstr "Be the first to write a review!"
 msgid "Below <0/>"
 msgstr "Below <0/>"
 
+#. js-lingui-generated-id
+msgid "Contact us"
+msgstr "Contact us"
+
 msgid "Billing address"
 msgstr "Billing address"
 
 msgid "Blog"
 msgstr "Blog"
+
+msgid "Breadcrumbs"
+msgstr "Breadcrumbs"
 
 msgid "Buy {quantity} for <0/> and save {percent}%"
 msgstr "Buy {quantity} for <0/> and save {percent}%"
@@ -307,6 +322,10 @@ msgstr "Payment method"
 msgid "Did you mean: {list}"
 msgstr "Did you mean: {list}"
 
+#. js-lingui-generated-id
+msgid "Subscribe to newsletter"
+msgstr "Subscribe to newsletter"
+
 msgid "Edit"
 msgstr "Edit"
 
@@ -333,10 +352,6 @@ msgstr "Emails don't match"
 
 msgid "Empty comparelist"
 msgstr "Empty comparelist"
-
-#. js-lingui-generated-id
-msgid "{0, plural, one {<0>{1}</0> has been added to your shopping cart} two {<1>{2}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
-msgstr "{0, plural, one {<0>{1}</0> has been added to your shopping cart} two {<1>{2}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Fill in your e-mail to login or create an account"
@@ -1000,6 +1015,10 @@ msgstr "Order date"
 #. js-lingui-generated-id
 msgid "Contact"
 msgstr "Contact"
+
+#. js-lingui-generated-id
+msgid "Copyright© {year} {websiteName}"
+msgstr "Copyright© {year} {websiteName}"
 
 #. js-lingui-generated-id
 msgid "Order number"
