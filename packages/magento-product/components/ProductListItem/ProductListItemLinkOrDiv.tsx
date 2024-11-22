@@ -33,6 +33,6 @@ export const ProductListItemLinkOrDiv = React.forwardRef<
   return isLink(props) ? (
     <ButtonBase ref={ref} component={NextLink} {...props} sx={sxProps} focusRipple />
   ) : (
-    <Box ref={ref} {...props} sx={sxProps} />
+    <Box ref={ref} component='div' {...props} sx={sxProps} />
   )
 })

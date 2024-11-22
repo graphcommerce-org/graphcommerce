@@ -10,7 +10,7 @@ export type SearchOverlayItemProps<C extends ElementType = 'li'> = ListItemButto
 export const SearchOverlayItem = memo(
   forwardRef(
     <C extends ElementType = 'li'>(
-      props: SearchOverlayItemProps<C>,
+      props: React.PropsWithoutRef<SearchOverlayItemProps<C>>,
       rootRef: React.Ref<C extends 'li' ? HTMLLIElement : HTMLAnchorElement>,
     ) => {
       const { sx, component, ...rest } = props
