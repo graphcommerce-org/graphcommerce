@@ -547,7 +547,7 @@ it('correctly reports an error for an incorrect export', async () => {
     googleRecaptchaKey: '123',
     googleAnalyticsId: '123',
     demoMode: true,
-  } as GraphCommerceConfig
+  } as unknown as GraphCommerceConfig
 
   const src = `
 import { getSitemapPaths as getSitemapPathsType } from '@graphcommerce/magento-product'
@@ -566,8 +566,7 @@ export const plugin: FunctionPlugin<typeof getSitemapPathsType> = (prev, ...args
   console.error = jest.fn()
   const plugins = parseStructure(parseSync(src), fakeconfig, './plugins/MyPlugin.tsx')
 
-  // @ts-expect-error mock not typed
-  expect(console.error.mock.calls[0][0]).toMatchInlineSnapshot(
+  expect((console.error as jest.Mock).mock.calls[0][0]).toMatchInlineSnapshot(
     '"Plugin configuration invalid! See ./plugins/MyPlugin.tsx"',
   )
 
@@ -616,7 +615,7 @@ export const Plugin = ConfigurableProductPageName
     demoMode: true,
     configurableVariantForSimple: true,
     configurableVariantValues: { content: true, gallery: true, url: true },
-  } as GraphCommerceConfig
+  } as unknown as GraphCommerceConfig
 
   const firstFile = parseStructure(parseSync(src1), config, './plugins/MyPlugin')
 
@@ -742,7 +741,7 @@ it('Can correctly find exports that are default exports', async () => {
     demoMode: true,
     configurableVariantForSimple: true,
     configurableVariantValues: { content: true, gallery: true, url: true },
-  } as GraphCommerceConfig
+  } as unknown as GraphCommerceConfig
 
   const plugins = parseStructure(parseSync(pluginSource), config, './plugins/MyProjectIcon')
 
