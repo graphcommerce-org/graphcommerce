@@ -1,5 +1,5 @@
 import type { Direction } from '@graphcommerce/framer-next-pages'
-import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
+import { Scroller, useScrollTo, useScrollerContext } from '@graphcommerce/framer-scroller'
 import {
   dvh,
   dvw,

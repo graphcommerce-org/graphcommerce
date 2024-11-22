@@ -1,7 +1,7 @@
 import type { PaymentMethodContextProviderProps } from '@graphcommerce/magento-cart-payment-method'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { purchaseorder } from '../PurchaseOrder'
-import { banktransfer, checkmo, free, cashondelivery } from '../methods'
+import { banktransfer, cashondelivery, checkmo, free } from '../methods'
 
 export const config: PluginConfig = {
   type: 'component',

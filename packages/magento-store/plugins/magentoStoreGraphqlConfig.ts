@@ -1,4 +1,4 @@
-import { setContext, type graphqlConfig as graphqlConfigType } from '@graphcommerce/graphql'
+import { type graphqlConfig as graphqlConfigType, setContext } from '@graphcommerce/graphql'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 
 export const config: PluginConfig = {

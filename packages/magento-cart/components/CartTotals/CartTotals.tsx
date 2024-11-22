@@ -1,5 +1,5 @@
 import { Money } from '@graphcommerce/magento-store'
-import { extendableComponent, breakpointVal } from '@graphcommerce/next-ui'
+import { breakpointVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Divider, lighten } from '@mui/material'

@@ -1,4 +1,4 @@
-import { responsiveVal, breakpointVal } from '@graphcommerce/next-ui'
+import { breakpointVal, responsiveVal } from '@graphcommerce/next-ui'
 import type { BoxProps } from '@mui/material'
 import { Box } from '@mui/material'
 

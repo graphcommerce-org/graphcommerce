@@ -1,6 +1,6 @@
 import { getImageBackgroundProps } from '../../components/MediaBackground/getImageBackgroundProps'
 import { getMediaBackgroundProps } from '../../components/MediaBackground/getMediaBackgroundProps'
-import { getAdvanced, getVerticalAlignment, getMediaQuery, isHTMLElement } from '../../utils'
+import { getAdvanced, getMediaQuery, getVerticalAlignment, isHTMLElement } from '../../utils'
 import type { RowContentType } from './types'
 
 export const rowAggregator: RowContentType['configAggregator'] = (node, props) => {

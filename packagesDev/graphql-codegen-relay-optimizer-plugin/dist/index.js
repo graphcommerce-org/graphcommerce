@@ -1,10 +1,10 @@
 "use strict";
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.plugin = void 0;
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 const CompilerContext_1 = __importDefault(require("@ardatan/relay-compiler/lib/core/CompilerContext"));
 const IRPrinter_1 = require("@ardatan/relay-compiler/lib/core/IRPrinter");
 const RelayParser_1 = require("@ardatan/relay-compiler/lib/core/RelayParser");

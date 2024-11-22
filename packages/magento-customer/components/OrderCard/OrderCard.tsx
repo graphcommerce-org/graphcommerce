@@ -1,7 +1,7 @@
 import { Money } from '@graphcommerce/magento-store'
-import { DateTimeFormat, extendableComponent, NextLink } from '@graphcommerce/next-ui'
+import { DateTimeFormat, NextLink, extendableComponent } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, styled, Skeleton, ListItemButton } from '@mui/material'
+import { Box, ListItemButton, Skeleton, styled } from '@mui/material'
 import type { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import { OrderCardItemImage } from '../OrderCardItemImage/OrderCardItemImage'
 import { OrderStateLabel } from '../OrderStateLabel/OrderStateLabel'
@@ -103,7 +103,7 @@ export function OrderCard(props: OrderCardProps) {
           <Box component='span' className={classes.orderMoney} sx={{ fontWeight: 'bold' }}>
             <Money {...total?.grand_total} />
           </Box>
-          <DateTimeFormat>{order_date}</DateTimeFormat>
+          <DateTimeFormat date={order_date} />
           <span>#{number}</span>
         </OrderRow>
         <OrderRow>

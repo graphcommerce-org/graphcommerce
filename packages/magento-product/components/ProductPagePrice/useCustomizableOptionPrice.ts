@@ -4,9 +4,9 @@ import { filterNonNullableKeys, isTypename, nonNullable } from '@graphcommerce/n
 import type { AddToCartItemSelector } from '../AddProductsToCart'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import type {
+  AnyOption,
   CustomizableProductOptionBase,
   OptionValueSelector,
-  AnyOption,
   SelectorsProp,
 } from '../ProductCustomizable/productCustomizableSelectors'
 import { productCustomizableSelectors } from '../ProductCustomizable/productCustomizableSelectors'

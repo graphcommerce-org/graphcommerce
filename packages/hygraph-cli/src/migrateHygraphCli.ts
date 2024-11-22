@@ -1,6 +1,6 @@
-import fs from 'fs'
 import { loadConfig } from '@graphcommerce/next-config'
 import dotenv from 'dotenv'
+import fs from 'fs'
 import type { PromptObject } from 'prompts'
 import prompts from 'prompts'
 import { UpsertClient } from './UpsertClient'

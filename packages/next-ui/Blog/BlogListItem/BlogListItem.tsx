@@ -66,7 +66,7 @@ export function BlogListItem(props: BlogListItemProps) {
             color: theme.palette.text.secondary,
           })}
         >
-          <DateFormat dateStyle='long'>{date}</DateFormat>
+          <DateFormat dateStyle='long' date={date} />
         </Box>
       )}
 

@@ -1,15 +1,15 @@
 import {
+  IconSvg,
   extendableComponent,
   iconMin,
   iconPlus,
-  IconSvg,
   responsiveVal,
 } from '@graphcommerce/next-ui'
 import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
 import { Controller, useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import type { IconButtonProps, SxProps, Theme, TextFieldProps } from '@mui/material'
-import { TextField, Fab } from '@mui/material'
+import type { IconButtonProps, SxProps, TextFieldProps, Theme } from '@mui/material'
+import { Fab, TextField } from '@mui/material'
 
 export type NumberFieldElementProps<T extends FieldValues = FieldValues> = Omit<
   TextFieldProps,

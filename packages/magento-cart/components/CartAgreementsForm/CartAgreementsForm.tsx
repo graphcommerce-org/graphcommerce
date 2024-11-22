@@ -1,6 +1,6 @@
 import { CheckboxElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
-import { extendableComponent, FormDiv } from '@graphcommerce/next-ui'
+import { FormDiv, extendableComponent } from '@graphcommerce/next-ui'
 import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { FormPersist, useForm, useFormCompose } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'

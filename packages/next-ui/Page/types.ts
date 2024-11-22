@@ -1,12 +1,12 @@
-import type { ParsedUrlQuery } from 'querystring'
 import type { UpPage } from '@graphcommerce/framer-next-pages/types'
 // todo: remove references to GraphQL
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { NormalizedCacheObject } from '@graphcommerce/graphql'
 import type {
-  GetStaticProps as GetStaticPropsNext,
   GetServerSideProps as GetServerSidePropsNext,
+  GetStaticProps as GetStaticPropsNext,
 } from 'next'
+import type { ParsedUrlQuery } from 'querystring'
 
 type AnyObj = Record<string, unknown>
 

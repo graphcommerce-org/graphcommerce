@@ -1,10 +1,9 @@
 import { cloneDeep } from '@graphcommerce/graphql'
 import type { FilterEqualTypeInput } from '@graphcommerce/graphql-mesh'
 import type { ChipMenuProps } from '@graphcommerce/next-ui'
-import { responsiveVal, extendableComponent, ChipMenu } from '@graphcommerce/next-ui'
+import { ChipMenu, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
 import {
-  Box,
-  // eslint-disable-next-line @typescript-eslint/no-restricted-imports
+  Box, // eslint-disable-next-line @typescript-eslint/no-restricted-imports
   Checkbox,
   ListItem,
   ListItemSecondaryAction,

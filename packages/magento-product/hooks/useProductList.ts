@@ -1,6 +1,6 @@
 import { debounce } from '@graphcommerce/ecommerce-ui'
 import type { ApolloClient } from '@graphcommerce/graphql'
-import { useQuery, useInContextQuery, getInContextInput } from '@graphcommerce/graphql'
+import { getInContextInput, useInContextQuery, useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { showPageLoadIndicator } from '@graphcommerce/next-ui'
 import { useEventCallback } from '@mui/material'
@@ -20,8 +20,8 @@ import type { ProductListParams } from '../components/ProductListItems/filterTyp
 import { toProductListParams } from '../components/ProductListItems/filterTypes'
 import { useRouterFilterParams } from '../components/ProductListItems/filteredProductList'
 import {
-  productListApplyCategoryDefaults,
   categoryDefaultsToProductListFilters,
+  productListApplyCategoryDefaults,
   useProductListApplyCategoryDefaults,
 } from '../components/ProductListItems/productListApplyCategoryDefaults'
 

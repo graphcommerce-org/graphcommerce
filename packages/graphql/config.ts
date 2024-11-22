@@ -1,5 +1,5 @@
-import type { ApolloLink, TypePolicies } from '@apollo/client'
 import type { GraphCommerceStorefrontConfig } from '@graphcommerce/next-config'
+import type { ApolloLink, TypePolicies } from '@apollo/client'
 import type { SetRequired } from 'type-fest'
 import type { MigrateCache } from './components/GraphQLProvider/migrateCache'
 

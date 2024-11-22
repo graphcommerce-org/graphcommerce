@@ -1,17 +1,17 @@
 import type { ProductListItemFragment } from '@graphcommerce/magento-product'
 import {
   IconSvg,
-  iconHeart,
-  extendableComponent,
   MessageSnackbar,
+  extendableComponent,
   iconChevronRight,
+  iconHeart,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import type { SxProps, Theme, IconButtonProps } from '@mui/material'
-import { IconButton, Box, Button } from '@mui/material'
+import type { IconButtonProps, SxProps, Theme } from '@mui/material'
+import { Box, Button, IconButton } from '@mui/material'
 import React from 'react'
-import { useWishlistEnabled, useAddProductToWishlistAction } from '../../hooks'
+import { useAddProductToWishlistAction, useWishlistEnabled } from '../../hooks'
 
 export type ProductWishlistChipProps = ProductListItemFragment & {
   sx?: SxProps<Theme>

@@ -1,5 +1,5 @@
 import type { BoxProps, ButtonProps, SxProps, Theme } from '@mui/material'
-import { alpha, Box, ButtonBase, lighten } from '@mui/material'
+import { Box, ButtonBase, alpha, lighten } from '@mui/material'
 import React from 'react'
 import { extendableComponent, responsiveVal } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'

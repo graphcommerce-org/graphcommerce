@@ -1,5 +1,5 @@
-import fragments from '@graphcommerce/graphql/generated/fragments.json'
 import type { MeshContext, ProductInterfaceResolvers, Resolvers } from '@graphcommerce/graphql-mesh'
+import fragments from '@graphcommerce/graphql/generated/fragments.json'
 import { Kind } from 'graphql'
 import type { CustomAttributeInput } from './customAttributeMetadataV2'
 import { customAttributeMetadataV2 } from './customAttributeMetadataV2'

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { selectPaymentMethod } from '@graphcommerce/magento-cart-payment-method/test'
 import { goToPayment } from '@graphcommerce/magento-cart-payment-method/test/goToPayment'
-import { test } from '@graphcommerce/magento-product/test/productURL.fixture'
 import { addConfigurableProductToCart } from '@graphcommerce/magento-product-configurable/test/addConfigurableProductToCart'
+import { test } from '@graphcommerce/magento-product/test/productURL.fixture'
 import { expect } from '@playwright/test'
 import { placeOrderOffsite } from './utils'
 

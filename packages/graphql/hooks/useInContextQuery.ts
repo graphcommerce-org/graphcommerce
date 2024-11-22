@@ -1,4 +1,4 @@
-import type { InputMaybe, InContextInput } from '@graphcommerce/graphql-mesh'
+import type { InContextInput, InputMaybe } from '@graphcommerce/graphql-mesh'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useIsSSR } from '@graphcommerce/next-ui/hooks/useIsSsr'
 // eslint-disable-next-line import/no-extraneous-dependencies

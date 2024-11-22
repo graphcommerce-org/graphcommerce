@@ -1,14 +1,14 @@
 import {
-  extendableComponent,
   IconSvg,
-  useFabSize,
+  extendableComponent,
   iconCompare,
+  useFabSize,
   useScrollY,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import type { SxProps, Theme, ButtonProps } from '@mui/material'
-import { styled, Box, NoSsr, Badge, Button } from '@mui/material'
+import type { ButtonProps, SxProps, Theme } from '@mui/material'
+import { Badge, Box, Button, NoSsr, styled } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useCompareSummary } from '../hooks'

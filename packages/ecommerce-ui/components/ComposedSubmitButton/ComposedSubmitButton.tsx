@@ -1,5 +1,5 @@
 import type { ButtonProps } from '@graphcommerce/next-ui'
-import { iconChevronRight, IconSvg, Button } from '@graphcommerce/next-ui'
+import { Button, IconSvg, iconChevronRight } from '@graphcommerce/next-ui'
 import type { ComposedSubmitRenderComponentProps } from '@graphcommerce/react-hook-form'
 import { forwardRef } from 'react'
 

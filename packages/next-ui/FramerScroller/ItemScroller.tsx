@@ -1,5 +1,5 @@
 import type { ScrollerButtonProps } from '@graphcommerce/framer-scroller'
-import { ScrollerProvider, Scroller, ScrollerButton } from '@graphcommerce/framer-scroller'
+import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import { IconSvg } from '../IconSvg'

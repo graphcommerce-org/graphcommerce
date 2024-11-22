@@ -1,10 +1,10 @@
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import {
+  IconSvg,
+  extendableComponent,
   iconChevronLeft,
   iconChevronRight,
-  IconSvg,
   useScrollY,
-  extendableComponent,
 } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, styled } from '@mui/material'

@@ -3,9 +3,9 @@ import type { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import {
   ActionCard,
   ChipOverlayOrPopper,
+  IconSvg,
   filterNonNullableKeys,
   iconCirle,
-  IconSvg,
 } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import { useMemo } from 'react'

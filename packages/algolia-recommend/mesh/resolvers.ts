@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/require-await */
-import fragments from '@graphcommerce/graphql/generated/fragments.json'
 import type {
   AlgoliaLookingSimilarInput,
   AlgoliaRelatedProductsInput,
@@ -10,6 +9,7 @@ import type {
   ResolversParentTypes,
   ResolversTypes,
 } from '@graphcommerce/graphql-mesh'
+import fragments from '@graphcommerce/graphql/generated/fragments.json'
 import type {
   GraphCommerceAlgoliaRecommendationLocation,
   InputMaybe,

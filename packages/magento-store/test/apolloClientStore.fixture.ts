@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+
 /* eslint-disable no-empty-pattern */
 import type { NormalizedCacheObject } from '@graphcommerce/graphql'
 import { ApolloClient, InMemoryCache } from '@graphcommerce/graphql'

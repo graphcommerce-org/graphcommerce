@@ -1,5 +1,5 @@
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
-import type { FieldValues, FieldPath } from '@graphcommerce/react-hook-form'
+import type { FieldPath, FieldValues } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import type { AddressFieldsOptions } from './useAddressFieldsForm'
 import { useAddressFieldsForm } from './useAddressFieldsForm'

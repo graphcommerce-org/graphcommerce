@@ -1,5 +1,5 @@
 import type { Context, Dispatch, SetStateAction } from 'react'
-import { useContext, createContext, useState, useMemo, useCallback } from 'react'
+import { createContext, useCallback, useContext, useMemo, useState } from 'react'
 import type { ConfigurableProductFormFragment } from './ConfigurableProductForm.gql'
 import cheapestVariant from './cheapestVariant'
 

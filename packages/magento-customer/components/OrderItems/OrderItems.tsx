@@ -1,7 +1,7 @@
 import { SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
-import { Button, Box } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { useState } from 'react'
 import type { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import { OrderItem } from '../OrderItem/OrderItem'

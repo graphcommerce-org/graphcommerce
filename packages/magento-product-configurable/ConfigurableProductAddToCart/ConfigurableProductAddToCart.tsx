@@ -3,14 +3,14 @@ import { ApolloCartErrorAlert, useFormGqlMutationCart } from '@graphcommerce/mag
 import { Money } from '@graphcommerce/magento-store'
 import {
   Button,
+  IconSvg,
+  MessageSnackbar,
   extendableComponent,
   iconChevronRight,
-  MessageSnackbar,
-  IconSvg,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import type { SxProps, Theme } from '@mui/material'
-import { Divider, Typography, Alert, Box } from '@mui/material'
+import { Alert, Box, Divider, Typography } from '@mui/material'
 import React from 'react'
 import { useConfigurableContext } from '../ConfigurableContext/ConfigurableContext'
 import cheapestVariant from '../ConfigurableContext/cheapestVariant'

@@ -1,6 +1,6 @@
 import type {
-  FieldValues,
   FieldPath,
+  FieldValues,
   RegisterOptions,
   UseFormRegisterReturn,
   UseFormReturn,

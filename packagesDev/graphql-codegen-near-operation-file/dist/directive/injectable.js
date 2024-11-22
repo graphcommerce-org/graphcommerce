@@ -11,16 +11,6 @@ function isFragment(document) {
     });
     return is;
 }
-function hasInjectableDirective(document) {
-    let is = false;
-    (0, graphql_1.visit)(document, {
-        Directive: (node) => {
-            if (!is && node.name.value === 'injectable')
-                is = true;
-        },
-    });
-    return is && isFragment;
-}
 function hasInjectDirective(document) {
     let is = false;
     (0, graphql_1.visit)(document, {

@@ -1,8 +1,8 @@
 import {
-  iconPerson,
   DesktopHeaderBadge,
   IconSvg,
   extendableComponent,
+  iconPerson,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import type { BadgeProps, FabProps as FabPropsType, SxProps, Theme } from '@mui/material'

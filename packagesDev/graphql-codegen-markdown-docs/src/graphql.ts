@@ -1,10 +1,10 @@
 import {
-  type ListTypeNode,
-  type NonNullTypeNode,
-  type NamedTypeNode,
-  type TypeNode,
-  type ObjectTypeDefinitionNode,
   Kind,
+  type ListTypeNode,
+  type NamedTypeNode,
+  type NonNullTypeNode,
+  type ObjectTypeDefinitionNode,
+  type TypeNode,
 } from 'graphql'
 
 export const isListType = (typ?: TypeNode): typ is ListTypeNode => typ?.kind === Kind.LIST_TYPE
