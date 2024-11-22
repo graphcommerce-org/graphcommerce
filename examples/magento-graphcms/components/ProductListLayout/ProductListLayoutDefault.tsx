@@ -54,7 +54,7 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
         />
       )}
       <Container
-        maxWidth={maxWidth ?? contentMaxWidth?.breakpoint}
+        maxWidth={maxWidth ?? contentMaxWidth?.breakpoint ?? false}
         sx={(theme) => ({
           display: 'grid',
           rowGap: theme.spacings.sm,
@@ -124,7 +124,7 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
         </ProductListFiltersContainer>
       </StickyBelowHeader>
 
-      <Container maxWidth={maxWidth ?? contentMaxWidth?.breakpoint}>
+      <Container maxWidth={maxWidth ?? contentMaxWidth?.breakpoint ?? false}>
         <ProductListCount total_count={total_count} />
         {products.items.length <= 0 ? (
           <ProductFiltersProNoResults />

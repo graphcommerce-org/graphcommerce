@@ -64,7 +64,7 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
       )}
 
       <Container
-        maxWidth={maxWidth ?? contentMaxWidth?.breakpoint}
+        maxWidth={maxWidth ?? contentMaxWidth?.breakpoint ?? false}
         sx={(theme) => ({
           display: 'grid',
           alignItems: 'start',
