@@ -15,26 +15,7 @@ export function Footer() {
 
   return (
     <FooterBase
-      socialLinks={[
-        <IconButton
-          href='https://www.graphcommerce.org/'
-          color='inherit'
-          size='medium'
-          edge='start'
-        >
-          <Image
-            layout='fill'
-            src='https://www.graphcommerce.org/favicon.svg'
-            width={24}
-            height={24}
-            alt='GraphCommerce website'
-            unoptimized
-            sx={(theme) => ({
-              filter: theme.palette.mode === 'dark' ? 'invert(100%)' : 'invert(0%)',
-            })}
-          />
-        </IconButton>,
-      ]}
+      socialLinks={<></>}
       storeSwitcher={<StoreSwitcherButton />}
       customerService={
         <Button href='/service' variant='pill'>

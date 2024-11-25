@@ -16,6 +16,7 @@ import {
   ProductPageJsonLd,
   ProductPageMeta,
   ProductPageName,
+  ProductScroller,
   ProductShortDescription,
   ProductSpecs,
   getProductStaticPaths,
@@ -29,7 +30,13 @@ import { ProductReviewChip, jsonLdProductReview } from '@graphcommerce/magento-r
 import { Money, StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
+import {
+  LayoutHeader,
+  LayoutTitle,
+  isTypename,
+  nonNullable,
+  responsiveVal,
+} from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Typography } from '@mui/material'
@@ -37,6 +44,7 @@ import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../../components'
 import { LayoutDocument, LayoutNavigation, productListRenderer } from '../../components'
 import { AddProductsToCartView } from '../../components/ProductView/AddProductsToCartView'
+import { Reviews } from '../../components/ProductView/Reviews'
 import type { ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { ProductPage2Document } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
