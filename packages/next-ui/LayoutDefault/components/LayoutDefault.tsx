@@ -62,7 +62,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             minHeight: '-webkit-fill-available',
           },
           display: 'grid',
-          gridTemplateRows: 'auto auto 1fr auto',
+          gridTemplateRows: { xs: 'auto 1fr auto', md: 'auto auto 1fr auto' },
           gridTemplateColumns: '100%',
           background: theme.palette.background.default,
         }),
