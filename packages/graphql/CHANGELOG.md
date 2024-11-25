@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.104
+
+### Patch Changes
+
+- [#2423](https://github.com/graphcommerce-org/graphcommerce/pull/2423) [`a4f0b48`](https://github.com/graphcommerce-org/graphcommerce/commit/a4f0b480f234e50d62f02e56716be80a30720475) - Added back ApolloClient caching for SSR requests to projects ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.103
 
 ### Patch Changes

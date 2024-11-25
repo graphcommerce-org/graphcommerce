@@ -1,5 +1,7 @@
 # @graphcommerce/magento-wishlist
 
+## 9.0.0-canary.104
+
 ## 9.0.0-canary.103
 
 ### Patch Changes
@@ -807,8 +809,8 @@
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from '@lingui/react'
   import { i18n } from '@lingui/core'
+  import { Trans } from '@lingui/react'
 
   function MyComponent() {
     const foo = 'bar'

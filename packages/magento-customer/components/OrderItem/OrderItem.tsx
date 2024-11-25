@@ -2,7 +2,7 @@ import { Image } from '@graphcommerce/image'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useProductLink } from '@graphcommerce/magento-product/hooks/useProductLink'
 import { Money } from '@graphcommerce/magento-store'
-import { responsiveVal, extendableComponent, NextLink } from '@graphcommerce/next-ui'
+import { NextLink, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import type { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
 import type { OrderItemFragment } from './OrderItem.gql'

@@ -1,4 +1,4 @@
-import { NextLink, PaginationExtended, Pagination } from '@graphcommerce/next-ui'
+import { NextLink, Pagination, PaginationExtended } from '@graphcommerce/next-ui'
 import type { PaginationProps } from '@mui/material'
 import { Link } from '@mui/material'
 import { productListLink } from '../../hooks/useProductListLink'

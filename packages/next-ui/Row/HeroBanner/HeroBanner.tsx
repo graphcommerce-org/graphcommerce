@@ -1,5 +1,5 @@
 import { clientSize } from '@graphcommerce/framer-utils'
-import type { ContainerProps, Theme, SxProps } from '@mui/material'
+import type { ContainerProps, SxProps, Theme } from '@mui/material'
 import { Box, styled } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'

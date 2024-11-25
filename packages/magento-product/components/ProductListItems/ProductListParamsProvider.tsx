@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { productListParamsContext } from '../../context/productListParamsContext'
 import type { ProductListParams } from './filterTypes'
 

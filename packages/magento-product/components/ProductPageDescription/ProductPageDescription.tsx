@@ -1,9 +1,9 @@
 import type { ColumnTwoWithTopProps } from '@graphcommerce/next-ui'
 import {
   ColumnTwoWithTop,
-  extendableComponent,
-  breakpointVal,
   LazyHydrate,
+  breakpointVal,
+  extendableComponent,
 } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Typography } from '@mui/material'

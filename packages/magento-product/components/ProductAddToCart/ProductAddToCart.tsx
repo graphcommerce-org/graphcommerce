@@ -5,14 +5,14 @@ import type { MoneyProps } from '@graphcommerce/magento-store'
 import { Money } from '@graphcommerce/magento-store'
 import {
   Button,
-  MessageSnackbar,
-  iconChevronRight,
   IconSvg,
+  MessageSnackbar,
   extendableComponent,
+  iconChevronRight,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import type { ButtonProps } from '@mui/material'
-import { Divider, Typography, Box, Alert } from '@mui/material'
+import { Alert, Box, Divider, Typography } from '@mui/material'
 import React from 'react'
 import type { ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
 import { ProductAddToCartDocument } from './ProductAddToCart.gql'

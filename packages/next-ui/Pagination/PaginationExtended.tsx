@@ -1,4 +1,4 @@
-import type { PaginationProps, SxProps, Theme, PaginationRenderItemParams } from '@mui/material'
+import type { PaginationProps, PaginationRenderItemParams, SxProps, Theme } from '@mui/material'
 import { Box, Pagination, PaginationItem } from '@mui/material'
 import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'

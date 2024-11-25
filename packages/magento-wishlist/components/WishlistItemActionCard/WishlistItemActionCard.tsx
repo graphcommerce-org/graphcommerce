@@ -3,7 +3,7 @@ import { AddProductsToCartForm, useProductLink } from '@graphcommerce/magento-pr
 import { Money } from '@graphcommerce/magento-store'
 import type { InputMaybe } from '@graphcommerce/next-config'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
-import { extendableComponent, ActionCard, actionCardImageSizes } from '@graphcommerce/next-ui'
+import { ActionCard, actionCardImageSizes, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
 import { Button, Link } from '@mui/material'

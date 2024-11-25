@@ -1,4 +1,4 @@
-import type { MeshContext, Maybe, StoreConfig } from '@graphcommerce/graphql-mesh'
+import type { Maybe, MeshContext, StoreConfig } from '@graphcommerce/graphql-mesh'
 
 export type GetStoreConfigReturn =
   | Maybe<

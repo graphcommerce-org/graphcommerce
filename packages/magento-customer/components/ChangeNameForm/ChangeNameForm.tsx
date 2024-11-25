@@ -1,4 +1,4 @@
-import { Form, FormActions, FormDivider, MessageSnackbar, Button } from '@graphcommerce/next-ui'
+import { Button, Form, FormActions, FormDivider, MessageSnackbar } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'

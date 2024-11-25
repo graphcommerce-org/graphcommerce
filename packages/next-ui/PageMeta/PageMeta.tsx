@@ -1,6 +1,6 @@
 import { usePageContext } from '@graphcommerce/framer-next-pages'
-import Head from 'next/head'
 import type {} from '@graphcommerce/next-config'
+import Head from 'next/head'
 import type { Canonical } from './canonicalize'
 import { useCanonical } from './canonicalize'
 

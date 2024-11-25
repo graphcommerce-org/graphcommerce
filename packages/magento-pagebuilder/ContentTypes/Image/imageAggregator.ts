@@ -1,14 +1,14 @@
 import type { BorderProps } from '../../utils'
 import {
+  getAdvanced,
   getBorder,
   getCssClasses,
   getIsHidden,
   getMargin,
+  getMediaQuery,
   getPadding,
   getTextAlign,
-  getMediaQuery,
   isHTMLElement,
-  getAdvanced,
 } from '../../utils'
 import type { ImageContentType, ImageProps } from './types'
 

@@ -1,4 +1,5 @@
 "use strict";
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -24,12 +25,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.resolveDocumentImports = resolveDocumentImports;
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable import/no-cycle */
-const path_1 = require("path");
 const plugin_helpers_1 = require("@graphql-codegen/plugin-helpers");
 const visitor_plugin_common_1 = require("@graphql-codegen/visitor-plugin-common");
 const graphql_1 = require("graphql");
+const path_1 = require("path");
 const fragment_resolver_1 = __importStar(require("./fragment-resolver"));
 const utils_1 = require("./utils");
 function getFragmentName(documentFile) {

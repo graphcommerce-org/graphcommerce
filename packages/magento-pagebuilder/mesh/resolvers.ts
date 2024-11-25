@@ -1,4 +1,4 @@
-import type { Resolvers, MeshContext } from '@graphcommerce/graphql-mesh'
+import type { MeshContext, Resolvers } from '@graphcommerce/graphql-mesh'
 import { detectPageBuilder } from '../parser/detectPageBuilder'
 import { parser } from '../parser/parser'
 

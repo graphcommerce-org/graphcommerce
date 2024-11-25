@@ -2,7 +2,7 @@
 import { Image } from '@graphcommerce/image'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Container, useMediaQuery } from '@mui/material'
-import React, { useEffect, useRef, useState, CSSProperties } from 'react'
+import React, { CSSProperties, useEffect, useRef, useState } from 'react'
 import { MediaBackground } from '../../components/MediaBackground/MediaBackground'
 import { extractImageBackgroundProps } from '../../components/MediaBackground/extractImageBackgroundProps'
 import { extractVideoBackgroundProps } from '../../components/MediaBackground/extractVideoBackgroundProps'

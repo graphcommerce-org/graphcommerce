@@ -84,7 +84,8 @@
     "@graphcommerce/algolia-insights": "9.0.0-canary.83",
     "@graphcommerce/algolia-products": "9.0.0-canary.83",
     "@graphcommerce/algolia-recommend": "9.0.0-canary.76",
-    "@graphcommerce/hygraph-ui": "9.0.0-canary.102"
+    "@graphcommerce/hygraph-ui": "9.0.0-canary.102",
+    "@graphcommerce/magento-open-source": "9.0.0-canary.103"
   },
   "changesets": [
     "afraid-islands-remain",
@@ -145,6 +146,7 @@
     "fluffy-rockets-collect",
     "forty-parrots-sparkle",
     "four-drinks-decide",
+    "four-ladybugs-nail",
     "friendly-cheetahs-cry",
     "fuzzy-cycles-impress",
     "fuzzy-hornets-remain",
@@ -161,6 +163,7 @@
     "grumpy-spies-sniff",
     "happy-hats-train",
     "healthy-lies-act",
+    "healthy-plums-rescue",
     "heavy-houses-attack",
     "heavy-spiders-grow",
     "hip-pianos-sip",

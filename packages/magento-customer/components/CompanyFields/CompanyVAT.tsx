@@ -1,4 +1,4 @@
-import type { FieldValues, FieldPath } from '@graphcommerce/ecommerce-ui'
+import type { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
 import { TextFieldElement, useWatch } from '@graphcommerce/ecommerce-ui'
 import type { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
 import { Trans } from '@lingui/react'

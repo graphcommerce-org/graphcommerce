@@ -2,12 +2,12 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import type { LayoutOverlayProps, LayoutOverlayVariant } from '@graphcommerce/next-ui'
 import {
-  LayoutHeader,
-  iconChevronRight,
-  LayoutOverlay,
   IconSvg,
+  LayoutHeader,
+  LayoutOverlay,
   LayoutTitle,
   LinkOrButton,
+  iconChevronRight,
 } from '@graphcommerce/next-ui'
 import { Container, Link } from '@mui/material'
 import { m } from 'framer-motion'

@@ -1,4 +1,5 @@
 "use strict";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RUNTIME_VALUE = exports.UnsupportedValueError = exports.NoSuchDeclarationError = void 0;
 exports.extractExports = extractExports;

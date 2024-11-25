@@ -3,7 +3,7 @@ import { NumberFieldElement } from '@graphcommerce/ecommerce-ui'
 import { Image } from '@graphcommerce/image'
 import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
-import { responsiveVal, ActionCard, Button } from '@graphcommerce/next-ui'
+import { ActionCard, Button, responsiveVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { BundleOptionValueProps } from './types'
 

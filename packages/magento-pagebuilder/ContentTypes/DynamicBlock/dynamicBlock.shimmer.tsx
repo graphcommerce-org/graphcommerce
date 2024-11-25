@@ -1,6 +1,6 @@
 import { useStyle } from '@magento/venia-ui/lib/classify'
 import Shimmer from '@magento/venia-ui/lib/components/Shimmer'
-import { arrayOf, shape, string, object } from 'prop-types'
+import { arrayOf, object, shape, string } from 'prop-types'
 import React from 'react'
 import defaultClasses from './dynamicBlock.shimmer.module.css'
 

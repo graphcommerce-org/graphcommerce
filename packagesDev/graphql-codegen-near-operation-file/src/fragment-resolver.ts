@@ -2,16 +2,16 @@
 import type { Types } from '@graphql-codegen/plugin-helpers'
 import type {
   FragmentImport,
+  ImportDeclaration,
   LoadedFragment,
   ParsedConfig,
   RawConfig,
-  ImportDeclaration,
 } from '@graphql-codegen/visitor-plugin-common'
 import {
   BaseVisitor,
+  buildScalarsFromConfig,
   getConfigValue,
   getPossibleTypes,
-  buildScalarsFromConfig,
 } from '@graphql-codegen/visitor-plugin-common'
 import type { DocumentNode, FragmentDefinitionNode, GraphQLSchema } from 'graphql'
 import { Kind, print } from 'graphql'

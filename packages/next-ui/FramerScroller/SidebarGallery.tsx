@@ -3,15 +3,15 @@ import type { MotionImageAspectProps, ScrollerButtonProps } from '@graphcommerce
 import {
   MotionImageAspect,
   Scroller,
-  ScrollerDots,
   ScrollerButton,
+  ScrollerDots,
   ScrollerProvider,
-  unstable_usePreventScroll as usePreventScroll,
   ScrollerThumbnails,
+  unstable_usePreventScroll as usePreventScroll,
 } from '@graphcommerce/framer-scroller'
 import { dvh } from '@graphcommerce/framer-utils'
 import type { SxProps, Theme } from '@mui/material'
-import { Fab, useTheme, Box, styled, Unstable_TrapFocus as TrapFocus } from '@mui/material'
+import { Box, Fab, Unstable_TrapFocus as TrapFocus, styled, useTheme } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'

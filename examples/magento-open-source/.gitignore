@@ -1,0 +1,32 @@
+# dependencies
+node_modules
+
+# next.js
+.next/
+out/
+.vercel
+next-env.d.ts
+._tmp*
+.swc
+
+# misc
+.DS_Store
+.env*
+!.env.example
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# application
+**/public/workbox-*.js*
+**/public/sw.js*
+**/public/sitemap*.xml
+**/public/robots.txt
+
+*.gql.ts
+
+# application
+.mesh
+*.tsbuildinfo

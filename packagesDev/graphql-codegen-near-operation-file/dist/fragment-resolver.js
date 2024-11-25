@@ -59,7 +59,7 @@ function buildFragmentRegistry({ generateFilePath }, { documents, config }, sche
                 const imports = getFragmentImports(possibleTypes.map((t) => t.name), fragment.name.value);
                 if (prev[fragment.name.value] &&
                     (0, graphql_1.print)(fragment) !== (0, graphql_1.print)(prev[fragment.name.value].node)) {
-                    duplicateFragmentNames.push(`${prev[fragment.name.value]} ${prev[fragment.name.value].filePath}`);
+                    duplicateFragmentNames.push(`${prev[fragment.name.value].node.name.value} ${prev[fragment.name.value].filePath}`);
                     duplicateFragmentNames.push(`${fragment.name.value} ${fragment.loc?.source.name}`);
                 }
                 prev[fragment.name.value] = {

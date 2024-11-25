@@ -1,8 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
+
 /* eslint-disable import/no-relative-packages */
 import type { PlaywrightTestConfig } from '@playwright/test'
 import { devices } from '@playwright/test'
-
 import nextConfig from './examples/magento-graphcms/next.config'
 
 // nextConfig.i18n

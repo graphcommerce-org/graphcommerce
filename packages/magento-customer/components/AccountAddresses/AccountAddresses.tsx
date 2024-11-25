@@ -1,13 +1,13 @@
 import {
   FullPageMessage,
-  SectionContainer,
-  iconHome,
   IconSvg,
+  SectionContainer,
   extendableComponent,
+  iconHome,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import type { Theme, SxProps } from '@mui/material'
-import { Skeleton, Button, Box } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Button, Skeleton } from '@mui/material'
 import { AccountAddress } from '../AccountAddress/AccountAddress'
 import type { AccountAddressesFragment } from './AccountAddresses.gql'
 

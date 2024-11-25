@@ -1,4 +1,4 @@
-import { Button, iconChevronRight, IconSvg, MessageSnackbar } from '@graphcommerce/next-ui'
+import { Button, IconSvg, MessageSnackbar, iconChevronRight } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SetStateAction } from 'react'
 

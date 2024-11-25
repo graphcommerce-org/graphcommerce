@@ -6,10 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.defineFilepathSubfolder = defineFilepathSubfolder;
 exports.appendExtensionToFilePath = appendExtensionToFilePath;
 exports.extractExternalFragmentsInUse = extractExternalFragmentsInUse;
-/* eslint-disable import/no-cycle */
-const path_1 = require("path");
 const graphql_1 = require("graphql");
 const parse_filepath_1 = __importDefault(require("parse-filepath"));
+const path_1 = require("path");
 function defineFilepathSubfolder(baseFilePath, folder) {
     const parsedPath = (0, parse_filepath_1.default)(baseFilePath);
     return (0, path_1.join)(parsedPath.dir, folder, parsedPath.base).replace(/\\/g, '/');

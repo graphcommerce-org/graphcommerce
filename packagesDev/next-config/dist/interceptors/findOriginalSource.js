@@ -26,6 +26,7 @@ function parseAndFindExport(resolved, findExport, resolve) {
                                     return resolved;
                             }
                             else {
+                                // eslint-disable-next-line no-console
                                 console.log(declaration);
                             }
                         }
@@ -76,7 +77,7 @@ function parseAndFindExport(resolved, findExport, resolve) {
     }
     return undefined;
 }
-const cachedResults = new Map();
+// const cachedResults = new Map<string, ResolveDependencyReturn>()
 function findOriginalSource(plug, resolved, resolve) {
     if (!resolved?.source)
         return {

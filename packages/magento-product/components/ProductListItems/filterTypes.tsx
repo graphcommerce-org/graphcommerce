@@ -1,11 +1,11 @@
 import type {
-  Maybe,
-  Scalars,
-  ProductAttributeFilterInput,
-  ProductAttributeSortInput,
   FilterEqualTypeInput,
   FilterMatchTypeInput,
   FilterRangeTypeInput,
+  Maybe,
+  ProductAttributeFilterInput,
+  ProductAttributeSortInput,
+  Scalars,
   SortEnum,
 } from '@graphcommerce/graphql-mesh'
 

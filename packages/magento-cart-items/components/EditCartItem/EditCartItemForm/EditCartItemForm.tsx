@@ -4,7 +4,7 @@ import type {
   AddProductsToCartFormProps,
   AddToCartItemSelector,
 } from '@graphcommerce/magento-product'
-import { useFormAddProductsToCart, AddProductsToCartForm } from '@graphcommerce/magento-product'
+import { AddProductsToCartForm, useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import type { CartItemsFragment } from '../../../Api/CartItems.gql'

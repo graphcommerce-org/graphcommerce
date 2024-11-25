@@ -1,4 +1,4 @@
-import { ScrollerProvider, Scroller, ScrollerDots } from '@graphcommerce/framer-scroller'
+import { Scroller, ScrollerDots, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { Box } from '@mui/material'
 import { useState } from 'react'
 import { extractAdvancedProps } from '../../utils'

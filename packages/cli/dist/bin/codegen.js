@@ -1,16 +1,16 @@
 #!/usr/bin/env node
+import { resolveDependenciesSync, packageRoots } from '@graphcommerce/next-config';
+import { cliError, loadCodegenConfig, runCli } from '@graphql-codegen/cli';
+import dotenv from 'dotenv';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { resolveDependenciesSync, packageRoots } from '@graphcommerce/next-config';
-import { loadCodegenConfig, runCli, cliError } from '@graphql-codegen/cli';
-import dotenv from 'dotenv';
 import { rimraf } from 'rimraf';
 import yaml from 'yaml';
 
 const [, , cmd] = process.argv;
 dotenv.config();
 const root = process.cwd();
-const configLocation = path.join(root, `._tmp_codegen.yml`);
+const configLocation = path.join(root, "._tmp_codegen.yml");
 async function cleanup() {
   try {
     await fs.stat(configLocation).then((r) => {

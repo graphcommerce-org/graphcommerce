@@ -1,4 +1,4 @@
-import type { FieldValues, FieldPath } from '@graphcommerce/ecommerce-ui'
+import type { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { Trans } from '@lingui/react'
 import type { AddressFieldsOptions } from './useAddressFieldsForm'

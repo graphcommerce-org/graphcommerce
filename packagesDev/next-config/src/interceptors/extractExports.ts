@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 /* eslint-disable no-continue */
+
 /* eslint-disable max-classes-per-file */
 import type {
   ArrayExpression,

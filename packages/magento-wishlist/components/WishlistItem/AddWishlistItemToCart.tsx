@@ -1,10 +1,10 @@
 import type {
-  UseAddProductsToCartActionProps,
   AddToCartItemSelector,
+  UseAddProductsToCartActionProps,
 } from '@graphcommerce/magento-product'
 import {
-  AddProductsToCartQuantity,
   AddProductsToCartButton,
+  AddProductsToCartQuantity,
   useFormAddProductsToCart,
 } from '@graphcommerce/magento-product'
 import type { InputMaybe } from '@graphcommerce/next-config'

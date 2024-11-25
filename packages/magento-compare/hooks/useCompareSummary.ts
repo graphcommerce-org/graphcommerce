@@ -1,5 +1,5 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { CurrentCompareUidDocument, CompareSummaryDocument } from '../graphql'
+import { CompareSummaryDocument, CurrentCompareUidDocument } from '../graphql'
 
 export function useCompareSummary() {
   const currentCompareUid = useQuery(CurrentCompareUidDocument)

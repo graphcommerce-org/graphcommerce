@@ -20,7 +20,7 @@ const isObject = (input) => typeof input === 'object' && input !== null && !Arra
 function parseStructure(ast, gcConfig, sourceModule) {
     const [exports, errors] = (0, extractExports_1.extractExports)(ast);
     if (errors.length)
-        console.error(`Plugin error for`, errors.join('\n'));
+        console.error('Plugin error for', errors.join('\n'));
     const { config: moduleConfig, component, func, exported, ifConfig, plugin, Plugin, ...rest } = exports;
     const exportVals = Object.keys(rest);
     if (component && !moduleConfig)

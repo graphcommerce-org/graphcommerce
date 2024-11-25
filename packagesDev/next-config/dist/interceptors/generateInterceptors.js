@@ -4,8 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateInterceptors = generateInterceptors;
-const node_path_1 = __importDefault(require("node:path"));
+// eslint-disable-next-line import/no-extraneous-dependencies
 const promises_1 = __importDefault(require("node:fs/promises"));
+const node_path_1 = __importDefault(require("node:path"));
 const findOriginalSource_1 = require("./findOriginalSource");
 const generateInterceptor_1 = require("./generateInterceptor");
 async function generateInterceptors(plugins, resolve, config, force) {
@@ -16,7 +17,7 @@ async function generateInterceptors(plugins, resolve, config, force) {
         const result = resolve(plug.targetModule, { includeSources: true });
         const { error, resolved } = (0, findOriginalSource_1.findOriginalSource)(plug, result, resolve);
         if (error) {
-            console.log(error.message);
+            console.error(error.message);
             return acc;
         }
         const { fromRoot } = resolved;
