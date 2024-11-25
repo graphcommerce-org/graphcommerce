@@ -148,7 +148,7 @@ function CompareProductToggleBase(
 export function CompareProductToggle(props: CompareProductToggleProps) {
   const { product } = props
   const compareList = useCompareSummary()
-  const idString = String(product.compare_product_id)
+  const idString = String(product.id)
   const inCompareList =
     compareList.data?.compareList?.items?.some((i) => i?.uid === idString) ?? false
 
