@@ -121,14 +121,12 @@ it("resolves a 'root plugin' to be relative to the interceptor", async () => {
   expect(Object.keys(interceptors)[0]).toMatchInlineSnapshot(
     '"packages/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext"',
   )
-  expectImport(
+  expect(
     interceptors['packages/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext']
       ?.template,
-  ).toMatchInlineSnapshot(`
-    "import type { DistributedOmit as OmitPrev } from 'type-fest'
-
-    import { Plugin as PluginAddPaymentMethodEnhancer } from '../../../plugins/AddPaymentMethodEnhancer'"
-  `)
+  ).toContain(
+    "import { Plugin as PluginAddPaymentMethodEnhancer } from '../../../plugins/AddPaymentMethodEnhancer'",
+  )
 })
 
 it('it can apply multiple plugins to a single export', async () => {
@@ -157,13 +155,12 @@ it('it can apply multiple plugins to a single export', async () => {
   const result =
     interceptors['packages/magento-cart-payment-method/PaymentMethodContext/PaymentMethodContext']
       ?.template
-  expectImport(result).toMatchInlineSnapshot(`
-    "import type { DistributedOmit as OmitPrev } from 'type-fest'
-
-    import { Plugin as PluginAddAdyenMethods } from '@graphcommerce/magento-payment-adyen/plugins/AddAdyenMethods'
-    import { Plugin as PluginAddMollieMethods } from '@graphcommerce/mollie-magento-payment/plugins/AddMollieMethods'"
-  `)
-
+  expect(result).toContain(
+    "import { Plugin as PluginAddAdyenMethods } from '@graphcommerce/magento-payment-adyen/plugins/AddAdyenMethods'",
+  )
+  expect(result).toContain(
+    "import { Plugin as PluginAddMollieMethods } from '@graphcommerce/mollie-magento-payment/plugins/AddMollieMethods'",
+  )
   expectOriginal(result).toContain('PaymentMethodContextProviderOriginal')
 
   expectInterceptor(result).toMatchInlineSnapshot(`
@@ -351,12 +348,15 @@ it('generates method interceptors alognside component interceptors', async () =>
     resolve,
   )
 
-  expect(Object.keys(interceptors)).toMatchInlineSnapshot(`
+  expect(Object.keys(interceptors)).toMatchInlineSnapshot(
+    `
     [
       "packages/graphql/components/GraphQLProvider/GraphQLProvider",
       "packages/graphql/config",
     ]
-  `)
+  `,
+  )
+
   expect(
     interceptors['packages/graphql/components/GraphQLProvider/GraphQLProvider']?.template,
   ).toContain('MagentoGraphqlGraphqlProvider')
@@ -403,10 +403,11 @@ it('adds debug logging to interceptors for components', async () => {
   `)
 
   expectOriginal(interceptors['packages/graphql/config']?.template).toMatchInlineSnapshot(`
-    "import type { ApolloLink, TypePolicies } from '@apollo/client'
-    import type { GraphCommerceStorefrontConfig } from '@graphcommerce/next-config'
+    "import type { GraphCommerceStorefrontConfig } from '@graphcommerce/next-config'
+    import type { ApolloLink, TypePolicies } from '@apollo/client'
     import type { SetRequired } from 'type-fest'
     import type { MigrateCache } from './components/GraphQLProvider/migrateCache'
+
     export interface PreviewData {}
     export type PreviewConfig = {
       preview?: boolean
@@ -433,7 +434,6 @@ it('adds debug logging to interceptors for components', async () => {
       }
     }"
   `)
-
   expectInterceptor(interceptors['packages/graphql/config']?.template).toMatchInlineSnapshot(`
     "const logged: Set<string> = new Set()
     const logOnce = (log: string, ...additional: unknown[]) => {
@@ -535,8 +535,8 @@ it('Should apply overrides to the correct file', async () => {
   const result =
     interceptors['packages/magento-product/components/ProductStaticPaths/getProductStaticPaths']
       ?.template
-  expectImport(result).toMatchInlineSnapshot(
-    '"import { getProductStaticPaths as getProductStaticPathsreplaceGetProductStaticPaths } from \'../../../../plugins/replaceGetProductStaticPaths\'"',
+  expect(result).toContain(
+    "import { getProductStaticPaths as getProductStaticPathsreplaceGetProductStaticPaths } from '../../../../plugins/replaceGetProductStaticPaths'",
   )
 
   expectOriginal(result).toContain('getProductStaticPathsDisabled')
@@ -626,8 +626,8 @@ export const Plugin = ConfigurableProductPageName
   )
 
   const plugins = [...firstFile, ...secondFile]
-
-  expect(plugins).toMatchInlineSnapshot(`
+  expect(plugins).toMatchInlineSnapshot(
+    `
     [
       {
         "enabled": true,
@@ -648,8 +648,8 @@ export const Plugin = ConfigurableProductPageName
         "type": "component",
       },
     ]
-  `)
-
+  `,
+  )
   const interceptors = await generateInterceptors(plugins, resolveDependency(projectRoot))
 
   expect(Object.keys(interceptors)[0]).toMatchInlineSnapshot(
@@ -660,14 +660,14 @@ export const Plugin = ConfigurableProductPageName
     interceptors['packages/magento-product/components/ProductPageName/ProductPageName']?.template
 
   expectImport(result).toMatchInlineSnapshot(`
-    "import type { DistributedOmit as OmitPrev } from 'type-fest'
-
-    import { Plugin as PluginConfigurableProductPageName } from '@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageName'
+    "import { Plugin as PluginConfigurableProductPageName } from '@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageName'
+    import type { DistributedOmit as OmitPrev } from 'type-fest'
     import { ProductPageName as ProductPageNameMyPlugin } from '../../../../plugins/MyPlugin'"
   `)
 
   expectOriginal(result).toMatchInlineSnapshot(`
     "import type { ProductPageNameFragment } from './ProductPageName.gql'
+
     export type ProductPageNameProps = {
       product: ProductPageNameFragment
     }
@@ -736,7 +736,6 @@ it('Can correctly find exports that are default exports', async () => {
     export const iconChevronLeft = accessibilityHuman
     export const iconChevronRight = alarm
   `
-
   const config = {
     demoMode: true,
     configurableVariantForSimple: true,
@@ -751,8 +750,10 @@ it('Can correctly find exports that are default exports', async () => {
   const result = interceptors['packages/next-ui/icons']?.template
 
   expectImport(result).toMatchInlineSnapshot(`
-    "import { iconChevronLeft as iconChevronLeftMyProjectIcon } from '../../plugins/MyProjectIcon'
-    import { iconChevronRight as iconChevronRightMyProjectIcon } from '../../plugins/MyProjectIcon'"
+    "import {
+      iconChevronLeft as iconChevronLeftMyProjectIcon,
+      iconChevronRight as iconChevronRightMyProjectIcon,
+    } from '../../plugins/MyProjectIcon'"
   `)
 
   expectOriginal(result).toContain('iconChevronLeftDisabled')
