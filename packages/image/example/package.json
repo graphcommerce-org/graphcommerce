@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@graphcommerce/framer-utils": "9.0.0-canary.105",
-    "@graphcommerce/image": "9.0.0-canary.105",
     "@lingui/core": "4.11.4",
     "@lingui/macro": "4.11.4",
     "@lingui/react": "4.11.4",
