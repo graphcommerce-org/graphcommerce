@@ -22,7 +22,8 @@ jobs:
       matrix:
         version: [18, 20, 22]
     runs-on: ubuntu-latest
-    continue-on-error: true
+    outputs:
+      result: ${{ steps.result-output.outputs.result }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -50,6 +51,15 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Capture job result
+        id: result-output
+        run: |
+          if [ "${{ job.status }}" == "failure" ]; then
+            echo "::set-output name=result::failure"
+          else
+            echo "::set-output name=result::success"
+          fi
+
   report-failures:
     if: always()
     needs: publish
@@ -62,12 +72,17 @@ jobs:
         run: |
           echo "Checking for failed matrix jobs..."
           failed_jobs=""
-          for job in "${{ toJSON(needs.publish.strategy) }}"
-          do
-            if [ "${{ job.result }}" == "failure" ]; then
-              failed_jobs="$failed_jobs\nJob with Node.js version ${{ job.matrix.version }} failed."
+          matrix_versions=(${{ toJSON(needs.publish.matrix) }})
+          job_results=(${{ needs.publish.outputs.result }})
+
+          for i in "${!matrix_versions[@]}"; do
+            version=${matrix_versions[$i]}
+            result=${job_results[$i]}
+            if [ "$result" == "failure" ]; then
+              failed_jobs="$failed_jobs\n- Node.js version $version"
             fi
           done
+
           echo "Failed jobs: $failed_jobs"
           echo "::set-output name=failed-jobs::$failed_jobs"
 
@@ -85,4 +100,4 @@ jobs:
       message: |
         Periodic build results:
         ${{ needs.report-failures.outputs.failed-jobs }}
-      notifyOnlyOnFailure: true
+      notifyOnlyOnFailure: false
