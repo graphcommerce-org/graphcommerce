@@ -71,7 +71,7 @@ jobs:
         id: aggregate-failures
         run: |
           echo "Checking for failed matrix jobs..."
-          echo "checking outputs ${{ needs.publish.outputs.result }}"
+          echo "checking outputs ${{ needs.publish.outputs }}"
           failed_jobs=""
           matrix_versions=(${{ toJSON(needs.publish.matrix) }})
           job_results=(${{ needs.publish.outputs.result }})
