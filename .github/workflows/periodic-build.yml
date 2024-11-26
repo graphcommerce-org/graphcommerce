@@ -99,7 +99,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: list rest
-        run: echo ${{needs.report-failures.outputs.overall-result, needs.report-failures.outputs.failed-jobs }}
+        run: |
+          echo ${{needs.report-failures.outputs.overall-result}}
+          echo ${{needs.report-failures.outputs.failed-jobs}}
 
   notify-end:
     if: always()
