@@ -42,7 +42,7 @@ jobs:
           cp -R graphcommerce/examples/magento-graphcms/. graphcommerce-build 
           cd graphcommerce-build 
           corepack enable
-          yarn
+          yarn kapotmaken
           yarn codegen
           yarn build
         env:
