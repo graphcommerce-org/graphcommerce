@@ -30,11 +30,11 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
+import { productListRenderer } from '../ProductListItems'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
-import { productListRenderer } from '../ProductListItems'
 
 export type LayoutNavigationProps = LayoutQuery &
   Omit<LayoutDefaultProps, 'footer' | 'header' | 'cartFab' | 'menuFab'>
@@ -43,8 +43,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
   const { footer, menu, children, ...uiProps } = props
 
   const selection = useNavigationSelection()
-  const router = useRouter()
-
+  const pathName = usePathname()
   const cartEnabled = useCartEnabled()
 
   return (
@@ -123,7 +122,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
       <LayoutDefault
         {...uiProps}
-        noSticky={router.asPath.split('?')[0] === '/'}
+        noSticky={pathName === '/'}
         header={
           <>
             <Logo />
@@ -155,7 +154,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </DesktopNavBar>
 
             <DesktopNavActions>
-              {import.meta.graphCommerce.searchOverlay ? (
+              {import.meta.graphCommerce.searchOverlay && !pathName.startsWith('/search')  ? (
                 <SearchOverlay productListRenderer={productListRenderer} />
               ) : (
                 <ProductFiltersProSearchField formControl={{ sx: { width: '400px' } }} />
