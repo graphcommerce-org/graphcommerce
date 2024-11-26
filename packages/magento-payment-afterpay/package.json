@@ -1,0 +1,33 @@
+{
+  "name": "@graphcommerce/magento-payment-afterpay",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "9.0.0-canary.80",
+  "private": true,
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "peerDependencies": {
+    "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.80",
+    "@graphcommerce/graphql": "^9.0.0-canary.80",
+    "@graphcommerce/image": "^9.0.0-canary.80",
+    "@graphcommerce/magento-cart": "^9.0.0-canary.80",
+    "@graphcommerce/magento-store": "^9.0.0-canary.80",
+    "@graphcommerce/next-ui": "^9.0.0-canary.80",
+    "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.80",
+    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.80",
+    "@lingui/core": "^4.2.1",
+    "@lingui/macro": "^4.2.1",
+    "@lingui/react": "^4.2.1",
+    "@mui/material": "^5.10.16",
+    "framer-motion": "^10.0.0",
+    "next": "*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
