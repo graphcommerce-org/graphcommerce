@@ -23,7 +23,7 @@ jobs:
         version: [18, 20, 22]
     runs-on: ubuntu-latest
     outputs:
-      result: ${{ steps.set-output.outputs.result }}
+      result: ${{ steps.result-output.outputs.result }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -43,7 +43,7 @@ jobs:
           cp -R graphcommerce/examples/magento-graphcms/. graphcommerce-build 
           cd graphcommerce-build 
           corepack enable
-          yarn
+          yarn kapotmaken
           yarn codegen
           yarn build
         env:
@@ -51,17 +51,16 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Set job output based on result
-        id: set-output
+      - name: Capture job result
+        id: result-output
         run: |
           if [ "${{ job.status }}" == "failure" ]; then
-            echo "Job failed for Node.js version: ${{ matrix.version }}"
-            echo "::set-output name=result::Node.js version ${{ matrix.version }}: failed"
+            echo "::set-output name=result::failure"
           else
-            echo "::set-output name=result::Node.js version ${{ matrix.version }}: succeeded"
+            echo "::set-output name=result::success"
           fi
 
-  aggregate-results:
+  report-failures:
     if: always()
     needs: publish
     runs-on: ubuntu-latest
@@ -71,33 +70,35 @@ jobs:
       - name: Aggregate failure results
         id: aggregate-failures
         run: |
-          echo "Collecting matrix results..."
+          echo "Checking for failed matrix jobs..."
+          echo "checking outputs ${{ needs.publish.outputs.result }}"
           failed_jobs=""
-          for job in "${{ needs.publish.outputs.result }}"; do
-            if [[ "$job" == *failed* ]]; then
-              failed_jobs="$failed_jobs\n$job"
+          matrix_versions=(${{ toJSON(needs.publish.matrix) }})
+          job_results=(${{ needs.publish.outputs.result }})
+
+          for i in "${!matrix_versions[@]}"; do
+            version=${matrix_versions[$i]}
+            result=${job_results[$i]}
+            if [ "$result" == "failure" ]; then
+              failed_jobs="$failed_jobs\n- Node.js version $version"
             fi
           done
 
-          if [ -z "$failed_jobs" ]; then
-            echo "No failed jobs detected."
-          else
-            echo "Failed jobs detected: $failed_jobs"
-          fi
-
+          echo "Failed jobs: $failed_jobs"
           echo "::set-output name=failed-jobs::$failed_jobs"
 
   notify-end:
     if: always()
-    needs: [notify-start, publish, aggregate-results]
+    needs: [notify-start, publish, report-failures]
     name: Notify release end
     uses: ho-nl/release-slack-action/.github/workflows/notify-slack-end.yml@main
     secrets:
       slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN }}
     with:
       time: ${{ needs.notify-start.outputs.time }}
+      result: ${{ needs.publish.result }}
       channel: slack-test-messages
       message: |
         Periodic build results:
-        ${{ needs.aggregate-results.outputs.failed-jobs }}
-      notifyOnlyOnFailure: true
+        ${{ needs.report-failures.outputs.failed-jobs }}
+      notifyOnlyOnFailure: false
