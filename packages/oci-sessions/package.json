@@ -13,18 +13,14 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/ecommerce-ui": "^9.0.0-canary.96",
     "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.96",
-    "@graphcommerce/graphql": "^9.0.0-canary.96",
-    "@graphcommerce/graphql-mesh": "^9.0.0-canary.96",
-    "@graphcommerce/magento-cart": "^9.0.0-canary.96",
     "@graphcommerce/magento-customer": "^9.0.0-canary.96",
-    "@graphcommerce/magento-store": "^9.0.0-canary.96",
+    "@graphcommerce/next-config": "^9.0.0-canary.96",
     "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.96",
     "@graphcommerce/react-hook-form": "^9.0.0-canary.96",
     "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.96",
-    "@mui/material": "^5.10.16",
-    "next": "*",
+    "@mui/material": "^5.14.20",
+    "next": "^14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

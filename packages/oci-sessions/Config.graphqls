@@ -1,0 +1,21 @@
+extend input GraphCommerceConfig {
+  """
+  OCI settings config
+  """
+  ociSettings: OciSettingsConfig
+}
+
+"""
+OciSettingsConfig to allow enabling certain aspects of the OCI settings
+"""
+input OciSettingsConfig {
+  """
+  Enable OCI sessions for GraphCommerce
+  """
+  enabled: Boolean
+
+  """
+  OCI endpoint URL (required)
+  """
+  endpoint: String
+}
