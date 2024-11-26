@@ -22,6 +22,7 @@ jobs:
       matrix:
         version: [18, 20, 22]
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -53,17 +54,26 @@ jobs:
     if: always()
     needs: publish
     runs-on: ubuntu-latest
+    outputs:
+      failed-jobs: ${{ steps.aggregate-failures.outputs.failed-jobs }}
     steps:
       - name: Aggregate failure results
+        id: aggregate-failures
         run: |
           echo "Checking for failed matrix jobs..."
-          echo "Matrix configurations:"
-          echo "${{ toJSON(needs.publish.outputs) }}"
-          echo "${{ needs.publish.result }}" # This shows if any matrix job failed
+          failed_jobs=""
+          for job in "${{ toJSON(needs.publish.strategy) }}"
+          do
+            if [ "${{ job.result }}" == "failure" ]; then
+              failed_jobs="$failed_jobs\nJob with Node.js version ${{ job.matrix.version }} failed."
+            fi
+          done
+          echo "Failed jobs: $failed_jobs"
+          echo "::set-output name=failed-jobs::$failed_jobs"
 
   notify-end:
     if: always()
-    needs: [notify-start, publish]
+    needs: [notify-start, publish, report-failures]
     name: Notify release end
     uses: ho-nl/release-slack-action/.github/workflows/notify-slack-end.yml@main
     secrets:
@@ -74,5 +84,5 @@ jobs:
       channel: slack-test-messages
       message: |
         Periodic build results:
-        ${{ steps.aggregate-failures.outputs.failed-jobs }}
+        ${{ needs.report-failures.outputs.failed-jobs }}
       notifyOnlyOnFailure: true
