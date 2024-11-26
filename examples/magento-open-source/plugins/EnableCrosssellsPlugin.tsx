@@ -4,7 +4,6 @@ import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 export const config: PluginConfig = {
   type: 'component',
   module: '@graphcommerce/magento-product',
-  ifConfig: 'demoMode',
 }
 
 /**
