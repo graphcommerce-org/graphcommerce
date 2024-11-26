@@ -93,6 +93,13 @@ jobs:
 
           echo "::set-output name=failed-jobs::$failed_jobs"
           echo "::set-output name=overall-result::$overall_result"
+  test:
+    if: always()
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: list rest
+        run: echo ${{needs.report-failures.outputs.overall-result, needs.report-failures.outputs.failed-jobs }}
 
   notify-end:
     if: always()
