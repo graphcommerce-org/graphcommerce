@@ -66,7 +66,7 @@ export function SearchOverlayProducts({ productListRenderer }: SearchOverlayProd
 
       {params.search && products?.items && products.items.length > 0 && (
         <SectionContainer
-          labelLeft={<>Products</>}
+          labelLeft={<Trans>Products</Trans>}
           labelRight={
             <Link
               color='secondary'

@@ -634,9 +634,6 @@ msgstr "No se encontró el producto"
 msgid "Product not available in {allLabels}"
 msgstr "Producto no disponible en {allLabels}"
 
-msgid "Products"
-msgstr "Productos"
-
 #. js-lingui-generated-id
 msgid "An error occurred while processing your payment. Please contact the store owner"
 msgstr "Se ha producido un error al procesar su pago. Póngase en contacto con el propietario de la tienda"
