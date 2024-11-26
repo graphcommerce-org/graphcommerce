@@ -233,6 +233,9 @@ msgstr "Contacto"
 msgid "Continue"
 msgstr "Continuar"
 
+msgid "Continue searching"
+msgstr "Seguir buscando"
+
 msgid "Continue shopping"
 msgstr "Continuar comprando"
 
@@ -306,6 +309,9 @@ msgstr "Descubra nuestra colección y realice su primera compra!"
 
 msgid "Discover our collection and write your first review!"
 msgstr "Descubra nuestra colección y escriba su primera reseña!"
+
+msgid "Discover our collection by searching for products, categories or features."
+msgstr "Descubre nuestra colección buscando productos, categorías o características."
 
 #. js-lingui-generated-id
 msgid "Payment method"
@@ -458,6 +464,14 @@ msgstr "Sra."
 #. js-lingui-generated-id
 msgid "Order has successfully been canceled"
 msgstr "El pedido se ha cancelado correctamente"
+
+#. js-lingui-generated-id
+msgid "Products"
+msgstr "Productos"
+
+#. js-lingui-generated-id
+msgid "View all"
+msgstr "Ver todos"
 
 #. js-lingui-generated-id
 msgid "Categories"
@@ -741,9 +755,6 @@ msgstr "La inscripción está deshabilitada, póngase en contacto con nosotros p
 msgid "Skip to main content"
 msgstr "Saltar al contenido principal"
 
-msgid "Some items in your cart contain errors, please update or remove them, then try again."
-msgstr "Algunos artículos en su carrito contienen errores, por favor actualice o elimine ellos, y luego intente de nuevo."
-
 msgid "Something went wrong"
 msgstr "Algo salió mal"
 
@@ -755,9 +766,6 @@ msgstr "Ordenar"
 
 msgid "Sort By"
 msgstr "Ordenar por"
-
-msgid "Start Checkout"
-msgstr "Iniciar compra"
 
 msgid "Store home"
 msgstr "Inicio de la tienda"
@@ -893,6 +901,9 @@ msgstr "Estamos procesando su pago, esto tardará unos segundos."
 
 msgid "We’ve send a password reset link to your email address!"
 msgstr "¡Le hemos enviado un enlace para restablecer la contraseña a su correo electrónico!"
+
+msgid "What are you looking for?"
+msgstr "¿Qué estás buscando?"
 
 msgid "Whoops our bad..."
 msgstr "¡Vaya, algo malo sucedió..."

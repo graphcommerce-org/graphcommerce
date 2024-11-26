@@ -1,15 +1,13 @@
-import { FullPageMessage, iconSearch, IconSvg, useMatchMedia } from '@graphcommerce/next-ui'
+import { FullPageMessage, iconSearch, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { RecentSearches } from './RecentSearches'
 import { useRecentSearches } from './useRecentSearches'
 
 export function SearchPlaceholder() {
-  const matchMedia = useMatchMedia()
+  
   const { recentSearches } = useRecentSearches()
 
-  if (matchMedia.up('md')) {
-    return null
-  }
+  
 
   return (
     <>

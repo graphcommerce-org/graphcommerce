@@ -233,6 +233,9 @@ msgstr "Contact"
 msgid "Continue"
 msgstr "Continue"
 
+msgid "Continue searching"
+msgstr "Continue searching"
+
 msgid "Continue shopping"
 msgstr "Continue shopping"
 
@@ -306,6 +309,9 @@ msgstr "Discover our collection and place your first order!"
 
 msgid "Discover our collection and write your first review!"
 msgstr "Discover our collection and write your first review!"
+
+msgid "Discover our collection by searching for products, categories or features."
+msgstr "Discover our collection by searching for products, categories or features."
 
 #. js-lingui-generated-id
 msgid "Payment method"
@@ -458,6 +464,14 @@ msgstr "Mrs"
 #. js-lingui-generated-id
 msgid "Order has successfully been canceled"
 msgstr "Order has successfully been canceled"
+
+#. js-lingui-generated-id
+msgid "Products"
+msgstr "Products"
+
+#. js-lingui-generated-id
+msgid "View all"
+msgstr "View all"
 
 #. js-lingui-generated-id
 msgid "Categories"
@@ -741,9 +755,6 @@ msgstr "Sign up is disabled, please contact us for more information."
 msgid "Skip to main content"
 msgstr "Skip to main content"
 
-msgid "Some items in your cart contain errors, please update or remove them, then try again."
-msgstr "Some items in your cart contain errors, please update or remove them, then try again."
-
 msgid "Something went wrong"
 msgstr "Something went wrong"
 
@@ -755,9 +766,6 @@ msgstr "Sort"
 
 msgid "Sort By"
 msgstr "Sort By"
-
-msgid "Start Checkout"
-msgstr "Start Checkout"
 
 msgid "Store home"
 msgstr "Store home"
@@ -893,6 +901,9 @@ msgstr "We’re processing your payment, this will take a few seconds."
 
 msgid "We’ve send a password reset link to your email address!"
 msgstr "We’ve send a password reset link to your email address!"
+
+msgid "What are you looking for?"
+msgstr "What are you looking for?"
 
 msgid "Whoops our bad..."
 msgstr "Whoops our bad..."
