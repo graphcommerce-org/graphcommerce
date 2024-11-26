@@ -23,7 +23,7 @@ jobs:
         version: [18, 20, 22]
     runs-on: ubuntu-latest
     outputs:
-      result: ${{ steps.result-output.outputs.result }}
+      job-results: ${{ steps.collect-result.outputs.result }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -51,14 +51,21 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Capture job result
-        id: result-output
+      - name: Collect job result
+        id: collect-result
         run: |
           if [ "${{ job.status }}" == "failure" ]; then
-            echo "::set-output name=result::failure"
+            echo "Node.js version ${{ matrix.version }}: failed" >> results.txt
           else
-            echo "::set-output name=result::success"
+            echo "Node.js version ${{ matrix.version }}: succeeded" >> results.txt
           fi
+        shell: bash
+
+      - name: Output job results
+        id: finalize-result
+        run: |
+          cat results.txt
+          echo "::set-output name=result::$(cat results.txt)"
 
   report-failures:
     if: always()
@@ -67,24 +74,20 @@ jobs:
     outputs:
       failed-jobs: ${{ steps.aggregate-failures.outputs.failed-jobs }}
     steps:
-      - name: Aggregate failure results
+      - name: Aggregate matrix results
         id: aggregate-failures
         run: |
-          echo "Checking for failed matrix jobs..."
-          echo "checking outputs ${{ toJSON(needs.publish.outputs) }}"
-          failed_jobs=""
-          matrix_versions=(${{ toJSON(needs.publish.matrix) }})
-          job_results=(${{ needs.publish.outputs.result }})
+          echo "Aggregating results..."
+          echo "${{ needs.publish.outputs.job-results }}" > matrix-results.txt
+          failed_jobs=$(grep "failed" matrix-results.txt || true)
 
-          for i in "${!matrix_versions[@]}"; do
-            version=${matrix_versions[$i]}
-            result=${job_results[$i]}
-            if [ "$result" == "failure" ]; then
-              failed_jobs="$failed_jobs\n- Node.js version $version"
-            fi
-          done
+          if [ -z "$failed_jobs" ]; then
+            echo "No failed jobs detected."
+          else
+            echo "Failed jobs detected:"
+            echo "$failed_jobs"
+          fi
 
-          echo "Failed jobs: $failed_jobs"
           echo "::set-output name=failed-jobs::$failed_jobs"
 
   notify-end:
@@ -96,7 +99,6 @@ jobs:
       slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN }}
     with:
       time: ${{ needs.notify-start.outputs.time }}
-      result: ${{ needs.publish.result }}
       channel: slack-test-messages
       message: |
         Periodic build results:
