@@ -23,7 +23,7 @@ jobs:
         version: [18, 20, 22]
     runs-on: ubuntu-latest
     outputs:
-      job-results: ${{ steps.collect-result.outputs.result }}
+      results: ${{ steps.finalize-result.outputs.results }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -43,7 +43,7 @@ jobs:
           cp -R graphcommerce/examples/magento-graphcms/. graphcommerce-build 
           cd graphcommerce-build 
           corepack enable
-          yarn kapotmaken
+          yarn kapotmaken # Intentionally causes failure for testing
           yarn codegen
           yarn build
         env:
@@ -65,7 +65,7 @@ jobs:
         id: finalize-result
         run: |
           cat results.txt
-          echo "::set-output name=result::$(cat results.txt)"
+          echo "::set-output name=results::$(cat results.txt)"
 
   report-failures:
     if: always()
@@ -73,22 +73,26 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       failed-jobs: ${{ steps.aggregate-failures.outputs.failed-jobs }}
+      overall-result: ${{ steps.aggregate-failures.outputs.overall-result }}
     steps:
       - name: Aggregate matrix results
         id: aggregate-failures
         run: |
           echo "Aggregating results..."
-          echo "${{ needs.publish.outputs.job-results }}" > matrix-results.txt
+          echo "${{ needs.publish.outputs.results }}" > matrix-results.txt
           failed_jobs=$(grep "failed" matrix-results.txt || true)
 
           if [ -z "$failed_jobs" ]; then
             echo "No failed jobs detected."
+            overall_result="success"
           else
             echo "Failed jobs detected:"
             echo "$failed_jobs"
+            overall_result="failure"
           fi
 
           echo "::set-output name=failed-jobs::$failed_jobs"
+          echo "::set-output name=overall-result::$overall_result"
 
   notify-end:
     if: always()
@@ -99,8 +103,9 @@ jobs:
       slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN }}
     with:
       time: ${{ needs.notify-start.outputs.time }}
+      result: ${{ needs.report-failures.outputs.overall-result }}
       channel: slack-test-messages
       message: |
         Periodic build results:
         ${{ needs.report-failures.outputs.failed-jobs }}
-      notifyOnlyOnFailure: false
+      notifyOnlyOnFailure: true
