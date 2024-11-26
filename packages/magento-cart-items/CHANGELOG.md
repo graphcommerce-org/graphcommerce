@@ -1,5 +1,7 @@
 # Change Log
 
+## 9.0.0-canary.105
+
 ## 9.0.0-canary.104
 
 ## 9.0.0-canary.103
@@ -698,7 +700,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'
