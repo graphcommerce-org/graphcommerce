@@ -16,7 +16,7 @@
     "@lingui/loader": "4.14.0",
     "@lingui/macro": "4.14.0",
     "@lingui/react": "4.14.0",
-    "@lingui/swc-plugin": "4.0.8",
+    "@lingui/swc-plugin": "4.1.0",
     "@swc/core": "1.9.3",
     "@swc/wasm-web": "^1.9.3",
     "@types/circular-dependency-plugin": "^5.0.8",
