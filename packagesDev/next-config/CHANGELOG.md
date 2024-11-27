@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.106
+
+### Minor Changes
+
+- [#2385](https://github.com/graphcommerce-org/graphcommerce/pull/2385) [`3434ede`](https://github.com/graphcommerce-org/graphcommerce/commit/3434ede37855c36949711d05d13eb01906b29ad0) - Added a functionality to copy directories from packages to the project and keep them managed with GraphCommerce ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.105
 
 ## 9.0.0-canary.104
