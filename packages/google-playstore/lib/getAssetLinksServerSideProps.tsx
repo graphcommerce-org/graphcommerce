@@ -8,11 +8,7 @@ export const getAssetLinksServerSideProps: GetServerSideProps = async (context) 
   const sha256_cert_fingerprints = import.meta.graphCommerce.googlePlaystore
     ?.sha256CertificateFingerprint
 
-  if (!package_name || !sha256_cert_fingerprints) {
-    context.res.statusCode = 404
-    context.res.end()
-    return { props: {} }
-  }
+  if (!package_name || !sha256_cert_fingerprints) return { notFound: true }
 
   context.res.setHeader('Cache-Control', 'max-age=604800, public')
   // https://developer.android.com/training/app-links/verify-android-applinks#web-assoc

@@ -1,19 +1,17 @@
+/* eslint-disable no-await-in-loop */
 import fs from 'fs/promises'
 import path from 'path'
-import { glob } from 'glob'
+import fg from 'fast-glob'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 
 // Add debug logging helper
 const debug = (...args: unknown[]) => {
-  if (process.env.DEBUG) console.log('[copyFiles]', ...args)
+  if (process.env.DEBUG) console.log('[copy-files]', ...args)
 }
 
 // Add constants for the magic comments
-type FileManagement = 'graphcommerce' | 'local'
-const createManagementComment = (type: FileManagement) => `// managed by: ${type}`
-
-const MANAGED_BY_GC = createManagementComment('graphcommerce')
-const MANAGED_LOCALLY = createManagementComment('local')
+const MANAGED_BY_GC = '// managed by: graphcommerce'
+const MANAGED_LOCALLY = '// managed by: local'
 
 const GITIGNORE_SECTION_START = '# managed by: graphcommerce'
 const GITIGNORE_SECTION_END = '# end managed by: graphcommerce'
@@ -30,11 +28,9 @@ async function updateGitignore(managedFiles: string[]) {
   const gitignorePath = path.join(process.cwd(), '.gitignore')
   let content: string
 
-  debug('Updating .gitignore with managed files:', managedFiles)
-
   try {
     content = await fs.readFile(gitignorePath, 'utf-8')
-    debug('Existing .gitignore content:', content)
+    debug('Reading existing .gitignore')
   } catch (err) {
     debug('.gitignore not found, creating new file')
     content = ''
@@ -46,7 +42,6 @@ async function updateGitignore(managedFiles: string[]) {
     'g',
   )
   content = content.replace(sectionRegex, '')
-  debug('Content after removing existing section:', content)
 
   // Only add new section if there are files to manage
   if (managedFiles.length > 0) {
@@ -56,23 +51,16 @@ async function updateGitignore(managedFiles: string[]) {
       GITIGNORE_SECTION_END,
       '', // Empty line at the end
     ].join('\n')
-    debug('New section to add:', newSection)
 
     // Append the new section
     content = `${content.trim()}\n\n${newSection}`
+    debug(`Updated .gitignore with ${managedFiles.length} managed files`)
   } else {
-    // Just trim the content when no files to manage
     content = `${content.trim()}\n`
+    debug('Cleaned up .gitignore managed section')
   }
 
-  debug('Final content:', content)
-
-  try {
-    await fs.writeFile(gitignorePath, content)
-    debug('Successfully wrote .gitignore file')
-  } catch (err) {
-    console.error('Error writing .gitignore:', err)
-  }
+  await fs.writeFile(gitignorePath, content)
 }
 
 /** Determines how a file should be managed based on its content */
@@ -97,25 +85,41 @@ function getFileManagement(content: Buffer | undefined): 'local' | 'graphcommerc
  *    4. If the file is managed by graphcommerce: Update if content differs
  */
 export async function copyFiles() {
+  const startTime = performance.now()
   debug('Starting copyFiles')
 
   const cwd = process.cwd()
   const deps = resolveDependenciesSync()
   const packages = [...deps.values()].filter((p) => p !== '.')
-  debug('Found packages:', packages)
 
   // Track files and their source packages to detect conflicts
   const fileMap = new Map<string, { sourcePath: string; packagePath: string }>()
-  // Track which files are managed by GraphCommerce
   const managedFiles = new Set<string>()
-  // Track existing managed files to detect removals
   const existingManagedFiles = new Set<string>()
 
   // First scan existing files to find GraphCommerce managed ones
+  const scanStart = performance.now()
   try {
-    const allFiles = await glob('**/*', { cwd, nodir: true, dot: true })
-    debug('Found all project files:', allFiles)
+    // Use only default patterns for testing
+    const gitignorePatterns = [
+      '**/dist/**',
+      '**/build/**',
+      '**/.next/**',
+      '**/.git/**',
+      '**/node_modules/**',
+    ]
 
+    const allFiles = await fg('**/*', {
+      cwd,
+      dot: true,
+      ignore: gitignorePatterns,
+      onlyFiles: true,
+    })
+    debug(
+      `Found ${allFiles.length} project files in ${(performance.now() - scanStart).toFixed(0)}ms`,
+    )
+
+    const readStart = performance.now()
     await Promise.all(
       allFiles.map(async (file) => {
         const filePath = path.join(cwd, file)
@@ -130,45 +134,51 @@ export async function copyFiles() {
         }
       }),
     )
+    debug(
+      `Read ${existingManagedFiles.size} managed files in ${(performance.now() - readStart).toFixed(0)}ms`,
+    )
   } catch (err) {
     debug('Error scanning project files:', err)
   }
 
   // First pass: collect all files and check for conflicts
+  const collectStart = performance.now()
   await Promise.all(
     packages.map(async (pkg) => {
       const copyDir = path.join(pkg, 'copy')
-
       try {
-        const files = await glob('**/*', { cwd: copyDir, nodir: true, dot: true })
-        debug(`Found files in ${pkg}:`, files)
+        const files = await fg('**/*', { cwd: copyDir, dot: true, suppressErrors: true })
+        if (files.length > 0) {
+          debug(`Found files in ${pkg}:`, files)
 
-        for (const file of files) {
-          const sourcePath = path.join(copyDir, file)
-          const existing = fileMap.get(file)
+          for (const file of files) {
+            const sourcePath = path.join(copyDir, file)
+            const existing = fileMap.get(file)
 
-          if (existing) {
-            console.error(`Error: File conflict detected for '${file}'
+            if (existing) {
+              console.error(`Error: File conflict detected for '${file}'
 Found in packages:
   - ${existing.packagePath} -> ${existing.sourcePath}
   - ${pkg} -> ${sourcePath}`)
-            process.exit(1)
-          }
+              process.exit(1)
+            }
 
-          fileMap.set(file, { sourcePath, packagePath: pkg })
+            fileMap.set(file, { sourcePath, packagePath: pkg })
+          }
         }
       } catch (err) {
-        // Skip if copy directory doesn't exist
-        if ((err as { code?: string }).code !== 'ENOENT') {
-          console.error(`Error scanning directory ${copyDir}: ${(err as Error).message}
-Path: ${copyDir}`)
-          process.exit(1)
-        }
+        if ((err as { code?: string }).code === 'ENOENT') return
+        console.error(
+          `Error scanning directory ${copyDir}: ${(err as Error).message}\nPath: ${copyDir}`,
+        )
+        process.exit(1)
       }
     }),
   )
+  debug(`Collected ${fileMap.size} files in ${(performance.now() - collectStart).toFixed(0)}ms`)
 
   // Second pass: copy files and handle removals
+  const copyStart = performance.now()
   await Promise.all(
     Array.from(fileMap.entries()).map(async ([file, { sourcePath }]) => {
       const targetPath = path.join(cwd, file)
@@ -179,8 +189,9 @@ Path: ${copyDir}`)
 
         const sourceContent = await fs.readFile(sourcePath)
         const contentWithComment = Buffer.concat([
-          Buffer.from(`${MANAGED_BY_GC}\n`),
-          Buffer.from('// to modify this file, change it to managed by: local\n\n'),
+          Buffer.from(
+            `${MANAGED_BY_GC}\n// to modify this file, change it to managed by: local\n\n`,
+          ),
           sourceContent,
         ])
 
@@ -240,56 +251,72 @@ Source: ${sourcePath}`)
       }
     }),
   )
+  debug(`Copied ${managedFiles.size} files in ${(performance.now() - copyStart).toFixed(0)}ms`)
 
-  // Handle removal of files that are no longer provided by any package
-  const filesToRemove = Array.from(existingManagedFiles).filter((file) => !fileMap.has(file))
-  debug('Files to remove:', filesToRemove)
+  // Remove files that are no longer provided
+  const removeStart = performance.now()
+  const filesToRemove = Array.from(existingManagedFiles).filter((file) => !managedFiles.has(file))
+  debug(`Files to remove: ${filesToRemove.length}`)
 
-  // Helper function to remove empty directories
-  async function removeEmptyDirs(startPath: string) {
-    const dirs: string[] = []
-    let dirPath = path.dirname(startPath)
-    while (dirPath !== cwd) {
-      dirs.push(dirPath)
-      dirPath = path.dirname(dirPath)
-    }
-
-    // Process all directories in parallel
-    await Promise.all(
-      dirs.map(async (dir) => {
-        try {
-          const files = await fs.readdir(dir)
-          if (files.length === 0) {
-            await fs.rmdir(dir)
-            debug(`Removed empty directory: ${dir}`)
-          }
-          // If directory is not empty, the Promise will resolve without doing anything
-        } catch (err) {
-          // Ignore errors, as they likely mean the directory was already removed
-          debug(`Error processing directory ${dir}:`, err)
+  // Helper function to recursively clean up empty directories
+  async function cleanupEmptyDirs(startPath: string) {
+    let currentDir = startPath
+    while (currentDir !== cwd) {
+      try {
+        const dirContents = await fs.readdir(currentDir)
+        if (dirContents.length === 0) {
+          await fs.rmdir(currentDir)
+          debug(`Removed empty directory: ${currentDir}`)
+          currentDir = path.dirname(currentDir)
+        } else {
+          break // Stop if directory is not empty
         }
-      }),
-    )
+      } catch (err) {
+        if ((err as { code?: string }).code === 'EACCES') {
+          console.error(`Error cleaning up directory ${currentDir}: ${(err as Error).message}`)
+          process.exit(1)
+        }
+        break // Stop on other errors (like ENOENT)
+      }
+    }
   }
 
-  // Remove files in parallel
+  // Process file removals in parallel
   await Promise.all(
     filesToRemove.map(async (file) => {
       const filePath = path.join(cwd, file)
-      try {
-        await fs.unlink(filePath)
-        console.log(`Removed managed file that is no longer provided: ${file}`)
-        debug(`Removed file: ${file}`)
+      const dirPath = path.dirname(filePath)
 
-        // Clean up empty directories after file removal
-        await removeEmptyDirs(filePath)
+      try {
+        // First check if the directory exists and is accessible
+        await fs.readdir(dirPath)
+
+        // Then try to remove the file
+        try {
+          await fs.unlink(filePath)
+          console.log(`Removed managed file: ${file}`)
+          debug(`Removed file: ${file}`)
+        } catch (err) {
+          if ((err as { code?: string }).code !== 'ENOENT') {
+            console.error(`Error removing file ${file}: ${(err as Error).message}`)
+            process.exit(1)
+          }
+        }
+
+        // Finally, try to clean up empty directories
+        await cleanupEmptyDirs(dirPath)
       } catch (err) {
-        console.error(`Error removing file ${file}: ${(err as Error).message}`)
+        if ((err as { code?: string }).code === 'EACCES') {
+          console.error(`Error accessing directory ${dirPath}: ${(err as Error).message}`)
+          process.exit(1)
+        }
+        // Ignore ENOENT errors for directories that don't exist
       }
     }),
   )
+  debug(`Removed files in ${(performance.now() - removeStart).toFixed(0)}ms`)
 
-  // Update .gitignore with the current list of managed files
+  // Update .gitignore with current list of managed files
   if (managedFiles.size > 0) {
     debug('Found managed files:', Array.from(managedFiles))
     await updateGitignore(Array.from(managedFiles))
@@ -297,4 +324,6 @@ Source: ${sourcePath}`)
     debug('No managed files found, cleaning up .gitignore section')
     await updateGitignore([])
   }
+
+  debug(`Total execution time: ${(performance.now() - startTime).toFixed(0)}ms`)
 }
