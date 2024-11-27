@@ -100,6 +100,29 @@ async function copyFiles() {
     const fileMap = new Map();
     // Track which files are managed by GraphCommerce
     const managedFiles = new Set();
+    // Track existing managed files to detect removals
+    const existingManagedFiles = new Set();
+    // First scan existing files to find GraphCommerce managed ones
+    try {
+        const allFiles = await (0, glob_1.glob)('**/*', { cwd, nodir: true, dot: true });
+        debug('Found all project files:', allFiles);
+        await Promise.all(allFiles.map(async (file) => {
+            const filePath = path_1.default.join(cwd, file);
+            try {
+                const content = await promises_1.default.readFile(filePath);
+                if (getFileManagement(content) === 'graphcommerce') {
+                    existingManagedFiles.add(file);
+                    debug(`Found existing managed file: ${file}`);
+                }
+            }
+            catch (err) {
+                debug(`Error reading file ${file}:`, err);
+            }
+        }));
+    }
+    catch (err) {
+        debug('Error scanning project files:', err);
+    }
     // First pass: collect all files and check for conflicts
     await Promise.all(packages.map(async (pkg) => {
         const copyDir = path_1.default.join(pkg, 'copy');
@@ -128,7 +151,7 @@ Path: ${copyDir}`);
             }
         }
     }));
-    // Second pass: copy files
+    // Second pass: copy files and handle removals
     await Promise.all(Array.from(fileMap.entries()).map(async ([file, { sourcePath }]) => {
         const targetPath = path_1.default.join(cwd, file);
         debug(`Processing file: ${file}`);
@@ -189,13 +212,54 @@ Source: ${sourcePath}`);
             process.exit(1);
         }
     }));
-    // Update .gitignore with the list of managed files
+    // Handle removal of files that are no longer provided by any package
+    const filesToRemove = Array.from(existingManagedFiles).filter((file) => !fileMap.has(file));
+    debug('Files to remove:', filesToRemove);
+    // Helper function to remove empty directories
+    async function removeEmptyDirs(startPath) {
+        const dirs = [];
+        let dirPath = path_1.default.dirname(startPath);
+        while (dirPath !== cwd) {
+            dirs.push(dirPath);
+            dirPath = path_1.default.dirname(dirPath);
+        }
+        // Process all directories in parallel
+        await Promise.all(dirs.map(async (dir) => {
+            try {
+                const files = await promises_1.default.readdir(dir);
+                if (files.length === 0) {
+                    await promises_1.default.rmdir(dir);
+                    debug(`Removed empty directory: ${dir}`);
+                }
+                // If directory is not empty, the Promise will resolve without doing anything
+            }
+            catch (err) {
+                // Ignore errors, as they likely mean the directory was already removed
+                debug(`Error processing directory ${dir}:`, err);
+            }
+        }));
+    }
+    // Remove files in parallel
+    await Promise.all(filesToRemove.map(async (file) => {
+        const filePath = path_1.default.join(cwd, file);
+        try {
+            await promises_1.default.unlink(filePath);
+            console.log(`Removed managed file that is no longer provided: ${file}`);
+            debug(`Removed file: ${file}`);
+            // Clean up empty directories after file removal
+            await removeEmptyDirs(filePath);
+        }
+        catch (err) {
+            console.error(`Error removing file ${file}: ${err.message}`);
+        }
+    }));
+    // Update .gitignore with the current list of managed files
     if (managedFiles.size > 0) {
         debug('Found managed files:', Array.from(managedFiles));
         await updateGitignore(Array.from(managedFiles));
     }
     else {
         debug('No managed files found, cleaning up .gitignore section');
-        await updateGitignore([]); // Pass empty array to clean up the section
+        await updateGitignore([]);
     }
 }

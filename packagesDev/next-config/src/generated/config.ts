@@ -215,6 +215,8 @@ export type GraphCommerceConfig = {
    * To override the value for a specific locale, configure in i18n config.
    */
   googleAnalyticsId?: InputMaybe<Scalars['String']['input']>;
+  /** To create an assetlinks.json file for the Android app. */
+  googlePlaystore?: InputMaybe<GraphCommerceGooglePlaystoreConfig>;
   /**
    * Google reCAPTCHA site key.
    * When using reCAPTCHA, this value is required, even if you are configuring different values for each locale.
@@ -367,6 +369,14 @@ export type GraphCommerceDebugConfig = {
    * - The Typescript types of the package are not compatible with each other, causing Typescript errors.
    */
   webpackDuplicatesPlugin?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** See https://developer.android.com/training/app-links/verify-android-applinks#web-assoc */
+export type GraphCommerceGooglePlaystoreConfig = {
+  /** The package name of the Android app. */
+  packageName: Scalars['String']['input'];
+  /** The sha256 certificate fingerprint of the Android app. */
+  sha256CertificateFingerprint: Scalars['String']['input'];
 };
 
 /** Permissions input */
@@ -546,6 +556,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     demoMode: z.boolean().default(true).nullish(),
     enableGuestCheckoutLogin: z.boolean().nullish(),
     googleAnalyticsId: z.string().nullish(),
+    googlePlaystore: GraphCommerceGooglePlaystoreConfigSchema().nullish(),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
     hygraphEndpoint: z.string().min(1),
@@ -576,6 +587,13 @@ export function GraphCommerceDebugConfigSchema(): z.ZodObject<Properties<GraphCo
     sessions: z.boolean().nullish(),
     webpackCircularDependencyPlugin: z.boolean().nullish(),
     webpackDuplicatesPlugin: z.boolean().nullish()
+  })
+}
+
+export function GraphCommerceGooglePlaystoreConfigSchema(): z.ZodObject<Properties<GraphCommerceGooglePlaystoreConfig>> {
+  return z.object({
+    packageName: z.string().min(1),
+    sha256CertificateFingerprint: z.string().min(1)
   })
 }
 
