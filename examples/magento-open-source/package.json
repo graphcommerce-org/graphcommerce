@@ -11,8 +11,8 @@
   },
   "scripts": {
     "dev": "concurrently -k -n codegen,next 'graphql-codegen -w' 'next dev'",
-    "codegen": "graphcommerce codegen-config && graphcommerce codegen-interceptors && mesh build && graphql-codegen",
-    "build": "graphcommerce codegen-config && graphcommerce codegen-interceptors && mesh build && graphql-codegen && next build && generate-assetlinks",
+    "codegen": "graphcommerce codegen && mesh build && graphql-codegen",
+    "build": "graphcommerce codegen && mesh build && graphql-codegen && next build && generate-assetlinks",
     "start": "next start",
     "tsc:lint": "tsc --noEmit -p .",
     "tsc:perf": "NODE_OPTIONS=--max_old_space_size=10000 tsc --noEmit --generateTrace tsctrace --incremental false && npx @typescript/analyze-trace tsctrace",
