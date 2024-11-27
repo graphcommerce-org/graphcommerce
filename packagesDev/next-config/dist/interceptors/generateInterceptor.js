@@ -41,8 +41,8 @@ function isReplacePluginConfig(plugin) {
 function isPluginConfig(plugin) {
     return isPluginBaseConfig(plugin);
 }
-exports.SOURCE_START = '/** Original source starts here (do not modify!): **/';
-exports.SOURCE_END = '/** Original source ends here (do not modify!) **/';
+exports.SOURCE_START = '/** SOURCE_START */';
+exports.SOURCE_END = '/** SOURCE_END */';
 const originalSuffix = 'Original';
 const interceptorSuffix = 'Interceptor';
 const disabledSuffix = 'Disabled';
@@ -68,9 +68,7 @@ const generateIdentifyer = (s) => Math.abs(s.split('').reduce((a, b) => {
     // eslint-disable-next-line no-bitwise
     return a & a;
 }, 0)).toString();
-/**
- * The is on the first line, with the format: \/* hash:${identifer} *\/
- */
+/** The is on the first line, with the format: /* hash:${identifer} */
 function extractIdentifier(source) {
     if (!source)
         return null;

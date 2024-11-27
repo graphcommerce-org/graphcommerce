@@ -223,11 +223,10 @@ export function formatAppliedEnv(applyResult: ApplyResult) {
 
     if (!dotVar) return chalk.red(`${envVariableFmt} => ignored (no matching config)`)
 
-    if (from === undefined && to === undefined)
-      return ` = ${baseLog}: (ignored, no change/wrong format)`
-    if (from === undefined && to !== undefined) return ` ${chalk.green('+')} ${baseLog}: ${toFmt}`
-    if (from !== undefined && to === undefined) return ` ${chalk.red('-')} ${baseLog}: ${fromFmt}`
-    return ` ${chalk.yellowBright('~')} ${baseLog}: ${fromFmt} => ${toFmt}`
+    if (from === undefined && to === undefined) return ` = ${baseLog}: (ignored)`
+    if (from === undefined && to !== undefined) return ` ${chalk.green('+')} ${baseLog}`
+    if (from !== undefined && to === undefined) return ` ${chalk.red('-')} ${baseLog}`
+    return ` ${chalk.yellowBright('~')} ${baseLog}`
   })
 
   let header = chalk.blueBright('info')

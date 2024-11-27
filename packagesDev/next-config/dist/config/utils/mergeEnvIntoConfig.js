@@ -169,12 +169,12 @@ function formatAppliedEnv(applyResult) {
         if (!dotVar)
             return chalk_1.default.red(`${envVariableFmt} => ignored (no matching config)`);
         if (from === undefined && to === undefined)
-            return ` = ${baseLog}: (ignored, no change/wrong format)`;
+            return ` = ${baseLog}: (ignored)`;
         if (from === undefined && to !== undefined)
-            return ` ${chalk_1.default.green('+')} ${baseLog}: ${toFmt}`;
+            return ` ${chalk_1.default.green('+')} ${baseLog}`;
         if (from !== undefined && to === undefined)
-            return ` ${chalk_1.default.red('-')} ${baseLog}: ${fromFmt}`;
-        return ` ${chalk_1.default.yellowBright('~')} ${baseLog}: ${fromFmt} => ${toFmt}`;
+            return ` ${chalk_1.default.red('-')} ${baseLog}`;
+        return ` ${chalk_1.default.yellowBright('~')} ${baseLog}`;
     });
     let header = chalk_1.default.blueBright('info');
     if (hasWarning)
