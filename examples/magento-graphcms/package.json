@@ -118,7 +118,7 @@
     "eslint": "^8",
     "prettier": "^3",
     "type-fest": "^4.26.1",
-    "typescript": "5.6.2"
+    "typescript": "5.7.2"
   },
   "browserslist": [
     "> 1% in alt-EU",

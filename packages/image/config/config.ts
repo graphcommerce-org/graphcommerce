@@ -100,8 +100,8 @@ export function defaultLoader({ config, src, width, quality }: ImageLoaderPropsW
       ) {
         // We use dynamic require because this should only error in development
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        import('next/dist/shared/lib/match-remote-pattern').then(({ hasMatch }) => {
-          if (!hasMatch(config.domains, config.remotePatterns, parsedSrc)) {
+        import('next/dist/shared/lib/match-remote-pattern').then(({ hasRemoteMatch }) => {
+          if (!hasRemoteMatch(config.domains, config.remotePatterns, parsedSrc)) {
             throw new Error(
               `Invalid src prop (${src}) on \`next/image\`, hostname "${parsedSrc.hostname}" is not configured under images in your \`next.config.js\`\n` +
                 'See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host',
