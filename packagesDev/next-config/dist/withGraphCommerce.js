@@ -41,10 +41,10 @@ function withGraphCommerce(nextConfig, cwd) {
     ];
     return {
         ...nextConfig,
+        bundlePagesRouterDependencies: true,
         experimental: {
             ...nextConfig.experimental,
             scrollRestoration: true,
-            bundlePagesExternals: true,
             swcPlugins: [...(nextConfig.experimental?.swcPlugins ?? []), ['@lingui/swc-plugin', {}]],
         },
         i18n: {
