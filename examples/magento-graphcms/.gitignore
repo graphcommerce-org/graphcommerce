@@ -30,3 +30,7 @@ yarn-error.log*
 # application
 .mesh
 *.tsbuildinfo
+
+# managed by: graphcommerce
+pages/.well-known/assetlinks.json.tsx
+# end managed by: graphcommerce
