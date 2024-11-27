@@ -24,7 +24,7 @@
     "react-hook-form": "^7"
   },
   "dependencies": {
-    "@types/lodash": "^4.17.10",
+    "@types/lodash": "^4.17.13",
     "lodash": "^4.17.21"
   }
 }

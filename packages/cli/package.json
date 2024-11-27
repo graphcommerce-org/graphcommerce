@@ -20,14 +20,14 @@
     "mesh": "dist/bin/mesh.js"
   },
   "dependencies": {
-    "@graphql-codegen/cli": "5.0.2",
+    "@graphql-codegen/cli": "5.0.3",
     "@graphql-mesh/cli": "latest",
     "@graphql-mesh/cross-helpers": "latest",
     "@graphql-mesh/runtime": "latest",
     "@graphql-mesh/store": "latest",
     "@graphql-mesh/types": "latest",
     "@graphql-mesh/utils": "latest",
-    "@graphql-tools/utils": "^10.3.2",
+    "@graphql-tools/utils": "^10.6.0",
     "cosmiconfig": "^8.3.6",
     "detect-package-manager": "^3.0.2",
     "dotenv": "16.4.5",
