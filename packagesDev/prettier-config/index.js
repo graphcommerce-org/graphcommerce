@@ -24,5 +24,8 @@ module.exports = {
   importOrderSeparation: false,
   importOrderSortSpecifiers: true,
   importOrder: ['^@graphcommerce/(.*)$', '<THIRD_PARTY_MODULES>', '^[./]'],
-  plugins: [require.resolve('@ianvs/prettier-plugin-sort-imports')],
+  plugins: [
+    require.resolve('@ianvs/prettier-plugin-sort-imports'),
+    require.resolve('prettier-plugin-jsdoc'),
+  ],
 }
