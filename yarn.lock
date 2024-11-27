@@ -3140,6 +3140,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@graphcommerce/google-playstore@npm:9.0.0-canary.106, @graphcommerce/google-playstore@workspace:packages/google-playstore":
+  version: 0.0.0-use.local
+  resolution: "@graphcommerce/google-playstore@workspace:packages/google-playstore"
+  peerDependencies:
+    "@graphcommerce/eslint-config-pwa": ^9.0.0-canary.106
+    "@graphcommerce/next-ui": ^9.0.0-canary.106
+    "@graphcommerce/prettier-config-pwa": ^9.0.0-canary.106
+    "@graphcommerce/typescript-config-pwa": ^9.0.0-canary.106
+    next: "*"
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  languageName: unknown
+  linkType: soft
+
 "@graphcommerce/googleanalytics@npm:9.0.0-canary.106, @graphcommerce/googleanalytics@workspace:packages/googleanalytics":
   version: 0.0.0-use.local
   resolution: "@graphcommerce/googleanalytics@workspace:packages/googleanalytics"
@@ -3930,6 +3944,7 @@ __metadata:
     "@graphcommerce/framer-scroller": "npm:9.0.0-canary.106"
     "@graphcommerce/framer-utils": "npm:9.0.0-canary.106"
     "@graphcommerce/google-datalayer": "npm:9.0.0-canary.106"
+    "@graphcommerce/google-playstore": "npm:9.0.0-canary.106"
     "@graphcommerce/googleanalytics": "npm:9.0.0-canary.106"
     "@graphcommerce/googlerecaptcha": "npm:9.0.0-canary.106"
     "@graphcommerce/googletagmanager": "npm:9.0.0-canary.106"
@@ -4001,7 +4016,6 @@ __metadata:
     framer-motion: "npm:11.11.1"
     graphql: "npm:^16.9.0"
     next: "npm:15.0.3"
-    next-assetlinks: "npm:^1.0.0"
     next-sitemap: "npm:4.2.3"
     prettier: "npm:^3"
     react: "npm:^18.3.1"
@@ -4087,6 +4101,7 @@ __metadata:
     "@graphcommerce/framer-scroller": "npm:9.0.0-canary.106"
     "@graphcommerce/framer-utils": "npm:9.0.0-canary.106"
     "@graphcommerce/google-datalayer": "npm:9.0.0-canary.106"
+    "@graphcommerce/google-playstore": "npm:9.0.0-canary.106"
     "@graphcommerce/googleanalytics": "npm:9.0.0-canary.106"
     "@graphcommerce/googlerecaptcha": "npm:9.0.0-canary.106"
     "@graphcommerce/googletagmanager": "npm:9.0.0-canary.106"
@@ -4155,7 +4170,6 @@ __metadata:
     framer-motion: "npm:11.11.1"
     graphql: "npm:^16.9.0"
     next: "npm:15.0.3"
-    next-assetlinks: "npm:^1.0.0"
     next-sitemap: "npm:4.2.3"
     prettier: "npm:^3"
     react: "npm:^18.3.1"
@@ -16048,15 +16062,6 @@ __metadata:
   version: 2.6.2
   resolution: "neo-async@npm:2.6.2"
   checksum: 10c0/c2f5a604a54a8ec5438a342e1f356dff4bc33ccccdb6dc668d94fe8e5eccfc9d2c2eea6064b0967a767ba63b33763f51ccf2cd2441b461a7322656c1f06b3f5d
-  languageName: node
-  linkType: hard
-
-"next-assetlinks@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "next-assetlinks@npm:1.0.0"
-  bin:
-    generate-assetlinks: cli.js
-  checksum: 10c0/4d7ca45ae56bb69b877c496c3c51c4107e1800c16ed6022830de9bbbbbebd40aef6970e20e558729513307a069e0a42687aae42fe2e26f87a8cc039799cec61b
   languageName: node
   linkType: hard
 
