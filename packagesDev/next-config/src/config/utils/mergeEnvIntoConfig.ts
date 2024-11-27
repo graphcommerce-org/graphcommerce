@@ -5,6 +5,7 @@ import { get, set } from 'lodash'
 import snakeCase from 'lodash/snakeCase'
 import type { ZodAny, ZodRawShape, ZodTypeAny } from 'zod'
 import {
+  z,
   ZodArray,
   ZodBoolean,
   ZodDefault,
@@ -15,7 +16,6 @@ import {
   ZodObject,
   ZodOptional,
   ZodString,
-  z,
 } from 'zod'
 import diff from './diff'
 
@@ -207,7 +207,7 @@ export function formatAppliedEnv(applyResult: ApplyResult) {
   const lines = applyResult.map(({ from, to, envValue, envVar, dotVar, error, warning }) => {
     const fromFmt = chalk.red(JSON.stringify(from))
     const toFmt = chalk.green(JSON.stringify(to))
-    const envVariableFmt = `${envVar}='${envValue}'`
+    const envVariableFmt = `${envVar}`
     const dotVariableFmt = chalk.bold.underline(`${dotVar}`)
 
     const baseLog = `${envVariableFmt} => ${dotVariableFmt}`

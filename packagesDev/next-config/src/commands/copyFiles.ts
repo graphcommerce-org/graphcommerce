@@ -108,6 +108,31 @@ export async function copyFiles() {
   const fileMap = new Map<string, { sourcePath: string; packagePath: string }>()
   // Track which files are managed by GraphCommerce
   const managedFiles = new Set<string>()
+  // Track existing managed files to detect removals
+  const existingManagedFiles = new Set<string>()
+
+  // First scan existing files to find GraphCommerce managed ones
+  try {
+    const allFiles = await glob('**/*', { cwd, nodir: true, dot: true })
+    debug('Found all project files:', allFiles)
+
+    await Promise.all(
+      allFiles.map(async (file) => {
+        const filePath = path.join(cwd, file)
+        try {
+          const content = await fs.readFile(filePath)
+          if (getFileManagement(content) === 'graphcommerce') {
+            existingManagedFiles.add(file)
+            debug(`Found existing managed file: ${file}`)
+          }
+        } catch (err) {
+          debug(`Error reading file ${file}:`, err)
+        }
+      }),
+    )
+  } catch (err) {
+    debug('Error scanning project files:', err)
+  }
 
   // First pass: collect all files and check for conflicts
   await Promise.all(
@@ -143,7 +168,7 @@ Path: ${copyDir}`)
     }),
   )
 
-  // Second pass: copy files
+  // Second pass: copy files and handle removals
   await Promise.all(
     Array.from(fileMap.entries()).map(async ([file, { sourcePath }]) => {
       const targetPath = path.join(cwd, file)
@@ -216,12 +241,60 @@ Source: ${sourcePath}`)
     }),
   )
 
-  // Update .gitignore with the list of managed files
+  // Handle removal of files that are no longer provided by any package
+  const filesToRemove = Array.from(existingManagedFiles).filter((file) => !fileMap.has(file))
+  debug('Files to remove:', filesToRemove)
+
+  // Helper function to remove empty directories
+  async function removeEmptyDirs(startPath: string) {
+    const dirs: string[] = []
+    let dirPath = path.dirname(startPath)
+    while (dirPath !== cwd) {
+      dirs.push(dirPath)
+      dirPath = path.dirname(dirPath)
+    }
+
+    // Process all directories in parallel
+    await Promise.all(
+      dirs.map(async (dir) => {
+        try {
+          const files = await fs.readdir(dir)
+          if (files.length === 0) {
+            await fs.rmdir(dir)
+            debug(`Removed empty directory: ${dir}`)
+          }
+          // If directory is not empty, the Promise will resolve without doing anything
+        } catch (err) {
+          // Ignore errors, as they likely mean the directory was already removed
+          debug(`Error processing directory ${dir}:`, err)
+        }
+      }),
+    )
+  }
+
+  // Remove files in parallel
+  await Promise.all(
+    filesToRemove.map(async (file) => {
+      const filePath = path.join(cwd, file)
+      try {
+        await fs.unlink(filePath)
+        console.log(`Removed managed file that is no longer provided: ${file}`)
+        debug(`Removed file: ${file}`)
+
+        // Clean up empty directories after file removal
+        await removeEmptyDirs(filePath)
+      } catch (err) {
+        console.error(`Error removing file ${file}: ${(err as Error).message}`)
+      }
+    }),
+  )
+
+  // Update .gitignore with the current list of managed files
   if (managedFiles.size > 0) {
     debug('Found managed files:', Array.from(managedFiles))
     await updateGitignore(Array.from(managedFiles))
   } else {
     debug('No managed files found, cleaning up .gitignore section')
-    await updateGitignore([]) // Pass empty array to clean up the section
+    await updateGitignore([])
   }
 }

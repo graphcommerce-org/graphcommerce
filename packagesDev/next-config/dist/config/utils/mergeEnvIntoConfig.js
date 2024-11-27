@@ -155,7 +155,7 @@ function formatAppliedEnv(applyResult) {
     const lines = applyResult.map(({ from, to, envValue, envVar, dotVar, error, warning }) => {
         const fromFmt = chalk_1.default.red(JSON.stringify(from));
         const toFmt = chalk_1.default.green(JSON.stringify(to));
-        const envVariableFmt = `${envVar}='${envValue}'`;
+        const envVariableFmt = `${envVar}`;
         const dotVariableFmt = chalk_1.default.bold.underline(`${dotVar}`);
         const baseLog = `${envVariableFmt} => ${dotVariableFmt}`;
         if (error) {
