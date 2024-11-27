@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import fs from 'fs/promises'
 import path from 'path'
 import fg from 'fast-glob'
@@ -252,54 +253,70 @@ Source: ${sourcePath}`)
   )
   debug(`Copied ${managedFiles.size} files in ${(performance.now() - copyStart).toFixed(0)}ms`)
 
-  // Handle removal of files that are no longer provided by any package
+  // Remove files that are no longer provided
   const removeStart = performance.now()
-  const filesToRemove = Array.from(existingManagedFiles).filter((file) => !fileMap.has(file))
+  const filesToRemove = Array.from(existingManagedFiles).filter((file) => !managedFiles.has(file))
   debug(`Files to remove: ${filesToRemove.length}`)
 
-  // Helper function to remove empty directories
-  async function removeEmptyDirs(startPath: string) {
-    const dirs: string[] = []
-    let dirPath = path.dirname(startPath)
-    while (dirPath !== cwd) {
-      dirs.push(dirPath)
-      dirPath = path.dirname(dirPath)
-    }
-
-    // Process directories in parallel
-    await Promise.all(
-      dirs.map(async (dir) => {
-        try {
-          const files = await fs.readdir(dir)
-          if (files.length === 0) {
-            await fs.rmdir(dir)
-            debug(`Removed empty directory: ${dir}`)
-          }
-        } catch {
-          // Ignore errors for directories we can't access
+  // Helper function to recursively clean up empty directories
+  async function cleanupEmptyDirs(startPath: string) {
+    let currentDir = startPath
+    while (currentDir !== cwd) {
+      try {
+        const dirContents = await fs.readdir(currentDir)
+        if (dirContents.length === 0) {
+          await fs.rmdir(currentDir)
+          debug(`Removed empty directory: ${currentDir}`)
+          currentDir = path.dirname(currentDir)
+        } else {
+          break // Stop if directory is not empty
         }
-      }),
-    )
+      } catch (err) {
+        if ((err as { code?: string }).code === 'EACCES') {
+          console.error(`Error cleaning up directory ${currentDir}: ${(err as Error).message}`)
+          process.exit(1)
+        }
+        break // Stop on other errors (like ENOENT)
+      }
+    }
   }
 
-  // Remove files in parallel
+  // Process file removals in parallel
   await Promise.all(
     filesToRemove.map(async (file) => {
       const filePath = path.join(cwd, file)
-      try {
-        await fs.unlink(filePath)
-        console.log(`Removed managed file that is no longer provided: ${file}`)
-        debug(`Removed file: ${file}`)
+      const dirPath = path.dirname(filePath)
 
-        // Clean up empty directories after file removal
-        await removeEmptyDirs(filePath)
+      try {
+        // First check if the directory exists and is accessible
+        await fs.readdir(dirPath)
+
+        // Then try to remove the file
+        try {
+          await fs.unlink(filePath)
+          console.log(`Removed managed file: ${file}`)
+          debug(`Removed file: ${file}`)
+        } catch (err) {
+          if ((err as { code?: string }).code !== 'ENOENT') {
+            console.error(`Error removing file ${file}: ${(err as Error).message}`)
+            process.exit(1)
+          }
+        }
+
+        // Finally, try to clean up empty directories
+        await cleanupEmptyDirs(dirPath)
       } catch (err) {
-        console.error(`Error removing file ${file}: ${(err as Error).message}`)
+        if ((err as { code?: string }).code === 'EACCES') {
+          console.error(`Error accessing directory ${dirPath}: ${(err as Error).message}`)
+          process.exit(1)
+        }
+        // Ignore ENOENT errors for directories that don't exist
       }
     }),
   )
+  debug(`Removed files in ${(performance.now() - removeStart).toFixed(0)}ms`)
 
-  // Update .gitignore with the current list of managed files
+  // Update .gitignore with current list of managed files
   if (managedFiles.size > 0) {
     debug('Found managed files:', Array.from(managedFiles))
     await updateGitignore(Array.from(managedFiles))
@@ -308,6 +325,5 @@ Source: ${sourcePath}`)
     await updateGitignore([])
   }
 
-  debug(`Handled removals in ${(performance.now() - removeStart).toFixed(0)}ms`)
   debug(`Total execution time: ${(performance.now() - startTime).toFixed(0)}ms`)
 }
