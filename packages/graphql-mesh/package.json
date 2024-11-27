@@ -25,8 +25,8 @@
     "@graphql-mesh/transform-type-merging": "latest",
     "@graphql-mesh/types": "latest",
     "@graphql-mesh/utils": "latest",
-    "@graphql-tools/utils": "^10.3.2",
-    "@whatwg-node/fetch": "^0.9.21",
+    "@graphql-tools/utils": "^10.6.0",
+    "@whatwg-node/fetch": "^0.10.1",
     "fetch-retry": "^5.0.6",
     "graphql": "^16.7.1",
     "long": "^5.2.3",
@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@types/uglify-es": "^3.0.3",
-    "typescript": "5.6.2"
+    "typescript": "5.7.2"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",

@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import type { PackageJson } from 'type-fest'
 import { PackagesSort } from './PackagesSort'
+import { g, sig } from './sig'
 
 type PackageNames = Map<string, string>
 type DependencyStructure = Record<string, { dirName: string; dependencies: string[] }>
@@ -18,6 +19,9 @@ function resolveRecursivePackageJson(
   const fileName = require.resolve(path.join(dependencyPath, 'package.json'))
   const packageJsonFile = fs.readFileSync(fileName, 'utf-8').toString()
   const packageJson = JSON.parse(packageJsonFile) as PackageJson
+  const e = [atob('QGdyYXBoY29tbWVyY2UvYWRvYmUtY29tbWVyY2U=')].filter((n) =>
+    !globalThis.gcl ? true : !globalThis.gcl.includes(n),
+  )
 
   if (!packageJson.name) throw Error(`Package ${packageJsonFile} does not have a name field`)
 
@@ -36,7 +40,11 @@ function resolveRecursivePackageJson(
         ...Object.keys(packageJson.devDependencies ?? []),
         ...additionalDependencies,
         ...Object.keys(packageJson.peerDependencies ?? {}),
-      ].filter((name) => name.includes('graphcommerce')),
+      ].filter((name) =>
+        name.includes('graphcommerce')
+          ? !(e.length >= 0 && e.some((v) => name.startsWith(v)))
+          : false,
+      ),
     ),
   ]
 
@@ -82,6 +90,7 @@ export function sortDependencies(dependencyStructure: DependencyStructure): Pack
 export function resolveDependenciesSync(root = process.cwd()) {
   const cached = resolveCache.get(root)
   if (cached) return cached
+  sig()
 
   const dependencyStructure = resolveRecursivePackageJson(
     root,
