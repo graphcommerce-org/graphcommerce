@@ -14,7 +14,7 @@
   "dependencies": {
     "@hygraph/management-sdk": "1.2.5",
     "@whatwg-node/fetch": "^0.10.1",
-    "graphql": "^16.7.1",
+    "graphql": "^16.9.0",
     "graphql-tag": "^2.12.6",
     "prompts": "^2.4.2"
   },

@@ -3123,7 +3123,7 @@ __metadata:
     "@graphcommerce/react-hook-form": ^9.0.0-canary.107
     "@graphcommerce/typescript-config-pwa": ^9.0.0-canary.107
     "@mui/material": ^5.14.20
-    next: ^14
+    next: "*"
     react: ^18.2.0
     react-dom: ^18.2.0
   peerDependenciesMeta:
@@ -3309,7 +3309,7 @@ __metadata:
     "@types/uglify-es": "npm:^3.0.3"
     "@whatwg-node/fetch": "npm:^0.10.1"
     fetch-retry: "npm:^5.0.6"
-    graphql: "npm:^16.7.1"
+    graphql: "npm:^16.9.0"
     long: "npm:^5.2.3"
     tslib: "npm:^2.7.0"
     typescript: "npm:5.7.2"
@@ -3337,7 +3337,7 @@ __metadata:
     "@graphql-codegen/typescript-document-nodes": "npm:4.0.12"
     "@graphql-codegen/typescript-operations": "npm:4.4.0"
     apollo3-cache-persist: "npm:^0.15.0"
-    graphql: "npm:^16.7.1"
+    graphql: "npm:^16.9.0"
   peerDependencies:
     "@graphcommerce/eslint-config-pwa": ^9.0.0-canary.107
     "@graphcommerce/graphql-codegen-near-operation-file": 9.0.0-canary.107
@@ -3356,7 +3356,7 @@ __metadata:
     "@hygraph/management-sdk": "npm:1.2.5"
     "@types/prompts": "npm:^2.4.9"
     "@whatwg-node/fetch": "npm:^0.10.1"
-    graphql: "npm:^16.7.1"
+    graphql: "npm:^16.9.0"
     graphql-tag: "npm:^2.12.6"
     prompts: "npm:^2.4.2"
     typescript: "npm:5.7.2"

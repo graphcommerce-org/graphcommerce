@@ -24,7 +24,7 @@
     "@graphql-codegen/typescript-document-nodes": "4.0.12",
     "@graphql-codegen/typescript-operations": "4.4.0",
     "apollo3-cache-persist": "^0.15.0",
-    "graphql": "^16.7.1"
+    "graphql": "^16.9.0"
   },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.107",
