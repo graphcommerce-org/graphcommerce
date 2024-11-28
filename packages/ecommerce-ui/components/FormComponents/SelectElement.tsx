@@ -3,7 +3,7 @@ import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-for
 import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import type { TextFieldProps } from '@mui/material'
-import { MenuItem, TextField } from '@mui/material'
+import { MenuItem, TextField, useForkRef } from '@mui/material'
 
 type OptionBase = { id: string | number; label: string | number }
 
@@ -63,7 +63,7 @@ export function SelectElement<TFieldValues extends FieldValues, O extends Option
       {...rest}
       value={value ?? ''}
       {...field}
-      inputRef={ref}
+      inputRef={useForkRef(ref, rest.inputRef)}
       onChange={(event) => {
         let item: number | string | O | undefined = event.target.value
         if (type === 'number') item = Number(item)

@@ -8,7 +8,14 @@ import type {
   SxProps,
   Theme,
 } from '@mui/material'
-import { Checkbox, FormControl, FormControlLabel, FormGroup, FormHelperText } from '@mui/material'
+import {
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  FormHelperText,
+  useForkRef,
+} from '@mui/material'
 
 export type CheckboxElementProps<T extends FieldValues> = Omit<CheckboxProps, 'name'> & {
   label?: FormControlLabelProps['label']
@@ -62,7 +69,7 @@ export function CheckboxElement<TFieldValues extends FieldValues>(
             <Checkbox
               {...rest}
               {...field}
-              inputRef={ref}
+              inputRef={useForkRef(ref, rest.inputRef)}
               color={rest.color || 'primary'}
               sx={{
                 ...(Array.isArray(sx) ? sx : [sx]),
