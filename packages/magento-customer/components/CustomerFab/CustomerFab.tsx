@@ -5,7 +5,7 @@ import {
   extendableComponent,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Fab, FabProps as FabPropsType, NoSsr, SxProps, Theme } from '@mui/material'
+import { Fab, FabProps as FabPropsType, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import {
   useCustomerAccountCanSignIn,
@@ -60,9 +60,5 @@ export function CustomerFab(props: CustomerFabProps) {
 
   if (!canSignIn) return null
 
-  return (
-    <NoSsr fallback={<CustomerFabContent {...props} />}>
-      <CustomerFabContent session={session} {...props} />
-    </NoSsr>
-  )
+  return <CustomerFabContent session={session} {...props} />
 }

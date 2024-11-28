@@ -1,7 +1,5 @@
 import type { InputMaybe, InContextInput } from '@graphcommerce/graphql-mesh'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { useIsSSR } from '@graphcommerce/next-ui/hooks/useIsSsr'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { getCssFlag, removeCssFlag, setCssFlag } from '@graphcommerce/next-ui/utils/cssFlags'
 import { useContext, useEffect } from 'react'
 import { QueryHookOptions, QueryResult, TypedDocumentNode, useQuery } from '../apollo'
@@ -31,15 +29,12 @@ export function useInContextQuery<
 ): Omit<QueryResult<Q, V>, 'data'> & { data: Q; mask: boolean } {
   const { skip = true } = options
   const context = useInContextInput()
-  const isSsr = useIsSSR()
-
   const inContext = useContext(InContextMaskContext)
 
   useEffect(() => {
-    if (isSsr) return
     if (context && !getCssFlag('in-context')) setCssFlag('in-context', true)
     else if (!context && getCssFlag('in-context')) removeCssFlag('in-context')
-  }, [context, isSsr])
+  }, [context])
 
   const clientQuery = useQuery<Q, V>(document, {
     ...options,
@@ -51,8 +46,8 @@ export function useInContextQuery<
   if (!skip) data ??= clientQuery.previousData
 
   // If the user is logged in we might need to show a skeleton:
-  let mask = isSsr
-  if (!isSsr && context) {
+  let mask = true
+  if (context) {
     mask = !skip ? !clientQuery.data && !clientQuery.previousData : !clientQuery.data
   }
 
