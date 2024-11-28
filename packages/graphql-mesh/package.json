@@ -28,7 +28,7 @@
     "@graphql-tools/utils": "^10.6.0",
     "@whatwg-node/fetch": "^0.10.1",
     "fetch-retry": "^5.0.6",
-    "graphql": "^16.7.1",
+    "graphql": "^16.9.0",
     "long": "^5.2.3",
     "tslib": "^2.7.0",
     "uglify-es": "3.3.10"

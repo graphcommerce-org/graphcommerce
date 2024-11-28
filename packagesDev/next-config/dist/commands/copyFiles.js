@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.copyFiles = copyFiles;
+/* eslint-disable no-await-in-loop */
 const promises_1 = __importDefault(require("fs/promises"));
 const path_1 = __importDefault(require("path"));
 const fast_glob_1 = __importDefault(require("fast-glob"));
@@ -191,8 +192,7 @@ Found in packages:
 Source: ${sourcePath}`);
                     process.exit(1);
                 }
-                console.log(`Creating new file: ${file}
-Source: ${sourcePath}`);
+                console.log(`Creating new file: ${file}`);
                 debug('File does not exist yet');
             }
             // Skip if content is identical (including magic comment)
@@ -220,47 +220,66 @@ Source: ${sourcePath}`);
         }
     }));
     debug(`Copied ${managedFiles.size} files in ${(performance.now() - copyStart).toFixed(0)}ms`);
-    // Handle removal of files that are no longer provided by any package
+    // Remove files that are no longer provided
     const removeStart = performance.now();
-    const filesToRemove = Array.from(existingManagedFiles).filter((file) => !fileMap.has(file));
+    const filesToRemove = Array.from(existingManagedFiles).filter((file) => !managedFiles.has(file));
     debug(`Files to remove: ${filesToRemove.length}`);
-    // Helper function to remove empty directories
-    async function removeEmptyDirs(startPath) {
-        const dirs = [];
-        let dirPath = path_1.default.dirname(startPath);
-        while (dirPath !== cwd) {
-            dirs.push(dirPath);
-            dirPath = path_1.default.dirname(dirPath);
-        }
-        // Process directories in parallel
-        await Promise.all(dirs.map(async (dir) => {
+    // Helper function to recursively clean up empty directories
+    async function cleanupEmptyDirs(startPath) {
+        let currentDir = startPath;
+        while (currentDir !== cwd) {
             try {
-                const files = await promises_1.default.readdir(dir);
-                if (files.length === 0) {
-                    await promises_1.default.rmdir(dir);
-                    debug(`Removed empty directory: ${dir}`);
+                const dirContents = await promises_1.default.readdir(currentDir);
+                if (dirContents.length === 0) {
+                    await promises_1.default.rmdir(currentDir);
+                    debug(`Removed empty directory: ${currentDir}`);
+                    currentDir = path_1.default.dirname(currentDir);
+                }
+                else {
+                    break; // Stop if directory is not empty
                 }
             }
-            catch {
-                // Ignore errors for directories we can't access
+            catch (err) {
+                if (err.code === 'EACCES') {
+                    console.error(`Error cleaning up directory ${currentDir}: ${err.message}`);
+                    process.exit(1);
+                }
+                break; // Stop on other errors (like ENOENT)
             }
-        }));
+        }
     }
-    // Remove files in parallel
+    // Process file removals in parallel
     await Promise.all(filesToRemove.map(async (file) => {
         const filePath = path_1.default.join(cwd, file);
+        const dirPath = path_1.default.dirname(filePath);
         try {
-            await promises_1.default.unlink(filePath);
-            console.log(`Removed managed file that is no longer provided: ${file}`);
-            debug(`Removed file: ${file}`);
-            // Clean up empty directories after file removal
-            await removeEmptyDirs(filePath);
+            // First check if the directory exists and is accessible
+            await promises_1.default.readdir(dirPath);
+            // Then try to remove the file
+            try {
+                await promises_1.default.unlink(filePath);
+                console.log(`Removed managed file: ${file}`);
+                debug(`Removed file: ${file}`);
+            }
+            catch (err) {
+                if (err.code !== 'ENOENT') {
+                    console.error(`Error removing file ${file}: ${err.message}`);
+                    process.exit(1);
+                }
+            }
+            // Finally, try to clean up empty directories
+            await cleanupEmptyDirs(dirPath);
         }
         catch (err) {
-            console.error(`Error removing file ${file}: ${err.message}`);
+            if (err.code === 'EACCES') {
+                console.error(`Error accessing directory ${dirPath}: ${err.message}`);
+                process.exit(1);
+            }
+            // Ignore ENOENT errors for directories that don't exist
         }
     }));
-    // Update .gitignore with the current list of managed files
+    debug(`Removed files in ${(performance.now() - removeStart).toFixed(0)}ms`);
+    // Update .gitignore with current list of managed files
     if (managedFiles.size > 0) {
         debug('Found managed files:', Array.from(managedFiles));
         await updateGitignore(Array.from(managedFiles));
@@ -269,6 +288,5 @@ Source: ${sourcePath}`);
         debug('No managed files found, cleaning up .gitignore section');
         await updateGitignore([]);
     }
-    debug(`Handled removals in ${(performance.now() - removeStart).toFixed(0)}ms`);
     debug(`Total execution time: ${(performance.now() - startTime).toFixed(0)}ms`);
 }
