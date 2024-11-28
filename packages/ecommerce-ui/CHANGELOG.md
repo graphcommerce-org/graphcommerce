@@ -1,5 +1,11 @@
 # @graphcommerce/ecommerce-ui
 
+## 9.0.0-canary.107
+
+### Patch Changes
+
+- [#2436](https://github.com/graphcommerce-org/graphcommerce/pull/2436) [`55f94c5`](https://github.com/graphcommerce-org/graphcommerce/commit/55f94c5dd70e88b8fbfb46e75b500db296937c33) - Added ref forwarding for the inputRef ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.106
 
 ## 9.0.0-canary.105

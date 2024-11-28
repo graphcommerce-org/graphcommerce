@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-graphql-rest",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.0-canary.106",
+  "version": "9.0.0-canary.107",
   "sideEffects": false,
   "main": "index.ts",
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -16,11 +16,11 @@
     "generate": "tsx ./scripts/generate-spec.mts"
   },
   "peerDependencies": {
-    "@graphcommerce/graphql-mesh": "^9.0.0-canary.106",
-    "@graphcommerce/magento-product": "^9.0.0-canary.106",
-    "@graphcommerce/magento-search": "^9.0.0-canary.106",
-    "@graphcommerce/next-config": "^9.0.0-canary.106",
-    "@graphcommerce/next-ui": "^9.0.0-canary.106",
+    "@graphcommerce/graphql-mesh": "^9.0.0-canary.107",
+    "@graphcommerce/magento-product": "^9.0.0-canary.107",
+    "@graphcommerce/magento-search": "^9.0.0-canary.107",
+    "@graphcommerce/next-config": "^9.0.0-canary.107",
+    "@graphcommerce/next-ui": "^9.0.0-canary.107",
     "graphql": "^16.0.0"
   },
   "devDependencies": {
