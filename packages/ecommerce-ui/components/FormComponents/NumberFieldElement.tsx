@@ -1,15 +1,15 @@
 import {
-  IconSvg,
   extendableComponent,
   iconMin,
   iconPlus,
+  IconSvg,
   responsiveVal,
 } from '@graphcommerce/next-ui'
 import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
 import { Controller, useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import type { IconButtonProps, SxProps, TextFieldProps, Theme } from '@mui/material'
-import { Fab, TextField } from '@mui/material'
+import { Fab, TextField, useForkRef } from '@mui/material'
 
 export type NumberFieldElementProps<T extends FieldValues = FieldValues> = Omit<
   TextFieldProps,
@@ -44,7 +44,7 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
     variant = 'outlined',
     disabled,
     shouldUnregister,
-    ...textFieldProps
+    ...rest
   } = props
 
   const classes = withState({ size })
@@ -69,22 +69,22 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
 
   return (
     <TextField
-      {...textFieldProps}
+      {...rest}
       {...field}
-      inputRef={ref}
+      inputRef={useForkRef(ref, rest.inputRef)}
       value={value ?? ''}
       onChange={(ev) => {
         const newValue = (ev.target as HTMLInputElement).valueAsNumber
         onChange(Number.isNaN(newValue) ? '' : newValue)
-        textFieldProps.onChange?.(ev)
+        rest.onChange?.(ev)
       }}
       variant={variant}
       required={required}
       error={invalid}
-      helperText={error ? error.message : textFieldProps.helperText}
+      helperText={error ? error.message : rest.helperText}
       size={size}
       type='number'
-      className={`${textFieldProps.className ?? ''} ${classes.quantity}`}
+      className={`${rest.className ?? ''} ${classes.quantity}`}
       sx={[
         {
           width: responsiveVal(90, 120),
