@@ -36,7 +36,7 @@ export const ProductScroller = forwardRef<HTMLDivElement, ProductScrollerProps>(
 
     const Wrapper = useContext(AddProductsToCartContext) ? React.Fragment : AddProductsToCartForm
 
-    if (!items) return null
+    if (!items || !items.length) return null
 
     return (
       <Box sx={sx} ref={ref}>
