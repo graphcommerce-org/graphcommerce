@@ -20,6 +20,7 @@ export type ConfigurableProductOptionProps = NonNullable<
 > & {
   index: number
   optionIndex: number
+  optionStartLabels?: Record<string, React.ReactNode>
   optionEndLabels?: Record<string, React.ReactNode>
   sx?: SxProps<Theme>
   attribute_code: string
@@ -32,6 +33,7 @@ export function ConfigurableProductOption(props: ConfigurableProductOptionProps)
     label,
     index,
     optionIndex,
+    optionStartLabels,
     optionEndLabels,
     sx,
     attribute_code,
@@ -71,7 +73,7 @@ export function ConfigurableProductOption(props: ConfigurableProductOptionProps)
   return (
     <Box key={fieldName} sx={[...(Array.isArray(sx) ? sx : [sx])]}>
       <SectionHeader
-        labelLeft={label}
+        labelLeft={optionStartLabels?.[attribute_code ?? ''] ?? label}
         labelRight={optionEndLabels?.[attribute_code ?? '']}
         sx={{ mt: 0 }}
       />

@@ -5,7 +5,7 @@ import type { InputMaybe } from '@graphcommerce/next-config'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
 import { ActionCard, actionCardImageSizes, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import type { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme, ButtonProps } from '@mui/material'
 import { Button, Link } from '@mui/material'
 import type { ReactNode } from 'react'
 import { useRemoveProductsFromWishlist } from '../../hooks'
@@ -18,6 +18,7 @@ export type WishlistItemActionCardProps = {
   selectedOptions?: InputMaybe<string[]> | undefined
   isConfigurableUncompleted?: boolean
   secondaryAction?: ReactNode
+  actionButtonProps?: ButtonProps
 } & OwnerState &
   Omit<ActionCardProps, 'value' | 'image' | 'price' | 'title' | 'action'>
 type OwnerState = { withOptions?: boolean }
@@ -49,6 +50,7 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
     selectedOptions,
     secondaryAction,
     variant = 'default',
+    actionButtonProps,
     ...rest
   } = props
   const { id, product } = item
@@ -169,6 +171,7 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
             size='medium'
             type='button'
             onClick={() => remove([id])}
+            {...actionButtonProps}
           >
             <Trans id='Remove' />
           </Button>

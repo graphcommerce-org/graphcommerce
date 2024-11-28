@@ -20,13 +20,13 @@ export function AddProductsToCartQuantity(props: AddToCartQuantityProps) {
       variant='outlined'
       size='small'
       color='primary'
-      {...props}
       required
       inputProps={{ min: 1, 'aria-label': i18n._(/* i18n */ 'Add to cart quantity') }}
       defaultValue={1}
       control={control}
       aria-label={i18n._(/* i18n */ 'Add to cart quantity')}
       name={`cartItems.${index}.quantity`}
+      {...props}
     />
   )
 }

@@ -10,10 +10,11 @@ import { ResetPasswordDocument } from './ResetPassword.gql'
 
 export type ResetPasswordFormProps = {
   token: string
+  buttonProps?: React.ComponentProps<typeof Button>
 }
 
 export function ResetPasswordForm(props: ResetPasswordFormProps) {
-  const { token } = props
+  const { token, buttonProps } = props
 
   const form = useFormGqlMutation<
     ResetPasswordMutation,
@@ -80,6 +81,7 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
           color='primary'
           variant='pill'
           size='large'
+          {...buttonProps}
         >
           <Trans id='Save new password' />
         </Button>

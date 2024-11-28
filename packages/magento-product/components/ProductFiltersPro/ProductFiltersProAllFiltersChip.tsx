@@ -19,7 +19,8 @@ export type ProductFiltersProAllFiltersChipProps = ProductFiltersProAggregations
   Omit<
     ChipOverlayOrPopperProps,
     'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
-  >
+  > &
+  Partial<Pick<ChipOverlayOrPopperProps, 'label' | 'selectedLabel' | 'children'>>
 
 export function ProductFiltersProAllFiltersChip(props: ProductFiltersProAllFiltersChipProps) {
   const { sort_fields, total_count, renderer, category, ...rest } = props

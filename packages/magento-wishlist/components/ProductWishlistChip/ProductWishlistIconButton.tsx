@@ -1,4 +1,5 @@
 import type { ProductListItemFragment } from '@graphcommerce/magento-product'
+import type { IconSvgProps } from '@graphcommerce/next-ui'
 import {
   IconSvg,
   MessageSnackbar,
@@ -16,6 +17,7 @@ import { useAddProductToWishlistAction, useWishlistEnabled } from '../../hooks'
 export type ProductWishlistChipProps = ProductListItemFragment & {
   sx?: SxProps<Theme>
   buttonProps?: IconButtonProps
+  iconSvgProps?: Partial<IconSvgProps>
 }
 
 const compName = 'ProductWishlistChipBase'
@@ -23,7 +25,7 @@ const parts = ['root', 'wishlistIcon', 'wishlistIconActive', 'wishlistButton'] a
 const { classes } = extendableComponent(compName, parts)
 
 export const ProductWishlistIconButton = React.memo<ProductWishlistChipProps>((props) => {
-  const { buttonProps, sx = [], ...product } = props
+  const { buttonProps, iconSvgProps, sx = [], ...product } = props
   const enabled = useWishlistEnabled()
   const { current, onClick, cancelBubble, showSuccess, hideShowSuccess } =
     useAddProductToWishlistAction({ product, index: 0 })
@@ -53,6 +55,7 @@ export const ProductWishlistIconButton = React.memo<ProductWishlistChipProps>((p
             size='medium'
             className={classes.wishlistIconActive}
             sx={(theme) => ({ color: theme.palette.primary.main, fill: 'currentcolor' })}
+            {...iconSvgProps}
           />
         ) : (
           <IconSvg
@@ -72,6 +75,7 @@ export const ProductWishlistIconButton = React.memo<ProductWishlistChipProps>((p
                     : theme.palette.primary.contrastText,
               },
             })}
+            {...iconSvgProps}
           />
         )}
       </IconButton>

@@ -9,7 +9,7 @@ import { NextLink } from '../Theme'
 export type FabMenuSecondaryItemProps = {
   href: string
   children: React.ReactNode
-  icon: React.ReactNode
+  icon?: React.ReactNode
   sx?: SxProps<Theme>
   onClick?: MouseEventHandler<HTMLElement>
 }
@@ -37,9 +37,11 @@ export function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
       dense
       selected={router.asPath.startsWith(href)}
     >
-      <ListItemIcon className={classes.text} sx={{ paddingRight: '8px', minWidth: 'unset' }}>
-        {icon}
-      </ListItemIcon>
+      {icon && (
+        <ListItemIcon className={classes.text} sx={{ paddingRight: '8px', minWidth: 'unset' }}>
+          {icon}
+        </ListItemIcon>
+      )}
       <ListItemText className={classes.icon}>{children}</ListItemText>
     </ListItemButton>
   )
