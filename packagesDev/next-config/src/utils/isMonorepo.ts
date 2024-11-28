@@ -5,6 +5,16 @@ const debug = process.env.DEBUG === '1'
 // eslint-disable-next-line no-console
 const log = (message: string) => debug && console.log(`is-monorepo: ${message}`)
 
+function findPackageJson(directory: string): { name: string } | null {
+  try {
+    const packageJsonPath = path.join(directory, 'package.json')
+    const content = fs.readFileSync(packageJsonPath, 'utf8')
+    return JSON.parse(content)
+  } catch {
+    return null
+  }
+}
+
 export function isMonorepo() {
   let currentDir = process.cwd()
   log(`Starting directory: ${currentDir}`)
@@ -17,7 +27,10 @@ export function isMonorepo() {
       log(`Package name: ${packageJson.name}`)
 
       // If we find a root package, we're in a monorepo
-      if (packageJson.name === '@graphcommerce/private' || packageJson.name === 'root') {
+      if (
+        packageJson.name === '@graphcommerce/private' ||
+        packageJson.name === '@graphcommerce/graphcommerce'
+      ) {
         log('isMonorepo result: true')
         return true
       }
@@ -29,14 +42,4 @@ export function isMonorepo() {
 
   log('isMonorepo result: false')
   return false
-}
-
-function findPackageJson(directory: string): { name: string } | null {
-  try {
-    const packageJsonPath = path.join(directory, 'package.json')
-    const content = fs.readFileSync(packageJsonPath, 'utf8')
-    return JSON.parse(content)
-  } catch {
-    return null
-  }
 }

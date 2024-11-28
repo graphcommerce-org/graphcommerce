@@ -9,6 +9,16 @@ const node_path_1 = __importDefault(require("node:path"));
 const debug = process.env.DEBUG === '1';
 // eslint-disable-next-line no-console
 const log = (message) => debug && console.log(`is-monorepo: ${message}`);
+function findPackageJson(directory) {
+    try {
+        const packageJsonPath = node_path_1.default.join(directory, 'package.json');
+        const content = node_fs_1.default.readFileSync(packageJsonPath, 'utf8');
+        return JSON.parse(content);
+    }
+    catch {
+        return null;
+    }
+}
 function isMonorepo() {
     let currentDir = process.cwd();
     log(`Starting directory: ${currentDir}`);
@@ -19,7 +29,8 @@ function isMonorepo() {
             log(`Found package.json in: ${currentDir}`);
             log(`Package name: ${packageJson.name}`);
             // If we find a root package, we're in a monorepo
-            if (packageJson.name === '@graphcommerce/private' || packageJson.name === 'root') {
+            if (packageJson.name === '@graphcommerce/private' ||
+                packageJson.name === '@graphcommerce/graphcommerce') {
                 log('isMonorepo result: true');
                 return true;
             }
@@ -29,14 +40,4 @@ function isMonorepo() {
     }
     log('isMonorepo result: false');
     return false;
-}
-function findPackageJson(directory) {
-    try {
-        const packageJsonPath = node_path_1.default.join(directory, 'package.json');
-        const content = node_fs_1.default.readFileSync(packageJsonPath, 'utf8');
-        return JSON.parse(content);
-    }
-    catch {
-        return null;
-    }
 }

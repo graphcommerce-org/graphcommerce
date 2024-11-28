@@ -17,7 +17,10 @@ function findRootDir(startDir: string): string | null {
   while (currentDir !== path.parse(currentDir).root) {
     try {
       const packageJson = JSON.parse(fs.readFileSync(path.join(currentDir, 'package.json'), 'utf8'))
-      if (packageJson.name === '@graphcommerce/private') {
+      if (
+        packageJson.name === '@graphcommerce/graphcommerce' ||
+        packageJson.name === '@graphcommerce/private'
+      ) {
         log(`Found root directory at: ${currentDir}`)
         return currentDir
       }
@@ -44,7 +47,7 @@ async function main() {
   log(`Running in monorepo: ${isMono}`)
   log(`Arguments: ${process.argv.slice(2).join(' ')}`)
 
-  const command = isMono ? process.argv.slice(2)[0] : process.argv.slice(2)[1]
+  const command = isMono ? process.argv.slice(2)[1] : process.argv.slice(2)[0]
   if (!command) {
     logError('No command provided')
     process.exit(1)
@@ -69,7 +72,11 @@ async function main() {
     const packageJson = JSON.parse(fs.readFileSync(path.join(currentDir, 'package.json'), 'utf8'))
     log(`Current package: ${packageJson.name}`)
 
-    if (isMono && packageJson.name !== '@graphcommerce/private') {
+    if (
+      isMono &&
+      packageJson.name !== '@graphcommerce/private' &&
+      packageJson.name !== '@graphcommerce/graphcommerce'
+    ) {
       const rootDir = findRootDir(currentDir)
       if (rootDir && rootDir !== currentDir) {
         const relativePathToRoot = path.relative(currentDir, rootDir)
