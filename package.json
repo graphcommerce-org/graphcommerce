@@ -54,6 +54,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@graphcommerce/cli": "9.0.0-canary.107",
     "@graphql-codegen/testing": "3.0.4",
     "@playwright/test": "1.47.2",
     "@testing-library/react": "^14.3.1",
