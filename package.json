@@ -1,9 +1,9 @@
 {
   "homepage": "https://www.graphcommerce.org/",
-  "name": "root",
+  "name": "@graphcommerce/graphcommerce",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "5.0.0",
-  "packageManager": "yarn@4.3.1",
+  "version": "0.0.0",
+  "packageManager": "yarn@4.5.3",
   "private": true,
   "workspaces": [
     "docs",
@@ -23,7 +23,7 @@
     "tsc:lint": "tsc --noEmit -p .",
     "tsc:perf": "NODE_OPTIONS=--max_old_space_size=10000 tsc --noEmit -p examples/magento-graphcms --generateTrace tsctrace --incremental false",
     "playwright": "npx playwright test --headed --project=chrome",
-    "postinstall": "patch-package",
+    "postinstall": "is-monorepo '[pkgrun] postinstall' '[pkgrun] patch-package'",
     "release": "yarn changeset publish && git push --follow-tags",
     "packages": "concurrently 'yarn:packages:1' 'yarn:packages:2' 'yarn:packages:3' 'yarn:packages:4' 'yarn:packages:5' 'yarn:packages:6' 'yarn:packages:7'",
     "packages:1": "yarn workspace @graphcommerce/next-config dev",
@@ -54,6 +54,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@graphcommerce/cli": "9.0.0-canary.107",
     "@graphql-codegen/testing": "3.0.4",
     "@playwright/test": "1.47.2",
     "@testing-library/react": "^14.3.1",
