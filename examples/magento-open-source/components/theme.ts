@@ -1,5 +1,6 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 import {
+  breakpointVal,
   MuiButtonInline,
   MuiButtonPill,
   MuiButtonResponsive,
@@ -8,7 +9,6 @@ import {
   MuiSlider,
   MuiSnackbar,
   NextLink,
-  breakpointVal,
   responsiveVal,
   themeBaseDefaults,
 } from '@graphcommerce/next-ui'
@@ -50,18 +50,18 @@ const lightPalette: PaletteOptions = {
 const darkPalette: PaletteOptions = {
   mode: 'dark',
   primary: {
-    main: '#62C7B0',
+    main: '#006bff',
     contrastText: '#ffffff',
-    dark: '#62C7B0',
+    dark: '#0056d2',
   },
   secondary: {
-    main: '#62C7B0',
-    light: '#62C7B0',
-    contrastText: '#ffffff',
+    main: '#78909c',
+    light: '#b0bec5',
+    contrastText: '#000000',
   },
   background: {
-    default: '#001727',
-    paper: '#15293B',
+    default: '#121212',
+    paper: '#1E1E1E',
     image: '#ffffff',
   },
   divider: '#ffffff30',
