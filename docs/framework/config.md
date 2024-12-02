@@ -133,6 +133,11 @@ When Magento's StoreConfig adds this value, this can be replaced.
 
 Use compare functionality
 
+#### compareVariant: CHECKBOX | ICON = `ICON`
+
+By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
+This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
+
 #### configurableVariantForSimple: boolean = `false`
 
 If a simple product is part of a Configurable product page, should the simple product be
@@ -218,6 +223,10 @@ Provide a value to enable Google Analytics for your store.
 
 To override the value for a specific locale, configure in i18n config.
 
+#### googlePlaystore: [GraphCommerceGooglePlaystoreConfig](#GraphCommerceGooglePlaystoreConfig)
+
+To create an assetlinks.json file for the Android app.
+
 #### googleRecaptchaKey: string
 
 Google reCAPTCHA site key.
@@ -297,16 +306,29 @@ Allows the option to require login or completely disable certain sections of the
 
 To enable next.js' preview mode, configure the secret you'd like to use.
 
+#### productFiltersLayout: DEFAULT | SIDEBAR = `DEFAULT`
+
+Layout how the filters are rendered.
+DEFAULT: Will be rendered as horzontal chips on desktop and mobile
+SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
+
 #### productFiltersPro: boolean
 
-Enables an improved UI for product filters on mobile and desktop.
+Product filters with better UI for mobile and desktop.
+
+#### productListPaginationVariant: COMPACT | EXTENDED = `COMPACT`
+
+Pagination variant for the product listings.
+
+COMPACT means: "< Page X of Y >"
+EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
 
 #### productRoute: string
 
 By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
 
-  Default: '/p/'
-  Example: '/product/'
+Default: '/p/'
+Example: '/product/'
 
 #### recentlyViewedProducts: [RecentlyViewedProductsConfig](#RecentlyViewedProductsConfig)
 
@@ -352,12 +374,19 @@ Issues that this can cause are:
 - The same package is included multiple times in the bundle, increasing the bundle size.
 - The Typescript types of the package are not compatible with each other, causing Typescript errors.
 
+### GraphCommerceGooglePlaystoreConfig
+
+See https://developer.android.com/training/app-links/verify-android-applinks#web-assoc
+
+#### packageName: string (required)
+
+The package name of the Android app.
+
+#### sha256CertificateFingerprint: string (required)
+
+The sha256 certificate fingerprint of the Android app.
+
 ### GraphCommerceLayoutConfig
-
-#### compareVariant: CHECKBOX | ICON = `ICON`
-
-By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
-This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
 
 #### maxWidth: CONTAINED | CONTENT_ONLY | DEFAULT = `DEFAULT`
 
@@ -368,21 +397,6 @@ DEFAULT: Page is full width
 CONTENT_ONLY: Only content is contained
 CONTAINED: Page is contained
 Default: DEFAULT
-
-#### productFiltersLayout: DEFAULT | SIDEBAR = `DEFAULT`
-
-Specifies the layout for product filters.
-
-DEFAULT: Horizontal chips on desktop and mobile
-SIDEBAR: Sidebar on desktop, horizontal chips on mobile
-Default: DEFAULT
-
-#### productListPaginationVariant: COMPACT | EXTENDED = `COMPACT`
-
-Pagination variant for the product listings.
-
-COMPACT means: "< Page X of Y >"
-EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
 
 #### sidebarGallery: [SidebarGalleryConfig](#SidebarGalleryConfig)
 
