@@ -1,15 +1,18 @@
-extend input GraphCommerceLayoutConfig {
-  """
-  Configuration for the SidebarGallery component
-  """
-  sidebarGallery: SidebarGalleryConfig
-}
-
 extend input GraphCommerceConfig {
   """
   Configuration for the SidebarGallery component
   """
+  sidebarGallery: SidebarGalleryConfig
+
+  """
+  Configuration for the SidebarGallery component
+  """
   breadcrumbs: Boolean = false
+
+  """
+  Configures the layout settings.
+  """
+  layout: GraphCommerceLayoutConfig
 }
 
 """
@@ -47,11 +50,4 @@ input GraphCommerceLayoutConfig {
   Default: DEFAULT
   """
   maxWidth: MaxWidthOptions = DEFAULT
-}
-
-extend input GraphCommerceConfig {
-  """
-  Configures the layout settings.
-  """
-  layout: GraphCommerceLayoutConfig
 }

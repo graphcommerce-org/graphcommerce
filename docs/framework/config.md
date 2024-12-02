@@ -339,6 +339,10 @@ Settings for recently viewed products
 Allow the site to be indexed by search engines.
 If false, the robots.txt file will be set to disallow all.
 
+#### sidebarGallery: [SidebarGalleryConfig](#SidebarGalleryConfig)
+
+Configuration for the SidebarGallery component
+
 #### wishlistHideForGuests: boolean
 
 Hide the wishlist functionality for guests.
@@ -397,10 +401,6 @@ DEFAULT: Page is full width
 CONTENT_ONLY: Only content is contained
 CONTAINED: Page is contained
 Default: DEFAULT
-
-#### sidebarGallery: [SidebarGalleryConfig](#SidebarGalleryConfig)
-
-Configuration for the SidebarGallery component
 
 ### GraphCommercePermissions
 

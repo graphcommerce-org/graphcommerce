@@ -358,8 +358,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   },
                 }}
               >
-                {import.meta.graphCommerce.layout?.sidebarGallery?.paginationVariant ===
-                'THUMBNAILS_BOTTOM' ? (
+                {import.meta.graphCommerce.sidebarGallery === 'THUMBNAILS_BOTTOM' ? (
                   <ScrollerThumbnails layoutDependency={zoomed} images={images} />
                 ) : (
                   <ScrollerDots layout />

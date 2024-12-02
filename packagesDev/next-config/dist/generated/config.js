@@ -151,6 +151,7 @@ function GraphCommerceConfigSchema() {
         productRoute: _zod.z.string().nullish(),
         recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
+        sidebarGallery: SidebarGalleryConfigSchema().nullish(),
         storefront: _zod.z.array(GraphCommerceStorefrontConfigSchema()),
         wishlistHideForGuests: _zod.z.boolean().nullish(),
         wishlistShowFeedbackMessage: _zod.z.boolean().nullish()
@@ -172,8 +173,7 @@ function GraphCommerceGooglePlaystoreConfigSchema() {
 }
 function GraphCommerceLayoutConfigSchema() {
     return _zod.z.object({
-        maxWidth: MaxWidthOptionsSchema.default("DEFAULT").nullish(),
-        sidebarGallery: SidebarGalleryConfigSchema().nullish()
+        maxWidth: MaxWidthOptionsSchema.default("DEFAULT").nullish()
     });
 }
 function GraphCommercePermissionsSchema() {

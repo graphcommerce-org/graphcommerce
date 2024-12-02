@@ -340,6 +340,8 @@ export type GraphCommerceConfig = {
    * If false, the robots.txt file will be set to disallow all.
    */
   robotsAllow?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Configuration for the SidebarGallery component */
+  sidebarGallery?: InputMaybe<SidebarGalleryConfig>;
   /** All storefront configuration for the project */
   storefront: Array<GraphCommerceStorefrontConfig>;
   /** Hide the wishlist functionality for guests. */
@@ -390,8 +392,6 @@ export type GraphCommerceLayoutConfig = {
    * Default: DEFAULT
    */
   maxWidth?: InputMaybe<MaxWidthOptions>;
-  /** Configuration for the SidebarGallery component */
-  sidebarGallery?: InputMaybe<SidebarGalleryConfig>;
 };
 
 /** Permissions input */
@@ -597,6 +597,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     productRoute: z.string().nullish(),
     recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
     robotsAllow: z.boolean().nullish(),
+    sidebarGallery: SidebarGalleryConfigSchema().nullish(),
     storefront: z.array(GraphCommerceStorefrontConfigSchema()),
     wishlistHideForGuests: z.boolean().nullish(),
     wishlistShowFeedbackMessage: z.boolean().nullish()
@@ -621,8 +622,7 @@ export function GraphCommerceGooglePlaystoreConfigSchema(): z.ZodObject<Properti
 
 export function GraphCommerceLayoutConfigSchema(): z.ZodObject<Properties<GraphCommerceLayoutConfig>> {
   return z.object({
-    maxWidth: MaxWidthOptionsSchema.default("DEFAULT").nullish(),
-    sidebarGallery: SidebarGalleryConfigSchema().nullish()
+    maxWidth: MaxWidthOptionsSchema.default("DEFAULT").nullish()
   })
 }
 
