@@ -1,28 +1,33 @@
-import { CategoryDescription, CategoryBreadcrumbs } from '@graphcommerce/magento-category'
+import { CategoryBreadcrumbs, CategoryDescription } from '@graphcommerce/magento-category'
 import {
   ProductFiltersPro,
-  ProductListSuggestions,
-  ProductListCount,
-  ProductFiltersProNoResults,
-  ProductListPagination,
-  ProductListFiltersContainer,
   ProductFiltersProAggregations,
-  productFiltersProChipRenderer,
-  ProductFiltersProSortChip,
-  ProductFiltersProLimitChip,
   ProductFiltersProAllFiltersChip,
-  ProductFiltersProClearAll,
   ProductFiltersProCategorySection,
-  ProductFiltersProSortSection,
+  productFiltersProChipRenderer,
+  ProductFiltersProClearAll,
+  ProductFiltersProLimitChip,
   ProductFiltersProLimitSection,
+  ProductFiltersProNoResults,
   productFiltersProSectionRenderer,
+  ProductFiltersProSortChip,
+  ProductFiltersProSortSection,
+  ProductListCount,
+  ProductListFiltersContainer,
+  ProductListPagination,
+  ProductListSuggestions,
 } from '@graphcommerce/magento-product'
 import {
-  ProductFiltersProSearchTerm,
   ProductFiltersProCategorySectionSearch,
+  ProductFiltersProSearchTerm,
 } from '@graphcommerce/magento-search'
-import { MediaQuery, memoDeep, responsiveVal, StickyBelowHeader } from '@graphcommerce/next-ui'
-import { useLayoutMaxWidths } from '@graphcommerce/next-ui/Theme/layoutMaxWidths'
+import {
+  MediaQuery,
+  memoDeep,
+  responsiveVal,
+  StickyBelowHeader,
+  useMaxWidth,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Box, Container, Typography } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'
@@ -35,9 +40,9 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
   if (!params || !products?.items || !filterTypes) return null
   const { total_count, sort_fields, page_info } = products
 
-  const { contentMaxWidth } = useLayoutMaxWidths()
+  const maxWidthContent = useMaxWidth()
 
-  const sidebarWidth = contentMaxWidth
+  const sidebarWidth = maxWidthContent.breakpoint
     ? responsiveVal(200, 300, 960, 1920)
     : responsiveVal(200, 350, 960, 1920)
 
@@ -64,14 +69,14 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
       )}
 
       <Container
-        maxWidth={maxWidth ?? contentMaxWidth?.breakpoint ?? false}
+        maxWidth={maxWidth ?? maxWidthContent.breakpoint ?? false}
         sx={(theme) => ({
           display: 'grid',
           alignItems: 'start',
           rowGap: theme.spacings.md,
           columnGap: {
             xs: theme.spacings.md,
-            xl: contentMaxWidth ? theme.spacings.xl : theme.spacings.xxl,
+            xl: maxWidthContent.breakpoint ? theme.spacings.xl : theme.spacings.xxl,
           },
           mb: theme.spacings.xl,
           gridTemplate: {

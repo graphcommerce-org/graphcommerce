@@ -1,19 +1,19 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 
 import {
-  responsiveVal,
   breakpointVal,
+  MuiButtonInline,
   MuiButtonPill,
   MuiButtonResponsive,
-  themeBaseDefaults,
-  MuiSnackbar,
+  MuiChip,
   MuiFabSizes,
   MuiSlider,
-  MuiChip,
-  MuiButtonInline,
+  MuiSnackbar,
   NextLink,
+  responsiveVal,
+  themeBaseDefaults,
 } from '@graphcommerce/next-ui'
-import { createTheme, Theme, alpha, LinkProps } from '@mui/material'
+import { alpha, createTheme, LinkProps, Theme } from '@mui/material'
 import { Components, PaletteOptions } from '@mui/material/styles'
 
 const lightPalette: PaletteOptions = {
@@ -180,8 +180,8 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       headerHeightMd: '100px',
       appBarHeightMd: '80px',
       appBarInnerHeightMd: '46px',
-      layoutMaxWidth: import.meta.graphCommerce.layout?.maxWidth === 'CONTAINED' ? 'lg' : false,
-      contentMaxWidth:
+      maxWidth: import.meta.graphCommerce.layout?.maxWidth === 'CONTAINED' ? 'lg' : false,
+      maxWidthContent:
         import.meta.graphCommerce.layout?.maxWidth === 'CONTENT_ONLY' ||
         import.meta.graphCommerce.layout?.maxWidth === 'CONTAINED'
           ? 'lg'

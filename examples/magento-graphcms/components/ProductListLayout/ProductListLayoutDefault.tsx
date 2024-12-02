@@ -1,24 +1,28 @@
 import {
   CategoryBreadcrumbs,
-  CategoryDescription,
   CategoryChildren,
+  CategoryDescription,
 } from '@graphcommerce/magento-category'
 import {
   ProductFiltersPro,
-  ProductListFiltersContainer,
   ProductFiltersProAggregations,
-  productFiltersProChipRenderer,
-  ProductFiltersProSortChip,
-  ProductFiltersProLimitChip,
   ProductFiltersProAllFiltersChip,
-  ProductListCount,
+  productFiltersProChipRenderer,
+  ProductFiltersProLimitChip,
   ProductFiltersProNoResults,
+  ProductFiltersProSortChip,
+  ProductListCount,
+  ProductListFiltersContainer,
   ProductListPagination,
   ProductListSuggestions,
 } from '@graphcommerce/magento-product'
 import { ProductFiltersProSearchTerm } from '@graphcommerce/magento-search'
-import { LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
-import { useLayoutMaxWidths } from '@graphcommerce/next-ui/Theme/layoutMaxWidths'
+import {
+  LayoutTitle,
+  memoDeep,
+  StickyBelowHeader,
+  useMaxWidthContent,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Container, Typography } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'
@@ -30,7 +34,7 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
 
   if (!(params && products?.items && filterTypes)) return null
   const { total_count, sort_fields, page_info } = products
-  const { contentMaxWidth } = useLayoutMaxWidths()
+  const maxWidthContent = useMaxWidthContent()
 
   return (
     <ProductFiltersPro
@@ -54,7 +58,7 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
         />
       )}
       <Container
-        maxWidth={maxWidth ?? contentMaxWidth?.breakpoint ?? false}
+        maxWidth={maxWidth ?? maxWidthContent.breakpoint ?? false}
         sx={(theme) => ({
           display: 'grid',
           rowGap: theme.spacings.sm,
@@ -124,7 +128,7 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
         </ProductListFiltersContainer>
       </StickyBelowHeader>
 
-      <Container maxWidth={maxWidth ?? contentMaxWidth?.breakpoint ?? false}>
+      <Container maxWidth={maxWidth ?? maxWidthContent.breakpoint ?? false}>
         <ProductListCount total_count={total_count} />
         {products.items.length <= 0 ? (
           <ProductFiltersProNoResults />

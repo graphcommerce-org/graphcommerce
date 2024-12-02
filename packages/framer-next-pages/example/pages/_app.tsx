@@ -34,8 +34,8 @@ const theme = createTheme({
     headerHeightMd: '110px',
     appBarHeightMd: '80px',
     appBarInnerHeightMd: '46px',
-    layoutMaxWidth: 'lg',
-    contentMaxWidth: 'lg',
+    maxWidth: 'lg',
+    maxWidthContent: 'lg',
   },
 })
 

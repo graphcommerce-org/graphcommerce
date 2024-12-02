@@ -19,10 +19,10 @@ import {
   useTransform,
 } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
+import { useMatchMedia } from '../../hooks/useMatchMedia'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { ExtendableComponent, extendableComponent } from '../../Styles'
-import { useLayoutMaxWidths } from '../../Theme/layoutMaxWidths'
-import { useMatchMedia } from '../../hooks/useMatchMedia'
+import { useMaxWidth } from '../../Theme/useMaxWidth'
 
 export type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
 export type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
@@ -138,7 +138,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   const overlayPaneScroll = useElementScroll(overlayPaneRef)
 
   const classes = withState({ variantSm, variantMd, sizeSm, sizeMd, justifySm, justifyMd })
-  const { layoutMaxWidth } = useLayoutMaxWidths()
+  const maxWidth = useMaxWidth()
 
   const match = useMatchMedia()
   const positions = useConstant(() => ({
@@ -546,7 +546,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
               },
               '&.sizeMdFloating.variantMdBottom': {
                 marginTop: `calc(${theme.page.vertical} * -1)`,
-                maxWidth: layoutMaxWidth?.value ?? 'unset',
+                maxWidth: maxWidth.maxWidth ?? 'unset',
                 mx: 'auto',
               },
             },

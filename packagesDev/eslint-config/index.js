@@ -62,7 +62,7 @@ module.exports = {
         ],
       },
     ],
-    'import/order': ['warn', { alphabetize: { order: 'asc' } }],
+    'import/order': 'off', // Handled by prettier
     'import/no-relative-packages': 'error',
 
     // next

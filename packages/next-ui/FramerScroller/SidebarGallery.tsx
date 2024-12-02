@@ -3,24 +3,24 @@ import type { MotionImageAspectProps, ScrollerButtonProps } from '@graphcommerce
 import {
   MotionImageAspect,
   Scroller,
-  ScrollerDots,
   ScrollerButton,
+  ScrollerDots,
   ScrollerProvider,
-  unstable_usePreventScroll as usePreventScroll,
   ScrollerThumbnails,
+  unstable_usePreventScroll as usePreventScroll,
 } from '@graphcommerce/framer-scroller'
 import { dvh } from '@graphcommerce/framer-utils'
 import type { SxProps, Theme } from '@mui/material'
-import { Fab, useTheme, Box, styled, Unstable_TrapFocus as TrapFocus } from '@mui/material'
+import { Box, Fab, styled, Unstable_TrapFocus as TrapFocus, useTheme } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
+import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../icons'
 import { IconSvg } from '../IconSvg'
 import { Row } from '../Row/Row'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { useLayoutMaxWidths } from '../Theme/layoutMaxWidths'
-import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../icons'
+import { useMaxWidth } from '../Theme/useMaxWidth'
 
 const MotionBox = styled(m.div)({})
 
@@ -133,7 +133,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   const headerHeight = `${theme.appShell.headerHeightSm} - ${theme.spacings.sm} * 2`
   const galleryMargin = theme.spacings.lg
-  const { contentMaxWidth } = useLayoutMaxWidths()
+  const maxWidthContent = useMaxWidth()
 
   const maxHeight = `calc(100vh - ${headerHeight} - ${galleryMargin})`
   const ratio = `calc(${height} / ${width} * 100%)`
@@ -171,8 +171,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
               '&:not(.variantMdOneColumn)': {
                 paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
-                paddingLeft: contentMaxWidth
-                  ? `calc((100% - ${contentMaxWidth.value}) / 2)`
+                paddingLeft: maxWidthContent.breakpoint
+                  ? `calc((100% - ${maxWidthContent.maxWidth}) / 2)`
                   : 'unset',
               },
 
