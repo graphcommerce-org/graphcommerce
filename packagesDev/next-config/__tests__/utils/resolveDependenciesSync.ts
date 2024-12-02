@@ -31,6 +31,7 @@ it('resolves dependences', () => {
       "@graphcommerce/magento-product-virtual" => "packages/magento-product-virtual",
       "@graphcommerce/magento-review" => "packages/magento-review",
       "@graphcommerce/magento-wishlist" => "packages/magento-wishlist",
+      "@graphcommerce/service-worker" => "packages/service-worker",
       "@graphcommerce/magento-cart-pickup" => "packages/magento-cart-pickup",
       "@graphcommerce/magento-payment-braintree" => "packages/magento-payment-braintree",
       "@graphcommerce/mollie-magento-payment" => "packages/mollie-magento-payment",
