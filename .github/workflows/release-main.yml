@@ -1,4 +1,4 @@
-name: release
+name: release-main
 on:
   push:
     branches:
