@@ -152,19 +152,19 @@ cache.
 
 The service worker caches:
 
-- [static fonts](https://github.com/ducanh-99/serwist/blob/main/packages/next/src/index.worker.ts#L27):
+- [static fonts](https://github.com/serwist/serwist/blob/main/packages/next/src/index.worker.ts#L27):
   Google fonts and webfonts with StaleWhileRevalidate strategy
-- [static images](https://github.com/ducanh-99/serwist/blob/main/packages/next/src/index.worker.ts#L64):
+- [static images](https://github.com/serwist/serwist/blob/main/packages/next/src/index.worker.ts#L64):
   jpg, jpeg, gif, png, svg, ico, webp with StaleWhileRevalidate strategy
 - [\_next/image](https://github.com/graphcommerce-org/graphcommerce/blob/main/packages/service-worker/runtimeCaching.ts#L6):
   Custom implementation with StaleWhileRevalidate and nextImagePlugin
-- [js](https://github.com/ducanh-99/serwist/blob/main/packages/next/src/index.worker.ts#L124):
-  JavaScript files with StaleWhileRevalidate strategy
+- js and css files: Only for files outside of `_next/static` with
+  StaleWhileRevalidate strategy
 
 Notable differences from previous implementation:
 
-- `_next/static/.+\.js$` files are not cached by the service worker as they are
-  already in the precache
+- All `_next/static` files (js, css) are excluded from runtime caching as they
+  are handled by the precache mechanism
 - Cross-origin requests use NetworkOnly strategy instead of NetworkFirst
 - Image caching has been optimized with custom configuration for better
   performance
