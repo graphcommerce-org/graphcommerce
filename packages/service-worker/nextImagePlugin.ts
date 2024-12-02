@@ -59,7 +59,7 @@ export function nextImagePlugin(cacheName: string): SerwistPlugin {
       const found = result.cached.find((c) => c.w > result.w)
 
       if (found) {
-        console.log('Same image, but bigger found in the cache, using that one', found.request.url)
+        // console.log('Same image, but bigger found in the cache, using that one', found.request.url)
         return found.request
       }
 
