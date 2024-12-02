@@ -44,7 +44,7 @@ export type FilterIn = SetRequired<Omit<FilterEqualTypeInput, 'eq'>, 'in'>
 
 type Filter = NonNullable<NonNullable<ProductListFiltersFragment['aggregations']>[number]>
 
-type FilterEqualTypeProps = Filter & Omit<ChipMenuProps, 'selected'>
+export type FilterEqualTypeProps = Filter & Omit<ChipMenuProps, 'selected'>
 
 export function FilterEqualType(props: FilterEqualTypeProps) {
   const { attribute_code, count, label, options, __typename, ...chipProps } = props

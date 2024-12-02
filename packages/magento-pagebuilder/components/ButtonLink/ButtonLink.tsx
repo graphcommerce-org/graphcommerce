@@ -10,7 +10,7 @@ import React from 'react'
 import { RouteDocument } from '../../Route.gql'
 import type { ButtonLinkProps } from './getButtonLinkProps'
 
-type ButtonLinkComponentProps = ButtonLinkProps & {
+export type ButtonLinkComponentProps = ButtonLinkProps & {
   sx?: SxProps<Theme>
 }
 

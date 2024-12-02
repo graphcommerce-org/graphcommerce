@@ -57,6 +57,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
           ...method,
           disabled: !method?.available,
           value: `${method?.carrier_code}-${method?.method_code ?? ''}`,
+          method_title: method?.method_title || '',
         })),
     [availableMethods],
   )

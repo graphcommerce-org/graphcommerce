@@ -7,7 +7,7 @@ import { Box, Checkbox } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import type { OptionTypeRenderer } from './CustomizableAreaOption'
 
-type CustomizableCheckboxOptionProps = React.ComponentProps<
+export type CustomizableCheckboxOptionProps = React.ComponentProps<
   OptionTypeRenderer['CustomizableCheckboxOption']
 >
 

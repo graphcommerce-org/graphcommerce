@@ -79,7 +79,7 @@ function isParent<U extends TreeItem>(item: U, parent: U): boolean {
   return false
 }
 
-type ProductFiltersProCategorySectionSearchProps = Omit<
+export type ProductFiltersProCategorySectionSearchProps = Omit<
   ProductFiltersProCategoryAccordionProps,
   'categoryTree' | 'onChange'
 > & {

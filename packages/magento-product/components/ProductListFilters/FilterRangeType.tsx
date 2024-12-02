@@ -11,7 +11,7 @@ import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import type { ProductListFiltersFragment } from './ProductListFilters.gql'
 
-type FilterRangeTypeProps = NonNullable<
+export type FilterRangeTypeProps = NonNullable<
   NonNullable<ProductListFiltersFragment['aggregations']>[0]
 > &
   Omit<ChipMenuProps, 'selected'>

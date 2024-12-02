@@ -28,7 +28,7 @@ type ColorModeContext = {
 export const colorModeContext = createContext(undefined as unknown as ColorModeContext)
 colorModeContext.displayName = 'ColorModeContext'
 
-type ThemeProviderProps = {
+export type ThemeProviderProps = {
   children: React.ReactNode
   ssrMode?: Mode
   listenToBrowser?: boolean

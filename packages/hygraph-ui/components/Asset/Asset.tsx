@@ -16,7 +16,7 @@ function isImage(asset: AssetFragment): asset is ImageAsset {
   return !!(asset.width && asset.height)
 }
 
-type AssetProps = {
+export type AssetProps = {
   asset: AssetFragment
   sx?: SxProps<Theme>
 } & Omit<ImageProps, 'src' | 'width' | 'height' | 'alt' | 'sx'>

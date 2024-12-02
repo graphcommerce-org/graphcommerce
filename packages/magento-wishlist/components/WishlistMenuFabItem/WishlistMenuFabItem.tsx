@@ -5,7 +5,7 @@ import type { MouseEventHandler } from 'react'
 import React from 'react'
 import { useWishlistItems } from '../../hooks'
 
-type WishlistMenuFabItemContentProps = {
+export type WishlistMenuFabItemContentProps = {
   icon?: React.ReactNode
   children: React.ReactNode
   sx?: SxProps<Theme>

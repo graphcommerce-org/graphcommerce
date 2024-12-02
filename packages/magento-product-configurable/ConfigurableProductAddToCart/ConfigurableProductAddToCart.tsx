@@ -19,7 +19,7 @@ import { ConfigurableOptionsInput } from '../ConfigurableOptions/ConfigurableOpt
 import type { ConfigurableProductAddToCartMutationVariables } from '../graphql/ConfigurableProductAddToCart.gql'
 import { ConfigurableProductAddToCartDocument } from '../graphql/ConfigurableProductAddToCart.gql'
 
-type ConfigurableProductAddToCartProps = {
+export type ConfigurableProductAddToCartProps = {
   variables: Omit<ConfigurableProductAddToCartMutationVariables, 'cartId' | 'selectedOptions'>
   name: string
   optionEndLabels?: Record<string, React.ReactNode>

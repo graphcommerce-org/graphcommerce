@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 import { CustomerReview } from '../CustomerReview/CustomerReview'
 import type { AccountReviewsFragment } from './AccountReviews.gql'
 
-type AccountReviewsProps = AccountReviewsFragment
+export type AccountReviewsProps = AccountReviewsFragment
 
 const { classes } = extendableComponent('AccountReviews', ['root', 'older'] as const)
 

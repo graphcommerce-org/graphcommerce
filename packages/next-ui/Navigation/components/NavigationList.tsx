@@ -15,7 +15,7 @@ const NavigationUList = styled('ul')({
   },
 })
 
-type NavigationItemsProps = {
+export type NavigationItemsProps = {
   parentPath?: string
   items: NavigationNode[]
   selected?: boolean

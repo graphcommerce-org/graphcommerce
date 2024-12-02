@@ -3,7 +3,7 @@ import { FormHelperText } from '@mui/material'
 import type { AddToCartItemSelector } from './useFormAddProductsToCart'
 import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
-type AddProductsToCartErrorProps = {
+export type AddProductsToCartErrorProps = {
   children?: React.ReactNode
 } & AddToCartItemSelector
 

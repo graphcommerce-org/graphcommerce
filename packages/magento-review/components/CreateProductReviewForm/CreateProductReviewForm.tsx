@@ -20,7 +20,7 @@ import { useEffect, useState } from 'react'
 import { CreateProductReviewDocument } from './CreateProductReview.gql'
 import { ProductReviewRatingsMetadataDocument } from './ProductReviewRatingsMetadata.gql'
 
-type CreateProductReviewFormProps = {
+export type CreateProductReviewFormProps = {
   sku: string
   nickname?: string
   sx?: SxProps<Theme>

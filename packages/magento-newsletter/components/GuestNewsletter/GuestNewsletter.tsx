@@ -4,7 +4,7 @@ import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
 import { GuestNewsletterToggleDocument } from '../GuestNewsletterToggle/GuestNewsletterToggle.gql'
 
-type GuestNewsletterProps = {
+export type GuestNewsletterProps = {
   sx?: SxProps<Theme>
 }
 

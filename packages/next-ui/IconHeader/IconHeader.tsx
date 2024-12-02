@@ -8,7 +8,7 @@ import { extendableComponent } from '../Styles'
 
 export type IconHeaderSize = 'small' | 'medium' | 'large'
 
-type IconHeaderProps = {
+export type IconHeaderProps = {
   children: React.ReactNode
   size?: IconHeaderSize
   noMargin?: boolean

@@ -3,7 +3,7 @@ import { IconSvg, LinkOrButton, iconChevronRight } from '@graphcommerce/next-ui'
 import type { ComposedSubmitRenderComponentProps } from '@graphcommerce/react-hook-form'
 import { forwardRef } from 'react'
 
-type ComposedLinkOrButtonProps = ComposedSubmitRenderComponentProps &
+export type ComposedLinkOrButtonProps = ComposedSubmitRenderComponentProps &
   Omit<LinkOrButtonProps, 'loading'>
 
 /** Makes a ComposedSubmitRenderComponent rendered as a LinkOrButton */

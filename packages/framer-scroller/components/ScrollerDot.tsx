@@ -15,7 +15,7 @@ type OwnerProps = { active: boolean }
 
 const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 
-type ScrollerDotProps = Omit<FabProps, 'onClick' | 'className'> & ItemState & { idx: number }
+export type ScrollerDotProps = Omit<FabProps, 'onClick' | 'className'> & ItemState & { idx: number }
 
 const MotionBox = styled(m.div)({})
 

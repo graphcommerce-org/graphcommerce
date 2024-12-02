@@ -33,7 +33,7 @@ type OptionTypeRendererProp = Simplify<
     : MissingOptionTypeRenderer & DefinedOptionTypeRenderer
 >
 
-type ProductCustomizableProps = AddToCartItemSelector & {
+export type ProductCustomizableProps = AddToCartItemSelector & {
   product: ProductCustomizableFragment & ProductPagePriceFragment
 } & (keyof MissingOptionTypeRenderer extends never
     ? { renderer?: OptionTypeRendererProp }

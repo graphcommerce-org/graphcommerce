@@ -10,7 +10,7 @@ import { useCompareSummary } from '../hooks'
 import { useCompareListUidCreate } from '../hooks/useCompareListUidCreate'
 import { CompareMessageSnackbar } from './CompareMessageSnackbar'
 
-type CompareProductButtonProps = CompareProductIdInternalFragment & { sx?: SxProps<Theme> }
+export type CompareProductButtonProps = CompareProductIdInternalFragment & { sx?: SxProps<Theme> }
 
 export function CompareProductButton(props: CompareProductButtonProps) {
   const { id, name, sx } = props
