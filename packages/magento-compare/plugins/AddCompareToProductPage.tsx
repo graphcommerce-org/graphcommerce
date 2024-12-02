@@ -11,7 +11,7 @@ export const config: PluginConfig = {
 export function ProductPageAddToCartActionsRow(props: PluginProps<ProductPageAddToCartRowProps>) {
   const { Prev, ...rest } = props
   const { children, after, product } = props
-  if (import.meta.graphCommerce.layout?.compareVariant === 'CHECKBOX')
+  if (import.meta.graphCommerce.compareVariant === 'CHECKBOX')
     return (
       <Prev
         {...rest}
@@ -25,8 +25,8 @@ export function ProductPageAddToCartActionsRow(props: PluginProps<ProductPageAdd
     )
 
   if (
-    import.meta.graphCommerce.layout?.compareVariant === 'ICON' ||
-    !import.meta.graphCommerce.layout?.compareVariant
+    import.meta.graphCommerce.compareVariant === 'ICON' ||
+    !import.meta.graphCommerce.compareVariant
   )
     return (
       <Prev {...rest}>

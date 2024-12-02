@@ -1,6 +1,6 @@
 import { useMutation } from '@graphcommerce/graphql'
 import type { FabProps } from '@graphcommerce/next-ui'
-import { iconCompare, Button, Fab } from '@graphcommerce/next-ui'
+import { Button, Fab, iconCompare } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
@@ -79,7 +79,7 @@ function CompareProductToggleBase(
 
   return (
     <>
-      {import.meta.graphCommerce.layout?.compareVariant === 'CHECKBOX' ? (
+      {import.meta.graphCommerce.compareVariant === 'CHECKBOX' ? (
         <Button
           variant='text'
           size='small'
