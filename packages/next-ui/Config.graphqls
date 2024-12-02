@@ -29,3 +29,29 @@ input SidebarGalleryConfig {
   """
   paginationVariant: SidebarGalleryPaginationVariant
 }
+
+enum MaxWidthOptions {
+  DEFAULT
+  CONTENT_ONLY
+  CONTAINED
+}
+
+input GraphCommerceLayoutConfig {
+  """
+  Sets the maximum width for the layout. You can set the max width breakpoint in the theme.ts file
+  Tip: if you want to use pixels instead of breakpoints, change the width of the breakpoint.
+
+  DEFAULT: Page is full width
+  CONTENT_ONLY: Only content is contained
+  CONTAINED: Page is contained
+  Default: DEFAULT
+  """
+  maxWidth: MaxWidthOptions = DEFAULT
+}
+
+extend input GraphCommerceConfig {
+  """
+  Configures the layout settings.
+  """
+  layout: GraphCommerceLayoutConfig
+}
