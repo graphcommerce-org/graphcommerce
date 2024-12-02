@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.0.0-canary.108
+
+### Patch Changes
+
+- [#2440](https://github.com/graphcommerce-org/graphcommerce/pull/2440) [`7fe3bc5`](https://github.com/graphcommerce-org/graphcommerce/commit/7fe3bc5109a15a4cb4ab46a987b40f304c5add48) - fix session expired email not always available in cache ([@StefanAngenent](https://github.com/StefanAngenent))
+
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`49937fd`](https://github.com/graphcommerce-org/graphcommerce/commit/49937fd765338e25899d427ee4d799fa7978faeb) - Allow changing various props for internal components ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 9.0.0-canary.107
 
 ## 9.0.0-canary.106
