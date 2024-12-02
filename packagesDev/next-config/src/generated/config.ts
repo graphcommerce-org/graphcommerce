@@ -134,6 +134,11 @@ export type GraphCommerceConfig = {
   /** Use compare functionality */
   compare?: InputMaybe<Scalars['Boolean']['input']>;
   /**
+   * By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
+   * This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
+   */
+  compareVariant?: InputMaybe<CompareVariant>;
+  /**
    * If a simple product is part of a Configurable product page, should the simple product be
    * rendered as a configured option of the configurable product page?
    *
@@ -210,6 +215,8 @@ export type GraphCommerceConfig = {
    * To override the value for a specific locale, configure in i18n config.
    */
   googleAnalyticsId?: InputMaybe<Scalars['String']['input']>;
+  /** To create an assetlinks.json file for the Android app. */
+  googlePlaystore?: InputMaybe<GraphCommerceGooglePlaystoreConfig>;
   /**
    * Google reCAPTCHA site key.
    * When using reCAPTCHA, this value is required, even if you are configuring different values for each locale.
@@ -304,13 +311,26 @@ export type GraphCommerceConfig = {
   permissions?: InputMaybe<GraphCommercePermissions>;
   /** To enable next.js' preview mode, configure the secret you'd like to use. */
   previewSecret?: InputMaybe<Scalars['String']['input']>;
-  /** Enables an improved UI for product filters on mobile and desktop. */
+  /**
+   * Layout how the filters are rendered.
+   * DEFAULT: Will be rendered as horzontal chips on desktop and mobile
+   * SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
+   */
+  productFiltersLayout?: InputMaybe<ProductFiltersLayout>;
+  /** Product filters with better UI for mobile and desktop. */
   productFiltersPro?: InputMaybe<Scalars['Boolean']['input']>;
+  /**
+   * Pagination variant for the product listings.
+   *
+   * COMPACT means: "< Page X of Y >"
+   * EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
+   */
+  productListPaginationVariant?: InputMaybe<PaginationVariant>;
   /**
    * By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
    *
-   *   Default: '/p/'
-   *   Example: '/product/'
+   * Default: '/p/'
+   * Example: '/product/'
    */
   productRoute?: InputMaybe<Scalars['String']['input']>;
   /** Settings for recently viewed products */
@@ -351,12 +371,15 @@ export type GraphCommerceDebugConfig = {
   webpackDuplicatesPlugin?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+/** See https://developer.android.com/training/app-links/verify-android-applinks#web-assoc */
+export type GraphCommerceGooglePlaystoreConfig = {
+  /** The package name of the Android app. */
+  packageName: Scalars['String']['input'];
+  /** The sha256 certificate fingerprint of the Android app. */
+  sha256CertificateFingerprint: Scalars['String']['input'];
+};
+
 export type GraphCommerceLayoutConfig = {
-  /**
-   * By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
-   * This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
-   */
-  compareVariant?: InputMaybe<CompareVariant>;
   /**
    * Sets the maximum width for the layout. You can set the max width breakpoint in the theme.ts file
    * Tip: if you want to use pixels instead of breakpoints, change the width of the breakpoint.
@@ -367,25 +390,11 @@ export type GraphCommerceLayoutConfig = {
    * Default: DEFAULT
    */
   maxWidth?: InputMaybe<MaxWidthOptions>;
-  /**
-   * Specifies the layout for product filters.
-   *
-   * DEFAULT: Horizontal chips on desktop and mobile
-   * SIDEBAR: Sidebar on desktop, horizontal chips on mobile
-   * Default: DEFAULT
-   */
-  productFiltersLayout?: InputMaybe<ProductFiltersLayout>;
-  /**
-   * Pagination variant for the product listings.
-   *
-   * COMPACT means: "< Page X of Y >"
-   * EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
-   */
-  productListPaginationVariant?: InputMaybe<PaginationVariant>;
   /** Configuration for the SidebarGallery component */
   sidebarGallery?: InputMaybe<SidebarGalleryConfig>;
 };
 
+/** Permissions input */
 export type GraphCommercePermissions = {
   /** Changes the availability of the add to cart buttons and the cart page to either customer only or completely disables it. */
   cart?: InputMaybe<CartPermissions>;
@@ -555,6 +564,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     compare: z.boolean().nullish(),
+    compareVariant: CompareVariantSchema.default("ICON").nullish(),
     configurableVariantForSimple: z.boolean().default(false).nullish(),
     configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
     crossSellsHideCartItems: z.boolean().default(false).nullish(),
@@ -568,6 +578,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     demoMode: z.boolean().default(true).nullish(),
     enableGuestCheckoutLogin: z.boolean().nullish(),
     googleAnalyticsId: z.string().nullish(),
+    googlePlaystore: GraphCommerceGooglePlaystoreConfigSchema().nullish(),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
     hygraphEndpoint: z.string().min(1),
@@ -580,7 +591,9 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     magentoVersion: z.number(),
     permissions: GraphCommercePermissionsSchema().nullish(),
     previewSecret: z.string().nullish(),
+    productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
     productFiltersPro: z.boolean().nullish(),
+    productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
     productRoute: z.string().nullish(),
     recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
     robotsAllow: z.boolean().nullish(),
@@ -599,12 +612,16 @@ export function GraphCommerceDebugConfigSchema(): z.ZodObject<Properties<GraphCo
   })
 }
 
+export function GraphCommerceGooglePlaystoreConfigSchema(): z.ZodObject<Properties<GraphCommerceGooglePlaystoreConfig>> {
+  return z.object({
+    packageName: z.string().min(1),
+    sha256CertificateFingerprint: z.string().min(1)
+  })
+}
+
 export function GraphCommerceLayoutConfigSchema(): z.ZodObject<Properties<GraphCommerceLayoutConfig>> {
   return z.object({
-    compareVariant: CompareVariantSchema.default("ICON").nullish(),
     maxWidth: MaxWidthOptionsSchema.default("DEFAULT").nullish(),
-    productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
-    productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
     sidebarGallery: SidebarGalleryConfigSchema().nullish()
   })
 }

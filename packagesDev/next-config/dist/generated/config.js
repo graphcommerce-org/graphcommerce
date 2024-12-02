@@ -27,6 +27,9 @@ _export(exports, {
     GraphCommerceDebugConfigSchema: function() {
         return GraphCommerceDebugConfigSchema;
     },
+    GraphCommerceGooglePlaystoreConfigSchema: function() {
+        return GraphCommerceGooglePlaystoreConfigSchema;
+    },
     GraphCommerceLayoutConfigSchema: function() {
         return GraphCommerceLayoutConfigSchema;
     },
@@ -115,6 +118,7 @@ function GraphCommerceConfigSchema() {
         canonicalBaseUrl: _zod.z.string().min(1),
         cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
         compare: _zod.z.boolean().nullish(),
+        compareVariant: CompareVariantSchema.default("ICON").nullish(),
         configurableVariantForSimple: _zod.z.boolean().default(false).nullish(),
         configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
         crossSellsHideCartItems: _zod.z.boolean().default(false).nullish(),
@@ -128,6 +132,7 @@ function GraphCommerceConfigSchema() {
         demoMode: _zod.z.boolean().default(true).nullish(),
         enableGuestCheckoutLogin: _zod.z.boolean().nullish(),
         googleAnalyticsId: _zod.z.string().nullish(),
+        googlePlaystore: GraphCommerceGooglePlaystoreConfigSchema().nullish(),
         googleRecaptchaKey: _zod.z.string().nullish(),
         googleTagmanagerId: _zod.z.string().nullish(),
         hygraphEndpoint: _zod.z.string().min(1),
@@ -140,7 +145,9 @@ function GraphCommerceConfigSchema() {
         magentoVersion: _zod.z.number(),
         permissions: GraphCommercePermissionsSchema().nullish(),
         previewSecret: _zod.z.string().nullish(),
+        productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),
+        productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
         productRoute: _zod.z.string().nullish(),
         recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
         robotsAllow: _zod.z.boolean().nullish(),
@@ -157,12 +164,15 @@ function GraphCommerceDebugConfigSchema() {
         webpackDuplicatesPlugin: _zod.z.boolean().nullish()
     });
 }
+function GraphCommerceGooglePlaystoreConfigSchema() {
+    return _zod.z.object({
+        packageName: _zod.z.string().min(1),
+        sha256CertificateFingerprint: _zod.z.string().min(1)
+    });
+}
 function GraphCommerceLayoutConfigSchema() {
     return _zod.z.object({
-        compareVariant: CompareVariantSchema.default("ICON").nullish(),
         maxWidth: MaxWidthOptionsSchema.default("DEFAULT").nullish(),
-        productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
-        productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
         sidebarGallery: SidebarGalleryConfigSchema().nullish()
     });
 }
