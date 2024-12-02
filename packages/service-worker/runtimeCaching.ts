@@ -23,6 +23,7 @@ const devCaching = [{ matcher: /.*/i, handler: new NetworkOnly() }]
  */
 const handlers: RuntimeCaching[] = [
   // Default Google Fonts Webfonts handler
+  // To be removed?
   {
     matcher: /^https:\/\/fonts\.(?:gstatic)\.com\/.*/i,
     handler: new CacheFirst({
@@ -52,7 +53,7 @@ const handlers: RuntimeCaching[] = [
   {
     matcher: /\.(?:eot|otf|ttc|ttf|woff|woff2|font.css)$/i,
     handler: new StaleWhileRevalidate({
-      cacheName: 'static-font-assets',
+      cacheName: 'runtime-font',
       plugins: [
         new ExpirationPlugin({
           maxEntries: 4,
@@ -65,11 +66,68 @@ const handlers: RuntimeCaching[] = [
   {
     matcher: /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
     handler: new StaleWhileRevalidate({
-      cacheName: 'static-image-assets',
+      cacheName: 'runtime-image',
       plugins: [
         new ExpirationPlugin({
           maxEntries: 64,
           maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+          maxAgeFrom: 'last-used',
+        }),
+      ],
+    }),
+  },
+  {
+    matcher: /\.(?:mp3|wav|ogg)$/i,
+    handler: new CacheFirst({
+      cacheName: 'runtime-audio',
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60, // 24 hours
+          maxAgeFrom: 'last-used',
+        }),
+        new RangeRequestsPlugin(),
+      ],
+    }),
+  },
+  {
+    matcher: /\.(?:mp4|webm)$/i,
+    handler: new CacheFirst({
+      cacheName: 'runtime-video',
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60, // 24 hours
+          maxAgeFrom: 'last-used',
+        }),
+        new RangeRequestsPlugin(),
+      ],
+    }),
+  },
+  // This should all be handled by the precache and we don't consider js files in the public dir for now.
+  {
+    matcher: ({ url: { pathname } }) =>
+      /\.(?:js)$/i.test(pathname) && !pathname.includes('/_next/static/'),
+    handler: new StaleWhileRevalidate({
+      cacheName: 'runtime-js',
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 48,
+          maxAgeSeconds: 24 * 60 * 60, // 24 hours
+          maxAgeFrom: 'last-used',
+        }),
+      ],
+    }),
+  },
+  {
+    matcher: ({ url: { pathname } }) =>
+      /\.(?:css|less)$/i.test(pathname) && !pathname.includes('/_next/static/'),
+    handler: new StaleWhileRevalidate({
+      cacheName: 'runtime-css',
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60, // 24 hours
           maxAgeFrom: 'last-used',
         }),
       ],
@@ -91,61 +149,7 @@ const handlers: RuntimeCaching[] = [
       ],
     }),
   },
-  {
-    matcher: /\.(?:mp3|wav|ogg)$/i,
-    handler: new CacheFirst({
-      cacheName: 'static-audio-assets',
-      plugins: [
-        new ExpirationPlugin({
-          maxEntries: 32,
-          maxAgeSeconds: 24 * 60 * 60, // 24 hours
-          maxAgeFrom: 'last-used',
-        }),
-        new RangeRequestsPlugin(),
-      ],
-    }),
-  },
-  {
-    matcher: /\.(?:mp4|webm)$/i,
-    handler: new CacheFirst({
-      cacheName: 'static-video-assets',
-      plugins: [
-        new ExpirationPlugin({
-          maxEntries: 32,
-          maxAgeSeconds: 24 * 60 * 60, // 24 hours
-          maxAgeFrom: 'last-used',
-        }),
-        new RangeRequestsPlugin(),
-      ],
-    }),
-  },
-  // This should all be handled by the precache and we don't consider js files in the public dir for now.
-  // {
-  //   matcher: /\.(?:js)$/i,
-  //   handler: new StaleWhileRevalidate({
-  //     cacheName: 'static-js-assets',
-  //     plugins: [
-  //       new ExpirationPlugin({
-  //         maxEntries: 48,
-  //         maxAgeSeconds: 24 * 60 * 60, // 24 hours
-  //         maxAgeFrom: 'last-used',
-  //       }),
-  //     ],
-  //   }),
-  // },
-  {
-    matcher: /\.(?:css|less)$/i,
-    handler: new StaleWhileRevalidate({
-      cacheName: 'static-style-assets',
-      plugins: [
-        new ExpirationPlugin({
-          maxEntries: 32,
-          maxAgeSeconds: 24 * 60 * 60, // 24 hours
-          maxAgeFrom: 'last-used',
-        }),
-      ],
-    }),
-  },
+
   {
     matcher: /\/_next\/data\/[^/]+\/.+\.json(\?.*)?$/i,
     handler: new NetworkFirst({
