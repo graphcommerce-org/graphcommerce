@@ -220,7 +220,7 @@ Found in packages:
 Source: ${sourcePath}`)
             process.exit(1)
           }
-          console.log(`Creating new file: ${file}`)
+          console.log(`Creating new file: ${file}\nSource: ${sourcePath}`)
           debug('File does not exist yet')
         }
 

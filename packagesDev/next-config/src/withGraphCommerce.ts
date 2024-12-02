@@ -41,7 +41,7 @@ function domains(config: GraphCommerceConfig): DomainLocale[] {
  * module.exports = withGraphCommerce(nextConfig)
  * ```
  */
-export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConfig {
+export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.cwd()): NextConfig {
   graphcommerceConfig ??= loadConfig(cwd)
   const importMetaPaths = configToImportMeta(graphcommerceConfig)
 
