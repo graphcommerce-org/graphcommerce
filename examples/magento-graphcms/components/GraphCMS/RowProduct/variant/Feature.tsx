@@ -11,7 +11,7 @@ export function Feature(props: FeatureProps) {
   const { productCopy, title, media_gallery } = props
   const theme = useTheme()
   const item = media_gallery?.[2] ?? media_gallery?.[0]
-  const { maxWidth } = useMaxWidthContent()
+  const { pixels: maxWidth } = useMaxWidthContent()
 
   if (!item) return null
 
@@ -27,7 +27,7 @@ export function Feature(props: FeatureProps) {
             src={item.url}
             sizes={{
               0: '100vw',
-              [theme.breakpoints.values.md]: maxWidth ? `calc(${maxWidth.value} / 2)` : '50vw',
+              [theme.breakpoints.values.md]: maxWidth ? `calc(${maxWidth} / 2)` : '50vw',
             }}
           />
         )

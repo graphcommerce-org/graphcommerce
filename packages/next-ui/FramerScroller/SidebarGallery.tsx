@@ -172,7 +172,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               '&:not(.variantMdOneColumn)': {
                 paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
                 paddingLeft: maxWidthContent.breakpoint
-                  ? `calc((100% - ${maxWidthContent.maxWidth}) / 2)`
+                  ? `calc((100% - ${maxWidthContent.pixels}) / 2)`
                   : 'unset',
               },
 
@@ -358,7 +358,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   },
                 }}
               >
-                {import.meta.graphCommerce.sidebarGallery === 'THUMBNAILS_BOTTOM' ? (
+                {import.meta.graphCommerce.sidebarGallery?.paginationVariant ===
+                'THUMBNAILS_BOTTOM' ? (
                   <ScrollerThumbnails layoutDependency={zoomed} images={images} />
                 ) : (
                   <ScrollerDots layout />

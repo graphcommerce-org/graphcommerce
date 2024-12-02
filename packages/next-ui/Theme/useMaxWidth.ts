@@ -1,17 +1,37 @@
+import type { Theme } from '@mui/material'
 import { useTheme } from '@mui/material'
 
-export function useMaxWidth() {
-  const theme = useTheme()
+export function layoutMaxWidth(): boolean {
+  return import.meta.graphCommerce.layoutMaxWidth === 'CONTAINED'
+}
+
+export function layoutMaxWidthContent(): boolean {
+  return (
+    import.meta.graphCommerce.layoutMaxWidth === 'CONTENT_ONLY' ||
+    import.meta.graphCommerce.layoutMaxWidth === 'CONTAINED'
+  )
+}
+
+export function maxWidth(theme: Theme) {
   const breakpoint = theme.appShell.maxWidth
-  const maxWidth = breakpoint ? `${theme.breakpoints.values[breakpoint]}px` : false
-  return { breakpoint, maxWidth }
+  return {
+    breakpoint,
+    pixels: breakpoint ? `${theme.breakpoints.values[breakpoint]}px` : undefined,
+  }
+}
+
+export function maxWidthContent(theme: Theme) {
+  const breakpoint = theme.appShell.maxWidthContent
+  return {
+    breakpoint,
+    pixels: breakpoint ? `${theme.breakpoints.values[breakpoint]}px` : undefined,
+  }
+}
+
+export function useMaxWidth() {
+  return maxWidth(useTheme())
 }
 
 export function useMaxWidthContent() {
-  const theme = useTheme()
-  const breakpoint = theme.appShell.maxWidthContent
-  const maxWidth = breakpoint ? `${theme.breakpoints.values[breakpoint]}px` : false
-  return { breakpoint, maxWidth }
+  return maxWidthContent(useTheme())
 }
-
-export const layoutConfig = import.meta.graphCommerce.layout ?? {}

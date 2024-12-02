@@ -26,7 +26,7 @@ import {
   memoDeep,
   responsiveVal,
   StickyBelowHeader,
-  useMaxWidth,
+  useMaxWidthContent,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Box, Container, Typography } from '@mui/material'
@@ -40,9 +40,9 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
   if (!params || !products?.items || !filterTypes) return null
   const { total_count, sort_fields, page_info } = products
 
-  const maxWidthContent = useMaxWidth()
+  const maxWidthContent = useMaxWidthContent()
 
-  const sidebarWidth = maxWidthContent.breakpoint
+  const sidebarWidth = maxWidthContent.pixels
     ? responsiveVal(200, 300, 960, 1920)
     : responsiveVal(200, 350, 960, 1920)
 
@@ -136,8 +136,9 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
               loadingEager={6}
               title={(params.search ? `Search ${params.search}` : title) ?? ''}
               columns={(theme) => {
+                console.log(maxWidthContent)
                 const totalWidth = (spacing: string) =>
-                  `calc(${contentMaxWidth?.value ?? '100vw'} - ((${theme.page.horizontal} * 2) + ${sidebarWidth} + ${theme.spacings[spacing]}))`
+                  `calc(${maxWidthContent.pixels ?? '100vw'} - ((${theme.page.horizontal} * 2) + ${sidebarWidth} + ${theme.spacings[spacing]}))`
                 return {
                   xs: { count: 2 },
                   md: { totalWidth: totalWidth('md'), count: 3 },

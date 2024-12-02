@@ -137,7 +137,16 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
             {...products}
             loadingEager={6}
             title={(params.search ? `Search ${params.search}` : title) ?? ''}
-            columns={{ xs: { count: 2 }, md: { count: 3 }, lg: { count: 4 }, xl: { count: 5 } }}
+            columns={(theme) => {
+              const totalWidth = (spacing: string) =>
+                `calc(${maxWidthContent.pixels ?? '100vw'} - ((${theme.page.horizontal} * 2) + ${theme.spacings[spacing]}))`
+
+              return {
+                xs: { count: 2, totalWidth: totalWidth('sm') },
+                md: { count: 3, totalWidth: totalWidth('md') },
+                lg: { count: 4, totalWidth: totalWidth('lg') },
+              }
+            }}
           />
         )}
         <ProductListPagination page_info={page_info} params={params} />

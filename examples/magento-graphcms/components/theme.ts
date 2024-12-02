@@ -2,6 +2,9 @@
 
 import {
   breakpointVal,
+  layoutMaxWidth,
+  layoutMaxWidthContent,
+  maxWidth,
   MuiButtonInline,
   MuiButtonPill,
   MuiButtonResponsive,
@@ -180,12 +183,8 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       headerHeightMd: '100px',
       appBarHeightMd: '80px',
       appBarInnerHeightMd: '46px',
-      maxWidth: import.meta.graphCommerce.layoutMaxWidth === 'CONTAINED' ? 'lg' : false,
-      maxWidthContent:
-        import.meta.graphCommerce.layoutMaxWidth === 'CONTENT_ONLY' ||
-        import.meta.graphCommerce.layoutMaxWidth === 'CONTAINED'
-          ? 'lg'
-          : false,
+      maxWidth: layoutMaxWidth() ? 'lg' : false,
+      maxWidthContent: layoutMaxWidthContent() ? 'lg' : false,
     },
   })
 
@@ -216,13 +215,9 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
   MuiContainer: {
     variants: [
       {
+        // When a Container is using maxWidth={false} we automatically limit that container to the maxWidth
         props: { maxWidth: false },
-        style: {
-          // When the site is using a maxWidth, we automatically limit all Containers to that maxWidth.
-          maxWidth: theme.appShell.contentMaxWidth
-            ? theme.breakpoints.values[theme.appShell.contentMaxWidth]
-            : undefined,
-        },
+        style: { maxWidth: maxWidth(theme).pixels },
       },
       {
         props: { disableGutters: false },

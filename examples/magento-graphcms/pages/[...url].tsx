@@ -110,7 +110,7 @@ function CategoryPage(props: CategoryProps) {
       {isCategory && !isLanding && (
         <>
           {import.meta.graphCommerce.productFiltersPro &&
-            import.meta.graphCommerce.layout?.productFiltersLayout === 'SIDEBAR' && (
+            import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
               <ProductListLayoutSidebar
                 {...productList}
                 key={category.uid}
@@ -120,7 +120,7 @@ function CategoryPage(props: CategoryProps) {
               />
             )}
           {import.meta.graphCommerce.productFiltersPro &&
-            import.meta.graphCommerce.layout?.productFiltersLayout !== 'SIDEBAR' && (
+            import.meta.graphCommerce.productFiltersLayout !== 'SIDEBAR' && (
               <ProductListLayoutDefault
                 {...productList}
                 key={category.uid}

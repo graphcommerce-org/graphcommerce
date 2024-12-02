@@ -17,7 +17,7 @@ export function ProductListPagination({
 }: ProductPaginationProps) {
   if (!page_info || !page_info.total_pages || !page_info.current_page) return null
 
-  if (import.meta.graphCommerce.layout?.productListPaginationVariant !== 'EXTENDED') {
+  if (import.meta.graphCommerce.productListPaginationVariant !== 'EXTENDED') {
     return (
       <Pagination
         count={page_info?.total_pages}
@@ -41,7 +41,7 @@ export function ProductListPagination({
     )
   }
 
-  if (import.meta.graphCommerce.layout?.productListPaginationVariant === 'EXTENDED') {
+  if (import.meta.graphCommerce.productListPaginationVariant === 'EXTENDED') {
     return (
       <PaginationExtended
         count={page_info?.total_pages}

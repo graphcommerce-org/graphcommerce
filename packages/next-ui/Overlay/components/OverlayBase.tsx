@@ -1,5 +1,5 @@
 import type { Direction } from '@graphcommerce/framer-next-pages'
-import { Scroller, useScrollTo, useScrollerContext } from '@graphcommerce/framer-scroller'
+import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
 import {
   dvh,
   dvw,
@@ -546,7 +546,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
               },
               '&.sizeMdFloating.variantMdBottom': {
                 marginTop: `calc(${theme.page.vertical} * -1)`,
-                maxWidth: maxWidth.maxWidth ?? 'unset',
+                maxWidth: maxWidth.pixels ?? 'unset',
                 mx: 'auto',
               },
             },
