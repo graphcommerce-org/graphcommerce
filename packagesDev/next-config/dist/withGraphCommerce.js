@@ -31,7 +31,7 @@ function domains(config) {
  * module.exports = withGraphCommerce(nextConfig)
  * ```
  */
-function withGraphCommerce(nextConfig, cwd) {
+function withGraphCommerce(nextConfig, cwd = process.cwd()) {
     graphcommerceConfig ??= (0, loadConfig_1.loadConfig)(cwd);
     const importMetaPaths = (0, configToImportMeta_1.configToImportMeta)(graphcommerceConfig);
     const { storefront } = graphcommerceConfig;

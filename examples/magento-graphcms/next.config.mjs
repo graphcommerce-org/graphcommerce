@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-var-requires */
-require('dotenv').config({ path: `${__dirname}/.env` })
+import { withGraphCommerce } from '@graphcommerce/next-config'
+import withSerwistInit from '@serwist/next'
+import dotenv from 'dotenv'
 
-const { withGraphCommerce } = require('@graphcommerce/next-config')
+dotenv.config()
 
-const withPWA = require('@serwist/next').default({
+const withPWA = withSerwistInit({
   // disable: process.env.NODE_ENV === 'development',
   swSrc: 'lib/sw.ts',
   swDest: 'public/sw.js',
@@ -25,4 +25,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withGraphCommerce(withPWA(nextConfig), __dirname)
+export default withGraphCommerce(withPWA(nextConfig))
