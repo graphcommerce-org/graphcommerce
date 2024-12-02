@@ -1,12 +1,8 @@
-import {
-  runtimeCaching,
-  PrecacheEntry,
-  Serwist,
-  productionCaching,
-} from '@graphcommerce/service-worker'
+import type { PrecacheEntry, SerwistGlobalConfig } from '@graphcommerce/service-worker'
+import { runtimeCaching, Serwist } from '@graphcommerce/service-worker'
 
 // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-declare const self: ServiceWorkerGlobalScope & {
+declare const self: SerwistGlobalConfig & {
   __SW_MANIFEST: (PrecacheEntry | string)[] | undefined
 }
 
@@ -16,8 +12,7 @@ const serwist = new Serwist({
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
-  runtimeCaching: productionCaching,
-  disableDevLogs: true,
+  runtimeCaching,
 })
 
 serwist.addEventListeners()

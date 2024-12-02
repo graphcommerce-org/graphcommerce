@@ -1,5 +1,5 @@
 import { filterNonNullableKeys } from '@graphcommerce/next-ui/RenderType/filterNonNullableKeys'
-import type { SerwistPlugin } from '@serwist/core'
+import type { SerwistPlugin } from 'serwist'
 
 function extractImageProps(request: Request): {
   request: Request

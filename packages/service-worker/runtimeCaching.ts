@@ -1,194 +1,273 @@
-import type { RuntimeCaching } from '@serwist/build'
+import { defaultCache, PAGES_CACHE_NAME } from '@serwist/next/worker'
+import type { RuntimeCaching } from 'serwist'
+import {
+  CacheFirst,
+  ExpirationPlugin,
+  NetworkFirst,
+  NetworkOnly,
+  RangeRequestsPlugin,
+  StaleWhileRevalidate,
+} from 'serwist'
 import { nextImagePlugin } from './nextImagePlugin'
 
-export const runtimeCaching: RuntimeCaching[] = [
+const devCaching = [{ matcher: /.*/i, handler: new NetworkOnly() }]
+
+/**
+ * This is a copy of @serwist/next/worker defaultCache When updating @serwist/next, compare this
+ * file with the new defaultCache
+ *
+ * 1. Custom next/image handler with nextImagePlugin
+ * 2. Removed _next/static js handler (already in precache)
+ * 3. Changed cross-origin to NetworkOnly
+ * 4. Fixed _next/data matcher to handle query parameters
+ */
+const handlers: RuntimeCaching[] = [
+  // Default Google Fonts Webfonts handler
   {
-    urlPattern: /\.(?:eot|otf|ttc|ttf|woff|woff2|font.css)$/i,
-    handler: 'StaleWhileRevalidate',
-    options: {
+    matcher: /^https:\/\/fonts\.(?:gstatic)\.com\/.*/i,
+    handler: new CacheFirst({
+      cacheName: 'google-fonts-webfonts',
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 4,
+          maxAgeSeconds: 365 * 24 * 60 * 60, // 365 days
+          maxAgeFrom: 'last-used',
+        }),
+      ],
+    }),
+  },
+  {
+    matcher: /^https:\/\/fonts\.(?:googleapis)\.com\/.*/i,
+    handler: new StaleWhileRevalidate({
+      cacheName: 'google-fonts-stylesheets',
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 4,
+          maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
+          maxAgeFrom: 'last-used',
+        }),
+      ],
+    }),
+  },
+  {
+    matcher: /\.(?:eot|otf|ttc|ttf|woff|woff2|font.css)$/i,
+    handler: new StaleWhileRevalidate({
       cacheName: 'static-font-assets',
-      expiration: {
-        maxEntries: 4,
-        maxAgeSeconds: 7 * 24 * 60 * 60,
-      },
-    },
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 4,
+          maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
+          maxAgeFrom: 'last-used',
+        }),
+      ],
+    }),
   },
   {
-    urlPattern: /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
-    handler: 'StaleWhileRevalidate',
-    options: {
+    matcher: /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
+    handler: new StaleWhileRevalidate({
       cacheName: 'static-image-assets',
-      expiration: {
-        maxEntries: 64,
-        maxAgeSeconds: 30 * 24 * 60 * 60,
-      },
-    },
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 64,
+          maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+          maxAgeFrom: 'last-used',
+        }),
+      ],
+    }),
   },
   {
-    urlPattern: /\/_next\/static.+\.js$/i,
-    handler: 'CacheFirst',
-    options: {
-      cacheName: 'next-static-js-assets',
-      expiration: {
-        maxEntries: 64,
-        maxAgeSeconds: 24 * 60 * 60,
-      },
-    },
-  },
-  {
-    urlPattern: /\/_next\/image\?url=.+$/i,
-    handler: 'StaleWhileRevalidate',
-    options: {
-      plugins: [nextImagePlugin('next-image')],
+    matcher: /\/_next\/image\?url=.+$/i,
+    handler: new StaleWhileRevalidate({
       cacheName: 'next-image',
-      expiration: {
-        maxEntries: 1000, // 1000 images
-        maxAgeSeconds: 168 * 60 * 60, // 1 week
-        matchOptions: { ignoreVary: true },
-        purgeOnQuotaError: true,
-      },
-    },
+      plugins: [
+        nextImagePlugin('next-image'),
+        new ExpirationPlugin({
+          maxEntries: 1000,
+          maxAgeSeconds: 168 * 60 * 60,
+          matchOptions: { ignoreVary: true },
+          purgeOnQuotaError: true,
+          maxAgeFrom: 'last-used',
+        }),
+      ],
+    }),
   },
   {
-    urlPattern: /\.(?:mp3|wav|ogg)$/i,
-    handler: 'CacheFirst',
-    options: {
-      rangeRequests: true,
+    matcher: /\.(?:mp3|wav|ogg)$/i,
+    handler: new CacheFirst({
       cacheName: 'static-audio-assets',
-      expiration: {
-        maxEntries: 32,
-        maxAgeSeconds: 24 * 60 * 60,
-      },
-    },
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60, // 24 hours
+          maxAgeFrom: 'last-used',
+        }),
+        new RangeRequestsPlugin(),
+      ],
+    }),
   },
   {
-    urlPattern: /\.(?:mp4|webm)$/i,
-    handler: 'CacheFirst',
-    options: {
-      rangeRequests: true,
+    matcher: /\.(?:mp4|webm)$/i,
+    handler: new CacheFirst({
       cacheName: 'static-video-assets',
-      expiration: {
-        maxEntries: 32,
-        maxAgeSeconds: 24 * 60 * 60,
-      },
-    },
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60, // 24 hours
+          maxAgeFrom: 'last-used',
+        }),
+        new RangeRequestsPlugin(),
+      ],
+    }),
   },
+  // This should all be handled by the precache and we don't consider js files in the public dir for now.
+  // {
+  //   matcher: /\.(?:js)$/i,
+  //   handler: new StaleWhileRevalidate({
+  //     cacheName: 'static-js-assets',
+  //     plugins: [
+  //       new ExpirationPlugin({
+  //         maxEntries: 48,
+  //         maxAgeSeconds: 24 * 60 * 60, // 24 hours
+  //         maxAgeFrom: 'last-used',
+  //       }),
+  //     ],
+  //   }),
+  // },
   {
-    urlPattern: /\.(?:js)$/i,
-    handler: 'StaleWhileRevalidate',
-    options: {
-      cacheName: 'static-js-assets',
-      expiration: {
-        maxEntries: 48,
-        maxAgeSeconds: 24 * 60 * 60,
-      },
-    },
-  },
-  {
-    urlPattern: /\.(?:css|less)$/i,
-    handler: 'StaleWhileRevalidate',
-    options: {
+    matcher: /\.(?:css|less)$/i,
+    handler: new StaleWhileRevalidate({
       cacheName: 'static-style-assets',
-      expiration: {
-        maxEntries: 32,
-        maxAgeSeconds: 24 * 60 * 60,
-      },
-    },
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60, // 24 hours
+          maxAgeFrom: 'last-used',
+        }),
+      ],
+    }),
   },
   {
-    urlPattern: /\/_next\/data\/.+\/.+$/i,
-    handler: 'NetworkFirst',
-    options: {
+    matcher: /\/_next\/data\/[^/]+\/.+\.json(\?.*)?$/i,
+    handler: new NetworkFirst({
       cacheName: 'next-data',
-      expiration: {
-        maxEntries: 32,
-        maxAgeSeconds: 24 * 60 * 60,
-      },
-    },
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60,
+          maxAgeFrom: 'last-used',
+        }),
+      ],
+    }),
   },
   {
-    urlPattern: ({ sameOrigin, url: { pathname } }) => {
-      // Exclude /api/auth/callback/* to fix OAuth workflow in Safari without having an impact on other environments
-      // The above route is the default for next-auth, you may need to change it if your OAuth workflow has a different callback route
+    matcher: /\.(?:json|xml|csv)$/i,
+    handler: new NetworkFirst({
+      cacheName: 'static-data-assets',
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60, // 24 hours
+          maxAgeFrom: 'last-used',
+        }),
+      ],
+    }),
+  },
+  {
+    matcher: ({ sameOrigin, url: { pathname } }) => {
+      // Exclude /api/auth/callback/* to fix OAuth workflow in Safari without having
+      // an impact on other environments
+      // The above route is the default for next-auth, you may need to change it if
+      // your OAuth workflow has a different callback route.
       // Issue: https://github.com/shadowwalker/next-pwa/issues/131#issuecomment-821894809
+      // TODO(ducanhgh): Investigate Auth.js's "/api/auth/*" failing when we allow them
+      // to be cached (the current behaviour).
       if (!sameOrigin || pathname.startsWith('/api/auth/callback')) {
         return false
       }
+
       if (pathname.startsWith('/api/')) {
         return true
       }
+
       return false
     },
-    handler: 'NetworkFirst',
     method: 'GET',
-    options: {
+    handler: new NetworkFirst({
       cacheName: 'apis',
-      expiration: {
-        maxEntries: 16,
-        maxAgeSeconds: 24 * 60 * 60,
-      },
-      networkTimeoutSeconds: 10,
-    },
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 16,
+          maxAgeSeconds: 24 * 60 * 60, // 24 hours
+          maxAgeFrom: 'last-used',
+        }),
+      ],
+      networkTimeoutSeconds: 10, // fallback to cache if API does not response within 10 seconds
+    }),
   },
   {
-    urlPattern: ({ request, url: { pathname }, sameOrigin }) =>
+    matcher: ({ request, url: { pathname }, sameOrigin }) =>
       request.headers.get('RSC') === '1' &&
       request.headers.get('Next-Router-Prefetch') === '1' &&
       sameOrigin &&
       !pathname.startsWith('/api/'),
-    handler: 'NetworkFirst',
-    options: {
-      cacheName: 'pages-rsc-prefetch',
-      expiration: {
-        maxEntries: 32,
-        maxAgeSeconds: 24 * 60 * 60,
-      },
-    },
+    handler: new NetworkFirst({
+      cacheName: PAGES_CACHE_NAME.rscPrefetch,
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60, // 24 hours
+        }),
+      ],
+    }),
   },
   {
-    urlPattern: ({ request, url: { pathname }, sameOrigin }) =>
+    matcher: ({ request, url: { pathname }, sameOrigin }) =>
       request.headers.get('RSC') === '1' && sameOrigin && !pathname.startsWith('/api/'),
-    handler: 'NetworkFirst',
-    options: {
-      cacheName: 'pages-rsc',
-      expiration: {
-        maxEntries: 32,
-        maxAgeSeconds: 24 * 60 * 60,
-      },
-    },
+    handler: new NetworkFirst({
+      cacheName: PAGES_CACHE_NAME.rsc,
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60, // 24 hours
+        }),
+      ],
+    }),
   },
   {
-    urlPattern: ({ url: { pathname }, sameOrigin }) => sameOrigin && !pathname.startsWith('/api/'),
-    handler: 'NetworkFirst',
-    options: {
-      cacheName: 'pages',
-      expiration: {
-        maxEntries: 32,
-        maxAgeSeconds: 24 * 60 * 60,
-      },
-    },
+    matcher: ({ request, url: { pathname }, sameOrigin }) =>
+      (!request.headers.get('Content-Type') ||
+        request.headers.get('Content-Type')?.includes('text/html')) &&
+      sameOrigin &&
+      !pathname.startsWith('/api/'),
+    handler: new NetworkFirst({
+      cacheName: PAGES_CACHE_NAME.html,
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60, // 24 hours
+        }),
+      ],
+    }),
   },
   {
-    urlPattern: ({ sameOrigin }) => !sameOrigin,
-    handler: 'NetworkFirst',
-    options: {
-      cacheName: 'cross-origin',
-      expiration: {
-        maxEntries: 32,
-        maxAgeSeconds: 60 * 60,
-      },
-      networkTimeoutSeconds: 10,
-    },
+    matcher: ({ url: { pathname }, sameOrigin }) => sameOrigin && !pathname.startsWith('/api/'),
+    handler: new NetworkFirst({
+      cacheName: 'others',
+      plugins: [
+        new ExpirationPlugin({
+          maxEntries: 32,
+          maxAgeSeconds: 24 * 60 * 60, // 24 hours
+        }),
+      ],
+    }),
   },
   {
-    urlPattern: /\.(?:json|xml|csv)$/i,
-    handler: 'NetworkFirst',
-    options: {
-      cacheName: 'static-data-assets',
-      expiration: {
-        maxEntries: 32,
-        maxAgeSeconds: 24 * 60 * 60,
-      },
-    },
+    matcher: ({ sameOrigin }) => !sameOrigin,
+    handler: new NetworkOnly(),
   },
 ]
+
+export const productionCaching = handlers
+
+export const runtimeCaching: RuntimeCaching[] =
+  process.env.NODE_ENV !== 'production' ? devCaching : productionCaching
