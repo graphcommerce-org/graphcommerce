@@ -2,12 +2,12 @@ import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/frame
 import {
   Form,
   FormRow,
-  iconChevronLeft,
-  iconChevronRight,
-  responsiveVal,
   IconSvg,
   ToggleButton,
   extendableComponent,
+  iconChevronLeft,
+  iconChevronRight,
+  responsiveVal,
 } from '@graphcommerce/next-ui'
 import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { Controller, FormPersist, useForm, useFormCompose } from '@graphcommerce/react-hook-form'

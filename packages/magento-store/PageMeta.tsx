@@ -3,7 +3,7 @@ import type { PageMetaProps as NextPageMetaProps } from '@graphcommerce/next-ui'
 import { PageMeta as NextPageMeta } from '@graphcommerce/next-ui'
 import { StoreConfigDocument } from './StoreConfig.gql'
 
-type PageMetaProps = Omit<NextPageMetaProps, 'canonical'> & {
+export type PageMetaProps = Omit<NextPageMetaProps, 'canonical'> & {
   canonical?: string
 }
 

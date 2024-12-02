@@ -1,11 +1,11 @@
-import { MenuFabSecondaryItem, iconHeart, IconSvg } from '@graphcommerce/next-ui'
+import { IconSvg, MenuFabSecondaryItem, iconHeart } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Badge, NoSsr } from '@mui/material'
 import type { MouseEventHandler } from 'react'
 import React from 'react'
 import { useWishlistItems } from '../../hooks'
 
-type WishlistMenuFabItemContentProps = {
+export type WishlistMenuFabItemContentProps = {
   icon?: React.ReactNode
   children: React.ReactNode
   sx?: SxProps<Theme>

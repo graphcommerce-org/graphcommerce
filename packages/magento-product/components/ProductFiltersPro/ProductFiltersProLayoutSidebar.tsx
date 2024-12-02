@@ -1,5 +1,5 @@
 import { FormAutoSubmit } from '@graphcommerce/ecommerce-ui'
-import { extendableComponent, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { StickyBelowHeader, extendableComponent } from '@graphcommerce/next-ui'
 import type { Theme } from '@mui/material'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Box, Container, useMediaQuery } from '@mui/material'

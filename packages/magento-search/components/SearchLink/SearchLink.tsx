@@ -1,8 +1,8 @@
 import {
-  iconSearch,
-  responsiveVal,
   IconSvg,
   extendableComponent,
+  iconSearch,
+  responsiveVal,
   useFabSize,
   useIconSvgSize,
 } from '@graphcommerce/next-ui'

@@ -1,4 +1,4 @@
-import { Box, Tab, Tabs as MuiTabs } from '@mui/material'
+import { Box, Tabs as MuiTabs, Tab } from '@mui/material'
 import React from 'react'
 import { extractAdvancedProps } from '../../utils'
 import type { TabsContentType } from './types'

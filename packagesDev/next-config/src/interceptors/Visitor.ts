@@ -1,16 +1,9 @@
 /**
  * This is an implementation of
- * https://github.com/swc-project/swc/blob/main/node-swc/src/Visitor.ts
+ * https://github.com/swc-project/swc/blob/main/packages/core/src/Visitor.ts
  *
  * The JS API is deprecated, but there doesn't seem to be a valid alternative at this point.
  */
-
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-param-reassign */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable consistent-return */
-// eslint-disable-next-line import/no-extraneous-dependencies
 import type {
   Accessibility,
   Argument,
@@ -187,6 +180,10 @@ import type {
   WithStatement,
   YieldExpression,
 } from '@swc/types'
+
+/* eslint-disable no-param-reassign */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable consistent-return */
 
 /**
  * @deprecated JavaScript API is deprecated. Please use Wasm plugin instead.
@@ -872,7 +869,7 @@ export class Visitor {
   }
 
   visitTsFnParameters(params: TsFnParameter[]): TsFnParameter[] {
-    return params?.map(this.visitTsFnParameter.bind(this))
+    return params.map(this.visitTsFnParameter.bind(this))
   }
 
   visitTsFnParameter(n: TsFnParameter): TsFnParameter {

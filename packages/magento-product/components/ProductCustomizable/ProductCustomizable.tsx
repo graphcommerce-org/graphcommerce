@@ -1,4 +1,4 @@
-import { filterNonNullableKeys, RenderType } from '@graphcommerce/next-ui'
+import { RenderType, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import type { AddToCartItemSelector } from '../AddProductsToCart'
 import type { ProductPagePriceFragment } from '../ProductPagePrice'
 import type { OptionTypeRenderer } from './CustomizableAreaOption'
@@ -33,7 +33,7 @@ type OptionTypeRendererProp = Simplify<
     : MissingOptionTypeRenderer & DefinedOptionTypeRenderer
 >
 
-type ProductCustomizableProps = AddToCartItemSelector & {
+export type ProductCustomizableProps = AddToCartItemSelector & {
   product: ProductCustomizableFragment & ProductPagePriceFragment
 } & (keyof MissingOptionTypeRenderer extends never
     ? { renderer?: OptionTypeRendererProp }

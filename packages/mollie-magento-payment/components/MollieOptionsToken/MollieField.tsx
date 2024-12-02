@@ -14,7 +14,7 @@ function InputComponent(props) {
   return <Component {...other} ref={inputRef} />
 }
 
-type IframeFieldProps = Omit<InputBaseComponentProps, 'onChange'> & {
+export type IframeFieldProps = Omit<InputBaseComponentProps, 'onChange'> & {
   name: MollieFieldName
   onChange: (event: { target: { name: string; value: string } }) => void
 }
@@ -87,7 +87,7 @@ const IframeField = React.forwardRef<HTMLInputElement, IframeFieldProps>((props,
   )
 })
 
-type MollieFieldProps = {
+export type MollieFieldProps = {
   name: MollieFieldName
   isSubmitted?: boolean
 } & TextFieldProps

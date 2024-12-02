@@ -18,7 +18,7 @@ export type OptionTypeRenderer = TypeRenderer<
   }
 >
 
-type CustomizableAreaOptionProps = React.ComponentProps<
+export type CustomizableAreaOptionProps = React.ComponentProps<
   OptionTypeRenderer['CustomizableAreaOption']
 >
 

@@ -67,8 +67,8 @@ export type Interceptor = ResolveDependencyReturn & {
 
 export type MaterializedPlugin = Interceptor & { template: string }
 
-export const SOURCE_START = '/** Original source starts here (do not modify!): **/'
-export const SOURCE_END = '/** Original source ends here (do not modify!) **/'
+export const SOURCE_START = '/** SOURCE_START */'
+export const SOURCE_END = '/** SOURCE_END */'
 
 const originalSuffix = 'Original'
 const interceptorSuffix = 'Interceptor'
@@ -103,9 +103,7 @@ const generateIdentifyer = (s: string) =>
     }, 0),
   ).toString()
 
-/**
- * The is on the first line, with the format: \/* hash:${identifer} *\/
- */
+/** The is on the first line, with the format: /* hash:${identifer} */
 function extractIdentifier(source: string | undefined) {
   if (!source) return null
   const match = source.match(/\/\* hash:(\d+) \*\//)

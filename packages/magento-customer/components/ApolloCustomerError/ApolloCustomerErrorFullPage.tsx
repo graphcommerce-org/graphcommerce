@@ -1,6 +1,6 @@
 import type { ApolloErrorFullPageProps } from '@graphcommerce/ecommerce-ui'
 import { ApolloErrorFullPage } from '@graphcommerce/ecommerce-ui'
-import { iconPerson, IconSvg } from '@graphcommerce/next-ui'
+import { IconSvg, iconPerson } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 import type { SetOptional } from 'type-fest'

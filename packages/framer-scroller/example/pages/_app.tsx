@@ -1,5 +1,4 @@
 /// <reference types="@graphcommerce/next-ui/types" />
-
 import { responsiveVal } from '@graphcommerce/next-ui'
 import { createTheme, CssBaseline, StyledEngineProvider, ThemeProvider } from '@mui/material'
 import { domMax, LazyMotion } from 'framer-motion'

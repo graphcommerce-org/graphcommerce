@@ -3,17 +3,19 @@ import { forwardRef } from 'react'
 import type { UseNumberFormatProps } from './useNumberFormat'
 import { useNumberFormat } from './useNumberFormat'
 
+export type NumberFormatValue = number | bigint | Intl.StringNumericLiteral
+
 export type NumberFormatProps = UseNumberFormatProps & {
-  children: number | bigint | Intl.StringNumericLiteral
+  value: NumberFormatValue
 }
 
 export const NumberFormat = forwardRef<HTMLSpanElement, NumberFormatProps>((props, ref) => {
-  const { children, ...options } = props
+  const { value, ...options } = props
   const formatter = useNumberFormat(options)
 
   return (
     <Box component='span' suppressHydrationWarning ref={ref}>
-      {children ? formatter.format(children) : null}
+      {formatter.format(value)}
     </Box>
   )
 })

@@ -47,7 +47,7 @@ export function BlogAuthor(props: BlogAuthorProps) {
               {author}
             </Box>
             <Box sx={(theme) => ({ lineHeight: 1.4, color: theme.palette.text.disabled })}>
-              <DateFormat dateStyle='long'>{date}</DateFormat>
+              <DateFormat dateStyle='long' date={date} />
             </Box>
           </section>
         }

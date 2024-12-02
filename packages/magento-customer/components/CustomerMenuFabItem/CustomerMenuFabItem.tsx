@@ -1,4 +1,4 @@
-import { MenuFabSecondaryItem, iconPerson, IconSvg } from '@graphcommerce/next-ui'
+import { IconSvg, MenuFabSecondaryItem, iconPerson } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Badge, NoSsr } from '@mui/material'
 import type { MouseEventHandler } from 'react'
@@ -7,7 +7,7 @@ import { useCustomerAccountCanSignIn } from '../../hooks'
 import type { UseCustomerSessionReturn } from '../../hooks/useCustomerSession'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
 
-type CustomerMenuFabItemProps = {
+export type CustomerMenuFabItemProps = {
   icon?: React.ReactNode
   children: React.ReactNode
   authHref: string

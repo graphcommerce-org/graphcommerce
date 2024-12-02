@@ -15,9 +15,5 @@ export function ProductWeight(props: ProductWeightProps) {
 
   const unit = conf?.storeConfig?.weight_unit === 'lbs' ? 'pound' : 'kilogram'
 
-  return (
-    <UnitFormat unit={unit} {...rest}>
-      {product.weight}
-    </UnitFormat>
-  )
+  return <UnitFormat unit={unit} {...rest} value={product.weight} />
 }

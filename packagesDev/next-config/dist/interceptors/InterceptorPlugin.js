@@ -29,9 +29,9 @@ class InterceptorPlugin {
         if (generating)
             return {};
         generating = true;
-        const start = Date.now();
+        // const start = Date.now()
         // console.log('Generating interceptors...')
-        const [plugins, errors] = (0, findPlugins_1.findPlugins)(this.config);
+        const [plugins] = (0, findPlugins_1.findPlugins)(this.config);
         // console.log(errors)
         // const found = Date.now()
         // console.log('Found plugins in', found - start, 'ms')
@@ -64,7 +64,7 @@ class InterceptorPlugin {
                 });
                 // eslint-disable-next-line @typescript-eslint/no-floating-promises
                 this.#generateInterceptors().then((i) => {
-                    Object.entries(i).forEach(([key, { sourcePath }]) => {
+                    Object.entries(i).forEach(([, { sourcePath }]) => {
                         const absoluteFilePath = path_1.default.join(process.cwd(), sourcePath);
                         compilation.fileDependencies.add(absoluteFilePath);
                     });

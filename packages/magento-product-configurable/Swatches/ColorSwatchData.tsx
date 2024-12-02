@@ -1,10 +1,10 @@
-import { responsiveVal, extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { ColorSwatchDataFragment } from './ColorSwatchData.gql'
 import type { SwatchDataProps } from './types'
 
-type ColorSwatchDataProps = ColorSwatchDataFragment &
+export type ColorSwatchDataProps = ColorSwatchDataFragment &
   SwatchDataProps & {
     sx?: SxProps<Theme>
   }

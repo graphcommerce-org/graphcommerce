@@ -1,5 +1,5 @@
 import { productListLink } from '@graphcommerce/magento-product'
-import { breakpointVal, Row, extendableComponent } from '@graphcommerce/next-ui'
+import { Row, breakpointVal, extendableComponent } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Link, Typography } from '@mui/material'
 import React from 'react'

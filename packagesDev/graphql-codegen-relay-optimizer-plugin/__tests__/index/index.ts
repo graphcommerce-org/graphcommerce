@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import '@graphql-codegen/testing'
 import type { Types } from '@graphql-codegen/plugin-helpers'
+import '@graphql-codegen/testing'
 import type { ASTNode } from 'graphql'
-import { buildSchema, Kind, parse, print } from 'graphql'
+import { Kind, buildSchema, parse, print } from 'graphql'
 import { plugin } from '../../src'
 
 const testSchema = buildSchema(/* GraphQL */ `

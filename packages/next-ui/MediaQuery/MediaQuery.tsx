@@ -1,7 +1,7 @@
 import type { BoxProps, Theme } from '@mui/material'
 import { Box, useTheme } from '@mui/material'
 import type { CSSProperties } from 'react'
-import { useState, useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 type MediaQueryProps<C extends React.ElementType = 'div'> = BoxProps<C> & {
   /**

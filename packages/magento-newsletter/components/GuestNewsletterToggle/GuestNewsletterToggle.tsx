@@ -6,8 +6,7 @@ import type { SwitchProps, SxProps, Theme } from '@mui/material'
 import {
   FormControl,
   FormControlLabel,
-  FormHelperText,
-  // eslint-disable-next-line @typescript-eslint/no-restricted-imports
+  FormHelperText, // eslint-disable-next-line @typescript-eslint/no-restricted-imports
   Switch,
 } from '@mui/material'
 import React from 'react'

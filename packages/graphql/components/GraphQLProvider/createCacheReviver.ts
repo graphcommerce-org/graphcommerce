@@ -1,4 +1,4 @@
-import { LocalStorageWrapper, CachePersistor } from 'apollo3-cache-persist'
+import { CachePersistor, LocalStorageWrapper } from 'apollo3-cache-persist'
 import type { ApolloCache, ApolloClient, NormalizedCacheObject } from '../../apollo'
 import { mergeDeep } from '../../apollo'
 import type { ApolloClientConfig } from '../../config'

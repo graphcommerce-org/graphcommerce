@@ -1,21 +1,21 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { mergeDeep, cloneDeep } from '@apollo/client/utilities'
+import { cloneDeep, mergeDeep } from '@apollo/client/utilities'
 import chalk from 'chalk'
 import { get, set } from 'lodash'
 import snakeCase from 'lodash/snakeCase'
-import type { ZodRawShape, ZodTypeAny, ZodAny } from 'zod'
+import type { ZodAny, ZodRawShape, ZodTypeAny } from 'zod'
 import {
   z,
-  ZodObject,
-  ZodBoolean,
   ZodArray,
-  ZodString,
-  ZodNumber,
-  ZodNullable,
-  ZodOptional,
+  ZodBoolean,
+  ZodDefault,
   ZodEffects,
   ZodEnum,
-  ZodDefault,
+  ZodNullable,
+  ZodNumber,
+  ZodObject,
+  ZodOptional,
+  ZodString,
 } from 'zod'
 import diff from './diff'
 
@@ -207,7 +207,7 @@ export function formatAppliedEnv(applyResult: ApplyResult) {
   const lines = applyResult.map(({ from, to, envValue, envVar, dotVar, error, warning }) => {
     const fromFmt = chalk.red(JSON.stringify(from))
     const toFmt = chalk.green(JSON.stringify(to))
-    const envVariableFmt = `${envVar}='${envValue}'`
+    const envVariableFmt = `${envVar}`
     const dotVariableFmt = chalk.bold.underline(`${dotVar}`)
 
     const baseLog = `${envVariableFmt} => ${dotVariableFmt}`
@@ -223,11 +223,10 @@ export function formatAppliedEnv(applyResult: ApplyResult) {
 
     if (!dotVar) return chalk.red(`${envVariableFmt} => ignored (no matching config)`)
 
-    if (from === undefined && to === undefined)
-      return ` = ${baseLog}: (ignored, no change/wrong format)`
-    if (from === undefined && to !== undefined) return ` ${chalk.green('+')} ${baseLog}: ${toFmt}`
-    if (from !== undefined && to === undefined) return ` ${chalk.red('-')} ${baseLog}: ${fromFmt}`
-    return ` ${chalk.yellowBright('~')} ${baseLog}: ${fromFmt} => ${toFmt}`
+    if (from === undefined && to === undefined) return ` = ${baseLog}: (ignored)`
+    if (from === undefined && to !== undefined) return ` ${chalk.green('+')} ${baseLog}`
+    if (from !== undefined && to === undefined) return ` ${chalk.red('-')} ${baseLog}`
+    return ` ${chalk.yellowBright('~')} ${baseLog}`
   })
 
   let header = chalk.blueBright('info')

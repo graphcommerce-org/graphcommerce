@@ -2,7 +2,7 @@ import type { SxProps, Theme } from '@mui/material'
 import { styled } from '@mui/material'
 import type { VideoBackgroundProps } from './getVideoBackgroundProps'
 
-type YoutubeVideoProps = {
+export type YoutubeVideoProps = {
   youtubeId: string
   sx?: SxProps<Theme>
 } & Pick<VideoBackgroundProps, 'videoLoop' | 'videoLazyLoading'>

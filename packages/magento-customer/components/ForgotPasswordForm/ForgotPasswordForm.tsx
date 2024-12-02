@@ -10,8 +10,12 @@ import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerE
 import type { ForgotPasswordMutation, ForgotPasswordMutationVariables } from './ForgotPassword.gql'
 import { ForgotPasswordDocument } from './ForgotPassword.gql'
 
-export function ForgotPasswordForm(props: { sx?: SxProps<Theme> }) {
-  const { sx = [] } = props
+export type ForgotPasswordFormProps = {
+  sx?: SxProps<Theme>
+  buttonProps?: React.ComponentProps<typeof Button>
+}
+export function ForgotPasswordForm(props: ForgotPasswordFormProps) {
+  const { sx = [], buttonProps } = props
   const form = useFormGqlMutation<ForgotPasswordMutation, ForgotPasswordMutationVariables>(
     ForgotPasswordDocument,
   )
@@ -62,6 +66,7 @@ export function ForgotPasswordForm(props: { sx?: SxProps<Theme> }) {
           color='primary'
           variant='pill'
           size='large'
+          {...buttonProps}
         >
           <Trans id='Send password reset email' />
         </Button>

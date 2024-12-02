@@ -1,7 +1,7 @@
 /* eslint-disable spaced-comment */
-import { extendableComponent, FlagAvatar, NextLink } from '@graphcommerce/next-ui'
+import { FlagAvatar, NextLink, extendableComponent } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
-import { List, ListItemText, Collapse, ListItemAvatar, ListItemButton } from '@mui/material'
+import { Collapse, List, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material'
 import React from 'react'
 import { localeToStore, storeToLocale } from '../../localeToStore'
 import type { StoreSwitcherListQuery } from './StoreSwitcherList.gql'

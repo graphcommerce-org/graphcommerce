@@ -1,8 +1,8 @@
 import {
-  useUp,
-  usePrevUp,
   usePageContext,
   usePrevPageRouter,
+  usePrevUp,
+  useUp,
 } from '@graphcommerce/framer-next-pages'
 import { i18n } from '@lingui/core'
 import type { SxProps, Theme } from '@mui/material'

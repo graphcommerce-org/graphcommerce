@@ -1,10 +1,10 @@
 import {
-  SectionContainer,
-  iconInvoice,
-  IconSvg,
-  extendableComponent,
-  breakpointVal,
   DateTimeFormat,
+  IconSvg,
+  SectionContainer,
+  breakpointVal,
+  extendableComponent,
+  iconInvoice,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import type { SxProps, Theme } from '@mui/material'
@@ -98,7 +98,7 @@ export function OrderDetails(props: OrderDetailsProps) {
             className={classes.orderDetailTitle}
             sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '4px' } }}
           >
-            <DateTimeFormat>{order_date}</DateTimeFormat>
+            <DateTimeFormat date={order_date} />
           </SectionContainer>
         </Box>
 

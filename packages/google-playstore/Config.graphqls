@@ -1,0 +1,21 @@
+"""
+See https://developer.android.com/training/app-links/verify-android-applinks#web-assoc
+"""
+input GraphCommerceGooglePlaystoreConfig {
+  """
+  The package name of the Android app.
+  """
+  packageName: String!
+
+  """
+  The sha256 certificate fingerprint of the Android app.
+  """
+  sha256CertificateFingerprint: String!
+}
+
+extend input GraphCommerceConfig {
+  """
+  To create an assetlinks.json file for the Android app.
+  """
+  googlePlaystore: GraphCommerceGooglePlaystoreConfig
+}

@@ -2,13 +2,13 @@ import type { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
 import { useWatch } from '@graphcommerce/ecommerce-ui'
 import type { AddressFieldsProps } from '@graphcommerce/magento-customer'
 import {
-  useAddressFieldsForm,
   AddressAddition,
   AddressCity,
   AddressCountryRegion,
   AddressHousenumber,
   AddressPostcode,
   AddressStreet,
+  useAddressFieldsForm,
 } from '@graphcommerce/magento-customer'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { FormRow } from '@graphcommerce/next-ui'

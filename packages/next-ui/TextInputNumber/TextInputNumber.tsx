@@ -2,10 +2,9 @@ import { i18n } from '@lingui/core'
 import type { IconButtonProps, SxProps, TextFieldProps, Theme } from '@mui/material'
 import {
   Box,
-  // eslint-disable-next-line @typescript-eslint/no-restricted-imports
+  Fab, // eslint-disable-next-line @typescript-eslint/no-restricted-imports
   TextField,
   useForkRef,
-  Fab,
 } from '@mui/material'
 import type { ChangeEvent, Ref } from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'

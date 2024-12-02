@@ -1,14 +1,14 @@
 import { useQuery } from '@graphcommerce/graphql'
 import {
+  DateTimeFormat,
   Pagination,
-  responsiveVal,
   StarRatingField,
   extendableComponent,
-  DateTimeFormat,
+  responsiveVal,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
-import { Typography, Button, Box, Link } from '@mui/material'
+import { Box, Button, Link, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { ProductReviewChip } from '../ProductReviewChip/ProductReviewChip'
@@ -232,9 +232,7 @@ export function ProductReviews(props: ProductReviewsProps) {
                 dateTime={review?.created_at}
                 sx={{ typography: 'body2' }}
               >
-                <DateTimeFormat dateStyle='long' timeStyle='short'>
-                  {review?.created_at.replace(/-/g, '/')}
-                </DateTimeFormat>
+                <DateTimeFormat dateStyle='long' timeStyle='short' date={review?.created_at} />
               </Box>
             </Box>
           </Box>

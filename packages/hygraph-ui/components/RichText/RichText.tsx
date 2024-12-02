@@ -5,13 +5,13 @@ import { defaultRenderers } from './defaultRenderers'
 import { defaultSxRenderer } from './defaultSxRenderer'
 import type {
   AdditionalProps,
-  Renderers,
+  ElementNode,
+  ElementOrTextNode,
   Renderer,
+  Renderers,
+  SimpleElement,
   SxRenderer,
   TextNode,
-  ElementOrTextNode,
-  ElementNode,
-  SimpleElement,
 } from './types'
 
 const sxArr = (sxAny?: SxProps<Theme> | false) => {

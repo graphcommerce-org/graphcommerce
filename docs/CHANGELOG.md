@@ -1,5 +1,23 @@
 # Change Log
 
+## 9.0.0-canary.108
+
+### Patch Changes
+
+- [#2439](https://github.com/graphcommerce-org/graphcommerce/pull/2439) [`6061226`](https://github.com/graphcommerce-org/graphcommerce/commit/60612265466e4c508a2d3f478ff679251e7819de) - Moved to serwist for service workers ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.107
+
+## 9.0.0-canary.106
+
+## 9.0.0-canary.105
+
+### Patch Changes
+
+- [#2427](https://github.com/graphcommerce-org/graphcommerce/pull/2427) [`d400e53`](https://github.com/graphcommerce-org/graphcommerce/commit/d400e534c89955c99a7ccb4bc8b1a0ae2ae4fbfd) - Added web vitals document ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.104
+
 ## 9.0.0-canary.103
 
 ## 9.0.0-canary.62
@@ -274,7 +292,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'
@@ -289,8 +307,8 @@
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from '@lingui/react'
   import { i18n } from '@lingui/core'
+  import { Trans } from '@lingui/react'
 
   function MyComponent() {
     const foo = 'bar'

@@ -4,9 +4,9 @@ import {
   ActionCard,
   ActionCardAccordion,
   Button,
+  IconSvg,
   filterNonNullableKeys,
   iconCirle,
-  IconSvg,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'

@@ -1,6 +1,6 @@
 import type { UseFormGqlMutationReturn } from '@graphcommerce/ecommerce-ui'
 import { createContext, useContext } from 'react'
-import type { Simplify, LiteralUnion } from 'type-fest'
+import type { LiteralUnion, Simplify } from 'type-fest'
 import type {
   AddProductsToCartMutation,
   AddProductsToCartMutationVariables,

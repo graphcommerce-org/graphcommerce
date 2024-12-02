@@ -2,7 +2,7 @@ import { alpha } from '@mui/material'
 import type { OrderStateLabelProps } from './OrderStateLabel'
 import { OrderStateLabel } from './OrderStateLabel'
 
-type OrderStateLabelInlineProps = OrderStateLabelProps
+export type OrderStateLabelInlineProps = OrderStateLabelProps
 
 export function OrderStateLabelInline(props: OrderStateLabelInlineProps) {
   const { sx = [] } = props

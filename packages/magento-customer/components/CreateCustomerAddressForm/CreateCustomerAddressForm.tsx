@@ -2,7 +2,7 @@ import { ApolloErrorSnackbar, TelephoneElement } from '@graphcommerce/ecommerce-
 import { useQuery } from '@graphcommerce/graphql'
 import type { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Form, FormActions, FormRow, Button, MessageSnackbar } from '@graphcommerce/next-ui'
+import { Button, Form, FormActions, FormRow, MessageSnackbar } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { useRouter } from 'next/router'

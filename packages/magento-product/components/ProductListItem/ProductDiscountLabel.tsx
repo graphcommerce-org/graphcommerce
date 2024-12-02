@@ -26,7 +26,7 @@ export function ProductDiscountLabel(props: ProductDiscountLabelProps) {
           }}
           {...boxProps}
         >
-          <PercentFormat>{discount / 100}</PercentFormat>
+          <PercentFormat maximumFractionDigits={0} value={discount / 100} />
         </Box>
       )}
     </>

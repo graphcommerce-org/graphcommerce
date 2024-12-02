@@ -5,7 +5,7 @@ import { FormRow, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { FormPersist, useFormCompose } from '@graphcommerce/react-hook-form'
 import { SetMolliePaymentMethodIssuerOnCartDocument } from './SetMolliePaymentMethodIssuerOnCart.gql'
 
-type MollieIssuerOptionsProps = PaymentOptionsProps & {
+export type MollieIssuerOptionsProps = PaymentOptionsProps & {
   label: string
   children?: React.ReactNode
 }

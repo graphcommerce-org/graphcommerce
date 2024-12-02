@@ -48,7 +48,7 @@ export function ProductListItemImageSkeleton(props: ProductListItemImageProps) {
   )
 }
 
-type ImageOrPlaceholderProps = ProductListItemImageProps &
+export type ImageOrPlaceholderProps = ProductListItemImageProps &
   Omit<ImageProps, 'alt' | 'src'> & {
     alt?: ImageProps['alt'] | null
     src?: ImageProps['src'] | null

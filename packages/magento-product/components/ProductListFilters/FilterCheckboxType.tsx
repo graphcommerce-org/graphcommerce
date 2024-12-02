@@ -1,5 +1,5 @@
 import { cloneDeep } from '@graphcommerce/graphql'
-import { iconCancelAlt, IconSvg } from '@graphcommerce/next-ui'
+import { IconSvg, iconCancelAlt } from '@graphcommerce/next-ui'
 import type { ChipProps, SxProps, Theme } from '@mui/material'
 import { Chip } from '@mui/material'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'

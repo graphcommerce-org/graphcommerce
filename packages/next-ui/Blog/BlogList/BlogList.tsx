@@ -1,7 +1,7 @@
 import type { ContainerProps } from '@mui/material'
 import { Row } from '../../Row/Row'
 
-type BlogItemGridProps = ContainerProps
+export type BlogItemGridProps = ContainerProps
 
 export function BlogItemGrid(props: BlogItemGridProps) {
   const { sx = [], ...containerProps } = props

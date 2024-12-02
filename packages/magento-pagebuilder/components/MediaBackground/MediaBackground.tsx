@@ -3,7 +3,7 @@ import { ImageBackground } from './ImageBackground'
 import { VideoBackground } from './VideoBackground'
 import type { MediaBackgroundProps } from './getMediaBackgroundProps'
 
-type MediaBackgroundComponentProps = MediaBackgroundProps & {
+export type MediaBackgroundComponentProps = MediaBackgroundProps & {
   sx?: SxProps<Theme>
 }
 

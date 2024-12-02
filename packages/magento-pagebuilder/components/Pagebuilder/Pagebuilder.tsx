@@ -4,7 +4,7 @@ import { PagebuilderProvider } from './PagebuilderProvider'
 import { PagebuilderRender } from './PagebuilderRender'
 import { isPagebuilderValue } from './isPagebuilderValue'
 
-type PagebuilderProps = {
+export type PagebuilderProps = {
   pagebuilder: unknown
   /** The children are only rendered when there is no pagebuilder content. */
   children: React.ReactNode

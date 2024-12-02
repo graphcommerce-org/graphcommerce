@@ -1,4 +1,4 @@
-import type { Theme, SxProps } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import type React from 'react'
 
 export type PanelActionsProps = {

@@ -1,16 +1,16 @@
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import type {
+  LinkProps,
   BreadcrumbsProps as MuiBreadcrumbProps,
   SxProps,
   Theme,
-  LinkProps,
 } from '@mui/material'
 import {
   Box,
-  Breadcrumbs as MuiBreadcrumbs,
   ClickAwayListener,
   Link,
+  Breadcrumbs as MuiBreadcrumbs,
   Typography,
   useEventCallback,
   useTheme,

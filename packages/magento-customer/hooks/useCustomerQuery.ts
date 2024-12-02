@@ -1,8 +1,8 @@
 import type {
-  TypedDocumentNode,
+  OperationVariables,
   QueryHookOptions,
   QueryResult,
-  OperationVariables,
+  TypedDocumentNode,
 } from '@graphcommerce/graphql'
 import { useQuery } from '@graphcommerce/graphql'
 import { useCustomerSession } from './useCustomerSession'

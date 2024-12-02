@@ -1,7 +1,7 @@
 import type { ImageProps } from '@graphcommerce/image'
 import { extendableComponent } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
-import { useEventCallback, Skeleton } from '@mui/material'
+import { Skeleton, useEventCallback } from '@mui/material'
 import React from 'react'
 import type { ProductListItemFragment } from '../../Api/ProductListItem.gql'
 import { productLink } from '../../hooks/useProductLink'
@@ -13,7 +13,7 @@ import type {
   ProductListItemImageAreaKeys,
   ProductListsItemImageAreaProps,
 } from './ProductListItemImageContainer'
-import { ProductListItemImageAreas, ProductImageContainer } from './ProductListItemImageContainer'
+import { ProductImageContainer, ProductListItemImageAreas } from './ProductListItemImageContainer'
 import { ProductListItemLinkOrDiv } from './ProductListItemLinkOrDiv'
 import type { ProductListItemTitleAndPriceProps } from './ProductListItemTitleAndPrice'
 import { ProductListItemTitleAndPrice } from './ProductListItemTitleAndPrice'
@@ -40,7 +40,7 @@ type StyleProps = {
   imageOnly?: boolean
 }
 
-type BaseProps = {
+export type BaseProps = {
   imageOnly?: boolean
   children?: React.ReactNode
   sx?: SxProps<Theme>
@@ -53,9 +53,9 @@ type BaseProps = {
   Pick<ImageProps, 'loading' | 'sizes' | 'dontReportWronglySizedImages'>
 
 // eslint-disable-next-line react/no-unused-prop-types
-type SkeletonProps = BaseProps & { __typename: 'Skeleton' }
+export type SkeletonProps = BaseProps & { __typename: 'Skeleton' }
 
-type ProductProps = BaseProps & ProductListItemFragment
+export type ProductProps = BaseProps & ProductListItemFragment
 
 export type ProductListItemProps = ProductProps | SkeletonProps
 

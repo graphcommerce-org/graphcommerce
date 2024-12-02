@@ -1,5 +1,19 @@
 # Change Log
 
+## 9.0.0-canary.108
+
+### Patch Changes
+
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 9.0.0-canary.107
+
+## 9.0.0-canary.106
+
+## 9.0.0-canary.105
+
+## 9.0.0-canary.104
+
 ## 9.0.0-canary.103
 
 ### Patch Changes

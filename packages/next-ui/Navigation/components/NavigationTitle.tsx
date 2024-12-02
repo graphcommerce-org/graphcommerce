@@ -1,9 +1,9 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Trans } from '@lingui/react'
 import type {
-  NavigationPath,
-  NavigationNodeHref,
   NavigationNodeButton,
+  NavigationNodeHref,
+  NavigationPath,
 } from '../hooks/useNavigation'
 import { useNavigation } from '../hooks/useNavigation'
 

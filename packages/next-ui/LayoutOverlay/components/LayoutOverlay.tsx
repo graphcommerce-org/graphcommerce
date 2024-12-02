@@ -1,4 +1,4 @@
-import { usePageContext, useGo, useScrollOffset } from '@graphcommerce/framer-next-pages'
+import { useGo, usePageContext, useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { useEventCallback } from '@mui/material'

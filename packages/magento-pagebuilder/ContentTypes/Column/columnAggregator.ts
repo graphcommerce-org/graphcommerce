@@ -1,5 +1,5 @@
 import { getImageBackgroundProps } from '../../components/MediaBackground/getImageBackgroundProps'
-import { getAdvanced, getVerticalAlignment, getMediaQuery } from '../../utils'
+import { getAdvanced, getMediaQuery, getVerticalAlignment } from '../../utils'
 import type { ColumnContentType } from './types'
 
 export const columnAggregator: ColumnContentType['configAggregator'] = (node) => ({

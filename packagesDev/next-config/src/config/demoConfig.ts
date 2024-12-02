@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { PartialDeep } from 'type-fest'
-import type { GraphCommerceConfig } from '../generated/config'
+import type { GraphCommerceConfig, GraphCommerceStorefrontConfig } from '../generated/config'
 
 export const demoConfig: PartialDeep<GraphCommerceConfig, { recurseIntoArrays: true }> &
-  Record<string, unknown> = {
+  Record<string, unknown> & { storefront: PartialDeep<GraphCommerceStorefrontConfig>[] } = {
   canonicalBaseUrl: 'https://graphcommerce.vercel.app',
   hygraphEndpoint: 'https://eu-central-1.cdn.hygraph.com/content/ckhx7xadya6xs01yxdujt8i80/master',
   magentoEndpoint: 'https://backend.reachdigital.dev/graphql',

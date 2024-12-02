@@ -2,10 +2,10 @@ import type { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql
 import { cacheFirst } from '@graphcommerce/graphql'
 import type { HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import type {
-  ConditionTextFragment,
+  ConditionAndFragment,
   ConditionNumberFragment,
   ConditionOrFragment,
-  ConditionAndFragment,
+  ConditionTextFragment,
 } from '../graphql'
 import { DynamicRowsDocument } from '../graphql'
 import { getAllHygraphDynamicRows } from './getAllHygraphDynamicRows'

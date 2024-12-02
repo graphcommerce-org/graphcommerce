@@ -5,7 +5,7 @@ import { Box } from '@mui/material'
 import type { TextSwatchDataFragment } from './TextSwatchData.gql'
 import type { SwatchDataProps } from './types'
 
-type TextSwatchDataProps = TextSwatchDataFragment & SwatchDataProps & { sx?: SxProps<Theme> }
+export type TextSwatchDataProps = TextSwatchDataFragment & SwatchDataProps & { sx?: SxProps<Theme> }
 
 type OwnerState = Pick<SwatchDataProps, 'size'>
 const name = 'TextSwatchData'

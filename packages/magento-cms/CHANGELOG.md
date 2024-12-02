@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.0.0-canary.108
+
+## 9.0.0-canary.107
+
+## 9.0.0-canary.106
+
+## 9.0.0-canary.105
+
+## 9.0.0-canary.104
+
 ## 9.0.0-canary.103
 
 ## 5.1.0
@@ -331,7 +341,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'
@@ -346,8 +356,8 @@
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from '@lingui/react'
   import { i18n } from '@lingui/core'
+  import { Trans } from '@lingui/react'
 
   function MyComponent() {
     const foo = 'bar'

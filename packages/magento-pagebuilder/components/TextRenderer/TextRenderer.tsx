@@ -5,7 +5,7 @@ export type TextProps = {
   textContent?: string
 }
 
-type TextRendererProps = TextProps & {
+export type TextRendererProps = TextProps & {
   sx?: SxProps<Theme>
 }
 

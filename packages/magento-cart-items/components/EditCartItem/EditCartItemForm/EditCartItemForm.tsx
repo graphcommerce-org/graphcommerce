@@ -4,7 +4,7 @@ import type {
   AddProductsToCartFormProps,
   AddToCartItemSelector,
 } from '@graphcommerce/magento-product'
-import { useFormAddProductsToCart, AddProductsToCartForm } from '@graphcommerce/magento-product'
+import { AddProductsToCartForm, useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import type { CartItemsFragment } from '../../../Api/CartItems.gql'
@@ -13,7 +13,7 @@ import { useRemoveItemFromCart } from '../../../hooks/useRemoveItemFromCart'
 import type { CartItemToCartItemInputProps } from '../../../utils/cartItemToCartItemInput'
 import { cartItemToCartItemInput } from '../../../utils/cartItemToCartItemInput'
 
-type EditInitProps = CartItemToCartItemInputProps & AddToCartItemSelector
+export type EditInitProps = CartItemToCartItemInputProps & AddToCartItemSelector
 
 function EditInit(props: EditInitProps) {
   const { product, selectors, cartItem, index = 0 } = props

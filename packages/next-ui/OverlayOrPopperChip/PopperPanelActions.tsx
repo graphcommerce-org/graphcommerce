@@ -1,6 +1,6 @@
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Fab, Button, Box, Typography } from '@mui/material'
+import { Box, Button, Fab, Typography } from '@mui/material'
 import { IconSvg, useIconSvgSize } from '../IconSvg'
 import { LayoutHeader } from '../Layout'
 import { OverlayStickyBottom } from '../Overlay/components/OverlayStickyBottom'

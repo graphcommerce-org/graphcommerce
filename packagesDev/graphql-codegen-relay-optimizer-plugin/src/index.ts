@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-
 import CompilerContext from '@ardatan/relay-compiler/lib/core/CompilerContext'
 import { print as relayPrint } from '@ardatan/relay-compiler/lib/core/IRPrinter'
 import { transform as relayParserTransform } from '@ardatan/relay-compiler/lib/core/RelayParser'
@@ -8,8 +7,8 @@ import { transform as applyFragmentArgumentTransform } from '@ardatan/relay-comp
 import { transformWithOptions as flattenTransformWithOptions } from '@ardatan/relay-compiler/lib/transforms/FlattenTransform'
 import { transform as inlineFragmentsTransform } from '@ardatan/relay-compiler/lib/transforms/InlineFragmentsTransform'
 import { transform as skipRedundantNodesTransform } from '@ardatan/relay-compiler/lib/transforms/SkipRedundantNodesTransform'
-import type { Types, PluginFunction } from '@graphql-codegen/plugin-helpers'
-import type { GraphQLSchema, DefinitionNode } from 'graphql'
+import type { PluginFunction, Types } from '@graphql-codegen/plugin-helpers'
+import type { DefinitionNode, GraphQLSchema } from 'graphql'
 import { parse, printSchema, visit } from 'graphql'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface

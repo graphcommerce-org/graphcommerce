@@ -1,12 +1,12 @@
 import { getButtonLinkProps } from '../../components/ButtonLink/getButtonLinkProps'
 import { getMediaBackgroundProps } from '../../components/MediaBackground/getMediaBackgroundProps'
 import {
-  getMargin,
   getBorder,
+  getCssClasses,
+  getMargin,
+  getMediaQuery,
   getPadding,
   getTextAlign,
-  getCssClasses,
-  getMediaQuery,
   stripEmpty,
 } from '../../utils'
 import type { BannerContentType, ShowButton, ShowOverlay } from './types'

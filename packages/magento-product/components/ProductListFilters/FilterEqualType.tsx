@@ -1,10 +1,9 @@
 import { cloneDeep } from '@graphcommerce/graphql'
 import type { FilterEqualTypeInput } from '@graphcommerce/graphql-mesh'
 import type { ChipMenuProps } from '@graphcommerce/next-ui'
-import { responsiveVal, extendableComponent, ChipMenu } from '@graphcommerce/next-ui'
+import { ChipMenu, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
 import {
-  Box,
-  // eslint-disable-next-line @typescript-eslint/no-restricted-imports
+  Box, // eslint-disable-next-line @typescript-eslint/no-restricted-imports
   Checkbox,
   ListItem,
   ListItemSecondaryAction,
@@ -45,7 +44,7 @@ export type FilterIn = SetRequired<Omit<FilterEqualTypeInput, 'eq'>, 'in'>
 
 type Filter = NonNullable<NonNullable<ProductListFiltersFragment['aggregations']>[number]>
 
-type FilterEqualTypeProps = Filter & Omit<ChipMenuProps, 'selected'>
+export type FilterEqualTypeProps = Filter & Omit<ChipMenuProps, 'selected'>
 
 export function FilterEqualType(props: FilterEqualTypeProps) {
   const { attribute_code, count, label, options, __typename, ...chipProps } = props

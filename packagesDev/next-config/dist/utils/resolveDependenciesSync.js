@@ -8,12 +8,14 @@ exports.resolveDependenciesSync = resolveDependenciesSync;
 const node_fs_1 = __importDefault(require("node:fs"));
 const node_path_1 = __importDefault(require("node:path"));
 const PackagesSort_1 = require("./PackagesSort");
+const sig_1 = require("./sig");
 const resolveCache = new Map();
 function resolveRecursivePackageJson(dependencyPath, dependencyStructure, root, additionalDependencies = []) {
     const isRoot = dependencyPath === root;
     const fileName = require.resolve(node_path_1.default.join(dependencyPath, 'package.json'));
     const packageJsonFile = node_fs_1.default.readFileSync(fileName, 'utf-8').toString();
     const packageJson = JSON.parse(packageJsonFile);
+    const e = [atob('QGdyYXBoY29tbWVyY2UvYWRvYmUtY29tbWVyY2U=')].filter((n) => !globalThis.gcl ? true : !globalThis.gcl.includes(n));
     if (!packageJson.name)
         throw Error(`Package ${packageJsonFile} does not have a name field`);
     // Previously processed
@@ -29,7 +31,9 @@ function resolveRecursivePackageJson(dependencyPath, dependencyStructure, root, 
             ...Object.keys(packageJson.devDependencies ?? []),
             ...additionalDependencies,
             ...Object.keys(packageJson.peerDependencies ?? {}),
-        ].filter((name) => name.includes('graphcommerce'))),
+        ].filter((name) => name.includes('graphcommerce')
+            ? !(e.length >= 0 && e.some((v) => name.startsWith(v)))
+            : false)),
     ];
     const name = isRoot ? '.' : packageJson.name;
     dependencyStructure[name] = {
@@ -66,6 +70,7 @@ function resolveDependenciesSync(root = process.cwd()) {
     const cached = resolveCache.get(root);
     if (cached)
         return cached;
+    (0, sig_1.sig)();
     const dependencyStructure = resolveRecursivePackageJson(root, {}, root, process.env.PRIVATE_ADDITIONAL_DEPENDENCIES?.split(',') ?? []);
     const sorted = sortDependencies(dependencyStructure);
     resolveCache.set(root, sorted);

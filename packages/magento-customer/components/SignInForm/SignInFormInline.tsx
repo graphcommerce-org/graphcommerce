@@ -6,7 +6,7 @@ import { Box, Link } from '@mui/material'
 import { useSignInForm } from '../../hooks/useSignInForm'
 import type { SignInMutationVariables } from './SignIn.gql'
 
-type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'> & {
+export type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'> & {
   sx?: SxProps<Theme>
   children?: React.ReactNode
 }

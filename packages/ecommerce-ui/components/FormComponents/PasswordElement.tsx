@@ -1,4 +1,4 @@
-import { iconEye, iconEyeCrossed, IconSvg } from '@graphcommerce/next-ui'
+import { IconSvg, iconEye, iconEyeCrossed } from '@graphcommerce/next-ui'
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import type { IconButtonProps } from '@mui/material'
 import { IconButton, InputAdornment } from '@mui/material'

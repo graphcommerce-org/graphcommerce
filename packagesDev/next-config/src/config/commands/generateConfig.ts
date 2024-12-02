@@ -1,8 +1,8 @@
-import { writeFileSync } from 'fs'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { generate } from '@graphql-codegen/cli'
 import { transformFileSync } from '@swc/core'
 import dotenv from 'dotenv'
+import { writeFileSync } from 'fs'
 import { isMonorepo } from '../../utils/isMonorepo'
 import { resolveDependenciesSync } from '../../utils/resolveDependenciesSync'
 import { resolveDependency } from '../../utils/resolveDependency'

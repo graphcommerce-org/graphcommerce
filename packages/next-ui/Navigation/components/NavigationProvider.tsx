@@ -5,10 +5,10 @@ import { isElement } from 'react-is'
 import { LazyHydrate } from '../../LazyHydrate'
 import { nonNullable } from '../../RenderType/nonNullable'
 import type {
-  NavigationNode,
   NavigationContextType,
-  UseNavigationSelection,
+  NavigationNode,
   NavigationNodeComponent,
+  UseNavigationSelection,
 } from '../hooks/useNavigation'
 import { NavigationContext, NavigationNodeType } from '../hooks/useNavigation'
 

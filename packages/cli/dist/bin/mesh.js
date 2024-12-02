@@ -2,15 +2,15 @@
 import { promises } from 'node:fs';
 import path$1 from 'node:path';
 import { exit } from 'node:process';
-import { loadConfig, resolveDependenciesSync, packageRoots, replaceConfigInString } from '@graphcommerce/next-config';
+import { loadConfig, resolveDependenciesSync, sig, packageRoots, replaceConfigInString } from '@graphcommerce/next-config';
 import { DEFAULT_CLI_PARAMS, graphqlMesh } from '@graphql-mesh/cli';
-import { DefaultLogger, loadYaml, defaultImportFn, fileURLToPath } from '@graphql-mesh/utils';
+import { DefaultLogger, defaultImportFn, loadYaml, fileURLToPath } from '@graphql-mesh/utils';
 import dotenv from 'dotenv';
-import yaml from 'yaml';
-import path from 'path';
-import { cosmiconfig, defaultLoaders } from 'cosmiconfig';
 import 'tsx/cjs';
 import 'tsx/esm';
+import yaml from 'yaml';
+import { cosmiconfig, defaultLoaders } from 'cosmiconfig';
+import path from 'path';
 
 function customLoader(ext, importFn = defaultImportFn, initialLoggerPrefix = "\u{1F578}\uFE0F  Mesh") {
   const logger = new DefaultLogger(initialLoggerPrefix).child("config");
@@ -88,7 +88,7 @@ const cliParams = {
   ...DEFAULT_CLI_PARAMS,
   playgroundTitle: "GraphCommerce\xAE Mesh"
 };
-const tmpMesh = `_tmp_mesh`;
+const tmpMesh = "_tmp_mesh";
 const tmpMeshLocation = path$1.join(root, `.${tmpMesh}rc.yml`);
 async function cleanup() {
   try {
@@ -144,10 +144,16 @@ const main = async () => {
   const deps = resolveDependenciesSync();
   const packages = [...deps.values()].filter((p) => p !== ".");
   const mV = graphCommerce.magentoVersion ?? 246;
+  sig();
   packageRoots(packages).forEach((r) => {
-    const alsoScan = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254].filter((v) => v > mV).map((v) => `${r}/*/schema-${v}/**/*.graphqls`);
     conf.additionalTypeDefs.push(`${r}/*/schema/**/*.graphqls`);
-    conf.additionalTypeDefs.push(...alsoScan);
+    const scanVersions = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254].filter((v) => v > mV).map((v) => `${r}/*/schema-${v}/**/*.graphqls`);
+    conf.additionalTypeDefs.push(...scanVersions);
+    if (globalThis.gcl?.includes(atob("QGdyYXBoY29tbWVyY2UvYWRvYmUtY29tbWVyY2U="))) {
+      conf.additionalTypeDefs.push(`${r}/*/schema-ac/**/*.graphqls`);
+      const scanVersionAC = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254].filter((v) => v > mV).map((v) => `${r}/*/schema-ac-${v}/**/*.graphqls`);
+      conf.additionalTypeDefs.push(...scanVersionAC);
+    }
   });
   if (!conf.serve) conf.serve = {};
   if (!conf.serve.playgroundTitle) conf.serve.playgroundTitle = "GraphCommerce\xAE Mesh";

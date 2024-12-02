@@ -1,11 +1,12 @@
 #!/usr/bin/env node
+
 /* eslint-disable import/no-extraneous-dependencies */
-import fs from 'node:fs/promises'
-import path from 'node:path'
 import { packageRoots, resolveDependenciesSync } from '@graphcommerce/next-config'
-import { runCli, cliError, loadCodegenConfig } from '@graphql-codegen/cli'
+import { cliError, loadCodegenConfig, runCli } from '@graphql-codegen/cli'
 import type { Types } from '@graphql-codegen/plugin-helpers'
 import dotenv from 'dotenv'
+import fs from 'node:fs/promises'
+import path from 'node:path'
 import { rimraf } from 'rimraf'
 import yaml from 'yaml'
 

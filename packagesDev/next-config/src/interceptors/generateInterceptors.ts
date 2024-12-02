@@ -1,6 +1,6 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import fs from 'node:fs/promises'
 import path from 'node:path'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import type { GraphCommerceDebugConfig } from '../generated/config'
 import type { ResolveDependency } from '../utils/resolveDependency'
 import { findOriginalSource } from './findOriginalSource'

@@ -1,6 +1,6 @@
 import { Box, Container } from '@mui/material'
 
-type CompareListIntroTextProps = {
+export type CompareListIntroTextProps = {
   children: React.ReactNode
 }
 

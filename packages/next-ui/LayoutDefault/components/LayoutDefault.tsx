@@ -1,7 +1,7 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { dvh } from '@graphcommerce/framer-utils'
 import { Box, Container, SxProps, Theme } from '@mui/material'
-import { useTransform, useScroll } from 'framer-motion'
+import { useScroll, useTransform } from 'framer-motion'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { SkipLink } from '../../SkipLink/SkipLink'
 import { extendableComponent } from '../../Styles'
@@ -60,7 +60,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             minHeight: '-webkit-fill-available',
           },
           display: 'grid',
-          gridTemplateRows: 'auto auto 1fr auto',
+          gridTemplateRows: { xs: 'auto 1fr auto', md: 'auto auto 1fr auto' },
           gridTemplateColumns: '100%',
           background: theme.palette.background.default,
         }),

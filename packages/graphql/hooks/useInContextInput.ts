@@ -1,5 +1,5 @@
-import type { ApolloClient } from '@apollo/client'
 import type { InContextInput } from '@graphcommerce/graphql-mesh'
+import type { ApolloClient } from '@apollo/client'
 
 export function getInContextInput(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any

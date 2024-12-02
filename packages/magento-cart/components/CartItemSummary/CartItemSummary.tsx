@@ -2,11 +2,11 @@ import type { CartItemActionCardProps } from '@graphcommerce/magento-cart-items'
 import { CartItemActionCard } from '@graphcommerce/magento-cart-items'
 import type { ActionCardLayoutProps } from '@graphcommerce/next-ui'
 import {
-  SectionContainer,
-  extendableComponent,
-  breakpointVal,
-  nonNullable,
   ActionCardLayout,
+  SectionContainer,
+  breakpointVal,
+  extendableComponent,
+  nonNullable,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
@@ -30,7 +30,7 @@ const parts = [
 ] as const
 const { classes } = extendableComponent(name, parts)
 
-type OrderSummaryProps = ActionCardLayoutProps & {
+export type OrderSummaryProps = ActionCardLayoutProps & {
   sx?: SxProps<Theme>
   itemProps?: Omit<
     CartItemActionCardProps,

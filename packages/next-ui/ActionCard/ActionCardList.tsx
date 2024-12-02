@@ -50,7 +50,7 @@ function isValueSelected(
   return value === candidate
 }
 
-type HoistedActionCardProps = Pick<ActionCardProps, 'color' | 'variant' | 'size' | 'layout'>
+export type HoistedActionCardProps = Pick<ActionCardProps, 'color' | 'variant' | 'size' | 'layout'>
 
 const parts = ['root'] as const
 const name = 'ActionCardList'

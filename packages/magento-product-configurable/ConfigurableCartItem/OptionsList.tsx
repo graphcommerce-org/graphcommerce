@@ -3,7 +3,7 @@ import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { ConfigurableCartItemFragment } from './ConfigurableCartItem.gql'
 
-type CartItemOptionsListProps = Partial<ConfigurableCartItemFragment> & {
+export type CartItemOptionsListProps = Partial<ConfigurableCartItemFragment> & {
   sx?: SxProps<Theme>
 }
 

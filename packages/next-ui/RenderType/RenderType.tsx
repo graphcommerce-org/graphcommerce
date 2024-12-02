@@ -1,4 +1,5 @@
 import React from 'react'
+
 /** To make renderers customizable we need to be able to provide renders for all types */
 type TypeObject = { __typename: string; [index: string]: unknown }
 

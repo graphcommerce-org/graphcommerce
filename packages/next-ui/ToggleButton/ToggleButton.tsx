@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ButtonProps } from '@mui/material'
-import { alpha, Button } from '@mui/material'
+import { Button, alpha } from '@mui/material'
 import type { FormEvent } from 'react'
 import React from 'react'
 import { extendableComponent } from '../Styles'

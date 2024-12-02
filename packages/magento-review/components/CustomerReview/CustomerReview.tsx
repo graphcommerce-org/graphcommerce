@@ -1,12 +1,12 @@
 import { Image } from '@graphcommerce/image'
-import { responsiveVal, extendableComponent, IconSvg, DateTimeFormat } from '@graphcommerce/next-ui'
+import { DateTimeFormat, IconSvg, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { CustomerReviewFragment } from './CustomerReview.gql'
 import filledStar from './review_star_filled.svg'
 import outlinedStar from './review_star_outlined.svg'
 
-type CustomerReviewProps = CustomerReviewFragment & { sx?: SxProps<Theme> }
+export type CustomerReviewProps = CustomerReviewFragment & { sx?: SxProps<Theme> }
 
 const { classes } = extendableComponent('ScrollerDots', [
   'container',
@@ -92,7 +92,7 @@ export function CustomerReview(props: CustomerReviewProps) {
           color: theme.palette.text.disabled,
         })}
       >
-        <DateTimeFormat>{created_at}</DateTimeFormat>
+        <DateTimeFormat date={created_at} />
       </Box>
     </Box>
   )

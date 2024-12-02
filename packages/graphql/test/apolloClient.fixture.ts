@@ -1,9 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
+
 /* eslint-disable no-empty-pattern */
 import type { Page } from '@playwright/test'
 import { test as base } from '@playwright/test'
 import type { FetchResult, NormalizedCacheObject, TypedDocumentNode } from '../apollo'
-import { ApolloClient, getOperationName, InMemoryCache } from '../apollo'
+import { ApolloClient, InMemoryCache, getOperationName } from '../apollo'
 
 type ApolloClientTest = {
   apolloClient: ApolloClient<NormalizedCacheObject>

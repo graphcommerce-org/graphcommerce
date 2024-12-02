@@ -1,6 +1,6 @@
 import { dvh, useMeasureDynamicViewportSize } from '@graphcommerce/framer-utils'
 import { AnimatePresence, m } from 'framer-motion'
-import { requestIdleCallback, cancelIdleCallback } from 'next/dist/client/request-idle-callback'
+import { cancelIdleCallback, requestIdleCallback } from 'next/dist/client/request-idle-callback'
 import type { PrivateRouteInfo } from 'next/dist/shared/lib/router/router'
 import type { AppPropsType } from 'next/dist/shared/lib/utils'
 import type { NextRouter, Router } from 'next/router'

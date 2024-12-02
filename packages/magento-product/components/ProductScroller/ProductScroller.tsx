@@ -15,7 +15,8 @@ export type ProductScrollerProps = {
   sx?: SxProps<Theme>
   containerProps?: ContainerProps
   titleProps?: TypographyProps
-  itemScrollerProps?: ItemScrollerProps
+  itemScrollerProps?: Omit<ItemScrollerProps, 'children'>
+  sizes?: string
 }
 export const ProductScroller = forwardRef<HTMLDivElement, ProductScrollerProps>(
   (props: ProductScrollerProps, ref) => {
@@ -28,13 +29,14 @@ export const ProductScroller = forwardRef<HTMLDivElement, ProductScrollerProps>(
       containerProps,
       titleProps,
       itemScrollerProps,
+      sizes = responsiveVal(200, 300),
     } = props
 
     const theme = useTheme()
 
     const Wrapper = useContext(AddProductsToCartContext) ? React.Fragment : AddProductsToCartForm
 
-    if (!items) return null
+    if (!items || !items.length) return null
 
     return (
       <Box sx={sx} ref={ref}>
@@ -54,7 +56,7 @@ export const ProductScroller = forwardRef<HTMLDivElement, ProductScrollerProps>(
                   renderer={productListRenderer}
                   {...item}
                   imageOnly={imageOnly}
-                  sizes={responsiveVal(200, 300)}
+                  sizes={sizes}
                 />
               ))}
             </ItemScroller>

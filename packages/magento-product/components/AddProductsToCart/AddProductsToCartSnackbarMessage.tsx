@@ -61,7 +61,7 @@ export function AddProductsToCartSnackbarMessage(props: AddProductsToCartSnackba
             one={
               <Trans>
                 <ListFormat listStyle='long' type='conjunction'>
-                  {addedItems.map((item) => item)}
+                  {addedItems}
                 </ListFormat>{' '}
                 has been added to your shopping cart
               </Trans>
@@ -69,7 +69,7 @@ export function AddProductsToCartSnackbarMessage(props: AddProductsToCartSnackba
             two={
               <Trans>
                 <ListFormat listStyle='long' type='conjunction'>
-                  {addedItems.map((item) => item)}
+                  {addedItems}
                 </ListFormat>{' '}
                 have been added to your shopping cart!
               </Trans>

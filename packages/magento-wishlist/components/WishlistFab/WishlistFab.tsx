@@ -1,11 +1,11 @@
-import { iconHeart, DesktopHeaderBadge, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
+import { DesktopHeaderBadge, IconSvg, extendableComponent, iconHeart } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import type { BadgeProps, FabProps as FabPropsType, SxProps, Theme } from '@mui/material'
 import { Fab, NoSsr } from '@mui/material'
 import React from 'react'
 import { useWishlistEnabled, useWishlistItems } from '../../hooks'
 
-type WishlistFabContentProps = {
+export type WishlistFabContentProps = {
   icon?: React.ReactNode
   FabProps?: Omit<FabPropsType, 'children'>
   BadgeProps?: BadgeProps

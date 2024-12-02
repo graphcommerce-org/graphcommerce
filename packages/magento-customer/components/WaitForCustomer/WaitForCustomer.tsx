@@ -1,14 +1,14 @@
 import type { WaitForQueriesProps } from '@graphcommerce/ecommerce-ui'
-import { mergeErrors, WaitForQueries } from '@graphcommerce/ecommerce-ui'
+import { WaitForQueries, mergeErrors } from '@graphcommerce/ecommerce-ui'
 import type { FullPageMessageProps } from '@graphcommerce/next-ui'
-import { FullPageMessage, iconPerson, IconSvg } from '@graphcommerce/next-ui'
+import { FullPageMessage, IconSvg, iconPerson } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button, CircularProgress } from '@mui/material'
 import React from 'react'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
 import { ApolloCustomerErrorFullPage } from '../ApolloCustomerError/ApolloCustomerErrorFullPage'
 
-type WaitForCustomerProps = Omit<WaitForQueriesProps, 'fallback' | 'waitFor'> &
+export type WaitForCustomerProps = Omit<WaitForQueriesProps, 'fallback' | 'waitFor'> &
   Pick<FullPageMessageProps, 'disableMargin'> & {
     waitFor?: WaitForQueriesProps['waitFor']
     fallback?: React.ReactNode

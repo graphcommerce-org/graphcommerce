@@ -1,17 +1,16 @@
 import { resolveDependenciesSync, sortDependencies } from '../../src/utils/resolveDependenciesSync'
-
 const projectRoot = `${process.cwd()}/examples/magento-graphcms`
-
 it('resolves dependences', () => {
   const dependencies = resolveDependenciesSync(projectRoot)
-
-  expect(dependencies).toMatchInlineSnapshot(`
+  expect(dependencies).toMatchInlineSnapshot(
+    `
     Map {
       "." => "examples/magento-graphcms",
       "@graphcommerce/cli" => "packages/cli",
       "@graphcommerce/hygraph-cli" => "packages/hygraph-cli",
       "@graphcommerce/demo-magento-graphcommerce" => "packages/demo-magento-graphcommerce",
       "@graphcommerce/magento-recently-viewed-products" => "packages/magento-recently-viewed-products",
+      "@graphcommerce/google-playstore" => "packages/google-playstore",
       "@graphcommerce/googleanalytics" => "packages/googleanalytics",
       "@graphcommerce/googlerecaptcha" => "packages/googlerecaptcha",
       "@graphcommerce/googletagmanager" => "packages/googletagmanager",
@@ -32,6 +31,7 @@ it('resolves dependences', () => {
       "@graphcommerce/magento-product-virtual" => "packages/magento-product-virtual",
       "@graphcommerce/magento-review" => "packages/magento-review",
       "@graphcommerce/magento-wishlist" => "packages/magento-wishlist",
+      "@graphcommerce/service-worker" => "packages/service-worker",
       "@graphcommerce/magento-cart-pickup" => "packages/magento-cart-pickup",
       "@graphcommerce/magento-payment-braintree" => "packages/magento-payment-braintree",
       "@graphcommerce/mollie-magento-payment" => "packages/mollie-magento-payment",
@@ -72,9 +72,9 @@ it('resolves dependences', () => {
       "@graphcommerce/eslint-config-pwa" => "packagesDev/eslint-config",
       "@graphcommerce/typescript-config-pwa" => "packagesDev/typescript-config",
     }
-  `)
+  `,
+  )
 })
-
 it('sorts dependencies', () => {
   const sorted = sortDependencies({
     '@graphcommerce/magento-graphcms': {
@@ -94,13 +94,14 @@ it('sorts dependencies', () => {
       dependencies: ['@graphcommerce/magento-product'],
     },
   })
-
-  expect(sorted).toMatchInlineSnapshot(`
+  expect(sorted).toMatchInlineSnapshot(
+    `
     Map {
       "@graphcommerce/magento-graphcms" => "examples/magento-graphcms",
       "@graphcommerce/magento-cart" => "packages/magento-cart",
       "@graphcommerce/magento-product" => "packages/magento-product",
       "@graphcommerce/magento-product-simple" => "packages/magento-product-simple",
     }
-  `)
+  `,
+  )
 })

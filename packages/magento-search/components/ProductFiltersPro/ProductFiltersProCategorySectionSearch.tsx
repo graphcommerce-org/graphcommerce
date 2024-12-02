@@ -1,6 +1,6 @@
 import type {
-  MenuQueryFragment,
   CategoryTreeItem,
+  MenuQueryFragment,
   NavigationItemFragment,
 } from '@graphcommerce/magento-category'
 import type { ProductFiltersProCategoryAccordionProps } from '@graphcommerce/magento-product'
@@ -79,7 +79,7 @@ function isParent<U extends TreeItem>(item: U, parent: U): boolean {
   return false
 }
 
-type ProductFiltersProCategorySectionSearchProps = Omit<
+export type ProductFiltersProCategorySectionSearchProps = Omit<
   ProductFiltersProCategoryAccordionProps,
   'categoryTree' | 'onChange'
 > & {

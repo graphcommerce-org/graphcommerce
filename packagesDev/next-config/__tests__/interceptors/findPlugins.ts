@@ -1,26 +1,55 @@
 import type { GraphCommerceConfig } from '../../src/generated/config'
 import { findPlugins } from '../../src/interceptors/findPlugins'
-
 const projectRoot = `${process.cwd()}/examples/magento-graphcms`
-
 it('finds plugins', () => {
   const fakeconfig = {
     googleRecaptchaKey: '123',
     googleAnalyticsId: '123',
-    // demoMode: true,
-    debug: {
-      pluginStatus: true,
-    },
+    demoMode: true,
+    debug: { pluginStatus: true },
   } as GraphCommerceConfig
-
   const [plugins, errors] = findPlugins(fakeconfig, projectRoot)
   const disabled = plugins.filter((p) => !p.enabled)
   const enabled = plugins.filter((p) => p.enabled)
-
   expect(errors).toMatchInlineSnapshot('[]')
-
   expect(enabled).toMatchInlineSnapshot(`
     [
+      {
+        "enabled": true,
+        "ifConfig": "demoMode",
+        "sourceExport": "AddProductsToCartForm",
+        "sourceModule": "./plugins/EnableCrosssellsPlugin",
+        "targetExport": "AddProductsToCartForm",
+        "targetModule": "@graphcommerce/magento-product",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "ifConfig": "demoMode",
+        "sourceExport": "RowLinks",
+        "sourceModule": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoRowLinks",
+        "targetExport": "RowLinks",
+        "targetModule": "@graphcommerce/next-ui",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "ifConfig": "demoMode",
+        "sourceExport": "RecentlyViewedProducts",
+        "sourceModule": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoRecentlyViewedProducts",
+        "targetExport": "RecentlyViewedProducts",
+        "targetModule": "@graphcommerce/magento-recently-viewed-products",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "ifConfig": "demoMode",
+        "sourceExport": "ProductListItemConfigurable",
+        "sourceModule": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoProductListItemConfigurable",
+        "targetExport": "ProductListItemConfigurable",
+        "targetModule": "@graphcommerce/magento-product-configurable",
+        "type": "component",
+      },
       {
         "enabled": true,
         "ifConfig": "googleAnalyticsId",
@@ -208,14 +237,6 @@ it('finds plugins', () => {
         "sourceExport": "ProductPagePrice",
         "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPagePrice",
         "targetExport": "ProductPagePrice",
-        "targetModule": "@graphcommerce/magento-product",
-        "type": "component",
-      },
-      {
-        "enabled": true,
-        "sourceExport": "ProductPageGallery",
-        "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageGallery",
-        "targetExport": "ProductPageGallery",
         "targetModule": "@graphcommerce/magento-product",
         "type": "component",
       },
@@ -505,14 +526,6 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "graphqlConfig",
-        "sourceModule": "@graphcommerce/magento-store/plugins/magentoStoreGraphqlConfig",
-        "targetExport": "graphqlConfig",
-        "targetModule": "@graphcommerce/graphql",
-        "type": "function",
-      },
-      {
-        "enabled": true,
         "sourceExport": "meshConfig",
         "sourceModule": "@graphcommerce/magento-graphql/plugins/meshConfigAttrValue",
         "targetExport": "meshConfig",
@@ -539,42 +552,6 @@ it('finds plugins', () => {
   `)
   expect(disabled).toMatchInlineSnapshot(`
     [
-      {
-        "enabled": false,
-        "ifConfig": "demoMode",
-        "sourceExport": "AddProductsToCartForm",
-        "sourceModule": "./plugins/EnableCrosssellsPlugin",
-        "targetExport": "AddProductsToCartForm",
-        "targetModule": "@graphcommerce/magento-product",
-        "type": "component",
-      },
-      {
-        "enabled": false,
-        "ifConfig": "demoMode",
-        "sourceExport": "RowLinks",
-        "sourceModule": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoRowLinks",
-        "targetExport": "RowLinks",
-        "targetModule": "@graphcommerce/next-ui",
-        "type": "component",
-      },
-      {
-        "enabled": false,
-        "ifConfig": "demoMode",
-        "sourceExport": "RecentlyViewedProducts",
-        "sourceModule": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoRecentlyViewedProducts",
-        "targetExport": "RecentlyViewedProducts",
-        "targetModule": "@graphcommerce/magento-recently-viewed-products",
-        "type": "component",
-      },
-      {
-        "enabled": false,
-        "ifConfig": "demoMode",
-        "sourceExport": "ProductListItemConfigurable",
-        "sourceModule": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoProductListItemConfigurable",
-        "targetExport": "ProductListItemConfigurable",
-        "targetModule": "@graphcommerce/magento-product-configurable",
-        "type": "component",
-      },
       {
         "enabled": false,
         "ifConfig": "recentlyViewedProducts.enabled",
@@ -680,6 +657,15 @@ it('finds plugins', () => {
         "sourceExport": "ProductPageJsonLd",
         "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageJsonLd",
         "targetExport": "ProductPageJsonLd",
+        "targetModule": "@graphcommerce/magento-product",
+        "type": "component",
+      },
+      {
+        "enabled": false,
+        "ifConfig": "configurableVariantValues.gallery",
+        "sourceExport": "ProductPageGallery",
+        "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageGallery",
+        "targetExport": "ProductPageGallery",
         "targetModule": "@graphcommerce/magento-product",
         "type": "component",
       },

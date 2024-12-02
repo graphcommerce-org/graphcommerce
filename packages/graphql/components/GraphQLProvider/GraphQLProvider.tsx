@@ -1,7 +1,7 @@
-import type { NormalizedCacheObject, DefaultOptions } from '@apollo/client'
-import { ApolloClient, ApolloLink, InMemoryCache, ApolloProvider, HttpLink } from '@apollo/client'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useStorefrontConfig } from '@graphcommerce/next-ui/hooks/useStorefrontConfig'
+import type { DefaultOptions, NormalizedCacheObject } from '@apollo/client'
+import { ApolloClient, ApolloLink, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client'
 import type { AppProps } from 'next/app'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { ApolloClientConfig, ApolloClientConfigInput, PreviewConfig } from '../../config'

@@ -1,7 +1,7 @@
 import type { UseDisplayNamesOptions } from './useDisplayNames'
 import { useDisplayNames } from './useDisplayNames'
 
-type DisplayNamesProps = UseDisplayNamesOptions & {
+export type DisplayNamesProps = UseDisplayNamesOptions & {
   code: string
 }
 

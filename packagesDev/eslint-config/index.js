@@ -167,7 +167,6 @@ module.exports = {
         ],
         '@typescript-eslint/consistent-type-imports': 'error',
         'import/no-duplicates': 'off',
-        '@typescript-eslint/no-duplicate-imports': ['error'],
       },
     },
     {

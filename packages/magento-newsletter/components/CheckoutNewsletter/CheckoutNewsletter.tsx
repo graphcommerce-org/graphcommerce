@@ -11,7 +11,7 @@ import { SubscribeCustomerDocument } from './SubscribeCustomer.gql'
 import type { SubscribeGuestMutation, SubscribeGuestMutationVariables } from './SubscribeGuest.gql'
 import { SubscribeGuestDocument } from './SubscribeGuest.gql'
 
-type CheckoutNewsletterProps = {
+export type CheckoutNewsletterProps = {
   step: number
   checked?: boolean
   label: string

@@ -1,5 +1,5 @@
 import { EmailElement, useFormGqlMutation } from '@graphcommerce/ecommerce-ui'
-import { FormRow, LayoutTitle, Button, iconPerson } from '@graphcommerce/next-ui'
+import { Button, FormRow, LayoutTitle, iconPerson } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Alert, Box, Typography } from '@mui/material'
 import { useRouter } from 'next/router'

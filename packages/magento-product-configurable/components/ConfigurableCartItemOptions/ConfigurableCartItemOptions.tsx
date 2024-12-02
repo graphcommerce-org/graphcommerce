@@ -3,7 +3,7 @@ import { SelectedCustomizableOptions } from '@graphcommerce/magento-cart-items'
 import { Box } from '@mui/material'
 import type { ConfigurableCartItemFragment } from '../../ConfigurableCartItem/ConfigurableCartItem.gql'
 
-type ConfigurableActionCartItemProps = ConfigurableCartItemFragment & CartItemFragment
+export type ConfigurableActionCartItemProps = ConfigurableCartItemFragment & CartItemFragment
 
 export function ConfigurableCartItemOptions(props: ConfigurableActionCartItemProps) {
   const { configurable_options } = props

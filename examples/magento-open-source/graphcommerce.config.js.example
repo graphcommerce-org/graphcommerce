@@ -1,0 +1,21 @@
+// @ts-check
+
+/**
+ * Docs: https://graphcommerce.org/docs/framework/config
+ *
+ * @type {import('@graphcommerce/next-config/src/generated/config').GraphCommerceConfig}
+ */
+const config = {
+  magentoEndpoint: 'https://configurator.reachdigital.dev/graphql',
+  magentoVersion: 247,
+  canonicalBaseUrl: 'https://graphcommerce.vercel.app',
+  storefront: [
+    { locale: 'en', magentoStoreCode: 'en_US', defaultLocale: true },
+    { locale: 'nl', magentoStoreCode: 'nl_NL' },
+  ],
+  recentlyViewedProducts: {
+    enabled: true,
+  },
+}
+
+module.exports = config

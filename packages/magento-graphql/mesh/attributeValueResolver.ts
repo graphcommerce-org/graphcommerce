@@ -1,9 +1,9 @@
-import fragments from '@graphcommerce/graphql/generated/fragments.json'
 import type {
   AttributeValueInterfaceResolvers,
   MeshContext,
   Resolvers,
 } from '@graphcommerce/graphql-mesh'
+import fragments from '@graphcommerce/graphql/generated/fragments.json'
 import { customAttributeMetadataV2 } from './customAttributeMetadataV2'
 
 type AttributeValueResolver = Pick<AttributeValueInterfaceResolvers<MeshContext>, 'attribute'>

@@ -12,7 +12,7 @@ import { CompanyFields } from '../CompanyFields'
 import { NameFields } from '../NameFields/NameFields'
 import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
 
-type EditAddressFormProps = {
+export type EditAddressFormProps = {
   address?: AccountAddressFragment
   sx?: SxProps<Theme>
 }

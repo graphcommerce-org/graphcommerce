@@ -1,6 +1,5 @@
 /* eslint-disable no-continue */
 // import { getContentTypeConfig } from './config'
-
 import { JSDOM } from 'jsdom'
 import type { ContentTypeKeys } from '../parserTypes'
 import { getContentType } from '../parserTypes'

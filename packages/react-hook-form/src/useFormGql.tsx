@@ -1,11 +1,11 @@
 import type {
   ApolloError,
   FetchResult,
+  LazyQueryHookOptions,
   LazyQueryResultTuple,
+  MutationHookOptions,
   MutationTuple,
   TypedDocumentNode,
-  MutationHookOptions,
-  LazyQueryHookOptions,
 } from '@apollo/client'
 import { isApolloError } from '@apollo/client'
 import { getOperationName } from '@apollo/client/utilities'

@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import type { Types } from '@graphql-codegen/plugin-helpers'
-import type { DocumentNode, FragmentSpreadNode, FragmentDefinitionNode } from 'graphql'
-import { visit, Kind } from 'graphql'
+import type { DocumentNode, FragmentDefinitionNode, FragmentSpreadNode } from 'graphql'
+import { Kind, visit } from 'graphql'
 
 function isFragment(document: DocumentNode) {
   let is = false

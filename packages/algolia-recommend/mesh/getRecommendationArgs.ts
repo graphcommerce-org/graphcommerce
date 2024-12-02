@@ -1,9 +1,9 @@
 import { getSearchResultsInput } from '@graphcommerce/algolia-products'
 import type {
-  QueryproductsArgs,
-  MeshContext,
-  AlgoliasearchParamsObject_Input,
   AlgoliaLookingSimilarInput,
+  AlgoliasearchParamsObject_Input,
+  MeshContext,
+  QueryproductsArgs,
 } from '@graphcommerce/graphql-mesh'
 
 export async function getRecommendationQueryInput(

@@ -1,5 +1,19 @@
 # Change Log
 
+## 9.0.0-canary.108
+
+## 9.0.0-canary.107
+
+## 9.0.0-canary.106
+
+### Patch Changes
+
+- [#2385](https://github.com/graphcommerce-org/graphcommerce/pull/2385) [`654be83`](https://github.com/graphcommerce-org/graphcommerce/commit/654be8309cab209d95935cf06c84469726c981e7) - Enable prettier-plugin-jsdoc ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.105
+
+## 9.0.0-canary.104
+
 ## 9.0.0-canary.103
 
 ### Patch Changes
