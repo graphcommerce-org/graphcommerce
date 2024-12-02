@@ -49,6 +49,13 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
 
   const classes = withState({ size })
 
+  let InputPropsFiltered = InputProps
+
+  if (variant === 'outlined' && 'disableUnderline' in InputPropsFiltered) {
+    const { disableUnderline, ...filteredInputProps } = InputPropsFiltered
+    InputPropsFiltered = filteredInputProps
+  }
+
   if (required && !rules.required) {
     rules.required = i18n._(/* i18n */ 'This field is required')
   }
@@ -111,7 +118,7 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
       ]}
       autoComplete='off'
       InputProps={{
-        ...InputProps,
+        ...InputPropsFiltered,
         startAdornment: (
           <Fab
             aria-label={i18n._(/* i18n */ 'Decrease')}
