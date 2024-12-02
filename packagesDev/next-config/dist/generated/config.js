@@ -30,20 +30,17 @@ _export(exports, {
     GraphCommerceGooglePlaystoreConfigSchema: function() {
         return GraphCommerceGooglePlaystoreConfigSchema;
     },
-    GraphCommerceLayoutConfigSchema: function() {
-        return GraphCommerceLayoutConfigSchema;
-    },
     GraphCommercePermissionsSchema: function() {
         return GraphCommercePermissionsSchema;
     },
     GraphCommerceStorefrontConfigSchema: function() {
         return GraphCommerceStorefrontConfigSchema;
     },
+    LayoutMaxWidthSchema: function() {
+        return LayoutMaxWidthSchema;
+    },
     MagentoConfigurableVariantValuesSchema: function() {
         return MagentoConfigurableVariantValuesSchema;
-    },
-    MaxWidthOptionsSchema: function() {
-        return MaxWidthOptionsSchema;
     },
     PaginationVariantSchema: function() {
         return PaginationVariantSchema;
@@ -87,7 +84,7 @@ const CustomerAccountPermissionsSchema = _zod.z.enum([
     'DISABLE_REGISTRATION',
     'ENABLED'
 ]);
-const MaxWidthOptionsSchema = _zod.z.enum([
+const LayoutMaxWidthSchema = _zod.z.enum([
     'CONTAINED',
     'CONTENT_ONLY',
     'DEFAULT'
@@ -139,7 +136,7 @@ function GraphCommerceConfigSchema() {
         hygraphManagementApi: _zod.z.string().nullish(),
         hygraphProjectId: _zod.z.string().nullish(),
         hygraphWriteAccessToken: _zod.z.string().nullish(),
-        layout: GraphCommerceLayoutConfigSchema().nullish(),
+        layoutMaxWidth: LayoutMaxWidthSchema.default("DEFAULT").nullish(),
         limitSsg: _zod.z.boolean().nullish(),
         magentoEndpoint: _zod.z.string().min(1),
         magentoVersion: _zod.z.number(),
@@ -169,11 +166,6 @@ function GraphCommerceGooglePlaystoreConfigSchema() {
     return _zod.z.object({
         packageName: _zod.z.string().min(1),
         sha256CertificateFingerprint: _zod.z.string().min(1)
-    });
-}
-function GraphCommerceLayoutConfigSchema() {
-    return _zod.z.object({
-        maxWidth: MaxWidthOptionsSchema.default("DEFAULT").nullish()
     });
 }
 function GraphCommercePermissionsSchema() {

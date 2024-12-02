@@ -288,9 +288,15 @@ GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
 yarn graphcommerce hygraph-migrate
 ```
 
-#### layout: [GraphCommerceLayoutConfig](#GraphCommerceLayoutConfig)
+#### layoutMaxWidth: CONTAINED | CONTENT_ONLY | DEFAULT = `DEFAULT`
 
-Configures the layout settings.
+Sets the maximum width for the layout. You can set the max width breakpoint in the theme.ts file
+Tip: if you want to use pixels instead of breakpoints, change the width of the breakpoint.
+
+DEFAULT: Page is full width
+CONTENT_ONLY: Only content is contained
+CONTAINED: Page is contained
+Default: DEFAULT
 
 #### limitSsg: boolean
 
@@ -389,18 +395,6 @@ The package name of the Android app.
 #### sha256CertificateFingerprint: string (required)
 
 The sha256 certificate fingerprint of the Android app.
-
-### GraphCommerceLayoutConfig
-
-#### maxWidth: CONTAINED | CONTENT_ONLY | DEFAULT = `DEFAULT`
-
-Sets the maximum width for the layout. You can set the max width breakpoint in the theme.ts file
-Tip: if you want to use pixels instead of breakpoints, change the width of the breakpoint.
-
-DEFAULT: Page is full width
-CONTENT_ONLY: Only content is contained
-CONTAINED: Page is contained
-Default: DEFAULT
 
 ### GraphCommercePermissions
 

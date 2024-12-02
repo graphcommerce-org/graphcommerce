@@ -286,8 +286,16 @@ export type GraphCommerceConfig = {
    * ```
    */
   hygraphWriteAccessToken?: InputMaybe<Scalars['String']['input']>;
-  /** Configures the layout settings. */
-  layout?: InputMaybe<GraphCommerceLayoutConfig>;
+  /**
+   * Sets the maximum width for the layout. You can set the max width breakpoint in the theme.ts file
+   * Tip: if you want to use pixels instead of breakpoints, change the width of the breakpoint.
+   *
+   * DEFAULT: Page is full width
+   * CONTENT_ONLY: Only content is contained
+   * CONTAINED: Page is contained
+   * Default: DEFAULT
+   */
+  layoutMaxWidth?: InputMaybe<LayoutMaxWidth>;
   /**
    * Limit the static generation of SSG when building.
    *
@@ -381,19 +389,6 @@ export type GraphCommerceGooglePlaystoreConfig = {
   sha256CertificateFingerprint: Scalars['String']['input'];
 };
 
-export type GraphCommerceLayoutConfig = {
-  /**
-   * Sets the maximum width for the layout. You can set the max width breakpoint in the theme.ts file
-   * Tip: if you want to use pixels instead of breakpoints, change the width of the breakpoint.
-   *
-   * DEFAULT: Page is full width
-   * CONTENT_ONLY: Only content is contained
-   * CONTAINED: Page is contained
-   * Default: DEFAULT
-   */
-  maxWidth?: InputMaybe<MaxWidthOptions>;
-};
-
 /** Permissions input */
 export type GraphCommercePermissions = {
   /** Changes the availability of the add to cart buttons and the cart page to either customer only or completely disables it. */
@@ -473,6 +468,11 @@ export type GraphCommerceStorefrontConfig = {
   robotsAllow?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type LayoutMaxWidth =
+  | 'CONTAINED'
+  | 'CONTENT_ONLY'
+  | 'DEFAULT';
+
 /** Options to configure which values will be replaced when a variant is selected on the product page. */
 export type MagentoConfigurableVariantValues = {
   /** Use the name, description, short description and meta data from the configured variant */
@@ -489,11 +489,6 @@ export type MagentoConfigurableVariantValues = {
    */
   url?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
-export type MaxWidthOptions =
-  | 'CONTAINED'
-  | 'CONTENT_ONLY'
-  | 'DEFAULT';
 
 export type PaginationVariant =
   | 'COMPACT'
@@ -542,7 +537,7 @@ export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
 export const CustomerAccountPermissionsSchema = z.enum(['DISABLED', 'DISABLE_REGISTRATION', 'ENABLED']);
 
-export const MaxWidthOptionsSchema = z.enum(['CONTAINED', 'CONTENT_ONLY', 'DEFAULT']);
+export const LayoutMaxWidthSchema = z.enum(['CONTAINED', 'CONTENT_ONLY', 'DEFAULT']);
 
 export const PaginationVariantSchema = z.enum(['COMPACT', 'EXTENDED']);
 
@@ -585,7 +580,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     hygraphManagementApi: z.string().nullish(),
     hygraphProjectId: z.string().nullish(),
     hygraphWriteAccessToken: z.string().nullish(),
-    layout: GraphCommerceLayoutConfigSchema().nullish(),
+    layoutMaxWidth: LayoutMaxWidthSchema.default("DEFAULT").nullish(),
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     magentoVersion: z.number(),
@@ -617,12 +612,6 @@ export function GraphCommerceGooglePlaystoreConfigSchema(): z.ZodObject<Properti
   return z.object({
     packageName: z.string().min(1),
     sha256CertificateFingerprint: z.string().min(1)
-  })
-}
-
-export function GraphCommerceLayoutConfigSchema(): z.ZodObject<Properties<GraphCommerceLayoutConfig>> {
-  return z.object({
-    maxWidth: MaxWidthOptionsSchema.default("DEFAULT").nullish()
   })
 }
 

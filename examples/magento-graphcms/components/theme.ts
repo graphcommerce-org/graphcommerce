@@ -180,10 +180,10 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       headerHeightMd: '100px',
       appBarHeightMd: '80px',
       appBarInnerHeightMd: '46px',
-      maxWidth: import.meta.graphCommerce.layout?.maxWidth === 'CONTAINED' ? 'lg' : false,
+      maxWidth: import.meta.graphCommerce.layoutMaxWidth === 'CONTAINED' ? 'lg' : false,
       maxWidthContent:
-        import.meta.graphCommerce.layout?.maxWidth === 'CONTENT_ONLY' ||
-        import.meta.graphCommerce.layout?.maxWidth === 'CONTAINED'
+        import.meta.graphCommerce.layoutMaxWidth === 'CONTENT_ONLY' ||
+        import.meta.graphCommerce.layoutMaxWidth === 'CONTAINED'
           ? 'lg'
           : false,
     },
