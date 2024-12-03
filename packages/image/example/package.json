@@ -10,7 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@graphcommerce/framer-utils": "9.0.0-canary.108",
+    "@graphcommerce/framer-utils": "workspace:^",
     "@lingui/core": "4.14.0",
     "@lingui/macro": "4.14.0",
     "@lingui/react": "4.14.0",
@@ -32,9 +32,9 @@
     "webpack": "^5.96.1"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "9.0.0-canary.108",
-    "@graphcommerce/prettier-config-pwa": "9.0.0-canary.108",
-    "@graphcommerce/typescript-config-pwa": "9.0.0-canary.108",
+    "@graphcommerce/eslint-config-pwa": "workspace:^",
+    "@graphcommerce/prettier-config-pwa": "workspace:^",
+    "@graphcommerce/typescript-config-pwa": "workspace:^",
     "@lingui/cli": "4.14.0",
     "@types/node": "^18.19.67",
     "@types/react": "^18.3.12",
