@@ -52,13 +52,26 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
     ...(nextConfig.transpilePackages ?? []),
   ]
 
+  console.log(resolveDependenciesSync())
+
   return {
     ...nextConfig,
     bundlePagesRouterDependencies: true,
     experimental: {
       ...nextConfig.experimental,
       scrollRestoration: true,
-      swcPlugins: [...(nextConfig.experimental?.swcPlugins ?? []), ['@lingui/swc-plugin', {}]],
+      swcPlugins: [
+        ...(nextConfig.experimental?.swcPlugins ?? []),
+        ['@lingui/swc-plugin', {}],
+        [
+          '@graphcommerce/next-interceptors-swc',
+          {
+            moduleSuffixes: ['.interceptor', ''],
+            workspaceRoot: cwd,
+            packageMapping: Object.fromEntries(resolveDependenciesSync()),
+          },
+        ],
+      ],
     },
     i18n: {
       ...nextConfig.i18n,
@@ -189,7 +202,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
         }
       }
 
-      config.plugins.push(new InterceptorPlugin(graphcommerceConfig, !options.isServer))
+      // config.plugins.push(new InterceptorPlugin(graphcommerceConfig, !options.isServer))
 
       return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config
     },
