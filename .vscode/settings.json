@@ -37,5 +37,8 @@
   },
   "workbench.editor.customLabels.patterns": {
     "**/*.interceptor.ts*": "${filename}.${extname} (auto generated)"
+  },
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
   }
 }

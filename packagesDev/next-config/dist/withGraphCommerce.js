@@ -6,7 +6,6 @@ const plugin_1 = require("inspectpack/plugin");
 const webpack_1 = require("webpack");
 const loadConfig_1 = require("./config/loadConfig");
 const configToImportMeta_1 = require("./config/utils/configToImportMeta");
-const InterceptorPlugin_1 = require("./interceptors/InterceptorPlugin");
 const resolveDependenciesSync_1 = require("./utils/resolveDependenciesSync");
 let graphcommerceConfig;
 function domains(config) {
@@ -39,13 +38,25 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
         ...[...(0, resolveDependenciesSync_1.resolveDependenciesSync)().keys()].slice(1),
         ...(nextConfig.transpilePackages ?? []),
     ];
+    console.log((0, resolveDependenciesSync_1.resolveDependenciesSync)());
     return {
         ...nextConfig,
         bundlePagesRouterDependencies: true,
         experimental: {
             ...nextConfig.experimental,
             scrollRestoration: true,
-            swcPlugins: [...(nextConfig.experimental?.swcPlugins ?? []), ['@lingui/swc-plugin', {}]],
+            swcPlugins: [
+                ...(nextConfig.experimental?.swcPlugins ?? []),
+                ['@lingui/swc-plugin', {}],
+                [
+                    '@graphcommerce/next-interceptors-swc',
+                    {
+                        moduleSuffixes: ['.interceptor', ''],
+                        workspaceRoot: cwd,
+                        packageMapping: Object.fromEntries((0, resolveDependenciesSync_1.resolveDependenciesSync)()),
+                    },
+                ],
+            ],
         },
         i18n: {
             ...nextConfig.i18n,
@@ -155,7 +166,7 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
                     '@mui/system': '@mui/system/modern',
                 };
             }
-            config.plugins.push(new InterceptorPlugin_1.InterceptorPlugin(graphcommerceConfig, !options.isServer));
+            // config.plugins.push(new InterceptorPlugin(graphcommerceConfig, !options.isServer))
             return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config;
         },
     };

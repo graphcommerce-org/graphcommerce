@@ -1,0 +1,23 @@
+[package]
+name = "next-interceptors-swc"
+version = "8.0.0"
+edition = "2021"
+description = "SWC plugin for GraphCommerce interceptors"
+license = "MIT"
+repository = "github:graphcommerce-org/graphcommerce"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+swc_core = { version = "4.0.0", features = ["ecma_plugin_transform", "__parser"] }
+
+[dev-dependencies]
+testing = "0.35.*"
+
+[profile.release]
+lto = true
+strip = "symbols"
+opt-level = "s" 
