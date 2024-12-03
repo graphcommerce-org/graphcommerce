@@ -85,7 +85,7 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
             (theme) => ({
               '& .MuiInputBase-input': { ...inputSx },
               ...(selected && {
-                boxShadow: `inset 0 0 0 2px ${theme.palette.secondary.main}`,
+                boxShadow: `inset 0 0 0 2px ${theme.palette.primary.main}`,
               }),
             }),
             ...(Array.isArray(sx) ? sx : [sx]),

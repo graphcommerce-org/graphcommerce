@@ -26,7 +26,7 @@ export const SearchOverlayItem = memo(
               px: theme.page.horizontal,
               mx: `calc(${theme.page.horizontal} * -1)`,
               '&.Mui-selected': {
-                boxShadow: `inset 0 0 0 2px ${theme.palette.secondary.main}`,
+                boxShadow: `inset 0 0 0 2px ${theme.palette.primary.main}`,
                 backgroundColor: alpha(
                   theme.palette.background.paper,
                   theme.palette.action.selectedOpacity,

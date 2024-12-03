@@ -5,12 +5,7 @@ import { SearchOverlaySuggestion } from './SearchOverlaySuggestions'
 
 export function RecentSearches({ recentSearches }: { recentSearches: string[] }) {
   return (
-    <Box
-      sx={(theme) => ({
-        marginTop: theme.spacings.md,
-        marginBottom: theme.spacings.md,
-      })}
-    >
+    <Box>
       <SectionContainer labelLeft={<Trans id='Continue searching' />}>
         {recentSearches.map((suggestion) => (
           <SearchOverlaySuggestion key={suggestion} search={suggestion} />
