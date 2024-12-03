@@ -1,4 +1,4 @@
-name: release
+name: release-canary
 on:
   push:
     branches:
@@ -19,7 +19,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           cache: yarn
-          node-version: 18
+          node-version: 20
+          cache-dependency-path: package.json
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
       - name: yarn install && yarn postinstall
@@ -46,6 +47,7 @@ jobs:
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           echo "::set-output name=date::$(date +"%B %d, %Y")"
       - name: release
+        id: changesets
         uses: paales/changesets-action@main
         with:
           publish: 'yarn release'

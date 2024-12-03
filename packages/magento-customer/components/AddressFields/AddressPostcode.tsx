@@ -1,6 +1,8 @@
-import { FieldPath, FieldValues, TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import type { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
+import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { Trans } from '@lingui/macro'
-import { AddressFieldsOptions, useAddressFieldsForm } from './useAddressFieldsForm'
+import type { AddressFieldsOptions } from './useAddressFieldsForm'
+import { useAddressFieldsForm } from './useAddressFieldsForm'
 
 export function AddressPostcode<
   TFieldValues extends FieldValues = FieldValues,

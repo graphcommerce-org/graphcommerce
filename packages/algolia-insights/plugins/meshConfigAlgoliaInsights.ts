@@ -20,7 +20,7 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
           name: 'algoliaInsights',
           handler: {
             openapi: {
-              endpoint: `https://insights.algolia.io/`,
+              endpoint: 'https://insights.algolia.io/',
               source: '@graphcommerce/algolia-insights/algolia-insights-spec.yaml',
               ignoreErrorResponses: true,
               schemaHeaders: {

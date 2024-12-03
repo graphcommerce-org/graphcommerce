@@ -1,16 +1,14 @@
 import { ApolloErrorSnackbar } from '@graphcommerce/ecommerce-ui'
 import { useMutation } from '@graphcommerce/graphql'
 import { useCurrentCartId } from '@graphcommerce/magento-cart'
-import {
-  PaymentHandlerProps,
-  usePaymentMethodContext,
-} from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentHandlerProps } from '@graphcommerce/magento-cart-payment-method'
+import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { usePayPalCartLock } from '../../hooks/usePayPalCartLock'
 import { PayPalPaymentHandlerDocument } from './PayPalPaymentHandler.gql'
 
-export const PayPalPaymentHandler = (props: PaymentHandlerProps) => {
+export function PayPalPaymentHandler(props: PaymentHandlerProps) {
   const { code } = props
   const { push } = useRouter()
   const [lockStatus, , unlock] = usePayPalCartLock()

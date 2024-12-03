@@ -1,10 +1,7 @@
-import {
-  Scroller,
-  ScrollerButton,
-  ScrollerButtonProps,
-  ScrollerProvider,
-} from '@graphcommerce/framer-scroller'
-import { Box, ContainerProps, SxProps, Theme, Typography } from '@mui/material'
+import type { ScrollerButtonProps } from '@graphcommerce/framer-scroller'
+import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
+import type { ContainerProps, SxProps, Theme } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import React from 'react'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles'
@@ -21,7 +18,7 @@ export type RowLinksProps = {
 } & Pick<ContainerProps, 'maxWidth'> &
   Pick<ScrollerButtonProps, 'showButtons'>
 
-const compName = 'RowLinks' as const
+const compName = 'RowLinks'
 const parts = [
   'root',
   'scroller',
@@ -68,7 +65,7 @@ export function RowLinks(props: RowLinksProps) {
             sx={(theme) => ({
               justifyContent: 'start',
               gap: `${theme.spacings.md}`,
-              gridAutoColumns: `max-content`,
+              gridAutoColumns: 'max-content',
               alignItems: 'center',
               '&.smGridDirInline > *': {
                 scrollSnapAlign: {

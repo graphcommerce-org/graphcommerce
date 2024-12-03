@@ -1,8 +1,8 @@
 import { getIndexName } from '@graphcommerce/algolia-products/mesh/getIndexName'
 import type {
+  AlgoliarecommendationsHit,
   AlgoliarecommendationsRequest_Input,
   MeshContext,
-  AlgoliarecommendationsHit,
 } from '@graphcommerce/graphql-mesh'
 import { nonNullable } from '@graphcommerce/next-ui'
 import type { GraphQLError, GraphQLResolveInfo } from 'graphql'
@@ -84,7 +84,7 @@ export async function getRecommendations<
     )
   } catch (e) {
     if (isGraphQLError(e)) {
-      console.log(
+      console.info(
         'There was an error retrieving Algolia Recommendations, make sure the recommendation models are created',
         e,
       )

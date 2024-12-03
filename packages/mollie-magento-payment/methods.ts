@@ -1,4 +1,5 @@
-import { PaymentMethodOptionsNoop, PaymentModule } from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentModule } from '@graphcommerce/magento-cart-payment-method'
+import { PaymentMethodOptionsNoop } from '@graphcommerce/magento-cart-payment-method'
 import { MollieActionCard } from './components/MollieActionCard/MollieActionCard'
 import { MollieIdealOptions } from './components/MollieOptionsIssuer/MollieIdealOptions'
 import { MolliePaymentHandler } from './components/MolliePaymentHandler/MolliePaymentHandler'

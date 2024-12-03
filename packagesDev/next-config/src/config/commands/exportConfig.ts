@@ -1,6 +1,6 @@
+import dotenv from 'dotenv'
 import { loadConfig } from '../loadConfig'
 import { exportConfigToEnv } from '../utils/exportConfigToEnv'
-import dotenv from 'dotenv'
 
 dotenv.config()
 

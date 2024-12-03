@@ -1,4 +1,5 @@
-import { CmsPageContent, CmsPageContentProps } from '@graphcommerce/magento-cms'
+import type { CmsPageContentProps } from '@graphcommerce/magento-cms'
+import { CmsPageContent } from '@graphcommerce/magento-cms'
 import { Pagebuilder } from '../Pagebuilder/Pagebuilder'
 
 export function CmsPagePagebuilder(props: CmsPageContentProps) {

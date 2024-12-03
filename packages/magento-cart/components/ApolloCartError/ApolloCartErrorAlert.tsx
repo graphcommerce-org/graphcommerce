@@ -1,7 +1,5 @@
-import {
-  ApolloCustomerErrorAlert,
-  ApolloCustomerErrorAlertProps,
-} from '@graphcommerce/magento-customer'
+import type { ApolloCustomerErrorAlertProps } from '@graphcommerce/magento-customer'
+import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
 
 export type ApolloCartErrorAlertProps = ApolloCustomerErrorAlertProps
 

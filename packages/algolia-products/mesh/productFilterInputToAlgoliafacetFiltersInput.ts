@@ -1,14 +1,14 @@
 import type {
-  ProductAttributeFilterInput,
   AlgolianumericFilters_Input,
+  ProductAttributeFilterInput,
 } from '@graphcommerce/graphql-mesh'
 import {
   isFilterTypeEqual,
-  isFilterTypeRange,
   isFilterTypeMatch,
+  isFilterTypeRange,
 } from '@graphcommerce/magento-product'
-import { InputMaybe } from '@graphcommerce/next-config'
-import { GetStoreConfigReturn } from './getStoreConfig'
+import type { InputMaybe } from '@graphcommerce/next-config'
+import type { GetStoreConfigReturn } from './getStoreConfig'
 import { nonNullable } from './utils'
 
 /**

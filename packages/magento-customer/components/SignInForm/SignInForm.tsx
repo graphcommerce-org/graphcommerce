@@ -1,8 +1,9 @@
 import { PasswordElement } from '@graphcommerce/ecommerce-ui'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import { Button, FormRow, FormActions } from '@graphcommerce/next-ui'
+import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, FormControl, Link, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, FormControl, Link } from '@mui/material'
 import { useSignInForm } from '../../hooks/useSignInForm'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 

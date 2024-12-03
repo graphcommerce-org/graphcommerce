@@ -1,23 +1,21 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { mergeDeep, cloneDeep } from '@apollo/client/utilities'
+import { cloneDeep, mergeDeep } from '@apollo/client/utilities'
 import chalk from 'chalk'
 import { get, set } from 'lodash'
 import snakeCase from 'lodash/snakeCase'
+import type { ZodAny, ZodRawShape, ZodTypeAny } from 'zod'
 import {
   z,
-  ZodObject,
-  ZodBoolean,
   ZodArray,
-  ZodString,
-  ZodNumber,
-  ZodNullable,
-  ZodOptional,
-  ZodEffects,
-  ZodRawShape,
-  ZodEnum,
-  ZodTypeAny,
-  ZodAny,
+  ZodBoolean,
   ZodDefault,
+  ZodEffects,
+  ZodEnum,
+  ZodNullable,
+  ZodNumber,
+  ZodObject,
+  ZodOptional,
+  ZodString,
 } from 'zod'
 import diff from './diff'
 
@@ -69,7 +67,7 @@ export function configToEnvSchema(schema: ZodNode) {
         envSchema[toEnvStr(path)] = z
           .string()
           .optional()
-          .refine(isJSON, { message: `Invalid JSON` })
+          .refine(isJSON, { message: 'Invalid JSON' })
           .transform((val) => (val ? JSON.parse(val) : val))
         envToDot[toEnvStr(path)] = dotNotation(path)
       }
@@ -89,7 +87,7 @@ export function configToEnvSchema(schema: ZodNode) {
         envSchema[toEnvStr(path)] = z
           .string()
           .optional()
-          .refine(isJSON, { message: `Invalid JSON` })
+          .refine(isJSON, { message: 'Invalid JSON' })
           .transform((val) => (val ? JSON.parse(val) : val))
         envToDot[toEnvStr(path)] = dotNotation(path)
       }
@@ -209,7 +207,7 @@ export function formatAppliedEnv(applyResult: ApplyResult) {
   const lines = applyResult.map(({ from, to, envValue, envVar, dotVar, error, warning }) => {
     const fromFmt = chalk.red(JSON.stringify(from))
     const toFmt = chalk.green(JSON.stringify(to))
-    const envVariableFmt = `${envVar}='${envValue}'`
+    const envVariableFmt = `${envVar}`
     const dotVariableFmt = chalk.bold.underline(`${dotVar}`)
 
     const baseLog = `${envVariableFmt} => ${dotVariableFmt}`
@@ -225,18 +223,17 @@ export function formatAppliedEnv(applyResult: ApplyResult) {
 
     if (!dotVar) return chalk.red(`${envVariableFmt} => ignored (no matching config)`)
 
-    if (from === undefined && to === undefined)
-      return ` = ${baseLog}: (ignored, no change/wrong format)`
-    if (from === undefined && to !== undefined) return ` ${chalk.green('+')} ${baseLog}: ${toFmt}`
-    if (from !== undefined && to === undefined) return ` ${chalk.red('-')} ${baseLog}: ${fromFmt}`
-    return ` ${chalk.yellowBright('~')} ${baseLog}: ${fromFmt} => ${toFmt}`
+    if (from === undefined && to === undefined) return ` = ${baseLog}: (ignored)`
+    if (from === undefined && to !== undefined) return ` ${chalk.green('+')} ${baseLog}`
+    if (from !== undefined && to === undefined) return ` ${chalk.red('-')} ${baseLog}`
+    return ` ${chalk.yellowBright('~')} ${baseLog}`
   })
 
-  let header = chalk.blueBright(`info`)
-  if (hasWarning) header = chalk.yellowBright(`warning`)
-  if (hasError) header = chalk.yellowBright(`error`)
+  let header = chalk.blueBright('info')
+  if (hasWarning) header = chalk.yellowBright('warning')
+  if (hasError) header = chalk.yellowBright('error')
 
-  header += `   - Loaded GraphCommerce env variables`
+  header += '   - Loaded GraphCommerce env variables'
 
   return [header, ...lines].join('\n')
 }

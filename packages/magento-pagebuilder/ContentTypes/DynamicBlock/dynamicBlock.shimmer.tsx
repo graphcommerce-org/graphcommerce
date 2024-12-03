@@ -1,6 +1,6 @@
 import { useStyle } from '@magento/venia-ui/lib/classify'
 import Shimmer from '@magento/venia-ui/lib/components/Shimmer'
-import { arrayOf, shape, string, object } from 'prop-types'
+import { arrayOf, object, shape, string } from 'prop-types'
 import React from 'react'
 import defaultClasses from './dynamicBlock.shimmer.module.css'
 
@@ -12,7 +12,7 @@ import defaultClasses from './dynamicBlock.shimmer.module.css'
  * @returns {React.Element} A React component that displays a Dynamic Block Shimmer.
  * @kind functional component
  */
-const DynamicBlockShimmer = (props) => {
+function DynamicBlockShimmer(props) {
   const classes = useStyle(defaultClasses, props.classes)
   const {
     border,

@@ -1,11 +1,9 @@
 import { nonNullable } from '@graphcommerce/next-ui'
 import { cartItemToDatalayerItem } from '../cartItemToDatalayerItem/cartItemToDatalayerItem'
-import {
-  DataLayerCurrencyValue,
-  datalayerItemsToCurrencyValue,
-} from '../datalayerItemsToCurrencyValue/datalayerItemsToCurrencyValue'
-import { GoogleDatalayerItem } from '../productToDatalayerItem/productToDatalayerItem'
-import { Cart_ViewCartFragment } from './Cart_ViewCart.gql'
+import type { DataLayerCurrencyValue } from '../datalayerItemsToCurrencyValue/datalayerItemsToCurrencyValue'
+import { datalayerItemsToCurrencyValue } from '../datalayerItemsToCurrencyValue/datalayerItemsToCurrencyValue'
+import type { GoogleDatalayerItem } from '../productToDatalayerItem/productToDatalayerItem'
+import type { Cart_ViewCartFragment } from './Cart_ViewCart.gql'
 
 export type ViewCart = DataLayerCurrencyValue & { items: GoogleDatalayerItem[] }
 

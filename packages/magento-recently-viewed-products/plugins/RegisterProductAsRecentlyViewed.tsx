@@ -1,6 +1,6 @@
 import { useApolloClient } from '@graphcommerce/graphql'
-import {
-  type AddToCartItemSelector,
+import type {
+  AddToCartItemSelector,
   ProductPageMetaFragment,
   ProductPageMetaProps,
 } from '@graphcommerce/magento-product'

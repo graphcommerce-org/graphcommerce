@@ -1,6 +1,6 @@
-import { NextComponentType, NextPageContext } from 'next'
-import { NextRouter } from 'next/router'
-import React from 'react'
+import type { NextComponentType, NextPageContext } from 'next'
+import type { NextRouter } from 'next/router'
+import type React from 'react'
 
 type PageInfo = Pick<NextRouter, 'asPath' | 'query' | 'locale' | 'pathname'>
 

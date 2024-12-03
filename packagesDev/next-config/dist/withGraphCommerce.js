@@ -31,7 +31,7 @@ function domains(config) {
  * module.exports = withGraphCommerce(nextConfig)
  * ```
  */
-function withGraphCommerce(nextConfig, cwd) {
+function withGraphCommerce(nextConfig, cwd = process.cwd()) {
     graphcommerceConfig ??= (0, loadConfig_1.loadConfig)(cwd);
     const importMetaPaths = (0, configToImportMeta_1.configToImportMeta)(graphcommerceConfig);
     const { storefront } = graphcommerceConfig;
@@ -41,10 +41,10 @@ function withGraphCommerce(nextConfig, cwd) {
     ];
     return {
         ...nextConfig,
+        bundlePagesRouterDependencies: true,
         experimental: {
             ...nextConfig.experimental,
             scrollRestoration: true,
-            bundlePagesExternals: true,
             swcPlugins: [...(nextConfig.experimental?.swcPlugins ?? []), ['@lingui/swc-plugin', {}]],
         },
         i18n: {
@@ -58,6 +58,7 @@ function withGraphCommerce(nextConfig, cwd) {
             remotePatterns: [
                 { hostname: new URL(graphcommerceConfig.magentoEndpoint).hostname },
                 { hostname: 'media.graphassets.com' },
+                { hostname: '*.graphcommerce.org' },
                 ...(nextConfig.images?.remotePatterns ?? []),
             ],
         },

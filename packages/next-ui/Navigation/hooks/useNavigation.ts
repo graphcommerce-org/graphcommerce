@@ -1,5 +1,7 @@
-import { MotionValue, useMotionValue } from 'framer-motion'
-import React, { createContext, useContext } from 'react'
+import type { MotionValue } from 'framer-motion'
+import { useMotionValue } from 'framer-motion'
+import type React from 'react'
+import { createContext, useContext } from 'react'
 
 export type NavigationId = string | number
 export type NavigationPath = NavigationId[]

@@ -1,4 +1,4 @@
-import { Maybe, Region } from '@graphcommerce/graphql-mesh'
+import type { Maybe, Region } from '@graphcommerce/graphql-mesh'
 import { useFindCountry } from './useFindCountry'
 
 export function useFindRegion(

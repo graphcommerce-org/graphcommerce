@@ -1,5 +1,5 @@
-import { FieldValues, Path, UseFormReturn } from 'react-hook-form'
-import { IsRequired } from './useGqlDocumentHandler'
+import type { FieldValues, Path, UseFormReturn } from 'react-hook-form'
+import type { IsRequired } from './useGqlDocumentHandler'
 
 export type UseFormValidReturn<TFieldValues> = Partial<Record<Path<TFieldValues>, boolean>>
 

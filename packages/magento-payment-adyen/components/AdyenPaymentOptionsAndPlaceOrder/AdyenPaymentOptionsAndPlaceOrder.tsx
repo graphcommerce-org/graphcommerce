@@ -1,19 +1,17 @@
 import { FormPersist, TextFieldElement, useFormCompose } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import {
-  PaymentOptionsProps,
-  usePaymentMethodContext,
-} from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
+import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
 import { FormRow } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { useRouter } from 'next/router'
 import { useAdyenCartLock } from '../../hooks/useAdyenCartLock'
 import { useAdyenPaymentMethod } from '../../hooks/useAdyenPaymentMethod'
-import {
-  AdyenPaymentOptionsAndPlaceOrderDocument,
+import type {
   AdyenPaymentOptionsAndPlaceOrderMutation,
   AdyenPaymentOptionsAndPlaceOrderMutationVariables,
 } from './AdyenPaymentOptionsAndPlaceOrder.gql'
+import { AdyenPaymentOptionsAndPlaceOrderDocument } from './AdyenPaymentOptionsAndPlaceOrder.gql'
 
 /** It sets the selected payment method on the cart. */
 export function HppOptions(props: PaymentOptionsProps) {

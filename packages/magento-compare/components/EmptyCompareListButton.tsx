@@ -1,12 +1,13 @@
-import { usePageContext, useGo } from '@graphcommerce/framer-next-pages'
+import { useGo, usePageContext } from '@graphcommerce/framer-next-pages'
 import { useMutation } from '@graphcommerce/graphql'
-import { LinkOrButton, LinkOrButtonProps } from '@graphcommerce/next-ui'
+import type { LinkOrButtonProps } from '@graphcommerce/next-ui'
+import { LinkOrButton } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { DeleteCompareListDocument } from '../graphql/DeleteCompareList.gql'
 import { useCompareList } from '../hooks'
 import { useClearCurrentCompareListUid } from '../hooks/useClearCurrentCompareListUid'
 
-type EmptyCompareListButtonProps = Omit<LinkOrButtonProps, 'onClick' | 'children'>
+export type EmptyCompareListButtonProps = Omit<LinkOrButtonProps, 'onClick' | 'children'>
 
 export function EmptyCompareListButton(props: EmptyCompareListButtonProps) {
   const { button = {}, link = {} } = props

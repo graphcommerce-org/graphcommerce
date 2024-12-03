@@ -1,13 +1,10 @@
 import { useWatch } from '@graphcommerce/ecommerce-ui'
-import {
-  CategoryTreeItem,
-  UseCategoryTreeProps,
-  useCategoryTree,
-} from '@graphcommerce/magento-category'
+import type { CategoryTreeItem, UseCategoryTreeProps } from '@graphcommerce/magento-category'
+import { useCategoryTree } from '@graphcommerce/magento-category'
+import type { ActionCardAccordionProps } from '@graphcommerce/next-ui'
 import {
   ActionCard,
   ActionCardAccordion,
-  ActionCardAccordionProps,
   ActionCardList,
   Button,
   IconSvg,
@@ -15,7 +12,8 @@ import {
   responsiveVal,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import { useProductFiltersPro } from './ProductFiltersPro'
 
 export type ProductFiltersProCategoryAccordionProps = {
@@ -29,7 +27,7 @@ export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCateg
   const { hideTitle, sx, categoryTree, onChange, defaultExpanded } = props
   const { form } = useProductFiltersPro()
 
-  const name = `filters.category_uid.in` as const
+  const name = 'filters.category_uid.in'
   const currentFilter = useWatch({ control: form.control, name })
 
   return (

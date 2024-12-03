@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import { extractAdvancedProps, extractBorderProps } from '../../utils'
-import { ImageContentType } from './types'
+import type { ImageContentType } from './types'
 
 /**
  * Page Builder Image component.

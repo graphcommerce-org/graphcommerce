@@ -1,4 +1,4 @@
-import { Metric } from 'web-vitals'
+import type { Metric } from 'web-vitals'
 import type { AddPaymentInfo } from '../mapping/cartToAddPaymentInfo/cartToAddPaymentInfo'
 import type { AddShippingInfo } from '../mapping/cartToAddShippingInfo/cartToAddShippingInfo'
 import type { BeginCheckout } from '../mapping/cartToBeginCheckout/cartToBeginCheckout'

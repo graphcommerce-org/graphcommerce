@@ -1,11 +1,11 @@
 import type {
-  MenuQueryFragment,
   CategoryTreeItem,
+  MenuQueryFragment,
   NavigationItemFragment,
 } from '@graphcommerce/magento-category'
+import type { ProductFiltersProCategoryAccordionProps } from '@graphcommerce/magento-product'
 import {
   ProductFiltersProCategoryAccordion,
-  ProductFiltersProCategoryAccordionProps,
   useProductFiltersPro,
 } from '@graphcommerce/magento-product'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
@@ -79,7 +79,7 @@ function isParent<U extends TreeItem>(item: U, parent: U): boolean {
   return false
 }
 
-type ProductFiltersProCategorySectionSearchProps = Omit<
+export type ProductFiltersProCategorySectionSearchProps = Omit<
   ProductFiltersProCategoryAccordionProps,
   'categoryTree' | 'onChange'
 > & {
@@ -90,7 +90,7 @@ export function ProductFiltersProCategorySectionSearch(
   props: ProductFiltersProCategorySectionSearchProps,
 ) {
   const { menu } = props
-  const { form, submit, params, aggregations, appliedAggregations } = useProductFiltersPro()
+  const { form, submit, params, aggregations } = useProductFiltersPro()
   const currentFilter = params.filters.category_uid?.in
 
   const categoryTree = useMemo(() => {
@@ -148,9 +148,9 @@ export function ProductFiltersProCategorySectionSearch(
     })
       .slice(1)
       .filter((c) => c.visible)
-  }, [appliedAggregations, currentFilter, menu?.items])
+  }, [aggregations, currentFilter, menu?.items])
 
-  if (!categoryTree) return null
+  if (!categoryTree.length) return null
 
   return (
     <ProductFiltersProCategoryAccordion

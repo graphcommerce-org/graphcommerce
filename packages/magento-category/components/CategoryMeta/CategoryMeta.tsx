@@ -1,8 +1,8 @@
-import { ProductListParams } from '@graphcommerce/magento-product'
+import type { ProductListParams } from '@graphcommerce/magento-product'
 import { PageMeta } from '@graphcommerce/magento-store'
-import { PageMetaProps } from '@graphcommerce/next-ui'
+import type { PageMetaProps } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { CategoryMetaFragment } from './CategoryMeta.gql'
+import type { CategoryMetaFragment } from './CategoryMeta.gql'
 
 export type CategoryMetaProps = CategoryMetaFragment &
   Omit<PageMetaProps, 'title' | 'metaDescription' | 'children'> & {

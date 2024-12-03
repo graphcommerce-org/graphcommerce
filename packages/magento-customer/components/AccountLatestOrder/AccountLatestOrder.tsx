@@ -1,7 +1,7 @@
 import { SectionContainer } from '@graphcommerce/next-ui'
 import React from 'react'
 import useOrderCardItemImages from '../../hooks/useOrderCardItemImages'
-import { AccountOrdersFragment } from '../AccountOrders/AccountOrders.gql'
+import type { AccountOrdersFragment } from '../AccountOrders/AccountOrders.gql'
 import { NoOrdersFound } from '../NoOrdersFound/NoOrdersFound'
 import { OrderCard } from '../OrderCard/OrderCard'
 

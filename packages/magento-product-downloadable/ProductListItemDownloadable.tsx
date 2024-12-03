@@ -1,5 +1,6 @@
-import { ProductListItem, ProductListItemProps } from '@graphcommerce/magento-product'
-import { ProductListItemDownloadableFragment } from './ProductListItemDownloadable.gql'
+import type { ProductListItemProps } from '@graphcommerce/magento-product'
+import { ProductListItem } from '@graphcommerce/magento-product'
+import type { ProductListItemDownloadableFragment } from './ProductListItemDownloadable.gql'
 
 export type ProductListItemDownloadableProps = ProductListItemDownloadableFragment &
   ProductListItemProps

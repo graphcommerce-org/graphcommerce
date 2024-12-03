@@ -1,4 +1,4 @@
-import { PreviewData } from '@graphcommerce/graphql'
+import type { PreviewData } from '@graphcommerce/graphql'
 
 export function previewModeDefaults(): PreviewData {
   return {}

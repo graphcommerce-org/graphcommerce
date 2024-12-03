@@ -5,21 +5,18 @@ import {
 } from '@graphcommerce/ecommerce-ui'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import {
+  Button,
   Form,
   FormActions,
+  FormDivider,
   FormRow,
   MessageSnackbar,
-  FormDivider,
-  Button,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
-import {
-  ChangePasswordDocument,
-  ChangePasswordMutation,
-  ChangePasswordMutationVariables,
-} from './ChangePassword.gql'
+import type { ChangePasswordMutation, ChangePasswordMutationVariables } from './ChangePassword.gql'
+import { ChangePasswordDocument } from './ChangePassword.gql'
 
 export function ChangePasswordForm() {
   const form = useFormGqlMutation<

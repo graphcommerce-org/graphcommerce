@@ -1,5 +1,6 @@
-import { GetServerSidePropsContext, GetStaticPathsResult } from 'next'
-import { getServerSideSitemapLegacy, ISitemapField } from 'next-sitemap'
+import type { GetServerSidePropsContext, GetStaticPathsResult } from 'next'
+import type { ISitemapField } from 'next-sitemap'
+import { getServerSideSitemapLegacy } from 'next-sitemap'
 import { canonicalize } from '../PageMeta/canonicalize'
 
 export function excludeSitemap(excludes: string[]) {

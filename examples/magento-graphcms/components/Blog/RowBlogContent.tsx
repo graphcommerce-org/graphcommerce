@@ -1,4 +1,4 @@
-import { RichText } from '@graphcommerce/graphcms-ui'
+import { RichText } from '@graphcommerce/hygraph-ui'
 import { BlogContent } from '@graphcommerce/next-ui'
 import { RowBlogContentFragment } from './RowBlogContent.gql'
 

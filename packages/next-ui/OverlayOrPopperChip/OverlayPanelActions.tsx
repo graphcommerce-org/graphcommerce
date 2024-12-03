@@ -7,14 +7,14 @@ import { OverlayStickyBottom } from '../Overlay/components/OverlayStickyBottom'
 import { extendableComponent } from '../Styles'
 import { useFabSize } from '../Theme'
 import { iconClose } from '../icons'
-import { PanelActionsProps } from './types'
+import type { PanelActionsProps } from './types'
 
 const { classes } = extendableComponent(
   'OverlayPanelActions' as const,
   ['root', 'header', 'content', 'footer'] as const,
 )
 
-export const OverlayPanelActions = (props: PanelActionsProps) => {
+export function OverlayPanelActions(props: PanelActionsProps) {
   const { title, children, onReset, onApply, onClose, sx = [] } = props
 
   const fabSize = useFabSize('small')

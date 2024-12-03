@@ -1,6 +1,6 @@
-import { TypographyProps } from '@mui/material'
-import { ContentType, ContentTypeConfig } from '../../types'
-import { AdvancedProps } from '../../utils'
+import type { TypographyProps } from '@mui/material'
+import type { ContentType, ContentTypeConfig } from '../../types'
+import type { AdvancedProps } from '../../utils'
 
 export type HeadingConfig = ContentTypeConfig<'heading'> & {
   appearance: 'default'

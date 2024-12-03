@@ -1,12 +1,13 @@
 import { Box } from '@mui/material'
-import { SectionHeader, SectionHeaderProps } from '../SectionHeader/SectionHeader'
+import type { SectionHeaderProps } from '../SectionHeader/SectionHeader'
+import { SectionHeader } from '../SectionHeader/SectionHeader'
 import { extendableComponent } from '../Styles'
 
 export type SectionContainerProps = SectionHeaderProps &
   OwnerState & { children?: React.ReactNode; className?: string }
 
 type OwnerState = { borderBottom?: boolean }
-const name = 'SectionContainer' as const
+const name = 'SectionContainer'
 const parts = ['root'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 

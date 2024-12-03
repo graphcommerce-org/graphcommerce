@@ -1,4 +1,4 @@
-import { ProductPageAddToCartRowProps } from '@graphcommerce/magento-product'
+import type { ProductPageAddToCartRowProps } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { CompareProductToggle } from '../components'
 

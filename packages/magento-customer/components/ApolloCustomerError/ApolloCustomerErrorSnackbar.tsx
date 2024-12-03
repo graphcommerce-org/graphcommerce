@@ -1,4 +1,5 @@
-import { ApolloErrorSnackbar, ApolloErrorSnackbarProps } from '@graphcommerce/ecommerce-ui'
+import type { ApolloErrorSnackbarProps } from '@graphcommerce/ecommerce-ui'
+import { ApolloErrorSnackbar } from '@graphcommerce/ecommerce-ui'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 import { useCustomerSession } from '../../hooks/useCustomerSession'

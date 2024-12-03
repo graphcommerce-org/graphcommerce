@@ -1,10 +1,10 @@
+import type { UseFormComposeOptions } from '@graphcommerce/ecommerce-ui'
 import {
   CheckboxElement,
   FormAutoSubmit,
   FormPersist,
   TelephoneElement,
   TextFieldElement,
-  UseFormComposeOptions,
   useFormCompose,
 } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
@@ -13,7 +13,7 @@ import {
   useCartQuery,
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
-import { CartAddressFragment } from '@graphcommerce/magento-cart/components/CartAddress/CartAddress.gql'
+import type { CartAddressFragment } from '@graphcommerce/magento-cart/components/CartAddress/CartAddress.gql'
 import {
   AddressFields,
   CompanyFields,
@@ -24,7 +24,7 @@ import {
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Form, FormRow } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { isCartAddressACustomerAddress } from '../../utils/findCustomerAddressFromCartAddress'
 import { isSameAddress } from '../../utils/isSameAddress'

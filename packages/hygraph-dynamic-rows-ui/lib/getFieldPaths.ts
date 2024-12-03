@@ -1,4 +1,4 @@
-import { IntrospectionField, IntrospectionOutputTypeRef, IntrospectionSchema } from 'graphql'
+import type { IntrospectionField, IntrospectionOutputTypeRef, IntrospectionSchema } from 'graphql'
 
 function getType(type: IntrospectionOutputTypeRef) {
   switch (type.kind) {

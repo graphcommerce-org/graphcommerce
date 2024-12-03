@@ -1,4 +1,5 @@
-import { RowLinks, RowLinksProps } from '../RowLinks'
+import type { RowLinksProps } from '../RowLinks'
+import { RowLinks } from '../RowLinks'
 
 export function VariantLogoSwiper(props: RowLinksProps) {
   const { sx = [], ...rowLinksProps } = props

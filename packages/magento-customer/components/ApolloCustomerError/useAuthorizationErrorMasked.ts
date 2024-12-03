@@ -1,4 +1,4 @@
-import { ApolloError } from '@graphcommerce/graphql'
+import type { ApolloError } from '@graphcommerce/graphql'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { i18n } from '@lingui/core'
 import { useCustomerSession } from '../../hooks/useCustomerSession'

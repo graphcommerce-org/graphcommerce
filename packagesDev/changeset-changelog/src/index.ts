@@ -1,4 +1,4 @@
-import githubDefault from '@changesets/changelog-github'
+import type githubDefault from '@changesets/changelog-github'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { getInfo, getInfoFromPullRequest } from '@changesets/get-github-info'
 

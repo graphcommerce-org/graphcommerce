@@ -1,4 +1,5 @@
-import { MotionConfigContext, Point, Tween } from 'framer-motion'
+import type { Point, Tween } from 'framer-motion'
+import { MotionConfigContext } from 'framer-motion'
 import { animate } from 'popmotion'
 import { useCallback, useContext } from 'react'
 import { distanceAnimationDuration } from '../utils/distanceAnimationDuration'
@@ -40,20 +41,20 @@ export function useScrollTo() {
         (Math.round(ref.scrollLeft) !== to.x || Math.round(ref.scrollTop) !== to.y)
       ) {
         console.warn(
-          `scrollTo triggered while another animation is in progress. This cancels the current animation and creates a new one.`,
+          'scrollTo triggered while another animation is in progress. This cancels the current animation and creates a new one.',
         )
       }
 
       if (process.env.NODE_ENV === 'development' && __retrigger > 5) {
         console.error(
-          `scrollTo triggered more than 5 times, is the element resizing constantly? Bailing out.`,
+          'scrollTo triggered more than 5 times, is the element resizing constantly? Bailing out.',
         )
         return
       }
 
       if (process.env.NODE_ENV === 'development' && __retrigger > 0) {
         console.warn(
-          `scrollTo re-animating to because the final location changed during animation.`,
+          'scrollTo re-animating to because the final location changed during animation.',
         )
       }
 

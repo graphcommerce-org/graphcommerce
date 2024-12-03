@@ -1,5 +1,6 @@
 import { useFormState } from '@graphcommerce/ecommerce-ui'
-import { ErrorSnackbarProps, MessageSnackbarProps, nonNullable } from '@graphcommerce/next-ui'
+import type { ErrorSnackbarProps, MessageSnackbarProps } from '@graphcommerce/next-ui'
+import { nonNullable } from '@graphcommerce/next-ui'
 import { useMemo } from 'react'
 import { AddProductsToCartSnackbarMessage } from './AddProductsToCartSnackbarMessage'
 import { findAddedItems } from './findAddedItems'

@@ -1,5 +1,5 @@
 import { ApolloError } from '@graphcommerce/graphql'
-import type { GraphQLError } from 'graphql'
+import type { GraphQLFormattedError } from 'graphql'
 
 export type ErrorCategory =
   | 'internal'
@@ -28,13 +28,13 @@ export type GraphQLErrorByCategoryPropsNoExtract = Omit<GraphQLErrorByCategoryPr
  */
 export function graphqlErrorByCategory(
   props: GraphQLErrorByCategoryPropsNoExtract,
-): [ApolloError, GraphQLError | undefined]
+): [ApolloError, GraphQLFormattedError | undefined]
 export function graphqlErrorByCategory(
   props: GraphQLErrorByCategoryProps,
-): [ApolloError | undefined, GraphQLError | undefined]
+): [ApolloError | undefined, GraphQLFormattedError | undefined]
 export function graphqlErrorByCategory(
   props: GraphQLErrorByCategoryProps | GraphQLErrorByCategoryPropsNoExtract,
-): [ApolloError | undefined, GraphQLError | undefined] {
+): [ApolloError | undefined, GraphQLFormattedError | undefined] {
   const { category, error, extract = true, mask } = props
 
   if (!error) return [error, undefined]
@@ -46,9 +46,9 @@ export function graphqlErrorByCategory(
     ),
   })
 
-  const graphqlError = error.graphQLErrors.find((err) => err?.extensions?.category === category)
+  let graphqlError = error.graphQLErrors.find((err) => err?.extensions?.category === category)
   if (mask && graphqlError) {
-    graphqlError.message = mask
+    graphqlError = { ...graphqlError, message: mask }
   }
 
   return newError.graphQLErrors.length === 0 && !newError.networkError

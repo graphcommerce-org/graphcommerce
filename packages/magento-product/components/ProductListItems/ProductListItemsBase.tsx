@@ -1,9 +1,10 @@
 import { LazyHydrate, RenderType, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
-import { Box, BoxProps, Breakpoint, Theme, useTheme } from '@mui/material'
+import type { BoxProps, Breakpoint, Theme } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import { AddProductsToCartForm } from '../AddProductsToCart'
-import { ProductListItemProps } from '../ProductListItem/ProductListItem'
-import { ProductListItemsFragment } from './ProductListItems.gql'
-import { ProductListItemRenderer } from './renderer'
+import type { ProductListItemProps } from '../ProductListItem/ProductListItem'
+import type { ProductListItemsFragment } from './ProductListItems.gql'
+import type { ProductListItemRenderer } from './renderer'
 
 type ComponentState = {
   size?: 'normal' | 'small'
@@ -37,6 +38,7 @@ export type ProductItemsGridProps = ProductListItemsFragment & {
   sx?: BoxProps['sx']
   columns?: ((theme: Theme) => ColumnsConfig) | ColumnsConfig
   containerRef?: React.Ref<HTMLDivElement>
+  children?: React.ReactNode
 } & Pick<ProductListItemProps, 'onClick' | 'titleComponent'> &
   ComponentState
 
@@ -56,6 +58,7 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
     titleComponent,
     onClick,
     columns,
+    children,
   } = props
 
   const theme = useTheme()
@@ -123,6 +126,7 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
             </LazyHydrate>
           ) : null,
         )}
+        {children}
       </Box>
     </AddProductsToCartForm>
   )

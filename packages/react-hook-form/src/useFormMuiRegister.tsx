@@ -1,6 +1,6 @@
-import {
-  FieldValues,
+import type {
   FieldPath,
+  FieldValues,
   RegisterOptions,
   UseFormRegisterReturn,
   UseFormReturn,

@@ -1,4 +1,5 @@
-import { Box, SxProps, Theme, Typography } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
 import { responsiveVal } from '../../Styles/responsiveVal'
@@ -13,7 +14,7 @@ export type ButtonLinkListProps = {
 
 type OwnerState = { containsBigLinks: boolean }
 
-const compName = 'ButtonLinkList' as const
+const compName = 'ButtonLinkList'
 const parts = ['root', 'links'] as const
 const { withState } = extendableComponent<OwnerState, typeof compName, typeof parts>(
   compName,

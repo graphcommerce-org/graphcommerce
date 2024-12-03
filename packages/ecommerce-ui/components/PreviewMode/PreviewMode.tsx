@@ -1,6 +1,5 @@
-import { PreviewData } from '@graphcommerce/graphql'
+import type { PreviewData } from '@graphcommerce/graphql'
 import {
-  Button,
   IconSvg,
   MessageSnackbar,
   iconChevronRight,
@@ -16,7 +15,6 @@ import { TextFieldElement } from '../FormComponents'
 import { LightTooltip } from './LightTooltip'
 import { PreviewModeActions } from './PreviewModeActions'
 import { PreviewModeToolbar } from './PreviewModeToolbar'
-import { previewModeDefaults } from './previewModeDefaults'
 
 export function getPreviewUrl() {
   const url = new URL(window.location.href)
@@ -26,9 +24,7 @@ export function getPreviewUrl() {
 }
 
 function PreviewModeEnabled() {
-  const form = useForm<{ secret: string; previewData: PreviewData }>({
-    defaultValues: { previewData: previewModeDefaults() },
-  })
+  const form = useForm<{ secret: string; previewData: PreviewData }>({})
 
   const submit = form.handleSubmit((formValues) => {
     const url = getPreviewUrl()
@@ -51,6 +47,7 @@ function PreviewModeEnabled() {
   const revalidateHandler = form.handleSubmit((formValues) => {
     const url = getPreviewUrl()
     Object.entries(formValues).forEach(([key, value]) => {
+      // eslint-disable-next-line @typescript-eslint/no-base-to-string
       url.searchParams.append(key, `${value}`)
     })
     url.searchParams.append('action', 'revalidate')
@@ -102,7 +99,14 @@ function PreviewModeEnabled() {
 }
 
 function PreviewModeDisabled() {
-  const form = useForm<{ secret: string }>({})
+  const form = useForm<{ secret: string }>({
+    defaultValues: {
+      secret:
+        process.env.NODE_ENV === 'development'
+          ? (import.meta.graphCommerce.previewSecret ?? '')
+          : '',
+    },
+  })
 
   const submit = form.handleSubmit((formValues) => {
     const url = getPreviewUrl()

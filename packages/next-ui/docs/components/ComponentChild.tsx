@@ -1,13 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { styled } from '@mui/material'
-import { ComponentProps } from 'react'
+import type { ComponentProps } from 'react'
 
 // ---- Setup ----
 
 // To be able to select children from the consuming side, we define the classes.
 // Minimal utility to convert the classes to selectors. Hover over `selectors` to see what it means.
-const componentName = 'MyComponent' as const
+const componentName = 'MyComponent'
 const { classes, selectors } = extendableComponent(componentName, ['root', 'child'] as const)
 
 // ---- Root component ----

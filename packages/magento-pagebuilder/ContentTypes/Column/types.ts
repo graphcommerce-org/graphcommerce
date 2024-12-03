@@ -1,6 +1,6 @@
-import { ImageBackgroundProps } from '../../components/MediaBackground/getImageBackgroundProps'
-import { ContentType, ContentTypeConfig } from '../../types'
-import { AdvancedProps, VerticalAlignment } from '../../utils'
+import type { ImageBackgroundProps } from '../../components/MediaBackground/getImageBackgroundProps'
+import type { ContentType, ContentTypeConfig } from '../../types'
+import type { AdvancedProps, VerticalAlignment } from '../../utils'
 
 type ColumnConfig = ContentTypeConfig<'button-item'> & {
   appearance: 'align-top' | 'align-center' | 'align-bottom' | 'full-height'

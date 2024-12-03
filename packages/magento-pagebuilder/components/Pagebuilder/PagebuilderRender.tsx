@@ -1,4 +1,4 @@
-import { ContentTypeConfigWithString } from '../../types'
+import type { ContentTypeConfigWithString } from '../../types'
 import { usePagebuilderContext } from './PagebuilderProvider'
 
 export function PagebuilderRender(props: { contentItem: ContentTypeConfigWithString }) {

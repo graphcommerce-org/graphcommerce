@@ -1,5 +1,5 @@
-import { ContentType, ContentTypeConfig, ContentTypeConfigChildren } from '../../types'
-import { AdvancedProps } from '../../utils'
+import type { ContentType, ContentTypeConfig, ContentTypeConfigChildren } from '../../types'
+import type { AdvancedProps } from '../../utils'
 
 export type HtmlConfig = ContentTypeConfig<'html'>
 

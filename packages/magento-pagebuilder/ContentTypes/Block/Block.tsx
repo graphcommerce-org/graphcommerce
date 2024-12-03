@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import { PagebuilderRender } from '../../components/Pagebuilder/PagebuilderRender'
 import { extractAdvancedProps } from '../../utils'
-import { BlockContentType } from './types'
+import type { BlockContentType } from './types'
 
 /**
  * Page Builder Block component.

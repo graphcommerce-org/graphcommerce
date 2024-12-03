@@ -1,4 +1,4 @@
-import { MeshContext, QuerycategoryListArgs } from '@graphcommerce/graphql-mesh'
+import type { MeshContext, QuerycategoryListArgs } from '@graphcommerce/graphql-mesh'
 import type { GraphQLResolveInfo } from 'graphql'
 import { getCategoryResultsInput } from './getCategoryResultsInput'
 import { getIndexName } from './getIndexName'

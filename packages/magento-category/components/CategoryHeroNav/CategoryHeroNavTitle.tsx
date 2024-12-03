@@ -1,8 +1,8 @@
 import { LayoutTitle } from '@graphcommerce/next-ui'
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import { memo } from 'react'
 
-type CategoryHeroNavTitleProps = {
+export type CategoryHeroNavTitleProps = {
   children: React.ReactNode
   sx?: SxProps<Theme>
 }

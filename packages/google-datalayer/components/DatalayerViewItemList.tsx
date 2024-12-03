@@ -1,5 +1,7 @@
-import { ProductItemsGridProps, useProductFiltersPro } from '@graphcommerce/magento-product'
+import type { ProductItemsGridProps } from '@graphcommerce/magento-product'
+import { useProductFiltersPro } from '@graphcommerce/magento-product'
 import { useMemoObject } from '@graphcommerce/next-ui'
+import { useDebounce } from '@graphcommerce/react-hook-form'
 import { useEventCallback } from '@mui/material'
 import React, { useContext, useEffect, useRef } from 'react'
 import { useSendEvent } from '../api/sendEvent'
@@ -7,7 +9,6 @@ import {
   productItemsToViewItemList,
   viewItemListToSelectItem,
 } from '../mapping/productItemsToViewItemList/productItemsToViewItemList'
-import { useDebounce } from '@graphcommerce/react-hook-form'
 
 const DatalayerSelectItemContext = React.createContext<((itemId: string) => void) | undefined>(
   undefined,
@@ -17,7 +18,7 @@ export function useViewItemList() {
   const context = useContext(DatalayerSelectItemContext)
   if (!context) {
     return (itemId: string) => {
-      console.log(`No DatalayerSelectItemContext provider found, trying to select item ${itemId}`)
+      console.warn(`No DatalayerSelectItemContext provider found, trying to select item ${itemId}`)
     }
   }
   return context

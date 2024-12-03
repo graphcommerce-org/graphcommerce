@@ -1,4 +1,4 @@
-import { AddToCartItemSelector, ProductPagePriceProps } from '@graphcommerce/magento-product'
+import type { AddToCartItemSelector, ProductPagePriceProps } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useConfigurableSelectedVariant } from '../../hooks'
 

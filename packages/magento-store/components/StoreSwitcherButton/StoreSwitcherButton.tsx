@@ -1,12 +1,13 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { FlagAvatar, extendableComponent } from '@graphcommerce/next-ui'
-import { Button, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Button } from '@mui/material'
 import { useRouter } from 'next/router'
 import { StoreConfigDocument } from '../../StoreConfig.gql'
 
 export type StoreSwitcherButtonProps = { sx?: SxProps<Theme> }
 
-const name = 'StoreSwitcherButton' as const
+const name = 'StoreSwitcherButton'
 const parts = ['root', 'avatar'] as const
 const { classes } = extendableComponent(name, parts)
 

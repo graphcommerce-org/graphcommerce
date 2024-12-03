@@ -2,13 +2,12 @@ import { useWatch } from '@graphcommerce/ecommerce-ui'
 import { InContextMask } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { AddToCartItemSelector, useFormAddProductsToCart } from '../AddProductsToCart'
-import { ProductPagePriceFragment } from './ProductPagePrice.gql'
+import type { AddToCartItemSelector } from '../AddProductsToCart'
+import { useFormAddProductsToCart } from '../AddProductsToCart'
+import type { ProductPagePriceFragment } from './ProductPagePrice.gql'
 import { getProductTierPrice } from './getProductTierPrice'
-import {
-  UseCustomizableOptionPriceProps,
-  useCustomizableOptionPrice,
-} from './useCustomizableOptionPrice'
+import type { UseCustomizableOptionPriceProps } from './useCustomizableOptionPrice'
+import { useCustomizableOptionPrice } from './useCustomizableOptionPrice'
 
 export type ProductPagePriceProps = { product: ProductPagePriceFragment } & AddToCartItemSelector &
   UseCustomizableOptionPriceProps

@@ -1,4 +1,5 @@
-import { Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import { extendableComponent } from '../Styles'
 
 export type UspListProps = OwnerState & {
@@ -7,7 +8,7 @@ export type UspListProps = OwnerState & {
 }
 
 type OwnerState = { size?: 'small' | 'medium' }
-const name = 'UspList' as const
+const name = 'UspList'
 const parts = ['root'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 

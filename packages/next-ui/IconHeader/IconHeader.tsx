@@ -1,12 +1,14 @@
-import { Box, SxProps, Theme, Typography } from '@mui/material'
-import { IconSvg, IconSvgProps } from '../IconSvg'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Typography } from '@mui/material'
+import type { IconSvgProps } from '../IconSvg'
+import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
 
 // TODO: remove all occurrences. deprecated component
 
 export type IconHeaderSize = 'small' | 'medium' | 'large'
 
-type IconHeaderProps = {
+export type IconHeaderProps = {
   children: React.ReactNode
   size?: IconHeaderSize
   noMargin?: boolean

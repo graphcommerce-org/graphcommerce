@@ -1,5 +1,6 @@
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import { useCompareList } from '../hooks/useCompareList'
 import { useCompareVisibleItems } from './CompareListForm'
 import { CompareListRow } from './CompareListRow'

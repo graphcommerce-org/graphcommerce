@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { ItemState } from '../types'
+import type { ItemState } from '../types'
 import { useScrollerContext } from './useScrollerContext'
 
 export function useWatchItems(callback: (item: ItemState, items: ItemState[]) => void) {

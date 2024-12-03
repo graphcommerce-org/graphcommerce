@@ -1,7 +1,5 @@
-import {
-  SelectedCustomizableOptions,
-  CartItemActionCardProps,
-} from '@graphcommerce/magento-cart-items'
+import type { CartItemActionCardProps } from '@graphcommerce/magento-cart-items'
+import { SelectedCustomizableOptions } from '@graphcommerce/magento-cart-items'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { isTypename } from '@graphcommerce/next-ui'
 

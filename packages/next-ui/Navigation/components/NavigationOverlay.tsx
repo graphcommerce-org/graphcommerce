@@ -1,6 +1,7 @@
-import { useMotionValueValue, useMotionSelector, dvw } from '@graphcommerce/framer-utils'
+import { dvw, useMotionSelector, useMotionValueValue } from '@graphcommerce/framer-utils'
 import { i18n } from '@lingui/core'
-import { useTheme, Box, Fab, SxProps, Theme, useEventCallback, styled } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Fab, styled, useEventCallback, useTheme } from '@mui/material'
 import { m } from 'framer-motion'
 import React, { useEffect, useRef } from 'react'
 import type { LiteralUnion } from 'type-fest'
@@ -11,9 +12,9 @@ import { OverlaySsr } from '../../Overlay/components/OverlaySsr'
 import { extendableComponent } from '../../Styles/extendableComponent'
 import { useFabSize } from '../../Theme'
 import { useMatchMedia } from '../../hooks'
-import { iconClose, iconChevronLeft } from '../../icons'
+import { iconChevronLeft, iconClose } from '../../icons'
 import { useNavigation } from '../hooks/useNavigation'
-import { mouseEventPref } from './NavigationItem'
+import type { mouseEventPref } from './NavigationItem'
 import { NavigationList } from './NavigationList'
 import { NavigationTitle } from './NavigationTitle'
 
@@ -22,8 +23,9 @@ type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
 type LayoutOverlayAlign = 'start' | 'end' | 'center' | 'stretch'
 type ItemPadding = LiteralUnion<keyof Theme['spacings'], string | number>
 
-type NavigationOverlayProps = {
+export type NavigationOverlayProps = {
   sx?: SxProps<Theme>
+  overlaySx?: SxProps<Theme>
   stretchColumns?: boolean
   variantSm: LayoutOverlayVariant
   variantMd: LayoutOverlayVariant
@@ -39,12 +41,13 @@ type NavigationOverlayProps = {
 const MotionDiv = styled(m.div)({})
 
 const componentName = 'Navigation'
-const parts = ['root', 'navigation', 'header', 'column'] as const
+const parts = ['root', 'navigation', 'header', 'column', 'wrapper'] as const
 const { classes } = extendableComponent(componentName, parts)
 
 export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
   const {
     sx,
+    overlaySx,
     stretchColumns,
     variantMd,
     variantSm,
@@ -124,12 +127,15 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
           animating.set(false)
         },
       }}
-      sx={{
-        zIndex: 'drawer',
-        '& .LayoutOverlayBase-overlayPane': {
-          minWidth: itemWidthMd,
+      sx={[
+        {
+          zIndex: 'drawer',
+          '& .LayoutOverlayBase-overlayPane': {
+            minWidth: itemWidthMd,
+          },
         },
-      }}
+        ...(Array.isArray(overlaySx) ? overlaySx : [overlaySx]),
+      ]}
     >
       <MotionDiv layout layoutDependency={selectionValue} sx={{ display: 'grid' }}>
         <Box
@@ -182,6 +188,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
       </MotionDiv>
       <MotionDiv layout='position' layoutDependency={selectionValue} sx={{ display: 'grid' }}>
         <Box
+          className={classes.wrapper}
           sx={[
             (theme) => ({
               display: 'grid',

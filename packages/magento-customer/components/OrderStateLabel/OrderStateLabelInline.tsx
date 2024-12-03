@@ -1,7 +1,8 @@
 import { alpha } from '@mui/material'
-import { OrderStateLabel, OrderStateLabelProps } from './OrderStateLabel'
+import type { OrderStateLabelProps } from './OrderStateLabel'
+import { OrderStateLabel } from './OrderStateLabel'
 
-type OrderStateLabelInlineProps = OrderStateLabelProps
+export type OrderStateLabelInlineProps = OrderStateLabelProps
 
 export function OrderStateLabelInline(props: OrderStateLabelInlineProps) {
   const { sx = [] } = props
@@ -14,7 +15,7 @@ export function OrderStateLabelInline(props: OrderStateLabelInlineProps) {
         (theme) => ({
           fontStyle: 'normal',
           display: 'inline-block',
-          padding: `0 6px`,
+          padding: '0 6px',
           borderRadius: '3px',
           fontWeight: 'normal',
           background: alpha(theme.palette.secondary.main, 0.125),

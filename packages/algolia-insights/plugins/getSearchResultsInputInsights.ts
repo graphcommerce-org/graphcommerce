@@ -1,5 +1,5 @@
 import type { getSearchResultsInput as getSearchResultsInputType } from '@graphcommerce/algolia-products'
-import { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
+import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 
 export const config: PluginConfig = {
   type: 'function',

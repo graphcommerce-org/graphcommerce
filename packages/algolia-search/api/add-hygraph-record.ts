@@ -1,7 +1,7 @@
-import { Page } from '@graphcommerce/graphql-mesh'
+import type { Page } from '@graphcommerce/graphql-mesh'
 import { verifyWebhookSignature } from '@hygraph/utils'
 import algoliasearch from 'algoliasearch'
-import { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 type AlgoliaResult = {
   objectID: string

@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { defaultRenderers } from './defaultRenderers'
 import { defaultSxRenderer } from './defaultSxRenderer'
-import {
+import type {
   AdditionalProps,
-  Renderers,
+  ElementNode,
+  ElementOrTextNode,
   Renderer,
+  Renderers,
+  SimpleElement,
   SxRenderer,
   TextNode,
-  ElementOrTextNode,
-  ElementNode,
-  SimpleElement,
 } from './types'
 
 const sxArr = (sxAny?: SxProps<Theme> | false) => {
@@ -92,7 +92,7 @@ function RenderNode(node: ElementOrTextNode & AdditionalProps) {
 
   if (process.env.NODE_ENV !== 'production') {
     console.error(node)
-    throw Error(`RichText: Node not recognized`)
+    throw Error('RichText: Node not recognized')
   }
 
   return null

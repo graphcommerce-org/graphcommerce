@@ -1,7 +1,7 @@
-import { MoneyProps } from '@graphcommerce/magento-store'
-import { TypeRenderer } from '@graphcommerce/next-ui'
-import { ProductListItemConfigurableFragment } from '../components/ProductListItemConfigurable/ProductListItemConfigurable.gql'
-import { SwatchDataFragment } from './SwatchData.gql'
+import type { MoneyProps } from '@graphcommerce/magento-store'
+import type { TypeRenderer } from '@graphcommerce/next-ui'
+import type { ProductListItemConfigurableFragment } from '../components/ProductListItemConfigurable/ProductListItemConfigurable.gql'
+import type { SwatchDataFragment } from './SwatchData.gql'
 
 type ConfigurableOption = NonNullable<
   NonNullable<ProductListItemConfigurableFragment['configurable_options']>[0]
