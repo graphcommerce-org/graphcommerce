@@ -6,7 +6,8 @@ import {
 import { SectionContainer } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Link, SxProps, Theme } from '@mui/material'
-import { ComponentProps, useMemo, useRef } from 'react'
+import { useRouter } from 'next/router'
+import { ComponentProps, useEffect, useMemo, useRef } from 'react'
 import type { Entries } from 'type-fest'
 import { searchOverlayIsOpen, useSearchItem, useSearchOverlay } from './SearchOverlayProvider'
 import { SearchPlaceholder } from './SearchPlaceholder'
@@ -30,7 +31,8 @@ function withUseMenu<T extends keyof ProductListItemRenderer>(
     const sx: SxProps<Theme> = [
       root.selected &&
         ((theme) => ({
-          outline: `2px solid ${theme.palette.secondary.main}`,
+          outline: `2px solid ${theme.palette.primary.main}`,
+          outlineOffset: '7px',
         })),
     ]
 
@@ -54,6 +56,17 @@ export function SearchOverlayProducts({ productListRenderer }: SearchOverlayProd
 
   const term = params.search
   const noResult = products?.total_count === 0
+
+  const { events } = useRouter()
+  const closeOverlay = () => searchOverlayIsOpen.set(false)
+
+  useEffect(() => {
+    events.on('routeChangeStart', closeOverlay)
+
+    return () => {
+      events.off('routeChangeStart', closeOverlay)
+    }
+  }, [events, products?.total_count])
 
   return (
     <>
