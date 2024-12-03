@@ -19,7 +19,7 @@ import type {
 } from './UpdateCustomerEmail.gql'
 import { UpdateCustomerEmailDocument } from './UpdateCustomerEmail.gql'
 
-type UpdateCustomerEmailFormProps = {
+export type UpdateCustomerEmailFormProps = {
   email: string
 }
 

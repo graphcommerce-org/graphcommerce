@@ -30,7 +30,7 @@ import type {
 } from './SetCustomerShippingBillingAddressOnCart.gql'
 import { SetCustomerShippingBillingAddressOnCartDocument } from './SetCustomerShippingBillingAddressOnCart.gql'
 
-type CustomerAddressListProps = Pick<UseFormComposeOptions, 'step'> & {
+export type CustomerAddressListProps = Pick<UseFormComposeOptions, 'step'> & {
   children?: React.ReactNode
   sx?: SxProps<Theme>
 }

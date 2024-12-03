@@ -2,7 +2,7 @@ import { Button, IconSvg, MessageSnackbar, iconChevronRight } from '@graphcommer
 import { Trans } from '@lingui/react'
 import type { SetStateAction } from 'react'
 
-type CompareMessageSnackbarProps = {
+export type CompareMessageSnackbarProps = {
   count: number | undefined
   name: string | null | undefined
   displayMessageBar: boolean

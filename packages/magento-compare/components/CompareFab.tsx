@@ -18,7 +18,7 @@ export type CompareFabProps = {
   sx?: SxProps<Theme>
 } & Pick<ButtonProps, 'color' | 'size' | 'variant'>
 
-type CompareFabContentProps = CompareFabProps & { total_quantity: number }
+export type CompareFabContentProps = CompareFabProps & { total_quantity: number }
 
 const MotionDiv = styled(m.div)({})
 

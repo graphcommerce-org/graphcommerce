@@ -1,7 +1,7 @@
 import { useScrollTo, useScrollerContext } from '@graphcommerce/framer-scroller'
 import { useEffect } from 'react'
 
-type AutoScrollProps = {
+export type AutoScrollProps = {
   timePerSlide?: number
   pause?: boolean
 }

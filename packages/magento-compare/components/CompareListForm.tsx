@@ -4,7 +4,7 @@ import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import React, { createContext, useContext, useEffect, useMemo, useRef } from 'react'
 import { useCompareList } from '../hooks'
 
-type CompareListFormProps = { children?: React.ReactNode }
+export type CompareListFormProps = { children?: React.ReactNode }
 
 type FormFields = { selected: number[] }
 

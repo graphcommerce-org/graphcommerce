@@ -3,7 +3,7 @@ import { LayoutTitle } from '../../Layout'
 import { LayoutHeaderClose } from '../../Layout/components/LayoutHeaderClose'
 import { LayoutOverlayHeader } from '../../LayoutOverlay/components/LayoutOverlayHeader'
 
-type OverlayHeaderProps = Omit<LayoutHeaderProps, 'hideBackButton' | 'switchPoint'> &
+export type OverlayHeaderProps = Omit<LayoutHeaderProps, 'hideBackButton' | 'switchPoint'> &
   Pick<TitleProps, 'icon'> & { onClose: () => void }
 
 export function OverlayHeader(props: OverlayHeaderProps) {

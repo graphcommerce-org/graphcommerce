@@ -6,7 +6,7 @@ import { useMemo, useState } from 'react'
 import type { ProductFiltersProSearchInputProps } from './ProductFiltersProSearchInput'
 import { useSearchPageAndParam } from './useSearchPageAndParam'
 
-type ProductFiltersProSearchFieldProps = ProductFiltersProSearchInputProps & {
+export type ProductFiltersProSearchFieldProps = ProductFiltersProSearchInputProps & {
   fab?: FabProps
 }
 

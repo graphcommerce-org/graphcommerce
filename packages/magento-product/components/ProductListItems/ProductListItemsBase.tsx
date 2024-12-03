@@ -38,6 +38,7 @@ export type ProductItemsGridProps = ProductListItemsFragment & {
   sx?: BoxProps['sx']
   columns?: ((theme: Theme) => ColumnsConfig) | ColumnsConfig
   containerRef?: React.Ref<HTMLDivElement>
+  children?: React.ReactNode
 } & Pick<ProductListItemProps, 'onClick' | 'titleComponent'> &
   ComponentState
 
@@ -57,6 +58,7 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
     titleComponent,
     onClick,
     columns,
+    children,
   } = props
 
   const theme = useTheme()
@@ -124,6 +126,7 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
             </LazyHydrate>
           ) : null,
         )}
+        {children}
       </Box>
     </AddProductsToCartForm>
   )

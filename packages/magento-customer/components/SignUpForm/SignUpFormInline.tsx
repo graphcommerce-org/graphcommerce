@@ -12,7 +12,7 @@ import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedP
 import type { SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import { SignUpDocument } from './SignUp.gql'
 
-type SignUpFormInlineProps = Pick<SignUpMutationVariables, 'email'> & {
+export type SignUpFormInlineProps = Pick<SignUpMutationVariables, 'email'> & {
   children?: React.ReactNode
   firstname?: string
   lastname?: string

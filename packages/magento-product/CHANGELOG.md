@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.0.0-canary.108
+
+### Patch Changes
+
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`ebdf2c8`](https://github.com/graphcommerce-org/graphcommerce/commit/ebdf2c8ea5ba69fa11d33daa75ad12b7c1501460) - Hide ProductScroller components when no items are available ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`673bf7c`](https://github.com/graphcommerce-org/graphcommerce/commit/673bf7c25b521c215b36db8f6c6ccfd70c4a7468) - Allow adding elements after/between product list items (e.g. banners) ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`49937fd`](https://github.com/graphcommerce-org/graphcommerce/commit/49937fd765338e25899d427ee4d799fa7978faeb) - Allow changing various props for internal components ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 9.0.0-canary.107
 
 ## 9.0.0-canary.106

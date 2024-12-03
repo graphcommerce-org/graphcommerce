@@ -1,17 +1,6 @@
 <p align="center">
     <a href="https://www.graphcommerce.org/"><img src="https://graphcommerce.vercel.app/favicon.svg" alt="GraphCommerce Logo"/></a>
 </p>
-<p align="center">
-  <a aria-label="License" href="https://www.npmjs.com/package/@graphcommerce/magento-graphcms">
-    <img alt="" src="https://img.shields.io/npm/v/@graphcommerce/magento-graphcms?style=for-the-badge">
-  </a>
-  <a aria-label="License" href="https://github.com/graphcommerce-org/graphcommerce/blob/main/LICENSE.md">
-    <img alt="" src="https://img.shields.io/badge/License-ELv2-green?style=for-the-badge">
-  </a>
-  <a aria-label="Vercel logo" href="https://vercel.com?utm_source=graphcommerce&utm_campaign=oss">
-    <img src="https://img.shields.io/badge/POWERED%20BY%20Vercel-000000.svg?style=for-the-badge&logo=Vercel&labelColor=000">
-  </a>  
-</p>
 
 <div align="center">
 
@@ -97,7 +86,16 @@ yarn dev
 
 ## Next steps
 
-- The [Quick start](../../docs/getting-started/readme.md) guide covers about 80% of the
-  concepts you'll use, so it's a great place to start. 
-- [Start customizing](../../docs/getting-started/start-building.md) to go from "Hello
-  World" to a fully built GraphCommerce custom storefront.
+- The [Quick start](../../docs/getting-started/readme.md) guide covers about 80%
+  of the concepts you'll use, so it's a great place to start.
+- [Start customizing](../../docs/getting-started/start-building.md) to go from
+  "Hello World" to a fully built GraphCommerce custom storefront.
+
+<p align="center">
+  <a aria-label="License" href="https://github.com/graphcommerce-org/graphcommerce/blob/main/LICENSE.md">
+    <img alt="" src="https://img.shields.io/badge/License-ELv2-green?style=for-the-badge">
+  </a>
+  <a aria-label="Vercel logo" href="https://vercel.com?utm_source=graphcommerce&utm_campaign=oss">
+    <img src="https://img.shields.io/badge/POWERED%20BY%20Vercel-000000.svg?style=for-the-badge&logo=Vercel&labelColor=000">
+  </a>
+</p>

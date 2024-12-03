@@ -21,7 +21,6 @@ __exportStar(require("./utils/sig"), exports);
 __exportStar(require("./withGraphCommerce"), exports);
 __exportStar(require("./generated/config"), exports);
 __exportStar(require("./config"), exports);
-__exportStar(require("./runtimeCachingOptimizations"), exports);
 __exportStar(require("./interceptors/commands/codegenInterceptors"), exports);
 __exportStar(require("./commands/copyFiles"), exports);
 __exportStar(require("./commands/codegen"), exports);

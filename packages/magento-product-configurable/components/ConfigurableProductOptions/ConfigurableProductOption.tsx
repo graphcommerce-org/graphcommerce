@@ -15,23 +15,25 @@ import type {
   ConfigurableOptionValueFragment,
 } from '../ConfigurableOptionValue'
 
-type Props = NonNullable<
+export type ConfigurableProductOptionProps = NonNullable<
   NonNullable<ConfigurableOptionsFragment['configurable_options']>[number]
 > & {
   index: number
   optionIndex: number
+  optionStartLabels?: Record<string, React.ReactNode>
   optionEndLabels?: Record<string, React.ReactNode>
   sx?: SxProps<Theme>
   attribute_code: string
   render: typeof ConfigurableOptionValue
 } & UseConfigurableOptionsSelection
 
-export function ConfigurableProductOption(props: Props) {
+export function ConfigurableProductOption(props: ConfigurableProductOptionProps) {
   const {
     values,
     label,
     index,
     optionIndex,
+    optionStartLabels,
     optionEndLabels,
     sx,
     attribute_code,
@@ -71,7 +73,7 @@ export function ConfigurableProductOption(props: Props) {
   return (
     <Box key={fieldName} sx={[...(Array.isArray(sx) ? sx : [sx])]}>
       <SectionHeader
-        labelLeft={label}
+        labelLeft={optionStartLabels?.[attribute_code ?? ''] ?? label}
         labelRight={optionEndLabels?.[attribute_code ?? '']}
         sx={{ mt: 0 }}
       />

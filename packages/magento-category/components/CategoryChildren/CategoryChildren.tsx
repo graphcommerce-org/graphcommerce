@@ -6,7 +6,7 @@ import type { SxProps, Theme } from '@mui/material'
 import { Box, Link } from '@mui/material'
 import type { CategoryChildrenFragment } from './CategoryChildren.gql'
 
-type CategoryChildrenProps = Omit<CategoryChildrenFragment, 'uid'> & {
+export type CategoryChildrenProps = Omit<CategoryChildrenFragment, 'uid'> & {
   params: ProductListParams
   sx?: SxProps<Theme>
 }

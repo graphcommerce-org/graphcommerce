@@ -8,7 +8,7 @@ import { OrderStateLabel } from '../OrderStateLabel/OrderStateLabel'
 import { TrackingLink } from '../TrackingLink/TrackingLink'
 import type { OrderCardFragment } from './OrderCard.gql'
 
-type OrderCardProps = Partial<OrderCardFragment> & {
+export type OrderCardProps = Partial<OrderCardFragment> & {
   loading?: boolean
   images?: UseOrderCardItemImages
   sx?: SxProps<Theme>

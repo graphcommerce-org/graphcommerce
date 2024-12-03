@@ -6,7 +6,8 @@ on:
     branches:
       - 'canary'
 concurrency:
-  group: release-canary
+  group: periodic-build
+  cancel-in-progress: true
 jobs:
   notify-start:
     name: Notify release start
@@ -60,5 +61,5 @@ jobs:
       time: ${{ needs.notify-start.outputs.time }}
       result: ${{ needs.publish.result }}
       channel: graphcommerce-build
-      message: "One or more Node.js versions failed in the periodic build"
+      message: 'One or more Node.js versions failed in the periodic build'
       notifyOnlyOnFailure: true

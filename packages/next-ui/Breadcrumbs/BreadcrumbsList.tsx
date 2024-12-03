@@ -4,7 +4,7 @@ import type { KeyboardEvent } from 'react'
 import { useEffect, useRef } from 'react'
 import type { BreadcrumbsType } from './types'
 
-type PopperBreadcrumbsListProps = {
+export type PopperBreadcrumbsListProps = {
   autoFocus: boolean
   breadcrumbs: BreadcrumbsType['breadcrumbs']
   showDesktopAmount?: number

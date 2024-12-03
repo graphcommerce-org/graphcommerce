@@ -6,7 +6,7 @@ import { BundleOptionValue } from './BundleOptionValue'
 import type { BundleProductOptionsFragment } from './BundleProductOptions.gql'
 import type { BundleOptionValueProps } from './types'
 
-type BundelProductOptionsProps = Pick<
+export type BundelProductOptionsProps = Pick<
   ActionCardListProps,
   'size' | 'layout' | 'color' | 'variant'
 > & {

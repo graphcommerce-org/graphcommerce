@@ -1,4 +1,4 @@
-name: release
+name: release-main
 on:
   push:
     branches:
@@ -19,6 +19,7 @@ jobs:
         with:
           cache: yarn
           node-version: 20
+          cache-dependency-path: package.json
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
       - name: yarn install && yarn postinstall

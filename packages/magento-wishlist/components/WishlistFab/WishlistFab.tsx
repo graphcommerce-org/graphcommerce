@@ -5,7 +5,7 @@ import { Fab, NoSsr } from '@mui/material'
 import React from 'react'
 import { useWishlistEnabled, useWishlistItems } from '../../hooks'
 
-type WishlistFabContentProps = {
+export type WishlistFabContentProps = {
   icon?: React.ReactNode
   FabProps?: Omit<FabPropsType, 'children'>
   BadgeProps?: BadgeProps

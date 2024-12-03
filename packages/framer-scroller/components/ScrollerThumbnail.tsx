@@ -14,7 +14,7 @@ type OwnerProps = { active: boolean }
 
 const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 
-type ScrollerThumbnailProps = {
+export type ScrollerThumbnailProps = {
   idx: number
   image: Pick<ImageProps, 'src' | 'height' | 'width'>
   layoutDependency: boolean
@@ -54,8 +54,15 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
   const scrollIntoView = () =>
     ref.current?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'auto' })
 
+  const initialRender = useRef(true)
+
   useEffect(() => {
     if (active && ref.current) {
+      // Skip scrollIntoView on initial render
+      if (initialRender.current) {
+        initialRender.current = false
+        return
+      }
       // This is a hack to ensure that the scroll animation is finished.
       setTimeout(() => scrollIntoView(), 1)
     }

@@ -6,7 +6,7 @@ import type { CustomerReviewFragment } from './CustomerReview.gql'
 import filledStar from './review_star_filled.svg'
 import outlinedStar from './review_star_outlined.svg'
 
-type CustomerReviewProps = CustomerReviewFragment & { sx?: SxProps<Theme> }
+export type CustomerReviewProps = CustomerReviewFragment & { sx?: SxProps<Theme> }
 
 const { classes } = extendableComponent('ScrollerDots', [
   'container',

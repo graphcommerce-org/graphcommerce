@@ -4,7 +4,8 @@ import type { BreadcrumbsProps } from '@mui/material'
 import { Breadcrumbs, Link, Typography } from '@mui/material'
 import type { CategoryBreadcrumbFragment } from './CategoryBreadcrumb.gql'
 
-type CategoryPageBreadcrumbsProps = CategoryBreadcrumbFragment & Omit<BreadcrumbsProps, 'children'>
+export type CategoryPageBreadcrumbsProps = CategoryBreadcrumbFragment &
+  Omit<BreadcrumbsProps, 'children'>
 
 /**
  * @deprecated Please use CategoryBreadcrumbs

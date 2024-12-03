@@ -13,6 +13,7 @@ import { ConfigurableOptionValue } from '../ConfigurableOptionValue/Configurable
 import { ConfigurableProductOption } from './ConfigurableProductOption'
 
 export type ConfigurableProductOptionsProps = AddToCartItemSelector & {
+  optionStartLabels?: Record<string, React.ReactNode>
   optionEndLabels?: Record<string, React.ReactNode>
   sx?: SxProps<Theme>
   render?: typeof ConfigurableOptionValue
@@ -22,6 +23,7 @@ export type ConfigurableProductOptionsProps = AddToCartItemSelector & {
 
 export function ConfigurableProductOptions(props: ConfigurableProductOptionsProps) {
   const {
+    optionStartLabels,
     optionEndLabels,
     sx,
     render = ConfigurableOptionValue,
@@ -68,6 +70,7 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
           {...option}
           key={option.uid}
           render={render}
+          optionStartLabels={optionStartLabels}
           optionEndLabels={optionEndLabels}
           index={index}
           optionIndex={optionIndex}

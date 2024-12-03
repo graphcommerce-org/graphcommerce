@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import type { ProductPageGroupedQueryFragment } from '../ProductPageGroupedQueryFragment.gql'
 import { GroupedProductActionCard } from './GroupedProductActionCard'
 
-type GroupedProductsProps = {
+export type GroupedProductsProps = {
   product: NonNullable<NonNullable<ProductPageGroupedQueryFragment['typeProducts']>['items']>[0]
 }
 

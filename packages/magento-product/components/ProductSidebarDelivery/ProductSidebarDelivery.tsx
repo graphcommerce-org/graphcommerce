@@ -3,7 +3,7 @@ import { Trans } from '@lingui/react'
 import { Box, darken, lighten } from '@mui/material'
 import type { UseAddProductsToCartActionFragment } from '../AddProductsToCart/UseAddProductsToCartAction.gql'
 
-type ProductSidebarDeliveryProps = {
+export type ProductSidebarDeliveryProps = {
   product?: UseAddProductsToCartActionFragment
 }
 

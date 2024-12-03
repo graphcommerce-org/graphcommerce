@@ -152,22 +152,33 @@ cache.
 
 The service worker caches:
 
-- [static fonts](https://github.com/shadowwalker/next-pwa/blob/master/cache.js#L28)
-- [static images](https://github.com/shadowwalker/next-pwa/blob/master/cache.js#L39)
-- [\_next/image](https://github.com/shadowwalker/next-pwa/blob/master/cache.js#L50)
-- [js](https://github.com/shadowwalker/next-pwa/blob/master/cache.js#L85)
+- [static fonts](https://github.com/serwist/serwist/blob/main/packages/next/src/index.worker.ts#L27):
+  Google fonts and webfonts with StaleWhileRevalidate strategy
+- [static images](https://github.com/serwist/serwist/blob/main/packages/next/src/index.worker.ts#L64):
+  jpg, jpeg, gif, png, svg, ico, webp with StaleWhileRevalidate strategy
+- [\_next/image](https://github.com/graphcommerce-org/graphcommerce/blob/main/packages/service-worker/runtimeCaching.ts#L6):
+  Custom implementation with StaleWhileRevalidate and nextImagePlugin
+- js and css files: Only for files outside of `_next/static` with
+  StaleWhileRevalidate strategy
+
+Notable differences from previous implementation:
+
+- All `_next/static` files (js, css) are excluded from runtime caching as they
+  are handled by the precache mechanism
+- Cross-origin requests use NetworkOnly strategy instead of NetworkFirst
+- Image caching has been optimized with custom configuration for better
+  performance
 
 Note: When a new deployment is made, the service worker is updated. This means
 that all previous caches are cleared and new caches are created.
 
 It does not cache:
 
-- [\_next/data](https://github.com/shadowwalker/next-pwa/blob/master/cache.js#L107):
-  Although it looks like it does, the regex is actually wrong and it does not
-  cache anything.
-- [pages](https://github.com/shadowwalker/next-pwa/blob/master/cache.js#L152)
+- [\_next/data](https://github.com/ducanh-99/serwist/blob/main/packages/next/src/index.worker.ts#L137):
+  Uses NetworkFirst strategy to ensure fresh data
+- [pages](https://github.com/ducanh-99/serwist/blob/main/packages/next/src/index.worker.ts#L152):
   Uses NetworkFirst strategy, which means it will always try to fetch the
-  resource from the network first, and only if that fails it will use the cache.
+  resource from the network first, and only if that fails it will use the cache
 
 ## Cache invalidation limitations
 

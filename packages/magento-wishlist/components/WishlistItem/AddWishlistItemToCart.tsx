@@ -10,7 +10,7 @@ import {
 import type { InputMaybe } from '@graphcommerce/next-config'
 import { Box } from '@mui/material'
 
-type AddWishlistItemToCartProps = UseAddProductsToCartActionProps &
+export type AddWishlistItemToCartProps = UseAddProductsToCartActionProps &
   AddToCartItemSelector & { selectedOptions?: InputMaybe<string[]> | undefined }
 
 export function AddWishlistItemToCart(props: AddWishlistItemToCartProps) {

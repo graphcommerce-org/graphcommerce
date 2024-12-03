@@ -7,7 +7,7 @@ import { Box } from '@mui/material'
 import type { OrderCardItemImageFragment } from '../../hooks/OrderCardItemImage.gql'
 import type { OrderItemFragment } from './OrderItem.gql'
 
-type OrderItemProps = OrderItemFragment & Omit<OrderCardItemImageFragment, 'uid'>
+export type OrderItemProps = OrderItemFragment & Omit<OrderCardItemImageFragment, 'uid'>
 
 const rowImageSize = responsiveVal(70, 110)
 

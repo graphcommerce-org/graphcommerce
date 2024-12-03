@@ -5,7 +5,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { SxProps, Theme } from '@mui/material'
-import { Checkbox, NoSsr, alpha, useTheme } from '@mui/material'
+import { alpha, Checkbox, NoSsr, useTheme } from '@mui/material'
 import { useState } from 'react'
 import type { CompareProductIdInternalFragment } from '../graphql'
 import { AddProductsToCompareListDocument } from '../graphql/AddProductsToCompareList.gql'
@@ -14,7 +14,7 @@ import { useCompareSummary } from '../hooks'
 import { useCompareListUidCreate } from '../hooks/useCompareListUidCreate'
 import { CompareMessageSnackbar } from './CompareMessageSnackbar'
 
-type CompareProductToggleProps = {
+export type CompareProductToggleProps = {
   sx?: SxProps<Theme>
   product: CompareProductIdInternalFragment
 } & Pick<FabProps, 'color'>

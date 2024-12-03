@@ -6,7 +6,7 @@ import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 import { useRouter } from 'next/router'
 
-type CustomerAddressActionCardProps = ActionCardItemRenderProps<
+export type CustomerAddressActionCardProps = ActionCardItemRenderProps<
   CustomerAddressFragment | null | undefined
 >
 

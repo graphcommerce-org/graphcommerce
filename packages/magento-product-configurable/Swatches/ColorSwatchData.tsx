@@ -4,7 +4,7 @@ import { Box } from '@mui/material'
 import type { ColorSwatchDataFragment } from './ColorSwatchData.gql'
 import type { SwatchDataProps } from './types'
 
-type ColorSwatchDataProps = ColorSwatchDataFragment &
+export type ColorSwatchDataProps = ColorSwatchDataFragment &
   SwatchDataProps & {
     sx?: SxProps<Theme>
   }

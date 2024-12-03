@@ -4,7 +4,7 @@ import { useWatch } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
 import { Box } from '@mui/material'
 
-type ProductFiltersProSearchHeaderProps = {
+export type ProductFiltersProSearchHeaderProps = {
   params: ProductListParams
   /**
    * Provide a text when there is no term searched
