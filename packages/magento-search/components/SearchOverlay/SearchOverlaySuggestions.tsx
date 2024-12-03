@@ -21,6 +21,7 @@ export const SearchOverlaySuggestion = forwardRef<HTMLLIElement, SearchOverlaySu
     const { search, ...rest } = props
     const { form } = useProductFiltersPro()
     const { updateRecentSearches } = useRecentSearches()
+    const { setSelectedIndex } = useSearchOverlay()
 
     return (
       <SearchOverlayItem
@@ -28,6 +29,7 @@ export const SearchOverlaySuggestion = forwardRef<HTMLLIElement, SearchOverlaySu
         onClick={() => {
           form.setValue('search', search)
           updateRecentSearches(search)
+          setSelectedIndex(-1)
         }}
         {...rest}
       >

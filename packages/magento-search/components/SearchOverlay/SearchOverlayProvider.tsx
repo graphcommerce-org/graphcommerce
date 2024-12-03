@@ -6,6 +6,7 @@ import {
 } from '@graphcommerce/magento-product'
 import { useForkRef } from '@mui/material'
 import { motionValue } from 'framer-motion'
+import { useRouter } from 'next/router'
 import React, {
   createContext,
   useContext,
@@ -23,6 +24,7 @@ type SearchOverlayContextType = {
   params: ProductListParams
   setParams: React.Dispatch<React.SetStateAction<ProductListParams>>
   products: ProductListQuery['products']
+  setSelectedIndex: (index: number) => void
 }
 
 type SearchOverlaySelectionContextType = {
@@ -53,6 +55,7 @@ type SearchOverlayProviderProps = {
 
 export function SearchOverlayProvider(props: SearchOverlayProviderProps) {
   const { children, open, ...overlayProps } = props
+  const router = useRouter()
   const [params, setParams] = useState<ProductListParams>({
     filters: {},
     sort: {},
@@ -73,8 +76,9 @@ export function SearchOverlayProvider(props: SearchOverlayProviderProps) {
       params,
       setParams,
       products,
+      setSelectedIndex,
     }),
-    [params, setParams, products],
+    [params, setParams, products, setSelectedIndex],
   )
 
   const searchOverlaySelectionContext: SearchOverlaySelectionContextType = useMemo(
@@ -130,6 +134,11 @@ export function SearchOverlayProvider(props: SearchOverlayProviderProps) {
               } else if (event.key === 'Enter') {
                 const element = items.current[selectedIndex]?.current
                 element?.click()
+
+                if (!element && params.search) {
+                  // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                  router.push(`/search/${params.search}`)
+                }
               } else {
                 setSelectedIndex(-1)
               }
@@ -143,7 +152,7 @@ export function SearchOverlayProvider(props: SearchOverlayProviderProps) {
         }
       },
     }),
-    [selectedIndex],
+    [params, router, selectedIndex],
   )
 
   return (
