@@ -40,7 +40,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
   const { email, firstname = '' } = customerQuery.data?.customer ?? {}
 
   const { mode, form, submit } = useAccountSignInUpForm()
-  const { formState, control, error, valid, setError, clearErrors } = form
+  const { formState, control, error, setError, clearErrors } = form
   const router = useRouter()
 
   const client = useApolloClient()
@@ -208,23 +208,13 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
 
       {(mode === 'signin' || mode === 'session-expired') && (
         <Box>
-          <SignInForm
-            email={emailValue}
-            emailIsValid={valid.email}
-            setError={setError}
-            clearErrors={clearErrors}
-          />
+          <SignInForm email={emailValue} setError={setError} clearErrors={clearErrors} />
         </Box>
       )}
 
       {mode === 'signup' && canSignUp && (
         <Box>
-          <SignUpForm
-            email={emailValue}
-            emailIsValid={valid.email}
-            setError={setError}
-            clearErrors={clearErrors}
-          />
+          <SignUpForm email={emailValue} setError={setError} clearErrors={clearErrors} />
         </Box>
       )}
       {mode === 'signup' && !canSignUp && (

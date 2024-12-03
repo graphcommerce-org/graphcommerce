@@ -1,6 +1,5 @@
 import { PasswordRepeatElement, SwitchElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
-import type { Exact, Scalars } from '@graphcommerce/graphql-mesh'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
@@ -18,25 +17,12 @@ import { SignUpDocument } from './SignUp.gql'
 
 type SignUpFormProps = {
   email?: string
-  emailIsValid?: boolean
-  setError: UseFormSetError<
-    Exact<{
-      email: Scalars['String']['input']
-    }> & {
-      requestedMode?: 'signin' | 'signup'
-    }
-  >
-  clearErrors: UseFormClearErrors<
-    Exact<{
-      email: Scalars['String']['input']
-    }> & {
-      requestedMode?: 'signin' | 'signup'
-    }
-  >
+  setError: UseFormSetError<{ email?: string; requestedMode?: 'signin' | 'signup' }>
+  clearErrors: UseFormClearErrors<{ email?: string; requestedMode?: 'signin' | 'signup' }>
 }
 
 export function SignUpForm(props: SignUpFormProps) {
-  const { email, emailIsValid, setError, clearErrors } = props
+  const { email, setError, clearErrors } = props
 
   const storeConfig = useQuery(StoreConfigDocument)
   const signIn = useSignInForm({ email })
@@ -48,7 +34,7 @@ export function SignUpForm(props: SignUpFormProps) {
     {
       defaultValues: { email },
       onBeforeSubmit: (values) => {
-        if (!emailIsValid) {
+        if (!email) {
           // eslint-disable-next-line @typescript-eslint/no-use-before-define
           setError('email', { message: t`Please enter a valid email address` })
           return false

@@ -1,6 +1,5 @@
 import type { UseFormClearErrors, UseFormSetError } from '@graphcommerce/ecommerce-ui'
 import { PasswordElement } from '@graphcommerce/ecommerce-ui'
-import type { Exact, Scalars } from '@graphcommerce/graphql-mesh'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
@@ -13,30 +12,17 @@ import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerE
 export type SignInFormProps = {
   email?: string
   sx?: SxProps<Theme>
-  emailIsValid?: boolean
-  setError: UseFormSetError<
-    Exact<{
-      email: Scalars['String']['input']
-    }> & {
-      requestedMode?: 'signin' | 'signup'
-    }
-  >
-  clearErrors: UseFormClearErrors<
-    Exact<{
-      email: Scalars['String']['input']
-    }> & {
-      requestedMode?: 'signin' | 'signup'
-    }
-  >
+  setError: UseFormSetError<{ email?: string; requestedMode?: 'signin' | 'signup' }>
+  clearErrors: UseFormClearErrors<{ email?: string; requestedMode?: 'signin' | 'signup' }>
 }
 
 export function SignInForm(props: SignInFormProps) {
-  const { email, sx, emailIsValid, setError, clearErrors } = props
+  const { email, sx, setError, clearErrors } = props
 
   const form = useSignInForm({
     email,
     onBeforeSubmit(variables) {
-      if (!emailIsValid) {
+      if (!email) {
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         setError('email', { message: t`Please enter a valid email address` })
         return false
