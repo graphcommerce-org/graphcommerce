@@ -1,7 +1,12 @@
 import { CartFab, useCartEnabled } from '@graphcommerce/magento-cart'
 import { magentoMenuToNavigation } from '@graphcommerce/magento-category'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
-import { ProductFiltersProSearchField, SearchLink } from '@graphcommerce/magento-search'
+import {
+  ProductFiltersProSearchField,
+  SearchLink,
+  SearchOverlay,
+  SearchOverlayFab,
+} from '@graphcommerce/magento-search'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import {
   DesktopNavActions,
@@ -25,7 +30,8 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
+import { productListRenderer } from '../ProductListItems'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
@@ -37,8 +43,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
   const { footer, menu, children, ...uiProps } = props
 
   const selection = useNavigationSelection()
-  const router = useRouter()
-
+  const pathName = usePathname()
   const cartEnabled = useCartEnabled()
 
   return (
@@ -117,10 +122,12 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
       <LayoutDefault
         {...uiProps}
-        noSticky={router.asPath.split('?')[0] === '/'}
+        noSticky={pathName === '/'}
         header={
           <>
             <Logo />
+            {import.meta.graphCommerce.searchOverlay && <SearchOverlayFab />}
+
             <DesktopNavBar>
               {menu?.items?.[0]?.children?.slice(0, 2).map((item) => (
                 <DesktopNavItem key={item?.uid} href={`/${item?.url_path}`}>
@@ -147,7 +154,11 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </DesktopNavBar>
 
             <DesktopNavActions>
-              <ProductFiltersProSearchField formControl={{ sx: { width: '400px' } }} />
+              {import.meta.graphCommerce.searchOverlay && !pathName.startsWith('/search')  ? (
+                <SearchOverlay productListRenderer={productListRenderer} />
+              ) : (
+                <ProductFiltersProSearchField formControl={{ sx: { width: '400px' } }} />
+              )}
               <Fab
                 href='/service'
                 aria-label={i18n._(/* i18n */ 'Customer Service')}

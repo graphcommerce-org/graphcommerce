@@ -35,6 +35,7 @@ export type BreadcrumbsProps = BreadcrumbsType &
     breadcrumbsAmountMobile?: number
     itemSx?: SxProps<Theme>
     linkProps?: Omit<LinkProps, 'href'>
+    disableHome?: boolean
   }
 
 export function Breadcrumbs(props: BreadcrumbsProps) {
@@ -47,6 +48,7 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
     maxItems,
     itemSx = [],
     linkProps,
+    disableHome = false,
     ...rest
   } = props
   const [anchorElement, setAnchorElement] = useState<HTMLButtonElement | null>(null)
@@ -157,15 +159,17 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
         </ClickAwayListener>
       )}
 
-      <Link
-        href='/'
-        color='inherit'
-        underline='hover'
-        {...linkProps}
-        sx={[...(Array.isArray(itemSx) ? itemSx : [itemSx])]}
-      >
-        <Trans id='Home' />
-      </Link>
+      {disableHome ? null : (
+        <Link
+          href='/'
+          color='inherit'
+          underline='hover'
+          {...linkProps}
+          sx={[...(Array.isArray(itemSx) ? itemSx : [itemSx])]}
+        >
+          <Trans id='Home' />
+        </Link>
+      )}
       {breadcrumbLinks.map((breadcrumb) => (
         <Link
           key={breadcrumb.href}
