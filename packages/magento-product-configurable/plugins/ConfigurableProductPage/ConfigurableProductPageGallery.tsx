@@ -5,6 +5,7 @@ import { useConfigurableOptionsSelection } from '../../hooks'
 export const config: PluginConfig = {
   type: 'component',
   module: '@graphcommerce/magento-product',
+  ifConfig: 'configurableVariantValues.gallery',
 }
 
 export function ProductPageGallery(

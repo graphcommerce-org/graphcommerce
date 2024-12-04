@@ -1,17 +1,14 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.findPlugins = findPlugins;
-// eslint-disable-next-line import/no-extraneous-dependencies
 const core_1 = require("@swc/core");
-const chalk_1 = __importDefault(require("chalk"));
-// eslint-disable-next-line import/no-extraneous-dependencies
 const glob_1 = require("glob");
 const resolveDependenciesSync_1 = require("../utils/resolveDependenciesSync");
 const parseStructure_1 = require("./parseStructure");
 const pluginLogs = {};
+// ANSI escape codes for console colors
+const GREEN = '\x1b[32m';
+const RESET = '\x1b[0m';
 function findPlugins(config, cwd = process.cwd()) {
     const dependencies = (0, resolveDependenciesSync_1.resolveDependenciesSync)(cwd);
     const debug = Boolean(config.debug?.pluginStatus);
@@ -38,7 +35,7 @@ function findPlugins(config, cwd = process.cwd()) {
     });
     if (process.env.NODE_ENV === 'development' && debug) {
         const byExported = plugins.reduce((acc, plugin) => {
-            const key = `🔌 ${chalk_1.default.greenBright(`Plugins loaded for ${plugin.targetModule}#${plugin.targetExport}`)}`;
+            const key = `🔌 ${GREEN}Plugins loaded for ${plugin.targetModule}#${plugin.targetExport}${RESET}`;
             if (!acc[key])
                 acc[key] = [];
             acc[key].push(plugin);
@@ -55,7 +52,7 @@ function findPlugins(config, cwd = process.cwd()) {
                         ? `${c.ifConfig[0]}=${c.ifConfig[1]}`
                         : `${c.ifConfig}`
                     : '';
-                return `${c.enabled ? `🟢` : `⚪️`} ${c.sourceModule} ${ifConfigStr}`;
+                return `${c.enabled ? '🟢' : '⚪️'} ${c.sourceModule} ${ifConfigStr}`;
             })
                 .join('\n');
             if (logStr && pluginLogs[key] !== logStr) {

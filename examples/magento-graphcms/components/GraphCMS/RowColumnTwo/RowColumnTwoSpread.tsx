@@ -1,5 +1,5 @@
-import { getNodeLength, RichText } from '@graphcommerce/graphcms-ui'
-import { ElementOrTextNode } from '@graphcommerce/graphcms-ui/components/RichText/types'
+import { getNodeLength, RichText } from '@graphcommerce/hygraph-ui'
+import { ElementOrTextNode } from '@graphcommerce/hygraph-ui/components/RichText/types'
 import { ColumnTwoSpread } from '@graphcommerce/next-ui'
 import { RowColumnTwoFragment } from './RowColumnTwo.gql'
 

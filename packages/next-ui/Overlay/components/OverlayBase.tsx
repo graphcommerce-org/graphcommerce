@@ -1,5 +1,5 @@
-import { Direction } from '@graphcommerce/framer-next-pages'
-import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
+import type { Direction } from '@graphcommerce/framer-next-pages'
+import { Scroller, useScrollTo, useScrollerContext } from '@graphcommerce/framer-scroller'
 import {
   dvh,
   dvw,
@@ -7,10 +7,11 @@ import {
   useElementScroll,
   useIsomorphicLayoutEffect,
 } from '@graphcommerce/framer-utils'
-import { Box, styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, styled, useTheme, useThemeProps } from '@mui/material'
+import type { MotionProps } from 'framer-motion'
 import {
   m,
-  MotionProps,
   motionValue,
   useDomEvent,
   useMotionValue,
@@ -19,7 +20,8 @@ import {
 } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
-import { ExtendableComponent, extendableComponent } from '../../Styles'
+import type { ExtendableComponent } from '../../Styles'
+import { extendableComponent } from '../../Styles'
 import { useMatchMedia } from '../../hooks/useMatchMedia'
 
 export type LayoutOverlayVariant = 'left' | 'bottom' | 'right' | 'top'
@@ -460,22 +462,22 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 overscrollBehaviorX: 'none',
               },
               '&.variantSmLeft': {
-                gridTemplate: `"overlay beforeOverlay"`,
+                gridTemplate: '"overlay beforeOverlay"',
                 borderTopRightRadius: theme.shape.borderRadius * 3,
                 borderBottomRightRadius: theme.shape.borderRadius * 3,
               },
               '&.variantSmRight': {
-                gridTemplate: `"beforeOverlay overlay"`,
+                gridTemplate: '"beforeOverlay overlay"',
                 borderTopLeftRadius: theme.shape.borderRadius * 3,
                 borderBottomLeftRadius: theme.shape.borderRadius * 3,
               },
               '&.variantSmBottom': {
                 overscrollBehaviorY: 'none',
-                gridTemplate: `"beforeOverlay" "overlay"`,
+                gridTemplate: '"beforeOverlay" "overlay"',
                 height: `calc(${dvh(100)} - 1px)`,
 
                 '&::after': {
-                  content: `""`,
+                  content: '""',
                   display: 'block',
                   position: 'absolute',
                   width: '100%',
@@ -488,17 +490,17 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             },
             [theme.breakpoints.up('md')]: {
               '&.variantMdLeft': {
-                gridTemplate: `"overlay beforeOverlay"`,
+                gridTemplate: '"overlay beforeOverlay"',
                 borderTopRightRadius: theme.shape.borderRadius * 4,
                 borderBottomRightRadius: theme.shape.borderRadius * 4,
               },
               '&.variantMdRight': {
-                gridTemplate: `"beforeOverlay overlay"`,
+                gridTemplate: '"beforeOverlay overlay"',
                 borderTopLeftRadius: theme.shape.borderRadius * 4,
                 borderBottomLeftRadius: theme.shape.borderRadius * 4,
               },
               '&.variantMdBottom': {
-                gridTemplate: `"beforeOverlay" "overlay"`,
+                gridTemplate: '"beforeOverlay" "overlay"',
                 height: dvh(100),
               },
               '&.variantMdTop': {

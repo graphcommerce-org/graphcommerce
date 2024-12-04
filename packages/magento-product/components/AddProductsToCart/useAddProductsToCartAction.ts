@@ -1,9 +1,10 @@
 import { useFormState } from '@graphcommerce/ecommerce-ui'
 import { useEventCallback } from '@mui/material'
 import { startTransition, useEffect, useState } from 'react'
-import { UseAddProductsToCartActionFragment } from './UseAddProductsToCartAction.gql'
+import type { UseAddProductsToCartActionFragment } from './UseAddProductsToCartAction.gql'
 import { toUserErrors } from './toUserErrors'
-import { AddToCartItemSelector, useFormAddProductsToCart } from './useFormAddProductsToCart'
+import type { AddToCartItemSelector } from './useFormAddProductsToCart'
+import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
 export type UseAddProductsToCartActionProps = AddToCartItemSelector & {
   disabled?: boolean
@@ -66,7 +67,7 @@ export function useAddProductsToCartAction(
       e.stopPropagation()
       if (formState.isSubmitting) return
       if (process.env.NODE_ENV !== 'production') {
-        if (!sku) console.warn(`You must provide a 'sku' to useAddProductsToCartAction`)
+        if (!sku) console.warn("You must provide a 'sku' to useAddProductsToCartAction")
       }
       // TODO should be removed, setting the form value on submission isn't a great idea.
       if (!getValues(`cartItems.${index}.sku`)) setValue(`cartItems.${index}.sku`, sku ?? '')

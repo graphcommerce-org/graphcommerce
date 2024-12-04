@@ -1,12 +1,13 @@
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme } from '@mui/material'
-import { CategoryDescriptionFragment } from './CategoryDescription.gql'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
+import type { CategoryDescriptionFragment } from './CategoryDescription.gql'
 
 type StateProps = {
   textAlignSm?: 'start' | 'center'
   textAlignMd?: 'start' | 'center'
 }
-const componentName = 'CategoryDescription' as const
+const componentName = 'CategoryDescription'
 const parts = ['root'] as const
 const { withState } = extendableComponent<StateProps, typeof componentName, typeof parts>(
   componentName,

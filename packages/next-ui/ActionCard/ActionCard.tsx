@@ -1,4 +1,5 @@
-import { alpha, Box, BoxProps, ButtonBase, lighten, SxProps, Theme } from '@mui/material'
+import type { BoxProps, ButtonProps, SxProps, Theme } from '@mui/material'
+import { alpha, Box, ButtonBase, lighten } from '@mui/material'
 import React from 'react'
 import { extendableComponent, responsiveVal } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
@@ -7,6 +8,14 @@ type Variants = 'outlined' | 'default'
 type Size = 'large' | 'medium' | 'small' | 'responsive'
 type Color = 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning'
 type Layout = 'inline' | 'grid' | 'list' | 'stack'
+
+function isButtonProps(props: ButtonProps<'div'> | BoxProps<'div'>): props is ButtonProps<'div'> {
+  return props.onClick !== undefined
+}
+
+function ButtonOrBox(props: ButtonProps<'div'> | BoxProps<'div'>) {
+  return isButtonProps(props) ? <ButtonBase component='div' {...props} /> : <Box {...props} />
+}
 
 export type ActionCardProps<C extends React.ElementType = typeof Box> = {
   component?: C
@@ -90,7 +99,6 @@ const combineSx = (defaultSx: SxProps<Theme>, slotSx?: SxProps<Theme>) => [
 
 export function ActionCard<C extends React.ElementType = typeof Box>(props: ActionCardProps<C>) {
   const {
-    component: Component = ButtonBase,
     title,
     image,
     action,
@@ -125,8 +133,8 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
   })
 
   return (
-    <Component
-      className={`ActionCard-root ${classes.root}`}
+    <ButtonOrBox
+      className={classes.root}
       onClick={onClick ? (event) => onClick(event, value) : undefined}
       disabled={disabled}
       sx={combineSx(
@@ -383,6 +391,6 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
           {after}
         </Box>
       )}
-    </Component>
+    </ButtonOrBox>
   )
 }

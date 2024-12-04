@@ -1,9 +1,9 @@
-import { breakpointVal, iconOrderBefore, IconSvg } from '@graphcommerce/next-ui'
+import { IconSvg, breakpointVal, iconOrderBefore } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, darken, lighten } from '@mui/material'
-import { UseAddProductsToCartActionFragment } from '../AddProductsToCart/UseAddProductsToCartAction.gql'
+import type { UseAddProductsToCartActionFragment } from '../AddProductsToCart/UseAddProductsToCartAction.gql'
 
-type ProductSidebarDeliveryProps = {
+export type ProductSidebarDeliveryProps = {
   product?: UseAddProductsToCartActionFragment
 }
 
@@ -39,7 +39,7 @@ export function ProductSidebarDelivery(props: ProductSidebarDeliveryProps) {
           "image title"
           ".     subtitle"
         `,
-        gridTemplateColumns: `min-content auto`,
+        gridTemplateColumns: 'min-content auto',
         columnGap: theme.spacings.xxs,
         background:
           theme.palette.mode === 'light'

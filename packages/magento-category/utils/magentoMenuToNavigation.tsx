@@ -1,13 +1,12 @@
-import {
+import type {
   NavigationNode,
   NavigationNodeButton,
   NavigationNodeHref,
-  NavigationNodeType,
-  nonNullable,
 } from '@graphcommerce/next-ui'
+import { NavigationNodeType, nonNullable } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { MenuQueryFragment } from '../queries/MenuQueryFragment.gql'
-import { NavigationItemFragment } from '../queries/NavigationItem.gql'
+import type { MenuQueryFragment } from '../queries/MenuQueryFragment.gql'
+import type { NavigationItemFragment } from '../queries/NavigationItem.gql'
 
 type Item = NonNullable<NonNullable<NonNullable<MenuQueryFragment['menu']>['items']>[0]>
 

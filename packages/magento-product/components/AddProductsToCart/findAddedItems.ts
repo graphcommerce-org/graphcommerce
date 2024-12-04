@@ -1,6 +1,6 @@
 import { filterNonNullableKeys, isTypename } from '@graphcommerce/next-ui'
-import { AddProductsToCartMutation } from './AddProductsToCart.gql'
-import { AddProductsToCartFields } from './useFormAddProductsToCart'
+import type { AddProductsToCartMutation } from './AddProductsToCart.gql'
+import type { AddProductsToCartFields } from './useFormAddProductsToCart'
 
 export function findAddedItems(
   data: AddProductsToCartMutation | null | undefined,

@@ -1,4 +1,5 @@
-import { ApolloLink, DefaultContext } from '@graphcommerce/graphql'
+import type { DefaultContext } from '@graphcommerce/graphql'
+import { ApolloLink } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '../hooks'
 
 export const xMagentoCacheIdHeader = new ApolloLink((operation, forward) => {

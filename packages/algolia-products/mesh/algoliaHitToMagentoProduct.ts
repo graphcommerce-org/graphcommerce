@@ -11,9 +11,7 @@ import type {
   ResolversParentTypes,
   ResolversTypes,
 } from '@graphcommerce/graphql-mesh'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { GraphQLResolveInfo } from 'graphql'
-import { GetStoreConfigReturn } from './getStoreConfig'
+import type { GetStoreConfigReturn } from './getStoreConfig'
 
 export function assertAdditional(
   additional: unknown,
@@ -122,7 +120,7 @@ export function algoliaHitToMagentoProduct(
   hit: Algoliahit,
   storeConfig: GetStoreConfigReturn,
   customerGroup: number,
-): ProductsItemsItem | null {
+): (ProductsItemsItem & { staged: boolean }) | null {
   const { objectID, additionalProperties } = hit
   if (!assertAdditional(additionalProperties)) return null
 
@@ -157,9 +155,11 @@ export function algoliaHitToMagentoProduct(
   }
 
   return {
+    staged: false,
     redirect_code: 0,
     __typename: algoliaTypeToTypename[type_id as keyof typeof algoliaTypeToTypename],
     uid: btoa(objectID),
+    id: Number(objectID),
     sku: Array.isArray(sku) ? sku[0] : `${sku}`,
     price_range: mapPriceRange(price, storeConfig, customerGroup),
     created_at: created_at ? new Date(created_at).toISOString() : null,

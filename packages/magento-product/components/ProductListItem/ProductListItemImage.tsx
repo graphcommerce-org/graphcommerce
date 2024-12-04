@@ -1,6 +1,8 @@
-import { Image, ImageProps } from '@graphcommerce/image'
+import type { ImageProps } from '@graphcommerce/image'
+import { Image } from '@graphcommerce/image'
 import { Trans } from '@lingui/react'
-import { Box, BoxProps, Skeleton, styled } from '@mui/material'
+import type { BoxProps } from '@mui/material'
+import { Box, Skeleton, styled } from '@mui/material'
 
 const StyledImage = styled(Image)({})
 
@@ -46,7 +48,7 @@ export function ProductListItemImageSkeleton(props: ProductListItemImageProps) {
   )
 }
 
-type ImageOrPlaceholderProps = ProductListItemImageProps &
+export type ImageOrPlaceholderProps = ProductListItemImageProps &
   Omit<ImageProps, 'alt' | 'src'> & {
     alt?: ImageProps['alt'] | null
     src?: ImageProps['src'] | null

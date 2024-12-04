@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { extractBorderProps, extractMarginProps, extractPaddingProps } from '../../utils'
-import { VideoContentType } from './types'
+import type { VideoContentType } from './types'
 
 const VideoBox = styled('video')({})
 const IFrameBox = styled('iframe')({})

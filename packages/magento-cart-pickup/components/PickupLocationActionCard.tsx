@@ -1,8 +1,8 @@
-import { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
+import type { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
 import { ActionCard } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, Button } from '@mui/material'
-import { GetPickupLocationsForProductsQuery } from '../graphql/GetPickupLocationsForProducts.gql'
+import type { GetPickupLocationsForProductsQuery } from '../graphql/GetPickupLocationsForProducts.gql'
 
 export type Location = NonNullable<
   NonNullable<NonNullable<GetPickupLocationsForProductsQuery['pickupLocations']>['items']>[number]

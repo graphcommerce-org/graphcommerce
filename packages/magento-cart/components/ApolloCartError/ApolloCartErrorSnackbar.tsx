@@ -1,7 +1,5 @@
-import {
-  ApolloCustomerErrorSnackbar,
-  ApolloCustomerErrorSnackbarProps,
-} from '@graphcommerce/magento-customer'
+import type { ApolloCustomerErrorSnackbarProps } from '@graphcommerce/magento-customer'
+import { ApolloCustomerErrorSnackbar } from '@graphcommerce/magento-customer'
 
 export type ApolloCartErrorSnackbarProps = ApolloCustomerErrorSnackbarProps
 

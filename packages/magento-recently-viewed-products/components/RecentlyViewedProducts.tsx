@@ -1,11 +1,9 @@
-import { ProductScroller, ProductScrollerProps } from '@graphcommerce/magento-product'
+import type { ProductScrollerProps } from '@graphcommerce/magento-product'
+import { ProductScroller } from '@graphcommerce/magento-product'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import {
-  UseRecentlyViewedProductsProps,
-  useRecentlyViewedProducts,
-  useRecentlyViewedSkus,
-} from '../hooks'
+import type { UseRecentlyViewedProductsProps } from '../hooks'
+import { useRecentlyViewedProducts, useRecentlyViewedSkus } from '../hooks'
 
 export type RecentlyViewedProductsProps = Omit<UseRecentlyViewedProductsProps, 'skip'> &
   Omit<ProductScrollerProps, 'items'> & { loading?: 'lazy' | 'eager' }

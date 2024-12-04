@@ -1,4 +1,4 @@
-import { ApolloClient } from '@graphcommerce/graphql'
+import type { ApolloClient } from '@graphcommerce/graphql'
 import { removeCssFlag } from '@graphcommerce/next-ui'
 
 export function signOut(client: ApolloClient<object>) {

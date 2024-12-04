@@ -1,6 +1,7 @@
-import { MotionValue, useMotionValue, useTransform } from 'framer-motion'
+import type { MotionValue } from 'framer-motion'
+import { useMotionValue, useTransform } from 'framer-motion'
 import sync from 'framesync'
-import { RefObject } from 'react'
+import type { RefObject } from 'react'
 import { useConstant } from './useConstant'
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 

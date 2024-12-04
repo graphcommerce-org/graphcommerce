@@ -1,11 +1,11 @@
 import {
-  ScrollerDots,
   MotionImageAspect,
   Scroller,
-  ScrollerProvider,
   ScrollerButton,
+  ScrollerDots,
+  ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
-import { Box, styled, Typography } from '@mui/material'
+import { Box, Typography, styled } from '@mui/material'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'
 
@@ -24,7 +24,7 @@ function Index() {
         <ScrollerProvider>
           <Scroller
             sx={{
-              gridTemplateRows: `100%`,
+              gridTemplateRows: '100%',
               marginBottom: '20px',
               rowGap: 20,
               columnGap: 20,
@@ -99,8 +99,8 @@ function Index() {
             sx={{
               width: '100%',
               height: '100%',
-              gridAutoColumns: `100%`,
-              gridTemplateRows: `100%`,
+              gridAutoColumns: '100%',
+              gridTemplateRows: '100%',
               '& *': {
                 userSelect: 'none',
                 userDrag: 'none',

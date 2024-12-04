@@ -1,7 +1,10 @@
-import { LazyQueryHookOptions, TypedDocumentNode, useLazyQuery } from '@apollo/client'
-import { FieldValues, useForm } from 'react-hook-form'
-import { useFormGql, UseFormGraphQlOptions } from './useFormGql'
-import { UseFormGqlMutationReturn } from './useFormGqlMutation'
+import type { LazyQueryHookOptions, TypedDocumentNode } from '@apollo/client'
+import { useLazyQuery } from '@apollo/client'
+import type { FieldValues } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
+import type { UseFormGraphQlOptions } from './useFormGql'
+import { useFormGql } from './useFormGql'
+import type { UseFormGqlMutationReturn } from './useFormGqlMutation'
 import { useFormMuiRegister } from './useFormMuiRegister'
 
 export type UseFormGqlQueryReturn<

@@ -14,7 +14,8 @@ import { tabItemAggregator } from './ContentTypes/TabItem/tabItemAggregator'
 import { tabsAggregator } from './ContentTypes/Tabs/tabsAggregator'
 import { textAggregator } from './ContentTypes/Text/textAggregator'
 import { videoAggregator } from './ContentTypes/Video/videoAggregator'
-import { ParseProps, ContentTypeConfig } from './types'
+import type { ParseProps } from './types'
+import { ContentTypeConfig } from './types'
 
 type ContentTypes =
   | 'row'

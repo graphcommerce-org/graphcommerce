@@ -1,4 +1,4 @@
-import {
+import type {
   BatchMigrationCreateComponentFieldInput,
   BatchMigrationCreateComponentInput,
   BatchMigrationCreateComponentUnionFieldInput,
@@ -10,9 +10,9 @@ import {
   BatchMigrationCreateSimpleFieldInput,
   BatchMigrationCreateStageInput,
   BatchMigrationCreateUnionFieldInput,
-  Client,
 } from '@hygraph/management-sdk'
-import { Schema } from './types'
+import { Client } from '@hygraph/management-sdk'
+import type { Schema } from './types'
 
 interface MigrationParams {
   name?: string

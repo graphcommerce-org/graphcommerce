@@ -1,16 +1,16 @@
+import type { BorderProps } from '../../utils'
 import {
+  getAdvanced,
   getBorder,
   getCssClasses,
   getIsHidden,
   getMargin,
+  getMediaQuery,
   getPadding,
   getTextAlign,
-  getMediaQuery,
   isHTMLElement,
-  BorderProps,
-  getAdvanced,
 } from '../../utils'
-import { ImageContentType, ImageProps } from './types'
+import type { ImageContentType, ImageProps } from './types'
 
 const getImageData = (imageNode: HTMLImageElement) => {
   let imageDimension = null

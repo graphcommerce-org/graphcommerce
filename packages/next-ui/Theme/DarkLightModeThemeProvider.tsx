@@ -1,14 +1,12 @@
 import { Trans } from '@lingui/react'
+import type { FabProps, ListItemButtonProps, Theme } from '@mui/material'
 import {
-  Theme,
-  ThemeProvider,
-  useMediaQuery,
   Fab,
-  FabProps,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  ListItemButtonProps,
+  ThemeProvider, // eslint-disable-next-line @typescript-eslint/no-restricted-imports
+  useMediaQuery,
 } from '@mui/material'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
@@ -30,7 +28,7 @@ type ColorModeContext = {
 export const colorModeContext = createContext(undefined as unknown as ColorModeContext)
 colorModeContext.displayName = 'ColorModeContext'
 
-type ThemeProviderProps = {
+export type ThemeProviderProps = {
   children: React.ReactNode
   ssrMode?: Mode
   listenToBrowser?: boolean

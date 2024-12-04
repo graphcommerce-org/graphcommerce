@@ -2,7 +2,8 @@ import { ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { startTransition, useEffect, useState } from 'react'
 import type { SetOptional } from 'type-fest'
 import { variantsToScrollSnapType } from '../utils/variantsToScrollSnapType'
-import { OverlayBase, LayoutOverlayBaseProps } from './OverlayBase'
+import type { LayoutOverlayBaseProps } from './OverlayBase'
+import { OverlayBase } from './OverlayBase'
 import { OverlayContainer } from './OverlayContainer'
 
 export type OverlayProps = Omit<

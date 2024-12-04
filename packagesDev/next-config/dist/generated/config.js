@@ -27,6 +27,9 @@ _export(exports, {
     GraphCommerceDebugConfigSchema: function() {
         return GraphCommerceDebugConfigSchema;
     },
+    GraphCommerceGooglePlaystoreConfigSchema: function() {
+        return GraphCommerceGooglePlaystoreConfigSchema;
+    },
     GraphCommercePermissionsSchema: function() {
         return GraphCommercePermissionsSchema;
     },
@@ -118,6 +121,7 @@ function GraphCommerceConfigSchema() {
         demoMode: _zod.z.boolean().default(true).nullish(),
         enableGuestCheckoutLogin: _zod.z.boolean().nullish(),
         googleAnalyticsId: _zod.z.string().nullish(),
+        googlePlaystore: GraphCommerceGooglePlaystoreConfigSchema().nullish(),
         googleRecaptchaKey: _zod.z.string().nullish(),
         googleTagmanagerId: _zod.z.string().nullish(),
         hygraphEndpoint: _zod.z.string().min(1),
@@ -148,6 +152,12 @@ function GraphCommerceDebugConfigSchema() {
         sessions: _zod.z.boolean().nullish(),
         webpackCircularDependencyPlugin: _zod.z.boolean().nullish(),
         webpackDuplicatesPlugin: _zod.z.boolean().nullish()
+    });
+}
+function GraphCommerceGooglePlaystoreConfigSchema() {
+    return _zod.z.object({
+        packageName: _zod.z.string().min(1),
+        sha256CertificateFingerprint: _zod.z.string().min(1)
     });
 }
 function GraphCommercePermissionsSchema() {

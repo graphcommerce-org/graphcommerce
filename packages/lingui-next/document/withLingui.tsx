@@ -1,11 +1,11 @@
 import { normalizeLocale } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
 // eslint-disable-next-line @next/next/no-document-import-in-page
-import { DocumentContext, DocumentInitialProps } from 'next/document'
+import type { DocumentContext, DocumentInitialProps } from 'next/document'
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import type NextDocument from 'next/document'
 import React from 'react'
-import { MessageLoader } from '../types'
+import type { MessageLoader } from '../types'
 
 export type LinguiDocumentProps = { linguiScriptTag: React.ReactNode }
 

@@ -1,20 +1,20 @@
 /* eslint-disable react/no-unused-prop-types */
-import { cloneDeep } from '@apollo/client/utilities'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useMemoObject } from '@graphcommerce/next-ui/hooks/useMemoObject'
+import { cloneDeep } from '@apollo/client/utilities'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { debounce } from '@mui/material'
 import React, { startTransition, useCallback, useEffect, useRef, useState } from 'react'
-import {
+import type {
   DeepPartialSkipArrayKey,
   FieldPath,
   FieldValues,
   UseFormReturn,
   UseWatchProps,
-  useFormState,
-  useWatch,
 } from 'react-hook-form'
-import { DebounceSettings, useDebounce } from './utils/useDebounce'
+import { useFormState, useWatch } from 'react-hook-form'
+import type { DebounceSettings } from './utils/useDebounce'
+import { useDebounce } from './utils/useDebounce'
 
 export type UseFormAutoSubmitOptions<TForm extends UseFormReturn<V>, V extends FieldValues> = {
   /** Instance of current form */

@@ -1,8 +1,9 @@
 import { InContextMask } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { Typography, TypographyProps } from '@mui/material'
-import { ProductListPriceFragment } from './ProductListPrice.gql'
+import type { TypographyProps } from '@mui/material'
+import { Typography } from '@mui/material'
+import type { ProductListPriceFragment } from './ProductListPrice.gql'
 
 export const productListPrice = extendableComponent('ProductListPrice', [
   'root',

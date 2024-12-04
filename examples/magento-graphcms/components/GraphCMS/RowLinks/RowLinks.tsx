@@ -1,4 +1,3 @@
-import {} from '@graphcommerce/graphcms-ui'
 import { RowLinksFragment } from './RowLinks.gql'
 import { LogoSwiper, ImageLabelSwiper, Inline, Usps } from './variant'
 

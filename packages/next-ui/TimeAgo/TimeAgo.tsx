@@ -5,6 +5,7 @@ export type TimeAgoProps = {
   /**
    * @deprecated No longer used
    */
+  // eslint-disable-next-line react/no-unused-prop-types
   locale?: string
 }
 

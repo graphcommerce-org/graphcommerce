@@ -1,9 +1,10 @@
 import React from 'react'
-import { ProductWishlistIconButton, ProductWishlistChipProps } from './ProductWishlistIconButton'
+import type { ProductWishlistChipProps } from './ProductWishlistIconButton'
+import { ProductWishlistIconButton } from './ProductWishlistIconButton'
 
 /**
  * @deprecated use ProductWishlistIconButton with an sx prop.
  */
-export const ProductWishlistChipDetail = React.memo<ProductWishlistChipProps>((props) => {
-  return <ProductWishlistIconButton sx={{ boxShadow: 6 }} {...props} />
-})
+export const ProductWishlistChipDetail = React.memo<ProductWishlistChipProps>((props) => (
+  <ProductWishlistIconButton sx={{ boxShadow: 6 }} {...props} />
+))

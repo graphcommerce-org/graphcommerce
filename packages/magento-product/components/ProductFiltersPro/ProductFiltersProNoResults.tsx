@@ -1,12 +1,13 @@
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Link, Typography } from '@mui/material'
 import { useProductFiltersProClearAllAction } from './useProductFiltersProClearAllAction'
 import { useProductFilterProHasFiltersApplied } from './useProductFiltersProHasFiltersApplied'
 
 export type ProductFitlersProNoResultProps = { search?: string | null; sx?: SxProps<Theme> }
 
-const name = 'ProductFiltersProNoResults' as const
+const name = 'ProductFiltersProNoResults'
 const parts = ['root'] as const
 const { classes } = extendableComponent(name, parts)
 

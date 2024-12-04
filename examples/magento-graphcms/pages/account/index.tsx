@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { cacheFirst, useQuery } from '@graphcommerce/graphql'
+import { cacheFirst } from '@graphcommerce/graphql'
 import {
   AccountDashboardDocument,
   AccountMenu,
@@ -41,9 +41,6 @@ function AccountIndexPage() {
   const dashboard = useCustomerQuery(AccountDashboardDocument, {
     fetchPolicy: 'cache-and-network',
   })
-
-  const { data: config } = useQuery(StoreConfigDocument)
-  const locale = config?.storeConfig?.locale?.replace('_', '-')
 
   const customer = dashboard.data?.customer
   const address =

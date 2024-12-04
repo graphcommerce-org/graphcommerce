@@ -1,7 +1,7 @@
 import { SelectedCustomizableOptions } from '@graphcommerce/magento-cart-items'
 import { Money } from '@graphcommerce/magento-store'
 import { Typography } from '@mui/material'
-import { BundleProductCartItemOptionsProps } from '../BundleProductCartItemOptions/BundleProductCartItemOptions'
+import type { BundleProductCartItemOptionsProps } from '../BundleProductCartItemOptions/BundleProductCartItemOptions'
 
 export function BundleCartItem(props: BundleProductCartItemOptionsProps) {
   const { bundle_options } = props

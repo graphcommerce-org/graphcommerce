@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { cssFlag, cssNotFlag, useIsSSR } from '@graphcommerce/next-ui'
-import { Box, Skeleton, SkeletonOwnProps, SkeletonProps, SxProps, Theme } from '@mui/material'
+import type { SkeletonOwnProps, SkeletonProps, SxProps, Theme } from '@mui/material'
+import { Box, Skeleton } from '@mui/material'
 import type { OverrideProps } from '@mui/material/OverridableComponent'
 import React, { createContext, useContext, useMemo } from 'react'
 

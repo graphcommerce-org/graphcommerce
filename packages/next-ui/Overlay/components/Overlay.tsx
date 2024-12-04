@@ -3,7 +3,8 @@ import { Portal } from '@mui/material'
 import { AnimatePresence, usePresence } from 'framer-motion'
 import type { SetOptional } from 'type-fest'
 import { variantsToScrollSnapType } from '../utils/variantsToScrollSnapType'
-import { OverlayBase, LayoutOverlayBaseProps } from './OverlayBase'
+import type { LayoutOverlayBaseProps } from './OverlayBase'
+import { OverlayBase } from './OverlayBase'
 import { OverlayContainer } from './OverlayContainer'
 
 export type OverlayTmpProps = Omit<

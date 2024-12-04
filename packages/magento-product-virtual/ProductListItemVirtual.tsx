@@ -1,6 +1,7 @@
-import { ProductListItem, ProductListItemProps } from '@graphcommerce/magento-product'
+import type { ProductListItemProps } from '@graphcommerce/magento-product'
+import { ProductListItem } from '@graphcommerce/magento-product'
 import React from 'react'
-import { ProductListItemVirtualFragment } from './ProductListItemVirtual.gql'
+import type { ProductListItemVirtualFragment } from './ProductListItemVirtual.gql'
 
 export type ProductListItemVirtualProps = ProductListItemVirtualFragment & ProductListItemProps
 

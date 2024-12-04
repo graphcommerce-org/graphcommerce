@@ -2,9 +2,9 @@ import { algoliaHitToMagentoProduct } from '@graphcommerce/algolia-products'
 import { getGroupId } from '@graphcommerce/algolia-products/mesh/getGroupId'
 import { getStoreConfig } from '@graphcommerce/algolia-products/mesh/getStoreConfig'
 import type {
-  MeshContext,
-  AlgoliarecommendationsHit,
   Algoliahit,
+  AlgoliarecommendationsHit,
+  MeshContext,
 } from '@graphcommerce/graphql-mesh'
 
 export async function createProductMapper(context: MeshContext) {

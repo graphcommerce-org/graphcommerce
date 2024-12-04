@@ -1,10 +1,8 @@
-import {
-  PluginFunction,
-  Types,
-  getCachedDocumentNodeFromSchema,
-} from '@graphql-codegen/plugin-helpers'
-import { GraphQLSchema, visit } from 'graphql'
-import { MarkdownDocsPluginConfig } from './config'
+import type { PluginFunction, Types } from '@graphql-codegen/plugin-helpers'
+import { getCachedDocumentNodeFromSchema } from '@graphql-codegen/plugin-helpers'
+import type { GraphQLSchema } from 'graphql'
+import { visit } from 'graphql'
+import type { MarkdownDocsPluginConfig } from './config'
 
 /** Converts input type to markdown document. */
 export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPluginOutput> = (

@@ -1,4 +1,5 @@
-import { motionValue, MotionValue } from 'framer-motion'
+import type { MotionValue } from 'framer-motion'
+import { motionValue } from 'framer-motion'
 import sync from 'framesync'
 import { useEffect } from 'react'
 import { clientSize } from '../utils/clientSize'
@@ -10,8 +11,8 @@ export type UseClientSizeOptions = { x?: string; y?: string }
 
 /** @deprecated Please use dvh() or dvw() instead */
 export const clientSizeCssVar = {
-  y: `var(--client-size-y)`,
-  x: `var(--client-size-x)`,
+  y: 'var(--client-size-y)',
+  x: 'var(--client-size-x)',
 }
 
 export const dvh = (p = 100) => {
@@ -69,8 +70,8 @@ export function useMeasureDynamicViewportSize() {
  */
 export function useClientSize(options?: UseClientSizeOptions): UseClientSizeReturn {
   const ret = useConstant<UseClientSizeReturn>(() => ({
-    x: motionValue(options?.x ?? `0px`),
-    y: motionValue(options?.y ?? `0px`),
+    x: motionValue(options?.x ?? '0px'),
+    y: motionValue(options?.y ?? '0px'),
   }))
 
   useEffect(() => {

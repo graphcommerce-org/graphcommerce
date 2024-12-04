@@ -1,9 +1,9 @@
 import { cloneDeep } from '@graphcommerce/graphql'
 import type { FilterEqualTypeInput } from '@graphcommerce/graphql-mesh'
-import { responsiveVal, extendableComponent, ChipMenu, ChipMenuProps } from '@graphcommerce/next-ui'
+import type { ChipMenuProps } from '@graphcommerce/next-ui'
+import { ChipMenu, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
 import {
-  Box,
-  // eslint-disable-next-line @typescript-eslint/no-restricted-imports
+  Box, // eslint-disable-next-line @typescript-eslint/no-restricted-imports
   Checkbox,
   ListItem,
   ListItemSecondaryAction,
@@ -14,13 +14,13 @@ import type { SetRequired } from 'type-fest'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
 import { ProductListLink } from '../ProductListLink/ProductListLink'
-import { ProductListFiltersFragment } from './ProductListFilters.gql'
+import type { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 type OwnerState = {
   isColor: boolean
   isActive: boolean
 }
-const componentName = 'FilterEqual' as const
+const componentName = 'FilterEqual'
 const parts = [
   'listItem',
   'listItemInnerContainer',
@@ -44,7 +44,7 @@ export type FilterIn = SetRequired<Omit<FilterEqualTypeInput, 'eq'>, 'in'>
 
 type Filter = NonNullable<NonNullable<ProductListFiltersFragment['aggregations']>[number]>
 
-type FilterEqualTypeProps = Filter & Omit<ChipMenuProps, 'selected'>
+export type FilterEqualTypeProps = Filter & Omit<ChipMenuProps, 'selected'>
 
 export function FilterEqualType(props: FilterEqualTypeProps) {
   const { attribute_code, count, label, options, __typename, ...chipProps } = props
@@ -155,7 +155,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
                       },
                       [`& .${listItemTextClasses.secondary}`]: {
                         color: theme.palette.grey[500],
-                        marginLeft: `4px`,
+                        marginLeft: '4px',
                         fontSize: theme.typography.pxToRem(11),
                         display: 'inline',
                       },

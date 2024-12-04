@@ -1,32 +1,31 @@
-import { loadConfig } from '@graphcommerce/next-config'
-import {
-  BatchMigrationCreateModelInput,
-  BatchMigrationCreateComponentInput,
-  BatchMigrationCreateEnumerationInput,
-  BatchMigrationCreateSimpleFieldInput,
-  BatchMigrationCreateEnumerableFieldInput,
-  BatchMigrationCreateRelationalFieldInput,
-  BatchMigrationCreateUnionFieldInput,
+import type {
   BatchMigrationCreateComponentFieldInput,
+  BatchMigrationCreateComponentInput,
+  BatchMigrationCreateComponentUnionFieldInput,
+  BatchMigrationCreateEnumerableFieldInput,
+  BatchMigrationCreateEnumerationInput,
+  BatchMigrationCreateModelInput,
+  BatchMigrationCreateRelationalFieldInput,
+  BatchMigrationCreateSimpleFieldInput,
+  BatchMigrationCreateUnionFieldInput,
   BatchMigrationDeleteComponentInput,
   BatchMigrationDeleteEnumerationInput,
+  BatchMigrationDeleteFieldInput,
   BatchMigrationDeleteModelInput,
   BatchMigrationUpdateComponentFieldInput,
   BatchMigrationUpdateComponentInput,
+  BatchMigrationUpdateComponentUnionFieldInput,
   BatchMigrationUpdateEnumerableFieldInput,
   BatchMigrationUpdateEnumerationInput,
   BatchMigrationUpdateModelInput,
   BatchMigrationUpdateRelationalFieldInput,
   BatchMigrationUpdateSimpleFieldInput,
   BatchMigrationUpdateUnionFieldInput,
-  BatchMigrationDeleteFieldInput,
-  BatchMigrationCreateComponentUnionFieldInput,
-  BatchMigrationUpdateComponentUnionFieldInput,
   Client,
 } from '@hygraph/management-sdk'
 import dotenv from 'dotenv'
-import { Schema } from './types'
-import { graphcommerceLog, capitalize } from './utils/graphCommerceLog'
+import type { Schema } from './types'
+import { capitalize, graphcommerceLog } from './utils/graphCommerceLog'
 
 dotenv.config()
 

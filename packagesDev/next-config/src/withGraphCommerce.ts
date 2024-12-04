@@ -1,11 +1,12 @@
 // import CircularDependencyPlugin from 'circular-dependency-plugin'
 import { DuplicatesPlugin } from 'inspectpack/plugin'
 import type { NextConfig } from 'next'
-import { DomainLocale } from 'next/dist/server/config'
-import { DefinePlugin, Configuration } from 'webpack'
+import type { DomainLocale } from 'next/dist/server/config'
+import type { Configuration } from 'webpack'
+import { DefinePlugin } from 'webpack'
 import { loadConfig } from './config/loadConfig'
 import { configToImportMeta } from './config/utils/configToImportMeta'
-import { GraphCommerceConfig } from './generated/config'
+import type { GraphCommerceConfig } from './generated/config'
 import { InterceptorPlugin } from './interceptors/InterceptorPlugin'
 import { resolveDependenciesSync } from './utils/resolveDependenciesSync'
 
@@ -40,7 +41,7 @@ function domains(config: GraphCommerceConfig): DomainLocale[] {
  * module.exports = withGraphCommerce(nextConfig)
  * ```
  */
-export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConfig {
+export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.cwd()): NextConfig {
   graphcommerceConfig ??= loadConfig(cwd)
   const importMetaPaths = configToImportMeta(graphcommerceConfig)
 
@@ -53,10 +54,10 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
 
   return {
     ...nextConfig,
+    bundlePagesRouterDependencies: true,
     experimental: {
       ...nextConfig.experimental,
       scrollRestoration: true,
-      bundlePagesExternals: true,
       swcPlugins: [...(nextConfig.experimental?.swcPlugins ?? []), ['@lingui/swc-plugin', {}]],
     },
     i18n: {
@@ -71,6 +72,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
       remotePatterns: [
         { hostname: new URL(graphcommerceConfig.magentoEndpoint).hostname },
         { hostname: 'media.graphassets.com' },
+        { hostname: '*.graphcommerce.org' },
         ...(nextConfig.images?.remotePatterns ?? []),
       ],
     },

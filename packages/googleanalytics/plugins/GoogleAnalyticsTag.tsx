@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-document-import-in-page */
+
 /* eslint-disable @next/next/next-script-for-ga */
+
 /* eslint-disable react/no-danger */
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { storefrontConfig } from '@graphcommerce/next-ui/server'

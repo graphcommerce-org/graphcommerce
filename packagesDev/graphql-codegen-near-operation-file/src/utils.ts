@@ -1,8 +1,9 @@
 /* eslint-disable import/no-cycle */
-import { join } from 'path'
-import { DocumentNode, visit, FragmentSpreadNode, FragmentDefinitionNode } from 'graphql'
+import type { DocumentNode, FragmentDefinitionNode, FragmentSpreadNode } from 'graphql'
+import { visit } from 'graphql'
 import parsePath from 'parse-filepath'
-import { FragmentRegistry } from './fragment-resolver'
+import { join } from 'path'
+import type { FragmentRegistry } from './fragment-resolver'
 
 export function defineFilepathSubfolder(baseFilePath: string, folder: string) {
   const parsedPath = parsePath(baseFilePath)

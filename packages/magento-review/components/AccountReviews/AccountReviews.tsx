@@ -1,9 +1,9 @@
 import { SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import { CustomerReview } from '../CustomerReview/CustomerReview'
-import { AccountReviewsFragment } from './AccountReviews.gql'
+import type { AccountReviewsFragment } from './AccountReviews.gql'
 
-type AccountReviewsProps = AccountReviewsFragment
+export type AccountReviewsProps = AccountReviewsFragment
 
 const { classes } = extendableComponent('AccountReviews', ['root', 'older'] as const)
 

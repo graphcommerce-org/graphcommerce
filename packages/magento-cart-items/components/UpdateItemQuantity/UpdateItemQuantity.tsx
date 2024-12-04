@@ -1,13 +1,15 @@
-import { NumberFieldElement, NumberFieldElementProps } from '@graphcommerce/ecommerce-ui'
+import type { NumberFieldElementProps } from '@graphcommerce/ecommerce-ui'
+import { NumberFieldElement } from '@graphcommerce/ecommerce-ui'
 import { ApolloCartErrorSnackbar, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { FormAutoSubmit, UseFormGraphQlOptions } from '@graphcommerce/react-hook-form'
-import { SxProps, Theme } from '@mui/material'
+import type { UseFormGraphQlOptions } from '@graphcommerce/react-hook-form'
+import { FormAutoSubmit } from '@graphcommerce/react-hook-form'
+import type { SxProps, Theme } from '@mui/material'
 import React from 'react'
-import {
-  UpdateItemQuantityDocument,
+import type {
   UpdateItemQuantityMutation,
   UpdateItemQuantityMutationVariables,
 } from './UpdateItemQuantity.gql'
+import { UpdateItemQuantityDocument } from './UpdateItemQuantity.gql'
 
 type UpdateItemQuantityFormReturn = UseFormGraphQlOptions<
   UpdateItemQuantityMutation,

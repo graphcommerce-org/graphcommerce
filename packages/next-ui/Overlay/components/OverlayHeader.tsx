@@ -1,12 +1,13 @@
 import React from 'react'
-import { LayoutHeaderProps, LayoutTitle, TitleProps } from '../../Layout'
+import type { LayoutHeaderProps, TitleProps } from '../../Layout'
+import { LayoutTitle } from '../../Layout'
 import { LayoutHeaderClose } from '../../Layout/components/LayoutHeaderClose'
 import { LayoutOverlayHeader } from '../../LayoutOverlay/components/LayoutOverlayHeader'
 
-type OverlayHeaderProps = Omit<LayoutHeaderProps, 'hideBackButton' | 'switchPoint'> &
+export type OverlayHeaderProps = Omit<LayoutHeaderProps, 'hideBackButton' | 'switchPoint'> &
   Pick<TitleProps, 'icon'> & { onClose: () => void }
 
-export const OverlayHeader = (props: OverlayHeaderProps) => {
+export function OverlayHeader(props: OverlayHeaderProps) {
   const { children, onClose, sx = [], icon, primary, secondary, ...rest } = props
 
   return (

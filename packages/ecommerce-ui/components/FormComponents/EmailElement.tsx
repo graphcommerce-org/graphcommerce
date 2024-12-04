@@ -1,7 +1,9 @@
-import { emailPattern, FieldValues } from '@graphcommerce/react-hook-form'
+import type { FieldValues } from '@graphcommerce/react-hook-form'
+import { emailPattern } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { TextFieldElement, TextFieldElementProps } from './TextFieldElement'
+import type { TextFieldElementProps } from './TextFieldElement'
+import { TextFieldElement } from './TextFieldElement'
 
 export type EmailElementProps<T extends FieldValues> = TextFieldElementProps<T>
 

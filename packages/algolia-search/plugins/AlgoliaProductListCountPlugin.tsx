@@ -1,5 +1,5 @@
-import { ProductCountProps } from '@graphcommerce/magento-product'
-import { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import type { ProductCountProps } from '@graphcommerce/magento-product'
+import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { Index, usePagination } from 'react-instantsearch-hooks-web'
 import { useAlgoliaSearchIndexConfig } from '../hooks/useAlgoliaSearchIndexConfig'
 

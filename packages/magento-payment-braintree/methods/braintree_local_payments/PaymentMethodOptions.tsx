@@ -1,19 +1,15 @@
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import {
-  PaymentOptionsProps,
-  usePaymentMethodContext,
-} from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
+import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { useEffect } from 'react'
 import { BraintreePaymentMethodOptionsDocument } from '../../BraintreePaymentMethodOptions.gql'
-import { StartPaymentOptions } from '../../hooks/useBraintree'
+import type { StartPaymentOptions } from '../../hooks/useBraintree'
 import { useBraintreeCartLock } from '../../hooks/useBraintreeCartLock'
 import { useBraintreeLocalPayment } from '../../hooks/useBraintreeLocalPayment'
 import { isBraintreeError } from '../../utils/isBraintreeError'
-import {
-  BraintreeLocalPaymentsCartDocument,
-  BraintreeLocalPaymentsCartQuery,
-} from './BraintreeLocalPaymentsCart.gql'
+import type { BraintreeLocalPaymentsCartQuery } from './BraintreeLocalPaymentsCart.gql'
+import { BraintreeLocalPaymentsCartDocument } from './BraintreeLocalPaymentsCart.gql'
 
 function validateAndBuildStartPaymentParams(cartData: BraintreeLocalPaymentsCartQuery): Partial {
   const cart = cartData?.cart

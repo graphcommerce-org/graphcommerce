@@ -1,5 +1,5 @@
 import { useCartQuery } from '@graphcommerce/magento-cart'
-import { PaymentMethodButtonProps } from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentMethodButtonProps } from '@graphcommerce/magento-cart-payment-method'
 import { GetPaymentMethodContextDocument } from '@graphcommerce/magento-cart-payment-method/PaymentMethodContext/GetPaymentMethodContext.gql'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useSendEvent } from '../api/sendEvent'

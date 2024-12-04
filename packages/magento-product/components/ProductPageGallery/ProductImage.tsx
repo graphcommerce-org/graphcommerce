@@ -1,5 +1,5 @@
 import { Image } from '@graphcommerce/image'
-import { ProductImageFragment } from './ProductImage.gql'
+import type { ProductImageFragment } from './ProductImage.gql'
 
 export function ProductImage(props: ProductImageFragment) {
   const { url, label } = props

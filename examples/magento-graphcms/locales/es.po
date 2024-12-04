@@ -18,6 +18,10 @@ msgid "Doing so will remove all your data including order history and saved ship
 msgstr "Al hacerlo, se eliminarán todos sus datos, incluido el historial de pedidos y las direcciones de envío / facturación guardadas."
 
 #. js-lingui-generated-id
+msgid "{0, plural, one {<0>{addedItems}</0> has been added to your shopping cart} two {<1>{addedItems}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
+msgstr "{0, plural, one {<0>{addedItems}</0> ha sido añadido a su carrito} two {<1>{addedItems}</1> han sido añadidos a su carrito!} other {# productos han sido añadidos a su carrito!}}"
+
+#. js-lingui-generated-id
 msgid "I understand that my account will be deleted and this can not be undone."
 msgstr "Entiendo que mi cuenta será eliminada y esto no se puede deshacer."
 
@@ -148,6 +152,9 @@ msgstr "Dirección de facturación"
 
 msgid "Blog"
 msgstr "Blog"
+
+msgid "Breadcrumbs"
+msgstr "Migas de pan"
 
 msgid "Buy {quantity} for <0/> and save {percent}%"
 msgstr "Compra {quantity} por <0/> y ahorra {percent}%"
@@ -347,10 +354,6 @@ msgstr "Los correos electrónicos no coinciden"
 
 msgid "Empty comparelist"
 msgstr "Ecuación vacía"
-
-#. js-lingui-generated-id
-msgid "{0, plural, one {<0>{1}</0> has been added to your shopping cart} two {<1>{2}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
-msgstr "{0, plural, one {<0>{1}</0> se ha añadido a su carrito de compras} two {<1>{2}</1> se han añadido a su carrito de compras!} other {# productos se han añadido a su carrito de compras!}}"
 
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Rellene su correo electrónico para iniciar sesión o crear una cuenta"
@@ -555,6 +558,10 @@ msgstr "Pedidos"
 
 msgid "Other"
 msgstr "Otro"
+
+#. js-lingui-generated-id
+msgid "Please enter a valid email address"
+msgstr "Introduzca una dirección de correo electrónico válida"
 
 msgid "Out of stock"
 msgstr "Agotado"

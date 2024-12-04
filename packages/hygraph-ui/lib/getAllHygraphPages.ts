@@ -1,6 +1,7 @@
-import type { ApolloClient, NormalizedCacheObject, ApolloQueryResult } from '@apollo/client'
 import { cacheFirst } from '@graphcommerce/graphql'
-import { HygraphAllPagesDocument, HygraphAllPagesQuery } from '../graphql'
+import type { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@apollo/client'
+import type { HygraphAllPagesQuery } from '../graphql'
+import { HygraphAllPagesDocument } from '../graphql'
 
 type Urls = { url: string }
 

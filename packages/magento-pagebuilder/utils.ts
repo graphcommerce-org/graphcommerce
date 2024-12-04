@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { SxProps, Theme } from '@mui/material'
-import React from 'react'
+import type { SxProps, Theme } from '@mui/material'
+import type React from 'react'
 
 export function isHTMLElement(node: Node): node is HTMLElement {
   return node.nodeType === 1

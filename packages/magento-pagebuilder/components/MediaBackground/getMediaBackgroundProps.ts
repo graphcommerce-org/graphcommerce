@@ -1,5 +1,7 @@
-import { ImageBackgroundProps, getImageBackgroundProps } from './getImageBackgroundProps'
-import { getVideoBackgroundProps, VideoBackgroundProps } from './getVideoBackgroundProps'
+import type { ImageBackgroundProps } from './getImageBackgroundProps'
+import { getImageBackgroundProps } from './getImageBackgroundProps'
+import type { VideoBackgroundProps } from './getVideoBackgroundProps'
+import { getVideoBackgroundProps } from './getVideoBackgroundProps'
 
 export type MediaBackgroundProps =
   | (VideoBackgroundProps & { backgroundType: 'video' })

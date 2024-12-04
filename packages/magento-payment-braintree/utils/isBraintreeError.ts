@@ -1,4 +1,4 @@
-import { BraintreeError } from 'braintree-web'
+import type { BraintreeError } from 'braintree-web'
 
 const errorTypes = ['CUSTOMER', 'MERCHANT', 'NETWORK', 'INTERNAL', 'UNKNOWN']
 

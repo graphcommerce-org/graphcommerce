@@ -1,10 +1,11 @@
 import { cloneDeep, useQuery } from '@graphcommerce/graphql'
-import {
+import type {
   ProductFiltersQueryVariables,
   ProductListParams,
   ProductListQueryVariables,
 } from '@graphcommerce/magento-product'
-import { StoreConfigDocument, StoreConfigQuery } from '@graphcommerce/magento-store'
+import type { StoreConfigQuery } from '@graphcommerce/magento-store'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 
 export function useProductListApplySearchDefaults(
   params: ProductListParams | undefined,

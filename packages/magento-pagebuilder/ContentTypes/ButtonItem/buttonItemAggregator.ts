@@ -1,6 +1,6 @@
 import { getButtonLinkProps } from '../../components/ButtonLink/getButtonLinkProps'
 import { getAdvanced, isHTMLElement } from '../../utils'
-import { ButtonItemContentType } from './types'
+import type { ButtonItemContentType } from './types'
 
 export const buttonItemAggregator: ButtonItemContentType['configAggregator'] = (node) => {
   const { firstChild } = node

@@ -1,5 +1,5 @@
-import { SearchFormProps } from '@graphcommerce/magento-search'
-import { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import type { SearchFormProps } from '@graphcommerce/magento-search'
+import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { SearchBox } from '../components/SearchBox/SearchBox'
 
 export const component = 'SearchForm'

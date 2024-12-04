@@ -1,11 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import {
   cacheFirst,
   InContextMaskProvider,
   mergeDeep,
   useInContextQuery,
 } from '@graphcommerce/graphql'
+import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import {
   AddProductsToCartForm,
   AddProductsToCartFormProps,
@@ -221,7 +221,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
-      : { href: `/`, title: i18n._(/* i18n */ 'Home') }
+      : { href: '/', title: i18n._(/* i18n */ 'Home') }
   const usps = staticClient.query({ query: UspsDocument, fetchPolicy: cacheFirst(staticClient) })
 
   return {

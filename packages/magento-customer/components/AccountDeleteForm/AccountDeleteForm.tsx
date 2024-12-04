@@ -1,6 +1,6 @@
 import { CheckboxElement, EmailElement } from '@graphcommerce/ecommerce-ui'
 import { useApolloClient, useMutation } from '@graphcommerce/graphql'
-import { FormActions, FormRow, Button } from '@graphcommerce/next-ui'
+import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useForm } from '@graphcommerce/react-hook-form'
 import { Trans, t } from '@lingui/macro'
 import { Box, Typography } from '@mui/material'

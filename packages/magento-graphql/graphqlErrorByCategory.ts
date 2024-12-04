@@ -1,5 +1,5 @@
 import { ApolloError } from '@graphcommerce/graphql'
-import type { GraphQLError, GraphQLFormattedError } from 'graphql'
+import type { GraphQLFormattedError } from 'graphql'
 
 export type ErrorCategory =
   | 'internal'

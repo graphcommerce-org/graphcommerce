@@ -1,7 +1,7 @@
-import { ApolloError } from '@graphcommerce/graphql'
+import type { ApolloError } from '@graphcommerce/graphql'
 import { extendableComponent } from '@graphcommerce/next-ui/Styles/extendableComponent'
-import { Trans } from '@lingui/react'
-import { AlertProps, Alert, Box, SxProps, Theme } from '@mui/material'
+import type { AlertProps, SxProps, Theme } from '@mui/material'
+import { Alert, Box } from '@mui/material'
 import { maskNetworkError } from './maskNetworkError'
 
 const { classes, selectors } = extendableComponent('ApolloErrorAlert', ['root', 'alert'] as const)

@@ -1,9 +1,9 @@
-import fs from 'node:fs/promises'
-import path from 'path'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { sync as globSync } from 'glob'
+import fs from 'node:fs/promises'
+import path from 'path'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
-import { GenerateInterceptorsReturn } from './generateInterceptors'
+import type { GenerateInterceptorsReturn } from './generateInterceptors'
 
 function checkFileExists(file: string) {
   return fs

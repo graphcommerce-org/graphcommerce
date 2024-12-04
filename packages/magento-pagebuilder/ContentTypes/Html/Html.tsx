@@ -1,6 +1,6 @@
 import { PagebuilderRender } from '../../components/Pagebuilder/PagebuilderRender'
 import { extractAdvancedProps } from '../../utils'
-import { HtmlContentType } from './types'
+import type { HtmlContentType } from './types'
 
 /**
  * Page Builder HTML component.

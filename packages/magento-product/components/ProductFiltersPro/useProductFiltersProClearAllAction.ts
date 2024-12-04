@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { ProductFilterParams } from '../ProductListItems/filterTypes'
+import type { ProductFilterParams } from '../ProductListItems/filterTypes'
 import { useProductFiltersPro } from './ProductFiltersPro'
 
 export function useProductFiltersProClearAllAction() {

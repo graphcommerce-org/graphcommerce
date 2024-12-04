@@ -1,4 +1,5 @@
-import { ApolloCache, setContext } from '@graphcommerce/graphql'
+import type { ApolloCache } from '@graphcommerce/graphql'
+import { setContext } from '@graphcommerce/graphql'
 import { CustomerDocument } from '@graphcommerce/magento-customer'
 
 declare module '@apollo/client' {

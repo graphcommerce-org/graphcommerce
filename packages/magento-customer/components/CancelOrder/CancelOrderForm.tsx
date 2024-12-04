@@ -2,32 +2,23 @@ import { ApolloErrorSnackbar, CheckboxElement, SelectElement } from '@graphcomme
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  breakpointVal,
   Button,
-  filterNonNullableKeys,
   FormRow,
-  iconChevronDown,
   IconSvg,
+  breakpointVal,
+  filterNonNullableKeys,
+  iconChevronDown,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionProps,
-  AccordionSummary,
-  Alert,
-  Box,
-} from '@mui/material'
+import type { AccordionProps } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Alert, Box } from '@mui/material'
 import { canCancelOrder } from '../../utils'
-import { OrderDetailsFragment } from '../OrderDetails/OrderDetails.gql'
-import {
-  CancelOrderDocument,
-  CancelOrderMutation,
-  CancelOrderMutationVariables,
-} from './CancelOrder.gql'
+import type { OrderDetailsFragment } from '../OrderDetails/OrderDetails.gql'
+import type { CancelOrderMutation, CancelOrderMutationVariables } from './CancelOrder.gql'
+import { CancelOrderDocument } from './CancelOrder.gql'
 
-type CancelOrderFormProps = {
+export type CancelOrderFormProps = {
   order: OrderDetailsFragment
 } & Omit<AccordionProps, 'children'>
 

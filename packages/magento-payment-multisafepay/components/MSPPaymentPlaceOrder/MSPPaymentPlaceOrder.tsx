@@ -2,10 +2,8 @@ import { ApolloErrorSnackbar, useFormCompose } from '@graphcommerce/ecommerce-ui
 import { useMutation } from '@graphcommerce/graphql'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
-import {
-  PaymentPlaceOrderProps,
-  usePaymentMethodContext,
-} from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
+import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
 import { ErrorSnackbar } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { useRouter } from 'next/router'

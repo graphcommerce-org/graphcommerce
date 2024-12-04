@@ -1,4 +1,5 @@
-import { InMemoryCache, NormalizedCacheObject } from '@apollo/client'
+import type { NormalizedCacheObject } from '@apollo/client'
+import { InMemoryCache } from '@apollo/client'
 
 function pruneKey(cacheValue: unknown, path: string[]) {
   if (typeof cacheValue !== 'object' || cacheValue === null) return

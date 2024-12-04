@@ -1,6 +1,6 @@
-import { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
-import { ActionCardListProps } from '@graphcommerce/next-ui'
-import { BundleProductOptionsFragment } from './BundleProductOptions.gql'
+import type { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
+import type { ActionCardListProps } from '@graphcommerce/next-ui'
+import type { BundleProductOptionsFragment } from './BundleProductOptions.gql'
 
 export type BundleOptionProps = {
   idx: number

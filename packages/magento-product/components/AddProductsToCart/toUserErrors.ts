@@ -1,6 +1,6 @@
-import { CartUserInputError } from '@graphcommerce/graphql-mesh'
+import type { CartUserInputError } from '@graphcommerce/graphql-mesh'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { AddProductsToCartMutation } from './AddProductsToCart.gql'
+import type { AddProductsToCartMutation } from './AddProductsToCart.gql'
 
 export function toUserErrors(data?: AddProductsToCartMutation | null): CartUserInputError[] {
   const cartItemErrors = filterNonNullableKeys(data?.addProductsToCart?.cart.items)

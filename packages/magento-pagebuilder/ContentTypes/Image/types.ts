@@ -1,5 +1,5 @@
-import { ContentType, ContentTypeConfig } from '../../types'
-import { AdvancedProps } from '../../utils'
+import type { ContentType, ContentTypeConfig } from '../../types'
+import type { AdvancedProps } from '../../utils'
 
 export type ImageConfig = ContentTypeConfig<'divider'> & { appearance: 'full-width' }
 

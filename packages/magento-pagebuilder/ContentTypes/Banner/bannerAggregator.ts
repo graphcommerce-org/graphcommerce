@@ -1,15 +1,15 @@
 import { getButtonLinkProps } from '../../components/ButtonLink/getButtonLinkProps'
 import { getMediaBackgroundProps } from '../../components/MediaBackground/getMediaBackgroundProps'
 import {
-  getMargin,
   getBorder,
+  getCssClasses,
+  getMargin,
+  getMediaQuery,
   getPadding,
   getTextAlign,
-  getCssClasses,
-  getMediaQuery,
   stripEmpty,
 } from '../../utils'
-import { BannerContentType, ShowButton, ShowOverlay } from './types'
+import type { BannerContentType, ShowButton, ShowOverlay } from './types'
 
 export const bannerAggregator: BannerContentType['configAggregator'] = (node, props) => {
   const wrapperElement = node.querySelector<HTMLElement>('[data-element="wrapper"]')

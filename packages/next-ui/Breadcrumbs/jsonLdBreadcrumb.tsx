@@ -1,4 +1,4 @@
-import { NextRouter } from 'next/router'
+import type { NextRouter } from 'next/router'
 import type { BreadcrumbList } from 'schema-dts'
 import { canonicalize } from '../PageMeta/canonicalize'
 import type { BreadcrumbsType } from './types'

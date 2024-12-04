@@ -1,10 +1,12 @@
-import { ActionCardItemBase, ActionCardListForm } from '@graphcommerce/ecommerce-ui'
-import { AddProductsToCartFields, useFormAddProductsToCart } from '@graphcommerce/magento-product'
+import type { ActionCardItemBase } from '@graphcommerce/ecommerce-ui'
+import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
+import type { AddProductsToCartFields } from '@graphcommerce/magento-product'
+import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { SectionHeader, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import React, { useMemo } from 'react'
 import { BundleOptionValue } from './BundleOptionValue'
-import { BundleOptionProps, BundleOptionValueProps } from './types'
+import type { BundleOptionProps, BundleOptionValueProps } from './types'
 
 export const BundleOption = React.memo<BundleOptionProps>((props) => {
   const { idx, index, options, title, color, layout, size, variant, required: _required } = props

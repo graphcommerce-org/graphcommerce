@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Page } from '@playwright/test'
+import type { Page } from '@playwright/test'
 
 export async function fillShippingAddressForm(page: Page) {
   await page.click('input[name="firstname"]')

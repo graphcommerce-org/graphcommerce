@@ -1,8 +1,9 @@
-import { Box, ContainerProps } from '@mui/material'
+import type { ContainerProps } from '@mui/material'
+import { Box } from '@mui/material'
 import { extendableComponent } from '../../Styles'
 import { Row } from '../Row'
 
-const compName = 'ColumnOneBoxed' as const
+const compName = 'ColumnOneBoxed'
 const parts = ['root', 'boxed'] as const
 const { classes } = extendableComponent(compName, parts)
 

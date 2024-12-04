@@ -1,11 +1,7 @@
-import {
-  Box,
-  CircularProgress,
-  CircularProgressProps,
-  Fab as FabBase,
-  FabProps as FabPropsBase,
-} from '@mui/material'
-import { IconSvg, IconSvgProps } from '../IconSvg'
+import type { CircularProgressProps, FabProps as FabPropsBase } from '@mui/material'
+import { Box, CircularProgress, Fab as FabBase } from '@mui/material'
+import type { IconSvgProps } from '../IconSvg'
+import { IconSvg } from '../IconSvg'
 import { useFabSize } from '../Theme/MuiFab'
 
 export type FabProps = Omit<FabPropsBase<'button'>, 'variant' | 'children'> & {

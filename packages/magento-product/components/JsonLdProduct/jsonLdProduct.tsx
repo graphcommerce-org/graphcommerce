@@ -1,7 +1,7 @@
 import type { ProductImage } from '@graphcommerce/graphql-mesh'
 import type { Product } from 'schema-dts'
-import { JsonLdProductFragment } from './JsonLdProduct.gql'
-import { JsonLdProductOfferFragment } from './JsonLdProductOffer.gql'
+import type { JsonLdProductFragment } from './JsonLdProduct.gql'
+import type { JsonLdProductOfferFragment } from './JsonLdProductOffer.gql'
 
 export function jsonLdProduct(props: JsonLdProductFragment): Product {
   const { name, sku, media_gallery, categories, description } = props

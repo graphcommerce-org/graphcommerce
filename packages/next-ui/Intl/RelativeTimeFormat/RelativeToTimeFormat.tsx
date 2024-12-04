@@ -1,6 +1,8 @@
 import { forwardRef, useMemo } from 'react'
-import { DateValue, toDate } from '../DateTimeFormat/toDate'
-import { RelativeTimeFormat, RelativeTimeFormatProps } from './RelativeTimeFormat'
+import type { DateValue } from '../DateTimeFormat/toDate'
+import { toDate } from '../DateTimeFormat/toDate'
+import type { RelativeTimeFormatProps } from './RelativeTimeFormat'
+import { RelativeTimeFormat } from './RelativeTimeFormat'
 
 type RelativeToTimeFormatProps = Omit<RelativeTimeFormatProps, 'children'> & {
   /**

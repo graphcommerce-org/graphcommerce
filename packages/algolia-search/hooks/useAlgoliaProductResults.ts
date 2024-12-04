@@ -1,9 +1,9 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { CurrencyEnum } from '@graphcommerce/graphql-mesh'
-import { ProductListItemFragment, ProductListItemProps } from '@graphcommerce/magento-product'
+import type { CurrencyEnum } from '@graphcommerce/graphql-mesh'
+import type { ProductListItemFragment, ProductListItemProps } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { useHits } from 'react-instantsearch-hooks-web'
-import { AlgoliaProductHit } from '../lib/types'
+import type { AlgoliaProductHit } from '../lib/types'
 
 function hitsToProduct(
   items: AlgoliaProductHit[],

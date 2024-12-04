@@ -1,8 +1,9 @@
-import { NextLink, breakpointVal } from '@graphcommerce/next-ui'
-import { Box, BoxProps, ButtonBase, ButtonBaseProps, SxProps, Theme } from '@mui/material'
+import { breakpointVal, NextLink } from '@graphcommerce/next-ui'
+import type { BoxProps, ButtonBaseProps, SxProps, Theme } from '@mui/material'
+import { Box, ButtonBase } from '@mui/material'
 import React from 'react'
 
-type ProductListItemLinkProps = ButtonBaseProps<typeof NextLink>
+export type ProductListItemLinkProps = ButtonBaseProps<typeof NextLink>
 export type ProductListItemLinkOrDivProps = ProductListItemLinkProps | BoxProps
 
 function isLink(props: ProductListItemLinkOrDivProps): props is ProductListItemLinkProps {

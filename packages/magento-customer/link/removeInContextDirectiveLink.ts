@@ -1,7 +1,6 @@
+import type { NextLink, Operation } from '@graphcommerce/graphql'
 import {
   ApolloLink,
-  NextLink,
-  Operation,
   removeArgumentsFromDocument,
   removeDirectivesFromDocument,
 } from '@graphcommerce/graphql'

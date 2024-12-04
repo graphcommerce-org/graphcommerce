@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material'
-import { HeadingContentType } from './types'
+import type { HeadingContentType } from './types'
 
 /**
  * Page Builder Heading component.

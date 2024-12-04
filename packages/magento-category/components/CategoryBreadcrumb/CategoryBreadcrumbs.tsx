@@ -1,12 +1,8 @@
-import {
-  Breadcrumbs,
-  BreadcrumbsJsonLd,
-  BreadcrumbsProps,
-  jsonLdBreadcrumb,
-} from '@graphcommerce/next-ui'
+import type { BreadcrumbsProps } from '@graphcommerce/next-ui'
+import { Breadcrumbs, BreadcrumbsJsonLd, jsonLdBreadcrumb } from '@graphcommerce/next-ui'
 import { useRouter } from 'next/router'
 import type { BreadcrumbList } from 'schema-dts'
-import { CategoryBreadcrumbFragment } from './CategoryBreadcrumb.gql'
+import type { CategoryBreadcrumbFragment } from './CategoryBreadcrumb.gql'
 import { categoryToBreadcrumbs } from './categoryToBreadcrumbs'
 
 export type CategoryBreadcrumbsProps = Omit<BreadcrumbsProps, 'breadcrumbs'> & {

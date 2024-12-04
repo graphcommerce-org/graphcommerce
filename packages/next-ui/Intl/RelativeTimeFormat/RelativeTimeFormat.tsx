@@ -1,27 +1,20 @@
-import { forwardRef, useMemo } from 'react'
-import { useLocale } from '../../hooks/useLocale'
-import { useMemoObject } from '../../hooks/useMemoObject'
+import { forwardRef } from 'react'
 import { relativeTimeFormatUnitAuto } from './relativeTimeFormatAutoUnit'
-
-export function useRelativeTimeFormatter(props: Intl.RelativeTimeFormatOptions) {
-  const locale = useLocale()
-  const memoOptions = useMemoObject(props)
-  return useMemo(() => new Intl.RelativeTimeFormat(locale, memoOptions), [locale, memoOptions])
-}
+import type { UseRelativeTimeFormatterProps } from './useRelativeTimeFormat'
+import { useRelativeTimeFormat } from './useRelativeTimeFormat'
 
 export type RelativeTimeFormatProps = {
   children: number
   unit?: Intl.RelativeTimeFormatUnit
-  styleFormat?: Intl.RelativeTimeFormatStyle
-} & Omit<Intl.RelativeTimeFormatOptions, 'style'>
+} & UseRelativeTimeFormatterProps
 
 /**
  * Alternative: {@link file://./RelativeToTimeFormat.tsx}
  */
 export const RelativeTimeFormat = forwardRef<HTMLSpanElement, RelativeTimeFormatProps>(
   (props, ref) => {
-    const { children, unit, styleFormat, localeMatcher, numeric, ...rest } = props
-    const formatter = useRelativeTimeFormatter({ localeMatcher, numeric, style: styleFormat })
+    const { children, unit, locale, localeMatcher, numeric, styleFormat, ...rest } = props
+    const formatter = useRelativeTimeFormat({ locale, localeMatcher, numeric, styleFormat })
 
     const [value, autoUnit] = relativeTimeFormatUnitAuto({ value: children, unit })
 

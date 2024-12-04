@@ -1,6 +1,8 @@
-import { FieldValues, phonePattern } from '@graphcommerce/react-hook-form'
+import type { FieldValues } from '@graphcommerce/react-hook-form'
+import { phonePattern } from '@graphcommerce/react-hook-form'
 import { Trans, t } from '@lingui/macro'
-import { TextFieldElement, TextFieldElementProps } from './TextFieldElement'
+import type { TextFieldElementProps } from './TextFieldElement'
+import { TextFieldElement } from './TextFieldElement'
 
 export type TelephoneElementProps<T extends FieldValues> = TextFieldElementProps<T>
 

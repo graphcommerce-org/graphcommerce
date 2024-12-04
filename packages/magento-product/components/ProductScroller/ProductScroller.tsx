@@ -1,18 +1,11 @@
-import { ItemScroller, ItemScrollerProps, RenderType, responsiveVal } from '@graphcommerce/next-ui'
-import {
-  Box,
-  Container,
-  ContainerProps,
-  SxProps,
-  Theme,
-  Typography,
-  TypographyProps,
-  useTheme,
-} from '@mui/material'
+import type { ItemScrollerProps } from '@graphcommerce/next-ui'
+import { ItemScroller, RenderType, responsiveVal } from '@graphcommerce/next-ui'
+import type { ContainerProps, SxProps, Theme, TypographyProps } from '@mui/material'
+import { Box, Container, Typography, useTheme } from '@mui/material'
 import React, { forwardRef, useContext } from 'react'
 import { AddProductsToCartContext, AddProductsToCartForm } from '../AddProductsToCart'
-import { ProductListItemProps } from '../ProductListItem/ProductListItem'
-import { ProductListItemRenderer, ProductListItemType } from '../ProductListItems/renderer'
+import type { ProductListItemProps } from '../ProductListItem/ProductListItem'
+import type { ProductListItemRenderer, ProductListItemType } from '../ProductListItems/renderer'
 
 export type ProductScrollerProps = {
   title?: React.ReactNode
@@ -22,7 +15,8 @@ export type ProductScrollerProps = {
   sx?: SxProps<Theme>
   containerProps?: ContainerProps
   titleProps?: TypographyProps
-  itemScrollerProps?: ItemScrollerProps
+  itemScrollerProps?: Omit<ItemScrollerProps, 'children'>
+  sizes?: string
 }
 export const ProductScroller = forwardRef<HTMLDivElement, ProductScrollerProps>(
   (props: ProductScrollerProps, ref) => {
@@ -35,13 +29,14 @@ export const ProductScroller = forwardRef<HTMLDivElement, ProductScrollerProps>(
       containerProps,
       titleProps,
       itemScrollerProps,
+      sizes = responsiveVal(200, 300),
     } = props
 
     const theme = useTheme()
 
     const Wrapper = useContext(AddProductsToCartContext) ? React.Fragment : AddProductsToCartForm
 
-    if (!items) return null
+    if (!items || !items.length) return null
 
     return (
       <Box sx={sx} ref={ref}>
@@ -61,7 +56,7 @@ export const ProductScroller = forwardRef<HTMLDivElement, ProductScrollerProps>(
                   renderer={productListRenderer}
                   {...item}
                   imageOnly={imageOnly}
-                  sizes={responsiveVal(200, 300)}
+                  sizes={sizes}
                 />
               ))}
             </ItemScroller>

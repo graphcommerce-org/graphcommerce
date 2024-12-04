@@ -1,6 +1,8 @@
-import { useWatch, FieldValues } from '@graphcommerce/react-hook-form'
+import type { FieldValues } from '@graphcommerce/react-hook-form'
+import { useWatch } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import { PasswordElement, PasswordElementProps } from './PasswordElement'
+import type { PasswordElementProps } from './PasswordElement'
+import { PasswordElement } from './PasswordElement'
 
 export type PasswordRepeatElementProps<T extends FieldValues> = PasswordElementProps<T> & {
   passwordFieldName: PasswordElementProps<T>['name']

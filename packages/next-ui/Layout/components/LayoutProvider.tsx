@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { layoutContext } from '../context/layoutContext'
-import { LayoutContext } from '../types'
+import type { LayoutContext } from '../types'
 
 export type LayoutProviderProps = {
   children: React.ReactNode

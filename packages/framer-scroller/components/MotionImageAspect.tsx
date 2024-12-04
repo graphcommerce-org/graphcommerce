@@ -1,4 +1,5 @@
-import { Image, ImageProps } from '@graphcommerce/image'
+import type { ImageProps } from '@graphcommerce/image'
+import { Image } from '@graphcommerce/image'
 import { Box } from '@mui/material'
 import { m } from 'framer-motion'
 import { forwardRef } from 'react'

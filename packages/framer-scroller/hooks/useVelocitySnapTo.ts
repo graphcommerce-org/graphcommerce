@@ -1,7 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useMatchMedia } from '@graphcommerce/next-ui/hooks/useMatchMedia'
-import { PanInfo } from 'framer-motion'
-import { inertia, InertiaOptions } from 'popmotion'
+import type { PanInfo } from 'framer-motion'
+import type { InertiaOptions } from 'popmotion'
+import { inertia } from 'popmotion'
 import { scrollSnapTypeDirection } from '../utils/scrollSnapTypeDirection'
 import { useScrollerContext } from './useScrollerContext'
 
@@ -43,7 +44,7 @@ export const useVelocitySnapTo = (
 
   const animatePan = async (info: LimitedPanInfo) => {
     const el = ref.current
-    if (!el) throw Error(`Can't find html element`)
+    if (!el) throw Error("Can't find html element")
 
     const { scrollLeft, scrollTop } = el
 

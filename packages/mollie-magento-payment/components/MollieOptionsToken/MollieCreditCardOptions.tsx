@@ -1,16 +1,17 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { FormRow } from '@graphcommerce/next-ui'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { Alert } from '@mui/material'
 import Script from 'next/script'
 import { useEffect, useState } from 'react'
-import { Mollie } from '../../Mollie'
+import type { Mollie } from '../../Mollie'
 import { MollieField } from './MollieField'
 import { SetMolliePaymentMethodTokenOnCartDocument } from './SetMolliePaymentMethodTokenOnCart.gql'
-import { mollieContext, MollieContext } from './mollieContext'
+import type { MollieContext } from './mollieContext'
+import { mollieContext } from './mollieContext'
 
 declare global {
   interface Window {
@@ -30,7 +31,7 @@ export function MollieCreditCardOptions(props: PaymentOptionsProps) {
       const result = await mollie?.createToken()
 
       if (!result?.token || result?.error) {
-        throw Error(`Error while requesting token`)
+        throw Error('Error while requesting token')
       }
 
       return { ...variables, token: result.token }

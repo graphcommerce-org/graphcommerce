@@ -1,24 +1,21 @@
-import { Box, SxProps, Theme } from '@mui/material'
-import { useMemo } from 'react'
-import { useLocale } from '../../hooks/useLocale'
-import { useMemoObject } from '../../hooks/useMemoObject'
+import { Box } from '@mui/material'
+import { forwardRef } from 'react'
+import type { UseNumberFormatProps } from './useNumberFormat'
+import { useNumberFormat } from './useNumberFormat'
 
-export type NumberFormatPropsType = {
-  children?: number | bigint | null | undefined
-  numberStyle: Intl.NumberFormatOptions['style']
-  sx?: SxProps<Theme>
-} & Omit<Intl.NumberFormatOptions, 'style'>
+export type NumberFormatValue = number | bigint | Intl.StringNumericLiteral
 
-export function NumberFormat(props: NumberFormatPropsType) {
-  const { children, numberStyle, ...options } = props
+export type NumberFormatProps = UseNumberFormatProps & {
+  value: NumberFormatValue
+}
 
-  const memoOptions = useMemoObject({ ...options, style: numberStyle })
-  const locale = useLocale()
-  const formatter = useMemo(() => new Intl.NumberFormat(locale, memoOptions), [locale, memoOptions])
+export const NumberFormat = forwardRef<HTMLSpanElement, NumberFormatProps>((props, ref) => {
+  const { value, ...options } = props
+  const formatter = useNumberFormat(options)
 
   return (
-    <Box component='span' suppressHydrationWarning>
-      {children ? formatter.format(children) : null}
+    <Box component='span' suppressHydrationWarning ref={ref}>
+      {formatter.format(value)}
     </Box>
   )
-}
+})

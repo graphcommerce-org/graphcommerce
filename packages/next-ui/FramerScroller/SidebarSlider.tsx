@@ -1,12 +1,13 @@
+import type { ScrollerButtonProps } from '@graphcommerce/framer-scroller'
 import {
   Scroller,
   ScrollerButton,
-  ScrollerButtonProps,
   ScrollerPageCounter,
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
-import { Box, SxProps, Theme } from '@mui/material'
-import { ReactNode } from 'react'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
+import type { ReactNode } from 'react'
 import { IconSvg } from '../IconSvg'
 import { Row } from '../Row/Row'
 import { extendableComponent } from '../Styles/extendableComponent'
@@ -78,7 +79,7 @@ export function SidebarSlider(props: SidebarSliderProps) {
                 gap: theme.spacings.xxs,
                 position: 'absolute',
                 left: theme.spacings.sm,
-                top: `calc(50% - 28px)`,
+                top: 'calc(50% - 28px)',
               })}
             >
               <ScrollerButton
@@ -97,7 +98,7 @@ export function SidebarSlider(props: SidebarSliderProps) {
                 gap: theme.spacings.xxs,
                 position: 'absolute',
                 right: theme.spacings.sm,
-                top: `calc(50% - 28px)`,
+                top: 'calc(50% - 28px)',
               })}
             >
               <ScrollerButton

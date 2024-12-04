@@ -1,33 +1,29 @@
-import {
-  ActionCardItemBase,
-  ActionCardItemRenderProps,
-  ActionCardListForm,
-} from '@graphcommerce/ecommerce-ui'
+import type { ActionCardItemBase, ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
+import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import {
   ApolloCartErrorAlert,
   useCartQuery,
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { Form, FormHeader } from '@graphcommerce/next-ui'
+import type { UseFormComposeOptions, UseFormGraphQlOptions } from '@graphcommerce/react-hook-form'
 import {
   FormAutoSubmit,
   FormProvider,
   useFormCompose,
-  UseFormComposeOptions,
-  UseFormGraphQlOptions,
   useWatch,
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import { useEffect, useMemo } from 'react'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
 import { ShippingMethodActionCard } from './ShippingMethodActionCard'
-import {
-  ShippingMethodFormDocument,
+import type {
   ShippingMethodFormMutation,
   ShippingMethodFormMutationVariables,
 } from './ShippingMethodForm.gql'
+import { ShippingMethodFormDocument } from './ShippingMethodForm.gql'
 
 export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'> & {
   sx?: SxProps<Theme>
@@ -61,6 +57,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
           ...method,
           disabled: !method?.available,
           value: `${method?.carrier_code}-${method?.method_code ?? ''}`,
+          method_title: method?.method_title || '',
         })),
     [availableMethods],
   )

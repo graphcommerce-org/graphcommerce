@@ -1,23 +1,19 @@
-import { UseHistoryLink, useHistoryGo } from '@graphcommerce/framer-next-pages'
-import {
-  useFormAddProductsToCart,
+import type { UseHistoryLink } from '@graphcommerce/framer-next-pages'
+import { useHistoryGo } from '@graphcommerce/framer-next-pages'
+import type {
   AddProductsToCartFormProps,
   AddToCartItemSelector,
-  AddProductsToCartForm,
 } from '@graphcommerce/magento-product'
+import { AddProductsToCartForm, useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
-import { CartItemsFragment } from '../../../Api/CartItems.gql'
-import {
-  UseRemoveItemFromCartProps,
-  useRemoveItemFromCart,
-} from '../../../hooks/useRemoveItemFromCart'
-import {
-  CartItemToCartItemInputProps,
-  cartItemToCartItemInput,
-} from '../../../utils/cartItemToCartItemInput'
+import type { CartItemsFragment } from '../../../Api/CartItems.gql'
+import type { UseRemoveItemFromCartProps } from '../../../hooks/useRemoveItemFromCart'
+import { useRemoveItemFromCart } from '../../../hooks/useRemoveItemFromCart'
+import type { CartItemToCartItemInputProps } from '../../../utils/cartItemToCartItemInput'
+import { cartItemToCartItemInput } from '../../../utils/cartItemToCartItemInput'
 
-type EditInitProps = CartItemToCartItemInputProps & AddToCartItemSelector
+export type EditInitProps = CartItemToCartItemInputProps & AddToCartItemSelector
 
 function EditInit(props: EditInitProps) {
   const { product, selectors, cartItem, index = 0 } = props

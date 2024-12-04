@@ -1,6 +1,7 @@
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { cartToViewCart, ViewCart } from '../cartToViewCart/cartToViewCart'
-import { Cart_AddShippingInfoFragment } from './Cart_AddShippingInfo.gql'
+import type { ViewCart } from '../cartToViewCart/cartToViewCart'
+import { cartToViewCart } from '../cartToViewCart/cartToViewCart'
+import type { Cart_AddShippingInfoFragment } from './Cart_AddShippingInfo.gql'
 
 export type AddShippingInfo = ViewCart & {
   coupon?: string

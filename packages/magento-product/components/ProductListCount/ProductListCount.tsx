@@ -1,7 +1,8 @@
 import { extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Divider, SxProps, Theme, Typography } from '@mui/material'
-import { ProductListCountFragment } from './ProductListCount.gql'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Divider, Typography } from '@mui/material'
+import type { ProductListCountFragment } from './ProductListCount.gql'
 
 const { classes, selectors } = extendableComponent('ProductListCount', [
   'root',

@@ -1,13 +1,10 @@
 /* eslint-disable no-nested-ternary */
 import { InputCheckmark } from '@graphcommerce/next-ui'
-import {
-  FieldValues,
-  UseControllerProps,
-  emailPattern,
-  useController,
-} from '@graphcommerce/react-hook-form'
+import type { FieldValues, UseControllerProps } from '@graphcommerce/react-hook-form'
+import { emailPattern, useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import { TextField, TextFieldProps } from '@mui/material'
+import type { TextFieldProps } from '@mui/material'
+import { TextField, useForkRef } from '@mui/material'
 import React, { useState } from 'react'
 
 export type TextFieldElementProps<T extends FieldValues = FieldValues> = Omit<
@@ -71,7 +68,7 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
         onChange(type === 'number' && ev.target.value ? Number(ev.target.value) : ev.target.value)
         rest.onChange?.(ev)
       }}
-      inputRef={ref}
+      inputRef={useForkRef(ref, rest.inputRef)}
       required={required}
       type={type}
       error={Boolean(error) || rest.error}

@@ -1,12 +1,12 @@
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Fab, Button, Box, Typography } from '@mui/material'
+import { Box, Button, Fab, Typography } from '@mui/material'
 import { IconSvg, useIconSvgSize } from '../IconSvg'
 import { LayoutHeader } from '../Layout'
 import { OverlayStickyBottom } from '../Overlay/components/OverlayStickyBottom'
 import { useFabSize } from '../Theme'
 import { iconClose } from '../icons'
-import { PanelActionsProps } from './types'
+import type { PanelActionsProps } from './types'
 
 export function PopperPanelActions(props: PanelActionsProps) {
   const { title, children, onReset, onClose, onApply, sx = [] } = props

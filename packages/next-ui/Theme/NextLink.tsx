@@ -1,14 +1,15 @@
-import Link, { LinkProps as NextLinkProps } from 'next/link'
+import type { LinkProps as NextLinkProps } from 'next/link'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { forwardRef } from 'react'
 import { useStorefrontConfig } from '../hooks/useStorefrontConfig'
 
-type NextLinkPropsBase = Omit<NextLinkProps, 'legacyBehavior' | 'passHref' | 'as'>
-type AnchorWithoutLinkProps = Omit<
+export type NextLinkPropsBase = Omit<NextLinkProps, 'legacyBehavior' | 'passHref' | 'as'>
+export type AnchorWithoutLinkProps = Omit<
   React.AnchorHTMLAttributes<HTMLAnchorElement>,
   keyof NextLinkPropsBase
 >
-type LinkProps = AnchorWithoutLinkProps & Partial<NextLinkPropsBase> & { relative?: boolean }
+export type LinkProps = AnchorWithoutLinkProps & Partial<NextLinkPropsBase> & { relative?: boolean }
 
 /**
  * This is a wrapper around the Next.js Link component which can be used with MUI's Link component

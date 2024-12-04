@@ -1,7 +1,9 @@
 import { useMotionValue } from 'framer-motion'
-import React, { useEffect } from 'react'
+import type React from 'react'
+import { useEffect } from 'react'
 
 /** When an element is dragged it will still register clicks. */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useHandleClickNotDrag(elementRef: React.MutableRefObject<any>) {
   const movement = useMotionValue<'click' | 'drag' | null>(null)
 

@@ -1,5 +1,5 @@
-import { ApolloError } from '@apollo/client'
-import type { FieldValues, FormState, GlobalError, UseFormReturn } from 'react-hook-form'
+import type { ApolloError } from '@apollo/client'
+import type { FieldValues, FormState, UseFormReturn } from 'react-hook-form'
 import type { SetOptional } from 'type-fest'
 
 export type UseFormComposeOptions<V extends FieldValues = FieldValues> = {

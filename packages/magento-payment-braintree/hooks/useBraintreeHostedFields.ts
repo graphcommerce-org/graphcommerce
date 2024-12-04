@@ -1,4 +1,5 @@
-import braintree, { HostedFields, ThreeDSecure } from 'braintree-web'
+import type { HostedFields, ThreeDSecure } from 'braintree-web'
+import braintree from 'braintree-web'
 import { useEffect, useState } from 'react'
 import { useBraintreeClient } from './useBraintree'
 
