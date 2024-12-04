@@ -2,9 +2,7 @@
 
 import {
   breakpointVal,
-  layoutMaxWidth,
-  layoutMaxWidthContent,
-  maxWidth,
+  containerSizing,
   MuiButtonInline,
   MuiButtonPill,
   MuiButtonResponsive,
@@ -22,9 +20,9 @@ import { Components, PaletteOptions } from '@mui/material/styles'
 const lightPalette: PaletteOptions = {
   mode: 'light',
   primary: {
-    main: '#47C489',
+    main: '#000000',
     contrastText: '#ffffff',
-    dark: '#47C489',
+    dark: '#000000',
   },
   secondary: {
     main: '#006bff',
@@ -53,18 +51,18 @@ const lightPalette: PaletteOptions = {
 const darkPalette: PaletteOptions = {
   mode: 'dark',
   primary: {
-    main: '#62C7B0',
+    main: '#006bff',
     contrastText: '#ffffff',
-    dark: '#62C7B0',
+    dark: '#0056d2',
   },
   secondary: {
-    main: '#62C7B0',
-    light: '#62C7B0',
-    contrastText: '#ffffff',
+    main: '#78909c',
+    light: '#b0bec5',
+    contrastText: '#000000',
   },
   background: {
-    default: '#001727',
-    paper: '#15293B',
+    default: '#121212',
+    paper: '#1E1E1E',
     image: '#ffffff',
   },
   divider: '#ffffff30',
@@ -183,8 +181,10 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       headerHeightMd: '100px',
       appBarHeightMd: '80px',
       appBarInnerHeightMd: '46px',
-      maxWidth: layoutMaxWidth() ? 'lg' : false,
-      maxWidthContent: layoutMaxWidthContent() ? 'lg' : false,
+      containerSizingShell:
+        import.meta.graphCommerce.containerSizingShell === 'BREAKPOINT' ? 'lg' : false,
+      containerSizingContent:
+        import.meta.graphCommerce.containerSizingContent === 'BREAKPOINT' ? 'lg' : false,
     },
   })
 
@@ -217,7 +217,7 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
       {
         // When a Container is using maxWidth={false} we automatically limit that container to the maxWidth
         props: { maxWidth: false },
-        style: { maxWidth: maxWidth(theme).pixels },
+        style: { maxWidth: containerSizing('content', theme).value },
       },
       {
         props: { disableGutters: false },

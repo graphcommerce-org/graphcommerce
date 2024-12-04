@@ -1,5 +1,7 @@
 import { CategoryBreadcrumbs, CategoryDescription } from '@graphcommerce/magento-category'
 import {
+  ColumnConfig,
+  ColumnsConfig,
   ProductFiltersPro,
   ProductFiltersProAggregations,
   ProductFiltersProAllFiltersChip,
@@ -24,27 +26,84 @@ import {
 import {
   MediaQuery,
   memoDeep,
+  Container,
   responsiveVal,
   StickyBelowHeader,
-  useMaxWidthContent,
+  useContainerSizing,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Box, Container, Typography } from '@mui/material'
+import { Box, Breakpoint, Typography, useTheme } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'
 import { ProductListLayoutProps } from './types'
 
+type Configuration = {
+  columnGap: { xs: string; xl: string }
+  sidebarWidth: string
+  columns: ColumnsConfig
+}
+
+const useLayoutConfiguration = (hasSidebar: boolean): Configuration => {
+  const { breakpoint } = useContainerSizing('content')
+  const theme = useTheme()
+
+  const sidebarWidths = hasSidebar
+    ? {
+        md: responsiveVal(200, 250, 960, 1920),
+        lg: responsiveVal(200, 250, 960, 1920),
+        xl: responsiveVal(200, 350, 960, 1920),
+      }
+    : {
+        md: '0px',
+        lg: '0px',
+        xl: '0px',
+      }
+
+  const maxWidth = (bp: Breakpoint) =>
+    `calc(${theme.breakpoints.values[bp]}px - ${sidebarWidths[bp]})`
+
+  const configurations: Record<string, Configuration> = {
+    md: {
+      columnGap: { xs: theme.spacings.md, xl: theme.spacings.md },
+      sidebarWidth: sidebarWidths.md,
+      columns: {
+        xs: { count: 2 },
+      },
+    },
+    lg: {
+      columnGap: { xs: theme.spacings.md, xl: theme.spacings.lg },
+      sidebarWidth: sidebarWidths.lg,
+      columns: {
+        xs: { count: 2 },
+        md: { count: 3, maxWidth: maxWidth('lg') },
+        lg: { count: 4, maxWidth: maxWidth('lg') },
+      },
+    },
+    xl: {
+      columnGap: { xs: theme.spacings.md, xl: theme.spacings.xl },
+      sidebarWidth: sidebarWidths.xl,
+      columns: {
+        xs: { count: 2 },
+        md: { count: 3, maxWidth: maxWidth('xl') },
+        lg: { count: 4, maxWidth: maxWidth('xl') },
+      },
+    },
+    fullWidth: {
+      columnGap: { xs: theme.spacings.md, xl: theme.spacings.xxl },
+      sidebarWidth: sidebarWidths.xl,
+      columns: { xs: { count: 2 }, md: { count: 3 }, lg: { count: 4 } },
+    },
+  }
+
+  return configurations[breakpoint || 'fullWidth']
+}
+
 export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps) => {
-  const { filters, filterTypes, params, products, handleSubmit, category, title, menu, maxWidth } =
-    props
+  const { filters, filterTypes, params, products, handleSubmit, category, title, menu } = props
 
   if (!params || !products?.items || !filterTypes) return null
   const { total_count, sort_fields, page_info } = products
 
-  const maxWidthContent = useMaxWidthContent()
-
-  const sidebarWidth = maxWidthContent.pixels
-    ? responsiveVal(200, 300, 960, 1920)
-    : responsiveVal(200, 350, 960, 1920)
+  const configuration = useLayoutConfiguration(true)
 
   return (
     <ProductFiltersPro
@@ -56,28 +115,26 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
       handleSubmit={handleSubmit}
     >
       {import.meta.graphCommerce.breadcrumbs && category && (
-        <CategoryBreadcrumbs
-          category={category}
-          sx={(theme) => ({
-            mb: theme.spacings.sm,
-            mx: theme.page.horizontal,
-            [theme.breakpoints.down('md')]: {
-              '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-            },
-          })}
-        />
+        <Container maxWidth={false}>
+          <CategoryBreadcrumbs
+            category={category}
+            sx={(theme) => ({
+              mb: theme.spacings.sm,
+              [theme.breakpoints.down('md')]: {
+                '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+              },
+            })}
+          />
+        </Container>
       )}
 
       <Container
-        maxWidth={maxWidth ?? maxWidthContent.breakpoint ?? false}
+        maxWidth={false}
         sx={(theme) => ({
           display: 'grid',
           alignItems: 'start',
           rowGap: theme.spacings.md,
-          columnGap: {
-            xs: theme.spacings.md,
-            xl: maxWidthContent.breakpoint ? theme.spacings.xl : theme.spacings.xxl,
-          },
+          columnGap: configuration.columnGap,
           mb: theme.spacings.xl,
           gridTemplate: {
             xs: '"title" "horizontalFilters" "count" "items" "pagination"',
@@ -86,7 +143,7 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
               "sidebar count"      auto
               "sidebar items"      auto
               "sidebar pagination" 1fr
-              /${sidebarWidth}   auto
+              /${configuration.sidebarWidth}   auto
             `,
           },
         })}
@@ -126,7 +183,6 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
           total_count={total_count}
           sx={{ gridArea: 'count', width: '100%', my: 0, height: '1em' }}
         />
-
         <Box sx={{ gridArea: 'items' }}>
           {products.items.length <= 0 ? (
             <ProductFiltersProNoResults search={params.search} />
@@ -135,16 +191,7 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
               {...products}
               loadingEager={6}
               title={(params.search ? `Search ${params.search}` : title) ?? ''}
-              columns={(theme) => {
-                console.log(maxWidthContent)
-                const totalWidth = (spacing: string) =>
-                  `calc(${maxWidthContent.pixels ?? '100vw'} - ((${theme.page.horizontal} * 2) + ${sidebarWidth} + ${theme.spacings[spacing]}))`
-                return {
-                  xs: { count: 2 },
-                  md: { totalWidth: totalWidth('md'), count: 3 },
-                  lg: { totalWidth: totalWidth('md'), count: 4 },
-                }
-              }}
+              columns={configuration.columns}
             />
           )}
         </Box>

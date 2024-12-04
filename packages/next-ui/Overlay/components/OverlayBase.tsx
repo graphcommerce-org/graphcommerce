@@ -21,8 +21,9 @@ import {
 import React, { useCallback, useEffect, useRef } from 'react'
 import { useMatchMedia } from '../../hooks/useMatchMedia'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
-import { ExtendableComponent, extendableComponent } from '../../Styles'
-import { useMaxWidth } from '../../Theme/useMaxWidth'
+import type { ExtendableComponent } from '../../Styles'
+import { extendableComponent } from '../../Styles'
+import { useContainerSizing } from '../../Theme'
 
 export type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
 export type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
@@ -138,7 +139,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   const overlayPaneScroll = useElementScroll(overlayPaneRef)
 
   const classes = withState({ variantSm, variantMd, sizeSm, sizeMd, justifySm, justifyMd })
-  const maxWidth = useMaxWidth()
+  const containerSizing = useContainerSizing('shell')
 
   const match = useMatchMedia()
   const positions = useConstant(() => ({
@@ -546,7 +547,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
               },
               '&.sizeMdFloating.variantMdBottom': {
                 marginTop: `calc(${theme.page.vertical} * -1)`,
-                maxWidth: maxWidth.pixels ?? 'unset',
+                maxWidth: containerSizing.value ?? 'unset',
                 mx: 'auto',
               },
             },

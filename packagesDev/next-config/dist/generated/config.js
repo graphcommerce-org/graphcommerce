@@ -15,6 +15,9 @@ _export(exports, {
     CompareVariantSchema: function() {
         return CompareVariantSchema;
     },
+    ContainerSizingSchema: function() {
+        return ContainerSizingSchema;
+    },
     CustomerAccountPermissionsSchema: function() {
         return CustomerAccountPermissionsSchema;
     },
@@ -35,9 +38,6 @@ _export(exports, {
     },
     GraphCommerceStorefrontConfigSchema: function() {
         return GraphCommerceStorefrontConfigSchema;
-    },
-    LayoutMaxWidthSchema: function() {
-        return LayoutMaxWidthSchema;
     },
     MagentoConfigurableVariantValuesSchema: function() {
         return MagentoConfigurableVariantValuesSchema;
@@ -79,15 +79,14 @@ const CompareVariantSchema = _zod.z.enum([
     'CHECKBOX',
     'ICON'
 ]);
+const ContainerSizingSchema = _zod.z.enum([
+    'BREAKPOINT',
+    'FULL_WIDTH'
+]);
 const CustomerAccountPermissionsSchema = _zod.z.enum([
     'DISABLED',
     'DISABLE_REGISTRATION',
     'ENABLED'
-]);
-const LayoutMaxWidthSchema = _zod.z.enum([
-    'CONTAINED',
-    'CONTENT_ONLY',
-    'DEFAULT'
 ]);
 const PaginationVariantSchema = _zod.z.enum([
     'COMPACT',
@@ -118,6 +117,8 @@ function GraphCommerceConfigSchema() {
         compareVariant: CompareVariantSchema.default("ICON").nullish(),
         configurableVariantForSimple: _zod.z.boolean().default(false).nullish(),
         configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
+        containerSizingContent: ContainerSizingSchema.default("FULL_WIDTH").nullish(),
+        containerSizingShell: ContainerSizingSchema.default("FULL_WIDTH").nullish(),
         crossSellsHideCartItems: _zod.z.boolean().default(false).nullish(),
         crossSellsRedirectItems: _zod.z.boolean().default(false).nullish(),
         customerAddressNoteEnable: _zod.z.boolean().nullish(),
@@ -136,7 +137,6 @@ function GraphCommerceConfigSchema() {
         hygraphManagementApi: _zod.z.string().nullish(),
         hygraphProjectId: _zod.z.string().nullish(),
         hygraphWriteAccessToken: _zod.z.string().nullish(),
-        layoutMaxWidth: LayoutMaxWidthSchema.default("DEFAULT").nullish(),
         limitSsg: _zod.z.boolean().nullish(),
         magentoEndpoint: _zod.z.string().min(1),
         magentoVersion: _zod.z.number(),

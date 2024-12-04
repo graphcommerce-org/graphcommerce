@@ -32,6 +32,4 @@ type CategoryLayoutProps = {
 
 type ProductListProps = ReturnType<typeof useProductList<BaseProps>>
 
-export type ProductListLayoutProps = ProductListProps &
-  (SearchLayoutProps | CategoryLayoutProps) &
-  Pick<ContainerProps, 'maxWidth'>
+export type ProductListLayoutProps = ProductListProps & (SearchLayoutProps | CategoryLayoutProps)

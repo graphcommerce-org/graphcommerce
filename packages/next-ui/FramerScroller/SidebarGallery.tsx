@@ -20,7 +20,6 @@ import { IconSvg } from '../IconSvg'
 import { Row } from '../Row/Row'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { useMaxWidth } from '../Theme/useMaxWidth'
 
 const MotionBox = styled(m.div)({})
 
@@ -133,7 +132,6 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   const headerHeight = `${theme.appShell.headerHeightSm} - ${theme.spacings.sm} * 2`
   const galleryMargin = theme.spacings.lg
-  const maxWidthContent = useMaxWidth()
 
   const maxHeight = `calc(100vh - ${headerHeight} - ${galleryMargin})`
   const ratio = `calc(${height} / ${width} * 100%)`
@@ -143,10 +141,14 @@ export function SidebarGallery(props: SidebarGalleryProps) {
   return (
     <ScrollerProvider scrollSnapAlign='center'>
       <Row
-        maxWidth={false}
+        maxWidth='lg'
         disableGutters
         className={classes.row}
-        sx={[{ maxWidth: 'unset' }, ...(Array.isArray(sx) ? sx : [sx])]}
+        breakoutLeft={variantMd === 'default' && !theme.appShell.containerSizingContent}
+        sx={[
+          { bgcolor: theme.palette.mode === 'light' ? 'background.image' : 'background.paper' },
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
       >
         <MotionBox
           layout
@@ -163,17 +165,6 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                     theme.page.horizontal
                   } * 2)`,
                 },
-              },
-              background:
-                theme.palette.mode === 'light'
-                  ? theme.palette.background.image
-                  : theme.palette.background.paper,
-
-              '&:not(.variantMdOneColumn)': {
-                paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
-                paddingLeft: maxWidthContent.breakpoint
-                  ? `calc((100% - ${maxWidthContent.pixels}) / 2)`
-                  : 'unset',
               },
 
               '&.zoomed': {

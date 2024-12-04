@@ -25,6 +25,11 @@ export type CompareVariant =
   | 'CHECKBOX'
   | 'ICON';
 
+/** Configure whether the layout should be full width or should be constrained by a max breakpoint. Configurable in theme.ts */
+export type ContainerSizing =
+  | 'BREAKPOINT'
+  | 'FULL_WIDTH';
+
 export type CustomerAccountPermissions =
   | 'DISABLED'
   | 'DISABLE_REGISTRATION'
@@ -157,6 +162,10 @@ export type GraphCommerceConfig = {
    * Enabling options here will allow switching of those variants.
    */
   configurableVariantValues?: InputMaybe<MagentoConfigurableVariantValues>;
+  /** Configures the max width of the content (main content area) */
+  containerSizingContent?: InputMaybe<ContainerSizing>;
+  /** Configures the max width of the shell (header, footer, overlays, etc.) */
+  containerSizingShell?: InputMaybe<ContainerSizing>;
   /**
    * Determines if cross sell items should be shown when the user already has the product in their cart. This will result in a product will popping off the screen when you add it to the cart.
    *
@@ -286,16 +295,6 @@ export type GraphCommerceConfig = {
    * ```
    */
   hygraphWriteAccessToken?: InputMaybe<Scalars['String']['input']>;
-  /**
-   * Sets the maximum width for the layout. You can set the max width breakpoint in the theme.ts file
-   * Tip: if you want to use pixels instead of breakpoints, change the width of the breakpoint.
-   *
-   * DEFAULT: Page is full width
-   * CONTENT_ONLY: Only content is contained
-   * CONTAINED: Page is contained
-   * Default: DEFAULT
-   */
-  layoutMaxWidth?: InputMaybe<LayoutMaxWidth>;
   /**
    * Limit the static generation of SSG when building.
    *
@@ -468,11 +467,6 @@ export type GraphCommerceStorefrontConfig = {
   robotsAllow?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type LayoutMaxWidth =
-  | 'CONTAINED'
-  | 'CONTENT_ONLY'
-  | 'DEFAULT';
-
 /** Options to configure which values will be replaced when a variant is selected on the product page. */
 export type MagentoConfigurableVariantValues = {
   /** Use the name, description, short description and meta data from the configured variant */
@@ -535,9 +529,9 @@ export const CartPermissionsSchema = z.enum(['CUSTOMER_ONLY', 'DISABLED', 'ENABL
 
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
 
-export const CustomerAccountPermissionsSchema = z.enum(['DISABLED', 'DISABLE_REGISTRATION', 'ENABLED']);
+export const ContainerSizingSchema = z.enum(['BREAKPOINT', 'FULL_WIDTH']);
 
-export const LayoutMaxWidthSchema = z.enum(['CONTAINED', 'CONTENT_ONLY', 'DEFAULT']);
+export const CustomerAccountPermissionsSchema = z.enum(['DISABLED', 'DISABLE_REGISTRATION', 'ENABLED']);
 
 export const PaginationVariantSchema = z.enum(['COMPACT', 'EXTENDED']);
 
@@ -562,6 +556,8 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     compareVariant: CompareVariantSchema.default("ICON").nullish(),
     configurableVariantForSimple: z.boolean().default(false).nullish(),
     configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
+    containerSizingContent: ContainerSizingSchema.default("FULL_WIDTH").nullish(),
+    containerSizingShell: ContainerSizingSchema.default("FULL_WIDTH").nullish(),
     crossSellsHideCartItems: z.boolean().default(false).nullish(),
     crossSellsRedirectItems: z.boolean().default(false).nullish(),
     customerAddressNoteEnable: z.boolean().nullish(),
@@ -580,7 +576,6 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     hygraphManagementApi: z.string().nullish(),
     hygraphProjectId: z.string().nullish(),
     hygraphWriteAccessToken: z.string().nullish(),
-    layoutMaxWidth: LayoutMaxWidthSchema.default("DEFAULT").nullish(),
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     magentoVersion: z.number(),

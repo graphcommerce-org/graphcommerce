@@ -192,9 +192,12 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.spec.ts', '**/*.spec.tsx'],
+      files: ['**/*.spec.ts', '**/*.spec.tsx', '**/__tests__/**'],
       env: {
         jest: true,
+      },
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
       },
     },
     // JavaScript files override

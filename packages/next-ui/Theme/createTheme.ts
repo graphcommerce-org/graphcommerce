@@ -28,8 +28,8 @@ declare module '@mui/material/styles/createTheme' {
       headerHeightMd: string
       appBarHeightMd: string
       appBarInnerHeightMd: string
-      maxWidth: false | Breakpoint | undefined
-      maxWidthContent: false | Breakpoint | undefined
+      containerSizingShell: false | Breakpoint | undefined
+      containerSizingContent: false | Breakpoint | undefined
     }
 
     // todo: should be cleaned up to be compatible with the default mui-styles
@@ -54,8 +54,8 @@ declare module '@mui/material/styles/createTheme' {
       headerHeightMd: string
       appBarHeightMd: string
       appBarInnerHeightMd: string
-      maxWidth: false | Breakpoint | undefined
-      maxWidthContent: false | Breakpoint | undefined
+      containerSizingShell: false | Breakpoint | undefined
+      containerSizingContent: false | Breakpoint | undefined
     }
 
     // todo: should be cleaned up to be compatible with the default mui-styles

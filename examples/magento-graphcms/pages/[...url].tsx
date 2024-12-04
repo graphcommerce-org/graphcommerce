@@ -64,6 +64,7 @@ function CategoryPage(props: CategoryProps) {
   const page = pages?.[0]
   const isCategory = params && category && products?.items
 
+  console.log(page?.asset)
   return (
     <InContextMaskProvider mask={productList.mask}>
       <CategoryMeta
@@ -89,20 +90,21 @@ function CategoryPage(props: CategoryProps) {
       {isCategory && isLanding && (
         <>
           {import.meta.graphCommerce.breadcrumbs && (
-            <CategoryBreadcrumbs
-              category={category}
-              sx={(theme) => ({
-                mx: theme.page.horizontal,
-                height: 0,
-                [theme.breakpoints.down('md')]: {
-                  '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-                },
-              })}
-            />
+            <Container maxWidth={false}>
+              <CategoryBreadcrumbs
+                category={category}
+                sx={(theme) => ({
+                  height: 0,
+                  [theme.breakpoints.down('md')]: {
+                    '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+                  },
+                })}
+              />
+            </Container>
           )}
           <CategoryHeroNav
             {...category}
-            asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} loading='eager' />}
+            asset={page?.asset && <Asset asset={page.asset} loading='eager' />}
             title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
           />
         </>

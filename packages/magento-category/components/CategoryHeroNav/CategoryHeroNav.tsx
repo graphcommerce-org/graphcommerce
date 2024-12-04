@@ -1,5 +1,5 @@
 import { productListLink } from '@graphcommerce/magento-product'
-import { Row, breakpointVal, extendableComponent } from '@graphcommerce/next-ui'
+import { breakpointVal, extendableComponent, Row } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Link, Typography } from '@mui/material'
 import React from 'react'
@@ -35,7 +35,7 @@ export const CategoryHeroNav = React.memo<CategoryHeroNavProps>(
           paddingBottom: theme.page.vertical,
           [theme.breakpoints.up('md')]: {
             width: '100%',
-            paddingRight: theme.page.horizontal,
+            // paddingRight: theme.page.horizontal,
             paddingTop: 0,
             gridColumnGap: 0,
             display: 'grid',

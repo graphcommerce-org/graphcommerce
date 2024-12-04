@@ -1,24 +1,9 @@
-extend input GraphCommerceConfig {
-  """
-  Configuration for the SidebarGallery component
-  """
-  sidebarGallery: SidebarGalleryConfig
-
-  """
-  Configuration for the SidebarGallery component
-  """
-  breadcrumbs: Boolean = false
-
-  """
-  Sets the maximum width for the layout. You can set the max width breakpoint in the theme.ts file
-  Tip: if you want to use pixels instead of breakpoints, change the width of the breakpoint.
-
-  DEFAULT: Page is full width
-  CONTENT_ONLY: Only content is contained
-  CONTAINED: Page is contained
-  Default: DEFAULT
-  """
-  layoutMaxWidth: LayoutMaxWidth = DEFAULT
+"""
+Configure whether the layout should be full width or should be constrained by a max breakpoint. Configurable in theme.ts
+"""
+enum ContainerSizing {
+  FULL_WIDTH
+  BREAKPOINT
 }
 
 """
@@ -39,8 +24,24 @@ input SidebarGalleryConfig {
   paginationVariant: SidebarGalleryPaginationVariant
 }
 
-enum LayoutMaxWidth {
-  DEFAULT
-  CONTENT_ONLY
-  CONTAINED
+extend input GraphCommerceConfig {
+  """
+  Configuration for the SidebarGallery component
+  """
+  sidebarGallery: SidebarGalleryConfig
+
+  """
+  Configuration for the SidebarGallery component
+  """
+  breadcrumbs: Boolean = false
+
+  """
+  Configures the max width of the shell (header, footer, overlays, etc.)
+  """
+  containerSizingShell: ContainerSizing = FULL_WIDTH
+
+  """
+  Configures the max width of the content (main content area)
+  """
+  containerSizingContent: ContainerSizing = FULL_WIDTH
 }

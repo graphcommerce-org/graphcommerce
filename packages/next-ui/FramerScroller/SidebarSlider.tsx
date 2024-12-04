@@ -8,11 +8,11 @@ import {
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { ReactNode } from 'react'
+import { iconChevronLeft, iconChevronRight } from '../icons'
 import { IconSvg } from '../IconSvg'
 import { Row } from '../Row/Row'
 import { extendableComponent } from '../Styles/extendableComponent'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { iconChevronLeft, iconChevronRight } from '../icons'
 
 const { classes, selectors } = extendableComponent('SidebarSlider', [
   'root',
@@ -36,7 +36,7 @@ export function SidebarSlider(props: SidebarSliderProps) {
   const { children, sidebar, sx, buttonSize, showButtons } = props
 
   return (
-    <Row maxWidth={false} disableGutters className={classes.root} sx={sx}>
+    <Row maxWidth={false} disableGutters className={classes.root} sx={sx} breakoutRight>
       <ScrollerProvider scrollSnapAlign='start'>
         <Box
           className={classes.grid}

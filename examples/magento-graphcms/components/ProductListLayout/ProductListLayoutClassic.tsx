@@ -11,8 +11,7 @@ import {
   ProductListCount,
   ProductListPagination,
 } from '@graphcommerce/magento-product'
-import { LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
-import { Container } from '@mui/material'
+import { LayoutTitle, memoDeep, StickyBelowHeader, Container } from '@graphcommerce/next-ui'
 import { ProductListItems } from '../ProductListItems'
 import { ProductListLayoutProps } from './types'
 

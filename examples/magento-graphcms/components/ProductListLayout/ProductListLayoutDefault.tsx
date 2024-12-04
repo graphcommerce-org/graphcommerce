@@ -18,23 +18,31 @@ import {
 } from '@graphcommerce/magento-product'
 import { ProductFiltersProSearchTerm } from '@graphcommerce/magento-search'
 import {
+  Container,
   LayoutTitle,
   memoDeep,
   StickyBelowHeader,
-  useMaxWidthContent,
+  useContainerSizing,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Container, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'
 import { ProductListLayoutProps } from './types'
 
+const maxWidthContentConfigurations = {
+  md: { columns: { xs: { count: 2 }, md: { count: 3 } } },
+  lg: { columns: { xs: { count: 2 }, md: { count: 3 }, lg: { count: 4 } } },
+  xl: { columns: { xs: { count: 2 }, md: { count: 3 }, lg: { count: 4 }, xl: { count: 5 } } },
+}
+
 export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps) => {
-  const { id, filters, filterTypes, params, products, title, category, maxWidth, handleSubmit } =
-    props
+  const { id, filters, filterTypes, params, products, title, category, handleSubmit } = props
 
   if (!(params && products?.items && filterTypes)) return null
   const { total_count, sort_fields, page_info } = products
-  const maxWidthContent = useMaxWidthContent()
+
+  const containerSizing = useContainerSizing('content')
+  const configuration = maxWidthContentConfigurations[containerSizing.breakpoint || 'xl']
 
   return (
     <ProductFiltersPro
@@ -58,7 +66,7 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
         />
       )}
       <Container
-        maxWidth={maxWidth ?? maxWidthContent.breakpoint ?? false}
+        maxWidth={false}
         sx={(theme) => ({
           display: 'grid',
           rowGap: theme.spacings.sm,
@@ -128,7 +136,7 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
         </ProductListFiltersContainer>
       </StickyBelowHeader>
 
-      <Container maxWidth={maxWidth ?? maxWidthContent.breakpoint ?? false}>
+      <Container maxWidth={containerSizing.breakpoint ?? false}>
         <ProductListCount total_count={total_count} />
         {products.items.length <= 0 ? (
           <ProductFiltersProNoResults />
@@ -137,16 +145,8 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
             {...products}
             loadingEager={6}
             title={(params.search ? `Search ${params.search}` : title) ?? ''}
-            columns={(theme) => {
-              const totalWidth = (spacing: string) =>
-                `calc(${maxWidthContent.pixels ?? '100vw'} - ((${theme.page.horizontal} * 2) + ${theme.spacings[spacing]}))`
-
-              return {
-                xs: { count: 2, totalWidth: totalWidth('sm') },
-                md: { count: 3, totalWidth: totalWidth('md') },
-                lg: { count: 4, totalWidth: totalWidth('lg') },
-              }
-            }}
+            maxWidth={configuration.maxWidth}
+            columns={configuration.columns}
           />
         )}
         <ProductListPagination page_info={page_info} params={params} />

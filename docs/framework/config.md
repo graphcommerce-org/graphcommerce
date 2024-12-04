@@ -157,6 +157,14 @@ When a user selects a variant, it will switch the values on the configurable pag
 
 Enabling options here will allow switching of those variants.
 
+#### containerSizingContent: BREAKPOINT | FULL_WIDTH = `FULL_WIDTH`
+
+Configures the max width of the content (main content area)
+
+#### containerSizingShell: BREAKPOINT | FULL_WIDTH = `FULL_WIDTH`
+
+Configures the max width of the shell (header, footer, overlays, etc.)
+
 #### crossSellsHideCartItems: boolean = `false`
 
 Determines if cross sell items should be shown when the user already has the product in their cart. This will result in a product will popping off the screen when you add it to the cart.
@@ -287,16 +295,6 @@ Project settings -> API Access -> Permanent Auth Tokens
 GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
 yarn graphcommerce hygraph-migrate
 ```
-
-#### layoutMaxWidth: CONTAINED | CONTENT_ONLY | DEFAULT = `DEFAULT`
-
-Sets the maximum width for the layout. You can set the max width breakpoint in the theme.ts file
-Tip: if you want to use pixels instead of breakpoints, change the width of the breakpoint.
-
-DEFAULT: Page is full width
-CONTENT_ONLY: Only content is contained
-CONTAINED: Page is contained
-Default: DEFAULT
 
 #### limitSsg: boolean
 
