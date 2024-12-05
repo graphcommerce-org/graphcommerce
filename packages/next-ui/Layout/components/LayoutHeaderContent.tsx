@@ -1,7 +1,8 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Box, Container, styled, SxProps, Theme } from '@mui/material'
+import { Box, styled, SxProps, Theme } from '@mui/material'
 import { LayoutProps, m } from 'framer-motion'
 import React, { useRef } from 'react'
+import { Container } from '../../Container/Container'
 import { extendableComponent } from '../../Styles'
 import { useScrollY } from '../hooks/useScrollY'
 import type { FloatingProps } from './LayoutHeadertypes'
@@ -107,6 +108,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
       <Container
         maxWidth={false}
         className={classes.content}
+        sizing='shell'
         ref={ref}
         sx={[
           (theme) => ({

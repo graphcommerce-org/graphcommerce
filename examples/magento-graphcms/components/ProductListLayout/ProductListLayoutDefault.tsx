@@ -17,23 +17,11 @@ import {
   ProductListSuggestions,
 } from '@graphcommerce/magento-product'
 import { ProductFiltersProSearchTerm } from '@graphcommerce/magento-search'
-import {
-  Container,
-  LayoutTitle,
-  memoDeep,
-  StickyBelowHeader,
-  useContainerSizing,
-} from '@graphcommerce/next-ui'
+import { Container, LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Typography } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'
-import { ProductListLayoutProps } from './types'
-
-const maxWidthContentConfigurations = {
-  md: { columns: { xs: { count: 2 }, md: { count: 3 } } },
-  lg: { columns: { xs: { count: 2 }, md: { count: 3 }, lg: { count: 4 } } },
-  xl: { columns: { xs: { count: 2 }, md: { count: 3 }, lg: { count: 4 }, xl: { count: 5 } } },
-}
+import { ProductListLayoutProps, useLayoutConfiguration } from './types'
 
 export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps) => {
   const { id, filters, filterTypes, params, products, title, category, handleSubmit } = props
@@ -41,8 +29,7 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
   if (!(params && products?.items && filterTypes)) return null
   const { total_count, sort_fields, page_info } = products
 
-  const containerSizing = useContainerSizing('content')
-  const configuration = maxWidthContentConfigurations[containerSizing.breakpoint || 'xl']
+  const configuration = useLayoutConfiguration(false)
 
   return (
     <ProductFiltersPro
@@ -53,18 +40,6 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
       filterTypes={filterTypes}
       handleSubmit={handleSubmit}
     >
-      {import.meta.graphCommerce.breadcrumbs && category && (
-        <CategoryBreadcrumbs
-          category={category}
-          sx={(theme) => ({
-            height: 0,
-            mx: theme.page.horizontal,
-            [theme.breakpoints.down('md')]: {
-              '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-            },
-          })}
-        />
-      )}
       <Container
         maxWidth={false}
         sx={(theme) => ({
@@ -75,6 +50,18 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
           justifyItems: { xs: 'left', md: 'center' },
         })}
       >
+        {import.meta.graphCommerce.breadcrumbs && category && (
+          <CategoryBreadcrumbs
+            category={category}
+            sx={(theme) => ({
+              height: 0,
+              [theme.breakpoints.down('md')]: {
+                '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+              },
+            })}
+          />
+        )}
+
         {category ? (
           <>
             <LayoutTitle
@@ -136,7 +123,7 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
         </ProductListFiltersContainer>
       </StickyBelowHeader>
 
-      <Container maxWidth={containerSizing.breakpoint ?? false}>
+      <Container maxWidth={false}>
         <ProductListCount total_count={total_count} />
         {products.items.length <= 0 ? (
           <ProductFiltersProNoResults />
@@ -145,7 +132,6 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
             {...products}
             loadingEager={6}
             title={(params.search ? `Search ${params.search}` : title) ?? ''}
-            maxWidth={configuration.maxWidth}
             columns={configuration.columns}
           />
         )}

@@ -215,11 +215,6 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
   MuiContainer: {
     variants: [
       {
-        // When a Container is using maxWidth={false} we automatically limit that container to the maxWidth
-        props: { maxWidth: false },
-        style: { maxWidth: containerSizing('content', theme).value },
-      },
-      {
         props: { disableGutters: false },
         style: {
           paddingLeft: theme.page.horizontal,

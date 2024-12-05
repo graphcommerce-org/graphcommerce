@@ -3,10 +3,11 @@ import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/frame
 import type { ContainerProps, SxProps, Theme } from '@mui/material'
 import { Box, Typography } from '@mui/material'
 import React from 'react'
+import { useContainerSpacing } from '../../Container/Container'
+import { iconChevronLeft, iconChevronRight } from '../../icons'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles'
 import { useFabSize } from '../../Theme'
-import { iconChevronLeft, iconChevronRight } from '../../icons'
 import { Row } from '../Row'
 
 export type RowLinksProps = {
@@ -35,13 +36,10 @@ export function RowLinks(props: RowLinksProps) {
   const { title, copy, children, sx = [], inlineTitle, showButtons, maxWidth } = props
 
   const fabSize = useFabSize('responsive')
+  const spacing = useContainerSpacing({ maxWidth })
 
   return (
-    <Row
-      className={classes.root}
-      sx={[{ position: 'relative' }, ...(Array.isArray(sx) ? sx : [sx])]}
-      maxWidth={maxWidth}
-    >
+    <Row className={classes.root} sx={sx}>
       {!inlineTitle && (
         <Typography
           variant='subtitle1'
@@ -57,12 +55,14 @@ export function RowLinks(props: RowLinksProps) {
           {copy}
         </Box>
       )}
-      <Box className={classes.scrollerWrapper} sx={{ position: 'relative' }}>
+      <Box className={classes.scrollerWrapper} sx={{ position: 'relative', mx: spacing.breakout }}>
         <ScrollerProvider scrollSnapAlign='end'>
           <Scroller
             className={classes.scroller}
             hideScrollbar
             sx={(theme) => ({
+              px: spacing.padding,
+              scrollPaddingInline: spacing.padding,
               justifyContent: 'start',
               gap: `${theme.spacings.md}`,
               gridAutoColumns: 'max-content',
@@ -89,7 +89,7 @@ export function RowLinks(props: RowLinksProps) {
               gridAutoFlow: 'row',
               gap: theme.spacings.xxs,
               position: 'absolute',
-              left: theme.spacings.xs,
+              left: spacing.padding,
               top: `calc(50% - calc(${fabSize} / 2))`,
             })}
           >
@@ -108,7 +108,7 @@ export function RowLinks(props: RowLinksProps) {
               display: 'grid',
               gap: theme.spacings.xxs,
               position: 'absolute',
-              right: theme.spacings.xs,
+              right: spacing.padding,
               top: `calc(50% - calc(${fabSize} / 2))`,
             })}
           >

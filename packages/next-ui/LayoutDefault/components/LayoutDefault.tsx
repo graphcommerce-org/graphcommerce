@@ -1,7 +1,8 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { dvh } from '@graphcommerce/framer-utils'
-import { Box, Container, SxProps, Theme } from '@mui/material'
+import { Box, SxProps, Theme } from '@mui/material'
 import { useScroll, useTransform } from 'framer-motion'
+import { Container } from '../../Container/Container'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { SkipLink } from '../../SkipLink/SkipLink'
 import { extendableComponent } from '../../Styles'
@@ -71,6 +72,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
       <LayoutProvider scroll={scrollYOffset}>
         {beforeHeader}
         <Container
+          sizing='shell'
           maxWidth={false}
           component='header'
           className={classes.header}
@@ -103,6 +105,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
         </Container>
         {menuFab || cartFab ? (
           <Container
+            sizing='shell'
             maxWidth={false}
             className={classes.fabs}
             sx={(theme) => ({
