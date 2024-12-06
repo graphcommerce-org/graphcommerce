@@ -18,6 +18,10 @@ msgid "Doing so will remove all your data including order history and saved ship
 msgstr "Dit zal al uw gegevens verwijderen, inclusief bestelgeschiedenis en opgeslagen verzend-/factuuradressen."
 
 #. js-lingui-generated-id
+msgid "{0, plural, one {<0>{addedItems}</0> has been added to your shopping cart} two {<1>{addedItems}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
+msgstr "{0, plural, one {<0>{addedItems}</0> is toegevoegd aan uw winkelwagen} two {<1>{addedItems}</1> is toegevoegd aan uw winkelwagen!} other {# producten zijn toegevoegd aan uw winkelwagen!}}"
+
+#. js-lingui-generated-id
 msgid "I understand that my account will be deleted and this can not be undone."
 msgstr "Ik begrijp dat mijn account zal worden verwijderd en dat dit niet ongedaan kan worden gemaakt."
 
@@ -144,6 +148,9 @@ msgstr "Factuuradres"
 
 msgid "Blog"
 msgstr "Blog"
+
+msgid "Breadcrumbs"
+msgstr "Broodkruimels"
 
 msgid "Buy {quantity} for <0/> and save {percent}%"
 msgstr "Koop {quantity} voor <0/> en bespaar {percent}%"
@@ -338,10 +345,6 @@ msgstr "E-mailadressen komen niet overeen"
 msgid "Empty comparelist"
 msgstr "Wissen"
 
-#. js-lingui-generated-id
-msgid "{0, plural, one {<0>{1}</0> has been added to your shopping cart} two {<1>{2}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
-msgstr "{0, plural, one {<0>{1}</0> is toegevoegd aan je winkelwagen} two {<1>{2}</1> zijn toegevoegd aan je winkelwagen!} other {# producten zijn toegevoegd aan je winkelwagen!}}"
-
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Vul uw e-mailadres in om in te loggen of maak een account aan"
 
@@ -533,6 +536,10 @@ msgstr "Bestellingen"
 
 msgid "Other"
 msgstr "Overige"
+
+#. js-lingui-generated-id
+msgid "Please enter a valid email address"
+msgstr "Voer een geldig e-mailadres in"
 
 msgid "Out of stock"
 msgstr "Niet op voorraad"
@@ -733,9 +740,6 @@ msgstr "Inschrijven is niet mogelijk, neem contact met ons op voor meer informat
 msgid "Skip to main content"
 msgstr "Ga naar hoofdinhoud"
 
-msgid "Some items in your cart contain errors, please update or remove them, then try again."
-msgstr "Sommige artikelen in uw winkelwagen bevatten fouten, update of verwijder ze, en probeer het opnieuw."
-
 msgid "Something went wrong"
 msgstr "Er is iets misgegaan"
 
@@ -747,9 +751,6 @@ msgstr "Sorteer"
 
 msgid "Sort By"
 msgstr "Sorteer op"
-
-msgid "Start Checkout"
-msgstr "Start afrekenen"
 
 msgid "Store home"
 msgstr "Winkel home"

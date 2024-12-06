@@ -2,7 +2,7 @@
   "name": "@graphcommerce/react-hook-form",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.0-canary.108",
+  "version": "9.0.0-canary.109",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -13,9 +13,9 @@
   },
   "peerDependencies": {
     "@apollo/client": "^3",
-    "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.108",
-    "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.108",
-    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.108",
+    "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.109",
+    "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.109",
+    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.109",
     "@mui/utils": "^5",
     "@testing-library/react": "^14.3.1",
     "graphql": "^16.6.0",
