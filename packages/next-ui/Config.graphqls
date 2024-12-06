@@ -1,13 +1,9 @@
-extend input GraphCommerceConfig {
-  """
-  Configuration for the SidebarGallery component
-  """
-  sidebarGallery: SidebarGalleryConfig
-
-  """
-  Configuration for the SidebarGallery component
-  """
-  breadcrumbs: Boolean = false
+"""
+Configure whether the layout should be full width or should be constrained by a max breakpoint. Configurable in theme.ts
+"""
+enum ContainerSizing {
+  FULL_WIDTH
+  BREAKPOINT
 }
 
 """
@@ -26,4 +22,26 @@ input SidebarGalleryConfig {
   Variant used for the pagination
   """
   paginationVariant: SidebarGalleryPaginationVariant
+}
+
+extend input GraphCommerceConfig {
+  """
+  Configuration for the SidebarGallery component
+  """
+  sidebarGallery: SidebarGalleryConfig
+
+  """
+  Configuration for the SidebarGallery component
+  """
+  breadcrumbs: Boolean = false
+
+  """
+  Configures the max width of the shell (header, footer, overlays, etc.)
+  """
+  containerSizingShell: ContainerSizing = FULL_WIDTH
+
+  """
+  Configures the max width of the content (main content area)
+  """
+  containerSizingContent: ContainerSizing = FULL_WIDTH
 }

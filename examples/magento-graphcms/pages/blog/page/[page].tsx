@@ -3,6 +3,7 @@ import { cacheFirst } from '@graphcommerce/graphql'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
+  Container,
   PageMeta,
   GetStaticProps,
   Pagination,
@@ -10,7 +11,7 @@ import {
   LayoutHeader,
   Breadcrumbs,
 } from '@graphcommerce/next-ui'
-import { Container, Link } from '@mui/material'
+import { Link } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'

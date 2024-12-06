@@ -15,6 +15,9 @@ _export(exports, {
     CompareVariantSchema: function() {
         return CompareVariantSchema;
     },
+    ContainerSizingSchema: function() {
+        return ContainerSizingSchema;
+    },
     CustomerAccountPermissionsSchema: function() {
         return CustomerAccountPermissionsSchema;
     },
@@ -76,6 +79,10 @@ const CompareVariantSchema = _zod.z.enum([
     'CHECKBOX',
     'ICON'
 ]);
+const ContainerSizingSchema = _zod.z.enum([
+    'BREAKPOINT',
+    'FULL_WIDTH'
+]);
 const CustomerAccountPermissionsSchema = _zod.z.enum([
     'DISABLED',
     'DISABLE_REGISTRATION',
@@ -110,6 +117,8 @@ function GraphCommerceConfigSchema() {
         compareVariant: CompareVariantSchema.default("ICON").nullish(),
         configurableVariantForSimple: _zod.z.boolean().default(false).nullish(),
         configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
+        containerSizingContent: ContainerSizingSchema.default("FULL_WIDTH").nullish(),
+        containerSizingShell: ContainerSizingSchema.default("FULL_WIDTH").nullish(),
         crossSellsHideCartItems: _zod.z.boolean().default(false).nullish(),
         crossSellsRedirectItems: _zod.z.boolean().default(false).nullish(),
         customerAddressNoteEnable: _zod.z.boolean().nullish(),

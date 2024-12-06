@@ -57,7 +57,7 @@ function SearchResultPage(props: SearchResultProps) {
         metaRobots={['noindex']}
         canonical='/search'
       />
-      <LayoutHeader floatingMd switchPoint={0}>
+      <LayoutHeader floatingMd switchPoint={0} hideMd>
         <ProductFiltersProSearchField size='small' formControl={{ sx: { width: '81vw' } }} />
       </LayoutHeader>
 

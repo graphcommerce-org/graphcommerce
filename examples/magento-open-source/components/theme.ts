@@ -180,6 +180,10 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       headerHeightMd: '100px',
       appBarHeightMd: '80px',
       appBarInnerHeightMd: '46px',
+      containerSizingShell:
+        import.meta.graphCommerce.containerSizingShell === 'BREAKPOINT' ? 'lg' : false,
+      containerSizingContent:
+        import.meta.graphCommerce.containerSizingContent === 'BREAKPOINT' ? 'lg' : false,
     },
   })
 

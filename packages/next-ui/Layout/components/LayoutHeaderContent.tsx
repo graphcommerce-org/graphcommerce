@@ -1,9 +1,8 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import type { SxProps, Theme } from '@mui/material'
-import { Box, styled } from '@mui/material'
-import type { LayoutProps } from 'framer-motion'
-import { m } from 'framer-motion'
+import { Box, styled, SxProps, Theme } from '@mui/material'
+import { LayoutProps, m } from 'framer-motion'
 import React, { useRef } from 'react'
+import { Container } from '../../Container/Container'
 import { extendableComponent } from '../../Styles'
 import { useScrollY } from '../hooks/useScrollY'
 import type { FloatingProps } from './LayoutHeadertypes'
@@ -106,22 +105,22 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
           ...(Array.isArray(sxBg) ? sxBg : [sxBg]),
         ]}
       />
-      <Box
+      <Container
+        maxWidth={false}
         className={classes.content}
+        sizing='shell'
         ref={ref}
         sx={[
           (theme) => ({
             position: 'absolute',
-            left: 0,
+            inset: 0,
             width: '100%',
             display: 'grid',
             gridTemplateAreas: '"left center right"',
             gridTemplateColumns: '1fr auto 1fr',
             alignItems: 'center',
             gap: theme.page.horizontal,
-
             height: theme.appShell.headerHeightSm,
-            px: theme.page.horizontal,
             [theme.breakpoints.up('md')]: {
               height: theme.appShell.appBarHeightMd,
             },
@@ -135,14 +134,12 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
 
             '&.floatingSm': {
               [theme.breakpoints.down('md')]: {
-                px: theme.page.horizontal,
                 background: 'none',
                 pointerEvents: 'none',
               },
             },
             '&.floatingMd': {
               [theme.breakpoints.up('md')]: {
-                px: theme.page.horizontal,
                 background: 'none',
                 pointerEvents: 'none',
               },
@@ -245,7 +242,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             {divider}
           </Box>
         )}
-      </Box>
+      </Container>
     </>
   )
 }

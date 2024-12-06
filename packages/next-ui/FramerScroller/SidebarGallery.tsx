@@ -11,15 +11,15 @@ import {
 } from '@graphcommerce/framer-scroller'
 import { dvh } from '@graphcommerce/framer-utils'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, Fab, Unstable_TrapFocus as TrapFocus, styled, useTheme } from '@mui/material'
+import { Box, Fab, styled, Unstable_TrapFocus as TrapFocus, useTheme } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
+import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../icons'
 import { IconSvg } from '../IconSvg'
 import { Row } from '../Row/Row'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../icons'
 
 const MotionBox = styled(m.div)({})
 
@@ -140,7 +140,16 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   return (
     <ScrollerProvider scrollSnapAlign='center'>
-      <Row maxWidth={false} disableGutters className={classes.row} sx={sx}>
+      <Row
+        maxWidth={zoomed ? 'full' : 'lg'}
+        disableGutters
+        className={classes.row}
+        breakoutLeft={variantMd === 'default' && !theme.appShell.containerSizingContent}
+        sx={[
+          { bgcolor: theme.palette.mode === 'light' ? 'background.image' : 'background.paper' },
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      >
         <MotionBox
           layout
           layoutDependency={zoomed}
@@ -157,14 +166,6 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   } * 2)`,
                 },
               },
-              background:
-                theme.palette.mode === 'light'
-                  ? theme.palette.background.image
-                  : theme.palette.background.paper,
-
-              '&:not(.variantMdOneColumn)': {
-                paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
-              },
 
               '&.zoomed': {
                 position: 'relative',
@@ -174,7 +175,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
                   gridTemplateColumns: '1fr auto',
                 },
-                paddingRight: 0,
+                px: 0,
               },
             },
           ]}
