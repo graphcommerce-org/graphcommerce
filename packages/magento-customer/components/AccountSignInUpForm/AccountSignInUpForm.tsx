@@ -13,7 +13,12 @@ import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
 import { Alert, Box, CircularProgress, Link, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import { CustomerDocument, useAccountSignInUpForm, useCustomerAccountCanSignUp } from '../../hooks'
+import {
+  CustomerDocument,
+  useAccountSignInUpForm,
+  useCustomerAccountCanSignUp,
+  UseCustomerValidateTokenDocument,
+} from '../../hooks'
 import { useCustomerQuery } from '../../hooks/useCustomerQuery'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError'
 import { SignInForm } from '../SignInForm/SignInForm'
@@ -30,9 +35,11 @@ const { classes } = extendableComponent('AccountSignInUpForm', parts)
 
 export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
   const { sx = [], signUpDisabled } = props
+  const customerEmailQuery = useCustomerQuery(UseCustomerValidateTokenDocument)
   const customerQuery = useCustomerQuery(CustomerDocument)
 
-  const { email, firstname = '' } = customerQuery.data?.customer ?? {}
+  const { email } = customerEmailQuery.data?.customer ?? {}
+  const { firstname = '' } = customerQuery.data?.customer ?? {}
 
   const { mode, form, submit } = useAccountSignInUpForm()
   const { formState, watch, control, error } = form
