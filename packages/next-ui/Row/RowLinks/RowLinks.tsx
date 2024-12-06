@@ -57,7 +57,10 @@ export function RowLinks(props: RowLinksProps) {
           </Box>
         )}
       </Container>
-      <Box className={classes.scrollerWrapper} sx={(theme) => ({ mb: theme.spacings.xxl })}>
+      <Box
+        className={classes.scrollerWrapper}
+        sx={(theme) => ({ position: 'relative', mb: theme.spacings.xxl })}
+      >
         <ScrollerProvider scrollSnapAlign='end'>
           <Scroller
             className={classes.scroller}

@@ -141,7 +141,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
   return (
     <ScrollerProvider scrollSnapAlign='center'>
       <Row
-        maxWidth='lg'
+        maxWidth={zoomed ? 'full' : 'lg'}
         disableGutters
         className={classes.row}
         breakoutLeft={variantMd === 'default' && !theme.appShell.containerSizingContent}
