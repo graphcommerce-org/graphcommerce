@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.109
+
+### Patch Changes
+
+- [#2441](https://github.com/graphcommerce-org/graphcommerce/pull/2441) [`0d0aca2`](https://github.com/graphcommerce-org/graphcommerce/commit/0d0aca2ebd93fa04769ff85016a3be96685986ce) - Check validation of email field in SignInForm and SignUpForm ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.0-canary.108
 
 ### Patch Changes
