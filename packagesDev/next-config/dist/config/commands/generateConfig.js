@@ -5,10 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateConfig = generateConfig;
 // eslint-disable-next-line import/no-extraneous-dependencies
+const fs_1 = require("fs");
 const cli_1 = require("@graphql-codegen/cli");
 const core_1 = require("@swc/core");
 const dotenv_1 = __importDefault(require("dotenv"));
-const fs_1 = require("fs");
 const isMonorepo_1 = require("../../utils/isMonorepo");
 const resolveDependenciesSync_1 = require("../../utils/resolveDependenciesSync");
 const resolveDependency_1 = require("../../utils/resolveDependency");
@@ -42,7 +42,7 @@ async function generateConfig() {
                     },
                 },
             },
-            ...((0, isMonorepo_1.isMonorepo)() && {
+            ...((0, isMonorepo_1.findParentPath)(process.cwd()) && {
                 '../../docs/framework/config.md': {
                     plugins: ['@graphcommerce/graphql-codegen-markdown-docs'],
                 },

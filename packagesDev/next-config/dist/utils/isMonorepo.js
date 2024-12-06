@@ -3,7 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isMonorepo = isMonorepo;
 exports.findParentPath = findParentPath;
 const node_fs_1 = __importDefault(require("node:fs"));
 const node_path_1 = __importDefault(require("node:path"));
@@ -19,33 +18,6 @@ function findPackageJson(directory) {
     catch {
         return null;
     }
-}
-/**
- * Determines if we're running in a monorepo context and how to handle postinstall scripts.
- *
- * If there is a parent `@graphcommerce/*` package, we're in a monorepo.
- */
-function isMonorepo() {
-    let currentDir = process.cwd();
-    log(`Starting directory: ${currentDir}`);
-    // Start from the parent directory to find a parent @graphcommerce package
-    currentDir = node_path_1.default.dirname(currentDir);
-    log(`Looking for parent packages starting from: ${currentDir}`);
-    // Keep going up until we find a root package or hit the filesystem root
-    while (currentDir !== node_path_1.default.parse(currentDir).root) {
-        const packageJson = findPackageJson(currentDir);
-        if (packageJson) {
-            log(`Found package.json in: ${currentDir}`);
-            log(`Package name: ${packageJson.name}`);
-            if (packageJson.name.startsWith('@graphcommerce/')) {
-                log('isMonorepo result: true (found parent @graphcommerce package)');
-                return true;
-            }
-        }
-        currentDir = node_path_1.default.dirname(currentDir);
-    }
-    log('isMonorepo result: false (no parent @graphcommerce package found)');
-    return false;
 }
 /**
  * Finds the path of the parent @graphcommerce package if it exists Returns null if no parent
