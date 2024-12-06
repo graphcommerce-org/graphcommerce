@@ -16,7 +16,7 @@
     "react-is": "^18.3.1"
   },
   "devDependencies": {
-    "@types/react-is": "^18.3.0",
+    "@types/react-is": "^18.3.1",
     "typescript": "5.7.2"
   },
   "peerDependencies": {
