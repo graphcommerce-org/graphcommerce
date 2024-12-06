@@ -1,5 +1,5 @@
-import { MenuQueryFragment } from '@graphcommerce/magento-category'
-import {
+import type { MenuQueryFragment } from '@graphcommerce/magento-category'
+import type {
   CategoryDefaultFragment,
   ColumnsConfig,
   FilterTypes,
@@ -8,10 +8,10 @@ import {
   ProductListQuery,
   useProductList,
 } from '@graphcommerce/magento-product'
-import { CategoryPageQuery } from '../../graphql/CategoryPage.gql'
+import { responsiveVal, useContainerSizing } from '@graphcommerce/next-ui'
 import { useTheme } from '@mui/material'
-import { useContainerSizing, responsiveVal } from '@graphcommerce/next-ui'
-import { Breakpoint } from '@mui/material'
+import type { Breakpoint } from '@mui/material'
+import type { CategoryPageQuery } from '../../graphql/CategoryPage.gql'
 
 type BaseProps = MenuQueryFragment &
   ProductListQuery &

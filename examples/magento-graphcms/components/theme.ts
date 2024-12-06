@@ -2,7 +2,6 @@
 
 import {
   breakpointVal,
-  containerSizing,
   MuiButtonInline,
   MuiButtonPill,
   MuiButtonResponsive,
