@@ -121,7 +121,6 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             alignItems: 'center',
             gap: theme.page.horizontal,
             height: theme.appShell.headerHeightSm,
-            px: theme.page.horizontal,
             [theme.breakpoints.up('md')]: {
               height: theme.appShell.appBarHeightMd,
             },
