@@ -31,28 +31,22 @@ const { withState } = extendableComponent<OwnerProps, typeof name, typeof slots>
  * - The margin is a negative value to offset the padding of a container. Used to break out of a
  *   container.
  */
-export function useContainerSpacing(props: ContainerSizingProps) {
-  const { disableGutters, maxWidth, sizing = 'content' } = props
+export function useContainerSpacing(options?: ContainerSizingProps) {
+  const { disableGutters, maxWidth, sizing = 'content' } = options ?? {}
 
   const theme = useTheme()
-  const containerSizing = useContainerSizing(sizing)
+  const { breakpoint, value } = useContainerSizing(sizing)
 
   const gutter = disableGutters ? '0px' : `${theme.page.horizontal}`
 
-  let size = containerSizing.value
+  let size = value
   if (maxWidth && theme.breakpoints.values[maxWidth])
     size = `${theme.breakpoints.values[maxWidth]}px`
   else if (maxWidth) size = maxWidth
 
-  const padding = gutter
-  const margin = `calc(${gutter} * -1)`
+  if (size === '100%' || maxWidth === 'full') return { breakpoint, size, padding: gutter }
 
-  if (size === '100%' || maxWidth === 'full') return { padding, breakout: margin }
-
-  return {
-    padding: `max(${gutter}, ((100% - ${size}) / 2 + ${gutter}))`,
-    breakout: `calc(max(${gutter}, ((100dvw - ${size}) / 2 + ${gutter})) * -1)`,
-  }
+  return { breakpoint, size, padding: `max(${gutter}, ((100% - ${size}) / 2 + ${gutter}))` }
 }
 
 /**

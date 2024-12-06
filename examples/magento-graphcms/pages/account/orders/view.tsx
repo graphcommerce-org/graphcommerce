@@ -11,7 +11,6 @@ import {
   ReorderItems,
   CancelOrderForm,
   getCustomerAccountIsDisabled,
-  OrderDetailPageQuery,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
