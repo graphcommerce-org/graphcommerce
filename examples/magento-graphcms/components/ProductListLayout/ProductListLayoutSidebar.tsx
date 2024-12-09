@@ -90,6 +90,7 @@ export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSideb
             display: 'grid',
             gridAutoFlow: 'row',
             rowGap: theme.spacings.xs,
+            pt: theme.spacings.md,
           })}
         >
           {category ? (
@@ -177,7 +178,7 @@ export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSideb
           display='block'
           sx={(theme) => ({
             gridArea: 'sidebar',
-            mt: import.meta.graphCommerce.breadcrumbs === true ? 0 : theme.spacings.lg,
+            mt: import.meta.graphCommerce.breadcrumbs === true ? 0 : theme.spacings.xl,
           })}
         >
           <ProductFiltersProClearAll sx={{ alignSelf: 'center' }} />
