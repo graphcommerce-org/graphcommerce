@@ -24,7 +24,7 @@ export type LayoutDefaultProps = {
 type OwnerState = {
   noSticky?: boolean
 }
-const parts = ['root', 'fabs', 'header', 'children', 'footer'] as const
+const parts = ['root', 'fabs', 'beforeHeader', 'header', 'children', 'footer'] as const
 const { withState } = extendableComponent<OwnerState, 'LayoutDefault', typeof parts>(
   'LayoutDefault',
   parts,
@@ -62,8 +62,13 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             minHeight: '-webkit-fill-available',
           },
           display: 'grid',
-          gridTemplateRows: { xs: 'auto 1fr auto', md: 'auto auto 1fr auto' },
-          gridTemplateColumns: '100%',
+          gridTemplate: `
+            "beforeHeader" auto
+            "header" auto
+            "fabs" auto
+            "children" 1fr
+            "footer" auto / 100%
+          `,
           background: theme.palette.background.default,
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
@@ -71,13 +76,18 @@ export function LayoutDefault(props: LayoutDefaultProps) {
     >
       <SkipLink />
       <LayoutProvider scroll={scrollYOffset}>
-        {beforeHeader}
+        {beforeHeader ? (
+          <Box sx={{ gridArea: 'beforeHeader' }} className={classes.beforeHeader}>
+            {beforeHeader}
+          </Box>
+        ) : null}
         <Container
           sizing='shell'
           maxWidth={false}
           component='header'
           className={classes.header}
           sx={(theme) => ({
+            gridArea: 'header',
             zIndex: theme.zIndex.appBar - 1,
             display: 'flex',
             alignItems: 'center',
@@ -109,27 +119,32 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             sizing='shell'
             maxWidth={false}
             className={classes.fabs}
-            sx={(theme) => ({
-              display: 'flex',
-              justifyContent: 'space-between',
-              width: '100%',
-              height: 0,
-              zIndex: 'speedDial',
-              [theme.breakpoints.up('sm')]: {
-                position: 'sticky',
-                marginTop: `calc(${theme.appShell.headerHeightMd} * -1 - calc(${fabIconSize} / 2))`,
-                top: `calc(${theme.appShell.headerHeightMd} / 2 - (${fabIconSize} / 2))`,
-              },
-              [theme.breakpoints.down('md')]: {
-                position: 'fixed',
-                top: 'unset',
-                bottom: `calc(20px + ${fabIconSize})`,
-                padding: '0 20px',
-                '@media (max-height: 530px) and (orientation: portrait)': {
-                  display: 'none',
+            sx={(theme) => {
+              const negativeHeaderHeightMd = `(${theme.appShell.headerHeightMd} * -1)`
+              const topMd = `(${theme.appShell.headerHeightMd}  - ${fabIconSize}) / 2`
+
+              return {
+                gridArea: 'fabs',
+                display: 'flex',
+                justifyContent: 'space-between',
+                width: '100%',
+                height: 0,
+                zIndex: 'speedDial',
+                [theme.breakpoints.up('md')]: {
+                  position: 'sticky',
+                  marginTop: `calc(${negativeHeaderHeightMd} + ${topMd})`,
+                  top: `calc(${topMd})`,
                 },
-              },
-            })}
+                [theme.breakpoints.down('md')]: {
+                  position: 'fixed',
+                  bottom: `calc(20px + ${fabIconSize})`,
+                  padding: '0 20px',
+                  '@media (max-height: 530px) and (orientation: portrait)': {
+                    display: 'none',
+                  },
+                },
+              }
+            }}
           >
             {menuFab}
             {cartFab && (
@@ -151,11 +166,13 @@ export function LayoutDefault(props: LayoutDefaultProps) {
         ) : (
           <div />
         )}
-        <div className={classes.children}>
+        <Box sx={{ gridArea: 'children' }} className={classes.children}>
           <div id='skip-nav' tabIndex={-1} />
           {children}
-        </div>
-        <div className={classes.footer}>{footer}</div>
+        </Box>
+        <Box sx={{ gridArea: 'footer' }} className={classes.footer}>
+          {footer}
+        </Box>
       </LayoutProvider>
     </Box>
   )
