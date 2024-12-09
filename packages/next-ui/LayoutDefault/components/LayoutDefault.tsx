@@ -17,14 +17,23 @@ export type LayoutDefaultProps = {
   menuFab?: React.ReactNode
   cartFab?: React.ReactNode
   children?: React.ReactNode
-  noSticky?: boolean
   sx?: SxProps<Theme>
 } & OwnerState
 
 type OwnerState = {
-  noSticky?: boolean
+  stickyHeader?: boolean
 }
-const parts = ['root', 'fabs', 'beforeHeader', 'header', 'children', 'footer'] as const
+
+const parts = [
+  'root',
+  'fabs',
+  'beforeHeader',
+  'header',
+  'children',
+  'footer',
+  'cartFab',
+  'menuFab',
+] as const
 const { withState } = extendableComponent<OwnerState, 'LayoutDefault', typeof parts>(
   'LayoutDefault',
   parts,
@@ -38,7 +47,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
     footer,
     menuFab,
     cartFab,
-    noSticky,
+    stickyHeader = false,
     className,
     sx = [],
   } = props
@@ -49,7 +58,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
     ([y, offset]: number[]) => y + offset,
   )
 
-  const classes = withState({ noSticky })
+  const classes = withState({ stickyHeader })
   const fabIconSize = useFabSize('responsive')
 
   return (
@@ -70,6 +79,17 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             "footer" auto / 100%
           `,
           background: theme.palette.background.default,
+
+          // '&.stickyHeader .LayoutHeaderContent-content': {
+          //   [theme.breakpoints.up('md')]: {
+          //     pt: theme.spacings.sm,
+          //   },
+          // },
+          // '&.stickyHeader .CompareFab-root': {
+          //   [theme.breakpoints.up('md')]: {
+          //     mt: theme.spacings.sm,
+          //   },
+          // },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -93,9 +113,10 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             alignItems: 'center',
             justifyContent: 'center',
             height: theme.appShell.headerHeightSm,
-            pointerEvents: 'none',
+            pointerEvents: 'none' as const,
             '& > *': {
-              pointerEvents: 'all',
+              pointerEvents: 'all' as const,
+              zIndex: theme.zIndex.appBar,
             },
             [theme.breakpoints.up('md')]: {
               height: theme.appShell.headerHeightMd,
@@ -104,8 +125,8 @@ export function LayoutDefault(props: LayoutDefaultProps) {
               justifyContent: 'left',
               width: '100%',
             },
-            '&.sticky': {
-              [theme.breakpoints.down('md')]: {
+            '&.stickyHeader': {
+              [theme.breakpoints.up('md')]: {
                 position: 'sticky',
                 top: 0,
               },
@@ -129,7 +150,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
                 justifyContent: 'space-between',
                 width: '100%',
                 height: 0,
-                zIndex: 'speedDial',
+                zIndex: theme.zIndex.appBar,
                 [theme.breakpoints.up('md')]: {
                   position: 'sticky',
                   marginTop: `calc(${negativeHeaderHeightMd} + ${topMd})`,
@@ -146,18 +167,36 @@ export function LayoutDefault(props: LayoutDefaultProps) {
               }
             }}
           >
-            {menuFab}
+            <Box
+              className={classes.menuFab}
+              sx={{ '&.stickyHeader > *': { display: { md: 'none' } } }}
+            >
+              {menuFab}
+            </Box>
             {cartFab && (
               <Box
-                sx={(theme) => ({
-                  display: 'flex',
-                  flexDirection: 'row-reverse',
-                  gap: theme.spacings.sm,
-                  [theme.breakpoints.up('md')]: {
-                    flexDirection: 'column',
-                    alignItems: 'flex-end',
-                  },
-                })}
+                className={classes.cartFab}
+                sx={(theme) => {
+                  const topMd = `(${theme.appShell.headerHeightMd}  - ${fabIconSize}) / 2`
+                  return {
+                    display: 'flex',
+                    flexDirection: 'row-reverse',
+
+                    [theme.breakpoints.down('md')]: {
+                      columnGap: theme.spacings.sm,
+                    },
+
+                    [theme.breakpoints.up('md')]: {
+                      rowGap: `calc(${topMd})`,
+                      '&.stickyHeader': {
+                        rowGap: `calc(${topMd} + ${theme.spacings.sm})`,
+                      },
+
+                      flexDirection: 'column',
+                      alignItems: 'flex-end',
+                    },
+                  }
+                }}
               >
                 {cartFab}
               </Box>
@@ -166,7 +205,17 @@ export function LayoutDefault(props: LayoutDefaultProps) {
         ) : (
           <div />
         )}
-        <Box sx={{ gridArea: 'children' }} className={classes.children}>
+        <Box
+          sx={(theme) => ({
+            gridArea: 'children',
+            '&.stickyHeader': {
+              [theme.breakpoints.up('md')]: {
+                pt: theme.spacings.sm,
+              },
+            },
+          })}
+          className={classes.children}
+        >
           <div id='skip-nav' tabIndex={-1} />
           {children}
         </Box>
