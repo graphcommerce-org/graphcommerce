@@ -1,9 +1,4 @@
-import {
-  ActionCardListForm,
-  EmailElement,
-  FormAutoSubmit,
-  useWatch,
-} from '@graphcommerce/ecommerce-ui'
+import { ActionCardListForm, EmailElement, FormAutoSubmit } from '@graphcommerce/ecommerce-ui'
 import { useApolloClient } from '@graphcommerce/graphql'
 import {
   ActionCard,
@@ -40,7 +35,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
   const { email, firstname = '' } = customerQuery.data?.customer ?? {}
 
   const { mode, form, submit } = useAccountSignInUpForm()
-  const { formState, control, error, setError, clearErrors } = form
+  const { formState, control, error, setError, clearErrors, watch } = form
   const router = useRouter()
 
   const client = useApolloClient()
@@ -54,7 +49,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
     mode === 'signin' ||
     (mode === 'signup' && canSignUp)
 
-  const emailValue = useWatch({ control }).email
+  const emailValue = watch('email')
 
   return (
     <FormDiv sx={sx} className={classes.root}>
