@@ -28,7 +28,15 @@ declare module '@mui/material/styles/createTheme' {
       headerHeightMd: string
       appBarHeightMd: string
       appBarInnerHeightMd: string
+      /**
+       * Sizing of the shell of the application. Provide a breakpoint to use the breakpoint value or
+       * false to disable the breakpoint.
+       */
       containerSizingShell: false | Breakpoint | undefined
+      /**
+       * Sizing of the content of the application. Provide a breakpoint to use the breakpoint value
+       * or false to disable the breakpoint.
+       */
       containerSizingContent: false | Breakpoint | undefined
     }
 
