@@ -113,21 +113,6 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             '& .LayoutDefault-header.stickyHeader': {
               bgcolor: 'background.default',
               boxShadow: 1,
-
-              // bgcolor: 'hsl(0deg 0% 100% / 0.95)',
-              // '&::before': {
-              //   height: '200%',
-              //   content: '""',
-              //   display: 'block',
-              //   position: 'absolute',
-              //   inset: 0,
-              //   WebkitBackdropFilter: 'blur(16px)',
-              //   backdropFilter: 'blur(16px)',
-              //   background: 'linear-gradient(to bottom, hsl(0deg 0% 95%), transparent 50%)',
-              //   pointerEvents: 'none',
-              //   WebkitMaskImage: 'linear-gradient(to bottom, black 0% 50%, transparent 50% 100%)',
-              //   maskImage: 'linear-gradient(to bottom, black 0% 50%, transparent 50% 100%)',
-              // },
             },
           },
         })}
