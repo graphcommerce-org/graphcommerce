@@ -27,11 +27,7 @@ export function ButtonLinkList(props: ButtonLinkListProps) {
   const classes = withState({ containsBigLinks })
 
   return (
-    <Row
-      maxWidth='md'
-      className={classes.root}
-      sx={[{ maxWidth: 820 }, ...(Array.isArray(sx) ? sx : [sx])]}
-    >
+    <Row maxWidth='820px' className={classes.root} sx={sx}>
       <Box
         sx={[
           (theme) => ({

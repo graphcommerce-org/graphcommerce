@@ -35,7 +35,7 @@
     "@graphcommerce/eslint-config-pwa": "9.0.0-canary.109",
     "@graphcommerce/prettier-config-pwa": "9.0.0-canary.109",
     "@graphcommerce/typescript-config-pwa": "9.0.0-canary.109",
-    "@types/react-is": "^18.3.0",
+    "@types/react-is": "^18.3.1",
     "babel-plugin-macros": "^3.1.0",
     "eslint": "^8.57.1",
     "prettier": "^3",

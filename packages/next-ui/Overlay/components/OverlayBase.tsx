@@ -1,5 +1,5 @@
 import type { Direction } from '@graphcommerce/framer-next-pages'
-import { Scroller, useScrollTo, useScrollerContext } from '@graphcommerce/framer-scroller'
+import { Scroller, useScrollerContext, useScrollTo } from '@graphcommerce/framer-scroller'
 import {
   dvh,
   dvw,
@@ -19,10 +19,11 @@ import {
   useTransform,
 } from 'framer-motion'
 import React, { useCallback, useEffect, useRef } from 'react'
+import { useMatchMedia } from '../../hooks/useMatchMedia'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import type { ExtendableComponent } from '../../Styles'
 import { extendableComponent } from '../../Styles'
-import { useMatchMedia } from '../../hooks/useMatchMedia'
+import { useContainerSizing } from '../../Theme'
 
 export type LayoutOverlayVariant = 'left' | 'bottom' | 'right'
 export type LayoutOverlaySize = 'floating' | 'minimal' | 'full'
@@ -138,6 +139,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   const overlayPaneScroll = useElementScroll(overlayPaneRef)
 
   const classes = withState({ variantSm, variantMd, sizeSm, sizeMd, justifySm, justifyMd })
+  const containerSizing = useContainerSizing('shell')
 
   const match = useMatchMedia()
   const positions = useConstant(() => ({
@@ -392,6 +394,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   return (
     <>
       <MotionDiv
+        // @ts-expect-error ignore inert for current version
         inert={active ? undefined : ('true' as unknown as boolean)}
         className={classes.backdrop}
         style={{ opacity: positions.open.visible }}
@@ -414,6 +417,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         ]}
       />
       <Scroller
+        // @ts-expect-error ignore inert for current version
         inert={disableInert || active ? undefined : ('true' as unknown as boolean)}
         className={`${classes.scroller} ${className ?? ''}`}
         grid={false}
@@ -545,6 +549,8 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
               },
               '&.sizeMdFloating.variantMdBottom': {
                 marginTop: `calc(${theme.page.vertical} * -1)`,
+                maxWidth: containerSizing.value ?? 'unset',
+                mx: 'auto',
               },
             },
           })}
