@@ -45,16 +45,17 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
         sx={(theme) => ({
           display: 'grid',
           rowGap: theme.spacings.sm,
+          pt: theme.spacings.sm,
           mb: theme.spacings.sm,
           gridAutoFlow: 'row',
-          justifyItems: { xs: 'left', md: 'center' },
+          justifyItems: { xs: 'center', md: 'center' },
         })}
       >
         {import.meta.graphCommerce.breadcrumbs && category && (
           <CategoryBreadcrumbs
             category={category}
             sx={(theme) => ({
-              height: 0,
+              // height: 0,
               [theme.breakpoints.down('md')]: {
                 '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
               },
@@ -65,9 +66,9 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
         {category ? (
           <>
             <LayoutTitle
-              gutterTop
+              gutterTop={false}
               variant='h1'
-              sx={{ alignItems: { xs: 'left', md: 'center' } }}
+              // sx={{ alignItems: { xs: 'center', md: 'center' } }}
               gutterBottom={false}
             >
               {title}
@@ -75,13 +76,13 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
             <CategoryDescription
               textAlignMd='center'
               textAlignSm='center'
-              sx={(theme) => ({ px: theme.page.horizontal })}
+              // sx={(theme) => ({ px: theme.page.horizontal })}
               description={category?.description}
             />
             <CategoryChildren
               sx={(theme) => ({
                 justifyContent: 'center',
-                '& .CategoryChildren-scroller': { px: theme.page.horizontal },
+                // '& .CategoryChildren-scroller': { px: theme.page.horizontal },
               })}
               params={params}
             >
