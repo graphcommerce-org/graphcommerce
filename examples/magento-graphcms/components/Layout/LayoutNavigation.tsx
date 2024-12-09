@@ -21,10 +21,11 @@ import {
   NavigationOverlay,
   useNavigationSelection,
   useMemoDeep,
+  Container,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Divider, Fab } from '@mui/material'
+import { Divider, Fab, Link } from '@mui/material'
 import { useRouter } from 'next/router'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
@@ -117,7 +118,24 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
       <LayoutDefault
         {...uiProps}
-        noSticky={router.asPath.split('?')[0] === '/'}
+        stickyHeader={router.asPath.split('?')[0] !== '/'}
+        sx={(theme) => ({
+          [theme.breakpoints.up('md')]: {
+            '& .LayoutDefault-header.stickyHeader': {
+              bgcolor: 'background.default',
+              boxShadow: 1,
+            },
+          },
+        })}
+        beforeHeader={
+          <Container sx={{ py: { xs: 0, md: 1 }, position: 'relative', textWrap: 'balance' }}>
+            You are looking at the{' '}
+            <Link color='inherit' underline='always' href='https://graphcommerce.org'>
+              GraphCommerce
+            </Link>{' '}
+            demo environment
+          </Container>
+        }
         header={
           <>
             <Logo />

@@ -16,14 +16,23 @@ export type LayoutDefaultProps = {
   menuFab?: React.ReactNode
   cartFab?: React.ReactNode
   children?: React.ReactNode
-  noSticky?: boolean
   sx?: SxProps<Theme>
 } & OwnerState
 
 type OwnerState = {
-  noSticky?: boolean
+  stickyHeader?: boolean
 }
-const parts = ['root', 'fabs', 'header', 'children', 'footer'] as const
+
+const parts = [
+  'root',
+  'fabs',
+  'beforeHeader',
+  'header',
+  'children',
+  'footer',
+  'cartFab',
+  'menuFab',
+] as const
 const { withState } = extendableComponent<OwnerState, 'LayoutDefault', typeof parts>(
   'LayoutDefault',
   parts,
@@ -37,7 +46,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
     footer,
     menuFab,
     cartFab,
-    noSticky,
+    stickyHeader = false,
     className,
     sx = [],
   } = props
@@ -48,7 +57,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
     ([y, offset]: number[]) => y + offset,
   )
 
-  const classes = withState({ noSticky })
+  const classes = withState({ stickyHeader })
   const fabIconSize = useFabSize('responsive')
 
   return (
@@ -61,30 +70,52 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             minHeight: '-webkit-fill-available',
           },
           display: 'grid',
-          gridTemplateRows: { xs: 'auto 1fr auto', md: 'auto auto 1fr auto' },
-          gridTemplateColumns: '100%',
+          gridTemplate: `
+            "beforeHeader" auto
+            "header" auto
+            "fabs" auto
+            "children" 1fr
+            "footer" auto / 100%
+          `,
           background: theme.palette.background.default,
+
+          // '&.stickyHeader .LayoutHeaderContent-content': {
+          //   [theme.breakpoints.up('md')]: {
+          //     pt: theme.spacings.sm,
+          //   },
+          // },
+          // '&.stickyHeader .CompareFab-root': {
+          //   [theme.breakpoints.up('md')]: {
+          //     mt: theme.spacings.sm,
+          //   },
+          // },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
       <SkipLink />
       <LayoutProvider scroll={scrollYOffset}>
-        {beforeHeader}
+        {beforeHeader ? (
+          <Box sx={{ gridArea: 'beforeHeader' }} className={classes.beforeHeader}>
+            {beforeHeader}
+          </Box>
+        ) : null}
         <Container
           sizing='shell'
           maxWidth={false}
           component='header'
           className={classes.header}
           sx={(theme) => ({
+            gridArea: 'header',
             zIndex: theme.zIndex.appBar - 1,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             height: theme.appShell.headerHeightSm,
-            pointerEvents: 'none',
+            pointerEvents: 'none' as const,
             '& > *': {
-              pointerEvents: 'all',
+              pointerEvents: 'all' as const,
+              zIndex: theme.zIndex.appBar,
             },
             [theme.breakpoints.up('md')]: {
               height: theme.appShell.headerHeightMd,
@@ -93,8 +124,8 @@ export function LayoutDefault(props: LayoutDefaultProps) {
               justifyContent: 'left',
               width: '100%',
             },
-            '&.sticky': {
-              [theme.breakpoints.down('md')]: {
+            '&.stickyHeader': {
+              [theme.breakpoints.up('md')]: {
                 position: 'sticky',
                 top: 0,
               },
@@ -108,40 +139,63 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             sizing='shell'
             maxWidth={false}
             className={classes.fabs}
-            sx={(theme) => ({
-              display: 'flex',
-              justifyContent: 'space-between',
-              width: '100%',
-              height: 0,
-              zIndex: 'speedDial',
-              [theme.breakpoints.up('sm')]: {
-                position: 'sticky',
-                marginTop: `calc(${theme.appShell.headerHeightMd} * -1 - calc(${fabIconSize} / 2))`,
-                top: `calc(${theme.appShell.headerHeightMd} / 2 - (${fabIconSize} / 2))`,
-              },
-              [theme.breakpoints.down('md')]: {
-                position: 'fixed',
-                top: 'unset',
-                bottom: `calc(20px + ${fabIconSize})`,
-                padding: '0 20px',
-                '@media (max-height: 530px) and (orientation: portrait)': {
-                  display: 'none',
+            sx={(theme) => {
+              const negativeHeaderHeightMd = `(${theme.appShell.headerHeightMd} * -1)`
+              const topMd = `(${theme.appShell.headerHeightMd}  - ${fabIconSize}) / 2`
+
+              return {
+                gridArea: 'fabs',
+                display: 'flex',
+                justifyContent: 'space-between',
+                width: '100%',
+                height: 0,
+                zIndex: theme.zIndex.appBar,
+                [theme.breakpoints.up('md')]: {
+                  position: 'sticky',
+                  marginTop: `calc(${negativeHeaderHeightMd} + ${topMd})`,
+                  top: `calc(${topMd})`,
                 },
-              },
-            })}
+                [theme.breakpoints.down('md')]: {
+                  position: 'fixed',
+                  bottom: `calc(20px + ${fabIconSize})`,
+                  padding: '0 20px',
+                  '@media (max-height: 530px) and (orientation: portrait)': {
+                    display: 'none',
+                  },
+                },
+              }
+            }}
           >
-            {menuFab}
+            <Box
+              className={classes.menuFab}
+              sx={{ '&.stickyHeader > *': { display: { md: 'none' } } }}
+            >
+              {menuFab}
+            </Box>
             {cartFab && (
               <Box
-                sx={(theme) => ({
-                  display: 'flex',
-                  flexDirection: 'row-reverse',
-                  gap: theme.spacings.sm,
-                  [theme.breakpoints.up('md')]: {
-                    flexDirection: 'column',
-                    alignItems: 'flex-end',
-                  },
-                })}
+                className={classes.cartFab}
+                sx={(theme) => {
+                  const topMd = `(${theme.appShell.headerHeightMd}  - ${fabIconSize}) / 2`
+                  return {
+                    display: 'flex',
+                    flexDirection: 'row-reverse',
+
+                    [theme.breakpoints.down('md')]: {
+                      columnGap: theme.spacings.sm,
+                    },
+
+                    [theme.breakpoints.up('md')]: {
+                      rowGap: `calc(${topMd})`,
+                      '&.stickyHeader': {
+                        rowGap: `calc(${topMd} + ${theme.spacings.sm})`,
+                      },
+
+                      flexDirection: 'column',
+                      alignItems: 'flex-end',
+                    },
+                  }
+                }}
               >
                 {cartFab}
               </Box>
@@ -150,11 +204,23 @@ export function LayoutDefault(props: LayoutDefaultProps) {
         ) : (
           <div />
         )}
-        <div className={classes.children}>
+        <Box
+          sx={(theme) => ({
+            gridArea: 'children',
+            '&.stickyHeader': {
+              [theme.breakpoints.up('md')]: {
+                pt: theme.spacings.sm,
+              },
+            },
+          })}
+          className={classes.children}
+        >
           <div id='skip-nav' tabIndex={-1} />
           {children}
-        </div>
-        <div className={classes.footer}>{footer}</div>
+        </Box>
+        <Box sx={{ gridArea: 'footer' }} className={classes.footer}>
+          {footer}
+        </Box>
       </LayoutProvider>
     </Box>
   )
