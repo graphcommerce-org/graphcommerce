@@ -24,3 +24,5 @@ export {
 export * from '@graphcommerce/magento-product/components/ProductFiltersPro'
 export * from './utils/productListApplySearchDefaults'
 export * from './components/ProductFiltersPro/ProductFiltersProSearchField'
+export * from './components/SearchOverlay/SearchOverlay'
+export * from './components/SearchOverlay/SearchOverlayFab'
