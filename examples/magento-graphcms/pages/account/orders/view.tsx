@@ -11,6 +11,7 @@ import {
   ReorderItems,
   CancelOrderForm,
   getCustomerAccountIsDisabled,
+  ReturnOrderForm,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -77,6 +78,7 @@ function OrderDetailPage() {
             <OrderItems {...order} images={images} />
             <OrderTotals {...order} />
 
+            <ReturnOrderForm order={order} images={images} />
             <CancelOrderForm order={order} />
           </>
         )}
