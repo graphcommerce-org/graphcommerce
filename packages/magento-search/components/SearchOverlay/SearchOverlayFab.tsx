@@ -1,4 +1,4 @@
-import { IconSvg, iconSearch, useMatchMedia } from '@graphcommerce/next-ui'
+import { iconSearch, IconSvg, useMatchMedia } from '@graphcommerce/next-ui'
 import { Fab } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { searchOverlayIsOpen } from './SearchOverlayProvider'
@@ -9,6 +9,7 @@ export function SearchOverlayFab() {
 
   useEffect(() => {
     setVisible(true)
+    globalThis.document.body.querySelector<HTMLInputElement>('[name="search"]')?.focus()
   }, [])
 
   if (!visible || matchMedia.up('md')) {

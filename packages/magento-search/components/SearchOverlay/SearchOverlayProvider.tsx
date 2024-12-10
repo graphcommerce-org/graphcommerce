@@ -1,7 +1,7 @@
 import {
+  ProductFiltersPro,
   ProductListParams,
   ProductListQuery,
-  ProductFiltersPro,
   toProductListParams,
 } from '@graphcommerce/magento-product'
 import { useForkRef } from '@mui/material'
@@ -9,12 +9,12 @@ import { motionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, {
   createContext,
-  useContext,
   ReactNode,
-  useState,
+  useContext,
+  useEffect,
   useMemo,
   useRef,
-  useEffect,
+  useState,
 } from 'react'
 import { useQuicksearch } from './useQuicksearch'
 

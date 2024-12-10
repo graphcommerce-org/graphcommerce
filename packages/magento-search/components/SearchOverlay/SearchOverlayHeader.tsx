@@ -1,12 +1,12 @@
 import { breakpointVal } from '@graphcommerce/next-ui'
 import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/LayoutHeaderClose'
-import { styled, Box } from '@mui/material'
+import { Box, styled } from '@mui/material'
 import { SearchInput } from './SearchOverlayInput'
 import { searchOverlayIsOpen, useSearchOverlay } from './SearchOverlayProvider'
+import { useStickyHeaderOnScroll } from './useStickyHeaderOnScroll'
 
 const SearchOverlayHeaderRoot = styled(Box, { name: 'SearchOverlayHeader', slot: 'Root' })(
   ({ theme }) => ({
-    position: 'sticky',
     display: 'grid',
     top: 0,
     zIndex: theme.zIndex.appBar,
@@ -19,6 +19,7 @@ const SearchOverlayHeaderRoot = styled(Box, { name: 'SearchOverlayHeader', slot:
     [theme.breakpoints.up('md')]: {
       height: theme.appShell.appBarHeightMd,
     },
+    '.SearchOverlay-root.scrolled &': { position: 'fixed', width: '100%' },
   }),
 )
 
@@ -30,6 +31,7 @@ type SearchOverlayHeaderProps = React.ComponentProps<typeof SearchOverlayHeaderR
 }
 
 export function SearchOverlayHeader(props: SearchOverlayHeaderProps) {
+  useStickyHeaderOnScroll()
   const { params } = useSearchOverlay()
   const { slotProps, ...rest } = props
 

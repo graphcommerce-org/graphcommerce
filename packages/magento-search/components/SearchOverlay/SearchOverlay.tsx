@@ -46,6 +46,7 @@ export function SearchOverlay(props: SearchOverlayProps) {
         disableDrag
         widthMd={`min(${theme.breakpoints.values.lg}px, 100vw - ${theme.page.horizontal} * 2)`}
         bgColor='paper'
+        className='SearchOverlay-root'
         {...slotProps?.overlay}
       >
         <SearchOverlayProvider open={open}>
