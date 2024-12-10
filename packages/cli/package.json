@@ -2,7 +2,7 @@
   "name": "@graphcommerce/cli",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.0-canary.109",
+  "version": "9.0.0-canary.110",
   "scripts": {
     "dev": "pkgroll --watch",
     "build": "pkgroll",
@@ -40,12 +40,12 @@
     "yaml": "2.5.1"
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.109",
-    "@graphcommerce/graphql-mesh": "^9.0.0-canary.109",
-    "@graphcommerce/hygraph-cli": "^9.0.0-canary.109",
-    "@graphcommerce/next-config": "^9.0.0-canary.109",
-    "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.109",
-    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.109",
+    "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.110",
+    "@graphcommerce/graphql-mesh": "^9.0.0-canary.110",
+    "@graphcommerce/hygraph-cli": "^9.0.0-canary.110",
+    "@graphcommerce/next-config": "^9.0.0-canary.110",
+    "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.110",
+    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.110",
     "react": "^18.2.0"
   },
   "sideEffects": false,

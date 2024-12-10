@@ -1,11 +1,11 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
-import { InContextMaskProvider, cacheFirst, flushMeasurePerf } from '@graphcommerce/graphql'
+import { cacheFirst, flushMeasurePerf, InContextMaskProvider } from '@graphcommerce/graphql'
 import {
+  appendSiblingsAsChildren,
   CategoryBreadcrumbs,
   CategoryHeroNav,
   CategoryHeroNavTitle,
   CategoryMeta,
-  appendSiblingsAsChildren,
   findParentBreadcrumbItem,
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
@@ -16,19 +16,19 @@ import type {
   ProductListQuery,
 } from '@graphcommerce/magento-product'
 import {
-  ProductFiltersDocument,
-  ProductListDocument,
   categoryDefaultsToProductListFilters,
   extractUrlQuery,
   getFilterTypes,
   parseParams,
+  ProductFiltersDocument,
   productListApplyCategoryDefaults,
+  ProductListDocument,
   productListLink,
   useProductList,
 } from '@graphcommerce/magento-product'
-import { StoreConfigDocument, redirectOrNotFound, redirectTo } from '@graphcommerce/magento-store'
+import { redirectOrNotFound, redirectTo, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { LayoutHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import { Container, LayoutHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../components'
@@ -73,16 +73,17 @@ function CategoryPage(props: CategoryProps) {
       {isCategory && isLanding && (
         <>
           {import.meta.graphCommerce.breadcrumbs && (
-            <CategoryBreadcrumbs
-              category={category}
-              sx={(theme) => ({
-                mx: theme.page.horizontal,
-                height: 0,
-                [theme.breakpoints.down('md')]: {
-                  '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-                },
-              })}
-            />
+            <Container maxWidth={false}>
+              <CategoryBreadcrumbs
+                category={category}
+                sx={(theme) => ({
+                  height: 0,
+                  [theme.breakpoints.down('md')]: {
+                    '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+                  },
+                })}
+              />
+            </Container>
           )}
           <CategoryHeroNav
             {...category}

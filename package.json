@@ -53,7 +53,12 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@graphcommerce/cli": "9.0.0-canary.107",
+    "@graphcommerce/cli": "workspace:^",
+    "@graphcommerce/eslint-config-pwa": "workspace:^",
+    "@graphcommerce/hygraph-cli": "workspace:^",
+    "@graphcommerce/next-config": "workspace:^",
+    "@graphcommerce/prettier-config-pwa": "workspace:^",
+    "@graphcommerce/typescript-config-pwa": "workspace:^",
     "@graphql-codegen/testing": "3.0.4",
     "@playwright/test": "1.49.0",
     "@testing-library/dom": "^10.4.0",

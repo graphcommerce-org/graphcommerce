@@ -1,5 +1,4 @@
-import type { ProductItemsGridProps } from '@graphcommerce/magento-product'
-import { ProductListItemsBase } from '@graphcommerce/magento-product'
+import { ProductListItemsBase, ProductItemsGridProps } from '@graphcommerce/magento-product'
 import { productListRenderer } from './productListRenderer'
 
 export type ProductListItemsProps = Omit<ProductItemsGridProps, 'renderers'>

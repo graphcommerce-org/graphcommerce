@@ -7,6 +7,7 @@ import {
   ProductFiltersPro,
   ProductFiltersProAggregations,
   ProductFiltersProAllFiltersChip,
+  productFiltersProChipRenderer,
   ProductFiltersProLimitChip,
   ProductFiltersProNoResults,
   ProductFiltersProSortChip,
@@ -14,20 +15,21 @@ import {
   ProductListFiltersContainer,
   ProductListPagination,
   ProductListSuggestions,
-  productFiltersProChipRenderer,
 } from '@graphcommerce/magento-product'
 import { ProductFiltersProSearchTerm } from '@graphcommerce/magento-search'
-import { LayoutTitle, StickyBelowHeader, memoDeep } from '@graphcommerce/next-ui'
+import { Container, LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Container, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'
-import type { ProductListLayoutProps } from './types'
+import { ProductListLayoutProps, useLayoutConfiguration } from './types'
 
 export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps) => {
   const { id, filters, filterTypes, params, products, title, category, handleSubmit } = props
 
   if (!(params && products?.items && filterTypes)) return null
   const { total_count, sort_fields, page_info } = products
+
+  const configuration = useLayoutConfiguration(false)
 
   return (
     <ProductFiltersPro
@@ -38,18 +40,6 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
       filterTypes={filterTypes}
       handleSubmit={handleSubmit}
     >
-      {import.meta.graphCommerce.breadcrumbs && category && (
-        <CategoryBreadcrumbs
-          category={category}
-          sx={(theme) => ({
-            height: 0,
-            mx: theme.page.horizontal,
-            [theme.breakpoints.down('md')]: {
-              '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-            },
-          })}
-        />
-      )}
       <Container
         maxWidth={false}
         sx={(theme) => ({
@@ -60,6 +50,18 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
           justifyItems: { xs: 'left', md: 'center' },
         })}
       >
+        {import.meta.graphCommerce.breadcrumbs && category && (
+          <CategoryBreadcrumbs
+            category={category}
+            sx={(theme) => ({
+              height: 0,
+              [theme.breakpoints.down('md')]: {
+                '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+              },
+            })}
+          />
+        )}
+
         {category ? (
           <>
             <LayoutTitle
@@ -130,7 +132,7 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
             {...products}
             loadingEager={6}
             title={(params.search ? `Search ${params.search}` : title) ?? ''}
-            columns={{ xs: { count: 2 }, md: { count: 3 }, lg: { count: 4 }, xl: { count: 5 } }}
+            columns={configuration.columns}
           />
         )}
         <ProductListPagination page_info={page_info} params={params} />

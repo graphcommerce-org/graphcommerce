@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.110
+
+### Patch Changes
+
+- [#2407](https://github.com/graphcommerce-org/graphcommerce/pull/2407) [`61f2af1`](https://github.com/graphcommerce-org/graphcommerce/commit/61f2af1158f2ef6908f7edd18f3f8cb2be196a9b) - Add maxWidth to ProductListLayouts ([@StefanAngenent](https://github.com/StefanAngenent))
+
 ## 9.0.0-canary.109
 
 ## 9.0.0-canary.108

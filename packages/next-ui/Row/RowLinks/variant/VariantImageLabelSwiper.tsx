@@ -9,7 +9,10 @@ export function VariantImageLabelSwiper(props: RowLinksProps) {
       {...rowLinksProps}
       sx={[
         {
-          '& .Scroller-root': {
+          // '& .Scroller-root': {
+          //   alignItems: 'start',
+          // },
+          '& .Scroller-scroller': {
             alignItems: 'start',
           },
           '& .RowLinks-title': {
