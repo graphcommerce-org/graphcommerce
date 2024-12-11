@@ -1,4 +1,4 @@
-import { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
+import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 
 export type PaymentMethodPlaceOrderProps = Pick<UseFormComposeOptions, 'step'>

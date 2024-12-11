@@ -1,3 +1,4 @@
+import { ALGOLIA_USER_TOKEN_COOKIE_NAME } from '@graphcommerce/algolia-insights'
 import {
   type getInContextInput as getInContextInputType,
   type useInContextInput as useInContextInputType,
@@ -5,12 +6,10 @@ import {
 import type { InContextInput } from '@graphcommerce/graphql-mesh'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 import { cookie } from '@graphcommerce/next-ui'
-import { ALGOLIA_USER_TOKEN_COOKIE_NAME } from '../hooks/useSendAlgoliaEvent'
 
 export const config: PluginConfig = {
   type: 'function',
   module: '@graphcommerce/graphql',
-  ifConfig: 'algolia.personalizationEnabled',
 }
 
 export const getInContextInput: FunctionPlugin<typeof getInContextInputType> = (

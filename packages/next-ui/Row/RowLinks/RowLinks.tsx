@@ -1,15 +1,13 @@
-import {
-  Scroller,
-  ScrollerButton,
-  ScrollerButtonProps,
-  ScrollerProvider,
-} from '@graphcommerce/framer-scroller'
-import { Box, ContainerProps, SxProps, Theme, Typography } from '@mui/material'
+import type { ScrollerButtonProps } from '@graphcommerce/framer-scroller'
+import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
+import type { ContainerProps, SxProps, Theme } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import React from 'react'
+import { Container, useContainerSpacing } from '../../Container/Container'
+import { iconChevronLeft, iconChevronRight } from '../../icons'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles'
 import { useFabSize } from '../../Theme'
-import { iconChevronLeft, iconChevronRight } from '../../icons'
 import { Row } from '../Row'
 
 export type RowLinksProps = {
@@ -21,7 +19,7 @@ export type RowLinksProps = {
 } & Pick<ContainerProps, 'maxWidth'> &
   Pick<ScrollerButtonProps, 'showButtons'>
 
-const compName = 'RowLinks' as const
+const compName = 'RowLinks'
 const parts = [
   'root',
   'scroller',
@@ -38,37 +36,41 @@ export function RowLinks(props: RowLinksProps) {
   const { title, copy, children, sx = [], inlineTitle, showButtons, maxWidth } = props
 
   const fabSize = useFabSize('responsive')
+  const spacing = useContainerSpacing({ maxWidth })
 
   return (
-    <Row
-      className={classes.root}
-      sx={[{ position: 'relative' }, ...(Array.isArray(sx) ? sx : [sx])]}
-      maxWidth={maxWidth}
-    >
-      {!inlineTitle && (
-        <Typography
-          variant='subtitle1'
-          component='h2'
-          className={classes.title}
-          sx={(theme) => ({ mb: theme.spacings.md })}
-        >
-          {title}
-        </Typography>
-      )}
-      {copy && (
-        <Box className={classes.copy} sx={(theme) => ({ my: theme.spacings.md })}>
-          {copy}
-        </Box>
-      )}
-      <Box className={classes.scrollerWrapper} sx={{ position: 'relative' }}>
+    <Box className={classes.root} sx={sx}>
+      <Container maxWidth={maxWidth}>
+        {!inlineTitle && (
+          <Typography
+            variant='subtitle1'
+            component='h2'
+            className={classes.title}
+            sx={(theme) => ({ mb: theme.spacings.md })}
+          >
+            {title}
+          </Typography>
+        )}
+        {copy && (
+          <Box className={classes.copy} sx={(theme) => ({ my: theme.spacings.md })}>
+            {copy}
+          </Box>
+        )}
+      </Container>
+      <Box
+        className={classes.scrollerWrapper}
+        sx={(theme) => ({ position: 'relative', mb: theme.spacings.xxl })}
+      >
         <ScrollerProvider scrollSnapAlign='end'>
           <Scroller
             className={classes.scroller}
             hideScrollbar
             sx={(theme) => ({
+              px: spacing.padding,
+              scrollPaddingInline: spacing.padding,
               justifyContent: 'start',
               gap: `${theme.spacings.md}`,
-              gridAutoColumns: `max-content`,
+              gridAutoColumns: 'max-content',
               alignItems: 'center',
               '&.smGridDirInline > *': {
                 scrollSnapAlign: {
@@ -92,7 +94,7 @@ export function RowLinks(props: RowLinksProps) {
               gridAutoFlow: 'row',
               gap: theme.spacings.xxs,
               position: 'absolute',
-              left: theme.spacings.xs,
+              left: spacing.padding,
               top: `calc(50% - calc(${fabSize} / 2))`,
             })}
           >
@@ -111,7 +113,7 @@ export function RowLinks(props: RowLinksProps) {
               display: 'grid',
               gap: theme.spacings.xxs,
               position: 'absolute',
-              right: theme.spacings.xs,
+              right: spacing.padding,
               top: `calc(50% - calc(${fabSize} / 2))`,
             })}
           >
@@ -126,6 +128,6 @@ export function RowLinks(props: RowLinksProps) {
           </Box>
         </ScrollerProvider>
       </Box>
-    </Row>
+    </Box>
   )
 }

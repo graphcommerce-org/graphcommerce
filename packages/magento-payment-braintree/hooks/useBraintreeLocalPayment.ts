@@ -1,6 +1,7 @@
 import braintree from 'braintree-web'
 import { useRef } from 'react'
-import { StartPaymentOptions, useBraintreeClient } from './useBraintree'
+import type { StartPaymentOptions } from './useBraintree'
+import { useBraintreeClient } from './useBraintree'
 
 type StartPaymentPayload = {
   nonce: string

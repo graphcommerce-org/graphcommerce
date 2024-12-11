@@ -1,5 +1,6 @@
 import { useFormState } from '@graphcommerce/ecommerce-ui'
-import { ErrorSnackbarProps, MessageSnackbarProps, nonNullable } from '@graphcommerce/next-ui'
+import type { ErrorSnackbarProps, MessageSnackbarProps } from '@graphcommerce/next-ui'
+import { nonNullable } from '@graphcommerce/next-ui'
 import { useMemo } from 'react'
 import { AddProductsToCartSnackbarMessage } from './AddProductsToCartSnackbarMessage'
 import { findAddedItems } from './findAddedItems'
@@ -35,7 +36,7 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
 
   return (
     <AddProductsToCartSnackbarMessage
-      error={error}
+      error={!formState.isSubmitting ? error : undefined}
       showSuccess={showSuccess}
       userErrors={data?.addProductsToCart?.user_errors.filter(nonNullable)}
       addedItems={addedItems.map((item) => item.itemInCart?.product.name).filter(nonNullable)}

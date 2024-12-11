@@ -1,17 +1,18 @@
 import { useConstant, useElementScroll } from '@graphcommerce/framer-utils'
-import { MotionValue, motionValue, Point, useDomEvent, useMotionValue } from 'framer-motion'
-import { PlaybackControls } from 'popmotion'
-import React, { useEffect, useRef, useMemo, useCallback } from 'react'
+import type { MotionValue, Point } from 'framer-motion'
+import { motionValue, useDomEvent, useMotionValue } from 'framer-motion'
+import type { PlaybackControls } from 'popmotion'
+import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 import { scrollerContext } from '../context/scrollerContext'
-import {
+import type {
   Axis,
   ItemState,
   ReactHtmlRefObject,
-  ScrollerContext,
   ScrollSnapAlign,
   ScrollSnapAlignAxis,
   ScrollSnapStop,
   ScrollSnapType,
+  ScrollerContext,
   SnapPositionList,
 } from '../types'
 

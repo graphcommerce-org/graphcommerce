@@ -1,11 +1,11 @@
 import { ApolloCartErrorSnackbar } from '@graphcommerce/magento-cart'
-import { Fab, FabProps, iconClose } from '@graphcommerce/next-ui'
+import type { FabProps } from '@graphcommerce/next-ui'
+import { Fab, iconClose } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { SxProps, Theme, styled } from '@mui/material'
-import {
-  UseRemoveItemFromCartProps,
-  useRemoveItemFromCart,
-} from '../../hooks/useRemoveItemFromCart'
+import type { SxProps, Theme } from '@mui/material'
+import { styled } from '@mui/material'
+import type { UseRemoveItemFromCartProps } from '../../hooks/useRemoveItemFromCart'
+import { useRemoveItemFromCart } from '../../hooks/useRemoveItemFromCart'
 
 export type RemoveItemFromCartFabProps = UseRemoveItemFromCartProps & {
   sx?: SxProps<Theme>

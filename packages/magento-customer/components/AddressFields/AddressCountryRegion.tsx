@@ -1,10 +1,12 @@
-import { SelectElement, FieldValues, FieldPath, useWatch } from '@graphcommerce/ecommerce-ui'
+import type { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
+import { SelectElement, TextFieldElement, useWatch } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import { FormRow, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { useMemo } from 'react'
-import { AddressFieldsOptions, useAddressFieldsForm } from './useAddressFieldsForm'
+import type { AddressFieldsOptions } from './useAddressFieldsForm'
+import { useAddressFieldsForm } from './useAddressFieldsForm'
 
 export function useAddressCountryRegion<
   TFieldValues extends FieldValues = FieldValues,
@@ -35,7 +37,7 @@ export function useAddressCountryRegion<
     [country, countryList],
   )
 
-  return { ...form, country, countryList, regionList }
+  return { ...form, country, countryList, regionList, loading: countryQuery.loading }
 }
 
 export function AddressCountryRegion<
@@ -43,7 +45,22 @@ export function AddressCountryRegion<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(props: AddressFieldsOptions<TFieldValues, TName>) {
   const form = useAddressCountryRegion<TFieldValues, TName>(props)
-  const { control, name, readOnly, required, countryList, regionList } = form
+  const { control, name, readOnly, required, countryList, regionList, loading } = form
+
+  if (loading) {
+    return (
+      <FormRow>
+        <TextFieldElement
+          label={<Trans id='Country' />}
+          control={control}
+          required={required[name.countryCode]}
+          name={name.countryCode}
+          showValid
+          InputProps={{ readOnly }}
+        />
+      </FormRow>
+    )
+  }
 
   return (
     <FormRow>
@@ -66,7 +83,6 @@ export function AddressCountryRegion<
         <SelectElement
           control={control}
           name={name.regionId}
-          // SelectProps={{ native: true, displayEmpty: true }}
           variant='outlined'
           label={<Trans id='Region' />}
           required

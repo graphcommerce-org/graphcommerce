@@ -1,6 +1,6 @@
+import type { ProductFiltersProAggregationsProps } from './ProductFiltersProAggregations'
 import {
   ProductFiltersProAggregations,
-  ProductFiltersProAggregationsProps,
   productFiltersProChipRenderer,
 } from './ProductFiltersProAggregations'
 

@@ -1,14 +1,9 @@
-/* eslint-disable @typescript-eslint/no-restricted-imports */
-import {
-  FieldError,
-  useController,
-  FieldValues,
-  UseControllerProps,
-} from '@graphcommerce/react-hook-form'
+import type { FieldValues, UseControllerProps } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
+import type { CheckboxProps } from '@mui/material'
 import {
   Checkbox,
-  CheckboxProps,
   FormControl,
   FormControlLabel,
   FormGroup,
@@ -18,14 +13,14 @@ import {
 } from '@mui/material'
 
 export type CheckboxButtonGroupProps<T extends FieldValues> = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   options: { id: string | number; label: string }[] | any[]
   helperText?: string
   required?: boolean
-  /** @deprecated Form value parsing should happen in the handleSubmit function of the form */
-  parseError?: (error: FieldError) => string
   label?: string
   labelKey?: string
   valueKey?: string
+  // eslint-disable-next-line @typescript-eslint/ban-types
   onChange?: Function
   returnObject?: boolean
   disabled?: boolean
@@ -33,22 +28,27 @@ export type CheckboxButtonGroupProps<T extends FieldValues> = {
   checkboxColor?: CheckboxProps['color']
 } & UseControllerProps<T>
 
-export function CheckboxButtonGroup<TFieldValues extends FieldValues>({
-  helperText,
-  options,
-  label,
-  name,
-  parseError,
-  required,
-  labelKey = 'label',
-  valueKey = 'id',
-  returnObject,
-  disabled,
-  row,
-  control,
-  checkboxColor,
-  ...rest
-}: CheckboxButtonGroupProps<TFieldValues>): JSX.Element {
+export function CheckboxButtonGroup<TFieldValues extends FieldValues>(
+  props: CheckboxButtonGroupProps<TFieldValues>,
+): JSX.Element {
+  const {
+    helperText,
+    options,
+    label,
+    name,
+    required,
+    labelKey = 'label',
+    valueKey = 'id',
+    returnObject,
+    disabled,
+    row,
+    control,
+    checkboxColor,
+    defaultValue,
+    shouldUnregister,
+    ...rest
+  } = props
+
   const theme = useTheme()
   const {
     field: { value = [], onChange },
@@ -57,22 +57,25 @@ export function CheckboxButtonGroup<TFieldValues extends FieldValues>({
     name,
     rules: required ? { required: i18n._(/* i18n */ 'This field is required') } : undefined,
     control,
+    defaultValue,
+    disabled,
+    shouldUnregister,
   })
 
-  helperText = error
-    ? typeof parseError === 'function'
-      ? parseError(error)
-      : error.message
-    : helperText
+  const parsedHelperText = error ? error.message : helperText
 
   const handleChange = (index: number | string) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const newArray: (string | number)[] | any[] = [...value]
     const exists =
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       value.findIndex((i: any) => (returnObject ? i[valueKey] === index : i === index)) === -1
     if (exists) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       newArray.push(returnObject ? options.find((i) => i[valueKey] === index) : index)
     } else {
       newArray.splice(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         value.findIndex((i: any) => (returnObject ? i[valueKey] === index : i === index)),
         1,
       )
@@ -97,7 +100,7 @@ export function CheckboxButtonGroup<TFieldValues extends FieldValues>({
             )
           }
           const isChecked =
-            value.findIndex((item: any) =>
+            value.findIndex((item) =>
               returnObject ? item[valueKey] === optionKey : item === optionKey,
             ) !== -1
           return (
@@ -111,6 +114,7 @@ export function CheckboxButtonGroup<TFieldValues extends FieldValues>({
                   value={optionKey}
                   checked={isChecked}
                   disabled={disabled}
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                   onChange={() => handleChange(optionKey)}
                 />
               }
@@ -120,7 +124,7 @@ export function CheckboxButtonGroup<TFieldValues extends FieldValues>({
           )
         })}
       </FormGroup>
-      {helperText && <FormHelperText>{helperText}</FormHelperText>}
+      {parsedHelperText && <FormHelperText>{parsedHelperText}</FormHelperText>}
     </FormControl>
   )
 }

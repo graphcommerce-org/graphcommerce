@@ -1,6 +1,7 @@
 import { GlobalStyles } from '@mui/material'
 import { LazyMotion } from 'framer-motion'
-import { EmotionProvider, EmotionProviderProps } from '../Styles/EmotionProvider'
+import type { EmotionProviderProps } from '../Styles/EmotionProvider'
+import { EmotionProvider } from '../Styles/EmotionProvider'
 
 export type CssAndFramerMotionProviderProps = EmotionProviderProps
 

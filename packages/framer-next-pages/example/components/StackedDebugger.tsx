@@ -45,10 +45,10 @@ export function StackDebug() {
                 padding: '6px',
                 width: 40,
                 textAlign: 'center',
-                lineHeight: `28px`,
+                lineHeight: '28px',
                 color: '#ccc',
-                background: `rgba(255,255,255,0.7)`,
-                borderRight: `1px solid #efefef`,
+                background: 'rgba(255,255,255,0.7)',
+                borderRight: '1px solid #efefef',
               }}
             >
               <code>{k * 100}</code>

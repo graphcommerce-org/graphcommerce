@@ -1,7 +1,8 @@
 import { IconSvg, iconLocation } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
-import { TrackingLinkFragment } from './TrackingLink.gql'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Link, Typography } from '@mui/material'
+import type { TrackingLinkFragment } from './TrackingLink.gql'
 
 export type TrackingLinkProps = TrackingLinkFragment & { sx?: SxProps<Theme> }
 

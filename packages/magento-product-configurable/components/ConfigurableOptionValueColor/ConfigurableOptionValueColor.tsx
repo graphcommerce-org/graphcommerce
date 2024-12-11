@@ -1,7 +1,8 @@
-import { ActionCard, ActionCardItemRenderProps } from '@graphcommerce/next-ui'
+import type { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
+import { ActionCard } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import { swatchSizes } from '../ConfigurableOptionValueImage'
-import { ConfigurableOptionValueColorFragment } from './ConfigurableOptionValueColor.gql'
+import type { ConfigurableOptionValueColorFragment } from './ConfigurableOptionValueColor.gql'
 
 export type ConfigurableOptionValueColorProps =
   ActionCardItemRenderProps<ConfigurableOptionValueColorFragment>

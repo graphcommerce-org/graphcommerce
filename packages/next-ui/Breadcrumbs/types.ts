@@ -1,5 +1,4 @@
-import { Theme } from '@emotion/react'
-import { SxProps } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 
 export type BreadcrumbItem = {
   name: string

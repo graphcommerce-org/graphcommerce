@@ -1,46 +1,60 @@
 import {
+  ActionCardListForm,
   EmailElement,
   FormAutoSubmit,
-  TextFieldElement,
-  emailPattern,
+  useWatch,
 } from '@graphcommerce/ecommerce-ui'
 import { useApolloClient } from '@graphcommerce/graphql'
 import {
   ActionCard,
-  ActionCardListForm,
   Button,
+  extendableComponent,
   FormActions,
   FormDiv,
   FormRow,
   LayoutTitle,
-  extendableComponent,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, CircularProgress, Link, SxProps, Theme, Typography } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Alert, Box, CircularProgress, Link, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import { CustomerDocument, useAccountSignInUpForm } from '../../hooks'
+import { CustomerDocument, useAccountSignInUpForm, useCustomerAccountCanSignUp } from '../../hooks'
 import { useCustomerQuery } from '../../hooks/useCustomerQuery'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError'
 import { SignInForm } from '../SignInForm/SignInForm'
 import { signOut } from '../SignOutForm/signOut'
 import { SignUpForm } from '../SignUpForm/SignUpForm'
 
-export type AccountSignInUpFormProps = { sx?: SxProps<Theme> }
+export type AccountSignInUpFormProps = {
+  sx?: SxProps<Theme>
+  signUpDisabled?: React.ReactNode
+}
 
 const parts = ['root', 'titleContainer'] as const
 const { classes } = extendableComponent('AccountSignInUpForm', parts)
 
 export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
-  const { sx = [] } = props
+  const { sx = [], signUpDisabled } = props
   const customerQuery = useCustomerQuery(CustomerDocument)
 
   const { email, firstname = '' } = customerQuery.data?.customer ?? {}
 
   const { mode, form, submit } = useAccountSignInUpForm()
-  const { formState, watch, control, error } = form
+  const { formState, control, error, setError, clearErrors } = form
   const router = useRouter()
 
   const client = useApolloClient()
+
+  const canSignUp = useCustomerAccountCanSignUp()
+  const isToggleMethod = !import.meta.graphCommerce.enableGuestCheckoutLogin || !canSignUp
+
+  const showEmail =
+    mode === 'email' ||
+    mode === 'session-expired' ||
+    mode === 'signin' ||
+    (mode === 'signup' && canSignUp)
+
+  const emailValue = useWatch({ control }).email
 
   return (
     <FormDiv sx={sx} className={classes.root}>
@@ -59,7 +73,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
           </>
         )}
 
-        {mode === 'signin' && (
+        {(mode === 'signin' || (mode === 'signup' && !canSignUp)) && (
           <>
             <LayoutTitle variant='h2' gutterBottom={false}>
               <Trans id='Sign in' />
@@ -70,7 +84,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
           </>
         )}
 
-        {mode === 'signup' && (
+        {mode === 'signup' && canSignUp && (
           <>
             <LayoutTitle variant='h2' gutterBottom={false}>
               <Trans id='Create account!' />
@@ -112,33 +126,32 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
         )}
       </Box>
 
-      {!import.meta.graphCommerce.enableGuestCheckoutLogin &&
-        (mode === 'signin' || mode === 'signup' || mode === 'email') && (
-          <FormRow>
-            <ActionCardListForm
-              control={form.control}
-              name='requestedMode'
-              layout='grid'
-              size='large'
-              render={ActionCard}
-              sx={(theme) => ({
-                '&.layoutGrid': {
-                  gridTemplateColumns: 'auto auto',
-                  justifyContent: 'center',
-                },
-                '& .ActionCard-root.sizeLarge': {
-                  px: theme.spacings.md,
-                },
-              })}
-              items={[
-                { value: 'signin', title: <Trans id='Sign in' /> },
-                { value: 'signup', title: <Trans id='Create Account' /> },
-              ]}
-            />
-          </FormRow>
-        )}
+      {isToggleMethod && (mode === 'signin' || mode === 'signup' || mode === 'email') && (
+        <FormRow>
+          <ActionCardListForm
+            control={form.control}
+            name='requestedMode'
+            layout='grid'
+            size='large'
+            render={ActionCard}
+            sx={(theme) => ({
+              '&.layoutGrid': {
+                gridTemplateColumns: 'auto auto',
+                justifyContent: 'center',
+              },
+              '& .ActionCard-root.sizeLarge': {
+                px: theme.spacings.md,
+              },
+            })}
+            items={[
+              { value: 'signin', title: <Trans id='Sign in' /> },
+              { value: 'signup', title: <Trans id='Create Account' /> },
+            ]}
+          />
+        </FormRow>
+      )}
 
-      {mode !== 'signedin' && (
+      {showEmail && (
         <form onSubmit={submit}>
           <FormAutoSubmit {...form} submit={submit} />
           <Box>
@@ -195,13 +208,22 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
 
       {(mode === 'signin' || mode === 'session-expired') && (
         <Box>
-          <SignInForm email={watch('email')} />
+          <SignInForm email={emailValue} setError={setError} clearErrors={clearErrors} />
         </Box>
       )}
 
-      {mode === 'signup' && (
+      {mode === 'signup' && canSignUp && (
         <Box>
-          <SignUpForm email={watch('email')} />
+          <SignUpForm email={emailValue} setError={setError} clearErrors={clearErrors} />
+        </Box>
+      )}
+      {mode === 'signup' && !canSignUp && (
+        <Box>
+          {signUpDisabled || (
+            <Alert severity='success'>
+              <Trans id='Sign up is disabled, please contact us for more information.' />
+            </Alert>
+          )}
         </Box>
       )}
     </FormDiv>

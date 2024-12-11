@@ -1,9 +1,5 @@
-import {
-  FieldValues,
-  FieldPath,
-  UseFormReturn,
-  assertFormGqlOperation,
-} from '@graphcommerce/react-hook-form'
+import type { FieldPath, FieldValues, UseFormReturn } from '@graphcommerce/react-hook-form'
+import { assertFormGqlOperation } from '@graphcommerce/react-hook-form'
 
 export type AddressFieldsOptions<
   TFieldValues extends FieldValues = FieldValues,

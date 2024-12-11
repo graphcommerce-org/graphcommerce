@@ -2,9 +2,10 @@ import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { Box, styled, SxProps, Theme } from '@mui/material'
 import { LayoutProps, m } from 'framer-motion'
 import React, { useRef } from 'react'
+import { Container } from '../../Container/Container'
 import { extendableComponent } from '../../Styles'
 import { useScrollY } from '../hooks/useScrollY'
-import { FloatingProps } from './LayoutHeadertypes'
+import type { FloatingProps } from './LayoutHeadertypes'
 
 const MotionDiv = styled(m.div)({})
 
@@ -30,7 +31,7 @@ type OwnerState = {
   bgColor?: 'paper' | 'default'
 }
 
-const name = 'LayoutHeaderContent' as const
+const name = 'LayoutHeaderContent'
 const parts = ['bg', 'content', 'left', 'center', 'right', 'divider'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
@@ -92,7 +93,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             },
 
             opacity: 0,
-            transition: `opacity 150ms`,
+            transition: 'opacity 150ms',
             '&.scrolled': {
               opacity: 1,
             },
@@ -104,22 +105,22 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
           ...(Array.isArray(sxBg) ? sxBg : [sxBg]),
         ]}
       />
-      <Box
+      <Container
+        maxWidth={false}
         className={classes.content}
+        sizing='shell'
         ref={ref}
         sx={[
           (theme) => ({
             position: 'absolute',
-            left: 0,
+            inset: 0,
             width: '100%',
             display: 'grid',
-            gridTemplateAreas: `"left center right"`,
+            gridTemplateAreas: '"left center right"',
             gridTemplateColumns: '1fr auto 1fr',
             alignItems: 'center',
             gap: theme.page.horizontal,
-
             height: theme.appShell.headerHeightSm,
-            px: theme.page.horizontal,
             [theme.breakpoints.up('md')]: {
               height: theme.appShell.appBarHeightMd,
             },
@@ -133,14 +134,12 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
 
             '&.floatingSm': {
               [theme.breakpoints.down('md')]: {
-                px: theme.page.horizontal,
                 background: 'none',
                 pointerEvents: 'none',
               },
             },
             '&.floatingMd': {
               [theme.breakpoints.up('md')]: {
-                px: theme.page.horizontal,
                 background: 'none',
                 pointerEvents: 'none',
               },
@@ -177,7 +176,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             overflow: 'hidden',
             justifySelf: 'center',
 
-            transition: `opacity 150ms`,
+            transition: 'opacity 150ms',
             opacity: 0,
             '&.scrolled': {
               opacity: 1,
@@ -243,7 +242,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             {divider}
           </Box>
         )}
-      </Box>
+      </Container>
     </>
   )
 }

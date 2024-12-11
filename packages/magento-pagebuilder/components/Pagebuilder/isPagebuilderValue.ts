@@ -1,4 +1,4 @@
-import { ContentTypeConfig } from '../../types'
+import type { ContentTypeConfig } from '../../types'
 
 export function isPagebuilderValue(pagebuilder: unknown): pagebuilder is ContentTypeConfig {
   return (

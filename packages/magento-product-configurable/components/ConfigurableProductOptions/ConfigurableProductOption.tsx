@@ -1,41 +1,39 @@
-import {
-  useFormAddProductsToCart,
-  AddProductsToCartFields,
-} from '@graphcommerce/magento-product/components'
-import {
-  nonNullable,
-  filterNonNullableKeys,
-  SectionHeader,
-  ActionCardListForm,
-  ActionCardItemBase,
-} from '@graphcommerce/next-ui'
+import type { ActionCardItemBase } from '@graphcommerce/ecommerce-ui'
+import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
+import type { AddProductsToCartFields } from '@graphcommerce/magento-product/components'
+import { useFormAddProductsToCart } from '@graphcommerce/magento-product/components'
+import { SectionHeader, filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import { useWatch } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import { Box, SxProps, Theme } from '@mui/material'
-import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
-import { UseConfigurableOptionsSelection, useConfigurableOptionsForSelection } from '../../hooks'
-import {
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
+import type { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
+import type { UseConfigurableOptionsSelection } from '../../hooks'
+import { useConfigurableOptionsForSelection } from '../../hooks'
+import type {
   ConfigurableOptionValue,
   ConfigurableOptionValueFragment,
 } from '../ConfigurableOptionValue'
 
-type Props = NonNullable<
+export type ConfigurableProductOptionProps = NonNullable<
   NonNullable<ConfigurableOptionsFragment['configurable_options']>[number]
 > & {
   index: number
   optionIndex: number
+  optionStartLabels?: Record<string, React.ReactNode>
   optionEndLabels?: Record<string, React.ReactNode>
   sx?: SxProps<Theme>
   attribute_code: string
   render: typeof ConfigurableOptionValue
 } & UseConfigurableOptionsSelection
 
-export function ConfigurableProductOption(props: Props) {
+export function ConfigurableProductOption(props: ConfigurableProductOptionProps) {
   const {
     values,
     label,
     index,
     optionIndex,
+    optionStartLabels,
     optionEndLabels,
     sx,
     attribute_code,
@@ -75,7 +73,7 @@ export function ConfigurableProductOption(props: Props) {
   return (
     <Box key={fieldName} sx={[...(Array.isArray(sx) ? sx : [sx])]}>
       <SectionHeader
-        labelLeft={label}
+        labelLeft={optionStartLabels?.[attribute_code ?? ''] ?? label}
         labelRight={optionEndLabels?.[attribute_code ?? '']}
         sx={{ mt: 0 }}
       />

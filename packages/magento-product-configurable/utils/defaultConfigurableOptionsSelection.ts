@@ -1,8 +1,8 @@
-import { ApolloClient } from '@graphcommerce/graphql'
-import { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
+import type { ApolloClient } from '@graphcommerce/graphql'
+import type { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
 import { filterNonNullableKeys, findByTypename, nonNullable } from '@graphcommerce/next-ui'
 import { GetConfigurableOptionsSelectionDocument } from '../graphql'
-import { DefaultConfigurableOptionsSelectionFragment } from './DefaultConfigurableOptionsSelection.gql'
+import type { DefaultConfigurableOptionsSelectionFragment } from './DefaultConfigurableOptionsSelection.gql'
 
 type BaseQuery =
   | { products?: DefaultConfigurableOptionsSelectionFragment | null | undefined }

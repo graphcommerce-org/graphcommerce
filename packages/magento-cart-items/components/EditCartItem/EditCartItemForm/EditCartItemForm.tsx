@@ -1,21 +1,19 @@
-import { UseHistoryLink, useHistoryGo } from '@graphcommerce/framer-next-pages'
-import {
-  useFormAddProductsToCart,
+import type { UseHistoryLink } from '@graphcommerce/framer-next-pages'
+import { useHistoryGo } from '@graphcommerce/framer-next-pages'
+import type {
   AddProductsToCartFormProps,
   AddToCartItemSelector,
-  AddProductsToCartForm,
 } from '@graphcommerce/magento-product'
-import { useEffect } from 'react'
-import {
-  UseRemoveItemFromCartProps,
-  useRemoveItemFromCart,
-} from '../../../hooks/useRemoveItemFromCart'
-import {
-  CartItemToCartItemInputProps,
-  cartItemToCartItemInput,
-} from '../../../utils/cartItemToCartItemInput'
+import { AddProductsToCartForm, useFormAddProductsToCart } from '@graphcommerce/magento-product'
+import { useRouter } from 'next/router'
+import { useEffect, useRef } from 'react'
+import type { CartItemsFragment } from '../../../Api/CartItems.gql'
+import type { UseRemoveItemFromCartProps } from '../../../hooks/useRemoveItemFromCart'
+import { useRemoveItemFromCart } from '../../../hooks/useRemoveItemFromCart'
+import type { CartItemToCartItemInputProps } from '../../../utils/cartItemToCartItemInput'
+import { cartItemToCartItemInput } from '../../../utils/cartItemToCartItemInput'
 
-type EditInitProps = CartItemToCartItemInputProps & AddToCartItemSelector
+export type EditInitProps = CartItemToCartItemInputProps & AddToCartItemSelector
 
 function EditInit(props: EditInitProps) {
   const { product, selectors, cartItem, index = 0 } = props
@@ -56,4 +54,13 @@ export function EditCartItemForm(props: EditCartItemFormProps) {
       <EditInit product={product} cartItem={cartItem} index={index} />
     </AddProductsToCartForm>
   )
+}
+
+export function useEditItem(cart: CartItemsFragment | null | undefined) {
+  const cartItemId = useRouter().query.cartItemId as string
+  const cartItem = cart?.items?.find((item) => item?.uid === cartItemId)
+  const cartItemRef = useRef(cartItem)
+  if (cartItem) cartItemRef.current = cartItem
+
+  return cartItemRef.current
 }

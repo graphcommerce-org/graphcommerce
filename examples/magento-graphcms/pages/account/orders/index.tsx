@@ -4,6 +4,7 @@ import {
   WaitForCustomer,
   AccountDashboardOrdersDocument,
   AccountOrders,
+  getCustomerAccountIsDisabled,
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -77,6 +78,8 @@ AccountOrdersPage.pageOptions = pageOptions
 export default AccountOrdersPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 

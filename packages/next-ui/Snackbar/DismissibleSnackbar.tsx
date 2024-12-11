@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { MessageSnackbar } from './MessageSnackbar'
-import { MessageSnackbarProps } from './MessageSnackbarImpl'
+import type { MessageSnackbarProps } from './MessageSnackbarImpl'
 
 export type DismissibleSnackbarProps = MessageSnackbarProps & {
   id: string

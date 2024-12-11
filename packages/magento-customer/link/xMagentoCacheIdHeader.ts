@@ -1,4 +1,5 @@
-import { ApolloLink, DefaultContext } from '@graphcommerce/graphql'
+import type { DefaultContext } from '@graphcommerce/graphql'
+import { ApolloLink } from '@graphcommerce/graphql'
 import { CustomerTokenDocument } from '../hooks'
 
 export const xMagentoCacheIdHeader = new ApolloLink((operation, forward) => {
@@ -14,8 +15,10 @@ export const xMagentoCacheIdHeader = new ApolloLink((operation, forward) => {
     const { cache } = operation.getContext()
     if (!cache) return data
 
-    const xMagentoCacheId = (data.extensions as { forwardedHeaders: Record<string, string> })
-      .forwardedHeaders['x-magento-cache-id']
+    const xMagentoCacheId = (
+      data.extensions as { forwardedHeaders: Record<string, string> } | undefined
+    )?.forwardedHeaders?.['x-magento-cache-id']
+
     if (!xMagentoCacheId) return data
 
     const tokenResult = cache.readQuery({ query: CustomerTokenDocument })

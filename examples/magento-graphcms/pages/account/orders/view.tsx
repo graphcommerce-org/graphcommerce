@@ -10,6 +10,7 @@ import {
   OrderStateLabel,
   ReorderItems,
   CancelOrderForm,
+  getCustomerAccountIsDisabled,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -94,6 +95,8 @@ OrderDetailPage.pageOptions = pageOptions
 export default OrderDetailPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
   const config = client.query({ query: StoreConfigDocument })

@@ -1,4 +1,4 @@
-import { VideoBackgroundProps } from './getVideoBackgroundProps'
+import type { VideoBackgroundProps } from './getVideoBackgroundProps'
 
 export function extractVideoBackgroundProps<P extends VideoBackgroundProps>(
   props: P,

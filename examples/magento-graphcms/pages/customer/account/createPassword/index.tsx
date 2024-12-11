@@ -1,11 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { ResetPasswordForm } from '@graphcommerce/magento-customer'
+import { ResetPasswordForm, getCustomerAccountIsDisabled } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container, Link, Button } from '@mui/material'
-import router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
 import { graphqlSharedClient } from '../../../../lib/graphql/graphqlSsrClient'
 
@@ -61,7 +61,7 @@ function CustomerAccountCreatePasswordPage() {
               />
             </p>
 
-            <Button onClick={() => router.back()} variant='pill' color='secondary' size='large'>
+            <Button href='/' variant='pill' color='secondary' size='large'>
               <Trans id='Continue shopping' />
             </Button>
           </Box>
@@ -81,6 +81,8 @@ CustomerAccountCreatePasswordPage.pageOptions = pageOptions
 export default CustomerAccountCreatePasswordPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 

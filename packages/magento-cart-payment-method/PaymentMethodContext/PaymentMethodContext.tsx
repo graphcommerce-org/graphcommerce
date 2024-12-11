@@ -4,15 +4,16 @@ import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { useEventCallback } from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useEffect, useMemo, useState } from 'react'
-import {
+import type {
   ExpandPaymentMethodsContext,
   PaymentMethod,
   PaymentMethodModules,
   PaymentModule,
 } from '../Api/PaymentMethod'
-import { PaymentMethodContextFragment } from '../Api/PaymentMethodContext.gql'
+import type { PaymentMethodContextFragment } from '../Api/PaymentMethodContext.gql'
 import { GetPaymentMethodContextDocument } from './GetPaymentMethodContext.gql'
-import { PaymentMethodContextType, paymentMethodContext } from './paymentMethodContextType'
+import type { PaymentMethodContextType } from './paymentMethodContextType'
+import { paymentMethodContext } from './paymentMethodContextType'
 
 export type PaymentMethodContextProviderProps = {
   modules?: PaymentMethodModules
@@ -74,7 +75,9 @@ export function PaymentMethodContextProvider(props: PaymentMethodContextProvider
     ;(async () => {
       const promises = availableMethods.map(async (method) =>
         method
-          ? modules[method.code]?.expandMethods?.(method, cartContext) ?? [{ ...method, child: '' }]
+          ? (modules[method.code]?.expandMethods?.(method, cartContext) ?? [
+              { ...method, child: '' },
+            ])
           : Promise.resolve([]),
       )
       const loaded = (await Promise.all(promises)).flat(1).sort((a) => (a.preferred ? 1 : 0))

@@ -1,7 +1,7 @@
 ---
-"@graphcommerce/cli": patch
-"@graphcommerce/graphql-mesh": patch
-"@graphcommerce/magento-graphcms": patch
+'@graphcommerce/cli': patch
+'@graphcommerce/graphql-mesh': patch
+'@graphcommerce/magento-graphcms': patch
 ---
 
-Solve issue where customFetch coudn’t be loaded correctly
+Solve issue where `customFetch` couldn't be loaded correctly.

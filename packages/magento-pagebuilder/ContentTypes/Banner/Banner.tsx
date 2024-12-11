@@ -2,14 +2,14 @@ import { Box } from '@mui/material'
 import { ButtonLink } from '../../components/ButtonLink/ButtonLink'
 import { MediaBackground } from '../../components/MediaBackground/MediaBackground'
 import { TextRenderer } from '../../components/TextRenderer/TextRenderer'
-import { BannerContentType } from './types'
+import type { BannerContentType } from './types'
 
 /**
  * Page Builder Banner component.
  *
  * This component is part of the Page Builder / PWA integration. It can be consumed without Page Builder.
  */
-export const Banner: BannerContentType['component'] = (props) => {
+export function Banner(props: React.ComponentProps<BannerContentType['component']>) {
   const { minHeight, content, overlayColor } = props
 
   return (

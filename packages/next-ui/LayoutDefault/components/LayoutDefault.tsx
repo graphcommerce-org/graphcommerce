@@ -1,7 +1,8 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { dvh } from '@graphcommerce/framer-utils'
 import { Box, SxProps, Theme } from '@mui/material'
-import { useTransform, useScroll } from 'framer-motion'
+import { useScroll, useTransform } from 'framer-motion'
+import { Container } from '../../Container/Container'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { SkipLink } from '../../SkipLink/SkipLink'
 import { extendableComponent } from '../../Styles'
@@ -48,7 +49,6 @@ export function LayoutDefault(props: LayoutDefaultProps) {
   )
 
   const classes = withState({ noSticky })
-
   const fabIconSize = useFabSize('responsive')
 
   return (
@@ -61,7 +61,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             minHeight: '-webkit-fill-available',
           },
           display: 'grid',
-          gridTemplateRows: `auto auto 1fr auto`,
+          gridTemplateRows: { xs: 'auto 1fr auto', md: 'auto auto 1fr auto' },
           gridTemplateColumns: '100%',
           background: theme.palette.background.default,
         }),
@@ -71,7 +71,9 @@ export function LayoutDefault(props: LayoutDefaultProps) {
       <SkipLink />
       <LayoutProvider scroll={scrollYOffset}>
         {beforeHeader}
-        <Box
+        <Container
+          sizing='shell'
+          maxWidth={false}
           component='header'
           className={classes.header}
           sx={(theme) => ({
@@ -86,7 +88,6 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             },
             [theme.breakpoints.up('md')]: {
               height: theme.appShell.headerHeightMd,
-              padding: `0 ${theme.page.horizontal} 0`,
               top: 0,
               display: 'flex',
               justifyContent: 'left',
@@ -101,9 +102,11 @@ export function LayoutDefault(props: LayoutDefaultProps) {
           })}
         >
           {header}
-        </Box>
+        </Container>
         {menuFab || cartFab ? (
-          <Box
+          <Container
+            sizing='shell'
+            maxWidth={false}
             className={classes.fabs}
             sx={(theme) => ({
               display: 'flex',
@@ -112,7 +115,6 @@ export function LayoutDefault(props: LayoutDefaultProps) {
               height: 0,
               zIndex: 'speedDial',
               [theme.breakpoints.up('sm')]: {
-                padding: `0 ${theme.page.horizontal}`,
                 position: 'sticky',
                 marginTop: `calc(${theme.appShell.headerHeightMd} * -1 - calc(${fabIconSize} / 2))`,
                 top: `calc(${theme.appShell.headerHeightMd} / 2 - (${fabIconSize} / 2))`,
@@ -121,7 +123,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
                 position: 'fixed',
                 top: 'unset',
                 bottom: `calc(20px + ${fabIconSize})`,
-                padding: `0 20px`,
+                padding: '0 20px',
                 '@media (max-height: 530px) and (orientation: portrait)': {
                   display: 'none',
                 },
@@ -129,20 +131,22 @@ export function LayoutDefault(props: LayoutDefaultProps) {
             })}
           >
             {menuFab}
-            <Box
-              sx={(theme) => ({
-                display: 'flex',
-                flexDirection: 'row-reverse',
-                gap: theme.spacings.sm,
-                [theme.breakpoints.up('md')]: {
-                  flexDirection: 'column',
-                  alignItems: 'flex-end',
-                },
-              })}
-            >
-              {cartFab}
-            </Box>
-          </Box>
+            {cartFab && (
+              <Box
+                sx={(theme) => ({
+                  display: 'flex',
+                  flexDirection: 'row-reverse',
+                  gap: theme.spacings.sm,
+                  [theme.breakpoints.up('md')]: {
+                    flexDirection: 'column',
+                    alignItems: 'flex-end',
+                  },
+                })}
+              >
+                {cartFab}
+              </Box>
+            )}
+          </Container>
         ) : (
           <div />
         )}

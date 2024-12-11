@@ -1,10 +1,11 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { Fab, FabProps, styled, SxProps, Theme } from '@mui/material'
+import type { FabProps, SxProps, Theme } from '@mui/material'
+import { Fab, styled } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
-import { SnapPositionDirection } from '../types'
+import type { SnapPositionDirection } from '../types'
 
 const MotionDiv = styled(m.div)({})
 
@@ -15,7 +16,7 @@ export type ScrollerButtonProps = {
   showButtons?: 'auto' | 'desktopAuto' | 'always' | 'desktopAlways' | 'never'
 } & FabProps
 
-export const ScrollerButton = m(
+export const ScrollerButton = m.create(
   React.forwardRef<HTMLDivElement, ScrollerButtonProps>((props, ref) => {
     const {
       direction,

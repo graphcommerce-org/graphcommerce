@@ -1,11 +1,13 @@
 import { ComposedForm, WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { cacheFirst } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorFullPage,
   CartAgreementsForm,
   CartSummary,
   CartTotals,
   EmptyCart,
+  getCheckoutIsDisabled,
   useCartQuery,
 } from '@graphcommerce/magento-cart'
 import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
@@ -35,7 +37,6 @@ import { Trans } from '@lingui/react'
 import { CircularProgress, Container, Dialog, Typography } from '@mui/material'
 import { LayoutDocument, LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { cacheFirst } from '@graphcommerce/graphql'
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
@@ -155,6 +156,8 @@ PaymentPage.pageOptions = pageOptions
 export default PaymentPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCheckoutIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
 

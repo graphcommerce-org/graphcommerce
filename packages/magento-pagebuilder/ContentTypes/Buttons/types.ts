@@ -1,5 +1,5 @@
-import { ContentType, ContentTypeConfig } from '../../types'
-import { AdvancedProps } from '../../utils'
+import type { ContentType, ContentTypeConfig } from '../../types'
+import type { AdvancedProps } from '../../utils'
 
 type ButtonsConfig = ContentTypeConfig<'buttons'> & {
   appearance: 'stacked' | 'inline'

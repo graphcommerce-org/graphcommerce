@@ -1,40 +1,42 @@
 #!/usr/bin/env node
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const node_child_process_1 = require("node:child_process");
-const next_config_1 = require("@graphcommerce/next-config");
-const detect_package_manager_1 = require("detect-package-manager");
-/**
- * Executes a command dependening if we're running in a monorepo or not Usage:
- *
- *     is-monorepo '[pkgrun] run my-script' '[pkgrun] run my-other-script'
- *
- * We're using the `[pkgrun]` placeholder to replace it with the package manager we're using. For
- * example, if we're using `yarn` it will replace `[pkgrun]` with `yarn`. If we're using `npm` it
- * will replace `[pkgrun]` with `npm run`.
- */
+import { spawn } from 'node:child_process';
+import path from 'node:path';
+import { findParentPath } from '@graphcommerce/next-config';
+import { detect } from 'detect-package-manager';
+
+const debug = process.env.DEBUG === "1";
+const log = (message) => debug && console.log(`is-monorepo: ${message}`);
+const logError = (message) => console.error(`is-monorepo: ${message}`);
 async function main() {
-    const isMono = (0, next_config_1.isMonorepo)();
-    const command = isMono ? process.argv.slice(2)[0] : process.argv.slice(2)[1];
-    let packageManager = 'yarn';
-    try {
-        packageManager = await (0, detect_package_manager_1.detect)({ cwd: isMono ? `../..` : `.` });
-    }
-    catch {
-        console.error('Could not detect package manager, defaulting to yarn');
-    }
-    const commandArray = command
-        .split(' ')
-        .map((arg) => arg.replace('[pkgrun]', `${packageManager} run`));
-    if (isMono)
-        commandArray.unshift('cd', '../..', '&&');
-    const [cmd, ...args] = commandArray;
-    const childProcess = (0, node_child_process_1.spawn)(cmd, args, { shell: true, stdio: 'inherit' });
-    childProcess.on('exit', (code) => {
-        process.exit(code ?? 0);
-    });
-}
-main().catch((error) => {
-    console.error(error);
+  const parentPath = findParentPath(process.cwd());
+  const command = parentPath ? process.argv.slice(2)[0] : process.argv.slice(2)[1];
+  if (!command) {
+    logError("No command provided");
     process.exit(1);
+  }
+  let packageManager = "yarn";
+  try {
+    packageManager = await detect({ cwd: "." });
+  } catch {
+    log("Could not detect package manager, defaulting to yarn");
+  }
+  const relativePath = parentPath ? `cd ${path.relative(process.cwd(), parentPath)}/` : "cd .";
+  const commandArray = command.split(" ").map(
+    (arg) => arg.replace("[pkgrun]", `${packageManager}${packageManager === "npm" ? " run" : ""}`)
+  );
+  log(`Command: ${commandArray.join(" ")}`);
+  const finalCommand = `${relativePath} && ${commandArray.join(" ")}`;
+  log(`Executing: ${finalCommand}`);
+  const childProcess = spawn(finalCommand, [], { shell: true, stdio: "inherit" });
+  childProcess.on("exit", (code) => {
+    process.exit(code ?? 0);
+  });
+}
+main().catch((err) => {
+  if (err instanceof Error) {
+    logError(err.message);
+  } else {
+    logError("An unknown error occurred");
+  }
+  process.exit(1);
 });

@@ -2,7 +2,7 @@ import { ApolloError } from '@apollo/client'
 import React, { useContext, useEffect, useRef } from 'react'
 import { isFormGqlOperation } from '../useFormGqlMutation'
 import { composedFormContext } from './context'
-import { ComposedSubmitRenderComponentProps } from './types'
+import type { ComposedSubmitRenderComponentProps } from './types'
 
 export type ComposedSubmitProps = {
   onSubmitSuccessful?: () => void
@@ -119,6 +119,7 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
   }
 
   const errors: ApolloError[] = []
+
   formEntries.forEach(([, { form }]) => {
     if (form && isFormGqlOperation(form) && form.error) errors.push(form.error)
   })

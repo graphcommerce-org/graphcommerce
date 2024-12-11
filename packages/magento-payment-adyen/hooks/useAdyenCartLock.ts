@@ -1,4 +1,5 @@
-import { CartLockState, useCartLock } from '@graphcommerce/magento-cart-payment-method'
+import type { CartLockState } from '@graphcommerce/magento-cart-payment-method'
+import { useCartLock } from '@graphcommerce/magento-cart-payment-method'
 
 type AdyenLockState = CartLockState & {
   adyen: string | null

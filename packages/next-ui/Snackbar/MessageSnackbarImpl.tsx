@@ -1,20 +1,11 @@
 import { i18n } from '@lingui/core'
-import {
-  Fab,
-  Snackbar,
-  SnackbarContent,
-  SnackbarProps,
-  lighten,
-  Box,
-  SxProps,
-  Theme,
-  Portal,
-  SvgIconProps,
-} from '@mui/material'
+import type { SnackbarProps, SxProps, Theme } from '@mui/material'
+import { Box, Fab, Portal, Snackbar, SnackbarContent, lighten } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { IconSvg, IconSvgProps } from '../IconSvg'
-import { extendableComponent, breakpointVal } from '../Styles'
-import { iconClose, iconCheckmark, iconSadFace } from '../icons'
+import type { IconSvgProps } from '../IconSvg'
+import { IconSvg } from '../IconSvg'
+import { breakpointVal, extendableComponent } from '../Styles'
+import { iconCheckmark, iconClose, iconSadFace } from '../icons'
 import iconInfo from '../icons/info.svg'
 
 type Size = 'normal' | 'wide'
@@ -46,7 +37,7 @@ type OwnerState = {
   disableIcon?: boolean
 }
 
-const name = 'MessageSnackbarImpl' as const
+const name = 'MessageSnackbarImpl'
 const parts = ['root', 'content', 'children', 'actionButton', 'close'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 

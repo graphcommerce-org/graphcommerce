@@ -5,6 +5,9 @@ steps. Please follow the regular [upgrade steps first](./readme.md).
 
 1. ReactPlugin TypeScript definition is removed.
 2. Locales now require an explicit configuration.
+3. `@graphcommerce/graphcms-ui` is now `@graphcommerce/hygraph-ui`
+4. `@ducanh2912/next-pwa` replaced by `serwist`
+5. `next-sitemap` replaced by custom implementation
 
 ## 1. ReactPlugin TypeScript definition is removed
 
@@ -52,3 +55,18 @@ const config = {
   ],
 }
 ```
+
+3. `@graphcommerce/graphcms-ui` is now `@graphcommerce/hygraph-ui`
+
+Replace all `@graphcommerce/graphcms-ui` with `@graphcommerce/hygraph-ui`.
+
+4. `@ducanh2912/next-pwa` replaced by `serwist`
+
+Any customizations made to the service worker should
+
+5. `next-sitemap` replaced by custom implementation.
+
+- pages/robots.txt.tsx
+- pages/sitemap/categories.xml.tsx
+- pages/sitemap/content.xml.tsx
+- pages/sitemap/products.xml.tsx

@@ -2,4 +2,4 @@
 '@graphcommerce/magento-customer': patch
 ---
 
-Add disableMargin prop to WaitForCustomer component
+Add `disableMargin` prop to `<WaitForCustomer/>` component.

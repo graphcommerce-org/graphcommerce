@@ -1,11 +1,14 @@
 import { RouterContext } from 'next/dist/shared/lib/router-context.shared-runtime'
-import { AppPropsType } from 'next/dist/shared/lib/utils'
-import { NextRouter, useRouter } from 'next/router'
+import type { AppPropsType } from 'next/dist/shared/lib/utils'
+import type { NextRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import React, { useMemo } from 'react'
 import { pageRouterContext } from '../context/pageRouterContext'
-import { PageItem } from '../types'
+import type { PageItem } from '../types'
 
-const NoLayout: React.FC<{ children?: React.ReactNode }> = ({ children }) => <>{children}</>
+function NoLayout({ children }: { children?: React.ReactNode }) {
+  return <>{children}</>
+}
 
 export type PageRendererProps = Omit<AppPropsType, 'router'> & {
   Layout: React.ComponentType<AppPropsType>

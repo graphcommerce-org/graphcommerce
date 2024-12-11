@@ -1,6 +1,6 @@
 import { dvh } from '@graphcommerce/framer-utils'
 import { m, useIsPresent } from 'framer-motion'
-import React, { HTMLAttributes } from 'react'
+import React from 'react'
 import type { PageItem } from '../types'
 
 export type PageProps = Pick<PageItem, 'routerKey'> & {
@@ -36,6 +36,7 @@ export function Page(props: PageProps) {
     <m.div
       layoutScroll
       style={{ position, top, zIndex, minHeight: dvh(100), left: 0, right: 0 }}
+      // @ts-expect-error ignore inert for current version
       inert={!active ? ('true' as unknown as boolean) : undefined}
       data-nosnippet={!active ? true : undefined}
       aria-hidden={!active ? true : undefined}

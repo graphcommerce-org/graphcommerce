@@ -1,4 +1,4 @@
-import React from 'react'
+import type React from 'react'
 import { Banner } from './ContentTypes/Banner/Banner'
 import { Block } from './ContentTypes/Block/Block'
 import { ButtonItem } from './ContentTypes/ButtonItem/ButtonItem'
@@ -17,7 +17,7 @@ import { Tabs } from './ContentTypes/Tabs/Tabs'
 import { Text } from './ContentTypes/Text/Text'
 import { Video } from './ContentTypes/Video/Video'
 import { OnlyChildren } from './components/Pagebuilder/OnlyChildren'
-import { ContentTypeConfig, GetRenderComponent } from './types'
+import type { ContentTypeConfig, GetRenderComponent } from './types'
 
 const renderTypes = {
   'root-container': RootContainer,

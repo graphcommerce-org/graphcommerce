@@ -1,26 +1,55 @@
-import { GraphCommerceConfig } from '../../src/generated/config'
+import type { GraphCommerceConfig } from '../../src/generated/config'
 import { findPlugins } from '../../src/interceptors/findPlugins'
-
 const projectRoot = `${process.cwd()}/examples/magento-graphcms`
-
 it('finds plugins', () => {
   const fakeconfig = {
     googleRecaptchaKey: '123',
     googleAnalyticsId: '123',
-    // demoMode: true,
-    debug: {
-      pluginStatus: true,
-    },
+    demoMode: true,
+    debug: { pluginStatus: true },
   } as GraphCommerceConfig
-
   const [plugins, errors] = findPlugins(fakeconfig, projectRoot)
   const disabled = plugins.filter((p) => !p.enabled)
   const enabled = plugins.filter((p) => p.enabled)
-
-  expect(errors).toMatchInlineSnapshot(`[]`)
-
+  expect(errors).toMatchInlineSnapshot('[]')
   expect(enabled).toMatchInlineSnapshot(`
     [
+      {
+        "enabled": true,
+        "ifConfig": "demoMode",
+        "sourceExport": "AddProductsToCartForm",
+        "sourceModule": "./plugins/EnableCrosssellsPlugin",
+        "targetExport": "AddProductsToCartForm",
+        "targetModule": "@graphcommerce/magento-product",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "ifConfig": "demoMode",
+        "sourceExport": "RowLinks",
+        "sourceModule": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoRowLinks",
+        "targetExport": "RowLinks",
+        "targetModule": "@graphcommerce/next-ui",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "ifConfig": "demoMode",
+        "sourceExport": "RecentlyViewedProducts",
+        "sourceModule": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoRecentlyViewedProducts",
+        "targetExport": "RecentlyViewedProducts",
+        "targetModule": "@graphcommerce/magento-recently-viewed-products",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "ifConfig": "demoMode",
+        "sourceExport": "ProductListItemConfigurable",
+        "sourceModule": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoProductListItemConfigurable",
+        "targetExport": "ProductListItemConfigurable",
+        "targetModule": "@graphcommerce/magento-product-configurable",
+        "type": "component",
+      },
       {
         "enabled": true,
         "ifConfig": "googleAnalyticsId",
@@ -80,13 +109,13 @@ it('finds plugins', () => {
         "sourceExport": "hygraphPageContent",
         "sourceModule": "@graphcommerce/hygraph-dynamic-rows/plugins/hygraphDynamicRowsPageContent",
         "targetExport": "hygraphPageContent",
-        "targetModule": "@graphcommerce/graphcms-ui",
+        "targetModule": "@graphcommerce/hygraph-ui",
         "type": "function",
       },
       {
         "enabled": true,
         "sourceExport": "previewModeDefaults",
-        "sourceModule": "@graphcommerce/graphcms-ui/plugins/hygraphPreviewModeDefaults",
+        "sourceModule": "@graphcommerce/hygraph-ui/plugins/hygraphPreviewModeDefaults",
         "targetExport": "previewModeDefaults",
         "targetModule": "@graphcommerce/ecommerce-ui",
         "type": "function",
@@ -94,7 +123,7 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "sourceExport": "graphqlConfig",
-        "sourceModule": "@graphcommerce/graphcms-ui/plugins/hygraphGraphqlConfig",
+        "sourceModule": "@graphcommerce/hygraph-ui/plugins/hygraphGraphqlConfig",
         "targetExport": "graphqlConfig",
         "targetModule": "@graphcommerce/graphql",
         "type": "function",
@@ -102,7 +131,7 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "sourceExport": "PreviewModeToolbar",
-        "sourceModule": "@graphcommerce/graphcms-ui/plugins/HygraphPreviewModeToolbar",
+        "sourceModule": "@graphcommerce/hygraph-ui/plugins/HygraphPreviewModeToolbar",
         "targetExport": "PreviewModeToolbar",
         "targetModule": "@graphcommerce/ecommerce-ui",
         "type": "component",
@@ -213,14 +242,6 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "ProductPageGallery",
-        "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageGallery",
-        "targetExport": "ProductPageGallery",
-        "targetModule": "@graphcommerce/magento-product",
-        "type": "component",
-      },
-      {
-        "enabled": true,
         "sourceExport": "CartItemActionCard",
         "sourceModule": "@graphcommerce/magento-product-simple/plugins/SimpleCartItemActionCard",
         "targetExport": "CartItemActionCard",
@@ -238,7 +259,79 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "sourceExport": "meshConfig",
-        "sourceModule": "@graphcommerce/algolia-personalization/plugins/meshConfigAlgoliaInsights",
+        "sourceModule": "@graphcommerce/algolia-categories/plugins/meshConfigAlgoliaCategories",
+        "targetExport": "meshConfig",
+        "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "getSearchSuggestionsInput",
+        "sourceModule": "@graphcommerce/algolia-personalization/plugins/getSearchSuggestionsInputPersonalization",
+        "targetExport": "getSearchSuggestionsInput",
+        "targetModule": "@graphcommerce/algolia-products",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "getSearchResultsInput",
+        "sourceModule": "@graphcommerce/algolia-personalization/plugins/getSearchResultsInputPersonalization",
+        "targetExport": "getSearchResultsInput",
+        "targetModule": "@graphcommerce/algolia-products",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "getInContextInput",
+        "sourceModule": "@graphcommerce/algolia-personalization/plugins/InContextInputAlgoliaUserToken",
+        "targetExport": "getInContextInput",
+        "targetModule": "@graphcommerce/graphql",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "useInContextInput",
+        "sourceModule": "@graphcommerce/algolia-personalization/plugins/InContextInputAlgoliaUserToken",
+        "targetExport": "useInContextInput",
+        "targetModule": "@graphcommerce/graphql",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "useSendEvent",
+        "sourceModule": "@graphcommerce/algolia-insights/plugins/useSendEventAlgolia",
+        "targetExport": "useSendEvent",
+        "targetModule": "@graphcommerce/google-datalayer",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "meshConfig",
+        "sourceModule": "@graphcommerce/algolia-insights/plugins/meshConfigAlgoliaInsights",
+        "targetExport": "meshConfig",
+        "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "getSearchSuggestionsInput",
+        "sourceModule": "@graphcommerce/algolia-insights/plugins/getSearchSuggestionsInputInsights",
+        "targetExport": "getSearchSuggestionsInput",
+        "targetModule": "@graphcommerce/algolia-products",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "getSearchResultsInput",
+        "sourceModule": "@graphcommerce/algolia-insights/plugins/getSearchResultsInputInsights",
+        "targetExport": "getSearchResultsInput",
+        "targetModule": "@graphcommerce/algolia-products",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "meshConfig",
+        "sourceModule": "@graphcommerce/algolia-recommend/plugins/meshConfigAlgoliaRecommend",
         "targetExport": "meshConfig",
         "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
         "type": "function",
@@ -246,7 +339,7 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "sourceExport": "meshConfig",
-        "sourceModule": "@graphcommerce/algolia-mesh/plugins/meshConfigAlgolia",
+        "sourceModule": "@graphcommerce/algolia-products/plugins/meshConfigAlgolia",
         "targetExport": "meshConfig",
         "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
         "type": "function",
@@ -254,7 +347,7 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "sourceExport": "useProductListApplySearchDefaults",
-        "sourceModule": "@graphcommerce/algolia-mesh/plugins/magentoSearchApplyAlgoliaEngine",
+        "sourceModule": "@graphcommerce/algolia-products/plugins/magentoSearchApplyAlgoliaEngine",
         "targetExport": "useProductListApplySearchDefaults",
         "targetModule": "@graphcommerce/magento-search",
         "type": "function",
@@ -262,7 +355,7 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "sourceExport": "productListApplySearchDefaults",
-        "sourceModule": "@graphcommerce/algolia-mesh/plugins/magentoSearchApplyAlgoliaEngine",
+        "sourceModule": "@graphcommerce/algolia-products/plugins/magentoSearchApplyAlgoliaEngine",
         "targetExport": "productListApplySearchDefaults",
         "targetModule": "@graphcommerce/magento-search",
         "type": "function",
@@ -270,7 +363,7 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "sourceExport": "searchDefaultsToProductListFilters",
-        "sourceModule": "@graphcommerce/algolia-mesh/plugins/magentoSearchApplyAlgoliaEngine",
+        "sourceModule": "@graphcommerce/algolia-products/plugins/magentoSearchApplyAlgoliaEngine",
         "targetExport": "searchDefaultsToProductListFilters",
         "targetModule": "@graphcommerce/magento-search",
         "type": "function",
@@ -278,7 +371,7 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "sourceExport": "ProductListItemsBase",
-        "sourceModule": "@graphcommerce/algolia-mesh/plugins/ProductListItemsBaseAlgolia",
+        "sourceModule": "@graphcommerce/algolia-products/plugins/ProductListItemsBaseAlgolia",
         "targetExport": "ProductListItemsBase",
         "targetModule": "@graphcommerce/magento-product",
         "type": "component",
@@ -389,6 +482,14 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "graphqlConfig",
+        "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerRemoveInContextDirective",
+        "targetExport": "graphqlConfig",
+        "targetModule": "@graphcommerce/graphql",
+        "type": "function",
+      },
+      {
+        "enabled": true,
         "sourceExport": "getInContextInput",
         "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerGetInContext",
         "targetExport": "getInContextInput",
@@ -425,10 +526,10 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "graphqlConfig",
-        "sourceModule": "@graphcommerce/magento-store/plugins/magentoStoreGraphqlConfig",
-        "targetExport": "graphqlConfig",
-        "targetModule": "@graphcommerce/graphql",
+        "sourceExport": "meshConfig",
+        "sourceModule": "@graphcommerce/magento-graphql/plugins/meshConfigAttrValue",
+        "targetExport": "meshConfig",
+        "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
         "type": "function",
       },
       {
@@ -451,42 +552,6 @@ it('finds plugins', () => {
   `)
   expect(disabled).toMatchInlineSnapshot(`
     [
-      {
-        "enabled": false,
-        "ifConfig": "demoMode",
-        "sourceExport": "AddProductsToCartForm",
-        "sourceModule": "./plugins/EnableCrosssellsPlugin",
-        "targetExport": "AddProductsToCartForm",
-        "targetModule": "@graphcommerce/magento-product",
-        "type": "component",
-      },
-      {
-        "enabled": false,
-        "ifConfig": "demoMode",
-        "sourceExport": "RowLinks",
-        "sourceModule": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoRowLinks",
-        "targetExport": "RowLinks",
-        "targetModule": "@graphcommerce/next-ui",
-        "type": "component",
-      },
-      {
-        "enabled": false,
-        "ifConfig": "demoMode",
-        "sourceExport": "RecentlyViewedProducts",
-        "sourceModule": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoRecentlyViewedProducts",
-        "targetExport": "RecentlyViewedProducts",
-        "targetModule": "@graphcommerce/magento-recently-viewed-products",
-        "type": "component",
-      },
-      {
-        "enabled": false,
-        "ifConfig": "demoMode",
-        "sourceExport": "ProductListItemConfigurable",
-        "sourceModule": "@graphcommerce/demo-magento-graphcommerce/plugins/demo/DemoProductListItemConfigurable",
-        "targetExport": "ProductListItemConfigurable",
-        "targetModule": "@graphcommerce/magento-product-configurable",
-        "type": "component",
-      },
       {
         "enabled": false,
         "ifConfig": "recentlyViewedProducts.enabled",
@@ -597,6 +662,15 @@ it('finds plugins', () => {
       },
       {
         "enabled": false,
+        "ifConfig": "configurableVariantValues.gallery",
+        "sourceExport": "ProductPageGallery",
+        "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageGallery",
+        "targetExport": "ProductPageGallery",
+        "targetModule": "@graphcommerce/magento-product",
+        "type": "component",
+      },
+      {
+        "enabled": false,
         "ifConfig": "configurableVariantValues.content",
         "sourceExport": "ProductPageDescription",
         "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPageDescription",
@@ -606,72 +680,9 @@ it('finds plugins', () => {
       },
       {
         "enabled": false,
-        "ifConfig": "algolia.analyticsEnabled",
-        "sourceExport": "useSendEvent",
-        "sourceModule": "@graphcommerce/algolia-personalization/plugins/useSendEventAlgolia",
-        "targetExport": "useSendEvent",
-        "targetModule": "@graphcommerce/google-datalayer",
-        "type": "function",
-      },
-      {
-        "enabled": false,
-        "ifConfig": "algolia.personalizationEnabled",
-        "sourceExport": "getSearchSuggestionsInput",
-        "sourceModule": "@graphcommerce/algolia-personalization/plugins/getSearchSuggestionsPersonalization",
-        "targetExport": "getSearchSuggestionsInput",
-        "targetModule": "@graphcommerce/algolia-mesh",
-        "type": "function",
-      },
-      {
-        "enabled": false,
-        "ifConfig": "algolia.analyticsEnabled",
-        "sourceExport": "getSearchSuggestionsInput",
-        "sourceModule": "@graphcommerce/algolia-personalization/plugins/getSearchSuggestionsAnalytics",
-        "targetExport": "getSearchSuggestionsInput",
-        "targetModule": "@graphcommerce/algolia-mesh",
-        "type": "function",
-      },
-      {
-        "enabled": false,
-        "ifConfig": "algolia.personalizationEnabled",
-        "sourceExport": "getSearchResultsInput",
-        "sourceModule": "@graphcommerce/algolia-personalization/plugins/getSearchResultsPersonalization",
-        "targetExport": "getSearchResultsInput",
-        "targetModule": "@graphcommerce/algolia-mesh",
-        "type": "function",
-      },
-      {
-        "enabled": false,
-        "ifConfig": "algolia.personalizationEnabled",
-        "sourceExport": "getSearchResultsInput",
-        "sourceModule": "@graphcommerce/algolia-personalization/plugins/getSearchResultsAnalytics",
-        "targetExport": "getSearchResultsInput",
-        "targetModule": "@graphcommerce/algolia-mesh",
-        "type": "function",
-      },
-      {
-        "enabled": false,
-        "ifConfig": "algolia.personalizationEnabled",
-        "sourceExport": "getInContextInput",
-        "sourceModule": "@graphcommerce/algolia-personalization/plugins/InContextInputAlgoliaUserToken",
-        "targetExport": "getInContextInput",
-        "targetModule": "@graphcommerce/graphql",
-        "type": "function",
-      },
-      {
-        "enabled": false,
-        "ifConfig": "algolia.personalizationEnabled",
-        "sourceExport": "useInContextInput",
-        "sourceModule": "@graphcommerce/algolia-personalization/plugins/InContextInputAlgoliaUserToken",
-        "targetExport": "useInContextInput",
-        "targetModule": "@graphcommerce/graphql",
-        "type": "function",
-      },
-      {
-        "enabled": false,
         "ifConfig": "algolia.catalogEnabled",
         "sourceExport": "useProductListApplyCategoryDefaults",
-        "sourceModule": "@graphcommerce/algolia-mesh/plugins/magentoProductApplyAlgoliaEngine",
+        "sourceModule": "@graphcommerce/algolia-products/plugins/magentoProductApplyAlgoliaEngine",
         "targetExport": "useProductListApplyCategoryDefaults",
         "targetModule": "@graphcommerce/magento-product",
         "type": "function",
@@ -680,7 +691,7 @@ it('finds plugins', () => {
         "enabled": false,
         "ifConfig": "algolia.catalogEnabled",
         "sourceExport": "productListApplyCategoryDefaults",
-        "sourceModule": "@graphcommerce/algolia-mesh/plugins/magentoProductApplyAlgoliaEngine",
+        "sourceModule": "@graphcommerce/algolia-products/plugins/magentoProductApplyAlgoliaEngine",
         "targetExport": "productListApplyCategoryDefaults",
         "targetModule": "@graphcommerce/magento-product",
         "type": "function",
@@ -689,7 +700,7 @@ it('finds plugins', () => {
         "enabled": false,
         "ifConfig": "algolia.catalogEnabled",
         "sourceExport": "categoryDefaultsToProductListFilters",
-        "sourceModule": "@graphcommerce/algolia-mesh/plugins/magentoProductApplyAlgoliaEngine",
+        "sourceModule": "@graphcommerce/algolia-products/plugins/magentoProductApplyAlgoliaEngine",
         "targetExport": "categoryDefaultsToProductListFilters",
         "targetModule": "@graphcommerce/magento-product",
         "type": "function",
@@ -698,7 +709,7 @@ it('finds plugins', () => {
         "enabled": false,
         "ifConfig": "algolia.customerGroupPricingEnabled",
         "sourceExport": "GraphQLProvider",
-        "sourceModule": "@graphcommerce/algolia-mesh/plugins/GraphQLProviderAlgoliaCustomerGroupId",
+        "sourceModule": "@graphcommerce/algolia-products/plugins/GraphQLProviderAlgoliaCustomerGroupId",
         "targetExport": "GraphQLProvider",
         "targetModule": "@graphcommerce/graphql",
         "type": "component",

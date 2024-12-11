@@ -1,8 +1,9 @@
+import type { UseFormComposeOptions } from '@graphcommerce/ecommerce-ui'
 import {
+  ActionCardListForm,
   FormAutoSubmit,
   FormPersist,
   TextFieldElement,
-  UseFormComposeOptions,
   useFormCompose,
 } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
@@ -12,23 +13,24 @@ import {
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { CustomerDocument } from '@graphcommerce/magento-customer'
-import { ActionCardListForm, FormRow, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { FormRow, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
-import { Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import React, { useEffect } from 'react'
 import { findCustomerAddressFromCartAddress } from '../../utils/findCustomerAddressFromCartAddress'
 import { GetAddressesDocument } from '../ShippingAddressForm/GetAddresses.gql'
 import { CustomerAddressActionCard } from './CustomerAddressActionCard'
 import { SetCustomerBillingAddressOnCartDocument } from './SetCustomerBillingAddressOnCart.gql'
 import { SetCustomerShippingAddressOnCartDocument } from './SetCustomerShippingAddressOnCart.gql'
-import {
-  SetCustomerShippingBillingAddressOnCartDocument,
+import type {
   SetCustomerShippingBillingAddressOnCartMutation,
   SetCustomerShippingBillingAddressOnCartMutationVariables,
 } from './SetCustomerShippingBillingAddressOnCart.gql'
+import { SetCustomerShippingBillingAddressOnCartDocument } from './SetCustomerShippingBillingAddressOnCart.gql'
 
-type CustomerAddressListProps = Pick<UseFormComposeOptions, 'step'> & {
+export type CustomerAddressListProps = Pick<UseFormComposeOptions, 'step'> & {
   children?: React.ReactNode
   sx?: SxProps<Theme>
 }
@@ -83,8 +85,8 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
       customer_address_id: number | null
     }
   >(Mutation, {
-    experimental_useV2: true,
     defaultValues: { customer_address_id: cartAddressId },
+    skipUnchanged: true,
     onBeforeSubmit: (vars) => {
       const { customer_address_id } = vars
       if (customer_address_id === -1) return false

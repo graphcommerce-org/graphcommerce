@@ -22,7 +22,7 @@ function rewriteLegacyEnv(schema, env, config = {}) {
     function notUsed() {
         return (envVar, envValue) => {
             applied.push({
-                warning: [`should be removed`],
+                warning: ['should be removed'],
                 envVar,
                 envValue,
             });
@@ -35,7 +35,7 @@ function rewriteLegacyEnv(schema, env, config = {}) {
         IMAGE_DOMAINS: (envVar, envValue) => {
             applied.push({
                 warning: [
-                    `should be removed: will automatically add the Magento/Hygraph URL. For more advanced configurations, see: https://nextjs.org/docs/api-reference/next/image#configuration-options`,
+                    'should be removed: will automatically add the Magento/Hygraph URL. For more advanced configurations, see: https://nextjs.org/docs/api-reference/next/image#configuration-options',
                 ],
                 envVar,
                 envValue,

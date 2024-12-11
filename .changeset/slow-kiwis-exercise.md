@@ -7,4 +7,4 @@
 '@graphcommerce/docs': patch
 ---
 
-Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods.
+Allow Lingui to use `linguiLocale` with country identifiers like `en-us`, it would always load `en` in this case. Introduced a new `useLocale` hook to use the correct locale string to use in Intl methods.

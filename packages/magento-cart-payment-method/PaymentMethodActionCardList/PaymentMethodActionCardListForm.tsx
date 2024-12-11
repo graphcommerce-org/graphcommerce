@@ -1,22 +1,14 @@
-import {
-  ActionCard,
-  Button,
-  FormDiv,
-  ActionCardItemRenderProps,
-  ActionCardListForm,
-  ActionCardProps,
-} from '@graphcommerce/next-ui'
-import {
-  FormPersist,
-  useForm,
-  useFormCompose,
-  UseFormComposeOptions,
-} from '@graphcommerce/react-hook-form'
+import type { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
+import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
+import type { ActionCardProps } from '@graphcommerce/next-ui'
+import { ActionCard, Button, FormDiv } from '@graphcommerce/next-ui'
+import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
+import { FormPersist, useForm, useFormCompose } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import { useEffect } from 'react'
-import { PaymentOptionsProps } from '../Api/PaymentMethod'
+import type { PaymentOptionsProps } from '../Api/PaymentMethod'
 import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 import { useCartLock } from '../hooks'
 
@@ -75,14 +67,16 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
   const [lockState] = useCartLock()
 
   type FormFields = { code: string | null; paymentMethod?: string }
-  const form = useForm<FormFields>({
-    defaultValues: { code: lockState.method },
-  })
+  const form = useForm<FormFields>({})
 
   const { control, handleSubmit, watch, setValue } = form
   const submit = handleSubmit(() => {})
 
   const paymentMethod = watch('paymentMethod')
+
+  useEffect(() => {
+    if (lockState.method) setValue('code', lockState.method)
+  }, [lockState.method, setValue])
 
   useFormCompose({ form, step: 1, submit, key: 'PaymentMethodActionCardList' })
 
@@ -116,6 +110,7 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
         collapse
         size='large'
         color='secondary'
+        required
         items={methods.map((method) => ({
           ...method,
           value: `${method.code}___${method.child}`,

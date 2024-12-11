@@ -1,6 +1,6 @@
 import { useFormCompose } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
 import { useRouter } from 'next/router'
 import { usePayPalCartLock } from '../../hooks/usePayPalCartLock'
 import { PayPalPaymentPlaceOrderDocument } from './PayPalPaymentPlaceOrder.gql'
@@ -14,7 +14,7 @@ export function PayPalPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
     onBeforeSubmit: (variables) => ({
       ...variables,
       code,
-      urls: { cancel_url: `checkout/payment`, return_url: `checkout/payment` },
+      urls: { cancel_url: 'checkout/payment', return_url: 'checkout/payment' },
     }),
     onComplete: async (result) => {
       if (result.errors) return

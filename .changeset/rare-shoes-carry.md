@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/magento-payment-included": patch
+'@graphcommerce/magento-payment-included': patch
 ---
 
-Fixed Place order button not working (in dev mode) for certain payment methods
+Fixed the Place order button not working (in dev mode) for certain payment methods.

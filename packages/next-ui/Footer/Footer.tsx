@@ -1,5 +1,7 @@
-import { ContainerProps, Container, Box } from '@mui/material'
+import type { ContainerProps } from '@mui/material'
+import { Box } from '@mui/material'
 import React from 'react'
+import { Container } from '../Container/Container'
 import { LazyHydrate } from '../LazyHydrate'
 import { extendableComponent } from '../Styles'
 
@@ -33,20 +35,23 @@ export function Footer(props: FooterProps) {
   return (
     <LazyHydrate height={300}>
       <Container
+        maxWidth={false}
+        sizing='shell'
         sx={[
           (theme) => ({
             gridTemplateColumns: '5fr 3fr',
             borderTop: `1px solid ${theme.palette.divider}`,
             display: 'grid',
             alignItems: 'center',
-            padding: `${theme.spacings.lg} ${theme.page.horizontal} ${theme.page.vertical}`,
+            pt: theme.spacings.lg,
+            pb: theme.spacings.lg,
             justifyItems: 'center',
             gridTemplateAreas: `
-            'switcher switcher'
-            'support support'
-            'social social'
-            'links links'
-          `,
+              'switcher switcher'
+              'support support'
+              'social social'
+              'links links'
+            `,
             gap: theme.spacings.md,
             '& > *': { maxWidth: 'max-content' },
 
@@ -57,7 +62,7 @@ export function Footer(props: FooterProps) {
               'links support'
             `,
               justifyItems: 'start',
-              padding: `${theme.page.vertical} ${theme.page.horizontal}`,
+              py: theme.page.vertical,
               gridTemplateColumns: 'auto auto',
               gridTemplateRows: 'auto',
               justifyContent: 'space-between',
@@ -65,7 +70,6 @@ export function Footer(props: FooterProps) {
           }),
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
-        maxWidth={false}
         className={classes.root}
         {...containerProps}
       >
@@ -126,7 +130,7 @@ export function Footer(props: FooterProps) {
               [theme.breakpoints.down('md')]: {
                 gridAutoFlow: 'row',
                 textAlign: 'center',
-                gap: `8px`,
+                gap: '8px',
               },
             })}
             className={classes.copyright}

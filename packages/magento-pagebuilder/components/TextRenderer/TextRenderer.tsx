@@ -1,10 +1,11 @@
-import { Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 
 export type TextProps = {
   textContent?: string
 }
 
-type TextRendererProps = TextProps & {
+export type TextRendererProps = TextProps & {
   sx?: SxProps<Theme>
 }
 

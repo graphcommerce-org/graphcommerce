@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { cacheFirst, flushMeasurePerf, InContextMaskProvider } from '@graphcommerce/graphql'
+import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import {
   appendSiblingsAsChildren,
   CategoryBreadcrumbs,
@@ -23,11 +23,17 @@ import {
   ProductListQuery,
   categoryDefaultsToProductListFilters,
   useProductList,
+  productListLink,
 } from '@graphcommerce/magento-product'
-import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutHeader, LayoutTitle, MetaRobots } from '@graphcommerce/next-ui'
+import { redirectOrNotFound, redirectTo, StoreConfigDocument } from '@graphcommerce/magento-store'
+import {
+  Container,
+  GetStaticProps,
+  LayoutHeader,
+  LayoutTitle,
+  MetaRobots,
+} from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   ProductListLayoutClassic,
@@ -63,6 +69,7 @@ function CategoryPage(props: CategoryProps) {
   const page = pages?.[0]
   const isCategory = params && category && products?.items
 
+  console.log(page?.asset)
   return (
     <InContextMaskProvider mask={productList.mask}>
       <CategoryMeta
@@ -73,7 +80,7 @@ function CategoryPage(props: CategoryProps) {
         canonical={page?.url ? `/${page.url}` : undefined}
         {...category}
       />
-      <LayoutHeader floatingMd>
+      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
         <LayoutTitle size='small' component='span'>
           {category?.name ?? page.title}
         </LayoutTitle>
@@ -88,20 +95,21 @@ function CategoryPage(props: CategoryProps) {
       {isCategory && isLanding && (
         <>
           {import.meta.graphCommerce.breadcrumbs && (
-            <CategoryBreadcrumbs
-              category={category}
-              sx={(theme) => ({
-                mx: theme.page.horizontal,
-                height: 0,
-                [theme.breakpoints.down('md')]: {
-                  '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-                },
-              })}
-            />
+            <Container maxWidth={false}>
+              <CategoryBreadcrumbs
+                category={category}
+                sx={(theme) => ({
+                  height: 0,
+                  [theme.breakpoints.down('md')]: {
+                    '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+                  },
+                })}
+              />
+            </Container>
           )}
           <CategoryHeroNav
             {...category}
-            asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} loading='eager' />}
+            asset={page?.asset && <Asset asset={page.asset} loading='eager' />}
             title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
           />
         </>
@@ -230,14 +238,22 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
   if (!hasCategory && !hasPage) return redirectOrNotFound(staticClient, conf, params, locale)
 
-  if ((await products)?.errors) return { notFound: true }
+  if ((await products)?.errors) {
+    const totalPages = (await filters)?.data.filters?.page_info?.total_pages ?? 0
+    if (productListParams?.currentPage && productListParams.currentPage > totalPages) {
+      const to = productListLink({ ...productListParams, currentPage: totalPages })
+      return redirectTo(to, false, locale)
+    }
+
+    return { notFound: true }
+  }
 
   const { category_url_path, category_name } = findParentBreadcrumbItem(await category) ?? {}
 
   const up =
     category_url_path && category_name
       ? { href: `/${category_url_path}`, title: category_name }
-      : { href: `/`, title: i18n._(/* i18n */ 'Home') }
+      : { href: '/', title: i18n._(/* i18n */ 'Home') }
 
   await waitForSiblings
   const result = {

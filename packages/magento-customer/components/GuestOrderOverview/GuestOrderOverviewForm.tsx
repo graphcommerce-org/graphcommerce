@@ -10,7 +10,8 @@ import { OrderDetails } from '../OrderDetails/OrderDetails'
 import { OrderTotals } from '../OrderDetails/OrderTotals'
 import { OrderItems } from '../OrderItems/OrderItems'
 import { OrderStateLabel } from '../OrderStateLabel/OrderStateLabel'
-import { GuestOrderDocument, GuestOrderQueryVariables } from './GuestOrder.gql'
+import type { GuestOrderQueryVariables } from './GuestOrder.gql'
+import { GuestOrderDocument } from './GuestOrder.gql'
 
 export function GuestOrderOverviewForm() {
   const [urlQuery, setUrlQuery] = useUrlQuery<Partial<GuestOrderQueryVariables>>(true)

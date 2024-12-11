@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/docs": patch
+'@graphcommerce/docs': patch
 ---
 
-Document patch custom_attributesV2 for null attribute values issue
+Document patch `custom_attributesV2` for null attribute values issue.

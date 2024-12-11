@@ -1,5 +1,5 @@
 import { stripEmpty } from '../../utils'
-import { ImageBackgroundProps } from './getImageBackgroundProps'
+import type { ImageBackgroundProps } from './getImageBackgroundProps'
 
 export function extractImageBackgroundProps<P extends ImageBackgroundProps>(
   props: P,

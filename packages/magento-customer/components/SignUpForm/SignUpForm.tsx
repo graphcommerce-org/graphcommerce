@@ -3,19 +3,26 @@ import { useQuery } from '@graphcommerce/graphql'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
+import type { UseFormClearErrors, UseFormSetError } from '@graphcommerce/react-hook-form'
 import { FormPersist, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { t } from '@lingui/macro'
 import { Trans } from '@lingui/react'
 import { Alert } from '@mui/material'
 import { useSignInForm } from '../../hooks/useSignInForm'
 import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError/ApolloCustomerErrorSnackbar'
 import { NameFields } from '../NameFields/NameFields'
 import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
-import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
+import type { SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
+import { SignUpDocument } from './SignUp.gql'
 
-type SignUpFormProps = { email: string }
+type SignUpFormProps = {
+  email?: string
+  setError: UseFormSetError<{ email?: string; requestedMode?: 'signin' | 'signup' }>
+  clearErrors: UseFormClearErrors<{ email?: string; requestedMode?: 'signin' | 'signup' }>
+}
 
 export function SignUpForm(props: SignUpFormProps) {
-  const { email } = props
+  const { email, setError, clearErrors } = props
 
   const storeConfig = useQuery(StoreConfigDocument)
   const signIn = useSignInForm({ email })
@@ -26,8 +33,16 @@ export function SignUpForm(props: SignUpFormProps) {
     SignUpDocument,
     {
       defaultValues: { email },
-      onBeforeSubmit: (values) => ({ ...values, email }),
-      experimental_useV2: true,
+      onBeforeSubmit: (values) => {
+        if (!email) {
+          // eslint-disable-next-line @typescript-eslint/no-use-before-define
+          setError('email', { message: t`Please enter a valid email address` })
+          return false
+        }
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        clearErrors()
+        return { ...values, email: email ?? '' }
+      },
       onComplete: async (result, variables) => {
         if (!result.errors && !storeConfig.data?.storeConfig?.create_account_confirmation) {
           signIn.setValue('email', variables.email)

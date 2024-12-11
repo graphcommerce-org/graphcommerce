@@ -1,21 +1,15 @@
-import {
-  Controller,
-  ControllerProps,
-  FieldError,
-  FieldValues,
-} from '@graphcommerce/react-hook-form'
+import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
+import type { FormLabelProps, ToggleButtonGroupProps, ToggleButtonProps } from '@mui/material'
 import {
   FormControl,
   FormHelperText,
   FormLabel,
-  FormLabelProps,
   ToggleButton,
   ToggleButtonGroup,
-  ToggleButtonGroupProps,
-  ToggleButtonProps,
 } from '@mui/material'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 type SingleToggleButtonProps = Omit<ToggleButtonProps, 'value' | 'children'> & {
   id: number | string
@@ -25,8 +19,6 @@ type SingleToggleButtonProps = Omit<ToggleButtonProps, 'value' | 'children'> & {
 export type ToggleButtonGroupElementProps<T extends FieldValues> = ToggleButtonGroupProps & {
   required?: boolean
   label?: string
-  /** @deprecated Form value parsing should happen in the handleSubmit function of the form */
-  parseError?: (error: FieldError) => string
   options: SingleToggleButtonProps[]
   formLabelProps?: FormLabelProps
   helperText?: string
@@ -39,9 +31,11 @@ export function ToggleButtonGroupElement<TFieldValues extends FieldValues = Fiel
   rules = {},
   required,
   options = [],
-  parseError,
   helperText,
   formLabelProps,
+  defaultValue,
+  disabled,
+  shouldUnregister,
   ...toggleButtonGroupProps
 }: ToggleButtonGroupElementProps<TFieldValues>) {
   if (required && !rules.required) {
@@ -49,50 +43,51 @@ export function ToggleButtonGroupElement<TFieldValues extends FieldValues = Fiel
   }
 
   const isRequired = required || !!rules?.required
+
+  const {
+    field: { value, onChange, onBlur },
+    fieldState: { invalid, error },
+  } = useController({
+    name,
+    control,
+    rules,
+    defaultValue,
+    disabled,
+    shouldUnregister,
+  })
+
+  const renderHelperText = error ? error.message : helperText
+
   return (
-    <Controller
-      name={name}
-      control={control}
-      rules={rules}
-      render={({ field: { value, onChange, onBlur }, fieldState: { invalid, error } }) => {
-        const renderHelperText = error
-          ? typeof parseError === 'function'
-            ? parseError(error)
-            : error.message
-          : helperText
-        return (
-          <FormControl error={invalid} required={isRequired}>
-            {label && (
-              <FormLabel
-                {...formLabelProps}
-                error={invalid}
-                required={isRequired}
-                sx={{ mb: 1, ...formLabelProps?.sx }}
-              >
-                {label}
-              </FormLabel>
-            )}
-            <ToggleButtonGroup
-              {...toggleButtonGroupProps}
-              value={value}
-              onBlur={onBlur}
-              onChange={(event, val) => {
-                onChange(val)
-                if (typeof toggleButtonGroupProps.onChange === 'function') {
-                  toggleButtonGroupProps.onChange(event, val)
-                }
-              }}
-            >
-              {options.map(({ label, id, ...toggleProps }) => (
-                <ToggleButton value={id} {...toggleProps} key={id}>
-                  {label}
-                </ToggleButton>
-              ))}
-            </ToggleButtonGroup>
-            {renderHelperText && <FormHelperText>{renderHelperText}</FormHelperText>}
-          </FormControl>
-        )
-      }}
-    />
+    <FormControl error={invalid} required={isRequired}>
+      {label && (
+        <FormLabel
+          {...formLabelProps}
+          error={invalid}
+          required={isRequired}
+          sx={{ mb: 1, ...formLabelProps?.sx }}
+        >
+          {label}
+        </FormLabel>
+      )}
+      <ToggleButtonGroup
+        {...toggleButtonGroupProps}
+        value={value}
+        onBlur={onBlur}
+        onChange={(event, val) => {
+          onChange(val)
+          if (typeof toggleButtonGroupProps.onChange === 'function') {
+            toggleButtonGroupProps.onChange(event, val)
+          }
+        }}
+      >
+        {options.map(({ label: labelVal, id, ...toggleProps }) => (
+          <ToggleButton value={id} {...toggleProps} key={id}>
+            {labelVal}
+          </ToggleButton>
+        ))}
+      </ToggleButtonGroup>
+      {renderHelperText && <FormHelperText>{renderHelperText}</FormHelperText>}
+    </FormControl>
   )
 }

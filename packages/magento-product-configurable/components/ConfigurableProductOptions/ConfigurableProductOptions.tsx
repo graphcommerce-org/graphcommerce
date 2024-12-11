@@ -1,22 +1,29 @@
-import { AddToCartItemSelector, useFormAddProductsToCart } from '@graphcommerce/magento-product'
-import { filterNonNullableKeys, ActionCardListProps, useLocale } from '@graphcommerce/next-ui'
+import type { ActionCardRequireOptionSelection } from '@graphcommerce/ecommerce-ui'
+import type { AddToCartItemSelector } from '@graphcommerce/magento-product'
+import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
+import type { ActionCardListProps } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, useLocale } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import React, { useEffect, useMemo } from 'react'
-import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
+import type { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
 import { useConfigurableOptionsSelection } from '../../hooks'
 import { ConfigurableOptionValue } from '../ConfigurableOptionValue/ConfigurableOptionValue'
 import { ConfigurableProductOption } from './ConfigurableProductOption'
 
 export type ConfigurableProductOptionsProps = AddToCartItemSelector & {
+  optionStartLabels?: Record<string, React.ReactNode>
   optionEndLabels?: Record<string, React.ReactNode>
   sx?: SxProps<Theme>
   render?: typeof ConfigurableOptionValue
   product: ConfigurableOptionsFragment
-} & Pick<ActionCardListProps, 'color' | 'variant' | 'size' | 'layout' | 'collapse'>
+} & Pick<ActionCardListProps, 'color' | 'variant' | 'size' | 'layout' | 'collapse'> &
+  ActionCardRequireOptionSelection
 
 export function ConfigurableProductOptions(props: ConfigurableProductOptionsProps) {
   const {
+    optionStartLabels,
     optionEndLabels,
     sx,
     render = ConfigurableOptionValue,
@@ -63,6 +70,7 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
           {...option}
           key={option.uid}
           render={render}
+          optionStartLabels={optionStartLabels}
           optionEndLabels={optionEndLabels}
           index={index}
           optionIndex={optionIndex}

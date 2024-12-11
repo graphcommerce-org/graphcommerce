@@ -1,0 +1,9 @@
+extend interface AttributeValueInterface {
+  attribute: CustomAttributeMetadataInterface
+}
+extend type AttributeValue {
+  attribute: CustomAttributeMetadataInterface
+}
+extend type AttributeSelectedOptions {
+  attribute: CustomAttributeMetadataInterface
+}

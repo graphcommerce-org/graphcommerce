@@ -1,5 +1,5 @@
-import { ImageProps } from '@graphcommerce/image'
-import { ButtonProps, SxProps, Theme } from '@mui/material'
+import type { ImageProps } from '@graphcommerce/image'
+import type { ButtonProps, SxProps, Theme } from '@mui/material'
 import { ScrollerThumbnail } from './ScrollerThumbnail'
 import { ThumbnailContainer } from './ThumbnailContainer'
 

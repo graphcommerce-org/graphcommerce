@@ -1,4 +1,5 @@
-import { Box, ContainerProps } from '@mui/material'
+import type { ContainerProps } from '@mui/material'
+import { Box } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
 import { Row } from '../Row'
@@ -8,7 +9,7 @@ export type ColumnTwoProps = Omit<ContainerProps, 'children'> & {
   colTwoContent: React.ReactNode
 }
 
-const compName = 'ColumnTwo' as const
+const compName = 'ColumnTwo'
 const parts = ['root', 'colOne', 'colTwo'] as const
 const { classes } = extendableComponent(compName, parts)
 
@@ -24,12 +25,12 @@ export function ColumnTwo(props: ColumnTwoProps) {
         (theme) => ({
           gridColumnGap: theme.spacings.md,
           gridRowGap: theme.spacings.lg,
-          display: `grid`,
-          gridTemplateColumns: `1fr`,
-          gridTemplateAreas: `"one" "two"`,
+          display: 'grid',
+          gridTemplateColumns: '1fr',
+          gridTemplateAreas: '"one" "two"',
           [theme.breakpoints.up('sm')]: {
-            gridTemplateColumns: `1fr 1fr`,
-            gridTemplateAreas: `"one two"`,
+            gridTemplateColumns: '1fr 1fr',
+            gridTemplateAreas: '"one two"',
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

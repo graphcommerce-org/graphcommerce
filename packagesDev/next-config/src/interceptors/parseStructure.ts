@@ -1,9 +1,9 @@
-import { Module } from '@swc/core'
+import type { Module } from '@swc/core'
 import get from 'lodash/get'
 import { z } from 'zod'
-import { GraphCommerceConfig } from '../generated/config'
+import type { GraphCommerceConfig } from '../generated/config'
 import { extractExports } from './extractExports'
-import { PluginConfig } from './generateInterceptor'
+import type { PluginConfig } from './generateInterceptor'
 
 const pluginConfigParsed = z.object({
   type: z.enum(['component', 'function', 'replace']),
@@ -20,7 +20,7 @@ const isObject = (input: unknown): input is Record<string, unknown> =>
 
 export function parseStructure(ast: Module, gcConfig: GraphCommerceConfig, sourceModule: string) {
   const [exports, errors] = extractExports(ast)
-  if (errors.length) console.error(`Plugin error for`, errors.join('\n'))
+  if (errors.length) console.error('Plugin error for', errors.join('\n'))
 
   const {
     config: moduleConfig,

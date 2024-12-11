@@ -3,4 +3,4 @@
 '@graphcommerce/google-datalayer': patch
 ---
 
-Create useRemoveItemFromCart hook to allow for reuse while keeping compatibility with plugins.
+Create `useRemoveItemFromCart` hook to allow for reuse while keeping compatibility with plugins.

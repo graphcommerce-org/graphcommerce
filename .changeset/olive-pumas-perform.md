@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/magento-graphcms": patch
+'@graphcommerce/magento-graphcms': patch
 ---
 
-Resolve overlay issue by using the correct sharedKey + correct typo
+Resolve the overlay issue when navigating from the 'Forgot Password' page to the 'Sign In' page.

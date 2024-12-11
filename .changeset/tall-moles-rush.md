@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/magento-product": patch
+'@graphcommerce/magento-product': patch
 ---
 
-make the ProductPageMeta fragment injectable
+Make the `ProductPageMeta` fragment injectable.

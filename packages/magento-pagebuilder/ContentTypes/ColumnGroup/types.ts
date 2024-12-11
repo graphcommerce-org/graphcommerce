@@ -1,4 +1,4 @@
-import { ContentType, ContentTypeConfig } from '../../types'
+import type { ContentType, ContentTypeConfig } from '../../types'
 
 type ColumnGroupConfig = ContentTypeConfig<'column-group'>
 

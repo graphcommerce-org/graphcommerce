@@ -1,0 +1,60 @@
+type AlgoliaPriceValue {
+  default: Float
+  default_formatted: String
+  special_from_date: String
+  special_to_date: String
+  default_max: Float
+  default_original_formatted: String
+}
+
+type AlgoliaPrice {
+  SOME_CURRENCY: AlgoliaPriceValue
+}
+
+scalar AlgoliaSku
+
+type AlgoliaProductHitAdditionalProperties {
+  name: String
+  sku: AlgoliaSku
+  price: AlgoliaPrice
+
+  # categories
+  # categories_without_path
+  # categoryIds
+  is_stock: Int
+  ordered_qty: Int
+  created_at: String
+  url: String
+  visibility_search: Int
+  visibility_catalog: Int
+  type_id: String
+  rating_summary: String
+  thumbnail_url: String
+  image_url: String
+}
+
+type Algoliahit {
+  additionalProperties: AlgoliaProductHitAdditionalProperties
+}
+
+input ProductAttributeFilterInput {
+  """
+  When set to true, the query is passed to Algolia.
+
+  This is faster, but is only recommended for search and category pages as the data could be out of date and many fields of a product aren't supported.
+  """
+  engine: FilterEqualTypeInput
+}
+
+input CategoryFilterInput {
+  """
+  When set to true, the categories query is passed to Algolia
+
+  This is faster, but is only recommended for search and category pages as the data could be out of date and many fields of a product aren't supported.
+  """
+  engine: FilterEqualTypeInput
+}
+
+type Products {
+  algolia_queryID: String
+}

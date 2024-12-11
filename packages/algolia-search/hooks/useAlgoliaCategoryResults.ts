@@ -1,7 +1,7 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { useHits } from 'react-instantsearch-hooks-web'
-import { AlgoliaCategoryHit } from '../lib/types'
+import type { AlgoliaCategoryHit } from '../lib/types'
 
 function hitToCategory(hits: AlgoliaCategoryHit[], categoryUrlSuffix?: string | null) {
   return hits.map((h) => {

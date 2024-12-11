@@ -1,14 +1,13 @@
-import { ApolloError } from '@graphcommerce/graphql'
-import { CartUserInputError } from '@graphcommerce/graphql-mesh'
+import type { ApolloError } from '@graphcommerce/graphql'
+import type { CartUserInputError } from '@graphcommerce/graphql-mesh'
 import { ApolloCartErrorSnackbar } from '@graphcommerce/magento-cart'
+import type { ErrorSnackbarProps, MessageSnackbarProps } from '@graphcommerce/next-ui'
 import {
   Button,
   ErrorSnackbar,
-  ErrorSnackbarProps,
   IconSvg,
   ListFormat,
   MessageSnackbar,
-  MessageSnackbarProps,
   iconChevronRight,
 } from '@graphcommerce/next-ui'
 import { Plural, Trans } from '@lingui/macro'
@@ -62,7 +61,7 @@ export function AddProductsToCartSnackbarMessage(props: AddProductsToCartSnackba
             one={
               <Trans>
                 <ListFormat listStyle='long' type='conjunction'>
-                  {addedItems.map((item) => item)}
+                  {addedItems}
                 </ListFormat>{' '}
                 has been added to your shopping cart
               </Trans>
@@ -70,7 +69,7 @@ export function AddProductsToCartSnackbarMessage(props: AddProductsToCartSnackba
             two={
               <Trans>
                 <ListFormat listStyle='long' type='conjunction'>
-                  {addedItems.map((item) => item)}
+                  {addedItems}
                 </ListFormat>{' '}
                 have been added to your shopping cart!
               </Trans>

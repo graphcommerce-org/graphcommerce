@@ -1,4 +1,4 @@
-import { RichText } from '@graphcommerce/graphcms-ui'
+import { RichText } from '@graphcommerce/hygraph-ui'
 import { iconCheckmark, IconSvg, VariantUsps } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 

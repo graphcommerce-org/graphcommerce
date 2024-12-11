@@ -1,4 +1,4 @@
-import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'

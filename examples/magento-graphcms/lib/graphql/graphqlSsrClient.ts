@@ -10,6 +10,7 @@ import {
   FetchPolicy,
   DefaultOptions,
   PreviewConfig,
+  NormalizedCacheObject,
 } from '@graphcommerce/graphql'
 import { MeshApolloLink, getBuiltMesh } from '@graphcommerce/graphql-mesh'
 import { storefrontConfig, storefrontConfigDefault } from '@graphcommerce/next-ui'
@@ -24,7 +25,7 @@ function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-c
 
   return new ApolloClient({
     link: ApolloLink.from([
-      measurePerformanceLink,
+      ...(process.env.NODE_ENV === 'production' ? [measurePerformanceLink] : []),
       errorLink,
       ...config.links,
       new MeshApolloLink(getBuiltMesh()),
@@ -50,7 +51,16 @@ export function graphqlSharedClient(context: GetStaticPropsContext) {
   return client(context, 'cache-first')
 }
 
+const ssrClient: {
+  [locale: string]: ApolloClient<NormalizedCacheObject>
+} = {}
+
 export function graphqlSsrClient(context: GetStaticPropsContext) {
-  i18nSsrLoader(context.locale)
-  return client(context, 'no-cache')
+  const locale = context.locale ?? storefrontConfigDefault().locale
+  i18nSsrLoader(locale)
+
+  // Create a client if it doesn't exist for the locale.
+  if (!ssrClient[locale]) ssrClient[locale] = client(context, 'no-cache')
+
+  return ssrClient[locale]
 }

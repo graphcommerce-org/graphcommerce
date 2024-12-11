@@ -4,4 +4,4 @@
 '@graphcommerce/magento-store': minor
 ---
 
-Implement CancelOrder mutation, add cancel order overlay to account section
+Implemented the `CancelOrder` mutation and added a cancel order overlay to the account section.

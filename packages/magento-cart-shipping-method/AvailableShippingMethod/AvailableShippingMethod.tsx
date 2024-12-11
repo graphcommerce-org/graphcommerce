@@ -1,11 +1,12 @@
 import { useDisplayInclTax } from '@graphcommerce/magento-cart'
 import { Money } from '@graphcommerce/magento-store'
-import { ToggleButton, ToggleButtonProps, extendableComponent } from '@graphcommerce/next-ui'
+import type { ToggleButtonProps } from '@graphcommerce/next-ui'
+import { ToggleButton, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box, FormHelperText } from '@mui/material'
 import React from 'react'
 import type { SetOptional } from 'type-fest'
-import { AvailableShippingMethodFragment } from './AvailableShippingMethod.gql'
+import type { AvailableShippingMethodFragment } from './AvailableShippingMethod.gql'
 
 export type AvailableShippingMethodProps = SetOptional<AvailableShippingMethodFragment, 'amount'> &
   Omit<ToggleButtonProps, 'size'>
@@ -14,7 +15,7 @@ type OwnerProps = {
   free?: boolean
   error?: boolean
 }
-const name = 'AvailableShippingMethod' as const
+const name = 'AvailableShippingMethod'
 const parts = ['root', 'title', 'additional', 'error', 'amount'] as const
 const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 

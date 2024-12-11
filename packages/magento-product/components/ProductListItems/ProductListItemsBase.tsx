@@ -1,34 +1,34 @@
-import { LazyHydrate, RenderType, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
-import { Box, BoxProps, Breakpoint, Theme, useTheme } from '@mui/material'
+import { extendableComponent, LazyHydrate, RenderType, responsiveVal } from '@graphcommerce/next-ui'
+import type { BoxProps, Breakpoint, Theme } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import { AddProductsToCartForm } from '../AddProductsToCart'
-import { ProductListItemProps } from '../ProductListItem/ProductListItem'
-import { ProductListItemsFragment } from './ProductListItems.gql'
-import { ProductListItemRenderer } from './renderer'
+import type { ProductListItemProps } from '../ProductListItem/ProductListItem'
+import type { ProductListItemsFragment } from './ProductListItems.gql'
+import type { ProductListItemRenderer } from './renderer'
 
 type ComponentState = {
   size?: 'normal' | 'small'
 }
 
-type ColumnConfig = {
+export type ColumnConfig = {
   /**
-   * The total width of the grid, this is used to provde the correct values to the image sizes prop so the right image size is loaded.
+   * The total width of the grid, this is used to provde the correct values to the image sizes prop
+   * so the right image size is loaded.
    *
-   * @default "calc(100vw - ${theme.page.horizontal} * 2)"
+   * @default 'calc(100vw - ${theme.page.horizontal} * 2)'
    */
-  totalWidth?: string
+  maxWidth?: string
   /**
    * Gap between the columns/rows
    *
    * @default theme.spacings.md
    */
   gap?: string
-  /**
-   * Number of columns
-   */
+  /** Number of columns */
   count: number
 }
 
-type ColumnsConfig = Partial<Record<Breakpoint, ColumnConfig>>
+export type ColumnsConfig = Partial<Record<Breakpoint, ColumnConfig>>
 
 export type ProductItemsGridProps = ProductListItemsFragment & {
   renderers: ProductListItemRenderer
@@ -37,6 +37,8 @@ export type ProductItemsGridProps = ProductListItemsFragment & {
   sx?: BoxProps['sx']
   columns?: ((theme: Theme) => ColumnsConfig) | ColumnsConfig
   containerRef?: React.Ref<HTMLDivElement>
+  children?: React.ReactNode
+  maxWidth?: string
 } & Pick<ProductListItemProps, 'onClick' | 'titleComponent'> &
   ComponentState
 
@@ -56,11 +58,14 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
     titleComponent,
     onClick,
     columns,
+    children,
+    maxWidth: maxWidthProp,
   } = props
 
   const theme = useTheme()
 
-  const totalWidth = `calc(100vw - ${theme.page.horizontal} * 2)`
+  const maxWidth = maxWidthProp ?? `calc(100vw - ${theme.page.horizontal} * 2)`
+
   const gap = theme.spacings.md
 
   let columnConfig = typeof columns === 'function' ? columns(theme) : columns
@@ -69,7 +74,7 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
     columnConfig = {
       xs: { count: 2 },
       md: { count: 3 },
-      lg: { count: 4, totalWidth: `${theme.breakpoints.values.xl}px` },
+      lg: { count: 4, maxWidth: `${theme.breakpoints.values.xl}px` },
     }
   }
 
@@ -88,7 +93,7 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
           ...Object.entries(columnConfig).map(([key, column]) => ({
             [theme.breakpoints.up(key as Breakpoint)]: {
               gap: column.gap ?? gap,
-              // width: totalWidth,
+              // maxWidth: column.maxWidth ?? maxWidth,
               gridTemplateColumns: `repeat(${column.count}, 1fr)`,
             },
           })),
@@ -106,8 +111,8 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
               <RenderType
                 renderer={renderers}
                 sizes={Object.fromEntries(
-                  Object.entries(columnConfig ?? {}).map(([key, column]) => {
-                    const totalW = column.totalWidth ?? totalWidth
+                  Object.entries(columnConfig).map(([key, column]) => {
+                    const totalW = column.maxWidth ?? maxWidth
                     const columnGap = column.gap ?? gap
                     return [
                       theme.breakpoints.values[key as Breakpoint],
@@ -123,6 +128,7 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
             </LazyHydrate>
           ) : null,
         )}
+        {children}
       </Box>
     </AddProductsToCartForm>
   )

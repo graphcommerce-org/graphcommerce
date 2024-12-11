@@ -1,8 +1,10 @@
-import { iconChevronRight, IconSvg, LinkOrButton, LinkOrButtonProps } from '@graphcommerce/next-ui'
+import type { LinkOrButtonProps } from '@graphcommerce/next-ui'
+import { IconSvg, LinkOrButton, iconChevronRight } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import React from 'react'
-import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
+import { useCheckoutShouldLoginToContinue } from '../../hooks'
+import type { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 
 export type CartStartCheckoutLinkOrButtonProps = {
   children?: React.ReactNode
@@ -18,12 +20,13 @@ export type CartStartCheckoutLinkOrButtonProps = {
 
 export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButtonProps) {
   const {
-    children,
     onStart,
     disabled,
     linkOrButtonProps: { onClick, button, ...linkOrButtonProps } = {},
     cart,
   } = props
+
+  const shouldLoginToContinue = useCheckoutShouldLoginToContinue()
 
   const hasTotals = (cart?.prices?.grand_total?.value ?? 0) > 0
   const hasErrors = cart?.items?.some((item) => (item?.errors?.length ?? 0) > 0)
@@ -38,7 +41,7 @@ export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButt
         onStart?.(e, cart)
       }}
       button={{ variant: 'pill', ...button }}
-      disabled={disabled || !hasTotals || hasErrors}
+      disabled={disabled || !hasTotals || hasErrors || shouldLoginToContinue}
       color='secondary'
       endIcon={<IconSvg src={iconChevronRight} />}
       {...linkOrButtonProps}

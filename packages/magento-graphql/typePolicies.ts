@@ -1,4 +1,4 @@
-import { TypedTypePolicies } from '@graphcommerce/graphql'
+import type { TypedTypePolicies } from '@graphcommerce/graphql'
 
 /// /todooooo
 /**

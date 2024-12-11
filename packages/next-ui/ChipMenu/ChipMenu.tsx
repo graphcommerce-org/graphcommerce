@@ -1,9 +1,10 @@
-import { Chip, ChipProps, Menu, MenuProps, menuClasses, SxProps, Theme } from '@mui/material'
+import type { ChipProps, MenuProps, SxProps, Theme } from '@mui/material'
+import { Chip, Menu, menuClasses } from '@mui/material'
 import React, { useState } from 'react'
 import { IconSvg } from '../IconSvg'
 import { SectionHeader } from '../SectionHeader/SectionHeader'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { iconChevronDown, iconChevronUp, iconCancelAlt } from '../icons'
+import { iconCancelAlt, iconChevronDown, iconChevronUp } from '../icons'
 
 export type ChipMenuProps = Omit<ChipProps<'button'>, 'children' | 'component'> & {
   selectedLabel?: React.ReactNode

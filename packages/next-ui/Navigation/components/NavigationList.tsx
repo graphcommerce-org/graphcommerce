@@ -1,8 +1,9 @@
 import { styled } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles/extendableComponent'
-import { NavigationNode } from '../hooks/useNavigation'
-import { NavigationItem, mouseEventPref } from './NavigationItem'
+import type { NavigationNode } from '../hooks/useNavigation'
+import type { mouseEventPref } from './NavigationItem'
+import { NavigationItem } from './NavigationItem'
 
 const NavigationUList = styled('ul')({
   display: 'block',
@@ -14,7 +15,7 @@ const NavigationUList = styled('ul')({
   },
 })
 
-type NavigationItemsProps = {
+export type NavigationItemsProps = {
   parentPath?: string
   items: NavigationNode[]
   selected?: boolean

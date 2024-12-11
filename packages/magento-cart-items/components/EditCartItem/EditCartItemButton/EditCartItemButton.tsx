@@ -1,7 +1,5 @@
-import {
-  AddProductsToCartButton,
-  AddProductsToCartButtonProps,
-} from '@graphcommerce/magento-product'
+import type { AddProductsToCartButtonProps } from '@graphcommerce/magento-product'
+import { AddProductsToCartButton } from '@graphcommerce/magento-product'
 import { Trans } from '@lingui/react'
 
 export function EditCartItemButton(props: AddProductsToCartButtonProps) {

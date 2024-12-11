@@ -1,4 +1,5 @@
-import { styled, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { styled } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import { useScrollY } from '../../Layout'
 

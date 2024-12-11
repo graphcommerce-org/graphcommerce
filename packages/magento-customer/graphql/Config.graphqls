@@ -1,0 +1,12 @@
+enum CustomerAccountPermissions {
+  ENABLED
+  DISABLE_REGISTRATION
+  DISABLED
+}
+
+extend input GraphCommercePermissions {
+  """
+  Enables / disabled the account section of the website. DISABLE_REGISTRATION will only disable the registration page.
+  """
+  customerAccount: CustomerAccountPermissions
+}

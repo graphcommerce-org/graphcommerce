@@ -1,6 +1,8 @@
-import { styled, SxProps, Theme } from '@mui/material'
-import { HTMLMotionProps, m } from 'framer-motion'
-import { ReactHTML } from 'react'
+import type { SxProps, Theme } from '@mui/material'
+import { styled } from '@mui/material'
+import type { HTMLMotionProps } from 'framer-motion'
+import { m } from 'framer-motion'
+import type { ReactHTML } from 'react'
 
 export type AnimatedRowProps = Omit<
   ReactHTML['div'] & HTMLMotionProps<'div'>,

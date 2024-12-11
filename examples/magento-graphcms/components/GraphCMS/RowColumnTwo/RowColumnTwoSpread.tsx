@@ -1,5 +1,5 @@
-import { getNodeLength, RichText } from '@graphcommerce/graphcms-ui'
-import { ElementOrTextNode } from '@graphcommerce/graphcms-ui/components/RichText/types'
+import { getNodeLength, RichText } from '@graphcommerce/hygraph-ui'
+import { ElementOrTextNode } from '@graphcommerce/hygraph-ui/components/RichText/types'
 import { ColumnTwoSpread } from '@graphcommerce/next-ui'
 import { RowColumnTwoFragment } from './RowColumnTwo.gql'
 
@@ -22,7 +22,7 @@ export function RowColumnTwoSpread(props: RowColumnTwoFragment) {
       {...props}
       nodeLength={
         getNodeLength(colOne.raw as ElementOrTextNode) >=
-          getNodeLength(colTwo.raw as ElementOrTextNode) ?? false
+        getNodeLength(colTwo.raw as ElementOrTextNode)
       }
       colOneContent={
         <RichText

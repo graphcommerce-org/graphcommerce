@@ -1,5 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { ChangePasswordForm, WaitForCustomer } from '@graphcommerce/magento-customer'
+import {
+  ChangePasswordForm,
+  WaitForCustomer,
+  getCustomerAccountIsDisabled,
+} from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
@@ -48,6 +52,8 @@ AccountAuthenticationPage.pageOptions = pageOptions
 export default AccountAuthenticationPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
-import { Page } from '@playwright/test'
+import type { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import type { Page } from '@playwright/test'
 import { CartAgreementsDocument } from '../components/CartAgreementsForm/CartAgreements.gql'
 
 export async function fillCartAgreementsForm(

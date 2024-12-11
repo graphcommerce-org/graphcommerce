@@ -1,4 +1,5 @@
-import { gql, ApolloClient, NormalizedCacheObject, TypedDocumentNode } from '@graphcommerce/graphql'
+import type { ApolloClient, NormalizedCacheObject, TypedDocumentNode } from '@graphcommerce/graphql'
+import { gql } from '@graphcommerce/graphql'
 import type { AttributeFrontendInputEnum, Exact } from '@graphcommerce/graphql-mesh'
 import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import { ProductFilterTypesDocument } from './ProductFilterTypes.gql'

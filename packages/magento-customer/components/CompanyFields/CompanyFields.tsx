@@ -1,15 +1,12 @@
-import { FieldPath, FieldValues, useWatch } from '@graphcommerce/ecommerce-ui'
-import {
-  ActionCard,
-  ActionCardListForm,
-  ActionCardProps,
-  FormRow,
-  useStorefrontConfig,
-} from '@graphcommerce/next-ui'
+import type { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
+import { ActionCardListForm, useWatch } from '@graphcommerce/ecommerce-ui'
+import type { ActionCardProps } from '@graphcommerce/next-ui'
+import { ActionCard, FormRow, useStorefrontConfig } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { CompanyName } from './CompanyName'
 import { CompanyVAT } from './CompanyVAT'
-import { CompanyFieldsOptions, useCompanyFieldsForm } from './useCompanyFieldsForm'
+import type { CompanyFieldsOptions } from './useCompanyFieldsForm'
+import { useCompanyFieldsForm } from './useCompanyFieldsForm'
 
 export type CompanyFieldsProps<
   TFieldValues extends FieldValues = FieldValues,
@@ -43,7 +40,7 @@ export function CompanyFields<
           layout='inline'
           variant='outlined'
           color='secondary'
-          required
+          rules={{ validate: (value) => value !== null }}
           items={[
             { value: false, title: t`Private` },
             { value: true, title: t`Business` },

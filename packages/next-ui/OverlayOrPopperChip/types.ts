@@ -1,5 +1,5 @@
-import { Theme, SxProps } from '@mui/material'
-import React from 'react'
+import type { SxProps, Theme } from '@mui/material'
+import type React from 'react'
 
 export type PanelActionsProps = {
   children: React.ReactNode

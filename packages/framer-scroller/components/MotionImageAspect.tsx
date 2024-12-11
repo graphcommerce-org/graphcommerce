@@ -1,4 +1,5 @@
-import { Image, ImageProps } from '@graphcommerce/image'
+import type { ImageProps } from '@graphcommerce/image'
+import { Image } from '@graphcommerce/image'
 import { Box } from '@mui/material'
 import { m } from 'framer-motion'
 import { forwardRef } from 'react'
@@ -12,7 +13,7 @@ export type MotionImageAspectProps = Omit<ImageProps, 'layout' | 'unoptimized'>
  * Note: We have a fallback for Safari 14 which doesn't yet support aspect-ratio, this causes a
  * problem when the layout is animated. Should be fixed in Safari 15
  */
-export const MotionImageAspect = m(
+export const MotionImageAspect = m.create(
   forwardRef<HTMLImageElement, MotionImageAspectProps>((props, ref) => (
     <Box
       className='MotionImageAspect'

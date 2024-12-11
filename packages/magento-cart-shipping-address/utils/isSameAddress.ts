@@ -1,7 +1,4 @@
-import { CartAddressFragment } from '@graphcommerce/magento-cart/components/CartAddress/CartAddress.gql'
-import { nonNullable } from '@graphcommerce/next-ui'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { equal } from '@wry/equality'
+import type { CartAddressFragment } from '@graphcommerce/magento-cart/components/CartAddress/CartAddress.gql'
 
 type PartialNullable<T> = {
   [P in keyof T]?: T[P] | null

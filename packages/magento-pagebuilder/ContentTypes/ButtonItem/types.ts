@@ -1,6 +1,6 @@
-import { ButtonLinkProps } from '../../components/ButtonLink/getButtonLinkProps'
-import { ContentType, ContentTypeConfig } from '../../types'
-import { AdvancedProps } from '../../utils'
+import type { ButtonLinkProps } from '../../components/ButtonLink/getButtonLinkProps'
+import type { ContentType, ContentTypeConfig } from '../../types'
+import type { AdvancedProps } from '../../utils'
 
 type ButtonItemConfig = ContentTypeConfig<'button-item'>
 

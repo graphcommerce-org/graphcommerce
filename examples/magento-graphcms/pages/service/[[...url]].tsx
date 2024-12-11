@@ -1,9 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
+import { cacheFirst } from '@graphcommerce/graphql'
 import {
   PagesStaticPathsDocument,
   hygraphPageContent,
   HygraphPagesQuery,
-} from '@graphcommerce/graphcms-ui'
+} from '@graphcommerce/hygraph-ui'
 import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -17,7 +18,6 @@ import {
   RowRenderer,
 } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
@@ -78,7 +78,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const { locale, params } = context
-  const url = params?.url ? `service/${params?.url.join('/')}` : `service`
+  const url = params?.url ? `service/${params?.url.join('/')}` : 'service'
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })

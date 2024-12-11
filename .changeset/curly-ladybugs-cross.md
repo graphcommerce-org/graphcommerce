@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/magento-customer": patch
+'@graphcommerce/magento-customer': patch
 ---
 
-useSignInForm now optionally expects an email
+The `useSignInForm` hook now optionally accepts an email prop.

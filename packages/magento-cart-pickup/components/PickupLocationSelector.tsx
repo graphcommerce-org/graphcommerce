@@ -1,5 +1,6 @@
 import { useShippingMethod } from '@graphcommerce/magento-cart-shipping-method'
-import { PickupLocationForm, PickupLocationFormProps } from './PickupLocationForm'
+import type { PickupLocationFormProps } from './PickupLocationForm'
+import { PickupLocationForm } from './PickupLocationForm'
 
 export function PickupLocationSelector(props: PickupLocationFormProps) {
   const currentShippingMethod = useShippingMethod()

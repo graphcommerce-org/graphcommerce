@@ -1,17 +1,13 @@
+import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import { Money } from '@graphcommerce/magento-store'
-import {
-  ActionCardListForm,
-  ActionCard,
-  filterNonNullableKeys,
-  ActionCardProps,
-  SectionHeader,
-} from '@graphcommerce/next-ui'
+import type { ActionCardProps } from '@graphcommerce/next-ui'
+import { ActionCard, SectionHeader, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Box } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
-import { OptionTypeRenderer } from './CustomizableAreaOption'
+import type { OptionTypeRenderer } from './CustomizableAreaOption'
 
-type CustomizableMultipleOptionProps = React.ComponentProps<
+export type CustomizableMultipleOptionProps = React.ComponentProps<
   OptionTypeRenderer['CustomizableMultipleOption']
 >
 

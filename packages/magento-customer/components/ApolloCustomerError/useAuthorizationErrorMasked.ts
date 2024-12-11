@@ -1,4 +1,4 @@
-import { ApolloError } from '@graphcommerce/graphql'
+import type { ApolloError } from '@graphcommerce/graphql'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { i18n } from '@lingui/core'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
@@ -11,7 +11,7 @@ export function useAuthorizationErrorMasked(error?: ApolloError) {
     error,
     mask: token
       ? i18n._(/* i18n */ 'Please reauthenticate and try again')
-      : i18n._(/* i18n */ 'You must sign in to continue'),
+      : i18n._(/* i18n */ 'You must be signed in to continue'),
     extract: false,
   })
 }

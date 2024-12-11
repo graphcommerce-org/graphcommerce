@@ -1,4 +1,5 @@
-import { ProductWishlistIconButton, ProductWishlistChipProps } from './ProductWishlistIconButton'
+import type { ProductWishlistChipProps } from './ProductWishlistIconButton'
+import { ProductWishlistIconButton } from './ProductWishlistIconButton'
 
 /**
  * @deprecated

@@ -1,4 +1,4 @@
-import { ApolloError } from '@apollo/client'
+import type { ApolloError } from '@apollo/client'
 import type { FieldValues, FormState, UseFormReturn } from 'react-hook-form'
 import type { SetOptional } from 'type-fest'
 

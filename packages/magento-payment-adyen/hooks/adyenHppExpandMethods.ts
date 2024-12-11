@@ -1,4 +1,4 @@
-import { ExpandPaymentMethods } from '@graphcommerce/magento-cart-payment-method'
+import type { ExpandPaymentMethods } from '@graphcommerce/magento-cart-payment-method'
 import { UseAdyenPaymentMethodsDocument } from './UseAdyenPaymentMethods.gql'
 
 export const nonNullable = <T>(value: T): value is NonNullable<T> =>

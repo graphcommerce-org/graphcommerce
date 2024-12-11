@@ -1,4 +1,4 @@
-import { RichText, Asset } from '@graphcommerce/graphcms-ui'
+import { RichText, Asset } from '@graphcommerce/hygraph-ui'
 import { breakpointVal, SpecialBanner } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
 import { RowSpecialBannerFragment } from './RowSpecialBanner.gql'
@@ -24,7 +24,7 @@ export function RowSpecialBanner(props: RowSpecialBannerProps) {
           'heading-two': (theme) => ({
             textTransform: 'uppercase' as const,
             color: 'text.primary',
-            ...breakpointVal('fontSize', 36, 82, theme.breakpoints.values),
+            ...breakpointVal('fontSize', 36, 65, theme.breakpoints.values),
             marginBottom: 0,
             '& strong': {
               // https://github.com/rsms/inter/issues/292#issuecomment-674993644

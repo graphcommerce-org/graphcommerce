@@ -1,12 +1,12 @@
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart/hooks'
-import { UseFormGraphQlOptions } from '@graphcommerce/react-hook-form'
+import type { UseFormGraphQlOptions } from '@graphcommerce/react-hook-form'
 import type { DistributedOmit } from 'type-fest'
-import { CartItemFragment } from '../Api/CartItem.gql'
-import {
+import type { CartItemFragment } from '../Api/CartItem.gql'
+import type {
   RemoveItemFromCartMutation,
   RemoveItemFromCartMutationVariables,
-  RemoveItemFromCartDocument,
 } from '../components/RemoveItemFromCart/RemoveItemFromCart.gql'
+import { RemoveItemFromCartDocument } from '../components/RemoveItemFromCart/RemoveItemFromCart.gql'
 
 export type UseRemoveItemFromCartProps = DistributedOmit<CartItemFragment, '__typename'> &
   Omit<

@@ -1,7 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { cacheFirst } from '@graphcommerce/graphql'
+import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
+  Container,
   PageMeta,
   GetStaticProps,
   Pagination,
@@ -9,8 +11,7 @@ import {
   LayoutHeader,
   Breadcrumbs,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Container, Link } from '@mui/material'
+import { Link } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -26,7 +27,6 @@ import {
   RowRenderer,
 } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
-import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = HygraphPagesQuery & BlogListQuery & BlogPathsQuery
 type RouteProps = { page: string }
@@ -45,7 +45,7 @@ function BlogPage(props: Props) {
     <>
       <PageMeta title={title} metaDescription={title} canonical={`/${page.url}`} />
 
-      <LayoutHeader floatingMd>
+      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
         <LayoutTitle size='small' component='span'>
           {title}
         </LayoutTitle>
@@ -125,8 +125,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await blogPosts).data,
       ...(await blogPaths).data,
       ...(await layout).data,
-      urlEntity: { relative_url: `blog` },
-      up: { href: '/blog', title: i18n._(/* i18n */ 'Blog') },
+      urlEntity: { relative_url: 'blog' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

@@ -1,0 +1,74 @@
+input TrendingProductsInput {
+  maxRecommendations: Int = 8
+
+  """
+  Minimum score a recommendation must have to be included in the response.
+  """
+  threshold: Float! = 75
+
+  """
+  Facet attribute. To be used in combination with `facetValue`.
+  If specified, only recommendations matching the facet filter will be returned.
+  """
+  facetName: String!
+
+  """
+  Facet value. To be used in combination with `facetName`.
+  If specified, only recommendations matching the facet filter will be returned.
+  """
+  facetValue: String!
+
+  """
+  One or more keywords to use in a full-text search.
+  """
+  search: String
+
+  """
+  The product attributes to search for and return.
+  """
+  filter: ProductAttributeFilterInput
+
+  """
+  When there are no related products, use this fallback query
+  """
+  fallback: AlgoliaFallbackParams
+}
+
+input TrendingFacetValuesInput {
+  maxRecommendations: Int = 8
+
+  """
+  Minimum score a recommendation must have to be included in the response.
+  """
+  threshold: Float! = 75
+  """
+  Facet attribute for which to retrieve trending facet values.
+  """
+  facetName: String!
+
+  """
+  One or more keywords to use in a full-text search.
+  """
+  search: String
+
+  """
+  The product attributes to search for and return.
+  """
+  filter: ProductAttributeFilterInput
+
+  """
+  When there are no related products, use this fallback query
+  """
+  fallback: AlgoliaFallbackParams
+}
+
+type TrendingFacetValue {
+  facetName: String!
+  facetValue: String!
+}
+
+extend type Query {
+  trendingProducts(input: TrendingProductsInput!): [ProductInterface]
+
+  trendingFacetValues(input: TrendingFacetValuesInput!): [TrendingFacetValue]
+}

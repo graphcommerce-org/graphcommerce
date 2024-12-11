@@ -1,5 +1,6 @@
-import { ActionCard, ActionCardItemRenderProps } from '@graphcommerce/next-ui'
-import { ConfigurableOptionValueTextFragment } from './ConfigurableOptionValueText.gql'
+import type { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
+import { ActionCard } from '@graphcommerce/next-ui'
+import type { ConfigurableOptionValueTextFragment } from './ConfigurableOptionValueText.gql'
 
 export type ConfigurableOptionValueTextProps =
   ActionCardItemRenderProps<ConfigurableOptionValueTextFragment>

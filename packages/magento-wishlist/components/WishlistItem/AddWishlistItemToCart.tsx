@@ -1,14 +1,16 @@
-import {
-  AddProductsToCartQuantity,
-  AddProductsToCartButton,
-  useFormAddProductsToCart,
-  UseAddProductsToCartActionProps,
+import type {
   AddToCartItemSelector,
+  UseAddProductsToCartActionProps,
 } from '@graphcommerce/magento-product'
-import { InputMaybe } from '@graphcommerce/next-config'
+import {
+  AddProductsToCartButton,
+  AddProductsToCartQuantity,
+  useFormAddProductsToCart,
+} from '@graphcommerce/magento-product'
+import type { InputMaybe } from '@graphcommerce/next-config'
 import { Box } from '@mui/material'
 
-type AddWishlistItemToCartProps = UseAddProductsToCartActionProps &
+export type AddWishlistItemToCartProps = UseAddProductsToCartActionProps &
   AddToCartItemSelector & { selectedOptions?: InputMaybe<string[]> | undefined }
 
 export function AddWishlistItemToCart(props: AddWishlistItemToCartProps) {

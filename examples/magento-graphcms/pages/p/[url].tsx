@@ -1,11 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import {
   cacheFirst,
   InContextMaskProvider,
   mergeDeep,
   useInContextQuery,
 } from '@graphcommerce/graphql'
+import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import {
   AddProductsToCartForm,
   AddProductsToCartFormProps,
@@ -46,6 +46,7 @@ import { AddProductsToCartView } from '../../components/ProductView/AddProductsT
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { Container } from '@graphcommerce/next-ui'
 
 export type Props = HygraphPagesQuery &
   UspsQuery &
@@ -76,7 +77,7 @@ function ProductPage(props: Props) {
   return (
     <InContextMaskProvider mask={scopedQuery.mask}>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
-        <LayoutHeader floatingMd>
+        <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
           <LayoutTitle size='small' component='span'>
             <ProductPageName product={product} />
           </LayoutTitle>
@@ -95,17 +96,20 @@ function ProductPage(props: Props) {
         <ProductPageMeta product={product} />
 
         {import.meta.graphCommerce.breadcrumbs && (
-          <ProductPageBreadcrumbs
-            product={product}
-            sx={(theme) => ({
-              py: `calc(${theme.spacings.xxs} / 2)`,
-              pl: theme.page.horizontal,
-              background: theme.palette.background.paper,
-              [theme.breakpoints.down('md')]: {
-                '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-              },
-            })}
-          />
+          <Container
+            maxWidth={false}
+            sx={(theme) => ({ py: `calc(${theme.spacings.xxs} / 2)`, bgcolor: 'background.paper' })}
+            breakoutRight
+          >
+            <ProductPageBreadcrumbs
+              product={product}
+              sx={(theme) => ({
+                [theme.breakpoints.down('md')]: {
+                  '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+                },
+              })}
+            />
+          </Container>
         )}
 
         <ProductPageGallery
@@ -221,7 +225,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
-      : { href: `/`, title: i18n._(/* i18n */ 'Home') }
+      : { href: '/', title: i18n._(/* i18n */ 'Home') }
   const usps = staticClient.query({ query: UspsDocument, fetchPolicy: cacheFirst(staticClient) })
 
   return {

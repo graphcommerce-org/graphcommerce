@@ -6,7 +6,7 @@ import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { useFabSize } from '../../Theme'
 import { iconClose } from '../../icons'
 
-type LayoutHeaderCloseProps = {
+export type LayoutHeaderCloseProps = {
   onClose?: () => void
 }
 

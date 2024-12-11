@@ -1,6 +1,6 @@
 ---
-"@graphcommerce/eslint-config-pwa": patch
-"@graphcommerce/graphql": patch
+'@graphcommerce/eslint-config-pwa': patch
+'@graphcommerce/graphql': patch
 ---
 
-Importing \*.interceptor is NOT allowed
+Added eslint rule: Importing `\*.interceptor` is NOT allowed

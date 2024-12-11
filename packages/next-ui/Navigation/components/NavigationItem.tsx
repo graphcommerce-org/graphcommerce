@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { alpha, Box, ListItemButton, styled, useEventCallback } from '@mui/material'
+import { Box, ListItemButton, alpha, styled, useEventCallback } from '@mui/material'
 import React from 'react'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles/extendableComponent'
 import { NextLink } from '../../Theme'
 import { useMatchMedia } from '../../hooks'
 import { iconChevronRight } from '../../icons'
+import type { NavigationNode } from '../hooks/useNavigation'
 import {
   isNavigationButton,
   isNavigationComponent,
   isNavigationHref,
-  NavigationNode,
   useNavigation,
 } from '../hooks/useNavigation'
 import type { NavigationList } from './NavigationList'
@@ -24,7 +24,7 @@ type OwnerState = {
   column: number
 }
 
-type NavigationItemProps = NavigationNode & {
+export type NavigationItemProps = NavigationNode & {
   parentPath: string
   idx: number
   NavigationList: typeof NavigationList

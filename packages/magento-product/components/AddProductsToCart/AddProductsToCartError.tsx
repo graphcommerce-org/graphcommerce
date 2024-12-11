@@ -1,8 +1,9 @@
 import { useFormState } from '@graphcommerce/ecommerce-ui'
 import { FormHelperText } from '@mui/material'
-import { AddToCartItemSelector, useFormAddProductsToCart } from './useFormAddProductsToCart'
+import type { AddToCartItemSelector } from './useFormAddProductsToCart'
+import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
-type AddProductsToCartErrorProps = {
+export type AddProductsToCartErrorProps = {
   children?: React.ReactNode
 } & AddToCartItemSelector
 

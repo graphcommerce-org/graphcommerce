@@ -1,10 +1,10 @@
-import { ApolloClient } from '@graphcommerce/graphql'
-import { ActionCardProps, LinkOrButtonProps } from '@graphcommerce/next-ui'
-import { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
-import React from 'react'
-import { AvailablePaymentMethodFragment } from './AvailablePaymentMethod/AvailablePaymentMethod.gql'
-import { PaymentMethodContextFragment } from './PaymentMethodContext.gql'
-import { SelectedPaymentMethodFragment } from './SelectedPaymentMethod/SelectedPaymentMethod.gql'
+import type { ApolloClient } from '@graphcommerce/graphql'
+import type { ActionCardProps, LinkOrButtonProps } from '@graphcommerce/next-ui'
+import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
+import type React from 'react'
+import type { AvailablePaymentMethodFragment } from './AvailablePaymentMethod/AvailablePaymentMethod.gql'
+import type { PaymentMethodContextFragment } from './PaymentMethodContext.gql'
+import type { SelectedPaymentMethodFragment } from './SelectedPaymentMethod/SelectedPaymentMethod.gql'
 
 export type PaymentMethod = Partial<AvailablePaymentMethodFragment> &
   Pick<AvailablePaymentMethodFragment, 'code' | 'title'> & {

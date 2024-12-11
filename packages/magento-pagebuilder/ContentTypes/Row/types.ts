@@ -1,6 +1,6 @@
-import { MediaBackgroundProps } from '../../components/MediaBackground/getMediaBackgroundProps'
-import { ContentType, ContentTypeConfig } from '../../types'
-import { AdvancedProps, VerticalAlignment } from '../../utils'
+import type { MediaBackgroundProps } from '../../components/MediaBackground/getMediaBackgroundProps'
+import type { ContentType, ContentTypeConfig } from '../../types'
+import type { AdvancedProps, VerticalAlignment } from '../../utils'
 
 type RowConfig = ContentTypeConfig<'row'> & {
   appearance: 'contained' | 'full-width' | 'full-bleed'

@@ -1,12 +1,10 @@
-import {
-  ActionCard,
-  ActionCardListForm,
-  ChipOverlayOrPopper,
-  ChipOverlayOrPopperProps,
-} from '@graphcommerce/next-ui'
+import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
+import type { ChipOverlayOrPopperProps } from '@graphcommerce/next-ui'
+import { ActionCard, ChipOverlayOrPopper } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { useProductFiltersPro } from './ProductFiltersPro'
-import { UseProductFiltersProSortProps, useProductFiltersProSort } from './useProductFiltersProSort'
+import type { UseProductFiltersProSortProps } from './useProductFiltersProSort'
+import { useProductFiltersProSort } from './useProductFiltersProSort'
 
 export type ProductListActionSortProps = UseProductFiltersProSortProps &
   Omit<

@@ -5,9 +5,13 @@ export type TimeAgoProps = {
   /**
    * @deprecated No longer used
    */
+  // eslint-disable-next-line react/no-unused-prop-types
   locale?: string
 }
 
+/**
+ * @deprecated Use <RelativeToTimeFormat /> instead.
+ */
 export function TimeAgo(props: TimeAgoProps) {
   const { date } = props
   const msPerMinute = 60 * 1000

@@ -1,12 +1,14 @@
 import {
-  SignUpFormInline,
   IsEmailAvailableDocument,
+  SignUpFormInline,
+  useCustomerAccountCanSignIn,
   useCustomerSession,
   useGuestQuery,
 } from '@graphcommerce/magento-customer'
 import { Button, FormRow, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, SxProps, TextField, Theme, Typography } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useCartQuery } from '../../hooks/useCartQuery'
 import { InlineAccountDocument } from './InlineAccount.gql'
@@ -14,19 +16,17 @@ import { InlineAccountDocument } from './InlineAccount.gql'
 export type InlineAccountProps = {
   title?: React.ReactNode
   description?: React.ReactNode
-  /**
-   * @deprecated This is not used anymore.
-   */
-  accountHref: string
   sx?: SxProps<Theme>
 }
 
-const name = 'InlineAccount' as const
+const name = 'InlineAccount'
 const parts = ['root', 'innerContainer', 'form', 'button', 'title'] as const
 const { classes } = extendableComponent(name, parts)
 
 export function InlineAccount(props: InlineAccountProps) {
   const { title, description, sx = [] } = props
+
+  const canLogin = useCustomerAccountCanSignIn()
 
   const [toggled, setToggled] = useState<boolean>(false)
 
@@ -42,7 +42,7 @@ export function InlineAccount(props: InlineAccountProps) {
   const { firstname, lastname } = cart?.shipping_addresses?.[0] ?? {}
   const canSignUp = isEmailAvailableData?.isEmailAvailable?.is_email_available === true
 
-  if (loggedIn || !canSignUp) return null
+  if (loggedIn || !canSignUp || !canLogin) return null
 
   return (
     <div>

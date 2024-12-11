@@ -7,7 +7,8 @@ import {
 import { Button, Form, FormRow, MessageSnackbar } from '@graphcommerce/next-ui'
 import { FormPersist, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { CustomerDocument, CustomerQuery, useCustomerQuery } from '../../hooks'
+import type { CustomerQuery } from '../../hooks'
+import { CustomerDocument, useCustomerQuery } from '../../hooks'
 import { ContactUsDocument } from './ContactUsMutation.gql'
 
 function findTelephone(data: CustomerQuery): string | undefined {
@@ -38,7 +39,6 @@ function findTelephone(data: CustomerQuery): string | undefined {
 
 export function ContactForm() {
   const form = useFormGqlMutation(ContactUsDocument, {
-    experimental_useV2: true,
     onComplete: (result) => {
       if (result.errors) return
       form.resetField('input.comment')

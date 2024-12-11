@@ -1,9 +1,11 @@
+import type {
+  ProductFilterParams,
+  ProductListParams,
+} from '../components/ProductListItems/filterTypes'
 import {
   isFilterTypeEqual,
   isFilterTypeMatch,
   isFilterTypeRange,
-  ProductFilterParams,
-  ProductListParams,
   toFilterParams,
 } from '../components/ProductListItems/filterTypes'
 
@@ -17,15 +19,15 @@ export function productListLinkFromFilter(props: ProductFilterParams): string {
   if (isSearch) urlBase = search ? `search/${search}` : 'search'
 
   // base url path generation
-  let paginateSort = ``
-  let query = ``
+  let paginateSort = ''
+  let query = ''
 
   if (currentPage && currentPage > 1) paginateSort += `/page/${currentPage}`
 
   // todo(paales): How should the URL look like with multiple sorts?
   // Something like: /sort/position,price/dir/asc,asc
   if (sort) query += `/sort/${sort}`
-  if (dir) query += `/dir/desc`
+  if (dir) query += '/dir/desc'
   if (pageSize) query += `/page-size/${pageSize}`
 
   // Apply filters

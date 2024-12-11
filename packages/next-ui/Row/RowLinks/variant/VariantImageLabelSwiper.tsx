@@ -1,4 +1,5 @@
-import { RowLinks, RowLinksProps } from '../RowLinks'
+import type { RowLinksProps } from '../RowLinks'
+import { RowLinks } from '../RowLinks'
 
 export function VariantImageLabelSwiper(props: RowLinksProps) {
   const { sx = [], ...rowLinksProps } = props
@@ -8,7 +9,10 @@ export function VariantImageLabelSwiper(props: RowLinksProps) {
       {...rowLinksProps}
       sx={[
         {
-          '& .Scroller-root': {
+          // '& .Scroller-root': {
+          //   alignItems: 'start',
+          // },
+          '& .Scroller-scroller': {
             alignItems: 'start',
           },
           '& .RowLinks-title': {

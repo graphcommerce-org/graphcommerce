@@ -53,7 +53,7 @@ function configToEnvSchema(schema) {
                 envSchema[(0, exports.toEnvStr)(path)] = zod_1.z
                     .string()
                     .optional()
-                    .refine(isJSON, { message: `Invalid JSON` })
+                    .refine(isJSON, { message: 'Invalid JSON' })
                     .transform((val) => (val ? JSON.parse(val) : val));
                 envToDot[(0, exports.toEnvStr)(path)] = (0, exports.dotNotation)(path);
             }
@@ -69,7 +69,7 @@ function configToEnvSchema(schema) {
                 envSchema[(0, exports.toEnvStr)(path)] = zod_1.z
                     .string()
                     .optional()
-                    .refine(isJSON, { message: `Invalid JSON` })
+                    .refine(isJSON, { message: 'Invalid JSON' })
                     .transform((val) => (val ? JSON.parse(val) : val));
                 envToDot[(0, exports.toEnvStr)(path)] = (0, exports.dotNotation)(path);
             }
@@ -155,7 +155,7 @@ function formatAppliedEnv(applyResult) {
     const lines = applyResult.map(({ from, to, envValue, envVar, dotVar, error, warning }) => {
         const fromFmt = chalk_1.default.red(JSON.stringify(from));
         const toFmt = chalk_1.default.green(JSON.stringify(to));
-        const envVariableFmt = `${envVar}='${envValue}'`;
+        const envVariableFmt = `${envVar}`;
         const dotVariableFmt = chalk_1.default.bold.underline(`${dotVar}`);
         const baseLog = `${envVariableFmt} => ${dotVariableFmt}`;
         if (error) {
@@ -169,18 +169,18 @@ function formatAppliedEnv(applyResult) {
         if (!dotVar)
             return chalk_1.default.red(`${envVariableFmt} => ignored (no matching config)`);
         if (from === undefined && to === undefined)
-            return ` = ${baseLog}: (ignored, no change/wrong format)`;
+            return ` = ${baseLog}: (ignored)`;
         if (from === undefined && to !== undefined)
-            return ` ${chalk_1.default.green('+')} ${baseLog}: ${toFmt}`;
+            return ` ${chalk_1.default.green('+')} ${baseLog}`;
         if (from !== undefined && to === undefined)
-            return ` ${chalk_1.default.red('-')} ${baseLog}: ${fromFmt}`;
-        return ` ${chalk_1.default.yellowBright('~')} ${baseLog}: ${fromFmt} => ${toFmt}`;
+            return ` ${chalk_1.default.red('-')} ${baseLog}`;
+        return ` ${chalk_1.default.yellowBright('~')} ${baseLog}`;
     });
-    let header = chalk_1.default.blueBright(`info`);
+    let header = chalk_1.default.blueBright('info');
     if (hasWarning)
-        header = chalk_1.default.yellowBright(`warning`);
+        header = chalk_1.default.yellowBright('warning');
     if (hasError)
-        header = chalk_1.default.yellowBright(`error`);
-    header += `   - Loaded GraphCommerce env variables`;
+        header = chalk_1.default.yellowBright('error');
+    header += '   - Loaded GraphCommerce env variables';
     return [header, ...lines].join('\n');
 }

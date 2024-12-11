@@ -1,8 +1,12 @@
-import { ProductLinkFragment } from './ProductLink.gql'
+import type { ProductLinkFragment } from './ProductLink.gql'
 
 export type ProductLinkProps = Omit<ProductLinkFragment, 'uid'>
 
 export const productRoute = import.meta.graphCommerce.productRoute ?? '/p/'
+
+export function productPath(urlKey: string) {
+  return `${productRoute}${urlKey}`
+}
 
 export function productLink(link: ProductLinkProps) {
   return `${productRoute}${link.url_key}`

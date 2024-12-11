@@ -1,12 +1,8 @@
-import {
-  DataLayerCurrencyValue,
-  datalayerItemsToCurrencyValue,
-} from '../datalayerItemsToCurrencyValue/datalayerItemsToCurrencyValue'
-import {
-  GoogleDatalayerItem,
-  productToDatalayerItem,
-} from '../productToDatalayerItem/productToDatalayerItem'
-import { Product_ViewItemFragment } from './Product_ViewItem.gql'
+import type { DataLayerCurrencyValue } from '../datalayerItemsToCurrencyValue/datalayerItemsToCurrencyValue'
+import { datalayerItemsToCurrencyValue } from '../datalayerItemsToCurrencyValue/datalayerItemsToCurrencyValue'
+import type { GoogleDatalayerItem } from '../productToDatalayerItem/productToDatalayerItem'
+import { productToDatalayerItem } from '../productToDatalayerItem/productToDatalayerItem'
+import type { Product_ViewItemFragment } from './Product_ViewItem.gql'
 
 export type ViewItem = { items: GoogleDatalayerItem[] } & DataLayerCurrencyValue
 
