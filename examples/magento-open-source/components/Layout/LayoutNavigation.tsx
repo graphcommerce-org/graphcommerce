@@ -109,7 +109,6 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
       <LayoutDefault
         {...uiProps}
-        noSticky={router.asPath.split('?')[0] === '/'}
         header={
           <>
             <Logo />

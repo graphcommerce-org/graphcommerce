@@ -13,7 +13,7 @@ export function CartFab(props: PluginProps<CartFabProps>) {
   return (
     <>
       <Prev {...rest} />
-      <CompareFab />
+      {/* <CompareFab /> */}
     </>
   )
 }
