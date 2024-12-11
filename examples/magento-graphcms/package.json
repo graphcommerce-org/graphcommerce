@@ -1,24 +1,22 @@
 {
   "name": "@graphcommerce/magento-graphcms",
-  "homepage": "https://www.graphcommerce.org/",
-  "repository": "github:graphcommerce-org/graphcommerce",
   "version": "9.0.0-canary.110",
   "private": true,
-  "sideEffects": false,
-  "packageManager": "yarn@4.5.3",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "homepage": "https://www.graphcommerce.org/",
   "engines": {
     "node": ">=18.19.0 <22.0.0"
   },
   "scripts": {
-    "dev": "concurrently -k -n codegen,next 'graphql-codegen -w' 'next dev'",
-    "codegen": "graphcommerce codegen && mesh build && graphql-codegen",
     "build": "graphcommerce codegen && mesh build && graphql-codegen && next build",
-    "start": "next start",
-    "tsc:lint": "tsc --noEmit -p .",
-    "tsc:perf": "NODE_OPTIONS=--max_old_space_size=10000 tsc --noEmit --generateTrace tsctrace --incremental false && npx @typescript/analyze-trace tsctrace",
+    "codegen": "graphcommerce codegen && mesh build && graphql-codegen",
+    "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'",
+    "dev": "concurrently -k -n codegen,next 'graphql-codegen -w' 'next dev'",
     "lingui": "cross-env NODE_ENV=development lingui extract --clean",
     "postinstall": "is-monorepo '[pkgrun] postinstall' '[pkgrun] patch-package'",
-    "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'"
+    "start": "next start",
+    "tsc:lint": "tsc --noEmit -p .",
+    "tsc:perf": "NODE_OPTIONS=--max_old_space_size=10000 tsc --noEmit --generateTrace tsctrace --incremental false && npx @typescript/analyze-trace tsctrace"
   },
   "dependencies": {
     "@apollo/client": "~3.11.10",
@@ -75,7 +73,7 @@
     "@graphcommerce/magento-recently-viewed-products": "9.0.0-canary.110",
     "@graphcommerce/magento-review": "9.0.0-canary.110",
     "@graphcommerce/magento-search": "9.0.0-canary.110",
-    "@graphcommerce/magento-store": "9.0.0-canary.11-",
+    "@graphcommerce/magento-store": "9.0.0-canary.110",
     "@graphcommerce/magento-store-locator": "9.0.0-canary.110",
     "@graphcommerce/magento-wishlist": "9.0.0-canary.110",
     "@graphcommerce/next-config": "9.0.0-canary.110",
@@ -128,7 +126,6 @@
     "> 1% in alt-EU",
     "not IE 11"
   ],
-  "prettier": "@graphcommerce/prettier-config-pwa/classic.js",
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",
     "parserOptions": {
@@ -137,5 +134,8 @@
     "rules": {
       "@typescript-eslint/consistent-type-imports": "off"
     }
-  }
+  },
+  "packageManager": "yarn@4.5.3",
+  "prettier": "@graphcommerce/prettier-config-pwa/classic.js",
+  "sideEffects": false
 }
