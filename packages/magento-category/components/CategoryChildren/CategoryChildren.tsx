@@ -32,13 +32,14 @@ export function CategoryChildren(props: CategoryChildrenProps) {
   )
 
   const hasNavigatableChildren = childItems.some((cat) => !cat.active)
+
   if (!hasNavigatableChildren) return null
 
   return (
     <ScrollerProvider scrollSnapAlign='none'>
       <Box
         className={classes.container}
-        sx={[{ display: 'flex' }, ...(Array.isArray(sx) ? sx : [sx])]}
+        sx={[{ display: 'grid' }, ...(Array.isArray(sx) ? sx : [sx])]}
       >
         <Scroller
           className={classes.scroller}

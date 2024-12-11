@@ -9,6 +9,9 @@ import {
   DesktopNavActions,
   DesktopNavBar,
   DesktopNavItem,
+  iconChevronDown,
+  iconCustomerService,
+  iconHeart,
   IconSvg,
   LayoutDefault,
   MenuFabSecondaryItem,
@@ -16,9 +19,6 @@ import {
   NavigationOverlay,
   NavigationProvider,
   PlaceholderFab,
-  iconChevronDown,
-  iconCustomerService,
-  iconHeart,
   useMemoDeep,
   useNavigationSelection,
 } from '@graphcommerce/next-ui'
@@ -117,7 +117,6 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
       <LayoutDefault
         {...uiProps}
-        noSticky={router.asPath.split('?')[0] === '/'}
         header={
           <>
             <Logo />
