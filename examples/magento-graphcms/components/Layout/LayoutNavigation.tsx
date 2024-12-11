@@ -21,14 +21,16 @@ import {
   NavigationOverlay,
   useNavigationSelection,
   useMemoDeep,
+  Container,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Divider, Fab } from '@mui/material'
+import { Divider, Fab, Link } from '@mui/material'
 import { useRouter } from 'next/router'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
+import { StickyBox } from '@graphcommerce/framer-utils'
 
 export type LayoutNavigationProps = LayoutQuery &
   Omit<LayoutDefaultProps, 'footer' | 'header' | 'cartFab' | 'menuFab'>
@@ -117,7 +119,45 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
       <LayoutDefault
         {...uiProps}
-        noSticky={router.asPath.split('?')[0] === '/'}
+        sx={(theme) => ({
+          [theme.breakpoints.up('md')]: {
+            '& .sticky': {
+              bgcolor: 'background.default',
+              boxShadow: 1,
+            },
+          },
+        })}
+        // stickyHeader={router.asPath.split('?')[0] !== '/'}
+        stickyAfterHeader
+        // stickyBeforeHeader
+        beforeHeader={
+          <Container
+            sx={{
+              py: { xs: 0, md: 1 },
+              position: 'relative',
+              boxShadow: 1,
+              textAlign: { xs: 'center', md: 'left' },
+            }}
+          >
+            You are looking at the{' '}
+            <Link color='inherit' underline='always' href='https://graphcommerce.org'>
+              GraphCommerce
+            </Link>{' '}
+            demo
+          </Container>
+        }
+        afterHeader={
+          <Container
+            sx={{
+              py: { xs: 0, md: 1 },
+              position: 'relative',
+              boxShadow: 1,
+              textAlign: { xs: 'center', md: 'left' },
+            }}
+          >
+            This is a demo store, no actual products are being shipped.
+          </Container>
+        }
         header={
           <>
             <Logo />
@@ -158,13 +198,12 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               </Fab>
               <WishlistFab icon={<IconSvg src={iconHeart} size='large' />} />
               <CustomerFab guestHref='/account/signin' authHref='/account' />
-              {/* The placeholder exists because the CartFab is sticky but we want to reserve the space for the <CartFab /> */}
-              {cartEnabled && <PlaceholderFab />}
+              <PlaceholderFab />
             </DesktopNavActions>
           </>
         }
-        footer={<Footer footer={footer} />}
         cartFab={<CartFab />}
+        footer={<Footer footer={footer} />}
         menuFab={<NavigationFab onClick={() => selection.set([])} />}
       >
         {children}

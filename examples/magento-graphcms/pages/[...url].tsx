@@ -69,7 +69,6 @@ function CategoryPage(props: CategoryProps) {
   const page = pages?.[0]
   const isCategory = params && category && products?.items
 
-  console.log(page?.asset)
   return (
     <InContextMaskProvider mask={productList.mask}>
       <CategoryMeta
