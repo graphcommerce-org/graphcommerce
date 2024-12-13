@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.112
+
+### Patch Changes
+
+- [`f28f11c`](https://github.com/graphcommerce-org/graphcommerce/commit/f28f11cf2821b3fd50c3147558f559d808b1046e) - Pin versions of @graphql-mesh/config and utils ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.111
 
 ## 9.0.0-canary.110
