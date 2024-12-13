@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.111
+
+### Patch Changes
+
+- [#2448](https://github.com/graphcommerce-org/graphcommerce/pull/2448) [`cca7a52`](https://github.com/graphcommerce-org/graphcommerce/commit/cca7a5209d5aa6b914ac738f71e6d90cc72f71a6) - Replace useWatch with watch in order to prevent email from being undefinded when already being prefilled for expired sessions ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.0-canary.110
 
 ## 9.0.0-canary.109
