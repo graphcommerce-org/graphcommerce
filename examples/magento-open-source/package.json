@@ -120,10 +120,6 @@
     "> 1% in alt-EU",
     "not IE 11"
   ],
-  "resolutions": {
-    "@graphql-mesh/config": "0.106.8",
-    "@graphql-mesh/utils": "0.103.7"
-  },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",

@@ -1,5 +1,5 @@
 ---
-'@graphcommerce/next-ui': patch
+'@graphcommerce/next-ui': minor
 ---
 
 Added Intl components, deprecated `useNumberFormat` and `useDateTimeFormatter`, and replaced usage sites. New components and hooks:
