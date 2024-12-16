@@ -1839,5 +1839,3 @@ export class Visitor {
     return n
   }
 }
-
-export default Visitor
