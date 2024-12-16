@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.115
+
+### Patch Changes
+
+- [#2451](https://github.com/graphcommerce-org/graphcommerce/pull/2451) [`af5c1e6`](https://github.com/graphcommerce-org/graphcommerce/commit/af5c1e686792ee7c7294efb0bc3a005946ac5c98) - Made all graphql mesh dependencies peer dependencies so users can upgrade without problems ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.114
 
 ### Patch Changes
