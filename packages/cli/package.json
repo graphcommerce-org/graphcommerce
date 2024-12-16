@@ -10,14 +10,10 @@
   },
   "type": "module",
   "bin": {
-    "gql-gen": "dist/bin/codegen.js",
-    "gql-mesh": "dist/bin/mesh.js",
+    "gc-gql-codegen": "dist/bin/codegen.js",
+    "gc-mesh": "dist/bin/mesh.js",
     "graphcommerce": "dist/bin/graphcommerce.js",
-    "graphql-code-generator": "dist/bin/codegen.js",
-    "graphql-codegen": "dist/bin/codegen.js",
-    "graphql-mesh": "dist/bin/mesh.js",
-    "is-monorepo": "dist/bin/is-monorepo.js",
-    "mesh": "dist/bin/mesh.js"
+    "is-monorepo": "dist/bin/is-monorepo.js"
   },
   "dependencies": {
     "@graphql-codegen/cli": "5.0.3",
