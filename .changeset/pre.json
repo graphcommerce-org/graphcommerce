@@ -77,7 +77,6 @@
     "@graphcommerce/next-config": "8.0.5",
     "@graphcommerce/prettier-config-pwa": "8.0.5",
     "@graphcommerce/typescript-config-pwa": "8.0.5",
-    "@graphcommerce/algolia-mesh": "8.1.0-canary.49",
     "@graphcommerce/magento-graphql-rest": "9.0.0-canary.63",
     "@graphcommerce/algolia-personalization": "9.0.0-canary.63",
     "@graphcommerce/algolia-categories": "9.0.0-canary.76",

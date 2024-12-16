@@ -1,5 +1,5 @@
 ---
-'@graphcommerce/algolia-mesh': patch
+'@graphcommerce/algolia-products': patch
 ---
 
 Added support for customer group pricing.

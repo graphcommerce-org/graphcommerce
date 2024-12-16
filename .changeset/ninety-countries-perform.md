@@ -1,5 +1,5 @@
 ---
-'@graphcommerce/algolia-mesh': minor
+'@graphcommerce/algolia-products': minor
 ---
 
 Algolia Magento 2 implemented as a GraphQL Mesh resolver: Allows full integration without modying any frontend components.
