@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.114
+
+### Patch Changes
+
+- [#2450](https://github.com/graphcommerce-org/graphcommerce/pull/2450) [`d5d161c`](https://github.com/graphcommerce-org/graphcommerce/commit/d5d161c2a9f9d831962a17ba424925947b018472) - Revert Pin versions of @graphql-mesh/config and utils ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.113
 
 ## 9.0.0-canary.112

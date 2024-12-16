@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.114
+
+### Patch Changes
+
+- [#2450](https://github.com/graphcommerce-org/graphcommerce/pull/2450) [`c37d1ec`](https://github.com/graphcommerce-org/graphcommerce/commit/c37d1ec016bc26c2a59296b0c76c14b513d94306) - Make sure categories and products create the correct URL's in sitemaps ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.113
 
 ## 9.0.0-canary.112

@@ -1,6 +1,6 @@
 {
   "name": "@graphcommerce/google-playstore",
-  "version": "9.0.0-canary.113",
+  "version": "9.0.0-canary.114",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "browserslist": [
@@ -13,10 +13,10 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.113",
-    "@graphcommerce/next-ui": "^9.0.0-canary.113",
-    "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.113",
-    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.113",
+    "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.114",
+    "@graphcommerce/next-ui": "^9.0.0-canary.114",
+    "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.114",
+    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.114",
     "next": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
