@@ -27,3 +27,5 @@ export const fetch = (
     retryOn: [429],
   })
 }
+
+export default fetch
