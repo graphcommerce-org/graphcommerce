@@ -44,6 +44,6 @@
     }
   },
   "dependencies": {
-    "web-vitals": "^4.2.3"
+    "web-vitals": "^4.2.4"
   }
 }

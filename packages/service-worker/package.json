@@ -11,15 +11,13 @@
       "project": "./tsconfig.json"
     }
   },
-  "dependencies": {
-    "@serwist/next": "^9.0.10",
-    "serwist": "^9.0.10"
-  },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.114",
     "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.114",
     "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.114",
+    "@serwist/next": "*",
     "next": "*",
+    "serwist": "*",
     "webpack": "^5.0.0"
   }
 }
