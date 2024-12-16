@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.113
+
+### Patch Changes
+
+- [#2445](https://github.com/graphcommerce-org/graphcommerce/pull/2445) [`e09905a`](https://github.com/graphcommerce-org/graphcommerce/commit/e09905a1d821b4ac36bb22f31a3e90c2d83e3049) - fix session expired email not always available in cache ([@StefanAngenent](https://github.com/StefanAngenent))
+
 ## 9.0.0-canary.112
 
 ## 9.0.0-canary.111
