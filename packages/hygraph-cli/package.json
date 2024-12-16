@@ -14,12 +14,12 @@
   "dependencies": {
     "@hygraph/management-sdk": "1.2.5",
     "@whatwg-node/fetch": "^0.10.1",
-    "graphql": "^16.9.0",
+    "graphql": "^16.10.0",
     "graphql-tag": "^2.12.6",
     "prompts": "^2.4.2"
   },
   "peerDependencies": {
-    "@apollo/client": "^3",
+    "@apollo/client": "*",
     "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.114",
     "@graphcommerce/next-config": "^9.0.0-canary.114",
     "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.114",

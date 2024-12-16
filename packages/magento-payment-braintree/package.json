@@ -12,7 +12,7 @@
     }
   },
   "devDependencies": {
-    "@types/braintree-web": "^3.96.15"
+    "@types/braintree-web": "^3.96.16"
   },
   "dependencies": {
     "braintree-web": "^3.112.1"
