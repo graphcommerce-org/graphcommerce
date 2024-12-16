@@ -23,16 +23,17 @@ roadmap.
 - [ ] GraphCommerce B2B: Create multiple presets to demo the range of
       configurations that can be made to get a good starting point for your
       project.
-- [ ] Mui 6 support with CSS variables.
-- [ ] GraphCommerce Pro: Login as Customer GraphQL functionality.
+- [ ] Material UI 6 support with CSS variables.
+- [ ] GraphCommerce Pro: Login as Customer functionality Magento module +
+      GraphCommerce integration.
+- [ ] GraphCommerce Pro: Cache Notifier module + GraphCommerce Integration to
+      revalidate the frontend on backend changes.
 
 ## Researching / Considering
 
 - [ ] Mui 6 support with [pigment-css](https://github.com/mui/pigment-css)
-- [ ] Upgrade to React 19 + Next.js app router support fase 1, all public pages:
-      home/category/search/product
-- [ ] GraphCommerce Pro: Magento Cache Notifier module to revalidate the
-      frontend on backend changes.
+- [ ] Upgrade to React 19 + Next.js app router support.
+
 - [ ] GraphCommerce Pro: Pagebuilder support
       [depends on ↗](https://github.com/magento/magento2/issues/37768)
 - [ ] Adobe Commerce: Reward points functionality
