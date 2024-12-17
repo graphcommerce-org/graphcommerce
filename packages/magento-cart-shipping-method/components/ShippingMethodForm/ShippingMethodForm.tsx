@@ -146,6 +146,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
   )
 }
 
+/** @public */
 export function useShippingMethod() {
   return useWatch<{ carrierMethod?: string }>({ name: 'carrierMethod' })
 }

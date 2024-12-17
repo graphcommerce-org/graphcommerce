@@ -47,9 +47,9 @@ import type {
   ExportNamedDeclaration,
   ExportNamespaceSpecifier,
   ExportSpecifier,
-  ExprOrSpread,
   Expression,
   ExpressionStatement,
+  ExprOrSpread,
   Fn,
   ForInStatement,
   ForOfStatement,
@@ -64,10 +64,10 @@ import type {
   ImportDefaultSpecifier,
   ImportNamespaceSpecifier,
   ImportSpecifier,
-  JSXAttrValue,
   JSXAttribute,
   JSXAttributeName,
   JSXAttributeOrSpread,
+  JSXAttrValue,
   JSXClosingElement,
   JSXClosingFragment,
   JSXElement,
@@ -187,6 +187,7 @@ import type {
 
 /**
  * @deprecated JavaScript API is deprecated. Please use Wasm plugin instead.
+ * @public
  */
 export class Visitor {
   visitProgram(n: Program): Program {

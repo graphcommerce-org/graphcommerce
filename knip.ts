@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { loadConfig, resolveDependenciesSync } from '@graphcommerce/next-config'
 import type { KnipConfig } from 'knip'
 
 type WorkspaceEntry = NonNullable<KnipConfig['workspaces']>[string]
@@ -26,6 +28,12 @@ const asPackageDir: WorkspaceEntry = {
     '**/*Resolver.ts',
   ],
 }
+
+const dependencies: Record<string, WorkspaceEntry> = Object.fromEntries(
+  [...resolveDependenciesSync(`${process.cwd()}/examples/magento-graphcms`).values()]
+    .slice(1)
+    .map((dir) => [dir, asPackageDir]),
+)
 
 const asNextjsDir: WorkspaceEntry = {
   ignore: ['.next', 'public', 'copy/**', 'copy/**/.well-known/**'],
@@ -62,24 +70,11 @@ const config: KnipConfig = {
     // "duplicates"
   ],
   workspaces: {
-    // '.': skip,
-    'packagesDev/*': asPackageDir,
-    'packages/*': asPackageDir,
-    // 'packagesDev/next-config': {
-    //   ignore: ['__tests__', '**/*.interceptor.tsx', 'src/generated/config.ts'],
-    // },
-    // 'packages/*': {
-    //   ignore: ['**/__tests__', 'test', '**/*.interceptor.tsx'],
-    //   entry: [
-    //     'plugins/**/*.{ts,tsx}',
-    //     'src/bin/*.ts',
-    //     '**/*.{js,mjs,cjs}',
-    //     'index.ts',
-    //     'src/index.ts',
-    //   ],
-    // },
-
+    'packagesDev/*': skip,
+    'packages/*': skip,
     scripts: skip,
+
+    ...dependencies,
     'packages/*/example': asNextjsDir,
     'packages/magento-pagebuilder': skip,
     'examples/magento-graphcms': asNextjsDir,
