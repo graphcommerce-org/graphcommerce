@@ -347,8 +347,6 @@ export type GraphCommerceConfig = {
    * If false, the robots.txt file will be set to disallow all.
    */
   robotsAllow?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Enable / disable quick search overlay */
-  searchOverlay?: InputMaybe<Scalars['Boolean']['input']>;
   /** Configuration for the SidebarGallery component */
   sidebarGallery?: InputMaybe<SidebarGalleryConfig>;
   /** All storefront configuration for the project */
@@ -591,7 +589,6 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     productRoute: z.string().nullish(),
     recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
     robotsAllow: z.boolean().nullish(),
-    searchOverlay: z.boolean().nullish(),
     sidebarGallery: SidebarGalleryConfigSchema().nullish(),
     storefront: z.array(GraphCommerceStorefrontConfigSchema()),
     wishlistHideForGuests: z.boolean().nullish(),

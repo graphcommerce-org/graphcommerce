@@ -25,7 +25,7 @@ import {
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
-import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/router'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
@@ -37,7 +37,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
   const { footer, menu, children, ...uiProps } = props
 
   const selection = useNavigationSelection()
-  const pathName = usePathname()
+  const router = useRouter()
   const cartEnabled = useCartEnabled()
 
   return (
@@ -116,7 +116,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
       <LayoutDefault
         {...uiProps}
-        noSticky={pathName === '/'}
+        noSticky={router.asPath.split('?')[0] === '/'}
         header={
           <>
             <Logo />
