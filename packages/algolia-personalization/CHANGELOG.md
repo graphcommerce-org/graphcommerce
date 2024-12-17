@@ -1,5 +1,11 @@
 # @graphcommerce/algolia-personalization
 
+## 9.0.0-canary.116
+
+### Patch Changes
+
+- [#2452](https://github.com/graphcommerce-org/graphcommerce/pull/2452) [`5dfd3b2`](https://github.com/graphcommerce-org/graphcommerce/commit/5dfd3b201255ef35263485d04153d37bb7e4fe67) - Renamed useInContextQuery to usePrivateQuery ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.115
 
 ## 9.0.0-canary.114

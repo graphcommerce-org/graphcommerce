@@ -11,23 +11,21 @@ export type SelectElementProps<T extends FieldValues, O extends OptionBase> = Om
   TextFieldProps,
   'name' | 'type' | 'onChange' | 'defaultValue'
 > & {
-  /** @deprecated Please use the rules props instead */
-  validation?: ControllerProps<T>['rules']
   options?: O[]
   type?: 'string' | 'number'
   onChange?: (value: string | number) => void
   showValid?: boolean
 } & Omit<ControllerProps<T>, 'render'>
 
+/** @public */
 export function SelectElement<TFieldValues extends FieldValues, O extends OptionBase>({
   name,
   required,
   options = [],
   type,
-  validation,
   control,
   defaultValue,
-  rules = validation ?? {},
+  rules = {},
   showValid,
   disabled,
   shouldUnregister,

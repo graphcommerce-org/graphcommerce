@@ -92,6 +92,7 @@ export type MollieFieldProps = {
   isSubmitted?: boolean
 } & TextFieldProps
 
+/** @public */
 export function MollieField(props: MollieFieldProps) {
   const { isSubmitted = false, label, ...fieldProps } = props
 

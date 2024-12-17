@@ -12,6 +12,7 @@ export type ImageLoaderPropsWithConfig = ImageLoaderProps & {
   config: Readonly<ImageConfig>
 }
 
+/** @public */
 export const {
   deviceSizes: configDeviceSizes,
   imageSizes: configImageSizes,

@@ -20,7 +20,7 @@ export type AlgoliaCategoryHitAddiotonalProperties = AlgoliaProductHitAdditional
   level: number
 }
 
-export function assertAdditional(
+function assertAdditional(
   additional: unknown,
 ): additional is AlgoliaCategoryHitAddiotonalProperties {
   return true

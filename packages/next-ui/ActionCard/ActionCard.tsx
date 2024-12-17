@@ -83,8 +83,10 @@ const { withState, selectors } = extendableComponent<StateProps, typeof name, ty
   parts,
 )
 
+/** @public */
 export const actionCardSelectors = selectors
 
+/** @public */
 export const actionCardImageSizes = {
   small: responsiveVal(60, 80),
   medium: responsiveVal(60, 80),
@@ -97,6 +99,7 @@ const combineSx = (defaultSx: SxProps<Theme>, slotSx?: SxProps<Theme>) => [
   ...(Array.isArray(slotSx) ? slotSx : [slotSx]),
 ]
 
+/** @public */
 export function ActionCard<C extends React.ElementType = typeof Box>(props: ActionCardProps<C>) {
   const {
     title,

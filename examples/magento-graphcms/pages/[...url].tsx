@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { cacheFirst, flushMeasurePerf, InContextMaskProvider } from '@graphcommerce/graphql'
+import { cacheFirst, flushMeasurePerf, PrivateQueryMaskProvider } from '@graphcommerce/graphql'
 import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import {
   appendSiblingsAsChildren,
@@ -69,9 +69,8 @@ function CategoryPage(props: CategoryProps) {
   const page = pages?.[0]
   const isCategory = params && category && products?.items
 
-  console.log(page?.asset)
   return (
-    <InContextMaskProvider mask={productList.mask}>
+    <PrivateQueryMaskProvider mask={productList.mask}>
       <CategoryMeta
         params={params}
         title={page?.metaTitle}
@@ -161,7 +160,7 @@ function CategoryPage(props: CategoryProps) {
           }}
         />
       )}
-    </InContextMaskProvider>
+    </PrivateQueryMaskProvider>
   )
 }
 

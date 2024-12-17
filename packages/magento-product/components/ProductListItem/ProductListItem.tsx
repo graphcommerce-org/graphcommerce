@@ -66,6 +66,7 @@ export type ProductProps = BaseProps & ProductListItemFragment
 
 export type ProductListItemProps = ProductProps | SkeletonProps
 
+/** @public */
 export function ProductListItemReal(props: ProductProps) {
   const {
     subTitle,
@@ -147,6 +148,7 @@ export function ProductListItemReal(props: ProductProps) {
   )
 }
 
+/** @public */
 export function ProductListItemSkeleton(props: BaseProps) {
   const {
     children,

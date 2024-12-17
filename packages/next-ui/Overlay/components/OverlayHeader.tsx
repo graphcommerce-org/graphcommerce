@@ -7,6 +7,7 @@ import { LayoutOverlayHeader } from '../../LayoutOverlay/components/LayoutOverla
 export type OverlayHeaderProps = Omit<LayoutHeaderProps, 'hideBackButton' | 'switchPoint'> &
   Pick<TitleProps, 'icon'> & { onClose: () => void }
 
+/** @public */
 export function OverlayHeader(props: OverlayHeaderProps) {
   const { children, onClose, sx = [], icon, primary, secondary, ...rest } = props
 

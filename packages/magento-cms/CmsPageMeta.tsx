@@ -1,7 +1,7 @@
 import { PageMeta } from '@graphcommerce/magento-store'
-import React from 'react'
 import type { CmsPageMetaFragment } from './CmsPageMeta.gql'
 
+/** @public */
 export function CmsPageMeta(props: CmsPageMetaFragment) {
   const { title, meta_title, meta_description } = props
 
