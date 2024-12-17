@@ -46,6 +46,7 @@ exports[`traverses a schema and returns a list of env variables that match 1`] =
   "GC_DATA_LAYER",
   "GC_DATA_LAYER_CORE_WEB_VITALS",
   "GC_DEBUG",
+  "GC_DEBUG_CART",
   "GC_DEBUG_PLUGIN_STATUS",
   "GC_DEBUG_SESSIONS",
   "GC_DEBUG_WEBPACK_CIRCULAR_DEPENDENCY_PLUGIN",

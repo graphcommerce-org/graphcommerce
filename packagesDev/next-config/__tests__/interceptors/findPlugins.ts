@@ -1,5 +1,6 @@
 import type { GraphCommerceConfig } from '../../src/generated/config'
 import { findPlugins } from '../../src/interceptors/findPlugins'
+
 const projectRoot = `${process.cwd()}/examples/magento-graphcms`
 it('finds plugins', () => {
   const fakeconfig = {
@@ -12,7 +13,8 @@ it('finds plugins', () => {
   const disabled = plugins.filter((p) => !p.enabled)
   const enabled = plugins.filter((p) => p.enabled)
   expect(errors).toMatchInlineSnapshot('[]')
-  expect(enabled).toMatchInlineSnapshot(`
+  expect(enabled).toMatchInlineSnapshot(
+    `
     [
       {
         "enabled": true,
@@ -541,9 +543,9 @@ it('finds plugins', () => {
         "type": "function",
       },
     ]
-  `)
-  expect(disabled).toMatchInlineSnapshot(
-    `
+  `,
+  )
+  expect(disabled).toMatchInlineSnapshot(`
     [
       {
         "enabled": false,
@@ -718,6 +720,15 @@ it('finds plugins', () => {
       },
       {
         "enabled": false,
+        "ifConfig": "debug.cart",
+        "sourceExport": "FramerNextPages",
+        "sourceModule": "@graphcommerce/magento-cart/plugins/CartDebuggerPlugin",
+        "targetExport": "FramerNextPages",
+        "targetModule": "@graphcommerce/framer-next-pages",
+        "type": "component",
+      },
+      {
+        "enabled": false,
         "ifConfig": "debug.sessions",
         "sourceExport": "FramerNextPages",
         "sourceModule": "@graphcommerce/magento-customer/plugins/SessionDebuggerPlugin",
@@ -735,6 +746,5 @@ it('finds plugins', () => {
         "type": "component",
       },
     ]
-  `,
-  )
+  `)
 })
