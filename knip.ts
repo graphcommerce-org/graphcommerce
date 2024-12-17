@@ -18,7 +18,13 @@ const asPackageDir: WorkspaceEntry = {
     'index.js',
     'src/index.ts',
   ],
-  entry: ['plugins/**/*.{ts,tsx}', 'src/bin/*.ts', '**/resolvers.ts', '**/resolver.ts'],
+  entry: [
+    'plugins/**/*.{ts,tsx}',
+    'src/bin/*.ts',
+    '**/resolvers.ts',
+    '**/resolver.ts',
+    '**/*Resolver.ts',
+  ],
 }
 
 const asNextjsDir: WorkspaceEntry = {
