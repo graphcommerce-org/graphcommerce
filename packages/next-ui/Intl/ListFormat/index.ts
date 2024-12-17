@@ -1,2 +1,2 @@
 export * from './ListFormat'
-export * from './useListFormat'
+export * from './useIntlListFormat'

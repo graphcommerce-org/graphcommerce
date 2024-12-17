@@ -1,17 +1,17 @@
 import type { SxProps, Theme } from '@mui/material'
 import { useMemo } from 'react'
 import { useMemoObject } from '../../hooks/useMemoObject'
-import type { UseLocalesArgumentOptions } from '../useLocalesArgument'
-import { useLocalesArgument } from '../useLocalesArgument'
+import type { UseIntlLocalesArgumentOptions } from '../useIntlLocalesArgument'
+import { useIntlLocalesArgument } from '../useIntlLocalesArgument'
 
-export type UseNumberFormatProps = {
+export type UseIntlNumberFormatOptions = {
   numberStyle: Intl.NumberFormatOptions['style']
   sx?: SxProps<Theme>
 } & Omit<Intl.NumberFormatOptions, 'style'> &
-  UseLocalesArgumentOptions
+  UseIntlLocalesArgumentOptions
 
-export function useNumberFormat(props: UseNumberFormatProps) {
-  const [locales, { numberStyle, ...options }] = useLocalesArgument(props)
+export function useIntlNumberFormat(props: UseIntlNumberFormatOptions) {
+  const [locales, { numberStyle, ...options }] = useIntlLocalesArgument(props)
   const memoOptions = useMemoObject({ ...options, style: numberStyle })
   return useMemo(() => new Intl.NumberFormat(locales, memoOptions), [locales, memoOptions])
 }

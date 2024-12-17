@@ -1,2 +1,2 @@
 export * from './DisplayNames'
-export * from './useDisplayNames'
+export * from './useIntlDisplayNames'
