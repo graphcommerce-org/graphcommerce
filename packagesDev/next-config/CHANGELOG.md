@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.116
+
+### Minor Changes
+
+- [#2452](https://github.com/graphcommerce-org/graphcommerce/pull/2452) [`aab290f`](https://github.com/graphcommerce-org/graphcommerce/commit/aab290f9c905be06e742cd8ad50d7d415930828a) - Migrated to next.config.ts ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.115
 
 ## 9.0.0-canary.114
