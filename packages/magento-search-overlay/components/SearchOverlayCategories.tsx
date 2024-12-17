@@ -1,23 +1,18 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { productListLink } from '@graphcommerce/magento-product'
-import {
-  SectionContainerProps,
-  filterNonNullableKeys,
-  SectionContainer,
-  NextLink,
-} from '@graphcommerce/next-ui'
+import { CategorySearchDocument } from '@graphcommerce/magento-search'
+import type { CategorySearchResultFragment } from '@graphcommerce/magento-search'
+import type { SectionContainerProps } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, NextLink, SectionContainer } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import {
-  LinkProps,
+import type {
   BreadcrumbsProps,
-  TypographyProps,
-  Breadcrumbs,
-  Typography,
+  LinkProps,
   ListItemButtonProps,
+  TypographyProps,
 } from '@mui/material'
+import { Breadcrumbs, Typography } from '@mui/material'
 import { forwardRef } from 'react'
-import { CategorySearchDocument } from '../../CategorySearch.gql'
-import { CategorySearchResultFragment } from '../CategorySearchResult/CategorySearchResult.gql'
 import { SearchOverlayItem } from './SearchOverlayItem'
 import { useSearchOverlay } from './SearchOverlayProvider'
 
@@ -29,6 +24,7 @@ type SearchOverlayCategoriesProps = {
     sectionContainer?: SectionContainerProps
   }
 }
+
 type SearchOverlayCategoryProps = {
   category: CategorySearchResultFragment
   slotProps?: {

@@ -1,13 +1,12 @@
-import {
-  ProductListItemRenderer,
-  ProductListItemsBase,
-  productListLink,
-} from '@graphcommerce/magento-product'
+import type { ProductListItemRenderer } from '@graphcommerce/magento-product'
+import { ProductListItemsBase, productListLink } from '@graphcommerce/magento-product'
 import { SectionContainer } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Link, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Link } from '@mui/material'
 import { useRouter } from 'next/router'
-import { ComponentProps, useEffect, useMemo, useRef } from 'react'
+import type { ComponentProps } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import type { Entries } from 'type-fest'
 import { searchOverlayIsOpen, useSearchItem, useSearchOverlay } from './SearchOverlayProvider'
 import { SearchPlaceholder } from './SearchPlaceholder'

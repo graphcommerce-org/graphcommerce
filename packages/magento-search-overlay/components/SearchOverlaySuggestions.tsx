@@ -1,17 +1,12 @@
-import {
-  ProductListSearchSuggestionFragment,
-  useProductFiltersPro,
-} from '@graphcommerce/magento-product'
-import {
-  filterNonNullableKeys,
-  SectionContainer,
-  SectionContainerProps,
-} from '@graphcommerce/next-ui'
+import type { ProductListSearchSuggestionFragment } from '@graphcommerce/magento-product'
+import { useProductFiltersPro } from '@graphcommerce/magento-product'
+import type { SectionContainerProps } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, SectionContainer } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { forwardRef } from 'react'
+import { useRecentSearches } from '../hooks/useRecentSearches'
 import { SearchOverlayItem } from './SearchOverlayItem'
 import { useSearchOverlay } from './SearchOverlayProvider'
-import { useRecentSearches } from './useRecentSearches'
 
 type SearchOverlaySuggestionProps = ProductListSearchSuggestionFragment &
   React.ComponentPropsWithoutRef<typeof SearchOverlayItem>

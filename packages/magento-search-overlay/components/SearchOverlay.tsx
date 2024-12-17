@@ -1,14 +1,14 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { ProductListItemRenderer } from '@graphcommerce/magento-product'
+import type { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { iconSearch, IconSvg, Overlay } from '@graphcommerce/next-ui'
 import { Fab, useTheme } from '@mui/material'
+import { useOpenWithShortKey } from '../hooks/useOpenWithShortKey'
 import { SearchOverlayBodyBase } from './SearchOverlayBodyBase'
 import { SearchOverlayCategories } from './SearchOverlayCategories'
 import { SearchOverlayHeader } from './SearchOverlayHeader'
 import { SearchOverlayProducts } from './SearchOverlayProducts'
 import { searchOverlayIsOpen, SearchOverlayProvider } from './SearchOverlayProvider'
 import { SearchOverlaySuggestions } from './SearchOverlaySuggestions'
-import { useOpenWithShortKey } from './useOpenWithShortKey'
 
 type SearchOverlayProps = {
   productListRenderer: ProductListItemRenderer

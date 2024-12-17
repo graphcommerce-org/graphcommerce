@@ -1,9 +1,9 @@
 import { breakpointVal } from '@graphcommerce/next-ui'
 import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/LayoutHeaderClose'
 import { Box, styled } from '@mui/material'
+import { useStickyHeaderOnScroll } from '../hooks/useStickyHeaderOnScroll'
 import { SearchInput } from './SearchOverlayInput'
 import { searchOverlayIsOpen, useSearchOverlay } from './SearchOverlayProvider'
-import { useStickyHeaderOnScroll } from './useStickyHeaderOnScroll'
 
 const SearchOverlayHeaderRoot = styled(Box, { name: 'SearchOverlayHeader', slot: 'Root' })(
   ({ theme }) => ({

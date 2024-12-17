@@ -1,12 +1,14 @@
 import { InputBaseElement } from '@graphcommerce/ecommerce-ui'
-import { ProductListParams, useProductFiltersPro } from '@graphcommerce/magento-product'
+import type { ProductListParams } from '@graphcommerce/magento-product'
+import { useProductFiltersPro } from '@graphcommerce/magento-product'
+import { useSearchResultRemaining } from '@graphcommerce/magento-search'
 import { FormAutoSubmit, useDebounce } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/macro'
-import { BoxProps, SxProps, Theme, Box, InputBaseProps } from '@mui/material'
+import type { BoxProps, InputBaseProps, SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import React from 'react'
-import { useSearchResultRemaining } from '../ProductFiltersPro/ProductFiltersProSearchHeader'
+import { useRecentSearches } from '../hooks/useRecentSearches'
 import { useSearchInput } from './SearchOverlayProvider'
-import { useRecentSearches } from './useRecentSearches'
 
 function SearchInputShadow(
   props: BoxProps<'div'> & { params: ProductListParams; inputSx?: SxProps<Theme> },

@@ -3,7 +3,7 @@ import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
 import { SearchOverlaySuggestion } from './SearchOverlaySuggestions'
 
-export function RecentSearches({ recentSearches }: { recentSearches: string[] }) {
+export function SearchOverlayRecent({ recentSearches }: { recentSearches: string[] }) {
   return (
     <Box>
       <SectionContainer labelLeft={<Trans id='Continue searching' />}>

@@ -80,6 +80,7 @@ exports[`traverses a schema and returns a list of env variables that match 1`] =
   "GC_RECENTLY_VIEWED_PRODUCTS_ENABLED",
   "GC_RECENTLY_VIEWED_PRODUCTS_MAX_COUNT",
   "GC_ROBOTS_ALLOW",
+  "GC_SEARCH_OVERLAY",
   "GC_SIDEBAR_GALLERY",
   "GC_SIDEBAR_GALLERY_PAGINATION_VARIANT",
   "GC_STOREFRONT",

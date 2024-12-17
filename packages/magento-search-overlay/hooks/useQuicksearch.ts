@@ -1,20 +1,22 @@
-import { useInContextQuery, useQuery } from '@graphcommerce/graphql'
-import {
-  ProductListQuery,
+import { usePrivateQuery, useQuery } from '@graphcommerce/graphql'
+import type {
+  FilterFormProviderProps,
   ProductFiltersQuery,
   ProductListParams,
-  ProductListDocument,
-  FilterFormProviderProps,
-  toProductListParams,
-  prefetchProductList,
+  ProductListQuery,
 } from '@graphcommerce/magento-product'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { useEventCallback } from '@mui/material'
 import {
-  useProductListApplySearchDefaults,
+  prefetchProductList,
+  ProductListDocument,
+  toProductListParams,
+} from '@graphcommerce/magento-product'
+import {
   productListApplySearchDefaults,
   searchDefaultsToProductListFilters,
-} from '../../utils/productListApplySearchDefaults'
+  useProductListApplySearchDefaults,
+} from '@graphcommerce/magento-search'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { useEventCallback } from '@mui/material'
 
 /**
  * - Handles shallow routing requests
@@ -26,7 +28,7 @@ export function useQuicksearch<
 >(props: T) {
   const { params } = props
   const variables = useProductListApplySearchDefaults(params)
-  const result = useInContextQuery(
+  const result = usePrivateQuery(
     ProductListDocument,
     { variables: { ...variables, quickSearch: true }, skip: false || !params?.search },
     props,

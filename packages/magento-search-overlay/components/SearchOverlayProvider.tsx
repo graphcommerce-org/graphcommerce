@@ -1,22 +1,11 @@
-import {
-  ProductFiltersPro,
-  ProductListParams,
-  ProductListQuery,
-  toProductListParams,
-} from '@graphcommerce/magento-product'
+import type { ProductListParams, ProductListQuery } from '@graphcommerce/magento-product'
+import { ProductFiltersPro, toProductListParams } from '@graphcommerce/magento-product'
 import { useForkRef } from '@mui/material'
 import { motionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
-import { useQuicksearch } from './useQuicksearch'
+import type { ReactNode } from 'react'
+import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { useQuicksearch } from '../hooks/useQuicksearch'
 
 export const searchOverlayIsOpen = motionValue(false)
 

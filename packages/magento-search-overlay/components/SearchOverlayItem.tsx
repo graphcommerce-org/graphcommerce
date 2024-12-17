@@ -1,5 +1,7 @@
-import { alpha, ListItemButton, ListItemButtonProps } from '@mui/material'
-import { forwardRef, ElementType, memo } from 'react'
+import type { ListItemButtonProps } from '@mui/material'
+import { alpha, ListItemButton } from '@mui/material'
+import type { ElementType } from 'react'
+import { forwardRef, memo } from 'react'
 import { useSearchItem } from './SearchOverlayProvider'
 
 export type SearchOverlayItemProps<C extends ElementType = 'li'> = ListItemButtonProps<

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { searchOverlayIsOpen } from './SearchOverlayProvider'
+import { searchOverlayIsOpen } from '../components/SearchOverlayProvider'
 
 export function useOpenWithShortKey() {
   useEffect(() => {

@@ -1,12 +1,7 @@
 import { CartFab, useCartEnabled } from '@graphcommerce/magento-cart'
 import { magentoMenuToNavigation } from '@graphcommerce/magento-category'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
-import {
-  ProductFiltersProSearchField,
-  SearchLink,
-  SearchOverlay,
-  SearchOverlayFab,
-} from '@graphcommerce/magento-search'
+import { ProductFiltersProSearchField, SearchFab, SearchLink } from '@graphcommerce/magento-search'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import {
   DesktopNavActions,
@@ -31,7 +26,6 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
 import { usePathname } from 'next/navigation'
-import { productListRenderer } from '../ProductListItems'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
@@ -126,7 +120,6 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
         header={
           <>
             <Logo />
-            {import.meta.graphCommerce.searchOverlay && <SearchOverlayFab />}
 
             <DesktopNavBar>
               {menu?.items?.[0]?.children?.slice(0, 2).map((item) => (
@@ -154,11 +147,8 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </DesktopNavBar>
 
             <DesktopNavActions>
-              {import.meta.graphCommerce.searchOverlay && !pathName.startsWith('/search')  ? (
-                <SearchOverlay productListRenderer={productListRenderer} />
-              ) : (
-                <ProductFiltersProSearchField formControl={{ sx: { width: '400px' } }} />
-              )}
+              <ProductFiltersProSearchField formControl={{ sx: { width: '400px' } }} />
+
               <Fab
                 href='/service'
                 aria-label={i18n._(/* i18n */ 'Customer Service')}
@@ -172,6 +162,8 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               {/* The placeholder exists because the CartFab is sticky but we want to reserve the space for the <CartFab /> */}
               {cartEnabled && <PlaceholderFab />}
             </DesktopNavActions>
+
+            <SearchFab />
           </>
         }
         footer={<Footer footer={footer} />}
