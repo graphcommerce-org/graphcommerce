@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { loadConfig, resolveDependenciesSync } from '@graphcommerce/next-config'
+import { resolveDependenciesSync } from '@graphcommerce/next-config'
 import type { KnipConfig } from 'knip'
 
 type WorkspaceEntry = NonNullable<KnipConfig['workspaces']>[string]
@@ -36,7 +36,7 @@ const dependencies: Record<string, WorkspaceEntry> = Object.fromEntries(
 )
 
 const asNextjsDir: WorkspaceEntry = {
-  ignore: ['.next', 'public', 'copy/**', 'copy/**/.well-known/**'],
+  ignore: ['.next', 'public', 'copy/**'],
   entry: [
     'next.config.js',
     'graphcommerce.config.js',
@@ -63,11 +63,16 @@ const config: KnipConfig = {
   include: [
     'files',
     'exports',
+
+    'classMembers',
+    'enumMembers',
+    'unlisted',
+    'unresolved',
     // Enable when files and exports are handled.
-    // "nsExports",
-    // "types"
-    // "nsTypes"
-    // "duplicates"
+    'nsExports',
+    // 'types',
+    'nsTypes',
+    'duplicates',
   ],
   workspaces: {
     'packagesDev/*': skip,

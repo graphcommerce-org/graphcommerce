@@ -7,10 +7,10 @@ const fetcher = fetchRetry(
 )
 
 /**
- * @public
  * @param {RequestInfo | URL} url
  * @param {import('fetch-retry').RequestInitWithRetry | undefined} options
  * @returns {Promise<Response>}
+ * @public
  */
 export const fetch = (
   url: RequestInfo | URL,
@@ -29,5 +29,5 @@ export const fetch = (
   })
 }
 
-/** @public */
+/** @public @alias */
 export default fetch
