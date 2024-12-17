@@ -482,16 +482,8 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "graphqlConfig",
-        "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerRemoveInContextDirective",
-        "targetExport": "graphqlConfig",
-        "targetModule": "@graphcommerce/graphql",
-        "type": "function",
-      },
-      {
-        "enabled": true,
         "sourceExport": "getPrivateQueryContext",
-        "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerGetInContext",
+        "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerPrivateQueryContext",
         "targetExport": "getPrivateQueryContext",
         "targetModule": "@graphcommerce/graphql",
         "type": "function",
@@ -499,7 +491,7 @@ it('finds plugins', () => {
       {
         "enabled": true,
         "sourceExport": "usePrivateQueryContext",
-        "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerGetInContext",
+        "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerPrivateQueryContext",
         "targetExport": "usePrivateQueryContext",
         "targetModule": "@graphcommerce/graphql",
         "type": "function",
