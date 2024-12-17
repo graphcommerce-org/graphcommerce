@@ -8,12 +8,7 @@ import { resolveDependency } from '../../src/utils/resolveDependency'
 const projectRoot = `${process.cwd()}/examples/magento-graphcms`
 const startLocation = '/** @see {@link file://'
 const expectImport = (value: string | undefined): jest.JestMatchers<string> =>
-  expect(
-    value
-      ?.slice(value.indexOf('import') - 1, value.indexOf(startLocation) - 1)
-
-      .trim(),
-  )
+  expect(value?.slice(value.indexOf('import') - 1, value.indexOf(startLocation) - 1).trim())
 const expectInterceptor = (value: string | undefined): jest.JestMatchers<string> => {
   const val = value?.slice(value.indexOf(SOURCE_END) + SOURCE_END.length).trim()
   return expect(val?.trim())
@@ -384,6 +379,7 @@ it('adds debug logging to interceptors for components', async () => {
     import type { ApolloLink, TypePolicies } from '@apollo/client'
     import type { SetRequired } from 'type-fest'
     import type { MigrateCache } from './components/GraphQLProvider/migrateCache'
+    import { RemovePrivateContextDirectivesLink } from './link/RemovePrivateContextDirectivesLink'
 
     export interface PreviewData {}
     export type PreviewConfig = {
@@ -404,7 +400,7 @@ it('adds debug logging to interceptors for components', async () => {
       const { storefront, links = [], policies = [], migrations = [], ...rest } = config
       return {
         storefront,
-        links,
+        links: [...links, new RemovePrivateContextDirectivesLink()],
         policies,
         migrations,
         ...rest,
@@ -704,8 +700,7 @@ it('Can correctly find exports that are default exports', async () => {
   `)
   expectOriginal(result).toContain('iconChevronLeftDisabled')
   expectOriginal(result).toContain('iconChevronRightDisabled')
-  expectInterceptor(result).toMatchInlineSnapshot(
-    `
+  expectInterceptor(result).toMatchInlineSnapshot(`
     "/**
      * Here you see the 'interceptor' that is applying all the configured plugins.
      *
@@ -727,6 +722,5 @@ it('Can correctly find exports that are default exports', async () => {
      * @see {iconChevronRightMyProjectIcon} for replacement of the original source (original source not used)
      */
     export const iconChevronRight = iconChevronRightMyProjectIcon"
-  `,
-  )
+  `)
 })
