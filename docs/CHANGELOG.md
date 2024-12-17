@@ -1,5 +1,19 @@
 # Change Log
 
+## 9.0.0-canary.115
+
+## 9.0.0-canary.114
+
+### Patch Changes
+
+- [#2450](https://github.com/graphcommerce-org/graphcommerce/pull/2450) [`b116d0f`](https://github.com/graphcommerce-org/graphcommerce/commit/b116d0f714d37a4db30b19812ce5a9d2a6372d42) - Added documentation about the Canonical URL and Sitemap handling ([@paales](https://github.com/paales))
+
+## 9.0.0-canary.113
+
+## 9.0.0-canary.112
+
+## 9.0.0-canary.111
+
 ## 9.0.0-canary.110
 
 ## 9.0.0-canary.109

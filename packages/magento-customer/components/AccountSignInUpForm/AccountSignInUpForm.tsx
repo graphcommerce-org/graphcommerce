@@ -1,9 +1,4 @@
-import {
-  ActionCardListForm,
-  EmailElement,
-  FormAutoSubmit,
-  useWatch,
-} from '@graphcommerce/ecommerce-ui'
+import { ActionCardListForm, EmailElement, FormAutoSubmit } from '@graphcommerce/ecommerce-ui'
 import { useApolloClient } from '@graphcommerce/graphql'
 import {
   ActionCard,
@@ -18,7 +13,12 @@ import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
 import { Alert, Box, CircularProgress, Link, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import { CustomerDocument, useAccountSignInUpForm, useCustomerAccountCanSignUp } from '../../hooks'
+import {
+  CustomerDocument,
+  useAccountSignInUpForm,
+  useCustomerAccountCanSignUp,
+  UseCustomerValidateTokenDocument,
+} from '../../hooks'
 import { useCustomerQuery } from '../../hooks/useCustomerQuery'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError'
 import { SignInForm } from '../SignInForm/SignInForm'
@@ -35,12 +35,14 @@ const { classes } = extendableComponent('AccountSignInUpForm', parts)
 
 export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
   const { sx = [], signUpDisabled } = props
+  const customerEmailQuery = useCustomerQuery(UseCustomerValidateTokenDocument)
   const customerQuery = useCustomerQuery(CustomerDocument)
 
-  const { email, firstname = '' } = customerQuery.data?.customer ?? {}
+  const { email } = customerEmailQuery.data?.customer ?? {}
+  const { firstname = '' } = customerQuery.data?.customer ?? {}
 
   const { mode, form, submit } = useAccountSignInUpForm()
-  const { formState, control, error, setError, clearErrors } = form
+  const { formState, control, error, setError, clearErrors, watch } = form
   const router = useRouter()
 
   const client = useApolloClient()
@@ -54,7 +56,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
     mode === 'signin' ||
     (mode === 'signup' && canSignUp)
 
-  const emailValue = useWatch({ control }).email
+  const emailValue = watch('email')
 
   return (
     <FormDiv sx={sx} className={classes.root}>

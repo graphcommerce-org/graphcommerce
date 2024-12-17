@@ -418,7 +418,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   return (
     <>
       <MotionDiv
-        // @ts-expect-error ignore inert for current version
         inert={active ? undefined : ('true' as unknown as boolean)}
         className={classes.backdrop}
         style={{ opacity: positions.open.visible }}
@@ -441,7 +440,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         ]}
       />
       <Scroller
-        // @ts-expect-error ignore inert for current version
         inert={disableInert || active ? undefined : ('true' as unknown as boolean)}
         className={`${classes.scroller} ${className ?? ''}`}
         grid={false}

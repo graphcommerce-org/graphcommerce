@@ -1,6 +1,6 @@
 ---
-'@graphcommerce/docs': patch
-'@graphcommerce/service-worker': patch
+'@graphcommerce/docs': minor
+'@graphcommerce/service-worker': minor
 ---
 
 Moved to serwist for service workers

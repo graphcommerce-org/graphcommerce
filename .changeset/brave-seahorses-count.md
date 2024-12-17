@@ -1,5 +1,5 @@
 ---
-'@graphcommerce/algolia-mesh': patch
+'@graphcommerce/algolia-products': minor
 ---
 
 Added algolia search suggestions

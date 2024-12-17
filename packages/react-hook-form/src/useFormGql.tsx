@@ -3,6 +3,7 @@ import type {
   FetchResult,
   LazyQueryHookOptions,
   LazyQueryResultTuple,
+  MaybeMasked,
   MutationHookOptions,
   MutationTuple,
   TypedDocumentNode,
@@ -17,15 +18,18 @@ import type { UseGqlDocumentHandler } from './useGqlDocumentHandler'
 import { useGqlDocumentHandler } from './useGqlDocumentHandler'
 import { tryAsync } from './utils/tryTuple'
 
-export type OnCompleteFn<Q, V> = (data: FetchResult<Q>, variables: V) => void | Promise<void>
+export type OnCompleteFn<Q, V> = (
+  data: FetchResult<MaybeMasked<Q>>,
+  variables: V,
+) => void | Promise<void>
 
 type UseFormGraphQLCallbacks<Q, V> = {
   /**
    * Allows you to modify the variablels computed by the form to make it compatible with the GraphQL
    * Mutation.
    *
-   * When returning false, it will silently stop the submission.
-   * When an error is thrown, it will be set as an ApolloError
+   * When returning false, it will silently stop the submission. When an error is thrown, it will be
+   * set as an ApolloError
    */
   onBeforeSubmit?: (variables: V) => V | false | Promise<V | false>
   /**
@@ -38,26 +42,27 @@ type UseFormGraphQLCallbacks<Q, V> = {
   /**
    * @deprecated Not used anymore, is now the default
    *
-   * Changes:
-   * - Restores `defaultValues` functionality to original functionality, use `values` instead.
-   * - Does not reset the form after submission, use `values` instead.
-   * - Does not 'encode' the variables, use onBeforeSubmit instead.
+   *   Changes:
    *
-   * Future plans:
-   * - Remove the useMutation/useLazyQuery tuple and use a reguler client.mutation() call.
-   * - Write graphql errors to setError('root')
-   * - Remove onBeforeSubmit, onComplete and the handleSubmit rewrite with a single mutate() callback.
+   *   - Restores `defaultValues` functionality to original functionality, use `values` instead.
+   *   - Does not reset the form after submission, use `values` instead.
+   *   - Does not 'encode' the variables, use onBeforeSubmit instead.
    *
+   *   Future plans:
    *
-   * ```ts
-   * const { handleSubmit } = useFormGqlMutation();
+   *   - Remove the useMutation/useLazyQuery tuple and use a reguler client.mutation() call.
+   *   - Write graphql errors to setError('root')
+   *   - Remove onBeforeSubmit, onComplete and the handleSubmit rewrite with a single mutate() callback.
    *
-   * const submit = handleSubmit((formValues, mutate) => {
-   *    // onBeforeSubmit now simply is code before mutate() where you can return early for example or set errors.
-   *    const result = mutate() // executes the mutation and automatically sets generic errors with setError('root')
-   *    // onComplete: now simply use the result after the form, to for example reset the form, or do other things.
-   * })
-   * ```
+   *   ```ts
+   *   const { handleSubmit } = useFormGqlMutation()
+   *
+   *   const submit = handleSubmit((formValues, mutate) => {
+   *     // onBeforeSubmit now simply is code before mutate() where you can return early for example or set errors.
+   *     const result = mutate() // executes the mutation and automatically sets generic errors with setError('root')
+   *     // onComplete: now simply use the result after the form, to for example reset the form, or do other things.
+   *   })
+   *   ```
    */
   experimental_useV2?: boolean
   /**
@@ -68,7 +73,8 @@ type UseFormGraphQLCallbacks<Q, V> = {
   deprecated_useV1?: boolean
 
   /**
-   * Only submit the form when there are dirty fields. If all fields are clean, we skip the submission.
+   * Only submit the form when there are dirty fields. If all fields are clean, we skip the
+   * submission.
    *
    * Form is still set to isSubmitted and isSubmitSuccessful.
    */
@@ -83,7 +89,7 @@ export type UseFormGqlMethods<Q, V extends FieldValues> = Omit<
   'encode' | 'type'
 > &
   Pick<UseFormReturn<V>, 'handleSubmit'> & {
-    data?: Q | null
+    data?: MaybeMasked<Q> | null
     error?: ApolloError
     submittedVariables?: V
   }
