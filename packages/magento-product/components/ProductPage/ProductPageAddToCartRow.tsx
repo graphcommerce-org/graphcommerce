@@ -10,7 +10,7 @@ export type ProductPageAddToCartRowProps = {
   product: UseAddProductsToCartActionFragment
 }
 
-export function ProductPageAddToCartRow(props: ProductPageAddToCartRowProps) {
+function ProductPageAddToCartRow(props: ProductPageAddToCartRowProps) {
   const { sx, children, after } = props
   return (
     <>

@@ -9,6 +9,7 @@ export type NumberFormatProps = UseIntlNumberFormatOptions & {
   value: NumberFormatValue
 }
 
+/** @public */
 export const NumberFormat = forwardRef<HTMLSpanElement, NumberFormatProps>((props, ref) => {
   const { value, ...options } = props
   const formatter = useIntlNumberFormat(options)

@@ -6,6 +6,7 @@ export type ListFormatProps = {
   children: React.ReactNode[]
 } & UseIntlListFormatOptions
 
+/** @public */
 export function ListFormat(props: ListFormatProps) {
   const { children, ...options } = props
   const formatter = useIntlListFormat(options)

@@ -4,7 +4,7 @@
 import type { Page } from '@playwright/test'
 import { test as base } from '@playwright/test'
 import type { FetchResult, NormalizedCacheObject, TypedDocumentNode } from '../apollo'
-import { ApolloClient, InMemoryCache, getOperationName } from '../apollo'
+import { ApolloClient, getOperationName, InMemoryCache } from '../apollo'
 
 type ApolloClientTest = {
   apolloClient: ApolloClient<NormalizedCacheObject>
@@ -27,7 +27,8 @@ export async function waitForGraphQlResponse<Q, V>(
   return (await response?.json()) as FetchResult<Q>
 }
 
-const test = base.extend<ApolloClientTest>({
+/** @public */
+export const test = base.extend<ApolloClientTest>({
   apolloClient: async ({}, use) => {
     const client = new ApolloClient({
       uri: 'http://localhost:3000/api/graphql',
@@ -37,5 +38,3 @@ const test = base.extend<ApolloClientTest>({
     await use(client)
   },
 })
-
-export { test }

@@ -6,6 +6,7 @@ import { useIntlDateTimeFormat } from './useIntlDateTimeFormat'
 
 export type DateTimeFormatProps = UseIntlDateTimeFormatOptions & { date: DateValue }
 
+/** @public */
 export function DateTimeFormat(props: DateTimeFormatProps) {
   const { date } = props
   const formatter = useIntlDateTimeFormat({ dateStyle: 'medium', timeStyle: 'short', ...props })

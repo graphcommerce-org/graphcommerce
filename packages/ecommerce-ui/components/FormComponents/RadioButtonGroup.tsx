@@ -28,6 +28,7 @@ export type RadioButtonGroupProps<T extends FieldValues> = {
   row?: boolean
 } & UseControllerProps<T>
 
+/** @public */
 export function RadioButtonGroup<TFieldValues extends FieldValues>(
   props: RadioButtonGroupProps<TFieldValues>,
 ): JSX.Element {

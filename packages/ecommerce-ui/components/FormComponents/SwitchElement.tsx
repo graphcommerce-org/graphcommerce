@@ -7,6 +7,7 @@ type IProps = Omit<FormControlLabelProps, 'control'>
 
 export type SwitchElementProps<T extends FieldValues> = IProps & Omit<ControllerProps<T>, 'render'>
 
+/** @public */
 export function SwitchElement<TFieldValues extends FieldValues>({
   name,
   control,

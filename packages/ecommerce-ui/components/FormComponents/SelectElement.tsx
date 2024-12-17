@@ -19,6 +19,7 @@ export type SelectElementProps<T extends FieldValues, O extends OptionBase> = Om
   showValid?: boolean
 } & Omit<ControllerProps<T>, 'render'>
 
+/** @public */
 export function SelectElement<TFieldValues extends FieldValues, O extends OptionBase>({
   name,
   required,

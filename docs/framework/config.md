@@ -359,6 +359,10 @@ Show a message when the product is added to the wishlist.
 
 Debug configuration for GraphCommerce
 
+#### cart: boolean
+
+Enable debugging interface to debug sessions
+
 #### pluginStatus: boolean
 
 Reports which plugins are enabled or disabled.

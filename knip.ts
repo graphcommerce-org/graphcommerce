@@ -6,8 +6,23 @@ const skip: WorkspaceEntry = {
   ignore: ['**/*.*'],
 }
 
+const asPackageDir: WorkspaceEntry = {
+  ignore: [
+    '__tests__',
+    '__mocks__',
+    '__fixtures__',
+    '**/*.interceptor.tsx',
+    '**/*.interceptor.ts',
+    'dist',
+    'index.ts',
+    'index.js',
+    'src/index.ts',
+  ],
+  entry: ['plugins/**/*.{ts,tsx}', 'src/bin/*.ts', '**/resolvers.ts', '**/resolver.ts'],
+}
+
 const asNextjsDir: WorkspaceEntry = {
-  ignore: ['.next', 'public', 'copy/**'],
+  ignore: ['.next', 'public', 'copy/**', 'copy/**/.well-known/**'],
   entry: [
     'next.config.js',
     'graphcommerce.config.js',
@@ -42,25 +57,24 @@ const config: KnipConfig = {
   ],
   workspaces: {
     // '.': skip,
-    'packagesDev/*': {
-      ignore: ['__tests__', '**/*.interceptor.tsx', 'dist'],
-      entry: ['index.{js,mjs,cjs,ts,tsx}', 'src/index.{js,mjs,cjs,ts,tsx}'],
-    },
-    'packagesDev/next-config': {
-      ignore: ['__tests__', '**/*.interceptor.tsx', 'src/generated/config.ts'],
-    },
-    'packages/*': {
-      ignore: ['**/__tests__', 'test', '**/*.interceptor.tsx'],
-      entry: [
-        'plugins/**/*.{ts,tsx}',
-        'src/bin/*.ts',
-        '**/*.{js,mjs,cjs}',
-        'index.ts',
-        'src/index.ts',
-      ],
-    },
+    'packagesDev/*': asPackageDir,
+    'packages/*': asPackageDir,
+    // 'packagesDev/next-config': {
+    //   ignore: ['__tests__', '**/*.interceptor.tsx', 'src/generated/config.ts'],
+    // },
+    // 'packages/*': {
+    //   ignore: ['**/__tests__', 'test', '**/*.interceptor.tsx'],
+    //   entry: [
+    //     'plugins/**/*.{ts,tsx}',
+    //     'src/bin/*.ts',
+    //     '**/*.{js,mjs,cjs}',
+    //     'index.ts',
+    //     'src/index.ts',
+    //   ],
+    // },
+
     scripts: skip,
-    'packages/*/example': skip,
+    'packages/*/example': asNextjsDir,
     'packages/magento-pagebuilder': skip,
     'examples/magento-graphcms': asNextjsDir,
     'examples/magento-open-source': asNextjsDir,

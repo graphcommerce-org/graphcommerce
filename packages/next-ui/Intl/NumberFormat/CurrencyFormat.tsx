@@ -187,6 +187,7 @@ export type CurrencyFormatProps = Omit<NumberFormatProps, 'numberStyle'> & {
   currency: Currency | (string & Record<never, never>)
 }
 
+/** @public */
 export function CurrencyFormat(props: CurrencyFormatProps) {
   return <NumberFormat {...props} numberStyle='currency' />
 }

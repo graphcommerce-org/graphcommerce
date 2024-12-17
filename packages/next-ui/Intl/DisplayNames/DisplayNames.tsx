@@ -5,6 +5,7 @@ export type DisplayNamesProps = UseIntlDisplayNamesOptions & {
   code: string
 }
 
+/** @public */
 export function DisplayNames(props: DisplayNamesProps) {
   const { code, ...options } = props
   const formatter = useIntlDisplayNames(options)

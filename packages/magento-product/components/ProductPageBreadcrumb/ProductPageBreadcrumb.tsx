@@ -11,6 +11,7 @@ export type ProductPageBreadcrumbProps = ProductPageBreadcrumbFragment &
 
 /**
  * @deprecated Please use ProductPageBreadcrumbs
+ * @public
  */
 export function ProductPageBreadcrumb(props: ProductPageBreadcrumbProps) {
   const { categories, name, ...breadcrumbProps } = props

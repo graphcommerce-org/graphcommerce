@@ -359,6 +359,8 @@ export type GraphCommerceConfig = {
 
 /** Debug configuration for GraphCommerce */
 export type GraphCommerceDebugConfig = {
+  /** Enable debugging interface to debug sessions */
+  cart?: InputMaybe<Scalars['Boolean']['input']>;
   /** Reports which plugins are enabled or disabled. */
   pluginStatus?: InputMaybe<Scalars['Boolean']['input']>;
   /** Enable debugging interface to debug sessions */
@@ -596,6 +598,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
 
 export function GraphCommerceDebugConfigSchema(): z.ZodObject<Properties<GraphCommerceDebugConfig>> {
   return z.object({
+    cart: z.boolean().nullish(),
     pluginStatus: z.boolean().nullish(),
     sessions: z.boolean().nullish(),
     webpackCircularDependencyPlugin: z.boolean().nullish(),
