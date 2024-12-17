@@ -3,6 +3,10 @@ import { CartItem } from '@graphcommerce/magento-cart-items'
 import type { ConfigurableCartItemFragment } from './ConfigurableCartItem.gql'
 import { OptionsList } from './OptionsList'
 
+/**
+ * @deprecated
+ * @public
+ */
 export function ConfigurableCartItem(props: ConfigurableCartItemFragment & CartItemProps) {
   const { configurable_options, configured_variant, product } = props
   return (

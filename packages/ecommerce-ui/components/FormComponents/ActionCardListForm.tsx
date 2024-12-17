@@ -22,6 +22,7 @@ export type ActionCardListFormProps<A, F extends FieldValues = FieldValues> = Om
     render: React.FC<ActionCardItemRenderProps<A>>
   } & ActionCardRequireOptionSelection
 
+/** @public */
 export function ActionCardListForm<
   T extends ActionCardItemBase,
   F extends FieldValues = FieldValues,

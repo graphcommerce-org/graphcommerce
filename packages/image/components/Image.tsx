@@ -10,7 +10,7 @@
 import type { SxProps, Theme } from '@mui/material'
 import { styled, useForkRef } from '@mui/material'
 import type { ImageConfigComplete, LoaderValue } from 'next/dist/shared/lib/image-config'
-import { VALID_LOADERS, imageConfigDefault } from 'next/dist/shared/lib/image-config'
+import { imageConfigDefault, VALID_LOADERS } from 'next/dist/shared/lib/image-config'
 import { ImageConfigContext } from 'next/dist/shared/lib/image-config-context.shared-runtime'
 import Head from 'next/head'
 import type { ImageLoader, ImageLoaderProps } from 'next/image'
@@ -67,18 +67,22 @@ interface StaticRequire {
 
 export type StaticImport = StaticRequire | StaticImageData
 
+/** @public */
 export function isStaticRequire(src: StaticRequire | StaticImageData): src is StaticRequire {
   return (src as StaticRequire).default !== undefined
 }
 
+/** @public */
 export function isStaticImageData(src: StaticRequire | StaticImageData): src is StaticImageData {
   return (src as StaticImageData).src !== undefined
 }
 
+/** @public */
 export function isStaticImport(src: string | StaticImport): src is StaticImport {
   return typeof src === 'object' && (isStaticRequire(src) || isStaticImageData(src))
 }
 
+/** @public */
 export function srcToString(src: StaticImport | string) {
   return isStaticImport(src) ? (isStaticRequire(src) ? src.default : src).src : src
 }

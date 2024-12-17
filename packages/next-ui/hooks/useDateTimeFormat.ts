@@ -2,7 +2,9 @@ import { useMemo } from 'react'
 import { useLocale } from './useLocale'
 
 /**
- * @deprecated use <DateFormat/>, <TimeFormat/> or <DateTimeFormat/> instead
+ * @deprecated Use <DateFormat/>, <TimeFormat/> or <DateTimeFormat/> or useIntlDateTimeFormat()
+ *   instead
+ * @public
  */
 export function useDateTimeFormat(props?: Intl.DateTimeFormatOptions) {
   const locale = useLocale()

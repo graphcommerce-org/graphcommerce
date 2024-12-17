@@ -5,6 +5,7 @@ import type { CartAddressFragment } from '../CartAddress/CartAddress.gql'
 
 export type CartAddressSingleLineProps = CartAddressFragment & { locale?: CountryCodeEnum }
 
+/** @public */
 export function CartAddressSingleLine(props: CartAddressSingleLineProps) {
   const { locale } = props
   return <AddressSingleLine {...props} country_code={locale} />

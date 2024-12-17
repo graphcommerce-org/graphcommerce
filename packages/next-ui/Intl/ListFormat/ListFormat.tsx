@@ -1,14 +1,15 @@
 import React from 'react'
-import type { UseListFormatOptions } from './useListFormat'
-import { useListFormat } from './useListFormat'
+import type { UseIntlListFormatOptions } from './useIntlListFormat'
+import { useIntlListFormat } from './useIntlListFormat'
 
 export type ListFormatProps = {
   children: React.ReactNode[]
-} & UseListFormatOptions
+} & UseIntlListFormatOptions
 
+/** @public */
 export function ListFormat(props: ListFormatProps) {
   const { children, ...options } = props
-  const formatter = useListFormat(options)
+  const formatter = useIntlListFormat(options)
 
   const childArray = React.Children.toArray(children)
   const fauxChildren = childArray.map((child, index) => `${index}`) ?? []

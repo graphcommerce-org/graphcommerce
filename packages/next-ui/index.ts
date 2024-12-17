@@ -1,5 +1,4 @@
 export * from './ActionCard'
-export * from './AnimatedRow/AnimatedRow'
 export * from './Blog/BlogAuthor/BlogAuthor'
 export * from './Blog/BlogContent/BlogContent'
 export * from './Blog/BlogHeader/BlogHeader'

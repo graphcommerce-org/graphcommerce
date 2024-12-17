@@ -2,7 +2,9 @@ import { useMemo } from 'react'
 import { useLocale } from './useLocale'
 
 /**
- * @deprecated use <NumberFormat />, <PercentFormat /> or <UnitFormat /> instead
+ * @deprecated Use <NumberFormat />, <PercentFormat /> or <UnitFormat /> or useIntlNumberFormat()
+ *   instead
+ * @public
  */
 export function useNumberFormat(props?: Intl.NumberFormatOptions) {
   const locale = useLocale()

@@ -24,6 +24,7 @@ export type CheckboxElementProps<T extends FieldValues> = Omit<CheckboxProps, 'n
   formControl?: Omit<FormControlProps<'div'>, 'required' | 'error'>
 } & Omit<ControllerProps<T>, 'render'>
 
+/** @public */
 export function CheckboxElement<TFieldValues extends FieldValues>(
   props: CheckboxElementProps<TFieldValues>,
 ): JSX.Element {

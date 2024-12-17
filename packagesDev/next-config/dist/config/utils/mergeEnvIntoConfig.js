@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.filterEnv = exports.dotNotation = exports.toEnvStr = void 0;
+exports.toEnvStr = void 0;
 exports.configToEnvSchema = configToEnvSchema;
 exports.mergeEnvIntoConfig = mergeEnvIntoConfig;
 exports.formatAppliedEnv = formatAppliedEnv;
@@ -23,7 +23,6 @@ const dotNotation = (pathParts) => pathParts
     return !Number.isNaN(idx) ? `[${idx}]` : v;
 })
     .join('.');
-exports.dotNotation = dotNotation;
 function isJSON(str) {
     if (!str)
         return true;
@@ -55,7 +54,7 @@ function configToEnvSchema(schema) {
                     .optional()
                     .refine(isJSON, { message: 'Invalid JSON' })
                     .transform((val) => (val ? JSON.parse(val) : val));
-                envToDot[(0, exports.toEnvStr)(path)] = (0, exports.dotNotation)(path);
+                envToDot[(0, exports.toEnvStr)(path)] = dotNotation(path);
             }
             const typeNode = node;
             Object.keys(typeNode.shape).forEach((key) => {
@@ -71,7 +70,7 @@ function configToEnvSchema(schema) {
                     .optional()
                     .refine(isJSON, { message: 'Invalid JSON' })
                     .transform((val) => (val ? JSON.parse(val) : val));
-                envToDot[(0, exports.toEnvStr)(path)] = (0, exports.dotNotation)(path);
+                envToDot[(0, exports.toEnvStr)(path)] = dotNotation(path);
             }
             arr.forEach((key) => {
                 walk(node.element, [...path, String(key)]);
@@ -80,12 +79,12 @@ function configToEnvSchema(schema) {
         }
         if (node instanceof zod_1.ZodNumber) {
             envSchema[(0, exports.toEnvStr)(path)] = zod_1.z.coerce.number().optional();
-            envToDot[(0, exports.toEnvStr)(path)] = (0, exports.dotNotation)(path);
+            envToDot[(0, exports.toEnvStr)(path)] = dotNotation(path);
             return;
         }
         if (node instanceof zod_1.ZodString || node instanceof zod_1.ZodEnum) {
             envSchema[(0, exports.toEnvStr)(path)] = node.optional();
-            envToDot[(0, exports.toEnvStr)(path)] = (0, exports.dotNotation)(path);
+            envToDot[(0, exports.toEnvStr)(path)] = dotNotation(path);
             return;
         }
         if (node instanceof zod_1.ZodBoolean) {
@@ -99,7 +98,7 @@ function configToEnvSchema(schema) {
                     return false;
                 return v;
             });
-            envToDot[(0, exports.toEnvStr)(path)] = (0, exports.dotNotation)(path);
+            envToDot[(0, exports.toEnvStr)(path)] = dotNotation(path);
             return;
         }
         throw Error(`[@graphcommerce/next-config] Unknown type in schema ${node.constructor.name}. This is probably a bug please create an issue.`);
@@ -108,9 +107,8 @@ function configToEnvSchema(schema) {
     return [zod_1.z.object(envSchema), envToDot];
 }
 const filterEnv = (env) => Object.fromEntries(Object.entries(env).filter(([key]) => key.startsWith('GC_')));
-exports.filterEnv = filterEnv;
 function mergeEnvIntoConfig(schema, config, env) {
-    const filteredEnv = (0, exports.filterEnv)(env);
+    const filteredEnv = filterEnv(env);
     const newConfig = (0, utilities_1.cloneDeep)(config);
     const [envSchema, envToDot] = configToEnvSchema(schema);
     const result = envSchema.safeParse(filteredEnv);

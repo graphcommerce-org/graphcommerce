@@ -1,12 +1,12 @@
 import type { PreviewData } from '@graphcommerce/graphql'
 import {
-  IconSvg,
-  MessageSnackbar,
   iconChevronRight,
   iconClose,
   iconContrast,
   iconInfo,
   iconRefresh,
+  IconSvg,
+  MessageSnackbar,
 } from '@graphcommerce/next-ui'
 import { FormAutoSubmit, FormPersist, FormProvider, useForm } from '@graphcommerce/react-hook-form'
 import { Box, IconButton } from '@mui/material'
@@ -16,7 +16,7 @@ import { LightTooltip } from './LightTooltip'
 import { PreviewModeActions } from './PreviewModeActions'
 import { PreviewModeToolbar } from './PreviewModeToolbar'
 
-export function getPreviewUrl() {
+function getPreviewUrl() {
   const url = new URL(window.location.href)
   url.pathname = '/api/preview'
   ;[...url.searchParams.entries()].forEach(([key]) => url.searchParams.delete(key))

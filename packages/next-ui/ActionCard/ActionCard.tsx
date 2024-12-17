@@ -1,5 +1,5 @@
 import type { BoxProps, ButtonProps, SxProps, Theme } from '@mui/material'
-import { Box, ButtonBase, alpha, lighten } from '@mui/material'
+import { alpha, Box, ButtonBase, lighten } from '@mui/material'
 import React from 'react'
 import { extendableComponent, responsiveVal } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
@@ -69,8 +69,10 @@ const { withState, selectors } = extendableComponent<StateProps, typeof name, ty
   parts,
 )
 
+/** @public */
 export const actionCardSelectors = selectors
 
+/** @public */
 export const actionCardImageSizes = {
   small: responsiveVal(60, 80),
   medium: responsiveVal(60, 80),
@@ -78,6 +80,7 @@ export const actionCardImageSizes = {
   responsive: responsiveVal(60, 120),
 }
 
+/** @public */
 export function ActionCard(props: ActionCardProps) {
   const {
     title,

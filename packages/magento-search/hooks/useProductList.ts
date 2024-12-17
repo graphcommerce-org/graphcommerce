@@ -1,4 +1,4 @@
-import { useInContextQuery, useQuery } from '@graphcommerce/graphql'
+import { usePrivateQuery, useQuery } from '@graphcommerce/graphql'
 import type {
   FilterFormProviderProps,
   ProductFiltersQuery,
@@ -33,8 +33,8 @@ export function useProductList<
 >(props: T) {
   const { params, shallow } = useRouterFilterParams(props)
   const variables = useProductListApplySearchDefaults(params)
-  const result = useInContextQuery(ProductListDocument, { variables, skip: !shallow }, props)
-  const filters = useInContextQuery(
+  const result = usePrivateQuery(ProductListDocument, { variables, skip: !shallow }, props)
+  const filters = usePrivateQuery(
     ProductFiltersDocument,
     { variables: searchDefaultsToProductListFilters(variables), skip: !shallow },
     props,

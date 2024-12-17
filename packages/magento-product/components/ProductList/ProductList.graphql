@@ -4,7 +4,7 @@ query ProductList(
   $filters: ProductAttributeFilterInput = {}
   $sort: ProductAttributeSortInput = {}
   $search: String = ""
-  $context: InContextInput = { loggedIn: false }
+  $context: PrivateContext
   $onlyItems: Boolean = false
 ) {
   products(
@@ -13,7 +13,7 @@ query ProductList(
     filter: $filters
     sort: $sort
     search: $search
-  ) @inContext(context: $context) {
+  ) @privateContext(context: $context) {
     ...ProductListSuggestions @skip(if: $onlyItems)
     ...ProductListFilters @skip(if: $onlyItems)
     ...ProductListCount @skip(if: $onlyItems)

@@ -9,6 +9,7 @@ export type CategoryPageBreadcrumbsProps = CategoryBreadcrumbFragment &
 
 /**
  * @deprecated Please use CategoryBreadcrumbs
+ * @public
  */
 export function CategoryBreadcrumb(props: CategoryPageBreadcrumbsProps) {
   const { breadcrumbs, name, ...breadcrumbsProps } = props

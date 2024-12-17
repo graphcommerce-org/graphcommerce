@@ -35,6 +35,8 @@ type WithSx = { sx?: SxProps<Theme> }
  *   Layout: withTheme(LayoutFull, darkTheme),
  * } as PageOptions
  * ```
+ *
+ * @public
  */
 export function withTheme<T>(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
