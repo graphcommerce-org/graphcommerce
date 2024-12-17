@@ -26,7 +26,6 @@
     "@lingui/core": "^4.2.1",
     "@lingui/macro": "^4.2.1",
     "@lingui/react": "^4.2.1",
-    "@mui/base": "*",
     "@mui/material": "^5.10.16",
     "framer-motion": "*",
     "next": "*",
