@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { InContextMaskProvider, cacheFirst, flushMeasurePerf } from '@graphcommerce/graphql'
+import { PrivateQueryMaskProvider, cacheFirst, flushMeasurePerf } from '@graphcommerce/graphql'
 import { MenuQueryFragment } from '@graphcommerce/magento-category'
 import {
   ProductListDocument,
@@ -61,7 +61,7 @@ function SearchResultPage(props: SearchResultProps) {
         <ProductFiltersProSearchField size='small' formControl={{ sx: { width: '81vw' } }} />
       </LayoutHeader>
 
-      <InContextMaskProvider mask={productList.mask}>
+      <PrivateQueryMaskProvider mask={productList.mask}>
         {import.meta.graphCommerce.productFiltersPro &&
           import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
             <ProductListLayoutSidebar {...productList} menu={menu} />
@@ -73,7 +73,7 @@ function SearchResultPage(props: SearchResultProps) {
         {!import.meta.graphCommerce.productFiltersPro && (
           <ProductListLayoutClassic {...productList} menu={menu} />
         )}
-      </InContextMaskProvider>
+      </PrivateQueryMaskProvider>
     </>
   )
 }

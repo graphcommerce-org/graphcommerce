@@ -1,6 +1,6 @@
 import {
-  type getInContextInput as getInContextInputType,
-  type useInContextInput as useInContextInputType,
+  type getPrivateQueryContext as getPrivateQueryContextType,
+  type usePrivateQueryContext as usePrivateQueryContextType,
 } from '@graphcommerce/graphql'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 import { CustomerTokenDocument } from '../hooks/CustomerToken.gql'
@@ -11,7 +11,7 @@ export const config: PluginConfig = {
   module: '@graphcommerce/graphql',
 }
 
-export const getInContextInput: FunctionPlugin<typeof getInContextInputType> = (
+export const getPrivateQueryContext: FunctionPlugin<typeof getPrivateQueryContextType> = (
   prev,
   client,
   ...args
@@ -23,7 +23,10 @@ export const getInContextInput: FunctionPlugin<typeof getInContextInputType> = (
   return { ...res, loggedIn: true }
 }
 
-export const useInContextInput: FunctionPlugin<typeof useInContextInputType> = (prev, ...args) => {
+export const usePrivateQueryContext: FunctionPlugin<typeof usePrivateQueryContextType> = (
+  prev,
+  ...args
+) => {
   const { loggedIn } = useCustomerSession()
   const res = prev(...args)
   if (!loggedIn) return res

@@ -1,10 +1,10 @@
-import type { InContextInput } from '@graphcommerce/graphql-mesh'
+import type { PrivateContext } from '@graphcommerce/graphql-mesh'
 import type { ApolloClient } from '@apollo/client'
 
-export function getInContextInput(
+export function getPrivateQueryContext(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
   client: ApolloClient<any>,
-): InContextInput | null {
+): PrivateContext | null {
   return null
 }
 
@@ -15,6 +15,6 @@ export function getInContextInput(
  *
  * @see @graphcommerce/magento-customer/plugins/magentoCustomerGetInContext.ts
  *
- * Note: ONLY return a value if the frontend should use the inContext directive.
+ * Note: ONLY return a value if the frontend should use the privateContext directive.
  */
-export const useInContextInput = (): InContextInput | null => null
+export const usePrivateQueryContext = (): PrivateContext | null => null

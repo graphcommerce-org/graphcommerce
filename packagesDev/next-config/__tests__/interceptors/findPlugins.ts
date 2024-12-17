@@ -282,17 +282,17 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "getInContextInput",
+        "sourceExport": "getPrivateQueryContext",
         "sourceModule": "@graphcommerce/algolia-personalization/plugins/InContextInputAlgoliaUserToken",
-        "targetExport": "getInContextInput",
+        "targetExport": "getPrivateQueryContext",
         "targetModule": "@graphcommerce/graphql",
         "type": "function",
       },
       {
         "enabled": true,
-        "sourceExport": "useInContextInput",
+        "sourceExport": "usePrivateQueryContext",
         "sourceModule": "@graphcommerce/algolia-personalization/plugins/InContextInputAlgoliaUserToken",
-        "targetExport": "useInContextInput",
+        "targetExport": "usePrivateQueryContext",
         "targetModule": "@graphcommerce/graphql",
         "type": "function",
       },
@@ -490,17 +490,17 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "getInContextInput",
+        "sourceExport": "getPrivateQueryContext",
         "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerGetInContext",
-        "targetExport": "getInContextInput",
+        "targetExport": "getPrivateQueryContext",
         "targetModule": "@graphcommerce/graphql",
         "type": "function",
       },
       {
         "enabled": true,
-        "sourceExport": "useInContextInput",
+        "sourceExport": "usePrivateQueryContext",
         "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerGetInContext",
-        "targetExport": "useInContextInput",
+        "targetExport": "usePrivateQueryContext",
         "targetModule": "@graphcommerce/graphql",
         "type": "function",
       },
@@ -550,7 +550,8 @@ it('finds plugins', () => {
       },
     ]
   `)
-  expect(disabled).toMatchInlineSnapshot(`
+  expect(disabled).toMatchInlineSnapshot(
+    `
     [
       {
         "enabled": false,
@@ -742,5 +743,6 @@ it('finds plugins', () => {
         "type": "component",
       },
     ]
-  `)
+  `,
+  )
 })

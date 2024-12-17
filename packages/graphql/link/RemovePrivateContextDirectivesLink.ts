@@ -1,11 +1,7 @@
-import type { NextLink, Operation } from '@graphcommerce/graphql'
-import {
-  ApolloLink,
-  removeArgumentsFromDocument,
-  removeDirectivesFromDocument,
-} from '@graphcommerce/graphql'
+import type { NextLink, Operation } from '../apollo'
+import { ApolloLink, removeArgumentsFromDocument, removeDirectivesFromDocument } from '../apollo'
 
-export class RemoveInContextDirectivesLink extends ApolloLink {
+export class RemovePrivateContextDirectivesLink extends ApolloLink {
   // eslint-disable-next-line class-methods-use-this
   request(operation: Operation, forward?: NextLink) {
     if (!forward) throw new Error('This is not a terminal link!')
@@ -13,7 +9,7 @@ export class RemoveInContextDirectivesLink extends ApolloLink {
     let modifiedQuery = operation.query
 
     modifiedQuery =
-      removeDirectivesFromDocument([{ name: 'inContext' }], modifiedQuery) ?? modifiedQuery
+      removeDirectivesFromDocument([{ name: 'privateContext' }], modifiedQuery) ?? modifiedQuery
     modifiedQuery =
       removeArgumentsFromDocument([{ name: 'context' }], modifiedQuery) ?? modifiedQuery
 
