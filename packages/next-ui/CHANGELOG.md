@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.117
+
+### Patch Changes
+
+- [#2361](https://github.com/graphcommerce-org/graphcommerce/pull/2361) [`c2560fe`](https://github.com/graphcommerce-org/graphcommerce/commit/c2560fef474ab6d0c0e2ac402ca4c860dba55ebc) - OverlayBase now supports disableAnimation and disableDrag ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.116
 
 ## 9.0.0-canary.115

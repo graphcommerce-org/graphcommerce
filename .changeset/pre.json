@@ -86,7 +86,8 @@
     "@graphcommerce/hygraph-ui": "9.0.0-canary.102",
     "@graphcommerce/magento-open-source": "9.0.0-canary.103",
     "@graphcommerce/google-playstore": "9.0.0-canary.106",
-    "@graphcommerce/service-worker": "9.0.0-canary.107"
+    "@graphcommerce/service-worker": "9.0.0-canary.107",
+    "@graphcommerce/magento-search-overlay": "9.0.0-canary.116"
   },
   "changesets": [
     "afraid-ants-shout",
@@ -172,6 +173,7 @@
     "happy-hats-train",
     "healthy-lies-act",
     "healthy-plums-rescue",
+    "heavy-boxes-heal",
     "heavy-houses-attack",
     "heavy-spiders-grow",
     "hip-pianos-sip",
@@ -255,6 +257,7 @@
     "serious-cycles-punch",
     "seven-humans-hide",
     "shaggy-gifts-sip",
+    "sharp-clocks-punch",
     "sharp-seahorses-deny",
     "sharp-tips-destroy",
     "shiny-falcons-shout",
