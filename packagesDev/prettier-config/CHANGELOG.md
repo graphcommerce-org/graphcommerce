@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.0.0
+
+### Patch Changes
+
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
+
+- [#2385](https://github.com/graphcommerce-org/graphcommerce/pull/2385) [`654be83`](https://github.com/graphcommerce-org/graphcommerce/commit/654be8309cab209d95935cf06c84469726c981e7) - Enable prettier-plugin-jsdoc ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.118
 
 ## 9.0.0-canary.117
