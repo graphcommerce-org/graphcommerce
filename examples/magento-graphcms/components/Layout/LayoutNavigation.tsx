@@ -1,7 +1,7 @@
 import { CartFab, useCartEnabled } from '@graphcommerce/magento-cart'
 import { magentoMenuToNavigation } from '@graphcommerce/magento-category'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
-import { SearchFab, SearchField, SearchLink } from '@graphcommerce/magento-search'
+import { SearchFab, SearchField } from '@graphcommerce/magento-search'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import {
   DesktopNavActions,
@@ -21,7 +21,7 @@ import {
   NavigationOverlay,
   useNavigationSelection,
   useMemoDeep,
-  MediaQuery,
+  MobileTopRight,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -48,18 +48,6 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
         selection={selection}
         items={useMemoDeep(
           () => [
-            <SearchLink
-              href='/search'
-              onClick={() => selection.set(false)}
-              sx={(theme) => ({
-                width: `calc(100% - ${theme.spacing(4)})`,
-                m: 2,
-                mb: theme.spacings.xs,
-              })}
-              aria-label={i18n._(/* i18n */ 'Search...')}
-            >
-              <Trans id='Search...' />
-            </SearchLink>,
             { id: 'home', name: <Trans id='Home' />, href: '/' },
             {
               id: 'manual-item-one',
@@ -167,19 +155,9 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               {cartEnabled && <PlaceholderFab />}
             </DesktopNavActions>
 
-            <MediaQuery
-              query={(theme) => theme.breakpoints.down('md')}
-              display='flex'
-              sx={(theme) => ({
-                position: 'absolute',
-                right: theme.page.horizontal,
-                top: 0,
-                height: theme.appShell.headerHeightSm,
-                alignItems: 'center',
-              })}
-            >
+            <MobileTopRight>
               <SearchFab size='responsiveMedium' />
-            </MediaQuery>
+            </MobileTopRight>
           </>
         }
         footer={<Footer footer={footer} />}

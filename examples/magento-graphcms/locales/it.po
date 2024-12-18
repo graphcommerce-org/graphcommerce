@@ -469,10 +469,6 @@ msgid "Order has successfully been canceled"
 msgstr "L'ordine è stato annullato con successo"
 
 #. js-lingui-generated-id
-msgid "Products"
-msgstr "Prodotti"
-
-#. js-lingui-generated-id
 msgid "View all"
 msgstr "Visualizza tutto"
 
@@ -640,6 +636,9 @@ msgstr "Prodotto non trovato"
 
 msgid "Product not available in {allLabels}"
 msgstr "Prodotto non disponibile in {allLabels}"
+
+msgid "Products"
+msgstr "Prodotti"
 
 #. js-lingui-generated-id
 msgid "An error occurred while processing your payment. Please contact the store owner"
