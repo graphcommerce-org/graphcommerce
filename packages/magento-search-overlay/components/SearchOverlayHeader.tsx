@@ -25,7 +25,7 @@ const SearchOverlayHeaderRoot = styled(Box, { name: 'SearchOverlayHeader', slot:
 
 type SearchOverlayHeaderProps = React.ComponentProps<typeof SearchOverlayHeaderRoot> & {
   slotProps?: {
-    input?: React.ComponentProps<typeof SearchInput>
+    input?: Omit<React.ComponentProps<typeof SearchInput>, 'params'>
     close?: React.ComponentProps<typeof LayoutHeaderClose>
   }
 }

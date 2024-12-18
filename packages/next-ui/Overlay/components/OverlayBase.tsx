@@ -506,7 +506,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 height: dvh(100),
               },
               '&.variantMdTop': {
-                gridTemplate: `"overlay" "beforeOverlay"`,
+                gridTemplate: '"overlay" "beforeOverlay"',
                 height: dvh(100),
               },
             },
