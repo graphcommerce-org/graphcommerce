@@ -1,5 +1,31 @@
 # Change Log
 
+## 9.0.0
+
+### Minor Changes
+
+- [#2315](https://github.com/graphcommerce-org/graphcommerce/pull/2315) [`fb9118e`](https://github.com/graphcommerce-org/graphcommerce/commit/fb9118ec819d1b507d4fbde04f2ca34ec01ecf49) - Add `guestOrder` functionality. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`7a2f715`](https://github.com/graphcommerce-org/graphcommerce/commit/7a2f7153fa9157be17575abb6d77821a2ec99f30) - The `<PrivateQueryMask />` component now only warns when a block is rendered during the initial SSR render. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`d066e6f`](https://github.com/graphcommerce-org/graphcommerce/commit/d066e6f904ca68a8771ab73ce30aa06d11fc71b6) - When loading a page, always create a new GraphQL client, so that cache isn't shared for each request, causing an unnecessary large page size. ([@paales](https://github.com/paales))
+
+- [#2423](https://github.com/graphcommerce-org/graphcommerce/pull/2423) [`a4f0b48`](https://github.com/graphcommerce-org/graphcommerce/commit/a4f0b480f234e50d62f02e56716be80a30720475) - Added back ApolloClient caching for SSR requests to projects ([@paales](https://github.com/paales))
+
+- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`fe8fce7`](https://github.com/graphcommerce-org/graphcommerce/commit/fe8fce7f5a82e227ed4a1992415af73fa7d0bb79) - Added eslint rule: Importing `\*.interceptor` is NOT allowed ([@paales](https://github.com/paales))
+
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
+
+- [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`2457ca2`](https://github.com/graphcommerce-org/graphcommerce/commit/2457ca25a737a1fdc8b1d0e1b4b6ddb69c5f420e) - measurePerformanceLink now reports queries made in the subgraph and is only included during development and not in production. ([@paales](https://github.com/paales))
+
+- [#2452](https://github.com/graphcommerce-org/graphcommerce/pull/2452) [`5dfd3b2`](https://github.com/graphcommerce-org/graphcommerce/commit/5dfd3b201255ef35263485d04153d37bb7e4fe67) - Renamed useInContextQuery to usePrivateQuery ([@paales](https://github.com/paales))
+
+- [#2308](https://github.com/graphcommerce-org/graphcommerce/pull/2308) [`8faa5ac`](https://github.com/graphcommerce-org/graphcommerce/commit/8faa5ac618ecfdacd6d5eb751b4110c423aef97f) - Added Draft Mode support. When enabled it will be shown. ([@paales](https://github.com/paales))
+
+- [#2379](https://github.com/graphcommerce-org/graphcommerce/pull/2379) [`c4ff06d`](https://github.com/graphcommerce-org/graphcommerce/commit/c4ff06da58e01de47c48aa55f4f822223202570c) - When a `usePrivateQuery` is called, only execute when there is no `PrivateQueryMaskContext` defined above. ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.118
 
 ## 9.0.0-canary.117

@@ -1,5 +1,43 @@
 # @graphcommerce/ecommerce-ui
 
+## 9.0.0
+
+### Minor Changes
+
+- [#2319](https://github.com/graphcommerce-org/graphcommerce/pull/2319) [`a3409e8`](https://github.com/graphcommerce-org/graphcommerce/commit/a3409e8a629ee95413da6547cbdcf48aa2502c23) - Created a new `<TelephoneElement />` component to make re-use easier. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2366](https://github.com/graphcommerce-org/graphcommerce/pull/2366) [`3612c99`](https://github.com/graphcommerce-org/graphcommerce/commit/3612c994b80bb3b1bc02de10668f69a332402dc4) - Add `permissions` config so the website or store can be configurated to run in different modes. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2436](https://github.com/graphcommerce-org/graphcommerce/pull/2436) [`55f94c5`](https://github.com/graphcommerce-org/graphcommerce/commit/55f94c5dd70e88b8fbfb46e75b500db296937c33) - Added ref forwarding for the inputRef ([@paales](https://github.com/paales))
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`7085b4a`](https://github.com/graphcommerce-org/graphcommerce/commit/7085b4a86088328fe54dc4e82ccd296d6459cae7) - Updated all form `<FieldElement />` components to also accept `defaultValue`, `shouldUnregister` and `disabled`. Moved `<AutoCompleteElement />`, `<CheckboxElement />`, `<MultiSelectElement />`, `<SliderElement />`, `<SwitchElement />`, `<ToggleButtonGroup />` to `useController`. Removed all `parseError` props. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use `muiRegister`, which improves INP scores. ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2397](https://github.com/graphcommerce-org/graphcommerce/pull/2397) [`d4d5a98`](https://github.com/graphcommerce-org/graphcommerce/commit/d4d5a983dea6d034dcbdeed9cf30fb33133dde39) - Add requireOptionSelection boolean to prevent users from deselecting configurable options ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Make sure the `<TextFieldElement/>` doesn’t give a uncontrolled to controlled warning. Convert `<SelectElement/>` to `useController` instead of a separate Controller component. Make sure the original `endAdornment` is always shown only until the value is valid. ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new `<EmailElement/>` component to make re-use easier. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`d4e693d`](https://github.com/graphcommerce-org/graphcommerce/commit/d4e693d553198c9a1ef398d000ca23d209e6c2ba) - The `<WaitForQueries/>` component now uses the `useIsSSR` hook which prevents loading spinners when navigating on the client, which make all account/cart/checkout pages faster. ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`c17e5f1`](https://github.com/graphcommerce-org/graphcommerce/commit/c17e5f1cf9fb291b9bbf1fca0620c2721dceb331) - Solve issue: Warning: Cannot update a component (`FormAutoSubmitBase`) while rendering a different component (`ActionCardListForm`). ([@paales](https://github.com/paales))
+
+- [#2424](https://github.com/graphcommerce-org/graphcommerce/pull/2424) [`66b4188`](https://github.com/graphcommerce-org/graphcommerce/commit/66b418809ad4db2a465c4112ff9850ce0cfe611c) - Omit disableUnderline prop for ‘outlined’ variant, because its not supported. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`022cbd6`](https://github.com/graphcommerce-org/graphcommerce/commit/022cbd664ea4e8a82997c5edf4451b9182558429) - Moved `<ActionCardListForm />` to `@graphcommerce/ecommerce-ui` to resolve issue with circular dependencies. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2419](https://github.com/graphcommerce-org/graphcommerce/pull/2419) [`ccd952e`](https://github.com/graphcommerce-org/graphcommerce/commit/ccd952e60904e91d62819d5abaea1798e4d4d95d) - Destructure InputProps to ensure they are passed only to relevant components. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2349](https://github.com/graphcommerce-org/graphcommerce/pull/2349) [`7c8529e`](https://github.com/graphcommerce-org/graphcommerce/commit/7c8529ea54c0e91f6b0e72129611cd6bf4f85d87) - Solve issue where `<NumberFieldElement />` would allow numbers below zero when `min = 0`. ([@JoshuaS98](https://github.com/JoshuaS98))
+
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`49937fd`](https://github.com/graphcommerce-org/graphcommerce/commit/49937fd765338e25899d427ee4d799fa7978faeb) - Allow changing various props for internal components ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 9.0.0-canary.118
 
 ## 9.0.0-canary.117

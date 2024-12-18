@@ -1,5 +1,23 @@
 # Change Log
 
+## 9.0.0
+
+### Minor Changes
+
+- [#2327](https://github.com/graphcommerce-org/graphcommerce/pull/2327) [`be719fc`](https://github.com/graphcommerce-org/graphcommerce/commit/be719fc465c8804ddcb720a93813262e3a292b69) - Implemented the `CancelOrder` mutation and added a cancel order overlay to the account section. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2373](https://github.com/graphcommerce-org/graphcommerce/pull/2373) [`53ffc91`](https://github.com/graphcommerce-org/graphcommerce/commit/53ffc91f9bfbe1183c002c62b1fe0c3f415d7b94) - Handle the case where one switches from using the default `.html` URL suffix, to not using one. ([@hnsr](https://github.com/hnsr))
+
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`47bb47b`](https://github.com/graphcommerce-org/graphcommerce/commit/47bb47bac4b3689a6859afbc587274d813e0b072) - Implement confirm email functionality ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2374](https://github.com/graphcommerce-org/graphcommerce/pull/2374) [`e61e1f4`](https://github.com/graphcommerce-org/graphcommerce/commit/e61e1f4fb1086f7a6341b42502135abf1839e43d) - Default to permanent redirects unless specified ([@hnsr](https://github.com/hnsr))
+
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2367](https://github.com/graphcommerce-org/graphcommerce/pull/2367) [`71d412d`](https://github.com/graphcommerce-org/graphcommerce/commit/71d412d202bc94a0e676745547de5d809a7a850b) - When a user access a category page which is beyond the available total_pages, the user will be redirected to the last available page. ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.118
 
 ## 9.0.0-canary.117

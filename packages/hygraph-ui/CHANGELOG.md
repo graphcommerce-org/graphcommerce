@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.0.0
+
+### Major Changes
+
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`f71b4e2`](https://github.com/graphcommerce-org/graphcommerce/commit/f71b4e2d13e54dd311eb1465a49df41703b6fef5) - Renamed from `@graphcommerce/graphcms-ui` to `@graphcommerce/hygraph-ui`. See [CHANGELOG.md](../graphcms-ui/CHANGELOG.md) for details. ([@paales](https://github.com/paales))
+
+### Minor Changes
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`0ccec63`](https://github.com/graphcommerce-org/graphcommerce/commit/0ccec630825d5fad398366beae90b3c90b2f84b8) - Added separate sitemap for Hygraph pages ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 9.0.0-canary.118
 
 ## 9.0.0-canary.117

@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.0.0
+
+### Patch Changes
+
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
+
+- [#2289](https://github.com/graphcommerce-org/graphcommerce/pull/2289) [`d2a6f58`](https://github.com/graphcommerce-org/graphcommerce/commit/d2a6f58276abadb132473d4da2d7d25e0b996106) - Do not require fragments to be marked `@injectable` but always accept `@inject` directives. ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.118
 
 ## 9.0.0-canary.117

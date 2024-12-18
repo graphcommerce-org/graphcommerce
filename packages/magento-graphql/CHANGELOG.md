@@ -1,5 +1,19 @@
 # Change Log
 
+## 9.0.0
+
+### Minor Changes
+
+- [#2416](https://github.com/graphcommerce-org/graphcommerce/pull/2416) [`651eea0`](https://github.com/graphcommerce-org/graphcommerce/commit/651eea0bdda1ed0f46f4c73d7edf52c8c1da5b54) - Created a new field for products: `custom_attribute(attribute_code: "attribute_code")` to retrieve attribute option value labels. This field is only available in Magento 2.4.7 and up. ([@paales](https://github.com/paales))
+
+- [#2204](https://github.com/graphcommerce-org/graphcommerce/pull/2204) [`42843eb`](https://github.com/graphcommerce-org/graphcommerce/commit/42843eb760f8301eb7901bb0d888c95792ff0b4b) - Add `X-Forwarded-For` header to mesh requests. ([@SumVur](https://github.com/SumVur))
+
+- [#2416](https://github.com/graphcommerce-org/graphcommerce/pull/2416) [`53af256`](https://github.com/graphcommerce-org/graphcommerce/commit/53af25671d3aca7f3daa2dd45ccd2237697e9254) - Added an `attribute`-field to `AttributeValueInterface` to be able to retrieve attribute metadata from the value of an attribute. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2299](https://github.com/graphcommerce-org/graphcommerce/pull/2299) [`c6ac45b`](https://github.com/graphcommerce-org/graphcommerce/commit/c6ac45b8ff41dcaa47f1e5d40d04e120990870aa) - Added a `magentoVersion` configuration value to be able to differentiate features based on the Magento version. ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.118
 
 ## 9.0.0-canary.117
