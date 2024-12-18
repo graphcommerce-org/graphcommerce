@@ -6,6 +6,7 @@ query ProductList(
   $search: String = ""
   $context: PrivateContext
   $onlyItems: Boolean = false
+  $quickSearch: Boolean = false
 ) {
   products(
     pageSize: $pageSize
@@ -16,7 +17,7 @@ query ProductList(
   ) @privateContext(context: $context) {
     ...ProductListSuggestions @skip(if: $onlyItems)
     ...ProductListFilters @skip(if: $onlyItems)
-    ...ProductListCount @skip(if: $onlyItems)
+    ...ProductListCount @skip(if: $onlyItems) @include(if: $quickSearch)
     ...ProductListPagination @skip(if: $onlyItems)
     ...ProductListSort @skip(if: $onlyItems)
     ...ProductListItems

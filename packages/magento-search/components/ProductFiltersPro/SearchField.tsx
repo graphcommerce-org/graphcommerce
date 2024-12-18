@@ -1,4 +1,4 @@
-import { IconSvg, iconSearch, showPageLoadIndicator } from '@graphcommerce/next-ui'
+import { iconSearch, IconSvg, showPageLoadIndicator } from '@graphcommerce/next-ui'
 import type { FabProps } from '@mui/material'
 import { Fab } from '@mui/material'
 import dynamic from 'next/dynamic'
@@ -6,16 +6,18 @@ import { useMemo, useState } from 'react'
 import type { ProductFiltersProSearchInputProps } from './ProductFiltersProSearchInput'
 import { useSearchPageAndParam } from './useSearchPageAndParam'
 
-export type ProductFiltersProSearchFieldProps = ProductFiltersProSearchInputProps & {
+export type SearchFieldProps = ProductFiltersProSearchInputProps & {
   fab?: FabProps
+  visible?: boolean
+  searchField?: Record<string, unknown>
 }
 
 const ProductFiltersProSearchInputLazy = dynamic(
   async () => (await import('./ProductFiltersProSearchInput')).ProductFiltersProSearchOutlinedInput,
 )
 
-export function ProductFiltersProSearchField(props: ProductFiltersProSearchFieldProps) {
-  const { fab, formControl } = props
+export function SearchField(props: SearchFieldProps) {
+  const { fab, formControl, visible: incomingVisible } = props
 
   const [searchPage] = useSearchPageAndParam()
   const [expanded, setExpanded] = useState(searchPage)
@@ -23,7 +25,7 @@ export function ProductFiltersProSearchField(props: ProductFiltersProSearchField
     if (!searchPage) setExpanded(searchPage)
   }, [searchPage])
 
-  const visible = expanded || searchPage
+  const visible = incomingVisible || expanded || searchPage
 
   return (
     <>

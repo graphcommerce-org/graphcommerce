@@ -13,7 +13,7 @@ import {
   ProductFiltersQuery,
 } from '@graphcommerce/magento-product'
 import {
-  ProductFiltersProSearchField,
+  SearchField,
   productListApplySearchDefaults,
   searchDefaultsToProductListFilters,
   useProductList,
@@ -58,7 +58,7 @@ function SearchResultPage(props: SearchResultProps) {
         canonical='/search'
       />
       <LayoutHeader floatingMd switchPoint={0} hideMd>
-        <ProductFiltersProSearchField size='small' formControl={{ sx: { width: '81vw' } }} />
+        <SearchField size='small' formControl={{ sx: { width: '81vw' } }} />
       </LayoutHeader>
 
       <PrivateQueryMaskProvider mask={productList.mask}>

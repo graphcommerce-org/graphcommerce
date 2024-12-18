@@ -34,6 +34,10 @@ msgid "Search all products..."
 msgstr "Search all products..."
 
 #. js-lingui-generated-id
+msgid "Did you mean?"
+msgstr "Did you mean?"
+
+#. js-lingui-generated-id
 msgid "We couldn't find any results"
 msgstr "We couldn't find any results"
 
@@ -236,6 +240,9 @@ msgstr "Contact"
 msgid "Continue"
 msgstr "Continue"
 
+msgid "Continue searching"
+msgstr "Continue searching"
+
 msgid "Continue shopping"
 msgstr "Continue shopping"
 
@@ -310,6 +317,9 @@ msgstr "Discover our collection and place your first order!"
 msgid "Discover our collection and write your first review!"
 msgstr "Discover our collection and write your first review!"
 
+msgid "Discover our collection by searching for products, categories or features."
+msgstr "Discover our collection by searching for products, categories or features."
+
 #. js-lingui-generated-id
 msgid "Payment method"
 msgstr "Payment method"
@@ -372,6 +382,10 @@ msgstr "Forgot password?"
 msgid "Forgot your password?"
 msgstr "Forgot your password?"
 
+#. js-lingui-generated-id
+msgid "We couldn’t find any results for ‘{term}’"
+msgstr "We couldn’t find any results for ‘{term}’"
+
 msgid "Free"
 msgstr "Free"
 
@@ -389,10 +403,6 @@ msgstr "Housenumber"
 
 msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
 msgstr "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
-
-#. js-lingui-generated-id
-msgid "We couldn't find any results for {term}"
-msgstr "We couldn't find any results for {term}"
 
 msgid "In comparelist"
 msgstr "In comparelist"
@@ -457,6 +467,14 @@ msgstr "Mrs"
 #. js-lingui-generated-id
 msgid "Order has successfully been canceled"
 msgstr "Order has successfully been canceled"
+
+#. js-lingui-generated-id
+msgid "View all"
+msgstr "View all"
+
+#. js-lingui-generated-id
+msgid "Categories"
+msgstr "Categories"
 
 msgid "Name"
 msgstr "Name"
@@ -887,6 +905,9 @@ msgstr "We’re processing your payment, this will take a few seconds."
 msgid "We’ve send a password reset link to your email address!"
 msgstr "We’ve send a password reset link to your email address!"
 
+msgid "What are you looking for?"
+msgstr "What are you looking for?"
+
 msgid "Whoops our bad..."
 msgstr "Whoops our bad..."
 
@@ -901,6 +922,10 @@ msgstr "Written by {nickname}"
 
 msgid "Written {0} reviews"
 msgstr "Written {0} reviews"
+
+#. js-lingui-generated-id
+msgid "Search..."
+msgstr "Search..."
 
 msgid "You are reviewing {0}"
 msgstr "You are reviewing {0}"
