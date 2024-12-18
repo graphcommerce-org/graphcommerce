@@ -1,7 +1,7 @@
 import { CartFab, useCartEnabled } from '@graphcommerce/magento-cart'
 import { magentoMenuToNavigation } from '@graphcommerce/magento-category'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
-import { ProductFiltersProSearchField, SearchFab, SearchLink } from '@graphcommerce/magento-search'
+import { SearchFab, SearchField, SearchLink } from '@graphcommerce/magento-search'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import {
   DesktopNavActions,
@@ -21,6 +21,7 @@ import {
   NavigationOverlay,
   useNavigationSelection,
   useMemoDeep,
+  MediaQuery,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -29,6 +30,7 @@ import { useRouter } from 'next/router'
 import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
+import { productListRenderer } from '../ProductListItems/productListRenderer'
 
 export type LayoutNavigationProps = LayoutQuery &
   Omit<LayoutDefaultProps, 'footer' | 'header' | 'cartFab' | 'menuFab'>
@@ -147,8 +149,10 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </DesktopNavBar>
 
             <DesktopNavActions>
-              <ProductFiltersProSearchField formControl={{ sx: { width: '400px' } }} />
-
+              <SearchField
+                formControl={{ sx: { width: '400px' } }}
+                searchField={{ productListRenderer }}
+              />
               <Fab
                 href='/service'
                 aria-label={i18n._(/* i18n */ 'Customer Service')}
@@ -163,7 +167,19 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               {cartEnabled && <PlaceholderFab />}
             </DesktopNavActions>
 
-            <SearchFab />
+            <MediaQuery
+              query={(theme) => theme.breakpoints.down('md')}
+              display='flex'
+              sx={(theme) => ({
+                position: 'absolute',
+                right: theme.page.horizontal,
+                top: 0,
+                height: theme.appShell.headerHeightSm,
+                alignItems: 'center',
+              })}
+            >
+              <SearchFab size='responsiveMedium' />
+            </MediaQuery>
           </>
         }
         footer={<Footer footer={footer} />}

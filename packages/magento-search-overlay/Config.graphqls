@@ -1,6 +1,0 @@
-extend input GraphCommerceConfig {
-  """
-  Enable / disable quick search overlay
-  """
-  searchOverlay: Boolean
-}

@@ -1,20 +1,18 @@
-import type { FabProps, MediaQueryProps } from '@graphcommerce/next-ui'
-import { Fab, iconSearch, MediaQuery, sxx } from '@graphcommerce/next-ui'
+import type { FabProps } from '@graphcommerce/next-ui'
+import { Fab, iconSearch } from '@graphcommerce/next-ui'
 import { useRouter } from 'next/router'
 import type { SetOptional } from 'type-fest'
 
-type SearchFabProps = SetOptional<FabProps, 'icon'> & {
-  query?: MediaQueryProps['query']
-}
+export type SearchFabProps = SetOptional<FabProps, 'icon'>
 
-export function SearchFabBase(props: SearchFabProps) {
-  const { query, sx, ...fabProps } = props
+export function SearchFab(props: SearchFabProps) {
+  const { sx, ...fabProps } = props
   const router = useRouter()
   return (
     <Fab
       color='inherit'
       size='medium'
-      sx={sxx({ position: 'absolute', right: 0, top: 0 }, sx)}
+      sx={sx}
       icon={iconSearch}
       onClick={async () => {
         await router.push('/search')
@@ -22,14 +20,5 @@ export function SearchFabBase(props: SearchFabProps) {
       }}
       {...fabProps}
     />
-  )
-}
-
-export function SearchFab(props: SearchFabProps) {
-  const { query, sx, ...fabProps } = props
-  return (
-    <MediaQuery query={query ?? ((theme) => theme.breakpoints.down('md'))}>
-      <SearchFabBase {...fabProps} />
-    </MediaQuery>
   )
 }

@@ -10,7 +10,7 @@ import { SearchOverlayProducts } from './SearchOverlayProducts'
 import { searchOverlayIsOpen, SearchOverlayProvider } from './SearchOverlayProvider'
 import { SearchOverlaySuggestions } from './SearchOverlaySuggestions'
 
-type SearchOverlayProps = {
+export type SearchOverlayProps = {
   productListRenderer: ProductListItemRenderer
   slotProps?: {
     overlay?: Partial<React.ComponentProps<typeof Overlay>>
@@ -25,42 +25,35 @@ type SearchOverlayProps = {
 export function SearchOverlay(props: SearchOverlayProps) {
   const { productListRenderer, slotProps } = props
   const open = useMotionValueValue(searchOverlayIsOpen, (v) => v)
-
   const theme = useTheme()
-  useOpenWithShortKey()
 
   return (
-    <>
-      <Fab onClick={() => searchOverlayIsOpen.set(true)} color='inherit' size='large'>
-        <IconSvg src={iconSearch} size='large' />
-      </Fab>
-      <Overlay
-        active={open}
-        onClosed={() => searchOverlayIsOpen.set(false)}
-        variantMd='top'
-        variantSm='bottom'
-        sizeMd='floating'
-        sizeSm='full'
-        justifyMd='center'
-        disableAnimation
-        disableDrag
-        widthMd={`min(${theme.breakpoints.values.lg}px, 100vw - ${theme.page.horizontal} * 2)`}
-        bgColor='paper'
-        className='SearchOverlay-root'
-        {...slotProps?.overlay}
-      >
-        <SearchOverlayProvider open={open}>
-          <SearchOverlayHeader {...slotProps?.header} />
-          <SearchOverlayBodyBase {...slotProps?.body}>
-            <SearchOverlaySuggestions {...slotProps?.suggestions} />
-            <SearchOverlayCategories {...slotProps?.categories} />
-            <SearchOverlayProducts
-              productListRenderer={productListRenderer}
-              {...slotProps?.products}
-            />
-          </SearchOverlayBodyBase>
-        </SearchOverlayProvider>
-      </Overlay>
-    </>
+    <Overlay
+      active={open}
+      onClosed={() => searchOverlayIsOpen.set(false)}
+      variantMd='top'
+      variantSm='bottom'
+      sizeMd='floating'
+      sizeSm='full'
+      justifyMd='center'
+      disableAnimation
+      disableDrag
+      widthMd={`min(${theme.breakpoints.values.lg}px, 100vw - ${theme.page.horizontal} * 2)`}
+      bgColor='paper'
+      className='SearchOverlay-root'
+      {...slotProps?.overlay}
+    >
+      <SearchOverlayProvider open={open}>
+        <SearchOverlayHeader {...slotProps?.header} />
+        <SearchOverlayBodyBase {...slotProps?.body}>
+          <SearchOverlaySuggestions {...slotProps?.suggestions} />
+          <SearchOverlayCategories {...slotProps?.categories} />
+          <SearchOverlayProducts
+            productListRenderer={productListRenderer}
+            {...slotProps?.products}
+          />
+        </SearchOverlayBodyBase>
+      </SearchOverlayProvider>
+    </Overlay>
   )
 }
