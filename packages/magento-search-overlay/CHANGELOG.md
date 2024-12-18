@@ -1,5 +1,7 @@
 # @graphcommerce/magento-search-overlay
 
+## 9.0.0-canary.118
+
 ## 9.0.0-canary.117
 
 ### Minor Changes

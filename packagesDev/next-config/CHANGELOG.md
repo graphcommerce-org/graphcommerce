@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0-canary.118
+
+### Patch Changes
+
+- [`a04fae0`](https://github.com/graphcommerce-org/graphcommerce/commit/a04fae00ce294c8cdf4da85a96b98b8deb3e2fb9) - Configure the maxBatchSize for the release when getting information from github ([@paales](https://github.com/paales))
+
 ## 9.0.0-canary.117
 
 ## 9.0.0-canary.116
