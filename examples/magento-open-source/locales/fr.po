@@ -19,7 +19,7 @@ msgstr "Cela supprimera toutes vos données, y compris l'historique des commande
 
 #. js-lingui-generated-id
 msgid "{0, plural, one {<0>{addedItems}</0> has been added to your shopping cart} two {<1>{addedItems}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
-msgstr ""
+msgstr "{0, plural, one {<0>{addedItems}</0> a été ajouté à votre panier} two {<1>{addedItems}</1> ont été ajoutés à votre panier!} other {# produits ont été ajoutés à votre panier!}}"
 
 #. js-lingui-generated-id
 msgid "I understand that my account will be deleted and this can not be undone."
@@ -34,12 +34,16 @@ msgid "Search all products..."
 msgstr "Rechercher tous les produits..."
 
 #. js-lingui-generated-id
+msgid "Did you mean?"
+msgstr "Vouliez-vous dire?"
+
+#. js-lingui-generated-id
 msgid "We couldn't find any results"
 msgstr "Nous n'avons trouvé aucun résultat"
 
 #. js-lingui-generated-id
 msgid "Newsletter"
-msgstr ""
+msgstr "Boletin"
 
 #. js-lingui-generated-id
 msgid "Shipping method"
@@ -145,7 +149,7 @@ msgstr "Dessous <0/>"
 
 #. js-lingui-generated-id
 msgid "Contact us"
-msgstr ""
+msgstr "Contactez-nous"
 
 msgid "Billing address"
 msgstr "Adresse de facturation"
@@ -154,7 +158,7 @@ msgid "Blog"
 msgstr "Blog"
 
 msgid "Breadcrumbs"
-msgstr ""
+msgstr "Pistes de pan"
 
 msgid "Buy {quantity} for <0/> and save {percent}%"
 msgstr "Achetez {quantity} pour <0/> et économisez {percent}%"
@@ -240,6 +244,9 @@ msgstr "Contact"
 msgid "Continue"
 msgstr "Continuer"
 
+msgid "Continue searching"
+msgstr "Continuer la recherche"
+
 msgid "Continue shopping"
 msgstr "Continuer les achats"
 
@@ -314,6 +321,9 @@ msgstr "Découvrez notre collection et placez votre première commande!"
 msgid "Discover our collection and write your first review!"
 msgstr "Découvrez notre collection et écrivez votre première évaluation!"
 
+msgid "Discover our collection by searching for products, categories or features."
+msgstr "Découvrez notre collection en recherchant des produits, des catégories ou des caractéristiques."
+
 #. js-lingui-generated-id
 msgid "Payment method"
 msgstr "Méthode de paiement"
@@ -324,7 +334,7 @@ msgstr "Vouliez-vous dire: {list}"
 
 #. js-lingui-generated-id
 msgid "Subscribe to newsletter"
-msgstr ""
+msgstr "S'abonner à la newsletter"
 
 msgid "Edit"
 msgstr "Modifier"
@@ -380,6 +390,10 @@ msgstr "Mot de passe oublié?"
 msgid "Forgot your password?"
 msgstr "Mot de passe oublié?"
 
+#. js-lingui-generated-id
+msgid "We couldn’t find any results for ‘{term}’"
+msgstr "Nous n'avons trouvé aucun résultat pour ‘{term}’"
+
 msgid "Free"
 msgstr "Gratuit"
 
@@ -397,10 +411,6 @@ msgstr "Numéro de rue"
 
 msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
 msgstr "Si vous avez réalisé votre paiement, la commande <0>va</0> arriver, mais il y a un problème de communication avec le site."
-
-#. js-lingui-generated-id
-msgid "We couldn't find any results for {term}"
-msgstr "Nous n'avons trouvé aucun résultat pour {term}"
 
 msgid "In comparelist"
 msgstr "Dans la liste de comparaison"
@@ -465,6 +475,14 @@ msgstr "Mme"
 #. js-lingui-generated-id
 msgid "Order has successfully been canceled"
 msgstr "La commande a été annulée avec succès"
+
+#. js-lingui-generated-id
+msgid "View all"
+msgstr "Voir tous"
+
+#. js-lingui-generated-id
+msgid "Categories"
+msgstr "Catégories"
 
 msgid "Name"
 msgstr "Nom"
@@ -544,6 +562,10 @@ msgstr "Commandes"
 
 msgid "Other"
 msgstr "Autre"
+
+#. js-lingui-generated-id
+msgid "Please enter a valid email address"
+msgstr "Veuillez entrer une adresse email valide"
 
 msgid "Out of stock"
 msgstr "En rupture de stock"
@@ -888,6 +910,9 @@ msgstr "Nous traitons votre paiement, cela prendra quelques secondes."
 msgid "We’ve send a password reset link to your email address!"
 msgstr "Nous avons envoyé un lien de réinitialisation du mot de passe à votre adresse email!"
 
+msgid "What are you looking for?"
+msgstr "Que cherchez-vous ?"
+
 msgid "Whoops our bad..."
 msgstr "Oups, notre mauvais..."
 
@@ -902,6 +927,10 @@ msgstr "Écrit par {nickname}"
 
 msgid "Written {0} reviews"
 msgstr "Évaluations écrites {0}"
+
+#. js-lingui-generated-id
+msgid "Search..."
+msgstr "Rechercher..."
 
 msgid "You are reviewing {0}"
 msgstr "Vous évaluez {0}"
@@ -1018,7 +1047,7 @@ msgstr "Contact"
 
 #. js-lingui-generated-id
 msgid "Copyright© {year} {websiteName}"
-msgstr ""
+msgstr "Copyright© {year} {websiteName}"
 
 #. js-lingui-generated-id
 msgid "Order number"
