@@ -88,5 +88,7 @@
     "@graphcommerce/prettier-config-pwa": "9.0.0",
     "@graphcommerce/typescript-config-pwa": "9.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "spotty-falcons-grab"
+  ]
 }

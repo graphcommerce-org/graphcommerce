@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.1-canary.0
+
+### Patch Changes
+
+- [#2454](https://github.com/graphcommerce-org/graphcommerce/pull/2454) [`0f5267b`](https://github.com/graphcommerce-org/graphcommerce/commit/0f5267b92d8561e20164fe2f078097cb52220726) - Update VSCode guide reference ([@emmanuel-ferdman](https://github.com/emmanuel-ferdman))
+
 ## 9.0.0
 
 ### Minor Changes
