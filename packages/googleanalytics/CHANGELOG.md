@@ -1,7 +1,5 @@
 # Change Log
 
-## 9.0.1-canary.0
-
 ## 9.0.0
 
 ### Patch Changes
@@ -11,54 +9,6 @@
 - [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
 
 - [#2331](https://github.com/graphcommerce-org/graphcommerce/pull/2331) [`702bfc9`](https://github.com/graphcommerce-org/graphcommerce/commit/702bfc93566c9745546988e57988431d5d4d8cb0) - Moved plugins to new format ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.118
-
-## 9.0.0-canary.117
-
-## 9.0.0-canary.116
-
-## 9.0.0-canary.115
-
-## 9.0.0-canary.114
-
-## 9.0.0-canary.113
-
-## 9.0.0-canary.112
-
-## 9.0.0-canary.111
-
-## 9.0.0-canary.110
-
-## 9.0.0-canary.109
-
-## 9.0.0-canary.108
-
-## 9.0.0-canary.107
-
-## 9.0.0-canary.106
-
-## 9.0.0-canary.105
-
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
-
-### Patch Changes
-
-- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.60
-
-### Patch Changes
-
-- [#2331](https://github.com/graphcommerce-org/graphcommerce/pull/2331) [`702bfc9`](https://github.com/graphcommerce-org/graphcommerce/commit/702bfc93566c9745546988e57988431d5d4d8cb0) - Moved plugins to new format ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.49
-
-### Patch Changes
-
-- [#2317](https://github.com/graphcommerce-org/graphcommerce/pull/2317) [`2f4a61d`](https://github.com/graphcommerce-org/graphcommerce/commit/2f4a61dfee853579c96fceb5351e459aa9524a60) - Moved import locations of Google Analytics and Google Tagmanager scripts to their recommended locations ([@paales](https://github.com/paales))
 
 ## 8.0.5
 

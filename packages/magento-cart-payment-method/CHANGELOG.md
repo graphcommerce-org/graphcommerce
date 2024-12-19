@@ -1,8 +1,10 @@
 # Change Log
 
-## 9.0.1-canary.0
-
 ## 9.0.0
+
+### Major Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - INP improvements: Moved all usages of `useFormPersist` to the `<FormPersist/>` component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
 
 ### Patch Changes
 
@@ -12,77 +14,9 @@
 
 - [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`d345474`](https://github.com/graphcommerce-org/graphcommerce/commit/d345474fb190d158629cd5fd5e68a78724fa2fb6) - Due to a cyclic dependency the actual `<PaymentMethodPlaceOrder />` button would sometimes be undefined. ([@paales](https://github.com/paales))
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of `useFormPersist` to the `<FormPersist/>` component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
-
 - [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving `<FromPersist/>` below the form components. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 - [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent the `<BillingPage />` query from rerunning on each mutation. ([@FrankHarland](https://github.com/FrankHarland))
-
-## 9.0.0-canary.118
-
-## 9.0.0-canary.117
-
-## 9.0.0-canary.116
-
-## 9.0.0-canary.115
-
-## 9.0.0-canary.114
-
-## 9.0.0-canary.113
-
-## 9.0.0-canary.112
-
-## 9.0.0-canary.111
-
-## 9.0.0-canary.110
-
-## 9.0.0-canary.109
-
-## 9.0.0-canary.108
-
-## 9.0.0-canary.107
-
-## 9.0.0-canary.106
-
-## 9.0.0-canary.105
-
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
-
-## 8.1.0-canary.38
-
-### Patch Changes
-
-- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving <FromPersist/> below the form components ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.18
-
-### Patch Changes
-
-- [#2277](https://github.com/graphcommerce-org/graphcommerce/pull/2277) [`f9199f7`](https://github.com/graphcommerce-org/graphcommerce/commit/f9199f798583138a68dd641ea6637375c487f29b) - Solve issue where Braintree wouldn't place the order after successfully validating a Credit Card. ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.14
-
-### Patch Changes
-
-- [`831d7cd`](https://github.com/graphcommerce-org/graphcommerce/commit/831d7cd64a40b7b58748fd9637199b88938e75b7) - Compatibility with Magento 2.4.7 ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.8
-
-### Patch Changes
-
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`d345474`](https://github.com/graphcommerce-org/graphcommerce/commit/d345474fb190d158629cd5fd5e68a78724fa2fb6) - Due to a cyclic dependency the actual PaymentMethodPlaceOrder button would sometimes be undefined. ([@paales](https://github.com/paales))
-
-## 8.0.6-canary.2
-
-### Patch Changes
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Use the non resolved payment methods as a placeholder for the actual payment methods ([@FrankHarland](https://github.com/FrankHarland))
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent BillingPage query from rerunning on each mutation ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.0
 
