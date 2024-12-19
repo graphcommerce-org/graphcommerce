@@ -1,7 +1,5 @@
 # Change Log
 
-## 9.0.1-canary.0
-
 ## 9.0.0
 
 ### Patch Changes
@@ -9,46 +7,6 @@
 - [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
 
 - [#2385](https://github.com/graphcommerce-org/graphcommerce/pull/2385) [`654be83`](https://github.com/graphcommerce-org/graphcommerce/commit/654be8309cab209d95935cf06c84469726c981e7) - Enable prettier-plugin-jsdoc ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.118
-
-## 9.0.0-canary.117
-
-## 9.0.0-canary.116
-
-## 9.0.0-canary.115
-
-## 9.0.0-canary.114
-
-## 9.0.0-canary.113
-
-## 9.0.0-canary.112
-
-## 9.0.0-canary.111
-
-## 9.0.0-canary.110
-
-## 9.0.0-canary.109
-
-## 9.0.0-canary.108
-
-## 9.0.0-canary.107
-
-## 9.0.0-canary.106
-
-### Patch Changes
-
-- [#2385](https://github.com/graphcommerce-org/graphcommerce/pull/2385) [`654be83`](https://github.com/graphcommerce-org/graphcommerce/commit/654be8309cab209d95935cf06c84469726c981e7) - Enable prettier-plugin-jsdoc ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.105
-
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
-
-### Patch Changes
-
-- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
 
 ## 7.0.1
 

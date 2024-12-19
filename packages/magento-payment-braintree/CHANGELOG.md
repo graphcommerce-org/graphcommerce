@@ -1,76 +1,18 @@
 # Change Log
 
-## 9.0.1-canary.0
-
 ## 9.0.0
 
-### Minor Changes
-
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename `experimental_useV2` prop to `deprecated_useV1` in `useFromGql` and enable it by default. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+### Major Changes
 
 ### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename `experimental_useV2` prop to `deprecated_useV1` in `useFromGql` and enable it by default. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 - [#2277](https://github.com/graphcommerce-org/graphcommerce/pull/2277) [`f9199f7`](https://github.com/graphcommerce-org/graphcommerce/commit/f9199f798583138a68dd641ea6637375c487f29b) - Solve issue where Braintree wouldn't place the order after successfully validating a Credit Card. ([@paales](https://github.com/paales))
 
 - [#2331](https://github.com/graphcommerce-org/graphcommerce/pull/2331) [`702bfc9`](https://github.com/graphcommerce-org/graphcommerce/commit/702bfc93566c9745546988e57988431d5d4d8cb0) - Moved plugins to new format ([@paales](https://github.com/paales))
 
 - [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent the `<BillingPage />` query from rerunning on each mutation. ([@FrankHarland](https://github.com/FrankHarland))
-
-## 9.0.0-canary.118
-
-## 9.0.0-canary.117
-
-## 9.0.0-canary.116
-
-## 9.0.0-canary.115
-
-## 9.0.0-canary.114
-
-## 9.0.0-canary.113
-
-## 9.0.0-canary.112
-
-## 9.0.0-canary.111
-
-## 9.0.0-canary.110
-
-## 9.0.0-canary.109
-
-## 9.0.0-canary.108
-
-## 9.0.0-canary.107
-
-## 9.0.0-canary.106
-
-## 9.0.0-canary.105
-
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
-
-## 9.0.0-canary.80
-
-### Minor Changes
-
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename experimental_useV2 prop to deprecated_useV1 in useFromGql and enable it by default ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 9.0.0-canary.60
-
-### Patch Changes
-
-- [#2331](https://github.com/graphcommerce-org/graphcommerce/pull/2331) [`702bfc9`](https://github.com/graphcommerce-org/graphcommerce/commit/702bfc93566c9745546988e57988431d5d4d8cb0) - Moved plugins to new format ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.18
-
-### Patch Changes
-
-- [#2277](https://github.com/graphcommerce-org/graphcommerce/pull/2277) [`f9199f7`](https://github.com/graphcommerce-org/graphcommerce/commit/f9199f798583138a68dd641ea6637375c487f29b) - Solve issue where Braintree wouldn't place the order after successfully validating a Credit Card. ([@paales](https://github.com/paales))
-
-## 8.0.6-canary.2
-
-### Patch Changes
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent BillingPage query from rerunning on each mutation ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.5
 

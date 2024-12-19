@@ -1,50 +1,10 @@
 # Change Log
 
-## 9.0.1-canary.0
-
 ## 9.0.0
 
 ### Patch Changes
 
 - [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`8d96e64`](https://github.com/graphcommerce-org/graphcommerce/commit/8d96e64759c9a8d894f495495b1b8eb507ed923b) - Prevent a reloading the `ShippingPage` query when selecting a shipping method. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 9.0.0-canary.118
-
-## 9.0.0-canary.117
-
-## 9.0.0-canary.116
-
-## 9.0.0-canary.115
-
-## 9.0.0-canary.114
-
-## 9.0.0-canary.113
-
-## 9.0.0-canary.112
-
-## 9.0.0-canary.111
-
-## 9.0.0-canary.110
-
-## 9.0.0-canary.109
-
-## 9.0.0-canary.108
-
-## 9.0.0-canary.107
-
-## 9.0.0-canary.106
-
-## 9.0.0-canary.105
-
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
-
-## 9.0.0-canary.80
-
-### Patch Changes
-
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`8d96e64`](https://github.com/graphcommerce-org/graphcommerce/commit/8d96e64759c9a8d894f495495b1b8eb507ed923b) - Prevent a reloading the ShippingPage query when selecting a shipping method. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ## 8.0.0
 

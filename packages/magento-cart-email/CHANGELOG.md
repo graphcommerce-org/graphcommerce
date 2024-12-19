@@ -1,60 +1,21 @@
 # Change Log
 
-## 9.0.1-canary.0
-
 ## 9.0.0
 
+### Major Changes
+
+- [#2366](https://github.com/graphcommerce-org/graphcommerce/pull/2366) [`3612c99`](https://github.com/graphcommerce-org/graphcommerce/commit/3612c994b80bb3b1bc02de10668f69a332402dc4) - Add `permissions` configuration to disable functionalities.
+
+  - Added new `permissions` configuration for GraphCommerce
+  - Added `permissions.cart`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
+  - Added `permissions.checkout`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
+  - Adedd `permissions.customerAccount`: `ENABLED` | `DISABLE_REGISTRATION` | `DISABLE` ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ### Minor Changes
-
-- [#2366](https://github.com/graphcommerce-org/graphcommerce/pull/2366) [`3612c99`](https://github.com/graphcommerce-org/graphcommerce/commit/3612c994b80bb3b1bc02de10668f69a332402dc4) - Add `permissions` config so the website or store can be configurated to run in different modes. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-### Patch Changes
 
 - [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new `<EmailElement/>` component to make re-use easier. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 9.0.0-canary.118
-
-## 9.0.0-canary.117
-
-## 9.0.0-canary.116
-
-## 9.0.0-canary.115
-
-## 9.0.0-canary.114
-
-## 9.0.0-canary.113
-
-## 9.0.0-canary.112
-
-## 9.0.0-canary.111
-
-## 9.0.0-canary.110
-
-## 9.0.0-canary.109
-
-## 9.0.0-canary.108
-
-## 9.0.0-canary.107
-
-## 9.0.0-canary.106
-
-## 9.0.0-canary.105
-
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
-
-## 9.0.0-canary.82
-
-### Minor Changes
-
-- [#2366](https://github.com/graphcommerce-org/graphcommerce/pull/2366) [`3612c99`](https://github.com/graphcommerce-org/graphcommerce/commit/3612c994b80bb3b1bc02de10668f69a332402dc4) - Add `permissions` config so the website or store can be configurated to run in different modes. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.35
-
 ### Patch Changes
-
-- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new EmailElement component to make re-use easier ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ## 8.0.0
 

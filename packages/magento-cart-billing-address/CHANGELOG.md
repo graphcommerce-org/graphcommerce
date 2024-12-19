@@ -1,68 +1,18 @@
 # Change Log
 
-## 9.0.1-canary.0
-
 ## 9.0.0
+
+### Major Changes
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Added `<CompanyFields/>` with `<CompanyName />` and `<CompanyVAT />` to shipping and billing forms. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ### Minor Changes
 
 - [#2319](https://github.com/graphcommerce-org/graphcommerce/pull/2319) [`a3409e8`](https://github.com/graphcommerce-org/graphcommerce/commit/a3409e8a629ee95413da6547cbdcf48aa2502c23) - Created a new `<TelephoneElement />` component to make re-use easier. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Added `<CompanyFields/>` with `<CompanyName />` and `<CompanyVAT />` to shipping and billing forms. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
 ### Patch Changes
 
 - [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use `muiRegister`, which improves INP scores. ([@FrankHarland](https://github.com/FrankHarland))
-
-## 9.0.0-canary.118
-
-## 9.0.0-canary.117
-
-## 9.0.0-canary.116
-
-## 9.0.0-canary.115
-
-## 9.0.0-canary.114
-
-## 9.0.0-canary.113
-
-## 9.0.0-canary.112
-
-## 9.0.0-canary.111
-
-## 9.0.0-canary.110
-
-## 9.0.0-canary.109
-
-## 9.0.0-canary.108
-
-## 9.0.0-canary.107
-
-## 9.0.0-canary.106
-
-## 9.0.0-canary.105
-
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
-
-## 8.1.0-canary.48
-
-### Minor Changes
-
-- [#2319](https://github.com/graphcommerce-org/graphcommerce/pull/2319) [`a3409e8`](https://github.com/graphcommerce-org/graphcommerce/commit/a3409e8a629ee95413da6547cbdcf48aa2502c23) - Created a new TelephoneElement component to make re-use easier ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.38
-
-### Minor Changes
-
-- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Add company and vat fields to shipping and billing forms ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.0.6-canary.2
-
-### Patch Changes
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 7.0.0
 
