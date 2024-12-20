@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.1
+
+### Patch Changes
+
+- [#2458](https://github.com/graphcommerce-org/graphcommerce/pull/2458) [`9b33eac`](https://github.com/graphcommerce-org/graphcommerce/commit/9b33eac3fc8cdd7ac8ba160e598dd878c956e7c3) - Fix Magento store code not getting set in context.headers.store ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 9.0.1-canary.1
 
 ### Patch Changes

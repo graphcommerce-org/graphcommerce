@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.0.1
+
+### Patch Changes
+
+- [#2462](https://github.com/graphcommerce-org/graphcommerce/pull/2462) [`6031bba`](https://github.com/graphcommerce-org/graphcommerce/commit/6031bbae3d01d14bd1e470cc861e36094073b56f) - fix issue where CategoryChildren would cause layout to break on mobile ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2461](https://github.com/graphcommerce-org/graphcommerce/pull/2461) [`ff0009b`](https://github.com/graphcommerce-org/graphcommerce/commit/ff0009b46476791eefa86b460b892a6da1bde8bc) - Solve an issue where CategoryChildren wouldn't be rendered on mobile when using the ProductListLayoutSidebar component. ([@paales](https://github.com/paales))
+
 ## 9.0.1-canary.1
 
 ### Patch Changes

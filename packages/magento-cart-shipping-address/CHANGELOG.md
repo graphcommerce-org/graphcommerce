@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.1
+
+### Patch Changes
+
+- [#2461](https://github.com/graphcommerce-org/graphcommerce/pull/2461) [`3066a2f`](https://github.com/graphcommerce-org/graphcommerce/commit/3066a2fea83b40ca2ab96987adf1261f63d24e77) - When a Customer deselected their shipping address, but had a shipping note filled in it would try to submit the form causing an error. By making the customer_address_id field required we prevent this. ([@paales](https://github.com/paales))
+
 ## 9.0.1-canary.1
 
 ### Patch Changes

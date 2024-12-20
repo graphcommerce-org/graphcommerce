@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.1
+
+### Patch Changes
+
+- [#2461](https://github.com/graphcommerce-org/graphcommerce/pull/2461) [`c83aad6`](https://github.com/graphcommerce-org/graphcommerce/commit/c83aad64869ee4192aa4216cc41f8106642c38f9) - Prevent forwarding the isBack prop to the DOM element ([@paales](https://github.com/paales))
+
 ## 9.0.1-canary.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.1
+
+### Patch Changes
+
+- [#2461](https://github.com/graphcommerce-org/graphcommerce/pull/2461) [`fbe78be`](https://github.com/graphcommerce-org/graphcommerce/commit/fbe78be4e6b46745384354b6da26151c9d269b18) - Solve issue where the cart item edit form wasn't aligned in the middle ([@paales](https://github.com/paales))
+
 ## 9.0.1-canary.1
 
 ### Patch Changes
