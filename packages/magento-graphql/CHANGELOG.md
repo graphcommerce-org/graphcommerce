@@ -4,11 +4,15 @@
 
 ### Major Changes
 
-- [#2416](https://github.com/graphcommerce-org/graphcommerce/pull/2416) [`53af256`](https://github.com/graphcommerce-org/graphcommerce/commit/53af25671d3aca7f3daa2dd45ccd2237697e9254) - Magento 2.4.7: To make the `custom_attribute` field more valueable, we've added an `attribute`-field to the `AttributeValueInterface` to be able to retrieve attribute metadata from the value of an attribute. To be able to retieve the attribute label for an attribute value. ([@paales](https://github.com/paales))
-
 - [#2416](https://github.com/graphcommerce-org/graphcommerce/pull/2416) [`651eea0`](https://github.com/graphcommerce-org/graphcommerce/commit/651eea0bdda1ed0f46f4c73d7edf52c8c1da5b54) - Magento 2.4.7: Created a GraphQL query field for products: `custom_attribute(attribute_code: "attribute_code")` to retrieve attribute option value labels. This is different from the `custom_attributes` endpoint (note the plural) and allows for retrieving singular attribute values, like brand or any other select or multiselect attribute. ([@paales](https://github.com/paales))
 
+to retieve the attribute label for an attribute value. ([@paales](https://github.com/paales))
+
 - [#2299](https://github.com/graphcommerce-org/graphcommerce/pull/2299) [`c6ac45b`](https://github.com/graphcommerce-org/graphcommerce/commit/c6ac45b8ff41dcaa47f1e5d40d04e120990870aa) - Magento 2.4.7: Added a `magentoVersion` configuration value to be able to differentiate features based on the Magento version. GraphCommerce will automatically load any schema's that are defined in later version of Magento, allowing GraphCommerce to be forward compatible. See [schema-246](https://github.com/graphcommerce-org/graphcommerce/tree/canary/packages/magento-graphql/schema-246) and [schema-247](https://github.com/graphcommerce-org/graphcommerce/tree/canary/packages/magento-graphql/schema-247) directories for the changes made to the schema. This is only for compatibility and doesn't make the functionality work. ([@paales](https://github.com/paales))
+
+### Minor Changes
+
+- [#2416](https://github.com/graphcommerce-org/graphcommerce/pull/2416) [`53af256`](https://github.com/graphcommerce-org/graphcommerce/commit/53af25671d3aca7f3daa2dd45ccd2237697e9254) - Magento 2.4.7: To make the `custom_attribute` field more valueable, we've added an `attribute`-field to the `AttributeValueInterface` to be able to retrieve attribute metadata from the value of an attribute. To be able
 
 ### Patch Changes
 
