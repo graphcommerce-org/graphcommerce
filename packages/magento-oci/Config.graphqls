@@ -2,13 +2,13 @@ extend input GraphCommerceConfig {
   """
   OCI settings config
   """
-  ociSettings: OciSettingsConfig
+  ociSettings: MagentoOciSettingsConfig
 }
 
 """
-OciSettingsConfig to allow enabling certain aspects of the OCI settings
+MagentoOciSettingsConfig to allow enabling certain aspects of the OCI settings
 """
-input OciSettingsConfig {
+input MagentoOciSettingsConfig {
   """
   Enable OCI sessions for GraphCommerce
   """

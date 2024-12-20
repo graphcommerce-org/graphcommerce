@@ -110,7 +110,7 @@
     "@mui/utils": "^5.16.8",
     "@next/env": "15.1.3",
     "@parcel/watcher": "^2.5.0",
-    "@reachdigital/oci-sessions": "file:../../packages/oci-sessions",
+    "@reachdigital/magento-oci": "file:../../packages/magento-oci",
     "@serwist/next": "^9.0.11",
     "@unts/patch-package": "^8.0.0",
     "concurrently": "8.2.2",
