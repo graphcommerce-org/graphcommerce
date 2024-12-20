@@ -7,14 +7,14 @@ import type {
 import {
   ApolloClient,
   ApolloLink,
-  InMemoryCache,
   errorLink,
   fragments,
   graphqlConfig,
+  InMemoryCache,
   measurePerformanceLink,
   mergeTypePolicies,
 } from '@graphcommerce/graphql'
-import { MeshApolloLink, getBuiltMesh } from '@graphcommerce/graphql-mesh'
+import { getBuiltMesh, MeshApolloLink } from '@graphcommerce/graphql-mesh'
 import { storefrontConfig, storefrontConfigDefault } from '@graphcommerce/next-ui'
 import type { GetStaticPropsContext } from 'next'
 import { i18nSsrLoader } from '../i18n/I18nProvider'
@@ -50,6 +50,7 @@ function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-c
  * browser's cache.
  */
 export function graphqlSharedClient(context: GetStaticPropsContext) {
+  if (context.preview || context.draftMode) return client(context, 'no-cache')
   return client(context, 'cache-first')
 }
 
@@ -58,6 +59,7 @@ const ssrClient: {
 } = {}
 
 export function graphqlSsrClient(context: GetStaticPropsContext) {
+  if (context.preview || context.draftMode) return client(context, 'no-cache')
   const locale = context.locale ?? storefrontConfigDefault().locale
   i18nSsrLoader(locale)
 
