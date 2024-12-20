@@ -52,7 +52,9 @@ function BlogPage(props: Props) {
       </LayoutHeader>
 
       <Container maxWidth={false}>
-        <Breadcrumbs breadcrumbs={[{ href: `/${page.url}`, name: title }]} />
+        {import.meta.graphCommerce.breadcrumbs && (
+          <Breadcrumbs breadcrumbs={[{ href: `/${page.url}`, name: title }]} />
+        )}
         <LayoutTitle variant='h1'>{title}</LayoutTitle>
       </Container>
 
