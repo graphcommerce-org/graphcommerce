@@ -1,4 +1,8 @@
-import { CategoryBreadcrumbs, CategoryDescription } from '@graphcommerce/magento-category'
+import {
+  CategoryBreadcrumbs,
+  CategoryChildren,
+  CategoryDescription,
+} from '@graphcommerce/magento-category'
 import {
   ProductFiltersPro,
   ProductFiltersProAggregations,
@@ -96,6 +100,9 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
                 textAlignSm='start'
                 description={category?.description}
               />
+              <MediaQuery query={(theme) => theme.breakpoints.down('md')}>
+                <CategoryChildren params={params}>{category?.children}</CategoryChildren>
+              </MediaQuery>
             </>
           ) : (
             <>

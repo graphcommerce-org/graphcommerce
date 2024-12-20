@@ -1,4 +1,8 @@
-import { CategoryBreadcrumbs, CategoryDescription } from '@graphcommerce/magento-category'
+import {
+  CategoryBreadcrumbs,
+  CategoryChildren,
+  CategoryDescription,
+} from '@graphcommerce/magento-category'
 import {
   ProductFiltersPro,
   ProductFiltersProAggregations,
@@ -21,11 +25,12 @@ import {
   ProductFiltersProCategorySectionSearch,
   ProductFiltersProSearchTerm,
 } from '@graphcommerce/magento-search'
-import { MediaQuery, memoDeep, Container, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { Container, MediaQuery, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Box, Typography } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'
-import { ProductListLayoutProps, useLayoutConfiguration } from './types'
+import type { ProductListLayoutProps } from './types'
+import { useLayoutConfiguration } from './types'
 
 export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps) => {
   const { filters, filterTypes, params, products, handleSubmit, category, title, menu } = props
@@ -96,6 +101,9 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
                 textAlignSm='start'
                 description={category?.description}
               />
+              <MediaQuery query={(theme) => theme.breakpoints.down('md')}>
+                <CategoryChildren params={params}>{category?.children}</CategoryChildren>
+              </MediaQuery>
             </>
           ) : (
             <>

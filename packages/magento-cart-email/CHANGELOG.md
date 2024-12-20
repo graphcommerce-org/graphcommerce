@@ -9,7 +9,7 @@
   - Added new `permissions` configuration for GraphCommerce
   - Added `permissions.cart`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
   - Added `permissions.checkout`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
-  - Adedd `permissions.customerAccount`: `ENABLED` | `DISABLE_REGISTRATION` | `DISABLE` ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+  - Added `permissions.customerAccount`: `ENABLED` | `DISABLE_REGISTRATION` | `DISABLE` ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ### Minor Changes
 

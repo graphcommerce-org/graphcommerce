@@ -12,14 +12,12 @@
 
 - [#2327](https://github.com/graphcommerce-org/graphcommerce/pull/2327) [`af83d81`](https://github.com/graphcommerce-org/graphcommerce/commit/af83d81656a4c1a014802fb052a94a079e9f60c1) - Add `reorderItems` mutation, add `reorder` button to order detail page. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-- [#2320](https://github.com/graphcommerce-org/graphcommerce/pull/2320) [`dc5e85c`](https://github.com/graphcommerce-org/graphcommerce/commit/dc5e85c95dad6145fde02a6e54f0fbd1cdfe9e3d) - Replace deprecated `updateCustomer` mutations with `updateCustomerV2`. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
 - [#2366](https://github.com/graphcommerce-org/graphcommerce/pull/2366) [`3612c99`](https://github.com/graphcommerce-org/graphcommerce/commit/3612c994b80bb3b1bc02de10668f69a332402dc4) - Add `permissions` configuration to disable functionalities.
 
   - Added new `permissions` configuration for GraphCommerce
   - Added `permissions.cart`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
   - Added `permissions.checkout`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
-  - Adedd `permissions.customerAccount`: `ENABLED` | `DISABLE_REGISTRATION` | `DISABLE` ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+  - Added `permissions.customerAccount`: `ENABLED` | `DISABLE_REGISTRATION` | `DISABLE` ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 - [#2324](https://github.com/graphcommerce-org/graphcommerce/pull/2324) [`1c8b1e4`](https://github.com/graphcommerce-org/graphcommerce/commit/1c8b1e441ac44935bfd2215d62a71c02b3ba7e6f) - Magento 2.4.7: Implement the `contactUs` mutation, add contact us overlay. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
@@ -36,6 +34,8 @@
 - [#2319](https://github.com/graphcommerce-org/graphcommerce/pull/2319) [`a3409e8`](https://github.com/graphcommerce-org/graphcommerce/commit/a3409e8a629ee95413da6547cbdcf48aa2502c23) - Created a new `<TelephoneElement />` component to make re-use easier. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 - [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new `<EmailElement/>` component to make re-use easier. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2320](https://github.com/graphcommerce-org/graphcommerce/pull/2320) [`dc5e85c`](https://github.com/graphcommerce-org/graphcommerce/commit/dc5e85c95dad6145fde02a6e54f0fbd1cdfe9e3d) - Replace deprecated `updateCustomer` mutations with `updateCustomerV2`. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ### Patch Changes
 

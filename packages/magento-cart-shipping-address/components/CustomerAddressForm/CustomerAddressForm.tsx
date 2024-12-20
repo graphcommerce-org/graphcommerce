@@ -158,6 +158,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
           collapse
           size='large'
           color='secondary'
+          required
           items={[
             ...customerAddresses.map((address) => ({ ...address, value: address.id })),
             { value: -1 },

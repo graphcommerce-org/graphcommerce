@@ -19,7 +19,7 @@
   - Added new `permissions` configuration for GraphCommerce
   - Added `permissions.cart`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
   - Added `permissions.checkout`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
-  - Adedd `permissions.customerAccount`: `ENABLED` | `DISABLE_REGISTRATION` | `DISABLE` ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+  - Added `permissions.customerAccount`: `ENABLED` | `DISABLE_REGISTRATION` | `DISABLE` ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 - [#2324](https://github.com/graphcommerce-org/graphcommerce/pull/2324) [`1c8b1e4`](https://github.com/graphcommerce-org/graphcommerce/commit/1c8b1e441ac44935bfd2215d62a71c02b3ba7e6f) - Magento 2.4.7: Implement the `contactUs` mutation, add contact us overlay. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 

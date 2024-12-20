@@ -18,9 +18,12 @@ export function SearchField(
 
   if (isSearchPage) return <Prev {...rest} />
   if (!searchField) {
-    throw new Error(
-      '<SearchField searchField={{ productListRenderer }}/> required when rendering the SearchOverlay',
-    )
+    if (process.env.NODE_ENV !== 'production') {
+      throw new Error(
+        '<SearchField searchField={{ productListRenderer }}/> required when rendering the SearchOverlay',
+      )
+    }
+    return null
   }
 
   return (

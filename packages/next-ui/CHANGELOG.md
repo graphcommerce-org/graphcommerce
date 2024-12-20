@@ -4,13 +4,6 @@
 
 ### Major Changes
 
-- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`74eb239`](https://github.com/graphcommerce-org/graphcommerce/commit/74eb2393a64988649178d59f53b33d41fecdd769) - Added Intl components, deprecated `useNumberFormat` and `useDateTimeFormatter`, and replaced usage sites. New components and hooks:
-
-  - `<DisplayNames />` and `useIntlDisplayNames`
-  - `<DateTimeFormat />`, `<DateFormat/>`, `<TimeFormat />` and `useIntlDateTimeFormat`
-  - `<ListFormat />` and `useIntlListFormat`
-  - `<CurrencyFormat />`, `<NumberFormat />`, `<UnitFormat />`, `<PercentFormat/>` and `useIntlNumberFormat` ([@paales](https://github.com/paales))
-
 - [#2405](https://github.com/graphcommerce-org/graphcommerce/pull/2405) [`39a2df4`](https://github.com/graphcommerce-org/graphcommerce/commit/39a2df46c26be390cd8d65200ab347e12b217f9e) - Added `<MediaQuery/>` Component: Render (and hydrate) a Component based on a media query given.
 
   ```tsx
@@ -39,6 +32,13 @@
 - [#2315](https://github.com/graphcommerce-org/graphcommerce/pull/2315) [`fb9118e`](https://github.com/graphcommerce-org/graphcommerce/commit/fb9118ec819d1b507d4fbde04f2ca34ec01ecf49) - Magento 2.4.7: Add `guestOrder` functionality. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ### Minor Changes
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`74eb239`](https://github.com/graphcommerce-org/graphcommerce/commit/74eb2393a64988649178d59f53b33d41fecdd769) - Added Intl components, deprecated `useNumberFormat` and `useDateTimeFormatter`, and replaced usage sites. New components and hooks:
+
+  - `<DisplayNames />` and `useIntlDisplayNames`
+  - `<DateTimeFormat />`, `<DateFormat/>`, `<TimeFormat />` and `useIntlDateTimeFormat`
+  - `<ListFormat />` and `useIntlListFormat`
+  - `<CurrencyFormat />`, `<NumberFormat />`, `<UnitFormat />`, `<PercentFormat/>` and `useIntlNumberFormat` ([@paales](https://github.com/paales))
 
 - [#2274](https://github.com/graphcommerce-org/graphcommerce/pull/2274) [`4a24813`](https://github.com/graphcommerce-org/graphcommerce/commit/4a248130041484833768fe6018f91d05a59522de) - Add props to `<DarkLightModeThemeProvider />` to disable dark/light mode or to change the default ssr mode. Save user chosen mode in localStorage. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
