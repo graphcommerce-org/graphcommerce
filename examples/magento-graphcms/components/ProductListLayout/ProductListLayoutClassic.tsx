@@ -14,6 +14,7 @@ import {
 import { LayoutTitle, memoDeep, StickyBelowHeader, Container } from '@graphcommerce/next-ui'
 import { ProductListItems } from '../ProductListItems'
 import { ProductListLayoutProps } from './types'
+import { Trans } from '@lingui/macro'
 
 export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps) => {
   const { filters, filterTypes, params, products, title, category } = props
@@ -39,7 +40,6 @@ export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps)
             variant='h1'
             sx={(theme) => ({
               mb: (category?.description || category?.children) && theme.spacings.md,
-              alignItems: { xs: 'center', md: 'center' },
             })}
             gutterBottom={!category?.description && category?.children?.length === 0}
           >
@@ -57,8 +57,8 @@ export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps)
           </CategoryChildren>
         </>
       ) : (
-        <LayoutTitle gutterTop variant='h1' sx={{ alignItems: { xs: 'center', md: 'center' } }}>
-          Search {params.search}
+        <LayoutTitle gutterTop variant='h1'>
+          <Trans>Search</Trans> {params.search}
         </LayoutTitle>
       )}
 
