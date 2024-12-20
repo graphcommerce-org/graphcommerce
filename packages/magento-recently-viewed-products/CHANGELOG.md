@@ -1,44 +1,10 @@
 # @graphcommerce/magento-recently-viewed-products
 
+## 9.0.1
+
+## 9.0.1-canary.1
+
 ## 9.0.0
-
-### Patch Changes
-
-- [#2379](https://github.com/graphcommerce-org/graphcommerce/pull/2379) [`5832c9d`](https://github.com/graphcommerce-org/graphcommerce/commit/5832c9d891e288f47e3b181f4a2f5529847dee2b) - Solved issue where Recently Viewed Products would execute a query even if there were no products to display. ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.118
-
-## 9.0.0-canary.117
-
-## 9.0.0-canary.116
-
-## 9.0.0-canary.115
-
-## 9.0.0-canary.114
-
-## 9.0.0-canary.113
-
-## 9.0.0-canary.112
-
-## 9.0.0-canary.111
-
-## 9.0.0-canary.110
-
-## 9.0.0-canary.109
-
-## 9.0.0-canary.108
-
-## 9.0.0-canary.107
-
-## 9.0.0-canary.106
-
-## 9.0.0-canary.105
-
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
-
-## 9.0.0-canary.86
 
 ### Patch Changes
 

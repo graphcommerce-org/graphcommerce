@@ -1,5 +1,9 @@
 # Change Log
 
+## 9.0.1
+
+## 9.0.1-canary.1
+
 ## 9.0.0
 
 ### Patch Changes
@@ -7,50 +11,6 @@
 - [#2245](https://github.com/graphcommerce-org/graphcommerce/pull/2245) [`898224c`](https://github.com/graphcommerce-org/graphcommerce/commit/898224c0343dd195ab2574218475834469182315) - Solve an issue where the `grecaptcha.execute` method would throw `null` causing the checkout to break in unexpected ways. ([@paales](https://github.com/paales))
 
 - [#2331](https://github.com/graphcommerce-org/graphcommerce/pull/2331) [`702bfc9`](https://github.com/graphcommerce-org/graphcommerce/commit/702bfc93566c9745546988e57988431d5d4d8cb0) - Moved plugins to new format ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.118
-
-## 9.0.0-canary.117
-
-## 9.0.0-canary.116
-
-## 9.0.0-canary.115
-
-## 9.0.0-canary.114
-
-## 9.0.0-canary.113
-
-## 9.0.0-canary.112
-
-## 9.0.0-canary.111
-
-## 9.0.0-canary.110
-
-## 9.0.0-canary.109
-
-## 9.0.0-canary.108
-
-## 9.0.0-canary.107
-
-## 9.0.0-canary.106
-
-## 9.0.0-canary.105
-
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
-
-## 9.0.0-canary.60
-
-### Patch Changes
-
-- [#2331](https://github.com/graphcommerce-org/graphcommerce/pull/2331) [`702bfc9`](https://github.com/graphcommerce-org/graphcommerce/commit/702bfc93566c9745546988e57988431d5d4d8cb0) - Moved plugins to new format ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.7
-
-### Patch Changes
-
-- [#2245](https://github.com/graphcommerce-org/graphcommerce/pull/2245) [`898224c`](https://github.com/graphcommerce-org/graphcommerce/commit/898224c0343dd195ab2574218475834469182315) - Solve an issue where the grecaptcha.execute method would throw ‘null’ causing the checkout to break in unexpected ways. ([@paales](https://github.com/paales))
 
 ## 7.0.0
 

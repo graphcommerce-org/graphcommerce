@@ -1,6 +1,5 @@
 import type { GraphCommerceConfig } from '../../src/generated/config'
 import { findPlugins } from '../../src/interceptors/findPlugins'
-
 const projectRoot = `${process.cwd()}/examples/magento-graphcms`
 it('finds plugins', () => {
   const fakeconfig = {
@@ -13,8 +12,7 @@ it('finds plugins', () => {
   const disabled = plugins.filter((p) => !p.enabled)
   const enabled = plugins.filter((p) => p.enabled)
   expect(errors).toMatchInlineSnapshot('[]')
-  expect(enabled).toMatchInlineSnapshot(
-    `
+  expect(enabled).toMatchInlineSnapshot(`
     [
       {
         "enabled": true,
@@ -520,6 +518,14 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "graphqlConfig",
+        "sourceModule": "@graphcommerce/magento-store/plugins/magentoStoreGraphqlConfig",
+        "targetExport": "graphqlConfig",
+        "targetModule": "@graphcommerce/graphql",
+        "type": "function",
+      },
+      {
+        "enabled": true,
         "sourceExport": "meshConfig",
         "sourceModule": "@graphcommerce/magento-graphql/plugins/meshConfigAttrValue",
         "targetExport": "meshConfig",
@@ -543,9 +549,9 @@ it('finds plugins', () => {
         "type": "function",
       },
     ]
-  `,
-  )
-  expect(disabled).toMatchInlineSnapshot(`
+  `)
+  expect(disabled).toMatchInlineSnapshot(
+    `
     [
       {
         "enabled": false,
@@ -746,5 +752,6 @@ it('finds plugins', () => {
         "type": "component",
       },
     ]
-  `)
+  `,
+  )
 })

@@ -1,13 +1,17 @@
 # @graphcommerce/magento-wishlist
 
+## 9.0.1
+
+## 9.0.1-canary.1
+
 ## 9.0.0
 
-### Minor Changes
+### Major Changes
+
+### Patch Changes
 
 - [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed `useMediaQuery` from the `<WishlistItemActionCard />` and `<CartItemActionCard />` and replaced it with a new responsive `size` prop. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-### Patch Changes
-
 - [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`811d5e6`](https://github.com/graphcommerce-org/graphcommerce/commit/811d5e60ebafea6c4a0a968fdc366e5e316bc64e) - Contain ripple to wishlist button instead of propagating to product list item ([@bramvanderholst](https://github.com/bramvanderholst))
 
 - [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
@@ -17,66 +21,6 @@
 - [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`8aaca29`](https://github.com/graphcommerce-org/graphcommerce/commit/8aaca29147da4d4a508fb1a00c088d30e2a304cf) - Forward BadgeProps to WishlistFab, CartFab and CustomerFab ([@paales](https://github.com/paales))
 
 - [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`49937fd`](https://github.com/graphcommerce-org/graphcommerce/commit/49937fd765338e25899d427ee4d799fa7978faeb) - Allow changing various props for internal components ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 9.0.0-canary.118
-
-## 9.0.0-canary.117
-
-## 9.0.0-canary.116
-
-## 9.0.0-canary.115
-
-## 9.0.0-canary.114
-
-## 9.0.0-canary.113
-
-## 9.0.0-canary.112
-
-## 9.0.0-canary.111
-
-## 9.0.0-canary.110
-
-## 9.0.0-canary.109
-
-## 9.0.0-canary.108
-
-### Patch Changes
-
-- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
-
-- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`49937fd`](https://github.com/graphcommerce-org/graphcommerce/commit/49937fd765338e25899d427ee4d799fa7978faeb) - Allow changing various props for internal components ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 9.0.0-canary.107
-
-## 9.0.0-canary.106
-
-## 9.0.0-canary.105
-
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
-
-### Patch Changes
-
-- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`8aaca29`](https://github.com/graphcommerce-org/graphcommerce/commit/8aaca29147da4d4a508fb1a00c088d30e2a304cf) - Forward BadgeProps to WishlistFab, CartFab and CustomerFab ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.78
-
-### Patch Changes
-
-- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`811d5e6`](https://github.com/graphcommerce-org/graphcommerce/commit/811d5e60ebafea6c4a0a968fdc366e5e316bc64e) - Contain ripple to wishlist button instead of propagating to product list item ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 8.1.0-canary.45
-
-### Patch Changes
-
-- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`02c98e2`](https://github.com/graphcommerce-org/graphcommerce/commit/02c98e217a42fe2258acfad40be577e4a9109345) - Add to wishlist message missed the product name ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.17
-
-### Minor Changes
-
-- [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed useMediaQuery from the wishlist and cart ItemActionCard and replaced it with a new responsive size prop. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.3
 

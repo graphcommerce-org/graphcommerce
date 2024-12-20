@@ -1,38 +1,16 @@
 # @graphcommerce/address-fields-nl
 
-## 9.0.0
+## 9.0.1
 
-## 9.0.0-canary.118
+### Patch Changes
 
-## 9.0.0-canary.117
+- [#2459](https://github.com/graphcommerce-org/graphcommerce/pull/2459) [`298cb68`](https://github.com/graphcommerce-org/graphcommerce/commit/298cb683a34368c9799af7d7201e30ef5b681953) - Refactor AddressFields component to spread props correctly for child components. ([@carlocarels90](https://github.com/carlocarels90))
 
-## 9.0.0-canary.116
+## 9.0.1-canary.1
 
-## 9.0.0-canary.115
+### Patch Changes
 
-## 9.0.0-canary.114
-
-## 9.0.0-canary.113
-
-## 9.0.0-canary.112
-
-## 9.0.0-canary.111
-
-## 9.0.0-canary.110
-
-## 9.0.0-canary.109
-
-## 9.0.0-canary.108
-
-## 9.0.0-canary.107
-
-## 9.0.0-canary.106
-
-## 9.0.0-canary.105
-
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
+- [#2459](https://github.com/graphcommerce-org/graphcommerce/pull/2459) [`298cb68`](https://github.com/graphcommerce-org/graphcommerce/commit/298cb683a34368c9799af7d7201e30ef5b681953) - Refactor AddressFields component to spread props correctly for child components. ([@carlocarels90](https://github.com/carlocarels90))
 
 ## 8.0.5
 

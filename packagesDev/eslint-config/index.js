@@ -192,7 +192,7 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.spec.ts', '**/*.spec.tsx', '**/__tests__/**'],
+      files: ['**/*.spec.ts', '**/*.spec.tsx', '**/__tests__/**', 'scripts/**'],
       env: {
         jest: true,
       },

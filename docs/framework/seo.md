@@ -23,7 +23,7 @@ We integrated [JSON-LD](https://json-ld.org/) for pages.
 A
 [`<JsonLd>`](https://github.com/graphcommerce-org/graphcommerce/blob/main/packages/next-ui/JsonLd/JsonLd.tsx)
 component provides Json-LD metadata for your pages. See
-[<ProductPageJsonLd>](https://github.com/graphcommerce-org/graphcommerce/blob/main/packages/magento-product/components/JsonLdProduct/ProductPageJsonLd.tsx)
+[`<ProductPageJsonLd/>`](https://github.com/graphcommerce-org/graphcommerce/blob/main/packages/magento-product/components/JsonLdProduct/ProductPageJsonLd.tsx)
 or
 [`<BreadcrumbJsonLd>`](https://github.com/graphcommerce-org/graphcommerce/blob/main/packages/next-ui/BreadcrumbJsonLd/BreadcrumbJsonLd.tsx)
 for examples.

@@ -41,6 +41,7 @@ export const LayoutTitle = React.forwardRef<HTMLDivElement, TitleProps>((props, 
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          width: '100%',
           gap: '6px',
           '&.sizeSmall': {
             overflow: 'hidden',

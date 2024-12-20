@@ -1,45 +1,11 @@
 # @graphcommerce/algolia-categories
 
+## 9.0.1
+
+## 9.0.1-canary.1
+
 ## 9.0.0
 
 ### Major Changes
 
-- [#2377](https://github.com/graphcommerce-org/graphcommerce/pull/2377) [`bca47b8`](https://github.com/graphcommerce-org/graphcommerce/commit/bca47b81061ea8608753cfc8940ce4db65ab27e3) - Enables Algolia category search in GraphQL Mesh. Integrated Algolia category search into the `categories` type within the Mesh. This will only be used on search pages. ([@Renzovh](https://github.com/Renzovh))
-
-## 9.0.0-canary.118
-
-## 9.0.0-canary.117
-
-## 9.0.0-canary.116
-
-## 9.0.0-canary.115
-
-## 9.0.0-canary.114
-
-## 9.0.0-canary.113
-
-## 9.0.0-canary.112
-
-## 9.0.0-canary.111
-
-## 9.0.0-canary.110
-
-## 9.0.0-canary.109
-
-## 9.0.0-canary.108
-
-## 9.0.0-canary.107
-
-## 9.0.0-canary.106
-
-## 9.0.0-canary.105
-
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
-
-## 9.0.0-canary.84
-
-### Minor Changes
-
-- [#2377](https://github.com/graphcommerce-org/graphcommerce/pull/2377) [`bca47b8`](https://github.com/graphcommerce-org/graphcommerce/commit/bca47b81061ea8608753cfc8940ce4db65ab27e3) - Enables algolia category search in graphql mesh. Integrated algolias category search into categories type within the mesh. This will only be used on search pages ([@Renzovh](https://github.com/Renzovh))
+- [#2377](https://github.com/graphcommerce-org/graphcommerce/pull/2377) [`bca47b8`](https://github.com/graphcommerce-org/graphcommerce/commit/bca47b81061ea8608753cfc8940ce4db65ab27e3) - Algolia: Enables Algolia category search in GraphQL Mesh. Integrated Algolia category search into the `categories` type within the Mesh. This will only be used on search pages. ([@Renzovh](https://github.com/Renzovh))

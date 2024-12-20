@@ -1,5 +1,9 @@
 # @graphcommerce/cli
 
+## 9.0.1
+
+## 9.0.1-canary.1
+
 ## 9.0.0
 
 ### Minor Changes
@@ -19,78 +23,6 @@
 - [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`cfc0f4e`](https://github.com/graphcommerce-org/graphcommerce/commit/cfc0f4e015f3b3a7348b882eb7440222b3e26a07) - Make sure the interceptors are generated before the typecheck is ran. ([@paales](https://github.com/paales))
 
 - [#2365](https://github.com/graphcommerce-org/graphcommerce/pull/2365) [`ee32793`](https://github.com/graphcommerce-org/graphcommerce/commit/ee32793c5e8e7233b4452219e148ebb85600a652) - The mesh would always include all graphqls files even though they aren't necessary for Magento 2.4.7 ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 9.0.0-canary.118
-
-## 9.0.0-canary.117
-
-## 9.0.0-canary.116
-
-## 9.0.0-canary.115
-
-## 9.0.0-canary.114
-
-## 9.0.0-canary.113
-
-## 9.0.0-canary.112
-
-## 9.0.0-canary.111
-
-## 9.0.0-canary.110
-
-## 9.0.0-canary.109
-
-## 9.0.0-canary.108
-
-## 9.0.0-canary.107
-
-## 9.0.0-canary.106
-
-## 9.0.0-canary.105
-
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
-
-### Patch Changes
-
-- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.92
-
-### Patch Changes
-
-- [#2365](https://github.com/graphcommerce-org/graphcommerce/pull/2365) [`ee32793`](https://github.com/graphcommerce-org/graphcommerce/commit/ee32793c5e8e7233b4452219e148ebb85600a652) - The mesh would always include all graphqls files even though they aren't necessary for Magento 2.4.7 ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 9.0.0-canary.71
-
-### Patch Changes
-
-- [#2345](https://github.com/graphcommerce-org/graphcommerce/pull/2345) [`d4ae30b`](https://github.com/graphcommerce-org/graphcommerce/commit/d4ae30ba28815ccb9d3a0478da995b7c609618e5) - Solve issue where customFetch coudn’t be loaded correctly ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.59
-
-### Minor Changes
-
-- [#2309](https://github.com/graphcommerce-org/graphcommerce/pull/2309) [`b46e17e`](https://github.com/graphcommerce-org/graphcommerce/commit/b46e17ebe390b4d0040639dfdac33c36a60576ac) - When generating the mesh the configuration is passed through `@graphcommerce/graphql-mesh/meshConfig` allowing plugins to modify the mesh configuration without having to change the `.meshrc.yaml` itself. ([@Renzovh](https://github.com/Renzovh))
-
-## 8.1.0-canary.44
-
-### Patch Changes
-
-- [`44ea147`](https://github.com/graphcommerce-org/graphcommerce/commit/44ea1474d1429d05f535df903beb1fb2c0ca7754) - Added missing tsx package ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.43
-
-### Patch Changes
-
-- [`6184a28`](https://github.com/graphcommerce-org/graphcommerce/commit/6184a28b2ba2dc70189a9b881887696dc0a346c8) - Fixed issue where codegen would throw an error: SyntaxError: Cannot use import statement outside a module. ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.8
-
-### Patch Changes
-
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`cfc0f4e`](https://github.com/graphcommerce-org/graphcommerce/commit/cfc0f4e015f3b3a7348b882eb7440222b3e26a07) - Make sure the interceptors are generated before the typecheck is ran. ([@paales](https://github.com/paales))
 
 ## 7.0.1
 

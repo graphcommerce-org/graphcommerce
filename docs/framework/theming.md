@@ -11,9 +11,10 @@ as well as some common theming needs.
 
 ## Changing the color palette
 
-The global styles or your GraphCommerce app are located in /components/theme.ts.
-To customize the app with your preferred colors, change the primary, secondary
-and text colors. Save the file to see your changes updated in real-time:
+The global styles or your GraphCommerce app are located in
+/components/theme.ts.` To customize the app with your preferred colors, change
+the primary, secondary and text colors. Save the file to see your changes
+updated in real-time:
 
 ```json
   primary: {
@@ -248,7 +249,7 @@ should not be scaled with responsiveVal. To learn more, look into
 
 ## Disabling darkmode or lightmode site wide
 
-Remove light={lightTheme} or dark={darkTheme} from the
+Remove `light={lightTheme}` or `dark={darkTheme}` from the
 `<DarkLightModeThemeProvider />` in \_app.tsx to disable darkmode or lightmode
 site wide.
 
