@@ -64,12 +64,7 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
 
         {category ? (
           <>
-            <LayoutTitle
-              gutterTop
-              variant='h1'
-              sx={{ alignItems: { xs: 'left', md: 'center' } }}
-              gutterBottom={false}
-            >
+            <LayoutTitle gutterTop variant='h1' gutterBottom={false}>
               {title}
             </LayoutTitle>
             <CategoryDescription
