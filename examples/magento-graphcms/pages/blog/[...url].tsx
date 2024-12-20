@@ -47,21 +47,23 @@ function BlogPage(props: Props) {
           {title}
         </LayoutTitle>
       </LayoutHeader>
-      <Container maxWidth={false}>
-        <Breadcrumbs
-          sx={(theme) => ({
-            mx: theme.page.horizontal,
-            mb: theme.spacings.sm,
-            [theme.breakpoints.down('md')]: {
-              '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-            },
-          })}
-          breadcrumbs={[
-            { href: '/blog', name: i18n._(/* i18n*/ 'Blog') },
-            { href: `/${page.url}`, name: title },
-          ]}
-        />
-      </Container>
+      {import.meta.graphCommerce.breadcrumbs && (
+        <Container maxWidth={false}>
+          <Breadcrumbs
+            sx={(theme) => ({
+              mx: theme.page.horizontal,
+              mb: theme.spacings.sm,
+              [theme.breakpoints.down('md')]: {
+                '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+              },
+            })}
+            breadcrumbs={[
+              { href: '/blog', name: i18n._(/* i18n*/ 'Blog') },
+              { href: `/${page.url}`, name: title },
+            ]}
+          />
+        </Container>
+      )}
       <Row>
         <PageMeta title={title} metaDescription={title} canonical={`/${page.url}`} />
 
