@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.1-canary.1
+
+### Patch Changes
+
+- [#2461](https://github.com/graphcommerce-org/graphcommerce/pull/2461) [`7017b60`](https://github.com/graphcommerce-org/graphcommerce/commit/7017b608eb61097c881103c40701ab4a41197d7a) - Solve issue with documentation parsing markdown files as mdx ([@paales](https://github.com/paales))
+
 ## 9.0.1-canary.0
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.0.1-canary.1
+
+### Patch Changes
+
+- [#2460](https://github.com/graphcommerce-org/graphcommerce/pull/2460) [`d8ec6a8`](https://github.com/graphcommerce-org/graphcommerce/commit/d8ec6a8cd4add4f578c6f4983c054957679a589a) - Respect breadcrumbs config on blog pages ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2463](https://github.com/graphcommerce-org/graphcommerce/pull/2463) [`db3e142`](https://github.com/graphcommerce-org/graphcommerce/commit/db3e142d6f8b09a0f6b67a06e664b23946a71173) - Fix issue where layout title would be left aligned ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 9.0.0
 
 ### Major Changes

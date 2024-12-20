@@ -86,9 +86,25 @@
     "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "9.0.0",
     "@graphcommerce/next-config": "9.0.0",
     "@graphcommerce/prettier-config-pwa": "9.0.0",
-    "@graphcommerce/typescript-config-pwa": "9.0.0"
+    "@graphcommerce/typescript-config-pwa": "9.0.0",
+    "@graphcommerce/misc": "9.0.1-canary.0"
   },
   "changesets": [
-    "spotty-falcons-grab"
+    "clever-rivers-look",
+    "cold-hotels-yawn",
+    "curly-rocks-flash",
+    "fifty-points-tap",
+    "five-stingrays-sort",
+    "four-dancers-beg",
+    "fuzzy-carrots-visit",
+    "happy-melons-train",
+    "light-pumpkins-clean",
+    "many-pumas-glow",
+    "nine-nails-hug",
+    "orange-olives-smile",
+    "pretty-dancers-hammer",
+    "shy-foxes-drop",
+    "spotty-falcons-grab",
+    "two-ligers-hide"
   ]
 }

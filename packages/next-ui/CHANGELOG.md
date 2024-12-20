@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.1-canary.1
+
+### Patch Changes
+
+- [#2463](https://github.com/graphcommerce-org/graphcommerce/pull/2463) [`db3e142`](https://github.com/graphcommerce-org/graphcommerce/commit/db3e142d6f8b09a0f6b67a06e664b23946a71173) - Fix issue where layout title would be left aligned ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 9.0.0
 
 ### Major Changes
