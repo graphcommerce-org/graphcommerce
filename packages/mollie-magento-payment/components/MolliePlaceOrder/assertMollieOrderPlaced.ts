@@ -1,7 +1,9 @@
-import { ApolloError, type FetchResult } from '@graphcommerce/graphql'
+import { type FetchResult } from '@graphcommerce/graphql'
 import type { AssertedOrderPlaced, PlacedOrder } from '@graphcommerce/magento-cart-payment-method'
-import { assertOrderPlaced } from '@graphcommerce/magento-cart-payment-method'
-import { t } from '@lingui/macro'
+import {
+  assertOrderPlaced,
+  throwGenericPlaceOrderError,
+} from '@graphcommerce/magento-cart-payment-method'
 import type { MolliePlaceOrderMutation } from './MolliePlaceOrder.gql'
 
 /** Assert that the order was place successfully. */
@@ -26,12 +28,6 @@ export function assertMollieOrderPlaced<T extends FetchResult<MolliePlaceOrderMu
       'Mollie: Order was placed, but no redirect url or payment token was returned, this is an issue on the Magento Mollie side.',
       result,
     )
-    throw new ApolloError({
-      graphQLErrors: [
-        {
-          message: t`An error occurred while processing your payment. Please contact the store owner`,
-        },
-      ],
-    })
+    throwGenericPlaceOrderError()
   }
 }

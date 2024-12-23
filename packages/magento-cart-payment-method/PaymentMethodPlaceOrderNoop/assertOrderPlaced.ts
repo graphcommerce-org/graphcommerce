@@ -13,6 +13,16 @@ export type AssertedOrderPlaced<T extends FetchResult<PaymentMethodPlaceOrderNoo
   }
 }
 
+export function throwGenericPlaceOrderError() {
+  throw new ApolloError({
+    graphQLErrors: [
+      {
+        message: t`An error occurred while processing your payment. Please contact the store owner`,
+      },
+    ],
+  })
+}
+
 /** Assert that the order was place successfully. */
 export function assertOrderPlaced<T extends FetchResult<PaymentMethodPlaceOrderNoopMutation>>(
   result: T,
@@ -29,12 +39,6 @@ export function assertOrderPlaced<T extends FetchResult<PaymentMethodPlaceOrderN
 
   if (!result.data?.placeOrder?.order?.order_number) {
     console.info('Error while placing order', result)
-    throw new ApolloError({
-      graphQLErrors: [
-        {
-          message: t`An error occurred while processing your payment. Please contact the store owner`,
-        },
-      ],
-    })
+    throwGenericPlaceOrderError()
   }
 }
