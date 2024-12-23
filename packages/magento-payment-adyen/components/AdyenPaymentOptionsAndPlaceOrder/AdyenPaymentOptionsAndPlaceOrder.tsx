@@ -1,7 +1,11 @@
 import { FormPersist, TextFieldElement, useFormCompose } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
-import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
+import {
+  assertOrderPlaced,
+  throwGenericPlaceOrderError,
+  usePaymentMethodContext,
+} from '@graphcommerce/magento-cart-payment-method'
 import { FormRow } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { useRouter } from 'next/router'
@@ -40,15 +44,18 @@ export function HppOptions(props: PaymentOptionsProps) {
       brandCode,
     }),
     onComplete: async (result) => {
+      assertOrderPlaced(result.data?.placeOrder)
       const merchantReference = result.data?.placeOrder?.order.order_number
       const action = result?.data?.placeOrder?.order.adyen_payment_status?.action
 
       if (result.errors) return
 
       if (!merchantReference || !selectedMethod?.code || !action) {
-        throw Error(
-          t`An error occurred while processing your payment. Please contact the store owner`,
+        console.error(
+          'Adyen: Order was placed, but no merchant reference or action was returned, this is an issue on the Magento Adyen side.',
+          result,
         )
+        throwGenericPlaceOrderError()
       }
 
       const url = JSON.parse(action).url as string
