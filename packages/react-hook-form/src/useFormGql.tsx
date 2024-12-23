@@ -214,7 +214,7 @@ export function useFormGql<Q, V extends FieldValues>(
       })
 
       // If there are submission errors, set the error and return
-      if (result.errors) {
+      if (result.errors && result.errors.length > 0) {
         form.setError('root', { message: result.errors.map((e) => e.message).join(', ') })
         return
       }
