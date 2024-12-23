@@ -1,5 +1,11 @@
 # @graphcommerce/misc
 
+## 9.0.1-canary.3
+
+### Patch Changes
+
+- [#2467](https://github.com/graphcommerce-org/graphcommerce/pull/2467) [`bd1a28b`](https://github.com/graphcommerce-org/graphcommerce/commit/bd1a28b0967aa9b317d2b388bfdbc879cc89d8c3) - Solve issue where the filtered pages would throw an error because null object types were forwarded. ([@paales](https://github.com/paales))
+
 ## 9.0.1-canary.2
 
 ## 9.0.1-canary.1
