@@ -66,7 +66,7 @@ export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps)
         <ProductListParamsProvider value={params}>
           <ProductListFiltersContainer>
             <ProductListSort sort_fields={sort_fields} total_count={total_count} />
-            <ProductListFilters {...filters} filterTypes={filterTypes} />
+            <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
           </ProductListFiltersContainer>
         </ProductListParamsProvider>
       </StickyBelowHeader>

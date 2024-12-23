@@ -1,17 +1,17 @@
 import {
   CategoryBreadcrumbs,
-  CategoryDescription,
   CategoryChildren,
+  CategoryDescription,
 } from '@graphcommerce/magento-category'
 import {
-  ProductListParamsProvider,
-  ProductListFiltersContainer,
-  ProductListSort,
-  ProductListFilters,
   ProductListCount,
+  ProductListFilters,
+  ProductListFiltersContainer,
   ProductListPagination,
+  ProductListParamsProvider,
+  ProductListSort,
 } from '@graphcommerce/magento-product'
-import { LayoutTitle, memoDeep, StickyBelowHeader, Container } from '@graphcommerce/next-ui'
+import { Container, LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { ProductListItems } from '../ProductListItems'
 import { ProductListLayoutProps } from './types'
 
@@ -66,7 +66,7 @@ export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps)
         <ProductListParamsProvider value={params}>
           <ProductListFiltersContainer>
             <ProductListSort sort_fields={sort_fields} total_count={total_count} />
-            <ProductListFilters {...filters} filterTypes={filterTypes} />
+            <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
           </ProductListFiltersContainer>
         </ProductListParamsProvider>
       </StickyBelowHeader>
