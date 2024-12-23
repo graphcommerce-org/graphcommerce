@@ -1,5 +1,7 @@
 # @graphcommerce/algolia-personalization
 
+## 9.0.2-canary.0
+
 ## 9.0.1
 
 ### Patch Changes

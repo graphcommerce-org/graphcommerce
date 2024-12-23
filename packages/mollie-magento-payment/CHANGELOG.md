@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.2-canary.0
+
+### Patch Changes
+
+- [`dc70489`](https://github.com/graphcommerce-org/graphcommerce/commit/dc70489c82aaf532bed7a6a500de8eae988e3773) - Support Magento 2.4.7 placeOrder.errors field when placing a Mollie order ([@paales](https://github.com/paales))
+
 ## 9.0.1
 
 ## 9.0.1-canary.1
