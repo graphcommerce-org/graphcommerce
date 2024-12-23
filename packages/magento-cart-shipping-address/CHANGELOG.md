@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.1-canary.2
+
+### Patch Changes
+
+- [#2465](https://github.com/graphcommerce-org/graphcommerce/pull/2465) [`b11f29a`](https://github.com/graphcommerce-org/graphcommerce/commit/b11f29a9253cdcd54ed1e0a58abc2ef2f2bb3ebd) - Make sure we are toggling the selected shipping method when a user selects a previously selected shipping method ([@paales](https://github.com/paales))
+
 ## 9.0.1-canary.1
 
 ### Patch Changes

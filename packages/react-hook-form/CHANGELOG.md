@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.1-canary.2
+
+### Patch Changes
+
+- [#2465](https://github.com/graphcommerce-org/graphcommerce/pull/2465) [`881e146`](https://github.com/graphcommerce-org/graphcommerce/commit/881e146acf0d129d6d44ec207619a45ad04d673b) - Solve an issue where the payment submission would remain in a spinning state when placing an order failed: `useFormGql` will now set `root` error on the form when there is an error response on the GraphQL operation, an error is thrown in onBeforeSubmit and in onSuccess. ([@paales](https://github.com/paales))
+
 ## 9.0.1-canary.1
 
 ## 9.0.0

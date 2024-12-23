@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.1-canary.2
+
+### Patch Changes
+
+- [#2465](https://github.com/graphcommerce-org/graphcommerce/pull/2465) [`f27b021`](https://github.com/graphcommerce-org/graphcommerce/commit/f27b021baff584fa10a8930cd9731867394720b7) - Make sure we are correctly selecting the shipping method form when a user selects a previously selected method again. ([@paales](https://github.com/paales))
+
 ## 9.0.1-canary.1
 
 ## 9.0.0
