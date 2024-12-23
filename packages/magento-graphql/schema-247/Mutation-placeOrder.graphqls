@@ -4,6 +4,11 @@ type PlaceOrderOutput {
   """
   order: Order
   """
+  An array of place order errors.
+  """
+  errors: [PlaceOrderError]! @deprecated(reason: "Magento >= 2.4.7")
+
+  """
   Full order information.
   """
   orderV2: CustomerOrder @deprecated(reason: "Magento >= 2.4.7")
