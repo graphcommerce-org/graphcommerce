@@ -3,7 +3,11 @@ import { useMutation } from '@graphcommerce/graphql'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import type { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
-import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
+import {
+  assertOrderPlaced,
+  throwGenericPlaceOrderError,
+  usePaymentMethodContext,
+} from '@graphcommerce/magento-cart-payment-method'
 import { ErrorSnackbar } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import { useRouter } from 'next/router'
@@ -27,14 +31,11 @@ export function MSPPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
    */
   const form = useFormGqlMutationCart(MSPPaymentPlaceOrderDocument, {
     onComplete: async (result, variables) => {
-      const url = result.data?.placeOrder?.order.multisafepay_payment_url
-
-      if (result.errors) return
+      assertOrderPlaced(result)
+      const url = result.data.placeOrder.order.multisafepay_payment_url
 
       if (!selectedMethod?.code) {
-        throw Error(
-          t`An error occurred while processing your payment. Please contact the store owner`,
-        )
+        throwGenericPlaceOrderError()
       }
 
       if (url?.error || !url?.payment_url) {
@@ -47,7 +48,7 @@ export function MSPPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
 
       await lock({
         method: selectedMethod.code,
-        order_number: result.data?.placeOrder?.order.order_number,
+        order_number: result.data.placeOrder.order.order_number,
       })
 
       await new Promise((resolve) => setTimeout(resolve, 1000))

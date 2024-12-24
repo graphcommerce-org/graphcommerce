@@ -1,5 +1,21 @@
 # Change Log
 
+## 9.0.2
+
+### Patch Changes
+
+- [`7d5e75e`](https://github.com/graphcommerce-org/graphcommerce/commit/7d5e75ebfe93194237b8f6b6511d2bd1549d121e) - Solve issue where the Component prop would we forwarded tot the DOM element of the PaymentMethodActionCard ([@paales](https://github.com/paales))
+
+- [`058b7bf`](https://github.com/graphcommerce-org/graphcommerce/commit/058b7bf64be29e1bc3d16551abcc1cd55b5413bd) - Support Magento 2.4.7 placeOrder.errors field to handle possible errors while placing the order. An `assertOrderPlaced` method was created to assert a valid placed order. ([@paales](https://github.com/paales))
+
+## 9.0.2-canary.0
+
+### Patch Changes
+
+- [`7d5e75e`](https://github.com/graphcommerce-org/graphcommerce/commit/7d5e75ebfe93194237b8f6b6511d2bd1549d121e) - Solve issue where the Component prop would we forwarded tot the DOM element of the PaymentMethodActionCard ([@paales](https://github.com/paales))
+
+- [`058b7bf`](https://github.com/graphcommerce-org/graphcommerce/commit/058b7bf64be29e1bc3d16551abcc1cd55b5413bd) - Support Magento 2.4.7 placeOrder.errors field to handle possible errors while placing the order. An `assertOrderPlaced` method was created to assert a valid placed order. ([@paales](https://github.com/paales))
+
 ## 9.0.1
 
 ## 9.0.1-canary.1

@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.0.2
+
+### Patch Changes
+
+- [`058b7bf`](https://github.com/graphcommerce-org/graphcommerce/commit/058b7bf64be29e1bc3d16551abcc1cd55b5413bd) - Support Magento 2.4.7 placeOrder.errors field to handle possible errors while placing the order. An `assertOrderPlaced` method was created to assert a valid placed order. ([@paales](https://github.com/paales))
+
+## 9.0.2-canary.0
+
+### Patch Changes
+
+- [`058b7bf`](https://github.com/graphcommerce-org/graphcommerce/commit/058b7bf64be29e1bc3d16551abcc1cd55b5413bd) - Support Magento 2.4.7 placeOrder.errors field to handle possible errors while placing the order. An `assertOrderPlaced` method was created to assert a valid placed order. ([@paales](https://github.com/paales))
+
 ## 9.0.1
 
 ## 9.0.1-canary.1
