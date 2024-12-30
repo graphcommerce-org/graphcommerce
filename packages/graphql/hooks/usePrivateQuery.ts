@@ -4,7 +4,7 @@ import { useIsSSR } from '@graphcommerce/next-ui/hooks/useIsSsr'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { getCssFlag, removeCssFlag, setCssFlag } from '@graphcommerce/next-ui/utils/cssFlags'
 import { useContext, useEffect } from 'react'
-import type { MaybeMasked, QueryHookOptions, QueryResult, TypedDocumentNode } from '../apollo'
+import type { QueryHookOptions, QueryResult, TypedDocumentNode } from '../apollo'
 import { useQuery } from '../apollo'
 import { PrivateQueryMaskContext } from '../components/PrivateQueryMask/PrivateQueryMask'
 import { usePrivateQueryContext } from './usePrivateQueryContext'
@@ -32,7 +32,7 @@ export function usePrivateQuery<
   document: TypedDocumentNode<Q, V>,
   options: QueryHookOptions<Q, V>,
   unscopedResult: Q,
-): Omit<QueryResult<Q, V>, 'data'> & { data: Q | NonNullable<MaybeMasked<Q>>; mask: boolean } {
+): Omit<QueryResult<Q, V>, 'data'> & { data: Q; mask: boolean } {
   const { skip = true } = options
   const context = usePrivateQueryContext()
   const isSsr = useIsSSR()

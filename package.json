@@ -55,7 +55,7 @@
     "remark": "^15.0.1"
   },
   "devDependencies": {
-    "@apollo/client": "~3.12.3",
+    "@apollo/client": "3.11.10",
     "@graphcommerce/cli": "workspace:^",
     "@graphcommerce/eslint-config-pwa": "workspace:^",
     "@graphcommerce/graphql-mesh": "workspace:^",

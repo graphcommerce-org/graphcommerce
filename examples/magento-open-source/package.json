@@ -21,7 +21,7 @@
     "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$'"
   },
   "dependencies": {
-    "@apollo/client": "~3.12.3",
+    "@apollo/client": "3.11.10",
     "@emotion/cache": "^11.13.1",
     "@emotion/react": "11.12.0",
     "@emotion/server": "^11.11.0",
