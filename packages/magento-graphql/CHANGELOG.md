@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.0.3
+
+### Patch Changes
+
+- [#2469](https://github.com/graphcommerce-org/graphcommerce/pull/2469) [`3e5ee65`](https://github.com/graphcommerce-org/graphcommerce/commit/3e5ee65bea95bc46399b8da745ee4b0cab71d3ef) - Magento 2.4.6-p7 and lower: Solve a schema incompatibility for PlaceOrderError type on the PlaceOrderOutput. ([@paales](https://github.com/paales))
+
+## 9.0.3-canary.0
+
+### Patch Changes
+
+- [#2469](https://github.com/graphcommerce-org/graphcommerce/pull/2469) [`3e5ee65`](https://github.com/graphcommerce-org/graphcommerce/commit/3e5ee65bea95bc46399b8da745ee4b0cab71d3ef) - Magento 2.4.6-p7 and lower: Solve a schema incompatibility for PlaceOrderError type on the PlaceOrderOutput. ([@paales](https://github.com/paales))
+
 ## 9.0.2
 
 ### Patch Changes
