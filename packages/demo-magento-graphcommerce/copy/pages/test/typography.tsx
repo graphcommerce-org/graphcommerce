@@ -1,13 +1,14 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { LayoutHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
+import type { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
 import { i18n } from '@lingui/core'
-import { Typography, Container } from '@mui/material'
+import { Container, Typography } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
-import { LayoutDocument, LayoutMinimal, LayoutMinimalProps } from '../../components'
-import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import type { LayoutMinimalProps } from '../../components'
+import { LayoutDocument, LayoutMinimal } from '../../components'
+import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>

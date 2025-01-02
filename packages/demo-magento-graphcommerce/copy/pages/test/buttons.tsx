@@ -1,19 +1,19 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import type { ButtonProps, GetStaticProps } from '@graphcommerce/next-ui'
 import {
+  Button,
+  iconBox,
+  iconChevronRight,
+  IconSvg,
+  LayoutHeader,
   LayoutTitle,
   responsiveVal,
-  IconSvg,
-  iconChevronRight,
-  iconBox,
-  GetStaticProps,
-  Button,
-  ButtonProps,
-  LayoutHeader,
 } from '@graphcommerce/next-ui'
-import { Box, Container, Typography, Divider, styled } from '@mui/material'
+import { Box, Container, Divider, styled, Typography } from '@mui/material'
 import React, { useState } from 'react'
-import { LayoutMinimal, LayoutMinimalProps } from '../../components'
+import type { LayoutMinimalProps } from '../../components'
+import { LayoutMinimal } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 const variants = ['text', 'outlined', 'contained', 'pill', 'inline'] as const

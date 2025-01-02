@@ -1,18 +1,18 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import type { GetStaticProps, IconSvgProps } from '@graphcommerce/next-ui'
 import {
-  LayoutTitle,
-  IconSvg,
-  GetStaticProps,
-  IconSvgProps,
-  svgIconStrokeWidth,
   iconPhone,
+  IconSvg,
   LayoutHeader,
+  LayoutTitle,
+  svgIconStrokeWidth,
 } from '@graphcommerce/next-ui'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { Container, Typography, Slider, Box } from '@mui/material'
+import { Box, Container, Slider, Typography } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
-import { LayoutMinimal, LayoutMinimalProps } from '../../components'
+import type { LayoutMinimalProps } from '../../components'
+import { LayoutMinimal } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 const propVariants: Record<string, IconSvgProps> = {

@@ -1,17 +1,19 @@
-import { PageOptions, usePageContext } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
+import { usePageContext } from '@graphcommerce/framer-next-pages'
 import {
-  LayoutHeader,
   iconPerson,
-  Stepper,
+  LayoutHeader,
   LayoutTitle,
   LinkOrButton,
   NextLink,
+  Stepper,
 } from '@graphcommerce/next-ui'
 import { Container, Divider, List, ListItemButton } from '@mui/material'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
+import type { LayoutMinimalProps } from '../../../components'
+import { LayoutMinimal } from '../../../components'
 
 type LayoutDemoProps = {
   baseUrl: string

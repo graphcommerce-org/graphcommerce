@@ -1,9 +1,9 @@
 import { FormAutoSubmit, useForm } from '@graphcommerce/ecommerce-ui'
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { LayoutOverlayHeader, LayoutTitle, responsiveVal } from '@graphcommerce/next-ui'
+import type { LayoutOverlayState } from '@graphcommerce/next-ui/LayoutOverlay/test/LayoutOverlayDemo'
 import {
   LayoutOverlayDemo,
-  LayoutOverlayState,
   useLayoutState,
 } from '@graphcommerce/next-ui/LayoutOverlay/test/LayoutOverlayDemo'
 import { capitalize, Container, Hidden, ListItemButton, Typography } from '@mui/material'
