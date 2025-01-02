@@ -2,29 +2,13 @@
 
 ## 9.0.4-canary.0
 
-## 9.0.3
-
-## 9.0.3-canary.0
-
 ## 9.0.2
 
 ### Patch Changes
 
 - [`30d769e`](https://github.com/graphcommerce-org/graphcommerce/commit/30d769eacb3b5a2b6f48b1da291d9154b32948b4) - Make sure we are toggling the selected shipping method when a user selects a previously selected shipping method ([@paales](https://github.com/paales))
 
-## 9.0.2-canary.0
-
-### Patch Changes
-
-- [`30d769e`](https://github.com/graphcommerce-org/graphcommerce/commit/30d769eacb3b5a2b6f48b1da291d9154b32948b4) - Make sure we are toggling the selected shipping method when a user selects a previously selected shipping method ([@paales](https://github.com/paales))
-
 ## 9.0.1
-
-### Patch Changes
-
-- [#2461](https://github.com/graphcommerce-org/graphcommerce/pull/2461) [`3066a2f`](https://github.com/graphcommerce-org/graphcommerce/commit/3066a2fea83b40ca2ab96987adf1261f63d24e77) - When a Customer deselected their shipping address, but had a shipping note filled in it would try to submit the form causing an error. By making the customer_address_id field required we prevent this. ([@paales](https://github.com/paales))
-
-## 9.0.1-canary.1
 
 ### Patch Changes
 

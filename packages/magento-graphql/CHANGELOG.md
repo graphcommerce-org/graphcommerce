@@ -8,27 +8,11 @@
 
 - [#2469](https://github.com/graphcommerce-org/graphcommerce/pull/2469) [`3e5ee65`](https://github.com/graphcommerce-org/graphcommerce/commit/3e5ee65bea95bc46399b8da745ee4b0cab71d3ef) - Magento 2.4.6-p7 and lower: Solve a schema incompatibility for PlaceOrderError type on the PlaceOrderOutput. ([@paales](https://github.com/paales))
 
-## 9.0.3-canary.0
-
-### Patch Changes
-
-- [#2469](https://github.com/graphcommerce-org/graphcommerce/pull/2469) [`3e5ee65`](https://github.com/graphcommerce-org/graphcommerce/commit/3e5ee65bea95bc46399b8da745ee4b0cab71d3ef) - Magento 2.4.6-p7 and lower: Solve a schema incompatibility for PlaceOrderError type on the PlaceOrderOutput. ([@paales](https://github.com/paales))
-
 ## 9.0.2
 
 ### Patch Changes
 
 - [`058b7bf`](https://github.com/graphcommerce-org/graphcommerce/commit/058b7bf64be29e1bc3d16551abcc1cd55b5413bd) - Support Magento 2.4.7 placeOrder.errors field to handle possible errors while placing the order. An `assertOrderPlaced` method was created to assert a valid placed order. ([@paales](https://github.com/paales))
-
-## 9.0.2-canary.0
-
-### Patch Changes
-
-- [`058b7bf`](https://github.com/graphcommerce-org/graphcommerce/commit/058b7bf64be29e1bc3d16551abcc1cd55b5413bd) - Support Magento 2.4.7 placeOrder.errors field to handle possible errors while placing the order. An `assertOrderPlaced` method was created to assert a valid placed order. ([@paales](https://github.com/paales))
-
-## 9.0.1
-
-## 9.0.1-canary.1
 
 ## 9.0.0
 

@@ -2,31 +2,11 @@
 
 ## 9.0.4-canary.0
 
-## 9.0.3
-
-## 9.0.3-canary.0
-
-## 9.0.2
-
-## 9.0.2-canary.0
-
 ## 9.0.1
 
 ### Patch Changes
 
 - [#2461](https://github.com/graphcommerce-org/graphcommerce/pull/2461) [`7017b60`](https://github.com/graphcommerce-org/graphcommerce/commit/7017b608eb61097c881103c40701ab4a41197d7a) - Solve issue with documentation parsing markdown files as mdx ([@paales](https://github.com/paales))
-
-- [#2454](https://github.com/graphcommerce-org/graphcommerce/pull/2454) [`0f5267b`](https://github.com/graphcommerce-org/graphcommerce/commit/0f5267b92d8561e20164fe2f078097cb52220726) - Update VSCode guide reference ([@emmanuel-ferdman](https://github.com/emmanuel-ferdman))
-
-## 9.0.1-canary.1
-
-### Patch Changes
-
-- [#2461](https://github.com/graphcommerce-org/graphcommerce/pull/2461) [`7017b60`](https://github.com/graphcommerce-org/graphcommerce/commit/7017b608eb61097c881103c40701ab4a41197d7a) - Solve issue with documentation parsing markdown files as mdx ([@paales](https://github.com/paales))
-
-## 9.0.1-canary.0
-
-### Patch Changes
 
 - [#2454](https://github.com/graphcommerce-org/graphcommerce/pull/2454) [`0f5267b`](https://github.com/graphcommerce-org/graphcommerce/commit/0f5267b92d8561e20164fe2f078097cb52220726) - Update VSCode guide reference ([@emmanuel-ferdman](https://github.com/emmanuel-ferdman))
 
