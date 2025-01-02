@@ -393,7 +393,7 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
 })
 
 export const lightTheme = createThemeWithPalette(lightPalette)
-lightTheme.components = createOverrides(lightTheme) as Components
+lightTheme.components = createOverrides(lightTheme) as never
 
 export const darkTheme = createThemeWithPalette(darkPalette)
-darkTheme.components = createOverrides(darkTheme) as Components
+darkTheme.components = createOverrides(darkTheme) as never
