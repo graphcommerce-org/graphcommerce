@@ -17,6 +17,7 @@
     "@types/circular-dependency-plugin": "^5.0.8",
     "@types/lodash": "^4.17.13",
     "babel-plugin-macros": "^3.1.0",
+    "chalk": "^4",
     "circular-dependency-plugin": "^5.2.2",
     "fast-glob": "^3.3.2",
     "glob": "^10.4.5",
