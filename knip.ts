@@ -81,7 +81,6 @@ const config: KnipConfig = {
 
     ...dependencies,
     'packages/*/example': asNextjsDir,
-    'packages/magento-pagebuilder': skip,
     'examples/magento-graphcms': asNextjsDir,
     'examples/magento-open-source': asNextjsDir,
     'packages/hygraph-dynamic-rows-ui': asNextjsDir,
