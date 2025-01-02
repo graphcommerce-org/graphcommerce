@@ -1,6 +1,7 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 import {
   breakpointVal,
+  createTheme,
   MuiButtonInline,
   MuiButtonPill,
   MuiButtonResponsive,
@@ -13,7 +14,7 @@ import {
   themeBaseDefaults,
 } from '@graphcommerce/next-ui'
 import type { LinkProps, Theme } from '@mui/material'
-import { alpha, createTheme } from '@mui/material'
+import { alpha } from '@mui/material'
 import type { Components, PaletteOptions } from '@mui/material/styles'
 
 const lightPalette: PaletteOptions = {
