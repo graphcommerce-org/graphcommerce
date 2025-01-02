@@ -1,6 +1,7 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { dvh } from '@graphcommerce/framer-utils'
-import { Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import { useScroll, useTransform } from 'framer-motion'
 import { Container } from '../../Container/Container'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'

@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { writeFileSync } from 'fs'
 import { generate } from '@graphql-codegen/cli'
 import { transformFileSync } from '@swc/core'
@@ -52,7 +51,7 @@ export async function generateConfig() {
 
   const result = transformFileSync(targetTs, {
     module: { type: 'commonjs' },
-    env: { targets: { node: '16' } },
+    env: { targets: { node: '18' } },
   })
 
   writeFileSync(targetJs, result.code)

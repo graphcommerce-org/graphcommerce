@@ -3,6 +3,7 @@ import { alpha, Box, ButtonBase, lighten } from '@mui/material'
 import React from 'react'
 import { extendableComponent, responsiveVal } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
+import { sxx } from '../utils/sxx'
 
 type Variants = 'outlined' | 'default'
 type Size = 'large' | 'medium' | 'small' | 'responsive'
@@ -94,11 +95,6 @@ export const actionCardImageSizes = {
   responsive: responsiveVal(60, 120),
 }
 
-const combineSx = (defaultSx: SxProps<Theme>, slotSx?: SxProps<Theme>) => [
-  ...(Array.isArray(defaultSx) ? defaultSx : [defaultSx]),
-  ...(Array.isArray(slotSx) ? slotSx : [slotSx]),
-]
-
 /** @public */
 export function ActionCard<C extends React.ElementType = typeof Box>(props: ActionCardProps<C>) {
   const {
@@ -140,126 +136,124 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
       className={classes.root}
       onClick={onClick ? (event) => onClick(event, value) : undefined}
       disabled={disabled}
-      sx={combineSx(
-        [
-          (theme) => ({
-            ...breakpointVal(
-              'borderRadius',
-              theme.shape.borderRadius * 1.5,
-              theme.shape.borderRadius * 3,
-              theme.breakpoints.values,
-            ),
-            '&.sizeSmall': {
-              px: responsiveVal(8, 12),
-              py: responsiveVal(4, 6),
-              display: 'flex',
-              typography: 'body2',
+      sx={sxx(
+        (theme) => ({
+          ...breakpointVal(
+            'borderRadius',
+            theme.shape.borderRadius * 1.5,
+            theme.shape.borderRadius * 3,
+            theme.breakpoints.values,
+          ),
+          '&.sizeSmall': {
+            px: responsiveVal(8, 12),
+            py: responsiveVal(4, 6),
+            display: 'flex',
+            typography: 'body2',
+          },
+          '&.sizeMedium': {
+            px: responsiveVal(10, 14),
+            py: responsiveVal(10, 12),
+            typography: 'body2',
+            display: 'block',
+          },
+          '&.sizeLarge': {
+            px: responsiveVal(12, 16),
+            py: responsiveVal(12, 14),
+            display: 'block',
+          },
+          '&.sizeResponsive': {
+            px: responsiveVal(8, 16),
+            py: responsiveVal(4, 14),
+            display: { xs: 'flex', md: 'block', lg: 'block' },
+            [theme.breakpoints.down('md')]: { typography: 'body2' },
+          },
+          '&.variantDefault': {
+            position: 'relative',
+            '&.selected': {
+              backgroundColor:
+                theme.palette.mode === 'light'
+                  ? alpha(theme.palette[color].main, theme.palette.action.hoverOpacity)
+                  : lighten(theme.palette.background.default, theme.palette.action.hoverOpacity),
             },
-            '&.sizeMedium': {
-              px: responsiveVal(10, 14),
-              py: responsiveVal(10, 12),
-              typography: 'body2',
-              display: 'block',
+            '&.error': {
+              backgroundColor: alpha(theme.palette.error.main, theme.palette.action.hoverOpacity),
             },
-            '&.sizeLarge': {
-              px: responsiveVal(12, 16),
-              py: responsiveVal(12, 14),
-              display: 'block',
+            '&:focus': {
+              outline: 'none',
+              boxShadow: `0 0 0 4px ${alpha(theme.palette[color].main, theme.palette.action.focusOpacity)}`,
             },
-            '&.sizeResponsive': {
-              px: responsiveVal(8, 16),
-              py: responsiveVal(4, 14),
-              display: { xs: 'flex', md: 'block', lg: 'block' },
-              [theme.breakpoints.down('md')]: { typography: 'body2' },
+          },
+          '&.variantOutlined': {
+            backgroundColor: theme.palette.background.paper,
+            boxShadow: `inset 0 0 0 1px ${theme.palette.divider}`,
+            '&:not(:last-of-type)': {
+              marginBottom: '-2px',
             },
-            '&.variantDefault': {
-              position: 'relative',
-              '&.selected': {
-                backgroundColor:
-                  theme.palette.mode === 'light'
-                    ? alpha(theme.palette[color].main, theme.palette.action.hoverOpacity)
-                    : lighten(theme.palette.background.default, theme.palette.action.hoverOpacity),
+            '&.layoutList': {
+              borderRadius: 0,
+              '&:first-of-type': {
+                ...breakpointVal(
+                  'borderTopLeftRadius',
+                  theme.shape.borderRadius * 3,
+                  theme.shape.borderRadius * 4,
+                  theme.breakpoints.values,
+                ),
+                ...breakpointVal(
+                  'borderTopRightRadius',
+                  theme.shape.borderRadius * 3,
+                  theme.shape.borderRadius * 4,
+                  theme.breakpoints.values,
+                ),
               },
-              '&.error': {
-                backgroundColor: alpha(theme.palette.error.main, theme.palette.action.hoverOpacity),
-              },
-              '&:focus': {
-                outline: 'none',
-                boxShadow: `0 0 0 4px ${alpha(theme.palette[color].main, theme.palette.action.focusOpacity)}`,
-              },
-            },
-            '&.variantOutlined': {
-              backgroundColor: theme.palette.background.paper,
-              boxShadow: `inset 0 0 0 1px ${theme.palette.divider}`,
-              '&:not(:last-of-type)': {
-                marginBottom: '-2px',
-              },
-              '&.layoutList': {
-                borderRadius: 0,
-                '&:first-of-type': {
-                  ...breakpointVal(
-                    'borderTopLeftRadius',
-                    theme.shape.borderRadius * 3,
-                    theme.shape.borderRadius * 4,
-                    theme.breakpoints.values,
-                  ),
-                  ...breakpointVal(
-                    'borderTopRightRadius',
-                    theme.shape.borderRadius * 3,
-                    theme.shape.borderRadius * 4,
-                    theme.breakpoints.values,
-                  ),
-                },
-                '&:last-of-type': {
-                  ...breakpointVal(
-                    'borderBottomLeftRadius',
-                    theme.shape.borderRadius * 3,
-                    theme.shape.borderRadius * 4,
-                    theme.breakpoints.values,
-                  ),
-                  ...breakpointVal(
-                    'borderBottomRightRadius',
-                    theme.shape.borderRadius * 3,
-                    theme.shape.borderRadius * 4,
-                    theme.breakpoints.values,
-                  ),
-                },
-              },
-              '&.selected': {
-                borderColor: 'transparent',
-                boxShadow: `inset 0 0 0 2px ${theme.palette[color].main}`,
-              },
-              '&.selected:focus, &.error:focus': {
-                borderColor: 'transparent',
-                boxShadow: `inset 0 0 0 2px ${theme.palette[color].main}, 0 0 0 4px ${alpha(
-                  theme.palette[color].main,
-                  theme.palette.action.hoverOpacity,
-                )}`,
-              },
-              '&:focus': {
-                boxShadow: `inset 0 0 0 1px ${theme.palette.divider},0 0 0 4px ${alpha(
-                  theme.palette[color].main,
-                  theme.palette.action.hoverOpacity,
-                )}`,
-              },
-              '&.error': {
-                boxShadow: `inset 0 0 0 2px ${theme.palette.error.main}`,
+              '&:last-of-type': {
+                ...breakpointVal(
+                  'borderBottomLeftRadius',
+                  theme.shape.borderRadius * 3,
+                  theme.shape.borderRadius * 4,
+                  theme.breakpoints.values,
+                ),
+                ...breakpointVal(
+                  'borderBottomRightRadius',
+                  theme.shape.borderRadius * 3,
+                  theme.shape.borderRadius * 4,
+                  theme.breakpoints.values,
+                ),
               },
             },
             '&.selected': {
-              zIndex: 1,
+              borderColor: 'transparent',
+              boxShadow: `inset 0 0 0 2px ${theme.palette[color].main}`,
             },
-            '&:focus, &.selected:focus, &.error:focus': {
-              zIndex: 2,
+            '&.selected:focus, &.error:focus': {
+              borderColor: 'transparent',
+              boxShadow: `inset 0 0 0 2px ${theme.palette[color].main}, 0 0 0 4px ${alpha(
+                theme.palette[color].main,
+                theme.palette.action.hoverOpacity,
+              )}`,
             },
-            '&.disabled': {
-              background: theme.palette.action.disabledBackground,
-              opacity: theme.palette.action.disabledOpacity,
-              color: theme.palette.action.disabled,
+            '&:focus': {
+              boxShadow: `inset 0 0 0 1px ${theme.palette.divider},0 0 0 4px ${alpha(
+                theme.palette[color].main,
+                theme.palette.action.hoverOpacity,
+              )}`,
             },
-          }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ],
+            '&.error': {
+              boxShadow: `inset 0 0 0 2px ${theme.palette.error.main}`,
+            },
+          },
+          '&.selected': {
+            zIndex: 1,
+          },
+          '&:focus, &.selected:focus, &.error:focus': {
+            zIndex: 2,
+          },
+          '&.disabled': {
+            background: theme.palette.action.disabledBackground,
+            opacity: theme.palette.action.disabledOpacity,
+            color: theme.palette.action.disabled,
+          },
+        }),
+        sx,
         slotProps.root?.sx,
       )}
       {...slotProps.root}
@@ -267,7 +261,7 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
     >
       <Box
         className={classes.rootInner}
-        sx={combineSx(
+        sx={sxx(
           {
             display: 'flex',
             flexDirection: 'row',
@@ -291,10 +285,7 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
           {image && (
             <Box
               className={classes.image}
-              sx={combineSx(
-                { display: 'flex', pr: '15px', alignSelf: 'center' },
-                slotProps.image?.sx,
-              )}
+              sx={sxx({ display: 'flex', pr: '15px', alignSelf: 'center' }, slotProps.image?.sx)}
               {...slotProps.image}
             >
               {image}
@@ -310,7 +301,7 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
             {title && (
               <Box
                 className={classes.title}
-                sx={combineSx(
+                sx={sxx(
                   {
                     '&.sizeSmall': { typography: 'body1' },
                     '&.sizeMedium': { typography: 'body1' },
@@ -327,7 +318,7 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
             {details && (
               <Box
                 className={classes.details}
-                sx={combineSx({ color: 'text.secondary' }, slotProps.details?.sx)}
+                sx={sxx({ color: 'text.secondary' }, slotProps.details?.sx)}
                 {...slotProps.details}
               >
                 {details}
@@ -336,7 +327,7 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
             {secondaryAction && (
               <Box
                 className={classes.secondaryAction}
-                sx={combineSx({}, slotProps.secondaryAction?.sx)}
+                sx={sxx({}, slotProps.secondaryAction?.sx)}
                 {...slotProps.secondaryAction}
               >
                 {secondaryAction}
@@ -346,7 +337,7 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
         </Box>
         <Box
           className={classes.end}
-          sx={combineSx(
+          sx={sxx(
             {
               display: 'flex',
               flexDirection: 'column',
@@ -360,7 +351,7 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
           {action && (
             <Box
               className={classes.action}
-              sx={combineSx(
+              sx={sxx(
                 (theme) => ({ marginBottom: '5px', color: theme.palette[color].main }),
                 slotProps.action?.sx,
               )}
@@ -372,7 +363,7 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
           {price && !disabled && (
             <Box
               className={classes.price}
-              sx={combineSx(
+              sx={sxx(
                 {
                   textAlign: 'right',
                   typography: 'body1',
@@ -390,7 +381,7 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
         </Box>
       </Box>
       {after && (
-        <Box className={classes.after} sx={combineSx({}, slotProps.after?.sx)} {...slotProps.after}>
+        <Box className={classes.after} sx={sxx({}, slotProps.after?.sx)} {...slotProps.after}>
           {after}
         </Box>
       )}

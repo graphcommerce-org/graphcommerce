@@ -60,7 +60,7 @@ export type RegisterAction = {
 } & Pick<UseFormComposeOptions, 'key' | 'step'>
 
 /** Assign the current state to the form */
-export type AssignAction = { type: 'ASSIGN' } & Omit<UseFormComposeOptions<any>, 'step'>
+export type AssignAction = { type: 'ASSIGN' } & Omit<UseFormComposeOptions, 'step'>
 
 /** Cleanup the form if the useFromCompose hook changes */
 export type UnregisterAction = {

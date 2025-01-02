@@ -57,9 +57,7 @@ export type MediaQueryProps<C extends React.ElementType = 'div'> = BoxProps<C> &
  * hydrates the component if the query matches. If it doesn't match, it will NOT render the
  * component (and thus not execute the JS).
  */
-export function MediaQuery<Component extends React.ElementType = 'div'>(
-  props: MediaQueryProps<Component>,
-) {
+function MediaQueryBase(props: MediaQueryProps) {
   const { query, sx, children, display = 'contents', ...elementProps } = props
 
   const theme = useTheme()
@@ -109,3 +107,7 @@ export function MediaQuery<Component extends React.ElementType = 'div'>(
     />
   )
 }
+
+export const MediaQuery = MediaQueryBase as <C extends React.ElementType = 'div'>(
+  props: MediaQueryProps<C>,
+) => React.ReactNode

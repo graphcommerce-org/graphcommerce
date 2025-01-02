@@ -1,4 +1,4 @@
-import { IconSvg, extendableComponent, iconSearch, responsiveVal } from '@graphcommerce/next-ui'
+import { extendableComponent, iconSearch, IconSvg, responsiveVal } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { TextFieldProps } from '@mui/material'

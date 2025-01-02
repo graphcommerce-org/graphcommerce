@@ -1,6 +1,8 @@
-import { PageOptions, useHistoryLink } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
+import { useHistoryLink } from '@graphcommerce/framer-next-pages'
 import { Link } from '@mui/material'
-import { LayoutMinimal, LayoutMinimalProps } from '../../../components'
+import type { LayoutMinimalProps } from '../../../components'
+import { LayoutMinimal } from '../../../components'
 
 function BackLinkDemo() {
   const { href, onClick } = useHistoryLink({ href: '/test/usebacklink/cart' })

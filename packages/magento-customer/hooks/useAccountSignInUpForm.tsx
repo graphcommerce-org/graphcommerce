@@ -5,9 +5,9 @@ import { useFormGqlQuery } from '@graphcommerce/react-hook-form'
 import { useEffect } from 'react'
 import type { IsEmailAvailableQuery, IsEmailAvailableQueryVariables } from './IsEmailAvailable.gql'
 import { IsEmailAvailableDocument } from './IsEmailAvailable.gql'
-import { UseCustomerValidateTokenDocument } from './UseCustomerValidateToken.gql'
 import { useCustomerAccountCanSignUp } from './useCustomerPermissions'
 import { useCustomerSession } from './useCustomerSession'
+import { UseCustomerValidateTokenDocument } from './UseCustomerValidateToken.gql'
 
 export type UseFormIsEmailAvailableProps = {
   onSubmitted?: (data: { email: string }) => void

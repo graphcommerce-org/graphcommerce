@@ -4,7 +4,7 @@ import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { LinguiProvider } from '@graphcommerce/lingui-next'
 import { responsiveVal } from '@graphcommerce/next-ui'
-import { CssBaseline, ThemeProvider, createTheme } from '@mui/material'
+import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
 import { LazyMotion } from 'framer-motion'
 import type { AppPropsType } from 'next/dist/shared/lib/utils'
 import type { Router } from 'next/router'

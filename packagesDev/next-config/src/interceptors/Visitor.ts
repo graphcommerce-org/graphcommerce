@@ -499,7 +499,7 @@ export class Visitor {
         return this.visitExpressionStatement(stmt)
 
       default:
-        throw new Error(`Unknown statement type: ${(stmt as any).type}`)
+        throw new Error(`Unknown statement type: ${(stmt as { type: string }).type}`)
     }
   }
 

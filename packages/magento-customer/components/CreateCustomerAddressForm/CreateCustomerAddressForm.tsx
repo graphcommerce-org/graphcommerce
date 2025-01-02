@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import { AddressFields } from '../AddressFields/AddressFields'
 import { CompanyFields } from '../CompanyFields'
 import { NameFields } from '../NameFields/NameFields'
+import type { CreateCustomerAddressMutationVariables } from './CreateCustomerAddress.gql'
 import { CreateCustomerAddressDocument } from './CreateCustomerAddress.gql'
 
 export function CreateCustomerAddressForm() {
@@ -61,9 +62,12 @@ export function CreateCustomerAddressForm() {
   return (
     <>
       <Form onSubmit={submitHandler} noValidate>
-        <CompanyFields form={form} />
+        <CompanyFields<CreateCustomerAddressMutationVariables> form={form} />
         <NameFields form={form} prefix />
-        <AddressFields form={form} name={{ regionId: 'region.region_id' }} />
+        <AddressFields<CreateCustomerAddressMutationVariables>
+          form={form}
+          name={{ regionId: 'region.region_id' }}
+        />
 
         <FormRow>
           <TelephoneElement

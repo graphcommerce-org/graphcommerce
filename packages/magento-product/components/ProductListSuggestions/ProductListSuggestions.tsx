@@ -1,4 +1,4 @@
-import { ListFormat, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, ListFormat } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Box, Link } from '@mui/material'
 import { productListLinkFromFilter } from '../../hooks/useProductListLink'

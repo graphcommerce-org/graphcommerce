@@ -14,7 +14,8 @@ import type {
   ProductListsItemImageAreaProps,
 } from './ProductListItemImageContainer'
 import { ProductImageContainer, ProductListItemImageAreas } from './ProductListItemImageContainer'
-import { ProductListItemLinkOrDiv, ProductListItemLinkOrDivProps } from './ProductListItemLinkOrDiv'
+import type { ProductListItemLinkOrDivProps } from './ProductListItemLinkOrDiv'
+import { ProductListItemLinkOrDiv } from './ProductListItemLinkOrDiv'
 import type { ProductListItemTitleAndPriceProps } from './ProductListItemTitleAndPrice'
 import { ProductListItemTitleAndPrice } from './ProductListItemTitleAndPrice'
 

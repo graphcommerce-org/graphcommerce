@@ -9,7 +9,7 @@ export const config: PluginConfig = {
 
 declare module '@graphcommerce/graphql/config' {
   interface PreviewData {
-    hygraphStage?: string
+    hygraphStage: string | null
   }
 }
 

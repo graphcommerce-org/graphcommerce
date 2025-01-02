@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
-import { useProductFiltersPro } from './ProductFiltersPro'
 import { activeAggregations } from './activeAggregations'
 import { applyAggregationCount } from './applyAggregationCount'
+import { useProductFiltersPro } from './ProductFiltersPro'
 
 export function useProductFilterProHasFiltersApplied() {
   const { params, aggregations, appliedAggregations } = useProductFiltersPro()

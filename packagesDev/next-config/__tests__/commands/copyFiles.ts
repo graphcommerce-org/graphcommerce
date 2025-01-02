@@ -31,6 +31,7 @@ global.performance = { now: mockPerformanceNow } as unknown as typeof performanc
 
 // Mock process.cwd
 const mockCwd = '/mock/cwd'
+// eslint-disable-next-line @typescript-eslint/unbound-method
 const originalCwd = process.cwd
 beforeAll(() => {
   process.cwd = jest.fn().mockReturnValue(mockCwd)

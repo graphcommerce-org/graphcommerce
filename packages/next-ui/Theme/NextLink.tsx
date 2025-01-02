@@ -15,8 +15,8 @@ export type LinkProps = AnchorWithoutLinkProps & Partial<NextLinkPropsBase> & { 
  * This is a wrapper around the Next.js Link component which can be used with MUI's Link component
  * or any ButtonBase derivative.
  *
- * By default you can use the props provided by the Link or Button component, but you can pass
- * any next/link specific props like `prefetch`, `replace`, `scroll`, `shallow`
+ * By default you can use the props provided by the Link or Button component, but you can pass any
+ * next/link specific props like `prefetch`, `replace`, `scroll`, `shallow`
  *
  * ```typescript
  * const button = (
@@ -40,9 +40,9 @@ export const NextLink = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
   const isFullUrl = href.includes(':') || href.startsWith('//')
 
   /**
-   * When an internal link is provided and it is on the same domain, extract the locale
-   * from the URL and make the URL relative without the locale. Prevents Next.js prefixing
-   * again with the current locale.
+   * When an internal link is provided and it is on the same domain, extract the locale from the URL
+   * and make the URL relative without the locale. Prevents Next.js prefixing again with the current
+   * locale.
    */
   if (!locale && isFullUrl && href.startsWith(canonicalBaseUrl)) {
     const url = new URL(href)

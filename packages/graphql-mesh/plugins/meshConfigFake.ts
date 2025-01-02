@@ -7,6 +7,7 @@ export const config: PluginConfig = {
 }
 
 /**
- * This plugin does not apply any changes to the Mesh configuration, but solely exists to generate the meshConfig.interceptor.ts file.
+ * This plugin does not apply any changes to the Mesh configuration, but solely exists to generate
+ * the meshConfig.interceptor.ts file.
  */
 export const meshConfig: FunctionPlugin<MeshConfigFunction> = (prev, ...args) => prev(...args)

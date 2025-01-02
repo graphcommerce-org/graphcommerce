@@ -51,7 +51,7 @@ async function generateConfig() {
     });
     const result = (0, core_1.transformFileSync)(targetTs, {
         module: { type: 'commonjs' },
-        env: { targets: { node: '16' } },
+        env: { targets: { node: '18' } },
     });
     (0, fs_1.writeFileSync)(targetJs, result.code);
 }

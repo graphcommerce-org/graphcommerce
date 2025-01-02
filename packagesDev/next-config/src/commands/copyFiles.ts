@@ -6,7 +6,7 @@ import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 
 // Add debug logging helper
 const debug = (...args: unknown[]) => {
-  if (process.env.DEBUG) console.log('[copy-files]', ...args)
+  if (process.env.DEBUG) console.info('[copy-files]', ...args)
 }
 
 // Add constants for the magic comments
@@ -213,7 +213,7 @@ Found in packages:
             return
           }
           if (management === 'unmanaged') {
-            console.log(
+            console.info(
               `Note: File ${file} has been modified. Add '${MANAGED_LOCALLY.trim()}' at the top to manage it locally.`,
             )
             debug(`File ${file} doesn't have management comment, skipping`)
@@ -227,7 +227,7 @@ Found in packages:
 Source: ${sourcePath}`)
             process.exit(1)
           }
-          console.log(`Creating new file: ${file}\nSource: ${sourcePath}`)
+          console.info(`Creating new file: ${file}\nSource: ${sourcePath}`)
           debug('File does not exist yet')
         }
 
@@ -241,7 +241,7 @@ Source: ${sourcePath}`)
         // Copy the file with magic comment
         await fs.writeFile(targetPath, contentWithComment)
         if (targetContent) {
-          console.log(`Updated managed file: ${file}`)
+          console.info(`Updated managed file: ${file}`)
           debug(`Overwrote existing file: ${file}`)
         }
 
@@ -300,7 +300,7 @@ Source: ${sourcePath}`)
         // Then try to remove the file
         try {
           await fs.unlink(filePath)
-          console.log(`Removed managed file: ${file}`)
+          console.info(`Removed managed file: ${file}`)
           debug(`Removed file: ${file}`)
         } catch (err) {
           if ((err as { code?: string }).code !== 'ENOENT') {

@@ -39,11 +39,10 @@ export function useSearchOverlay() {
 
 type SearchOverlayProviderProps = {
   children: ReactNode
-  open: boolean
 }
 
 export function SearchOverlayProvider(props: SearchOverlayProviderProps) {
-  const { children, open, ...overlayProps } = props
+  const { children } = props
   const router = useRouter()
   const [params, setParams] = useState<ProductListParams>({
     filters: {},

@@ -16,16 +16,16 @@ import type {
 } from '../components/ProductList/ProductList.gql'
 import { ProductListDocument } from '../components/ProductList/ProductList.gql'
 import type { CategoryDefaultFragment } from '../components/ProductListItems/CategoryDefault.gql'
+import { useRouterFilterParams } from '../components/ProductListItems/filteredProductList'
 import type { ProductListParams } from '../components/ProductListItems/filterTypes'
 import { toProductListParams } from '../components/ProductListItems/filterTypes'
-import { useRouterFilterParams } from '../components/ProductListItems/filteredProductList'
 import {
   categoryDefaultsToProductListFilters,
   productListApplyCategoryDefaults,
   useProductListApplyCategoryDefaults,
 } from '../components/ProductListItems/productListApplyCategoryDefaults'
 
-const productListQueries: Array<Promise<any>> = []
+const productListQueries: Array<Promise<unknown>> = []
 
 type Next = Parameters<NonNullable<FilterFormProviderProps['handleSubmit']>>[1]
 

@@ -1,4 +1,4 @@
-import { IconSvg, iconStar } from '@graphcommerce/next-ui'
+import { iconStar, IconSvg } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import type { ChipProps } from '@mui/material'
 import { Chip } from '@mui/material'

@@ -12,6 +12,7 @@
     "prepack": "tsc"
   },
   "dependencies": {
+    "@graphql-codegen/cli": "5.0.3",
     "@swc/core": "1.10.1",
     "@swc/wasm-web": "^1.10.1",
     "@types/circular-dependency-plugin": "^5.0.8",

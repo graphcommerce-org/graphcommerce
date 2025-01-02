@@ -120,6 +120,7 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
           code,
         }
       } catch (e) {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         if (isBraintreeError(e)) unlock({ payment_id: null })
         throw e
       }
@@ -132,7 +133,10 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
   /** To use an external Pay button we register the current form to be handled there as well. */
   useFormCompose({ form, step, submit, key: `PaymentMethodOptions_${code}` })
 
-  /** This is the form that the user can fill in. In this case we don't wat the user to fill in anything. */
+  /**
+   * This is the form that the user can fill in. In this case we don't wat the user to fill in
+   * anything.
+   */
   return (
     <form onSubmit={submit}>
       <input type='hidden' {...register('code')} />

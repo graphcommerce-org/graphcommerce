@@ -1,12 +1,12 @@
 import { i18n } from '@lingui/core'
 import type { SnackbarProps, SxProps, Theme } from '@mui/material'
-import { Box, Fab, Portal, Snackbar, SnackbarContent, lighten } from '@mui/material'
+import { Box, Fab, lighten, Portal, Snackbar, SnackbarContent } from '@mui/material'
 import React, { useEffect, useState } from 'react'
+import { iconCheckmark, iconClose, iconSadFace } from '../icons'
+import iconInfo from '../icons/info.svg'
 import type { IconSvgProps } from '../IconSvg'
 import { IconSvg } from '../IconSvg'
 import { breakpointVal, extendableComponent } from '../Styles'
-import { iconCheckmark, iconClose, iconSadFace } from '../icons'
-import iconInfo from '../icons/info.svg'
 
 type Size = 'normal' | 'wide'
 type Variant = 'contained' | 'pill'
@@ -29,9 +29,7 @@ type OwnerState = {
   size?: Size
   severity?: 'success' | 'info' | 'warning' | 'error'
   variant?: Variant
-  /**
-   * Setting this to true allows interaction with the rest of the page without closing the Snackbar
-   */
+  /** Setting this to true allows interaction with the rest of the page without closing the Snackbar */
   disableBackdropClick?: boolean
   disableClose?: boolean
   disableIcon?: boolean

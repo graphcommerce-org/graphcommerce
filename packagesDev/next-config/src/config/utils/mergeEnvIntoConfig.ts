@@ -204,9 +204,7 @@ export function mergeEnvIntoConfig(
 export function formatAppliedEnv(applyResult: ApplyResult) {
   let hasError = false
   let hasWarning = false
-  const lines = applyResult.map(({ from, to, envValue, envVar, dotVar, error, warning }) => {
-    const fromFmt = chalk.red(JSON.stringify(from))
-    const toFmt = chalk.green(JSON.stringify(to))
+  const lines = applyResult.map(({ from, to, envVar, dotVar, error, warning }) => {
     const envVariableFmt = `${envVar}`
     const dotVariableFmt = chalk.bold.underline(`${dotVar}`)
 

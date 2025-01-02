@@ -21,15 +21,14 @@ type SignUpFormProps = {
   clearErrors: UseFormClearErrors<{ email?: string; requestedMode?: 'signin' | 'signup' }>
 }
 
+type SignUpFormValues = SignUpMutationVariables & { confirmPassword?: string }
+
 export function SignUpForm(props: SignUpFormProps) {
   const { email, setError, clearErrors } = props
 
   const storeConfig = useQuery(StoreConfigDocument)
   const signIn = useSignInForm({ email })
-  const form = useFormGqlMutation<
-    SignUpMutation,
-    SignUpMutationVariables & { confirmPassword?: string }
-  >(
+  const form = useFormGqlMutation<SignUpMutation, SignUpFormValues>(
     SignUpDocument,
     {
       defaultValues: { email },
@@ -125,7 +124,11 @@ export function SignUpForm(props: SignUpFormProps) {
           <Trans id='Create Account' />
         </Button>
       </FormActions>
-      <FormPersist form={form} name='SignUp' exclude={['password', 'confirmPassword']} />
+      <FormPersist<SignUpFormValues>
+        form={form}
+        name='SignUp'
+        exclude={['password', 'confirmPassword']}
+      />
     </form>
   )
 }

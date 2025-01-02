@@ -1,11 +1,11 @@
 import type { ProductListItemFragment } from '@graphcommerce/magento-product'
 import type { IconSvgProps } from '@graphcommerce/next-ui'
 import {
-  IconSvg,
-  MessageSnackbar,
   extendableComponent,
   iconChevronRight,
   iconHeart,
+  IconSvg,
+  MessageSnackbar,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'

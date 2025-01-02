@@ -5,8 +5,8 @@ import type { AppType } from 'next/app'
 import type NextDocument from 'next/document'
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import type { DocumentContext } from 'next/document'
-import type { EmotionProviderProps } from './EmotionProvider'
 import { createEmotionCache } from './createEmotionCache'
+import type { EmotionProviderProps } from './EmotionProvider'
 
 export type EmotionCacheProps = { emotionStyleTags: EmotionJSX.Element[] }
 

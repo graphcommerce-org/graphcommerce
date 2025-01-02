@@ -1,7 +1,7 @@
 import { SelectElement } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
-import { FormRow, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, FormRow } from '@graphcommerce/next-ui'
 import { FormPersist, useFormCompose } from '@graphcommerce/react-hook-form'
 import { SetMolliePaymentMethodIssuerOnCartDocument } from './SetMolliePaymentMethodIssuerOnCart.gql'
 

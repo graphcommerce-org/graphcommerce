@@ -1,8 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import type { ConfigProcessOptions } from '@graphql-mesh/config'
-import { DefaultLogger, defaultImportFn, loadYaml } from '@graphql-mesh/utils'
-import { cosmiconfig, defaultLoaders } from 'cosmiconfig'
 import path from 'path'
+import type { ConfigProcessOptions } from '@graphql-mesh/config'
+import { defaultImportFn, DefaultLogger, loadYaml } from '@graphql-mesh/utils'
+import { cosmiconfig, defaultLoaders } from 'cosmiconfig'
 
 function customLoader(
   ext: 'json' | 'yaml' | 'js',

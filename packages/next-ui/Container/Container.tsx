@@ -1,6 +1,5 @@
 import { Box, useTheme } from '@mui/material'
 import type { ContainerProps } from '@mui/material'
-import clsx from 'clsx'
 import React from 'react'
 import type { LiteralUnion } from 'type-fest'
 import { extendableComponent } from '../Styles/extendableComponent'
@@ -74,7 +73,7 @@ export const Container = React.forwardRef(
       <Box
         {...rest}
         ref={ref}
-        className={clsx(className, classes.root)}
+        className={[className, classes.root].filter((v) => !!v).join(' ')}
         sx={[
           {
             pl: !breakoutLeft ? padding : undefined,
