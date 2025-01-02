@@ -1,12 +1,17 @@
 import type { ApolloError } from '@apollo/client'
-import type { FieldValues, FormState, UseFormReturn } from 'react-hook-form'
+import type { FieldValues, FormState, UseFormHandleSubmit, UseFormTrigger } from 'react-hook-form'
 import type { SetOptional } from 'type-fest'
 
-export type UseFormComposeOptions<V extends FieldValues = FieldValues> = {
+export type MinimalUseFormReturn<TFieldValues extends FieldValues = FieldValues> = {
+  formState: FormState<TFieldValues>
+  trigger: UseFormTrigger<TFieldValues>
+}
+
+export type UseFormComposeOptions<TFieldValues extends FieldValues = FieldValues> = {
   /** The form that is used to submit */
-  form: UseFormReturn<V>
+  form: MinimalUseFormReturn<TFieldValues>
   /** Method to submit the form */
-  submit: ReturnType<UseFormReturn<V>['handleSubmit']>
+  submit: ReturnType<UseFormHandleSubmit<TFieldValues>>
 
   /** Identifier of the specific */
   key: string
@@ -55,7 +60,7 @@ export type RegisterAction = {
 } & Pick<UseFormComposeOptions, 'key' | 'step'>
 
 /** Assign the current state to the form */
-export type AssignAction = { type: 'ASSIGN' } & Omit<UseFormComposeOptions, 'step'>
+export type AssignAction = { type: 'ASSIGN' } & Omit<UseFormComposeOptions<any>, 'step'>
 
 /** Cleanup the form if the useFromCompose hook changes */
 export type UnregisterAction = {

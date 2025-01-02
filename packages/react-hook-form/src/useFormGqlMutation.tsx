@@ -28,7 +28,7 @@ export type UseFormGqlMutationReturn<
 export function isFormGqlOperation<
   V extends FieldValues,
   Q extends Record<string, unknown> = Record<string, unknown>,
->(form: UseFormReturn<V>): form is UseFormGqlMutationReturn<Q, V> {
+>(form: any | UseFormGqlMutationReturn<Q, V>): form is UseFormGqlMutationReturn<Q, V> {
   return typeof (form as UseFormGqlMutationReturn<Q, V>).muiRegister === 'function'
 }
 

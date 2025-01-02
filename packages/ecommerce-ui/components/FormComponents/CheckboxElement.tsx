@@ -1,4 +1,4 @@
-import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
+import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import type {
@@ -16,18 +16,23 @@ import {
   FormHelperText,
   useForkRef,
 } from '@mui/material'
+import type { FieldElementProps } from './types'
 
-export type CheckboxElementProps<T extends FieldValues> = Omit<CheckboxProps, 'name'> & {
+type AdditionalProps = {
   label?: FormControlLabelProps['label']
   helperText?: string
   sx?: SxProps<Theme>
   formControl?: Omit<FormControlProps<'div'>, 'required' | 'error'>
-} & Omit<ControllerProps<T>, 'render'>
+}
 
-/** @public */
-export function CheckboxElement<TFieldValues extends FieldValues>(
+export type CheckboxElementProps<TFieldValues extends FieldValues = FieldValues> =
+  FieldElementProps<TFieldValues, CheckboxProps> & AdditionalProps
+
+type CheckboxElementComponent = <TFieldValues extends FieldValues>(
   props: CheckboxElementProps<TFieldValues>,
-): JSX.Element {
+) => React.ReactNode
+
+function CheckboxElementBase(props: CheckboxElementProps): JSX.Element {
   const {
     name,
     rules = {},
@@ -48,7 +53,7 @@ export function CheckboxElement<TFieldValues extends FieldValues>(
   }
 
   const {
-    field: { value, onChange, ref, ...field },
+    field: { value, onChange, ref, onBlur },
     fieldState: { invalid, error },
   } = useController({
     name,
@@ -69,7 +74,9 @@ export function CheckboxElement<TFieldValues extends FieldValues>(
           control={
             <Checkbox
               {...rest}
-              {...field}
+              onBlur={onBlur}
+              disabled={disabled}
+              name={name}
               inputRef={useForkRef(ref, rest.inputRef)}
               color={rest.color || 'primary'}
               sx={{
@@ -87,3 +94,6 @@ export function CheckboxElement<TFieldValues extends FieldValues>(
     </FormControl>
   )
 }
+
+/** @public */
+export const CheckboxElement = CheckboxElementBase as CheckboxElementComponent

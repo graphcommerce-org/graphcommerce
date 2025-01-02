@@ -4,11 +4,12 @@ import { useMemoObject } from '@graphcommerce/next-ui/hooks/useMemoObject'
 import { cloneDeep } from '@apollo/client/utilities'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { debounce } from '@mui/material'
-import React, { startTransition, useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import type {
   DeepPartialSkipArrayKey,
   FieldPath,
   FieldValues,
+  UseFormHandleSubmit,
   UseFormReturn,
   UseWatchProps,
 } from 'react-hook-form'
@@ -105,7 +106,7 @@ export type FormAutoSubmitProps<TFieldValues extends FieldValues = FieldValues> 
 
   /** SubmitHandler */
   // eslint-disable-next-line react/no-unused-prop-types
-  submit: ReturnType<UseFormReturn<TFieldValues>['handleSubmit']>
+  submit: ReturnType<UseFormHandleSubmit<TFieldValues>>
 
   /**
    * When a current submission is already in flight, should we wait for it to finish before

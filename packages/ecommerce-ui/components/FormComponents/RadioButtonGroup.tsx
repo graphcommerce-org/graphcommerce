@@ -1,4 +1,4 @@
-import type { FieldValues, UseControllerProps } from '@graphcommerce/react-hook-form'
+import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import {
@@ -11,27 +11,33 @@ import {
   useTheme,
 } from '@mui/material'
 import type { ChangeEvent } from 'react'
+import type { BaseControllerProps } from './types'
 
-export type RadioButtonGroupProps<T extends FieldValues> = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  options: { label: string; id: string | number }[] | any[]
+type OptionBase = { id: string | number; label: string | number }
+
+type AdditionalProps<TOption extends OptionBase = OptionBase> = {
+  options: TOption[]
   helperText?: string
   required?: boolean
   label?: string
-  labelKey?: string
-  valueKey?: string
-  type?: 'number' | 'string'
-  emptyOptionLabel?: 'string'
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onChange?: (value: any) => void
-  returnObject?: boolean
+  labelKey?: keyof TOption
+  valueKey?: keyof TOption
+  onChange?: (value: string | number) => void
+  disabled?: boolean
   row?: boolean
-} & UseControllerProps<T>
+  emptyOptionLabel?: string
+}
 
-/** @public */
-export function RadioButtonGroup<TFieldValues extends FieldValues>(
+export type RadioButtonGroupProps<
+  TFieldValues extends FieldValues = FieldValues,
+  TOption extends OptionBase = OptionBase,
+> = BaseControllerProps<TFieldValues> & AdditionalProps<TOption>
+
+type RadioButtonGroupComponent = <TFieldValues extends FieldValues>(
   props: RadioButtonGroupProps<TFieldValues>,
-): JSX.Element {
+) => React.ReactNode
+
+function RadioButtonGroupBase(props: RadioButtonGroupProps): JSX.Element {
   const {
     helperText,
     options,
@@ -41,7 +47,6 @@ export function RadioButtonGroup<TFieldValues extends FieldValues>(
     valueKey = 'id',
     required,
     emptyOptionLabel,
-    returnObject,
     row,
     control,
     defaultValue,
@@ -65,26 +70,16 @@ export function RadioButtonGroup<TFieldValues extends FieldValues>(
 
   const parsedHelperText = error ? error.message : helperText
 
-  const onRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const radioValue = (event.target as HTMLInputElement).value
-    const returnValue = returnObject
-      ? options.find((items) => items[valueKey] === radioValue)
-      : radioValue
-    // setValue(name, returnValue, { shouldValidate: true })
-    onChange(returnValue)
-    if (typeof rest.onChange === 'function') {
-      rest.onChange(returnValue)
-    }
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const radioValue = event.target.value
+    onChange(radioValue)
+    rest.onChange?.(radioValue)
   }
 
   return (
-    <FormControl error={invalid}>
-      {label && (
-        <FormLabel required={required} error={invalid}>
-          {label}
-        </FormLabel>
-      )}
-      <RadioGroup onChange={onRadioChange} name={name} row={row} value={value || ''}>
+    <FormControl error={invalid} required={required}>
+      {label && <FormLabel error={invalid}>{label}</FormLabel>}
+      <RadioGroup onChange={handleChange} name={name} row={row} value={value ?? ''}>
         {emptyOptionLabel && (
           <FormControlLabel
             control={
@@ -101,15 +96,6 @@ export function RadioButtonGroup<TFieldValues extends FieldValues>(
         )}
         {options.map((option) => {
           const optionKey = option[valueKey]
-          if (!optionKey) {
-            console.error(
-              `CheckboxButtonGroup: valueKey ${valueKey} does not exist on option`,
-              option,
-            )
-          }
-          const isChecked = !!(
-            value && (returnObject ? value[valueKey] === optionKey : value === optionKey)
-          )
           return (
             <FormControlLabel
               control={
@@ -117,7 +103,7 @@ export function RadioButtonGroup<TFieldValues extends FieldValues>(
                   sx={{
                     color: invalid ? theme.palette.error.main : undefined,
                   }}
-                  checked={isChecked}
+                  checked={value === optionKey}
                 />
               }
               value={optionKey}
@@ -131,3 +117,6 @@ export function RadioButtonGroup<TFieldValues extends FieldValues>(
     </FormControl>
   )
 }
+
+/** @public */
+export const RadioButtonGroup = RadioButtonGroupBase as RadioButtonGroupComponent
