@@ -16,9 +16,24 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type CartPermissions =
+  | 'CUSTOMER_ONLY'
+  | 'DISABLED'
+  | 'ENABLED';
+
 export type CompareVariant =
   | 'CHECKBOX'
   | 'ICON';
+
+/** Configure whether the layout should be full width or should be constrained by a max breakpoint. Configurable in theme.ts */
+export type ContainerSizing =
+  | 'BREAKPOINT'
+  | 'FULL_WIDTH';
+
+export type CustomerAccountPermissions =
+  | 'DISABLED'
+  | 'DISABLE_REGISTRATION'
+  | 'ENABLED';
 
 /** GoogleDatalayerConfig to allow enabling certain aspects of the datalayer */
 export type DatalayerConfig = {
@@ -147,6 +162,10 @@ export type GraphCommerceConfig = {
    * Enabling options here will allow switching of those variants.
    */
   configurableVariantValues?: InputMaybe<MagentoConfigurableVariantValues>;
+  /** Configures the max width of the content (main content area) */
+  containerSizingContent?: InputMaybe<ContainerSizing>;
+  /** Configures the max width of the shell (header, footer, overlays, etc.) */
+  containerSizingShell?: InputMaybe<ContainerSizing>;
   /**
    * Determines if cross sell items should be shown when the user already has the product in their cart. This will result in a product will popping off the screen when you add it to the cart.
    *
@@ -207,6 +226,8 @@ export type GraphCommerceConfig = {
   googleAnalyticsId?: InputMaybe<Scalars['String']['input']>;
   /** Configure your Google Maps api key */
   googleMapsApiKey?: InputMaybe<Scalars['String']['input']>;
+  /** To create an assetlinks.json file for the Android app. */
+  googlePlaystore?: InputMaybe<GraphCommerceGooglePlaystoreConfig>;
   /**
    * Google reCAPTCHA site key.
    * When using reCAPTCHA, this value is required, even if you are configuring different values for each locale.
@@ -295,6 +316,8 @@ export type GraphCommerceConfig = {
    * Values: 245, 246, 247 for Magento 2.4.5, 2.4.6, 2.4.7 respectively.
    */
   magentoVersion: Scalars['Int']['input'];
+  /** Allows the option to require login or completely disable certain sections of the site, can be overriden per storeview with the storefrontConfig */
+  permissions?: InputMaybe<GraphCommercePermissions>;
   /** To enable next.js' preview mode, configure the secret you'd like to use. */
   previewSecret?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -362,6 +385,26 @@ export type GraphCommerceDebugConfig = {
   webpackDuplicatesPlugin?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+/** See https://developer.android.com/training/app-links/verify-android-applinks#web-assoc */
+export type GraphCommerceGooglePlaystoreConfig = {
+  /** The package name of the Android app. */
+  packageName: Scalars['String']['input'];
+  /** The sha256 certificate fingerprint of the Android app. */
+  sha256CertificateFingerprint: Scalars['String']['input'];
+};
+
+/** Permissions input */
+export type GraphCommercePermissions = {
+  /** Changes the availability of the add to cart buttons and the cart page to either customer only or completely disables it. */
+  cart?: InputMaybe<CartPermissions>;
+  /** Changes the availability of the checkout to either customer only or completely disables it. */
+  checkout?: InputMaybe<CartPermissions>;
+  /** Enables / disabled the account section of the website. DISABLE_REGISTRATION will only disable the registration page. */
+  customerAccount?: InputMaybe<CustomerAccountPermissions>;
+  /** Allows the option to require login or completely disable the site. */
+  website?: InputMaybe<WebsitePermissions>;
+};
+
 /** All storefront configuration for the project */
 export type GraphCommerceStorefrontConfig = {
   /**
@@ -420,6 +463,8 @@ export type GraphCommerceStorefrontConfig = {
    * - b2b-us
    */
   magentoStoreCode: Scalars['String']['input'];
+  /** Allows the option to require login or completely disable certain sections of the site on a per store basis */
+  permissions?: InputMaybe<GraphCommercePermissions>;
   /**
    * Allow the site to be indexed by search engines.
    * If false, the robots.txt file will be set to disallow all.
@@ -477,6 +522,9 @@ export type StoreLocatorConfig = {
   enablePreferredStoreSelection?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type WebsitePermissions =
+  | 'ENABLED';
+
 
 type Properties<T> = Required<{
   [K in keyof T]: z.ZodType<T[K], any, T[K]>;
@@ -488,13 +536,21 @@ export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== und
 
 export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v));
 
+export const CartPermissionsSchema = z.enum(['CUSTOMER_ONLY', 'DISABLED', 'ENABLED']);
+
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON']);
+
+export const ContainerSizingSchema = z.enum(['BREAKPOINT', 'FULL_WIDTH']);
+
+export const CustomerAccountPermissionsSchema = z.enum(['DISABLED', 'DISABLE_REGISTRATION', 'ENABLED']);
 
 export const PaginationVariantSchema = z.enum(['COMPACT', 'EXTENDED']);
 
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR']);
 
 export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM']);
+
+export const WebsitePermissionsSchema = z.enum(['ENABLED']);
 
 export function DatalayerConfigSchema(): z.ZodObject<Properties<DatalayerConfig>> {
   return z.object({
@@ -511,6 +567,8 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     compareVariant: CompareVariantSchema.default("ICON").nullish(),
     configurableVariantForSimple: z.boolean().default(false).nullish(),
     configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
+    containerSizingContent: ContainerSizingSchema.default("FULL_WIDTH").nullish(),
+    containerSizingShell: ContainerSizingSchema.default("FULL_WIDTH").nullish(),
     crossSellsHideCartItems: z.boolean().default(false).nullish(),
     crossSellsRedirectItems: z.boolean().default(false).nullish(),
     customerAddressNoteEnable: z.boolean().nullish(),
@@ -523,6 +581,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     enableGuestCheckoutLogin: z.boolean().nullish(),
     googleAnalyticsId: z.string().nullish(),
     googleMapsApiKey: z.string().nullish(),
+    googlePlaystore: GraphCommerceGooglePlaystoreConfigSchema().nullish(),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
     hygraphEndpoint: z.string().min(1),
@@ -532,6 +591,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     magentoVersion: z.number(),
+    permissions: GraphCommercePermissionsSchema().nullish(),
     previewSecret: z.string().nullish(),
     productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
     productFiltersPro: z.boolean().nullish(),
@@ -557,6 +617,22 @@ export function GraphCommerceDebugConfigSchema(): z.ZodObject<Properties<GraphCo
   })
 }
 
+export function GraphCommerceGooglePlaystoreConfigSchema(): z.ZodObject<Properties<GraphCommerceGooglePlaystoreConfig>> {
+  return z.object({
+    packageName: z.string().min(1),
+    sha256CertificateFingerprint: z.string().min(1)
+  })
+}
+
+export function GraphCommercePermissionsSchema(): z.ZodObject<Properties<GraphCommercePermissions>> {
+  return z.object({
+    cart: CartPermissionsSchema.nullish(),
+    checkout: CartPermissionsSchema.nullish(),
+    customerAccount: CustomerAccountPermissionsSchema.nullish(),
+    website: WebsitePermissionsSchema.nullish()
+  })
+}
+
 export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<GraphCommerceStorefrontConfig>> {
   return z.object({
     canonicalBaseUrl: z.string().nullish(),
@@ -571,6 +647,7 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<Properties<Gr
     linguiLocale: z.string().nullish(),
     locale: z.string().min(1),
     magentoStoreCode: z.string().min(1),
+    permissions: GraphCommercePermissionsSchema().nullish(),
     robotsAllow: z.boolean().nullish()
   })
 }
