@@ -11,7 +11,7 @@ export const StoreFilters = React.forwardRef<typeof TextFieldElement>((_, ref) =
   const { control } = useStoreLocatorForm()
 
   return (
-    <Box>
+    <Box className='StoreLocator_filters'>
       <TextFieldElement
         fullWidth
         control={control}

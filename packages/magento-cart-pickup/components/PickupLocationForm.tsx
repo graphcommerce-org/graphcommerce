@@ -10,17 +10,11 @@ import type { ProductInfoInput } from '@graphcommerce/graphql-mesh'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { useShippingMethod } from '@graphcommerce/magento-cart-shipping-method'
 import { GetShippingMethodsDocument } from '@graphcommerce/magento-cart-shipping-method/components/ShippingMethodForm/GetShippingMethods.gql'
-import {
-
-  FormRow,
-  iconMap,
-  IconSvg,
-} from '@graphcommerce/next-ui'
+import { FormRow, iconMap, IconSvg } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Fab } from '@mui/material'
-import { useMemo, useDeferredValue, useEffect, useCallback } from 'react'
-import { useDeferredValue, useMemo } from 'react'
+import { useCallback, useDeferredValue, useEffect, useMemo } from 'react'
 import { GetPickupLocationsForProductsDocument } from '../graphql/GetPickupLocationsForProducts.gql'
 import type {
   SetPickupLocationOnCartMutation,
@@ -146,7 +140,7 @@ export function PickupLocationForm(props: PickupLocationFormProps) {
           />
           {import.meta.graphCommerce.storeLocator?.enablePreferredStoreSelection}
           {import.meta.graphCommerce.storeLocator?.enablePreferredStoreSelection && (
-            <Fab aria-label={i18n._(/* i18n */ `Blog`)} href='/stores'>
+            <Fab aria-label={i18n._(/* i18n */ 'Stores')} href='/stores'>
               <IconSvg src={iconMap} />
             </Fab>
           )}

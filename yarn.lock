@@ -3770,6 +3770,7 @@ __metadata:
     "@parcel/watcher": "npm:^2.5.0"
     "@playwright/test": "npm:1.49.1"
     "@serwist/next": "npm:^9.0.11"
+    "@types/google.maps": "npm:^3.58.1"
     "@types/node": "npm:^18.19.68"
     "@types/react": "npm:^18.3.17"
     "@types/react-dom": "npm:^18.3.5"
@@ -8782,6 +8783,13 @@ __metadata:
   version: 1.0.8
   resolution: "@types/gapi.client@npm:1.0.8"
   checksum: 10c0/5b9a26ad4ae7d915c7711ee0084dddcc9d143c9f8ff4b7aba8811f8e94af0140639e9093ada17f8146c3a07f9a189c72fb9ae29d4c8108e330a65de3319a32f8
+  languageName: node
+  linkType: hard
+
+"@types/google.maps@npm:^3.58.1":
+  version: 3.58.1
+  resolution: "@types/google.maps@npm:3.58.1"
+  checksum: 10c0/0247c61d2aeb216d04ab9392602ef41d58328c6336ed4e9a4e9e69834002e82c116a34def2bf4ceb31c4292f14899815058da4bb8d803147295c6b47c1162621
   languageName: node
   linkType: hard
 

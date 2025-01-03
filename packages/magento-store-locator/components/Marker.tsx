@@ -1,5 +1,6 @@
 import { useWatch } from '@graphcommerce/react-hook-form'
 import React, { useEffect } from 'react'
+import { createRoot } from 'react-dom/client'
 import { StoreFragment } from '../Store.gql'
 import type { MarkerConfig } from './StoreLocator'
 import { useStoreLocatorForm } from './StoreLocatorFormProvider'
@@ -15,32 +16,24 @@ const MarkerRender = React.memo<
   const { map } = useStoreLocatorMap()
 
   useEffect(() => {
-    const {
-      activeMarkerImageSrc,
-      markerImageSrc,
-      onMarkerClick,
-      imageHeight,
-      imageWidth,
-      preferredStoreMarkerImageSrc,
-    } = markerConfig
+    const { defaultMarker, activeMarker, preferredStoreMarker, onMarkerClick } = markerConfig
     const code = store.pickup_location_code
     if (!store.lat || !store.lng || !code || !map) return () => {}
 
-    const icon = document.createElement('img')
-    icon.src = markerImageSrc ?? 'icons/marker.svg'
-    if (isFocusedStore) {
-      icon.src = activeMarkerImageSrc ?? 'icons/marker.svg'
-    }
-    if (isPreferredStore) {
-      icon.src = preferredStoreMarkerImageSrc ?? 'icons/marker.svg'
-    }
+    const container = document.createElement('div')
+    const root = createRoot(container)
 
-    icon.width = imageWidth ?? 25
-    icon.height = imageHeight ?? 25
+    let markerContent = defaultMarker
+    if (isPreferredStore) {
+      markerContent = preferredStoreMarker
+    } else if (isFocusedStore) {
+      markerContent = activeMarker
+    }
+    root.render(markerContent)
 
     const marker = new google.maps.marker.AdvancedMarkerElement({
       position: { lat: store.lat, lng: store.lng },
-      content: icon,
+      content: container,
       map,
     })
 
@@ -58,17 +51,16 @@ const MarkerRender = React.memo<
       map.setZoom(11)
       map.setCenter(newPosition)
     }
-
     return () => {
-      // @ts-expect-error not in typescript, but does work
-      marker.setMap(null)
+      root.unmount()
+      marker.map = null
     }
   }, [isFocusedStore, isPreferredStore, map, markerConfig, setValue, store])
 
   return null
 })
 
-export const Marker = (props: MarkerProps) => {
+export function Marker(props: MarkerProps) {
   const { store } = props
   const { control } = useStoreLocatorForm()
 

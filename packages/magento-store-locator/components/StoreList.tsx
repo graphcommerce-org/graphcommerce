@@ -1,11 +1,11 @@
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress } from '@mui/material'
 import React from 'react'
-import { StoreFragment } from '../Store.gql'
 import { useFilteredStores } from '../helpers/useFilteredStores'
 import { useStores } from '../helpers/useStores'
+import type { StoreFragment } from '../Store.gql'
 import { FindLocation } from './FindLocation'
-import { PositionProps } from './PositionProvider'
+import type { PositionProps } from './PositionProvider'
 import { StoreListItem } from './StoreListItem'
 
 export const StoreListResults = React.memo<{ stores: StoreFragment[]; first?: string }>((props) => {

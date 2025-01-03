@@ -3,10 +3,8 @@ import { useWatch } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import Box from '@mui/material/Box'
 import useEventCallback from '@mui/material/utils/useEventCallback'
-
-import { StoreFragment } from '../Store.gql'
 import LocationIcon from '../icons/LocationIcon.svg'
-
+import type { StoreFragment } from '../Store.gql'
 import { useStoreLocatorForm } from './StoreLocatorFormProvider'
 
 type InfoWindowProps = {
@@ -58,6 +56,7 @@ export function StoreInfo(props: InfoWindowProps) {
             onClick={!isPreferredStore ? setPreferredStore : undefined}
             variant='pill'
             sx={{ display: 'flex', gap: '7px' }}
+            disabled={isPreferredStore}
             onMouseDown={(e) => {
               e.stopPropagation()
             }}

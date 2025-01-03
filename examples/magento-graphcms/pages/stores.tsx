@@ -8,7 +8,14 @@ import {
 } from '@graphcommerce/magento-store-locator'
 import { StoreFragment } from '@graphcommerce/magento-store-locator/Store.gql'
 import { StoresDocument } from '@graphcommerce/magento-store-locator/Stores.gql'
-import { GetStaticProps, LayoutTitle, LayoutOverlayHeader, PageMeta } from '@graphcommerce/next-ui'
+import {
+  GetStaticProps,
+  LayoutTitle,
+  LayoutOverlayHeader,
+  PageMeta,
+  IconSvg,
+  iconLocation,
+} from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
@@ -19,6 +26,13 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 
 function Stores({ stores }: { stores: StoreFragment[] }) {
+  const markerSx = {
+    width: '45px',
+    height: '45px',
+    filter: 'drop-shadow(0px 1px 0px #00000060)',
+    strokeWidth: '2px',
+  }
+
   return (
     <>
       <PageMeta title={i18n._(/* i18n */ 'Stores')} metaRobots={['noindex']} />
@@ -62,12 +76,15 @@ function Stores({ stores }: { stores: StoreFragment[] }) {
             <StoreLocator
               stores={stores}
               markerConfig={{
-                markerImageSrc: '/icons/marker.svg',
-                activeMarkerImageSrc: '/icons/marker-active.svg',
-                preferredStoreMarkerImageSrc: '/icons/marker-my-store.svg',
-                imageHeight: 45,
-                imageWidth: 45,
-                // onMarkerClick: (store: StoreFragment) => console.log('Hello from', store.pickup_location_code),
+                defaultMarker: (
+                  <IconSvg src={iconLocation} sx={{ color: '#ffffff', ...markerSx }} />
+                ),
+                activeMarker: <IconSvg src={iconLocation} sx={{ color: '#006bff', ...markerSx }} />,
+                preferredStoreMarker: (
+                  <IconSvg src={iconLocation} sx={{ color: '#000000', ...markerSx }} />
+                ),
+                onMarkerClick: (store: StoreFragment) =>
+                  console.log('Hello from', store.pickup_location_code),
               }}
             />
           </PositionProvider>
@@ -93,6 +110,7 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
       },
       '.LayoutOverlayBase-overlay': {
         justifyItems: 'center',
+        width: '100% !important',
       },
       '.LayoutOverlayBase-overlayPane': {
         maxWidth: 1980,

@@ -133,6 +133,7 @@
     "@graphcommerce/typescript-config-pwa": "9.0.3",
     "@lingui/cli": "4.14.1",
     "@playwright/test": "1.49.1",
+    "@types/google.maps": "^3.58.1",
     "@types/node": "^18.19.68",
     "@types/react": "^18.3.17",
     "@types/react-dom": "^18.3.5",
