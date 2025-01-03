@@ -1,28 +1,28 @@
 # Change Log
 
-## 9.0.0-canary.110
+## 9.0.3
 
-## 9.0.0-canary.109
+## 9.0.3-canary.0
 
-## 9.0.0-canary.108
+## 9.0.2
 
-## 9.0.0-canary.107
+## 9.0.2-canary.0
 
-## 9.0.0-canary.106
+## 9.0.1
 
-## 9.0.0-canary.105
+## 9.0.1-canary.1
 
-## 9.0.0-canary.104
+## 9.0.0
 
-## 9.0.0-canary.103
+### Major Changes
 
-### Patch Changes
-
-- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.101
+- [#2330](https://github.com/graphcommerce-org/graphcommerce/pull/2330) [`bc3ec5e`](https://github.com/graphcommerce-org/graphcommerce/commit/bc3ec5e439b97cea4a2cef23e4008c7e0cfd6797) - Created a new `@graphql-mesh` plugin to forward headers from backends as `forwardedHeaders` in extensions. ([@paales](https://github.com/paales))
 
 ### Minor Changes
+
+- [#2309](https://github.com/graphcommerce-org/graphcommerce/pull/2309) [`b46e17e`](https://github.com/graphcommerce-org/graphcommerce/commit/b46e17ebe390b4d0040639dfdac33c36a60576ac) - When generating the mesh the configuration is passed through `@graphcommerce/graphql-mesh/meshConfig` allowing plugins to modify the mesh configuration without having to change the `.meshrc.yaml` itself. ([@Renzovh](https://github.com/Renzovh))
+
+### Patch Changes
 
 - [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`3710d8b`](https://github.com/graphcommerce-org/graphcommerce/commit/3710d8bf1cceb5a991e5cfdfc15d42e462704c6d) - Solves the issue `TypeError: url?.startsWith is not a function`. The generated `.mesh/index.ts` would be generated as a requirejs module while next.js expects an esm module. In the end we properly generated the mesh correctly and now there is an `import.meta.url` instead of using `require('node:url')`. To solve this we needed to solve a chain of issues:
 
@@ -31,39 +31,19 @@
   2) To properly convert the module to an esm module we've migrated the build of the cli package to use 'pkgroll' instead of tsc, because tsc is limited in what it outputs and can't really convert classic imports to esm.
   3) To load possible mesh plugins we require additional .ts files to be loaded with [tsx](https://tsx.is/). To get the tsx loader to work properly in combination with esm modules, we need at least [node 18.19.0](https://nodejs.org/en/blog/release/v18.19.0#new-nodemodule-api-register-for-module-customization-hooks-new-initialize-hook). Minimal Node version upped to 18.19.0 and add support for node 22. ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.71
+- [#2345](https://github.com/graphcommerce-org/graphcommerce/pull/2345) [`d4ae30b`](https://github.com/graphcommerce-org/graphcommerce/commit/d4ae30ba28815ccb9d3a0478da995b7c609618e5) - Solve issue where `customFetch` couldn't be loaded correctly. ([@paales](https://github.com/paales))
 
-### Patch Changes
-
-- [#2345](https://github.com/graphcommerce-org/graphcommerce/pull/2345) [`d4ae30b`](https://github.com/graphcommerce-org/graphcommerce/commit/d4ae30ba28815ccb9d3a0478da995b7c609618e5) - Solve issue where customFetch coudn’t be loaded correctly ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.67
-
-### Patch Changes
-
-- [#2336](https://github.com/graphcommerce-org/graphcommerce/pull/2336) [`214bc56`](https://github.com/graphcommerce-org/graphcommerce/commit/214bc56950f397727d2c5417741dc62419080dfa) - Added traverseSelectionSet utility function to extract a child selection set from the parent. ([@Renzovh](https://github.com/Renzovh))
-
-## 9.0.0-canary.59
-
-### Minor Changes
-
-- [#2309](https://github.com/graphcommerce-org/graphcommerce/pull/2309) [`b46e17e`](https://github.com/graphcommerce-org/graphcommerce/commit/b46e17ebe390b4d0040639dfdac33c36a60576ac) - When generating the mesh the configuration is passed through `@graphcommerce/graphql-mesh/meshConfig` allowing plugins to modify the mesh configuration without having to change the `.meshrc.yaml` itself. ([@Renzovh](https://github.com/Renzovh))
-
-## 9.0.0-canary.58
-
-### Minor Changes
-
-- [#2330](https://github.com/graphcommerce-org/graphcommerce/pull/2330) [`bc3ec5e`](https://github.com/graphcommerce-org/graphcommerce/commit/bc3ec5e439b97cea4a2cef23e4008c7e0cfd6797) - Created a new @graphql-mesh plugin to forward headers from backends as forwardedHeaders in extensions ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.29
-
-### Patch Changes
+- [#2336](https://github.com/graphcommerce-org/graphcommerce/pull/2336) [`214bc56`](https://github.com/graphcommerce-org/graphcommerce/commit/214bc56950f397727d2c5417741dc62419080dfa) - Added `traverseSelectionSet` utility function to extract a child selection set from the parent. ([@Renzovh](https://github.com/Renzovh))
 
 - [#2290](https://github.com/graphcommerce-org/graphcommerce/pull/2290) [`21f2ac0`](https://github.com/graphcommerce-org/graphcommerce/commit/21f2ac06b95cfc9b51febe19e6859cbba2b578b4) - Fix cors issues with Dynamic Row Property Picker App ([@JoshuaS98](https://github.com/JoshuaS98))
 
-## 8.1.0-canary.8
+- [`f28f11c`](https://github.com/graphcommerce-org/graphcommerce/commit/f28f11cf2821b3fd50c3147558f559d808b1046e) - Pin versions of @graphql-mesh/config and utils ([@paales](https://github.com/paales))
 
-### Patch Changes
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
+
+- [#2450](https://github.com/graphcommerce-org/graphcommerce/pull/2450) [`d5d161c`](https://github.com/graphcommerce-org/graphcommerce/commit/d5d161c2a9f9d831962a17ba424925947b018472) - Revert Pin versions of @graphql-mesh/config and utils ([@paales](https://github.com/paales))
+
+- [#2451](https://github.com/graphcommerce-org/graphcommerce/pull/2451) [`af5c1e6`](https://github.com/graphcommerce-org/graphcommerce/commit/af5c1e686792ee7c7294efb0bc3a005946ac5c98) - Made all graphql mesh dependencies peer dependencies so users can upgrade without problems ([@paales](https://github.com/paales))
 
 - [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`6831040`](https://github.com/graphcommerce-org/graphcommerce/commit/68310401448b7b42b53757db4a84de4a01e35aa2) - Suppress warning where a dependency is an expression, Added uglify-es and long as the dependencies couldn’t be found ([@paales](https://github.com/paales))
 

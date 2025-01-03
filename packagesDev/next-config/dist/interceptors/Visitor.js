@@ -6,6 +6,7 @@ exports.Visitor = void 0;
 /* eslint-disable consistent-return */
 /**
  * @deprecated JavaScript API is deprecated. Please use Wasm plugin instead.
+ * @public
  */
 class Visitor {
     visitProgram(n) {
@@ -1411,4 +1412,3 @@ class Visitor {
     }
 }
 exports.Visitor = Visitor;
-exports.default = Visitor;

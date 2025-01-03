@@ -1,24 +1,22 @@
 # @graphcommerce/magento-pagebuilder
 
-## 9.0.0-canary.110
+## 9.0.3
 
-## 9.0.0-canary.109
+## 9.0.3-canary.0
 
-## 9.0.0-canary.108
+## 9.0.2
+
+## 9.0.2-canary.0
+
+## 9.0.1
+
+## 9.0.1-canary.1
+
+## 9.0.0
 
 ### Patch Changes
 
 - [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 9.0.0-canary.107
-
-## 9.0.0-canary.106
-
-## 9.0.0-canary.105
-
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
 
 ## 7.0.1
 

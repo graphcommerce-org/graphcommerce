@@ -11,20 +11,17 @@ export type TextFieldElementProps<T extends FieldValues = FieldValues> = Omit<
   TextFieldProps,
   'name' | 'defaultValue'
 > & {
-  /** @deprecated Please use the rules props instead */
-  validation?: UseControllerProps<T>['rules']
-
   showValid?: boolean
 } & UseControllerProps<T>
 
+/** @public */
 export function TextFieldElement<TFieldValues extends FieldValues>({
-  validation = {},
   type,
   required,
   name,
   control,
   defaultValue,
-  rules = validation,
+  rules = {},
   shouldUnregister,
   showValid,
   disabled,

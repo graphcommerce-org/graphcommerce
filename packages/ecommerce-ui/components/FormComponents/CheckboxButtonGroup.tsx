@@ -28,6 +28,7 @@ export type CheckboxButtonGroupProps<T extends FieldValues> = {
   checkboxColor?: CheckboxProps['color']
 } & UseControllerProps<T>
 
+/** @public */
 export function CheckboxButtonGroup<TFieldValues extends FieldValues>(
   props: CheckboxButtonGroupProps<TFieldValues>,
 ): JSX.Element {

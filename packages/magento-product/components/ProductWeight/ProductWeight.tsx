@@ -6,6 +6,7 @@ import type { ProductWeightFragment } from './ProductWeight.gql'
 
 export type ProductWeightProps = Omit<UnitFormatProps, 'unit'> & { product: ProductWeightFragment }
 
+/** @public */
 export function ProductWeight(props: ProductWeightProps) {
   const { product, ...rest } = props
 

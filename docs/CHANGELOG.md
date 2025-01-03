@@ -1,70 +1,60 @@
 # Change Log
 
-## 9.0.0-canary.110
+## 9.0.3
 
-## 9.0.0-canary.109
+## 9.0.3-canary.0
 
-## 9.0.0-canary.108
+## 9.0.2
 
-### Patch Changes
+## 9.0.2-canary.0
 
-- [#2439](https://github.com/graphcommerce-org/graphcommerce/pull/2439) [`6061226`](https://github.com/graphcommerce-org/graphcommerce/commit/60612265466e4c508a2d3f478ff679251e7819de) - Moved to serwist for service workers ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.107
-
-## 9.0.0-canary.106
-
-## 9.0.0-canary.105
+## 9.0.1
 
 ### Patch Changes
 
-- [#2427](https://github.com/graphcommerce-org/graphcommerce/pull/2427) [`d400e53`](https://github.com/graphcommerce-org/graphcommerce/commit/d400e534c89955c99a7ccb4bc8b1a0ae2ae4fbfd) - Added web vitals document ([@paales](https://github.com/paales))
+- [#2461](https://github.com/graphcommerce-org/graphcommerce/pull/2461) [`7017b60`](https://github.com/graphcommerce-org/graphcommerce/commit/7017b608eb61097c881103c40701ab4a41197d7a) - Solve issue with documentation parsing markdown files as mdx ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.104
+- [#2454](https://github.com/graphcommerce-org/graphcommerce/pull/2454) [`0f5267b`](https://github.com/graphcommerce-org/graphcommerce/commit/0f5267b92d8561e20164fe2f078097cb52220726) - Update VSCode guide reference ([@emmanuel-ferdman](https://github.com/emmanuel-ferdman))
 
-## 9.0.0-canary.103
-
-## 9.0.0-canary.62
+## 9.0.1-canary.1
 
 ### Patch Changes
+
+- [#2461](https://github.com/graphcommerce-org/graphcommerce/pull/2461) [`7017b60`](https://github.com/graphcommerce-org/graphcommerce/commit/7017b608eb61097c881103c40701ab4a41197d7a) - Solve issue with documentation parsing markdown files as mdx ([@paales](https://github.com/paales))
+
+## 9.0.1-canary.0
+
+### Patch Changes
+
+- [#2454](https://github.com/graphcommerce-org/graphcommerce/pull/2454) [`0f5267b`](https://github.com/graphcommerce-org/graphcommerce/commit/0f5267b92d8561e20164fe2f078097cb52220726) - Update VSCode guide reference ([@emmanuel-ferdman](https://github.com/emmanuel-ferdman))
+
+## 9.0.0
+
+### Major Changes
+
+- [#2439](https://github.com/graphcommerce-org/graphcommerce/pull/2439) [`6061226`](https://github.com/graphcommerce-org/graphcommerce/commit/60612265466e4c508a2d3f478ff679251e7819de) - Moved to [serwist](https://serwist.pages.dev/) for service workers. ([@paales](https://github.com/paales))
+
+- [#2242](https://github.com/graphcommerce-org/graphcommerce/pull/2242) [`a4cce76`](https://github.com/graphcommerce-org/graphcommerce/commit/a4cce76ca37af2bec604e953ada4bb11bd91f55d) - Add option to show an extended version of the pagination component. Configurable via the `productListPaginationVariant` key in your `graphcommerce.config.js`. `COMPACT` means: `< Page X of Y >` and `EXTENDED` means: `< 1 2 ... [5] ... 10 11 >` ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`7652234`](https://github.com/graphcommerce-org/graphcommerce/commit/7652234e222c3f4d8de3817fe907b5b6925a5493) - Fully replaced the sitemap and robots.txt generation. We previously relied on next-sitemap to generate the sitemap based on static generated pages. However with bigger shops the SSG woudn't be complete. Full support for multi domain setups. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+### Minor Changes
+
+- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use `linguiLocale` with country identifiers like `en-us`, it would always load `en` in this case. Introduced a new `useLocale` hook to use the correct locale string to use in Intl methods. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#1984](https://github.com/graphcommerce-org/graphcommerce/pull/1984) [`e05534f`](https://github.com/graphcommerce-org/graphcommerce/commit/e05534fff4990fd584fe401b55b6d9a33934e048) - Added docs about caching. ([@paales](https://github.com/paales))
+
+- [#2450](https://github.com/graphcommerce-org/graphcommerce/pull/2450) [`b116d0f`](https://github.com/graphcommerce-org/graphcommerce/commit/b116d0f714d37a4db30b19812ce5a9d2a6372d42) - Added documentation about the Canonical URL and Sitemap handling ([@paales](https://github.com/paales))
+
+- [#2329](https://github.com/graphcommerce-org/graphcommerce/pull/2329) [`6301fe3`](https://github.com/graphcommerce-org/graphcommerce/commit/6301fe33e73be1a151d0f8290e83418b4b87a738) - Document patch `custom_attributesV2` for null attribute values issue. ([@SimonPrins](https://github.com/SimonPrins))
 
 - [#2326](https://github.com/graphcommerce-org/graphcommerce/pull/2326) [`1faefa4`](https://github.com/graphcommerce-org/graphcommerce/commit/1faefa424df1f40e0f7d20def7192cf7752f761e) - Create a 'Third-Party Libraries' page that includes further details on tools such as Google Analytics and Google Tag Manager. ([@carlocarels90](https://github.com/carlocarels90))
 
-## 9.0.0-canary.56
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for `linguiLocale`. ([@paales](https://github.com/paales))
 
-### Patch Changes
-
-- [#2329](https://github.com/graphcommerce-org/graphcommerce/pull/2329) [`6301fe3`](https://github.com/graphcommerce-org/graphcommerce/commit/6301fe33e73be1a151d0f8290e83418b4b87a738) - Document patch custom_attributesV2 for null attribute values issue ([@SimonPrins](https://github.com/SimonPrins))
-
-## 8.1.0-canary.41
-
-### Patch Changes
-
-- [#2242](https://github.com/graphcommerce-org/graphcommerce/pull/2242) [`a4cce76`](https://github.com/graphcommerce-org/graphcommerce/commit/a4cce76ca37af2bec604e953ada4bb11bd91f55d) - Add option to show an extended version of the pagination component. Configurable via the "productListPaginationVariant" key in your graphcommerce.config.js COMPACT means: "< Page X of Y >" EXTENDED means: "< 1 2 ... [5] ... 10 11 >" ([@FrankHarland](https://github.com/FrankHarland))
-
-## 8.1.0-canary.9
-
-### Patch Changes
-
-- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`7652234`](https://github.com/graphcommerce-org/graphcommerce/commit/7652234e222c3f4d8de3817fe907b5b6925a5493) - Replaced next-sitemap with page router based robots.txt & sitemaps ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 8.1.0-canary.8
-
-### Patch Changes
-
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for linguiLocale ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.6
-
-### Patch Changes
-
-- [#1984](https://github.com/graphcommerce-org/graphcommerce/pull/1984) [`e05534f`](https://github.com/graphcommerce-org/graphcommerce/commit/e05534fff4990fd584fe401b55b6d9a33934e048) - Added docs about caching ([@paales](https://github.com/paales))
-
-## 8.0.6-canary.0
-
-### Patch Changes
-
-- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods. ([@paales](https://github.com/paales))
+- [#2427](https://github.com/graphcommerce-org/graphcommerce/pull/2427) [`d400e53`](https://github.com/graphcommerce-org/graphcommerce/commit/d400e534c89955c99a7ccb4bc8b1a0ae2ae4fbfd) - Added web vitals document ([@paales](https://github.com/paales))
 
 ## 8.0.2
 

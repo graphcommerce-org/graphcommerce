@@ -10,6 +10,7 @@ export type SliderElementProps<T extends FieldValues> = Omit<SliderProps, 'contr
   formControlProps?: FormControlProps
 } & Omit<ControllerProps<T>, 'render'>
 
+/** @public */
 export function SliderElement<TFieldValues extends FieldValues>({
   name,
   control,

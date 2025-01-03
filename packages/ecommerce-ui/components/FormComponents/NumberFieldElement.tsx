@@ -28,6 +28,7 @@ const { withState } = extendableComponent<OwnerState, typeof componentName, type
   parts,
 )
 
+/** @public */
 export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElementProps<T>) {
   const {
     DownProps = {},

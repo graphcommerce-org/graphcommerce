@@ -1,88 +1,57 @@
 # Change Log
 
-## 9.0.0-canary.110
+## 9.0.3
 
-## 9.0.0-canary.109
+## 9.0.3-canary.0
 
-## 9.0.0-canary.108
+## 9.0.2
+
+## 9.0.2-canary.0
+
+## 9.0.1
+
+## 9.0.1-canary.1
+
+## 9.0.0
+
+### Major Changes
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Added `<CompanyFields/>` with `<CompanyName />` and `<CompanyVAT />` to shipping and billing forms. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2366](https://github.com/graphcommerce-org/graphcommerce/pull/2366) [`3612c99`](https://github.com/graphcommerce-org/graphcommerce/commit/3612c994b80bb3b1bc02de10668f69a332402dc4) - Add `permissions` configuration to disable functionalities.
+
+  - Added new `permissions` configuration for GraphCommerce
+  - Added `permissions.cart`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
+  - Added `permissions.checkout`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
+  - Added `permissions.customerAccount`: `ENABLED` | `DISABLE_REGISTRATION` | `DISABLE` ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - INP improvements: Moved all usages of `useFormPersist` to the `<FormPersist/>` component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
+
+### Minor Changes
+
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new `<EmailElement/>` component to make re-use easier. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ### Patch Changes
+
+- [#2303](https://github.com/graphcommerce-org/graphcommerce/pull/2303) [`f407e96`](https://github.com/graphcommerce-org/graphcommerce/commit/f407e961868683a257c8f7fe8ceb588fb825db9b) - Get `shippingMethodPrices` from selected shipping method if supported on the magento version ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`2faebf1`](https://github.com/graphcommerce-org/graphcommerce/commit/2faebf16fbda95390872ac0debe979fa570ed904) - When signing in make sure the cart isn't merged if the login is unsuccesful. ([@paales](https://github.com/paales))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use `muiRegister`, which improves INP scores. ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`a56a7c6`](https://github.com/graphcommerce-org/graphcommerce/commit/a56a7c67cf27dfb91bf763a873beeec562ab3156) - Solve an issue where the cart would be sometimes undefined, but a typescript `Partial` was too general. ([@paales](https://github.com/paales))
+
+- [#2266](https://github.com/graphcommerce-org/graphcommerce/pull/2266) [`0d1fe7a`](https://github.com/graphcommerce-org/graphcommerce/commit/0d1fe7a26ed2d18510c8767795294654c478fb88) - Enable the use of one or more anchor links within the `checkbox_text` field and customize their paths. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2338](https://github.com/graphcommerce-org/graphcommerce/pull/2338) [`6984f8c`](https://github.com/graphcommerce-org/graphcommerce/commit/6984f8ce94433963d7bab0e1949c1737767e17ba) - Pass `sx` props to `<EmptyCart/>` component. ([@JoshuaS98](https://github.com/JoshuaS98))
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving `<FromPersist/>` below the form components. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 - [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
 
-## 9.0.0-canary.107
-
-## 9.0.0-canary.106
-
-## 9.0.0-canary.105
-
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
-
-### Patch Changes
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`688b4d7`](https://github.com/graphcommerce-org/graphcommerce/commit/688b4d73cdb4baf38d91f7d98d81964b8fc17e85) - Add missing gutter to /checkout/item page ([@bramvanderholst](https://github.com/bramvanderholst))
 
 - [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`8aaca29`](https://github.com/graphcommerce-org/graphcommerce/commit/8aaca29147da4d4a508fb1a00c088d30e2a304cf) - Forward BadgeProps to WishlistFab, CartFab and CustomerFab ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.82
-
-### Minor Changes
-
-- [#2366](https://github.com/graphcommerce-org/graphcommerce/pull/2366) [`3612c99`](https://github.com/graphcommerce-org/graphcommerce/commit/3612c994b80bb3b1bc02de10668f69a332402dc4) - Add `permissions` config so the website or store can be configurated to run in different modes. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 9.0.0-canary.69
-
-### Patch Changes
-
-- [#2338](https://github.com/graphcommerce-org/graphcommerce/pull/2338) [`6984f8c`](https://github.com/graphcommerce-org/graphcommerce/commit/6984f8ce94433963d7bab0e1949c1737767e17ba) - Pass sx props to EmptyCart component ([@JoshuaS98](https://github.com/JoshuaS98))
-
-## 8.1.0-canary.45
-
-### Patch Changes
-
-- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`2faebf1`](https://github.com/graphcommerce-org/graphcommerce/commit/2faebf16fbda95390872ac0debe979fa570ed904) - When signing in make sure the cart isn't merged if the login is unsuccesful ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.38
-
-### Minor Changes
-
-- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Add company and vat fields to shipping and billing forms ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-### Patch Changes
-
-- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving <FromPersist/> below the form components ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.35
-
-### Patch Changes
-
-- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new EmailElement component to make re-use easier ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.34
-
-### Minor Changes
-
-- [#2303](https://github.com/graphcommerce-org/graphcommerce/pull/2303) [`f407e96`](https://github.com/graphcommerce-org/graphcommerce/commit/f407e961868683a257c8f7fe8ceb588fb825db9b) - Get shippingMethodPrices from selected shipping method if supported on the magento version ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.25
-
-### Patch Changes
-
-- [#2266](https://github.com/graphcommerce-org/graphcommerce/pull/2266) [`0d1fe7a`](https://github.com/graphcommerce-org/graphcommerce/commit/0d1fe7a26ed2d18510c8767795294654c478fb88) - Enable the use of one or more anchor links within the 'checkbox_text' field and customize their paths. ([@carlocarels90](https://github.com/carlocarels90))
-
-## 8.1.0-canary.8
-
-### Patch Changes
-
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`a56a7c6`](https://github.com/graphcommerce-org/graphcommerce/commit/a56a7c67cf27dfb91bf763a873beeec562ab3156) - Solve an issue where the cart would be sometimes undefined, but Partial was too eleborate ([@paales](https://github.com/paales))
-
-## 8.0.6-canary.2
-
-### Patch Changes
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.4
 

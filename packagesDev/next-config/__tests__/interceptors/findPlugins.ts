@@ -282,17 +282,17 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "getInContextInput",
+        "sourceExport": "getPrivateQueryContext",
         "sourceModule": "@graphcommerce/algolia-personalization/plugins/InContextInputAlgoliaUserToken",
-        "targetExport": "getInContextInput",
+        "targetExport": "getPrivateQueryContext",
         "targetModule": "@graphcommerce/graphql",
         "type": "function",
       },
       {
         "enabled": true,
-        "sourceExport": "useInContextInput",
+        "sourceExport": "usePrivateQueryContext",
         "sourceModule": "@graphcommerce/algolia-personalization/plugins/InContextInputAlgoliaUserToken",
-        "targetExport": "useInContextInput",
+        "targetExport": "usePrivateQueryContext",
         "targetModule": "@graphcommerce/graphql",
         "type": "function",
       },
@@ -482,25 +482,17 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "sourceExport": "graphqlConfig",
-        "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerRemoveInContextDirective",
-        "targetExport": "graphqlConfig",
+        "sourceExport": "getPrivateQueryContext",
+        "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerPrivateQueryContext",
+        "targetExport": "getPrivateQueryContext",
         "targetModule": "@graphcommerce/graphql",
         "type": "function",
       },
       {
         "enabled": true,
-        "sourceExport": "getInContextInput",
-        "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerGetInContext",
-        "targetExport": "getInContextInput",
-        "targetModule": "@graphcommerce/graphql",
-        "type": "function",
-      },
-      {
-        "enabled": true,
-        "sourceExport": "useInContextInput",
-        "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerGetInContext",
-        "targetExport": "useInContextInput",
+        "sourceExport": "usePrivateQueryContext",
+        "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerPrivateQueryContext",
+        "targetExport": "usePrivateQueryContext",
         "targetModule": "@graphcommerce/graphql",
         "type": "function",
       },
@@ -523,6 +515,14 @@ it('finds plugins', () => {
         "targetExport": "GraphQLProvider",
         "targetModule": "@graphcommerce/graphql",
         "type": "component",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "graphqlConfig",
+        "sourceModule": "@graphcommerce/magento-store/plugins/magentoStoreGraphqlConfig",
+        "targetExport": "graphqlConfig",
+        "targetModule": "@graphcommerce/graphql",
+        "type": "function",
       },
       {
         "enabled": true,
@@ -550,7 +550,8 @@ it('finds plugins', () => {
       },
     ]
   `)
-  expect(disabled).toMatchInlineSnapshot(`
+  expect(disabled).toMatchInlineSnapshot(
+    `
     [
       {
         "enabled": false,
@@ -725,6 +726,15 @@ it('finds plugins', () => {
       },
       {
         "enabled": false,
+        "ifConfig": "debug.cart",
+        "sourceExport": "FramerNextPages",
+        "sourceModule": "@graphcommerce/magento-cart/plugins/CartDebuggerPlugin",
+        "targetExport": "FramerNextPages",
+        "targetModule": "@graphcommerce/framer-next-pages",
+        "type": "component",
+      },
+      {
+        "enabled": false,
         "ifConfig": "debug.sessions",
         "sourceExport": "FramerNextPages",
         "sourceModule": "@graphcommerce/magento-customer/plugins/SessionDebuggerPlugin",
@@ -742,5 +752,6 @@ it('finds plugins', () => {
         "type": "component",
       },
     ]
-  `)
+  `,
+  )
 })

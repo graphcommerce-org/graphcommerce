@@ -1,9 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   cacheFirst,
-  InContextMaskProvider,
+  PrivateQueryMaskProvider,
   mergeDeep,
-  useInContextQuery,
+  usePrivateQuery,
 } from '@graphcommerce/graphql'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import {
@@ -60,7 +60,7 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 function ProductPage(props: Props) {
   const { usps, sidebarUsps, pages, defaultValues, urlKey } = props
 
-  const scopedQuery = useInContextQuery(
+  const scopedQuery = usePrivateQuery(
     ProductPage2Document,
     { variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 } },
     props,
@@ -75,7 +75,7 @@ function ProductPage(props: Props) {
   if (!product?.sku || !product.url_key) return null
 
   return (
-    <InContextMaskProvider mask={scopedQuery.mask}>
+    <PrivateQueryMaskProvider mask={scopedQuery.mask}>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
         <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
           <LayoutTitle size='small' component='span'>
@@ -178,7 +178,7 @@ function ProductPage(props: Props) {
         productListRenderer={productListRenderer}
         sx={(theme) => ({ mb: theme.spacings.xxl })}
       />
-    </InContextMaskProvider>
+    </PrivateQueryMaskProvider>
   )
 }
 

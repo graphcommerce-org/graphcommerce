@@ -1,32 +1,24 @@
 # Change Log
 
-## 9.0.0-canary.110
+## 9.0.3
 
-## 9.0.0-canary.109
+## 9.0.3-canary.0
 
-## 9.0.0-canary.108
+## 9.0.2
 
-## 9.0.0-canary.107
+## 9.0.2-canary.0
 
-## 9.0.0-canary.106
+## 9.0.1
 
-## 9.0.0-canary.105
+## 9.0.1-canary.1
 
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
-
-## 9.0.0-canary.101
-
-### Patch Changes
-
-- [#2409](https://github.com/graphcommerce-org/graphcommerce/pull/2409) [`7e7c4bc`](https://github.com/graphcommerce-org/graphcommerce/commit/7e7c4bc24c8e3a2e6ed34667db8cf3fd67b557cf) - Solve an issue where image sizes are served in higher resolution than expected. ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 8.1.0-canary.45
+## 9.0.0
 
 ### Patch Changes
 
 - [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`16b5767`](https://github.com/graphcommerce-org/graphcommerce/commit/16b576721785c2cc9fe92570e00ca092aaae4c23) - When viewing the website on a 1x monitor, serve a little bit smaller images. ([@paales](https://github.com/paales))
+
+- [#2409](https://github.com/graphcommerce-org/graphcommerce/pull/2409) [`7e7c4bc`](https://github.com/graphcommerce-org/graphcommerce/commit/7e7c4bc24c8e3a2e6ed34667db8cf3fd67b557cf) - Solve an issue where image sizes are served in higher resolution than expected. ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 7.0.0
 

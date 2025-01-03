@@ -71,7 +71,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
       ...nextConfig.images,
       remotePatterns: [
         { hostname: new URL(graphcommerceConfig.magentoEndpoint).hostname },
-        { hostname: 'media.graphassets.com' },
+        { hostname: '**.graphassets.com' },
         { hostname: '*.graphcommerce.org' },
         ...(nextConfig.images?.remotePatterns ?? []),
       ],

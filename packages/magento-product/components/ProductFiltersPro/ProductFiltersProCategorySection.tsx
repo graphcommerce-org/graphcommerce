@@ -7,8 +7,8 @@ import {
   ActionCardAccordion,
   ActionCardList,
   Button,
-  IconSvg,
   iconChevronLeft,
+  IconSvg,
   responsiveVal,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
@@ -64,8 +64,8 @@ export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCateg
             await onChange(item)
           }}
         >
-          {categoryTree.map((item) => {
-            const indent = item.isBack ? 0 : item.indent + 1
+          {categoryTree.map(({ isBack, indent, ...item }) => {
+            const indentVal = isBack ? 0 : indent + 1
             return (
               <ActionCard
                 key={item.value}
@@ -74,7 +74,7 @@ export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCateg
                 title={
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <Box sx={{ marginRight: 1 }}>
-                      {item.isBack ? (
+                      {isBack ? (
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
                           <IconSvg src={iconChevronLeft} size='medium' />
                           {item.title}
@@ -91,10 +91,10 @@ export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCateg
                   </Box>
                 }
                 sx={{
-                  '&.sizeSmall': { pl: responsiveVal(8 * indent, 12 * indent) },
-                  '&.sizeMedium': { pl: responsiveVal(10 * indent, 14 * indent) },
-                  '&.sizeLarge': { pl: responsiveVal(12 * indent, 16 * indent) },
-                  '&.sizeResponsive': { pl: responsiveVal(8 * indent, 16 * indent) },
+                  '&.sizeSmall': { pl: responsiveVal(8 * indentVal, 12 * indentVal) },
+                  '&.sizeMedium': { pl: responsiveVal(10 * indentVal, 14 * indentVal) },
+                  '&.sizeLarge': { pl: responsiveVal(12 * indentVal, 16 * indentVal) },
+                  '&.sizeResponsive': { pl: responsiveVal(8 * indentVal, 16 * indentVal) },
                   '& .ActionCard-title.selected': { fontWeight: 'bold' },
                 }}
               />

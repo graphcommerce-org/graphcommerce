@@ -165,7 +165,7 @@ module.exports = {
             ],
           },
         ],
-        '@typescript-eslint/consistent-type-imports': 'error',
+        '@typescript-eslint/consistent-type-imports': 'warn',
         'import/no-duplicates': 'off',
       },
     },
@@ -192,7 +192,7 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.spec.ts', '**/*.spec.tsx', '**/__tests__/**'],
+      files: ['**/*.spec.ts', '**/*.spec.tsx', '**/__tests__/**', 'scripts/**'],
       env: {
         jest: true,
       },

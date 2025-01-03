@@ -1,3 +1,4 @@
+import React from 'react'
 import type { LayoutHeaderProps, TitleProps } from '../../Layout'
 import { LayoutTitle } from '../../Layout'
 import { LayoutHeaderClose } from '../../Layout/components/LayoutHeaderClose'
@@ -6,6 +7,7 @@ import { LayoutOverlayHeader } from '../../LayoutOverlay/components/LayoutOverla
 export type OverlayHeaderProps = Omit<LayoutHeaderProps, 'hideBackButton' | 'switchPoint'> &
   Pick<TitleProps, 'icon'> & { onClose: () => void }
 
+/** @public */
 export function OverlayHeader(props: OverlayHeaderProps) {
   const { children, onClose, sx = [], icon, primary, secondary, ...rest } = props
 
@@ -14,7 +16,7 @@ export function OverlayHeader(props: OverlayHeaderProps) {
       noAlign
       sx={[{ '&.noAlign': { mb: 0 } }, ...(Array.isArray(sx) ? sx : [sx])]}
       switchPoint={-10000}
-      size='small'
+      size='responsive'
       hideBackButton
       primary={primary ?? <LayoutHeaderClose onClose={onClose} />}
       secondary={primary ? <LayoutHeaderClose onClose={onClose} /> : secondary}

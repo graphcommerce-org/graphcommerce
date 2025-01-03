@@ -1,38 +1,28 @@
 # @graphcommerce/hygraph-dynamic-rows
 
-## 9.0.0-canary.110
+## 9.0.3
 
-## 9.0.0-canary.109
+## 9.0.3-canary.0
 
-## 9.0.0-canary.108
+## 9.0.2
 
-## 9.0.0-canary.107
+## 9.0.2-canary.0
 
-## 9.0.0-canary.106
+## 9.0.1
 
-## 9.0.0-canary.105
+## 9.0.1-canary.1
 
-## 9.0.0-canary.104
+## 9.0.0
 
-## 9.0.0-canary.103
-
-## 9.0.0-canary.76
-
-### Minor Changes
-
-- [#2318](https://github.com/graphcommerce-org/graphcommerce/pull/2318) [`886837f`](https://github.com/graphcommerce-org/graphcommerce/commit/886837ff44d95404512716dbb9b2272c38b9ad27) - Terminate row field on DynamicRows model ([@JoshuaS98](https://github.com/JoshuaS98))
-
-## 9.0.0-canary.60
+### Major Changes
 
 ### Patch Changes
+
+- [#2318](https://github.com/graphcommerce-org/graphcommerce/pull/2318) [`886837f`](https://github.com/graphcommerce-org/graphcommerce/commit/886837ff44d95404512716dbb9b2272c38b9ad27) - Remove `row` field on DynamicRows` model ([@JoshuaS98](https://github.com/JoshuaS98))
+
+- [#2268](https://github.com/graphcommerce-org/graphcommerce/pull/2268) [`8ffe2d5`](https://github.com/graphcommerce-org/graphcommerce/commit/8ffe2d5d1b040797ee4987d7740de5fdeadd4f72) - Solve issue where an Apollo object couldn't be modified as it is read only when Dynamic rows are added to the project. ([@JoshuaS98](https://github.com/JoshuaS98))
 
 - [#2331](https://github.com/graphcommerce-org/graphcommerce/pull/2331) [`702bfc9`](https://github.com/graphcommerce-org/graphcommerce/commit/702bfc93566c9745546988e57988431d5d4d8cb0) - Moved plugins to new format ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.13
-
-### Patch Changes
-
-- [#2268](https://github.com/graphcommerce-org/graphcommerce/pull/2268) [`8ffe2d5`](https://github.com/graphcommerce-org/graphcommerce/commit/8ffe2d5d1b040797ee4987d7740de5fdeadd4f72) - Fix for non extensible object error in Dynamic Row package ([@JoshuaS98](https://github.com/JoshuaS98))
 
 ## 8.0.5
 

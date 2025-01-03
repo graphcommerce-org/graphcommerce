@@ -1,5 +1,5 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
-import { cacheFirst, flushMeasurePerf, InContextMaskProvider } from '@graphcommerce/graphql'
+import { cacheFirst, flushMeasurePerf, PrivateQueryMaskProvider } from '@graphcommerce/graphql'
 import {
   appendSiblingsAsChildren,
   CategoryBreadcrumbs,
@@ -63,7 +63,7 @@ function CategoryPage(props: CategoryProps) {
   const isCategory = params && category && products?.items
 
   return (
-    <InContextMaskProvider mask={productList.mask}>
+    <PrivateQueryMaskProvider mask={productList.mask}>
       <CategoryMeta params={params} {...category} />
       <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
         <LayoutTitle size='small' component='span'>
@@ -124,7 +124,7 @@ function CategoryPage(props: CategoryProps) {
           )}
         </>
       )}
-    </InContextMaskProvider>
+    </PrivateQueryMaskProvider>
   )
 }
 

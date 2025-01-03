@@ -57,7 +57,7 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
             ...nextConfig.images,
             remotePatterns: [
                 { hostname: new URL(graphcommerceConfig.magentoEndpoint).hostname },
-                { hostname: 'media.graphassets.com' },
+                { hostname: '**.graphassets.com' },
                 { hostname: '*.graphcommerce.org' },
                 ...(nextConfig.images?.remotePatterns ?? []),
             ],

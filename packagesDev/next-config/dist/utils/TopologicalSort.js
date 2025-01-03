@@ -14,12 +14,15 @@ class TopologicalSort {
         this.#nodes = new Map();
         this.addMultipleInternalNodes(nodes);
     }
+    /** @public */
     addNode(key, node) {
         return this.addInternalNode(key, node);
     }
+    /** @public */
     addNodes(nodes) {
         this.addMultipleInternalNodes(nodes);
     }
+    /** @public */
     addEdge(fromKey, toKey) {
         (0, assert_1.default)(this.#nodes.has(fromKey), `Source package with ${fromKey} key should exist`);
         (0, assert_1.default)(this.#nodes.has(toKey), `Target package with ${toKey} key should exist`);
@@ -30,6 +33,7 @@ class TopologicalSort {
         assert_1.default.strictEqual(sourceNode.children.has(toKey), false, `Source package ${fromKey} already has an edge to target node ${toKey}`);
         sourceNode.children.set(toKey, targetNode);
     }
+    /** @public */
     sort() {
         this.#visitedNodes = new Set();
         this.#sortedKeysStack = [];

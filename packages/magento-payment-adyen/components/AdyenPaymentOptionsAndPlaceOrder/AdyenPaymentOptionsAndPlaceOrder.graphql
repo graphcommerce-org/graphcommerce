@@ -17,6 +17,11 @@ mutation AdyenPaymentOptionsAndPlaceOrder(
     }
   }
   placeOrder(input: { cart_id: $cartId }) {
+    errors {
+      code
+      message
+    }
+
     order {
       order_number
       adyen_payment_status {

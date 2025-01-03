@@ -34,6 +34,10 @@ msgid "Search all products..."
 msgstr "Zoek alle producten..."
 
 #. js-lingui-generated-id
+msgid "Did you mean?"
+msgstr "Bedoelde u?"
+
+#. js-lingui-generated-id
 msgid "We couldn't find any results"
 msgstr "We konden geen resultaten vinden"
 
@@ -239,6 +243,9 @@ msgstr "Contact"
 msgid "Continue"
 msgstr "Doorgaan"
 
+msgid "Continue searching"
+msgstr "Verder zoeken"
+
 msgid "Continue shopping"
 msgstr "Verder winkelen"
 
@@ -316,6 +323,9 @@ msgstr "Ontdek onze collectie en plaats uw eerste bestelling!"
 msgid "Discover our collection and write your first review!"
 msgstr "Ontdek onze collectie en schrijf uw eerste review!"
 
+msgid "Discover our collection by searching for products, categories or features."
+msgstr "Ontdek onze collectie door te zoeken naar producten, categorieën of eigenschappen."
+
 #. js-lingui-generated-id
 msgid "Payment method"
 msgstr "Betaalmethode"
@@ -378,6 +388,10 @@ msgstr "Wachtwoord vergeten?"
 msgid "Forgot your password?"
 msgstr "Wachtwoord vergeten?"
 
+#. js-lingui-generated-id
+msgid "We couldn’t find any results for ‘{term}’"
+msgstr "We konden geen resultaten vinden voor ‘{term}’"
+
 msgid "Free"
 msgstr "Gratis"
 
@@ -395,10 +409,6 @@ msgstr "Huisnummer"
 
 msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
 msgstr "Als u uw bestelling succesvol heeft betaald, dan zal de bestelling <0>doorkomen</0>, maar er is een communicatiefout met de website."
-
-#. js-lingui-generated-id
-msgid "We couldn't find any results for {term}"
-msgstr "We konden geen resultaten vinden voor {term}"
 
 msgid "In comparelist"
 msgstr "In vergelijking"
@@ -466,6 +476,14 @@ msgstr "Mvr"
 #. js-lingui-generated-id
 msgid "Order has successfully been canceled"
 msgstr "Bestelling is geannuleerd"
+
+#. js-lingui-generated-id
+msgid "View all"
+msgstr "Bekijk alle"
+
+#. js-lingui-generated-id
+msgid "Categories"
+msgstr "Categorieën"
 
 msgid "Name"
 msgstr "Naam"
@@ -911,6 +929,9 @@ msgstr "Uw betaling wordt verwerkt, dit duurt een paar seconden"
 msgid "We’ve send a password reset link to your email address!"
 msgstr "Een wachtwoord reset link naar uw e-mailadres gestuurd"
 
+msgid "What are you looking for?"
+msgstr "Waar ben je naar op zoek?"
+
 msgid "Whoops our bad..."
 msgstr "Oeps.."
 
@@ -925,6 +946,10 @@ msgstr "Geschreven door {nickname}"
 
 msgid "Written {0} reviews"
 msgstr "{0} reviews geschreven"
+
+#. js-lingui-generated-id
+msgid "Search..."
+msgstr "Zoeken..."
 
 msgid "You are reviewing {0}"
 msgstr "U reviewt {0}"

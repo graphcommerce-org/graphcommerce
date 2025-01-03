@@ -1,7 +1,7 @@
 import type { Theme } from '@mui/material'
 import { useTheme } from '@mui/material'
 
-export function containerSizing(variant: ContainerSizingVariant, theme: Theme) {
+function containerSizing(variant: ContainerSizingVariant, theme: Theme) {
   const breakpoint =
     variant === 'shell'
       ? theme.appShell.containerSizingShell

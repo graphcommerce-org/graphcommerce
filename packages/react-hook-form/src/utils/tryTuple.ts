@@ -1,3 +1,4 @@
+/** @public */
 export const tryAsync =
   <R, Args extends unknown[]>(
     fn: (...args: Args) => Promise<R> | R,
@@ -11,6 +12,7 @@ export const tryAsync =
     }
   }
 
+/** @public */
 export const trySync =
   <R, Args extends unknown[]>(
     fn: (...args: Args) => R,

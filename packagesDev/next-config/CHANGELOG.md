@@ -1,139 +1,26 @@
 # Change Log
 
-## 9.0.0-canary.110
+## 9.0.3
 
-## 9.0.0-canary.109
+## 9.0.3-canary.0
 
-## 9.0.0-canary.108
+## 9.0.2
 
-## 9.0.0-canary.107
+## 9.0.2-canary.0
 
-## 9.0.0-canary.106
+## 9.0.1
 
-### Minor Changes
+## 9.0.1-canary.1
 
-- [#2385](https://github.com/graphcommerce-org/graphcommerce/pull/2385) [`3434ede`](https://github.com/graphcommerce-org/graphcommerce/commit/3434ede37855c36949711d05d13eb01906b29ad0) - Added a functionality to copy directories from packages to the project and keep them managed with GraphCommerce ([@paales](https://github.com/paales))
+## 9.0.0
 
-## 9.0.0-canary.105
+### Major Changes
 
-## 9.0.0-canary.104
+- [#2306](https://github.com/graphcommerce-org/graphcommerce/pull/2306) [`5e188e8`](https://github.com/graphcommerce-org/graphcommerce/commit/5e188e830dca4730c73830858f59a94e9d41ed12) - Magento 2.4.7: Imlemented `deleteCustomer` mutation to the account section. Disabled by default and can be enabled through the config. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-### Patch Changes
+- [#2452](https://github.com/graphcommerce-org/graphcommerce/pull/2452) [`aab290f`](https://github.com/graphcommerce-org/graphcommerce/commit/aab290f9c905be06e742cd8ad50d7d415930828a) - Migrated to `next.config.ts` ([@paales](https://github.com/paales))
 
-- [#2423](https://github.com/graphcommerce-org/graphcommerce/pull/2423) [`dbf233b`](https://github.com/graphcommerce-org/graphcommerce/commit/dbf233bb6d11432a8effc38fd4672aaa0856e1aa) - Added graphql.config.ts to projects ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.103
-
-### Patch Changes
-
-- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.102
-
-### Minor Changes
-
-- [#2418](https://github.com/graphcommerce-org/graphcommerce/pull/2418) [`e0a5b98`](https://github.com/graphcommerce-org/graphcommerce/commit/e0a5b9858a3b675ce749609ffa122d293c6e2a62) - To have additional namespaces be considered as a graphcommerce package, set PRIVATE_PACKAGE_NAMESPACES ([@paales](https://github.com/paales))
-
-### Patch Changes
-
-- [#2418](https://github.com/graphcommerce-org/graphcommerce/pull/2418) [`22a0ef2`](https://github.com/graphcommerce-org/graphcommerce/commit/22a0ef2ffd2841d050a413a885ff54331e1e7ebf) - Solve peer dependency issues for webpack and framer-motion ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.101
-
-### Minor Changes
-
-- [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`3710d8b`](https://github.com/graphcommerce-org/graphcommerce/commit/3710d8bf1cceb5a991e5cfdfc15d42e462704c6d) - Solves the issue `TypeError: url?.startsWith is not a function`. The generated `.mesh/index.ts` would be generated as a requirejs module while next.js expects an esm module. In the end we properly generated the mesh correctly and now there is an `import.meta.url` instead of using `require('node:url')`. To solve this we needed to solve a chain of issues:
-
-  1. The generation of the mesh is based on the version of the mesh that is imported (esm or commonjs). See [source](https://github.com/ardatan/graphql-mesh/blob/bf588d372c0078378aaa24beea2da794af7949e6/scripts/replace-import-meta-url-in-cjs.ts#L9-L10) for the lines that need to be different. This meant that we needed to change the @graphcommerce/cli package to be of type:module instead of a commonjs module.
-
-  2) To properly convert the module to an esm module we've migrated the build of the cli package to use 'pkgroll' instead of tsc, because tsc is limited in what it outputs and can't really convert classic imports to esm.
-  3) To load possible mesh plugins we require additional .ts files to be loaded with [tsx](https://tsx.is/). To get the tsx loader to work properly in combination with esm modules, we need at least [node 18.19.0](https://nodejs.org/en/blog/release/v18.19.0#new-nodemodule-api-register-for-module-customization-hooks-new-initialize-hook). Minimal Node version upped to 18.19.0 and add support for node 22. ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.86
-
-### Patch Changes
-
-- [#2379](https://github.com/graphcommerce-org/graphcommerce/pull/2379) [`9828754`](https://github.com/graphcommerce-org/graphcommerce/commit/9828754192348b966fb9736d7b0e1c78c4a909fa) - All automatically generated interceptor files are now read-only in vscode to prevent accedental changes. ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.58
-
-### Minor Changes
-
-- [#2330](https://github.com/graphcommerce-org/graphcommerce/pull/2330) [`5701e71`](https://github.com/graphcommerce-org/graphcommerce/commit/5701e71454ffb52880cd15c3341826d9502284d0) - Added support for boolean `ifConfig: ['customerXMagentoCacheIdDisable', true]` values in plugin configurations ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.46
-
-### Minor Changes
-
-- [#2313](https://github.com/graphcommerce-org/graphcommerce/pull/2313) [`511e75c`](https://github.com/graphcommerce-org/graphcommerce/commit/511e75c3f8c077e617ed17e5042796e2411f312f) - Add the customerNote field to the shipping and customer address forms ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-### Patch Changes
-
-- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`ccd218c`](https://github.com/graphcommerce-org/graphcommerce/commit/ccd218c827d8ba7e632fa40ed75ad63a38620275) - Solve an issue where interceptors were immediately deleted after generating ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.41
-
-### Patch Changes
-
-- [#2242](https://github.com/graphcommerce-org/graphcommerce/pull/2242) [`a4cce76`](https://github.com/graphcommerce-org/graphcommerce/commit/a4cce76ca37af2bec604e953ada4bb11bd91f55d) - Add option to show an extended version of the pagination component. Configurable via the "productListPaginationVariant" key in your graphcommerce.config.js COMPACT means: "< Page X of Y >" EXTENDED means: "< 1 2 ... [5] ... 10 11 >" ([@FrankHarland](https://github.com/FrankHarland))
-
-## 8.1.0-canary.40
-
-### Minor Changes
-
-- [#2306](https://github.com/graphcommerce-org/graphcommerce/pull/2306) [`5e188e8`](https://github.com/graphcommerce-org/graphcommerce/commit/5e188e830dca4730c73830858f59a94e9d41ed12) - Add delete account functionality to the account section. Disabled by default and can be enabled through the config. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.38
-
-### Minor Changes
-
-- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Add company and vat fields to shipping and billing forms ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.32
-
-### Patch Changes
-
-- [#2299](https://github.com/graphcommerce-org/graphcommerce/pull/2299) [`85d258a`](https://github.com/graphcommerce-org/graphcommerce/commit/85d258a0d1a48bb1b502cccba30a9844f2257814) - Solve an issue where an env variable wouldn't be coerced to a Number if a Config.graphqls value is defined as an Int/Float ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.28
-
-### Patch Changes
-
-- [#2292](https://github.com/graphcommerce-org/graphcommerce/pull/2292) [`6258adb`](https://github.com/graphcommerce-org/graphcommerce/commit/6258adbe294590ba52d3aaf65712cdc561f32c4c) - Be able to handle plugin runtime values values when parsing the source. Also, make sure parsed plugin sources do not return duplicate plugins. ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.10
-
-### Patch Changes
-
-- [#2251](https://github.com/graphcommerce-org/graphcommerce/pull/2251) [`bc6a9b4`](https://github.com/graphcommerce-org/graphcommerce/commit/bc6a9b4a7e9769977e98449a418bb239f92ec544) - When creating a release PR, make sure it is created against the main branch so it can be directly merged. ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.9
-
-### Patch Changes
-
-- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`4f7fe02`](https://github.com/graphcommerce-org/graphcommerce/commit/4f7fe02c6f0f017d7a52559df1972551eb0cba47) - Added robotsAllow to storefront config ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 8.1.0-canary.8
-
-### Patch Changes
-
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`5153904`](https://github.com/graphcommerce-org/graphcommerce/commit/51539045cb3e14424141a65a1fd89216d3ee6fc2) - Added PRIVATE_ADDITIONAL_DEPENDENCIES to enable packages that we do not want to have in the examples directory but we do want to be able to demo. ([@paales](https://github.com/paales))
-
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`6831040`](https://github.com/graphcommerce-org/graphcommerce/commit/68310401448b7b42b53757db4a84de4a01e35aa2) - reduce bundlesize of @apollo/client ([@paales](https://github.com/paales))
-
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`81c6c81`](https://github.com/graphcommerce-org/graphcommerce/commit/81c6c81e1b4a31df3c400a3ee4311bdf2b46a2b5) - Solved an issue where the plugins would be generated with the wrong path ([@paales](https://github.com/paales))
-
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`6831040`](https://github.com/graphcommerce-org/graphcommerce/commit/68310401448b7b42b53757db4a84de4a01e35aa2) - Suppress warning where a dependency is an expression, Added uglify-es and long as the dependencies couldn’t be found ([@paales](https://github.com/paales))
-
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`cfc0f4e`](https://github.com/graphcommerce-org/graphcommerce/commit/cfc0f4e015f3b3a7348b882eb7440222b3e26a07) - Make sure the interceptors are generated before the typecheck is ran. ([@paales](https://github.com/paales))
-
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for linguiLocale ([@paales](https://github.com/paales))
-
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`3f9d8f5`](https://github.com/graphcommerce-org/graphcommerce/commit/3f9d8f5ee9437fa90589ebd8ba8d1e790006b6ae) - Added better interceptor comments and link to original files ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.5
-
-### Minor Changes
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Added `<CompanyFields/>` with `<CompanyName />` and `<CompanyVAT />` to shipping and billing forms. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 - [#2226](https://github.com/graphcommerce-org/graphcommerce/pull/2226) [`8939df2`](https://github.com/graphcommerce-org/graphcommerce/commit/8939df22eda57e681f83076707e856700f8b2e21) - Big improvements to the plugin system: Typescript validated, deeper resolution, new configuration object, replace plugins, and more ifConfig options.
 
@@ -183,29 +70,68 @@
 
      This allows you to support multiple builds with different plugins applied. For example one build with `GC_THEME=my-theme` and another with `GC_THEME=my-other-theme`. ([@paales](https://github.com/paales))
 
-## 8.0.6-canary.4
+- [#2242](https://github.com/graphcommerce-org/graphcommerce/pull/2242) [`a4cce76`](https://github.com/graphcommerce-org/graphcommerce/commit/a4cce76ca37af2bec604e953ada4bb11bd91f55d) - Add option to show an extended version of the pagination component. Configurable via the `productListPaginationVariant` key in your `graphcommerce.config.js`. `COMPACT` means: `< Page X of Y >` and `EXTENDED` means: `< 1 2 ... [5] ... 10 11 >` ([@FrankHarland](https://github.com/FrankHarland))
 
-### Patch Changes
+- [#2313](https://github.com/graphcommerce-org/graphcommerce/pull/2313) [`511e75c`](https://github.com/graphcommerce-org/graphcommerce/commit/511e75c3f8c077e617ed17e5042796e2411f312f) - Add the `customerNote` field to the shipping and customer address forms. Added configuration `customerAddressNoteEnable` to enable or disable the field. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 - [#2227](https://github.com/graphcommerce-org/graphcommerce/pull/2227) [`d597719`](https://github.com/graphcommerce-org/graphcommerce/commit/d597719baaabbe079660ac063fd021d871831511) - Added option to change sort order (ASC / DESC) for sort options (Name, price, position etc) on catalog and search pages. ([@FrankHarland](https://github.com/FrankHarland))
 
-## 8.0.6-canary.2
+### Minor Changes
+
+- [#2385](https://github.com/graphcommerce-org/graphcommerce/pull/2385) [`3434ede`](https://github.com/graphcommerce-org/graphcommerce/commit/3434ede37855c36949711d05d13eb01906b29ad0) - Added a functionality to copy directories from packages to the project and keep them managed by the package. This allows for injecting additional routes etc. ([@paales](https://github.com/paales))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`5153904`](https://github.com/graphcommerce-org/graphcommerce/commit/51539045cb3e14424141a65a1fd89216d3ee6fc2) - Added `PRIVATE_ADDITIONAL_DEPENDENCIES` env variable support to enable packages that we do not want to have in the examples directory but we do want to be able to demo. ([@paales](https://github.com/paales))
+
+- [#2418](https://github.com/graphcommerce-org/graphcommerce/pull/2418) [`e0a5b98`](https://github.com/graphcommerce-org/graphcommerce/commit/e0a5b9858a3b675ce749609ffa122d293c6e2a62) - Added `PRIVATE_PACKAGE_NAMESPACES` env variable to have additional namespaces to be considered to be a graphcommerce package. ([@paales](https://github.com/paales))
+
+- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use `linguiLocale` with country identifiers like `en-us`, it would always load `en` in this case. Introduced a new `useLocale` hook to use the correct locale string to use in Intl methods. ([@paales](https://github.com/paales))
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`4543c8d`](https://github.com/graphcommerce-org/graphcommerce/commit/4543c8d3af455b709a4cb3cad2e9d5d70cffb969) - Created dedicated sitemap route for categories so it isn't dependend on static generation. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`4ef6765`](https://github.com/graphcommerce-org/graphcommerce/commit/4ef6765d52fa56cfbe12b7e4e81aa183cc590a87) - Created dedicated sitemap route for products so it isn't dependend on static generation. ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ### Patch Changes
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
+- [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`3710d8b`](https://github.com/graphcommerce-org/graphcommerce/commit/3710d8bf1cceb5a991e5cfdfc15d42e462704c6d) - Solves the issue `TypeError: url?.startsWith is not a function`. The generated `.mesh/index.ts` would be generated as a requirejs module while next.js expects an esm module. In the end we properly generated the mesh correctly and now there is an `import.meta.url` instead of using `require('node:url')`. To solve this we needed to solve a chain of issues:
 
-## 8.0.6-canary.1
+  1. The generation of the mesh is based on the version of the mesh that is imported (esm or commonjs). See [source](https://github.com/ardatan/graphql-mesh/blob/bf588d372c0078378aaa24beea2da794af7949e6/scripts/replace-import-meta-url-in-cjs.ts#L9-L10) for the lines that need to be different. This meant that we needed to change the @graphcommerce/cli package to be of type:module instead of a commonjs module.
 
-### Patch Changes
+  2) To properly convert the module to an esm module we've migrated the build of the cli package to use 'pkgroll' instead of tsc, because tsc is limited in what it outputs and can't really convert classic imports to esm.
+  3) To load possible mesh plugins we require additional .ts files to be loaded with [tsx](https://tsx.is/). To get the tsx loader to work properly in combination with esm modules, we need at least [node 18.19.0](https://nodejs.org/en/blog/release/v18.19.0#new-nodemodule-api-register-for-module-customization-hooks-new-initialize-hook). Minimal Node version upped to 18.19.0 and add support for node 22. ([@paales](https://github.com/paales))
 
-- [#2213](https://github.com/graphcommerce-org/graphcommerce/pull/2213) [`9b8349f`](https://github.com/graphcommerce-org/graphcommerce/commit/9b8349f0001a786f9b1666f050ae226316bd16f3) - Removed the ProductPage query from the examples directory as it isn't used anymore ([@paales](https://github.com/paales))
+- [#2213](https://github.com/graphcommerce-org/graphcommerce/pull/2213) [`9b8349f`](https://github.com/graphcommerce-org/graphcommerce/commit/9b8349f0001a786f9b1666f050ae226316bd16f3) - Removed the `ProductPage.graphql` query from the examples directory as it isn't used anymore. ([@paales](https://github.com/paales))
 
-## 8.0.6-canary.0
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use `muiRegister`, which improves INP scores. ([@FrankHarland](https://github.com/FrankHarland))
 
-### Patch Changes
+- [#2450](https://github.com/graphcommerce-org/graphcommerce/pull/2450) [`c37d1ec`](https://github.com/graphcommerce-org/graphcommerce/commit/c37d1ec016bc26c2a59296b0c76c14b513d94306) - Make sure categories and products create the correct URL's in sitemaps ([@paales](https://github.com/paales))
 
-- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods. ([@paales](https://github.com/paales))
+- [#2423](https://github.com/graphcommerce-org/graphcommerce/pull/2423) [`dbf233b`](https://github.com/graphcommerce-org/graphcommerce/commit/dbf233bb6d11432a8effc38fd4672aaa0856e1aa) - Added graphql.config.ts to projects ([@paales](https://github.com/paales))
+
+- [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`4f7fe02`](https://github.com/graphcommerce-org/graphcommerce/commit/4f7fe02c6f0f017d7a52559df1972551eb0cba47) - Added robotsAllow to storefront config ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2379](https://github.com/graphcommerce-org/graphcommerce/pull/2379) [`9828754`](https://github.com/graphcommerce-org/graphcommerce/commit/9828754192348b966fb9736d7b0e1c78c4a909fa) - All automatically generated interceptor files are now read-only in vscode to prevent accidental changes. ([@paales](https://github.com/paales))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`6831040`](https://github.com/graphcommerce-org/graphcommerce/commit/68310401448b7b42b53757db4a84de4a01e35aa2) - Reduce bundlesize of `@apollo/client`. ([@paales](https://github.com/paales))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`81c6c81`](https://github.com/graphcommerce-org/graphcommerce/commit/81c6c81e1b4a31df3c400a3ee4311bdf2b46a2b5) - Solved an issue where the plugins would be generated with the wrong path ([@paales](https://github.com/paales))
+
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
+
+- [#2299](https://github.com/graphcommerce-org/graphcommerce/pull/2299) [`85d258a`](https://github.com/graphcommerce-org/graphcommerce/commit/85d258a0d1a48bb1b502cccba30a9844f2257814) - Solve an issue where an env variable wouldn't be coerced to a Number if a `Config.graphqls` value is defined as an `Int`/`Float`. ([@paales](https://github.com/paales))
+
+- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`ccd218c`](https://github.com/graphcommerce-org/graphcommerce/commit/ccd218c827d8ba7e632fa40ed75ad63a38620275) - Solve an issue where interceptors were immediately deleted after generating ([@paales](https://github.com/paales))
+
+- [#2292](https://github.com/graphcommerce-org/graphcommerce/pull/2292) [`6258adb`](https://github.com/graphcommerce-org/graphcommerce/commit/6258adbe294590ba52d3aaf65712cdc561f32c4c) - Be able to handle plugin runtime values values when parsing the source. Also, make sure parsed plugin sources do not return duplicate plugins. ([@paales](https://github.com/paales))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`6831040`](https://github.com/graphcommerce-org/graphcommerce/commit/68310401448b7b42b53757db4a84de4a01e35aa2) - Suppress warning where a dependency is an expression, Added uglify-es and long as the dependencies couldn’t be found ([@paales](https://github.com/paales))
+
+- [#2418](https://github.com/graphcommerce-org/graphcommerce/pull/2418) [`22a0ef2`](https://github.com/graphcommerce-org/graphcommerce/commit/22a0ef2ffd2841d050a413a885ff54331e1e7ebf) - Solve peer dependency issues for webpack and framer-motion ([@paales](https://github.com/paales))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`cfc0f4e`](https://github.com/graphcommerce-org/graphcommerce/commit/cfc0f4e015f3b3a7348b882eb7440222b3e26a07) - Make sure the interceptors are generated before the typecheck is ran. ([@paales](https://github.com/paales))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for `linguiLocale`. ([@paales](https://github.com/paales))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`3f9d8f5`](https://github.com/graphcommerce-org/graphcommerce/commit/3f9d8f5ee9437fa90589ebd8ba8d1e790006b6ae) - Added better interceptor comments and link to original files ([@paales](https://github.com/paales))
 
 ## 8.0.5
 

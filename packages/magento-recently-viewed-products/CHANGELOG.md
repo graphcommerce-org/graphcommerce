@@ -1,22 +1,18 @@
 # @graphcommerce/magento-recently-viewed-products
 
-## 9.0.0-canary.110
+## 9.0.3
 
-## 9.0.0-canary.109
+## 9.0.3-canary.0
 
-## 9.0.0-canary.108
+## 9.0.2
 
-## 9.0.0-canary.107
+## 9.0.2-canary.0
 
-## 9.0.0-canary.106
+## 9.0.1
 
-## 9.0.0-canary.105
+## 9.0.1-canary.1
 
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
-
-## 9.0.0-canary.86
+## 9.0.0
 
 ### Patch Changes
 

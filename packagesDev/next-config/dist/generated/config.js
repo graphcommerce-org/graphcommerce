@@ -9,8 +9,17 @@ function _export(target, all) {
     });
 }
 _export(exports, {
+    CartPermissionsSchema: function() {
+        return CartPermissionsSchema;
+    },
     CompareVariantSchema: function() {
         return CompareVariantSchema;
+    },
+    ContainerSizingSchema: function() {
+        return ContainerSizingSchema;
+    },
+    CustomerAccountPermissionsSchema: function() {
+        return CustomerAccountPermissionsSchema;
     },
     DatalayerConfigSchema: function() {
         return DatalayerConfigSchema;
@@ -20,6 +29,12 @@ _export(exports, {
     },
     GraphCommerceDebugConfigSchema: function() {
         return GraphCommerceDebugConfigSchema;
+    },
+    GraphCommerceGooglePlaystoreConfigSchema: function() {
+        return GraphCommerceGooglePlaystoreConfigSchema;
+    },
+    GraphCommercePermissionsSchema: function() {
+        return GraphCommercePermissionsSchema;
     },
     GraphCommerceStorefrontConfigSchema: function() {
         return GraphCommerceStorefrontConfigSchema;
@@ -45,6 +60,9 @@ _export(exports, {
     StoreLocatorConfigSchema: function() {
         return StoreLocatorConfigSchema;
     },
+    WebsitePermissionsSchema: function() {
+        return WebsitePermissionsSchema;
+    },
     definedNonNullAnySchema: function() {
         return definedNonNullAnySchema;
     },
@@ -55,9 +73,23 @@ _export(exports, {
 const _zod = require("zod");
 const isDefinedNonNullAny = (v)=>v !== undefined && v !== null;
 const definedNonNullAnySchema = _zod.z.any().refine((v)=>isDefinedNonNullAny(v));
+const CartPermissionsSchema = _zod.z.enum([
+    'CUSTOMER_ONLY',
+    'DISABLED',
+    'ENABLED'
+]);
 const CompareVariantSchema = _zod.z.enum([
     'CHECKBOX',
     'ICON'
+]);
+const ContainerSizingSchema = _zod.z.enum([
+    'BREAKPOINT',
+    'FULL_WIDTH'
+]);
+const CustomerAccountPermissionsSchema = _zod.z.enum([
+    'DISABLED',
+    'DISABLE_REGISTRATION',
+    'ENABLED'
 ]);
 const PaginationVariantSchema = _zod.z.enum([
     'COMPACT',
@@ -70,6 +102,9 @@ const ProductFiltersLayoutSchema = _zod.z.enum([
 const SidebarGalleryPaginationVariantSchema = _zod.z.enum([
     'DOTS',
     'THUMBNAILS_BOTTOM'
+]);
+const WebsitePermissionsSchema = _zod.z.enum([
+    'ENABLED'
 ]);
 function DatalayerConfigSchema() {
     return _zod.z.object({
@@ -85,6 +120,8 @@ function GraphCommerceConfigSchema() {
         compareVariant: CompareVariantSchema.default("ICON").nullish(),
         configurableVariantForSimple: _zod.z.boolean().default(false).nullish(),
         configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
+        containerSizingContent: ContainerSizingSchema.default("FULL_WIDTH").nullish(),
+        containerSizingShell: ContainerSizingSchema.default("FULL_WIDTH").nullish(),
         crossSellsHideCartItems: _zod.z.boolean().default(false).nullish(),
         crossSellsRedirectItems: _zod.z.boolean().default(false).nullish(),
         customerAddressNoteEnable: _zod.z.boolean().nullish(),
@@ -97,6 +134,7 @@ function GraphCommerceConfigSchema() {
         enableGuestCheckoutLogin: _zod.z.boolean().nullish(),
         googleAnalyticsId: _zod.z.string().nullish(),
         googleMapsApiKey: _zod.z.string().nullish(),
+        googlePlaystore: GraphCommerceGooglePlaystoreConfigSchema().nullish(),
         googleRecaptchaKey: _zod.z.string().nullish(),
         googleTagmanagerId: _zod.z.string().nullish(),
         hygraphEndpoint: _zod.z.string().min(1),
@@ -106,6 +144,7 @@ function GraphCommerceConfigSchema() {
         limitSsg: _zod.z.boolean().nullish(),
         magentoEndpoint: _zod.z.string().min(1),
         magentoVersion: _zod.z.number(),
+        permissions: GraphCommercePermissionsSchema().nullish(),
         previewSecret: _zod.z.string().nullish(),
         productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
         productFiltersPro: _zod.z.boolean().nullish(),
@@ -122,10 +161,25 @@ function GraphCommerceConfigSchema() {
 }
 function GraphCommerceDebugConfigSchema() {
     return _zod.z.object({
+        cart: _zod.z.boolean().nullish(),
         pluginStatus: _zod.z.boolean().nullish(),
         sessions: _zod.z.boolean().nullish(),
         webpackCircularDependencyPlugin: _zod.z.boolean().nullish(),
         webpackDuplicatesPlugin: _zod.z.boolean().nullish()
+    });
+}
+function GraphCommerceGooglePlaystoreConfigSchema() {
+    return _zod.z.object({
+        packageName: _zod.z.string().min(1),
+        sha256CertificateFingerprint: _zod.z.string().min(1)
+    });
+}
+function GraphCommercePermissionsSchema() {
+    return _zod.z.object({
+        cart: CartPermissionsSchema.nullish(),
+        checkout: CartPermissionsSchema.nullish(),
+        customerAccount: CustomerAccountPermissionsSchema.nullish(),
+        website: WebsitePermissionsSchema.nullish()
     });
 }
 function GraphCommerceStorefrontConfigSchema() {
@@ -142,6 +196,7 @@ function GraphCommerceStorefrontConfigSchema() {
         linguiLocale: _zod.z.string().nullish(),
         locale: _zod.z.string().min(1),
         magentoStoreCode: _zod.z.string().min(1),
+        permissions: GraphCommercePermissionsSchema().nullish(),
         robotsAllow: _zod.z.boolean().nullish()
     });
 }

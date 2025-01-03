@@ -3,15 +3,16 @@ import type { RequestInitWithRetry } from 'fetch-retry'
 
 const fetcher = fetchRetry(
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, no-underscore-dangle, @typescript-eslint/no-var-requires
-  process.env.__NEXT_PROCESSED_ENV ? fetch : require('@whatwg-node/fetch').fetch,
+  process.env.__NEXT_PROCESSED_ENV ? globalThis.fetch : require('@whatwg-node/fetch').fetch,
 )
 
 /**
  * @param {RequestInfo | URL} url
  * @param {import('fetch-retry').RequestInitWithRetry | undefined} options
  * @returns {Promise<Response>}
+ * @public
  */
-export default (
+export const fetch = (
   url: RequestInfo | URL,
   options: RequestInitWithRetry | undefined,
 ): Promise<Response> => {
@@ -27,3 +28,6 @@ export default (
     retryOn: [429],
   })
 }
+
+/** @public @alias */
+export default fetch

@@ -1,64 +1,38 @@
 # Change Log
 
-## 9.0.0-canary.110
+## 9.0.3
 
-## 9.0.0-canary.109
+## 9.0.3-canary.0
 
-## 9.0.0-canary.108
+## 9.0.2
 
-### Patch Changes
+## 9.0.2-canary.0
 
-- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
+## 9.0.1
 
-## 9.0.0-canary.107
+## 9.0.1-canary.1
 
-## 9.0.0-canary.106
+## 9.0.0
 
-## 9.0.0-canary.105
-
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
-
-### Patch Changes
-
-- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`f71b4e2`](https://github.com/graphcommerce-org/graphcommerce/commit/f71b4e2d13e54dd311eb1465a49df41703b6fef5) - Renamed from `@graphcommerce/graphcms-ui` to `@graphcommerce/hygraph-ui`. See [CHANGELOG.md](../graphcms-ui/CHANGELOG.md) for details. ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.94
-
-### Patch Changes
-
-- [#2400](https://github.com/graphcommerce-org/graphcommerce/pull/2400) [`f9f7276`](https://github.com/graphcommerce-org/graphcommerce/commit/f9f7276501127ba8dbb31b6a9670d7f62647573a) - Remove ‘up’ data from the blogoverview page. ([@carlocarels90](https://github.com/carlocarels90))
-
-## 9.0.0-canary.91
-
-### Patch Changes
-
-- [#2384](https://github.com/graphcommerce-org/graphcommerce/pull/2384) [`d7c293a`](https://github.com/graphcommerce-org/graphcommerce/commit/d7c293aa49be39f499b46ea57bfda4dbdf67ebe6) - feat(GCOM-1494: Add support for linebreaks in Hygraph content ) ([@FrankHarland](https://github.com/FrankHarland))
-
-## 9.0.0-canary.60
-
-### Patch Changes
-
-- [#2331](https://github.com/graphcommerce-org/graphcommerce/pull/2331) [`702bfc9`](https://github.com/graphcommerce-org/graphcommerce/commit/702bfc93566c9745546988e57988431d5d4d8cb0) - Moved plugins to new format ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.42
-
-### Patch Changes
+### Major Changes
 
 - [#2308](https://github.com/graphcommerce-org/graphcommerce/pull/2308) [`8faa5ac`](https://github.com/graphcommerce-org/graphcommerce/commit/8faa5ac618ecfdacd6d5eb751b4110c423aef97f) - Added Draft Mode support. When enabled it will be shown. ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.9
-
 ### Patch Changes
+
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`f71b4e2`](https://github.com/graphcommerce-org/graphcommerce/commit/f71b4e2d13e54dd311eb1465a49df41703b6fef5) - Renamed from `@graphcommerce/graphcms-ui` to `@graphcommerce/hygraph-ui`. ([@paales](https://github.com/paales))
+
+- [#2400](https://github.com/graphcommerce-org/graphcommerce/pull/2400) [`f9f7276`](https://github.com/graphcommerce-org/graphcommerce/commit/f9f7276501127ba8dbb31b6a9670d7f62647573a) - Remove ‘up’ data from the blogoverview page. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2219](https://github.com/graphcommerce-org/graphcommerce/pull/2219) [`2ed2055`](https://github.com/graphcommerce-org/graphcommerce/commit/2ed20550324c104265d72f22339fbedb26fb433b) - Allow blog pages to be nested. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 - [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`0ccec63`](https://github.com/graphcommerce-org/graphcommerce/commit/0ccec630825d5fad398366beae90b3c90b2f84b8) - Added helper method to get Hygraph paths ([@bramvanderholst](https://github.com/bramvanderholst))
 
-## 8.0.6-canary.3
+- [#2331](https://github.com/graphcommerce-org/graphcommerce/pull/2331) [`702bfc9`](https://github.com/graphcommerce-org/graphcommerce/commit/702bfc93566c9745546988e57988431d5d4d8cb0) - Moved plugins to new format ([@paales](https://github.com/paales))
 
-### Patch Changes
+- [#2384](https://github.com/graphcommerce-org/graphcommerce/pull/2384) [`d7c293a`](https://github.com/graphcommerce-org/graphcommerce/commit/d7c293aa49be39f499b46ea57bfda4dbdf67ebe6) - Add support for linebreaks in Hygraph content ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2219](https://github.com/graphcommerce-org/graphcommerce/pull/2219) [`2ed2055`](https://github.com/graphcommerce-org/graphcommerce/commit/2ed20550324c104265d72f22339fbedb26fb433b) - Allow blog pages to be nested ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 8.0.5
 

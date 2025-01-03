@@ -31,6 +31,7 @@ export type AdyenPaymentResponse = {
   additionalData?: Types.checkout.PaymentResponse['additionalData']
 }
 
+/** @public */
 export function parsePaymentResponse(
   status?: AdyenPaymentResponseFragment | null,
 ): AdyenPaymentResponse {

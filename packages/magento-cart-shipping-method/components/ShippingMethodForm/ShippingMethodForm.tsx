@@ -72,7 +72,6 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
     ShippingMethodFormMutation,
     ShippingMethodFormMutationVariables & { carrierMethod?: string }
   >(ShippingMethodFormDocument, {
-    skipUnchanged: true,
     defaultValues: { carrierMethod },
     onBeforeSubmit: (variables) => {
       const [carrier, method] = (variables.carrierMethod ?? '').split('-')
@@ -146,6 +145,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
   )
 }
 
+/** @public */
 export function useShippingMethod() {
   return useWatch<{ carrierMethod?: string }>({ name: 'carrierMethod' })
 }

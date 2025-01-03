@@ -40,7 +40,7 @@ function customLoader(ext, importFn = defaultImportFn, initialLoggerPrefix = "\u
   return loader;
 }
 async function findConfig(options) {
-  const { configName = "mesh", dir: configDir = "", initialLoggerPrefix } = options || {};
+  const { configName = "mesh", dir: configDir = "", initialLoggerPrefix } = options;
   const dir = path.isAbsolute(configDir) ? configDir : path.join(process.cwd(), configDir);
   const explorer = cosmiconfig(configName, {
     searchPlaces: [
