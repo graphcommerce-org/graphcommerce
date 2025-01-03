@@ -1,7 +1,8 @@
 import { extendableComponent, LazyHydrate, RenderType, responsiveVal } from '@graphcommerce/next-ui'
 import type { BoxProps, Breakpoint, Theme } from '@mui/material'
 import { Box, useTheme } from '@mui/material'
-import { AddProductsToCartForm } from '../AddProductsToCart'
+import React from 'react'
+import { AddProductsToCartForm, useFormAddProductsToCart } from '../AddProductsToCart'
 import type { ProductListItemProps } from '../ProductListItem/ProductListItem'
 import type { ProductListItemsFragment } from './ProductListItems.gql'
 import type { ProductListItemRenderer } from './renderer'
@@ -84,8 +85,11 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
 
   const classes = withState({ size })
 
+  const context = useFormAddProductsToCart(true)
+  const MaybeAddProductsToCartForm = context ? React.Fragment : AddProductsToCartForm
+
   return (
-    <AddProductsToCartForm>
+    <MaybeAddProductsToCartForm>
       <Box
         ref={containerRef}
         className={classes.root}
@@ -130,6 +134,6 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
         )}
         {children}
       </Box>
-    </AddProductsToCartForm>
+    </MaybeAddProductsToCartForm>
   )
 }
