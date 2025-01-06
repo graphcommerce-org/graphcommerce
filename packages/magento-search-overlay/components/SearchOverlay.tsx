@@ -42,7 +42,7 @@ export function SearchOverlay(props: SearchOverlayProps) {
       className='SearchOverlay-root'
       {...slotProps?.overlay}
     >
-      <SearchOverlayProvider open={open}>
+      <SearchOverlayProvider>
         <SearchOverlayHeader {...slotProps?.header} />
         <SearchOverlayBodyBase {...slotProps?.body}>
           <SearchOverlaySuggestions {...slotProps?.suggestions} />
