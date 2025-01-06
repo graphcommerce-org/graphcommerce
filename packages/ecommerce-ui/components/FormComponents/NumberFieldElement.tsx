@@ -5,20 +5,25 @@ import {
   IconSvg,
   responsiveVal,
 } from '@graphcommerce/next-ui'
-import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
-import { Controller, useController } from '@graphcommerce/react-hook-form'
+import type { FieldValues } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import type { IconButtonProps, SxProps, TextFieldProps, Theme } from '@mui/material'
 import { Fab, TextField, useForkRef } from '@mui/material'
+import type { FieldElementProps } from './types'
 
-export type NumberFieldElementProps<T extends FieldValues = FieldValues> = Omit<
-  TextFieldProps,
-  'type' | 'defaultValue'
-> & {
+type AdditionalProps = {
   DownProps?: IconButtonProps
   UpProps?: IconButtonProps
   sx?: SxProps<Theme>
-} & Omit<ControllerProps<T>, 'render'>
+}
+
+export type NumberFieldElementProps<TFieldValues extends FieldValues = FieldValues> =
+  FieldElementProps<TFieldValues, Omit<TextFieldProps, 'type'>> & AdditionalProps
+
+type NumberFieldElementComponent = <TFieldValues extends FieldValues>(
+  props: NumberFieldElementProps<TFieldValues>,
+) => React.ReactNode
 
 type OwnerState = { size?: 'small' | 'medium' }
 const componentName = 'TextInputNumber'
@@ -29,7 +34,7 @@ const { withState } = extendableComponent<OwnerState, typeof componentName, type
 )
 
 /** @public */
-export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElementProps<T>) {
+function NumberFieldElementBase(props: NumberFieldElementProps) {
   const {
     DownProps = {},
     UpProps = {},
@@ -182,3 +187,5 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
     />
   )
 }
+
+export const NumberFieldElement = NumberFieldElementBase as NumberFieldElementComponent

@@ -46,6 +46,14 @@ module.exports = {
         message:
           '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
       },
+      {
+        selector: 'TSTypeReference[typeName.name="SxProps"]:not([typeParameters])',
+        message: 'SxProps must have Theme parameter to avoid significant compiler slowdown.',
+      },
+      {
+        selector: 'TSTypeReference[typeName.name="Components"]:not([typeParameters])',
+        message: 'Components must have Theme parameter to avoid significant compiler slowdown.',
+      },
     ],
 
     // plugin:import/recommended & plugin:import/typescript
@@ -174,6 +182,10 @@ module.exports = {
       rules: { 'import/no-default-export': ['error'] },
     },
     {
+      files: ['**/copy/**/*.tsx'],
+      rules: { 'import/no-extraneous-dependencies': 'off' },
+    },
+    {
       files: ['**/pages/**/*.tsx'],
       rules: { 'import/no-default-export': 'off' },
     },
@@ -192,7 +204,7 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.spec.ts', '**/*.spec.tsx', '**/__tests__/**', 'scripts/**'],
+      files: ['**/*.spec.ts', '**/*.spec.tsx', '**/__tests__/**', 'scripts/**', 'test/**'],
       env: {
         jest: true,
       },

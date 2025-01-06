@@ -1,6 +1,6 @@
 import type { ApolloCustomerErrorFullPageProps } from '@graphcommerce/magento-customer'
 import { ApolloCustomerErrorFullPage } from '@graphcommerce/magento-customer'
-import { IconSvg, iconShoppingBag } from '@graphcommerce/next-ui'
+import { iconShoppingBag, IconSvg } from '@graphcommerce/next-ui'
 
 export type ApolloCartErrorFullPageProps = Omit<ApolloCustomerErrorFullPageProps, 'icon'>
 

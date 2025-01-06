@@ -1,15 +1,14 @@
 import { storefrontConfig, storefrontConfigDefault } from './storefrontConfig'
 
 /**
- * To support using multiple storefronts using the same language locale (which
- * next.js does not support), we use an additional 'tag' in the locale code in
- * which we specify a unique string (i.e. a Magento store code).
+ * To support using multiple storefronts using the same language locale (which next.js does not
+ * support), we use an additional 'tag' in the locale code in which we specify a unique string (i.e.
+ * a Magento store code).
  *
- * This makes next.js happy, as it still follows the BCP47 spec. However, the
- * Intl API and other places may not accept this as a valid locale.
+ * This makes next.js happy, as it still follows the BCP47 spec. However, the Intl API and other
+ * places may not accept this as a valid locale.
  *
- * Use this method to get a 'normalized' locale that can safely be used in such
- * places.
+ * Use this method to get a 'normalized' locale that can safely be used in such places.
  */
 export function normalizeLocale(locale: string | undefined = storefrontConfigDefault().locale) {
   const linguiLocale = storefrontConfig(locale)?.linguiLocale

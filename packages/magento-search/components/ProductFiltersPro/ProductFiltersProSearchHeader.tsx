@@ -6,9 +6,7 @@ import { Box } from '@mui/material'
 
 export type ProductFiltersProSearchHeaderProps = {
   params: ProductListParams
-  /**
-   * Provide a text when there is no term searched
-   */
+  /** Provide a text when there is no term searched */
   children: React.ReactNode
 }
 

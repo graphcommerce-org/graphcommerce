@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unused-prop-types */
 import { useEffect } from 'react'
-import type { FieldPath, FieldValues, Path, PathValue, UseFormReturn } from 'react-hook-form'
+import type { Control, FieldPath, FieldValues, PathValue, UseFormSetValue } from 'react-hook-form'
 import { useFormState, useWatch } from 'react-hook-form'
 
 export type UseFormPersistOptions<
@@ -9,7 +9,10 @@ export type UseFormPersistOptions<
   TContext = any,
 > = {
   /** Instance of current form, used to watch value */
-  form: UseFormReturn<TFieldValues, TContext>
+  form: {
+    control: Control<TFieldValues, TContext>
+    setValue: UseFormSetValue<TFieldValues>
+  }
 
   /** Name of the key how it will be stored in the storage. */
   name: string
@@ -42,7 +45,7 @@ export function useFormPersist<V extends FieldValues>(options: UseFormPersistOpt
   const formState = useFormState({ control })
   const allFields = useWatch({ control })
 
-  const dirtyFieldKeys = Object.keys(formState.dirtyFields) as Path<V>[]
+  const dirtyFieldKeys = Object.keys(formState.dirtyFields) as FieldPath<V>[]
 
   // // Get all dirty field values and exclude sensitive data
   const newValues = Object.fromEntries(
@@ -67,12 +70,9 @@ export function useFormPersist<V extends FieldValues>(options: UseFormPersistOpt
 
       const storedValues = JSON.parse(storedFormStr) as FieldValues
       if (storedValues) {
-        const entries = Object.entries(storedValues) as [Path<V>, PathValue<V, Path<V>>][]
+        const entries = Object.entries(storedValues) as [FieldPath<V>, PathValue<V, FieldPath<V>>][]
         entries.forEach(([entryName, value]) =>
-          setValue(entryName, value, {
-            shouldDirty: true,
-            shouldValidate: true,
-          }),
+          setValue(entryName, value, { shouldDirty: true, shouldValidate: true }),
         )
       }
     } catch {

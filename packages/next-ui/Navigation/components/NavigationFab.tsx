@@ -4,12 +4,12 @@ import { Box, Fab, styled, useTheme } from '@mui/material'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
+import { iconClose, iconMenu } from '../../icons'
 import { IconSvg } from '../../IconSvg'
 import { useScrollY } from '../../Layout/hooks/useScrollY'
 import { useFabAnimation } from '../../LayoutParts/useFabAnimation'
 import { extendableComponent } from '../../Styles/extendableComponent'
 import { useFabSize } from '../../Theme'
-import { iconClose, iconMenu } from '../../icons'
 
 const MotionDiv = styled(m.div)({})
 

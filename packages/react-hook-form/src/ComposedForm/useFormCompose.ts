@@ -1,11 +1,11 @@
 import { useContext, useEffect } from 'react'
-import type { FieldValues, UseFormReturn } from 'react-hook-form'
+import type { FieldValues } from 'react-hook-form'
 import { isFormGqlOperation } from '../useFormGqlMutation'
 import { composedFormContext } from './context'
-import type { UseFormComposeOptions } from './types'
+import type { MinimalUseFormReturn, UseFormComposeOptions } from './types'
 
-export function useFormCompose<V extends Record<string, unknown>>(
-  fields: UseFormComposeOptions<V>,
+export function useFormCompose<TFieldValues extends FieldValues = FieldValues>(
+  fields: UseFormComposeOptions<TFieldValues>,
 ) {
   const [state, dispatch] = useContext(composedFormContext)
   const { form, key, step, submit } = fields
@@ -18,7 +18,7 @@ export function useFormCompose<V extends Record<string, unknown>>(
   }, [dispatch, key, step])
 
   useEffect(() => {
-    dispatch({ type: 'ASSIGN', key, form: form as UseFormReturn<FieldValues>, submit })
+    dispatch({ type: 'ASSIGN', key, form: form as MinimalUseFormReturn, submit })
   }, [dispatch, fields, form, key, submit])
 
   const error = isFormGqlOperation(form) ? form.error : undefined

@@ -10,14 +10,12 @@ import { Box } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { LinkOrButtonProps } from '../../Button/LinkOrButton'
 import { LinkOrButton } from '../../Button/LinkOrButton'
+import { iconChevronLeft } from '../../icons'
 import { IconSvg } from '../../IconSvg'
 import { responsiveVal } from '../../Styles'
-import { iconChevronLeft } from '../../icons'
 
 export type BackProps = Omit<LinkOrButtonProps, 'onClick' | 'children'> & {
-  /**
-   * Will not use `router.back()` if available, and will always use the `up.href`
-   */
+  /** Will not use `router.back()` if available, and will always use the `up.href` */
   disableBackNavigation?: boolean
 }
 

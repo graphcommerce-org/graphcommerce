@@ -1,9 +1,9 @@
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import {
-  IconSvg,
   breakpointVal,
   extendableComponent,
   iconChevronDown,
+  IconSvg,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'

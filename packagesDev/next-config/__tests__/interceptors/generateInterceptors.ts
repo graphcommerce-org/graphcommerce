@@ -5,6 +5,7 @@ import { generateInterceptors } from '../../src/interceptors/generateInterceptor
 import { parseStructure } from '../../src/interceptors/parseStructure'
 import { parseSync } from '../../src/interceptors/swc'
 import { resolveDependency } from '../../src/utils/resolveDependency'
+
 const projectRoot = `${process.cwd()}/examples/magento-graphcms`
 const startLocation = '/** @see {@link file://'
 const expectImport = (value: string | undefined): jest.JestMatchers<string> =>

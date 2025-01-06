@@ -24,6 +24,7 @@ roadmap.
       configurations that can be made to get a good starting point for your
       project.
 - [ ] Material UI 6 support with CSS variables.
+- [ ] GraphCommerce Pro: Pagebuilder support
 - [ ] GraphCommerce Pro: Login as Customer functionality Magento module +
       GraphCommerce integration.
 - [ ] GraphCommerce Pro: Cache Notifier module + GraphCommerce Integration to
@@ -33,9 +34,6 @@ roadmap.
 
 - [ ] Mui 6 support with [pigment-css](https://github.com/mui/pigment-css)
 - [ ] Upgrade to React 19 + Next.js app router support.
-
-- [ ] GraphCommerce Pro: Pagebuilder support
-      [depends on ↗](https://github.com/magento/magento2/issues/37768)
 - [ ] Adobe Commerce: Reward points functionality
 - [ ] Adobe Commerce: Gift wrapping functionality
 - [ ] Adobe Commerce: Gift card functionality

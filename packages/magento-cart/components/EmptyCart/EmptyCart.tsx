@@ -1,5 +1,5 @@
 import type { FullPageMessageProps } from '@graphcommerce/next-ui'
-import { FullPageMessage, IconSvg, iconShoppingBag } from '@graphcommerce/next-ui'
+import { FullPageMessage, iconShoppingBag, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
 import { Button } from '@mui/material'

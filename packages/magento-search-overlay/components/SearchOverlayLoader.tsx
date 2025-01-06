@@ -1,5 +1,4 @@
 import { useMotionSelector } from '@graphcommerce/framer-utils'
-import { SearchFab } from '@graphcommerce/magento-search/components/SearchFab/SearchFab.interceptor'
 import { motionValue } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import type { SearchOverlayProps } from './SearchOverlay'

@@ -28,6 +28,11 @@ const GITIGNORE_SECTION_END = '# end managed by: graphcommerce';
  * - Ensures the file ends with a newline
  */
 async function updateGitignore(managedFiles) {
+    const escapedFiles = managedFiles
+        .map((file) => 
+    // Escape special characters in file names
+    file.replace(/[*+?^${}()|[\]\\]/g, '\\$&'))
+        .sort();
     const gitignorePath = path_1.default.join(process.cwd(), '.gitignore');
     let content;
     try {
@@ -42,10 +47,10 @@ async function updateGitignore(managedFiles) {
     const sectionRegex = new RegExp(`${GITIGNORE_SECTION_START}[\\s\\S]*?${GITIGNORE_SECTION_END}\\n?`, 'g');
     content = content.replace(sectionRegex, '');
     // Only add new section if there are files to manage
-    if (managedFiles.length > 0) {
+    if (escapedFiles.length > 0) {
         const newSection = [
             GITIGNORE_SECTION_START,
-            ...managedFiles.sort(),
+            ...escapedFiles,
             GITIGNORE_SECTION_END,
             '', // Empty line at the end
         ].join('\n');

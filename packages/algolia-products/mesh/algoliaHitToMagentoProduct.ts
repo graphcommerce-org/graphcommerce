@@ -1,7 +1,7 @@
 import type {
+  Algoliahit,
   AlgoliaPrice,
   AlgoliaProductHitAdditionalProperties,
-  Algoliahit,
   CurrencyEnum,
   MeshContext,
   PriceRange,
@@ -87,8 +87,10 @@ export function algoliaUrlToUrlKey(url?: string | null, base?: string | null): s
 }
 
 /**
- * For the URL https://configurator.reachdigital.dev/media/catalog/product/cache/d911de87cf9e562637815cc5a14b1b05/1/0/1087_1_3.jpg
+ * For the URL
+ * https://configurator.reachdigital.dev/media/catalog/product/cache/d911de87cf9e562637815cc5a14b1b05/1/0/1087_1_3.jpg
  * Remove /cache/HASH from the URL but only if the url contains media/catalog/product
+ *
  * @param url
  */
 function getOriginalImage(url?: string | undefined | null) {
@@ -114,7 +116,8 @@ export type ProductsItemsItem = NonNullable<
 /**
  * Mapping function to map Algolia hit to Magento product.
  *
- * You can create a FunctionPlugin to modify the behavior of this function or implement brand specific code.
+ * You can create a FunctionPlugin to modify the behavior of this function or implement brand
+ * specific code.
  */
 export function algoliaHitToMagentoProduct(
   hit: Algoliahit,

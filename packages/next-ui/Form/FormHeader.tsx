@@ -1,4 +1,4 @@
-import { Typography, styled } from '@mui/material'
+import { styled, Typography } from '@mui/material'
 
 export const FormHeader = styled(Typography, { name: 'FormHeader' })(({ theme }) => ({
   marginBottom: `calc(${theme.spacings.xxs} * -1)`,

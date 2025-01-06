@@ -2,10 +2,10 @@ import type { ScrollerButtonProps } from '@graphcommerce/framer-scroller'
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
+import { iconChevronLeft, iconChevronRight } from '../icons'
 import { IconSvg } from '../IconSvg'
 import { extendableComponent, responsiveVal } from '../Styles'
 import { useFabSize } from '../Theme'
-import { iconChevronLeft, iconChevronRight } from '../icons'
 
 const { classes } = extendableComponent('ItemScroller', [
   'root',

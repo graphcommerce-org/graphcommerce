@@ -24,7 +24,7 @@ const MyPlugin: ReactPlugin<typeof OriginalComponent> = (props) => {
 export const Plugin = MyPlugin
 ```
 
-Now becomes:
+With:
 
 ```tsx
 const MyPlugin = (props: PluginProps<OriginalComponentProps>) => {
@@ -37,8 +37,7 @@ export const Plugin = MyPlugin
 There is a new plugin configuration method by using
 `export config: PluginConfig = {}`.
 
-2. linguiLocale now requires an explicit configuration where they differ from
-   the locale
+## 2. `linguiLocale` now requires an explicit configuration where they differ from the locale
 
 > linguiLocale: Custom locale used to load the .po files. Must be a valid
 > locale, also used for Intl functions.
@@ -56,15 +55,15 @@ const config = {
 }
 ```
 
-3. `@graphcommerce/graphcms-ui` is now `@graphcommerce/hygraph-ui`
+## 3. `@graphcommerce/graphcms-ui` is now `@graphcommerce/hygraph-ui`
 
 Replace all `@graphcommerce/graphcms-ui` with `@graphcommerce/hygraph-ui`.
 
-4. `@ducanh2912/next-pwa` replaced by `serwist`
+## 4. `@ducanh2912/next-pwa` replaced by `serwist`
 
 Any customizations made to the service worker should
 
-5. `next-sitemap` replaced by custom implementation.
+## 5. `next-sitemap` replaced by custom implementation.
 
 - pages/robots.txt.tsx
 - pages/sitemap/categories.xml.tsx

@@ -8,7 +8,6 @@ import { iconChevronLeft, iconChevronRight } from '../../icons'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles'
 import { useFabSize } from '../../Theme'
-import { Row } from '../Row'
 
 export type RowLinksProps = {
   title: string

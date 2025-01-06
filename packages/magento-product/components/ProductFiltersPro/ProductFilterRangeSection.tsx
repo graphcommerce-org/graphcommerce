@@ -3,7 +3,7 @@ import type { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import { ActionCardAccordion, Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { isFilterTypeRange } from '../ProductListItems/filterTypes'
-import { PriceSlider, getMinMaxFromOptions } from './PriceSlider'
+import { getMinMaxFromOptions, PriceSlider } from './PriceSlider'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import type { FilterProps } from './ProductFiltersProAggregations'
 

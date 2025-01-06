@@ -2,6 +2,7 @@ import { TelephoneElement } from '@graphcommerce/ecommerce-ui'
 import { useHistoryGo } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
+import type { SetBillingAddressMutationVariables } from '@graphcommerce/magento-cart-shipping-address'
 import { SetBillingAddressDocument } from '@graphcommerce/magento-cart-shipping-address'
 import {
   AddressFields,
@@ -68,9 +69,9 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
   return (
     <>
       <Form onSubmit={submitHandler} noValidate sx={sx}>
-        <CompanyFields form={form} />
+        <CompanyFields<SetBillingAddressMutationVariables> form={form} />
         <NameFields form={form} prefix />
-        <AddressFields form={form} />
+        <AddressFields<SetBillingAddressMutationVariables> form={form} />
 
         <FormRow>
           <TelephoneElement

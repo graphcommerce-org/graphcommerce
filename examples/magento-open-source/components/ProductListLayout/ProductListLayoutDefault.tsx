@@ -21,7 +21,8 @@ import { Container, LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcomme
 import { Trans } from '@lingui/macro'
 import { Typography } from '@mui/material'
 import { ProductListItems } from '../ProductListItems'
-import { ProductListLayoutProps, useLayoutConfiguration } from './types'
+import type { ProductListLayoutProps } from './types'
+import { useLayoutConfiguration } from './types'
 
 export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps) => {
   const { id, filters, filterTypes, params, products, title, category, handleSubmit } = props

@@ -16,7 +16,7 @@
     "dev": "next dev"
   },
   "dependencies": {
-    "@apollo/client": "~3.12.3",
+    "@apollo/client": "3.11.10",
     "@graphcommerce/next-config": "9.0.4-canary.0",
     "@hygraph/app-sdk-react": "^0.0.5",
     "@lingui/conf": "4.14.1",
@@ -29,7 +29,7 @@
     "cross-env": "^7.0.3",
     "dotenv": "16.4.7",
     "graphql": "^16.10.0",
-    "next": "15.1.0",
+    "next": "15.1.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "webpack": "^5.97.1"

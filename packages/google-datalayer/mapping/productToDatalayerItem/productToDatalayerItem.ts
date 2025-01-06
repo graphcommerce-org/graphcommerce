@@ -2,9 +2,7 @@ import { productPageCategory } from '@graphcommerce/magento-product'
 import { nonNullable } from '@graphcommerce/next-ui'
 import type { Product_DatalayerItemFragment } from './Product_DatalayerItem.gql'
 
-/**
- * https://developers.google.com/tag-platform/gtagjs/reference/events#add_to_cart_item
- */
+/** https://developers.google.com/tag-platform/gtagjs/reference/events#add_to_cart_item */
 export type GoogleDatalayerItem = {
   item_id: string
   item_uid: string

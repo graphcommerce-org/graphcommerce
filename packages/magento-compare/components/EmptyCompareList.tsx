@@ -1,4 +1,4 @@
-import { FullPageMessage, IconSvg, iconCompare } from '@graphcommerce/next-ui'
+import { FullPageMessage, iconCompare, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 

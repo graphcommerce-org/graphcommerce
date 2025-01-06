@@ -1,4 +1,4 @@
-import { Pagination, SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent, Pagination, SectionContainer } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Link } from '@mui/material'

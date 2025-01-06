@@ -1,8 +1,8 @@
 import type { RatingProps } from '@mui/material'
 import { Rating } from '@mui/material'
+import { iconStar } from '../icons'
 import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
-import { iconStar } from '../icons'
 
 export type StarRatingFieldProps = {
   id?: string

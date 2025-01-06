@@ -5,19 +5,16 @@ import {
   AccountMenu,
   AccountMenuItem,
   AddressSingleLine,
+  getCustomerAccountIsDisabled,
   OrderStateLabelInline,
   SignOutForm,
-  WaitForCustomer,
-  getCustomerAccountIsDisabled,
   useCustomerQuery,
+  WaitForCustomer,
 } from '@graphcommerce/magento-customer'
 import { CustomerNewsletterToggle } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
-  LayoutHeader,
-  LayoutTitle,
-  RelativeToTimeFormat,
   iconBin,
   iconBox,
   iconEmailOutline,
@@ -28,6 +25,9 @@ import {
   iconPerson,
   iconShutdown,
   iconStar,
+  LayoutHeader,
+  LayoutTitle,
+  RelativeToTimeFormat,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -42,9 +42,6 @@ function AccountIndexPage() {
   const dashboard = useCustomerQuery(AccountDashboardDocument, {
     fetchPolicy: 'cache-and-network',
   })
-
-  const { data: config } = useQuery(StoreConfigDocument)
-  const locale = config?.storeConfig?.locale?.replace('_', '-')
 
   const customer = dashboard.data?.customer
   const address =

@@ -8,9 +8,7 @@ export type RelativeTimeFormatProps = {
   unit?: Intl.RelativeTimeFormatUnit
 } & UseIntlRelativeTimeFormatOptions
 
-/**
- * Alternative: {@link file://./RelativeToTimeFormat.tsx}
- */
+/** Alternative: {@link file://./RelativeToTimeFormat.tsx} */
 export const RelativeTimeFormat = forwardRef<HTMLSpanElement, RelativeTimeFormatProps>(
   (props, ref) => {
     const { children, unit, locale, localeMatcher, numeric, styleFormat, ...rest } = props
