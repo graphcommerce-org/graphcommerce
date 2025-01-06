@@ -1,0 +1,4 @@
+fragment isOci on Cart @inject(into: ["CartStartCheckout"]) {
+  id
+  is_oci
+}

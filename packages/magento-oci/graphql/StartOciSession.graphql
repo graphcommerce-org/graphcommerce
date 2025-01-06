@@ -1,0 +1,16 @@
+mutation startOciSession(
+  $username: String!
+  $password: String!
+  $hookUrl: String!
+  $hookTarget: String
+) {
+  startOciSession(
+    input: { username: $username, password: $password, hookUrl: $hookUrl, hookTarget: $hookTarget }
+  ) {
+    cart {
+      id
+      is_oci
+    }
+    customerToken
+  }
+}

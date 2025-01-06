@@ -1,0 +1,5 @@
+mutation endOciSession($cartId: ID!) {
+  endOciSession(input: { cartId: $cartId }) {
+    submissionHtml
+  }
+}

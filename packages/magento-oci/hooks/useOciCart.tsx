@@ -81,10 +81,24 @@ export function useOciCart() {
       }
       return
     }
-    if (sessionData || loading) return
+
+    if (sessionData || loading || error) return
 
     startOciSessionMutation().catch(console.error)
-  }, [hookUrl, loading, password, router.isReady, sessionData, startOciSessionMutation, username])
+  }, [
+    hookUrl,
+    loading,
+    password,
+    router.isReady,
+    sessionData,
+    startOciSessionMutation,
+    username,
+    error,
+  ])
 
-  return { cart: sessionData?.startOciSession?.cart, loading: loading || !router.isReady, error }
+  return {
+    cart: sessionData?.startOciSession?.cart,
+    loading: router.isReady ? loading : true,
+    error,
+  }
 }
