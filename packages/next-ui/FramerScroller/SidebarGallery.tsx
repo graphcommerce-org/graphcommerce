@@ -9,10 +9,15 @@ import {
   ScrollerThumbnails,
   unstable_usePreventScroll as usePreventScroll,
 } from '@graphcommerce/framer-scroller'
-import { dvh } from '@graphcommerce/framer-utils'
+import {
+  dvh,
+  useMakeFullscreen,
+  useMotionRect,
+  useMotionValueValue,
+} from '@graphcommerce/framer-utils'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Fab, styled, Unstable_TrapFocus as TrapFocus, useTheme } from '@mui/material'
-import { m, useDomEvent, useMotionValue } from 'framer-motion'
+import { m, useDomEvent, useMotionTemplate, useMotionValue, useTransform } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
 import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../icons'
@@ -138,10 +143,13 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   const hasImages = images.length > 0
 
+  const measureRef = useRef<HTMLDivElement>(null)
+  const { margin } = useMakeFullscreen(measureRef, { debug: true, pause: zoomed })
+
   return (
     <ScrollerProvider scrollSnapAlign='center'>
       <Row
-        maxWidth={zoomed ? 'full' : 'lg'}
+        maxWidth='lg'
         disableGutters
         className={classes.row}
         breakoutLeft={variantMd === 'default' && !theme.appShell.containerSizingContent}
@@ -152,6 +160,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
       >
         <MotionBox
           layout
+          ref={measureRef}
           layoutDependency={zoomed}
           className={classes.root}
           sx={[
@@ -166,13 +175,11 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   } * 2)`,
                 },
               },
-
               '&.zoomed': {
                 position: 'relative',
                 zIndex: theme.zIndex.modal,
-                marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
+                margin,
                 [theme.breakpoints.up('md')]: {
-                  marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
                   gridTemplateColumns: '1fr auto',
                 },
                 px: 0,
@@ -201,7 +208,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                       height: `max(${dvh(90)}, 40vw)`,
                       '&.sticky': {
                         position: 'sticky',
-                        top: theme.appShell.headerHeightMd,
+                        // top: offsetTop,
                       },
                     },
                   },

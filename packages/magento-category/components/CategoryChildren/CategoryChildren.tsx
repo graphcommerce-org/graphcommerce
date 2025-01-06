@@ -32,6 +32,7 @@ export function CategoryChildren(props: CategoryChildrenProps) {
   )
 
   const hasNavigatableChildren = childItems.some((cat) => !cat.active)
+
   if (!hasNavigatableChildren) return null
 
   return (
@@ -39,7 +40,7 @@ export function CategoryChildren(props: CategoryChildrenProps) {
       <Box
         className={classes.container}
         sx={[
-          { display: 'flex', width: '100%', overflow: 'hidden' },
+          { display: 'grid', width: '100%', overflow: 'hidden' },
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       >
