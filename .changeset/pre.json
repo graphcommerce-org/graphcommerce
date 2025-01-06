@@ -90,6 +90,10 @@
     "@graphcommerce/typescript-config-pwa": "9.0.3"
   },
   "changesets": [
-    "four-needles-invent"
+    "four-needles-invent",
+    "gorgeous-baboons-learn",
+    "heavy-guests-mix",
+    "quiet-bees-exist",
+    "six-cheetahs-repeat"
   ]
 }

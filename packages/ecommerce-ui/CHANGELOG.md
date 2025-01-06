@@ -1,5 +1,11 @@
 # @graphcommerce/ecommerce-ui
 
+## 9.0.4-canary.1
+
+### Patch Changes
+
+- [#2470](https://github.com/graphcommerce-org/graphcommerce/pull/2470) [`910e6aa`](https://github.com/graphcommerce-org/graphcommerce/commit/910e6aab024a925bb042cf17968b2ab826f97d88) - Refactor the FormComponents for better TypeScript checking performance. ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.0
 
 ## 9.0.0
