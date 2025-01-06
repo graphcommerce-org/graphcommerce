@@ -28,46 +28,47 @@ import {
   LayoutMinimalProps,
 } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 
 function OrderSuccessPage() {
-  const {
-    query: { cart_id, order_number },
-    isReady,
-  } = useRouter()
-
+  const router = useRouter()
+  const { cart_id, order_number } = router.query ?? {}
   const hasCartId = !!cart_id
 
   return (
     <>
       <PageMeta title={i18n._(/* i18n */ 'Checkout summary')} metaRobots={['noindex']} />
 
-      {!isReady && <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />} />}
+      <WaitForQueries
+        waitFor={router.isReady}
+        fallback={<FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />} />}
+      >
+        {!hasCartId && (
+          <FullPageMessage
+            title={<Trans id='You have not placed an order' />}
+            icon={<IconSvg src={iconSadFace} size='xxl' />}
+            button={
+              <Button href='/' variant='pill' color='secondary' size='large'>
+                <Trans id='Continue shopping' />
+              </Button>
+            }
+          >
+            <Trans id='Discover our collection and add items to your cart!' />
+          </FullPageMessage>
+        )}
 
-      {isReady && !hasCartId && (
-        <FullPageMessage
-          title={<Trans id='You have not placed an order' />}
-          icon={<IconSvg src={iconSadFace} size='xxl' />}
-          button={
-            <Button href='/' variant='pill' color='secondary' size='large'>
-              <Trans id='Continue shopping' />
-            </Button>
-          }
-        >
-          <Trans id='Discover our collection and add items to your cart!' />
-        </FullPageMessage>
-      )}
-
-      {isReady && hasCartId && (
-        <>
+        {hasCartId && (
           <LayoutHeader floatingMd disableBackNavigation>
             <LayoutTitle size='small' icon={iconParty}>
               <Trans id='Thank you for your order!' />
             </LayoutTitle>
           </LayoutHeader>
+        )}
 
+        {hasCartId && (
           <Container maxWidth='md'>
             <LayoutTitle icon={iconParty} sx={{ flexDirection: { md: 'column' } }}>
               <Box sx={{ display: 'grid', columns: 1, justifyItems: 'center' }}>
@@ -86,8 +87,8 @@ function OrderSuccessPage() {
               </Button>
             </Box>
           </Container>
-        </>
-      )}
+        )}
+      </WaitForQueries>
     </>
   )
 }
