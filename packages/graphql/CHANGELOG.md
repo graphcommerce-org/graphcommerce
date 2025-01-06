@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.4-canary.3
+
+### Patch Changes
+
+- [#2477](https://github.com/graphcommerce-org/graphcommerce/pull/2477) [`8015eab`](https://github.com/graphcommerce-org/graphcommerce/commit/8015eabc130dacf1f2703980cd5f0ad2c550aa4d) - Upgraded to @apollo/client 3.12.3 without impacting typescript compilation performance. ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.2
 
 ## 9.0.4-canary.1
