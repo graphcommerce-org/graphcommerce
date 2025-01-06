@@ -89,5 +89,15 @@
     "@graphcommerce/prettier-config-pwa": "9.0.3",
     "@graphcommerce/typescript-config-pwa": "9.0.3"
   },
-  "changesets": []
+  "changesets": [
+    "four-needles-invent",
+    "funny-crabs-fix",
+    "gorgeous-baboons-learn",
+    "heavy-guests-mix",
+    "heavy-squids-build",
+    "quiet-bees-exist",
+    "six-cheetahs-repeat",
+    "thick-parents-joke",
+    "wicked-planets-call"
+  ]
 }

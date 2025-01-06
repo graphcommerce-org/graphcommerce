@@ -104,7 +104,7 @@ export function FramerNextPages(props: PagesProps) {
 
   let renderItems = [...items.current]
 
-  /**  Removes the page if the up path equls the path of a overlay and there is no history present **/
+  /** Removes the page if the up path equls the path of a overlay and there is no history present * */
   const upPath = (renderItems.at(0)?.pageProps?.up as { href: string; title: string })?.href
   const overlayPath = renderItems.at(-1)?.routerContext.pageInfo.asPath
   if (

@@ -6,7 +6,8 @@ import { memo } from 'react'
 /**
  * This is a deep comparison version of React's `memo` function.
  *
- * This method isn't too expensive to run, but will be rerun every time a parent component is rendered.
+ * This method isn't too expensive to run, but will be rerun every time a parent component is
+ * rendered.
  *
  * This should probably only be used as the result of a performance profiling session.
  */

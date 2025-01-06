@@ -11,7 +11,6 @@ import type { PluginFunction, Types } from '@graphql-codegen/plugin-helpers'
 import type { DefinitionNode, GraphQLSchema } from 'graphql'
 import { parse, printSchema, visit } from 'graphql'
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface RelayOptimizerPluginConfig {}
 
 function isFragment(documentFile: Types.DocumentFile) {

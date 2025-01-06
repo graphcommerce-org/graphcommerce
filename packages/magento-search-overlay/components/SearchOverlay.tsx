@@ -1,7 +1,7 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import type { ProductListItemRenderer } from '@graphcommerce/magento-product'
-import { MediaQuery, Overlay } from '@graphcommerce/next-ui'
-import { Box, useTheme } from '@mui/material'
+import { Overlay } from '@graphcommerce/next-ui'
+import { useTheme } from '@mui/material'
 import { SearchOverlayBodyBase } from './SearchOverlayBodyBase'
 import { SearchOverlayCategories } from './SearchOverlayCategories'
 import { SearchOverlayHeader } from './SearchOverlayHeader'
@@ -42,7 +42,7 @@ export function SearchOverlay(props: SearchOverlayProps) {
       className='SearchOverlay-root'
       {...slotProps?.overlay}
     >
-      <SearchOverlayProvider open={open}>
+      <SearchOverlayProvider>
         <SearchOverlayHeader {...slotProps?.header} />
         <SearchOverlayBodyBase {...slotProps?.body}>
           <SearchOverlaySuggestions {...slotProps?.suggestions} />

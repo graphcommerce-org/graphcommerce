@@ -1,16 +1,16 @@
 # @graphcommerce/demo-magento-graphcommerce
 
-## 9.0.3
+## 9.0.4-canary.3
 
-## 9.0.3-canary.0
+## 9.0.4-canary.2
 
-## 9.0.2
+## 9.0.4-canary.1
 
-## 9.0.2-canary.0
+### Patch Changes
 
-## 9.0.1
+- [#2470](https://github.com/graphcommerce-org/graphcommerce/pull/2470) [`f5565b4`](https://github.com/graphcommerce-org/graphcommerce/commit/f5565b47d02c057d888fad94c1430d4e783c5e05) - Moved all test routes files to the demo package so they are out of the example directory. ([@paales](https://github.com/paales))
 
-## 9.0.1-canary.1
+## 9.0.4-canary.0
 
 ## 9.0.0
 

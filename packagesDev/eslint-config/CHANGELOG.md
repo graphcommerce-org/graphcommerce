@@ -1,16 +1,16 @@
 # Change Log
 
-## 9.0.3
+## 9.0.4-canary.3
 
-## 9.0.3-canary.0
+## 9.0.4-canary.2
 
-## 9.0.2
+## 9.0.4-canary.1
 
-## 9.0.2-canary.0
+### Patch Changes
 
-## 9.0.1
+- [#2470](https://github.com/graphcommerce-org/graphcommerce/pull/2470) [`29e2956`](https://github.com/graphcommerce-org/graphcommerce/commit/29e29562267741c28a181cbf90bd1fe5442d47f6) - Components must have Theme parameter to avoid significant compiler slowdown. ([@paales](https://github.com/paales))
 
-## 9.0.1-canary.1
+## 9.0.4-canary.0
 
 ## 9.0.0
 

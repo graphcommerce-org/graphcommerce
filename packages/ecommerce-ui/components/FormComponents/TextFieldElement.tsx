@@ -1,32 +1,35 @@
 /* eslint-disable no-nested-ternary */
 import { InputCheckmark } from '@graphcommerce/next-ui'
-import type { FieldValues, UseControllerProps } from '@graphcommerce/react-hook-form'
+import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { emailPattern, useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import type { TextFieldProps } from '@mui/material'
 import { TextField, useForkRef } from '@mui/material'
 import React, { useState } from 'react'
+import type { BaseControllerProps, FieldElementProps } from './types'
 
-export type TextFieldElementProps<T extends FieldValues = FieldValues> = Omit<
-  TextFieldProps,
-  'name' | 'defaultValue'
-> & {
-  showValid?: boolean
-} & UseControllerProps<T>
+type ShowValidProps = { showValid?: boolean }
+
+export type TextFieldElementProps<TFieldValues extends FieldValues = FieldValues> =
+  FieldElementProps<TFieldValues, TextFieldProps> & ShowValidProps
+
+type TextFieldElementComponent = <TFieldValues extends FieldValues>(
+  props: TextFieldElementProps<TFieldValues>,
+) => React.ReactNode
 
 /** @public */
-export function TextFieldElement<TFieldValues extends FieldValues>({
-  type,
-  required,
-  name,
-  control,
-  defaultValue,
-  rules = {},
-  shouldUnregister,
-  showValid,
-  disabled,
-  ...rest
-}: TextFieldElementProps<TFieldValues>): JSX.Element {
+function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
+  const {
+    name,
+    control,
+    defaultValue,
+    rules = {},
+    shouldUnregister,
+    disabled,
+  } = props as BaseControllerProps
+  const { showValid } = props as ShowValidProps
+  const { type, required, ...rest } = props as TextFieldProps
+
   if (required && !rules.required) {
     rules.required = i18n._(/* i18n */ 'This field is required')
   }
@@ -39,7 +42,7 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
   }
 
   const {
-    field: { onChange, ref, value = '', ...field },
+    field: { onChange, ref, value = '', onBlur },
     fieldState: { error },
   } = useController({ name, control, rules, defaultValue, shouldUnregister, disabled })
 
@@ -58,7 +61,9 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
   return (
     <TextField
       {...rest}
-      {...field}
+      onBlur={onBlur}
+      name={name}
+      disabled={disabled}
       value={value}
       inputProps={{ ...rest.inputProps, onAnimationStart }}
       onChange={(ev) => {
@@ -83,3 +88,5 @@ export function TextFieldElement<TFieldValues extends FieldValues>({
     />
   )
 }
+
+export const TextFieldElement = TextFieldElementBase as TextFieldElementComponent

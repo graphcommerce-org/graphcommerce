@@ -1,9 +1,7 @@
 import { useLocale, useMemoObject } from '../hooks'
 
 export type UseIntlLocalesArgumentOptions<T extends object = object> = {
-  /**
-   * @default useLocale()
-   */
+  /** @default useLocale() */
   locale?: Intl.LocalesArgument
 } & T
 

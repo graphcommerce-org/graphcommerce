@@ -2,7 +2,7 @@ import { ApolloErrorAlert, PasswordRepeatElement } from '@graphcommerce/ecommerc
 import { useQuery } from '@graphcommerce/graphql'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Button, Form, FormRow, extendableComponent } from '@graphcommerce/next-ui'
+import { Button, extendableComponent, Form, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { Alert, Box } from '@mui/material'

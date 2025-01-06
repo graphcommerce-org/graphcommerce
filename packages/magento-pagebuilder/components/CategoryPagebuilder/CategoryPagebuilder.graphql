@@ -1,4 +1,0 @@
-fragment CategoryPagebuilder on CategoryTree @inject(into: ["CategoryDescription"]) {
-  description
-  pagebuilder
-}

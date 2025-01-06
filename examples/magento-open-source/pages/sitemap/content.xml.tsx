@@ -4,7 +4,7 @@ import {
   staticPathsToString,
   toSitemapFields,
 } from '@graphcommerce/next-ui'
-import { GetServerSideProps } from 'next'
+import type { GetServerSideProps } from 'next'
 
 const excludes = [
   '*/account*',

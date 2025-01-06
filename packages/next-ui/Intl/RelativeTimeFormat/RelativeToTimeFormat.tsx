@@ -5,13 +5,11 @@ import type { RelativeTimeFormatProps } from './RelativeTimeFormat'
 import { RelativeTimeFormat } from './RelativeTimeFormat'
 
 type RelativeToTimeFormatProps = Omit<RelativeTimeFormatProps, 'children'> & {
-  /**
-   * Date to format a relative value for.
-   */
+  /** Date to format a relative value for. */
   children: DateValue
   /**
-   * If provided, the component will format a relative value to this date.
-   * Else, it will format a relative value to the current date.
+   * If provided, the component will format a relative value to this date. Else, it will format a
+   * relative value to the current date.
    */
   to?: DateValue
 }

@@ -31,6 +31,7 @@ global.performance = { now: mockPerformanceNow } as unknown as typeof performanc
 
 // Mock process.cwd
 const mockCwd = '/mock/cwd'
+// eslint-disable-next-line @typescript-eslint/unbound-method
 const originalCwd = process.cwd
 beforeAll(() => {
   process.cwd = jest.fn().mockReturnValue(mockCwd)
@@ -42,6 +43,7 @@ afterAll(() => {
 
 describe('copyFiles', () => {
   let consoleLog: jest.SpyInstance
+  let consoleInfo: jest.SpyInstance
   let consoleError: jest.SpyInstance
   let processExit: jest.SpyInstance
   let originalDebug: string | undefined
@@ -57,6 +59,7 @@ describe('copyFiles', () => {
       ]),
     )
     consoleLog = jest.spyOn(console, 'log').mockImplementation(() => {})
+    consoleInfo = jest.spyOn(console, 'info').mockImplementation(() => {})
     consoleError = jest.spyOn(console, 'error').mockImplementation(() => {})
     processExit = jest.spyOn(process, 'exit').mockImplementation(() => undefined as never)
 
@@ -205,7 +208,7 @@ describe('copyFiles', () => {
     expect(writeCall).toBeTruthy()
     const content = writeCall[1].toString()
     expect(content).toContain('new content')
-    expect(consoleLog).toHaveBeenCalledWith('Updated managed file: file.ts')
+    expect(consoleInfo).toHaveBeenCalledWith('Updated managed file: file.ts')
   })
 
   it('should create new files with management comments', async () => {
@@ -227,7 +230,7 @@ describe('copyFiles', () => {
 
     await copyFiles()
 
-    expect(consoleLog).toHaveBeenCalledWith(
+    expect(consoleInfo).toHaveBeenCalledWith(
       'Creating new file: new-file.ts\nSource: packages/package1/copy/new-file.ts',
     )
     expect(fs.writeFile).toHaveBeenCalledWith(path.join(mockCwd, 'new-file.ts'), expect.any(Buffer))
@@ -374,8 +377,8 @@ describe('copyFiles', () => {
 
     await copyFiles()
 
-    expect(consoleLog).toHaveBeenCalledWith('[copy-files]', 'Starting copyFiles')
-    expect(consoleLog).toHaveBeenCalledWith('[copy-files]', expect.stringContaining('Found'))
+    expect(consoleInfo).toHaveBeenCalledWith('[copy-files]', 'Starting copyFiles')
+    expect(consoleInfo).toHaveBeenCalledWith('[copy-files]', expect.stringContaining('Found'))
   })
 
   it('should handle unmanaged files', async () => {
@@ -397,7 +400,7 @@ describe('copyFiles', () => {
 
     await copyFiles()
 
-    expect(consoleLog).toHaveBeenCalledWith(
+    expect(consoleInfo).toHaveBeenCalledWith(
       expect.stringContaining('Note: File file.ts has been modified'),
     )
   })

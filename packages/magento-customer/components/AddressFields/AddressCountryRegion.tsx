@@ -8,12 +8,8 @@ import { useMemo } from 'react'
 import type { AddressFieldsOptions } from './useAddressFieldsForm'
 import { useAddressFieldsForm } from './useAddressFieldsForm'
 
-/** @public */
-export function useAddressCountryRegion<
-  TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
->(props: AddressFieldsOptions<TFieldValues, TName>) {
-  const form = useAddressFieldsForm<TFieldValues, TName>(props)
+function useAddressCountryRegion(props: AddressFieldsOptions) {
+  const form = useAddressFieldsForm(props)
   const { control, name } = form
 
   const countryQuery = useQuery(CountryRegionsDocument)
@@ -41,11 +37,15 @@ export function useAddressCountryRegion<
   return { ...form, country, countryList, regionList, loading: countryQuery.loading }
 }
 
-export function AddressCountryRegion<
+type AddressCountryRegionComponent = <
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
->(props: AddressFieldsOptions<TFieldValues, TName>) {
-  const form = useAddressCountryRegion<TFieldValues, TName>(props)
+>(
+  props: AddressFieldsOptions<TFieldValues, TName>,
+) => React.ReactNode
+
+export function AddressCountryRegionBase(props: AddressFieldsOptions) {
+  const form = useAddressCountryRegion(props)
   const { control, name, readOnly, required, countryList, regionList, loading } = form
 
   if (loading) {
@@ -95,3 +95,5 @@ export function AddressCountryRegion<
     </FormRow>
   )
 }
+
+export const AddressCountryRegion = AddressCountryRegionBase as AddressCountryRegionComponent

@@ -1,7 +1,9 @@
-import type { FieldValues, Path, UseFormReturn } from 'react-hook-form'
+import type { FieldPath, FieldValues, UseFormReturn } from 'react-hook-form'
 import type { IsRequired } from './useGqlDocumentHandler'
 
-export type UseFormValidReturn<TFieldValues> = Partial<Record<Path<TFieldValues>, boolean>>
+export type UseFormValidReturn<TFieldValues extends FieldValues> = Partial<
+  Record<FieldPath<TFieldValues>, boolean>
+>
 
 /**
  * ### useFormValidFields
@@ -16,10 +18,10 @@ export function useFormValidFields<TFieldValues extends FieldValues>(
   required: IsRequired<TFieldValues>,
 ): UseFormValidReturn<TFieldValues> {
   const { watch, formState } = form
-  const fields: Partial<Record<Path<TFieldValues>, boolean>> = {}
+  const fields: Partial<Record<FieldPath<TFieldValues>, boolean>> = {}
 
   Object.keys(required).forEach((key) => {
-    fields[key] = !formState.errors[key] && watch(key as Path<TFieldValues>)
+    fields[key] = !formState.errors[key] && watch(key as FieldPath<TFieldValues>)
   })
 
   return fields

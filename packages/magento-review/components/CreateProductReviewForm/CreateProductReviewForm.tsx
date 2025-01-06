@@ -3,12 +3,12 @@ import { useQuery } from '@graphcommerce/graphql'
 import type { ProductReviewRatingInput } from '@graphcommerce/graphql-mesh'
 import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
 import {
+  extendableComponent,
   Form,
   FormActions,
   FormRow,
-  StarRatingField,
-  extendableComponent,
   responsiveVal,
+  StarRatingField,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'

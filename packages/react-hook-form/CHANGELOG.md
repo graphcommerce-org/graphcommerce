@@ -1,24 +1,22 @@
 # Change Log
 
-## 9.0.3
+## 9.0.4-canary.3
 
-## 9.0.3-canary.0
+### Patch Changes
+
+- [#2477](https://github.com/graphcommerce-org/graphcommerce/pull/2477) [`8015eab`](https://github.com/graphcommerce-org/graphcommerce/commit/8015eabc130dacf1f2703980cd5f0ad2c550aa4d) - Upgraded to @apollo/client 3.12.3 without impacting typescript compilation performance. ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
 
 ## 9.0.2
 
 ### Patch Changes
 
 - [`c40c559`](https://github.com/graphcommerce-org/graphcommerce/commit/c40c5596bcc8f3c2e1e15c9e6ad85bfa1f9154b0) - Solve an issue where the payment submission would remain in a spinning state when placing an order failed: `useFormGql` will now set `root` error on the form when there is an error response on the GraphQL operation, an error is thrown in onBeforeSubmit and in onSuccess. ([@paales](https://github.com/paales))
-
-## 9.0.2-canary.0
-
-### Patch Changes
-
-- [`c40c559`](https://github.com/graphcommerce-org/graphcommerce/commit/c40c5596bcc8f3c2e1e15c9e6ad85bfa1f9154b0) - Solve an issue where the payment submission would remain in a spinning state when placing an order failed: `useFormGql` will now set `root` error on the form when there is an error response on the GraphQL operation, an error is thrown in onBeforeSubmit and in onSuccess. ([@paales](https://github.com/paales))
-
-## 9.0.1
-
-## 9.0.1-canary.1
 
 ## 9.0.0
 

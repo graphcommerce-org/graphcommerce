@@ -1,7 +1,7 @@
 import {
-  IconSvg,
   extendableComponent,
   iconCompare,
+  IconSvg,
   useFabSize,
   useScrollY,
 } from '@graphcommerce/next-ui'

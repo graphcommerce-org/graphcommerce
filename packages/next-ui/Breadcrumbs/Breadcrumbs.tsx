@@ -19,8 +19,8 @@ import dynamic from 'next/dynamic'
 import type { MouseEvent } from 'react'
 import { useState } from 'react'
 import { Button } from '../Button'
-import { IconSvg } from '../IconSvg'
 import { iconClose, iconEllypsis } from '../icons'
+import { IconSvg } from '../IconSvg'
 import type { BreadcrumbsType } from './types'
 
 const BreadcrumbsPopper = dynamic(

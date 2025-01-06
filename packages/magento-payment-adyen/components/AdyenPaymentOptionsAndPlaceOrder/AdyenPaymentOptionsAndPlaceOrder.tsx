@@ -7,7 +7,6 @@ import {
   usePaymentMethodContext,
 } from '@graphcommerce/magento-cart-payment-method'
 import { FormRow } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
 import { useRouter } from 'next/router'
 import { useAdyenCartLock } from '../../hooks/useAdyenCartLock'
 import { useAdyenPaymentMethod } from '../../hooks/useAdyenPaymentMethod'

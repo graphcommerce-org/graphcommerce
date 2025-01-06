@@ -3,19 +3,19 @@ import { cacheFirst } from '@graphcommerce/graphql'
 import {
   CartItemSummary,
   CartSummary,
-  InlineAccount,
   getCheckoutIsDisabled,
+  InlineAccount,
 } from '@graphcommerce/magento-cart'
 import { SignupNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   FullPageMessage,
+  iconParty,
+  iconSadFace,
   IconSvg,
   LayoutHeader,
   LayoutTitle,
-  iconParty,
-  iconSadFace,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'

@@ -1,9 +1,9 @@
 import type { ChipProps, SxProps, Theme } from '@mui/material'
-import { Badge, Chip, Typography, lighten, useEventCallback } from '@mui/material'
+import { Badge, Chip, lighten, Typography, useEventCallback } from '@mui/material'
 import React, { useState } from 'react'
+import { iconChevronDown, iconChevronUp } from '../icons'
 import { IconSvg } from '../IconSvg'
 import { responsiveVal } from '../Styles'
-import { iconChevronDown, iconChevronUp } from '../icons'
 import type { OverlayOrPopperPanelProps } from './OverlayOrPopperPanel'
 import { OverlayOrPopperPanel } from './OverlayOrPopperPanel'
 

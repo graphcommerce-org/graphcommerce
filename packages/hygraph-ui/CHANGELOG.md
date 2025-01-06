@@ -1,22 +1,14 @@
 # Change Log
 
-## 9.0.3
+## 9.0.4-canary.3
 
-## 9.0.3-canary.0
+## 9.0.4-canary.2
 
-## 9.0.2
+## 9.0.4-canary.1
 
-## 9.0.2-canary.0
+## 9.0.4-canary.0
 
 ## 9.0.1
-
-### Patch Changes
-
-- [#2461](https://github.com/graphcommerce-org/graphcommerce/pull/2461) [`838fe30`](https://github.com/graphcommerce-org/graphcommerce/commit/838fe30a649f8feedbd2a9333430e724b0ebd67f) - Solve issue where the preview mode wouldn't initialize if the hygraphLocales weren't defined ([@paales](https://github.com/paales))
-
-- [#2461](https://github.com/graphcommerce-org/graphcommerce/pull/2461) [`68f2861`](https://github.com/graphcommerce-org/graphcommerce/commit/68f28616fd33aa64cb555e8cf9bf64954ea92383) - Support for new asset system of Hygraph ([@paales](https://github.com/paales))
-
-## 9.0.1-canary.1
 
 ### Patch Changes
 

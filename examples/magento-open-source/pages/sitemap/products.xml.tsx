@@ -1,12 +1,12 @@
+import { getProductStaticPaths, productPath } from '@graphcommerce/magento-product'
 import {
   excludeSitemap,
-  staticPathsToString,
   getServerSidePropsSitemap,
+  staticPathsToString,
   toSitemapFields,
 } from '@graphcommerce/next-ui'
-import { GetServerSideProps } from 'next'
+import type { GetServerSideProps } from 'next'
 import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
-import { getProductStaticPaths, productPath } from '@graphcommerce/magento-product'
 
 const excludes: string[] = []
 const additionalPaths: string[] = []

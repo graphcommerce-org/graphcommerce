@@ -2,7 +2,7 @@
   "name": "@graphcommerce/next-config",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.3",
+  "version": "9.0.4-canary.3",
   "type": "commonjs",
   "main": "dist/index.js",
   "types": "src/index.ts",
@@ -12,11 +12,13 @@
     "prepack": "tsc"
   },
   "dependencies": {
+    "@graphql-codegen/cli": "5.0.3",
     "@swc/core": "1.10.1",
     "@swc/wasm-web": "^1.10.1",
     "@types/circular-dependency-plugin": "^5.0.8",
     "@types/lodash": "^4.17.13",
     "babel-plugin-macros": "^3.1.0",
+    "chalk": "^4",
     "circular-dependency-plugin": "^5.2.2",
     "fast-glob": "^3.3.2",
     "glob": "^10.4.5",

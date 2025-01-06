@@ -1,3 +1,0 @@
-fragment ComplexTextValuePagebuilder on ComplexTextValue @inject(into: ["ComplexTextValue"]) {
-  pagebuilder
-}

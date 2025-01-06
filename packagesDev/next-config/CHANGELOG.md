@@ -1,16 +1,16 @@
 # Change Log
 
-## 9.0.3
+## 9.0.4-canary.3
 
-## 9.0.3-canary.0
+## 9.0.4-canary.2
 
-## 9.0.2
+## 9.0.4-canary.1
 
-## 9.0.2-canary.0
+## 9.0.4-canary.0
 
-## 9.0.1
+### Patch Changes
 
-## 9.0.1-canary.1
+- [#2472](https://github.com/graphcommerce-org/graphcommerce/pull/2472) [`905157b`](https://github.com/graphcommerce-org/graphcommerce/commit/905157bec2c9e1dcf51b6e6f7b6913aa9be7b609) - Solve issue with chalk compilation because we’re not migrated to esm modules. ([@paales](https://github.com/paales))
 
 ## 9.0.0
 

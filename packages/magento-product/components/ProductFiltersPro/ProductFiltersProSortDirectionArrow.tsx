@@ -1,5 +1,5 @@
 import type { SortEnum } from '@graphcommerce/graphql-mesh'
-import { IconSvg, iconArrowDown, iconArrowUp } from '@graphcommerce/next-ui'
+import { iconArrowDown, iconArrowUp, IconSvg } from '@graphcommerce/next-ui'
 
 export type ProductFiltersProSortDirectionArrowProps = {
   sortDirection: SortEnum | null

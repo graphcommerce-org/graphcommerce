@@ -1,11 +1,7 @@
 import { useFormCompose } from '@graphcommerce/ecommerce-ui'
+import { ApolloError } from '@graphcommerce/graphql'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import {
-  assertOrderPlaced,
-  type PaymentPlaceOrderProps,
-} from '@graphcommerce/magento-cart-payment-method'
-import { ApolloError } from '@apollo/client'
-import { GraphQLError } from 'graphql'
+import { type PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
 import { useRouter } from 'next/router'
 import { usePayPalCartLock } from '../../hooks/usePayPalCartLock'
 import { PayPalPaymentPlaceOrderDocument } from './PayPalPaymentPlaceOrder.gql'

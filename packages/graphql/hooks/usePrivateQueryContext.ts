@@ -11,7 +11,8 @@ export function getPrivateQueryContext(
 /**
  * Defines a method to handle the current context for the query.
  *
- * Other plugins should be able to define their own scopes and create a plugin on this method to augment the specific scope.
+ * Other plugins should be able to define their own scopes and create a plugin on this method to
+ * augment the specific scope.
  *
  * @see @graphcommerce/magento-customer/plugins/magentoCustomerGetInContext.ts
  *

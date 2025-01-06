@@ -15,8 +15,7 @@ type UseSignInFormProps = {
  * To extend the actions that happen after a successful sign in, you can use the `onComplete`
  * option.
  *
- * @example
- *   @graphcommerce/magento-cart/plugins/useSignInFormMergeCart
+ * @graphcommerce/magento-cart/plugins/useSignInFormMergeCart
  */
 export function useSignInForm({ email, ...options }: UseSignInFormProps) {
   const client = useApolloClient()

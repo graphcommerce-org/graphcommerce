@@ -1,28 +1,41 @@
-import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
+import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import type { FormControlProps, SliderProps } from '@mui/material'
 import { FormControl, FormHelperText, FormLabel, Slider } from '@mui/material'
+import React from 'react'
+import type { FieldElementProps } from './types'
 
-export type SliderElementProps<T extends FieldValues> = Omit<SliderProps, 'control'> & {
+type AdditionalProps = {
   label?: string
   required?: boolean
   formControlProps?: FormControlProps
-} & Omit<ControllerProps<T>, 'render'>
+}
 
-/** @public */
-export function SliderElement<TFieldValues extends FieldValues>({
-  name,
-  control,
-  label,
-  rules = {},
-  required,
-  formControlProps,
-  defaultValue,
-  disabled,
-  shouldUnregister,
-  ...other
-}: SliderElementProps<TFieldValues>) {
+export type SliderElementProps<TFieldValues extends FieldValues = FieldValues> = FieldElementProps<
+  TFieldValues,
+  Omit<SliderProps, 'name'>
+> &
+  AdditionalProps
+
+type SliderElementComponent = <TFieldValues extends FieldValues>(
+  props: SliderElementProps<TFieldValues>,
+) => React.ReactNode
+
+function SliderElementBase(props: SliderElementProps): JSX.Element {
+  const {
+    name,
+    control,
+    label,
+    rules = {},
+    required,
+    formControlProps,
+    defaultValue,
+    disabled,
+    shouldUnregister,
+    ...other
+  } = props
+
   if (required && !rules.required) {
     rules.required = i18n._(/* i18n */ 'This field is required')
   }
@@ -53,3 +66,6 @@ export function SliderElement<TFieldValues extends FieldValues>({
     </FormControl>
   )
 }
+
+/** @public */
+export const SliderElement = SliderElementBase as SliderElementComponent

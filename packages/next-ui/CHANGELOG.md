@@ -1,20 +1,24 @@
 # Change Log
 
-## 9.0.3
+## 9.0.4-canary.3
 
-## 9.0.3-canary.0
-
-## 9.0.2
-
-## 9.0.2-canary.0
-
-## 9.0.1
+## 9.0.4-canary.2
 
 ### Patch Changes
 
-- [#2463](https://github.com/graphcommerce-org/graphcommerce/pull/2463) [`db3e142`](https://github.com/graphcommerce-org/graphcommerce/commit/db3e142d6f8b09a0f6b67a06e664b23946a71173) - Fix issue where layout title would be left aligned ([@FrankHarland](https://github.com/FrankHarland))
+- [#2473](https://github.com/graphcommerce-org/graphcommerce/pull/2473) [`8df172e`](https://github.com/graphcommerce-org/graphcommerce/commit/8df172e4fa1364892d53bc96a437d037d245de35) - Do not warn about `:first-child` since all css is hoisted out of the components. ([@paales](https://github.com/paales))
 
-## 9.0.1-canary.1
+- [#2473](https://github.com/graphcommerce-org/graphcommerce/pull/2473) [`b076b2a`](https://github.com/graphcommerce-org/graphcommerce/commit/b076b2ae4881bebf1d2debd5333a83f220c26ca7) - Also accept false as value for sxx ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.1
+
+### Patch Changes
+
+- [#2470](https://github.com/graphcommerce-org/graphcommerce/pull/2470) [`8f047a0`](https://github.com/graphcommerce-org/graphcommerce/commit/8f047a0860f9b915717f6db52be64805094d0b09) - Modify the type that is exposed for createTheme, should be faster for TypeScript to check. ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.0
+
+## 9.0.1
 
 ### Patch Changes
 
