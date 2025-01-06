@@ -2,6 +2,7 @@ import type {
   FetchResult,
   LazyQueryHookOptions,
   LazyQueryResultTuple,
+  MaybeMasked,
   MutationHookOptions,
   MutationTuple,
   TypedDocumentNode,
@@ -16,7 +17,10 @@ import type { UseGqlDocumentHandler } from './useGqlDocumentHandler'
 import { useGqlDocumentHandler } from './useGqlDocumentHandler'
 import { tryAsync } from './utils/tryTuple'
 
-export type OnCompleteFn<Q, V> = (data: FetchResult<Q>, variables: V) => void | Promise<void>
+export type OnCompleteFn<Q, V> = (
+  data: FetchResult<MaybeMasked<Q>>,
+  variables: V,
+) => void | Promise<void>
 
 type UseFormGraphQLCallbacks<Q, V> = {
   /**
@@ -84,7 +88,7 @@ export type UseFormGqlMethods<Q, V extends FieldValues> = Omit<
   'encode' | 'type'
 > &
   Pick<UseFormReturn<V>, 'handleSubmit'> & {
-    data?: Q | null
+    data?: MaybeMasked<Q> | null
     error?: ApolloError
     submittedVariables?: V
   }

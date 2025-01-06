@@ -16,8 +16,8 @@
     "dev": "next dev"
   },
   "dependencies": {
-    "@apollo/client": "3.11.10",
-    "@graphcommerce/next-config": "9.0.4-canary.2",
+    "@apollo/client": "~3.12.3",
+    "@graphcommerce/next-config": "9.0.4-canary.0",
     "@hygraph/app-sdk-react": "^0.0.5",
     "@lingui/conf": "4.14.1",
     "@lingui/core": "4.14.1",
