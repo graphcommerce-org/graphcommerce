@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.4-canary.2
+
+### Patch Changes
+
+- [#2473](https://github.com/graphcommerce-org/graphcommerce/pull/2473) [`f085c89`](https://github.com/graphcommerce-org/graphcommerce/commit/f085c89416fd91cdc2729f8a6da0ec37d93e8e80) - Solve issue where the ProductListItemsBase was already wrapped in a form. ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.1
 
 ## 9.0.4-canary.0
