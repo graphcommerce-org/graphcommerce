@@ -183,7 +183,7 @@ const dataLayerToAlgoliaMap: {
     const mapping = getObjectIDToQuery()
     const objectIDs = eventData.items.map((item) => atob(item.item_uid))
 
-    const relevant = objectIDs.map((objectID) => mapping[objectID])
+    const relevant = objectIDs.map((objectID) => mapping[objectID]).filter(Boolean)
     const queryID = relevant?.[0]?.queryID
     const filters = [...new Set(...relevant.map((item) => item.filters))]
 

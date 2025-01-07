@@ -34,6 +34,10 @@ msgid "Search all products..."
 msgstr "Alle Produkte durchsuchen..."
 
 #. js-lingui-generated-id
+msgid "Did you mean?"
+msgstr "Meinten Sie?"
+
+#. js-lingui-generated-id
 msgid "We couldn't find any results"
 msgstr "Wir konnten keine Ergebnisse finden"
 
@@ -236,6 +240,9 @@ msgstr "Kontakt"
 msgid "Continue"
 msgstr "Weiter"
 
+msgid "Continue searching"
+msgstr "Weiter suchen"
+
 msgid "Continue shopping"
 msgstr "Weiter einkaufen"
 
@@ -310,6 +317,9 @@ msgstr "Entdecken Sie unsere Kollektion und führen Sie Ihre erste Bestellung au
 msgid "Discover our collection and write your first review!"
 msgstr "Entdecken Sie unsere Kollektion und schreiben Sie Ihre erste Bewertung!"
 
+msgid "Discover our collection by searching for products, categories or features."
+msgstr "Entdecken Sie unsere Kollektion, indem Sie nach Produkten, Kategorien oder Funktionen suchen."
+
 #. js-lingui-generated-id
 msgid "Payment method"
 msgstr "Zahlungsmethode"
@@ -372,6 +382,10 @@ msgstr "Passwort vergessen?"
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
+#. js-lingui-generated-id
+msgid "We couldn’t find any results for ‘{term}’"
+msgstr "Wir konnten keine Ergebnisse für ‘{term}’ finden"
+
 msgid "Free"
 msgstr "Kostenlos"
 
@@ -389,10 +403,6 @@ msgstr "Hausnummer"
 
 msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
 msgstr "Wenn Sie Ihre Bestellung erfolgreich bezahlt haben, <0>wird</0> die Bestellung durchgeführt, aber es liegt ein Kommunikationsfehler mit der Website vor."
-
-#. js-lingui-generated-id
-msgid "We couldn't find any results for {term}"
-msgstr "Wir konnten keine Ergebnisse für {term} finden"
 
 msgid "In comparelist"
 msgstr "In der Vergleichsliste"
@@ -457,6 +467,14 @@ msgstr "Frau"
 #. js-lingui-generated-id
 msgid "Order has successfully been canceled"
 msgstr "Auftrag wurde erfolgreich storniert"
+
+#. js-lingui-generated-id
+msgid "View all"
+msgstr "Alle anzeigen"
+
+#. js-lingui-generated-id
+msgid "Categories"
+msgstr "Kategorien"
 
 msgid "Name"
 msgstr "Name"
@@ -887,6 +905,9 @@ msgstr "Wir bearbeiten Ihre Zahlung, dies dauert ein paar Sekunden."
 msgid "We’ve send a password reset link to your email address!"
 msgstr "Wir haben Ihnen einen Link zum Zurücksetzen Ihres Passworts per E-Mail geschickt!"
 
+msgid "What are you looking for?"
+msgstr "Wonach suchen Sie?"
+
 msgid "Whoops our bad..."
 msgstr "Ups, unsere Schuld..."
 
@@ -901,6 +922,10 @@ msgstr "Verfasst von {nickname}"
 
 msgid "Written {0} reviews"
 msgstr "Bewertungen geschrieben: {0}"
+
+#. js-lingui-generated-id
+msgid "Search..."
+msgstr "Suchen..."
 
 msgid "You are reviewing {0}"
 msgstr "Sie bewerten {0}"

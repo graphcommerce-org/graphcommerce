@@ -1,5 +1,5 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { FlagAvatar, extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent, FlagAvatar } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Button } from '@mui/material'
 import { useRouter } from 'next/router'

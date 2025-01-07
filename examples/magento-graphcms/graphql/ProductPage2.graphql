@@ -2,10 +2,10 @@ query ProductPage2(
   $urlKey: String!
   $reviewPageSize: Int = 3
   $reviewPage: Int = 1
-  $context: InContextInput
+  $context: PrivateContext
   $useCustomAttributes: Boolean = false
 ) {
-  products(filter: { url_key: { eq: $urlKey } }) @inContext(context: $context) {
+  products(filter: { url_key: { eq: $urlKey } }) @privateContext(context: $context) {
     ...ProductSpecs
     items {
       __typename
@@ -20,7 +20,8 @@ query ProductPage2(
     }
   }
   # Workaround for https://github.com/magento/magento2/issues/32427
-  relatedUpsells: products(filter: { url_key: { eq: $urlKey } }) @inContext(context: $context) {
+  relatedUpsells: products(filter: { url_key: { eq: $urlKey } })
+    @privateContext(context: $context) {
     items {
       uid
       ...UpsellProducts

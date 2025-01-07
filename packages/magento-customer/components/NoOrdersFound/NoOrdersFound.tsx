@@ -1,4 +1,4 @@
-import { IconHeader, extendableComponent, iconBox } from '@graphcommerce/next-ui'
+import { extendableComponent, iconBox, IconHeader } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'

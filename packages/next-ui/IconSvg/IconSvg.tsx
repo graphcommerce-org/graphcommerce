@@ -114,6 +114,3 @@ export const IconSvg = forwardRef<SVGSVGElement, IconSvgProps>((props, ref) => {
   )
 })
 IconSvg.displayName = 'IconSvg'
-
-/** @deprecated SvgIcon is renamed to IconSvg, no API changes */
-export const SvgIcon = IconSvg

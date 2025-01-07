@@ -27,11 +27,11 @@ import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   FormActions,
   FullPageMessage,
+  iconAddresses,
+  iconBox,
   LayoutHeader,
   LayoutTitle,
   Stepper,
-  iconAddresses,
-  iconBox,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'

@@ -17,9 +17,7 @@ export type ProductFiltersProAllFiltersSidebarProps = ProductFiltersProAggregati
 
 /**
  * @deprecated Not used anymore
- *
- * @param props
- * @returns
+ * @public
  */
 export function ProductFiltersProAllFiltersSidebar(props: ProductFiltersProAllFiltersSidebarProps) {
   const { sort_fields, total_count, renderer, sx = [], category, params } = props

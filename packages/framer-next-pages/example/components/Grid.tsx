@@ -2,8 +2,6 @@ import { Link } from '@mui/material'
 import { useRouter } from 'next/router'
 import styles from './styles.module.css'
 
-export const data = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
 function usePostcardClass(asPath: string) {
   const router = useRouter()
   return `${styles.postCard} ${asPath === router.asPath && styles.postCardActive}`

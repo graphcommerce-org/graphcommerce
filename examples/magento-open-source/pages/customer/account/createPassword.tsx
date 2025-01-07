@@ -1,5 +1,5 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
-import { ResetPasswordForm, getCustomerAccountIsDisabled } from '@graphcommerce/magento-customer'
+import { getCustomerAccountIsDisabled, ResetPasswordForm } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'

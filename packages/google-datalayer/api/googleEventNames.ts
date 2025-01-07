@@ -52,9 +52,7 @@ export const googleEventNames = [
   'view_search_results',
 ] as const
 
-/**
- * @see https://developers.google.com/tag-platform/gtagjs/reference/events
- */
+/** @see https://developers.google.com/tag-platform/gtagjs/reference/events */
 export type GoogleEventTypes = {
   exception: { description?: string; fatal?: boolean }
   share: { method?: string; content_type?: string; item_id?: string }

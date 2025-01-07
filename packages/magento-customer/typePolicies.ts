@@ -31,5 +31,7 @@ export const customerTypePolicies: StrictTypedTypePolicies = {
 
 export const migrateCustomer: MigrateCache = (oldCache, newCache) => {
   const token = oldCache.readQuery({ query: CustomerTokenDocument })
-  newCache.writeQuery({ query: CustomerTokenDocument, data: token, broadcast: true })
+  if (token) {
+    newCache.writeQuery({ query: CustomerTokenDocument, data: token, broadcast: true })
+  }
 }

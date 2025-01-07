@@ -3,10 +3,10 @@ import { CartItemActionCard } from '@graphcommerce/magento-cart-items'
 import type { ActionCardLayoutProps } from '@graphcommerce/next-ui'
 import {
   ActionCardLayout,
-  SectionContainer,
   breakpointVal,
   extendableComponent,
   nonNullable,
+  SectionContainer,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'

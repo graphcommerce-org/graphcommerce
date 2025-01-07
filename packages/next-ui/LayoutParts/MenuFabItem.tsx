@@ -7,6 +7,10 @@ export type MenuFabItemProps = Omit<ListItemButtonProps<'a'>, 'href' | 'button'>
   href: NonNullable<ListItemButtonProps<'a'>['href']>
 }
 
+/**
+ * @deprecated Will be removed
+ * @public
+ */
 export function MenuFabItem(props: MenuFabItemProps) {
   const { href, children, sx = [], ...listItemProps } = props
   const hrefString = href.toString()

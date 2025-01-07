@@ -1,4 +1,4 @@
-import { Highlight, IconSvg, extendableComponent, iconChevronRight } from '@graphcommerce/next-ui'
+import { extendableComponent, Highlight, iconChevronRight, IconSvg } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Button } from '@mui/material'
 import React from 'react'

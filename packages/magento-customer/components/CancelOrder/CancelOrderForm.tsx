@@ -2,12 +2,12 @@ import { ApolloErrorSnackbar, CheckboxElement, SelectElement } from '@graphcomme
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  Button,
-  FormRow,
-  IconSvg,
   breakpointVal,
+  Button,
   filterNonNullableKeys,
+  FormRow,
   iconChevronDown,
+  IconSvg,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'

@@ -31,11 +31,14 @@ import { isSameAddress } from '../../utils/isSameAddress'
 import { GetAddressesDocument } from './GetAddresses.gql'
 import { SetBillingAddressDocument } from './SetBillingAddress.gql'
 import { SetShippingAddressDocument } from './SetShippingAddress.gql'
+import type { SetShippingBillingAddressMutationVariables } from './SetShippingBillingAddress.gql'
 import { SetShippingBillingAddressDocument } from './SetShippingBillingAddress.gql'
 
 export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'> & {
   /**
-   * @deprecated This was used to make sure the form wasn't filled with a customer's address. However this also broke the checkout when navigating back from the checkout. This is now automatically handled.
+   * @deprecated This was used to make sure the form wasn't filled with a customer's address.
+   *   However this also broke the checkout when navigating back from the checkout. This is now
+   *   automatically handled.
    */
   ignoreCache?: boolean
   sx?: SxProps<Theme>
@@ -137,9 +140,9 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         name={['postcode', 'countryCode', 'regionId']}
       />
 
-      <CompanyFields form={form} />
+      <CompanyFields<SetShippingBillingAddressMutationVariables> form={form} />
       <NameFields form={form} />
-      <AddressFields form={form} />
+      <AddressFields<SetShippingBillingAddressMutationVariables> form={form} />
 
       <FormRow>
         <TelephoneElement

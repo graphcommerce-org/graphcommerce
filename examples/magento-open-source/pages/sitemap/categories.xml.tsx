@@ -1,4 +1,5 @@
 import { getCategoryStaticPaths } from '@graphcommerce/magento-category'
+import { productListLink } from '@graphcommerce/magento-product'
 import {
   excludeSitemap,
   getServerSidePropsSitemap,
@@ -8,16 +9,19 @@ import {
 import type { GetServerSideProps } from 'next'
 import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-const excludes = []
-const additionalPaths = []
+const excludes: string[] = []
+const additionalPaths: string[] = []
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { locale } = context
   if (!locale) throw Error('Locale not found')
 
-  const categoryPaths = await getCategoryStaticPaths(graphqlSsrClient(context), locale, {
-    limit: false,
-  })
+  const client = graphqlSsrClient(context)
+  const categoryRoutes = await getCategoryStaticPaths(client, locale, { limit: false })
+
+  const categoryPaths = categoryRoutes
+    .map(staticPathsToString)
+    .map((url) => productListLink({ url, filters: {}, sort: {} }).slice(1))
 
   const paths = [...categoryPaths, ...additionalPaths]
     .map(staticPathsToString)

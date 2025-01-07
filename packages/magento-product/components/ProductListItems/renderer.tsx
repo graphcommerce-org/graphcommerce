@@ -8,6 +8,7 @@ export type ProductListItemRenderer = TypeRenderer<ProductListItemFragment | Ske
 
 /**
  * @deprecated Please use productListRenderer from the example directory instead.
+ * @public
  */
 export const renderer: ProductListItemRenderer = {
   Skeleton: ProductListItem,

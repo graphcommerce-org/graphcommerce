@@ -10,8 +10,8 @@ import type {
   SelectorsProp,
 } from '../ProductCustomizable/productCustomizableSelectors'
 import { productCustomizableSelectors } from '../ProductCustomizable/productCustomizableSelectors'
-import type { ProductPagePriceFragment } from './ProductPagePrice.gql'
 import { getProductTierPrice } from './getProductTierPrice'
+import type { ProductPagePriceFragment } from './ProductPagePrice.gql'
 
 export type UseCustomizableOptionPriceProps = {
   product: ProductPagePriceFragment

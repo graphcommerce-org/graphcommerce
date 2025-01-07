@@ -1,8 +1,9 @@
 import type { BoxProps, ButtonProps, SxProps, Theme } from '@mui/material'
-import { Box, ButtonBase, alpha, lighten } from '@mui/material'
+import { alpha, Box, ButtonBase, lighten } from '@mui/material'
 import React from 'react'
 import { extendableComponent, responsiveVal } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
+import { sxx } from '../utils/sxx'
 
 type Variants = 'outlined' | 'default'
 type Size = 'large' | 'medium' | 'small' | 'responsive'
@@ -17,13 +18,14 @@ function ButtonOrBox(props: ButtonProps<'div'> | BoxProps<'div'>) {
   return isButtonProps(props) ? <ButtonBase component='div' {...props} /> : <Box {...props} />
 }
 
-export type ActionCardProps = {
+export type ActionCardProps<C extends React.ElementType = typeof Box> = {
+  component?: C
   variant?: Variants
   size?: Size
   color?: Color
   layout?: Layout
   sx?: SxProps<Theme>
-  title?: string | React.ReactNode
+  title?: React.ReactNode
   image?: React.ReactNode
   action?: React.ReactNode
   details?: React.ReactNode
@@ -36,6 +38,19 @@ export type ActionCardProps = {
   reset?: React.ReactNode
   disabled?: boolean
   error?: boolean
+  slotProps?: {
+    root?: React.ComponentPropsWithoutRef<C>
+    rootInner?: BoxProps
+    image?: BoxProps
+    title?: BoxProps
+    action?: BoxProps
+    details?: BoxProps
+    price?: BoxProps
+    after?: BoxProps
+    secondaryAction?: BoxProps
+    reset?: BoxProps
+    end?: BoxProps
+  }
 }
 
 const parts = [
@@ -69,8 +84,10 @@ const { withState, selectors } = extendableComponent<StateProps, typeof name, ty
   parts,
 )
 
+/** @public */
 export const actionCardSelectors = selectors
 
+/** @public */
 export const actionCardImageSizes = {
   small: responsiveVal(60, 80),
   medium: responsiveVal(60, 80),
@@ -78,7 +95,8 @@ export const actionCardImageSizes = {
   responsive: responsiveVal(60, 120),
 }
 
-export function ActionCard(props: ActionCardProps) {
+/** @public */
+export function ActionCard<C extends React.ElementType = typeof Box>(props: ActionCardProps<C>) {
   const {
     title,
     image,
@@ -98,6 +116,8 @@ export function ActionCard(props: ActionCardProps) {
     variant = 'outlined',
     layout = 'list',
     error = false,
+    slotProps = {},
+    ...other
   } = props
 
   const classes = withState({
@@ -114,9 +134,9 @@ export function ActionCard(props: ActionCardProps) {
   return (
     <ButtonOrBox
       className={classes.root}
-      onClick={onClick && ((event) => onClick?.(event, value))}
+      onClick={onClick ? (event) => onClick(event, value) : undefined}
       disabled={disabled}
-      sx={[
+      sx={sxx(
         (theme) => ({
           ...breakpointVal(
             'borderRadius',
@@ -147,18 +167,8 @@ export function ActionCard(props: ActionCardProps) {
             display: { xs: 'flex', md: 'block', lg: 'block' },
             [theme.breakpoints.down('md')]: { typography: 'body2' },
           },
-
           '&.variantDefault': {
             position: 'relative',
-            // '&::after': {
-            //   content: '""',
-            //   position: 'absolute',
-            //   width: '100%',
-            //   left: 0,
-            //   bottom: '-1px',
-            //   borderBottom: `1px solid ${theme.palette.divider}`,
-            //   display: 'block',
-            // },
             '&.selected': {
               backgroundColor:
                 theme.palette.mode === 'light'
@@ -166,42 +176,13 @@ export function ActionCard(props: ActionCardProps) {
                   : lighten(theme.palette.background.default, theme.palette.action.hoverOpacity),
             },
             '&.error': {
-              backgroundColor: `${alpha(
-                theme.palette.error.main,
-                theme.palette.action.hoverOpacity,
-              )}`,
+              backgroundColor: alpha(theme.palette.error.main, theme.palette.action.hoverOpacity),
             },
-
-            // '&.sizeSmall': {
-            //   mt: { xs: '2px', sm: '3px', md: '5px' },
-            //   mb: { xs: '3px', sm: '4px', md: '6px' },
-            //   '&::after': {
-            //     mb: { xs: '-2px', sm: '-3px', md: '-5px' },
-            //   },
-            // },
-            // '&.sizeMedium': {
-            //   mt: { xs: '4px', sm: '5px', md: '6px' },
-            //   mb: { xs: '5px', sm: '6px', md: '7px' },
-            //   '&::after': {
-            //     mb: { xs: '-4px', sm: '-5px', md: '-6px' },
-            //   },
-            // },
-            // '&.sizeLarge': {
-            //   mt: { xs: '5px', sm: '7px', md: '8px' },
-            //   mb: { xs: '6px', sm: '8px', md: '9px' },
-            //   '&::after': {
-            //     mb: { xs: '-5px', sm: '-7px', md: '-8px' },
-            //   },
-            // },
-            // '&.sizeResponsive': {
-            //   mt: responsiveVal(2, 8),
-            //   mb: responsiveVal(3, 9),
-            //   '&::after': {
-            //     mb: responsiveVal(-2, -8),
-            //   },
-            // },
+            '&:focus': {
+              outline: 'none',
+              boxShadow: `0 0 0 4px ${alpha(theme.palette[color].main, theme.palette.action.focusOpacity)}`,
+            },
           },
-
           '&.variantOutlined': {
             backgroundColor: theme.palette.background.paper,
             boxShadow: `inset 0 0 0 1px ${theme.palette.divider}`,
@@ -239,7 +220,6 @@ export function ActionCard(props: ActionCardProps) {
                 ),
               },
             },
-
             '&.selected': {
               borderColor: 'transparent',
               boxShadow: `inset 0 0 0 2px ${theme.palette[color].main}`,
@@ -257,7 +237,6 @@ export function ActionCard(props: ActionCardProps) {
                 theme.palette.action.hoverOpacity,
               )}`,
             },
-
             '&.error': {
               boxShadow: `inset 0 0 0 2px ${theme.palette.error.main}`,
             },
@@ -274,19 +253,26 @@ export function ActionCard(props: ActionCardProps) {
             color: theme.palette.action.disabled,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+        slotProps.root?.sx,
+      )}
+      {...slotProps.root}
+      {...other}
     >
       <Box
         className={classes.rootInner}
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          width: '100%',
-          justifyContent: 'space-between',
-          alignContent: 'stretch',
-          alignItems: 'center',
-        }}
+        sx={sxx(
+          {
+            display: 'flex',
+            flexDirection: 'row',
+            width: '100%',
+            justifyContent: 'space-between',
+            alignContent: 'stretch',
+            alignItems: 'center',
+          },
+          slotProps.rootInner?.sx,
+        )}
+        {...slotProps.rootInner}
       >
         <Box
           sx={{
@@ -299,12 +285,12 @@ export function ActionCard(props: ActionCardProps) {
           {image && (
             <Box
               className={classes.image}
-              sx={{ display: 'flex', pr: '15px', alignSelf: 'center' }}
+              sx={sxx({ display: 'flex', pr: '15px', alignSelf: 'center' }, slotProps.image?.sx)}
+              {...slotProps.image}
             >
               {image}
             </Box>
           )}
-
           <Box
             sx={{
               display: 'flex',
@@ -315,62 +301,90 @@ export function ActionCard(props: ActionCardProps) {
             {title && (
               <Box
                 className={classes.title}
-                sx={{
-                  '&.sizeSmall': { typography: 'body1' },
-                  '&.sizeMedium': { typography: 'body1' },
-                  '&.sizeLarge': { typography: 'h6' },
-                  '&.sizeResponsive': { typography: { xs: 'body1', md: 'body1', lg: 'body1' } },
-                }}
+                sx={sxx(
+                  {
+                    '&.sizeSmall': { typography: 'body1' },
+                    '&.sizeMedium': { typography: 'body1' },
+                    '&.sizeLarge': { typography: 'h6' },
+                    '&.sizeResponsive': { typography: { xs: 'body1', md: 'body1', lg: 'body1' } },
+                  },
+                  slotProps.title?.sx,
+                )}
+                {...slotProps.title}
               >
                 {title}
               </Box>
             )}
-
             {details && (
-              <Box className={classes.details} sx={{ color: 'text.secondary' }}>
+              <Box
+                className={classes.details}
+                sx={sxx({ color: 'text.secondary' }, slotProps.details?.sx)}
+                {...slotProps.details}
+              >
                 {details}
               </Box>
             )}
-
-            {secondaryAction && <Box className={classes.secondaryAction}>{secondaryAction}</Box>}
+            {secondaryAction && (
+              <Box
+                className={classes.secondaryAction}
+                sx={sxx({}, slotProps.secondaryAction?.sx)}
+                {...slotProps.secondaryAction}
+              >
+                {secondaryAction}
+              </Box>
+            )}
           </Box>
         </Box>
-
         <Box
           className={classes.end}
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            alignItems: 'flex-end',
-          }}
+          sx={sxx(
+            {
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              alignItems: 'flex-end',
+            },
+            slotProps.end?.sx,
+          )}
+          {...slotProps.end}
         >
           {action && (
             <Box
               className={classes.action}
-              sx={(theme) => ({ marginBottom: '5px', color: theme.palette[color].main })}
+              sx={sxx(
+                (theme) => ({ marginBottom: '5px', color: theme.palette[color].main }),
+                slotProps.action?.sx,
+              )}
+              {...slotProps.action}
             >
               {!selected ? action : reset}
             </Box>
           )}
-
           {price && !disabled && (
             <Box
               className={classes.price}
-              sx={{
-                textAlign: 'right',
-                typography: 'body1',
-                '&.sizeMedium': { typography: 'subtitle1' },
-                '&.sizeLarge': { typography: 'h6' },
-                '&.sizeResponsive': { typography: { xs: 'body1', md: 'subtitle1', lg: 'h6' } },
-              }}
+              sx={sxx(
+                {
+                  textAlign: 'right',
+                  typography: 'body1',
+                  '&.sizeMedium': { typography: 'subtitle1' },
+                  '&.sizeLarge': { typography: 'h6' },
+                  '&.sizeResponsive': { typography: { xs: 'body1', md: 'subtitle1', lg: 'h6' } },
+                },
+                slotProps.price?.sx,
+              )}
+              {...slotProps.price}
             >
               {price}
             </Box>
           )}
         </Box>
       </Box>
-      {after && <Box className={classes.after}>{after}</Box>}
+      {after && (
+        <Box className={classes.after} sx={sxx({}, slotProps.after?.sx)} {...slotProps.after}>
+          {after}
+        </Box>
+      )}
     </ButtonOrBox>
   )
 }

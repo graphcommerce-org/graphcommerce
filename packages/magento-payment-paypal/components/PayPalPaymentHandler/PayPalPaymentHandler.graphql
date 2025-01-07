@@ -5,6 +5,11 @@ mutation PayPalPaymentHandler($cartId: String!, $paymentMethod: PaymentMethodInp
     }
   }
   placeOrder(input: { cart_id: $cartId }) {
+    errors {
+      code
+      message
+    }
+
     order {
       order_number
     }

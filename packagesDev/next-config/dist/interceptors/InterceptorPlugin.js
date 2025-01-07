@@ -47,6 +47,7 @@ class InterceptorPlugin {
         generating = false;
         return generatedInterceptors;
     };
+    /** @public */
     apply(compiler) {
         const logger = compiler.getInfrastructureLogger('InterceptorPlugin');
         // After the compilation has succeeded we watch all possible plugin locations.

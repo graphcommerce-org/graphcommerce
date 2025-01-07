@@ -1,17 +1,18 @@
 import { Box } from '@mui/material'
 import { forwardRef } from 'react'
-import type { UseNumberFormatProps } from './useNumberFormat'
-import { useNumberFormat } from './useNumberFormat'
+import type { UseIntlNumberFormatOptions } from './useIntlNumberFormat'
+import { useIntlNumberFormat } from './useIntlNumberFormat'
 
 export type NumberFormatValue = number | bigint | Intl.StringNumericLiteral
 
-export type NumberFormatProps = UseNumberFormatProps & {
+export type NumberFormatProps = UseIntlNumberFormatOptions & {
   value: NumberFormatValue
 }
 
+/** @public */
 export const NumberFormat = forwardRef<HTMLSpanElement, NumberFormatProps>((props, ref) => {
   const { value, ...options } = props
-  const formatter = useNumberFormat(options)
+  const formatter = useIntlNumberFormat(options)
 
   return (
     <Box component='span' suppressHydrationWarning ref={ref}>

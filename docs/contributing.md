@@ -57,7 +57,7 @@ File structure of GraphCommerce
 ### Formatting and Linting
 
 GraphCommerce uses ESLint for linting and Prettier for code formatting. Install
-the [recommended VS Code extensions](../docs/getting-started/vscode.md)
+the [recommended VS Code extensions](../docs/framework/vscode.md)
 
 <!--
 ### Contributor License Agreement
@@ -106,7 +106,7 @@ need to sign the CLA once.
   because every change made here must be applied by every developer upgrading a
   GraphCommerce project
   - Extract code changes made and move them into packages where possible.
-  - Stylistic only changes usually aren't prefered, less changes often is
+  - Stylistic only changes usually aren't preferred, less changes often is
     better.
 
 ## Next steps

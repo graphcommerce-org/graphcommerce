@@ -6,6 +6,7 @@ import {
 import type { GraphCommerceConfig } from '../../../src/generated/config'
 import { GraphCommerceConfigSchema } from '../../../src/generated/config'
 import { removeColor } from './rewriteLegancyEnv'
+
 const env = {
   GC_ADVANCED_FILTERS: '0',
   GC_DEMO_MODE: '1',
@@ -101,7 +102,7 @@ it('converts an env schema to a config schema', () => {
      + GC_STOREFRONT => storefront
      ~ GC_STOREFRONT_0_LOCALE => storefront.[0].locale"
   `)
-    // Validate the resulting configura
+  // Validate the resulting configura
   const parsed = GraphCommerceConfigSchema().safeParse(mergedConfig)
   expect(parsed.success).toBe(true)
   if (parsed.success) {

@@ -9,6 +9,10 @@ export type AccountLatestOrderProps = AccountOrdersFragment & {
   loading: boolean
 }
 
+/**
+ * @deprecated
+ * @public
+ */
 export function AccountLatestOrder(props: AccountLatestOrderProps) {
   const { orders, loading } = props
   const latestOrderCard = orders?.items?.[(orders?.items?.length ?? 1) - 1]

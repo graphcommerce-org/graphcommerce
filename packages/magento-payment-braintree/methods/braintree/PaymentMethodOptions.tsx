@@ -28,6 +28,7 @@ const Field = React.forwardRef<any, { ownerState: unknown; as: string }>((props,
   return <Box {...rest} ref={ref} sx={{ height: 54, width: '100%' }} />
 })
 
+/** @public */
 export function BraintreeField<T extends FieldValues>(
   props: {
     hostedFields: HostedFields | undefined
@@ -259,7 +260,10 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
 
   const loading = !hostedFields
 
-  /** This is the form that the user can fill in. In this case we don't wat the user to fill in anything. */
+  /**
+   * This is the form that the user can fill in. In this case we don't wat the user to fill in
+   * anything.
+   */
   return (
     <FormProvider {...form}>
       <form onSubmit={submit}>

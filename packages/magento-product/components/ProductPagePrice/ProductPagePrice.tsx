@@ -1,11 +1,11 @@
 import { useWatch } from '@graphcommerce/ecommerce-ui'
-import { InContextMask } from '@graphcommerce/graphql'
+import { PrivateQueryMask } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
 import { extendableComponent } from '@graphcommerce/next-ui'
 import type { AddToCartItemSelector } from '../AddProductsToCart'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
-import type { ProductPagePriceFragment } from './ProductPagePrice.gql'
 import { getProductTierPrice } from './getProductTierPrice'
+import type { ProductPagePriceFragment } from './ProductPagePrice.gql'
 import type { UseCustomizableOptionPriceProps } from './useCustomizableOptionPrice'
 import { useCustomizableOptionPrice } from './useCustomizableOptionPrice'
 
@@ -31,22 +31,22 @@ export function ProductPagePrice(props: ProductPagePriceProps) {
   return (
     <>
       {regularPrice.value !== price.value && (
-        <InContextMask
+        <PrivateQueryMask
           component='span'
           className={classes.discountPrice}
           skeleton={{ variant: 'text', sx: { width: '3em', transform: 'none' } }}
           sx={[{ textDecoration: 'line-through', color: 'text.disabled', marginRight: '8px' }]}
         >
           <Money {...regularPrice} />
-        </InContextMask>
+        </PrivateQueryMask>
       )}
-      <InContextMask
+      <PrivateQueryMask
         component='span'
         skeleton={{ variant: 'text', sx: { width: '3em', transform: 'none' } }}
         className={classes.finalPrice}
       >
         <Money {...price} value={priceValue} />
-      </InContextMask>
+      </PrivateQueryMask>
     </>
   )
 }

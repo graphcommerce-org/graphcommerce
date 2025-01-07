@@ -1,9 +1,9 @@
 import {
+  extendableComponent,
   FullPageMessage,
+  iconHome,
   IconSvg,
   SectionContainer,
-  extendableComponent,
-  iconHome,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'

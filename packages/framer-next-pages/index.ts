@@ -5,7 +5,6 @@ export type { PageOptions, PageComponent } from './types'
 
 export * from './hooks/useGo'
 export * from './hooks/usePageContext'
-export * from './hooks/usePageRouter'
 export * from './hooks/useHistoryLink'
 export * from './hooks/usePrevUp'
 export * from './hooks/useScrollOffsetY'

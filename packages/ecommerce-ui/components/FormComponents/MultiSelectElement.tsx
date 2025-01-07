@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import { IconSvg, iconClose } from '@graphcommerce/next-ui'
+import { iconClose, IconSvg } from '@graphcommerce/next-ui'
 import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
@@ -35,6 +35,7 @@ export type MultiSelectElementProps<T extends FieldValues> = Omit<SelectProps, '
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8
 
+/** @public */
 export function MultiSelectElement<TFieldValues extends FieldValues>(
   props: MultiSelectElementProps<TFieldValues>,
 ): JSX.Element {

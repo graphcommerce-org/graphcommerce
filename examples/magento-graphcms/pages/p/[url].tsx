@@ -1,9 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   cacheFirst,
-  InContextMaskProvider,
+  PrivateQueryMaskProvider,
   mergeDeep,
-  useInContextQuery,
+  usePrivateQuery,
 } from '@graphcommerce/graphql'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import {
@@ -46,6 +46,7 @@ import { AddProductsToCartView } from '../../components/ProductView/AddProductsT
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { Container } from '@graphcommerce/next-ui'
 
 export type Props = HygraphPagesQuery &
   UspsQuery &
@@ -59,7 +60,7 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 function ProductPage(props: Props) {
   const { usps, sidebarUsps, pages, defaultValues, urlKey } = props
 
-  const scopedQuery = useInContextQuery(
+  const scopedQuery = usePrivateQuery(
     ProductPage2Document,
     { variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 } },
     props,
@@ -74,7 +75,7 @@ function ProductPage(props: Props) {
   if (!product?.sku || !product.url_key) return null
 
   return (
-    <InContextMaskProvider mask={scopedQuery.mask}>
+    <PrivateQueryMaskProvider mask={scopedQuery.mask}>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
         <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
           <LayoutTitle size='small' component='span'>
@@ -95,17 +96,20 @@ function ProductPage(props: Props) {
         <ProductPageMeta product={product} />
 
         {import.meta.graphCommerce.breadcrumbs && (
-          <ProductPageBreadcrumbs
-            product={product}
-            sx={(theme) => ({
-              py: `calc(${theme.spacings.xxs} / 2)`,
-              pl: theme.page.horizontal,
-              background: theme.palette.background.paper,
-              [theme.breakpoints.down('md')]: {
-                '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-              },
-            })}
-          />
+          <Container
+            maxWidth={false}
+            sx={(theme) => ({ py: `calc(${theme.spacings.xxs} / 2)`, bgcolor: 'background.paper' })}
+            breakoutRight
+          >
+            <ProductPageBreadcrumbs
+              product={product}
+              sx={(theme) => ({
+                [theme.breakpoints.down('md')]: {
+                  '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+                },
+              })}
+            />
+          </Container>
         )}
 
         <ProductPageGallery
@@ -174,7 +178,7 @@ function ProductPage(props: Props) {
         productListRenderer={productListRenderer}
         sx={(theme) => ({ mb: theme.spacings.xxl })}
       />
-    </InContextMaskProvider>
+    </PrivateQueryMaskProvider>
   )
 }
 

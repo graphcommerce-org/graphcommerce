@@ -1,28 +1,22 @@
 # @graphcommerce/demo-magento-graphcommerce
 
-## 9.0.0-canary.109
+## 9.0.4-canary.3
 
-## 9.0.0-canary.108
+## 9.0.4-canary.2
 
-## 9.0.0-canary.107
+## 9.0.4-canary.1
 
-## 9.0.0-canary.106
+### Patch Changes
 
-## 9.0.0-canary.105
+- [#2470](https://github.com/graphcommerce-org/graphcommerce/pull/2470) [`f5565b4`](https://github.com/graphcommerce-org/graphcommerce/commit/f5565b47d02c057d888fad94c1430d4e783c5e05) - Moved all test routes files to the demo package so they are out of the example directory. ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.104
+## 9.0.4-canary.0
 
-## 9.0.0-canary.103
-
-## 9.0.0-canary.60
+## 9.0.0
 
 ### Patch Changes
 
 - [#2331](https://github.com/graphcommerce-org/graphcommerce/pull/2331) [`702bfc9`](https://github.com/graphcommerce-org/graphcommerce/commit/702bfc93566c9745546988e57988431d5d4d8cb0) - Moved plugins to new format ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.45
-
-### Patch Changes
 
 - [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`3b648fd`](https://github.com/graphcommerce-org/graphcommerce/commit/3b648fd310e43bf7a03c3e446e97426d2f5bbfb2) - Remove large demo item, as it doesn't properly work and isn't as pretty as it can be ([@paales](https://github.com/paales))
 

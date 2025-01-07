@@ -1,18 +1,12 @@
 # @graphcommerce/changeset-changelog
 
-## 9.0.0-canary.109
+## 9.0.4-canary.3
 
-## 9.0.0-canary.108
+## 9.0.4-canary.2
 
-## 9.0.0-canary.107
+## 9.0.4-canary.1
 
-## 9.0.0-canary.106
-
-## 9.0.0-canary.105
-
-## 9.0.0-canary.104
-
-## 9.0.0-canary.103
+## 9.0.4-canary.0
 
 ## 6.0.0
 

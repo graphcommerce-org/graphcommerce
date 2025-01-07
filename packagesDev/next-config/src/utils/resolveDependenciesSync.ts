@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import type { PackageJson } from 'type-fest'
 import { PackagesSort } from './PackagesSort'
-import { g, sig } from './sig'
+import { sig } from './sig'
 
 type PackageNames = Map<string, string>
 type DependencyStructure = Record<string, { dirName: string; dependencies: string[] }>

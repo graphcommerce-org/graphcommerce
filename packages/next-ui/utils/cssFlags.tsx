@@ -35,7 +35,7 @@ export function getCssFlag(flagName: string) {
  * Example:
  *
  * ```tsx
- * <Box sx={{ [cssFlagSelector('dark')]: { color: 'white' } }} />
+ * ;<Box sx={{ [cssFlagSelector('dark')]: { color: 'white' } }} />
  * ```
  */
 export const cssFlag = <T extends string>(flagName: T) => `html[data-${flagName}] &` as const
@@ -46,7 +46,7 @@ export const cssFlag = <T extends string>(flagName: T) => `html[data-${flagName}
  * Example:
  *
  * ```tsx
- * <Box sx={{ [cssNotFlagSelector('dark')]: { color: 'black' } }} />
+ * ;<Box sx={{ [cssNotFlagSelector('dark')]: { color: 'black' } }} />
  * ```
  */
 export const cssNotFlag = <T extends string>(flagName: T) =>

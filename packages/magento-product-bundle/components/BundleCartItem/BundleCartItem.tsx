@@ -3,6 +3,10 @@ import { Money } from '@graphcommerce/magento-store'
 import { Typography } from '@mui/material'
 import type { BundleProductCartItemOptionsProps } from '../BundleProductCartItemOptions/BundleProductCartItemOptions'
 
+/**
+ * @deprecated
+ * @public
+ */
 export function BundleCartItem(props: BundleProductCartItemOptionsProps) {
   const { bundle_options } = props
   return (

@@ -7,7 +7,7 @@ import {
   StoreSwitcherListDocument,
 } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { LayoutOverlayHeader, LayoutTitle, iconLanguage } from '@graphcommerce/next-ui'
+import { iconLanguage, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'

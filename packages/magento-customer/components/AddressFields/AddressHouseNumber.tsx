@@ -1,5 +1,5 @@
 import type { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
-import { TextFieldElement, houseNumberPattern } from '@graphcommerce/ecommerce-ui'
+import { houseNumberPattern, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import type { AddressFieldsOptions } from './useAddressFieldsForm'

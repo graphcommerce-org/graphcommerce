@@ -7,7 +7,7 @@ import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
 export type AddToCartQuantityProps = Omit<
   NumberFieldElementProps<AddProductsToCartMutationVariables>,
-  'error' | 'required' | 'inputProps' | 'helperText' | 'name' | 'control'
+  'error' | 'required' | 'inputProps' | 'helperText' | 'name' | 'control' | 'rules'
 > &
   AddToCartItemSelector
 

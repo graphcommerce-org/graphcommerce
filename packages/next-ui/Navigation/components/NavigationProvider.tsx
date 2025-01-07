@@ -15,9 +15,7 @@ import { NavigationContext, NavigationNodeType } from '../hooks/useNavigation'
 export type NavigationProviderBaseProps = {
   items: (NavigationNode | React.ReactElement)[]
   hideRootOnNavigate?: boolean
-  /**
-   * @deprecated No longer used
-   */
+  /** @deprecated No longer used */
   closeAfterNavigate?: boolean
   children?: React.ReactNode
   animationDuration?: number

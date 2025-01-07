@@ -17,22 +17,26 @@ const prettier_config_pwa_1 = __importDefault(require("@graphcommerce/prettier-c
 const prettier_1 = __importDefault(require("prettier"));
 const RenameVisitor_1 = require("./RenameVisitor");
 const swc_1 = require("./swc");
+/** @public */
 function isPluginBaseConfig(plugin) {
     return (typeof plugin.type === 'string' &&
         typeof plugin.sourceModule === 'string' &&
         typeof plugin.enabled === 'boolean' &&
         typeof plugin.targetExport === 'string');
 }
+/** @public */
 function isReactPluginConfig(plugin) {
     if (!isPluginBaseConfig(plugin))
         return false;
     return plugin.type === 'component';
 }
+/** @public */
 function isMethodPluginConfig(plugin) {
     if (!isPluginBaseConfig(plugin))
         return false;
     return plugin.type === 'function';
 }
+/** @public */
 function isReplacePluginConfig(plugin) {
     if (!isPluginBaseConfig(plugin))
         return false;

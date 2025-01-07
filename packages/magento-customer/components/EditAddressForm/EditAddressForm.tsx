@@ -10,6 +10,7 @@ import type { AccountAddressFragment } from '../AccountAddress/AccountAddress.gq
 import { AddressFields } from '../AddressFields/AddressFields'
 import { CompanyFields } from '../CompanyFields'
 import { NameFields } from '../NameFields/NameFields'
+import type { UpdateCustomerAddressMutationVariables } from './UpdateCustomerAddress.gql'
 import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
 
 export type EditAddressFormProps = {
@@ -79,9 +80,12 @@ export function EditAddressForm(props: EditAddressFormProps) {
   return (
     <>
       <Form onSubmit={submitHandler} noValidate sx={sx}>
-        <CompanyFields form={form} />
+        <CompanyFields<UpdateCustomerAddressMutationVariables> form={form} />
         <NameFields form={form} prefix />
-        <AddressFields form={form} name={{ regionId: 'region.region_id' }} />
+        <AddressFields<UpdateCustomerAddressMutationVariables>
+          form={form}
+          name={{ regionId: 'region.region_id' }}
+        />
         <FormRow>
           <TelephoneElement
             variant='outlined'

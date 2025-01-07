@@ -1,5 +1,5 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { ListFormat, extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent, ListFormat } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import type { ProductSpecsFragment } from './ProductSpecs.gql'
 import { ProductSpecsTypesDocument } from './ProductSpecsTypes.gql'

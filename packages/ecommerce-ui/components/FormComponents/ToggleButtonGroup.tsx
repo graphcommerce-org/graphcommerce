@@ -24,6 +24,7 @@ export type ToggleButtonGroupElementProps<T extends FieldValues> = ToggleButtonG
   helperText?: string
 } & Omit<ControllerProps<T>, 'render'>
 
+/** @public */
 export function ToggleButtonGroupElement<TFieldValues extends FieldValues = FieldValues>({
   name,
   control,

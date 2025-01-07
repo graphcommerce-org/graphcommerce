@@ -9,15 +9,15 @@ import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
 import { useEffect } from 'react'
 import type { PaymentOptionsProps } from '../Api/PaymentMethod'
-import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 import { useCartLock } from '../hooks'
+import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 
 function PaymentMethodActionCard(
   props: ActionCardItemRenderProps<PaymentOptionsProps> & {
     sx?: SxProps<Theme>
   },
 ) {
-  const { onReset, code, step, child, Container, sx = [] } = props
+  const { onReset, code, step, child, Container, sx = [], ...rest } = props
   const { selectedMethod, selectedModule, modules } = usePaymentMethodContext()
 
   const selectedAndOptions =
@@ -29,6 +29,8 @@ function PaymentMethodActionCard(
 
   return (
     <Card
+      code={code}
+      child={child}
       sx={[
         {
           '& .ActionCard-title': { typography: 'h6' },
@@ -52,7 +54,7 @@ function PaymentMethodActionCard(
           <selectedModule.PaymentOptions {...selectedMethod} step={step} Container={Container} />
         )
       }
-      {...props}
+      {...rest}
     />
   )
 }

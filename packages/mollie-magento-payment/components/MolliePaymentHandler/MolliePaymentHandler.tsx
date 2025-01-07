@@ -32,7 +32,7 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
   const { called, error, data } = handleResult
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises, @typescript-eslint/no-extra-semi
     ;(async () => {
       if (!isActive) return
       if (lockState.locked && lockState.justLocked) return
@@ -63,7 +63,7 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
         router.replace('/checkout/payment')
       }
     })()
-  }, [called, error, handle, isActive, lockState, onSuccess, recoverCart, router])
+  }, [assignCartId, called, error, handle, isActive, lockState, onSuccess, recoverCart, router])
 
   const paymentStatus = data?.mollieProcessTransaction?.paymentStatus
   if (paymentStatus && !successStatusses.includes(paymentStatus)) {

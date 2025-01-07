@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { Image } from '@graphcommerce/image'
 import React from 'react'
 import image from '../components/image.jpg'

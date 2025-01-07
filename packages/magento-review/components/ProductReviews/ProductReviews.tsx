@@ -1,10 +1,10 @@
 import { useQuery } from '@graphcommerce/graphql'
 import {
   DateTimeFormat,
-  Pagination,
-  StarRatingField,
   extendableComponent,
+  Pagination,
   responsiveVal,
+  StarRatingField,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'

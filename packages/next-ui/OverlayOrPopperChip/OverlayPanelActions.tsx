@@ -1,12 +1,12 @@
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Button, Fab, Typography } from '@mui/material'
+import { iconClose } from '../icons'
 import { IconSvg, useIconSvgSize } from '../IconSvg'
 import { LayoutOverlayHeader } from '../LayoutOverlay'
 import { OverlayStickyBottom } from '../Overlay/components/OverlayStickyBottom'
 import { extendableComponent } from '../Styles'
 import { useFabSize } from '../Theme'
-import { iconClose } from '../icons'
 import type { PanelActionsProps } from './types'
 
 const { classes } = extendableComponent(

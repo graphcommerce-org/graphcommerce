@@ -1,9 +1,9 @@
 import {
-  type PreviewModeToolbarProps,
-  SelectElement,
   previewModeDefaults,
+  SelectElement,
   usePreviewModeForm,
   useWatch,
+  type PreviewModeToolbarProps,
 } from '@graphcommerce/ecommerce-ui'
 import type { TypedDocumentNode } from '@graphcommerce/graphql'
 import { gql, useQuery } from '@graphcommerce/graphql'

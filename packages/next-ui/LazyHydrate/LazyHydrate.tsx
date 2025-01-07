@@ -1,29 +1,32 @@
+import { useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 import type { BoxProps } from '@mui/material'
 import { Box } from '@mui/material'
 import type { CSSProperties } from 'react'
-import React, { startTransition, useEffect, useLayoutEffect, useRef, useState } from 'react'
-
-// Make sure the server doesn't choke on the useLayoutEffect
-export const useLayoutEffect2 = typeof window !== 'undefined' ? useLayoutEffect : useEffect
+import React, { startTransition, useRef, useState } from 'react'
 
 export type LazyHydrateProps = BoxProps<'div'> & {
   /**
-   * The content is always rendered on the server and on the client it uses the server rendered HTML until it is hydrated.
+   * The content is always rendered on the server and on the client it uses the server rendered HTML
+   * until it is hydrated.
    */
   children: React.ReactNode
 
   /**
-   * When a boolean is provided, the IntersectionObserver is disabled and hydrates the component when the value becomes true.
+   * When a boolean is provided, the IntersectionObserver is disabled and hydrates the component
+   * when the value becomes true.
    *
    * For example:
+   *
    * - Disable the hydration functionality completely: `<LazyHydrate hydrated={true}>`
-   * - Hydrate the component on some state `<LazyHydrate hydrated={someState}>` where someState initially is false and later becomes true.
+   * - Hydrate the component on some state `<LazyHydrate hydrated={someState}>` where someState
+   *   initially is false and later becomes true.
    */
   hydrated?: boolean
 
   /**
    * By default LazyHydrate does not defer the rendering of components when they are rendered client
-   * side, because using an IntersectionObserver on an element with no height, will cause all siblings to render at once.
+   * side, because using an IntersectionObserver on an element with no height, will cause all
+   * siblings to render at once.
    *
    * By proving a height, we can use the IntersectionObserver on the client as well.
    */
@@ -31,9 +34,8 @@ export type LazyHydrateProps = BoxProps<'div'> & {
 }
 
 /**
- * LazyHydrate can defer the hydration of a component until it becomes visible.
- * OR manually by using the hydrated prop.
- * This can be a way to improve the TBT of a page.
+ * LazyHydrate can defer the hydration of a component until it becomes visible. OR manually by using
+ * the hydrated prop. This can be a way to improve the TBT of a page.
  */
 export function LazyHydrate(props: LazyHydrateProps) {
   const { hydrated, children, height, ...elementProps } = props
@@ -42,7 +44,7 @@ export function LazyHydrate(props: LazyHydrateProps) {
   const [isHydrated, setIsHydrated] = useState(hydrated || false)
   if (!isHydrated && hydrated) setIsHydrated(true)
 
-  useLayoutEffect2(() => {
+  useIsomorphicLayoutEffect(() => {
     // If we are manually hydrating, we watch that value and do not use the IntersectionObserver
     if (isHydrated || !rootRef.current) return undefined
 
@@ -66,7 +68,7 @@ export function LazyHydrate(props: LazyHydrateProps) {
     observer.observe(rootRef.current)
 
     return () => observer.disconnect()
-  }, [hydrated, isHydrated])
+  }, [height, hydrated, isHydrated])
 
   if (isHydrated) {
     return <Box {...elementProps}>{children}</Box>

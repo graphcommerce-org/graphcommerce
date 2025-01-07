@@ -1,5 +1,5 @@
 import { Money } from '@graphcommerce/magento-store'
-import { DateTimeFormat, NextLink, extendableComponent } from '@graphcommerce/next-ui'
+import { DateTimeFormat, extendableComponent, NextLink } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, ListItemButton, Skeleton, styled } from '@mui/material'
 import type { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'

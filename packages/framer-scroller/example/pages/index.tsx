@@ -5,7 +5,7 @@ import {
   ScrollerDots,
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
-import { Box, Typography, styled } from '@mui/material'
+import { Box, styled, Typography } from '@mui/material'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'
 

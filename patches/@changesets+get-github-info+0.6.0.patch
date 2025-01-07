@@ -1,0 +1,13 @@
+diff --git a/node_modules/@changesets/get-github-info/dist/changesets-get-github-info.cjs.js b/node_modules/@changesets/get-github-info/dist/changesets-get-github-info.cjs.js
+index a74df59..d8af2dc 100644
+--- a/node_modules/@changesets/get-github-info/dist/changesets-get-github-info.cjs.js
++++ b/node_modules/@changesets/get-github-info/dist/changesets-get-github-info.cjs.js
+@@ -211,7 +211,7 @@ const GHDataLoader = new DataLoader__default["default"](async requests => {
+ 
+     return cleanedData[repo][data.kind][data.kind === "pull" ? data.pull : data.commit];
+   });
+-});
++}, { maxBatchSize: 100 });
+ async function getInfo(request) {
+   if (!request.commit) {
+     throw new Error("Please pass a commit SHA to getInfo");

@@ -1,4 +1,4 @@
-import { InContextMask } from '@graphcommerce/graphql'
+import { PrivateQueryMask } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
 import { extendableComponent } from '@graphcommerce/next-ui'
 import type { TypographyProps } from '@mui/material'
@@ -21,7 +21,7 @@ export function ProductListPrice(props: ProductListPriceProps) {
   return (
     <Typography component='div' variant='body1' className={classes.root} sx={sx}>
       {regular_price.value !== final_price.value && (
-        <InContextMask
+        <PrivateQueryMask
           component='span'
           sx={{
             textDecoration: 'line-through',
@@ -32,11 +32,15 @@ export function ProductListPrice(props: ProductListPriceProps) {
           className={classes.discountPrice}
         >
           <Money {...regular_price} />
-        </InContextMask>
+        </PrivateQueryMask>
       )}
-      <InContextMask className={classes.finalPrice} component='span' skeleton={{ width: '3.5em' }}>
+      <PrivateQueryMask
+        className={classes.finalPrice}
+        component='span'
+        skeleton={{ width: '3.5em' }}
+      >
         <Money {...final_price} />
-      </InContextMask>
+      </PrivateQueryMask>
     </Typography>
   )
 }

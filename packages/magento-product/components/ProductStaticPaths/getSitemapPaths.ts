@@ -5,6 +5,7 @@ import { ProductStaticPathsDocument } from './ProductStaticPaths.gql'
 
 /**
  * @deprecated Not used anymore, use `getProductStaticPaths` instead.
+ * @public
  */
 export async function getSitemapPaths(
   client: ApolloClient<NormalizedCacheObject>,

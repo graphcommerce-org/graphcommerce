@@ -1,5 +1,5 @@
 /* eslint-disable spaced-comment */
-import { FlagAvatar, NextLink, extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent, FlagAvatar, NextLink } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Collapse, List, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material'
 import React from 'react'

@@ -11,11 +11,11 @@ import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   FullPageMessage,
+  iconAddresses,
   IconHeader,
   LayoutOverlayHeader,
   LayoutTitle,
   SectionContainer,
-  iconAddresses,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'

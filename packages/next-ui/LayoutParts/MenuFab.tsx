@@ -4,12 +4,12 @@ import { Box, Divider, Fab, ListItem, Menu, styled } from '@mui/material'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
+import { iconClose, iconMenu } from '../icons'
 import { IconSvg } from '../IconSvg'
 import { useScrollY } from '../Layout/hooks/useScrollY'
 import { extendableComponent } from '../Styles/extendableComponent'
 import { responsiveVal } from '../Styles/responsiveVal'
 import { useFabSize } from '../Theme'
-import { iconClose, iconMenu } from '../icons'
 import { useFabAnimation } from './useFabAnimation'
 
 const MotionDiv = styled(m.div)({})
@@ -32,6 +32,10 @@ type OwnerState = {
 
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
+/**
+ * @deprecated Will be removed
+ * @public
+ */
 export function MenuFab(props: MenuFabProps) {
   const {
     children,

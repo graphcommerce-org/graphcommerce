@@ -1,5 +1,5 @@
 import { globalFormContextRef } from '@graphcommerce/magento-product'
-import { IconSvg, iconClose } from '@graphcommerce/next-ui'
+import { iconClose, IconSvg } from '@graphcommerce/next-ui'
 import { t } from '@lingui/macro'
 import type {
   ButtonBaseProps,

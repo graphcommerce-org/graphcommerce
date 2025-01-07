@@ -138,7 +138,10 @@ ${duplicateFragmentNames.join('\n')}\n\n`,
   return registry
 }
 
-/** Builds a fragment "resolver" that collects `externalFragments` definitions and `fragmentImportStatements` */
+/**
+ * Builds a fragment "resolver" that collects `externalFragments` definitions and
+ * `fragmentImportStatements`
+ */
 export default function buildFragmentResolver<T>(
   collectorOptions: DocumentImportResolverOptions,
   presetOptions: Types.PresetFnArgs<T>,

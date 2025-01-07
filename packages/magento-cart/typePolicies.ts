@@ -67,11 +67,13 @@ export const migrateCart = (
 
     // We have special handling for the CartFab because it tries to load data only from the cache.
     const cartFab = oldCache.readQuery({ query: CartFabDocument })
-    newCache.writeQuery({
-      query: CartFabDocument,
-      data: cartFab,
-      variables: { cartId },
-      broadcast: true,
-    })
+    if (cartFab) {
+      newCache.writeQuery({
+        query: CartFabDocument,
+        data: cartFab,
+        variables: { cartId },
+        broadcast: true,
+      })
+    }
   }
 }

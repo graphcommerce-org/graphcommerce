@@ -15,6 +15,7 @@ import {
 } from '@graphcommerce/magento-cart-items'
 import { ProductPageGallery, ProductPageName } from '@graphcommerce/magento-product'
 import {
+  Container,
   FullPageMessage,
   GetServerSideProps,
   LayoutOverlay,
@@ -27,7 +28,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { CircularProgress, Container, Typography } from '@mui/material'
+import { CircularProgress, Typography } from '@mui/material'
 import { LayoutNavigationProps, AddProductsToCartView } from '../../../components'
 import { Props, getStaticProps } from '../../p/[url]'
 
@@ -72,7 +73,7 @@ function CartItemEdit(props: Props) {
           </EmptyCart>
         )}
         {cartItem && (
-          <Container>
+          <Container maxWidth='500px'>
             <EditCartItemForm
               key={cartItem.uid}
               href='/cart'
@@ -88,7 +89,6 @@ function CartItemEdit(props: Props) {
                 disableSticky
                 variantMd='oneColumn'
                 sx={(theme) => ({
-                  maxWidth: '500px',
                   mb: 0,
                   '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
                 })}

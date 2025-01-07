@@ -3,6 +3,6 @@
   "include": ["**/*.ts", "**/*.tsx"],
   "extends": "@graphcommerce/typescript-config-pwa/nextjs.json",
   "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ESNext", "WebWorker"],
-  },
+    "lib": ["DOM", "DOM.Iterable", "ESNext", "WebWorker"]
+  }
 }

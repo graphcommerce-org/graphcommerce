@@ -5,6 +5,7 @@ type StyleProps = { nodeLength: boolean }
 
 export type ColumnTwoSpreadProps = StyleProps & ColumnTwoProps
 
+/** @public */
 export function ColumnTwoSpread(props: ColumnTwoSpreadProps) {
   const { nodeLength, sx = [], ...colProps } = props
   return (

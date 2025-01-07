@@ -1,9 +1,8 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+import { writeFileSync } from 'fs'
 import { generate } from '@graphql-codegen/cli'
 import { transformFileSync } from '@swc/core'
 import dotenv from 'dotenv'
-import { writeFileSync } from 'fs'
-import { isMonorepo } from '../../utils/isMonorepo'
+import { findParentPath } from '../../utils/isMonorepo'
 import { resolveDependenciesSync } from '../../utils/resolveDependenciesSync'
 import { resolveDependency } from '../../utils/resolveDependency'
 
@@ -42,7 +41,7 @@ export async function generateConfig() {
           },
         },
       },
-      ...(isMonorepo() && {
+      ...(findParentPath(process.cwd()) && {
         '../../docs/framework/config.md': {
           plugins: ['@graphcommerce/graphql-codegen-markdown-docs'],
         },
@@ -52,7 +51,7 @@ export async function generateConfig() {
 
   const result = transformFileSync(targetTs, {
     module: { type: 'commonjs' },
-    env: { targets: { node: '16' } },
+    env: { targets: { node: '18' } },
   })
 
   writeFileSync(targetJs, result.code)

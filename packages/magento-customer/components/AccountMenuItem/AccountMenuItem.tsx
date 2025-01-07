@@ -2,9 +2,9 @@ import type { ImageProps } from '@graphcommerce/image'
 import type { ButtonProps } from '@graphcommerce/next-ui'
 import {
   Button,
-  IconSvg,
   extendableComponent,
   iconChevronRight,
+  IconSvg,
   responsiveVal,
 } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'

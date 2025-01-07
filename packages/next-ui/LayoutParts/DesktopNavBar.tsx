@@ -1,11 +1,11 @@
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import type { BoxProps } from '@mui/material'
 import React from 'react'
+import { iconChevronLeft, iconChevronRight } from '../icons'
 import type { IconSvgProps } from '../IconSvg'
 import { IconSvg } from '../IconSvg'
 import { MediaQuery } from '../MediaQuery'
 import { extendableComponent } from '../Styles/extendableComponent'
-import { iconChevronLeft, iconChevronRight } from '../icons'
 
 export type MenuTabsProps = {
   children: React.ReactNode

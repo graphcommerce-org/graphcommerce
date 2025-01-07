@@ -1,30 +1,29 @@
 # Change Log
 
-## 9.0.0-canary.109
+## 9.0.4-canary.3
 
-## 9.0.0-canary.108
+## 9.0.4-canary.2
 
-## 9.0.0-canary.107
+## 9.0.4-canary.1
 
-## 9.0.0-canary.106
+## 9.0.4-canary.0
 
-## 9.0.0-canary.105
+## 9.0.0
 
-## 9.0.0-canary.104
+### Major Changes
 
-## 9.0.0-canary.103
+- [#2366](https://github.com/graphcommerce-org/graphcommerce/pull/2366) [`3612c99`](https://github.com/graphcommerce-org/graphcommerce/commit/3612c994b80bb3b1bc02de10668f69a332402dc4) - Add `permissions` configuration to disable functionalities.
 
-## 9.0.0-canary.82
+  - Added new `permissions` configuration for GraphCommerce
+  - Added `permissions.cart`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
+  - Added `permissions.checkout`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
+  - Added `permissions.customerAccount`: `ENABLED` | `DISABLE_REGISTRATION` | `DISABLE` ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ### Minor Changes
 
-- [#2366](https://github.com/graphcommerce-org/graphcommerce/pull/2366) [`3612c99`](https://github.com/graphcommerce-org/graphcommerce/commit/3612c994b80bb3b1bc02de10668f69a332402dc4) - Add `permissions` config so the website or store can be configurated to run in different modes. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.35
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new `<EmailElement/>` component to make re-use easier. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ### Patch Changes
-
-- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new EmailElement component to make re-use easier ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ## 8.0.0
 

@@ -8,12 +8,12 @@ import {
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
+  breakpointVal,
   HeroBanner,
   LayoutHeader,
   LayoutTitle,
   MetaRobots,
   PageMeta,
-  breakpointVal,
 } from '@graphcommerce/next-ui'
 import { Button, Container, Typography } from '@mui/material'
 import type { LayoutNavigationProps } from '../components'

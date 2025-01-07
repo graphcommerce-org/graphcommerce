@@ -1,5 +1,5 @@
-import type { ExportAllDeclaration } from '@swc/core'
 import path from 'path'
+import type { ExportAllDeclaration } from '@swc/core'
 import type { ResolveDependency, ResolveDependencyReturn } from '../utils/resolveDependency'
 import type { PluginConfig } from './generateInterceptor'
 import { parseSync } from './swc'

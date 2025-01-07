@@ -11,7 +11,6 @@ import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 const excludes = [
   '*page/home',
-  '*/p/*',
   '*/product/global',
   '*/product*',
   '*/account*',
@@ -31,7 +30,7 @@ const excludes = [
   '*/cart',
   '*/checkout',
 ]
-const additionalPaths = ['']
+const additionalPaths: string[] = []
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { locale } = context

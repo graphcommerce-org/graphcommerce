@@ -8,6 +8,7 @@ export type PasswordRepeatElementProps<T extends FieldValues> = PasswordElementP
   passwordFieldName: PasswordElementProps<T>['name']
 }
 
+/** @public */
 export function PasswordRepeatElement<TFieldValues extends FieldValues>({
   passwordFieldName,
   ...rest

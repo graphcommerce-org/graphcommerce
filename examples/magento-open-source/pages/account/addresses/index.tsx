@@ -2,13 +2,13 @@ import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   AccountAddresses,
   AccountDashboardAddressesDocument,
-  WaitForCustomer,
   getCustomerAccountIsDisabled,
   useCustomerQuery,
+  WaitForCustomer,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { LayoutOverlayHeader, LayoutTitle, iconAddresses } from '@graphcommerce/next-ui'
+import { iconAddresses, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'

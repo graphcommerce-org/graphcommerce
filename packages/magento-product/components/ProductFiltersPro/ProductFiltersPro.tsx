@@ -67,9 +67,7 @@ export type FilterFormProviderProps = Omit<
 > & {
   children: React.ReactNode
   params: ProductListParams
-  /**
-   * Whether the filter should scroll to the products list and whether to submit the form on change.
-   */
+  /** Whether the filter should scroll to the products list and whether to submit the form on change. */
   autoSubmitMd?: boolean
 
   handleSubmit?: (

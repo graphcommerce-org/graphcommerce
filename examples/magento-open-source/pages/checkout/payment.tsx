@@ -25,12 +25,12 @@ import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   FormActions,
   FullPageMessage,
+  iconChevronRight,
+  iconId,
   IconSvg,
   LayoutHeader,
   LayoutTitle,
   Stepper,
-  iconChevronRight,
-  iconId,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'

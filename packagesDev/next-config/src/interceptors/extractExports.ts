@@ -18,8 +18,6 @@ import type {
   TemplateLiteral,
 } from '@swc/core'
 
-export class NoSuchDeclarationError extends Error {}
-
 function isIdentifier(node: Node): node is Identifier {
   return node.type === 'Identifier'
 }
@@ -60,35 +58,7 @@ function isTemplateLiteral(node: Node): node is TemplateLiteral {
   return node.type === 'TemplateLiteral'
 }
 
-export class UnsupportedValueError extends Error {
-  /** @example `config.runtime[0].value` */
-  path?: string
-
-  constructor(message: string, paths?: string[]) {
-    super(message)
-
-    // Generating "path" that looks like "config.runtime[0].value"
-    let codePath: string | undefined
-    if (Array.isArray(paths)) {
-      codePath = ''
-      for (const path of paths) {
-        if (path[0] === '[') {
-          // "array" + "[0]"
-          codePath += path
-        } else if (codePath === '') {
-          codePath = path
-        } else {
-          // "object" + ".key"
-          codePath += `.${path}`
-        }
-      }
-    }
-
-    this.path = codePath
-  }
-}
-
-export const RUNTIME_VALUE = Symbol('RUNTIME_VALUE')
+const RUNTIME_VALUE = Symbol('RUNTIME_VALUE')
 
 function extractValue(node: Node, path?: string[], optional: boolean = false): any {
   if (isNullLiteral(node)) {
@@ -116,7 +86,6 @@ function extractValue(node: Node, path?: string[], optional: boolean = false): a
         return undefined
       default:
         return RUNTIME_VALUE
-      // throw new UnsupportedValueError(`Unknown identifier "${node.value}"`, path)
     }
   } else if (isArrayExpression(node)) {
     // e.g. [1, 2, 3]
@@ -127,10 +96,6 @@ function extractValue(node: Node, path?: string[], optional: boolean = false): a
         if (elem.spread) {
           // e.g. [ ...a ]
           return RUNTIME_VALUE
-          // throw new UnsupportedValueError(
-          //   'Unsupported spread operator in the Array Expression',
-          //   path,
-          // )
         }
 
         arr.push(extractValue(elem.expression, path && [...path, `[${i}]`], optional))
@@ -148,10 +113,6 @@ function extractValue(node: Node, path?: string[], optional: boolean = false): a
       if (!isKeyValueProperty(prop)) {
         // e.g. { ...a }
         return RUNTIME_VALUE
-        // throw new UnsupportedValueError(
-        //   'Unsupported spread operator in the Object Expression',
-        //   path,
-        // )
       }
 
       let key
@@ -163,10 +124,6 @@ function extractValue(node: Node, path?: string[], optional: boolean = false): a
         key = prop.key.value
       } else {
         return RUNTIME_VALUE
-        // throw new UnsupportedValueError(
-        //   `Unsupported key type "${prop.key.type}" in the Object Expression`,
-        //   path,
-        // )
       }
 
       obj[key] = extractValue(prop.value, path && [...path, key])
@@ -178,7 +135,6 @@ function extractValue(node: Node, path?: string[], optional: boolean = false): a
     if (node.expressions.length !== 0) {
       // TODO: should we add support for `${'e'}d${'g'}'e'`?
       return RUNTIME_VALUE
-      // throw new UnsupportedValueError('Unsupported template literal with expressions', path)
     }
 
     // When TemplateLiteral has 0 expressions, the length of quasis is always 1.
@@ -195,7 +151,6 @@ function extractValue(node: Node, path?: string[], optional: boolean = false): a
     return cooked ?? raw
   } else {
     return RUNTIME_VALUE
-    // throw new UnsupportedValueError(`Unsupported node type "${node.type}"`, path)
   }
 }
 

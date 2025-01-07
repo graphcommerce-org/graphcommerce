@@ -2,6 +2,7 @@ import { formatAppliedEnv } from '../../../src/config/utils/mergeEnvIntoConfig'
 import { rewriteLegacyEnv } from '../../../src/config/utils/rewriteLegacyEnv'
 import type { GraphCommerceConfig } from '../../../src/generated/config'
 import { GraphCommerceConfigSchema } from '../../../src/generated/config'
+
 export const removeColor = (str: string) =>
   str.replace(
     new RegExp(

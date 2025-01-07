@@ -7,7 +7,8 @@ export default function DRPropertyPicker() {
 
   useEffect(() => {
     /**
-     * Some styling is being undone here to resolve conflicts between Hygraph App SDK and CssAndFramerMotionProvider.
+     * Some styling is being undone here to resolve conflicts between Hygraph App SDK and
+     * CssAndFramerMotionProvider.
      */
     const frameBox1 = fieldContainer?.current?.parentElement
     if (frameBox1) {

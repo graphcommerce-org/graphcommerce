@@ -21,7 +21,7 @@ import diff from './diff'
 
 const fmt = (s: string) => s.split(/(\d+)/).map(snakeCase).join('')
 export const toEnvStr = (path: string[]) => ['GC', ...path].map(fmt).join('_').toUpperCase()
-export const dotNotation = (pathParts: string[]) =>
+const dotNotation = (pathParts: string[]) =>
   pathParts
     .map((v) => {
       const idx = Number(v)
@@ -144,7 +144,7 @@ export type ApplyResultItem = {
 }
 export type ApplyResult = ApplyResultItem[]
 
-export const filterEnv = (env: Record<string, string | undefined>) =>
+const filterEnv = (env: Record<string, string | undefined>) =>
   Object.fromEntries(Object.entries(env).filter(([key]) => key.startsWith('GC_')))
 
 export function mergeEnvIntoConfig(
@@ -204,9 +204,7 @@ export function mergeEnvIntoConfig(
 export function formatAppliedEnv(applyResult: ApplyResult) {
   let hasError = false
   let hasWarning = false
-  const lines = applyResult.map(({ from, to, envValue, envVar, dotVar, error, warning }) => {
-    const fromFmt = chalk.red(JSON.stringify(from))
-    const toFmt = chalk.green(JSON.stringify(to))
+  const lines = applyResult.map(({ from, to, envVar, dotVar, error, warning }) => {
     const envVariableFmt = `${envVar}`
     const dotVariableFmt = chalk.bold.underline(`${dotVar}`)
 

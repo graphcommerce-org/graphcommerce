@@ -13,6 +13,7 @@ export type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'> & 
 
 const { classes } = extendableComponent('SignInFormInline', ['form', 'button'] as const)
 
+/** @public */
 export function SignInFormInline(props: InlineSignInFormProps) {
   const { email, children, sx = [] } = props
   const form = useSignInForm({ email })

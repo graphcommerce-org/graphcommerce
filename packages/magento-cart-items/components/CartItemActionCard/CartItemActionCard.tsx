@@ -15,6 +15,10 @@ export type CartItemActionCardProps = { cartItem: CartItemFragment; readOnly?: b
   'value' | 'image' | 'price' | 'title' | 'action'
 >
 
+/**
+ * @deprecated
+ * @public
+ */
 export function productEditLink(link: ProductLinkProps) {
   return `/checkout/item/${link.url_key}`
 }

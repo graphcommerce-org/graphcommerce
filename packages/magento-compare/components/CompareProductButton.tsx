@@ -12,6 +12,7 @@ import { CompareMessageSnackbar } from './CompareMessageSnackbar'
 
 export type CompareProductButtonProps = CompareProductIdInternalFragment & { sx?: SxProps<Theme> }
 
+/** @public */
 export function CompareProductButton(props: CompareProductButtonProps) {
   const { id, name, sx } = props
   const idString = String(id)

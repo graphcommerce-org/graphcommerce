@@ -16,11 +16,11 @@ import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-sto
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   FullPageMessage,
+  iconShoppingBag,
   LayoutOverlayHeader,
   LayoutTitle,
   OverlayStickyBottom,
   Stepper,
-  iconShoppingBag,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'

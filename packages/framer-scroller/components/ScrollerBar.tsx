@@ -37,6 +37,7 @@ const Scroll = styled(m.button)({
   height: 7,
 })
 
+/** @public */
 export function ScrollerBar(props: ScrollerBarProps) {
   const { direction, sx } = props
   const control = useScrollerControl()

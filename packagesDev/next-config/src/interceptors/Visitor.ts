@@ -47,9 +47,9 @@ import type {
   ExportNamedDeclaration,
   ExportNamespaceSpecifier,
   ExportSpecifier,
-  ExprOrSpread,
   Expression,
   ExpressionStatement,
+  ExprOrSpread,
   Fn,
   ForInStatement,
   ForOfStatement,
@@ -64,10 +64,10 @@ import type {
   ImportDefaultSpecifier,
   ImportNamespaceSpecifier,
   ImportSpecifier,
-  JSXAttrValue,
   JSXAttribute,
   JSXAttributeName,
   JSXAttributeOrSpread,
+  JSXAttrValue,
   JSXClosingElement,
   JSXClosingFragment,
   JSXElement,
@@ -187,6 +187,7 @@ import type {
 
 /**
  * @deprecated JavaScript API is deprecated. Please use Wasm plugin instead.
+ * @public
  */
 export class Visitor {
   visitProgram(n: Program): Program {
@@ -498,7 +499,7 @@ export class Visitor {
         return this.visitExpressionStatement(stmt)
 
       default:
-        throw new Error(`Unknown statement type: ${(stmt as any).type}`)
+        throw new Error(`Unknown statement type: ${(stmt as { type: string }).type}`)
     }
   }
 
@@ -1839,5 +1840,3 @@ export class Visitor {
     return n
   }
 }
-
-export default Visitor

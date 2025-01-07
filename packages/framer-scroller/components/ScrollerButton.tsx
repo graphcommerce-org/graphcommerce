@@ -3,8 +3,8 @@ import type { FabProps, SxProps, Theme } from '@mui/material'
 import { Fab, styled } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
-import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
+import { useScrollTo } from '../hooks/useScrollTo'
 import type { SnapPositionDirection } from '../types'
 
 const MotionDiv = styled(m.div)({})

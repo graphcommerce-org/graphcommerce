@@ -6,6 +6,7 @@ export type CategorySearchResultsProps = {
   sx?: SxProps<Theme>
 }
 
+/** @public */
 export function CategorySearchResults(props: CategorySearchResultsProps) {
   const { children, sx = [] } = props
   return <Box sx={sx}>{children}</Box>

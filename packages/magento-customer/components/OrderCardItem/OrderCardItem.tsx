@@ -6,6 +6,10 @@ export type OrderCardItemProps = OrderCardItemFragment & {
   thumbnail?: Pick<ProductImage, 'label' | 'url'>
 }
 
+/**
+ * @deprecated
+ * @public
+ */
 export function OrderCardItem(props: OrderCardItemProps) {
   const { product_sku, product_url_key, thumbnail } = props
 

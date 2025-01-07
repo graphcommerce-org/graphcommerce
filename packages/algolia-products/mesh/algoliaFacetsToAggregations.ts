@@ -41,6 +41,7 @@ function compare(a, b) {
   return 0
 }
 
+/** @public */
 export function algoliaPricesToPricesAggregations(pricesList: {
   [key: string]: number
 }): AggregationOption[] {
@@ -117,7 +118,8 @@ function assertAlgoliaFacets(facets: any): facets is AlgoliaFacets {
 /**
  * Map algolia facets to aggregations format
  *
- * TODO: Make sure the aggregations are sorted correctly: https://magento-247-git-canary-graphcommerce.vercel.app/men/photography, through position
+ * TODO: Make sure the aggregations are sorted correctly:
+ * https://magento-247-git-canary-graphcommerce.vercel.app/men/photography, through position
  */
 export function algoliaFacetsToAggregations(
   algoliaFacets: AlgoliasearchResponse['facets'],

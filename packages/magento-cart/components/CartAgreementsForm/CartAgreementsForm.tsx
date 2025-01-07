@@ -1,6 +1,6 @@
 import { CheckboxElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
-import { FormDiv, extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent, FormDiv } from '@graphcommerce/next-ui'
 import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { FormPersist, useForm, useFormCompose } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
@@ -17,6 +17,7 @@ const { classes } = extendableComponent(componentName, parts)
 
 /**
  * Checks if a string contains an anchor tag (<a> ... </a>).
+ *
  * @param {string} str - The string to check.
  * @returns {boolean} - True if the string contains an anchor tag, otherwise false.
  */

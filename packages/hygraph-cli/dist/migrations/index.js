@@ -1,20 +1,13 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./graphcommerce5to6"), exports);
-__exportStar(require("./graphcommerce6to7"), exports);
-__exportStar(require("./graphcommerce7to8"), exports);
-__exportStar(require("./graphcommerce8to9"), exports);
+exports.availableMigrations = void 0;
+const graphcommerce5to6_1 = require("./graphcommerce5to6");
+const graphcommerce6to7_1 = require("./graphcommerce6to7");
+const graphcommerce7to8_1 = require("./graphcommerce7to8");
+const graphcommerce8to9_1 = require("./graphcommerce8to9");
+exports.availableMigrations = [
+    graphcommerce5to6_1.graphcommerce5to6,
+    graphcommerce6to7_1.graphcommerce6to7,
+    graphcommerce7to8_1.graphcommerce7to8,
+    graphcommerce8to9_1.graphcommerce8to9,
+];

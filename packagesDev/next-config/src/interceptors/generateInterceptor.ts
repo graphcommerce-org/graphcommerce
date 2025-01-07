@@ -18,6 +18,7 @@ type PluginBaseConfig = {
   ifConfig?: string | [string, any]
 }
 
+/** @public */
 export function isPluginBaseConfig(plugin: Partial<PluginBaseConfig>): plugin is PluginBaseConfig {
   return (
     typeof plugin.type === 'string' &&
@@ -31,6 +32,7 @@ type ReactPluginConfig = PluginBaseConfig & { type: 'component' }
 type MethodPluginConfig = PluginBaseConfig & { type: 'function' }
 type ReplacePluginConfig = PluginBaseConfig & { type: 'replace' }
 
+/** @public */
 export function isReactPluginConfig(
   plugin: Partial<PluginBaseConfig>,
 ): plugin is ReactPluginConfig {
@@ -38,6 +40,7 @@ export function isReactPluginConfig(
   return plugin.type === 'component'
 }
 
+/** @public */
 export function isMethodPluginConfig(
   plugin: Partial<PluginBaseConfig>,
 ): plugin is MethodPluginConfig {
@@ -45,6 +48,7 @@ export function isMethodPluginConfig(
   return plugin.type === 'function'
 }
 
+/** @public */
 export function isReplacePluginConfig(
   plugin: Partial<PluginBaseConfig>,
 ): plugin is ReactPluginConfig {

@@ -15,7 +15,8 @@ export const config: PluginConfig = {
 /**
  * When a product is added to the Cart, send a Google Analytics event.
  *
- * Based on this information: https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#send-the-results-to-google-analytics
+ * Based on this information:
+ * https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#send-the-results-to-google-analytics
  */
 export function FramerNextPages(props: PluginProps<PagesProps>) {
   const { Prev, ...rest } = props

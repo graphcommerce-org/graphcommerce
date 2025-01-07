@@ -1,10 +1,9 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { Image } from '@graphcommerce/image'
 import { useCheckoutGuestEnabled } from '@graphcommerce/magento-cart'
 import { StoreConfigDocument, StoreSwitcherButton } from '@graphcommerce/magento-store'
 import { DateFormat, Footer as FooterBase } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Button, IconButton, Link } from '@mui/material'
+import { Button, Link } from '@mui/material'
 
 export function Footer() {
   const cartEnabled = useCheckoutGuestEnabled()
@@ -15,7 +14,7 @@ export function Footer() {
 
   return (
     <FooterBase
-      socialLinks={<></>}
+      socialLinks={<div />}
       storeSwitcher={<StoreSwitcherButton />}
       customerService={
         <Button href='/service' variant='pill'>

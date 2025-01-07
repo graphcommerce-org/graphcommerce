@@ -23,14 +23,17 @@ export class TopologicalSort<KeyType, ValueType> {
     this.addMultipleInternalNodes(nodes)
   }
 
+  /** @public */
   addNode(key: KeyType, node: ValueType) {
     return this.addInternalNode(key, node)
   }
 
+  /** @public */
   addNodes(nodes: Map<KeyType, ValueType>) {
     this.addMultipleInternalNodes(nodes)
   }
 
+  /** @public */
   addEdge(fromKey: KeyType, toKey: KeyType) {
     assert(this.#nodes.has(fromKey), `Source package with ${fromKey} key should exist`)
     assert(this.#nodes.has(toKey), `Target package with ${toKey} key should exist`)
@@ -58,6 +61,7 @@ export class TopologicalSort<KeyType, ValueType> {
     sourceNode!.children.set(toKey, targetNode!)
   }
 
+  /** @public */
   sort(): Map<KeyType, INodeWithChildren<KeyType, ValueType>> {
     this.#visitedNodes = new Set()
     this.#sortedKeysStack = []

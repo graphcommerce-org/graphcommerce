@@ -1,7 +1,7 @@
 import { productLink } from '@graphcommerce/magento-product/hooks/useProductLink'
 import type { WishlistItemActionCardProps } from '@graphcommerce/magento-wishlist'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
-import { IconSvg, iconChevronRight } from '@graphcommerce/next-ui'
+import { iconChevronRight, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 

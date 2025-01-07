@@ -23,17 +23,11 @@ export type AddProductsToCartFormProps = {
   redirect?: RedirectType
   snackbarProps?: AddProductsToCartSnackbarProps
 
-  /**
-   * @deprecated use snackbarProps.errorSnackbar instead
-   */
+  /** @deprecated Use snackbarProps.errorSnackbar instead */
   errorSnackbar?: Omit<ErrorSnackbarProps, 'open'>
-  /**
-   * @deprecated use snackbarProps.successSnackbar instead
-   */
+  /** @deprecated Use snackbarProps.successSnackbar instead */
   successSnackbar?: Omit<MessageSnackbarProps, 'open' | 'action'>
-  /**
-   * @deprecated use snackbarProps.disableSuccessSnackbar instead
-   */
+  /** @deprecated Use snackbarProps.disableSuccessSnackbar instead */
   disableSuccessSnackbar?: boolean
 } & UseFormGraphQlOptions<AddProductsToCartMutation, AddProductsToCartFields>
 

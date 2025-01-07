@@ -1,4 +1,4 @@
-import { DesktopHeaderBadge, IconSvg, extendableComponent, iconHeart } from '@graphcommerce/next-ui'
+import { DesktopHeaderBadge, extendableComponent, iconHeart, IconSvg } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import type { BadgeProps, FabProps as FabPropsType, SxProps, Theme } from '@mui/material'
 import { Fab, NoSsr } from '@mui/material'

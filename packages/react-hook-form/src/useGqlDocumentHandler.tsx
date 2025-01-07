@@ -1,7 +1,7 @@
 import type { TypedDocumentNode } from '@apollo/client'
 import {
-  type DefinitionNode,
   Kind,
+  type DefinitionNode,
   type ListValueNode,
   type NullValueNode,
   type ObjectValueNode,

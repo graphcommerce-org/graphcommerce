@@ -1,7 +1,7 @@
 import {
-  IconSvg,
   extendableComponent,
   iconSearch,
+  IconSvg,
   responsiveVal,
   useFabSize,
   useIconSvgSize,

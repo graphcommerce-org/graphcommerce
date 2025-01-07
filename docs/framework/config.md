@@ -157,6 +157,14 @@ When a user selects a variant, it will switch the values on the configurable pag
 
 Enabling options here will allow switching of those variants.
 
+#### containerSizingContent: BREAKPOINT | FULL_WIDTH = `FULL_WIDTH`
+
+Configures the max width of the content (main content area)
+
+#### containerSizingShell: BREAKPOINT | FULL_WIDTH = `FULL_WIDTH`
+
+Configures the max width of the shell (header, footer, overlays, etc.)
+
 #### crossSellsHideCartItems: boolean = `false`
 
 Determines if cross sell items should be shown when the user already has the product in their cart. This will result in a product will popping off the screen when you add it to the cart.
@@ -350,6 +358,10 @@ Show a message when the product is added to the wishlist.
 ### GraphCommerceDebugConfig
 
 Debug configuration for GraphCommerce
+
+#### cart: boolean
+
+Enable debugging interface to debug sessions
 
 #### pluginStatus: boolean
 

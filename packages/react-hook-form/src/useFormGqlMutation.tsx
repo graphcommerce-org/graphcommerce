@@ -15,21 +15,18 @@ export type UseFormGqlMutationReturn<
   V extends FieldValues = FieldValues,
 > = UseFormGqlMethods<Q, V> &
   UseFormReturn<V> & {
-    /**
-     * @deprecated Please use TextFieldElement
-     */
+    /** @deprecated Please use TextFieldElement */
     muiRegister: UseMuiFormRegister<V>
-    /**
-     * @deprecated Please use TextFieldElement showValid
-     */
+    /** @deprecated Please use TextFieldElement showValid */
     valid: UseFormValidReturn<V>
   }
 
 export function isFormGqlOperation<
   V extends FieldValues,
   Q extends Record<string, unknown> = Record<string, unknown>,
->(form: UseFormReturn<V>): form is UseFormGqlMutationReturn<Q, V> {
-  return typeof (form as UseFormGqlMutationReturn<Q, V>).muiRegister === 'function'
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-redundant-type-constituents
+>(form: any): form is UseFormGqlMutationReturn<Q, V> {
+  return typeof (form as UseFormGqlMutationReturn<Q, V>).submittedVariables !== 'undefined'
 }
 
 export function assertFormGqlOperation<

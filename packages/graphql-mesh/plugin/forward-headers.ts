@@ -8,6 +8,8 @@ interface ForwardHeaderConfig {
 }
 
 /**
+ * @public
+ *
  * Configure in your meshrc.yaml:
  *
  * ```yaml

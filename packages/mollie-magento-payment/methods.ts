@@ -12,7 +12,7 @@ const mollieModule: PaymentModule = {
   PaymentPlaceOrder: MolliePlaceOrder,
 }
 
-export const idealModule: PaymentModule = {
+const idealModule: PaymentModule = {
   PaymentOptions: MollieIdealOptions,
   PaymentActionCard: MollieActionCard,
   PaymentHandler: MolliePaymentHandler,

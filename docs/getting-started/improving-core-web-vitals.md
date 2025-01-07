@@ -4,9 +4,9 @@ GraphCommerce has a strict focus on getting great scores on Google's Core Web
 Vitals. This document outlines the steps we take to ensure that our frontend is
 performant.
 
-- LCP: Good: <=2.5s Needs Improvement: <=4s Bad: >4s
-- CLS: Good: <=0.1 Needs improvement: <=0.25 Bad: >0.25
-- INP: Good: <=200ms Needs improvement: <=500ms Bad: >500ms
+- LCP: Good: \<=2.5s Needs Improvement: \<=4s Bad: \>4s
+- CLS: Good: \<=0.1 Needs improvement: \<=0.25 Bad: \>0.25
+- INP: Good: \<=200ms Needs improvement: \<=500ms Bad: \>500ms
 
 To get a good LCP and CLS there are a few things we need to do.
 

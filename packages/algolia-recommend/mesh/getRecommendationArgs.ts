@@ -6,6 +6,7 @@ import type {
   QueryproductsArgs,
 } from '@graphcommerce/graphql-mesh'
 
+/** @public */
 export async function getRecommendationQueryInput(
   args: QueryproductsArgs,
   context: MeshContext,

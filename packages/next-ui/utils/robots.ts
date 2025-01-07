@@ -3,8 +3,8 @@ import type { GetServerSidePropsContext } from 'next'
 type Stringifyable = boolean | string | number | null | undefined
 
 /**
- * Tagged template literal for robots.txt that will automatically stringify values and indent them correctly.
- * https://developers.google.com/search/docs/crawling-indexing/robots/robots_txt#syntax
+ * Tagged template literal for robots.txt that will automatically stringify values and indent them
+ * correctly. https://developers.google.com/search/docs/crawling-indexing/robots/robots_txt#syntax
  */
 export function robotsTxt(strings: TemplateStringsArray, ...values: Stringifyable[]) {
   return strings

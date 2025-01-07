@@ -7,6 +7,7 @@ const compName = 'ColumnOneBoxed'
 const parts = ['root', 'boxed'] as const
 const { classes } = extendableComponent(compName, parts)
 
+/** @public */
 export function ColumnOneBoxed(props: ContainerProps) {
   const { children } = props
 

@@ -1,14 +1,14 @@
 import {
-  DateTimeFormat,
-  IconSvg,
-  SectionContainer,
   breakpointVal,
+  DateTimeFormat,
   extendableComponent,
   iconInvoice,
+  IconSvg,
+  SectionContainer,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, Typography, lighten } from '@mui/material'
+import { Box, lighten, Typography } from '@mui/material'
 import { AddressMultiLine } from '../AddressMultiLine/AddressMultiLine'
 import { TrackingLink } from '../TrackingLink/TrackingLink'
 import type { OrderDetailsFragment } from './OrderDetails.gql'

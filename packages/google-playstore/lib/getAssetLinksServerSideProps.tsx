@@ -1,5 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { GraphCommerceConfig } from '@graphcommerce/next-config'
 import type { GetServerSideProps } from 'next'
-import type {} from '@graphcommerce/next-ui'
 
 export const getAssetLinksServerSideProps: GetServerSideProps = async (context) => {
   context.res.setHeader('Content-Type', 'application/json')

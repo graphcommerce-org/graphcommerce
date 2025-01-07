@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { test as base } from '@graphcommerce/magento-store/test/apolloClientStore.fixture'
-import { ProductStaticPathsDocument } from '../components/ProductStaticPaths/ProductStaticPaths.gql'
 import type { ProductTypenames } from '../components/ProductStaticPaths/getProductStaticPaths'
+import { ProductStaticPathsDocument } from '../components/ProductStaticPaths/ProductStaticPaths.gql'
 import { productLink } from '../hooks/useProductLink'
 
 type ProductUrls = {

@@ -1,4 +1,4 @@
-import { IconSvg, iconLocation } from '@graphcommerce/next-ui'
+import { iconLocation, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Link, Typography } from '@mui/material'

@@ -1,6 +1,10 @@
 import type { Maybe, Region } from '@graphcommerce/graphql-mesh'
 import { useFindCountry } from './useFindCountry'
 
+/**
+ * @deprecated
+ * @public
+ */
 export function useFindRegion(
   countryCode?: Maybe<string>,
   regionId?: Maybe<number>,

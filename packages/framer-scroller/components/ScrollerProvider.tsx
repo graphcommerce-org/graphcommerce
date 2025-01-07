@@ -8,11 +8,11 @@ import type {
   Axis,
   ItemState,
   ReactHtmlRefObject,
+  ScrollerContext,
   ScrollSnapAlign,
   ScrollSnapAlignAxis,
   ScrollSnapStop,
   ScrollSnapType,
-  ScrollerContext,
   SnapPositionList,
 } from '../types'
 

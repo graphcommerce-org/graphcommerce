@@ -1,4 +1,4 @@
-import { useInContextQuery, useQuery } from '@graphcommerce/graphql'
+import { usePrivateQuery, useQuery } from '@graphcommerce/graphql'
 import type {
   FilterFormProviderProps,
   ProductFiltersQuery,
@@ -6,9 +6,9 @@ import type {
   ProductListQuery,
 } from '@graphcommerce/magento-product'
 import {
+  prefetchProductList,
   ProductFiltersDocument,
   ProductListDocument,
-  prefetchProductList,
   toProductListParams,
   useRouterFilterParams,
 } from '@graphcommerce/magento-product'
@@ -26,15 +26,17 @@ import {
  * - Creates a prefetch function to preload the product list
  */
 export function useProductList<
-  T extends ProductListQuery &
-    ProductFiltersQuery & {
-      params?: ProductListParams
-    },
+  T extends ProductListQuery & ProductFiltersQuery & { params?: ProductListParams },
 >(props: T) {
   const { params, shallow } = useRouterFilterParams(props)
   const variables = useProductListApplySearchDefaults(params)
-  const result = useInContextQuery(ProductListDocument, { variables, skip: !shallow }, props)
-  const filters = useInContextQuery(
+  const result = usePrivateQuery(
+    ProductListDocument,
+    { variables: { ...variables }, skip: !shallow },
+    props,
+  )
+
+  const filters = usePrivateQuery(
     ProductFiltersDocument,
     { variables: searchDefaultsToProductListFilters(variables), skip: !shallow },
     props,

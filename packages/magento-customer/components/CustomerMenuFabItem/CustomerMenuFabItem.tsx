@@ -1,4 +1,4 @@
-import { IconSvg, MenuFabSecondaryItem, iconPerson } from '@graphcommerce/next-ui'
+import { iconPerson, IconSvg, MenuFabSecondaryItem } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Badge, NoSsr } from '@mui/material'
 import type { MouseEventHandler } from 'react'

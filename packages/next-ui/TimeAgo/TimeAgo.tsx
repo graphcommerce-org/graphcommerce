@@ -2,15 +2,14 @@ import { useLocale } from '../hooks/useLocale'
 
 export type TimeAgoProps = {
   date: Date
-  /**
-   * @deprecated No longer used
-   */
+  /** @deprecated No longer used */
   // eslint-disable-next-line react/no-unused-prop-types
   locale?: string
 }
 
 /**
  * @deprecated Use <RelativeToTimeFormat /> instead.
+ * @public
  */
 export function TimeAgo(props: TimeAgoProps) {
   const { date } = props

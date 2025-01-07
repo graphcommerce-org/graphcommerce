@@ -1,4 +1,4 @@
-const { isMonorepo } = require('@graphcommerce/next-config')
+const { findParentPath } = require('@graphcommerce/next-config')
 const { formatter } = require('@lingui/format-po')
 
 /**
@@ -15,7 +15,7 @@ function linguiNextConfig(config) {
   const { locales, ...otherConfig } = config
   return {
     orderBy: 'messageId',
-    locales: isMonorepo() ? ['en', 'nl', 'fr', 'de', 'es', 'it'] : config.locales,
+    locales: findParentPath(process.cwd()) ? ['en', 'nl', 'fr', 'de', 'es', 'it'] : config.locales,
     // formatOptions: { lineNumbers: false, origins: false, explicitIdAsDefault: true },
     format: formatter({ explicitIdAsDefault: true, lineNumbers: false, origins: false }),
     catalogs: [

@@ -8,10 +8,10 @@ import { Alert } from '@mui/material'
 import Script from 'next/script'
 import { useEffect, useState } from 'react'
 import type { Mollie } from '../../Mollie'
-import { MollieField } from './MollieField'
-import { SetMolliePaymentMethodTokenOnCartDocument } from './SetMolliePaymentMethodTokenOnCart.gql'
 import type { MollieContext } from './mollieContext'
 import { mollieContext } from './mollieContext'
+import { MollieField } from './MollieField'
+import { SetMolliePaymentMethodTokenOnCartDocument } from './SetMolliePaymentMethodTokenOnCart.gql'
 
 declare global {
   interface Window {

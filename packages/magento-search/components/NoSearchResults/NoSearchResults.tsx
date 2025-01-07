@@ -9,6 +9,10 @@ const name = 'NoSearchResults'
 const parts = ['root'] as const
 const { classes } = extendableComponent(name, parts)
 
+/**
+ * @deprecated
+ * @public
+ */
 export function NoSearchResults(props: NoSearchResultsProps) {
   const { sx = [] } = props
 

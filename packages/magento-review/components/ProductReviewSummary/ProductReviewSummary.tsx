@@ -1,4 +1,4 @@
-import { IconSvg, extendableComponent, iconStar } from '@graphcommerce/next-ui'
+import { extendableComponent, iconStar, IconSvg } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'

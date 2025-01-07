@@ -68,6 +68,7 @@ export class InterceptorPlugin {
     return generatedInterceptors
   }
 
+  /** @public */
   apply(compiler: Compiler): void {
     const logger = compiler.getInfrastructureLogger('InterceptorPlugin')
 
