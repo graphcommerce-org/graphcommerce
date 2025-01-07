@@ -19,7 +19,7 @@ msgstr "Dadurch werden alle Ihre Daten einschließlich Bestellverlauf und gespei
 
 #. js-lingui-generated-id
 msgid "{0, plural, one {<0>{addedItems}</0> has been added to your shopping cart} two {<1>{addedItems}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
-msgstr "{0, plural, one {<0>{addedItems}</0> wurde zu Ihrem Warenkorb hinzugefügt} two {<1>{addedItems}</1> wurden zu Ihrem Warenkorb hinzugefügt!} other {# Produkte wurden zu Ihrem Warenkorb hinzugefügt!}"
+msgstr "{0, plural, one {<0>{addedItems}</0> wurde in den Warenkorb gelegt} two {<1>{addedItems}</1> wurden in den Warenkorb gelegt!} other {# Produkte wurden in den Warenkorb gelegt!}}"
 
 #. js-lingui-generated-id
 msgid "I understand that my account will be deleted and this can not be undone."
