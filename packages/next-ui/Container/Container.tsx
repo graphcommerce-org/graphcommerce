@@ -76,6 +76,7 @@ export const Container = React.forwardRef(
         className={[className, classes.root].filter((v) => !!v).join(' ')}
         sx={[
           {
+            width: '100%',
             pl: !breakoutLeft ? padding : undefined,
             pr: !breakoutRight ? padding : undefined,
             '&.breakoutLeft': { pl: 'unset' },

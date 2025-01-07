@@ -47,7 +47,7 @@ export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps)
           </LayoutTitle>
           <CategoryDescription
             sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.sm })}
-            description={category?.description}
+            {...category}
           />
           <CategoryChildren
             params={params}
