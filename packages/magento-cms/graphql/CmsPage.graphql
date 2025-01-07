@@ -1,0 +1,7 @@
+query CmsPage($url: String!) {
+  cmsPage(identifier: $url) {
+    identifier
+    ...CmsPageMeta
+    ...CmsPageContent
+  }
+}

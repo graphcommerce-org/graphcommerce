@@ -1,19 +1,19 @@
 import { Container, Typography } from '@mui/material'
 import type { CmsPageContentFragment } from './CmsPageContent.gql'
 
-export type CmsPageContentProps = CmsPageContentFragment
+export type CmsPageContentProps = { cmsPage: CmsPageContentFragment }
 
 export function CmsPageContent(props: CmsPageContentProps) {
-  const { content_heading, content } = props
+  const { cmsPage } = props
   return (
     <Container>
-      {content_heading && (
+      {cmsPage.content_heading && (
         <Typography variant='h2' component='h1'>
-          {content_heading}
+          {cmsPage.content_heading}
         </Typography>
       )}
       {/* eslint-disable-next-line react/no-danger */}
-      {content && <div dangerouslySetInnerHTML={{ __html: content }} />}
+      {cmsPage.content && <div dangerouslySetInnerHTML={{ __html: cmsPage.content }} />}
     </Container>
   )
 }

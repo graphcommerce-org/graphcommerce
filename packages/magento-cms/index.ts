@@ -1,2 +1,5 @@
-export * from './CmsPageContent'
-export * from './CmsPageMeta'
+export * from './components/CmsPageContent/CmsPageContent'
+export * from './components/CmsPageContent/CmsPageContent.gql'
+export * from './components/CmsPageMeta/CmsPageMeta'
+export * from './components/CmsPageMeta/CmsPageMeta.gql'
+export * from './graphql/CmsPage.gql'
