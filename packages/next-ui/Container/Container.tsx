@@ -81,6 +81,9 @@ export const Container = React.forwardRef(
             pr: !breakoutRight ? padding : undefined,
             '&.breakoutLeft': { pl: 'unset' },
             '&.breakoutRight': { pr: 'unset' },
+
+            // Nesting containers will not have padding applied.
+            '.MuiContainer-root &': { pl: 0, pr: 0 },
           },
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
