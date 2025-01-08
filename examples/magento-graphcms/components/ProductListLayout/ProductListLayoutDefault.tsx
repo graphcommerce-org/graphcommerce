@@ -71,7 +71,7 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
               textAlignMd='center'
               textAlignSm='center'
               sx={(theme) => ({ px: theme.page.horizontal })}
-              {...category}
+              category={category}
             />
             <CategoryChildren
               sx={(theme) => ({

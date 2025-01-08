@@ -14,19 +14,14 @@ const { withState } = extendableComponent<StateProps, typeof componentName, type
   parts,
 )
 
-export type CategoryDescriptionProps = Omit<CategoryDescriptionFragment, 'uid'> &
-  StateProps & { sx?: SxProps<Theme> }
+export type CategoryDescriptionProps = StateProps & {
+  sx?: SxProps<Theme>
+  category: Omit<CategoryDescriptionFragment, 'uid'>
+}
 
 export function CategoryDescription(props: CategoryDescriptionProps) {
-  const {
-    name,
-    description,
-    display_mode,
-    sx = [],
-    textAlignSm = 'center',
-    textAlignMd = 'center',
-    ...divProps
-  } = props
+  const { category, sx = [], textAlignSm = 'center', textAlignMd = 'center', ...divProps } = props
+  const { description } = category
 
   const classes = withState({ textAlignSm, textAlignMd })
 
