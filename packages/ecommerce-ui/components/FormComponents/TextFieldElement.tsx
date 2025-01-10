@@ -26,9 +26,11 @@ function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
     rules = {},
     shouldUnregister,
     disabled,
-  } = props as BaseControllerProps
-  const { showValid } = props as ShowValidProps
-  const { type, required, ...rest } = props as TextFieldProps
+    type,
+    required,
+    showValid,
+    ...rest
+  } = props as TextFieldProps & ShowValidProps & BaseControllerProps
 
   if (required && !rules.required) {
     rules.required = i18n._(/* i18n */ 'This field is required')
