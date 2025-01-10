@@ -159,7 +159,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
           color='secondary'
           required
           items={[
-            ...customerAddresses.map((address) => ({ ...address, value: address.id })),
+            ...customerAddresses.map((address) => ({ address, value: address.id })),
             { value: -1 },
           ]}
           render={CustomerAddressActionCard}

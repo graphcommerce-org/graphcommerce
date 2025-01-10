@@ -6,24 +6,15 @@ import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 import { useRouter } from 'next/router'
 
-export type CustomerAddressActionCardProps = ActionCardItemRenderProps<
-  CustomerAddressFragment | null | undefined
->
+export type CustomerAddressActionCardProps = ActionCardItemRenderProps<{
+  address?: CustomerAddressFragment | null | undefined
+}>
 
 export function CustomerAddressActionCard(props: CustomerAddressActionCardProps) {
-  const {
-    onReset,
-    company,
-    firstname,
-    lastname,
-    street,
-    postcode,
-    city,
-    country_code,
-    region,
-    id,
-    ...cardProps
-  } = props
+  const { onReset, address, ...cardProps } = props
+  const { company, firstname, lastname, street, postcode, city, country_code, region, id } =
+    address ?? {}
+
   const { push } = useRouter()
   const country = useFindCountry(country_code)
 
