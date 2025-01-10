@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.4-canary.4
+
+### Patch Changes
+
+- [`5ca6fb9`](https://github.com/graphcommerce-org/graphcommerce/commit/5ca6fb94f6f275210c77493d05bad7c1620ff5a3) - When a user reorders their cart without interacting with their cart previously a new cart wouldn't be created. ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.3
 
 ## 9.0.4-canary.2

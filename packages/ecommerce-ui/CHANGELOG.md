@@ -1,5 +1,11 @@
 # @graphcommerce/ecommerce-ui
 
+## 9.0.4-canary.4
+
+### Patch Changes
+
+- [`026114e`](https://github.com/graphcommerce-org/graphcommerce/commit/026114ece325d8f675ba8820c6b63345e48532fa) - Sovle issue where showValid would be forwarded to the textField element ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.3
 
 ## 9.0.4-canary.2

@@ -90,6 +90,7 @@
     "@graphcommerce/typescript-config-pwa": "9.0.3"
   },
   "changesets": [
+    "empty-files-stare",
     "four-needles-invent",
     "funny-crabs-fix",
     "gorgeous-baboons-learn",
@@ -97,6 +98,7 @@
     "heavy-squids-build",
     "quiet-bees-exist",
     "six-cheetahs-repeat",
+    "tender-guests-refuse",
     "thick-parents-joke",
     "wicked-planets-call"
   ]
