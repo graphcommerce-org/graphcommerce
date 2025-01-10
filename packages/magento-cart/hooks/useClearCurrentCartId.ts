@@ -6,7 +6,9 @@ export function useClearCurrentCartId() {
   const { cache } = useApolloClient()
 
   return () => {
-    cache.evict({ fieldName: 'currentCartId', broadcast: true })
+    cache.evict({ fieldName: 'currentCartId' })
+    cache.evict({ fieldName: 'customerCart' })
+    cache.gc()
     cookie(CART_ID_COOKIE, null)
   }
 }
