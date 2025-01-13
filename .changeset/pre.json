@@ -90,6 +90,7 @@
     "@graphcommerce/typescript-config-pwa": "9.0.3"
   },
   "changesets": [
+    "cold-readers-design",
     "empty-files-stare",
     "four-needles-invent",
     "funny-crabs-fix",
