@@ -96,11 +96,7 @@ export const ProductListLayoutSidebar = memoDeep((props: ProductListLayoutProps)
             <>
               <Typography variant='h1'>{title}</Typography>
 
-              <CategoryDescription
-                textAlignMd='start'
-                textAlignSm='start'
-                description={category?.description}
-              />
+              <CategoryDescription textAlignMd='start' textAlignSm='start' category={category} />
               <MediaQuery query={(theme) => theme.breakpoints.down('md')}>
                 <CategoryChildren params={params}>{category?.children}</CategoryChildren>
               </MediaQuery>
