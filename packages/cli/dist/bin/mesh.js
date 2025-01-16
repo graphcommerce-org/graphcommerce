@@ -9,8 +9,8 @@ import dotenv from 'dotenv';
 import 'tsx/cjs';
 import 'tsx/esm';
 import yaml from 'yaml';
-import { cosmiconfig, defaultLoaders } from 'cosmiconfig';
 import path from 'path';
+import { cosmiconfig, defaultLoaders } from 'cosmiconfig';
 
 function customLoader(ext, importFn = defaultImportFn, initialLoggerPrefix = "\u{1F578}\uFE0F  Mesh") {
   const logger = new DefaultLogger(initialLoggerPrefix).child("config");
@@ -40,7 +40,7 @@ function customLoader(ext, importFn = defaultImportFn, initialLoggerPrefix = "\u
   return loader;
 }
 async function findConfig(options) {
-  const { configName = "mesh", dir: configDir = "", initialLoggerPrefix } = options || {};
+  const { configName = "mesh", dir: configDir = "", initialLoggerPrefix } = options;
   const dir = path.isAbsolute(configDir) ? configDir : path.join(process.cwd(), configDir);
   const explorer = cosmiconfig(configName, {
     searchPlaces: [
@@ -169,7 +169,14 @@ const main = async () => {
   await promises.writeFile(tmpMeshLocation, yamlString);
   await promises.writeFile(
     `${meshDir}/.mesh.ts`,
-    `export * from '${relativePath.split(path$1.sep).join("/")}.mesh'`,
+    `export type * from '${relativePath.split(path$1.sep).join("/")}.mesh'
+export {
+  getBuiltMesh as getBuiltMeshBase,
+  execute,
+  subscribe,
+  createBuiltMeshHTTPHandler as createBuiltMeshHTTPHandlerBase,
+  rawServeConfig,
+} from '${relativePath.split(path$1.sep).join("/")}.mesh'`,
     { encoding: "utf8" }
   );
   await graphqlMesh({ ...cliParams, configName: tmpMesh });

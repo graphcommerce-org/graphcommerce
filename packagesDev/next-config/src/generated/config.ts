@@ -254,6 +254,11 @@ export type GraphCommerceConfig = {
    */
   googleTagmanagerId?: InputMaybe<Scalars['String']['input']>
   /**
+   * The GraphQL Mesh will be loaded once and any modifications to resolvers will be ignored. When
+   * developing new resolvers this should be set to true.
+   */
+  graphqlMeshEditMode?: InputMaybe<Scalars['Boolean']['input']>
+  /**
    * The HyGraph endpoint.> Read-only endpoint that allows low latency and high read-throughput content delivery.
    *
    * Project settings -> API Access -> High Performance Read-only Content API
@@ -610,6 +615,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     googlePlaystore: GraphCommerceGooglePlaystoreConfigSchema().nullish(),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
+    graphqlMeshEditMode: z.boolean().default(false).nullish(),
     hygraphEndpoint: z.string().min(1),
     hygraphManagementApi: z.string().nullish(),
     hygraphProjectId: z.string().nullish(),
