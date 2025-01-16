@@ -8,7 +8,6 @@ import {
   getCustomerAccountIsDisabled,
   OrderStateLabelInline,
   SignOutForm,
-  StoreCreditAccountMenuItem,
   useCustomerQuery,
   WaitForCustomer,
 } from '@graphcommerce/magento-customer'
@@ -127,7 +126,6 @@ function AccountIndexPage() {
                 '&:hover': { background: theme.palette.background.paper },
               })}
             />
-            <StoreCreditAccountMenuItem customer={customer} />
             {import.meta.graphCommerce.magentoVersion >= 246 &&
               import.meta.graphCommerce.customerDeleteEnabled && (
                 <AccountMenuItem

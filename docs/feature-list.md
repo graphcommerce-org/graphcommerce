@@ -307,7 +307,7 @@ Features taken from the Magento Commerce 2 Feature List
 - [x] See order status and history.
 - [ ] Re-order from the customer account. — [Todo]
 - [x] View recently ordered items.
-- [ ] Track available store credits, gift card totals, and reward points. —
+- [x] Track available store credits, gift card totals, and reward points. —
       [Commerce]
 - [x] Manage newsletter subscriptions.
 - [x] View submitted product reviews.
