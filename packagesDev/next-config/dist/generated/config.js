@@ -133,6 +133,7 @@ function GraphCommerceConfigSchema() {
         googlePlaystore: GraphCommerceGooglePlaystoreConfigSchema().nullish(),
         googleRecaptchaKey: _zod.z.string().nullish(),
         googleTagmanagerId: _zod.z.string().nullish(),
+        graphqlMeshEditMode: _zod.z.boolean().default(false).nullish(),
         hygraphEndpoint: _zod.z.string().min(1),
         hygraphManagementApi: _zod.z.string().nullish(),
         hygraphProjectId: _zod.z.string().nullish(),

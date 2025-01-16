@@ -251,6 +251,11 @@ The Google Tagmanager ID to be used on the site.
 
 This value is required even if you are configuring different values for each locale.
 
+#### graphqlMeshEditMode: boolean = `false`
+
+The GraphQL Mesh will be loaded once and any modifications to resolvers will be ignored. When developing
+new resolvers this should be set to true.
+
 #### hygraphManagementApi: string
 
 Hygraph Management API. **Only used for migrations.**

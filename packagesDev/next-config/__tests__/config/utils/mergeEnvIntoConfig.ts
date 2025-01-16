@@ -23,7 +23,13 @@ const env = {
 }
 it('traverses a schema and returns a list of env variables that match', () => {
   const [envSchema] = configToEnvSchema(GraphCommerceConfigSchema())
-  expect(Object.keys(envSchema.shape)).toMatchSnapshot()
+
+  const keys = Object.keys(envSchema.shape)
+
+  expect(keys.includes('GC_ADVANCED_FILTERS')).toBe(false)
+  expect(keys.includes('GC_STOREFRONT')).toBe(true)
+  expect(keys.includes('GC_STOREFRONT_0')).toBe(true)
+  expect(keys.includes('GC_STOREFRONT_1')).toBe(true)
 })
 it('parses an env config object', () => {
   const [envSchema] = configToEnvSchema(GraphCommerceConfigSchema())

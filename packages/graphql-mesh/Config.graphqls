@@ -1,0 +1,7 @@
+extend input GraphCommerceConfig {
+  """
+  The GraphQL Mesh will be loaded once and any modifications to resolvers will be ignored. When developing
+  new resolvers this should be set to true.
+  """
+  graphqlMeshEditMode: Boolean = false
+}

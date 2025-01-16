@@ -27,7 +27,8 @@ To make modifications to the Mesh configuration, you can:
 ### Modify the meshrc.yaml:
 
 You can always modify the base configuration of the Mesh by modifying the
-`meshrc.yaml` file.
+`meshrc.yaml` file. After making always run `yarn codegen` (this can be in a
+separate terminal and nextjs will reload it).
 
 ### Write a plugin:
 
@@ -61,6 +62,33 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
         },
       },
     ],
+    additionalResolvers: [
+      ...(baseConfig.additionalResolvers ?? []),
+      'lib/resolvers/my-feature.ts',
+    ],
   })
 }
 ```
+
+### Creating additional schema's
+
+During development it might come in handy to write schema extensions even before
+any backend work has been done. `AnyFile.graphqls` in the graphql directory will
+automatically be picked up and merged with the rest of the schema.
+
+### Creating additional resolvers
+
+In the plugin add additionalResolvers and point to your ts file where the
+resolver is.
+
+```tsx
+// This MUST be a type import, else there will be a circular dependency.
+import type { Resolvers } from '@graphcommerce/graphql-mesh'
+
+const resolvers: Resolvers = {}
+```
+
+To make sure changes are picked up during development set the config value
+`graphqlMeshEditMode: true` in your graphcommerce.config.js or set the env
+variable `GC_GRAPHQL_MESH_EDIT_MODE=1`. This _will_ make the frontend
+considerably slower.
