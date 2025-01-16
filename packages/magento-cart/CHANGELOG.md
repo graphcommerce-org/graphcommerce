@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.4-canary.7
+
+### Patch Changes
+
+- [#2479](https://github.com/graphcommerce-org/graphcommerce/pull/2479) [`ae5e72c`](https://github.com/graphcommerce-org/graphcommerce/commit/ae5e72ccf1c8218ace3cca1c4e52ec8d46821a27) - Solve issue where the total of the cart was zero due to discount or store credit the user couldn't proceed to the checkout. We now check for items and errors instead of the total. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.4-canary.6
 
 ## 9.0.4-canary.5
