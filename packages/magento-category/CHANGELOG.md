@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.4-canary.6
+
+### Patch Changes
+
+- [#2478](https://github.com/graphcommerce-org/graphcommerce/pull/2478) [`590f064`](https://github.com/graphcommerce-org/graphcommerce/commit/590f06460955aa6435a3a16569805f38d4b7d6d6) - Move the category fragment to the category prop ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.5
 
 ## 9.0.4-canary.4

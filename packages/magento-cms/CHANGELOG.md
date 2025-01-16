@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.0.4-canary.6
+
+### Patch Changes
+
+- [#2478](https://github.com/graphcommerce-org/graphcommerce/pull/2478) [`a317221`](https://github.com/graphcommerce-org/graphcommerce/commit/a317221a6ef88dc037985398bf87926a73f7fa48) - Convert home to render the home CmsPage and add page/[…url] route for additional pages. ([@paales](https://github.com/paales))
+
+- [#2478](https://github.com/graphcommerce-org/graphcommerce/pull/2478) [`d09c98b`](https://github.com/graphcommerce-org/graphcommerce/commit/d09c98bba2ee83fb51b17494354a42b6c38446ab) - Added support for loading CMS Pages from Magento ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.5
 
 ## 9.0.4-canary.4

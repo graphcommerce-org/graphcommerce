@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.4-canary.6
+
+### Patch Changes
+
+- [#2478](https://github.com/graphcommerce-org/graphcommerce/pull/2478) [`32bccbb`](https://github.com/graphcommerce-org/graphcommerce/commit/32bccbba4b000247d7e01e487f6d48b6dec07fb5) - Nesting multiple Containers will not increase the padding, will only be applied once. ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.5
 
 ## 9.0.4-canary.4

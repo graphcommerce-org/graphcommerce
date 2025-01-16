@@ -90,17 +90,23 @@
     "@graphcommerce/typescript-config-pwa": "9.0.3"
   },
   "changesets": [
+    "brave-penguins-love",
     "cold-readers-design",
     "empty-files-stare",
     "four-needles-invent",
     "funny-crabs-fix",
+    "gentle-rules-learn",
     "gorgeous-baboons-learn",
     "heavy-guests-mix",
     "heavy-squids-build",
+    "hip-buckets-raise",
     "quiet-bees-exist",
+    "red-lies-drive",
+    "silly-tigers-scream",
     "six-cheetahs-repeat",
     "tender-guests-refuse",
     "thick-parents-joke",
+    "wicked-carpets-tie",
     "wicked-planets-call"
   ]
 }
