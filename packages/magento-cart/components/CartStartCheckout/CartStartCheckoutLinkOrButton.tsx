@@ -28,7 +28,7 @@ export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButt
 
   const shouldLoginToContinue = useCheckoutShouldLoginToContinue()
 
-  const hasTotals = (cart?.prices?.grand_total?.value ?? 0) > 0
+  const hasTotals = (cart?.prices?.grand_total?.value ?? 0) > 0 || !!cart?.items?.length
   const hasErrors = cart?.items?.some((item) => (item?.errors?.length ?? 0) > 0)
 
   return (
