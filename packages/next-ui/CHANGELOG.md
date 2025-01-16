@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.0.4
+
+### Patch Changes
+
+- [#2473](https://github.com/graphcommerce-org/graphcommerce/pull/2473) [`8df172e`](https://github.com/graphcommerce-org/graphcommerce/commit/8df172e4fa1364892d53bc96a437d037d245de35) - Do not warn about `:first-child` since all css is hoisted out of the components. ([@paales](https://github.com/paales))
+
+- [#2470](https://github.com/graphcommerce-org/graphcommerce/pull/2470) [`8f047a0`](https://github.com/graphcommerce-org/graphcommerce/commit/8f047a0860f9b915717f6db52be64805094d0b09) - Modify the type that is exposed for createTheme, should be faster for TypeScript to check. ([@paales](https://github.com/paales))
+
+- [#2473](https://github.com/graphcommerce-org/graphcommerce/pull/2473) [`b076b2a`](https://github.com/graphcommerce-org/graphcommerce/commit/b076b2ae4881bebf1d2debd5333a83f220c26ca7) - Also accept false as value for sxx ([@paales](https://github.com/paales))
+
+- [#2478](https://github.com/graphcommerce-org/graphcommerce/pull/2478) [`32bccbb`](https://github.com/graphcommerce-org/graphcommerce/commit/32bccbba4b000247d7e01e487f6d48b6dec07fb5) - Nesting multiple Containers will not increase the padding, will only be applied once. ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.7
 
 ## 9.0.4-canary.6
