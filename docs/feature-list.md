@@ -203,7 +203,7 @@ Features taken from the Magento Commerce 2 Feature List
 - [x] Zoom-in on product images.
 - [ ] Display product videos from YouTube or Vimeo. — [Todo]
 - [x] Include swatches to show colors, fabrics, and more.
-- [ ] Show multiple products in a grouped view. — [Todo]
+- [x] Show multiple products in a grouped view. — [Todo]
 - [x] Indicate stock availability.
 - [x] Set related products, up-sell, and cross-sell recommendations to increase
       average order value.
@@ -276,7 +276,7 @@ Features taken from the Magento Commerce 2 Feature List
       emails.
 - [x] Build customer relationships by creating newsletters and managing their
       distribution.
-- [ ] Connect with customers with a Contact Us form. — [Todo]
+- [x] Connect with customers with a Contact Us form.
 
 ### Customer loyalty
 
@@ -305,10 +305,11 @@ Features taken from the Magento Commerce 2 Feature List
 - [x] Choose default billing and shipping addresses.
 - [x] Store unlimited addresses in the address book.
 - [x] See order status and history.
-- [ ] Re-order from the customer account. — [Todo]
+- [x] Re-order from the customer account.
 - [x] View recently ordered items.
-- [x] Track available store credits, gift card totals, and reward points. —
-      [Commerce]
+- [x] Track available store credits — [Commerce]
+- [ ] Track gift card totals — [Commerce]
+- [ ] Track reward points — [Commerce]
 - [x] Manage newsletter subscriptions.
 - [x] View submitted product reviews.
 - [ ] Access downloadable/digital products. — [Todo]
