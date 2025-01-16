@@ -9,8 +9,6 @@ import {
   findParentBreadcrumbItem,
   getCategoryStaticPaths,
 } from '@graphcommerce/magento-category'
-import type { CmsPageQuery } from '@graphcommerce/magento-cms'
-import { CmsPageContent, CmsPageDocument } from '@graphcommerce/magento-cms'
 import type {
   FilterTypes,
   ProductFiltersQuery,
@@ -28,12 +26,7 @@ import {
   productListLink,
   useProductList,
 } from '@graphcommerce/magento-product'
-import {
-  PageMeta,
-  redirectOrNotFound,
-  redirectTo,
-  StoreConfigDocument,
-} from '@graphcommerce/magento-store'
+import { redirectOrNotFound, redirectTo, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { Container, LayoutHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -50,8 +43,7 @@ import type { CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { CategoryPageDocument } from '../graphql/CategoryPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
-export type CategoryProps = CmsPageQuery &
-  CategoryPageQuery &
+export type CategoryProps = CategoryPageQuery &
   ProductListQuery &
   ProductFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
 export type CategoryRoute = { url: string[] }
@@ -60,7 +52,7 @@ type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
 function CategoryPage(props: CategoryProps) {
-  const { categories, cmsPage, ...rest } = props
+  const { categories, ...rest } = props
   const productList = useProductList({
     ...rest,
     category: categories?.items?.[0],
@@ -77,15 +69,6 @@ function CategoryPage(props: CategoryProps) {
           {category?.name}
         </LayoutTitle>
       </LayoutHeader>
-      {cmsPage && (
-        <>
-          <PageMeta
-            title={cmsPage.meta_title || cmsPage.title || cmsPage.content_heading || 'Page'}
-            metaDescription={cmsPage.meta_description || undefined}
-          />
-          <CmsPageContent cmsPage={cmsPage} />
-        </>
-      )}
       {isCategory && isLanding && (
         <>
           <CategoryMeta params={params} {...category} />
@@ -176,7 +159,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const staticClient = graphqlSsrClient(context)
 
   const categoryPage = staticClient.query({ query: CategoryPageDocument, variables: { url } })
-  const cmsPage = staticClient.query({ query: CmsPageDocument, variables: { url } })
 
   const layout = staticClient.query({
     query: LayoutDocument,
@@ -216,9 +198,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       })
     : undefined
 
-  const hasPage = (await cmsPage).data.cmsPage
-
-  if (!hasCategory && !hasPage) return redirectOrNotFound(staticClient, conf, params, locale)
+  if (!hasCategory) return redirectOrNotFound(staticClient, conf, params, locale)
 
   if ((await products)?.errors) {
     const totalPages = (await filters)?.data.filters?.page_info?.total_pages ?? 0
@@ -244,7 +224,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await products)?.data,
       ...(await filters)?.data,
       ...(await layout).data,
-      ...(await cmsPage).data,
       filterTypes: await filterTypes,
       params: productListParams,
       apolloState: await conf.then(() => client.cache.extract()),

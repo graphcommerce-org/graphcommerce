@@ -1,7 +1,11 @@
 query CmsPage($url: String!) {
-  cmsPage(identifier: $url) {
-    identifier
-    ...CmsPageMeta
-    ...CmsPageContent
+  route(url: $url) {
+    __typename
+    relative_url
+    redirect_code
+    type
+    ... on CmsPage {
+      ...CmsPageFragment
+    }
   }
 }
