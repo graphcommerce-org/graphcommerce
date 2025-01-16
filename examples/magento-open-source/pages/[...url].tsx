@@ -64,6 +64,7 @@ function CategoryPage(props: CategoryProps) {
 
   return (
     <PrivateQueryMaskProvider mask={productList.mask}>
+      <CategoryMeta params={params} {...category} />
       <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
         <LayoutTitle size='small' component='span'>
           {category?.name}
@@ -71,8 +72,6 @@ function CategoryPage(props: CategoryProps) {
       </LayoutHeader>
       {isCategory && isLanding && (
         <>
-          <CategoryMeta params={params} {...category} />
-
           {import.meta.graphCommerce.breadcrumbs && (
             <Container maxWidth={false}>
               <CategoryBreadcrumbs
@@ -94,8 +93,6 @@ function CategoryPage(props: CategoryProps) {
       )}
       {isCategory && !isLanding && (
         <>
-          <CategoryMeta params={params} {...category} />
-
           {import.meta.graphCommerce.productFiltersPro &&
             import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
               <ProductListLayoutSidebar
@@ -158,7 +155,10 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
 
   const staticClient = graphqlSsrClient(context)
 
-  const categoryPage = staticClient.query({ query: CategoryPageDocument, variables: { url } })
+  const categoryPage = staticClient.query({
+    query: CategoryPageDocument,
+    variables: { url },
+  })
 
   const layout = staticClient.query({
     query: LayoutDocument,
