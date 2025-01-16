@@ -1,5 +1,7 @@
 # @graphcommerce/algolia-categories
 
+## 9.0.4-canary.8
+
 ## 9.0.4-canary.7
 
 ## 9.0.4-canary.6
