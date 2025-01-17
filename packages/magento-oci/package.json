@@ -1,5 +1,5 @@
 {
-  "name": "@reachdigital/magento-oci",
+  "name": "@graphcommerce/magento-oci",
   "description": "A plugin for handling and managing sessions in the OCI environment.",
   "homepage": "https://www.reachdigital.nl/",
   "repository": "github:graphcommerce-org/graphcommerce",
