@@ -35,6 +35,7 @@ export function MSPPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
 
       if (!selectedMethod?.code) {
         throwGenericPlaceOrderError()
+        return
       }
 
       if (url?.error || !url?.payment_url) {
@@ -64,7 +65,7 @@ export function MSPPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
 
   return (
     <form onSubmit={submit}>
-      {form.data?.placeOrder?.order.multisafepay_payment_url.error && (
+      {form.data?.placeOrder?.order?.multisafepay_payment_url.error && (
         <ErrorSnackbar open>
           <>{form.data?.placeOrder?.order.multisafepay_payment_url.error}</>
         </ErrorSnackbar>
