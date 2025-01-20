@@ -5,7 +5,8 @@ import { DateFormat, Footer as FooterBase } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Button, Link } from '@mui/material'
 
-export function Footer() {
+export function Footer(props: { socialLinks: React.ReactNode }) {
+  const { socialLinks } = props
   const cartEnabled = useCheckoutGuestEnabled()
   const config = useQuery(StoreConfigDocument)
 
@@ -14,7 +15,7 @@ export function Footer() {
 
   return (
     <FooterBase
-      socialLinks={<div />}
+      socialLinks={socialLinks}
       storeSwitcher={<StoreSwitcherButton />}
       customerService={
         <Button href='/service' variant='pill'>

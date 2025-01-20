@@ -1,5 +1,6 @@
 import { CartFab, useCartEnabled } from '@graphcommerce/magento-cart'
 import { magentoMenuToNavigation } from '@graphcommerce/magento-category'
+import { CmsBlock } from '@graphcommerce/magento-cms'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { SearchFab, SearchField } from '@graphcommerce/magento-search'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
@@ -36,12 +37,14 @@ export type LayoutNavigationProps = LayoutQuery &
   Omit<LayoutDefaultProps, 'footer' | 'header' | 'cartFab' | 'menuFab'>
 
 export function LayoutNavigation(props: LayoutNavigationProps) {
-  const { menu, children, ...uiProps } = props
+  const { menu, children, cmsBlocks, ...uiProps } = props
 
   const selection = useNavigationSelection()
   const router = useRouter()
 
   const cartEnabled = useCartEnabled()
+
+  const footerBlock = cmsBlocks?.items?.find((item) => item?.identifier === 'footer_links_block')
 
   return (
     <>
@@ -167,7 +170,9 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </MobileTopRight>
           </>
         }
-        footer={<Footer />}
+        footer={
+          <Footer socialLinks={footerBlock ? <CmsBlock cmsBlock={footerBlock} /> : <div />} />
+        }
         cartFab={<CartFab BadgeProps={{ color: 'secondary' }} />}
         menuFab={<NavigationFab onClick={() => selection.set([])} />}
       >
