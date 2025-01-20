@@ -95,7 +95,7 @@ export function HppOptions(props: PaymentOptionsProps) {
             SelectProps={{ native: true, displayEmpty: true }}
             error={formState.isSubmitted && !!formState.errors.issuer}
             helperText={formState.isSubmitted && formState.errors.issuer?.message}
-            label={brandCode === 'ideal' ? 'Select your bank' : conf?.name}
+            label={conf?.name}
             required
           >
             {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
