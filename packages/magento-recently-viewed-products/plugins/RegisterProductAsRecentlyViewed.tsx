@@ -20,7 +20,7 @@ export const config: PluginConfig = {
 function ViewHandling(props: { product: ProductPageMetaFragment }) {
   const { product } = props
   const client = useApolloClient()
-  const variant = useConfigurableSelectedVariant({ url_key: product?.url_key, index: 0 })
+  const variant = useConfigurableSelectedVariant({ ...product, index: 0 })
   const { events } = useRouter()
 
   const registerView = useEventCallback(async () => {

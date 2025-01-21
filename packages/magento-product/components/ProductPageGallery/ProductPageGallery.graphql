@@ -1,4 +1,5 @@
 fragment ProductPageGallery on ProductInterface {
+  __typename
   media_gallery {
     __typename
     label

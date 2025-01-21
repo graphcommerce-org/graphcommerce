@@ -39,7 +39,7 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
     'values',
   ])
 
-  const { configured } = useConfigurableOptionsSelection({ url_key: product.url_key, index })
+  const { configured } = useConfigurableOptionsSelection({ ...product, index })
   const unavailable =
     configured &&
     (configured?.configurable_product_options_selection?.options_available_for_selection ?? [])
@@ -75,6 +75,7 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
           index={index}
           optionIndex={optionIndex}
           sx={sx}
+          __typename={product.__typename}
           url_key={product.url_key}
           {...other}
         />

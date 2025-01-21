@@ -16,7 +16,7 @@ export function ProductPageMeta(props: PluginProps<ProductPageMetaProps> & AddTo
   const { Prev, product, index, ...rest } = props
   const { replace, asPath } = useRouter()
 
-  const variant = useConfigurableSelectedVariant({ url_key: product?.url_key, index })
+  const variant = useConfigurableSelectedVariant({ ...product, index })
 
   const isValidVariant = (variant?.url_rewrites ?? []).length > 0 && variant?.url_key
   const targetUrl = isValidVariant ? productLink(variant) : productLink(product)
