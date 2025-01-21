@@ -1,0 +1,6 @@
+fragment SendFriendStoreConfig on StoreConfig @inject(into: ["StoreConfigFragment"]) {
+  send_friend {
+    enabled_for_customers
+    enabled_for_guests
+  }
+}

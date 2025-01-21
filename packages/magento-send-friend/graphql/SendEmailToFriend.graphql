@@ -1,0 +1,13 @@
+mutation SendEmailToFriend($input: SendEmailToFriendInput!) {
+  sendEmailToFriend(input: $input) {
+    recipients {
+      email
+      name
+    }
+    sender {
+      email
+      name
+      message
+    }
+  }
+}
