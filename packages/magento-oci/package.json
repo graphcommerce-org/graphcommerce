@@ -3,7 +3,7 @@
   "description": "A plugin for handling and managing sessions in the OCI environment.",
   "homepage": "https://www.reachdigital.nl/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.4-canary.3",
+  "version": "9.0.4-canary.8",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -13,15 +13,15 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^9.0.4-canary.3",
-    "@graphcommerce/graphql": "^9.0.4-canary.3",
-    "@graphcommerce/magento-cart": "^9.0.4-canary.3",
-    "@graphcommerce/magento-customer": "^9.0.4-canary.3",
-    "@graphcommerce/next-config": "^9.0.4-canary.3",
-    "@graphcommerce/prettier-config-pwa": "^9.0.4-canary.3",
-    "@graphcommerce/react-hook-form": "^9.0.4-canary.3",
-    "@graphcommerce/typescript-config-pwa": "^9.0.4-canary.3",
-    "@mui/material": "5.16.8",
+    "@graphcommerce/eslint-config-pwa": "^9.0.4-canary.8",
+    "@graphcommerce/graphql": "^9.0.4-canary.8",
+    "@graphcommerce/magento-cart": "^9.0.4-canary.8",
+    "@graphcommerce/magento-customer": "^9.0.4-canary.8",
+    "@graphcommerce/next-config": "^9.0.4-canary.8",
+    "@graphcommerce/prettier-config-pwa": "^9.0.4-canary.8",
+    "@graphcommerce/react-hook-form": "^9.0.4-canary.8",
+    "@graphcommerce/typescript-config-pwa": "^9.0.4-canary.8",
+    "@lingui/react": "^4.2.1",
     "next": "15.1.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
