@@ -290,13 +290,13 @@ Features taken from the Magento Commerce 2 Feature List
       registry. — [Commerce]
 - [ ] Automatically update item counts and notify the registry owner as
       purchases are made. — [Commerce]
-- [ ] Allow customers to purchase physical and virtual gift cards. — [Commerce]
+- [x] Allow customers to purchase physical and virtual gift cards. — [Commerce]
 - [ ] Offer exclusive shopping experiences with private or flash sale sites. —
       [Commerce]
 - [ ] Streamline re-ordering by enabling shoppers to add products to the cart by
       SKU. — [Commerce]
 - [ ] Accelerate growth by collecting and displaying high-converting user
-      generated content powered by Yotpo. — [Commerce]
+      generated content powered by Yotpo. — [Commerce] f
 
 ### Customer accounts
 

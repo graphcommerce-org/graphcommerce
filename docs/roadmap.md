@@ -14,7 +14,8 @@ roadmap.
 - [ ] GraphCommerce Pro: Distribution of private npm packages for customers.
 - [ ] GraphCommerce Pro: Distribution of private Magento modules for customers.
 - [ ] Adobe Commerce: Returns functionality
-- [ ] Adobe Commerce: Store credit functionality
+- [x] Adobe Commerce: Store credit functionality
+- [x] Adobe Commerce: Gift card functionality
 - [ ] Adobe Commerce: Content staging functionality in preview mode.
 - [ ] Storelocator UI. Generic Store Locator UI to allow for any datasource to
       be used. Integrate with Magento's pickupLocations functionality.
@@ -36,7 +37,6 @@ roadmap.
 - [ ] Upgrade to React 19 + Next.js app router support.
 - [ ] Adobe Commerce: Reward points functionality
 - [ ] Adobe Commerce: Gift wrapping functionality
-- [ ] Adobe Commerce: Gift card functionality
 - [ ] Adobe Commerce: Gift registry functionality
 - [ ] Adobe Commerce: Multi Wishlist functionality
 - [ ] Adobe Comemrce: Adobe Sensei integration
@@ -50,7 +50,7 @@ roadmap.
       logging in.
 - [ ] Magento 2.4.7: Implement attributesForm for customer_account_edit,
       customer_account_create, customer_register_address, customer_address_edit
-- [ ] Magento 2.4.7: sendEmailToFriend implementation
+- [ ] Magento: sendEmailToFriend implementation
 - [ ] Magento 2.4.7: Implement a new success page on the the new
       guestOrderByToken
 - [ ] Magento: Implement fixed_product_taxes

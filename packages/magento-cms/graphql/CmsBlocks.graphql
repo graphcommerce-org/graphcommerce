@@ -1,0 +1,7 @@
+query CmsBlocks($identifiers: [String!]!) {
+  cmsBlocks(identifiers: $identifiers) {
+    items {
+      ...CmsBlock
+    }
+  }
+}

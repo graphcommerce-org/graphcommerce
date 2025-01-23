@@ -88,7 +88,9 @@ export function CartSummary(props: CartSummaryProps) {
         <Box>
           <SectionContainer
             variantLeft='h5'
-            labelLeft={<Trans id='Confirmation + Track & trace' />}
+            labelLeft={
+              is_virtual ? <Trans id='Confirmation' /> : <Trans id='Confirmation + Track & trace' />
+            }
             sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
           />
           <Typography variant='body1'>{email || ''}</Typography>

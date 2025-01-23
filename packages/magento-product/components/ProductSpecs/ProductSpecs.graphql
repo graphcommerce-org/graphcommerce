@@ -17,6 +17,9 @@ fragment ProductSpecs on Products {
       items {
         code
         __typename
+        attribute {
+          label
+        }
         ... on AttributeValue {
           value
         }

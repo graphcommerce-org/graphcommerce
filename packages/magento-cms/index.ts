@@ -1,3 +1,5 @@
+export * from './components/CmsBlock/CmsBlock'
+export * from './components/CmsBlock/CmsBlock.gql'
 export * from './components/CmsPageContent/CmsPageContent'
 export * from './components/CmsPageContent/CmsPageContent.gql'
 export * from './components/CmsPageMeta/CmsPageMeta'

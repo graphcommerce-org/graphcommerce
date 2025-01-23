@@ -3,4 +3,10 @@ query Layout {
     __typename
   }
   ...MenuQueryFragment
+
+  cmsBlocks(identifiers: ["footer_links_block"]) {
+    items {
+      ...CmsBlock
+    }
+  }
 }

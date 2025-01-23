@@ -1,0 +1,4 @@
+fragment CmsBlock on CmsBlock {
+  identifier
+  content
+}

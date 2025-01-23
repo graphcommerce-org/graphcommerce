@@ -9,3 +9,4 @@ export * from './NumberFormat' // Intl.NumberFormat
 // export * from './PluralRules' // Intl.PluralRules
 export * from './RelativeTimeFormat' // Intl.RelativeTimeFormat
 // export * from './Segmenter' // Intl.Segmenter
+export * from './CurrencySymbol'

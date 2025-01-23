@@ -39,6 +39,7 @@ export function ConfigurableProductOption(props: ConfigurableProductOptionProps)
     attribute_code,
     url_key,
     render,
+    __typename,
     ...other
   } = props
   const fieldName = `cartItems.${index}.selected_options.${optionIndex}` as const
@@ -55,7 +56,11 @@ export function ConfigurableProductOption(props: ConfigurableProductOptionProps)
     // .slice(0, optionIndex)
     .filter((o) => o !== selectedOption)
 
-  const { configured } = useConfigurableOptionsForSelection({ url_key, selectedOptions })
+  const { configured } = useConfigurableOptionsForSelection({
+    __typename,
+    url_key,
+    selectedOptions,
+  })
 
   const available =
     configured?.configurable_product_options_selection?.options_available_for_selection?.find(
