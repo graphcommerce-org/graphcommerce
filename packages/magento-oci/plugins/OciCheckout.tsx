@@ -1,16 +1,19 @@
 import { useMutation } from '@graphcommerce/graphql'
 import type { CartStartCheckoutProps } from '@graphcommerce/magento-cart'
-import { PluginProps } from '@graphcommerce/next-config'
+import type { PluginProps } from '@graphcommerce/next-config'
 import { Trans } from '@lingui/react'
 import { useEffect, useState } from 'react'
-import { DangerousElement } from '../components/OCI/components/DangerousElement'
-import { endOciSessionDocument } from '../components/OCI/graphql/EndOciSession.gql'
+import { DangerousElement } from '../components'
+import { endOciSessionDocument } from '../graphql/EndOciSession.gql'
+import type { isOciFragment } from '../graphql/InjectCartStartCheckout.gql'
 
 export const component = 'CartStartCheckout'
 export const exported = '@graphcommerce/magento-cart'
 
+type OciCheckoutProps = CartStartCheckoutProps & isOciFragment
+
 /** If cart has is_oci prop, replace Go to checkout button with button to end OCI session */
-function OciCheckout(props: PluginProps<CartStartCheckoutProps>) {
+function OciCheckout(props: PluginProps<OciCheckoutProps>) {
   const [buttonLoading, setButtonLoading] = useState(false)
   const { Prev, buttonProps, disabled, sx, ...rest } = props
   const { is_oci, id = '' } = rest
