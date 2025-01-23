@@ -13,9 +13,4 @@ input MagentoOciSettingsConfig {
   Enable OCI sessions for GraphCommerce
   """
   enabled: Boolean
-
-  """
-  OCI endpoint URL (required)
-  """
-  endpoint: String
 }
