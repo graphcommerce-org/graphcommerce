@@ -83,6 +83,7 @@ type IframeElement = {
 
 type EmbedElement = {
   type: 'embed'
+  children: ElementOrTextNode[]
   id: string
   nodeId: string
   nodeType: string
