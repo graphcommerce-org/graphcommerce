@@ -21,6 +21,7 @@ type BaseElementTypes =
   | 'table_row'
   | 'table_cell'
   | 'code'
+  | 'code-block'
   | 'bold'
   | 'italic'
   | 'underlined'
@@ -80,6 +81,14 @@ type IframeElement = {
   height?: number
 }
 
+type EmbedElement = {
+  type: 'embed'
+  id: string
+  nodeId: string
+  nodeType: string
+  isInline?: boolean
+}
+
 export type ElementNode =
   | SimpleElement
   | LinkElement
@@ -87,6 +96,8 @@ export type ElementNode =
   | VideoElement
   | IframeElement
   | ClassElement
+  | EmbedElement
+
 export type ElementOrTextNode = ElementNode | TextNode
 
 type RendererBase = { sx?: SxProps<Theme>; children?: React.ReactNode }
@@ -102,6 +113,7 @@ export type Renderers = {
   video: Renderer<VideoElement>
   iframe: Renderer<IframeElement>
   class: Renderer<ClassElement>
+  embed: Renderer<EmbedElement>
 }
 
 export type SxRenderer = {
