@@ -16,6 +16,7 @@ function resolveRecursivePackageJson(
   additionalDependencies: string[] = [],
 ) {
   const isRoot = dependencyPath === root
+
   const fileName = require.resolve(path.join(dependencyPath, 'package.json'))
   const packageJsonFile = fs.readFileSync(fileName, 'utf-8').toString()
   const packageJson = JSON.parse(packageJsonFile) as PackageJson
@@ -48,15 +49,33 @@ function resolveRecursivePackageJson(
     ),
   ]
 
+  const optionalPeerDependencies = Object.entries(packageJson.peerDependenciesMeta ?? {})
+    .filter(([_, v]) => v?.optional)
+    .map(([key]) => key)
+
+  const optionalDependencies = Object.keys(packageJson.optionalDependencies ?? {})
+  const optional = new Set([...optionalPeerDependencies, ...optionalDependencies])
+
+  const availableDependencies = dependencies.filter((dep) => {
+    if (optional.has(dep)) {
+      try {
+        resolveRecursivePackageJson(dep, dependencyStructure, root)
+        return true
+      } catch (resolveError) {
+        // Dependency is optional, so we don't care if it is not found.
+        return false
+      }
+    } else {
+      resolveRecursivePackageJson(dep, dependencyStructure, root)
+      return true
+    }
+  })
+
   const name = isRoot ? '.' : packageJson.name
   dependencyStructure[name] = {
     dirName: path.dirname(path.relative(process.cwd(), fileName)),
-    dependencies,
+    dependencies: availableDependencies,
   }
-
-  dependencies.forEach((dep) => {
-    resolveRecursivePackageJson(dep, dependencyStructure, root)
-  })
 
   return dependencyStructure
 }

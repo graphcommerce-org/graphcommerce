@@ -35,14 +35,32 @@ function resolveRecursivePackageJson(dependencyPath, dependencyStructure, root, 
             ? !(e.length >= 0 && e.some((v) => name.startsWith(v)))
             : false)),
     ];
+    const optionalPeerDependencies = Object.entries(packageJson.peerDependenciesMeta ?? {})
+        .filter(([_, v]) => v?.optional)
+        .map(([key]) => key);
+    const optionalDependencies = Object.keys(packageJson.optionalDependencies ?? {});
+    const optional = new Set([...optionalPeerDependencies, ...optionalDependencies]);
+    const availableDependencies = dependencies.filter((dep) => {
+        if (optional.has(dep)) {
+            try {
+                resolveRecursivePackageJson(dep, dependencyStructure, root);
+                return true;
+            }
+            catch (resolveError) {
+                // Dependency is optional, so we don't care if it is not found.
+                return false;
+            }
+        }
+        else {
+            resolveRecursivePackageJson(dep, dependencyStructure, root);
+            return true;
+        }
+    });
     const name = isRoot ? '.' : packageJson.name;
     dependencyStructure[name] = {
         dirName: node_path_1.default.dirname(node_path_1.default.relative(process.cwd(), fileName)),
-        dependencies,
+        dependencies: availableDependencies,
     };
-    dependencies.forEach((dep) => {
-        resolveRecursivePackageJson(dep, dependencyStructure, root);
-    });
     return dependencyStructure;
 }
 /**
