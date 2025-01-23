@@ -1,9 +1,9 @@
 // import CircularDependencyPlugin from 'circular-dependency-plugin'
-import { DuplicatesPlugin } from 'inspectpack/plugin'
+// import { DuplicatesPlugin } from 'inspectpack/plugin'
 import type { NextConfig } from 'next'
 import type { DomainLocale } from 'next/dist/server/config'
 import type { Configuration } from 'webpack'
-import { DefinePlugin } from 'webpack'
+import webpack from 'webpack'
 import { loadConfig } from './config/loadConfig'
 import { configToImportMeta } from './config/utils/configToImportMeta'
 import type { GraphCommerceConfig } from './generated/config'
@@ -119,10 +119,10 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
       if (!config.plugins) config.plugins = []
 
       // Make import.meta.graphCommerce available for usage.
-      config.plugins.push(new DefinePlugin(importMetaPaths))
+      config.plugins.push(new webpack.DefinePlugin(importMetaPaths))
 
       // To properly properly treeshake @apollo/client we need to define the __DEV__ property
-      config.plugins.push(new DefinePlugin({ 'globalThis.__DEV__': options.dev }))
+      config.plugins.push(new webpack.DefinePlugin({ 'globalThis.__DEV__': options.dev }))
 
       if (!options.isServer) {
         // if (graphcommerceConfig.debug?.webpackCircularDependencyPlugin) {
@@ -132,21 +132,21 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
         //     }),
         //   )
         // }
-        if (graphcommerceConfig.debug?.webpackDuplicatesPlugin) {
-          config.plugins.push(
-            new DuplicatesPlugin({
-              ignoredPackages: [
-                // very small
-                'react-is',
-                // build issue
-                'tslib',
-                // server
-                'isarray',
-                'readable-stream',
-              ],
-            }),
-          )
-        }
+        // if (graphcommerceConfig.debug?.webpackDuplicatesPlugin) {
+        //   config.plugins.push(
+        //     new DuplicatesPlugin({
+        //       ignoredPackages: [
+        //         // very small
+        //         'react-is',
+        //         // build issue
+        //         'tslib',
+        //         // server
+        //         'isarray',
+        //         'readable-stream',
+        //       ],
+        //     }),
+        //   )
+        // }
       }
 
       config.snapshot = {

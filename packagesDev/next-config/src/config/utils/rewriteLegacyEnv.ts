@@ -1,4 +1,4 @@
-import cloneDeep from 'lodash/cloneDeep'
+import lodash from 'lodash'
 import type { GraphCommerceConfig } from '../../generated/config'
 import type { ApplyResult, ZodNode } from './mergeEnvIntoConfig'
 import { mergeEnvIntoConfig } from './mergeEnvIntoConfig'
@@ -8,7 +8,7 @@ export function rewriteLegacyEnv(
   env: Record<string, string | undefined>,
   config: Partial<GraphCommerceConfig> = {},
 ) {
-  const clonedEnv: Record<string, string | undefined> = cloneDeep(env)
+  const clonedEnv: Record<string, string | undefined> = lodash.cloneDeep(env)
   const applied: ApplyResult = []
 
   function renamedTo(to: string) {

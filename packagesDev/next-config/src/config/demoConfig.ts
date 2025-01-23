@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import type { PartialDeep } from 'type-fest'
 import type { GraphCommerceConfig, GraphCommerceStorefrontConfig } from '../generated/config'
 
