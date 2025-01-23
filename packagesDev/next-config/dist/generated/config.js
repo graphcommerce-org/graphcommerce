@@ -72,6 +72,7 @@ export function GraphCommerceConfigSchema() {
         limitSsg: z.boolean().nullish(),
         magentoEndpoint: z.string().min(1),
         magentoVersion: z.number(),
+        ociSettings: MagentoOciSettingsConfigSchema().nullish(),
         permissions: GraphCommercePermissionsSchema().nullish(),
         previewSecret: z.string().nullish(),
         productFiltersLayout: ProductFiltersLayoutSchema.default('DEFAULT').nullish(),
@@ -132,6 +133,11 @@ export function MagentoConfigurableVariantValuesSchema() {
         content: z.boolean().nullish(),
         gallery: z.boolean().nullish(),
         url: z.boolean().nullish()
+    });
+}
+export function MagentoOciSettingsConfigSchema() {
+    return z.object({
+        enabled: z.boolean().nullish()
     });
 }
 export function RecentlyViewedProductsConfigSchema() {

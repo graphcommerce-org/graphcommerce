@@ -263,9 +263,7 @@ export type GraphCommerceConfig = {
    */
   graphqlMeshEditMode?: InputMaybe<Scalars['Boolean']['input']>
   /**
-   * The HyGraph endpoint.
-   *
-   * > Read-only endpoint that allows low latency and high read-throughput content delivery.
+   * The HyGraph endpoint.> Read-only endpoint that allows low latency and high read-throughput content delivery.
    *
    * Project settings -> API Access -> High Performance Read-only Content API
    */
@@ -337,6 +335,8 @@ export type GraphCommerceConfig = {
    * Values: 245, 246, 247 for Magento 2.4.5, 2.4.6, 2.4.7 respectively.
    */
   magentoVersion: Scalars['Int']['input']
+  /** OCI settings config */
+  ociSettings?: InputMaybe<MagentoOciSettingsConfig>
   /**
    * Allows the option to require login or completely disable certain sections of the site, can be
    * overriden per storeview with the storefrontConfig
@@ -537,6 +537,12 @@ export type MagentoConfigurableVariantValues = {
   url?: InputMaybe<Scalars['Boolean']['input']>
 }
 
+/** MagentoOciSettingsConfig to allow enabling certain aspects of the OCI settings */
+export type MagentoOciSettingsConfig = {
+  /** Enable OCI sessions for GraphCommerce */
+  enabled?: InputMaybe<Scalars['Boolean']['input']>
+}
+
 export type PaginationVariant = 'COMPACT' | 'EXTENDED'
 
 export type ProductFiltersLayout = 'DEFAULT' | 'SIDEBAR'
@@ -629,6 +635,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     magentoVersion: z.number(),
+    ociSettings: MagentoOciSettingsConfigSchema().nullish(),
     permissions: GraphCommercePermissionsSchema().nullish(),
     previewSecret: z.string().nullish(),
     productFiltersLayout: ProductFiltersLayoutSchema.default('DEFAULT').nullish(),
@@ -704,6 +711,14 @@ export function MagentoConfigurableVariantValuesSchema(): z.ZodObject<
     content: z.boolean().nullish(),
     gallery: z.boolean().nullish(),
     url: z.boolean().nullish(),
+  })
+}
+
+export function MagentoOciSettingsConfigSchema(): z.ZodObject<
+  Properties<MagentoOciSettingsConfig>
+> {
+  return z.object({
+    enabled: z.boolean().nullish(),
   })
 }
 
