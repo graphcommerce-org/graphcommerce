@@ -4,11 +4,17 @@
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "9.0.4-canary.9",
   "scripts": {
-    "dev": "pkgroll --watch",
-    "build": "pkgroll",
-    "prepack": "pkgroll"
+    "dev": "pkgroll --clean-dist --watch",
+    "build": "pkgroll --clean-dist",
+    "prepack": "pkgroll --clean-dist"
   },
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "bin": {
     "gc-gql-codegen": "dist/bin/codegen.js",
     "gc-mesh": "dist/bin/mesh.js",

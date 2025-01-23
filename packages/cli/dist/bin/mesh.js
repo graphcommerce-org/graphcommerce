@@ -98,7 +98,7 @@ async function cleanup() {
     });
   } catch (e) {
   }
-  return void 0;
+  return undefined;
 }
 const main = async () => {
   const baseConf = await findConfig({});
