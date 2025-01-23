@@ -2,7 +2,7 @@
   "name": "@graphcommerce/cli",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.4-canary.9",
+  "version": "9.0.4-canary.10",
   "scripts": {
     "dev": "pkgroll --clean-dist --watch",
     "build": "pkgroll --clean-dist",
@@ -35,12 +35,12 @@
     "yaml": "2.6.1"
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^9.0.4-canary.9",
-    "@graphcommerce/graphql-mesh": "^9.0.4-canary.9",
-    "@graphcommerce/hygraph-cli": "^9.0.4-canary.9",
-    "@graphcommerce/next-config": "^9.0.4-canary.9",
-    "@graphcommerce/prettier-config-pwa": "^9.0.4-canary.9",
-    "@graphcommerce/typescript-config-pwa": "^9.0.4-canary.9",
+    "@graphcommerce/eslint-config-pwa": "^9.0.4-canary.10",
+    "@graphcommerce/graphql-mesh": "^9.0.4-canary.10",
+    "@graphcommerce/hygraph-cli": "^9.0.4-canary.10",
+    "@graphcommerce/next-config": "^9.0.4-canary.10",
+    "@graphcommerce/prettier-config-pwa": "^9.0.4-canary.10",
+    "@graphcommerce/typescript-config-pwa": "^9.0.4-canary.10",
     "@graphql-mesh/cli": "*",
     "@graphql-mesh/types": "*",
     "@graphql-mesh/utils": "*",

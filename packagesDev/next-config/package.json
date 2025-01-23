@@ -2,7 +2,7 @@
   "name": "@graphcommerce/next-config",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.4-canary.9",
+  "version": "9.0.4-canary.10",
   "type": "module",
   "types": "./src/index.ts",
   "exports": {
@@ -43,7 +43,7 @@
     "zod": "^3.24.1"
   },
   "peerDependencies": {
-    "@graphcommerce/prettier-config-pwa": "^9.0.4-canary.9",
+    "@graphcommerce/prettier-config-pwa": "^9.0.4-canary.10",
     "@lingui/loader": "*",
     "@lingui/macro": "*",
     "@lingui/react": "*",

@@ -90,26 +90,37 @@
     "@graphcommerce/typescript-config-pwa": "9.0.3"
   },
   "changesets": [
+    "beige-suns-know",
     "brave-penguins-love",
+    "cold-eggs-visit",
     "cold-readers-design",
+    "eighty-pianos-protect",
     "empty-files-stare",
     "four-needles-invent",
     "funny-crabs-fix",
     "gentle-rules-learn",
+    "gold-eels-report",
     "gorgeous-baboons-learn",
+    "green-guests-kick",
     "heavy-guests-mix",
     "heavy-squids-build",
     "hip-buckets-raise",
+    "late-paws-smell",
     "lemon-sloths-approve",
     "quiet-bees-exist",
     "rare-horses-cheer",
     "red-lies-drive",
+    "serious-glasses-call",
+    "shaggy-ligers-obey",
+    "shiny-pillows-love",
     "silly-tigers-scream",
     "six-cheetahs-repeat",
+    "spicy-shrimps-battle",
     "strange-turkeys-sort",
     "tender-guests-refuse",
     "thick-parents-joke",
     "wicked-carpets-tie",
-    "wicked-planets-call"
+    "wicked-planets-call",
+    "wicked-stingrays-buy"
   ]
 }

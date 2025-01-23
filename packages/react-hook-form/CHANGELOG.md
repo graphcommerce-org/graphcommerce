@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.4-canary.10
+
+### Patch Changes
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`935f8f9`](https://github.com/graphcommerce-org/graphcommerce/commit/935f8f9ebe5e79b336e56d40cb1ec96ce17b84d7) - Remove dependency on Magento for @graphcommerec/react-hook-form ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.9
 
 ## 9.0.4-canary.8

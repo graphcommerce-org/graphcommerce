@@ -1,5 +1,11 @@
 # @graphcommerce/misc
 
+## 9.0.4-canary.10
+
+### Patch Changes
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`af04d45`](https://github.com/graphcommerce-org/graphcommerce/commit/af04d45d51bdb1b7f0221a96dc0867234a581cc8) - Added missing WebWorker tsconfig for magento-open-source example ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.9
 
 ## 9.0.4-canary.8

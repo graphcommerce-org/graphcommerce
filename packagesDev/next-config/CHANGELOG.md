@@ -1,5 +1,19 @@
 # Change Log
 
+## 9.0.4-canary.10
+
+### Patch Changes
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`8b25322`](https://github.com/graphcommerce-org/graphcommerce/commit/8b253224997b59ac74d72813214dfc224f526c0a) - When a dependency is optional or has peerDependenciesMeta set to optional, make sure it doesn't crash when it is not found when calling resolveDependenciesSync ([@paales](https://github.com/paales))
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`2c79a4c`](https://github.com/graphcommerce-org/graphcommerce/commit/2c79a4cba2779bc367104ebb13e6c0d6feb6574f) - Remove redirects for `/product/$type/[url]` routes, those haven't been used for years anymore. ([@paales](https://github.com/paales))
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`30b7356`](https://github.com/graphcommerce-org/graphcommerce/commit/30b7356790efbac0f0017ef61cb1619b920100ab) - Solve issue where withGraphCommerce had a hard dependency on Magento specific configurations ([@paales](https://github.com/paales))
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`9825f59`](https://github.com/graphcommerce-org/graphcommerce/commit/9825f59b8626c315e6092950faceeab4311a5424) - Remove rewriteLegacyEnv as that hasn't been used for years ([@paales](https://github.com/paales))
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`5ffa0ee`](https://github.com/graphcommerce-org/graphcommerce/commit/5ffa0ee1d620f4f1c38bc5df36cbd527bcc43cf9) - Migrated `@graphcommerce/next-config` package to `"type": "module"` ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.9
 
 ## 9.0.4-canary.8
