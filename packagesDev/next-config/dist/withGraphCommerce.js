@@ -56,11 +56,15 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
         images: {
             ...nextConfig.images,
             remotePatterns: [
-                { hostname: new URL(graphcommerceConfig.magentoEndpoint).hostname },
+                'magentoEndpoint' in graphcommerceConfig
+                    ? {
+                        hostname: new URL(graphcommerceConfig.magentoEndpoint).hostname,
+                    }
+                    : undefined,
                 { hostname: '**.graphassets.com' },
                 { hostname: '*.graphcommerce.org' },
                 ...(nextConfig.images?.remotePatterns ?? []),
-            ],
+            ].filter((v) => !!v),
         },
         redirects: async () => {
             const redirects = (await nextConfig.redirects?.()) ?? [];
@@ -82,7 +86,9 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
             if (Array.isArray(rewrites)) {
                 rewrites = { beforeFiles: rewrites, afterFiles: [], fallback: [] };
             }
-            if (graphcommerceConfig.productRoute && graphcommerceConfig.productRoute !== '/p/') {
+            if ('productRoute' in graphcommerceConfig &&
+                typeof graphcommerceConfig.productRoute === 'string' &&
+                graphcommerceConfig.productRoute !== '/p/') {
                 rewrites.beforeFiles.push({
                     source: `${graphcommerceConfig.productRoute ?? '/p/'}:path*`,
                     destination: '/p/:path*',
