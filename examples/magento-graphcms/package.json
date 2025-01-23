@@ -62,6 +62,7 @@
     "@graphcommerce/magento-graphql": "9.0.4-canary.10",
     "@graphcommerce/magento-graphql-rest": "9.0.4-canary.10",
     "@graphcommerce/magento-newsletter": "9.0.4-canary.10",
+    "@graphcommerce/magento-oci": "9.0.4-canary.10",
     "@graphcommerce/magento-payment-included": "9.0.4-canary.10",
     "@graphcommerce/magento-product": "9.0.4-canary.10",
     "@graphcommerce/magento-product-bundle": "9.0.4-canary.10",
