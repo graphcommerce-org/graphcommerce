@@ -1,7 +1,9 @@
-import { writeFileSync } from 'fs'
+import { readFileSync, writeFileSync } from 'fs'
+import prettierConf from '@graphcommerce/prettier-config-pwa'
 import { generate } from '@graphql-codegen/cli'
 import { transformFileSync } from '@swc/core'
 import dotenv from 'dotenv'
+import prettier from 'prettier'
 import { findParentPath } from '../../utils/isMonorepo'
 import { resolveDependenciesSync } from '../../utils/resolveDependenciesSync'
 import { resolveDependency } from '../../utils/resolveDependency'
@@ -26,10 +28,9 @@ export async function generateConfig() {
     schema: ['graphql/**/Config.graphqls', ...schemaLocations],
     generates: {
       [targetTs]: {
-        plugins: ['typescript', 'typescript-validation-schema', 'add'],
+        plugins: ['typescript', 'typescript-validation-schema'],
         config: {
           // enumsAsTypes: true,
-          content: '/* eslint-disable */',
           schema: 'zod',
           notAllowEmptyString: true,
           strictScalars: true,
@@ -49,8 +50,19 @@ export async function generateConfig() {
     },
   })
 
+  writeFileSync(
+    targetTs,
+    await prettier.format(readFileSync(targetTs, 'utf-8'), {
+      ...prettierConf,
+      parser: 'typescript',
+      plugins: prettierConf.plugins?.filter(
+        (p) => typeof p === 'string' && !p.includes('prettier-plugin-sort-imports'),
+      ),
+    }),
+  )
+
   const result = transformFileSync(targetTs, {
-    module: { type: 'commonjs' },
+    module: { type: 'nodenext' },
     env: { targets: { node: '18' } },
   })
 

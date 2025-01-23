@@ -1,11 +1,9 @@
 /* eslint-disable no-console */
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { cosmiconfigSync } from 'cosmiconfig'
 import type { GraphCommerceConfig } from '../generated/config'
 import { GraphCommerceConfigSchema } from '../generated/config'
 import { demoConfig } from './demoConfig'
-import { formatAppliedEnv } from './utils/mergeEnvIntoConfig'
-import { rewriteLegacyEnv } from './utils/rewriteLegacyEnv'
+import { formatAppliedEnv, mergeEnvIntoConfig } from './utils/mergeEnvIntoConfig'
 
 export * from './utils/configToImportMeta'
 export * from './utils/replaceConfigInString'
@@ -28,12 +26,8 @@ export function loadConfig(cwd: string): GraphCommerceConfig {
     confFile ||= {}
 
     const schema = GraphCommerceConfigSchema()
-    const [mergedConfig, applyResult] = rewriteLegacyEnv(
-      schema,
-      process.env,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      confFile,
-    )
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    const [mergedConfig, applyResult] = mergeEnvIntoConfig(schema, confFile, process.env)
 
     if (applyResult.length > 0 && isMainProcess) console.log(formatAppliedEnv(applyResult))
 
