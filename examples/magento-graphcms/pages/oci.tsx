@@ -108,6 +108,8 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: cacheFirst(staticClient),
   })
 
+  if (!import.meta.graphCommerce.ociSettings?.enabled) return { notFound: true }
+
   return {
     props: {
       ...(await layout).data,
