@@ -11,7 +11,7 @@
     "noLib": false,
     "strict": true,
     "resolveJsonModule": true,
-    "moduleResolution": "Node",
-    "module": "CommonJS"
+    "moduleResolution": "Bundler",
+    "module": "ESNext"
   }
 }

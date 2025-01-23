@@ -3,16 +3,21 @@
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "9.0.4-canary.9",
-  "scripts": {
-    "dev": "tsc --preserveWatchOutput --watch",
-    "build": "tsc",
-    "prepack": "tsc"
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
   },
-  "type": "commonjs",
-  "main": "dist/index.js",
-  "types": "src/index.ts",
+  "scripts": {
+    "dev": "pkgroll --clean-dist --watch",
+    "build": "pkgroll --clean-dist",
+    "prepack": "pkgroll --clean-dist"
+  },
   "dependencies": {
     "@hygraph/management-sdk": "1.2.5",
+    "@types/prompts": "^2.4.9",
     "@whatwg-node/fetch": "^0.10.1",
     "graphql": "^16.10.0",
     "graphql-tag": "^2.12.6",
@@ -27,7 +32,7 @@
     "dotenv": "^16.1.4"
   },
   "devDependencies": {
-    "@types/prompts": "^2.4.9",
+    "pkgroll": "^2.5.1",
     "typescript": "5.7.2"
   },
   "sideEffects": false,
