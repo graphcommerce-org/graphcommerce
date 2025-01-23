@@ -307,6 +307,10 @@ Limit the static generation of SSG when building.
 
 By default GraphCommerce will statically generate all product and category pages during build. This can take quite a long time, to skip this step set this value to true.
 
+#### ociSettings: [MagentoOciSettingsConfig](#MagentoOciSettingsConfig)
+
+OCI settings config
+
 #### permissions: [GraphCommercePermissions](#GraphCommercePermissions)
 
 Allows the option to require login or completely disable certain sections of the site, can be overriden per storeview with the storefrontConfig
@@ -522,6 +526,14 @@ provided that the gallery images for the selected variant differ from the curren
 When a variant is selected the URL of the product will be changed in the address bar.
 
 This only happens when the actual variant is can be accessed by the URL.
+
+### MagentoOciSettingsConfig
+
+MagentoOciSettingsConfig to allow enabling certain aspects of the OCI settings
+
+#### enabled: boolean
+
+Enable OCI sessions for GraphCommerce
 
 ### RecentlyViewedProductsConfig
 
