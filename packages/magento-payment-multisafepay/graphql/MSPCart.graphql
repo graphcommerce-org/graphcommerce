@@ -1,0 +1,5 @@
+query MSPCart($cartId: String!) {
+  multisafepayCart(cart_id: $cartId) {
+    ...CartTotals
+  }
+}

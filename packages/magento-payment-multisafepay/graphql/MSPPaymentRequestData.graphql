@@ -1,0 +1,58 @@
+query MSPPaymentRequestData($cartId: String!) {
+  multisafepayPaymentRequestData(cart_id: $cartId) {
+    apiToken
+    payment_component_template_id
+    storeId
+    apiTokenLifeTime
+    applePayButton {
+      additionalTotalItems {
+        amount
+        label
+      }
+      applePayButtonId
+      cartItems {
+        label
+        price
+      }
+      getMerchantSessionUrl
+      getMerchantSessionUrl
+      isActive
+    }
+    cartTotal
+    currency
+    environment
+    googlePayButton {
+      accountId
+      googlePayButtonId
+      isActive
+      merchantInfo {
+        merchantId
+        merchantName
+      }
+      mode
+    }
+    locale
+    paymentComponentConfig {
+      additionalInfo {
+        image
+        is_preselected
+        vaultCode
+      }
+      gatewayCode
+      paymentMethod
+      paymentType
+      tokens {
+        bin
+        code
+        display
+        expired
+        expiry_date
+        last4
+        model
+        name_holder
+        token
+      }
+    }
+    paymentComponentContainerId
+  }
+}

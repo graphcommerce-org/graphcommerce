@@ -1,11 +1,11 @@
-import type { PaymentModule } from '@graphcommerce/magento-cart-payment-method'
+import { type PaymentModule } from '@graphcommerce/magento-cart-payment-method'
+import { PaymentMethodOptionsNoop } from '@graphcommerce/magento-cart-payment-method/PaymentMethodOptionsNoop/PaymentMethodOptionsNoop'
 import { MSPPaymentActionCard } from './components/MSPPaymentActionCard/MSPPaymentActionCard'
 import { MSPPaymentHandler } from './components/MSPPaymentHandler/MSPPaymentHandler'
-import { MSPPaymentOptions } from './components/MSPPaymentOptions/MSPPaymentOptions'
 import { MSPPaymentPlaceOrder } from './components/MSPPaymentPlaceOrder/MSPPaymentPlaceOrder'
 
 const mspModule: PaymentModule = {
-  PaymentOptions: MSPPaymentOptions,
+  PaymentOptions: PaymentMethodOptionsNoop,
   PaymentActionCard: MSPPaymentActionCard,
   PaymentHandler: MSPPaymentHandler,
   PaymentPlaceOrder: MSPPaymentPlaceOrder,
