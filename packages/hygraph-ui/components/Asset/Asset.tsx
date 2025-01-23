@@ -22,7 +22,7 @@ export type AssetProps = {
 } & Omit<ImageProps, 'src' | 'width' | 'height' | 'alt' | 'sx'>
 
 export const Asset = memo<AssetProps>((props) => {
-  const { asset, sx = [], ...imgProps } = props
+  const { asset, sx = [], unoptimized = false, ...imgProps } = props
 
   if (isImage(asset)) {
     const { url, height, mimeType, size, width, alt, ...assetProps } = asset
@@ -34,7 +34,7 @@ export const Asset = memo<AssetProps>((props) => {
         alt={alt ?? undefined}
         {...imgProps}
         {...assetProps}
-        unoptimized={mimeType === 'image/svg+xml'}
+        unoptimized={typeof unoptimized === 'boolean' ? unoptimized : mimeType === 'image/svg+xml'}
         sx={[...(Array.isArray(sx) ? sx : [sx])]}
       />
     )
