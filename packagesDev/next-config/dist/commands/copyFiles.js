@@ -12,7 +12,7 @@ const resolveDependenciesSync_1 = require("../utils/resolveDependenciesSync");
 // Add debug logging helper
 const debug = (...args) => {
     if (process.env.DEBUG)
-        console.log('[copy-files]', ...args);
+        console.info('[copy-files]', ...args);
 };
 // Add constants for the magic comments
 const MANAGED_BY_GC = '// managed by: graphcommerce';
@@ -185,7 +185,7 @@ Found in packages:
                     return;
                 }
                 if (management === 'unmanaged') {
-                    console.log(`Note: File ${file} has been modified. Add '${MANAGED_LOCALLY.trim()}' at the top to manage it locally.`);
+                    console.info(`Note: File ${file} has been modified. Add '${MANAGED_LOCALLY.trim()}' at the top to manage it locally.`);
                     debug(`File ${file} doesn't have management comment, skipping`);
                     return;
                 }
@@ -197,7 +197,7 @@ Found in packages:
 Source: ${sourcePath}`);
                     process.exit(1);
                 }
-                console.log(`Creating new file: ${file}\nSource: ${sourcePath}`);
+                console.info(`Creating new file: ${file}\nSource: ${sourcePath}`);
                 debug('File does not exist yet');
             }
             // Skip if content is identical (including magic comment)
@@ -209,7 +209,7 @@ Source: ${sourcePath}`);
             // Copy the file with magic comment
             await promises_1.default.writeFile(targetPath, contentWithComment);
             if (targetContent) {
-                console.log(`Updated managed file: ${file}`);
+                console.info(`Updated managed file: ${file}`);
                 debug(`Overwrote existing file: ${file}`);
             }
             // If the file is managed by GraphCommerce (new or updated), add it to managedFiles
@@ -263,7 +263,7 @@ Source: ${sourcePath}`);
             // Then try to remove the file
             try {
                 await promises_1.default.unlink(filePath);
-                console.log(`Removed managed file: ${file}`);
+                console.info(`Removed managed file: ${file}`);
                 debug(`Removed file: ${file}`);
             }
             catch (err) {

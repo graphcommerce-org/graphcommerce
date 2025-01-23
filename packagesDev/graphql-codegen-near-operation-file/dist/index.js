@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.preset = exports.resolveDocumentImports = void 0;
+const path_1 = require("path");
 const add_1 = __importDefault(require("@graphql-codegen/add"));
 const graphql_1 = require("graphql");
-const path_1 = require("path");
 const env_1 = require("./directive/env");
 const injectable_1 = require("./directive/injectable");
 const resolve_document_imports_1 = require("./resolve-document-imports");
