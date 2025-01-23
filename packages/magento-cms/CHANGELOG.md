@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.4-canary.11
+
+### Patch Changes
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`2e52ea3`](https://github.com/graphcommerce-org/graphcommerce/commit/2e52ea39823a15fc4ffe3ca47780f7e64ace3110) - Added cmsBlocks query and `<CmsBlock />` component. ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.10
 
 ## 9.0.4-canary.9

@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-graphql",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.4-canary.10",
+  "version": "9.0.4-canary.11",
   "sideEffects": false,
   "main": "index.ts",
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -13,10 +13,10 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^9.0.4-canary.10",
-    "@graphcommerce/graphql": "^9.0.4-canary.10",
-    "@graphcommerce/prettier-config-pwa": "^9.0.4-canary.10",
-    "@graphcommerce/typescript-config-pwa": "^9.0.4-canary.10",
+    "@graphcommerce/eslint-config-pwa": "^9.0.4-canary.11",
+    "@graphcommerce/graphql": "^9.0.4-canary.11",
+    "@graphcommerce/prettier-config-pwa": "^9.0.4-canary.11",
+    "@graphcommerce/typescript-config-pwa": "^9.0.4-canary.11",
     "graphql": "^16.0.0",
     "next": "*",
     "react": "^18.2.0",

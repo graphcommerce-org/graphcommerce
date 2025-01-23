@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.4-canary.11
+
+### Patch Changes
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`8b8807b`](https://github.com/graphcommerce-org/graphcommerce/commit/8b8807b8e24f1dba78dd988dfdc21316c616274f) - Solve issue where the GetConfigurableOptionsSelection query would be executed even if the product wasn't a ConfigurableProduct. ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.10
 
 ## 9.0.4-canary.9

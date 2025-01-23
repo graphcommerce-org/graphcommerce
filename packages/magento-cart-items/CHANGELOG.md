@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.0.4-canary.11
+
+### Patch Changes
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`875fbca`](https://github.com/graphcommerce-org/graphcommerce/commit/875fbcab9a26db8a33eca7cc9a41847c24cd8381) - Solve issue where the CartItem href wouldn't be correct ([@paales](https://github.com/paales))
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`dfd6359`](https://github.com/graphcommerce-org/graphcommerce/commit/dfd63593f31bd69d255a69dd7e9cb5471428c685) - Exported cartItemToCartItemInput so it can be extended with plugins ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.10
 
 ## 9.0.4-canary.9

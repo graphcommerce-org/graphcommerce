@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.4-canary.11
+
+### Patch Changes
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`6533728`](https://github.com/graphcommerce-org/graphcommerce/commit/65337280c6f4291cf4354e6ed9659f03388ca8d4) - When ordering a virtual product the checkout would still reference a Track & Trace ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.10
 
 ## 9.0.4-canary.9

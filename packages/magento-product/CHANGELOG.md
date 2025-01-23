@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.4-canary.11
+
+### Patch Changes
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`10200f1`](https://github.com/graphcommerce-org/graphcommerce/commit/10200f1eda8a34261ed3975c603b456014d4f8a3) - ProductSpecs now uses `attribute { label }` instead of `useQuery(ProductSpecsTypes)` ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.10
 
 ## 9.0.4-canary.9
