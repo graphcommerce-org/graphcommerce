@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { z } from 'zod'
 export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>

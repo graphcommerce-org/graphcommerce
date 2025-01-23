@@ -28,10 +28,9 @@ export async function generateConfig() {
     schema: ['graphql/**/Config.graphqls', ...schemaLocations],
     generates: {
       [targetTs]: {
-        plugins: ['typescript', 'typescript-validation-schema', 'add'],
+        plugins: ['typescript', 'typescript-validation-schema'],
         config: {
           // enumsAsTypes: true,
-          content: '/* eslint-disable */',
           schema: 'zod',
           notAllowEmptyString: true,
           strictScalars: true,
@@ -66,7 +65,6 @@ export async function generateConfig() {
     module: { type: 'nodenext' },
     env: { targets: { node: '18' } },
   })
-  console.log(targetJs)
 
   writeFileSync(targetJs, result.code)
 }
