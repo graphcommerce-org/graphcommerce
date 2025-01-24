@@ -7,6 +7,7 @@ import {
   usePaymentMethodContext,
 } from '@graphcommerce/magento-cart-payment-method'
 import { FormRow } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import { useRouter } from 'next/router'
 import { useAdyenCartLock } from '../../hooks/useAdyenCartLock'
 import { useAdyenPaymentMethod } from '../../hooks/useAdyenPaymentMethod'
@@ -95,7 +96,7 @@ export function HppOptions(props: PaymentOptionsProps) {
             SelectProps={{ native: true, displayEmpty: true }}
             error={formState.isSubmitted && !!formState.errors.issuer}
             helperText={formState.isSubmitted && formState.errors.issuer?.message}
-            label={brandCode === 'ideal' ? 'Select your bank' : conf?.name}
+            label={brandCode === 'ideal' ? i18n._(/* i18n */ 'Select your bank') : conf?.name}
             required
           >
             {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
