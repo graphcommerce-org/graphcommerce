@@ -33,7 +33,7 @@ type CategoryLayoutProps = {
     NonNullable<NonNullable<CategoryPageQuery['categories']>['items']>[number]
 }
 
-type ProductListProps = ReturnType<typeof useProductList<BaseProps>>
+type ProductListProps = Omit<ReturnType<typeof useProductList<BaseProps>>, 'mask'>
 
 export type ProductListLayoutProps = ProductListProps & (SearchLayoutProps | CategoryLayoutProps)
 
