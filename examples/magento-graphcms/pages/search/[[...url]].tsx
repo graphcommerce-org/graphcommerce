@@ -42,7 +42,7 @@ export type GetPageStaticProps = GetStaticProps<
 >
 
 function SearchResultPage(props: SearchResultProps) {
-  const productList = useProductList(props)
+  const { mask, ...productList } = useProductList(props)
   const { params, menu } = productList
   const search = params.url.split('/')[1]
 

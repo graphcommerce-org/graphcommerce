@@ -59,7 +59,7 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, C
 
 function CategoryPage(props: CategoryProps) {
   const { categories, pages, ...rest } = props
-  const productList = useProductList({
+  const { mask, ...productList } = useProductList({
     ...rest,
     category: categories?.items?.[0],
   })
@@ -70,7 +70,7 @@ function CategoryPage(props: CategoryProps) {
   const isCategory = params && category && products?.items
 
   return (
-    <PrivateQueryMaskProvider mask={productList.mask}>
+    <PrivateQueryMaskProvider mask={mask}>
       <CategoryMeta
         params={params}
         title={page?.metaTitle}

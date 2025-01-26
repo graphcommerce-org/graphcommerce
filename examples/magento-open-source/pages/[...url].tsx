@@ -53,7 +53,7 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, C
 
 function CategoryPage(props: CategoryProps) {
   const { categories, ...rest } = props
-  const productList = useProductList({
+  const { mask, ...productList } = useProductList({
     ...rest,
     category: categories?.items?.[0],
   })
@@ -63,7 +63,7 @@ function CategoryPage(props: CategoryProps) {
   const isCategory = params && category && products?.items
 
   return (
-    <PrivateQueryMaskProvider mask={productList.mask}>
+    <PrivateQueryMaskProvider mask={mask}>
       <CategoryMeta params={params} {...category} />
       <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
         <LayoutTitle size='small' component='span'>
