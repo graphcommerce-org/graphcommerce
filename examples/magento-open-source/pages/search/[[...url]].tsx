@@ -67,7 +67,7 @@ function SearchResultPage(props: SearchResultProps) {
         <SearchField size='small' formControl={{ sx: { width: '81vw' } }} />
       </LayoutHeader>
 
-      <PrivateQueryMaskProvider mask={productList.mask}>
+      <PrivateQueryMaskProvider mask={mask}>
         {import.meta.graphCommerce.productFiltersPro &&
           import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
             <ProductListLayoutSidebar {...productList} menu={menu} />
