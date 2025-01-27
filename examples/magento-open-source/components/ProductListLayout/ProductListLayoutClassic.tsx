@@ -15,7 +15,9 @@ import { Container, LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcomme
 import { ProductListItems } from '../ProductListItems'
 import type { ProductListLayoutProps } from './types'
 
-export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps) => {
+export const ProductListLayoutClassic = memoDeep(function ProductListLayoutClassic(
+  props: ProductListLayoutProps,
+) {
   const { filters, filterTypes, params, products, title, category } = props
 
   if (!(params && products?.items && filterTypes)) return null

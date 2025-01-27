@@ -42,7 +42,7 @@ export type GetPageStaticProps = GetStaticProps<
 >
 
 function SearchResultPage(props: SearchResultProps) {
-  const productList = useProductList(props)
+  const { mask, ...productList } = useProductList(props)
   const { params, menu } = productList
   const search = params.url.split('/')[1]
 
@@ -61,7 +61,7 @@ function SearchResultPage(props: SearchResultProps) {
         <SearchField size='small' formControl={{ sx: { width: '81vw' } }} />
       </LayoutHeader>
 
-      <PrivateQueryMaskProvider mask={productList.mask}>
+      <PrivateQueryMaskProvider mask={mask}>
         {import.meta.graphCommerce.productFiltersPro &&
           import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
             <ProductListLayoutSidebar {...productList} menu={menu} />

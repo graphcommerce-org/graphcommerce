@@ -98,6 +98,7 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
   },
   overrides: [
     // TypeScript files

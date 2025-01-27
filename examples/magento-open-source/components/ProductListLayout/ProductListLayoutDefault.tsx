@@ -24,13 +24,14 @@ import { ProductListItems } from '../ProductListItems'
 import type { ProductListLayoutProps } from './types'
 import { useLayoutConfiguration } from './types'
 
-export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps) => {
+export const ProductListLayoutDefault = memoDeep(function ProductListLayoutDefault(
+  props: ProductListLayoutProps,
+) {
   const { id, filters, filterTypes, params, products, title, category, handleSubmit } = props
+  const configuration = useLayoutConfiguration(false)
 
   if (!(params && products?.items && filterTypes)) return null
   const { total_count, sort_fields, page_info } = products
-
-  const configuration = useLayoutConfiguration(false)
 
   return (
     <ProductFiltersPro
