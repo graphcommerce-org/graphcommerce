@@ -17,12 +17,7 @@ import type { UseGqlDocumentHandler } from './useGqlDocumentHandler'
 import { useGqlDocumentHandler } from './useGqlDocumentHandler'
 import { tryAsync } from './utils/tryTuple'
 
-export type OnCompleteFn<Q, V> = (
-  data: FetchResult<MaybeMasked<Q>>,
-  variables: V,
-) => void | Promise<void>
-
-type UseFormGraphQLCallbacks<Q, V> = {
+type UseFormGraphQLCallbacks<Q, V extends FieldValues> = {
   /**
    * Allows you to modify the variablels computed by the form to make it compatible with the GraphQL
    * Mutation.
@@ -30,13 +25,17 @@ type UseFormGraphQLCallbacks<Q, V> = {
    * When returning false, it will silently stop the submission. When an error is thrown, it will be
    * set as an ApolloError
    */
-  onBeforeSubmit?: (variables: V) => V | false | Promise<V | false>
+  onBeforeSubmit?: (variables: V, form?: UseFormReturn<V>) => V | false | Promise<V | false>
   /**
    * Called after the mutation has been executed. Allows you to handle the result of the mutation.
    *
    * When an error is thrown, it will be set as an ApolloError
    */
-  onComplete?: OnCompleteFn<Q, V>
+  onComplete?: (
+    data: FetchResult<MaybeMasked<Q>>,
+    variables: V,
+    form?: UseFormReturn<V>,
+  ) => void | Promise<void>
 
   /**
    * @deprecated Not used anymore, is now the default
@@ -174,7 +173,7 @@ export function useFormGql<Q, V extends FieldValues>(
       let variables = !deprecated_useV1 ? formValues : encode({ ...defaultValues, ...formValues })
 
       // Wait for the onBeforeSubmit to complete
-      const [onBeforeSubmitResult, onBeforeSubmitError] = await beforeSubmit(variables)
+      const [onBeforeSubmitResult, onBeforeSubmitError] = await beforeSubmit(variables, form)
       if (onBeforeSubmitError) {
         if (isApolloError(onBeforeSubmitError)) {
           returnedError.current = onBeforeSubmitError
@@ -219,7 +218,7 @@ export function useFormGql<Q, V extends FieldValues>(
         return
       }
 
-      const [, onCompleteError] = await complete(result, variables)
+      const [, onCompleteError] = await complete(result, variables, form)
       if (onCompleteError) {
         if (isApolloError(onCompleteError)) {
           returnedError.current = onCompleteError
