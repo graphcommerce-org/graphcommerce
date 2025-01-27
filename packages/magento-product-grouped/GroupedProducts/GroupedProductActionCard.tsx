@@ -1,14 +1,18 @@
 import { NumberFieldElement } from '@graphcommerce/ecommerce-ui'
 import { Image } from '@graphcommerce/image'
-import type { ProductPageItemFragment } from '@graphcommerce/magento-product/Api/ProductPageItem.gql'
 import type { AddToCartItemSelector } from '@graphcommerce/magento-product/components'
 import { useFormAddProductsToCart } from '@graphcommerce/magento-product/components'
 import { Money } from '@graphcommerce/magento-store'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
 import { ActionCard, actionCardImageSizes, responsiveVal } from '@graphcommerce/next-ui'
 import { Box, Link } from '@mui/material'
+import type { GroupedProductFragment } from '../GroupedProduct.gql'
 
-export type GroupedProductActionCardProps = ProductPageItemFragment &
+type GroupedProductItem = NonNullable<
+  NonNullable<GroupedProductFragment['items']>[number]
+>['product']
+
+export type GroupedProductActionCardProps = GroupedProductItem &
   Omit<ActionCardProps, 'value' | 'image' | 'price' | 'title' | 'action'> &
   AddToCartItemSelector
 
