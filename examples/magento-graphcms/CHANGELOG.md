@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.4-canary.12
+
+### Patch Changes
+
+- [#2492](https://github.com/graphcommerce-org/graphcommerce/pull/2492) [`2d41445`](https://github.com/graphcommerce-org/graphcommerce/commit/2d414456a827c778db390306a7c174a0b8f16ba1) - Solve issue where the category and search page would rerender on pageload because the mask value would flip from true to false ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.11
 
 ## 9.0.4-canary.10

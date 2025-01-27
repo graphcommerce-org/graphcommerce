@@ -1,5 +1,7 @@
 # @graphcommerce/google-playstore
 
+## 9.0.4-canary.12
+
 ## 9.0.4-canary.11
 
 ## 9.0.4-canary.10
