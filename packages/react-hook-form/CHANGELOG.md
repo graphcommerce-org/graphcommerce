@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.4-canary.13
+
+### Patch Changes
+
+- [`9aa9a3c`](https://github.com/graphcommerce-org/graphcommerce/commit/9aa9a3cc25c121e217f64efc0cfd19e3b90d15aa) - useFormGql and all derivivatives now get the form as an argument in onComplete for easier form resets. ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.12
 
 ## 9.0.4-canary.11
