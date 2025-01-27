@@ -50,21 +50,21 @@ function RadioButtonGroupBase(props: RadioButtonGroupProps): JSX.Element {
     row,
     control,
     defaultValue,
-    disabled,
+    disabled: disabledField,
     shouldUnregister,
     ...rest
   } = props
 
   const theme = useTheme()
   const {
-    field: { value, onChange },
+    field: { value, onChange, onBlur, ref, disabled },
     fieldState: { invalid, error },
   } = useController({
     name,
     rules: required ? { required: i18n._(/* i18n */ 'This field is required') } : undefined,
     control,
     defaultValue,
-    disabled,
+    disabled: disabledField,
     shouldUnregister,
   })
 
@@ -79,7 +79,14 @@ function RadioButtonGroupBase(props: RadioButtonGroupProps): JSX.Element {
   return (
     <FormControl error={invalid} required={required}>
       {label && <FormLabel error={invalid}>{label}</FormLabel>}
-      <RadioGroup onChange={handleChange} name={name} row={row} value={value ?? ''}>
+      <RadioGroup
+        onChange={handleChange}
+        onBlur={onBlur}
+        ref={ref}
+        name={name}
+        row={row}
+        value={value ?? ''}
+      >
         {emptyOptionLabel && (
           <FormControlLabel
             control={
@@ -100,6 +107,7 @@ function RadioButtonGroupBase(props: RadioButtonGroupProps): JSX.Element {
             <FormControlLabel
               control={
                 <Radio
+                  disabled={disabled}
                   sx={{
                     color: invalid ? theme.palette.error.main : undefined,
                   }}

@@ -35,7 +35,7 @@ export function ToggleButtonGroupElement<TFieldValues extends FieldValues = Fiel
   helperText,
   formLabelProps,
   defaultValue,
-  disabled,
+  disabled: disabledField,
   shouldUnregister,
   ...toggleButtonGroupProps
 }: ToggleButtonGroupElementProps<TFieldValues>) {
@@ -46,14 +46,14 @@ export function ToggleButtonGroupElement<TFieldValues extends FieldValues = Fiel
   const isRequired = required || !!rules?.required
 
   const {
-    field: { value, onChange, onBlur },
+    field: { value, onChange, onBlur, disabled },
     fieldState: { invalid, error },
   } = useController({
     name,
     control,
     rules,
     defaultValue,
-    disabled,
+    disabled: disabledField,
     shouldUnregister,
   })
 
@@ -75,6 +75,7 @@ export function ToggleButtonGroupElement<TFieldValues extends FieldValues = Fiel
         {...toggleButtonGroupProps}
         value={value}
         onBlur={onBlur}
+        disabled={disabled}
         onChange={(event, val) => {
           onChange(val)
           if (typeof toggleButtonGroupProps.onChange === 'function') {

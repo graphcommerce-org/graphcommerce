@@ -58,7 +58,7 @@ export function MultiSelectElement<TFieldValues extends FieldValues>(
     formControlProps,
     shouldUnregister,
     defaultValue,
-    disabled,
+    disabled: disabledField,
     ...rest
   } = props
   if (required && !rules.required) {
@@ -73,7 +73,7 @@ export function MultiSelectElement<TFieldValues extends FieldValues>(
     rules,
     control,
     defaultValue,
-    disabled,
+    disabled: disabledField,
     shouldUnregister,
   })
 

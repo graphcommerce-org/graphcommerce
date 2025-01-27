@@ -46,7 +46,7 @@ function CheckboxButtonGroupBase(props: CheckboxButtonGroupProps) {
     required,
     labelKey = 'label',
     valueKey = 'id',
-    disabled,
+    disabled: disabledField,
     row,
     control,
     checkboxColor,
@@ -57,14 +57,14 @@ function CheckboxButtonGroupBase(props: CheckboxButtonGroupProps) {
 
   const theme = useTheme()
   const {
-    field: { value = [], onChange },
+    field: { value = [], onChange, onBlur, ref, disabled },
     fieldState: { invalid, error },
   } = useController({
     name,
     rules: required ? { required: i18n._(/* i18n */ 'This field is required') } : undefined,
     control,
     defaultValue,
-    disabled,
+    disabled: disabledField,
     shouldUnregister,
   })
 
@@ -88,7 +88,7 @@ function CheckboxButtonGroupBase(props: CheckboxButtonGroupProps) {
   return (
     <FormControl error={invalid} required={required}>
       {label && <FormLabel error={invalid}>{label}</FormLabel>}
-      <FormGroup row={row}>
+      <FormGroup row={row} ref={ref} onBlur={onBlur}>
         {options.map((option) => {
           const optionKey = option[valueKey]
           const isChecked = (value as (string | number)[]).includes(optionKey)
