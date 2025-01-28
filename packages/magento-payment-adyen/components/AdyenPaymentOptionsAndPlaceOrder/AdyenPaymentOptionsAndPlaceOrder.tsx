@@ -72,7 +72,7 @@ export function HppOptions(props: PaymentOptionsProps) {
   /** To use an external Pay button we register the current form to be handled there as well. */
   useFormCompose({ form, step, submit, key })
 
-  if (!conf?.issuers?.length) return <form onSubmit={submit} noValidate />
+  if (!conf?.issuers?.length || brandCode === 'ideal') return <form onSubmit={submit} noValidate />
 
   /**
    * This is the form that the user can fill in. In this case we don't wat the user to fill in
