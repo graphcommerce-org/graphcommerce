@@ -1,4 +1,4 @@
-import type { AlgoliasearchResponse, Resolvers } from '@graphcommerce/graphql-mesh'
+import type { AlgoliasearchResponse, MeshContext, Resolvers } from '@graphcommerce/graphql-mesh'
 import { hasSelectionSetPath } from '@graphcommerce/graphql-mesh'
 import type { GraphQLError, GraphQLResolveInfo } from 'graphql'
 import { algoliaFacetsToAggregations, getCategoryList } from './algoliaFacetsToAggregations'
@@ -95,6 +95,18 @@ export const resolvers: Resolvers = {
       }
 
       return items
+    },
+  },
+  Customer: {
+    group_id: {
+      resolve: (root, args, context) => {
+        const { headers } = context as MeshContext & {
+          headers?: Record<string, string | undefined>
+        }
+        if (!headers?.authorization) return 0
+        const customer = context.m2.Query.m2rest_GetV1CustomersMe({ root, context })
+        return customer.group_id
+      },
     },
   },
   Query: {
