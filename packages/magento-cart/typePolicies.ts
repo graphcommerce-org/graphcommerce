@@ -17,6 +17,7 @@ export const cartTypePolicies: StrictTypedTypePolicies = {
   },
   Cart: {
     fields: {
+      available_payment_methods: { merge: (_, incoming) => incoming },
       shipping_addresses: {
         merge: (
           existing: ShippingCartAddress[] | undefined,
