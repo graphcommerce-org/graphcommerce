@@ -23,7 +23,12 @@ const parts = [
   'costsTax',
   'money',
 ] as const
-const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
+
+export const extendableCartTotals = extendableComponent<OwnerProps, typeof name, typeof parts>(
+  name,
+  parts,
+)
+const { withState } = extendableCartTotals
 
 /**
  * ⚠️ WARNING: The current CartTotals rely heavily on how Magento is configured. It kinda works for
