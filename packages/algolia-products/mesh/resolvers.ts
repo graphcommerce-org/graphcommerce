@@ -99,13 +99,22 @@ export const resolvers: Resolvers = {
   },
   Customer: {
     group_id: {
-      resolve: (root, args, context) => {
+      resolve: async (root, args, context, info) => {
         const { headers } = context as MeshContext & {
           headers?: Record<string, string | undefined>
         }
         if (!headers?.authorization) return 0
-        const customer = context.m2.Query.m2rest_GetV1CustomersMe({ root, context })
-        return customer.group_id
+        const customer = await context.m2rest.Query.m2rest_GetV1CustomersMe({
+          root,
+          context,
+          info,
+          selectionSet: /* GraphQL */ `
+            {
+              group_id
+            }
+          `,
+        })
+        return customer?.group_id ?? null
       },
     },
   },
