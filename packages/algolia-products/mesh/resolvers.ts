@@ -108,11 +108,7 @@ export const resolvers: Resolvers = {
           root,
           context,
           info,
-          selectionSet: /* GraphQL */ `
-            {
-              group_id
-            }
-          `,
+          autoSelectionSetWithDepth: 10,
         })
         return customer?.group_id ?? null
       },
