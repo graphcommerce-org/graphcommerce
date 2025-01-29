@@ -7,6 +7,7 @@ import {
   Button,
   GetStaticProps,
   iconChevronRight,
+  iconShoppingBag,
   IconSvg,
   responsiveVal,
 } from '@graphcommerce/next-ui'
@@ -29,7 +30,7 @@ function CheckoutAdded() {
     a11yFocusRef.current?.focus()
   }, [])
 
-  const name = addedItem?.product.name ?? ''
+  const name = addedItem?.product.name ?? <Trans id='Product'>Product</Trans>
 
   return (
     <>
@@ -74,7 +75,9 @@ function CheckoutAdded() {
             sizes='100px'
           />
         ) : (
-          <Box
+          <IconSvg
+            src={iconShoppingBag}
+            size='xxl'
             sx={{
               gridArea: 'icon',
               alignSelf: 'stretch',

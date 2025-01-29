@@ -4,7 +4,13 @@ import { getCartDisabled, useCrosssellItems } from '@graphcommerce/magento-cart'
 import { AddProductsToCartForm, ProductScroller } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { Button, iconChevronRight, IconSvg, responsiveVal } from '@graphcommerce/next-ui'
+import {
+  Button,
+  iconChevronRight,
+  iconShoppingBag,
+  IconSvg,
+  responsiveVal,
+} from '@graphcommerce/next-ui'
 import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/LayoutHeaderClose'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
@@ -25,7 +31,7 @@ function CheckoutAdded() {
     a11yFocusRef.current?.focus()
   }, [])
 
-  const name = addedItem?.product.name ?? ''
+  const name = addedItem?.product.name ?? <Trans id='Product'>Product</Trans>
 
   return (
     <>
@@ -70,7 +76,9 @@ function CheckoutAdded() {
             sizes='100px'
           />
         ) : (
-          <Box
+          <IconSvg
+            src={iconShoppingBag}
+            size='xxl'
             sx={{
               gridArea: 'icon',
               alignSelf: 'stretch',
