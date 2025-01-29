@@ -26,11 +26,11 @@ function NewsletterSubscribe(props: Props) {
         </LayoutTitle>
       </LayoutOverlayHeader>
 
-      <Container maxWidth='md'>
+      <Container maxWidth='sm'>
         <LayoutTitle>{title}</LayoutTitle>
       </Container>
 
-      <Container maxWidth='md'>
+      <Container maxWidth='sm'>
         <Typography variant='h3'>
           <Trans>Subscribe to newsletter</Trans>
         </Typography>
