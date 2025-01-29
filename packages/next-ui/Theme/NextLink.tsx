@@ -48,6 +48,7 @@ export const NextLink = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
     const url = new URL(href)
     locale = router.locales?.find((l) => url.pathname.startsWith(`/${l}/`))
     href = locale ? url.pathname.replace(`/${locale}/`, '/') : url.pathname
+    href += url.search
   }
 
   const isExternal = isFullUrl && !href.startsWith(canonicalBaseUrl)
