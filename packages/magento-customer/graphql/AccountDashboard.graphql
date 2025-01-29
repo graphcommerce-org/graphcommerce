@@ -1,16 +1,3 @@
 query AccountDashboard {
-  customer {
-    ...AccountDashboardCustomer
-    firstname
-    lastname
-    orders {
-      items {
-        ...OrderCard
-      }
-      page_info {
-        total_pages
-      }
-    }
-    ...AccountAddresses
-  }
+  ...AccountDashboardQueryFragment
 }
