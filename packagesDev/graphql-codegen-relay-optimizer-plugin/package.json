@@ -2,7 +2,7 @@
   "name": "@graphcommerce/graphql-codegen-relay-optimizer-plugin",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.4-canary.4",
+  "version": "9.0.4-canary.10",
   "description": "GraphQL Code Generator plugin for optimizing your GraphQL queries relay style.",
   "type": "commonjs",
   "main": "dist/index.js",
@@ -22,8 +22,8 @@
     "typescript": "5.7.2"
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^9.0.4-canary.4",
-    "@graphcommerce/prettier-config-pwa": "^9.0.4-canary.4"
+    "@graphcommerce/eslint-config-pwa": "^9.0.4-canary.10",
+    "@graphcommerce/prettier-config-pwa": "^9.0.4-canary.10"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslint": {

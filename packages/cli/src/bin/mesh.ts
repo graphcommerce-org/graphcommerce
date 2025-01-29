@@ -165,7 +165,14 @@ const main = async () => {
   // Reexport the mesh to is can be used by packages
   await fs.writeFile(
     `${meshDir}/.mesh.ts`,
-    `export * from '${relativePath.split(path.sep).join('/')}.mesh'`,
+    `export type * from '${relativePath.split(path.sep).join('/')}.mesh'
+export {
+  getBuiltMesh as getBuiltMeshBase,
+  execute,
+  subscribe,
+  createBuiltMeshHTTPHandler as createBuiltMeshHTTPHandlerBase,
+  rawServeConfig,
+} from '${relativePath.split(path.sep).join('/')}.mesh'`,
     { encoding: 'utf8' },
   )
 

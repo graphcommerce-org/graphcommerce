@@ -19,7 +19,7 @@ msgstr "In tal modo verranno rimossi tutti i tuoi dati, inclusa la cronologia de
 
 #. js-lingui-generated-id
 msgid "{0, plural, one {<0>{addedItems}</0> has been added to your shopping cart} two {<1>{addedItems}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
-msgstr "{0, plural, one {<0>{addedItems}</0> è stato aggiunto al tuo carrello} two {<1>{addedItems}</1> sono stati aggiunti al tuo carrello!} altro {# prodotti sono stati aggiunti al tuo carrello!}}"
+msgstr "{0, plural, one {<0>{addedItems}</0> è stato aggiunto al tuo carrello} two {<1>{addedItems}</1> sono stati aggiunti al tuo carrello!} other {# prodotti sono stati aggiunti al tuo carrello!}}"
 
 #. js-lingui-generated-id
 msgid "I understand that my account will be deleted and this can not be undone."

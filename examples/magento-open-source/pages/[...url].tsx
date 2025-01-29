@@ -159,6 +159,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     query: CategoryPageDocument,
     variables: { url },
   })
+
   const layout = staticClient.query({
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),

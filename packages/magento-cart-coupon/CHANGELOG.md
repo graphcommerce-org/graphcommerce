@@ -1,5 +1,21 @@
 # Change Log
 
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+### Patch Changes
+
+- [`3b45e14`](https://github.com/graphcommerce-org/graphcommerce/commit/3b45e1426da4dd4caf1cc76f0707af07474ffd2e) - Forward props to CouponAccordion ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
 ## 9.0.4-canary.4
 
 ## 9.0.4-canary.3

@@ -1,88 +1,33 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
-import {
-  ProductListDocument,
-  ProductListQuery,
-  ProductPageName,
-} from '@graphcommerce/magento-product'
+import type { CmsPageFragment } from '@graphcommerce/magento-cms'
+import { CmsPageContent, CmsPageDocument } from '@graphcommerce/magento-cms'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import {
-  breakpointVal,
-  HeroBanner,
-  LayoutHeader,
-  LayoutTitle,
-  MetaRobots,
-  PageMeta,
-} from '@graphcommerce/next-ui'
-import { Button, Container, Typography } from '@mui/material'
+import { Container, isTypename, LayoutHeader, PageMeta } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
 import type { LayoutNavigationProps } from '../components'
 import { LayoutDocument, LayoutNavigation } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
-type Props = {}
-type RouteProps = { url: string }
-type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
+export type CmsPageProps = { cmsPage: CmsPageFragment | null }
 
-function CmsPage(props: Props) {
-  const {} = props
+type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CmsPageProps>
+
+function CmsPage(props: CmsPageProps) {
+  const { cmsPage } = props
+
+  if (!cmsPage) return <Container>Configure cmsPage home</Container>
 
   return (
     <>
-      {/* <PageMeta
-      title={page?.metaTitle ?? page?.title ?? ''}
-      metaDescription={page?.metaDescription ?? ''}
-      metaRobots={page?.metaRobots.toLowerCase().split('_') as MetaRobots[] | undefined}
-      canonical='/'
-    /> */}
+      <PageMeta
+        title={cmsPage.meta_title || cmsPage.title || i18n._(/* i18n */ 'Home')}
+        metaDescription={cmsPage.meta_description || undefined}
+      />
+      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs} floatingSm />
 
-      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
-        <LayoutTitle size='small' component='span'>
-          Home
-        </LayoutTitle>
-      </LayoutHeader>
-
-      <LayoutHeader floatingMd floatingSm />
-
-      <HeroBanner
-        pageLinks={
-          <Button href='/men/art' variant='outlined' size='large' color='inherit'>
-            Shop Art
-          </Button>
-        }
-        videoSrc='https://media.graphassets.com/UNmtIZmWSgmnpUAWcAk0'
-        sx={(theme) => ({
-          '& .HeroBanner-copy': {
-            minHeight: { xs: 'min(70vh,600px)', md: 'min(70vh,1080px)' },
-            [theme.breakpoints.up('sm')]: {
-              padding: theme.spacings.xl,
-              justifyItems: 'start',
-              alignContent: 'center',
-              textAlign: 'left',
-              width: '50%',
-            },
-          },
-        })}
-      >
-        <Typography variant='overline' gutterBottom>
-          A journey through creativity
-        </Typography>
-        <Typography
-          variant='h1'
-          sx={(theme) => ({
-            textTransform: 'uppercase',
-            mt: 1,
-            mb: theme.spacings.sm,
-            ...breakpointVal('fontSize', 36, 82, theme.breakpoints.values),
-            '& strong': {
-              WebkitTextFillColor: 'transparent',
-              WebkitTextStroke: '1.2px #fff',
-            },
-          })}
-        >
-          <strong>Discover</strong> beauty beyond boundaries.
-        </Typography>
-      </HeroBanner>
+      <CmsPageContent cmsPage={cmsPage} />
     </>
   )
 }
@@ -95,19 +40,24 @@ export default CmsPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
+  const conf = client.query({ query: StoreConfigDocument })
   const staticClient = graphqlSsrClient(context)
 
-  const conf = client.query({ query: StoreConfigDocument })
+  const url = (await conf).data.storeConfig?.cms_home_page ?? 'home'
+  const cmsPageQuery = staticClient.query({ query: CmsPageDocument, variables: { url } })
   const layout = staticClient.query({
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
+  const cmsPage = (await cmsPageQuery).data.route
 
-  return {
+  const result = {
     props: {
+      cmsPage: cmsPage && isTypename(cmsPage, ['CmsPage']) ? cmsPage : null,
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }
+  return result
 }

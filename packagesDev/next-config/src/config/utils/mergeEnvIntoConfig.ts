@@ -1,8 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { cloneDeep, mergeDeep } from '@apollo/client/utilities'
 import chalk from 'chalk'
-import { get, set } from 'lodash'
-import snakeCase from 'lodash/snakeCase'
+import lodash from 'lodash'
 import type { ZodAny, ZodRawShape, ZodTypeAny } from 'zod'
 import {
   z,
@@ -19,7 +17,11 @@ import {
 } from 'zod'
 import diff from './diff'
 
-const fmt = (s: string) => s.split(/(\d+)/).map(snakeCase).join('')
+const fmt = (s: string) =>
+  s
+    .split(/(\d+)/)
+    .map((v) => lodash.snakeCase(v))
+    .join('')
 export const toEnvStr = (path: string[]) => ['GC', ...path].map(fmt).join('_').toUpperCase()
 const dotNotation = (pathParts: string[]) =>
   pathParts
@@ -178,14 +180,14 @@ export function mergeEnvIntoConfig(
       return
     }
 
-    const dotValue = get(newConfig, dotVar)
+    const dotValue = lodash.get(newConfig, dotVar)
     const merged = mergeDeep(dotValue, value)
 
     const from = diff(merged, dotValue)
     const to = diff(dotValue, merged)
 
     applyResult.push({ envVar, envValue, dotVar, from, to })
-    set(newConfig, dotVar, merged)
+    lodash.set(newConfig, dotVar, merged)
   })
 
   return [newConfig, applyResult] as const

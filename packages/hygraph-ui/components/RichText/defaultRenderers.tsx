@@ -55,4 +55,14 @@ export const defaultRenderers: Renderers = {
   italic: (props) => <Box component='em' fontStyle='italic' {...props} />,
   underlined: (props) => <Box component='span' {...props} />,
   class: (props) => <Box component='div' {...props} />,
+  'code-block': (props) => (
+    <Box component='pre'>
+      <Box component='code' {...props} />
+    </Box>
+  ),
+  embed: ({ id, nodeId, nodeType, children, isInline, ...props }) => (
+    <Box component={isInline ? 'span' : 'div'} {...props}>
+      {id} {nodeId} {nodeType} {children}
+    </Box>
+  ),
 }

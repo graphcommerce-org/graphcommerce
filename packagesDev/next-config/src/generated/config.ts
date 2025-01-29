@@ -1,6 +1,4 @@
-/* eslint-disable */
 import { z } from 'zod'
-
 export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
@@ -55,7 +53,12 @@ export type DatalayerConfig = {
  * Configuration can be accessed in your project with the `import.meta.graphCommerce` object.
  *
  * ```tsx
- * import { storefrontAll, storefrontConfig, storefrontConfigDefault, useStorefrontConfig } from '@graphcommerce/next-ui'
+ * import {
+ *   storefrontAll,
+ *   storefrontConfig,
+ *   storefrontConfigDefault,
+ *   useStorefrontConfig,
+ * } from '@graphcommerce/next-ui'
  *
  * // Accessing a global value
  * const globalConf = import.meta.graphCommerce.cartDisplayPricesInclTax
@@ -69,7 +72,8 @@ export type DatalayerConfig = {
  *
  *   // Or as single line
  *   const scopedConfigWithFallback2 =
- *     useStorefrontConfig().cartDisplayPricesInclTax ?? import.meta.graphCommerce.cartDisplayPricesInclTax
+ *     useStorefrontConfig().cartDisplayPricesInclTax ??
+ *     import.meta.graphCommerce.cartDisplayPricesInclTax
  *
  *   return <div>{googleRecaptchaKey}</div>
  * }
@@ -254,7 +258,14 @@ export type GraphCommerceConfig = {
    */
   googleTagmanagerId?: InputMaybe<Scalars['String']['input']>
   /**
-   * The HyGraph endpoint.> Read-only endpoint that allows low latency and high read-throughput content delivery.
+   * The GraphQL Mesh will be loaded once and any modifications to resolvers will be ignored. When
+   * developing new resolvers this should be set to true.
+   */
+  graphqlMeshEditMode?: InputMaybe<Scalars['Boolean']['input']>
+  /**
+   * The HyGraph endpoint.
+   *
+   * > Read-only endpoint that allows low latency and high read-throughput content delivery.
    *
    * Project settings -> API Access -> High Performance Read-only Content API
    */
@@ -610,6 +621,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     googlePlaystore: GraphCommerceGooglePlaystoreConfigSchema().nullish(),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
+    graphqlMeshEditMode: z.boolean().default(false).nullish(),
     hygraphEndpoint: z.string().min(1),
     hygraphManagementApi: z.string().nullish(),
     hygraphProjectId: z.string().nullish(),

@@ -1,5 +1,23 @@
 # Change Log
 
+## 9.0.4-canary.10
+
+### Patch Changes
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`cf9eafb`](https://github.com/graphcommerce-org/graphcommerce/commit/cf9eafb9d71991852510f632c692679810b9e76f) - Prepare the RichTex for embed and code-block ([@paales](https://github.com/paales))
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`2085f0b`](https://github.com/graphcommerce-org/graphcommerce/commit/2085f0b30dfadd9ab589fde962f59e87b3f30b34) - Forward `<Asset unoptimized />` component to `<Image />` ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
 ## 9.0.4-canary.4
 
 ## 9.0.4-canary.3

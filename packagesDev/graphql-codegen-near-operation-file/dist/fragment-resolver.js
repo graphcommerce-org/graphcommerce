@@ -78,7 +78,10 @@ ${duplicateFragmentNames.join('\n')}\n\n`);
     }
     return registry;
 }
-/** Builds a fragment "resolver" that collects `externalFragments` definitions and `fragmentImportStatements` */
+/**
+ * Builds a fragment "resolver" that collects `externalFragments` definitions and
+ * `fragmentImportStatements`
+ */
 function buildFragmentResolver(collectorOptions, presetOptions, schemaObject) {
     const fragmentRegistry = buildFragmentRegistry(collectorOptions, presetOptions, schemaObject);
     const { baseOutputDir } = presetOptions;

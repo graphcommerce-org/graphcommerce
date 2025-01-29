@@ -1,6 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import prettierConf from '@graphcommerce/prettier-config-pwa'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import prettier from 'prettier'
 import type { GraphCommerceDebugConfig } from '../generated/config'
 import type { ResolveDependencyReturn } from '../utils/resolveDependency'

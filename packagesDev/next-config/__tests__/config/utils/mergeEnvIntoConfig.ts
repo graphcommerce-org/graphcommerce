@@ -5,7 +5,18 @@ import {
 } from '../../../src/config/utils/mergeEnvIntoConfig'
 import type { GraphCommerceConfig } from '../../../src/generated/config'
 import { GraphCommerceConfigSchema } from '../../../src/generated/config'
-import { removeColor } from './rewriteLegancyEnv'
+
+export const removeColor = (str: string) =>
+  str.replace(
+    new RegExp(
+      [
+        '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)',
+        '(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]))',
+      ].join('|'),
+      'g',
+    ),
+    '',
+  )
 
 const env = {
   GC_ADVANCED_FILTERS: '0',
@@ -23,7 +34,13 @@ const env = {
 }
 it('traverses a schema and returns a list of env variables that match', () => {
   const [envSchema] = configToEnvSchema(GraphCommerceConfigSchema())
-  expect(Object.keys(envSchema.shape)).toMatchSnapshot()
+
+  const keys = Object.keys(envSchema.shape)
+
+  expect(keys.includes('GC_ADVANCED_FILTERS')).toBe(false)
+  expect(keys.includes('GC_STOREFRONT')).toBe(true)
+  expect(keys.includes('GC_STOREFRONT_0')).toBe(true)
+  expect(keys.includes('GC_STOREFRONT_1')).toBe(true)
 })
 it('parses an env config object', () => {
   const [envSchema] = configToEnvSchema(GraphCommerceConfigSchema())

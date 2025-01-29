@@ -250,7 +250,7 @@ const dataLayerToAlgoliaMap: {
 
     const objectIDs = eventData.items.map((item) => atob(item.item_uid))
     const relevant = objectIDs.map((objectID) => mapping[objectID])
-    const filters = [...new Set(...relevant.map((item) => item.filters))]
+    const filters = [...new Set(...relevant.map((item) => item?.filters ?? []))]
 
     if (filters.length > 0) {
       // There is a max of 10 filters per event, if there are more than 10 items

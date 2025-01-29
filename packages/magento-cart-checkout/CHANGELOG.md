@@ -1,5 +1,21 @@
 # Change Log
 
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+### Patch Changes
+
+- [#2474](https://github.com/graphcommerce-org/graphcommerce/pull/2474) [`838ee4b`](https://github.com/graphcommerce-org/graphcommerce/commit/838ee4b4fc0b8e7a09970b9107f379bdf010202e) - Prevent rendering "You have not placed an order" before the router resolves. ([@carlocarels90](https://github.com/carlocarels90))
+
 ## 9.0.4-canary.4
 
 ## 9.0.4-canary.3

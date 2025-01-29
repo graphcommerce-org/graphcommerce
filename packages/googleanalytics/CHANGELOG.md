@@ -1,5 +1,21 @@
 # Change Log
 
+## 9.0.4-canary.10
+
+### Patch Changes
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`cbf92b8`](https://github.com/graphcommerce-org/graphcommerce/commit/cbf92b83a677c51c62dc723dcc7bf456a79125e4) - Remove dependencies from `@graphcommerce/googletagmanager` and `@graphcommerce/googleanalytics` on Magento packages and make the datalayer optional ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
 ## 9.0.4-canary.4
 
 ## 9.0.4-canary.3

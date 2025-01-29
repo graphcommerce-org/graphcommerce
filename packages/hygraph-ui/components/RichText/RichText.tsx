@@ -56,10 +56,11 @@ function RenderText({
   last,
   ...textProps
 }: TextNode & AdditionalProps) {
-  let type: 'bold' | 'italic' | 'underlined' | undefined
+  let type: 'bold' | 'italic' | 'underlined' | 'code' | undefined
 
   if (textProps.bold) type = 'bold'
   if (textProps.italic) type = 'italic'
+  if (textProps.code) type = 'code'
   if (textProps.underlined) type = 'underlined'
 
   const sx = useRenderProps({ first, last, sxRenderer }, type)
@@ -98,7 +99,7 @@ function RenderNode(node: ElementOrTextNode & AdditionalProps) {
   return null
 }
 
-function RenderChildren({
+export function RenderChildren({
   childNodes,
   noMargin,
   ...props
