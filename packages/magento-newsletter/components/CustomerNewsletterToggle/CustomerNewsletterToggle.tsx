@@ -1,5 +1,7 @@
+import { ApolloErrorSnackbar } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
+import { sxx } from '@graphcommerce/next-ui'
 import { Controller, FormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import type { SwitchProps, SxProps, Theme } from '@mui/material'
 import {
@@ -13,10 +15,13 @@ import React from 'react'
 import { GetCustomerNewsletterToggleDocument } from './GetCustomerNewsLetterToggle.gql'
 import { UpdateNewsletterSubscriptionDocument } from './UpdateNewsletterSubscription.gql'
 
-export type CustomerNewsletterToggleProps = SwitchProps & { sx?: SxProps<Theme> }
+export type CustomerNewsletterToggleProps = SwitchProps & {
+  sx?: SxProps<Theme>
+  children?: React.ReactNode
+}
 
 export function CustomerNewsletterToggle(props: CustomerNewsletterToggleProps) {
-  const { disabled, sx = [], ...switchProps } = props
+  const { disabled, sx = [], children, ...switchProps } = props
 
   const { loading, data } = useQuery(GetCustomerNewsletterToggleDocument, { ssr: false })
   const form = useFormGqlMutation(UpdateNewsletterSubscriptionDocument, {
@@ -32,7 +37,12 @@ export function CustomerNewsletterToggle(props: CustomerNewsletterToggleProps) {
   if (disabled || loading) return <Switch disabled color='primary' {...switchProps} />
 
   return (
-    <Box component='form' onSubmit={submit} noValidate sx={sx}>
+    <Box
+      component='form'
+      onSubmit={submit}
+      noValidate
+      sx={sxx({ display: 'flex', flexDirection: 'column', alignItems: 'end' }, sx)}
+    >
       <FormAutoSubmit control={control} submit={submit} />
       <Controller
         name='isSubscribed'
@@ -55,8 +65,8 @@ export function CustomerNewsletterToggle(props: CustomerNewsletterToggleProps) {
           </FormControl>
         )}
       />
-
-      <ApolloCustomerErrorAlert error={error} />
+      <ApolloErrorSnackbar error={error} />
+      {children}
     </Box>
   )
 }
