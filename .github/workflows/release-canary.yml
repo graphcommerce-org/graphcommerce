@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: canary
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           cache: yarn
           node-version: 20
@@ -70,7 +70,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Pull Request
         id: cpr
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v7
         with:
           branch: changeset-release/from-canary
           title: 'Release ${{ steps.vars.outputs.date }}'
