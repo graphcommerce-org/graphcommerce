@@ -1,38 +1,62 @@
 # Change Log
 
-## 9.0.0-canary.104
+## 9.0.4-canary.14
 
-## 9.0.0-canary.103
+## 9.0.4-canary.13
 
-## 9.0.0-canary.91
+## 9.0.4-canary.12
+
+## 9.0.4-canary.11
+
+### Patch Changes
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`b0ec078`](https://github.com/graphcommerce-org/graphcommerce/commit/b0ec0784a0b3ca977598ded3777d23bc929072b0) - Added a CurrencySymbol component that renders the current currency symbol ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.1
 
 ### Patch Changes
 
-- [#2367](https://github.com/graphcommerce-org/graphcommerce/pull/2367) [`71d412d`](https://github.com/graphcommerce-org/graphcommerce/commit/71d412d202bc94a0e676745547de5d809a7a850b) - When a user access a category page which is beyond the available total_pages, the user will be redirected to the last available page. ([@paales](https://github.com/paales))
+- [#2458](https://github.com/graphcommerce-org/graphcommerce/pull/2458) [`9b33eac`](https://github.com/graphcommerce-org/graphcommerce/commit/9b33eac3fc8cdd7ac8ba160e598dd878c956e7c3) - Fix Magento store code not getting set in context.headers.store ([@bramvanderholst](https://github.com/bramvanderholst))
 
-## 9.0.0-canary.83
+## 9.0.0
+
+### Major Changes
+
+- [#2327](https://github.com/graphcommerce-org/graphcommerce/pull/2327) [`be719fc`](https://github.com/graphcommerce-org/graphcommerce/commit/be719fc465c8804ddcb720a93813262e3a292b69) - Magento 2.4.7: Implemented `cancelOrder` mutation and added a cancel order overlay to the account section. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`47bb47b`](https://github.com/graphcommerce-org/graphcommerce/commit/47bb47bac4b3689a6859afbc587274d813e0b072) - Magento 2.4.7: implement confirmEmail mutation ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ### Patch Changes
+
+- [#2373](https://github.com/graphcommerce-org/graphcommerce/pull/2373) [`53ffc91`](https://github.com/graphcommerce-org/graphcommerce/commit/53ffc91f9bfbe1183c002c62b1fe0c3f415d7b94) - Handle the case where one switches from using the default `.html` URL suffix, to not using one. ([@hnsr](https://github.com/hnsr))
 
 - [#2374](https://github.com/graphcommerce-org/graphcommerce/pull/2374) [`e61e1f4`](https://github.com/graphcommerce-org/graphcommerce/commit/e61e1f4fb1086f7a6341b42502135abf1839e43d) - Default to permanent redirects unless specified ([@hnsr](https://github.com/hnsr))
 
-## 9.0.0-canary.81
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
 
-### Minor Changes
-
-- [#2373](https://github.com/graphcommerce-org/graphcommerce/pull/2373) [`53ffc91`](https://github.com/graphcommerce-org/graphcommerce/commit/53ffc91f9bfbe1183c002c62b1fe0c3f415d7b94) - Handle the case where one switches from using the default .html URL suffix, to not using one ([@hnsr](https://github.com/hnsr))
-
-## 9.0.0-canary.61
-
-### Minor Changes
-
-- [#2327](https://github.com/graphcommerce-org/graphcommerce/pull/2327) [`be719fc`](https://github.com/graphcommerce-org/graphcommerce/commit/be719fc465c8804ddcb720a93813262e3a292b69) - Implement CancelOrder mutation, add cancel order overlay to account section ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.35
-
-### Minor Changes
-
-- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`47bb47b`](https://github.com/graphcommerce-org/graphcommerce/commit/47bb47bac4b3689a6859afbc587274d813e0b072) - Implement confirm email functionality ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2367](https://github.com/graphcommerce-org/graphcommerce/pull/2367) [`71d412d`](https://github.com/graphcommerce-org/graphcommerce/commit/71d412d202bc94a0e676745547de5d809a7a850b) - When a user access a category page which is beyond the available total_pages, the user will be redirected to the last available page. ([@paales](https://github.com/paales))
 
 ## 8.0.1
 
@@ -472,7 +496,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'

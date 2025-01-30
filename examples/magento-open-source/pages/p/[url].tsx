@@ -1,35 +1,42 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
-  InContextMaskProvider,
   cacheFirst,
   mergeDeep,
-  useInContextQuery,
+  PrivateQueryMaskProvider,
+  usePrivateQuery,
 } from '@graphcommerce/graphql'
 import type { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
 import {
   AddProductsToCartButton,
   AddProductsToCartForm,
+  getProductStaticPaths,
+  jsonLdProduct,
+  jsonLdProductOffer,
   ProductPageAddToCartActionsRow,
   ProductPageBreadcrumbs,
+  productPageCategory,
   ProductPageDescription,
   ProductPageGallery,
   ProductPageJsonLd,
   ProductPageMeta,
   ProductPageName,
+  ProductScroller,
   ProductShortDescription,
   ProductSpecs,
-  getProductStaticPaths,
-  jsonLdProduct,
-  jsonLdProductOffer,
-  productPageCategory,
 } from '@graphcommerce/magento-product'
 import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-product-configurable'
 import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-products'
-import { ProductReviewChip, jsonLdProductReview } from '@graphcommerce/magento-review'
-import { Money, StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
+import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
+import { Money, redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
+import {
+  isTypename,
+  LayoutHeader,
+  LayoutTitle,
+  nonNullable,
+  responsiveVal,
+} from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Typography } from '@mui/material'
@@ -37,6 +44,7 @@ import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../../components'
 import { LayoutDocument, LayoutNavigation, productListRenderer } from '../../components'
 import { AddProductsToCartView } from '../../components/ProductView/AddProductsToCartView'
+import { Reviews } from '../../components/ProductView/Reviews'
 import type { ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { ProductPage2Document } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
@@ -51,7 +59,7 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 function ProductPage(props: Props) {
   const { defaultValues, urlKey } = props
 
-  const scopedQuery = useInContextQuery(
+  const scopedQuery = usePrivateQuery(
     ProductPage2Document,
     { variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 } },
     props,
@@ -66,7 +74,7 @@ function ProductPage(props: Props) {
   if (!product?.sku || !product.url_key) return null
 
   return (
-    <InContextMaskProvider mask={scopedQuery.mask}>
+    <PrivateQueryMaskProvider mask={scopedQuery.mask}>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
         <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
           <LayoutTitle size='small' component='span'>
@@ -184,7 +192,7 @@ function ProductPage(props: Props) {
         }}
         sx={(theme) => ({ mb: theme.spacings.xxl })}
       />
-    </InContextMaskProvider>
+    </PrivateQueryMaskProvider>
   )
 }
 

@@ -1,5 +1,5 @@
 import { Money } from '@graphcommerce/magento-store'
-import { IconSvg, extendableComponent, iconChevronRight } from '@graphcommerce/next-ui'
+import { extendableComponent, iconChevronRight, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import type { ButtonProps, SxProps, Theme } from '@mui/material'
 import { Box, Button, Link } from '@mui/material'
@@ -40,7 +40,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
   } = props
 
   const shouldLoginToContinue = useCheckoutShouldLoginToContinue()
-  const hasTotals = (cart?.prices?.grand_total?.value ?? 0) > 0
+  const hasTotals = (cart?.prices?.grand_total?.value ?? 0) > 0 || !!cart?.items?.length
   const hasErrors = cart?.items?.some((item) => (item?.errors?.length ?? 0) > 0)
 
   return (

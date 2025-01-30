@@ -2,7 +2,7 @@ import { breakpointVal, responsiveVal } from '@graphcommerce/next-ui'
 import type { BoxProps } from '@mui/material'
 import { Box } from '@mui/material'
 
-type ProductImageContainerProps = BoxProps
+export type ProductImageContainerProps = BoxProps
 
 export function ProductImageContainer(props: ProductImageContainerProps) {
   const { sx = [] } = props

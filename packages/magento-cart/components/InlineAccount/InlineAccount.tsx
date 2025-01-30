@@ -5,7 +5,7 @@ import {
   useCustomerSession,
   useGuestQuery,
 } from '@graphcommerce/magento-customer'
-import { Button, FormRow, extendableComponent } from '@graphcommerce/next-ui'
+import { Button, extendableComponent, FormRow } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, TextField, Typography } from '@mui/material'

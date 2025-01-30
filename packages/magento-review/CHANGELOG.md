@@ -1,26 +1,46 @@
 # Change Log
 
-## 9.0.0-canary.104
+## 9.0.4-canary.14
 
-## 9.0.0-canary.103
+## 9.0.4-canary.13
 
-## 9.0.0-canary.77
+## 9.0.4-canary.12
+
+## 9.0.4-canary.11
+
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.0
 
 ### Patch Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use `muiRegister`, which improves INP scores. ([@FrankHarland](https://github.com/FrankHarland))
 
 - [#2355](https://github.com/graphcommerce-org/graphcommerce/pull/2355) [`82b4ed9`](https://github.com/graphcommerce-org/graphcommerce/commit/82b4ed9bf86b57f3c0bab75ee7c190777badf37e) - Add early return when there are no reviews to prevent invalid enhanced results. ([@carlocarels90](https://github.com/carlocarels90))
 
-## 8.0.6-canary.2
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
 
-### Patch Changes
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
-
-## 8.0.6-canary.1
-
-### Patch Changes
-
-- [#2213](https://github.com/graphcommerce-org/graphcommerce/pull/2213) [`a0d952e`](https://github.com/graphcommerce-org/graphcommerce/commit/a0d952e6b8a71a7451bfdb2bdb5150fc218169e2) - Moved product reviews to the relatedUpsells query so we do not pass the queryComplexity limit ([@paales](https://github.com/paales))
+- [#2213](https://github.com/graphcommerce-org/graphcommerce/pull/2213) [`a0d952e`](https://github.com/graphcommerce-org/graphcommerce/commit/a0d952e6b8a71a7451bfdb2bdb5150fc218169e2) - Moved product reviews to the `relatedUpsells` query so we do not pass the queryComplexity limit. ([@paales](https://github.com/paales))
 
 ## 8.0.0
 
@@ -614,7 +634,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'

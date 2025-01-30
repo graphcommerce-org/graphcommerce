@@ -1,5 +1,5 @@
-import { purchaseorder } from './PurchaseOrder'
 import { banktransfer, cashondelivery, checkmo, free } from './methods'
+import { purchaseorder } from './PurchaseOrder'
 
 export const included_methods = {
   purchaseorder,

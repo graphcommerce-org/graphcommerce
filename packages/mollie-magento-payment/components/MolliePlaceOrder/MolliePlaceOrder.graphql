@@ -1,5 +1,10 @@
 mutation MolliePlaceOrder($cartId: String!, $returnUrl: String!) {
   placeOrder(input: { cart_id: $cartId, mollie_return_url: $returnUrl }) {
+    errors {
+      code
+      message
+    }
+
     order {
       order_number
       mollie_redirect_url

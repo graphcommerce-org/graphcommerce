@@ -1,20 +1,20 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   CancelOrderForm,
+  getCustomerAccountIsDisabled,
   OrderDetailPageDocument,
   OrderDetails,
   OrderItems,
   OrderStateLabel,
   OrderTotals,
   ReorderItems,
-  WaitForCustomer,
-  getCustomerAccountIsDisabled,
   useCustomerQuery,
   useOrderCardItemImages,
+  WaitForCustomer,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { IconHeader, LayoutOverlayHeader, LayoutTitle, iconBox } from '@graphcommerce/next-ui'
+import { iconBox, IconHeader, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
 import { Container, Typography } from '@mui/material'

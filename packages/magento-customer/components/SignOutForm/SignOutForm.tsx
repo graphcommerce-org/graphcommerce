@@ -4,10 +4,10 @@ import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
-import { SignOutFormDocument } from './SignOutForm.gql'
 import { signOut } from './signOut'
+import { SignOutFormDocument } from './SignOutForm.gql'
 
-type SignOutFormProps = {
+export type SignOutFormProps = {
   button: (props: { formState: FormState<Record<string, unknown>> }) => React.ReactNode
 }
 

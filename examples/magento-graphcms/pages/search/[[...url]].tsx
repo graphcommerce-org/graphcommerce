@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { InContextMaskProvider, cacheFirst, flushMeasurePerf } from '@graphcommerce/graphql'
+import { PrivateQueryMaskProvider, cacheFirst, flushMeasurePerf } from '@graphcommerce/graphql'
 import { MenuQueryFragment } from '@graphcommerce/magento-category'
 import {
   ProductListDocument,
@@ -13,7 +13,7 @@ import {
   ProductFiltersQuery,
 } from '@graphcommerce/magento-product'
 import {
-  ProductFiltersProSearchField,
+  SearchField,
   productListApplySearchDefaults,
   searchDefaultsToProductListFilters,
   useProductList,
@@ -42,7 +42,7 @@ export type GetPageStaticProps = GetStaticProps<
 >
 
 function SearchResultPage(props: SearchResultProps) {
-  const productList = useProductList(props)
+  const { mask, ...productList } = useProductList(props)
   const { params, menu } = productList
   const search = params.url.split('/')[1]
 
@@ -57,11 +57,11 @@ function SearchResultPage(props: SearchResultProps) {
         metaRobots={['noindex']}
         canonical='/search'
       />
-      <LayoutHeader floatingMd switchPoint={0}>
-        <ProductFiltersProSearchField size='small' formControl={{ sx: { width: '81vw' } }} />
+      <LayoutHeader floatingMd switchPoint={0} hideMd>
+        <SearchField size='small' formControl={{ sx: { width: '81vw' } }} />
       </LayoutHeader>
 
-      <InContextMaskProvider mask={productList.mask}>
+      <PrivateQueryMaskProvider mask={mask}>
         {import.meta.graphCommerce.productFiltersPro &&
           import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
             <ProductListLayoutSidebar {...productList} menu={menu} />
@@ -73,7 +73,7 @@ function SearchResultPage(props: SearchResultProps) {
         {!import.meta.graphCommerce.productFiltersPro && (
           <ProductListLayoutClassic {...productList} menu={menu} />
         )}
-      </InContextMaskProvider>
+      </PrivateQueryMaskProvider>
     </>
   )
 }

@@ -5,10 +5,10 @@ import type { ErrorSnackbarProps, MessageSnackbarProps } from '@graphcommerce/ne
 import {
   Button,
   ErrorSnackbar,
+  iconChevronRight,
   IconSvg,
   ListFormat,
   MessageSnackbar,
-  iconChevronRight,
 } from '@graphcommerce/next-ui'
 import { Plural, Trans } from '@lingui/macro'
 

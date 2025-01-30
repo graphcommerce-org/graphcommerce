@@ -1,7 +1,8 @@
 import { CartFab, useCartEnabled } from '@graphcommerce/magento-cart'
 import { magentoMenuToNavigation } from '@graphcommerce/magento-category'
+import { CmsBlock } from '@graphcommerce/magento-cms'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
-import { ProductFiltersProSearchField, SearchLink } from '@graphcommerce/magento-search'
+import { SearchFab, SearchField } from '@graphcommerce/magento-search'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import type { LayoutDefaultProps } from '@graphcommerce/next-ui'
 import {
@@ -9,16 +10,17 @@ import {
   DesktopNavActions,
   DesktopNavBar,
   DesktopNavItem,
+  iconChevronDown,
+  iconCustomerService,
+  iconHeart,
   IconSvg,
   LayoutDefault,
   MenuFabSecondaryItem,
+  MobileTopRight,
   NavigationFab,
   NavigationOverlay,
   NavigationProvider,
   PlaceholderFab,
-  iconChevronDown,
-  iconCustomerService,
-  iconHeart,
   useMemoDeep,
   useNavigationSelection,
 } from '@graphcommerce/next-ui'
@@ -26,6 +28,7 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Divider, Fab } from '@mui/material'
 import { useRouter } from 'next/router'
+import { productListRenderer } from '../ProductListItems/productListRenderer'
 import { Footer } from './Footer'
 import type { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
@@ -34,12 +37,14 @@ export type LayoutNavigationProps = LayoutQuery &
   Omit<LayoutDefaultProps, 'footer' | 'header' | 'cartFab' | 'menuFab'>
 
 export function LayoutNavigation(props: LayoutNavigationProps) {
-  const { menu, children, ...uiProps } = props
+  const { menu, children, cmsBlocks, ...uiProps } = props
 
   const selection = useNavigationSelection()
   const router = useRouter()
 
   const cartEnabled = useCartEnabled()
+
+  const footerBlock = cmsBlocks?.items?.find((item) => item?.identifier === 'footer_links_block')
 
   return (
     <>
@@ -47,18 +52,6 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
         selection={selection}
         items={useMemoDeep(
           () => [
-            <SearchLink
-              href='/search'
-              onClick={() => selection.set(false)}
-              sx={(theme) => ({
-                width: `calc(100% - ${theme.spacing(4)})`,
-                m: 2,
-                mb: theme.spacings.xs,
-              })}
-              aria-label={i18n._(/* i18n */ 'Search...')}
-            >
-              <Trans id='Search...' />
-            </SearchLink>,
             { id: 'home', name: <Trans id='Home' />, href: '/' },
             {
               id: 'manual-item-one',
@@ -147,7 +140,10 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </DesktopNavBar>
 
             <DesktopNavActions>
-              <ProductFiltersProSearchField formControl={{ sx: { width: '400px' } }} />
+              <SearchField
+                formControl={{ sx: { width: '400px' } }}
+                searchField={{ productListRenderer }}
+              />
               <Fab
                 href='/service'
                 aria-label={i18n._(/* i18n */ 'Customer Service')}
@@ -168,9 +164,15 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               {/* The placeholder exists because the CartFab is sticky but we want to reserve the space for the <CartFab /> */}
               {cartEnabled && <PlaceholderFab />}
             </DesktopNavActions>
+
+            <MobileTopRight>
+              <SearchFab size='responsiveMedium' />
+            </MobileTopRight>
           </>
         }
-        footer={<Footer />}
+        footer={
+          <Footer socialLinks={footerBlock ? <CmsBlock cmsBlock={footerBlock} /> : <div />} />
+        }
         cartFab={<CartFab BadgeProps={{ color: 'secondary' }} />}
         menuFab={<NavigationFab onClick={() => selection.set([])} />}
       >

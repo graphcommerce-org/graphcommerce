@@ -12,9 +12,10 @@ type UseSignInFormProps = {
 } & UseFormGraphQlOptions<SignInMutation, SignInMutationVariables>
 
 /**
- * To extend the actions that happen after a successful sign in, you can use the `onComplete` option.
+ * To extend the actions that happen after a successful sign in, you can use the `onComplete`
+ * option.
  *
- * @example @graphcommerce/magento-cart/plugins/useSignInFormMergeCart
+ * @graphcommerce/magento-cart/plugins/useSignInFormMergeCart
  */
 export function useSignInForm({ email, ...options }: UseSignInFormProps) {
   const client = useApolloClient()
@@ -37,7 +38,7 @@ export function useSignInForm({ email, ...options }: UseSignInFormProps) {
         return options?.onBeforeSubmit ? options.onBeforeSubmit(newValues) : newValues
       },
       onComplete: (...args) => {
-        setCssFlag('in-context', true)
+        setCssFlag('private-query', true)
         return options.onComplete?.(...args)
       },
     },

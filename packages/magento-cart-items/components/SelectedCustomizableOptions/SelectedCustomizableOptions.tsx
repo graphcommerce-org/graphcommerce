@@ -4,7 +4,7 @@ import { Box } from '@mui/material'
 import type { CartItemFragment } from '../../Api/CartItem.gql'
 import type { SelectedCustomizableOptionFragment } from './SelectedCustomizableOption.gql'
 
-type SelectedCustomizableOptionProps = CartItemFragment & {
+export type SelectedCustomizableOptionProps = CartItemFragment & {
   customizable_options?: (SelectedCustomizableOptionFragment | null | undefined)[] | null
 }
 

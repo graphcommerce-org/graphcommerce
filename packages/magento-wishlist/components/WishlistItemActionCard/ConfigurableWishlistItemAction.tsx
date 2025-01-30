@@ -1,11 +1,14 @@
 import { productLink } from '@graphcommerce/magento-product/hooks/useProductLink'
 import { type WishlistItemActionCardProps } from '@graphcommerce/magento-wishlist'
-import { IconSvg, iconChevronRight, nonNullable } from '@graphcommerce/next-ui'
+import { iconChevronRight, IconSvg, nonNullable } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 import { AddWishlistItemToCart } from '../WishlistItem/AddWishlistItemToCart'
 
-type ConfigurableWishlistItemActionProps = Omit<WishlistItemActionCardProps, 'selectedOptions'>
+export type ConfigurableWishlistItemActionProps = Omit<
+  WishlistItemActionCardProps,
+  'selectedOptions'
+>
 
 export function ConfigurableWishlistItemAction(props: ConfigurableWishlistItemActionProps) {
   const { item } = props

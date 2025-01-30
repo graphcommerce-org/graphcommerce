@@ -1,10 +1,9 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { cloneDeep, mergeDeep } from '@apollo/client/utilities'
 import chalk from 'chalk'
-import { get, set } from 'lodash'
-import snakeCase from 'lodash/snakeCase'
+import lodash from 'lodash'
 import type { ZodAny, ZodRawShape, ZodTypeAny } from 'zod'
 import {
+  z,
   ZodArray,
   ZodBoolean,
   ZodDefault,
@@ -15,13 +14,16 @@ import {
   ZodObject,
   ZodOptional,
   ZodString,
-  z,
 } from 'zod'
 import diff from './diff'
 
-const fmt = (s: string) => s.split(/(\d+)/).map(snakeCase).join('')
+const fmt = (s: string) =>
+  s
+    .split(/(\d+)/)
+    .map((v) => lodash.snakeCase(v))
+    .join('')
 export const toEnvStr = (path: string[]) => ['GC', ...path].map(fmt).join('_').toUpperCase()
-export const dotNotation = (pathParts: string[]) =>
+const dotNotation = (pathParts: string[]) =>
   pathParts
     .map((v) => {
       const idx = Number(v)
@@ -144,7 +146,7 @@ export type ApplyResultItem = {
 }
 export type ApplyResult = ApplyResultItem[]
 
-export const filterEnv = (env: Record<string, string | undefined>) =>
+const filterEnv = (env: Record<string, string | undefined>) =>
   Object.fromEntries(Object.entries(env).filter(([key]) => key.startsWith('GC_')))
 
 export function mergeEnvIntoConfig(
@@ -178,14 +180,14 @@ export function mergeEnvIntoConfig(
       return
     }
 
-    const dotValue = get(newConfig, dotVar)
+    const dotValue = lodash.get(newConfig, dotVar)
     const merged = mergeDeep(dotValue, value)
 
     const from = diff(merged, dotValue)
     const to = diff(dotValue, merged)
 
     applyResult.push({ envVar, envValue, dotVar, from, to })
-    set(newConfig, dotVar, merged)
+    lodash.set(newConfig, dotVar, merged)
   })
 
   return [newConfig, applyResult] as const
@@ -204,10 +206,8 @@ export function mergeEnvIntoConfig(
 export function formatAppliedEnv(applyResult: ApplyResult) {
   let hasError = false
   let hasWarning = false
-  const lines = applyResult.map(({ from, to, envValue, envVar, dotVar, error, warning }) => {
-    const fromFmt = chalk.red(JSON.stringify(from))
-    const toFmt = chalk.green(JSON.stringify(to))
-    const envVariableFmt = `${envVar}='${envValue}'`
+  const lines = applyResult.map(({ from, to, envVar, dotVar, error, warning }) => {
+    const envVariableFmt = `${envVar}`
     const dotVariableFmt = chalk.bold.underline(`${dotVar}`)
 
     const baseLog = `${envVariableFmt} => ${dotVariableFmt}`
@@ -223,11 +223,10 @@ export function formatAppliedEnv(applyResult: ApplyResult) {
 
     if (!dotVar) return chalk.red(`${envVariableFmt} => ignored (no matching config)`)
 
-    if (from === undefined && to === undefined)
-      return ` = ${baseLog}: (ignored, no change/wrong format)`
-    if (from === undefined && to !== undefined) return ` ${chalk.green('+')} ${baseLog}: ${toFmt}`
-    if (from !== undefined && to === undefined) return ` ${chalk.red('-')} ${baseLog}: ${fromFmt}`
-    return ` ${chalk.yellowBright('~')} ${baseLog}: ${fromFmt} => ${toFmt}`
+    if (from === undefined && to === undefined) return ` = ${baseLog}: (ignored)`
+    if (from === undefined && to !== undefined) return ` ${chalk.green('+')} ${baseLog}`
+    if (from !== undefined && to === undefined) return ` ${chalk.red('-')} ${baseLog}`
+    return ` ${chalk.yellowBright('~')} ${baseLog}`
   })
 
   let header = chalk.blueBright('info')

@@ -2,7 +2,7 @@
   "name": "@graphcommerce/graphql-codegen-near-operation-file",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.0-canary.104",
+  "version": "9.0.4-canary.14",
   "sideEffects": false,
   "type": "commonjs",
   "main": "dist/index.js",
@@ -21,16 +21,16 @@
   },
   "dependencies": {
     "@graphql-codegen/add": "5.0.3",
-    "@graphql-codegen/plugin-helpers": "5.0.4",
-    "@graphql-codegen/visitor-plugin-common": "5.3.1",
-    "@graphql-tools/utils": "^10.3.2",
+    "@graphql-codegen/plugin-helpers": "5.1.0",
+    "@graphql-codegen/visitor-plugin-common": "5.6.0",
+    "@graphql-tools/utils": "^10.6.4",
     "@types/parse-filepath": "^1.0.2",
-    "graphql": "^16.7.1",
+    "graphql": "^16.10.0",
     "parse-filepath": "^1.0.2"
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^9.0.0-canary.104",
-    "@graphcommerce/prettier-config-pwa": "^9.0.0-canary.104",
-    "@graphcommerce/typescript-config-pwa": "^9.0.0-canary.104"
+    "@graphcommerce/eslint-config-pwa": "^9.0.4-canary.14",
+    "@graphcommerce/prettier-config-pwa": "^9.0.4-canary.14",
+    "@graphcommerce/typescript-config-pwa": "^9.0.4-canary.14"
   }
 }

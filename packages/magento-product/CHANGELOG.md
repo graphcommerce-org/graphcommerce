@@ -1,106 +1,100 @@
 # Change Log
 
-## 9.0.0-canary.104
+## 9.0.4-canary.14
 
-## 9.0.0-canary.103
+## 9.0.4-canary.13
 
-## 9.0.0-canary.91
+## 9.0.4-canary.12
 
-### Patch Changes
-
-- [#2367](https://github.com/graphcommerce-org/graphcommerce/pull/2367) [`71d412d`](https://github.com/graphcommerce-org/graphcommerce/commit/71d412d202bc94a0e676745547de5d809a7a850b) - When a user access a category page which is beyond the available total_pages, the user will be redirected to the last available page. ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.86
+## 9.0.4-canary.11
 
 ### Patch Changes
 
-- [#2379](https://github.com/graphcommerce-org/graphcommerce/pull/2379) [`959e0dd`](https://github.com/graphcommerce-org/graphcommerce/commit/959e0dd81a7943648250be6a2bf8f1bc27be8a3b) - Render multiple items in the RowSpecs table as a list ([@paales](https://github.com/paales))
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`10200f1`](https://github.com/graphcommerce-org/graphcommerce/commit/10200f1eda8a34261ed3975c603b456014d4f8a3) - ProductSpecs now uses `attribute { label }` instead of `useQuery(ProductSpecsTypes)` ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.85
+## 9.0.4-canary.10
 
-### Patch Changes
+## 9.0.4-canary.9
 
-- [#2378](https://github.com/graphcommerce-org/graphcommerce/pull/2378) [`c8237dc`](https://github.com/graphcommerce-org/graphcommerce/commit/c8237dc8f496a0ffddcf8fd4fc697941e257ed00) - Fixed the products sitemap not containing more than 100 products when limit SSG is enabled ([@rustmaestro](https://github.com/rustmaestro))
+## 9.0.4-canary.8
 
-## 9.0.0-canary.80
+## 9.0.4-canary.7
 
-### Minor Changes
+## 9.0.4-canary.6
 
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename experimental_useV2 prop to deprecated_useV1 in useFromGql and enable it by default ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+## 9.0.4-canary.5
 
-## 9.0.0-canary.72
+## 9.0.4-canary.4
 
-### Minor Changes
+## 9.0.4-canary.3
 
-- [#2332](https://github.com/graphcommerce-org/graphcommerce/pull/2332) [`73e897a`](https://github.com/graphcommerce-org/graphcommerce/commit/73e897a5a5f266d9ec274807720c71eb1a639074) - Use custom_attributesV2 for product specs when running on magento 247 or higher ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 9.0.0-canary.61
-
-### Minor Changes
-
-- [#2327](https://github.com/graphcommerce-org/graphcommerce/pull/2327) [`0935c33`](https://github.com/graphcommerce-org/graphcommerce/commit/0935c33ad08c963b2a406c92739590ac6acce7d2) - Move render logic from AddProductsToCartSnackbar to AddProductsToCartSnackbarMessage so this can be reused outside of AddProductsToCartForm ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 9.0.0-canary.59
+## 9.0.4-canary.2
 
 ### Patch Changes
 
-- [#2309](https://github.com/graphcommerce-org/graphcommerce/pull/2309) [`1fe4090`](https://github.com/graphcommerce-org/graphcommerce/commit/1fe409029671b841e582406251e45a9555fc78f9) - Hide SortChip or SortSection when there is only a single filter option. ([@Renzovh](https://github.com/Renzovh))
+- [#2473](https://github.com/graphcommerce-org/graphcommerce/pull/2473) [`f085c89`](https://github.com/graphcommerce-org/graphcommerce/commit/f085c89416fd91cdc2729f8a6da0ec37d93e8e80) - Solve issue where the ProductListItemsBase was already wrapped in a form. ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.58
+## 9.0.4-canary.1
 
-### Patch Changes
+## 9.0.4-canary.0
 
-- [#2328](https://github.com/graphcommerce-org/graphcommerce/pull/2328) [`ee04368`](https://github.com/graphcommerce-org/graphcommerce/commit/ee04368444f732e5541a595db6e2ef66d15add68) - Move to attributesList to get a list of filterable attributes instead of using an introspection query. `productFiltersProSectionRenderer` and `productFiltersProChipRenderer` keys now now one of `AttributeFrontendInputEnum`. ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.51
-
-### Minor Changes
-
-- [#2322](https://github.com/graphcommerce-org/graphcommerce/pull/2322) [`4d08a2b`](https://github.com/graphcommerce-org/graphcommerce/commit/4d08a2bd8c1919bd85b18e8e856775d18fb67e00) - Rename configurable_customizable back to customizable_options ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.41
+## 9.0.1
 
 ### Patch Changes
 
-- [#2242](https://github.com/graphcommerce-org/graphcommerce/pull/2242) [`a4cce76`](https://github.com/graphcommerce-org/graphcommerce/commit/a4cce76ca37af2bec604e953ada4bb11bd91f55d) - Add option to show an extended version of the pagination component. Configurable via the "productListPaginationVariant" key in your graphcommerce.config.js COMPACT means: "< Page X of Y >" EXTENDED means: "< 1 2 ... [5] ... 10 11 >" ([@FrankHarland](https://github.com/FrankHarland))
+- [#2461](https://github.com/graphcommerce-org/graphcommerce/pull/2461) [`c83aad6`](https://github.com/graphcommerce-org/graphcommerce/commit/c83aad64869ee4192aa4216cc41f8106642c38f9) - Prevent forwarding the isBack prop to the DOM element ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.27
+## 9.0.0
 
-### Minor Changes
+### Major Changes
 
-- [#2273](https://github.com/graphcommerce-org/graphcommerce/pull/2273) [`77955c5`](https://github.com/graphcommerce-org/graphcommerce/commit/77955c56ac8633ab1c5e0f3ddb25e3a87236e2bb) - Improve Breadcrumbs on Category and Product pages ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2273](https://github.com/graphcommerce-org/graphcommerce/pull/2273) [`77955c5`](https://github.com/graphcommerce-org/graphcommerce/commit/77955c56ac8633ab1c5e0f3ddb25e3a87236e2bb) - Added support for real `<Breadcrumbs/>` on the frontend. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-## 8.1.0-canary.11
+- [#2242](https://github.com/graphcommerce-org/graphcommerce/pull/2242) [`a4cce76`](https://github.com/graphcommerce-org/graphcommerce/commit/a4cce76ca37af2bec604e953ada4bb11bd91f55d) - Add option to show an extended version of the pagination component. Configurable via the `productListPaginationVariant` key in your `graphcommerce.config.js`. `COMPACT` means: `< Page X of Y >` and `EXTENDED` means: `< 1 2 ... [5] ... 10 11 >` ([@FrankHarland](https://github.com/FrankHarland))
 
-### Patch Changes
+- [#2332](https://github.com/graphcommerce-org/graphcommerce/pull/2332) [`73e897a`](https://github.com/graphcommerce-org/graphcommerce/commit/73e897a5a5f266d9ec274807720c71eb1a639074) - Magento 2.4.7: Use `custom_attributesV2` for product specs. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-- [#2255](https://github.com/graphcommerce-org/graphcommerce/pull/2255) [`679d07d`](https://github.com/graphcommerce-org/graphcommerce/commit/679d07dad5b5e2dab3c0f3d537716b6115af8ef7) - make the ProductPageMeta fragment injectable ([@carlocarels90](https://github.com/carlocarels90))
-
-## 8.1.0-canary.5
-
-### Patch Changes
-
-- [#2224](https://github.com/graphcommerce-org/graphcommerce/pull/2224) [`4dd2d01`](https://github.com/graphcommerce-org/graphcommerce/commit/4dd2d01b3e14e3107ee3e337bef2a8528d654e75) - When applying a filter it would not always scroll to the #products. ([@FrankHarland](https://github.com/FrankHarland))
-
-## 8.0.6-canary.4
-
-### Patch Changes
+- [#2407](https://github.com/graphcommerce-org/graphcommerce/pull/2407) [`61f2af1`](https://github.com/graphcommerce-org/graphcommerce/commit/61f2af1158f2ef6908f7edd18f3f8cb2be196a9b) - Added functionality to constrain the container sizing of the frontend. Added a new configuration `containerSizingShell` and `containerSizingContent` configuration options. Actual sizing can be configured in the `theme.ts`. ([@StefanAngenent](https://github.com/StefanAngenent))
 
 - [#2227](https://github.com/graphcommerce-org/graphcommerce/pull/2227) [`d597719`](https://github.com/graphcommerce-org/graphcommerce/commit/d597719baaabbe079660ac063fd021d871831511) - Added option to change sort order (ASC / DESC) for sort options (Name, price, position etc) on catalog and search pages. ([@FrankHarland](https://github.com/FrankHarland))
 
-## 8.0.6-canary.2
+### Minor Changes
+
+- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use `linguiLocale` with country identifiers like `en-us`, it would always load `en` in this case. Introduced a new `useLocale` hook to use the correct locale string to use in Intl methods. ([@paales](https://github.com/paales))
 
 ### Patch Changes
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
+- [#2322](https://github.com/graphcommerce-org/graphcommerce/pull/2322) [`4d08a2b`](https://github.com/graphcommerce-org/graphcommerce/commit/4d08a2bd8c1919bd85b18e8e856775d18fb67e00) - Rename `configurable_customizable` back to `customizable_options`. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent BillingPage query from rerunning on each mutation ([@FrankHarland](https://github.com/FrankHarland))
+- [#2327](https://github.com/graphcommerce-org/graphcommerce/pull/2327) [`0935c33`](https://github.com/graphcommerce-org/graphcommerce/commit/0935c33ad08c963b2a406c92739590ac6acce7d2) - Move render logic from `<AddProductsToCartSnackbar />` to `<AddProductsToCartSnackbarMessage />` so this can be reused outside of `<AddProductsToCartForm />`. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 8.0.6-canary.0
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename `experimental_useV2` prop to `deprecated_useV1` in `useFromGql` and enable it by default. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-### Patch Changes
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`ebdf2c8`](https://github.com/graphcommerce-org/graphcommerce/commit/ebdf2c8ea5ba69fa11d33daa75ad12b7c1501460) - Hide ProductScroller components when no items are available ([@bramvanderholst](https://github.com/bramvanderholst))
 
-- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods. ([@paales](https://github.com/paales))
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use `muiRegister`, which improves INP scores. ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2309](https://github.com/graphcommerce-org/graphcommerce/pull/2309) [`1fe4090`](https://github.com/graphcommerce-org/graphcommerce/commit/1fe409029671b841e582406251e45a9555fc78f9) - Hide the `<SortChip />` or `<SortSection />` when there is only a single filter option. ([@Renzovh](https://github.com/Renzovh))
+
+- [#2224](https://github.com/graphcommerce-org/graphcommerce/pull/2224) [`4dd2d01`](https://github.com/graphcommerce-org/graphcommerce/commit/4dd2d01b3e14e3107ee3e337bef2a8528d654e75) - When applying a filter it would not always scroll to the `#products`. ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2328](https://github.com/graphcommerce-org/graphcommerce/pull/2328) [`ee04368`](https://github.com/graphcommerce-org/graphcommerce/commit/ee04368444f732e5541a595db6e2ef66d15add68) - Move to `attributesList` to get a list of filterable attributes instead of using an introspection query. `productFiltersProSectionRenderer` and `productFiltersProChipRenderer` keys now use `AttributeFrontendInputEnum`. ([@paales](https://github.com/paales))
+
+- [#2452](https://github.com/graphcommerce-org/graphcommerce/pull/2452) [`5dfd3b2`](https://github.com/graphcommerce-org/graphcommerce/commit/5dfd3b201255ef35263485d04153d37bb7e4fe67) - Renamed useInContextQuery to usePrivateQuery ([@paales](https://github.com/paales))
+
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2378](https://github.com/graphcommerce-org/graphcommerce/pull/2378) [`c8237dc`](https://github.com/graphcommerce-org/graphcommerce/commit/c8237dc8f496a0ffddcf8fd4fc697941e257ed00) - Fixed the products sitemap not containing more than 100 products when limit SSG is enabled ([@rustmaestro](https://github.com/rustmaestro))
+
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`673bf7c`](https://github.com/graphcommerce-org/graphcommerce/commit/673bf7c25b521c215b36db8f6c6ccfd70c4a7468) - Allow adding elements after/between product list items (e.g. banners) ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent the `<BillingPage />` query from rerunning on each mutation. ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2367](https://github.com/graphcommerce-org/graphcommerce/pull/2367) [`71d412d`](https://github.com/graphcommerce-org/graphcommerce/commit/71d412d202bc94a0e676745547de5d809a7a850b) - When a user access a category page which is beyond the available total_pages, the user will be redirected to the last available page. ([@paales](https://github.com/paales))
+
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`49937fd`](https://github.com/graphcommerce-org/graphcommerce/commit/49937fd765338e25899d427ee4d799fa7978faeb) - Allow changing various props for internal components ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2379](https://github.com/graphcommerce-org/graphcommerce/pull/2379) [`959e0dd`](https://github.com/graphcommerce-org/graphcommerce/commit/959e0dd81a7943648250be6a2bf8f1bc27be8a3b) - Render multiple items in the `RowSpecs` table as a list. ([@paales](https://github.com/paales))
 
 ## 8.0.5
 
@@ -909,7 +903,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'

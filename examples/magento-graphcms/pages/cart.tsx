@@ -79,8 +79,11 @@ function CartPage() {
         {hasItems ? (
           <>
             <Container maxWidth='md'>
-              <CartItemsActionCards cart={data.cart} sx={{ position: 'relative', zIndex: 1 }} />
-              <CouponAccordion key='couponform' sx={(theme) => ({ mt: theme.spacings.md })} />
+              <CartItemsActionCards
+                cart={data.cart}
+                sx={(theme) => ({ position: 'relative', zIndex: 1, mb: theme.spacings.md })}
+              />
+              <CouponAccordion key='couponform' />
               <CartTotals containerMargin sx={{ typography: 'body1' }} />
               <ApolloCartErrorAlert error={error} />
             </Container>

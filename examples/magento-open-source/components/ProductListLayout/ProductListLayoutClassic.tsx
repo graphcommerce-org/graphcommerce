@@ -11,12 +11,13 @@ import {
   ProductListParamsProvider,
   ProductListSort,
 } from '@graphcommerce/magento-product'
-import { LayoutTitle, StickyBelowHeader, memoDeep } from '@graphcommerce/next-ui'
-import { Container } from '@mui/material'
+import { Container, LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { ProductListItems } from '../ProductListItems'
 import type { ProductListLayoutProps } from './types'
 
-export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps) => {
+export const ProductListLayoutClassic = memoDeep(function ProductListLayoutClassic(
+  props: ProductListLayoutProps,
+) {
   const { filters, filterTypes, params, products, title, category } = props
 
   if (!(params && products?.items && filterTypes)) return null
@@ -25,10 +26,12 @@ export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps)
   return (
     <>
       {import.meta.graphCommerce.breadcrumbs && category && (
-        <CategoryBreadcrumbs
-          category={category}
-          sx={(theme) => ({ mx: theme.page.horizontal, mb: theme.spacings.md })}
-        />
+        <Container maxWidth={false}>
+          <CategoryBreadcrumbs
+            category={category}
+            sx={(theme) => ({ mx: theme.page.horizontal, mb: theme.spacings.md })}
+          />
+        </Container>
       )}
 
       {category ? (
@@ -46,7 +49,7 @@ export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps)
           </LayoutTitle>
           <CategoryDescription
             sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.sm })}
-            description={category?.description}
+            category={category}
           />
           <CategoryChildren
             params={params}
@@ -65,7 +68,7 @@ export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps)
         <ProductListParamsProvider value={params}>
           <ProductListFiltersContainer>
             <ProductListSort sort_fields={sort_fields} total_count={total_count} />
-            <ProductListFilters {...filters} filterTypes={filterTypes} />
+            <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
           </ProductListFiltersContainer>
         </ProductListParamsProvider>
       </StickyBelowHeader>

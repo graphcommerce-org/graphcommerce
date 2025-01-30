@@ -5,10 +5,8 @@ import {
   toSitemapFields,
 } from '@graphcommerce/next-ui'
 import type { GetServerSideProps } from 'next'
-import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
-const excludes: string[] = [
-  '*/p/*',
+const excludes = [
   '*/account*',
   '*/wishlist*',
   '*/cart*',
@@ -23,7 +21,7 @@ const excludes: string[] = [
   '*/cart',
   '*/checkout',
 ]
-const additionalPaths = ['']
+const additionalPaths: string[] = []
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { locale } = context

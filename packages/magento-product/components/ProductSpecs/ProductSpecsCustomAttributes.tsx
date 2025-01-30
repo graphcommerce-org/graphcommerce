@@ -1,8 +1,6 @@
-import { useQuery } from '@graphcommerce/graphql'
-import { ListFormat, extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent, ListFormat } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import type { ProductSpecsFragment } from './ProductSpecs.gql'
-import { ProductSpecsTypesDocument } from './ProductSpecsTypes.gql'
 
 const name = 'ProductSpecs'
 const parts = ['root', 'specs', 'options'] as const
@@ -15,19 +13,13 @@ export function ProductSpecsCustomAttributes(props: ProductSpecsCustomAttributes
 
   const specs = items?.[0]?.custom_attributesV2?.items
 
-  const productSpecsTypes = useQuery(ProductSpecsTypesDocument)
-
   if (items?.length === 0) return null
 
   return (
     <>
       {specs?.map((item) => (
         <li key={item?.code}>
-          <div>
-            {productSpecsTypes?.data?.attributesList?.items?.find(
-              (type) => type?.code === item?.code,
-            )?.label ?? item?.code}
-          </div>
+          <div>{item?.attribute?.label}</div>
           <Box className={classes.options}>
             {item?.__typename === 'AttributeSelectedOptions' && (
               <ListFormat listStyle='long' type='unit'>

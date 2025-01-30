@@ -6,7 +6,7 @@ import type { SxProps, Theme } from '@mui/material'
 import { Box, Link } from '@mui/material'
 import type { CategoryChildrenFragment } from './CategoryChildren.gql'
 
-type CategoryChildrenProps = Omit<CategoryChildrenFragment, 'uid'> & {
+export type CategoryChildrenProps = Omit<CategoryChildrenFragment, 'uid'> & {
   params: ProductListParams
   sx?: SxProps<Theme>
 }
@@ -38,7 +38,10 @@ export function CategoryChildren(props: CategoryChildrenProps) {
     <ScrollerProvider scrollSnapAlign='none'>
       <Box
         className={classes.container}
-        sx={[{ display: 'flex' }, ...(Array.isArray(sx) ? sx : [sx])]}
+        sx={[
+          { display: 'flex', width: '100%', overflow: 'hidden' },
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
       >
         <Scroller
           className={classes.scroller}

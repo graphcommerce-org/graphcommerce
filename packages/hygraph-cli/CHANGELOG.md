@@ -1,8 +1,40 @@
 # @graphcommerce/hygraph-cli
 
-## 9.0.0-canary.104
+## 9.0.4-canary.14
 
-## 9.0.0-canary.103
+## 9.0.4-canary.13
+
+## 9.0.4-canary.12
+
+## 9.0.4-canary.11
+
+## 9.0.4-canary.10
+
+### Patch Changes
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`c25bb10`](https://github.com/graphcommerce-org/graphcommerce/commit/c25bb105c6bf0a043dde734be41f350cfbe3ebdb) - Migrated `@graphcommerce/hygraph-cli` package to `"type": "module"` ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.0
 
 ### Patch Changes
 

@@ -4,9 +4,9 @@ import { Box, IconButton } from '@mui/material'
 import type { UsePaginationItem } from '@mui/material/usePagination'
 import usePagination from '@mui/material/usePagination'
 import React from 'react'
+import { iconChevronLeft, iconChevronRight } from '../icons'
 import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
-import { iconChevronLeft, iconChevronRight } from '../icons'
 
 export type PagePaginationProps = {
   count: number

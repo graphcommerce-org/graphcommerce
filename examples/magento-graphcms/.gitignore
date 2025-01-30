@@ -30,3 +30,17 @@ yarn-error.log*
 # application
 .mesh
 *.tsbuildinfo
+
+# managed by: graphcommerce
+pages/.well-known/assetlinks.json.tsx
+pages/test/\[\[...url\]\].tsx
+pages/test/buttons.tsx
+pages/test/form-elements.tsx
+pages/test/icons.tsx
+pages/test/minimal-page-shell/\[\[...url\]\].tsx
+pages/test/number-inputs.tsx
+pages/test/sheet.tsx
+pages/test/slider.tsx
+pages/test/typography.tsx
+pages/test/usebacklink/\[\[...url\]\].tsx
+# end managed by: graphcommerce

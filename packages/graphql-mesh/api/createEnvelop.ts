@@ -1,13 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { createBuiltMeshHTTPHandler } from '../.mesh'
-
-const handler = createBuiltMeshHTTPHandler()
+import { createBuiltMeshHTTPHandler } from './globalThisMesh'
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const createServer = async (endpoint: string) => {
   if (endpoint !== '/api/graphql')
     throw Error('Moving the GraphQL Endpoint is not supported at the moment')
-  return (req: NextApiRequest, res: NextApiResponse) => {
+
+  const handler = createBuiltMeshHTTPHandler()
+  return async (req: NextApiRequest, res: NextApiResponse) => {
     res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*')
     const requestedHeaders = req.headers['access-control-request-headers']
     if (requestedHeaders) {
@@ -20,6 +20,6 @@ export const createServer = async (endpoint: string) => {
       return
     }
 
-    handler(req, res)
+    await handler(req, res)
   }
 }

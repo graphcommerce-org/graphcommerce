@@ -1,16 +1,16 @@
 import type { ProductListItemType } from '@graphcommerce/magento-product'
 import { AddProductsToCartForm } from '@graphcommerce/magento-product'
 import {
-  type RecentlyViewedProductsProps,
   useRecentlyViewedProducts,
   useRecentlyViewedSkus,
+  type RecentlyViewedProductsProps,
 } from '@graphcommerce/magento-recently-viewed-products'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import {
-  RenderType,
-  SidebarSlider,
   filterNonNullableKeys,
+  RenderType,
   responsiveVal,
+  SidebarSlider,
 } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
 import { useInView } from 'framer-motion'

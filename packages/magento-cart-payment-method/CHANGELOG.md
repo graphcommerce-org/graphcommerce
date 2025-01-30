@@ -1,42 +1,60 @@
 # Change Log
 
-## 9.0.0-canary.104
+## 9.0.4-canary.14
 
-## 9.0.0-canary.103
+## 9.0.4-canary.13
 
-## 8.1.0-canary.38
+## 9.0.4-canary.12
+
+## 9.0.4-canary.11
+
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.2
 
 ### Patch Changes
 
-- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving <FromPersist/> below the form components ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [`7d5e75e`](https://github.com/graphcommerce-org/graphcommerce/commit/7d5e75ebfe93194237b8f6b6511d2bd1549d121e) - Solve issue where the Component prop would we forwarded tot the DOM element of the PaymentMethodActionCard ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.18
+- [`058b7bf`](https://github.com/graphcommerce-org/graphcommerce/commit/058b7bf64be29e1bc3d16551abcc1cd55b5413bd) - Support Magento 2.4.7 placeOrder.errors field to handle possible errors while placing the order. An `assertOrderPlaced` method was created to assert a valid placed order. ([@paales](https://github.com/paales))
 
-### Patch Changes
+## 9.0.0
 
-- [#2277](https://github.com/graphcommerce-org/graphcommerce/pull/2277) [`f9199f7`](https://github.com/graphcommerce-org/graphcommerce/commit/f9199f798583138a68dd641ea6637375c487f29b) - Solve issue where Braintree wouldn't place the order after successfully validating a Credit Card. ([@paales](https://github.com/paales))
+### Major Changes
 
-## 8.1.0-canary.14
-
-### Patch Changes
-
-- [`831d7cd`](https://github.com/graphcommerce-org/graphcommerce/commit/831d7cd64a40b7b58748fd9637199b88938e75b7) - Compatibility with Magento 2.4.7 ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.8
-
-### Patch Changes
-
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`d345474`](https://github.com/graphcommerce-org/graphcommerce/commit/d345474fb190d158629cd5fd5e68a78724fa2fb6) - Due to a cyclic dependency the actual PaymentMethodPlaceOrder button would sometimes be undefined. ([@paales](https://github.com/paales))
-
-## 8.0.6-canary.2
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - INP improvements: Moved all usages of `useFormPersist` to the `<FormPersist/>` component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
 
 ### Patch Changes
 
 - [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Use the non resolved payment methods as a placeholder for the actual payment methods ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
+- [#2277](https://github.com/graphcommerce-org/graphcommerce/pull/2277) [`f9199f7`](https://github.com/graphcommerce-org/graphcommerce/commit/f9199f798583138a68dd641ea6637375c487f29b) - Solve issue where Braintree wouldn't place the order after successfully validating a Credit Card. ([@paales](https://github.com/paales))
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent BillingPage query from rerunning on each mutation ([@FrankHarland](https://github.com/FrankHarland))
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`d345474`](https://github.com/graphcommerce-org/graphcommerce/commit/d345474fb190d158629cd5fd5e68a78724fa2fb6) - Due to a cyclic dependency the actual `<PaymentMethodPlaceOrder />` button would sometimes be undefined. ([@paales](https://github.com/paales))
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving `<FromPersist/>` below the form components. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent the `<BillingPage />` query from rerunning on each mutation. ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.0
 
@@ -652,7 +670,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'

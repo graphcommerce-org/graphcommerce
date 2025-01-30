@@ -16,6 +16,6 @@ export function ProductPageJsonLd<T extends { '@type': string }, P extends JsonL
   props: PluginProps<ProductPageJsonLdProps<T, P>> & AddToCartItemSelector,
 ) {
   const { Prev, product, index, ...rest } = props
-  const variant = useConfigurableSelectedVariant({ url_key: product.url_key, index })
+  const variant = useConfigurableSelectedVariant({ ...product, index })
   return <Prev product={(variant ?? product) as P} {...rest} />
 }

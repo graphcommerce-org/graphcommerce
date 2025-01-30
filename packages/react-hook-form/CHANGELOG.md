@@ -1,62 +1,82 @@
 # Change Log
 
-## 9.0.0-canary.104
+## 9.0.4-canary.14
 
-## 9.0.0-canary.103
+## 9.0.4-canary.13
 
 ### Patch Changes
 
-- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
+- [`9aa9a3c`](https://github.com/graphcommerce-org/graphcommerce/commit/9aa9a3cc25c121e217f64efc0cfd19e3b90d15aa) - useFormGql and all derivivatives now get the form as an argument in onComplete for easier form resets. ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.90
+## 9.0.4-canary.12
 
-### Minor Changes
+## 9.0.4-canary.11
+
+## 9.0.4-canary.10
+
+### Patch Changes
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`935f8f9`](https://github.com/graphcommerce-org/graphcommerce/commit/935f8f9ebe5e79b336e56d40cb1ec96ce17b84d7) - Remove dependency on Magento for @graphcommerec/react-hook-form ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+### Patch Changes
+
+- [#2477](https://github.com/graphcommerce-org/graphcommerce/pull/2477) [`8015eab`](https://github.com/graphcommerce-org/graphcommerce/commit/8015eabc130dacf1f2703980cd5f0ad2c550aa4d) - Upgraded to @apollo/client 3.12.3 without impacting typescript compilation performance. ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.2
+
+### Patch Changes
+
+- [`c40c559`](https://github.com/graphcommerce-org/graphcommerce/commit/c40c5596bcc8f3c2e1e15c9e6ad85bfa1f9154b0) - Solve an issue where the payment submission would remain in a spinning state when placing an order failed: `useFormGql` will now set `root` error on the form when there is an error response on the GraphQL operation, an error is thrown in onBeforeSubmit and in onSuccess. ([@paales](https://github.com/paales))
+
+## 9.0.0
+
+### Major Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Big INP improvments: Moved all usages of `useFormPersist` to the `<FormPersist/>` component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
+
+### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`16e2980`](https://github.com/graphcommerce-org/graphcommerce/commit/16e2980da4b72330642e59e8c82d1acde387e4fc) - `useFormGql` and it's derived hooks now have a new `skipUnchanged` prop. The form will only be submitted when there are fields dirty in a form. This reduces the amount of queries ran in the checkout greatly. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Added deprecation warnings for `useFormMuiRegister`. Refactored `useFormPersist` to use `useWatch` and added a separate `<FormPersist />` component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2325](https://github.com/graphcommerce-org/graphcommerce/pull/2325) [`058fb17`](https://github.com/graphcommerce-org/graphcommerce/commit/058fb1777bdaa51ded6d37529e59a3cc5f0eac06) - Solve an issue where `onBeforeSubmit` and `onComplete` would become an 'stale closure' where variables inside wouldn't be updated. By wrapping `onBeforeSubmit` and `onComplete` in `useEventCallback` these functions are updated when outside values get changed. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 - [#2391](https://github.com/graphcommerce-org/graphcommerce/pull/2391) [`c1fa10f`](https://github.com/graphcommerce-org/graphcommerce/commit/c1fa10f995f562741b7574d465580e5405982a70) - Prevent overwriting custom context in useFormGqlMutation by merging operationOptions before execution. ([@wimvdputten](https://github.com/wimvdputten))
 
-## 9.0.0-canary.80
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename `experimental_useV2` prop to `deprecated_useV1` in `useFromGql` and enable it by default. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-### Minor Changes
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use `muiRegister`, which improves INP scores. ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`16e2980`](https://github.com/graphcommerce-org/graphcommerce/commit/16e2980da4b72330642e59e8c82d1acde387e4fc) - useFormGql and it's derived hooks now have a new `skipUnchanged` prop. The form will only be submitted when there are fields dirty in a form. This reduces the amount of queries ran in the checkout greatly. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`af45239`](https://github.com/graphcommerce-org/graphcommerce/commit/af452399eaab59ee4e13484fdc9cb0a7660da531) - When a `useFormGql` throws an error in the `onBeforeSubmit` method or `onComplete` method it will be set as an ApolloError with the message, allowing it to be displayed somewhere. The `<PaymentMethodButton />` will now render this as an `<ErrorSnackbar />`. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename experimental_useV2 prop to deprecated_useV1 in useFromGql and enable it by default ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
 
-### Patch Changes
+- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`490bbfb`](https://github.com/graphcommerce-org/graphcommerce/commit/490bbfb5d88a7f58e83fa9c8b7f475c277a0eda3) - Added missing dependencies of `lodash` and `@types/lodash`. ([@paales](https://github.com/paales))
 
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`af45239`](https://github.com/graphcommerce-org/graphcommerce/commit/af452399eaab59ee4e13484fdc9cb0a7660da531) - When a useFormGql throws an error in the onBeforeSubmit method or onComplete method it will setError('root.thrown') with the message, allowing it to be displayed somewhere. PaymentMethodButton will now render this as an ErrorSnackbar. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving `<FromPersist/>` below the form components. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 8.1.0-canary.53
-
-### Minor Changes
-
-- [#2325](https://github.com/graphcommerce-org/graphcommerce/pull/2325) [`058fb17`](https://github.com/graphcommerce-org/graphcommerce/commit/058fb1777bdaa51ded6d37529e59a3cc5f0eac06) - Solve an issue where onBeforeSubmit and onComplete would become an 'stale closure' where variables inside wouldn't be updated. By wrapping onBeforeSubmit and onComplete in useEventCallback these functions are updated when outside values get changed. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.46
-
-### Patch Changes
-
-- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`490bbfb`](https://github.com/graphcommerce-org/graphcommerce/commit/490bbfb5d88a7f58e83fa9c8b7f475c277a0eda3) - Added missing dependencies of lodash and @types/lodash ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.38
-
-### Patch Changes
-
-- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving <FromPersist/> below the form components ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.0.6-canary.2
-
-### Patch Changes
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Add deprecation warnings for useFormMuiRegister. Refactor useFormPersist to useWatch and add a separate `<FormPersist/>` component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`02da217`](https://github.com/graphcommerce-org/graphcommerce/commit/02da2172ef702133510f6923190efae2801032c5) - Migrate most usages of useFormAutoSubmit to <FormAutoSubmit/> and deprecated useFormAutoSubmit ([@FrankHarland](https://github.com/FrankHarland))
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`1a6d0c4`](https://github.com/graphcommerce-org/graphcommerce/commit/1a6d0c4a3584b1e404b444f1ca44c68eaad56cb7) - Mark useFormValidFields as deprecated: Please use TextInputElement, SelectElement, etc. with the showValid prop ([@FrankHarland](https://github.com/FrankHarland))
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`1a6d0c4`](https://github.com/graphcommerce-org/graphcommerce/commit/1a6d0c4a3584b1e404b444f1ca44c68eaad56cb7) - Mark `useFormValidFields` as deprecated: Please use `<TextInputElement />`, `<SelectElement />`, etc. with the `showValid` prop. ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.5
 

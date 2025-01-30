@@ -7,7 +7,7 @@ import { ActionCard, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { useMemo } from 'react'
 import type { DownloadableProductOptionsFragment } from './DownloadableProductOptions.gql'
 
-type DownloadableProductOptionsProps = AddToCartItemSelector & {
+export type DownloadableProductOptionsProps = AddToCartItemSelector & {
   product: DownloadableProductOptionsFragment
 }
 

@@ -25,7 +25,7 @@ function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-c
 
   return new ApolloClient({
     link: ApolloLink.from([
-      ...(process.env.NODE_ENV === 'production' ? [measurePerformanceLink] : []),
+      ...(process.env.NODE_ENV !== 'production' ? [measurePerformanceLink] : []),
       errorLink,
       ...config.links,
       new MeshApolloLink(getBuiltMesh()),
@@ -48,6 +48,7 @@ function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-c
  * browser's cache.
  */
 export function graphqlSharedClient(context: GetStaticPropsContext) {
+  if (context.preview || context.draftMode) return client(context, 'no-cache')
   return client(context, 'cache-first')
 }
 
@@ -56,6 +57,7 @@ const ssrClient: {
 } = {}
 
 export function graphqlSsrClient(context: GetStaticPropsContext) {
+  if (context.preview || context.draftMode) return client(context, 'no-cache')
   const locale = context.locale ?? storefrontConfigDefault().locale
   i18nSsrLoader(locale)
 

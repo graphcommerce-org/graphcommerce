@@ -1,11 +1,41 @@
 # @graphcommerce/algolia-personalization
 
-## 9.0.0-canary.104
+## 9.0.4-canary.14
 
-## 9.0.0-canary.103
+## 9.0.4-canary.13
 
-## 9.0.0-canary.84
+## 9.0.4-canary.12
 
-### Minor Changes
+## 9.0.4-canary.11
 
-- [#2377](https://github.com/graphcommerce-org/graphcommerce/pull/2377) [`56fcc45`](https://github.com/graphcommerce-org/graphcommerce/commit/56fcc45b60e43574c64fcdd7b02f8062d677e250) - Integrated algolia personalisation and algolia analytics into graphql mesh. Built user profiles and gives user personalised results. Keep track of the user data and view in algolia analytics dashboard ([@Renzovh](https://github.com/Renzovh))
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.0
+
+### Major Changes
+
+- [#2377](https://github.com/graphcommerce-org/graphcommerce/pull/2377) [`56fcc45`](https://github.com/graphcommerce-org/graphcommerce/commit/56fcc45b60e43574c64fcdd7b02f8062d677e250) - Algolia: Integrated algolia personalisation and algolia analytics into GraphQL Mesh. Built user profiles and gives user personalised results. Keep track of the user data and view in algolia analytics dashboard. ([@Renzovh](https://github.com/Renzovh))
+
+### Patch Changes
+
+- [#2452](https://github.com/graphcommerce-org/graphcommerce/pull/2452) [`5dfd3b2`](https://github.com/graphcommerce-org/graphcommerce/commit/5dfd3b201255ef35263485d04153d37bb7e4fe67) - Renamed useInContextQuery to usePrivateQuery ([@paales](https://github.com/paales))

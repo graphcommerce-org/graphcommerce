@@ -1,13 +1,13 @@
 import type {
-  ApolloError,
   FetchResult,
   LazyQueryHookOptions,
   LazyQueryResultTuple,
+  MaybeMasked,
   MutationHookOptions,
   MutationTuple,
   TypedDocumentNode,
 } from '@apollo/client'
-import { isApolloError } from '@apollo/client'
+import { ApolloError, isApolloError } from '@apollo/client'
 import { getOperationName } from '@apollo/client/utilities'
 import useEventCallback from '@mui/utils/useEventCallback'
 import { useEffect, useRef } from 'react'
@@ -17,47 +17,50 @@ import type { UseGqlDocumentHandler } from './useGqlDocumentHandler'
 import { useGqlDocumentHandler } from './useGqlDocumentHandler'
 import { tryAsync } from './utils/tryTuple'
 
-export type OnCompleteFn<Q, V> = (data: FetchResult<Q>, variables: V) => void | Promise<void>
-
-type UseFormGraphQLCallbacks<Q, V> = {
+type UseFormGraphQLCallbacks<Q, V extends FieldValues> = {
   /**
    * Allows you to modify the variablels computed by the form to make it compatible with the GraphQL
    * Mutation.
    *
-   * When returning false, it will silently stop the submission.
-   * When an error is thrown, it will be set as an ApolloError
+   * When returning false, it will silently stop the submission. When an error is thrown, it will be
+   * set as an ApolloError
    */
-  onBeforeSubmit?: (variables: V) => V | false | Promise<V | false>
+  onBeforeSubmit?: (variables: V, form?: UseFormReturn<V>) => V | false | Promise<V | false>
   /**
    * Called after the mutation has been executed. Allows you to handle the result of the mutation.
    *
    * When an error is thrown, it will be set as an ApolloError
    */
-  onComplete?: OnCompleteFn<Q, V>
+  onComplete?: (
+    data: FetchResult<MaybeMasked<Q>>,
+    variables: V,
+    form?: UseFormReturn<V>,
+  ) => void | Promise<void>
 
   /**
    * @deprecated Not used anymore, is now the default
    *
-   * Changes:
-   * - Restores `defaultValues` functionality to original functionality, use `values` instead.
-   * - Does not reset the form after submission, use `values` instead.
-   * - Does not 'encode' the variables, use onBeforeSubmit instead.
+   *   Changes:
    *
-   * Future plans:
-   * - Remove the useMutation/useLazyQuery tuple and use a reguler client.mutation() call.
-   * - Write graphql errors to setError('root')
-   * - Remove onBeforeSubmit, onComplete and the handleSubmit rewrite with a single mutate() callback.
+   *   - Restores `defaultValues` functionality to original functionality, use `values` instead.
+   *   - Does not reset the form after submission, use `values` instead.
+   *   - Does not 'encode' the variables, use onBeforeSubmit instead.
    *
+   *   Future plans:
    *
-   * ```ts
-   * const { handleSubmit } = useFormGqlMutation();
+   *   - Remove the useMutation/useLazyQuery tuple and use a reguler client.mutation() call.
+   *   - Write graphql errors to setError('root')
+   *   - Remove onBeforeSubmit, onComplete and the handleSubmit rewrite with a single mutate() callback.
    *
-   * const submit = handleSubmit((formValues, mutate) => {
-   *    // onBeforeSubmit now simply is code before mutate() where you can return early for example or set errors.
-   *    const result = mutate() // executes the mutation and automatically sets generic errors with setError('root')
-   *    // onComplete: now simply use the result after the form, to for example reset the form, or do other things.
-   * })
-   * ```
+   *   ```ts
+   *   const { handleSubmit } = useFormGqlMutation()
+   *
+   *   const submit = handleSubmit((formValues, mutate) => {
+   *     // onBeforeSubmit now simply is code before mutate() where you can return early for example or set errors.
+   *     const result = mutate() // executes the mutation and automatically sets generic errors with setError('root')
+   *     // onComplete: now simply use the result after the form, to for example reset the form, or do other things.
+   *   })
+   *   ```
    */
   experimental_useV2?: boolean
   /**
@@ -68,7 +71,8 @@ type UseFormGraphQLCallbacks<Q, V> = {
   deprecated_useV1?: boolean
 
   /**
-   * Only submit the form when there are dirty fields. If all fields are clean, we skip the submission.
+   * Only submit the form when there are dirty fields. If all fields are clean, we skip the
+   * submission.
    *
    * Form is still set to isSubmitted and isSubmitSuccessful.
    */
@@ -83,7 +87,7 @@ export type UseFormGqlMethods<Q, V extends FieldValues> = Omit<
   'encode' | 'type'
 > &
   Pick<UseFormReturn<V>, 'handleSubmit'> & {
-    data?: Q | null
+    data?: MaybeMasked<Q> | null
     error?: ApolloError
     submittedVariables?: V
   }
@@ -169,20 +173,27 @@ export function useFormGql<Q, V extends FieldValues>(
       let variables = !deprecated_useV1 ? formValues : encode({ ...defaultValues, ...formValues })
 
       // Wait for the onBeforeSubmit to complete
-      const [onBeforeSubmitResult, onBeforeSubmitError] = await beforeSubmit(variables)
+      const [onBeforeSubmitResult, onBeforeSubmitError] = await beforeSubmit(variables, form)
       if (onBeforeSubmitError) {
         if (isApolloError(onBeforeSubmitError)) {
           returnedError.current = onBeforeSubmitError
+          form.setError('root', { message: onBeforeSubmitError.message })
         } else {
-          console.info(
-            'A non ApolloError was thrown during the onBeforeSubmit handler.',
-            onBeforeSubmitError,
-          )
+          const message =
+            process.env.NODE_ENV === 'development'
+              ? `A non ApolloError was thrown during the onBeforeSubmit handler: ${onBeforeSubmitError.message}`
+              : 'An unexpected error occurred, please contact the store owner'
+          form.setError('root', { message })
+          returnedError.current = new ApolloError({ graphQLErrors: [{ message }] })
         }
-
         return
       }
-      if (onBeforeSubmitResult === false) return
+
+      if (onBeforeSubmitResult === false) {
+        form.setError('root', { message: 'Form submission cancelled' })
+        return
+      }
+
       variables = onBeforeSubmitResult
 
       submittedVariables.current = variables
@@ -201,21 +212,25 @@ export function useFormGql<Q, V extends FieldValues>(
         },
       })
 
-      const [, onCompleteError] = await complete(result, variables)
-      if (onCompleteError) {
-        returnedError.current = onCompleteError as ApolloError
+      // If there are submission errors, set the error and return
+      if (result.errors && result.errors.length > 0) {
+        form.setError('root', { message: result.errors.map((e) => e.message).join(', ') })
         return
       }
+
+      const [, onCompleteError] = await complete(result, variables, form)
       if (onCompleteError) {
         if (isApolloError(onCompleteError)) {
           returnedError.current = onCompleteError
+          form.setError('root', { message: onCompleteError.message })
         } else {
-          console.info(
-            'A non ApolloError was thrown during the onComplete handler.',
-            onCompleteError,
-          )
+          const message =
+            process.env.NODE_ENV === 'development'
+              ? `A non ApolloError was thrown during the onComplete handler: ${onCompleteError.message}`
+              : 'An unexpected error occurred, please contact the store owner'
+          form.setError('root', { message })
+          returnedError.current = new ApolloError({ graphQLErrors: [{ message }] })
         }
-
         return
       }
 
@@ -230,7 +245,7 @@ export function useFormGql<Q, V extends FieldValues>(
     ...gqlDocumentHandler,
     handleSubmit,
     data,
-    error: error ?? returnedError.current,
+    error: returnedError.current ?? error,
     submittedVariables: submittedVariables.current,
   }
 }

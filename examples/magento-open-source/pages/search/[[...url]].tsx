@@ -1,5 +1,5 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
-import { InContextMaskProvider, cacheFirst, flushMeasurePerf } from '@graphcommerce/graphql'
+import { cacheFirst, flushMeasurePerf, PrivateQueryMaskProvider } from '@graphcommerce/graphql'
 import type { MenuQueryFragment } from '@graphcommerce/magento-category'
 import type {
   FilterTypes,
@@ -8,18 +8,18 @@ import type {
   ProductListQuery,
 } from '@graphcommerce/magento-product'
 import {
-  ProductFiltersDocument,
-  ProductListDocument,
   extractUrlQuery,
   getFilterTypes,
   parseParams,
+  ProductFiltersDocument,
+  ProductListDocument,
 } from '@graphcommerce/magento-product'
 import type { CategorySearchQuery } from '@graphcommerce/magento-search'
 import {
   CategorySearchDocument,
-  ProductFiltersProSearchField,
   productListApplySearchDefaults,
   searchDefaultsToProductListFilters,
+  SearchField,
   useProductList,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -48,7 +48,7 @@ export type GetPageStaticProps = GetStaticProps<
 >
 
 function SearchResultPage(props: SearchResultProps) {
-  const productList = useProductList(props)
+  const { mask, ...productList } = useProductList(props)
   const { params, menu } = productList
   const search = params.url.split('/')[1]
 
@@ -64,10 +64,10 @@ function SearchResultPage(props: SearchResultProps) {
         canonical='/search'
       />
       <LayoutHeader floatingMd switchPoint={0}>
-        <ProductFiltersProSearchField size='small' formControl={{ sx: { width: '81vw' } }} />
+        <SearchField size='small' formControl={{ sx: { width: '81vw' } }} />
       </LayoutHeader>
 
-      <InContextMaskProvider mask={productList.mask}>
+      <PrivateQueryMaskProvider mask={mask}>
         {import.meta.graphCommerce.productFiltersPro &&
           import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
             <ProductListLayoutSidebar {...productList} menu={menu} />
@@ -79,7 +79,7 @@ function SearchResultPage(props: SearchResultProps) {
         {!import.meta.graphCommerce.productFiltersPro && (
           <ProductListLayoutClassic {...productList} menu={menu} />
         )}
-      </InContextMaskProvider>
+      </PrivateQueryMaskProvider>
     </>
   )
 }

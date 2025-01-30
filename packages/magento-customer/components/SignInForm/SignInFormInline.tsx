@@ -6,13 +6,14 @@ import { Box, Link } from '@mui/material'
 import { useSignInForm } from '../../hooks/useSignInForm'
 import type { SignInMutationVariables } from './SignIn.gql'
 
-type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'> & {
+export type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'> & {
   sx?: SxProps<Theme>
   children?: React.ReactNode
 }
 
 const { classes } = extendableComponent('SignInFormInline', ['form', 'button'] as const)
 
+/** @public */
 export function SignInFormInline(props: InlineSignInFormProps) {
   const { email, children, sx = [] } = props
   const form = useSignInForm({ email })

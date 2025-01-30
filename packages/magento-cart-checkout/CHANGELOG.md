@@ -1,14 +1,44 @@
 # Change Log
 
-## 9.0.0-canary.104
+## 9.0.4-canary.14
 
-## 9.0.0-canary.103
+## 9.0.4-canary.13
 
-## 9.0.0-canary.80
+## 9.0.4-canary.12
+
+## 9.0.4-canary.11
+
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
 
 ### Patch Changes
 
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`8d96e64`](https://github.com/graphcommerce-org/graphcommerce/commit/8d96e64759c9a8d894f495495b1b8eb507ed923b) - Prevent a reloading the ShippingPage query when selecting a shipping method. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2474](https://github.com/graphcommerce-org/graphcommerce/pull/2474) [`838ee4b`](https://github.com/graphcommerce-org/graphcommerce/commit/838ee4b4fc0b8e7a09970b9107f379bdf010202e) - Prevent rendering "You have not placed an order" before the router resolves. ([@carlocarels90](https://github.com/carlocarels90))
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.0
+
+### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`8d96e64`](https://github.com/graphcommerce-org/graphcommerce/commit/8d96e64759c9a8d894f495495b1b8eb507ed923b) - Prevent a reloading the `ShippingPage` query when selecting a shipping method. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ## 8.0.0
 
@@ -669,7 +699,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'

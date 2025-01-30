@@ -1,5 +1,6 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { ProductReviews, ProductReviewsProps } from '@graphcommerce/magento-review'
+import type { ProductReviewsProps } from '@graphcommerce/magento-review'
+import { ProductReviews } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Row } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'

@@ -1,22 +1,64 @@
 # Change Log
 
-## 9.0.0-canary.104
+## 9.0.4-canary.14
 
-## 9.0.0-canary.103
+## 9.0.4-canary.13
 
-## 9.0.0-canary.99
+## 9.0.4-canary.12
 
-### Minor Changes
+## 9.0.4-canary.11
 
-- [#2416](https://github.com/graphcommerce-org/graphcommerce/pull/2416) [`651eea0`](https://github.com/graphcommerce-org/graphcommerce/commit/651eea0bdda1ed0f46f4c73d7edf52c8c1da5b54) - Created a new field for products: `custom_attribute(attribute_code: "attribute_code")` to retrieve attribute option value labels. This field is only available in Magento 2.4.7 and up. ([@paales](https://github.com/paales))
+## 9.0.4-canary.10
 
-- [#2416](https://github.com/graphcommerce-org/graphcommerce/pull/2416) [`53af256`](https://github.com/graphcommerce-org/graphcommerce/commit/53af25671d3aca7f3daa2dd45ccd2237697e9254) - Added an `attribute`-field to `AttributeValueInterface` to be able to retrieve attribute metadata from the value of an attribute. ([@paales](https://github.com/paales))
+## 9.0.4-canary.9
 
-## 8.1.0-canary.32
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.3
 
 ### Patch Changes
 
-- [#2299](https://github.com/graphcommerce-org/graphcommerce/pull/2299) [`c6ac45b`](https://github.com/graphcommerce-org/graphcommerce/commit/c6ac45b8ff41dcaa47f1e5d40d04e120990870aa) - Added a magentoVersion configuration value to be able to differentiate features based on the Magento version ([@paales](https://github.com/paales))
+- [#2469](https://github.com/graphcommerce-org/graphcommerce/pull/2469) [`3e5ee65`](https://github.com/graphcommerce-org/graphcommerce/commit/3e5ee65bea95bc46399b8da745ee4b0cab71d3ef) - Magento 2.4.6-p7 and lower: Solve a schema incompatibility for PlaceOrderError type on the PlaceOrderOutput. ([@paales](https://github.com/paales))
+
+## 9.0.2
+
+### Patch Changes
+
+- [`058b7bf`](https://github.com/graphcommerce-org/graphcommerce/commit/058b7bf64be29e1bc3d16551abcc1cd55b5413bd) - Support Magento 2.4.7 placeOrder.errors field to handle possible errors while placing the order. An `assertOrderPlaced` method was created to assert a valid placed order. ([@paales](https://github.com/paales))
+
+## 9.0.0
+
+### Major Changes
+
+- [#2416](https://github.com/graphcommerce-org/graphcommerce/pull/2416) [`651eea0`](https://github.com/graphcommerce-org/graphcommerce/commit/651eea0bdda1ed0f46f4c73d7edf52c8c1da5b54) - Magento 2.4.7: Created a GraphQL query field for products: `custom_attribute(attribute_code: "attribute_code")` to retrieve attribute option value labels. This is different from the `custom_attributes` endpoint (note the plural) and allows for retrieving singular attribute values, like brand or any other select or multiselect attribute. ([@paales](https://github.com/paales))
+
+to retieve the attribute label for an attribute value. ([@paales](https://github.com/paales))
+
+- [#2299](https://github.com/graphcommerce-org/graphcommerce/pull/2299) [`c6ac45b`](https://github.com/graphcommerce-org/graphcommerce/commit/c6ac45b8ff41dcaa47f1e5d40d04e120990870aa) - Magento 2.4.7: Added a `magentoVersion` configuration value to be able to differentiate features based on the Magento version. GraphCommerce will automatically load any schema's that are defined in later version of Magento, allowing GraphCommerce to be forward compatible. See [schema-246](https://github.com/graphcommerce-org/graphcommerce/tree/canary/packages/magento-graphql/schema-246) and [schema-247](https://github.com/graphcommerce-org/graphcommerce/tree/canary/packages/magento-graphql/schema-247) directories for the changes made to the schema. This is only for compatibility and doesn't make the functionality work. ([@paales](https://github.com/paales))
+
+### Minor Changes
+
+- [#2416](https://github.com/graphcommerce-org/graphcommerce/pull/2416) [`53af256`](https://github.com/graphcommerce-org/graphcommerce/commit/53af25671d3aca7f3daa2dd45ccd2237697e9254) - Magento 2.4.7: To make the `custom_attribute` field more valueable, we've added an `attribute`-field to the `AttributeValueInterface` to be able to retrieve attribute metadata from the value of an attribute. To be able
+
+### Patch Changes
+
+- [#2204](https://github.com/graphcommerce-org/graphcommerce/pull/2204) [`42843eb`](https://github.com/graphcommerce-org/graphcommerce/commit/42843eb760f8301eb7901bb0d888c95792ff0b4b) - Add `X-Forwarded-For` header to mesh requests. ([@SumVur](https://github.com/SumVur))
 
 ## 7.0.0
 

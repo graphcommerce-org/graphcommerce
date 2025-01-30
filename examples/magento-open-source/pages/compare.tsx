@@ -14,11 +14,11 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps, LayoutOverlayProps } from '@graphcommerce/next-ui'
 import {
   FullPageMessage,
+  iconCompare,
   LayoutOverlay,
   LayoutOverlayHeader,
   LayoutTitle,
   PageMeta,
-  iconCompare,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'

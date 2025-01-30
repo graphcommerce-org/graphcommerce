@@ -3,7 +3,9 @@ import { useQuery } from '@graphcommerce/graphql'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
+import type { UseFormClearErrors, UseFormSetError } from '@graphcommerce/react-hook-form'
 import { FormPersist, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { t } from '@lingui/macro'
 import { Trans } from '@lingui/react'
 import { Alert } from '@mui/material'
 import { useSignInForm } from '../../hooks/useSignInForm'
@@ -13,21 +15,33 @@ import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedP
 import type { SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import { SignUpDocument } from './SignUp.gql'
 
-type SignUpFormProps = { email: string }
+type SignUpFormProps = {
+  email?: string
+  setError: UseFormSetError<{ email?: string; requestedMode?: 'signin' | 'signup' }>
+  clearErrors: UseFormClearErrors<{ email?: string; requestedMode?: 'signin' | 'signup' }>
+}
+
+type SignUpFormValues = SignUpMutationVariables & { confirmPassword?: string }
 
 export function SignUpForm(props: SignUpFormProps) {
-  const { email } = props
+  const { email, setError, clearErrors } = props
 
   const storeConfig = useQuery(StoreConfigDocument)
   const signIn = useSignInForm({ email })
-  const form = useFormGqlMutation<
-    SignUpMutation,
-    SignUpMutationVariables & { confirmPassword?: string }
-  >(
+  const form = useFormGqlMutation<SignUpMutation, SignUpFormValues>(
     SignUpDocument,
     {
       defaultValues: { email },
-      onBeforeSubmit: (values) => ({ ...values, email }),
+      onBeforeSubmit: (values) => {
+        if (!email) {
+          // eslint-disable-next-line @typescript-eslint/no-use-before-define
+          setError('email', { message: t`Please enter a valid email address` })
+          return false
+        }
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        clearErrors()
+        return { ...values, email: email ?? '' }
+      },
       onComplete: async (result, variables) => {
         if (!result.errors && !storeConfig.data?.storeConfig?.create_account_confirmation) {
           signIn.setValue('email', variables.email)
@@ -110,7 +124,11 @@ export function SignUpForm(props: SignUpFormProps) {
           <Trans id='Create Account' />
         </Button>
       </FormActions>
-      <FormPersist form={form} name='SignUp' exclude={['password', 'confirmPassword']} />
+      <FormPersist<SignUpFormValues>
+        form={form}
+        name='SignUp'
+        exclude={['password', 'confirmPassword']}
+      />
     </form>
   )
 }

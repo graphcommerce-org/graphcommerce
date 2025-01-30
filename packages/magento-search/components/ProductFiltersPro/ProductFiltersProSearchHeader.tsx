@@ -4,16 +4,13 @@ import { useWatch } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
 import { Box } from '@mui/material'
 
-type ProductFiltersProSearchHeaderProps = {
+export type ProductFiltersProSearchHeaderProps = {
   params: ProductListParams
-  /**
-   * Provide a text when there is no term searched
-   */
+  /** Provide a text when there is no term searched */
   children: React.ReactNode
 }
 
-export function ProductFiltersProSearchTerm(props: ProductFiltersProSearchHeaderProps) {
-  const { params, children } = props
+export function useSearchResultRemaining(params: ProductListParams) {
   const { form } = useProductFiltersPro()
   const resultSearch = params.search ?? ''
   const targetSearch = useWatch({ control: form.control, name: 'search' }) ?? ''
@@ -22,6 +19,17 @@ export function ProductFiltersProSearchTerm(props: ProductFiltersProSearchHeader
     ? targetSearch.slice(resultSearch.length)
     : ''
 
+  return {
+    resultSearch,
+    targetSearch,
+    remaining,
+  }
+}
+
+export function ProductFiltersProSearchTerm(props: ProductFiltersProSearchHeaderProps) {
+  const { params, children } = props
+
+  const { remaining, resultSearch, targetSearch } = useSearchResultRemaining(params)
   if (!resultSearch && !targetSearch) return children
 
   const search = (

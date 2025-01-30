@@ -1,9 +1,9 @@
 // import CircularDependencyPlugin from 'circular-dependency-plugin'
-import { DuplicatesPlugin } from 'inspectpack/plugin'
+// import { DuplicatesPlugin } from 'inspectpack/plugin'
 import type { NextConfig } from 'next'
 import type { DomainLocale } from 'next/dist/server/config'
 import type { Configuration } from 'webpack'
-import { DefinePlugin } from 'webpack'
+import webpack from 'webpack'
 import { loadConfig } from './config/loadConfig'
 import { configToImportMeta } from './config/utils/configToImportMeta'
 import type { GraphCommerceConfig } from './generated/config'
@@ -41,7 +41,7 @@ function domains(config: GraphCommerceConfig): DomainLocale[] {
  * module.exports = withGraphCommerce(nextConfig)
  * ```
  */
-export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConfig {
+export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.cwd()): NextConfig {
   graphcommerceConfig ??= loadConfig(cwd)
   const importMetaPaths = configToImportMeta(graphcommerceConfig)
 
@@ -54,10 +54,10 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
 
   return {
     ...nextConfig,
+    bundlePagesRouterDependencies: true,
     experimental: {
       ...nextConfig.experimental,
       scrollRestoration: true,
-      bundlePagesExternals: true,
       swcPlugins: [...(nextConfig.experimental?.swcPlugins ?? []), ['@lingui/swc-plugin', {}]],
     },
     i18n: {
@@ -70,31 +70,15 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
     images: {
       ...nextConfig.images,
       remotePatterns: [
-        { hostname: new URL(graphcommerceConfig.magentoEndpoint).hostname },
-        { hostname: 'media.graphassets.com' },
+        'magentoEndpoint' in graphcommerceConfig
+          ? {
+              hostname: new URL(graphcommerceConfig.magentoEndpoint).hostname,
+            }
+          : undefined,
+        { hostname: '**.graphassets.com' },
         { hostname: '*.graphcommerce.org' },
         ...(nextConfig.images?.remotePatterns ?? []),
-      ],
-    },
-    redirects: async () => {
-      const redirects = (await nextConfig.redirects?.()) ?? []
-
-      const destination = `${graphcommerceConfig.productRoute ?? '/p/'}:url*`
-
-      redirects.push(
-        ...[
-          { source: '/product/bundle/:url*', destination, permanent: true },
-          { source: '/product/configurable/:url*', destination, permanent: true },
-          { source: '/product/downloadable/:url*', destination, permanent: true },
-          { source: '/product/grouped/:url*', destination, permanent: true },
-          { source: '/product/virtual/:url*', destination, permanent: true },
-          { source: '/customer/account', destination: '/account', permanent: true },
-        ],
-      )
-      if (destination !== '/product/:url*')
-        redirects.push({ source: '/product/:url*', destination, permanent: true })
-
-      return redirects
+      ].filter((v) => !!v),
     },
     rewrites: async () => {
       let rewrites = (await nextConfig.rewrites?.()) ?? []
@@ -103,7 +87,11 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
         rewrites = { beforeFiles: rewrites, afterFiles: [], fallback: [] }
       }
 
-      if (graphcommerceConfig.productRoute && graphcommerceConfig.productRoute !== '/p/') {
+      if (
+        'productRoute' in graphcommerceConfig &&
+        typeof graphcommerceConfig.productRoute === 'string' &&
+        graphcommerceConfig.productRoute !== '/p/'
+      ) {
         rewrites.beforeFiles.push({
           source: `${graphcommerceConfig.productRoute ?? '/p/'}:path*`,
           destination: '/p/:path*',
@@ -131,10 +119,10 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
       if (!config.plugins) config.plugins = []
 
       // Make import.meta.graphCommerce available for usage.
-      config.plugins.push(new DefinePlugin(importMetaPaths))
+      config.plugins.push(new webpack.DefinePlugin(importMetaPaths))
 
       // To properly properly treeshake @apollo/client we need to define the __DEV__ property
-      config.plugins.push(new DefinePlugin({ 'globalThis.__DEV__': options.dev }))
+      config.plugins.push(new webpack.DefinePlugin({ 'globalThis.__DEV__': options.dev }))
 
       if (!options.isServer) {
         // if (graphcommerceConfig.debug?.webpackCircularDependencyPlugin) {
@@ -144,21 +132,21 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string): NextConf
         //     }),
         //   )
         // }
-        if (graphcommerceConfig.debug?.webpackDuplicatesPlugin) {
-          config.plugins.push(
-            new DuplicatesPlugin({
-              ignoredPackages: [
-                // very small
-                'react-is',
-                // build issue
-                'tslib',
-                // server
-                'isarray',
-                'readable-stream',
-              ],
-            }),
-          )
-        }
+        // if (graphcommerceConfig.debug?.webpackDuplicatesPlugin) {
+        //   config.plugins.push(
+        //     new DuplicatesPlugin({
+        //       ignoredPackages: [
+        //         // very small
+        //         'react-is',
+        //         // build issue
+        //         'tslib',
+        //         // server
+        //         'isarray',
+        //         'readable-stream',
+        //       ],
+        //     }),
+        //   )
+        // }
       }
 
       config.snapshot = {

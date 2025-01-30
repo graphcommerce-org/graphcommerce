@@ -11,96 +11,72 @@ roadmap.
 
 [Upcoming in the next release](https://github.com/graphcommerce-org/graphcommerce/releases?q=prerelease%3Atrue&expanded=true)
 
-- [ ] Product page gallery improvements: Grid of images, animated thumbnails,
-      Video support + disable zoom feature.
-- [ ] Create a generic CMS integration framework, removing the hard Hygraph
-      requirement
-- [ ] Web Migration to next/image in favor of @graphcommerce/image
-- [ ] Improved cache invalidation logic for category and product pages by using
-      the Varnish PURGE functionality of Magento.
-- [ ] Support for very large carts with 100+ items.
-- [ ] Abstractions for integration with multiple catalog/search API's like
-      Algolia, Magento Live Search and various layered navigation modules.
+- [ ] GraphCommerce Pro: Distribution of private npm packages for customers.
+- [ ] GraphCommerce Pro: Distribution of private Magento modules for customers.
+- [ ] Adobe Commerce: Returns functionality
+- [x] Adobe Commerce: Store credit functionality
+- [x] Adobe Commerce: Gift card functionality
+- [ ] Adobe Commerce: Content staging functionality in preview mode.
+- [ ] Storelocator UI. Generic Store Locator UI to allow for any datasource to
+      be used. Integrate with Magento's pickupLocations functionality.
+- [ ] Store inventory on product pages UI and Magento's pickupLocations
+      functionality integrated.
+- [ ] GraphCommerce B2B: Create multiple presets to demo the range of
+      configurations that can be made to get a good starting point for your
+      project.
+- [ ] Material UI 6 support with CSS variables.
+- [ ] GraphCommerce Pro: Pagebuilder support
+- [ ] GraphCommerce Pro: Login as Customer functionality Magento module +
+      GraphCommerce integration.
+- [ ] GraphCommerce Pro: Cache Notifier module + GraphCommerce Integration to
+      revalidate the frontend on backend changes.
 
-## Considering / researching
+## Researching / Considering
 
-- [ ] Adobe Sensei integration
-- [ ] Gallery support on category/search pages.
-- [ ] Authorize.net payment service integration
-- [ ] Web Vitals: Use CSS theme variables or wait for MUI v6 release with static
-      extraction.
-- [ ] React Server Components integration with streaming for faster loads.
-- [ ] Windows support
-- [ ] Store locator
-- [ ] PageBuilder support
-      [depends on ↗](https://github.com/magento/magento2/issues/37768)
+- [ ] Mui 6 support with [pigment-css](https://github.com/mui/pigment-css)
+- [ ] Upgrade to React 19 + Next.js app router support.
+- [ ] Adobe Commerce: Reward points functionality
+- [ ] Adobe Commerce: Gift wrapping functionality
+- [ ] Adobe Commerce: Gift registry functionality
+- [ ] Adobe Commerce: Multi Wishlist functionality
+- [ ] Adobe Comemrce: Adobe Sensei integration
+- [ ] Magento 2.4.7: Recaptcha configuration
+- [ ] Magento 2.4.7: Estimate shipping methods and totals.
+- [ ] Magento 2.4.7: Cart display settings
+- [ ] Magento 2.4.7: Prefix, middlename and suffix support in the checkout.
+- [ ] Magento: Producs New label based on the new_from_date and new_to_date
+      fields.
+- [ ] Magento: Respect autocomplete_on_storefront configuration setting when
+      logging in.
+- [ ] Magento 2.4.7: Implement attributesForm for customer_account_edit,
+      customer_account_create, customer_register_address, customer_address_edit
+- [ ] Magento: sendEmailToFriend implementation
+- [ ] Magento 2.4.7: Implement a new success page on the the new
+      guestOrderByToken
+- [ ] Magento: Implement fixed_product_taxes
+- [ ] Magento 2.4.7: Use category_url_path to load product listings on category
+      pages to reduce loading waterwall.
+- [ ] Magento 2.4.7: Implement itemsV2 on the cart when adding a product to show
+      the AddToCartMessage without loading the complete cart.
+- [ ] Magento 2.4.7: Migrate to createGuestCartId instead of createCart.
+- [ ] GraphCommerce B2B: Login for pricing
+- [ ] GraphCommerce B2B: Login for catalog
+- [ ] GraphCommerce B2B: Private pricing, private products and private category
+      support for logged in customers.
+- [ ] GraphCommerce B2B: Generic UI for creating B2B accounts, creating
+      sub-accounts, managing budgets, etc. (Schema definition, no integration)
+- [ ] GraphCommerce B2B: Account approval workflow (Schema definition, no
+      integration)
+- [ ] GraphCommerce Pro: Shop in shop functionality
+- [ ] GraphCommerce POS: Create a light POS integration for GraphCommerce
 
 ## Released
 
-[See all releases](https://github.com/graphcommerce-org/graphcommerce/releases?q=prerelease%3Afalse+&expanded=true)
-
-- [x] Web Vitals: Reduce Total Blocking Time, to improve INP metic.
-- [x] Web Vitals: Defer rendering of elements further on the page, to improve
-      INP metic.
-- [x] Magento Open Source GraphQL API Coverage with detailed GraphQL analysis
-      per version.
-- [x] Plugin system redesign so typescript correctly identifies plugins and can
-      type check all the integrations.
-- [x] Google Datalayer improvements to better handling gtag.js or GTM
-- [x] Improved category navigation: Navigate to sibling categories + Category
-      tree navigation in sidebar.
-- [x] i18n configuration separation from URL structure.
-- [x] Customer specific pricing support for category and product pages.
-
----
-
-- [x] Product page gallery improvements: Thumbnails
-- [x] Major improvements to Accessibility
-      [issue ↗](https://github.com/graphcommerce-org/graphcommerce/issues/1995)
-- [x] Show Crosssells in the cart
-- [x] Support for Github Codespaces
-- [x] Faster loading performance for the category page
-- [x] Recently viewed products
-- [x] Global store messages
-- [x] Invalid session handling improvements
-- [x] Product thumbnails on product page
-- [x] Wishlist redesign
-- [x] Success page redesign
-- [x] Dutch Postcode API upgrades
-- [x] Configurable variants for simple products
-      [ocs ↗](https://graphcommerce.org/docs/magento/configurable-products)
-- [x] Cart redesign
-- [x] Hygraph schema migrations
-      [docs ↗](https://graphcommerce.org/docs/hygraph/cli)
-- [x] [Algolia Search (beta)](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/algolia-search)
-- [x] [Dynamic Rows](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/hygraph-dynamic-rows)
-- [x] [Product compare](https://github.com/graphcommerce-org/graphcommerce/blob/main/packages/magento-compare/Config.graphqls)
-- [x] Google Tagmanager 4 datalayer implementation
-      [docs ↗](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/googleanalytics)
-- [x] Paypal Express payment service
-      [docs ↗](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/magento-payment-paypal)
-- [x] Adyen payment service
-      [docs ↗](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/magento-payment-adyen)
-- [x] Postcode check integration
-      [docs ↗](https://github.com/graphcommerce-org/graphcommerce/tree/main/packages/address-fields-nl)
-- [x] Redesigned layered navigation for mobile and desktop
-- [x] Crosssells overlay after adding a product to cart
-- [x] Bundle product
-      [example ↗](https://graphcommerce.vercel.app/nl/p/giftcard-bundle-gc-570)
-- [x] Configurable product image swatches
-      [example ↗](https://graphcommerce.vercel.app/nl/p/gc-puncturing-sock)
-- [x] Virtual product, downloadable products
-- [x] Multilingual Hygraph (Hygraph) setup support
-- [x] Multisafepay payment service
-- [x] Multilingual product sitemap generation
-- [x] Multi level Navigation (Mega Menu)
-- [x] Pick up in store checkout integration
-- [x] Checkout shipping method selection rebuild
-- [x] Checkout payment selection rebuild
-- [x] Core stability (hydratation, caching, query optimization)
+- [See GitHub releases](https://github.com/graphcommerce-org/graphcommerce/releases?q=prerelease%3Afalse+&expanded=true)
+- [See blog posts](https://graphcommerce.org/blog)
 
 ## Next steps
 
 - Refer to the
-  [Changelog](https://github.com/graphcommerce-org/graphcommerce/releases) to
-  see what's new
+  [GitHub Releases](https://github.com/graphcommerce-org/graphcommerce/releases?q=prerelease%3Afalse&expanded=true)
+  to see what's new

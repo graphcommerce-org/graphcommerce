@@ -11,3 +11,4 @@ export * from './components/SelectedCustomizableOptions/SelectedCustomizableOpti
 export * from './components/UpdateItemQuantity/UpdateItemQuantity'
 export * from './components/EditCartItem'
 export * from './hooks/useRemoveItemFromCart'
+export * from './utils/cartItemToCartItemInput'

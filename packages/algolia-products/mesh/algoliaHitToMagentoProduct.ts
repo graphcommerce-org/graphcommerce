@@ -1,7 +1,7 @@
 import type {
+  Algoliahit,
   AlgoliaPrice,
   AlgoliaProductHitAdditionalProperties,
-  Algoliahit,
   CurrencyEnum,
   MeshContext,
   PriceRange,
@@ -13,7 +13,7 @@ import type {
 } from '@graphcommerce/graphql-mesh'
 import type { GetStoreConfigReturn } from './getStoreConfig'
 
-export function assertAdditional(
+function assertAdditional(
   additional: unknown,
 ): additional is AlgoliaProductHitAdditionalProperties {
   return true
@@ -87,8 +87,10 @@ export function algoliaUrlToUrlKey(url?: string | null, base?: string | null): s
 }
 
 /**
- * For the URL https://configurator.reachdigital.dev/media/catalog/product/cache/d911de87cf9e562637815cc5a14b1b05/1/0/1087_1_3.jpg
+ * For the URL
+ * https://configurator.reachdigital.dev/media/catalog/product/cache/d911de87cf9e562637815cc5a14b1b05/1/0/1087_1_3.jpg
  * Remove /cache/HASH from the URL but only if the url contains media/catalog/product
+ *
  * @param url
  */
 function getOriginalImage(url?: string | undefined | null) {
@@ -114,13 +116,14 @@ export type ProductsItemsItem = NonNullable<
 /**
  * Mapping function to map Algolia hit to Magento product.
  *
- * You can create a FunctionPlugin to modify the behavior of this function or implement brand specific code.
+ * You can create a FunctionPlugin to modify the behavior of this function or implement brand
+ * specific code.
  */
 export function algoliaHitToMagentoProduct(
   hit: Algoliahit,
   storeConfig: GetStoreConfigReturn,
   customerGroup: number,
-): ProductsItemsItem | null {
+): (ProductsItemsItem & { staged: boolean }) | null {
   const { objectID, additionalProperties } = hit
   if (!assertAdditional(additionalProperties)) return null
 
@@ -155,9 +158,11 @@ export function algoliaHitToMagentoProduct(
   }
 
   return {
+    staged: false,
     redirect_code: 0,
     __typename: algoliaTypeToTypename[type_id as keyof typeof algoliaTypeToTypename],
     uid: btoa(objectID),
+    id: Number(objectID),
     sku: Array.isArray(sku) ? sku[0] : `${sku}`,
     price_range: mapPriceRange(price, storeConfig, customerGroup),
     created_at: created_at ? new Date(created_at).toISOString() : null,

@@ -1,8 +1,5 @@
-import {
-  AddProductsToCartFab,
-  ProductListItem,
-  ProductListItemRenderer,
-} from '@graphcommerce/magento-product'
+import type { ProductListItemRenderer } from '@graphcommerce/magento-product'
+import { AddProductsToCartFab, ProductListItem } from '@graphcommerce/magento-product'
 import { ProductListItemBundle } from '@graphcommerce/magento-product-bundle'
 import { ProductListItemConfigurable } from '@graphcommerce/magento-product-configurable'
 import { ProductListItemDownloadable } from '@graphcommerce/magento-product-downloadable'
@@ -76,9 +73,7 @@ export const productListRenderer: ProductListItemRenderer = {
       topRight={<ProductWishlistChip {...props} />}
     />
   ),
-  // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // // @ts-ignore GiftCardProduct is only available in Commerce
-  // GiftCardProduct: (props) => (
-  //   <ProductListItem {...props} aspectRatio={[1, 1]} />
-  // ),
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore GiftCardProduct is only available in Commerce
+  GiftCardProduct: (props) => <ProductListItem {...props} aspectRatio={[1, 1]} />,
 }

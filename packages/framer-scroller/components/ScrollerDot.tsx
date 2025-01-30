@@ -5,8 +5,8 @@ import { i18n } from '@lingui/core'
 import type { FabProps } from '@mui/material'
 import { Fab, styled } from '@mui/material'
 import { m } from 'framer-motion'
-import { useScrollTo } from '../hooks/useScrollTo'
 import { useScrollerContext } from '../hooks/useScrollerContext'
+import { useScrollTo } from '../hooks/useScrollTo'
 import type { ItemState } from '../types'
 
 const name = 'ScrollerDot'
@@ -15,7 +15,7 @@ type OwnerProps = { active: boolean }
 
 const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
 
-type ScrollerDotProps = Omit<FabProps, 'onClick' | 'className'> & ItemState & { idx: number }
+export type ScrollerDotProps = Omit<FabProps, 'onClick' | 'className'> & ItemState & { idx: number }
 
 const MotionBox = styled(m.div)({})
 

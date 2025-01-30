@@ -13,7 +13,7 @@ import { useRemoveItemFromCart } from '../../../hooks/useRemoveItemFromCart'
 import type { CartItemToCartItemInputProps } from '../../../utils/cartItemToCartItemInput'
 import { cartItemToCartItemInput } from '../../../utils/cartItemToCartItemInput'
 
-type EditInitProps = CartItemToCartItemInputProps & AddToCartItemSelector
+export type EditInitProps = CartItemToCartItemInputProps & AddToCartItemSelector
 
 function EditInit(props: EditInitProps) {
   const { product, selectors, cartItem, index = 0 } = props

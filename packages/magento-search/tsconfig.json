@@ -1,5 +1,5 @@
 {
   "exclude": ["**/node_modules", "**/.*/"],
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "../magento-search-overlay/index.ts"],
   "extends": "@graphcommerce/typescript-config-pwa/nextjs.json"
 }

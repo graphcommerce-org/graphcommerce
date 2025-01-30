@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { cacheFirst, flushMeasurePerf, InContextMaskProvider } from '@graphcommerce/graphql'
+import { cacheFirst, flushMeasurePerf, PrivateQueryMaskProvider } from '@graphcommerce/graphql'
 import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import {
   appendSiblingsAsChildren,
@@ -26,9 +26,14 @@ import {
   productListLink,
 } from '@graphcommerce/magento-product'
 import { redirectOrNotFound, redirectTo, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutHeader, LayoutTitle, MetaRobots } from '@graphcommerce/next-ui'
+import {
+  Container,
+  GetStaticProps,
+  LayoutHeader,
+  LayoutTitle,
+  MetaRobots,
+} from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   ProductListLayoutClassic,
@@ -54,7 +59,7 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, C
 
 function CategoryPage(props: CategoryProps) {
   const { categories, pages, ...rest } = props
-  const productList = useProductList({
+  const { mask, ...productList } = useProductList({
     ...rest,
     category: categories?.items?.[0],
   })
@@ -65,7 +70,7 @@ function CategoryPage(props: CategoryProps) {
   const isCategory = params && category && products?.items
 
   return (
-    <InContextMaskProvider mask={productList.mask}>
+    <PrivateQueryMaskProvider mask={mask}>
       <CategoryMeta
         params={params}
         title={page?.metaTitle}
@@ -89,20 +94,21 @@ function CategoryPage(props: CategoryProps) {
       {isCategory && isLanding && (
         <>
           {import.meta.graphCommerce.breadcrumbs && (
-            <CategoryBreadcrumbs
-              category={category}
-              sx={(theme) => ({
-                mx: theme.page.horizontal,
-                height: 0,
-                [theme.breakpoints.down('md')]: {
-                  '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-                },
-              })}
-            />
+            <Container maxWidth={false}>
+              <CategoryBreadcrumbs
+                category={category}
+                sx={(theme) => ({
+                  height: 0,
+                  [theme.breakpoints.down('md')]: {
+                    '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+                  },
+                })}
+              />
+            </Container>
           )}
           <CategoryHeroNav
             {...category}
-            asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} loading='eager' />}
+            asset={page?.asset && <Asset asset={page.asset} loading='eager' />}
             title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
           />
         </>
@@ -154,7 +160,7 @@ function CategoryPage(props: CategoryProps) {
           }}
         />
       )}
-    </InContextMaskProvider>
+    </PrivateQueryMaskProvider>
   )
 }
 

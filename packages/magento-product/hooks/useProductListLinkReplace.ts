@@ -9,9 +9,7 @@ type UseProductLinkPushProps = {
   scroll?: boolean
 }
 
-/**
- * @deprecated replaced by custom function inside ProductFiltersPro
- */
+/** @deprecated Replaced by custom function inside ProductFiltersPro */
 export function useProductListLinkReplace(props?: UseProductLinkPushProps) {
   const { setParams } = useProductListParamsContext()
   const router = useRouter()

@@ -1,26 +1,52 @@
 # Change Log
 
-## 9.0.0-canary.104
+## 9.0.4-canary.14
 
-## 9.0.0-canary.103
+## 9.0.4-canary.13
 
-## 9.0.0-canary.101
+## 9.0.4-canary.12
+
+## 9.0.4-canary.11
+
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.0
+
+### Major Changes
+
+- [#2361](https://github.com/graphcommerce-org/graphcommerce/pull/2361) [`9c3149c`](https://github.com/graphcommerce-org/graphcommerce/commit/9c3149cb7550c6bf7de4b8e3bcaabe2f6a70d5c7) - Completely new SearchOverlay package this is compatible with Magento's default search as well as any other implementation like Algolia and Adobe Sensei. ([@paales](https://github.com/paales))
 
 ### Patch Changes
+
+- [#2309](https://github.com/graphcommerce-org/graphcommerce/pull/2309) [`03e410f`](https://github.com/graphcommerce-org/graphcommerce/commit/03e410f7ad59ce94a6ff199809999e56ff8cc1f5) - Solved an issue where the Search Input field wouldn't open and wouldn't be focussed on render. ([@Renzovh](https://github.com/Renzovh))
 
 - [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`c17e5f1`](https://github.com/graphcommerce-org/graphcommerce/commit/c17e5f1cf9fb291b9bbf1fca0620c2721dceb331) - Solve issue: Warning: Cannot update a component (`FormAutoSubmitBase`) while rendering a different component (`ActionCardListForm`). ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.59
+- [#2328](https://github.com/graphcommerce-org/graphcommerce/pull/2328) [`ee04368`](https://github.com/graphcommerce-org/graphcommerce/commit/ee04368444f732e5541a595db6e2ef66d15add68) - Move to `attributesList` to get a list of filterable attributes instead of using an introspection query. `productFiltersProSectionRenderer` and `productFiltersProChipRenderer` keys now use `AttributeFrontendInputEnum`. ([@paales](https://github.com/paales))
 
-### Patch Changes
+- [#2452](https://github.com/graphcommerce-org/graphcommerce/pull/2452) [`5dfd3b2`](https://github.com/graphcommerce-org/graphcommerce/commit/5dfd3b201255ef35263485d04153d37bb7e4fe67) - Renamed useInContextQuery to usePrivateQuery ([@paales](https://github.com/paales))
 
-- [#2309](https://github.com/graphcommerce-org/graphcommerce/pull/2309) [`03e410f`](https://github.com/graphcommerce-org/graphcommerce/commit/03e410f7ad59ce94a6ff199809999e56ff8cc1f5) - Solve issue where the input field wouldn't open and wouldn't be focussed on render. ([@Renzovh](https://github.com/Renzovh))
-
-## 9.0.0-canary.58
-
-### Patch Changes
-
-- [#2328](https://github.com/graphcommerce-org/graphcommerce/pull/2328) [`ee04368`](https://github.com/graphcommerce-org/graphcommerce/commit/ee04368444f732e5541a595db6e2ef66d15add68) - Move to attributesList to get a list of filterable attributes instead of using an introspection query. `productFiltersProSectionRenderer` and `productFiltersProChipRenderer` keys now now one of `AttributeFrontendInputEnum`. ([@paales](https://github.com/paales))
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 8.0.0
 
@@ -424,7 +450,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'

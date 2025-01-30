@@ -46,6 +46,14 @@ module.exports = {
         message:
           '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
       },
+      {
+        selector: 'TSTypeReference[typeName.name="SxProps"]:not([typeParameters])',
+        message: 'SxProps must have Theme parameter to avoid significant compiler slowdown.',
+      },
+      {
+        selector: 'TSTypeReference[typeName.name="Components"]:not([typeParameters])',
+        message: 'Components must have Theme parameter to avoid significant compiler slowdown.',
+      },
     ],
 
     // plugin:import/recommended & plugin:import/typescript
@@ -62,7 +70,7 @@ module.exports = {
         ],
       },
     ],
-    'import/order': ['warn', { alphabetize: { order: 'asc' } }],
+    'import/order': 'off', // Handled by prettier
     'import/no-relative-packages': 'error',
 
     // next
@@ -90,6 +98,7 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
   },
   overrides: [
     // TypeScript files
@@ -165,13 +174,17 @@ module.exports = {
             ],
           },
         ],
-        '@typescript-eslint/consistent-type-imports': 'error',
+        '@typescript-eslint/consistent-type-imports': 'warn',
         'import/no-duplicates': 'off',
       },
     },
     {
       files: ['*.tsx'],
       rules: { 'import/no-default-export': ['error'] },
+    },
+    {
+      files: ['**/copy/**/*.tsx'],
+      rules: { 'import/no-extraneous-dependencies': 'off' },
     },
     {
       files: ['**/pages/**/*.tsx'],
@@ -192,9 +205,12 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.spec.ts', '**/*.spec.tsx'],
+      files: ['**/*.spec.ts', '**/*.spec.tsx', '**/__tests__/**', 'scripts/**', 'test/**'],
       env: {
         jest: true,
+      },
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
       },
     },
     // JavaScript files override

@@ -1,29 +1,20 @@
 import type { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
 import type { CustomerAddressFragment } from '@graphcommerce/magento-customer/components/CreateCustomerAddressForm/CustomerAddress.gql'
 import { useFindCountry } from '@graphcommerce/magento-store'
-import { ActionCard, IconSvg, iconHome } from '@graphcommerce/next-ui'
+import { ActionCard, iconHome, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button } from '@mui/material'
 import { useRouter } from 'next/router'
 
-type CustomerAddressActionCardProps = ActionCardItemRenderProps<
-  CustomerAddressFragment | null | undefined
->
+export type CustomerAddressActionCardProps = ActionCardItemRenderProps<{
+  address?: CustomerAddressFragment | null | undefined
+}>
 
 export function CustomerAddressActionCard(props: CustomerAddressActionCardProps) {
-  const {
-    onReset,
-    company,
-    firstname,
-    lastname,
-    street,
-    postcode,
-    city,
-    country_code,
-    region,
-    id,
-    ...cardProps
-  } = props
+  const { onReset, address, ...cardProps } = props
+  const { company, firstname, lastname, street, postcode, city, country_code, region, id } =
+    address ?? {}
+
   const { push } = useRouter()
   const country = useFindCountry(country_code)
 

@@ -131,7 +131,10 @@ export type PageComponent<T = Record<string, unknown>> = NextComponentType<NextP
   pageOptions?: PageOptions<Record<string, unknown>>
 }
 
-/** Provide the href and title of the page that is above the current page. To navigate 'up' instead of 'back' */
+/**
+ * Provide the href and title of the page that is above the current page. To navigate 'up' instead
+ * of 'back'
+ */
 export type UpPage = { href: string; title: string }
 
 /**

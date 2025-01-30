@@ -1,13 +1,13 @@
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import {
+  extendableComponent,
   Form,
   FormRow,
-  IconSvg,
-  ToggleButton,
-  extendableComponent,
   iconChevronLeft,
   iconChevronRight,
+  IconSvg,
   responsiveVal,
+  ToggleButton,
 } from '@graphcommerce/next-ui'
 import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { Controller, FormPersist, useForm, useFormCompose } from '@graphcommerce/react-hook-form'
@@ -15,8 +15,8 @@ import { i18n } from '@lingui/core'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, FormControl, FormHelperText } from '@mui/material'
 import { useEffect } from 'react'
-import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 import { useCartLock } from '../hooks/useCartLock'
+import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 
 export type PaymentMethodTogglesProps = Pick<UseFormComposeOptions, 'step'> & {
   sx?: SxProps<Theme>
@@ -37,6 +37,10 @@ const parts = [
 ] as const
 const { classes } = extendableComponent(cmpName, parts)
 
+/**
+ * @deprecated
+ * @public
+ */
 export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
   const { step, sx = [] } = props
   const { methods, selectedMethod, setSelectedMethod, setSelectedModule, modules } =

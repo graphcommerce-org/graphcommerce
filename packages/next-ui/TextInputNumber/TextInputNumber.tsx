@@ -8,10 +8,10 @@ import {
 } from '@mui/material'
 import type { ChangeEvent, Ref } from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { iconMin, iconPlus } from '../icons'
 import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { iconMin, iconPlus } from '../icons'
 
 export type IconButtonPropsOmit = Omit<
   IconButtonProps,
@@ -29,9 +29,7 @@ const name = 'TextInputNumber'
 const parts = ['quantity', 'quantityInput', 'button'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
-/**
- * @deprecated Please us NumberFieldElement
- */
+/** @deprecated Please us NumberFieldElement */
 export function TextInputNumber(props: TextInputNumberProps) {
   const {
     DownProps = {},

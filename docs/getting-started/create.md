@@ -8,10 +8,10 @@ metaTitle: Getting started with GraphCommerce
 In this guide, you will set up a GraphCommerce app locally, allowing you to
 start building.
 
-### Requirements
+### Preparations
 
-- Lixux, MacOS or WSL2
-- Install and use node 16/18: `nvm install 16` or `nvm use 16`
+- MacOS, Windows with WSL2 or Linux
+- Install and use node 20: `nvm install 20` or `nvm use 20`
 - Install yarn: `corepack enable`
 
 ## Step 1: Create a GraphCommerce app
@@ -26,19 +26,34 @@ mkdir my-project
 # Create project folder
 ```
 
+There are a few starting points to choose from with or without Hygraph:
+
+Option 1: Only Magento Open Source:
+
 ```bash
-cp -R graphcommerce/examples/magento-graphcms/. my-project && rm -rf graphcommerce && cd my-project
-# Copy example, delete repo, navigate to project folder
+cp -R graphcommerce/examples/magento-magento-open-source/. my-project && cd my-project
 ```
+
+Option 2: Magento Open Source + Hygraph:
+
+```bash
+cp -R graphcommerce/examples/magento-graphcms/. my-project && cd my-project
+```
+
+Option 3: Adobe Commerce:
+
+Please contact us for more information to get access to the Adobe Commerce
+starting point.
 
 ## Step 2: Configure API keys (optional)
 
 Duplicate and rename the configuration example file to:
 `graphcommerce.config.js` and configure the following:
 
-- `magentoEndpoint` [?](../framework/config.md#magentoendpoint-string)
-- `hygraphEndpoint` [?](../framework/config.md#hygraphendpoint-string)
-- `magentoStoreCode` [?](../framework/config.md#magentostorecode-string)
+- `magentoEndpoint` [?](../framework/config.md#magentoendpoint-string-required)
+- `hygraphEndpoint` [?](../framework/config.md#hygraphendpoint-string-required)
+- `magentoStoreCode`
+  [?](../framework/config.md#magentostorecode-string-required)
 
 > magentoStoreCode
 >
@@ -55,11 +70,12 @@ Duplicate and rename the configuration example file to:
 
 ### Requirements
 
-- Magento version 2.4.3 or higher - Clean install, a production or a development
-  environment
+- Magento version 2.4.5 or higher - Clean install, a production or a development
+  environment (technically 2.4.3 and 2.4.4 also work, but in practice important
+  bugfixes have been made in the latest versions.)
 - Hygraph - A project with the required schema.
   [Clone ↗](https://app.hygraph.com/clone/caddaa93cfa9436a9e76ae9c0f34d257?name=GraphCommerce%20Demo)
-  the schema as your starting point.
+  the schema as your starwting point.
 
 ## Step 3: Start the app
 

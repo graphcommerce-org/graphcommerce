@@ -9,7 +9,7 @@ import { OverlayContainer } from './OverlayContainer'
 
 export type OverlayTmpProps = Omit<
   SetOptional<LayoutOverlayBaseProps, 'variantSm' | 'variantMd'>,
-  'direction' | 'offsetPageY' | 'isPresent' | 'safeToRemove'
+  'offsetPageY' | 'isPresent' | 'safeToRemove'
 >
 
 function OverlayUsePresence(props: OverlayTmpProps) {

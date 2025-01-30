@@ -1,4 +1,4 @@
-import type { FieldValues, UseControllerProps } from '@graphcommerce/react-hook-form'
+import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import type { CheckboxProps } from '@mui/material'
@@ -11,26 +11,33 @@ import {
   FormLabel,
   useTheme,
 } from '@mui/material'
+import type { BaseControllerProps } from './types'
 
-export type CheckboxButtonGroupProps<T extends FieldValues> = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  options: { id: string | number; label: string }[] | any[]
+type OptionBase = { id: string | number; label: string | number }
+
+type AdditionalProps<TOption extends OptionBase = OptionBase> = {
+  options: TOption[]
   helperText?: string
   required?: boolean
   label?: string
-  labelKey?: string
-  valueKey?: string
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  onChange?: Function
-  returnObject?: boolean
+  labelKey?: keyof TOption
+  valueKey?: keyof TOption
+  onChange?: (value: (string | number)[]) => void
   disabled?: boolean
   row?: boolean
   checkboxColor?: CheckboxProps['color']
-} & UseControllerProps<T>
+}
 
-export function CheckboxButtonGroup<TFieldValues extends FieldValues>(
+export type CheckboxButtonGroupProps<
+  TFieldValues extends FieldValues = FieldValues,
+  TOption extends OptionBase = OptionBase,
+> = BaseControllerProps<TFieldValues> & AdditionalProps<TOption>
+
+type CheckboxButtonGroupComponent = <TFieldValues extends FieldValues>(
   props: CheckboxButtonGroupProps<TFieldValues>,
-): JSX.Element {
+) => React.ReactNode
+
+function CheckboxButtonGroupBase(props: CheckboxButtonGroupProps) {
   const {
     helperText,
     options,
@@ -39,8 +46,7 @@ export function CheckboxButtonGroup<TFieldValues extends FieldValues>(
     required,
     labelKey = 'label',
     valueKey = 'id',
-    returnObject,
-    disabled,
+    disabled: disabledField,
     row,
     control,
     checkboxColor,
@@ -51,70 +57,50 @@ export function CheckboxButtonGroup<TFieldValues extends FieldValues>(
 
   const theme = useTheme()
   const {
-    field: { value = [], onChange },
+    field: { value = [], onChange, onBlur, ref, disabled },
     fieldState: { invalid, error },
   } = useController({
     name,
     rules: required ? { required: i18n._(/* i18n */ 'This field is required') } : undefined,
     control,
     defaultValue,
-    disabled,
+    disabled: disabledField,
     shouldUnregister,
   })
 
   const parsedHelperText = error ? error.message : helperText
 
-  const handleChange = (index: number | string) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const newArray: (string | number)[] | any[] = [...value]
-    const exists =
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      value.findIndex((i: any) => (returnObject ? i[valueKey] === index : i === index)) === -1
-    if (exists) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      newArray.push(returnObject ? options.find((i) => i[valueKey] === index) : index)
+  const handleChange = (optionKey: string | number) => {
+    const currentValue = value as (string | number)[]
+    const newArray = [...currentValue]
+
+    const index = currentValue.indexOf(optionKey)
+    if (index === -1) {
+      newArray.push(optionKey)
     } else {
-      newArray.splice(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        value.findIndex((i: any) => (returnObject ? i[valueKey] === index : i === index)),
-        1,
-      )
+      newArray.splice(index, 1)
     }
-    // setValue(name, newArray, { shouldValidate: true })
+
     onChange(newArray)
-    if (typeof rest.onChange === 'function') {
-      rest.onChange(newArray)
-    }
+    rest.onChange?.(newArray)
   }
 
   return (
     <FormControl error={invalid} required={required}>
       {label && <FormLabel error={invalid}>{label}</FormLabel>}
-      <FormGroup row={row}>
-        {options.map((option: any) => {
+      <FormGroup row={row} ref={ref} onBlur={onBlur}>
+        {options.map((option) => {
           const optionKey = option[valueKey]
-          if (!optionKey) {
-            console.error(
-              `CheckboxButtonGroup: valueKey ${valueKey} does not exist on option`,
-              option,
-            )
-          }
-          const isChecked =
-            value.findIndex((item) =>
-              returnObject ? item[valueKey] === optionKey : item === optionKey,
-            ) !== -1
+          const isChecked = (value as (string | number)[]).includes(optionKey)
           return (
             <FormControlLabel
               control={
                 <Checkbox
-                  sx={{
-                    color: invalid ? theme.palette.error.main : undefined,
-                  }}
+                  sx={{ color: invalid ? theme.palette.error.main : undefined }}
                   color={checkboxColor || 'primary'}
                   value={optionKey}
                   checked={isChecked}
                   disabled={disabled}
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                   onChange={() => handleChange(optionKey)}
                 />
               }
@@ -128,3 +114,6 @@ export function CheckboxButtonGroup<TFieldValues extends FieldValues>(
     </FormControl>
   )
 }
+
+/** @public */
+export const CheckboxButtonGroup = CheckboxButtonGroupBase as CheckboxButtonGroupComponent

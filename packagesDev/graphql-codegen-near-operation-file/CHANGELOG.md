@@ -1,18 +1,44 @@
 # Change Log
 
-## 9.0.0-canary.104
+## 9.0.4-canary.14
 
-## 9.0.0-canary.103
+## 9.0.4-canary.13
+
+## 9.0.4-canary.12
+
+## 9.0.4-canary.11
+
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.0
+
+### Major Changes
+
+- [#2289](https://github.com/graphcommerce-org/graphcommerce/pull/2289) [`d2a6f58`](https://github.com/graphcommerce-org/graphcommerce/commit/d2a6f58276abadb132473d4da2d7d25e0b996106) - All fragments are now `@injectable` by default and the `@injectable` directive isn't required anymore. Always accept `@inject` directives. ([@paales](https://github.com/paales))
 
 ### Patch Changes
 
 - [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.24
-
-### Patch Changes
-
-- [#2289](https://github.com/graphcommerce-org/graphcommerce/pull/2289) [`d2a6f58`](https://github.com/graphcommerce-org/graphcommerce/commit/d2a6f58276abadb132473d4da2d7d25e0b996106) - Do not require fragments to be marked @injectable but always accept @inject directives. ([@paales](https://github.com/paales))
 
 ## 7.0.1
 

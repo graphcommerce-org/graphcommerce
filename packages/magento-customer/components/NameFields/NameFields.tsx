@@ -13,7 +13,7 @@ type NameFieldValues = {
   prefix?: string
 }
 
-type NameFieldProps = {
+export type NameFieldProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   form: UseFormReturn<any>
   readOnly?: boolean

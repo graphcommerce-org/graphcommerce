@@ -1,28 +1,64 @@
 # Change Log
 
-## 9.0.0-canary.104
+## 9.0.4-canary.14
 
-## 9.0.0-canary.103
+## 9.0.4-canary.13
 
-### Patch Changes
+## 9.0.4-canary.12
 
-- [#2369](https://github.com/graphcommerce-org/graphcommerce/pull/2369) [`8f1b806`](https://github.com/graphcommerce-org/graphcommerce/commit/8f1b806624c96f3151cda81e0553d3df7f1936dd) - Mark the menu item as active if router.asPath matches the href, or if the first URL segment matches, indicating it's the parent item. ([@carlocarels90](https://github.com/carlocarels90))
-
-- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.102
+## 9.0.4-canary.11
 
 ### Patch Changes
 
-- [#2418](https://github.com/graphcommerce-org/graphcommerce/pull/2418) [`2d65c0b`](https://github.com/graphcommerce-org/graphcommerce/commit/2d65c0b2625d5aeb82b34207e5addbff613e40f7) - Added locale prop support for all Intl components and exposed all functionality as hooks. ([@paales](https://github.com/paales))
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`b0ec078`](https://github.com/graphcommerce-org/graphcommerce/commit/b0ec0784a0b3ca977598ded3777d23bc929072b0) - Added a CurrencySymbol component that renders the current currency symbol ([@paales](https://github.com/paales))
 
-- [#2418](https://github.com/graphcommerce-org/graphcommerce/pull/2418) [`f35505c`](https://github.com/graphcommerce-org/graphcommerce/commit/f35505c618283c9de6a0db5b3080655c6825da17) - MediaQuery component now accepts a display prop to not always render with display contents. Implement the MediaQuery component for the DesktopNavBar and filter page for StickyBelowHeader and ProductFiltersPro sidebar ([@paales](https://github.com/paales))
+## 9.0.4-canary.10
 
-## 9.0.0-canary.101
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
 
 ### Patch Changes
 
-- [#2405](https://github.com/graphcommerce-org/graphcommerce/pull/2405) [`39a2df4`](https://github.com/graphcommerce-org/graphcommerce/commit/39a2df46c26be390cd8d65200ab347e12b217f9e) - Added MediaQuery Component: Render (and hydrate) a Component based on a media query given.
+- [#2478](https://github.com/graphcommerce-org/graphcommerce/pull/2478) [`32bccbb`](https://github.com/graphcommerce-org/graphcommerce/commit/32bccbba4b000247d7e01e487f6d48b6dec07fb5) - Nesting multiple Containers will not increase the padding, will only be applied once. ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+### Patch Changes
+
+- [#2473](https://github.com/graphcommerce-org/graphcommerce/pull/2473) [`8df172e`](https://github.com/graphcommerce-org/graphcommerce/commit/8df172e4fa1364892d53bc96a437d037d245de35) - Do not warn about `:first-child` since all css is hoisted out of the components. ([@paales](https://github.com/paales))
+
+- [#2473](https://github.com/graphcommerce-org/graphcommerce/pull/2473) [`b076b2a`](https://github.com/graphcommerce-org/graphcommerce/commit/b076b2ae4881bebf1d2debd5333a83f220c26ca7) - Also accept false as value for sxx ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.1
+
+### Patch Changes
+
+- [#2470](https://github.com/graphcommerce-org/graphcommerce/pull/2470) [`8f047a0`](https://github.com/graphcommerce-org/graphcommerce/commit/8f047a0860f9b915717f6db52be64805094d0b09) - Modify the type that is exposed for createTheme, should be faster for TypeScript to check. ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.0
+
+## 9.0.1
+
+### Patch Changes
+
+- [#2463](https://github.com/graphcommerce-org/graphcommerce/pull/2463) [`db3e142`](https://github.com/graphcommerce-org/graphcommerce/commit/db3e142d6f8b09a0f6b67a06e664b23946a71173) - Fix issue where layout title would be left aligned ([@FrankHarland](https://github.com/FrankHarland))
+
+## 9.0.0
+
+### Major Changes
+
+- [#2405](https://github.com/graphcommerce-org/graphcommerce/pull/2405) [`39a2df4`](https://github.com/graphcommerce-org/graphcommerce/commit/39a2df46c26be390cd8d65200ab347e12b217f9e) - Added `<MediaQuery/>` Component: Render (and hydrate) a Component based on a media query given.
 
   ```tsx
   <MediaQuery query={(theme) => theme.breakpoints.up('md')}>
@@ -39,175 +75,100 @@
 
   It wraps the component in a div that has 'display: contents;' when shown and 'display: none;' when hidden so it should not interfere with other styling. It conditionally hydrates the component if the query matches. If it doesn't match, it will NOT hydrate the component (and thus not execute the JS). ([@bramvanderholst](https://github.com/bramvanderholst))
 
-- [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`0ca65f1`](https://github.com/graphcommerce-org/graphcommerce/commit/0ca65f11fbe288a221f2c5aa618abecf5b4b7bc9) - Solve an issue where internal full URL's would cause prefetching errors and would use a hard navigation. ([@paales](https://github.com/paales))
+- [#2306](https://github.com/graphcommerce-org/graphcommerce/pull/2306) [`5e188e8`](https://github.com/graphcommerce-org/graphcommerce/commit/5e188e830dca4730c73830858f59a94e9d41ed12) - Magento 2.4.7: Imlemented `deleteCustomer` mutation to the account section. Disabled by default and can be enabled through the config. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 9.0.0-canary.98
+- [#2274](https://github.com/graphcommerce-org/graphcommerce/pull/2274) [`57131cf`](https://github.com/graphcommerce-org/graphcommerce/commit/57131cfcc43695cc3e22f28912feb2a8439620a7) - Created a `cssFlags` functionality which allows showing content based on a value in the local storage. This allows hiding/showing small things (is logged in / light or darkmode) ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-### Patch Changes
+- [#2273](https://github.com/graphcommerce-org/graphcommerce/pull/2273) [`77955c5`](https://github.com/graphcommerce-org/graphcommerce/commit/77955c56ac8633ab1c5e0f3ddb25e3a87236e2bb) - Added support for real `<Breadcrumbs/>` on the frontend. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2414](https://github.com/graphcommerce-org/graphcommerce/pull/2414) [`cd8e35b`](https://github.com/graphcommerce-org/graphcommerce/commit/cd8e35ba3dfafd34221b0875bf4f83c802955d66) - Added RelativeTimeFormat and RelativeToTimeFormat components to display relative dates in all locales. ([@Vignesh-M21](https://github.com/Vignesh-M21))
+- [#2242](https://github.com/graphcommerce-org/graphcommerce/pull/2242) [`a4cce76`](https://github.com/graphcommerce-org/graphcommerce/commit/a4cce76ca37af2bec604e953ada4bb11bd91f55d) - Add option to show an extended version of the pagination component. Configurable via the `productListPaginationVariant` key in your `graphcommerce.config.js`. `COMPACT` means: `< Page X of Y >` and `EXTENDED` means: `< 1 2 ... [5] ... 10 11 >` ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2414](https://github.com/graphcommerce-org/graphcommerce/pull/2414) [`8b1a5a6`](https://github.com/graphcommerce-org/graphcommerce/commit/8b1a5a62a580cc8d08746cb19c4e5a4f52bd270c) - Date strings (12-12-2012) are not supported by older Safari browser versions. must be converted (12/12/2012) in order for it to function; otherwise, it will return NaN if we attempt to access the getTime() on an object. ([@Vignesh-M21](https://github.com/Vignesh-M21))
+- [#2315](https://github.com/graphcommerce-org/graphcommerce/pull/2315) [`fb9118e`](https://github.com/graphcommerce-org/graphcommerce/commit/fb9118ec819d1b507d4fbde04f2ca34ec01ecf49) - Magento 2.4.7: Add `guestOrder` functionality. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 9.0.0-canary.95
+### Minor Changes
 
-### Patch Changes
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`74eb239`](https://github.com/graphcommerce-org/graphcommerce/commit/74eb2393a64988649178d59f53b33d41fecdd769) - Added Intl components, deprecated `useNumberFormat` and `useDateTimeFormatter`, and replaced usage sites. New components and hooks:
 
-- [#2399](https://github.com/graphcommerce-org/graphcommerce/pull/2399) [`f028b4f`](https://github.com/graphcommerce-org/graphcommerce/commit/f028b4f28e5d84c20353495e74bf3a549c183538) - Hide the back button on desktop pages where breadcrumbs are displayed. ([@carlocarels90](https://github.com/carlocarels90))
+  - `<DisplayNames />` and `useIntlDisplayNames`
+  - `<DateTimeFormat />`, `<DateFormat/>`, `<TimeFormat />` and `useIntlDateTimeFormat`
+  - `<ListFormat />` and `useIntlListFormat`
+  - `<CurrencyFormat />`, `<NumberFormat />`, `<UnitFormat />`, `<PercentFormat/>` and `useIntlNumberFormat` ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.93
+- [#2274](https://github.com/graphcommerce-org/graphcommerce/pull/2274) [`4a24813`](https://github.com/graphcommerce-org/graphcommerce/commit/4a248130041484833768fe6018f91d05a59522de) - Add props to `<DarkLightModeThemeProvider />` to disable dark/light mode or to change the default ssr mode. Save user chosen mode in localStorage. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-### Patch Changes
+- [#2348](https://github.com/graphcommerce-org/graphcommerce/pull/2348) [`61b66ef`](https://github.com/graphcommerce-org/graphcommerce/commit/61b66efeab9b377c8daa322015d4b55cdf3db4c1) - Added a new `<OverlayHeader />` component to be used in combination with the `<Overlay />` component. ([@JoshuaS98](https://github.com/JoshuaS98))
 
-- [#2398](https://github.com/graphcommerce-org/graphcommerce/pull/2398) [`557171b`](https://github.com/graphcommerce-org/graphcommerce/commit/557171b7f5e9aa3d16205e53670082a90550ef1d) - Exclude ‘disableBackNavigation’ prop from LinkOrButton in LayoutHeaderBack. ([@carlocarels90](https://github.com/carlocarels90))
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`223f16a`](https://github.com/graphcommerce-org/graphcommerce/commit/223f16a0e9a7718e52e81a4e2902471a8b78d35c) - The `<LazyHydrate />` component now accepts a `height` prop that allows deferring of rendering of the child component when initially rendered on the client. This improves performance when used. ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.89
+- [#2414](https://github.com/graphcommerce-org/graphcommerce/pull/2414) [`cd8e35b`](https://github.com/graphcommerce-org/graphcommerce/commit/cd8e35ba3dfafd34221b0875bf4f83c802955d66) - Added `<RelativeTimeFormat/>` and `<RelativeToTimeFormat/>` and `useIntlRelativeTimeFormat` to display relative dates in all locales. ([@paales](https://github.com/paales))
 
-### Patch Changes
+- [#2317](https://github.com/graphcommerce-org/graphcommerce/pull/2317) [`6c173c7`](https://github.com/graphcommerce-org/graphcommerce/commit/6c173c7bba601413cc5e1c9cf0595b8ec262fb92) - Added new plugin insertion points: `<DocumentHeadStart/>`, `<DocumentHeadEnd/>`, `<DocumentBodyEnd/>`, `<DocumentBodyStart/>` for the `_document.app` to allow creating plugins for those locations to insert scripts etc. ([@paales](https://github.com/paales))
 
-- [#2393](https://github.com/graphcommerce-org/graphcommerce/pull/2393) [`8946991`](https://github.com/graphcommerce-org/graphcommerce/commit/894699122c2748724acf439ce3ff14fa56a1e68c) - Solve an issue where the success page would show a back button which would go back to the payment page (which would be empty) ([@carlocarels90](https://github.com/carlocarels90))
-
-## 9.0.0-canary.80
-
-### Patch Changes
-
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`c57614d`](https://github.com/graphcommerce-org/graphcommerce/commit/c57614d47675cec2a0bf290371f11441495e10fe) - ActionCardList can now recieve focus, allowing form submissions to scroll to the field. Focussed fields now are now highlighted even when there is an error. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 9.0.0-canary.79
+- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use `linguiLocale` with country identifiers like `en-us`, it would always load `en` in this case. Introduced a new `useLocale` hook to use the correct locale string to use in Intl methods. ([@paales](https://github.com/paales))
 
 ### Patch Changes
 
-- [#2356](https://github.com/graphcommerce-org/graphcommerce/pull/2356) [`d283901`](https://github.com/graphcommerce-org/graphcommerce/commit/d283901cb537c3e7bf6f5500e9f52f47f452cf10) - Loading an overlay page directly would animate in the overlay instead of directly showing it. ([@paales](https://github.com/paales))
+- [#2285](https://github.com/graphcommerce-org/graphcommerce/pull/2285) [`d5e7371`](https://github.com/graphcommerce-org/graphcommerce/commit/d5e73716990bf1d5a5ee40d88f9cd8266750ec66) - Resolve the overlay issue when navigating from the 'Forgot Password' page to the 'Sign In' page. ([@carlocarels90](https://github.com/carlocarels90))
 
-## 9.0.0-canary.78
-
-### Patch Changes
+- [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed `useMediaQuery` from the `<WishlistItemActionCard />` and `<CartItemActionCard />` and replaced it with a new responsive `size` prop. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 - [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`7cd5c1c`](https://github.com/graphcommerce-org/graphcommerce/commit/7cd5c1cadf8dac43de9e5bb19038383be64aa08f) - Fix issues when using non-hex colors in theme ([@bramvanderholst](https://github.com/bramvanderholst))
 
 - [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`7c10458`](https://github.com/graphcommerce-org/graphcommerce/commit/7c104588ef96b9066b8f91835c29f957b08e4831) - Fix back button transparency on hover ([@bramvanderholst](https://github.com/bramvanderholst))
 
-- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`1de9582`](https://github.com/graphcommerce-org/graphcommerce/commit/1de9582967f2a09cc7167a38ada4e50fe0d1b29a) - Properly align cart loading state (and other FullPageMessage usages) ([@bramvanderholst](https://github.com/bramvanderholst))
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Added `useIsSSR` hook that will properly resolve when the page is rendered on the server and on first render, but will return false when a component is rendered on the client directly. ([@FrankHarland](https://github.com/FrankHarland))
 
-## 9.0.0-canary.75
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`1895176`](https://github.com/graphcommerce-org/graphcommerce/commit/1895176b5776adcf588999ceab7edd6f53cff294) - USPS would be loaded after other queries, causing unnecessary slowdown. ([@paales](https://github.com/paales))
 
-### Patch Changes
+- [#2321](https://github.com/graphcommerce-org/graphcommerce/pull/2321) [`fa261d4`](https://github.com/graphcommerce-org/graphcommerce/commit/fa261d4ae600b46ae08c5ca7514163f2da54eead) - Added the possibility to place content before or after the scroller. ([@carlocarels90](https://github.com/carlocarels90))
 
-- [#2348](https://github.com/graphcommerce-org/graphcommerce/pull/2348) [`61b66ef`](https://github.com/graphcommerce-org/graphcommerce/commit/61b66efeab9b377c8daa322015d4b55cdf3db4c1) - Added a new OverlayHeader component to be used in combination with the Overlay component. ([@JoshuaS98](https://github.com/JoshuaS98))
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use `muiRegister`, which improves INP scores. ([@FrankHarland](https://github.com/FrankHarland))
 
-## 9.0.0-canary.73
+- [#2369](https://github.com/graphcommerce-org/graphcommerce/pull/2369) [`8f1b806`](https://github.com/graphcommerce-org/graphcommerce/commit/8f1b806624c96f3151cda81e0553d3df7f1936dd) - Mark the menu item as active if router.asPath matches the href, or if the first URL segment matches, indicating it's the parent item. ([@carlocarels90](https://github.com/carlocarels90))
 
-### Patch Changes
+- [#2393](https://github.com/graphcommerce-org/graphcommerce/pull/2393) [`8946991`](https://github.com/graphcommerce-org/graphcommerce/commit/894699122c2748724acf439ce3ff14fa56a1e68c) - Solve an issue where the success page would show a back button which would go back to the payment page (which would be empty) ([@carlocarels90](https://github.com/carlocarels90))
 
-- [`4c24225`](https://github.com/graphcommerce-org/graphcommerce/commit/4c24225f9f998cd40e71da06528eb9323e9b6752) - Created a new `memoDeep` function that is a deep compare variant of `React.memo`. Performance seems to be pretty good, but should only be used as a result of a profiling session. ([@paales](https://github.com/paales))
+- [#2356](https://github.com/graphcommerce-org/graphcommerce/pull/2356) [`d283901`](https://github.com/graphcommerce-org/graphcommerce/commit/d283901cb537c3e7bf6f5500e9f52f47f452cf10) - Loading an overlay page directly would animate in the overlay instead of directly showing it. ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.57
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`012b865`](https://github.com/graphcommerce-org/graphcommerce/commit/012b86560d93e35dd7ca4a9469ed65e6fb83ead0) - Move arguments of `responsiveVal` around so the `minBreakpoint` can be given as third argument. ([@paales](https://github.com/paales))
 
-### Patch Changes
-
-- [#2312](https://github.com/graphcommerce-org/graphcommerce/pull/2312) [`e6a3776`](https://github.com/graphcommerce-org/graphcommerce/commit/e6a377637f1aaafe5b1db7a3123b8caad28d00f5) - Updated all package versions ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.50
-
-### Patch Changes
-
-- [#2321](https://github.com/graphcommerce-org/graphcommerce/pull/2321) [`fa261d4`](https://github.com/graphcommerce-org/graphcommerce/commit/fa261d4ae600b46ae08c5ca7514163f2da54eead) - Add the possibility to place content before or after the scroller. ([@carlocarels90](https://github.com/carlocarels90))
-
-## 8.1.0-canary.49
-
-### Patch Changes
-
-- [#2317](https://github.com/graphcommerce-org/graphcommerce/pull/2317) [`6c173c7`](https://github.com/graphcommerce-org/graphcommerce/commit/6c173c7bba601413cc5e1c9cf0595b8ec262fb92) - Added new plugin insertion points: `<DocumentHeadStart/>`, `<DocumentHeadEnd/>`, `<DocumentBodyEnd/>`, `<DocumentBodyStart/>` for the \_document.app to allow creating plugins for those locations to insert scripts etc. ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.47
-
-### Minor Changes
-
-- [#2315](https://github.com/graphcommerce-org/graphcommerce/pull/2315) [`fb9118e`](https://github.com/graphcommerce-org/graphcommerce/commit/fb9118ec819d1b507d4fbde04f2ca34ec01ecf49) - Add guestOrder functionality, remove `size: 'max'` from getStaticProps ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.46
-
-### Patch Changes
-
-- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`59874b5`](https://github.com/graphcommerce-org/graphcommerce/commit/59874b572bda17905dc836554f9a3e31f393eb3e) - Solve issue where the page would reload during development when the first call to /graphql was made. ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.45
-
-### Patch Changes
-
-- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`1895176`](https://github.com/graphcommerce-org/graphcommerce/commit/1895176b5776adcf588999ceab7edd6f53cff294) - USPS would be loaded after other pages, causing uneceesasry slowdown ([@paales](https://github.com/paales))
-
-- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`74eb239`](https://github.com/graphcommerce-org/graphcommerce/commit/74eb2393a64988649178d59f53b33d41fecdd769) - Added Intl components and replaced usage sites ([@paales](https://github.com/paales))
-
-- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`012b865`](https://github.com/graphcommerce-org/graphcommerce/commit/012b86560d93e35dd7ca4a9469ed65e6fb83ead0) - Move arguments of responsiveVal around so the minBreakpoint can be given as third argument ([@paales](https://github.com/paales))
-
-- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`223f16a`](https://github.com/graphcommerce-org/graphcommerce/commit/223f16a0e9a7718e52e81a4e2902471a8b78d35c) - LazyHydrate component now accepts a height prop that allows deferring of rendering of the child component when initially rendered on the client. This improves performance. ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.41
-
-### Patch Changes
-
-- [#2242](https://github.com/graphcommerce-org/graphcommerce/pull/2242) [`a4cce76`](https://github.com/graphcommerce-org/graphcommerce/commit/a4cce76ca37af2bec604e953ada4bb11bd91f55d) - Add option to show an extended version of the pagination component. Configurable via the "productListPaginationVariant" key in your graphcommerce.config.js COMPACT means: "< Page X of Y >" EXTENDED means: "< 1 2 ... [5] ... 10 11 >" ([@FrankHarland](https://github.com/FrankHarland))
-
-## 8.1.0-canary.40
-
-### Minor Changes
-
-- [#2306](https://github.com/graphcommerce-org/graphcommerce/pull/2306) [`5e188e8`](https://github.com/graphcommerce-org/graphcommerce/commit/5e188e830dca4730c73830858f59a94e9d41ed12) - Add delete account functionality to the account section. Disabled by default and can be enabled through the config. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.31
-
-### Patch Changes
-
-- [#2297](https://github.com/graphcommerce-org/graphcommerce/pull/2297) [`e41cb6f`](https://github.com/graphcommerce-org/graphcommerce/commit/e41cb6fcdde95629d29c03b1a700c6097f00c901) - Prevent gallery thunbnails from scrolling when opening or closing a layout overlay ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.27
-
-### Minor Changes
-
-- [#2273](https://github.com/graphcommerce-org/graphcommerce/pull/2273) [`77955c5`](https://github.com/graphcommerce-org/graphcommerce/commit/77955c56ac8633ab1c5e0f3ddb25e3a87236e2bb) - Improve Breadcrumbs on Category and Product pages ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 8.1.0-canary.26
-
-### Minor Changes
-
-- [#2274](https://github.com/graphcommerce-org/graphcommerce/pull/2274) [`4a24813`](https://github.com/graphcommerce-org/graphcommerce/commit/4a248130041484833768fe6018f91d05a59522de) - Add props to DarkLightModeThemeProvider to disable dark/light mode or to change the default ssr mode. Save user chosen mode in localStorage ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-### Patch Changes
-
-- [#2274](https://github.com/graphcommerce-org/graphcommerce/pull/2274) [`57131cf`](https://github.com/graphcommerce-org/graphcommerce/commit/57131cfcc43695cc3e22f28912feb2a8439620a7) - Created a cssFlags functionality to allow for conditional rendering based on stored flags in the localStorage ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.17
-
-### Minor Changes
-
-- [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed useMediaQuery from the wishlist and cart ItemActionCard and replaced it with a new responsive size prop. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 8.1.0-canary.9
-
-### Patch Changes
+- [#2361](https://github.com/graphcommerce-org/graphcommerce/pull/2361) [`c2560fe`](https://github.com/graphcommerce-org/graphcommerce/commit/c2560fef474ab6d0c0e2ac402ca4c860dba55ebc) - OverlayBase now supports disableAnimation and disableDrag ([@paales](https://github.com/paales))
 
 - [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`d7459fe`](https://github.com/graphcommerce-org/graphcommerce/commit/d7459feb6e6902af09ab9ff766c0b3b1a74fb723) - Updated canonicalize helper for better multi domain support ([@bramvanderholst](https://github.com/bramvanderholst))
 
-## 8.1.0-canary.8
+- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`59874b5`](https://github.com/graphcommerce-org/graphcommerce/commit/59874b572bda17905dc836554f9a3e31f393eb3e) - Solve issue where the page would reload during development when the first call to `/graphql` was made. ([@paales](https://github.com/paales))
 
-### Patch Changes
+- [#2418](https://github.com/graphcommerce-org/graphcommerce/pull/2418) [`2d65c0b`](https://github.com/graphcommerce-org/graphcommerce/commit/2d65c0b2625d5aeb82b34207e5addbff613e40f7) - Added locale prop support for all `<Intl/>` components and exposed all functionality as hooks. ([@paales](https://github.com/paales))
 
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for linguiLocale ([@paales](https://github.com/paales))
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
 
-## 8.0.6-canary.2
+- [`4c24225`](https://github.com/graphcommerce-org/graphcommerce/commit/4c24225f9f998cd40e71da06528eb9323e9b6752) - Created a new `memoDeep` function that is a deep compare variant of `React.memo`. Performance seems to be pretty good, but should only be used as a result of a profiling session. ([@paales](https://github.com/paales))
 
-### Patch Changes
+- [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`0ca65f1`](https://github.com/graphcommerce-org/graphcommerce/commit/0ca65f11fbe288a221f2c5aa618abecf5b4b7bc9) - Solve an issue where internal full URL's would cause prefetching errors and would use a hard navigation. ([@paales](https://github.com/paales))
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Added useIsSSR hook that will properly resolve when the page is rendered on the server and on first render, but will return false when a component is rendered on the client directly. ([@FrankHarland](https://github.com/FrankHarland))
+- [#2407](https://github.com/graphcommerce-org/graphcommerce/pull/2407) [`61f2af1`](https://github.com/graphcommerce-org/graphcommerce/commit/61f2af1158f2ef6908f7edd18f3f8cb2be196a9b) - Added functionality to constrain the container sizing of the frontend. Added a new configuration `containerSizingShell` and `containerSizingContent` configuration options. Actual sizing can be configured in the `theme.ts`. ([@StefanAngenent](https://github.com/StefanAngenent))
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
+- [#2398](https://github.com/graphcommerce-org/graphcommerce/pull/2398) [`557171b`](https://github.com/graphcommerce-org/graphcommerce/commit/557171b7f5e9aa3d16205e53670082a90550ef1d) - Exclude ‘disableBackNavigation’ prop from LinkOrButton in LayoutHeaderBack. ([@carlocarels90](https://github.com/carlocarels90))
 
-## 8.0.6-canary.0
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`c57614d`](https://github.com/graphcommerce-org/graphcommerce/commit/c57614d47675cec2a0bf290371f11441495e10fe) - The `<ActionCardList />` can now recieve focus, allowing form submissions to scroll to the field. Focussed fields now are now highlighted even when there is an error. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-### Patch Changes
+- [#2399](https://github.com/graphcommerce-org/graphcommerce/pull/2399) [`f028b4f`](https://github.com/graphcommerce-org/graphcommerce/commit/f028b4f28e5d84c20353495e74bf3a549c183538) - Hide the back button on desktop pages where breadcrumbs are displayed. ([@carlocarels90](https://github.com/carlocarels90))
 
-- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods. ([@paales](https://github.com/paales))
+- [#2297](https://github.com/graphcommerce-org/graphcommerce/pull/2297) [`e41cb6f`](https://github.com/graphcommerce-org/graphcommerce/commit/e41cb6fcdde95629d29c03b1a700c6097f00c901) - Prevent gallery thumbnails from scrolling when opening or closing a layout overlay. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`1de9582`](https://github.com/graphcommerce-org/graphcommerce/commit/1de9582967f2a09cc7167a38ada4e50fe0d1b29a) - Properly align cart loading state (and other FullPageMessage usages) ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2250](https://github.com/graphcommerce-org/graphcommerce/pull/2250) [`e56e836`](https://github.com/graphcommerce-org/graphcommerce/commit/e56e836f1fc463bf286c62668a4b65f320d5dc4a) - Make the back/up buttons translatable ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2414](https://github.com/graphcommerce-org/graphcommerce/pull/2414) [`8b1a5a6`](https://github.com/graphcommerce-org/graphcommerce/commit/8b1a5a62a580cc8d08746cb19c4e5a4f52bd270c) - Date strings (12-12-2012) are not supported by older Safari browser versions. must be converted (12/12/2012) in order for it to function; otherwise, it will return NaN if we attempt to access the getTime() on an object. ([@Vignesh-M21](https://github.com/Vignesh-M21))
+
+- [#2418](https://github.com/graphcommerce-org/graphcommerce/pull/2418) [`f35505c`](https://github.com/graphcommerce-org/graphcommerce/commit/f35505c618283c9de6a0db5b3080655c6825da17) - MediaQuery component now accepts a display prop to not always render with display contents. Implement the MediaQuery component for the DesktopNavBar and filter page for StickyBelowHeader and ProductFiltersPro sidebar ([@paales](https://github.com/paales))
+
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for `linguiLocale`. ([@paales](https://github.com/paales))
+
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`49937fd`](https://github.com/graphcommerce-org/graphcommerce/commit/49937fd765338e25899d427ee4d799fa7978faeb) - Allow changing various props for internal components ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 8.0.5
 
@@ -952,7 +913,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'

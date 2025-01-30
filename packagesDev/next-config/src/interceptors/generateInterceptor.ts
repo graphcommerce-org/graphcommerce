@@ -1,6 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import prettierConf from '@graphcommerce/prettier-config-pwa'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import prettier from 'prettier'
 import type { GraphCommerceDebugConfig } from '../generated/config'
 import type { ResolveDependencyReturn } from '../utils/resolveDependency'
@@ -18,6 +16,7 @@ type PluginBaseConfig = {
   ifConfig?: string | [string, any]
 }
 
+/** @public */
 export function isPluginBaseConfig(plugin: Partial<PluginBaseConfig>): plugin is PluginBaseConfig {
   return (
     typeof plugin.type === 'string' &&
@@ -31,6 +30,7 @@ type ReactPluginConfig = PluginBaseConfig & { type: 'component' }
 type MethodPluginConfig = PluginBaseConfig & { type: 'function' }
 type ReplacePluginConfig = PluginBaseConfig & { type: 'replace' }
 
+/** @public */
 export function isReactPluginConfig(
   plugin: Partial<PluginBaseConfig>,
 ): plugin is ReactPluginConfig {
@@ -38,6 +38,7 @@ export function isReactPluginConfig(
   return plugin.type === 'component'
 }
 
+/** @public */
 export function isMethodPluginConfig(
   plugin: Partial<PluginBaseConfig>,
 ): plugin is MethodPluginConfig {
@@ -45,6 +46,7 @@ export function isMethodPluginConfig(
   return plugin.type === 'function'
 }
 
+/** @public */
 export function isReplacePluginConfig(
   plugin: Partial<PluginBaseConfig>,
 ): plugin is ReactPluginConfig {
@@ -67,8 +69,8 @@ export type Interceptor = ResolveDependencyReturn & {
 
 export type MaterializedPlugin = Interceptor & { template: string }
 
-export const SOURCE_START = '/** Original source starts here (do not modify!): **/'
-export const SOURCE_END = '/** Original source ends here (do not modify!) **/'
+export const SOURCE_START = '/** SOURCE_START */'
+export const SOURCE_END = '/** SOURCE_END */'
 
 const originalSuffix = 'Original'
 const interceptorSuffix = 'Interceptor'
@@ -103,9 +105,7 @@ const generateIdentifyer = (s: string) =>
     }, 0),
   ).toString()
 
-/**
- * The is on the first line, with the format: \/* hash:${identifer} *\/
- */
+/** The is on the first line, with the format: /* hash:${identifer} */
 function extractIdentifier(source: string | undefined) {
   if (!source) return null
   const match = source.match(/\/\* hash:(\d+) \*\//)

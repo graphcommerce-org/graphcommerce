@@ -1,7 +1,7 @@
 import type { PaymentModule } from '@graphcommerce/magento-cart-payment-method/Api/PaymentMethod'
 import { PaymentMethodOptionsNoop } from '@graphcommerce/magento-cart-payment-method/PaymentMethodOptionsNoop/PaymentMethodOptionsNoop'
 import { PaymentMethodPlaceOrderNoop } from '@graphcommerce/magento-cart-payment-method/PaymentMethodPlaceOrderNoop/PaymentMethodPlaceOrderNoop'
-import { ActionCard, IconSvg, iconCreditCard } from '@graphcommerce/next-ui'
+import { ActionCard, iconCreditCard, IconSvg } from '@graphcommerce/next-ui'
 
 export const checkmo: PaymentModule = {
   PaymentOptions: PaymentMethodOptionsNoop,

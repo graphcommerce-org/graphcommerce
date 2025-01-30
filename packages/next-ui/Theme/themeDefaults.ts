@@ -1,3 +1,5 @@
+import type { Components, Theme, ThemeOptions } from '@mui/material'
+import { createTheme as createMuiTheme } from '@mui/material'
 import type { Shadows } from '@mui/material/styles/shadows'
 import { spreadVal } from '../Styles/spreadVal'
 import { breakpoints } from './breakpoints'
@@ -37,3 +39,11 @@ export const themeBaseDefaults = {
   spreadVal,
   shadows,
 }
+
+// https://github.com/tjx666/ts-perf-issue#createtheme
+export const createTheme = createMuiTheme as unknown as (
+  baseTheme: ThemeOptions,
+  options?: {
+    components: Components<Theme>
+  },
+) => Theme

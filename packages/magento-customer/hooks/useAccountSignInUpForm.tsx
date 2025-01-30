@@ -3,11 +3,11 @@ import { useQuery } from '@graphcommerce/graphql'
 import { useUrlQuery } from '@graphcommerce/next-ui'
 import { useFormGqlQuery } from '@graphcommerce/react-hook-form'
 import { useEffect } from 'react'
-import { CustomerDocument } from './Customer.gql'
 import type { IsEmailAvailableQuery, IsEmailAvailableQueryVariables } from './IsEmailAvailable.gql'
 import { IsEmailAvailableDocument } from './IsEmailAvailable.gql'
 import { useCustomerAccountCanSignUp } from './useCustomerPermissions'
 import { useCustomerSession } from './useCustomerSession'
+import { UseCustomerValidateTokenDocument } from './UseCustomerValidateToken.gql'
 
 export type UseFormIsEmailAvailableProps = {
   onSubmitted?: (data: { email: string }) => void
@@ -24,7 +24,7 @@ export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {})
 
   const [queryState, setRouterQuery] = useUrlQuery<{ email?: string | null }>()
 
-  const customerQuery = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
+  const customerQuery = useQuery(UseCustomerValidateTokenDocument, { fetchPolicy: 'cache-only' })
   const cachedEmail = customerQuery?.data?.customer?.email
 
   const form = useFormGqlQuery<

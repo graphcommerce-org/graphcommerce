@@ -1,195 +1,147 @@
-/* eslint-disable */ "use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-function _export(target, all) {
-    for(var name in all)Object.defineProperty(target, name, {
-        enumerable: true,
-        get: all[name]
-    });
-}
-_export(exports, {
-    CartPermissionsSchema: function() {
-        return CartPermissionsSchema;
-    },
-    CompareVariantSchema: function() {
-        return CompareVariantSchema;
-    },
-    CustomerAccountPermissionsSchema: function() {
-        return CustomerAccountPermissionsSchema;
-    },
-    DatalayerConfigSchema: function() {
-        return DatalayerConfigSchema;
-    },
-    GraphCommerceConfigSchema: function() {
-        return GraphCommerceConfigSchema;
-    },
-    GraphCommerceDebugConfigSchema: function() {
-        return GraphCommerceDebugConfigSchema;
-    },
-    GraphCommercePermissionsSchema: function() {
-        return GraphCommercePermissionsSchema;
-    },
-    GraphCommerceStorefrontConfigSchema: function() {
-        return GraphCommerceStorefrontConfigSchema;
-    },
-    MagentoConfigurableVariantValuesSchema: function() {
-        return MagentoConfigurableVariantValuesSchema;
-    },
-    PaginationVariantSchema: function() {
-        return PaginationVariantSchema;
-    },
-    ProductFiltersLayoutSchema: function() {
-        return ProductFiltersLayoutSchema;
-    },
-    RecentlyViewedProductsConfigSchema: function() {
-        return RecentlyViewedProductsConfigSchema;
-    },
-    SidebarGalleryConfigSchema: function() {
-        return SidebarGalleryConfigSchema;
-    },
-    SidebarGalleryPaginationVariantSchema: function() {
-        return SidebarGalleryPaginationVariantSchema;
-    },
-    WebsitePermissionsSchema: function() {
-        return WebsitePermissionsSchema;
-    },
-    definedNonNullAnySchema: function() {
-        return definedNonNullAnySchema;
-    },
-    isDefinedNonNullAny: function() {
-        return isDefinedNonNullAny;
-    }
-});
-const _zod = require("zod");
-const isDefinedNonNullAny = (v)=>v !== undefined && v !== null;
-const definedNonNullAnySchema = _zod.z.any().refine((v)=>isDefinedNonNullAny(v));
-const CartPermissionsSchema = _zod.z.enum([
+import { z } from 'zod';
+export const isDefinedNonNullAny = (v)=>v !== undefined && v !== null;
+export const definedNonNullAnySchema = z.any().refine((v)=>isDefinedNonNullAny(v));
+export const CartPermissionsSchema = z.enum([
     'CUSTOMER_ONLY',
     'DISABLED',
     'ENABLED'
 ]);
-const CompareVariantSchema = _zod.z.enum([
+export const CompareVariantSchema = z.enum([
     'CHECKBOX',
     'ICON'
 ]);
-const CustomerAccountPermissionsSchema = _zod.z.enum([
+export const ContainerSizingSchema = z.enum([
+    'BREAKPOINT',
+    'FULL_WIDTH'
+]);
+export const CustomerAccountPermissionsSchema = z.enum([
     'DISABLED',
     'DISABLE_REGISTRATION',
     'ENABLED'
 ]);
-const PaginationVariantSchema = _zod.z.enum([
+export const PaginationVariantSchema = z.enum([
     'COMPACT',
     'EXTENDED'
 ]);
-const ProductFiltersLayoutSchema = _zod.z.enum([
+export const ProductFiltersLayoutSchema = z.enum([
     'DEFAULT',
     'SIDEBAR'
 ]);
-const SidebarGalleryPaginationVariantSchema = _zod.z.enum([
+export const SidebarGalleryPaginationVariantSchema = z.enum([
     'DOTS',
     'THUMBNAILS_BOTTOM'
 ]);
-const WebsitePermissionsSchema = _zod.z.enum([
+export const WebsitePermissionsSchema = z.enum([
     'ENABLED'
 ]);
-function DatalayerConfigSchema() {
-    return _zod.z.object({
-        coreWebVitals: _zod.z.boolean().nullish()
+export function DatalayerConfigSchema() {
+    return z.object({
+        coreWebVitals: z.boolean().nullish()
     });
 }
-function GraphCommerceConfigSchema() {
-    return _zod.z.object({
-        breadcrumbs: _zod.z.boolean().default(false).nullish(),
-        canonicalBaseUrl: _zod.z.string().min(1),
-        cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
-        compare: _zod.z.boolean().nullish(),
-        compareVariant: CompareVariantSchema.default("ICON").nullish(),
-        configurableVariantForSimple: _zod.z.boolean().default(false).nullish(),
+export function GraphCommerceConfigSchema() {
+    return z.object({
+        breadcrumbs: z.boolean().default(false).nullish(),
+        canonicalBaseUrl: z.string().min(1),
+        cartDisplayPricesInclTax: z.boolean().nullish(),
+        compare: z.boolean().nullish(),
+        compareVariant: CompareVariantSchema.default('ICON').nullish(),
+        configurableVariantForSimple: z.boolean().default(false).nullish(),
         configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
-        crossSellsHideCartItems: _zod.z.boolean().default(false).nullish(),
-        crossSellsRedirectItems: _zod.z.boolean().default(false).nullish(),
-        customerAddressNoteEnable: _zod.z.boolean().nullish(),
-        customerCompanyFieldsEnable: _zod.z.boolean().nullish(),
-        customerDeleteEnabled: _zod.z.boolean().nullish(),
-        customerXMagentoCacheIdDisable: _zod.z.boolean().nullish(),
+        containerSizingContent: ContainerSizingSchema.default('FULL_WIDTH').nullish(),
+        containerSizingShell: ContainerSizingSchema.default('FULL_WIDTH').nullish(),
+        crossSellsHideCartItems: z.boolean().default(false).nullish(),
+        crossSellsRedirectItems: z.boolean().default(false).nullish(),
+        customerAddressNoteEnable: z.boolean().nullish(),
+        customerCompanyFieldsEnable: z.boolean().nullish(),
+        customerDeleteEnabled: z.boolean().nullish(),
+        customerXMagentoCacheIdDisable: z.boolean().nullish(),
         dataLayer: DatalayerConfigSchema().nullish(),
         debug: GraphCommerceDebugConfigSchema().nullish(),
-        demoMode: _zod.z.boolean().default(true).nullish(),
-        enableGuestCheckoutLogin: _zod.z.boolean().nullish(),
-        googleAnalyticsId: _zod.z.string().nullish(),
-        googleRecaptchaKey: _zod.z.string().nullish(),
-        googleTagmanagerId: _zod.z.string().nullish(),
-        hygraphEndpoint: _zod.z.string().min(1),
-        hygraphManagementApi: _zod.z.string().nullish(),
-        hygraphProjectId: _zod.z.string().nullish(),
-        hygraphWriteAccessToken: _zod.z.string().nullish(),
-        limitSsg: _zod.z.boolean().nullish(),
-        magentoEndpoint: _zod.z.string().min(1),
-        magentoVersion: _zod.z.number(),
+        demoMode: z.boolean().default(true).nullish(),
+        enableGuestCheckoutLogin: z.boolean().nullish(),
+        googleAnalyticsId: z.string().nullish(),
+        googlePlaystore: GraphCommerceGooglePlaystoreConfigSchema().nullish(),
+        googleRecaptchaKey: z.string().nullish(),
+        googleTagmanagerId: z.string().nullish(),
+        graphqlMeshEditMode: z.boolean().default(false).nullish(),
+        hygraphEndpoint: z.string().min(1),
+        hygraphManagementApi: z.string().nullish(),
+        hygraphProjectId: z.string().nullish(),
+        hygraphWriteAccessToken: z.string().nullish(),
+        limitSsg: z.boolean().nullish(),
+        magentoEndpoint: z.string().min(1),
+        magentoVersion: z.number(),
         permissions: GraphCommercePermissionsSchema().nullish(),
-        previewSecret: _zod.z.string().nullish(),
-        productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
-        productFiltersPro: _zod.z.boolean().nullish(),
-        productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
-        productRoute: _zod.z.string().nullish(),
+        previewSecret: z.string().nullish(),
+        productFiltersLayout: ProductFiltersLayoutSchema.default('DEFAULT').nullish(),
+        productFiltersPro: z.boolean().nullish(),
+        productListPaginationVariant: PaginationVariantSchema.default('COMPACT').nullish(),
+        productRoute: z.string().nullish(),
         recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
-        robotsAllow: _zod.z.boolean().nullish(),
+        robotsAllow: z.boolean().nullish(),
         sidebarGallery: SidebarGalleryConfigSchema().nullish(),
-        storefront: _zod.z.array(GraphCommerceStorefrontConfigSchema()),
-        wishlistHideForGuests: _zod.z.boolean().nullish(),
-        wishlistShowFeedbackMessage: _zod.z.boolean().nullish()
+        storefront: z.array(GraphCommerceStorefrontConfigSchema()),
+        wishlistHideForGuests: z.boolean().nullish(),
+        wishlistShowFeedbackMessage: z.boolean().nullish()
     });
 }
-function GraphCommerceDebugConfigSchema() {
-    return _zod.z.object({
-        pluginStatus: _zod.z.boolean().nullish(),
-        sessions: _zod.z.boolean().nullish(),
-        webpackCircularDependencyPlugin: _zod.z.boolean().nullish(),
-        webpackDuplicatesPlugin: _zod.z.boolean().nullish()
+export function GraphCommerceDebugConfigSchema() {
+    return z.object({
+        cart: z.boolean().nullish(),
+        pluginStatus: z.boolean().nullish(),
+        sessions: z.boolean().nullish(),
+        webpackCircularDependencyPlugin: z.boolean().nullish(),
+        webpackDuplicatesPlugin: z.boolean().nullish()
     });
 }
-function GraphCommercePermissionsSchema() {
-    return _zod.z.object({
+export function GraphCommerceGooglePlaystoreConfigSchema() {
+    return z.object({
+        packageName: z.string().min(1),
+        sha256CertificateFingerprint: z.string().min(1)
+    });
+}
+export function GraphCommercePermissionsSchema() {
+    return z.object({
         cart: CartPermissionsSchema.nullish(),
         checkout: CartPermissionsSchema.nullish(),
         customerAccount: CustomerAccountPermissionsSchema.nullish(),
         website: WebsitePermissionsSchema.nullish()
     });
 }
-function GraphCommerceStorefrontConfigSchema() {
-    return _zod.z.object({
-        canonicalBaseUrl: _zod.z.string().nullish(),
-        cartDisplayPricesInclTax: _zod.z.boolean().nullish(),
-        customerCompanyFieldsEnable: _zod.z.boolean().nullish(),
-        defaultLocale: _zod.z.boolean().nullish(),
-        domain: _zod.z.string().nullish(),
-        googleAnalyticsId: _zod.z.string().nullish(),
-        googleRecaptchaKey: _zod.z.string().nullish(),
-        googleTagmanagerId: _zod.z.string().nullish(),
-        hygraphLocales: _zod.z.array(_zod.z.string().min(1)).nullish(),
-        linguiLocale: _zod.z.string().nullish(),
-        locale: _zod.z.string().min(1),
-        magentoStoreCode: _zod.z.string().min(1),
+export function GraphCommerceStorefrontConfigSchema() {
+    return z.object({
+        canonicalBaseUrl: z.string().nullish(),
+        cartDisplayPricesInclTax: z.boolean().nullish(),
+        customerCompanyFieldsEnable: z.boolean().nullish(),
+        defaultLocale: z.boolean().nullish(),
+        domain: z.string().nullish(),
+        googleAnalyticsId: z.string().nullish(),
+        googleRecaptchaKey: z.string().nullish(),
+        googleTagmanagerId: z.string().nullish(),
+        hygraphLocales: z.array(z.string().min(1)).nullish(),
+        linguiLocale: z.string().nullish(),
+        locale: z.string().min(1),
+        magentoStoreCode: z.string().min(1),
         permissions: GraphCommercePermissionsSchema().nullish(),
-        robotsAllow: _zod.z.boolean().nullish()
+        robotsAllow: z.boolean().nullish()
     });
 }
-function MagentoConfigurableVariantValuesSchema() {
-    return _zod.z.object({
-        content: _zod.z.boolean().nullish(),
-        gallery: _zod.z.boolean().nullish(),
-        url: _zod.z.boolean().nullish()
+export function MagentoConfigurableVariantValuesSchema() {
+    return z.object({
+        content: z.boolean().nullish(),
+        gallery: z.boolean().nullish(),
+        url: z.boolean().nullish()
     });
 }
-function RecentlyViewedProductsConfigSchema() {
-    return _zod.z.object({
-        enabled: _zod.z.boolean().nullish(),
-        maxCount: _zod.z.number().nullish()
+export function RecentlyViewedProductsConfigSchema() {
+    return z.object({
+        enabled: z.boolean().nullish(),
+        maxCount: z.number().nullish()
     });
 }
-function SidebarGalleryConfigSchema() {
-    return _zod.z.object({
+export function SidebarGalleryConfigSchema() {
+    return z.object({
         paginationVariant: SidebarGalleryPaginationVariantSchema.nullish()
     });
 }

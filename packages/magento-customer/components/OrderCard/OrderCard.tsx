@@ -1,5 +1,5 @@
 import { Money } from '@graphcommerce/magento-store'
-import { DateTimeFormat, NextLink, extendableComponent } from '@graphcommerce/next-ui'
+import { DateTimeFormat, extendableComponent, NextLink } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, ListItemButton, Skeleton, styled } from '@mui/material'
 import type { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
@@ -8,7 +8,7 @@ import { OrderStateLabel } from '../OrderStateLabel/OrderStateLabel'
 import { TrackingLink } from '../TrackingLink/TrackingLink'
 import type { OrderCardFragment } from './OrderCard.gql'
 
-type OrderCardProps = Partial<OrderCardFragment> & {
+export type OrderCardProps = Partial<OrderCardFragment> & {
   loading?: boolean
   images?: UseOrderCardItemImages
   sx?: SxProps<Theme>

@@ -1,9 +1,12 @@
 import { FormPersist, TextFieldElement, useFormCompose } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
-import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
+import {
+  assertOrderPlaced,
+  throwGenericPlaceOrderError,
+  usePaymentMethodContext,
+} from '@graphcommerce/magento-cart-payment-method'
 import { FormRow } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
 import { useRouter } from 'next/router'
 import { useAdyenCartLock } from '../../hooks/useAdyenCartLock'
 import { useAdyenPaymentMethod } from '../../hooks/useAdyenPaymentMethod'
@@ -40,15 +43,18 @@ export function HppOptions(props: PaymentOptionsProps) {
       brandCode,
     }),
     onComplete: async (result) => {
+      assertOrderPlaced(result.data?.placeOrder)
       const merchantReference = result.data?.placeOrder?.order.order_number
       const action = result?.data?.placeOrder?.order.adyen_payment_status?.action
 
       if (result.errors) return
 
       if (!merchantReference || !selectedMethod?.code || !action) {
-        throw Error(
-          t`An error occurred while processing your payment. Please contact the store owner`,
+        console.error(
+          'Adyen: Order was placed, but no merchant reference or action was returned, this is an issue on the Magento Adyen side.',
+          result,
         )
+        throwGenericPlaceOrderError()
       }
 
       const url = JSON.parse(action).url as string
@@ -66,7 +72,7 @@ export function HppOptions(props: PaymentOptionsProps) {
   /** To use an external Pay button we register the current form to be handled there as well. */
   useFormCompose({ form, step, submit, key })
 
-  if (!conf?.issuers?.length) return <form onSubmit={submit} noValidate />
+  if (!conf?.issuers?.length || brandCode === 'ideal') return <form onSubmit={submit} noValidate />
 
   /**
    * This is the form that the user can fill in. In this case we don't wat the user to fill in
@@ -89,7 +95,7 @@ export function HppOptions(props: PaymentOptionsProps) {
             SelectProps={{ native: true, displayEmpty: true }}
             error={formState.isSubmitted && !!formState.errors.issuer}
             helperText={formState.isSubmitted && formState.errors.issuer?.message}
-            label={brandCode === 'ideal' ? 'Select your bank' : conf?.name}
+            label={conf?.name}
             required
           >
             {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}

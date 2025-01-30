@@ -7,3 +7,9 @@ export * from '@apollo/client/link/error'
 export * from '@apollo/client/utilities'
 
 export { getOperationName } from '@apollo/client/utilities'
+
+declare module '@apollo/client' {
+  interface DataMasking {
+    enabled: true
+  }
+}

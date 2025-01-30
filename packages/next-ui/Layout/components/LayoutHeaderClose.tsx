@@ -2,11 +2,11 @@ import { useGo, usePageContext } from '@graphcommerce/framer-next-pages'
 import { i18n } from '@lingui/core'
 import { Fab } from '@mui/material'
 import { useState } from 'react'
+import { iconClose } from '../../icons'
 import { IconSvg, useIconSvgSize } from '../../IconSvg'
 import { useFabSize } from '../../Theme'
-import { iconClose } from '../../icons'
 
-type LayoutHeaderCloseProps = {
+export type LayoutHeaderCloseProps = {
   onClose?: () => void
 }
 

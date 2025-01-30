@@ -1,7 +1,0 @@
-fragment CmsPageQueryFragment on Query {
-  cmsPage(identifier: $urlKey) {
-    identifier
-    ...CmsPageMeta
-    ...CmsPageContent
-  }
-}

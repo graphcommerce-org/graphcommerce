@@ -22,6 +22,7 @@ export type ActionCardListFormProps<A, F extends FieldValues = FieldValues> = Om
     render: React.FC<ActionCardItemRenderProps<A>>
   } & ActionCardRequireOptionSelection
 
+/** @public */
 export function ActionCardListForm<
   T extends ActionCardItemBase,
   F extends FieldValues = FieldValues,
@@ -36,7 +37,7 @@ export function ActionCardListForm<
     errorMessage,
     defaultValue,
     multiple,
-    disabled,
+    disabled: disabledField,
     shouldUnregister,
     requireOptionSelection,
     ...other
@@ -53,7 +54,7 @@ export function ActionCardListForm<
   )
 
   const {
-    field: { onChange, value, ref },
+    field: { onChange, value, ref, onBlur, disabled },
     fieldState,
     formState,
   } = useController({
@@ -62,7 +63,7 @@ export function ActionCardListForm<
     name,
     defaultValue,
     rules: { required, ...rules },
-    disabled,
+    disabled: disabledField,
     shouldUnregister,
   })
 
@@ -92,6 +93,7 @@ export function ActionCardListForm<
           value={item.value}
           selected={onSelect(item.value, value)}
           onReset={handleReset}
+          disabled={disabled}
         />
       ))}
     </ActionCardList>

@@ -4,9 +4,9 @@ import { Alert } from '@mui/material'
 import React from 'react'
 import { isFragment } from 'react-is'
 import { Button } from '../Button'
+import { iconChevronDown } from '../icons'
 import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
-import { iconChevronDown } from '../icons'
 import type { ActionCardProps } from './ActionCard'
 import { ActionCardLayout } from './ActionCardLayout'
 
@@ -50,7 +50,7 @@ function isValueSelected(
   return value === candidate
 }
 
-type HoistedActionCardProps = Pick<ActionCardProps, 'color' | 'variant' | 'size' | 'layout'>
+export type HoistedActionCardProps = Pick<ActionCardProps, 'color' | 'variant' | 'size' | 'layout'>
 
 const parts = ['root'] as const
 const name = 'ActionCardList'

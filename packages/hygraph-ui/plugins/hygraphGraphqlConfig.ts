@@ -9,7 +9,7 @@ export const config: PluginConfig = {
 
 declare module '@graphcommerce/graphql/config' {
   interface PreviewData {
-    hygraphStage?: string
+    hygraphStage: string | null
   }
 }
 
@@ -18,11 +18,9 @@ export const graphqlConfig: FunctionPlugin<typeof graphqlConfigType> = (prev, co
 
   const locales = conf.storefront.hygraphLocales
 
-  if (!locales) return prev(conf)
-
   const hygraphLink = setContext((_, context) => {
     if (!context.headers) context.headers = {}
-    context.headers['gcms-locales'] = locales.join(',')
+    if (locales) context.headers['gcms-locales'] = locales.join(',')
 
     const stage = conf.previewData?.hygraphStage ?? 'DRAFT'
     if (conf.preview) {

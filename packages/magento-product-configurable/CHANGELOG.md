@@ -1,56 +1,66 @@
 # Change Log
 
-## 9.0.0-canary.104
+## 9.0.4-canary.14
 
-## 9.0.0-canary.103
+## 9.0.4-canary.13
 
-## 9.0.0-canary.90
+## 9.0.4-canary.12
+
+## 9.0.4-canary.11
 
 ### Patch Changes
 
-- [#2397](https://github.com/graphcommerce-org/graphcommerce/pull/2397) [`d4d5a98`](https://github.com/graphcommerce-org/graphcommerce/commit/d4d5a983dea6d034dcbdeed9cf30fb33133dde39) - Add requireOptionSelection boolean to prevent users from deselecting configurable options ([@carlocarels90](https://github.com/carlocarels90))
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`8b8807b`](https://github.com/graphcommerce-org/graphcommerce/commit/8b8807b8e24f1dba78dd988dfdc21316c616274f) - Solve issue where the GetConfigurableOptionsSelection query would be executed even if the product wasn't a ConfigurableProduct. ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.51
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.0
 
 ### Minor Changes
 
-- [#2322](https://github.com/graphcommerce-org/graphcommerce/pull/2322) [`4d08a2b`](https://github.com/graphcommerce-org/graphcommerce/commit/4d08a2bd8c1919bd85b18e8e856775d18fb67e00) - Rename configurable_customizable back to customizable_options ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.33
+- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use `linguiLocale` with country identifiers like `en-us`, it would always load `en` in this case. Introduced a new `useLocale` hook to use the correct locale string to use in Intl methods. ([@paales](https://github.com/paales))
 
 ### Patch Changes
 
-- [#2302](https://github.com/graphcommerce-org/graphcommerce/pull/2302) [`6b7f908`](https://github.com/graphcommerce-org/graphcommerce/commit/6b7f908b7a2561e9d7f6ec3eaf2a6aca8d77b72f) - Fixed tier prices not working for non-configurable products ([@bramvanderholst](https://github.com/bramvanderholst))
+- [#2322](https://github.com/graphcommerce-org/graphcommerce/pull/2322) [`4d08a2b`](https://github.com/graphcommerce-org/graphcommerce/commit/4d08a2bd8c1919bd85b18e8e856775d18fb67e00) - Rename `configurable_customizable` back to `customizable_options`. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 8.1.0-canary.23
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use `muiRegister`, which improves INP scores. ([@FrankHarland](https://github.com/FrankHarland))
 
-### Patch Changes
+- [#2397](https://github.com/graphcommerce-org/graphcommerce/pull/2397) [`d4d5a98`](https://github.com/graphcommerce-org/graphcommerce/commit/d4d5a983dea6d034dcbdeed9cf30fb33133dde39) - Add requireOptionSelection boolean to prevent users from deselecting configurable options ([@carlocarels90](https://github.com/carlocarels90))
 
 - [#2282](https://github.com/graphcommerce-org/graphcommerce/pull/2282) [`e048f61`](https://github.com/graphcommerce-org/graphcommerce/commit/e048f6165ae5a15be99fba0c3d3529c700477d3e) - Disable configurable product options that are unavailable for selection. ([@carlocarels90](https://github.com/carlocarels90))
 
-## 8.1.0-canary.8
+- [#2302](https://github.com/graphcommerce-org/graphcommerce/pull/2302) [`6b7f908`](https://github.com/graphcommerce-org/graphcommerce/commit/6b7f908b7a2561e9d7f6ec3eaf2a6aca8d77b72f) - Fixed tier prices not working for non-configurable products. ([@bramvanderholst](https://github.com/bramvanderholst))
 
-### Patch Changes
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
 
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for linguiLocale ([@paales](https://github.com/paales))
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`5b3ce00`](https://github.com/graphcommerce-org/graphcommerce/commit/5b3ce001c38cfe4ba9b7f64266d762b8bdaedf13) - Respect configurableVariantValues.gallery config when selecting a configurable variant. The image should only change to the simple product image when the config is set to true, otherwise the configurable image should remain. To keep this functionality, please set `configurableVariantValues: { gallery: true }` in your graphcommerce.config.js ([@bramvanderholst](https://github.com/bramvanderholst))
 
-## 8.0.6-canary.2
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`444e446`](https://github.com/graphcommerce-org/graphcommerce/commit/444e446a218cc9da3defb940a6d5cce0229ff845) - Added clear upgrade instructions for `linguiLocale`. ([@paales](https://github.com/paales))
 
-### Patch Changes
+- [#2213](https://github.com/graphcommerce-org/graphcommerce/pull/2213) [`a0d952e`](https://github.com/graphcommerce-org/graphcommerce/commit/a0d952e6b8a71a7451bfdb2bdb5150fc218169e2) - Moved product reviews to the `relatedUpsells` query so we do not pass the queryComplexity limit. ([@paales](https://github.com/paales))
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
-
-## 8.0.6-canary.1
-
-### Patch Changes
-
-- [#2213](https://github.com/graphcommerce-org/graphcommerce/pull/2213) [`a0d952e`](https://github.com/graphcommerce-org/graphcommerce/commit/a0d952e6b8a71a7451bfdb2bdb5150fc218169e2) - Moved product reviews to the relatedUpsells query so we do not pass the queryComplexity limit ([@paales](https://github.com/paales))
-
-## 8.0.6-canary.0
-
-### Patch Changes
-
-- [#2196](https://github.com/graphcommerce-org/graphcommerce/pull/2196) [`84c50e4`](https://github.com/graphcommerce-org/graphcommerce/commit/84c50e49a1a7f154d4a8f4045c37e773e20283ad) - Allow Lingui to use linguiLocale with country identifiers like `en-us`, it would always load `en` in this case. Introced a new `useLocale` hook to use the correct locale string to use in Intl methods. ([@paales](https://github.com/paales))
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`49937fd`](https://github.com/graphcommerce-org/graphcommerce/commit/49937fd765338e25899d427ee4d799fa7978faeb) - Allow changing various props for internal components ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 8.0.5
 
@@ -926,7 +936,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'

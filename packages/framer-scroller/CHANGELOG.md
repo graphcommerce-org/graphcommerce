@@ -1,32 +1,48 @@
 # Change Log
 
-## 9.0.0-canary.104
+## 9.0.4-canary.14
 
-## 9.0.0-canary.103
+## 9.0.4-canary.13
 
-## 9.0.0-canary.80
+## 9.0.4-canary.12
+
+## 9.0.4-canary.11
+
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.0
 
 ### Patch Changes
 
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`e01fd4a`](https://github.com/graphcommerce-org/graphcommerce/commit/e01fd4a933aa852e97ccfbee15378d8479e2b49f) - Prevent retriggering a scrollTo animation when the current scrollLeft/scrollTop is a float ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`e01fd4a`](https://github.com/graphcommerce-org/graphcommerce/commit/e01fd4a933aa852e97ccfbee15378d8479e2b49f) - Prevent retriggering a `scrollTo` animation in Firefox when the current `scrollLeft/scrollTop` is a float. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 8.1.0-canary.31
+- [#2246](https://github.com/graphcommerce-org/graphcommerce/pull/2246) [`13524f9`](https://github.com/graphcommerce-org/graphcommerce/commit/13524f991a810c1679db49b3b8b4f04f90d0d6c1) - The `<SidebarGallery />` now supports two more props: `disableSticky` and `variantMd` (`default | oneColumn`). ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-### Patch Changes
+- [#2275](https://github.com/graphcommerce-org/graphcommerce/pull/2275) [`29e496c`](https://github.com/graphcommerce-org/graphcommerce/commit/29e496ca815d102ac7952dc81c6c4ab9e164d031) - Prevent `<ScrollerThumbnail />` from scrolling the page horizontally. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-- [#2297](https://github.com/graphcommerce-org/graphcommerce/pull/2297) [`e41cb6f`](https://github.com/graphcommerce-org/graphcommerce/commit/e41cb6fcdde95629d29c03b1a700c6097f00c901) - Prevent gallery thunbnails from scrolling when opening or closing a layout overlay ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2297](https://github.com/graphcommerce-org/graphcommerce/pull/2297) [`e41cb6f`](https://github.com/graphcommerce-org/graphcommerce/commit/e41cb6fcdde95629d29c03b1a700c6097f00c901) - Prevent gallery thumbnails from scrolling when opening or closing a layout overlay. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 8.1.0-canary.20
-
-### Patch Changes
-
-- [#2246](https://github.com/graphcommerce-org/graphcommerce/pull/2246) [`13524f9`](https://github.com/graphcommerce-org/graphcommerce/commit/13524f991a810c1679db49b3b8b4f04f90d0d6c1) - SidebarGallery now supports two more props disableSticky and variantMd default|oneColumn ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 8.1.0-canary.16
-
-### Patch Changes
-
-- [#2275](https://github.com/graphcommerce-org/graphcommerce/pull/2275) [`29e496c`](https://github.com/graphcommerce-org/graphcommerce/commit/29e496ca815d102ac7952dc81c6c4ab9e164d031) - Prevent ScrollerThumbnail from scrolling the page horizontally ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 8.0.4
 
@@ -442,7 +458,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'

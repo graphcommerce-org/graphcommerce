@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import yaml from 'js-yaml'
 import { demoConfig } from '../../../src/config/demoConfig'
 import { replaceConfigInString } from '../../../src/config/utils/replaceConfigInString'

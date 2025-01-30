@@ -7,7 +7,7 @@ import { useCallback, useEffect, useRef } from 'react'
 import type { UseSearchBoxProps } from 'react-instantsearch-hooks-web'
 import { useHits, useSearchBox } from 'react-instantsearch-hooks-web'
 
-type SearchBoxProps = UseSearchBoxProps & SearchFormProps
+export type SearchBoxProps = UseSearchBoxProps & SearchFormProps
 
 export function SearchBox(props: SearchBoxProps) {
   const { search, textFieldProps, sx = [] } = props

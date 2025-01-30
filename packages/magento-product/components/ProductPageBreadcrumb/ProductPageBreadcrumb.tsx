@@ -6,13 +6,14 @@ import { Breadcrumbs, Link, Typography } from '@mui/material'
 import { productPageCategory } from '../ProductPageCategory/productPageCategory'
 import type { ProductPageBreadcrumbFragment } from './ProductPageBreadcrumb.gql'
 
-type ProductPageBreadcrumbsProps = ProductPageBreadcrumbFragment &
+export type ProductPageBreadcrumbProps = ProductPageBreadcrumbFragment &
   Omit<BreadcrumbsProps, 'children'>
 
 /**
  * @deprecated Please use ProductPageBreadcrumbs
+ * @public
  */
-export function ProductPageBreadcrumb(props: ProductPageBreadcrumbsProps) {
+export function ProductPageBreadcrumb(props: ProductPageBreadcrumbProps) {
   const { categories, name, ...breadcrumbProps } = props
   const prev = usePrevPageRouter()
 

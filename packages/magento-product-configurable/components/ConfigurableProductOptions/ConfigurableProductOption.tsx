@@ -2,7 +2,7 @@ import type { ActionCardItemBase } from '@graphcommerce/ecommerce-ui'
 import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import type { AddProductsToCartFields } from '@graphcommerce/magento-product/components'
 import { useFormAddProductsToCart } from '@graphcommerce/magento-product/components'
-import { SectionHeader, filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, nonNullable, SectionHeader } from '@graphcommerce/next-ui'
 import { useWatch } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import type { SxProps, Theme } from '@mui/material'
@@ -15,28 +15,31 @@ import type {
   ConfigurableOptionValueFragment,
 } from '../ConfigurableOptionValue'
 
-type Props = NonNullable<
+export type ConfigurableProductOptionProps = NonNullable<
   NonNullable<ConfigurableOptionsFragment['configurable_options']>[number]
 > & {
   index: number
   optionIndex: number
+  optionStartLabels?: Record<string, React.ReactNode>
   optionEndLabels?: Record<string, React.ReactNode>
   sx?: SxProps<Theme>
   attribute_code: string
   render: typeof ConfigurableOptionValue
 } & UseConfigurableOptionsSelection
 
-export function ConfigurableProductOption(props: Props) {
+export function ConfigurableProductOption(props: ConfigurableProductOptionProps) {
   const {
     values,
     label,
     index,
     optionIndex,
+    optionStartLabels,
     optionEndLabels,
     sx,
     attribute_code,
     url_key,
     render,
+    __typename,
     ...other
   } = props
   const fieldName = `cartItems.${index}.selected_options.${optionIndex}` as const
@@ -53,7 +56,11 @@ export function ConfigurableProductOption(props: Props) {
     // .slice(0, optionIndex)
     .filter((o) => o !== selectedOption)
 
-  const { configured } = useConfigurableOptionsForSelection({ url_key, selectedOptions })
+  const { configured } = useConfigurableOptionsForSelection({
+    __typename,
+    url_key,
+    selectedOptions,
+  })
 
   const available =
     configured?.configurable_product_options_selection?.options_available_for_selection?.find(
@@ -71,7 +78,7 @@ export function ConfigurableProductOption(props: Props) {
   return (
     <Box key={fieldName} sx={[...(Array.isArray(sx) ? sx : [sx])]}>
       <SectionHeader
-        labelLeft={label}
+        labelLeft={optionStartLabels?.[attribute_code ?? ''] ?? label}
         labelRight={optionEndLabels?.[attribute_code ?? '']}
         sx={{ mt: 0 }}
       />

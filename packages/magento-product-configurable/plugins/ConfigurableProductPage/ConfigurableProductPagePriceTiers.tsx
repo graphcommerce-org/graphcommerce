@@ -14,7 +14,7 @@ export function ProductPagePriceTiers(
   props: PluginProps<ProductPagePriceTiersProps> & AddToCartItemSelector,
 ) {
   const { Prev, product, index, ...rest } = props
-  const variant = useConfigurableSelectedVariant({ url_key: product.url_key, index })
+  const variant = useConfigurableSelectedVariant({ ...product, index })
 
   if (!variant || product.__typename !== 'ConfigurableProduct')
     return <Prev product={product} {...rest} />

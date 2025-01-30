@@ -1,26 +1,50 @@
 # Change Log
 
-## 9.0.0-canary.104
+## 9.0.4-canary.14
 
-## 9.0.0-canary.103
+## 9.0.4-canary.13
+
+## 9.0.4-canary.12
+
+## 9.0.4-canary.11
+
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+### Patch Changes
+
+- [#2470](https://github.com/graphcommerce-org/graphcommerce/pull/2470) [`29e2956`](https://github.com/graphcommerce-org/graphcommerce/commit/29e29562267741c28a181cbf90bd1fe5442d47f6) - Components must have Theme parameter to avoid significant compiler slowdown. ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.0
+
+## 9.0.0
 
 ### Patch Changes
 
 - [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`ef925eb`](https://github.com/graphcommerce-org/graphcommerce/commit/ef925eb3d2c2cb2f03f9797892023015acf18dec) - Let eslint also work for js/mjs files ([@paales](https://github.com/paales))
 
+- [`0acfda7`](https://github.com/graphcommerce-org/graphcommerce/commit/0acfda73760921d74412c8c8bc8e8de5732e1f39) - Move back to eslint 8. ([@paales](https://github.com/paales))
+
+- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`fe8fce7`](https://github.com/graphcommerce-org/graphcommerce/commit/fe8fce7f5a82e227ed4a1992415af73fa7d0bb79) - Added eslint rule: Importing `\*.interceptor` is NOT allowed ([@paales](https://github.com/paales))
+
 - [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`d500643`](https://github.com/graphcommerce-org/graphcommerce/commit/d500643138799b6db1610cb10a1d065d6219d8ea) - Resolve peer dependency issues so we get a clean install ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.63
-
-### Patch Changes
-
-- [`0acfda7`](https://github.com/graphcommerce-org/graphcommerce/commit/0acfda73760921d74412c8c8bc8e8de5732e1f39) - Move back to eslint 8 ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.46
-
-### Patch Changes
-
-- [#2314](https://github.com/graphcommerce-org/graphcommerce/pull/2314) [`fe8fce7`](https://github.com/graphcommerce-org/graphcommerce/commit/fe8fce7f5a82e227ed4a1992415af73fa7d0bb79) - Importing \*.interceptor is NOT allowed ([@paales](https://github.com/paales))
 
 ## 8.0.0
 

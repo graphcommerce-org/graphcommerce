@@ -1,8 +1,8 @@
 import {
   DesktopHeaderBadge,
-  IconSvg,
   extendableComponent,
   iconPerson,
+  IconSvg,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import type { BadgeProps, FabProps as FabPropsType, SxProps, Theme } from '@mui/material'
@@ -11,7 +11,7 @@ import React from 'react'
 import type { UseCustomerSessionReturn } from '../../hooks'
 import { useCustomerAccountCanSignIn, useCustomerSession } from '../../hooks'
 
-type CustomerFabContentProps = {
+export type CustomerFabContentProps = {
   icon?: React.ReactNode
   authHref: string
   guestHref: string

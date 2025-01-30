@@ -1,32 +1,58 @@
 # Change Log
 
-## 9.0.0-canary.104
+## 9.0.4-canary.14
 
-## 9.0.0-canary.103
+## 9.0.4-canary.13
 
-## 9.0.0-canary.80
+## 9.0.4-canary.12
 
-### Minor Changes
+## 9.0.4-canary.11
 
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename experimental_useV2 prop to deprecated_useV1 in useFromGql and enable it by default ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+## 9.0.4-canary.10
 
-## 9.0.0-canary.68
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.2
 
 ### Patch Changes
+
+- [`6b28b60`](https://github.com/graphcommerce-org/graphcommerce/commit/6b28b60db3f4d58b346275dfb8bcbb85744861b9) - Make sure we are correctly selecting the shipping method form when a user selects a previously selected method again. ([@paales](https://github.com/paales))
+
+## 9.0.0
+
+### Major Changes
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - INP improvements: Moved all usages of `useFormPersist` to the `<FormPersist/>` component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
+
+### Patch Changes
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename `experimental_useV2` prop to `deprecated_useV1` in `useFromGql` and enable it by default. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 - [#2340](https://github.com/graphcommerce-org/graphcommerce/pull/2340) [`18691c7`](https://github.com/graphcommerce-org/graphcommerce/commit/18691c71e6940e8baa8f93c3b798be4d6e5a8a9a) - Select the only available shipping method as the current cart shipping method when there is only one shipping method available. ([@LaurensFranken](https://github.com/LaurensFranken))
 
-## 8.1.0-canary.19
+- [#2264](https://github.com/graphcommerce-org/graphcommerce/pull/2264) [`e5291a4`](https://github.com/graphcommerce-org/graphcommerce/commit/e5291a426c57635f69fb9ec44f4abe150f04c9ed) - Prevent rendering `null` when `method_title` is not provided. ([@carlocarels90](https://github.com/carlocarels90))
 
-### Patch Changes
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
 
-- [#2264](https://github.com/graphcommerce-org/graphcommerce/pull/2264) [`e5291a4`](https://github.com/graphcommerce-org/graphcommerce/commit/e5291a426c57635f69fb9ec44f4abe150f04c9ed) - prevent rendering 'null' when method_title is not provided ([@carlocarels90](https://github.com/carlocarels90))
-
-## 8.0.6-canary.2
-
-### Patch Changes
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`49937fd`](https://github.com/graphcommerce-org/graphcommerce/commit/49937fd765338e25899d427ee4d799fa7978faeb) - Allow changing various props for internal components ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 8.0.0
 
@@ -665,7 +691,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'

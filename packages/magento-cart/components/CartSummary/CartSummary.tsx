@@ -1,8 +1,8 @@
 import { useHistoryLink } from '@graphcommerce/framer-next-pages'
-import { SectionContainer, breakpointVal, extendableComponent } from '@graphcommerce/next-ui'
+import { breakpointVal, extendableComponent, SectionContainer } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, Link, Typography, lighten } from '@mui/material'
+import { Box, lighten, Link, Typography } from '@mui/material'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
 import { CartAddressMultiLine } from '../CartAddressMultiLine/CartAddressMultiLine'
@@ -88,7 +88,9 @@ export function CartSummary(props: CartSummaryProps) {
         <Box>
           <SectionContainer
             variantLeft='h5'
-            labelLeft={<Trans id='Confirmation + Track & trace' />}
+            labelLeft={
+              is_virtual ? <Trans id='Confirmation' /> : <Trans id='Confirmation + Track & trace' />
+            }
             sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
           />
           <Typography variant='body1'>{email || ''}</Typography>

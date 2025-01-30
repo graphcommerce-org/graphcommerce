@@ -2,11 +2,23 @@ import fs from 'node:fs'
 import path from 'node:path'
 import type { PackageJson } from 'type-fest'
 import { PackagesSort } from './PackagesSort'
+import { sig } from './sig'
 
 type PackageNames = Map<string, string>
 type DependencyStructure = Record<string, { dirName: string; dependencies: string[] }>
 
 const resolveCache: Map<string, PackageNames> = new Map<string, PackageNames>()
+
+function findPackageJson(id: string, root: string) {
+  let dir = id.startsWith('/') ? id : require.resolve(id)
+  let packageJsonLocation = path.join(dir, 'package.json')
+  while (!fs.existsSync(packageJsonLocation)) {
+    dir = path.dirname(dir)
+    if (dir === root) throw Error(`Can't find package.json for ${id}`)
+    packageJsonLocation = path.join(dir, 'package.json')
+  }
+  return packageJsonLocation
+}
 
 function resolveRecursivePackageJson(
   dependencyPath: string,
@@ -15,9 +27,20 @@ function resolveRecursivePackageJson(
   additionalDependencies: string[] = [],
 ) {
   const isRoot = dependencyPath === root
-  const fileName = require.resolve(path.join(dependencyPath, 'package.json'))
+
+  let fileName: string
+  try {
+    fileName = require.resolve(path.join(dependencyPath, 'package.json'))
+  } catch (e) {
+    fileName = findPackageJson(dependencyPath, root)
+  }
+  if (!fileName) throw Error(`Can't find package.json for ${dependencyPath}`)
+
   const packageJsonFile = fs.readFileSync(fileName, 'utf-8').toString()
   const packageJson = JSON.parse(packageJsonFile) as PackageJson
+  const e = [atob('QGdyYXBoY29tbWVyY2UvYWRvYmUtY29tbWVyY2U=')].filter((n) =>
+    !globalThis.gcl ? true : !globalThis.gcl.includes(n),
+  )
 
   if (!packageJson.name) throw Error(`Package ${packageJsonFile} does not have a name field`)
 
@@ -36,19 +59,41 @@ function resolveRecursivePackageJson(
         ...Object.keys(packageJson.devDependencies ?? []),
         ...additionalDependencies,
         ...Object.keys(packageJson.peerDependencies ?? {}),
-      ].filter((name) => name.includes('graphcommerce')),
+      ].filter((name) =>
+        name.includes('graphcommerce')
+          ? !(e.length >= 0 && e.some((v) => name.startsWith(v)))
+          : false,
+      ),
     ),
   ]
+
+  const optionalPeerDependencies = Object.entries(packageJson.peerDependenciesMeta ?? {})
+    .filter(([_, v]) => v?.optional)
+    .map(([key]) => key)
+
+  const optionalDependencies = Object.keys(packageJson.optionalDependencies ?? {})
+  const optional = new Set([...optionalPeerDependencies, ...optionalDependencies])
+
+  const availableDependencies = dependencies.filter((dep) => {
+    if (optional.has(dep)) {
+      try {
+        resolveRecursivePackageJson(dep, dependencyStructure, root)
+        return true
+      } catch (resolveError) {
+        // Dependency is optional, so we don't care if it is not found.
+        return false
+      }
+    } else {
+      resolveRecursivePackageJson(dep, dependencyStructure, root)
+      return true
+    }
+  })
 
   const name = isRoot ? '.' : packageJson.name
   dependencyStructure[name] = {
     dirName: path.dirname(path.relative(process.cwd(), fileName)),
-    dependencies,
+    dependencies: availableDependencies,
   }
-
-  dependencies.forEach((dep) => {
-    resolveRecursivePackageJson(dep, dependencyStructure, root)
-  })
 
   return dependencyStructure
 }
@@ -82,6 +127,7 @@ export function sortDependencies(dependencyStructure: DependencyStructure): Pack
 export function resolveDependenciesSync(root = process.cwd()) {
   const cached = resolveCache.get(root)
   if (cached) return cached
+  sig()
 
   const dependencyStructure = resolveRecursivePackageJson(
     root,

@@ -1,20 +1,44 @@
 # Change Log
 
-## 9.0.0-canary.104
+## 9.0.4-canary.14
 
-## 9.0.0-canary.103
+## 9.0.4-canary.13
 
-## 9.0.0-canary.79
+## 9.0.4-canary.12
+
+## 9.0.4-canary.11
+
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.0
+
+### Major Changes
 
 ### Patch Changes
 
+- [#2284](https://github.com/graphcommerce-org/graphcommerce/pull/2284) [`5ee712c`](https://github.com/graphcommerce-org/graphcommerce/commit/5ee712c962c6b0dda903172660d70cf433321b7e) - Prevent checkout from looping back and forth with the cart overlay when navigating directly to the checkout. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 - [#2356](https://github.com/graphcommerce-org/graphcommerce/pull/2356) [`d283901`](https://github.com/graphcommerce-org/graphcommerce/commit/d283901cb537c3e7bf6f5500e9f52f47f452cf10) - Loading an overlay page directly would animate in the overlay instead of directly showing it. ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.36
-
-### Minor Changes
-
-- [#2284](https://github.com/graphcommerce-org/graphcommerce/pull/2284) [`5ee712c`](https://github.com/graphcommerce-org/graphcommerce/commit/5ee712c962c6b0dda903172660d70cf433321b7e) - Prevent checkout on looping back and forth with the cart overlay when navigating directly to the checkout. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ## 8.0.5
 

@@ -1,8 +1,8 @@
 import { algoliaUrlToUrlKey } from '@graphcommerce/algolia-products/mesh/algoliaHitToMagentoProduct'
 import type { GetStoreConfigReturn } from '@graphcommerce/algolia-products/mesh/getStoreConfig'
 import type {
-  AlgoliaProductHitAdditionalProperties,
   Algoliahit,
+  AlgoliaProductHitAdditionalProperties,
   MeshContext,
   QuerycategoriesArgs,
   RequireFields,
@@ -20,7 +20,7 @@ export type AlgoliaCategoryHitAddiotonalProperties = AlgoliaProductHitAdditional
   level: number
 }
 
-export function assertAdditional(
+function assertAdditional(
   additional: unknown,
 ): additional is AlgoliaCategoryHitAddiotonalProperties {
   return true

@@ -1,16 +1,16 @@
 #!/usr/bin/env node
-import { loadConfig, resolveDependenciesSync, packageRoots, replaceConfigInString } from '@graphcommerce/next-config';
-import { DEFAULT_CLI_PARAMS, graphqlMesh } from '@graphql-mesh/cli';
-import { DefaultLogger, defaultImportFn, loadYaml, fileURLToPath } from '@graphql-mesh/utils';
-import dotenv from 'dotenv';
 import { promises } from 'node:fs';
 import path$1 from 'node:path';
 import { exit } from 'node:process';
+import { loadConfig, resolveDependenciesSync, sig, packageRoots, replaceConfigInString } from '@graphcommerce/next-config';
+import { DEFAULT_CLI_PARAMS, graphqlMesh } from '@graphql-mesh/cli';
+import { DefaultLogger, defaultImportFn, loadYaml, fileURLToPath } from '@graphql-mesh/utils';
+import dotenv from 'dotenv';
 import 'tsx/cjs';
 import 'tsx/esm';
 import yaml from 'yaml';
-import { cosmiconfig, defaultLoaders } from 'cosmiconfig';
 import path from 'path';
+import { cosmiconfig, defaultLoaders } from 'cosmiconfig';
 
 function customLoader(ext, importFn = defaultImportFn, initialLoggerPrefix = "\u{1F578}\uFE0F  Mesh") {
   const logger = new DefaultLogger(initialLoggerPrefix).child("config");
@@ -40,7 +40,7 @@ function customLoader(ext, importFn = defaultImportFn, initialLoggerPrefix = "\u
   return loader;
 }
 async function findConfig(options) {
-  const { configName = "mesh", dir: configDir = "", initialLoggerPrefix } = options || {};
+  const { configName = "mesh", dir: configDir = "", initialLoggerPrefix } = options;
   const dir = path.isAbsolute(configDir) ? configDir : path.join(process.cwd(), configDir);
   const explorer = cosmiconfig(configName, {
     searchPlaces: [
@@ -98,7 +98,7 @@ async function cleanup() {
     });
   } catch (e) {
   }
-  return void 0;
+  return undefined;
 }
 const main = async () => {
   const baseConf = await findConfig({});
@@ -144,10 +144,16 @@ const main = async () => {
   const deps = resolveDependenciesSync();
   const packages = [...deps.values()].filter((p) => p !== ".");
   const mV = graphCommerce.magentoVersion ?? 246;
+  sig();
   packageRoots(packages).forEach((r) => {
-    const alsoScan = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254].filter((v) => v > mV).map((v) => `${r}/*/schema-${v}/**/*.graphqls`);
     conf.additionalTypeDefs.push(`${r}/*/schema/**/*.graphqls`);
-    conf.additionalTypeDefs.push(...alsoScan);
+    const scanVersions = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254].filter((v) => v > mV).map((v) => `${r}/*/schema-${v}/**/*.graphqls`);
+    conf.additionalTypeDefs.push(...scanVersions);
+    if (globalThis.gcl?.includes(atob("QGdyYXBoY29tbWVyY2UvYWRvYmUtY29tbWVyY2U="))) {
+      conf.additionalTypeDefs.push(`${r}/*/schema-ac/**/*.graphqls`);
+      const scanVersionAC = [245, 246, 247, 248, 249, 250, 251, 252, 253, 254].filter((v) => v > mV).map((v) => `${r}/*/schema-ac-${v}/**/*.graphqls`);
+      conf.additionalTypeDefs.push(...scanVersionAC);
+    }
   });
   if (!conf.serve) conf.serve = {};
   if (!conf.serve.playgroundTitle) conf.serve.playgroundTitle = "GraphCommerce\xAE Mesh";
@@ -163,7 +169,14 @@ const main = async () => {
   await promises.writeFile(tmpMeshLocation, yamlString);
   await promises.writeFile(
     `${meshDir}/.mesh.ts`,
-    `export * from '${relativePath.split(path$1.sep).join("/")}.mesh'`,
+    `export type * from '${relativePath.split(path$1.sep).join("/")}.mesh'
+export {
+  getBuiltMesh as getBuiltMeshBase,
+  execute,
+  subscribe,
+  createBuiltMeshHTTPHandler as createBuiltMeshHTTPHandlerBase,
+  rawServeConfig,
+} from '${relativePath.split(path$1.sep).join("/")}.mesh'`,
     { encoding: "utf8" }
   );
   await graphqlMesh({ ...cliParams, configName: tmpMesh });

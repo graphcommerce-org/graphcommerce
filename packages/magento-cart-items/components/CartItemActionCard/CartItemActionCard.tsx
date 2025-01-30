@@ -1,6 +1,6 @@
 import { Image } from '@graphcommerce/image'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart/hooks'
-import type { ProductLinkProps } from '@graphcommerce/magento-product'
+import { productLink, productPath, type ProductLinkProps } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
 import { ActionCard, actionCardImageSizes, filterNonNullableKeys } from '@graphcommerce/next-ui'
@@ -15,6 +15,10 @@ export type CartItemActionCardProps = { cartItem: CartItemFragment; readOnly?: b
   'value' | 'image' | 'price' | 'title' | 'action'
 >
 
+/**
+ * @deprecated
+ * @public
+ */
 export function productEditLink(link: ProductLinkProps) {
   return `/checkout/item/${link.url_key}`
 }
@@ -103,7 +107,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
       title={
         url_key ? (
           <Link
-            href={url_key}
+            href={productPath(url_key)}
             underline='hover'
             sx={{
               color: 'inherit',

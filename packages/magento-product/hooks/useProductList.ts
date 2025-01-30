@@ -1,6 +1,6 @@
 import { debounce } from '@graphcommerce/ecommerce-ui'
 import type { ApolloClient } from '@graphcommerce/graphql'
-import { getInContextInput, useInContextQuery, useQuery } from '@graphcommerce/graphql'
+import { getPrivateQueryContext, usePrivateQuery, useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { showPageLoadIndicator } from '@graphcommerce/next-ui'
 import { useEventCallback } from '@mui/material'
@@ -16,16 +16,16 @@ import type {
 } from '../components/ProductList/ProductList.gql'
 import { ProductListDocument } from '../components/ProductList/ProductList.gql'
 import type { CategoryDefaultFragment } from '../components/ProductListItems/CategoryDefault.gql'
+import { useRouterFilterParams } from '../components/ProductListItems/filteredProductList'
 import type { ProductListParams } from '../components/ProductListItems/filterTypes'
 import { toProductListParams } from '../components/ProductListItems/filterTypes'
-import { useRouterFilterParams } from '../components/ProductListItems/filteredProductList'
 import {
   categoryDefaultsToProductListFilters,
   productListApplyCategoryDefaults,
   useProductListApplyCategoryDefaults,
 } from '../components/ProductListItems/productListApplyCategoryDefaults'
 
-const productListQueries: Array<Promise<any>> = []
+const productListQueries: Array<Promise<unknown>> = []
 
 type Next = Parameters<NonNullable<FilterFormProviderProps['handleSubmit']>>[1]
 
@@ -41,7 +41,7 @@ export const prefetchProductList = debounce(
 
     showPageLoadIndicator.set(true)
 
-    const context = getInContextInput(client)
+    const context = getPrivateQueryContext(client)
     const productList = client.query({
       query: ProductListDocument,
       variables: { ...variables, context },
@@ -103,8 +103,8 @@ export function useProductList<
   const { params, shallow } = useRouterFilterParams(props)
   const variables = useProductListApplyCategoryDefaults(params, category)
 
-  const result = useInContextQuery(ProductListDocument, { variables, skip: !shallow }, props)
-  const filters = useInContextQuery(
+  const result = usePrivateQuery(ProductListDocument, { variables, skip: !shallow }, props)
+  const filters = usePrivateQuery(
     ProductFiltersDocument,
     { variables: categoryDefaultsToProductListFilters(variables), skip: !shallow },
     props,

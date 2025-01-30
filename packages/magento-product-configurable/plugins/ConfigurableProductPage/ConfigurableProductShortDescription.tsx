@@ -15,7 +15,7 @@ export function ProductShortDescription(
   props: PluginProps<ProductShortDescriptionProps> & AddToCartItemSelector,
 ) {
   const { Prev, product, ...rest } = props
-  const variant = useConfigurableSelectedVariant({ url_key: product.url_key, index: 0 })
+  const variant = useConfigurableSelectedVariant({ ...product, index: 0 })
 
   return (
     <Prev

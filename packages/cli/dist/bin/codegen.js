@@ -1,9 +1,9 @@
 #!/usr/bin/env node
+import fs from 'node:fs/promises';
+import path from 'node:path';
 import { resolveDependenciesSync, packageRoots } from '@graphcommerce/next-config';
 import { cliError, loadCodegenConfig, runCli } from '@graphql-codegen/cli';
 import dotenv from 'dotenv';
-import fs from 'node:fs/promises';
-import path from 'node:path';
 import { rimraf } from 'rimraf';
 import yaml from 'yaml';
 
@@ -19,7 +19,7 @@ async function cleanup() {
     });
   } catch (e) {
   }
-  return void 0;
+  return undefined;
 }
 function appendDocumentLocations(conf, packages) {
   const documents = Array.isArray(conf.documents) ? conf.documents : [conf.documents];

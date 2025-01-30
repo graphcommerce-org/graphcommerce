@@ -8,7 +8,7 @@ export type ApolloErrorSnackbarProps = {
 } & Pick<ErrorSnackbarProps, 'action' | 'onClose'>
 
 export function ApolloErrorSnackbar(props: ApolloErrorSnackbarProps) {
-  const { error, action, ...passedProps } = props
+  const { error, ...passedProps } = props
 
   if (!error) return null
 

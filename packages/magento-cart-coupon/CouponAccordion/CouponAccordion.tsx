@@ -1,19 +1,19 @@
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import {
-  IconSvg,
   breakpointVal,
   extendableComponent,
   iconChevronDown,
+  IconSvg,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import type { SxProps, Theme } from '@mui/material'
+import type { AccordionProps, SxProps, Theme } from '@mui/material'
 import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
 import { useState } from 'react'
 import { ApplyCouponForm } from '../ApplyCouponForm/ApplyCouponForm'
 import { RemoveCouponForm } from '../RemoveCouponForm/RemoveCouponForm'
 import { GetCouponDocument } from './GetCoupon.gql'
 
-export type CouponAccordionProps = { sx?: SxProps<Theme> }
+export type CouponAccordionProps = Omit<AccordionProps, 'expanded' | 'onChange' | 'children'>
 
 type OwnerState = { open: boolean; disabled: boolean }
 const name = 'CouponAccordion'
@@ -21,7 +21,7 @@ const parts = ['accordion', 'button', 'couponFormWrap'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function CouponAccordion(props: CouponAccordionProps) {
-  const { sx = [] } = props
+  const { sx = [], ...rest } = props
   const { data } = useCartQuery(GetCouponDocument)
   const [open, setOpen] = useState<boolean>(false)
 
@@ -53,6 +53,7 @@ export function CouponAccordion(props: CouponAccordionProps) {
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
+      {...rest}
     >
       <AccordionSummary
         onClick={(e) => e.preventDefault()}

@@ -6,6 +6,7 @@ export type TimeFormatProps = Omit<
   'dateStyle' | 'month' | 'day' | 'era' | 'weekday' | 'year'
 >
 
+/** @public */
 export function TimeFormat(props: TimeFormatProps) {
   return <DateTimeFormat dateStyle={undefined} {...props} />
 }

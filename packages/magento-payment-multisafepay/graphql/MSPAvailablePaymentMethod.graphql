@@ -4,8 +4,4 @@ fragment MSPAvailablePaymentMethod on AvailablePaymentMethod
     image
     is_preselected
   }
-  multisafepay_available_issuers {
-    code
-    description
-  }
 }

@@ -1,46 +1,68 @@
 # Change Log
 
-## 9.0.0-canary.104
+## 9.0.4-canary.14
 
-## 9.0.0-canary.103
+## 9.0.4-canary.13
 
-## 9.0.0-canary.80
+## 9.0.4-canary.12
 
-### Minor Changes
-
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename experimental_useV2 prop to deprecated_useV1 in useFromGql and enable it by default ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+## 9.0.4-canary.11
 
 ### Patch Changes
 
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`97522bd`](https://github.com/graphcommerce-org/graphcommerce/commit/97522bdb2505e6b57de98ea02ca252341ac69443) - Solve issue where the CartEditForm would temporarily show an empty cart after saving. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`875fbca`](https://github.com/graphcommerce-org/graphcommerce/commit/875fbcab9a26db8a33eca7cc9a41847c24cd8381) - Solve issue where the CartItem href wouldn't be correct ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.51
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`dfd6359`](https://github.com/graphcommerce-org/graphcommerce/commit/dfd63593f31bd69d255a69dd7e9cb5471428c685) - Exported cartItemToCartItemInput so it can be extended with plugins ([@paales](https://github.com/paales))
 
-### Minor Changes
+## 9.0.4-canary.10
 
-- [#2322](https://github.com/graphcommerce-org/graphcommerce/pull/2322) [`4d08a2b`](https://github.com/graphcommerce-org/graphcommerce/commit/4d08a2bd8c1919bd85b18e8e856775d18fb67e00) - Rename configurable_customizable back to customizable_options ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+## 9.0.4-canary.9
 
-## 8.1.0-canary.45
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.1
 
 ### Patch Changes
 
-- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`c30ac07`](https://github.com/graphcommerce-org/graphcommerce/commit/c30ac07d1e9aee5fb3df483404d8a8ca853c93ce) - Make sure the edit cart item isn't shown for an order ([@paales](https://github.com/paales))
+- [#2461](https://github.com/graphcommerce-org/graphcommerce/pull/2461) [`fbe78be`](https://github.com/graphcommerce-org/graphcommerce/commit/fbe78be4e6b46745384354b6da26151c9d269b18) - Solve issue where the cart item edit form wasn't aligned in the middle ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.20
+## 9.0.0
 
-### Minor Changes
+### Major Changes
 
 - [#2246](https://github.com/graphcommerce-org/graphcommerce/pull/2246) [`13524f9`](https://github.com/graphcommerce-org/graphcommerce/commit/13524f991a810c1679db49b3b8b4f04f90d0d6c1) - Added the ability to edit cart items with full support for all product types and custom options ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ### Patch Changes
 
-- [#2246](https://github.com/graphcommerce-org/graphcommerce/pull/2246) [`fc5c04d`](https://github.com/graphcommerce-org/graphcommerce/commit/fc5c04d4a2c0301be7d3cc983d9b31f6fcaf6fe6) - Create useRemoveItemFromCart hook to allow for reuse while keeping compatibility with plugins. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2322](https://github.com/graphcommerce-org/graphcommerce/pull/2322) [`4d08a2b`](https://github.com/graphcommerce-org/graphcommerce/commit/4d08a2bd8c1919bd85b18e8e856775d18fb67e00) - Rename `configurable_customizable` back to `customizable_options`. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 8.1.0-canary.17
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename `experimental_useV2` prop to `deprecated_useV1` in `useFromGql` and enable it by default. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-### Minor Changes
+- [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed `useMediaQuery` from the `<WishlistItemActionCard />` and `<CartItemActionCard />` and replaced it with a new responsive `size` prop. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-- [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed useMediaQuery from the wishlist and cart ItemActionCard and replaced it with a new responsive size prop. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`c30ac07`](https://github.com/graphcommerce-org/graphcommerce/commit/c30ac07d1e9aee5fb3df483404d8a8ca853c93ce) - Make sure the edit cart item isn't shown for an order ([@paales](https://github.com/paales))
+
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`97522bd`](https://github.com/graphcommerce-org/graphcommerce/commit/97522bdb2505e6b57de98ea02ca252341ac69443) - Solve issue where the `<CartEditForm />` would temporarily show an empty cart after saving. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2246](https://github.com/graphcommerce-org/graphcommerce/pull/2246) [`fc5c04d`](https://github.com/graphcommerce-org/graphcommerce/commit/fc5c04d4a2c0301be7d3cc983d9b31f6fcaf6fe6) - Create `useRemoveItemFromCart` hook to allow for reuse while keeping compatibility with plugins. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.1
 
@@ -698,7 +720,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'
