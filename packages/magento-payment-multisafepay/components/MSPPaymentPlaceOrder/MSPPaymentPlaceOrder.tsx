@@ -35,6 +35,7 @@ export function MSPPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
 
       if (!selectedMethod?.code) {
         throwGenericPlaceOrderError()
+        return
       }
 
       if (url?.error || !url?.payment_url) {
@@ -46,7 +47,7 @@ export function MSPPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
       }
 
       await lock({
-        method: selectedMethod.code,
+        method: selectedMethod?.code ?? '',
         order_number: result.data.placeOrder.order.order_number,
       })
 
@@ -64,9 +65,9 @@ export function MSPPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
 
   return (
     <form onSubmit={submit}>
-      {form.data?.placeOrder?.order.multisafepay_payment_url.error && (
+      {form.data?.placeOrder?.order?.multisafepay_payment_url.error && (
         <ErrorSnackbar open>
-          <>{form.data?.placeOrder?.order.multisafepay_payment_url.error}</>
+          <>{form.data?.placeOrder?.order?.multisafepay_payment_url?.error}</>
         </ErrorSnackbar>
       )}
       <ApolloErrorSnackbar error={restoreResult.error} />
