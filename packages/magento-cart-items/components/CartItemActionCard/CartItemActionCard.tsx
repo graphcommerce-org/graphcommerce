@@ -68,7 +68,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             [theme.breakpoints.down('md')]: { px: 0 },
           },
           '& .ActionCard-end': {
-            justifyContent: readOnly ? 'center' : 'space-between',
+            justifyContent: 'space-between',
           },
           '& .ActionCard-action': {
             pr: readOnly ? 0 : theme.spacings.xs,
