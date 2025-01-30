@@ -10,6 +10,7 @@ export type CartTotalsProps = OwnerProps & {
   sx?: SxProps<Theme>
   additionalSubtotals?: React.ReactNode
   additionalTotals?: React.ReactNode
+  readOnly?: boolean
 }
 
 type OwnerProps = { containerMargin?: boolean }
