@@ -91,9 +91,7 @@ function AccountIndexPage() {
               subtitle={
                 latestOrder ? (
                   <>
-                    <RelativeToTimeFormat styleFormat='short'>
-                      {latestOrder?.order_date}
-                    </RelativeToTimeFormat>
+                    <RelativeToTimeFormat styleFormat='short' date={latestOrder?.order_date} />
                     {', '}
                     {latestOrder?.items && <OrderStateLabelInline {...latestOrder} />}
                   </>

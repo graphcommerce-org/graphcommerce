@@ -102,7 +102,7 @@ export function DownloadsPage() {
                     <Box>{item.remaining_downloads}</Box>
                     <Box>{item.status}</Box>
                     <Box>
-                      <RelativeToTimeFormat>{item.date}</RelativeToTimeFormat>
+                      <RelativeToTimeFormat date={item.date} />
                     </Box>
                   </React.Fragment>
                 ))}
