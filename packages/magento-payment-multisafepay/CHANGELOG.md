@@ -1,5 +1,13 @@
 # @graphcommerce/magento-payment-multisafepay
 
+## 9.0.4-canary.14
+
+### Patch Changes
+
+- [#2495](https://github.com/graphcommerce-org/graphcommerce/pull/2495) [`cd386e3`](https://github.com/graphcommerce-org/graphcommerce/commit/cd386e3bce61256bab46cca88aacc7c4aa4ac415) - Remove issuers field from MultiSafePay in preparation for iDeal 2. Please not that this change requires an upgrade to the Magento module as well. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2495](https://github.com/graphcommerce-org/graphcommerce/pull/2495) [`0fc9805`](https://github.com/graphcommerce-org/graphcommerce/commit/0fc98051b87cd7fc0363609b50211d2d7382a84d) - Remove issuer list from ideal payment method ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.4-canary.13
 
 ## 9.0.4-canary.12

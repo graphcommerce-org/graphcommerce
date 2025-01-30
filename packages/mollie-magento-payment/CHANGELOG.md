@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.4-canary.14
+
+### Patch Changes
+
+- [#2495](https://github.com/graphcommerce-org/graphcommerce/pull/2495) [`0fc9805`](https://github.com/graphcommerce-org/graphcommerce/commit/0fc98051b87cd7fc0363609b50211d2d7382a84d) - Remove issuer list from ideal payment method ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.4-canary.13
 
 ## 9.0.4-canary.12

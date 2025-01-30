@@ -1,5 +1,11 @@
 # @graphcommerce/algolia-personalization
 
+## 9.0.4-canary.14
+
+### Patch Changes
+
+- [#2495](https://github.com/graphcommerce-org/graphcommerce/pull/2495) [`d90f7f5`](https://github.com/graphcommerce-org/graphcommerce/commit/d90f7f5889c58fbd982581a13b398a0978f901a8) - Solve issue where the useSendEventAlgolia hook would sometimes throw an error during purchase ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.0.4-canary.13
 
 ## 9.0.4-canary.12
