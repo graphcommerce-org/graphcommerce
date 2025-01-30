@@ -11,7 +11,7 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
   baseConfig,
   graphCommerceConfig,
 ) => {
-  if (import.meta.graphCommerce.magentoVersion >= 247) {
+  if (graphCommerceConfig.magentoVersion >= 246) {
     return prev(baseConfig, graphCommerceConfig)
   }
 
@@ -20,7 +20,7 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
       ...baseConfig,
       additionalResolvers: [
         ...(baseConfig.additionalResolvers ?? []),
-        '@graphcommerce/magento-customer/mesh/magentoOrderItemResolvers.ts',
+        '@graphcommerce/magento-graphql/mesh/magentoOrdersResolvers.ts',
       ],
     },
     graphCommerceConfig,

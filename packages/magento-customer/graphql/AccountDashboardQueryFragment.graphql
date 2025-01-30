@@ -3,7 +3,12 @@ fragment AccountDashboardQueryFragment on Query {
     ...AccountDashboardCustomer
     firstname
     lastname
-    orders {
+    orders(
+      pageSize: 1
+      currentPage: 1
+      sort: { sort_direction: DESC, sort_field: CREATED_AT }
+      scope: GLOBAL
+    ) {
       items {
         ...OrderCard
       }
