@@ -41,7 +41,7 @@ export function CustomerNewsletterToggle(props: CustomerNewsletterToggleProps) {
       component='form'
       onSubmit={submit}
       noValidate
-      sx={sxx({ display: 'flex', flexDirection: 'column', alignItems: 'end' }, sx)}
+      sx={sxx({ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 2 }, sx)}
     >
       <FormAutoSubmit control={control} submit={submit} />
       <Controller
