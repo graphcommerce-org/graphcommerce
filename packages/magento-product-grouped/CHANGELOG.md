@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.15
+
+### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`1d87dc1`](https://github.com/graphcommerce-org/graphcommerce/commit/1d87dc1ac00010df721547d6e62cb49f5bd450eb) - Use narrower types for grouped products ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.14
 
 ## 9.0.4-canary.13

@@ -1,5 +1,13 @@
 # @graphcommerce/misc
 
+## 9.1.0-canary.15
+
+### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`cff4172`](https://github.com/graphcommerce-org/graphcommerce/commit/cff417226b70fe84023afbe236fa61660ac2ceea) - When the added product can't be found, make sure to render just 'Product' instead of an empty string and show a cart icon instead of a placeholder. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`7fbdfd5`](https://github.com/graphcommerce-org/graphcommerce/commit/7fbdfd5cd0d11c6f7a11634891ec66f47d074e5a) - Make sure the maxWidth of the newsletter subscribe box is sm instead of ms, making it too wide. ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.14
 
 ## 9.0.4-canary.13

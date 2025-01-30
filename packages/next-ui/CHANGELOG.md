@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.1.0-canary.15
+
+### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`a34c276`](https://github.com/graphcommerce-org/graphcommerce/commit/a34c276b69f9ff1a727023eef64f2db8b196864c) - Added lots of missing icon exports ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`2a09ca9`](https://github.com/graphcommerce-org/graphcommerce/commit/2a09ca933e0de88dc32dac5ae62f41b0e5953359) - Intl components now accept the sx prop. `<RelativeToTimeFormat />` now expects a date prop instead of children. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`05a1744`](https://github.com/graphcommerce-org/graphcommerce/commit/05a1744ddeca31c4d24128fd5cd2513a7c491d5b) - Added search params to NextLink whenever present ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.14
 
 ## 9.0.4-canary.13

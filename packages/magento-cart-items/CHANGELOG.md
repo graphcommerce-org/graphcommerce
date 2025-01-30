@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.15
+
+### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`a482084`](https://github.com/graphcommerce-org/graphcommerce/commit/a482084d34e5e38e19cf6afbad87cd6eda67e858) - Currency wasn't set properly while rendering custom options for cart items that had a different currency than the current store. ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.14
 
 ## 9.0.4-canary.13

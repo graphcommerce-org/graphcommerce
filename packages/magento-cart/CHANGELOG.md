@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.1.0-canary.15
+
+### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`4cde990`](https://github.com/graphcommerce-org/graphcommerce/commit/4cde990dbeecdba8a00d0e34a1095fb14d8a0ad6) - When the cart totals are updated via a mutation, make sure to also fetch the id when the query is used so that automatically updates. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`7ae2909`](https://github.com/graphcommerce-org/graphcommerce/commit/7ae2909d57e58f00f18acb198028c601ccd857c5) - CartTotals now accepts a readOnly prop to handle plugins showing information based on that prop ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`b6f76b6`](https://github.com/graphcommerce-org/graphcommerce/commit/b6f76b61f235d3336d8d296f1bed61c9f5daf325) - Solve issue where available_payment_methods would give an apollo client error that it couldn’t be properly merged ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.14
 
 ## 9.0.4-canary.13

@@ -1,5 +1,16 @@
 # Change Log
 
+## 9.1.0-canary.15
+
+### Minor Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`01ba1a7`](https://github.com/graphcommerce-org/graphcommerce/commit/01ba1a73c86778ea9b34059ec092723b4a56b92b) - Improved Downloadable products functionality:
+
+  - Account Dashboard Link and Download Page
+  - Download samples / linkSamples and links from the backend.
+  - CartItem edit functionality for the DownloadableCartItem
+  - Dynamic ProductPagePrice for downloadable options ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.14
 
 ## 9.0.4-canary.13

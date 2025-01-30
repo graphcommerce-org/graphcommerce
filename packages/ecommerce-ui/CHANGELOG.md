@@ -1,5 +1,11 @@
 # @graphcommerce/ecommerce-ui
 
+## 9.1.0-canary.15
+
+### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`2d22429`](https://github.com/graphcommerce-org/graphcommerce/commit/2d2242932b7e07fa970c1dae1685487832f864d7) - Always log the networkError during development to the console. ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.14
 
 ## 9.0.4-canary.13

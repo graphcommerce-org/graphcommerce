@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.1.0-canary.15
+
+### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`53b896e`](https://github.com/graphcommerce-org/graphcommerce/commit/53b896e2ed9de6d0ab96b4426976c6b90dd75294) - Allow passing children to CustomerNewsletterToggle ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`6c4f642`](https://github.com/graphcommerce-org/graphcommerce/commit/6c4f642100c7e88a6f60f0962a3af5d6d68d90d8) - Use CustomerNewsletterToggle whenever possible ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.14
 
 ## 9.0.4-canary.13

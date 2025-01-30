@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.15
+
+### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`db56933`](https://github.com/graphcommerce-org/graphcommerce/commit/db569336dddd3e955ff0b5b00cafa25079f1adee) - Implemented order sorting for account overview and account list and implement custom resolver for Magento 2.4.5 (which is slow but works). ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.14
 
 ## 9.0.4-canary.13

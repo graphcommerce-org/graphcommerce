@@ -1,5 +1,23 @@
 # Change Log
 
+## 9.1.0-canary.15
+
+### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`0cb3ace`](https://github.com/graphcommerce-org/graphcommerce/commit/0cb3aceb09967493ecdd5040446447ff32cc3f43) - Created a AccountDashboardQueryFragment instead of only a query to allow for adding customerDownloadableProducts to the dashboard query ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`c1f04dc`](https://github.com/graphcommerce-org/graphcommerce/commit/c1f04dcb4ddd621361e6c930fb42afae0aabe9f9) - Migrate to default OrderItem resolver and remove useOrderCardItemImages as OrderItem now returns a product. Add a custom resolver for 2.4.5 and 2.4.6 that implements the functionality for older versions. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`c1f04dc`](https://github.com/graphcommerce-org/graphcommerce/commit/c1f04dcb4ddd621361e6c930fb42afae0aabe9f9) - Created a refactored the AccountOrders page and refactored the OrderCard. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`db56933`](https://github.com/graphcommerce-org/graphcommerce/commit/db569336dddd3e955ff0b5b00cafa25079f1adee) - Implemented order sorting for account overview and account list and implement custom resolver for Magento 2.4.5 (which is slow but works). ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`db56933`](https://github.com/graphcommerce-org/graphcommerce/commit/db569336dddd3e955ff0b5b00cafa25079f1adee) - Use OrderStateLabel in my account instead of OrderStateLabelInline and deprecate that one. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`dc387da`](https://github.com/graphcommerce-org/graphcommerce/commit/dc387da4c32585c251fe9dec90aa010e2a435df5) - OrderTotals/OrderDetails now only renders addres information if available ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`623e993`](https://github.com/graphcommerce-org/graphcommerce/commit/623e993579b05e053d2d2f29684649cd4f4586de) - `<WaitForCustomer />` now accepts all props of the FullPageMessage ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.14
 
 ## 9.0.4-canary.13
