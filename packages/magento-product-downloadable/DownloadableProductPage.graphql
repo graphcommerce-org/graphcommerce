@@ -1,3 +1,0 @@
-query DownloadableProductPage($urlKey: String) {
-  ...ProductPageDownloadableQueryFragment
-}
