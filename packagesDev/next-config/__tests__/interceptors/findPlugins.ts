@@ -201,6 +201,38 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "cartItemToCartItemInput",
+        "sourceModule": "@graphcommerce/magento-product-downloadable/plugins/Downloadable_cartItemToCartItemInput",
+        "targetExport": "cartItemToCartItemInput",
+        "targetModule": "@graphcommerce/magento-cart-items",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "ProductPagePrice",
+        "sourceModule": "@graphcommerce/magento-product-downloadable/plugins/DownloadableProductPagePrice",
+        "targetExport": "ProductPagePrice",
+        "targetModule": "@graphcommerce/magento-product",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "CartItemActionCard",
+        "sourceModule": "@graphcommerce/magento-product-downloadable/plugins/DownloadableCartItemActionCard",
+        "targetExport": "CartItemActionCard",
+        "targetModule": "@graphcommerce/magento-cart-items",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "AccountMenuItem",
+        "sourceModule": "@graphcommerce/magento-product-downloadable/plugins/DownloadableAccountMenuItem",
+        "targetExport": "AccountMenuItem",
+        "targetModule": "@graphcommerce/magento-customer",
+        "type": "component",
+      },
+      {
+        "enabled": true,
         "sourceExport": "CartItemActionCard",
         "sourceModule": "@graphcommerce/magento-product-bundle/plugins/BundleCartItemActionCard",
         "targetExport": "CartItemActionCard",
@@ -534,6 +566,22 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "meshConfig",
+        "sourceModule": "@graphcommerce/magento-graphql/plugins/magentoOrders",
+        "targetExport": "meshConfig",
+        "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "meshConfig",
+        "sourceModule": "@graphcommerce/magento-graphql/plugins/magentoOrderItemMesh",
+        "targetExport": "meshConfig",
+        "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
+        "type": "function",
+      },
+      {
+        "enabled": true,
         "sourceExport": "graphqlConfig",
         "sourceModule": "@graphcommerce/magento-graphql/plugins/magentoGraphqlConfig",
         "targetExport": "graphqlConfig",
@@ -550,7 +598,8 @@ it('finds plugins', () => {
       },
     ]
   `)
-  expect(disabled).toMatchInlineSnapshot(`
+  expect(disabled).toMatchInlineSnapshot(
+    `
     [
       {
         "enabled": false,
@@ -751,5 +800,6 @@ it('finds plugins', () => {
         "type": "component",
       },
     ]
-  `)
+  `,
+  )
 })
