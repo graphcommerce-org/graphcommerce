@@ -2,7 +2,6 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   useCustomerQuery,
   WaitForCustomer,
-  useOrderCardItemImages,
   OrderDetails,
   OrderTotals,
   OrderItems,
@@ -38,50 +37,50 @@ function OrderDetailPage() {
     variables: { orderNumber: orderNumber as string },
     skip: !orderNumber,
   })
-  const { data } = orders
-  const images = useOrderCardItemImages(data?.customer?.orders)
-  const order = data?.customer?.orders?.items?.[0]
+  const order = orders.data?.customer?.orders?.items?.[0]
 
   return (
-    <WaitForCustomer waitFor={orders}>
+    <>
       <LayoutOverlayHeader primary={order && <ReorderItems order={order} />}>
         <LayoutTitle size='small' component='span' icon={iconBox}>
           <Trans>Order #{orderNumber}</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
-      <Container maxWidth='md'>
-        {(!orderNumber || !order) && (
-          <IconHeader src={iconBox} size='large'>
-            <Trans>Order not found</Trans>
-          </IconHeader>
-        )}
+      <WaitForCustomer waitFor={[orders, router.isReady]} sx={{ height: '100%' }}>
+        <Container maxWidth='md'>
+          {(!orderNumber || !order) && (
+            <IconHeader src={iconBox} size='large'>
+              <Trans>Order not found</Trans>
+            </IconHeader>
+          )}
 
-        <LayoutTitle
-          icon={iconBox}
-          gutterBottom={false}
-          sx={(theme) => ({ mb: theme.spacings.xxs })}
-        >
-          <Trans>Order #{orderNumber}</Trans>
-        </LayoutTitle>
+          {orderNumber && order && (
+            <>
+              <LayoutTitle
+                icon={iconBox}
+                gutterBottom={false}
+                sx={(theme) => ({ mb: theme.spacings.xxs })}
+              >
+                <Trans>Order #{orderNumber}</Trans>
+              </LayoutTitle>
 
-        {orderNumber && order && (
-          <>
-            <PageMeta
-              title={i18n._(/* i18n */ 'Order #{orderNumber}', { orderNumber })}
-              metaRobots={['noindex']}
-            />
-            <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
-              <OrderStateLabel {...order} />
-            </Typography>
-            <OrderDetails {...order} />
-            <OrderItems {...order} images={images} />
-            <OrderTotals {...order} />
+              <PageMeta
+                title={i18n._(/* i18n */ 'Order #{orderNumber}', { orderNumber })}
+                metaRobots={['noindex']}
+              />
+              <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
+                <OrderStateLabel {...order} />
+              </Typography>
+              <OrderDetails {...order} />
+              <OrderItems {...order} />
+              <OrderTotals {...order} />
 
-            <CancelOrderForm order={order} />
-          </>
-        )}
-      </Container>
-    </WaitForCustomer>
+              <CancelOrderForm order={order} />
+            </>
+          )}
+        </Container>
+      </WaitForCustomer>
+    </>
   )
 }
 

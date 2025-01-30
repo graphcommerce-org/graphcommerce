@@ -40,7 +40,7 @@ export function OrderItem(props: OrderItemProps) {
     product_sale_price,
     quantity_ordered,
     product_name,
-    thumbnail,
+    product,
   } = props
   const productLink = useProductLink({
     __typename: 'SimpleProduct' as const,
@@ -94,12 +94,12 @@ export function OrderItem(props: OrderItemProps) {
       <Box className={classes.picture} sx={{ gridArea: 'picture' }}>
         <Box href={productLink} component={NextLink} className={classes.productLink}>
           <Box className={classes.pictureSpacing}>
-            {thumbnail?.url && thumbnail?.label && (
+            {product?.thumbnail?.url && product.thumbnail?.label && (
               <Image
-                alt={thumbnail?.label ?? ''}
+                alt={product.thumbnail?.label ?? ''}
                 width={104}
                 height={86}
-                src={thumbnail?.url ?? ''}
+                src={product.thumbnail?.url ?? ''}
                 className={classes.image}
                 sx={(theme) => ({
                   backgroundColor: theme.palette.background.image,

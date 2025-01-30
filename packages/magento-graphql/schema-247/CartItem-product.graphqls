@@ -1,0 +1,15 @@
+extend interface OrderItemInterface {
+  product: ProductInterface
+}
+
+extend type OrderItem {
+  product: ProductInterface
+}
+
+extend type BundleOrderItem {
+  product: ProductInterface
+}
+
+extend type DownloadableOrderItem {
+  product: ProductInterface
+}

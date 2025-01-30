@@ -3,12 +3,10 @@ import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Button } from '@mui/material'
 import { useState } from 'react'
-import type { UseOrderCardItemImages } from '../../hooks/useOrderCardItemImages'
 import { OrderItem } from '../OrderItem/OrderItem'
 import type { OrderItemsFragment } from './OrderItems.gql'
 
 export type OrderItemsProps = OrderItemsFragment & {
-  images?: UseOrderCardItemImages
   sx?: SxProps<Theme>
 }
 
@@ -17,7 +15,7 @@ const parts = ['root', 'orderItemsInnerContainer', 'skeletonOrderItem', 'viewAll
 const { classes } = extendableComponent(componentName, parts)
 
 export function OrderItems(props: OrderItemsProps) {
-  const { images, items, sx = [] } = props
+  const { items, sx = [] } = props
   const [expanded, setExpanded] = useState<boolean>(false)
   const maxItemsAboveFold = 4
 
@@ -39,9 +37,7 @@ export function OrderItems(props: OrderItemsProps) {
           ?.slice(0, maxItemsAboveFold)
           .map((orderItem) => (
             <Box key={`orderItem-${orderItem?.id}`}>
-              {orderItem && (
-                <OrderItem {...orderItem} {...images?.[orderItem?.product_url_key ?? '']} />
-              )}
+              {orderItem && <OrderItem {...orderItem} />}
             </Box>
           ))}
 
@@ -50,9 +46,7 @@ export function OrderItems(props: OrderItemsProps) {
             ?.slice(maxItemsAboveFold, items?.length)
             .map((orderItem) => (
               <Box key={`orderItem-${orderItem?.id}`}>
-                {orderItem && (
-                  <OrderItem {...orderItem} {...images?.[orderItem?.product_url_key ?? '']} />
-                )}
+                {orderItem && <OrderItem {...orderItem} />}
               </Box>
             ))}
       </Box>

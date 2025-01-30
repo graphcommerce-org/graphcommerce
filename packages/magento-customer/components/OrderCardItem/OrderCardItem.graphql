@@ -1,4 +1,10 @@
 fragment OrderCardItem on OrderItemInterface {
   product_sku
   product_url_key
+  product {
+    uid
+    thumbnail {
+      ...ProductImage
+    }
+  }
 }

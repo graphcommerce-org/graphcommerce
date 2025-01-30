@@ -4,7 +4,6 @@ import { useFormGqlQuery } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
 import { Box, Typography } from '@mui/material'
 import { useMemo } from 'react'
-import { useOrderCardItemImages } from '../../hooks'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError'
 import { OrderDetails } from '../OrderDetails/OrderDetails'
 import { OrderTotals } from '../OrderDetails/OrderTotals'
@@ -43,8 +42,6 @@ export function GuestOrderOverviewForm() {
   }, [getValues, reset, urlQuery])
 
   const submitHandler = handleSubmit(() => {})
-
-  const images = useOrderCardItemImages({ items: [orderData?.guestOrder ?? null] })
 
   const showForm = !orderData?.guestOrder || !formState.isSubmitSuccessful
 
@@ -91,7 +88,7 @@ export function GuestOrderOverviewForm() {
             <OrderStateLabel {...orderData.guestOrder} />
           </Typography>
           <OrderDetails {...orderData?.guestOrder} />
-          <OrderItems {...orderData?.guestOrder} images={images} />
+          <OrderItems {...orderData?.guestOrder} />
           <OrderTotals {...orderData?.guestOrder} />
         </>
       )}
