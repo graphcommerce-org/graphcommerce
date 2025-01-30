@@ -14,6 +14,10 @@ function isServerParseError(
 export function maskNetworkError(networkError: Error | ServerParseError | ServerError | null) {
   if (!networkError) return null
 
+  if (process.env.NODE_ENV === 'development') {
+    console.log(networkError)
+  }
+
   if (isServerParseError(networkError) || isServerError(networkError)) {
     return <Trans id='Something went wrong on the server, please try again later.' />
   }

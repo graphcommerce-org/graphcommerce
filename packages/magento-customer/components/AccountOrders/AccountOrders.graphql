@@ -1,5 +1,11 @@
 fragment AccountOrders on Customer {
-  orders(filter: {}, pageSize: $pageSize, currentPage: $currentPage) {
+  orders(
+    filter: {}
+    pageSize: $pageSize
+    currentPage: $currentPage
+    sort: { sort_direction: DESC, sort_field: CREATED_AT }
+    scope: GLOBAL
+  ) {
     items {
       ...OrderCard
     }

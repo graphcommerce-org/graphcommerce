@@ -102,25 +102,27 @@ export function OrderDetails(props: OrderDetailsProps) {
           </SectionContainer>
         </Box>
 
-        <Box className={classes.orderDetailRow}>
-          <SectionContainer
-            variantLeft='h5'
-            labelLeft={<Trans>Shipping method</Trans>}
-            className={classes.orderDetailTitle}
-            sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '4px' } }}
-          >
-            <Typography>{shipping_method ?? ''}</Typography>
+        {shipping_method && (
+          <Box className={classes.orderDetailRow}>
+            <SectionContainer
+              variantLeft='h5'
+              labelLeft={<Trans>Shipping method</Trans>}
+              className={classes.orderDetailTitle}
+              sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '4px' } }}
+            >
+              <Typography>{shipping_method ?? ''}</Typography>
 
-            {shipments && shipments.length > 0 && (
-              <>
-                {shipments?.[0]?.tracking && shipments?.[0]?.tracking?.[0]?.title}
-                {shipments?.[0]?.tracking?.[0] && (
-                  <TrackingLink {...shipments?.[0].tracking?.[0]} sx={{ padding: '4px 0' }} />
-                )}
-              </>
-            )}
-          </SectionContainer>
-        </Box>
+              {shipments && shipments.length > 0 && (
+                <>
+                  {shipments?.[0]?.tracking && shipments?.[0]?.tracking?.[0]?.title}
+                  {shipments?.[0]?.tracking?.[0] && (
+                    <TrackingLink {...shipments?.[0].tracking?.[0]} sx={{ padding: '4px 0' }} />
+                  )}
+                </>
+              )}
+            </SectionContainer>
+          </Box>
+        )}
 
         <Box className={classes.orderDetailRow}>
           <SectionContainer
@@ -156,16 +158,18 @@ export function OrderDetails(props: OrderDetailsProps) {
           </SectionContainer>
         </Box>
 
-        <Box className={classes.orderDetailRow}>
-          <SectionContainer
-            variantLeft='h5'
-            labelLeft={<Trans>Shipping address</Trans>}
-            className={classes.orderDetailTitle}
-            sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '4px' } }}
-          >
-            <AddressMultiLine {...shipping_address} />
-          </SectionContainer>
-        </Box>
+        {shipping_address && (
+          <Box className={classes.orderDetailRow}>
+            <SectionContainer
+              variantLeft='h5'
+              labelLeft={<Trans>Shipping address</Trans>}
+              className={classes.orderDetailTitle}
+              sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '4px' } }}
+            >
+              <AddressMultiLine {...shipping_address} />
+            </SectionContainer>
+          </Box>
+        )}
 
         <Box className={classes.orderDetailRow}>
           <SectionContainer

@@ -14,7 +14,7 @@ const parts = ['totalsContainer', 'totalsRow', 'totalsDivider', 'totalsVat'] as 
 const { classes } = extendableComponent(componentName, parts)
 
 export function OrderTotals(props: OrderTotalsProps) {
-  const { total, carrier, sx = [] } = props
+  const { total, carrier, shipping_method, sx = [] } = props
 
   return (
     <Box
@@ -54,12 +54,17 @@ export function OrderTotals(props: OrderTotalsProps) {
           )}
         </Box>
       ))}
-      <Box className={classes.totalsRow} sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography>
-          <Trans id='Shipping ({0} {1})' values={{ 0: carrier }} />
-        </Typography>
-        <Money {...total?.total_shipping} />
-      </Box>
+      {carrier && shipping_method && (
+        <Box
+          className={classes.totalsRow}
+          sx={{ display: 'flex', justifyContent: 'space-between' }}
+        >
+          <Typography>
+            <Trans id='Shipping ({0} {1})' values={{ 0: carrier, 1: shipping_method }} />
+          </Typography>
+          <Money {...total?.total_shipping} />
+        </Box>
+      )}
 
       <Divider sx={(theme) => ({ my: theme.spacings.xxs })} />
 

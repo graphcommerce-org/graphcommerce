@@ -4,6 +4,7 @@ import { OrderStateLabel } from './OrderStateLabel'
 
 export type OrderStateLabelInlineProps = OrderStateLabelProps
 
+/** @deprecated Use `<OrderStateLabel {...props} short />` instead */
 export function OrderStateLabelInline(props: OrderStateLabelInlineProps) {
   const { sx = [] } = props
 

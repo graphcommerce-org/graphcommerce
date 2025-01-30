@@ -36,13 +36,13 @@ function NewsletterSubscribe({ pages }: Props) {
         </LayoutTitle>
       </LayoutOverlayHeader>
 
-      <Container maxWidth='md'>
+      <Container maxWidth='sm'>
         <LayoutTitle>{title}</LayoutTitle>
       </Container>
 
       <RowRenderer {...pages[0]} />
 
-      <Container maxWidth='md'>
+      <Container maxWidth='sm'>
         {page?.title && (
           <Typography variant='h3'>
             <Trans id='Subscribe to newsletter'>Subscribe to newsletter</Trans>

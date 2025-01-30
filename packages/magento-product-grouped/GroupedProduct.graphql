@@ -1,10 +1,14 @@
 fragment GroupedProduct on GroupedProduct {
+  __typename
   items {
     position
     qty
     product {
       uid
       __typename
+      url_rewrites {
+        url
+      }
       ...ProductListItem
     }
   }

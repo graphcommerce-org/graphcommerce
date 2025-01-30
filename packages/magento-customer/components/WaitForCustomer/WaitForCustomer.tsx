@@ -5,13 +5,12 @@ import { FullPageMessage, iconPerson, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button, CircularProgress } from '@mui/material'
 import React from 'react'
+import type { SetOptional } from 'type-fest'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
 import { ApolloCustomerErrorFullPage } from '../ApolloCustomerError/ApolloCustomerErrorFullPage'
 
-export type WaitForCustomerProps = Omit<WaitForQueriesProps, 'fallback' | 'waitFor'> &
-  Pick<FullPageMessageProps, 'disableMargin'> & {
-    waitFor?: WaitForQueriesProps['waitFor']
-    fallback?: React.ReactNode
+export type WaitForCustomerProps = SetOptional<WaitForQueriesProps, 'waitFor'> &
+  SetOptional<FullPageMessageProps, 'title' | 'icon'> & {
     unauthenticated?: React.ReactNode
   }
 
@@ -42,7 +41,7 @@ export function nonNullable<T>(value: T): value is NonNullable<T> {
  * ```
  */
 export function WaitForCustomer(props: WaitForCustomerProps) {
-  const { waitFor = [], children, fallback, unauthenticated, disableMargin } = props
+  const { waitFor = [], children, fallback, unauthenticated, ...rest } = props
 
   const session = useCustomerSession()
   const queries = Array.isArray(waitFor) ? waitFor : [waitFor]
@@ -58,7 +57,7 @@ export function WaitForCustomer(props: WaitForCustomerProps) {
           <FullPageMessage
             icon={<CircularProgress />}
             title={<Trans id='Loading your data' />}
-            disableMargin={disableMargin}
+            {...rest}
           >
             <Trans id='This may take a second' />
           </FullPageMessage>
@@ -79,7 +78,7 @@ export function WaitForCustomer(props: WaitForCustomerProps) {
                 )}
               </Button>
             }
-            disableMargin={disableMargin}
+            {...rest}
           />
         ))}
       {session.loggedIn && error && <ApolloCustomerErrorFullPage error={error} />}

@@ -6,6 +6,7 @@ import {
   AccountMenuItem,
   AddressSingleLine,
   getCustomerAccountIsDisabled,
+  OrderStateLabel,
   OrderStateLabelInline,
   SignOutForm,
   useCustomerQuery,
@@ -45,8 +46,7 @@ function AccountIndexPage() {
   const customer = dashboard.data?.customer
   const address =
     customer?.addresses?.filter((a) => a?.default_shipping)?.[0] || customer?.addresses?.[0]
-  const orders = customer?.orders
-  const latestOrder = orders?.items?.[(orders?.items?.length ?? 1) - 1]
+  const latestOrder = customer?.orders?.items?.[0]
 
   return (
     <>
@@ -90,11 +90,9 @@ function AccountIndexPage() {
               subtitle={
                 latestOrder ? (
                   <>
-                    <RelativeToTimeFormat styleFormat='short'>
-                      {latestOrder?.order_date}
-                    </RelativeToTimeFormat>
+                    <RelativeToTimeFormat styleFormat='short' date={latestOrder?.order_date} />
                     {', '}
-                    {latestOrder?.items && <OrderStateLabelInline {...latestOrder} />}
+                    <OrderStateLabel {...latestOrder} short />
                   </>
                 ) : undefined
               }

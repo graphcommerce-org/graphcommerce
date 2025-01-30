@@ -26,10 +26,11 @@ import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountOrdersPage() {
-  const { query } = useRouter()
+  const { query, isReady } = useRouter()
 
   const orders = useCustomerQuery(AccountDashboardOrdersDocument, {
     fetchPolicy: 'cache-and-network',
+    skip: !isReady,
     variables: {
       pageSize: 5,
       currentPage: Number(query?.page ?? 1),
@@ -50,7 +51,9 @@ function AccountOrdersPage() {
         <WaitForCustomer waitFor={orders}>
           {customer?.orders && customer.orders.items.length > 0 && (
             <>
-              <LayoutTitle icon={iconBox}>Orders</LayoutTitle>
+              <LayoutTitle icon={iconBox}>
+                <Trans id='Orders'>Orders</Trans>
+              </LayoutTitle>
               <AccountOrders {...customer} />
             </>
           )}

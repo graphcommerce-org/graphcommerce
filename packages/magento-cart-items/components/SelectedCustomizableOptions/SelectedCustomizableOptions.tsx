@@ -9,7 +9,7 @@ export type SelectedCustomizableOptionProps = CartItemFragment & {
 }
 
 export function SelectedCustomizableOptions(props: SelectedCustomizableOptionProps) {
-  const { customizable_options, product } = props
+  const { customizable_options, product, prices } = props
   const options = filterNonNullableKeys(customizable_options, [])
 
   if (!options.length) return null
@@ -39,6 +39,7 @@ export function SelectedCustomizableOptions(props: SelectedCustomizableOptionPro
                         ? productPrice * (value.price.value / 100)
                         : value.price.value
                     }
+                    currency={prices?.price.currency}
                   />
                 </Box>
               )}

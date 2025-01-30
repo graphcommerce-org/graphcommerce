@@ -103,7 +103,7 @@ export function CartItemSummary(props: OrderSummaryProps) {
             margin: `${theme.spacings.xs} 0 ${theme.spacings.xs} 0`,
           })}
         />
-        <CartTotals sx={{ background: 'none', padding: 0 }} />
+        <CartTotals sx={{ background: 'none', padding: 0 }} readOnly />
       </SectionContainer>
     </Box>
   )

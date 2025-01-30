@@ -16,7 +16,7 @@ type OwnerState = {
   orderState: OrderState
 }
 const componentName = 'OrderStateLabel'
-const parts = ['root'] as const
+const parts = ['root', 'status'] as const
 const { withState } = extendableComponent<OwnerState, typeof componentName, typeof parts>(
   componentName,
   parts,
@@ -28,31 +28,24 @@ export function OrderStateLabel(props: OrderStateLabelProps) {
 
   const classes = withState({ orderState })
 
-  return (
+  const statusWithColor = (
     <Box
+      className={classes.status}
       component='span'
-      className={classes.root}
-      sx={[
-        (theme) => ({
-          fontStyle: 'italic',
-          fontWeight: 'normal',
-          '&.orderStatePending': {
-            color: theme.palette.text.disabled,
-          },
-          '&.orderStateProcessing': {
-            color: theme.palette.info.main,
-          },
-          '&.orderStateComplete': {
-            color: theme.palette.success.main,
-          },
-          '&.orderStateClosed': {
-            color: theme.palette.text.disabled,
-          },
-        }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+      sx={(theme) => ({
+        '&.orderStatePending': { color: 'text.disabled' },
+        '&.orderStateProcessing': { color: 'info.main' },
+        '&.orderStateComplete': { color: 'success.main' },
+        '&.orderStateClosed': { color: 'text.disabled' },
+      })}
     >
-      {short ? status : <Trans>Order status: {status}</Trans>}
+      {status}
+    </Box>
+  )
+
+  return (
+    <Box component='span' className={classes.root} sx={sx}>
+      {short ? statusWithColor : <Trans>Order status: {statusWithColor}</Trans>}
     </Box>
   )
 }

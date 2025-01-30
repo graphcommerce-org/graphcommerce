@@ -1,23 +1,45 @@
-type UseRelativeTimeFormatUnitAutoProps = {
+export type UseRelativeTimeFormatUnitAutoProps = {
   value: number
   unit?: Intl.RelativeTimeFormatUnit
 }
 
+export type RelativeTimeFormatUnitAutoResult = {
+  value: number
+  unit: Intl.RelativeTimeFormatUnit
+  remainder: number
+}
+
 export function relativeTimeFormatUnitAuto(
   props: UseRelativeTimeFormatUnitAutoProps,
-): [number, Intl.RelativeTimeFormatUnit] {
+): RelativeTimeFormatUnitAutoResult {
   const { value, unit } = props
-
-  if (unit) return [value, unit]
-
-  // Calculate the absolute value once
   const absValue = Math.abs(value)
 
-  if (absValue >= 60 * 60 * 24 * 365) return [Math.round(value / (60 * 60 * 24 * 365)), 'year']
-  if (absValue >= 60 * 60 * 24 * 30) return [Math.round(value / (60 * 60 * 24 * 30)), 'month']
-  if (absValue >= 60 * 60 * 24 * 7) return [Math.round(value / (60 * 60 * 24 * 7)), 'week']
-  if (absValue >= 60 * 60 * 24) return [Math.round(value / (60 * 60 * 24)), 'day']
-  if (absValue >= 60 * 60) return [Math.round(value / (60 * 60)), 'hour']
-  if (absValue >= 60) return [Math.round(value / 60), 'minute']
-  return [Math.round(value), 'second']
+  const timeUnits = [
+    { threshold: 60 * 60 * 24 * 365, unit: 'year' },
+    { threshold: 60 * 60 * 24 * 30, unit: 'month' },
+    { threshold: 60 * 60 * 24 * 7, unit: 'week' },
+    { threshold: 60 * 60 * 24, unit: 'day' },
+    { threshold: 60 * 60, unit: 'hour' },
+    { threshold: 60, unit: 'minute' },
+    { threshold: 0, unit: 'second' },
+  ] as const
+
+  let result: RelativeTimeFormatUnitAutoResult
+
+  if (unit) {
+    result = { value, unit, remainder: 0 }
+  } else {
+    const timeUnit =
+      timeUnits.find((tu) => absValue >= tu.threshold) ?? timeUnits[timeUnits.length - 1]
+    const divisor = timeUnit.unit === 'second' ? 1 : timeUnit.threshold
+
+    result = {
+      value: Math.floor(value / divisor),
+      unit: timeUnit.unit,
+      remainder: value % divisor,
+    }
+  }
+
+  return result
 }

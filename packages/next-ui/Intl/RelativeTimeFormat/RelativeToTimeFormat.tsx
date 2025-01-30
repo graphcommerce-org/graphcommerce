@@ -4,9 +4,9 @@ import { toDate } from '../DateTimeFormat/toDate'
 import type { RelativeTimeFormatProps } from './RelativeTimeFormat'
 import { RelativeTimeFormat } from './RelativeTimeFormat'
 
-type RelativeToTimeFormatProps = Omit<RelativeTimeFormatProps, 'children'> & {
+type RelativeToTimeFormatProps = Omit<RelativeTimeFormatProps, 'value' | 'children'> & {
   /** Date to format a relative value for. */
-  children: DateValue
+  date: DateValue
   /**
    * If provided, the component will format a relative value to this date. Else, it will format a
    * relative value to the current date.
@@ -14,22 +14,23 @@ type RelativeToTimeFormatProps = Omit<RelativeTimeFormatProps, 'children'> & {
   to?: DateValue
 }
 
+/**
+ * Relative to the the current date.
+ *
+ * @public
+ */
 export const RelativeToTimeFormat = forwardRef<HTMLSpanElement, RelativeToTimeFormatProps>(
   (props, ref) => {
-    const { children, to, ...rest } = props
+    const { date, to, ...rest } = props
 
     const relativeTo = useMemo(() => {
-      const date = toDate(children)
-      if (!date) return 0
+      const dateValue = toDate(date)
+      if (!dateValue) return 0
       const toDateValue = (to && toDate(to)) || new Date()
 
-      return Math.round((date.getTime() - toDateValue.getTime()) / 1000)
-    }, [children, to])
+      return Math.round((dateValue.getTime() - toDateValue.getTime()) / 1000)
+    }, [date, to])
 
-    return (
-      <RelativeTimeFormat {...rest} ref={ref}>
-        {relativeTo}
-      </RelativeTimeFormat>
-    )
+    return <RelativeTimeFormat {...rest} ref={ref} value={relativeTo} />
   },
 )

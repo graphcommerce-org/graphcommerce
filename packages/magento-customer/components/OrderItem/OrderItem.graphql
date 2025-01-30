@@ -7,6 +7,12 @@ fragment OrderItem on OrderItemInterface {
     label
     value
   }
+  product {
+    uid
+    thumbnail {
+      ...ProductImage
+    }
+  }
   quantity_invoiced
   quantity_ordered
   quantity_refunded
