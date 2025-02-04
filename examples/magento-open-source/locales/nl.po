@@ -126,9 +126,6 @@ msgstr "Toepassen"
 msgid "As low as <0/>"
 msgstr "Vanaf <0/>"
 
-msgid "As soon as the payment is completed, you will automatically return to the webshop."
-msgstr "Als de betaling is voltooid, keert u automatisch terug naar de webshop."
-
 msgid "Authentication"
 msgstr "Authenticatie"
 
@@ -186,12 +183,6 @@ msgstr "Wijzig"
 msgid "Checkout summary"
 msgstr "Samenvatting"
 
-msgid "Choose your bank"
-msgstr "Kies uw bank"
-
-msgid "Choose your bank, and place your order."
-msgstr "Kies uw bank en plaats uw bestelling."
-
 msgid "City"
 msgstr "Plaats"
 
@@ -220,9 +211,6 @@ msgstr "Vergelijk ({0})"
 msgid "Compare products"
 msgstr "Vergelijk producten"
 
-msgid "Complete the payment on your bank’s website."
-msgstr "Voltooi de betaling op uw bank's website."
-
 msgid "Configure"
 msgstr "Configureer"
 
@@ -234,6 +222,9 @@ msgstr "Bevestig wachtwoord"
 
 msgid "Confirm registration"
 msgstr "Registratie bevestigen"
+
+msgid "Confirmation"
+msgstr "Bevestiging"
 
 msgid "Confirmation + Track & trace"
 msgstr "Bevestiging + Track & trace"
@@ -290,6 +281,9 @@ msgstr "Account verwijdering succesvol"
 msgid "Dark Mode"
 msgstr "Donkere modus"
 
+msgid "Date"
+msgstr "Datum"
+
 msgid "Decrease"
 msgstr "Verminderen"
 
@@ -323,6 +317,12 @@ msgstr "Ontdek onze collectie en schrijf uw eerste review!"
 
 msgid "Discover our collection by searching for products, categories or features."
 msgstr "Ontdek onze collectie door te zoeken naar producten, categorieën of kenmerken."
+
+msgid "Download"
+msgstr "Download"
+
+msgid "Downloads"
+msgstr "Downloads"
 
 #. js-lingui-generated-id
 msgid "Payment method"
@@ -430,11 +430,12 @@ msgstr "Ongeldig e-mailadres"
 msgid "It appears you are offline, please try again later."
 msgstr "Het lijkt erop dat u offline bent, probeer het later opnieuw."
 
+#. js-lingui-generated-id
+msgid "You have {count} downloads available."
+msgstr "U heeft {count} downloads beschikbaar."
+
 msgid "Last Name"
 msgstr "Achternaam"
-
-msgid "Latest orders"
-msgstr "Laatste bestellingen"
 
 msgid "Less options"
 msgstr "Minder opties"
@@ -530,9 +531,6 @@ msgstr "Postcode"
 msgid "Ok"
 msgstr "Ok"
 
-msgid "Older"
-msgstr "Ouder"
-
 msgid "Only 1 left in stock."
 msgstr "Nog maar 1 op voorraad."
 
@@ -544,6 +542,9 @@ msgstr "Nog maar {amount_left_in_stock} op voorraad."
 
 msgid "Or follow these links to get you back on track!"
 msgstr "Of klik op één van deze links om weer op het pad te komen!"
+
+msgid "Order"
+msgstr "Bestelling"
 
 msgid "Order #{orderNumber}"
 msgstr "Bestelling #{orderNumber}"
@@ -639,6 +640,9 @@ msgstr "Voorvoegsel"
 msgid "Processing your payment"
 msgstr "Uw betaling aan het verwerken"
 
+msgid "Product"
+msgstr "Product"
+
 msgid "Product could not be found"
 msgstr "Product kan niet worden gevonden"
 
@@ -675,6 +679,9 @@ msgstr "Registratie succesvol. Controleer uw inbox om uw e-mailadres te bevestig
 
 msgid "Relevance"
 msgstr "Relevantie"
+
+msgid "Remaining"
+msgstr "Resterend"
 
 msgid "Remove"
 msgstr "Verwijder"
@@ -720,9 +727,6 @@ msgstr "Zoeken..."
 
 msgid "Select"
 msgstr "Selecteer"
-
-msgid "Select your bank"
-msgstr "Kies uw bank"
 
 msgid "Send password reset email"
 msgstr "Stuur een wachtwoord reset e-mail"
@@ -778,6 +782,9 @@ msgstr "Sorteer"
 msgid "Sort By"
 msgstr "Sorteer op"
 
+msgid "Status"
+msgstr "Status"
+
 msgid "Store home"
 msgstr "Winkel home"
 
@@ -810,6 +817,12 @@ msgstr "Email succesvol bijgewerkt"
 
 msgid "Summary"
 msgstr "Omschrijving"
+
+msgid "Switch"
+msgstr "Wissel"
+
+msgid "Switch Stores"
+msgstr "Winkel wisselen"
 
 msgid "Switch stores"
 msgstr "Winkel wisselen"
@@ -1014,12 +1027,12 @@ msgid "Shipping address"
 msgstr "Verzendadres"
 
 #. js-lingui-generated-id
-msgid "Order status: {status}"
-msgstr "Status bestelling: {status}"
-
-#. js-lingui-generated-id
 msgid "Shipping Note"
 msgstr "Verzendnotitie"
+
+#. js-lingui-generated-id
+msgid "Downloads"
+msgstr "Downloads"
 
 #. js-lingui-generated-id
 msgid "Your message has been received, we will contact you as soon as we can"
@@ -1040,6 +1053,10 @@ msgstr "Verzenden"
 #. js-lingui-generated-id
 msgid "Order date"
 msgstr "Besteldatum"
+
+#. js-lingui-generated-id
+msgid "Order status: {statusWithColor}"
+msgstr "Bestelstatus: {statusWithColor}"
 
 #. js-lingui-generated-id
 msgid "Contact"
