@@ -36,6 +36,7 @@ export const persistenceMapper = (data: string): Promise<string> => {
     'ROOT_QUERY.guestOrder',
     'ROOT_QUERY.__type*',
     '*Product:{"uid":"*"}.crosssell_products',
+    'ROOT_QUERY.recaptchaV3Config',
   ])
 
   const cache = new InMemoryCache({})

@@ -1,0 +1,5 @@
+query RecaptchaV3Config {
+  recaptchaV3Config {
+    website_key
+  }
+}
