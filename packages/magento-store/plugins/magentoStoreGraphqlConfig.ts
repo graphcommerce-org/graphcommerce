@@ -1,5 +1,6 @@
 import { setContext, type graphqlConfig as graphqlConfigType } from '@graphcommerce/graphql'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
+import { cookie } from '@graphcommerce/next-ui'
 
 export const config: PluginConfig = {
   type: 'function',
@@ -15,7 +16,13 @@ export const graphqlConfig: FunctionPlugin<typeof graphqlConfigType> = (prev, co
       ...results.links,
       setContext((_, context) => {
         if (!context.headers) context.headers = {}
-        context.headers.store = conf.storefront.magentoStoreCode
+        if (!context.headers.store) {
+          context.headers.store = conf.storefront.magentoStoreCode
+        }
+
+        const contentCurrency = cookie('Magento-Content-Currency')
+        if (contentCurrency && typeof context.headers['content-currency'] === 'undefined')
+          context.headers['content-currency'] = contentCurrency
 
         if (conf.preview) {
           // To disable caching from the backend, we provide a bogus cache ID.

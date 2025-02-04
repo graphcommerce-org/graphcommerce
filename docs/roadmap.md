@@ -17,6 +17,7 @@ roadmap.
 - [x] Adobe Commerce: Store credit functionality
 - [x] Adobe Commerce: Gift card functionality
 - [ ] Adobe Commerce: Content staging functionality in preview mode.
+- [ ] Custom options pricing on product page
 - [ ] Storelocator UI. Generic Store Locator UI to allow for any datasource to
       be used. Integrate with Magento's pickupLocations functionality.
 - [ ] Store inventory on product pages UI and Magento's pickupLocations
@@ -30,6 +31,11 @@ roadmap.
       GraphCommerce integration.
 - [ ] GraphCommerce Pro: Cache Notifier module + GraphCommerce Integration to
       revalidate the frontend on backend changes.
+- [ ] GraphCommerce: Video support
+- [ ] GraphCommerce: Product List Gallery
+- [ ] GraphCommerce: Product List Configurable Image Toggle
+- [x] Magento: Implement currency query and switch frontend to different
+      currency with usePrivateQuery
 
 ## Researching / Considering
 
@@ -69,6 +75,13 @@ roadmap.
       integration)
 - [ ] GraphCommerce Pro: Shop in shop functionality
 - [ ] GraphCommerce POS: Create a light POS integration for GraphCommerce
+- [ ] Magento customerDownloadableProducts
+- [ ] Magento: customerPaymentTokens + deletePaymentToken
+- [ ] Magento: customerDownloadableProducts
+- [ ] Magento 2.4.7: recaptchaV3Config
+- [ ] Magento: downloadable products
+- [ ] Magento: Migrate to createCustomerV2
+- [ ] Magento 2.4.7: createGuestCart migration
 
 ## Released
 

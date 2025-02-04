@@ -1,7 +1,7 @@
 import { useQuery } from '@graphcommerce/graphql'
 import type { GlobalHeadProps as GlobalHeadPropsBase } from '@graphcommerce/next-ui'
 import { GlobalHead as GlobalHeadBase } from '@graphcommerce/next-ui'
-import { StoreConfigDocument } from '../../StoreConfig.gql'
+import { StoreConfigDocument } from '../../queries/StoreConfig.gql'
 
 export type GlobalHeadProps = Omit<GlobalHeadPropsBase, 'name'>
 

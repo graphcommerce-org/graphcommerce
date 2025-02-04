@@ -2,8 +2,8 @@ import { useQuery } from '@graphcommerce/graphql'
 import type { CurrencyFormatProps } from '@graphcommerce/next-ui'
 import { CurrencyFormat } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
+import { StoreConfigDocument } from '../../queries/StoreConfig.gql'
 import type { MoneyFragment } from './Money.gql'
-import { StoreConfigDocument } from './StoreConfig.gql'
 
 type OverridableProps = {
   round?: boolean

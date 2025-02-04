@@ -3,7 +3,7 @@ import { extendableComponent, FlagAvatar, NextLink } from '@graphcommerce/next-u
 import type { SxProps, Theme } from '@mui/material'
 import { Collapse, List, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material'
 import React from 'react'
-import { localeToStore, storeToLocale } from '../../localeToStore'
+import { localeToStore, storeToLocale } from '../../utils/localeToStore'
 import type { StoreSwitcherListQuery } from './StoreSwitcherList.gql'
 
 type Store = NonNullable<NonNullable<StoreSwitcherListQuery['availableStores']>[0]>
