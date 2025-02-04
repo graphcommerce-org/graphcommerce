@@ -1,3 +1,4 @@
+import type { ParsedUrlQuery } from 'querystring'
 import { usePrevPageRouter, type PageOptions } from '@graphcommerce/framer-next-pages'
 import type { StoreSwitcherListQuery } from '@graphcommerce/magento-store'
 import {
@@ -18,7 +19,6 @@ import {
   iconLanguage,
   LayoutOverlayHeader,
   LayoutTitle,
-  OverlayStickyBottom,
   SectionHeader,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -29,7 +29,7 @@ import type { LayoutOverlayProps } from '../components'
 import { LayoutDocument, LayoutOverlay } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
-type RouteProps = Record<string, unknown>
+type RouteProps = ParsedUrlQuery
 type Props = StoreSwitcherListQuery
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props, RouteProps>
 

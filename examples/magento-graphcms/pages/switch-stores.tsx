@@ -18,7 +18,6 @@ import {
   iconLanguage,
   LayoutOverlayHeader,
   LayoutTitle,
-  OverlayStickyBottom,
   SectionHeader,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -27,8 +26,9 @@ import { Container } from '@mui/material'
 import { LayoutDocument, LayoutOverlay, LayoutOverlayProps } from '../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 import { useRouter } from 'next/router'
+import type { ParsedUrlQuery } from 'querystring'
 
-type RouteProps = { country?: string[] }
+type RouteProps = ParsedUrlQuery
 type Props = StoreSwitcherListQuery
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props, RouteProps>
 

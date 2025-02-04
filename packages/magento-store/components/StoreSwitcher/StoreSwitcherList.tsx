@@ -56,11 +56,7 @@ export function StoreSwitcherList(props: StoreSwitcherListProps) {
             })}
           >
             <ListItemAvatar>
-              <FlagAvatar
-                country={code}
-                className={classes.avatar}
-                sx={{ width: 30, height: 30 }}
-              />
+              <FlagAvatar country={code} className={classes.avatar} size='30px' />
             </ListItemAvatar>
             <ListItemText>
               {group.name}
