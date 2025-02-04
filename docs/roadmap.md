@@ -36,6 +36,8 @@ roadmap.
 - [ ] GraphCommerce: Product List Configurable Image Toggle
 - [x] Magento: Implement currency query and switch frontend to different
       currency with usePrivateQuery
+- [x] Magento customerDownloadableProducts
+- [x] Magento 2.4.7: recaptchaV3Config
 
 ## Researching / Considering
 
@@ -75,10 +77,8 @@ roadmap.
       integration)
 - [ ] GraphCommerce Pro: Shop in shop functionality
 - [ ] GraphCommerce POS: Create a light POS integration for GraphCommerce
-- [ ] Magento customerDownloadableProducts
 - [ ] Magento: customerPaymentTokens + deletePaymentToken
 - [ ] Magento: customerDownloadableProducts
-- [ ] Magento 2.4.7: recaptchaV3Config
 - [ ] Magento: downloadable products
 - [ ] Magento: Migrate to createCustomerV2
 - [ ] Magento 2.4.7: createGuestCart migration
