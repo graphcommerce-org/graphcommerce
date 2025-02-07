@@ -1,5 +1,11 @@
 # @graphcommerce/algolia-products
 
+## 9.1.0-canary.16
+
+### Patch Changes
+
+- [#2494](https://github.com/graphcommerce-org/graphcommerce/pull/2494) [`fd824d4`](https://github.com/graphcommerce-org/graphcommerce/commit/fd824d41674d92a42bb7f354214d2b367a7beac2) - Solve issue when creating an account the group_id would be requested but there wansn't a token available to retrieve the group_id. ([@Renzovh](https://github.com/Renzovh))
+
 ## 9.1.0-canary.15
 
 ## 9.0.4-canary.14
