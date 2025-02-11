@@ -1,5 +1,7 @@
 # @graphcommerce/service-worker
 
+## 9.1.0-canary.17
+
 ## 9.1.0-canary.16
 
 ## 9.1.0-canary.15

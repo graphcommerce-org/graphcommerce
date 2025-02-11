@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.17
+
+### Patch Changes
+
+- [#2496](https://github.com/graphcommerce-org/graphcommerce/pull/2496) [`a261149`](https://github.com/graphcommerce-org/graphcommerce/commit/a261149b6b32ad6a35606da2d530b8e41bfa10a0) - ReCaptcha now using the `recaptchaV3Config` query and add a fallback for Magento 2.4.6 and earlier to still use the configuration. Magento 2.4.7 doesn't need that configuration anymore. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.16
 
 ## 9.1.0-canary.15

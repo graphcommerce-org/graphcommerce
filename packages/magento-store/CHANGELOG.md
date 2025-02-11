@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.1.0-canary.17
+
+### Minor Changes
+
+- [#2496](https://github.com/graphcommerce-org/graphcommerce/pull/2496) [`4b6a65d`](https://github.com/graphcommerce-org/graphcommerce/commit/4b6a65db089d92492e7fde28a8e32bc41f5b9103) - Added support for multiple display currencies in the frontend. Multiple currencies were already supported, but this introduces Display Currencies for viewing the cart in different currencies. ([@paales](https://github.com/paales))
+
+- [#2496](https://github.com/graphcommerce-org/graphcommerce/pull/2496) [`4b6a65d`](https://github.com/graphcommerce-org/graphcommerce/commit/4b6a65db089d92492e7fde28a8e32bc41f5b9103) - Refactored the Store Selector to be more of a form and have multiple nested toggles to switch groups, then stores and then currencies. It automatically hides features that aren't used: If only a single group is used with multiple stores only the store selector is shown. If multiple groups are used with each a single store is used, only the group selector is shown. If only a single currency is used, there is no currency selector. If multiple currencies are used, the currency selector is shown. This makes the selector more user-friendly and less cluttered. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.16
 
 ## 9.1.0-canary.15
