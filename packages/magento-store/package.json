@@ -12,7 +12,9 @@
     }
   },
   "peerDependencies": {
+    "@graphcommerce/ecommerce-ui": "^9.1.0-canary.16",
     "@graphcommerce/eslint-config-pwa": "^9.1.0-canary.16",
+    "@graphcommerce/framer-utils": "^9.1.0-canary.16",
     "@graphcommerce/graphql": "^9.1.0-canary.16",
     "@graphcommerce/graphql-mesh": "^9.1.0-canary.16",
     "@graphcommerce/image": "^9.1.0-canary.16",

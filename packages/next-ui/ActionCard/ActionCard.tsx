@@ -186,9 +186,9 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
           '&.variantOutlined': {
             backgroundColor: theme.palette.background.paper,
             boxShadow: `inset 0 0 0 1px ${theme.palette.divider}`,
-            '&:not(:last-of-type)': {
-              marginBottom: '-2px',
-            },
+            // '&:not(:last-of-type)': {
+            //   marginBottom: '-2px',
+            // },
             '&.layoutList': {
               borderRadius: 0,
               '&:first-of-type': {
@@ -296,6 +296,7 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'flex-start',
+              justifyContent: 'center',
             }}
           >
             {title && (
@@ -348,7 +349,7 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
           )}
           {...slotProps.end}
         >
-          {action && (
+          {(action || reset) && (
             <Box
               className={classes.action}
               sx={sxx(

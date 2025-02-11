@@ -1,6 +1,7 @@
 import type { GraphQLRequest } from '@graphcommerce/graphql'
 import { setContext } from '@graphcommerce/graphql/apollo'
 import { Kind, OperationTypeNode } from 'graphql'
+import { RecaptchaV3ConfigDocument } from '../graphql/RecaptchaV3Config.gql'
 
 const isMutation = (operation: GraphQLRequest) =>
   operation.query.definitions.some(
@@ -11,8 +12,10 @@ const isMutation = (operation: GraphQLRequest) =>
 
 /** Apollo link that adds the Google reCAPTCHA token to the request context. */
 export const recaptchaLink = setContext(async (operation, context) => {
-  const recaptchaKey = import.meta.graphCommerce.googleRecaptchaKey
-  if (!recaptchaKey || !globalThis.grecaptcha || !isMutation(operation)) return context
+  const siteKey = context.cache?.readQuery({ query: RecaptchaV3ConfigDocument })?.recaptchaV3Config
+    ?.website_key
+
+  if (!siteKey || !globalThis.grecaptcha || !isMutation(operation)) return context
 
   await new Promise<void>((resolve) => {
     globalThis.grecaptcha?.ready(resolve)
@@ -23,7 +26,7 @@ export const recaptchaLink = setContext(async (operation, context) => {
   while (failure < 5) {
     try {
       // eslint-disable-next-line no-await-in-loop
-      token = await globalThis.grecaptcha.execute(recaptchaKey, { action: 'submit' })
+      token = await globalThis.grecaptcha.execute(siteKey, { action: 'submit' })
       break
     } catch {
       failure++

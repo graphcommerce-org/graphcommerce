@@ -297,7 +297,14 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "ifConfig": "googleRecaptchaKey",
+        "sourceExport": "meshConfig",
+        "sourceModule": "@graphcommerce/googlerecaptcha/plugins/meshRecaptcha",
+        "targetExport": "meshConfig",
+        "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
+        "type": "function",
+      },
+      {
+        "enabled": true,
         "sourceExport": "GraphQLProvider",
         "sourceModule": "@graphcommerce/googlerecaptcha/plugins/GrecaptchaGraphQLProvider",
         "targetExport": "GraphQLProvider",
@@ -306,7 +313,6 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "ifConfig": "googleRecaptchaKey",
         "sourceExport": "ApolloErrorSnackbar",
         "sourceModule": "@graphcommerce/googlerecaptcha/plugins/GrecaptchaApolloErrorSnackbar",
         "targetExport": "ApolloErrorSnackbar",
@@ -315,7 +321,6 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "ifConfig": "googleRecaptchaKey",
         "sourceExport": "ApolloErrorFullPage",
         "sourceModule": "@graphcommerce/googlerecaptcha/plugins/GrecaptchaApolloErrorFullPage",
         "targetExport": "ApolloErrorFullPage",
@@ -324,7 +329,6 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "ifConfig": "googleRecaptchaKey",
         "sourceExport": "ApolloErrorAlert",
         "sourceModule": "@graphcommerce/googlerecaptcha/plugins/GrecaptchaApolloErrorAlert",
         "targetExport": "ApolloErrorAlert",
@@ -550,9 +554,33 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "meshConfig",
+        "sourceModule": "@graphcommerce/magento-store/plugins/meshMagentoStore",
+        "targetExport": "meshConfig",
+        "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
+        "type": "function",
+      },
+      {
+        "enabled": true,
         "sourceExport": "graphqlConfig",
         "sourceModule": "@graphcommerce/magento-store/plugins/magentoStoreGraphqlConfig",
         "targetExport": "graphqlConfig",
+        "targetModule": "@graphcommerce/graphql",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "getPrivateQueryContext",
+        "sourceModule": "@graphcommerce/magento-store/plugins/magentoCurrencyCode",
+        "targetExport": "getPrivateQueryContext",
+        "targetModule": "@graphcommerce/graphql",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "usePrivateQueryContext",
+        "sourceModule": "@graphcommerce/magento-store/plugins/magentoCurrencyCode",
+        "targetExport": "usePrivateQueryContext",
         "targetModule": "@graphcommerce/graphql",
         "type": "function",
       },

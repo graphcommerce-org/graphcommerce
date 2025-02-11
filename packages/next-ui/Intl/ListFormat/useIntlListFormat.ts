@@ -9,7 +9,7 @@ export type UseIntlListFormatOptions = {
   UseIntlLocalesArgumentOptions
 
 export function useIntlListFormat(props: UseIntlListFormatOptions) {
-  const [locales, options] = useIntlLocalesArgument(props)
-  const memoOptions = useMemoObject({ ...options })
+  const [locales, { listStyle: style, ...options }] = useIntlLocalesArgument(props)
+  const memoOptions = useMemoObject({ style, ...options })
   return useMemo(() => new Intl.ListFormat(locales, memoOptions), [locales, memoOptions])
 }

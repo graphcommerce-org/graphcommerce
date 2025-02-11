@@ -15,7 +15,7 @@ import React from 'react'
 import { GetCustomerNewsletterToggleDocument } from './GetCustomerNewsLetterToggle.gql'
 import { UpdateNewsletterSubscriptionDocument } from './UpdateNewsletterSubscription.gql'
 
-export type CustomerNewsletterToggleProps = SwitchProps & {
+export type CustomerNewsletterToggleProps = Omit<SwitchProps, ''> & {
   sx?: SxProps<Theme>
   children?: React.ReactNode
 }

@@ -3,7 +3,7 @@ import { extendableComponent, FlagAvatar, NextLink } from '@graphcommerce/next-u
 import type { SxProps, Theme } from '@mui/material'
 import { Collapse, List, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material'
 import React from 'react'
-import { localeToStore, storeToLocale } from '../../localeToStore'
+import { localeToStore, storeToLocale } from '../../utils/localeToStore'
 import type { StoreSwitcherListQuery } from './StoreSwitcherList.gql'
 
 type Store = NonNullable<NonNullable<StoreSwitcherListQuery['availableStores']>[0]>
@@ -56,11 +56,7 @@ export function StoreSwitcherList(props: StoreSwitcherListProps) {
             })}
           >
             <ListItemAvatar>
-              <FlagAvatar
-                country={code}
-                className={classes.avatar}
-                sx={{ width: 30, height: 30 }}
-              />
+              <FlagAvatar country={code} className={classes.avatar} size='30px' />
             </ListItemAvatar>
             <ListItemText>
               {group.name}
