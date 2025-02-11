@@ -57,7 +57,7 @@ export function DownloadsPage() {
           </LayoutTitle>
 
           <Box>
-            <SectionContainer labelLeft={<Trans id='Balance history'>Balance history</Trans>}>
+            <SectionContainer labelLeft={<Trans id='Downloads'>Downloads</Trans>}>
               <Box
                 sx={{
                   display: 'grid',
