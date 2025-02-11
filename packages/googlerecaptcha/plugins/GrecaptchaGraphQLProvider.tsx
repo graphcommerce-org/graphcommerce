@@ -16,8 +16,6 @@ export const config: PluginConfig = {
 function ReCaptchaScript() {
   const siteKey = useQuery(RecaptchaV3ConfigDocument).data?.recaptchaV3Config?.website_key
 
-  console.log(siteKey)
-
   if (!siteKey) return null
   return (
     <Script
