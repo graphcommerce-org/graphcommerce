@@ -1,0 +1,13 @@
+query AttributesForm($formCode: String!) {
+  attributesForm(formCode: $formCode) {
+    errors {
+      message
+      type
+    }
+    items {
+      __typename
+      code
+      ...CustomAttributeMetadata
+    }
+  }
+}

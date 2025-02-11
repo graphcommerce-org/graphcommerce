@@ -1,3 +1,4 @@
+export * from './components/AttributeForm'
 export * from './components/CurrencySymbol/CurrencySymbol'
 export * from './components/GlobalHead/GlobalHead'
 export * from './components/Money/Money'
