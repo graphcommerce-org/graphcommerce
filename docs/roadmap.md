@@ -78,7 +78,6 @@ roadmap.
 - [ ] GraphCommerce Pro: Shop in shop functionality
 - [ ] GraphCommerce POS: Create a light POS integration for GraphCommerce
 - [ ] Magento: customerPaymentTokens + deletePaymentToken
-- [ ] Magento 2.4.7: createGuestCart migration
 
 ## Released
 
