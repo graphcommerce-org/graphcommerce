@@ -69,7 +69,7 @@ function AccountIndexPage() {
             <AccountMenuItem
               href='/account/name'
               iconSrc={iconId}
-              title={<Trans id='Name' />}
+              title={<Trans id='Personal details' />}
               subtitle={`${customer?.firstname} ${customer?.lastname}`}
             />
             <AccountMenuItem

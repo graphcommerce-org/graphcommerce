@@ -1,6 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { AccountSignInUpForm, getCustomerAccountIsDisabled } from '@graphcommerce/magento-customer'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta, preloadAttributesForm, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -43,6 +43,9 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
 
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
+
+  if (import.meta.graphCommerce.magentoVersion >= 247)
+    await preloadAttributesForm(client, 'customer_account_create')
 
   return {
     props: {

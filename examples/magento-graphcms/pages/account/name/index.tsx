@@ -2,11 +2,12 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   ChangeNameForm,
   CustomerDocument,
+  CustomerUpdateForm,
   getCustomerAccountIsDisabled,
   useCustomerQuery,
   WaitForCustomer,
 } from '@graphcommerce/magento-customer'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta, preloadAttributesForm, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   GetStaticProps,
   iconId,
@@ -32,27 +33,31 @@ function AccountNamePage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconId}>
-          <Trans id='Name' />
+          <Trans id='Personal details' />
         </LayoutTitle>
       </LayoutOverlayHeader>
 
       <Container maxWidth='md'>
         <WaitForCustomer waitFor={dashboard}>
-          <PageMeta title={i18n._(/* i18n */ 'Name')} metaRobots={['noindex']} />
+          <PageMeta title={i18n._(/* i18n */ 'Personal details')} metaRobots={['noindex']} />
 
           <LayoutTitle icon={iconId}>
-            <Trans id='Name' />
+            <Trans id='Personal details' />
           </LayoutTitle>
 
-          <SectionContainer labelLeft={<Trans id='Name' />}>
-            {customer && (
-              <ChangeNameForm
-                prefix={customer.prefix ?? ''}
-                firstname={customer.firstname ?? ''}
-                lastname={customer.lastname ?? ''}
-              />
-            )}
-          </SectionContainer>
+          {import.meta.graphCommerce.magentoVersion < 247 ? (
+            <SectionContainer labelLeft={<Trans id='Name' />}>
+              {customer && (
+                <ChangeNameForm
+                  prefix={customer.prefix ?? ''}
+                  firstname={customer.firstname ?? ''}
+                  lastname={customer.lastname ?? ''}
+                />
+              )}
+            </SectionContainer>
+          ) : (
+            <>{customer && <CustomerUpdateForm customer={customer} />}</>
+          )}
         </WaitForCustomer>
       </Container>
     </>
@@ -72,6 +77,9 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
 
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
+
+  if (import.meta.graphCommerce.magentoVersion >= 247)
+    await preloadAttributesForm(client, 'customer_account_edit')
 
   return {
     props: {
