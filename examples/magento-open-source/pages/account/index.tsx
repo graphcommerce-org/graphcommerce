@@ -85,6 +85,12 @@ function AccountIndexPage() {
               subtitle={<Trans id='Password' />}
             />
             <AccountMenuItem
+              href='/account/addresses'
+              iconSrc={iconHome}
+              title={<Trans id='Addresses' />}
+              subtitle={address ? <AddressSingleLine {...address} /> : undefined}
+            />
+            <AccountMenuItem
               href='/account/orders'
               iconSrc={iconBox}
               title={<Trans id='Orders' />}
@@ -97,12 +103,6 @@ function AccountIndexPage() {
                   </>
                 ) : undefined
               }
-            />
-            <AccountMenuItem
-              href='/account/addresses'
-              iconSrc={iconHome}
-              title={<Trans id='Addresses' />}
-              subtitle={address ? <AddressSingleLine {...address} /> : undefined}
             />
             {customer?.reviews.items.length !== 0 && (
               <AccountMenuItem
