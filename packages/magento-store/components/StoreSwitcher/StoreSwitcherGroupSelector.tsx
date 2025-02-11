@@ -42,7 +42,7 @@ export function StoreSwitcherGroupSelector(props: StoreSwitcherGroupSelectorProp
           group,
           image: group.country ? <FlagAvatar country={group.country} size='40px' /> : undefined,
           title: <>{group.store_group_name}</>,
-          details: showStores && (
+          details: showStores ? (
             <>
               {group.stores.length <= showStores && (
                 <ListFormat listStyle='short' type='unit'>
@@ -59,7 +59,7 @@ export function StoreSwitcherGroupSelector(props: StoreSwitcherGroupSelectorProp
                 </ListFormat>
               )}
             </>
-          ),
+          ) : undefined,
           disabled: group.disabled,
           value: group.store_group_code,
           slotProps: {

@@ -8,9 +8,7 @@ import {
   useStorefrontConfig,
   type RequiredKeys,
 } from '@graphcommerce/next-ui'
-import { useRouter } from 'next/router'
-import { createContext, useContext, useEffect, useLayoutEffect, useMemo } from 'react'
-import { storeToLocale } from '../../utils/localeToStore'
+import { createContext, useContext, useMemo } from 'react'
 import { type StoreSwitcherListQuery } from './StoreSwitcherList.gql'
 
 export type StoreSwitcherStore = RequiredKeys<
