@@ -14,7 +14,7 @@ export type CmsPageProps = { cmsPage: CmsPageFragment | null }
 
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CmsPageProps>
 
-function CmsPage(props: CmsPageProps) {
+function HomePage(props: CmsPageProps) {
   const { cmsPage } = props
 
   if (!cmsPage) return <Container>Configure cmsPage home</Container>
@@ -32,11 +32,11 @@ function CmsPage(props: CmsPageProps) {
   )
 }
 
-CmsPage.pageOptions = {
+HomePage.pageOptions = {
   Layout: LayoutNavigation,
 } as PageOptions
 
-export default CmsPage
+export default HomePage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
