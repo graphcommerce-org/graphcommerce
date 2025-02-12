@@ -40,6 +40,7 @@
     "@graphcommerce/graphql": "9.1.0-canary.18",
     "@graphcommerce/graphql-codegen-near-operation-file": "9.1.0-canary.18",
     "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "9.1.0-canary.18",
+    "@graphcommerce/magento-payment-tokens": "9.1.0-canary.17",
     "@graphcommerce/graphql-mesh": "9.1.0-canary.18",
     "@graphcommerce/hygraph-cli": "9.1.0-canary.18",
     "@graphcommerce/hygraph-dynamic-rows": "9.1.0-canary.18",
