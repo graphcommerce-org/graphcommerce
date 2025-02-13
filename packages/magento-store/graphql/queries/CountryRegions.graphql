@@ -1,5 +1,6 @@
 query CountryRegions {
   countries {
+    id
     full_name_locale
     two_letter_abbreviation
     three_letter_abbreviation

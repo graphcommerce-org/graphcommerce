@@ -1,5 +1,5 @@
 import type { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
-import { AttributesFormDocument } from './AttributesForm.gql'
+import { AttributesFormDocument } from '../../graphql'
 import type { CustomAttributeFormCode } from './useAttributesForm'
 
 export function preloadAttributesForm(

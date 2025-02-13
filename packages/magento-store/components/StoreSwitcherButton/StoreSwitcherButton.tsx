@@ -4,7 +4,7 @@ import type { SxProps, Theme } from '@mui/material'
 import { Button } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
-import { StoreConfigDocument } from '../../queries/StoreConfig.gql'
+import { StoreConfigDocument } from '../../graphql'
 
 export type StoreSwitcherButtonProps = { sx?: SxProps<Theme> }
 

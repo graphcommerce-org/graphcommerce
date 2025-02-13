@@ -3,9 +3,8 @@ import type { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@gr
 import { flushMeasurePerf } from '@graphcommerce/graphql'
 import { isTypename, nonNullable, storefrontConfig } from '@graphcommerce/next-ui'
 import type { Redirect } from 'next'
-import type { StoreConfigQuery } from '../queries/StoreConfig.gql'
-import type { HandleRedirectQuery } from './HandleRedirect.gql'
-import { HandleRedirectDocument } from './HandleRedirect.gql'
+import type { HandleRedirectQuery, StoreConfigQuery } from '../graphql'
+import { HandleRedirectDocument } from '../graphql'
 import { defaultLocale } from './localeToStore'
 
 export type RedirectOr404Return = Promise<

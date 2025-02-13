@@ -9,7 +9,7 @@ import {
   type RequiredKeys,
 } from '@graphcommerce/next-ui'
 import { createContext, useContext, useMemo } from 'react'
-import { type StoreSwitcherListQuery } from './StoreSwitcherList.gql'
+import { type StoreSwitcherListQuery } from '../../graphql'
 
 export type StoreSwitcherStore = RequiredKeys<
   NonNullable<NonNullable<StoreSwitcherListQuery['availableStores']>[0]>,

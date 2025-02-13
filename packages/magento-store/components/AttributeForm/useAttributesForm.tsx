@@ -1,10 +1,9 @@
 import { useQuery } from '@graphcommerce/graphql'
 import type { AttributeValueInput } from '@graphcommerce/graphql-mesh'
-import type { AttributeValueFragment } from '@graphcommerce/magento-store/components/AttributeForm/AttributeValueFragment.gql'
-import type { CustomAttributeMetadataFragment } from '@graphcommerce/magento-store/components/AttributeForm/CustomAttributeMetadata.gql'
 import { nonNullable, useMemoObject } from '@graphcommerce/next-ui'
 import { useMemo } from 'react'
-import { AttributesFormDocument } from './AttributesForm.gql'
+import { AttributesFormDocument } from '../../graphql'
+import type { AttributeValueFragment, CustomAttributeMetadataFragment } from '../../graphql'
 
 type CustomAttributesFormFieldValue = string | string[] | boolean | undefined
 type CustomAttributesFormField = Record<string, CustomAttributesFormFieldValue>

@@ -1,6 +1,6 @@
 import { useQuery } from '@graphcommerce/graphql'
-import type { CountryRegionsQuery } from '../queries/CountryRegions.gql'
-import { CountryRegionsDocument } from '../queries/CountryRegions.gql'
+import type { CountryRegionsQuery } from '../graphql'
+import { CountryRegionsDocument } from '../graphql'
 
 export function useFindCountry(
   countryCode?: string | null,

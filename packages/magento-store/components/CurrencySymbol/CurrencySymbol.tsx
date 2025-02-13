@@ -3,7 +3,7 @@ import {
   CurrencySymbol as CurrencySymbolBase,
   type CurrencySymbolProps,
 } from '@graphcommerce/next-ui'
-import { StoreConfigDocument } from '../../queries/StoreConfig.gql'
+import { StoreConfigDocument } from '../../graphql'
 
 export function CurrencySymbol(props: CurrencySymbolProps) {
   const { currency } = props

@@ -1,7 +1,7 @@
 import { useQuery } from '@graphcommerce/graphql'
 import type { PageMetaProps as NextPageMetaProps } from '@graphcommerce/next-ui'
 import { PageMeta as NextPageMeta } from '@graphcommerce/next-ui'
-import { StoreConfigDocument } from '../../queries/StoreConfig.gql'
+import { StoreConfigDocument } from '../../graphql'
 
 export type PageMetaProps = Omit<NextPageMetaProps, 'canonical'> & {
   canonical?: string
