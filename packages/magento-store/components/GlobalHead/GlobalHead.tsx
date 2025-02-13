@@ -1,6 +1,7 @@
 import { useQuery } from '@graphcommerce/graphql'
 import type { GlobalHeadProps as GlobalHeadPropsBase } from '@graphcommerce/next-ui'
 import { GlobalHead as GlobalHeadBase } from '@graphcommerce/next-ui'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { getImageProps } from 'next/image'
 import React from 'react'
 import { StoreConfigDocument } from '../../graphql'

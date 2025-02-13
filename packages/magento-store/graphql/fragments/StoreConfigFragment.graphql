@@ -3,6 +3,13 @@ fragment StoreConfigFragment on StoreConfig {
   store_code
   store_name
 
+  header_logo_src
+  logo_width
+  logo_height
+  logo_alt
+
+  copyright
+
   locale
   base_currency_code
 

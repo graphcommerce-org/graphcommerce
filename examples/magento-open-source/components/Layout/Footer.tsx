@@ -1,16 +1,16 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { useCheckoutGuestEnabled } from '@graphcommerce/magento-cart'
 import { StoreConfigDocument, StoreSwitcherButton } from '@graphcommerce/magento-store'
-import { DateFormat, Footer as FooterBase } from '@graphcommerce/next-ui'
+import { DateFormat, FindAndReplace, Footer as FooterBase } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Button, Link } from '@mui/material'
 
 export function Footer(props: { socialLinks?: React.ReactNode }) {
   const { socialLinks } = props
   const cartEnabled = useCheckoutGuestEnabled()
-  const config = useQuery(StoreConfigDocument)
+  const config = useQuery(StoreConfigDocument).data?.storeConfig
 
-  const websiteName = config.data?.storeConfig?.website_name
+  const websiteName = config?.website_name
   const year = <DateFormat dateStyle={undefined} year='numeric' date={new Date()} />
 
   return (
@@ -25,9 +25,13 @@ export function Footer(props: { socialLinks?: React.ReactNode }) {
       copyright={
         <>
           <span>
-            <Trans>
-              Copyright© {year} {websiteName}
-            </Trans>
+            {config?.copyright ? (
+              <FindAndReplace source={config.copyright} findAndReplace={[['{YYYY}', year]]} />
+            ) : (
+              <Trans>
+                Copyright© {year} {websiteName}
+              </Trans>
+            )}
           </span>
 
           {import.meta.graphCommerce.magentoVersion >= 247 && cartEnabled && (
