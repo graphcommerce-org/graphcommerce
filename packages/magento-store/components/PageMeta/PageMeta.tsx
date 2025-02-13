@@ -8,7 +8,7 @@ export type PageMetaProps = Omit<NextPageMetaProps, 'canonical'> & {
 }
 
 export function PageMeta(props: PageMetaProps) {
-  const { children, title, ...pageMetaProps } = props
+  const { children, title, metaDescription, metaKeywords, ...pageMetaProps } = props
   const config = useQuery(StoreConfigDocument)
 
   const prefix = config.data?.storeConfig?.title_prefix ?? ''
@@ -22,7 +22,12 @@ export function PageMeta(props: PageMetaProps) {
   if (suffix) pageTitle += ` ${suffix}`
 
   return (
-    <NextPageMeta title={pageTitle ?? ''} {...pageMetaProps}>
+    <NextPageMeta
+      title={pageTitle ?? ''}
+      metaDescription={metaDescription ?? config.data?.storeConfig?.default_description}
+      metaKeywords={metaKeywords ?? config.data?.storeConfig?.default_keywords}
+      {...pageMetaProps}
+    >
       {children}
     </NextPageMeta>
   )

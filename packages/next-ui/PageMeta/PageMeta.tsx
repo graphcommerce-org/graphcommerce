@@ -23,6 +23,7 @@ export type PageMetaProps = {
   canonical?: Canonical
   metaDescription?: string
   metaRobots?: MetaRobotsAll | MetaRobots[]
+  metaKeywords?: string
   children?: React.ReactNode
   ogImage?: string | null
   ogImageUseFallback?: boolean
@@ -36,6 +37,7 @@ export function PageMeta(props: PageMetaProps) {
     title,
     canonical: canonicalBare,
     metaDescription,
+    metaKeywords,
     ogImage,
     ogType,
     ogImageUseFallback = false,
@@ -56,6 +58,7 @@ export function PageMeta(props: PageMetaProps) {
       )}
       <meta name='robots' content={metaRobots.join(',')} key='meta-robots' />
       {canonical && <link rel='canonical' href={canonical} key='canonical' />}
+      {metaKeywords && <meta name='keywords' content={metaKeywords.trim()} key='meta-keywords' />}
       <meta property='og:title' content={title.trim()} key='og-title' />
       <meta property='og:type' content={ogType ?? 'website'} key='og-type' />
       <meta property='og:url' content={canonical} key='og-url' />
