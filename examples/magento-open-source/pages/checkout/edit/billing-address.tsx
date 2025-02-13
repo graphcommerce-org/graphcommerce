@@ -1,7 +1,6 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
-import { getCheckoutIsDisabled } from '@graphcommerce/magento-cart'
-import { EditBillingAddressForm } from '@graphcommerce/magento-cart-billing-address'
+import { EditBillingAddressForm, getCheckoutIsDisabled } from '@graphcommerce/magento-cart'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { LayoutOverlayHeader, LayoutTitle, PageMeta } from '@graphcommerce/next-ui'
