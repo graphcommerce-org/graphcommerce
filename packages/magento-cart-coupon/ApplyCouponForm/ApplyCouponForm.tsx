@@ -39,7 +39,7 @@ export function ApplyCouponForm(props: ApplyCouponFormProps) {
         variant='outlined'
         type='text'
         error={!!formState.errors.couponCode || !!error}
-        required={required.couponCode}
+        required
         name='couponCode'
         rules={{ required: required.couponCode }}
         control={control}

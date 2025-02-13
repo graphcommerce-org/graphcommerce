@@ -1,0 +1,7 @@
+fragment Discount on Discount {
+  applied_to
+  amount {
+    ...Money
+  }
+  label
+}

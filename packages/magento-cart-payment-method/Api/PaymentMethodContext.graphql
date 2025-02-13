@@ -8,9 +8,7 @@ fragment PaymentMethodContext on Cart {
   }
   prices {
     applied_taxes {
-      amount {
-        ...Money
-      }
+      ...CartTaxItem
     }
   }
 }

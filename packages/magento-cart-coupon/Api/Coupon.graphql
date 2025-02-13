@@ -2,6 +2,6 @@ fragment Coupon on Cart {
   id
   __typename
   applied_coupons {
-    code
+    ...AppliedCoupon
   }
 }
