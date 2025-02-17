@@ -15,7 +15,7 @@ import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import { Button, Form, FormActions, FormDivider, FormRow } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
-import { GetBillingAddressDocument } from '../../graphql/queries/GetBillingAddress.gql'
+import { GetBillingAddressDocument } from '../../graphql'
 import { useCartQuery, useFormGqlMutationCart } from '../../hooks'
 
 export type EditBillingAddressFormProps = { sx?: SxProps<Theme> }
