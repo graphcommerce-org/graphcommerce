@@ -205,18 +205,19 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const urlKey = params?.url ?? '??'
 
   const conf = client.query({ query: StoreConfigDocument })
-  const productPage = staticClient.query({
-    query: ProductPage2Document,
-    variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 },
-  })
+  const productPage = staticClient
+    .query({
+      query: ProductPage2Document,
+      variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 },
+    })
+    .then((pp) => defaultConfigurableOptionsSelection(urlKey, client, pp.data))
+
   const layout = staticClient.query({
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
 
-  const product = productPage.then((pp) =>
-    pp.data.products?.items?.find((p) => p?.url_key === urlKey),
-  )
+  const product = productPage.then((pp) => pp.products?.items?.find((p) => p?.url_key === urlKey))
 
   const pages = hygraphPageContent(staticClient, 'product/global', product, true)
   if (!(await product)) return redirectOrNotFound(staticClient, conf, params, locale)
@@ -231,7 +232,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   return {
     props: {
       urlKey,
-      ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),
+      ...(await productPage),
       ...(await layout).data,
       ...(await pages).data,
       ...(await usps).data,
