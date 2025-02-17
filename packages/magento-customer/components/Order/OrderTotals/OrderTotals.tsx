@@ -3,7 +3,7 @@ import { breakpointVal, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Divider, Typography } from '@mui/material'
-import type { OrderTotalsFragment } from '../OrderDetails/OrderTotals.gql'
+import type { OrderTotalsFragment } from './OrderTotals.gql'
 
 export type OrderTotalsProps = {
   order: OrderTotalsFragment

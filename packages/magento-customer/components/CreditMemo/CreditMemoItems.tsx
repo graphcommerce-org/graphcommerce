@@ -22,7 +22,7 @@ export function CreditMemoItems(props: CreditMemoItemsProps) {
 
   return (
     <SectionContainer
-      labelLeft={<Trans id='Refunded items' />}
+      labelLeft={<Trans>Refunded items</Trans>}
       className={classes.root}
       sx={[
         (theme) => ({

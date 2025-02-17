@@ -5,10 +5,7 @@ import { Trans } from '@lingui/macro'
 import { Box, Typography } from '@mui/material'
 import { useMemo } from 'react'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError'
-import { OrderDetails } from '../OrderDetails/OrderDetails'
-import { OrderTotals } from '../OrderDetails/OrderTotals'
-import { OrderItems } from '../OrderItems/OrderItems'
-import { OrderStateLabel } from '../OrderStateLabel/OrderStateLabel'
+import { OrderDetails, OrderItems, OrderStateLabel, OrderTotals } from '../Order'
 import type { GuestOrderQueryVariables } from './GuestOrder.gql'
 import { GuestOrderDocument } from './GuestOrder.gql'
 
@@ -87,9 +84,9 @@ export function GuestOrderOverviewForm() {
           <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
             <OrderStateLabel {...orderData.guestOrder} />
           </Typography>
-          <OrderDetails {...orderData?.guestOrder} />
-          <OrderItems {...orderData?.guestOrder} />
-          <OrderTotals {...orderData?.guestOrder} />
+          <OrderDetails order={orderData?.guestOrder} />
+          <OrderItems order={orderData?.guestOrder} />
+          <OrderTotals order={orderData?.guestOrder} />
         </>
       )}
     </>

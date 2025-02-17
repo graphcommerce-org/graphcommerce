@@ -3,7 +3,7 @@ fragment OrderAddress on OrderAddress {
   fax
   middlename
   prefix
-  region
+  # region
   suffix
   telephone
   vat_id

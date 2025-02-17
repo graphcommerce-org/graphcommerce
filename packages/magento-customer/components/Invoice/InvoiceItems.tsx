@@ -22,7 +22,7 @@ export function InvoiceItems(props: InvoiceItemsProps) {
 
   return (
     <SectionContainer
-      labelLeft={<Trans id='Invoiced items' />}
+      labelLeft={<Trans>Invoiced items</Trans>}
       className={classes.root}
       sx={[
         (theme) => ({

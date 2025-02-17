@@ -6,10 +6,10 @@ import { getImageProps } from 'next/image'
 import React from 'react'
 import { StoreConfigDocument } from '../../graphql'
 
-export type GlobalHeadProps = Omit<GlobalHeadPropsBase, 'name'> & { disableIcon?: boolean }
+export type GlobalHeadProps = Omit<GlobalHeadPropsBase, 'name'>
 
 export const GlobalHead = React.memo<GlobalHeadProps>((props) => {
-  const { children, disableIcon = false } = props
+  const { children } = props
   const name = useQuery(StoreConfigDocument).data?.storeConfig?.website_name ?? ''
 
   const { head_shortcut_icon, secure_base_media_url } =
@@ -27,13 +27,8 @@ export const GlobalHead = React.memo<GlobalHeadProps>((props) => {
 
   return (
     <GlobalHeadBase name={name} {...props}>
-      {!disableIcon && (
-        <>
-          <link rel='icon' href={icon ?? '/favicon.ico'} sizes='any' key='icon' />
-          {!icon && <link rel='icon' href='/favicon.svg' type='image/svg+xml' key='icon-svg' />}
-        </>
-      )}
-      {children}
+      <link rel='icon' href={icon ?? '/favicon.ico'} sizes='any' key='icon' />
+      {!icon && <link rel='icon' href='/favicon.svg' type='image/svg+xml' key='icon-svg' />}
     </GlobalHeadBase>
   )
 })

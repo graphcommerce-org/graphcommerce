@@ -21,9 +21,9 @@ type MetaRobotsAll = ['all' | 'none']
 export type PageMetaProps = {
   title: string
   canonical?: Canonical
-  metaDescription?: string
+  metaDescription?: string | null
   metaRobots?: MetaRobotsAll | MetaRobots[]
-  metaKeywords?: string
+  metaKeywords?: string | null
   children?: React.ReactNode
   ogImage?: string | null
   ogImageUseFallback?: boolean

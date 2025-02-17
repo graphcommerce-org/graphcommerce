@@ -23,8 +23,6 @@ export function ShipmentCard(props: ShipmentCardProps) {
   const { orderNumber, shipment, sx = [] } = props
   const { number } = shipment
 
-  const tracking = filterNonNullableKeys(shipment.tracking)
-
   return (
     <Box
       component={NextLink}

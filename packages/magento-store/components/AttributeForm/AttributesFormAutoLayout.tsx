@@ -25,7 +25,7 @@ export type AttributeFormAutoLayoutProps<
 > = {
   control: Control<TFieldValues>
   fieldsets?: AttributeFormAutoLayoutFieldset[]
-  attributes: CustomAttributeMetadata<Typename, NoInfer<TFieldValues>>[]
+  attributes: CustomAttributeMetadata<Typename>[]
   render?: React.FC<AttributeFormFieldProps<NoInfer<TFieldValues>, Typename>>
   sectionContainer?: Omit<SectionContainerProps, 'labelLeft'>
 }
