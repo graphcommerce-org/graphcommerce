@@ -21,5 +21,9 @@ export function ProductPageGallery(
       ? configured?.configurable_product_options_selection?.media_gallery
       : product.media_gallery
 
+  if (product.__typename !== 'ConfigurableProduct') {
+    return <Prev product={product} {...rest} />
+  }
+
   return <Prev product={{ ...product, media_gallery }} {...rest} />
 }
