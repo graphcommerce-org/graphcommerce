@@ -1,8 +1,7 @@
 import { SectionContainer } from '@graphcommerce/next-ui'
-import React from 'react'
 import type { AccountOrdersFragment } from '../AccountOrders/AccountOrders.gql'
 import { NoOrdersFound } from '../NoOrdersFound/NoOrdersFound'
-import { OrderCard } from '../OrderCard/OrderCard'
+import { OrderCard } from '../Order'
 
 export type AccountLatestOrderProps = AccountOrdersFragment & {
   loading: boolean

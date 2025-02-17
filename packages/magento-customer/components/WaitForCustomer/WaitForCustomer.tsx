@@ -12,6 +12,7 @@ import { ApolloCustomerErrorFullPage } from '../ApolloCustomerError/ApolloCustom
 export type WaitForCustomerProps = SetOptional<WaitForQueriesProps, 'waitFor'> &
   SetOptional<FullPageMessageProps, 'title' | 'icon'> & {
     unauthenticated?: React.ReactNode
+    allowError?: boolean
   }
 
 export function nonNullable<T>(value: T): value is NonNullable<T> {
@@ -41,7 +42,14 @@ export function nonNullable<T>(value: T): value is NonNullable<T> {
  * ```
  */
 export function WaitForCustomer(props: WaitForCustomerProps) {
-  const { waitFor = [], children, fallback, unauthenticated, ...rest } = props
+  const {
+    waitFor = [],
+    children,
+    fallback,
+    unauthenticated,
+    allowError: ignoreError,
+    ...rest
+  } = props
 
   const session = useCustomerSession()
   const queries = Array.isArray(waitFor) ? waitFor : [waitFor]
@@ -49,6 +57,7 @@ export function WaitForCustomer(props: WaitForCustomerProps) {
     queries.map((query) => (typeof query === 'boolean' ? null : query.error)).filter(nonNullable),
   )
 
+  const hasError = error && !ignoreError
   return (
     <WaitForQueries
       waitFor={!session.loggedIn ? session.query : queries}
@@ -81,8 +90,8 @@ export function WaitForCustomer(props: WaitForCustomerProps) {
             {...rest}
           />
         ))}
-      {session.loggedIn && error && <ApolloCustomerErrorFullPage error={error} />}
-      {session.loggedIn && !error && children}
+      {session.loggedIn && hasError && <ApolloCustomerErrorFullPage error={error} />}
+      {session.loggedIn && !hasError && children}
     </WaitForQueries>
   )
 }

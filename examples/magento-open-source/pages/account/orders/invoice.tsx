@@ -1,13 +1,11 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   getCustomerAccountIsDisabled,
-  OrderAdditional,
-  OrderDetailPageDocument,
+  InvoiceDetailPageDocument,
+  InvoiceItems,
+  InvoiceTotals,
   OrderDetails,
-  OrderItems,
-  OrderStateLabel,
-  OrderTotals,
-  ReorderItems,
+  SalesComments,
   useCustomerQuery,
   WaitForCustomer,
 } from '@graphcommerce/magento-customer'
@@ -15,14 +13,14 @@ import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcom
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   FullPageMessage,
-  iconBox,
+  iconInvoice,
   IconSvg,
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
-import { Container, Typography } from '@mui/material'
+import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { LayoutOverlayProps } from '../../../components'
 import { LayoutOverlay } from '../../../components'
@@ -30,54 +28,57 @@ import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/grap
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
-function OrderDetailPage() {
+function InvoiceDetailPage() {
   const router = useRouter()
-  const { orderNumber } = router.query
+  const { invoiceNumber, orderNumber } = router.query
 
-  const orders = useCustomerQuery(OrderDetailPageDocument, {
+  const invoices = useCustomerQuery(InvoiceDetailPageDocument, {
     fetchPolicy: 'cache-and-network',
     variables: { orderNumber: orderNumber as string },
-    skip: !orderNumber,
+    skip: !invoiceNumber || !orderNumber,
   })
-  const order = orders.data?.customer?.orders?.items?.[0]
+
+  const order = invoices.data?.customer?.orders?.items?.[0]
+  const invoice = order?.invoices.find((i) => i?.number === invoiceNumber)
 
   return (
     <>
-      <LayoutOverlayHeader primary={order && <ReorderItems order={order} />}>
-        <LayoutTitle size='small' component='span' icon={iconBox}>
-          <Trans>Order #{orderNumber}</Trans>
+      <LayoutOverlayHeader hideBackButton>
+        <LayoutTitle size='small' component='span' icon={iconInvoice}>
+          <Trans>Invoice #{invoiceNumber}</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
-      <WaitForCustomer waitFor={[orders, router.isReady]} sx={{ height: '100%' }}>
+      <WaitForCustomer waitFor={[invoices, router.isReady]} sx={{ height: '100%' }}>
         <Container maxWidth='md'>
-          {(!orderNumber || !order) && (
+          {(!invoiceNumber || !invoice || !order) && (
             <FullPageMessage
-              title={<Trans>Order not found</Trans>}
-              icon={<IconSvg src={iconBox} size='xxl' />}
+              title={<Trans>Invoice not found</Trans>}
+              icon={<IconSvg src={iconInvoice} size='xxl' />}
             />
           )}
 
-          {orderNumber && order && (
+          {invoiceNumber && invoice && order && (
             <>
               <LayoutTitle
-                icon={iconBox}
+                icon={iconInvoice}
                 gutterBottom={false}
                 sx={(theme) => ({ mb: theme.spacings.xxs })}
               >
-                <Trans>Order #{orderNumber}</Trans>
+                <Trans>Invoice #{invoiceNumber}</Trans>
               </LayoutTitle>
 
               <PageMeta
-                title={i18n._(/* i18n */ 'Order #{orderNumber}', { orderNumber })}
+                title={i18n._(/* i18n */ 'Invoice #{invoiceNumber}', { invoiceNumber })}
                 metaRobots={['noindex']}
               />
-              <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
-                <OrderStateLabel {...order} />
-              </Typography>
+
               <OrderDetails order={order} />
-              <OrderItems order={order} />
-              <OrderTotals order={order} />
-              <OrderAdditional order={order} />
+              <InvoiceItems invoice={invoice} />
+              <InvoiceTotals invoice={invoice} />
+              <SalesComments
+                comments={invoice.comments}
+                sx={(theme) => ({ mb: theme.spacings.lg })}
+              />
             </>
           )}
         </Container>
@@ -88,12 +89,11 @@ function OrderDetailPage() {
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
-  sharedKey: () => 'account/orders',
   Layout: LayoutOverlay,
 }
-OrderDetailPage.pageOptions = pageOptions
+InvoiceDetailPage.pageOptions = pageOptions
 
-export default OrderDetailPage
+export default InvoiceDetailPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }

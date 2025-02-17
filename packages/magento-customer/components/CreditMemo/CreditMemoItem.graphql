@@ -1,0 +1,18 @@
+fragment CreditMemoItem on CreditMemoItemInterface {
+  id
+  discounts {
+    amount {
+      ...Money
+    }
+    label
+  }
+  order_item {
+    id
+  }
+  product_name
+  product_sale_price {
+    ...Money
+  }
+  product_sku
+  quantity_refunded
+}

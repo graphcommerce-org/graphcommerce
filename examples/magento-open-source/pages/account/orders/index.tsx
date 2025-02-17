@@ -35,6 +35,7 @@ function AccountOrdersPage() {
       pageSize: 5,
       currentPage: Number(query?.page ?? 1),
     },
+    errorPolicy: 'all',
   })
   const { data } = orders
   const customer = data?.customer
@@ -48,7 +49,7 @@ function AccountOrdersPage() {
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <PageMeta title={i18n._(/* i18n */ 'Orders')} metaRobots={['noindex']} />
-        <WaitForCustomer waitFor={orders}>
+        <WaitForCustomer waitFor={orders} allowError>
           {customer?.orders && customer.orders.items.length > 0 && (
             <>
               <LayoutTitle icon={iconBox}>

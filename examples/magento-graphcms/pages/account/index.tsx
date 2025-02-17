@@ -7,7 +7,6 @@ import {
   AddressSingleLine,
   getCustomerAccountIsDisabled,
   OrderStateLabel,
-  OrderStateLabelInline,
   SignOutForm,
   useCustomerQuery,
   WaitForCustomer,

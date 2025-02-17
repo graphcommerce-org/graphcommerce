@@ -1,0 +1,15 @@
+fragment InvoiceItem on InvoiceItemInterface {
+  id
+  discounts {
+    amount {
+      ...Money
+    }
+    label
+  }
+  product_name
+  product_sale_price {
+    ...Money
+  }
+  product_sku
+  quantity_invoiced
+}

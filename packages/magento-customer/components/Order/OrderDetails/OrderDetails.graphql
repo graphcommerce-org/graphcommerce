@@ -1,0 +1,38 @@
+fragment OrderDetails on CustomerOrder {
+  id
+  number
+  order_date
+  status
+  invoices {
+    id
+    number
+  }
+  shipping_method
+  shipments {
+    id
+    tracking {
+      ...TrackingLink
+    }
+  }
+  applied_coupons {
+    ...AppliedCoupon
+  }
+  payment_methods {
+    name
+    type
+    additional_data {
+      name
+      value
+    }
+  }
+  billing_address {
+    ...OrderAddress
+  }
+  shipping_address {
+    ...OrderAddress
+  }
+  carrier
+  total {
+    ...OrderTotal
+  }
+}

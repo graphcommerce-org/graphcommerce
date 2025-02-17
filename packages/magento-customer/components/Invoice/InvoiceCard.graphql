@@ -1,0 +1,9 @@
+fragment InvoiceCard on Invoice {
+  id
+  number
+  total {
+    grand_total {
+      ...Money
+    }
+  }
+}

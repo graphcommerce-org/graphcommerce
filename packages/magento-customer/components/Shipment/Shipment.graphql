@@ -1,0 +1,14 @@
+fragment Shipment on OrderShipment {
+  id
+  number
+  items {
+    ...ShipmentItem
+  }
+  comments {
+    message
+    timestamp
+  }
+  tracking {
+    ...TrackingLink
+  }
+}

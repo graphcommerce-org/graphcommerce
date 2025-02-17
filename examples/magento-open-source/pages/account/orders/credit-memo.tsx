@@ -1,13 +1,11 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
+  CreditMemoDetailPageDocument,
+  CreditMemoItems,
+  CreditMemoTotals,
   getCustomerAccountIsDisabled,
-  OrderAdditional,
-  OrderDetailPageDocument,
   OrderDetails,
-  OrderItems,
-  OrderStateLabel,
-  OrderTotals,
-  ReorderItems,
+  SalesComments,
   useCustomerQuery,
   WaitForCustomer,
 } from '@graphcommerce/magento-customer'
@@ -15,14 +13,14 @@ import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcom
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   FullPageMessage,
-  iconBox,
+  iconInvoice,
   IconSvg,
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
-import { Container, Typography } from '@mui/material'
+import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { LayoutOverlayProps } from '../../../components'
 import { LayoutOverlay } from '../../../components'
@@ -30,54 +28,57 @@ import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/grap
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
-function OrderDetailPage() {
+function CreditMemoDetailPage() {
   const router = useRouter()
-  const { orderNumber } = router.query
+  const { orderNumber, creditMemoNumber } = router.query
 
-  const orders = useCustomerQuery(OrderDetailPageDocument, {
+  const creditMemos = useCustomerQuery(CreditMemoDetailPageDocument, {
     fetchPolicy: 'cache-and-network',
     variables: { orderNumber: orderNumber as string },
-    skip: !orderNumber,
+    skip: !orderNumber || !creditMemoNumber,
   })
-  const order = orders.data?.customer?.orders?.items?.[0]
+  const order = creditMemos.data?.customer?.orders?.items?.[0]
+  const creditMemo = order?.credit_memos?.find((c) => c?.number === creditMemoNumber)
 
   return (
     <>
-      <LayoutOverlayHeader primary={order && <ReorderItems order={order} />}>
-        <LayoutTitle size='small' component='span' icon={iconBox}>
-          <Trans>Order #{orderNumber}</Trans>
+      <LayoutOverlayHeader hideBackButton>
+        <LayoutTitle size='small' component='span' icon={iconInvoice}>
+          <Trans>Credit Memo #{creditMemoNumber}</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
-      <WaitForCustomer waitFor={[orders, router.isReady]} sx={{ height: '100%' }}>
+      <WaitForCustomer waitFor={[creditMemos, router.isReady]} sx={{ height: '100%' }}>
         <Container maxWidth='md'>
-          {(!orderNumber || !order) && (
+          {(!creditMemoNumber || !creditMemo || !order) && (
             <FullPageMessage
-              title={<Trans>Order not found</Trans>}
-              icon={<IconSvg src={iconBox} size='xxl' />}
+              title={<Trans>Credit Memo not found</Trans>}
+              icon={<IconSvg src={iconInvoice} size='xxl' />}
             />
           )}
 
-          {orderNumber && order && (
+          {creditMemoNumber && creditMemo && order && (
             <>
               <LayoutTitle
-                icon={iconBox}
+                icon={iconInvoice}
                 gutterBottom={false}
                 sx={(theme) => ({ mb: theme.spacings.xxs })}
               >
-                <Trans>Order #{orderNumber}</Trans>
+                <Trans>Credit Memo #{creditMemoNumber}</Trans>
               </LayoutTitle>
 
               <PageMeta
-                title={i18n._(/* i18n */ 'Order #{orderNumber}', { orderNumber })}
+                title={i18n._(/* i18n */ 'Credit Memo #{creditMemoNumber}', { creditMemoNumber })}
                 metaRobots={['noindex']}
               />
-              <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
-                <OrderStateLabel {...order} />
-              </Typography>
+
               <OrderDetails order={order} />
-              <OrderItems order={order} />
-              <OrderTotals order={order} />
-              <OrderAdditional order={order} />
+              {/* <CreditMemoDetails creditMemo={creditMemo} /> */}
+              <CreditMemoItems creditMemo={creditMemo} />
+              <CreditMemoTotals creditMemo={creditMemo} />
+              <SalesComments
+                comments={creditMemo.comments}
+                sx={(theme) => ({ mb: theme.spacings.lg })}
+              />
             </>
           )}
         </Container>
@@ -88,12 +89,11 @@ function OrderDetailPage() {
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
-  sharedKey: () => 'account/orders',
   Layout: LayoutOverlay,
 }
-OrderDetailPage.pageOptions = pageOptions
+CreditMemoDetailPage.pageOptions = pageOptions
 
-export default OrderDetailPage
+export default CreditMemoDetailPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }

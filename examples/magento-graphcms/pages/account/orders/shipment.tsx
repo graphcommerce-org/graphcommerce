@@ -1,13 +1,11 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   getCustomerAccountIsDisabled,
-  OrderAdditional,
-  OrderDetailPageDocument,
   OrderDetails,
-  OrderItems,
-  OrderStateLabel,
-  OrderTotals,
-  ReorderItems,
+  SalesComments,
+  ShipmentDetailPageDocument,
+  ShipmentDetails,
+  ShipmentItems,
   useCustomerQuery,
   WaitForCustomer,
 } from '@graphcommerce/magento-customer'
@@ -22,7 +20,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
-import { Container, Typography } from '@mui/material'
+import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { LayoutOverlayProps } from '../../../components'
 import { LayoutOverlay } from '../../../components'
@@ -30,54 +28,56 @@ import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/grap
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
-function OrderDetailPage() {
+function ShipmentDetailPage() {
   const router = useRouter()
-  const { orderNumber } = router.query
+  const { orderNumber, shipmentNumber } = router.query
 
-  const orders = useCustomerQuery(OrderDetailPageDocument, {
+  const shipments = useCustomerQuery(ShipmentDetailPageDocument, {
     fetchPolicy: 'cache-and-network',
     variables: { orderNumber: orderNumber as string },
-    skip: !orderNumber,
+    skip: !orderNumber || !shipmentNumber,
   })
-  const order = orders.data?.customer?.orders?.items?.[0]
+  const order = shipments.data?.customer?.orders?.items?.[0]
+  const shipment = order?.shipments?.find((s) => s?.number === shipmentNumber)
 
   return (
     <>
-      <LayoutOverlayHeader primary={order && <ReorderItems order={order} />}>
+      <LayoutOverlayHeader hideBackButton>
         <LayoutTitle size='small' component='span' icon={iconBox}>
-          <Trans>Order #{orderNumber}</Trans>
+          <Trans>Shipment #{shipmentNumber}</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
-      <WaitForCustomer waitFor={[orders, router.isReady]} sx={{ height: '100%' }}>
+      <WaitForCustomer waitFor={[shipments, router.isReady]} sx={{ height: '100%' }}>
         <Container maxWidth='md'>
-          {(!orderNumber || !order) && (
+          {(!shipmentNumber || !shipment || !order) && (
             <FullPageMessage
-              title={<Trans>Order not found</Trans>}
+              title={<Trans>Shipment not found</Trans>}
               icon={<IconSvg src={iconBox} size='xxl' />}
             />
           )}
 
-          {orderNumber && order && (
+          {shipmentNumber && shipment && order && (
             <>
               <LayoutTitle
                 icon={iconBox}
                 gutterBottom={false}
                 sx={(theme) => ({ mb: theme.spacings.xxs })}
               >
-                <Trans>Order #{orderNumber}</Trans>
+                <Trans>Shipment #{shipmentNumber}</Trans>
               </LayoutTitle>
 
               <PageMeta
-                title={i18n._(/* i18n */ 'Order #{orderNumber}', { orderNumber })}
+                title={i18n._(/* i18n */ 'Shipment #{shipmentNumber}', { shipmentNumber })}
                 metaRobots={['noindex']}
               />
-              <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
-                <OrderStateLabel {...order} />
-              </Typography>
-              <OrderDetails order={order} />
-              <OrderItems order={order} />
-              <OrderTotals order={order} />
-              <OrderAdditional order={order} />
+
+              {/* <OrderDetails order={order} /> */}
+              <ShipmentDetails shipment={shipment} />
+              <ShipmentItems shipment={shipment} />
+              <SalesComments
+                comments={shipment.comments}
+                sx={(theme) => ({ mb: theme.spacings.lg })}
+              />
             </>
           )}
         </Container>
@@ -88,12 +88,11 @@ function OrderDetailPage() {
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
-  sharedKey: () => 'account/orders',
   Layout: LayoutOverlay,
 }
-OrderDetailPage.pageOptions = pageOptions
+ShipmentDetailPage.pageOptions = pageOptions
 
-export default OrderDetailPage
+export default ShipmentDetailPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
