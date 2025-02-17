@@ -32,7 +32,6 @@ it('It resolves and sorts dependencies beginning with the root example package a
       "@graphcommerce/magento-cart-email" => "packages/magento-cart-email",
       "@graphcommerce/magento-cart-checkout" => "packages/magento-cart-checkout",
       "@graphcommerce/magento-cart-coupon" => "packages/magento-cart-coupon",
-      "@graphcommerce/magento-cart-billing-address" => "packages/magento-cart-billing-address",
       "@graphcommerce/hygraph-dynamic-rows" => "packages/hygraph-dynamic-rows",
       "@graphcommerce/hygraph-ui" => "packages/hygraph-ui",
       "@graphcommerce/googletagmanager" => "packages/googletagmanager",
