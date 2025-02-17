@@ -3,6 +3,8 @@ fragment ProductListItem on ProductInterface {
   ...ProductLink
   sku
   name
+  new_to_date
+  new_from_date
   small_image {
     ...ProductImage
   }
