@@ -1,4 +1,4 @@
-import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { TextFieldElement, useWatch } from '@graphcommerce/ecommerce-ui'
 import { Money } from '@graphcommerce/magento-store'
 import { SectionHeader } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -12,7 +12,12 @@ export type CustomizableFieldOptionProps = React.ComponentProps<
 
 export function CustomizableFieldOption(props: CustomizableFieldOptionProps) {
   const { uid, required, optionIndex, index, title, fieldValue, productPrice, currency } = props
-  const { control, register, resetField, getValues } = useFormAddProductsToCart()
+  const { control, register, resetField } = useFormAddProductsToCart()
+
+  const optionValue = useWatch({
+    control,
+    name: `cartItems.${index}.entered_options.${optionIndex}.value`,
+  })
 
   if (!fieldValue) return null
 
@@ -43,9 +48,7 @@ export function CustomizableFieldOption(props: CustomizableFieldOptionProps) {
                       typography: 'body1',
                       '&.sizeMedium': { typographty: 'subtitle1' },
                       '&.sizeLarge': { typography: 'h6' },
-                      color: getValues(`cartItems.${index}.entered_options.${optionIndex}.value`)
-                        ? 'text.primary'
-                        : 'text.secondary',
+                      color: optionValue ? 'text.primary' : 'text.secondary',
                     }}
                   >
                     {/* Change fontFamily so the + is properly outlined */}

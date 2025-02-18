@@ -1,4 +1,4 @@
-import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { TextFieldElement, useWatch } from '@graphcommerce/ecommerce-ui'
 import type { CurrencyEnum } from '@graphcommerce/graphql-mesh'
 import { Money } from '@graphcommerce/magento-store'
 import type { TypeRenderer } from '@graphcommerce/next-ui'
@@ -25,7 +25,12 @@ export type CustomizableAreaOptionProps = React.ComponentProps<
 export function CustomizableAreaOption(props: CustomizableAreaOptionProps) {
   const { uid, areaValue, required, optionIndex, index, title, currency, productPrice } = props
   const maxLength = areaValue?.max_characters ?? undefined
-  const { control, register, getValues } = useFormAddProductsToCart()
+  const { control, register } = useFormAddProductsToCart()
+
+  const optionValue = useWatch({
+    control,
+    name: `cartItems.${index}.entered_options.${optionIndex}.value`,
+  })
 
   if (!areaValue) return null
 
@@ -55,9 +60,7 @@ export function CustomizableAreaOption(props: CustomizableAreaOptionProps) {
                       typography: 'body1',
                       '&.sizeMedium': { typographty: 'subtitle1' },
                       '&.sizeLarge': { typography: 'h6' },
-                      color: getValues(`cartItems.${index}.entered_options.${optionIndex}.value`)
-                        ? 'text.primary'
-                        : 'text.secondary',
+                      color: optionValue ? 'text.primary' : 'text.secondary',
                     }}
                   >
                     {/* Change fontFamily so the + is properly outlined */}

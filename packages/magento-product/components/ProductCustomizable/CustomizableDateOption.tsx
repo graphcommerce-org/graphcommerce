@@ -1,4 +1,4 @@
-import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import { TextFieldElement, useWatch } from '@graphcommerce/ecommerce-ui'
 import { Money } from '@graphcommerce/magento-store'
 import { SectionHeader } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
@@ -39,6 +39,11 @@ export function CustomizableDateOption(props: CustomizableDateOptionProps) {
 
   const { invalid } = getFieldState(`cartItems.${index}.entered_options.${optionIndex}.value`)
 
+  const optionValue = useWatch({
+    control,
+    name: `cartItems.${index}.entered_options.${optionIndex}.value`,
+  })
+
   minDate.setSeconds(0, 0)
   maxDate.setSeconds(0, 0)
   if (!dateValue) return null
@@ -53,11 +58,7 @@ export function CustomizableDateOption(props: CustomizableDateOptionProps) {
               typography: 'body1',
               '&.sizeMedium': { typographty: 'subtitle1' },
               '&.sizeLarge': { typography: 'h6' },
-              color:
-                dateValue.uid ===
-                getValues(`cartItems.${index}.entered_options.${optionIndex}.value`)
-                  ? 'text.primary'
-                  : 'text.secondary',
+              color: optionValue ? 'text.primary' : 'text.secondary',
             }}
           >
             {/* Change fontFamily so the + is properly outlined */}
