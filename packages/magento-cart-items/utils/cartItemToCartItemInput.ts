@@ -1,3 +1,4 @@
+import { cartToBeginCheckout } from '@graphcommerce/google-datalayer/mapping/cartToBeginCheckout/cartToBeginCheckout'
 import type {
   AddProductsToCartFields,
   AnyOption,
@@ -40,7 +41,6 @@ export function cartItemToCartItemInput(
     product.options?.filter(nonNullable).forEach((productOption) => {
       // @todo Date option: Magento's backend does not provide an ISO date string that can be used, only localized strings are available which can not be parsed.
       // @todo File option: We do not support file options yet.
-      if (isTypename(productOption, ['CustomizableDateOption', 'CustomizableFileOption'])) return
 
       const selector = allSelectors[productOption.__typename] as
         | undefined
@@ -66,12 +66,23 @@ export function cartItemToCartItemInput(
           ? value[0]
           : value
       } else {
-        const idx = (productOption.sort_order ?? 0) + 100
+        if (!cartItemInput.customizable_options_entered)
+          cartItemInput.customizable_options_entered = {}
 
-        if (!cartItemInput.entered_options) cartItemInput.entered_options = []
-        cartItemInput.entered_options[idx] = {
-          uid: productOption.uid,
-          value: cartItemCustomizableOptionValue[0].value,
+        if (productOption.__typename === 'CustomizableDateOption') {
+          // Dates are not available in an iso format, so we can't really parse it.
+          // if (productOption.dateValue?.type === 'TIME') {
+          //   cartItemInput.customizable_options_entered[productOption.uid] =
+          //     `01-01-1970 ${cartItemCustomizableOptionValue[0].value}.000Z`
+          // }
+          // if (productOption.dateValue?.type === 'DATE_TIME') {
+          //   console.log(`${cartItemCustomizableOptionValue[0].value}.000Z`)
+          //   cartItemInput.customizable_options_entered[productOption.uid] =
+          //     `${cartItemCustomizableOptionValue[0].value}`
+          // }
+        } else {
+          cartItemInput.customizable_options_entered[productOption.uid] =
+            cartItemCustomizableOptionValue[0].value
         }
       }
     })

@@ -7,11 +7,11 @@ import { i18n } from '@lingui/core'
 import { Box } from '@mui/material'
 import React from 'react'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
+import { CustomizablePrice } from './CustomizablePrice'
 import type { ProductCustomizableFragment } from './ProductCustomizable.gql'
 
 export type OptionTypeRenderer = TypeRenderer<
   NonNullable<NonNullable<ProductCustomizableFragment['options']>[number]> & {
-    optionIndex: number
     index: number
     currency: CurrencyEnum
     productPrice: number
@@ -23,24 +23,15 @@ export type CustomizableAreaOptionProps = React.ComponentProps<
 >
 
 export function CustomizableAreaOption(props: CustomizableAreaOptionProps) {
-  const { uid, areaValue, required, optionIndex, index, title, currency, productPrice } = props
+  const { uid, areaValue, required, index, title, currency, productPrice } = props
   const maxLength = areaValue?.max_characters ?? undefined
-  const { control, register } = useFormAddProductsToCart()
+  const { control } = useFormAddProductsToCart()
 
-  const optionValue = useWatch({
-    control,
-    name: `cartItems.${index}.entered_options.${optionIndex}.value`,
-  })
-
+  const name = `cartItems.${index}.customizable_options_entered.${uid}` as const
   if (!areaValue) return null
 
   return (
     <Box>
-      <input
-        type='hidden'
-        {...register(`cartItems.${index}.entered_options.${optionIndex}.uid`)}
-        value={uid}
-      />
       <SectionHeader labelLeft={title} sx={{ mt: 0 }} />
       <TextFieldElement
         sx={{ width: '100%' }}
@@ -48,33 +39,17 @@ export function CustomizableAreaOption(props: CustomizableAreaOptionProps) {
         multiline
         minRows={3}
         control={control}
-        name={`cartItems.${index}.entered_options.${optionIndex}.value`}
+        name={name}
         InputProps={{
-          endAdornment:
-            areaValue.price === 0
-              ? null
-              : areaValue.price && (
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      typography: 'body1',
-                      '&.sizeMedium': { typographty: 'subtitle1' },
-                      '&.sizeLarge': { typography: 'h6' },
-                      color: optionValue ? 'text.primary' : 'text.secondary',
-                    }}
-                  >
-                    {/* Change fontFamily so the + is properly outlined */}
-                    <span style={{ fontFamily: 'arial', paddingTop: '1px' }}>+{'\u00A0'}</span>
-                    <Money
-                      value={
-                        areaValue.price_type === 'PERCENT'
-                          ? productPrice * (areaValue.price / 100)
-                          : areaValue.price
-                      }
-                      currency={currency}
-                    />
-                  </Box>
-                ),
+          endAdornment: (
+            <CustomizablePrice
+              name={name}
+              price_type={areaValue.price_type}
+              productPrice={productPrice}
+              currency={currency}
+              value={areaValue.price}
+            />
+          ),
         }}
         required={Boolean(required)}
         rules={{ maxLength }}

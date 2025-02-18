@@ -1,4 +1,5 @@
 import type { UseFormGqlMutationReturn } from '@graphcommerce/ecommerce-ui'
+import type { EnteredOptionInput } from '@graphcommerce/graphql-mesh'
 import { createContext, useContext } from 'react'
 import type { LiteralUnion, Simplify } from 'type-fest'
 import type {
@@ -11,6 +12,7 @@ export type RedirectType = LiteralUnion<'added' | undefined | false, `/${string}
 type Item = Simplify<
   AddProductsToCartMutationVariables['cartItems'][number] & {
     customizable_options?: Record<string, string | string[]>
+    customizable_options_entered?: Record<string, string | number | Date>
   }
 >
 

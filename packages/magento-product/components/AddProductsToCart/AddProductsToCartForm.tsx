@@ -78,26 +78,26 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
           cartId,
           cartItems: cartItems
             .filter((cartItem) => cartItem.sku && cartItem.quantity !== 0)
-            .map(({ customizable_options, ...cartItem }) => {
-              const options = Object.values(customizable_options ?? {})
-                .flat(1)
-                .filter(Boolean)
-
-              return {
-                ...cartItem,
-                quantity: cartItem.quantity || 1,
-                selected_options: [
-                  ...(cartItem.selected_options ?? []).filter(Boolean),
-                  ...options,
-                ],
-                entered_options: [
-                  ...(cartItem.entered_options
-                    ?.filter((option) => option?.value)
-                    .filter(nonNullable)
-                    .map((option) => ({ uid: option.uid, value: `${option?.value}` })) ?? []),
-                ],
-              }
-            }),
+            .map(({ customizable_options, customizable_options_entered, ...cartItem }) => ({
+              ...cartItem,
+              quantity: cartItem.quantity || 1,
+              selected_options: [
+                ...(cartItem.selected_options ?? []).filter(nonNullable),
+                ...Object.values(customizable_options ?? {})
+                  .flat(1)
+                  .filter(nonNullable),
+              ],
+              entered_options: [
+                ...(cartItem.entered_options ?? []).filter(nonNullable),
+                ...Object.entries(customizable_options_entered ?? {}).map(([uid, value]) => {
+                  if (value instanceof Date) {
+                    const dateValue = value.toISOString().replace(/.000Z/, '').replace('T', ' ')
+                    return { uid, value: dateValue }
+                  }
+                  return { uid, value: value.toString() }
+                }),
+              ],
+            })),
         }
 
         const sku = requestData.cartItems[requestData.cartItems.length - 1]?.sku
