@@ -1,6 +1,6 @@
 import { toDate } from '@graphcommerce/next-ui/Intl/DateTimeFormat/toDate'
 import { Box, type BoxProps } from '@mui/material'
-import type { ProductListItemFragment } from '../../Api/ProductListItem.gql'
+import type { ProductListItemFragment } from '../../graphql'
 
 export type ProductNewLabelProps = {
   product: Pick<ProductListItemFragment, 'new_from_date' | 'new_to_date'>
