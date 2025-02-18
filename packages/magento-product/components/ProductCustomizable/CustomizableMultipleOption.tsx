@@ -15,7 +15,6 @@ export type CustomizableMultipleOptionProps = React.ComponentProps<
 type MultipleActionCardProps = Pick<CustomizableMultipleOptionProps, 'productPrice' | 'currency'> &
   Pick<ActionCardProps, 'value' | 'selected'> & {
     option: NonNullable<NonNullable<CustomizableMultipleOptionFragment['multipleValue']>[number]>
-    allSelected: string[]
   }
 
 function CustomizableMultipleActionCard(props: MultipleActionCardProps) {
