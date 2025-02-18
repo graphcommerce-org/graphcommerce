@@ -9,6 +9,7 @@ import {
   ListFormat,
   SectionHeader,
 } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
 import { Box, Link } from '@mui/material'
 import { useMemo } from 'react'
 import type { DownloadableProductOptionsFragment } from './DownloadableProductOptions.gql'
@@ -21,9 +22,16 @@ export function DownloadableProductOptions(props: DownloadableProductOptionsProp
   const { product, index = 0 } = props
   const { control } = useFormAddProductsToCart()
 
+  const {
+    links_purchased_separately,
+    links_title,
+    downloadable_product_links,
+    downloadable_product_samples,
+  } = product
+
   const options = useMemo(
     () =>
-      filterNonNullableKeys(product.downloadable_product_links, ['title']).map((item) => {
+      filterNonNullableKeys(downloadable_product_links, ['title']).map((item) => {
         const newItem: ActionCardProps = {
           value: item.uid,
           title: item.title,
@@ -32,10 +40,10 @@ export function DownloadableProductOptions(props: DownloadableProductOptionsProp
         }
         return newItem
       }),
-    [product.downloadable_product_links],
+    [downloadable_product_links],
   )
 
-  const samples = filterNonNullableKeys(product.downloadable_product_samples, [
+  const samples = filterNonNullableKeys(downloadable_product_samples, [
     'sort_order',
     'title',
     'sample_url',
@@ -44,14 +52,13 @@ export function DownloadableProductOptions(props: DownloadableProductOptionsProp
   return (
     <>
       <Box>
-        <SectionHeader labelLeft='Downloadable Option' />
+        <SectionHeader labelLeft={links_title ?? <Trans>Downloadable Option</Trans>} />
         <ActionCardListForm
-          multiple
+          multiple={links_purchased_separately !== 1}
           size='medium'
           required
-          errorMessage='Please select an option'
           control={control}
-          name={`cartItems.${index}.selected_options`}
+          name={`cartItems.${index}.selected_options.0`}
           render={ActionCard}
           items={options}
         />
