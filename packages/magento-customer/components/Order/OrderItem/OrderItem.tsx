@@ -7,7 +7,10 @@ import { Box } from '@mui/material'
 import type { OrderCardItemImageFragment } from '../../../hooks/OrderCardItemImage.gql'
 import type { OrderItemFragment } from './OrderItem.gql'
 
-export type OrderItemProps = OrderItemFragment & Omit<OrderCardItemImageFragment, 'uid'>
+export type OrderItemProps = OrderItemFragment &
+  Omit<OrderCardItemImageFragment, 'uid'> & {
+    additionalInfo?: React.ReactNode
+  }
 
 const rowImageSize = responsiveVal(70, 110)
 
@@ -27,6 +30,7 @@ const parts = [
   'rowPrice',
   'optionsList',
   'option',
+  'additionalInfo',
 ] as const
 const { withState } = extendableComponent<OwnerState, typeof componentName, typeof parts>(
   componentName,
@@ -41,6 +45,7 @@ export function OrderItem(props: OrderItemProps) {
     quantity_ordered,
     product_name,
     product,
+    additionalInfo,
   } = props
   const productLink = useProductLink({
     __typename: 'SimpleProduct' as const,
@@ -61,6 +66,7 @@ export function OrderItem(props: OrderItemProps) {
           "picture itemName itemName itemName"
           "picture itemOptions itemOptions itemOptions"
           "picture itemPrice quantity rowPrice"
+          "picture additionalInfo additionalInfo additionalInfo"
         `,
         gridTemplateColumns: `${rowImageSize} repeat(3, 1fr)`,
         columnGap: theme.spacings.sm,
@@ -71,6 +77,7 @@ export function OrderItem(props: OrderItemProps) {
           gridTemplate: `
             "picture itemName itemName itemName itemName"
             "picture itemOptions itemPrice quantity rowPrice"
+            "picture additionalInfo additionalInfo additionalInfo additionalInfo"
           `,
           gridTemplateColumns: `${rowImageSize} 4fr 1fr 1fr minmax(75px, 1fr)`,
         },
@@ -79,12 +86,14 @@ export function OrderItem(props: OrderItemProps) {
           display: 'grid',
           gridTemplate: `
             "picture itemName itemName itemName"
-            "picture itemPrice quantity rowPrice"`,
+            "picture itemPrice quantity rowPrice"
+            "picture additionalInfo additionalInfo additionalInfo"`,
           alignItems: 'center',
           gridTemplateColumns: `${rowImageSize} repeat(3, 1fr)`,
           [theme.breakpoints.up('sm')]: {
             gridTemplate: `
               "picture itemName itemPrice quantity rowPrice"
+              "picture additionalInfo additionalInfo additionalInfo additionalInfo"
             `,
             gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(75px, 1fr)`,
           },
@@ -169,6 +178,18 @@ export function OrderItem(props: OrderItemProps) {
               {option?.value}
             </Box>
           ))}
+        </Box>
+      )}
+
+      {additionalInfo && (
+        <Box
+          className={classes.additionalInfo}
+          sx={(theme) => ({
+            gridArea: 'additionalInfo',
+            paddingTop: theme.spacings.xxs,
+          })}
+        >
+          {additionalInfo}
         </Box>
       )}
     </Box>

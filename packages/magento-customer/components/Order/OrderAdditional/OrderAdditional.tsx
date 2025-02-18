@@ -11,10 +11,11 @@ export type OrderAdditionalProps = {
   order: OrderAdditionalFragment
   sx?: SxProps<Theme>
   children?: React.ReactNode
+  additionalForms?: React.ReactNode
 }
 
 export function OrderAdditional(props: OrderAdditionalProps) {
-  const { order, children, sx } = props
+  const { order, children, sx, additionalForms } = props
   const comments = filterNonNullableKeys(order.comments)
   const invoices = filterNonNullableKeys(order.invoices)
   const shipments = filterNonNullableKeys(order.shipments)
@@ -44,6 +45,7 @@ export function OrderAdditional(props: OrderAdditionalProps) {
       {children}
 
       <CancelOrderForm order={order} />
+      {additionalForms}
     </Box>
   )
 }

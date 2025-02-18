@@ -1,12 +1,12 @@
 fragment ShipmentItem on ShipmentItemInterface {
   id
-  order_item {
-    id
-  }
   product_name
+  product_sku
+  quantity_shipped
   product_sale_price {
     ...Money
   }
-  product_sku
-  quantity_shipped
+  order_item {
+    id
+  }
 }

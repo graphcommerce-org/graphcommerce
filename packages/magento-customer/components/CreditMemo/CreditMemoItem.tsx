@@ -2,20 +2,20 @@ import { Money } from '@graphcommerce/magento-store'
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Box, Typography } from '@mui/material'
-import type { InvoiceItemFragment } from './InvoiceItem.gql'
+import type { CreditMemoItemFragment } from './CreditMemoItem.gql'
 
-export type InvoiceItemProps = {
-  item: InvoiceItemFragment
+export type CreditMemoItemProps = {
+  item: CreditMemoItemFragment
   additionalInfo?: React.ReactNode
 }
 
-const componentName = 'InvoiceItem'
+const componentName = 'CreditMemoItem'
 const parts = ['root', 'itemInfo', 'additionalInfo', 'skuInfo', 'priceInfo'] as const
 const { classes } = extendableComponent(componentName, parts)
 
-export function InvoiceItem(props: InvoiceItemProps) {
+export function CreditMemoItem(props: CreditMemoItemProps) {
   const { item, additionalInfo } = props
-  const { product_name, product_sku, quantity_invoiced, product_sale_price, discounts } = item
+  const { product_name, product_sku, quantity_refunded, product_sale_price, discounts } = item
 
   return (
     <Box
@@ -34,7 +34,7 @@ export function InvoiceItem(props: InvoiceItemProps) {
     >
       <Box className={classes.itemInfo}>
         <Typography variant='subtitle1'>
-          {quantity_invoiced} ⨉ {product_name}
+          {quantity_refunded} ⨉ {product_name}
         </Typography>
         {discounts?.map((discount) => (
           <Typography key={discount?.label} variant='body2' color='textSecondary'>

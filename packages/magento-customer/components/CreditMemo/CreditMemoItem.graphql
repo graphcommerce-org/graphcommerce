@@ -1,18 +1,15 @@
 fragment CreditMemoItem on CreditMemoItemInterface {
   id
+  product_name
+  product_sku
+  quantity_refunded
+  product_sale_price {
+    ...Money
+  }
   discounts {
     amount {
       ...Money
     }
     label
   }
-  order_item {
-    id
-  }
-  product_name
-  product_sale_price {
-    ...Money
-  }
-  product_sku
-  quantity_refunded
 }
