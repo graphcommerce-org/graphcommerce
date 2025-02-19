@@ -1,0 +1,5 @@
+fragment ShipmentItem_Bundle on BundleShipmentItem @inject(into: ["ShipmentItem"]) {
+  bundle_options {
+    ...ItemSelectedBundleOption
+  }
+}

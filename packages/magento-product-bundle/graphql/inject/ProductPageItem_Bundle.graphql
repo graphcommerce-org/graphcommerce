@@ -1,9 +1,20 @@
-fragment BundleProductOptions on BundleProduct {
+fragment ProductPageItem_Bundle on BundleProduct @inject(into: ["ProductPageItem"]) {
   ship_bundle_items
   dynamic_sku
   dynamic_price
   dynamic_weight
+  price_view
   items {
+    price_range {
+      minimum_price {
+        final_price {
+          currency
+        }
+        discount {
+          percent_off
+        }
+      }
+    }
     uid
     position
     required
@@ -11,6 +22,7 @@ fragment BundleProductOptions on BundleProduct {
     title
     type
     options {
+      __typename
       can_change_quantity
       uid
       is_default
@@ -28,6 +40,13 @@ fragment BundleProductOptions on BundleProduct {
         url_key
         thumbnail {
           ...ProductImage
+        }
+        price_range {
+          minimum_price {
+            final_price {
+              ...Money
+            }
+          }
         }
       }
     }
