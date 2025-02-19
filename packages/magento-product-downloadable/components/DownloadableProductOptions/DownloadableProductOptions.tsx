@@ -58,7 +58,7 @@ export function DownloadableProductOptions(props: DownloadableProductOptionsProp
           size='medium'
           required
           control={control}
-          name={`cartItems.${index}.selected_options.0`}
+          name={`cartItems.${index}.selected_options_record.downloadable`}
           render={ActionCard}
           items={options}
         />

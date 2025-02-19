@@ -1,4 +1,3 @@
-import type { CartItemInput } from '@graphcommerce/graphql-mesh'
 import { type cartItemToCartItemInput as cartItemToCartItemInputType } from '@graphcommerce/magento-cart-items'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 import { filterNonNullableKeys, isTypename } from '@graphcommerce/next-ui'
@@ -22,15 +21,12 @@ export const cartItemToCartItemInput: FunctionPlugin<typeof cartItemToCartItemIn
   const links = filterNonNullableKeys(cartItem.links, ['title', 'price'])
   const productLinks = filterNonNullableKeys(product.downloadable_product_links, ['title', 'price'])
 
-  const selected_options: NonNullable<CartItemInput['selected_options']> = []
+  const downloadable: string[] = []
 
   productLinks.forEach((link) => {
     const linkIndex = links.findIndex((l) => l.uid === link.uid)
-    if (linkIndex !== -1) selected_options[linkIndex] = link.uid
+    if (linkIndex !== -1) downloadable.push(link.uid)
   })
 
-  return {
-    ...result,
-    selected_options,
-  } satisfies CartItemInput
+  return { ...result, selected_options_record: { ...result.selected_options_record, downloadable } }
 }
