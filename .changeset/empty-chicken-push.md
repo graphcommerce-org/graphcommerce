@@ -3,4 +3,4 @@
 '@graphcommerce/magento-product': patch
 ---
 
-Moved entered_options to customizable_options_entered for the AddToCartForm. Added support for TIME and DATE for the customizable options.
+Added support for TIME and DATE for the customizable options. Added required stars.

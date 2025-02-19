@@ -30,7 +30,7 @@ export function cartItemToCartItemInput(
   const cartItemInput: CartItemInput = {
     sku: product.sku,
     quantity: cartItem.quantity,
-    customizable_options: {},
+    selected_options_record: {},
     selected_options: [],
     entered_options: [],
   }
@@ -58,30 +58,29 @@ export function cartItemToCartItemInput(
 
       if (Array.isArray(possibleProductValues)) {
         const value = cartItemCustomizableOptionValue.map((v) => v.customizable_option_value_uid)
-        if (!cartItemInput.customizable_options) cartItemInput.customizable_options = {}
-        cartItemInput.customizable_options[productOption.uid] = isTypename(productOption, [
+        if (!cartItemInput.selected_options_record) cartItemInput.selected_options_record = {}
+        cartItemInput.selected_options_record[productOption.uid] = isTypename(productOption, [
           'CustomizableRadioOption',
           'CustomizableDropDownOption',
         ])
           ? value[0]
           : value
       } else {
-        if (!cartItemInput.customizable_options_entered)
-          cartItemInput.customizable_options_entered = {}
+        if (!cartItemInput.entered_options_record) cartItemInput.entered_options_record = {}
 
         if (productOption.__typename === 'CustomizableDateOption') {
           // Dates are not available in an iso format, so we can't really parse it.
           // if (productOption.dateValue?.type === 'TIME') {
-          //   cartItemInput.customizable_options_entered[productOption.uid] =
+          //   cartItemInput.entered_options_record[productOption.uid] =
           //     `01-01-1970 ${cartItemCustomizableOptionValue[0].value}.000Z`
           // }
           // if (productOption.dateValue?.type === 'DATE_TIME') {
           //   console.log(`${cartItemCustomizableOptionValue[0].value}.000Z`)
-          //   cartItemInput.customizable_options_entered[productOption.uid] =
+          //   cartItemInput.entered_options_record[productOption.uid] =
           //     `${cartItemCustomizableOptionValue[0].value}`
           // }
         } else {
-          cartItemInput.customizable_options_entered[productOption.uid] =
+          cartItemInput.entered_options_record[productOption.uid] =
             cartItemCustomizableOptionValue[0].value
         }
       }

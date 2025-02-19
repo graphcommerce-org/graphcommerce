@@ -58,7 +58,6 @@ export function ProductCustomizable(props: ProductCustomizableProps) {
           key={option.uid}
           renderer={{ ...defaultRenderer, ...renderer }}
           {...option}
-          optionIndex={option.sort_order + 100}
           index={index}
           currency={product.price_range.minimum_price.final_price.currency}
           productPrice={product.price_range.minimum_price.final_price.value}

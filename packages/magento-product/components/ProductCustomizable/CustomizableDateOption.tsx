@@ -26,7 +26,7 @@ export function CustomizableDateOption(props: CustomizableDateOptionProps) {
   const { uid, required, index, title, minDate, maxDate, dateValue, currency, productPrice } = props
   const { control } = useFormAddProductsToCart()
 
-  const name = `cartItems.${index}.customizable_options_entered.${uid}` as const
+  const name = `cartItems.${index}.entered_options_record.${uid}` as const
   if (!dateValue) return null
 
   minDate?.setSeconds(0, 0)

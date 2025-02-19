@@ -12,16 +12,23 @@ export type CustomizableFieldOptionProps = React.ComponentProps<
 >
 
 export function CustomizableFieldOption(props: CustomizableFieldOptionProps) {
-  const { uid, required, index, title, fieldValue, productPrice, currency } = props
+  const { uid, required, index, title: label, fieldValue, productPrice, currency } = props
   const { control } = useFormAddProductsToCart()
 
-  const name = `cartItems.${index}.customizable_options_entered.${uid}` as const
+  const name = `cartItems.${index}.entered_options_record.${uid}` as const
   if (!fieldValue) return null
 
   const maxLength = fieldValue.max_characters ?? 0
   return (
     <Box>
-      <SectionHeader labelLeft={title} sx={{ mt: 0 }} />
+      <SectionHeader
+        labelLeft={
+          <>
+            {label} {required && ' *'}
+          </>
+        }
+        sx={{ mt: 0 }}
+      />
       <TextFieldElement
         sx={{ width: '100%' }}
         color='primary'

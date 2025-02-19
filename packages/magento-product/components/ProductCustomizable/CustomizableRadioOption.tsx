@@ -55,7 +55,14 @@ export function CustomizableRadioOption(props: CustomizableRadioOptionProps) {
 
   return (
     <Box>
-      <SectionHeader labelLeft={label} sx={{ mt: 0 }} />
+      <SectionHeader
+        labelLeft={
+          <>
+            {label} {required && ' *'}
+          </>
+        }
+        sx={{ mt: 0 }}
+      />
       <ActionCardListForm
         sx={(theme) => ({
           mt: theme.spacings.xxs,
@@ -63,7 +70,7 @@ export function CustomizableRadioOption(props: CustomizableRadioOptionProps) {
         layout='stack'
         control={control}
         render={CustomizableRadioActionCard}
-        name={`cartItems.${index}.customizable_options.${uid}`}
+        name={`cartItems.${index}.selected_options_record.${uid}`}
         rules={{
           required: required
             ? i18n._(/* i18n*/ 'Please select a value for ‘{label}’', { label })

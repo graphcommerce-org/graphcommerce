@@ -27,12 +27,19 @@ export function CustomizableAreaOption(props: CustomizableAreaOptionProps) {
   const maxLength = areaValue?.max_characters ?? undefined
   const { control } = useFormAddProductsToCart()
 
-  const name = `cartItems.${index}.customizable_options_entered.${uid}` as const
+  const name = `cartItems.${index}.entered_options_record.${uid}` as const
   if (!areaValue) return null
 
   return (
     <Box>
-      <SectionHeader labelLeft={title} sx={{ mt: 0 }} />
+      <SectionHeader
+        labelLeft={
+          <>
+            {title} {required && ' *'}
+          </>
+        }
+        sx={{ mt: 0 }}
+      />
       <TextFieldElement
         sx={{ width: '100%' }}
         color='primary'

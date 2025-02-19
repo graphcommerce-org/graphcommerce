@@ -58,7 +58,14 @@ export function CustomizableCheckboxOption(props: CustomizableCheckboxOptionProp
 
   return (
     <Box>
-      <SectionHeader labelLeft={label} sx={{ mt: 0 }} />
+      <SectionHeader
+        labelLeft={
+          <>
+            {label} {required && ' *'}
+          </>
+        }
+        sx={{ mt: 0 }}
+      />
       <ActionCardListForm
         sx={(theme) => ({
           mt: theme.spacings.xxs,
@@ -71,7 +78,7 @@ export function CustomizableCheckboxOption(props: CustomizableCheckboxOptionProp
             : false,
         }}
         render={CustomizableCheckboxActionCard}
-        name={`cartItems.${index}.customizable_options.${uid}`}
+        name={`cartItems.${index}.selected_options_record.${uid}`}
         items={(checkboxValue ?? []).filter(nonNullable).map((checkboxVal) => ({
           productPrice,
           currency,

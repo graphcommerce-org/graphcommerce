@@ -22,13 +22,6 @@ export type AddProductsToCartFormProps = {
   sx?: SxProps<Theme>
   redirect?: RedirectType
   snackbarProps?: AddProductsToCartSnackbarProps
-
-  /** @deprecated Use snackbarProps.errorSnackbar instead */
-  errorSnackbar?: Omit<ErrorSnackbarProps, 'open'>
-  /** @deprecated Use snackbarProps.successSnackbar instead */
-  successSnackbar?: Omit<MessageSnackbarProps, 'open' | 'action'>
-  /** @deprecated Use snackbarProps.disableSuccessSnackbar instead */
-  disableSuccessSnackbar?: boolean
 } & UseFormGraphQlOptions<AddProductsToCartMutation, AddProductsToCartFields>
 
 const name = 'AddProductsToCartForm'
@@ -45,17 +38,7 @@ const name = 'AddProductsToCartForm'
  * - Redirects the user to the cart/checkout/added page after successful submission.
  */
 export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
-  let {
-    children,
-    redirect,
-    onComplete,
-    sx,
-    disableSuccessSnackbar,
-    errorSnackbar,
-    successSnackbar,
-    snackbarProps,
-    ...formProps
-  } = props
+  let { children, redirect, onComplete, sx, snackbarProps, ...formProps } = props
   const router = useRouter()
   const client = useApolloClient()
   const crosssellsQuery = useRef<Promise<ApolloQueryResult<CrosssellsQuery>>>()
@@ -78,18 +61,16 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
           cartId,
           cartItems: cartItems
             .filter((cartItem) => cartItem.sku && cartItem.quantity !== 0)
-            .map(({ customizable_options, customizable_options_entered, ...cartItem }) => ({
+            .map(({ selected_options_record = {}, entered_options_record = {}, ...cartItem }) => ({
               ...cartItem,
               quantity: cartItem.quantity || 1,
               selected_options: [
                 ...(cartItem.selected_options ?? []).filter(nonNullable),
-                ...Object.values(customizable_options ?? {})
-                  .flat(1)
-                  .filter(nonNullable),
+                ...Object.values(selected_options_record).flat(1).filter(nonNullable),
               ],
               entered_options: [
                 ...(cartItem.entered_options ?? []).filter(nonNullable),
-                ...Object.entries(customizable_options_entered ?? {}).map(([uid, value]) => {
+                ...Object.entries(entered_options_record).map(([uid, value]) => {
                   if (value instanceof Date) {
                     const dateValue = value.toISOString().replace(/.000Z/, '').replace('T', ' ')
                     return { uid, value: dateValue }
@@ -147,12 +128,7 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
       <Box component='form' onSubmit={submit} noValidate sx={sx} className={name}>
         {children}
       </Box>
-      <AddProductsToCartSnackbar
-        errorSnackbar={errorSnackbar}
-        successSnackbar={successSnackbar}
-        disableSuccessSnackbar={disableSuccessSnackbar}
-        {...snackbarProps}
-      />
+      <AddProductsToCartSnackbar {...snackbarProps} />
     </AddProductsToCartContext.Provider>
   )
 }
