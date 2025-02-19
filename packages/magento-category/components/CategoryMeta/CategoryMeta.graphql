@@ -2,5 +2,6 @@ fragment CategoryMeta on CategoryTree {
   name
   meta_title
   meta_description
+  meta_keywords
   image
 }
