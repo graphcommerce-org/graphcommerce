@@ -32,6 +32,7 @@ function AccountDeletePage() {
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
+  sharedKey: ({ asPath }) => asPath,
   Layout: LayoutOverlay,
 }
 AccountDeletePage.pageOptions = pageOptions

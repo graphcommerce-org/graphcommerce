@@ -1,5 +1,6 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
+  AccountMenuItem,
   ChangePasswordForm,
   getCustomerAccountIsDisabled,
   WaitForCustomer,
@@ -7,6 +8,7 @@ import {
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
+  iconBin,
   iconLock,
   LayoutOverlayHeader,
   LayoutTitle,
@@ -38,6 +40,16 @@ function AccountAuthenticationPage() {
           <SectionContainer labelLeft={<Trans id='Password' />}>
             <ChangePasswordForm />
           </SectionContainer>
+
+          {import.meta.graphCommerce.magentoVersion >= 246 &&
+            import.meta.graphCommerce.customerDeleteEnabled && (
+              <AccountMenuItem
+                href='/account/delete'
+                disableRipple
+                iconSrc={iconBin}
+                title={<Trans id='Delete account' />}
+              />
+            )}
         </WaitForCustomer>
       </Container>
     </>
@@ -46,6 +58,7 @@ function AccountAuthenticationPage() {
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
+  sharedKey: ({ asPath }) => asPath,
   Layout: LayoutOverlay,
 }
 AccountAuthenticationPage.pageOptions = pageOptions
