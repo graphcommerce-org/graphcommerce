@@ -31,8 +31,8 @@ function AccountAuthenticationPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
+        <PageMeta title={i18n._(/* i18n */ 'Authentication')} metaRobots={['noindex']} />
         <WaitForCustomer>
-          <PageMeta title={i18n._(/* i18n */ 'Authentication')} metaRobots={['noindex']} />
           <LayoutTitle icon={iconLock}>
             <Trans id='Authentication' />
           </LayoutTitle>
