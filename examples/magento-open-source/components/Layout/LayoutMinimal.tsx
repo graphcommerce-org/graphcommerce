@@ -1,6 +1,7 @@
 import { CmsBlock } from '@graphcommerce/magento-cms'
 import type { LayoutDefaultProps } from '@graphcommerce/next-ui'
 import { LayoutDefault } from '@graphcommerce/next-ui'
+import { productListRenderer } from '../ProductListItems'
 import { Footer } from './Footer'
 import type { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
@@ -17,7 +18,17 @@ export function LayoutMinimal(props: LayoutMinimalProps) {
     <LayoutDefault
       {...uiProps}
       header={<Logo />}
-      footer={<Footer socialLinks={footerBlock ? <CmsBlock cmsBlock={footerBlock} /> : <div />} />}
+      footer={
+        <Footer
+          socialLinks={
+            footerBlock ? (
+              <CmsBlock cmsBlock={footerBlock} productListRenderer={productListRenderer} />
+            ) : (
+              <div />
+            )
+          }
+        />
+      }
       sx={{ background: (theme) => theme.palette.background.paper }}
     >
       {children}

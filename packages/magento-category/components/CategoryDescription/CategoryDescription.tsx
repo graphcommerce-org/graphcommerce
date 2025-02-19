@@ -1,3 +1,4 @@
+import type { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { extendableComponent } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
@@ -17,6 +18,7 @@ const { withState } = extendableComponent<StateProps, typeof componentName, type
 export type CategoryDescriptionProps = StateProps & {
   sx?: SxProps<Theme>
   category: Omit<CategoryDescriptionFragment, 'uid'>
+  productListRenderer: ProductListItemRenderer
 }
 
 export function CategoryDescription(props: CategoryDescriptionProps) {

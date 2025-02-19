@@ -28,7 +28,7 @@ import {
 import { MediaQuery, memoDeep, Container, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Box, Typography } from '@mui/material'
-import { ProductListItems } from '../ProductListItems'
+import { ProductListItems, productListRenderer } from '../ProductListItems'
 import { ProductListLayoutProps, useLayoutConfiguration } from './types'
 
 export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSidebar(
@@ -96,7 +96,12 @@ export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSideb
             <>
               <Typography variant='h1'>{title}</Typography>
 
-              <CategoryDescription textAlignMd='start' textAlignSm='start' category={category} />
+              <CategoryDescription
+                textAlignMd='start'
+                textAlignSm='start'
+                category={category}
+                productListRenderer={productListRenderer}
+              />
               <MediaQuery query={(theme) => theme.breakpoints.down('md')}>
                 <CategoryChildren params={params}>{category?.children}</CategoryChildren>
               </MediaQuery>

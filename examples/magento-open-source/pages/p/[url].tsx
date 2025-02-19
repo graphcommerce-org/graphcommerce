@@ -142,7 +142,12 @@ function ProductPage(props: Props) {
           </ProductPageAddToCartActionsRow>
         </ProductPageGallery>
 
-        <ProductPageDescription product={product} fontSize='responsive' right='' />
+        <ProductPageDescription
+          product={product}
+          fontSize='responsive'
+          right=''
+          productListRenderer={productListRenderer}
+        />
       </AddProductsToCartForm>
 
       <ProductSpecs title='Specs' {...products} />

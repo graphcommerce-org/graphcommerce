@@ -152,6 +152,7 @@ function ProductPage(props: Props) {
           product={product}
           right={<Usps usps={usps} />}
           fontSize='responsive'
+          productListRenderer={productListRenderer}
         />
       </AddProductsToCartForm>
 

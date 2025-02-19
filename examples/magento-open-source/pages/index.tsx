@@ -7,7 +7,7 @@ import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { Container, isTypename, LayoutHeader, PageMeta } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import type { LayoutNavigationProps } from '../components'
-import { LayoutDocument, LayoutNavigation } from '../components'
+import { LayoutDocument, LayoutNavigation, productListRenderer } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 export type CmsPageProps = { cmsPage: CmsPageFragment | null }
@@ -27,7 +27,7 @@ function HomePage(props: CmsPageProps) {
       />
       <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs} floatingSm />
 
-      <CmsPageContent cmsPage={cmsPage} />
+      <CmsPageContent cmsPage={cmsPage} productListRenderer={productListRenderer} />
     </>
   )
 }

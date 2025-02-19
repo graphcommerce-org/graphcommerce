@@ -166,7 +166,15 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           </>
         }
         footer={
-          <Footer socialLinks={footerBlock ? <CmsBlock cmsBlock={footerBlock} /> : <div />} />
+          <Footer
+            socialLinks={
+              footerBlock ? (
+                <CmsBlock cmsBlock={footerBlock} productListRenderer={productListRenderer} />
+              ) : (
+                <div />
+              )
+            }
+          />
         }
         cartFab={<CartFab BadgeProps={{ color: 'secondary' }} />}
         menuFab={<NavigationFab onClick={() => selection.set([])} />}

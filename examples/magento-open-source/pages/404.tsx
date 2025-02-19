@@ -11,7 +11,7 @@ import { Trans } from '@lingui/react'
 import { Box, Container, Link, Typography } from '@mui/material'
 import React from 'react'
 import type { LayoutNavigationProps } from '../components'
-import { LayoutDocument, LayoutNavigation } from '../components'
+import { LayoutDocument, LayoutNavigation, productListRenderer } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = { cmsPage: CmsPageFragment | null }
@@ -32,7 +32,7 @@ function RouteNotFoundPage(props: Props) {
           </Typography>
 
           {cmsPage ? (
-            <CmsPageContent cmsPage={cmsPage} />
+            <CmsPageContent cmsPage={cmsPage} productListRenderer={productListRenderer} />
           ) : (
             <Typography variant='body1'>
               <Trans id="We couldn't find the page you were looking for" />
