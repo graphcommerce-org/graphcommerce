@@ -1,4 +1,5 @@
 fragment ShipmentItem on ShipmentItemInterface {
+  __typename
   id
   product_name
   product_sku
@@ -8,5 +9,6 @@ fragment ShipmentItem on ShipmentItemInterface {
   }
   order_item {
     id
+    ...OrderItem
   }
 }

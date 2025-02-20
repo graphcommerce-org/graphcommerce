@@ -4,7 +4,8 @@ export function sumPriceModifiers(modifiers: PriceModifier[]) {
   return modifiers.reduce(
     (price, mod) =>
       price +
-      mod.items.reduce(
+      (mod.amount ?? 0) * (mod.quantity ?? 1) +
+      (mod.items ?? []).reduce(
         (itemPrice, item) => itemPrice + (item.amount ?? 0) * (item.quantity ?? 1),
         0,
       ),
@@ -24,7 +25,9 @@ export type PriceModifier = {
   position?: number
   key: string
   label?: React.ReactNode
-  items: PriceModifierItem[]
+  amount?: number
+  quantity?: number
+  items?: PriceModifierItem[]
 }
 
 export type PriceModifiersProps = {

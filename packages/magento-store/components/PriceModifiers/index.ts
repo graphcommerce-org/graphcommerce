@@ -1,2 +1,4 @@
 export * from './PriceModifiers'
-export * from './PriceModifiersTable'
+export * from './PriceModifiersList'
+export * from './PriceModifiersListItem'
+export * from './PriceModifiersListChildItem'

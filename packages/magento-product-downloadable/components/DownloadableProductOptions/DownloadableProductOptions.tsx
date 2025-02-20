@@ -9,7 +9,6 @@ import {
   ListFormat,
   SectionHeader,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
 import { Box, Link } from '@mui/material'
 import { useMemo } from 'react'
 import type { DownloadableProductOptionsFragment } from '../../graphql'

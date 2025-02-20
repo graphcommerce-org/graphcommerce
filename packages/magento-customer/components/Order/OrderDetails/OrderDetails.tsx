@@ -2,9 +2,6 @@ import {
   breakpointVal,
   DateTimeFormat,
   extendableComponent,
-  filterNonNullableKeys,
-  iconInvoice,
-  IconSvg,
   SectionContainer,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
@@ -43,25 +40,24 @@ export function OrderDetails(props: OrderDetailsProps) {
   } = order
 
   return (
-    <SectionContainer
-      labelLeft={<Trans>Order details</Trans>}
+    <Box
       sx={[
         (theme) => ({
-          padding: theme.spacings.sm,
-          marginBottom: theme.spacings.md,
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
-          ...breakpointVal(
-            'borderRadius',
-            theme.shape.borderRadius * 2,
-            theme.shape.borderRadius * 3,
-            theme.breakpoints.values,
-          ),
-          '& .SectionHeader-root': {
-            mt: 0,
-            mb: theme.spacings.xs,
+          margin: `${theme.spacings.sm} 0`,
+          '& > div:last-of-type': {
+            borderRadius: '0',
+            ...breakpointVal(
+              'borderBottomLeftRadius',
+              theme.shape.borderRadius * 2,
+              theme.shape.borderRadius * 3,
+              theme.breakpoints.values,
+            ),
+            ...breakpointVal(
+              'borderBottomRightRadius',
+              theme.shape.borderRadius * 2,
+              theme.shape.borderRadius * 3,
+              theme.breakpoints.values,
+            ),
           },
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
@@ -69,25 +65,39 @@ export function OrderDetails(props: OrderDetailsProps) {
     >
       <Box
         className={classes.orderDetailContainer}
-        sx={[
-          (theme) => ({
-            gridColumnGap: theme.spacings.xxl,
-            gridRowGap: theme.spacings.md,
-            display: 'grid',
-            [theme.breakpoints.up('sm')]: {
-              gridTemplateColumns: '1fr 1fr',
-              marginTop: theme.spacings.xxs,
-            },
-          }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+        sx={(theme) => ({
+          ...breakpointVal(
+            'borderTopLeftRadius',
+            theme.shape.borderRadius * 2,
+            theme.shape.borderRadius * 3,
+            theme.breakpoints.values,
+          ),
+          ...breakpointVal(
+            'borderTopRightRadius',
+            theme.shape.borderRadius * 2,
+            theme.shape.borderRadius * 3,
+            theme.breakpoints.values,
+          ),
+          background:
+            theme.palette.mode === 'light'
+              ? theme.palette.background.default
+              : lighten(theme.palette.background.default, 0.15),
+          padding: theme.spacings.sm,
+          gridColumnGap: theme.spacings.xxl,
+          gridRowGap: theme.spacings.sm,
+          display: 'grid',
+          [theme.breakpoints.up('sm')]: {
+            gridTemplateColumns: '1fr 1fr',
+            marginTop: theme.spacings.xxs,
+          },
+        })}
       >
         <Box className={classes.orderDetailRow}>
           <SectionContainer
             variantLeft='h5'
             labelLeft={<Trans>Order number</Trans>}
             className={classes.orderDetailTitle}
-            sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '4px' } }}
+            sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
           >
             <Typography>{number}</Typography>
           </SectionContainer>
@@ -98,7 +108,7 @@ export function OrderDetails(props: OrderDetailsProps) {
             variantLeft='h5'
             labelLeft={<Trans>Order date</Trans>}
             className={classes.orderDetailTitle}
-            sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '4px' } }}
+            sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
           >
             <DateTimeFormat date={order_date} />
           </SectionContainer>
@@ -153,7 +163,15 @@ export function OrderDetails(props: OrderDetailsProps) {
               className={classes.orderDetailTitle}
               sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '4px' } }}
             >
-              <AddressMultiLine {...shipping_address} />
+              <AddressMultiLine
+                {...shipping_address}
+                region={{
+                  region: shipping_address.region,
+                  region_id: shipping_address.region_id ? Number(shipping_address.region_id) : null,
+                }}
+                region_id={shipping_address.region_id ? Number(shipping_address.region_id) : null}
+                custom_attributesV2={[]}
+              />
             </SectionContainer>
           </Box>
         )}
@@ -165,10 +183,20 @@ export function OrderDetails(props: OrderDetailsProps) {
             className={classes.orderDetailTitle}
             sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '4px' } }}
           >
-            <AddressMultiLine {...billing_address} />
+            {billing_address && (
+              <AddressMultiLine
+                {...billing_address}
+                region={{
+                  region: billing_address.region,
+                  region_id: billing_address.region_id ? Number(billing_address.region_id) : null,
+                }}
+                region_id={billing_address.region_id ? Number(billing_address.region_id) : null}
+                custom_attributesV2={[]}
+              />
+            )}
           </SectionContainer>
         </Box>
       </Box>
-    </SectionContainer>
+    </Box>
   )
 }

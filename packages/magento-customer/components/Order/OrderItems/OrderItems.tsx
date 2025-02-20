@@ -1,73 +1,81 @@
-import { extendableComponent, SectionContainer } from '@graphcommerce/next-ui'
+import {
+  ActionCardLayout,
+  breakpointVal,
+  extendableComponent,
+  nonNullable,
+  SectionContainer,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, Button } from '@mui/material'
-import { useState } from 'react'
+import { Box } from '@mui/material'
+import type { OrderItemProps } from '../OrderItem/OrderItem'
 import { OrderItem } from '../OrderItem/OrderItem'
 import type { OrderItemsFragment } from './OrderItems.gql'
 
 export type OrderItemsProps = {
   order: OrderItemsFragment
   sx?: SxProps<Theme>
+  layout?: 'list' | 'grid'
+  size?: 'small' | 'medium' | 'large'
+  itemProps?: Omit<OrderItemProps, 'cartItem'>
 }
 
-const componentName = 'OrderItems'
-const parts = ['root', 'orderItemsInnerContainer', 'skeletonOrderItem', 'viewAllButton'] as const
-const { classes } = extendableComponent(componentName, parts)
+const name = 'OrderItems'
+const parts = ['root', 'items', 'actionCard'] as const
+const { classes } = extendableComponent(name, parts)
 
 export function OrderItems(props: OrderItemsProps) {
-  const { order, sx = [] } = props
-  const { items } = order
+  const { order, sx = [], layout = 'list', size, itemProps = {} } = props
 
-  const [expanded, setExpanded] = useState<boolean>(false)
-  const maxItemsAboveFold = 4
+  const items = (order.items ?? []).filter(nonNullable)
+  if (!items.length) return null
 
   return (
-    <SectionContainer
-      labelLeft={<Trans id='Ordered items' />}
-      /* endLabel='SHIPPED'*/
+    <Box
       className={classes.root}
       sx={[
         (theme) => ({
-          marginTop: theme.spacings.md,
-          marginBottom: theme.spacings.sm,
+          my: theme.spacings.md,
+          padding: `${theme.spacings.sm} ${theme.spacings.sm}`,
+          border: `1px ${theme.palette.divider} solid`,
+          ...breakpointVal(
+            'borderRadius',
+            theme.shape.borderRadius * 2,
+            theme.shape.borderRadius * 3,
+            theme.breakpoints.values,
+          ),
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <Box className={classes.orderItemsInnerContainer} sx={(theme) => ({ mb: theme.spacings.md })}>
-        {items
-          ?.slice(0, maxItemsAboveFold)
-          .map((orderItem) => (
-            <Box key={`orderItem-${orderItem?.id}`}>
-              {orderItem && <OrderItem {...orderItem} />}
-            </Box>
-          ))}
-
-        {expanded &&
-          items
-            ?.slice(maxItemsAboveFold, items?.length)
-            .map((orderItem) => (
-              <Box key={`orderItem-${orderItem?.id}`}>
-                {orderItem && <OrderItem {...orderItem} />}
-              </Box>
-            ))}
-      </Box>
-
-      {items && maxItemsAboveFold < items?.length && (
-        <Box
-          className={classes.viewAllButton}
+      <SectionContainer
+        sx={{ '& .SectionHeader-root': { mt: 0 } }}
+        labelLeft={<Trans id='Ordered items' />}
+        variantLeft='h6'
+        className={classes.items}
+      >
+        <ActionCardLayout
           sx={(theme) => ({
-            margin: `${theme.spacings.xs} auto 0 auto`,
-            textAlign: 'center',
-            '& a': { padding: '8px' },
+            marginBottom: theme.spacings.md,
+            '&.layoutStack': {
+              gap: 0,
+            },
           })}
+          className={classes.actionCard}
+          layout={layout}
         >
-          <Button variant='text' color='primary' onClick={() => setExpanded(!expanded)}>
-            {expanded ? <Trans id='View less items' /> : <Trans id='View all items' />}
-          </Button>
-        </Box>
-      )}
-    </SectionContainer>
+          {items.map((orderItem) => (
+            <OrderItem
+              key={orderItem.id}
+              item={orderItem}
+              variant='default'
+              {...itemProps}
+              size={size}
+              layout={layout}
+            />
+          ))}
+        </ActionCardLayout>
+      </SectionContainer>
+    </Box>
   )
 }

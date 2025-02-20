@@ -1,56 +1,144 @@
-import { Money } from '@graphcommerce/magento-store'
-import { extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
-import { Box, Typography } from '@mui/material'
+import { Image } from '@graphcommerce/image'
+import { Money, PriceModifiersTable, type PriceModifier } from '@graphcommerce/magento-store'
+import {
+  ActionCard,
+  actionCardImageSizes,
+  filterNonNullableKeys,
+  type ActionCardProps,
+} from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
+import { Box } from '@mui/material'
 import type { InvoiceItemFragment } from './InvoiceItem.gql'
 
-export type InvoiceItemProps = {
+export type InvoiceItemProps = Omit<ActionCardProps, 'value' | 'image' | 'title'> & {
   item: InvoiceItemFragment
-  additionalInfo?: React.ReactNode
+  priceModifiers?: PriceModifier[]
 }
 
-const componentName = 'InvoiceItem'
-const parts = ['root', 'itemInfo', 'additionalInfo', 'skuInfo', 'priceInfo'] as const
-const { classes } = extendableComponent(componentName, parts)
-
 export function InvoiceItem(props: InvoiceItemProps) {
-  const { item, additionalInfo } = props
-  const { product_name, product_sku, quantity_invoiced, product_sale_price, discounts } = item
+  const { item, priceModifiers: incomingPriceModifiers, size = 'responsive', ...rest } = props
+  const {
+    product_name,
+    product_sku,
+    quantity_invoiced,
+    product_sale_price,
+    discounts,
+    order_item,
+    id,
+  } = item
+
+  const priceModifiers: PriceModifier[] = [
+    ...(incomingPriceModifiers ?? []),
+    ...filterNonNullableKeys(order_item?.selected_options).map((option) => ({
+      key: option.label,
+      label: option.label,
+      items: [{ key: option.value, label: option.value }],
+    })),
+    ...filterNonNullableKeys(order_item?.entered_options).map((option) => ({
+      key: option.label,
+      label: option.label,
+      items: [{ key: option.value, label: option.value }],
+    })),
+  ]
 
   return (
-    <Box
-      className={classes.root}
+    <ActionCard
+      {...rest}
+      value={id}
       sx={(theme) => ({
-        display: 'grid',
-        gridTemplateColumns: '1fr auto auto',
-        gap: theme.spacings.sm,
-        padding: `${theme.spacings.xs} 0`,
-        borderBottom: `1px solid ${theme.palette.divider}`,
-        '&:last-child': {
-          borderBottom: 'none',
+        '&.ActionCard-root': {
+          px: 0,
+          py: theme.spacings.xs,
         },
-        alignItems: 'center',
+        '& .ActionCard-rootInner': {
+          justifyContent: 'space-between',
+          alignItems: 'stretch',
+        },
+        '&.sizeSmall': {
+          px: 0,
+        },
+        '&.sizeResponsive': {
+          [theme.breakpoints.down('md')]: { px: 0 },
+        },
+        '& .ActionCard-end': {
+          justifyContent: 'space-between',
+        },
+        '& .ActionCard-action': {
+          pr: 0,
+        },
+        '& .ActionCard-image': {
+          alignSelf: 'flex-start',
+        },
+        '& .ActionCard-secondaryAction': {
+          display: 'grid',
+          rowGap: theme.spacings.xs,
+          justifyItems: 'start',
+        },
+        '& .ActionCard-price': {
+          pr: 0,
+          mb: { xs: 0.5, sm: 0 },
+        },
       })}
-    >
-      <Box className={classes.itemInfo}>
-        <Typography variant='subtitle1'>
-          {quantity_invoiced} ⨉ {product_name}
-        </Typography>
-        {discounts?.map((discount) => (
-          <Typography key={discount?.label} variant='body2' color='textSecondary'>
-            {discount?.label}: <Money {...discount?.amount} />
-          </Typography>
-        ))}
-      </Box>
-      <Box className={classes.additionalInfo}>
-        <Typography className={classes.skuInfo} variant='body2' color='textSecondary'>
-          <Trans>SKU: {product_sku}</Trans>
-        </Typography>
-        {additionalInfo}
-      </Box>
-      <Box className={classes.priceInfo} sx={{ textAlign: 'right' }}>
-        <Money {...product_sale_price} />
-      </Box>
-    </Box>
+      size={size}
+      image={
+        order_item?.product?.thumbnail?.url && (
+          <Image
+            layout='fill'
+            src={order_item.product.thumbnail.url}
+            alt={order_item?.product.thumbnail?.label ?? ''}
+            sx={{
+              width: actionCardImageSizes[size],
+              height: actionCardImageSizes[size],
+              display: 'block',
+              borderRadius: 1,
+              objectFit: 'contain',
+              backgroundColor: 'background.image',
+            }}
+            sizes={actionCardImageSizes[size]}
+          />
+        )
+      }
+      title={product_name}
+      action={<>&nbsp;</>}
+      price={
+        <Money
+          currency={product_sale_price.currency}
+          value={(product_sale_price.value ?? 0) * (quantity_invoiced ?? 1)}
+        />
+      }
+      secondaryAction={
+        <>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              color: 'text.secondary',
+              mt: 1,
+              gap: '10px',
+              justifyContent: 'start',
+            }}
+          >
+            {quantity_invoiced}
+            {' ⨉ '}
+            <Money {...product_sale_price} />
+          </Box>
+
+          {rest.secondaryAction}
+        </>
+      }
+      details={
+        <>
+          {priceModifiers && priceModifiers.length > 0 && (
+            <PriceModifiersTable
+              label={<Trans id='Base Price'>Base price</Trans>}
+              modifiers={[...priceModifiers]}
+              total={product_sale_price.value ?? 0}
+              currency={product_sale_price.currency}
+            />
+          )}
+          {rest.details}
+        </>
+      }
+    />
   )
 }

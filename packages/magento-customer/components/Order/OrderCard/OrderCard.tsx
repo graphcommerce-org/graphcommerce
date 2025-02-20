@@ -12,7 +12,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, lighten, Paper, Skeleton } from '@mui/material'
+import { Avatar, Box, lighten, Paper, Skeleton } from '@mui/material'
 import { OrderStateLabel } from '../OrderStateLabel/OrderStateLabel'
 import type { OrderCardFragment } from './OrderCard.gql'
 
@@ -32,7 +32,7 @@ export function OrderCard(props: OrderCardProps) {
   const itemsWithImages = filterNonNullableKeys(items, ['product_url_key', 'product'])
     .map((item) => {
       const img = item.product.thumbnail
-      if (!img?.url || img.url.includes('/placeholder/')) return null
+      if (!img?.url) return null
       return { ...img, url: img.url }
     })
     .filter((v) => !!v)
@@ -96,6 +96,7 @@ export function OrderCard(props: OrderCardProps) {
       >
         {itemsWithImages.slice(0, maxItemsToShow).map((item, index) => {
           const key = `${item.url}-${index}`
+
           return (
             <Image
               key={key}

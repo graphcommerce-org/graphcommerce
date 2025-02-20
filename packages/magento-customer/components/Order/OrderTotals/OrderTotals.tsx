@@ -1,13 +1,16 @@
 import { Money } from '@graphcommerce/magento-store'
-import { breakpointVal, extendableComponent } from '@graphcommerce/next-ui'
+import { breakpointVal, extendableComponent, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, Divider, Typography } from '@mui/material'
+import { Box, Divider, lighten, Typography } from '@mui/material'
 import type { OrderTotalsFragment } from './OrderTotals.gql'
 
 export type OrderTotalsProps = {
   order: OrderTotalsFragment
   sx?: SxProps<Theme>
+  additionalSubtotals?: React.ReactNode
+  additionalGrandTotals?: React.ReactNode
+  additionalTaxes?: React.ReactNode
 }
 
 const componentName = 'OrderTotals'
@@ -15,26 +18,29 @@ const parts = ['totalsContainer', 'totalsRow', 'totalsDivider', 'totalsVat'] as 
 const { classes } = extendableComponent(componentName, parts)
 
 export function OrderTotals(props: OrderTotalsProps) {
-  const { order, sx = [] } = props
+  const { order, sx = [], additionalSubtotals, additionalGrandTotals, additionalTaxes } = props
   const { total, carrier, shipping_method } = order
 
   return (
     <Box
       className={classes.totalsContainer}
-      sx={[
+      sx={sxx(
         (theme) => ({
-          border: `1px solid ${theme.palette.divider}`,
-          marginBottom: theme.spacings.md,
-          p: theme.spacings.sm,
+          my: theme.spacings.md,
           ...breakpointVal(
             'borderRadius',
-            theme.shape.borderRadius * 2,
             theme.shape.borderRadius * 3,
+            theme.shape.borderRadius * 5,
             theme.breakpoints.values,
           ),
+          background:
+            theme.palette.mode === 'light'
+              ? theme.palette.background.default
+              : lighten(theme.palette.background.default, 0.15),
+          padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Box className={classes.totalsRow} sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Typography>
@@ -68,6 +74,8 @@ export function OrderTotals(props: OrderTotalsProps) {
         </Box>
       )}
 
+      {additionalSubtotals}
+
       <Divider sx={(theme) => ({ my: theme.spacings.xxs })} />
 
       <Box
@@ -83,6 +91,9 @@ export function OrderTotals(props: OrderTotalsProps) {
         </Typography>
         <Money {...total?.grand_total} />
       </Box>
+
+      {additionalGrandTotals}
+
       {total?.taxes?.map((tax) => (
         <Box
           key={tax?.title}
@@ -99,6 +110,8 @@ export function OrderTotals(props: OrderTotalsProps) {
           <Money {...tax?.amount} />
         </Box>
       ))}
+
+      {additionalTaxes}
     </Box>
   )
 }

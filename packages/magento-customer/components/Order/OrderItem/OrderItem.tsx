@@ -1,197 +1,144 @@
 import { Image } from '@graphcommerce/image'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { useProductLink } from '@graphcommerce/magento-product/hooks/useProductLink'
-import { Money } from '@graphcommerce/magento-store'
-import { extendableComponent, NextLink, responsiveVal } from '@graphcommerce/next-ui'
+import { Money, PriceModifiersTable, type PriceModifier } from '@graphcommerce/magento-store'
+import {
+  ActionCard,
+  actionCardImageSizes,
+  filterNonNullableKeys,
+  type ActionCardProps,
+} from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
-import type { OrderCardItemImageFragment } from '../../../hooks/OrderCardItemImage.gql'
 import type { OrderItemFragment } from './OrderItem.gql'
 
-export type OrderItemProps = OrderItemFragment &
-  Omit<OrderCardItemImageFragment, 'uid'> & {
-    additionalInfo?: React.ReactNode
-  }
-
-const rowImageSize = responsiveVal(70, 110)
-
-type OwnerState = { hasOptions: boolean }
-const componentName = 'OrderItem'
-const parts = [
-  'root',
-  'itemWithoutOptions',
-  'picture',
-  'pictureSpacing',
-  'image',
-  'productLink',
-  'itemName',
-  'itemNameWithOptions',
-  'itemPrice',
-  'quantity',
-  'rowPrice',
-  'optionsList',
-  'option',
-  'additionalInfo',
-] as const
-const { withState } = extendableComponent<OwnerState, typeof componentName, typeof parts>(
-  componentName,
-  parts,
-)
+export type OrderItemProps = Omit<ActionCardProps, 'value' | 'image' | 'title'> & {
+  item: OrderItemFragment
+  priceModifiers?: PriceModifier[]
+}
 
 export function OrderItem(props: OrderItemProps) {
+  const { item, priceModifiers: incomingPriceModifiers, size = 'responsive', ...rest } = props
   const {
-    product_url_key,
     selected_options,
+    entered_options,
     product_sale_price,
     quantity_ordered,
     product_name,
     product,
-    additionalInfo,
-  } = props
-  const productLink = useProductLink({
-    __typename: 'SimpleProduct' as const,
-    url_key: product_url_key,
-  })
+    id,
+  } = item
 
-  const hasOptions = Boolean(selected_options && selected_options.length >= 1)
-
-  const classes = withState({ hasOptions })
+  const priceModifiers: PriceModifier[] = [
+    ...(incomingPriceModifiers ?? []),
+    ...filterNonNullableKeys(selected_options).map((option) => ({
+      key: option.label,
+      label: option.label,
+      items: [{ key: option.value, label: option.value }],
+    })),
+    ...filterNonNullableKeys(entered_options).map((option) => ({
+      key: option.label,
+      label: option.label,
+      items: [{ key: option.value, label: option.value }],
+    })),
+  ]
 
   return (
-    <Box
-      className={classes.root}
+    <ActionCard
+      {...rest}
+      value={id}
       sx={(theme) => ({
-        borderBottom: `1px solid ${theme.palette.divider}`,
-        display: 'grid',
-        gridTemplate: `
-          "picture itemName itemName itemName"
-          "picture itemOptions itemOptions itemOptions"
-          "picture itemPrice quantity rowPrice"
-          "picture additionalInfo additionalInfo additionalInfo"
-        `,
-        gridTemplateColumns: `${rowImageSize} repeat(3, 1fr)`,
-        columnGap: theme.spacings.sm,
-        alignItems: 'baseline',
-        typography: 'body1',
-        py: theme.spacings.xxs,
-        [theme.breakpoints.up('sm')]: {
-          gridTemplate: `
-            "picture itemName itemName itemName itemName"
-            "picture itemOptions itemPrice quantity rowPrice"
-            "picture additionalInfo additionalInfo additionalInfo additionalInfo"
-          `,
-          gridTemplateColumns: `${rowImageSize} 4fr 1fr 1fr minmax(75px, 1fr)`,
+        '&.ActionCard-root': {
+          px: 0,
+          py: theme.spacings.xs,
         },
-
-        '&:not(.hasOptions)': {
+        '& .ActionCard-rootInner': {
+          justifyContent: 'space-between',
+          alignItems: 'stretch',
+        },
+        '&.sizeSmall': {
+          px: 0,
+        },
+        '&.sizeResponsive': {
+          [theme.breakpoints.down('md')]: { px: 0 },
+        },
+        '& .ActionCard-end': {
+          justifyContent: 'space-between',
+        },
+        '& .ActionCard-action': {
+          pr: 0,
+        },
+        '& .ActionCard-image': {
+          alignSelf: 'flex-start',
+        },
+        '& .ActionCard-secondaryAction': {
           display: 'grid',
-          gridTemplate: `
-            "picture itemName itemName itemName"
-            "picture itemPrice quantity rowPrice"
-            "picture additionalInfo additionalInfo additionalInfo"`,
-          alignItems: 'center',
-          gridTemplateColumns: `${rowImageSize} repeat(3, 1fr)`,
-          [theme.breakpoints.up('sm')]: {
-            gridTemplate: `
-              "picture itemName itemPrice quantity rowPrice"
-              "picture additionalInfo additionalInfo additionalInfo additionalInfo"
-            `,
-            gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(75px, 1fr)`,
-          },
+          rowGap: theme.spacings.xs,
+          justifyItems: 'start',
+        },
+        '& .ActionCard-price': {
+          pr: 0,
+          mb: { xs: 0.5, sm: 0 },
         },
       })}
-    >
-      <Box className={classes.picture} sx={{ gridArea: 'picture' }}>
-        <Box href={productLink} component={NextLink} className={classes.productLink}>
-          <Box className={classes.pictureSpacing}>
-            {product?.thumbnail?.url && product.thumbnail?.label && (
-              <Image
-                alt={product.thumbnail?.label ?? ''}
-                width={104}
-                height={86}
-                src={product.thumbnail?.url ?? ''}
-                className={classes.image}
-                sx={(theme) => ({
-                  backgroundColor: theme.palette.background.image,
-                })}
-              />
-            )}
-          </Box>
-        </Box>
-      </Box>
-
-      <Box
-        href={productLink}
-        component={NextLink}
-        className={classes.itemName}
-        sx={(theme) => ({
-          typography: 'h5',
-          fontWeight: 500,
-          gridArea: 'itemName',
-          color: theme.palette.text.primary,
-          textDecoration: 'none',
-          flexWrap: 'nowrap',
-          maxWidth: 'max-content',
-          '&.hasOptions': {
-            alignSelf: 'flex-end',
-          },
-        })}
-      >
-        {product_name}
-      </Box>
-
-      <Box
-        className={classes.itemPrice}
-        sx={(theme) => ({
-          gridArea: 'itemPrice',
-          textAlign: 'left',
-          color: theme.palette.text.secondary,
-        })}
-      >
-        <Money {...product_sale_price} />
-      </Box>
-
-      <Box
-        className={classes.quantity}
-        sx={{ gridArea: 'quantity', justifySelf: 'center' }}
-      >{`${quantity_ordered}x`}</Box>
-
-      <Box className={classes.rowPrice} sx={{ gridArea: 'rowPrice', textAlign: 'right' }}>
+      size={size}
+      image={
+        product?.thumbnail?.url && (
+          <Image
+            layout='fill'
+            src={product.thumbnail.url}
+            alt={product.thumbnail?.label ?? ''}
+            sx={{
+              width: actionCardImageSizes[size],
+              height: actionCardImageSizes[size],
+              display: 'block',
+              borderRadius: 1,
+              objectFit: 'contain',
+              backgroundColor: 'background.image',
+            }}
+            sizes={actionCardImageSizes[size]}
+          />
+        )
+      }
+      title={product_name}
+      price={
         <Money
           currency={product_sale_price.currency}
           value={(product_sale_price.value ?? 0) * (quantity_ordered ?? 1)}
         />
-      </Box>
+      }
+      action={<>&nbsp;</>}
+      secondaryAction={
+        <>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              color: 'text.secondary',
+              mt: 1,
+              gap: '10px',
+              justifyContent: 'start',
+            }}
+          >
+            {quantity_ordered}
+            {' ⨉ '}
+            <Money {...product_sale_price} />
+          </Box>
 
-      {hasOptions && (
-        <Box className={classes.optionsList} sx={{ gridArea: 'itemOptions', cursor: 'default' }}>
-          {selected_options?.map((option) => (
-            <Box
-              key={option?.label}
-              className={classes.option}
-              sx={(theme) => ({
-                color: theme.palette.grey['500'],
-                marginRight: theme.spacings.xs,
-                paddingBottom: '1px',
-                display: 'inline',
-              })}
-            >
-              {option?.value}
-            </Box>
-          ))}
-        </Box>
-      )}
-
-      {additionalInfo && (
-        <Box
-          className={classes.additionalInfo}
-          sx={(theme) => ({
-            gridArea: 'additionalInfo',
-            paddingTop: theme.spacings.xxs,
-          })}
-        >
-          {additionalInfo}
-        </Box>
-      )}
-    </Box>
+          {rest.secondaryAction}
+        </>
+      }
+      details={
+        <>
+          {priceModifiers && priceModifiers.length > 0 && (
+            <PriceModifiersTable
+              label={<Trans id='Base Price'>Base price</Trans>}
+              modifiers={priceModifiers}
+              total={product_sale_price.value ?? 0}
+              currency={product_sale_price.currency}
+            />
+          )}
+          {rest.details}
+        </>
+      }
+    />
   )
 }

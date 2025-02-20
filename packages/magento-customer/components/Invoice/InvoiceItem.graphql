@@ -1,4 +1,5 @@
 fragment InvoiceItem on InvoiceItemInterface {
+  __typename
   id
   discounts {
     amount {
@@ -12,4 +13,7 @@ fragment InvoiceItem on InvoiceItemInterface {
   }
   product_sku
   quantity_invoiced
+  order_item {
+    ...OrderItem
+  }
 }

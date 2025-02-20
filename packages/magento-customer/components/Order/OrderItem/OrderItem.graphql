@@ -1,4 +1,5 @@
 fragment OrderItem on OrderItemInterface {
+  __typename
   id
   product_sku
   product_url_key
@@ -8,10 +9,12 @@ fragment OrderItem on OrderItemInterface {
     value
   }
   product {
+    __typename
     uid
     thumbnail {
       ...ProductImage
     }
+    url_key
   }
   quantity_invoiced
   quantity_ordered

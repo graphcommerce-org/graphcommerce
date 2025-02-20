@@ -14,9 +14,9 @@ fragment OrderDetails on CustomerOrder {
       ...TrackingLink
     }
   }
-  applied_coupons {
-    ...AppliedCoupon
-  }
+  # applied_coupons {
+  #   ...AppliedCoupon
+  # }
   payment_methods {
     name
     type

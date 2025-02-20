@@ -35,6 +35,14 @@ const partselectorsMap = <O extends Record<string, string>>(
   return Object.fromEntries(mapped)
 }
 
+export type ExtendableComponentProps<
+  ClassNames extends ReadonlyArray<string> = ReadonlyArray<string>,
+> = {
+  classes?: {
+    [P in ClassNames[number]]?: string | undefined
+  }
+}
+
 /**
  * Utility function to:
  *
@@ -42,14 +50,17 @@ const partselectorsMap = <O extends Record<string, string>>(
  * - Generate state css classes.
  */
 export function extendableComponent<
-  ComponentStyleProps extends Record<string, boolean | string | number | undefined>,
+  ComponentStyleProps extends Record<string, boolean | string | number | undefined> = Record<
+    string,
+    any
+  >,
   Name extends string = string,
   ClassNames extends ReadonlyArray<string> = ReadonlyArray<string>,
 >(componentName: Name, slotNames: ClassNames) {
   const classes = slotClasses(componentName, slotNames)
   const partselectors = partselectorsMap(classes)
 
-  const withState = (state: ComponentStyleProps) => {
+  const withState = (state: ComponentStyleProps & ExtendableComponentProps<ClassNames>) => {
     const stateClas = Object.fromEntries(
       Object.entries<string>(classes).map(([slot, className]) => {
         const mapped = Object.entries(state).map(([key, value]) => {
@@ -58,7 +69,7 @@ export function extendableComponent<
           if (typeof value === 'number' && value > 0) return `${key}${value}`
           return ''
         })
-
+        if (state.classes?.[slot]) mapped.push(state.classes[slot] as string)
         if (className) mapped.unshift(className)
         return [slot, mapped.filter(Boolean).join(' ')]
       }),

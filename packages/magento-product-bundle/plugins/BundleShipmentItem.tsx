@@ -1,4 +1,4 @@
-import type { InvoiceItemProps } from '@graphcommerce/magento-customer'
+import type { ShipmentItemProps } from '@graphcommerce/magento-customer'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 
@@ -7,10 +7,10 @@ export const config: PluginConfig = {
   module: '@graphcommerce/magento-customer',
 }
 
-export function InvoiceItem(props: PluginProps<InvoiceItemProps>) {
+export function ShipmentItem(props: PluginProps<ShipmentItemProps>) {
   const { Prev, ...rest } = props
 
-  if (rest.item.__typename !== 'BundleInvoiceItem') return <Prev {...rest} />
+  if (rest.item.__typename !== 'BundleShipmentItem') return <Prev {...rest} />
 
   return (
     <Prev

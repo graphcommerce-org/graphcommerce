@@ -1,4 +1,5 @@
 fragment CreditMemoItem on CreditMemoItemInterface {
+  __typename
   id
   product_name
   product_sku
