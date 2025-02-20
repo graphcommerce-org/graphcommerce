@@ -5,8 +5,9 @@ import {
   type ProductPagePriceProps,
 } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
-import type { DownloadableProductOptionsFragment } from '../components/DownloadableProductOptions/DownloadableProductOptions.gql'
-import type { ProductListItemDownloadableFragment } from '../components/ProductListItemDownloadable/ProductListItemDownloadable.gql'
+import { filterNonNullableKeys } from '@graphcommerce/next-ui'
+import type { DownloadableProductOptionsFragment } from '../graphql/fragments/DownloadableProductOptions.gql'
+import type { ProductListItemDownloadableFragment } from '../graphql/inject/ProductListItemDownloadable.gql'
 
 export const config: PluginConfig = {
   type: 'component',
@@ -32,13 +33,16 @@ export function ProductPagePrice(
   const form = useFormAddProductsToCart()
   const selectedOptions = useWatch({
     control: form.control,
-    name: `cartItems.${index}.selected_options`,
+    name: `cartItems.${index}.selected_options_record.downloadable`,
   })
 
-  if (!isDownloadableProduct(product)) return <Prev product={product} index={index} {...rest} />
+  if (!isDownloadableProduct(product) || !selectedOptions)
+    return <Prev product={product} index={index} {...rest} />
 
-  const selectedLinks = product.downloadable_product_links?.filter((link) =>
-    selectedOptions?.includes(link?.uid ?? ''),
+  const selectedLinks = filterNonNullableKeys(product.downloadable_product_links).filter((link) =>
+    Array.isArray(selectedOptions)
+      ? selectedOptions.includes(link.uid)
+      : selectedOptions === link.uid,
   )
 
   const totalPrice = selectedLinks?.reduce((acc, link) => acc + (link?.price ?? 0), 0) ?? 0

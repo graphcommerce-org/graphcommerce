@@ -2,7 +2,6 @@ fragment DownloadableCartItem on DownloadableCartItem @inject(into: ["CartItem"]
   customizable_options {
     ...SelectedCustomizableOption
   }
-
   links {
     uid
     price
@@ -13,5 +12,11 @@ fragment DownloadableCartItem on DownloadableCartItem @inject(into: ["CartItem"]
     sample_url
     sort_order
     title
+  }
+  product {
+    __typename
+    ... on DownloadableProduct {
+      links_title
+    }
   }
 }

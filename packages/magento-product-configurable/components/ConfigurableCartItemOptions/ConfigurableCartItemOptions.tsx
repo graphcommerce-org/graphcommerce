@@ -5,6 +5,7 @@ import type { ConfigurableCartItemFragment } from '../../ConfigurableCartItem/Co
 
 export type ConfigurableActionCartItemProps = ConfigurableCartItemFragment & CartItemFragment
 
+/** @deprecated Replaced by PriceModifiers on the CartItemActionCard */
 export function ConfigurableCartItemOptions(props: ConfigurableActionCartItemProps) {
   const { configurable_options } = props
   return (

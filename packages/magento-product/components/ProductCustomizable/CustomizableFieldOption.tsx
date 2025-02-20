@@ -43,6 +43,7 @@ export function CustomizableFieldOption(props: CustomizableFieldOptionProps) {
               productPrice={productPrice}
               currency={currency}
               price_type={fieldValue.price_type}
+              value={fieldValue.price}
             />
           ),
         }}

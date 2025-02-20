@@ -4,5 +4,4 @@ fragment EditCartItemForm on ProductInterface {
   ...ProductPageItem
   ...ConfigurableOptions
   ...DownloadableProductOptions
-  ...BundleProductOptions
 }

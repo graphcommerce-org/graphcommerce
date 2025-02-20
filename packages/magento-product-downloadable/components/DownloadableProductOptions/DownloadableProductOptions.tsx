@@ -12,7 +12,7 @@ import {
 import { Trans } from '@lingui/macro'
 import { Box, Link } from '@mui/material'
 import { useMemo } from 'react'
-import type { DownloadableProductOptionsFragment } from './DownloadableProductOptions.gql'
+import type { DownloadableProductOptionsFragment } from '../../graphql'
 
 export type DownloadableProductOptionsProps = AddToCartItemSelector & {
   product: DownloadableProductOptionsFragment
@@ -52,7 +52,7 @@ export function DownloadableProductOptions(props: DownloadableProductOptionsProp
   return (
     <>
       <Box>
-        <SectionHeader labelLeft={links_title ?? <Trans>Downloadable Option</Trans>} />
+        <SectionHeader labelLeft={links_title} />
         <ActionCardListForm
           multiple={links_purchased_separately !== 1}
           size='medium'

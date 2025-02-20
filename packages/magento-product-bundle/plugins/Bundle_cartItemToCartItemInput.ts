@@ -1,5 +1,8 @@
 import type { CartItemInput } from '@graphcommerce/graphql-mesh'
-import { type cartItemToCartItemInput as cartItemToCartItemInputType } from '@graphcommerce/magento-cart-items'
+import {
+  type CartItemToCartItemInputReturnValue,
+  type cartItemToCartItemInput as cartItemToCartItemInputType,
+} from '@graphcommerce/magento-cart-items'
 import type { AddProductsToCartFields } from '@graphcommerce/magento-product/components'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 import { filterNonNullableKeys, isTypename } from '@graphcommerce/next-ui'
@@ -14,12 +17,12 @@ export const cartItemToCartItemInput: FunctionPlugin<typeof cartItemToCartItemIn
   prev,
   props,
 ) => {
-  const result = prev(props)
+  const result: CartItemToCartItemInputReturnValue = prev(props) ?? {}
   const { product, cartItem } = props
 
   if (!result) return result
-  if (!isTypename(product, ['BundleProduct'])) return result
-  if (!isTypename(cartItem, ['BundleCartItem'])) return result
+  if (product.__typename !== 'BundleProduct') return result
+  if (cartItem.__typename !== 'BundleCartItem') return result
 
   const selected: AddProductsToCartFields['cartItems'][number]['selected_options_record'] = {}
   const entered: AddProductsToCartFields['cartItems'][number]['entered_options_record'] = {}
@@ -32,7 +35,6 @@ export const cartItemToCartItemInput: FunctionPlugin<typeof cartItemToCartItemIn
     const type = toBundleOptionType(productItem?.type)
 
     const vals = values.map((v) => v.uid)
-    console.log(option.uid)
     selected[option.uid] = type === 'multi' || type === 'checkbox' ? vals : vals[0]
 
     values.forEach((v) => {

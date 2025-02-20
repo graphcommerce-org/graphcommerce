@@ -1,6 +1,5 @@
 import type { AddToCartItemSelector, ProductPageGalleryProps } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
-import { isTypename } from '@graphcommerce/next-ui'
 import { useConfigurableOptionsSelection } from '../../hooks'
 
 export const config: PluginConfig = {

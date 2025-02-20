@@ -57,7 +57,7 @@ export function useCustomizableOptionPrice(props: UseCustomizableOptionPriceProp
 
       const value = allSelectors[productOption.__typename]?.(productOption).reduce((p, v) => {
         if (!v) return p
-        return p + calcOptionPrice(v, price)
+        return Math.min(p, calcOptionPrice(v, price))
       }, 0)
 
       return acc + value
@@ -74,23 +74,22 @@ export function useCustomizableOptionPrice(props: UseCustomizableOptionPriceProp
 
     if (!value) return 0
 
-    // If the option can have multiple values
-    if (Array.isArray(value)) {
+    if (selected) {
       return (
         acc +
         filterNonNullableKeys(value)
-          .filter((v) => selected?.includes(v.uid))
+          .filter((v) => (Array.isArray(selected) ? selected.includes(v.uid) : selected === v.uid))
           .reduce((p, v) => p + calcOptionPrice(v, price), 0)
       )
     }
 
     if (entered) {
       // If the option can have a single value entered.
-      return acc + calcOptionPrice(value, price)
+      return acc + calcOptionPrice(value[0], price)
     }
 
     return acc
   }, 0)
 
-  return (price.value ?? 0) + optionPrice - optionPriceIncluded
+  return (price.value ?? 0) + (optionPrice - optionPriceIncluded)
 }
