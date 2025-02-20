@@ -93,7 +93,7 @@ export function ActionCardListForm<
           value={item.value}
           selected={onSelect(item.value, value)}
           onReset={handleReset}
-          disabled={disabled}
+          disabled={disabled || (item as { disabled?: boolean }).disabled}
         />
       ))}
     </ActionCardList>
