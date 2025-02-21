@@ -5,7 +5,7 @@ import Script from 'next/script'
 import { useMemo, useState } from 'react'
 import type { RecaptchaContext } from '../context/recaptchaContext'
 import { recaptchaContext } from '../context/recaptchaContext'
-import { RecaptchaV3ConfigDocument } from '../graphql/RecaptchaV3Config.gql'
+import { RecaptchaV3ConfigDocument } from '../graphql'
 import { recaptchaLink } from '../link/recaptchaLink'
 
 export const config: PluginConfig = {
