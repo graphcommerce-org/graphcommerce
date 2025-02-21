@@ -17,6 +17,30 @@ type TextFieldElementComponent = <TFieldValues extends FieldValues>(
   props: TextFieldElementProps<TFieldValues>,
 ) => React.ReactNode
 
+function toValue(incomingValue: unknown, type: React.HTMLInputTypeAttribute) {
+  try {
+    let value = incomingValue
+    if (!value) return value
+
+    if (typeof value === 'number') return value.toString()
+
+    if (type === 'time' || type === 'datetime-local' || type === 'date') {
+      if (typeof value === 'string') value = new Date(value)
+      if (!(value instanceof Date)) return value
+
+      const [datePart, timePart] = value.toISOString().replace('Z', '').split('T')
+
+      if (type === 'time') return timePart
+      if (type === 'date') return datePart
+      if (type === 'datetime-local') return value.toISOString().replace('Z', '')
+    }
+    return value
+  } catch (e) {
+    console.error(e, incomingValue, type)
+    return incomingValue
+  }
+}
+
 /** @public */
 function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
   const {
@@ -26,9 +50,10 @@ function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
     rules = {},
     shouldUnregister,
     disabled: disabledField,
-    type,
+    type = 'text',
     required,
     showValid,
+    asString = false,
     ...rest
   } = props as TextFieldProps & ShowValidProps & BaseControllerProps
 
@@ -73,10 +98,26 @@ function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
       onBlur={onBlur}
       name={name}
       disabled={disabled}
-      value={value}
+      value={toValue(value, type)}
       inputProps={{ ...rest.inputProps, onAnimationStart }}
       onChange={(ev) => {
-        onChange(type === 'number' && ev.target.value ? Number(ev.target.value) : ev.target.value)
+        let changeValue: string | number | Date = ev.target.value
+
+        if (ev.target instanceof HTMLInputElement) {
+          if (type === 'number' || typeof changeValue === 'number') {
+            changeValue = ev.target.valueAsNumber
+          } else if (type === 'datetime-local') {
+            changeValue = new Date(`${changeValue.replace('T', ' ')}.000Z`)
+          } else if (type === 'date') {
+            changeValue = ev.target.valueAsDate ?? ''
+          } else if (type === 'time') {
+            changeValue = new Date(`01-01-1970 ${changeValue}.000Z`)
+          }
+        }
+
+        if (asString) changeValue = changeValue.toString()
+
+        onChange(changeValue)
         rest.onChange?.(ev)
       }}
       inputRef={useForkRef(ref, rest.inputRef)}
@@ -88,7 +129,7 @@ function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
       InputProps={{
         ...rest.InputProps,
         endAdornment:
-          showValid && value && !error ? (
+          showValid && Boolean(value) && !error ? (
             <InputCheckmark show={!error} />
           ) : (
             rest.InputProps?.endAdornment
