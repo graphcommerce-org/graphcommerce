@@ -2,7 +2,7 @@ import {
   selectedCustomizableOptionsModifiers,
   type CartItemActionCardProps,
 } from '@graphcommerce/magento-cart-items'
-import type { PriceModifier } from '@graphcommerce/magento-cart-items/components/CartItemActionCard/PriceModifiers'
+import type { PriceModifier } from '@graphcommerce/magento-store'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { filterNonNullableKeys, isTypename } from '@graphcommerce/next-ui'
 
@@ -15,8 +15,6 @@ export function CartItemActionCard(props: PluginProps<CartItemActionCardProps>) 
   const { Prev, ...rest } = props
 
   if (!isTypename(rest.cartItem, ['ConfigurableCartItem'])) return <Prev {...rest} />
-
-  // rest.cartItem.configured_variant
 
   const configurableModifiers: PriceModifier[] = filterNonNullableKeys(
     rest.cartItem.configurable_options,

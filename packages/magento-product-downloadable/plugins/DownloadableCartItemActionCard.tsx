@@ -2,7 +2,7 @@ import {
   selectedCustomizableOptionsModifiers,
   type CartItemActionCardProps,
 } from '@graphcommerce/magento-cart-items'
-import type { PriceModifier } from '@graphcommerce/magento-cart-items/components/CartItemActionCard/PriceModifications'
+import type { PriceModifier } from '@graphcommerce/magento-store'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 

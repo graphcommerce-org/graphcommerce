@@ -6,7 +6,6 @@ import {
 } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
-import { bundleProductPriceFraction } from '../components/BundleProductOptions/BundleOptionValue'
 import {
   calculateBundleOptionValuePrice,
   substractCalculatedBundleOptionValuePrices,
@@ -78,7 +77,7 @@ export function ProductPagePrice(
       const selectedOption = allSelectedOptions[item.uid]
       const allOptions = item.options.filter(nonNullable)
 
-      let options: BundleProductItemOptionType[] = selectedOption
+      const options: BundleProductItemOptionType[] = selectedOption
         ? allOptions.filter((o) => {
             if (Array.isArray(selectedOption)) return selectedOption.includes(o?.uid ?? '')
             return selectedOption === o?.uid

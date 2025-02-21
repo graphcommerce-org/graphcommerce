@@ -1,11 +1,7 @@
-import type { CartItemInput } from '@graphcommerce/graphql-mesh'
-import {
-  type CartItemToCartItemInputReturnValue,
-  type cartItemToCartItemInput as cartItemToCartItemInputType,
-} from '@graphcommerce/magento-cart-items'
+import { type cartItemToCartItemInput as cartItemToCartItemInputType } from '@graphcommerce/magento-cart-items'
 import type { AddProductsToCartFields } from '@graphcommerce/magento-product/components'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
-import { filterNonNullableKeys, isTypename } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { toBundleOptionType } from '../components/BundleProductOptions/types'
 
 export const config: PluginConfig = {
@@ -17,7 +13,7 @@ export const cartItemToCartItemInput: FunctionPlugin<typeof cartItemToCartItemIn
   prev,
   props,
 ) => {
-  const result: CartItemToCartItemInputReturnValue = prev(props) ?? {}
+  const result = prev(props)
   const { product, cartItem } = props
 
   if (!result) return result

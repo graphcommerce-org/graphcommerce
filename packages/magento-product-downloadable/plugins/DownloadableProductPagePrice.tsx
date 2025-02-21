@@ -6,8 +6,7 @@ import {
 } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import type { ProductPageItemDownloadableFragment } from '../graphql/inject/DownloadableProductOptions.gql'
-import type { ProductListItemDownloadableFragment } from '../graphql/inject/ProductListItemDownloadable.gql'
+import type { ProductPageItemDownloadableFragment } from '../graphql'
 
 export const config: PluginConfig = {
   type: 'component',
