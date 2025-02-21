@@ -1,11 +1,6 @@
 import { Image } from '@graphcommerce/image'
-import { Money, PriceModifiersTable, type PriceModifier } from '@graphcommerce/magento-store'
-import {
-  ActionCard,
-  actionCardImageSizes,
-  filterNonNullableKeys,
-  type ActionCardProps,
-} from '@graphcommerce/next-ui'
+import { Money, PriceModifiersList, type PriceModifier } from '@graphcommerce/magento-store'
+import { ActionCard, actionCardImageSizes, type ActionCardProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
 import type { InvoiceItemFragment } from './InvoiceItem.gql'
@@ -16,7 +11,7 @@ export type InvoiceItemProps = Omit<ActionCardProps, 'value' | 'image' | 'title'
 }
 
 export function InvoiceItem(props: InvoiceItemProps) {
-  const { item, priceModifiers: incomingPriceModifiers, size = 'responsive', ...rest } = props
+  const { item, priceModifiers, size = 'responsive', ...rest } = props
   const {
     product_name,
     product_sku,
@@ -26,20 +21,6 @@ export function InvoiceItem(props: InvoiceItemProps) {
     order_item,
     id,
   } = item
-
-  const priceModifiers: PriceModifier[] = [
-    ...(incomingPriceModifiers ?? []),
-    ...filterNonNullableKeys(order_item?.selected_options).map((option) => ({
-      key: option.label,
-      label: option.label,
-      items: [{ key: option.value, label: option.value }],
-    })),
-    ...filterNonNullableKeys(order_item?.entered_options).map((option) => ({
-      key: option.label,
-      label: option.label,
-      items: [{ key: option.value, label: option.value }],
-    })),
-  ]
 
   return (
     <ActionCard
@@ -129,7 +110,7 @@ export function InvoiceItem(props: InvoiceItemProps) {
       details={
         <>
           {priceModifiers && priceModifiers.length > 0 && (
-            <PriceModifiersTable
+            <PriceModifiersList
               label={<Trans id='Base Price'>Base price</Trans>}
               modifiers={[...priceModifiers]}
               total={product_sale_price.value ?? 0}

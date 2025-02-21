@@ -1,5 +1,6 @@
-import { Money, PriceModifiersTable, type PriceModifier } from '@graphcommerce/magento-store'
-import { ActionCard, type ActionCardProps } from '@graphcommerce/next-ui'
+import { Image } from '@graphcommerce/image'
+import { Money, PriceModifiersList, type PriceModifier } from '@graphcommerce/magento-store'
+import { ActionCard, actionCardImageSizes, type ActionCardProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
 import type { CreditMemoItemFragment } from './CreditMemoItem.gql'
@@ -11,7 +12,15 @@ export type CreditMemoItemProps = Omit<ActionCardProps, 'value' | 'image' | 'tit
 
 export function CreditMemoItem(props: CreditMemoItemProps) {
   const { item, priceModifiers, size = 'responsive', ...rest } = props
-  const { product_name, product_sku, quantity_refunded, product_sale_price, discounts, id } = item
+  const {
+    product_name,
+    product_sku,
+    quantity_refunded,
+    product_sale_price,
+    discounts,
+    id,
+    order_item,
+  } = item
 
   return (
     <ActionCard
@@ -52,6 +61,24 @@ export function CreditMemoItem(props: CreditMemoItemProps) {
         },
       })}
       size={size}
+      image={
+        order_item?.product?.thumbnail?.url && (
+          <Image
+            layout='fill'
+            src={order_item.product.thumbnail.url}
+            alt={order_item?.product.thumbnail?.label ?? ''}
+            sx={{
+              width: actionCardImageSizes[size],
+              height: actionCardImageSizes[size],
+              display: 'block',
+              borderRadius: 1,
+              objectFit: 'contain',
+              backgroundColor: 'background.image',
+            }}
+            sizes={actionCardImageSizes[size]}
+          />
+        )
+      }
       title={product_name}
       price={
         <Money
@@ -59,6 +86,7 @@ export function CreditMemoItem(props: CreditMemoItemProps) {
           value={(product_sale_price.value ?? 0) * (quantity_refunded ?? 1)}
         />
       }
+      action={<>&nbsp;</>}
       secondaryAction={
         <>
           <Box
@@ -76,23 +104,13 @@ export function CreditMemoItem(props: CreditMemoItemProps) {
             <Money {...product_sale_price} />
           </Box>
 
-          <Box sx={{ mt: 1, color: 'text.secondary' }}>
-            <Trans>SKU: {product_sku}</Trans>
-          </Box>
-
-          {discounts?.map((discount) => (
-            <Box key={discount?.label} sx={{ color: 'text.secondary' }}>
-              {discount?.label}: <Money {...discount?.amount} />
-            </Box>
-          ))}
-
           {rest.secondaryAction}
         </>
       }
       details={
         <>
           {priceModifiers && priceModifiers.length > 0 && (
-            <PriceModifiersTable
+            <PriceModifiersList
               label={<Trans id='Base Price'>Base price</Trans>}
               modifiers={[...priceModifiers]}
               total={product_sale_price.value ?? 0}

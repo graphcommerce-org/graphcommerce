@@ -1,4 +1,10 @@
-import { extendableComponent, SectionContainer } from '@graphcommerce/next-ui'
+import {
+  ActionCardLayout,
+  breakpointVal,
+  extendableComponent,
+  nonNullable,
+  SectionContainer,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
@@ -8,36 +14,65 @@ import { CreditMemoItem } from './CreditMemoItem'
 export type CreditMemoItemsProps = {
   creditMemo: CreditMemoFragment
   sx?: SxProps<Theme>
+  layout?: 'list' | 'grid'
+  size?: 'small' | 'medium' | 'large'
 }
 
 const componentName = 'CreditMemoItems'
-const parts = ['root', 'items'] as const
+const parts = ['root', 'items', 'actionCard'] as const
 const { classes } = extendableComponent(componentName, parts)
 
 export function CreditMemoItems(props: CreditMemoItemsProps) {
-  const { creditMemo, sx = [] } = props
-  const { items } = creditMemo
+  const { creditMemo, sx = [], layout = 'list', size } = props
 
-  if (!items?.length) return null
+  const items = (creditMemo.items ?? []).filter(nonNullable)
+  if (!items.length) return null
 
   return (
-    <SectionContainer
-      labelLeft={<Trans>Refunded items</Trans>}
+    <Box
       className={classes.root}
       sx={[
         (theme) => ({
-          marginTop: theme.spacings.md,
-          marginBottom: theme.spacings.sm,
+          my: theme.spacings.md,
+          padding: `${theme.spacings.sm} ${theme.spacings.sm}`,
+          border: `1px ${theme.palette.divider} solid`,
+          ...breakpointVal(
+            'borderRadius',
+            theme.shape.borderRadius * 2,
+            theme.shape.borderRadius * 3,
+            theme.breakpoints.values,
+          ),
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <Box className={classes.items} sx={(theme) => ({ mb: theme.spacings.md })}>
-        {items.map((item) => {
-          if (!item) return null
-          return <CreditMemoItem key={item.id} item={item} />
-        })}
-      </Box>
-    </SectionContainer>
+      <SectionContainer
+        sx={{ '& .SectionHeader-root': { mt: 0 } }}
+        labelLeft={<Trans>Refunded items</Trans>}
+        variantLeft='h6'
+        className={classes.items}
+      >
+        <ActionCardLayout
+          sx={(theme) => ({
+            marginBottom: theme.spacings.md,
+            '&.layoutStack': {
+              gap: 0,
+            },
+          })}
+          className={classes.actionCard}
+          layout={layout}
+        >
+          {items.map((item) => (
+            <CreditMemoItem
+              key={item.id}
+              item={item}
+              size={size}
+              layout={layout}
+              variant='default'
+            />
+          ))}
+        </ActionCardLayout>
+      </SectionContainer>
+    </Box>
   )
 }

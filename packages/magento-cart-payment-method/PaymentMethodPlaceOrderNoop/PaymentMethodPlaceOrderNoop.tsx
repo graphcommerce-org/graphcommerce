@@ -1,6 +1,5 @@
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
-import { t } from '@lingui/macro'
 import type { PaymentPlaceOrderProps } from '../Api/PaymentMethod'
 import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 import { assertOrderPlaced } from './assertOrderPlaced'
@@ -13,7 +12,6 @@ export function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProps) {
   const form = useFormGqlMutationCart(PaymentMethodPlaceOrderNoopDocument, {
     onComplete: async (result) => {
       assertOrderPlaced(result)
-      console.log('result', result)
       await onSuccess(result.data.placeOrder.order.order_number)
     },
     submitWhileLocked: true,

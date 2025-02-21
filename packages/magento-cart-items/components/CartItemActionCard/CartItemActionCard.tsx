@@ -1,7 +1,7 @@
 import { Image } from '@graphcommerce/image'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart/hooks'
 import { productPath } from '@graphcommerce/magento-product'
-import { Money, PriceModifiersTable, type PriceModifier } from '@graphcommerce/magento-store'
+import { Money, PriceModifiersList, type PriceModifier } from '@graphcommerce/magento-store'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
 import { ActionCard, actionCardImageSizes, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
@@ -26,20 +26,6 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
     ...rest
   } = props
   const { uid, quantity, prices, errors, product } = cartItem
-
-  // const discounts: PriceModifier = {
-  //   key: 'discounts',
-  //   label: 'Discounts',
-  //   position: 1001,
-  //   items: filterNonNullableKeys(prices?.discounts)
-  //     .filter((d) => (d.amount.value ?? 0) > 0)
-  //     .map((discount) => ({
-  //       key: discount.coupon?.code,
-  //       label: discount.label ?? 'Discount',
-  //       amount: ((discount.amount.value ?? 0) * -1) / quantity,
-  //       quantity,
-  //     })),
-  // }
 
   const inclTaxes = useDisplayInclTax()
 
@@ -182,7 +168,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
       details={
         <>
           {priceModifiers && priceModifiers.length > 0 && (
-            <PriceModifiersTable
+            <PriceModifiersList
               label={<Trans id='Base Price'>Base price</Trans>}
               modifiers={[...priceModifiers]}
               total={prices?.price_including_tax?.value ?? 0}

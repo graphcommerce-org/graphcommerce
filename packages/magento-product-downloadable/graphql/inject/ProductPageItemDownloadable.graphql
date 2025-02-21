@@ -1,4 +1,4 @@
-fragment DownloadableProductOptions on DownloadableProduct {
+fragment ProductPageItemDownloadable on DownloadableProduct @inject(into: ["ProductPageItem"]) {
   __typename
   uid
   downloadable_product_links {

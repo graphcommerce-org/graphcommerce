@@ -1,5 +1,5 @@
 import { Image } from '@graphcommerce/image'
-import { Money, PriceModifiersTable, type PriceModifier } from '@graphcommerce/magento-store'
+import { Money, PriceModifiersList, type PriceModifier } from '@graphcommerce/magento-store'
 import { ActionCard, actionCardImageSizes, type ActionCardProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Box } from '@mui/material'
@@ -102,7 +102,7 @@ export function ShipmentItem(props: ShipmentItemProps) {
       details={
         <>
           {priceModifiers && priceModifiers.length > 0 && (
-            <PriceModifiersTable
+            <PriceModifiersList
               label={<Trans id='Base Price'>Base price</Trans>}
               modifiers={[...priceModifiers]}
               total={product_sale_price.value ?? 0}

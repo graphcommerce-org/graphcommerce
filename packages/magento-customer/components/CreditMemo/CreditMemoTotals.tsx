@@ -1,8 +1,8 @@
 import { Money } from '@graphcommerce/magento-store'
-import { breakpointVal, extendableComponent } from '@graphcommerce/next-ui'
+import { breakpointVal, extendableComponent, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, Divider, Typography } from '@mui/material'
+import { Box, Divider, lighten, Typography } from '@mui/material'
 import type { CreditMemoFragment } from './CreditMemo.gql'
 
 export type CreditMemoTotalsProps = {
@@ -23,20 +23,23 @@ export function CreditMemoTotals(props: CreditMemoTotalsProps) {
   return (
     <Box
       className={classes.totalsContainer}
-      sx={[
+      sx={sxx(
         (theme) => ({
-          border: `1px solid ${theme.palette.divider}`,
-          marginBottom: theme.spacings.md,
-          p: theme.spacings.sm,
+          my: theme.spacings.md,
           ...breakpointVal(
             'borderRadius',
-            theme.shape.borderRadius * 2,
             theme.shape.borderRadius * 3,
+            theme.shape.borderRadius * 5,
             theme.breakpoints.values,
           ),
+          background:
+            theme.palette.mode === 'light'
+              ? theme.palette.background.default
+              : lighten(theme.palette.background.default, 0.15),
+          padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Box className={classes.totalsRow} sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Typography>

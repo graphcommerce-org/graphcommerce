@@ -6,7 +6,7 @@ import {
 } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import type { DownloadableProductOptionsFragment } from '../graphql/fragments/DownloadableProductOptions.gql'
+import type { ProductPageItemDownloadableFragment } from '../graphql/inject/DownloadableProductOptions.gql'
 import type { ProductListItemDownloadableFragment } from '../graphql/inject/ProductListItemDownloadable.gql'
 
 export const config: PluginConfig = {
@@ -17,11 +17,11 @@ export const config: PluginConfig = {
 function isDownloadableProduct(
   product:
     | ProductPagePriceProps['product']
-    | (ProductPagePriceProps['product'] & DownloadableProductOptionsFragment),
-): product is ProductPagePriceProps['product'] & DownloadableProductOptionsFragment {
+    | (ProductPagePriceProps['product'] & ProductPageItemDownloadableFragment),
+): product is ProductPagePriceProps['product'] & ProductPageItemDownloadableFragment {
   return (
     product.__typename === 'DownloadableProduct' &&
-    Array.isArray((product as DownloadableProductOptionsFragment).downloadable_product_links)
+    Array.isArray((product as ProductPageItemDownloadableFragment).downloadable_product_links)
   )
 }
 

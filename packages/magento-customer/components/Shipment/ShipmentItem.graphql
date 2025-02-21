@@ -9,6 +9,11 @@ fragment ShipmentItem on ShipmentItemInterface {
   }
   order_item {
     id
-    ...OrderItem
+    product {
+      uid
+      thumbnail {
+        ...ProductImage
+      }
+    }
   }
 }

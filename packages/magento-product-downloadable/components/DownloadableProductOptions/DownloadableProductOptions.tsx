@@ -11,10 +11,10 @@ import {
 } from '@graphcommerce/next-ui'
 import { Box, Link } from '@mui/material'
 import { useMemo } from 'react'
-import type { DownloadableProductOptionsFragment } from '../../graphql'
+import type { ProductPageItemDownloadableFragment } from '../../graphql'
 
 export type DownloadableProductOptionsProps = AddToCartItemSelector & {
-  product: DownloadableProductOptionsFragment
+  product: ProductPageItemDownloadableFragment
 }
 
 export function DownloadableProductOptions(props: DownloadableProductOptionsProps) {

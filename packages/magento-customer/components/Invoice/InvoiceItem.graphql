@@ -14,6 +14,12 @@ fragment InvoiceItem on InvoiceItemInterface {
   product_sku
   quantity_invoiced
   order_item {
-    ...OrderItem
+    id
+    product {
+      uid
+      thumbnail {
+        ...ProductImage
+      }
+    }
   }
 }

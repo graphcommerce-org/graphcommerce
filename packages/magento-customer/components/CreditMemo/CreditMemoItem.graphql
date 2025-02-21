@@ -7,10 +7,20 @@ fragment CreditMemoItem on CreditMemoItemInterface {
   product_sale_price {
     ...Money
   }
+
   discounts {
     amount {
       ...Money
     }
     label
+  }
+  order_item {
+    id
+    product {
+      uid
+      thumbnail {
+        ...ProductImage
+      }
+    }
   }
 }
