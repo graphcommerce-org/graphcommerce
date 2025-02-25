@@ -1,4 +1,5 @@
 fragment ProductVideo on ProductVideo {
+  url
   video_content {
     media_type
     video_description
