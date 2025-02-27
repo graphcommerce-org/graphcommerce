@@ -1,5 +1,4 @@
 import { resolveDependenciesSync, sortDependencies } from '../../src/utils/resolveDependenciesSync'
-
 const projectRoot = `${process.cwd()}/examples/magento-graphcms`
 it('It resolves and sorts dependencies beginning with the root example package and ending with the the packages used everywhere.', () => {
   const dependencies = resolveDependenciesSync(projectRoot)
@@ -23,6 +22,7 @@ it('It resolves and sorts dependencies beginning with the root example package a
       "@graphcommerce/magento-product-downloadable" => "packages/magento-product-downloadable",
       "@graphcommerce/magento-product-bundle" => "packages/magento-product-bundle",
       "@graphcommerce/magento-product-virtual" => "packages/magento-product-virtual",
+      "@graphcommerce/magento-payment-tokens" => "packages/magento-payment-tokens",
       "@graphcommerce/magento-payment-included" => "packages/magento-payment-included",
       "@graphcommerce/magento-newsletter" => "packages/magento-newsletter",
       "@graphcommerce/magento-graphql-rest" => "packages/magento-graphql-rest",
