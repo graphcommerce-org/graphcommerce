@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.19
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`17312d7`](https://github.com/graphcommerce-org/graphcommerce/commit/17312d7992d91db32ac24e3b0f91b28c271618e1) - Make checkmo respect the payableTo and sendTo values ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.18
 
 ## 9.1.0-canary.17

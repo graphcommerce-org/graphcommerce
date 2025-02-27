@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.19
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`eb973e7`](https://github.com/graphcommerce-org/graphcommerce/commit/eb973e7dec375178e4348e74069fc0d132a091c7) - Render the no-route page (or whatever is configured) on the 404 page when running with only Magento. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.18
 
 ## 9.1.0-canary.17

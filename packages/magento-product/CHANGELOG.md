@@ -1,5 +1,29 @@
 # Change Log
 
+## 9.1.0-canary.19
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`89e785d`](https://github.com/graphcommerce-org/graphcommerce/commit/89e785de9d62c2f6cf6b2885da72ff63b16fc70d) - Added support for TIME and DATE for the customizable options. Added required stars. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`7565120`](https://github.com/graphcommerce-org/graphcommerce/commit/756512031642371609258fba322a7f3a4845a17b) - Customizable Product Options wouldn't be properly selected because the parent woudln't rerender anymore. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`37c00d8`](https://github.com/graphcommerce-org/graphcommerce/commit/37c00d80419b209850457559d7b7eca4101f5705) - Forward productListRenderer for all locations that can be rendered by pagebuilder ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`e9da6a9`](https://github.com/graphcommerce-org/graphcommerce/commit/e9da6a9e55a9344a1f8ef8f1f20060af2bb38ee9) - Added support for video's on the product page. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`1e38811`](https://github.com/graphcommerce-org/graphcommerce/commit/1e3881177065548165b7141a29cff8ab27692b25) - Added support for meta_keyword for products and categories ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`b497116`](https://github.com/graphcommerce-org/graphcommerce/commit/b497116798e26419950982a6a9d05932a9e99961) - Make sure CustomizableOptions are sorted correctly ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`89e785d`](https://github.com/graphcommerce-org/graphcommerce/commit/89e785de9d62c2f6cf6b2885da72ff63b16fc70d) - Created a CustomizablePrice component that will highlight the price, to prevent duplicating logic and preventing rerenders. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`722763f`](https://github.com/graphcommerce-org/graphcommerce/commit/722763f01f9c4726126d5a30919bdcd25929a330) - Support for new_from_date and new_to_date labels ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`35fdadd`](https://github.com/graphcommerce-org/graphcommerce/commit/35fdadd8896619a2c84e91e39279f5928c0c9007) - Refactored the price calculation of customizable options on the product page so required options are correctly handled. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`35fdadd`](https://github.com/graphcommerce-org/graphcommerce/commit/35fdadd8896619a2c84e91e39279f5928c0c9007) - Renamed customizable_options_entered to entered_options_record and customizable_options to selected_options_record ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.18
 
 ## 9.1.0-canary.17

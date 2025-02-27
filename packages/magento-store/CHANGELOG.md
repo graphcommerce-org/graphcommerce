@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.1.0-canary.19
+
+### Minor Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`9f040a4`](https://github.com/graphcommerce-org/graphcommerce/commit/9f040a4c0947f05f2f27e4c5078a684b04e711e1) - Implemented the `query { attributesForm }` to be able to dynamically render forms with useAttributesForm/preloadAttributesForm and AttributesFormAutoLayout, and additional utilities to handle form submissions. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`798c122`](https://github.com/graphcommerce-org/graphcommerce/commit/798c12271e90cf0e02f021e7ad4aa088b4c7c2a3) - Use the `storeConfig.head_shortcut_icon` when configured, if not configured it will use the favicon.ico and favicon.svg from the public folder. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`6b2b44c`](https://github.com/graphcommerce-org/graphcommerce/commit/6b2b44ca853279144d7768067f3462d4d4bf0af1) - Created a new PriceModifiers component that is implemented on CartItems, allowing different product types to render their options in a consistent manner and allow rendering a base price so that the sum in the cart is correct. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.18
 
 ## 9.1.0-canary.17

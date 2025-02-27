@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.1.0-canary.19
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`d859dd8`](https://github.com/graphcommerce-org/graphcommerce/commit/d859dd8e5e89e4f22cd6e89e3ae8d03067de6c51) - Do not directly update the cache of the defaultConfigurableOptionsSelection, but query the backend. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`6b2b44c`](https://github.com/graphcommerce-org/graphcommerce/commit/6b2b44ca853279144d7768067f3462d4d4bf0af1) - Move the cartItemEdit functionality to a plugin for configurable products ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`6b2b44c`](https://github.com/graphcommerce-org/graphcommerce/commit/6b2b44ca853279144d7768067f3462d4d4bf0af1) - Implement the Cart options as priceModifiers so the logic can be somewhat re-used for multiple locations ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.18
 
 ## 9.1.0-canary.17

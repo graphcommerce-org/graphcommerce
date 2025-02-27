@@ -1,5 +1,19 @@
 # Change Log
 
+## 9.1.0-canary.19
+
+### Minor Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`20703bc`](https://github.com/graphcommerce-org/graphcommerce/commit/20703bc5c453fb7ee61eb4350e207e84a749bf5e) - Magento 2.4.7: Implemented the `customer_account_create` and `customer_account_edit` forms using the `attributeForm` query for the registration page and customer information form. The forms respect the settings configured in the 'Customer Configuration section'. It allows configuration for `prefix`, `middlename`, `suffix`,`dob`, `gender` and other fields. This also makes the frontend compatible with Adobe Commerce's Customer Attributes module. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`30f9371`](https://github.com/graphcommerce-org/graphcommerce/commit/30f9371503959b990c65058a88be6f61b4859140) - Added support for viewing Invoices/Shipments and Credit Memo's ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`6cb4815`](https://github.com/graphcommerce-org/graphcommerce/commit/6cb4815a0faf4cc2f60c13d9384e3a96b6bdb2bb) - Deleting an account will now require reauthentication and moved the menu item to the Authentication section ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`2409514`](https://github.com/graphcommerce-org/graphcommerce/commit/240951428ac0bdc11649f4190b6d51c004680b34) - Order/Invoice/CreditMemo and Shipment views ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.18
 
 ## 9.1.0-canary.17

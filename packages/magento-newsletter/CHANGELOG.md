@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.19
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`0078951`](https://github.com/graphcommerce-org/graphcommerce/commit/007895103c82974cebc811e0a59e029108e15153) - Prevent executing additional query when user is signing out ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.18
 
 ## 9.1.0-canary.17

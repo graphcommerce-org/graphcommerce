@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.19
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`9cf0450`](https://github.com/graphcommerce-org/graphcommerce/commit/9cf0450a41c4c74292b96f5795c7428f9d6a930c) - Remove the 'ignored' string when loading the graphcommerce config env variable loading, as that isn't always correct ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.18
 
 ### Patch Changes

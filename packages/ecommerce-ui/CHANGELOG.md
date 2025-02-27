@@ -1,5 +1,11 @@
 # @graphcommerce/ecommerce-ui
 
+## 9.1.0-canary.19
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`7c7d6e4`](https://github.com/graphcommerce-org/graphcommerce/commit/7c7d6e4976d263f4139ce1de2caf47e7f49a2bf8) - Solve issue where an individual item in the ActionCardListForm couldn't be disabed. Resulting in configurable options on the product page to be selectable while they shouldn't be. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.18
 
 ## 9.1.0-canary.17

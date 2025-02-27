@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.1.0-canary.19
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`35fdadd`](https://github.com/graphcommerce-org/graphcommerce/commit/35fdadd8896619a2c84e91e39279f5928c0c9007) - Removed deprecated fields from AddProductsToCartForm ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`b26f573`](https://github.com/graphcommerce-org/graphcommerce/commit/b26f57307ab1d08f628183dd86e487ec9aa1e5cf) - Moved all functionality from the @graphcommerce/magento-cart-billing-address package to the @graphcommerce/magento-cart package. All occurences of @graphcommerce/magento-cart-billing-address should be removed for your codebase. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.18
 
 ## 9.1.0-canary.17

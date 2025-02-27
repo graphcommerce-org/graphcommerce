@@ -1,5 +1,11 @@
 # @graphcommerce/algolia-categories
 
+## 9.1.0-canary.19
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`dc53b61`](https://github.com/graphcommerce-org/graphcommerce/commit/dc53b614ef0ee1249882b2fcd5590ddca12f1636) - Added meta_keywords to CmsPageMeta and CategoryMeta ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.18
 
 ## 9.1.0-canary.17

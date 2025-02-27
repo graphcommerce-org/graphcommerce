@@ -1,5 +1,13 @@
 # @graphcommerce/algolia-recommend
 
+## 9.1.0-canary.19
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`32b65d6`](https://github.com/graphcommerce-org/graphcommerce/commit/32b65d6a805b84423f77bfbfe80ee3331da70718) - Make facetName and facetValue optional when retrieving trending products ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`48d8922`](https://github.com/graphcommerce-org/graphcommerce/commit/48d892236c8fc41e058013b6d4ab98b76fb47fca) - Solve issue where trendingProducts or trendingFacetValues couldn’t be resolved becasue root would be null ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.18
 
 ## 9.1.0-canary.17
