@@ -169,8 +169,7 @@ export function OrderDetails(props: OrderDetailsProps) {
                   region: shipping_address.region,
                   region_id: shipping_address.region_id ? Number(shipping_address.region_id) : null,
                 }}
-                region_id={shipping_address.region_id ? Number(shipping_address.region_id) : null}
-                custom_attributesV2={[]}
+                // custom_attributesV2={[]}
               />
             </SectionContainer>
           </Box>
@@ -190,8 +189,7 @@ export function OrderDetails(props: OrderDetailsProps) {
                   region: billing_address.region,
                   region_id: billing_address.region_id ? Number(billing_address.region_id) : null,
                 }}
-                region_id={billing_address.region_id ? Number(billing_address.region_id) : null}
-                custom_attributesV2={[]}
+                // custom_attributesV2={[]}
               />
             )}
           </SectionContainer>
