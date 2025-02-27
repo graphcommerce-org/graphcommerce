@@ -213,7 +213,7 @@ export function useAttributesForm<
   })
 
   return useMemo(() => {
-    const items = (data?.attributesForm.items ?? [])
+    const items = (data?.attributesForm?.items ?? [])
       .filter(nonNullable)
       .filter((item) => !config.exclude?.includes(item.code))
       .map((item) => ({
@@ -252,7 +252,7 @@ export function useAttributesForm<
         config.typename ? item.__typename === config.typename : true,
       )
       .map((attribute) => customizeAttributes?.(attribute) || attribute)
-  }, [data?.attributesForm.items, config, customizeAttributes])
+  }, [data?.attributesForm?.items, config, customizeAttributes])
 }
 
 export function extractAttributes(
