@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.18
+
+### Patch Changes
+
+- [`62b71d5`](https://github.com/graphcommerce-org/graphcommerce/commit/62b71d5ed1d482fdb5b76dc19ac4d55fc41fb191) - Solve issue: TypeError: InMemoryLRUCache is not a constructor ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.17
 
 ## 9.1.0-canary.16
