@@ -81,7 +81,7 @@ export const MotionImageAspect = m.create(
             style: { ...props.style, aspectRatio: `${props.width} / ${props.height}` },
           }}
         />
-        {Additional && <Additional {...slotProps?.additional} {...rest} imageRef={ref} />}
+        {Additional && <Additional {...slotProps?.additional} {...rest} />}
         {slotProps?.box?.children}
       </Box>
     )
