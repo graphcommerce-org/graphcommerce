@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.4
+
+### Patch Changes
+
+- [#2503](https://github.com/graphcommerce-org/graphcommerce/pull/2503) [`cf9a54e`](https://github.com/graphcommerce-org/graphcommerce/commit/cf9a54e300378a0ca77aa7e39e4a95788359028d) - Solve issue where ActionCard would crash the whole app because it forwarded components to string attributes ([@paales](https://github.com/paales))
+
 ## 9.0.3
 
 ## 9.0.3-canary.0
