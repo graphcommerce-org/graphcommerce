@@ -8,10 +8,14 @@ import { TextField, useForkRef } from '@mui/material'
 import React, { useState } from 'react'
 import type { BaseControllerProps, FieldElementProps } from './types'
 
-type ShowValidProps = { showValid?: boolean }
+type InternalProps = {
+  showValid?: boolean
+  /** Cast all values as a string instead of a string/number/date depending on the input type. */
+  asString?: boolean
+}
 
 export type TextFieldElementProps<TFieldValues extends FieldValues = FieldValues> =
-  FieldElementProps<TFieldValues, TextFieldProps> & ShowValidProps
+  FieldElementProps<TFieldValues, TextFieldProps> & InternalProps
 
 type TextFieldElementComponent = <TFieldValues extends FieldValues>(
   props: TextFieldElementProps<TFieldValues>,
@@ -55,7 +59,7 @@ function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
     showValid,
     asString = false,
     ...rest
-  } = props as TextFieldProps & ShowValidProps & BaseControllerProps
+  } = props as TextFieldProps & InternalProps & BaseControllerProps
 
   if (required && !rules.required) {
     rules.required = i18n._(/* i18n */ 'This field is required')
