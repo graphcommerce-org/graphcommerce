@@ -121,7 +121,6 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
     layout = 'list',
     error = false,
     slotProps = {},
-    ...other
   } = props
 
   const classes = withState({
@@ -263,7 +262,6 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
         slotProps.root?.sx,
       )}
       {...slotProps.root}
-      {...other}
     >
       <Box
         className={classes.rootInner}
