@@ -15,7 +15,7 @@ export function CartCrosssellsScroller(props: CartItemCrosssellsProps) {
   if (crossSellItems.length === 0 || crossSellsHideCartItems === true) return null
 
   return (
-    <AddProductsToCartForm redirect={false} disableSuccessSnackbar>
+    <AddProductsToCartForm redirect={false} snackbarProps={{ disableSuccessSnackbar: true }}>
       <ProductScroller
         productListRenderer={renderer}
         items={crossSellItems}
