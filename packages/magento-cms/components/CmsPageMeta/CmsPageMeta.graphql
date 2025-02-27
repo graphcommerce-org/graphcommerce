@@ -1,6 +1,8 @@
 fragment CmsPageMeta on CmsPage {
   meta_title
   meta_description
+  meta_keywords
+  page_layout
   url_key
   title
 }

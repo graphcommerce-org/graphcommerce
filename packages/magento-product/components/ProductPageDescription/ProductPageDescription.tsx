@@ -8,6 +8,7 @@ import {
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Typography } from '@mui/material'
 import type { Variant } from '@mui/material/styles/createTypography'
+import type { ProductListItemRenderer } from '../ProductListItems/renderer'
 import { ProductPageName } from '../ProductPageName'
 import type { ProductPageDescriptionFragment } from './ProductPageDescription.gql'
 
@@ -15,6 +16,7 @@ export type ProductPageDescriptionProps = Omit<ColumnTwoWithTopProps, 'top' | 'l
   sx?: SxProps<Theme>
   fontSize?: 'responsive' | Variant
   product: ProductPageDescriptionFragment
+  productListRenderer: ProductListItemRenderer
 }
 
 const componentName = 'ProductPageDescription'
@@ -23,7 +25,14 @@ const parts = ['root', 'description'] as const
 const { classes } = extendableComponent(componentName, parts)
 
 export function ProductPageDescription(props: ProductPageDescriptionProps) {
-  const { product, right, fontSize = 'subtitle1', maxWidth = 'lg', sx = [] } = props
+  const {
+    product,
+    right,
+    fontSize = 'subtitle1',
+    maxWidth = 'lg',
+    sx = [],
+    productListRenderer,
+  } = props
 
   return (
     <LazyHydrate height={500}>

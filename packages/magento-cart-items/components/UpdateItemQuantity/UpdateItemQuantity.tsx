@@ -38,7 +38,6 @@ export function UpdateItemQuantity(props: UpdateItemQuantityProps) {
 
   return (
     <form noValidate onSubmit={submit}>
-      <FormAutoSubmit control={control} submit={submit} leading />
       <NumberFieldElement
         control={control}
         name='quantity'
@@ -51,7 +50,8 @@ export function UpdateItemQuantity(props: UpdateItemQuantityProps) {
         sx={sx}
         {...textInputProps}
       />
-      <ApolloCartErrorSnackbar error={error} onClose={() => reset({ quantity })} />
+      <FormAutoSubmit control={control} submit={submit} leading trailing />
+      <ApolloCartErrorSnackbar error={error} onClose={() => reset({ quantity, uid })} />
     </form>
   )
 }

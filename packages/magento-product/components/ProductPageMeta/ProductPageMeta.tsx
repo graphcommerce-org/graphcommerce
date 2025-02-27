@@ -17,6 +17,7 @@ export function ProductPageMeta(props: ProductPageMetaProps) {
     media_gallery,
     name,
     meta_title,
+    meta_keyword,
     meta_description,
     url_key,
     __typename,
@@ -27,6 +28,7 @@ export function ProductPageMeta(props: ProductPageMetaProps) {
       title={meta_title ?? name ?? ''}
       metaDescription={meta_description ?? name ?? ''}
       canonical={productLink({ url_key, __typename })}
+      metaKeywords={meta_keyword ?? name ?? ''}
       ogImage={media_gallery?.[0]?.url}
       ogType='product'
       {...rest}

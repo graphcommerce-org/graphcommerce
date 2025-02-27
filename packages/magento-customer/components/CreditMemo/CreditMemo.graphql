@@ -1,0 +1,43 @@
+fragment CreditMemo on CreditMemo {
+  id
+  number
+  items {
+    ...CreditMemoItem
+  }
+  total {
+    subtotal {
+      ...Money
+    }
+    adjustment {
+      ...Money
+    }
+    shipping_handling {
+      ...ShippingHandling
+    }
+    total_shipping {
+      ...Money
+    }
+    discounts {
+      amount {
+        ...Money
+      }
+      label
+    }
+    base_grand_total {
+      ...Money
+    }
+    grand_total {
+      ...Money
+    }
+    taxes {
+      ...TaxItem
+    }
+    total_tax {
+      ...Money
+    }
+  }
+  comments {
+    message
+    timestamp
+  }
+}

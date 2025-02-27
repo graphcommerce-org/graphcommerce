@@ -21,7 +21,9 @@ export function ProductPageMeta(props: PluginProps<ProductPageMetaProps> & AddTo
   const isValidVariant = (variant?.url_rewrites ?? []).length > 0 && variant?.url_key
   const targetUrl = isValidVariant ? productLink(variant) : productLink(product)
 
+
   useEffect(() => {
+    if (product.__typename !== 'ConfigurableProduct') return
     // Filter asPath with #, for zoomed gallery
     // Note for future use: This might be a dangerous way to
     // navigate to simple products, since it will trigger on every
@@ -31,6 +33,10 @@ export function ProductPageMeta(props: PluginProps<ProductPageMetaProps> & AddTo
       replace(targetUrl, undefined, { scroll: false, shallow: true })
     }
   }, [asPath, replace, targetUrl])
+
+  if (product.__typename !== 'ConfigurableProduct') {
+    return <Prev product={product} {...rest} />
+  }
 
   return <Prev product={variant ? mergeDeep(product, variant) : product} {...rest} />
 }

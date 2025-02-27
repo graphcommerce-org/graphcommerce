@@ -20,7 +20,7 @@ import { ProductFiltersProSearchTerm } from '@graphcommerce/magento-search'
 import { Container, LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Typography } from '@mui/material'
-import { ProductListItems } from '../ProductListItems'
+import { ProductListItems, productListRenderer } from '../ProductListItems'
 import { ProductListLayoutProps, useLayoutConfiguration } from './types'
 
 export const ProductListLayoutDefault = memoDeep(function ProductListLayoutDefault(
@@ -73,6 +73,7 @@ export const ProductListLayoutDefault = memoDeep(function ProductListLayoutDefau
               textAlignSm='center'
               sx={(theme) => ({ px: theme.page.horizontal })}
               category={category}
+              productListRenderer={productListRenderer}
             />
             <CategoryChildren
               sx={(theme) => ({

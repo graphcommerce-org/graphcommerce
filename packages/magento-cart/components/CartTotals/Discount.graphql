@@ -1,0 +1,6 @@
+fragment Discount on Discount {
+  amount {
+    ...Money
+  }
+  label
+}

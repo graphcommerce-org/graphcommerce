@@ -1,6 +1,5 @@
 import { ApolloErrorSnackbar } from '@graphcommerce/ecommerce-ui'
-import { useQuery } from '@graphcommerce/graphql'
-import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
+import { useCustomerQuery } from '@graphcommerce/magento-customer'
 import { sxx } from '@graphcommerce/next-ui'
 import { Controller, FormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import type { SwitchProps, SxProps, Theme } from '@mui/material'
@@ -23,7 +22,7 @@ export type CustomerNewsletterToggleProps = Omit<SwitchProps, ''> & {
 export function CustomerNewsletterToggle(props: CustomerNewsletterToggleProps) {
   const { disabled, sx = [], children, ...switchProps } = props
 
-  const { loading, data } = useQuery(GetCustomerNewsletterToggleDocument, { ssr: false })
+  const { loading, data } = useCustomerQuery(GetCustomerNewsletterToggleDocument)
   const form = useFormGqlMutation(UpdateNewsletterSubscriptionDocument, {
     mode: 'onChange',
     defaultValues: {

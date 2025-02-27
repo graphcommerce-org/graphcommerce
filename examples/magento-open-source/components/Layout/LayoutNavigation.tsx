@@ -64,7 +64,6 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               name: menu?.items?.[0]?.children?.[1]?.name ?? '',
             },
             ...magentoMenuToNavigation(menu, true),
-            { id: 'blog', name: 'Blog', href: '/blog' },
             <Divider sx={(theme) => ({ my: theme.spacings.xs })} />,
             <CustomerMenuFabItem
               onClick={() => selection.set(false)}
@@ -133,10 +132,6 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
                 {menu?.items?.[0]?.name}
                 <IconSvg src={iconChevronDown} />
               </DesktopNavItem>
-
-              <DesktopNavItem href='/blog'>
-                <Trans id='Blog' />
-              </DesktopNavItem>
             </DesktopNavBar>
 
             <DesktopNavActions>
@@ -171,7 +166,15 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           </>
         }
         footer={
-          <Footer socialLinks={footerBlock ? <CmsBlock cmsBlock={footerBlock} /> : <div />} />
+          <Footer
+            socialLinks={
+              footerBlock ? (
+                <CmsBlock cmsBlock={footerBlock} productListRenderer={productListRenderer} />
+              ) : (
+                <div />
+              )
+            }
+          />
         }
         cartFab={<CartFab BadgeProps={{ color: 'secondary' }} />}
         menuFab={<NavigationFab onClick={() => selection.set([])} />}

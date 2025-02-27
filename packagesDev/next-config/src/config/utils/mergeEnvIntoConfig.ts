@@ -223,7 +223,7 @@ export function formatAppliedEnv(applyResult: ApplyResult) {
 
     if (!dotVar) return chalk.red(`${envVariableFmt} => ignored (no matching config)`)
 
-    if (from === undefined && to === undefined) return ` = ${baseLog}: (ignored)`
+    if (from === undefined && to === undefined) return ` = ${baseLog}`
     if (from === undefined && to !== undefined) return ` ${chalk.green('+')} ${baseLog}`
     if (from !== undefined && to === undefined) return ` ${chalk.red('-')} ${baseLog}`
     return ` ${chalk.yellowBright('~')} ${baseLog}`

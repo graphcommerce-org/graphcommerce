@@ -1,9 +1,9 @@
 import type { ImageProps } from '@graphcommerce/image'
 import { extendableComponent } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
-import { Skeleton, useEventCallback } from '@mui/material'
+import { Skeleton } from '@mui/material'
 import React from 'react'
-import type { ProductListItemFragment } from '../../Api/ProductListItem.gql'
+import type { ProductListItemFragment } from '../../graphql'
 import { productLink } from '../../hooks/useProductLink'
 import { ProductListPrice } from '../ProductListPrice/ProductListPrice'
 import { ProductDiscountLabel } from './ProductDiscountLabel'
@@ -18,6 +18,7 @@ import type { ProductListItemLinkOrDivProps } from './ProductListItemLinkOrDiv'
 import { ProductListItemLinkOrDiv } from './ProductListItemLinkOrDiv'
 import type { ProductListItemTitleAndPriceProps } from './ProductListItemTitleAndPrice'
 import { ProductListItemTitleAndPrice } from './ProductListItemTitleAndPrice'
+import { ProductNewLabel } from './ProductNewLabel'
 
 const { classes, selectors } = extendableComponent('ProductListItem', [
   'root',
@@ -35,6 +36,7 @@ const { classes, selectors } = extendableComponent('ProductListItem', [
   'placeholder',
   'image',
   'discount',
+  'new',
 ] as const)
 
 type StyleProps = {
@@ -123,6 +125,7 @@ export function ProductListItemReal(props: ProductProps) {
             topLeft={
               <>
                 <ProductDiscountLabel className={classes.discount} price_range={price_range} />
+                <ProductNewLabel className={classes.new} product={props} />
                 {topLeft}
               </>
             }

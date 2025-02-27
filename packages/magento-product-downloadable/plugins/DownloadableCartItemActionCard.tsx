@@ -1,13 +1,10 @@
 import {
-  SelectedCustomizableOptions,
+  selectedCustomizableOptionsModifiers,
   type CartItemActionCardProps,
 } from '@graphcommerce/magento-cart-items'
-import { Money } from '@graphcommerce/magento-store'
+import type { PriceModifier } from '@graphcommerce/magento-store'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
-import { filterNonNullableKeys, isTypename } from '@graphcommerce/next-ui'
-import { Box } from '@mui/material'
-import React from 'react'
-import { DownloadableCartItemOptions } from '../components/DownloadableCartItemOptions/DownloadableCartItemOptions'
+import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 
 export const config: PluginConfig = {
   type: 'component',
@@ -15,16 +12,32 @@ export const config: PluginConfig = {
 }
 
 export function CartItemActionCard(props: PluginProps<CartItemActionCardProps>) {
-  const { Prev, ...rest } = props
+  const { Prev, priceModifiers = [], ...rest } = props
+
+  if (
+    rest.cartItem.__typename !== 'DownloadableCartItem' ||
+    rest.cartItem.product.__typename !== 'DownloadableProduct'
+  )
+    return <Prev priceModifiers={priceModifiers} {...rest} />
+
+  const downloadableModifier: PriceModifier = {
+    key: 'downloadable',
+    label: rest.cartItem.product.links_title,
+    items: filterNonNullableKeys(rest.cartItem.links).map((link) => ({
+      key: link.uid,
+      label: link.title,
+      amount: link.price,
+    })),
+  }
 
   return (
     <Prev
       {...rest}
-      details={
-        <>
-          {rest.details} <DownloadableCartItemOptions {...rest} />
-        </>
-      }
+      priceModifiers={[
+        ...priceModifiers,
+        downloadableModifier,
+        ...selectedCustomizableOptionsModifiers(rest.cartItem),
+      ]}
     />
   )
 }

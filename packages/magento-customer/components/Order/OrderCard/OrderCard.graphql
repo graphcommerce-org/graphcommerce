@@ -1,0 +1,13 @@
+fragment OrderCard on CustomerOrder {
+  number
+  order_date
+  total {
+    grand_total {
+      ...Money
+    }
+  }
+  items {
+    ...OrderCardItem
+  }
+  ...OrderStateLabel
+}

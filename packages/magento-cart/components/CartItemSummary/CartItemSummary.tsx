@@ -16,18 +16,7 @@ import { CartTotals } from '../CartTotals/CartTotals'
 import { CartItemSummaryDocument } from './GetCartItemSummary.gql'
 
 const name = 'CartItemSummary'
-const parts = [
-  'root',
-  'imageScrollerContainer',
-  'image',
-  'scrollerContainer',
-  'scroller',
-  'prevNext',
-  'prev',
-  'next',
-  'sectionHeaderWrapper',
-  'divider',
-] as const
+const parts = ['root', 'items', 'actionCard', 'divider'] as const
 const { classes } = extendableComponent(name, parts)
 
 export type OrderSummaryProps = ActionCardLayoutProps & {
@@ -66,37 +55,27 @@ export function CartItemSummary(props: OrderSummaryProps) {
       <SectionContainer
         sx={{ '& .SectionHeader-root': { mt: 0 } }}
         labelLeft={<Trans id='Order summary' />}
-        // labelRight={
-        //   <PageLink href='/download' passHref>
-        //     <Link color='secondary'>Download invoice</Link>
-        //   </PageLink>
-        // }
         variantLeft='h6'
+        className={classes.items}
       >
-        <Box className={classes.imageScrollerContainer} sx={{ position: 'relative' }}>
-          <ActionCardLayout
-            sx={(theme) => ({
-              marginBottom: theme.spacings.md,
-              '&.layoutStack': {
-                gap: 0,
-              },
-            })}
-            className={classes.scrollerContainer}
-            {...cardLayout}
-          >
-            {(items ?? []).filter(nonNullable).map((item) => (
-              <CartItemActionCard
-                readOnly
-                key={item.uid}
-                cartItem={item}
-                {...itemProps}
-                layout={layout}
-                size={size}
-                variant='default'
-              />
-            ))}
-          </ActionCardLayout>
-        </Box>
+        <ActionCardLayout
+          sx={(theme) => ({ marginBottom: theme.spacings.md, '&.layoutStack': { gap: 0 } })}
+          className={classes.actionCard}
+          {...cardLayout}
+        >
+          {(items ?? []).filter(nonNullable).map((item) => (
+            <CartItemActionCard
+              readOnly
+              key={item.uid}
+              cartItem={item}
+              variant='default'
+              {...itemProps}
+              layout={layout}
+              size={size}
+            />
+          ))}
+        </ActionCardLayout>
+
         <Divider
           classes={{ root: classes.divider }}
           sx={(theme) => ({

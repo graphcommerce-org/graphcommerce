@@ -1,0 +1,13 @@
+query CountryRegions {
+  countries {
+    id
+    full_name_locale
+    two_letter_abbreviation
+    three_letter_abbreviation
+    available_regions {
+      code
+      id
+      name
+    }
+  }
+}

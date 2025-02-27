@@ -1,5 +1,5 @@
 import { Money } from '@graphcommerce/magento-store'
-import { breakpointVal, extendableComponent } from '@graphcommerce/next-ui'
+import { breakpointVal, extendableComponent, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Divider, lighten } from '@mui/material'
@@ -62,7 +62,7 @@ export function CartTotals(props: CartTotalsProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           ...breakpointVal(
             'borderRadius',
@@ -81,8 +81,8 @@ export function CartTotals(props: CartTotalsProps) {
             px: theme.spacings.xs,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       key='total-costs'
     >
       {prices?.subtotal_including_tax && (

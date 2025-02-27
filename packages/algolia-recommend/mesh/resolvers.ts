@@ -25,7 +25,7 @@ const productInterfaceTypes = fragments.possibleTypes.ProductInterface as Produc
 
 const resolvers: Resolvers = {
   Query: {
-    trendingProducts: async (root, args, context, info) => {
+    trendingProducts: async (root = {}, args, context, info) => {
       const { facetName, facetValue } = args.input
       const { threshold, fallbackParameters, maxRecommendations, queryParameters } =
         await getRecommendationsArgs(root, args, context)
@@ -45,7 +45,7 @@ const resolvers: Resolvers = {
         await createProductMapper(context),
       )
     },
-    trendingFacetValues: async (root, args, context, info) => {
+    trendingFacetValues: async (root = {}, args, context, info) => {
       const { threshold, fallbackParameters, maxRecommendations, queryParameters } =
         await getRecommendationsArgs(root, args, context)
       return getRecommendations(

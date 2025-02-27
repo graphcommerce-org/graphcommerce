@@ -81,7 +81,7 @@ function CartItemEdit(props: Props) {
               cartItem={cartItem}
               defaultValues={defaultValues}
               redirect={false}
-              disableSuccessSnackbar
+              snackbarProps={{ disableSuccessSnackbar: true }}
             >
               <ProductPageGallery
                 product={product}

@@ -12,7 +12,7 @@ import {
   ProductListPagination,
 } from '@graphcommerce/magento-product'
 import { LayoutTitle, memoDeep, StickyBelowHeader, Container } from '@graphcommerce/next-ui'
-import { ProductListItems } from '../ProductListItems'
+import { ProductListItems, productListRenderer } from '../ProductListItems'
 import { ProductListLayoutProps } from './types'
 import { Trans } from '@lingui/macro'
 
@@ -50,6 +50,7 @@ export const ProductListLayoutClassic = memoDeep(function ProductListLayoutClass
           <CategoryDescription
             sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.sm })}
             category={category}
+            productListRenderer={productListRenderer}
           />
           <CategoryChildren
             params={params}

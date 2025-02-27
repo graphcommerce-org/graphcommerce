@@ -540,9 +540,6 @@ msgstr "Nog maar een paar op voorraad."
 msgid "Only {amount_left_in_stock} left in stock."
 msgstr "Nog maar {amount_left_in_stock} op voorraad."
 
-msgid "Or follow these links to get you back on track!"
-msgstr "Of klik op één van deze links om weer op het pad te komen!"
-
 msgid "Order"
 msgstr "Bestelling"
 
@@ -784,9 +781,6 @@ msgstr "Sorteer op"
 
 msgid "Status"
 msgstr "Status"
-
-msgid "Store home"
-msgstr "Winkel home"
 
 msgid "Street"
 msgstr "Straat"

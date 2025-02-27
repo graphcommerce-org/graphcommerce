@@ -17,6 +17,10 @@ export function ProductPageDescription(
   const { Prev, product, index, ...rest } = props
   const variant = useConfigurableSelectedVariant({ ...product, index })
 
+  if (product.__typename !== 'ConfigurableProduct') {
+    return <Prev product={product} index={index} {...rest} />
+  }
+  
   return (
     <Prev
       product={{

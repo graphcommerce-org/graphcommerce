@@ -1,0 +1,5 @@
+fragment CmsConfig on StoreConfig @inject(into: ["StoreConfigFragment"]) {
+  cms_home_page
+  cms_no_cookies
+  cms_no_route
+}

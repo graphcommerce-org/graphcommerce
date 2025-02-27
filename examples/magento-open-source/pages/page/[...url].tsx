@@ -13,7 +13,7 @@ import {
 } from '@graphcommerce/next-ui'
 import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../../components'
-import { LayoutDocument, LayoutNavigation } from '../../components'
+import { LayoutDocument, LayoutNavigation, productListRenderer } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 export type CmsPageProps = { cmsPage: CmsPageFragment }
@@ -46,7 +46,7 @@ function CmsPage(props: CmsPageProps) {
         </Container>
       )}
 
-      <CmsPageContent cmsPage={cmsPage} />
+      <CmsPageContent cmsPage={cmsPage} productListRenderer={productListRenderer} />
     </>
   )
 }

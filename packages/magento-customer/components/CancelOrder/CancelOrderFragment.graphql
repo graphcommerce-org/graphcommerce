@@ -1,0 +1,5 @@
+fragment CancelOrderFragment on CustomerOrder {
+  id
+  ...OrderStateLabel
+  ...OrderDetails
+}

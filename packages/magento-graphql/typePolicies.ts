@@ -82,7 +82,12 @@ export const magentoTypePolicies: TypedTypePolicies = {
   // CreditMemoTotal: { keyFields: false },
   // Currency: { keyFields: [] },
   // CustomAttributeMetadata: { keyFields: [] },
-  Customer: { keyFields: [] },
+  Customer: {
+    keyFields: [],
+    fields: {
+      custom_attributes: { merge: (_, incoming) => incoming },
+    },
+  },
   // CustomerAddress: { keyFields: ['id'] },
   // CustomerAddressAttribute: { keyFields: false },
   // CustomerAddressRegion: { keyFields: false },

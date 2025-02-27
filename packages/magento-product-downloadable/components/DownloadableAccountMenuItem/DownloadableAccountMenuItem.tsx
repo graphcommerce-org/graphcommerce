@@ -20,6 +20,8 @@ export function DownloadableAccountMenuItem(props: StoreCreditAccountMenuItemPro
   const items = filterNonNullableKeys(downloadable?.items)
   const count = items.length
 
+  if (!count) return null
+
   return (
     <AccountMenuItem
       href='/account/downloads'

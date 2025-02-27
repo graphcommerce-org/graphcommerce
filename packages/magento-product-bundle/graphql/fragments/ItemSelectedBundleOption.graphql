@@ -1,0 +1,13 @@
+fragment ItemSelectedBundleOption on ItemSelectedBundleOption {
+  label
+  uid
+  values {
+    price {
+      ...Money
+    }
+    product_name
+    product_sku
+    quantity
+    uid
+  }
+}

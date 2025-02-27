@@ -1,0 +1,5 @@
+fragment CreditMemoItem_Bundle on BundleCreditMemoItem @inject(into: ["CreditMemoItem"]) {
+  bundle_options {
+    ...ItemSelectedBundleOption
+  }
+}

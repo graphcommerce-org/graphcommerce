@@ -3,16 +3,7 @@ fragment ProductPagePrice on ProductInterface {
   url_key
   price_range {
     minimum_price {
-      regular_price {
-        ...Money
-      }
-      discount {
-        amount_off
-        percent_off
-      }
-      final_price {
-        ...Money
-      }
+      ...ProductPrice
     }
   }
   price_tiers {

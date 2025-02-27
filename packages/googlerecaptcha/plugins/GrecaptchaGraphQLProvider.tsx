@@ -5,7 +5,7 @@ import Script from 'next/script'
 import { useMemo, useState } from 'react'
 import type { RecaptchaContext } from '../context/recaptchaContext'
 import { recaptchaContext } from '../context/recaptchaContext'
-import { RecaptchaV3ConfigDocument } from '../graphql/RecaptchaV3Config.gql'
+import { RecaptchaV3ConfigDocument } from '../graphql'
 import { recaptchaLink } from '../link/recaptchaLink'
 
 export const config: PluginConfig = {
@@ -15,8 +15,6 @@ export const config: PluginConfig = {
 
 function ReCaptchaScript() {
   const siteKey = useQuery(RecaptchaV3ConfigDocument).data?.recaptchaV3Config?.website_key
-
-  console.log(siteKey)
 
   if (!siteKey) return null
   return (

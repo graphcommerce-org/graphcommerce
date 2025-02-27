@@ -540,9 +540,6 @@ msgstr "Solo pochi pezzi disponibili"
 msgid "Only {amount_left_in_stock} left in stock."
 msgstr "Solo {amount_left_in_stock} pezzi disponibili."
 
-msgid "Or follow these links to get you back on track!"
-msgstr "O seguire questi link per riprendere il tuo percorso!"
-
 msgid "Order"
 msgstr "Ordine"
 
@@ -784,9 +781,6 @@ msgstr "Ordina per"
 
 msgid "Status"
 msgstr "Stato"
-
-msgid "Store home"
-msgstr "Home del negozio"
 
 msgid "Street"
 msgstr "Via"

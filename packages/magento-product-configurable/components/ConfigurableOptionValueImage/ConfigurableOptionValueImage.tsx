@@ -64,11 +64,6 @@ export function ConfigurableOptionValueImage(props: ConfigurableOptionValueImage
           }
         })
       }
-      reset={
-        <Button variant='inline' color='secondary' onClick={onReset} disableRipple>
-          <Trans id='Change' />
-        </Button>
-      }
       size={size}
     />
   )

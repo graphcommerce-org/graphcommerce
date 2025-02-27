@@ -3,6 +3,4 @@ fragment EditCartItemForm on ProductInterface {
   ...ProductWeight
   ...ProductPageItem
   ...ConfigurableOptions
-  ...DownloadableProductOptions
-  ...BundleProductOptions
 }

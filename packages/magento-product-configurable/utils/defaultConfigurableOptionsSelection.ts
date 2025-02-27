@@ -22,11 +22,11 @@ type BaseQuery =
  *   selected by filling in `selectedOptions` and passing it as `defaultValues `. We also
  *   prepopulating the result of `GetConfigurableOptionsSelection` query.
  */
-export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQuery>(
+export async function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQuery>(
   urlKey: string,
   client: ApolloClient<object>,
   query: Q,
-): Q & Pick<AddProductsToCartFormProps, 'defaultValues'> {
+): Promise<Q & Pick<AddProductsToCartFormProps, 'defaultValues'>> {
   const simple = query?.products?.items?.find((p) => p?.url_key === urlKey)
   const configurable = findByTypename(query?.products?.items, 'ConfigurableProduct')
 
@@ -65,56 +65,17 @@ export function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQu
    * })
    * ```
    */
-  const optionsAvailableForSelection =
-    configurable.configurable_product_options_selection?.options_available_for_selection?.filter(
-      nonNullable,
-    )
-
-  client.cache.writeQuery({
+  await client.query({
     query: GetConfigurableOptionsSelectionDocument,
     variables: { urlKey: configurable.url_key, selectedOptions },
-    data: {
-      products: {
-        ...query?.products,
-        __typename: 'Products',
-        items: [
-          {
-            __typename: 'ConfigurableProduct',
-            uid: configurable.uid,
-            configurable_product_options_selection: {
-              __typename: 'ConfigurableProductOptionsSelection',
-              configurable_options: filterNonNullableKeys(configurable.configurable_options, [
-                'attribute_code',
-                'label',
-                'values',
-              ]).map((option) => ({
-                __typename: 'ConfigurableProductOption' as const,
-                uid: option.uid,
-                attribute_code: option.attribute_code,
-                label: option.label,
-                values: filterNonNullableKeys(option.values, ['store_label', 'uid']).map(
-                  ({ store_label, uid }) => ({ label: store_label, uid }),
-                ),
-              })),
-              options_available_for_selection: optionsAvailableForSelection?.map(
-                ({ attribute_code, option_value_uids }) => ({
-                  __typename: 'ConfigurableOptionAvailableForSelection' as const,
-                  attribute_code,
-                  option_value_uids,
-                }),
-              ),
-              media_gallery: simple?.media_gallery ?? configurable.media_gallery,
-              variant: simple?.__typename === 'SimpleProduct' ? simple : null,
-            },
-          },
-        ],
-      },
-    },
   })
 
   return {
     ...query,
-    products: { ...query?.products, items: [configurable] },
+    products: {
+      ...query?.products,
+      items: [{ ...configurable, url_key: simple?.url_key }],
+    },
     defaultValues: { cartItems: [{ selected_options: selectedOptions }] },
   }
 }

@@ -1,0 +1,19 @@
+fragment ShippingHandling on ShippingHandling {
+  amount_excluding_tax {
+    ...Money
+  }
+  amount_including_tax {
+    ...Money
+  }
+  discounts {
+    amount {
+      ...Money
+    }
+  }
+  taxes {
+    ...TaxItem
+  }
+  total_amount {
+    ...Money
+  }
+}

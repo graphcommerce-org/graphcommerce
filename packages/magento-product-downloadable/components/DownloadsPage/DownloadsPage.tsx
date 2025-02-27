@@ -22,7 +22,7 @@ import { i18n } from '@lingui/core'
 import { t, Trans } from '@lingui/macro'
 import { Box, Container, Link, Typography } from '@mui/material'
 import React from 'react'
-import { DownloadsPageDocument } from './DownloadsPage.gql'
+import { DownloadsPageDocument } from '../../graphql/queries/DownloadsPage.gql'
 
 export type DownloadsPageProps = Record<string, unknown>
 type DownloadsGetStaticProps = GetStaticProps<Record<string, unknown>, DownloadsPageProps>
@@ -57,7 +57,7 @@ export function DownloadsPage() {
           </LayoutTitle>
 
           <Box>
-            <SectionContainer labelLeft={<Trans id='Balance history'>Balance history</Trans>}>
+            <SectionContainer labelLeft={<Trans id='Downloads'>Downloads</Trans>}>
               <Box
                 sx={{
                   display: 'grid',

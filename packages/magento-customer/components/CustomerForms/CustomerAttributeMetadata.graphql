@@ -1,0 +1,9 @@
+fragment CustomerAttributeMetadata on CustomerAttributeMetadata
+@inject(into: ["CustomAttributeMetadata"]) {
+  input_filter
+  multiline_count
+  validate_rules {
+    name
+    value
+  }
+}

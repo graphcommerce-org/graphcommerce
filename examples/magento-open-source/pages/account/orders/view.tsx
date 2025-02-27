@@ -1,7 +1,7 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
-  CancelOrderForm,
   getCustomerAccountIsDisabled,
+  OrderAdditional,
   OrderDetailPageDocument,
   OrderDetails,
   OrderItems,
@@ -13,7 +13,13 @@ import {
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { iconBox, IconHeader, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import {
+  FullPageMessage,
+  iconBox,
+  IconSvg,
+  LayoutOverlayHeader,
+  LayoutTitle,
+} from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
 import { Container, Typography } from '@mui/material'
@@ -45,9 +51,10 @@ function OrderDetailPage() {
       <WaitForCustomer waitFor={[orders, router.isReady]} sx={{ height: '100%' }}>
         <Container maxWidth='md'>
           {(!orderNumber || !order) && (
-            <IconHeader src={iconBox} size='large'>
-              <Trans>Order not found</Trans>
-            </IconHeader>
+            <FullPageMessage
+              title={<Trans>Order not found</Trans>}
+              icon={<IconSvg src={iconBox} size='xxl' />}
+            />
           )}
 
           {orderNumber && order && (
@@ -67,11 +74,10 @@ function OrderDetailPage() {
               <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
                 <OrderStateLabel {...order} />
               </Typography>
-              <OrderDetails {...order} />
-              <OrderItems {...order} />
-              <OrderTotals {...order} />
-
-              <CancelOrderForm order={order} />
+              <OrderDetails order={order} />
+              <OrderItems order={order} />
+              <OrderTotals order={order} />
+              <OrderAdditional order={order} />
             </>
           )}
         </Container>

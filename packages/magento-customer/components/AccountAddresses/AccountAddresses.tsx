@@ -1,5 +1,6 @@
 import {
   extendableComponent,
+  filterNonNullableKeys,
   FullPageMessage,
   iconHome,
   IconSvg,
@@ -21,7 +22,9 @@ const parts = ['root', 'addresses', 'button', 'link'] as const
 const { classes } = extendableComponent(name, parts)
 
 export function AccountAddresses(props: AccountAddressesProps) {
-  const { addresses, loading, sx = [] } = props
+  const { addresses: addressesIncoming, loading, sx = [] } = props
+
+  const addresses = filterNonNullableKeys(addressesIncoming)
 
   if (loading) {
     return (
@@ -58,7 +61,7 @@ export function AccountAddresses(props: AccountAddressesProps) {
 
   return (
     <>
-      {((addresses && addresses.length === 0) || !addresses) && (
+      {addresses.length === 0 && (
         <FullPageMessage
           title={<Trans id='You have no addresses saved yet' />}
           icon={<IconSvg src={iconHome} size='xxl' />}
@@ -70,13 +73,15 @@ export function AccountAddresses(props: AccountAddressesProps) {
         />
       )}
 
-      {addresses && addresses.length >= 1 && (
+      {addresses.length >= 1 && (
         <SectionContainer labelLeft={<Trans id='Shipping addresses' />}>
           <Box
             className={classes.addresses}
             sx={(theme) => ({ '& > div': { borderBottom: `1px solid ${theme.palette.divider}` } })}
           >
-            {addresses?.map((address) => <AccountAddress key={address?.id} {...address} />)}
+            {addresses.map((address) => (
+              <AccountAddress key={address.id} {...address} />
+            ))}
           </Box>
 
           <Button

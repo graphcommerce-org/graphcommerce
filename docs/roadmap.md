@@ -39,6 +39,7 @@ roadmap.
       customer_account_create, customer_register_address, customer_address_edit
 - [ ] Magento 2.4.7: Prefix, middlename and suffix support in the checkout.
 - [x] Adobe Commerce: Reward points functionality
+- [x] Magento: customerPaymentTokens + deletePaymentToken
 
 ## Researching / Considering
 
@@ -77,8 +78,6 @@ roadmap.
 - [ ] GraphCommerce B2B: Account approval workflow.
 - [ ] GraphCommerce Pro: Shop in shop functionality
 - [ ] GraphCommerce POS: Create a light POS integration for GraphCommerce
-- [ ] Magento: customerPaymentTokens + deletePaymentToken
-- [ ] Magento 2.4.7: createGuestCart migration
 
 ## Released
 

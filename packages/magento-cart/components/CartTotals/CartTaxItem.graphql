@@ -1,0 +1,6 @@
+fragment CartTaxItem on CartTaxItem {
+  label
+  amount {
+    ...Money
+  }
+}

@@ -1,0 +1,5 @@
+fragment DownloadableItemsLinks on DownloadableItemsLinks {
+  sort_order
+  title
+  uid
+}

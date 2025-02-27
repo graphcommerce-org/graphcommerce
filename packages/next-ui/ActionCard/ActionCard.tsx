@@ -117,7 +117,6 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
     layout = 'list',
     error = false,
     slotProps = {},
-    ...other
   } = props
 
   const classes = withState({
@@ -254,22 +253,23 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
           },
         }),
         sx,
-        slotProps.root?.sx,
+        slotProps.root?.sx as SxProps<Theme>,
       )}
       {...slotProps.root}
-      {...other}
+      // {...other}
     >
       <Box
         className={classes.rootInner}
         sx={sxx(
-          {
+          (theme) => ({
             display: 'flex',
             flexDirection: 'row',
             width: '100%',
             justifyContent: 'space-between',
             alignContent: 'stretch',
             alignItems: 'center',
-          },
+            columnGap: theme.spacings.xxs,
+          }),
           slotProps.rootInner?.sx,
         )}
         {...slotProps.rootInner}
@@ -307,7 +307,7 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
                     '&.sizeSmall': { typography: 'body1' },
                     '&.sizeMedium': { typography: 'body1' },
                     '&.sizeLarge': { typography: 'h6' },
-                    '&.sizeResponsive': { typography: { xs: 'body1', md: 'body1', lg: 'body1' } },
+                    '&.sizeResponsive': { typography: { xs: 'body1', md: 'subtitle1', lg: 'h6' } },
                   },
                   slotProps.title?.sx,
                 )}

@@ -1,19 +1,17 @@
-import { PasswordRepeatElement, SwitchElement } from '@graphcommerce/ecommerce-ui'
+import { FormPersist, PasswordRepeatElement, SwitchElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
-import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { AttributesFormAutoLayout, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
 import type { UseFormClearErrors, UseFormSetError } from '@graphcommerce/react-hook-form'
-import { FormPersist, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { t } from '@lingui/macro'
-import { Trans } from '@lingui/react'
+import { t, Trans } from '@lingui/macro'
 import { Alert } from '@mui/material'
 import { useSignInForm } from '../../hooks/useSignInForm'
 import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError/ApolloCustomerErrorSnackbar'
+import { CustomerAttributeField } from '../CustomerForms/CustomerAttributeField'
+import { nameFieldset } from '../CustomerForms/nameFieldset'
+import { useCustomerCreateForm } from '../CustomerForms/useCustomerCreateForm'
 import { NameFields } from '../NameFields/NameFields'
 import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
-import type { SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
-import { SignUpDocument } from './SignUp.gql'
 
 type SignUpFormProps = {
   email?: string
@@ -21,17 +19,15 @@ type SignUpFormProps = {
   clearErrors: UseFormClearErrors<{ email?: string; requestedMode?: 'signin' | 'signup' }>
 }
 
-type SignUpFormValues = SignUpMutationVariables & { confirmPassword?: string }
-
 export function SignUpForm(props: SignUpFormProps) {
   const { email, setError, clearErrors } = props
 
   const storeConfig = useQuery(StoreConfigDocument)
+
   const signIn = useSignInForm({ email })
-  const form = useFormGqlMutation<SignUpMutation, SignUpFormValues>(
-    SignUpDocument,
+  const form = useCustomerCreateForm(
+    { exclude: ['email'] },
     {
-      defaultValues: { email },
       onBeforeSubmit: (values) => {
         if (!email) {
           // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -40,35 +36,37 @@ export function SignUpForm(props: SignUpFormProps) {
         }
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         clearErrors()
-        return { ...values, email: email ?? '' }
+
+        values.input.email = email
+        return values
       },
       onComplete: async (result, variables) => {
-        if (!result.errors && !storeConfig.data?.storeConfig?.create_account_confirmation) {
-          signIn.setValue('email', variables.email)
-          signIn.setValue('password', variables.password)
+        if (
+          !result.errors &&
+          !storeConfig.data?.storeConfig?.create_account_confirmation &&
+          variables.input.password
+        ) {
+          signIn.setValue('email', variables.input.email)
+          signIn.setValue('password', variables.input.password)
           await signIn.handleSubmit(() => {})()
         }
       },
     },
     { errorPolicy: 'all' },
   )
-
-  const { handleSubmit, required, formState, error, control } = form
-  const [remainingError, inputError] = graphqlErrorByCategory({ category: 'graphql-input', error })
-
+  const { handleSubmit, formState, error, control, attributes } = form
   const submitHandler = handleSubmit(() => {})
 
   if (
     storeConfig.data?.storeConfig?.create_account_confirmation &&
     !error &&
-    form.formState.isSubmitSuccessful
+    formState.isSubmitSuccessful
   ) {
     return (
       <Alert>
-        <Trans
-          id='Registration successful. Please check your inbox to confirm your email address ({email})'
-          values={{ email }}
-        />
+        <Trans id='Registration successful. Please check your inbox to confirm your email address ({email})'>
+          Registration successful. Please check your inbox to confirm your email address ({email})
+        </Trans>
       </Alert>
     )
   }
@@ -78,39 +76,50 @@ export function SignUpForm(props: SignUpFormProps) {
       <FormRow>
         <ValidatedPasswordElement
           control={control}
-          name='password'
+          name='input.password'
           variant='outlined'
-          error={!!formState.errors.password || !!inputError}
-          label={<Trans id='Password' />}
+          label={<Trans id='Password'>Password</Trans>}
           autoFocus={!!email}
           autoComplete='new-password'
-          required={required.password}
-          disabled={formState.isSubmitting}
-          helperText={inputError?.message}
+          required
         />
         <PasswordRepeatElement
           control={control}
           name='confirmPassword'
-          passwordFieldName='password'
+          passwordFieldName='input.password'
           variant='outlined'
-          error={!!formState.errors.confirmPassword || !!inputError}
-          label={<Trans id='Confirm password' />}
+          label={<Trans id='Confirm password'>Confirm password</Trans>}
           autoComplete='new-password'
           required
-          disabled={formState.isSubmitting}
         />
       </FormRow>
 
-      <NameFields form={form} prefix />
+      {import.meta.graphCommerce.magentoVersion < 247 ? (
+        <NameFields
+          form={form}
+          names={{
+            firstname: 'input.firstname',
+            lastname: 'input.lastname',
+            prefix: 'input.prefix',
+          }}
+        />
+      ) : (
+        <AttributesFormAutoLayout
+          attributes={attributes}
+          control={control}
+          render={CustomerAttributeField}
+          fieldsets={[nameFieldset(attributes)]}
+        />
+      )}
 
       <SwitchElement
         control={control}
-        name='isSubscribed'
+        name='input.is_subscribed'
         disabled={formState.isSubmitting}
-        label={<Trans id='Subscribe to newsletter' />}
+        label={<Trans id='Subscribe to newsletter'>Subscribe to newsletter</Trans>}
       />
 
-      <ApolloCustomerErrorSnackbar error={remainingError} />
+      <ApolloCustomerErrorSnackbar error={error} />
 
       <FormActions>
         <Button
@@ -121,14 +130,10 @@ export function SignUpForm(props: SignUpFormProps) {
           size='large'
           loading={formState.isSubmitting}
         >
-          <Trans id='Create Account' />
+          <Trans id='Create Account'>Create Account</Trans>
         </Button>
       </FormActions>
-      <FormPersist<SignUpFormValues>
-        form={form}
-        name='SignUp'
-        exclude={['password', 'confirmPassword']}
-      />
+      <FormPersist form={form} name='SignUp' exclude={['input.password', 'confirmPassword']} />
     </form>
   )
 }

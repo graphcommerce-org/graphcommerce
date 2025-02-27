@@ -1,6 +1,5 @@
 export * from './components/ProductListItemDownloadable/ProductListItemDownloadable'
-export * from './components/ProductListItemDownloadable/ProductListItemDownloadable.gql'
 export * from './components/DownloadableProductOptions'
 export * from './components/DownloadableAccountMenuItem/DownloadableAccountMenuItem'
-export * from './components/DownloadableAccountMenuItem/DownloadableAccountMenuItem.gql'
 export * from './components/DownloadsPage/DownloadsPage'
+export * from './graphql'

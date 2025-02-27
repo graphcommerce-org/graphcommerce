@@ -7,14 +7,14 @@ import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { Container, isTypename, LayoutHeader, PageMeta } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import type { LayoutNavigationProps } from '../components'
-import { LayoutDocument, LayoutNavigation } from '../components'
+import { LayoutDocument, LayoutNavigation, productListRenderer } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
 export type CmsPageProps = { cmsPage: CmsPageFragment | null }
 
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CmsPageProps>
 
-function CmsPage(props: CmsPageProps) {
+function HomePage(props: CmsPageProps) {
   const { cmsPage } = props
 
   if (!cmsPage) return <Container>Configure cmsPage home</Container>
@@ -27,16 +27,16 @@ function CmsPage(props: CmsPageProps) {
       />
       <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs} floatingSm />
 
-      <CmsPageContent cmsPage={cmsPage} />
+      <CmsPageContent cmsPage={cmsPage} productListRenderer={productListRenderer} />
     </>
   )
 }
 
-CmsPage.pageOptions = {
+HomePage.pageOptions = {
   Layout: LayoutNavigation,
 } as PageOptions
 
-export default CmsPage
+export default HomePage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)

@@ -1,14 +1,19 @@
 import { EmailElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
-import { Button, FormActions, FormRow, useUrlQuery } from '@graphcommerce/next-ui'
+import {
+  Button,
+  FormActions,
+  FormRow,
+  FullPageMessage,
+  iconBox,
+  IconSvg,
+  useUrlQuery,
+} from '@graphcommerce/next-ui'
 import { useFormGqlQuery } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
 import { Box, Typography } from '@mui/material'
 import { useMemo } from 'react'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError'
-import { OrderDetails } from '../OrderDetails/OrderDetails'
-import { OrderTotals } from '../OrderDetails/OrderTotals'
-import { OrderItems } from '../OrderItems/OrderItems'
-import { OrderStateLabel } from '../OrderStateLabel/OrderStateLabel'
+import { OrderDetails, OrderItems, OrderStateLabel, OrderTotals } from '../Order'
 import type { GuestOrderQueryVariables } from './GuestOrder.gql'
 import { GuestOrderDocument } from './GuestOrder.gql'
 
@@ -84,12 +89,24 @@ export function GuestOrderOverviewForm() {
         </Box>
       ) : (
         <>
-          <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
-            <OrderStateLabel {...orderData.guestOrder} />
-          </Typography>
-          <OrderDetails {...orderData?.guestOrder} />
-          <OrderItems {...orderData?.guestOrder} />
-          <OrderTotals {...orderData?.guestOrder} />
+          {!orderData?.guestOrder && (
+            <FullPageMessage
+              title={<Trans>Order not found</Trans>}
+              icon={<IconSvg src={iconBox} size='xxl' />}
+            />
+          )}
+
+          {orderData?.guestOrder && (
+            <>
+              <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
+                <OrderStateLabel {...orderData.guestOrder} />
+              </Typography>
+              <OrderDetails order={orderData.guestOrder} />
+              <OrderItems order={orderData.guestOrder} />
+              <OrderTotals order={orderData.guestOrder} />
+              {/* <OrderAdditional order={order} /> */}
+            </>
+          )}
         </>
       )}
     </>

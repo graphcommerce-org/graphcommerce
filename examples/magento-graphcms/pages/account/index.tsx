@@ -7,7 +7,6 @@ import {
   AddressSingleLine,
   getCustomerAccountIsDisabled,
   OrderStateLabel,
-  OrderStateLabelInline,
   SignOutForm,
   useCustomerQuery,
   WaitForCustomer,
@@ -68,7 +67,7 @@ function AccountIndexPage() {
             <AccountMenuItem
               href='/account/name'
               iconSrc={iconId}
-              title={<Trans id='Name' />}
+              title={<Trans id='Personal details' />}
               subtitle={`${customer?.firstname} ${customer?.lastname}`}
             />
             <AccountMenuItem
@@ -84,6 +83,12 @@ function AccountIndexPage() {
               subtitle={<Trans id='Password' />}
             />
             <AccountMenuItem
+              href='/account/addresses'
+              iconSrc={iconHome}
+              title={<Trans id='Addresses' />}
+              subtitle={address ? <AddressSingleLine {...address} /> : undefined}
+            />
+            <AccountMenuItem
               href='/account/orders'
               iconSrc={iconBox}
               title={<Trans id='Orders' />}
@@ -96,12 +101,6 @@ function AccountIndexPage() {
                   </>
                 ) : undefined
               }
-            />
-            <AccountMenuItem
-              href='/account/addresses'
-              iconSrc={iconHome}
-              title={<Trans id='Addresses' />}
-              subtitle={address ? <AddressSingleLine {...address} /> : undefined}
             />
             {customer?.reviews.items.length !== 0 && (
               <AccountMenuItem
@@ -124,15 +123,6 @@ function AccountIndexPage() {
                 '&:hover': { background: theme.palette.background.paper },
               })}
             />
-            {import.meta.graphCommerce.magentoVersion >= 246 &&
-              import.meta.graphCommerce.customerDeleteEnabled && (
-                <AccountMenuItem
-                  href='/account/delete'
-                  disableRipple
-                  iconSrc={iconBin}
-                  title={<Trans id='Delete account' />}
-                />
-              )}
 
             <SignOutForm
               // eslint-disable-next-line react/no-unstable-nested-components

@@ -12,7 +12,7 @@ import {
   ProductListSort,
 } from '@graphcommerce/magento-product'
 import { Container, LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
-import { ProductListItems } from '../ProductListItems'
+import { ProductListItems, productListRenderer } from '../ProductListItems'
 import type { ProductListLayoutProps } from './types'
 
 export const ProductListLayoutClassic = memoDeep(function ProductListLayoutClassic(
@@ -50,6 +50,7 @@ export const ProductListLayoutClassic = memoDeep(function ProductListLayoutClass
           <CategoryDescription
             sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.sm })}
             category={category}
+            productListRenderer={productListRenderer}
           />
           <CategoryChildren
             params={params}

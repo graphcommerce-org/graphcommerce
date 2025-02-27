@@ -4,7 +4,7 @@ import { AddProductsToCartSnackbarMessage } from '@graphcommerce/magento-product
 import { iconChevronRight, IconSvg, LinkOrButton, nonNullable } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Box } from '@mui/material'
-import type { OrderItemsFragment } from '../OrderItems/OrderItems.gql'
+import type { OrderItemsFragment } from '../Order'
 import type { ReorderItemsMutation, ReorderItemsMutationVariables } from './ReorderItems.gql'
 import { ReorderItemsDocument } from './ReorderItems.gql'
 

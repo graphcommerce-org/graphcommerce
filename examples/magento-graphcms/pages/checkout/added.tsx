@@ -132,7 +132,7 @@ function CheckoutAdded() {
             </Typography>
           </Container>
           <AddProductsToCartForm
-            disableSuccessSnackbar
+            snackbarProps={{ disableSuccessSnackbar: true }}
             redirect={import.meta.graphCommerce.crossSellsRedirectItems ? 'added' : false}
           >
             <ProductScroller

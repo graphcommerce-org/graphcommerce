@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
+  AccountMenuItem,
   ChangePasswordForm,
   WaitForCustomer,
   getCustomerAccountIsDisabled,
@@ -11,6 +12,7 @@ import {
   iconLock,
   LayoutOverlayHeader,
   LayoutTitle,
+  iconBin,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -29,14 +31,24 @@ function AccountAuthenticationPage() {
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
+        <PageMeta title={i18n._(/* i18n */ 'Authentication')} metaRobots={['noindex']} />
         <WaitForCustomer>
-          <PageMeta title={i18n._(/* i18n */ 'Authentication')} metaRobots={['noindex']} />
           <LayoutTitle icon={iconLock}>
             <Trans id='Authentication' />
           </LayoutTitle>
           <SectionContainer labelLeft={<Trans id='Password' />}>
             <ChangePasswordForm />
           </SectionContainer>
+
+          {import.meta.graphCommerce.magentoVersion >= 246 &&
+            import.meta.graphCommerce.customerDeleteEnabled && (
+              <AccountMenuItem
+                href='/account/delete'
+                disableRipple
+                iconSrc={iconBin}
+                title={<Trans id='Delete account' />}
+              />
+            )}
         </WaitForCustomer>
       </Container>
     </>
@@ -45,6 +57,7 @@ function AccountAuthenticationPage() {
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
+  sharedKey: ({ asPath }) => asPath,
   Layout: LayoutOverlay,
 }
 AccountAuthenticationPage.pageOptions = pageOptions

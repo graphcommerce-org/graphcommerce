@@ -1,4 +1,7 @@
 input TrendingProductsInput {
+  """
+  The maximum number of recommendations to return.
+  """
   maxRecommendations: Int = 8
 
   """
@@ -10,13 +13,13 @@ input TrendingProductsInput {
   Facet attribute. To be used in combination with `facetValue`.
   If specified, only recommendations matching the facet filter will be returned.
   """
-  facetName: String!
+  facetName: String
 
   """
   Facet value. To be used in combination with `facetName`.
   If specified, only recommendations matching the facet filter will be returned.
   """
-  facetValue: String!
+  facetValue: String
 
   """
   One or more keywords to use in a full-text search.
@@ -35,6 +38,9 @@ input TrendingProductsInput {
 }
 
 input TrendingFacetValuesInput {
+  """
+  The maximum number of recommendations to return.
+  """
   maxRecommendations: Int = 8
 
   """

@@ -7,7 +7,7 @@ import { useWatch } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
-import type { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
+import type { ConfigurableOptionsFragment } from '../../graphql'
 import type { UseConfigurableOptionsSelection } from '../../hooks'
 import { useConfigurableOptionsForSelection } from '../../hooks'
 import type {

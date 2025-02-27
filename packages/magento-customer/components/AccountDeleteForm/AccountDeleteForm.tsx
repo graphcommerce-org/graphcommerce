@@ -4,17 +4,17 @@ import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useForm } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
 import { Box, Typography } from '@mui/material'
-import { CustomerDocument, useCustomerQuery } from '../../hooks'
+import { useRouter } from 'next/router'
+import { CustomerDocument, CustomerTokenDocument, useCustomerQuery } from '../../hooks'
 import { signOut } from '../SignOutForm/signOut'
 import { WaitForCustomer } from '../WaitForCustomer/WaitForCustomer'
 import { DeleteCustomerDocument } from './DeleteCustomer.gql'
 
 export function AccountDeleteForm() {
   const client = useApolloClient()
+  const router = useRouter()
 
-  const dashboard = useCustomerQuery(CustomerDocument, {
-    fetchPolicy: 'cache-and-network',
-  })
+  const dashboard = useCustomerQuery(CustomerDocument, { fetchPolicy: 'cache-and-network' })
   const customer = dashboard.data?.customer
 
   const [deleteAccount, { called, error, loading }] = useMutation(DeleteCustomerDocument)
@@ -24,6 +24,15 @@ export function AccountDeleteForm() {
   const { control, handleSubmit, setError } = form
 
   const submitHandler = handleSubmit(async (data) => {
+    const currentToken = client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken
+    if (currentToken) {
+      client.cache.writeQuery({
+        query: CustomerTokenDocument,
+        broadcast: true,
+        data: { customerToken: { ...currentToken, token: 'Force Reauthentication' } },
+      })
+    }
+
     if (data.email !== customer?.email) {
       setError('email', {
         message: t`The given email does not match the account email`,
@@ -31,6 +40,7 @@ export function AccountDeleteForm() {
     } else {
       await deleteAccount()
       signOut(client)
+      await router.push('/')
     }
   })
 
