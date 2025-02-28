@@ -1,5 +1,11 @@
 # @graphcommerce/magento-payment-tokens
 
+## 9.1.0-canary.20
+
+### Patch Changes
+
+- [`b7b65f3`](https://github.com/graphcommerce-org/graphcommerce/commit/b7b65f3e2ced4f2907b3a752b2230f19006fb9ae) - Create initial release ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.19
 
 ### Patch Changes
