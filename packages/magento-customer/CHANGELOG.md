@@ -1,5 +1,35 @@
 # Change Log
 
+## 9.1.0
+
+### Minor Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`20703bc`](https://github.com/graphcommerce-org/graphcommerce/commit/20703bc5c453fb7ee61eb4350e207e84a749bf5e) - Magento 2.4.7: Implemented the `customer_account_create` and `customer_account_edit` forms using the `attributeForm` query for the registration page and customer information form. The forms respect the settings configured in the 'Customer Configuration section'. It allows configuration for `prefix`, `middlename`, `suffix`,`dob`, `gender` and other fields. This also makes the frontend compatible with Adobe Commerce's Customer Attributes module. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`30f9371`](https://github.com/graphcommerce-org/graphcommerce/commit/30f9371503959b990c65058a88be6f61b4859140) - Added support for viewing Invoices/Shipments and Credit Memo's ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`0cb3ace`](https://github.com/graphcommerce-org/graphcommerce/commit/0cb3aceb09967493ecdd5040446447ff32cc3f43) - Created a AccountDashboardQueryFragment instead of only a query to allow for adding customerDownloadableProducts to the dashboard query ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`c1f04dc`](https://github.com/graphcommerce-org/graphcommerce/commit/c1f04dcb4ddd621361e6c930fb42afae0aabe9f9) - Migrate to default OrderItem resolver and remove useOrderCardItemImages as OrderItem now returns a product. Add a custom resolver for 2.4.5 and 2.4.6 that implements the functionality for older versions. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`c1f04dc`](https://github.com/graphcommerce-org/graphcommerce/commit/c1f04dcb4ddd621361e6c930fb42afae0aabe9f9) - Created a refactored the AccountOrders page and refactored the OrderCard. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`db56933`](https://github.com/graphcommerce-org/graphcommerce/commit/db569336dddd3e955ff0b5b00cafa25079f1adee) - Implemented order sorting for account overview and account list and implement custom resolver for Magento 2.4.5 (which is slow but works). ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`6cb4815`](https://github.com/graphcommerce-org/graphcommerce/commit/6cb4815a0faf4cc2f60c13d9384e3a96b6bdb2bb) - Deleting an account will now require reauthentication and moved the menu item to the Authentication section ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`db56933`](https://github.com/graphcommerce-org/graphcommerce/commit/db569336dddd3e955ff0b5b00cafa25079f1adee) - Use OrderStateLabel in my account instead of OrderStateLabelInline and deprecate that one. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`dc387da`](https://github.com/graphcommerce-org/graphcommerce/commit/dc387da4c32585c251fe9dec90aa010e2a435df5) - OrderTotals/OrderDetails now only renders addres information if available ([@paales](https://github.com/paales))
+
+- [`5ca6fb9`](https://github.com/graphcommerce-org/graphcommerce/commit/5ca6fb94f6f275210c77493d05bad7c1620ff5a3) - When a user reorders their cart without interacting with their cart previously a new cart wouldn't be created. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`2409514`](https://github.com/graphcommerce-org/graphcommerce/commit/240951428ac0bdc11649f4190b6d51c004680b34) - Order/Invoice/CreditMemo and Shipment views ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`623e993`](https://github.com/graphcommerce-org/graphcommerce/commit/623e993579b05e053d2d2f29684649cd4f4586de) - `<WaitForCustomer />` now accepts all props of the FullPageMessage ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.20
 
 ## 9.1.0-canary.19

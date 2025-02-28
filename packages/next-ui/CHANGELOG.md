@@ -1,5 +1,29 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`a34c276`](https://github.com/graphcommerce-org/graphcommerce/commit/a34c276b69f9ff1a727023eef64f2db8b196864c) - Added lots of missing icon exports ([@paales](https://github.com/paales))
+
+- [#2473](https://github.com/graphcommerce-org/graphcommerce/pull/2473) [`8df172e`](https://github.com/graphcommerce-org/graphcommerce/commit/8df172e4fa1364892d53bc96a437d037d245de35) - Do not warn about `:first-child` since all css is hoisted out of the components. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`2a09ca9`](https://github.com/graphcommerce-org/graphcommerce/commit/2a09ca933e0de88dc32dac5ae62f41b0e5953359) - Intl components now accept the sx prop. `<RelativeToTimeFormat />` now expects a date prop instead of children. ([@paales](https://github.com/paales))
+
+- [#2470](https://github.com/graphcommerce-org/graphcommerce/pull/2470) [`8f047a0`](https://github.com/graphcommerce-org/graphcommerce/commit/8f047a0860f9b915717f6db52be64805094d0b09) - Modify the type that is exposed for createTheme, should be faster for TypeScript to check. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`1e38811`](https://github.com/graphcommerce-org/graphcommerce/commit/1e3881177065548165b7141a29cff8ab27692b25) - Added support for meta_keyword for products and categories ([@paales](https://github.com/paales))
+
+- [#2473](https://github.com/graphcommerce-org/graphcommerce/pull/2473) [`b076b2a`](https://github.com/graphcommerce-org/graphcommerce/commit/b076b2ae4881bebf1d2debd5333a83f220c26ca7) - Also accept false as value for sxx ([@paales](https://github.com/paales))
+
+- [#2478](https://github.com/graphcommerce-org/graphcommerce/pull/2478) [`32bccbb`](https://github.com/graphcommerce-org/graphcommerce/commit/32bccbba4b000247d7e01e487f6d48b6dec07fb5) - Nesting multiple Containers will not increase the padding, will only be applied once. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`05a1744`](https://github.com/graphcommerce-org/graphcommerce/commit/05a1744ddeca31c4d24128fd5cd2513a7c491d5b) - Added search params to NextLink whenever present ([@paales](https://github.com/paales))
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`b0ec078`](https://github.com/graphcommerce-org/graphcommerce/commit/b0ec0784a0b3ca977598ded3777d23bc929072b0) - Added a CurrencySymbol component that renders the current currency symbol ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`340c8ef`](https://github.com/graphcommerce-org/graphcommerce/commit/340c8ef93248a120cc4b92a6cd91f775ae662a1f) - Solve issue where ActionCard would crash the whole app because it forwarded components to string attributes ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.20
 
 ## 9.1.0-canary.19
