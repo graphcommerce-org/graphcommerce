@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2496](https://github.com/graphcommerce-org/graphcommerce/pull/2496) [`a261149`](https://github.com/graphcommerce-org/graphcommerce/commit/a261149b6b32ad6a35606da2d530b8e41bfa10a0) - ReCaptcha now using the `recaptchaV3Config` query and add a fallback for Magento 2.4.6 and earlier to still use the configuration. Magento 2.4.7 doesn't need that configuration anymore. ([@paales](https://github.com/paales))
+
+- [`62b71d5`](https://github.com/graphcommerce-org/graphcommerce/commit/62b71d5ed1d482fdb5b76dc19ac4d55fc41fb191) - Solve issue: TypeError: InMemoryLRUCache is not a constructor ([@paales](https://github.com/paales))
+
+- [#2477](https://github.com/graphcommerce-org/graphcommerce/pull/2477) [`8015eab`](https://github.com/graphcommerce-org/graphcommerce/commit/8015eabc130dacf1f2703980cd5f0ad2c550aa4d) - Upgraded to @apollo/client 3.12.3 without impacting typescript compilation performance. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.20
 
 ## 9.1.0-canary.19

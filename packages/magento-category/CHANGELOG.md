@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`37c00d8`](https://github.com/graphcommerce-org/graphcommerce/commit/37c00d80419b209850457559d7b7eca4101f5705) - Forward productListRenderer for all locations that can be rendered by pagebuilder ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`1e38811`](https://github.com/graphcommerce-org/graphcommerce/commit/1e3881177065548165b7141a29cff8ab27692b25) - Added support for meta_keyword for products and categories ([@paales](https://github.com/paales))
+
+- [#2478](https://github.com/graphcommerce-org/graphcommerce/pull/2478) [`590f064`](https://github.com/graphcommerce-org/graphcommerce/commit/590f06460955aa6435a3a16569805f38d4b7d6d6) - Move the category fragment to the category prop ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.20
 
 ## 9.1.0-canary.19

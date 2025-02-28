@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`db56933`](https://github.com/graphcommerce-org/graphcommerce/commit/db569336dddd3e955ff0b5b00cafa25079f1adee) - Implemented order sorting for account overview and account list and implement custom resolver for Magento 2.4.5 (which is slow but works). ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`2794efe`](https://github.com/graphcommerce-org/graphcommerce/commit/2794efe3251934b9621371b94481eee11b4fb40c) - Magento <= 2.4.6: Solve issue where GraphCommerce's schema compatibility layer would define fields to be always return a value while they would never causing runtime errors which are hard to catch. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.20
 
 ## 9.1.0-canary.19

@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [`3b45e14`](https://github.com/graphcommerce-org/graphcommerce/commit/3b45e1426da4dd4caf1cc76f0707af07474ffd2e) - Forward props to CouponAccordion ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`3613b74`](https://github.com/graphcommerce-org/graphcommerce/commit/3613b7412e736c2770654a076ee8fa5f1e77735c) - Split out various Cart related fragments to allow for easier extensibility: AppliedCoupon, CartPrices, CartTaxItem, Discount ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.20
 
 ## 9.1.0-canary.19

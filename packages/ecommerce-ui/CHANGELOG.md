@@ -1,5 +1,19 @@
 # @graphcommerce/ecommerce-ui
 
+## 9.1.0
+
+### Patch Changes
+
+- [`026114e`](https://github.com/graphcommerce-org/graphcommerce/commit/026114ece325d8f675ba8820c6b63345e48532fa) - Sovle issue where showValid would be forwarded to the textField element ([@paales](https://github.com/paales))
+
+- [`5a9adde`](https://github.com/graphcommerce-org/graphcommerce/commit/5a9addee16aa9dc8f4ce6f8fa4b3fe6c11b90d8f) - FormElements now are now disabled when the whole form is disabled. ([@paales](https://github.com/paales))
+
+- [#2470](https://github.com/graphcommerce-org/graphcommerce/pull/2470) [`910e6aa`](https://github.com/graphcommerce-org/graphcommerce/commit/910e6aab024a925bb042cf17968b2ab826f97d88) - Refactor the FormComponents for better TypeScript checking performance. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`2d22429`](https://github.com/graphcommerce-org/graphcommerce/commit/2d2242932b7e07fa970c1dae1685487832f864d7) - Always log the networkError during development to the console. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`7c7d6e4`](https://github.com/graphcommerce-org/graphcommerce/commit/7c7d6e4976d263f4139ce1de2caf47e7f49a2bf8) - Solve issue where an individual item in the ActionCardListForm couldn't be disabed. Resulting in configurable options on the product page to be selectable while they shouldn't be. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.20
 
 ## 9.1.0-canary.19

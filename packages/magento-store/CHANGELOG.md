@@ -1,5 +1,23 @@
 # Change Log
 
+## 9.1.0
+
+### Minor Changes
+
+- [#2496](https://github.com/graphcommerce-org/graphcommerce/pull/2496) [`4b6a65d`](https://github.com/graphcommerce-org/graphcommerce/commit/4b6a65db089d92492e7fde28a8e32bc41f5b9103) - Added support for multiple display currencies in the frontend. Multiple currencies were already supported, but this introduces Display Currencies for viewing the cart in different currencies. ([@paales](https://github.com/paales))
+
+- [#2496](https://github.com/graphcommerce-org/graphcommerce/pull/2496) [`4b6a65d`](https://github.com/graphcommerce-org/graphcommerce/commit/4b6a65db089d92492e7fde28a8e32bc41f5b9103) - Refactored the Store Selector to be more of a form and have multiple nested toggles to switch groups, then stores and then currencies. It automatically hides features that aren't used: If only a single group is used with multiple stores only the store selector is shown. If multiple groups are used with each a single store is used, only the group selector is shown. If only a single currency is used, there is no currency selector. If multiple currencies are used, the currency selector is shown. This makes the selector more user-friendly and less cluttered. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`9f040a4`](https://github.com/graphcommerce-org/graphcommerce/commit/9f040a4c0947f05f2f27e4c5078a684b04e711e1) - Implemented the `query { attributesForm }` to be able to dynamically render forms with useAttributesForm/preloadAttributesForm and AttributesFormAutoLayout, and additional utilities to handle form submissions. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`798c122`](https://github.com/graphcommerce-org/graphcommerce/commit/798c12271e90cf0e02f021e7ad4aa088b4c7c2a3) - Use the `storeConfig.head_shortcut_icon` when configured, if not configured it will use the favicon.ico and favicon.svg from the public folder. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`6b2b44c`](https://github.com/graphcommerce-org/graphcommerce/commit/6b2b44ca853279144d7768067f3462d4d4bf0af1) - Created a new PriceModifiers component that is implemented on CartItems, allowing different product types to render their options in a consistent manner and allow rendering a base price so that the sum in the cart is correct. ([@paales](https://github.com/paales))
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`b0ec078`](https://github.com/graphcommerce-org/graphcommerce/commit/b0ec0784a0b3ca977598ded3777d23bc929072b0) - Added a CurrencySymbol component that renders the current currency symbol ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.20
 
 ## 9.1.0-canary.19
