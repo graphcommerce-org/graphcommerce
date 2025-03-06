@@ -7,7 +7,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { AccordionProps, SxProps, Theme } from '@mui/material'
-import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Box } from '@mui/material'
 import { useState } from 'react'
 import { ApplyCouponForm } from '../ApplyCouponForm/ApplyCouponForm'
 import { RemoveCouponForm } from '../RemoveCouponForm/RemoveCouponForm'
@@ -57,13 +57,14 @@ export function CouponAccordion(props: CouponAccordionProps) {
     >
       <AccordionSummary
         onClick={(e) => e.preventDefault()}
-        expandIcon={!coupon && <IconSvg src={iconChevronDown} />}
+        expandIcon={<IconSvg src={iconChevronDown} style={{ opacity: coupon ? 0 : 1 }} />}
         sx={[
           (theme) => ({
             px: theme.spacings.xs,
             '& .MuiAccordionSummary-content': {
               alignItems: 'center',
-              columnGap: 2,
+              columnGap: theme.spacings.xxs,
+              pr: theme.spacings.xxs,
               justifyContent: 'space-between',
             },
           }),
@@ -74,8 +75,10 @@ export function CouponAccordion(props: CouponAccordionProps) {
           },
         ]}
       >
-        <Trans id='Discount code' />
-        <RemoveCouponForm {...data.cart} />
+        <Box sx={{ flex: 1 }}>
+          <Trans id='Discount code' />
+        </Box>
+        <RemoveCouponForm {...data.cart} sx={{ flex: 0 }} />
       </AccordionSummary>
       <AccordionDetails sx={(theme) => ({ px: theme.spacings.xs })}>
         <ApplyCouponForm />
