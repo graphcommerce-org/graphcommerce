@@ -249,7 +249,7 @@ const dataLayerToAlgoliaMap: {
     const events: AlgoliaEventsItems_Input[] = []
 
     const objectIDs = eventData.items.map((item) => atob(item.item_uid))
-    const relevant = objectIDs.map((objectID) => mapping[objectID])
+    const relevant = objectIDs.map((objectID) => mapping[objectID]).filter(Boolean)
     const filters = [...new Set(...relevant.map((item) => item?.filters ?? []))]
 
     if (filters.length > 0) {
