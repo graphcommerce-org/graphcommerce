@@ -12,7 +12,3 @@ second.
 1. Find current version of your `@graphcommerce/next-ui` in your package.json.
 2. `yarn add @graphcommerce/address-fields-nl@1.2.3` (replace 1.2.3 with the
    version of the step above)
-3. Copy `@graphcommerce/address-fields-nl/lib/natationaalgeoregister` to
-   `lib/nationaalgeoregister` in your project.
-4. Copy the contents of `lib/nationaalgeoregister/.meshrc.yml` in `.meshrc.yml`
-5. Make sure you installed `"@graphql-mesh/json-schema": "latest"`

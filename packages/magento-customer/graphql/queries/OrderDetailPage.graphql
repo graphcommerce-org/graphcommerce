@@ -1,13 +1,9 @@
 query OrderDetailPage($orderNumber: String) {
   customer {
-    orders(filter: { number: { eq: $orderNumber } }, scope: GLOBAL) {
+    orders(filter: { number: { eq: $orderNumber } }) {
       items {
-        id
-        ...OrderStateLabel
         ...OrderDetails
         ...OrderItems
-        ...OrderTotals
-        ...OrderAdditional
       }
     }
   }

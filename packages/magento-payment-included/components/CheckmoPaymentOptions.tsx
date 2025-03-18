@@ -1,8 +1,7 @@
-import { useQuery } from '@graphcommerce/graphql'
 import { type PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { PaymentMethodOptionsNoop } from '@graphcommerce/magento-cart-payment-method/PaymentMethodOptionsNoop/PaymentMethodOptionsNoop'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { SectionContainer } from '@graphcommerce/next-ui'
+import { useQuery } from '@apollo/client'
 import React from 'react'
 
 export function CheckmoPaymentOptions(props: PaymentOptionsProps) {
@@ -14,15 +13,15 @@ export function CheckmoPaymentOptions(props: PaymentOptionsProps) {
 
   return (
     <PaymentMethodOptionsNoop {...props}>
-      <SectionContainer labelLeft='Payable to'>{payableTo}</SectionContainer>
-      <SectionContainer labelLeft='Send to'>
+      <div>{payableTo}</div>
+      <div>
         {sendTo?.map((line) => (
           <React.Fragment key={line}>
             {line}
             <br />
           </React.Fragment>
         ))}
-      </SectionContainer>
+      </div>
     </PaymentMethodOptionsNoop>
   )
 }

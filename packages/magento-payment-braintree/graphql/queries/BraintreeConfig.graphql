@@ -1,0 +1,81 @@
+query BraintreeConfig {
+  storeConfig {
+    braintree_3dsecure_allowspecific
+    braintree_3dsecure_always_request_3ds
+    braintree_3dsecure_specificcountry
+    braintree_3dsecure_threshold_amount
+    braintree_3dsecure_verify_3dsecure
+    braintree_ach_direct_debit_vault_active
+    braintree_applepay_merchant_name
+    braintree_applepay_vault_active
+    braintree_cc_vault_active
+    braintree_cc_vault_cvv
+    braintree_environment
+    braintree_googlepay_btn_color
+    braintree_googlepay_cctypes
+    braintree_googlepay_merchant_id
+    braintree_googlepay_vault_active
+    braintree_local_payment_allowed_methods
+    braintree_local_payment_fallback_button_text
+    braintree_local_payment_redirect_on_fail
+    braintree_merchant_account_id
+    braintree_paypal_button_location_cart_type_credit_color
+    braintree_paypal_button_location_cart_type_credit_label
+  braintree_paypal_button_location_cart_type_credit_shape: String x 0
+  braintree_paypal_button_location_cart_type_credit_show: Boolean x 0
+  braintree_paypal_button_location_cart_type_messaging_layout: String x 0
+  braintree_paypal_button_location_cart_type_messaging_logo: String x 0
+  braintree_paypal_button_location_cart_type_messaging_logo_position: String x 0
+  braintree_paypal_button_location_cart_type_messaging_show: Boolean x 0
+  braintree_paypal_button_location_cart_type_messaging_text_color: String x 0
+  braintree_paypal_button_location_cart_type_paylater_color: String x 0
+  braintree_paypal_button_location_cart_type_paylater_label: String x 0
+  braintree_paypal_button_location_cart_type_paylater_shape: String x 0
+  braintree_paypal_button_location_cart_type_paylater_show: Boolean x 0
+  braintree_paypal_button_location_cart_type_paypal_color: String x 0
+  braintree_paypal_button_location_cart_type_paypal_label: String x 0
+  braintree_paypal_button_location_cart_type_paypal_shape: String x 0
+  braintree_paypal_button_location_cart_type_paypal_show: Boolean x 0
+  braintree_paypal_button_location_checkout_type_credit_color: String x 0
+  braintree_paypal_button_location_checkout_type_credit_label: String x 0
+  braintree_paypal_button_location_checkout_type_credit_shape: String x 0
+  braintree_paypal_button_location_checkout_type_credit_show: Boolean x 0
+  braintree_paypal_button_location_checkout_type_messaging_layout: String x 0
+  braintree_paypal_button_location_checkout_type_messaging_logo: String x 0
+  braintree_paypal_button_location_checkout_type_messaging_logo_position: String x 0
+  braintree_paypal_button_location_checkout_type_messaging_show: Boolean x 0
+  braintree_paypal_button_location_checkout_type_messaging_text_color: String x 0
+  braintree_paypal_button_location_checkout_type_paylater_color: String x 0
+  braintree_paypal_button_location_checkout_type_paylater_label: String x 0
+  braintree_paypal_button_location_checkout_type_paylater_shape: String x 0
+  braintree_paypal_button_location_checkout_type_paylater_show: Boolean x 0
+  braintree_paypal_button_location_checkout_type_paypal_color: String x 0
+  braintree_paypal_button_location_checkout_type_paypal_label: String x 0
+  braintree_paypal_button_location_checkout_type_paypal_shape: String x 0
+  braintree_paypal_button_location_checkout_type_paypal_show: Boolean x 0
+  braintree_paypal_button_location_productpage_type_credit_color: String x 0
+  braintree_paypal_button_location_productpage_type_credit_label: String x 0
+  braintree_paypal_button_location_productpage_type_credit_shape: String x 0
+  braintree_paypal_button_location_productpage_type_credit_show: Boolean x 0
+  braintree_paypal_button_location_productpage_type_messaging_layout: String x 0
+  braintree_paypal_button_location_productpage_type_messaging_logo: String x 0
+  braintree_paypal_button_location_productpage_type_messaging_logo_position: String x 0
+  braintree_paypal_button_location_productpage_type_messaging_show: Boolean x 0
+  braintree_paypal_button_location_productpage_type_messaging_text_color: String x 0
+  braintree_paypal_button_location_productpage_type_paylater_color: String x 0
+  braintree_paypal_button_location_productpage_type_paylater_label: String x 0
+  braintree_paypal_button_location_productpage_type_paylater_shape: String x 0
+  braintree_paypal_button_location_productpage_type_paylater_show: Boolean x 0
+  braintree_paypal_button_location_productpage_type_paypal_color: String x 0
+  braintree_paypal_button_location_productpage_type_paypal_label: String x 0
+  braintree_paypal_button_location_productpage_type_paypal_shape: String x 0
+  braintree_paypal_button_location_productpage_type_paypal_show: Boolean x 0
+  braintree_paypal_credit_uk_merchant_name: String x 0
+  braintree_paypal_display_on_shopping_cart: Boolean x 0
+  braintree_paypal_merchant_country: String x 0
+  braintree_paypal_merchant_name_override: String x 0
+  braintree_paypal_require_billing_address: Boolean x 0
+  braintree_paypal_send_cart_line_items: Boolean x 0
+  braintree_paypal_vault_active: Boolean x 0
+  }
+}

@@ -43,6 +43,7 @@ export function CartItemsActionCards(props: CartProps) {
             cartItem={item}
             layout={layout}
             variant={variant}
+            size='responsive'
             {...itemProps}
           />
         ))}

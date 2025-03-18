@@ -1,0 +1,9 @@
+fragment ProductPrice_FixedProductTaxes on ProductPrice @inject(into: ["ProductPrice"]) {
+  fixed_product_taxes {
+    amount {
+      currency
+      value
+    }
+    label
+  }
+}

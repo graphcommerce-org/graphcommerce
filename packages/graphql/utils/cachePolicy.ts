@@ -10,6 +10,10 @@ export function cachePolicy(
     : 'network-only'
 }
 
+/**
+ * @deprecated Should not be used anymore. Use the @cacheControl directive on the GraphQL query
+ *   instead.
+ */
 export function cacheFirst(client: ApolloClient<object>) {
   return cachePolicy(client, 'cache-first')
 }

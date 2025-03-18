@@ -1,0 +1,5 @@
+fragment StoreConfigFragment_FixedProductTaxes on StoreConfig {
+  product_fixed_product_tax_display_setting
+  category_fixed_product_tax_display_setting
+  sales_fixed_product_tax_display_setting
+}

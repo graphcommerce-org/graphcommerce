@@ -1,3 +1,3 @@
-fragment ContactUsConfig on StoreConfig @inject(into: ["StoreConfigFragment"]) {
+fragment ContactUsConfig on StoreConfig {
   contact_enabled
 }

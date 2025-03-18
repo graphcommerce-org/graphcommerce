@@ -5,4 +5,5 @@ type PostcodeNLResult {
 
 extend type Query {
   postcodeNL(postcode: String!, housenumber: String!): PostcodeNLResult
+    @cacheControl(maxAge: 36000000)
 }

@@ -1,6 +1,6 @@
 import type { AccountMenuItemProps } from '@graphcommerce/magento-customer'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
-import { PaymentTokensAccountMenuItem } from '../components'
+import { StoreCreditAccountMenuItem } from '../components'
 
 export const config: PluginConfig = {
   module: '@graphcommerce/magento-customer',
@@ -13,7 +13,7 @@ export function AccountMenuItem(props: PluginProps<AccountMenuItemProps>) {
   return (
     <>
       <Prev {...rest} href={href} />
-      {href === '/account/orders' && <PaymentTokensAccountMenuItem />}
+      {href === '/account/orders' && <PaymentTokens />}
     </>
   )
 }

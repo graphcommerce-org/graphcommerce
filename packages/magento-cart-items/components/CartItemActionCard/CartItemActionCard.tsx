@@ -1,7 +1,8 @@
+import type { CurrencyEnum } from '@graphcommerce/graphql-mesh'
 import { Image } from '@graphcommerce/image'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart/hooks'
 import { productPath } from '@graphcommerce/magento-product'
-import { Money, PriceModifiersList, type PriceModifier } from '@graphcommerce/magento-store'
+import { Money } from '@graphcommerce/magento-store'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
 import { ActionCard, actionCardImageSizes, filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
@@ -9,22 +10,16 @@ import { Box, Button, Link } from '@mui/material'
 import type { CartItemFragment } from '../../Api/CartItem.gql'
 import { RemoveItemFromCart } from '../RemoveItemFromCart/RemoveItemFromCart'
 import { UpdateItemQuantity } from '../UpdateItemQuantity/UpdateItemQuantity'
+import type { OptionTableProps } from './PriceModifications'
 
 export type CartItemActionCardProps = {
   cartItem: CartItemFragment
   readOnly?: boolean
-  priceModifiers?: PriceModifier[]
+  optionTable?: OptionTableProps
 } & Omit<ActionCardProps, 'value' | 'image' | 'title'>
 
 export function CartItemActionCard(props: CartItemActionCardProps) {
-  const {
-    cartItem,
-    sx = [],
-    size = 'responsive',
-    readOnly = false,
-    priceModifiers,
-    ...rest
-  } = props
+  const { cartItem, sx = [], size = 'responsive', readOnly = false, ...rest } = props
   const { uid, quantity, prices, errors, product } = cartItem
 
   const inclTaxes = useDisplayInclTax()
@@ -155,7 +150,6 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
               <Trans id='Edit options' />
             </Button>
           )}
-
           {rest.secondaryAction}
 
           {filterNonNullableKeys(errors).map((error) => (
@@ -163,19 +157,6 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
               {error.message}
             </Box>
           ))}
-        </>
-      }
-      details={
-        <>
-          {priceModifiers && priceModifiers.length > 0 && (
-            <PriceModifiersList
-              label={<Trans id='Base Price'>Base price</Trans>}
-              modifiers={[...priceModifiers]}
-              total={prices?.price_including_tax?.value ?? 0}
-              currency={prices?.price.currency}
-            />
-          )}
-          {rest.details}
         </>
       }
       action={
@@ -189,6 +170,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
           {rest.action}
         </>
       }
+      after={<>{rest.after}</>}
     />
   )
 }

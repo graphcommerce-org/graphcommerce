@@ -109,7 +109,7 @@ export function InlineAccount(props: InlineAccountProps) {
             <SignUpFormInline
               firstname={firstname ?? ''}
               lastname={lastname}
-              email={cart?.email}
+              email={cart.email}
               onSubmitted={() => setToggled(false)}
             />
           </Box>

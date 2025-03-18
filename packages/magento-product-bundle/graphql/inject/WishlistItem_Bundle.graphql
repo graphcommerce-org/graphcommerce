@@ -1,0 +1,5 @@
+fragment WishlistItem_Bundle on BundleWishlistItem @inject(into: ["WishlistItem"]) {
+  bundle_options {
+    ...ItemSelectedBundleOption
+  }
+}

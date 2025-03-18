@@ -1,0 +1,5 @@
+query GuestOrderByToken($input: OrderTokenInput!) {
+  guestOrderByToken(input: $input) {
+    ...OrderCard
+  }
+}

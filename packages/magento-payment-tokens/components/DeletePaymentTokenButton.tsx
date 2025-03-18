@@ -1,15 +1,11 @@
 import { ApolloErrorSnackbar, useFormGqlMutation } from '@graphcommerce/ecommerce-ui'
-import { Fab, iconBin, sxx } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
+import { iconBin } from '@graphcommerce/next-ui'
 import { type SxProps, type Theme } from '@mui/material'
 import { DeletePaymentTokenDocument } from '../graphql/mutations/DeletePaymentToken.gql'
 
-export function DeletePaymentTokenButton(props: { sx: SxProps<Theme>; publicHash: string }) {
-  const { sx, publicHash } = props
-
-  const { handleSubmit, formState, error } = useFormGqlMutation(DeletePaymentTokenDocument, {
-    values: { publicHash },
-  })
+export function DeletePaymentTokenButton(props: { sx: SxProps<Theme> }) {
+  const { sx } = props
+  const { handleSubmit, formState, error } = useFormGqlMutation(DeletePaymentTokenDocument)
 
   const submit = handleSubmit(() => {})
 
@@ -17,10 +13,11 @@ export function DeletePaymentTokenButton(props: { sx: SxProps<Theme>; publicHash
     <form onSubmit={submit}>
       <Fab
         type='submit'
-        aria-label={t`Remove`}
+        aria-label='Delete'
+        color='error'
         loading={formState.isSubmitting}
         icon={iconBin}
-        sx={sxx({ boxShadow: 0 }, sx)}
+        sx={sx}
       />
       <ApolloErrorSnackbar error={error} />
     </form>

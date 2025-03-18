@@ -8,7 +8,4 @@ fragment Shipment on OrderShipment {
     message
     timestamp
   }
-  tracking {
-    ...TrackingLink
-  }
 }

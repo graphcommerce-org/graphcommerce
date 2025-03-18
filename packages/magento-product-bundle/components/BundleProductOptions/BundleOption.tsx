@@ -6,27 +6,20 @@ import { filterNonNullableKeys, SectionHeader } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import React, { useMemo } from 'react'
 import { BundleOptionValue } from './BundleOptionValue'
-import { toBundleOptionType, type BundleOptionProps, type BundleOptionValueProps } from './types'
+import type { BundleCardProps, BundleOptionProps, BundleOptionValueProps } from './types'
 
 export const BundleOption = React.memo<BundleOptionProps>((props) => {
-  const { index, item, color, layout, size, variant, product, renderer } = props
-  const { options, title, required, type: incomingType, uid, price_range } = item
+  const { idx, index, options, title, color, layout, size, variant, required: _required } = props
   const { control } = useFormAddProductsToCart()
-  const type = toBundleOptionType(incomingType)
+
+  const required = _required ?? false
 
   return (
     <div>
-      <SectionHeader
-        labelLeft={
-          <>
-            {title} {required && ' *'}
-          </>
-        }
-      />
-      <ActionCardListForm<BundleOptionValueProps & ActionCardItemBase, AddProductsToCartFields>
+      <SectionHeader labelLeft={title} sx={{ mt: 0 }} />
+      <ActionCardListForm<BundleCardProps, AddProductsToCartFields>
         control={control}
-        required={Boolean(required)}
-        multiple={type === 'checkbox' || type === 'multi'}
+        required={required}
         color={color}
         layout={layout}
         size={size}
@@ -37,21 +30,22 @@ export const BundleOption = React.memo<BundleOptionProps>((props) => {
             ? i18n._(/* i18n*/ 'Please select a value for ‘{label}’', { label: title })
             : false,
         }}
-        name={`cartItems.${index}.selected_options_record.${uid}`}
-        render={renderer ?? BundleOptionValue}
-        requireOptionSelection={Boolean(required)}
+        name={
+          options?.some((o) => o?.can_change_quantity)
+            ? `cartItems.${index}.entered_options.${idx}.uid`
+            : `cartItems.${index}.selected_options.${idx}`
+        }
+        render={BundleOptionValue}
         items={useMemo(
           () =>
             filterNonNullableKeys(options).map((option) => ({
-              product,
-              item,
-              option,
+              optionValue: option,
               value: option.uid,
+              idx,
               index,
-              dynamicPrice: product.dynamic_price ?? false,
-              discountPercent: price_range.minimum_price.discount?.percent_off ?? 0,
+              required,
             })),
-          [index, options, required],
+          [idx, index, options, required],
         )}
       />
     </div>

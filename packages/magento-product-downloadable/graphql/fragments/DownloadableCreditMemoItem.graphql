@@ -1,0 +1,5 @@
+fragment DownloadableCreditMemoItem on DownloadableCreditMemoItem @inject(into: ["CreditMemoItem"]) {
+  downloadable_links {
+    
+  }
+}

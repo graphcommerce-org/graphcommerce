@@ -10,6 +10,11 @@ mutation PayPalPaymentHandler($cartId: String!, $paymentMethod: PaymentMethodInp
       message
     }
 
+    orderV2 {
+      id
+      token
+    }
+
     order {
       order_number
     }

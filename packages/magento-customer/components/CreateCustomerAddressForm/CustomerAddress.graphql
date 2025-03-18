@@ -21,4 +21,7 @@ fragment CustomerAddress on CustomerAddress {
   vat_id
   default_shipping
   default_billing
+  custom_attributesV2 {
+    ...AttributeValueFragment
+  }
 }

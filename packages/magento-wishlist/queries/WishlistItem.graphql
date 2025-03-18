@@ -10,14 +10,9 @@ fragment WishlistItem on WishlistItemInterface {
     }
   }
 
-  # todo
-  # customizable_options {
-  #   customizable_option_uid
-  #   values {
-  #     customizable_option_value_uid
-  #     value
-  #   }
-  # }
+  customizable_options {
+    ...SelectedCustomizableOption
+  }
 
   product {
     __typename

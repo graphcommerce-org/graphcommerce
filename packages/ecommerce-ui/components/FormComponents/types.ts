@@ -16,6 +16,8 @@ export type BaseControllerProps<TFieldValues extends FieldValues = FieldValues> 
   shouldUnregister?: boolean
   defaultValue?: FieldPathValue<NoInfer<TFieldValues>, FieldPath<TFieldValues>>
   disabled?: boolean
+  toFormValue?: (value: string) => string
+  toInputValue?: (value: string) => string
 }
 
 type BaseControllerPropsKeys = keyof BaseControllerProps

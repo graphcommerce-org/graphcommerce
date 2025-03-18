@@ -1,6 +1,7 @@
 import type { CartItemActionCardProps } from '@graphcommerce/magento-cart-items'
 import { selectedCustomizableOptionsModifiers } from '@graphcommerce/magento-cart-items'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import { isTypename } from '@graphcommerce/next-ui'
 
 export const config: PluginConfig = {
   type: 'component',
@@ -10,7 +11,7 @@ export const config: PluginConfig = {
 export function CartItemActionCard(props: PluginProps<CartItemActionCardProps>) {
   const { Prev, ...rest } = props
 
-  if (rest.cartItem.__typename !== 'SimpleCartItem') return <Prev {...rest} />
+  if (!isTypename(rest.cartItem, ['SimpleCartItem'])) return <Prev {...rest} />
 
   return (
     <Prev

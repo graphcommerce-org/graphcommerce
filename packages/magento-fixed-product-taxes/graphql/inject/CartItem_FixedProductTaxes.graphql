@@ -1,0 +1,10 @@
+fragment CartItem_FixedProductTaxes on CartItemInterface @inject(into: ["CartItem"]) {
+  prices {
+    fixed_product_taxes {
+      amount {
+        ...Money
+      }
+      label
+    }
+  }
+}

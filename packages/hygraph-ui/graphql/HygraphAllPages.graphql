@@ -1,4 +1,4 @@
-query HygraphAllPages($first: Int = 100, $skip: Int) {
+query HygraphAllPages($first: Int = 100, $skip: Int) @cacheControl(maxAge: 100) {
   pages(first: $first, skip: $skip) {
     url
   }

@@ -1,0 +1,8 @@
+extend type Mutation {
+  invalidate(entities: [InvalidateEntity!]!): Boolean!
+}
+
+type InvalidateEntity {
+  typename: String!
+  id: String!
+}

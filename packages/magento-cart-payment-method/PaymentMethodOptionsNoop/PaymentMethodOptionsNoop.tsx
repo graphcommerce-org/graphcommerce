@@ -26,6 +26,7 @@ export function PaymentMethodOptionsNoop(props: PaymentOptionsProps) {
   const { handleSubmit, register } = form
   const submit = handleSubmit(() => {})
 
+  // TODO: The new <FormAutoSubmit/> should be used, but doesn't support forceInitialSubmits.
   useFormAutoSubmit({ form, submit, forceInitialSubmit: true })
 
   /** To use an external Pay button we register the current form to be handled there as well. */

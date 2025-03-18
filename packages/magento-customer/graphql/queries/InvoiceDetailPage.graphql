@@ -1,13 +1,8 @@
-query InvoiceDetailPage($orderNumber: String!) {
+query InvoiceDetailPage($invoiceNumber: String!) {
   customer {
-    orders(filter: { number: { eq: $orderNumber } }, scope: GLOBAL) {
+    invoices(filter: { number: { eq: $invoiceNumber } }) {
       items {
-        ...OrderDetails
-        id
-        number
-        invoices {
-          ...Invoice
-        }
+        ...Invoice
       }
     }
   }

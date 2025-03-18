@@ -1,32 +1,77 @@
 import {
+  AttributesValueArray_to_CustomAttributesFormField,
   CustomAttributesField_to_AttributeValueInputs,
   useAttributesForm,
   type CustomAttributeMetadata,
   type CustomAttributesFormValues,
   type UseAttributesFormConfig,
 } from '@graphcommerce/magento-store'
-import { useFormGqlMutation, type UseFormGraphQlOptions } from '@graphcommerce/react-hook-form'
-import type { MutationHookOptions } from '@apollo/client'
+import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import type { OmitDeep } from 'type-fest'
+import type { CustomerInfoFragment } from '../../hooks'
 import {
-  UseCustomerCreateFormDocument,
-  type UseCustomerCreateFormMutation,
-  type UseCustomerCreateFormMutationVariables,
-} from './UseCustomerCreateForm.gql'
+  UpdateCustomerV2Document,
+  type UpdateCustomerV2Mutation,
+  type UpdateCustomerV2MutationVariables,
+} from './UpdateCustomerV2.gql'
 
-export type CreateCustomerFormValues = UseCustomerCreateFormMutationVariables &
-  CustomAttributesFormValues & { confirmPassword?: string }
+export type UpdateCustomerFormValues = OmitDeep<
+  UpdateCustomerV2MutationVariables,
+  | 'input.dob'
+  | 'input.date_of_birth'
+  | 'input.prefix'
+  | 'input.firstname'
+  | 'input.lastname'
+  | 'input.suffix'
+  | 'input.gender'
+> &
+  CustomAttributesFormValues<
+    Record<
+      'dob' | 'prefix' | 'firstname' | 'middlename' | 'lastname' | 'suffix' | 'gender',
+      string | undefined
+    >
+  >
 
-/** Used for onBeforeSubmit of useFormGqlMutation */
-export function CreateCustomerFormValues_to_CreateCustomerVariables(
+/** Used for values prop of useFormGqlMutation */
+export function CustomerInfo_to_UpdateCustomerFormValues(
   attributes: CustomAttributeMetadata<'CustomerAttributeMetadata'>[],
-  values: CreateCustomerFormValues,
-): UseCustomerCreateFormMutationVariables {
-  const { ...custom_attributes } = values.custom_attributes ?? {}
+  customer: CustomerInfoFragment,
+): UpdateCustomerFormValues {
+  const { date_of_birth, prefix, firstname, middlename, lastname, suffix, gender } = customer
+
+  return {
+    input: {},
+    custom_attributes: {
+      ...AttributesValueArray_to_CustomAttributesFormField(attributes, customer.custom_attributes),
+      dob: date_of_birth ?? undefined,
+      prefix: prefix ?? undefined,
+      firstname: firstname ?? undefined,
+      middlename: middlename ?? undefined,
+      lastname: lastname ?? undefined,
+      suffix: suffix ?? undefined,
+      gender: gender ? String(gender) : undefined,
+    },
+  }
+}
+
+/** SUsed for onBeforeSubmit of useFormGqlMutation */
+export function UpdateCustomerFormValues_to_UpdateCustomerVariables(
+  attributes: CustomAttributeMetadata<'CustomerAttributeMetadata'>[],
+  values: UpdateCustomerFormValues,
+): UpdateCustomerV2MutationVariables {
+  const { dob, firstname, middlename, gender, lastname, prefix, suffix, ...custom_attributes } =
+    values.custom_attributes ?? {}
 
   return {
     input: {
       ...values.input,
-      gender: values.input.gender ? Number(values.input.gender) : undefined,
+      firstname,
+      middlename,
+      lastname,
+      prefix,
+      suffix,
+      date_of_birth: dob,
+      gender: gender ? Number(gender) : undefined,
       custom_attributes: [
         ...(values.input.custom_attributes ?? []),
         ...CustomAttributesField_to_AttributeValueInputs(attributes, custom_attributes),
@@ -35,48 +80,31 @@ export function CreateCustomerFormValues_to_CreateCustomerVariables(
   }
 }
 
-export type UseCustomerCreateFormConfig = Omit<
+export type UseCustomerUpdateFormConfig = { customer: CustomerInfoFragment } & Omit<
   UseAttributesFormConfig<'CustomerAttributeMetadata'>,
   'formCode' | 'typename'
 >
 
-export function useCustomerCreateForm(
-  attributeFormConfig?: UseCustomerCreateFormConfig,
-  useFormGqlOptions?: UseFormGraphQlOptions<
-    UseCustomerCreateFormMutation,
-    CreateCustomerFormValues
-  >,
-  mutationOptions?: MutationHookOptions<UseCustomerCreateFormMutation, CreateCustomerFormValues>,
-) {
+export function useCustomerUpdateForm({
+  customer,
+  customizeAttributes,
+  exclude,
+}: UseCustomerUpdateFormConfig) {
   const attributes = useAttributesForm({
-    formCode: 'customer_account_create',
+    formCode: 'customer_account_edit',
+    exclude: exclude || ['email'],
     typename: 'CustomerAttributeMetadata',
-    attributeToName: {
-      email: 'input.email',
-      dob: 'input.date_of_birth',
-      firstname: 'input.firstname',
-      lastname: 'input.lastname',
-      prefix: 'input.prefix',
-      middlename: 'input.middlename',
-      suffix: 'input.suffix',
-      gender: 'input.gender',
-      password: 'input.password',
-    },
-    ...attributeFormConfig,
+    customizeAttributes,
   })
 
   // console.log(customer, CustomerInfo_to_UpdateCustomerFormValues(attributes, customer))
-  const form = useFormGqlMutation<UseCustomerCreateFormMutation, CreateCustomerFormValues>(
-    UseCustomerCreateFormDocument,
+  const form = useFormGqlMutation<UpdateCustomerV2Mutation, UpdateCustomerFormValues>(
+    UpdateCustomerV2Document,
     {
-      ...useFormGqlOptions,
-      onBeforeSubmit: async (values, f) => {
-        const result = (await useFormGqlOptions?.onBeforeSubmit?.(values, f)) ?? values
-        if (result === false) return false
-        return CreateCustomerFormValues_to_CreateCustomerVariables(attributes, result)
-      },
+      values: CustomerInfo_to_UpdateCustomerFormValues(attributes, customer),
+      onBeforeSubmit: (values) =>
+        UpdateCustomerFormValues_to_UpdateCustomerVariables(attributes, values),
     },
-    mutationOptions,
   )
 
   return { ...form, attributes }

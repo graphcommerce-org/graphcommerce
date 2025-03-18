@@ -1,32 +1,20 @@
 import type { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
 import type { ActionCardListProps } from '@graphcommerce/next-ui'
-import type { ProductPageItem_BundleFragment } from '../../graphql'
+import type { BundleProductOptionsFragment } from './BundleProductOptions.gql'
 
-export type BundleProductType = ProductPageItem_BundleFragment
-export type BundleProductItemType = NonNullable<NonNullable<BundleProductType['items']>[number]>
-export type BundleProductItemOptionType = NonNullable<
-  NonNullable<BundleProductItemType['options']>[number]
->
+export type BundleCardProps = ActionCardItemRenderProps<{ optionValue: BundleOptionValueProps }>
 
 export type BundleOptionProps = {
-  renderer?: React.FC<ActionCardItemRenderProps<BundleOptionValueProps>>
+  idx: number
   index: number
-  product: BundleProductType
-  item: BundleProductItemType
-} & Pick<ActionCardListProps, 'size' | 'layout' | 'color' | 'variant'>
+  renderer?: React.FC<BundleCardProps>
+} & NonNullable<NonNullable<BundleProductOptionsFragment['items']>[number]> &
+  Pick<ActionCardListProps, 'size' | 'layout' | 'color' | 'variant'>
 
-export type BundleOptionValueProps = {
+export type BundleOptionValueProps = NonNullable<
+  NonNullable<BundleOptionProps['options']>[number]
+> & {
+  idx: number
   index: number
-  product: BundleProductType
-  item: BundleProductItemType
-  option: BundleProductItemOptionType
-}
-
-const possibleTypes = ['radio', 'checkbox', 'multi', 'select'] as const
-export type BundleOptionType = (typeof possibleTypes)[number]
-
-export function toBundleOptionType(type: string | null | undefined): BundleOptionType {
-  if (!type) return 'radio'
-  if (possibleTypes.includes(type as BundleOptionType)) return type as BundleOptionType
-  return 'radio'
+  required: boolean
 }

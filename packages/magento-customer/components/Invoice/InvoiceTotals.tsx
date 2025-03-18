@@ -1,8 +1,8 @@
 import { Money } from '@graphcommerce/magento-store'
-import { breakpointVal, extendableComponent, sxx } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { breakpointVal, extendableComponent } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, Divider, lighten, Typography } from '@mui/material'
+import { Box, Divider, Typography } from '@mui/material'
 import type { InvoiceFragment } from './Invoice.gql'
 
 export type InvoiceTotalsProps = {
@@ -23,23 +23,20 @@ export function InvoiceTotals(props: InvoiceTotalsProps) {
   return (
     <Box
       className={classes.totalsContainer}
-      sx={sxx(
+      sx={[
         (theme) => ({
-          my: theme.spacings.md,
+          border: `1px solid ${theme.palette.divider}`,
+          marginBottom: theme.spacings.md,
+          p: theme.spacings.sm,
           ...breakpointVal(
             'borderRadius',
+            theme.shape.borderRadius * 2,
             theme.shape.borderRadius * 3,
-            theme.shape.borderRadius * 5,
             theme.breakpoints.values,
           ),
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
-          padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
         }),
-        sx,
-      )}
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
       <Box className={classes.totalsRow} sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Typography>

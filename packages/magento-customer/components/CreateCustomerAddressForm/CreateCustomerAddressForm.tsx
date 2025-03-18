@@ -1,13 +1,21 @@
 import { ApolloErrorSnackbar, TelephoneElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import type { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
-import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
+import {
+  AttributesFormAutoLayout,
+  CountryRegionsDocument,
+  extractAttributes,
+  StoreConfigDocument,
+  useAttributesForm,
+} from '@graphcommerce/magento-store'
 import { Button, Form, FormActions, FormRow, MessageSnackbar } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { useRouter } from 'next/router'
 import { AddressFields } from '../AddressFields/AddressFields'
 import { CompanyFields } from '../CompanyFields'
+import { CustomerAttributeField } from '../CustomerForms'
+import { nameFieldset, nameFieldsetFields } from '../CustomerForms/nameFieldset'
 import { NameFields } from '../NameFields/NameFields'
 import type { CreateCustomerAddressMutationVariables } from './CreateCustomerAddress.gql'
 import { CreateCustomerAddressDocument } from './CreateCustomerAddress.gql'
@@ -19,6 +27,13 @@ export function CreateCustomerAddressForm() {
   const router = useRouter()
 
   const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase() as CountryCodeEnum
+
+  const attributes2 = useAttributesForm({
+    formCode: 'customer_register_address',
+    typename: 'CustomerAttributeMetadata',
+  })
+  const [attributesName, attributes1] = extractAttributes(attributes2, nameFieldsetFields)
+  const [attributesAddress, attributes] = extractAttributes(attributes1, ['street'])
 
   const form = useFormGqlMutation(
     CreateCustomerAddressDocument,
@@ -63,7 +78,24 @@ export function CreateCustomerAddressForm() {
     <>
       <Form onSubmit={submitHandler} noValidate>
         <CompanyFields<CreateCustomerAddressMutationVariables> form={form} />
-        <NameFields form={form} prefix />
+
+        {import.meta.graphCommerce.magentoVersion < 247 ? (
+          <NameFields
+            form={form}
+            names={{
+              firstname: 'input.firstname',
+              lastname: 'input.lastname',
+              prefix: 'input.prefix',
+            }}
+          />
+        ) : (
+          <AttributesFormAutoLayout
+            attributes={attributesName}
+            control={control}
+            render={CustomerAttributeField}
+            fieldsets={[nameFieldset(attributes)]}
+          />
+        )}
         <AddressFields<CreateCustomerAddressMutationVariables>
           form={form}
           name={{ regionId: 'region.region_id' }}

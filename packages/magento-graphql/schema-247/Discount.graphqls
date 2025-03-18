@@ -1,0 +1,4 @@
+type Discount {
+  applied_to: String
+  coupon: AppliedCoupon
+}

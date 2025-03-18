@@ -1,12 +1,12 @@
-fragment CheckmoConfig on StoreConfig @inject(into: ["StoreConfigFragment"]) {
-  # check_money_order_enabled
-  # check_money_order_title
-  # check_money_order_new_order_status
-  # check_money_order_enable_for_specific_countries
-  # check_money_order_payment_from_specific_countries
+fragment CheckmoConfig on StoreConfig {
+  check_money_order_enabled
+  check_money_order_title
+  check_money_order_new_order_status
+  check_money_order_enable_for_specific_countries
+  check_money_order_payment_from_specific_countries
   check_money_order_make_check_payable_to
   check_money_order_send_check_to
-  # check_money_order_min_order_total
-  # check_money_order_max_order_total
-  # check_money_order_sort_order
+  check_money_order_min_order_total
+  check_money_order_max_order_total
+  check_money_order_sort_order
 }

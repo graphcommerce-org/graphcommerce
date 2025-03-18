@@ -9,10 +9,7 @@ fragment InvoiceTotal on InvoiceTotal {
     ...Money
   }
   discounts {
-    amount {
-      ...Money
-    }
-    label
+    ...Discount
   }
   base_grand_total {
     ...Money

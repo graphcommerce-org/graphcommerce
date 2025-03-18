@@ -1,5 +1,5 @@
+export * from './graphql/fragments/CartItemCountChanged.gql'
 export * from './components'
-export * from './graphql'
 export * from './hooks'
 export * from './link/cartLink'
 export * from './typePolicies'

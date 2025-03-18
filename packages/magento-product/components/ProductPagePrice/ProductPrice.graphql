@@ -9,4 +9,11 @@ fragment ProductPrice on ProductPrice {
   final_price {
     ...Money
   }
+  fixed_product_taxes {
+    amount {
+      currency
+      value
+    }
+    label
+  }
 }

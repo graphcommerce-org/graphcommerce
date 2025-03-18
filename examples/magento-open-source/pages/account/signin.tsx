@@ -19,7 +19,11 @@ function AccountSignInPage() {
   return (
     <>
       <PageMeta title={i18n._(/* i18n */ 'Sign in')} metaRobots={['noindex']} />
-      <LayoutOverlayHeader />
+      <LayoutOverlayHeader>
+        <LayoutTitle size='small' component='span'>
+          <Trans id='Sign in' />
+        </LayoutTitle>
+      </LayoutOverlayHeader>
       <Container maxWidth='md'>
         <AccountSignInUpForm />
       </Container>
@@ -41,9 +45,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
 
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
-
-  if (import.meta.graphCommerce.magentoVersion >= 247)
-    await preloadAttributesForm(client, 'customer_account_create')
+  await preloadAttributesForm(client, 'customer_account_create')
 
   return {
     props: {

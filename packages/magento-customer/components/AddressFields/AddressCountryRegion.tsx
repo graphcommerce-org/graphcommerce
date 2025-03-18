@@ -86,7 +86,7 @@ export function AddressCountryRegionBase(props: AddressFieldsOptions) {
           name={name.regionId}
           variant='outlined'
           label={<Trans id='Region' />}
-          required
+          required={countries_with_required_region}
           showValid
           InputProps={{ readOnly }}
           options={regionList.map((region) => ({ ...region, label: region.name }))}

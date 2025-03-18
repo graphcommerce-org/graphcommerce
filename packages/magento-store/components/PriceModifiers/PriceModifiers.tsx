@@ -1,38 +1,61 @@
 import type { CurrencyEnum } from '@graphcommerce/graphql-mesh'
-
-export function sumPriceModifiers(modifiers: PriceModifier[]) {
-  return modifiers.reduce(
-    (price, mod) =>
-      price +
-      (mod.amount ?? 0) * (mod.quantity ?? 1) +
-      (mod.items ?? []).reduce(
-        (itemPrice, item) => itemPrice + (item.amount ?? 0) * (item.quantity ?? 1),
-        0,
-      ),
-    0,
-  )
-}
+import { PriceModifierOptionValue, PriceModifierRow } from './CartItemOption'
 
 export type PriceModifierItem = {
   key: string
   label: React.ReactNode
   secondary?: React.ReactNode
   quantity?: number
-  amount?: number
+  price?: number
 }
 
 export type PriceModifier = {
-  position?: number
   key: string
   label?: React.ReactNode
-  amount?: number
-  quantity?: number
-  items?: PriceModifierItem[]
+  items: PriceModifierItem[]
 }
 
 export type PriceModifiersProps = {
-  label: React.ReactNode
-  total: number
+  row_total: number
   currency: CurrencyEnum | null | undefined
   modifiers: PriceModifier[]
+}
+
+export function sumPriceModifiers(modifiers: PriceModifier[]) {
+  return modifiers.reduce(
+    (price, mod) =>
+      price +
+      mod.items.reduce(
+        (itemPrice, item) => itemPrice + (item.price ?? 0) * (item.quantity ?? 1),
+        0,
+      ),
+    0,
+  )
+}
+
+export function PriceModifiersTable(props: PriceModifiersProps) {
+  const { row_total, currency, modifiers: modifications } = props
+  const basePrice = row_total - sumPriceModifiers(modifications)
+
+  return (
+    <>
+      {basePrice > 0 && (
+        <PriceModifierOptionValue
+          label='Base Price'
+          price={basePrice}
+          currency={currency}
+          color='text.primary'
+        />
+      )}
+      {modifications.map((mod) => (
+        <PriceModifierRow
+          key={mod.key}
+          label={mod.label}
+          items={mod.items.map(({ key, ...item }) => (
+            <PriceModifierOptionValue key={key} {...item} currency={currency} />
+          ))}
+        />
+      ))}
+    </>
+  )
 }

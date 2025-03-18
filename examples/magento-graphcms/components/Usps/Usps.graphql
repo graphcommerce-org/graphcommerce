@@ -1,4 +1,4 @@
-query Usps {
+query Usps @cacheControl(maxAge: 3600000) {
   sidebarUsps: usps(where: { identity: "sidebarusps" }) {
     uspsMultiple {
       id

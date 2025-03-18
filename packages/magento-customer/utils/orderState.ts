@@ -1,5 +1,6 @@
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import type { OrderDetailsFragment, OrderStateLabelFragment } from '../components/Order'
+import type { OrderDetailsFragment } from '../components/Order/OrderDetails/OrderDetails'
+import type { OrderStateLabelFragment } from '../components/Order/OrderStateLabel/OrderStateLabel'
 
 export type OrderState = 'pending' | 'processing' | 'complete' | 'closed'
 

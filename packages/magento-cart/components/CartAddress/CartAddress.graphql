@@ -17,4 +17,7 @@ fragment CartAddress on CartAddressInterface {
   }
   street
   telephone
+  custom_attributes {
+    ...AttributeValueFragment
+  }
 }

@@ -22,6 +22,11 @@ mutation AdyenPaymentOptionsAndPlaceOrder(
       message
     }
 
+    orderV2 {
+      id
+      token
+    }
+
     order {
       order_number
       adyen_payment_status {

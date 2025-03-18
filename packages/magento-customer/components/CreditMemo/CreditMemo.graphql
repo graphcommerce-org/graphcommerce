@@ -18,10 +18,7 @@ fragment CreditMemo on CreditMemo {
       ...Money
     }
     discounts {
-      amount {
-        ...Money
-      }
-      label
+      ...Discount
     }
     base_grand_total {
       ...Money

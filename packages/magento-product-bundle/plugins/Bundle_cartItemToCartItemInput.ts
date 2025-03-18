@@ -1,8 +1,7 @@
+import type { CartItemInput } from '@graphcommerce/graphql-mesh'
 import { type cartItemToCartItemInput as cartItemToCartItemInputType } from '@graphcommerce/magento-cart-items'
-import type { AddProductsToCartFields } from '@graphcommerce/magento-product/components'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
-import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { toBundleOptionType } from '../components/BundleProductOptions/types'
+import { filterNonNullableKeys, isTypename } from '@graphcommerce/next-ui'
 
 export const config: PluginConfig = {
   type: 'function',
@@ -17,32 +16,21 @@ export const cartItemToCartItemInput: FunctionPlugin<typeof cartItemToCartItemIn
   const { product, cartItem } = props
 
   if (!result) return result
-  if (product.__typename !== 'BundleProduct') return result
-  if (cartItem.__typename !== 'BundleCartItem') return result
+  if (!isTypename(product, ['BundleProduct'])) return result
+  if (!isTypename(cartItem, ['BundleCartItem'])) return result
 
-  const selected: AddProductsToCartFields['cartItems'][number]['selected_options_record'] = {}
-  const entered: AddProductsToCartFields['cartItems'][number]['entered_options_record'] = {}
+  const links = filterNonNullableKeys(cartItem.links, ['title', 'price'])
+  const productLinks = filterNonNullableKeys(product.downloadable_product_links, ['title', 'price'])
 
-  const items = filterNonNullableKeys(product.items)
+  const selected_options: NonNullable<CartItemInput['selected_options']> = []
 
-  filterNonNullableKeys(cartItem.bundle_options).forEach((option) => {
-    const values = filterNonNullableKeys(option?.values)
-    const productItem = items.find((item) => item.uid === option.uid)
-    const type = toBundleOptionType(productItem?.type)
-
-    const vals = values.map((v) => v.uid)
-    selected[option.uid] = type === 'multi' || type === 'checkbox' ? vals : vals[0]
-
-    values.forEach((v) => {
-      const productOptions = filterNonNullableKeys(productItem?.options)
-      const productOption = productOptions.find((o) => o.uid === v.uid)
-      if (productOption?.can_change_quantity) entered[v.uid] = v.quantity
-    })
+  productLinks.forEach((link) => {
+    const linkIndex = links.findIndex((l) => l.uid === link.uid)
+    if (linkIndex !== -1) selected_options[linkIndex] = link.uid
   })
 
   return {
     ...result,
-    selected_options_record: { ...result.selected_options_record, ...selected },
-    entered_options_record: { ...result.entered_options_record, ...entered },
-  }
+    selected_options,
+  } satisfies CartItemInput
 }

@@ -1,4 +1,5 @@
 import { toDate } from '@graphcommerce/next-ui/Intl/DateTimeFormat/toDate'
+import { Trans } from '@lingui/macro'
 import { Box, type BoxProps } from '@mui/material'
 import type { ProductListItemFragment } from '../../graphql'
 
@@ -30,7 +31,7 @@ export function ProductNewLabel(props: ProductNewLabelProps) {
         display: 'inline-block',
       }}
     >
-      New
+      <Trans id='New'>New</Trans>
     </Box>
   )
 }

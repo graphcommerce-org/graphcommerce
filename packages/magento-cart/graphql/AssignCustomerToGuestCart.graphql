@@ -1,0 +1,5 @@
+mutation AssignCustomerToGuestCart($cartId: String!) {
+  assignCustomerToGuestCart(cart_id: $cartId) {
+    ...CartPageFragment
+  }
+}

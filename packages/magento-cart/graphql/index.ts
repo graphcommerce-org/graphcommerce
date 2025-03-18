@@ -1,3 +1,5 @@
-export * from './fragments/CartItemCountChanged.gql'
 export * from './fragments/CartBillingAddress.gql'
-export * from './queries/GetBillingAddress.gql'
+export * from './mutations/AssignCustomerToGuestCart.gql'
+export * from './mutations/CreateGuestCart.gql'
+export * from './mutations/EstimateShippingMethods.gql'
+export * from './mutations/EstimateTotals.gql'

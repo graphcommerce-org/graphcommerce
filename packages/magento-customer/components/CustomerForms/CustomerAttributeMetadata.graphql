@@ -1,5 +1,6 @@
 fragment CustomerAttributeMetadata on CustomerAttributeMetadata
 @inject(into: ["CustomAttributeMetadata"]) {
+  sort_order
   input_filter
   multiline_count
   validate_rules {

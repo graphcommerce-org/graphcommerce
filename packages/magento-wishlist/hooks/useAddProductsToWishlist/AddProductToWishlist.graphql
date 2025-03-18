@@ -3,5 +3,9 @@ mutation AddProductToWishlist($input: [WishlistItemInput!]!) {
     wishlist {
       ...Wishlist
     }
+    user_errors {
+      code
+      message
+    }
   }
 }

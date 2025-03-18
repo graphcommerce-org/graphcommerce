@@ -5,9 +5,33 @@ fragment Invoice on Invoice {
     ...InvoiceItem
   }
   total {
-    ...InvoiceTotal
+    subtotal {
+      ...Money
+    }
+    shipping_handling {
+      ...ShippingHandling
+    }
+    total_shipping {
+      ...Money
+    }
+    discounts {
+      ...Discount
+    }
+    base_grand_total {
+      ...Money
+    }
+    grand_total {
+      ...Money
+    }
+    taxes {
+      ...TaxItem
+    }
+    total_tax {
+      ...Money
+    }
   }
   comments {
-    ...SalesCommentItem
+    message
+    timestamp
   }
 }

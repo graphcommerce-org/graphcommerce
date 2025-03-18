@@ -1,0 +1,8 @@
+type BundleProduct {
+  # price_details {
+  #   discount_percentage
+  #   main_final_price
+  #   main_price
+  # }
+  # price_view
+}

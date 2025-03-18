@@ -49,5 +49,7 @@ type Query {
   """
   Returns details about Google reCAPTCHA V3-Invisible configuration.
   """
-  recaptchaV3Config: ReCaptchaConfigurationV3 @deprecated(reason: "Magento >= 2.4.7")
+  recaptchaV3Config: ReCaptchaConfigurationV3
+    @deprecated(reason: "Magento >= 2.4.7")
+    @cacheControl(maxAge: 36000000)
 }

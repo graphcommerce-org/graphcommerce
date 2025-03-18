@@ -1,0 +1,5 @@
+mutation EstimateShippingMethods($input: EstimateTotalsInput!) {
+  estimateShippingMethods(input: $input) {
+    ...AvailableShippingMethod
+  }
+}

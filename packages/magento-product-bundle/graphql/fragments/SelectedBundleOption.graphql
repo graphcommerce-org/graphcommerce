@@ -1,11 +1,12 @@
 fragment SelectedBundleOption on SelectedBundleOption {
-  uid
   label
   type
+  uid
   values {
-    uid
+    id
     label
-    quantity
     price
+    quantity
+    uid
   }
 }

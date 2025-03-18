@@ -1,6 +1,7 @@
 import type { CartItemActionCardProps } from '@graphcommerce/magento-cart-items'
-import { selectedCustomizableOptionsModifiers } from '@graphcommerce/magento-cart-items'
+import { SelectedCustomizableOptions } from '@graphcommerce/magento-cart-items'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import { isTypename } from '@graphcommerce/next-ui'
 
 export const config: PluginConfig = {
   type: 'component',
@@ -15,10 +16,12 @@ export function CartItemActionCard(props: PluginProps<CartItemActionCardProps>) 
   return (
     <Prev
       {...rest}
-      priceModifiers={[
-        ...(rest.priceModifiers ?? []),
-        ...selectedCustomizableOptionsModifiers(rest.cartItem),
-      ]}
+      details={
+        <>
+          {rest.details}
+          <SelectedCustomizableOptions {...rest.cartItem} />
+        </>
+      }
     />
   )
 }

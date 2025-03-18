@@ -1,5 +1,9 @@
 mutation UseRemoveProductsFromWishlist($wishlistItemIds: [ID!]!) {
   removeProductsFromWishlist(wishlistId: 0, wishlistItemsIds: $wishlistItemIds) {
+    user_errors {
+      code
+      message
+    }
     wishlist {
       ...Wishlist
     }

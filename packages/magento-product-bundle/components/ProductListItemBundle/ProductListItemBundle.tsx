@@ -1,6 +1,6 @@
 import type { ProductListItemProps } from '@graphcommerce/magento-product'
 import { ProductListItem } from '@graphcommerce/magento-product'
-import type { ProductListItemBundleFragment } from '../../graphql'
+import type { ProductListItemBundleFragment } from '../graphql/fragments/ProductListItemBundle.gql'
 
 export type ProdustListItemBundleProps = ProductListItemBundleFragment & ProductListItemProps
 

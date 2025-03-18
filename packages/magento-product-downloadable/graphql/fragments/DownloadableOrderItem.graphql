@@ -1,0 +1,7 @@
+fragment DownloadableOrderItem on DownloadableOrderItem @inject(into: ["OrderItem"]) {
+  downloadable_links {
+    sort_order
+    title
+    uid
+  }
+}

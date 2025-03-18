@@ -2,7 +2,6 @@ import {
   breakpointVal,
   DateTimeFormat,
   extendableComponent,
-  filterNonNullableKeys,
   SectionContainer,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
@@ -88,8 +87,8 @@ export function ShipmentDetails(props: ShipmentDetailsProps) {
               className={classes.shipmentDetailTitle}
               sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '4px' } }}
             >
-              {filterNonNullableKeys(tracking).map((track) => (
-                <TrackingLink key={track.number} {...track} />
+              {tracking.map((track) => (
+                <TrackingLink key={track?.number} {...track} />
               ))}
             </SectionContainer>
           </Box>

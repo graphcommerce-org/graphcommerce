@@ -1,22 +1,7 @@
-import type { CustomAttributeMetadata } from '@graphcommerce/magento-store'
+import type { CustomAttributeMetadata } from '@graphcommerce/graphql-mesh'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import type { ControllerProps, FieldPath, FieldValues } from '@graphcommerce/react-hook-form'
-import { t } from '@lingui/macro'
-import type { HTMLInputTypeAttribute } from 'react'
-
-export type InputValidationValue =
-  | 'alphanumeric'
-  | 'alphanum-with-spaces'
-  | 'numeric'
-  | 'alpha'
-  | 'url'
-  | 'email'
-  | 'length'
-  | 'date'
-
-function assertUnreachable(renderer: never): never {
-  throw new Error(`Please define a valid renderer for ${renderer}`)
-}
+import type { t } from '@lingui/macro'
 
 export function customerAttributeValidationRules<
   TFieldValues extends FieldValues,
@@ -108,20 +93,4 @@ export function customerAttributeValidationRules<
       },
     },
   )
-}
-
-export function customerAttributeInputType(
-  metadata: CustomAttributeMetadata<'CustomerAttributeMetadata'>,
-): React.HTMLInputTypeAttribute {
-  if (metadata.frontend_input === 'DATE') return 'date'
-  if (metadata.frontend_input === 'DATETIME') return 'datetime-local'
-
-  const inputValidation =
-    metadata.__typename === 'CustomerAttributeMetadata' &&
-    (metadata.validate_rules?.find((r) => r?.name === 'INPUT_VALIDATION')?.value as
-      | InputValidationValue
-      | undefined)
-  let type = 'text'
-  if (inputValidation === 'email') type = 'email'
-  return type
 }

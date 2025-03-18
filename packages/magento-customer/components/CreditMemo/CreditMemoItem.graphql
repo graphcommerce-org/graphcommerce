@@ -1,26 +1,15 @@
 fragment CreditMemoItem on CreditMemoItemInterface {
-  __typename
   id
-  product_name
-  product_sku
-  quantity_refunded
-  product_sale_price {
-    ...Money
-  }
-
   discounts {
-    amount {
-      ...Money
-    }
-    label
+    ...Discount
   }
   order_item {
     id
-    product {
-      uid
-      thumbnail {
-        ...ProductImage
-      }
-    }
   }
+  product_name
+  product_sale_price {
+    ...Money
+  }
+  product_sku
+  quantity_refunded
 }

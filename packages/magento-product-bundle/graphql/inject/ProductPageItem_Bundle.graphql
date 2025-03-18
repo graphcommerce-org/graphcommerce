@@ -1,54 +1,8 @@
 fragment ProductPageItem_Bundle on BundleProduct @inject(into: ["ProductPageItem"]) {
-  ship_bundle_items
-  dynamic_sku
-  dynamic_price
-  dynamic_weight
-  price_view
-  items {
-    price_range {
-      minimum_price {
-        final_price {
-          currency
-        }
-        discount {
-          percent_off
-        }
-      }
-    }
-    uid
-    position
-    required
-    sku
-    title
-    type
-    options {
-      __typename
-      can_change_quantity
-      uid
-      is_default
-      label
-      position
-      price
-      price_type
-      quantity
-      uid
-      product {
-        swatch_image
-        uid
-        __typename
-        name
-        url_key
-        thumbnail {
-          ...ProductImage
-        }
-        price_range {
-          minimum_price {
-            final_price {
-              ...Money
-            }
-          }
-        }
-      }
-    }
+  price_details {
+    discount_percentage
+    main_final_price
+    main_price
   }
+  price_view
 }

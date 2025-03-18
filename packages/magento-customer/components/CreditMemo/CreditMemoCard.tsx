@@ -1,24 +1,22 @@
 import { Money } from '@graphcommerce/magento-store'
 import { breakpointVal, iconChevronRight, IconSvg, NextLink, sxx } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, lighten } from '@mui/material'
 import type { CreditMemoCardFragment } from './CreditMemoCard.gql'
 
 export type CreditMemoCardProps = {
-  orderNumber: string
   creditMemo: CreditMemoCardFragment
   sx?: SxProps<Theme>
 }
 
 export function CreditMemoCard(props: CreditMemoCardProps) {
-  const { creditMemo, orderNumber, sx = [] } = props
+  const { creditMemo, sx = [] } = props
   const { number, total } = creditMemo
 
   return (
     <Box
       component={NextLink}
-      href={`/account/orders/credit-memo?orderNumber=${orderNumber}&creditMemoNumber=${number}`}
+      href={`/account/invoices/view?invoiceNumber=${number}`}
       sx={sxx(
         (theme) => ({
           textDecoration: 'none',
@@ -49,9 +47,7 @@ export function CreditMemoCard(props: CreditMemoCardProps) {
         sx,
       )}
     >
-      <Box sx={{ gridArea: 'number', typography: 'body1' }}>
-        <Trans>Credit Memo #{number}</Trans>
-      </Box>
+      <Box sx={{ gridArea: 'number', typography: 'body1' }}>#{number}</Box>
       <Box sx={{ gridArea: 'total', alignSelf: 'center' }}>
         <Money {...total?.grand_total} />
       </Box>

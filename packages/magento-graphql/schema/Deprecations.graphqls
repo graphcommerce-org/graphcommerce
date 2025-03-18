@@ -1,0 +1,6 @@
+type ProductInterface {
+  """
+  An array of `ProductLinks` objects.
+  """
+  product_links: [ProductLinksInterface] @deprecated(reason: "")
+}

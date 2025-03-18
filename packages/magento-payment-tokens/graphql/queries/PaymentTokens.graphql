@@ -1,7 +1,7 @@
-query CustomerPaymentTokens {
-  customerPaymentTokens {
+query PaymentTokens($customerId: Int!) {
+  customerPaymentTokens(customer_id: $customerId) {
     items {
-      ...PaymentToken
+      
     }
   }
 }

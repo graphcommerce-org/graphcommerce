@@ -1,0 +1,5 @@
+fragment StoreConfig_RecaptchaV3Config on StoreConfigQueryFragment {
+  recaptchaV3Config {
+    website_key
+  }
+}

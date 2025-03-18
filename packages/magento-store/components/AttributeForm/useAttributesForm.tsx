@@ -1,9 +1,10 @@
 import { useQuery } from '@graphcommerce/graphql'
 import type { AttributeValueInput } from '@graphcommerce/graphql-mesh'
+import type { AttributeValueFragment } from '@graphcommerce/magento-store/components/AttributeForm/AttributeValueFragment.gql'
+import type { CustomAttributeMetadataFragment } from '@graphcommerce/magento-store/components/AttributeForm/CustomAttributeMetadata.gql'
 import { nonNullable, useMemoObject } from '@graphcommerce/next-ui'
 import { useMemo } from 'react'
-import { AttributesFormDocument } from '../../graphql'
-import type { AttributeValueFragment, CustomAttributeMetadataFragment } from '../../graphql'
+import { AttributesFormDocument } from './AttributesForm.gql'
 
 type CustomAttributesFormFieldValue = string | string[] | boolean | undefined
 type CustomAttributesFormField = Record<string, CustomAttributesFormFieldValue>
@@ -80,6 +81,7 @@ export function AttributesValueArray_to_CustomAttributesFormField(
     result[metadata.code] = attr?.value ?? metadata.default_value ?? undefined
   })
 
+  console.log({ result, custom_attributes })
   return result
 }
 
@@ -147,12 +149,6 @@ export type CustomAttributeFormCode = (
  */
 export type MagentoAttributeCode = string
 
-/**
- * For each field a gridArea is set. Used for the name of the field that doesn't contain any dots.
- * etc.
- */
-export type GridArea = string
-
 export type CustomAttributeMetadataTypename = CustomAttributeMetadataFragment['__typename']
 
 export type CustomAttributeMetadata<
@@ -160,24 +156,6 @@ export type CustomAttributeMetadata<
 > = Extract<CustomAttributeMetadataFragment, { __typename: Typename }> & {
   name: string
   index?: number
-  gridArea: GridArea
-}
-
-export type UseAttributesFormConfig<
-  Typename extends CustomAttributeMetadata['__typename'] = CustomAttributeMetadata['__typename'],
-> = {
-  /** The form code that is used to retrieve the attributes */
-  formCode: CustomAttributeFormCode | (string & Record<never, never>)
-  /** A list of attribute codes that should be excluded from the form completely */
-  exclude?: MagentoAttributeCode[]
-
-  typename?: Typename
-
-  attributeToName?: Record<MagentoAttributeCode, string>
-
-  customizeAttributes?: (
-    attribute: CustomAttributeMetadata<Typename>,
-  ) => CustomAttributeMetadata<Typename>
 }
 
 /**
@@ -202,10 +180,14 @@ export type UseAttributesFormConfig<
  */
 export function useAttributesForm<
   Typename extends CustomAttributeMetadata['__typename'] = CustomAttributeMetadata['__typename'],
->({
-  customizeAttributes,
-  ...incomingConfig
-}: UseAttributesFormConfig<Typename>): CustomAttributeMetadata<Typename>[] {
+>(incomingConfig: {
+  /** The form code that is used to retrieve the attributes */
+  formCode: CustomAttributeFormCode | (string & Record<never, never>)
+  /** A list of attribute codes that should be excluded from the form completely */
+  exclude?: MagentoAttributeCode[]
+
+  typename?: Typename
+}): CustomAttributeMetadata<Typename>[] {
   const config = useMemoObject(incomingConfig)
 
   const { data } = useQuery(AttributesFormDocument, {
@@ -213,18 +195,20 @@ export function useAttributesForm<
   })
 
   return useMemo(() => {
-    const items = (data?.attributesForm?.items ?? [])
+    const items = (data?.attributesForm.items ?? [])
       .filter(nonNullable)
       .filter((item) => !config.exclude?.includes(item.code))
-      .map((item) => ({
-        ...item,
-        gridArea: item.code,
-        name: config.attributeToName?.[item.code] ?? `custom_attributes.${item.code}`,
-      }))
+      .map((item) => ({ ...item, name: `custom_attributes.${item.code}` }))
 
     /**
      * We handle frontend_input=MULTILINE input fields a bit different as they have multiple values.
-     * In this case we replace the original field and add multiple fields for the same attributes.
+     * In this case we remove the original field and add multiple fields with the same name. All
+     * fields will become a frontend_input=TEXT.
+     *
+     * The first line will get the label. The name of the field will be the original name with a
+     * `.${number}` suffix.
+     *
+     * The new fields will be replaced at the exact location the MULTILINE field was at.
      */
     const newItems = items
       .map((item) => {
@@ -238,7 +222,7 @@ export function useAttributesForm<
             ...item,
             label: index === 0 ? item.label : undefined,
             index,
-            gridArea: `${item.code}_${index}`,
+            gridArea: `custom_attributes.${item.code}.${index}`,
             name: `custom_attributes.${item.code}.${index}`,
             default_value: defaultValues[index] ?? undefined,
           }))
@@ -247,12 +231,10 @@ export function useAttributesForm<
       })
       .flat(1)
 
-    return newItems
-      .filter((item): item is CustomAttributeMetadata<Typename> =>
-        config.typename ? item.__typename === config.typename : true,
-      )
-      .map((attribute) => customizeAttributes?.(attribute) || attribute)
-  }, [data?.attributesForm?.items, config, customizeAttributes])
+    return newItems.filter((item): item is CustomAttributeMetadata<Typename> =>
+      config.typename ? item.__typename === config.typename : true,
+    )
+  }, [data?.attributesForm.items, config])
 }
 
 export function extractAttributes(

@@ -1,7 +1,7 @@
 import type { GraphQLRequest } from '@graphcommerce/graphql'
 import { setContext } from '@graphcommerce/graphql/apollo'
 import { Kind, OperationTypeNode } from 'graphql'
-import { RecaptchaV3ConfigDocument } from '../graphql'
+import { RecaptchaV3ConfigDocument } from '../graphql/query/RecaptchaV3Config.gql'
 
 const isMutation = (operation: GraphQLRequest) =>
   operation.query.definitions.some(

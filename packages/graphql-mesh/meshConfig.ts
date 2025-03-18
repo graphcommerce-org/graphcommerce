@@ -10,3 +10,19 @@ export function meshConfig(
 ): YamlConfig.Config {
   return config
 }
+
+export function addTtlPerCoordinate(config: YamlConfig.Config, ttl: number) {
+  config.plugins = [
+    ...(config.plugins ?? []),
+    {
+      responseCache: {
+        ttlPerCoordinate: [
+          {
+            coordinate: 'Query.postcodeNL',
+            ttl,
+          },
+        ],
+      },
+    },
+  ]
+}

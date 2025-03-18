@@ -1,10 +1,16 @@
 fragment CartPrices on CartPrices {
   __typename
   applied_taxes {
-    ...CartTaxItem
+    amount {
+      ...Money
+    }
+    label
   }
   discounts {
-    ...Discount
+    amount {
+      ...Money
+    }
+    label
   }
   grand_total {
     ...Money

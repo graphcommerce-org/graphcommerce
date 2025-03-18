@@ -11,6 +11,12 @@ query GetPickupLocationsForProducts(
     pageSize: 20
     currentPage: $currentPage
   ) {
+    page_info {
+      current_page
+      page_size
+      total_pages
+    }
+    total_count
     items {
       city
       pickup_location_code

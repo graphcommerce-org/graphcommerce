@@ -10,23 +10,21 @@ import {
 import { Trans } from '@lingui/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, lighten } from '@mui/material'
-import { TrackingLink } from '../TrackingLink/TrackingLink'
 import type { ShipmentCardFragment } from './ShipmentCard.gql'
 
 export type ShipmentCardProps = {
-  orderNumber: string
   shipment: ShipmentCardFragment
   sx?: SxProps<Theme>
 }
 
 export function ShipmentCard(props: ShipmentCardProps) {
-  const { orderNumber, shipment, sx = [] } = props
-  const { number } = shipment
+  const { shipment, sx = [] } = props
+  const { number, tracking, id } = shipment
 
   return (
     <Box
       component={NextLink}
-      href={`/account/orders/shipment?orderNumber=${orderNumber}&shipmentNumber=${number}`}
+      href={`/account/invoices/view?invoiceNumber=${number}`}
       sx={sxx(
         (theme) => ({
           textDecoration: 'none',
@@ -44,12 +42,12 @@ export function ShipmentCard(props: ShipmentCardProps) {
             theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
-          // '&:hover': {
-          //   backgroundColor: theme.palette.action.hover,
-          // },
+          '&:hover': {
+            backgroundColor: theme.palette.action.hover,
+          },
           display: 'grid',
           gridTemplate: `
-            "number action" / 1fr auto
+            "number total action" / 1fr auto auto
           `,
           rowGap: 0.5,
           columnGap: 1,
@@ -57,8 +55,9 @@ export function ShipmentCard(props: ShipmentCardProps) {
         sx,
       )}
     >
-      <Box sx={{ gridArea: 'number', typography: 'body1' }}>
-        <Trans>Shipment #{number}</Trans>
+      <Box sx={{ gridArea: 'number', typography: 'body1' }}>#{number}</Box>
+      <Box sx={{ gridArea: 'total', alignSelf: 'center' }}>
+        <Money {...total?.grand_total} />
       </Box>
 
       <IconSvg

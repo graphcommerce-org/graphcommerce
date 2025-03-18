@@ -2,13 +2,9 @@
 import { waitForGraphQlResponse } from '@graphcommerce/graphql/__playwright__/apolloClient.fixture'
 import type { SignUpMutation } from '@graphcommerce/magento-customer/components'
 import { SignUpDocument } from '@graphcommerce/magento-customer/components'
-import type { SignUpConfirmMutation } from '@graphcommerce/magento-customer/components/SignUpForm/SignUpConfirm.gql'
-import { SignUpConfirmDocument } from '@graphcommerce/magento-customer/components/SignUpForm/SignUpConfirm.gql'
 import { test } from '@playwright/test'
 
-function isSignUp(
-  doc: SignUpMutation | SignUpConfirmMutation | undefined | null,
-): doc is SignUpMutation {
+function isSignUp(doc: SignUpMutation | undefined | null): doc is SignUpMutation {
   return typeof (doc as SignUpMutation).generateCustomerToken?.token !== 'undefined'
 }
 
@@ -43,16 +39,13 @@ test.describe('Authentication flow', () => {
     const createAccount = page.locator('#create-account')
     await createAccount.click()
 
-    const result = await Promise.race([
-      waitForGraphQlResponse(page, SignUpDocument),
-      waitForGraphQlResponse(page, SignUpConfirmDocument),
-    ])
+    const result = await waitForGraphQlResponse(page, SignUpDocument)
 
     test.expect(result.errors).toBeUndefined()
     test.expect(result.data?.createCustomer?.customer.email).toMatch(generatedEmail)
 
     if (isSignUp(result.data)) {
-      test.expect(result.data.generateCustomerToken).toBeDefined()
+      test.expect(result.data.createCustomer?.customer).toBeDefined()
       const element = page.locator('text=Hi Playwright! You’re now logged in!')
       test.expect(await element.innerText()).toBeDefined()
     } else {

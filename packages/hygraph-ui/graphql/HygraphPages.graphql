@@ -1,4 +1,4 @@
-query HygraphPages($url: String!) {
+query HygraphPages($url: String!, $maxAge: Int = 3600000) @cacheControl(maxAge: $maxAge) {
   pages(where: { url: $url }) {
     id
     __typename

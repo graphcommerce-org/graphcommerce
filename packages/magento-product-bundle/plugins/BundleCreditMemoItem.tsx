@@ -1,4 +1,5 @@
-import type { CreditMemoItemProps } from '@graphcommerce/magento-customer'
+import type { CreditMemoItem } from '@graphcommerce/graphql-mesh'
+import type { CreditMemoItemProps, InvoiceItemProps } from '@graphcommerce/magento-customer'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 
@@ -7,10 +8,10 @@ export const config: PluginConfig = {
   module: '@graphcommerce/magento-customer',
 }
 
-export function CreditMemoItem(props: PluginProps<CreditMemoItemProps>) {
+export function OrderItem(props: PluginProps<CreditMemoItemProps>) {
   const { Prev, ...rest } = props
 
-  if (rest.item.__typename !== 'BundleCreditMemoItem') return <Prev {...rest} />
+  if (rest.item.__typename !== '') return <Prev {...rest} />
 
   return (
     <Prev

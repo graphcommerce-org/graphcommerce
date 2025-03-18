@@ -81,7 +81,10 @@ export function EditAddressForm(props: EditAddressFormProps) {
     <>
       <Form onSubmit={submitHandler} noValidate sx={sx}>
         <CompanyFields<UpdateCustomerAddressMutationVariables> form={form} />
-        <NameFields form={form} prefix />
+        <NameFields
+          form={form}
+          names={{ firstname: 'firstname', lastname: 'lastname', prefix: 'prefix' }}
+        />
         <AddressFields<UpdateCustomerAddressMutationVariables>
           form={form}
           name={{ regionId: 'region.region_id' }}

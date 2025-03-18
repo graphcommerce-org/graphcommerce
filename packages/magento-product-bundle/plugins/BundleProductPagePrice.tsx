@@ -6,13 +6,8 @@ import {
 } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
-import {
-  calculateBundleOptionValuePrice,
-  substractCalculatedBundleOptionValuePrices,
-  sumCalculatedBundleOptionValuePrices,
-  toProductListPriceFragment,
-  type CalculatedBundleOptionValuePrice,
-} from '../components/BundleProductOptions/calculateBundleOptionValuePrice'
+import { bundleProductPriceFraction } from '../components/BundleProductOptions/BundleOptionValue'
+import { calculateBundleOptionValuePrice } from '../components/BundleProductOptions/calculateBundleOptionValuePrice'
 import type { BundleProductItemOptionType } from '../components/BundleProductOptions/types'
 import type { ProductPageItem_BundleFragment } from '../graphql'
 
@@ -54,49 +49,23 @@ export function ProductPagePrice(
     return <Prev product={product} index={index} {...rest} />
   }
 
-  const cheapestPricesAlreadyIncludedInBasePrice = filterNonNullableKeys(product.items)
-    .filter((item) => item.required)
-    .map((item) =>
-      item.options
-        .filter(nonNullable)
-        .map((option) => calculateBundleOptionValuePrice(product, item, option))
-        .reduce((acc, price) => (price[1] < acc[1] ? price : acc)),
-    )
-
-  const reduceBase = sumCalculatedBundleOptionValuePrices(cheapestPricesAlreadyIncludedInBasePrice)
-
-  const basePrice: CalculatedBundleOptionValuePrice = [
-    product.price_range.minimum_price.regular_price.value ?? 0,
-    product.price_range.minimum_price.final_price.value ?? 0,
-  ]
-  const base = substractCalculatedBundleOptionValuePrices(basePrice, reduceBase)
-
   // This only works with Magento 2.4.7, but that is fine.
   const itemPrices = filterNonNullableKeys(product.items)
     .map((item) => {
       const selectedOption = allSelectedOptions[item.uid]
       const allOptions = item.options.filter(nonNullable)
-
-      const options: BundleProductItemOptionType[] = selectedOption
+      let options: BundleProductItemOptionType[] = selectedOption
         ? allOptions.filter((o) => {
             if (Array.isArray(selectedOption)) return selectedOption.includes(o?.uid ?? '')
             return selectedOption === o?.uid
           })
         : allOptions.filter((o) => o?.is_default)
 
-      return options.map((option) => {
-        const quantity = allEnteredOptions[option.uid]
-          ? Number(allEnteredOptions[option.uid])
-          : (option.quantity ?? 1)
-        return calculateBundleOptionValuePrice(product, item, option, quantity)
-      })
+      return options.map((option) => calculateBundleOptionValuePrice(product, item, option))
     })
     .flat(1)
 
-  const totalPrice = toProductListPriceFragment(
-    sumCalculatedBundleOptionValuePrices([base, ...itemPrices]),
-    product.price_range.minimum_price.final_price.currency,
-  )
+  console.log(itemPrices)
 
   return (
     <Prev
@@ -106,7 +75,14 @@ export function ProductPagePrice(
           ...product.price_range,
           minimum_price: {
             ...product.price_range.minimum_price,
-            ...totalPrice,
+            regular_price: {
+              currency: product.price_range.minimum_price.regular_price.currency,
+              value: gatheredPrice,
+            },
+            final_price: {
+              currency: product.price_range.minimum_price.final_price.currency,
+              value: gatheredPrice,
+            },
           },
         },
       }}
@@ -114,4 +90,6 @@ export function ProductPagePrice(
       {...rest}
     />
   )
+
+  return <Prev product={product} index={index} {...rest} />
 }

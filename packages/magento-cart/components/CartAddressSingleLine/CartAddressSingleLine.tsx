@@ -7,6 +7,8 @@ export type CartAddressSingleLineProps = CartAddressFragment & { locale?: Countr
 
 /** @public */
 export function CartAddressSingleLine(props: CartAddressSingleLineProps) {
-  const { locale } = props
-  return <AddressSingleLine {...props} country_code={locale} />
+  const { locale, custom_attributes = [], ...rest } = props
+  return (
+    <AddressSingleLine {...rest} country_code={locale} custom_attributesV2={custom_attributes} />
+  )
 }

@@ -23,41 +23,42 @@ export async function customAttributeMetadataV2(
     context,
     key: input,
     argsFromKeys: (attributes) => ({ attributes }),
-    selectionSet: /* GraphQL */ `
-      {
-        items {
-          __typename
-          code
-          label
-          default_value
-          entity_type
-          frontend_class
-          frontend_input
-          is_required
-          is_unique
-          label
-          ... on CatalogAttributeMetadata {
-            apply_to
-            is_comparable
-            is_filterable
-            is_filterable_in_search
-            is_html_allowed_on_front
-            is_searchable
-            is_used_for_price_rules
-            is_used_for_promo_rules
-            is_visible_in_advanced_search
-            is_visible_on_front
-            is_wysiwyg_enabled
-            used_in_product_listing
-          }
-          options {
-            label
-            is_default
-            value
-          }
-        }
-      }
-    `,
+    autoSelectionSetWithDepth: 10,
+    // selectionSet: /* GraphQL */ `
+    //   {
+    //     items {
+    //       __typename
+    //       code
+    //       label
+    //       default_value
+    //       entity_type
+    //       frontend_class
+    //       frontend_input
+    //       is_required
+    //       is_unique
+    //       label
+    //       ... on CatalogAttributeMetadata {
+    //         apply_to
+    //         is_comparable
+    //         is_filterable
+    //         is_filterable_in_search
+    //         is_html_allowed_on_front
+    //         is_searchable
+    //         is_used_for_price_rules
+    //         is_used_for_promo_rules
+    //         is_visible_in_advanced_search
+    //         is_visible_on_front
+    //         is_wysiwyg_enabled
+    //         used_in_product_listing
+    //       }
+    //       options {
+    //         label
+    //         is_default
+    //         value
+    //       }
+    //     }
+    //   }
+    // `,
     valuesFromResults: (res, attributes) =>
       attributes.map((attr) => res.items?.find((v) => v?.code === attr.attribute_code)),
   })

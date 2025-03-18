@@ -1,3 +1,4 @@
+import { addTtlPerCoordinate } from '@graphcommerce/graphql-mesh'
 import type { meshConfig as meshConfigBase } from '@graphcommerce/graphql-mesh/meshConfig'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 
@@ -20,6 +21,9 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
         ...(baseConfig.additionalResolvers ?? []),
         '@graphcommerce/googlerecaptcha/mesh/resolvers.ts',
       ],
+      plugins: addTtlPerCoordinate(baseConfig.plugins, {
+        'Query.recaptcha': 36000000,
+      }),
     },
     graphCommerceConfig,
   )

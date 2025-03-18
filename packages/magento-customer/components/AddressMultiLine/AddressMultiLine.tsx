@@ -59,7 +59,7 @@ export function AddressMultiLine(props: AddressMultiLineProps) {
         {countryName}
       </div>
       <div>{telephone}</div>
-      <div>{vat_id}</div>
+      {vat_id ? <div>VAT: {vat_id}</div> : null}
     </Typography>
   )
 }

@@ -1,24 +1,20 @@
 import { SelectElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { FormRow } from '@graphcommerce/next-ui'
-import type {
-  FieldPath,
-  FieldValues,
-  PathValue,
-  UseFormReturn,
-} from '@graphcommerce/react-hook-form'
+import type { FieldValues, UseFormReturn } from '@graphcommerce/react-hook-form'
 import { assertFormGqlOperation } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 
+type NameFieldValues = {
+  firstname?: string
+  lastname?: string
+  prefix?: string
+}
+
 export type NameFieldProps<TFieldValues extends FieldValues = FieldValues> = {
   form: UseFormReturn<TFieldValues>
-  names?: {
-    firstname: FieldPath<TFieldValues>
-    lastname: FieldPath<TFieldValues>
-    prefix?: FieldPath<TFieldValues>
-  }
   readOnly?: boolean
   prefix?: boolean
   prefixes?: string[]
@@ -31,31 +27,21 @@ export function NameFields<TFieldValues extends FieldValues = FieldValues>(
   const mrs = i18n._(/* i18n */ 'Mrs')
   const other = i18n._(/* i18n */ 'Other')
 
-  const {
-    form,
-    readOnly,
-    prefixes = [mr, mrs, other],
-    prefix,
-    names = {
-      firstname: 'firstname' as FieldPath<TFieldValues>,
-      lastname: 'lastname' as FieldPath<TFieldValues>,
-      prefix: prefix ? ('prefix' as FieldPath<TFieldValues>) : undefined,
-    },
-  } = props
-  assertFormGqlOperation<TFieldValues>(form)
+  const { prefix, form, readOnly, prefixes = [mr, mrs, other] } = props
+  assertFormGqlOperation<NameFieldValues>(form)
 
   const { control, required } = form
 
   return (
     <>
-      {names.prefix && (
+      {prefix && (
         <FormRow>
           <SelectElement
             variant='outlined'
-            defaultValue={prefixes[0] as PathValue<TFieldValues, FieldPath<TFieldValues>>}
+            defaultValue={prefixes[0]}
             control={control}
             required={required.prefix}
-            name={names.prefix}
+            name='prefix'
             label={<Trans id='Prefix' />}
             showValid
             InputProps={{ readOnly }}
@@ -66,7 +52,7 @@ export function NameFields<TFieldValues extends FieldValues = FieldValues>(
       <FormRow>
         <TextFieldElement
           control={control}
-          name={names.firstname}
+          name='firstname'
           required={required.firstname}
           variant='outlined'
           type='text'
@@ -76,7 +62,7 @@ export function NameFields<TFieldValues extends FieldValues = FieldValues>(
         />
         <TextFieldElement
           control={control}
-          name={names.lastname}
+          name='lastname'
           required={required.lastname}
           variant='outlined'
           type='text'

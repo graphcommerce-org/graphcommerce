@@ -1,0 +1,9 @@
+fragment ErrorInterface on ErrorInterface {
+  ... on InternalError {
+    message
+  }
+  ... on NoSuchEntityUidError {
+    message
+    uid
+  }
+}

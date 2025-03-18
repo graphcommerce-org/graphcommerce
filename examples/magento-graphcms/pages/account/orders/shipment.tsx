@@ -43,7 +43,7 @@ function ShipmentDetailPage() {
   return (
     <>
       <LayoutOverlayHeader hideBackButton>
-        <LayoutTitle size='small' component='span' icon={iconBox}>
+        <LayoutTitle size='small' component='span' icon={iconShipping}>
           <Trans>Shipment #{shipmentNumber}</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
@@ -52,14 +52,14 @@ function ShipmentDetailPage() {
           {(!shipmentNumber || !shipment || !order) && (
             <FullPageMessage
               title={<Trans>Shipment not found</Trans>}
-              icon={<IconSvg src={iconBox} size='xxl' />}
+              icon={<IconSvg src={iconShipping} size='xxl' />}
             />
           )}
 
           {shipmentNumber && shipment && order && (
             <>
               <LayoutTitle
-                icon={iconBox}
+                icon={iconShipping}
                 gutterBottom={false}
                 sx={(theme) => ({ mb: theme.spacings.xxs })}
               >

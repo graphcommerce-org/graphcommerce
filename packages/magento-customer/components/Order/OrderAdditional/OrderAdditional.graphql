@@ -1,16 +1,3 @@
-fragment OrderAdditional on CustomerOrder {
-  ...CancelOrderFragment
-  number
-  invoices {
-    ...InvoiceCard
-  }
-  credit_memos {
-    ...CreditMemoCard
-  }
-  shipments {
-    ...ShipmentCard
-  }
-  comments {
-    ...SalesCommentItem
-  }
+fragment OrderAdditional on Order {
+  order_number
 }

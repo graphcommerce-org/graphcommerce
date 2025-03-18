@@ -1,42 +1,5 @@
-mutation CreateCustomerAddress(
-  $prefix: String
-  $firstname: String!
-  $middlename: String
-  $lastname: String!
-  $suffix: String
-  $telephone: String!
-  $street: String!
-  $houseNumber: String!
-  $addition: String = ""
-  $city: String!
-  $postcode: String!
-  $region: CustomerAddressRegionInput!
-  $company: String
-  $countryCode: CountryCodeEnum!
-  $vatId: String
-  $defaultBilling: Boolean = false
-  $defaultShipping: Boolean = false
-  $isCompany: Boolean = false
-) {
-  createCustomerAddress(
-    input: {
-      prefix: $prefix
-      firstname: $firstname
-      middlename: $middlename
-      lastname: $lastname
-      telephone: $telephone
-      suffix: $suffix
-      street: [$street, $houseNumber, $addition]
-      city: $city
-      postcode: $postcode
-      region: $region
-      company: $company
-      country_code: $countryCode
-      vat_id: $vatId
-      default_billing: $defaultBilling
-      default_shipping: $defaultShipping
-    }
-  ) {
+mutation CreateCustomerAddress($input: CustomerAddressInput!, $isCompany: Boolean = false) {
+  createCustomerAddress(input: $input) {
     isCompany: id @include(if: $isCompany)
     id
   }

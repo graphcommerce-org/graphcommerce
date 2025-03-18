@@ -1,0 +1,9 @@
+fragment ZeroSubtotalConfig on StoreConfig {
+  zero_subtotal_enabled
+  zero_subtotal_title
+  zero_subtotal_new_order_status
+  zero_subtotal_payment_action
+  zero_subtotal_enable_for_specific_countries
+  zero_subtotal_payment_from_specific_countries
+  zero_subtotal_sort_order
+}

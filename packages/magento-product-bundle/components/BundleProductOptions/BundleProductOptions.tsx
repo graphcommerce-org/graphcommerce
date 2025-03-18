@@ -1,9 +1,9 @@
 import type { AddToCartItemSelector } from '@graphcommerce/magento-product'
 import type { ActionCardListProps } from '@graphcommerce/next-ui'
-import { nonNullable } from '@graphcommerce/next-ui'
-import type { ProductPageItem_BundleFragment } from '../../graphql'
+import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { BundleOption } from './BundleOption'
 import { BundleOptionValue } from './BundleOptionValue'
+import type { BundleProductOptionsFragment } from './BundleProductOptions.gql'
 import type { BundleOptionValueProps } from './types'
 
 export type BundelProductOptionsProps = Pick<
@@ -11,22 +11,22 @@ export type BundelProductOptionsProps = Pick<
   'size' | 'layout' | 'color' | 'variant'
 > & {
   renderer?: React.FC<BundleOptionValueProps>
-  product: ProductPageItem_BundleFragment
+  product: BundleProductOptionsFragment
 } & AddToCartItemSelector
 
 export function BundleProductOptions(props: BundelProductOptionsProps) {
-  const { product, index = 0, ...rest } = props
+  const { product, index = 0 } = props
 
   return (
     <>
-      {(product?.items ?? []).filter(nonNullable).map((item) => (
+      {filterNonNullableKeys(product?.items, ['uid', 'title', 'type']).map((item) => (
         <BundleOption
           index={index}
           key={item.uid}
           color='primary'
-          item={item}
-          product={product}
-          {...rest}
+          {...props}
+          {...item}
+          idx={item.position ?? 0 + 1000}
           renderer={BundleOptionValue}
         />
       ))}

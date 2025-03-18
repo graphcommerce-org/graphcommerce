@@ -1,0 +1,5 @@
+fragment DownloadableInvoiceItem on DownloadableInvoiceItem @inject(into: ["InvoiceItem"]) {
+  downloadable_links {
+    ...DownloadableItemsLinks
+  }
+}

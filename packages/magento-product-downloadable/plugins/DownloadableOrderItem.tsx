@@ -1,5 +1,4 @@
 import type { OrderItemProps } from '@graphcommerce/magento-customer'
-import type { PriceModifier } from '@graphcommerce/magento-store'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 
@@ -18,12 +17,16 @@ export function OrderItem(props: PluginProps<OrderItemProps>) {
       {...rest}
       priceModifiers={[
         ...(rest.priceModifiers ?? []),
-        ...filterNonNullableKeys(rest.item.downloadable_links)
-          .sort((a, b) => a.sort_order - b.sort_order)
-          .map<PriceModifier>((link) => ({
-            key: link.uid,
-            label: link.title,
+        ...filterNonNullableKeys(rest.item.bundle_options).map((option) => ({
+          key: option.uid,
+          label: option.label,
+          items: filterNonNullableKeys(option.values).map((value, index) => ({
+            key: `${index}`,
+            label: value.product_name,
+            amount: value.price.value ?? 0,
+            quantity: value.quantity,
           })),
+        })),
       ]}
     />
   )

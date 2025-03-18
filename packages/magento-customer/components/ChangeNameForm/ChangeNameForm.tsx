@@ -11,7 +11,7 @@ export type ChangeNameFormProps = {
   lastname: string
 }
 
-/** @deprecated Use UpdateCustomerForm when using Magento 2.4.7 and higher */
+/** @deprecated Use UpdateCustomerForm instead */
 export function ChangeNameForm(props: ChangeNameFormProps) {
   const { prefix, firstname, lastname } = props
   const form = useFormGqlMutation(

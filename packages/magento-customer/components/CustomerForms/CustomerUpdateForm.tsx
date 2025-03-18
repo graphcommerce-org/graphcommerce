@@ -3,11 +3,12 @@ import {
   AttributesFormAutoLayout,
   type AttributeFormAutoLayoutProps,
 } from '@graphcommerce/magento-store'
+import { extractAttributes } from '@graphcommerce/magento-store/components/AttributeForm/useAttributesForm'
 import { Button, FormActions, type ButtonProps } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { styled } from '@mui/material'
 import type { ComponentProps } from 'react'
-import { CustomerAttributeField } from './CustomerAttributeField'
+import { CustomerAttributeField } from '../CustomerAttributesForm/CustomerAttributeField'
 import { nameFieldset } from './nameFieldset'
 import {
   useCustomerUpdateForm,
@@ -37,6 +38,10 @@ export function CustomerUpdateForm(props: CustomerUpdateFormProps) {
 
   const { control, handleSubmit, formState, error, attributes } = useCustomerUpdateForm(config)
   const submit = handleSubmit(() => {})
+
+  // TODO: Hoe render ik iets als Street die een custom renderer nodig heeft, custom placeholders, etc. Component aanpassen.
+  // TODO: Vertalingen zijn op dit moment niet altijd juist, hoe kan ik props aanpassen zodat deze wel werken? Props aanpassen.
+  // TODO: Customer account create: Ook de mogelijkheid tot het toevoegen van een adres bij registratie.
 
   return (
     <Form onSubmit={submit} noValidate {...slotProps?.form}>

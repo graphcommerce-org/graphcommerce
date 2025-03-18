@@ -1,10 +1,7 @@
-import {
-  selectedCustomizableOptionsModifiers,
-  type CartItemActionCardProps,
-} from '@graphcommerce/magento-cart-items'
-import type { PriceModifier } from '@graphcommerce/magento-store'
+import type { CartItemActionCardProps } from '@graphcommerce/magento-cart-items'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
-import { filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { isTypename } from '@graphcommerce/next-ui'
+import { BundleProductCartItemOptions } from '../components/BundleProductCartItemOptions/BundleProductCartItemOptions'
 
 export const config: PluginConfig = {
   type: 'component',
@@ -14,29 +11,17 @@ export const config: PluginConfig = {
 export function CartItemActionCard(props: PluginProps<CartItemActionCardProps>) {
   const { Prev, ...rest } = props
 
-  if (rest.cartItem.__typename !== 'BundleCartItem') return <Prev {...rest} />
-
-  const bundleModifiers = filterNonNullableKeys(rest.cartItem.bundle_options).map<PriceModifier>(
-    (option) => ({
-      key: option.uid,
-      label: option.label,
-      items: filterNonNullableKeys(option.values).map((value) => ({
-        key: value.uid,
-        label: value.label,
-        amount: value.price,
-        quantity: value.quantity,
-      })),
-    }),
-  )
+  if (!isTypename(rest.cartItem, ['BundleCartItem'])) return <Prev {...rest} />
 
   return (
     <Prev
       {...rest}
-      priceModifiers={[
-        ...(rest.priceModifiers ?? []),
-        ...bundleModifiers,
-        ...selectedCustomizableOptionsModifiers(rest.cartItem),
-      ]}
+      details={
+        <>
+          {rest.details}
+          <BundleProductCartItemOptions {...rest.cartItem} />
+        </>
+      }
     />
   )
 }

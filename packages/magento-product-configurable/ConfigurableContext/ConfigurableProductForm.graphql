@@ -8,6 +8,8 @@ fragment ConfigurableProductForm on ConfigurableProduct {
     use_default
     values {
       uid
+      label
+      default_label
       use_default_value
       store_label
       swatch_data {

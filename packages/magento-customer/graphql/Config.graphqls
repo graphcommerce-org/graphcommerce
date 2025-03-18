@@ -1,6 +1,15 @@
 enum CustomerAccountPermissions {
+  """
+  Accounts are enabled
+  """
   ENABLED
+  """
+  Allowed to sign in but, not allowed to register
+  """
   DISABLE_REGISTRATION
+  """
+  Completely disabled
+  """
   DISABLED
 }
 

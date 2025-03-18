@@ -80,10 +80,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
 
   const conf = client.query({ query: StoreConfigDocument })
   const page = hygraphPageContent(staticClient, 'page/home')
-  const layout = staticClient.query({
-    query: LayoutDocument,
-    fetchPolicy: cacheFirst(staticClient),
-  })
+  const layout = staticClient.query({ query: LayoutDocument })
 
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
   const favoritesList = staticClient.query({

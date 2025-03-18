@@ -1,72 +1,78 @@
-import {
-  ActionCardLayout,
-  breakpointVal,
-  extendableComponent,
-  nonNullable,
-  SectionContainer,
-} from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Money } from '@graphcommerce/magento-store'
+import { extendableComponent, SectionContainer } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import type { ShipmentFragment } from './Shipment.gql'
-import { ShipmentItem } from './ShipmentItem'
 
 export type ShipmentItemsProps = {
   shipment: ShipmentFragment
   sx?: SxProps<Theme>
-  layout?: 'list' | 'grid'
-  size?: 'small' | 'medium' | 'large'
 }
 
 const componentName = 'ShipmentItems'
-const parts = ['root', 'items', 'actionCard'] as const
+const parts = ['root', 'shipmentItemsInnerContainer', 'itemRow', 'itemDetails'] as const
 const { classes } = extendableComponent(componentName, parts)
 
 export function ShipmentItems(props: ShipmentItemsProps) {
-  const { shipment, sx = [], layout = 'list', size } = props
+  const { shipment, sx = [] } = props
+  const { items } = shipment
 
-  const items = (shipment.items ?? []).filter(nonNullable)
-  if (!items.length) return null
+  if (!items?.length) return null
 
   return (
-    <Box
+    <SectionContainer
+      labelLeft={<Trans id='Shipped items' />}
       className={classes.root}
       sx={[
         (theme) => ({
-          my: theme.spacings.md,
-          padding: `${theme.spacings.sm} ${theme.spacings.sm}`,
-          border: `1px ${theme.palette.divider} solid`,
-          ...breakpointVal(
-            'borderRadius',
-            theme.shape.borderRadius * 2,
-            theme.shape.borderRadius * 3,
-            theme.breakpoints.values,
-          ),
+          marginTop: theme.spacings.md,
+          marginBottom: theme.spacings.sm,
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <SectionContainer
-        sx={{ '& .SectionHeader-root': { mt: 0 } }}
-        labelLeft={<Trans>Shipped items</Trans>}
-        variantLeft='h6'
-        className={classes.items}
+      <Box
+        className={classes.shipmentItemsInnerContainer}
+        sx={(theme) => ({ mb: theme.spacings.md })}
       >
-        <ActionCardLayout
-          sx={(theme) => ({
-            marginBottom: theme.spacings.md,
-            '&.layoutStack': {
-              gap: 0,
-            },
-          })}
-          className={classes.actionCard}
-          layout={layout}
-        >
-          {items.map((item) => (
-            <ShipmentItem key={item.id} item={item} size={size} layout={layout} variant='default' />
-          ))}
-        </ActionCardLayout>
-      </SectionContainer>
-    </Box>
+        {items.map((item) => {
+          if (!item) return null
+          const { id, product_name, product_sku, quantity_shipped, product_sale_price } = item
+
+          return (
+            <Box
+              key={id}
+              className={classes.itemRow}
+              sx={(theme) => ({
+                display: 'grid',
+                gridTemplateColumns: '1fr auto',
+                gap: theme.spacings.sm,
+                padding: `${theme.spacings.xs} 0`,
+                borderBottom: `1px solid ${theme.palette.divider}`,
+                '&:last-child': {
+                  borderBottom: 'none',
+                },
+              })}
+            >
+              <Box className={classes.itemDetails}>
+                <Typography variant='h6' gutterBottom>
+                  {product_name}
+                </Typography>
+                <Typography variant='body2' color='textSecondary'>
+                  <Trans>SKU: {product_sku}</Trans>
+                </Typography>
+                <Typography variant='body2' color='textSecondary'>
+                  <Trans>Quantity shipped: {quantity_shipped}</Trans>
+                </Typography>
+              </Box>
+              <Box sx={{ textAlign: 'right' }}>
+                <Money {...product_sale_price} />
+              </Box>
+            </Box>
+          )
+        })}
+      </Box>
+    </SectionContainer>
   )
 }

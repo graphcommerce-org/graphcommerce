@@ -78,10 +78,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const conf = client.query({ query: StoreConfigDocument })
   const page = hygraphPageContent(staticClient, `modal/${urlKey}`)
 
-  const layout = staticClient.query({
-    query: LayoutDocument,
-    fetchPolicy: cacheFirst(staticClient),
-  })
+  const layout = staticClient.query({ query: LayoutDocument })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
 

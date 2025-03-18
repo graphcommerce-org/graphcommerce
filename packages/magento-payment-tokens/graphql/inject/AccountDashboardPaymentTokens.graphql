@@ -1,4 +1,4 @@
-fragment CustomerPaymentTokensAccountDashboard on Query
+fragment CustomerPaymentTokensCustomerDashboard on Query
 @inject(into: ["AccountDashboardQueryFragment"]) {
   customerPaymentTokens {
     items {

@@ -11,7 +11,11 @@ fragment ShippingHandling on ShippingHandling {
     }
   }
   taxes {
-    ...TaxItem
+    amount {
+      ...Money
+    }
+    rate
+    title
   }
   total_amount {
     ...Money

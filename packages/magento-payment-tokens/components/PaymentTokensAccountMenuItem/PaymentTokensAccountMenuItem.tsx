@@ -4,27 +4,33 @@ import {
   useCustomerQuery,
   type AccountMenuItemProps,
 } from '@graphcommerce/magento-customer'
-import { iconCreditCard } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import type { SetOptional } from 'type-fest'
+import { useRewardPointsConfig } from '../../hooks/useRewardPointsEnabled'
+import { RewardPointsAmount } from '../RewardPointsAmount/RewardPointsAmount'
+import { iconRewardPoints } from '../RewardPointsAmount/rewardPointsIcon'
 
-type PaymentTokensAccountMenuItemProps = SetOptional<
+type RewardPointsAccountMenuItemProps = SetOptional<
   Omit<AccountMenuItemProps, 'href'>,
   'iconSrc' | 'title'
 >
 
-export function PaymentTokensAccountMenuItem(props: PaymentTokensAccountMenuItemProps) {
+export function RewardPointsAccountMenuItem(props: RewardPointsAccountMenuItemProps) {
   const dashboard = useCustomerQuery(AccountDashboardDocument, { fetchPolicy: 'cache-only' })
-  const tokens = dashboard.data?.customerPaymentTokens?.items
+  const customer = dashboard.data?.customer
 
-  if (!tokens || tokens.length === 0) return null
+  const config = useRewardPointsConfig()
+
+  if (!config.enabled) return null
+
+  if (!customer?.reward_points?.balance?.points) return null
 
   return (
     <AccountMenuItem
-      href='/account/payment-tokens'
-      iconSrc={iconCreditCard}
-      title={<Trans id='Stored payment methods'>Stored payment methods</Trans>}
-      subtitle={<Trans id='For faster checkout'>For faster checkout</Trans>}
+      href='/account/reward-points'
+      iconSrc={iconRewardPoints}
+      title={<Trans id='Store Credit'>Reward Points</Trans>}
+      subtitle={<RewardPointsAmount points={customer?.reward_points?.balance?.points} />}
       {...props}
     />
   )

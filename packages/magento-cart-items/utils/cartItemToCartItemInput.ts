@@ -1,9 +1,17 @@
-import type { AddProductsToCartFields, SelectorsProp } from '@graphcommerce/magento-product'
+import { cartToBeginCheckout } from '@graphcommerce/google-datalayer/mapping/cartToBeginCheckout/cartToBeginCheckout'
+import type {
+  AddProductsToCartFields,
+  AnyOption,
+  CustomizableProductOptionBase,
+  OptionValueSelector,
+  SelectorsProp,
+} from '@graphcommerce/magento-product'
+import { productCustomizableSelectors } from '@graphcommerce/magento-product'
 import { filterNonNullableKeys, isTypename, nonNullable } from '@graphcommerce/next-ui'
 import type { CartItemFragment } from '../Api/CartItem.gql'
 import type { EditCartItemFormFragment } from '../components/EditCartItem/EditCartItemForm/EditCartItemForm.gql'
 
-export type CartItemToCartItemInputReturnValue = AddProductsToCartFields['cartItems'][number]
+type CartItemInput = AddProductsToCartFields['cartItems'][number]
 
 export type CartItemToCartItemInputProps = {
   product: EditCartItemFormFragment
@@ -12,18 +20,19 @@ export type CartItemToCartItemInputProps = {
 
 export function cartItemToCartItemInput(
   props: CartItemToCartItemInputProps,
-): CartItemToCartItemInputReturnValue | undefined {
-  const { product, cartItem } = props
+): CartItemInput | undefined {
+  const { product, cartItem, selectors } = props
 
   if (isTypename(product, ['GroupedProduct']) || !product.sku || !cartItem) return undefined
 
-  const cartItemInput = {
+  const allSelectors: OptionValueSelector = { ...productCustomizableSelectors, ...selectors }
+
+  const cartItemInput: CartItemInput = {
     sku: product.sku,
     quantity: cartItem.quantity,
-    selected_options_record: {},
+    customizable_options: {},
     selected_options: [],
     entered_options: [],
-    entered_options_record: {},
   }
 
   const cartItemCustomizableOptions = filterNonNullableKeys(cartItem.customizable_options ?? {})
@@ -32,6 +41,12 @@ export function cartItemToCartItemInput(
     product.options?.filter(nonNullable).forEach((productOption) => {
       // @todo Date option: Magento's backend does not provide an ISO date string that can be used, only localized strings are available which can not be parsed.
       // @todo File option: We do not support file options yet.
+
+      const selector = allSelectors[productOption.__typename] as
+        | undefined
+        | ((option: AnyOption) => CustomizableProductOptionBase | CustomizableProductOptionBase[])
+      const possibleProductValues = selector ? selector(productOption) : null
+
       const cartItemCustomizableOption = cartItemCustomizableOptions.find(
         (option) => option?.customizable_option_uid === productOption.uid,
       )
@@ -41,32 +56,60 @@ export function cartItemToCartItemInput(
       )
       if (cartItemCustomizableOptionValue.length === 0) return
 
-      switch (productOption.__typename) {
-        case 'CustomizableAreaOption':
-        case 'CustomizableFileOption':
-        case 'CustomizableFieldOption':
-          cartItemCustomizableOptionValue.forEach(
-            ({ customizable_option_value_uid: uid, value }) => {
-              cartItemInput.entered_options_record[uid] = value
-            },
-          )
-          break
-        case 'CustomizableRadioOption':
-        case 'CustomizableDropDownOption':
-          cartItemInput.selected_options_record[productOption.uid] =
-            cartItemCustomizableOptionValue[0]?.customizable_option_value_uid
-          break
-        case 'CustomizableCheckboxOption':
-        case 'CustomizableMultipleOption':
-          cartItemInput.selected_options_record[productOption.uid] =
-            cartItemCustomizableOptionValue.map(({ customizable_option_value_uid: uid }) => uid)
-          break
-        case 'CustomizableDateOption':
-          // Not supported, backend does not provide an ISO date string that can be used, only localized strings are available which can not be parsed.
-          break
-        default:
-          console.log(`${(productOption as { __typename: string }).__typename} not implemented`)
-          break
+      if (Array.isArray(possibleProductValues)) {
+        const value = cartItemCustomizableOptionValue.map((v) => v.customizable_option_value_uid)
+        if (!cartItemInput.customizable_options) cartItemInput.customizable_options = {}
+        cartItemInput.customizable_options[productOption.uid] = isTypename(productOption, [
+          'CustomizableRadioOption',
+          'CustomizableDropDownOption',
+        ])
+          ? value[0]
+          : value
+      } else {
+        if (!cartItemInput.customizable_options_entered)
+          cartItemInput.customizable_options_entered = {}
+
+        if (productOption.__typename === 'CustomizableDateOption') {
+          if (productOption.dateValue?.type === 'TIME') {
+            cartItemInput.customizable_options_entered[productOption.uid] =
+              `01-01-1970 ${cartItemCustomizableOptionValue[0].value}.000Z`
+          }
+        } else {
+          cartItemInput.customizable_options_entered[productOption.uid] =
+            cartItemCustomizableOptionValue[0].value
+        }
+      }
+    })
+  }
+
+  if (isTypename(cartItem, ['ConfigurableCartItem']) && cartItem.configurable_options) {
+    cartItemInput.selected_options = filterNonNullableKeys(cartItem.configurable_options).map(
+      (option) => option.configurable_product_option_value_uid,
+    )
+  }
+
+  if (isTypename(cartItem, ['BundleCartItem']) && isTypename(product, ['BundleProduct'])) {
+    filterNonNullableKeys(product.items).forEach((productBundleItem) => {
+      const cartItemBundleOption = cartItem.bundle_options.find(
+        (option) => option?.uid === productBundleItem?.uid,
+      )
+
+      if (!cartItemBundleOption) return
+
+      // todo multi select..
+      const idx = productBundleItem.position ?? 0 + 1000
+      const value = cartItemBundleOption.values[0]
+
+      if (!value) return
+      if (productBundleItem.options?.some((o) => o?.can_change_quantity)) {
+        if (!cartItemInput.entered_options) cartItemInput.entered_options = []
+        cartItemInput.entered_options[idx] = {
+          uid: value.uid,
+          value: `${value.quantity}`,
+        }
+      } else {
+        if (!cartItemInput.selected_options) cartItemInput.selected_options = []
+        cartItemInput.selected_options[idx] = value.uid
       }
     })
   }

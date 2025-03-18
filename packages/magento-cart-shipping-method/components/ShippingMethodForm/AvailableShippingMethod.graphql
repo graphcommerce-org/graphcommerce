@@ -1,4 +1,7 @@
 fragment AvailableShippingMethod on AvailableShippingMethod {
+  amount {
+    ...Money
+  }
   price_incl_tax {
     ...Money
   }

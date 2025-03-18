@@ -1,11 +1,10 @@
 fragment InvoiceItem on InvoiceItemInterface {
-  __typename
   id
   discounts {
-    amount {
-      ...Money
-    }
-    label
+    ...Discount
+  }
+  order_item {
+    id
   }
   product_name
   product_sale_price {
@@ -13,13 +12,4 @@ fragment InvoiceItem on InvoiceItemInterface {
   }
   product_sku
   quantity_invoiced
-  order_item {
-    id
-    product {
-      uid
-      thumbnail {
-        ...ProductImage
-      }
-    }
-  }
 }

@@ -79,14 +79,14 @@ export function CreditMemoDetails(props: CreditMemoDetailsProps) {
         </Box>
 
         <Box className={classes.creditMemoDetailRow}>
-          {/* <SectionContainer
+          <SectionContainer
             variantLeft='h5'
             labelLeft={<Trans>Credit Memo ID</Trans>}
             className={classes.creditMemoDetailTitle}
             sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '4px' } }}
           >
             <Typography>{id}</Typography>
-          </SectionContainer> */}
+          </SectionContainer>
         </Box>
       </Box>
     </SectionContainer>

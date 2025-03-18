@@ -1,5 +1,6 @@
 query PostCodeNL($postcode: String!, $housenumber: String!) {
   postcodeNL(postcode: $postcode, housenumber: $housenumber) {
+    id
     street
     city
   }

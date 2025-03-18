@@ -1,4 +1,4 @@
-query Layout {
+query Layout @cacheControl(maxAge: 3600000) {
   menu: categories {
     __typename
   }

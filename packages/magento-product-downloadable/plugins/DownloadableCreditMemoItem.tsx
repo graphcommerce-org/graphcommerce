@@ -1,7 +1,6 @@
 import type { CreditMemoItemProps } from '@graphcommerce/magento-customer'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
 
 export const config: PluginConfig = {
   type: 'component',
@@ -18,16 +17,16 @@ export function CreditMemoItem(props: PluginProps<CreditMemoItemProps>) {
       {...rest}
       priceModifiers={[
         ...(rest.priceModifiers ?? []),
-        {
-          key: 'downloadable-links',
-          label: <Trans id='Downloads'>Downloads</Trans>,
-          items: filterNonNullableKeys(rest.item.downloadable_links)
-            .sort((a, b) => a.sort_order - b.sort_order)
-            .map((link) => ({
-              key: link.uid,
-              label: link.title,
-            })),
-        },
+        ...filterNonNullableKeys(rest.item.downloadable_links).map((link) => ({
+          key: link.uid,
+          label: link.title,
+          items: filterNonNullableKeys(link.values).map((value, index) => ({
+            key: `${index}`,
+            label: value.product_name,
+            amount: value.price.value ?? 0,
+            quantity: value.quantity,
+          })),
+        })),
       ]}
     />
   )

@@ -4,6 +4,11 @@ fragment Wishlist on Wishlist {
   items_count
   items_v2 {
     __typename
+    page_info {
+      current_page
+      page_size
+      total_pages
+    }
     items {
       ...WishlistItem
     }

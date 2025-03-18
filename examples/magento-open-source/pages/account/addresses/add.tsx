@@ -44,7 +44,11 @@ function AddNewAddressPage() {
             <Trans id='Addresses' />
           </LayoutTitle>
           <SectionContainer labelLeft={<Trans id='Add new address' />}>
-            <CreateCustomerAddressForm />
+            {import.meta.graphCommerce.magentoVersion < 247 ? (
+              <CreateCustomerAddressForm />
+            ) : (
+              <CustomerAddressCreateForm />
+            )}
           </SectionContainer>
         </WaitForCustomer>
       </Container>

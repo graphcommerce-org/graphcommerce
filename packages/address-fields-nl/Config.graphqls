@@ -1,0 +1,8 @@
+enum PostcodeCheckProvider {
+  NATIONAALGEOREGISTER
+  CUSTOM
+}
+
+extend type GraphCommerceConfig {
+  postcodeCheckProvider: PostcodeCheckProvider
+}

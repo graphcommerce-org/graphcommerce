@@ -7,7 +7,7 @@ export function CmsPageMeta(props: CmsPageMetaFragment) {
 
   return (
     <PageMeta
-      title={meta_title ?? title}
+      title={meta_title ?? title ?? ''}
       metaDescription={meta_description}
       metaKeywords={meta_keywords}
       metaRobots={['noindex']}

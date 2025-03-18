@@ -6,4 +6,16 @@ fragment InvoiceCard on Invoice {
       ...Money
     }
   }
+  items {
+    id
+    order_item {
+      id
+      product {
+        uid
+        image {
+          url
+        }
+      }
+    }
+  }
 }

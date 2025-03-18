@@ -3,32 +3,20 @@ fragment StoreConfigFragment on StoreConfig {
   store_code
   store_name
 
-  header_logo_src
-  logo_width
-  logo_height
-  logo_alt
-
-  copyright
-
   locale
   base_currency_code
-
   default_display_currency_code
 
-  head_shortcut_icon
-  head_includes
   title_suffix
   title_prefix
   title_separator
   default_title
   default_description
-  default_keywords
 
   catalog_default_sort_by
   category_url_suffix
   product_url_suffix
   secure_base_link_url
-  secure_base_media_url
   secure_base_url
 
   root_category_uid

@@ -2,10 +2,6 @@ import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   getCustomerAccountIsDisabled,
   InvoiceDetailPageDocument,
-  InvoiceItems,
-  InvoiceTotals,
-  OrderDetails,
-  SalesComments,
   useCustomerQuery,
   WaitForCustomer,
 } from '@graphcommerce/magento-customer'
@@ -20,7 +16,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
-import { Container } from '@mui/material'
+import { Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { LayoutOverlayProps } from '../../../components'
 import { LayoutOverlay } from '../../../components'
@@ -30,34 +26,32 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function InvoiceDetailPage() {
   const router = useRouter()
-  const { invoiceNumber, orderNumber } = router.query
+  const { invoiceNumber } = router.query
 
   const invoices = useCustomerQuery(InvoiceDetailPageDocument, {
     fetchPolicy: 'cache-and-network',
-    variables: { orderNumber: orderNumber as string },
-    skip: !invoiceNumber || !orderNumber,
+    variables: { invoiceNumber: invoiceNumber as string },
+    skip: !invoiceNumber,
   })
-
-  const order = invoices.data?.customer?.orders?.items?.[0]
-  const invoice = order?.invoices.find((i) => i?.number === invoiceNumber)
+  const invoice = invoices.data?.customer?.invoices?.items?.[0]
 
   return (
     <>
-      <LayoutOverlayHeader hideBackButton>
+      <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconInvoice}>
           <Trans>Invoice #{invoiceNumber}</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
       <WaitForCustomer waitFor={[invoices, router.isReady]} sx={{ height: '100%' }}>
         <Container maxWidth='md'>
-          {(!invoiceNumber || !invoice || !order) && (
+          {(!invoiceNumber || !invoice) && (
             <FullPageMessage
               title={<Trans>Invoice not found</Trans>}
               icon={<IconSvg src={iconInvoice} size='xxl' />}
             />
           )}
 
-          {invoiceNumber && invoice && order && (
+          {invoiceNumber && invoice && (
             <>
               <LayoutTitle
                 icon={iconInvoice}
@@ -72,13 +66,10 @@ function InvoiceDetailPage() {
                 metaRobots={['noindex']}
               />
 
-              <OrderDetails order={order} />
+              <InvoiceDetails invoice={invoice} />
               <InvoiceItems invoice={invoice} />
               <InvoiceTotals invoice={invoice} />
-              <SalesComments
-                comments={invoice.comments}
-                sx={(theme) => ({ mb: theme.spacings.lg })}
-              />
+              <SalesComments comments={invoice.comments} />
             </>
           )}
         </Container>
@@ -89,6 +80,7 @@ function InvoiceDetailPage() {
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
+  sharedKey: () => 'account/invoices',
   Layout: LayoutOverlay,
 }
 InvoiceDetailPage.pageOptions = pageOptions

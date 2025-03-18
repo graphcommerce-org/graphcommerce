@@ -10,7 +10,10 @@ fragment Cart_PurchaseEvent on Cart
   }
   prices {
     applied_taxes {
-      ...CartTaxItem
+      label
+      amount {
+        ...Money
+      }
     }
   }
 }

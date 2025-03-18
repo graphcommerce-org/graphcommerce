@@ -1,5 +1,6 @@
 export * from './components'
-export * from './graphql'
+export * from './graphql/fragments/ProductListItem.gql'
+export * from './graphql/fragments/ProductPageItem.gql'
 export * from './hooks/useProductLink'
 export * from './hooks/useProductListLink'
 export * from './hooks/useProductListLinkReplace'

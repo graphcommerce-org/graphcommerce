@@ -1,0 +1,7 @@
+mutation CreateGuestCart($input: CreateGuestCartInput) {
+  createGuestCart(input: $input) {
+    cart {
+      id
+    }
+  }
+}

@@ -1,3 +1,3 @@
 type StoreConfig {
-  contact_enabled: Boolean @deprecated(reason: "Magento >= 2.4.7")
+  countries_with_required_region: [String]
 }

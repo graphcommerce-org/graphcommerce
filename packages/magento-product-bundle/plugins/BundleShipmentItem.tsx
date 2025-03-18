@@ -1,4 +1,4 @@
-import type { ShipmentItemProps } from '@graphcommerce/magento-customer'
+import type { CreditMemoItemProps, ShipmentItemProps } from '@graphcommerce/magento-customer'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 
@@ -10,7 +10,7 @@ export const config: PluginConfig = {
 export function ShipmentItem(props: PluginProps<ShipmentItemProps>) {
   const { Prev, ...rest } = props
 
-  if (rest.item.__typename !== 'BundleShipmentItem') return <Prev {...rest} />
+  if (rest.item.__typename !== 'BundleCreditMemoItem') return <Prev {...rest} />
 
   return (
     <Prev

@@ -1,23 +1,18 @@
-import { sumPriceModifiers, type PriceModifiersProps } from './PriceModifiers'
-import { PriceModifierListChildItem } from './PriceModifiersListChildItem'
-import { PriceModifierListItem } from './PriceModifiersListItem'
+import {
+  PriceModifierRow,
+  PriceModifierValue,
+  sumPriceModifiers,
+  type PriceModifiersProps,
+} from './PriceModifiers'
 
-/**
- * A utility component to display price modifiers in a table format. Used for:
- *
- * Abstracts aways rendering from the price calculations.
- *
- * Renders a base price if it's different from the row total.
- *
- * - `<CartItemActionCard />`
- * - `<OrderItem />`
- * - `<InvoiceItem />`
- * - `<CreditMemoItem />`
- * - `<ShipmentItem />`
- * - `<ReturnItem />`
- */
-export function PriceModifiersList(props: PriceModifiersProps) {
-  const { total: row_total, currency, modifiers, label } = props
+export type PriceModifiersProps = {
+  row_total: number
+  currency: CurrencyEnum | null | undefined
+  modifiers: PriceModifier[]
+}
+
+export function PriceModifiersTable(props: PriceModifiersProps) {
+  const { row_total, currency, modifiers } = props
   const basePrice = row_total - sumPriceModifiers(modifiers)
 
   const sortedModifiers = [...modifiers].sort((a, b) => (a.position ?? 0) - (b.position ?? 0))
@@ -27,16 +22,16 @@ export function PriceModifiersList(props: PriceModifiersProps) {
   return (
     <>
       {basePrice > 0 && basePrice !== row_total && (
-        <PriceModifierListChildItem
+        <PriceModifierValue
           key='base-price'
-          label={label}
+          label='Product Price'
           amount={basePrice}
           currency={currency}
           color='text.primary'
         />
       )}
       {sortedModifiers.map((mod) => (
-        <PriceModifierListItem key={mod.key} label={mod.label} items={mod.items} />
+        <PriceModifierRow key={mod.key} label={mod.label} items={mod.items} />
       ))}
     </>
   )

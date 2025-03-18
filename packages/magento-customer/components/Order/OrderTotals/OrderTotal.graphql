@@ -9,10 +9,7 @@ fragment OrderTotal on OrderTotal {
     ...ShippingHandling
   }
   discounts {
-    amount {
-      ...Money
-    }
-    label
+    ...Discount
   }
   base_grand_total {
     ...Money
@@ -20,6 +17,7 @@ fragment OrderTotal on OrderTotal {
   grand_total {
     ...Money
   }
+
   total_tax {
     ...Money
   }

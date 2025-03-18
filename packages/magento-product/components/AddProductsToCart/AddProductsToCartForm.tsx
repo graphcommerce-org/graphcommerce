@@ -3,6 +3,7 @@ import type { ApolloQueryResult } from '@graphcommerce/graphql'
 import { useApolloClient } from '@graphcommerce/graphql'
 import type { CrosssellsQuery } from '@graphcommerce/magento-cart'
 import { CrosssellsDocument, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
+import type { ErrorSnackbarProps, MessageSnackbarProps } from '@graphcommerce/next-ui'
 import { nonNullable } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
@@ -21,6 +22,13 @@ export type AddProductsToCartFormProps = {
   sx?: SxProps<Theme>
   redirect?: RedirectType
   snackbarProps?: AddProductsToCartSnackbarProps
+
+  /** @deprecated Use snackbarProps.errorSnackbar instead */
+  errorSnackbar?: Omit<ErrorSnackbarProps, 'open'>
+  /** @deprecated Use snackbarProps.successSnackbar instead */
+  successSnackbar?: Omit<MessageSnackbarProps, 'open' | 'action'>
+  /** @deprecated Use snackbarProps.disableSuccessSnackbar instead */
+  disableSuccessSnackbar?: boolean
 } & UseFormGraphQlOptions<AddProductsToCartMutation, AddProductsToCartFields>
 
 const name = 'AddProductsToCartForm'
@@ -37,7 +45,17 @@ const name = 'AddProductsToCartForm'
  * - Redirects the user to the cart/checkout/added page after successful submission.
  */
 export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
-  let { children, redirect, onComplete, sx, snackbarProps, ...formProps } = props
+  let {
+    children,
+    redirect,
+    onComplete,
+    sx,
+    disableSuccessSnackbar,
+    errorSnackbar,
+    successSnackbar,
+    snackbarProps,
+    ...formProps
+  } = props
   const router = useRouter()
   const client = useApolloClient()
   const crosssellsQuery = useRef<Promise<ApolloQueryResult<CrosssellsQuery>>>()
@@ -60,24 +78,30 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
           cartId,
           cartItems: cartItems
             .filter((cartItem) => cartItem.sku && cartItem.quantity !== 0)
-            .map(({ selected_options_record = {}, entered_options_record = {}, ...cartItem }) => ({
-              ...cartItem,
-              quantity: cartItem.quantity || 1,
-              selected_options: [
-                ...(cartItem.selected_options ?? []).filter(nonNullable),
-                ...Object.values(selected_options_record).flat(1).filter(nonNullable),
-              ],
-              entered_options: [
-                ...(cartItem.entered_options ?? []).filter(nonNullable),
-                ...Object.entries(entered_options_record).map(([uid, value]) => {
-                  if (value instanceof Date) {
-                    const dateValue = value.toISOString().replace(/.000Z/, '').replace('T', ' ')
-                    return { uid, value: dateValue }
-                  }
-                  return { uid, value: value.toString() }
-                }),
-              ],
-            })),
+            .map(({ customizable_options, ...cartItem }) => {
+              const options = Object.values(customizable_options ?? {})
+                .flat(1)
+                .filter(Boolean)
+
+              return {
+                ...cartItem,
+                quantity: cartItem.quantity || 1,
+                selected_options: [
+                  ...(cartItem.selected_options ?? []).filter(Boolean),
+                  ...options,
+                ],
+                entered_options: [
+                  ...(cartItem.entered_options
+                    ?.filter((option) => option?.value)
+                    .filter(nonNullable)
+                    .map((option) => {
+                      console.log(option)
+                      console.log(option.value)
+                      return { uid: option.uid, value: `${option?.value}` }
+                    }) ?? []),
+                ],
+              }
+            }),
         }
 
         const sku = requestData.cartItems[requestData.cartItems.length - 1]?.sku
@@ -127,7 +151,12 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
       <Box component='form' onSubmit={submit} noValidate sx={sx} className={name}>
         {children}
       </Box>
-      <AddProductsToCartSnackbar {...snackbarProps} />
+      <AddProductsToCartSnackbar
+        errorSnackbar={errorSnackbar}
+        successSnackbar={successSnackbar}
+        disableSuccessSnackbar={disableSuccessSnackbar}
+        {...snackbarProps}
+      />
     </AddProductsToCartContext.Provider>
   )
 }

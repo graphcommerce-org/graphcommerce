@@ -1,0 +1,3 @@
+fragment StoreConfig_AddressFields on StoreConfig {
+  countries_with_required_region
+}

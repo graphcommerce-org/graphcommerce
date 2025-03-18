@@ -1,19 +1,16 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import type { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { StoreCreditPageProps } from '@graphcommerce/adobe-commerce-store-credit'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import {
-  createGetStaticProps,
-  CustomerTokensPage,
-  type CustomerTokensPageProps,
-} from '@graphcommerce/magento-payment-tokens'
+import { createGetStaticProps, StoreCreditPage } from '@graphcommerce/adobe-commerce-store-credit'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import type { GetStaticProps, LayoutOverlayProps } from '@graphcommerce/next-ui'
 import { LayoutOverlay } from '@graphcommerce/next-ui'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
-export default function Page(props: CustomerTokensPageProps) {
-  return <CustomerTokensPage {...props} />
+export default function Page(props: StoreCreditPageProps) {
+  return <StoreCreditPage {...props} />
 }
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {

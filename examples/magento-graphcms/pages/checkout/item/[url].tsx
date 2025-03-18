@@ -30,12 +30,12 @@ import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { CircularProgress, Typography } from '@mui/material'
 import { LayoutNavigationProps, AddProductsToCartView } from '../../../components'
-import { Props, getStaticProps } from '../../p/[url]'
+import { ProductPageProps as ProductPageProps, getStaticProps } from '../../p/[url]'
 
 type RouteProps = { url: string }
-type GetSSP = GetServerSideProps<LayoutNavigationProps, Props, RouteProps>
+type GetSSP = GetServerSideProps<LayoutNavigationProps, ProductPageProps, RouteProps>
 
-function CartItemEdit(props: Props) {
+function CartItemEdit(props: ProductPageProps) {
   const { products, defaultValues } = props
   const product = products?.items?.[0]
 
@@ -81,7 +81,7 @@ function CartItemEdit(props: Props) {
               cartItem={cartItem}
               defaultValues={defaultValues}
               redirect={false}
-              snackbarProps={{ disableSuccessSnackbar: true }}
+              disableSuccessSnackbar
             >
               <ProductPageGallery
                 product={product}

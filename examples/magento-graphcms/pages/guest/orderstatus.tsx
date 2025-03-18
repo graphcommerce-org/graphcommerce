@@ -8,15 +8,19 @@ import {
   LayoutTitle,
   LayoutOverlayProps,
   LayoutOverlay,
+  useUrlQuery,
 } from '@graphcommerce/next-ui'
 import { Trans, t } from '@lingui/macro'
 import { Alert, Button, Container } from '@mui/material'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import type { GuestOrderQueryVariables } from '@graphcommerce/magento-customer/components/GuestOrderOverview/GuestOrder.gql'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function AccountOrdersPage() {
   const { loggedIn } = useCustomerSession()
+  const [urlQuery, setUrlQuery] = useUrlQuery<Partial<GuestOrderQueryVariables>>(true)
+
   return (
     <>
       <LayoutOverlayHeader>

@@ -14,12 +14,12 @@ import { Trans } from '@lingui/macro'
 import type { AccordionProps } from '@mui/material'
 import { Accordion, AccordionDetails, AccordionSummary, Alert, Box } from '@mui/material'
 import { canCancelOrder } from '../../utils'
+import type { OrderDetailsFragment } from '../Order/OrderDetails/OrderDetails'
 import type { CancelOrderMutation, CancelOrderMutationVariables } from './CancelOrder.gql'
 import { CancelOrderDocument } from './CancelOrder.gql'
-import type { CancelOrderFragment } from './CancelOrderFragment.gql'
 
 export type CancelOrderFormProps = {
-  order: CancelOrderFragment
+  order: OrderDetailsFragment
 } & Omit<AccordionProps, 'children'>
 
 export function CancelOrderForm(props: CancelOrderFormProps) {

@@ -12,6 +12,7 @@ export function CartAddressMultiLine(props: CartAddressMultiLineProps) {
       {...addressProps}
       country_code={country?.code as CountryCodeEnum}
       region={{ region_code: region?.code, region_id: region?.region_id, region: region?.label }}
+      custom_attributesV2={[]}
     />
   )
 }

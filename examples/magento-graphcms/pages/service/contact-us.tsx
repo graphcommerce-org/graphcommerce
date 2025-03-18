@@ -70,11 +70,8 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: cacheFirst(staticClient),
   })
 
-  if (
-    import.meta.graphCommerce.magentoVersion < 247 ||
-    !(await conf).data.storeConfig?.contact_enabled
-  )
-    return { notFound: true }
+  if (import.meta.graphCommerce.magentoVersion < 247) return { notFound: true }
+  if (!(await conf).data.storeConfig.contact_enabled) return { notFound: true }
 
   return {
     props: {

@@ -13,7 +13,7 @@ import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcom
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   FullPageMessage,
-  iconInvoice,
+  iconRefund,
   IconSvg,
   LayoutOverlayHeader,
   LayoutTitle,
@@ -43,7 +43,7 @@ function CreditMemoDetailPage() {
   return (
     <>
       <LayoutOverlayHeader hideBackButton>
-        <LayoutTitle size='small' component='span' icon={iconInvoice}>
+        <LayoutTitle size='small' component='span' icon={iconRefund}>
           <Trans>Credit Memo #{creditMemoNumber}</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
@@ -52,14 +52,14 @@ function CreditMemoDetailPage() {
           {(!creditMemoNumber || !creditMemo || !order) && (
             <FullPageMessage
               title={<Trans>Credit Memo not found</Trans>}
-              icon={<IconSvg src={iconInvoice} size='xxl' />}
+              icon={<IconSvg src={iconRefund} size='xxl' />}
             />
           )}
 
           {creditMemoNumber && creditMemo && order && (
             <>
               <LayoutTitle
-                icon={iconInvoice}
+                icon={iconRefund}
                 gutterBottom={false}
                 sx={(theme) => ({ mb: theme.spacings.xxs })}
               >

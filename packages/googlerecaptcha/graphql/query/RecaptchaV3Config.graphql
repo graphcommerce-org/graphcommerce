@@ -1,5 +1,3 @@
 query RecaptchaV3Config {
-  recaptchaV3Config {
-    website_key
-  }
+  ...StoreConfig_RecaptchaV3Config
 }

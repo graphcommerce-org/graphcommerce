@@ -1,72 +1,90 @@
-import {
-  ActionCardLayout,
-  breakpointVal,
-  extendableComponent,
-  nonNullable,
-  SectionContainer,
-} from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Money } from '@graphcommerce/magento-store'
+import { extendableComponent, SectionContainer } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import type { InvoiceFragment } from './Invoice.gql'
-import { InvoiceItem } from './InvoiceItem'
 
 export type InvoiceItemsProps = {
   invoice: InvoiceFragment
   sx?: SxProps<Theme>
-  layout?: 'list' | 'grid'
-  size?: 'small' | 'medium' | 'large'
 }
 
 const componentName = 'InvoiceItems'
-const parts = ['root', 'items', 'actionCard'] as const
+const parts = ['root', 'invoiceItemsInnerContainer', 'itemRow', 'itemDetails'] as const
 const { classes } = extendableComponent(componentName, parts)
 
 export function InvoiceItems(props: InvoiceItemsProps) {
-  const { invoice, sx = [], layout = 'list', size } = props
+  const { invoice, sx = [] } = props
+  const { items } = invoice
 
-  const items = (invoice.items ?? []).filter(nonNullable)
-  if (!items.length) return null
+  if (!items?.length) return null
 
   return (
-    <Box
+    <SectionContainer
+      labelLeft={<Trans id='Invoiced items' />}
       className={classes.root}
       sx={[
         (theme) => ({
-          my: theme.spacings.md,
-          padding: `${theme.spacings.sm} ${theme.spacings.sm}`,
-          border: `1px ${theme.palette.divider} solid`,
-          ...breakpointVal(
-            'borderRadius',
-            theme.shape.borderRadius * 2,
-            theme.shape.borderRadius * 3,
-            theme.breakpoints.values,
-          ),
+          marginTop: theme.spacings.md,
+          marginBottom: theme.spacings.sm,
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <SectionContainer
-        sx={{ '& .SectionHeader-root': { mt: 0 } }}
-        labelLeft={<Trans>Invoiced items</Trans>}
-        variantLeft='h6'
-        className={classes.items}
+      <Box
+        className={classes.invoiceItemsInnerContainer}
+        sx={(theme) => ({ mb: theme.spacings.md })}
       >
-        <ActionCardLayout
-          sx={(theme) => ({
-            marginBottom: theme.spacings.md,
-            '&.layoutStack': {
-              gap: 0,
-            },
-          })}
-          className={classes.actionCard}
-          layout={layout}
-        >
-          {items.map((item) => (
-            <InvoiceItem key={item.id} item={item} size={size} layout={layout} variant='default' />
-          ))}
-        </ActionCardLayout>
-      </SectionContainer>
-    </Box>
+        {items.map((item) => {
+          if (!item) return null
+          const {
+            id,
+            product_name,
+            product_sku,
+            quantity_invoiced,
+            product_sale_price,
+            discounts,
+          } = item
+
+          return (
+            <Box
+              key={id}
+              className={classes.itemRow}
+              sx={(theme) => ({
+                display: 'grid',
+                gridTemplateColumns: '1fr auto',
+                gap: theme.spacings.sm,
+                padding: `${theme.spacings.xs} 0`,
+                borderBottom: `1px solid ${theme.palette.divider}`,
+                '&:last-child': {
+                  borderBottom: 'none',
+                },
+              })}
+            >
+              <Box className={classes.itemDetails}>
+                <Typography variant='h6' gutterBottom>
+                  {product_name}
+                </Typography>
+                <Typography variant='body2' color='textSecondary'>
+                  <Trans>SKU: {product_sku}</Trans>
+                </Typography>
+                <Typography variant='body2' color='textSecondary'>
+                  <Trans>Quantity: {quantity_invoiced}</Trans>
+                </Typography>
+                {discounts?.map((discount) => (
+                  <Typography key={discount?.label} variant='body2' color='textSecondary'>
+                    {discount?.label}: <Money {...discount?.amount} />
+                  </Typography>
+                ))}
+              </Box>
+              <Box sx={{ textAlign: 'right' }}>
+                <Money {...product_sale_price} />
+              </Box>
+            </Box>
+          )
+        })}
+      </Box>
+    </SectionContainer>
   )
 }

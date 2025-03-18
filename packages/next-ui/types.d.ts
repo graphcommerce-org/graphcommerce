@@ -14,3 +14,9 @@ declare module '*.po' {
 
   export const messages
 }
+
+declare module 'react' {
+  interface CSSProperties {
+    [key: `--${string}`]: string | number
+  }
+}

@@ -1,31 +1,74 @@
+import { Image } from '@graphcommerce/image'
 import { Money } from '@graphcommerce/magento-store'
-import { breakpointVal, iconChevronRight, IconSvg, NextLink, sxx } from '@graphcommerce/next-ui'
+import {
+  actionCardImageSizes,
+  breakpointVal,
+  DateTimeFormat,
+  filterNonNullableKeys,
+  iconChevronRight,
+  IconSvg,
+  NextLink,
+  sxx,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, lighten } from '@mui/material'
-import type { InvoiceCardFragment } from './InvoiceCard.gql'
+import { Box, lighten, Paper, Skeleton } from '@mui/material'
+import { OrderStateLabel } from '../OrderStateLabel/OrderStateLabel'
+import type { OrderCardFragment } from './OrderCard.gql'
 
-export type InvoiceCardProps = {
-  orderNumber: string
-  invoice: InvoiceCardFragment
+export type OrderCardProps = Partial<OrderCardFragment> & {
+  loading?: boolean
   sx?: SxProps<Theme>
 }
 
-export function InvoiceCard(props: InvoiceCardProps) {
-  const { invoice, sx = [], orderNumber } = props
-  const { number, total } = invoice
+export function OrderCard(props: OrderCardProps) {
+  const { number, total, items, order_date, loading, status = '', sx = [] } = props
+
+  const totalItems = items?.length ?? 0
+  const maxItemsToShow = totalItems <= 4 ? totalItems : 3
+
+  const sizes = actionCardImageSizes.responsive
+
+  const itemsWithImages = filterNonNullableKeys(items, ['product_url_key', 'product'])
+    .map((item) => {
+      const img = item.product.thumbnail
+      if (!img?.url || img.url.includes('/placeholder/')) return null
+      return { ...img, url: img.url }
+    })
+    .filter((v) => !!v)
+    .filter((v) => !v.disabled)
+
+  if (loading) {
+    return (
+      <Box sx={sx}>
+        <Paper sx={(theme) => ({ p: theme.spacings.xs })}>
+          <Box sx={{ display: 'grid', gap: 1 }}>
+            <Box sx={{ display: 'flex', gap: 1 }}>
+              <Skeleton variant='rectangular' width={121} height={121} />
+              <Box sx={{ flex: 1 }}>
+                <Skeleton variant='text' width={140} height={32} />
+                <Skeleton variant='text' width={100} height={24} />
+              </Box>
+            </Box>
+          </Box>
+        </Paper>
+      </Box>
+    )
+  }
 
   return (
     <Box
       component={NextLink}
-      href={`/account/orders/invoice?orderNumber=${orderNumber}&invoiceNumber=${number}`}
+      href={`/account/orders/view?orderNumber=${number}`}
       sx={sxx(
         (theme) => ({
+          display: 'flex',
           textDecoration: 'none',
           color: 'text.primary',
           px: theme.spacings.xxs,
           py: theme.spacings.xxs,
           gap: theme.spacings.sm,
+          alignItems: 'flex-start',
           background:
             theme.palette.mode === 'light'
               ? theme.palette.background.default
@@ -39,28 +82,73 @@ export function InvoiceCard(props: InvoiceCardProps) {
           '&:hover': {
             backgroundColor: theme.palette.action.hover,
           },
-          display: 'grid',
-          gridTemplate: `
-            "number total action" / 1fr auto auto
-          `,
-          rowGap: 0.5,
-          columnGap: 1,
         }),
         sx,
       )}
     >
-      <Box sx={{ gridArea: 'number', typography: 'body1' }}>
-        <Trans>Invoice #{number}</Trans>
-      </Box>
-      <Box sx={{ gridArea: 'total', alignSelf: 'center' }}>
-        <Money {...total?.grand_total} />
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: `repeat(2, calc(${sizes} / 2))`,
+          gridTemplateRows: `repeat(2, calc(${sizes} / 2))`,
+          gap: 1,
+        }}
+      >
+        {itemsWithImages.slice(0, maxItemsToShow).map((item, index) => {
+          const key = `${item.url}-${index}`
+          return (
+            <Image
+              key={key}
+              alt={item.label ?? ''}
+              layout='fill'
+              src={item.url}
+              width={96}
+              height={96}
+              sx={{ borderRadius: 4, objectFit: 'contain' }}
+              pictureProps={{
+                sx: {
+                  gridArea: itemsWithImages.length === 1 ? '1 / 1 / 3 / 3' : undefined,
+                },
+              }}
+            />
+          )
+        })}
+
+        {totalItems > 4 && (
+          <Box
+            sx={{
+              bgcolor: 'background.paper',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: 2,
+              zIndex: 1,
+              typography: 'body1',
+              gridArea: '2 / 2 / 3 / 3',
+            }}
+          >
+            +{totalItems - 3}
+          </Box>
+        )}
       </Box>
 
-      <IconSvg
-        src={iconChevronRight}
-        size='medium'
-        sx={{ gridArea: 'action', alignSelf: 'center' }}
-      />
+      <Box sx={{ flex: 1 }}>
+        <Box sx={{ typography: 'subtitle1' }}>
+          <DateTimeFormat date={order_date} dateStyle='long' />
+        </Box>
+        <Box sx={{ typography: 'body1', color: 'text.secondary' }}>#{number}</Box>
+        <Box>
+          <Trans id='Grand total'>Grand Total</Trans>: <Money {...total?.grand_total} />
+        </Box>
+
+        <Box>
+          <Trans id='Status'>Status</Trans>:{' '}
+          <OrderStateLabel {...props} status={status} sx={{ typography: 'body1' }} short />
+        </Box>
+      </Box>
+
+      <IconSvg src={iconChevronRight} size='medium' sx={{ alignSelf: 'center' }} />
     </Box>
   )
 }

@@ -14,7 +14,6 @@ fragment DownloadableCartItem on DownloadableCartItem @inject(into: ["CartItem"]
     title
   }
   product {
-    __typename
     ... on DownloadableProduct {
       links_title
     }

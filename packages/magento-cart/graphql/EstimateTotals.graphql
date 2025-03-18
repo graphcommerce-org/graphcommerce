@@ -1,0 +1,7 @@
+mutation EstimateTotals($input: EstimateTotalsInput!) {
+  estimateTotals(input: $input) {
+    cart {
+      ...CartTotals
+    }
+  }
+}

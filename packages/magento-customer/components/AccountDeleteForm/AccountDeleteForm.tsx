@@ -1,38 +1,31 @@
-import { CheckboxElement, EmailElement } from '@graphcommerce/ecommerce-ui'
+import { CheckboxElement, EmailElement, PasswordElement } from '@graphcommerce/ecommerce-ui'
 import { useApolloClient, useMutation } from '@graphcommerce/graphql'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useForm } from '@graphcommerce/react-hook-form'
 import { t, Trans } from '@lingui/macro'
 import { Box, Typography } from '@mui/material'
-import { useRouter } from 'next/router'
-import { CustomerDocument, CustomerTokenDocument, useCustomerQuery } from '../../hooks'
+import { CustomerDocument, useCustomerQuery } from '../../hooks'
+import { SignInDocument } from '../SignInForm/SignIn.gql'
 import { signOut } from '../SignOutForm/signOut'
 import { WaitForCustomer } from '../WaitForCustomer/WaitForCustomer'
 import { DeleteCustomerDocument } from './DeleteCustomer.gql'
 
 export function AccountDeleteForm() {
   const client = useApolloClient()
-  const router = useRouter()
 
-  const dashboard = useCustomerQuery(CustomerDocument, { fetchPolicy: 'cache-and-network' })
+  const dashboard = useCustomerQuery(CustomerDocument, {
+    fetchPolicy: 'cache-and-network',
+  })
   const customer = dashboard.data?.customer
 
+  const [createNewToken, createNewTokenResult] = useMutation(SignInDocument)
   const [deleteAccount, { called, error, loading }] = useMutation(DeleteCustomerDocument)
 
-  const form = useForm<{ email: string; confirm: boolean }>()
+  const form = useForm<{ email: string; password: string; confirm: boolean }>()
 
   const { control, handleSubmit, setError } = form
 
   const submitHandler = handleSubmit(async (data) => {
-    const currentToken = client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken
-    if (currentToken) {
-      client.cache.writeQuery({
-        query: CustomerTokenDocument,
-        broadcast: true,
-        data: { customerToken: { ...currentToken, token: 'Force Reauthentication' } },
-      })
-    }
-
     if (data.email !== customer?.email) {
       setError('email', {
         message: t`The given email does not match the account email`,
@@ -40,7 +33,6 @@ export function AccountDeleteForm() {
     } else {
       await deleteAccount()
       signOut(client)
-      await router.push('/')
     }
   })
 
@@ -61,6 +53,7 @@ export function AccountDeleteForm() {
 
             <FormRow>
               <EmailElement control={control} name='email' required />
+              <PasswordElement control={control} name='password' required />
             </FormRow>
 
             <CheckboxElement

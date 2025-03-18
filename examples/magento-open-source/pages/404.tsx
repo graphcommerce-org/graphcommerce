@@ -1,24 +1,38 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
-import { CmsPageContent, CmsPageDocument, type CmsPageFragment } from '@graphcommerce/magento-cms'
+import { CmsPageDocument } from '@graphcommerce/magento-cms'
 import { useCustomerAccountCanSignIn } from '@graphcommerce/magento-customer'
 import { SearchLink } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { icon404, IconSvg, isTypename, LayoutTitle, Separator } from '@graphcommerce/next-ui'
+import { icon404, IconSvg, Separator } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container, Link, Typography } from '@mui/material'
 import React from 'react'
 import type { LayoutNavigationProps } from '../components'
-import { LayoutDocument, LayoutNavigation, productListRenderer } from '../components'
+import { LayoutDocument, LayoutNavigation } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 
-type Props = { cmsPage: CmsPageFragment | null }
+type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 
-function RouteNotFoundPage(props: Props) {
-  const { cmsPage } = props
+function RouteNotFoundPage() {
+  const canSignIn = useCustomerAccountCanSignIn()
+
+  const links = [
+    <Link key={0} href='/' color='primary' underline='hover'>
+      <Trans id='Store home' />
+    </Link>,
+  ]
+
+  if (canSignIn) {
+    links.push(
+      <Link key={1} href='/account' color='primary' underline='hover'>
+        <Trans id='Account' />
+      </Link>,
+    )
+  }
 
   return (
     <>
@@ -26,22 +40,26 @@ function RouteNotFoundPage(props: Props) {
       <Container maxWidth='sm'>
         <Box textAlign='center' mt={16} mb={16}>
           <IconSvg src={icon404} size='xxl' />
-
           <Typography variant='h3' component='h1' gutterBottom>
-            {cmsPage?.content_heading ?? <Trans id='Whoops our bad...' />}
+            <Trans id='Whoops our bad...' />
           </Typography>
-
-          {cmsPage ? (
-            <CmsPageContent cmsPage={cmsPage} productListRenderer={productListRenderer} />
-          ) : (
-            <Typography variant='body1'>
-              <Trans id="We couldn't find the page you were looking for" />
-            </Typography>
-          )}
+          <Typography variant='body1'>
+            <Trans id="We couldn't find the page you were looking for" />
+          </Typography>
           <Box mt={4} mb={2}>
             <SearchLink href='/search' sx={{ width: '100%', py: 2, typography: 'body1' }}>
               <Trans id='Search...' />
             </SearchLink>
+          </Box>
+          <Trans id='Or follow these links to get you back on track!' />
+          <Box mb={8}>
+            {links.map((link, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <React.Fragment key={index}>
+                {index > 0 && <Separator />}
+                {link}
+              </React.Fragment>
+            ))}
           </Box>
         </Box>
       </Container>
@@ -63,14 +81,11 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
-  const url = (await conf).data.storeConfig?.cms_no_route ?? ''
   const cmsPageQuery = staticClient.query({ query: CmsPageDocument, variables: { url } })
-  const cmsPage = (await cmsPageQuery).data.route
 
   return {
     props: {
       ...(await layout).data,
-      cmsPage: cmsPage && isTypename(cmsPage, ['CmsPage']) ? cmsPage : null,
       up: { href: '/', title: i18n._(/* i18n */ 'Home') },
       apolloState: await conf.then(() => client.cache.extract()),
     },

@@ -1,6 +1,6 @@
 import type { InvoiceItemProps } from '@graphcommerce/magento-customer'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
-import { filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { ProductPageGiftCard } from '../components/ProductPageGiftCard/ProductPageGiftCard'
 
 export const config: PluginConfig = {
   type: 'component',
@@ -8,26 +8,7 @@ export const config: PluginConfig = {
 }
 
 export function InvoiceItem(props: PluginProps<InvoiceItemProps>) {
-  const { Prev, ...rest } = props
+  const { Prev, item, additionalInfo } = props
 
-  if (rest.item.__typename !== 'BundleInvoiceItem') return <Prev {...rest} />
-
-  return (
-    <Prev
-      {...rest}
-      priceModifiers={[
-        ...(rest.priceModifiers ?? []),
-        ...filterNonNullableKeys(rest.item.bundle_options).map((option) => ({
-          key: option.uid,
-          label: option.label,
-          items: filterNonNullableKeys(option.values).map((value, index) => ({
-            key: `${index}`,
-            label: value.product_name,
-            amount: value.price.value ?? 0,
-            quantity: value.quantity,
-          })),
-        })),
-      ]}
-    />
-  )
+  return <Prev {...props} item={item} additionalInfo={additionalInfo} />
 }

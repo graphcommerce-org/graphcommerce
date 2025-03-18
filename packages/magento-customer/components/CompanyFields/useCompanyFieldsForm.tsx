@@ -24,7 +24,7 @@ export function useCompanyFieldsForm<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(props: CompanyFieldsOptions<TFieldValues, TName>) {
-  const { form, readOnly } = props
+  const { form, readOnly, enabled } = props
   assertFormGqlOperation<TFieldValues>(form)
   return {
     ...form,

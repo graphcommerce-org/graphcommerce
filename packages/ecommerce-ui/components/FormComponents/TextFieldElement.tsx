@@ -8,40 +8,34 @@ import { TextField, useForkRef } from '@mui/material'
 import React, { useState } from 'react'
 import type { BaseControllerProps, FieldElementProps } from './types'
 
-type InternalProps = {
-  showValid?: boolean
-  /** Cast all values as a string instead of a string/number/date depending on the input type. */
-  asString?: boolean
-}
+type ShowValidProps = { showValid?: boolean }
 
 export type TextFieldElementProps<TFieldValues extends FieldValues = FieldValues> =
-  FieldElementProps<TFieldValues, TextFieldProps> & InternalProps
+  FieldElementProps<TFieldValues, TextFieldProps> & ShowValidProps
 
 type TextFieldElementComponent = <TFieldValues extends FieldValues>(
   props: TextFieldElementProps<TFieldValues>,
 ) => React.ReactNode
 
 function toValue(incomingValue: unknown, type: React.HTMLInputTypeAttribute) {
-  try {
-    let value = incomingValue
-    if (!value) return value
+  let value = incomingValue
 
-    if (typeof value === 'number') return value.toString()
+  if (!value) return value
 
-    if (type === 'time' || type === 'datetime-local' || type === 'date') {
-      if (typeof value === 'string') value = new Date(value)
-      if (!(value instanceof Date)) return value
+  if (type === 'time' || type === 'datetime-local' || type === 'date') {
+    if (typeof value === 'string') value = new Date(value)
 
-      const [datePart, timePart] = value.toISOString().replace('Z', '').split('T')
+    const [datePart, timePart] = value.toISOString().split('T')
 
-      if (type === 'time') return timePart
-      if (type === 'date') return datePart
-      if (type === 'datetime-local') return value.toISOString().replace('Z', '')
-    }
-    return value
-  } catch (e) {
-    console.error(e, incomingValue, type)
-    return incomingValue
+    if (type === 'time') inputValue = timePart
+    if (type === 'date' && inputValue !== '') inputValue = datePart
+    if (type === 'datetime-local' && inputValue !== '') inputValue = `${datePart} ${timePart}`
+  }
+
+  if (
+    (value instanceof Date || typeof value === 'string') &&
+    (type === 'time' || type === 'datetime-local' || type === 'date')
+  ) {
   }
 }
 
@@ -57,9 +51,8 @@ function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
     type = 'text',
     required,
     showValid,
-    asString = false,
     ...rest
-  } = props as TextFieldProps & InternalProps & BaseControllerProps
+  } = props as TextFieldProps & ShowValidProps & BaseControllerProps
 
   if (required && !rules.required) {
     rules.required = i18n._(/* i18n */ 'This field is required')
@@ -108,18 +101,10 @@ function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
         let changeValue: string | number | Date = ev.target.value
 
         if (ev.target instanceof HTMLInputElement) {
-          if (type === 'number' || typeof changeValue === 'number') {
-            changeValue = ev.target.valueAsNumber
-          } else if (type === 'datetime-local') {
-            changeValue = new Date(`${changeValue.replace('T', ' ')}.000Z`)
-          } else if (type === 'date') {
-            changeValue = ev.target.valueAsDate ?? ''
-          } else if (type === 'time') {
-            changeValue = new Date(`01-01-1970 ${changeValue}.000Z`)
-          }
+          if (type === 'number') changeValue = ev.target.valueAsNumber
+          if (type === 'date' || type === 'datetime-local') changeValue = new Date(changeValue)
+          if (type === 'time') changeValue = new Date(`01-01-1970 ${changeValue}`)
         }
-
-        if (asString) changeValue = changeValue.toString()
 
         onChange(changeValue)
         rest.onChange?.(ev)

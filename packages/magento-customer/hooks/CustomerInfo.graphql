@@ -6,16 +6,17 @@ fragment CustomerInfo on Customer {
     ...CustomerAddress
   }
   email
+
   prefix
   firstname
   middlename
   lastname
   suffix
   gender
+
   is_subscribed
+
   date_of_birth
   taxvat
-  custom_attributes {
-    ...AttributeValueFragment
-  }
+  ...CustomerCustomAttributes
 }

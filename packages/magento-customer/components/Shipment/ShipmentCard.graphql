@@ -1,8 +1,18 @@
-fragment ShipmentCard on OrderShipment {
+fragment ShipmentCard on Shipment {
   id
   number
-  comments {
-    message
-    timestamp
+  items {
+    __typename
+    id
+    product_name
+    quantity_invoiced
+    product_sale_price {
+      ...Money
+    }
+  }
+  total {
+    grand_total {
+      ...Money
+    }
   }
 }

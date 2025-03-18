@@ -7,3 +7,7 @@ extend type AttributeValue {
 extend type AttributeSelectedOptions {
   attribute: CustomAttributeMetadataInterface
 }
+
+extend type AttributesMetadataOutput @cacheControl(maxAge: 3600) {
+  _cached: Boolean
+}

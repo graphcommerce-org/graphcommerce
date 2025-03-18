@@ -5,6 +5,11 @@ mutation MolliePlaceOrder($cartId: String!, $returnUrl: String!) {
       message
     }
 
+    orderV2 {
+      id
+      token
+    }
+
     order {
       order_number
       mollie_redirect_url

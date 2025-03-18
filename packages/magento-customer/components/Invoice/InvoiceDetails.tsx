@@ -79,14 +79,14 @@ export function InvoiceDetails(props: InvoiceDetailsProps) {
         </Box>
 
         <Box className={classes.invoiceDetailRow}>
-          {/* <SectionContainer
+          <SectionContainer
             variantLeft='h5'
             labelLeft={<Trans>Invoice ID</Trans>}
             className={classes.invoiceDetailTitle}
             sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '4px' } }}
           >
             <Typography>{id}</Typography>
-          </SectionContainer> */}
+          </SectionContainer>
         </Box>
       </Box>
     </SectionContainer>

@@ -14,9 +14,6 @@ fragment OrderDetails on CustomerOrder {
       ...TrackingLink
     }
   }
-  # applied_coupons {
-  #   ...AppliedCoupon
-  # }
   payment_methods {
     name
     type
@@ -26,13 +23,59 @@ fragment OrderDetails on CustomerOrder {
     }
   }
   billing_address {
-    ...OrderAddress
+    city
+    postcode
+    firstname
+    lastname
+    street
+    country_code
+    region_id
   }
   shipping_address {
-    ...OrderAddress
+    city
+    postcode
+    firstname
+    lastname
+    street
+    country_code
+    region_id
   }
   carrier
   total {
-    ...OrderTotal
+    subtotal {
+      ...Money
+    }
+    total_shipping {
+      ...Money
+    }
+    # todo
+    # shipping_handling {}
+    discounts {
+      amount {
+        ...Money
+      }
+      label
+    }
+    grand_total {
+      ...Money
+    }
+
+    total_tax {
+      ...Money
+    }
+    taxes {
+      amount {
+        ...Money
+      }
+      rate
+      title
+    }
+    total_shipping {
+      ...Money
+    }
+  }
+  credit_memos {
+    id
+    number
   }
 }

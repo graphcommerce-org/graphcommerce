@@ -3,6 +3,7 @@ import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import {
   ApolloCartErrorFullPage,
+  CartAccordion,
   CartAgreementsForm,
   CartSummary,
   CartTotals,
@@ -116,7 +117,10 @@ function PaymentPage() {
                   <CartTotals />
                 </CartSummary>
 
-                <CouponAccordion />
+                <CartAccordion location='checkout'>
+                  <CouponAccordion />
+                </CartAccordion>
+
                 <SubscribeToNewsletter
                   step={3}
                   label={i18n._(
