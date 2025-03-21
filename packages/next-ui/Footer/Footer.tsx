@@ -9,7 +9,7 @@ export type FooterProps = {
   storeSwitcher?: React.ReactNode
   socialLinks?: React.ReactNode
   customerService?: React.ReactNode
-  copyright?: React.ReactElement
+  copyright?: React.ReactNode
   children?: React.ReactNode
 } & ContainerProps
 
