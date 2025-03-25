@@ -1,5 +1,11 @@
 # @graphcommerce/cli
 
+## 9.1.0-canary.21
+
+### Minor Changes
+
+- [#2511](https://github.com/graphcommerce-org/graphcommerce/pull/2511) [`74d87cc`](https://github.com/graphcommerce-org/graphcommerce/commit/74d87cc5ea870f7ac99d375496c9704ea73c2090) - Make hygraph-cli dependency for the cli package optional, so that resolveDependenciesSync accepts it not being installed. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.1.0-canary.20
 
 ## 9.1.0-canary.19
