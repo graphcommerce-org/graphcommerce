@@ -46,6 +46,11 @@
     "@graphql-mesh/utils": "*",
     "react": "^18.2.0"
   },
+  "peerDependenciesMeta": {
+    "@graphcommerce/hygraph-cli": {
+      "optional": true
+    }
+  },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslint": {
