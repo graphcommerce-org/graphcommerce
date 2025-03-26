@@ -13,6 +13,22 @@ const withPWA = withSerwistInit({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async rewrites() {
+    {
+      return [
+        {
+          source: '/:path*',
+          has: [
+            {
+              type: 'host',
+              value: 'packagist.graphcommerce.org'
+            },
+          ],
+          destination: 'https://repo.packagist.com/:path*',
+        },
+      ]
+    }
+  },
   onDemandEntries: {
     maxInactiveAge: 1000 * 60 * 10,
     pagesBufferLength: 10,
