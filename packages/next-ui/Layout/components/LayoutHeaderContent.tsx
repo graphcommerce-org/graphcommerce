@@ -121,7 +121,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             gridTemplateAreas: '"left center right"',
             gridTemplateColumns: '1fr auto 1fr',
             alignItems: 'center',
-            gap: theme.page.horizontal,
+            gap: theme.spacings.sm,
             height: theme.appShell.headerHeightSm,
             [theme.breakpoints.up('md')]: {
               height: theme.appShell.appBarHeightMd,

@@ -12,6 +12,13 @@ export function BlogTag(props: BlogTagsProps) {
   const { url, title, sx = [] } = props
   return (
     <Chip
+      onMouseDown={(e) => {
+        // Prevent ripple on parent
+        e.stopPropagation()
+      }}
+      onClick={() => {
+        /* ripple only gets added when an onClick is set */
+      }}
       href={`/${url}`}
       component={NextLink}
       label={title}

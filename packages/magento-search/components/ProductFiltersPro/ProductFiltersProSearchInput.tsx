@@ -40,9 +40,9 @@ export function useProductFiltersProSearchInput<
   }, [searchParam])
 
   const result: P = {
+    placeholder: t`Search all products...`,
     ...props,
     inputRef: ref,
-    placeholder: t`Search all products...`,
     name: 'search',
     type: 'text',
     defaultValue: searchParam,

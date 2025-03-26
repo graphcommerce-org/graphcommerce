@@ -11,6 +11,7 @@ type Store = NonNullable<NonNullable<StoreSwitcherListQuery['availableStores']>[
 export type StoreSwitcherListProps = {
   locale: string | undefined
   sx?: SxProps<Theme>
+  url?: string
 } & StoreSwitcherListQuery
 
 const name = 'StoreSwitcherList'
@@ -18,7 +19,7 @@ const parts = ['list', 'listItem', 'listItemIndented', 'avatar'] as const
 const { classes } = extendableComponent(name, parts)
 
 export function StoreSwitcherList(props: StoreSwitcherListProps) {
-  const { availableStores, locale, sx } = props
+  const { availableStores, locale, sx, url = '/switch-stores' } = props
 
   const groupedStores = Object.entries(
     (availableStores ?? []).reduce<{
@@ -42,7 +43,7 @@ export function StoreSwitcherList(props: StoreSwitcherListProps) {
             disabled={!storeToLocale(group.stores[0].store_code)}
             component={NextLink}
             key={group.stores[0].locale}
-            href='/switch-stores'
+            href={url}
             locale={storeToLocale(group.stores[0].store_code)}
             replace
             selected={
@@ -74,7 +75,7 @@ export function StoreSwitcherList(props: StoreSwitcherListProps) {
               {group.stores.map((store) => (
                 <ListItemButton
                   key={store.locale}
-                  href='/switch-stores'
+                  href={url}
                   locale={storeToLocale(store.store_code)}
                   replace
                   disabled={!localeToStore(locale)}

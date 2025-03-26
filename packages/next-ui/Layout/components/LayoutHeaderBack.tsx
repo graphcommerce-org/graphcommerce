@@ -31,6 +31,7 @@ export function useShowBack() {
 
 const buttonSx: SxProps<Theme> = (theme) => ({
   '&:not(.Mui-disabled)': { boxShadow: 6 },
+  minWidth: 'min-content',
   [theme.breakpoints.down('md')]: {
     minWidth: 'auto',
     paddingLeft: responsiveVal(8, 11),
