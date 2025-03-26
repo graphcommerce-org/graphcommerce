@@ -18,12 +18,6 @@ const nextConfig = {
       return [
         {
           source: '/:path*',
-          has: [
-            {
-              type: 'host',
-              value: 'packagist.graphcommerce.org'
-            },
-          ],
           destination: 'https://repo.packagist.com/:path*',
         },
       ]
