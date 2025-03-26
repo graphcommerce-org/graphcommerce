@@ -21,7 +21,7 @@ export function DocumentHeadEnd(props: PluginProps<DocumentProps>) {
 
   return (
     <>
-      <script async src='https://www.googletagmanager.com/gtag/js?id=G-E0275MGY12' />
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${id}`} />
       <script
         dangerouslySetInnerHTML={{
           __html: `
