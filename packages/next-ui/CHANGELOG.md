@@ -1,5 +1,19 @@
 # Change Log
 
+## 9.1.0-canary.22
+
+### Patch Changes
+
+- [#2510](https://github.com/graphcommerce-org/graphcommerce/pull/2510) [`40ccfed`](https://github.com/graphcommerce-org/graphcommerce/commit/40ccfed07592c67ccf80311c821a01526e87dbcc) - Added missing href to secondary menu items ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2510](https://github.com/graphcommerce-org/graphcommerce/pull/2510) [`a79d7c2`](https://github.com/graphcommerce-org/graphcommerce/commit/a79d7c28da5ba227c3c3ff957149a732f3d71a39) - Added ripple to BlogTags ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2510](https://github.com/graphcommerce-org/graphcommerce/pull/2510) [`ef83f7d`](https://github.com/graphcommerce-org/graphcommerce/commit/ef83f7d04fe0cf70da19f795e837ee3bda9884d4) - Use a more sensible theme var for LayoutHeaderContent gap ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2510](https://github.com/graphcommerce-org/graphcommerce/pull/2510) [`7665579`](https://github.com/graphcommerce-org/graphcommerce/commit/76655792129dfa4fec3395a94b73e6761d323335) - Fixed back button width in overlays with long titles ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2510](https://github.com/graphcommerce-org/graphcommerce/pull/2510) [`b536019`](https://github.com/graphcommerce-org/graphcommerce/commit/b53601965924ece86ee991bdb2b5897b3e7c642a) - Update various props from ReactElement to ReactNode to allow string values ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 9.1.0-canary.21
 
 ## 9.1.0-canary.20

@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.22
+
+### Patch Changes
+
+- [#2510](https://github.com/graphcommerce-org/graphcommerce/pull/2510) [`1471d62`](https://github.com/graphcommerce-org/graphcommerce/commit/1471d62c59147da87e954694144fe694db3ee4b7) - Allow setting alternate search input placeholder ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 9.1.0-canary.21
 
 ## 9.1.0-canary.20

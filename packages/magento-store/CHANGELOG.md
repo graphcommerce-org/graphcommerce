@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.22
+
+### Patch Changes
+
+- [#2510](https://github.com/graphcommerce-org/graphcommerce/pull/2510) [`61a2e16`](https://github.com/graphcommerce-org/graphcommerce/commit/61a2e1641c75a0497406e70f2ab96c8e3f5bdd96) - Allow setting alternate store switcher URL ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 9.1.0-canary.21
 
 ## 9.1.0-canary.20
