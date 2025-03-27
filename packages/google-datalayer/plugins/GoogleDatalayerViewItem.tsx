@@ -2,7 +2,7 @@ import type { ProductPageMetaProps } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useMemoObject } from '@graphcommerce/next-ui'
 import { useEffect } from 'react'
-import { useSendEvent } from '../api/sendEvent'
+import { useSendEvent } from '../hooks/useSendEvent'
 import { productToViewItem } from '../mapping/productToViewItem/productToViewItem'
 
 export const config: PluginConfig = {
