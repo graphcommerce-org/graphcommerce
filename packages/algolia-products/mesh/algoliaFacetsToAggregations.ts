@@ -115,6 +115,32 @@ function assertAlgoliaFacets(facets: any): facets is AlgoliaFacets {
   return true
 }
 
+function sortAggregations(
+  aggregations,
+  renderingContent: AlgoliasearchResponse['renderingContent'][''],
+) {
+  if (renderingContent && renderingContent?.facetOrdering?.facets?.order) {
+    const orderMap = new Map(
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      renderingContent.facetOrdering?.facets?.order.map((key, index) => [key, index]),
+    )
+
+    return aggregations
+      .sort(
+        (a, b) =>
+          (orderMap.get(a.attribute_code) ?? Infinity) -
+          (orderMap.get(b.attribute_code) ?? Infinity),
+      )
+      .filter((value) =>
+        renderingContent.facetOrdering?.facets?.order.find(
+          (sortedValue) => value.attribute_code === sortedValue,
+        ),
+      )
+  }
+
+  return aggregations
+}
+
 /**
  * Map algolia facets to aggregations format
  *
@@ -123,6 +149,7 @@ function assertAlgoliaFacets(facets: any): facets is AlgoliaFacets {
  */
 export function algoliaFacetsToAggregations(
   algoliaFacets: AlgoliasearchResponse['facets'],
+  renderingContent: AlgoliasearchResponse['renderingContent'],
   attributes: AttributeList,
   storeConfig: GetStoreConfigReturn,
   categoryList?: null | CategoryResult,
@@ -183,7 +210,7 @@ export function algoliaFacetsToAggregations(
     }
   })
 
-  return aggregations
+  return sortAggregations(aggregations, renderingContent)
 }
 
 let categoryListCache: CategoryResult | null = null

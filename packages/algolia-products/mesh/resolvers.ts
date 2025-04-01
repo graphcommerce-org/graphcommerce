@@ -44,6 +44,7 @@ export const resolvers: Resolvers = {
 
       return algoliaFacetsToAggregations(
         root.algoliaSearchResults?.facets,
+        root.algoliaSearchResults?.renderingContent,
         await getAttributeList(context),
         await getStoreConfig(context),
         await getCategoryList(context),
@@ -127,7 +128,6 @@ export const resolvers: Resolvers = {
         getSearchSuggestions(args.search, context)
 
       const searchResults = hasSearchRequest(info) ? getSearchResults(args, context, info) : null
-
       if (isGraphQLError(await searchResults))
         return context.m2.Query.products({ root, args, context, info })
 
