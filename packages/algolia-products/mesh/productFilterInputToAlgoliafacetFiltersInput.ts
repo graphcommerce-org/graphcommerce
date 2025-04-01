@@ -24,12 +24,16 @@ export function productFilterInputToAlgoliaFacetFiltersInput(
     return []
   }
 
+  let visibilitySearch = true
   Object.entries(filters).forEach(([key, value]) => {
     if (isFilterTypeEqual(value)) {
       if (value.in) {
         const values = value.in.filter(nonNullable)
-        if (key === 'category_uid') filterArray.push(values.map((v) => `categoryIds:${atob(v)}`))
-        else filterArray.push(values.map((v) => `${key}:${v}`))
+        if (key === 'category_uid') {
+          filterArray.push(values.map((v) => `categoryIds:${atob(v)}`))
+          filterArray.push(['visibility_catalog:1'])
+          visibilitySearch = false
+        } else filterArray.push(values.map((v) => `${key}:${v}`))
       }
 
       if (value.eq) {
@@ -42,6 +46,9 @@ export function productFilterInputToAlgoliaFacetFiltersInput(
       throw Error('Match filters are not supported')
     }
   })
+  if (visibilitySearch) {
+    filterArray.push(['visibility_search:1'])
+  }
 
   return filterArray
 }

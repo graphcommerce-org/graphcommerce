@@ -27,6 +27,13 @@ export async function getSearchResults(
           additionalProperties
         }
         facets
+        renderingContent {
+          facetOrdering {
+            facets {
+              order
+            }
+          }
+        }
       }
     `,
     context,
