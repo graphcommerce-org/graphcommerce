@@ -57,7 +57,7 @@ export const resolvers: Resolvers = {
         return {
           default: 'relevance',
           options: Object.values(
-            sortingOptions(
+            await sortingOptions(
               await getAlgoliaSettings(context),
               await getAttributeList(context),
               context,
