@@ -4,7 +4,7 @@ import type { InputMaybe, Scalars } from '@graphcommerce/next-config'
 
 export function getAlgoliaContext(
   filters?: InputMaybe<ProductAttributeFilterInput>,
-): InputMaybe<Array<InputMaybe<Scalars['String']['input']>>> {
+): InputMaybe<ProductAttributeFilterInput['ruleContexts']> {
   let context = 'search'
   if (!filters) {
     return [context]
