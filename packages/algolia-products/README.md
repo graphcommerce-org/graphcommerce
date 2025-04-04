@@ -32,7 +32,6 @@ Make sure the Magento 2 module is correctly installed and working.
 2. Configure your aggregations/filters, make sure that the aggregation fields
    are also indexed in step 1
    `Stores > Configuration > Algolia Search > Instant Search Results Page > Facets`
-   Make sure to add 'visibility_search' and 'visibility_catalog' for proper usage of those attributes
 3. Make sure the aggregations fields are made filterable(Use in layerd
    Navigation), so the attributeList query can retrieve the labels.
    `Stores > Products > Attributes`
