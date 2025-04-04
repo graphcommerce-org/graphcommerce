@@ -3,6 +3,7 @@ import type {
   MeshContext,
   QueryproductsArgs,
 } from '@graphcommerce/graphql-mesh'
+import { getAlgoliaContext } from './getAlgoliaContext'
 import { getStoreConfig } from './getStoreConfig'
 import {
   productFilterInputToAlgoliaFacetFiltersInput,
@@ -26,5 +27,6 @@ export async function getSearchResultsInput(
       filters,
     ),
     analytics: true,
+    ruleContexts: getAlgoliaContext(filters),
   }
 }
