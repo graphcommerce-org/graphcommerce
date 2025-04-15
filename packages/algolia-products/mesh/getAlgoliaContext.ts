@@ -1,6 +1,6 @@
 import type { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import { isFilterTypeEqual } from '@graphcommerce/magento-product'
-import type { InputMaybe, Scalars } from '@graphcommerce/next-config'
+import type { InputMaybe } from '@graphcommerce/next-config'
 
 export function getAlgoliaContext(
   filters?: InputMaybe<ProductAttributeFilterInput>,
