@@ -2,6 +2,7 @@ import type {
   AlgolianumericFilters_Input,
   ProductAttributeFilterInput,
 } from '@graphcommerce/graphql-mesh'
+import { AlgoliasettingsResponse } from '@graphcommerce/graphql-mesh'
 import {
   isFilterTypeEqual,
   isFilterTypeMatch,
@@ -17,6 +18,7 @@ import { nonNullable } from './utils'
  * https://www.algolia.com/doc/api-reference/api-parameters/facetFilters/
  */
 export function productFilterInputToAlgoliaFacetFiltersInput(
+  settings: AlgoliasettingsResponse,
   filters?: InputMaybe<ProductAttributeFilterInput>,
 ) {
   const filterArray: (string | string[])[] = []
@@ -24,13 +26,29 @@ export function productFilterInputToAlgoliaFacetFiltersInput(
     return []
   }
 
+  const hasVisibility = settings?.attributesForFaceting?.some(
+    (attr) => typeof attr === 'string' && attr.includes('visibility'),
+  )
+
   Object.entries(filters).forEach(([key, value]) => {
     if (isFilterTypeEqual(value)) {
       if (value.in) {
         const values = value.in.filter(nonNullable)
         if (key === 'category_uid') {
           filterArray.push(values.map((v) => `categoryIds:${atob(v)}`))
-        } else filterArray.push(values.map((v) => `${key}:${v}`))
+
+          if (hasVisibility) {
+            filterArray.push(['visibility:Catalog, Search'])
+            // filterArray.push(['visibility:Catalog'])
+          }
+        } else {
+          filterArray.push(values.map((v) => `${key}:${v}`))
+
+          if (hasVisibility) {
+            filterArray.push(['visibility:Catalog, Search'])
+            filterArray.push(['visibility:Search'])
+          }
+        }
       }
 
       if (value.eq) {

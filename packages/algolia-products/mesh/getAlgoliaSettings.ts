@@ -10,6 +10,7 @@ export async function getAlgoliaSettings(context: MeshContext): Promise<Algolias
       selectionSet: /* GraphQL */ `
         {
           replicas
+          attributesForFaceting
         }
       `,
       context,
