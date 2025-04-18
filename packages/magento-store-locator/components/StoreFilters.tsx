@@ -6,51 +6,62 @@ import InputAdornment from '@mui/material/InputAdornment'
 import React from 'react'
 import { useStoreLocatorForm } from './StoreLocatorFormProvider'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const StoreFilters = React.forwardRef<typeof TextFieldElement>((_, ref) => {
-  const { control } = useStoreLocatorForm()
+export type StoreFiltersProps = {
+  beforeSearch?: React.ReactNode
+  afterSearch?: React.ReactNode
+}
 
-  return (
-    <Box className='StoreLocator_filters'>
-      <TextFieldElement
-        fullWidth
-        control={control}
-        name='search'
-        placeholder={i18n._(/* i18n */ 'Search your store by city, zip code or name')}
-        autoComplete='off'
-        InputProps={{
-          inputProps: {
-            id: 'StoreFilters_Input',
-          },
-          endAdornment: (
-            <InputAdornment position='end'>
-              <IconSvg src={iconSearch} />
-            </InputAdornment>
-          ),
-        }}
-        sx={(theme) => ({
-          fieldset: {
-            borderWidth: '2px',
-          },
+export const StoreFilters = React.forwardRef<typeof TextFieldElement>(
+  (props: StoreFiltersProps, ref) => {
+    const { beforeSearch, afterSearch } = props
+    const { control } = useStoreLocatorForm()
 
-          padding: theme.spacings.xs,
+    return (
+      <Box className='StoreFilters-root' ref={ref}>
+        {beforeSearch}
 
-          '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: theme.palette.primary.main,
-          },
+        <TextFieldElement
+          fullWidth
+          control={control}
+          name='search'
+          placeholder={i18n._(/* i18n */ 'Search your store by city, zip code or name')}
+          autoComplete='off'
+          InputProps={{
+            inputProps: {
+              id: 'StoreFilters_Input',
+            },
+            endAdornment: (
+              <InputAdornment position='end'>
+                <IconSvg src={iconSearch} />
+              </InputAdornment>
+            ),
+          }}
+          sx={(theme) => ({
+            fieldset: {
+              borderWidth: '2px',
+            },
 
-          '& .MuiInputBase-input': {
-            fontSize: '16px',
-            paddingLeft: theme.spacings.xs,
-          },
+            padding: theme.spacings.xs,
 
-          '& .MuiInputBase-root': {
-            backgroundColor: theme.palette.background.paper,
-            borderRadius: '40px',
-            height: '45px',
-          },
-        })}
-      />
-    </Box>
-  )
-})
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: theme.palette.primary.main,
+            },
+
+            '& .MuiInputBase-input': {
+              fontSize: '16px',
+              paddingLeft: theme.spacings.xs,
+            },
+
+            '& .MuiInputBase-root': {
+              backgroundColor: theme.palette.background.paper,
+              borderRadius: '40px',
+              height: '45px',
+            },
+          })}
+        />
+
+        {afterSearch}
+      </Box>
+    )
+  },
+)

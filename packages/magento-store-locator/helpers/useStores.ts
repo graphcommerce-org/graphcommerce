@@ -1,13 +1,13 @@
-import { StoreFragment } from '../Store.gql'
 import type { PositionProps } from '../components'
+import type { StoreFragment } from '../Store.gql'
 
 // Converts numeric degrees to radians
-function toRad(Value: number) {
+export function toRad(Value: number) {
   return (Value * Math.PI) / 180
 }
 
 // This function takes in latitude and longitude of two location and returns the distance between them as the crow flies (in km)
-function calcCrow(lat1: number, lon1: number, lat2: number, lon2: number) {
+export function calcCrow(lat1: number, lon1: number, lat2: number, lon2: number) {
   const Radius = 6371 // km
   const distanceLatitude = toRad(lat2 - lat1)
   const distanceLongitude = toRad(lon2 - lon1)
@@ -25,7 +25,7 @@ function calcCrow(lat1: number, lon1: number, lat2: number, lon2: number) {
   return distance
 }
 
-function sortStores(position: google.maps.LatLngLiteral | null, stores: StoreFragment[]) {
+export function sortStores(position: google.maps.LatLngLiteral | null, stores: StoreFragment[]) {
   if (position) {
     return stores?.sort((a, b) => {
       const calcA = calcCrow(position.lat, position.lng, a?.lat ?? 0, a?.lng ?? 0)

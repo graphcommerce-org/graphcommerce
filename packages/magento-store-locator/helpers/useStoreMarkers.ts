@@ -1,8 +1,6 @@
-import { MarkerClusterer } from '@googlemaps/markerclusterer'
-import { nonNullable } from '@graphcommerce/next-ui'
-import { useCallback, useEffect } from 'react'
-import { StoreFragment } from '../Store.gql'
+import { useEffect } from 'react'
 import { useStoreLocatorForm } from '../components'
+import type { StoreFragment } from '../Store.gql'
 
 /**
  * Hook to fetch and manage marker data for stores.
@@ -31,7 +29,7 @@ export function useStoreMarkers(
 
   useEffect(() => {
     if (!stores || !map) return
-    console.log('rednering markers')
+    console.log('rendering markers')
 
     const renderer = {
       render: ({ position }) => {

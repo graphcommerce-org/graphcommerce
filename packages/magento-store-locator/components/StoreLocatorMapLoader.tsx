@@ -1,7 +1,8 @@
 import { Loader } from '@googlemaps/js-api-loader'
-import { RefObject, createContext, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import type { RefObject } from 'react'
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react'
 
-type StoreLocatorMapContextType = {
+export type StoreLocatorMapContextType = {
   ref: RefObject<HTMLDivElement>
   map?: google.maps.Map
   additionalOptions: {
@@ -9,9 +10,11 @@ type StoreLocatorMapContextType = {
   }
 }
 
-const StoreLocatorMapContext = createContext<StoreLocatorMapContextType | undefined>(undefined)
+export const StoreLocatorMapContext = createContext<StoreLocatorMapContextType | undefined>(
+  undefined,
+)
 
-type StoreLocatorMapLoaderProps = {
+export type StoreLocatorMapLoaderProps = {
   mapOptions: google.maps.MapOptions
   additionalOptions: {
     searchQuerySuffix?: string

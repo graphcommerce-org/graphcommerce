@@ -8,37 +8,35 @@ import type { StoreFragment } from '../Store.gql'
 import { useStoreLocatorForm } from './StoreLocatorFormProvider'
 
 type InfoWindowProps = {
-  content: StoreFragment
+  store: StoreFragment & { content?: React.ReactNode }
 }
 
 export function StoreInfo(props: InfoWindowProps) {
-  const { content } = props
-  const { pickup_location_code, description } = content
+  const { store } = props
+  const { pickup_location_code, description } = store
   const { setValue, control } = useStoreLocatorForm()
   const preferredStore = useWatch({ control, name: 'preferredStore' })
   const isPreferredStore = preferredStore?.pickup_location_code === pickup_location_code
 
   const setPreferredStore = useEventCallback(() => {
-    if (!content) return
-    setValue('preferredStore', content)
-    global.localStorage.setItem(
-      'pickup_location_code',
-      JSON.stringify(content.pickup_location_code),
-    )
+    if (!store) return
+    setValue('preferredStore', store)
+    global.localStorage.setItem('pickup_location_code', JSON.stringify(store.pickup_location_code))
     global.document.dispatchEvent(
       new CustomEvent('set-preferred-store', {
         detail: {
-          pickup_location_code: content.pickup_location_code,
+          pickup_location_code: store.pickup_location_code,
         },
       }),
     )
   })
 
-  if (!content) return null
+  if (!store) return null
 
   return (
     <>
       <Box
+        className='StoreInfo-description'
         sx={(theme) => ({
           typography: 'body2',
           width: '100%',
@@ -49,8 +47,10 @@ export function StoreInfo(props: InfoWindowProps) {
         dangerouslySetInnerHTML={{ __html: description ?? '' }}
       />
 
+      {store.content}
+
       {import.meta.graphCommerce.storeLocator?.enablePreferredStoreSelection && (
-        <Box>
+        <Box className='StoreInfo-button'>
           <Button
             color='primary'
             onClick={!isPreferredStore ? setPreferredStore : undefined}

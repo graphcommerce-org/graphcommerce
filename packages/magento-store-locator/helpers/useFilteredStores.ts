@@ -1,7 +1,7 @@
 import { useWatch } from '@graphcommerce/react-hook-form'
 import { useCallback, useDeferredValue, useMemo } from 'react'
-import { StoreFragment } from '../Store.gql'
 import { useStoreLocatorForm } from '../components/StoreLocatorFormProvider'
+import type { StoreFragment } from '../Store.gql'
 
 // Performs a text-match based on the current value of 'search', returns an array of matching stores
 export function useFilteredStores(stores: StoreFragment[]) {

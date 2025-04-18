@@ -1,6 +1,6 @@
 import { i18n } from '@lingui/core'
 import { useEffect, useRef } from 'react'
-import { PositionProps } from './PositionProvider'
+import type { PositionProps } from './PositionProvider'
 import { useStoreLocatorMap } from './StoreLocatorMapLoader'
 
 export function useCurrentPositionMarker(position: PositionProps) {

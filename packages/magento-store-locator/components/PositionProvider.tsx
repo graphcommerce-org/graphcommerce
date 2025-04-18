@@ -10,7 +10,7 @@ interface PositionContextProps {
 
 const PositionContext = createContext<PositionContextProps | null>(null)
 
-const PositionProvider = ({ children }) => {
+function PositionProvider({ children }) {
   const { map } = useStoreLocatorMap()
   const [position, setPosition] = useState<PositionProps>(null)
 

@@ -1,7 +1,7 @@
 import { useWatch } from '@graphcommerce/react-hook-form'
 import React, { useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
-import { StoreFragment } from '../Store.gql'
+import type { StoreFragment } from '../Store.gql'
 import type { MarkerConfig } from './StoreLocator'
 import { useStoreLocatorForm } from './StoreLocatorFormProvider'
 import { useStoreLocatorMap } from './StoreLocatorMapLoader'

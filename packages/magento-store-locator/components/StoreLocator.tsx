@@ -1,5 +1,4 @@
-import { iconCustomerService, IconSvg } from '@graphcommerce/next-ui'
-import type { SxProps } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import { useStores } from '../helpers/useStores'
 import type { StoreFragment } from '../Store.gql'
@@ -20,7 +19,7 @@ export type MarkerConfig = {
 type StoreLocatorProps = {
   stores: StoreFragment[]
   markerConfig: MarkerConfig
-  sx?: SxProps
+  sx?: SxProps<Theme>
 }
 
 export function StoreLocator({ stores, markerConfig, sx }: StoreLocatorProps) {
@@ -32,6 +31,7 @@ export function StoreLocator({ stores, markerConfig, sx }: StoreLocatorProps) {
 
   return (
     <Box
+      className='StoreLocator-root'
       sx={[
         (theme) => ({
           display: 'flex',
@@ -50,6 +50,7 @@ export function StoreLocator({ stores, markerConfig, sx }: StoreLocatorProps) {
       ]}
     >
       <Box
+        className='StoreLocator-listContainer'
         sx={(theme) => ({
           width: { xs: '100%', md: '30%' },
           minWidth: { md: '300px' },
@@ -70,14 +71,14 @@ export function StoreLocator({ stores, markerConfig, sx }: StoreLocatorProps) {
         <StoreFilters />
         <Box
           sx={{ flexGrow: 1, overflowY: 'auto', scrollbarWidth: 'none' }}
-          className='StoreLocator_store-list'
+          className='StoreLocator-list'
         >
           <StoreList position={position} stores={sortedStores} />
         </Box>
       </Box>
 
       <Box
-        className='StoreLocator_map-container'
+        className='StoreLocator-mapContainer'
         sx={{
           flexGrow: 1,
           position: 'relative',
@@ -86,7 +87,12 @@ export function StoreLocator({ stores, markerConfig, sx }: StoreLocatorProps) {
           maxHeight: { xs: '35vh', md: '100%' },
         }}
       >
-        <Box ref={ref} id='map' sx={{ width: '100%', height: '100%' }} className='Scroller-root' />
+        <Box
+          ref={ref}
+          id='map'
+          sx={{ width: '100%', height: '100%' }}
+          className='Scroller-root StoreLocator-map'
+        />
         {sortedStores.map((store) => (
           <Marker key={store.pickup_location_code} store={store} markerConfig={markerConfig} />
         ))}

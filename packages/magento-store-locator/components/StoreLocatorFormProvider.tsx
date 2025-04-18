@@ -1,15 +1,19 @@
-import { FormPersist, useForm, UseFormReturn } from '@graphcommerce/ecommerce-ui'
-import { createContext, ReactNode, useContext } from 'react'
-import { StoreFragment } from '../Store.gql'
+import type { UseFormReturn } from '@graphcommerce/ecommerce-ui'
+import { FormPersist, useForm } from '@graphcommerce/ecommerce-ui'
+import type { ReactNode } from 'react'
+import { createContext, useContext } from 'react'
+import type { StoreFragment } from '../Store.gql'
 
-type FormValues = {
+export type FormValues = {
   search: string
   preferredStore?: StoreFragment
   focusedStore?: string
 }
 
-type StoreLocatorFormContextType = UseFormReturn<FormValues>
-const StoreLocatorFormContext = createContext<StoreLocatorFormContextType | undefined>(undefined)
+export type StoreLocatorFormContextType = UseFormReturn<FormValues>
+export const StoreLocatorFormContext = createContext<StoreLocatorFormContextType | undefined>(
+  undefined,
+)
 
 export function useStoreLocatorForm() {
   const context = useContext(StoreLocatorFormContext)

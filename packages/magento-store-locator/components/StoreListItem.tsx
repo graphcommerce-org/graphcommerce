@@ -1,20 +1,33 @@
+import { extendableComponent } from '@graphcommerce/next-ui'
 import { useWatch } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
-import { ButtonBase, Typography, Box } from '@mui/material'
-import React, { useRef, useEffect } from 'react'
-import { StoreFragment } from '../Store.gql'
-import { StoreChip } from './StoreChip'
-import { StoreInfo } from './StoreInfo'
+import { Box, ButtonBase } from '@mui/material'
+import React, { useEffect, useRef } from 'react'
+import type { StoreFragment } from '../Store.gql'
+import { StoreListItemContent } from './StoreListItemContent'
 import { useStoreLocatorForm } from './StoreLocatorFormProvider'
 
-type RetailStoreListItemProps = { store: StoreFragment; isClosestStore?: boolean }
+export type RetailStoreListItemProps = {
+  store: StoreFragment & { details?: React.ReactNode }
+  isClosestStore?: boolean
+}
+export type StoreListItemRenderProps = RetailStoreListItemProps & {
+  isPreferredStore: boolean
+  isFocusedStore: boolean
+}
 
-const StoreListItemRender = React.memo<
-  RetailStoreListItemProps & { isPreferredStore: boolean; isFocusedStore: boolean }
->((props) => {
+const componentName = 'StoreListItem'
+const parts = ['root', 'button'] as const
+const { withState } = extendableComponent<
+  Pick<StoreListItemRenderProps, 'isPreferredStore' | 'isClosestStore' | 'isFocusedStore'>,
+  typeof componentName,
+  typeof parts
+>(componentName, parts)
+
+export const StoreListItemRender = React.memo<StoreListItemRenderProps>((props) => {
   const { store, isPreferredStore, isClosestStore, isFocusedStore } = props
   const { setValue } = useStoreLocatorForm()
   const storeRef = useRef<HTMLDivElement>(null)
+  const classes = withState({ isPreferredStore, isClosestStore, isFocusedStore })
 
   useEffect(() => {
     if (isFocusedStore && storeRef.current) {
@@ -23,8 +36,9 @@ const StoreListItemRender = React.memo<
   }, [isFocusedStore])
 
   return (
-    <Box ref={storeRef}>
+    <Box ref={storeRef} className={classes.root}>
       <ButtonBase
+        className={classes.button}
         component='div'
         onClick={() => {
           if (!store.pickup_location_code) return
@@ -56,33 +70,7 @@ const StoreListItemRender = React.memo<
           }),
         })}
       >
-        <Box>
-          <strong>{store.name}</strong>
-          <Typography variant='body1' sx={{ '&.MuiTypography-root': { fontSize: '15px' } }}>
-            {store.phone} <br />
-            {store.street}, {store.postcode}, {store.city}
-          </Typography>
-        </Box>
-        <Box
-          sx={(theme) => ({
-            display: 'flex',
-            alignSelf: 'stretch',
-            flexDirection: 'column',
-            gap: theme.spacings.xxs,
-          })}
-        >
-          {isPreferredStore && (
-            <StoreChip variant='primary' label={i18n._(/* i18n */ 'Your store')} />
-          )}
-          {isClosestStore && (
-            <StoreChip variant='outlined' label={i18n._(/* i18n */ 'Closest store')} />
-          )}
-        </Box>
-        {isFocusedStore && (
-          <Box sx={{ flexBasis: '100%' }}>
-            <StoreInfo content={store} />
-          </Box>
-        )}
+        <StoreListItemContent {...props} />
       </ButtonBase>
     </Box>
   )

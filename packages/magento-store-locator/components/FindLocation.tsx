@@ -1,5 +1,6 @@
 import { useWatch } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
+import { Box } from '@mui/material'
 import Button from '@mui/material/Button'
 import { useEffect } from 'react'
 import { usePositionContext } from './PositionProvider'
@@ -52,7 +53,7 @@ export function FindLocation() {
   if (search?.length < 1) return null
 
   return (
-    <div>
+    <Box className='FindLocation-root'>
       <Button
         variant='pill'
         color='primary'
@@ -71,6 +72,6 @@ export function FindLocation() {
       >
         <Trans id='Search near "{search}"' values={{ search }} />
       </Button>
-    </div>
+    </Box>
   )
 }

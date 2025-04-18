@@ -13,7 +13,7 @@ export const StoreListResults = React.memo<{ stores: StoreFragment[]; first?: st
 
   return (
     <Box
-      className='storeList'
+      className='StoreList-root'
       sx={(theme) => ({
         display: 'flex',
         flexDirection: 'column',
@@ -49,6 +49,7 @@ export const StoreListResults = React.memo<{ stores: StoreFragment[]; first?: st
 export function StoreListNoResults() {
   return (
     <Box
+      className='StoreListNoResults-root'
       sx={(theme) => ({
         padding: `${theme.spacings.md} ${theme.spacings.xxs} `,
         backgroundColor: 'primary.contrastText',
@@ -66,6 +67,7 @@ export function StoreListNoResults() {
 export function StoreListLoader() {
   return (
     <Box
+      className='StoreListLoader-root'
       sx={(theme) => ({
         display: 'flex',
         flexDirection: 'column',
