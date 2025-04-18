@@ -32,10 +32,14 @@ Make sure the Magento 2 module is correctly installed and working.
 2. Configure your aggregations/filters, make sure that the aggregation fields
    are also indexed in step 1
    `Stores > Configuration > Algolia Search > Instant Search Results Page > Facets`
-3. Make sure the aggregations fields are made filterable(Use in layerd
+3. Make sure to configure 'visibility' as a facet, so Algolia can make use of
+   magento visibility settings. if not indexed algolia will not use this
+   filtering on catalog and search pages, that may result in the display of
+   products you don't want.
+4. Make sure the aggregations fields are made filterable(Use in layerd
    Navigation), so the attributeList query can retrieve the labels.
    `Stores > Products > Attributes`
-4. To configure sorting options, enable Virtual Replica's.
+5. To configure sorting options, enable Virtual Replica's.
    `Stores > Configuration > Algolia Search > Instant Search Results Page > Use Virtual Replica`
 
 ### Customer Group Pricing
