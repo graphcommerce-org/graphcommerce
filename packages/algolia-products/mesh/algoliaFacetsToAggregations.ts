@@ -116,13 +116,12 @@ function assertAlgoliaFacets(facets: any): facets is AlgoliaFacets {
 }
 
 function sortAggregations(
-  aggregations,
-  renderingContent: AlgoliasearchResponse['renderingContent'][''],
+  aggregations: Aggregation[],
+  renderingContent: AlgoliasearchResponse['renderingContent'],
 ) {
   if (renderingContent && renderingContent?.facetOrdering?.facets?.order) {
     const orderMap = new Map(
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      renderingContent.facetOrdering?.facets?.order.map((key, index) => [key, index]),
+      renderingContent.facetOrdering?.facets?.order?.map((key, index) => [key, index]),
     )
 
     return aggregations
@@ -132,7 +131,7 @@ function sortAggregations(
           (orderMap.get(b.attribute_code) ?? Infinity),
       )
       .filter((value) =>
-        renderingContent.facetOrdering?.facets?.order.find(
+        renderingContent.facetOrdering?.facets?.order?.find(
           (sortedValue) => value.attribute_code === sortedValue,
         ),
       )
