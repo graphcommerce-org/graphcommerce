@@ -38,15 +38,13 @@ export function productFilterInputToAlgoliaFacetFiltersInput(
           filterArray.push(values.map((v) => `categoryIds:${atob(v)}`))
 
           if (hasVisibility) {
-            filterArray.push(['visibility:Catalog, Search'])
-            // filterArray.push(['visibility:Catalog'])
+            filterArray.push(['visibility:Catalog, Search', 'visibility:Catalog'])
           }
         } else {
           filterArray.push(values.map((v) => `${key}:${v}`))
 
           if (hasVisibility) {
-            filterArray.push(['visibility:Catalog, Search'])
-            filterArray.push(['visibility:Search'])
+            filterArray.push(['visibility:Catalog, Search', 'visibility:Search'])
           }
         }
       }
