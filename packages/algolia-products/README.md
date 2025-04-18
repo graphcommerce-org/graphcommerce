@@ -39,7 +39,9 @@ Make sure the Magento 2 module is correctly installed and working.
 4. Make sure the aggregations fields are made filterable(Use in layerd
    Navigation), so the attributeList query can retrieve the labels.
    `Stores > Products > Attributes`
-5. To configure sorting options, enable Virtual Replica's.
+5. To configure aggrations/filters/facet sorting, create a visual rule in the
+   algolia dashboard and use the order facet option to sort
+6. To configure sorting options, enable Virtual Replica's.
    `Stores > Configuration > Algolia Search > Instant Search Results Page > Use Virtual Replica`
 
 ### Customer Group Pricing
