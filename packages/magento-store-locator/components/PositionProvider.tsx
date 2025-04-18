@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { setPositionOnMap } from '../helpers/setPositionOnMap'
 import { useStoreLocatorMap } from './StoreLocatorMapLoader'
 
 export type PositionProps = google.maps.LatLngLiteral | null
@@ -15,16 +16,7 @@ function PositionProvider({ children }) {
   const [position, setPosition] = useState<PositionProps>(null)
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      if (!map) return
-      const markerPosition = {
-        lat: pos.coords.latitude,
-        lng: pos.coords.longitude,
-      }
-      setPosition(markerPosition)
-      map.setCenter(markerPosition)
-      map.setZoom(11)
-    })
+    setPositionOnMap(map, setPosition)
   }, [map])
 
   const contextValue = useMemo(() => ({ position, setPosition }), [position, setPosition])
