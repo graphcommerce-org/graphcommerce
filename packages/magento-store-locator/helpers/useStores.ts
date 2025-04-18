@@ -47,7 +47,7 @@ export function sortStores(position: google.maps.LatLngLiteral | null, stores: S
 // Return an array of sortedStores based on the proximity to position
 export function useStores(position: PositionProps, stores: StoreFragment[]) {
   return {
-    sortedStores: sortStores(position, stores),
+    sortedStores: [...sortStores(position, stores)],
     position,
   }
 }
