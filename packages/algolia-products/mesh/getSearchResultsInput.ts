@@ -3,7 +3,6 @@ import type {
   MeshContext,
   QueryproductsArgs,
 } from '@graphcommerce/graphql-mesh'
-import { getAlgoliaContext } from './getAlgoliaContext'
 import { getAlgoliaSettings } from './getAlgoliaSettings'
 import { getStoreConfig } from './getStoreConfig'
 import {
@@ -25,12 +24,13 @@ export async function getSearchResultsInput(
     facetFilters: productFilterInputToAlgoliaFacetFiltersInput(
       await getAlgoliaSettings(context),
       filters,
+      args.search,
     ),
     numericFilters: await productFilterInputToAlgoliaNumericFiltersInput(
       getStoreConfig(context),
       filters,
     ),
     analytics: true,
-    ruleContexts: getAlgoliaContext(filters),
+    ruleContexts: args.search ? ['Search'] : ['Catalog'],
   }
 }
