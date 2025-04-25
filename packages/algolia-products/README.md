@@ -36,13 +36,15 @@ Make sure the Magento 2 module is correctly installed and working.
    magento visibility settings. if not indexed algolia will not use this
    filtering on catalog and search pages, that may result in the display of
    products you don't want.
-4. Make sure the aggregations fields are made filterable(Use in layerd
+4. Make sure the aggregations fields are made filterable(Use in layered
    Navigation), so the attributeList query can retrieve the labels.
    `Stores > Products > Attributes`
 5. To configure aggrations/filters/facet sorting, create a visual rule in the
    algolia dashboard and use the order facet option to sort
 6. To configure sorting options, enable Virtual Replica's.
    `Stores > Configuration > Algolia Search > Instant Search Results Page > Use Virtual Replica`
+7. Calls from catalog or search pages each get their own context in algolia: "search" and "catalog". You can use this context to create specific rules for each type of page.
+   
 
 ### Customer Group Pricing
 
