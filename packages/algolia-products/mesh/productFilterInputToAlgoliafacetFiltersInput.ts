@@ -32,7 +32,7 @@ export function productFilterInputToAlgoliaFacetFiltersInput(
   )
 
   if (hasVisibility) {
-    if (query) {
+    if (typeof query === 'string') {
       filterArray.push(['visibility:Catalog, Search', 'visibility:Search'])
     } else {
       filterArray.push(['visibility:Catalog, Search', 'visibility:Catalog'])
@@ -60,7 +60,6 @@ export function productFilterInputToAlgoliaFacetFiltersInput(
       throw Error('Match filters are not supported')
     }
   })
-
   return filterArray
 }
 
