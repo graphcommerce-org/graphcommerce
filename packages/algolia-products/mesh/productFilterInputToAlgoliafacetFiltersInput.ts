@@ -20,6 +20,7 @@ import { nonNullable } from './utils'
 export function productFilterInputToAlgoliaFacetFiltersInput(
   settings: AlgoliasettingsResponse,
   filters?: InputMaybe<ProductAttributeFilterInput>,
+  query?: String,
 ) {
   const filterArray: (string | string[])[] = []
   if (!filters) {
@@ -30,22 +31,22 @@ export function productFilterInputToAlgoliaFacetFiltersInput(
     (attr) => typeof attr === 'string' && attr.includes('visibility'),
   )
 
+  if (hasVisibility) {
+    if (query) {
+      filterArray.push(['visibility:Catalog, Search', 'visibility:Search'])
+    } else {
+      filterArray.push(['visibility:Catalog, Search', 'visibility:Catalog'])
+    }
+  }
+
   Object.entries(filters).forEach(([key, value]) => {
     if (isFilterTypeEqual(value)) {
       if (value.in) {
         const values = value.in.filter(nonNullable)
         if (key === 'category_uid') {
           filterArray.push(values.map((v) => `categoryIds:${atob(v)}`))
-
-          if (hasVisibility) {
-            filterArray.push(['visibility:Catalog, Search', 'visibility:Catalog'])
-          }
         } else {
           filterArray.push(values.map((v) => `${key}:${v}`))
-
-          if (hasVisibility) {
-            filterArray.push(['visibility:Catalog, Search', 'visibility:Search'])
-          }
         }
       }
 
