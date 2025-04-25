@@ -31,6 +31,6 @@ export async function getSearchResultsInput(
       filters,
     ),
     analytics: true,
-    ruleContexts: args.search ? ['Search'] : ['Catalog'],
+    ruleContexts: typeof args.search === 'string' ? ['Search'] : ['Catalog'],
   }
 }
