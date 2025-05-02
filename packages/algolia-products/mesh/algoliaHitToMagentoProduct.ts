@@ -132,7 +132,6 @@ export function algoliaHitToMagentoProduct(
     created_at,
     image_url,
     is_stock,
-
     price,
     thumbnail_url,
     type_id,
@@ -148,12 +147,13 @@ export function algoliaHitToMagentoProduct(
     ...rest
   } = additionalProperties
 
-  // Some custom attributes are returned as array while they need to be a string. Flatten those arrays
-  const flattenedCustomAttributes = {}
+  /**
+   * We flatten any custom attribute array values to a string as 95% of the time they are an array
+   * because the product is a configurable.
+   */
   for (const [key, value] of Object.entries(rest)) {
-    if (value !== null && Array.isArray(value) && value?.length > 0) {
-      flattenedCustomAttributes[key] = value.toString()
-      delete rest[key]
+    if (value !== null && Array.isArray(value)) {
+      rest[key] = value.join(' ')
     }
   }
 
@@ -188,7 +188,6 @@ export function algoliaHitToMagentoProduct(
     // price_tiers: [],
     // product_links: [],
     // related_products: null,
-    // short_description: null,
     // small_image: null,
     // special_price: null,
     // special_to_date: null,
@@ -199,6 +198,5 @@ export function algoliaHitToMagentoProduct(
     url_key: algoliaUrlToUrlKey(url, storeConfig?.base_link_url),
     url_suffix: storeConfig?.product_url_suffix,
     ...rest,
-    ...flattenedCustomAttributes,
   }
 }
