@@ -42,72 +42,24 @@ function compare(a, b) {
 }
 
 /** @public */
-export function algoliaPricesToPricesAggregations(pricesList: {
-  [key: string]: number
-}): AggregationOption[] {
+export function algoliaPricesToPricesAggregations(
+  pricesList: AlgoliaFacetOption,
+): AggregationOption[] {
   const priceArraylist: { value: number; count: number }[] = Object.entries(pricesList)
     .sort(compare)
-    .map((price) => {
-      const value: number = +price[0]
-      return { value, count: price[1] }
-    })
+    .map((price) => ({ value: Number(+price[0]), count: price[1] }))
 
-  const interval = Math.round(
-    (priceArraylist[priceArraylist.length - 1].value - priceArraylist[0].value) / 2,
-  )
+  let minValue = priceArraylist[0].value
+  const maxValue = priceArraylist[priceArraylist.length - 1].value
+  if (minValue === maxValue) minValue = 0
 
-  const pricesBucket: { [key: number]: { count: number; value: string; label: string } } = {}
-  let increasingInterval = interval
-  priceArraylist.forEach((price) => {
-    if (price.value <= increasingInterval) {
-      if (!pricesBucket[increasingInterval]) {
-        pricesBucket[increasingInterval] = {
-          count: price.count,
-          value:
-            increasingInterval === interval
-              ? `0_${interval}`
-              : `${increasingInterval - interval}_${increasingInterval}`,
-          label:
-            increasingInterval === interval
-              ? `0_${interval}`
-              : `${increasingInterval - interval}-${increasingInterval}`,
-        }
-      } else {
-        pricesBucket[increasingInterval].count += price.count
-      }
-    } else {
-      increasingInterval += interval
-      pricesBucket[increasingInterval] = {
-        count: price.count,
-        value:
-          increasingInterval === interval
-            ? `0_${interval}`
-            : `${increasingInterval - interval}_${increasingInterval}`,
-        label:
-          increasingInterval === interval
-            ? `0-${interval}`
-            : `${increasingInterval - interval}-${increasingInterval}`,
-      }
-    }
-    if (
-      price.value === increasingInterval &&
-      priceArraylist[priceArraylist.length - 1].value !== price.value
-    ) {
-      increasingInterval += interval
-      pricesBucket[increasingInterval] = {
-        count: price.count,
-        value:
-          increasingInterval === interval
-            ? `0_${interval}`
-            : `${increasingInterval - interval}_${increasingInterval}`,
-        label:
-          increasingInterval === interval
-            ? `0_${interval}`
-            : `${increasingInterval - interval}-${increasingInterval}`,
-      }
-    }
-  })
-  return Object.values(pricesBucket)
+  return [
+    {
+      value: `${minValue}_${maxValue}`,
+      label: `${minValue}-${maxValue}`,
+      count: priceArraylist.reduce((acc, price) => acc + price.count, 0),
+    },
+  ]
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
