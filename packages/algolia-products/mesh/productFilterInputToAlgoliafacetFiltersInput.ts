@@ -1,8 +1,8 @@
 import type {
   AlgolianumericFilters_Input,
+  AlgoliasettingsResponse,
   ProductAttributeFilterInput,
 } from '@graphcommerce/graphql-mesh'
-import { AlgoliasettingsResponse } from '@graphcommerce/graphql-mesh'
 import {
   isFilterTypeEqual,
   isFilterTypeMatch,
@@ -20,7 +20,7 @@ import { nonNullable } from './utils'
 export function productFilterInputToAlgoliaFacetFiltersInput(
   settings: AlgoliasettingsResponse,
   filters?: InputMaybe<ProductAttributeFilterInput>,
-  query?: String,
+  query?: string,
 ) {
   const filterArray: (string | string[])[] = []
   if (!filters) {
@@ -39,6 +39,9 @@ export function productFilterInputToAlgoliaFacetFiltersInput(
     }
   }
 
+  // @see algoliaFacetsToAggregations for the other side.
+  const maybeDecode = (value: string) => value.replaceAll('_OR_', '/').replaceAll('_AND_', ',')
+
   Object.entries(filters).forEach(([key, value]) => {
     if (isFilterTypeEqual(value)) {
       if (value.in) {
@@ -46,13 +49,13 @@ export function productFilterInputToAlgoliaFacetFiltersInput(
         if (key === 'category_uid') {
           filterArray.push(values.map((v) => `categoryIds:${atob(v)}`))
         } else {
-          filterArray.push(values.map((v) => `${key}:${v}`))
+          filterArray.push(values.map((v) => `${key}:${maybeDecode(v)}`))
         }
       }
 
       if (value.eq) {
         if (key === 'category_uid') filterArray.push(`categoryIds:${atob(value.eq)}`)
-        else filterArray.push(`${key}:${value.eq}`)
+        else filterArray.push(`${key}:${maybeDecode(value.eq)}`)
       }
     }
 
