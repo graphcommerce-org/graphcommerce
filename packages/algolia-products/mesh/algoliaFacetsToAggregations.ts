@@ -119,17 +119,29 @@ export function algoliaFacetsToAggregations(
         position,
       })
     } else {
-      // Fallback to code if no label is found
-      aggregations.push({
-        label,
-        attribute_code,
-        options: Object.entries(facet).map(([filter, count]) => ({
-          label: filter,
-          count,
-          value: filter,
-        })),
-        position,
-      })
+      /** @todo: We probably need to modify the render-side of this to make it work properly. Magento by default doesn't really support range filters that aren't prices. */
+      const isNumericFacet = false
+
+      if (isNumericFacet) {
+        aggregations.push({
+          label,
+          attribute_code,
+          options: algoliaPricesToPricesAggregations(facet),
+          position,
+        })
+      } else {
+        aggregations.push({
+          label,
+          attribute_code,
+          options: Object.entries(facet).map(([filter, count]) => ({
+            label: filter,
+            count,
+            // @see productFilterInputToAlgoliafacetFiltersInput for the other side.
+            value: filter.replaceAll('/', '_OR_').replaceAll(',', '_AND_'),
+          })),
+          position,
+        })
+      }
     }
   })
 
