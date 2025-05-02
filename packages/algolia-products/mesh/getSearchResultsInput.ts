@@ -24,7 +24,7 @@ export async function getSearchResultsInput(
     facetFilters: productFilterInputToAlgoliaFacetFiltersInput(
       await getAlgoliaSettings(context),
       filters,
-      args.search,
+      args.search ?? '',
     ),
     numericFilters: await productFilterInputToAlgoliaNumericFiltersInput(
       getStoreConfig(context),
