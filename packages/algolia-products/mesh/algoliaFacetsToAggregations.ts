@@ -115,40 +115,12 @@ function assertAlgoliaFacets(facets: any): facets is AlgoliaFacets {
   return true
 }
 
-function sortAggregations(
-  aggregations: Aggregation[],
-  renderingContent: AlgoliasearchResponse['renderingContent'],
-) {
-  if (renderingContent && renderingContent?.facetOrdering?.facets?.order) {
-    const orderMap = new Map(
-      renderingContent.facetOrdering?.facets?.order?.map((key, index) => [key, index]),
-    )
-
-    return aggregations
-      .sort(
-        (a, b) =>
-          (orderMap.get(a.attribute_code) ?? Infinity) -
-          (orderMap.get(b.attribute_code) ?? Infinity),
-      )
-      .filter((value) =>
-        renderingContent.facetOrdering?.facets?.order?.find(
-          (sortedValue) => value.attribute_code === sortedValue,
-        ),
-      )
-  }
-
-  return aggregations
-}
-
 /**
  * Map algolia facets to aggregations format
- *
- * TODO: Make sure the aggregations are sorted correctly:
  * https://magento-247-git-canary-graphcommerce.vercel.app/men/photography, through position
  */
 export function algoliaFacetsToAggregations(
   algoliaFacets: AlgoliasearchResponse['facets'],
-  renderingContent: AlgoliasearchResponse['renderingContent'],
   attributes: AttributeList,
   storeConfig: GetStoreConfigReturn,
   categoryList?: null | CategoryResult,
@@ -209,7 +181,7 @@ export function algoliaFacetsToAggregations(
     }
   })
 
-  return sortAggregations(aggregations, renderingContent)
+  return aggregations
 }
 
 let categoryListCache: CategoryResult | null = null
