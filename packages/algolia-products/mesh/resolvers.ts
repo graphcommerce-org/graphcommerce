@@ -11,6 +11,7 @@ import { getSearchResults } from './getSearchResults'
 import { getSearchSuggestions } from './getSearchSuggestions'
 import { isSuggestionsEnabled } from './getSearchSuggestionsInput'
 import { getStoreConfig } from './getStoreConfig'
+import { sortAggregations } from './sortAggregations'
 import { sortingOptions } from './sortOptions'
 
 function isAlgoliaResponse<T extends object>(
@@ -42,13 +43,15 @@ export const resolvers: Resolvers = {
     aggregations: async (root, _args, context) => {
       if (!isAlgoliaResponse(root)) return root.aggregations ?? null
 
-      return algoliaFacetsToAggregations(
-        root.algoliaSearchResults?.facets,
+      return sortAggregations(
+        algoliaFacetsToAggregations(
+          root.algoliaSearchResults?.facets,
+          await getAttributeList(context),
+          await getStoreConfig(context),
+          await getCategoryList(context),
+          getGroupId(context),
+        ),
         root.algoliaSearchResults?.renderingContent,
-        await getAttributeList(context),
-        await getStoreConfig(context),
-        await getCategoryList(context),
-        getGroupId(context),
       )
     },
 
