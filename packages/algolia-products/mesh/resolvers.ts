@@ -73,13 +73,13 @@ export const resolvers: Resolvers = {
 
     total_count: (root) => {
       if (!isAlgoliaResponse(root)) return root.total_count ?? null
-      return root.algoliaSearchResults?.nbHits
+      return root.algoliaSearchResults?.nbHits ?? null
     },
 
     page_info: (root) => {
       if (!isAlgoliaResponse(root)) return root.page_info ?? null
       return {
-        current_page: root.algoliaSearchResults.page + 1,
+        current_page: (root.algoliaSearchResults.page ?? 0) + 1,
         page_size: root.algoliaSearchResults.hitsPerPage,
         total_pages: root.algoliaSearchResults.nbPages,
       }

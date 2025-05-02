@@ -29,7 +29,7 @@ export const resolvers: Resolvers = {
       return {
         items,
         page_info: {
-          current_page: algoliaResponse.page + 1,
+          current_page: (algoliaResponse.page ?? 0) + 1,
           page_size: algoliaResponse.hitsPerPage,
           total_pages: algoliaResponse.nbPages,
         },
