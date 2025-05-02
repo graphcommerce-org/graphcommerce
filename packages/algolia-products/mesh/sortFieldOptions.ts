@@ -11,11 +11,11 @@ import { getIndexName } from './getIndexName'
 
 export type SortingOptions = Record<string, SortField & { dirs: SortEnum[] }>
 
-export async function sortingOptions(
+export function sortFieldsOptions(
   settings: AlgoliasettingsResponse,
   attributeList: AttributeList,
   context: MeshContext,
-): Promise<SortingOptions> {
+): SortField[] {
   const sortRecord: SortingOptions = {
     relevance: { label: 'Relevance', value: 'relevance', dirs: ['DESC'] },
   }
@@ -53,24 +53,5 @@ export async function sortingOptions(
       }
     }, {})
 
-  return sortRecord
-}
-
-export async function getSortedIndex(
-  context: MeshContext,
-  settings: Promise<AlgoliasettingsResponse>,
-  sortInput: ProductAttributeSortInput | null = {},
-): Promise<string> {
-  const baseIndex = getIndexName(context)
-  // const availableSorting = Object.values(sortOptions)
-  const [attr, dir] = Object.entries(sortInput ?? {}).filter(nonNullable)?.[0] ?? []
-  if (!attr || !dir) return baseIndex
-
-  const found = (await settings).replicas?.find(
-    (replica) =>
-      replica?.startsWith(`virtual(${baseIndex}_${attr}`) &&
-      replica?.endsWith(`${dir?.toLowerCase()})`),
-  )
-
-  return found ? found?.slice(8, -1) : baseIndex
+  return Object.values(sortRecord)
 }

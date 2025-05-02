@@ -12,7 +12,7 @@ import { getSearchSuggestions } from './getSearchSuggestions'
 import { isSuggestionsEnabled } from './getSearchSuggestionsInput'
 import { getStoreConfig } from './getStoreConfig'
 import { sortAggregations } from './sortAggregations'
-import { sortingOptions } from './sortOptions'
+import { sortFieldsOptions } from './sortFieldOptions'
 
 function isAlgoliaResponse<T extends object>(
   root: T,
@@ -59,12 +59,10 @@ export const resolvers: Resolvers = {
       if (isAlgoliaResponse(root)) {
         return {
           default: 'relevance',
-          options: Object.values(
-            await sortingOptions(
-              await getAlgoliaSettings(context),
-              await getAttributeList(context),
-              context,
-            ),
+          options: sortFieldsOptions(
+            await getAlgoliaSettings(context),
+            await getAttributeList(context),
+            context,
           ),
         }
       }
