@@ -53,23 +53,13 @@ export function FindLocation() {
   if (search?.length < 1) return null
 
   return (
-    <Box className='FindLocation-root'>
-      <Button
-        variant='pill'
-        color='primary'
-        sx={(theme) => ({
-          '&.MuiButton-root': {
-            padding: {
-              xs: `${theme.spacings.xxs} ${theme.spacings.lg}`,
-              md: `calc(${theme.spacings.xxs} * 0.4) ${theme.spacings.md}`,
-            },
-            marginTop: theme.spacings.sm,
-            fontSize: theme.typography.subtitle1.fontSize,
-            fontWeight: 'bold',
-          },
-        })}
-        onClick={handleSearch}
-      >
+    <Box
+      className='FindLocation-root'
+      sx={(theme) => ({
+        marginTop: theme.spacings.sm,
+      })}
+    >
+      <Button variant='pill' color='primary' onClick={handleSearch}>
         <Trans id='Search near "{search}"' values={{ search }} />
       </Button>
     </Box>
