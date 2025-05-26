@@ -69,7 +69,7 @@ function ProductPage(props: Props) {
 
   const product = mergeDeep(
     products?.items?.[0],
-    relatedUpsells?.items?.find((item) => item?.uid === products?.items?.[0]?.uid),
+    relatedUpsells?.items?.find((item) => item?.uid === products?.items?.[0]?.uid) ?? {},
   )
 
   if (!product?.sku || !product.url_key) return null
