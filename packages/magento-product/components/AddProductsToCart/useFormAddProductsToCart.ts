@@ -1,5 +1,5 @@
 import type { UseFormGqlMutationReturn } from '@graphcommerce/ecommerce-ui'
-import type { EnteredOptionInput } from '@graphcommerce/graphql-mesh'
+import type { CartItemInput } from '@graphcommerce/graphql-mesh'
 import { createContext, useContext } from 'react'
 import type { LiteralUnion, Simplify } from 'type-fest'
 import type {
@@ -9,25 +9,35 @@ import type {
 
 export type RedirectType = LiteralUnion<'added' | undefined | false, `/${string}`>
 
-type Item = Simplify<
-  AddProductsToCartMutationVariables['cartItems'][number] & {
-    /**
-     * The value of the selected_options_record values will be added to the selected_options array.
-     *
-     * This format exists to prevent name collisions and without having to select by index in the
-     * selected_options array.
-     */
-    selected_options_record?: Record<string, string | string[]>
-    /**
-     * The value of the entered_options_record entries will be coverted to entries for the
-     * entered_options array.
-     *
-     * This format exists to prevent name collisions and without having to select by index in the
-     * entered_options array.
-     */
-    entered_options_record?: Record<string, string | number | Date>
-  }
->
+type Item = CartItemInput & {
+  /**
+   * The value of the selected_options_record values will be added to the selected_options array.
+   *
+   * This format exists to prevent name collisions and without having to select by index in the
+   * selected_options array.
+   */
+  selected_options_record?: Record<string, string | string[]>
+  /**
+   * The value of the entered_options_record entries will be coverted to entries for the
+   * entered_options array.
+   *
+   * This format exists to prevent name collisions and without having to select by index in the
+   * entered_options array.
+   */
+  entered_options_record?: Record<string, string | number | Date>
+
+  /**
+   * If the sku is present in a cartItem we consider the cartItem to be included in the submission.
+   *
+   * In `useAddProductsToCartAction` the sku of the product is set. This allows to determine which
+   * product to add to the cart depending on which button is pressed. This usecase is relevant when
+   * adding products from a list that are wrapped in a single form.
+   *
+   * In the usecase where the product is always known (like on the product page), we don't want to
+   * reset the sku. For example for grouped products we always want to add variants of the product.
+   */
+  keep_sku?: boolean
+}
 
 export type AddProductsToCartFields = Omit<AddProductsToCartMutationVariables, 'cartItems'> & {
   cartItems: Item[]
