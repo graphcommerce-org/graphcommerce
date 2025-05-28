@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.24
+
+### Patch Changes
+
+- [#2520](https://github.com/graphcommerce-org/graphcommerce/pull/2520) [`bf153c7`](https://github.com/graphcommerce-org/graphcommerce/commit/bf153c7a55ce02040b3d55045a0a9d9ea521f714) - fix: if relatedUpsells are not defined, use empty object so mergeDeep… ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 9.1.0-canary.23
 
 ## 9.1.0-canary.22
