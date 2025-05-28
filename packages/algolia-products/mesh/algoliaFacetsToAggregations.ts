@@ -6,6 +6,7 @@ import type {
   MeshContext,
 } from '@graphcommerce/graphql-mesh'
 import type { AttributeList } from './getAttributeList'
+import { getIndexName } from './getIndexName'
 import type { GetStoreConfigReturn } from './getStoreConfig'
 
 type AlgoliaFacets = { [facetName: string]: AlgoliaFacetOption }
@@ -148,14 +149,12 @@ export function algoliaFacetsToAggregations(
   return aggregations
 }
 
-let categoryListCache: CategoryResult | null = null
-
 export async function getCategoryList(context: MeshContext) {
-  if (categoryListCache) return categoryListCache
+  const cacheKey = `algolia_getCategoryList_${getIndexName(context)}`
+  const categoryListCached = context.cache.get(cacheKey)
 
-  // context.cache.get('algolia_getCategoryList')
-
-  categoryListCache = await context.m2.Query.categories({
+  if (categoryListCached) return categoryListCached as CategoryResult
+  const categoryListCache = await context.m2.Query.categories({
     args: { filters: {} },
     selectionSet: /* GraphQL */ `
       {
@@ -170,5 +169,8 @@ export async function getCategoryList(context: MeshContext) {
     context,
   })
 
-  return categoryListCache!
+  if (!categoryListCache) throw new Error('Category list not found')
+  await context.cache.set(cacheKey, categoryListCache)
+
+  return categoryListCache
 }
