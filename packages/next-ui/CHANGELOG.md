@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.25
+
+### Patch Changes
+
+- [#2517](https://github.com/graphcommerce-org/graphcommerce/pull/2517) [`547be7d`](https://github.com/graphcommerce-org/graphcommerce/commit/547be7d5ee39aca64ab4a9a80de66a01961990e4) - Fixed gallery zoom breaking on long sidebar content ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 9.1.0-canary.24
 
 ## 9.1.0-canary.23
