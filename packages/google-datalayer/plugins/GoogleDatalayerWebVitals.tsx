@@ -4,7 +4,7 @@ import { useEventCallback } from '@mui/material'
 import { useEffect } from 'react'
 import type { Metric } from 'web-vitals/attribution'
 import { onCLS, onFCP, onINP, onLCP, onTTFB } from 'web-vitals/attribution'
-import { useSendEvent } from '../api/sendEvent'
+import { useSendEvent } from '../hooks/useSendEvent'
 
 export const config: PluginConfig = {
   type: 'component',

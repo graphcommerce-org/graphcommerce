@@ -4,7 +4,7 @@ import { useMemoObject } from '@graphcommerce/next-ui'
 import { useDebounce } from '@graphcommerce/react-hook-form'
 import { useEventCallback } from '@mui/material'
 import React, { useContext, useEffect, useRef } from 'react'
-import { useSendEvent } from '../api/sendEvent'
+import { useSendEvent } from '../hooks/useSendEvent'
 import {
   productItemsToViewItemList,
   viewItemListToSelectItem,

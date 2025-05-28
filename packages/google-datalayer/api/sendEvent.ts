@@ -13,10 +13,3 @@ export function sendEvent<Event extends keyof GoogleEventTypes>(
 ) {
   // This is a generic event handler and is plugins from google-analytics and google datalayer
 }
-
-export function useSendEvent() {
-  return <Event extends keyof GoogleEventTypes>(
-    eventName: Event,
-    eventData: GoogleEventTypes[Event],
-  ) => sendEvent<Event>(eventName, eventData)
-}
