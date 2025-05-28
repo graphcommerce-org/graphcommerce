@@ -21,10 +21,11 @@ export type ProductFiltersProCategoryAccordionProps = {
   sx?: SxProps<Theme>
   categoryTree: CategoryTreeItem[]
   onChange: (uid: CategoryTreeItem) => void | Promise<void>
+  clearable?: boolean
 } & Pick<ActionCardAccordionProps, 'defaultExpanded'>
 
 export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCategoryAccordionProps) {
-  const { hideTitle, sx, categoryTree, onChange, defaultExpanded } = props
+  const { hideTitle, sx, categoryTree, onChange, defaultExpanded, clearable = false } = props
   const { form } = useProductFiltersPro()
 
   const name = 'filters.category_uid.in'
@@ -40,7 +41,7 @@ export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCateg
       defaultExpanded={defaultExpanded}
       summary={<Trans id='Categories' />}
       right={
-        currentFilter && currentFilter.length > 0 ? (
+        clearable && currentFilter && currentFilter.length > 0 ? (
           <Button
             color='primary'
             onClick={(e) => {
