@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.26
+
+### Patch Changes
+
+- [#2522](https://github.com/graphcommerce-org/graphcommerce/pull/2522) [`43641a4`](https://github.com/graphcommerce-org/graphcommerce/commit/43641a48e0f3828d99b686b2f7cbca915f426d64) - Solve issue where grouped products could only be added to the cart correctly once. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.25
 
 ## 9.1.0-canary.24
