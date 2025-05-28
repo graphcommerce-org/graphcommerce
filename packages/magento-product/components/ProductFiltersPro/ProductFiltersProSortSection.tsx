@@ -28,7 +28,7 @@ export function ProductFiltersProSortSection(props: ProductFiltersProSortSection
           name='sort'
           layout='list'
           variant='default'
-          size='responsive'
+          size='medium'
           render={ActionCard}
           items={options}
         />

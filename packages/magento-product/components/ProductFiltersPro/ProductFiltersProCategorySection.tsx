@@ -70,7 +70,7 @@ export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCateg
               <ActionCard
                 key={item.value}
                 {...item}
-                size='responsive'
+                size='medium'
                 title={
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <Box sx={{ marginRight: 1 }}>
