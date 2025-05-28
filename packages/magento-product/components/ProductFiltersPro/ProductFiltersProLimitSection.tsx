@@ -46,7 +46,7 @@ export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSecti
           control={control}
           layout='list'
           variant='default'
-          size='responsive'
+          size='medium'
           items={options}
         />
       }

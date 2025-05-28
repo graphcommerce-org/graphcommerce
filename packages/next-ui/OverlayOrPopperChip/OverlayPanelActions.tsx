@@ -54,7 +54,7 @@ export function OverlayPanelActions(props: PanelActionsProps) {
         </Typography>
       </LayoutOverlayHeader>
 
-      <Box sx={{ flex: 1, px: 2 }} className={classes.content}>
+      <Box sx={{ flex: 1, px: 2, pt: 2 }} className={classes.content}>
         {children}
       </Box>
 

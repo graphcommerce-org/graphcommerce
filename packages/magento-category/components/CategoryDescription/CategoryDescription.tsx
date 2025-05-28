@@ -22,7 +22,14 @@ export type CategoryDescriptionProps = StateProps & {
 }
 
 export function CategoryDescription(props: CategoryDescriptionProps) {
-  const { category, sx = [], textAlignSm = 'center', textAlignMd = 'center', ...divProps } = props
+  const {
+    category,
+    sx = [],
+    textAlignSm = 'center',
+    textAlignMd = 'center',
+    productListRenderer,
+    ...divProps
+  } = props
   const { description } = category
 
   const classes = withState({ textAlignSm, textAlignMd })

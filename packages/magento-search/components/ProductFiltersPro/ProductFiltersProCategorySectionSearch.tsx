@@ -155,6 +155,7 @@ export function ProductFiltersProCategorySectionSearch(
   return (
     <ProductFiltersProCategoryAccordion
       categoryTree={categoryTree}
+      clearable
       {...props}
       onChange={async (item) => {
         form.setValue('filters', {
