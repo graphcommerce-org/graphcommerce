@@ -1,5 +1,11 @@
 # @graphcommerce/algolia-personalization
 
+## 9.1.0-canary.28
+
+### Patch Changes
+
+- [#2505](https://github.com/graphcommerce-org/graphcommerce/pull/2505) [`59c8877`](https://github.com/graphcommerce-org/graphcommerce/commit/59c8877db343450547da3e200d904c15f5b8e94f) - Update useSendAlgoliaEvent.ts ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 9.1.0-canary.27
 
 ## 9.1.0-canary.26
