@@ -259,17 +259,31 @@ treated as a separate (virtual) index in Algolia.
 
 ### Customer Group Pricing
 
+```tsx
+const config = {
+  algolia: {
+    customerGroupPricingEnabled: true,
+  },
+}
+```
+
 To enable customer group pricing, make sure customers groups prices are mapped
 to algolia.
 `Stores > Configuration > Algolia Search > Advanced > Enable Customer Groups`.
+
+⚠️ Warning: Magento needs to be configured the same as this value else index
+selection will not work.
+
+⚠️ Warning: `@graphcommerce/algolia-personalization` needs to be enabled as well
+to make this work.
 
 ⚠️ Warning: Catalog price rules for a specific customer group do not seem to be
 indexed.It seems only: `[Product] > Advanced Pricing > Customer Group Price`
 gets indexed.
 
-Note: The GraphQL API does not expose the customer group_id by default. We're
-doing an additional REST API call to get the value. This means a somewhat slower
-(few hundred ms) when the Customer is loaded.
+⚠️ Warning: The GraphQL API does not expose the customer group_id by default.
+We're doing an additional REST API call to get the value. This means a somewhat
+slower (few hundred ms) when the Customer is loaded.
 
 ### Customization
 
