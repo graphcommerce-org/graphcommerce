@@ -1,5 +1,11 @@
 # @graphcommerce/google-datalayer
 
+## 9.1.0-canary.27
+
+### Patch Changes
+
+- [#2514](https://github.com/graphcommerce-org/graphcommerce/pull/2514) [`57ece20`](https://github.com/graphcommerce-org/graphcommerce/commit/57ece2097b9a3799e1d0a459c006dab656d20b9d) - Solve an issue where Analytics and Tagmanager events wouldn't be sent. Split useSendEvent and sendEvent methods into two files so plugins can be correctly applied to each. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.26
 
 ## 9.1.0-canary.25

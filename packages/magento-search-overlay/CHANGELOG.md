@@ -1,5 +1,7 @@
 # @graphcommerce/magento-search-overlay
 
+## 9.1.0-canary.27
+
 ## 9.1.0-canary.26
 
 ## 9.1.0-canary.25
