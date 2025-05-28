@@ -1,5 +1,5 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { nonNullable } from '@graphcommerce/next-ui'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { useCartQuery } from '../../hooks'
@@ -10,7 +10,7 @@ const crossSellsHideCartItems = Boolean(import.meta.graphCommerce.crossSellsHide
 
 export function useCrosssellItems() {
   const cartAdded = useCartQuery(CartAddedDocument)
-  const items = filterNonNullableKeys(cartAdded.data?.cart?.items)
+  const items = (cartAdded.data?.cart?.items ?? []).filter(nonNullable)
   const router = useRouter()
 
   const sku =
@@ -30,7 +30,8 @@ export function useCrosssellItems() {
 
   const crossSellItems = useMemo(
     () =>
-      filterNonNullableKeys(data)
+      (data ?? [])
+        .filter(nonNullable)
         .filter((item) => item.stock_status === 'IN_STOCK')
         .filter(
           (item) => !crossSellsHideCartItems || items.every((i) => i.product.sku !== item.sku),
