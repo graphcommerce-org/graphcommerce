@@ -60,24 +60,31 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
           cartId,
           cartItems: cartItems
             .filter((cartItem) => cartItem.sku && cartItem.quantity !== 0)
-            .map(({ selected_options_record = {}, entered_options_record = {}, ...cartItem }) => ({
-              ...cartItem,
-              quantity: cartItem.quantity || 1,
-              selected_options: [
-                ...(cartItem.selected_options ?? []).filter(nonNullable),
-                ...Object.values(selected_options_record).flat(1).filter(nonNullable),
-              ],
-              entered_options: [
-                ...(cartItem.entered_options ?? []).filter(nonNullable),
-                ...Object.entries(entered_options_record).map(([uid, value]) => {
-                  if (value instanceof Date) {
-                    const dateValue = value.toISOString().replace(/.000Z/, '').replace('T', ' ')
-                    return { uid, value: dateValue }
-                  }
-                  return { uid, value: value.toString() }
-                }),
-              ],
-            })),
+            .map(
+              ({
+                selected_options_record = {},
+                entered_options_record = {},
+                keep_sku,
+                ...cartItem
+              }) => ({
+                ...cartItem,
+                quantity: cartItem.quantity || 1,
+                selected_options: [
+                  ...(cartItem.selected_options ?? []).filter(nonNullable),
+                  ...Object.values(selected_options_record).flat(1).filter(nonNullable),
+                ],
+                entered_options: [
+                  ...(cartItem.entered_options ?? []).filter(nonNullable),
+                  ...Object.entries(entered_options_record).map(([uid, value]) => {
+                    if (value instanceof Date) {
+                      const dateValue = value.toISOString().replace(/.000Z/, '').replace('T', ' ')
+                      return { uid, value: dateValue }
+                    }
+                    return { uid, value: value.toString() }
+                  }),
+                ],
+              }),
+            ),
         }
 
         const sku = requestData.cartItems[requestData.cartItems.length - 1]?.sku
@@ -95,9 +102,11 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
       onComplete: async (result, variables) => {
         await onComplete?.(result, variables)
 
-        // After the form has been submitted, we're resetting the submitted SKU's
+        // After the form has been submitted, we're resetting the submitted SKU's to disable them all.
+        // We use the presence of the SKU to determine if the line is 'enabled'.
+        // After submitting we reset (when using multiple buttons in a single form)
         form.getValues('cartItems').forEach((item, index) => {
-          if (item.sku) form.setValue(`cartItems.${index}.sku`, '')
+          if (item.sku && !item.keep_sku) form.setValue(`cartItems.${index}.sku`, '')
         })
 
         if (toUserErrors(result.data).length || result.errors?.length || !redirect) return

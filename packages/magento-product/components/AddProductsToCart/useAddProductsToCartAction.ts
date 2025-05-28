@@ -30,7 +30,9 @@ export function useAddProductsToCartAction(
   const formState = useFormState({ control })
   const { sku = props.product?.sku, product, index = 0, onClick: onClickIncoming, disabled } = props
 
-  const loading = formState.isSubmitting && getValues(`cartItems.${index}.sku`) === sku
+  const loading =
+    formState.isSubmitting &&
+    (product?.__typename === 'GroupedProduct' || getValues(`cartItems.${index}.sku`) === sku)
 
   const [showSuccess, setShowSuccess] = useState<boolean>(false)
 

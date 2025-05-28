@@ -43,6 +43,7 @@ export function GroupedProductActionCard(props: GroupedProductActionCardProps) {
   return (
     <>
       <input type='hidden' {...register(`cartItems.${index}.sku`)} value={sku} />
+      <input type='hidden' {...register(`cartItems.${index}.keep_sku`, { value: true })} />
       <ActionCard
         variant='default'
         value={uid}
