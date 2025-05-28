@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.1.0-canary.23
+
+### Patch Changes
+
+- [#2521](https://github.com/graphcommerce-org/graphcommerce/pull/2521) [`78b8640`](https://github.com/graphcommerce-org/graphcommerce/commit/78b86401fc5410ffb3b001bc7c79049496a54ae7) - Solve issue where the category sidebar navigation would show a Clear button while it wasn't clearable. ([@paales](https://github.com/paales))
+
+- [#2521](https://github.com/graphcommerce-org/graphcommerce/pull/2521) [`0464fbf`](https://github.com/graphcommerce-org/graphcommerce/commit/0464fbf798723e17c094e264a558ec0ebe73e8b0) - Fix regression issue where the sidebar filter values would be rendered too big and padding was missing on the top when values would be renderd in a bottom sheet. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.22
 
 ## 9.1.0-canary.21

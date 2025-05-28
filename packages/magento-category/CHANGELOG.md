@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.23
+
+### Patch Changes
+
+- [#2521](https://github.com/graphcommerce-org/graphcommerce/pull/2521) [`8b7cf3c`](https://github.com/graphcommerce-org/graphcommerce/commit/8b7cf3c58dfafd65497469023607c16c3260cfe7) - Solve issue where productListRenderer was passed as a DOM element, causing react warnings. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.22
 
 ## 9.1.0-canary.21

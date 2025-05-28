@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.23
+
+### Patch Changes
+
+- [#2521](https://github.com/graphcommerce-org/graphcommerce/pull/2521) [`6847259`](https://github.com/graphcommerce-org/graphcommerce/commit/6847259715b0cebcc3f7415ed06cc38814663811) - Solve typescript issue were product types were added incorrectly. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.22
 
 ## 9.1.0-canary.21

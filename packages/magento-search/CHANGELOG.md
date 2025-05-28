@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.23
+
+### Patch Changes
+
+- [#2521](https://github.com/graphcommerce-org/graphcommerce/pull/2521) [`78b8640`](https://github.com/graphcommerce-org/graphcommerce/commit/78b86401fc5410ffb3b001bc7c79049496a54ae7) - Solve issue where the category sidebar navigation would show a Clear button while it wasn't clearable. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.22
 
 ### Patch Changes
