@@ -6,7 +6,12 @@ function isGraphQLError(err: unknown): err is GraphQLError {
   return !!(err as GraphQLError)?.message
 }
 
-export async function getAlgoliaSettings(context: MeshContext): Promise<AlgoliasettingsResponse> {
+export type GetAlgoliaSettingsReturn = Pick<
+  AlgoliasettingsResponse,
+  'attributesForFaceting' | 'replicas'
+>
+
+export async function getAlgoliaSettings(context: MeshContext): Promise<GetAlgoliaSettingsReturn> {
   const cacheKey = `algolia_getSettings_${getIndexName(context)}`
   const settingsCached = context.cache.get(cacheKey)
   if (settingsCached) return settingsCached

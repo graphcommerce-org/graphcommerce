@@ -1,18 +1,13 @@
-import type {
-  AlgoliasettingsResponse,
-  MeshContext,
-  ProductAttributeSortInput,
-  SortEnum,
-  SortField,
-} from '@graphcommerce/graphql-mesh'
+import type { MeshContext, SortEnum, SortField } from '@graphcommerce/graphql-mesh'
 import { nonNullable } from '@graphcommerce/magento-customer'
+import type { GetAlgoliaSettingsReturn } from './getAlgoliaSettings'
 import type { AttributeList } from './getAttributeList'
 import { getIndexName } from './getIndexName'
 
 export type SortingOptions = Record<string, SortField & { dirs: SortEnum[] }>
 
 export function sortFieldsOptions(
-  settings: AlgoliasettingsResponse,
+  settings: GetAlgoliaSettingsReturn,
   attributeList: AttributeList,
   context: MeshContext,
 ): SortField[] {

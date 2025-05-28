@@ -1,6 +1,5 @@
 import type {
   AlgolianumericFilters_Input,
-  AlgoliasettingsResponse,
   ProductAttributeFilterInput,
 } from '@graphcommerce/graphql-mesh'
 import {
@@ -9,6 +8,7 @@ import {
   isFilterTypeRange,
 } from '@graphcommerce/magento-product'
 import type { InputMaybe } from '@graphcommerce/next-config'
+import type { GetAlgoliaSettingsReturn } from './getAlgoliaSettings'
 import type { GetStoreConfigReturn } from './getStoreConfig'
 import { nonNullable } from './utils'
 
@@ -18,7 +18,7 @@ import { nonNullable } from './utils'
  * https://www.algolia.com/doc/api-reference/api-parameters/facetFilters/
  */
 export function productFilterInputToAlgoliaFacetFiltersInput(
-  settings: AlgoliasettingsResponse,
+  settings: GetAlgoliaSettingsReturn,
   filters?: InputMaybe<ProductAttributeFilterInput>,
   query?: string,
 ) {
