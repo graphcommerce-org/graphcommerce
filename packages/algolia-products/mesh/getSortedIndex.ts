@@ -1,14 +1,11 @@
-import type {
-  AlgoliasettingsResponse,
-  MeshContext,
-  ProductAttributeSortInput,
-} from '@graphcommerce/graphql-mesh'
+import type { MeshContext, ProductAttributeSortInput } from '@graphcommerce/graphql-mesh'
 import { nonNullable } from '@graphcommerce/magento-customer'
+import type { GetAlgoliaSettingsReturn } from './getAlgoliaSettings'
 import { getIndexName } from './getIndexName'
 
 export async function getSortedIndex(
   context: MeshContext,
-  settings: Promise<AlgoliasettingsResponse>,
+  settings: Promise<GetAlgoliaSettingsReturn>,
   sortInput: ProductAttributeSortInput | null = {},
 ): Promise<string> {
   const baseIndex = getIndexName(context)
