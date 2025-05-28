@@ -182,9 +182,9 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       appBarHeightMd: '80px',
       appBarInnerHeightMd: '46px',
       containerSizingShell:
-        import.meta.graphCommerce.containerSizingShell === 'BREAKPOINT' ? 'lg' : false,
+        import.meta.graphCommerce.containerSizingShell === 'BREAKPOINT' ? 'xl' : false,
       containerSizingContent:
-        import.meta.graphCommerce.containerSizingContent === 'BREAKPOINT' ? 'lg' : false,
+        import.meta.graphCommerce.containerSizingContent === 'BREAKPOINT' ? 'xl' : false,
     },
   })
 
