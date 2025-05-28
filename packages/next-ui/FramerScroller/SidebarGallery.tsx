@@ -138,6 +138,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   const hasImages = images.length > 0
 
+  const sidebarSize = `calc(${responsiveVal(300, 500, undefined, theme.breakpoints.values.lg)} + ${theme.page.horizontal} * 2)`
+
   return (
     <ScrollerProvider scrollSnapAlign='center'>
       <Row
@@ -161,9 +163,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               gridTemplate: '"left" "right"',
               [theme.breakpoints.up('md')]: {
                 '&:not(.variantMdOneColumn)': {
-                  gridTemplate: `"left right" / 1fr calc(${responsiveVal(300, 500, undefined, theme.breakpoints.values.lg)} + ${
-                    theme.page.horizontal
-                  } * 2)`,
+                  gridTemplate: `"left right" / 1fr ${sidebarSize}`,
                 },
               },
 
@@ -362,6 +362,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
             className={classes.sidebarWrapper}
             sx={[
               {
+                width: sidebarSize,
                 gridArea: 'right',
                 boxSizing: 'content-box',
                 display: 'grid',
