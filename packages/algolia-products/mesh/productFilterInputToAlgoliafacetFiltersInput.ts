@@ -28,7 +28,7 @@ export function productFilterInputToAlgoliaFacetFiltersInput(
   }
 
   const hasVisibility = settings?.attributesForFaceting?.some(
-    (attr) => typeof attr === 'string' && attr.includes('visibility'),
+    (attr) => attr === 'visibility' || attr?.includes('filterOnly(visibility)'),
   )
 
   if (hasVisibility) {
