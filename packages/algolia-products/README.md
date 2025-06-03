@@ -47,12 +47,6 @@ Make sure the Magento 2 module is correctly installed and working.
 
 ### Customer Group Pricing
 
-```js
-const config = {
-  algoliaCustomerGroupPricingEnabled: true,
-}
-```
-
 To enable customer group pricing, make sure customers groups prices are mapped
 to algolia.
 `Stores > Configuration > Algolia Search > Advanced > Enable Customer Groups`.
