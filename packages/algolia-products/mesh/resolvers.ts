@@ -7,6 +7,7 @@ import { algoliaHitToMagentoProduct } from './algoliaHitToMagentoProduct'
 import { getAlgoliaSettings } from './getAlgoliaSettings'
 import { getAttributeList } from './getAttributeList'
 import { getGroupId } from './getGroupId'
+import { getIndexName } from './getIndexName'
 import { getSearchResults } from './getSearchResults'
 import { getSearchSuggestions } from './getSearchSuggestions'
 import { isSuggestionsEnabled } from './getSearchSuggestionsInput'
@@ -119,6 +120,7 @@ export const resolvers: Resolvers = {
         algoliaSearchResults: await searchResults,
         suggestions: (await searchSuggestsions) || null,
         algolia_queryID: (await searchResults)?.queryID,
+        algolia_indexName: getIndexName(context),
       }
     },
   },

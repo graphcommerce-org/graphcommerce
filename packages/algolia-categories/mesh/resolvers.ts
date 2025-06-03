@@ -3,6 +3,7 @@ import { type Resolvers } from '@graphcommerce/graphql-mesh'
 import type { GraphQLError } from 'graphql'
 import { algoliaHitToMagentoCategory } from './algoliaHitToMagentoCategory'
 import { getCategoryResults } from './getCategoryResults'
+import { getIndexName } from './getIndexName'
 
 function isGraphQLError(err: unknown): err is GraphQLError {
   return !!(err as GraphQLError)?.message
@@ -28,6 +29,8 @@ export const resolvers: Resolvers = {
           total_pages: searchResults?.nbPages,
         },
         total_count: searchResults?.nbHits,
+        algolia_queryID: searchResults?.queryID,
+        algolia_indexName: getIndexName(context),
       }
     },
   },
