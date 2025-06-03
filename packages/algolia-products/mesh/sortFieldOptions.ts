@@ -43,7 +43,7 @@ export function sortFieldsOptions(
           label: attributeList.find((attr) => attr.code === attributeCode)?.label,
           dirs: [curr.dir],
         }
-      } else {
+      } else if (!sortRecord[attributeCode].dirs.includes(curr.dir)) {
         sortRecord[attributeCode].dirs.push(curr.dir)
       }
     }, {})
