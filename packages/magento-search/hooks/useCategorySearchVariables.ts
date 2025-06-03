@@ -1,12 +1,14 @@
+import { useQuery } from '@graphcommerce/graphql'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { CategorySearchQueryVariables } from '../graphql/queries/CategorySearch.gql'
-
-export type UseCategorySearchVariablesProps = {
-  search?: string | null
-}
+import {
+  categoriesApplySearchDefaults,
+  type CategoriesApplySearchVariablesProps,
+} from '../utils/categoriesApplySearchDefaults'
 
 export function useCategorySearchVariables(
-  props: UseCategorySearchVariablesProps,
+  props: CategoriesApplySearchVariablesProps,
 ): CategorySearchQueryVariables {
-  const { search } = props
-  return { filters: { name: { match: search } }, pageSize: 5 }
+  const config = useQuery(StoreConfigDocument).data
+  return config ? categoriesApplySearchDefaults(props, config) : {}
 }

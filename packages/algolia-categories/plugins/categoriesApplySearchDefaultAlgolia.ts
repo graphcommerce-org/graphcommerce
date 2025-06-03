@@ -1,4 +1,4 @@
-import type { useCategorySearchVariables as original } from '@graphcommerce/magento-search'
+import type { categoriesApplySearchDefaults as original } from '@graphcommerce/magento-search'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 
 export const config: PluginConfig = {
@@ -6,7 +6,11 @@ export const config: PluginConfig = {
   module: '@graphcommerce/magento-search',
 }
 
-export const useCategorySearchVariables: FunctionPlugin<typeof original> = (prev, props) => {
-  const result = prev(props)
+export const categoriesApplySearchDefaults: FunctionPlugin<typeof original> = (
+  prev,
+  props,
+  conf,
+) => {
+  const result = prev(props, conf)
   return { ...result, filters: { ...result.filters, engine: { in: ['algolia'] } } }
 }
