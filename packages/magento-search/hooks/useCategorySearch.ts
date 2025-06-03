@@ -1,11 +1,9 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { CategorySearchDocument } from '../graphql/queries/CategorySearch.gql'
-import {
-  useCategorySearchVariables,
-  type UseCategorySearchVariablesProps,
-} from './useCategorySearchVariables'
+import type { CategoriesApplySearchVariablesProps } from '../utils/categoriesApplySearchDefaults'
+import { useCategorySearchVariables } from './useCategorySearchVariables'
 
-export function useCategorySearch(props: UseCategorySearchVariablesProps) {
+export function useCategorySearch(props: CategoriesApplySearchVariablesProps) {
   const { search } = props
   const variables = useCategorySearchVariables(props)
   const skip = !search || search.length < 3

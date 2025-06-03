@@ -16,6 +16,7 @@ import {
 } from '@graphcommerce/magento-product'
 import type { CategorySearchQuery } from '@graphcommerce/magento-search'
 import {
+  categoriesApplySearchDefaults,
   CategorySearchDocument,
   productListApplySearchDefaults,
   searchDefaultsToProductListFilters,
@@ -129,7 +130,10 @@ export const getServerSideProps: GetPageStaticProps = async (context) => {
   })
 
   const categories = false
-    ? staticClient.query({ query: CategorySearchDocument, variables: { search } })
+    ? staticClient.query({
+        query: CategorySearchDocument,
+        variables: categoriesApplySearchDefaults({ search }, (await conf).data),
+      })
     : undefined
 
   const result = {

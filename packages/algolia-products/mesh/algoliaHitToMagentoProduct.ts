@@ -195,7 +195,7 @@ export function algoliaHitToMagentoProduct(
     swatch_image: getOriginalImage(image_url),
     thumbnail: { url: getOriginalImage(thumbnail_url) },
     // upsell_products: [],
-    url_key: algoliaUrlToUrlKey(url, storeConfig?.base_link_url),
+    url_key: algoliaUrlToUrlKey(url),
     url_suffix: storeConfig?.product_url_suffix,
     ...rest,
   }
