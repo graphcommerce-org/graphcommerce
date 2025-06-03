@@ -39,18 +39,16 @@ export type CategoriesItemsItem = NonNullable<
   >['items']
 >[number]
 
-function mapBreadcrumbs(algoliaPath) {
-  const pathArray = algoliaPath.split(' / ')
+function mapBreadcrumbs(algoliaPath: string) {
+  // Remove the last item from the path, because it's the category itself
+  const pathArray = algoliaPath.split(' / ').slice(0, -1)
   return pathArray.map((item) => ({
     category_name: item,
-    category_uid: 0,
+    category_uid: '0',
   }))
 }
 
-export function algoliaHitToMagentoCategory(
-  hit: Algoliahit,
-  storeConfig: GetStoreConfigReturn,
-): CategoriesItemsItem {
+export function algoliaHitToMagentoCategory(hit: Algoliahit): CategoriesItemsItem {
   const { objectID, additionalProperties } = hit
 
   if (!assertAdditional(additionalProperties)) return null
@@ -62,7 +60,7 @@ export function algoliaHitToMagentoCategory(
     uid: objectID,
     redirect_code: 0,
     url_key: '',
-    url_path: algoliaUrlToUrlKey(additionalProperties.url, storeConfig?.base_link_url),
+    url_path: algoliaUrlToUrlKey(additionalProperties.url),
     breadcrumbs: mapBreadcrumbs(additionalProperties?.path),
     product_count: additionalProperties?.product_count,
     meta_description: additionalProperties?.meta_description,
