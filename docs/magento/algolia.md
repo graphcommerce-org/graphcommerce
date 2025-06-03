@@ -80,10 +80,6 @@ module.exports = {
 
     // By default the catalog will not use algolia. Set this to true to enable Algolia for the catalog.
     catalogEnabled: true,
-
-    // Enable Algolia customer group pricing.
-    // Please be aware that personalization needs to be enabled as well to make this work.
-    customerGroupPricingEnabled: true,
   },
 }
 ```
@@ -245,6 +241,18 @@ module.
 
 ## Additional Configuration
 
+### Visbility
+
+### Suggestions
+
+To get query suggestions/autocomplete enter your Algolia dashboard > Search >
+configure > Query Suggestions > new Query Suggestions Index. This will create a
+new index which will be used for suggestions.
+
+Don't mind to use the suggestions setting in magento admin. It will create a
+suggestions index but it will not record suggestions. This requires
+instantSearch
+
 ### Sorting Options
 
 To configure sorting options for your Algolia-powered search, you need to enable
@@ -305,6 +313,3 @@ implementation.
 
 For more information and detailed documentation, visit the GraphCommerce GitHub
 repository and Algolia's developer documentation. Happy coding!
-
-TODO: INSERT GRAPHIC - Diagram illustrating the architecture of Algolia
-integration in GraphCommerce
