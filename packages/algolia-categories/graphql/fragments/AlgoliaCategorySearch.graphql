@@ -1,3 +1,4 @@
 fragment AlgoliaCategorySearch on CategoryResult @inject(into: ["CategorySearchFragment"]) {
   algolia_queryID
+  algolia_indexName
 }
