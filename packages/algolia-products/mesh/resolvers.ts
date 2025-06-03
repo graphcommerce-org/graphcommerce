@@ -1,4 +1,4 @@
-import type { AlgoliasearchResponse, MeshContext, Resolvers } from '@graphcommerce/graphql-mesh'
+import type { AlgoliasearchResponse, Resolvers } from '@graphcommerce/graphql-mesh'
 import { hasSelectionSetPath } from '@graphcommerce/graphql-mesh'
 import type { GraphQLError, GraphQLResolveInfo } from 'graphql'
 import { algoliaFacetsToAggregations, getCategoryList } from './algoliaFacetsToAggregations'

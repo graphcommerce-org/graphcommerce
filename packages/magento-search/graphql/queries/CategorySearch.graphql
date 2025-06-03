@@ -1,0 +1,5 @@
+query CategorySearch($pageSize: Int = 10, $filters: CategoryFilterInput) {
+  categories(filters: $filters, pageSize: $pageSize) {
+    ...CategorySearchFragment
+  }
+}
