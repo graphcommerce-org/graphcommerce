@@ -191,8 +191,6 @@ export function algoliaHitToMagentoProduct(
     // options_container: null,
     // price_tiers: [],
     // product_links: [],
-    // related_products: null,
-    // small_image: null,
     // special_price: null,
     // special_to_date: null,
     small_image: { url: getOriginalImage(thumbnail_url) },
