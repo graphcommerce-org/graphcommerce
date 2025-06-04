@@ -81,9 +81,14 @@ function mapPriceRange(
   }
 }
 
-export function algoliaUrlToUrlKey(url?: string | null): string | null {
+export function algoliaUrlToUrlKey(url?: string | null, urlSuffix?: string | null): string | null {
   if (!url) return null
-  return new URL(url).pathname.slice(1)
+  const path = new URL(url).pathname.split('/')
+  // The URL key is the last part of the URL.
+  const urlKey = path[path.length - 1]
+
+  // The last part of the URL might end with the urlSuffix (something like `.html`), remove from the end of the URL.
+  return urlSuffix ? urlKey.replace(new RegExp(`${urlSuffix}$`), '') : urlKey
 }
 
 /**
@@ -197,7 +202,7 @@ export function algoliaHitToMagentoProduct(
     swatch_image: getOriginalImage(image_url),
     thumbnail: { url: getOriginalImage(thumbnail_url) },
     // upsell_products: [],
-    url_key: algoliaUrlToUrlKey(url),
+    url_key: algoliaUrlToUrlKey(url, storeConfig?.product_url_suffix),
     url_suffix: storeConfig?.product_url_suffix,
     ...rest,
   }
