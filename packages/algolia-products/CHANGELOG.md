@@ -1,5 +1,11 @@
 # @graphcommerce/algolia-products
 
+## 9.1.0-canary.34
+
+### Patch Changes
+
+- [`08f9883`](https://github.com/graphcommerce-org/graphcommerce/commit/08f98833019e726759194a3c1492052f2df052fa) - Correctly detect numeric values from the backend. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.33
 
 ## 9.1.0-canary.32
