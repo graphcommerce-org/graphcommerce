@@ -1,5 +1,11 @@
 # @graphcommerce/algolia-products
 
+## 9.1.0-canary.32
+
+### Patch Changes
+
+- [#2516](https://github.com/graphcommerce-org/graphcommerce/pull/2516) [`edd9be6`](https://github.com/graphcommerce-org/graphcommerce/commit/edd9be6cbb37e7da99cc2e74ac269f0b7ddfaaaa) - feat(GCOM-1585): normalize input values from Algolia to schema compliant values ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 9.1.0-canary.31
 
 ## 9.1.0-canary.30
