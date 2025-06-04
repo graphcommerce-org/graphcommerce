@@ -67,13 +67,12 @@ necessary configuration to your `graphcommerce.config.js` file:
 module.exports = {
   // Other configuration...
   algolia: {
-    // Configure your Algolia application ID.
-    // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
-    applicationId: 'SAME_AS_MAGENTO',
+    // Configure your Algolia application ID. [Algolia API Keys Dashboard](https://www.algolia.com/account/api-keys)
+    applicationId: '',
 
-    // Configure your Algolia Search Only API Key.
-    // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Search-only (public) API key
-    searchOnlyApiKey: 'SAME_AS_MAGENTO',
+    // Configure your Search API Key. [Algolia API Keys Dashboard](https://www.algolia.com/account/api-keys)
+    // Make sure the API key has the following ACL: search, listIndexes and settings [Lookup here](https://dashboard.algolia.com/account/api-keys/restricted)
+    searchOnlyApiKey: '',
 
     // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix
     indexNamePrefix: 'SAME_AS_MAGENTO',
