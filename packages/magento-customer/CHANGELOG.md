@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.31
+
+### Patch Changes
+
+- [#2524](https://github.com/graphcommerce-org/graphcommerce/pull/2524) [`dcc46aa`](https://github.com/graphcommerce-org/graphcommerce/commit/dcc46aae34f5eda6a633f472289ac4488ac96492) - Solve issue where the user is getting a 400 error when logging in because the password is not being sent. The password field was disabled before the form was submitted, causing the password not to be sent. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.30
 
 ## 9.1.0-canary.29

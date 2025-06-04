@@ -1,5 +1,7 @@
 # @graphcommerce/algolia-recommend
 
+## 9.1.0-canary.31
+
 ## 9.1.0-canary.30
 
 ## 9.1.0-canary.29
