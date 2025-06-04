@@ -6,6 +6,7 @@ import type { ProductsItemsItem } from './algoliaHitToMagentoProduct'
 import { algoliaHitToMagentoProduct } from './algoliaHitToMagentoProduct'
 import { getAlgoliaSettings } from './getAlgoliaSettings'
 import { getAttributeList } from './getAttributeList'
+import { getFilterTypes } from './getFilterTypes'
 import { getGroupId } from './getGroupId'
 import { getIndexName } from './getIndexName'
 import { getSearchResults } from './getSearchResults'
@@ -49,6 +50,7 @@ export const resolvers: Resolvers = {
           root.algoliaSearchResults?.facets,
           await getAttributeList(context),
           await getStoreConfig(context),
+          await getFilterTypes(context),
           await getCategoryList(context),
           getGroupId(context),
         ),

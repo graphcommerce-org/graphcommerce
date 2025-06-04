@@ -5,6 +5,7 @@ import type {
   CategoryResult,
   MeshContext,
 } from '@graphcommerce/graphql-mesh'
+import type { FilterTypes } from '@graphcommerce/magento-product'
 import type { AttributeList } from './getAttributeList'
 import { getIndexName } from './getIndexName'
 import type { GetStoreConfigReturn } from './getStoreConfig'
@@ -76,6 +77,7 @@ export function algoliaFacetsToAggregations(
   algoliaFacets: AlgoliasearchResponse['facets'],
   attributes: AttributeList,
   storeConfig: GetStoreConfigReturn,
+  filterTypes: FilterTypes,
   categoryList?: null | CategoryResult,
   groupId?: number,
 ): Aggregation[] {
@@ -96,6 +98,7 @@ export function algoliaFacetsToAggregations(
 
     const label =
       attributes?.find((attribute) => attribute?.code === attribute_code)?.label ?? attribute_code
+
     if (facetIndex === 'categoryIds') {
       aggregations.push({
         label,
@@ -119,30 +122,25 @@ export function algoliaFacetsToAggregations(
         options: algoliaPricesToPricesAggregations(algoliaFacets[facetIndex]),
         position,
       })
+    } else if (filterTypes[attribute_code] === 'PRICE') {
+      aggregations.push({
+        label,
+        attribute_code,
+        options: algoliaPricesToPricesAggregations(facet),
+        position,
+      })
     } else {
-      /** @todo: We probably need to modify the render-side of this to make it work properly. Magento by default doesn't really support range filters that aren't prices. */
-      const isNumericFacet = false
-
-      if (isNumericFacet) {
-        aggregations.push({
-          label,
-          attribute_code,
-          options: algoliaPricesToPricesAggregations(facet),
-          position,
-        })
-      } else {
-        aggregations.push({
-          label,
-          attribute_code,
-          options: Object.entries(facet).map(([filter, count]) => ({
-            label: filter,
-            count,
-            // @see productFilterInputToAlgoliafacetFiltersInput for the other side.
-            value: filter.replaceAll('/', '_OR_').replaceAll(',', '_AND_'),
-          })),
-          position,
-        })
-      }
+      aggregations.push({
+        label,
+        attribute_code,
+        options: Object.entries(facet).map(([filter, count]) => ({
+          label: filter,
+          count,
+          // @see productFilterInputToAlgoliafacetFiltersInput for the other side.
+          value: filter.replaceAll('/', '_OR_').replaceAll(',', '_AND_'),
+        })),
+        position,
+      })
     }
   })
 
