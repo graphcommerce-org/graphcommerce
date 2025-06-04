@@ -125,14 +125,14 @@ export type ProductsItemsItem = NonNullable<
  * - A string: returns it as-is
  * - Anything else: returns an empty string
  */
-export function normalizeToString(value: unknown): string {
+export function normalizeValue(value: unknown): string | null {
+  if (!value) return null
   if (typeof value === 'string') return value
   if (Array.isArray(value)) {
     const firstNonEmpty = value.find((v) => typeof v === 'string' && v.trim() !== '')
     return typeof firstNonEmpty === 'string' ? firstNonEmpty : ''
   }
-  console.log('[@graphcommerce/algolia-products] normalizeToString could not convert', value)
-  return ''
+  return null
 }
 
 /**
@@ -171,7 +171,7 @@ export function algoliaHitToMagentoProduct(
 
   // We flatten any custom attribute array values to a string as 95% of the time they are an array
   // because the product is a configurable (which creates an array of values).
-  for (const [key, value] of Object.entries(rest)) rest[key] = normalizeToString(value)
+  for (const [key, value] of Object.entries(rest)) rest[key] = normalizeValue(value)
 
   return {
     staged: false,
