@@ -81,9 +81,14 @@ function mapPriceRange(
   }
 }
 
-export function algoliaUrlToUrlKey(url?: string | null, base?: string | null): string | null {
-  if (!url || !base) return null
-  return url.replace(base, '')
+export function algoliaUrlToUrlKey(url?: string | null, urlSuffix?: string | null): string | null {
+  if (!url) return null
+  const path = new URL(url).pathname.split('/')
+  // The URL key is the last part of the URL.
+  const urlKey = path[path.length - 1]
+
+  // The last part of the URL might end with the urlSuffix (something like `.html`), remove from the end of the URL.
+  return urlSuffix ? urlKey.replace(new RegExp(`${urlSuffix}$`), '') : urlKey
 }
 
 /**
@@ -132,11 +137,12 @@ export function algoliaHitToMagentoProduct(
     created_at,
     image_url,
     is_stock,
-
     price,
     thumbnail_url,
     type_id,
     url,
+    description,
+    short_description,
 
     // not used
     ordered_qty,
@@ -148,12 +154,13 @@ export function algoliaHitToMagentoProduct(
     ...rest
   } = additionalProperties
 
-  // Some custom attributes are returned as array while they need to be a string. Flatten those arrays
-  const flattenedCustomAttributes = {}
+  /**
+   * We flatten any custom attribute array values to a string as 95% of the time they are an array
+   * because the product is a configurable.
+   */
   for (const [key, value] of Object.entries(rest)) {
-    if (value !== null && Array.isArray(value) && value?.length > 0) {
-      flattenedCustomAttributes[key] = value.toString()
-      delete rest[key]
+    if (value !== null && Array.isArray(value)) {
+      rest[key] = value.join(' ')
     }
   }
 
@@ -170,6 +177,8 @@ export function algoliaHitToMagentoProduct(
     review_count: 0,
     rating_summary: Number(rating_summary),
     reviews: { items: [], page_info: {} },
+    description: description ? { html: description } : null,
+    short_description: short_description ? { html: short_description } : null,
     // canonical_url: null,
     // categories: [],
     // country_of_manufacture: null,
@@ -187,18 +196,14 @@ export function algoliaHitToMagentoProduct(
     // options_container: null,
     // price_tiers: [],
     // product_links: [],
-    // related_products: null,
-    // short_description: null,
-    // small_image: null,
     // special_price: null,
     // special_to_date: null,
     small_image: { url: getOriginalImage(thumbnail_url) },
     swatch_image: getOriginalImage(image_url),
     thumbnail: { url: getOriginalImage(thumbnail_url) },
     // upsell_products: [],
-    url_key: algoliaUrlToUrlKey(url, storeConfig?.base_link_url),
+    url_key: algoliaUrlToUrlKey(url, storeConfig?.product_url_suffix),
     url_suffix: storeConfig?.product_url_suffix,
     ...rest,
-    ...flattenedCustomAttributes,
   }
 }

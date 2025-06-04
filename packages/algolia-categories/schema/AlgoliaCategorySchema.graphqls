@@ -1,0 +1,4 @@
+type CategoryResult {
+  algolia_queryID: String
+  algolia_indexName: String
+}

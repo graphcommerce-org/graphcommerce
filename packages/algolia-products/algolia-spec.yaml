@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Search API
   description: >
-    The Algolia Search API lets you search, configure, and mange your indices and records.
+    The Algolia Search API lets you search, configure, and manage your indices and records.
     
     
     ## Client libraries
@@ -37,7 +37,7 @@ info:
     ## Retry strategy
     
     
-    To guarantee a high availability, implement a retry strategy for all API requests using the URLs of your servers as fallbacks:
+    To guarantee high availability, implement a retry strategy for all API requests using the URLs of your servers as fallbacks:
     
     
     - `https://{APPLICATION_ID}-1.algolianet.com`
@@ -120,23 +120,23 @@ servers:
   - url: https://{appId}.algolia.net
     variables:
       appId:
-        default: myAppId
+        default: ALGOLIA_APPLICATION_ID
   - url: https://{appId}-1.algolianet.com
     variables:
       appId:
-        default: myAppId
+        default: ALGOLIA_APPLICATION_ID
   - url: https://{appId}-2.algolianet.com
     variables:
       appId:
-        default: myAppId
+        default: ALGOLIA_APPLICATION_ID
   - url: https://{appId}-3.algolianet.com
     variables:
       appId:
-        default: myAppId
+        default: ALGOLIA_APPLICATION_ID
   - url: https://{appId}-dsn.algolia.net
     variables:
       appId:
-        default: myAppId
+        default: ALGOLIA_APPLICATION_ID
 security:
   - appId: []
     apiKey: []
@@ -161,13 +161,9 @@ tags:
     description: |
       Multi-cluster operations.
 
-      Algolia no longer offers multi-cluster management.
-    externalDocs:
-      url: >-
-        https://www.algolia.com/doc/guides/scaling/managing-multiple-clusters-mcm/
-
-      description: |
-        Related guide: Multi-cluster management.
+      Multi-cluster operations are **deprecated**.
+      If you have issues with your Algolia infrastructure
+      due to large volumes of data, contact the Algolia support team.
   - name: Dictionaries
     description: >
       Manage your dictionaries.
@@ -209,6 +205,8 @@ tags:
       When they match a search query, they're returned as search results, in the order determined by your ranking.
       
       Records are schemaless JSON objects.
+      
+      When adding or updating many records, check the [indexing rate limits](https://support.algolia.com/hc/en-us/articles/4406975251089-Is-there-a-rate-limit-for-indexing-on-Algolia).
 
     externalDocs:
       url: >-
@@ -223,9 +221,9 @@ tags:
       
       Rules are _if-then_ statements that you can use to curate search results.
       
-      Rules have _conditions_ which can trigger _consequences_.
+      Rules have _conditions_ that can trigger _consequences_.
       
-      Consequences are changes to the search results, such as changing the order of search results, or boosting a facet.
+      Consequences are changes to the search results, such as changing the order of search results or boosting a facet.
       
       This can be useful for tuning specific queries or for merchandising.
 
@@ -272,7 +270,7 @@ paths:
         - search
       summary: Search an index
       description: >
-        Searches a single index and return matching search results (_hits_).
+        Searches a single index and returns matching search results (_hits_).
         
         
         This method lets you retrieve up to 1,000 hits.
@@ -524,6 +522,8 @@ components:
         
         - Optional filters are applied _after_ sort-by attributes.
         
+        - Optional filters are applied _before_ custom ranking attributes (in the default [ranking](https://www.algolia.com/doc/guides/managing-results/relevance-overview/in-depth/ranking-criteria/)).
+        
         - Optional filters don't work with numeric attributes.
 
       example:
@@ -544,7 +544,9 @@ components:
         **Prefer using the `filters` parameter, which supports all filter types and combinations with boolean operators.**
         
         
-        You can use numeric comparison operators: `<`, `<=`, `=`, `!=`, `>`, `>=`. Comparsions are precise up to 3 decimals.
+        You can use numeric comparison operators: `<`, `<=`, `=`, `!=`, `>`, `>=`.
+        
+        Comparisons are precise up to 3 decimals.
         
         You can also provide ranges: `facet:<lower> TO <upper>`. The range includes the lower and upper boundaries.
         
@@ -598,7 +600,7 @@ components:
         Coordinates for the center of a circle, expressed as a comma-separated string of latitude and longitude.
         
         
-        Only records included within circle around this central location are included in the results.
+        Only records included within a circle around this central location are included in the results.
         
         The radius of the circle is determined by the `aroundRadius` and `minimumAroundRadius` settings.
         
@@ -680,7 +682,7 @@ components:
         - $ref: '#/components/schemas/aroundPrecisionFromValue'
       x-categories:
         - Geo-Search
-    insideBoundingBox:
+    insideBoundingBoxArray:
       type: array
       items:
         type: array
@@ -712,6 +714,11 @@ components:
           - 1.9916
       x-categories:
         - Geo-Search
+    insideBoundingBox:
+      oneOf:
+        - type: string
+        - type: 'null'
+        - $ref: '#/components/schemas/insideBoundingBoxArray'
     insidePolygon:
       type: array
       items:
@@ -1083,7 +1090,7 @@ components:
         Whether [typo tolerance](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/) is enabled and how it is applied.
         
         
-        If typo tolerance is true, `min`, or `strict`, [word splitting and concetenation](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/splitting-and-concatenation/) is also active.
+        If typo tolerance is true, `min`, or `strict`, [word splitting and concatenation](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/splitting-and-concatenation/) are also active.
 
       oneOf:
         - type: boolean
@@ -1164,7 +1171,7 @@ components:
         Determines if and how query words are interpreted as prefixes.
         
         
-        By default, only the last query word is treated as prefix (`prefixLast`).
+        By default, only the last query word is treated as a prefix (`prefixLast`).
         
         To turn off prefix search, use `prefixNone`.
         
@@ -1238,6 +1245,50 @@ components:
               items:
                 type: string
             - type: 'null'
+    optionalWordsArray:
+      type: array
+      items:
+        type: string
+      example:
+        - blue
+        - iphone case
+      description: >-
+        List of [optional words](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/empty-or-insufficient-results/#creating-a-list-of-optional-words).
+
+      x-categories:
+        - Query strategy
+    optionalWords:
+      description: >
+        Words that should be considered optional when found in the query.
+        
+        
+        By default, records must match all words in the search query to be included in the search results.
+        
+        Adding optional words can help to increase the number of search results by running an additional search query that doesn't include the optional words.
+        
+        For example, if the search query is "action video" and "video" is an optional word,
+        
+        the search engine runs two queries. One for "action video" and one for "action".
+        
+        Records that match all words are ranked higher.
+        
+        
+        For a search query with 4 or more words **and** all its words are optional,
+        
+        the number of matched words required for a record to be included in the search results increases for every 1,000 records:
+        
+        
+        - If `optionalWords` has less than 10 words, the required number of matched words increases by 1:
+          results 1 to 1,000 require 1 matched word, results 1,001 to 2000 need 2 matched words.
+        - If `optionalWords` has 10 or more words, the number of required matched words increases by the number of optional words divided by 5 (rounded down).
+          For example, with 18 optional words: results 1 to 1,000 require 1 matched word, results 1,001 to 2000 need 4 matched words.
+        
+        For more information, see [Optional words](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/empty-or-insufficient-results/#creating-a-list-of-optional-words).
+
+      oneOf:
+        - type: string
+        - type: 'null'
+        - $ref: '#/components/schemas/optionalWordsArray'
     exactOnSingleWordQuery:
       type: string
       enum:
@@ -1269,6 +1320,7 @@ components:
         - ignorePlurals
         - singleWordSynonym
         - multiWordsSynonym
+        - ignoreConjugations
       x-categories:
         - Query strategy
     advancedSyntaxFeatures:
@@ -1312,14 +1364,6 @@ components:
           minimum: 0
           maximum: 4
           default: 0
-      x-categories:
-        - Advanced
-    maxFacetHits:
-      type: integer
-      description: >-
-        Maximum number of facet values to return when [searching for facet values](https://www.algolia.com/doc/guides/managing-results/refine-results/faceting/#search-for-facet-values).
-
-      maximum: 100
       x-categories:
         - Advanced
     order:
@@ -1396,12 +1440,58 @@ components:
       properties:
         url:
           type: string
+    bannerImageUrl:
+      description: URL for an image to show inside a banner.
+      type: object
+      additionalProperties: false
+      properties:
+        url:
+          type: string
+    bannerImage:
+      description: Image to show inside a banner.
+      type: object
+      additionalProperties: false
+      properties:
+        urls:
+          type: array
+          items:
+            $ref: '#/components/schemas/bannerImageUrl'
+        title:
+          type: string
+    bannerLink:
+      description: Link for a banner defined in the Merchandising Studio.
+      type: object
+      additionalProperties: false
+      properties:
+        url:
+          type: string
+    banner:
+      description: Banner with image and link to redirect users.
+      type: object
+      additionalProperties: false
+      properties:
+        image:
+          $ref: '#/components/schemas/bannerImage'
+        link:
+          $ref: '#/components/schemas/bannerLink'
+    banners:
+      description: Banners defined in the Merchandising Studio for a given search.
+      type: array
+      items:
+        $ref: '#/components/schemas/banner'
+    widgets:
+      description: Widgets returned from any rules that are applied to the current search.
+      type: object
+      additionalProperties: false
+      properties:
+        banners:
+          $ref: '#/components/schemas/banners'
     renderingContent:
       description: >
         Extra data that can be used in the search UI.
         
         
-        You can use this to control aspects of your search UI, such as, the order of facet names and values
+        You can use this to control aspects of your search UI, such as the order of facet names and values
         
         without changing your frontend code.
 
@@ -1412,6 +1502,8 @@ components:
           $ref: '#/components/schemas/facetOrdering'
         redirect:
           $ref: '#/components/schemas/redirectURL'
+        widgets:
+          $ref: '#/components/schemas/widgets'
       x-categories:
         - Advanced
     reRankingApplyFilter:
@@ -1484,44 +1576,6 @@ components:
             you should test your changes in the dashboard,
             
             and by [A/B testing](https://www.algolia.com/doc/guides/ab-testing/what-is-ab-testing/).
-
-          x-categories:
-            - Ranking
-        customRanking:
-          type: array
-          items:
-            type: string
-          example:
-            - desc(popularity)
-            - asc(price)
-          description: >
-            Attributes to use as [custom ranking](https://www.algolia.com/doc/guides/managing-results/must-do/custom-ranking/).
-            
-            Attribute names are case-sensitive.
-            
-            
-            The custom ranking attributes decide which items are shown first if the other ranking criteria are equal.
-            
-            
-            Records with missing values for your selected custom ranking attributes are always sorted last.
-            
-            Boolean attributes are sorted based on their alphabetical order.
-            
-            
-            **Modifiers**
-            
-            
-            - `asc("ATTRIBUTE")`.
-              Sort the index by the values of an attribute, in ascending order.
-            
-            - `desc("ATTRIBUTE")`.
-              Sort the index by the values of an attribute, in descending order.
-            
-            If you use two or more custom ranking attributes,
-            
-            [reduce the precision](https://www.algolia.com/doc/guides/managing-results/must-do/custom-ranking/how-to/controlling-custom-ranking-metrics-precision/) of your first attributes,
-            
-            or the other attributes will never be applied.
 
           x-categories:
             - Ranking
@@ -1675,17 +1729,6 @@ components:
           $ref: '#/components/schemas/ignorePlurals'
         removeStopWords:
           $ref: '#/components/schemas/removeStopWords'
-        keepDiacriticsOnCharacters:
-          type: string
-          example: øé
-          description: |
-            Characters for which diacritics should be preserved.
-
-            By default, Algolia removes diacritics from letters.
-            For example, `é` becomes `e`. If this causes issues in your search,
-            you can specify characters that should keep their diacritics.
-          x-categories:
-            - Languages
         queryLanguages:
           type: array
           items:
@@ -1760,41 +1803,7 @@ components:
           x-categories:
             - Query strategy
         optionalWords:
-          type: array
-          items:
-            type: string
-          example:
-            - blue
-            - iphone case
-          description: >
-            Words that should be considered optional when found in the query.
-            
-            
-            By default, records must match all words in the search query to be included in the search results.
-            
-            Adding optional words can help to increase the number of search results by running an additional search query that doesn't include the optional words.
-            
-            For example, if the search query is "action video" and "video" is an optional word,
-            
-            the search engine runs two queries. One for "action video" and one for "action".
-            
-            Records that match all words are ranked higher.
-            
-            
-            For a search query with 4 or more words **and** all its words are optional,
-            
-            the number of matched words required for a record to be included in the search results increases for every 1,000 records:
-            
-            
-            - If `optionalWords` has less than 10 words, the required number of matched words increases by 1:
-              results 1 to 1,000 require 1 matched word, results 1,001 to 2000 need 2 matched words.
-            - If `optionalWords` has 10 or more words, the number of required matched words increases by the number of optional words dividied by 5 (rounded down).
-              For example, with 18 optional words: results 1 to 1,000 require 1 matched word, results 1,001 to 2000 need 4 matched words.
-            
-            For more information, see [Optional words](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/empty-or-insufficient-results/#creating-a-list-of-optional-words).
-
-          x-categories:
-            - Query strategy
+          $ref: '#/components/schemas/optionalWords'
         disableExactOnAttributes:
           type: array
           items:
@@ -1807,7 +1816,7 @@ components:
             Attribute names are case-sensitive.
             
             
-            This can be useful for attributes with long values, where the likelyhood of an exact match is high,
+            This can be useful for attributes with long values, where the likelihood of an exact match is high,
             
             such as product descriptions.
             
@@ -1824,17 +1833,27 @@ components:
           items:
             $ref: '#/components/schemas/alternativesAsExact'
           description: >
-            Alternatives of query words that should be considered as exact matches by the Exact ranking criterion.
+            Determine which plurals and synonyms should be considered an exact matches.
+            
+            
+            By default, Algolia treats singular and plural forms of a word, and single-word synonyms, as [exact](https://www.algolia.com/doc/guides/managing-results/relevance-overview/in-depth/ranking-criteria/#exact) matches when searching.
+            
+            For example:
+            
+            
+            - "swimsuit" and "swimsuits" are treated the same
+            
+            - "swimsuit" and "swimwear" are treated the same (if they are [synonyms](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/adding-synonyms/#regular-synonyms)).
             
             
             - `ignorePlurals`.
               Plurals and similar declensions added by the `ignorePlurals` setting are considered exact matches.
             
             - `singleWordSynonym`.
-              Single-word synonyms, such as "NY/NYC" are considered exact matches.
+              Single-word synonyms, such as "NY" = "NYC", are considered exact matches.
             
             - `multiWordsSynonym`.
-              Multi-word synonyms, such as "NY/New York" are considered exact matches.
+              Multi-word synonyms, such as "NY" = "New York", are considered exact matches.
 
           x-categories:
             - Query strategy
@@ -1875,7 +1894,7 @@ components:
             
             With `replaceSynonymsInHighlight` set to `true`, a search for `home` still matches the same records,
             
-            but all occurences of "house" are replaced by "home" in the highlighted response.
+            but all occurrences of "house" are replaced by "home" in the highlighted response.
 
           x-categories:
             - Highlighting and Snippeting
@@ -1901,27 +1920,32 @@ components:
           items:
             type: string
           description: >
-            Properties to include in the API response of `search` and `browse` requests.
+            Properties to include in the API response of search and browse requests.
             
             
             By default, all response properties are included.
             
-            To reduce the response size, you can select, which attributes should be included.
+            To reduce the response size, you can select which properties should be included.
+            
+            
+            An empty list may lead to an empty API response (except properties you can't exclude).
             
             
             You can't exclude these properties:
             
-            `message`, `warning`, `cursor`, `serverUsed`, `indexUsed`,
+            `message`, `warning`, `cursor`, `abTestVariantID`,
             
-            `abTestVariantID`, `parsedQuery`, or any property triggered by the `getRankingInfo` parameter.
+            or any property added by setting `getRankingInfo` to true.
             
             
-            Don't exclude properties that you might need in your search UI.
+            Your search depends on the `hits` field. If you omit this field, searches won't return any results.
+            
+            Your UI might also depend on other properties, for example, for pagination.
+            
+            Before restricting the response size, check the impact on your search experience.
 
           x-categories:
             - Advanced
-        maxFacetHits:
-          $ref: '#/components/schemas/maxFacetHits'
         maxValuesPerFacet:
           type: integer
           description: Maximum number of facet values to return for each facet.
@@ -2022,7 +2046,6 @@ components:
         - dest
         - source
     userData:
-      type: object
       example:
         settingID: f2a7b51e3503acc6a39b3784ffb84300
         pluginVersion: 1.6.0
@@ -2092,6 +2115,12 @@ components:
               description: >-
                 Whether the typo search was exhaustive (`true`) or approximate (`false`). An approximation is done when the typo search query part takes more than 10% of the query budget (ie. 5ms by default) to be processed (this can happen when a lot of typo alternatives exist for the query). This field will not be included when typo-tolerance is entirely disabled.
 
+        appliedRules:
+          description: Rules applied to the query.
+          title: appliedRules
+          type: array
+          items:
+            type: object
         exhaustiveFacetsCount:
           type: boolean
           description: >-
@@ -2226,21 +2255,10 @@ components:
           $ref: '#/components/schemas/nbPages'
         hitsPerPage:
           $ref: '#/components/schemas/hitsPerPage'
-      required:
-        - page
-        - nbHits
-        - nbPages
-        - hitsPerPage
     objectID:
       type: string
       description: Unique record identifier.
       example: test-record-123
-    highlightResultMap:
-      type: object
-      description: Surround words that match the query with HTML tags for highlighting.
-      additionalProperties:
-        x-additionalPropertiesName: attribute
-        $ref: '#/components/schemas/highlightResult'
     highlightedValue:
       type: string
       description: Highlighted attribute value, including HTML tags.
@@ -2278,29 +2296,23 @@ components:
       x-discriminator-fields:
         - matchLevel
         - matchedWords
-    highlightResultOptionMap:
+    highlightResultMap:
       type: object
       description: Surround words that match the query with HTML tags for highlighting.
+      x-is-free-form: false
       additionalProperties:
         x-additionalPropertiesName: attribute
-        $ref: '#/components/schemas/highlightResultOption'
-    highlightResultOptionArray:
+        $ref: '#/components/schemas/highlightResult'
+    highlightResult:
+      oneOf:
+        - $ref: '#/components/schemas/highlightResultOption'
+        - $ref: '#/components/schemas/highlightResultMap'
+        - $ref: '#/components/schemas/highlightResultArray'
+    highlightResultArray:
       type: array
       description: Surround words that match the query with HTML tags for highlighting.
       items:
-        $ref: '#/components/schemas/highlightResultOption'
-    highlightResult:
-      oneOf:
-        - $ref: '#/components/schemas/highlightResultMap'
-        - $ref: '#/components/schemas/highlightResultOption'
-        - $ref: '#/components/schemas/highlightResultOptionMap'
-        - $ref: '#/components/schemas/highlightResultOptionArray'
-    snippetResultMap:
-      type: object
-      description: Snippets that show the context around a matching search query.
-      additionalProperties:
-        x-additionalPropertiesName: attribute
-        $ref: '#/components/schemas/snippetResult'
+        $ref: '#/components/schemas/highlightResult'
     snippetResultOption:
       type: object
       description: Snippets that show the context around a matching search query.
@@ -2315,23 +2327,23 @@ components:
         - matchLevel
       x-discriminator-fields:
         - matchLevel
-    snippetResultOptionMap:
+    snippetResultMap:
       type: object
       description: Snippets that show the context around a matching search query.
+      x-is-free-form: false
       additionalProperties:
         x-additionalPropertiesName: attribute
-        $ref: '#/components/schemas/snippetResultOption'
-    snippetResultOptionArray:
+        $ref: '#/components/schemas/snippetResult'
+    snippetResult:
+      oneOf:
+        - $ref: '#/components/schemas/snippetResultOption'
+        - $ref: '#/components/schemas/snippetResultMap'
+        - $ref: '#/components/schemas/snippetResultArray'
+    snippetResultArray:
       type: array
       description: Snippets that show the context around a matching search query.
       items:
-        $ref: '#/components/schemas/snippetResultOption'
-    snippetResult:
-      oneOf:
-        - $ref: '#/components/schemas/snippetResultMap'
-        - $ref: '#/components/schemas/snippetResultOption'
-        - $ref: '#/components/schemas/snippetResultOptionMap'
-        - $ref: '#/components/schemas/snippetResultOptionArray'
+        $ref: '#/components/schemas/snippetResult'
     matchedGeoLocation:
       type: object
       properties:
@@ -2510,6 +2522,14 @@ components:
       type: string
       description: Text to search inside the facet's values.
       example: george
+    maxFacetHits:
+      type: integer
+      description: >-
+        Maximum number of facet values to return when [searching for facet values](https://www.algolia.com/doc/guides/managing-results/refine-results/faceting/#search-for-facet-values).
+
+      maximum: 100
+      x-categories:
+        - Advanced
     searchTypeFacet:
       type: string
       enum:
@@ -2740,20 +2760,17 @@ components:
       required:
         - requests
       example:
-        batch:
-          summary: Batch indexing request
-          value:
-            requests:
-              - action: addObject
-                body:
-                  name: Betty Jane McCamey
-                  company: Vita Foods Inc.
-                  email: betty@mccamey.com
-              - action: addObject
-                body:
-                  name: Gayla geimer
-                  company: Ortman McCain Co.
-                  email: gayla@geimer.com
+        requests:
+          - action: addObject
+            body:
+              name: Betty Jane McCamey
+              company: Vita Foods Inc.
+              email: betty@mccamey.com
+          - action: addObject
+            body:
+              name: Gayla geimer
+              company: Ortman McCain Co.
+              email: gayla@geimer.com
     objectIDs:
       type: array
       items:
@@ -2804,7 +2821,7 @@ components:
             
             
             - `filterOnly("ATTRIBUTE")`.
-              Allows using this attribute as a filter, but doesn't evalue the facet values.
+              Allows the attribute to be used as a filter but doesn't evaluate the facet values.
             
             - `searchable("ATTRIBUTE")`.
               Allows searching for facet values.
@@ -2835,7 +2852,7 @@ components:
             
             To add a replica index, you must provide the complete set of replicas to this parameter.
             
-            If you omit a replica from this list, the replica turns into a regular, standalone index that will no longer by synced with the primary index.
+            If you omit a replica from this list, the replica turns into a regular, standalone index that will no longer be synced with the primary index.
             
             
             **Modifier**
@@ -2885,7 +2902,7 @@ components:
             - wheel
             - 1X2BCD
           description: >
-            Words for which you want to turn off [typo tolerance](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/).
+            Creates a list of [words which require exact matches](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/in-depth/configuring-typo-tolerance/#turn-off-typo-tolerance-for-certain-words).
             
             This also turns off [word splitting and concatenation](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/splitting-and-concatenation/) for the specified words.
 
@@ -3012,7 +3029,7 @@ components:
             For faster indexing, reduce the number of numeric attributes.
             
             
-            If you want to turn off filtering for all numeric attributes, specifiy an attribute that doesn't exist in your index, such as `NO_NUMERIC_FILTERING`.
+            To turn off filtering for all numeric attributes, specify an attribute that doesn't exist in your index, such as `NO_NUMERIC_FILTERING`.
             
             
             **Modifier**
@@ -3030,16 +3047,20 @@ components:
           type: string
           example: +#
           description: >
-            Controls which separators are indexed.
+            Control which non-alphanumeric characters are indexed.
+            
+            
+            By default, Algolia ignores [non-alphanumeric characters](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/how-to/how-to-search-in-hyphenated-attributes/#handling-non-alphanumeric-characters) like hyphen (`-`), plus (`+`), and parentheses (`(`,`)`).
+            
+            To include such characters, define them with `separatorsToIndex`.
             
             
             Separators are all non-letter characters except spaces and currency characters, such as $€£¥.
             
-            By default, separator characters aren't indexed.
             
             With `separatorsToIndex`, Algolia treats separator characters as separate words.
             
-            For example, a search for `C#` would report two matches.
+            For example, in a search for "Disney+", Algolia considers "Disney" and "+" as two separate words.
 
           x-categories:
             - Typos
@@ -3076,7 +3097,7 @@ components:
             - `unordered("ATTRIBUTE")`.
               Ignore the position of a match within the attribute.
             
-            Without modifier, matches at the beginning of an attribute rank higer than matches at the end.
+            Without a modifier, matches at the beginning of an attribute rank higher than matches at the end.
 
           x-categories:
             - Attributes
@@ -3115,6 +3136,57 @@ components:
 
           example: url
           type: string
+        maxFacetHits:
+          $ref: '#/components/schemas/maxFacetHits'
+        keepDiacriticsOnCharacters:
+          type: string
+          example: øé
+          description: |
+            Characters for which diacritics should be preserved.
+
+            By default, Algolia removes diacritics from letters.
+            For example, `é` becomes `e`. If this causes issues in your search,
+            you can specify characters that should keep their diacritics.
+          x-categories:
+            - Languages
+        customRanking:
+          type: array
+          items:
+            type: string
+          example:
+            - desc(popularity)
+            - asc(price)
+          description: >
+            Attributes to use as [custom ranking](https://www.algolia.com/doc/guides/managing-results/must-do/custom-ranking/).
+            
+            Attribute names are case-sensitive.
+            
+            
+            The custom ranking attributes decide which items are shown first if the other ranking criteria are equal.
+            
+            
+            Records with missing values for your selected custom ranking attributes are always sorted last.
+            
+            Boolean attributes are sorted based on their alphabetical order.
+            
+            
+            **Modifiers**
+            
+            
+            - `asc("ATTRIBUTE")`.
+              Sort the index by the values of an attribute, in ascending order.
+            
+            - `desc("ATTRIBUTE")`.
+              Sort the index by the values of an attribute, in descending order.
+            
+            If you use two or more custom ranking attributes,
+            
+            [reduce the precision](https://www.algolia.com/doc/guides/managing-results/must-do/custom-ranking/how-to/controlling-custom-ranking-metrics-precision/) of your first attributes,
+            
+            or the other attributes will never be applied.
+
+          x-categories:
+            - Ranking
     indexSettings:
       description: Index settings.
       allOf:
@@ -3143,6 +3215,9 @@ components:
         - altcorrection1
         - altcorrection2
         - placeholder
+        - oneWaySynonym
+        - altCorrection1
+        - altCorrection2
     synonymHit:
       type: object
       description: Synonym object.
@@ -3241,7 +3316,7 @@ components:
         createdAt:
           $ref: '#/components/schemas/createdAtTimestamp'
       required:
-        - key
+        - value
         - createdAt
     acl:
       description: Access control list permissions.
@@ -3333,7 +3408,7 @@ components:
             You can only add a single source, but you can provide a range of IP addresses.
             
             
-            Creating an API key fails if the request is made from an IP address that's outside the restricted range.
+            Creating an API key fails if the request is made from an IP address outside the restricted range.
 
           example: typoTolerance=strict&restrictSources=192.168.1.0/24
         referers:
@@ -3394,12 +3469,12 @@ components:
       description: |
         Which part of the search query the pattern should match:
 
-        - `startsWith`. The pattern must match the begginning of the query.
+        - `startsWith`. The pattern must match the beginning of the query.
         - `endsWith`. The pattern must match the end of the query.
         - `is`. The pattern must match the query exactly.
         - `contains`. The pattern must match anywhere in the query.
 
-        Empty queries are only allowed as pattern with `anchoring: is`.
+        Empty queries are only allowed as patterns with `anchoring: is`.
       enum:
         - is
         - startsWith
@@ -3446,9 +3521,11 @@ components:
             Filters that trigger the rule.
             
             
-            You can add add filters using the syntax `facet:value` so that the rule is triggered, when the specific filter is selected.
+            You can add filters using the syntax `facet:value` so that the rule is triggered, when the specific filter is selected.
             
             You can use `filters` on its own or combine it with the `pattern` parameter.
+            
+            You can't combine multiple filters with `OR` and you can't use numeric filters.
 
           example: genre:comedy
     editType:
@@ -3666,6 +3743,7 @@ components:
             required:
               - objectID
         userData:
+          type: object
           description: >
             A JSON object with custom data that will be appended to the `userData` array in the response.
             
@@ -3680,9 +3758,11 @@ components:
       properties:
         from:
           type: integer
+          format: int64
           description: When the rule should start to be active, in Unix epoch time.
         until:
           type: integer
+          format: int64
           description: When the rule should stop to be active, in Unix epoch time.
       required:
         - from
@@ -3726,32 +3806,45 @@ components:
             $ref: '#/components/schemas/timeRange'
       required:
         - objectID
-    updatedRuleResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        objectID:
-          $ref: '#/components/schemas/ruleID'
-        updatedAt:
-          $ref: '#/components/schemas/updatedAt'
-        taskID:
-          $ref: '#/components/schemas/taskID'
-      required:
-        - objectID
-        - updatedAt
-        - taskID
+        - consequence
     parameters_query:
       type: string
       description: Search query for rules.
     parameters_page:
       type: integer
       minimum: 0
-      description: Requested page of the API response.
+      description: >
+        Requested page of the API response.
+        
+        
+        Algolia uses `page` and `hitsPerPage` to control how search results are displayed ([paginated](https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/pagination/js/)).
+        
+        
+        - `hitsPerPage`: sets the number of search results (_hits_) displayed per page.
+        
+        - `page`: specifies the page number of the search results you want to retrieve. Page numbering starts at 0, so the first page is `page=0`, the second is `page=1`, and so on.
+        
+        
+        For example, to display 10 results per page starting from the third page, set `hitsPerPage` to 10 and `page` to 2.
+
     parameters_hitsPerPage:
       type: integer
       minimum: 1
       maximum: 1000
-      description: Maximum number of hits per page.
+      description: >
+        Maximum number of hits per page.
+        
+        
+        Algolia uses `page` and `hitsPerPage` to control how search results are displayed ([paginated](https://www.algolia.com/doc/guides/building-search-ui/ui-and-ux-patterns/pagination/js/)).
+        
+        
+        - `hitsPerPage`: sets the number of search results (_hits_) displayed per page.
+        
+        - `page`: specifies the page number of the search results you want to retrieve. Page numbering starts at 0, so the first page is `page=0`, the second is `page=1`, and so on.
+        
+        
+        For example, to display 10 results per page starting from the third page, set `hitsPerPage` to 10 and `page` to 2.
+
     dictionaryType:
       type: string
       enum:
@@ -3851,6 +3944,7 @@ components:
             type: boolean
         - type: 'null'
     standardEntries:
+      type: object
       description: >
         Key-value pairs of [supported language ISO codes](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/supported-languages/) and boolean values.
 
@@ -3931,6 +4025,7 @@ components:
       description: Data size taken by all the users assigned to the cluster.
       example: 481
     source:
+      type: object
       description: Source.
       required:
         - source
@@ -4221,7 +4316,7 @@ components:
       required: true
       schema:
         type: string
-        example: YourIndexName
+        example: ALGOLIA_INDEX_NAME
     ObjectID:
       name: objectID
       in: path
@@ -4258,7 +4353,7 @@ components:
       required: true
       schema:
         type: string
-        example: YourAPIKey
+        example: ALGOLIA_API_KEY
       description: API key.
     ObjectIDRule:
       in: path
@@ -4396,6 +4491,18 @@ components:
             properties:
               createdAt:
                 $ref: '#/components/schemas/createdAt'
+    IndexInSameApp:
+      description: Indices are in the same application. Use operationIndex instead.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorBase'
+    IndexAlreadyExists:
+      description: Destination index already exists.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorBase'
 x-tagGroups:
   - name: Search and indexing
     tags:

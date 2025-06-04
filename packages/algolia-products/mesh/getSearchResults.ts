@@ -2,7 +2,7 @@ import type { MeshContext, QueryproductsArgs } from '@graphcommerce/graphql-mesh
 import type { GraphQLResolveInfo } from 'graphql'
 import { getAlgoliaSettings } from './getAlgoliaSettings'
 import { getSearchResultsInput } from './getSearchResultsInput'
-import { getSortedIndex } from './sortOptions'
+import { getSortedIndex } from './getSortedIndex'
 
 export async function getSearchResults(
   args: QueryproductsArgs,
@@ -27,6 +27,13 @@ export async function getSearchResults(
           additionalProperties
         }
         facets
+        renderingContent {
+          facetOrdering {
+            facets {
+              order
+            }
+          }
+        }
       }
     `,
     context,

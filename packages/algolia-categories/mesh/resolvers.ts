@@ -1,8 +1,13 @@
-import { getStoreConfig } from '@graphcommerce/algolia-products/mesh/getStoreConfig'
+import { nonNullable } from '@graphcommerce/algolia-products'
 import { type Resolvers } from '@graphcommerce/graphql-mesh'
-import type { CategoriesItemsItem } from './algoliaHitToMagentoCategory'
+import type { GraphQLError } from 'graphql'
 import { algoliaHitToMagentoCategory } from './algoliaHitToMagentoCategory'
 import { getCategoryResults } from './getCategoryResults'
+import { getIndexName } from './getIndexName'
+
+function isGraphQLError(err: unknown): err is GraphQLError {
+  return !!(err as GraphQLError)?.message
+}
 
 export const resolvers: Resolvers = {
   Query: {
@@ -11,29 +16,21 @@ export const resolvers: Resolvers = {
 
       if (!isAgolia) return context.m2.Query.categories({ root, args, context, info })
 
-      const items: (CategoriesItemsItem | null)[] = []
+      const searchResults = await getCategoryResults(args, context, info)
 
-      const [algoliaResponse, storeConfig] = await Promise.all([
-        getCategoryResults(args, context, info),
-        getStoreConfig(context),
-      ])
-
-      if (!algoliaResponse?.hits) return context.m2.Query.categories({ root, args, context, info })
-      for (const hit of algoliaResponse.hits) {
-        if (hit?.objectID) {
-          const category = algoliaHitToMagentoCategory(hit, storeConfig)
-          items.push(category)
-        }
-      }
+      if (isGraphQLError(searchResults))
+        return context.m2.Query.categories({ root, args, context, info })
 
       return {
-        items,
+        items: (searchResults?.hits ?? []).filter(nonNullable).map(algoliaHitToMagentoCategory),
         page_info: {
-          current_page: algoliaResponse.page + 1,
-          page_size: algoliaResponse.hitsPerPage,
-          total_pages: algoliaResponse.nbPages,
+          current_page: (searchResults?.page ?? 0) + 1,
+          page_size: searchResults?.hitsPerPage,
+          total_pages: searchResults?.nbPages,
         },
-        total_count: algoliaResponse.nbHits,
+        total_count: searchResults?.nbHits,
+        algolia_queryID: searchResults?.queryID,
+        algolia_indexName: getIndexName(context),
       }
     },
   },

@@ -1,8 +1,8 @@
-import yaml from 'js-yaml'
 import { writeFile } from 'node:fs/promises'
+import conf from '@graphcommerce/prettier-config-pwa'
+import yaml from 'js-yaml'
 import type { OpenAPIV3 } from 'openapi-types'
 import prettier from 'prettier'
-import conf from '@graphcommerce/prettier-config-pwa'
 import { algoliaSchemaBaseFilter } from './base-schema-filter.mjs'
 
 const response = await fetch(
@@ -33,7 +33,7 @@ const newSchema: OpenAPIV3.Document = {
           const keys = ['post', 'get', 'put', 'delete', 'patch', 'options'] as const
 
           keys.forEach((method) => {
-            if (!newValue[method]?.['x-acl']?.some((value: string) => acl.includes(value))) {
+            if (!newValue[method]?.['x-acl']?.every((value: string) => acl.includes(value))) {
               newValue[method] = undefined
             }
           })

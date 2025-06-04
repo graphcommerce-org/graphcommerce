@@ -1,0 +1,6 @@
+fragment CategorySearchFragment on CategoryResult {
+  __typename
+  items {
+    ...CategorySearchResult
+  }
+}

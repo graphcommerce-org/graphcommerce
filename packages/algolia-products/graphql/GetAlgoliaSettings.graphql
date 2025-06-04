@@ -78,7 +78,7 @@ query GetAlgoliaSettings($indexName: String!) {
       }
     }
     advancedSyntax
-    optionalWords
+    # optionalWords
     disableExactOnAttributes
     exactOnSingleWordQuery
     alternativesAsExact

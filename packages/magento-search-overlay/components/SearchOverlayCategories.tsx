@@ -1,7 +1,5 @@
-import { useQuery } from '@graphcommerce/graphql'
 import { productListLink } from '@graphcommerce/magento-product'
-import { CategorySearchDocument } from '@graphcommerce/magento-search'
-import type { CategorySearchResultFragment } from '@graphcommerce/magento-search'
+import { useCategorySearch, type CategorySearchResultFragment } from '@graphcommerce/magento-search'
 import type { SectionContainerProps } from '@graphcommerce/next-ui'
 import { filterNonNullableKeys, NextLink, SectionContainer } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
@@ -77,15 +75,8 @@ export function SearchOverlayCategories(props: SearchOverlayCategoriesProps) {
   const { slotProps = {} } = props
   const { sectionContainer: sectionContainerProps = {} } = slotProps
 
-  const categories = useQuery(CategorySearchDocument, {
-    variables: { search, pageSize: 5 },
-    skip: !search || search.length < 3,
-  })
-  const categoryItems = filterNonNullableKeys(
-    categories.data?.categories?.items ?? categories.previousData?.categories?.items,
-  ).filter((c) => c.include_in_menu)
-
-  if (categories.error || categoryItems.length === 0 || !search) return null
+  const categoryItems = useCategorySearch({ search })
+  if (!categoryItems) return null
 
   return (
     <SectionContainer labelLeft={<Trans>Categories</Trans>} {...sectionContainerProps}>

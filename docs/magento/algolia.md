@@ -22,6 +22,14 @@ The is composed of five packages:
 - `@graphcommerce/algolia-personalization`
 - `@graphcommerce/algolia-recommend`
 
+## Preparation: Search Overlay UI
+
+Algolia goes hand-in-hand with a proper search UI. We've got a separate 'Magento
+Search Overlay' package that adds a search overlay experience to GraphCommerce.
+This search overlay is not dependent on Algolia so you can use it with default
+Magento. So before starting, install the `@graphcommerce/magento-search-overlay`
+package first.
+
 ## Installation and configuration of Algolia for GraphCommerce
 
 ### Preparation
@@ -67,23 +75,18 @@ necessary configuration to your `graphcommerce.config.js` file:
 module.exports = {
   // Other configuration...
   algolia: {
-    // Configure your Algolia application ID.
-    // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
-    applicationId: 'SAME_AS_MAGENTO',
+    // Configure your Algolia application ID. [Algolia API Keys Dashboard](https://www.algolia.com/account/api-keys)
+    applicationId: '',
 
-    // Configure your Algolia Search Only API Key.
-    // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Search-only (public) API key
-    searchOnlyApiKey: 'SAME_AS_MAGENTO',
+    // Configure your Search API Key. [Algolia API Keys Dashboard](https://www.algolia.com/account/api-keys)
+    // Make sure the API key has the following ACL: search, listIndexes and settings [Lookup here](https://dashboard.algolia.com/account/api-keys/restricted)
+    searchOnlyApiKey: '',
 
     // Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix
     indexNamePrefix: 'SAME_AS_MAGENTO',
 
     // By default the catalog will not use algolia. Set this to true to enable Algolia for the catalog.
     catalogEnabled: true,
-
-    // Enable Algolia customer group pricing.
-    // Please be aware that personalization needs to be enabled as well to make this work.
-    customerGroupPricingEnabled: true,
   },
 }
 ```
@@ -245,6 +248,59 @@ module.
 
 ## Additional Configuration
 
+### Facets
+
+1. Navigate to
+   `Stores > Configuration > Algolia Search > Instant Search Results Page`
+2. Set `Number of values per facet` to `1000` or a value that is high enough to
+   fetch everyting at once.
+
+### Visibility
+
+By default Algolia will index all products will have fields like, however those
+fields are NOT filterable.
+
+- `visibility_search: 1`
+- `visibility_catalog: 1`
+
+To properly support the visibility filter the visibility attribute needs to be
+added to the index:
+
+1. Navigate to
+   `Stores > Configuration > Algolia Search > Instant Search Results Page`
+2. Add `visibility` to Facets and set it to `Filter only`
+
+### Suggestions
+
+1. Create a query suggestions index in your
+   [Algolia dashboard: Query Suggestions](https://dashboard.algolia.com/query-suggestions)
+   based on your products indexes.
+2. The name of the index will be auto-completed as:
+   `${index}_query_suggestions`.
+3. Do this for all product indexes.
+
+```tsx
+const config = {
+  algolia: {
+    /*
+     * To enable Algolia suggestions, please provide the Suffix that is used for your suggestions index.
+     * For the index `magento2_demo_en_US_query_suggestions` this would be `_query_suggestions`
+     */
+    suggestionsSuffix: '_query_suggestions,
+  },
+}
+```
+
+⚠️ Warning: This does not use the Magento 2 Algolia suggestions feature. That
+feature only syncs Magento's suggestions to Algolia and doesn't use the Algolia
+Suggestions feature.
+
+1. Navigate to
+   `Stores > Configuration > Algolia Search > Credentials and Basic Setup`\
+2. Set `Enable Query Suggestions Index` to `No`.
+3. Cleanup remaining indexes in the
+   [indices overview](https://dashboard.algolia.com/indices)
+
 ### Sorting Options
 
 To configure sorting options for your Algolia-powered search, you need to enable
@@ -259,17 +315,30 @@ treated as a separate (virtual) index in Algolia.
 
 ### Customer Group Pricing
 
+```tsx
+const config = {
+  algolia: {
+    customerGroupPricingEnabled: true,
+  },
+}
+```
+
 To enable customer group pricing, make sure customers groups prices are mapped
 to algolia.
 `Stores > Configuration > Algolia Search > Advanced > Enable Customer Groups`.
 
+⚠️ Warning: Magento needs to be configured the same as
+customerGroupPricingEnabled, else sorting index selection will not work properly
+for customer group pricing.
+
 ⚠️ Warning: Catalog price rules for a specific customer group do not seem to be
-indexed.It seems only: `[Product] > Advanced Pricing > Customer Group Price`
+indexed. It seems only: `[Product] > Advanced Pricing > Customer Group Price`
 gets indexed.
 
-Note: The GraphQL API does not expose the customer group_id by default. We're
-doing an additional REST API call to get the value. This means a somewhat slower
-(few hundred ms) when the Customer is loaded.
+⚠️ Warning: The GraphQL API does not expose the customer group_id by default. To
+make this functionality work, an additional REST API call is made when loggin
+the customer in. This means a somewhat slower (few hundred ms) when the Customer
+is loaded.
 
 ### Customization
 
@@ -291,6 +360,3 @@ implementation.
 
 For more information and detailed documentation, visit the GraphCommerce GitHub
 repository and Algolia's developer documentation. Happy coding!
-
-TODO: INSERT GRAPHIC - Diagram illustrating the architecture of Algolia
-integration in GraphCommerce

@@ -31,6 +31,9 @@ type AlgoliaProductHitAdditionalProperties {
   rating_summary: String
   thumbnail_url: String
   image_url: String
+
+  description: String
+  short_description: String
 }
 
 type Algoliahit {
@@ -57,4 +60,5 @@ input CategoryFilterInput {
 
 type Products {
   algolia_queryID: String
+  algolia_indexName: String
 }

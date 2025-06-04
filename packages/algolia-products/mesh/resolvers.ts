@@ -1,4 +1,4 @@
-import type { AlgoliasearchResponse, MeshContext, Resolvers } from '@graphcommerce/graphql-mesh'
+import type { AlgoliasearchResponse, Resolvers } from '@graphcommerce/graphql-mesh'
 import { hasSelectionSetPath } from '@graphcommerce/graphql-mesh'
 import type { GraphQLError, GraphQLResolveInfo } from 'graphql'
 import { algoliaFacetsToAggregations, getCategoryList } from './algoliaFacetsToAggregations'
@@ -7,11 +7,13 @@ import { algoliaHitToMagentoProduct } from './algoliaHitToMagentoProduct'
 import { getAlgoliaSettings } from './getAlgoliaSettings'
 import { getAttributeList } from './getAttributeList'
 import { getGroupId } from './getGroupId'
+import { getIndexName } from './getIndexName'
 import { getSearchResults } from './getSearchResults'
 import { getSearchSuggestions } from './getSearchSuggestions'
 import { isSuggestionsEnabled } from './getSearchSuggestionsInput'
 import { getStoreConfig } from './getStoreConfig'
-import { sortingOptions } from './sortOptions'
+import { sortAggregations } from './sortAggregations'
+import { sortFieldsOptions } from './sortFieldOptions'
 
 function isAlgoliaResponse<T extends object>(
   root: T,
@@ -42,12 +44,15 @@ export const resolvers: Resolvers = {
     aggregations: async (root, _args, context) => {
       if (!isAlgoliaResponse(root)) return root.aggregations ?? null
 
-      return algoliaFacetsToAggregations(
-        root.algoliaSearchResults?.facets,
-        await getAttributeList(context),
-        await getStoreConfig(context),
-        await getCategoryList(context),
-        getGroupId(context),
+      return sortAggregations(
+        algoliaFacetsToAggregations(
+          root.algoliaSearchResults?.facets,
+          await getAttributeList(context),
+          await getStoreConfig(context),
+          await getCategoryList(context),
+          getGroupId(context),
+        ),
+        root.algoliaSearchResults?.renderingContent,
       )
     },
 
@@ -55,12 +60,10 @@ export const resolvers: Resolvers = {
       if (isAlgoliaResponse(root)) {
         return {
           default: 'relevance',
-          options: Object.values(
-            sortingOptions(
-              await getAlgoliaSettings(context),
-              await getAttributeList(context),
-              context,
-            ),
+          options: sortFieldsOptions(
+            await getAlgoliaSettings(context),
+            await getAttributeList(context),
+            context,
           ),
         }
       }
@@ -69,13 +72,13 @@ export const resolvers: Resolvers = {
 
     total_count: (root) => {
       if (!isAlgoliaResponse(root)) return root.total_count ?? null
-      return root.algoliaSearchResults?.nbHits
+      return root.algoliaSearchResults?.nbHits ?? null
     },
 
     page_info: (root) => {
       if (!isAlgoliaResponse(root)) return root.page_info ?? null
       return {
-        current_page: root.algoliaSearchResults.page + 1,
+        current_page: (root.algoliaSearchResults.page ?? 0) + 1,
         page_size: root.algoliaSearchResults.hitsPerPage,
         total_pages: root.algoliaSearchResults.nbPages,
       }
@@ -97,23 +100,6 @@ export const resolvers: Resolvers = {
       return items
     },
   },
-  Customer: {
-    group_id: {
-      resolve: async (root, args, context, info) => {
-        const { headers } = context as MeshContext & {
-          headers?: Record<string, string | undefined>
-        }
-        if (!headers?.authorization) return 0
-        const customer = await context.m2rest.Query.m2rest_GetV1CustomersMe({
-          root,
-          context,
-          info,
-          autoSelectionSetWithDepth: 10,
-        })
-        return customer?.group_id ?? null
-      },
-    },
-  },
   Query: {
     products: async (root, args, context, info) => {
       const isAgolia = (args.filter?.engine?.in ?? [args.filter?.engine?.eq])[0] === 'algolia'
@@ -127,7 +113,6 @@ export const resolvers: Resolvers = {
         getSearchSuggestions(args.search, context)
 
       const searchResults = hasSearchRequest(info) ? getSearchResults(args, context, info) : null
-
       if (isGraphQLError(await searchResults))
         return context.m2.Query.products({ root, args, context, info })
 
@@ -135,6 +120,7 @@ export const resolvers: Resolvers = {
         algoliaSearchResults: await searchResults,
         suggestions: (await searchSuggestsions) || null,
         algolia_queryID: (await searchResults)?.queryID,
+        algolia_indexName: getIndexName(context),
       }
     },
   },
