@@ -1,5 +1,7 @@
 # @graphcommerce/misc
 
+## 9.1.0-canary.30
+
 ## 9.1.0-canary.29
 
 ## 9.1.0-canary.28
