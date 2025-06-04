@@ -119,6 +119,23 @@ export type ProductsItemsItem = NonNullable<
 }
 
 /**
+ * Ensures a GraphQL-safe string from various input types. If the value is:
+ *
+ * - An array: returns the first non-empty item as a string
+ * - A string: returns it as-is
+ * - Anything else: returns an empty string
+ */
+export function normalizeToString(value: unknown): string {
+  if (typeof value === 'string') return value
+  if (Array.isArray(value)) {
+    const firstNonEmpty = value.find((v) => typeof v === 'string' && v.trim() !== '')
+    return typeof firstNonEmpty === 'string' ? firstNonEmpty : ''
+  }
+  console.log('[@graphcommerce/algolia-products] normalizeToString could not convert', value)
+  return ''
+}
+
+/**
  * Mapping function to map Algolia hit to Magento product.
  *
  * You can create a FunctionPlugin to modify the behavior of this function or implement brand
@@ -141,8 +158,6 @@ export function algoliaHitToMagentoProduct(
     thumbnail_url,
     type_id,
     url,
-    description,
-    short_description,
 
     // not used
     ordered_qty,
@@ -154,15 +169,9 @@ export function algoliaHitToMagentoProduct(
     ...rest
   } = additionalProperties
 
-  /**
-   * We flatten any custom attribute array values to a string as 95% of the time they are an array
-   * because the product is a configurable.
-   */
-  for (const [key, value] of Object.entries(rest)) {
-    if (value !== null && Array.isArray(value)) {
-      rest[key] = value.join(' ')
-    }
-  }
+  // We flatten any custom attribute array values to a string as 95% of the time they are an array
+  // because the product is a configurable (which creates an array of values).
+  for (const [key, value] of Object.entries(rest)) rest[key] = normalizeToString(value)
 
   return {
     staged: false,
@@ -177,8 +186,6 @@ export function algoliaHitToMagentoProduct(
     review_count: 0,
     rating_summary: Number(rating_summary),
     reviews: { items: [], page_info: {} },
-    description: description ? { html: description } : null,
-    short_description: short_description ? { html: short_description } : null,
     // canonical_url: null,
     // categories: [],
     // country_of_manufacture: null,
@@ -204,6 +211,9 @@ export function algoliaHitToMagentoProduct(
     // upsell_products: [],
     url_key: algoliaUrlToUrlKey(url, storeConfig?.product_url_suffix),
     url_suffix: storeConfig?.product_url_suffix,
+
     ...rest,
+    description: rest.description ? { html: rest.description } : null,
+    short_description: rest.short_description ? { html: rest.short_description } : null,
   }
 }
