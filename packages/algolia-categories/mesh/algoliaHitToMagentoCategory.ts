@@ -1,5 +1,4 @@
-import { algoliaUrlToUrlKey } from '@graphcommerce/algolia-products/mesh/algoliaHitToMagentoProduct'
-import type { GetStoreConfigReturn } from '@graphcommerce/algolia-products/mesh/getStoreConfig'
+import { algoliaUrlToUrlKey } from '@graphcommerce/algolia-products'
 import type {
   Algoliahit,
   AlgoliaProductHitAdditionalProperties,

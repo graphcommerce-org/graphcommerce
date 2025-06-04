@@ -1,6 +1,8 @@
-import { algoliaHitToMagentoProduct } from '@graphcommerce/algolia-products'
-import { getGroupId } from '@graphcommerce/algolia-products/mesh/getGroupId'
-import { getStoreConfig } from '@graphcommerce/algolia-products/mesh/getStoreConfig'
+import {
+  algoliaHitToMagentoProduct,
+  getGroupId,
+  getStoreConfig,
+} from '@graphcommerce/algolia-products'
 import type {
   Algoliahit,
   AlgoliarecommendationsHit,
