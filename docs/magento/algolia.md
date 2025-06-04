@@ -272,13 +272,34 @@ added to the index:
 
 ### Suggestions
 
-To get query suggestions/autocomplete enter your Algolia dashboard > Search >
-configure > Query Suggestions > new Query Suggestions Index. This will create a
-new index which will be used for suggestions.
+1. Create a query suggestions index in your
+   [Algolia dashboard: Query Suggestions](https://dashboard.algolia.com/query-suggestions)
+   based on your products indexes.
+2. The name of the index will be auto-completed as:
+   `${index}_query_suggestions`.
+3. Do this for all product indexes.
 
-Don't mind to use the suggestions setting in magento admin. It will create a
-suggestions index but it will not record suggestions. This requires
-instantSearch
+```tsx
+const config = {
+  algolia: {
+    /*
+     * To enable Algolia suggestions, please provide the Suffix that is used for your suggestions index.
+     * For the index `magento2_demo_en_US_query_suggestions` this would be `_query_suggestions`
+     */
+    suggestionsSuffix: '_query_suggestions,
+  },
+}
+```
+
+⚠️ Warning: This does not use the Magento 2 Algolia suggestions feature. That
+feature only syncs Magento's suggestions to Algolia and doesn't use the Algolia
+Suggestions feature.
+
+1. Navigate to
+   `Stores > Configuration > Algolia Search > Credentials and Basic Setup`\
+2. Set `Enable Query Suggestions Index` to `No`.
+3. Cleanup remaining indexes in the
+   [indices overview](https://dashboard.algolia.com/indices)
 
 ### Sorting Options
 
