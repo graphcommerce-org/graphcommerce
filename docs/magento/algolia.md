@@ -22,6 +22,13 @@ The is composed of five packages:
 - `@graphcommerce/algolia-personalization`
 - `@graphcommerce/algolia-recommend`
 
+## Preparation
+
+Algolia is known for it's live-search, but GraphCommerce has split the UI and
+the search logic. Before enabling Algolia we recommend adding the
+`@graphcommerce/magento-search-overlay` package to your project which creates a
+new overlay with most features enabled.
+
 ## Installation and configuration of Algolia for GraphCommerce
 
 ### Preparation
@@ -240,7 +247,27 @@ module.
 
 ## Additional Configuration
 
-### Visbility
+### Facets
+
+1. Navigate to
+   `Stores > Configuration > Algolia Search > Instant Search Results Page`
+2. Set `Number of values per facet` to `1000` or a value that is high enough to
+   fetch everyting at once.
+
+### Visibility
+
+By default Algolia will index all products will have fields like, however those
+fields are NOT filterable.
+
+- `visibility_search: 1`
+- `visibility_catalog: 1`
+
+To properly support the visibility filter the visibility attribute needs to be
+added to the index:
+
+1. Navigate to
+   `Stores > Configuration > Algolia Search > Instant Search Results Page`
+2. Add `visibility` to Facets and set it to `Filter only`
 
 ### Suggestions
 
@@ -278,19 +305,18 @@ To enable customer group pricing, make sure customers groups prices are mapped
 to algolia.
 `Stores > Configuration > Algolia Search > Advanced > Enable Customer Groups`.
 
-⚠️ Warning: Magento needs to be configured the same as this value else index
-selection will not work.
-
-⚠️ Warning: `@graphcommerce/algolia-personalization` needs to be enabled as well
-to make this work.
+⚠️ Warning: Magento needs to be configured the same as
+customerGroupPricingEnabled, else sorting index selection will not work properly
+for customer group pricing.
 
 ⚠️ Warning: Catalog price rules for a specific customer group do not seem to be
-indexed.It seems only: `[Product] > Advanced Pricing > Customer Group Price`
+indexed. It seems only: `[Product] > Advanced Pricing > Customer Group Price`
 gets indexed.
 
-⚠️ Warning: The GraphQL API does not expose the customer group_id by default.
-We're doing an additional REST API call to get the value. This means a somewhat
-slower (few hundred ms) when the Customer is loaded.
+⚠️ Warning: The GraphQL API does not expose the customer group_id by default. To
+make this functionality work, an additional REST API call is made when loggin
+the customer in. This means a somewhat slower (few hundred ms) when the Customer
+is loaded.
 
 ### Customization
 
