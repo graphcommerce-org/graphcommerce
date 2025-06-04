@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.33
+
+### Patch Changes
+
+- [#2486](https://github.com/graphcommerce-org/graphcommerce/pull/2486) [`e09873e`](https://github.com/graphcommerce-org/graphcommerce/commit/e09873ebccfca167e9ffe9873d9a26d104cb6623) - Align coupon accordion with other accordion types that can still expand with chips rendered ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.32
 
 ## 9.1.0-canary.31
