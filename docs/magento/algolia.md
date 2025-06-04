@@ -22,12 +22,13 @@ The is composed of five packages:
 - `@graphcommerce/algolia-personalization`
 - `@graphcommerce/algolia-recommend`
 
-## Preparation
+## Preparation: Search Overlay UI
 
-Algolia is known for it's live-search, but GraphCommerce has split the UI and
-the search logic. Before enabling Algolia we recommend adding the
-`@graphcommerce/magento-search-overlay` package to your project which creates a
-new overlay with most features enabled.
+Algolia goes hand-in-hand with a proper search UI. We've got a separate 'Magento
+Search Overlay' package that adds a search overlay experience to GraphCommerce.
+This search overlay is not dependent on Algolia so you can use it with default
+Magento. So before starting, install the `@graphcommerce/magento-search-overlay`
+package first.
 
 ## Installation and configuration of Algolia for GraphCommerce
 
