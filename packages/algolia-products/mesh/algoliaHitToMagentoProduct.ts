@@ -136,6 +136,8 @@ export function algoliaHitToMagentoProduct(
     thumbnail_url,
     type_id,
     url,
+    description,
+    short_description,
 
     // not used
     ordered_qty,
@@ -170,6 +172,8 @@ export function algoliaHitToMagentoProduct(
     review_count: 0,
     rating_summary: Number(rating_summary),
     reviews: { items: [], page_info: {} },
+    description: description ? { html: description } : null,
+    short_description: short_description ? { html: short_description } : null,
     // canonical_url: null,
     // categories: [],
     // country_of_manufacture: null,
