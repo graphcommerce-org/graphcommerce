@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.29
+
+### Patch Changes
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`e1e132d`](https://github.com/graphcommerce-org/graphcommerce/commit/e1e132d076fbc6b3a081a245e51cb2bc91b0c707) - usePrivateQuery now disables masking when an error occurs. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.28
 
 ## 9.1.0-canary.27

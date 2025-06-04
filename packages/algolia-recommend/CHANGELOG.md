@@ -1,5 +1,11 @@
 # @graphcommerce/algolia-recommend
 
+## 9.1.0-canary.29
+
+### Patch Changes
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`4f9ddb8`](https://github.com/graphcommerce-org/graphcommerce/commit/4f9ddb820494a89a6ae37df6e2befa59910330b4) - Updated Algolia to the latest version of the spec. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.28
 
 ## 9.1.0-canary.27

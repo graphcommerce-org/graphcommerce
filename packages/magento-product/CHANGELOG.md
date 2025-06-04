@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.29
+
+### Patch Changes
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`2f66469`](https://github.com/graphcommerce-org/graphcommerce/commit/2f66469479689ceaf9983b51c77f082e3a44cf97) - Translate relevance sort option when a non translated value is communicated from algolia. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.28
 
 ## 9.1.0-canary.27
