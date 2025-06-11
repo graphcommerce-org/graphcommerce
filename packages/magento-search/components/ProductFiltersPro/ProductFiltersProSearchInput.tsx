@@ -50,7 +50,7 @@ export function useProductFiltersProSearchInput<
       if (e.key === 'Enter') {
         const context = globalFormContextRef.current
         if (!context || !searchPage) {
-          return router.push(`/search/${e.currentTarget.value}`)
+          return router.push(`/search/${encodeURIComponent(e.currentTarget.value)}`)
         }
         context.form.setValue('currentPage', 1)
         context.form.setValue('search', e.currentTarget.value)
@@ -64,7 +64,7 @@ export function useProductFiltersProSearchInput<
       // When we're not on the search page, we want to navigate as soon as possible.
       // TODO: We only want to navigate once, and let the rest be handled by the search page.
       if (!context || !searchPage) {
-        return router.push(`/search/${e.target.value}`)
+        return router.push(`/search/${encodeURIComponent(e.target.value)}`)
       }
 
       context.form.setValue('currentPage', 1)

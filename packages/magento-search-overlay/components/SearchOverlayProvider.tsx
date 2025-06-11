@@ -125,7 +125,7 @@ export function SearchOverlayProvider(props: SearchOverlayProviderProps) {
 
                 if (!element && params.search) {
                   // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                  router.push(`/search/${params.search}`)
+                  router.push(`/search/${encodeURIComponent(params.search)}`)
                 }
               } else {
                 setSelectedIndex(-1)

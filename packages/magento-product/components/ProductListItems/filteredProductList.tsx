@@ -15,7 +15,12 @@ export function parseParams(
   filterTypes: FilterTypes,
   search: string | null = null,
 ): ProductListParams | undefined {
-  const productListParams: ProductListParams = { url, filters: {}, sort: {}, search }
+  const productListParams: ProductListParams = {
+    url,
+    filters: {},
+    sort: {},
+    search: search ? decodeURIComponent(search) : null,
+  }
 
   const typeMap = filterTypes
 
