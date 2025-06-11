@@ -26,9 +26,9 @@ export function useProductFiltersProSearchInput<
   const initial = useRef(true)
 
   useEffect(() => {
+    initial.current = false
     // When page initially loads, fill in the search field with the search param.
     if (internalRef.current && initial.current && searchParam) {
-      initial.current = false
       internalRef.current.selectionStart = searchParam.length
       internalRef.current.selectionEnd = searchParam.length
       return
