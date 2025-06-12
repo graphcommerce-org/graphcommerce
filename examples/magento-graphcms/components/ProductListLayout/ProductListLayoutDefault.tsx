@@ -46,16 +46,17 @@ export const ProductListLayoutDefault = memoDeep(function ProductListLayoutDefau
         sx={(theme) => ({
           display: 'grid',
           rowGap: theme.spacings.sm,
+          pt: theme.spacings.sm,
           mb: theme.spacings.sm,
           gridAutoFlow: 'row',
-          justifyItems: { xs: 'left', md: 'center' },
+          justifyItems: { xs: 'center', md: 'center' },
         })}
       >
         {import.meta.graphCommerce.breadcrumbs && category && (
           <CategoryBreadcrumbs
             category={category}
             sx={(theme) => ({
-              height: 0,
+              // height: 0,
               [theme.breakpoints.down('md')]: {
                 '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
               },
@@ -71,14 +72,14 @@ export const ProductListLayoutDefault = memoDeep(function ProductListLayoutDefau
             <CategoryDescription
               textAlignMd='center'
               textAlignSm='center'
-              sx={(theme) => ({ px: theme.page.horizontal })}
+              // sx={(theme) => ({ px: theme.page.horizontal })}
               category={category}
               productListRenderer={productListRenderer}
             />
             <CategoryChildren
               sx={(theme) => ({
                 justifyContent: 'center',
-                '& .CategoryChildren-scroller': { px: theme.page.horizontal },
+                // '& .CategoryChildren-scroller': { px: theme.page.horizontal },
               })}
               params={params}
             >

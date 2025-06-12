@@ -20,9 +20,9 @@ import { Components, PaletteOptions } from '@mui/material/styles'
 const lightPalette: PaletteOptions = {
   mode: 'light',
   primary: {
-    main: '#000000',
+    main: '#47C489',
     contrastText: '#ffffff',
-    dark: '#000000',
+    dark: '#47C489',
   },
   secondary: {
     main: '#006bff',
