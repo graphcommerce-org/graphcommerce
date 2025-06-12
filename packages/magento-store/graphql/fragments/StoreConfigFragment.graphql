@@ -2,7 +2,6 @@ fragment StoreConfigFragment on StoreConfig {
   website_name
   store_code
   store_name
-
   header_logo_src
   logo_width
   logo_height
@@ -12,8 +11,10 @@ fragment StoreConfigFragment on StoreConfig {
 
   locale
   base_currency_code
-
   default_display_currency_code
+  currency {
+    available_currency_codes
+  }
 
   head_shortcut_icon
   head_includes

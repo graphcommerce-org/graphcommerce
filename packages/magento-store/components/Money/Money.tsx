@@ -15,7 +15,8 @@ export type MoneyProps = MoneyFragment & OverridableProps
 
 export function Money(props: MoneyProps) {
   const { currency, value, round = false, formatOptions, sx } = props
-  const baseCurrencyCode = useQuery(StoreConfigDocument).data?.storeConfig?.base_currency_code
+  const baseCurrencyCode =
+    useQuery(StoreConfigDocument).data?.storeConfig?.default_display_currency_code
   const digits = (value ?? 0) % 1 !== 0
   const maximumFractionDigits = round && !digits ? 0 : 2
   const currencyCode = currency ?? baseCurrencyCode ?? ''

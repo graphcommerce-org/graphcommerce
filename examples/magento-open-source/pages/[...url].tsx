@@ -146,6 +146,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const { params, locale } = context
+  if (params?.url?.join('/').includes('.')) return { notFound: true }
   const [url, query] = extractUrlQuery(params)
   if (!url || !query) return { notFound: true }
 

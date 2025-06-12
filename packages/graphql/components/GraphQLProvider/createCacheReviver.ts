@@ -3,7 +3,7 @@ import type { ApolloCache, ApolloClient, NormalizedCacheObject } from '../../apo
 import { mergeDeep } from '../../apollo'
 import type { ApolloClientConfig } from '../../config'
 import { migrateCacheHandler } from './migrateCache'
-import { persistenceMapper } from './persistenceMapper'
+import { createPersistenceMapper } from './persistenceMapper'
 import { getTypePoliciesVersion } from './typePolicies'
 
 const APOLLO_CACHE_PERSIST = 'apollo-cache-persist'
@@ -36,7 +36,7 @@ export async function createCacheReviver(
         maxSize: false,
         key: APOLLO_CACHE_PERSIST,
         debounce: 10,
-        persistenceMapper,
+        persistenceMapper: createPersistenceMapper(createCache),
       })
 
       const reset = async () => {
