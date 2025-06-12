@@ -14,8 +14,6 @@ export function getPrivateQueryContext(
  * Other plugins should be able to define their own scopes and create a plugin on this method to
  * augment the specific scope.
  *
- * @see @graphcommerce/magento-customer/plugins/magentoCustomerGetInContext.ts
- *
  * Note: ONLY return a value if the frontend should use the privateContext directive.
  */
 export const usePrivateQueryContext = (): PrivateContext | null => null

@@ -11,6 +11,7 @@ import {
   DefaultOptions,
   PreviewConfig,
   NormalizedCacheObject,
+  dataIdFromObject,
 } from '@graphcommerce/graphql'
 import { MeshApolloLink, getBuiltMesh } from '@graphcommerce/graphql-mesh'
 import { storefrontConfig, storefrontConfigDefault } from '@graphcommerce/next-ui'
@@ -33,6 +34,7 @@ function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-c
     cache: new InMemoryCache({
       possibleTypes: fragments.possibleTypes,
       typePolicies: mergeTypePolicies(config.policies),
+      dataIdFromObject,
     }),
     ssrMode: true,
     name: 'ssr',

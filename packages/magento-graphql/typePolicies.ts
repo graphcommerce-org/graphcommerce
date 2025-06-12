@@ -1,6 +1,25 @@
-import type { TypedTypePolicies } from '@graphcommerce/graphql'
+import {
+  getPrivateQueryContext,
+  globalApolloClient,
+  type TypedTypePolicies,
+} from '@graphcommerce/graphql'
+import type { KeyFieldsFunction } from '@apollo/client/cache/inmemory/policies'
 
-/// /todooooo
+/**
+ * This method automatically creates a typePolicy for all types that have a `uid` field. Secondly,
+ * it allows scoping of this value based on the current private context.
+ */
+export const magentoDataIdFromObject: KeyFieldsFunction = (object) => {
+  const { uid, __typename } = object
+  const client = globalApolloClient.current
+
+  if (!uid || !__typename || typeof uid !== 'string' || !client?.cache) return ''
+
+  const ctx = getPrivateQueryContext(client)
+  const queryContext = ctx ? `@(${JSON.stringify(ctx)})` : ''
+  return `${__typename}:${uid}${queryContext}`
+}
+
 /**
  * By default we don't need to do anything for types with an `id` or without anything to identify.
  *
@@ -29,13 +48,13 @@ export const magentoTypePolicies: TypedTypePolicies = {
   AvailableShippingMethod: { keyFields: ['carrier_code', 'method_code'] },
   // BillingCartAddress: { keyFields: false },
   // Breadcrumb: { keyFields: ['category_uid'] },
-  BundleCartItem: { keyFields: ['uid'] },
+  // BundleCartItem: { keyFields: ['uid'] },
   // BundleCreditMemoItem: { keyFields: ['id'] },
   // BundleInvoiceItem: { keyFields: ['id'] },
-  BundleItem: { keyFields: ['uid'] },
-  BundleItemOption: { keyFields: ['uid'] },
+  // BundleItem: { keyFields: ['uid'] },
+  // BundleItemOption: { keyFields: ['uid'] },
   // BundleOrderItem: { keyFields: ['id'] },
-  BundleProduct: { keyFields: ['uid'] },
+  // BundleProduct: { keyFields: ['uid'] },
   // BundleShipmentItem: { keyFields: ['id'] },
   // BundleWishlistItem: { keyFields: ['id'] },
   // Cart: { keyFields: ['id'] },
@@ -43,17 +62,17 @@ export const magentoTypePolicies: TypedTypePolicies = {
   // CartAddressInterface: { keyFields: false },
   // CartAddressRegion: { keyFields: false },
   // CartDiscount: { keyFields: false },
-  CartItemInterface: { keyFields: ['uid'] },
+  // CartItemInterface: { keyFields: ['uid'] },
   // CartItemPrices: { keyFields: false },
   CartItemQuantity: { keyFields: ['cart_item_id'] },
   // CartItemSelectedOptionValuePrice: { keyFields: false },
   // CartPrices: { keyFields: false },
   // CartTaxItem: { keyFields: false },
   // CartUserInputError: { keyFields: false },
-  CategoryInterface: { keyFields: ['uid'] },
+  // CategoryInterface: { keyFields: ['uid'] },
   // CategoryProducts: { keyFields: false },
   // CategoryResult: { keyFields: false },
-  CategoryTree: { keyFields: ['uid'] },
+  // CategoryTree: { keyFields: ['uid'] },
   CheckoutAgreement: { keyFields: ['agreement_id'] },
   // CheckoutUserInputError: { keyFields: false },
   CmsBlock: { keyFields: ['identifier'] },
@@ -61,16 +80,15 @@ export const magentoTypePolicies: TypedTypePolicies = {
   CmsPage: { keyFields: ['identifier'] },
   // ColorSwatchData: { keyFields: false },
   // ComparableAttribute: { keyFields: false },
-  ComparableItem: { keyFields: ['uid'] },
-  CompareList: { keyFields: ['uid'] },
+  // ComparableItem: { keyFields: ['uid'] },
+  // CompareList: { keyFields: ['uid'] },
   // ComplexTextValue: { keyFields: false },
-  ConfigurableAttributeOption: { keyFields: ['uid'] },
-  ConfigurableCartItem: { keyFields: ['uid'] },
+  // ConfigurableAttributeOption: { keyFields: ['uid'] },
+  // ConfigurableCartItem: { keyFields: ['uid'] },
   // ConfigurableOptionAvailableForSelection: { keyFields: false },
-  ConfigurableProduct: { keyFields: ['uid'] },
-  ConfigurableProductOptions: { keyFields: ['uid'] },
+  // ConfigurableProductOptions: { keyFields: ['uid'] },
   // ConfigurableProductOptionsSelection: { keyFields: false },
-  ConfigurableProductOptionsValues: { keyFields: ['uid'] },
+  // ConfigurableProductOptionsValues: { keyFields: ['uid'] },
   // ConfigurableVariant: { keyFields: false },
   // ConfigurableWishlistItem: { keyFields: ['id'] },
   // Country: { keyFields: ['id'] },
@@ -114,18 +132,18 @@ export const magentoTypePolicies: TypedTypePolicies = {
   // CustomizableMultipleValue: { keyFields: ['uid'] },
   // CustomizableOptionInterface: { keyFields: ['uid'] },
   // CustomizableProductInterface: { keyFields: false },
-  CustomizableRadioOption: { keyFields: ['uid'] },
-  CustomizableRadioValue: { keyFields: ['uid'] },
+  // CustomizableRadioOption: { keyFields: ['uid'] },
+  // CustomizableRadioValue: { keyFields: ['uid'] },
   // DeleteCompareListOutput: { keyFields: false },
   // DeletePaymentTokenOutput: { keyFields: false },
   // Discount: { keyFields: false },
-  DownloadableCartItem: { keyFields: ['uid'] },
+  // DownloadableCartItem: { keyFields: ['uid'] },
   // DownloadableCreditMemoItem: { keyFields: ['id'] },
   // DownloadableInvoiceItem: { keyFields: ['id'] },
-  DownloadableItemsLinks: { keyFields: ['uid'] },
+  // DownloadableItemsLinks: { keyFields: ['uid'] },
   // DownloadableOrderItem: { keyFields: ['id'] },
-  DownloadableProduct: { keyFields: ['uid'] },
-  DownloadableProductLinks: { keyFields: ['uid'] },
+  // DownloadableProduct: { keyFields: ['uid'] },
+  // DownloadableProductLinks: { keyFields: ['uid'] },
   // DownloadableProductSamples: { keyFields: ['id'] },
   // DownloadableWishlistItem: { keyFields: ['id'] },
   // EntityUrl: { keyFields: ['id'] },
@@ -133,7 +151,7 @@ export const magentoTypePolicies: TypedTypePolicies = {
   // FixedProductTax: { keyFields: false },
   // GenerateCustomerTokenAsAdminOutput: { keyFields: false },
   // GiftMessage: { keyFields: false },
-  GroupedProduct: { keyFields: ['uid'] },
+  // GroupedProduct: { keyFields: ['uid'] },
   // GroupedProductItem: { keyFields: false },
   // GroupedProductWishlistItem: { keyFields: ['id'] },
   // HostedProUrl: { keyFields: false },
@@ -150,7 +168,7 @@ export const magentoTypePolicies: TypedTypePolicies = {
   // LayerFilter: { keyFields: false },
   // LayerFilterItem: { keyFields: false },
   // LayerFilterItemInterface: { keyFields: false },
-  MediaGalleryEntry: { keyFields: ['uid'] },
+  // MediaGalleryEntry: { keyFields: ['uid'] },
   // MediaGalleryInterface: { keyFields: false },
   // Money: { keyFields: false },
   Order: { keyFields: ['order_number'] },
@@ -178,7 +196,7 @@ export const magentoTypePolicies: TypedTypePolicies = {
   // ProductAttribute: { keyFields: false },
   // ProductDiscount: { keyFields: false },
   // ProductImage: { keyFields: false },
-  ProductInterface: { keyFields: ['uid'] },
+  // ProductInterface: { keyFields: ['uid'] }, // Handled by dataIdFromObject
   // ProductLinks: { keyFields: false },
   // ProductLinksInterface: { keyFields: false },
   // ProductMediaGalleryEntriesContent: { keyFields: false },
@@ -226,7 +244,7 @@ export const magentoTypePolicies: TypedTypePolicies = {
   // ShippingDiscount: { keyFields: false },
   // ShippingHandling: { keyFields: false },
   // SimpleCartItem: { keyFields: ['id'] },
-  SimpleProduct: { keyFields: ['uid'] },
+  // SimpleProduct: { keyFields: ['uid'] },
   // SimpleWishlistItem: { keyFields: ['id'] },
   // SortField: { keyFields: false },
   // SortFields: { keyFields: false },
@@ -242,8 +260,8 @@ export const magentoTypePolicies: TypedTypePolicies = {
   // UpdateCartItemsOutput: { keyFields: false },
   // UpdateProductsInWishlistOutput: { keyFields: false },
   // UrlRewrite: { keyFields: false },
-  VirtualCartItem: { keyFields: ['uid'] },
-  VirtualProduct: { keyFields: ['uid'] },
+  // VirtualCartItem: { keyFields: ['uid'] },
+  // VirtualProduct: { keyFields: ['uid'] },
   // VirtualWishlistItem: { keyFields: ['id'] },
   // Website: { keyFields: ['id'] },
   // WishListUserInputError: { keyFields: false },
