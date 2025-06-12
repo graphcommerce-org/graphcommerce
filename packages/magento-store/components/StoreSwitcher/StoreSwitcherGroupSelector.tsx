@@ -24,7 +24,7 @@ export function StoreSwitcherGroupSelector(props: StoreSwitcherGroupSelectorProp
   const { header, showStores = 0, showCurrencies, ...actionCardList } = props
   const { control, storeGroups } = useStoreSwitcherForm()
 
-  const hidden = storeGroups.length === 1 && storeGroups[0].stores.length > 1
+  const hidden = storeGroups.length === 1
 
   return (
     <>

@@ -7,7 +7,8 @@ import { StoreConfigDocument } from '../../graphql'
 
 export function CurrencySymbol(props: CurrencySymbolProps) {
   const { currency } = props
-  const baseCurrencyCode = useQuery(StoreConfigDocument).data?.storeConfig?.base_currency_code ?? ''
+  const baseCurrencyCode =
+    useQuery(StoreConfigDocument).data?.storeConfig?.default_display_currency_code ?? ''
 
   return <CurrencySymbolBase {...props} currency={currency || baseCurrencyCode} />
 }

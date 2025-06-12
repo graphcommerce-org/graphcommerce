@@ -3,6 +3,10 @@ import { magentoMenuToNavigation } from '@graphcommerce/magento-category'
 import { CmsBlock } from '@graphcommerce/magento-cms'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { SearchFab, SearchField } from '@graphcommerce/magento-search'
+import {
+  StoreSwitcherButton,
+  StoreSwitcherMenuFabSecondaryItem,
+} from '@graphcommerce/magento-store'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import type { LayoutDefaultProps } from '@graphcommerce/next-ui'
 import {
@@ -88,6 +92,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               <Trans id='Wishlist' />
             </WishlistMenuFabItem>,
             <DarkLightModeMenuSecondaryItem key='darkmode' />,
+            <StoreSwitcherMenuFabSecondaryItem key='store-switcher' />,
           ],
           [menu, selection],
         )}
@@ -135,6 +140,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </DesktopNavBar>
 
             <DesktopNavActions>
+              <StoreSwitcherButton />
               <SearchField
                 formControl={{ sx: { width: '400px' } }}
                 searchField={{ productListRenderer }}

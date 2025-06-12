@@ -40,28 +40,30 @@ function StoresIndexPage({ availableStores }: Props) {
   return (
     <StoreSwitcherFormProvider
       availableStores={availableStores}
-      onSubmit={async (data) => {
-        await router.push(prev?.asPath ?? '/', undefined, {
-          locale: storeToLocale(data.storeCode),
-          scroll: false,
-        })
-      }}
+      onSubmit={async (data) =>
+        prev?.asPath && prev?.locale === storeToLocale(data.storeCode)
+          ? router.back()
+          : router.push(prev?.asPath ?? '/', undefined, {
+              locale: storeToLocale(data.storeCode),
+              scroll: false,
+            })
+      }
     >
       <PageMeta title={i18n._(/* i18n */ 'Switch stores')} metaRobots={['noindex']} />
       <LayoutOverlayHeader
         primary={
           <StoreSwitcherLinkOrButton color='secondary' button={{ variant: 'pill' }}>
-            <Trans id='Switch' />
+            <Trans id='Save' />
           </StoreSwitcherLinkOrButton>
         }
       >
         <LayoutTitle size='small' component='span' icon={iconLanguage}>
-          <Trans id='Switch Stores' />
+          <Trans id='Store Settings' />
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='sm' sx={(theme) => ({ mb: theme.spacings.lg })}>
         <LayoutTitle icon={iconLanguage}>
-          <Trans id='Switch Stores' />
+          <Trans id='Store Settings' />
         </LayoutTitle>
         <StoreSwitcherGroupSelector
           // header={<SectionHeader labelLeft='Country' />}
@@ -73,9 +75,10 @@ function StoresIndexPage({ availableStores }: Props) {
           showCurrencies={1}
         />
         <StoreSwitcherCurrencySelector header={<SectionHeader labelLeft='Currency' />} />
+
         <FormActions>
           <StoreSwitcherApplyButton color='secondary' variant='pill' size='large'>
-            <Trans id='Switch' />
+            <Trans id='Save' />
           </StoreSwitcherApplyButton>
         </FormActions>
       </Container>

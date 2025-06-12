@@ -3,4 +3,7 @@ fragment StoreConfigQueryFragment on Query {
   storeConfig {
     ...StoreConfigFragment
   }
+  availableStores {
+    store_code
+  }
 }

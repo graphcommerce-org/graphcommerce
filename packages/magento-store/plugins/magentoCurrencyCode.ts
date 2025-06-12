@@ -4,7 +4,7 @@ import {
 } from '@graphcommerce/graphql'
 import type { PrivateContext } from '@graphcommerce/graphql-mesh'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
-import { cookie } from '@graphcommerce/next-ui'
+import { cookie, useCookie } from '@graphcommerce/next-ui'
 
 export const config: PluginConfig = {
   type: 'function',
@@ -27,8 +27,7 @@ export const usePrivateQueryContext: FunctionPlugin<typeof usePrivateQueryContex
   prev,
   ...args
 ) => {
-  const currencyCode = cookie('Magento-Content-Currency')
-
+  const [currencyCode] = useCookie('Magento-Content-Currency')
   const res = prev(...args)
   if (!currencyCode) return res
   return { ...res, currencyCode }

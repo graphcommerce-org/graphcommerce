@@ -31,6 +31,7 @@ import { Footer } from './Footer'
 import { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
 import { productListRenderer } from '../ProductListItems/productListRenderer'
+import { StoreSwitcherFab, StoreSwitcherMenuFabSecondaryItem } from '@graphcommerce/magento-store'
 
 export type LayoutNavigationProps = LayoutQuery &
   Omit<LayoutDefaultProps, 'footer' | 'header' | 'cartFab' | 'menuFab'>
@@ -85,6 +86,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               <Trans id='Wishlist' />
             </WishlistMenuFabItem>,
             <DarkLightModeMenuSecondaryItem key='darkmode' />,
+            <StoreSwitcherMenuFabSecondaryItem key='store-switcher' />,
           ],
           [menu, selection],
         )}
@@ -141,6 +143,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
                 formControl={{ sx: { width: '400px' } }}
                 searchField={{ productListRenderer }}
               />
+              <StoreSwitcherFab />
               <Fab
                 href='/service'
                 aria-label={i18n._(/* i18n */ 'Customer Service')}
