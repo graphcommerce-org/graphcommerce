@@ -43,7 +43,14 @@ export function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
           {icon}
         </ListItemIcon>
       )}
-      <ListItemText className={classes.icon}>{children}</ListItemText>
+      <ListItemText
+        className={classes.icon}
+        primaryTypographyProps={{
+          sx: { whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
+        }}
+      >
+        {children}
+      </ListItemText>
     </ListItemButton>
   )
 }
