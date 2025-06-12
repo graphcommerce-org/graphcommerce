@@ -33,17 +33,21 @@ function mapPriceRange(
   price: AlgoliaProductHitAdditionalProperties['price'],
   storeConfig: GetStoreConfigReturn,
   customerGroup = 0,
+  currencyHeader?: string,
 ): PriceRange {
   if (!storeConfig?.default_display_currency_code) throw new Error('Currency is required')
 
-  const key = storeConfig.default_display_currency_code as keyof AlgoliaPrice
-  const currency = storeConfig.default_display_currency_code as CurrencyEnum
+  const curr = currencyHeader ?? storeConfig.default_display_currency_code
 
-  const maxRegular = price?.[key]?.default_max ?? 0
-  const maxFinal = price?.[key]?.[`group_${customerGroup}_max`] ?? price?.[key]?.default_max ?? 0
+  const key = curr as keyof AlgoliaPrice
+  const itemPrice = price?.[key] ?? price?.[storeConfig.default_display_currency_code]
+  const currency = (price?.[key] ? key : storeConfig.default_display_currency_code) as CurrencyEnum
 
-  const minRegular = price?.[key]?.default ?? 0
-  const minFinal = price?.[key]?.[`group_${customerGroup}`] ?? price?.[key]?.default
+  const maxRegular = itemPrice?.default_max ?? 0
+  const maxFinal = itemPrice?.[`group_${customerGroup}_max`] ?? itemPrice?.default_max ?? 0
+
+  const minRegular = itemPrice?.default_max ?? 0
+  const minFinal = itemPrice?.[`group_${customerGroup}`] ?? itemPrice?.default
 
   return {
     maximum_price: {
@@ -65,7 +69,7 @@ function mapPriceRange(
     minimum_price: {
       regular_price: {
         currency,
-        value: price?.[key]?.default,
+        value: minRegular,
       },
       final_price: {
         currency,
@@ -145,6 +149,7 @@ export function algoliaHitToMagentoProduct(
   hit: Algoliahit,
   storeConfig: GetStoreConfigReturn,
   customerGroup: number,
+  currency: string | undefined,
 ): (ProductsItemsItem & { staged: boolean }) | null {
   const { objectID, additionalProperties } = hit
   if (!assertAdditional(additionalProperties)) return null
@@ -180,7 +185,7 @@ export function algoliaHitToMagentoProduct(
     uid: btoa(objectID),
     id: Number(objectID),
     sku: Array.isArray(sku) ? sku[0] : `${sku}`,
-    price_range: mapPriceRange(price, storeConfig, customerGroup),
+    price_range: mapPriceRange(price, storeConfig, customerGroup, currency),
     created_at: created_at ? new Date(created_at).toISOString() : null,
     stock_status: is_stock ? 'IN_STOCK' : 'OUT_OF_STOCK',
     review_count: 0,

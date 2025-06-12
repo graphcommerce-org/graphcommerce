@@ -25,7 +25,7 @@ export async function getSortedIndex(
 
   if (candidates.length === 0) {
     console.warn(
-      `[@graphcommerce/algolia-products] WARNING: Expecting virtual replica but couldn't find the expected index for attr ${attr} with ${dir}, please add to the Algolia settings in the Magento Admin Panel. Falling back to baseIndex.`,
+      `[@graphcommerce/algolia-products] WARNING: Expecting virtual replica but couldn't find the expected index for attr ${attr} with ${dir}, please add to the Algolia settings in the Magento Admin Panel. Falling back to baseIndex: ${baseIndex}.`,
     )
     return baseIndex
   }
