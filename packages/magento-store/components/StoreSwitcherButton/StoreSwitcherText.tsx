@@ -1,10 +1,12 @@
-import { extendableComponent, FlagAvatar, ListFormat } from '@graphcommerce/next-ui'
+import { CurrencySymbol, extendableComponent, FlagAvatar, ListFormat } from '@graphcommerce/next-ui'
+import { Box, type SxProps, type Theme } from '@mui/material'
 import React from 'react'
 import { useShowStoreSwitcherButton } from './useStoreSwitcherButton'
 
 export type StoreSwitcherTextProps = {
   items?: React.ReactNode[]
   showFlag?: boolean
+  sx?: SxProps<Theme>
 }
 
 const name = 'StoreSwitcherButton'
@@ -12,7 +14,7 @@ const parts = ['root', 'avatar'] as const
 const { classes } = extendableComponent(name, parts)
 
 export function StoreSwitcherText(props: StoreSwitcherTextProps) {
-  const { items = [], showFlag = false } = props
+  const { items = [], showFlag = false, sx = [] } = props
 
   const { country, multiLocale, currency, multiCurrency } = useShowStoreSwitcherButton()
 
@@ -30,15 +32,19 @@ export function StoreSwitcherText(props: StoreSwitcherTextProps) {
         {country.toUpperCase()}
       </React.Fragment>
     ),
-    multiCurrency && <React.Fragment key='currency'>{currency}</React.Fragment>,
+    multiCurrency && currency && (
+      <CurrencySymbol key='currency' currency={currency} currencyDisplay='symbol' />
+    ),
     ...items,
   ].filter(Boolean) as React.ReactNode[]
 
   if (renderItems.length === 0) return null
 
   return (
-    <ListFormat type='unit' listStyle='narrow'>
-      {renderItems}
-    </ListFormat>
+    <Box component='span' sx={sx}>
+      <ListFormat type='unit' listStyle='narrow'>
+        {renderItems}
+      </ListFormat>
+    </Box>
   )
 }
