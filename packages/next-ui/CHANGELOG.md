@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.1.0-canary.35
+
+### Patch Changes
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`6a3e7f9`](https://github.com/graphcommerce-org/graphcommerce/commit/6a3e7f9bec6d03c146718ad594b064a75b536e99) - cssFlag and cssNotFlag css selector can now select values ([@paales](https://github.com/paales))
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`a4344ed`](https://github.com/graphcommerce-org/graphcommerce/commit/a4344ed7ff7b3b5f88185c1f6a5fc4b6306fc472) - Created a useCookie hook that is synced between usages ([@paales](https://github.com/paales))
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`f89210b`](https://github.com/graphcommerce-org/graphcommerce/commit/f89210b09e64f520d308cb1bac693c027be1ac46) - Solve issue where the MenuFabSecondaryItem coudn't handle text overflow. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.34
 
 ## 9.1.0-canary.33

@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.1.0-canary.35
+
+### Patch Changes
+
+- [`4b02607`](https://github.com/graphcommerce-org/graphcommerce/commit/4b02607b26dd45e33bba3fb73d36052757dc2dec) - Solve issue where seaches containing a `/` would not consider everything after the `/` as part of the search. ([@paales](https://github.com/paales))
+
+- [`ec5b915`](https://github.com/graphcommerce-org/graphcommerce/commit/ec5b91559fb8e702ae3043c38a73c62c7724aefa) - Solve issue where the cursor would jump after the first result of the search page came in. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.34
 
 ## 9.1.0-canary.33

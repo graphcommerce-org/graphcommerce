@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.35
+
+### Patch Changes
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`529d7a8`](https://github.com/graphcommerce-org/graphcommerce/commit/529d7a88a4e010cb3e50c1358e2ac43e80e0bf38) - Solve issue where the ApolloClient cache wasn't scoped properly causing the wrong currency to be shown when switching currency. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.34
 
 ## 9.1.0-canary.33

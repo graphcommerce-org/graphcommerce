@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.35
+
+### Patch Changes
+
+- [`4b02607`](https://github.com/graphcommerce-org/graphcommerce/commit/4b02607b26dd45e33bba3fb73d36052757dc2dec) - Solve issue where seaches containing a `/` would not consider everything after the `/` as part of the search. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.34
 
 ## 9.1.0-canary.33

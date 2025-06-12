@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.1.0-canary.35
+
+### Patch Changes
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`5a41fff`](https://github.com/graphcommerce-org/graphcommerce/commit/5a41fff74c38ed1f9793e48ec42cba71d1d539d1) - Use the default display currency instead of the base currency in case they differ from one another. ([@paales](https://github.com/paales))
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`5a41fff`](https://github.com/graphcommerce-org/graphcommerce/commit/5a41fff74c38ed1f9793e48ec42cba71d1d539d1) - Store switcher now allows switching between currencies without navigating and just switches the @privateContext. ([@paales](https://github.com/paales))
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`5a41fff`](https://github.com/graphcommerce-org/graphcommerce/commit/5a41fff74c38ed1f9793e48ec42cba71d1d539d1) - Added store switcher to the header and mobile navigation ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.34
 
 ## 9.1.0-canary.33
