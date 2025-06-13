@@ -1,4 +1,4 @@
-import type { UseFormReturn } from '@graphcommerce/ecommerce-ui'
+import type { UseFormProps, UseFormReturn } from '@graphcommerce/ecommerce-ui'
 import { FormPersist, useForm } from '@graphcommerce/ecommerce-ui'
 import type { ReactNode } from 'react'
 import { createContext, useContext } from 'react'
@@ -21,9 +21,12 @@ export function useStoreLocatorForm() {
   return context
 }
 
-export function StoreLocatorFormProvider(props: { children: ReactNode }) {
-  const { children } = props
-  const form = useForm<FormValues>()
+export function StoreLocatorFormProvider(props: {
+  children: ReactNode
+  defaultValues?: Partial<UseFormProps['defaultValues']>
+}) {
+  const { children, defaultValues } = props
+  const form = useForm<FormValues>({ defaultValues })
 
   return (
     <StoreLocatorFormContext.Provider value={form}>
