@@ -12,7 +12,7 @@ export const productListPrice = extendableComponent('ProductListPrice', [
   'suffix',
 ] as const)
 
-const { classes, selectors } = productListPrice
+const { classes } = productListPrice
 
 export type ProductListPriceProps = ProductListPriceFragment &
   Pick<TypographyProps, 'sx'> & {
@@ -84,5 +84,3 @@ export function ProductListPrice(props: ProductListPriceProps) {
     </Box>
   )
 }
-
-ProductListPrice.selectors = selectors

@@ -20,7 +20,7 @@ import type { ProductListItemTitleAndPriceProps } from './ProductListItemTitleAn
 import { ProductListItemTitleAndPrice } from './ProductListItemTitleAndPrice'
 import { ProductNewLabel } from './ProductNewLabel'
 
-const { classes, selectors } = extendableComponent('ProductListItem', [
+const { classes } = extendableComponent('ProductListItem', [
   'root',
   'item',
   'title',
@@ -207,8 +207,6 @@ export function ProductListItem(props: ProductListItemProps) {
     <ProductListItemReal {...props} />
   )
 }
-
-ProductListItem.selectors = { ...selectors, ...ProductListPrice.selectors }
 
 /** @deprecated */
 export type OverlayAreaKeys = ProductListItemImageAreaKeys
