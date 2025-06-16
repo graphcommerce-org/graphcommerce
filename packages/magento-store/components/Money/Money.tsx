@@ -27,6 +27,7 @@ export function Money(props: MoneyProps) {
     <CurrencyFormat
       currency={currencyCode}
       maximumFractionDigits={maximumFractionDigits}
+      currencyDisplay='narrowSymbol'
       {...formatOptions}
       value={value}
       sx={sx}
