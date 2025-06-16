@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.1.0-canary.36
+
+### Patch Changes
+
+- [`4c92400`](https://github.com/graphcommerce-org/graphcommerce/commit/4c92400733bb3764494298122771d5bd9bacd5a2) - Render prices with a narrowSymbol so users just see $ instead of US$ ([@paales](https://github.com/paales))
+
+- [`f0d244e`](https://github.com/graphcommerce-org/graphcommerce/commit/f0d244ef8625e9cd2fc08d8518f8afa1edb3d688) - Solve issue where the currency switcher would result in an additional query ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.35
 
 ### Patch Changes

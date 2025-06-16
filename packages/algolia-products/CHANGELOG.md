@@ -1,5 +1,11 @@
 # @graphcommerce/algolia-products
 
+## 9.1.0-canary.36
+
+### Patch Changes
+
+- [`90e8850`](https://github.com/graphcommerce-org/graphcommerce/commit/90e885059b0203a8802e5ab753ac061b079ebcd6) - Support multiple currency displays from algolia ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.35
 
 ## 9.1.0-canary.34

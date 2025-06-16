@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.36
+
+### Patch Changes
+
+- [`c8aa135`](https://github.com/graphcommerce-org/graphcommerce/commit/c8aa13561f2a25b658466c0f3cddaa1bd338c443) - Add support for price prefix and suffix to be able to customize rendering ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.35
 
 ### Patch Changes

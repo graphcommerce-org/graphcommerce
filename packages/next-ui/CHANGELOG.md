@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.36
+
+### Patch Changes
+
+- [`90f8dd8`](https://github.com/graphcommerce-org/graphcommerce/commit/90f8dd89efd62e2b5a13e9c2bf265840d99e2473) - Create useCookies hook and simplify the useCookie query ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.35
 
 ### Patch Changes
