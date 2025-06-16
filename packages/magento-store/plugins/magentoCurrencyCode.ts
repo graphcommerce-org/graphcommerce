@@ -3,6 +3,7 @@ import {
   type usePrivateQueryContext as usePrivateQueryContextType,
 } from '@graphcommerce/graphql'
 import type { PrivateContext } from '@graphcommerce/graphql-mesh'
+import { useCustomerSession } from '@graphcommerce/magento-customer/hooks/useCustomerSession'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 import { cookie, useCookie } from '@graphcommerce/next-ui'
 
@@ -27,8 +28,9 @@ export const usePrivateQueryContext: FunctionPlugin<typeof usePrivateQueryContex
   prev,
   ...args
 ) => {
+  const awaiting = useCustomerSession().query.loading
   const [currencyCode] = useCookie('Magento-Content-Currency')
   const res = prev(...args)
-  if (!currencyCode) return res
+  if (!currencyCode || awaiting) return res
   return { ...res, currencyCode }
 }
