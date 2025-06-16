@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.37
+
+### Patch Changes
+
+- [`984f5e3`](https://github.com/graphcommerce-org/graphcommerce/commit/984f5e37b9cc83897782f95b8fe652855986a452) - Solve plugin issue with ProductListPrice ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.36
 
 ### Patch Changes
