@@ -1,7 +1,8 @@
 import { useWatch } from '@graphcommerce/ecommerce-ui'
 import { PrivateQueryMask } from '@graphcommerce/graphql'
 import { Money } from '@graphcommerce/magento-store'
-import { extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent, sxx } from '@graphcommerce/next-ui'
+import { Box, type SxProps, type Theme } from '@mui/material'
 import type { AddToCartItemSelector } from '../AddProductsToCart'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import { getProductTierPrice } from './getProductTierPrice'
@@ -9,16 +10,23 @@ import type { ProductPagePriceFragment } from './ProductPagePrice.gql'
 import type { UseCustomizableOptionPriceProps } from './useCustomizableOptionPrice'
 import { useCustomizableOptionPrice } from './useCustomizableOptionPrice'
 
-export type ProductPagePriceProps = { product: ProductPagePriceFragment } & AddToCartItemSelector &
+export type ProductPagePriceProps = {
+  product: ProductPagePriceFragment
+  prefix?: React.ReactNode
+  suffix?: React.ReactNode
+  sx?: SxProps<Theme>
+} & AddToCartItemSelector &
   UseCustomizableOptionPriceProps
 
 const { classes } = extendableComponent('ProductPagePrice', [
   'finalPrice',
   'discountPrice',
+  'prefix',
+  'suffix',
 ] as const)
 
 export function ProductPagePrice(props: ProductPagePriceProps) {
-  const { product, index = 0 } = props
+  const { product, index = 0, prefix, suffix, sx } = props
 
   const { control } = useFormAddProductsToCart()
   const quantity = useWatch({ control, name: `cartItems.${index}.quantity` })
@@ -29,24 +37,48 @@ export function ProductPagePrice(props: ProductPagePriceProps) {
   const regularPrice = product.price_range.minimum_price.regular_price
 
   return (
-    <>
+    <Box component='span' sx={sxx({ display: 'inline-flex', columnGap: '0.3em' }, sx)}>
+      {prefix && (
+        <PrivateQueryMask
+          component='span'
+          className={classes.prefix}
+          skeleton={{
+            variant: 'text',
+            sx: { width: '3.5em', transform: 'none' },
+          }}
+        >
+          {prefix}
+        </PrivateQueryMask>
+      )}
       {regularPrice.value !== price.value && (
         <PrivateQueryMask
           component='span'
           className={classes.discountPrice}
-          skeleton={{ variant: 'text', sx: { width: '3em', transform: 'none' } }}
-          sx={[{ textDecoration: 'line-through', color: 'text.disabled', marginRight: '8px' }]}
+          skeleton={{ variant: 'text', sx: { width: '3.5em', transform: 'none' } }}
+          sx={[{ textDecoration: 'line-through', color: 'text.disabled' }]}
         >
           <Money {...regularPrice} />
         </PrivateQueryMask>
       )}
       <PrivateQueryMask
         component='span'
-        skeleton={{ variant: 'text', sx: { width: '3em', transform: 'none' } }}
+        skeleton={{ variant: 'text', sx: { width: '3.5em', transform: 'none' } }}
         className={classes.finalPrice}
       >
         <Money {...price} value={priceValue} />
       </PrivateQueryMask>
-    </>
+      {suffix && (
+        <PrivateQueryMask
+          component='span'
+          className={classes.suffix}
+          skeleton={{
+            variant: 'text',
+            sx: { width: '3.5em', transform: 'none' },
+          }}
+        >
+          {suffix}
+        </PrivateQueryMask>
+      )}
+    </Box>
   )
 }
