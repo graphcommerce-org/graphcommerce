@@ -1,4 +1,3 @@
-import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import {
   DesktopHeaderBadge,
   extendableComponent,
@@ -111,9 +110,5 @@ export function CartFab(props: CartFabProps) {
   })
   if (!cartEnabled) return null
 
-  return (
-    <WaitForQueries waitFor={cartQuery} fallback={<CartFabContent {...props} total_quantity={0} />}>
-      <CartFabContent total_quantity={cartQuery.data?.cart?.total_quantity ?? 0} {...props} />
-    </WaitForQueries>
-  )
+  return <CartFabContent total_quantity={cartQuery.data?.cart?.total_quantity ?? 0} {...props} />
 }

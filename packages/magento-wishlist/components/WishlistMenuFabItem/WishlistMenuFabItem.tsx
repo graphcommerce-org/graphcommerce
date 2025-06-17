@@ -1,6 +1,6 @@
 import { iconHeart, IconSvg, MenuFabSecondaryItem } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
-import { Badge, NoSsr } from '@mui/material'
+import { Badge } from '@mui/material'
 import type { MouseEventHandler } from 'react'
 import React from 'react'
 import { useWishlistItems } from '../../hooks'
@@ -46,9 +46,5 @@ export function WishlistMenuFabItem(props: WishlistMenuFabItemProps) {
 
   const activeWishlist = wishlist.items.length > 0
 
-  return (
-    <NoSsr fallback={<WishlistMenuFabItemContent {...props} activeWishlist={false} />}>
-      <WishlistMenuFabItemContent {...props} activeWishlist={activeWishlist} />
-    </NoSsr>
-  )
+  return <WishlistMenuFabItemContent {...props} activeWishlist={activeWishlist} />
 }
