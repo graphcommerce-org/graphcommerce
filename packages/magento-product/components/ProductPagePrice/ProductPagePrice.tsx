@@ -1,6 +1,6 @@
 import { useWatch } from '@graphcommerce/ecommerce-ui'
 import { PrivateQueryMask } from '@graphcommerce/graphql'
-import { Money, type MoneyProps } from '@graphcommerce/magento-store'
+import { Money } from '@graphcommerce/magento-store'
 import { extendableComponent, sxx } from '@graphcommerce/next-ui'
 import { Box, type SxProps, type Theme } from '@mui/material'
 import type { AddToCartItemSelector } from '../AddProductsToCart'
@@ -47,10 +47,8 @@ export function ProductPagePrice(props: ProductPagePriceProps) {
         <PrivateQueryMask
           component='span'
           className={classes.prefix}
-          skeleton={{
-            variant: 'text',
-            sx: { width: '3.5em', transform: 'none' },
-          }}
+          sx={{ '&:empty': { display: 'none' } }}
+          skeleton={{ variant: 'text', sx: { width: '3.5em', transform: 'none' } }}
         >
           {prefix}
         </PrivateQueryMask>
