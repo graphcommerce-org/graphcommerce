@@ -2,4 +2,4 @@
 '@graphcommerce/magento-product': patch
 ---
 
-filter existing selectedOptions array instead of redefining it since this could add back already filtered values
+Solve issue where the added item couldn't be properly found based on the input filters, causing problems when sending data to the data layer.
