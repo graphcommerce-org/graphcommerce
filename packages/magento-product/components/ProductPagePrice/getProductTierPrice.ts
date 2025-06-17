@@ -1,4 +1,5 @@
 import type { MoneyFragment } from '@graphcommerce/magento-store'
+import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import type { ProductPagePriceFragment } from './ProductPagePrice.gql'
 
 export function getProductTierPrice(
@@ -8,8 +9,12 @@ export function getProductTierPrice(
   const { price_tiers } = price
   let result: MoneyFragment | undefined | null
 
-  price_tiers?.forEach((priceTier) => {
-    if (priceTier?.quantity && quantity >= priceTier?.quantity) result = priceTier?.final_price
+  filterNonNullableKeys(price_tiers, ['quantity', 'final_price'])?.forEach((priceTier) => {
+    if (quantity >= priceTier.quantity)
+      result = {
+        value: (priceTier.final_price.value ?? 0) / priceTier.quantity,
+        currency: priceTier.final_price.currency,
+      }
   })
 
   return result
