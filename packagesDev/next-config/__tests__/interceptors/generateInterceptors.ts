@@ -235,22 +235,22 @@ it('correctly renames all variable usages', async () => {
     [
       {
         enabled: true,
-        targetModule: '@graphcommerce/magento-product',
+        targetModule: '@graphcommerce/ecommerce-ui',
         sourceExport: 'Plugin',
         type: 'component',
-        targetExport: 'ProductListItem',
+        targetExport: 'ApolloErrorAlert',
         sourceModule: '@graphcommerce/magento-compare/plugins/CompareAbleProductListItem',
       },
     ],
     resolve,
   )
   expect(Object.keys(interceptors)[0]).toMatchInlineSnapshot(
-    '"packages/magento-product/components/ProductListItem/ProductListItem"',
+    '"packages/ecommerce-ui/components/ApolloError/ApolloErrorAlert"',
   )
   const template =
-    interceptors['packages/magento-product/components/ProductListItem/ProductListItem']?.template
-  expectOriginal(template).not.toContain('ProductListItem.selectors')
-  expectOriginal(template).toContain('ProductListItemOriginal.selectors')
+    interceptors['packages/ecommerce-ui/components/ApolloError/ApolloErrorAlert']?.template
+  expectOriginal(template).not.toContain('ApolloErrorAlert.selectors')
+  expectOriginal(template).toContain('ApolloErrorAlertOriginal.selectors')
 })
 it('it handles root plugins', async () => {
   const resolve = resolveDependency(projectRoot)

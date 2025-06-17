@@ -35,7 +35,7 @@ export function findAddedItems(
               (selectedOption) => selectedOption === option?.configurable_product_option_value_uid,
             )
 
-            selectedOptions = itemVariable.selected_options?.filter(
+            selectedOptions = selectedOptions?.filter(
               (selectedOption) => selectedOption !== option?.configurable_product_option_value_uid,
             )
 
