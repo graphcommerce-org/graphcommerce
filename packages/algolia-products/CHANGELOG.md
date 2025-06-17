@@ -1,5 +1,11 @@
 # @graphcommerce/algolia-products
 
+## 9.1.0-canary.38
+
+### Patch Changes
+
+- [`a4de6ba`](https://github.com/graphcommerce-org/graphcommerce/commit/a4de6ba35d639fd6a7653463c2e26089d47842d0) - Solve issue where recommendations couldn't be retrieved ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.37
 
 ## 9.1.0-canary.36
