@@ -7,8 +7,8 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
+import { Badge, Box, Button, styled } from '@mui/material'
 import type { ButtonProps, SxProps, Theme } from '@mui/material'
-import { Badge, Box, Button, NoSsr, styled } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useCompareSummary } from '../hooks'
@@ -93,9 +93,5 @@ export function CompareFab(props: CompareFabProps) {
   const compareList = useCompareSummary()
   const totalQuantity = compareList.data?.compareList?.item_count ?? 0
 
-  return (
-    <NoSsr fallback={<CompareFabContent total_quantity={0} {...props} />}>
-      {totalQuantity > 0 && <CompareFabContent total_quantity={totalQuantity} {...props} />}
-    </NoSsr>
-  )
+  return totalQuantity > 0 && <CompareFabContent total_quantity={totalQuantity} {...props} />
 }

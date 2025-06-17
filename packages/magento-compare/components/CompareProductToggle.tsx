@@ -3,9 +3,8 @@ import type { FabProps } from '@graphcommerce/next-ui'
 import { Button, Fab, iconCompare } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { SxProps, Theme } from '@mui/material'
-import { alpha, Checkbox, NoSsr, useTheme } from '@mui/material'
+import { alpha, Checkbox, useTheme } from '@mui/material'
 import { useState } from 'react'
 import type { CompareProductIdInternalFragment } from '../graphql'
 import { AddProductsToCompareListDocument } from '../graphql/AddProductsToCompareList.gql'
@@ -152,9 +151,5 @@ export function CompareProductToggle(props: CompareProductToggleProps) {
   const inCompareList =
     compareList.data?.compareList?.items?.some((i) => i?.uid === idString) ?? false
 
-  return (
-    <NoSsr fallback={<CompareProductToggleBase {...props} inCompareList={false} id={idString} />}>
-      <CompareProductToggleBase {...props} inCompareList={inCompareList} id={idString} />
-    </NoSsr>
-  )
+  return <CompareProductToggleBase {...props} inCompareList={inCompareList} id={idString} />
 }
