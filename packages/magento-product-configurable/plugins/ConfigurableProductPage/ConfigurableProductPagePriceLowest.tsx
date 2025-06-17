@@ -1,4 +1,4 @@
-import type { ProductPagePriceProps } from '@graphcommerce/magento-product'
+import type { ProductPagePriceLowestProps } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useConfigurableSelectedVariant } from '../../hooks'
 
@@ -7,7 +7,7 @@ export const config: PluginConfig = {
   module: '@graphcommerce/magento-product',
 }
 
-export function ProductPagePrice(props: PluginProps<ProductPagePriceProps>) {
+export function ProductPagePriceLowest(props: PluginProps<ProductPagePriceLowestProps>) {
   const { Prev, product, index, ...rest } = props
   const variant = useConfigurableSelectedVariant({ ...product, index })
 
