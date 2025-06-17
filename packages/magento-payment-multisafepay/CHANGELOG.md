@@ -1,5 +1,7 @@
 # @graphcommerce/magento-payment-multisafepay
 
+## 9.1.0-canary.40
+
 ## 9.1.0-canary.39
 
 ## 9.1.0-canary.38
