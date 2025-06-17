@@ -1,5 +1,7 @@
 # @graphcommerce/algolia-products
 
+## 9.1.0-canary.39
+
 ## 9.1.0-canary.38
 
 ### Patch Changes

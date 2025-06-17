@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.39
+
+### Patch Changes
+
+- [#2526](https://github.com/graphcommerce-org/graphcommerce/pull/2526) [`94951f2`](https://github.com/graphcommerce-org/graphcommerce/commit/94951f20a2da049c82d6c14519bce145a108c105) - Solve issue where the added item couldn't be properly found based on the input filters, causing problems when sending data to the data layer. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.1.0-canary.38
 
 ## 9.1.0-canary.37
