@@ -1,5 +1,11 @@
 # @graphcommerce/magento-wishlist
 
+## 9.1.0-canary.41
+
+### Patch Changes
+
+- [#2530](https://github.com/graphcommerce-org/graphcommerce/pull/2530) [`c38c27f`](https://github.com/graphcommerce-org/graphcommerce/commit/c38c27fee77f5ba10db435b2e1532a7527e8155c) - Solve compat issue with adobe commerce ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.40
 
 ### Patch Changes

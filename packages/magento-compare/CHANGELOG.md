@@ -1,5 +1,7 @@
 # @graphcommerce/magento-compare
 
+## 9.1.0-canary.41
+
 ## 9.1.0-canary.40
 
 ### Patch Changes

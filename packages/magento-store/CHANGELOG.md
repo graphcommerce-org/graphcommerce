@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.41
+
+### Patch Changes
+
+- [#2530](https://github.com/graphcommerce-org/graphcommerce/pull/2530) [`2075f33`](https://github.com/graphcommerce-org/graphcommerce/commit/2075f331eec38e894722d8ba4539d865f2db5507) - Support asNumber for Money component to easily render all prices as number ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.40
 
 ## 9.1.0-canary.39

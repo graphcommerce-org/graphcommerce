@@ -1,5 +1,11 @@
 # @graphcommerce/ecommerce-ui
 
+## 9.1.0-canary.41
+
+### Patch Changes
+
+- [#2530](https://github.com/graphcommerce-org/graphcommerce/pull/2530) [`fe48501`](https://github.com/graphcommerce-org/graphcommerce/commit/fe4850106abebe1fe113e08e38623ebfd5481c1d) - Make sure the increment step of the NumberInputField rounds to the nearest step. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.40
 
 ## 9.1.0-canary.39

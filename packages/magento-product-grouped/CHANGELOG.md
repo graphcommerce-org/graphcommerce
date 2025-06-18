@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.41
+
+### Patch Changes
+
+- [#2530](https://github.com/graphcommerce-org/graphcommerce/pull/2530) [`7f10a7e`](https://github.com/graphcommerce-org/graphcommerce/commit/7f10a7e1f862588c7d866e1c845f164f8f6a86ad) - Use ProductListPrice and AddProductsToCartQuantity for grouped product lines ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.40
 
 ## 9.1.0-canary.39

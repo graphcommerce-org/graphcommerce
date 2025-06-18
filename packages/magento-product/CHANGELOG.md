@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.1.0-canary.41
+
+### Patch Changes
+
+- [#2530](https://github.com/graphcommerce-org/graphcommerce/pull/2530) [`2075f33`](https://github.com/graphcommerce-org/graphcommerce/commit/2075f331eec38e894722d8ba4539d865f2db5507) - Add support for `variant=unit` and `variant=total` rendering of `ProductPagePrice` to include the quantity or not. ([@paales](https://github.com/paales))
+
+- [#2530](https://github.com/graphcommerce-org/graphcommerce/pull/2530) [`4c60c55`](https://github.com/graphcommerce-org/graphcommerce/commit/4c60c55a0e83a8635fb2e97622cecd981d894970) - Created a ProductPagePriceLowest component that switches when the configurable option changes. ([@paales](https://github.com/paales))
+
+- [#2530](https://github.com/graphcommerce-org/graphcommerce/pull/2530) [`5900c8d`](https://github.com/graphcommerce-org/graphcommerce/commit/5900c8d56bc9a3e0e4c2c8e61d5ff219877fd9ec) - Solve issue where the tier price doesn't get divided by the quantity, thus showing the wrong price. ([@paales](https://github.com/paales))
+
+- [#2530](https://github.com/graphcommerce-org/graphcommerce/pull/2530) [`f4a20a7`](https://github.com/graphcommerce-org/graphcommerce/commit/f4a20a7bb37701b779dfe7bd3073574eb6c1cab2) - Make sure the product price is updated when the quantity of a product is changed. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.40
 
 ## 9.1.0-canary.39
