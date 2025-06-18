@@ -582,6 +582,14 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "ProductPagePriceLowest",
+        "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPagePriceLowest",
+        "targetExport": "ProductPagePriceLowest",
+        "targetModule": "@graphcommerce/magento-product",
+        "type": "component",
+      },
+      {
+        "enabled": true,
         "sourceExport": "ProductPagePrice",
         "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPagePrice",
         "targetExport": "ProductPagePrice",

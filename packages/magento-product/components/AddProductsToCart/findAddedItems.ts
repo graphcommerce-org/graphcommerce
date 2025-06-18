@@ -42,7 +42,7 @@ export function findAddedItems(
             return foundItem
           })
         ) {
-          // console.log("SKU matche, this isn't the configurable")
+          // console.log("SKU matched, this isn't the configurable")
           return false
         }
       }

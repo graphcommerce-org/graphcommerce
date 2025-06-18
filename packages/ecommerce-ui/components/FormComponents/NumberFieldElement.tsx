@@ -10,6 +10,7 @@ import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import type { IconButtonProps, SxProps, TextFieldProps, Theme } from '@mui/material'
 import { Fab, TextField, useForkRef } from '@mui/material'
+import React from 'react'
 import type { FieldElementProps } from './types'
 
 type AdditionalProps = {
@@ -79,6 +80,7 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
   })
 
   const valueAsNumber = value ? parseFloat(value) : 0
+  const step: number = inputProps.step ?? 1
 
   return (
     <TextField
@@ -136,7 +138,8 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
                 (inputProps.min === 0 && valueAsNumber <= inputProps.min)
               )
                 return
-              onChange(value - 1)
+              // Round to nearest step
+              onChange(Math.round((valueAsNumber - step) / step) * step)
             }}
             sx={{
               boxShadow: variant === 'standard' ? 4 : 0,
@@ -157,7 +160,8 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
             size='smaller'
             onClick={() => {
               if (valueAsNumber >= (inputProps.max ?? Infinity)) return
-              onChange(valueAsNumber + 1)
+              // Round to nearest step
+              onChange(Math.round((valueAsNumber + step) / step) * step)
             }}
             sx={{
               boxShadow: variant === 'standard' ? 4 : 0,
@@ -189,4 +193,6 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
   )
 }
 
-export const NumberFieldElement = NumberFieldElementBase as NumberFieldElementComponent
+export const NumberFieldElement = React.forwardRef<HTMLInputElement, NumberFieldElementProps>(
+  (props, ref) => NumberFieldElementBase({ ...props, ref }),
+) as NumberFieldElementComponent

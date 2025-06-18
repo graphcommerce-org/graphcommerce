@@ -22,6 +22,7 @@ import {
   ProductPageMeta,
   ProductShortDescription,
   AddProductsToCartButton,
+  ProductPagePriceLowest,
 } from '@graphcommerce/magento-product'
 import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-product-configurable'
 import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-products'
@@ -121,12 +122,7 @@ function ProductPage(props: Props) {
         >
           <div>
             {isTypename(product, ['ConfigurableProduct', 'BundleProduct']) && (
-              <Typography component='div' variant='body1' color='text.disabled'>
-                <Trans
-                  id='As low as <0/>'
-                  components={{ 0: <Money {...product.price_range.minimum_price.final_price} /> }}
-                />
-              </Typography>
+              <ProductPagePriceLowest product={product} sx={{ color: 'text.disabled' }} />
             )}
             <Typography variant='h3' component='div' gutterBottom>
               <ProductPageName product={product} />

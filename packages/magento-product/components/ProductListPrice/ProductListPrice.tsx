@@ -18,23 +18,19 @@ export type ProductListPriceProps = ProductListPriceFragment &
   Pick<TypographyProps, 'sx'> & {
     prefix?: React.ReactNode
     suffix?: React.ReactNode
+    asNumber?: boolean
   }
 
 export function ProductListPrice(props: ProductListPriceProps) {
-  const { regular_price, final_price, sx, prefix, suffix } = props
+  const { regular_price, final_price, sx, prefix, suffix, asNumber } = props
 
   return (
-    <Box
-      className={classes.root}
-      sx={sxx({ typography: 'body1', display: 'inline-flex', columnGap: '0.3em' }, sx)}
-    >
+    <Box className={classes.root} sx={sxx({ display: 'inline-flex', columnGap: '0.3em' }, sx)}>
       {prefix && (
         <PrivateQueryMask
           component='span'
-          skeleton={{
-            variant: 'text',
-            sx: { width: '3.5em', transform: 'none' },
-          }}
+          sx={{ '&:empty': { display: 'none' } }}
+          skeleton={{ variant: 'text', sx: { width: '2em', transform: 'none' } }}
           className={classes.prefix}
         >
           {prefix}
@@ -44,38 +40,27 @@ export function ProductListPrice(props: ProductListPriceProps) {
       {regular_price.value !== final_price.value && (
         <PrivateQueryMask
           component='span'
-          sx={{
-            textDecoration: 'line-through',
-            color: 'text.disabled',
-          }}
-          skeleton={{
-            variant: 'text',
-            sx: { width: '3.5em', transform: 'none' },
-          }}
+          sx={{ textDecoration: 'line-through', color: 'text.disabled' }}
+          skeleton={{ variant: 'text', sx: { width: '3.5em', transform: 'none' } }}
           className={classes.discountPrice}
         >
-          <Money {...regular_price} />
+          <Money {...regular_price} asNumber={asNumber} />
         </PrivateQueryMask>
       )}
 
       <PrivateQueryMask
         className={classes.finalPrice}
         component='span'
-        skeleton={{
-          variant: 'text',
-          sx: { width: '3.5em', transform: 'none' },
-        }}
+        skeleton={{ variant: 'text', sx: { width: '3.5em', transform: 'none' } }}
       >
-        <Money {...final_price} />
+        <Money {...final_price} asNumber={asNumber} />
       </PrivateQueryMask>
 
       {suffix && (
         <PrivateQueryMask
           component='span'
-          skeleton={{
-            variant: 'text',
-            sx: { width: '3.5em', transform: 'none' },
-          }}
+          sx={{ '&:empty': { display: 'none' } }}
+          skeleton={{ variant: 'text', sx: { width: '2em', transform: 'none' } }}
           className={classes.suffix}
         >
           {suffix}

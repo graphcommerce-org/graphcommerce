@@ -4,7 +4,7 @@ import {
   useCustomerSession,
   useGuestQuery,
 } from '@graphcommerce/magento-customer'
-import { filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import type { WishlistItemFragment } from '../../queries/WishlistItem.gql'
 import { useWishlistEnabled } from '../useWishlistEnabled/useWishlistEnabled'
 import type {
@@ -39,19 +39,18 @@ export function useWishlistItems(): UseWishlistItemsReturn {
   const wishlistGuest = useGuestQuery(UseWishlistGuestDocument, { skip: !enabled })
 
   if (loggedIn) {
-    const items = filterNonNullableKeys(
+    const items = (
       (wishlistCustomer.data ?? wishlistCustomer.previousData)?.customer?.wishlists?.[0]?.items_v2
-        ?.items,
-      ['product'],
-    )
+        ?.items ?? []
+    ).filter(nonNullable)
 
     return { ...wishlistCustomer, enabled, loggedIn: true, items }
   }
 
-  const items = filterNonNullableKeys(
-    (wishlistGuest.data ?? wishlistGuest.previousData)?.customer?.wishlists?.[0]?.items_v2?.items,
-    ['product'],
-  )
+  const items = (
+    (wishlistGuest.data ?? wishlistGuest.previousData)?.customer?.wishlists?.[0]?.items_v2?.items ??
+    []
+  ).filter(nonNullable)
 
   return { ...wishlistGuest, enabled, loggedIn: false, items }
 }
