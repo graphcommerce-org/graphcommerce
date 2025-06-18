@@ -1,11 +1,13 @@
-import { NumberFieldElement } from '@graphcommerce/ecommerce-ui'
 import { Image } from '@graphcommerce/image'
-import type { AddToCartItemSelector } from '@graphcommerce/magento-product/components'
-import { useFormAddProductsToCart } from '@graphcommerce/magento-product/components'
-import { Money } from '@graphcommerce/magento-store'
+import type { AddToCartItemSelector } from '@graphcommerce/magento-product'
+import {
+  AddProductsToCartQuantity,
+  ProductListPrice,
+  useFormAddProductsToCart,
+} from '@graphcommerce/magento-product'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
 import { ActionCard, actionCardImageSizes, responsiveVal } from '@graphcommerce/next-ui'
-import { Box, Link } from '@mui/material'
+import { Link } from '@mui/material'
 import type { GroupedProductFragment } from '../GroupedProduct.gql'
 
 type GroupedProductItem = NonNullable<
@@ -122,42 +124,14 @@ export function GroupedProductActionCard(props: GroupedProductActionCardProps) {
           )
         }
         secondaryAction={
-          <NumberFieldElement
+          <AddProductsToCartQuantity
             size='small'
-            inputProps={{ min: 0 }}
             defaultValue={1}
-            control={control}
-            sx={{
-              width: responsiveVal(80, 120),
-              mt: 2,
-              '& .MuiFormHelperText-root': {
-                margin: 1,
-                width: '100%',
-              },
-            }}
-            name={`cartItems.${index}.quantity`}
+            index={index}
             onMouseDown={(e) => e.stopPropagation()}
           />
         }
-        price={
-          <Box>
-            <Box>
-              <Money {...price_range.minimum_price.final_price} />
-            </Box>
-            {price_range.minimum_price.final_price.value !==
-              price_range.minimum_price.regular_price.value && (
-              <Box
-                component='span'
-                sx={{
-                  textDecoration: 'line-through',
-                  color: 'text.disabled',
-                }}
-              >
-                <Money {...price_range.minimum_price.regular_price} />
-              </Box>
-            )}
-          </Box>
-        }
+        price={<ProductListPrice {...price_range.minimum_price} />}
         {...rest}
       />
     </>
