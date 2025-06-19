@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.43
+
+### Patch Changes
+
+- [`f7d2bf1`](https://github.com/graphcommerce-org/graphcommerce/commit/f7d2bf13f7e82d5c8e918a51c1375c276ad3d80f) - Fix build issue ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.42
 
 ## 9.1.0-canary.41
