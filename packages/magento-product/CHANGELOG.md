@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.42
+
+### Patch Changes
+
+- [`fe2ca31`](https://github.com/graphcommerce-org/graphcommerce/commit/fe2ca31286628b563f7b490a736d698e170edd65) - Solve issue where ProductListItemReal couldn't be replaced or extended without also replacing ProductListItem ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.41
 
 ### Patch Changes
