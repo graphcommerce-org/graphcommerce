@@ -16,8 +16,12 @@ export const NumberFormat = forwardRef<HTMLSpanElement, NumberFormatProps>((prop
   const formatter = useIntlNumberFormat(options)
 
   return (
-    <Box component='span' suppressHydrationWarning ref={ref} sx={sx}>
-      {formatter.format(value)}
+    <Box component='span' className='NumberFormat' suppressHydrationWarning ref={ref} sx={sx}>
+      {formatter.formatToParts(value).map((part) => (
+        <span className={part.type} key={part.type} suppressHydrationWarning>
+          {part.value}
+        </span>
+      ))}
     </Box>
   )
 })
