@@ -1,5 +1,7 @@
 # Change Log
 
+## 9.1.0-canary.44
+
 ## 9.1.0-canary.43
 
 ### Patch Changes

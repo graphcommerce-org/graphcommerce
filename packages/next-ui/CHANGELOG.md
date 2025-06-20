@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.44
+
+### Patch Changes
+
+- [`b423879`](https://github.com/graphcommerce-org/graphcommerce/commit/b4238796f1f8cce62325e57d90cc7a84a921a0fa) - DateTimeFormat, NumberFormat and RelativeTimeFormat (and all derivatives) will now wrap all number parts in a span, so that individual parts can be styled properly. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.43
 
 ## 9.1.0-canary.42
