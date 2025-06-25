@@ -1,6 +1,5 @@
-import fs from 'node:fs';
+import{createRequire as _pkgrollCR}from"node:module";const require=_pkgrollCR(import.meta.url);import fs from 'node:fs';
 import path from 'node:path';
-import { createRequire } from 'module';
 import assert from 'assert';
 import crypto from 'crypto';
 import webpack from 'webpack';
@@ -54,12 +53,6 @@ function findParentPath(directory) {
   return null;
 }
 
-var require$1 = (
-			true
-				? /* @__PURE__ */ createRequire(import.meta.url)
-				: require
-		);
-
 class TopologicalSort {
   #nodes;
   #visitedNodes;
@@ -83,12 +76,12 @@ class TopologicalSort {
     const sourceNode = this.#nodes.get(fromKey);
     const targetNode = this.#nodes.get(toKey);
     assert.strictEqual(
-      sourceNode !== undefined,
+      sourceNode !== void 0,
       true,
       `Source package with key ${fromKey} doesn't exist`
     );
     assert.strictEqual(
-      targetNode !== undefined,
+      targetNode !== void 0,
       true,
       `Target package with key ${toKey} doesn't exist`
     );
@@ -176,7 +169,7 @@ function sig() {
 
 const resolveCache = /* @__PURE__ */ new Map();
 function findPackageJson(id, root) {
-  let dir = id.startsWith("/") ? id : require$1.resolve(id);
+  let dir = id.startsWith("/") ? id : require.resolve(id);
   let packageJsonLocation = path.join(dir, "package.json");
   while (!fs.existsSync(packageJsonLocation)) {
     dir = path.dirname(dir);
@@ -189,7 +182,7 @@ function resolveRecursivePackageJson(dependencyPath, dependencyStructure, root, 
   const isRoot = dependencyPath === root;
   let fileName;
   try {
-    fileName = require$1.resolve(path.join(dependencyPath, "package.json"));
+    fileName = require.resolve(path.join(dependencyPath, "package.json"));
   } catch (e2) {
     fileName = findPackageJson(dependencyPath, root);
   }
@@ -337,175 +330,145 @@ const demoConfig = {
   previewSecret: "SECRET"
 };
 
-/******************************************************************************
-Copyright (c) Microsoft Corporation.
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
-***************************************************************************** */
-/* global Reflect, Promise, SuppressedError, Symbol, Iterator */
-
-
 var __assign = function() {
-  __assign = Object.assign || function __assign(t) {
-      for (var s, i = 1, n = arguments.length; i < n; i++) {
-          s = arguments[i];
-          for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-      }
-      return t;
+  __assign = Object.assign || function __assign2(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+      for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+    }
+    return t;
   };
   return __assign.apply(this, arguments);
 };
-
 function __spreadArray(to, from, pack) {
   if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-      if (ar || !(i in from)) {
-          if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-          ar[i] = from[i];
-      }
+    if (ar || !(i in from)) {
+      if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+      ar[i] = from[i];
+    }
   }
   return to.concat(ar || Array.prototype.slice.call(from));
 }
-
-typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
+typeof SuppressedError === "function" ? SuppressedError : function(error, suppressed, message) {
   var e = new Error(message);
   return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
 };
 
 function isNonNullObject(obj) {
-    return obj !== null && typeof obj === "object";
+  return obj !== null && typeof obj === "object";
 }
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 function mergeDeep() {
-    var sources = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        sources[_i] = arguments[_i];
-    }
-    return mergeDeepArray(sources);
+  var sources = [];
+  for (var _i = 0; _i < arguments.length; _i++) {
+    sources[_i] = arguments[_i];
+  }
+  return mergeDeepArray(sources);
 }
-// In almost any situation where you could succeed in getting the
-// TypeScript compiler to infer a tuple type for the sources array, you
-// could just use mergeDeep instead of mergeDeepArray, so instead of
-// trying to convert T[] to an intersection type we just infer the array
-// element type, which works perfectly when the sources array has a
-// consistent element type.
 function mergeDeepArray(sources) {
-    var target = sources[0] || {};
-    var count = sources.length;
-    if (count > 1) {
-        var merger = new DeepMerger();
-        for (var i = 1; i < count; ++i) {
-            target = merger.merge(target, sources[i]);
-        }
+  var target = sources[0] || {};
+  var count = sources.length;
+  if (count > 1) {
+    var merger = new DeepMerger();
+    for (var i = 1; i < count; ++i) {
+      target = merger.merge(target, sources[i]);
     }
-    return target;
+  }
+  return target;
 }
-var defaultReconciler = function (target, source, property) {
-    return this.merge(target[property], source[property]);
+var defaultReconciler = function(target, source, property) {
+  return this.merge(target[property], source[property]);
 };
-var DeepMerger = /** @class */ (function () {
-    function DeepMerger(reconciler) {
-        if (reconciler === undefined) { reconciler = defaultReconciler; }
-        this.reconciler = reconciler;
-        this.isObject = isNonNullObject;
-        this.pastCopies = new Set();
+var DeepMerger = (
+  /** @class */
+  function() {
+    function DeepMerger2(reconciler) {
+      if (reconciler === void 0) {
+        reconciler = defaultReconciler;
+      }
+      this.reconciler = reconciler;
+      this.isObject = isNonNullObject;
+      this.pastCopies = /* @__PURE__ */ new Set();
     }
-    DeepMerger.prototype.merge = function (target, source) {
-        var _this = this;
-        var context = [];
-        for (var _i = 2; _i < arguments.length; _i++) {
-            context[_i - 2] = arguments[_i];
-        }
-        if (isNonNullObject(source) && isNonNullObject(target)) {
-            Object.keys(source).forEach(function (sourceKey) {
-                if (hasOwnProperty.call(target, sourceKey)) {
-                    var targetValue = target[sourceKey];
-                    if (source[sourceKey] !== targetValue) {
-                        var result = _this.reconciler.apply(_this, __spreadArray([target,
-                            source,
-                            sourceKey], context, false));
-                        // A well-implemented reconciler may return targetValue to indicate
-                        // the merge changed nothing about the structure of the target.
-                        if (result !== targetValue) {
-                            target = _this.shallowCopyForMerge(target);
-                            target[sourceKey] = result;
-                        }
-                    }
-                }
-                else {
-                    // If there is no collision, the target can safely share memory with
-                    // the source, and the recursion can terminate here.
-                    target = _this.shallowCopyForMerge(target);
-                    target[sourceKey] = source[sourceKey];
-                }
-            });
-            return target;
-        }
-        // If source (or target) is not an object, let source replace target.
-        return source;
-    };
-    DeepMerger.prototype.shallowCopyForMerge = function (value) {
-        if (isNonNullObject(value)) {
-            if (!this.pastCopies.has(value)) {
-                if (Array.isArray(value)) {
-                    value = value.slice(0);
-                }
-                else {
-                    value = __assign({ __proto__: Object.getPrototypeOf(value) }, value);
-                }
-                this.pastCopies.add(value);
+    DeepMerger2.prototype.merge = function(target, source) {
+      var _this = this;
+      var context = [];
+      for (var _i = 2; _i < arguments.length; _i++) {
+        context[_i - 2] = arguments[_i];
+      }
+      if (isNonNullObject(source) && isNonNullObject(target)) {
+        Object.keys(source).forEach(function(sourceKey) {
+          if (hasOwnProperty.call(target, sourceKey)) {
+            var targetValue = target[sourceKey];
+            if (source[sourceKey] !== targetValue) {
+              var result = _this.reconciler.apply(_this, __spreadArray([
+                target,
+                source,
+                sourceKey
+              ], context, false));
+              if (result !== targetValue) {
+                target = _this.shallowCopyForMerge(target);
+                target[sourceKey] = result;
+              }
             }
-        }
-        return value;
+          } else {
+            target = _this.shallowCopyForMerge(target);
+            target[sourceKey] = source[sourceKey];
+          }
+        });
+        return target;
+      }
+      return source;
     };
-    return DeepMerger;
-}());
+    DeepMerger2.prototype.shallowCopyForMerge = function(value) {
+      if (isNonNullObject(value)) {
+        if (!this.pastCopies.has(value)) {
+          if (Array.isArray(value)) {
+            value = value.slice(0);
+          } else {
+            value = __assign({ __proto__: Object.getPrototypeOf(value) }, value);
+          }
+          this.pastCopies.add(value);
+        }
+      }
+      return value;
+    };
+    return DeepMerger2;
+  }()
+);
 
 var toString = Object.prototype.toString;
-/**
- * Deeply clones a value to create a new instance.
- */
 function cloneDeep(value) {
-    return cloneDeepHelper(value);
+  return cloneDeepHelper(value);
 }
 function cloneDeepHelper(val, seen) {
-    switch (toString.call(val)) {
-        case "[object Array]": {
-            seen = seen || new Map();
-            if (seen.has(val))
-                return seen.get(val);
-            var copy_1 = val.slice(0);
-            seen.set(val, copy_1);
-            copy_1.forEach(function (child, i) {
-                copy_1[i] = cloneDeepHelper(child, seen);
-            });
-            return copy_1;
-        }
-        case "[object Object]": {
-            seen = seen || new Map();
-            if (seen.has(val))
-                return seen.get(val);
-            // High fidelity polyfills of Object.create and Object.getPrototypeOf are
-            // possible in all JS environments, so we will assume they exist/work.
-            var copy_2 = Object.create(Object.getPrototypeOf(val));
-            seen.set(val, copy_2);
-            Object.keys(val).forEach(function (key) {
-                copy_2[key] = cloneDeepHelper(val[key], seen);
-            });
-            return copy_2;
-        }
-        default:
-            return val;
+  switch (toString.call(val)) {
+    case "[object Array]": {
+      seen = seen || /* @__PURE__ */ new Map();
+      if (seen.has(val))
+        return seen.get(val);
+      var copy_1 = val.slice(0);
+      seen.set(val, copy_1);
+      copy_1.forEach(function(child, i) {
+        copy_1[i] = cloneDeepHelper(child, seen);
+      });
+      return copy_1;
     }
+    case "[object Object]": {
+      seen = seen || /* @__PURE__ */ new Map();
+      if (seen.has(val))
+        return seen.get(val);
+      var copy_2 = Object.create(Object.getPrototypeOf(val));
+      seen.set(val, copy_2);
+      Object.keys(val).forEach(function(key) {
+        copy_2[key] = cloneDeepHelper(val[key], seen);
+      });
+      return copy_2;
+    }
+    default:
+      return val;
+  }
 }
 
 function isObject$1(val) {
@@ -521,7 +484,7 @@ function diff(item1, item2) {
   if (!isSame) return item2;
   if (isArray(item1) && isArray(item2)) {
     const res = item1.map((val, idx) => diff(val, item2[idx])).filter((val) => !!val);
-    return res.length ? res : undefined;
+    return res.length ? res : void 0;
   }
   if (isObject$1(item1) && isObject$1(item2)) {
     const entriesRight = Object.fromEntries(
@@ -531,9 +494,9 @@ function diff(item1, item2) {
       Object.entries(item2).map(([key, val]) => [key, diff(item1[key], val)]).filter((entry) => !!entry[1])
     );
     const entries = { ...entriesRight, ...entriesLeft };
-    return Object.keys(entries).length ? entries : undefined;
+    return Object.keys(entries).length ? entries : void 0;
   }
-  return item2 === item1 ? undefined : item2;
+  return item2 === item1 ? void 0 : item2;
 }
 
 const fmt$1 = (s) => s.split(/(\d+)/).map((v) => lodash.snakeCase(v)).join("");
@@ -621,7 +584,7 @@ function mergeEnvIntoConfig(schema, config, env) {
       const envValue = filteredEnv[envVar];
       applyResult.push({ envVar, envValue, dotVar, error });
     });
-    return [undefined, applyResult];
+    return [void 0, applyResult];
   }
   Object.entries(result.data).forEach(([envVar, value]) => {
     const dotVar = envToDot[envVar];
@@ -655,9 +618,9 @@ function formatAppliedEnv(applyResult) {
       return `${chalk.yellowBright(` \u203C ${envVariableFmt}`)} => ${warning.join(", ")}`;
     }
     if (!dotVar) return chalk.red(`${envVariableFmt} => ignored (no matching config)`);
-    if (from === undefined && to === undefined) return ` = ${baseLog}`;
-    if (from === undefined && to !== undefined) return ` ${chalk.green("+")} ${baseLog}`;
-    if (from !== undefined && to === undefined) return ` ${chalk.red("-")} ${baseLog}`;
+    if (from === void 0 && to === void 0) return ` = ${baseLog}`;
+    if (from === void 0 && to !== void 0) return ` ${chalk.green("+")} ${baseLog}`;
+    if (from !== void 0 && to === void 0) return ` ${chalk.red("-")} ${baseLog}`;
     return ` ${chalk.yellowBright("~")} ${baseLog}`;
   });
   let header = chalk.blueBright("info");
@@ -668,7 +631,7 @@ function formatAppliedEnv(applyResult) {
 }
 
 function flattenKeys(value, initialPathPrefix, stringify) {
-  if (value === null || value === undefined || typeof value === "number") {
+  if (value === null || value === void 0 || typeof value === "number") {
     return { [initialPathPrefix]: value };
   }
   if (typeof value === "string") {
@@ -687,7 +650,10 @@ function flattenKeys(value, initialPathPrefix, stringify) {
       [initialPathPrefix]: outputValue,
       ...Object.keys(value).map((key) => {
         const deep = value[key];
-        return flattenKeys(deep, `${initialPathPrefix}.${key}`, stringify);
+        return {
+          ...flattenKeys(deep, `${initialPathPrefix}.${key}`, stringify),
+          ...flattenKeys(deep, `${initialPathPrefix}?.${key}`, stringify)
+        };
       }).reduce((acc, path) => ({ ...acc, ...path }), {})
     };
   }
@@ -848,7 +814,7 @@ function extractValue(node, path, optional = false) {
   if (isIdentifier(node)) {
     switch (node.value) {
       case "undefined":
-        return undefined;
+        return void 0;
       default:
         return RUNTIME_VALUE;
     }
@@ -862,7 +828,7 @@ function extractValue(node, path, optional = false) {
         }
         arr.push(extractValue(elem.expression, path, optional));
       } else {
-        arr.push(undefined);
+        arr.push(void 0);
       }
     }
     return arr;
@@ -913,7 +879,7 @@ function extractExports(module) {
           case "VariableDeclaration":
             moduleItem.declaration.declarations.forEach((decl) => {
               if (isIdentifier(decl.id) && decl.init) {
-                exports[decl.id.value] = extractValue(decl.init, undefined, true);
+                exports[decl.id.value] = extractValue(decl.init, void 0, true);
               }
             });
             break;
@@ -930,7 +896,7 @@ const pluginConfigParsed = z.object({
   ifConfig: z.union([z.string(), z.tuple([z.string(), z.unknown()])]).optional()
 });
 function nonNullable(value) {
-  return value !== null && value !== undefined;
+  return value !== null && value !== void 0;
 }
 const isObject = (input) => typeof input === "object" && input !== null && !Array.isArray(input);
 function parseStructure(ast, gcConfig, sourceModule) {
@@ -965,7 +931,7 @@ function parseStructure(ast, gcConfig, sourceModule) {
     if (!parsed.success) {
       if (errors.length)
         console.error(parsed.error.errors.map((e) => `${e.path} ${e.message}`).join("\n"));
-      return undefined;
+      return void 0;
     }
     let enabled = true;
     if (parsed.data.ifConfig) {
@@ -1062,7 +1028,7 @@ function printSync(m) {
 }
 
 function parseAndFindExport(resolved, findExport, resolve) {
-  if (!resolved?.source) return undefined;
+  if (!resolved?.source) return void 0;
   const ast = parseSync(resolved.source);
   for (const node of ast.body) {
     if (node.type === "ExportDeclaration") {
@@ -1108,24 +1074,24 @@ function parseAndFindExport(resolved, findExport, resolve) {
       if (newResolved && resolved.dependency !== newResolved.dependency) return newResolved;
     }
   }
-  return undefined;
+  return void 0;
 }
 function findOriginalSource(plug, resolved, resolve) {
   if (!resolved?.source)
     return {
-      resolved: undefined,
+      resolved: void 0,
       error: new Error(`Plugin: Can not find module ${plug.targetModule} for ${plug.sourceModule}`)
     };
   const newResolved = parseAndFindExport(resolved, plug.targetExport, resolve);
   if (!newResolved) {
     return {
-      resolved: undefined,
+      resolved: void 0,
       error: new Error(
         `Plugin target not found ${plug.targetModule}#${plug.sourceExport} for plugin ${plug.sourceModule}#${plug.sourceExport}`
       )
     };
   }
-  return { resolved: newResolved, error: undefined };
+  return { resolved: newResolved, error: void 0 };
 }
 
 class Visitor {
@@ -2747,7 +2713,7 @@ async function generateInterceptors(plugins, resolve, config, force) {
     await Promise.all(
       Object.entries(byTargetModuleAndExport).map(async ([target, interceptor]) => {
         const file = `${interceptor.fromRoot}.interceptor.tsx`;
-        const originalSource = !force && await fs$1.access(file, fs$1.constants.F_OK).then(() => true).catch(() => false) ? (await fs$1.readFile(file)).toString() : undefined;
+        const originalSource = !force && await fs$1.access(file, fs$1.constants.F_OK).then(() => true).catch(() => false) ? (await fs$1.readFile(file)).toString() : void 0;
         return [
           target,
           await generateInterceptor(interceptor, config ?? {}, originalSource)
@@ -2885,7 +2851,7 @@ function domains(config) {
           defaultLocale: loc.locale,
           locales: [...acc[loc.domain]?.locales ?? [], loc.locale],
           domain: loc.domain,
-          http: process.env.NODE_ENV === "development" || undefined
+          http: process.env.NODE_ENV === "development" || void 0
         };
         return acc;
       },
@@ -2920,7 +2886,7 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
       remotePatterns: [
         "magentoEndpoint" in graphcommerceConfig ? {
           hostname: new URL(graphcommerceConfig.magentoEndpoint).hostname
-        } : undefined,
+        } : void 0,
         { hostname: "**.graphassets.com" },
         { hostname: "*.graphcommerce.org" },
         ...nextConfig.images?.remotePatterns ?? []

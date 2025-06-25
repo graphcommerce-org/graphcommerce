@@ -71,10 +71,10 @@ You can export configuration by running `yarn graphcommerce export-config`
 Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceStorefrontConfig inputs to add configuration.
 
 ```graphql
-input GraphCommerceConfig {
+extend input GraphCommerceConfig {
   myConfig: String # or Boolean, or Int, or Float, make required with `!`
 }
-input GraphCommerceStorefrontConfig {
+extend input GraphCommerceStorefrontConfig {
   myField: Boolean
 }
 ```
