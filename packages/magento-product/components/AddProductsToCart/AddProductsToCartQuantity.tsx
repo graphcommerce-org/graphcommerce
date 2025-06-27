@@ -7,12 +7,12 @@ import { useFormAddProductsToCart } from './useFormAddProductsToCart'
 
 export type AddToCartQuantityProps = Omit<
   NumberFieldElementProps<AddProductsToCartMutationVariables>,
-  'error' | 'required' | 'inputProps' | 'helperText' | 'name' | 'control' | 'rules'
+  'error' | 'required' | 'helperText' | 'name' | 'control' | 'rules'
 > &
   AddToCartItemSelector
 
 export function AddProductsToCartQuantity(props: AddToCartQuantityProps) {
-  const { index = 0 } = props
+  const { index = 0, inputProps, ...rest } = props
   const { control } = useFormAddProductsToCart()
 
   return (
@@ -21,12 +21,16 @@ export function AddProductsToCartQuantity(props: AddToCartQuantityProps) {
       size='small'
       color='primary'
       required
-      inputProps={{ min: 1, 'aria-label': i18n._(/* i18n */ 'Add to cart quantity') }}
+      inputProps={{
+        min: 1,
+        'aria-label': i18n._(/* i18n */ 'Add to cart quantity'),
+        ...inputProps,
+      }}
       defaultValue={1}
       control={control}
       aria-label={i18n._(/* i18n */ 'Add to cart quantity')}
       name={`cartItems.${index}.quantity`}
-      {...props}
+      {...rest}
     />
   )
 }

@@ -17,6 +17,7 @@ export type ProductPagePriceProps = {
   sx?: SxProps<Theme>
   variant?: 'item' | 'total'
   asNumber?: boolean
+  defaultValue?: number
 } & AddToCartItemSelector &
   UseCustomizableOptionPriceProps
 
@@ -28,10 +29,19 @@ const { classes } = extendableComponent('ProductPagePrice', [
 ] as const)
 
 export function ProductPagePrice(props: ProductPagePriceProps) {
-  const { product, index = 0, prefix, suffix, sx, variant = 'item', asNumber } = props
+  const {
+    product,
+    index = 0,
+    prefix,
+    suffix,
+    sx,
+    variant = 'item',
+    asNumber,
+    defaultValue = 1,
+  } = props
 
   const { control } = useFormAddProductsToCart()
-  const quantity = useWatch({ control, name: `cartItems.${index}.quantity` })
+  const quantity = useWatch({ control, name: `cartItems.${index}.quantity`, defaultValue })
   const price =
     getProductTierPrice(product, quantity) ?? product.price_range.minimum_price.final_price
 
