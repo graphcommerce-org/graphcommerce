@@ -28,7 +28,7 @@ export function StoreSwitcherMenuFabSecondaryItem(props: StoreSwitcherMenuFabSec
       href='/switch-stores'
       {...rest}
     >
-      <Trans>Store Settings</Trans> <StoreSwitcherText {...textProps} /> haja ajaj a ajaj a aj
+      <Trans>Store Settings</Trans> <StoreSwitcherText {...textProps} />
     </MenuFabSecondaryItem>
   )
 }
