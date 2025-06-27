@@ -139,6 +139,9 @@
     "type-fest": "^4.30.1",
     "typescript": "5.7.2"
   },
+  "resolutions": {
+    "prettier": "3.5.3"
+  },
   "browserslist": [
     "> 1% in alt-EU",
     "not IE 11"
