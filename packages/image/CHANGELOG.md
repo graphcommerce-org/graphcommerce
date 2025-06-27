@@ -1,5 +1,7 @@
 # Change Log
 
+## 9.1.0-canary.46
+
 ## 9.1.0-canary.45
 
 ## 9.1.0-canary.44
@@ -217,6 +219,7 @@
 ### Minor Changes
 
 - [#1284](https://github.com/ho-nl/m2-pwa/pull/1284) [`5ffcb56bf`](https://github.com/ho-nl/m2-pwa/commit/5ffcb56bfcbe49ebeaf24f9341e819a145ab9a14) Thanks [@paales](https://github.com/paales)! - SvgIcon is now more extenable and flexible:
+
   - It will automatically calculate the stroke-width of the SVG based on the rendered size, allowing for a more flexible use for icons.
 
   - Make SvgIcon themable in your own Theme.

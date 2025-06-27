@@ -1,5 +1,7 @@
 # @graphcommerce/magento-payment-paypal
 
+## 9.1.0-canary.46
+
 ## 9.1.0-canary.45
 
 ## 9.1.0-canary.44
@@ -139,6 +141,7 @@
 - [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`f08bffd63`](https://github.com/graphcommerce-org/graphcommerce/commit/f08bffd63780cb626f072b25c2fd4da37543b6f7) - Moved all Payment methods to the [GraphCommerce plugin system](https://www.graphcommerce.org/docs/framework/plugins)
 
   Upgrade guide:
+
   - The upgrade removes all the payment gateway packages from the `package.json`, remove them for now.
   - Proceed to upgrade normally
   - Add back all the payment modules following the [GraphCommerce Magento docs](https://graphcommerce.org/docs/magento).

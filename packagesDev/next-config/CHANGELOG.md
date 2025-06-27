@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.46
+
+### Patch Changes
+
+- [`f6b9c0d`](https://github.com/graphcommerce-org/graphcommerce/commit/f6b9c0d2bc5f678fc6cde279f1590b30ef631f8a) - Temporarily pin prettier to 3.5.3 to fix the GraphCommerce build: https://github.com/hosseinmd/prettier-plugin-jsdoc/pull/246/files ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.45
 
 ### Patch Changes
@@ -131,6 +137,7 @@
 - [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Added `<CompanyFields/>` with `<CompanyName />` and `<CompanyVAT />` to shipping and billing forms. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 - [#2226](https://github.com/graphcommerce-org/graphcommerce/pull/2226) [`8939df2`](https://github.com/graphcommerce-org/graphcommerce/commit/8939df22eda57e681f83076707e856700f8b2e21) - Big improvements to the plugin system: Typescript validated, deeper resolution, new configuration object, replace plugins, and more ifConfig options.
+
   1. Plugins now use TypeScript's `"moduleSuffixes": [".interceptor", ""]` [functionality](https://www.typescriptlang.org/tsconfig#moduleSuffixes) which means that plugins now correctly resolve via TypeScript. So if you _go to reference_ in VSCode (or any other editor), you go to the interceptor directly and see which plugins are applied there. This also means that plugins are automatically checked during build (and will fail if there are errors).
   2. The exported type of an _intercepted component_ now has the types of all plugins applied. This means that plugins can modify the props of components (and is still validated with TypeScript). To make this work a plugin must always forward props to the `<Prev>` to ensure that values are correctly passed on.
   3. Plugins will now always be applied to deepest resolved path. This means that a plugin automatically applies to internal usages as well. This thus means that plugins do not need to be written with an internal path, but can keep the parent path. Istead of writing `@graphcommerce/magento-cart-items/components/RemoveItemFromCart/RemoveItemFromCartFab` you can now write `@graphcommerce/magento-cart-items`.
@@ -200,7 +207,9 @@
 ### Patch Changes
 
 - [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`3710d8b`](https://github.com/graphcommerce-org/graphcommerce/commit/3710d8bf1cceb5a991e5cfdfc15d42e462704c6d) - Solves the issue `TypeError: url?.startsWith is not a function`. The generated `.mesh/index.ts` would be generated as a requirejs module while next.js expects an esm module. In the end we properly generated the mesh correctly and now there is an `import.meta.url` instead of using `require('node:url')`. To solve this we needed to solve a chain of issues:
+
   1. The generation of the mesh is based on the version of the mesh that is imported (esm or commonjs). See [source](https://github.com/ardatan/graphql-mesh/blob/bf588d372c0078378aaa24beea2da794af7949e6/scripts/replace-import-meta-url-in-cjs.ts#L9-L10) for the lines that need to be different. This meant that we needed to change the @graphcommerce/cli package to be of type:module instead of a commonjs module.
+
   2) To properly convert the module to an esm module we've migrated the build of the cli package to use 'pkgroll' instead of tsc, because tsc is limited in what it outputs and can't really convert classic imports to esm.
   3) To load possible mesh plugins we require additional .ts files to be loaded with [tsx](https://tsx.is/). To get the tsx loader to work properly in combination with esm modules, we need at least [node 18.19.0](https://nodejs.org/en/blog/release/v18.19.0#new-nodemodule-api-register-for-module-customization-hooks-new-initialize-hook). Minimal Node version upped to 18.19.0 and add support for node 22. ([@paales](https://github.com/paales))
 
@@ -339,6 +348,7 @@
 ### Major Changes
 
 - [#1766](https://github.com/graphcommerce-org/graphcommerce/pull/1766) [`e34169ee2`](https://github.com/graphcommerce-org/graphcommerce/commit/e34169ee2e0fdc052ff589ceca0bc67557584c1f) - Upgraded to Next.js 13
+
   - NextLink integrates the next/link functionality with @mui/material's Link and ButtonBase (and all it's derivatives) components.
   - NextLink automatically adds `target="_blank"` when the href is external.
   - NextLink makes all relative href absolute. `href="my-page"` will be rendered as `href="/my-page"`. ([@paales](https://github.com/paales))
@@ -373,6 +383,7 @@
 - [#1760](https://github.com/graphcommerce-org/graphcommerce/pull/1760) [`8badc8550`](https://github.com/graphcommerce-org/graphcommerce/commit/8badc8550c402ac7b80c8d3238d313550c28a055) - Updated dependencies ([@paales](https://github.com/paales))
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
   - Updated the @mui/material package
   - Removed dependencies on react-hook-form-mui and @playwright/test
   - Upgraded dependencies including type-fest and graphql-mesh

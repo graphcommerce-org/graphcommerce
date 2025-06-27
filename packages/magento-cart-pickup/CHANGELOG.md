@@ -1,5 +1,7 @@
 # Change Log
 
+## 9.1.0-canary.46
+
 ## 9.1.0-canary.45
 
 ## 9.1.0-canary.44
@@ -131,6 +133,7 @@
 - [#1729](https://github.com/graphcommerce-org/graphcommerce/pull/1729) [`c37187a51`](https://github.com/graphcommerce-org/graphcommerce/commit/c37187a513670ebcf09e99eb4a762c8bdb5df7e4) - Moved Magento Cart Pickup shipping method to the [GraphCommerce plugin system](https://www.graphcommerce.org/docs/framework/plugins)
 
   Upgrade guide:
+
   - The upgrade removes `@graphcommerce/magento-cart-pickup` package from your `package.json`, remove them for now.
   - Proceed to upgrade normally
   - Add back `@graphcommerce/magento-cart-pickup`, following the [GraphCommerce Magento docs](https://graphcommerce.org/docs/magento). ([@paales](https://github.com/paales))

@@ -1,5 +1,7 @@
 # Change Log
 
+## 9.1.0-canary.46
+
 ## 9.1.0-canary.45
 
 ## 9.1.0-canary.44
@@ -165,6 +167,7 @@
 - [`b8bd4abcd`](https://github.com/graphcommerce-org/graphcommerce/commit/b8bd4abcdfb9fc96ec5a724b449df713b99af23b) - Do not change the behavior of the useScrollTo, only warn about possible problems. ([@paales](https://github.com/paales))
 
 - [#1895](https://github.com/graphcommerce-org/graphcommerce/pull/1895) [`e6dbddc01`](https://github.com/graphcommerce-org/graphcommerce/commit/e6dbddc019358f13886288ae065da2def0c1b335) - `useScrollTo` improvements for easier debugging:
+
   - When a `scrollTo` animation is requesed while an animation is is progress it will throw an error
   - When a `scrollTo` animation is retriggered more than 5 times, it will throw an error
   - When a `scrollTo` detects the overlay is resized after the animation it will show a warning. ([@paales](https://github.com/paales))
@@ -196,6 +199,7 @@
 ### Patch Changes
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
   - Updated the @mui/material package
   - Removed dependencies on react-hook-form-mui and @playwright/test
   - Upgraded dependencies including type-fest and graphql-mesh
@@ -468,6 +472,7 @@
 ### Patch Changes
 
 - [#1509](https://github.com/graphcommerce-org/graphcommerce/pull/1509) [`0ab7c5465`](https://github.com/graphcommerce-org/graphcommerce/commit/0ab7c5465441cba9bf8cd185a6790ce2f443f4ed) Thanks [@paales](https://github.com/paales)! - SidebarGallery improvements (product page):
+
   - Prevent vertical scrolling
   - Disable zoom fab when there are no images
   - Hide scroller dots when there in only one image
