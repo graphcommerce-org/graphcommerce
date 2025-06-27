@@ -1,5 +1,7 @@
 # Change Log
 
+## 9.1.0-canary.45
+
 ## 9.1.0-canary.44
 
 ## 9.1.0-canary.43
@@ -133,7 +135,6 @@
 - [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`7652234`](https://github.com/graphcommerce-org/graphcommerce/commit/7652234e222c3f4d8de3817fe907b5b6925a5493) - Fully replaced the sitemap and robots.txt generation. We previously relied on next-sitemap to generate the sitemap based on static generated pages. However with bigger shops the SSG woudn't be complete. Full support for multi domain setups. ([@bramvanderholst](https://github.com/bramvanderholst))
 
 - [#2366](https://github.com/graphcommerce-org/graphcommerce/pull/2366) [`3612c99`](https://github.com/graphcommerce-org/graphcommerce/commit/3612c994b80bb3b1bc02de10668f69a332402dc4) - Add `permissions` configuration to disable functionalities.
-
   - Added new `permissions` configuration for GraphCommerce
   - Added `permissions.cart`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
   - Added `permissions.checkout`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
@@ -306,13 +307,11 @@
 - [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`0cc472915`](https://github.com/graphcommerce-org/graphcommerce/commit/0cc4729154d316227a41712b5f0adf514768e91f) - Introducing the new ProductFiltersPro component set with completely new filter and UI behavior. Filters will appear as a popper on the md and up breakpoints and as an overlay on sm and below breakpoints. Filters now have an Apply button instead of applying directly. ([@paales](https://github.com/paales))
 
 - [#1766](https://github.com/graphcommerce-org/graphcommerce/pull/1766) [`e34169ee2`](https://github.com/graphcommerce-org/graphcommerce/commit/e34169ee2e0fdc052ff589ceca0bc67557584c1f) - Upgraded to Next.js 13
-
   - NextLink integrates the next/link functionality with @mui/material's Link and ButtonBase (and all it's derivatives) components.
   - NextLink automatically adds `target="_blank"` when the href is external.
   - NextLink makes all relative href absolute. `href="my-page"` will be rendered as `href="/my-page"`. ([@paales](https://github.com/paales))
 
 - [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`b76679204`](https://github.com/graphcommerce-org/graphcommerce/commit/b766792049e1e6ebe45671c0b36e78746ef159e2) - Created a completely new [GraphCommerce config system](https://www.graphcommerce.org/docs/framework/config) to allow for greater confiugration options and rely less on a .env file to configuration.
-
   - GraphCommerce can be configured in the graphcommerce.config.js
   - The configuration is automatically validated on startup.
   - All configuration values can be overwritten by environment variables. ([@paales](https://github.com/paales))
@@ -382,13 +381,11 @@
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`f0816973b`](https://github.com/graphcommerce-org/graphcommerce/commit/f0816973ba38ed091189338b1863983da8c6e806) - Redirect old product URLs to the new /p/ route ([@paales](https://github.com/paales))
 
 - [#1756](https://github.com/graphcommerce-org/graphcommerce/pull/1756) [`1abaaedde`](https://github.com/graphcommerce-org/graphcommerce/commit/1abaaedde4062d3b19696e333d0016972681afaf) - Show cart item error messages when running Magento >= 2.4.5 or this [patch is applied](https://raw.githubusercontent.com/graphcommerce-org/graphcommerce/main/packages/magento-cart/243-244-magento-module-quote-graphql-cart-item-errors.patch)
-
   - Fixes an issue where the cart can get into a broken state, if items contain errors.
   - AddToCartForm now shows a success message if there is an error but the error is related to another item in the cart.
   - Disable checkout buttons when there are cart item errors and show a message. ([@paales](https://github.com/paales))
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
   - Updated the @mui/material package
   - Removed dependencies on react-hook-form-mui and @playwright/test
   - Upgraded dependencies including type-fest and graphql-mesh
@@ -1340,11 +1337,9 @@
 ### Minor Changes
 
 - [#1609](https://github.com/graphcommerce-org/graphcommerce/pull/1609) [`0ad5159eb`](https://github.com/graphcommerce-org/graphcommerce/commit/0ad5159ebef54b4ce7fee6f71b4bf710dba9ef8e) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Use WaitForCustomer component
-
   - Fixes bugs where loaders where shown on all pages that require user to log in
 
 * [#1602](https://github.com/graphcommerce-org/graphcommerce/pull/1602) [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Default styles and layout fixes
-
   - Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
   - Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high % appropriately sized tap targets
   - Replaced responsiveVal usage with better performaning breakpointVal where possible
@@ -1366,7 +1361,6 @@
 - [#1590](https://github.com/graphcommerce-org/graphcommerce/pull/1590) [`9660fe5d1`](https://github.com/graphcommerce-org/graphcommerce/commit/9660fe5d1839662a5064943538c4a15ce36364cc) Thanks [@paales](https://github.com/paales)! - Leverage Magento Varnish caching by enabling useGETForQueries to backends
 
 * [#1604](https://github.com/graphcommerce-org/graphcommerce/pull/1604) [`c98cef65e`](https://github.com/graphcommerce-org/graphcommerce/commit/c98cef65eb7cfed42f016b6134d10bf5d3c67d92) Thanks [@paales](https://github.com/paales)! - Downgrade next-pwa because there are issue with the latest release:
-
   - https://github.com/shadowwalker/next-pwa/issues/375
   - https://github.com/shadowwalker/next-pwa/pull/384
 
@@ -1756,7 +1750,6 @@
 ### Minor Changes
 
 - [#1566](https://github.com/graphcommerce-org/graphcommerce/pull/1566) [`e167992df`](https://github.com/graphcommerce-org/graphcommerce/commit/e167992dfdc6964a392af719667f8a188626ab1b) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Introduced `@graphcommerce/next-ui/navigation` component.
-
   - Navigation is always present in the DOM
   - Configurable in LayoutNavigation.tsx
   - Show categories directly, or nest them in a 'products' button

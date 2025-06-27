@@ -1,5 +1,7 @@
 # Change Log
 
+## 9.1.0-canary.45
+
 ## 9.1.0-canary.44
 
 ### Patch Changes
@@ -175,7 +177,6 @@
   ```
 
   When to use, replacement for:
-
   1. useMediaQuery: When you are now using useMediaQuery to conditionally render content for mobile or desktop. a. Is very slow as it has to wait for the JS to initialize on pageload. b. Can cause CLS problems if the useMediaQuery is used to render elements in the viewport. c. Can cause LCP issues if useMediaQuery is used to render the LCP element. d. Causes TBT problems as a component always needs to be rerendered. (And bad TBT can cause INP problems) e. HTML isn't present in the DOM, which can cause SEO issues.
   2. CSS Media query: When you are using CSS to show or hide content based on media queries. a. Causes TBT problems as both code paths need to be rendered. (And bad TBT can cause INP problems)
 
@@ -194,7 +195,6 @@
 ### Minor Changes
 
 - [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`74eb239`](https://github.com/graphcommerce-org/graphcommerce/commit/74eb2393a64988649178d59f53b33d41fecdd769) - Added Intl components, deprecated `useNumberFormat` and `useDateTimeFormatter`, and replaced usage sites. New components and hooks:
-
   - `<DisplayNames />` and `useIntlDisplayNames`
   - `<DateTimeFormat />`, `<DateFormat/>`, `<TimeFormat />` and `useIntlDateTimeFormat`
   - `<ListFormat />` and `useIntlListFormat`
@@ -435,7 +435,6 @@
 ### Minor Changes
 
 - [#1822](https://github.com/graphcommerce-org/graphcommerce/pull/1822) [`cc02c46e3`](https://github.com/graphcommerce-org/graphcommerce/commit/cc02c46e32c9a44a90789591f43d91ae234dac84) - Added Facebook Open Graph tags to product pages:
-
   - og:title
   - og:image
   - og:url
@@ -447,7 +446,6 @@
   - product:category ([@KMalkowski](https://github.com/KMalkowski))
 
 - [#1830](https://github.com/graphcommerce-org/graphcommerce/pull/1830) [`fafa76ba9`](https://github.com/graphcommerce-org/graphcommerce/commit/fafa76ba9e655739171abc553d309795c9d8e5c2) - Overlays now use an additional scroll container to handle vertical scroll, fixing:
-
   - Scrolling on desktop will not close the overlay when there is content to be scrolled
   - Scrolling will not snap to bottom / top when the content is barely scrollable
   - Dragging will only open or close the drawer, not something inbetween
@@ -515,7 +513,6 @@
 - [#1745](https://github.com/graphcommerce-org/graphcommerce/pull/1745) [`b1444b933`](https://github.com/graphcommerce-org/graphcommerce/commit/b1444b9336107d3ac111563f9b62a884f1b26a8d) - Bring password reset page more in line with standard forms, add missing translations. ([@github-actions](https://github.com/apps/github-actions))
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
   - Updated the @mui/material package
   - Removed dependencies on react-hook-form-mui and @playwright/test
   - Upgraded dependencies including type-fest and graphql-mesh
@@ -712,7 +709,6 @@
 - [#1610](https://github.com/graphcommerce-org/graphcommerce/pull/1610) [`bb94e7045`](https://github.com/graphcommerce-org/graphcommerce/commit/bb94e7045460cb671c45d612a0833731d7c20c30) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Previously when the persisted selected value didn't exist in the list of ActionCard items, all items would be hidden. In this fix we set the hidden prop in the ActionCardList component, where we check if the value exists, if not, we display all items
 
 * [#1602](https://github.com/graphcommerce-org/graphcommerce/pull/1602) [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Default styles and layout fixes
-
   - Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
   - Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high % appropriately sized tap targets
   - Replaced responsiveVal usage with better performaning breakpointVal where possible
@@ -822,7 +818,6 @@
 ### Minor Changes
 
 - [#1566](https://github.com/graphcommerce-org/graphcommerce/pull/1566) [`e167992df`](https://github.com/graphcommerce-org/graphcommerce/commit/e167992dfdc6964a392af719667f8a188626ab1b) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Introduced `@graphcommerce/next-ui/navigation` component.
-
   - Navigation is always present in the DOM
   - Configurable in LayoutNavigation.tsx
   - Show categories directly, or nest them in a 'products' button
@@ -954,7 +949,6 @@
 ### Patch Changes
 
 - [#1509](https://github.com/graphcommerce-org/graphcommerce/pull/1509) [`0ab7c5465`](https://github.com/graphcommerce-org/graphcommerce/commit/0ab7c5465441cba9bf8cd185a6790ce2f443f4ed) Thanks [@paales](https://github.com/paales)! - SidebarGallery improvements (product page):
-
   - Prevent vertical scrolling
   - Disable zoom fab when there are no images
   - Hide scroller dots when there in only one image
@@ -1157,7 +1151,6 @@
 - [#1353](https://github.com/graphcommerce-org/graphcommerce/pull/1353) [`0e5ee7ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/0e5ee7ba89698e5e711001e846ed182528060cba) Thanks [@paales](https://github.com/paales)! - Eslint: enable rules that were previously disabled and make fixes
 
 * [#1360](https://github.com/graphcommerce-org/graphcommerce/pull/1360) [`829b8690b`](https://github.com/graphcommerce-org/graphcommerce/commit/829b8690bc5d0a46e596299e4120e9837a9f179c) Thanks [@paales](https://github.com/paales)! - Lots of fixes for LayoutOverlay:
-
   - When interacting with an overlay it causes browser resizes on mobile and causing a janky experience.
   - Allow interaction with the previous layer after it has been closed, instead of waiting for the actual route to complete.
   - Allow scrolling to the the bottom in the overlay when the height is just a bit higher than the window.
@@ -1314,7 +1307,6 @@
 - [#1281](https://github.com/ho-nl/m2-pwa/pull/1281) [`3a719c88c`](https://github.com/ho-nl/m2-pwa/commit/3a719c88cad1eab58602de28c41adc0fc4827e1d) Thanks [@paales](https://github.com/paales)! - Make sure we're able to style the backdrop and the regular overlay for LayoutOverlay
 
 * [#1284](https://github.com/ho-nl/m2-pwa/pull/1284) [`5ffcb56bf`](https://github.com/ho-nl/m2-pwa/commit/5ffcb56bfcbe49ebeaf24f9341e819a145ab9a14) Thanks [@paales](https://github.com/paales)! - SvgIcon is now more extenable and flexible:
-
   - It will automatically calculate the stroke-width of the SVG based on the rendered size, allowing for a more flexible use for icons.
 
   - Make SvgIcon themable in your own Theme.

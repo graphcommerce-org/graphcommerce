@@ -1,5 +1,7 @@
 # Change Log
 
+## 9.1.0-canary.45
+
 ## 9.1.0-canary.44
 
 ## 9.1.0-canary.43
@@ -71,7 +73,6 @@
 ### Minor Changes
 
 - [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`01ba1a7`](https://github.com/graphcommerce-org/graphcommerce/commit/01ba1a73c86778ea9b34059ec092723b4a56b92b) - Improved Downloadable products functionality:
-
   - Account Dashboard Link and Download Page
   - Download samples / linkSamples and links from the backend.
   - CartItem edit functionality for the DownloadableCartItem
@@ -124,7 +125,6 @@
 ### Patch Changes
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
   - Updated the @mui/material package
   - Removed dependencies on react-hook-form-mui and @playwright/test
   - Upgraded dependencies including type-fest and graphql-mesh

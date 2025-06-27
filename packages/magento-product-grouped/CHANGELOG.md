@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.45
+
+### Patch Changes
+
+- [`f915f65`](https://github.com/graphcommerce-org/graphcommerce/commit/f915f655f5965bab1d50eca9b275199c02e7b7d1) - Make sure the default quantity is selected on the product page for grouped products. Products are sorted correctly and create a separate GroupedProductItem fragment for easier etensibility. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.44
 
 ## 9.1.0-canary.43
@@ -113,7 +119,6 @@
 ### Patch Changes
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
   - Updated the @mui/material package
   - Removed dependencies on react-hook-form-mui and @playwright/test
   - Upgraded dependencies including type-fest and graphql-mesh

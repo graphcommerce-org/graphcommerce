@@ -1,5 +1,7 @@
 # Change Log
 
+## 9.1.0-canary.45
+
 ## 9.1.0-canary.44
 
 ## 9.1.0-canary.43
@@ -115,7 +117,6 @@
 ### Patch Changes
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
   - Updated the @mui/material package
   - Removed dependencies on react-hook-form-mui and @playwright/test
   - Upgraded dependencies including type-fest and graphql-mesh
@@ -216,7 +217,6 @@
 ### Minor Changes
 
 - [#1284](https://github.com/ho-nl/m2-pwa/pull/1284) [`5ffcb56bf`](https://github.com/ho-nl/m2-pwa/commit/5ffcb56bfcbe49ebeaf24f9341e819a145ab9a14) Thanks [@paales](https://github.com/paales)! - SvgIcon is now more extenable and flexible:
-
   - It will automatically calculate the stroke-width of the SVG based on the rendered size, allowing for a more flexible use for icons.
 
   - Make SvgIcon themable in your own Theme.

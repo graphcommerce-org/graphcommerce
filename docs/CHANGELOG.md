@@ -1,5 +1,7 @@
 # Change Log
 
+## 9.1.0-canary.45
+
 ## 9.1.0-canary.44
 
 ## 9.1.0-canary.43
@@ -203,7 +205,6 @@
 - [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`26239ef73`](https://github.com/graphcommerce-org/graphcommerce/commit/26239ef73e49731224b227f1eb850dde56d40584) - Updated the supported NodeJS versions to 16 and 18, removed support for NodeJS 14. ([@paales](https://github.com/paales))
 
 - [#1766](https://github.com/graphcommerce-org/graphcommerce/pull/1766) [`e34169ee2`](https://github.com/graphcommerce-org/graphcommerce/commit/e34169ee2e0fdc052ff589ceca0bc67557584c1f) - Upgraded to Next.js 13
-
   - NextLink integrates the next/link functionality with @mui/material's Link and ButtonBase (and all it's derivatives) components.
   - NextLink automatically adds `target="_blank"` when the href is external.
   - NextLink makes all relative href absolute. `href="my-page"` will be rendered as `href="/my-page"`. ([@paales](https://github.com/paales))
@@ -227,7 +228,6 @@
 ### Patch Changes
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
   - Updated the @mui/material package
   - Removed dependencies on react-hook-form-mui and @playwright/test
   - Upgraded dependencies including type-fest and graphql-mesh
@@ -246,7 +246,6 @@
 - [#1729](https://github.com/graphcommerce-org/graphcommerce/pull/1729) [`c37187a51`](https://github.com/graphcommerce-org/graphcommerce/commit/c37187a513670ebcf09e99eb4a762c8bdb5df7e4) - Moved Magento Cart Pickup shipping method to the [GraphCommerce plugin system](https://www.graphcommerce.org/docs/framework/plugins)
 
   Upgrade guide:
-
   - The upgrade removes `@graphcommerce/magento-cart-pickup` package from your `package.json`, remove them for now.
   - Proceed to upgrade normally
   - Add back `@graphcommerce/magento-cart-pickup`, following the [GraphCommerce Magento docs](https://graphcommerce.org/docs/magento). ([@paales](https://github.com/paales))
@@ -264,7 +263,6 @@
 - [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`f08bffd63`](https://github.com/graphcommerce-org/graphcommerce/commit/f08bffd63780cb626f072b25c2fd4da37543b6f7) - Moved all Payment methods to the [GraphCommerce plugin system](https://www.graphcommerce.org/docs/framework/plugins)
 
   Upgrade guide:
-
   - The upgrade removes all the payment gateway packages from the `package.json`, remove them for now.
   - Proceed to upgrade normally
   - Add back all the payment modules following the [GraphCommerce Magento docs](https://graphcommerce.org/docs/magento).
@@ -570,7 +568,6 @@
 * [#1278](https://github.com/ho-nl/m2-pwa/pull/1278) [`81ea406d5`](https://github.com/ho-nl/m2-pwa/commit/81ea406d54d6b5c662c030a7fea444abc4117a20) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Written documentation for GraphCommerce! 👩‍🏫🧑‍🏫📚📖
 
 - [#1284](https://github.com/ho-nl/m2-pwa/pull/1284) [`5ffcb56bf`](https://github.com/ho-nl/m2-pwa/commit/5ffcb56bfcbe49ebeaf24f9341e819a145ab9a14) Thanks [@paales](https://github.com/paales)! - SvgIcon is now more extenable and flexible:
-
   - It will automatically calculate the stroke-width of the SVG based on the rendered size, allowing for a more flexible use for icons.
 
   - Make SvgIcon themable in your own Theme.
