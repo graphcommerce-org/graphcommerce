@@ -2,21 +2,18 @@ import { Image } from '@graphcommerce/image'
 import type { AddToCartItemSelector } from '@graphcommerce/magento-product'
 import {
   AddProductsToCartQuantity,
-  ProductListPrice,
+  ProductPagePrice,
   useFormAddProductsToCart,
 } from '@graphcommerce/magento-product'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
-import { ActionCard, actionCardImageSizes, responsiveVal } from '@graphcommerce/next-ui'
+import { ActionCard, actionCardImageSizes } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
-import type { GroupedProductFragment } from '../GroupedProduct.gql'
+import type { GroupedProductItemFragment } from '../graphql/fragments/GroupedProductItem.gql'
 
-type GroupedProductItem = NonNullable<
-  NonNullable<GroupedProductFragment['items']>[number]
->['product']
-
-export type GroupedProductActionCardProps = GroupedProductItem &
-  Omit<ActionCardProps, 'value' | 'image' | 'price' | 'title' | 'action'> &
-  AddToCartItemSelector
+export type GroupedProductActionCardProps = {
+  item: GroupedProductItemFragment
+} & AddToCartItemSelector &
+  Omit<ActionCardProps, 'value' | 'image' | 'price' | 'title' | 'action'>
 
 const typographySizes = {
   small: 'body2',
@@ -25,23 +22,16 @@ const typographySizes = {
 }
 
 export function GroupedProductActionCard(props: GroupedProductActionCardProps) {
-  const {
-    uid,
-    name,
-    small_image,
-    price_range,
-    url_key,
-    sx = [],
-    size = 'large',
-    index = 0,
-    sku,
-    url_rewrites,
-    ...rest
-  } = props
-
+  const { item, sx = [], size = 'large', index = 0, ...rest } = props
+  const { product } = item
   const { control, register } = useFormAddProductsToCart()
-  if (!sku) return null
+
+  if (!product?.sku) return null
+
+  const { uid, name, small_image, url_key, sku, url_rewrites } = product
   const hasUrl = (url_rewrites ?? []).length > 0
+  const qty = item.qty ?? 0
+
   return (
     <>
       <input type='hidden' {...register(`cartItems.${index}.sku`)} value={sku} />
@@ -126,12 +116,20 @@ export function GroupedProductActionCard(props: GroupedProductActionCardProps) {
         secondaryAction={
           <AddProductsToCartQuantity
             size='small'
-            defaultValue={1}
             index={index}
+            defaultValue={qty}
             onMouseDown={(e) => e.stopPropagation()}
+            inputProps={{ min: 0 }}
           />
         }
-        price={<ProductListPrice {...price_range.minimum_price} />}
+        price={
+          <ProductPagePrice
+            index={index}
+            product={product}
+            defaultValue={qty ?? 0}
+            variant='total'
+          />
+        }
         {...rest}
       />
     </>

@@ -1,6 +1,6 @@
-import { ActionCardLayout, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { ActionCardLayout, filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import { useMemo } from 'react'
-import type { GroupedProductFragment } from '../GroupedProduct.gql'
+import type { GroupedProductFragment } from '../graphql/fragments/GroupedProduct.gql'
 import { GroupedProductActionCard } from './GroupedProductActionCard'
 
 export type GroupedProductsProps = {
@@ -9,21 +9,15 @@ export type GroupedProductsProps = {
 
 export function GroupedProducts(props: GroupedProductsProps) {
   const { product } = props
-  const productItems = useMemo(() => {
-    if (product?.__typename !== 'GroupedProduct') return null
-    const { items } = product
-    return filterNonNullableKeys(items, ['product']).map((item, i) => ({
-      ...item.product,
-      value: item.product.sku ?? '',
-      index: i,
-    }))
-  }, [product])
-  if (!productItems) return null
+
+  const items = filterNonNullableKeys(product.items, ['position', 'product']).sort(
+    (a, b) => a.position - b.position,
+  )
 
   return (
     <ActionCardLayout>
-      {productItems.map((item) => (
-        <GroupedProductActionCard {...item} key={item.value ?? ''} size='medium' />
+      {items.map((item, index) => (
+        <GroupedProductActionCard index={index} item={item} key={item.position} size='medium' />
       ))}
     </ActionCardLayout>
   )
