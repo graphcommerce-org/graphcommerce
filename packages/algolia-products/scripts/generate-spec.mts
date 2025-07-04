@@ -11,7 +11,7 @@ const response = await fetch(
 
 const openApiSchema = yaml.load(await response.text()) as OpenAPIV3.Document
 
-const acl = ['search']
+const acl = ['search', 'settings']
 
 const newSchema: OpenAPIV3.Document = {
   ...openApiSchema,
@@ -45,7 +45,7 @@ const newSchema: OpenAPIV3.Document = {
 
           // Remove the search endpoint + remove the getObjects endpoint.
           if (
-            path === '/1/indexes/*/queries' ||
+            // path === '/1/indexes/*/queries' ||
             path === '/1/indexes/*/objects' ||
             path === '/1/indexes/{indexName}/{objectID}'
           )
