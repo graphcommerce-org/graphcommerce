@@ -1,4 +1,4 @@
-import type { ProductListParams } from '@graphcommerce/magento-product'
+import { hasUserFilterActive, type ProductListParams } from '@graphcommerce/magento-product'
 import { PageMeta } from '@graphcommerce/magento-store'
 import type { PageMetaProps } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -25,8 +25,7 @@ export function CategoryMeta(props: CategoryMetaProps) {
 
   if (params?.url && !canonical) canonical = `/${params.url}`
 
-  const anyFilterActive =
-    Object.keys(params?.filters ?? {}).filter((k) => k !== 'category_uid').length > 0
+  const anyFilterActive = hasUserFilterActive(params)
 
   const sortActive = params?.sort && Object.keys(params?.sort).length !== 0
   const limitAcitve = !!params?.pageSize

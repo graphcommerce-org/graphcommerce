@@ -142,7 +142,7 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
       submit,
       appliedAggregations,
       filterTypes,
-      aggregations,
+      aggregations: aggregations ?? appliedAggregations,
     }
     globalFormContextRef.current = ctx
     return ctx

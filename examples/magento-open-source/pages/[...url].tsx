@@ -19,6 +19,7 @@ import {
   categoryDefaultsToProductListFilters,
   extractUrlQuery,
   getFilterTypes,
+  hasUserFilterActive,
   parseParams,
   ProductFiltersDocument,
   productListApplyCategoryDefaults,
@@ -179,14 +180,15 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
 
   const hasCategory = !!productListParams && categoryUid
 
-  const filters = hasCategory
-    ? staticClient.query({
-        query: ProductFiltersDocument,
-        variables: categoryDefaultsToProductListFilters(
-          await productListApplyCategoryDefaults(productListParams, (await conf).data, category),
-        ),
-      })
-    : undefined
+  const filters =
+    hasCategory && hasUserFilterActive(productListParams)
+      ? staticClient.query({
+          query: ProductFiltersDocument,
+          variables: categoryDefaultsToProductListFilters(
+            await productListApplyCategoryDefaults(productListParams, (await conf).data, category),
+          ),
+        })
+      : undefined
 
   const products = hasCategory
     ? staticClient.query({

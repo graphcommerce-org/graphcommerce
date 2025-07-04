@@ -106,7 +106,10 @@ export function useProductList<
   const result = usePrivateQuery(ProductListDocument, { variables, skip: !shallow }, props)
   const filters = usePrivateQuery(
     ProductFiltersDocument,
-    { variables: categoryDefaultsToProductListFilters(variables), skip: !shallow },
+    {
+      variables: categoryDefaultsToProductListFilters(variables),
+      skip: !shallow || !hasUserFilterActive(params),
+    },
     props,
   )
 
