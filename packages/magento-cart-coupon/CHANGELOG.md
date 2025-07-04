@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.48
+
+### Patch Changes
+
+- [#2532](https://github.com/graphcommerce-org/graphcommerce/pull/2532) [`4913aee`](https://github.com/graphcommerce-org/graphcommerce/commit/4913aeeae7c9237edc13361b72619e1d1f429198) - Resolve issue where a 400 error occurred due to missing coupon code data in the request. The coupon input field was being disabled before form submission, preventing the code from being included in the request payload ([@joshdavenport](https://github.com/joshdavenport))
+
 ## 9.1.0-canary.47
 
 ## 9.1.0-canary.46
