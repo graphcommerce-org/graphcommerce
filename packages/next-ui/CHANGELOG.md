@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.47
+
+### Patch Changes
+
+- [`4564271`](https://github.com/graphcommerce-org/graphcommerce/commit/4564271e702aab11c28e425029f4a7c09a4d5d61) - Created a revalidate method that returns a single value so that it can be overwritten centrally ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.46
 
 ## 9.1.0-canary.45

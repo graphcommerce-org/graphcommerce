@@ -1,5 +1,11 @@
 # @graphcommerce/algolia-products
 
+## 9.1.0-canary.47
+
+### Patch Changes
+
+- [`499b30c`](https://github.com/graphcommerce-org/graphcommerce/commit/499b30c275571a675b176e0c0397104b608ad0a0) - Updated used spec for API and expose the multi search endpoint. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.46
 
 ## 9.1.0-canary.45

@@ -3,14 +3,14 @@
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
   "private": true,
-  "version": "9.1.0-canary.46",
+  "version": "9.1.0-canary.47",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "@graphcommerce/framer-utils": "9.1.0-canary.46",
+    "@graphcommerce/framer-utils": "9.1.0-canary.47",
     "@lingui/core": "4.14.1",
     "@lingui/macro": "4.14.1",
     "@lingui/react": "4.14.1",
@@ -32,9 +32,9 @@
     "webpack": "^5.97.1"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "9.1.0-canary.46",
-    "@graphcommerce/prettier-config-pwa": "9.1.0-canary.46",
-    "@graphcommerce/typescript-config-pwa": "9.1.0-canary.46",
+    "@graphcommerce/eslint-config-pwa": "9.1.0-canary.47",
+    "@graphcommerce/prettier-config-pwa": "9.1.0-canary.47",
+    "@graphcommerce/typescript-config-pwa": "9.1.0-canary.47",
     "@lingui/cli": "4.14.1",
     "@types/node": "^18.19.68",
     "@types/react": "^18.3.17",
