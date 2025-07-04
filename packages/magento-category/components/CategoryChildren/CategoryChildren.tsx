@@ -25,7 +25,7 @@ export function CategoryChildren(props: CategoryChildrenProps) {
         ...params,
         currentPage: 0,
         url: category.url_path,
-        filters: { category_uid: { eq: category.uid } },
+        filters: { category_uid: { in: [category.uid] } },
       }),
       active: params.url === category.url_path,
     }),
