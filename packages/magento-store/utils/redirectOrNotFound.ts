@@ -1,7 +1,7 @@
 import type { ParsedUrlQuery } from 'querystring'
 import type { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@graphcommerce/graphql'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
-import { isTypename, nonNullable, storefrontConfig } from '@graphcommerce/next-ui'
+import { isTypename, nonNullable, revalidate, storefrontConfig } from '@graphcommerce/next-ui'
 import type { Redirect } from 'next'
 import type { HandleRedirectQuery, StoreConfigQuery } from '../graphql'
 import { HandleRedirectDocument } from '../graphql'
@@ -15,7 +15,7 @@ export type RedirectOr404Return = Promise<
 const notFound = (from: string, reason: string) => {
   flushMeasurePerf()
   console.info(`[redirectOrNotFound: /${from}] ${reason}`)
-  return { notFound: true, revalidate: 60 * 20 } as const
+  return { notFound: true, revalidate: revalidate() } as const
 }
 
 const urlPrefix = (locale?: string) => {
@@ -33,7 +33,7 @@ export const redirectTo = (
   )
   return {
     redirect: { destination: `${urlPrefix(locale)}${to}`, permanent },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }
 
@@ -54,7 +54,7 @@ const redirect = (from: string, to: string, permanent: boolean, locale?: string)
     permanent = false
   }
 
-  return { redirect: { destination, permanent }, revalidate: 60 * 20 }
+  return { redirect: { destination, permanent }, revalidate: revalidate() }
 }
 
 export async function redirectOrNotFound(

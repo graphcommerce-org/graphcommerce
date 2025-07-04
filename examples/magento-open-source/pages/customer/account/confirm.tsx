@@ -1,8 +1,8 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ConfirmCustomerForm, getCustomerAccountIsDisabled } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { LayoutOverlayHeader, LayoutTitle, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
@@ -48,7 +48,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const conf = client.query({ query: StoreConfigDocument })
 
   if (!(await conf).data.storeConfig?.create_account_confirmation)
-    return { notFound: true, revalidate: 60 * 20 }
+    return { notFound: true, revalidate: revalidate() }
 
   return {
     props: {

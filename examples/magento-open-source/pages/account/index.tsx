@@ -13,7 +13,6 @@ import {
 } from '@graphcommerce/magento-customer'
 import { CustomerNewsletterToggle } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   iconBin,
   iconBox,
@@ -28,7 +27,9 @@ import {
   LayoutHeader,
   LayoutTitle,
   RelativeToTimeFormat,
+  revalidate,
 } from '@graphcommerce/next-ui'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
@@ -169,6 +170,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       up: { href: '/', title: i18n._(/* i18n */ 'Home') },
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

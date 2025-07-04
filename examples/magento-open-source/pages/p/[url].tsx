@@ -30,14 +30,15 @@ import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-p
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { Money, redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
-import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   isTypename,
   LayoutHeader,
   LayoutTitle,
   nonNullable,
   responsiveVal,
+  revalidate,
 } from '@graphcommerce/next-ui'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Typography } from '@mui/material'
@@ -250,6 +251,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       apolloState: await conf.then(() => client.cache.extract()),
       up,
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

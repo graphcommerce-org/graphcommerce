@@ -3,8 +3,8 @@ import { cacheFirst } from '@graphcommerce/graphql'
 import type { CmsPageFragment } from '@graphcommerce/magento-cms'
 import { CmsPageContent, CmsPageDocument } from '@graphcommerce/magento-cms'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { Container, isTypename, LayoutHeader, PageMeta, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { Container, isTypename, LayoutHeader, PageMeta } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import type { LayoutNavigationProps } from '../components'
 import { LayoutDocument, LayoutNavigation, productListRenderer } from '../components'
@@ -57,7 +57,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
   return result
 }

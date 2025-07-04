@@ -6,7 +6,13 @@ import {
   HygraphPagesQuery,
 } from '@graphcommerce/hygraph-ui'
 import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
-import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
+import {
+  PageMeta,
+  GetStaticProps,
+  LayoutOverlayHeader,
+  LayoutTitle,
+  revalidate,
+} from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
@@ -99,6 +105,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       up: isRoot ? null : { href: '/service', title: i18n._(/* i18n */ 'Customer Service') },
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

@@ -153,7 +153,7 @@ return {
 +      renderToString,
 +     }),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 ```
 

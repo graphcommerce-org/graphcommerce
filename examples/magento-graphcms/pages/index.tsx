@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
+import { revalidate } from '@graphcommerce/next-ui'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { ProductListDocument, ProductListQuery } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -101,7 +102,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     variables: { onlyItems: true, pageSize: 8, filters: { category_uid: { eq: 'MTIy' } } },
   })
 
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+  if (!(await page).data.pages?.[0]) return { notFound: true, revalidate: revalidate() }
 
   return {
     props: {
@@ -112,6 +113,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       swipableList: (await swipableList).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

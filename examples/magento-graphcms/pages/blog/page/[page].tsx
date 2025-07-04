@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
+import { revalidate } from '@graphcommerce/next-ui'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -117,9 +118,9 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   })
   const blogPaths = staticClient.query({ query: BlogPathsDocument })
 
-  if (!(await defaultPage).data.pages?.[0]) return { notFound: true }
-  if (!(await blogPosts).data.blogPosts.length) return { notFound: true }
-  if (Number(params?.page) <= 0) return { notFound: true }
+  if (!(await defaultPage).data.pages?.[0]) return { notFound: true, revalidate: revalidate() }
+  if (!(await blogPosts).data.blogPosts.length) return { notFound: true, revalidate: revalidate() }
+  if (Number(params?.page) <= 0) return { notFound: true, revalidate: revalidate() }
 
   return {
     props: {
@@ -130,6 +131,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       urlEntity: { relative_url: 'blog' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

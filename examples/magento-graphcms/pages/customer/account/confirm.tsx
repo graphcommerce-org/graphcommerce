@@ -7,6 +7,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { revalidate } from '@graphcommerce/next-ui'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -46,12 +47,13 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const conf = client.query({ query: StoreConfigDocument })
 
   if (!(await conf).data.storeConfig?.create_account_confirmation)
-    return { notFound: true, revalidate: 60 * 20 }
+    return { notFound: true, revalidate: revalidate() }
 
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
     },
+    revalidate: revalidate(),
   }
 }

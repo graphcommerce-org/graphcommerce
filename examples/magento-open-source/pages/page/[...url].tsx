@@ -9,6 +9,7 @@ import {
   isTypename,
   LayoutHeader,
   LayoutTitle,
+  revalidate,
   type GetStaticProps,
 } from '@graphcommerce/next-ui'
 import type { GetStaticPaths } from 'next'
@@ -92,7 +93,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
   return result
 }

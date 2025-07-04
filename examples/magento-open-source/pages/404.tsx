@@ -4,8 +4,15 @@ import { CmsPageContent, CmsPageDocument, type CmsPageFragment } from '@graphcom
 import { useCustomerAccountCanSignIn } from '@graphcommerce/magento-customer'
 import { SearchLink } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import {
+  icon404,
+  IconSvg,
+  isTypename,
+  LayoutTitle,
+  revalidate,
+  Separator,
+} from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { icon404, IconSvg, isTypename, LayoutTitle, Separator } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Container, Link, Typography } from '@mui/material'
@@ -74,6 +81,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       up: { href: '/', title: i18n._(/* i18n */ 'Home') },
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst, flushMeasurePerf, PrivateQueryMaskProvider } from '@graphcommerce/graphql'
+import { revalidate } from '@graphcommerce/next-ui'
 import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import {
   appendSiblingsAsChildren,
@@ -183,7 +184,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const { params, locale } = context
   const [url, query] = extractUrlQuery(params)
-  if (!url || !query) return { notFound: true }
+  if (!url || !query) return { notFound: true, revalidate: revalidate() }
 
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
@@ -244,7 +245,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       return redirectTo(to, false, locale)
     }
 
-    return { notFound: true }
+    return { notFound: true, revalidate: revalidate() }
   }
 
   const { category_url_path, category_name } = findParentBreadcrumbItem(await category) ?? {}
@@ -267,7 +268,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       apolloState: await conf.then(() => client.cache.extract()),
       up,
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
   flushMeasurePerf()
   return result
