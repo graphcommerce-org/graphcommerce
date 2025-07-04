@@ -44,7 +44,6 @@ export function ApplyCouponForm(props: ApplyCouponFormProps) {
         rules={{ required: required.couponCode }}
         control={control}
         helperText={formState.errors.couponCode?.message}
-        disabled={formState.isSubmitting}
         showValid
       />
       <FormControl>
