@@ -25,6 +25,7 @@ import {
   categoryDefaultsToProductListFilters,
   useProductList,
   productListLink,
+  hasUserFilterActive,
 } from '@graphcommerce/magento-product'
 import { redirectOrNotFound, redirectTo, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -215,14 +216,15 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const pages = hygraphPageContent(staticClient, url, category)
   const hasCategory = !!productListParams && categoryUid
 
-  const filters = hasCategory
-    ? staticClient.query({
-        query: ProductFiltersDocument,
-        variables: categoryDefaultsToProductListFilters(
-          await productListApplyCategoryDefaults(productListParams, (await conf).data, category),
-        ),
-      })
-    : undefined
+  const filters =
+    hasCategory && hasUserFilterActive(productListParams)
+      ? staticClient.query({
+          query: ProductFiltersDocument,
+          variables: categoryDefaultsToProductListFilters(
+            await productListApplyCategoryDefaults(productListParams, (await conf).data, category),
+          ),
+        })
+      : undefined
 
   const products = hasCategory
     ? staticClient.query({

@@ -6,6 +6,7 @@ import type {
   ProductListQuery,
 } from '@graphcommerce/magento-product'
 import {
+  hasUserFilterActive,
   prefetchProductList,
   ProductFiltersDocument,
   ProductListDocument,
@@ -38,7 +39,10 @@ export function useProductList<
 
   const filters = usePrivateQuery(
     ProductFiltersDocument,
-    { variables: searchDefaultsToProductListFilters(variables), skip: !shallow },
+    {
+      variables: searchDefaultsToProductListFilters(variables),
+      skip: !shallow || !hasUserFilterActive(params),
+    },
     props,
   )
 

@@ -47,7 +47,7 @@ export function parseParams(
       return undefined
     }
     if (param === 'category_uid') {
-      productListParams.filters.category_uid = { eq: value }
+      productListParams.filters.category_uid = { in: [value] }
       return undefined
     }
 

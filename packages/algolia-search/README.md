@@ -142,7 +142,7 @@ return {
     props: {
       ...(await page).data,
       ...(await products).data,
-      ...(await filters).data,
+      ...(await filters)?.data,
       ...(await categories)?.data,
       ...(await layout)?.data,
       filterTypes: await filterTypes,

@@ -11,6 +11,7 @@ import {
   ProductFiltersDocument,
   ProductListQuery,
   ProductFiltersQuery,
+  hasUserFilterActive,
 } from '@graphcommerce/magento-product'
 import {
   SearchField,
@@ -110,12 +111,14 @@ export const getServerSideProps: GetPageStaticProps = async (context) => {
 
   if (!productListParams) return { notFound: true }
 
-  const filters = staticClient.query({
-    query: ProductFiltersDocument,
-    variables: searchDefaultsToProductListFilters(
-      productListApplySearchDefaults(productListParams, (await conf).data),
-    ),
-  })
+  const filters = hasUserFilterActive(productListParams)
+    ? staticClient.query({
+        query: ProductFiltersDocument,
+        variables: searchDefaultsToProductListFilters(
+          productListApplySearchDefaults(productListParams, (await conf).data),
+        ),
+      })
+    : undefined
 
   const products = staticClient.query({
     query: ProductListDocument,
@@ -125,7 +128,7 @@ export const getServerSideProps: GetPageStaticProps = async (context) => {
   const result = {
     props: {
       ...(await products).data,
-      ...(await filters).data,
+      ...(await filters)?.data,
       ...(await layout)?.data,
       filterTypes: await filterTypes,
       params: productListParams,

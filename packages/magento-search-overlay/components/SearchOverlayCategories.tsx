@@ -41,7 +41,7 @@ const SearchOverlayCategory = forwardRef<HTMLAnchorElement, SearchOverlayCategor
         component={NextLink}
         ref={ref}
         href={productListLink({
-          filters: { category_uid: { eq: category.uid } },
+          filters: { category_uid: { in: [category.uid] } },
           sort: {},
           url: category.url_path ?? '',
         })}
