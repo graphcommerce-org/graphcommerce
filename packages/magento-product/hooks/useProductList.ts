@@ -9,7 +9,7 @@ import type {
   ProductFiltersQuery,
   ProductFiltersQueryVariables,
 } from '../components'
-import { ProductFiltersDocument } from '../components'
+import { hasUserFilterActive, ProductFiltersDocument } from '../components'
 import type {
   ProductListQuery,
   ProductListQueryVariables,
@@ -125,8 +125,8 @@ export function useProductList<
         category,
       )
 
-      const shallowNow =
-        JSON.stringify(vars.filters?.category_uid) === JSON.stringify(params?.filters.category_uid)
+      const shallowNow = hasUserFilterActive(params) === hasUserFilterActive(vars)
+
       await prefetchProductList(
         vars,
         categoryDefaultsToProductListFilters(vars),
