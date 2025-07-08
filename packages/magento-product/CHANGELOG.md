@@ -1,5 +1,19 @@
 # Change Log
 
+## 9.1.0-canary.49
+
+### Patch Changes
+
+- [#2533](https://github.com/graphcommerce-org/graphcommerce/pull/2533) [`dc3be1d`](https://github.com/graphcommerce-org/graphcommerce/commit/dc3be1da43916b65b1d3d4170c09e63ad3818bac) - Solve issue when a user applies their first filter on a category page, a redundant GraphQL call would be made, even though the user was navigating to the `/c/[..url]` route. ([@paales](https://github.com/paales))
+
+- [#2533](https://github.com/graphcommerce-org/graphcommerce/pull/2533) [`45c2fbb`](https://github.com/graphcommerce-org/graphcommerce/commit/45c2fbbed55e3ba42f1ecc45e80039977b6ffe7c) - Solve issue where in some cases a second ProductList query was made because the category used an `eq` filter instead of an `in` filter. ([@paales](https://github.com/paales))
+
+- [#2533](https://github.com/graphcommerce-org/graphcommerce/pull/2533) [`88abcbf`](https://github.com/graphcommerce-org/graphcommerce/commit/88abcbf011b65b0cd1235e984f5d8306256bd518) - When loading the category/search page in the case that there are no filters applied, the amount or product related queries is reduced from 2 to 1 (ProductFilters is skipped). Pagination, sorting and search terms also do not affect this. When a filter is applied we fall back to the previous functionality and do a second query to retrieve the filters.
+
+  This did not matter when the categories/search pages were served by Magento as Magento would cache the result of the ProductFilters query. When the the catalog is served by an external service like Algolia this might be a problem.
+
+  Implementation details: When filters are applied (e.g., filtering by color:blue), the ProductList query only returns products matching that filter, which means other filter options (like other colors) are excluded from the filter options. This behavior is expected since those other options wouldn't return any products. However, when no filters are applied, the ProductList query returns all products along with all available filter options, eliminating the need for a separate ProductFilters query. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.48
 
 ## 9.1.0-canary.47

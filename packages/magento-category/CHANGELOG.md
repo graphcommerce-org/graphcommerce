@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.49
+
+### Patch Changes
+
+- [#2533](https://github.com/graphcommerce-org/graphcommerce/pull/2533) [`45c2fbb`](https://github.com/graphcommerce-org/graphcommerce/commit/45c2fbbed55e3ba42f1ecc45e80039977b6ffe7c) - Solve issue where in some cases a second ProductList query was made because the category used an `eq` filter instead of an `in` filter. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.48
 
 ## 9.1.0-canary.47
