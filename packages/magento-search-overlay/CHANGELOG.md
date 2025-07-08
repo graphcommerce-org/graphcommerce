@@ -1,5 +1,7 @@
 # @graphcommerce/magento-search-overlay
 
+## 9.1.0-canary.50
+
 ## 9.1.0-canary.49
 
 ### Patch Changes

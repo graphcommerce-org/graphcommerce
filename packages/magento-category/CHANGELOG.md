@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.50
+
+### Patch Changes
+
+- [#2535](https://github.com/graphcommerce-org/graphcommerce/pull/2535) [`bb728e9`](https://github.com/graphcommerce-org/graphcommerce/commit/bb728e960d8beedc35aad0ab7f1f8ce214467bc1) - Fix bug where allName would not be translated when switching stores ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.1.0-canary.49
 
 ### Patch Changes
