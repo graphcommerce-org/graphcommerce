@@ -117,9 +117,6 @@ msgstr "Direcciones"
 msgid "All filters"
 msgstr "Todos los filtros"
 
-msgid "All {name}"
-msgstr "Todos los {name}"
-
 msgid "Apply"
 msgstr "Aplicar"
 
@@ -1059,6 +1056,10 @@ msgstr "Contacto"
 #. js-lingui-generated-id
 msgid "Copyright© {year} {websiteName}"
 msgstr "Copyright© {year} {websiteName}"
+
+#. js-lingui-generated-id
+msgid "All {name}"
+msgstr "Todos los {name}"
 
 #. js-lingui-generated-id
 msgid "Order number"

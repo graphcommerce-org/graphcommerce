@@ -117,9 +117,6 @@ msgstr "Direcciones"
 msgid "All filters"
 msgstr "Todos los filtros"
 
-msgid "All {name}"
-msgstr "Todos los {name}"
-
 msgid "Apply"
 msgstr "Aplicar"
 
@@ -1060,6 +1057,10 @@ msgstr "Estado del pedido: {statusWithColor}"
 #. js-lingui-generated-id
 msgid "Contact"
 msgstr "Contacto"
+
+#. js-lingui-generated-id
+msgid "All {name}"
+msgstr "Todos los {name}"
 
 #. js-lingui-generated-id
 msgid "Order number"
