@@ -1,6 +1,7 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   cacheFirst,
+  flushMeasurePerf,
   mergeDeep,
   PrivateQueryMaskProvider,
   usePrivateQuery,
@@ -243,7 +244,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ? { href: `/${category.url_path}`, title: category.name }
       : { href: '/', title: i18n._(/* i18n */ 'Home') }
 
-  return {
+  const result = {
     props: {
       urlKey,
       ...(await productPage),
@@ -253,4 +254,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     },
     revalidate: revalidate(),
   }
+
+  flushMeasurePerf()
+  return result
 }
