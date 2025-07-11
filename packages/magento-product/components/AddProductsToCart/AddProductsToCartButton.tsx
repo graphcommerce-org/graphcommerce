@@ -2,6 +2,7 @@ import { useCartEnabled } from '@graphcommerce/magento-cart'
 import type { ButtonProps } from '@graphcommerce/next-ui'
 import { Button } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
+import React from 'react'
 import type { UseAddProductsToCartActionProps } from './useAddProductsToCartAction'
 import { useAddProductsToCartAction } from './useAddProductsToCartAction'
 
@@ -20,7 +21,10 @@ export type AddProductsToCartButtonProps = UseAddProductsToCartActionProps &
     | 'type'
   >
 
-export function AddProductsToCartButton(props: AddProductsToCartButtonProps) {
+export const AddProductsToCartButton = React.forwardRef<
+  HTMLButtonElement,
+  AddProductsToCartButtonProps
+>((props, ref) => {
   const { children, product, disabled, ...rest } = props
   const { showSuccess, ...action } = useAddProductsToCartAction(props)
   const cartEnabled = useCartEnabled()
@@ -29,6 +33,7 @@ export function AddProductsToCartButton(props: AddProductsToCartButtonProps) {
 
   return (
     <Button
+      ref={ref}
       type='submit'
       color='primary'
       variant='pill'
@@ -40,4 +45,4 @@ export function AddProductsToCartButton(props: AddProductsToCartButtonProps) {
       {children || <Trans>Add to Cart</Trans>}
     </Button>
   )
-}
+})
