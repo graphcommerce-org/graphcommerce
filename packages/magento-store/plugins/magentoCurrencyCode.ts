@@ -1,4 +1,5 @@
 import {
+  type getPrivateQueryContextMesh as getPrivateQueryContextMeshType,
   type getPrivateQueryContext as getPrivateQueryContextType,
   type usePrivateQueryContext as usePrivateQueryContextType,
 } from '@graphcommerce/graphql'
@@ -10,6 +11,17 @@ import { cookie, useCookie } from '@graphcommerce/next-ui'
 export const config: PluginConfig = {
   type: 'function',
   module: '@graphcommerce/graphql',
+}
+
+export const getPrivateQueryContextMesh: FunctionPlugin<typeof getPrivateQueryContextMeshType> = (
+  prev,
+  context,
+) => {
+  const currencyCode = context.headers?.['content-currency']
+
+  const res = prev(context)
+  if (!currencyCode) return res
+  return { ...res, currencyCode } satisfies PrivateContext
 }
 
 export const getPrivateQueryContext: FunctionPlugin<typeof getPrivateQueryContextType> = (

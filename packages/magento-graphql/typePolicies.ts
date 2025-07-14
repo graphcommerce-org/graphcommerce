@@ -1,24 +1,5 @@
-import {
-  getPrivateQueryContext,
-  globalApolloClient,
-  type TypedTypePolicies,
-} from '@graphcommerce/graphql'
-import type { KeyFieldsFunction } from '@apollo/client/cache/inmemory/policies'
-
-/**
- * This method automatically creates a typePolicy for all types that have a `uid` field. Secondly,
- * it allows scoping of this value based on the current private context.
- */
-export const magentoDataIdFromObject: KeyFieldsFunction = (object) => {
-  const { uid, __typename } = object
-  const client = globalApolloClient.current
-
-  if (!uid || !__typename || typeof uid !== 'string' || !client?.cache) return ''
-
-  const ctx = getPrivateQueryContext(client)
-  const queryContext = ctx ? `@(${JSON.stringify(ctx)})` : ''
-  return `${__typename}:${uid}${queryContext}`
-}
+import type { TypedTypePolicies } from '@graphcommerce/graphql'
+import fragments from '@graphcommerce/graphql/generated/fragments.json'
 
 /**
  * By default we don't need to do anything for types with an `id` or without anything to identify.
@@ -51,8 +32,8 @@ export const magentoTypePolicies: TypedTypePolicies = {
   // BundleCartItem: { keyFields: ['uid'] },
   // BundleCreditMemoItem: { keyFields: ['id'] },
   // BundleInvoiceItem: { keyFields: ['id'] },
-  // BundleItem: { keyFields: ['uid'] },
-  // BundleItemOption: { keyFields: ['uid'] },
+  BundleItem: { keyFields: ['uid'] },
+  BundleItemOption: { keyFields: ['uid'] },
   // BundleOrderItem: { keyFields: ['id'] },
   // BundleProduct: { keyFields: ['uid'] },
   // BundleShipmentItem: { keyFields: ['id'] },
@@ -63,6 +44,7 @@ export const magentoTypePolicies: TypedTypePolicies = {
   // CartAddressRegion: { keyFields: false },
   // CartDiscount: { keyFields: false },
   // CartItemInterface: { keyFields: ['uid'] },
+  ...Object.fromEntries(fragments.possibleTypes.CartItemInterface.map((type) => [type, ['uid']])),
   // CartItemPrices: { keyFields: false },
   CartItemQuantity: { keyFields: ['cart_item_id'] },
   // CartItemSelectedOptionValuePrice: { keyFields: false },
@@ -70,6 +52,7 @@ export const magentoTypePolicies: TypedTypePolicies = {
   // CartTaxItem: { keyFields: false },
   // CartUserInputError: { keyFields: false },
   // CategoryInterface: { keyFields: ['uid'] },
+  ...Object.fromEntries(fragments.possibleTypes.CategoryInterface.map((type) => [type, ['uid']])),
   // CategoryProducts: { keyFields: false },
   // CategoryResult: { keyFields: false },
   // CategoryTree: { keyFields: ['uid'] },
@@ -80,12 +63,13 @@ export const magentoTypePolicies: TypedTypePolicies = {
   CmsPage: { keyFields: ['identifier'] },
   // ColorSwatchData: { keyFields: false },
   // ComparableAttribute: { keyFields: false },
-  // ComparableItem: { keyFields: ['uid'] },
-  // CompareList: { keyFields: ['uid'] },
+  ComparableItem: { keyFields: ['uid'] },
+  CompareList: { keyFields: ['uid'] },
   // ComplexTextValue: { keyFields: false },
-  // ConfigurableAttributeOption: { keyFields: ['uid'] },
+  ConfigurableAttributeOption: { keyFields: ['uid'] },
   // ConfigurableCartItem: { keyFields: ['uid'] },
   // ConfigurableOptionAvailableForSelection: { keyFields: false },
+  // ConfigurableProduct: { keyFields: ['uid'] },
   // ConfigurableProductOptions: { keyFields: ['uid'] },
   // ConfigurableProductOptionsSelection: { keyFields: false },
   // ConfigurableProductOptionsValues: { keyFields: ['uid'] },
@@ -102,9 +86,7 @@ export const magentoTypePolicies: TypedTypePolicies = {
   // CustomAttributeMetadata: { keyFields: [] },
   Customer: {
     keyFields: [],
-    fields: {
-      custom_attributes: { merge: (_, incoming) => incoming },
-    },
+    fields: { custom_attributes: { merge: (_, incoming) => incoming } },
   },
   // CustomerAddress: { keyFields: ['id'] },
   // CustomerAddressAttribute: { keyFields: false },
@@ -140,10 +122,10 @@ export const magentoTypePolicies: TypedTypePolicies = {
   // DownloadableCartItem: { keyFields: ['uid'] },
   // DownloadableCreditMemoItem: { keyFields: ['id'] },
   // DownloadableInvoiceItem: { keyFields: ['id'] },
-  // DownloadableItemsLinks: { keyFields: ['uid'] },
+  DownloadableItemsLinks: { keyFields: ['uid'] },
   // DownloadableOrderItem: { keyFields: ['id'] },
   // DownloadableProduct: { keyFields: ['uid'] },
-  // DownloadableProductLinks: { keyFields: ['uid'] },
+  DownloadableProductLinks: { keyFields: ['uid'] },
   // DownloadableProductSamples: { keyFields: ['id'] },
   // DownloadableWishlistItem: { keyFields: ['id'] },
   // EntityUrl: { keyFields: ['id'] },
@@ -168,7 +150,7 @@ export const magentoTypePolicies: TypedTypePolicies = {
   // LayerFilter: { keyFields: false },
   // LayerFilterItem: { keyFields: false },
   // LayerFilterItemInterface: { keyFields: false },
-  // MediaGalleryEntry: { keyFields: ['uid'] },
+  MediaGalleryEntry: { keyFields: ['uid'] },
   // MediaGalleryInterface: { keyFields: false },
   // Money: { keyFields: false },
   Order: { keyFields: ['order_number'] },
@@ -196,7 +178,8 @@ export const magentoTypePolicies: TypedTypePolicies = {
   // ProductAttribute: { keyFields: false },
   // ProductDiscount: { keyFields: false },
   // ProductImage: { keyFields: false },
-  // ProductInterface: { keyFields: ['uid'] }, // Handled by dataIdFromObject
+  // ProductInterface: { keyFields: ['uid'] },
+  ...Object.fromEntries(fragments.possibleTypes.ProductInterface.map((type) => [type, ['uid']])),
   // ProductLinks: { keyFields: false },
   // ProductLinksInterface: { keyFields: false },
   // ProductMediaGalleryEntriesContent: { keyFields: false },

@@ -17,5 +17,3 @@ const generateIdentifyer = (s: string) =>
 
 export const getTypePoliciesVersion = (policies: StrictTypedTypePolicies[]) =>
   generateIdentifyer(JSON.stringify(policies))
-
-export const dataIdFromObject: KeyFieldsFunction = () => undefined

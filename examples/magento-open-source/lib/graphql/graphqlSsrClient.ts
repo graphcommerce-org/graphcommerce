@@ -7,7 +7,6 @@ import type {
 import {
   ApolloClient,
   ApolloLink,
-  dataIdFromObject,
   errorLink,
   fragments,
   graphqlConfig,
@@ -36,7 +35,6 @@ function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-c
     cache: new InMemoryCache({
       possibleTypes: fragments.possibleTypes,
       typePolicies: mergeTypePolicies(config.policies),
-      dataIdFromObject,
     }),
     ssrMode: true,
     name: 'ssr',

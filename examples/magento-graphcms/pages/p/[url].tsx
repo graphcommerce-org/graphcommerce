@@ -4,6 +4,7 @@ import {
   PrivateQueryMaskProvider,
   mergeDeep,
   usePrivateQuery,
+  flushMeasurePerf,
 } from '@graphcommerce/graphql'
 import { revalidate } from '@graphcommerce/next-ui'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
@@ -227,7 +228,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       : { href: '/', title: i18n._(/* i18n */ 'Home') }
   const usps = staticClient.query({ query: UspsDocument, fetchPolicy: cacheFirst(staticClient) })
 
-  return {
+  const result = {
     props: {
       urlKey,
       ...(await productPage),
@@ -239,4 +240,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     },
     revalidate: revalidate(),
   }
+  flushMeasurePerf()
+  return result
 }

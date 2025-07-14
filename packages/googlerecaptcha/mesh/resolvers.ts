@@ -1,4 +1,5 @@
-import { storefrontFromContext, type Resolvers } from '@graphcommerce/graphql-mesh'
+import type { Resolvers } from '@graphcommerce/graphql-mesh'
+import { storefrontFromContext } from '@graphcommerce/magento-store'
 
 export const resolvers: Resolvers = {
   Query: {

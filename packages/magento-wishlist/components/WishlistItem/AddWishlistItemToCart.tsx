@@ -1,3 +1,4 @@
+import type { InputMaybe } from '@graphcommerce/graphql-mesh'
 import type {
   AddToCartItemSelector,
   UseAddProductsToCartActionProps,
@@ -7,7 +8,6 @@ import {
   AddProductsToCartQuantity,
   useFormAddProductsToCart,
 } from '@graphcommerce/magento-product'
-import type { InputMaybe } from '@graphcommerce/next-config'
 import { Box } from '@mui/material'
 
 export type AddWishlistItemToCartProps = UseAddProductsToCartActionProps &
