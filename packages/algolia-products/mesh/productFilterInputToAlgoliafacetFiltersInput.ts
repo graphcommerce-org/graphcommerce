@@ -1,5 +1,6 @@
 import type {
   AlgolianumericFilters_Input,
+  InputMaybe,
   ProductAttributeFilterInput,
 } from '@graphcommerce/graphql-mesh'
 import {
@@ -7,7 +8,6 @@ import {
   isFilterTypeMatch,
   isFilterTypeRange,
 } from '@graphcommerce/magento-product'
-import type { InputMaybe } from '@graphcommerce/next-config'
 import type { GetAlgoliaSettingsReturn } from './getAlgoliaSettings'
 import type { GetStoreConfigReturn } from './getStoreConfig'
 import { nonNullable } from './utils'

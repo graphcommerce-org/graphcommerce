@@ -13,7 +13,10 @@ function scopedUid(root: { uid: string } | { id: string }, args: unknown, contex
 
   if (privateContext) {
     Object.entries(privateContext).forEach(([key, value]) => {
-      if (Array.isArray(value)) value.forEach((v) => params.append(key, v))
+      if (Array.isArray(value))
+        value.forEach((v) => {
+          if (v) params.append(key, v)
+        })
       else if (typeof value === 'string') params.set(key, value)
       else if (typeof value === 'boolean') params.set(key, value.toString())
     })

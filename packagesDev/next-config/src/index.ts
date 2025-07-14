@@ -7,8 +7,15 @@ export * from './utils/isMonorepo'
 export * from './utils/resolveDependenciesSync'
 export * from './utils/packageRoots'
 export * from './utils/sig'
+export {
+  type GraphCommerceConfig,
+  GraphCommerceConfigSchema,
+  type GraphCommerceStorefrontConfig,
+  GraphCommerceStorefrontConfigSchema,
+  type GraphCommerceDebugConfig,
+  GraphCommerceDebugConfigSchema,
+} from './generated/config'
 export * from './withGraphCommerce'
-export * from './generated/config'
 export * from './config'
 export * from './interceptors/commands/codegenInterceptors'
 export * from './commands/copyFiles'

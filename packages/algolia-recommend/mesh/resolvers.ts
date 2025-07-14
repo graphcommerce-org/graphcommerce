@@ -2,6 +2,7 @@
 import type {
   AlgoliaLookingSimilarInput,
   AlgoliaRelatedProductsInput,
+  Maybe,
   MeshContext,
   ProductInterfaceResolvers,
   ResolverFn,
@@ -10,11 +11,7 @@ import type {
   ResolversTypes,
 } from '@graphcommerce/graphql-mesh'
 import fragments from '@graphcommerce/graphql/generated/fragments.json'
-import type {
-  GraphCommerceAlgoliaRecommendationLocation,
-  InputMaybe,
-  Maybe,
-} from '@graphcommerce/next-config'
+import type { GraphCommerceConfig } from '@graphcommerce/next-config'
 import { createProductMapper } from './createProductMapper'
 import { createFacetValueMapper } from './createValueFacetMapper'
 import { getRecommendationsArgs } from './getRecommendationArgs'
@@ -66,13 +63,11 @@ const resolvers: Resolvers = {
   },
 }
 
-function isEnabled(location: InputMaybe<GraphCommerceAlgoliaRecommendationLocation> | undefined) {
+function isEnabled(location: GraphCommerceConfig['algolia']['lookingSimilar'] | undefined) {
   return location && location !== 'DISABLED'
 }
 
-function enumToLocation(
-  location: InputMaybe<GraphCommerceAlgoliaRecommendationLocation> | undefined,
-) {
+function enumToLocation(location: GraphCommerceConfig['algolia']['lookingSimilar'] | undefined) {
   if (!isEnabled(location)) throw Error('Check for isEnabled before calling this function')
   if (location === 'CROSSSELL_PRODUCTS') return 'crosssell_products' as const
   if (location === 'UPSELL_PRODUCTS') return 'upsell_products' as const
