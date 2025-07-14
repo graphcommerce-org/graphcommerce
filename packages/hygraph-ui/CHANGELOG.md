@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.51
+
+### Patch Changes
+
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`6e2714c`](https://github.com/graphcommerce-org/graphcommerce/commit/6e2714ccae22b806792891928a7ec9a14c272e66) - Solve issue where cached data was stale ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.50
 
 ## 9.1.0-canary.49

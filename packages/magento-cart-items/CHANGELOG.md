@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.51
+
+### Patch Changes
+
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`47daa19`](https://github.com/graphcommerce-org/graphcommerce/commit/47daa19a848acc85b0a9b84e6fda89da92128565) - Solve issue where if a product wasn't available in the cart anymore from the server the user wouldn't be able to remove the item from the cart. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.50
 
 ## 9.1.0-canary.49

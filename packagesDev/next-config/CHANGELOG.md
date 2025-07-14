@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.51
+
+### Patch Changes
+
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`6492d81`](https://github.com/graphcommerce-org/graphcommerce/commit/6492d819a858ffdc01a97e6914053e9cc14c8fc5) - Reduce exported scope of config so we dont introduce a hidden dependency on Magento ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.50
 
 ## 9.1.0-canary.49

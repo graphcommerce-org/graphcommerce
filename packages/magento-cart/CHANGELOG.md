@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.51
+
+### Patch Changes
+
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`1f37f05`](https://github.com/graphcommerce-org/graphcommerce/commit/1f37f05200e3015bf36d450bffff40c5d551ec54) - Forwarded ref to AddProductsToCartButton ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.50
 
 ## 9.1.0-canary.49

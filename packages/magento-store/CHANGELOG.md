@@ -1,5 +1,19 @@
 # Change Log
 
+## 9.1.0-canary.51
+
+### Minor Changes
+
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`958dcb6`](https://github.com/graphcommerce-org/graphcommerce/commit/958dcb62d5abb3427a38e2a4583897f3e2043cc4) - Intoduce a new Product-`uid` to solve an issue where cache normalization was not working properly on the frontend when viewing products with a differen curreny, etc.
+
+  Products now have a more detailed `uid` which will include the scope the product is retrieved from. For example: `NDg5MDM=?store=nl_NL&currencyCode=EUR`. This results in a better cache normalization in Apollo Client and allows for switching between scopes (store/currency/price views/accounts) without creating a broken cache state.
+
+  We have implemented this with a new resolver that rewrites the `uid` passed from Magento to the Mesh Resolver, and additing additonal data to the `uid` based on the headers passed from the client. This also requires each package to implement the `getPrivateQueryContextMesh` method to retrieve the current PrivateQuery context from the GraphQL request headers. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`31397f9`](https://github.com/graphcommerce-org/graphcommerce/commit/31397f9c5b2d85895d6e00732b2e3d7a99ffee53) - Solve issue where a magento store reference was added to the graphql-mesh package. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.50
 
 ## 9.1.0-canary.49

@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.51
+
+### Patch Changes
+
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`31397f9`](https://github.com/graphcommerce-org/graphcommerce/commit/31397f9c5b2d85895d6e00732b2e3d7a99ffee53) - Solve issue where a magento store reference was added to the graphql-mesh package. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.50
 
 ## 9.1.0-canary.49
