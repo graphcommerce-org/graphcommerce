@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.52
+
+### Patch Changes
+
+- [`abdda4c`](https://github.com/graphcommerce-org/graphcommerce/commit/abdda4c052cdf0452dfe0daa36866541ccf502f0) - Solve issue where Specs table values would still be shown when the value would be '0' ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.51
 
 ## 9.1.0-canary.50

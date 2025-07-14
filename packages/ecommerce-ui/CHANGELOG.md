@@ -1,5 +1,11 @@
 # @graphcommerce/ecommerce-ui
 
+## 9.1.0-canary.52
+
+### Patch Changes
+
+- [`ea7af54`](https://github.com/graphcommerce-org/graphcommerce/commit/ea7af54048506228b6fde04d3bba764358b7f7e0) - Round step increment also max to two decimals as we might else get very long numbers ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.51
 
 ## 9.1.0-canary.50
