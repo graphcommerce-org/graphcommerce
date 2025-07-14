@@ -1,18 +1,18 @@
 import { withGraphCommerce } from '@graphcommerce/next-config'
 import withSerwistInit from '@serwist/next'
 import dotenv from 'dotenv'
+import type { NextConfig } from 'next'
 
 dotenv.config()
 
 const withPWA = withSerwistInit({
-  // disable: process.env.NODE_ENV === 'development',
+  disable: process.env.NODE_ENV === 'development',
   swSrc: 'lib/sw.ts',
   swDest: 'public/sw.js',
-  exclude: [/sitemap/, /robots/, 'sw.js'],
+  exclude: [/sitemap/, /robots/, 'sw.js', /\.(js|css)\.map$/, /\.well-known\//],
 })
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   onDemandEntries: {
     maxInactiveAge: 1000 * 60 * 10,
     pagesBufferLength: 10,
