@@ -1,3 +1,4 @@
+import { useApolloClient } from '@graphcommerce/graphql'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart/hooks'
 import type { UseFormGraphQlOptions } from '@graphcommerce/react-hook-form'
 import type { DistributedOmit } from 'type-fest'
@@ -17,10 +18,15 @@ export type UseRemoveItemFromCartProps = DistributedOmit<CartItemFragment, '__ty
 export function useRemoveItemFromCart(props: UseRemoveItemFromCartProps) {
   const { uid, errors, ...options } = props
 
-  const form = useFormGqlMutationCart(RemoveItemFromCartDocument, {
-    defaultValues: { uid },
-    ...options,
-  })
+  const client = useApolloClient()
+  const form = useFormGqlMutationCart(
+    RemoveItemFromCartDocument,
+    {
+      defaultValues: { uid },
+      ...options,
+    },
+    { onError: () => client.refetchQueries({ include: ['CartPage'] }) },
+  )
 
   const { handleSubmit } = form
   const submit = handleSubmit(() => {})
