@@ -34,6 +34,13 @@ const { withState } = extendableComponent<OwnerState, typeof componentName, type
   parts,
 )
 
+const roundStep = (value: number, step: number) => {
+  // Round to nearest step
+  const newStepValue = Math.round(value / step) * step
+  // Round to max 2 decimals
+  return Math.round(newStepValue * 100) / 100
+}
+
 /** @public */
 function NumberFieldElementBase(props: NumberFieldElementProps) {
   const {
@@ -139,7 +146,7 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
               )
                 return
               // Round to nearest step
-              onChange(Math.round((valueAsNumber - step) / step) * step)
+              onChange(roundStep(valueAsNumber - step, step))
             }}
             sx={{
               boxShadow: variant === 'standard' ? 4 : 0,
@@ -161,7 +168,7 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
             onClick={() => {
               if (valueAsNumber >= (inputProps.max ?? Infinity)) return
               // Round to nearest step
-              onChange(Math.round((valueAsNumber + step) / step) * step)
+              onChange(roundStep(valueAsNumber + step, step))
             }}
             sx={{
               boxShadow: variant === 'standard' ? 4 : 0,
