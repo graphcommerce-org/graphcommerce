@@ -10,7 +10,7 @@ import fragments from '../../generated/fragments.json'
 import { createCacheReviver } from './createCacheReviver'
 import { errorLink } from './errorLink'
 import { measurePerformanceLink } from './measurePerformanceLink'
-import { dataIdFromObject, mergeTypePolicies } from './typePolicies'
+import { mergeTypePolicies } from './typePolicies'
 
 export const globalApolloClient: { current: ApolloClient<NormalizedCacheObject> | null } = {
   current: null,
@@ -47,7 +47,6 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
       new InMemoryCache({
         possibleTypes: fragments.possibleTypes,
         typePolicies: mergeTypePolicies(config.current.policies),
-        dataIdFromObject,
       }),
     [],
   )
