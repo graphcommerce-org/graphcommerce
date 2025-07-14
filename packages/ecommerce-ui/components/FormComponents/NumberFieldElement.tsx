@@ -34,11 +34,10 @@ const { withState } = extendableComponent<OwnerState, typeof componentName, type
   parts,
 )
 
-const roundStep = (value: number, step: number) => {
-  // Round to nearest step
-  const newStepValue = Math.round(value / step) * step
-  // Round to max 2 decimals
-  return Math.round(newStepValue * 100) / 100
+// Add precision rounding helper
+const roundToPrecision = (num: number, precision: number = 2): number => {
+  const factor = Math.pow(10, precision)
+  return Math.round(num * factor) / factor
 }
 
 /** @public */
@@ -94,7 +93,7 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
       {...rest}
       onBlur={onBlur}
       disabled={disabled}
-      inputRef={useForkRef(ref, rest.inputRef)}
+      inputRef={useForkRef(ref, rest.inputRef, inputRef)}
       value={value ?? ''}
       onChange={(ev) => {
         const newValue = (ev.target as HTMLInputElement).valueAsNumber
@@ -145,8 +144,9 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
                 (inputProps.min === 0 && valueAsNumber <= inputProps.min)
               )
                 return
-              // Round to nearest step
-              onChange(roundStep(valueAsNumber - step, step))
+              // Round to nearest step with precision fix
+              const newValue = roundToPrecision(Math.round((valueAsNumber - step) / step) * step)
+              onChange(newValue)
             }}
             sx={{
               boxShadow: variant === 'standard' ? 4 : 0,
@@ -167,8 +167,9 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
             size='smaller'
             onClick={() => {
               if (valueAsNumber >= (inputProps.max ?? Infinity)) return
-              // Round to nearest step
-              onChange(roundStep(valueAsNumber + step, step))
+              // Round to nearest step with precision fix
+              const newValue = roundToPrecision(Math.round((valueAsNumber + step) / step) * step)
+              onChange(newValue)
             }}
             sx={{
               boxShadow: variant === 'standard' ? 4 : 0,
