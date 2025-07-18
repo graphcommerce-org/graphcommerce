@@ -22,8 +22,8 @@ type UseFormGraphQLCallbacks<Q, V extends FieldValues> = {
    * Allows you to modify the variablels computed by the form to make it compatible with the GraphQL
    * Mutation.
    *
-   * When returning false, it will silently stop the submission. When an error is thrown, it will be
-   * set as an ApolloError
+   * When returning false, it will SKIP the submission. When an Error is thrown, it will be set as
+   * an ApolloError.
    */
   onBeforeSubmit?: (variables: V, form?: UseFormReturn<V>) => V | false | Promise<V | false>
   /**
@@ -189,10 +189,7 @@ export function useFormGql<Q, V extends FieldValues>(
         return
       }
 
-      if (onBeforeSubmitResult === false) {
-        form.setError('root', { message: 'Form submission cancelled' })
-        return
-      }
+      if (onBeforeSubmitResult === false) return
 
       variables = onBeforeSubmitResult
 
