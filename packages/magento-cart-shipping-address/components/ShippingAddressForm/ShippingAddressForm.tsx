@@ -20,6 +20,7 @@ import {
   CustomerDocument,
   NameFields,
   useCustomerQuery,
+  useImmutableBillingAddress,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Form, FormRow } from '@graphcommerce/next-ui'
@@ -52,6 +53,8 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
   const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
   const { data: customerQuery } = useCustomerQuery(CustomerDocument)
 
+  const immutableBillingAddress = useImmutableBillingAddress()
+
   const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase()
 
   const shippingAddress = cartQuery?.cart?.shipping_addresses?.[0]
@@ -83,6 +86,11 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
   if (isVirtual) {
     currentAddress = billingAddress
     Mutation = SetBillingAddressDocument
+  }
+
+  // If the immutableBillingAddress permission is true we are never allowed to update the billing address.
+  if (immutableBillingAddress) {
+    Mutation = SetShippingAddressDocument
   }
 
   const form = useFormGqlMutationCart(Mutation, {

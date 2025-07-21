@@ -1,4 +1,5 @@
 <!-- Automatically generated from Config.graphqls -->
+
 ### DatalayerConfig
 
 GoogleDatalayerConfig to allow enabling certain aspects of the datalayer
@@ -9,19 +10,27 @@ Enable core web vitals tracking for GraphCommerce
 
 # GraphCommerce configuration system
 
-Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file
-in the root of your project and are automatically validated on startup.
+Global GraphCommerce configuration can be configured in your
+`graphcommerce.config.js` file in the root of your project and are automatically
+validated on startup.
 
 ## Configuring with the configuration file.
 
-The configuration file is a javascript file that exports a `GraphCommerceConfig` object. See graphcommerce.config.js.example for an example.
+The configuration file is a javascript file that exports a `GraphCommerceConfig`
+object. See graphcommerce.config.js.example for an example.
 
 ## Using configuration
 
-Configuration can be accessed in your project with the `import.meta.graphCommerce` object.
+Configuration can be accessed in your project with the
+`import.meta.graphCommerce` object.
 
 ```tsx
-import { storefrontAll, storefrontConfig, storefrontConfigDefault, useStorefrontConfig } from '@graphcommerce/next-ui'
+import {
+  storefrontAll,
+  storefrontConfig,
+  storefrontConfigDefault,
+  useStorefrontConfig,
+} from '@graphcommerce/next-ui'
 
 // Accessing a global value
 const globalConf = import.meta.graphCommerce.cartDisplayPricesInclTax
@@ -35,7 +44,8 @@ function MyComponent() {
 
   // Or as single line
   const scopedConfigWithFallback2 =
-    useStorefrontConfig().cartDisplayPricesInclTax ?? import.meta.graphCommerce.cartDisplayPricesInclTax
+    useStorefrontConfig().cartDisplayPricesInclTax ??
+    import.meta.graphCommerce.cartDisplayPricesInclTax
 
   return <div>{googleRecaptchaKey}</div>
 }
@@ -50,17 +60,19 @@ endpoint: '{graphCommerce.magentoEndpoint}'
 
 ## Environment variables to override configuration
 
-Configuration values can be overwriten by environment variables, with the following rules:
+Configuration values can be overwriten by environment variables, with the
+following rules:
+
 - Convert from camelCase to `SCREAMING_SNAKE_CASE`
 - Prefix with `GC_`
 - Arrays can be indexed with `_0`, `_1`, `_2`, etc.
 - Objects can be accessed with `_<key>`.
 
 Examples:
+
 - `limitSsg` -> `GC_LIMIT_SSG="1"`
 - `storefront[0].locale` -> `GC_STOREFRONT_0_LOCALE="en"`
 - `debug.pluginStatus` -> `GC_DEBUG_PLUGIN_STATUS="1"`
-
 
 ## Exporting current configuration to environment variables
 
@@ -68,7 +80,8 @@ You can export configuration by running `yarn graphcommerce export-config`
 
 ## Extending the configuration in your project
 
-Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceStorefrontConfig inputs to add configuration.
+Create a graphql/Config.graphqls file in your project and extend the
+GraphCommerceConfig, GraphCommerceStorefrontConfig inputs to add configuration.
 
 ```graphql
 extend input GraphCommerceConfig {
@@ -90,6 +103,7 @@ Below is a list of all possible configurations that can be set by GraphCommerce.
 The canonical base URL is used for SEO purposes.
 
 Examples:
+
 - https://example.com
 - https://example.com/en
 - https://example.com/en-US
@@ -98,7 +112,8 @@ Examples:
 
 The HyGraph endpoint.
 
-> Read-only endpoint that allows low latency and high read-throughput content delivery.
+> Read-only endpoint that allows low latency and high read-throughput content
+> delivery.
 
 Project settings -> API Access -> High Performance Read-only Content API
 
@@ -107,6 +122,7 @@ Project settings -> API Access -> High Performance Read-only Content API
 GraphQL Magento endpoint.
 
 Examples:
+
 - https://magento2.test/graphql
 
 #### magentoVersion: number (required)
@@ -125,7 +141,8 @@ Configuration for the SidebarGallery component
 
 #### cartDisplayPricesInclTax: boolean
 
-Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.
+Due to a limitation of the GraphQL API it is not possible to determine if a cart
+should be displayed including or excluding tax.
 
 When Magento's StoreConfig adds this value, this can be replaced.
 
@@ -135,25 +152,30 @@ Use compare functionality
 
 #### compareVariant: CHECKBOX | ICON = `ICON`
 
-By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).
-This may be fine for experienced users, but for more clarity it's also possible to present the compare feature as a CHECKBOX accompanied by the 'Compare' label
+By default the compare feature is denoted with a 'compare ICON' (2 arrows facing
+one another). This may be fine for experienced users, but for more clarity it's
+also possible to present the compare feature as a CHECKBOX accompanied by the
+'Compare' label
 
 #### configurableVariantForSimple: boolean = `false`
 
-If a simple product is part of a Configurable product page, should the simple product be
-rendered as a configured option of the configurable product page?
+If a simple product is part of a Configurable product page, should the simple
+product be rendered as a configured option of the configurable product page?
 
 How does this work:
 
-When the `products(filters: { url_key: { eq: 'simple-product' } }) { ... }` query is ran,
-Magento also returns the Simple product and the Configurable product the simple belongs to.
+When the `products(filters: { url_key: { eq: 'simple-product' } }) { ... }`
+query is ran, Magento also returns the Simple product and the Configurable
+product the simple belongs to.
 
-If that is the case we render the configurable product page instead of the simple product page but
-the options to select the simple product are pre-selected.
+If that is the case we render the configurable product page instead of the
+simple product page but the options to select the simple product are
+pre-selected.
 
 #### configurableVariantValues: [MagentoConfigurableVariantValues](#MagentoConfigurableVariantValues) = `{ content: true, url: true }`
 
-When a user selects a variant, it will switch the values on the configurable page with the values of the configured variant.
+When a user selects a variant, it will switch the values on the configurable
+page with the values of the configured variant.
 
 Enabling options here will allow switching of those variants.
 
@@ -167,13 +189,16 @@ Configures the max width of the shell (header, footer, overlays, etc.)
 
 #### crossSellsHideCartItems: boolean = `false`
 
-Determines if cross sell items should be shown when the user already has the product in their cart. This will result in a product will popping off the screen when you add it to the cart.
+Determines if cross sell items should be shown when the user already has the
+product in their cart. This will result in a product will popping off the screen
+when you add it to the cart.
 
 Default: 'false'
 
 #### crossSellsRedirectItems: boolean = `false`
 
-Determines if, after adding a cross-sell item to the cart, the user should be redirected to the cross-sell items of the product they just added.
+Determines if, after adding a cross-sell item to the cart, the user should be
+redirected to the cross-sell items of the product they just added.
 
 Default: 'false'
 
@@ -184,6 +209,7 @@ Enables the shipping notes field in the checkout
 #### customerCompanyFieldsEnable: boolean
 
 Enables company fields inside the checkout:
+
 - Company name
 - VAT ID
 
@@ -193,7 +219,9 @@ Enable customer account deletion through the account section
 
 #### customerXMagentoCacheIdDisable: boolean
 
-X-Magento-Cache-Id allows Varnish to cache requests that are made in the browser while users are logged in. For example the products query can now be cached for logged in users.
+X-Magento-Cache-Id allows Varnish to cache requests that are made in the browser
+while users are logged in. For example the products query can now be cached for
+logged in users.
 
 This can be disabled when Varnish is running out of available memory.
 
@@ -215,11 +243,12 @@ Enables some demo specific code that is probably not useful for a project:
 
 #### enableGuestCheckoutLogin: boolean
 
-Enable Guest Checkout Login:
-During customer login, GraphCommerce queries Magento to determine whether
-the customer account already exists or not. If not, the sign-up form is shown instead.
+Enable Guest Checkout Login: During customer login, GraphCommerce queries
+Magento to determine whether the customer account already exists or not. If not,
+the sign-up form is shown instead.
 
-For Magento versions, 2.4.7, 2.4.6-p1 and up, 2.4.5-p3 and up, 2.4.4-p4 and up, the following setting must be set to Yes
+For Magento versions, 2.4.7, 2.4.6-p1 and up, 2.4.5-p3 and up, 2.4.4-p4 and up,
+the following setting must be set to Yes
 
 `Stores -> Configuration -> Sales -> Checkout -> Checkout Options -> Enable Guest Checkout Login`
 
@@ -237,38 +266,42 @@ To create an assetlinks.json file for the Android app.
 
 #### googleRecaptchaKey: string
 
-Google reCAPTCHA site key.
-When using reCAPTCHA, this value is required, even if you are configuring different values for each locale.
+Google reCAPTCHA site key. When using reCAPTCHA, this value is required, even if
+you are configuring different values for each locale.
 
-Get a site key and a secret key from https://developers.google.com/recaptcha/docs/v3
+Get a site key and a secret key from
+https://developers.google.com/recaptcha/docs/v3
 
-The secret key should be added in the Magento admin panel (Stores > Configuration > Security > Google ReCAPTCHA Storefront > reCAPTCHA v3 Invisible)
-ReCAPTCHA can then be enabled/disabled for the different forms, separately (Stores > Configuration > Security > Google ReCAPTCHA Storefront > Storefront)
+The secret key should be added in the Magento admin panel (Stores >
+Configuration > Security > Google ReCAPTCHA Storefront > reCAPTCHA v3 Invisible)
+ReCAPTCHA can then be enabled/disabled for the different forms, separately
+(Stores > Configuration > Security > Google ReCAPTCHA Storefront > Storefront)
 
 #### googleTagmanagerId: string
 
 The Google Tagmanager ID to be used on the site.
 
-This value is required even if you are configuring different values for each locale.
+This value is required even if you are configuring different values for each
+locale.
 
 #### graphqlMeshEditMode: boolean = `false`
 
-The GraphQL Mesh will be loaded once and any modifications to resolvers will be ignored. When developing
-new resolvers this should be set to true.
+The GraphQL Mesh will be loaded once and any modifications to resolvers will be
+ignored. When developing new resolvers this should be set to true.
 
 #### hygraphManagementApi: string
 
 Hygraph Management API. **Only used for migrations.**
 
-Optional: If the hygraphEndpoint is configured with the 'High Performance Content
-API', this field is not required.
+Optional: If the hygraphEndpoint is configured with the 'High Performance
+Content API', this field is not required.
 
 #### hygraphProjectId: string
 
 Hygraph Project ID. **Only used for migrations.**
 
-Optional: If the hygraphEndpoint is configured with the 'High Performance Content
-API', this field is not required.
+Optional: If the hygraphEndpoint is configured with the 'High Performance
+Content API', this field is not required.
 
 #### hygraphWriteAccessToken: string
 
@@ -276,25 +309,28 @@ Hygraph Management SDK Authorization Token. **Only used for migrations.**
 
 Project settings -> API Access -> Permanent Auth Tokens
 
-1. Click  'Add token' and give it a name, something like 'GraphCommerce Write Access Token' and keep stage on 'Published'.
+1. Click 'Add token' and give it a name, something like 'GraphCommerce Write
+   Access Token' and keep stage on 'Published'.
 2. Under 'Management API', click 'Yes, Initialize defaults'
-3. Click 'Edit Permissions' and enable: 'Update' and 'Delete' permissions for 'models', 'enumerations', 'fields', 'components' and 'sources'
-  - Update existing models
-  - Delete existing models
-  - Update existing fields
-  - Delete existing fields
-  - Update existing enumerations
-  - Delete existing enumerations
-  - Update existing components
-  - Delete existing components
-  - Update remote sources
-  - Delete remote sources
-  - Read existing environments
-  - Read public content views
-  - Create public content views
-  - Update public content views
-  - Delete public content views
-  - Can see schema view
+3. Click 'Edit Permissions' and enable: 'Update' and 'Delete' permissions for
+   'models', 'enumerations', 'fields', 'components' and 'sources'
+
+- Update existing models
+- Delete existing models
+- Update existing fields
+- Delete existing fields
+- Update existing enumerations
+- Delete existing enumerations
+- Update existing components
+- Delete existing components
+- Update remote sources
+- Delete remote sources
+- Read existing environments
+- Read public content views
+- Create public content views
+- Update public content views
+- Delete public content views
+- Can see schema view
 
 ```
 GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
@@ -305,11 +341,14 @@ yarn graphcommerce hygraph-migrate
 
 Limit the static generation of SSG when building.
 
-By default GraphCommerce will statically generate all product and category pages during build. This can take quite a long time, to skip this step set this value to true.
+By default GraphCommerce will statically generate all product and category pages
+during build. This can take quite a long time, to skip this step set this value
+to true.
 
 #### permissions: [GraphCommercePermissions](#GraphCommercePermissions)
 
-Allows the option to require login or completely disable certain sections of the site, can be overriden per storeview with the storefrontConfig
+Allows the option to require login or completely disable certain sections of the
+site, can be overriden per storeview with the storefrontConfig
 
 #### previewSecret: string
 
@@ -317,9 +356,9 @@ To enable next.js' preview mode, configure the secret you'd like to use.
 
 #### productFiltersLayout: DEFAULT | SIDEBAR = `DEFAULT`
 
-Layout how the filters are rendered.
-DEFAULT: Will be rendered as horzontal chips on desktop and mobile
-SIDEBAR: Will be rendered as a sidebar on desktop and horizontal chips on mobile
+Layout how the filters are rendered. DEFAULT: Will be rendered as horzontal
+chips on desktop and mobile SIDEBAR: Will be rendered as a sidebar on desktop
+and horizontal chips on mobile
 
 #### productFiltersPro: boolean
 
@@ -329,15 +368,14 @@ Product filters with better UI for mobile and desktop.
 
 Pagination variant for the product listings.
 
-COMPACT means: "< Page X of Y >"
-EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
+COMPACT means: "< Page X of Y >" EXTENDED means: "< 1 2 ... 4 [5] 6 ... 10 11 >"
 
 #### productRoute: string
 
-By default we route products to /p/[url] but you can change this to /product/[url] if you wish.
+By default we route products to /p/[url] but you can change this to
+/product/[url] if you wish.
 
-Default: '/p/'
-Example: '/product/'
+Default: '/p/' Example: '/product/'
 
 #### recentlyViewedProducts: [RecentlyViewedProductsConfig](#RecentlyViewedProductsConfig)
 
@@ -345,8 +383,8 @@ Settings for recently viewed products
 
 #### robotsAllow: boolean
 
-Allow the site to be indexed by search engines.
-If false, the robots.txt file will be set to disallow all.
+Allow the site to be indexed by search engines. If false, the robots.txt file
+will be set to disallow all.
 
 #### sidebarGallery: [SidebarGalleryConfig](#SidebarGalleryConfig)
 
@@ -378,22 +416,27 @@ Enable debugging interface to debug sessions
 
 #### webpackCircularDependencyPlugin: boolean
 
-Cyclic dependencies can cause memory issues and other strange bugs.
-This plugin will warn you when it detects a cyclic dependency.
+Cyclic dependencies can cause memory issues and other strange bugs. This plugin
+will warn you when it detects a cyclic dependency.
 
 When running into memory issues, it can be useful to enable this plugin.
 
 #### webpackDuplicatesPlugin: boolean
 
-When updating packages it can happen that the same package is included with different versions in the same project.
+When updating packages it can happen that the same package is included with
+different versions in the same project.
 
 Issues that this can cause are:
-- The same package is included multiple times in the bundle, increasing the bundle size.
-- The Typescript types of the package are not compatible with each other, causing Typescript errors.
+
+- The same package is included multiple times in the bundle, increasing the
+  bundle size.
+- The Typescript types of the package are not compatible with each other,
+  causing Typescript errors.
 
 ### GraphCommerceGooglePlaystoreConfig
 
-See https://developer.android.com/training/app-links/verify-android-applinks#web-assoc
+See
+https://developer.android.com/training/app-links/verify-android-applinks#web-assoc
 
 #### packageName: string (required)
 
@@ -409,15 +452,22 @@ Permissions input
 
 #### cart: CUSTOMER_ONLY | DISABLED | ENABLED
 
-Changes the availability of the add to cart buttons and the cart page to either customer only or completely disables it.
+Changes the availability of the add to cart buttons and the cart page to either
+customer only or completely disables it.
 
 #### checkout: CUSTOMER_ONLY | DISABLED | ENABLED
 
-Changes the availability of the checkout to either customer only or completely disables it.
+Changes the availability of the checkout to either customer only or completely
+disables it.
 
 #### customerAccount: DISABLED | DISABLE_REGISTRATION | ENABLED
 
-Enables / disabled the account section of the website. DISABLE_REGISTRATION will only disable the registration page.
+Enables / disabled the account section of the website. DISABLE_REGISTRATION will
+only disable the registration page.
+
+#### immutableBillingAddress: boolean
+
+Prevents the user from updating their billing address through the front-end
 
 #### website: ENABLED
 
@@ -429,9 +479,12 @@ All storefront configuration for the project
 
 #### locale: string (required)
 
-Must be a [locale string](https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers) for automatic redirects to work.
+Must be a
+[locale string](https://www.unicode.org/reports/tr35/tr35-59/tr35.html#Identifiers)
+for automatic redirects to work.
 
-This value can be used as a sub-path identifier only, make sure linguiLocale is configured for each URL.
+This value can be used as a sub-path identifier only, make sure linguiLocale is
+configured for each URL.
 
 #### magentoStoreCode: string (required)
 
@@ -440,6 +493,7 @@ Magento store code.
 Stores => All Stores => [Store View] => Store View Code
 
 Examples:
+
 - default
 - en-us
 - b2b-us
@@ -449,23 +503,27 @@ Examples:
 The canonical base URL is used for SEO purposes.
 
 Examples:
+
 - https://example.com
 - https://example.com/en
 - https://example.com/en-US
 
 #### cartDisplayPricesInclTax: boolean
 
-Due to a limitation of the GraphQL API it is not possible to determine if a cart should be displayed including or excluding tax.
+Due to a limitation of the GraphQL API it is not possible to determine if a cart
+should be displayed including or excluding tax.
 
 #### customerCompanyFieldsEnable: boolean
 
 Enables company fields inside the checkout:
+
 - Company name
 - VAT ID
 
 #### defaultLocale: boolean
 
 There can only be one entry with defaultLocale set to true.
+
 - If there are more, the first one is used.
 - If there is none, the first entry is used.
 
@@ -489,37 +547,44 @@ The Google Tagmanager ID to be used per locale.
 
 #### hygraphLocales: string[]
 
-Add a gcms-locales header to make sure queries return in a certain language, can be an array to define fallbacks.
+Add a gcms-locales header to make sure queries return in a certain language, can
+be an array to define fallbacks.
 
 #### linguiLocale: string
 
-Custom locale used to load the .po files. Must be a valid locale, also used for Intl functions.
+Custom locale used to load the .po files. Must be a valid locale, also used for
+Intl functions.
 
 #### permissions: [GraphCommercePermissions](#GraphCommercePermissions)
 
-Allows the option to require login or completely disable certain sections of the site on a per store basis
+Allows the option to require login or completely disable certain sections of the
+site on a per store basis
 
 #### robotsAllow: boolean
 
-Allow the site to be indexed by search engines.
-If false, the robots.txt file will be set to disallow all.
+Allow the site to be indexed by search engines. If false, the robots.txt file
+will be set to disallow all.
 
 ### MagentoConfigurableVariantValues
 
-Options to configure which values will be replaced when a variant is selected on the product page.
+Options to configure which values will be replaced when a variant is selected on
+the product page.
 
 #### content: boolean
 
-Use the name, description, short description and meta data from the configured variant
+Use the name, description, short description and meta data from the configured
+variant
 
 #### gallery: boolean
 
-This option enables the automatic update of product gallery images on the product page when a variant is selected,
-provided that the gallery images for the selected variant differ from the currently displayed images.
+This option enables the automatic update of product gallery images on the
+product page when a variant is selected, provided that the gallery images for
+the selected variant differ from the currently displayed images.
 
 #### url: boolean
 
-When a variant is selected the URL of the product will be changed in the address bar.
+When a variant is selected the URL of the product will be changed in the address
+bar.
 
 This only happens when the actual variant is can be accessed by the URL.
 
@@ -537,7 +602,8 @@ Number of recently viewed products to be stored in localStorage
 
 ### SidebarGalleryConfig
 
-SidebarGalleryConfig will contain all configuration values for the Sidebar Gallery component.
+SidebarGalleryConfig will contain all configuration values for the Sidebar
+Gallery component.
 
 #### paginationVariant: DOTS | THUMBNAILS_BOTTOM
 

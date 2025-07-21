@@ -4,8 +4,9 @@ import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import type { SxProps, Theme } from '@mui/material'
+import { type SxProps, type Theme } from '@mui/material'
 import { useRouter } from 'next/router'
+import { useImmutableBillingAddress } from '../../hooks'
 import type { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import { AddressFields } from '../AddressFields/AddressFields'
 import { CompanyFields } from '../CompanyFields'
@@ -24,10 +25,12 @@ export function EditAddressForm(props: EditAddressFormProps) {
   const { address, sx } = props
 
   const router = useRouter()
+  const immutableBillingAddress = useImmutableBillingAddress()
 
   const form = useFormGqlMutation(
     UpdateCustomerAddressDocument,
     {
+      disabled: immutableBillingAddress && (address?.default_billing ?? false),
       defaultValues: {
         id: address?.id ?? undefined,
         firstname: address?.firstname,
@@ -97,17 +100,21 @@ export function EditAddressForm(props: EditAddressFormProps) {
           />
         </FormRow>
 
-        <FormActions sx={{ paddingBottom: 0 }}>
-          <Button
-            type='submit'
-            variant='pill'
-            color='primary'
-            size='large'
-            loading={formState.isSubmitting}
-          >
-            <Trans id='Save changes' />
-          </Button>
-        </FormActions>
+        {immutableBillingAddress && address?.default_billing ? (
+          <Trans id='You can not change this address as it is your billing address. Not correct? Please contact our support to update this.' />
+        ) : (
+          <FormActions sx={{ paddingBottom: 0 }}>
+            <Button
+              type='submit'
+              variant='pill'
+              color='primary'
+              size='large'
+              loading={formState.isSubmitting}
+            >
+              <Trans id='Save changes' />
+            </Button>
+          </FormActions>
+        )}
       </Form>
 
       <ApolloErrorSnackbar error={error} />

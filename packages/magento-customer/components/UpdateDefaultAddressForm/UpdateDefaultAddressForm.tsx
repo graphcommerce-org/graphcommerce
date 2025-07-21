@@ -3,6 +3,7 @@ import { Trans } from '@lingui/react'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { FormControl, FormControlLabel, FormHelperText, Switch } from '@mui/material'
 import React, { useEffect, useMemo } from 'react'
+import { useImmutableBillingAddress } from '../../hooks'
 import type { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import { UpdateDefaultAddressDocument } from '../AccountAddresses/UpdateDefaultAddress.gql'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
@@ -32,6 +33,8 @@ export function UpdateDefaultAddressForm(props: UpdateDefaultAddressFormProps) {
   const { handleSubmit, control, error, reset, formState } = form
 
   const submit = handleSubmit(() => {})
+
+  const immutableBillingAddress = useImmutableBillingAddress()
 
   useEffect(() => {
     reset(defaultValues)
@@ -74,6 +77,7 @@ export function UpdateDefaultAddressForm(props: UpdateDefaultAddressFormProps) {
               onBlur={onBlur}
               name={name}
               onChange={(e) => onChange((e as React.ChangeEvent<HTMLInputElement>).target.checked)}
+              disabled={immutableBillingAddress}
             />
 
             {formState.errors.defaultBilling?.message && (

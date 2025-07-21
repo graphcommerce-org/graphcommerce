@@ -8,6 +8,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { LayoutDocument, LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { getImmutableBillingAddress } from '@graphcommerce/magento-customer'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -47,7 +48,9 @@ EditBillingAddress.pageOptions = pageOptions
 export default EditBillingAddress
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
-  if (getCheckoutIsDisabled(context.locale)) return { notFound: true }
+  if (getCheckoutIsDisabled(context.locale) || getImmutableBillingAddress(context.locale)) {
+    return { notFound: true }
+  }
 
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })

@@ -2,6 +2,7 @@ import { extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Link } from '@mui/material'
+import { useImmutableBillingAddress } from '../../hooks'
 import { AddressMultiLine } from '../AddressMultiLine/AddressMultiLine'
 import { DeleteCustomerAddressForm } from '../DeleteCustomerAddressForm/DeleteCustomerAddressForm'
 import { UpdateDefaultAddressForm } from '../UpdateDefaultAddressForm/UpdateDefaultAddressForm'
@@ -15,6 +16,8 @@ const { classes } = extendableComponent(name, parts)
 
 export function AccountAddress(props: AccountAddressProps) {
   const { id, sx = [], ...addressProps } = props
+
+  const immutableBillingAddress = useImmutableBillingAddress()
 
   return (
     <Box
@@ -48,7 +51,9 @@ export function AccountAddress(props: AccountAddressProps) {
         <Link href={`/account/addresses/edit?addressId=${id}`} color='primary' underline='hover'>
           <Trans id='Edit' />
         </Link>
-        <DeleteCustomerAddressForm addressId={id ?? undefined} />
+        {!(immutableBillingAddress && addressProps.default_billing) && (
+          <DeleteCustomerAddressForm addressId={id ?? undefined} />
+        )}
       </Box>
     </Box>
   )
