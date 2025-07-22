@@ -24,7 +24,6 @@ function InputBaseElementBase(
     defaultValue,
     rules = {},
     shouldUnregister,
-    disabled: disabledField,
     ref,
     ...rest
   } = props
@@ -42,7 +41,6 @@ function InputBaseElementBase(
     rules,
     defaultValue,
     shouldUnregister,
-    disabled: disabledField,
   })
 
   return (

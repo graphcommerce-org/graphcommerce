@@ -56,7 +56,6 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
     required,
     defaultValue,
     variant = 'outlined',
-    disabled: disabledField,
     shouldUnregister,
     ...rest
   } = props
@@ -75,14 +74,13 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
   }
 
   const {
-    field: { value, onChange, ref, onBlur, disabled },
+    field: { value, onChange, ref, onBlur },
     fieldState: { invalid, error },
   } = useController({
     name,
     control,
     rules,
     defaultValue,
-    disabled: disabledField,
     shouldUnregister,
   })
 
@@ -93,7 +91,6 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
     <TextField
       {...rest}
       onBlur={onBlur}
-      disabled={disabled}
       inputRef={useForkRef(ref, rest.inputRef)}
       value={value ?? ''}
       onChange={(ev) => {

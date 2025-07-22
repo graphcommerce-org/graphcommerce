@@ -31,7 +31,6 @@ function SliderElementBase(props: SliderElementProps): JSX.Element {
     required,
     formControlProps,
     defaultValue,
-    disabled: disabledField,
     shouldUnregister,
     ...other
   } = props
@@ -48,7 +47,6 @@ function SliderElementBase(props: SliderElementProps): JSX.Element {
     control,
     rules,
     defaultValue,
-    disabled: disabledField,
     shouldUnregister,
   })
 

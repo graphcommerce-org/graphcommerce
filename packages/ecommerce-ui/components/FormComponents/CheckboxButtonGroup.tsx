@@ -46,7 +46,7 @@ function CheckboxButtonGroupBase(props: CheckboxButtonGroupProps) {
     required,
     labelKey = 'label',
     valueKey = 'id',
-    disabled: disabledField,
+    disabled,
     row,
     control,
     checkboxColor,
@@ -57,14 +57,13 @@ function CheckboxButtonGroupBase(props: CheckboxButtonGroupProps) {
 
   const theme = useTheme()
   const {
-    field: { value = [], onChange, onBlur, ref, disabled },
+    field: { value = [], onChange, onBlur, ref },
     fieldState: { invalid, error },
   } = useController({
     name,
     rules: required ? { required: i18n._(/* i18n */ 'This field is required') } : undefined,
     control,
     defaultValue,
-    disabled: disabledField,
     shouldUnregister,
   })
 
