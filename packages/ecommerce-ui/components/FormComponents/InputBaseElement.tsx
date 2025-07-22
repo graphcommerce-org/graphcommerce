@@ -2,7 +2,7 @@ import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import type { InputBaseProps } from '@mui/material'
-import { InputBase } from '@mui/material'
+import { InputBase, useForkRef } from '@mui/material'
 import React from 'react'
 import type { FieldElementProps } from './types'
 
@@ -25,6 +25,8 @@ function InputBaseElementBase(
     rules = {},
     shouldUnregister,
     ref,
+    inputRef,
+    disabled,
     ...rest
   } = props
 
@@ -47,6 +49,8 @@ function InputBaseElementBase(
     <InputBase
       {...rest}
       {...field}
+      disabled={disabled}
+      inputRef={useForkRef(field.ref, inputRef)}
       ref={ref}
       required={required}
       type={type}
