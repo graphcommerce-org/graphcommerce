@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable @typescript-eslint/no-restricted-imports */
 
 /* eslint-disable prefer-const */
@@ -142,16 +143,31 @@ function getWidths(
 type GenImgAttrsData = {
   src: string
   layout: LayoutValue
-  loader: ImageLoaderWithConfig
+  loader?: ImageLoaderWithConfig
   width?: number
   quality?: number
   sizes: string
   scale: number
-  config: ImageConfig
+  config?: ImageConfig
 }
 
-function generateSrcSet(props: GenImgAttrsData): string {
-  const { src, layout, width, quality = 52, sizes, loader, scale, config } = props
+export function generateSrcSet(props: GenImgAttrsData): string {
+  const defaultConfig = {
+    ...imageConfigEnv,
+    allSizes: [...imageConfigEnv.deviceSizes, ...imageConfigEnv.imageSizes].sort((a, b) => a - b),
+    deviceSizes: imageConfigEnv.deviceSizes.sort((a, b) => a - b),
+  }
+  const {
+    src,
+    layout,
+    width,
+    quality = 52,
+    sizes,
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    loader = defaultImageLoader,
+    scale,
+    config = defaultConfig,
+  } = props
   const { widths, kind } = getWidths(config, width, layout, sizes)
 
   return `${widths
@@ -249,7 +265,7 @@ const Img = styled('img')({})
 const Picture = styled('picture')({})
 
 // eslint-disable-next-line no-underscore-dangle
-const configEnv = process.env.__NEXT_IMAGE_OPTS as unknown as ImageConfigComplete
+export const imageConfigEnv = process.env.__NEXT_IMAGE_OPTS as unknown as ImageConfigComplete
 
 const Image = React.forwardRef<HTMLImageElement, ImageProps>(
   (
@@ -278,7 +294,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
 
     const configContext = useContext(ImageConfigContext)
     const config: ImageConfig = useMemo(() => {
-      const c = configEnv || configContext || imageConfigDefault
+      const c = imageConfigEnv || configContext || imageConfigDefault
       const allSizes = [...c.deviceSizes, ...c.imageSizes].sort((a, b) => a - b)
       const deviceSizes = c.deviceSizes.sort((a, b) => a - b)
       return { ...c, allSizes, deviceSizes }
