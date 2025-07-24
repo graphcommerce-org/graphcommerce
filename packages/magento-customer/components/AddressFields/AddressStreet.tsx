@@ -12,6 +12,7 @@ export function AddressStreet<
   const { control, name, readOnly, required } = form
   return (
     <TextFieldElement
+      {...props}
       variant='outlined'
       control={control}
       required={required[name.street]}

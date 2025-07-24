@@ -13,6 +13,7 @@ export function AddressCity<
 
   return (
     <TextFieldElement
+      {...props}
       control={control}
       name={name.city}
       variant='outlined'
