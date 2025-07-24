@@ -14,9 +14,9 @@ export type CartStartCheckoutProps = {
   disabled?: boolean
   cart?: CartStartCheckoutFragment | null | undefined
   onStart?: (
-    e: React.MouseEvent<HTMLButtonElement>,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     cart: CartStartCheckoutFragment | null | undefined,
-  ) => void
+  ) => Promise<void>
 }
 
 const name = 'CartStartCheckout'
@@ -70,10 +70,9 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
         size='large'
         className={classes.checkoutButton}
         endIcon={<IconSvg src={iconChevronRight} />}
-        onClick={(e) => {
+        onClick={async (e) => {
           onClick?.(e)
-          onStart?.(e, cart)
-          return onClick?.(e)
+          await onStart?.(e, cart)
         }}
         disabled={disabled || !hasTotals || hasErrors || shouldLoginToContinue}
         {...buttonProps}
