@@ -1,7 +1,8 @@
 import { Money } from '@graphcommerce/magento-store'
+import type { ButtonProps } from '@graphcommerce/next-ui'
 import { extendableComponent, iconChevronRight, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import type { ButtonProps, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import { Box, Button, Link } from '@mui/material'
 import React from 'react'
 import { useCheckoutShouldLoginToContinue } from '../../hooks'
@@ -12,6 +13,7 @@ export type CartStartCheckoutProps = {
   sx?: SxProps<Theme>
   buttonProps?: ButtonProps<'button'>
   disabled?: boolean
+  hideTotal?: boolean
   cart?: CartStartCheckoutFragment | null | undefined
   onStart?: (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -35,6 +37,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
     onStart,
     buttonProps: { onClick, ...buttonProps } = {},
     disabled,
+    hideTotal = false,
     sx = [],
     cart,
   } = props
@@ -87,7 +90,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
         >
           <Trans>Start Checkout</Trans>
         </Box>{' '}
-        {hasTotals && (
+        {hasTotals && !hideTotal && (
           <span className={classes.checkoutMoney}>
             <Money {...cart?.prices?.grand_total} />
           </span>
