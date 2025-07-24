@@ -362,7 +362,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
             className={classes.sidebarWrapper}
             sx={[
               {
-                width: sidebarSize,
+                width: { xs: '100%', md: sidebarSize },
                 gridArea: 'right',
                 boxSizing: 'content-box',
                 display: 'grid',
