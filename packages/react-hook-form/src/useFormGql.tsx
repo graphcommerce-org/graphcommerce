@@ -32,7 +32,7 @@ type UseFormGraphQLCallbacks<Q, V extends FieldValues> = {
    * When an error is thrown, it will be set as an ApolloError
    */
   onComplete?: (
-    data: FetchResult<MaybeMasked<Q>>,
+    result: FetchResult<MaybeMasked<Q>>,
     variables: V,
     form?: UseFormReturn<V>,
   ) => void | Promise<void>
