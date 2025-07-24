@@ -18,7 +18,7 @@
     "tsc:perf": "NODE_OPTIONS=--max_old_space_size=10000 tsc --noEmit --generateTrace tsctrace --incremental false && npx @typescript/analyze-trace tsctrace",
     "lingui": "cross-env NODE_ENV=development lingui extract --clean",
     "postinstall": "is-monorepo '[pkgrun] postinstall' '[pkgrun] patch-package'",
-    "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$|interceptor.ts$'"
+    "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$|interceptor.ts$|generated/*'"
   },
   "dependencies": {
     "@apollo/client": "~3.12.3",
