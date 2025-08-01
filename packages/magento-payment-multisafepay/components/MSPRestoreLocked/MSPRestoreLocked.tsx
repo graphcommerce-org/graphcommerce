@@ -36,9 +36,10 @@ export function MSPRestoreLocked() {
           <FullPageMessage
             disableMargin
             icon={<IconSvg src={iconShoppingBag} />}
-            title={<Trans id='Unexpected situation' />}
+            title={<Trans id='Your cart is locked.' />}
             button={
               <Button
+                variant='pill'
                 onClick={async () => {
                   if (!cartId) return
                   const res = await restore({ variables: { cartId } })
@@ -48,11 +49,13 @@ export function MSPRestoreLocked() {
                 }}
                 loading={loading}
               >
-                <Trans id='Cancel payment and restore cart.' />
+                <Trans id='Cancel payment and unlock cart' />
               </Button>
             }
           >
-            <Trans id='Are you still on the payment page for your cart? If you have the payment page open in another window, please continue there or cancel the payment.' />
+            <Trans id='1. You are still paying in another window: Close this window and continue there.' />
+            <br />
+            <Trans id="2. You don't have an open payment window: Press the button below." />
           </FullPageMessage>
         </DialogDynamic>
       )}

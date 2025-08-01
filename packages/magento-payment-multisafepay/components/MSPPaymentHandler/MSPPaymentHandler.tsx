@@ -18,7 +18,8 @@ export function MSPPaymentHandler(props: PaymentHandlerProps) {
 
   const { justLocked, success, cart_id: cartId, locked, method, order_number } = lockStatus
 
-  const canProceed = !justLocked && locked && cartId && method === code && called && success !== '1'
+  const canProceed =
+    !justLocked && locked && cartId && method === code && !called && success !== '1'
 
   // When the payment has failed we restore the current cart
   const shouldRestore = canProceed && success !== '1'
