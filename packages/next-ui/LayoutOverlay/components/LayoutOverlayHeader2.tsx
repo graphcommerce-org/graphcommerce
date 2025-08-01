@@ -29,6 +29,8 @@ export type LayoutOverlayHeader2Props = Pick<BackProps, 'disableBackNavigation'>
   sx?: SxProps<Theme>
 
   closeLocation?: 'left' | 'right'
+
+  size?: 'small' | 'responsive'
 }
 
 const name = 'LayoutOverlayHeader2'
@@ -38,6 +40,7 @@ type State = {
   left: boolean
   right: boolean
   childrenPadding: boolean
+  size: 'small' | 'responsive'
 }
 
 const { withState } = extendableComponent<State, typeof name, typeof parts>(name, parts)
@@ -55,12 +58,13 @@ export const LayoutOverlayHeader2 = React.memo<LayoutOverlayHeader2Props>((props
     sx = [],
     disableBackNavigation,
     disableChildrenPadding = false,
+    size = 'responsive',
   } = props
 
   const showBack = useShowBack() && !hideBackButton
   const showClose = useShowClose()
 
-  const close = showClose && <LayoutHeaderClose />
+  const close = showClose && <LayoutHeaderClose size={size === 'small' ? 'small' : 'responsive'} />
   const back = showBack && <LayoutHeaderBack disableBackNavigation={disableBackNavigation} />
 
   let left = secondary
@@ -78,6 +82,7 @@ export const LayoutOverlayHeader2 = React.memo<LayoutOverlayHeader2Props>((props
     left: !!left,
     right: !!right,
     childrenPadding: !disableChildrenPadding,
+    size,
   })
 
   return (
@@ -104,6 +109,10 @@ export const LayoutOverlayHeader2 = React.memo<LayoutOverlayHeader2Props>((props
             '.variantMdBottom.sizeMdFull &, .variantMdBottom.sizeMdMinimal &': {
               top: `calc(${theme.appShell.appBarHeightMd} * 0.5 * -1)`,
             },
+
+            '&.sizeSmall': {
+              height: theme.appShell.headerHeightSm,
+            },
           },
         }),
         sx,
@@ -122,6 +131,9 @@ export const LayoutOverlayHeader2 = React.memo<LayoutOverlayHeader2Props>((props
           height: theme.appShell.headerHeightSm,
           [theme.breakpoints.up('md')]: {
             height: theme.appShell.appBarHeightMd,
+            '&.sizeSmall': {
+              height: theme.appShell.headerHeightSm,
+            },
           },
 
           // Default: center only

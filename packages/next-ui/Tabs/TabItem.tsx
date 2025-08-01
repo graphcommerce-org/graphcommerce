@@ -56,7 +56,7 @@ export const TabItem = forwardRef<HTMLButtonElement, TabItemProps>((props, ref) 
   return (
     <Box
       ref={ref}
-      component={ButtonBase}
+      component={selected ? 'span' : ButtonBase}
       onClick={onClick}
       className={`${classes.root} ${className ?? ''}`}
       disableRipple={disableRipple}
