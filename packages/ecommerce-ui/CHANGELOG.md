@@ -1,5 +1,11 @@
 # @graphcommerce/ecommerce-ui
 
+## 9.1.0-canary.53
+
+### Patch Changes
+
+- [#2541](https://github.com/graphcommerce-org/graphcommerce/pull/2541) [`09e67d6`](https://github.com/graphcommerce-org/graphcommerce/commit/09e67d6cb266ed4714a209ef90e49c3963962604) - Fix issue where setting required on the controller caused the form to submit without variables ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.1.0-canary.52
 
 ### Patch Changes
