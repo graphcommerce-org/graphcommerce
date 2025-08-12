@@ -31,8 +31,8 @@ function SliderElementBase(props: SliderElementProps): JSX.Element {
     required,
     formControlProps,
     defaultValue,
-    disabled: disabledField,
     shouldUnregister,
+    disabled,
     ...other
   } = props
 
@@ -48,7 +48,6 @@ function SliderElementBase(props: SliderElementProps): JSX.Element {
     control,
     rules,
     defaultValue,
-    disabled: disabledField,
     shouldUnregister,
   })
 
@@ -61,7 +60,12 @@ function SliderElementBase(props: SliderElementProps): JSX.Element {
           {label}
         </FormLabel>
       )}
-      <Slider {...other} {...field} valueLabelDisplay={other.valueLabelDisplay || 'auto'} />
+      <Slider
+        {...other}
+        {...field}
+        valueLabelDisplay={other.valueLabelDisplay || 'auto'}
+        disabled={disabled}
+      />
       {parsedHelperText && <FormHelperText error={invalid}>{parsedHelperText}</FormHelperText>}
     </FormControl>
   )

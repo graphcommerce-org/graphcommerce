@@ -53,7 +53,6 @@ function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
     defaultValue,
     rules = {},
     shouldUnregister,
-    disabled: disabledField,
     type = 'text',
     required,
     showValid,
@@ -73,7 +72,7 @@ function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
   }
 
   const {
-    field: { onChange, ref, value = '', onBlur, disabled },
+    field: { onChange, ref, value = '', onBlur },
     fieldState: { error },
   } = useController({
     name,
@@ -81,7 +80,6 @@ function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
     rules,
     defaultValue,
     shouldUnregister,
-    disabled: disabledField,
   })
 
   // https://stackoverflow.com/questions/76830737/chrome-autofill-causes-textbox-collision-for-textfield-label-and-value
@@ -101,7 +99,6 @@ function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
       {...rest}
       onBlur={onBlur}
       name={name}
-      disabled={disabled}
       value={toValue(value, type)}
       inputProps={{ ...rest.inputProps, onAnimationStart }}
       onChange={(ev) => {

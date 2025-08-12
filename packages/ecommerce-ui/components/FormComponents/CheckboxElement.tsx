@@ -43,7 +43,6 @@ function CheckboxElementBase(props: CheckboxElementProps): JSX.Element {
     sx,
     formControl,
     defaultValue,
-    disabled: disabledField,
     shouldUnregister,
     ...rest
   } = props
@@ -53,14 +52,13 @@ function CheckboxElementBase(props: CheckboxElementProps): JSX.Element {
   }
 
   const {
-    field: { value, onChange, ref, onBlur, disabled },
+    field: { value, onChange, ref, onBlur },
     fieldState: { invalid, error },
   } = useController({
     name,
     rules,
     control,
     defaultValue,
-    disabled: disabledField,
     shouldUnregister,
   })
 
@@ -75,7 +73,6 @@ function CheckboxElementBase(props: CheckboxElementProps): JSX.Element {
             <Checkbox
               {...rest}
               onBlur={onBlur}
-              disabled={disabled}
               name={name}
               inputRef={useForkRef(ref, rest.inputRef)}
               color={rest.color || 'primary'}
