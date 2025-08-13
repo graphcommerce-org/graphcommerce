@@ -65,21 +65,23 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
 
   return (
     <Box sx={(theme) => ({ display: 'grid', rowGap: theme.spacings.sm })}>
-      {options.map((option, optionIndex) => (
-        <ConfigurableProductOption
-          {...option}
-          key={option.uid}
-          render={render}
-          optionStartLabels={optionStartLabels}
-          optionEndLabels={optionEndLabels}
-          index={index}
-          optionIndex={optionIndex}
-          sx={sx}
-          __typename={product.__typename}
-          url_key={product.url_key}
-          {...other}
-        />
-      ))}
+      {options
+        .sort((a, b) => (a?.position ?? 0) - (b?.position ?? 0))
+        .map((option, optionIndex) => (
+          <ConfigurableProductOption
+            {...option}
+            key={option.uid}
+            render={render}
+            optionStartLabels={optionStartLabels}
+            optionEndLabels={optionEndLabels}
+            index={index}
+            optionIndex={optionIndex}
+            sx={sx}
+            __typename={product.__typename}
+            url_key={product.url_key}
+            {...other}
+          />
+        ))}
     </Box>
   )
 }
