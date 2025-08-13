@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.54
+
+### Patch Changes
+
+- [#2544](https://github.com/graphcommerce-org/graphcommerce/pull/2544) [`09a79c0`](https://github.com/graphcommerce-org/graphcommerce/commit/09a79c061c874dd9b5896d37edb2fc1031c7678c) - Solve issue whre Configurable Options would not respect the option position. ([@ThisIsRuddy](https://github.com/ThisIsRuddy))
+
 ## 9.1.0-canary.53
 
 ## 9.1.0-canary.52
