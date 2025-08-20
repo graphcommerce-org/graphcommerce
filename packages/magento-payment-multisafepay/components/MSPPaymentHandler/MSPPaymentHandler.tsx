@@ -14,11 +14,12 @@ export function MSPPaymentHandler(props: PaymentHandlerProps) {
   const assignCurrentCartId = useAssignCurrentCartId()
   const { onSuccess } = usePaymentMethodContext()
 
-  const [restore, { error }] = useMutation(MSPPaymentHandlerDocument)
+  const [restore, { error, called }] = useMutation(MSPPaymentHandlerDocument)
 
   const { justLocked, success, cart_id: cartId, locked, method, order_number } = lockStatus
 
-  const canProceed = !(justLocked || !locked || !cartId || method !== code)
+  const canProceed =
+    !justLocked && locked && cartId && method === code && !called && success !== '1'
 
   // When the payment has failed we restore the current cart
   const shouldRestore = canProceed && success !== '1'

@@ -34,20 +34,19 @@ export function useFormGqlMutationCart<
     document,
     {
       ...options,
-      onBeforeSubmit: async (variables) => {
-        if (shouldLoginToContinue && shouldBlockOperation) {
-          return false
-        }
-        const vars = { ...variables, cartId: await cartId() }
+      onBeforeSubmit: async (incoming) => {
+        const variables = options.onBeforeSubmit ? await options.onBeforeSubmit(incoming) : incoming
+        if (variables === false) return false
+        if (shouldLoginToContinue && shouldBlockOperation) return false
 
         const res = client.cache.readQuery({ query: CurrentCartIdDocument })
         if (!options.submitWhileLocked && res?.currentCartId?.locked) {
-          throw Error('Could not submit form, cart is locked')
-          // console.log('Could not submit form, cart is locked', res.currentCartId.locked)
-          // return false
+          throw Error(
+            'Could not submit form, cart is locked. This is a bug. You may never submit a form while the cart is locked.',
+          )
         }
 
-        return options.onBeforeSubmit ? options.onBeforeSubmit(vars) : vars
+        return { ...variables, cartId: variables.cartId ?? (await cartId()) }
       },
     },
     { errorPolicy: 'all', ...operationOptions },

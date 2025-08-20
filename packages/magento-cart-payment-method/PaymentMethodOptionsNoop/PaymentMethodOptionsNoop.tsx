@@ -1,5 +1,6 @@
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { useFormAutoSubmit, useFormCompose } from '@graphcommerce/react-hook-form'
+import { useEffect } from 'react'
 import type { PaymentOptionsProps } from '../Api/PaymentMethod'
 import { GetPaymentMethodContextDocument } from '../PaymentMethodContext/GetPaymentMethodContext.gql'
 import { PaymentMethodOptionsNoopDocument } from './PaymentMethodOptionsNoop.gql'
@@ -30,6 +31,13 @@ export function PaymentMethodOptionsNoop(props: PaymentOptionsProps) {
 
   /** To use an external Pay button we register the current form to be handled there as well. */
   useFormCompose({ form, step, submit, key: `PaymentMethodOptions_${code}` })
+
+  useEffect(() => {
+    window.onunload = () => {
+      // Break the backforwardcache
+      console.log('Unload event triggered, to prevent the backforward cache from working.')
+    }
+  }, [])
 
   /**
    * This is the form that the user can fill in. In this case we don't wat the user to fill in
