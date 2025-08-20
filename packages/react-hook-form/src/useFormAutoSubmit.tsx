@@ -6,9 +6,10 @@ import { cloneDeep } from '@apollo/client/utilities'
 import { debounce } from '@mui/material'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import type {
-  DeepPartialSkipArrayKey,
   FieldPath,
   FieldValues,
+  Path,
+  PathValue,
   UseFormHandleSubmit,
   UseFormReturn,
   UseWatchProps,
@@ -125,7 +126,8 @@ export type FormAutoSubmitProps<TFieldValues extends FieldValues = FieldValues> 
    * @deprecated Please use leading instead
    */
   initialWait?: number
-} & Omit<UseWatchProps<TFieldValues>, 'defaultValue'> &
+  name?: readonly [...FieldPath<TFieldValues>[]]
+} & Omit<UseWatchProps<TFieldValues>, 'defaultValue' | 'compute'> &
   DebounceSettings
 
 function useAutoSubmitBase<TFieldValues extends FieldValues = FieldValues>(
@@ -141,12 +143,13 @@ function useAutoSubmitBase<TFieldValues extends FieldValues = FieldValues>(
     submit,
     parallel,
     noValidate,
+    name = [],
     ...watchOptions
   } = props
 
   // We create a stable object from the values, so that we can compare them later
-  const values = useMemoObject(cloneDeep(useWatch(watchOptions)))
-  const oldValues = useRef<DeepPartialSkipArrayKey<TFieldValues>>(values)
+  const values = useMemoObject(cloneDeep(useWatch({ ...watchOptions, name })))
+  const oldValues = useRef<PathValue<TFieldValues, Path<TFieldValues>>[]>(values)
   const { isValidating, isSubmitting, isValid } = useFormState(watchOptions)
 
   const submitDebounced = useDebounce(

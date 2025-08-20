@@ -117,7 +117,7 @@
     "next-sitemap": "4.2.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-hook-form": "^7.54.1",
+    "react-hook-form": "7.62.0",
     "serwist": "^9.0.11",
     "sharp": "0.33.5",
     "ts-node": "^10.9.2",
