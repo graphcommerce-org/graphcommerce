@@ -13,7 +13,7 @@ export type TabItemProps = {
   /** Content to display inside the tab */
   children: React.ReactNode
   /** Click handler */
-  onClick?: () => void
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 
   /** Spacing for the tab */
   spacing?: string
@@ -56,10 +56,10 @@ export const TabItem = forwardRef<HTMLButtonElement, TabItemProps>((props, ref) 
   return (
     <Box
       ref={ref}
-      component={selected ? 'span' : ButtonBase}
-      onClick={onClick}
+      component={ButtonBase}
+      onClick={selected ? undefined : onClick}
       className={`${classes.root} ${className ?? ''}`}
-      disableRipple={disableRipple}
+      disableRipple={selected || disableRipple}
       role='tab'
       aria-selected={selected}
       // tabindex={0}
