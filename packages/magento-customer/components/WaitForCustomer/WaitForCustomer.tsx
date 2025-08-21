@@ -1,7 +1,7 @@
 import type { WaitForQueriesProps } from '@graphcommerce/ecommerce-ui'
 import { mergeErrors, WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import type { FullPageMessageProps } from '@graphcommerce/next-ui'
-import { FullPageMessage, iconPerson, IconSvg } from '@graphcommerce/next-ui'
+import { FullPageMessage, iconPerson, IconSvg, nonNullable } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button, CircularProgress } from '@mui/material'
 import React from 'react'
@@ -14,10 +14,6 @@ export type WaitForCustomerProps = SetOptional<WaitForQueriesProps, 'waitFor'> &
     unauthenticated?: React.ReactNode
     allowError?: boolean
   }
-
-export function nonNullable<T>(value: T): value is NonNullable<T> {
-  return value !== null && value !== undefined
-}
 
 /**
  * A full page wrapper to render customer specific information.
