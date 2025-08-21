@@ -242,7 +242,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               >
                 {images.map((image, idx) => (
                   <MotionImageAspect
-                    key={typeof image.src === 'string' ? image.src : idx}
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={idx}
                     layout
                     layoutDependency={zoomed}
                     src={image.src}
