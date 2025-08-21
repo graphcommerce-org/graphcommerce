@@ -45,6 +45,7 @@ export function ReorderItems(props: ReorderItemsProps) {
         error={error}
         userErrors={errors?.filter(nonNullable)}
         showSuccess={!!cart}
+        cart={cart}
       />
     </Box>
   )
