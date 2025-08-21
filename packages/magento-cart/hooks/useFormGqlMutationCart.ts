@@ -6,6 +6,7 @@ import type {
 } from '@graphcommerce/react-hook-form'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { GraphQLError, Kind } from 'graphql'
+import { useCartIdContext } from '../components/CartIdContext'
 import { isProtectedCartOperation } from '../link/isProtectedCartOperation'
 import { CurrentCartIdDocument } from './CurrentCartId.gql'
 import { useCartIdCreate } from './useCartIdCreate'
@@ -19,7 +20,8 @@ export function useFormGqlMutationCart<
   options: UseFormGraphQlOptions<Q, V> & { submitWhileLocked?: boolean } = {},
   operationOptions?: MutationHookOptions<Q, V>,
 ): UseFormGqlMutationReturn<Q, V> {
-  const cartId = useCartIdCreate()
+  const cartIdCreate = useCartIdCreate()
+  const cartIdFromContext = useCartIdContext()
   const client = useApolloClient()
   const shouldLoginToContinue = useCartShouldLoginToContinue()
 
@@ -40,13 +42,19 @@ export function useFormGqlMutationCart<
         if (shouldLoginToContinue && shouldBlockOperation) return false
 
         const res = client.cache.readQuery({ query: CurrentCartIdDocument })
-        if (!options.submitWhileLocked && res?.currentCartId?.locked) {
+        const cartId = cartIdFromContext ?? incoming.cartId ?? (await cartIdCreate())
+
+        if (
+          cartId === res?.currentCartId?.id &&
+          res?.currentCartId?.locked &&
+          !options.submitWhileLocked
+        ) {
           throw Error(
             'Could not submit form, cart is locked. This is a bug. You may never submit a form while the cart is locked.',
           )
         }
 
-        return { ...variables, cartId: variables.cartId ?? (await cartId()) }
+        return { ...variables, cartId }
       },
     },
     { errorPolicy: 'all', ...operationOptions },
