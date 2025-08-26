@@ -1,6 +1,6 @@
 import type { ApolloClient } from '@graphcommerce/graphql'
 import type { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
-import { filterNonNullableKeys, findByTypename, nonNullable } from '@graphcommerce/next-ui'
+import { findByTypename, nonNullable } from '@graphcommerce/next-ui'
 import { GetConfigurableOptionsSelectionDocument } from '../graphql'
 import type { DefaultConfigurableOptionsSelectionFragment } from './DefaultConfigurableOptionsSelection.gql'
 
@@ -8,6 +8,32 @@ type BaseQuery =
   | { products?: DefaultConfigurableOptionsSelectionFragment | null | undefined }
   | null
   | undefined
+
+export function configurableVariantForSimple<Q extends BaseQuery = BaseQuery>(
+  urlKey: string,
+  query: Q,
+): Q {
+  const simple = query?.products?.items?.find((p) => p?.url_key === urlKey)
+  const configurable = findByTypename(query?.products?.items, 'ConfigurableProduct')
+
+  if (
+    simple?.__typename === 'SimpleProduct' &&
+    !import.meta.graphCommerce.configurableVariantForSimple
+  ) {
+    const product = query?.products?.items?.find((p) => p?.url_key === urlKey)
+    return { ...query, products: { ...query?.products, items: [product] }, defaultValues: {} }
+  }
+
+  if (!configurable?.url_key) return { ...query, defaultValues: {} }
+
+  return {
+    ...query,
+    products: {
+      ...query?.products,
+      items: [{ ...configurable, url_key: simple?.url_key }],
+    },
+  }
+}
 
 /**
  * Render the configurable product page on a simple product URL with the simple product variant

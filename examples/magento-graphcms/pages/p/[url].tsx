@@ -26,7 +26,10 @@ import {
   AddProductsToCartButton,
   ProductPagePriceLowest,
 } from '@graphcommerce/magento-product'
-import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-product-configurable'
+import {
+  configurableVariantForSimple,
+  defaultConfigurableOptionsSelection,
+} from '@graphcommerce/magento-product-configurable'
 import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-products'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
 import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -68,7 +71,7 @@ function ProductPage(props: Props) {
     { variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 } },
     props,
   )
-  const { products, relatedUpsells } = scopedQuery.data
+  const { products, relatedUpsells } = configurableVariantForSimple(urlKey, scopedQuery.data)
 
   const product = mergeDeep(
     products?.items?.[0],
