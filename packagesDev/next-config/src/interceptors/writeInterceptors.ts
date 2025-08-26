@@ -152,7 +152,14 @@ export async function writeInterceptors(
   const orphanedInterceptors: Promise<void>[] = []
   dependencies.forEach((dependency) => {
     // Skip node_modules dependencies and packagesDev (our source code)
-    if (dependency.includes('node_modules') || dependency.includes('packagesDev')) return
+    if (
+      dependency.includes('node_modules') ||
+      dependency.includes('packagesDev') ||
+      dependency.includes('/packagesDev/') ||
+      dependency.startsWith('packagesDev/') ||
+      path.resolve(cwd, dependency).includes('packagesDev')
+    )
+      return
 
     const files = globSync([`${dependency}/**/*.tsx`, `${dependency}/**/*.ts`], { cwd })
     files.forEach((file) => {
@@ -178,6 +185,15 @@ async function checkAndRestoreOrphanedInterceptor(
 ): Promise<void> {
   try {
     if (!(await checkFileExists(fullPath))) return
+
+    // Extra safety check: never delete files in packagesDev
+    if (
+      fullPath.includes('packagesDev') ||
+      relativePath.includes('packagesDev') ||
+      fullPath.includes('/packagesDev/')
+    ) {
+      return
+    }
 
     const content = await fs.readFile(fullPath, 'utf8')
     const isInterceptor =

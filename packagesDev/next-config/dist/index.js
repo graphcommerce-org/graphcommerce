@@ -1294,6 +1294,7 @@ function moveRelativeDown(plugins) {
   });
 }
 const originalSuffix = "Original";
+const interceptorSuffix = "Interceptor";
 const name = (plugin) => `${plugin.sourceExport}${plugin.sourceModule.split("/")[plugin.sourceModule.split("/").length - 1].replace(/[^a-zA-Z0-9]/g, "")}`;
 const sourceName = (n) => `${n}`;
 const generateIdentifyer = (s) => Math.abs(
@@ -1316,7 +1317,9 @@ async function generateInterceptor(interceptor, config, oldInterceptorSource) {
     duplicateImports.add(str);
     return true;
   }).join("\n    ");
-  const originalImports = [...Object.entries(targetExports)].map(([targetExport]) => {
+  const originalImports = [...Object.entries(targetExports)].filter(([targetExport, plugins]) => {
+    return !plugins.some((p) => p.type === "replace");
+  }).map(([targetExport]) => {
     interceptor.sourcePath.endsWith(".tsx") ? ".tsx" : ".ts";
     const importPath = `./${interceptor.target.split("/").pop()}.original`;
     return `import { ${targetExport} as ${targetExport}${originalSuffix} } from '${importPath}'`;
@@ -1325,25 +1328,83 @@ async function generateInterceptor(interceptor, config, oldInterceptorSource) {
   const pluginExports = [...Object.entries(targetExports)].map(([targetExport, plugins]) => {
     if (plugins.some((p) => p.type === "component")) {
       const componentPlugins = plugins.filter((p) => p.type === "component");
-      const pluginChain = componentPlugins.map((plugin) => `${sourceName(name(plugin))}`).reverse().reduce((acc, pluginName, index) => {
-        if (index === 0) {
-          return `${pluginName}({ ...props, Prev: ${targetExport}${originalSuffix} })`;
-        }
-        return `${pluginName}({ ...props, Prev: (props) => ${acc} })`;
-      }, `${targetExport}${originalSuffix}(props)`);
-      return `export function ${targetExport}(props: any) {
-    return ${pluginChain}
-  }`;
+      const replacePlugin = plugins.find((p) => p.type === "replace");
+      let carry = replacePlugin ? sourceName(name(replacePlugin)) : `${targetExport}${originalSuffix}`;
+      const pluginSee = [];
+      if (replacePlugin) {
+        pluginSee.push(
+          `@see {${sourceName(name(replacePlugin))}} for source of replaced component`
+        );
+      } else {
+        pluginSee.push(`@see {@link file://./${targetExport}.tsx} for original source file`);
+      }
+      const pluginInterceptors = componentPlugins.reverse().map((plugin) => {
+        const pluginName = sourceName(name(plugin));
+        const interceptorName2 = `${pluginName}${interceptorSuffix}`;
+        const propsName = `${pluginName}Props`;
+        pluginSee.push(`@see {${pluginName}} for source of applied plugin`);
+        const result = `type ${propsName} = OmitPrev<
+  React.ComponentProps<typeof ${pluginName}>,
+  'Prev'
+>
+
+const ${interceptorName2} = (
+  props: ${propsName},
+) => (
+  <${pluginName}
+    {...props}
+    Prev={${carry}}
+  />
+)`;
+        carry = interceptorName2;
+        return result;
+      }).join("\n\n");
+      const seeString = `/**
+ * Here you see the 'interceptor' that is applying all the configured plugins.
+ *
+ * This file is NOT meant to be modified directly and is auto-generated if the plugins or the
+ * original source changes.
+ *
+${pluginSee.map((s) => ` * ${s}`).join("\n")}
+ */`;
+      return `${pluginInterceptors}
+
+${seeString}
+export const ${targetExport} = ${carry}`;
     } else if (plugins.some((p) => p.type === "function")) {
       const functionPlugins = plugins.filter((p) => p.type === "function");
-      const pluginChain = functionPlugins.map((plugin) => `${sourceName(name(plugin))}`).reduce((acc, pluginName) => {
-        return `${pluginName}(${acc})`;
-      }, `${targetExport}${originalSuffix}`);
-      return `const ${targetExport}Interceptor: typeof ${targetExport}${originalSuffix} = (...args) => {
-  return ${pluginChain}(...args)
-}
+      const replacePlugin = plugins.find((p) => p.type === "replace");
+      let carry = replacePlugin ? sourceName(name(replacePlugin)) : `${targetExport}${originalSuffix}`;
+      const pluginSee = [];
+      if (replacePlugin) {
+        pluginSee.push(
+          `@see {${sourceName(name(replacePlugin))}} for source of replaced function`
+        );
+      } else {
+        pluginSee.push(`@see {@link file://./${targetExport}.ts} for original source file`);
+      }
+      const pluginInterceptors = functionPlugins.reverse().map((plugin) => {
+        const pluginName = sourceName(name(plugin));
+        const interceptorName2 = `${pluginName}${interceptorSuffix}`;
+        pluginSee.push(`@see {${pluginName}} for source of applied plugin`);
+        const result = `const ${interceptorName2}: typeof ${carry} = (...args) => {
+  return ${pluginName}(${carry}, ...args)
+}`;
+        carry = interceptorName2;
+        return result;
+      }).join("\n");
+      const seeString = `/**
+ * Here you see the 'interceptor' that is applying all the configured plugins.
+ *
+ * This file is NOT meant to be modified directly and is auto-generated if the plugins or the
+ * original source changes.
+ *
+${pluginSee.map((s) => ` * ${s}`).join("\n")}
+ */`;
+      return `${pluginInterceptors}
 
-export const ${targetExport} = ${targetExport}Interceptor`;
+${seeString}
+export const ${targetExport} = ${carry}`;
     } else if (plugins.some((p) => p.type === "replace")) {
       const replacePlugin = plugins.find((p) => p.type === "replace");
       if (replacePlugin) {
@@ -1511,7 +1572,8 @@ async function writeInterceptors(interceptors, cwd = process.cwd()) {
   });
   const orphanedInterceptors = [];
   dependencies.forEach((dependency) => {
-    if (dependency.includes("node_modules") || dependency.includes("packagesDev")) return;
+    if (dependency.includes("node_modules") || dependency.includes("packagesDev") || dependency.includes("/packagesDev/") || dependency.startsWith("packagesDev/") || path$1.resolve(cwd, dependency).includes("packagesDev"))
+      return;
     const files = sync([`${dependency}/**/*.tsx`, `${dependency}/**/*.ts`], { cwd });
     files.forEach((file) => {
       const fullPath = path$1.join(cwd, file);
@@ -1528,6 +1590,9 @@ async function writeInterceptors(interceptors, cwd = process.cwd()) {
 async function checkAndRestoreOrphanedInterceptor(fullPath, relativePath, cwd) {
   try {
     if (!await checkFileExists$1(fullPath)) return;
+    if (fullPath.includes("packagesDev") || relativePath.includes("packagesDev") || fullPath.includes("/packagesDev/")) {
+      return;
+    }
     const content = await fs$1.readFile(fullPath, "utf8");
     const isInterceptor = content.includes("/* hash:") && content.includes("/* This file is automatically generated");
     if (isInterceptor) {

@@ -139,8 +139,12 @@ export async function generateInterceptor(
     })
     .join('\n    ')
 
-  // Generate imports for original components
+  // Generate imports for original components (only when no replace plugin exists)
   const originalImports = [...Object.entries(targetExports)]
+    .filter(([targetExport, plugins]) => {
+      // Only import original if there's no replace plugin for this export
+      return !plugins.some((p) => p.type === 'replace')
+    })
     .map(([targetExport]) => {
       const extension = interceptor.sourcePath.endsWith('.tsx') ? '.tsx' : '.ts'
       const importPath = `./${interceptor.target.split('/').pop()}.original`
@@ -163,33 +167,112 @@ export async function generateInterceptor(
       if (plugins.some((p) => p.type === 'component')) {
         // Component plugins
         const componentPlugins = plugins.filter((p) => p.type === 'component')
-        const pluginChain = componentPlugins
-          .map((plugin) => `${sourceName(name(plugin))}`)
-          .reverse()
-          .reduce((acc, pluginName, index) => {
-            if (index === 0) {
-              return `${pluginName}({ ...props, Prev: ${targetExport}${originalSuffix} })`
-            }
-            return `${pluginName}({ ...props, Prev: (props) => ${acc} })`
-          }, `${targetExport}${originalSuffix}(props)`)
 
-        return `export function ${targetExport}(props: any) {
-    return ${pluginChain}
-  }`
+        // Build interceptor chain - each plugin wraps the previous one
+        // Check if there's a replace plugin to use as the base instead of original
+        const replacePlugin = plugins.find((p) => p.type === 'replace')
+        let carry = replacePlugin
+          ? sourceName(name(replacePlugin))
+          : `${targetExport}${originalSuffix}`
+        const pluginSee: string[] = []
+
+        if (replacePlugin) {
+          pluginSee.push(
+            `@see {${sourceName(name(replacePlugin))}} for source of replaced component`,
+          )
+        } else {
+          pluginSee.push(`@see {@link file://./${targetExport}.tsx} for original source file`)
+        }
+
+        const pluginInterceptors = componentPlugins
+          .reverse() // Start from the last plugin and work backwards
+          .map((plugin) => {
+            const pluginName = sourceName(name(plugin))
+            const interceptorName = `${pluginName}${interceptorSuffix}`
+            const propsName = `${pluginName}Props`
+
+            pluginSee.push(`@see {${pluginName}} for source of applied plugin`)
+
+            const result = `type ${propsName} = OmitPrev<
+  React.ComponentProps<typeof ${pluginName}>,
+  'Prev'
+>
+
+const ${interceptorName} = (
+  props: ${propsName},
+) => (
+  <${pluginName}
+    {...props}
+    Prev={${carry}}
+  />
+)`
+            carry = interceptorName
+            return result
+          })
+          .join('\n\n')
+
+        const seeString = `/**
+ * Here you see the 'interceptor' that is applying all the configured plugins.
+ *
+ * This file is NOT meant to be modified directly and is auto-generated if the plugins or the
+ * original source changes.
+ *
+${pluginSee.map((s) => ` * ${s}`).join('\n')}
+ */`
+
+        return `${pluginInterceptors}
+
+${seeString}
+export const ${targetExport} = ${carry}`
       } else if (plugins.some((p) => p.type === 'function')) {
         // Function plugins
         const functionPlugins = plugins.filter((p) => p.type === 'function')
-        const pluginChain = functionPlugins
-          .map((plugin) => `${sourceName(name(plugin))}`)
-          .reduce((acc, pluginName) => {
-            return `${pluginName}(${acc})`
-          }, `${targetExport}${originalSuffix}`)
 
-        return `const ${targetExport}Interceptor: typeof ${targetExport}${originalSuffix} = (...args) => {
-  return ${pluginChain}(...args)
-}
+        // Build interceptor chain - each plugin wraps the previous one
+        // Check if there's a replace plugin to use as the base instead of original
+        const replacePlugin = plugins.find((p) => p.type === 'replace')
+        let carry = replacePlugin
+          ? sourceName(name(replacePlugin))
+          : `${targetExport}${originalSuffix}`
+        const pluginSee: string[] = []
 
-export const ${targetExport} = ${targetExport}Interceptor`
+        if (replacePlugin) {
+          pluginSee.push(
+            `@see {${sourceName(name(replacePlugin))}} for source of replaced function`,
+          )
+        } else {
+          pluginSee.push(`@see {@link file://./${targetExport}.ts} for original source file`)
+        }
+
+        const pluginInterceptors = functionPlugins
+          .reverse() // Start from the last plugin and work backwards
+          .map((plugin) => {
+            const pluginName = sourceName(name(plugin))
+            const interceptorName = `${pluginName}${interceptorSuffix}`
+
+            pluginSee.push(`@see {${pluginName}} for source of applied plugin`)
+
+            const result = `const ${interceptorName}: typeof ${carry} = (...args) => {
+  return ${pluginName}(${carry}, ...args)
+}`
+            carry = interceptorName
+            return result
+          })
+          .join('\n')
+
+        const seeString = `/**
+ * Here you see the 'interceptor' that is applying all the configured plugins.
+ *
+ * This file is NOT meant to be modified directly and is auto-generated if the plugins or the
+ * original source changes.
+ *
+${pluginSee.map((s) => ` * ${s}`).join('\n')}
+ */`
+
+        return `${pluginInterceptors}
+
+${seeString}
+export const ${targetExport} = ${carry}`
       } else if (plugins.some((p) => p.type === 'replace')) {
         // Replace plugins (just export the replacement)
         const replacePlugin = plugins.find((p) => p.type === 'replace')
