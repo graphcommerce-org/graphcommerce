@@ -7,7 +7,6 @@ import webpack from 'webpack'
 import { loadConfig } from './config/loadConfig'
 import { configToImportMeta } from './config/utils/configToImportMeta'
 import type { GraphCommerceConfig } from './generated/config'
-import { InterceptorPlugin } from './interceptors/InterceptorPlugin'
 import { resolveDependenciesSync } from './utils/resolveDependenciesSync'
 
 let graphcommerceConfig: GraphCommerceConfig
@@ -33,7 +32,7 @@ function domains(config: GraphCommerceConfig): DomainLocale[] {
 }
 
 /**
- * GraphCommerce configuration: .
+ * GraphCommerce configuration with new Turbopack-compatible interceptor system.
  *
  * ```ts
  * const { withGraphCommerce } = require('@graphcommerce/next-config')
@@ -166,18 +165,6 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
       }
 
       if (!config.resolve) config.resolve = {}
-      if (!options.isServer && !options.dev) {
-        config.resolve.alias = {
-          ...config.resolve.alias,
-          '@mui/base': '@mui/base/modern',
-          '@mui/lab': '@mui/lab/modern',
-          '@mui/material': '@mui/material/modern',
-          '@mui/styled-engine': '@mui/styled-engine/modern',
-          '@mui/system': '@mui/system/modern',
-        }
-      }
-
-      config.plugins.push(new InterceptorPlugin(graphcommerceConfig, !options.isServer))
 
       return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config
     },

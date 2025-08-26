@@ -6,6 +6,8 @@ const commands = {
   'copy-files': () => import('@graphcommerce/next-config').then((m) => m.copyFiles),
   'codegen-interceptors': () =>
     import('@graphcommerce/next-config').then((m) => m.codegenInterceptors),
+  'cleanup-interceptors': () =>
+    import('@graphcommerce/next-config').then((m) => m.cleanupInterceptors),
   'export-config': () => import('@graphcommerce/next-config').then((m) => m.exportConfig),
   'hygraph-migrate': () => import('@graphcommerce/hygraph-cli').then((m) => m.migrateHygraph),
 }

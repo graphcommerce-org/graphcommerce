@@ -62,9 +62,7 @@ const main = async () => {
   const baseConf = (await findConfig({})) as YamlConfig.Config
   const graphCommerce = loadConfig(root)
 
-  const meshConfigf = (await import(
-    '@graphcommerce/graphql-mesh/meshConfig.interceptor'
-  )) as unknown as {
+  const meshConfigf = (await import('@graphcommerce/graphql-mesh/meshConfig')) as unknown as {
     default: {
       meshConfig: typeof meshConfigBase
     }

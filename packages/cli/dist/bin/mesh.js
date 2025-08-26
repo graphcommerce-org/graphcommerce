@@ -103,7 +103,7 @@ async function cleanup() {
 const main = async () => {
   const baseConf = await findConfig({});
   const graphCommerce = loadConfig(root);
-  const meshConfigf = await import('@graphcommerce/graphql-mesh/meshConfig.interceptor');
+  const meshConfigf = await import('@graphcommerce/graphql-mesh/meshConfig');
   const conf = meshConfigf.default.meshConfig(baseConf, graphCommerce);
   conf.customFetch = "@graphcommerce/graphql-mesh/customFetch";
   conf.serve = { ...conf.serve, endpoint: "/api/graphql" };

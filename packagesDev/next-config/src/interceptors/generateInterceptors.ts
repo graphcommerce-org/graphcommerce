@@ -43,7 +43,7 @@ export async function generateInterceptors(
       if (!acc[resolved.fromRoot]) {
         acc[resolved.fromRoot] = {
           ...resolved,
-          target: `${resolved.fromRoot}.interceptor`,
+          target: resolved.fromRoot,
           targetExports: {},
         } as Interceptor
       }
@@ -61,7 +61,14 @@ export async function generateInterceptors(
   return Object.fromEntries(
     await Promise.all(
       Object.entries(byTargetModuleAndExport).map(async ([target, interceptor]) => {
-        const file = `${interceptor.fromRoot}.interceptor.tsx`
+        // In the new system, we don't look for existing .interceptor files
+        // Instead, we check if we need to regenerate based on the main file
+        const mainFile = `${interceptor.fromRoot}.tsx`
+        const tsFile = `${interceptor.fromRoot}.ts`
+
+        // Try .tsx first, then .ts
+        const extension = interceptor.sourcePath.endsWith('.tsx') ? '.tsx' : '.ts'
+        const file = `${interceptor.fromRoot}${extension}`
 
         const originalSource =
           !force &&

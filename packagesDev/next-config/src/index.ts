@@ -18,6 +18,7 @@ export {
 export * from './withGraphCommerce'
 export * from './config'
 export * from './interceptors/commands/codegenInterceptors'
+export * from './interceptors/commands/cleanupInterceptors'
 export * from './commands/copyFiles'
 export * from './commands/codegen'
 

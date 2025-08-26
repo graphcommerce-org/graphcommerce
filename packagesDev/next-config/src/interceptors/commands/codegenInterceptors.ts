@@ -20,8 +20,7 @@ export async function codegenInterceptors() {
     true,
   )
 
-  // const generated = Date.now()
-  // console.log('Generated interceptors in', generated - found, 'ms')
-
   await writeInterceptors(generatedInterceptors)
+
+  console.info('✅ Generated interceptors and moved original files')
 }
