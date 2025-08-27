@@ -8,13 +8,17 @@ import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useMemo, useRef } from 'react'
-import type { AddProductsToCartMutation } from './AddProductsToCart.gql'
-import { AddProductsToCartDocument } from './AddProductsToCart.gql'
-import type { AddProductsToCartSnackbarProps } from './AddProductsToCartSnackbar'
-import { AddProductsToCartSnackbar } from './AddProductsToCartSnackbar'
+import { AddProductsToCartDocument, type AddProductsToCartMutation } from './AddProductsToCart.gql'
+import {
+  AddProductsToCartSnackbar,
+  type AddProductsToCartSnackbarProps,
+} from './AddProductsToCartSnackbar'
 import { toUserErrors } from './toUserErrors'
-import type { AddProductsToCartFields, RedirectType } from './useFormAddProductsToCart'
-import { AddProductsToCartContext } from './useFormAddProductsToCart'
+import {
+  AddProductsToCartContext,
+  type AddProductsToCartFields,
+  type RedirectType,
+} from './useFormAddProductsToCart'
 
 export type AddProductsToCartFormProps = {
   children: React.ReactNode
@@ -37,24 +41,22 @@ const name = 'AddProductsToCartForm'
  * - Redirects the user to the cart/checkout/added page after successful submission.
  */
 export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
-  let { children, redirect, onComplete, sx, snackbarProps, ...formProps } = props
+  const { children, redirect, onComplete, sx, snackbarProps, ...formProps } = props
   const router = useRouter()
   const client = useApolloClient()
   const crosssellsQuery = useRef<Promise<ApolloQueryResult<CrosssellsQuery>>>()
-
-  if (typeof redirect !== 'undefined' && redirect !== 'added' && router.pathname === redirect)
-    redirect = undefined
 
   const form = useFormGqlMutationCart<AddProductsToCartMutation, AddProductsToCartFields>(
     AddProductsToCartDocument,
     {
       ...formProps,
+      defaultValues: { redirect },
       // We're stripping out incomplete entered options.
       onBeforeSubmit: async (variables) => {
         const variables2 = (await formProps.onBeforeSubmit?.(variables)) ?? variables
         if (variables2 === false) return false
 
-        const { cartId, cartItems } = variables2
+        const { cartId, cartItems, ...rest } = variables2
 
         const requestData = {
           cartId,
@@ -85,11 +87,12 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
                 ],
               }),
             ),
+          ...rest,
         }
 
         const sku = requestData.cartItems[requestData.cartItems.length - 1]?.sku
 
-        if (sku && redirect === 'added') {
+        if (sku && requestData.redirect === 'added') {
           // Preload crosssells
           crosssellsQuery.current = client.query({
             query: CrosssellsDocument,
@@ -109,9 +112,9 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
           if (item.sku && !item.keep_sku) form.setValue(`cartItems.${index}.sku`, '')
         })
 
-        if (toUserErrors(result.data).length || result.errors?.length || !redirect) return
+        if (toUserErrors(result.data).length || result.errors?.length || !variables.redirect) return
 
-        if (redirect === 'added') {
+        if (variables.redirect === 'added') {
           await crosssellsQuery.current
           const method = router.pathname.startsWith('/checkout/added')
             ? router.replace
@@ -120,9 +123,11 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
             pathname: '/checkout/added',
             query: { sku: variables.cartItems.map((i) => i.sku) },
           })
-        } else {
-          await router.push({ pathname: redirect })
+        } else if (variables.redirect) {
+          await router.push({ pathname: variables.redirect })
         }
+
+        form.resetField('redirect', { defaultValue: redirect })
       },
     },
   )
@@ -130,9 +135,7 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
   const submit = form.handleSubmit(() => {})
 
   return (
-    <AddProductsToCartContext.Provider
-      value={useMemo(() => ({ ...form, redirect }), [form, redirect])}
-    >
+    <AddProductsToCartContext.Provider value={useMemo(() => ({ ...form }), [form])}>
       <Box component='form' onSubmit={submit} noValidate sx={sx} className={name}>
         {children}
       </Box>
