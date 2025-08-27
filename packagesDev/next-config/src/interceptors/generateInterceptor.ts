@@ -98,6 +98,17 @@ const generateIdentifyer = (s: string) =>
     }, 0),
   ).toString()
 
+// Create a stable string representation of an object by sorting keys recursively
+const stableStringify = (obj: any): string => {
+  if (obj === null || obj === undefined) return String(obj)
+  if (typeof obj !== 'object') return String(obj)
+  if (Array.isArray(obj)) return `[${obj.map(stableStringify).join(',')}]`
+
+  const keys = Object.keys(obj).sort()
+  const pairs = keys.map((key) => `${JSON.stringify(key)}:${stableStringify(obj[key])}`)
+  return `{${pairs.join(',')}}`
+}
+
 /**
  * Extract the identifier from the first line of the source file. The identifier is in the format:
  * slash-star hash:${identifer} star-slash
@@ -114,7 +125,14 @@ export async function generateInterceptor(
   config: GraphCommerceDebugConfig,
   oldInterceptorSource?: string,
 ): Promise<MaterializedPlugin> {
-  const identifer = generateIdentifyer(JSON.stringify(interceptor) + JSON.stringify(config))
+  // Create a stable hash based only on the content that affects the output
+  const hashInput = {
+    dependency: interceptor.dependency,
+    targetExports: interceptor.targetExports,
+    // Only include config properties that affect the output
+    debugConfig: config.pluginStatus ? { pluginStatus: config.pluginStatus } : {},
+  }
+  const identifer = generateIdentifyer(stableStringify(hashInput))
 
   const { dependency, targetExports } = interceptor
 
