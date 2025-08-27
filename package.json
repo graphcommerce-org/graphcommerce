@@ -14,7 +14,7 @@
     "examples/*"
   ],
   "engines": {
-    "node": ">=18.19.0 <23.0.0"
+    "node": ">=20.0.0 <23.0.0"
   },
   "scripts": {
     "eslint:lint": "eslint --ignore-path .gitignore '**/{*.ts,*.tsx}'",
@@ -50,8 +50,8 @@
     "@unts/patch-package": "^8.1.1",
     "concurrently": "8.2.2",
     "html-entities": "^2.6.0",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "remark": "^15.0.1"
   },
   "devDependencies": {
@@ -77,7 +77,7 @@
     "@testing-library/react": "^16.3.0",
     "@types/event-stream": "^4.0.5",
     "@types/jest": "^30.0.0",
-    "@types/node": "^18.19.123",
+    "@types/node": "^20.0.0",
     "babel-plugin-macros": "^3.1.0",
     "dotenv": "16.4.7",
     "eslint": "^8.57.1",
