@@ -58,6 +58,19 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
       ...nextConfig.experimental,
       scrollRestoration: true,
       swcPlugins: [...(nextConfig.experimental?.swcPlugins ?? []), ['@lingui/swc-plugin', {}]],
+      optimizePackageImports: [
+        ...transpilePackages,
+        ...(nextConfig.experimental?.optimizePackageImports ?? []),
+      ],
+      turbo: {
+        ...(nextConfig.experimental?.turbo ?? {}),
+        rules: {
+          ...(nextConfig.experimental?.turbo?.rules ?? {}),
+          '*.yaml': { loaders: [{ loader: 'js-yaml-loader', options: {} }], as: '*.js' },
+          '*.yml': { loaders: [{ loader: 'js-yaml-loader', options: {} }], as: '*.js' },
+          '*.po': { loaders: [{ loader: '@lingui/loader', options: {} }], as: '*.js' },
+        },
+      },
     },
     i18n: {
       ...nextConfig.i18n,

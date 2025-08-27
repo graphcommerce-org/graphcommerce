@@ -737,7 +737,20 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
     experimental: {
       ...nextConfig.experimental,
       scrollRestoration: true,
-      swcPlugins: [...nextConfig.experimental?.swcPlugins ?? [], ["@lingui/swc-plugin", {}]]
+      swcPlugins: [...nextConfig.experimental?.swcPlugins ?? [], ["@lingui/swc-plugin", {}]],
+      optimizePackageImports: [
+        ...transpilePackages,
+        ...nextConfig.experimental?.optimizePackageImports ?? []
+      ],
+      turbo: {
+        ...nextConfig.experimental?.turbo ?? {},
+        rules: {
+          ...nextConfig.experimental?.turbo?.rules ?? {},
+          "*.yaml": { loaders: [{ loader: "js-yaml-loader", options: {} }], as: "*.js" },
+          "*.yml": { loaders: [{ loader: "js-yaml-loader", options: {} }], as: "*.js" },
+          "*.po": { loaders: [{ loader: "@lingui/loader", options: {} }], as: "*.js" }
+        }
+      }
     },
     i18n: {
       ...nextConfig.i18n,
@@ -1303,8 +1316,22 @@ const generateIdentifyer = (s) => Math.abs(
     return value < 0 ? value * -2 : value;
   }, 0)
 ).toString();
+const stableStringify = (obj) => {
+  if (obj === null || obj === void 0) return String(obj);
+  if (typeof obj !== "object") return String(obj);
+  if (Array.isArray(obj)) return `[${obj.map(stableStringify).join(",")}]`;
+  const keys = Object.keys(obj).sort();
+  const pairs = keys.map((key) => `${JSON.stringify(key)}:${stableStringify(obj[key])}`);
+  return `{${pairs.join(",")}}`;
+};
 async function generateInterceptor(interceptor, config, oldInterceptorSource) {
-  const identifer = generateIdentifyer(JSON.stringify(interceptor) + JSON.stringify(config));
+  const hashInput = {
+    dependency: interceptor.dependency,
+    targetExports: interceptor.targetExports,
+    // Only include config properties that affect the output
+    debugConfig: config.pluginStatus ? { pluginStatus: config.pluginStatus } : {}
+  };
+  const identifer = generateIdentifyer(stableStringify(hashInput));
   const { dependency, targetExports } = interceptor;
   const pluginConfigs = [...Object.entries(targetExports)].map(([, plugins]) => plugins).flat();
   const duplicateImports = /* @__PURE__ */ new Set();
