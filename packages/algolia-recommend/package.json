@@ -2,7 +2,7 @@
   "name": "@graphcommerce/algolia-recommend",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.1.0-canary.54",
+  "version": "9.1.0-canary.55",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -15,11 +15,11 @@
     "generate": "tsx scripts/generate-recommend-spec.mts"
   },
   "peerDependencies": {
-    "@graphcommerce/algolia-products": "^9.1.0-canary.54",
-    "@graphcommerce/graphql": "^9.1.0-canary.54",
-    "@graphcommerce/graphql-mesh": "^9.1.0-canary.54",
-    "@graphcommerce/next-config": "^9.1.0-canary.54",
-    "@graphcommerce/next-ui": "^9.1.0-canary.54",
+    "@graphcommerce/algolia-products": "^9.1.0-canary.55",
+    "@graphcommerce/graphql": "^9.1.0-canary.55",
+    "@graphcommerce/graphql-mesh": "^9.1.0-canary.55",
+    "@graphcommerce/next-config": "^9.1.0-canary.55",
+    "@graphcommerce/next-ui": "^9.1.0-canary.55",
     "react": "^18.2.0"
   },
   "devDependencies": {

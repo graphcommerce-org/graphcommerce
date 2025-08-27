@@ -1,5 +1,13 @@
 # @graphcommerce/magento-payment-multisafepay
 
+## 9.1.0-canary.55
+
+### Patch Changes
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`21dc35d`](https://github.com/graphcommerce-org/graphcommerce/commit/21dc35d09521f47b7f91dc868ca776603e2da4a2) - Solve issue where the cart would remain locked if a user would return to the website without going through the checkout/payment step. ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`6a55be4`](https://github.com/graphcommerce-org/graphcommerce/commit/6a55be43ab1f53eb689abf8ad742383daf65822e) - Solve issue where the MSPPaymentHandler query would be executed multiple times. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.54
 
 ## 9.1.0-canary.53

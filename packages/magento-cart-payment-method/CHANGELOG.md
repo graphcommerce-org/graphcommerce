@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.55
+
+### Patch Changes
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`59d91cc`](https://github.com/graphcommerce-org/graphcommerce/commit/59d91cc4b04b6d37e5fb6b09401c079de488bc29) - Solve issue where the Place order button would remain in a loading state because the back/forward cache of chrome started working for the checkout and thus React's state would not be reset, thinking we were still exiting the page. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.54
 
 ## 9.1.0-canary.53

@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.55
+
+### Patch Changes
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`21686e3`](https://github.com/graphcommerce-org/graphcommerce/commit/21686e3dd5673de7ada5e1741e4b77e00aeaef48) - Forward the cart to AddProductsToCartSnackbarMessage ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.54
 
 ## 9.1.0-canary.53
