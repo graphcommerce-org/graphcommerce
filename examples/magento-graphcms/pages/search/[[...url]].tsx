@@ -31,6 +31,7 @@ import {
   LayoutNavigationProps,
 } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { productFiltersPro, productFiltersLayout } from '@graphcommerce/next-config/config'
 
 type SearchResultProps = MenuQueryFragment &
   ProductListQuery &
@@ -63,17 +64,13 @@ function SearchResultPage(props: SearchResultProps) {
       </LayoutHeader>
 
       <PrivateQueryMaskProvider mask={mask}>
-        {import.meta.graphCommerce.productFiltersPro &&
-          import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
-            <ProductListLayoutSidebar {...productList} menu={menu} />
-          )}
-        {import.meta.graphCommerce.productFiltersPro &&
-          import.meta.graphCommerce.productFiltersLayout !== 'SIDEBAR' && (
-            <ProductListLayoutDefault {...productList} menu={menu} />
-          )}
-        {!import.meta.graphCommerce.productFiltersPro && (
-          <ProductListLayoutClassic {...productList} menu={menu} />
+        {productFiltersPro && productFiltersLayout === 'SIDEBAR' && (
+          <ProductListLayoutSidebar {...productList} menu={menu} />
         )}
+        {productFiltersPro && productFiltersLayout !== 'SIDEBAR' && (
+          <ProductListLayoutDefault {...productList} menu={menu} />
+        )}
+        {!productFiltersPro && <ProductListLayoutClassic {...productList} menu={menu} />}
       </PrivateQueryMaskProvider>
     </>
   )

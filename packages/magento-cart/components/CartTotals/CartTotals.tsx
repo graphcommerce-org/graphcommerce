@@ -1,4 +1,5 @@
 import { Money } from '@graphcommerce/magento-store'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 import { breakpointVal, extendableComponent, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
@@ -50,7 +51,7 @@ export function CartTotals(props: CartTotalsProps) {
   const shippingMethod = shipping_addresses?.[0]?.selected_shipping_method
 
   const shippingMethodPrices =
-    import.meta.graphCommerce.magentoVersion >= 246
+    magentoVersion >= 246
       ? shippingMethod
       : shipping_addresses?.[0]?.available_shipping_methods?.find(
           (avail) =>

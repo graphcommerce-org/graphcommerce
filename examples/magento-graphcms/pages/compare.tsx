@@ -26,6 +26,7 @@ import { Trans } from '@lingui/react'
 import { Box, CircularProgress, Container, Typography } from '@mui/material'
 import { productListRenderer } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
+import { compare } from '@graphcommerce/next-config/config'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -97,7 +98,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
-  if (!import.meta.graphCommerce.compare) return { notFound: true }
+  if (!compare) return { notFound: true }
 
   return {
     props: {

@@ -1,5 +1,6 @@
 import { ActionCardListForm, EmailElement, FormAutoSubmit } from '@graphcommerce/ecommerce-ui'
 import { useApolloClient } from '@graphcommerce/graphql'
+import { enableGuestCheckoutLogin } from '@graphcommerce/next-config/config'
 import {
   ActionCard,
   Button,
@@ -48,7 +49,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
   const client = useApolloClient()
 
   const canSignUp = useCustomerAccountCanSignUp()
-  const isToggleMethod = !import.meta.graphCommerce.enableGuestCheckoutLogin || !canSignUp
+  const isToggleMethod = !enableGuestCheckoutLogin || !canSignUp
 
   const showEmail =
     mode === 'email' ||

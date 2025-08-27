@@ -20,6 +20,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -45,7 +46,7 @@ function AccountNamePage() {
             <Trans id='Personal details' />
           </LayoutTitle>
 
-          {import.meta.graphCommerce.magentoVersion < 247 ? (
+          {magentoVersion < 247 ? (
             <SectionContainer labelLeft={<Trans id='Name' />}>
               {customer && (
                 <ChangeNameForm
@@ -78,8 +79,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
-  if (import.meta.graphCommerce.magentoVersion >= 247)
-    await preloadAttributesForm(client, 'customer_account_edit')
+  if (magentoVersion >= 247) await preloadAttributesForm(client, 'customer_account_edit')
 
   return {
     props: {

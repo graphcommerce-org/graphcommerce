@@ -29,8 +29,9 @@ import {
 import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-product-configurable'
 import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-products'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
-import { Money, redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
+import { breadcrumbs, magentoVersion } from '@graphcommerce/next-config/config'
 import {
   isTypename,
   LayoutHeader,
@@ -64,7 +65,7 @@ function ProductPage(props: Props) {
 
   const scopedQuery = usePrivateQuery(
     ProductPage2Document,
-    { variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 } },
+    { variables: { urlKey, useCustomAttributes: magentoVersion >= 247 } },
     props,
   )
   const { products, relatedUpsells } = scopedQuery.data
@@ -79,7 +80,7 @@ function ProductPage(props: Props) {
   return (
     <PrivateQueryMaskProvider mask={scopedQuery.mask}>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
-        <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
+        <LayoutHeader floatingMd hideMd={breadcrumbs}>
           <LayoutTitle size='small' component='span'>
             <ProductPageName product={product} />
           </LayoutTitle>
@@ -97,7 +98,7 @@ function ProductPage(props: Props) {
 
         <ProductPageMeta product={product} />
 
-        {import.meta.graphCommerce.breadcrumbs && (
+        {breadcrumbs && (
           <ProductPageBreadcrumbs
             product={product}
             sx={(theme) => ({
@@ -225,7 +226,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const productPage = staticClient
     .query({
       query: ProductPage2Document,
-      variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 },
+      variables: { urlKey, useCustomAttributes: magentoVersion >= 247 },
     })
     .then((pp) => defaultConfigurableOptionsSelection(urlKey, client, pp.data))
 

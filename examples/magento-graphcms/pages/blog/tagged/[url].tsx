@@ -22,6 +22,7 @@ import {
   RowRenderer,
 } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { breadcrumbs, limitSsg } from '@graphcommerce/next-config/config'
 
 type Props = HygraphPagesQuery & BlogListTaggedQuery
 type RouteProps = { url: string }
@@ -35,7 +36,7 @@ function BlogPage(props: Props) {
 
   return (
     <>
-      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
+      <LayoutHeader floatingMd hideMd={breadcrumbs}>
         <LayoutTitle size='small'>{title}</LayoutTitle>
       </LayoutHeader>
       <Row>
@@ -62,7 +63,7 @@ BlogPage.pageOptions = {
 export default BlogPage
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (import.meta.graphCommerce.limitSsg) return { paths: [], fallback: 'blocking' }
+  if (limitSsg) return { paths: [], fallback: 'blocking' }
 
   const responses = locales.map(async (locale) => {
     const staticClient = graphqlSsrClient({ locale })

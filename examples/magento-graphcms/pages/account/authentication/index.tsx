@@ -19,6 +19,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { customerDeleteEnabled, magentoVersion } from '@graphcommerce/next-config/config'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -40,15 +41,14 @@ function AccountAuthenticationPage() {
             <ChangePasswordForm />
           </SectionContainer>
 
-          {import.meta.graphCommerce.magentoVersion >= 246 &&
-            import.meta.graphCommerce.customerDeleteEnabled && (
-              <AccountMenuItem
-                href='/account/delete'
-                disableRipple
-                iconSrc={iconBin}
-                title={<Trans id='Delete account' />}
-              />
-            )}
+          {magentoVersion >= 246 && customerDeleteEnabled && (
+            <AccountMenuItem
+              href='/account/delete'
+              disableRipple
+              iconSrc={iconBin}
+              title={<Trans id='Delete account' />}
+            />
+          )}
         </WaitForCustomer>
       </Container>
     </>

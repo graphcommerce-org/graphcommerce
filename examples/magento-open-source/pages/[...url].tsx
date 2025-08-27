@@ -28,6 +28,11 @@ import {
   useProductList,
 } from '@graphcommerce/magento-product'
 import { redirectOrNotFound, redirectTo, StoreConfigDocument } from '@graphcommerce/magento-store'
+import {
+  breadcrumbs,
+  productFiltersLayout,
+  productFiltersPro,
+} from '@graphcommerce/next-config/config'
 import { Container, LayoutHeader, LayoutTitle, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -66,14 +71,14 @@ function CategoryPage(props: CategoryProps) {
   return (
     <PrivateQueryMaskProvider mask={mask}>
       <CategoryMeta params={params} {...category} />
-      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
+      <LayoutHeader floatingMd hideMd={breadcrumbs}>
         <LayoutTitle size='small' component='span'>
           {category?.name}
         </LayoutTitle>
       </LayoutHeader>
       {isCategory && isLanding && (
         <>
-          {import.meta.graphCommerce.breadcrumbs && (
+          {breadcrumbs && (
             <Container maxWidth={false}>
               <CategoryBreadcrumbs
                 category={category}
@@ -94,27 +99,25 @@ function CategoryPage(props: CategoryProps) {
       )}
       {isCategory && !isLanding && (
         <>
-          {import.meta.graphCommerce.productFiltersPro &&
-            import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
-              <ProductListLayoutSidebar
-                {...productList}
-                key={category.uid}
-                title={category.name ?? ''}
-                id={category.uid}
-                category={category}
-              />
-            )}
-          {import.meta.graphCommerce.productFiltersPro &&
-            import.meta.graphCommerce.productFiltersLayout !== 'SIDEBAR' && (
-              <ProductListLayoutDefault
-                {...productList}
-                key={category.uid}
-                title={category.name ?? ''}
-                id={category.uid}
-                category={category}
-              />
-            )}
-          {!import.meta.graphCommerce.productFiltersPro && (
+          {productFiltersPro && productFiltersLayout === 'SIDEBAR' && (
+            <ProductListLayoutSidebar
+              {...productList}
+              key={category.uid}
+              title={category.name ?? ''}
+              id={category.uid}
+              category={category}
+            />
+          )}
+          {productFiltersPro && productFiltersLayout !== 'SIDEBAR' && (
+            <ProductListLayoutDefault
+              {...productList}
+              key={category.uid}
+              title={category.name ?? ''}
+              id={category.uid}
+              category={category}
+            />
+          )}
+          {!productFiltersPro && (
             <ProductListLayoutClassic
               {...productList}
               key={category.uid}

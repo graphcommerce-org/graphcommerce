@@ -7,10 +7,19 @@
   "types": "./src/index.ts",
   "exports": {
     ".": {
+      "types": "./src/index.ts",
       "default": "./dist/index.js"
     },
     "./config": {
-      "default": "./dist/generated/config.js"
+      "types": "./src/generated/configValues/index.ts",
+      "default": "./dist/generated/configValues/index.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "config": [
+        "src/generated/configValues/index.ts"
+      ]
     }
   },
   "scripts": {

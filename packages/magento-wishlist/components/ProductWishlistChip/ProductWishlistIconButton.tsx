@@ -1,4 +1,5 @@
 import type { ProductListItemFragment } from '@graphcommerce/magento-product'
+import { wishlistShowFeedbackMessage } from '@graphcommerce/next-config/config'
 import type { IconSvgProps } from '@graphcommerce/next-ui'
 import {
   extendableComponent,
@@ -80,7 +81,7 @@ export const ProductWishlistIconButton = React.memo<ProductWishlistChipProps>((p
         )}
       </IconButton>
 
-      {import.meta.graphCommerce.wishlistShowFeedbackMessage && (
+      {wishlistShowFeedbackMessage && (
         <MessageSnackbar
           open={showSuccess}
           onClose={hideShowSuccess}

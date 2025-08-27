@@ -2,6 +2,7 @@ import { FormPersist, PasswordRepeatElement, SwitchElement } from '@graphcommerc
 import { useQuery } from '@graphcommerce/graphql'
 import { AttributesFormAutoLayout, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 import type { UseFormClearErrors, UseFormSetError } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react/macro'
 import { t } from '@lingui/core/macro'
@@ -95,7 +96,7 @@ export function SignUpForm(props: SignUpFormProps) {
         />
       </FormRow>
 
-      {import.meta.graphCommerce.magentoVersion < 247 ? (
+      {magentoVersion < 247 ? (
         <NameFields
           form={form}
           names={{

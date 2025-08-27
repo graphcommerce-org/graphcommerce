@@ -11,6 +11,7 @@ import {
   useCompareList,
 } from '@graphcommerce/magento-compare'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { compare } from '@graphcommerce/next-config/config'
 import type { GetStaticProps, LayoutOverlayProps } from '@graphcommerce/next-ui'
 import {
   FullPageMessage,
@@ -96,7 +97,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
-  if (!import.meta.graphCommerce.compare) return { notFound: true }
+  if (!compare) return { notFound: true }
 
   return {
     props: {

@@ -1,4 +1,5 @@
 import type { SearchFormProps } from '@graphcommerce/magento-search'
+import { algoliaSearchDebounceTime } from '@graphcommerce/next-config/config'
 import { Trans } from '@lingui/react'
 import { Box, debounce } from '@mui/material'
 import TextField from '@mui/material/TextField'
@@ -20,7 +21,7 @@ export function SearchBox(props: SearchBoxProps) {
   const debounceSearch = useCallback(
     debounce(
       (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => refine(e.target.value),
-      import.meta.graphCommerce.algoliaSearchDebounceTime ?? 0,
+      algoliaSearchDebounceTime ?? 0,
     ),
     [refine],
   )

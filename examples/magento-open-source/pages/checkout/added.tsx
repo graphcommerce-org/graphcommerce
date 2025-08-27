@@ -3,6 +3,7 @@ import { Image } from '@graphcommerce/image'
 import { getCartDisabled, useCrosssellItems } from '@graphcommerce/magento-cart'
 import { AddProductsToCartForm, ProductScroller } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { crossSellsRedirectItems } from '@graphcommerce/next-config/config'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   Button,
@@ -134,7 +135,7 @@ function CheckoutAdded() {
           </Container>
           <AddProductsToCartForm
             snackbarProps={{ disableSuccessSnackbar: true }}
-            redirect={import.meta.graphCommerce.crossSellsRedirectItems ? 'added' : false}
+            redirect={crossSellsRedirectItems ? 'added' : false}
           >
             <ProductScroller
               productListRenderer={productListRenderer}

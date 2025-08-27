@@ -59,9 +59,9 @@ export type DatalayerConfig = {
  *   storefrontConfigDefault,
  *   useStorefrontConfig,
  * } from '@graphcommerce/next-ui'
- *
+ * import { cartDisplayPricesInclTax } from '@graphcommerce/next-config/config'
  * // Accessing a global value
- * const globalConf = import.meta.graphCommerce.cartDisplayPricesInclTax
+ * const globalConf = cartDisplayPricesInclTax
  *
  * function MyComponent() {
  *   // Configuration configured per storefront locale.
@@ -72,8 +72,7 @@ export type DatalayerConfig = {
  *
  *   // Or as single line
  *   const scopedConfigWithFallback2 =
- *     useStorefrontConfig().cartDisplayPricesInclTax ??
- *     import.meta.graphCommerce.cartDisplayPricesInclTax
+ *     useStorefrontConfig().cartDisplayPricesInclTax ?? cartDisplayPricesInclTax
  *
  *   return <div>{googleRecaptchaKey}</div>
  * }

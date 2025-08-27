@@ -1,5 +1,6 @@
 import type { MeshContext, ProductAttributeSortInput } from '@graphcommerce/graphql-mesh'
 import { nonNullable } from '@graphcommerce/magento-customer'
+import { algolia } from '@graphcommerce/next-config/config'
 import type { GetAlgoliaSettingsReturn } from './getAlgoliaSettings'
 import { getGroupId } from './getGroupId'
 import { getIndexName } from './getIndexName'
@@ -31,7 +32,7 @@ export async function getSortedIndex(
   }
 
   if (attr === 'price') {
-    const enabled = import.meta.graphCommerce.algolia.customerGroupPricingEnabled
+    const enabled = algolia.customerGroupPricingEnabled
 
     const groupId = enabled ? getGroupId(context) : 'default'
     const found = candidates.find((r) => r.endsWith(`${groupId}_${dir})`))

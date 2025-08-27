@@ -1,6 +1,7 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { GuestOrderOverviewForm, useCustomerSession } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 import type { GetStaticProps, LayoutOverlayProps } from '@graphcommerce/next-ui'
 import { iconBox, LayoutOverlay, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
@@ -69,7 +70,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
-  if (import.meta.graphCommerce.magentoVersion < 247) return { notFound: true }
+  if (magentoVersion < 247) return { notFound: true }
 
   return {
     props: {

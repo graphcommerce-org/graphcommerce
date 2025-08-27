@@ -25,6 +25,7 @@ import {
   ProductFiltersProCategorySectionSearch,
   ProductFiltersProSearchTerm,
 } from '@graphcommerce/magento-search'
+import { breadcrumbs } from '@graphcommerce/next-config/config'
 import { Container, MediaQuery, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import { Box, Typography } from '@mui/material'
@@ -50,7 +51,7 @@ export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSideb
       autoSubmitMd
       handleSubmit={handleSubmit}
     >
-      {import.meta.graphCommerce.breadcrumbs && category && (
+      {breadcrumbs && category && (
         <Container maxWidth={false}>
           <CategoryBreadcrumbs
             category={category}
@@ -178,7 +179,7 @@ export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSideb
           display='block'
           sx={(theme) => ({
             gridArea: 'sidebar',
-            mt: import.meta.graphCommerce.breadcrumbs === true ? 0 : theme.spacings.lg,
+            mt: breadcrumbs === true ? 0 : theme.spacings.lg,
           })}
         >
           <ProductFiltersProClearAll sx={{ alignSelf: 'center' }} />

@@ -17,6 +17,7 @@ export {
 } from './generated/config'
 export * from './withGraphCommerce'
 export * from './config'
+export * from './config/commands/generateConfigValues'
 export * from './interceptors/commands/codegenInterceptors'
 export * from './interceptors/commands/cleanupInterceptors'
 export * from './commands/copyFiles'

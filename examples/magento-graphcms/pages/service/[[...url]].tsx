@@ -24,6 +24,7 @@ import {
   RowRenderer,
 } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { limitSsg } from '@graphcommerce/next-config/config'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
@@ -71,7 +72,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
     const { data } = await client.query({
       query: PagesStaticPathsDocument,
       variables: {
-        first: import.meta.graphCommerce.limitSsg ? 1 : 1000,
+        first: limitSsg ? 1 : 1000,
         urlStartsWith: 'service',
       },
     })

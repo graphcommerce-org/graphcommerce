@@ -6,6 +6,7 @@ import {
   WaitForCustomer,
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { customerDeleteEnabled, magentoVersion } from '@graphcommerce/next-config/config'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   iconBin,
@@ -41,15 +42,14 @@ function AccountAuthenticationPage() {
             <ChangePasswordForm />
           </SectionContainer>
 
-          {import.meta.graphCommerce.magentoVersion >= 246 &&
-            import.meta.graphCommerce.customerDeleteEnabled && (
-              <AccountMenuItem
-                href='/account/delete'
-                disableRipple
-                iconSrc={iconBin}
-                title={<Trans id='Delete account' />}
-              />
-            )}
+          {magentoVersion >= 246 && customerDeleteEnabled && (
+            <AccountMenuItem
+              href='/account/delete'
+              disableRipple
+              iconSrc={iconBin}
+              title={<Trans id='Delete account' />}
+            />
+          )}
         </WaitForCustomer>
       </Container>
     </>

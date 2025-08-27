@@ -15,6 +15,7 @@ import {
   RowRenderer,
 } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
@@ -71,10 +72,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: cacheFirst(staticClient),
   })
 
-  if (
-    import.meta.graphCommerce.magentoVersion < 247 ||
-    !(await conf).data.storeConfig?.contact_enabled
-  )
+  if (magentoVersion < 247 || !(await conf).data.storeConfig?.contact_enabled)
     return { notFound: true }
 
   return {

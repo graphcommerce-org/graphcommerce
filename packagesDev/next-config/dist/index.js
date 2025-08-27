@@ -2,22 +2,19 @@ import{createRequire as _pkgrollCR}from"node:module";const require=_pkgrollCR(im
 import path from 'node:path';
 import assert from 'assert';
 import crypto from 'crypto';
-import { GraphCommerceConfigSchema } from './generated/config.js';
-export { GraphCommerceDebugConfigSchema, GraphCommerceStorefrontConfigSchema } from './generated/config.js';
-import webpack from 'webpack';
+import { z, ZodEffects, ZodOptional, ZodNullable, ZodDefault, ZodObject, ZodArray, ZodNumber, ZodString, ZodEnum, ZodBoolean } from 'zod';
 import { cosmiconfigSync } from 'cosmiconfig';
 import chalk from 'chalk';
 import lodash from 'lodash';
-import { z, ZodEffects, ZodOptional, ZodNullable, ZodDefault, ZodObject, ZodArray, ZodNumber, ZodString, ZodEnum, ZodBoolean } from 'zod';
-import { writeFileSync, readFileSync } from 'fs';
+import { writeFileSync, readFileSync, existsSync, rmSync, mkdirSync } from 'fs';
 import prettierConf from '@graphcommerce/prettier-config-pwa';
 import { generate } from '@graphql-codegen/cli';
 import { transformFileSync, parseFileSync, parseSync as parseSync$1 } from '@swc/core';
 import dotenv from 'dotenv';
 import prettier from 'prettier';
+import path$1 from 'path';
 import { sync } from 'glob';
 import fs$1 from 'node:fs/promises';
-import path$1 from 'path';
 import fs$2 from 'fs/promises';
 import fg from 'fast-glob';
 
@@ -279,6 +276,132 @@ const packageRoots = (packagePaths) => {
     (root, index, self) => self.findIndex((r) => r !== root && r.startsWith(`${root}/`)) === -1
   );
 };
+
+const isDefinedNonNullAny = (v) => v !== void 0 && v !== null;
+z.any().refine((v) => isDefinedNonNullAny(v));
+const CartPermissionsSchema = z.enum(["CUSTOMER_ONLY", "DISABLED", "ENABLED"]);
+const CompareVariantSchema = z.enum(["CHECKBOX", "ICON"]);
+const ContainerSizingSchema = z.enum(["BREAKPOINT", "FULL_WIDTH"]);
+const CustomerAccountPermissionsSchema = z.enum([
+  "DISABLED",
+  "DISABLE_REGISTRATION",
+  "ENABLED"
+]);
+const PaginationVariantSchema = z.enum(["COMPACT", "EXTENDED"]);
+const ProductFiltersLayoutSchema = z.enum(["DEFAULT", "SIDEBAR"]);
+const SidebarGalleryPaginationVariantSchema = z.enum(["DOTS", "THUMBNAILS_BOTTOM"]);
+const WebsitePermissionsSchema = z.enum(["ENABLED"]);
+function DatalayerConfigSchema() {
+  return z.object({
+    coreWebVitals: z.boolean().nullish()
+  });
+}
+function GraphCommerceConfigSchema() {
+  return z.object({
+    breadcrumbs: z.boolean().default(false).nullish(),
+    canonicalBaseUrl: z.string().min(1),
+    cartDisplayPricesInclTax: z.boolean().nullish(),
+    compare: z.boolean().nullish(),
+    compareVariant: CompareVariantSchema.default("ICON").nullish(),
+    configurableVariantForSimple: z.boolean().default(false).nullish(),
+    configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
+    containerSizingContent: ContainerSizingSchema.default("FULL_WIDTH").nullish(),
+    containerSizingShell: ContainerSizingSchema.default("FULL_WIDTH").nullish(),
+    crossSellsHideCartItems: z.boolean().default(false).nullish(),
+    crossSellsRedirectItems: z.boolean().default(false).nullish(),
+    customerAddressNoteEnable: z.boolean().nullish(),
+    customerCompanyFieldsEnable: z.boolean().nullish(),
+    customerDeleteEnabled: z.boolean().nullish(),
+    customerXMagentoCacheIdDisable: z.boolean().nullish(),
+    dataLayer: DatalayerConfigSchema().nullish(),
+    debug: GraphCommerceDebugConfigSchema().nullish(),
+    demoMode: z.boolean().default(true).nullish(),
+    enableGuestCheckoutLogin: z.boolean().nullish(),
+    googleAnalyticsId: z.string().nullish(),
+    googlePlaystore: GraphCommerceGooglePlaystoreConfigSchema().nullish(),
+    googleRecaptchaKey: z.string().nullish(),
+    googleTagmanagerId: z.string().nullish(),
+    graphqlMeshEditMode: z.boolean().default(false).nullish(),
+    hygraphEndpoint: z.string().min(1),
+    hygraphManagementApi: z.string().nullish(),
+    hygraphProjectId: z.string().nullish(),
+    hygraphWriteAccessToken: z.string().nullish(),
+    limitSsg: z.boolean().nullish(),
+    magentoEndpoint: z.string().min(1),
+    magentoVersion: z.number(),
+    permissions: GraphCommercePermissionsSchema().nullish(),
+    previewSecret: z.string().nullish(),
+    productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
+    productFiltersPro: z.boolean().nullish(),
+    productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
+    productRoute: z.string().nullish(),
+    recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
+    robotsAllow: z.boolean().nullish(),
+    sidebarGallery: SidebarGalleryConfigSchema().nullish(),
+    storefront: z.array(GraphCommerceStorefrontConfigSchema()),
+    wishlistHideForGuests: z.boolean().nullish(),
+    wishlistShowFeedbackMessage: z.boolean().nullish()
+  });
+}
+function GraphCommerceDebugConfigSchema() {
+  return z.object({
+    cart: z.boolean().nullish(),
+    pluginStatus: z.boolean().nullish(),
+    sessions: z.boolean().nullish(),
+    webpackCircularDependencyPlugin: z.boolean().nullish(),
+    webpackDuplicatesPlugin: z.boolean().nullish()
+  });
+}
+function GraphCommerceGooglePlaystoreConfigSchema() {
+  return z.object({
+    packageName: z.string().min(1),
+    sha256CertificateFingerprint: z.string().min(1)
+  });
+}
+function GraphCommercePermissionsSchema() {
+  return z.object({
+    cart: CartPermissionsSchema.nullish(),
+    checkout: CartPermissionsSchema.nullish(),
+    customerAccount: CustomerAccountPermissionsSchema.nullish(),
+    website: WebsitePermissionsSchema.nullish()
+  });
+}
+function GraphCommerceStorefrontConfigSchema() {
+  return z.object({
+    canonicalBaseUrl: z.string().nullish(),
+    cartDisplayPricesInclTax: z.boolean().nullish(),
+    customerCompanyFieldsEnable: z.boolean().nullish(),
+    defaultLocale: z.boolean().nullish(),
+    domain: z.string().nullish(),
+    googleAnalyticsId: z.string().nullish(),
+    googleRecaptchaKey: z.string().nullish(),
+    googleTagmanagerId: z.string().nullish(),
+    hygraphLocales: z.array(z.string().min(1)).nullish(),
+    linguiLocale: z.string().nullish(),
+    locale: z.string().min(1),
+    magentoStoreCode: z.string().min(1),
+    permissions: GraphCommercePermissionsSchema().nullish(),
+    robotsAllow: z.boolean().nullish()
+  });
+}
+function MagentoConfigurableVariantValuesSchema() {
+  return z.object({
+    content: z.boolean().nullish(),
+    gallery: z.boolean().nullish(),
+    url: z.boolean().nullish()
+  });
+}
+function RecentlyViewedProductsConfigSchema() {
+  return z.object({
+    enabled: z.boolean().nullish(),
+    maxCount: z.number().nullish()
+  });
+}
+function SidebarGalleryConfigSchema() {
+  return z.object({
+    paginationVariant: SidebarGalleryPaginationVariantSchema.nullish()
+  });
+}
 
 const demoConfig = {
   canonicalBaseUrl: "https://graphcommerce.vercel.app",
@@ -630,42 +753,21 @@ function formatAppliedEnv(applyResult) {
   return [header, ...lines].join("\n");
 }
 
-function flattenKeys(value, initialPathPrefix, stringify) {
-  if (value === null || value === void 0 || typeof value === "number") {
-    return { [initialPathPrefix]: value };
+function flattenConfig(obj, prefix = "") {
+  const result = {};
+  for (const [key, value] of Object.entries(obj)) {
+    const newKey = prefix ? `${prefix}.${key}` : key;
+    if (value !== null && typeof value === "object" && !Array.isArray(value)) {
+      Object.assign(result, flattenConfig(value, newKey));
+    } else {
+      result[newKey] = String(value);
+    }
   }
-  if (typeof value === "string") {
-    return { [initialPathPrefix]: stringify ? JSON.stringify(value) : value };
-  }
-  if (!value || typeof value !== "object" || Array.isArray(value)) {
-    return {
-      [initialPathPrefix]: stringify || Array.isArray(value) ? JSON.stringify(value) : value
-    };
-  }
-  if (typeof value === "object") {
-    let outputValue = value;
-    if (stringify)
-      outputValue = process.env.NODE_ENV !== "production" ? `{ __debug: "'${initialPathPrefix}' can not be destructured, please access deeper properties directly" }` : "{}";
-    return {
-      [initialPathPrefix]: outputValue,
-      ...Object.keys(value).map((key) => {
-        const deep = value[key];
-        return {
-          ...flattenKeys(deep, `${initialPathPrefix}.${key}`, stringify),
-          ...flattenKeys(deep, `${initialPathPrefix}?.${key}`, stringify)
-        };
-      }).reduce((acc, path) => ({ ...acc, ...path }), {})
-    };
-  }
-  throw Error(`Unexpected value: ${value}`);
+  return result;
 }
-function configToImportMeta(config, path = "import.meta.graphCommerce", stringify = true) {
-  return flattenKeys(config, path, stringify);
-}
-
 function replaceConfigInString(str, config) {
   let result = str;
-  const replacers = configToImportMeta(config, "graphCommerce", false);
+  const replacers = flattenConfig(config, "graphCommerce");
   Object.entries(replacers).forEach(([from, to]) => {
     result = result.replace(new RegExp(`{${from}}`, "g"), to);
   });
@@ -725,7 +827,6 @@ function domains(config) {
 }
 function withGraphCommerce(nextConfig, cwd = process.cwd()) {
   graphcommerceConfig ??= loadConfig(cwd);
-  const importMetaPaths = configToImportMeta(graphcommerceConfig);
   const { storefront } = graphcommerceConfig;
   const transpilePackages = [
     ...[...resolveDependenciesSync().keys()].slice(1),
@@ -734,6 +835,15 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
   return {
     ...nextConfig,
     bundlePagesRouterDependencies: true,
+    turbopack: {
+      ...nextConfig.turbopack ?? {},
+      rules: {
+        ...nextConfig.experimental?.turbo?.rules ?? {},
+        "*.yaml": { loaders: [{ loader: "js-yaml-loader", options: {} }], as: "*.js" },
+        "*.yml": { loaders: [{ loader: "js-yaml-loader", options: {} }], as: "*.js" },
+        "*.po": { loaders: [{ loader: "@lingui/loader", options: {} }], as: "*.js" }
+      }
+    },
     experimental: {
       ...nextConfig.experimental,
       scrollRestoration: true,
@@ -741,16 +851,7 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
       optimizePackageImports: [
         ...transpilePackages,
         ...nextConfig.experimental?.optimizePackageImports ?? []
-      ],
-      turbo: {
-        ...nextConfig.experimental?.turbo ?? {},
-        rules: {
-          ...nextConfig.experimental?.turbo?.rules ?? {},
-          "*.yaml": { loaders: [{ loader: "js-yaml-loader", options: {} }], as: "*.js" },
-          "*.yml": { loaders: [{ loader: "js-yaml-loader", options: {} }], as: "*.js" },
-          "*.po": { loaders: [{ loader: "@lingui/loader", options: {} }], as: "*.js" }
-        }
-      }
+      ]
     },
     i18n: {
       ...nextConfig.i18n,
@@ -775,7 +876,7 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
         rewrites = { beforeFiles: rewrites, afterFiles: [], fallback: [] };
       }
       if ("productRoute" in graphcommerceConfig && typeof graphcommerceConfig.productRoute === "string" && graphcommerceConfig.productRoute !== "/p/") {
-        rewrites.beforeFiles.push({
+        rewrites.beforeFiles?.push({
           source: `${graphcommerceConfig.productRoute ?? "/p/"}:path*`,
           destination: "/p/:path*"
         });
@@ -797,9 +898,6 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
         exprContextCritical: false
       };
       if (!config.plugins) config.plugins = [];
-      config.plugins.push(new webpack.DefinePlugin(importMetaPaths));
-      config.plugins.push(new webpack.DefinePlugin({ "globalThis.__DEV__": options.dev }));
-      if (!options.isServer) ;
       config.snapshot = {
         ...config.snapshot ?? {},
         managedPaths: [
@@ -881,10 +979,10 @@ const resolveDependency = (cwd = process.cwd()) => {
 
 dotenv.config();
 const packages = [...resolveDependenciesSync().values()].filter((p) => p !== ".");
-const resolve = resolveDependency();
+const resolve$1 = resolveDependency();
 const schemaLocations = packages.map((p) => `${p}/**/Config.graphqls`);
 async function generateConfig() {
-  const resolved = resolve("@graphcommerce/next-config");
+  const resolved = resolve$1("@graphcommerce/next-config");
   if (!resolved) throw Error("Could not resolve @graphcommerce/next-config");
   const targetTs = `${resolved.root}/src/generated/config.ts`;
   const targetJs = `${resolved.root}/dist/generated/config.js`;
@@ -964,6 +1062,155 @@ dotenv.config();
 async function exportConfig() {
   const conf = loadConfig(process.cwd());
   console.log(exportConfigToEnv(conf));
+}
+
+dotenv.config();
+const resolve = resolveDependency();
+function toFileName(key) {
+  return key;
+}
+function generateValueLiteral(value) {
+  if (value === null) return "null";
+  if (value === void 0) return "undefined";
+  if (typeof value === "string") return JSON.stringify(value);
+  if (typeof value === "boolean" || typeof value === "number") return String(value);
+  if (Array.isArray(value) || typeof value === "object" && value !== null) {
+    return JSON.stringify(value, null, 2);
+  }
+  return JSON.stringify(value);
+}
+function shouldCreateFile(value) {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+function getSectionSchemaKeys(configKey) {
+  try {
+    const mainSchema = GraphCommerceConfigSchema();
+    const sectionSchema = mainSchema.shape[configKey];
+    if (!sectionSchema) return [];
+    let unwrappedSchema = sectionSchema;
+    while (unwrappedSchema && typeof unwrappedSchema === "object") {
+      if ("_def" in unwrappedSchema) {
+        const def = unwrappedSchema._def;
+        if ("innerType" in def && def.innerType) {
+          unwrappedSchema = def.innerType;
+          continue;
+        }
+        if ("typeName" in def && def.typeName === "ZodObject" && "shape" in def && def.shape) {
+          return Object.keys(def.shape());
+        }
+        break;
+      } else {
+        break;
+      }
+    }
+    if (unwrappedSchema && "shape" in unwrappedSchema) {
+      const shape = typeof unwrappedSchema.shape === "function" ? unwrappedSchema.shape() : unwrappedSchema.shape;
+      return Object.keys(shape || {});
+    }
+  } catch {
+  }
+  return [];
+}
+async function createConfigSectionFile(sectionName, sectionValue, targetDir, targetDistDir, configKey) {
+  const fileName = `${toFileName(sectionName)}.ts`;
+  const filePath = path$1.join(targetDir, fileName);
+  const distFileName = `${toFileName(sectionName)}.js`;
+  const distFilePath = path$1.join(targetDistDir, distFileName);
+  const schemaKeys = getSectionSchemaKeys(configKey);
+  const completeSectionValue = {};
+  for (const key of schemaKeys) {
+    completeSectionValue[key] = sectionValue[key];
+  }
+  const exports = Object.entries(completeSectionValue).map(([key, value]) => {
+    const valueStr = generateValueLiteral(value);
+    const propertyPath = `'${sectionName}.${key}'`;
+    const typeAnnotation = `: Get<GraphCommerceConfig, ${propertyPath}>`;
+    return `export const ${key}${typeAnnotation} = ${valueStr}`;
+  }).join("\n\n");
+  const imports = `import type { GraphCommerceConfig } from '../config'
+import type { Get } from 'type-fest'` ;
+  const content = `// Auto-generated by 'yarn graphcommerce codegen-config-values'
+${imports}
+
+${exports}
+`;
+  const formattedContent = await prettier.format(content, {
+    ...prettierConf,
+    parser: "typescript",
+    plugins: prettierConf.plugins?.filter(
+      (p) => typeof p === "string" && !p.includes("prettier-plugin-sort-imports")
+    )
+  });
+  writeFileSync(filePath, formattedContent);
+  const result = transformFileSync(filePath, {
+    module: { type: "nodenext" },
+    env: { targets: { node: "18" } }
+  });
+  writeFileSync(distFilePath, result.code);
+}
+async function generateConfigValues() {
+  const resolved = resolve("@graphcommerce/next-config");
+  if (!resolved) throw Error("Could not resolve @graphcommerce/next-config");
+  const config = loadConfig(process.cwd());
+  const targetDir = `${resolved.root}/src/generated/configValues`;
+  const targetDistDir = `${resolved.root}/dist/generated/configValues`;
+  if (existsSync(targetDir)) {
+    rmSync(targetDir, { recursive: true, force: true });
+  }
+  if (existsSync(targetDistDir)) {
+    rmSync(targetDistDir, { recursive: true, force: true });
+  }
+  mkdirSync(targetDir, { recursive: true });
+  mkdirSync(targetDistDir, { recursive: true });
+  const schema = GraphCommerceConfigSchema();
+  const schemaKeys = Object.keys(schema.shape);
+  const completeConfig = {};
+  for (const key of schemaKeys) {
+    completeConfig[key] = config[key];
+  }
+  const configEntries = Object.entries(completeConfig);
+  const nestedObjects = [];
+  const rootExports = [];
+  for (const [key, value] of configEntries) {
+    if (shouldCreateFile(value)) {
+      nestedObjects.push([key, value, key]);
+      rootExports.push(`export * as ${key} from './${toFileName(key)}'`);
+    } else {
+      const valueStr = generateValueLiteral(value);
+      const typeAnnotation = `: Get<GraphCommerceConfig, '${key}'>`;
+      rootExports.push(`export const ${key}${typeAnnotation} = ${valueStr}`);
+    }
+  }
+  await Promise.all(
+    nestedObjects.map(
+      ([sectionName, sectionValue, configKey]) => createConfigSectionFile(sectionName, sectionValue, targetDir, targetDistDir, configKey)
+    )
+  );
+  const rootImports = `import type { GraphCommerceConfig } from '../config'
+import type { Get } from 'type-fest'` ;
+  const indexContent = `// Auto-generated by 'yarn graphcommerce codegen-config-values'
+${rootImports}
+
+${rootExports.join("\n")}
+`;
+  const formattedIndexContent = await prettier.format(indexContent, {
+    ...prettierConf,
+    parser: "typescript",
+    plugins: prettierConf.plugins?.filter(
+      (p) => typeof p === "string" && !p.includes("prettier-plugin-sort-imports")
+    )
+  });
+  const indexPath = path$1.join(targetDir, "index.ts");
+  const distIndexPath = path$1.join(targetDistDir, "index.js");
+  writeFileSync(indexPath, formattedIndexContent);
+  const indexResult = transformFileSync(indexPath, {
+    module: { type: "nodenext" },
+    env: { targets: { node: "18" } }
+  });
+  writeFileSync(distIndexPath, indexResult.code);
+  console.log(`\u2705 Generated config values in ${targetDir} and ${targetDistDir}`);
+  console.log(`\u{1F4C1} Created ${nestedObjects.length} nested object files + index.ts/.js`);
+  console.log(`\u{1F4DD} Root exports: ${configEntries.length - nestedObjects.length}`);
 }
 
 function isIdentifier(node) {
@@ -2013,8 +2260,10 @@ async function codegen() {
   await copyFiles();
   console.info("\u2699\uFE0F  Generating GraphCommerce config types...");
   await generateConfig();
+  console.info("\u{1F4E6} Generating treeshakable config values...");
+  await generateConfigValues();
   console.info("\u{1F50C} Generating interceptors...");
   await codegenInterceptors();
 }
 
-export { GraphCommerceConfigSchema, cleanupInterceptors, codegen, codegenInterceptors, configToImportMeta, copyFiles, exportConfig, findParentPath, g, generateConfig, loadConfig, packageRoots, replaceConfigInString, resolveDependenciesSync, sig, sortDependencies, withGraphCommerce };
+export { GraphCommerceConfigSchema, GraphCommerceDebugConfigSchema, GraphCommerceStorefrontConfigSchema, cleanupInterceptors, codegen, codegenInterceptors, copyFiles, exportConfig, findParentPath, g, generateConfig, generateConfigValues, loadConfig, packageRoots, replaceConfigInString, resolveDependenciesSync, sig, sortDependencies, withGraphCommerce };

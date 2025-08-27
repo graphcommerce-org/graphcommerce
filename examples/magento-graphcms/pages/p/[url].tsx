@@ -50,6 +50,7 @@ import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 import { Container } from '@graphcommerce/next-ui'
+import { breadcrumbs, magentoVersion } from '@graphcommerce/next-config/config'
 
 export type Props = HygraphPagesQuery &
   UspsQuery &
@@ -65,7 +66,7 @@ function ProductPage(props: Props) {
 
   const scopedQuery = usePrivateQuery(
     ProductPage2Document,
-    { variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 } },
+    { variables: { urlKey, useCustomAttributes: magentoVersion >= 247 } },
     props,
   )
   const { products, relatedUpsells } = scopedQuery.data
@@ -80,7 +81,7 @@ function ProductPage(props: Props) {
   return (
     <PrivateQueryMaskProvider mask={scopedQuery.mask}>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
-        <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
+        <LayoutHeader floatingMd hideMd={breadcrumbs}>
           <LayoutTitle size='small' component='span'>
             <ProductPageName product={product} />
           </LayoutTitle>
@@ -98,7 +99,7 @@ function ProductPage(props: Props) {
 
         <ProductPageMeta product={product} />
 
-        {import.meta.graphCommerce.breadcrumbs && (
+        {breadcrumbs && (
           <Container
             maxWidth={false}
             sx={(theme) => ({ py: `calc(${theme.spacings.xxs} / 2)`, bgcolor: 'background.paper' })}
@@ -207,7 +208,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const productPage = staticClient
     .query({
       query: ProductPage2Document,
-      variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 },
+      variables: { urlKey, useCustomAttributes: magentoVersion >= 247 },
     })
     .then((pp) => defaultConfigurableOptionsSelection(urlKey, client, pp.data))
 

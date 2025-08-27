@@ -22,6 +22,7 @@ import {
   useCustomerQuery,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { customerAddressNoteEnable } from '@graphcommerce/next-config/config'
 import { Form, FormRow } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
@@ -161,7 +162,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         />
       )}
 
-      {!isVirtual && import.meta.graphCommerce.customerAddressNoteEnable && (
+      {!isVirtual && customerAddressNoteEnable && (
         <FormRow>
           <TextFieldElement
             control={form.control}

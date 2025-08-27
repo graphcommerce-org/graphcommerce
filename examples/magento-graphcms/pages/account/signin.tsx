@@ -8,6 +8,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -44,8 +45,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
-  if (import.meta.graphCommerce.magentoVersion >= 247)
-    await preloadAttributesForm(client, 'customer_account_create')
+  if (magentoVersion >= 247) await preloadAttributesForm(client, 'customer_account_create')
 
   return {
     props: {

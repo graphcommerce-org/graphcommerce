@@ -1,6 +1,7 @@
 import type { ApolloClient, NormalizedCacheObject, TypedDocumentNode } from '@graphcommerce/graphql'
 import { gql } from '@graphcommerce/graphql'
 import type { AttributeFrontendInputEnum, Exact } from '@graphcommerce/graphql-mesh'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import { ProductFilterTypesDocument } from './ProductFilterTypes.gql'
 
@@ -34,7 +35,7 @@ export async function getFilterTypes(
   client: ApolloClient<NormalizedCacheObject>,
   isSearch: boolean = false,
 ): Promise<FilterTypes> {
-  if (import.meta.graphCommerce.magentoVersion >= 247) {
+  if (magentoVersion >= 247) {
     const types = await client.query({
       query: ProductFilterTypesDocument,
       variables: {

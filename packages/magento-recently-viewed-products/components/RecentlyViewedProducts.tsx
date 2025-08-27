@@ -1,5 +1,6 @@
 import type { ProductScrollerProps } from '@graphcommerce/magento-product'
 import { ProductScroller } from '@graphcommerce/magento-product'
+import { recentlyViewedProducts } from '@graphcommerce/next-config/config'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import type { UseRecentlyViewedProductsProps } from '../hooks'
@@ -20,7 +21,7 @@ export function RecentlyViewedProducts(props: RecentlyViewedProductsProps) {
   })
 
   if (
-    !import.meta.graphCommerce.recentlyViewedProducts?.enabled ||
+    !recentlyViewedProducts?.enabled ||
     (!productList.loading && !productList.products.length && isInView)
   ) {
     return null

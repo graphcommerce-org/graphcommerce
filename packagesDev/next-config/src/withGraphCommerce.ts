@@ -5,7 +5,6 @@ import type { DomainLocale } from 'next/dist/server/config'
 import type { Configuration } from 'webpack'
 import webpack from 'webpack'
 import { loadConfig } from './config/loadConfig'
-import { configToImportMeta } from './config/utils/configToImportMeta'
 import type { GraphCommerceConfig } from './generated/config'
 import { resolveDependenciesSync } from './utils/resolveDependenciesSync'
 
@@ -42,7 +41,6 @@ function domains(config: GraphCommerceConfig): DomainLocale[] {
  */
 export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.cwd()): NextConfig {
   graphcommerceConfig ??= loadConfig(cwd)
-  const importMetaPaths = configToImportMeta(graphcommerceConfig)
 
   const { storefront } = graphcommerceConfig
 
@@ -129,37 +127,6 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
       }
 
       if (!config.plugins) config.plugins = []
-
-      // Make import.meta.graphCommerce available for usage.
-      config.plugins.push(new webpack.DefinePlugin(importMetaPaths))
-
-      // To properly properly treeshake @apollo/client we need to define the __DEV__ property
-      config.plugins.push(new webpack.DefinePlugin({ 'globalThis.__DEV__': options.dev }))
-
-      if (!options.isServer) {
-        // if (graphcommerceConfig.debug?.webpackCircularDependencyPlugin) {
-        //   config.plugins.push(
-        //     new CircularDependencyPlugin({
-        //       exclude: /readable-stream|duplexer2|node_modules\/next/,
-        //     }),
-        //   )
-        // }
-        // if (graphcommerceConfig.debug?.webpackDuplicatesPlugin) {
-        //   config.plugins.push(
-        //     new DuplicatesPlugin({
-        //       ignoredPackages: [
-        //         // very small
-        //         'react-is',
-        //         // build issue
-        //         'tslib',
-        //         // server
-        //         'isarray',
-        //         'readable-stream',
-        //       ],
-        //     }),
-        //   )
-        // }
-      }
 
       config.snapshot = {
         ...(config.snapshot ?? {}),

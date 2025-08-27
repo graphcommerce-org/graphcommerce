@@ -1,6 +1,7 @@
 import type { ParsedUrlQuery } from 'querystring'
 import type { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@graphcommerce/graphql'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
+import { productRoute } from '@graphcommerce/next-config/config'
 import { isTypename, nonNullable, revalidate, storefrontConfig } from '@graphcommerce/next-ui'
 import type { Redirect } from 'next'
 import type { HandleRedirectQuery, StoreConfigQuery } from '../graphql'
@@ -131,15 +132,16 @@ export async function redirectOrNotFound(
         'GroupedProduct',
       ])
     ) {
-      const productRoute = import.meta.graphCommerce.productRoute ?? '/p/'
+      const productRouteValue = productRoute ?? '/p/'
 
-      if (redirectUrl) return redirect(from, `${productRoute}${redirectUrl}`, permanent, locale)
+      if (redirectUrl)
+        return redirect(from, `${productRouteValue}${redirectUrl}`, permanent, locale)
 
       const url_key = routeData.route?.url_key
       if (!routeData.products?.items?.find((i) => i?.url_key === url_key))
         return notFound(from, "Route found, but product isn't returned from products query")
 
-      return redirect(from, `${productRoute}${url_key}`, true, locale)
+      return redirect(from, `${productRouteValue}${url_key}`, true, locale)
     }
 
     if (redirectUrl) return redirect(from, `/${redirectUrl}`, permanent, locale)

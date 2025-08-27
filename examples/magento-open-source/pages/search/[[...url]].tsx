@@ -25,6 +25,7 @@ import {
   useProductList,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import type { productFiltersLayout, productFiltersPro } from '@graphcommerce/next-config/config'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { LayoutHeader } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -70,17 +71,13 @@ function SearchResultPage(props: SearchResultProps) {
       </LayoutHeader>
 
       <PrivateQueryMaskProvider mask={mask}>
-        {import.meta.graphCommerce.productFiltersPro &&
-          import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
-            <ProductListLayoutSidebar {...productList} menu={menu} />
-          )}
-        {import.meta.graphCommerce.productFiltersPro &&
-          import.meta.graphCommerce.productFiltersLayout !== 'SIDEBAR' && (
-            <ProductListLayoutDefault {...productList} menu={menu} />
-          )}
-        {!import.meta.graphCommerce.productFiltersPro && (
-          <ProductListLayoutClassic {...productList} menu={menu} />
+        {productFiltersPro && productFiltersLayout === 'SIDEBAR' && (
+          <ProductListLayoutSidebar {...productList} menu={menu} />
         )}
+        {productFiltersPro && productFiltersLayout !== 'SIDEBAR' && (
+          <ProductListLayoutDefault {...productList} menu={menu} />
+        )}
+        {!productFiltersPro && <ProductListLayoutClassic {...productList} menu={menu} />}
       </PrivateQueryMaskProvider>
     </>
   )

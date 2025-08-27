@@ -13,6 +13,7 @@ import { Trans } from '@lingui/react/macro'
 import { t } from '@lingui/core/macro'
 import { Alert, Button, Container } from '@mui/material'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -75,7 +76,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
-  if (import.meta.graphCommerce.magentoVersion < 247) return { notFound: true }
+  if (magentoVersion < 247) return { notFound: true }
 
   return {
     props: {

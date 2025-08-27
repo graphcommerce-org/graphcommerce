@@ -5,6 +5,7 @@ import { CustomerTokenDocument, getCustomerAccountCanSignIn } from '@graphcommer
 import type { PushRouter } from '@graphcommerce/magento-customer/link/customerLink'
 import { pushWithPromise } from '@graphcommerce/magento-customer/link/customerLink'
 import type { ErrorCategory } from '@graphcommerce/magento-graphql'
+import { permissions } from '@graphcommerce/next-config/config'
 import { t } from '@lingui/core/macro'
 import type { GraphQLFormattedError } from 'graphql'
 import { GraphQLError } from 'graphql'
@@ -122,7 +123,7 @@ const cartPermissionLink = (router: PushRouter) =>
 export const cartLink = (router: PushRouter) => {
   const links = [cartErrorLink]
 
-  if (!(import.meta.graphCommerce.permissions?.cart === 'ENABLED')) {
+  if (!(permissions?.cart === 'ENABLED')) {
     links.push(cartPermissionLink(router))
   }
 

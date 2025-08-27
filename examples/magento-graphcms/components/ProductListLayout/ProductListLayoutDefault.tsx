@@ -17,6 +17,7 @@ import {
   ProductListSuggestions,
 } from '@graphcommerce/magento-product'
 import { ProductFiltersProSearchTerm } from '@graphcommerce/magento-search'
+import { breadcrumbs } from '@graphcommerce/next-config/config'
 import { Container, LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import { Typography } from '@mui/material'
@@ -51,7 +52,7 @@ export const ProductListLayoutDefault = memoDeep(function ProductListLayoutDefau
           justifyItems: { xs: 'left', md: 'center' },
         })}
       >
-        {import.meta.graphCommerce.breadcrumbs && category && (
+        {breadcrumbs && category && (
           <CategoryBreadcrumbs
             category={category}
             sx={(theme) => ({

@@ -1,5 +1,6 @@
 import type { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
 import { ActionCardListForm, useWatch } from '@graphcommerce/ecommerce-ui'
+import { customerCompanyFieldsEnable, magentoVersion } from '@graphcommerce/next-config/config'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
 import { ActionCard, FormRow, useStorefrontConfig } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
@@ -23,9 +24,7 @@ export function CompanyFields<
 
   const isCompany = useWatch({ name: name.isCompany, control })
 
-  const enable =
-    useStorefrontConfig().customerCompanyFieldsEnable ??
-    import.meta.graphCommerce.customerCompanyFieldsEnable
+  const enable = useStorefrontConfig().customerCompanyFieldsEnable ?? customerCompanyFieldsEnable
 
   if (!enable) return null
 
@@ -61,7 +60,7 @@ export function CompanyFields<
       {isCompany && (
         <FormRow>
           <CompanyName {...props} />
-          {import.meta.graphCommerce.magentoVersion >= 245 && <CompanyVAT {...props} />}
+          {magentoVersion >= 245 && <CompanyVAT {...props} />}
         </FormRow>
       )}
     </>

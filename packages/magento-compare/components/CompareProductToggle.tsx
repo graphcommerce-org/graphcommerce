@@ -1,4 +1,5 @@
 import { useMutation } from '@graphcommerce/graphql'
+import { compareVariant } from '@graphcommerce/next-config/config'
 import type { FabProps } from '@graphcommerce/next-ui'
 import { Button, Fab, iconCompare } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -78,7 +79,7 @@ function CompareProductToggleBase(
 
   return (
     <>
-      {import.meta.graphCommerce.compareVariant === 'CHECKBOX' ? (
+      {compareVariant === 'CHECKBOX' ? (
         <Button
           variant='text'
           size='small'

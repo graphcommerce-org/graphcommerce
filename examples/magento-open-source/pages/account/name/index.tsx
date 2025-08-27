@@ -8,6 +8,7 @@ import {
   WaitForCustomer,
 } from '@graphcommerce/magento-customer'
 import { PageMeta, preloadAttributesForm, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { iconId, LayoutOverlayHeader, LayoutTitle, SectionContainer } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -41,7 +42,7 @@ function AccountNamePage() {
             <Trans id='Personal details' />
           </LayoutTitle>
 
-          {import.meta.graphCommerce.magentoVersion < 247 ? (
+          {magentoVersion < 247 ? (
             <SectionContainer labelLeft={<Trans id='Name' />}>
               {customer && (
                 <ChangeNameForm
@@ -74,8 +75,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
-  if (import.meta.graphCommerce.magentoVersion >= 247)
-    await preloadAttributesForm(client, 'customer_account_edit')
+  if (magentoVersion >= 247) await preloadAttributesForm(client, 'customer_account_edit')
 
   return {
     props: {

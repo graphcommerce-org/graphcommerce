@@ -13,6 +13,7 @@ import {
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { CustomerDocument } from '@graphcommerce/magento-customer'
+import { customerAddressNoteEnable } from '@graphcommerce/next-config/config'
 import { filterNonNullableKeys, FormRow } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react/macro'
@@ -166,7 +167,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
         />
         {!isVirtual &&
           formAddressId !== -1 &&
-          import.meta.graphCommerce.customerAddressNoteEnable && (
+          customerAddressNoteEnable && (
             <FormRow>
               <TextFieldElement
                 control={form.control}
