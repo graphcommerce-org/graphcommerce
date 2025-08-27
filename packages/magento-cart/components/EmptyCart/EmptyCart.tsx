@@ -1,8 +1,12 @@
 import type { FullPageMessageProps } from '@graphcommerce/next-ui'
-import { FullPageMessage, iconShoppingBag, IconSvg } from '@graphcommerce/next-ui'
+import {
+  FullPageMessage,
+  iconShoppingBag,
+  IconSvg,
+  OverlayCloseButton,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
-import { Button } from '@mui/material'
 import React from 'react'
 
 export type EmptyCartProps = {
@@ -19,9 +23,9 @@ export function EmptyCart(props: EmptyCartProps) {
       icon={<IconSvg src={iconShoppingBag} size='xxl' />}
       button={
         button || (
-          <Button href='/' variant='pill' color='secondary' size='large'>
-            <Trans id='Continue shopping' />
-          </Button>
+          <OverlayCloseButton variant='pill' color='secondary' size='large'>
+            <Trans id='Continue shopping'>Continue shopping</Trans>
+          </OverlayCloseButton>
         )
       }
       {...rest}

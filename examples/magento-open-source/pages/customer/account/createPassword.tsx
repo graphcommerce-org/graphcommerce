@@ -62,10 +62,6 @@ function CustomerAccountCreatePasswordPage() {
                 }}
               />
             </p>
-
-            <Button href='/' variant='pill' color='secondary' size='large'>
-              <Trans id='Continue shopping' />
-            </Button>
           </Box>
         </Container>
       )}
