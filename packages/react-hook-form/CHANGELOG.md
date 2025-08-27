@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.1.0-canary.55
+
+### Patch Changes
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`5036171`](https://github.com/graphcommerce-org/graphcommerce/commit/5036171618492d7587cc02c557a4e9343e8240cd) - Fix typescript infer ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`31ef9c5`](https://github.com/graphcommerce-org/graphcommerce/commit/31ef9c59b18dd58fbb3625abf586f0a53f3d63cb) - Solve an issue where the false value of the useFormGql was incorrectly interpreted as an error while it was a SKIP. Fixes an issue where the CustomerAddressForm is not submitting properly when the user is adding a new address. ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`9bf02b6`](https://github.com/graphcommerce-org/graphcommerce/commit/9bf02b6dd20c086db0c93fe9efea140b673bc4a2) - Solve issue with react-hook-form causing ts errors, now version is fixed and the ts error is solved ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.54
 
 ## 9.1.0-canary.53

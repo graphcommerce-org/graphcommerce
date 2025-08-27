@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0-canary.55
+
+### Patch Changes
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`76adc6f`](https://github.com/graphcommerce-org/graphcommerce/commit/76adc6f6a5f76eb58998cef36f11a6a899a5e6ac) - Export generateSrcSet from Image component so it can be used for the avatar srcSet directly ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.54
 
 ## 9.1.0-canary.53

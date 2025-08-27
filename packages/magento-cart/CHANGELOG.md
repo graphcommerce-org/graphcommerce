@@ -1,5 +1,21 @@
 # Change Log
 
+## 9.1.0-canary.55
+
+### Patch Changes
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`cf44b1f`](https://github.com/graphcommerce-org/graphcommerce/commit/cf44b1f723b7f2073a21abd6821768427cb95315) - Added hideTotals to MultiCartStartCheckout ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`af4463d`](https://github.com/graphcommerce-org/graphcommerce/commit/af4463dcbc6903241c8804ffba2f43b2b8e1a00b) - When running a cart mutation and the cartId is already passed to the form we use that value instead of retrieving the current cart again. ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`415f9fb`](https://github.com/graphcommerce-org/graphcommerce/commit/415f9fb50454fb20cb533235969dd9ab4ffc134b) - Allow setting the cartId in the form for useFormGqlMutationCart by setting the cartId in the form AND allow setting the cartId for a whole context by wrapping with CartIdProvider ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`4e3f3f2`](https://github.com/graphcommerce-org/graphcommerce/commit/4e3f3f2df58638ba8ffc68ee9f274cdd6c45d6d4) - Allow setting the redirect value in the AddProductsToCartForm as a form value. ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`af4463d`](https://github.com/graphcommerce-org/graphcommerce/commit/af4463dcbc6903241c8804ffba2f43b2b8e1a00b) - Solve issue where if the onBeforeSubmit would return false, it would still error if submitted while the cart is locked. ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`1a06135`](https://github.com/graphcommerce-org/graphcommerce/commit/1a061357f4ccb430dd13194f755815474e140520) - Allow awaitable async requests for onStart on checkout button ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.54
 
 ## 9.1.0-canary.53

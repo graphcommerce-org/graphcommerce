@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.1.0-canary.55
+
+### Patch Changes
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`427833d`](https://github.com/graphcommerce-org/graphcommerce/commit/427833d3fa46ec6096853bdc3dfd81321df6e63b) - Forward address field props ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`183d8dd`](https://github.com/graphcommerce-org/graphcommerce/commit/183d8ddef6059f07ffe585b0f05a51731b12b371) - Remove odd nonNullable that is also available in @graphcommmerce/next-ui ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.54
 
 ## 9.1.0-canary.53
