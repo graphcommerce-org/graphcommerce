@@ -12,10 +12,10 @@
     }
   },
   "dependencies": {
-    "schema-dts": "^1.1.2"
+    "schema-dts": "^1.1.5"
   },
   "devDependencies": {
-    "typescript": "5.7.2"
+    "typescript": "5.9.2"
   },
   "peerDependencies": {
     "@graphcommerce/ecommerce-ui": "^9.1.0-canary.54",

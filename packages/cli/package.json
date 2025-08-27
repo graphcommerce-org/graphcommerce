@@ -22,17 +22,17 @@
     "is-monorepo": "dist/bin/is-monorepo.js"
   },
   "dependencies": {
-    "@graphql-codegen/cli": "5.0.5",
+    "@graphql-codegen/cli": "5.0.7",
     "cosmiconfig": "^8.3.6",
     "detect-package-manager": "^3.0.2",
     "dotenv": "16.4.7",
-    "graphql": "^16.10.0",
-    "graphql-codegen-typescript-validation-schema": "^0.17.0",
+    "graphql": "^16.11.0",
+    "graphql-codegen-typescript-validation-schema": "^0.17.1",
     "graphql-tag": "^2.12.6",
     "rimraf": "^5.0.10",
     "tslib": "^2.8.1",
-    "tsx": "^4.19.2",
-    "yaml": "2.6.1"
+    "tsx": "^4.20.5",
+    "yaml": "2.8.1"
   },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^9.1.0-canary.54",
@@ -63,6 +63,6 @@
     }
   },
   "devDependencies": {
-    "pkgroll": "^2.5.1"
+    "pkgroll": "^2.15.3"
   }
 }

@@ -13,13 +13,13 @@
     "prepack": "tsc"
   },
   "dependencies": {
-    "@ardatan/relay-compiler": "12.0.0",
-    "@graphql-codegen/plugin-helpers": "5.1.0",
-    "graphql": "^16.10.0"
+    "@ardatan/relay-compiler": "12.0.3",
+    "@graphql-codegen/plugin-helpers": "5.1.1",
+    "graphql": "^16.11.0"
   },
   "devDependencies": {
     "@types/relay-compiler": "8.0.4",
-    "typescript": "5.7.2"
+    "typescript": "5.9.2"
   },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^9.1.0-canary.54",

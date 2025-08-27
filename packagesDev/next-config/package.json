@@ -28,25 +28,25 @@
     "prepack": "pkgroll --clean-dist"
   },
   "dependencies": {
-    "@graphql-codegen/cli": "5.0.5",
-    "@swc/core": "1.10.1",
-    "@swc/wasm-web": "^1.10.1",
+    "@graphql-codegen/cli": "5.0.7",
+    "@swc/core": "1.13.5",
+    "@swc/wasm-web": "^1.13.5",
     "@types/circular-dependency-plugin": "^5.0.8",
-    "@types/js-yaml": "^4",
-    "@types/lodash": "^4.17.13",
+    "@types/js-yaml": "^4.0.9",
+    "@types/lodash": "^4.17.20",
     "babel-plugin-macros": "^3.1.0",
-    "chalk": "^4",
+    "chalk": "^4.1.2",
     "circular-dependency-plugin": "^5.2.2",
     "cosmiconfig": "^8.3.6",
-    "fast-glob": "^3.3.2",
+    "fast-glob": "^3.3.3",
     "glob": "^10.4.5",
-    "graphql": "^16.10.0",
+    "graphql": "^16.11.0",
     "inspectpack": "^4.7.1",
     "js-yaml": "^4.1.0",
     "js-yaml-loader": "^1.2.2",
     "lodash": "^4.17.21",
-    "react": "^18.3.1",
-    "typescript": "5.7.2",
+    "react": "^19.1.1",
+    "typescript": "5.9.2",
     "webpack": "^5.97.1",
     "znv": "^0.4.0",
     "zod": "^3.24.1"
@@ -71,6 +71,6 @@
     }
   },
   "devDependencies": {
-    "pkgroll": "^2.5.1"
+    "pkgroll": "^2.15.3"
   }
 }
