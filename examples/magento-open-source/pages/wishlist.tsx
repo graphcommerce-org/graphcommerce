@@ -4,12 +4,12 @@ import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { useWishlistItems, WishlistItemActionCard } from '@graphcommerce/magento-wishlist'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
-  Button,
   FullPageMessage,
   iconHeart,
   IconSvg,
   LayoutOverlayHeader,
   LayoutTitle,
+  OverlayCloseButton,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -54,9 +54,9 @@ function WishlistPage() {
               title={<Trans id='Your wishlist is empty' />}
               icon={<IconSvg src={iconHeart} size='xxl' />}
               button={
-                <Button href='/' variant='pill' color='primary' size='large'>
-                  <Trans id='Continue shopping' />
-                </Button>
+                <OverlayCloseButton variant='pill' color='secondary' size='large'>
+                  <Trans id='Continue shopping'>Continue shopping</Trans>
+                </OverlayCloseButton>
               }
             >
               <Trans id='Discover our collection and add items to your wishlist!' />

@@ -18,7 +18,7 @@
     "tsc:perf": "NODE_OPTIONS=--max_old_space_size=10000 tsc --noEmit --generateTrace tsctrace --incremental false && npx @typescript/analyze-trace tsctrace",
     "lingui": "cross-env NODE_ENV=development lingui extract --clean",
     "postinstall": "is-monorepo '[pkgrun] postinstall' '[pkgrun] patch-package'",
-    "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$|interceptor.ts$'"
+    "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$|interceptor.ts$|generated/*'"
   },
   "dependencies": {
     "@apollo/client": "~3.12.11",
@@ -121,7 +121,7 @@
     "next-sitemap": "4.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.62.0",
+    "react-hook-form": "7.62.0",
     "serwist": "^9.1.1",
     "sharp": "0.34.3",
     "ts-node": "^10.9.2",

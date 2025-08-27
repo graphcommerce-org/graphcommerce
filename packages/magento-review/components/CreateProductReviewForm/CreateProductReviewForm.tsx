@@ -7,12 +7,12 @@ import {
   Form,
   FormActions,
   FormRow,
+  OverlayCloseButton,
   responsiveVal,
   StarRatingField,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { SxProps, Theme } from '@mui/material'
 import { Alert, Box, Button, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -82,9 +82,9 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           <Trans id='Thank you! Your review was successfully submitted for approval' />
         </Alert>
         <Box mt={6}>
-          <Button variant='pill' color='secondary' size='large' onClick={() => router.back()}>
-            <Trans id='Continue shopping' />
-          </Button>
+          <OverlayCloseButton variant='pill' color='secondary' size='large'>
+            <Trans id='Continue shopping'>Continue shopping</Trans>
+          </OverlayCloseButton>
         </Box>
       </>
     )
