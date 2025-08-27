@@ -19,7 +19,7 @@ import {
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { LayoutOverlayProps } from '../../../components'

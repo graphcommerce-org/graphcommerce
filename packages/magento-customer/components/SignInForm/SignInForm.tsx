@@ -2,7 +2,7 @@ import type { UseFormClearErrors, UseFormSetError } from '@graphcommerce/ecommer
 import { PasswordElement } from '@graphcommerce/ecommerce-ui'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, FormControl, Link } from '@mui/material'

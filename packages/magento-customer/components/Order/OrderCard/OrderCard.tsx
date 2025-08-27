@@ -10,7 +10,7 @@ import {
   NextLink,
   sxx,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Avatar, Box, lighten, Paper, Skeleton } from '@mui/material'
 import { OrderStateLabel } from '../OrderStateLabel/OrderStateLabel'

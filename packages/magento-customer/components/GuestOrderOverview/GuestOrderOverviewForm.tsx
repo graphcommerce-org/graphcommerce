@@ -9,7 +9,7 @@ import {
   useUrlQuery,
 } from '@graphcommerce/next-ui'
 import { useFormGqlQuery } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, Typography } from '@mui/material'
 import { useMemo } from 'react'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError'

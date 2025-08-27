@@ -9,7 +9,8 @@ import {
   LayoutOverlayProps,
   LayoutOverlay,
 } from '@graphcommerce/next-ui'
-import { Trans, t } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
+import { t } from '@lingui/core/macro'
 import { Alert, Button, Container } from '@mui/material'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
 

@@ -4,7 +4,7 @@ import { productPath } from '@graphcommerce/magento-product'
 import { Money, PriceModifiersList, type PriceModifier } from '@graphcommerce/magento-store'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
 import { ActionCard, actionCardImageSizes, filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Box, Button, Link } from '@mui/material'
 import type { CartItemFragment } from '../../Api/CartItem.gql'
 import { RemoveItemFromCart } from '../RemoveItemFromCart/RemoveItemFromCart'
@@ -152,7 +152,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
               color='secondary'
               href={`/checkout/item/${product.url_key}?cartItemId=${uid}`}
             >
-              <Trans id='Edit options' />
+              <Trans id='Edit options'>Edit options</Trans>
             </Button>
           )}
 

@@ -54,6 +54,15 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
   return {
     ...nextConfig,
     bundlePagesRouterDependencies: true,
+    turbopack: {
+      ...(nextConfig.turbopack ?? {}),
+      rules: {
+        ...(nextConfig.experimental?.turbo?.rules ?? {}),
+        '*.yaml': { loaders: [{ loader: 'js-yaml-loader', options: {} }], as: '*.js' },
+        '*.yml': { loaders: [{ loader: 'js-yaml-loader', options: {} }], as: '*.js' },
+        '*.po': { loaders: [{ loader: '@lingui/loader', options: {} }], as: '*.js' },
+      },
+    },
     experimental: {
       ...nextConfig.experimental,
       scrollRestoration: true,
@@ -62,15 +71,6 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
         ...transpilePackages,
         ...(nextConfig.experimental?.optimizePackageImports ?? []),
       ],
-      turbo: {
-        ...(nextConfig.experimental?.turbo ?? {}),
-        rules: {
-          ...(nextConfig.experimental?.turbo?.rules ?? {}),
-          '*.yaml': { loaders: [{ loader: 'js-yaml-loader', options: {} }], as: '*.js' },
-          '*.yml': { loaders: [{ loader: 'js-yaml-loader', options: {} }], as: '*.js' },
-          '*.po': { loaders: [{ loader: '@lingui/loader', options: {} }], as: '*.js' },
-        },
-      },
     },
     i18n: {
       ...nextConfig.i18n,
@@ -104,7 +104,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
         typeof graphcommerceConfig.productRoute === 'string' &&
         graphcommerceConfig.productRoute !== '/p/'
       ) {
-        rewrites.beforeFiles.push({
+        rewrites.beforeFiles?.push({
           source: `${graphcommerceConfig.productRoute ?? '/p/'}:path*`,
           destination: '/p/:path*',
         })

@@ -2,7 +2,7 @@ import { useQuery } from '@graphcommerce/graphql'
 import { useCheckoutGuestEnabled } from '@graphcommerce/magento-cart'
 import { StoreConfigDocument, StoreSwitcherButton } from '@graphcommerce/magento-store'
 import { DateFormat, FindAndReplace, Footer as FooterBase } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import { Button, Link } from '@mui/material'
 
 export function Footer(props: { socialLinks?: React.ReactNode }) {

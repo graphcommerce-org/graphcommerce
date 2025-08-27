@@ -1,7 +1,7 @@
 import type { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { ProductListItemsBase, productListLink } from '@graphcommerce/magento-product'
 import { SectionContainer } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Link } from '@mui/material'
 import { useRouter } from 'next/router'

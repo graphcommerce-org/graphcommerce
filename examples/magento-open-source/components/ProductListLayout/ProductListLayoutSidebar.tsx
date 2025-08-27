@@ -26,7 +26,7 @@ import {
   ProductFiltersProSearchTerm,
 } from '@graphcommerce/magento-search'
 import { Container, MediaQuery, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, Typography } from '@mui/material'
 import { ProductListItems, productListRenderer } from '../ProductListItems'
 import type { ProductListLayoutProps } from './types'

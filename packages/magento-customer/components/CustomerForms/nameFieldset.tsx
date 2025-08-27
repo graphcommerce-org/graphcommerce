@@ -3,7 +3,7 @@ import {
   type AttributeFormAutoLayoutFieldset,
   type CustomAttributeMetadata,
 } from '@graphcommerce/magento-store'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 
 export function nameFieldset(
   attributes: CustomAttributeMetadata[],

@@ -5,7 +5,7 @@ import { CustomerTokenDocument, getCustomerAccountCanSignIn } from '@graphcommer
 import type { PushRouter } from '@graphcommerce/magento-customer/link/customerLink'
 import { pushWithPromise } from '@graphcommerce/magento-customer/link/customerLink'
 import type { ErrorCategory } from '@graphcommerce/magento-graphql'
-import { t } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
 import type { GraphQLFormattedError } from 'graphql'
 import { GraphQLError } from 'graphql'
 import { writeCartId } from '../hooks'

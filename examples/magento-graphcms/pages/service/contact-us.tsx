@@ -5,7 +5,7 @@ import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui
 import { ContactForm } from '@graphcommerce/magento-customer'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
 import { Container, Typography } from '@mui/material'
 import {
   LayoutDocument,

@@ -1,7 +1,7 @@
 import type { InvoiceItemProps } from '@graphcommerce/magento-customer'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 
 export const config: PluginConfig = {
   type: 'component',

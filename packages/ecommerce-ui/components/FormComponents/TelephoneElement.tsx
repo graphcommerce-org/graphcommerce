@@ -1,6 +1,7 @@
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { phonePattern } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
+import { t } from '@lingui/core/macro'
 import type { TextFieldElementProps } from './TextFieldElement'
 import { TextFieldElement } from './TextFieldElement'
 

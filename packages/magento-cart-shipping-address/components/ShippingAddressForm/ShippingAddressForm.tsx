@@ -23,7 +23,7 @@ import {
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Form, FormRow } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { isCartAddressACustomerAddress } from '../../utils/findCustomerAddressFromCartAddress'

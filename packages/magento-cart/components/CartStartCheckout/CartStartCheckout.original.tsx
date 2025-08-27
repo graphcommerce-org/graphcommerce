@@ -1,6 +1,6 @@
 import { Money } from '@graphcommerce/magento-store'
 import { extendableComponent, iconChevronRight, IconSvg } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type { ButtonProps, SxProps, Theme } from '@mui/material'
 import { Box, Button, Link } from '@mui/material'
 import React from 'react'

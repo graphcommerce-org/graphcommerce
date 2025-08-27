@@ -15,7 +15,7 @@ import {
   type GetStaticProps,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import { Alert, Box, Container, lighten, Typography } from '@mui/material'
 import type { PaymentTokenFragment } from '../../graphql/fragments/PaymentToken.gql'
 import { CustomerPaymentTokensDocument } from '../../graphql/queries/PaymentTokens.gql'

@@ -10,7 +10,7 @@ import {
   ListFormat,
   MessageSnackbar,
 } from '@graphcommerce/next-ui'
-import { Plural, Trans } from '@lingui/macro'
+import { Plural, Trans } from '@lingui/react/macro'
 
 export type AddProductsToCartSnackbarMessageProps = {
   errorSnackbar?: Omit<ErrorSnackbarProps, 'open'>

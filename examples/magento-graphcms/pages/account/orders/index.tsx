@@ -16,7 +16,7 @@ import {
   LayoutTitle,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
@@ -43,7 +43,7 @@ function AccountOrdersPage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconBox}>
-          <Trans id='Orders' />
+          <Trans id='Orders'>Orders</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
@@ -60,10 +60,12 @@ function AccountOrdersPage() {
 
           {customer?.orders && customer.orders.items.length < 1 && (
             <FullPageMessage
-              title={<Trans id='You have no orders yet' />}
+              title={<Trans id='You have no orders yet'>You have no orders yet</Trans>}
               icon={<IconSvg src={iconBox} size='xxl' />}
             >
-              <Trans id='Discover our collection and place your first order!' />
+              <Trans id='Discover our collection and place your first order!'>
+                Discover our collection and place your first order!
+              </Trans>
             </FullPageMessage>
           )}
         </WaitForCustomer>

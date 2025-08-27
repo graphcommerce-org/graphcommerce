@@ -1,7 +1,7 @@
 import { useCrosssellItems } from '@graphcommerce/magento-cart/components/CartAdded/useCrosssellItems'
 import type { ProductListItemRenderer, ProductScrollerProps } from '@graphcommerce/magento-product'
 import { AddProductsToCartForm, ProductScroller } from '@graphcommerce/magento-product'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 
 export type CartItemCrosssellsProps = {
   renderer: ProductListItemRenderer

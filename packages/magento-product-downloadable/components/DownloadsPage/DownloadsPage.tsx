@@ -7,10 +7,7 @@ import {
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  Button,
-  DateFormat,
   filterNonNullableKeys,
-  iconCreditCard,
   iconDownload,
   LayoutOverlayHeader,
   LayoutTitle,
@@ -19,7 +16,8 @@ import {
   type GetStaticProps,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { t, Trans } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, Container, Link, Typography } from '@mui/material'
 import React from 'react'
 import { DownloadsPageDocument } from '../../graphql/queries/DownloadsPage.gql'

@@ -1,7 +1,7 @@
 import { Image } from '@graphcommerce/image'
 import { Money, PriceModifiersList, type PriceModifier } from '@graphcommerce/magento-store'
 import { ActionCard, actionCardImageSizes, type ActionCardProps } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Box } from '@mui/material'
 import type { CreditMemoItemFragment } from './CreditMemoItem.gql'
 

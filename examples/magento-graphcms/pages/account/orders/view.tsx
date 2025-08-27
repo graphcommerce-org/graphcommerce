@@ -21,7 +21,7 @@ import {
   IconSvg,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'

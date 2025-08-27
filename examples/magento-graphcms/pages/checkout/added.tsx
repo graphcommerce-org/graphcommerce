@@ -13,7 +13,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/LayoutHeaderClose'
 import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, Container, Divider, Typography } from '@mui/material'
 import { useEffect, useRef } from 'react'
 import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../../components'

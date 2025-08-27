@@ -5,7 +5,7 @@ import {
   type AccountMenuItemProps,
 } from '@graphcommerce/magento-customer'
 import { iconCreditCard } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type { SetOptional } from 'type-fest'
 
 type PaymentTokensAccountMenuItemProps = SetOptional<

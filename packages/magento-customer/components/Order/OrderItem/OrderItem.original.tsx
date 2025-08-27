@@ -6,7 +6,7 @@ import {
   filterNonNullableKeys,
   type ActionCardProps,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Box } from '@mui/material'
 import type { OrderItemFragment } from './OrderItem.gql'
 

@@ -7,7 +7,7 @@ import {
   NextLink,
   sxx,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, lighten } from '@mui/material'
 import { TrackingLink } from '../TrackingLink/TrackingLink'

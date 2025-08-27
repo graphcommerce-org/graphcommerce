@@ -15,7 +15,7 @@ import {
 import { CustomerDocument } from '@graphcommerce/magento-customer'
 import { filterNonNullableKeys, FormRow } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import React, { useEffect } from 'react'

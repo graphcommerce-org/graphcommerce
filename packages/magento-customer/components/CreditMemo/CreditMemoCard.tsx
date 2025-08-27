@@ -1,6 +1,6 @@
 import { Money } from '@graphcommerce/magento-store'
 import { breakpointVal, iconChevronRight, IconSvg, NextLink, sxx } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, lighten } from '@mui/material'
 import type { CreditMemoCardFragment } from './CreditMemoCard.gql'
