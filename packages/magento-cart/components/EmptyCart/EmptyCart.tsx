@@ -5,7 +5,7 @@ import {
   IconSvg,
   OverlayCloseButton,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import React from 'react'
 
@@ -19,7 +19,7 @@ export function EmptyCart(props: EmptyCartProps) {
 
   return (
     <FullPageMessage
-      title={<Trans id='Your cart is empty' />}
+      title={<Trans id='Your cart is empty'>Your cart is empty</Trans>}
       icon={<IconSvg src={iconShoppingBag} size='xxl' />}
       button={
         button || (
@@ -30,7 +30,11 @@ export function EmptyCart(props: EmptyCartProps) {
       }
       {...rest}
     >
-      {children ?? <Trans id='Discover our collection and add items to your cart!' />}
+      {children ?? (
+        <Trans id='Discover our collection and add items to your cart!'>
+          Discover our collection and add items to your cart!
+        </Trans>
+      )}
     </FullPageMessage>
   )
 }
