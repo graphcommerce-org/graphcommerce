@@ -12,7 +12,11 @@
     }
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./components/CartAdded/useCrosssellItems": "./components/CartAdded/useCrosssellItems.ts",
+    "./hooks": "./hooks/index.ts",
+    "./plugins/useSignInFormMergeCart": "./plugins/useSignInFormMergeCart.ts",
+    "./plugins/MagentoCartGraphqlProvider": "./plugins/MagentoCartGraphqlProvider.tsx"
   },
   "peerDependencies": {
     "@graphcommerce/ecommerce-ui": "^9.1.0-canary.55",

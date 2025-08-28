@@ -8,7 +8,10 @@
     "dev": "tsc -W"
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./plugins/demo/DemoRowLinks": "./plugins/demo/DemoRowLinks.tsx",
+    "./plugins/demo/DemoProductListItemConfigurable": "./plugins/demo/DemoProductListItemConfigurable.tsx",
+    "./plugins/demo/DemoRecentlyViewedProducts": "./plugins/demo/DemoRecentlyViewedProducts.tsx"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {

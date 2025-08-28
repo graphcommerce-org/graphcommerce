@@ -12,7 +12,11 @@
     }
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./plugins/CompareAbleProductListItem": "./plugins/CompareAbleProductListItem.tsx",
+    "./plugins/AddCompareToProductPage": "./plugins/AddCompareToProductPage.tsx",
+    "./plugins/AddCompareFabNextToCart": "./plugins/AddCompareFabNextToCart.tsx",
+    "./plugins/AddCompareTypePolicies": "./plugins/AddCompareTypePolicies.tsx"
   },
   "peerDependencies": {
     "@graphcommerce/ecommerce-ui": "^9.1.0-canary.55",

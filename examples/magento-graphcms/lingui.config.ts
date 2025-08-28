@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-var-requires */
+import linguiNextConfig from '@graphcommerce/lingui-next/config'
+import { loadConfig } from '@graphcommerce/next-config/loadConfig'
+import dotenv from 'dotenv'
 
-const linguiNextConfig = require('@graphcommerce/lingui-next/config')
-const { loadConfig } = require('@graphcommerce/next-config')
-require('dotenv').config()
+dotenv.config()
 
 const locales = loadConfig(process.cwd()).storefront.map(({ locale, linguiLocale }) => {
   if (linguiLocale) return linguiLocale

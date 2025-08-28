@@ -25,6 +25,7 @@
     "react-dom": "^18.2.0"
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./plugins/hygraphDynamicRowsPageContent": "./plugins/hygraphDynamicRowsPageContent.ts"
   }
 }

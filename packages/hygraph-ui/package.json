@@ -25,6 +25,9 @@
     "react-dom": "^18.2.0"
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./plugins/hygraphPreviewModeDefaults": "./plugins/hygraphPreviewModeDefaults.ts",
+    "./plugins/HygraphPreviewModeToolbar": "./plugins/HygraphPreviewModeToolbar.tsx",
+    "./plugins/hygraphGraphqlConfig": "./plugins/hygraphGraphqlConfig.ts"
   }
 }

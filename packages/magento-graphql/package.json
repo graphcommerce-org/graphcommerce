@@ -17,6 +17,7 @@
     "./plugins/magentoOrderItemMesh": "./plugins/magentoOrderItemMesh.ts",
     "./plugins/magentoOrders": "./plugins/magentoOrders.ts",
     "./plugins/meshConfigAttrValue": "./plugins/meshConfigAttrValue.ts",
+    "./plugins/magentoGraphqlConfig": "./plugins/magentoGraphqlConfig.ts",
     "./mesh/customAttributeV2Resolver.ts": "./mesh/customAttributeV2Resolver.ts",
     "./mesh/attributeValueResolver.ts": "./mesh/attributeValueResolver.ts",
     "./mesh/scopedUidResolver.ts": "./mesh/scopedUidResolver.ts",

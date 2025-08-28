@@ -39,6 +39,9 @@ msgstr "I understand that my account will be deleted and this can not be undone.
 msgid "Credit Memo not found"
 msgstr "Credit Memo not found"
 
+msgid "1. You are still paying in another window: Close this window and continue there."
+msgstr "1. You are still paying in another window: Close this window and continue there."
+
 #. js-lingui-generated-id
 msgid "Store Settings"
 msgstr "Store Settings"
@@ -46,6 +49,9 @@ msgstr "Store Settings"
 #. js-lingui-generated-id
 msgid "Newletter"
 msgstr "Newletter"
+
+msgid "2. You don't have an open payment window: Press the button below."
+msgstr "2. You don't have an open payment window: Press the button below."
 
 #. js-lingui-generated-id
 msgid "Search all products..."
@@ -175,6 +181,9 @@ msgstr "Breadcrumbs"
 msgid "Buy {quantity} for <0/> and save {percent}%"
 msgstr "Buy {quantity} for <0/> and save {percent}%"
 
+msgid "Cancel payment and unlock cart"
+msgstr "Cancel payment and unlock cart"
+
 msgid "Cart"
 msgstr "Cart"
 
@@ -209,6 +218,9 @@ msgstr "Clear all filters"
 
 msgid "Close"
 msgstr "Close"
+
+msgid "Close overlay"
+msgstr "Close overlay"
 
 #. js-lingui-generated-id
 msgid "Order status"
@@ -1041,6 +1053,9 @@ msgstr "Your address has been added"
 
 msgid "Your cart is empty"
 msgstr "Your cart is empty"
+
+msgid "Your cart is locked."
+msgstr "Your cart is locked."
 
 msgid "Your comparelist is empty"
 msgstr "Your comparelist is empty"

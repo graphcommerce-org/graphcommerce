@@ -40,6 +40,10 @@
     "react-dom": "^18.2.0"
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./components": "./components/index.ts",
+    "./components/AddProductsToCart/AddProductsToCartSnackbarMessage": "./components/AddProductsToCart/AddProductsToCartSnackbarMessage.tsx",
+    "./components/ProductFiltersPro": "./components/ProductFiltersPro/index.ts",
+    "./hooks/useProductLink": "./hooks/useProductLink.ts"
   }
 }

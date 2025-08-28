@@ -39,6 +39,9 @@ msgstr "Je comprends que mon compte sera supprimé et que cela ne pourra pas êt
 msgid "Credit Memo not found"
 msgstr "Crédit non trouvé"
 
+msgid "1. You are still paying in another window: Close this window and continue there."
+msgstr "1. Vous payez toujours dans une autre fenêtre : Fermez cette fenêtre et continuez là."
+
 #. js-lingui-generated-id
 msgid "Store Settings"
 msgstr "Paramètres de la boutique"
@@ -46,6 +49,9 @@ msgstr "Paramètres de la boutique"
 #. js-lingui-generated-id
 msgid "Newletter"
 msgstr "Lettre d'information"
+
+msgid "2. You don't have an open payment window: Press the button below."
+msgstr "2. Vous n'avez pas de fenêtre de paiement ouverte : Appuyez sur le bouton ci-dessous."
 
 #. js-lingui-generated-id
 msgid "Search all products..."
@@ -175,6 +181,9 @@ msgstr "Chapelure"
 msgid "Buy {quantity} for <0/> and save {percent}%"
 msgstr "Achetez {quantity} pour <0/> et économisez {percent}%"
 
+msgid "Cancel payment and unlock cart"
+msgstr "Annuler le paiement et déverrouiller le panier"
+
 msgid "Cart"
 msgstr "Panier"
 
@@ -209,6 +218,9 @@ msgstr "Effacer tous les filtres"
 
 msgid "Close"
 msgstr "Fermer"
+
+msgid "Close overlay"
+msgstr "Fermer le surlignage"
 
 #. js-lingui-generated-id
 msgid "Order status"
@@ -1041,6 +1053,9 @@ msgstr "Votre adresse a été ajoutée"
 
 msgid "Your cart is empty"
 msgstr "Votre panier est vide"
+
+msgid "Your cart is locked."
+msgstr "Votre panier est verrouillé."
 
 msgid "Your comparelist is empty"
 msgstr "Votre comparateur est vide"

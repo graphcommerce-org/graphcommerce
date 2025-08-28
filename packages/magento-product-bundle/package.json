@@ -34,6 +34,13 @@
     "react-dom": "^18.2.0"
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./plugins/BundleCartItemActionCard": "./plugins/BundleCartItemActionCard.tsx",
+    "./plugins/Bundle_cartItemToCartItemInput": "./plugins/Bundle_cartItemToCartItemInput.ts",
+    "./plugins/BundleCreditMemoItem": "./plugins/BundleCreditMemoItem.tsx",
+    "./plugins/BundleInvoiceItem": "./plugins/BundleInvoiceItem.tsx",
+    "./plugins/BundleOrderItem": "./plugins/BundleOrderItem.tsx",
+    "./plugins/BundleShipmentItem": "./plugins/BundleShipmentItem.tsx",
+    "./plugins/BundleProductPagePrice": "./plugins/BundleProductPagePrice.tsx"
   }
 }

@@ -5,6 +5,7 @@
   "version": "9.1.0-canary.55",
   "private": true,
   "sideEffects": false,
+  "type": "module",
   "packageManager": "yarn@4.5.3",
   "engines": {
     "node": ">=20.0.0 <23.0.0"

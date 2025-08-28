@@ -49,6 +49,8 @@ function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-c
  */
 export function graphqlSharedClient(context: GetStaticPropsContext) {
   if (context.preview || context.draftMode) return client(context, 'no-cache')
+  const locale = context.locale ?? storefrontConfigDefault().locale
+  i18nSsrLoader(locale)
   return client(context, 'cache-first')
 }
 

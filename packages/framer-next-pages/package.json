@@ -22,6 +22,7 @@
     "react-dom": "^18.2.0"
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./hooks/usePrevPageRouter": "./hooks/usePrevPageRouter.ts"
   }
 }

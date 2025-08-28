@@ -12,7 +12,8 @@
     }
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./plugins/AddIncludedMethods": "./plugins/AddIncludedMethods.tsx"
   },
   "peerDependencies": {
     "@graphcommerce/ecommerce-ui": "^9.1.0-canary.55",

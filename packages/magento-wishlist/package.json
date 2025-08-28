@@ -37,6 +37,9 @@
     "react-dom": "^18.2.0"
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./plugins/WishlistProductAddToCartFormPlugin": "./plugins/WishlistProductAddToCartFormPlugin.tsx",
+    "./plugins/BundleWishlistItemActionCard": "./plugins/BundleWishlistItemActionCard.tsx",
+    "./plugins/ConfigurableWishlistItemActionCard": "./plugins/ConfigurableWishlistItemActionCard.tsx"
   }
 }

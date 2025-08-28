@@ -1,5 +1,4 @@
-const { findParentPath } = require('@graphcommerce/next-config')
-const { formatter } = require('@lingui/format-po')
+import { formatter } from '@lingui/format-po'
 
 /**
  * Augmenting the locale config to be compatible with GraphCommerce.
@@ -11,11 +10,13 @@ const { formatter } = require('@lingui/format-po')
  * @param {Partial<import('@lingui/conf').LinguiConfig>} config
  * @returns {Partial<import('@lingui/conf').LinguiConfig>}
  */
-function linguiNextConfig(config) {
+export default function linguiNextConfig(
+  config: Partial<import('@lingui/conf').LinguiConfig>,
+): Partial<import('@lingui/conf').LinguiConfig> {
   const { locales, ...otherConfig } = config
   return {
     orderBy: 'messageId',
-    locales: findParentPath(process.cwd()) ? ['en', 'nl', 'fr', 'de', 'es', 'it'] : config.locales,
+    locales: ['en', 'nl', 'fr', 'de', 'es', 'it'],
     // formatOptions: { lineNumbers: false, origins: false, explicitIdAsDefault: true },
     format: formatter({ explicitIdAsDefault: true, lineNumbers: false, origins: false }),
     catalogs: [
@@ -34,5 +35,3 @@ function linguiNextConfig(config) {
     ...otherConfig,
   }
 }
-
-module.exports = linguiNextConfig

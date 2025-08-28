@@ -12,7 +12,12 @@
     }
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./plugins/magentoCustomerPrivateQueryContext": "./plugins/magentoCustomerPrivateQueryContext.ts",
+    "./plugins/MagentoCustomerGraphqlProvider": "./plugins/MagentoCustomerGraphqlProvider.tsx",
+    "./plugins/XMagentoCacheIdGraphQLProvider": "./plugins/XMagentoCacheIdGraphQLProvider.tsx",
+    "./hooks/useCustomerSession": "./hooks/useCustomerSession.ts",
+    "./link/customerLink": "./link/customerLink.ts"
   },
   "peerDependencies": {
     "@graphcommerce/ecommerce-ui": "^9.1.0-canary.55",

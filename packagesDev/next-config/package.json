@@ -17,6 +17,10 @@
     "./config": {
       "types": "./src/generated/configValues/index.ts",
       "default": "./dist/generated/configValues/index.js"
+    },
+    "./loadConfig": {
+      "types": "./src/config/loadConfig.ts",
+      "default": "./dist/config/loadConfig.js"
     }
   },
   "typesVersions": {

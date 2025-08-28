@@ -13,7 +13,11 @@
   },
   "exports": {
     ".": "./index.ts",
-    "./plugins/meshRecaptcha": "./plugins/meshRecaptcha.ts"
+    "./plugins/meshRecaptcha": "./plugins/meshRecaptcha.ts",
+    "./plugins/GrecaptchaApolloErrorAlert": "./plugins/GrecaptchaApolloErrorAlert.tsx",
+    "./plugins/GrecaptchaApolloErrorFullPage": "./plugins/GrecaptchaApolloErrorFullPage.tsx",
+    "./plugins/GrecaptchaApolloErrorSnackbar": "./plugins/GrecaptchaApolloErrorSnackbar.tsx",
+    "./plugins/GrecaptchaGraphQLProvider": "./plugins/GrecaptchaGraphQLProvider.tsx"
   },
   "devDependencies": {
     "@types/grecaptcha": "^3.0.9"

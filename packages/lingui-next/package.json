@@ -7,9 +7,11 @@
   "scripts": {
     "dev": "tsc -W"
   },
+  "type": "module",
   "exports": {
     ".": "./index.ts",
-    "./config": "./config.js"
+    "./config": "./config.ts",
+    "./server": "./server.ts"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {

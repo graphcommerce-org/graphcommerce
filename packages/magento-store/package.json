@@ -14,6 +14,8 @@
   "exports": {
     ".": "./index.ts",
     "./plugins/meshMagentoStore": "./plugins/meshMagentoStore.ts",
+    "./plugins/magentoStoreGraphqlConfig": "./plugins/magentoStoreGraphqlConfig.ts",
+    "./plugins/magentoCurrencyCode": "./plugins/magentoCurrencyCode.ts",
     "./mesh/resolvers.ts": "./mesh/resolvers.ts"
   },
   "peerDependencies": {
