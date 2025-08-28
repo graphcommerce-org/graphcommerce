@@ -10,6 +10,10 @@
       "types": "./src/index.ts",
       "default": "./dist/index.js"
     },
+    "./schema": {
+      "types": "./src/generated/config.ts",
+      "default": "./dist/generated/config.js"
+    },
     "./config": {
       "types": "./src/generated/configValues/index.ts",
       "default": "./dist/generated/configValues/index.js"
@@ -17,6 +21,9 @@
   },
   "typesVersions": {
     "*": {
+      "schema": [
+        "src/generated/config.ts"
+      ],
       "config": [
         "src/generated/configValues/index.ts"
       ]

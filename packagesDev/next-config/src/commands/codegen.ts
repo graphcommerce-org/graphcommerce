@@ -1,7 +1,7 @@
-import { generateConfig } from '../config/commands/generateConfig'
-import { generateConfigValues } from '../config/commands/generateConfigValues'
-import { codegenInterceptors } from '../interceptors/commands/codegenInterceptors'
+import { codegenInterceptors } from './codegenInterceptors'
 import { copyFiles } from './copyFiles'
+import { generateConfig } from './generateConfig'
+import { generateConfigValues } from './generateConfigValues'
 
 /** Run all code generation steps in sequence */
 export async function codegen() {

@@ -5,10 +5,10 @@ import prettierConf from '@graphcommerce/prettier-config-pwa'
 import { transformFileSync } from '@swc/core'
 import dotenv from 'dotenv'
 import prettier from 'prettier'
-import type { GraphCommerceConfig } from '../../generated/config'
-import { GraphCommerceConfigSchema } from '../../generated/config'
-import { resolveDependency } from '../../utils/resolveDependency'
-import { loadConfig } from '../loadConfig'
+import { loadConfig } from '../config/loadConfig'
+import type { GraphCommerceConfig } from '../generated/config'
+import { GraphCommerceConfigSchema } from '../generated/config'
+import { resolveDependency } from '../utils/resolveDependency'
 
 dotenv.config()
 
@@ -239,7 +239,7 @@ ${rootExports.join('\n')}
   // Transform and write JavaScript index file
   const indexResult = transformFileSync(indexPath, {
     module: { type: 'nodenext' },
-    env: { targets: { node: '18' } },
+    env: { targets: { node: '20' } },
   })
 
   writeFileSync(distIndexPath, indexResult.code)

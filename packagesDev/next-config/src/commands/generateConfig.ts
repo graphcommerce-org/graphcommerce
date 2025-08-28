@@ -4,9 +4,9 @@ import { generate } from '@graphql-codegen/cli'
 import { transformFileSync } from '@swc/core'
 import dotenv from 'dotenv'
 import prettier from 'prettier'
-import { findParentPath } from '../../utils/isMonorepo'
-import { resolveDependenciesSync } from '../../utils/resolveDependenciesSync'
-import { resolveDependency } from '../../utils/resolveDependency'
+import { findParentPath } from '../utils/findParentPath'
+import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
+import { resolveDependency } from '../utils/resolveDependency'
 
 dotenv.config()
 
@@ -63,7 +63,7 @@ export async function generateConfig() {
 
   const result = transformFileSync(targetTs, {
     module: { type: 'nodenext' },
-    env: { targets: { node: '18' } },
+    env: { targets: { node: '20' } },
   })
 
   writeFileSync(targetJs, result.code)

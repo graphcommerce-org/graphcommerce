@@ -47,8 +47,9 @@ function PaymentPage() {
   const cartExists =
     typeof billingPage.data?.cart !== 'undefined' && (billingPage.data.cart?.items?.length ?? 0) > 0
 
+  const formKey = `${billingPage.data?.cart?.id}-${locked ? 'locked' : 'unlocked'}`
   return (
-    <ComposedForm>
+    <ComposedForm key={formKey}>
       <PageMeta title={i18n._(/* i18n */ 'Payment')} metaRobots={['noindex']} />
 
       <WaitForQueries

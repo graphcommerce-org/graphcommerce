@@ -35,6 +35,7 @@ yarn-error.log*
 pages/.well-known/assetlinks.json.tsx
 pages/account/downloads.tsx
 pages/account/payment-tokens.tsx
+pages/cart.tsx
 pages/downloadable/download/link/id/\[id\].tsx
 pages/downloadable/download/linkSample/link_id/\[id\].tsx
 pages/downloadable/download/sample/sample_id/\[id\].tsx

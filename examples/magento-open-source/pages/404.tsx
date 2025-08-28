@@ -1,22 +1,13 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import { CmsPageContent, CmsPageDocument, type CmsPageFragment } from '@graphcommerce/magento-cms'
-import { useCustomerAccountCanSignIn } from '@graphcommerce/magento-customer'
 import { SearchLink } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  icon404,
-  IconSvg,
-  isTypename,
-  LayoutTitle,
-  revalidate,
-  Separator,
-} from '@graphcommerce/next-ui'
+import { icon404, IconSvg, isTypename, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Box, Container, Link, Typography } from '@mui/material'
-import React from 'react'
+import { Box, Container, Typography } from '@mui/material'
 import type { LayoutNavigationProps } from '../components'
 import { LayoutDocument, LayoutNavigation, productListRenderer } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'

@@ -73,7 +73,7 @@ function CategoryPage(props: CategoryProps) {
   const { products, params, category } = productList
 
   const isLanding = category?.display_mode === 'PAGE'
-  const page = pages?.[0]
+  const page: HygraphPagesQuery['pages'][number] | undefined = pages?.[0]
   const isCategory = params && category && products?.items
 
   return (
@@ -88,7 +88,7 @@ function CategoryPage(props: CategoryProps) {
       />
       <LayoutHeader floatingMd hideMd={breadcrumbs}>
         <LayoutTitle size='small' component='span'>
-          {category?.name ?? page.title}
+          {category?.name ?? page?.title}
         </LayoutTitle>
       </LayoutHeader>
       {!isCategory && !isLanding && (
@@ -241,7 +241,8 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     : undefined
 
   const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
-  if (!hasCategory && !hasPage) return redirectOrNotFound(staticClient, conf, params, locale)
+  if (!(await category)?.uid && !hasPage)
+    return redirectOrNotFound(staticClient, conf, params, locale)
 
   if ((await products)?.errors) {
     const totalPages = (await filters)?.data.filters?.page_info?.total_pages ?? 0

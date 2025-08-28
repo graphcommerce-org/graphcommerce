@@ -3,7 +3,6 @@
 import type { NextConfig } from 'next'
 import type { DomainLocale } from 'next/dist/server/config'
 import type { Configuration } from 'webpack'
-import webpack from 'webpack'
 import { loadConfig } from './config/loadConfig'
 import type { GraphCommerceConfig } from './generated/config'
 import { resolveDependenciesSync } from './utils/resolveDependenciesSync'

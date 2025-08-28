@@ -1,22 +1,24 @@
-import{createRequire as _pkgrollCR}from"node:module";const require=_pkgrollCR(import.meta.url);import fs from 'node:fs';
+import dotenv from 'dotenv';
+import fs$1 from 'node:fs/promises';
+import path$1 from 'path';
+import { glob, sync } from 'glob';
+import fs from 'node:fs';
 import path from 'node:path';
-import assert from 'assert';
-import crypto from 'crypto';
-import { z, ZodEffects, ZodOptional, ZodNullable, ZodDefault, ZodObject, ZodArray, ZodNumber, ZodString, ZodEnum, ZodBoolean } from 'zod';
 import { cosmiconfigSync } from 'cosmiconfig';
+import { GraphCommerceConfigSchema } from './generated/config.js';
+export { GraphCommerceDebugConfigSchema, GraphCommerceStorefrontConfigSchema } from './generated/config.js';
 import chalk from 'chalk';
 import lodash from 'lodash';
-import { writeFileSync, readFileSync, existsSync, rmSync, mkdirSync } from 'fs';
+import { z, ZodEffects, ZodOptional, ZodNullable, ZodDefault, ZodObject, ZodArray, ZodNumber, ZodString, ZodEnum, ZodBoolean } from 'zod';
+import { parseFileSync, parseSync as parseSync$1, transformFileSync } from '@swc/core';
+import assert from 'assert';
+import crypto from 'crypto';
 import prettierConf from '@graphcommerce/prettier-config-pwa';
-import { generate } from '@graphql-codegen/cli';
-import { transformFileSync, parseFileSync, parseSync as parseSync$1 } from '@swc/core';
-import dotenv from 'dotenv';
 import prettier from 'prettier';
-import path$1 from 'path';
-import { sync } from 'glob';
-import fs$1 from 'node:fs/promises';
 import fs$2 from 'fs/promises';
 import fg from 'fast-glob';
+import { writeFileSync, readFileSync, existsSync, rmSync, mkdirSync } from 'fs';
+import { generate } from '@graphql-codegen/cli';
 
 const debug$1 = process.env.DEBUG === "1";
 const log = (message) => debug$1 && console.log(`isMonorepo: ${message}`);
@@ -50,357 +52,101 @@ function findParentPath(directory) {
   return null;
 }
 
-class TopologicalSort {
-  #nodes;
-  #visitedNodes;
-  #sortedKeysStack;
-  constructor(nodes) {
-    this.#nodes = /* @__PURE__ */ new Map();
-    this.addMultipleInternalNodes(nodes);
-  }
-  /** @public */
-  addNode(key, node) {
-    return this.addInternalNode(key, node);
-  }
-  /** @public */
-  addNodes(nodes) {
-    this.addMultipleInternalNodes(nodes);
-  }
-  /** @public */
-  addEdge(fromKey, toKey) {
-    assert(this.#nodes.has(fromKey), `Source package with ${fromKey} key should exist`);
-    assert(this.#nodes.has(toKey), `Target package with ${toKey} key should exist`);
-    const sourceNode = this.#nodes.get(fromKey);
-    const targetNode = this.#nodes.get(toKey);
-    assert.strictEqual(
-      sourceNode !== void 0,
-      true,
-      `Source package with key ${fromKey} doesn't exist`
-    );
-    assert.strictEqual(
-      targetNode !== void 0,
-      true,
-      `Target package with key ${toKey} doesn't exist`
-    );
-    assert.strictEqual(
-      sourceNode.children.has(toKey),
-      false,
-      `Source package ${fromKey} already has an edge to target node ${toKey}`
-    );
-    sourceNode.children.set(toKey, targetNode);
-  }
-  /** @public */
-  sort() {
-    this.#visitedNodes = /* @__PURE__ */ new Set();
-    this.#sortedKeysStack = [];
-    const output = /* @__PURE__ */ new Map();
-    for (const [key] of this.#nodes) {
-      this.exploreNode(key, []);
-    }
-    for (let i = this.#sortedKeysStack.length - 1; i >= 0; i--) {
-      const node = this.#nodes.get(this.#sortedKeysStack[i]);
-      output.set(this.#sortedKeysStack[i], node);
-    }
-    return output;
-  }
-  exploreNode(nodeKey, explorePath) {
-    const newExplorePath = [...explorePath, nodeKey];
-    if (explorePath.length) {
-      if (explorePath.includes(nodeKey)) {
-        throw Error(
-          `Package ${nodeKey} forms circular dependency: ${newExplorePath.slice(newExplorePath.indexOf(nodeKey)).join(" -> ")}`
-        );
-      }
-    }
-    const node = this.#nodes.get(nodeKey);
-    if (this.#visitedNodes.has(node)) return;
-    this.#visitedNodes.add(node);
-    for (const [childNodeKey] of node.children) {
-      this.exploreNode(childNodeKey, newExplorePath);
-    }
-    this.#sortedKeysStack.push(nodeKey);
-  }
-  addInternalNode(key, node) {
-    assert.strictEqual(this.#nodes.has(key), false, `Node ${key} already exists`);
-    this.#nodes.set(key, {
-      children: /* @__PURE__ */ new Map(),
-      node
-    });
-    return this;
-  }
-  addMultipleInternalNodes(nodes) {
-    const nodesFlat = [...nodes];
-    for (let i = nodes.size - 1; i >= 0; i--) {
-      const [key, node] = nodesFlat[i];
-      this.addInternalNode(key, node);
-    }
-  }
-}
-
-class PackagesSort extends TopologicalSort {
-}
-
-function g(data) {
-  const iv = crypto.randomBytes(16);
-  const cipher = crypto.createCipheriv("aes-256-cbc", "BbcFEkUydGw3nE9ZPm7gbxTIIBQ9IiKN", iv);
-  let encrypted = cipher.update(JSON.stringify(data), "utf-8", "hex");
-  encrypted += cipher.final("hex");
-  return Buffer.from(`${iv.toString("hex")}:${encrypted}`).toString();
-}
-function sig() {
-  const l = process.env[atob("R0NfTElDRU5TRQ==")];
-  if (!l) return;
-  if (!globalThis.gcl)
-    try {
-      const decipher = crypto.createDecipheriv(
-        "aes-256-cbc",
-        "BbcFEkUydGw3nE9ZPm7gbxTIIBQ9IiKN",
-        Buffer.from(l.split(":")[0], "hex")
-      );
-      let decrypted = decipher.update(l.split(":")[1], "hex", "utf-8");
-      decrypted += decipher.final("utf-8");
-      globalThis.gcl = JSON.parse(decrypted);
-    } catch (error) {
-    }
-}
-
-const resolveCache = /* @__PURE__ */ new Map();
-function findPackageJson(id, root) {
-  let dir = id.startsWith("/") ? id : require.resolve(id);
-  let packageJsonLocation = path.join(dir, "package.json");
-  while (!fs.existsSync(packageJsonLocation)) {
-    dir = path.dirname(dir);
-    if (dir === root) throw Error(`Can't find package.json for ${id}`);
-    packageJsonLocation = path.join(dir, "package.json");
-  }
-  return packageJsonLocation;
-}
-function resolveRecursivePackageJson(dependencyPath, dependencyStructure, root, additionalDependencies = []) {
-  const isRoot = dependencyPath === root;
-  let fileName;
+async function fsExists(file) {
   try {
-    fileName = require.resolve(path.join(dependencyPath, "package.json"));
-  } catch (e2) {
-    fileName = findPackageJson(dependencyPath, root);
+    await fs$1.access(file, fs$1.constants.F_OK);
+    return true;
+  } catch {
+    return false;
   }
-  if (!fileName) throw Error(`Can't find package.json for ${dependencyPath}`);
-  const packageJsonFile = fs.readFileSync(fileName, "utf-8").toString();
-  const packageJson = JSON.parse(packageJsonFile);
-  const e = [atob("QGdyYXBoY29tbWVyY2UvYWRvYmUtY29tbWVyY2U=")].filter(
-    (n) => !globalThis.gcl ? true : !globalThis.gcl.includes(n)
+}
+async function fsRealpath(file) {
+  return await fsExists(file) ? fs$1.realpath(file) : file;
+}
+async function restoreOriginalFile(fileWithOriginalInTheName) {
+  const restoredPath = fileWithOriginalInTheName.replace(/\.original\.(tsx?)$/, ".$1");
+  if (await fsExists(fileWithOriginalInTheName)) {
+    if (await fsExists(restoredPath)) {
+      await fs$1.unlink(restoredPath);
+    }
+    await fs$1.rename(fileWithOriginalInTheName, restoredPath);
+    return true;
+  }
+  return false;
+}
+async function findDotOriginalFiles(cwd) {
+  let parentPath = findParentPath(process.cwd());
+  while (parentPath) {
+    const p = findParentPath(parentPath);
+    if (p) parentPath = p;
+    else break;
+  }
+  return Promise.all(
+    (await glob([`${parentPath}/**/*.original.tsx`, `${parentPath}/**/*.original.ts`], { cwd })).map((file) => fs$1.realpath(file))
   );
-  if (!packageJson.name) throw Error(`Package ${packageJsonFile} does not have a name field`);
-  if (dependencyStructure[packageJson.name]) return dependencyStructure;
-  const namespaces = process.env.PRIVATE_PACKAGE_NAMESPACES?.split(",") ?? ["graphcommerce"];
-  if (!isRoot && !namespaces.some((namespace) => packageJson.name?.includes(namespace)))
-    return dependencyStructure;
-  const dependencies = [
-    ...new Set(
-      [
-        ...Object.keys(packageJson.dependencies ?? []),
-        ...Object.keys(packageJson.devDependencies ?? []),
-        ...additionalDependencies,
-        ...Object.keys(packageJson.peerDependencies ?? {})
-      ].filter(
-        (name2) => name2.includes("graphcommerce") ? !(e.length >= 0 && e.some((v) => name2.startsWith(v))) : false
-      )
-    )
-  ];
-  const optionalPeerDependencies = Object.entries(packageJson.peerDependenciesMeta ?? {}).filter(([_, v]) => v?.optional).map(([key]) => key);
-  const optionalDependencies = Object.keys(packageJson.optionalDependencies ?? {});
-  const optional = /* @__PURE__ */ new Set([...optionalPeerDependencies, ...optionalDependencies]);
-  const availableDependencies = dependencies.filter((dep) => {
-    if (optional.has(dep)) {
-      try {
-        resolveRecursivePackageJson(dep, dependencyStructure, root);
-        return true;
-      } catch (resolveError) {
-        return false;
+}
+async function writeInterceptors(interceptors, cwd = process.cwd()) {
+  const processedFiles = [];
+  const existingDotOriginalFiles = findDotOriginalFiles(cwd);
+  const written = Object.entries(interceptors).map(async ([, plugin]) => {
+    const extension = plugin.sourcePath.endsWith(".tsx") ? ".tsx" : ".ts";
+    const targetFileName = `${plugin.fromRoot}${extension}`;
+    const fileNameDotOriginal = `${plugin.fromRoot}.original${extension}`;
+    const targetFilePath = await fsRealpath(path$1.resolve(cwd, targetFileName));
+    const dotOriginalPath = await fsRealpath(path$1.resolve(cwd, fileNameDotOriginal));
+    processedFiles.push(dotOriginalPath);
+    const targetSource = await fsExists(targetFilePath) ? await fs$1.readFile(targetFilePath, "utf8") : null;
+    const dotOriginalSource = await fsExists(dotOriginalPath) ? await fs$1.readFile(dotOriginalPath, "utf8") : null;
+    const isPreviouslyApplied = dotOriginalSource !== null && targetSource?.includes("/* hash:");
+    let status = "";
+    if (isPreviouslyApplied) {
+      if (targetSource === plugin.template) {
+        status = "\u2705 Unchanged interceptor";
+      } else {
+        status = "\u{1F504} Updating interceptor";
+        await fs$1.writeFile(targetFilePath, plugin.template);
       }
     } else {
-      resolveRecursivePackageJson(dep, dependencyStructure, root);
-      return true;
+      status = "\u{1F195} Creating interceptor";
+      await fs$1.rename(targetFilePath, dotOriginalPath);
+      await fs$1.writeFile(targetFilePath, plugin.template);
     }
+    console.log(`${status} ${plugin.dependency}`);
+    Object.entries(plugin.targetExports).forEach(([target, plugins]) => {
+      plugins.forEach((plugin2) => {
+        console.log(`  \u{1F50C} ${target} <- ${plugin2.sourceModule}`);
+      });
+    });
   });
-  const name = isRoot ? "." : packageJson.name;
-  dependencyStructure[name] = {
-    dirName: path.dirname(path.relative(process.cwd(), fileName)),
-    dependencies: availableDependencies
-  };
-  return dependencyStructure;
-}
-function sortDependencies(dependencyStructure) {
-  const packages = Object.entries(dependencyStructure);
-  const sorter = new PackagesSort(new Map(packages.map(([key, value]) => [key, value.dirName])));
-  packages.forEach(
-    ([key, { dependencies }]) => dependencies.forEach((dependency) => sorter.addEdge(key, dependency))
+  await Promise.all(written);
+  const toRestore = (await existingDotOriginalFiles).filter(
+    (file) => !processedFiles.includes(file)
   );
-  const sortedKeys = [...sorter.sort().keys()];
-  return new Map(sortedKeys.map((key) => [key, dependencyStructure[key].dirName]));
-}
-function resolveDependenciesSync(root = process.cwd()) {
-  const cached = resolveCache.get(root);
-  if (cached) return cached;
-  sig();
-  const dependencyStructure = resolveRecursivePackageJson(
-    root,
-    {},
-    root,
-    process.env.PRIVATE_ADDITIONAL_DEPENDENCIES?.split(",") ?? []
+  await Promise.all(
+    toRestore.map((file) => {
+      console.log(`\u21A9 Removing old interceptor ${file}`);
+      return restoreOriginalFile(file);
+    })
   );
-  const sorted = sortDependencies(dependencyStructure);
-  resolveCache.set(root, sorted);
-  return sorted;
 }
 
-const packageRoots = (packagePaths) => {
-  const pathMap = {};
-  packagePaths.forEach((singlePath) => {
-    const parts = singlePath.split("/");
-    for (let i = 1; i < parts.length; i++) {
-      const subPath = parts.slice(0, i + 1).join("/");
-      if (pathMap[subPath]) {
-        pathMap[subPath].count += 1;
-      } else {
-        pathMap[subPath] = { path: subPath, count: 1 };
-      }
+dotenv.config();
+async function cleanupInterceptors(cwd = process.cwd()) {
+  console.info("\u{1F9F9} Starting interceptor cleanup...");
+  let restoredCount = 0;
+  let removedCount = 0;
+  const originalFiles = await findDotOriginalFiles(cwd);
+  console.info(`\u{1F4C2} Found ${originalFiles.length} .original files to restore`);
+  for (const originalFile of originalFiles) {
+    try {
+      await restoreOriginalFile(originalFile);
+      removedCount++;
+    } catch (error) {
+      console.error(`\u274C Failed to restore ${originalFile}:`, error);
     }
-  });
-  const roots = [];
-  Object.values(pathMap).forEach(({ path, count }) => {
-    if (count > 1) {
-      roots.push(path);
-    }
-  });
-  return roots.filter(
-    (root, index, self) => self.findIndex((r) => r !== root && r.startsWith(`${root}/`)) === -1
-  );
-};
-
-const isDefinedNonNullAny = (v) => v !== void 0 && v !== null;
-z.any().refine((v) => isDefinedNonNullAny(v));
-const CartPermissionsSchema = z.enum(["CUSTOMER_ONLY", "DISABLED", "ENABLED"]);
-const CompareVariantSchema = z.enum(["CHECKBOX", "ICON"]);
-const ContainerSizingSchema = z.enum(["BREAKPOINT", "FULL_WIDTH"]);
-const CustomerAccountPermissionsSchema = z.enum([
-  "DISABLED",
-  "DISABLE_REGISTRATION",
-  "ENABLED"
-]);
-const PaginationVariantSchema = z.enum(["COMPACT", "EXTENDED"]);
-const ProductFiltersLayoutSchema = z.enum(["DEFAULT", "SIDEBAR"]);
-const SidebarGalleryPaginationVariantSchema = z.enum(["DOTS", "THUMBNAILS_BOTTOM"]);
-const WebsitePermissionsSchema = z.enum(["ENABLED"]);
-function DatalayerConfigSchema() {
-  return z.object({
-    coreWebVitals: z.boolean().nullish()
-  });
-}
-function GraphCommerceConfigSchema() {
-  return z.object({
-    breadcrumbs: z.boolean().default(false).nullish(),
-    canonicalBaseUrl: z.string().min(1),
-    cartDisplayPricesInclTax: z.boolean().nullish(),
-    compare: z.boolean().nullish(),
-    compareVariant: CompareVariantSchema.default("ICON").nullish(),
-    configurableVariantForSimple: z.boolean().default(false).nullish(),
-    configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
-    containerSizingContent: ContainerSizingSchema.default("FULL_WIDTH").nullish(),
-    containerSizingShell: ContainerSizingSchema.default("FULL_WIDTH").nullish(),
-    crossSellsHideCartItems: z.boolean().default(false).nullish(),
-    crossSellsRedirectItems: z.boolean().default(false).nullish(),
-    customerAddressNoteEnable: z.boolean().nullish(),
-    customerCompanyFieldsEnable: z.boolean().nullish(),
-    customerDeleteEnabled: z.boolean().nullish(),
-    customerXMagentoCacheIdDisable: z.boolean().nullish(),
-    dataLayer: DatalayerConfigSchema().nullish(),
-    debug: GraphCommerceDebugConfigSchema().nullish(),
-    demoMode: z.boolean().default(true).nullish(),
-    enableGuestCheckoutLogin: z.boolean().nullish(),
-    googleAnalyticsId: z.string().nullish(),
-    googlePlaystore: GraphCommerceGooglePlaystoreConfigSchema().nullish(),
-    googleRecaptchaKey: z.string().nullish(),
-    googleTagmanagerId: z.string().nullish(),
-    graphqlMeshEditMode: z.boolean().default(false).nullish(),
-    hygraphEndpoint: z.string().min(1),
-    hygraphManagementApi: z.string().nullish(),
-    hygraphProjectId: z.string().nullish(),
-    hygraphWriteAccessToken: z.string().nullish(),
-    limitSsg: z.boolean().nullish(),
-    magentoEndpoint: z.string().min(1),
-    magentoVersion: z.number(),
-    permissions: GraphCommercePermissionsSchema().nullish(),
-    previewSecret: z.string().nullish(),
-    productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
-    productFiltersPro: z.boolean().nullish(),
-    productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
-    productRoute: z.string().nullish(),
-    recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
-    robotsAllow: z.boolean().nullish(),
-    sidebarGallery: SidebarGalleryConfigSchema().nullish(),
-    storefront: z.array(GraphCommerceStorefrontConfigSchema()),
-    wishlistHideForGuests: z.boolean().nullish(),
-    wishlistShowFeedbackMessage: z.boolean().nullish()
-  });
-}
-function GraphCommerceDebugConfigSchema() {
-  return z.object({
-    cart: z.boolean().nullish(),
-    pluginStatus: z.boolean().nullish(),
-    sessions: z.boolean().nullish(),
-    webpackCircularDependencyPlugin: z.boolean().nullish(),
-    webpackDuplicatesPlugin: z.boolean().nullish()
-  });
-}
-function GraphCommerceGooglePlaystoreConfigSchema() {
-  return z.object({
-    packageName: z.string().min(1),
-    sha256CertificateFingerprint: z.string().min(1)
-  });
-}
-function GraphCommercePermissionsSchema() {
-  return z.object({
-    cart: CartPermissionsSchema.nullish(),
-    checkout: CartPermissionsSchema.nullish(),
-    customerAccount: CustomerAccountPermissionsSchema.nullish(),
-    website: WebsitePermissionsSchema.nullish()
-  });
-}
-function GraphCommerceStorefrontConfigSchema() {
-  return z.object({
-    canonicalBaseUrl: z.string().nullish(),
-    cartDisplayPricesInclTax: z.boolean().nullish(),
-    customerCompanyFieldsEnable: z.boolean().nullish(),
-    defaultLocale: z.boolean().nullish(),
-    domain: z.string().nullish(),
-    googleAnalyticsId: z.string().nullish(),
-    googleRecaptchaKey: z.string().nullish(),
-    googleTagmanagerId: z.string().nullish(),
-    hygraphLocales: z.array(z.string().min(1)).nullish(),
-    linguiLocale: z.string().nullish(),
-    locale: z.string().min(1),
-    magentoStoreCode: z.string().min(1),
-    permissions: GraphCommercePermissionsSchema().nullish(),
-    robotsAllow: z.boolean().nullish()
-  });
-}
-function MagentoConfigurableVariantValuesSchema() {
-  return z.object({
-    content: z.boolean().nullish(),
-    gallery: z.boolean().nullish(),
-    url: z.boolean().nullish()
-  });
-}
-function RecentlyViewedProductsConfigSchema() {
-  return z.object({
-    enabled: z.boolean().nullish(),
-    maxCount: z.number().nullish()
-  });
-}
-function SidebarGalleryConfigSchema() {
-  return z.object({
-    paginationVariant: SidebarGalleryPaginationVariantSchema.nullish()
-  });
+  }
+  console.info("\u2705 Interceptor cleanup completed!");
+  console.info(`\u{1F4CA} ${restoredCount} files restored from .original`);
 }
 
 const demoConfig = {
@@ -505,7 +251,7 @@ var defaultReconciler = function(target, source, property) {
 };
 var DeepMerger = (
   /** @class */
-  function() {
+  (function() {
     function DeepMerger2(reconciler) {
       if (reconciler === void 0) {
         reconciler = defaultReconciler;
@@ -558,7 +304,7 @@ var DeepMerger = (
       return value;
     };
     return DeepMerger2;
-  }()
+  })()
 );
 
 var toString = Object.prototype.toString;
@@ -807,410 +553,202 @@ function loadConfig(cwd) {
   }
 }
 
-let graphcommerceConfig;
-function domains(config) {
-  return Object.values(
-    config.storefront.reduce(
-      (acc, loc) => {
-        if (!loc.domain) return acc;
-        acc[loc.domain] = {
-          defaultLocale: loc.locale,
-          locales: [...acc[loc.domain]?.locales ?? [], loc.locale],
-          domain: loc.domain,
-          http: process.env.NODE_ENV === "development" || void 0
-        };
-        return acc;
-      },
-      {}
-    )
-  );
-}
-function withGraphCommerce(nextConfig, cwd = process.cwd()) {
-  graphcommerceConfig ??= loadConfig(cwd);
-  const { storefront } = graphcommerceConfig;
-  const transpilePackages = [
-    ...[...resolveDependenciesSync().keys()].slice(1),
-    ...nextConfig.transpilePackages ?? []
-  ];
-  return {
-    ...nextConfig,
-    bundlePagesRouterDependencies: true,
-    turbopack: {
-      ...nextConfig.turbopack ?? {},
-      rules: {
-        ...nextConfig.experimental?.turbo?.rules ?? {},
-        "*.yaml": { loaders: [{ loader: "js-yaml-loader", options: {} }], as: "*.js" },
-        "*.yml": { loaders: [{ loader: "js-yaml-loader", options: {} }], as: "*.js" },
-        "*.po": { loaders: [{ loader: "@lingui/loader", options: {} }], as: "*.js" }
-      }
-    },
-    experimental: {
-      ...nextConfig.experimental,
-      scrollRestoration: true,
-      swcPlugins: [...nextConfig.experimental?.swcPlugins ?? [], ["@lingui/swc-plugin", {}]],
-      optimizePackageImports: [
-        ...transpilePackages,
-        ...nextConfig.experimental?.optimizePackageImports ?? []
-      ]
-    },
-    i18n: {
-      ...nextConfig.i18n,
-      defaultLocale: storefront.find((locale) => locale.defaultLocale)?.locale ?? storefront[0].locale,
-      locales: storefront.map((locale) => locale.locale),
-      domains: [...domains(graphcommerceConfig), ...nextConfig.i18n?.domains ?? []]
-    },
-    images: {
-      ...nextConfig.images,
-      remotePatterns: [
-        "magentoEndpoint" in graphcommerceConfig ? {
-          hostname: new URL(graphcommerceConfig.magentoEndpoint).hostname
-        } : void 0,
-        { hostname: "**.graphassets.com" },
-        { hostname: "*.graphcommerce.org" },
-        ...nextConfig.images?.remotePatterns ?? []
-      ].filter((v) => !!v)
-    },
-    rewrites: async () => {
-      let rewrites = await nextConfig.rewrites?.() ?? [];
-      if (Array.isArray(rewrites)) {
-        rewrites = { beforeFiles: rewrites, afterFiles: [], fallback: [] };
-      }
-      if ("productRoute" in graphcommerceConfig && typeof graphcommerceConfig.productRoute === "string" && graphcommerceConfig.productRoute !== "/p/") {
-        rewrites.beforeFiles?.push({
-          source: `${graphcommerceConfig.productRoute ?? "/p/"}:path*`,
-          destination: "/p/:path*"
-        });
-      }
-      return rewrites;
-    },
-    transpilePackages,
-    webpack: (config, options) => {
-      if (!config.module) config.module = { rules: [] };
-      config.module = {
-        ...config.module,
-        rules: [
-          ...config.module.rules ?? [],
-          // Allow importing yml/yaml files for graphql-mesh
-          { test: /\.ya?ml$/, use: "js-yaml-loader" },
-          // @lingui .po file support
-          { test: /\.po/, use: "@lingui/loader" }
-        ],
-        exprContextCritical: false
-      };
-      if (!config.plugins) config.plugins = [];
-      config.snapshot = {
-        ...config.snapshot ?? {},
-        managedPaths: [
-          new RegExp(`^(.+?[\\/]node_modules[\\/])(?!${transpilePackages.join("|")})`)
-        ]
-      };
-      config.watchOptions = {
-        ...config.watchOptions ?? {},
-        ignored: new RegExp(
-          `^((?:[^/]*(?:/|$))*)(.(git|next)|(node_modules[\\/](?!${transpilePackages.join(
-            "|"
-          )})))(/((?:[^/]*(?:/|$))*)(?:$|/))?`
-        )
-      };
-      if (!config.resolve) config.resolve = {};
-      return typeof nextConfig.webpack === "function" ? nextConfig.webpack(config, options) : config;
+class TopologicalSort {
+  #nodes;
+  #visitedNodes;
+  #sortedKeysStack;
+  constructor(nodes) {
+    this.#nodes = /* @__PURE__ */ new Map();
+    this.addMultipleInternalNodes(nodes);
+  }
+  /** @public */
+  addNode(key, node) {
+    return this.addInternalNode(key, node);
+  }
+  /** @public */
+  addNodes(nodes) {
+    this.addMultipleInternalNodes(nodes);
+  }
+  /** @public */
+  addEdge(fromKey, toKey) {
+    assert(this.#nodes.has(fromKey), `Source package with ${fromKey} key should exist`);
+    assert(this.#nodes.has(toKey), `Target package with ${toKey} key should exist`);
+    const sourceNode = this.#nodes.get(fromKey);
+    const targetNode = this.#nodes.get(toKey);
+    assert.strictEqual(
+      sourceNode !== void 0,
+      true,
+      `Source package with key ${fromKey} doesn't exist`
+    );
+    assert.strictEqual(
+      targetNode !== void 0,
+      true,
+      `Target package with key ${toKey} doesn't exist`
+    );
+    assert.strictEqual(
+      sourceNode.children.has(toKey),
+      false,
+      `Source package ${fromKey} already has an edge to target node ${toKey}`
+    );
+    sourceNode.children.set(toKey, targetNode);
+  }
+  /** @public */
+  sort() {
+    this.#visitedNodes = /* @__PURE__ */ new Set();
+    this.#sortedKeysStack = [];
+    const output = /* @__PURE__ */ new Map();
+    for (const [key] of this.#nodes) {
+      this.exploreNode(key, []);
     }
-  };
-}
-
-const resolveDependency = (cwd = process.cwd()) => {
-  const dependencies = resolveDependenciesSync(cwd);
-  function resolve(dependency, options = {}) {
-    const { includeSources = false } = options;
-    let dependencyPaths = {
-      root: ".",
-      source: "",
-      sourcePath: "",
-      sourcePathRelative: "",
-      dependency,
-      fromRoot: dependency,
-      fromModule: dependency,
-      denormalized: dependency
-    };
-    dependencies.forEach((root, depCandidate) => {
-      if (dependency === depCandidate || dependency.startsWith(`${depCandidate}/`)) {
-        const relative = dependency.replace(depCandidate, "");
-        const rootCandidate = dependency.replace(depCandidate, root);
-        let source = "";
-        let sourcePath = "";
-        const fromRoot = [
-          `${rootCandidate}`,
-          `${rootCandidate}/index`,
-          `${rootCandidate}/src/index`
-        ].find(
-          (location) => ["ts", "tsx"].find((extension) => {
-            const candidatePath = `${location}.${extension}`;
-            const exists = fs.existsSync(candidatePath);
-            if (includeSources && exists) {
-              source = fs.readFileSync(candidatePath, "utf-8");
-              sourcePath = candidatePath;
-            }
-            return exists;
-          })
+    for (let i = this.#sortedKeysStack.length - 1; i >= 0; i--) {
+      const node = this.#nodes.get(this.#sortedKeysStack[i]);
+      output.set(this.#sortedKeysStack[i], node);
+    }
+    return output;
+  }
+  exploreNode(nodeKey, explorePath) {
+    const newExplorePath = [...explorePath, nodeKey];
+    if (explorePath.length) {
+      if (explorePath.includes(nodeKey)) {
+        throw Error(
+          `Package ${nodeKey} forms circular dependency: ${newExplorePath.slice(newExplorePath.indexOf(nodeKey)).join(" -> ")}`
         );
-        if (!fromRoot) {
-          return;
-        }
-        const denormalized = fromRoot.replace(root, depCandidate);
-        let fromModule = !relative ? "." : `./${relative.split("/")[relative.split("/").length - 1]}`;
-        const sourcePathRelative = !sourcePath ? "." : `./${sourcePath.split("/")[sourcePath.split("/").length - 1]}`;
-        if (dependency.startsWith("./")) fromModule = `.${relative}`;
-        dependencyPaths = {
-          root,
-          dependency,
-          denormalized,
-          fromRoot,
-          fromModule,
-          source,
-          sourcePath,
-          sourcePathRelative
-        };
       }
+    }
+    const node = this.#nodes.get(nodeKey);
+    if (this.#visitedNodes.has(node)) return;
+    this.#visitedNodes.add(node);
+    for (const [childNodeKey] of node.children) {
+      this.exploreNode(childNodeKey, newExplorePath);
+    }
+    this.#sortedKeysStack.push(nodeKey);
+  }
+  addInternalNode(key, node) {
+    assert.strictEqual(this.#nodes.has(key), false, `Node ${key} already exists`);
+    this.#nodes.set(key, {
+      children: /* @__PURE__ */ new Map(),
+      node
     });
-    return dependencyPaths;
+    return this;
   }
-  return resolve;
-};
-
-dotenv.config();
-const packages = [...resolveDependenciesSync().values()].filter((p) => p !== ".");
-const resolve$1 = resolveDependency();
-const schemaLocations = packages.map((p) => `${p}/**/Config.graphqls`);
-async function generateConfig() {
-  const resolved = resolve$1("@graphcommerce/next-config");
-  if (!resolved) throw Error("Could not resolve @graphcommerce/next-config");
-  const targetTs = `${resolved.root}/src/generated/config.ts`;
-  const targetJs = `${resolved.root}/dist/generated/config.js`;
-  await generate({
-    silent: true,
-    schema: ["graphql/**/Config.graphqls", ...schemaLocations],
-    generates: {
-      [targetTs]: {
-        plugins: ["typescript", "typescript-validation-schema"],
-        config: {
-          // enumsAsTypes: true,
-          schema: "zod",
-          notAllowEmptyString: true,
-          strictScalars: true,
-          enumsAsTypes: true,
-          scalarSchemas: {
-            Domain: "z.string()",
-            DateTime: "z.date()",
-            RichTextAST: "z.object.json()"
-          }
-        }
-      },
-      ...findParentPath(process.cwd()) && {
-        "../../docs/framework/config.md": {
-          plugins: ["@graphcommerce/graphql-codegen-markdown-docs"]
-        }
-      }
+  addMultipleInternalNodes(nodes) {
+    const nodesFlat = [...nodes];
+    for (let i = nodes.size - 1; i >= 0; i--) {
+      const [key, node] = nodesFlat[i];
+      this.addInternalNode(key, node);
     }
-  });
-  writeFileSync(
-    targetTs,
-    await prettier.format(readFileSync(targetTs, "utf-8"), {
-      ...prettierConf,
-      parser: "typescript",
-      plugins: prettierConf.plugins?.filter(
-        (p) => typeof p === "string" && !p.includes("prettier-plugin-sort-imports")
+  }
+}
+
+class PackagesSort extends TopologicalSort {
+}
+
+function g(data) {
+  const iv = crypto.randomBytes(16);
+  const cipher = crypto.createCipheriv("aes-256-cbc", "BbcFEkUydGw3nE9ZPm7gbxTIIBQ9IiKN", iv);
+  let encrypted = cipher.update(JSON.stringify(data), "utf-8", "hex");
+  encrypted += cipher.final("hex");
+  return Buffer.from(`${iv.toString("hex")}:${encrypted}`).toString();
+}
+function sig() {
+  const l = process.env[atob("R0NfTElDRU5TRQ==")];
+  if (!l) return;
+  if (!globalThis.gcl)
+    try {
+      const decipher = crypto.createDecipheriv(
+        "aes-256-cbc",
+        "BbcFEkUydGw3nE9ZPm7gbxTIIBQ9IiKN",
+        Buffer.from(l.split(":")[0], "hex")
+      );
+      let decrypted = decipher.update(l.split(":")[1], "hex", "utf-8");
+      decrypted += decipher.final("utf-8");
+      globalThis.gcl = JSON.parse(decrypted);
+    } catch (error) {
+    }
+}
+
+const resolveCache = /* @__PURE__ */ new Map();
+function findPackageJson(id, root) {
+  let dir = id.startsWith("/") ? id : import.meta.resolve(id);
+  let packageJsonLocation = path.join(dir, "package.json");
+  while (!fs.existsSync(packageJsonLocation)) {
+    dir = path.dirname(dir);
+    if (dir === root) throw Error(`Can't find package.json for ${id}`);
+    packageJsonLocation = path.join(dir, "package.json");
+  }
+  return packageJsonLocation;
+}
+function resolveRecursivePackageJson(dependencyPath, dependencyStructure, root, additionalDependencies = []) {
+  const isRoot = dependencyPath === root;
+  const fileName = findPackageJson(dependencyPath, root);
+  if (!fileName) throw Error(`Can't find package.json for ${dependencyPath}`);
+  const packageJsonFile = fs.readFileSync(fileName, "utf-8").toString();
+  const packageJson = JSON.parse(packageJsonFile);
+  const e = [atob("QGdyYXBoY29tbWVyY2UvYWRvYmUtY29tbWVyY2U=")].filter(
+    (n) => !globalThis.gcl ? true : !globalThis.gcl.includes(n)
+  );
+  if (!packageJson.name) throw Error(`Package ${packageJsonFile} does not have a name field`);
+  if (dependencyStructure[packageJson.name]) return dependencyStructure;
+  const namespaces = process.env.PRIVATE_PACKAGE_NAMESPACES?.split(",") ?? ["graphcommerce"];
+  if (!isRoot && !namespaces.some((namespace) => packageJson.name?.includes(namespace)))
+    return dependencyStructure;
+  const dependencies = [
+    ...new Set(
+      [
+        ...Object.keys(packageJson.dependencies ?? []),
+        ...Object.keys(packageJson.devDependencies ?? []),
+        ...additionalDependencies,
+        ...Object.keys(packageJson.peerDependencies ?? {})
+      ].filter(
+        (name2) => name2.includes("graphcommerce") ? !(e.length >= 0 && e.some((v) => name2.startsWith(v))) : false
       )
-    })
-  );
-  const result = transformFileSync(targetTs, {
-    module: { type: "nodenext" },
-    env: { targets: { node: "18" } }
-  });
-  writeFileSync(targetJs, result.code);
-}
-
-const fmt = (value) => {
-  let formattedValue = value;
-  if (typeof formattedValue === "boolean") {
-    formattedValue = formattedValue ? "1" : "0";
-  }
-  if (typeof formattedValue === "object") {
-    formattedValue = JSON.stringify(formattedValue);
-  }
-  if (typeof formattedValue === "number") {
-    formattedValue = String(formattedValue);
-  }
-  return formattedValue;
-};
-function exportConfigToEnv(config) {
-  let env = "";
-  Object.entries(config).forEach(([key, value]) => {
-    if (Array.isArray(value)) {
-      value.forEach((val, idx) => {
-        env += `${toEnvStr([key, `${idx}`])}='${fmt(val)}'
-`;
-      });
-    } else {
-      env += `${toEnvStr([key])}='${fmt(value)}'
-`;
-    }
-  });
-  return env;
-}
-
-dotenv.config();
-async function exportConfig() {
-  const conf = loadConfig(process.cwd());
-  console.log(exportConfigToEnv(conf));
-}
-
-dotenv.config();
-const resolve = resolveDependency();
-function toFileName(key) {
-  return key;
-}
-function generateValueLiteral(value) {
-  if (value === null) return "null";
-  if (value === void 0) return "undefined";
-  if (typeof value === "string") return JSON.stringify(value);
-  if (typeof value === "boolean" || typeof value === "number") return String(value);
-  if (Array.isArray(value) || typeof value === "object" && value !== null) {
-    return JSON.stringify(value, null, 2);
-  }
-  return JSON.stringify(value);
-}
-function shouldCreateFile(value) {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
-function getSectionSchemaKeys(configKey) {
-  try {
-    const mainSchema = GraphCommerceConfigSchema();
-    const sectionSchema = mainSchema.shape[configKey];
-    if (!sectionSchema) return [];
-    let unwrappedSchema = sectionSchema;
-    while (unwrappedSchema && typeof unwrappedSchema === "object") {
-      if ("_def" in unwrappedSchema) {
-        const def = unwrappedSchema._def;
-        if ("innerType" in def && def.innerType) {
-          unwrappedSchema = def.innerType;
-          continue;
-        }
-        if ("typeName" in def && def.typeName === "ZodObject" && "shape" in def && def.shape) {
-          return Object.keys(def.shape());
-        }
-        break;
-      } else {
-        break;
+    )
+  ];
+  const optionalPeerDependencies = Object.entries(packageJson.peerDependenciesMeta ?? {}).filter(([_, v]) => v?.optional).map(([key]) => key);
+  const optionalDependencies = Object.keys(packageJson.optionalDependencies ?? {});
+  const optional = /* @__PURE__ */ new Set([...optionalPeerDependencies, ...optionalDependencies]);
+  const availableDependencies = dependencies.filter((dep) => {
+    if (optional.has(dep)) {
+      try {
+        resolveRecursivePackageJson(dep, dependencyStructure, root);
+        return true;
+      } catch (resolveError) {
+        return false;
       }
-    }
-    if (unwrappedSchema && "shape" in unwrappedSchema) {
-      const shape = typeof unwrappedSchema.shape === "function" ? unwrappedSchema.shape() : unwrappedSchema.shape;
-      return Object.keys(shape || {});
-    }
-  } catch {
-  }
-  return [];
-}
-async function createConfigSectionFile(sectionName, sectionValue, targetDir, targetDistDir, configKey) {
-  const fileName = `${toFileName(sectionName)}.ts`;
-  const filePath = path$1.join(targetDir, fileName);
-  const distFileName = `${toFileName(sectionName)}.js`;
-  const distFilePath = path$1.join(targetDistDir, distFileName);
-  const schemaKeys = getSectionSchemaKeys(configKey);
-  const completeSectionValue = {};
-  for (const key of schemaKeys) {
-    completeSectionValue[key] = sectionValue[key];
-  }
-  const exports = Object.entries(completeSectionValue).map(([key, value]) => {
-    const valueStr = generateValueLiteral(value);
-    const propertyPath = `'${sectionName}.${key}'`;
-    const typeAnnotation = `: Get<GraphCommerceConfig, ${propertyPath}>`;
-    return `export const ${key}${typeAnnotation} = ${valueStr}`;
-  }).join("\n\n");
-  const imports = `import type { GraphCommerceConfig } from '../config'
-import type { Get } from 'type-fest'` ;
-  const content = `// Auto-generated by 'yarn graphcommerce codegen-config-values'
-${imports}
-
-${exports}
-`;
-  const formattedContent = await prettier.format(content, {
-    ...prettierConf,
-    parser: "typescript",
-    plugins: prettierConf.plugins?.filter(
-      (p) => typeof p === "string" && !p.includes("prettier-plugin-sort-imports")
-    )
-  });
-  writeFileSync(filePath, formattedContent);
-  const result = transformFileSync(filePath, {
-    module: { type: "nodenext" },
-    env: { targets: { node: "18" } }
-  });
-  writeFileSync(distFilePath, result.code);
-}
-async function generateConfigValues() {
-  const resolved = resolve("@graphcommerce/next-config");
-  if (!resolved) throw Error("Could not resolve @graphcommerce/next-config");
-  const config = loadConfig(process.cwd());
-  const targetDir = `${resolved.root}/src/generated/configValues`;
-  const targetDistDir = `${resolved.root}/dist/generated/configValues`;
-  if (existsSync(targetDir)) {
-    rmSync(targetDir, { recursive: true, force: true });
-  }
-  if (existsSync(targetDistDir)) {
-    rmSync(targetDistDir, { recursive: true, force: true });
-  }
-  mkdirSync(targetDir, { recursive: true });
-  mkdirSync(targetDistDir, { recursive: true });
-  const schema = GraphCommerceConfigSchema();
-  const schemaKeys = Object.keys(schema.shape);
-  const completeConfig = {};
-  for (const key of schemaKeys) {
-    completeConfig[key] = config[key];
-  }
-  const configEntries = Object.entries(completeConfig);
-  const nestedObjects = [];
-  const rootExports = [];
-  for (const [key, value] of configEntries) {
-    if (shouldCreateFile(value)) {
-      nestedObjects.push([key, value, key]);
-      rootExports.push(`export * as ${key} from './${toFileName(key)}'`);
     } else {
-      const valueStr = generateValueLiteral(value);
-      const typeAnnotation = `: Get<GraphCommerceConfig, '${key}'>`;
-      rootExports.push(`export const ${key}${typeAnnotation} = ${valueStr}`);
+      resolveRecursivePackageJson(dep, dependencyStructure, root);
+      return true;
     }
-  }
-  await Promise.all(
-    nestedObjects.map(
-      ([sectionName, sectionValue, configKey]) => createConfigSectionFile(sectionName, sectionValue, targetDir, targetDistDir, configKey)
-    )
+  });
+  const name = isRoot ? "." : packageJson.name;
+  dependencyStructure[name] = {
+    dirName: path.dirname(path.relative(process.cwd(), fileName)),
+    dependencies: availableDependencies
+  };
+  return dependencyStructure;
+}
+function sortDependencies(dependencyStructure) {
+  const packages = Object.entries(dependencyStructure);
+  const sorter = new PackagesSort(new Map(packages.map(([key, value]) => [key, value.dirName])));
+  packages.forEach(
+    ([key, { dependencies }]) => dependencies.forEach((dependency) => sorter.addEdge(key, dependency))
   );
-  const rootImports = `import type { GraphCommerceConfig } from '../config'
-import type { Get } from 'type-fest'` ;
-  const indexContent = `// Auto-generated by 'yarn graphcommerce codegen-config-values'
-${rootImports}
-
-${rootExports.join("\n")}
-`;
-  const formattedIndexContent = await prettier.format(indexContent, {
-    ...prettierConf,
-    parser: "typescript",
-    plugins: prettierConf.plugins?.filter(
-      (p) => typeof p === "string" && !p.includes("prettier-plugin-sort-imports")
-    )
-  });
-  const indexPath = path$1.join(targetDir, "index.ts");
-  const distIndexPath = path$1.join(targetDistDir, "index.js");
-  writeFileSync(indexPath, formattedIndexContent);
-  const indexResult = transformFileSync(indexPath, {
-    module: { type: "nodenext" },
-    env: { targets: { node: "18" } }
-  });
-  writeFileSync(distIndexPath, indexResult.code);
-  console.log(`\u2705 Generated config values in ${targetDir} and ${targetDistDir}`);
-  console.log(`\u{1F4C1} Created ${nestedObjects.length} nested object files + index.ts/.js`);
-  console.log(`\u{1F4DD} Root exports: ${configEntries.length - nestedObjects.length}`);
+  const sortedKeys = [...sorter.sort().keys()];
+  return new Map(sortedKeys.map((key) => [key, dependencyStructure[key].dirName]));
+}
+function resolveDependenciesSync(root = process.cwd()) {
+  const cached = resolveCache.get(root);
+  if (cached) return cached;
+  sig();
+  const dependencyStructure = resolveRecursivePackageJson(
+    root,
+    {},
+    root,
+    process.env.PRIVATE_ADDITIONAL_DEPENDENCIES?.split(",") ?? []
+  );
+  const sorted = sortDependencies(dependencyStructure);
+  resolveCache.set(root, sorted);
+  return sorted;
 }
 
 function isIdentifier(node) {
@@ -1759,131 +1297,64 @@ async function generateInterceptors(plugins, resolve, config, force) {
   );
 }
 
-function checkFileExists$1(file) {
-  return fs$1.access(file, fs$1.constants.F_OK).then(() => true).catch(() => false);
-}
-async function writeInterceptors(interceptors, cwd = process.cwd()) {
+const resolveDependency = (cwd = process.cwd()) => {
   const dependencies = resolveDependenciesSync(cwd);
-  const existingInterceptors = /* @__PURE__ */ new Set();
-  dependencies.forEach((dependency) => {
-    if (dependency.includes("node_modules")) return;
-    const files = sync(
-      [`${dependency}/**/*.interceptor.tsx`, `${dependency}/**/*.interceptor.ts`],
-      { cwd }
-    );
-    files.forEach((file) => existingInterceptors.add(file));
-  });
-  const existingOriginals = /* @__PURE__ */ new Set();
-  dependencies.forEach((dependency) => {
-    if (dependency.includes("node_modules")) return;
-    const files = sync([`${dependency}/**/*.original.tsx`, `${dependency}/**/*.original.ts`], {
-      cwd
-    });
-    files.forEach((file) => existingOriginals.add(file));
-  });
-  const processedFiles = /* @__PURE__ */ new Set();
-  const activeInterceptorFiles = /* @__PURE__ */ new Set();
-  const written = Object.entries(interceptors).map(async ([, plugin]) => {
-    if (plugin.fromRoot.includes("node_modules")) {
-      console.warn(`Skipping node_modules file: ${plugin.fromRoot}`);
-      return;
-    }
-    const extension = plugin.sourcePath.endsWith(".tsx") ? ".tsx" : ".ts";
-    const originalFilePath = path$1.join(cwd, `${plugin.fromRoot}${extension}`);
-    const originalBackupPath = path$1.join(cwd, `${plugin.fromRoot}.original${extension}`);
-    processedFiles.add(`${plugin.fromRoot}.original${extension}`);
-    activeInterceptorFiles.add(`${plugin.fromRoot}${extension}`);
-    const originalExists = await checkFileExists$1(originalFilePath);
-    if (!originalExists) {
-      console.warn(`Original file not found: ${originalFilePath}`);
-      return;
-    }
-    const backupExists = await checkFileExists$1(originalBackupPath);
-    if (!backupExists) {
-      try {
-        await fs$1.rename(originalFilePath, originalBackupPath);
-      } catch (error) {
-        console.error(`Failed to move original file ${originalFilePath}:`, error);
-        return;
-      }
-    }
-    try {
-      await fs$1.writeFile(originalFilePath, plugin.template);
-    } catch (error) {
-      console.error(`Failed to write interceptor file ${originalFilePath}:`, error);
-    }
-  });
-  const cleanedInterceptors = [...existingInterceptors].filter((file) => !file.includes("node_modules")).map(async (file) => {
-    const fullPath = path$1.join(cwd, file);
-    if (await checkFileExists$1(fullPath)) {
-      await fs$1.unlink(fullPath);
-      console.info(`Removed old interceptor file: ${file}`);
-    }
-  });
-  const cleanedOriginals = [...existingOriginals].filter((file) => !processedFiles.has(file) && !file.includes("node_modules")).map(async (file) => {
-    const fullPath = path$1.join(cwd, file);
-    const originalPath = fullPath.replace(".original.", ".");
-    if (await checkFileExists$1(fullPath)) {
-      const mainFileExists = await checkFileExists$1(originalPath);
-      if (mainFileExists) {
-        const mainFileContent = await fs$1.readFile(originalPath, "utf8");
-        const isInterceptor = mainFileContent.includes("/* hash:") && mainFileContent.includes("/* This file is automatically generated");
-        if (isInterceptor) {
-          await fs$1.unlink(originalPath);
-          await fs$1.rename(fullPath, originalPath);
-          console.info(
-            `Plugin deleted - restored original file: ${file.replace(".original.", ".")}`
-          );
-        } else {
-          await fs$1.unlink(fullPath);
-          console.info(`Removed orphaned original file: ${file}`);
+  function resolve(dependency, options = {}) {
+    const { includeSources = false } = options;
+    let dependencyPaths = {
+      root: ".",
+      source: "",
+      sourcePath: "",
+      sourcePathRelative: "",
+      dependency,
+      fromRoot: dependency,
+      fromModule: dependency,
+      denormalized: dependency
+    };
+    dependencies.forEach((root, depCandidate) => {
+      if (dependency === depCandidate || dependency.startsWith(`${depCandidate}/`)) {
+        const relative = dependency.replace(depCandidate, "");
+        const rootCandidate = dependency.replace(depCandidate, root);
+        let source = "";
+        let sourcePath = "";
+        const fromRoot = [
+          `${rootCandidate}`,
+          `${rootCandidate}/index`,
+          `${rootCandidate}/src/index`
+        ].find(
+          (location) => ["ts", "tsx"].find((extension) => {
+            const candidatePath = `${location}.${extension}`;
+            const exists = fs.existsSync(candidatePath);
+            if (includeSources && exists) {
+              source = fs.readFileSync(candidatePath, "utf-8");
+              sourcePath = candidatePath;
+            }
+            return exists;
+          })
+        );
+        if (!fromRoot) {
+          return;
         }
-      } else {
-        await fs$1.rename(fullPath, originalPath);
-        console.info(`Restored original file: ${file.replace(".original.", ".")}`);
-      }
-    }
-  });
-  const orphanedInterceptors = [];
-  dependencies.forEach((dependency) => {
-    if (dependency.includes("node_modules") || dependency.includes("packagesDev") || dependency.includes("/packagesDev/") || dependency.startsWith("packagesDev/") || path$1.resolve(cwd, dependency).includes("packagesDev"))
-      return;
-    const files = sync([`${dependency}/**/*.tsx`, `${dependency}/**/*.ts`], { cwd });
-    files.forEach((file) => {
-      const fullPath = path$1.join(cwd, file);
-      if (!activeInterceptorFiles.has(file)) {
-        orphanedInterceptors.push(checkAndRestoreOrphanedInterceptor(fullPath, file));
+        const denormalized = fromRoot.replace(root, depCandidate);
+        let fromModule = !relative ? "." : `./${relative.split("/")[relative.split("/").length - 1]}`;
+        const sourcePathRelative = !sourcePath ? "." : `./${sourcePath.split("/")[sourcePath.split("/").length - 1]}`;
+        if (dependency.startsWith("./")) fromModule = `.${relative}`;
+        dependencyPaths = {
+          root,
+          dependency,
+          denormalized,
+          fromRoot,
+          fromModule,
+          source,
+          sourcePath,
+          sourcePathRelative
+        };
       }
     });
-  });
-  await Promise.all(written);
-  await Promise.all(cleanedInterceptors);
-  await Promise.all(cleanedOriginals);
-  await Promise.all(orphanedInterceptors);
-}
-async function checkAndRestoreOrphanedInterceptor(fullPath, relativePath, cwd) {
-  try {
-    if (!await checkFileExists$1(fullPath)) return;
-    if (fullPath.includes("packagesDev") || relativePath.includes("packagesDev") || fullPath.includes("/packagesDev/")) {
-      return;
-    }
-    const content = await fs$1.readFile(fullPath, "utf8");
-    const isInterceptor = content.includes("/* hash:") && content.includes("/* This file is automatically generated");
-    if (isInterceptor) {
-      const originalPath = fullPath.replace(/\.(tsx?)$/, ".original.$1");
-      if (await checkFileExists$1(originalPath)) {
-        await fs$1.unlink(fullPath);
-        await fs$1.rename(originalPath, fullPath);
-        console.info(`Restored orphaned interceptor: ${relativePath}`);
-      } else {
-        await fs$1.unlink(fullPath);
-        console.info(`Removed orphaned interceptor (no original): ${relativePath}`);
-      }
-    }
-  } catch (error) {
-    console.error(`Error checking orphaned interceptor ${relativePath}:`, error);
+    return dependencyPaths;
   }
-}
+  return resolve;
+};
 
 dotenv.config();
 async function codegenInterceptors() {
@@ -1895,105 +1366,6 @@ async function codegenInterceptors() {
     conf.debug);
   await writeInterceptors(generatedInterceptors);
   console.info("\u2705 Generated interceptors and moved original files");
-}
-
-dotenv.config();
-function checkFileExists(file) {
-  return fs$1.access(file, fs$1.constants.F_OK).then(() => true).catch(() => false);
-}
-async function cleanupInterceptors(cwd = process.cwd()) {
-  console.info("\u{1F9F9} Starting interceptor cleanup...");
-  const dependencies = resolveDependenciesSync(cwd);
-  let restoredCount = 0;
-  let removedCount = 0;
-  const originalFiles = [];
-  dependencies.forEach((dependency) => {
-    if (dependency.includes("node_modules")) return;
-    const files = sync([`${dependency}/**/*.original.tsx`, `${dependency}/**/*.original.ts`], {
-      cwd
-    });
-    originalFiles.push(...files);
-  });
-  console.info(`\u{1F4C2} Found ${originalFiles.length} .original files to restore`);
-  const restorePromises = originalFiles.map(async (originalFile) => {
-    const fullOriginalPath = path.join(cwd, originalFile);
-    const restoredPath = fullOriginalPath.replace(/\.original\.(tsx?)$/, ".$1");
-    try {
-      if (await checkFileExists(fullOriginalPath)) {
-        if (await checkFileExists(restoredPath)) {
-          await fs$1.unlink(restoredPath);
-        }
-        await fs$1.rename(fullOriginalPath, restoredPath);
-        restoredCount++;
-        console.info(`\u2705 Restored: ${originalFile.replace(".original.", ".")}`);
-      }
-    } catch (error) {
-      console.error(`\u274C Failed to restore ${originalFile}:`, error);
-    }
-  });
-  await Promise.all(restorePromises);
-  const interceptorFiles = [];
-  dependencies.forEach((dependency) => {
-    if (dependency.includes("node_modules")) return;
-    const files = sync(
-      [`${dependency}/**/*.interceptor.tsx`, `${dependency}/**/*.interceptor.ts`],
-      { cwd }
-    );
-    interceptorFiles.push(...files);
-  });
-  console.info(`\u{1F5D1}\uFE0F  Found ${interceptorFiles.length} .interceptor files to remove`);
-  const removeInterceptorPromises = interceptorFiles.map(async (interceptorFile) => {
-    const fullPath = path.join(cwd, interceptorFile);
-    try {
-      if (await checkFileExists(fullPath)) {
-        await fs$1.unlink(fullPath);
-        removedCount++;
-        console.info(`\u{1F5D1}\uFE0F  Removed: ${interceptorFile}`);
-      }
-    } catch (error) {
-      console.error(`\u274C Failed to remove ${interceptorFile}:`, error);
-    }
-  });
-  await Promise.all(removeInterceptorPromises);
-  const allFiles = [];
-  dependencies.forEach((dependency) => {
-    if (dependency.includes("node_modules") || dependency.includes("packagesDev") || !dependency.startsWith("packages/"))
-      return;
-    const files = sync([`${dependency}/**/*.tsx`, `${dependency}/**/*.ts`], {
-      cwd,
-      ignore: ["**/*.original.*", "**/*.interceptor.*", "**/node_modules/**"]
-    });
-    allFiles.push(...files);
-  });
-  console.info(`\u{1F50D} Checking ${allFiles.length} files for generated interceptors...`);
-  const cleanupGeneratedPromises = allFiles.map(async (file) => {
-    const fullPath = path.join(cwd, file);
-    try {
-      if (await checkFileExists(fullPath)) {
-        const content = await fs$1.readFile(fullPath, "utf8");
-        const hasHashComment = content.includes("/* hash:");
-        const hasGeneratedComment = content.includes("/* This file is automatically generated");
-        const isGeneratedInterceptor = hasHashComment && hasGeneratedComment;
-        if (isGeneratedInterceptor) {
-          await fs$1.unlink(fullPath);
-          removedCount++;
-          console.info(`\u{1F5D1}\uFE0F  Removed generated interceptor: ${file}`);
-        }
-      }
-    } catch (error) {
-      console.error(`\u274C Failed to check/remove ${file}:`, error);
-    }
-  });
-  await Promise.all(cleanupGeneratedPromises);
-  console.info("");
-  console.info("\u2705 Interceptor cleanup completed!");
-  console.info(`\u{1F4CA} Summary:`);
-  console.info(`   - ${restoredCount} files restored from .original`);
-  console.info(`   - ${removedCount} interceptor files removed`);
-  console.info("");
-  console.info(
-    '\u{1F4A1} You can now run "yarn graphcommerce codegen-interceptors" to regenerate interceptors'
-  );
 }
 
 const debug = (...args) => {
@@ -2255,6 +1627,207 @@ Source: ${sourcePath}`);
   debug(`Total execution time: ${(performance.now() - startTime).toFixed(0)}ms`);
 }
 
+dotenv.config();
+const packages = [...resolveDependenciesSync().values()].filter((p) => p !== ".");
+const resolve$1 = resolveDependency();
+const schemaLocations = packages.map((p) => `${p}/**/Config.graphqls`);
+async function generateConfig() {
+  const resolved = resolve$1("@graphcommerce/next-config");
+  if (!resolved) throw Error("Could not resolve @graphcommerce/next-config");
+  const targetTs = `${resolved.root}/src/generated/config.ts`;
+  const targetJs = `${resolved.root}/dist/generated/config.js`;
+  await generate({
+    silent: true,
+    schema: ["graphql/**/Config.graphqls", ...schemaLocations],
+    generates: {
+      [targetTs]: {
+        plugins: ["typescript", "typescript-validation-schema"],
+        config: {
+          // enumsAsTypes: true,
+          schema: "zod",
+          notAllowEmptyString: true,
+          strictScalars: true,
+          enumsAsTypes: true,
+          scalarSchemas: {
+            Domain: "z.string()",
+            DateTime: "z.date()",
+            RichTextAST: "z.object.json()"
+          }
+        }
+      },
+      ...findParentPath(process.cwd()) && {
+        "../../docs/framework/config.md": {
+          plugins: ["@graphcommerce/graphql-codegen-markdown-docs"]
+        }
+      }
+    }
+  });
+  writeFileSync(
+    targetTs,
+    await prettier.format(readFileSync(targetTs, "utf-8"), {
+      ...prettierConf,
+      parser: "typescript",
+      plugins: prettierConf.plugins?.filter(
+        (p) => typeof p === "string" && !p.includes("prettier-plugin-sort-imports")
+      )
+    })
+  );
+  const result = transformFileSync(targetTs, {
+    module: { type: "nodenext" },
+    env: { targets: { node: "20" } }
+  });
+  writeFileSync(targetJs, result.code);
+}
+
+dotenv.config();
+const resolve = resolveDependency();
+function toFileName(key) {
+  return key;
+}
+function generateValueLiteral(value) {
+  if (value === null) return "null";
+  if (value === void 0) return "undefined";
+  if (typeof value === "string") return JSON.stringify(value);
+  if (typeof value === "boolean" || typeof value === "number") return String(value);
+  if (Array.isArray(value) || typeof value === "object" && value !== null) {
+    return JSON.stringify(value, null, 2);
+  }
+  return JSON.stringify(value);
+}
+function shouldCreateFile(value) {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+function getSectionSchemaKeys(configKey) {
+  try {
+    const mainSchema = GraphCommerceConfigSchema();
+    const sectionSchema = mainSchema.shape[configKey];
+    if (!sectionSchema) return [];
+    let unwrappedSchema = sectionSchema;
+    while (unwrappedSchema && typeof unwrappedSchema === "object") {
+      if ("_def" in unwrappedSchema) {
+        const def = unwrappedSchema._def;
+        if ("innerType" in def && def.innerType) {
+          unwrappedSchema = def.innerType;
+          continue;
+        }
+        if ("typeName" in def && def.typeName === "ZodObject" && "shape" in def && def.shape) {
+          return Object.keys(def.shape());
+        }
+        break;
+      } else {
+        break;
+      }
+    }
+    if (unwrappedSchema && "shape" in unwrappedSchema) {
+      const shape = typeof unwrappedSchema.shape === "function" ? unwrappedSchema.shape() : unwrappedSchema.shape;
+      return Object.keys(shape || {});
+    }
+  } catch {
+  }
+  return [];
+}
+async function createConfigSectionFile(sectionName, sectionValue, targetDir, targetDistDir, configKey) {
+  const fileName = `${toFileName(sectionName)}.ts`;
+  const filePath = path$1.join(targetDir, fileName);
+  const distFileName = `${toFileName(sectionName)}.js`;
+  const distFilePath = path$1.join(targetDistDir, distFileName);
+  const schemaKeys = getSectionSchemaKeys(configKey);
+  const completeSectionValue = {};
+  for (const key of schemaKeys) {
+    completeSectionValue[key] = sectionValue[key];
+  }
+  const exports = Object.entries(completeSectionValue).map(([key, value]) => {
+    const valueStr = generateValueLiteral(value);
+    const propertyPath = `'${sectionName}.${key}'`;
+    const typeAnnotation = `: Get<GraphCommerceConfig, ${propertyPath}>`;
+    return `export const ${key}${typeAnnotation} = ${valueStr}`;
+  }).join("\n\n");
+  const imports = `import type { GraphCommerceConfig } from '../config'
+import type { Get } from 'type-fest'` ;
+  const content = `// Auto-generated by 'yarn graphcommerce codegen-config-values'
+${imports}
+
+${exports}
+`;
+  const formattedContent = await prettier.format(content, {
+    ...prettierConf,
+    parser: "typescript",
+    plugins: prettierConf.plugins?.filter(
+      (p) => typeof p === "string" && !p.includes("prettier-plugin-sort-imports")
+    )
+  });
+  writeFileSync(filePath, formattedContent);
+  const result = transformFileSync(filePath, {
+    module: { type: "nodenext" },
+    env: { targets: { node: "18" } }
+  });
+  writeFileSync(distFilePath, result.code);
+}
+async function generateConfigValues() {
+  const resolved = resolve("@graphcommerce/next-config");
+  if (!resolved) throw Error("Could not resolve @graphcommerce/next-config");
+  const config = loadConfig(process.cwd());
+  const targetDir = `${resolved.root}/src/generated/configValues`;
+  const targetDistDir = `${resolved.root}/dist/generated/configValues`;
+  if (existsSync(targetDir)) {
+    rmSync(targetDir, { recursive: true, force: true });
+  }
+  if (existsSync(targetDistDir)) {
+    rmSync(targetDistDir, { recursive: true, force: true });
+  }
+  mkdirSync(targetDir, { recursive: true });
+  mkdirSync(targetDistDir, { recursive: true });
+  const schema = GraphCommerceConfigSchema();
+  const schemaKeys = Object.keys(schema.shape);
+  const completeConfig = {};
+  for (const key of schemaKeys) {
+    completeConfig[key] = config[key];
+  }
+  const configEntries = Object.entries(completeConfig);
+  const nestedObjects = [];
+  const rootExports = [];
+  for (const [key, value] of configEntries) {
+    if (shouldCreateFile(value)) {
+      nestedObjects.push([key, value, key]);
+      rootExports.push(`export * as ${key} from './${toFileName(key)}'`);
+    } else {
+      const valueStr = generateValueLiteral(value);
+      const typeAnnotation = `: Get<GraphCommerceConfig, '${key}'>`;
+      rootExports.push(`export const ${key}${typeAnnotation} = ${valueStr}`);
+    }
+  }
+  await Promise.all(
+    nestedObjects.map(
+      ([sectionName, sectionValue, configKey]) => createConfigSectionFile(sectionName, sectionValue, targetDir, targetDistDir, configKey)
+    )
+  );
+  const rootImports = `import type { GraphCommerceConfig } from '../config'
+import type { Get } from 'type-fest'` ;
+  const indexContent = `// Auto-generated by 'yarn graphcommerce codegen-config-values'
+${rootImports}
+
+${rootExports.join("\n")}
+`;
+  const formattedIndexContent = await prettier.format(indexContent, {
+    ...prettierConf,
+    parser: "typescript",
+    plugins: prettierConf.plugins?.filter(
+      (p) => typeof p === "string" && !p.includes("prettier-plugin-sort-imports")
+    )
+  });
+  const indexPath = path$1.join(targetDir, "index.ts");
+  const distIndexPath = path$1.join(targetDistDir, "index.js");
+  writeFileSync(indexPath, formattedIndexContent);
+  const indexResult = transformFileSync(indexPath, {
+    module: { type: "nodenext" },
+    env: { targets: { node: "20" } }
+  });
+  writeFileSync(distIndexPath, indexResult.code);
+  console.log(`\u2705 Generated config values in ${targetDir} and ${targetDistDir}`);
+  console.log(`\u{1F4C1} Created ${nestedObjects.length} nested object files + index.ts/.js`);
+  console.log(`\u{1F4DD} Root exports: ${configEntries.length - nestedObjects.length}`);
+}
+
 async function codegen() {
   console.info("\u{1F504} Copying files from packages to project...");
   await copyFiles();
@@ -2266,4 +1839,174 @@ async function codegen() {
   await codegenInterceptors();
 }
 
-export { GraphCommerceConfigSchema, GraphCommerceDebugConfigSchema, GraphCommerceStorefrontConfigSchema, cleanupInterceptors, codegen, codegenInterceptors, copyFiles, exportConfig, findParentPath, g, generateConfig, generateConfigValues, loadConfig, packageRoots, replaceConfigInString, resolveDependenciesSync, sig, sortDependencies, withGraphCommerce };
+const fmt = (value) => {
+  let formattedValue = value;
+  if (typeof formattedValue === "boolean") {
+    formattedValue = formattedValue ? "1" : "0";
+  }
+  if (typeof formattedValue === "object") {
+    formattedValue = JSON.stringify(formattedValue);
+  }
+  if (typeof formattedValue === "number") {
+    formattedValue = String(formattedValue);
+  }
+  return formattedValue;
+};
+function exportConfigToEnv(config) {
+  let env = "";
+  Object.entries(config).forEach(([key, value]) => {
+    if (Array.isArray(value)) {
+      value.forEach((val, idx) => {
+        env += `${toEnvStr([key, `${idx}`])}='${fmt(val)}'
+`;
+      });
+    } else {
+      env += `${toEnvStr([key])}='${fmt(value)}'
+`;
+    }
+  });
+  return env;
+}
+
+dotenv.config();
+async function exportConfig() {
+  const conf = loadConfig(process.cwd());
+  console.log(exportConfigToEnv(conf));
+}
+
+const packageRoots = (packagePaths) => {
+  const pathMap = {};
+  packagePaths.forEach((singlePath) => {
+    const parts = singlePath.split("/");
+    for (let i = 1; i < parts.length; i++) {
+      const subPath = parts.slice(0, i + 1).join("/");
+      if (pathMap[subPath]) {
+        pathMap[subPath].count += 1;
+      } else {
+        pathMap[subPath] = { path: subPath, count: 1 };
+      }
+    }
+  });
+  const roots = [];
+  Object.values(pathMap).forEach(({ path, count }) => {
+    if (count > 1) {
+      roots.push(path);
+    }
+  });
+  return roots.filter(
+    (root, index, self) => self.findIndex((r) => r !== root && r.startsWith(`${root}/`)) === -1
+  );
+};
+
+let graphcommerceConfig;
+function domains(config) {
+  return Object.values(
+    config.storefront.reduce(
+      (acc, loc) => {
+        if (!loc.domain) return acc;
+        acc[loc.domain] = {
+          defaultLocale: loc.locale,
+          locales: [...acc[loc.domain]?.locales ?? [], loc.locale],
+          domain: loc.domain,
+          http: process.env.NODE_ENV === "development" || void 0
+        };
+        return acc;
+      },
+      {}
+    )
+  );
+}
+function withGraphCommerce(nextConfig, cwd = process.cwd()) {
+  graphcommerceConfig ??= loadConfig(cwd);
+  const { storefront } = graphcommerceConfig;
+  const transpilePackages = [
+    ...[...resolveDependenciesSync().keys()].slice(1),
+    ...nextConfig.transpilePackages ?? []
+  ];
+  return {
+    ...nextConfig,
+    bundlePagesRouterDependencies: true,
+    turbopack: {
+      ...nextConfig.turbopack ?? {},
+      rules: {
+        ...nextConfig.experimental?.turbo?.rules ?? {},
+        "*.yaml": { loaders: [{ loader: "js-yaml-loader", options: {} }], as: "*.js" },
+        "*.yml": { loaders: [{ loader: "js-yaml-loader", options: {} }], as: "*.js" },
+        "*.po": { loaders: [{ loader: "@lingui/loader", options: {} }], as: "*.js" }
+      }
+    },
+    experimental: {
+      ...nextConfig.experimental,
+      scrollRestoration: true,
+      swcPlugins: [...nextConfig.experimental?.swcPlugins ?? [], ["@lingui/swc-plugin", {}]],
+      optimizePackageImports: [
+        ...transpilePackages,
+        ...nextConfig.experimental?.optimizePackageImports ?? []
+      ]
+    },
+    i18n: {
+      ...nextConfig.i18n,
+      defaultLocale: storefront.find((locale) => locale.defaultLocale)?.locale ?? storefront[0].locale,
+      locales: storefront.map((locale) => locale.locale),
+      domains: [...domains(graphcommerceConfig), ...nextConfig.i18n?.domains ?? []]
+    },
+    images: {
+      ...nextConfig.images,
+      remotePatterns: [
+        "magentoEndpoint" in graphcommerceConfig ? {
+          hostname: new URL(graphcommerceConfig.magentoEndpoint).hostname
+        } : void 0,
+        { hostname: "**.graphassets.com" },
+        { hostname: "*.graphcommerce.org" },
+        ...nextConfig.images?.remotePatterns ?? []
+      ].filter((v) => !!v)
+    },
+    rewrites: async () => {
+      let rewrites = await nextConfig.rewrites?.() ?? [];
+      if (Array.isArray(rewrites)) {
+        rewrites = { beforeFiles: rewrites, afterFiles: [], fallback: [] };
+      }
+      if ("productRoute" in graphcommerceConfig && typeof graphcommerceConfig.productRoute === "string" && graphcommerceConfig.productRoute !== "/p/") {
+        rewrites.beforeFiles?.push({
+          source: `${graphcommerceConfig.productRoute ?? "/p/"}:path*`,
+          destination: "/p/:path*"
+        });
+      }
+      return rewrites;
+    },
+    transpilePackages,
+    webpack: (config, options) => {
+      if (!config.module) config.module = { rules: [] };
+      config.module = {
+        ...config.module,
+        rules: [
+          ...config.module.rules ?? [],
+          // Allow importing yml/yaml files for graphql-mesh
+          { test: /\.ya?ml$/, use: "js-yaml-loader" },
+          // @lingui .po file support
+          { test: /\.po/, use: "@lingui/loader" }
+        ],
+        exprContextCritical: false
+      };
+      if (!config.plugins) config.plugins = [];
+      config.snapshot = {
+        ...config.snapshot ?? {},
+        managedPaths: [
+          new RegExp(`^(.+?[\\/]node_modules[\\/])(?!${transpilePackages.join("|")})`)
+        ]
+      };
+      config.watchOptions = {
+        ...config.watchOptions ?? {},
+        ignored: new RegExp(
+          `^((?:[^/]*(?:/|$))*)(.(git|next)|(node_modules[\\/](?!${transpilePackages.join(
+            "|"
+          )})))(/((?:[^/]*(?:/|$))*)(?:$|/))?`
+        )
+      };
+      if (!config.resolve) config.resolve = {};
+      return typeof nextConfig.webpack === "function" ? nextConfig.webpack(config, options) : config;
+    }
+  };
+}
+
+export { GraphCommerceConfigSchema, PackagesSort, TopologicalSort, cleanupInterceptors, codegen, codegenInterceptors, copyFiles, exportConfig, findParentPath, g, generateConfig, generateConfigValues, loadConfig, packageRoots, replaceConfigInString, resolveDependenciesSync, resolveDependency, sig, sortDependencies, withGraphCommerce };

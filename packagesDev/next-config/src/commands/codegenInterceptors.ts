@@ -1,9 +1,9 @@
 import dotenv from 'dotenv'
-import { loadConfig } from '../../config/loadConfig'
-import { resolveDependency } from '../../utils/resolveDependency'
-import { findPlugins } from '../findPlugins'
-import { generateInterceptors } from '../generateInterceptors'
-import { writeInterceptors } from '../writeInterceptors'
+import { loadConfig } from '../config/loadConfig'
+import { findPlugins } from '../interceptors/findPlugins'
+import { generateInterceptors } from '../interceptors/generateInterceptors'
+import { writeInterceptors } from '../interceptors/writeInterceptors'
+import { resolveDependency } from '../utils/resolveDependency'
 
 dotenv.config()
 

@@ -204,7 +204,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       })
     : undefined
 
-  if (!hasCategory) return redirectOrNotFound(staticClient, conf, params, locale)
+  if (!(await category)?.uid) return redirectOrNotFound(staticClient, conf, params, locale)
 
   if ((await products)?.errors) {
     const totalPages = (await filters)?.data.filters?.page_info?.total_pages ?? 0

@@ -10,7 +10,7 @@
     "node": ">=20.0.0 <23.0.0"
   },
   "scripts": {
-    "dev": "concurrently -k -n codegen,next 'gc-gql-codegen -w' 'next dev' -c 'magenta,cyan'",
+    "dev": "concurrently -k -n codegen,next 'gc-gql-codegen -w' 'next dev --turbopack' -c 'magenta,cyan'",
     "codegen": "graphcommerce codegen && gc-mesh build && gc-gql-codegen",
     "build": "graphcommerce codegen && gc-mesh build && gc-gql-codegen && next build",
     "start": "next start",

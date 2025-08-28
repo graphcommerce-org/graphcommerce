@@ -1,220 +1,111 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+import { stat } from 'node:fs'
 import fs from 'node:fs/promises'
 import path from 'path'
-import { sync as globSync } from 'glob'
-import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
+import { glob } from 'glob'
+import { findParentPath } from '../utils/findParentPath'
 import type { GenerateInterceptorsReturn } from './generateInterceptors'
 
-function checkFileExists(file: string) {
-  return fs
-    .access(file, fs.constants.F_OK)
-    .then(() => true)
-    .catch(() => false)
+export async function fsExists(file: string): Promise<boolean> {
+  try {
+    await fs.access(file, fs.constants.F_OK)
+    return true
+  } catch {
+    return false
+  }
+}
+export async function fsRealpath(file: string): Promise<string> {
+  return (await fsExists(file)) ? fs.realpath(file) : file
 }
 
-/**
- * New writeInterceptors that moves original files and replaces them with interceptor content
- *
- * This approach:
- *
- * 1. Moves original file from Component.tsx to Component.original.tsx
- * 2. Creates new Component.tsx with the interceptor content
- * 3. Updates imports in interceptor content to point to .original files
- * 4. Removes the webpack plugin dependency
- */
+export async function restoreOriginalFile(fileWithOriginalInTheName: string): Promise<boolean> {
+  const restoredPath = fileWithOriginalInTheName.replace(/\.original\.(tsx?)$/, '.$1')
+
+  if (await fsExists(fileWithOriginalInTheName)) {
+    // Remove the current interceptor file if it exists
+    if (await fsExists(restoredPath)) {
+      await fs.unlink(restoredPath)
+    }
+    // Restore the original file
+    await fs.rename(fileWithOriginalInTheName, restoredPath)
+    return true
+  }
+  return false
+}
+
+export async function findDotOriginalFiles(cwd: string) {
+  let parentPath = findParentPath(process.cwd())
+  while (parentPath) {
+    const p = findParentPath(parentPath)
+    if (p) parentPath = p
+    else break
+  }
+
+  return Promise.all(
+    (
+      await glob([`${parentPath}/**/*.original.tsx`, `${parentPath}/**/*.original.ts`], { cwd })
+    ).map((file) => fs.realpath(file)),
+  )
+}
+
 export async function writeInterceptors(
   interceptors: GenerateInterceptorsReturn,
   cwd: string = process.cwd(),
 ) {
-  const dependencies = resolveDependenciesSync(cwd)
-
-  // Find existing interceptor files to clean up (old .interceptor files)
-  const existingInterceptors = new Set<string>()
-  dependencies.forEach((dependency) => {
-    // Skip node_modules dependencies
-    if (dependency.includes('node_modules')) return
-
-    const files = globSync(
-      [`${dependency}/**/*.interceptor.tsx`, `${dependency}/**/*.interceptor.ts`],
-      { cwd },
-    )
-    files.forEach((file) => existingInterceptors.add(file))
-  })
-
-  // Find existing .original files to track
-  const existingOriginals = new Set<string>()
-  dependencies.forEach((dependency) => {
-    // Skip node_modules dependencies
-    if (dependency.includes('node_modules')) return
-
-    const files = globSync([`${dependency}/**/*.original.tsx`, `${dependency}/**/*.original.ts`], {
-      cwd,
-    })
-    files.forEach((file) => existingOriginals.add(file))
-  })
-
-  const processedFiles = new Set<string>()
-  const activeInterceptorFiles = new Set<string>()
+  const processedFiles: string[] = []
+  const existingDotOriginalFiles = findDotOriginalFiles(cwd)
 
   // Process each interceptor
   const written = Object.entries(interceptors).map(async ([, plugin]) => {
-    // Skip node_modules files
-    if (plugin.fromRoot.includes('node_modules')) {
-      console.warn(`Skipping node_modules file: ${plugin.fromRoot}`)
-      return
-    }
-
     const extension = plugin.sourcePath.endsWith('.tsx') ? '.tsx' : '.ts'
-    const originalFilePath = path.join(cwd, `${plugin.fromRoot}${extension}`)
-    const originalBackupPath = path.join(cwd, `${plugin.fromRoot}.original${extension}`)
 
-    processedFiles.add(`${plugin.fromRoot}.original${extension}`)
-    activeInterceptorFiles.add(`${plugin.fromRoot}${extension}`)
+    const targetFileName = `${plugin.fromRoot}${extension}`
+    const fileNameDotOriginal = `${plugin.fromRoot}.original${extension}`
+    const targetFilePath = await fsRealpath(path.resolve(cwd, targetFileName))
+    const dotOriginalPath = await fsRealpath(path.resolve(cwd, fileNameDotOriginal))
 
-    // Check if original file exists
-    const originalExists = await checkFileExists(originalFilePath)
-    if (!originalExists) {
-      console.warn(`Original file not found: ${originalFilePath}`)
-      return
+    processedFiles.push(dotOriginalPath)
+
+    const targetSource = (await fsExists(targetFilePath))
+      ? await fs.readFile(targetFilePath, 'utf8')
+      : null
+
+    const dotOriginalSource = (await fsExists(dotOriginalPath))
+      ? await fs.readFile(dotOriginalPath, 'utf8')
+      : null
+
+    const isPreviouslyApplied = dotOriginalSource !== null && targetSource?.includes('/* hash:')
+
+    let status = ''
+    if (isPreviouslyApplied) {
+      if (targetSource === plugin.template) {
+        status = '✅ Unchanged interceptor'
+      } else {
+        status = '🔄 Updating interceptor'
+        await fs.writeFile(targetFilePath, plugin.template)
+      }
+    } else {
+      status = '🆕 Creating interceptor'
+      await fs.rename(targetFilePath, dotOriginalPath)
+      await fs.writeFile(targetFilePath, plugin.template)
     }
 
-    // Check if backup already exists
-    const backupExists = await checkFileExists(originalBackupPath)
-    if (!backupExists) {
-      // Move original file to .original
-      try {
-        await fs.rename(originalFilePath, originalBackupPath)
-      } catch (error) {
-        console.error(`Failed to move original file ${originalFilePath}:`, error)
-        return
-      }
-    }
-
-    // Write the new interceptor content as the main file
-    try {
-      await fs.writeFile(originalFilePath, plugin.template)
-    } catch (error) {
-      console.error(`Failed to write interceptor file ${originalFilePath}:`, error)
-    }
-  })
-
-  // Clean up old .interceptor files (only in packages, not node_modules)
-  const cleanedInterceptors = [...existingInterceptors]
-    .filter((file) => !file.includes('node_modules'))
-    .map(async (file) => {
-      const fullPath = path.join(cwd, file)
-      if (await checkFileExists(fullPath)) {
-        await fs.unlink(fullPath)
-        console.info(`Removed old interceptor file: ${file}`)
-      }
-    })
-
-  // Clean up orphaned .original files (originals that no longer have interceptors)
-  const cleanedOriginals = [...existingOriginals]
-    .filter((file) => !processedFiles.has(file) && !file.includes('node_modules'))
-    .map(async (file) => {
-      const fullPath = path.join(cwd, file)
-      const originalPath = fullPath.replace('.original.', '.')
-
-      if (await checkFileExists(fullPath)) {
-        // When a plugin is deleted, we need to restore the original file
-        // Check if the main file exists and is an interceptor (has our specific markers)
-        const mainFileExists = await checkFileExists(originalPath)
-
-        if (mainFileExists) {
-          // Check if the main file is an interceptor by looking for our specific markers
-          const mainFileContent = await fs.readFile(originalPath, 'utf8')
-          const isInterceptor =
-            mainFileContent.includes('/* hash:') &&
-            mainFileContent.includes('/* This file is automatically generated')
-
-          if (isInterceptor) {
-            // This means the plugin was deleted, so restore the original
-            await fs.unlink(originalPath) // Remove the interceptor
-            await fs.rename(fullPath, originalPath) // Restore the original
-            console.info(
-              `Plugin deleted - restored original file: ${file.replace('.original.', '.')}`,
-            )
-          } else {
-            // Main file exists but is not an interceptor, remove the orphaned original
-            await fs.unlink(fullPath)
-            console.info(`Removed orphaned original file: ${file}`)
-          }
-        } else {
-          // No main file exists, restore the original
-          await fs.rename(fullPath, originalPath)
-          console.info(`Restored original file: ${file.replace('.original.', '.')}`)
-        }
-      }
-    })
-
-  // Check for interceptor files that no longer have plugins (exclude packagesDev)
-  const orphanedInterceptors: Promise<void>[] = []
-  dependencies.forEach((dependency) => {
-    // Skip node_modules dependencies and packagesDev (our source code)
-    if (
-      dependency.includes('node_modules') ||
-      dependency.includes('packagesDev') ||
-      dependency.includes('/packagesDev/') ||
-      dependency.startsWith('packagesDev/') ||
-      path.resolve(cwd, dependency).includes('packagesDev')
-    )
-      return
-
-    const files = globSync([`${dependency}/**/*.tsx`, `${dependency}/**/*.ts`], { cwd })
-    files.forEach((file) => {
-      const fullPath = path.join(cwd, file)
-      // Check if this file is an interceptor but no longer has active plugins
-      if (!activeInterceptorFiles.has(file)) {
-        orphanedInterceptors.push(checkAndRestoreOrphanedInterceptor(fullPath, file, cwd))
-      }
+    console.log(`${status} ${plugin.dependency}`)
+    Object.entries(plugin.targetExports).forEach(([target, plugins]) => {
+      plugins.forEach((plugin) => {
+        console.log(`  🔌 ${target} <- ${plugin.sourceModule}`)
+      })
     })
   })
 
   await Promise.all(written)
-  await Promise.all(cleanedInterceptors)
-  await Promise.all(cleanedOriginals)
-  await Promise.all(orphanedInterceptors)
-}
 
-/** Check if a file is an orphaned interceptor and restore the original if needed */
-async function checkAndRestoreOrphanedInterceptor(
-  fullPath: string,
-  relativePath: string,
-  cwd: string,
-): Promise<void> {
-  try {
-    if (!(await checkFileExists(fullPath))) return
-
-    // Extra safety check: never delete files in packagesDev
-    if (
-      fullPath.includes('packagesDev') ||
-      relativePath.includes('packagesDev') ||
-      fullPath.includes('/packagesDev/')
-    ) {
-      return
-    }
-
-    const content = await fs.readFile(fullPath, 'utf8')
-    const isInterceptor =
-      content.includes('/* hash:') && content.includes('/* This file is automatically generated')
-
-    if (isInterceptor) {
-      // This is an interceptor file that no longer has active plugins
-      const originalPath = fullPath.replace(/\.(tsx?)$/, '.original.$1')
-
-      if (await checkFileExists(originalPath)) {
-        // Remove the interceptor and restore the original
-        await fs.unlink(fullPath)
-        await fs.rename(originalPath, fullPath)
-        console.info(`Restored orphaned interceptor: ${relativePath}`)
-      } else {
-        // No original file exists, just remove the orphaned interceptor
-        await fs.unlink(fullPath)
-        console.info(`Removed orphaned interceptor (no original): ${relativePath}`)
-      }
-    }
-  } catch (error) {
-    console.error(`Error checking orphaned interceptor ${relativePath}:`, error)
-  }
+  const toRestore = (await existingDotOriginalFiles).filter(
+    (file) => !processedFiles.includes(file),
+  )
+  await Promise.all(
+    toRestore.map((file) => {
+      console.log(`↩ Removing old interceptor ${file}`)
+      return restoreOriginalFile(file)
+    }),
+  )
 }

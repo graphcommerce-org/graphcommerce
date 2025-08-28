@@ -1,9 +1,6 @@
 import type { Path, PathValue } from 'react-hook-form'
 import type { GraphCommerceConfig } from '../generated/config'
 
-export * from './commands/generateConfig'
-export * from './commands/exportConfig'
-
 export * from './loadConfig'
 
 export type IfConfig<P extends Path<GraphCommerceConfig> = Path<GraphCommerceConfig>> =
