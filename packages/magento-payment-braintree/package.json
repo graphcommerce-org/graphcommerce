@@ -11,6 +11,9 @@
       "project": "./tsconfig.json"
     }
   },
+  "exports": {
+    ".": "./index.ts"
+  },
   "devDependencies": {
     "@types/braintree-web": "^3.96.17"
   },

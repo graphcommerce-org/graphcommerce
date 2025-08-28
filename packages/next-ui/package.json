@@ -11,6 +11,10 @@
       "project": "./tsconfig.json"
     }
   },
+  "exports": {
+    ".": "./index.ts",
+    "./server": "./server.ts"
+  },
   "dependencies": {
     "cookie": "^1.0.2",
     "react-is": "^19.1.1"

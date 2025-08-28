@@ -35,5 +35,8 @@
     "@graphql-mesh/plugin-http-details-extensions": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "exports": {
+    ".": "./index.ts"
   }
 }

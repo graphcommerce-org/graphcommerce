@@ -28,5 +28,8 @@
     "@graphcommerce/google-datalayer": {
       "optional": true
     }
+  },
+  "exports": {
+    ".": "./index.ts"
   }
 }

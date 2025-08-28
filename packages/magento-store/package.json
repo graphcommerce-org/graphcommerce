@@ -11,6 +11,11 @@
       "project": "./tsconfig.json"
     }
   },
+  "exports": {
+    ".": "./index.ts",
+    "./plugins/meshMagentoStore": "./plugins/meshMagentoStore.ts",
+    "./mesh/resolvers.ts": "./mesh/resolvers.ts"
+  },
   "peerDependencies": {
     "@graphcommerce/ecommerce-ui": "^9.1.0-canary.55",
     "@graphcommerce/eslint-config-pwa": "^9.1.0-canary.55",

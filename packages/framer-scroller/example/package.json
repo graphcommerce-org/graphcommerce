@@ -33,15 +33,15 @@
     "@unts/patch-package": "^8.1.1",
     "concurrently": "8.2.2",
     "cross-env": "^7.0.3",
-    "dotenv": "16.4.7",
+    "dotenv": "16.6.1",
     "framer-motion": "11.18.2",
     "graphql": "^16.11.0",
     "next": "15.5.2",
     "next-sitemap": "4.2.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "sharp": "0.34.3",
-    "webpack": "^5.97.1"
+    "webpack": "^5.101.3"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "9.1.0-canary.55",
@@ -58,5 +58,8 @@
     "prettier": "^3.6.2",
     "type-fest": "^4.41.0",
     "typescript": "5.9.2"
+  },
+  "exports": {
+    ".": "./index.ts"
   }
 }

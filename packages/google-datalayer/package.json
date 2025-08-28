@@ -45,5 +45,8 @@
   },
   "dependencies": {
     "web-vitals": "^4.2.4"
+  },
+  "exports": {
+    ".": "./index.ts"
   }
 }

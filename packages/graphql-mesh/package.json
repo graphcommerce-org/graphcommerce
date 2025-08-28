@@ -3,7 +3,6 @@
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "9.1.0-canary.55",
-  "main": "index.ts",
   "dependencies": {
     "@whatwg-node/fetch": "^0.10.10",
     "fetch-retry": "^5.0.6",
@@ -11,6 +10,12 @@
     "long": "^5.3.2",
     "tslib": "^2.8.1",
     "uglify-es": "3.3.10"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./meshConfig": "./meshConfig.ts",
+    "./customFetch": "./customFetch.ts",
+    "./plugin/forward-headers": "./plugin/forward-headers.ts"
   },
   "peerDependencies": {
     "@apollo/client": "*",

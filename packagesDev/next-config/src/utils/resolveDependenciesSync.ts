@@ -12,6 +12,8 @@ const resolveCache: Map<string, PackageNames> = new Map<string, PackageNames>()
 function findPackageJson(id: string, root: string) {
   let dir = id.startsWith('/') ? id : import.meta.resolve(id)
 
+  if (dir.startsWith('file://')) dir = new URL(dir).pathname
+
   let packageJsonLocation = path.join(dir, 'package.json')
   while (!fs.existsSync(packageJsonLocation)) {
     dir = path.dirname(dir)

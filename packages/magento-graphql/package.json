@@ -12,6 +12,17 @@
       "project": "./tsconfig.json"
     }
   },
+  "exports": {
+    ".": "./index.ts",
+    "./plugins/magentoOrderItemMesh": "./plugins/magentoOrderItemMesh.ts",
+    "./plugins/magentoOrders": "./plugins/magentoOrders.ts",
+    "./plugins/meshConfigAttrValue": "./plugins/meshConfigAttrValue.ts",
+    "./mesh/customAttributeV2Resolver.ts": "./mesh/customAttributeV2Resolver.ts",
+    "./mesh/attributeValueResolver.ts": "./mesh/attributeValueResolver.ts",
+    "./mesh/scopedUidResolver.ts": "./mesh/scopedUidResolver.ts",
+    "./mesh/magentoOrdersResolver.ts": "./mesh/magentoOrdersResolver.ts",
+    "./mesh/magentoOrderItemResolver.ts": "./mesh/magentoOrderItemResolver.ts"
+  },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^9.1.0-canary.55",
     "@graphcommerce/graphql": "^9.1.0-canary.55",

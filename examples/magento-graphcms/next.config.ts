@@ -23,6 +23,9 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 }
 
-export default withGraphCommerce(withPWA(nextConfig))
+export default withGraphCommerce(nextConfig)

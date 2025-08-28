@@ -499,21 +499,42 @@ function formatAppliedEnv(applyResult) {
   return [header, ...lines].join("\n");
 }
 
-function flattenConfig(obj, prefix = "") {
-  const result = {};
-  for (const [key, value] of Object.entries(obj)) {
-    const newKey = prefix ? `${prefix}.${key}` : key;
-    if (value !== null && typeof value === "object" && !Array.isArray(value)) {
-      Object.assign(result, flattenConfig(value, newKey));
-    } else {
-      result[newKey] = String(value);
-    }
+function flattenKeys(value, initialPathPrefix, stringify) {
+  if (value === null || value === void 0 || typeof value === "number") {
+    return { [initialPathPrefix]: value };
   }
-  return result;
+  if (typeof value === "string") {
+    return { [initialPathPrefix]: stringify ? JSON.stringify(value) : value };
+  }
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return {
+      [initialPathPrefix]: stringify || Array.isArray(value) ? JSON.stringify(value) : value
+    };
+  }
+  if (typeof value === "object") {
+    let outputValue = value;
+    if (stringify)
+      outputValue = process.env.NODE_ENV !== "production" ? `{ __debug: "'${initialPathPrefix}' can not be destructured, please access deeper properties directly" }` : "{}";
+    return {
+      [initialPathPrefix]: outputValue,
+      ...Object.keys(value).map((key) => {
+        const deep = value[key];
+        return {
+          ...flattenKeys(deep, `${initialPathPrefix}.${key}`, stringify),
+          ...flattenKeys(deep, `${initialPathPrefix}?.${key}`, stringify)
+        };
+      }).reduce((acc, path) => ({ ...acc, ...path }), {})
+    };
+  }
+  throw Error(`Unexpected value: ${value}`);
 }
+function configToImportMeta(config, path = "import.meta.graphCommerce", stringify = true) {
+  return flattenKeys(config, path, stringify);
+}
+
 function replaceConfigInString(str, config) {
   let result = str;
-  const replacers = flattenConfig(config, "graphCommerce");
+  const replacers = configToImportMeta(config, "graphCommerce", false);
   Object.entries(replacers).forEach(([from, to]) => {
     result = result.replace(new RegExp(`{${from}}`, "g"), to);
   });
@@ -670,6 +691,7 @@ function sig() {
 const resolveCache = /* @__PURE__ */ new Map();
 function findPackageJson(id, root) {
   let dir = id.startsWith("/") ? id : import.meta.resolve(id);
+  if (dir.startsWith("file://")) dir = new URL(dir).pathname;
   let packageJsonLocation = path.join(dir, "package.json");
   while (!fs.existsSync(packageJsonLocation)) {
     dir = path.dirname(dir);

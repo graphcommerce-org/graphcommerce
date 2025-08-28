@@ -11,6 +11,10 @@
       "project": "./tsconfig.json"
     }
   },
+  "exports": {
+    ".": "./index.ts",
+    "./plugins/meshRecaptcha": "./plugins/meshRecaptcha.ts"
+  },
   "devDependencies": {
     "@types/grecaptcha": "^3.0.9"
   },

@@ -5,8 +5,12 @@
   "version": "9.1.0-canary.55",
   "sideEffects": false,
   "type": "commonjs",
-  "main": "dist/index.js",
-  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "scripts": {
     "test": "jest",
     "dev": "tsc -W --preserveWatchOutput",

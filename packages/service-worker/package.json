@@ -19,5 +19,8 @@
     "next": "*",
     "serwist": "*",
     "webpack": "^5.0.0"
+  },
+  "exports": {
+    ".": "./index.ts"
   }
 }

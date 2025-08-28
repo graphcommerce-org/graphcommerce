@@ -29,5 +29,8 @@
   "devDependencies": {
     "graphql": "^16.11.0",
     "tsx": "^4.20.5"
+  },
+  "exports": {
+    ".": "./index.ts"
   }
 }

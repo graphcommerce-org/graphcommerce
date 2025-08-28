@@ -12,6 +12,11 @@
       "project": "./tsconfig.json"
     }
   },
+  "exports": {
+    ".": "./index.ts",
+    "./plugins/meshConfigM2Rest": "./plugins/meshConfigM2Rest.ts",
+    "./m2-filtered-spec.json": "./m2-filtered-spec.json"
+  },
   "scripts": {
     "generate": "tsx ./scripts/generate-spec.mts"
   },

@@ -13,5 +13,8 @@
   },
   "peerDependencies": {
     "@graphcommerce/hygraph-ui": "^9.1.0-canary.55"
+  },
+  "exports": {
+    ".": "./index.ts"
   }
 }
