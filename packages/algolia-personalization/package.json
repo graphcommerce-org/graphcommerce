@@ -31,6 +31,9 @@
     "tsx": "^4.20.5"
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./plugins/InContextInputAlgoliaUserToken": "./plugins/InContextInputAlgoliaUserToken.ts",
+    "./plugins/getSearchResultsInputPersonalization": "./plugins/getSearchResultsInputPersonalization.ts",
+    "./plugins/getSearchSuggestionsInputPersonalization": "./plugins/getSearchSuggestionsInputPersonalization.ts"
   }
 }

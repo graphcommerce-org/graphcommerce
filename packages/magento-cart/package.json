@@ -15,8 +15,9 @@
     ".": "./index.ts",
     "./components/CartAdded/useCrosssellItems": "./components/CartAdded/useCrosssellItems.ts",
     "./hooks": "./hooks/index.ts",
-    "./plugins/useSignInFormMergeCart": "./plugins/useSignInFormMergeCart.ts",
-    "./plugins/MagentoCartGraphqlProvider": "./plugins/MagentoCartGraphqlProvider.tsx"
+    "./plugins/CartDebuggerPlugin": "./plugins/CartDebuggerPlugin.tsx",
+    "./plugins/MagentoCartGraphqlProvider": "./plugins/MagentoCartGraphqlProvider.tsx",
+    "./plugins/useSignInFormMergeCart": "./plugins/useSignInFormMergeCart.ts"
   },
   "peerDependencies": {
     "@graphcommerce/ecommerce-ui": "^9.1.0-canary.55",

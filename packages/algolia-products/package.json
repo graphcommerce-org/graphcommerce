@@ -30,6 +30,11 @@
     "tsx": "^4.20.5"
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./plugins/GraphQLProviderAlgoliaCustomerGroupId": "./plugins/GraphQLProviderAlgoliaCustomerGroupId.tsx",
+    "./plugins/ProductListItemsBaseAlgolia": "./plugins/ProductListItemsBaseAlgolia.tsx",
+    "./plugins/magentoProductApplyAlgoliaEngine": "./plugins/magentoProductApplyAlgoliaEngine.ts",
+    "./plugins/magentoSearchApplyAlgoliaEngine": "./plugins/magentoSearchApplyAlgoliaEngine.ts",
+    "./plugins/meshConfigAlgolia": "./plugins/meshConfigAlgolia.ts"
   }
 }

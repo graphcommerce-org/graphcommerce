@@ -896,6 +896,30 @@ async function generateInterceptors(plugins, resolve, config, force) {
   );
 }
 
+const packageRoots = (packagePaths) => {
+  const pathMap = {};
+  packagePaths.forEach((singlePath) => {
+    const parts = singlePath.split("/");
+    for (let i = 1; i < parts.length; i++) {
+      const subPath = parts.slice(0, i + 1).join("/");
+      if (pathMap[subPath]) {
+        pathMap[subPath].count += 1;
+      } else {
+        pathMap[subPath] = { path: subPath, count: 1 };
+      }
+    }
+  });
+  const roots = [];
+  Object.values(pathMap).forEach(({ path, count }) => {
+    if (count > 1) {
+      roots.push(path);
+    }
+  });
+  return roots.filter(
+    (root, index, self) => self.findIndex((r) => r !== root && r.startsWith(`${root}/`)) === -1
+  );
+};
+
 const resolveDependency = (cwd = process.cwd()) => {
   const dependencies = resolveDependenciesSync(cwd);
   function resolve(dependency, options = {}) {
@@ -955,10 +979,101 @@ const resolveDependency = (cwd = process.cwd()) => {
   return resolve;
 };
 
+async function updatePackageExports(plugins, cwd = process.cwd()) {
+  const deps = resolveDependenciesSync();
+  const packages = [...deps.values()].filter((p) => p !== ".");
+  const roots = packageRoots(packages);
+  console.log(`\u{1F50D} Scanning ${roots.length} package roots for plugins...`);
+  const pluginsByPackage = /* @__PURE__ */ new Map();
+  for (const root of roots) {
+    const packageDirs = sync(`${root}/*/package.json`).map((pkgPath) => path.dirname(pkgPath));
+    for (const packagePath of packageDirs) {
+      const pluginFiles = sync(`${packagePath}/plugins/**/*.{ts,tsx}`);
+      if (pluginFiles.length > 0) {
+        const exportPaths = /* @__PURE__ */ new Set();
+        pluginFiles.forEach((file) => {
+          const relativePath = path.relative(packagePath, file);
+          const exportPath = `./${relativePath.replace(/\.(ts|tsx)$/, "")}`;
+          exportPaths.add(exportPath);
+        });
+        if (exportPaths.size > 0) {
+          const packageJsonPath = path.join(packagePath, "package.json");
+          try {
+            const packageJsonContent = await fs$1.readFile(packageJsonPath, "utf8");
+            const packageJson = JSON.parse(packageJsonContent);
+            const packageName = packageJson.name || path.basename(packagePath);
+            pluginsByPackage.set(packagePath, exportPaths);
+            console.log(`\u{1F50D} Found ${exportPaths.size} plugin files in ${packageName}`);
+          } catch (error) {
+            console.warn(`\u26A0\uFE0F  Could not read package.json for ${packagePath}:`, error);
+          }
+        }
+      }
+    }
+  }
+  console.log(`\u{1F4E6} Total packages with plugins: ${pluginsByPackage.size}`);
+  const updatePromises = Array.from(pluginsByPackage.entries()).map(
+    async ([packagePath, exportPaths]) => {
+      const packageJsonPath = path.join(packagePath, "package.json");
+      try {
+        const packageJsonContent = await fs$1.readFile(packageJsonPath, "utf8");
+        const packageJson = JSON.parse(packageJsonContent);
+        if (!packageJson.exports) {
+          packageJson.exports = { ".": "./index.ts" };
+        }
+        if (typeof packageJson.exports === "object" && !packageJson.exports["."]) {
+          packageJson.exports["."] = "./index.ts";
+        }
+        let hasChanges = false;
+        exportPaths.forEach((exportPath) => {
+          const exportKey = exportPath.startsWith("./") ? exportPath : `./${exportPath}`;
+          const filePath = `${exportPath}.tsx`;
+          const tsFilePath = `${exportPath}.ts`;
+          const targetFile = sync(path.join(packagePath, `${exportPath.slice(2)}.{ts,tsx}`))[0];
+          if (targetFile) {
+            const extension = targetFile.endsWith(".tsx") ? ".tsx" : ".ts";
+            const targetPath = `${exportPath}${extension}`;
+            if (packageJson.exports && !packageJson.exports[exportKey]) {
+              packageJson.exports[exportKey] = targetPath;
+              hasChanges = true;
+            }
+          }
+        });
+        if (hasChanges) {
+          const sortedExports = {};
+          if (packageJson.exports["."]) {
+            sortedExports["."] = packageJson.exports["."];
+          }
+          Object.keys(packageJson.exports).filter((key) => key !== ".").sort().forEach((key) => {
+            sortedExports[key] = packageJson.exports[key];
+          });
+          packageJson.exports = sortedExports;
+          const updatedContent = JSON.stringify(packageJson, null, 2) + "\n";
+          await fs$1.writeFile(packageJsonPath, updatedContent);
+          console.log(`\u2705 Updated exports in ${packageJson.name}`);
+          const newExports = Object.keys(packageJson.exports).filter((key) => key !== ".");
+          if (newExports.length > 0) {
+            console.log(`   Added exports: ${newExports.join(", ")}`);
+          }
+        } else {
+          console.log(
+            `\u2139\uFE0F  No changes needed for ${packageJson.name} (${exportPaths.size} plugins already exported)`
+          );
+        }
+      } catch (error) {
+        console.error(`\u274C Failed to update package.json for ${packagePath}:`, error);
+      }
+    }
+  );
+  await Promise.all(updatePromises);
+}
+
 dotenv.config();
 async function codegenInterceptors() {
   const conf = loadConfig(process.cwd());
   const [plugins] = findPlugins(conf);
+  console.info("\u{1F504} Updating package.json exports for plugins...");
+  await updatePackageExports();
   const generatedInterceptors = await generateInterceptors(
     plugins,
     resolveDependency(),
@@ -1472,30 +1587,6 @@ async function exportConfig() {
   const conf = loadConfig(process.cwd());
   console.log(exportConfigToEnv(conf));
 }
-
-const packageRoots = (packagePaths) => {
-  const pathMap = {};
-  packagePaths.forEach((singlePath) => {
-    const parts = singlePath.split("/");
-    for (let i = 1; i < parts.length; i++) {
-      const subPath = parts.slice(0, i + 1).join("/");
-      if (pathMap[subPath]) {
-        pathMap[subPath].count += 1;
-      } else {
-        pathMap[subPath] = { path: subPath, count: 1 };
-      }
-    }
-  });
-  const roots = [];
-  Object.values(pathMap).forEach(({ path, count }) => {
-    if (count > 1) {
-      roots.push(path);
-    }
-  });
-  return roots.filter(
-    (root, index, self) => self.findIndex((r) => r !== root && r.startsWith(`${root}/`)) === -1
-  );
-};
 
 let graphcommerceConfig;
 function domains(config) {

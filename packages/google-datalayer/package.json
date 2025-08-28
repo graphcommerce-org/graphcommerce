@@ -48,16 +48,18 @@
   },
   "exports": {
     ".": "./index.ts",
-    "./plugins/GoogleDatalayerUseRemoveItemFromCart": "./plugins/GoogleDatalayerUseRemoveItemFromCart.tsx",
-    "./plugins/GoogleDatalayerRemoveItemFromCart": "./plugins/GoogleDatalayerRemoveItemFromCart.tsx",
     "./plugins/GoogleDatalayerAddProductsToCartForm": "./plugins/GoogleDatalayerAddProductsToCartForm.tsx",
-    "./plugins/GoogleDatalayerProductListItem": "./plugins/GoogleDatalayerProductListItem.tsx",
-    "./plugins/GoogleDatalayerProductListItemsBase": "./plugins/GoogleDatalayerProductListItemsBase.tsx",
-    "./plugins/GoogleDatalayerViewItem": "./plugins/GoogleDatalayerViewItem.tsx",
     "./plugins/GoogleDatalayerCartStartCheckout": "./plugins/GoogleDatalayerCartStartCheckout.tsx",
     "./plugins/GoogleDatalayerCartStartCheckoutLinkOrButton": "./plugins/GoogleDatalayerCartStartCheckoutLinkOrButton.tsx",
     "./plugins/GoogleDatalayerPaymentMethodButton": "./plugins/GoogleDatalayerPaymentMethodButton.tsx",
     "./plugins/GoogleDatalayerPaymentMethodContextProvider": "./plugins/GoogleDatalayerPaymentMethodContextProvider.tsx",
-    "./plugins/GoogleDatalayerShippingMethodForm": "./plugins/GoogleDatalayerShippingMethodForm.tsx"
+    "./plugins/GoogleDatalayerProductListItem": "./plugins/GoogleDatalayerProductListItem.tsx",
+    "./plugins/GoogleDatalayerProductListItemsBase": "./plugins/GoogleDatalayerProductListItemsBase.tsx",
+    "./plugins/GoogleDatalayerRemoveItemFromCart": "./plugins/GoogleDatalayerRemoveItemFromCart.tsx",
+    "./plugins/GoogleDatalayerShippingMethodForm": "./plugins/GoogleDatalayerShippingMethodForm.tsx",
+    "./plugins/GoogleDatalayerUseRemoveItemFromCart": "./plugins/GoogleDatalayerUseRemoveItemFromCart.tsx",
+    "./plugins/GoogleDatalayerUseSignInForm": "./plugins/GoogleDatalayerUseSignInForm.tsx",
+    "./plugins/GoogleDatalayerViewItem": "./plugins/GoogleDatalayerViewItem.tsx",
+    "./plugins/GoogleDatalayerWebVitals": "./plugins/GoogleDatalayerWebVitals.tsx"
   }
 }

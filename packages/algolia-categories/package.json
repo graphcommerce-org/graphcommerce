@@ -31,6 +31,8 @@
     "tsx": "^4.20.5"
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./plugins/categoriesApplySearchDefaultAlgolia": "./plugins/categoriesApplySearchDefaultAlgolia.ts",
+    "./plugins/meshConfigAlgoliaCategories": "./plugins/meshConfigAlgoliaCategories.ts"
   }
 }

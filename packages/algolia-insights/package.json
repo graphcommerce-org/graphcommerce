@@ -32,6 +32,10 @@
     "tsx": "^4.20.5"
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./plugins/getSearchResultsInputInsights": "./plugins/getSearchResultsInputInsights.ts",
+    "./plugins/getSearchSuggestionsInputInsights": "./plugins/getSearchSuggestionsInputInsights.ts",
+    "./plugins/meshConfigAlgoliaInsights": "./plugins/meshConfigAlgoliaInsights.ts",
+    "./plugins/useSendEventAlgolia": "./plugins/useSendEventAlgolia.ts"
   }
 }

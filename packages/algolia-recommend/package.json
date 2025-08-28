@@ -27,6 +27,7 @@
     "tsx": "^4.20.5"
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./plugins/meshConfigAlgoliaRecommend": "./plugins/meshConfigAlgoliaRecommend.ts"
   }
 }

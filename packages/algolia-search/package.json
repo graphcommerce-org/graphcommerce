@@ -35,6 +35,15 @@
     "react-instantsearch-hooks-web": "^6.47.3"
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./plugins/AlgoliaCategorySearchResults": "./plugins/AlgoliaCategorySearchResults.tsx",
+    "./plugins/AlgoliaFiltersPlugin": "./plugins/AlgoliaFiltersPlugin.tsx",
+    "./plugins/AlgoliaPageSearchResults": "./plugins/AlgoliaPageSearchResults.tsx",
+    "./plugins/AlgoliaPaginationPlugin": "./plugins/AlgoliaPaginationPlugin.tsx",
+    "./plugins/AlgoliaProductListCountPlugin": "./plugins/AlgoliaProductListCountPlugin.tsx",
+    "./plugins/AlgoliaProductSearchResultsPlugin": "./plugins/AlgoliaProductSearchResultsPlugin.tsx",
+    "./plugins/AlgoliaProductSortPlugin": "./plugins/AlgoliaProductSortPlugin.tsx",
+    "./plugins/AlgoliaSearchContextPlugin": "./plugins/AlgoliaSearchContextPlugin.tsx",
+    "./plugins/AlgoliaSearchFieldPlugin": "./plugins/AlgoliaSearchFieldPlugin.tsx"
   }
 }
