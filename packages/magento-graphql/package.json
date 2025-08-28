@@ -22,7 +22,7 @@
     "./mesh/attributeValueResolver.ts": "./mesh/attributeValueResolver.ts",
     "./mesh/scopedUidResolver.ts": "./mesh/scopedUidResolver.ts",
     "./mesh/magentoOrdersResolver.ts": "./mesh/magentoOrdersResolver.ts",
-    "./mesh/magentoOrderItemResolver.ts": "./mesh/magentoOrderItemResolver.ts"
+    "./mesh/magentoOrderItemResolvers.ts": "./mesh/magentoOrderItemResolvers.ts"
   },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^9.1.0-canary.55",

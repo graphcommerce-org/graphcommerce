@@ -28,6 +28,7 @@
   },
   "exports": {
     ".": "./index.ts",
+    "./mesh/resolvers.ts": "./mesh/resolvers.ts",
     "./plugins/meshConfigAlgoliaRecommend": "./plugins/meshConfigAlgoliaRecommend.ts"
   }
 }
