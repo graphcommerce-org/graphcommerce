@@ -53,7 +53,7 @@ export async function updatePackageExports(
             const packageName = packageJson.name || path.basename(packagePath)
 
             pluginsByPackage.set(packagePath, exportPaths)
-            console.log(`🔍 Found ${exportPaths.size} plugin files in ${packageName}`)
+            // console.log(`🔍 Found ${exportPaths.size} plugin files in ${packageName}`)
           } catch (error) {
             console.warn(`⚠️  Could not read package.json for ${packagePath}:`, error)
           }
@@ -132,10 +132,10 @@ export async function updatePackageExports(
             console.log(`   Added exports: ${newExports.join(', ')}`)
           }
         } else {
-          // Log packages that were scanned but had no changes
-          console.log(
-            `ℹ️  No changes needed for ${packageJson.name} (${exportPaths.size} plugins already exported)`,
-          )
+          // // Log packages that were scanned but had no changes
+          // console.log(
+          //   `ℹ️  No changes needed for ${packageJson.name} (${exportPaths.size} plugins already exported)`,
+          // )
         }
       } catch (error) {
         console.error(`❌ Failed to update package.json for ${packagePath}:`, error)

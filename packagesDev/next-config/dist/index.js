@@ -1003,7 +1003,6 @@ async function updatePackageExports(plugins, cwd = process.cwd()) {
             const packageJson = JSON.parse(packageJsonContent);
             const packageName = packageJson.name || path.basename(packagePath);
             pluginsByPackage.set(packagePath, exportPaths);
-            console.log(`\u{1F50D} Found ${exportPaths.size} plugin files in ${packageName}`);
           } catch (error) {
             console.warn(`\u26A0\uFE0F  Could not read package.json for ${packagePath}:`, error);
           }
@@ -1056,9 +1055,6 @@ async function updatePackageExports(plugins, cwd = process.cwd()) {
             console.log(`   Added exports: ${newExports.join(", ")}`);
           }
         } else {
-          console.log(
-            `\u2139\uFE0F  No changes needed for ${packageJson.name} (${exportPaths.size} plugins already exported)`
-          );
         }
       } catch (error) {
         console.error(`\u274C Failed to update package.json for ${packagePath}:`, error);
